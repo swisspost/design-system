@@ -7,6 +7,7 @@
 
 @use '../components/close';
 
+@use '../mixins/utilities';
 @use '../mixins/icons' as icon-mixin;
 @use '../functions/color' as color-fn;
 @use './text';
@@ -106,6 +107,18 @@
       }
     } @else {
       @include icon-mixin.pi($icon);
+      @include utilities.high-contrast-mode() {
+        // use important here, so pi classes don't overwrite hcm styles
+        filter: none !important;
+        forced-color-adjust: none;
+        color: canvas;
+        background-color: canvasText;
+
+        .toast-close-button,
+        .btn-close {
+          filter: invert(100%);
+        }
+      }
     }
     background-color: $background-color;
 
