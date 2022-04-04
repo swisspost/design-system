@@ -32,10 +32,4 @@
   @include utilities.high-contrast-mode() {
     filter: none;
   }
-
-  opacity: close.$btn-close-white-opacity;
-
-  &:hover {
-    opacity: close.$btn-close-white-hover-opacity;
-  }
 }

@@ -92,8 +92,8 @@
 /* stylelint-enable */
 
 @each $name, $color, $icon in alert.$alert-list {
-  $text-color: color-contrast($color);
-  $hover-color: rgba(color-contrast($color), 0.6);
+  $text-color: color-fn.get-contrast-color($color);
+  $hover-color: rgba(color-fn.get-contrast-color($color), 0.6);
   $background-color: $color;
   $is-light: color-fn.get-contrast-color($color) == #fff;
 
@@ -127,4 +127,3 @@
     }
   }
 }
-
