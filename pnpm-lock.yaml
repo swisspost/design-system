@@ -120,8 +120,8 @@ importers:
       '@ng-bootstrap/ng-bootstrap': ^12.0.0
       '@popperjs/core': ^2.11.2
       '@swimlane/ngx-datatable': ^20.0.0
-      '@swisspost/intranet-header': ^3.0.0-preview
-      '@swisspost/web-styles': ^5.0.0-preview
+      '@swisspost/intranet-header': ^3.0.0-alpha.0
+      '@swisspost/web-styles': ^5.0.0-alpha.0
       '@types/highlight.js': ^9.12.4
       '@types/jasmine': ~3.10.0
       '@types/jasminewd2': ^2.0.9
