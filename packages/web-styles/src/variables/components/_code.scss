@@ -1,0 +1,14 @@
+@use '../color';
+
+// Code
+
+$code-font-size: 1rem !default;
+$code-color: color.$purple-bright !default;
+
+$kbd-padding-y: 0.2rem !default;
+$kbd-padding-x: 0.4rem !default;
+$kbd-font-size: $code-font-size !default;
+$kbd-color: color.$white !default;
+$kbd-bg: color.$gray-800 !default;
+
+$pre-color: color.$gray-800 !default;

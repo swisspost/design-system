@@ -1,0 +1,12 @@
+@use '../../functions/icons' as icon-fn;
+@use '../color' as color-var;
+@use '../type';
+
+$detail-summary-icon: 2113 !default;
+$detail-summary-icon-color: 'primary' !default;
+$detail-summary-icon-transition-speed: 0.3s !default;
+
+$detail-summary-summary-font-size: type.$font-size-medium !default;
+$detail-summary-summary-font-weight: type.$font-weight-bold !default;
+
+$detail-summary-open-padding-bottom: 2.5rem !default;

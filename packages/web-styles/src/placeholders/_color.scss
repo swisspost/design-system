@@ -1,0 +1,11 @@
+@use '../variables/color';
+
+%inverted-color-vars {
+  --best-contrast: #{color.$white};
+  --inverted-contrast: #{color.$black};
+  --text-color: #{color.$white};
+  --inactive-color: #{color.$white-alpha-80};
+  --focus-color: #{color.$white-alpha-60};
+  --border-color: #{color.$white-alpha-20};
+  color: color.$white;
+}

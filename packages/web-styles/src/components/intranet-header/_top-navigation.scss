@@ -1,0 +1,108 @@
+@use '../../variables/color';
+@use '../../variables/commons';
+@use '../../variables/type';
+@use '../../variables/components/nav';
+@use '../../variables/components/navbar';
+
+@use '../../mixins/button' as button-mixins;
+@use '../../mixins/utilities';
+
+@use '../../themes/bootstrap/navbar' as bn;
+@use '../../themes/bootstrap/overrides' as *;
+
+.top-navigation {
+  button.nav-link {
+    @include button-mixins.reset-button();
+    padding: nav.$nav-link-padding-y navbar.$navbar-nav-link-padding-x;
+  }
+
+  .nav-item > .nav-link {
+    border-top: 4px solid transparent; // Border-Width according to PostWeb CSS
+    border-bottom: 4px solid transparent; // Border-Width according to PostWeb CSS
+    background-color: none;
+    color: color.$black-alpha-60;
+
+    @include utilities.high-contrast-mode() {
+      border-top: 4px solid canvas; // Border-Width according to PostWeb CSS
+    }
+
+    &:hover,
+    &:focus {
+      border-bottom-color: color.$black-alpha-40;
+      background-color: color.$gray-100;
+      text-decoration: none;
+    }
+
+    &.active {
+      border-bottom-color: color.$yellow;
+      color: color.$black;
+
+      @include utilities.high-contrast-mode() {
+        // use important to prevent a tag to override styles
+        color: highlight !important;
+        border-bottom-color: highlight !important;
+      }
+
+      &:hover,
+      &:focus {
+        border-bottom-color: color.$yellow;
+      }
+    }
+  }
+
+  .nav-link {
+    &:hover,
+    &:focus {
+      cursor: pointer;
+    }
+  }
+
+  .nav-item {
+    flex-shrink: 0;
+
+    a {
+      text-decoration: none;
+    }
+  }
+}
+
+@include media-breakpoint-down(rg) {
+  .top-navigation #navbarsDefault {
+    border-top: commons.$border-width solid color.$black-alpha-20;
+  }
+}
+
+@include media-breakpoint-up(md) {
+  .top-navigation {
+    border-top: commons.$border-width solid color.$black-alpha-20;
+  }
+}
+
+#navbarsDefault > ul > .nav-item {
+  font-size: 1.25rem;
+  font-weight: type.$font-weight-light;
+}
+
+@include media-breakpoint-down(rg) {
+  #nav-toggler {
+    border: 0;
+    border-left: commons.$border-width solid color.$black-alpha-20;
+    border-radius: 0;
+
+    &:hover,
+    &:focus {
+      background-color: color.$black-alpha-10;
+    }
+
+    i.pi {
+      height: 100%;
+      //width: 1.5rem;
+      color: color.$black-alpha-20;
+
+      &::before {
+        position: relative;
+        top: -3px; // Adjust postitioning
+      }
+    }
+  }
+}

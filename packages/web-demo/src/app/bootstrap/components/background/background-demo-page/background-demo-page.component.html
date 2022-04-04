@@ -1,0 +1,20 @@
+<div class="heading py-5">
+  <h1 class="bold font-curve-large" id="badge">Background</h1>
+  <h2 class="font-curve-medium">Using Bootstrap v5.0</h2>
+  <a href="https://getbootstrap.com/docs/5.0/utilities/background/" target="_blank"
+     class="btn btn-primary btn-sm btn-animated"><span>Bootstrap Documentation</span></a>
+</div>
+
+<h2>Infos</h2>
+<p>
+  All these background-color classes can be used with the class "text-auto".
+  This will automatically calculate the foreground color (black or white).<br/>
+  If you omit the text-auto class, you will have to make sure the text is still readable by yourself.<br />
+  Bootstrap suggests using "text-dark" or "text-white" in their docs. (See link "Bootstrap Doc" above.)
+</p>
+
+<h2>Default Bootstrap backgrounds</h2>
+<app-background-demo [color-array]="['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'white', 'transparent']"></app-background-demo>
+<h2>Extended Swiss Post backgrounds</h2>
+<app-background-demo [color-array]="['nightblue', 'nightblue-bright', 'petrol', 'petrol-bright', 'coral', 'coral-bright', 'olive', 'olive-bright', 'purple', 'purple-bright', 'aubergine', 'aubergine-bright']"></app-background-demo>
+<code class="block" [highlight]="codeTemplate" [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"></code>

@@ -1,0 +1,229 @@
+@forward '../variables/options';
+
+@use 'sass:map';
+@use 'sass:math';
+
+@use '../variables/components/button';
+@use '../variables/color';
+@use '../variables/type';
+@use '../variables/spacing';
+@use '../mixins/icons';
+@use '../mixins/utilities';
+@use '../mixins/forms';
+@use '../mixins/button' as button-mx;
+@use '../functions/icons' as icon-fn;
+@use '../functions/color' as color-fn;
+
+.btn {
+  @include button-mx.button-size();
+  @include forms.focus-outline();
+
+  // Resets
+  display: inline-flex;
+  position: relative;
+  align-items: center;
+  justify-content: center;
+  transition: opacity 250ms, border-color 250ms, background-color 250ms, color 250ms;
+  border-width: button.$btn-border-width;
+  border-style: solid;
+  border-color: transparent;
+  background-color: transparent;
+  box-shadow: none;
+  font-family: inherit;
+  font-weight: button.$btn-font-weight;
+  line-height: inherit;
+  text-decoration: none !important; // For <a> tags, !important for hover
+
+  &:disabled {
+    opacity: button.$btn-disabled-opacity !important;
+  }
+
+  > .pi {
+    width: 1em;
+    height: 1em;
+  }
+}
+
+// Size dependent properties, default is lg
+@each $size in sm, rg, lg {
+  .btn-#{$size} {
+    @include button-mx.button-size($size);
+  }
+}
+
+// Default / secondary
+.btn-default,
+.btn-secondary,
+%btn-default {
+  // opacity: .8;
+  border-color: var(--border-color);
+  background-color: transparent;
+  color: var(--text);
+
+  @include utilities.not-disabled-focus-hover() {
+    border-color: var(--best-contrast);
+    color: var(--best-contrast); // Override <a> color
+  }
+
+  &.btn-inverted {
+    border-color: var(--best-contrast);
+  }
+}
+
+// Primary
+.btn-primary {
+  opacity: 0.8;
+  background-color: var(--best-contrast);
+  color: var(--inverted-contrast);
+
+  @include utilities.not-disabled-focus-hover() {
+    opacity: 1;
+    color: var(--inverted-contrast); // Override <a> color
+  }
+
+  // Styles  to improve accessibility in high contrast mode
+  @include utilities.high-contrast-mode() {
+    opacity: 1;
+
+    &:hover {
+      border-color: highlight;
+    }
+  }
+}
+
+// Handle icon coloring
+.btn-primary:not(.btn-inverted),
+.btn-inverted:not(.btn-primary) {
+  .pi {
+    filter: invert(1);
+    forced-color-adjust: none;
+  }
+
+  &.btn-animated {
+    &::after {
+      filter: invert(1);
+      forced-color-adjust: none; // Display as white in Windows HCM
+    }
+  }
+}
+
+// Inverted
+.btn-inverted {
+  opacity: 1;
+
+  @include utilities.not-disabled-focus-hover() {
+    opacity: 0.85;
+  }
+}
+
+// Icon
+.btn-icon {
+  @include icons.icon-button();
+
+  @each $size in sm, rg, lg {
+    &.btn-#{$size} {
+      @include icons.icon-button($size);
+    }
+  }
+}
+
+// Animated
+.btn-animated {
+  @include utilities.high-contrast-mode() {
+    &::after {
+      filter: invert(1);
+    }
+  }
+
+  &::after {
+    content: '';
+    position: absolute;
+    right: map.get(button.$btn-padding-x-map, rg) * (1 - button.$btn-animation-distance-factor);
+    width: 1em;
+    height: 1em;
+    transform: translateX(-2px);
+    transition: opacity 250ms, transform 250ms;
+    opacity: 0;
+    background: url(icon-fn.add-stroke-color(
+      icon-fn.get-colored-svg-url(2050, color.$black),
+      color.$black,
+      2
+    ));
+    background-repeat: no-repeat;
+    background-size: contain;
+  }
+
+  > span {
+    transition: transform 250ms;
+  }
+  // Only animate when user did no set animations to false
+  @media (prefers-reduced-motion: no-preference) {
+    @include utilities.not-disabled-focus-hover() {
+      > span {
+        transform: translateX(map.get(button.$btn-animation-distance-map, rg) * -1);
+      }
+
+      @each $size in sm, md, lg {
+        &.btn-#{$size} > span {
+          transform: translateX(map.get(button.$btn-animation-distance-map, $size) * -1);
+        }
+      }
+
+      &::after {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    > span {
+      // Initially transform to place text in the right rendering context for a smooth animation
+      transform: translateX(0);
+    }
+  }
+
+  @each $size in sm, md, lg {
+    &.btn-#{$size}::after {
+      right: map.get(button.$btn-padding-x-map, $size) *
+        (1 - button.$btn-animation-distance-factor);
+    }
+  }
+}
+
+// Link
+.btn-link {
+  border: 0;
+
+  // Styles  to improve accessibility in high contrast mode
+  @media (forced-colors: active) {
+    text-decoration: underline !important;
+    color: linktext;
+  }
+}
+
+@mixin button-color-variant($name, $color) {
+  .btn-#{$name} {
+    opacity: 1;
+    background-color: $color;
+    color: color-fn.get-contrast-color($color);
+
+    @if (color-fn.get-contrast-color($color) == #fff) {
+      &.btn-animated::after {
+        filter: invert(1);
+      }
+    }
+
+    @include utilities.not-disabled-focus-hover() {
+      background-color: darken($color, 10%);
+    }
+  }
+}
+
+// Color variants
+@each $name, $color in color.$accent-colors {
+  @include button-color-variant($name, $color);
+}
+
+// Intranet contextual buttons
+@each $name, $color in color.$contextual-colors {
+  @include button-color-variant($name, $color);
+}

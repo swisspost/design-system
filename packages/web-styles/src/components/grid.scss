@@ -1,0 +1,101 @@
+@forward '../variables/options';
+
+@use 'sass:map';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as *;
+@use '../themes/bootstrap/grid' as bg;
+@use '../themes/bootstrap/containers' as bc;
+
+@use '../variables/commons';
+@use '../variables/spacing';
+@use '../variables/grid';
+
+.vertical-gutters {
+  margin-bottom: grid.$grid-gutter-width * -1;
+
+  > .col,
+  > [class*='col-'] {
+    padding-bottom: grid.$grid-gutter-width;
+  }
+}
+
+// border-gutters class is used to manipulate border collapse
+.row.border-gutters {
+  margin-right: -(commons.$border-width);
+  margin-bottom: -(commons.$border-width);
+  margin-left: 0;
+
+  > .col,
+  > [class*='col-'] {
+    padding-right: commons.$border-width;
+    padding-bottom: commons.$border-width;
+    padding-left: 0;
+  }
+}
+
+$container-cache: 0;
+
+@each $breakpoint in grid.$grid-breakpoints-list {
+  $container-padding: map.get(grid.$grid-container-padding, $breakpoint);
+
+  // Ensure this breakpoint is only overwritten when the padding differs from the last breakpoint
+  @if ($container-cache != $container-padding) {
+    // Loop over breakpoints and set custom-paddings to .container for each breakpoint
+    .container {
+      // If xs, don't add media-query
+      @if $breakpoint == 'xs' {
+        padding-right: $container-padding;
+        padding-left: $container-padding;
+      } @else {
+        @include media-breakpoint-up($breakpoint) {
+          padding-right: $container-padding;
+          padding-left: $container-padding;
+        }
+      }
+    }
+
+    .container-reset {
+      @if $breakpoint == 'xs' {
+        margin-right: -($container-padding);
+        margin-left: -($container-padding);
+      } @else {
+        @include media-breakpoint-up($breakpoint) {
+          margin-right: -($container-padding);
+          margin-left: -($container-padding);
+        }
+      }
+    }
+
+    .container-reset-left {
+      @if $breakpoint== 'xs' {
+        margin-left: -($container-padding);
+      } @else {
+        @include media-breakpoint-up($breakpoint) {
+          margin-left: -($container-padding);
+        }
+      }
+    }
+
+    .container-reset-right {
+      @if $breakpoint== 'xs' {
+        margin-right: -($container-padding);
+      } @else {
+        @include media-breakpoint-up($breakpoint) {
+          margin-right: -($container-padding);
+        }
+      }
+    }
+  }
+
+  // Container fluid responsive needs to be written every time
+  .container-fluid-#{$breakpoint} {
+    @include media-breakpoint-only($breakpoint) {
+      padding-right: spacing.$spacer;
+      padding-left: spacing.$spacer;
+    }
+  }
+
+  //stylelint-disable-next-line order/order
+  $container-cache: $container-padding;
+}

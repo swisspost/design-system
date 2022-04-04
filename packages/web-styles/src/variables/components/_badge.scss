@@ -1,0 +1,18 @@
+@use './button';
+@use '../type';
+@use '../color';
+@use '../spacing';
+@use '../commons';
+@use '../../functions/sizing';
+
+// Badges
+$badge-font-size: type.$font-size-tiny !default;
+$badge-font-weight: type.$font-weight-normal !default;
+$badge-border-radius: commons.$border-radius !default;
+
+$badge-height: spacing.$size-big !default;
+$badge-border: commons.$border-thick solid transparent !default;
+
+$badge-outline-color: color.$black;
+$badge-outline-bg: color.$white;
+$badge-outline-border-width: commons.$border-width !default;

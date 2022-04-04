@@ -1,0 +1,18 @@
+@use "tests/jest";
+@use "src/functions/sizing";
+@use "src/variables/commons";
+
+$value: 10px;
+$em-value: 1em;
+$rem-value: 1rem;
+$box-shadow: 0 0 5px 0 black;
+
+@include jest.equal(sizing.strip-unit($value), 10);
+@include jest.equal(sizing.px-to-em($value), 0.625em);
+@include jest.equal(sizing.px-to-rem($value), 0.625rem);
+@include jest.equal(sizing.to-em($value), 10em);
+@include jest.equal(sizing.to-rem($value), 10rem);
+@include jest.equal(sizing.to-px($em-value), 1px);
+@include jest.equal(sizing.line-height-calc($rem-value), 1.5);
+@include jest.equal(sizing.calculate-inner-height(1rem, 1.5, 0.25rem), 2rem);
+@include jest.equal(sizing.calculate-single-box-shadow-size(commons.$box-shadow), 4px);

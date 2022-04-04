@@ -1,0 +1,66 @@
+@use 'sass:math';
+
+@use 'sass:string';
+@use 'sass:map';
+@use '../variables/commons';
+
+@function z-index($key1, $key2: null) {
+  $map: commons.$z-indexes;
+  $found-index: null;
+
+  @if ($key1 == 'hidden') {
+    $found-index: -1;
+  }
+
+  @if ($key1 == 'deep') {
+    $found-index: -2;
+  }
+
+  @if (map-has-key($map, $key1)) {
+    $found-index: index(map.keys($map), $key1);
+
+    @if ($key2) {
+      $map: map.get($map, $key1);
+      $found-index: index($map, $key2);
+    }
+  }
+
+  @return $found-index;
+}
+
+@function average($argList...) {
+  $sum-of-arguments: 0;
+
+  @each $value in $argList {
+    $sum-of-arguments: $sum-of-arguments + $value;
+  }
+
+  @return math.div($sum-of-arguments, length($argList));
+}
+
+@function starts-with-any($value, $comparable...) {
+  @each $c in $comparable {
+    @if (str-index('#{$value}', $c) == 1) {
+      @return true;
+    }
+  }
+
+  @return false;
+}
+
+/// Replace `$search` with `$replace` in `$string`
+/// @author Hugo Giraudel
+/// @param {String} $string - Initial string
+/// @param {String} $search - Substring to replace
+/// @param {String} $replace ('') - New value
+/// @return {String} - Updated string
+@function replace($string, $search, $replace: '') {
+  $index: string.index($string, $search);
+
+  @if $index {
+    @return string.slice($string, 1, $index - 1) + $replace +
+      replace(string.slice($string, $index + string.length($search)), $search, $replace);
+  }
+
+  @return $string;
+}

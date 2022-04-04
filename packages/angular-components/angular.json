@@ -1,0 +1,48 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "swisspost-intranet-header": {
+      "projectType": "library",
+      "root": "projects/swisspost-intranet-header",
+      "sourceRoot": "projects/swisspost-intranet-header/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/swisspost-intranet-header/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/swisspost-intranet-header/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/swisspost-intranet-header/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/swisspost-intranet-header/src/test.ts",
+            "tsConfig": "projects/swisspost-intranet-header/tsconfig.spec.json",
+            "karmaConfig": "projects/swisspost-intranet-header/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/swisspost-intranet-header/**/*.ts",
+              "projects/swisspost-intranet-header/**/*.html"
+            ]
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "swisspost-intranet-header"
+}

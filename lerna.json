@@ -1,0 +1,8 @@
+{
+  "packages": [
+    "packages/*",
+    "packages/angular-components/projects/swisspost-intranet-header"
+  ],
+  "npmClient": "pnpm",
+  "version": "independent"
+}

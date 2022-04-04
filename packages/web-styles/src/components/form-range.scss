@@ -1,0 +1,45 @@
+@forward '../variables/options';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as *;
+@use '../themes/bootstrap/forms' as bf;
+
+@use '../variables/color';
+@use '../variables/spacing';
+@use '../variables/components/forms';
+
+.form-range {
+  // see https://jira.post.ch/browse/COWF-209
+  // https://codepen.io/thebabydino/pen/goYYrN
+  --range: calc(var(--max) - var(--min));
+  --ratio: calc((var(--val) - var(--min)) / var(--range));
+  --sx: calc(0.5 * 1.5em + var(--ratio) * (100% - 1.5em));
+
+  &:not(:disabled):not(.disabled) {
+    &::-webkit-slider-runnable-track {
+      background: linear-gradient(color.$black, color.$black) 0 / var(--sx) 100% no-repeat
+        color.$gray-200;
+      background-color: color.$gray-200;
+    }
+
+    &::-moz-range-progress {
+      background: color.$black;
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    &::-webkit-slider-thumb {
+      border-color: forms.$form-range-thumb-disabled-border-color;
+    }
+
+    &::-moz-range-thumb {
+      border-color: forms.$form-range-thumb-disabled-border-color;
+    }
+  }
+
+  + .form-text {
+    margin-top: spacing.$size-regular;
+    transform: translateY(#{-0.5 * forms.$form-range-height});
+  }
+}

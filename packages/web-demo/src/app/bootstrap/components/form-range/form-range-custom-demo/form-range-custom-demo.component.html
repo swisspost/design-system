@@ -1,0 +1,20 @@
+<label class="form-label" for="templateDrivenRange">Template-driven range</label>
+<input [(ngModel)]="templateDrivenValue" class="form-range" appFormRange id="templateDrivenRange" type="range">
+
+<label class="form-label" for="reactiveRange">Reactive range</label>
+<input (input)="reactiveValue.setValue($event.target['value'])" [formControl]="reactiveValue" class="form-range" appFormRange id="reactiveRange" type="range">
+
+<label class="form-label" for="rangeWithValue">Range with displayed value</label>
+<input [(ngModel)]="displayedValue" class="form-range" appFormRange id="rangeWithValue" max="100" min="0" step="1" type="range">
+<div class="form-text text-muted">{{displayedValue}}%</div>
+
+<div class="row align-items-end">
+  <div class="col">
+    <label class="form-label" for="controlledRange">Controlled range</label>
+    <input [(ngModel)]="controlledValue" class="form-range" appFormRange id="controlledRange" max="100" min="0" step="1" type="range">
+  </div>
+  <div class="col-auto">
+    <label class="form-label visually-hidden" for="rangeController">Range controller</label>
+    <input [(ngModel)]="controlledValue" class="form-control mw-giant" id="rangeController" type="text"/>
+  </div>
+</div>

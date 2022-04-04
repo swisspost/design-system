@@ -1,0 +1,206 @@
+<div class="container">
+  <div class="heading py-5">
+    <h1 class="bold font-curve-large">Intranet Header</h1>
+  </div>
+
+  <h2 class="bold">Installation</h2>
+  <p class="light font-curve-regular">The Intranet Header is an <a href="https://angular.io/">Angular</a> component and as such, only works with Angular projects. The minimum recommended Angular version is v11.</p>
+  <code
+    class="block mt-regular-r bash"
+    [highlight]="'npm install @ch-post-common/common-web-frontend-intranet-header' | formatCode"
+    [languages]="['shell']"
+  ></code>
+
+  <h2 class="bold mt-5">Usage</h2>
+  <section class="light font-curve-regular">
+    <p>
+      On your layout page; create a container (e.g. <code>&lt;div&gt;</code> or
+      <code>&lt;section&gt;</code> - or use the <code>body</code> container) and
+      apply the following css classes:
+    </p>
+    <ul>
+      <li><code>layout-container</code></li>
+      <li>
+        <code>header-big</code> - if you are using the top with the navbar
+      </li>
+      <li>
+        <code>header-small</code> - if you are using the top without the navbar
+      </li>
+      <li>
+        <code>with-searchbar</code> - if you are using the top with the
+        searchbar
+      </li>
+    </ul>
+    <p>
+      Inside, add the <code>post-intranet-header</code> component, with the
+      applicable options (see below).
+    </p>
+    <p>
+      If you are using the navbar, add the list-items for the navigation
+      directly inside the tag. (see example "With top navigation, without
+      sidenav")
+    </p>
+    <p>
+      If you are using a side-nav, adjust your markup accordingly. (See examples
+      "Without top navigation, with sidenav" and "Intranet-Header
+      "postweb"").<br />
+      Make sure that you have the <code>openedMenu</code> Property in your
+      angular app and that you apply the same classes to the markup as shown in
+      the mentioned examples.
+    </p>
+  </section>
+
+  <h3 class="bold mt-5">Options</h3>
+  <div class="table-responsive-sm mt-3">
+    <table class="table table-striped table-sm">
+      <thead class="thead-dark">
+        <tr>
+          <th scope="col">Property-Name</th>
+          <th scope="col">Possible Values</th>
+          <th scope="col">Description</th>
+          <th scope="col">Optional?</th>
+          <th scope="col">Default</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">siteTitle</th>
+          <td>Any string value</td>
+          <td>The website / application title</td>
+          <td>No</td>
+          <td><i>None</i></td>
+        </tr>
+        <tr class="table-danger">
+          <th scope="row">currentUserId</th>
+          <td>Any string value</td>
+          <td>
+            User ID of the currently logged on user. Used to fetch the users
+            profile image to display in the header
+          </td>
+          <td>Should always be set!</td>
+          <td>"user"</td>
+        </tr>
+        <tr>
+          <th scope="row">languages</th>
+          <td>
+            A string containing up to four of the languages, seperated by
+            commas.<br />Languages: de, fr, it, en
+          </td>
+          <td>
+            Sets the application available languages for the language chooser.
+          </td>
+          <td>Yes</td>
+          <td>"de,fr,it,en"</td>
+        </tr>
+        <tr>
+          <th scope="row">hasNavbar</th>
+          <td>true or false</td>
+          <td>If value is true, the top navigation will be shown.</td>
+          <td>Yes</td>
+          <td>true</td>
+        </tr>
+        <tr>
+          <th scope="row">showIntranetSearch</th>
+          <td>true or false</td>
+          <td>If value is true, the intranet searchbar will be shown.</td>
+          <td>Yes</td>
+          <td>false</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <h3 class="bold mt-5">Examples</h3>
+  <div class="alert-container mt-3">
+    <div class="alert alert-warning" _ngcontent-c2="">
+      <p>
+        You will need to remove the class "preview" from the outermost section
+        and property "isPreview" from post-intranet-header to use the layout in
+        your application!
+      </p>
+    </div>
+  </div>
+  <h4 class="bold mt-5">With top navigation, without sidenav</h4>
+  <p class="light font-curve-regular">
+    Add
+    <code class="bg-light"
+      >&lt;main role="main"&gt; &lt;!-- Site Content / Router-Outlet --&gt;
+      &lt;/main&gt;</code
+    >
+    beneath.
+  </p>
+</div>
+
+<div class="header-showcase-container p-huge-r">
+  <div class="header-showcase-page">
+    <sp-intranet-header
+      siteTitle="SiteTitle"
+      isPreview="true"
+      languages="de,fr,it"
+    >
+      <li class="nav-item">
+        <a class="nav-link" href="#">Testlink</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Testlink</a>
+      </li>
+      <li class="nav-item" ngbDropdown>
+        <button class="nav-link" id="testid01" ngbDropdownToggle type="button">Dropdown</button>
+        <div aria-labelledby="testid01" ngbDropdownMenu>
+          <a ngbDropdownItem href="#" ngbDropdownItem>Link 1</a>
+          <a ngbDropdownItem href="#" ngbDropdownItem>Link 2</a>
+          <a ngbDropdownItem href="#" ngbDropdownItem>Link 3</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Testlink</a>
+      </li>
+    </sp-intranet-header>
+  </div>
+</div>
+
+<div class="container">
+  <code
+    class="block mt-3"
+    [highlight]="codeTemplateReg"
+    [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"
+  ></code>
+
+  <h4 class="bold mt-5">Without top navigation, with sidenav</h4>
+</div>
+
+<div class="header-showcase-container p-huge-r">
+  <div class="header-showcase-page">
+    <app-intranet-header-small></app-intranet-header-small>
+  </div>
+</div>
+
+<div class="container">
+  <span class="spacer"></span>
+  <code
+    class="block"
+    [highlight]="codeTemplateSmall"
+    [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"
+  ></code>
+
+  <h4 class="bold mt-5">Intranet-Header "postweb"</h4>
+  <div class="alert-container">
+    <div class="alert alert-danger">
+      <p>Top navigation links must be maintained by the application!</p>
+    </div>
+  </div>
+</div>
+
+<div class="header-showcase-container p-huge-r">
+  <div class="header-showcase-page">
+    <app-intranet-header-big></app-intranet-header-big>
+  </div>
+</div>
+
+<div class="container">
+  <span class="spacer"></span>
+  <code
+    class="block"
+    [highlight]="codeTemplateBig"
+    [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"
+  ></code>
+</div>

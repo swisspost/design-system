@@ -1,0 +1,21 @@
+@forward '../variables/options';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as *;
+@use '../themes/bootstrap/popover' as bp;
+
+@use '../variables/type';
+
+// Popover
+.popover {
+  border-radius: 0;
+  background-clip: border-box;
+  text-align: left;
+}
+
+// Popover Header
+.popover-header {
+  border-bottom: 0;
+  font-weight: type.$font-weight-bold;
+  text-align: left;
+}

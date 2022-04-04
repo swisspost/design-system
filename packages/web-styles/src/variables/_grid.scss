@@ -1,0 +1,27 @@
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  xs: 1440px,
+) !default;
+
+// list of breakpoint giving the possibility to loop over them
+$grid-breakpoints-list: xs sm rg md lg xl xxl;
+
+// Grid columns
+//
+// Set the number of columns and specify the width of the gutters.
+
+$grid-columns: 12 !default;
+$grid-gutter-width: 30px !default;
+
+$grid-container-padding: (
+  xs: 12px,
+  sm: 16px,
+  rg: 32px,
+  md: 32px,
+  lg: 40px,
+  xl: 128px,
+  xxl: 128px,
+) !default;

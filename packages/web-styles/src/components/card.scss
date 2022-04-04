@@ -1,0 +1,218 @@
+@forward '../variables/options';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as bootstrap;
+@use '../themes/bootstrap/card' as bootstrap-card;
+@use '../variables/color';
+@use '../variables/spacing';
+@use '../variables/commons';
+@use '../variables/components/card';
+@use '../functions/sizing';
+@use '../mixins/icons' as icons-mixins;
+@use '../variables/icons';
+@use '../variables/animation';
+
+.card-group {
+  margin-top: commons.$border-width;
+  margin-left: commons.$border-width;
+}
+
+.card {
+  transition: box-shadow 0.25s;
+  border: 0;
+  border-radius: 0;
+  // Outline with card-group margin trick prevents double/jumping (on hover) borders
+  outline: 1px solid card.$card-border-color;
+  box-shadow: commons.$box-shadow-lg;
+
+  &.product-card,
+  &.card-button {
+    box-shadow: none;
+
+    &:hover,
+    &:focus {
+      z-index: 1;
+      box-shadow: commons.$box-shadow-lg;
+    }
+  }
+
+  & + & {
+    margin-top: sizing.calculate-single-box-shadow-size(commons.$box-shadow-lg) * 2;
+  }
+
+  .card-group > & {
+    margin-right: commons.$border-width;
+    margin-bottom: commons.$border-width;
+
+    + .card {
+      margin-top: 0;
+    }
+  }
+
+  .list-group-item {
+    padding: 1.25rem 1rem;
+    border-color: card.$card-border-color;
+  }
+
+  .link-icon {
+    text-decoration: none;
+  }
+
+  .link-icon .pi {
+    margin-right: 0.5rem;
+  }
+
+  > .list-group + .card-footer,
+  .card-body ~ .card-body {
+    border-top: 1px solid color.$gray-200;
+  }
+}
+
+// Card elements have paddings, prevent double spacing by removing
+// elements margins
+.card-header,
+.card-body,
+.card-footer,
+.list-group-item {
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.card-header,
+.card-footer,
+.card-body {
+  padding: 1.25rem 1rem;
+
+  .product-card &,
+  .card-button & {
+    @include bootstrap.media-breakpoint-down(sm) {
+      padding: spacing.$size-regular;
+    }
+
+    @include bootstrap.media-breakpoint-between(sm, md) {
+      padding: spacing.$size-large;
+    }
+
+    @include bootstrap.media-breakpoint-between(md, xxl) {
+      padding: spacing.$size-big;
+    }
+
+    @include bootstrap.media-breakpoint-up(xxl) {
+      padding: spacing.$size-bigger-big;
+    }
+  }
+
+  .card-white & {
+    background: color.$white;
+  }
+}
+
+.card-header {
+  align-items: center;
+
+  > *:not(:last-child) {
+    margin-right: 1rem;
+  }
+}
+
+.product-card {
+  text-decoration: none;
+
+  &:hover,
+  &:focus {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .link-icon {
+    display: flex;
+    align-items: center;
+    transition: opacity 250ms;
+    opacity: 0.75;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
+  }
+}
+
+@media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
+  .card {
+    img {
+      height: 100%;
+    }
+  }
+
+  .card-group .card {
+    img {
+      height: auto;
+      max-height: 50%;
+    }
+
+    > .card-header,
+    > .card-footer {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+.card-links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-right: 0.5rem;
+  padding-left: 0.5rem;
+
+  a {
+    display: inline-flexbox;
+    display: inline-flex;
+    align-items: center;
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    color: color.$gray-600;
+    text-decoration: none;
+    -ms-flex-align: center;
+
+    &::before {
+      @include icons-mixins.pi(3020, color.$gray-800);
+      content: '';
+      display: inline-block;
+      position: relative;
+      width: icons.$icon-size-default;
+      height: icons.$icon-size-default;
+      margin-right: spacing.$spacer * 0.5;
+
+      transition: animation.$transition-fade;
+      opacity: 0.8;
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: contain;
+
+      vertical-align: middle;
+    }
+
+    &:hover,
+    &:focus {
+      color: color.$black;
+
+      &::before {
+        opacity: 1;
+      }
+    }
+  }
+}
+
+.card-button {
+  &.text-auto {
+    a:hover,
+    a:focus {
+      opacity: 1;
+    }
+  }
+}

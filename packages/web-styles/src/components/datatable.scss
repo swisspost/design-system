@@ -1,0 +1,150 @@
+/*!
+ * Copyright 2021 by Swiss Post, Information Technology
+ */
+
+@use '../variables/spacing';
+@use '../variables/components/pagination';
+@use '../variables/components/datatable';
+@use '../variables/components/forms';
+
+@use '../mixins/button' as button-mixins;
+
+@use '../placeholders/text';
+
+.datatable-header-cell {
+  padding: datatable.$datatable-cell-padding;
+  font-weight: datatable.$datatable-header-font-weight;
+
+  .datatable-header[ng-reflect-sorts*='object'] &:not(.sort-active) {
+    color: datatable.$datatable-header-unsorted-color;
+  }
+
+  &-template-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  &-wrapper {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .datatable-flush & {
+    border-bottom: datatable.$datatable-flush-border;
+  }
+}
+
+.datatable-body-cell {
+  display: flex !important;
+  align-items: center;
+  margin-bottom: datatable.$datatable-cell-margin;
+  padding: datatable.$datatable-cell-padding;
+  background-color: datatable.$datatable-cell-bg;
+
+  .datatable-spaced-cells & {
+    margin-right: datatable.$datatable-cell-margin;
+  }
+
+  .datatable-inverted & {
+    background-color: datatable.$datatable-inverted-cell-bg;
+  }
+
+  .datatable-flush &,
+  .datatable-striped-rows .datatable-row-odd & {
+    margin: 0;
+    background-color: transparent;
+  }
+
+  .datatable-flush & {
+    border-bottom: datatable.$datatable-flush-border;
+  }
+}
+
+.ngx-datatable .sort-btn {
+  flex: 0 0 auto;
+  width: spacing.$size-regular;
+  height: spacing.$size-regular;
+  margin-left: spacing.$size-mini;
+  background-repeat: no-repeat;
+  background-size: contain;
+
+  &.datatable-icon-sort-unset {
+    background-image: datatable.$datatable-sort-unset-icon;
+    background-position: center top, center bottom;
+  }
+
+  &.datatable-icon-up {
+    background-image: datatable.$datatable-sort-asc-icon;
+    background-position: center center;
+  }
+
+  &.datatable-icon-down {
+    background-image: datatable.$datatable-sort-desc-icon;
+    background-position: center center;
+  }
+}
+
+.datatable-button-cell {
+  align-items: stretch;
+  padding: 0;
+
+  .datatable-body-cell-label {
+    display: flex;
+    flex-grow: 1;
+    align-items: stretch;
+  }
+
+  .datatable-button {
+    @include button-mixins.reset-button;
+    width: datatable.$datatable-button-width;
+    height: datatable.$datatable-button-height;
+    margin: datatable.$datatable-button-margin;
+    padding: datatable.$datatable-cell-padding;
+    border-radius: 0;
+
+    &:focus {
+      outline: 0;
+      box-shadow: datatable.$datatable-button-focus-shadow;
+    }
+  }
+}
+
+.datatable-paginated-footer {
+  display: flex;
+  flex: 1 0 auto;
+  align-items: center;
+  justify-content: flex-end;
+  padding: datatable.$datatable-footer-padding;
+
+  .datatable-row-count-label {
+    @extend %font-curve-small;
+    flex: 0 0 auto;
+    margin: 0 spacing.$size-mini 0 0;
+  }
+
+  .datatable-row-count-input {
+    @extend %font-curve-small;
+    flex: 0 0 datatable.$datatable-row-count-input-width;
+    height: pagination.$pagination-height;
+    padding-top: 0;
+    padding-bottom: 0;
+
+    + .datatable-pagination {
+      padding-left: spacing.$size-mini;
+      border-left: datatable.$datatable-footer-separator;
+    }
+  }
+
+  .datatable-pagination {
+    flex: 0 0 auto;
+
+    .pagination {
+      margin-bottom: 0;
+    }
+  }
+
+  .datatable-loader {
+    margin: auto;
+  }
+}

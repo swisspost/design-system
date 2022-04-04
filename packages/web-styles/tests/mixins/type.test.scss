@@ -1,0 +1,8 @@
+@use "src/mixins/type";
+@use "src/variables/type" as typevars;
+
+body {
+  @include type.fontSizeAndLineHeight(typevars.$font-curve-tiny...);
+  @include type.font-smoothing();
+  @include type.font-smoothing-reset();
+}

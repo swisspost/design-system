@@ -1,0 +1,59 @@
+@use '../../variables/color';
+@use '../../variables/commons';
+@use '../../functions/icons';
+
+@use '../../themes/bootstrap/overrides' as *;
+@use '../../placeholders/dropdown';
+
+.top-navigation {
+  .nav-item#more {
+    @include media-breakpoint-down(rg) {
+      > span {
+        display: none !important;
+      }
+    }
+
+    > .nav-link::after {
+      @extend %toggler-icon;
+      background-image: url(icons.get-colored-svg-url('2051', color.$gray-800));
+    }
+
+    &.hidden {
+      > .nav-link::after {
+        background-image: url(icons.get-colored-svg-url(
+          '2052',
+          color.$gray-800
+        )); // Angle downwards
+      }
+    }
+  }
+
+  .nav-overflow {
+    @include media-breakpoint-up(md) {
+      position: absolute;
+      z-index: 0;
+      top: 100%;
+      right: 0;
+      margin-top: commons.$border-width;
+      padding-bottom: commons.$border-width;
+      border-left: commons.$border-width solid color.$black-alpha-20;
+      background-color: color.$white;
+
+      &.dropup.show,
+      &.dropdown.show {
+        z-index: 1;
+      }
+
+      &.last-nav-overflow {
+        padding-bottom: 0;
+        border-bottom: commons.$border-width solid color.$black-alpha-20;
+      }
+    }
+
+    @include media-breakpoint-down(rg) {
+      display: list-item !important;
+      width: auto !important;
+      transform: none !important;
+    }
+  }
+}

@@ -1,0 +1,48 @@
+@use 'sass:map';
+@use 'sass:meta';
+@use 'sass:color';
+
+@use '../variables/type';
+@use '../variables/color' as color-var;
+@use '../variables/components/button';
+@use '../functions/icons' as icon-fn;
+@use '../mixins/utilities';
+
+@mixin pi($name, $color: color-var.$body-color) {
+  $type: meta.type-of($color);
+  $final-color: $color;
+
+  @if ($type != color) {
+    $final-color: map.get(color-var.$icon-colors, $color);
+
+    @if (not $final-color) {
+      $valid-colors: map.keys(color-var.$icon-colors);
+
+      @error "Error in Mixin 'pi(name, color?)'. Color '#{$color}' is not available. Please choose one of the following: #{$valid-colors}.";
+    }
+  }
+  border-color: $final-color;
+  background-image: url(icon-fn.get-colored-svg-url($name, $final-color));
+
+  // set icon to white on hcm
+  @include utilities.high-contrast-mode() {
+    @if ($final-color == color-var.$black) {
+      filter: invert(100%);
+    } @else {
+      background-image: url(icon-fn.get-colored-svg-url($name, color-var.$white));
+    }
+  }
+}
+
+@mixin pi-pre($name) {
+  background-image: url(icon-fn.get-pre-colored-svg-url($name));
+}
+
+@mixin icon-button($size: md) {
+  // Padding for icon buttons is (button-height - font-size) / 2
+  $font-size: map.get(type.$font-size-map, $size);
+  $button-height: map.get(button.$btn-height-map, $size);
+  $padding-y: ($button-height - $font-size) * 0.5 - button.$input-btn-focus-width;
+  padding-right: $padding-y;
+  padding-left: $padding-y;
+}

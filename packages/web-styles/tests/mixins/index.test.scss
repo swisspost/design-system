@@ -1,0 +1,73 @@
+@use "src/mixins";
+@use "src/variables/type" as typevars;
+
+body {
+  @include mixins.hover-animation(10px, 500px, 500px);
+  @include mixins.hover-animation-svg-icon(red, 2021);
+}
+
+body {
+  @extend %btn-animation-arrow-light;
+  @extend %btn-animation-arrow-dark;
+  @include mixins.reset-button();
+  @include mixins.btn-sm();
+  @include mixins.btn-rg();
+  @include mixins.btn();
+  @include mixins.btn-lg();
+  @include mixins.button-variant(
+    black,
+    black
+  );
+  @include mixins.button-outline-variant(grey);
+}
+
+body {
+  @include mixins.form-validation-state("error", red, "");
+  @include mixins.placeholder() {
+    color: red;
+  };
+}
+
+body {
+  @include mixins.bezel-small();
+  @include mixins.bezel-small-regular();
+  @include mixins.bezel-regular();
+  @include mixins.bezel-bigger-regular();
+  @include mixins.bezel-medium();
+  @include mixins.bezel-large();
+  @include mixins.bezel-big();
+}
+
+body {
+  @include mixins.fontSizeAndLineHeight(typevars.$font-curve-tiny...);
+  @include mixins.font-smoothing();
+  @include mixins.font-smoothing-reset();
+}
+
+ul {
+  @include mixins.reset-list();
+}
+
+.visually-hidden {
+  @include mixins.visuallyhidden();
+}
+
+.visually-hidden-reset {
+  @include mixins.visuallyhidden-reset();
+}
+
+.visually-hidden-focusable {
+  @include mixins.visuallyhidden-focusable();
+}
+
+.replace-text {
+  @include mixins.replace-text();
+}
+
+.truncate {
+  @include mixins.truncate();
+}
+
+.full-width-underscore {
+  @include mixins.full-width-underscore(black, 3px);
+}

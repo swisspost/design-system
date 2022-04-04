@@ -1,0 +1,38 @@
+@use '../spacing';
+@use '../type';
+@use '../color';
+@use '../commons';
+@use '../animation';
+@use '../../functions/sizing';
+@use '../../functions/icons';
+
+$accordion-padding-x: spacing.$size-regular !default;
+$accordion-border-color: color.$gray-100 !default;
+$accordion-border-width: commons.$border-thick !default;
+$accordion-border-radius: 0 !default;
+$accordion-font-curve: type.$font-curve-regular;
+
+$accordion-body-padding-top: spacing.$size-small-regular !default;
+$accordion-body-padding-bottom: spacing.$size-bigger-big !default;
+
+$accordion-body-heading-margin-top: spacing.$size-bigger-big;
+$accordion-body-heading-font-weight: type.$font-weight-bold;
+
+$accordion-button-padding-y: spacing.$size-regular !default;
+$accordion-button-color: color.$black !default;
+$accordion-button-active-bg: transparent !default;
+$accordion-button-active-color: color.$black !default;
+$accordion-button-hover-color: color.$black !default;
+$accordion-button-font-weight: type.$font-weight-bold !default;
+$accordion-button-line-height: spacing.$size-large !default;
+
+$accordion-icon-width: spacing.$size-large !default;
+$accordion-icon-transform: rotate(180deg) !default;
+$accordion-icon-transition: transform animation.$transition-base-timing;
+
+$_accordion-chevron: icons.get-colored-svg-url(2113, $accordion-button-color);
+$_accordion-active-chevron: icons.get-colored-svg-url(2113, $accordion-button-active-color);
+$_accordion-hcm-chevron: icons.get-colored-svg-url(2113, color.$white);
+$accordion-button-icon: url($_accordion-chevron);
+$accordion-button-active-icon: url($_accordion-active-chevron);
+$accordion-hcm-icon: url($_accordion-hcm-chevron);

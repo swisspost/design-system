@@ -1,0 +1,16 @@
+@use '../color';
+@use '../spacing';
+
+// Spinners
+
+$spinner-color-primary: color.$yellow !default;
+$spinner-color-secondary: color.$gray-100 !default;
+
+$spinner-size: spacing.$size-huge !default;
+$spinner-border-width: 6px !default;
+
+$spinner-size-sm: spacing.$size-big !default;
+$spinner-border-width-sm: spacing.$size-micro !default;
+
+$spinner-size-xs: spacing.$size-small-regular !default;
+$spinner-border-width-xs: spacing.$size-line !default;

@@ -1,0 +1,83 @@
+<div class="heading py-5">
+  <h1 class="bold font-curve-large">Sizing</h1>
+  <h2 class="font-curve-medium">Using bootstrap 4.5</h2>
+  <a class="btn btn-primary btn-sm btn-animated" href="https://getbootstrap.com/docs/4.1/utilities/sizing/"
+     target="_blank"><span>Bootstrap Sizing</span></a>
+  &nbsp;
+  <a class="btn btn-primary btn-sm btn-animated" href="https://getbootstrap.com/docs/4.1/utilities/spacing/"
+     target="_blank"><span>Bootstrap Spacing</span></a>
+</div>
+
+<section>
+  <h3>Post-Sizes Reference Table</h3>
+  <table class="table table-striped table-sm">
+    <thead class="thead-dark">
+    <tr>
+      <th>Size name</th>
+      <th>Size name in classes</th>
+      <th>Size in pixels (approx.)</th>
+      <th>Size in rem</th>
+      <th>Effective size used in css</th>
+      <th>Bootstrap size equivalent</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let size of sizes">
+      <td>{{ size.name | replaceHyphen | titlecase | removeSpaces }}</td>
+      <td>{{ "*-" + size.name }}</td>
+      <td>{{ size.size_pixel }} px</td>
+      <td>{{ size.size_rem }} rem</td>
+      <td>{{ size.implemented === postSizeImplementationPixel ? size.size_pixel + 'px' : size.size_rem + 'rem' }}</td>
+      <td>{{ size.equivalent > 0 ? "*-" + size.equivalent : "none" }}</td>
+    </tr>
+    </tbody>
+  </table>
+</section>
+
+<hr/>
+
+<section>
+  <h3>Height & Width</h3>
+  <p>Height and width can be set using <b>h-*</b> and <b>w-*</b> prefixes, max-height and max-width can be set using
+    prefixes <b>mh-*</b> and <b>mw-*</b>.
+  <p>Bootstrap offers sizing classes with the following number suffixes: <b>*-25</b>, <b>*-50</b>, <b>*-75</b>,
+    <b>*-100</b>. They allow you to set a height / width as a percentage (see "Bootstrap Sizing" link above for
+    reference).</p>
+  <p>Post sizes can be used in the same way: by adding the name of the desired size to a prefix (to find out which size
+    name to use, see the "Size name in classes" column in the reference table above or use the demo below).</p>
+
+  <h4>Example</h4>
+  <app-sizing-demo [sizes]="sizes"></app-sizing-demo>
+</section>
+
+<hr/>
+
+<section>
+  <h3>Padding & Margin</h3>
+  <p>Padding and margin can be set using <b>p*</b> and <b>m*</b> prefixes.</p>
+  <p>You can apply the desired margin / padding all around an element using the prefix alone (<b>m-*</b>/<b>p-*</b>), or
+    you can specify a position (ex: <b>pt-</b>, <b>pb-</b>, <b>pe-</b>, <b>ps-</b> respectively for a padding at top,
+    bottom, right and left). You can also set a margin/padding along the horizontal axis (i.e. right and left) using
+    <b>px-</b>/<b>mx-</b> or along the vertical axis (i.e. top and bottom) using <b>py-</b>/<b>my-</b>.</p>
+  <p>Bootstrap offers spacing classes with suffixes going from 0 to 5 (<b>*-0</b>, <b>*-1</b>, <b>*-2</b>, ...) (see
+    "Bootstrap Spacing" link above for reference).</p>
+  <p>Post sizes can be used in the same way: by adding the name of the desired size to a prefix (to find out which size
+    name to use, see the "Size name in classes" column in the reference table above or use the demo below).</p>
+
+  <h4>Example</h4>
+  <app-spacing-demo [sizes]="sizes"></app-spacing-demo>
+</section>
+
+<hr/>
+
+<section>
+  <h3>Responsive behaviour</h3>
+  <p>By default, the above classes apply to all breakpoints.</p>
+  <p>If you need to change the size or spacing of an element based on the breakpoint, you should mention it in the class
+    name using one of the following infixes: <b>*-sm-*</b>, <b>*-rg-*</b>, <b>*-md-*</b>, <b>*-lg-*</b>, <b>*-xl-*</b>,
+    <b>*-xxl-*</b>. When a breakpoint is specified, the size applies to that breakpoint and to all those that are larger.</p>
+  <p>Another way to define a responsive size is to use the <b>*-r</b> suffix. It allows to obtain a size which updates
+    automatically and consistently depending on the breakpoint, without having to specify anything manually.</p>
+  <h4>Example</h4>
+  <app-responsive-sizing-demo></app-responsive-sizing-demo>
+</section>

@@ -1,0 +1,80 @@
+@mixin reset-list() {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+@mixin visuallyhidden() {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  border: 0;
+}
+
+@mixin visuallyhidden-reset() {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  overflow: visible;
+  clip: auto;
+}
+
+@mixin visuallyhidden-focusable() {
+  @include visuallyhidden;
+
+  &:focus,
+  &:active {
+    @include visuallyhidden-reset;
+  }
+}
+
+@mixin replace-text() {
+  display: block;
+  overflow: hidden;
+  text-indent: 100%;
+  white-space: nowrap;
+}
+
+// will truncate text needs a fixed width
+// http://css-tricks.com/snippets/css/truncate-string-with-ellipsis/
+@mixin truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@mixin full-width-underscore($color, $height) {
+  content: '';
+  display: block;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: $height;
+  background-color: $color;
+  pointer-events: none;
+}
+
+@mixin generate-utility-class($classname, $size, $property, $value) {
+  .#{$classname}-#{$size}-r {
+    #{$property}: $value;
+  }
+}
+
+@mixin high-contrast-mode() {
+  @media (forced-colors: active), (-ms-high-contrast: active), (-ms-high-contrast: white-on-black) {
+    @content;
+  }
+}
+
+@mixin not-disabled-focus-hover {
+  &:focus,
+  &:not(:disabled):hover {
+    @content;
+  }
+}

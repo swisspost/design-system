@@ -1,0 +1,22 @@
+@use './forms';
+
+// nested calc functions are not supported by IE. That's the reason why the $input-height variable isn't used.
+
+$ngb-dp-icon-size: 22px;
+$ngb-dp-icon-padding: calc(
+  (#{forms.$input-height-inner} + #{forms.$input-height-border} - #{$ngb-dp-icon-size}) / 2
+);
+
+$ngb-dp-icon-size-sm: 18px;
+$ngb-dp-icon-padding-sm: calc(
+  (#{forms.$input-height-inner-sm} + #{forms.$input-height-border} - #{$ngb-dp-icon-size-sm}) / 2
+);
+
+$ngb-dp-icon-padding-rg: calc(
+  (#{forms.$input-height-inner-rg} + #{forms.$input-height-border} - #{$ngb-dp-icon-size}) / 2
+);
+
+$ngb-dp-icon-size-lg: 24px;
+$ngb-dp-icon-padding-lg: calc(
+  (#{forms.$input-height-inner-lg} + #{forms.$input-height-border} - #{$ngb-dp-icon-size-lg}) / 2
+);

@@ -1,0 +1,259 @@
+<div *ngIf="isIE11" class="container">
+  <div class="alert alert-warning mt-3">
+    <h4 class="alert-heading">IE11 not supported</h4>
+    <p>This app uses Angular 13 and therefore does not support IE11. Please update your browser.</p>
+  </div>
+</div>
+
+<div class="heading container py-5">
+  <h1 class="bold font-curve-large" id="home">Common Web Frontend</h1>
+  <h2 class="font-curve-large">A digital ecosystem</h2>
+  <img
+    class="heading-visual"
+    src="assets/images/rocket.png"
+    alt="A rocket flying to the moon, symbolising the awesomeness of the Common Web Frontend"
+  />
+  <div class="monospace">
+    <span placement="bottom" [ngbTooltip]="versions">v{{ version }}</span>
+  </div>
+</div>
+
+<ng-template #versions>
+  <div class="versions">
+    <p>@swisspost/web-styles: {{ version }}</p>
+    <p>@angular/cli: {{ angularVersion }}</p>
+    <p>@ng-bootstrap/ng-bootstrap: {{ ngBootstrapVersion }}</p>
+    <p>ngx-toastr: {{ ngxToasterVersion }}</p>
+  </div>
+</ng-template>
+
+<div class="bg-light py-5">
+  <div class="container">
+    <h3 class="bold mb-4">Migration guides</h3>
+    <ngb-accordion>
+      <ngb-panel title="How to update Angular 11 to Angular 12">
+        <ng-template ngbPanelContent>
+          <section>
+            <p>
+              More information about the new Angular version can be found in the Angular docs
+              <span>
+                <a href="https://update.angular.io/?l=3&v=11.0-12.0" target="_blank">here</a>
+              </span>
+              .
+            </p>
+            <div class="position-relative deadimage-container">
+              <div class="alert alert-warning mt-3">
+                <h4 class="alert-heading">Angular 12 is the last version to support IE11!</h4>
+                <p>
+                  If your application needs to support Internet Explorer, this is the last update.
+                  More and detailed information can be found
+                  <a href="https://github.com/angular/angular/issues/41840" target="_blank">here</a>
+                  .
+                </p>
+              </div>
+            </div>
+            <ol class="bubble-tea">
+              <li>
+                <h3 class="font-curve-regular bold">Commit all unsaved changes to your git repo</h3>
+                <p>
+                  Make sure you have a clean repo which can be reverted to in the event of an error
+                  during the update.
+                </p>
+              </li>
+              <li>
+                <h3 class="font-curve-regular bold">Check your node version</h3>
+                <p>You can't run Angular 12 with Node 10 or any older versions.</p>
+                <code class="block" [highlight]="checknodeversion" [languages]="['shell']"></code>
+                <p>
+                  If an update is required, go to the
+                  <span>
+                    <a href="https://nodejs.org/en/download/" target="_blank">node website</a>
+                  </span>
+                  and install the lastest long term support version.
+                </p>
+              </li>
+              <li>
+                <h3 class="font-curve-regular bold">Update Angular</h3>
+                <p>Now let's update angular with the following command:</p>
+                <code class="block" [highlight]="updateangular" [languages]="['shell']"></code>
+                <div class="alert alert-info">
+                  If you get "incompatible peer dependency" error messages you have to add the
+                  package name to the ng update.
+                </div>
+                <code
+                  class="block text-coral-bright"
+                  [highlight]="updateangularerror"
+                  [languages]="['shell']"
+                ></code>
+                <p>Add the package name to your ng update command.</p>
+                <code class="block" [highlight]="updateangularextra" [languages]="['shell']"></code>
+                <p>
+                  After the installation process, check if the correct versions have been installed.
+                </p>
+                <code
+                  class="block"
+                  [highlight]="checkangularversion"
+                  [languages]="['shell']"
+                ></code>
+              </li>
+              <li>
+                <h3 class="font-curve-regular bold">Update ngx-toastr</h3>
+                <p>Ngx-toaster has to be manually updated to the latest version.</p>
+                <code
+                  class="block"
+                  [highlight]="updateindividualpackages"
+                  [languages]="['shell']"
+                ></code>
+              </li>
+              <li>
+                <h3 class="font-curve-regular bold">Update other dependencies</h3>
+                <p>Check if you have any other outdated packages with:</p>
+                <code class="block" [highlight]="outdatedpackages" [languages]="['shell']"></code>
+                <p>Check if new versions are compatible with your project.</p>
+              </li>
+              <li>
+                <h3 class="font-curve-regular bold">Prevent known issue with Angular 12 and CWF</h3>
+                <p>
+                  There is a known issue with the url() CSS property and the new Angular build
+                  optimizer. CWF is also affected so you need to disable the "inlineCritical"
+                  optimization for the time being. Head over to your
+                  <code>angular.json</code>
+                  and set
+                  <code>configurations.production.optimization.styles.inlineCritical</code>
+                  to false.
+                </p>
+                <code class="block" [highlight]="updateangularjson" [languages]="['json']"></code>
+                <p>
+                  This bug might be fixed in a future update of Angular CLI and the optimization
+                  option will be available again.
+                </p>
+              </li>
+              <li>
+                <h3 class="font-curve-regular bold">Happy coding!</h3>
+              </li>
+            </ol>
+          </section>
+        </ng-template>
+      </ngb-panel>
+
+      <ngb-panel title="How to update Angular 12 to Angular 13">
+        <ng-template ngbPanelContent>
+          <section>
+            <p>
+              More information about the new Angular version can be found in the Angular docs
+              <span>
+                <a href="https://update.angular.io/?l=3&v=12.0-13.0" target="_blank">here</a>
+              </span>
+              .
+            </p>
+
+            <div class="alert alert-warning mt-3">
+              <h4 class="alert-heading">Angular 13 discontinues support for IE11.</h4>
+              <p>
+                More and detailed information can be found
+                <a href="https://github.com/angular/angular/issues/41840" target="_blank">here</a>
+                .
+              </p>
+            </div>
+
+            <ol class="bubble-tea">
+              <li>
+                <h3 class="font-curve-regular bold">Commit all unsaved changes to your git repo</h3>
+                <p>
+                  Make sure you have a clean repo which can be reverted to in the event of an error
+                  during the update.
+                </p>
+              </li>
+              <li>
+                <h3 class="font-curve-regular bold">Check your node version</h3>
+                <p>You can run Angular 13 only with Node 12.20.0 or newer versions.</p>
+                <p>
+                  If an update is required, go to the
+                  <span>
+                    <a href="https://nodejs.org/en/download/" target="_blank">node website</a>
+                  </span>
+                  and install the lastest long term support version.
+                </p>
+              </li>
+              <li>
+                <h3 class="font-curve-regular bold">Update ngx-datatable</h3>
+                <p>Ngx-datatable has to be manually updated to the latest version.</p>
+                <code class="block" [highlight]="updatedatatable" [languages]="['shell']"></code>
+              </li>
+              <li>
+                <h3 class="font-curve-regular bold">Update Angular</h3>
+                <p>Now let's update angular with the following command:</p>
+                <code class="block" [highlight]="updateangular13" [languages]="['shell']"></code>
+                <div class="alert alert-info">
+                  If you get "incompatible peer dependency" error messages you have to add the
+                  desired package name and version to the ngx update.
+                </div>
+                <code
+                  class="block text-coral-bright"
+                  [highlight]="updateangularerror"
+                  [languages]="['shell']"
+                ></code>
+                <p>Add the package name to your ngx update command.</p>
+                <code
+                  class="block"
+                  [highlight]="updateangular13extra"
+                  [languages]="['shell']"
+                ></code>
+              </li>
+              <li>
+                <h3 class="font-curve-regular bold">Update other dependencies</h3>
+                <p>Check if you have any other outdated packages with:</p>
+                <code class="block" [highlight]="outdatedpackages" [languages]="['shell']"></code>
+                <p>Check if new versions are compatible with your project.</p>
+              </li>
+              <li>
+                <h3 class="font-curve-regular bold">Happy coding!</h3>
+              </li>
+            </ol>
+          </section>
+        </ng-template>
+      </ngb-panel>
+    </ngb-accordion>
+  </div>
+</div>
+
+<div class="topic-teaser bg-nightblue text-auto mt-huge-r mb-giant-r">
+  <div class="container">
+    <div class="topic-teaser-container bg-nightblue">
+      <div class="row pt-huge-r">
+        <div class="topic-teaser-content col-12 col-lg-8">
+          <h2 class="topic-teaser-title font-curve-large mb-large">
+            <span class="bold">CWF Resources</span>
+            <span class="light">For a unified, accessible user experience</span>
+          </h2>
+          <ul class="link-list font-curve-regular mb-large">
+            <li class="link-list-item">
+              <a target="_blank" href="https://getbootstrap.com/">
+                <span>Bootstrap Documentation</span>
+              </a>
+            </li>
+            <li class="link-list-item">
+              <a
+                target="_blank"
+                href="https://angular.io/docs"
+              >
+                <span>Angular Docs</span>
+              </a>
+            </li>
+            <li class="link-list-item">
+              <a target="_blank" href="https://ng-bootstrap.github.io/#/home"><span>ngBootstrap Docs</span></a>
+            </li>
+            <li class="link-list-item">
+              <a target="_blank" href="https://fonts.post.ch/frutigerneueforpost/#/">
+                <span>Frutiger Neue For Post</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="topic-teaser-image-container col-10 col-rg-8 col-lg-4">
+          <img class="topic-teaser-image" src="assets/images/lego.jpg" alt="Giraffe" />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

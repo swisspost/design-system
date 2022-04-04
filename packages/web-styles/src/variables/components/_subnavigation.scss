@@ -1,0 +1,38 @@
+@use 'sass:map';
+@use '../color';
+@use '../commons';
+@use '../spacing';
+@use '../../functions/sizing';
+
+// Subnavigation
+
+$subnavigation-background-color: color.$white;
+$subnavigation-background-color-alternate: map.get(color.$background-colors, 'light');
+$subnavigation-background-color-inverted: transparent;
+
+$subnavigation-border-bottom-width: commons.$border-width;
+$subnavigation-border-bottom-color: map.get(color.$grays, '100');
+$subnavigation-border-bottom-color-inverted: map.get(color.$black-alphas, '20');
+
+// These heights have to be synchronous to main navigation heights
+$subnavigation-height-xs: sizing.px-to-rem(56);
+$subnavigation-height-lg: sizing.px-to-rem(64);
+$subnavigation-height-xl: sizing.px-to-rem(72);
+
+$subnavigation-link-color: map.get(color.$grays, '600');
+$subnavigation-link-color-hover: map.get(color.$colors, 'black');
+
+$subnavigation-link-color-inverted: map.get(color.$white-alphas, '60');
+$subnavigation-link-color-hover-inverted: map.get(color.$colors, 'white');
+
+$subnavigation-link-underscore-height: map.get(spacing.$post-sizes, 'micro');
+$subnavigation-link-underscore-color-active: map.get(color.$theme-colors, 'active');
+$subnavigation-link-underscore-color-hover: map.get(color.$grays, '400');
+$subnavigation-link-underscore-color-hover-inverted: map.get(color.$white-alphas, '40');
+
+$subnavigation-link-padding-xs: map.get(spacing.$post-sizes, 'regular')
+  map.get(spacing.$post-sizes, 'small-regular');
+$subnavigation-link-padding-lg: map.get(spacing.$post-sizes, 'small-large')
+  map.get(spacing.$post-sizes, 'regular');
+
+$subnavigation-result-margin-left: map.get(spacing.$post-sizes, 'mini');

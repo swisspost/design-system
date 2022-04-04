@@ -1,0 +1,62 @@
+@forward '../variables/options';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/modal' as bm;
+@use '../themes/bootstrap/close' as bc;
+@use '../themes/bootstrap/overrides' as *;
+
+@use '../mixins/icons' as icon-mixin;
+@use '../mixins/scroll-shadows' as scroll-shadows-mixin;
+@use '../variables';
+
+.modal-content {
+  border: 0;
+  box-shadow: variables.$box-shadow;
+}
+
+post-ngb-modal-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-body {
+  @include scroll-shadows-mixin.scroll-shadows-y(variables.$modal-content-bg);
+  padding: variables.$modal-body-padding;
+  overflow-y: auto;
+}
+
+.modal-header,
+.modal-footer {
+  border: 0;
+}
+
+.modal-title:focus {
+  outline: none; // Removes focus styles when you manually set focus to title with ngbAutofocus https://ng-github.io/#/components/modal/examples#focus
+}
+
+@include media-breakpoint-up(sm) {
+  post-ngb-modal-content {
+    // prevents the modal from exceeding the height of the screen
+    max-height: calc(100vh - #{2 * variables.$modal-dialog-margin-y-sm-up});
+  }
+
+  // Right and left margins are set to "auto" from the sm breakpoint
+  // Paddings below ensure minimal margins on medium screens
+  .modal-dialog {
+    padding-right: variables.$modal-dialog-margin;
+    padding-left: variables.$modal-dialog-margin;
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  post-ngb-modal-content {
+    // make the modal cover the full height available on small screens
+    height: calc(100vh - #{2 * variables.$modal-dialog-margin});
+  }
+
+  .modal-body,
+  .modal-header {
+    padding-right: variables.$modal-header-padding-y;
+    padding-left: variables.$modal-header-padding-y;
+  }
+}

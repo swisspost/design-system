@@ -1,0 +1,12 @@
+@forward '../variables/options';
+@use '../variables/color';
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/tables' as bt;
+
+.table > thead > * > * {
+  border-bottom-width: 0;
+}
+
+.table-light {
+  border-color: color.$white;
+}

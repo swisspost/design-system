@@ -1,0 +1,3 @@
+<p *ngFor="let color of colorArray" class="bg-{{color}} p-3" [class.text-auto]="color !== 'transparent'">
+  <b class="text-capitalize">{{ color }}</b> - applied classes: bg-{{color}} {{ color !== 'transparent' ? 'text-auto' : '' }} p-3
+</p>

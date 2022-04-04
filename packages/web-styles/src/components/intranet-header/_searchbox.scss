@@ -1,0 +1,26 @@
+@use '../../variables/color';
+@use '../../variables/spacing';
+@use '../../variables/type';
+@use '../../variables/commons';
+@use '../../variables/components/intranet-header';
+
+@use '../../themes/bootstrap/overrides' as *;
+
+header.navbar {
+  .search-textbox {
+    @include media-breakpoint-down(rg) {
+      border-top: commons.$border-width solid color.$black-alpha-20;
+    }
+    @include media-breakpoint-up(md) {
+      border-left: commons.$border-width solid color.$black-alpha-20;
+    }
+
+    input {
+      height: intranet-header.$header-content-size;
+      border: 0;
+      background-color: color.$black-alpha-10;
+      font-size: 1.2em;
+      font-weight: type.$font-weight-light;
+    }
+  }
+}

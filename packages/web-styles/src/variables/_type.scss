@@ -1,0 +1,170 @@
+@use 'sass:math';
+
+@use './spacing';
+@use './color';
+@use './commons';
+@use './components/paragraph';
+@use '../functions/sizing';
+
+// Fonts
+//
+// Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif: 'Frutiger Neue For Post', Arial, Helvetica, sans-serif !default;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
+  monospace !default;
+$font-family-base: $font-family-sans-serif !default;
+
+$font-size-tiny: sizing.px-to-rem(13px);
+$font-size-small: sizing.px-to-rem(15px);
+$font-size-regular: sizing.px-to-rem(16px);
+$font-size-bigger-regular: sizing.px-to-rem(17px);
+$font-size-medium: sizing.px-to-rem(20px);
+$font-size-large: sizing.px-to-rem(24px);
+$font-size-small-big: sizing.px-to-rem(28px);
+$font-size-big: sizing.px-to-rem(32px);
+$font-size-bigger-big: sizing.px-to-rem(40px);
+$font-size-small-huge: sizing.px-to-rem(48px);
+$font-size-huge: sizing.px-to-rem(56px);
+
+$font-curve-tiny: (
+  $font-size-tiny,
+  $font-size-small,
+  $font-size-small,
+  $font-size-regular,
+  $font-size-regular,
+  $font-size-bigger-regular
+);
+$font-curve-small: (
+  $font-size-small,
+  $font-size-regular,
+  $font-size-regular,
+  $font-size-bigger-regular,
+  $font-size-bigger-regular,
+  $font-size-bigger-regular
+);
+$font-curve-regular: (
+  $font-size-bigger-regular,
+  $font-size-bigger-regular,
+  $font-size-bigger-regular,
+  $font-size-medium,
+  $font-size-medium,
+  $font-size-medium
+);
+$font-curve-bigger-regular: (
+  $font-size-medium,
+  $font-size-medium,
+  $font-size-medium,
+  $font-size-large,
+  $font-size-large,
+  $font-size-large
+);
+$font-curve-medium: (
+  $font-size-medium,
+  $font-size-medium,
+  $font-size-medium,
+  $font-size-large,
+  $font-size-large,
+  $font-size-small-big
+);
+$font-curve-large: (
+  $font-size-large,
+  $font-size-small-big,
+  $font-size-small-big,
+  $font-size-big,
+  $font-size-big,
+  $font-size-bigger-big
+);
+$font-curve-big: (
+  $font-size-small-big,
+  $font-size-big,
+  $font-size-big,
+  $font-size-bigger-big,
+  $font-size-bigger-big,
+  $font-size-small-huge
+);
+
+$font-size-base: $font-size-small !default;
+$font-size-sm: $font-size-tiny !default;
+$font-size-rg: $font-size-base !default;
+$font-size-lg: $font-size-bigger-regular !default;
+
+$font-size-map: (
+  'sm': $font-size-sm,
+  'rg': $font-size-rg,
+  'md': $font-size-base,
+  'lg': $font-size-lg,
+);
+
+$font-weight-lighter: 200 !default; // CWF only -> Frutiger Neue Light
+$font-weight-light: 300 !default; // CWF -> Frutiger Neue Light
+$font-weight-normal: 400 !default; // CWF -> Frutiger Neue Roman
+$font-weight-bold: 700 !default; // CWF -> Frutiger Neue Roman
+
+$font-weight-base: $font-weight-normal !default;
+$line-height-base: math.div(18, 15) !default; // Non-scaling line-height
+
+$line-height-sm: math.div(16, 13) !default; // Non-scaling line-height
+$line-height-rg: $line-height-base !default; // Non-scaling line-height
+$line-height-lg: math.div(20, 17) !default; // Non-scaling line-height
+
+$h1-font-size: $font-size-base * 2.5 !default; // 40px
+$h2-font-size: $font-size-base * 2 !default; // 32px
+$h3-font-size: $font-size-base * 1.75 !default; // 28px
+$h4-font-size: $font-size-base * 1.5 !default; // 24px
+$h5-font-size: $font-size-base * 1.25 !default; // 20px
+$h6-font-size: $font-size-base !default; // 16px
+
+$headings-margin-bottom: (spacing.$spacer * 0.5) !default;
+$headings-font-family: inherit !default;
+$headings-font-weight: 300 !default;
+$headings-line-height: 1.2 !default;
+$headings-color: inherit !default;
+
+$display1-size: 6rem !default;
+$display2-size: 5.5rem !default;
+$display3-size: 4.5rem !default;
+$display4-size: 3.5rem !default;
+
+$display1-weight: 300 !default;
+$display2-weight: 300 !default;
+$display3-weight: 300 !default;
+$display4-weight: 300 !default;
+$display-line-height: $headings-line-height !default;
+
+$lead-font-size: ($font-size-base * 1.25) !default;
+$lead-font-weight: 300 !default;
+
+$small-font-size: 80% !default;
+
+$text-muted: color.$gray-600;
+
+$blockquote-font-weight: $font-weight-bold !default;
+$blockquote-border-left: commons.$border-thick solid color.$black !default;
+$blockquote-border-left-width-md: spacing.$size-micro !default;
+$blockquote-padding-left: spacing.$size-small-regular !default;
+$blockquote-padding-left-xxl: spacing.$size-big !default;
+$blockquote-margin-top: spacing.$size-large !default;
+$blockquote-margin-y: spacing.$size-regular !default;
+$blockquote-footer-font-size: math.div(
+  $lead-font-size * sizing.strip-unit($small-font-size),
+  100
+) !default;
+$blockquote-cite-font-weight: $font-weight-light !default;
+
+$hr-border-color: rgba(color.$black, 0.1) !default; // CWF
+$hr-border-color-light: rgba(color.$white, 0.4) !default; // CWF only
+$hr-border-width: commons.$border-width !default;
+
+$mark-padding: 0.2em !default;
+
+$dt-font-weight: $font-weight-bold !default;
+
+$kbd-box-shadow: inset 0 -0.1rem 0 rgba(color.$black, 0.25) !default;
+$nested-kbd-font-weight: $font-weight-bold !default;
+
+$list-inline-padding: 0.5rem !default;
+
+$mark-bg: #fcf8e3 !default;
+
+$hr-margin-y: spacing.$spacer !default;

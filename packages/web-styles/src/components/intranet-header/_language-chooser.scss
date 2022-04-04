@@ -1,0 +1,40 @@
+@use '../../variables/color';
+@use '../../variables/spacing';
+@use '../../variables/commons';
+
+@use '../../mixins/icons' as icon-mixin;
+
+#languageParent {
+  min-width: 18rem;
+  padding: 0;
+  overflow-y: visible;
+
+  .dropdown-item {
+    padding: spacing.$size-small-regular spacing.$size-large;
+  }
+
+  .language-menu {
+    display: flex;
+
+    .dropdown-item {
+      flex: auto 1 1;
+      border: commons.$border-width solid color.$gray-200;
+      border-top: 0;
+      border-left: 0;
+      border-radius: 0;
+      text-align: center;
+
+      &:last-child {
+        border-right: 0;
+      }
+
+      &:focus {
+        z-index: commons.$zindex-dropdown;
+      }
+    }
+  }
+
+  .other-items {
+    overflow-y: auto;
+  }
+}

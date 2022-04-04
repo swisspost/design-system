@@ -1,0 +1,11 @@
+{
+	"scripts": {
+		"start": "pnpm start -r --parallel --stream",
+		"bootstrap": "pnpm install && pnpm lerna bootstrap && pnpm run build -r"
+	},
+	"devDependencies": {
+		"@changesets/cli": "^2.21.0",
+		"lerna": "^4.0.0"
+	},
+	"name": "common-web-frontend"
+}

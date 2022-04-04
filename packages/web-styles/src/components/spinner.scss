@@ -1,0 +1,59 @@
+@forward '../variables/options';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as *;
+@use '../themes/bootstrap/progress' as bp;
+
+@use '../variables/commons';
+@use '../variables/components/spinners';
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.spinner-bg {
+  position: absolute;
+  z-index: commons.$zindex-spinner;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.loading-modal {
+  display: inline-flex;
+  position: absolute;
+  z-index: commons.$zindex-spinner;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.loader {
+  width: spinners.$spinner-size;
+  height: spinners.$spinner-size;
+  animation: spin 2s linear infinite;
+  border: spinners.$spinner-border-width solid spinners.$spinner-color-primary;
+  border-radius: 50%;
+  border-right-color: transparent;
+  border-bottom-color: spinners.$spinner-color-secondary;
+
+  &.loader-sm {
+    width: spinners.$spinner-size-sm;
+    height: spinners.$spinner-size-sm;
+    border-width: spinners.$spinner-border-width-sm;
+  }
+
+  &.loader-xs {
+    width: spinners.$spinner-size-xs;
+    height: spinners.$spinner-size-xs;
+    border-width: spinners.$spinner-border-width-xs;
+  }
+}

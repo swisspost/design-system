@@ -1,0 +1,165 @@
+/*!
+ * Copyright 2021 by Swiss Post, Information Technology
+ */
+
+@use 'sass:math';
+
+@use '../functions/icons' as icon-functions;
+@use '../mixins/size' as size-mixins;
+@use '../mixins/utilities';
+
+@use '../variables/icons';
+@use '../variables/color';
+@use '../variables/spacing';
+@use '../variables/type';
+@use '../variables/components/stepper';
+
+@use '../themes/bootstrap/overrides' as *;
+
+.stepper {
+  @include size-mixins.responsive-size('big', 'margin-bottom');
+  position: relative;
+  padding: 0 stepper.$step-indicator-size * 0.5;
+}
+
+.stepper-bar {
+  height: stepper.$stepper-bar-size;
+  margin-top: stepper.$step-indicator-size * 0.5;
+  margin-bottom: -1 * (stepper.$stepper-bar-size + stepper.$step-indicator-size) * 0.5;
+}
+
+.steps {
+  display: flex;
+  justify-content: space-between;
+}
+
+.step {
+  display: flex;
+  flex: 1 1 100%;
+  flex-direction: column;
+  align-items: center;
+
+  &:first-child,
+  &:last-child {
+    flex-basis: 50%;
+  }
+
+  &:first-child {
+    align-items: flex-start;
+  }
+
+  &:last-child {
+    align-items: flex-end;
+  }
+
+  &,
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.step-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: stepper.$step-indicator-size;
+  height: stepper.$step-indicator-size;
+  margin: 0 auto;
+  border: spacing.$size-micro solid color.$white;
+  border-radius: 100%;
+  background-color: stepper.$step-indicator-default-bg;
+  color: stepper.$step-indicator-default-color;
+  font-weight: type.$font-weight-bold;
+
+  .step:first-child & {
+    margin-left: math.div(stepper.$step-indicator-size, -2);
+  }
+
+  .step:last-child & {
+    margin-right: math.div(stepper.$step-indicator-size, -2);
+  }
+
+  .step.current &,
+  .step.passed & {
+    background-color: stepper.$step-indicator-active-bg;
+    color: stepper.$step-indicator-active-color;
+  }
+
+  .step.passed & {
+    background-image: stepper.$step-indicator-passed-icon;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: icons.$icon-size-default;
+
+    @include utilities.high-contrast-mode() {
+      background-image: stepper.$step-indicator-passed-icon-hover;
+    }
+  }
+
+  .step:not(.current):hover & {
+    background-color: stepper.$step-indicator-hover-bg;
+    color: stepper.$step-indicator-hover-color;
+  }
+
+  .step.passed:hover & {
+    background-image: stepper.$step-indicator-passed-icon-hover;
+  }
+}
+
+.step-index {
+  flex: 0 0 auto;
+
+  .step.current & {
+    cursor: default;
+  }
+
+  .step.passed & {
+    display: none;
+  }
+}
+
+.step-name {
+  padding: spacing.$size-mini spacing.$size-micro 0;
+  color: stepper.$step-name-color;
+  line-height: stepper.$step-name-height;
+  text-align: center;
+
+  .step:first-child & {
+    margin-left: math.div(stepper.$step-indicator-size, -2);
+    text-align: left;
+  }
+
+  .step:last-child & {
+    margin-right: math.div(stepper.$step-indicator-size, -2);
+    text-align: right;
+  }
+
+  .step.current & {
+    color: color.$black;
+    font-weight: type.$font-weight-bold;
+  }
+
+  .step:hover & {
+    color: color.$black;
+  }
+}
+
+@include media-breakpoint-down(rg) {
+  .stepper {
+    padding-bottom: stepper.$step-name-height + spacing.$size-micro;
+  }
+
+  .step-name {
+    .step:not(.current) & {
+      display: none;
+    }
+
+    .step.current & {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      text-align: left;
+    }
+  }
+}

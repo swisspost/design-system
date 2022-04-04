@@ -1,0 +1,133 @@
+@forward '../variables/options';
+
+@use '../themes/bootstrap/overrides' as *;
+
+@use '../functions/icons';
+@use '../variables/color';
+@use '../mixins/size';
+
+.topic-teaser {
+  &[class*='bg-'] {
+    @include media-breakpoint-up(xxl) {
+      background-color: transparent !important;
+    }
+  }
+
+  &:not(.topic-teaser-reverse) {
+    > .container {
+      @include media-breakpoint-up(lg) {
+        padding-right: 0;
+      }
+    }
+
+    .topic-teaser-container > .row {
+      margin-right: 0;
+    }
+
+    .topic-teaser-image-container {
+      padding-right: 0;
+    }
+
+    .topic-teaser-content {
+      @include media-breakpoint-up(xxl) {
+        padding-left: 4.5rem;
+      }
+    }
+  }
+}
+
+.topic-teaser-reverse {
+  > .container {
+    @include media-breakpoint-up(lg) {
+      padding-left: 0;
+    }
+  }
+
+  .topic-teaser-container {
+    > .row {
+      @include media-breakpoint-down(md) {
+        flex-direction: column-reverse;
+      }
+    }
+  }
+}
+
+.topic-teaser-image-container {
+  @include size.responsive-size('huge', 'margin-bottom', '-$value');
+
+  @include media-breakpoint-down(md) {
+    position: relative;
+    left: 50%;
+    padding-left: 0;
+    transform: translateX(calc(8.5px - 50vw));
+  }
+}
+
+.topic-teaser-image {
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: cover;
+}
+
+.topic-teaser-content {
+  display: flex;
+  flex-direction: row;
+
+  @include media-breakpoint-down(rg) {
+    flex-direction: column;
+  }
+
+  @include media-breakpoint-up(xxl) {
+    padding: 0 calc(3.5rem + 15px) 3.5rem calc(3.5rem - 15px);
+  }
+}
+
+.topic-teaser-content > .link-list {
+  width: 50%;
+
+  @include media-breakpoint-down(rg) {
+    width: 100%;
+  }
+}
+
+.topic-teaser-title {
+  width: 50%;
+
+  @include media-breakpoint-down(rg) {
+    width: auto;
+  }
+}
+
+.topic-teaser-title > span {
+  display: block;
+}
+
+.link-list {
+  padding: 0;
+  list-style-type: none;
+}
+
+.link-list-item > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.25rem 1.5rem 1.25rem 1rem;
+  transition: opacity 200ms, background-position 200ms;
+  border: 0;
+  border-top: 1px solid color.$white-alpha-20;
+  background-image: url(icons.get-colored-svg-url('2050', color.$white));
+  background-repeat: no-repeat;
+  background-position: 99% center;
+  background-size: 1rem;
+  text-decoration: none;
+
+  &[href]:hover {
+    opacity: 0.65;
+    background-position: 100% center;
+  }
+}
+
+.topic-teaser.bg-light .link-list-item > a {
+  border-top: 1px solid color.$gray-100;
+  background-image: url(icons.get-colored-svg-url('2050', color.$gray-600));
+}

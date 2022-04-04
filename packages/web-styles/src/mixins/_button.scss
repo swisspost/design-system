@@ -1,0 +1,28 @@
+@use 'sass:map';
+
+@use '../variables/components/button';
+@use '../variables/type';
+
+@mixin reset-button {
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  line-height: normal;
+  user-select: none;
+  appearance: button; // for input
+}
+
+@mixin button-size($size: md) {
+  height: map.get(button.$btn-height-map, $size);
+  padding: 0 map.get(button.$btn-padding-x-map, $size);
+  border-radius: map.get(button.$btn-border-radius-map, $size);
+  font-size: map.get(type.$font-size-map, $size);
+  gap: map.get(button.$btn-padding-x-map, $size) * 0.5;
+
+  > .pi {
+    transform: scale(map.get(button.$btn-icon-scale-map, $size));
+  }
+}

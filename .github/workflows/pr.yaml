@@ -1,0 +1,46 @@
+# runs all tests, builds all packages and deploys a preview environment
+
+# run all changed tests: pnpm test --filter ...[master]
+# run all changed builds: pnpm build --filter ...[master]
+
+name: Run Tests & Deploy Preview
+on:
+  push:
+  pull_request:
+    branches: [ $default_branch ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+            
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - name: Cache pnpm modules
+      uses: actions/cache@v2
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-
+          
+    - name: Install pnpm/netlify & dependencies
+      run: |
+        npm i -g pnpm netlify-cli
+        pnpm run bootstrap
+
+    - name: Build & Deploy preview environment
+      if: github.event_name == 'pull_request'
+      env:
+        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        PR_NUMBER: ${{ github.event.number }}
+      run: |
+        # taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with pr number
+        deploy_alias=`echo "pr-${PR_NUMBER}-${GITHUB_HEAD_REF:0:28}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
+        netlify link --id $NETLIFY_SITE_ID
+        netlify deploy --alias $deploy_alias --build false --dir packages/web-demo/dist/web-demo

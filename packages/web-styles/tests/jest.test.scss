@@ -1,0 +1,33 @@
+@use "tests/jest";
+
+$commalist: 1, 2, 3;
+@include jest.true(true);
+@include jest.false(false);
+@include jest.equal(1, 1);
+@include jest.equal("Helvetica", Helvetica); // Weird, but ok
+@include jest.equal((1 2 3), 1 2 3); // No need for braces
+@include jest.equal((1, 2, 3), $commalist);
+@include jest.not-equal(
+  (1, 2, 3),
+  1 2 3
+); // Commalists are not the same as whitespace lists
+@include jest.not-equal(1, "1"); // Strings will be strings
+@include jest.not-equal(1, 1px);
+@include jest.not-equal(1px, 1em);
+
+@include jest.is-ascending(1 2 3 4 4);
+@include jest.is-ascending(
+  (
+    a: 1,
+    b: 2,
+    c: 3
+  )
+);
+@include jest.is-descending(4 3 3 2 1);
+@include jest.is-descending(
+  (
+    c: 3,
+    b: 2,
+    a: 1
+  )
+);

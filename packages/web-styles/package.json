@@ -1,0 +1,59 @@
+{
+  "name": "@swisspost/web-styles",
+  "version": "5.0.0-preview",
+  "description": "Common styles for the Swiss Post web platform.",
+  "author": "Swiss Post <oss@post.ch>",
+  "license": "MIT",
+  "engines": {
+    "node": ">= 6.9.0",
+    "npm": ">= 3.0.0"
+  },
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "scripts": {
+    "clean": "rimraf out-tsc dist/*",
+    "reset": "rimraf node_modules package-lock.json && npm run clean",
+    "prebuild": "npm run clean",
+    "build": "gulp build",
+    "build:ci": "gulp build",
+    "lint": "stylelint src/**/*.scss --config ../../.stylelintrc.js",
+    "lint:fix": "stylelint src/**/*.scss --fix",
+    "format": "prettier src/**/*.scss --write",
+    "test": "jest",
+    "start": "gulp watch"
+  },
+  "dependencies": {
+    "@popperjs/core": "^2.11.2",
+    "bootstrap": "^5.0.2"
+  },
+  "devDependencies": {
+    "autoprefixer": "^9.8.6",
+    "glob": "^7.1.7",
+    "gulp": "^4.0.2",
+    "gulp-postcss": "^8.0.0",
+    "gulp-sass": "^5.0.0",
+    "jest": "^25.5.4",
+    "postcss": "^8.4.5",
+    "postcss-scss": "^4.0.3",
+    "prettier": "^2.5.1",
+    "rimraf": "^2.6.3",
+    "sass": "^1.49.7",
+    "stylelint": "^14.3.0",
+    "stylelint-config-prettier": "^9.0.3",
+    "stylelint-config-property-sort-order-smacss": "^8.0.0",
+    "stylelint-config-sass-guidelines": "^9.0.1",
+    "stylelint-prettier": "^2.0.0",
+    "stylelint-scss": "^4.1.0"
+  },
+  "sass": {
+    "includePaths": [
+      "node_modules"
+    ],
+    "outputDir": "./dist",
+    "tscOutDir": "./out-tsc/lib"
+  }
+}

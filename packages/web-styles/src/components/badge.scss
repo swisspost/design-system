@@ -1,0 +1,37 @@
+@forward '../variables/options';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as *;
+@use '../themes/bootstrap/badge' as bb;
+
+@use '../variables/color';
+@use '../variables/type';
+@use '../variables/components/badge';
+@use '../variables/components/nav';
+@use '../variables/options';
+
+:root {
+  --isolate-components: #{options.$isolate-components};
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  height: badge.$badge-height;
+  border: badge.$badge-border;
+  color: var(--best-contrast, inherit);
+}
+
+.badge[class*='border-'] {
+  border-width: badge.$badge-outline-border-width;
+  background-color: badge.$badge-outline-bg;
+  color: badge.$badge-outline-color;
+}
+
+.badge > i {
+  position: relative;
+}
+
+.badge > * + * {
+  margin-left: (0.375rem);
+}

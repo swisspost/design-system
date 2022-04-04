@@ -1,0 +1,91 @@
+@use 'sass:map';
+
+// Switch imported File to check the different versions
+//@use "../../web-styles/post";
+//@use "../../web-styles/post-portal";
+//@use "../../web-styles/post-intranet";
+@use '@swisspost/web-styles/post-intranet';
+@use '@swisspost/web-styles/cwf';
+
+html {
+  scroll-behavior: smooth;
+}
+
+@each $color, $value in cwf.$icon-colors {
+  .pi-1000-#{$color} {
+    @include cwf.pi(1000, $value);
+  }
+}
+
+.pi-1014-white {
+  @include cwf.pi(1014, 'white');
+}
+
+.pi-2062-warning {
+  @include cwf.pi(2062, 'warning');
+}
+
+.pi-2062-white {
+  @include cwf.pi(2062, 'white');
+}
+
+.pi-3192-white {
+  @include cwf.pi(3192, 'white');
+}
+
+.pi-2104-white {
+  @include cwf.pi(2104, 'white');
+}
+
+.pi-calendar {
+  @include cwf.pi(3203);
+}
+
+.code-sample {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.code-sample h5 {
+  margin-bottom: 25px;
+}
+
+.code-sample pre {
+  padding: 24px;
+  text-align: left;
+  background-color: #f8f6f0;
+
+  @include cwf.media-breakpoint-down(rg) {
+    --x: something;
+  }
+}
+
+img {
+  max-width: 100%;
+}
+
+section {
+  margin-bottom: map.get($map: cwf.$post-sizes, $key: 'bigger-big');
+}
+
+.mark-attention {
+  color: #a51728;
+  font-weight: bold;
+  font-variant: small-caps;
+  font-size: 60%;
+  position: relative;
+  top: -0.5rem;
+}
+
+code.block {
+  display: block;
+  padding: 1rem;
+  background: rgb(50, 50, 50);
+  color: white;
+  white-space: pre;
+  max-width: 100%;
+  overflow: auto;
+  margin-bottom: 0.8em;
+
+  max-height: 450px;
+}

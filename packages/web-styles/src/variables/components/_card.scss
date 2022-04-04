@@ -1,0 +1,28 @@
+@use '../color';
+@use '../commons';
+@use '../grid';
+@use '../type';
+@use '../spacing';
+@use '../../functions/sizing';
+
+// Cards
+$card-font-size: type.$font-size-small !default; // CWF only
+$card-font-size-large: type.$font-size-large !default; // CWF only
+
+$card-shadow: commons.$box-shadow !default;
+$card-margin-top: sizing.calculate-single-box-shadow-size(
+  commons.$box-shadow
+) !default; // ensures the shadow is visible
+
+$card-spacer-y: spacing.$size-small-large !default; // CWF 20px
+$card-spacer-x: spacing.$size-regular !default; // CWF 16px
+$card-border-width: commons.$border-width !default;
+$card-border-radius: commons.$border-width * 2 !default; // CWF
+$card-border-color: color.$gray-200 !default; // CWF
+$card-inner-border-radius: calc(#{$card-border-radius} - #{$card-border-width}) !default; // CWF
+$card-cap-bg: color.$gray-cararra !default;
+$card-bg: color.$white !default;
+
+$card-img-overlay-padding: $card-spacer-x !default;
+
+$card-group-margin: (grid.$grid-gutter-width * 0.5) !default;

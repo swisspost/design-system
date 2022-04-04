@@ -1,0 +1,25 @@
+/*!
+ * Copyright 2021 by Swiss Post, Information Technology
+ */
+
+@use '../../functions/icons' as icon-functions;
+@use '../../variables/color';
+@use '../../variables/spacing';
+
+$stepper-bar-size: spacing.$size-micro;
+
+$step-indicator-size: spacing.$size-bigger-big;
+$step-indicator-default-bg: color.$secondary;
+$step-indicator-default-color: color.$white;
+$step-indicator-active-bg: color.$yellow;
+$step-indicator-active-color: color.$black;
+$step-indicator-hover-bg: color.$black;
+$step-indicator-hover-color: color.$white;
+
+$step-name-height: spacing.$size-small-large;
+$step-name-color: color.$black-alpha-60;
+
+$_black-check-mark: icon-functions.get-colored-svg-url(2105, color.$black);
+$_white-check-mark: icon-functions.get-colored-svg-url(2105, color.$white);
+$step-indicator-passed-icon: url($_black-check-mark);
+$step-indicator-passed-icon-hover: url($_white-check-mark);

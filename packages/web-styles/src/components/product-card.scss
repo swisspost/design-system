@@ -1,0 +1,74 @@
+@forward '../variables/options';
+
+@use 'sass:map';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as bootstrap;
+@use '../themes/bootstrap/card' as bootstrap-card;
+@use '../variables/color';
+@use '../variables/spacing';
+@use '../variables/commons';
+@use '../variables/breakpoints';
+@use '../variables/components/card';
+@use '../functions/sizing';
+@use '../mixins/size' as size-mixin;
+
+.product-navigation {
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+// Set auto height when product cards break
+[data-sync-height-with] {
+  @each $breakpoint, $px in breakpoints.$grid-breakpoints {
+    [class*='col-#{$breakpoint}-'] > .card > & {
+      @media (max-width: #{$px - 0.2}) {
+        height: auto !important;
+      }
+    }
+  }
+}
+
+.card-buttons {
+  [class*='col-'] {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.card-button {
+  align-self: stretch;
+  margin: 0.75rem 0;
+
+  [class*='col-'] > & {
+    height: 100%;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    > .pi {
+      flex-shrink: 0;
+      width: 3rem;
+      height: 3rem;
+      margin-right: 1rem;
+    }
+  }
+
+  .card-body {
+    @include size-mixin.responsive-size(regular);
+  }
+
+  .post-card-favourit {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    border: 0;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+}

@@ -1,0 +1,36 @@
+@use 'sass:map';
+@use './spacing';
+
+// Material Design - Motion Guidelines implementation
+// https://material.io/design/motion/
+// The // Original flag simple means, that this variable is not yet tweaked for Post
+
+// Complexity
+$transition-time-simple: 150ms !default;
+$transition-time-default: 250ms !default;
+$transition-time-morph: 500ms !default; // Original
+$transition-time-fade-in: 200ms !default;
+$transition-time-fade-out: 125ms !default;
+
+// Area
+$transition-time-area-small: $transition-time-simple !default;
+$transition-time-area-medium: 350ms !default;
+$transition-time-area-large: 500ms !default;
+
+// Easings
+$transition-easing-default: cubic-bezier(0.4, 0, 0.2, 1) !default;
+$transition-easing-decelerate: cubic-bezier(0, 0, 0.2, 1) !default;
+$transition-easing-accelerate: cubic-bezier(0.4, 0, 1, 1) !default;
+
+// Distances
+$transition-distance-xsmall: map.get(spacing.$post-sizes, 'micro') !default;
+$transition-distance-small: map.get(spacing.$post-sizes, 'small-regular') !default;
+$transition-distance-medium: map.get(spacing.$post-sizes, 'regular') !default;
+$transition-distance-medium-md: map.get(spacing.$post-sizes, 'big') !default;
+$transition-distance-large: map.get(spacing.$post-sizes, 'huge') !default;
+$transition-distance-large-md: map.get(spacing.$post-sizes, 'giant') !default;
+
+$transition-base-timing: $transition-time-default $transition-easing-default !default;
+$transition-base: all $transition-base-timing !default;
+$transition-fade: opacity $transition-time-fade-in linear !default;
+$transition-collapse: height $transition-base-timing, padding $transition-base-timing !default;

@@ -1,0 +1,48 @@
+@use '../themes/bootstrap/overrides' as *;
+@use '../functions/icons';
+
+@mixin hover-animation(
+  $animation-item-size,
+  $animation-distance,
+  $animation-container-height,
+  $animation-item-offset: 0
+) {
+  &:hover,
+  &:focus {
+    &:not(:disabled):not(.disabled) > span {
+      transform: translate(-$animation-distance);
+
+      &::after {
+        transform: translate($animation-distance);
+      }
+    }
+  }
+
+  > span {
+    padding: 0 $animation-distance;
+    transform: translate(0); // Needed as a fix for Firefox.
+
+    &::after {
+      top: $animation-item-offset;
+      width: $animation-item-size;
+      height: $animation-container-height;
+      transform: translate(0); // Needed as a fix for Firefox.
+    }
+  }
+}
+
+@mixin hover-animation-svg-icon($color, $icon-name, $stroke-width: null) {
+  &:not(:disabled):not(.disabled) > span {
+    &::after {
+      @if ($stroke-width == null) {
+        background-image: url(icons.get-colored-svg-url($icon-name, $color));
+      } @else {
+        background-image: url(icons.add-stroke-color(
+          icons.get-colored-svg-url($icon-name, $color),
+          $color,
+          $stroke-width
+        ));
+      }
+    }
+  }
+}

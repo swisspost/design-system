@@ -1,0 +1,6 @@
+@use '@swisspost//web-styles/cwf';
+
+.form-floating + .form-control,
+.form-control + .form-control {
+  margin-top: cwf.$size-regular;
+}

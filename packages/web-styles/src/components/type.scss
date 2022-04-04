@@ -1,0 +1,104 @@
+@forward '../variables/options';
+
+@use 'sass:map';
+@use 'sass:meta';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as *;
+@use '../themes/bootstrap/type' as bt;
+
+@use '../variables/color';
+@use '../variables/commons';
+@use '../variables/type';
+@use '../variables/spacing';
+@use '../variables/components/paragraph';
+@use '../layouts/portal/type' as portal;
+@use '../placeholders/text';
+
+.font-curve-tiny {
+  @extend %font-curve-tiny;
+}
+
+.font-curve-small {
+  @extend %font-curve-small;
+}
+
+.font-curve-regular {
+  @extend %font-curve-regular;
+}
+
+.font-curve-bigger-regular {
+  @extend %font-curve-bigger-regular;
+}
+
+.font-curve-medium {
+  @extend %font-curve-medium;
+}
+
+.font-curve-large {
+  @extend %font-curve-large;
+}
+
+.font-curve-big {
+  @extend %font-curve-big;
+}
+
+.blockquote {
+  margin-top: type.$blockquote-margin-top;
+
+  p {
+    @extend %font-curve-regular;
+
+    &::before {
+      content: '\00ab';
+    }
+
+    &::after {
+      content: '\00bb';
+    }
+
+    &:lang(en) {
+      &::before {
+        content: '\0022';
+      }
+
+      &::after {
+        content: '\0022';
+      }
+    }
+  }
+
+  &,
+  &-footer {
+    padding-left: type.$blockquote-padding-left;
+    border-left: type.$blockquote-border-left;
+    font-weight: type.$blockquote-font-weight;
+
+    @include media-breakpoint-up(md) {
+      border-left-width: type.$blockquote-border-left-width-md;
+    }
+
+    @include media-breakpoint-up(xxl) {
+      padding-left: type.$blockquote-padding-left-xxl;
+    }
+  }
+
+  &-footer {
+    cite {
+      @extend %font-curve-small;
+      font-weight: type.$blockquote-cite-font-weight;
+    }
+  }
+}
+
+q {
+  quotes: '\00ab''\00bb''\2039''\203A';
+
+  &:lang(en) {
+    quotes: '\0022''\0022''\0027''\0027';
+  }
+}
+
+.text-body {
+  @include portal.styles;
+}

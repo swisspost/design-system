@@ -1,0 +1,34 @@
+<h3>Timepicker example</h3>
+<ngb-timepicker [(ngModel)]="time"></ngb-timepicker>
+<pre>Selected time: <span *ngIf="time">{{time | json}}</span></pre>
+
+<hr/>
+
+<h3>Sizing</h3>
+<p>By default, the timepicker component only supports 3 different sizes: <b>sm</b>, <b>md</b>, and <b>lg</b>.</p>
+<p>To use one of these predefined sizes, simply set the <code>[size]</code> entry as defined in the <a href="https://ng-bootstrap.github.io/#/components/timepicker/api" target="_blank" rel="noopener">component api</a>.</p>
+<div class="row align-items-center">
+  <div class="col">
+    <ngb-timepicker size="large" name="timeLg" ngModel></ngb-timepicker>
+  </div>
+  <div class="col">
+    <ngb-timepicker size="medium" name="timeMd" ngModel></ngb-timepicker>
+  </div>
+  <div class="col">
+    <ngb-timepicker size="small" name="timeSm" ngModel></ngb-timepicker>
+  </div>
+</div>
+
+<br/>
+
+<p>To use the timpicker in regular size, remove the <code>[size]</code> input and use the class <code>.timepicker-rg</code> instead.</p>
+<ngb-timepicker class="timepicker-rg" name="timeRg" ngModel></ngb-timepicker>
+
+<hr/>
+
+<h3>Timepicker with validation</h3>
+<div class="d-inline-block">
+  <ngb-timepicker name="timeWithValidation" ngModel #t=ngModel required [ngClass]="{'is-invalid': t.invalid, 'is-valid': t.valid }"></ngb-timepicker>
+  <p class="valid-feedback">The time was chosen.</p>
+  <p class="invalid-feedback">This field is required.</p>
+</div>
