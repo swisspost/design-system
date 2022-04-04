@@ -4,9 +4,11 @@ importers:
 
   .:
     specifiers:
+      '@changesets/changelog-github': ^0.4.4
       '@changesets/cli': ^2.21.0
       lerna: ^4.0.0
     devDependencies:
+      '@changesets/changelog-github': 0.4.4
       '@changesets/cli': 2.21.0
       lerna: 4.0.0
 
@@ -2259,6 +2261,16 @@ packages:
       '@changesets/types': 4.1.0
     dev: true
 
+  /@changesets/changelog-github/0.4.4:
+    resolution: {integrity: sha1-o9WbMMzGv6Pws4HNp81AF8VZCpo=}
+    dependencies:
+      '@changesets/get-github-info': 0.5.0
+      '@changesets/types': 5.0.0
+      dotenv: 8.6.0
+    transitivePeerDependencies:
+      - encoding
+    dev: true
+
   /@changesets/cli/2.21.0:
     resolution: {integrity: sha1-ton5HtkIFQ78BuCYXmtM+9muo6M=}
     hasBin: true
@@ -2322,6 +2334,15 @@ packages:
       chalk: 2.4.2
       fs-extra: 7.0.1
       semver: 5.7.1
+    dev: true
+
+  /@changesets/get-github-info/0.5.0:
+    resolution: {integrity: sha1-uRzrLYLt73iuFZjqn8M1oBIlApU=}
+    dependencies:
+      dataloader: 1.4.0
+      node-fetch: 2.6.7
+    transitivePeerDependencies:
+      - encoding
     dev: true
 
   /@changesets/get-release-plan/3.0.6:
@@ -2389,6 +2410,10 @@ packages:
 
   /@changesets/types/4.1.0:
     resolution: {integrity: sha1-+498ojJP1UlUgk6GT5phqCy3j+A=}
+    dev: true
+
+  /@changesets/types/5.0.0:
+    resolution: {integrity: sha1-1etS0HS8A1jOR9VLylQ3C5B4EqA=}
     dev: true
 
   /@changesets/write/0.1.7:
@@ -6372,6 +6397,10 @@ packages:
       whatwg-url: 7.1.0
     dev: true
 
+  /dataloader/1.4.0:
+    resolution: {integrity: sha1-vKEdhn9dPxue2fc3vRWXDGXf9cg=}
+    dev: true
+
   /date-format/4.0.4:
     resolution: {integrity: sha1-tYA24p50Eh/KPhs+DcSmLGX6ojM=}
     engines: {node: '>=4.0'}
@@ -6693,6 +6722,11 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       is-obj: 2.0.0
+    dev: true
+
+  /dotenv/8.6.0:
+    resolution: {integrity: sha1-Bhr2ZNGff02PxuT/m1hM4jety4s=}
+    engines: {node: '>=10'}
     dev: true
 
   /duplexer/0.1.2:
