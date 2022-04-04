@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/intranet-header",
-  "version": "3.0.0-preview",
+  "version": "3.0.0-alpha.0",
   "scripts": {
     "lint": "ng lint",
     "reset": "rimraf node_modules package-lock.json"
@@ -11,7 +11,7 @@
   "peerDependencies": {
     "@angular/common": "^13.2.0",
     "@angular/core": "^13.2.0",
-    "@swisspost/web-styles": "^5.0.0-preview"
+    "@swisspost/web-styles": "^5.0.0-alpha.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

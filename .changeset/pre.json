@@ -1,0 +1,13 @@
+{
+  "mode": "pre",
+  "tag": "alpha",
+  "initialVersions": {
+    "@swisspost/angular-components": "0.0.0",
+    "@swisspost/intranet-header": "3.0.0-preview",
+    "@swisspost/web-demo": "5.0.0-preview",
+    "@swisspost/web-styles": "5.0.0-preview"
+  },
+  "changesets": [
+    "cool-llamas-buy"
+  ]
+}
