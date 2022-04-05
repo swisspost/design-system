@@ -17,6 +17,20 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - uses: actions/checkout@v2
+
+    - uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+
+    - uses: actions/download-artifact@master
+      with:
+        name: cwf-web-demo
+        path: build-output
+        
+    - name: Install netlify-cli
+      run: npm i -g netlify-cli
+
     - name: Deploy preview environment
       id: netlify
       env:
@@ -27,7 +41,7 @@ jobs:
         # taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with pr number
         deploy_alias=`echo "pr-${PR_NUMBER}-${GITHUB_HEAD_REF:0:28}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
         netlify link --id $NETLIFY_SITE_ID
-        netlify deploy --alias $deploy_alias --build false --dir packages/web-demo/dist/web-demo
+        netlify deploy --alias $deploy_alias --build false --dir build-output
         echo "::set-output name=deploy_alias::$deploy_alias"
 
     - name: Comment on PR
