@@ -1,16 +1,16 @@
-# runs all tests, builds all packages and deploys a preview environment
+###
+#
+# build and deploys preview environment to netlify
+#
+###
 
-# run all changed tests: pnpm test --filter ...[master]
-# run all changed builds: pnpm build --filter ...[master]
-
-name: Run Tests & Deploy Preview
+name: Deploy preview environment
 on:
-  push:
   pull_request:
     branches: [ $default_branch ]
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
@@ -27,14 +27,21 @@ jobs:
         key: ${{ runner.os }}-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
           ${{ runner.os }}-
+
+    - uses: pnpm/action-setup@v2.1.0
+      with:
+        version: 6.0.2
+        run_install: |
+          - args: [--global, netlify-cli]
           
-    - name: Install pnpm/netlify & dependencies
+    - name: Install pnpm/netlify & bootstrap CWF
       run: |
         npm i -g pnpm netlify-cli
         pnpm run bootstrap
 
-    - name: Build & Deploy preview environment
-      if: github.event_name == 'pull_request'
+    - name: Deploy preview environment
+      id: netlify
+      if: ${{ github.event_name == 'pull_request' }}
       env:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
@@ -44,3 +51,16 @@ jobs:
         deploy_alias=`echo "pr-${PR_NUMBER}-${GITHUB_HEAD_REF:0:28}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
         netlify link --id $NETLIFY_SITE_ID
         netlify deploy --alias $deploy_alias --build false --dir packages/web-demo/dist/web-demo
+        echo "::set-output name=deploy_alias::$deploy_alias"
+
+    - name: Comment on PR
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{secrets.GITHUB_TOKEN}}
+        script: |
+          github.rest.issues.createComment({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            body: '🚀 Preview environment ready: ${{ steps.netlify.outputs.deploy_alias }}'
+          })
