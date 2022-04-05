@@ -35,9 +35,7 @@ jobs:
           - args: [--global, netlify-cli]
           
     - name: Install pnpm/netlify & bootstrap CWF
-      run: |
-        npm i -g pnpm netlify-cli
-        pnpm run bootstrap
+      run: pnpm run bootstrap
 
     - name: Deploy preview environment
       id: netlify
