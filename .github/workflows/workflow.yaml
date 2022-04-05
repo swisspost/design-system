@@ -9,6 +9,7 @@ jobs:
 
   deploy:
     if: github.event_name == 'pull_request'
+    needs: build
     name: Deploy
     uses: ./.github/workflows/deploy.yaml
     secrets:
