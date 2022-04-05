@@ -7,9 +7,8 @@
 # run all changed tests: pnpm test --filter ...[master]
 # run all changed builds: pnpm build --filter ...[master]
 
-name: Run Build & Tests
 on:
-  push:
+  workflow_call:
 
 jobs:
   build:
@@ -32,7 +31,7 @@ jobs:
 
     - uses: pnpm/action-setup@v2.1.0
       with:
-        version: 6.0.2
+        version: 6.32.4
         run_install: true
 
     - name: Bootstrap cwf
