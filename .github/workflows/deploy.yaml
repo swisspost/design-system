@@ -8,10 +8,6 @@ on:
   workflow_call:
     inputs:
       deploy:
-        description: Deploy flag
-        required: true
-        type: boolean
-      pr_number:
         required: true
     secrets:
       NETLIFY_SITE_ID:
@@ -30,7 +26,7 @@ jobs:
       env:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
         NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        PR_NUMBER: ${{ inputs.pr_number }}
+        PR_NUMBER: ${{ github.event.number }}
       run: |
         # taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with pr number
         deploy_alias=`echo "pr-${PR_NUMBER}-${GITHUB_HEAD_REF:0:28}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
