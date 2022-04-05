@@ -6,11 +6,11 @@ on:
 jobs:
   build:
     name: Build
-    uses: .github/workflows/build.yaml
+    uses: ./.github/workflows/build.yaml
 
   deploy:
     name: Deploy
-    uses: .github/workflows/deploy.yaml
+    uses: ./.github/workflows/deploy.yaml
     with:
       deploy: ${{ github.event_name == 'pull_request' }}
       pr_number: ${{ github.event.number }}
