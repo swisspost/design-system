@@ -6,10 +6,6 @@
 
 on:
   workflow_call:
-    inputs:
-      deploy:
-        required: true
-        type: boolean
     secrets:
       NETLIFY_SITE_ID:
         required: true
@@ -19,7 +15,6 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    if: ${{ inputs.deploy }}
 
     steps:
     - name: Deploy preview environment

@@ -8,10 +8,9 @@ jobs:
     uses: ./.github/workflows/build.yaml
 
   deploy:
+    if: github.event_name == 'pull_request'
     name: Deploy
     uses: ./.github/workflows/deploy.yaml
-    with:
-      deploy: ${{ github.event_name == 'pull_request' }}
     secrets:
       NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
       NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
