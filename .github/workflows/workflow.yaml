@@ -10,6 +10,7 @@ on:
 
 jobs:
   build:
+    if: github.event.action != 'closed'
     name: Build
     uses: ./.github/workflows/build.yaml
 
