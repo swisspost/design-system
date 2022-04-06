@@ -1,31 +1,15 @@
-@use "src/mixins";
-@use "src/variables/type" as typevars;
+@use 'src/mixins';
+@use 'src/variables/type' as typevars;
 
 body {
   @include mixins.hover-animation(10px, 500px, 500px);
   @include mixins.hover-animation-svg-icon(red, 2021);
 }
-
 body {
-  @extend %btn-animation-arrow-light;
-  @extend %btn-animation-arrow-dark;
-  @include mixins.reset-button();
-  @include mixins.btn-sm();
-  @include mixins.btn-rg();
-  @include mixins.btn();
-  @include mixins.btn-lg();
-  @include mixins.button-variant(
-    black,
-    black
-  );
-  @include mixins.button-outline-variant(grey);
-}
-
-body {
-  @include mixins.form-validation-state("error", red, "");
+  @include mixins.form-validation-state('error', red, '');
   @include mixins.placeholder() {
     color: red;
-  };
+  }
 }
 
 body {
@@ -39,7 +23,7 @@ body {
 }
 
 body {
-  @include mixins.fontSizeAndLineHeight(typevars.$font-curve-tiny...);
+  @include mixins.font-size-and-lineheight(typevars.$font-curve-tiny...);
   @include mixins.font-smoothing();
   @include mixins.font-smoothing-reset();
 }
