@@ -39,7 +39,7 @@ jobs:
         PR_NUMBER: ${{ github.event.number }}
       run: |
         # taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with pr number
-        deploy_alias=`echo "${GITHUB_HEAD_REF:0:28}-${PR_NUMBER}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
+        deploy_alias=`echo "preview-${PR_NUMBER}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
         netlify link --id $NETLIFY_SITE_ID
         netlify deploy --alias $deploy_alias --build false --dir build-output
         echo "::set-output name=deploy_alias::$deploy_alias"
@@ -53,5 +53,5 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: '🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}.swisspost-web-frontend.netlify.app/'
+            body: '🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}-swisspost-web-frontend.netlify.app/'
           })
