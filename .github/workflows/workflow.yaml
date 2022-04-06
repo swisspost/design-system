@@ -1,3 +1,9 @@
+###
+#
+# Builds and deploys preview environment on pull-request actions.
+#
+###
+
 on:
   pull_request:
 
@@ -7,9 +13,9 @@ jobs:
     uses: ./.github/workflows/build.yaml
 
   deploy:
+    name: Deploy
     if: github.event_name == 'pull_request'
     needs: build
-    name: Deploy
     uses: ./.github/workflows/deploy.yaml
     secrets:
       NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
