@@ -45,6 +45,7 @@ jobs:
         echo "::set-output name=deploy_alias::$deploy_alias"
 
     - name: Comment on PR
+      if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
       uses: actions/github-script@v5
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
@@ -53,5 +54,5 @@ jobs:
             issue_number: context.issue.number,
             owner: context.repo.owner,
             repo: context.repo.repo,
-            body: '🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}-swisspost-web-frontend.netlify.app/'
+            body: '🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}--swisspost-web-frontend.netlify.app/'
           })
