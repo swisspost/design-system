@@ -1,16 +1,10 @@
-@use "src/mixins/button";
+@use 'src/mixins/button';
 
 body {
-  @extend %btn-animation-arrow-light;
-  @extend %btn-animation-arrow-dark;
   @include button.reset-button();
-  @include button.btn-sm();
-  @include button.btn-rg();
-  @include button.btn();
-  @include button.btn-lg();
-  @include button.button-variant(
-    black,
-    black
-  );
-  @include button.button-outline-variant(grey);
+  @include button.button-size(sm);
+  @include button.button-size(rg);
+  @include button.button-size(md);
+  @include button.button-size(lg);
+  @include button.button-color-variant(black, black);
 }
