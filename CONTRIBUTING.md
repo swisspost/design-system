@@ -2,7 +2,7 @@
 
 These contribution guidelines apply to this repository in general and describe how to set up and maintain the repository. You can find dedicated guidelines in each package.
 
-- [Demo App](./packages/web-demo/CONTRIBUTING.md)
+- [Demo App](./packages/web-demo/README.md)
 - [Web Styles](./packages/web-styles/CONTRIBUTING.md)
 - [Angular Components (Intranet Header)](./packages/angular-components/projects/swisspost-intranet-header/CONTRIBUTING.md)
 

@@ -1,6 +1,9 @@
 {
 	"scripts": {
 		"start": "pnpm start -r --parallel --stream",
+		"start:demo": "pnpm start --filter web-demo",
+		"start:styles": "pnpm start --filter web-styles",
+		"start:intranet-header": "pnpm start --filter intranet-header",
 		"bootstrap": "pnpm install && pnpx lerna bootstrap && pnpm run build -r"
 	},
 	"devDependencies": {
@@ -8,6 +11,6 @@
 		"@changesets/cli": "^2.21.0",
 		"lerna": "^4.0.0"
 	},
-	"name": "common-web-frontend",
+	"name": "swisspost-web-frontend",
 	"license": "Apache-2.0"
 }
