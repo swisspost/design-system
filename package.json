@@ -8,5 +8,6 @@
 		"@changesets/cli": "^2.21.0",
 		"lerna": "^4.0.0"
 	},
-	"name": "common-web-frontend"
+	"name": "common-web-frontend",
+	"license": "Apache-2.0"
 }
