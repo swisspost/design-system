@@ -69,6 +69,9 @@
 @each $name, $color, $icon in alert.$alert-list {
   .alert-#{$name} {
     @extend %notification-#{$name};
+    @if (color-fn.get-contrast-color($color) != #000) {
+      @extend %inverted-color-vars;
+    }
 
     .btn-close {
       @extend %notification-#{$name}-close;
