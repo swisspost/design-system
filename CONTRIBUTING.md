@@ -90,6 +90,6 @@ TODO: describe the release workflow with pnpm, lerna, changesets and github acti
 
 ## License
 
-By contributing your code, you agree to license your contribution under the [MIT License](./LICENSE).
+By contributing your code, you agree to license your contribution under the [Apache 2.0 License](./LICENSE).
 
 Licenses of third party packages that are bundled with any output (e.g. Bootstrap) need to be included in the output and delivered with the output code.

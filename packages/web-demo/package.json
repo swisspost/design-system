@@ -3,7 +3,7 @@
   "version": "5.0.0-alpha.0",
   "description": "Pattern documentation, code snippets and implementation guidelines for the Web Styles.",
   "author": "Swiss Post <oss@post.ch>",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "scripts": {
     "clean": "rimraf dist",
     "reset": "rimraf node_modules package-lock.json && npm run clean",
