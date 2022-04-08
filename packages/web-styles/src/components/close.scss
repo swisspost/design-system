@@ -11,6 +11,11 @@
   height: unset;
   min-height: close.$btn-close-height;
 
+  @include utilities.high-contrast-mode() {
+    opacity: 1;
+    background: transparent escape-svg($btn-close-hcm-bg) center/1.5rem auto no-repeat;
+  }
+
   &:focus {
     outline: 2px solid var(--best-contrast);
     box-shadow: none;
@@ -19,21 +24,13 @@
       outline: 0;
     }
   }
-
-  @include utilities.high-contrast-mode() {
-    & {
-      background: transparent escape-svg($btn-close-hcm-bg) center/1.5rem auto no-repeat;
-      opacity: 1;
-    }
-  }
 }
 
 .btn-close-white {
+  opacity: close.$btn-close-white-opacity;
   @include utilities.high-contrast-mode() {
     filter: none;
   }
-
-  opacity: close.$btn-close-white-opacity;
 
   &:hover {
     opacity: close.$btn-close-white-hover-opacity;

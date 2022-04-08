@@ -60,6 +60,7 @@
   background-color: transparent;
   color: var(--text);
 
+  /* stylelint-disable-next-line order/order */
   @include utilities.not-disabled-focus-hover() {
     border-color: var(--best-contrast);
     color: var(--best-contrast); // Override <a> color
@@ -195,8 +196,8 @@
 
   // Styles  to improve accessibility in high contrast mode
   @media (forced-colors: active) {
-    text-decoration: underline !important;
     color: linktext;
+    text-decoration: underline !important;
   }
 }
 

@@ -38,9 +38,9 @@
       color: color.$black;
 
       @include utilities.high-contrast-mode() {
+        border-bottom-color: highlight !important;
         // use important to prevent a tag to override styles
         color: highlight !important;
-        border-bottom-color: highlight !important;
       }
 
       &:hover,
