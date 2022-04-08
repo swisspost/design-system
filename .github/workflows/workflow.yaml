@@ -6,7 +6,7 @@
 
 on:
   pull_request:
-    types: [opened, synchronized, reopened, closed]
+    types: [opened, edited, synchronized, reopened, closed]
 
 jobs:
   build:
