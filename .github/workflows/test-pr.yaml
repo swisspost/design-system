@@ -1,4 +1,4 @@
-name: Run lint and tests on pull requests
+name: Lint and test
 
 on: [pull_request]
 
