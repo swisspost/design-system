@@ -16,6 +16,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
             
     - uses: actions/setup-node@v2
       with:
@@ -36,6 +38,15 @@ jobs:
 
     - name: Bootstrap & build CWF
       run: pnpm run bootstrap
+
+    # Lint all changed packages since main
+    - name: Lint packages
+      run: pnpm run lint -r --filter "[origin/main]"
+
+    # Test all changed packages and their dependents
+    # https://pnpm.io/filtering#--filter-since
+    - name: Run tests
+      run: pnpm test:ci --filter "...[origin/main]"
 
     - uses: actions/upload-artifact@master
       with:
