@@ -1,4 +1,4 @@
-name: Run tests on pull requests
+name: Run lint and tests on pull requests
 
 on: [pull_request]
 
@@ -32,5 +32,11 @@ jobs:
       - name: Install node_modules & link packages
         run: pnpm install && pnpx lerna bootstrap
 
+      # Lint all changed packages
+      - name: Lint packages
+        run: pnpm run lint -r --filter "[origin/main]"
+
+      # Test all changed packages and their dependents
+      # https://pnpm.io/filtering#--filter-since
       - name: Run tests
-        run: pnpm run test:ci --filter "...[origin/main]"
+        run: pnpm test:ci --filter "...[origin/main]"
