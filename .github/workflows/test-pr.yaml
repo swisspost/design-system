@@ -31,4 +31,4 @@ jobs:
         run: pnpm install && pnpx lerna bootstrap
 
       - name: Run tests
-        run: pnpm run test:ci --filter "...[origin/main]"
+        run: pnpm run test:ci --filter "...[main]"
