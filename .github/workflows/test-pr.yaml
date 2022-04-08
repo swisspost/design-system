@@ -8,6 +8,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Setup Node
         uses: actions/setup-node@v1
@@ -31,4 +33,4 @@ jobs:
         run: pnpm install && pnpx lerna bootstrap
 
       - name: Run tests
-        run: pnpm run test:ci --filter "...[main]"
+        run: pnpm run test:ci --filter "...[origin/main]"
