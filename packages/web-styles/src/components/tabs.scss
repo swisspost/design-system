@@ -124,6 +124,7 @@
       }
     }
 
+    /* stylelint-disable-next-line order/order */
     @include utilities.high-contrast-mode() {
       &:focus,
       &:focus-within,
