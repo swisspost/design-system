@@ -1,8 +1,9 @@
-![Swiss Post Logo](https://www.post.ch/-/media/portal-opp/global/logos/logo---die-post.svg?vs=2&sc_lang=en)
-
 <br>
 
-# Web Frontend
+![Swiss Post Logo](https://www.post.ch/-/media/portal-opp/global/logos/logo---die-post.svg?vs=2&sc_lang=en)
+
+
+# Common Web Frontend
 
 The Swiss Post Design Pattern Library for a unified and accessible user experience accross the web platform.
 
