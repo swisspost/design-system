@@ -31,8 +31,4 @@
   @include utilities.high-contrast-mode() {
     filter: none;
   }
-
-  &:hover {
-    opacity: close.$btn-close-white-hover-opacity;
-  }
 }

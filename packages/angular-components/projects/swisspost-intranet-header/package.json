@@ -11,10 +11,10 @@
   },
   "peerDependencies": {
     "@angular/common": "^13.2.0",
-    "@angular/core": "^13.2.0",
-    "@swisspost/web-styles": "^5.0.0-alpha.0"
+    "@angular/core": "^13.2.0"
   },
   "dependencies": {
+    "@swisspost/web-styles": "^5.0.0-alpha.0",
     "tslib": "^2.3.0"
   }
 }

@@ -3,5 +3,6 @@
   "dest": "../../dist/swisspost-intranet-header",
   "lib": {
     "entryFile": "src/public-api.ts"
-  }
+  },
+  "allowedNonPeerDependencies": ["@swisspost/web-styles"]
 }

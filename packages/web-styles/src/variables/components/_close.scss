@@ -15,9 +15,5 @@ $_btn-close-icon-url: icons.get-colored-svg-url('2043', $btn-close-color) !defau
 $_btn-close-icon-hcm-url: icons.get-colored-svg-url('2043', color.$white) !default;
 $btn-close-bg: url($_btn-close-icon-url) !default;
 $btn-close-hcm-bg: url($_btn-close-icon-hcm-url) !default;
-$btn-close-opacity: 0.6 !default;
-$btn-close-hover-opacity: 1 !default;
-
-// CWF custom variables
-$btn-close-white-opacity: $btn-close-hover-opacity !default;
-$btn-close-white-hover-opacity: $btn-close-opacity !default;
+$btn-close-opacity: 0.5 !default;
+$btn-close-hover-opacity: 0.75 !default;
