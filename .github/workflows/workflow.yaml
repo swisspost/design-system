@@ -4,19 +4,15 @@
 #
 ###
 
-on:
-  pull_request:
-    types: [opened, edited, synchronized, reopened, closed]
+on: pull_request
 
 jobs:
   build:
-    if: github.event.action != 'closed'
     name: Build
     uses: ./.github/workflows/build.yaml
 
   deploy:
     name: Deploy
-    if: github.event_name == 'pull_request'
     needs: build
     uses: ./.github/workflows/deploy.yaml
     secrets:
