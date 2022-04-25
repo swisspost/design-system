@@ -39,8 +39,8 @@
 
       @include utilities.high-contrast-mode() {
         // use important to prevent a tag to override styles
-        color: highlight !important;
         border-bottom-color: highlight !important;
+        color: highlight !important;
       }
 
       &:hover,

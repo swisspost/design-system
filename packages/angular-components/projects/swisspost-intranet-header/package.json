@@ -3,7 +3,6 @@
   "version": "3.0.0-alpha.0",
   "license": "Apache-2.0",
   "scripts": {
-    "lint": "ng lint",
     "reset": "rimraf node_modules package-lock.json"
   },
   "publishConfig": {

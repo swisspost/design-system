@@ -29,8 +29,8 @@
         &:focus,
         &:focus-within,
         &:focus-visible {
-          outline: spacing.$size-line solid highlight;
           border-radius: commons.$border-radius;
+          outline: spacing.$size-line solid highlight;
         }
       }
 

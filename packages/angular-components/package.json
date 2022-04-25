@@ -10,6 +10,7 @@
     "start": "ng serve --port 4201",
     "test": "ng test",
     "clean": "rimraf dist",
+    "lint": "ng lint",
     "reset": "rimraf node_modules package-lock.json && npm run clean"
   },
   "dependencies": {

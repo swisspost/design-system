@@ -111,8 +111,8 @@
         // use important here, so pi classes don't overwrite hcm styles
         filter: none !important;
         forced-color-adjust: none;
-        color: canvas;
         background-color: canvasText;
+        color: canvas;
 
         .toast-close-button,
         .btn-close {

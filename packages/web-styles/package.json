@@ -24,6 +24,7 @@
     "lint:fix": "stylelint src/**/*.scss --fix",
     "format": "prettier src/**/*.scss --write",
     "test": "jest",
+    "test:ci": "jest",
     "start": "gulp watch"
   },
   "dependencies": {
