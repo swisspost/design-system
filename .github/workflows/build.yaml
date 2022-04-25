@@ -41,7 +41,7 @@ jobs:
 
     # Lint all changed packages since main
     - name: Lint packages
-      run: pnpm run lint -r --filter "[origin/main]"
+      run: pnpm run lint -r
 
     # Test all changed packages and their dependents
     # https://pnpm.io/filtering#--filter-since
