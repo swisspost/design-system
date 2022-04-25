@@ -27,7 +27,6 @@
 }
 
 .btn-close-white {
-  opacity: close.$btn-close-white-opacity;
   @include utilities.high-contrast-mode() {
     filter: none;
   }
