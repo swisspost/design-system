@@ -38,8 +38,8 @@
       color: color.$black;
 
       @include utilities.high-contrast-mode() {
-        border-bottom-color: highlight !important;
         // use important to prevent a tag to override styles
+        border-bottom-color: highlight !important;
         color: highlight !important;
       }
 
