@@ -29,6 +29,9 @@ jobs:
         version: 6.32.4
         run_install: true
 
+    - name: Install dependencies
+      run: pnpm install
+
     # Test all changed packages and their dependents
     # https://pnpm.io/filtering#--filter-since
     - name: Run tests
