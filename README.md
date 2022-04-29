@@ -7,6 +7,9 @@
 
 The Swiss Post Design Pattern Library for a unified and accessible user experience accross the web platform.
 
+🚧 The **Common Web Frontend v5** is in alpha stage and is not released on NPM yet.
+
+
 ## Packages
 
 ### Demo App
