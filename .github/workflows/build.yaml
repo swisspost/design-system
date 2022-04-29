@@ -1,10 +1,9 @@
 ###
 #
-# runs all tests and builds package
+# build all packages
 #
 ###
 
-# run all changed tests: pnpm test --filter ...[master]
 # run all changed builds: pnpm build --filter ...[master]
 
 on:
@@ -38,15 +37,6 @@ jobs:
 
     - name: Bootstrap & build CWF
       run: pnpm run bootstrap
-
-    # Lint all changed packages since main
-    - name: Lint packages
-      run: pnpm run lint -r
-
-    # Test all changed packages and their dependents
-    # https://pnpm.io/filtering#--filter-since
-    - name: Run tests
-      run: pnpm test:ci --filter "...[origin/main]"
 
     - uses: actions/upload-artifact@master
       with:
