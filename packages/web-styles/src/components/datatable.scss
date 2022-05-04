@@ -172,10 +172,7 @@
     .bar {
       transition: all 0.2s linear;
       animation: query 0.8s infinite cubic-bezier(0.39, 0.575, 0.565, 1);
-
-      transition: transform 0.2s linear;
       background-color: datatable.$datatable-progressbar-activecolor;
-
       position: absolute;
       left: 0;
       top: 0;
