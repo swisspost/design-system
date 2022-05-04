@@ -42,7 +42,7 @@ gulp.task('sass', () => {
  * Generate uncompressed sass output
  */
 gulp.task('sass:dev', () => {
-  return gulp.src('./src/*.scss')
+  return gulp.src('./src/post-intranet.scss')
     .pipe(gulpSass({
       includePaths: options.includePaths,
       quietDeps: true

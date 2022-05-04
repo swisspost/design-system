@@ -1,15 +1,37 @@
+@use 'sass:color' as sass-color;
+@use 'sass:math';
+
 @use '../variables/color';
+@use '../functions/color' as color-fn;
 @use '../themes/bootstrap/root';
 
 :root {
+  --best-contrast-rgb: #{color-fn.rgb-values(color.$best-contrast)};
+  --inverted-contrast-rgb: #{color-fn.rgb-values(color.$inverted-contrast)};
+
+  --best-contrast: #{color.$best-contrast};
+  --inverted-contrast: #{color.$inverted-contrast};
+
+  @each $color-name, $color-value in color.$black-alphas {
+    --contrast-#{$color-name}: rgba(var(--best-contrast-rgb), #{math.div($color-name, 100)});
+  }
+
+  @each $color-name, $color-value in color.$white-alphas {
+    --inverted-contrast-#{$color-name}: rgba(
+      var(--inverted-contrast-rgb),
+      #{math.div($color-name, 100)}
+    );
+  }
+
+  @each $color-name, $color-value in color.$grays {
+    --gray-#{$color-name}: #{$color-value};
+  }
+
   @each $color-name, $color-value in color.$theme-colors {
     --#{$color-name}: #{$color-value};
   }
 
-  --best-contrast: #{color.$black};
-  --inverted-contrast: #{color.$white};
-  --text-color: #{color.$black-alpha-80};
-  --inactive-color: #{color.$black-alpha-60};
-  --focus-color: #{color.$black-alpha-40};
-  --border-color: #{color.$black-alpha-20};
+  // Component specific
+  --button-background-opacity: 0.8;
+  --button-hover-background-opacity: 1;
 }

@@ -1,6 +1,7 @@
 @forward '../variables/options';
 
 @use 'sass:map';
+@use 'sass:list';
 @use '../lic/bootstrap-license';
 @use '../themes/bootstrap/overrides' as bootstrap;
 @use '../themes/bootstrap/utilities' as bu; // TODO: Move CWF utilities to utilities folder.
@@ -65,7 +66,7 @@ span.spacer {
 @each $colorname, $color in color.$theme-colors {
   .bg-#{$colorname} {
     @if (color-fn.get-contrast-color($color) != #000) {
-      @extend %inverted-color-vars;
+      @extend %inverted-colors;
     }
   }
 }

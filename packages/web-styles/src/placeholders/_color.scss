@@ -1,11 +1,35 @@
-@use '../variables/color';
+@use 'sass:list';
 
-%inverted-color-vars {
-  --best-contrast: #{color.$white};
-  --inverted-contrast: #{color.$black};
-  --text-color: #{color.$white};
-  --inactive-color: #{color.$white-alpha-80};
-  --focus-color: #{color.$white-alpha-60};
-  --border-color: #{color.$white-alpha-20};
+@use '../variables/color';
+@use '../functions/color' as color-fn;
+
+%inverted-colors {
+  --best-contrast-rgb: #{color-fn.rgb-values(color.$inverted-contrast)};
+  --inverted-contrast-rgb: #{color-fn.rgb-values(color.$best-contrast)};
+  --best-contrast: #{color.$inverted-contrast};
+  --inverted-contrast: #{color.$best-contrast};
+
+  // Invert grays
+  $l: list.length(color.$grays);
+  @for $i from 1 through $l {
+    $color-name: list.nth(list.nth(color.$grays, $l + 1 - $i), 1);
+    $color-value: list.nth(list.nth(color.$grays, $i), 2);
+    --gray-#{$color-name}: #{$color-value};
+  }
+
+  // Component specific
+  --button-background-opacity: 1;
+  --button-hover-background-opacity: 0.8;
+
   color: color.$white;
+
+  & .pi,
+  & .btn-animated::after {
+    filter: invert(1);
+  }
+
+  & .btn-primary.pi,
+  & .btn-primary.btn-animated::after {
+    filter: invert(0);
+  }
 }

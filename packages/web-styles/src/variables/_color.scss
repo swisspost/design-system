@@ -1,4 +1,6 @@
 @use 'sass:map';
+@use 'sass:list';
+@use '../functions/color' as color-fn;
 
 //
 // Color system
@@ -33,15 +35,15 @@ $white-alpha-80: rgba($white, 0.8) !default;
 $white-alpha-90: rgba($white, 0.9) !default;
 
 $white-alphas: (
-  '10': $white-alpha-10,
-  '20': $white-alpha-20,
-  '30': $white-alpha-30,
-  '40': $white-alpha-40,
-  '50': $white-alpha-50,
-  '60': $white-alpha-60,
-  '70': $white-alpha-70,
-  '80': $white-alpha-80,
-  '90': $white-alpha-90,
+  10: $white-alpha-10,
+  20: $white-alpha-20,
+  30: $white-alpha-30,
+  40: $white-alpha-40,
+  50: $white-alpha-50,
+  60: $white-alpha-60,
+  70: $white-alpha-70,
+  80: $white-alpha-80,
+  90: $white-alpha-90,
 ) !default;
 
 $black-alpha-10: rgba($black, 0.1) !default;
@@ -55,16 +57,20 @@ $black-alpha-80: rgba($black, 0.8) !default;
 $black-alpha-90: rgba($black, 0.9) !default;
 
 $black-alphas: (
-  '10': $black-alpha-10,
-  '20': $black-alpha-20,
-  '30': $black-alpha-30,
-  '40': $black-alpha-40,
-  '50': $black-alpha-50,
-  '60': $black-alpha-60,
-  '70': $black-alpha-70,
-  '80': $black-alpha-80,
-  '90': $black-alpha-90,
+  10: $black-alpha-10,
+  20: $black-alpha-20,
+  30: $black-alpha-30,
+  40: $black-alpha-40,
+  50: $black-alpha-50,
+  60: $black-alpha-60,
+  70: $black-alpha-70,
+  80: $black-alpha-80,
+  90: $black-alpha-90,
 ) !default;
+
+// Contrast colors
+$best-contrast: $black;
+$inverted-contrast: $white;
 
 // Functional
 // Colour names via: http://chir.ag/projects/name-that-color/
@@ -280,3 +286,20 @@ $link-hover-decoration: underline !default;
 
 $component-active-color: $white !default;
 $component-active-bg: $primary !default;
+
+$inverted-backgrounds: [];
+@each $colorname, $color in $theme-colors {
+  @if (color-fn.get-contrast-color($color) != #000) {
+    $inverted-backgrounds: list.append(
+      $inverted-backgrounds,
+      '.bg-#{$colorname}',
+      $separator: comma
+    );
+  }
+}
+
+@mixin inverted-colors() {
+  :is(#{list.join($inverted-backgrounds, [], $separator: comma)}) {
+    @content;
+  }
+}

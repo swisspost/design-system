@@ -28,11 +28,18 @@
   border-style: solid;
   border-color: transparent;
   background-color: transparent;
+  color: inherit;
   box-shadow: none;
   font-family: inherit;
   font-weight: button.$btn-font-weight;
   line-height: inherit;
   text-decoration: none !important; // For <a> tags, !important for hover
+
+  // Long content should never break in buttons
+  white-space: nowrap;
+  max-width: 100%;
+  text-overflow: ellipsis;
+  overflow: hidden;
 
   &:disabled {
     opacity: button.$btn-disabled-opacity !important;
@@ -56,64 +63,46 @@
 .btn-secondary,
 %btn-default {
   // opacity: .8;
-  border-color: var(--border-color);
+  border-color: rgba(var(--best-contrast-rgb), 0.2);
   background-color: transparent;
-  color: var(--text);
+  color: var(--best-contrast);
 
   /* stylelint-disable-next-line order/order */
   @include utilities.not-disabled-focus-hover() {
-    border-color: var(--best-contrast);
+    border-color: rgba(var(--best-contrast), 1);
     color: var(--best-contrast); // Override <a> color
-  }
-
-  &.btn-inverted {
-    border-color: var(--best-contrast);
   }
 }
 
 // Primary
 .btn-primary {
-  opacity: 0.8;
-  background-color: var(--best-contrast);
+  background-color: rgba(var(--best-contrast-rgb), var(--button-background-opacity));
   color: var(--inverted-contrast);
 
   @include utilities.not-disabled-focus-hover() {
-    opacity: 1;
+    background-color: rgba(var(--best-contrast-rgb), var(--button-hover-background-opacity));
     color: var(--inverted-contrast); // Override <a> color
   }
 
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
-    opacity: 1;
+    background-color: rgba(var(--best-contrast-rgb), var(--button-hover-background-opacity));
 
     &:hover {
       border-color: highlight;
     }
   }
-}
 
-// Handle icon coloring
-.btn-primary:not(.btn-inverted),
-.btn-inverted:not(.btn-primary) {
-  .pi {
-    filter: invert(1);
-    forced-color-adjust: none;
-  }
-
-  &.btn-animated {
-    &::after {
-      filter: invert(1);
-      forced-color-adjust: none; // Display as white in Windows HCM
+  @include color.inverted-colors() {
+    & {
+      background-color: red;
     }
   }
-}
 
-// Inverted
-.btn-inverted {
-  opacity: 1;
-
-  @include utilities.not-disabled-focus-hover() {
-    opacity: 0.85;
+  .pi,
+  &.btn-animated::after {
+    filter: invert(1);
+    forced-color-adjust: none;
   }
 }
 
