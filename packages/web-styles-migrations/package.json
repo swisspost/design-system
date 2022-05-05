@@ -1,0 +1,29 @@
+{
+  "name": "@swispost/web-styles-migrations",
+  "version": "0.0.0",
+  "description": "A schematics",
+  "author": "Swiss Post <oss@post.ch>",
+  "license": "MIT",
+  "publishConfig": {
+    "directory": "dist"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json && copyfiles -u 1 src/*/schema.json src/*/files/** src/collection.json dist",
+    "test": "npm run build && jasmine src/**/*_spec.js"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "schematics": "./dist/collection.json",
+  "dependencies": {
+    "@angular-devkit/core": "^13.3.1",
+    "@angular-devkit/schematics": "^13.3.1",
+    "typescript": "~4.6.2"
+  },
+  "devDependencies": {
+    "@types/jasmine": "~3.10.0",
+    "@types/node": "^12.11.1",
+    "copyfiles": "^2.4.1",
+    "jasmine": "~4.0.0"
+  }
+}
