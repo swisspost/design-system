@@ -4,6 +4,7 @@
 #
 ###
 
+name: Deploy to Netlify
 on:
   workflow_call:
     secrets:

@@ -4,6 +4,7 @@
 #
 ###
 
+name: Biuld and deploy
 on: pull_request
 
 jobs:

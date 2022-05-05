@@ -6,6 +6,7 @@
 
 # run all changed builds: pnpm build --filter ...[master]
 
+name: Build packages
 on:
   workflow_call:
 
