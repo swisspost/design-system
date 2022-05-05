@@ -2,7 +2,7 @@
 
 These contribution guidelines apply to this repository in general and describe how to set up and maintain the repository. You can find dedicated guidelines in each package.
 
-- [Demo App](./packages/web-demo/CONTRIBUTING.md)
+- [Demo App](./packages/web-demo/README.md)
 - [Web Styles](./packages/web-styles/CONTRIBUTING.md)
 - [Angular Components (Intranet Header)](./packages/angular-components/projects/swisspost-intranet-header/CONTRIBUTING.md)
 
@@ -90,6 +90,6 @@ TODO: describe the release workflow with pnpm, lerna, changesets and github acti
 
 ## License
 
-By contributing your code, you agree to license your contribution under the [MIT License](./LICENSE).
+By contributing your code, you agree to license your contribution under the [Apache 2.0 License](./LICENSE).
 
 Licenses of third party packages that are bundled with any output (e.g. Bootstrap) need to be included in the output and delivered with the output code.

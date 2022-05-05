@@ -6,10 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./card-demo.component.scss']
 })
 export class CardDemoComponent {
-  @Input('image-path')
+  @Input()
   public imagePath : string;
-
-  constructor() {
-
-   }
 }

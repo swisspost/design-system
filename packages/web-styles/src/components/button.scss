@@ -60,6 +60,7 @@
   background-color: transparent;
   color: var(--text);
 
+  /* stylelint-disable-next-line order/order */
   @include utilities.not-disabled-focus-hover() {
     border-color: var(--best-contrast);
     color: var(--best-contrast); // Override <a> color
@@ -195,35 +196,17 @@
 
   // Styles  to improve accessibility in high contrast mode
   @media (forced-colors: active) {
-    text-decoration: underline !important;
     color: linktext;
-  }
-}
-
-@mixin button-color-variant($name, $color) {
-  .btn-#{$name} {
-    opacity: 1;
-    background-color: $color;
-    color: color-fn.get-contrast-color($color);
-
-    @if (color-fn.get-contrast-color($color) == #fff) {
-      &.btn-animated::after {
-        filter: invert(1);
-      }
-    }
-
-    @include utilities.not-disabled-focus-hover() {
-      background-color: darken($color, 10%);
-    }
+    text-decoration: underline !important;
   }
 }
 
 // Color variants
 @each $name, $color in color.$accent-colors {
-  @include button-color-variant($name, $color);
+  @include button-mx.button-color-variant($name, $color);
 }
 
 // Intranet contextual buttons
 @each $name, $color in color.$contextual-colors {
-  @include button-color-variant($name, $color);
+  @include button-mx.button-color-variant($name, $color);
 }

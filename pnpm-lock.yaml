@@ -33,6 +33,7 @@ importers:
       '@angular/router': ~13.2.0
       '@ng-bootstrap/ng-bootstrap': ^12.0.0
       '@popperjs/core': ^2.11.2
+      '@swisspost/web-styles': ^5.0.0-alpha.0
       '@types/jasmine': ~3.10.0
       '@types/node': ^12.11.1
       '@typescript-eslint/eslint-plugin': 5.11.0
@@ -62,6 +63,7 @@ importers:
       '@angular/router': 13.2.5_0fca0a059a11e8929b1eba955ca8de04
       '@ng-bootstrap/ng-bootstrap': 12.0.0_6811bd3c75b7bce5d11cb82a70dc6f1c
       '@popperjs/core': 2.11.2
+      '@swisspost/web-styles': link:../web-styles
       rxjs: 7.5.4
       tslib: 2.3.1
       watch: 1.0.2
@@ -91,8 +93,10 @@ importers:
 
   packages/angular-components/projects/swisspost-intranet-header:
     specifiers:
+      '@swisspost/web-styles': ^5.0.0-alpha.0
       tslib: ^2.3.0
     dependencies:
+      '@swisspost/web-styles': link:../../../web-styles
       tslib: 2.3.1
 
   packages/web-demo:
@@ -141,7 +145,6 @@ importers:
       karma-coverage-istanbul-reporter: ^3.0.3
       karma-jasmine: ~4.0.0
       karma-jasmine-html-reporter: ~1.7.0
-      ncp: ^2.0.0
       ngx-highlightjs: ^4.1.4
       ngx-toastr: ^14.0.0
       prettier: ^2.5.1
@@ -207,7 +210,6 @@ importers:
       karma-coverage-istanbul-reporter: 3.0.3
       karma-jasmine: 4.0.1_karma@6.3.17
       karma-jasmine-html-reporter: 1.7.0_e9630fca951e1be2e1a097d56174b9e2
-      ncp: 2.0.0
       prettier: 2.5.1
       protractor: 7.0.0
       raw-loader: 4.0.2_webpack@5.70.0
@@ -663,7 +665,7 @@ packages:
     peerDependencies:
       '@angular/core': 13.2.5
     dependencies:
-      '@angular/core': 13.2.5_rxjs@7.5.4+zone.js@0.11.5
+      '@angular/core': 13.2.5_rxjs@6.6.7+zone.js@0.11.5
       tslib: 2.3.1
     dev: false
 
@@ -851,9 +853,9 @@ packages:
       '@angular/core': 13.2.5
       '@angular/platform-browser': 13.2.5
     dependencies:
-      '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@7.5.4
+      '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@6.6.7
       '@angular/compiler': 13.2.5
-      '@angular/core': 13.2.5_rxjs@7.5.4+zone.js@0.11.5
+      '@angular/core': 13.2.5_rxjs@6.6.7+zone.js@0.11.5
       '@angular/platform-browser': 13.2.5_6a025716b6bc57cd018b00350e85604e
       tslib: 2.3.1
     dev: false
@@ -870,8 +872,8 @@ packages:
         optional: true
     dependencies:
       '@angular/animations': 13.2.5_@angular+core@13.2.5
-      '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@7.5.4
-      '@angular/core': 13.2.5_rxjs@7.5.4+zone.js@0.11.5
+      '@angular/common': 13.2.5_@angular+core@13.2.5+rxjs@6.6.7
+      '@angular/core': 13.2.5_rxjs@6.6.7+zone.js@0.11.5
       tslib: 2.3.1
     dev: false
 
@@ -11083,11 +11085,6 @@ packages:
 
   /natural-compare/1.4.0:
     resolution: {integrity: sha1-Sr6/7tdUHywnrPspvbvRXI1bpPc=}
-    dev: true
-
-  /ncp/2.0.0:
-    resolution: {integrity: sha1-GVoh1sRuNh0vsSgbo4uR6d9727M=}
-    hasBin: true
     dev: true
 
   /needle/2.9.1:

@@ -41,6 +41,7 @@
   }
 
   // style to improve hcm mode
+  /* stylelint-disable-next-line order/order */
   @include utilities.high-contrast-mode() {
     &:disabled {
       opacity: 1 !important;

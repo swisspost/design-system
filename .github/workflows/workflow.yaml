@@ -1,0 +1,20 @@
+###
+#
+# Builds and deploys preview environment on pull-request actions.
+#
+###
+
+on: pull_request
+
+jobs:
+  build:
+    name: Build
+    uses: ./.github/workflows/build.yaml
+
+  deploy:
+    name: Deploy
+    needs: build
+    uses: ./.github/workflows/deploy.yaml
+    secrets:
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

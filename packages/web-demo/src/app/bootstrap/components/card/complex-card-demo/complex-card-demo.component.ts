@@ -6,8 +6,6 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./complex-card-demo.component.scss']
 })
 export class ComplexCardDemoComponent {
-  @Input('image-path')
+  @Input()
   public imagePath : string;
-
-  constructor() { }
 }

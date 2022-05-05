@@ -17,12 +17,13 @@
     box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000, 0 0 12px 5px rgba(0, 0, 0, 0.24);
   }
 
+  /* stylelint-disable-next-line order/order */
   @include utilities.high-contrast-mode() {
     &:focus-visible {
-      box-shadow: none;
+      border-radius: commons.$border-radius;
       outline: spacing.$size-line solid highlight;
       outline-offset: spacing.$size-micro;
-      border-radius: commons.$border-radius;
+      box-shadow: none;
     }
   }
 }
@@ -165,10 +166,8 @@
   background-color: color.$yellow;
 
   @include utilities.high-contrast-mode() {
-    & {
-      border-color: highlight;
-      background-color: highlight;
-    }
+    border-color: highlight;
+    background-color: highlight;
   }
 }
 

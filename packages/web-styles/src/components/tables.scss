@@ -10,3 +10,7 @@
 .table-light {
   border-color: color.$white;
 }
+
+.table > :not(:first-child) {
+  border-top: 0;
+}

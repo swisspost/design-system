@@ -124,12 +124,13 @@
       }
     }
 
+    /* stylelint-disable-next-line order/order */
     @include utilities.high-contrast-mode() {
       &:focus,
       &:focus-within,
       &:focus-visible {
-        outline: 2px solid highlight;
         border-radius: commons.$border-radius;
+        outline: 2px solid highlight;
         // used for showing full outline
         outline-offset: -(spacing.$size-micro);
       }

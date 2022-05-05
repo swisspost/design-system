@@ -5,7 +5,5 @@ import { Component, Input } from '@angular/core';
   templateUrl: './background-demo.component.html'
 })
 export class BackgroundDemoComponent {
-  @Input('color-array') colorArray: string[];
-
-  constructor() { }
+  @Input() colorArray: string[];
 }
