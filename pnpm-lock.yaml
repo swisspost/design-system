@@ -267,6 +267,8 @@ importers:
     specifiers:
       '@angular-devkit/core': ^13.3.1
       '@angular-devkit/schematics': ^13.3.1
+      '@angular/compiler': ^13.3.6
+      '@angular/core': ^13.3.6
       '@types/jasmine': ~3.10.0
       '@types/node': ^12.11.1
       copyfiles: ^2.4.1
@@ -275,6 +277,8 @@ importers:
     dependencies:
       '@angular-devkit/core': 13.3.1
       '@angular-devkit/schematics': 13.3.1
+      '@angular/compiler': 13.3.6
+      '@angular/core': 13.3.6
       typescript: 4.6.3
     devDependencies:
       '@types/jasmine': 3.10.3
@@ -803,6 +807,13 @@ packages:
       tslib: 2.3.1
     dev: false
 
+  /@angular/compiler/13.3.6:
+    resolution: {integrity: sha1-yf7n0NbZITn7wfeF7qYNzOlvHNc=}
+    engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
+    dependencies:
+      tslib: 2.3.1
+    dev: false
+
   /@angular/core/13.2.5_rxjs@6.6.7+zone.js@0.11.5:
     resolution: {integrity: sha1-FfESsqxOIfcqOnfuDbj7Kh5yv/w=}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
@@ -825,6 +836,16 @@ packages:
       rxjs: 7.5.4
       tslib: 2.3.1
       zone.js: 0.11.5
+    dev: false
+
+  /@angular/core/13.3.6:
+    resolution: {integrity: sha1-K2wEHOYxTlTXumL4g6wQ8JG/deA=}
+    engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
+    peerDependencies:
+      rxjs: ^6.5.3 || ^7.4.0
+      zone.js: ~0.11.4
+    dependencies:
+      tslib: 2.3.1
     dev: false
 
   /@angular/elements/13.2.5_@angular+core@13.2.5+rxjs@6.6.7:

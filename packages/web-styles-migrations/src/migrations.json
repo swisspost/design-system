@@ -1,0 +1,11 @@
+{
+  "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
+
+  "schematics": {
+    "migration-rtl": {
+      "version": "5.0.0",
+      "description": "As of Bootstrap version 5, horizontal direction variables, utilities, and mixins have all been renamed to use start and end in lieu of left and right.",
+      "factory": "./migrations/rtl/index"
+    }
+  }
+}
