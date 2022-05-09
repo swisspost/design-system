@@ -11,12 +11,6 @@ html {
   scroll-behavior: smooth;
 }
 
-@each $color, $value in cwf.$icon-colors {
-  .pi-1000-#{$color} {
-    @include cwf.pi(1000, $value);
-  }
-}
-
 .pi-1014-white {
   @include cwf.pi(1014, 'white');
 }
@@ -54,10 +48,6 @@ html {
   padding: 24px;
   text-align: left;
   background-color: #f8f6f0;
-
-  @include cwf.media-breakpoint-down(rg) {
-    --x: something;
-  }
 }
 
 img {
