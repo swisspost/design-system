@@ -1,4 +1,4 @@
-@use '../../variables/color';
+@use '../../variables/color-post' as color;
 @use '../../variables/spacing';
 @use '../../variables/commons';
 
@@ -18,7 +18,7 @@
 
     .dropdown-item {
       flex: auto 1 1;
-      border: commons.$border-width solid color.$gray-200;
+      border: commons.$border-width solid color.$gray-20;
       border-top: 0;
       border-left: 0;
       border-radius: 0;

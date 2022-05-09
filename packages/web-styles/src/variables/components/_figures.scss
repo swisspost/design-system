@@ -1,6 +1,6 @@
-@use '../color';
+@use '../color-post' as color;
 
 // Figures
 
 $figure-caption-font-size: 90% !default;
-$figure-caption-color: color.$gray-600 !default;
+$figure-caption-color: color.$gray-60 !default;

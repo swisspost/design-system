@@ -6,7 +6,7 @@
 @use '../themes/bootstrap/overrides' as *;
 @use '../themes/bootstrap/list-group' as bl;
 
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/spacing';
 @use '../variables/type';
 @use '../variables/commons';
@@ -145,7 +145,7 @@
 
     &:hover {
       background-color: transparent;
-      color: color.$white-alpha-80;
+      color: rgba(var(--white-rgb), 0.8);
     }
   }
 }
@@ -163,6 +163,6 @@
 .list-group-white {
   .list-group-item {
     border: 0;
-    border-top: list-group.$list-group-border-width solid color.$white-alpha-20;
+    border-top: list-group.$list-group-border-width solid rgba(var(--white-rgb), 0.2);
   }
 }

@@ -1,7 +1,7 @@
 @use '../themes/bootstrap/overrides' as *;
 
 @use '../variables/commons';
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/type';
 @use '../variables/components/alert';
 

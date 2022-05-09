@@ -4,7 +4,7 @@
 @use 'sass:math';
 
 @use '../variables/components/button';
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/type';
 @use '../variables/spacing';
 @use '../mixins/icons';
@@ -97,12 +97,6 @@
   &.btn-animated::after {
     filter: invert(1);
     forced-color-adjust: none;
-  }
-}
-
-@include color.inverted-colors() {
-  .btn-primary {
-    background-color: red !important;
   }
 }
 

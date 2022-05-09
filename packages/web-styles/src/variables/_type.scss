@@ -1,7 +1,7 @@
 @use 'sass:math';
 
 @use './spacing';
-@use './color';
+@use './color-post' as color;
 @use './commons';
 @use './components/paragraph';
 @use '../functions/sizing';
@@ -137,7 +137,7 @@ $lead-font-weight: 300 !default;
 
 $small-font-size: 80% !default;
 
-$text-muted: color.$gray-600;
+$text-muted: color.$gray-60;
 
 $blockquote-font-weight: $font-weight-bold !default;
 $blockquote-border-left: commons.$border-thick solid color.$black !default;

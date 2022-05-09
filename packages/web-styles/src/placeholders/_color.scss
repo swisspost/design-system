@@ -4,9 +4,20 @@
 @use '../variables/color-bootstrap-overrides' as bs-colors;
 @use '../functions/color' as color-fn;
 
+// CWF color variables not rendered by bootstrap
+%color-variables {
+  --text-color: #{colors.$black};
+  --text-color-rgb: #{color-fn.rgb-values(colors.$black)};
+  --background-color: #{colors.$white};
+  --background-color-rgb: #{color-fn.rgb-values(colors.$white)};
+}
+
+// Inverted CWF variables for dark backgrounds
 %inverted-colors {
   --text-color: #{colors.$white};
+  --text-color-rgb: #{color-fn.rgb-values(colors.$white)};
   --background-color: #{colors.$black};
+  --background-color-rgb: #{color-fn.rgb-values(colors.$black)};
 
   // Invert grays
   $l: list.length(bs-colors.$grays);

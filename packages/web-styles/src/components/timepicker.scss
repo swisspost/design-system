@@ -6,7 +6,7 @@
 @use '../mixins/forms' as form-mixins;
 @use '../mixins/button' as button-mixins;
 
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/components/forms';
 @use '../variables/components/button';
 
@@ -78,11 +78,11 @@
 ngb-timepicker {
   &.ng-invalid {
     .form-control {
-      border-color: color.$danger;
+      border-color: color.$error;
 
       &:focus {
-        border-color: color.$danger;
-        box-shadow: 0 0 0 forms.$input-focus-width rgba(color.$danger, 0.25);
+        border-color: color.$error;
+        box-shadow: 0 0 0 forms.$input-focus-width rgba(color.$error, 0.25);
       }
     }
 

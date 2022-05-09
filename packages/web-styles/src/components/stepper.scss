@@ -9,7 +9,7 @@
 @use '../mixins/utilities';
 
 @use '../variables/icons';
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/spacing';
 @use '../variables/type';
 @use '../variables/components/stepper';

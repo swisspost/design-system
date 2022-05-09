@@ -1,10 +1,10 @@
-@use '../color';
+@use '../color-post' as color;
 @use '../spacing';
 
 // Spinners
 
 $spinner-color-primary: color.$yellow !default;
-$spinner-color-secondary: color.$gray-100 !default;
+$spinner-color-secondary: color.$gray-10 !default;
 
 $spinner-size: spacing.$size-huge !default;
 $spinner-border-width: 6px !default;

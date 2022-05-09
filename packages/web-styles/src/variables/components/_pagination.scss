@@ -1,4 +1,4 @@
-@use '../color';
+@use '../color-post' as color;
 @use '../spacing';
 @use '../type';
 @use '../commons';
@@ -14,25 +14,25 @@ $pagination-padding-y-lg: spacing.$size-small-regular !default;
 $pagination-padding-x-lg: 0 !default;
 $pagination-line-height: 1.25 !default;
 
-$pagination-color: color.$gray-600 !default;
+$pagination-color: color.$gray-60 !default;
 $pagination-bg: color.$white !default;
 $pagination-border-width: 2px !default;
-$pagination-border-color: color.$gray-100 !default;
+$pagination-border-color: color.$gray-10 !default;
 
 $pagination-focus-box-shadow: button.$input-btn-focus-box-shadow !default;
 $pagination-focus-outline: 0 !default;
 
 $pagination-hover-color: color.$black !default;
-$pagination-hover-bg: color.$gray-50 !default;
-$pagination-hover-border-color: color.$gray-100 !default;
+$pagination-hover-bg: color.$gray-background-light !default;
+$pagination-hover-border-color: color.$gray-10 !default;
 
 $pagination-active-color: color.$black !default;
 $pagination-active-bg: color.$yellow !default;
 $pagination-active-border-color: color.$yellow !default;
 
-$pagination-disabled-color: color.$gray-400 !default;
-$pagination-disabled-bg: color.$gray-50 !default;
-$pagination-disabled-border-color: color.$gray-100 !default;
+$pagination-disabled-color: color.$gray-40 !default;
+$pagination-disabled-bg: color.$gray-background-light !default;
+$pagination-disabled-border-color: color.$gray-10 !default;
 
 $pagination-height-border: $pagination-border-width * 2 !default;
 $pagination-height-inner: (type.$font-size-base * $pagination-line-height) +

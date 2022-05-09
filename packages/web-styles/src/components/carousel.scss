@@ -5,7 +5,7 @@
 @use '../themes/bootstrap/overrides' as *;
 
 @use '../functions/icons';
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/commons';
 @use '../variables/type';
 @use '../variables/spacing';
@@ -115,7 +115,7 @@
 }
 
 .caption-light .carousel-caption {
-  background-color: rgba(color.$gray-cararra, 0.85);
+  background-color: rgba(color.$gray-background-light, 0.85);
   color: color.$black;
 }
 

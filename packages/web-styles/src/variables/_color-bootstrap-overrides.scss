@@ -22,41 +22,20 @@ $colors: ();
 
 $primary: colors.$gray-80;
 $secondary: colors.$gray-60;
-// $success: colors.$success;
+// $success: colors.$success; // Is already defined as $sucess in post-colors
 $info: colors.$yellow;
-// $warning: colors.$warning;
+// $warning: colors.$warning; // Is already defined as $warning in post-colors
 $danger: colors.$error;
 $light: colors.$gray-background-light;
 $dark: $primary;
 
 // Colors that can be used as a background
-$theme-colors: (
-  'primary': $primary,
-  'success': colors.$success,
-  'info': $info,
-  'warning': colors.$warning,
-  'danger': $danger,
-  'active': colors.$yellow,
-  'white': colors.$white,
-  'light': $light,
-  'gray': colors.$gray-background,
-  'dark': $dark,
-  'yellow': colors.$yellow,
-  'nightblue': colors.$nightblue-dark,
-  'nightblue-bright': colors.$nightblue-bright,
-  'petrol': colors.$petrol-dark,
-  'petrol-bright': colors.$petrol-bright,
-  'coral': colors.$coral-dark,
-  'coral-bright': colors.$coral-bright,
-  'olive': colors.$olive-dark,
-  'olive-bright': colors.$olive-bright,
-  'purple': colors.$purple-dark,
-  'purple-bright': colors.$purple-bright,
-  'aubergine': colors.$aubergine-dark,
-  'aubergine-bright': colors.$aubergine-bright,
-) !default;
+$theme-colors: colors.$background-colors !default;
 
 // Contrast colors are ok
 
 $body-bg: colors.$white;
 $body-color: colors.$black;
+
+$component-active-color: colors.$white !default;
+$component-active-bg: $primary !default;

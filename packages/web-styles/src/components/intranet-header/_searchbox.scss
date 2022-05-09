@@ -1,4 +1,4 @@
-@use '../../variables/color';
+@use '../../variables/color-post' as color;
 @use '../../variables/spacing';
 @use '../../variables/type';
 @use '../../variables/commons';
@@ -9,16 +9,16 @@
 header.navbar {
   .search-textbox {
     @include media-breakpoint-down(rg) {
-      border-top: commons.$border-width solid color.$black-alpha-20;
+      border-top: commons.$border-width solid rgba(var(--black-rgb), 0.2);
     }
     @include media-breakpoint-up(md) {
-      border-left: commons.$border-width solid color.$black-alpha-20;
+      border-left: commons.$border-width solid rgba(var(--black-rgb), 0.2);
     }
 
     input {
       height: intranet-header.$header-content-size;
       border: 0;
-      background-color: color.$black-alpha-10;
+      background-color: rgba(var(--black-rgb), 0.1);
       font-size: 1.2em;
       font-weight: type.$font-weight-light;
     }

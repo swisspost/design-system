@@ -1,6 +1,6 @@
 @use 'sass:map';
 
-@use '../color';
+@use '../color-post' as color;
 @use '../type';
 @use '../commons';
 @use '../spacing';
@@ -31,7 +31,7 @@ $input-btn-padding-x-lg: spacing.$size-large - $input-btn-border-width-rem !defa
 $input-btn-line-height-lg: type.$line-height-lg !default;
 
 $input-btn-focus-width: 0.125rem !default; // 2px
-$input-btn-focus-color: rgba(color.$component-active-bg, 0.25) !default;
+$input-btn-focus-color: rgba(color.$gray-80, 0.25) !default;
 $input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
 
 // Buttons
@@ -109,7 +109,7 @@ $btn-focus-box-shadow: $input-btn-focus-box-shadow !default;
 $btn-disabled-opacity: 0.65 !default;
 $btn-active-box-shadow: none !default;
 
-$btn-link-disabled-color: color.$gray-200 !default;
+$btn-link-disabled-color: color.$gray-20 !default;
 
 $btn-block-spacing-y: 0.5rem !default;
 

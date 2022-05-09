@@ -4,7 +4,7 @@
 @use '../themes/bootstrap/dropdown' as bd;
 
 @use '../functions/icons';
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/commons';
 @use '../variables/spacing';
 @use '../placeholders/dropdown';
@@ -36,7 +36,7 @@
 .dropdown-toggle {
   &::after {
     @extend %toggler-icon;
-    background-image: url(icons.get-colored-svg-url('2052', color.$gray-800));
+    background-image: url(icons.get-colored-svg-url('2052', color.$gray-80));
     @include utilities.high-contrast-mode() {
       background-image: url(icons.get-colored-svg-url('2052', color.$white));
     }
@@ -44,7 +44,7 @@
 
   &[aria-expanded='true'] {
     &::after {
-      background-image: url(icons.get-colored-svg-url('2051', color.$gray-800));
+      background-image: url(icons.get-colored-svg-url('2051', color.$gray-80));
       @include utilities.high-contrast-mode() {
         background-image: url(icons.get-colored-svg-url('2051', color.$white));
       }
@@ -54,7 +54,7 @@
   .dropup & {
     &::after {
       @extend %toggler-icon;
-      background-image: url(icons.get-colored-svg-url('2051', color.$gray-800));
+      background-image: url(icons.get-colored-svg-url('2051', color.$gray-80));
       @include utilities.high-contrast-mode() {
         background-image: url(icons.get-colored-svg-url('2051', color.$white));
       }
@@ -62,7 +62,7 @@
 
     &[aria-expanded='true'] {
       &::after {
-        background-image: url(icons.get-colored-svg-url('2052', color.$gray-800));
+        background-image: url(icons.get-colored-svg-url('2052', color.$gray-80));
         @include utilities.high-contrast-mode() {
           background-image: url(icons.get-colored-svg-url('2052', color.$white));
         }

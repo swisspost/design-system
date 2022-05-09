@@ -1,5 +1,5 @@
 @use '../functions/icons';
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/components/form-check';
 
 @mixin form-check-variant($color, $color-hover, $color-label-hover: $color-hover) {
@@ -46,7 +46,7 @@
   .was-validated .form-check-input:invalid:hover,
   .form-check-input.is-invalid:hover {
     &:not(:checked) {
-      border-color: color.$danger;
+      border-color: color.$error;
       background-color: color.$white;
     }
   }

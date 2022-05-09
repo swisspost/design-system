@@ -7,7 +7,7 @@
 @use '../themes/bootstrap/overrides' as *;
 @use '../themes/bootstrap/type' as bt;
 
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/commons';
 @use '../variables/type';
 @use '../variables/spacing';

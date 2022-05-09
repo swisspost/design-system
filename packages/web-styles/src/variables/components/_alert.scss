@@ -1,6 +1,6 @@
 @use './close';
 @use '../commons';
-@use '../color';
+@use '../color-post' as color;
 @use '../spacing';
 @use '../type';
 
@@ -24,13 +24,13 @@ $alert-border-level: -9 !default;
 $alert-color-level: 6 !default;
 
 $alert-list: (
-  'primary' color.$primary 3134,
-  'notification' color.$primary 3134,
+  'primary' color.$gray-80 3134,
+  'notification' color.$gray-80 3134,
   'success' color.$success 2105,
-  'danger' color.$danger 2104,
-  'error' color.$danger 2104,
+  'danger' color.$error 2104,
+  'error' color.$error 2104,
   'warning' color.$warning 2104,
-  'info' color.$info 2106
+  'info' color.$yellow 2106
 ); // CWF only
 
 $alert-line-height: type.$line-height-base; // CWF only
@@ -47,5 +47,5 @@ $alert-font-size-small: type.$font-size-small; // CWF only
 $alert-toast-width: 25rem; // CWF only
 $alert-toast-width-small-breakpoint: 21rem; // CWF only
 
-$alert-toast-box-shadow-hover: 0 0 1rem 0 color.$black-alpha-40; // CWF only
+$alert-toast-box-shadow-hover: 0 0 1rem 0 rgba(var(--black-rgb), 0.4); // CWF only
 $alert-close-hover-opacity: 0.4; // CWF only

@@ -2,7 +2,7 @@
 @use '../themes/bootstrap/overrides' as *;
 @use '../variables/spacing';
 @use '../variables/type';
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../mixins';
 @use '../variables/components/paragraph';
 
@@ -167,7 +167,7 @@
     @extend %font-curve-regular;
     @extend %text-bottom-spacer;
     @include mixins.bezel-regular;
-    background-color: rgba(map.get(color.$theme-colors, 'nightblue-bright'), 0.1);
+    background-color: rgba(map.get(color.$background-colors, 'nightblue-bright'), 0.1);
 
     @include media-breakpoint-up(lg) {
       @include mixins.bezel-medium;

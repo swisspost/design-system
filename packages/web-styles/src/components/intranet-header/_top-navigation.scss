@@ -1,4 +1,4 @@
-@use '../../variables/color';
+@use '../../variables/color-post' as color;
 @use '../../variables/commons';
 @use '../../variables/type';
 @use '../../variables/components/nav';
@@ -20,7 +20,7 @@
     border-top: 4px solid transparent; // Border-Width according to PostWeb CSS
     border-bottom: 4px solid transparent; // Border-Width according to PostWeb CSS
     background-color: none;
-    color: color.$black-alpha-60;
+    color: rgba(var(--black-rgb), 0.6);
 
     @include utilities.high-contrast-mode() {
       border-top: 4px solid canvas; // Border-Width according to PostWeb CSS
@@ -28,8 +28,8 @@
 
     &:hover,
     &:focus {
-      border-bottom-color: color.$black-alpha-40;
-      background-color: color.$gray-100;
+      border-bottom-color: rgba(var(--black-rgb), 0.4);
+      background-color: color.$gray-10;
       text-decoration: none;
     }
 
@@ -68,13 +68,13 @@
 
 @include media-breakpoint-down(rg) {
   .top-navigation #navbarsDefault {
-    border-top: commons.$border-width solid color.$black-alpha-20;
+    border-top: commons.$border-width solid rgba(var(--black-rgb), 0.2);
   }
 }
 
 @include media-breakpoint-up(md) {
   .top-navigation {
-    border-top: commons.$border-width solid color.$black-alpha-20;
+    border-top: commons.$border-width solid rgba(var(--black-rgb), 0.2);
   }
 }
 
@@ -86,18 +86,18 @@
 @include media-breakpoint-down(rg) {
   #nav-toggler {
     border: 0;
-    border-left: commons.$border-width solid color.$black-alpha-20;
+    border-left: commons.$border-width solid rgba(var(--black-rgb), 0.2);
     border-radius: 0;
 
     &:hover,
     &:focus {
-      background-color: color.$black-alpha-10;
+      background-color: rgba(var(--black-rgb), 0.1);
     }
 
     i.pi {
       height: 100%;
       //width: 1.5rem;
-      color: color.$black-alpha-20;
+      color: rgba(var(--black-rgb), 0.2);
 
       &::before {
         position: relative;

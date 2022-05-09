@@ -3,7 +3,7 @@
 @use '../lic/bootstrap-license';
 @use '../themes/bootstrap/overrides' as bootstrap;
 @use '../themes/bootstrap/card' as bootstrap-card;
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/spacing';
 @use '../variables/commons';
 @use '../variables/components/card';
@@ -64,7 +64,7 @@
 
   > .list-group + .card-footer,
   .card-body ~ .card-body {
-    border-top: 1px solid color.$gray-200;
+    border-top: 1px solid color.$gray-20;
   }
 }
 
@@ -175,12 +175,12 @@
     align-items: center;
     padding-right: 0.5rem;
     padding-left: 0.5rem;
-    color: color.$gray-600;
+    color: color.$gray-60;
     text-decoration: none;
     -ms-flex-align: center;
 
     &::before {
-      @include icons-mixins.pi(3020, color.$gray-800);
+      @include icons-mixins.pi(3020, color.$gray-80);
       content: '';
       display: inline-block;
       position: relative;

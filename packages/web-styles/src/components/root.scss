@@ -3,9 +3,9 @@
 
 @use '../variables/color-post' as colors;
 @use '../functions/color' as color-fn;
+@use '../placeholders/color';
 @use '../themes/bootstrap/root';
 
 :root {
-  --text-color: #{colors.$black};
-  --background-color: #{colors.$white};
+  @extend %color-variables;
 }

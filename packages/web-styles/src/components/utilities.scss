@@ -6,7 +6,7 @@
 @use '../themes/bootstrap/overrides' as bootstrap;
 @use '../themes/bootstrap/utilities' as bu; // TODO: Move CWF utilities to utilities folder.
 @use '../mixins/utilities';
-@use '../variables/color-bootstrap-overrides' as bs-colors;
+@use '../variables/color-post' as color;
 @use '../variables/spacing';
 @use '../variables/grid';
 @use '../functions/color' as color-fn;
@@ -63,7 +63,7 @@ span.spacer {
 }
 
 // Background Utilities
-@each $colorname, $color in bs-colors.$theme-colors {
+@each $colorname, $color in color.$background-colors {
   .bg-#{$colorname} {
     @if (color-fn.get-contrast-color($color) != #000) {
       @extend %inverted-colors;

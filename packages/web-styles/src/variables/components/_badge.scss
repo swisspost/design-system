@@ -1,6 +1,6 @@
 @use './button';
 @use '../type';
-@use '../color';
+@use '../color-post' as color;
 @use '../spacing';
 @use '../commons';
 @use '../../functions/sizing';

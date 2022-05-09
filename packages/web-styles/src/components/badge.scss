@@ -4,7 +4,7 @@
 @use '../themes/bootstrap/overrides' as *;
 @use '../themes/bootstrap/badge' as bb;
 
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/type';
 @use '../variables/components/badge';
 @use '../variables/components/nav';

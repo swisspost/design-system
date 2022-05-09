@@ -1,16 +1,17 @@
-@use "sass:map";
-@use "sass:meta";
-@use "tests/jest";
-@use "src/components/accordion" with ($isolate-components: false);
-@use "src/variables/color";
-@use "src/functions/icons";
-
+@use 'sass:map';
+@use 'sass:meta';
+@use 'tests/jest';
+@use 'src/components/accordion' with (
+  $isolate-components: false
+);
+@use 'src/variables/color-post';
+@use 'src/functions/icons';
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("accordion"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('accordion'), 'isolate-components'));
 @include jest.false(accordion.$isolate-components);
 
 .accordion-arrow {
-  background-image: url(icons.get-colored-svg-url("2063", color.$primary));
+  background-image: url(icons.get-colored-svg-url('2063', color.$gray-80));
   border-color: color.$black;
 }

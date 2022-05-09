@@ -1,7 +1,7 @@
 @forward '../variables/options';
 @forward '../variables/components/switch';
 
-@use '../variables/color';
+@use '../variables/color-post' as color;
 @use '../variables/components/switch';
 @use '../variables/components/button';
 @use '../mixins/utilities';
@@ -19,15 +19,15 @@
 
     // Handle label colors for all states
     &:not(:checked) ~ label {
-      color: color.$gray-800;
+      color: color.$gray-80;
     }
 
     &:disabled ~ label {
-      color: color.$gray-400;
+      color: color.$gray-40;
     }
 
     &:disabled:checked ~ label {
-      color: color.$gray-600;
+      color: color.$gray-60;
     }
   }
 }
@@ -40,7 +40,7 @@
   height: switch.$switch-width * 0.5;
   overflow: hidden;
   border-radius: switch.$switch-width * 0.25;
-  background-color: color.$black-alpha-20;
+  background-color: rgba(var(--black-rgb), 0.2);
   cursor: pointer;
 
   // Fix broken overflow hidden on safari
@@ -63,14 +63,14 @@
     left: switch.$switch-width * -0.75;
     width: 100%;
     height: 100%;
-    background-color: color.$green;
+    background-color: color.$success;
   }
 
   // Knob
   &::after {
     width: 50%;
     height: 100%;
-    border: 2px solid color.$black-alpha-60;
+    border: 2px solid rgba(var(--black-rgb), 0.6);
     border-radius: switch.$switch-width * 0.5;
     background-color: color.$white;
   }
@@ -94,16 +94,16 @@
   }
 
   input[disabled] ~ & {
-    background-color: color.$gray-100;
+    background-color: color.$gray-10;
     cursor: default;
 
     &::before {
-      background-color: color.$gray-400;
+      background-color: color.$gray-40;
     }
 
     &::after {
-      border-color: color.$gray-400 !important;
-      background-color: color.$gray-100;
+      border-color: color.$gray-40 !important;
+      background-color: color.$gray-10;
     }
   }
 }
