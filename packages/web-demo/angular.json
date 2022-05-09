@@ -23,7 +23,6 @@
               "src/assets"
             ],
             "styles": [
-              "./node_modules/@swisspost/web-styles/post-intranet.css",
               "src/styles.scss",
               "./node_modules/highlight.js/styles/vs2015.css"
             ],

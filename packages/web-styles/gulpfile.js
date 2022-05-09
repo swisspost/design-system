@@ -42,7 +42,7 @@ gulp.task('sass', () => {
  * Generate uncompressed sass output
  */
 gulp.task('sass:dev', () => {
-  return gulp.src('./src/post-intranet.scss')
+  return gulp.src('./src/*.scss', { since: gulp.lastRun('sass:dev')})
     .pipe(gulpSass({
       includePaths: options.includePaths,
       quietDeps: true
@@ -57,7 +57,7 @@ gulp.task('sass:dev', () => {
  * Watch task for scss development
  */
 gulp.task('watch', () => {
-  return gulp.watch('./src/**/*.scss', gulp.series('copy', 'sass:dev'));
+  return gulp.watch('./src/**/*.scss', gulp.series('copy', 'watch'));
 });
 
 /*

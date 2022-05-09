@@ -6,7 +6,7 @@
 @use '../themes/bootstrap/overrides' as bootstrap;
 @use '../themes/bootstrap/utilities' as bu; // TODO: Move CWF utilities to utilities folder.
 @use '../mixins/utilities';
-@use '../variables/color';
+@use '../variables/color-bootstrap-overrides' as bs-colors;
 @use '../variables/spacing';
 @use '../variables/grid';
 @use '../functions/color' as color-fn;
@@ -63,7 +63,7 @@ span.spacer {
 }
 
 // Background Utilities
-@each $colorname, $color in color.$theme-colors {
+@each $colorname, $color in bs-colors.$theme-colors {
   .bg-#{$colorname} {
     @if (color-fn.get-contrast-color($color) != #000) {
       @extend %inverted-colors;
@@ -71,6 +71,7 @@ span.spacer {
   }
 }
 
+// TODO: refactor to link default styles
 .text-auto {
   a {
     color: inherit;
@@ -79,12 +80,5 @@ span.spacer {
     &:hover {
       opacity: 0.8;
     }
-  }
-}
-
-// Background Utilities for brandframe
-@each $colorname, $color in color.$theme-colors {
-  .bg-#{$colorname}-opacity-80 {
-    background-color: rgba($color, 0.8);
   }
 }

@@ -1,27 +1,22 @@
 @use 'sass:list';
 
-@use '../variables/color';
+@use '../variables/color-post' as colors;
+@use '../variables/color-bootstrap-overrides' as bs-colors;
 @use '../functions/color' as color-fn;
 
 %inverted-colors {
-  --best-contrast-rgb: #{color-fn.rgb-values(color.$inverted-contrast)};
-  --inverted-contrast-rgb: #{color-fn.rgb-values(color.$best-contrast)};
-  --best-contrast: #{color.$inverted-contrast};
-  --inverted-contrast: #{color.$best-contrast};
+  --text-color: #{colors.$white};
+  --background-color: #{colors.$black};
 
   // Invert grays
-  $l: list.length(color.$grays);
+  $l: list.length(bs-colors.$grays);
   @for $i from 1 through $l {
-    $color-name: list.nth(list.nth(color.$grays, $l + 1 - $i), 1);
-    $color-value: list.nth(list.nth(color.$grays, $i), 2);
+    $color-name: list.nth(list.nth(bs-colors.$grays, $l + 1 - $i), 1);
+    $color-value: list.nth(list.nth(bs-colors.$grays, $i), 2);
     --gray-#{$color-name}: #{$color-value};
   }
 
-  // Component specific
-  --button-background-opacity: 1;
-  --button-hover-background-opacity: 0.8;
-
-  color: color.$white;
+  color: colors.$white;
 
   & .pi,
   & .btn-animated::after {

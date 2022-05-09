@@ -1,0 +1,62 @@
+@use 'sass:map';
+@use 'color-post' as colors;
+
+/**
+ * Override the necessary bootstrap
+ * colors and maps using colors from
+ * the post style guide only.
+ *
+ * Other bootstrap colors
+ * will be available as sass-variables
+ * but should not be used.
+*/
+$grays: (
+  '100': colors.$gray-10,
+  '200': colors.$gray-20,
+  '400': colors.$gray-40,
+  '600': colors.$gray-60,
+  '800': colors.$gray-80,
+);
+
+$colors: ();
+
+$primary: colors.$gray-80;
+$secondary: colors.$gray-60;
+// $success: colors.$success;
+$info: colors.$yellow;
+// $warning: colors.$warning;
+$danger: colors.$error;
+$light: colors.$gray-background-light;
+$dark: $primary;
+
+// Colors that can be used as a background
+$theme-colors: (
+  'primary': $primary,
+  'success': colors.$success,
+  'info': $info,
+  'warning': colors.$warning,
+  'danger': $danger,
+  'active': colors.$yellow,
+  'white': colors.$white,
+  'light': $light,
+  'gray': colors.$gray-background,
+  'dark': $dark,
+  'yellow': colors.$yellow,
+  'nightblue': colors.$nightblue-dark,
+  'nightblue-bright': colors.$nightblue-bright,
+  'petrol': colors.$petrol-dark,
+  'petrol-bright': colors.$petrol-bright,
+  'coral': colors.$coral-dark,
+  'coral-bright': colors.$coral-bright,
+  'olive': colors.$olive-dark,
+  'olive-bright': colors.$olive-bright,
+  'purple': colors.$purple-dark,
+  'purple-bright': colors.$purple-bright,
+  'aubergine': colors.$aubergine-dark,
+  'aubergine-bright': colors.$aubergine-bright,
+) !default;
+
+// Contrast colors are ok
+
+$body-bg: colors.$white;
+$body-color: colors.$black;

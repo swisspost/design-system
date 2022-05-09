@@ -4,7 +4,10 @@
 
 //
 // Color system
+// https://www.experience-hub.ch/document/2637#/grundlagen-apps/colors
 //
+
+$color-progression: (10, 20, 40, 60, 80);
 
 $white: #fff !default;
 $gray-50: #f4f4f4 !default;
@@ -15,13 +18,21 @@ $gray-600: #666 !default;
 $gray-800: #333 !default;
 $black: #000 !default;
 
-$grays: (
-  '50': $gray-50,
-  '100': $gray-100,
-  '200': $gray-200,
-  '400': $gray-400,
-  '600': $gray-600,
-  '800': $gray-800,
+$grays: ();
+@each $step in $color-progression {
+  $grays: map.set($grays, $step, hsl(0, 0%, 100% - $step));
+}
+
+$grays: map.merge(
+  $grays,
+  (
+    '50': $gray-50,
+    '100': $gray-100,
+    '200': $gray-200,
+    '400': $gray-400,
+    '600': $gray-600,
+    '800': $gray-800,
+  )
 ) !default;
 
 $white-alpha-10: rgba($white, 0.1) !default;
@@ -287,7 +298,7 @@ $link-hover-decoration: underline !default;
 $component-active-color: $white !default;
 $component-active-bg: $primary !default;
 
-$inverted-backgrounds: [];
+$inverted-backgrounds: ();
 @each $colorname, $color in $theme-colors {
   @if (color-fn.get-contrast-color($color) != #000) {
     $inverted-backgrounds: list.append(
@@ -299,7 +310,7 @@ $inverted-backgrounds: [];
 }
 
 @mixin inverted-colors() {
-  :is(#{list.join($inverted-backgrounds, [], $separator: comma)}) {
+  :is(#{$inverted-backgrounds}) {
     @content;
   }
 }

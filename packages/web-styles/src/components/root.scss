@@ -1,37 +1,11 @@
 @use 'sass:color' as sass-color;
 @use 'sass:math';
 
-@use '../variables/color';
+@use '../variables/color-post' as colors;
 @use '../functions/color' as color-fn;
 @use '../themes/bootstrap/root';
 
 :root {
-  --best-contrast-rgb: #{color-fn.rgb-values(color.$best-contrast)};
-  --inverted-contrast-rgb: #{color-fn.rgb-values(color.$inverted-contrast)};
-
-  --best-contrast: #{color.$best-contrast};
-  --inverted-contrast: #{color.$inverted-contrast};
-
-  @each $color-name, $color-value in color.$black-alphas {
-    --contrast-#{$color-name}: rgba(var(--best-contrast-rgb), #{math.div($color-name, 100)});
-  }
-
-  @each $color-name, $color-value in color.$white-alphas {
-    --inverted-contrast-#{$color-name}: rgba(
-      var(--inverted-contrast-rgb),
-      #{math.div($color-name, 100)}
-    );
-  }
-
-  @each $color-name, $color-value in color.$grays {
-    --gray-#{$color-name}: #{$color-value};
-  }
-
-  @each $color-name, $color-value in color.$theme-colors {
-    --#{$color-name}: #{$color-value};
-  }
-
-  // Component specific
-  --button-background-opacity: 0.8;
-  --button-hover-background-opacity: 1;
+  --text-color: #{colors.$black};
+  --background-color: #{colors.$white};
 }

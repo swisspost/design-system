@@ -93,16 +93,16 @@
     }
   }
 
-  @include color.inverted-colors() {
-    & {
-      background-color: red;
-    }
-  }
-
   .pi,
   &.btn-animated::after {
     filter: invert(1);
     forced-color-adjust: none;
+  }
+}
+
+@include color.inverted-colors() {
+  .btn-primary {
+    background-color: red !important;
   }
 }
 
