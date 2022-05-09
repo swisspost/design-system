@@ -8,5 +8,5 @@
 @use '../variables/components/progress-bars';
 
 .progress-bar {
-  color: var(--best-contrast, progress-bars.$progress-bar-color);
+  color: var(--text-color, progress-bars.$progress-bar-color);
 }

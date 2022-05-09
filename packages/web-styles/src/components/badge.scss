@@ -19,7 +19,7 @@
   align-items: center;
   height: badge.$badge-height;
   border: badge.$badge-border;
-  color: var(--best-contrast, inherit);
+  color: var(--text-color, inherit);
 }
 
 .badge[class*='border-'] {

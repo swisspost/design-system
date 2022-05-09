@@ -136,6 +136,6 @@
 
   &:focus-visible,
   &:focus-within /* Compatibility with button-group */ {
-    outline: forms.$input-focus-outline-thickness solid var(--best-contrast);
+    outline: forms.$input-focus-outline-thickness solid var(--text-color);
   }
 }

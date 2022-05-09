@@ -15,12 +15,12 @@
     border: 0;
     outline-offset: 0.25rem;
     opacity: 1;
-    background-color: var(--inverted-contrast);
+    background-color: var(--background-color);
     box-shadow: 0 0 0 0.125rem var(--border-color);
     cursor: pointer;
 
     @include utilities.not-disabled-focus-hover() {
-      box-shadow: 0 0 0 0.125rem var(--best-contrast);
+      box-shadow: 0 0 0 0.125rem var(--text-color);
     }
 
     &:focus,

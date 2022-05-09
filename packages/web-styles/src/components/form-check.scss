@@ -154,7 +154,7 @@
       form-switch.$form-switch-linear-gradient-size;
 
     &:focus-visible {
-      outline: 2px solid var(--best-contrast, color.$black);
+      outline: 2px solid var(--text-color, color.$black);
       outline-offset: 3px;
     }
 
