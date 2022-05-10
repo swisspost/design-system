@@ -24,23 +24,21 @@
   position: relative;
   align-items: center;
   justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
   transition: opacity 250ms, border-color 250ms, background-color 250ms, color 250ms;
   border-width: button.$btn-border-width;
   border-style: solid;
   border-color: transparent;
   background-color: transparent;
-  color: inherit;
   box-shadow: none;
+  color: inherit;
   font-family: inherit;
   font-weight: button.$btn-font-weight;
   line-height: inherit;
   text-decoration: none !important; // For <a> tags, !important for hover
-
-  // Long content should never break in buttons
-  white-space: nowrap;
-  max-width: 100%;
   text-overflow: ellipsis;
-  overflow: hidden;
+  white-space: nowrap; // Long content should never break in buttons
 
   &:disabled {
     opacity: button.$btn-disabled-opacity !important;
@@ -109,6 +107,7 @@
     forced-color-adjust: none;
   }
 
+  // stylelint-disable-next-line order/order
   @include color-mx.on-dark-background() {
     .pi {
       filter: invert(0);

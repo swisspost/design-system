@@ -23,17 +23,18 @@
   @for $i from 1 through $l {
     $color-name: list.nth(list.nth(color.$grays, $l + 1 - $i), 1);
     $color-value: list.nth(list.nth(color.$grays, $i), 2);
+    // stylelint-disable-next-line order/order
     --gray-#{$color-name}: #{$color-value};
   }
 
   color: color.$white;
 
-  & .btn-animated::after {
+  .btn-animated::after {
     filter: invert(1);
   }
 
-  & .btn-primary.pi,
-  & .btn-primary.btn-animated::after {
+  .btn-primary.pi,
+  .btn-primary.btn-animated::after {
     filter: invert(0);
   }
 }
