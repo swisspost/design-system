@@ -3,9 +3,11 @@ import {CssClassesUpdate} from "./css-classes-update";
 import {getCssMigrationRule} from "./css-migration-rule";
 
 export class CssMigration {
+    updates: CssClassesUpdate[]
     rule: Rule;
 
-    constructor(private updates: CssClassesUpdate[]) {
+    constructor(...updates: CssClassesUpdate[]) {
+        this.updates = updates;
         this.rule = getCssMigrationRule(this);
     }
 

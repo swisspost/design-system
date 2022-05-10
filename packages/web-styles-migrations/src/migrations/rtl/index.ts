@@ -6,7 +6,7 @@ import {oneOf, optional} from "../../utils/regex";
 
 /** Entry point for the RTL migration. */
 export default function (): Rule {
-    return new CssMigration([getMarginAndPaddingClassesUpdate(), getTextAlignmentAndFloatClassesUpdate()]).rule;
+    return new CssMigration(getMarginAndPaddingClassesUpdate(), getTextAlignmentAndFloatClassesUpdate()).rule;
 }
 
 function getMarginAndPaddingClassesUpdate(): CssClassesUpdate {
