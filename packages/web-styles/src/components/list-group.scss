@@ -6,7 +6,7 @@
 @use '../themes/bootstrap/overrides' as *;
 @use '../themes/bootstrap/list-group' as bl;
 
-@use '../variables/color-post' as color;
+@use '../variables/color';
 @use '../variables/spacing';
 @use '../variables/type';
 @use '../variables/commons';

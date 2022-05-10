@@ -4,7 +4,7 @@
 @use 'src/components/accordion' with (
   $isolate-components: false
 );
-@use 'src/variables/color-post';
+@use 'src/variables/color';
 @use 'src/functions/icons';
 
 // Check if component forwards options

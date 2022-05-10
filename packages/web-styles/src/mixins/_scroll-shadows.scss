@@ -1,7 +1,7 @@
 /*!
  * Copyright 2021 by Swiss Post, Information Technology
  */
-@use '../variables/color-post' as color;
+@use '../variables/color';
 
 @mixin scroll-shadows-y($background-color: color.$white) {
   $shadow-top: linear-gradient(rgba(color.$black, 0.2), rgba(color.$black, 0.1) 25%, transparent)

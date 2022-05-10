@@ -1,5 +1,5 @@
 @use '../functions/icons';
-@use '../variables/color-post' as color;
+@use '../variables/color';
 @use '../variables/components/form-check';
 
 @mixin form-check-variant($color, $color-hover, $color-label-hover: $color-hover) {

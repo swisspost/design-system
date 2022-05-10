@@ -1,22 +1,21 @@
 @use 'sass:map';
 @use 'sass:meta';
-@use 'sass:color';
 
 @use '../variables/type';
-@use '../variables/color-post' as color-var;
+@use '../variables/color';
 @use '../variables/components/button';
 @use '../functions/icons' as icon-fn;
 @use '../mixins/utilities';
 
-@mixin pi($name, $color: color-var.$black) {
+@mixin pi($name, $color: color.$black) {
   $type: meta.type-of($color);
   $final-color: $color;
 
   @if ($type != color) {
-    $final-color: map.get(color-var.$background-colors, $color);
+    $final-color: map.get(color.$background-colors, $color);
 
     @if (not $final-color) {
-      $valid-colors: map.keys(color-var.$background-colors);
+      $valid-colors: map.keys(color.$background-colors);
 
       @error "Error in Mixin 'pi(name, color?)'. Color '#{$color}' is not available. Please choose one of the following: #{$valid-colors}.";
     }
@@ -26,10 +25,10 @@
 
   // set icon to white on hcm
   @include utilities.high-contrast-mode() {
-    @if ($final-color == color-var.$black) {
+    @if ($final-color == color.$black) {
       filter: invert(100%);
     } @else {
-      background-image: url(icon-fn.get-colored-svg-url($name, color-var.$white));
+      background-image: url(icon-fn.get-colored-svg-url($name, color.$white));
     }
   }
 }

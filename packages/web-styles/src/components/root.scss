@@ -1,9 +1,9 @@
 @use 'sass:color' as sass-color;
 @use 'sass:math';
 
-@use '../variables/color-post' as colors;
+@use '../variables/color';
 @use '../functions/color' as color-fn;
-@use '../placeholders/color';
+@use '../placeholders/color' as color-ph;
 @use '../themes/bootstrap/root';
 
 :root {

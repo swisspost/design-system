@@ -1,7 +1,7 @@
 @use 'sass:math';
 
 @use './spacing';
-@use './color-post' as color;
+@use './color';
 @use './commons';
 @use './components/paragraph';
 @use '../functions/sizing';

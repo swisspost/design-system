@@ -3,7 +3,7 @@
  */
 
 @use '../../functions/icons' as icon-functions;
-@use '../../variables/color-post' as color;
+@use '../../variables/color';
 @use '../../variables/spacing';
 
 $stepper-bar-size: spacing.$size-micro;

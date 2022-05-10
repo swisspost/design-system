@@ -4,7 +4,7 @@
 @use '../themes/bootstrap/overrides' as *;
 @use '../themes/bootstrap/progress' as bp;
 
-@use '../variables/color-post' as color;
+@use '../variables/color';
 @use '../variables/components/progress-bars';
 
 .progress-bar {

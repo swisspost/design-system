@@ -1,5 +1,5 @@
 @use './forms';
-@use '../color-post' as color;
+@use '../color';
 @use '../../functions/icons';
 
 $form-select-border-radius: forms.$input-border-radius;

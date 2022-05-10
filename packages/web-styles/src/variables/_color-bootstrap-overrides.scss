@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use 'color-post' as colors;
+@use 'color';
 
 /**
  * Override the necessary bootstrap
@@ -10,32 +10,26 @@
  * will be available as sass-variables
  * but should not be used.
 */
-$grays: (
-  '10': colors.$gray-10,
-  '20': colors.$gray-20,
-  '40': colors.$gray-40,
-  '60': colors.$gray-60,
-  '80': colors.$gray-80,
-);
 
-$colors: ();
+// $grays are defined in post colors
+// $colors are defined in post colors
 
-$primary: colors.$gray-80;
-$secondary: colors.$gray-60;
-// $success: colors.$success; // Is already defined as $sucess in post-colors
-$info: colors.$yellow;
-// $warning: colors.$warning; // Is already defined as $warning in post-colors
-$danger: colors.$error;
-$light: colors.$gray-background-light;
+$primary: color.$gray-80;
+$secondary: color.$gray-60;
+// $success: color.$success; // Is already defined as $sucess in post-colors
+$info: color.$yellow;
+// $warning: color.$warning; // Is already defined as $warning in post-colors
+$danger: color.$error;
+$light: color.$gray-background-light;
 $dark: $primary;
 
 // Colors that can be used as a background
-$theme-colors: colors.$background-colors !default;
+$theme-colors: color.$background-colors !default;
 
 // Contrast colors are ok
 
-$body-bg: colors.$white;
-$body-color: colors.$black;
+$body-bg: color.$white;
+$body-color: color.$black;
 
-$component-active-color: colors.$white !default;
+$component-active-color: color.$white !default;
 $component-active-bg: $primary !default;

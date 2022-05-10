@@ -1,4 +1,4 @@
-@use '../variables/color-post' as color;
+@use '../variables/color';
 
 // Selector for styles to be applied on dark backgrounds
 @mixin inverted-colors() {

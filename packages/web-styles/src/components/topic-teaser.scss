@@ -3,7 +3,7 @@
 @use '../themes/bootstrap/overrides' as *;
 
 @use '../functions/icons';
-@use '../variables/color-post' as color;
+@use '../variables/color';
 @use '../mixins/size';
 
 .topic-teaser {

@@ -1,7 +1,7 @@
 @forward '../variables/options';
 @forward '../variables/components/switch';
 
-@use '../variables/color-post' as color;
+@use '../variables/color';
 @use '../variables/components/switch';
 @use '../variables/components/button';
 @use '../mixins/utilities';
