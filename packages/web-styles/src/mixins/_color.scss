@@ -1,8 +1,8 @@
 @use '../variables/color';
 
 // Selector for styles to be applied on dark backgrounds
-@mixin inverted-colors() {
-  :is(#{color.$dark-backgrounds}) {
+@mixin on-dark-background() {
+  :is(#{color.$dark-backgrounds}) & {
     @content;
   }
 }

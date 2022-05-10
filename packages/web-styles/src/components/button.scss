@@ -7,6 +7,7 @@
 @use '../variables/color';
 @use '../variables/type';
 @use '../variables/spacing';
+@use '../mixins/color' as color-mx;
 @use '../mixins/icons';
 @use '../mixins/utilities';
 @use '../mixins/forms';
@@ -59,10 +60,7 @@
 }
 
 // Default / secondary
-.btn-default,
-.btn-secondary,
 %btn-default {
-  // opacity: .8;
   border-color: rgba(var(--text-color-rgb), 0.2);
   background-color: transparent;
   color: var(--text-color);
@@ -71,6 +69,18 @@
   @include utilities.not-disabled-focus-hover() {
     border-color: rgba(var(--text-color), 1);
     color: var(--text-color); // Override <a> color
+  }
+}
+
+.btn-default,
+.btn-secondary {
+  @extend %btn-default;
+
+  // Invert icon on dark backgrounds
+  @include color-mx.on-dark-background() {
+    .pi {
+      filter: invert(1);
+    }
   }
 }
 
@@ -97,6 +107,12 @@
   &.btn-animated::after {
     filter: invert(1);
     forced-color-adjust: none;
+  }
+
+  @include color-mx.on-dark-background() {
+    .pi {
+      filter: invert(0);
+    }
   }
 }
 
@@ -140,6 +156,7 @@
   > span {
     transition: transform 250ms;
   }
+
   // Only animate when user did no set animations to false
   @media (prefers-reduced-motion: no-preference) {
     @include utilities.not-disabled-focus-hover() {
