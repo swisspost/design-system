@@ -4,13 +4,18 @@
   "schematics": {
     "migration-rtl": {
       "version": "5.0.0",
-      "description": "As of Bootstrap version 5, horizontal direction variables, utilities, and mixins have all been renamed to use start and end in lieu of left and right.",
+      "description": "https://getbootstrap.com/docs/5.0/migration/#rtl",
       "factory": "./migrations/rtl/index"
     },
     "migration-close-button": {
       "version": "5.0.0",
-      "description": "As of Bootstrap version 5, close buttons use .close-btn class for a less generic name.",
+      "description": "https://getbootstrap.com/docs/5.0/migration/#close-button",
       "factory": "./migrations/close-button/index"
+    },
+    "migration-badges": {
+      "version": "5.0.0",
+      "description": "https://getbootstrap.com/docs/5.0/migration/#badges",
+      "factory": "./migrations/badges/index"
     }
   }
 }
