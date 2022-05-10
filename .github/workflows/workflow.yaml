@@ -4,6 +4,7 @@
 #
 ###
 
+name: Build and deploy
 on: pull_request
 
 jobs:
