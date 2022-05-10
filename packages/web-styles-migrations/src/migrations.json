@@ -16,6 +16,11 @@
       "version": "5.0.0",
       "description": "https://getbootstrap.com/docs/5.0/migration/#badges",
       "factory": "./migrations/badges/index"
+    },
+    "migration-forms": {
+      "version": "5.0.0",
+      "description": "https://getbootstrap.com/docs/5.0/migration/#forms",
+      "factory": "./migrations/forms/index"
     }
   }
 }
