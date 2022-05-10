@@ -22,5 +22,11 @@ header.navbar {
       font-size: 1.2em;
       font-weight: type.$font-weight-light;
     }
+
+    .btn {
+      padding: 0 1.25rem;
+      height: 100%;
+      border-radius: 0;
+    }
   }
 }
