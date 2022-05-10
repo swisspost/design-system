@@ -29,7 +29,6 @@
 
   color: colors.$white;
 
-  & .pi,
   & .btn-animated::after {
     filter: invert(1);
   }

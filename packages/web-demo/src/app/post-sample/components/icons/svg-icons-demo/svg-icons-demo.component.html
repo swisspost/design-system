@@ -7,31 +7,31 @@
     <div class="col-4"><b>Markup</b></div>
     <div class="col-4"><b>SASS</b></div>
     <div class="col-2 mb-3 text-center">
-      <i class="pi pi-1000" aria-hidden="true"></i>      
+      <i class="pi pi-1000" aria-hidden="true"></i>
   </div>
   <div class="col-2">
       pi pi-1000
   </div>
   <div class="col-4">
     <code>
-      &lt;i class="pi pi-1000" aria-hidden="true"&gt;&lt;/i&gt;    
+      &lt;i class="pi pi-1000" aria-hidden="true"&gt;&lt;/i&gt;
     </code>
   </div>
   <div class="col-4">
       <code class="sass">
         // No additional SASS necessary
-      </code>     
+      </code>
   </div>
     <div class="col-2 mb-3 text-center">
-        <i class="pi pi-1000-warning" aria-hidden="true"></i>      
+        <i class="pi pi-1000-warning" aria-hidden="true"></i>
     </div>
     <div class="col-2">
         pi pi-1000-warning<br/>
-        <small>See available contextual colors below.</small> 
+        <small>See available contextual colors below.</small>
     </div>
     <div class="col-4">
       <code>
-        &lt;i class="pi pi-1000-warning" aria-hidden="true"&gt;&lt;/i&gt;    
+        &lt;i class="pi pi-1000-warning" aria-hidden="true"&gt;&lt;/i&gt;
       </code>
     </div>
     <div class="col-4">
@@ -40,7 +40,7 @@
           .pi-1000-warning &#123;<br/>
             &nbsp;&nbsp;@include cwf.pi(1000, "warning");<br/>
           &#125;
-        </code>     
+        </code>
     </div>
     <div class="col-2 mb-3 text-center">
         <i class="pi pi-heart" aria-hidden="true"></i>
@@ -50,7 +50,7 @@
     </div>
     <div class="col-4">
       <code>
-        &lt;i class="pi pi-heart" aria-hidden="true"&gt;&lt;/i&gt;    
+        &lt;i class="pi pi-heart" aria-hidden="true"&gt;&lt;/i&gt;
       </code>
     </div>
     <div class="col-4">
@@ -59,17 +59,17 @@
           .pi-heart &#123;<br/>
             &nbsp;&nbsp;@include cwf.pi("2063", #FF0080);<br/>
           &#125;
-        </code>     
+        </code>
     </div>
     <div class="col-2 mb-3 text-center">
-        <i class="pi pi-heart-coral pi-border" aria-hidden="true"></i>      
+        <i class="pi pi-heart-coral pi-border" aria-hidden="true"></i>
     </div>
     <div class="col-2">
         pi pi-heart-coral pi-border
     </div>
     <div class="col-4">
       <code>
-        &lt;i class="pi pi-heart-coral pi-border" aria-hidden="true"&gt;&lt;/i&gt;    
+        &lt;i class="pi pi-heart-coral pi-border" aria-hidden="true"&gt;&lt;/i&gt;
       </code>
     </div>
     <div class="col-4">
@@ -79,7 +79,7 @@
           .pi-heart-coral &#123;<br/>
             &nbsp;&nbsp;@include cwf.pi(2063, map.get(cwf.$colors, "coral"));<br/>
           &#125;
-        </code>     
+        </code>
     </div>
   </div>
   <h4>Colors</h4>
@@ -102,7 +102,7 @@
     <div class="col-12 mt-3">Include a certain icon in all contextual colors (Example for pi-1000):<br/>
       <code class="sass">
         {{ cwfImport }}<br/>
-        @each $color, $value in cwf.$icon-colors &#123;<br/>
+        @each $color, $value in cwf.$contextual-colors &#123;<br/>
           &nbsp;&nbsp;.pi-1000-#&#123;$color&#125; &#123;<br/>
             &nbsp;&nbsp;&nbsp;&nbsp;@include cwf.pi(1000, $color);<br/>
           &nbsp;&nbsp;&#125;<br/>
@@ -115,7 +115,7 @@
         {{ cwfImport }}<br/>
         @each $name, $path in cwf.$svg-icon-map &#123;<br/>
           &nbsp;&nbsp;.pi-#&#123;$name&#125; &#123;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;@include cwf.pi($name, map.get(cwf.$colors, "nightblue"));<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;@include cwf.pi($name, map.get(cwf.$accent-colors, "nightblue"));<br/>
           &nbsp;&nbsp;&#125;<br/>
         &#125;
       </code>
