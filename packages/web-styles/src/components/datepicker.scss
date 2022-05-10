@@ -47,6 +47,11 @@ ngb-datepicker-navigation-select.ngb-dp-navigation-select {
 
 ngb-datepicker .ngb-dp-arrow {
   flex-grow: 0;
+  height: auto;
+
+  & span {
+    flex-shrink: 0;
+  }
 }
 
 .ngb-dp-header {
