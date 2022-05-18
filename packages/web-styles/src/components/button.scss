@@ -7,6 +7,7 @@
 @use '../variables/color';
 @use '../variables/type';
 @use '../variables/spacing';
+@use '../mixins/color' as color-mx;
 @use '../mixins/icons';
 @use '../mixins/utilities';
 @use '../mixins/forms';
@@ -23,16 +24,21 @@
   position: relative;
   align-items: center;
   justify-content: center;
+  max-width: 100%;
+  overflow: hidden;
   transition: opacity 250ms, border-color 250ms, background-color 250ms, color 250ms;
   border-width: button.$btn-border-width;
   border-style: solid;
   border-color: transparent;
   background-color: transparent;
   box-shadow: none;
+  color: inherit;
   font-family: inherit;
   font-weight: button.$btn-font-weight;
   line-height: inherit;
   text-decoration: none !important; // For <a> tags, !important for hover
+  text-overflow: ellipsis;
+  white-space: nowrap; // Long content should never break in buttons
 
   &:disabled {
     opacity: button.$btn-disabled-opacity !important;
@@ -52,68 +58,60 @@
 }
 
 // Default / secondary
-.btn-default,
-.btn-secondary,
 %btn-default {
-  // opacity: .8;
-  border-color: var(--border-color);
+  border-color: rgba(var(--text-color-rgb), 0.2);
   background-color: transparent;
-  color: var(--text);
+  color: var(--text-color);
 
   /* stylelint-disable-next-line order/order */
   @include utilities.not-disabled-focus-hover() {
-    border-color: var(--best-contrast);
-    color: var(--best-contrast); // Override <a> color
+    border-color: rgba(var(--text-color), 1);
+    color: var(--text-color); // Override <a> color
   }
+}
 
-  &.btn-inverted {
-    border-color: var(--best-contrast);
+.btn-default,
+.btn-secondary {
+  @extend %btn-default;
+
+  // Invert icon on dark backgrounds
+  @include color-mx.on-dark-background() {
+    .pi {
+      filter: invert(1);
+    }
   }
 }
 
 // Primary
 .btn-primary {
-  opacity: 0.8;
-  background-color: var(--best-contrast);
-  color: var(--inverted-contrast);
+  background-color: var(--gray-80);
+  color: var(--background-color);
 
   @include utilities.not-disabled-focus-hover() {
-    opacity: 1;
-    color: var(--inverted-contrast); // Override <a> color
+    background-color: var(--text-color);
+    color: var(--background-color); // Override <a> color
   }
 
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
-    opacity: 1;
+    background-color: rgba(var(--text-color-rgb), var(--button-hover-background-opacity));
 
     &:hover {
       border-color: highlight;
     }
   }
-}
 
-// Handle icon coloring
-.btn-primary:not(.btn-inverted),
-.btn-inverted:not(.btn-primary) {
-  .pi {
+  .pi,
+  &.btn-animated::after {
     filter: invert(1);
     forced-color-adjust: none;
   }
 
-  &.btn-animated {
-    &::after {
-      filter: invert(1);
-      forced-color-adjust: none; // Display as white in Windows HCM
+  // stylelint-disable-next-line order/order
+  @include color-mx.on-dark-background() {
+    .pi {
+      filter: invert(0);
     }
-  }
-}
-
-// Inverted
-.btn-inverted {
-  opacity: 1;
-
-  @include utilities.not-disabled-focus-hover() {
-    opacity: 0.85;
   }
 }
 
@@ -157,6 +155,7 @@
   > span {
     transition: transform 250ms;
   }
+
   // Only animate when user did no set animations to false
   @media (prefers-reduced-motion: no-preference) {
     @include utilities.not-disabled-focus-hover() {

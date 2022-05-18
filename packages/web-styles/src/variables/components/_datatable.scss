@@ -9,16 +9,16 @@
 @use '../../functions/icons';
 
 $datatable-header-font-weight: type.$font-weight-bold;
-$datatable-header-unsorted-color: color.$secondary;
+$datatable-header-unsorted-color: color.$gray-60;
 
-$_chevron-up: icons.get-colored-svg-url('2112', color.$gray-800);
-$_chevron-down: icons.get-colored-svg-url('2113', color.$gray-800);
-$_chevron-double: icons.get-colored-svg-url('2127', color.$gray-800);
+$_chevron-up: icons.get-colored-svg-url('2112', color.$gray-80);
+$_chevron-down: icons.get-colored-svg-url('2113', color.$gray-80);
+$_chevron-double: icons.get-colored-svg-url('2127', color.$gray-80);
 $datatable-sort-asc-icon: url($_chevron-up);
 $datatable-sort-desc-icon: url($_chevron-down);
 $datatable-sort-unset-icon: url($_chevron-double);
 
-$datatable-cell-bg: color.$light;
+$datatable-cell-bg: color.$gray-background-light;
 $datatable-cell-padding-x: spacing.$size-regular;
 $datatable-cell-padding-y: spacing.$size-mini;
 $datatable-cell-padding: $datatable-cell-padding-y $datatable-cell-padding-x;
@@ -27,7 +27,7 @@ $datatable-cell-margin: spacing.$size-line;
 $datatable-inverted-cell-bg: color.$white;
 
 $datatable-flush-border-width: spacing.$size-line;
-$datatable-flush-border-color: color.$gray-100;
+$datatable-flush-border-color: color.$gray-10;
 $datatable-flush-border: $datatable-flush-border-width solid $datatable-flush-border-color;
 
 $datatable-footer-padding-x: spacing.$size-regular;
@@ -35,7 +35,7 @@ $datatable-footer-padding-y: button.$input-btn-focus-width;
 $datatable-footer-padding: $datatable-footer-padding-y $datatable-footer-padding-x;
 
 $datatable-footer-separator-width: spacing.$size-line;
-$datatable-footer-separator-color: color.$gray-100;
+$datatable-footer-separator-color: color.$gray-10;
 $datatable-footer-separator: $datatable-flush-border-width solid $datatable-flush-border-color;
 
 $datatable-row-count-input-width: spacing.$size-bigger-giant;
@@ -45,5 +45,5 @@ $datatable-button-width: calc(100% - 2 * #{$datatable-button-margin});
 $datatable-button-height: $datatable-button-width;
 $datatable-button-focus-shadow: button.$btn-focus-box-shadow;
 
-$_pencil: icons.get-colored-svg-url('3193', color.$gray-800);
+$_pencil: icons.get-colored-svg-url('3193', color.$gray-80);
 $datatable-editable-icon: url($_pencil);

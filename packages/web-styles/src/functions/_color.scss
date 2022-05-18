@@ -15,6 +15,17 @@
   @return color.mix($opaque, $background, $percent);
 }
 
+@function rgb-values($color) {
+  @if (meta.type-of($color) != color) {
+    @error "Please provide a valid color for this function. Got '#{$color}'";
+  }
+  $red: color.red($color);
+  $green: color.green($color);
+  $blue: color.blue($color);
+
+  @return $red, $green, $blue;
+}
+
 @function get-hex-string($color) {
   @if (meta.type-of($color) != color) {
     @error "Please provide a color for this function. Supplied: '#{$color}'.";

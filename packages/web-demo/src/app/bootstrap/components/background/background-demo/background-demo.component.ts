@@ -6,4 +6,5 @@ import { Component, Input } from '@angular/core';
 })
 export class BackgroundDemoComponent {
   @Input() colorArray: string[];
+  @Input() bgOpacity: number = 1;
 }

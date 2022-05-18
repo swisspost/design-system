@@ -102,3 +102,8 @@ q {
 .text-body {
   @include portal.styles;
 }
+
+code {
+  color: inherit;
+  font-size: inherit;
+}

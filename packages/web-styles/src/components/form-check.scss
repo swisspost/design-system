@@ -115,21 +115,21 @@
   }
 }
 
-@each $colorname, $color in color.$theme-colors {
+@each $colorname, $color in color.$background-colors {
   .bg-#{$colorname} {
     $color-contrast: color-contrast($color, form-check.$form-check-input-color);
 
     @if ($color-contrast == color.$white) {
       @include form-checks-mixins.form-check-variant(
         color.$white,
-        color.$white-alpha-60,
-        color.$white-alpha-80
+        rgba(color.$white, 0.6),
+        rgba(color.$white, 0.8)
       );
     } @else if($color-contrast == color.$black) {
       @include form-checks-mixins.form-check-variant(
         color.$black,
-        color.$black-alpha-60,
-        color.$black-alpha-80
+        rgba(color.$black, 0.6),
+        rgba(color.$black, 0.8)
       );
     }
   }
@@ -154,7 +154,7 @@
       form-switch.$form-switch-linear-gradient-size;
 
     &:focus-visible {
-      outline: 2px solid var(--best-contrast, color.$black);
+      outline: 2px solid var(--text-color, color.$black);
       outline-offset: 3px;
     }
 

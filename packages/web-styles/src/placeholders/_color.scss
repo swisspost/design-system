@@ -1,11 +1,40 @@
-@use '../variables/color';
+@use 'sass:list';
 
-%inverted-color-vars {
-  --best-contrast: #{color.$white};
-  --inverted-contrast: #{color.$black};
+@use '../variables/color';
+@use '../functions/color' as color-fn;
+
+// CWF color variables not rendered by bootstrap
+%color-variables {
+  --text-color: #{color.$black};
+  --text-color-rgb: #{color-fn.rgb-values(color.$black)};
+  --background-color: #{color.$white};
+  --background-color-rgb: #{color-fn.rgb-values(color.$white)};
+}
+
+// Inverted CWF variables for dark backgrounds
+%inverted-colors {
   --text-color: #{color.$white};
-  --inactive-color: #{color.$white-alpha-80};
-  --focus-color: #{color.$white-alpha-60};
-  --border-color: #{color.$white-alpha-20};
+  --text-color-rgb: #{color-fn.rgb-values(color.$white)};
+  --background-color: #{color.$black};
+  --background-color-rgb: #{color-fn.rgb-values(color.$black)};
+
+  // Invert grays
+  $l: list.length(color.$grays);
+  @for $i from 1 through $l {
+    $color-name: list.nth(list.nth(color.$grays, $l + 1 - $i), 1);
+    $color-value: list.nth(list.nth(color.$grays, $i), 2);
+    // stylelint-disable-next-line order/order
+    --gray-#{$color-name}: #{$color-value};
+  }
+
   color: color.$white;
+
+  .btn-animated::after {
+    filter: invert(1);
+  }
+
+  .btn-primary.pi,
+  .btn-primary.btn-animated::after {
+    filter: invert(0);
+  }
 }

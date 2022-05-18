@@ -46,7 +46,7 @@
   .was-validated .form-check-input:invalid:hover,
   .form-check-input.is-invalid:hover {
     &:not(:checked) {
-      border-color: color.$danger;
+      border-color: color.$error;
       background-color: color.$white;
     }
   }

@@ -9,7 +9,7 @@
 $stepper-bar-size: spacing.$size-micro;
 
 $step-indicator-size: spacing.$size-bigger-big;
-$step-indicator-default-bg: color.$secondary;
+$step-indicator-default-bg: color.$gray-60;
 $step-indicator-default-color: color.$white;
 $step-indicator-active-bg: color.$yellow;
 $step-indicator-active-color: color.$black;
@@ -17,7 +17,7 @@ $step-indicator-hover-bg: color.$black;
 $step-indicator-hover-color: color.$white;
 
 $step-name-height: spacing.$size-small-large;
-$step-name-color: color.$black-alpha-60;
+$step-name-color: rgba(var(--black-rgb), 0.6);
 
 $_black-check-mark: icon-functions.get-colored-svg-url(2105, color.$black);
 $_white-check-mark: icon-functions.get-colored-svg-url(2105, color.$white);

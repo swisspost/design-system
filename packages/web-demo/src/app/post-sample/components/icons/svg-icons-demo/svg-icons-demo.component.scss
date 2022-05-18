@@ -6,7 +6,7 @@
 }
 
 .pi-heart-coral {
-  @include cwf.pi(2063, map.get(cwf.$colors, 'coral'));
+  @include cwf.pi(2063, map.get(cwf.$background-colors, 'coral'));
 }
 
 code.sass {

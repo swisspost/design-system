@@ -13,7 +13,7 @@
   position: relative;
   padding-top: spacing.$spacer;
   border: 0;
-  background-color: color.$gray-pampas;
+  background-color: color.$gray-background-light;
 
   // Create a line that lies below the active but above the passive elements
   // This way hover works smoothly with the background color
@@ -184,7 +184,7 @@
 }
 
 // Careful, this generates a lot of code
-@each $key, $color in color.$theme-colors {
+@each $key, $color in color.$background-colors {
   .bg-#{$key} {
     .tabs-wrapper {
       background-color: $color;

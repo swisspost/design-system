@@ -114,7 +114,7 @@
   padding: 1.25rem 1.5rem 1.25rem 1rem;
   transition: opacity 200ms, background-position 200ms;
   border: 0;
-  border-top: 1px solid color.$white-alpha-20;
+  border-top: 1px solid rgba(var(--white-rgb), 0.2);
   background-image: url(icons.get-colored-svg-url('2050', color.$white));
   background-repeat: no-repeat;
   background-position: 99% center;
@@ -128,6 +128,6 @@
 }
 
 .topic-teaser.bg-light .link-list-item > a {
-  border-top: 1px solid color.$gray-100;
-  background-image: url(icons.get-colored-svg-url('2050', color.$gray-600));
+  border-top: 1px solid color.$gray-10;
+  background-image: url(icons.get-colored-svg-url('2050', color.$gray-60));
 }
