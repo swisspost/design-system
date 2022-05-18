@@ -77,7 +77,7 @@
           @use "sass:map";<br/>
           {{ cwfImport }}<br/>
           .pi-heart-coral &#123;<br/>
-            &nbsp;&nbsp;@include cwf.pi(2063, map.get(cwf.$colors, "coral"));<br/>
+            &nbsp;&nbsp;@include cwf.pi(2063, map.get(cwf.$background-colors, "coral"));<br/>
           &#125;
         </code>
     </div>
@@ -85,7 +85,7 @@
   <h4>Colors</h4>
   <p>Available placeholders for: Primary, White, Info, Danger, Success (Note: Named icons can not be colored.)</p>
   <section class="row">
-    <div class="col-12 p-2" *ngFor="let color of colors" [ngClass]="color === 'white' ? 'bg-primary text-auto' : ''">
+    <div class="col-12 p-2" *ngFor="let color of colors" [ngClass]="color === 'white' ? 'bg-primary' : ''">
       <div class="row">
         <div class="col-2 text-center">
           <i class="pi pi-1000-{{ color }}" aria-hidden="true"></i>
