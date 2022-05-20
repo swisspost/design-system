@@ -16,7 +16,7 @@
 @use '../functions/color' as color-fn;
 
 .btn {
-  @include button-mx.button-size();
+  @include button-mx.button-size(md);
   @include forms.focus-outline();
 
   // Resets
@@ -37,54 +37,12 @@
   font-weight: button.$btn-font-weight;
   line-height: inherit;
   text-decoration: none !important; // For <a> tags, !important for hover
-  text-overflow: ellipsis;
   white-space: nowrap; // Long content should never break in buttons
-
-  &:disabled {
-    opacity: button.$btn-disabled-opacity !important;
-  }
-
-  > .pi {
-    width: 1em;
-    height: 1em;
-  }
-}
-
-// Size dependent properties, default is lg
-@each $size in sm, rg, lg {
-  .btn-#{$size} {
-    @include button-mx.button-size($size);
-  }
-}
-
-// Default / secondary
-%btn-default {
-  border-color: rgba(var(--text-color-rgb), 0.2);
-  background-color: transparent;
-  color: var(--text-color);
-
-  /* stylelint-disable-next-line order/order */
-  @include utilities.not-disabled-focus-hover() {
-    border-color: rgba(var(--text-color), 1);
-    color: var(--text-color); // Override <a> color
-  }
-}
-
-.btn-default,
-.btn-secondary {
-  @extend %btn-default;
-
-  // Invert icon on dark backgrounds
-  @include color-mx.on-dark-background() {
-    .pi {
-      filter: invert(1);
-    }
-  }
 }
 
 // Primary
 .btn-primary {
-  background-color: var(--gray-80);
+  background-color: rgba(var(--text-color-rgb), 0.8);
   color: var(--background-color);
 
   @include utilities.not-disabled-focus-hover() {
@@ -94,11 +52,15 @@
 
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
-    background-color: rgba(var(--text-color-rgb), var(--button-hover-background-opacity));
+    background-color: var(--text-color);
 
     &:hover {
       border-color: highlight;
     }
+  }
+
+  &:disabled {
+    background-color: rgba(var(--text-color-rgb), 0.4);
   }
 
   .pi,
@@ -115,13 +77,58 @@
   }
 }
 
+// Default / secondary
+%btn-default {
+  border-color: rgba(var(--text-color-rgb), 0.2);
+  background-color: transparent;
+  color: var(--text-color);
+
+  /* stylelint-disable-next-line order/order */
+  @include utilities.not-disabled-focus-hover() {
+    border-color: rgba(var(--text-color), 1);
+    color: var(--text-color); // Override <a> color
+  }
+
+  &:disabled {
+    color: rgba(var(--text-color-rgb), 0.6);
+  }
+}
+
+.btn-default,
+.btn-secondary {
+  @extend %btn-default;
+
+  // Invert icon on dark backgrounds
+  @include color-mx.on-dark-background() {
+    .pi {
+      filter: invert(1);
+    }
+  }
+}
+
+// Tertiary
+.btn-link,
+.btn-tertiary {
+  border: 0;
+
+  &:disabled {
+    color: rgba(var(--text-color-rgb), 0.6);
+  }
+
+  // Styles  to improve accessibility in high contrast mode
+  @media (forced-colors: active) {
+    color: linktext;
+    text-decoration: underline !important;
+  }
+}
+
 // Icon
 .btn-icon {
-  @include icons.icon-button();
+  @include button-mx.icon-button();
 
   @each $size in sm, rg, lg {
     &.btn-#{$size} {
-      @include icons.icon-button($size);
+      @include button-mx.icon-button($size);
     }
   }
 }
@@ -189,14 +196,10 @@
   }
 }
 
-// Link
-.btn-link {
-  border: 0;
-
-  // Styles  to improve accessibility in high contrast mode
-  @media (forced-colors: active) {
-    color: linktext;
-    text-decoration: underline !important;
+// Size variants, default is rg
+@each $size in sm, rg, lg {
+  .btn-#{$size} {
+    @include button-mx.button-size($size);
   }
 }
 

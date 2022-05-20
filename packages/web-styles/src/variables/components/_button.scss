@@ -40,18 +40,18 @@ $btn-animation-distance-factor: 0.375 !default;
 // sm
 $btn-animation-distance-sm: $input-btn-padding-x-sm * $btn-animation-distance-factor !default;
 $btn-padding-y-sm: spacing.$size-mini !default;
-$btn-padding-x-sm: spacing.$size-small-large !default;
+$btn-padding-x-sm: spacing.$size-regular !default;
 // CWF only
 $btn-height-sm: 2rem;
-$btn-icon-scale-sm: 1.2 !default;
+$btn-icon-size-sm: spacing.$size-regular !default;
 
 // rg
 $btn-animation-distance-rg: $input-btn-padding-x-rg * $btn-animation-distance-factor !default;
 $btn-padding-y-rg: spacing.$size-small-regular !default;
-$btn-padding-x-rg: spacing.$size-big !default;
+$btn-padding-x-rg: spacing.$size-large !default;
 // CWF only
 $btn-height-rg: 2.5rem;
-$btn-icon-scale-rg: 1.2 !default;
+$btn-icon-size-rg: 1.125rem !default;
 
 // md
 $btn-animation-distance-md: $input-btn-padding-x * $btn-animation-distance-factor !default;
@@ -59,7 +59,7 @@ $btn-padding-y-md: spacing.$size-regular !default;
 $btn-padding-x-md: spacing.$size-big !default;
 // CWF only
 $btn-height-md: 3rem;
-$btn-icon-scale-md: 1.4 !default;
+$btn-icon-size-md: spacing.$size-small-large !default;
 
 // lg
 $btn-animation-distance-lg: $input-btn-padding-x-lg * $btn-animation-distance-factor !default;
@@ -67,7 +67,7 @@ $btn-padding-y-lg: spacing.$size-small-large !default;
 $btn-padding-x-lg: spacing.$size-bigger-big !default;
 // CWF only
 $btn-height-lg: 3.5rem;
-$btn-icon-scale-lg: 1.5 !default;
+$btn-icon-size-lg: spacing.$size-large !default;
 
 $btn-animation-distance-map: (
   'sm': $btn-animation-distance-sm,
@@ -93,11 +93,11 @@ $btn-height-map: (
   'md': $btn-height-md,
   'lg': $btn-height-lg,
 );
-$btn-icon-scale-map: (
-  'sm': $btn-icon-scale-sm,
-  'rg': $btn-icon-scale-rg,
-  'md': $btn-icon-scale-md,
-  'lg': $btn-icon-scale-lg,
+$btn-icon-size-map: (
+  'sm': $btn-icon-size-sm,
+  'rg': $btn-icon-size-rg,
+  'md': $btn-icon-size-md,
+  'lg': $btn-icon-size-lg,
 );
 
 $btn-border-width: $input-btn-border-width !default;
@@ -106,7 +106,8 @@ $btn-font-weight: type.$font-weight-normal !default;
 $btn-box-shadow: none !default;
 $btn-focus-width: $input-btn-focus-width !default;
 $btn-focus-box-shadow: $input-btn-focus-box-shadow !default;
-$btn-disabled-opacity: 0.65 !default;
+$btn-disabled-opacity: 0.4 !default;
+$btn-disabled-background: rgba(color.$black, 0.4) !default;
 $btn-active-box-shadow: none !default;
 
 $btn-link-disabled-color: color.$gray-20 !default;
