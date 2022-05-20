@@ -111,6 +111,10 @@
 .btn-tertiary {
   border: 0;
 
+  @include utilities.not-disabled-focus-hover() {
+    color: rgba(var(--text-color-rgb), 0.8);
+  }
+
   &:disabled {
     color: rgba(var(--text-color-rgb), 0.6);
   }
@@ -144,7 +148,7 @@
   &::after {
     content: '';
     position: absolute;
-    right: map.get(button.$btn-padding-x-map, rg) * (1 - button.$btn-animation-distance-factor);
+    right: button.$btn-padding-x-md - button.$btn-animation-distance-md;
     width: 1em;
     height: 1em;
     transform: translateX(-2px);
@@ -159,6 +163,13 @@
     background-size: contain;
   }
 
+  @each $size in sm, rg, lg {
+    &.btn-#{$size}::after {
+      right: map.get(button.$btn-padding-x-map, $size) -
+        map.get(button.$btn-animation-distance-map, $size);
+    }
+  }
+
   > span {
     transition: transform 250ms;
   }
@@ -167,10 +178,10 @@
   @media (prefers-reduced-motion: no-preference) {
     @include utilities.not-disabled-focus-hover() {
       > span {
-        transform: translateX(map.get(button.$btn-animation-distance-map, rg) * -1);
+        transform: translateX(map.get(button.$btn-animation-distance-map, md) * -1);
       }
 
-      @each $size in sm, md, lg {
+      @each $size in sm, rg, lg {
         &.btn-#{$size} > span {
           transform: translateX(map.get(button.$btn-animation-distance-map, $size) * -1);
         }
@@ -185,13 +196,6 @@
     > span {
       // Initially transform to place text in the right rendering context for a smooth animation
       transform: translateX(0);
-    }
-  }
-
-  @each $size in sm, md, lg {
-    &.btn-#{$size}::after {
-      right: map.get(button.$btn-padding-x-map, $size) *
-        (1 - button.$btn-animation-distance-factor);
     }
   }
 }
