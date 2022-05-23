@@ -138,17 +138,15 @@
 
 // Animated
 .btn-animated {
-  $icon-right: button.$btn-padding-x-md - button.$btn-animation-distance-md;
-
   &::after {
     content: '';
     position: absolute;
-    right: $icon-right;
+    right: button.$btn-padding-x-md - button.$btn-animation-distance-md;
     width: 0.625em;
     height: 0.625em;
-    transform: rotateZ(315deg);
+    transform: rotateZ(315deg) translate(-2px, -2px);
     transform-origin: center center;
-    transition: opacity 250ms, right 250ms;
+    transition: opacity 250ms, transform 250ms;
     border-right: 2px solid currentColor;
     border-bottom: 2px solid currentColor;
     opacity: 0;
@@ -165,7 +163,7 @@
     transition: transform 250ms;
   }
 
-  // Only animate when user did no set animations to false
+  // Only animate when user prefers to see animations
   @media (prefers-reduced-motion: no-preference) {
     @include utilities.not-disabled-focus-hover() {
       > span {
@@ -179,8 +177,7 @@
       }
 
       &::after {
-        right: calc($icon-right - 2px);
-        transform: rotateZ(315deg);
+        transform: rotateZ(315deg) translate(0, 0);
         opacity: 1;
       }
     }
