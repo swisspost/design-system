@@ -32,7 +32,6 @@
   border-color: transparent;
   background-color: transparent;
   box-shadow: none;
-  color: inherit;
   font-family: inherit;
   font-weight: button.$btn-font-weight;
   line-height: inherit;
@@ -63,8 +62,7 @@
     background-color: rgba(var(--text-color-rgb), 0.4);
   }
 
-  .pi,
-  &.btn-animated::after {
+  .pi {
     filter: invert(1);
     forced-color-adjust: none;
   }
@@ -110,6 +108,7 @@
 .btn-link,
 .btn-tertiary {
   border: 0;
+  color: inherit;
 
   @include utilities.not-disabled-focus-hover() {
     color: rgba(var(--text-color-rgb), 0.8);
@@ -139,28 +138,20 @@
 
 // Animated
 .btn-animated {
-  @include utilities.high-contrast-mode() {
-    &::after {
-      filter: invert(1);
-    }
-  }
+  $icon-right: button.$btn-padding-x-md - button.$btn-animation-distance-md;
 
   &::after {
     content: '';
     position: absolute;
-    right: button.$btn-padding-x-md - button.$btn-animation-distance-md;
-    width: 1em;
-    height: 1em;
-    transform: translateX(-2px);
-    transition: opacity 250ms, transform 250ms;
+    right: $icon-right;
+    width: 0.625em;
+    height: 0.625em;
+    transition: opacity 250ms, right 250ms;
     opacity: 0;
-    background: url(icon-fn.add-stroke-color(
-      icon-fn.get-colored-svg-url(2050, color.$black),
-      color.$black,
-      2
-    ));
-    background-repeat: no-repeat;
-    background-size: contain;
+    border-bottom: 2px solid currentColor;
+    border-right: 2px solid currentColor;
+    transform: rotateZ(315deg);
+    transform-origin: center center;
   }
 
   @each $size in sm, rg, lg {
@@ -188,8 +179,9 @@
       }
 
       &::after {
-        transform: translateX(0);
+        transform: rotateZ(315deg);
         opacity: 1;
+        right: calc($icon-right - 2px);
       }
     }
 
