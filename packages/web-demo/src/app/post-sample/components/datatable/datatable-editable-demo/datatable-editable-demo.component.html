@@ -1,15 +1,13 @@
-<ngx-datatable [rows]="rows" class="w-75" columnMode="flex"
-               headerHeight="auto" rowHeight="auto">
+<ngx-datatable [rows]="rows" class="w-75" columnMode="flex" headerHeight="auto" rowHeight="auto">
 
-  <ngx-datatable-column [draggable]="false" [flexGrow]="1" [resizeable]="false" [sortable]="false"
-                        prop="product"></ngx-datatable-column>
+  <ngx-datatable-column [draggable]="false" [flexGrow]="1" [resizeable]="false" [sortable]="false" prop="product">
+  </ngx-datatable-column>
   <ngx-datatable-column [draggable]="false" [flexGrow]="0" [minWidth]="105" [resizeable]="false" [sortable]="false"
-                        prop="quantity"></ngx-datatable-column>
+    prop="quantity"></ngx-datatable-column>
 
   <!-- Edit button -->
-  <ngx-datatable-column [draggable]="false" [flexGrow]="0" [minWidth]="65"
-                        [resizeable]="false" [sortable]="false"
-                        cellClass="datatable-button-cell">
+  <ngx-datatable-column [draggable]="false" [flexGrow]="0" [minWidth]="65" [resizeable]="false" [sortable]="false"
+    cellClass="datatable-button-cell">
     <ng-template let-row="row" let-rowIndex="rowIndex" ngx-datatable-cell-template>
       <div #dropdown="ngbDropdown" class="d-inline-block" container="body" ngbDropdown placement="bottom-right">
         <button class="datatable-button btn-icon no-toggle-arrow" id="statusDropdown{{row.id}}" ngbDropdownToggle>
@@ -18,7 +16,7 @@
         </button>
         <div aria-labelledby="statusDropdown{{row.id}}" ngbDropdownMenu>
           <ng-container [ngTemplateOutletContext]="{row: row, rowIndex: rowIndex, dropdown: dropdown}"
-                        [ngTemplateOutlet]="editionForm"></ng-container>
+            [ngTemplateOutlet]="editionForm"></ng-container>
         </div>
       </div>
     </ng-template>
@@ -32,14 +30,14 @@
     <p class="h5 font-weight-bold mb-regular">Update product</p>
     <div class="form-floating mb-regular">
       <input [ngModel]="row.product" class="form-control form-control-lg" id="{{'productName_' + row.id}}"
-             name="product" placeholder="Product name">
+        name="product" placeholder="Product name">
       <label class="form-label" for="{{'productName_' + row.id}}">
         Product name
       </label>
     </div>
     <div class="form-floating mb-regular">
-      <input [ngModel]="row.quantity" class="form-control form-control-lg" id="{{'quantity_' + row.id}}"
-             name="quantity" placeholder="Quantity available">
+      <input [ngModel]="row.quantity" class="form-control form-control-lg" id="{{'quantity_' + row.id}}" name="quantity"
+        placeholder="Quantity available">
       <label class="form-label" for="{{'quantity_' + row.id}}">
         Available quantity
       </label>

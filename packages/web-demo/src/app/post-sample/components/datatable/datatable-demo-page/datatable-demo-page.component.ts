@@ -1,12 +1,18 @@
 import { Component } from '@angular/core';
-const basicTemplate = require('!!raw-loader!../datatable-demo/datatable-demo.component.html').default;
-const basicComponent = require('!!raw-loader!../datatable-demo/datatable-demo.component.ts').default;
-const paginationTemplate = require('!!raw-loader!../datatable-paginated-demo/datatable-paginated-demo.component.html').default;
-const editionTemplate = require('!!raw-loader!../datatable-editable-demo/datatable-editable-demo.component.html').default;
+const basicTemplate =
+  require('!!raw-loader!../datatable-demo/datatable-demo.component.html').default;
+const basicComponent =
+  require('!!raw-loader!../datatable-demo/datatable-demo.component.ts').default;
+const paginationTemplate =
+  require('!!raw-loader!../datatable-paginated-demo/datatable-paginated-demo.component.html').default;
+const editionTemplate =
+  require('!!raw-loader!../datatable-editable-demo/datatable-editable-demo.component.html').default;
+const loadingTemplate =
+  require('!!raw-loader!../datatable-loading-demo/datatable-loading-demo.component.html').default;
 
 @Component({
   selector: 'app-data-table-demo-page',
-  templateUrl: './datatable-demo-page.component.html'
+  templateUrl: './datatable-demo-page.component.html',
 })
 export class DatatableDemoPageComponent {
   /* Basic datatable */
@@ -21,4 +27,7 @@ export class DatatableDemoPageComponent {
 
   /* Editable datatable */
   editionTemplate = editionTemplate;
+
+  /* Loading datatable */
+  loadingTemplate = loadingTemplate;
 }
