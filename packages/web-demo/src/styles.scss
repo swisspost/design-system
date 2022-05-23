@@ -11,14 +11,27 @@ html {
   scroll-behavior: smooth;
 }
 
-@each $color, $value in cwf.$icon-colors {
-  .pi-1000-#{$color} {
-    @include cwf.pi(1000, $value);
-  }
+.pi-1000-warning {
+  @include cwf.pi(1000, 'warning');
+}
+
+.pi-1000-primary {
+  @include cwf.pi(1000, 'primary');
+}
+
+.pi-1000-success {
+  @include cwf.pi(1000, 'success');
+}
+.pi-1000-danger {
+  @include cwf.pi(1000, 'danger');
 }
 
 .pi-1014-white {
   @include cwf.pi(1014, 'white');
+}
+
+.pi-1000-white {
+  @include cwf.pi(1000, 'white');
 }
 
 .pi-2062-warning {
@@ -54,10 +67,6 @@ html {
   padding: 24px;
   text-align: left;
   background-color: #f8f6f0;
-
-  @include cwf.media-breakpoint-down(rg) {
-    --x: something;
-  }
 }
 
 img {

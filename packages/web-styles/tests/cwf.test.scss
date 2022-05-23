@@ -1,26 +1,26 @@
-@use "sass:map";
-@use "src/cwf";
-@use "./jest";
+@use 'sass:map';
+@use 'src/cwf';
+@use './jest';
 
 /**
  * This file contains tests for edge cases or fails discovered while building the 4.0 style & demo
  * packages. Extend these tests at your convenience.
  */
- .test {
-   background-image: url(cwf.get-colored-svg-url("2063", map.get(cwf.$colors, "coral")));
-   background-image: url(cwf.get-colored-svg-url("2063", #FF0080));
-   background-image: url(cwf.get-colored-svg-url("2063", cwf.$white));
+.test {
+  background-image: url(cwf.get-colored-svg-url('2063', map.get(cwf.$colors, 'coral')));
+  background-image: url(cwf.get-colored-svg-url('2063', #ff0080));
+  background-image: url(cwf.get-colored-svg-url('2063', cwf.$white));
 
-   @include cwf.pi(2063, map.get(cwf.$colors, "coral"));
-   @include cwf.pi(2063, #FF0080);
-   @include cwf.pi(2063, cwf.$white);
-   @include cwf.pi(2063, midnightblue);
-   @include jest.equal(cwf.strip-unit(12px), 12);
+  @include cwf.pi(2063, map.get(cwf.$colors, 'coral'));
+  @include cwf.pi(2063, #ff0080);
+  @include cwf.pi(2063, cwf.$white);
+  @include cwf.pi(2063, midnightblue);
+  @include jest.equal(cwf.strip-unit(12px), 12);
 
   @each $name, $path in cwf.$svg-icon-map {
     @include cwf.pi($name);
 
-    @each $color, $value in cwf.$icon-colors {
+    @each $color, $value in cwf.$contextual-colors {
       @include cwf.pi($name, $color);
       @include cwf.pi($name, $value);
     }

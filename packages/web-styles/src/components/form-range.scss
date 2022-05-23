@@ -18,8 +18,8 @@
   &:not(:disabled):not(.disabled) {
     &::-webkit-slider-runnable-track {
       background: linear-gradient(color.$black, color.$black) 0 / var(--sx) 100% no-repeat
-        color.$gray-200;
-      background-color: color.$gray-200;
+        color.$gray-20;
+      background-color: color.$gray-20;
     }
 
     &::-moz-range-progress {

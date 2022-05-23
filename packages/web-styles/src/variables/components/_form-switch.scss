@@ -4,7 +4,7 @@
 @use '../animation';
 
 // CWF custom variables
-$form-switch-border-color: color.$black-alpha-60 !default;
+$form-switch-border-color: rgba(var(--black-rgb), 0.6) !default;
 $form-switch-checked-border-color: color.$black !default;
 
 // Bootstrap variables
@@ -21,9 +21,9 @@ $form-switch-focus-bg-image: $form-switch-checked-bg-image;
 
 // CWF custom variables
 $form-switch-height: spacing.$size-big !default;
-$form-switch-bg: color.$black-alpha-30 !default;
-$form-switch-hover-bg: color.$black-alpha-10 !default;
-$form-switch-checked-bg: color.$green !default;
+$form-switch-bg: rgba(var(--black-rgb), 0.3) !default;
+$form-switch-hover-bg: rgba(var(--black-rgb), 0.1) !default;
+$form-switch-checked-bg: color.$success !default;
 $form-switch-checked-bg-image-size: $form-switch-height;
 $form-switch-linear-gradient: linear-gradient(
   to left,

@@ -4,8 +4,8 @@
 // Image thumbnails
 
 $thumbnail-padding: 0.25rem !default;
-$thumbnail-bg: color.$body-bg !default;
+$thumbnail-bg: color.$black !default;
 $thumbnail-border-width: commons.$border-width !default;
-$thumbnail-border-color: color.$gray-200 !default;
+$thumbnail-border-color: color.$gray-20 !default;
 $thumbnail-border-radius: commons.$border-radius !default;
 $thumbnail-box-shadow: 0 1px 2px rgba(color.$black, 0.075) !default;

@@ -1,15 +1,11 @@
+@use 'sass:color' as sass-color;
+@use 'sass:math';
+
 @use '../variables/color';
+@use '../functions/color' as color-fn;
+@use '../placeholders/color' as color-ph;
 @use '../themes/bootstrap/root';
 
 :root {
-  @each $color-name, $color-value in color.$theme-colors {
-    --#{$color-name}: #{$color-value};
-  }
-
-  --best-contrast: #{color.$black};
-  --inverted-contrast: #{color.$white};
-  --text-color: #{color.$black-alpha-80};
-  --inactive-color: #{color.$black-alpha-60};
-  --focus-color: #{color.$black-alpha-40};
-  --border-color: #{color.$black-alpha-20};
+  @extend %color-variables;
 }
