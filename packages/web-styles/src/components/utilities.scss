@@ -82,3 +82,12 @@ span.spacer {
     }
   }
 }
+
+a {
+  color: var(--text-color);
+
+  &:focus,
+  &:hover {
+    color: rgba(var(--text-color-rgb), 0.8);
+  }
+}
