@@ -33,15 +33,14 @@
   }
 
   .#{$state}-tooltip {
-    border-radius: tooltips.$tooltip-border-radius;
     display: none;
-
     position: absolute;
     z-index: 5;
     top: 100%;
     max-width: 100%; // Contain to parent when possible
     margin-top: 0.1rem;
     padding: tooltips.$tooltip-padding-y tooltips.$tooltip-padding-x;
+    border-radius: tooltips.$tooltip-border-radius;
     color: color-contrast($color);
     font-size: tooltips.$tooltip-font-size;
     line-height: type.$line-height-base;
@@ -120,10 +119,9 @@
 }
 
 @mixin form-control-rg {
-  border-radius: forms.$input-border-radius-rg;
-
   height: forms.$input-height-rg;
   padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
+  border-radius: forms.$input-border-radius-rg;
   font-size: type.$font-size-rg;
   line-height: forms.$input-line-height-rg;
 }

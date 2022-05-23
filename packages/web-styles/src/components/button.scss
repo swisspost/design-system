@@ -146,12 +146,12 @@
     right: $icon-right;
     width: 0.625em;
     height: 0.625em;
-    transition: opacity 250ms, right 250ms;
-    opacity: 0;
-    border-bottom: 2px solid currentColor;
-    border-right: 2px solid currentColor;
     transform: rotateZ(315deg);
     transform-origin: center center;
+    transition: opacity 250ms, right 250ms;
+    border-right: 2px solid currentColor;
+    border-bottom: 2px solid currentColor;
+    opacity: 0;
   }
 
   @each $size in sm, rg, lg {
@@ -179,9 +179,9 @@
       }
 
       &::after {
+        right: calc($icon-right - 2px);
         transform: rotateZ(315deg);
         opacity: 1;
-        right: calc($icon-right - 2px);
       }
     }
 
