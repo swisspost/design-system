@@ -33,7 +33,7 @@ jobs:
       run: npm i -g netlify-cli
 
     - name: Deploy preview environment
-      if: github.event_name == 'pull_request' && (github.event.action == 'synchronized' || github.event.action == 'opened')
+      if: github.event_name == 'pull_request_target' && (github.event.action == 'synchronized' || github.event.action == 'opened')
       id: netlify
       env:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
