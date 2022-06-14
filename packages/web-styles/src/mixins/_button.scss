@@ -2,6 +2,7 @@
 
 @use '../variables/components/button';
 @use '../variables/type';
+@use '../variables/color';
 @use '../placeholders/color' as color-ph;
 @use '../functions/color' as color-fn;
 @use 'utilities';
@@ -45,7 +46,7 @@
     background-color: $color;
 
     @if (color-fn.get-contrast-color($color) == #fff) {
-      @extend %inverted-colors;
+      color: color.$white;
     }
 
     @include utilities.not-disabled-focus-hover() {
