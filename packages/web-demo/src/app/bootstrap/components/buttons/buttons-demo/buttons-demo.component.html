@@ -1,7 +1,7 @@
 <h3 class="bold mt-huge-r">Default buttons</h3>
 <section class="mt-regular-r">
   <p class="font-curve-regular light">Use these buttons in most situations. If you don't want the animation, you can leave out the <code>.btn-animated</code> class.</p>
-  <app-default-buttons #defaultButtons class="d-flex gap-small-r flex-column"></app-default-buttons>
+  <app-default-buttons #defaultButtons class="d-flex flex-wrap gap-small-r flex-column"></app-default-buttons>
   <code class="block mt-regular-r" [highlight]="defaultButtons.templateString | formatCode" [languages]="['html']"></code>
 
   <h3 class="bold mt-huge-r">Disabled buttons</h3>
@@ -21,25 +21,25 @@
 <h3 class="bold mt-huge-r">Animated</h3>
 <section class="mt-regular-r">
   <div class="alert alert-info"><p>The animated buttons need a span around the text!</p></div>
-  <app-animated-buttons class="d-flex align-items-center gap-small-r" #animatedButtons></app-animated-buttons>
+  <app-animated-buttons class="d-flex flex-wrap align-items-center gap-small-r" #animatedButtons></app-animated-buttons>
   <code class="block mt-regular-r" [highlight]="animatedButtons.elementRef.nativeElement.innerHTML | formatCode" [languages]="['html']"></code>
 </section>
 
 <h3 class="bold mt-huge-r">Supported button tags</h3>
 <section class="mt-regular-r">
-  <app-button-tags #buttonTags class="d-flex gap-small-r"></app-button-tags>
+  <app-button-tags #buttonTags class="d-flex flex-wrap gap-small-r"></app-button-tags>
   <code class="block mt-regular-r" [highlight]="buttonTags.elementRef.nativeElement.innerHTML | formatCode" [languages]="['html']"></code>
 </section>
 
 <h3 class="bold mt-huge-r">Sizes</h3>
 <section class="mt-regular-r">
-  <app-button-sizes #buttonsizes class="d-flex align-items-center gap-small-r"></app-button-sizes>
+  <app-button-sizes #buttonsizes class="d-flex flex-wrap align-items-center gap-small-r"></app-button-sizes>
   <code class="block mt-regular-r" [highlight]="buttonsizes.elementRef.nativeElement.innerHTML | formatCode" [languages]="['html']"></code>
 </section>
 
 <h3 class="bold mt-huge-r">Icon buttons</h3>
 <section class="mt-regular-r">
-  <app-icon-buttons #iconButtons class="d-flex align-items-center gap-small-r"></app-icon-buttons>
+  <app-icon-buttons #iconButtons class="d-flex flex-wrap align-items-center gap-small-r"></app-icon-buttons>
   <code class="block mt-regular-r" [highlight]="iconButtons.elementRef.nativeElement.innerHTML | formatCode" [languages]="['html']"></code>
 </section>
 
