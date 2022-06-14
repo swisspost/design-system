@@ -27,12 +27,12 @@
   max-width: 100%;
   overflow: hidden;
   transition: opacity 250ms, border-color 250ms, background-color 250ms, color 250ms;
-  color: var(--text-color);
   border-width: button.$btn-border-width;
   border-style: solid;
   border-color: transparent;
   background-color: transparent;
   box-shadow: none;
+  color: var(--text-color);
   font-family: inherit;
   font-weight: button.$btn-font-weight;
   line-height: inherit;
@@ -105,8 +105,8 @@
   }
 
   &:disabled {
-    color: rgba(var(--text-color-rgb), 0.6);
     border-color: rgba(var(--text-color-rgb), 0.4);
+    color: rgba(var(--text-color-rgb), 0.6);
   }
 }
 
