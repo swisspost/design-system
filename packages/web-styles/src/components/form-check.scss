@@ -84,6 +84,7 @@
   }
 
   // Styles  to improve accessibility in high contrast mode
+  // stylelint-disable order/order
   @include utilities.high-contrast-mode() {
     &-input {
       &[type='checkbox']:checked {
@@ -148,12 +149,12 @@
   .form-check-input {
     height: form-switch.$form-switch-height;
     border: 0;
+    outline-offset: 3px;
     background-image: escape-svg(form-switch.$form-switch-bg-image),
       form-switch.$form-switch-linear-gradient;
     background-position: left center, right center;
     background-size: form-switch.$form-switch-checked-bg-image-size,
       form-switch.$form-switch-linear-gradient-size;
-    outline-offset: 3px;
 
     &:focus-visible {
       outline: 2px solid var(--text-color, color.$black);
