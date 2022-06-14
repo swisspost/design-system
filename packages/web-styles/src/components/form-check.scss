@@ -10,6 +10,7 @@
 @use '../variables/components/form-check';
 @use '../variables/components/form-switch';
 @use '../mixins/form-checks' as form-checks-mixins;
+@use '../mixins/utilities';
 @use '../functions/icons' as fi;
 @use '../functions/icons';
 
@@ -83,7 +84,7 @@
   }
 
   // Styles  to improve accessibility in high contrast mode
-  @media (forced-colors: active) {
+  @include utilities.high-contrast-mode() {
     &-input {
       &[type='checkbox']:checked {
         background-image: url(fi.get-colored-svg-url(2105, color.$white));
@@ -152,10 +153,10 @@
     background-position: left center, right center;
     background-size: form-switch.$form-switch-checked-bg-image-size,
       form-switch.$form-switch-linear-gradient-size;
+    outline-offset: 3px;
 
     &:focus-visible {
       outline: 2px solid var(--text-color, color.$black);
-      outline-offset: 3px;
     }
 
     &:checked {
@@ -177,6 +178,10 @@
 
     &:hover:not(:disabled) {
       background-color: form-switch.$form-switch-hover-bg;
+    }
+
+    @include utilities.high-contrast-mode() {
+      border: 2px solid var(--text-color);
     }
   }
 
