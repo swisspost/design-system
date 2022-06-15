@@ -31,12 +31,13 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-v3-
 
-    - uses: pnpm/action-setup@v2.1.0
+    - uses: pnpm/action-setup@v2.2.2
       with:
         version: 7.1.x
 
+    - run: echo "${{ github.event.action }}"
+    
     - name: Bootstrap & build CWF
-      run: echo "${{ github.event.action }}"
       run: pnpm run bootstrap
 
     - uses: actions/upload-artifact@master
