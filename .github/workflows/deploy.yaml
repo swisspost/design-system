@@ -1,23 +1,27 @@
 ###
 #
-# deploys a pre-built preview environment to netlify
+# Deploys a pre-built demo app to netlify
+#
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
 #
 ###
 
 name: Deploy to Netlify
 on:
-  workflow_call:
-    secrets:
-      NETLIFY_SITE_ID:
-        required: true
-      NETLIFY_AUTH_TOKEN:
-        required: true
+  workflow_run:
+    workflows: ["Build demo app"]
+    types:
+      - completed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: >
+      ${{ github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' }}
 
     steps:
+    - run: echo "${{ github.event.workflow_run.event.action }}"
     - uses: actions/checkout@v2
 
     - uses: actions/setup-node@v2
@@ -33,7 +37,6 @@ jobs:
       run: npm i -g netlify-cli
 
     - name: Deploy preview environment
-      if: github.event.action == 'synchronize' || github.event.action == 'opened'
       id: netlify
       env:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -47,7 +50,7 @@ jobs:
         echo "::set-output name=deploy_alias::$deploy_alias"
 
     - name: Comment on PR
-      if: github.event.action == 'opened' || github.event.action == 'reopened'
+      if: github.event.workflow_run.event.action == 'opened' || github.event.workflow_run.event.action == 'reopened'
       uses: actions/github-script@v5
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
