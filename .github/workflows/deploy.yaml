@@ -1,60 +1,63 @@
 ###
 #
-# deploys a pre-built preview environment to netlify
+# Deploys a pre-built demo app to netlify
+#
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
 #
 ###
 
 name: Deploy to Netlify
 on:
-  workflow_call:
-    secrets:
-      NETLIFY_SITE_ID:
-        required: true
-      NETLIFY_AUTH_TOKEN:
-        required: true
+  workflow_run:
+    workflows: ["Build demo app"]
+    types:
+      - completed
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    if: >
+      ${{ github.event.workflow_run.event == 'pull_request' &&
+      github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-    - uses: actions/checkout@v2
+      - run: echo "${{ github.event.workflow_run.event.action }}"
+      - uses: actions/checkout@v2
 
-    - uses: actions/setup-node@v2
-      with:
-        node-version: '16'
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
 
-    - uses: actions/download-artifact@master
-      with:
-        name: cwf-web-demo
-        path: build-output
-        
-    - name: Install netlify-cli
-      run: npm i -g netlify-cli
+      - uses: actions/download-artifact@master
+        with:
+          name: cwf-web-demo
+          path: build-output
+          
+      - name: Install netlify-cli
+        run: npm i -g netlify-cli
 
-    - name: Deploy preview environment
-      if: github.event_name == 'pull_request_target' && (github.event.action == 'synchronized' || github.event.action == 'opened')
-      id: netlify
-      env:
-        NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-        NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        PR_NUMBER: ${{ github.event.number }}
-      run: |
-        # taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with pr number
-        deploy_alias=`echo "preview-${PR_NUMBER}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
-        netlify link --id $NETLIFY_SITE_ID
-        netlify deploy --alias $deploy_alias --build false --dir build-output
-        echo "::set-output name=deploy_alias::$deploy_alias"
+      - name: Deploy preview environment
+        id: netlify
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          PR_NUMBER: ${{ github.event.number }}
+        run: |
+          # taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with pr number
+          deploy_alias=`echo "preview-${PR_NUMBER}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
+          netlify link --id $NETLIFY_SITE_ID
+          netlify deploy --alias $deploy_alias --build false --dir build-output
+          echo "::set-output name=deploy_alias::$deploy_alias"
 
-    - name: Comment on PR
-      if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
-      uses: actions/github-script@v5
-      with:
-        github-token: ${{secrets.GITHUB_TOKEN}}
-        script: |
-          github.rest.issues.createComment({
-            issue_number: context.issue.number,
-            owner: context.repo.owner,
-            repo: context.repo.repo,
-            body: '🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}--swisspost-web-frontend.netlify.app/'
-          })
+      - name: Comment on PR
+        if: github.event.workflow_run.event.action == 'opened' || github.event.workflow_run.event.action == 'reopened'
+        uses: actions/github-script@v5
+        with:
+          github-token: ${{secrets.GITHUB_TOKEN}}
+          script: |
+            github.rest.issues.createComment({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              body: '🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}--swisspost-web-frontend.netlify.app/'
+            })
