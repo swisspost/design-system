@@ -33,7 +33,7 @@ jobs:
       run: npm i -g netlify-cli
 
     - name: Deploy preview environment
-      if: github.event_name == 'pull_request_target' && (github.event.action == 'synchronize' || github.event.action == 'opened')
+      if: github.event.action == 'synchronize' || github.event.action == 'opened'
       id: netlify
       env:
         NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -47,7 +47,7 @@ jobs:
         echo "::set-output name=deploy_alias::$deploy_alias"
 
     - name: Comment on PR
-      if: github.event_name == 'pull_request' && (github.event.action == 'opened' || github.event.action == 'reopened')
+      if: github.event.action == 'opened' || github.event.action == 'reopened'
       uses: actions/github-script@v5
       with:
         github-token: ${{secrets.GITHUB_TOKEN}}
