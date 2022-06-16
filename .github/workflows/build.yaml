@@ -44,6 +44,10 @@ jobs:
 
     - name: Bootstrap & build CWF
       run: pnpm run bootstrap
+    
+    # The PR number is used by the deploy workflow for commenting on the PR
+    - name: Save PR number
+      run: echo ${{ github.event.number }} > packages/web-demo/dist/web-demo/NR
 
     - uses: actions/upload-artifact@master
       with:
