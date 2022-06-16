@@ -27,10 +27,9 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-v3-
 
-    - uses: pnpm/action-setup@v2.1.0
+    - uses: pnpm/action-setup@v2.2.2
       with:
         version: 7.1.x
-        run_install: true
 
     - name: Install dependencies
       run: pnpm install
