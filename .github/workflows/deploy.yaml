@@ -39,12 +39,18 @@ jobs:
       - name: Install netlify-cli
         run: npm i -g netlify-cli
 
+      - name: Get PR number
+        id: pr
+        run: |
+          unzip build-output/cwf-web-demo.zip -d unzipped-demo
+          echo "::set-output name=pr_number::$(cat unzipped-demo/NR)"
+
       - name: Deploy preview environment
         id: netlify
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          PR_NUMBER: ${{ github.event.workflow_run.event.number }}
+          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
         run: |
           # taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with pr number
           deploy_alias=`echo "preview-${PR_NUMBER}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
@@ -57,5 +63,5 @@ jobs:
         with:
           message: |
             🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}--swisspost-web-frontend.netlify.app/
-          pr_number: ${{ github.event.workflow_run.event.number }} # This will comment on pull request #123
+          pr_number: ${{ steps.pr.outputs.pr_number }} # This will comment on pull request #123
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
