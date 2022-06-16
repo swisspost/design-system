@@ -1,14 +1,19 @@
 ###
 #
-# build all packages
+# Build the demo app and all dependencies
+#
+# This workflow does not have secrets access
+# when run from a fork. Artifacts are uploaded
+# and used in a subsequent workflow with more
+# privileges which does not run unsafe commands.
+#
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
 #
 ###
 
-# run all changed builds: pnpm build --filter ...[master]
-
-name: Build packages
+name: Build demo app
 on:
-  workflow_call:
+  pull_request:
 
 jobs:
   build:
@@ -31,13 +36,18 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-v3-
 
-    - uses: pnpm/action-setup@v2.1.0
+    - uses: pnpm/action-setup@v2.2.2
       with:
-        version: 6.32.4
-        run_install: true
+        version: 7.1.x
+
+    - run: echo "${{ github.event.action }}"
 
     - name: Bootstrap & build CWF
       run: pnpm run bootstrap
+    
+    # The PR number is used by the deploy workflow for commenting on the PR
+    - name: Save PR number
+      run: echo ${{ github.event.number }} > packages/web-demo/dist/web-demo/NR
 
     - uses: actions/upload-artifact@master
       with:
