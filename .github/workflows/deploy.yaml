@@ -41,9 +41,7 @@ jobs:
 
       - name: Get PR number
         id: pr
-        run: |
-          unzip build-output/cwf-web-demo.zip -d unzipped-demo
-          echo "::set-output name=pr_number::$(cat unzipped-demo/NR)"
+        run: echo "::set-output name=pr_number::$(cat build-output/NR)"
 
       - name: Deploy preview environment
         id: netlify
