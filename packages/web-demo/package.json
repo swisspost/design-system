@@ -4,9 +4,7 @@
   "description": "Pattern documentation, code snippets and implementation guidelines for the Web Styles.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
-  "publishConfig": {
-    "directory": "./dist/web-demo"
-  },
+  "private": true,
   "scripts": {
     "clean": "rimraf dist",
     "reset": "rimraf node_modules package-lock.json && npm run clean",
