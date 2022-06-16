@@ -12,7 +12,7 @@
     "dist"
   ],
   "publishConfig": {
-    "directory": "dist"
+    "directory": "./dist"
   },
   "scripts": {
     "clean": "rimraf out-tsc dist/*",
