@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/web-demo",
-  "version": "5.0.0-alpha.0",
+  "version": "5.0.0-alpha.1",
   "description": "Pattern documentation, code snippets and implementation guidelines for the Web Styles.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -29,8 +29,8 @@
     "@ng-bootstrap/ng-bootstrap": "^12.0.0",
     "@popperjs/core": "^2.11.2",
     "@swimlane/ngx-datatable": "^20.0.0",
-    "@swisspost/intranet-header": "^3.0.0-alpha.0",
-    "@swisspost/web-styles": "^5.0.0-alpha.0",
+    "@swisspost/intranet-header": "^3.0.0-alpha.1",
+    "@swisspost/web-styles": "^5.0.0-alpha.1",
     "bootstrap": "^5.1.3",
     "core-js": "^2.6.12",
     "highlight.js": "^10.7.3",
