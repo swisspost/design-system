@@ -9,7 +9,8 @@
     "npm": ">= 3.0.0"
   },
   "publishConfig": {
-    "directory": "./dist"
+    "directory": "./dist",
+    "access": "public"
   },
   "scripts": {
     "clean": "rimraf out-tsc dist/*",
