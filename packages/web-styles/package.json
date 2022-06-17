@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/web-styles",
-  "version": "5.0.0-alpha.0",
+  "version": "5.0.0-alpha.1",
   "description": "Common styles for the Swiss Post web platform.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
