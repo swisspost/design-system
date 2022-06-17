@@ -45,4 +45,4 @@ jobs:
         with:
           title: "chore(changesets): publish packages"
           commit: "chore(changesets): publish packages"
-          publish: pnpm bootstrap
+          publish: pnpm bootstrap && pnpm changeset publish
