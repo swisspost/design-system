@@ -33,7 +33,7 @@ importers:
       '@angular/router': ~13.2.0
       '@ng-bootstrap/ng-bootstrap': ^12.0.0
       '@popperjs/core': ^2.11.2
-      '@swisspost/web-styles': ^5.0.0-alpha.0
+      '@swisspost/web-styles': ^5.0.0-alpha.2
       '@types/jasmine': ~3.10.0
       '@types/node': ^12.11.1
       '@typescript-eslint/eslint-plugin': 5.11.0
@@ -93,7 +93,7 @@ importers:
 
   packages/angular-components/projects/swisspost-intranet-header:
     specifiers:
-      '@swisspost/web-styles': ^5.0.0-alpha.1
+      '@swisspost/web-styles': ^5.0.0-alpha.2
       tslib: ^2.3.0
     dependencies:
       '@swisspost/web-styles': link:../../../web-styles
@@ -124,8 +124,8 @@ importers:
       '@ng-bootstrap/ng-bootstrap': ^12.0.0
       '@popperjs/core': ^2.11.2
       '@swimlane/ngx-datatable': ^20.0.0
-      '@swisspost/intranet-header': ^3.0.0-alpha.1
-      '@swisspost/web-styles': ^5.0.0-alpha.1
+      '@swisspost/intranet-header': ^3.0.0-alpha.2
+      '@swisspost/web-styles': ^5.0.0-alpha.2
       '@types/highlight.js': ^9.12.4
       '@types/jasmine': ~3.10.0
       '@types/jasminewd2': ^2.0.9
