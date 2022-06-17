@@ -43,6 +43,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
-          title: "chore(changesets): publish packages"
+          title: "chore(changesets): 🦋📦 publish packages"
           commit: "chore(changesets): publish packages"
           publish: pnpm bootstrap && pnpm changeset publish
+          version: pnpm changeset version && pnpm install --lockfile-only
