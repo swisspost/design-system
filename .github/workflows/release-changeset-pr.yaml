@@ -45,5 +45,5 @@ jobs:
         with:
           title: "chore(changesets): 🦋📦 publish packages"
           commit: "chore(changesets): publish packages"
-          publish: pnpm bootstrap && pnpm changeset publish
-          version: pnpm changeset version && pnpm install --lockfile-only
+          publish: pnpm changeset:publish
+          version: pnpm changeset:version
