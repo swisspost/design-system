@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/intranet-header",
-  "version": "3.0.0-alpha.1",
+  "version": "3.0.0-alpha.2",
   "license": "Apache-2.0",
   "scripts": {
     "reset": "rimraf node_modules package-lock.json"
@@ -13,7 +13,7 @@
     "@angular/core": "^13.2.0"
   },
   "dependencies": {
-    "@swisspost/web-styles": "^5.0.0-alpha.1",
+    "@swisspost/web-styles": "^5.0.0-alpha.2",
     "tslib": "^2.3.0"
   }
 }
