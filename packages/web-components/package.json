@@ -1,0 +1,53 @@
+{
+  "name": "@swisspost/web-components",
+  "version": "1.0.0-alpha.0",
+  "description": "A collection of web components built with Stencil JS for the Common Web Frontend.",
+  "license": "Apache-2.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/swisspost-web-components/swisspost-web-components.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/common-web-frontend"
+  },
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "scripts": {
+    "build": "stencil build --docs",
+    "start": "stencil build --watch --serve --docs",
+    "test": "stencil test --spec",
+    "test.watch": "stencil test --spec --watchAll",
+    "generate": "stencil generate",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
+  },
+  "dependencies": {
+    "@stencil/core": "^2.13.0",
+    "@stencil/sass": "^1.5.2",
+    "@swisspost/web-styles": "5.0.0-alpha.2",
+    "sass": "^1.49.7"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.17.0",
+    "@pxtrn/storybook-addon-docs-stencil": "^6.4.1",
+    "@storybook/addon-actions": "^6.4.18",
+    "@storybook/addon-essentials": "^6.4.18",
+    "@storybook/addon-links": "^6.4.18",
+    "@storybook/html": "^6.4.18",
+    "@types/jest": "^27.0.3",
+    "babel-loader": "^8.2.3",
+    "jest": "^27.4.5",
+    "jest-cli": "^27.4.5",
+    "react": "16",
+    "react-dom": "16",
+    "typescript": "^4.7.4",
+    "webpack": "4"
+  }
+}
