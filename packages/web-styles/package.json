@@ -19,14 +19,30 @@
     "format": "prettier src/**/*.scss --write",
     "test": "jest",
     "test:ci": "jest",
-    "start": "gulp watch"
+    "start": "npm run storybook",
+    "storybook": "start-storybook -p 6006",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.2",
     "bootstrap": "^5.0.2"
   },
   "devDependencies": {
+    "@babel/core": "^7.18.5",
+    "@storybook/addon-actions": "^6.5.9",
+    "@storybook/addon-docs": "^6.5.9",
+    "@storybook/addon-essentials": "^6.5.9",
+    "@storybook/addon-interactions": "^6.5.9",
+    "@storybook/addon-links": "^6.5.9",
+    "@storybook/builder-webpack4": "^6.5.9",
+    "@storybook/html": "^6.5.9",
+    "@storybook/manager-webpack4": "^6.5.9",
+    "@storybook/preset-scss": "^1.0.3",
+    "@storybook/testing-library": "^0.0.13",
+    "@types/react": "^18.0.14",
     "autoprefixer": "^9.8.6",
+    "babel-loader": "^8.2.5",
+    "css-loader": "^5",
     "glob": "^7.1.7",
     "gulp": "^4.0.2",
     "gulp-postcss": "^8.0.0",
@@ -35,14 +51,20 @@
     "postcss": "^8.4.5",
     "postcss-scss": "^4.0.3",
     "prettier": "^2.5.1",
+    "react": "16",
+    "react-dom": "16",
     "rimraf": "^2.6.3",
-    "sass": "^1.49.7",
+    "sass": "^1.52.3",
+    "sass-loader": "^10",
+    "style-loader": "^2",
     "stylelint": "^14.3.0",
     "stylelint-config-prettier": "^9.0.3",
     "stylelint-config-property-sort-order-smacss": "^8.0.0",
     "stylelint-config-sass-guidelines": "^9.0.1",
     "stylelint-prettier": "^2.0.0",
-    "stylelint-scss": "^4.1.0"
+    "stylelint-scss": "^4.1.0",
+    "typescript": "^4.7.4",
+    "webpack": "4"
   },
   "sass": {
     "includePaths": [
