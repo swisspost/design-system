@@ -1,0 +1,15 @@
+{
+  "$schema": "https://on.cypress.io/cypress.schema.json",
+  "baseUrl": "http://localhost:3333",
+  "chromeWebSecurity": false,
+  "experimentalStudio": true,
+  "ignoreTestFiles": ["**/examples/**/*.js"],
+  "includeShadowDom": true,
+  "retries": {
+    "runMode": 1
+  },
+  "videoCompression": false,
+  "viewportHeight": 960,
+  "viewportWidth": 1280,
+  "watchForFileChanges": true
+}
