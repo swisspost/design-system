@@ -42,6 +42,19 @@ Usage in your project
 npm install @swisspost/intranet-header
 ```
 
+<hr>
+
+### Web Components
+[Contributing](/packages/web-components/CONTRIBUTING.md) · [Package](/packages/web-components/)
+
+A set of common components for easy integration with every framework or no framework at all.
+
+Usage in your project
+```bash
+npm install @swisspost/web-components
+```
+
+<hr>
 
 ## Design Documentation
 

@@ -8,6 +8,7 @@
 | --------------- | ------- | ------------------ |
 | web-styles      | 5.x     | :white_check_mark: |
 | intranet-header | 3.x     | :white_check_mark: |
+| web-components  | 1.x     | :white_check_mark: |
 
 ## Reporting a Vulnerability
 
