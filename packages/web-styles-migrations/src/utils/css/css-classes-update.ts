@@ -1,16 +1,18 @@
-export class CssClassesUpdate {
-    searcher: RegExp;
-    replacer: (substring: string, ...args: any[]) => string;
+type Replacer = ((...params: any) => string);
 
-    constructor(searchValue: string, replacer: (...params: any) => string);
-    constructor(searchValue: string, replaceValue: string);
-    constructor(searchValue: string, replaceValue: any) {
-        this.searcher = new RegExp(`^${searchValue}$`);
+export abstract class CssClassesUpdate {
+    abstract searchValue: string;
+    abstract replaceValue: string | Replacer;
 
-        if (typeof replaceValue === "string") {
-            this.replacer = () => replaceValue;
+    get searcher(): RegExp {
+        return new RegExp(`^${this.searchValue}$`);
+    }
+
+    get replacer(): (substring: string, ...args: any[]) => string {
+        if (typeof this.replaceValue === "string") {
+            return () => (<string>this.replaceValue);
         } else {
-            this.replacer = (_substring: string, ...args: any[]) => replaceValue(...args);
+            return (_substring: string, ...args: any[]) => (<Replacer>this.replaceValue)(...args);
         }
     }
 }

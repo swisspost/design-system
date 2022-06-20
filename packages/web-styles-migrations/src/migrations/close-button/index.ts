@@ -4,6 +4,10 @@ import {CssMigration} from "../../utils/css/css-migration";
 
 /** Entry point for the close button migration. */
 export default function (): Rule {
-    const closeButtonClassesUpdate = new CssClassesUpdate('close', 'btn-close');
-    return new CssMigration(closeButtonClassesUpdate).rule;
+    return new CssMigration(new CloseButtonClassesUpdate).rule;
+}
+
+class CloseButtonClassesUpdate extends CssClassesUpdate {
+    searchValue = 'close';
+    replaceValue = 'btn-close';
 }
