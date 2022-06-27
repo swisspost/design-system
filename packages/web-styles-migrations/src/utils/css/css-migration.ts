@@ -11,15 +11,28 @@ export class CssMigration {
         this.rule = getCssMigrationRule(this);
     }
 
-    evaluate(classes: string = '') {
+    evaluate(classes: string = ''): boolean {
         return classes.split(' ').some(cssClass => {
             return this.updates.some(update => update.searcher.test(cssClass));
         });
     }
 
-    apply(classes: string = '') {
-        return classes.split(' ').map(cssClass => this.updates.reduce((updatedClass, update) => {
+    apply(classes: string = ''): string {
+        return classes.split(' ')
+            .reduce((updatedClasses, cssClass) => {
+                const updatedClass = this.getUpdatedClass(cssClass);
+
+                if (!updatedClass) {
+                    return updatedClasses;
+                }
+
+                return updatedClasses ? `${updatedClasses} ${updatedClass}` : updatedClass;
+            }, '');
+    }
+
+    private getUpdatedClass(cssClass: string): string {
+        return this.updates.reduce((updatedClass, update) => {
             return updatedClass.replace(update.searcher, update.replacer);
-        }, cssClass)).join(' ');
+        }, cssClass);
     }
 }

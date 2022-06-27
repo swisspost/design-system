@@ -21,6 +21,11 @@
       "version": "5.0.0",
       "description": "https://getbootstrap.com/docs/5.0/migration/#forms",
       "factory": "./migrations/forms/index"
+    },
+    "migration-backgrounds": {
+      "version": "5.0.0",
+      "description": "Since CWF 5 backgrounds make extensive use of CSS variables, therefore the .text-auto and .bg-[color]-opacity-80 classes are deprecated.",
+      "factory": "./migrations/backgrounds/index"
     }
   }
 }

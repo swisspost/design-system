@@ -86,7 +86,7 @@ export class CssClassesVisitor extends TemplateAstVisitor {
                 start: node.valueSpan.start.offset,
                 end: node.valueSpan.end.offset,
                 newContent: this.cssMigration.apply(node.value)
-            })
+            });
         }
     }
 }
