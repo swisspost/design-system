@@ -39,10 +39,12 @@
   $padding-y: ($button-height - $icon-size) * 0.5 - button.$input-btn-focus-width;
   padding-right: $padding-y;
   padding-left: $padding-y;
+  min-width: $button-height;
 }
 
 @mixin button-color-variant($name, $color) {
   .btn-#{$name} {
+    border: 0;
     background-color: $color;
 
     @if (color-fn.get-contrast-color($color) == #fff) {

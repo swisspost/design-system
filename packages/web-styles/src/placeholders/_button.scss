@@ -2,7 +2,7 @@
 @use '../mixins/color' as color-mx;
 
 %btn-default {
-  border-color: rgba(var(--text-color-rgb), 0.2);
+  border: 2px solid rgba(var(--text-color-rgb), 0.2);
   background-color: transparent;
 
   /* stylelint-disable-next-line order/order */
@@ -15,8 +15,7 @@
     border-color: var(--text-color);
 
     @include utilities.not-disabled-focus-hover() {
-      border-color: rgba(var(--text-color-rgb), 0.2);
-      color: rgba(var(--text-color-rgb), 0.6);
+      border-color: rgba(var(--text-color-rgb), 0.4);
     }
   }
 
