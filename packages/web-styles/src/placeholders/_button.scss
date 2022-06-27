@@ -1,0 +1,27 @@
+@use '../mixins/utilities';
+@use '../mixins/color' as color-mx;
+
+%btn-default {
+  border-color: rgba(var(--text-color-rgb), 0.2);
+  background-color: transparent;
+
+  /* stylelint-disable-next-line order/order */
+  @include utilities.not-disabled-focus-hover() {
+    border-color: rgba(var(--text-color), 1);
+    color: var(--text-color); // Override <a> color
+  }
+
+  @include color-mx.on-dark-background() {
+    border-color: var(--text-color);
+
+    @include utilities.not-disabled-focus-hover() {
+      border-color: rgba(var(--text-color-rgb), 0.2);
+      color: rgba(var(--text-color-rgb), 0.6);
+    }
+  }
+
+  &:disabled {
+    border-color: rgba(var(--text-color-rgb), 0.4);
+    color: rgba(var(--text-color-rgb), 0.6);
+  }
+}

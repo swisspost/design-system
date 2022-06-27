@@ -14,6 +14,7 @@
 @use '../mixins/button' as button-mx;
 @use '../functions/icons' as icon-fn;
 @use '../functions/color' as color-fn;
+@use '../placeholders/button' as button-ph;
 
 .btn {
   @include button-mx.button-size(md);
@@ -85,31 +86,6 @@
 }
 
 // Default / secondary
-%btn-default {
-  border-color: rgba(var(--text-color-rgb), 0.2);
-  background-color: transparent;
-
-  /* stylelint-disable-next-line order/order */
-  @include utilities.not-disabled-focus-hover() {
-    border-color: rgba(var(--text-color), 1);
-    color: var(--text-color); // Override <a> color
-  }
-
-  @include color-mx.on-dark-background() {
-    border-color: var(--text-color);
-
-    @include utilities.not-disabled-focus-hover() {
-      border-color: rgba(var(--text-color-rgb), 0.2);
-      color: rgba(var(--text-color-rgb), 0.6);
-    }
-  }
-
-  &:disabled {
-    border-color: rgba(var(--text-color-rgb), 0.4);
-    color: rgba(var(--text-color-rgb), 0.6);
-  }
-}
-
 .btn-default,
 .btn-secondary {
   @extend %btn-default;
