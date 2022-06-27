@@ -37,9 +37,9 @@
   $icon-size: map.get(button.$btn-icon-size-map, $size);
   $button-height: map.get(button.$btn-height-map, $size);
   $padding-y: ($button-height - $icon-size) * 0.5 - button.$input-btn-focus-width;
+  min-width: $button-height;
   padding-right: $padding-y;
   padding-left: $padding-y;
-  min-width: $button-height;
 }
 
 @mixin button-color-variant($name, $color) {
