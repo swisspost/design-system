@@ -23,7 +23,7 @@ $form-switch-focus-bg-image: $form-switch-checked-bg-image;
 $form-switch-height: spacing.$size-big !default;
 $form-switch-bg: rgba(var(--text-color-rgb), 0.3) !default;
 $form-switch-hover-bg: rgba(var(--text-color-rgb), 0.1) !default;
-$form-switch-checked-bg: color.$success !default;
+$form-switch-checked-bg: var(--success) !default;
 $form-switch-checked-bg-image-size: $form-switch-height;
 $form-switch-linear-gradient: linear-gradient(
   to left,
