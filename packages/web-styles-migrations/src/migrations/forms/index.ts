@@ -5,7 +5,7 @@ import {oneOf, optional} from "../../utils/regex";
 
 /** Entry point for the forms' migration. */
 export default function (): Rule {
-    return new CssMigration(new FormGroupClassesUpdate, new FormCheckClassesUpdate, new FormCheckChildrenClassesUpdate, new FormSelectClassesUpdate, new FormSelectMenuClassesUpdate).rule;
+    return new CssMigration(new FormGroupClassesUpdate, new FormCheckClassesUpdate, new FormCheckChildrenClassesUpdate, new FormSelectClassesUpdate, new CustomSelectClassesUpdate, new FormSelectMenuClassesUpdate, new FormSwitchTogglerClassesUpdate, new FormTextClassesUpdate, new CustomControlClassesUpdate).rule;
 }
 
 class FormGroupClassesUpdate extends CssClassesUpdate {
@@ -18,7 +18,6 @@ class FormCheckClassesUpdate extends CssClassesUpdate {
 
     searchValue = 'custom-' + oneOf(this.formCheckTypes);
     replaceValue = 'form-check';
-    // TODO: remove the .custom-control class that used to come with .custom-checkbox and .custom-radio
 }
 
 class FormCheckChildrenClassesUpdate extends CssClassesUpdate {
@@ -31,9 +30,15 @@ class FormCheckChildrenClassesUpdate extends CssClassesUpdate {
 class FormSelectClassesUpdate extends CssClassesUpdate {
     sizes = ['sm', 'rg', 'lg'];
 
-    searchValue = 'custom-select' + optional('-' + oneOf(this.sizes));
+    override selector = 'custom-select';
+    searchValue = 'form-control' + optional('-' + oneOf(this.sizes));
     replaceValue = (size: string) => 'form-select' + (size ? '-' + size : '');
-    // TODO: remove the .form-control class that sometimes used to come with .custom-select
+}
+
+// CustomSelectClassesUpdate must be applied AFTER FormSelectClassesUpdate
+class CustomSelectClassesUpdate extends CssClassesUpdate {
+    searchValue = 'custom-select';
+    replaceValue = '';
 }
 
 class FormSelectMenuClassesUpdate extends CssClassesUpdate {
@@ -41,4 +46,18 @@ class FormSelectMenuClassesUpdate extends CssClassesUpdate {
     replaceValue = 'w-100 mw-100';
 }
 
+class FormSwitchTogglerClassesUpdate extends CssClassesUpdate {
+    searchValue = 'switch-toggler';
+    replaceValue = '';
+}
 
+class FormTextClassesUpdate extends CssClassesUpdate {
+    override selector = 'form-text';
+    searchValue = oneOf(['small', 'text-muted']);
+    replaceValue = '';
+}
+
+class CustomControlClassesUpdate extends CssClassesUpdate {
+    searchValue = 'custom-control';
+    replaceValue = '';
+}

@@ -12,8 +12,13 @@ export class CssMigration {
     }
 
     evaluate(classes: string = ''): boolean {
-        return classes.split(' ').some(cssClass => {
-            return this.updates.some(update => update.searcher.test(cssClass));
+        const classList = classes.split(' ');
+        return this.updates.some(update => {
+            if (update.selector && !classList.includes(update.selector)) {
+                return false;
+            }
+
+            return classList.some(cssClass => update.searcher.test(cssClass));
         });
     }
 
