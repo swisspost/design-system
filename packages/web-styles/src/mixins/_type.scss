@@ -22,7 +22,6 @@
 
       @if ($key == 'xs') {
         font-size: $value;
-        @debug $key $lh;
         line-height: $lh;
       } @else {
         @if ($font-cache != $value) {
