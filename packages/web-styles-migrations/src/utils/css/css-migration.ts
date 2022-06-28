@@ -3,6 +3,7 @@ import {CssClassesUpdate} from "./css-classes-update";
 import {getCssMigrationRule} from "./css-migration-rule";
 
 export class CssMigration {
+    currentTag: string | null;
     updates: CssClassesUpdate[]
     rule: Rule;
 
@@ -14,7 +15,9 @@ export class CssMigration {
     evaluate(classes: string = ''): boolean {
         const classList = classes.split(' ');
         return this.updates.some(update => {
-            if (update.selector && !classList.includes(update.selector)) {
+            const incorrectTag = update.tag && update.tag !== this.currentTag;
+            const incorrectClasses = update.selector && !classList.includes(update.selector);
+            if (incorrectTag || incorrectClasses) {
                 return false;
             }
 
@@ -23,21 +26,18 @@ export class CssMigration {
     }
 
     apply(classes: string = ''): string {
-        return classes.split(' ')
-            .reduce((updatedClasses, cssClass) => {
-                const updatedClass = this.getUpdatedClass(cssClass);
+        const classList = classes.split(' ');
+        return this.updates.reduce((updatedClasses, update) => {
+            const incorrectTag = update.tag && update.tag !== this.currentTag;
+            const incorrectClasses = update.selector && !classList.includes(update.selector);
 
-                if (!updatedClass) {
-                    return updatedClasses;
-                }
+            if (incorrectTag || incorrectClasses) {
+                return updatedClasses;
+            }
 
-                return updatedClasses ? `${updatedClasses} ${updatedClass}` : updatedClass;
-            }, '');
-    }
-
-    private getUpdatedClass(cssClass: string): string {
-        return this.updates.reduce((updatedClass, update) => {
-            return updatedClass.replace(update.searcher, update.replacer);
-        }, cssClass);
+            return updatedClasses
+                .map(currentClass => currentClass.replace(update.searcher, update.replacer))
+                .filter(updatedClass => !!updatedClass);
+        }, classList).join(' ');
     }
 }

@@ -5,7 +5,7 @@ import {oneOf, optional} from "../../utils/regex";
 
 /** Entry point for the forms' migration. */
 export default function (): Rule {
-    return new CssMigration(new FormGroupClassesUpdate, new FormCheckClassesUpdate, new FormCheckChildrenClassesUpdate, new FormSelectClassesUpdate, new CustomSelectClassesUpdate, new FormSelectMenuClassesUpdate, new FormSwitchTogglerClassesUpdate, new FormTextClassesUpdate, new CustomControlClassesUpdate).rule;
+    return new CssMigration(new FormGroupClassesUpdate, new FormCheckClassesUpdate, new FormCheckChildrenClassesUpdate, new FormSelectClassesUpdate, new CustomSelectClassesUpdate, new FormSelectMenuClassesUpdate, new FormSwitchWrapperClassesUpdate, new FormSwitchInputClassesUpdate, new FormSwitchTogglerClassesUpdate, new FormTextClassesUpdate, new CustomControlClassesUpdate).rule;
 }
 
 class FormGroupClassesUpdate extends CssClassesUpdate {
@@ -44,6 +44,18 @@ class CustomSelectClassesUpdate extends CssClassesUpdate {
 class FormSelectMenuClassesUpdate extends CssClassesUpdate {
     searchValue = 'custom-select-menu';
     replaceValue = 'w-100 mw-100';
+}
+
+class FormSwitchWrapperClassesUpdate extends CssClassesUpdate {
+    override tag = 'div';
+    searchValue = 'switch';
+    replaceValue = 'form-check form-switch';
+}
+
+class FormSwitchInputClassesUpdate extends CssClassesUpdate {
+    override tag = 'input';
+    searchValue = 'switch';
+    replaceValue = 'form-check-input';
 }
 
 class FormSwitchTogglerClassesUpdate extends CssClassesUpdate {

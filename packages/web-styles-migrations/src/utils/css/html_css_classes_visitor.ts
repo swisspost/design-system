@@ -20,12 +20,16 @@ export class CssClassesVisitor extends TemplateAstVisitor {
     }
 
     override visitElement(element: TmplAstElement): void {
+        this.cssMigration.currentTag = element.name;
+
         this.visitAll(element.attributes); // text attributes
         this.visitAll(element.inputs); // bound attributes
         this.visitAll(element.children);
     }
 
     override visitTemplate(t: TmplAstTemplate): void {
+        this.cssMigration.currentTag = t.tagName;
+
         this.visitAll(t.attributes); // text attributes
         this.visitAll(t.inputs); // bound attributes
         this.visitAll(t.children);
