@@ -25,7 +25,7 @@
     "test": "stencil test --spec",
     "test.watch": "stencil test --spec --watchAll",
     "test:cypress": "cypress open",
-    "test:ci": "start-server-and-test storybook:ci http://localhost:6060 cypress:ci",
+    "test:ci": "stencil build && start-server-and-test storybook:ci http://localhost:6060 cypress:ci",
     "generate": "stencil generate",
     "storybook": "start-storybook -p 6006",
     "storybook:ci": "start-storybook -p 6060 -s www --no-open --quiet",
