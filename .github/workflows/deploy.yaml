@@ -21,14 +21,17 @@ jobs:
       github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      - run: echo "${{ github.event.workflow_run.event.action }}"
-      - uses: actions/checkout@v2
+      - name: Checkout
+        run: echo "${{ github.event.workflow_run.event.action }}"
+        uses: actions/checkout@v3
 
-      - uses: actions/setup-node@v2
+      - name: Install node
+        uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 16
 
-      - uses: dawidd6/action-download-artifact@v2
+      - name: Download artifacts
+        uses: dawidd6/action-download-artifact@v2
         with:
           workflow: build.yaml
           workflow_conclusion: success
@@ -41,7 +44,9 @@ jobs:
 
       - name: Get PR number
         id: pr
-        run: echo "::set-output name=pr_number::$(cat build-output/NR)"
+        run: |
+          echo "::set-output name=pr_number::$(cat build-output/GHA-PR-NR)"
+          echo "::set-output name=event_action::$(cat build-output/GHA-EVENT-ACTION)"
 
       - name: Deploy preview environment
         id: netlify
@@ -56,8 +61,10 @@ jobs:
           netlify deploy --alias $deploy_alias --build false --dir build-output
           echo "::set-output name=deploy_alias::$deploy_alias"
 
-      - name: Comment PR
+      - name: Comment on PR
         uses: thollander/actions-comment-pull-request@v1
+        # Only post the preview URL once per PR
+        if: ${{ steps.pr.outputs.event_action == 'opened' }}
         with:
           message: |
             🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}--swisspost-web-frontend.netlify.app/
