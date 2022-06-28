@@ -28,4 +28,7 @@ export const config: Config = {
       includePaths: ['node_modules'],
     }),
   ],
+  testing: {
+    testPathIgnorePatterns: ['cypress']
+  }
 };
