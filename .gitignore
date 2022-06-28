@@ -21,3 +21,8 @@ web-styles/stylelint-report.txt
 .env
 .envrc
 .secrets
+
+# Cypress
+**/cypress/videos/
+**/cypress/screenshots/
+**/cypress.env.json

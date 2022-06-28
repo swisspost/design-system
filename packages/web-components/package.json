@@ -25,9 +25,12 @@
     "test": "stencil test --spec",
     "test.watch": "stencil test --spec --watchAll",
     "test:cypress": "cypress open",
+    "test:ci": "start-server-and-test storybook:ci http://localhost:6060 cypress:ci",
     "generate": "stencil generate",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "storybook:ci": "start-storybook -p 6060 -s www --no-open --quiet",
+    "build-storybook": "build-storybook",
+    "cypress:ci": "cypress run --config baseUrl=http://localhost:6060"
   },
   "dependencies": {
     "@stencil/core": "^2.13.0",
@@ -50,6 +53,7 @@
     "jest-cli": "^27.4.5",
     "react": "16",
     "react-dom": "16",
+    "start-server-and-test": "^1.14.0",
     "typescript": "^4.7.4",
     "webpack": "4"
   }

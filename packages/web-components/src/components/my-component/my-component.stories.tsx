@@ -1,3 +1,5 @@
+import { h } from '@stencil/core';
+
 export default {
   title: 'Components/my-component',
   component: 'my-component',
@@ -14,7 +16,9 @@ const defaultArgs = {
   middle: '',
 };
 
-const Template = ({ first, last, middle }) => `<my-component first="${first}" middle="${middle}" last="${last}"></my-component>`;
+const Template = ({ first, last, middle }) => (
+  <my-component first={first} middle={middle} last={last}></my-component>
+);
 
 export const MyComponent = Template.bind({});
 MyComponent.args = { ...defaultArgs };

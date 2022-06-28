@@ -119,6 +119,7 @@ importers:
       react: '16'
       react-dom: '16'
       sass: ^1.49.7
+      start-server-and-test: ^1.14.0
       typescript: ^4.7.4
       webpack: '4'
     dependencies:
@@ -141,6 +142,7 @@ importers:
       jest-cli: 27.5.1
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
+      start-server-and-test: 1.14.0
       typescript: 4.7.4
       webpack: 4.46.0
 
@@ -3909,6 +3911,16 @@ packages:
     resolution: {integrity: sha1-VVGTqy47s7atw9VRycAw2ehg2vY=}
     dev: true
 
+  /@hapi/hoek/9.3.0:
+    resolution: {integrity: sha1-g2iGnctzW+Ln9ct2R9544WeiUfs=}
+    dev: true
+
+  /@hapi/topo/5.1.0:
+    resolution: {integrity: sha1-3ESOMyxsbjek3AL9hLqNRLmvsBI=}
+    dependencies:
+      '@hapi/hoek': 9.3.0
+    dev: true
+
   /@humanwhocodes/config-array/0.9.5:
     resolution: {integrity: sha1-LLr5qJRg2iS1ymUxuLv8I+HfUMc=}
     engines: {node: '>=10.10.0'}
@@ -5573,6 +5585,20 @@ packages:
       jsonc-parser: 3.0.0
     transitivePeerDependencies:
       - chokidar
+    dev: true
+
+  /@sideway/address/4.1.4:
+    resolution: {integrity: sha1-A9zOvG6kf9wib309GtUSlV1Hg/A=}
+    dependencies:
+      '@hapi/hoek': 9.3.0
+    dev: true
+
+  /@sideway/formula/3.0.0:
+    resolution: {integrity: sha1-/hWK7jLmvV3oUES+YVvAhHigoTw=}
+    dev: true
+
+  /@sideway/pinpoint/2.0.0:
+    resolution: {integrity: sha1-z/j/rcNyrSn9P3gneusp5jLMcN8=}
     dev: true
 
   /@sinonjs/commons/1.8.3:
@@ -8354,6 +8380,14 @@ packages:
     resolution: {integrity: sha1-1h9G2DslGSUOJ4Ta9bCUeai0HFk=}
     dev: true
 
+  /axios/0.21.4_debug@4.3.2:
+    resolution: {integrity: sha1-xnuQ3AVo5cHPKwuFjEO6KOLtpXU=}
+    dependencies:
+      follow-redirects: 1.15.1_debug@4.3.2
+    transitivePeerDependencies:
+      - debug
+    dev: true
+
   /axobject-query/2.2.0:
     resolution: {integrity: sha1-lD1H4QwLcEqkInXiDt83ImSJib4=}
     dev: true
@@ -10490,6 +10524,18 @@ packages:
       supports-color: 8.1.1
     dev: true
 
+  /debug/4.3.2:
+    resolution: {integrity: sha1-8KScGKyHeeMdSgxgKd+3aHPHQos=}
+    engines: {node: '>=6.0'}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: 2.1.2
+    dev: true
+
   /debug/4.3.3:
     resolution: {integrity: sha1-BCZuC3CpjURi5uKI44JZITMytmQ=}
     engines: {node: '>=6.0'}
@@ -11843,6 +11889,18 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
+  /event-stream/3.3.4:
+    resolution: {integrity: sha1-SrTJoPWlTbkzi0w02Gv86PSzVXE=}
+    dependencies:
+      duplexer: 0.1.2
+      from: 0.1.7
+      map-stream: 0.1.0
+      pause-stream: 0.0.11
+      split: 0.3.3
+      stream-combiner: 0.0.4
+      through: 2.3.8
+    dev: true
+
   /eventemitter-asyncresource/1.0.0:
     resolution: {integrity: sha1-c0/y5Ev0SOYn93SPkF1r3Ve9tls=}
     dev: true
@@ -12452,6 +12510,18 @@ packages:
         optional: true
     dev: true
 
+  /follow-redirects/1.15.1_debug@4.3.2:
+    resolution: {integrity: sha1-DKakUjBsmyduTTEnSD4pV14getU=}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dependencies:
+      debug: 4.3.2
+    dev: true
+
   /for-in/1.0.2:
     resolution: {integrity: sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=}
     engines: {node: '>=0.10.0'}
@@ -12568,6 +12638,10 @@ packages:
   /fresh/0.5.2:
     resolution: {integrity: sha1-PYyt2Q2XZWn6g1qx+OSyOhBWBac=}
     engines: {node: '>= 0.6'}
+    dev: true
+
+  /from/0.1.7:
+    resolution: {integrity: sha1-g8YK/Fi5xWmXAH7Rp2izqzA6RP4=}
     dev: true
 
   /from2/2.3.0:
@@ -15623,6 +15697,16 @@ packages:
       - utf-8-validate
     dev: true
 
+  /joi/17.6.0:
+    resolution: {integrity: sha1-C7VPLwBsCaludc5oeVe9BCkAVLI=}
+    dependencies:
+      '@hapi/hoek': 9.3.0
+      '@hapi/topo': 5.1.0
+      '@sideway/address': 4.1.4
+      '@sideway/formula': 3.0.0
+      '@sideway/pinpoint': 2.0.0
+    dev: true
+
   /js-string-escape/1.0.1:
     resolution: {integrity: sha1-4mJbrbwNZ8dTPp7cEGjFh65BN+8=}
     engines: {node: '>= 0.8'}
@@ -16663,6 +16747,10 @@ packages:
 
   /map-or-similar/1.5.0:
     resolution: {integrity: sha1-beJlMXSt+12e3DPGnT6Sobdvrwg=}
+    dev: true
+
+  /map-stream/0.1.0:
+    resolution: {integrity: sha1-5WqpTEyAVaFkBKBnS3jyFffI4ZQ=}
     dev: true
 
   /map-visit/1.0.0:
@@ -18518,6 +18606,12 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /pause-stream/0.0.11:
+    resolution: {integrity: sha1-/lo0sMvOErWqaitAPuLnO2AvFEU=}
+    dependencies:
+      through: 2.3.8
+    dev: true
+
   /pbkdf2/3.1.2:
     resolution: {integrity: sha1-3YIqoIh1gOUvGgOdw+2hCO+uMHU=}
     engines: {node: '>=0.12'}
@@ -19727,6 +19821,14 @@ packages:
 
   /prr/1.0.1:
     resolution: {integrity: sha1-0/wRS6BplaRexok/SEzrHXj19HY=}
+    dev: true
+
+  /ps-tree/1.2.0:
+    resolution: {integrity: sha1-XnQluJUIc2zdTyIk0Cj3uz9yLr0=}
+    engines: {node: '>= 0.10'}
+    hasBin: true
+    dependencies:
+      event-stream: 3.3.4
     dev: true
 
   /pseudomap/1.0.2:
@@ -21420,6 +21522,12 @@ packages:
       extend-shallow: 3.0.2
     dev: true
 
+  /split/0.3.3:
+    resolution: {integrity: sha1-zQ7qXmOiEd//frDwkcQTPi0N0o8=}
+    dependencies:
+      through: 2.3.8
+    dev: true
+
   /split/1.0.1:
     resolution: {integrity: sha1-YFvZvjA6pZ+zX5Ip++oN3snqB9k=}
     dependencies:
@@ -21474,6 +21582,7 @@ packages:
 
   /stable/0.1.8:
     resolution: {integrity: sha1-g26zyDgv4pNv6vVEYxAXzn1Ho88=}
+    deprecated: 'Modern JS already guarantees Array#sort() is a stable sort, so this library is deprecated. See the compatibility table on MDN: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort#browser_compatibility'
     dev: true
 
   /stack-trace/0.0.10:
@@ -21492,6 +21601,22 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       escape-string-regexp: 2.0.0
+    dev: true
+
+  /start-server-and-test/1.14.0:
+    resolution: {integrity: sha1-xX8E9z6sFd1RcztVHXdbQIN/3eM=}
+    engines: {node: '>=6'}
+    hasBin: true
+    dependencies:
+      bluebird: 3.7.2
+      check-more-types: 2.24.0
+      debug: 4.3.2
+      execa: 5.1.1
+      lazy-ass: 1.6.0
+      ps-tree: 1.2.0
+      wait-on: 6.0.0_debug@4.3.2
+    transitivePeerDependencies:
+      - supports-color
     dev: true
 
   /state-toggle/1.0.3:
@@ -21530,6 +21655,12 @@ packages:
     dependencies:
       inherits: 2.0.4
       readable-stream: 2.3.7
+    dev: true
+
+  /stream-combiner/0.0.4:
+    resolution: {integrity: sha1-TV5DPBhSYd3mI8o/RMWGvPXErRQ=}
+    dependencies:
+      duplexer: 0.1.2
     dev: true
 
   /stream-each/1.2.3:
@@ -23152,6 +23283,20 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       xml-name-validator: 3.0.0
+    dev: true
+
+  /wait-on/6.0.0_debug@4.3.2:
+    resolution: {integrity: sha1-fpv449f+La7Lt6VwrIykHpMRx+c=}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    dependencies:
+      axios: 0.21.4_debug@4.3.2
+      joi: 17.6.0
+      lodash: 4.17.21
+      minimist: 1.2.6
+      rxjs: 7.5.5
+    transitivePeerDependencies:
+      - debug
     dev: true
 
   /walker/1.0.8:
