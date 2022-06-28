@@ -14,6 +14,7 @@
 @use '../variables/components/paragraph';
 @use '../layouts/portal/type' as portal;
 @use '../placeholders/text';
+@use '../mixins/type' as type-mx;
 
 h1,
 .h1,
@@ -24,32 +25,44 @@ h3,
   font-weight: type.$font-weight-bold;
 }
 
+h6,
+.h6,
 .font-curve-tiny {
-  @extend %font-curve-tiny;
+  @include type-mx.font-curve('tiny');
 }
 
 .font-curve-small {
-  @extend %font-curve-small;
+  @include type-mx.font-curve('small');
 }
 
 .font-curve-regular {
-  @extend %font-curve-regular;
+  @include type-mx.font-curve('regular');
 }
 
+h5,
+.h5,
 .font-curve-bigger-regular {
-  @extend %font-curve-bigger-regular;
+  @include type-mx.font-curve('bigger-regular');
 }
 
+h3,
+.h3,
+h4,
+.h4,
 .font-curve-medium {
-  @extend %font-curve-medium;
+  @include type-mx.font-curve('medium');
 }
 
+h2,
+.h2,
 .font-curve-large {
-  @extend %font-curve-large;
+  @include type-mx.font-curve('large');
 }
 
+h1,
+.h1,
 .font-curve-big {
-  @extend %font-curve-big;
+  @include type-mx.font-curve('big');
 }
 
 .blockquote {

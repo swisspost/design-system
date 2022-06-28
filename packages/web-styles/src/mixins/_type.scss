@@ -1,181 +1,48 @@
 @use 'sass:math';
+@use 'sass:map';
+@use 'sass:list';
 
 @use '../variables/breakpoints';
+@use '../variables/type';
 @use '../functions/sizing';
 @use '../functions/utilities';
-@use '../themes/bootstrap/overrides' as *;
+@use '../themes/bootstrap/overrides' as bootstrap;
 
-/**
- * Sets font-size and calculate line-height depending on the font-size
- * $argList: ($minValueS, $maxValueS, $minValueM, $maxValueM, $minValueL, $maxValueL);
- */
-@mixin font-size-and-lineheight($argList...) {
-  @include font-size-calc($argList...);
-  @include font-lineheight($argList...);
-}
+@mixin font-curve($curve-size: 'regular') {
+  $curve: map.get(type.$font-curves, $curve-size);
 
-@mixin font-curve($minFontSize, $maxFontSize, $minScreenSize, $maxScreenSize) {
-  @media screen and (min-width: #{$minScreenSize}) {
-    @if (sizing.strip-unit($minFontSize) == sizing.strip-unit($maxFontSize)) {
-      font-size: $minFontSize;
-    } @else {
-      // prettier-ignore
-      font-size: calc(#{$minFontSize}
-      + #{sizing.strip-unit($maxFontSize)
-      - sizing.strip-unit($minFontSize)}
-      * (
-        (100vw - #{sizing.px-to-rem($minScreenSize)})
-        / #{sizing.strip-unit(sizing.px-to-rem($maxScreenSize))
-        - sizing.strip-unit(sizing.px-to-rem($minScreenSize))}
-      ));
+  @if ($curve) {
+    $font-cache: 0;
+    $line-height-cache: 0;
+
+    @each $key, $value in $curve {
+      // Get line height corresponding to font size
+      $i: list.index(map.values(type.$font-sizes), $value);
+      $lh: list.nth(map.values(type.$line-heights), $i);
+
+      @if ($key == 'xs') {
+        font-size: $value;
+        @debug $key $lh;
+        line-height: $lh;
+      } @else {
+        @if ($font-cache != $value) {
+          @include bootstrap.media-breakpoint-up($key) {
+            font-size: $value;
+
+            @if ($line-height-cache != $lh) {
+              line-height: $lh;
+            }
+          }
+        }
+      }
+
+      $font-cache: $value;
+      $line-height-cache: $lh;
     }
-  }
-}
-
-@mixin font-size-calc($argList...) {
-  // Smallest size with no scaling
-  font-size: nth($argList, 1);
-
-  // stylelint-disable-next-line order/order
-  @include font-curve(
-    nth($argList, 1),
-    nth($argList, 2),
-    320px,
-    map-get(breakpoints.$grid-breakpoints, sm)
-  );
-
-  @if (length($argList) > 2) {
-    @include font-curve(
-      nth($argList, 2),
-      nth($argList, 3),
-      map-get(breakpoints.$grid-breakpoints, sm),
-      map-get(breakpoints.$grid-breakpoints, rg)
-    );
-  }
-
-  @if (length($argList) > 3) {
-    @include font-curve(
-      nth($argList, 3),
-      nth($argList, 4),
-      map-get(breakpoints.$grid-breakpoints, rg),
-      map-get(breakpoints.$grid-breakpoints, md)
-    );
-  }
-
-  @if (length($argList) > 4) {
-    @include font-curve(
-      nth($argList, 4),
-      nth($argList, 5),
-      map-get(breakpoints.$grid-breakpoints, md),
-      map-get(breakpoints.$grid-breakpoints, lg)
-    );
-  }
-
-  @if (length($argList) > 5) {
-    @include font-curve(
-      nth($argList, 5),
-      nth($argList, 6),
-      map-get(breakpoints.$grid-breakpoints, lg),
-      map-get(breakpoints.$grid-breakpoints, xl)
-    );
-
-    // Largest size with no scaling
-    @include media-breakpoint-up(xl) {
-      font-size: nth($argList, 6);
-    }
+  } @else {
+    @error 'Font curve #{$curve-size} is not defined.';
   }
 }
-
-@mixin font-lineheight($argList...) {
-  $min: math.div(nth($argList, 1), 1rem);
-  $max: math.div(nth($argList, 2), 1rem);
-  $line-height: sizing.line-height-calc(utilities.average($min, $max));
-
-  // stylelint-disable order/order
-  line-height: $line-height;
-
-  @if (length($argList) > 2) {
-    $min: math.div(nth($argList, 2), 1rem);
-    $max: math.div(nth($argList, 3), 1rem);
-    $line-height-old: $line-height;
-    $line-height: sizing.line-height-calc(utilities.average($min, $max));
-
-    // Only render new line-height, if not the same as on last breakpoint
-    @if $line-height != $line-height-old {
-      @include media-breakpoint-up(sm) {
-        line-height: $line-height;
-      }
-    }
-  }
-
-  @if (length($argList) > 3) {
-    $min: math.div(nth($argList, 3), 1rem);
-    $max: math.div(nth($argList, 4), 1rem);
-    $line-height-old: $line-height;
-    $line-height: sizing.line-height-calc(utilities.average($min, $max));
-
-    // Only render new line-height, if not the same as on last breakpoint
-    @if $line-height != $line-height-old {
-      @include media-breakpoint-up(rg) {
-        line-height: $line-height;
-      }
-    }
-  }
-
-  @if (length($argList) > 4) {
-    $min: math.div(nth($argList, 4), 1rem);
-    $max: math.div(nth($argList, 5), 1rem);
-    $line-height-old: $line-height;
-    $line-height: sizing.line-height-calc(utilities.average($min, $max));
-
-    // Only render new line-height, if not the same as on last breakpoint
-    @if $line-height != $line-height-old {
-      @include media-breakpoint-up(md) {
-        line-height: $line-height;
-      }
-    }
-  }
-
-  @if (length($argList) > 5) {
-    $min: math.div(nth($argList, 5), 1rem);
-    $max: math.div(nth($argList, 6), 1rem);
-    $line-height-old: $line-height;
-    $line-height: sizing.line-height-calc(utilities.average($min, $max));
-
-    // Only render new line-height, if not the same as on last breakpoint
-    @if $line-height != $line-height-old {
-      @include media-breakpoint-up(lg) {
-        line-height: $line-height;
-      }
-    }
-  }
-
-  @if (length($argList) > 5) {
-    $line-height-old: $line-height;
-    $line-height: sizing.line-height-calc(math.div(nth($argList, 6), 1rem));
-
-    // Only render new line-height, if not the same as on last breakpoint
-    @if $line-height != $line-height-old {
-      @include media-breakpoint-up(xl) {
-        line-height: $line-height;
-      }
-    }
-  }
-
-  // stylelint-enable order/order
-}
-
-// Better font rendering (on OS X)
-// http://maximilianhoffmann.com/posts/better-font-rendering-on-osx
-//
-// Usage:
-//
-// .xy--dark-on-light {
-// 	@include fontSmoothing;
-// }
-// .xy--light-on-dark {
-// 	@include fontSmoothingReset;
-// }
 
 @mixin font-smoothing() {
   -webkit-font-smoothing: antialiased;
