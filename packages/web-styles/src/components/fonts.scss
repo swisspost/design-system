@@ -25,11 +25,3 @@
   src: url('#{options.$font-base-path}/FrutigerNeueforPostW05-Lt.woff2') format('woff2'),
     url('#{options.$font-base-path}/FrutigerNeueforPostW05-Lt.woff') format('woff');
 }
-
-@font-face {
-  font-display: swap;
-  font-family: 'Frutiger Neue For Post';
-  font-weight: 200;
-  src: url('#{options.$font-base-path}/FrutigerNeueforPostW05-Lt.woff2') format('woff2'),
-    url('#{options.$font-base-path}/FrutigerNeueforPostW05-Lt.woff') format('woff');
-}
