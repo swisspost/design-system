@@ -84,35 +84,23 @@ $font-curve-big: (
   $font-size-small-huge
 );
 
-$font-size-base: $font-size-small !default;
+
+$font-size-base: $font-size-regular !default;
+$font-weight-base: $font-weight-normal !default;
+$line-height-base: $line-height-regular !default;
+
+// !Deprecated! in favor of $font-sizes
 $font-size-sm: $font-size-tiny !default;
 $font-size-rg: $font-size-base !default;
 $font-size-lg: $font-size-bigger-regular !default;
 
+// !Deprecated! in favor of $font-sizes
 $font-size-map: (
   'sm': $font-size-sm,
   'rg': $font-size-rg,
   'md': $font-size-base,
   'lg': $font-size-lg,
 );
-
-$font-weight-light: 300 !default; // CWF -> Frutiger Neue Light
-$font-weight-normal: 400 !default; // CWF -> Frutiger Neue Roman
-$font-weight-bold: 700 !default; // CWF -> Frutiger Neue Roman
-
-$font-weight-base: $font-weight-normal !default;
-$line-height-base: math.div(18, 15) !default; // Non-scaling line-height
-
-$line-height-sm: math.div(16, 13) !default; // Non-scaling line-height
-$line-height-rg: $line-height-base !default; // Non-scaling line-height
-$line-height-lg: math.div(20, 17) !default; // Non-scaling line-height
-
-$h1-font-size: $font-size-base * 2.5 !default; // 40px
-$h2-font-size: $font-size-base * 2 !default; // 32px
-$h3-font-size: $font-size-base * 1.75 !default; // 28px
-$h4-font-size: $font-size-base * 1.5 !default; // 24px
-$h5-font-size: $font-size-base * 1.25 !default; // 20px
-$h6-font-size: $font-size-base !default; // 16px
 
 $headings-margin-bottom: (spacing.$spacer * 0.5) !default;
 $headings-font-family: inherit !default;
