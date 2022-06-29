@@ -22,7 +22,6 @@ jobs:
 
     steps:
       - name: Checkout
-        run: echo "${{ github.event.workflow_run.event.action }}"
         uses: actions/checkout@v3
 
       - name: Install node
