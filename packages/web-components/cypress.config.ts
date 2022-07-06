@@ -11,7 +11,5 @@ export default defineConfig({
     "runMode": 1
   },
   "videoCompression": false,
-  "viewportHeight": 960,
-  "viewportWidth": 1280,
   "watchForFileChanges": true,
 });
