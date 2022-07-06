@@ -112,7 +112,7 @@ importers:
       '@swisspost/web-styles': 5.0.0-alpha.2
       '@types/jest': ^27.0.3
       babel-loader: ^8.2.3
-      cypress: ^10.1.0
+      cypress: 10.0.3
       cypress-storybook: ^0.5.1
       jest: ^27.4.5
       jest-cli: ^27.4.5
@@ -136,8 +136,8 @@ importers:
       '@storybook/html': 6.5.9_qk5cymx6pjwo4mahw4pmfyz5rm
       '@types/jest': 27.5.2
       babel-loader: 8.2.5_p4a4vpdmvzvrx3lnpkqvj5nmla
-      cypress: 10.1.0
-      cypress-storybook: 0.5.1_cypress@10.1.0
+      cypress: 10.0.3
+      cypress-storybook: 0.5.1_cypress@10.0.3
       jest: 27.5.1
       jest-cli: 27.5.1
       react: 16.14.0
@@ -10379,16 +10379,16 @@ packages:
     resolution: {integrity: sha1-WW6WmP0MgOEgOMK4LW6xs1tiJNk=}
     dev: true
 
-  /cypress-storybook/0.5.1_cypress@10.1.0:
+  /cypress-storybook/0.5.1_cypress@10.0.3:
     resolution: {integrity: sha1-5xsU7PvhanC58APIKUFD70Ztt48=}
     peerDependencies:
       cypress: '*'
     dependencies:
-      cypress: 10.1.0
+      cypress: 10.0.3
     dev: true
 
-  /cypress/10.1.0:
-    resolution: {integrity: sha1-ZRSibHIYIqArwZTpp/csMUKuoXQ=}
+  /cypress/10.0.3:
+    resolution: {integrity: sha1-iJtL74Y7fR7xtgi4W5ZDlK01DF8=}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
@@ -13299,7 +13299,7 @@ packages:
       source-map: 0.6.1
       wordwrap: 1.0.0
     optionalDependencies:
-      uglify-js: 3.16.0
+      uglify-js: 3.16.2
     dev: true
 
   /har-schema/2.0.0:
@@ -22803,8 +22803,8 @@ packages:
     resolution: {integrity: sha1-ZJplaxkd/6tPIdXgU+J8oXy/9cY=}
     dev: true
 
-  /uglify-js/3.16.0:
-    resolution: {integrity: sha1-t3i6CDHKECwdjsvewtK9/Mc1MZA=}
+  /uglify-js/3.16.2:
+    resolution: {integrity: sha1-BIHh2+7TQ60cLd88bULom3ptTe8=}
     engines: {node: '>=0.8.0'}
     hasBin: true
     requiresBuild: true

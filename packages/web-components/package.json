@@ -47,7 +47,7 @@
     "@storybook/html": "^6.4.18",
     "@types/jest": "^27.0.3",
     "babel-loader": "^8.2.3",
-    "cypress": "^10.1.0",
+    "cypress": "10.0.3",
     "cypress-storybook": "^0.5.1",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
