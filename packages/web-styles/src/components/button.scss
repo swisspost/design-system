@@ -103,6 +103,8 @@
 .btn-tertiary {
   border: 0;
   color: inherit;
+  padding-right: 0.375rem;
+  padding-left: 0.375rem;
 
   @include utilities.not-disabled-focus-hover() {
     color: rgba(var(--text-color-rgb), 0.8);
