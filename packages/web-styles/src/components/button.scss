@@ -131,7 +131,7 @@
 }
 
 // Animated
-.btn-animated {
+.btn-animated:not(.btn-link, .btn-tertiary) {
   &::after {
     content: '';
     position: absolute;
