@@ -116,16 +116,6 @@ $btn-block-spacing-y: 0.5rem !default;
 
 // Allows for customizing button radius independently from global border radius
 $btn-border-radius: commons.$border-radius !default;
-$btn-border-radius-sm: commons.$border-radius-sm !default;
-$btn-border-radius-rg: commons.$border-radius-rg !default;
-$btn-border-radius-lg: commons.$border-radius-lg !default;
-
-$btn-border-radius-map: (
-  'sm': commons.$border-radius-sm,
-  'rg': commons.$border-radius-rg,
-  'md': commons.$border-radius,
-  'lg': commons.$border-radius-lg,
-);
 
 $btn-transition-fade-arrow: opacity animation.$transition-time-default
   animation.$transition-easing-default !default;

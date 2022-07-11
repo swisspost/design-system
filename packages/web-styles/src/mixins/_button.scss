@@ -22,7 +22,6 @@
 @mixin button-size($size: md) {
   height: map.get(button.$btn-height-map, $size);
   padding: 0 map.get(button.$btn-padding-x-map, $size);
-  border-radius: map.get(button.$btn-border-radius-map, $size);
   font-size: map.get(type.$font-size-map, $size);
   gap: map.get(button.$btn-padding-x-map, $size) * 0.5;
 
