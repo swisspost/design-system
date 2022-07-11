@@ -1,18 +1,12 @@
 {
   "name": "@swisspost/web-styles",
-  "version": "5.0.0-alpha.0",
+  "version": "5.0.0-alpha.2",
   "description": "Common styles for the Swiss Post web platform.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
-  "engines": {
-    "node": ">= 6.9.0",
-    "npm": ">= 3.0.0"
-  },
-  "files": [
-    "dist"
-  ],
   "publishConfig": {
-    "directory": "dist"
+    "directory": "./dist",
+    "access": "public"
   },
   "scripts": {
     "clean": "rimraf out-tsc dist/*",
@@ -45,7 +39,6 @@
     "sass": "^1.49.7",
     "stylelint": "^14.8.3",
     "stylelint-config-prettier": "^9.0.3",
-    "stylelint-config-property-sort-order-smacss": "^9.0.0",
     "stylelint-config-sass-guidelines": "^9.0.1",
     "stylelint-prettier": "^2.0.0",
     "stylelint-scss": "^4.2.0"

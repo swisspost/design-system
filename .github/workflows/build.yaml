@@ -20,36 +20,40 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
             
-    - uses: actions/setup-node@v2
+    - name: Install node
+      uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        node-version: 16
 
-    - name: Cache pnpm modules
-      uses: actions/cache@v2
-      with:
-        path: ~/.pnpm-store
-        key: ${{ runner.os }}-v3-${{ hashFiles('**/pnpm-lock.yaml') }}
-        restore-keys: |
-          ${{ runner.os }}-v3-
-
-    - uses: pnpm/action-setup@v2.2.2
+    - name: Install pnpm 
+      uses: pnpm/action-setup@v2.2.2
       with:
         version: 7.1.x
 
-    - run: echo "${{ github.event.action }}"
+    - name: Cache pnpm modules
+      uses: actions/cache@v3
+      with:
+        path: ~/.pnpm-store
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+        restore-keys: |
+          ${{ runner.os }}-pnpm-store-
 
     - name: Bootstrap & build CWF
       run: pnpm run bootstrap
     
-    # The PR number is used by the deploy workflow for commenting on the PR
+    # Save some infos about the PR for usage in the deploy.yaml triggered by a successful run
     - name: Save PR number
-      run: echo ${{ github.event.number }} > packages/web-demo/dist/web-demo/NR
+      run: |
+        echo ${{ github.event.number }} > packages/web-demo/dist/web-demo/GHA-PR-NR
+        echo ${{ github.event.action }} > packages/web-demo/dist/web-demo/GHA-EVENT-ACTION
 
-    - uses: actions/upload-artifact@master
+    - name: Upload artifacts
+      uses: actions/upload-artifact@master
       with:
         name: cwf-web-demo
         path: packages/web-demo/dist/web-demo
