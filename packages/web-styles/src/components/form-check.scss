@@ -9,6 +9,7 @@
 @use '../variables/spacing';
 @use '../variables/components/form-check';
 @use '../variables/components/form-switch';
+@use '../variables/components/button';
 @use '../mixins/form-checks' as form-checks-mixins;
 @use '../mixins/utilities';
 @use '../functions/icons' as fi;
@@ -149,7 +150,7 @@
   .form-check-input {
     height: form-switch.$form-switch-height;
     border: 0;
-    outline-offset: 3px;
+    outline-offset: button.$input-btn-focus-width * 1.5;
     background-image: escape-svg(form-switch.$form-switch-bg-image),
       form-switch.$form-switch-linear-gradient;
     background-position: left center, right center;
@@ -157,7 +158,7 @@
       form-switch.$form-switch-linear-gradient-size;
 
     &:focus-visible {
-      outline: 2px solid var(--text-color, color.$black);
+      outline: button.$input-btn-focus-width solid var(--text-color, color.$black);
     }
 
     &:checked {
@@ -183,7 +184,7 @@
 
     @include utilities.high-contrast-mode() {
       --success: ActiveText;
-      border: 2px solid var(--text-color);
+      border: button.$input-btn-focus-width solid var(--text-color);
     }
   }
 
