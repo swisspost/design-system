@@ -7,6 +7,7 @@
 @use '../variables/color';
 @use '../variables/spacing';
 @use '../variables/components/forms';
+@use '../mixins/utilities';
 
 .form-range {
   // see https://jira.post.ch/browse/COWF-209
@@ -17,8 +18,8 @@
 
   &:not(:disabled):not(.disabled) {
     &::-webkit-slider-runnable-track {
-      background: linear-gradient(color.$black, color.$black) 0 / var(--sx) 100% no-repeat
-        color.$gray-20;
+      background: linear-gradient(color.$black, color.$black) 0 / var(--sx) 100%;
+      background-repeat: no-repeat;
       background-color: color.$gray-20;
     }
 
@@ -41,5 +42,48 @@
   + .form-text {
     margin-top: spacing.$size-regular;
     transform: translateY(#{-0.5 * forms.$form-range-height});
+  }
+}
+
+@include utilities.high-contrast-mode() {
+  .form-range {
+    // linear-gradient is forced to the value of "none" in forces-color mode
+    // so, the "forced-color-adjust" property is necessary for "linear-gradient" to continue to work
+    forced-color-adjust: none;
+
+    &:not(:disabled):not(.disabled) {
+      &::-webkit-slider-runnable-track {
+        background: linear-gradient(Highlight, Highlight) 0 / var(--sx) 100%;
+        background-repeat: no-repeat;
+        background-color: ButtonBorder;
+      }
+
+      &::-webkit-slider-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonBorder;
+      }
+
+      &::-moz-range-progress {
+        background: ButtonBorder;
+      }
+
+      &::-moz-range-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonBorder;
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      &::-webkit-slider-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonBorder;
+      }
+
+      &::-moz-range-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonBorder;
+      }
+    }
   }
 }
