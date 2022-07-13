@@ -23,12 +23,14 @@ The styling package, including theming for [Bootstrap](https://getbootstrap.com/
 ```bash
 npm install @swisspost/web-styles
 ```
+
 <hr>
 
 ### Intranet Header
+[![npm](https://img.shields.io/npm/v/@swisspost/intranet-header)](https://www.npmjs.com/package/@swisspost/intranet-header)
+
 [Documentation](https://swisspost-web-frontend.netlify.app/#/post-samples/intranet-layout) · [Contributing](/packages/angular-components/projects/swisspost-intranet-header/)
 
-[![npm](https://img.shields.io/npm/v/@swisspost/intranet-header)](https://www.npmjs.com/package/@swisspost/intranet-header)
 
 The Intranet Header Angular component.
 
