@@ -1,5 +1,18 @@
 {
   "extends": [
     "config:base"
+  ],
+  "labels": ["{{{parentDir}}}"],
+  "packageRules": [
+    {
+      "extends": ["monorepo:angular", "monorepo:angular-cli", "monorepo:angular-eslint"],
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "minor",
+        "major"
+      ],
+      "groupName": "Angular"
+    }
   ]
 }
