@@ -33,6 +33,10 @@ jobs:
       - uses: pnpm/action-setup@v2.2.2
         with:
           version: 7.x
+          
+      # Install changesets locally
+      - name: Install dependencies
+        run: pnpm install
 
       # The changeset action will behave differently based on whether there are 
       # new changesets on the main branch:
