@@ -255,7 +255,6 @@ importers:
       style-loader: ^2
       stylelint: ^14.3.0
       stylelint-config-prettier: ^9.0.3
-      stylelint-config-property-sort-order-smacss: ^8.0.0
       stylelint-config-sass-guidelines: ^9.0.1
       stylelint-prettier: ^2.0.0
       stylelint-scss: ^4.1.0
@@ -296,7 +295,6 @@ importers:
       style-loader: 2.0.0_webpack@4.46.0
       stylelint: 14.9.1
       stylelint-config-prettier: 9.0.3_stylelint@14.9.1
-      stylelint-config-property-sort-order-smacss: 8.0.0_stylelint@14.9.1
       stylelint-config-sass-guidelines: 9.0.1_uyk3cwxn3favstz4untq233szu
       stylelint-prettier: 2.0.0_sw2z7wtsooeualpyi6xa2oke5m
       stylelint-scss: 4.2.0_stylelint@14.9.1
@@ -11474,10 +11472,6 @@ packages:
       postcss: 8.4.5
     dev: true
 
-  /css-property-sort-order-smacss/2.1.3:
-    resolution: {integrity: sha1-uc8XU7NhLufRj+mSJPSDNT6jjlM=}
-    dev: true
-
   /css-select/4.3.0:
     resolution: {integrity: sha1-23EpsoRmYv2GKM/ElquytZ5BUps=}
     dependencies:
@@ -22425,16 +22419,6 @@ packages:
       stylelint: '>=11.0.0'
     dependencies:
       stylelint: 14.9.1
-    dev: true
-
-  /stylelint-config-property-sort-order-smacss/8.0.0_stylelint@14.9.1:
-    resolution: {integrity: sha1-bpQVuroBWoLqt4bzsEYmZqTqHzw=}
-    peerDependencies:
-      stylelint: ^14.0.0
-    dependencies:
-      css-property-sort-order-smacss: 2.1.3
-      stylelint: 14.9.1
-      stylelint-order: 5.0.0_stylelint@14.9.1
     dev: true
 
   /stylelint-config-sass-guidelines/9.0.1_uyk3cwxn3favstz4untq233szu:
