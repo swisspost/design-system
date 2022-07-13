@@ -21,7 +21,7 @@
     "test:ci": "jest",
     "start": "npm run storybook",
     "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "build:storybook": "build-storybook"
   },
   "dependencies": {
     "@popperjs/core": "^2.11.2",
