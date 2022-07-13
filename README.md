@@ -7,45 +7,38 @@
 
 The Swiss Post Design Pattern Library for a unified and accessible user experience accross the web platform.
 
-🚧 The **Common Web Frontend v5** is in alpha stage and is not released on NPM yet.
+🚧 The **Common Web Frontend v5** is in alpha. Have a look at the [v5 milestone](https://github.com/swisspost/common-web-frontend/milestone/1) to see the progress.
 
 
 ## Packages
 
-### Demo App
-[🌍 Live demo](https://swisspost-web-frontend.netlify.app/) · [Package](/packages/web-demo/)
-
-An [Angular application](https://angular.io/) documenting and demonstrating the usage of the patterns.
-
-<hr style="height:1px;border-width:1px">
-
 ### Web Styles
-[Contributing](/packages/web-styles/README.md) · [Package](/packages/web-styles/)
+[![npm](https://img.shields.io/npm/v/@swisspost/web-styles)](https://www.npmjs.com/package/@swisspost/web-styles)
 
-The styling package, including theming for [Bootstrap](https://getbootstrap.com/) components. 
+[Documentation](https://swisspost-web-frontend.netlify.app/) · [Contributing](/packages/web-styles/README.md)
 
-Usage in your project:
+
+The styling package, including theming for [Bootstrap](https://getbootstrap.com/) and [ng-bootstrap](https://ng-bootstrap.github.io/#/home) components. 
+
 ```bash
 npm install @swisspost/web-styles
 ```
-
-
 <hr>
 
-### Angular Components
-[Contributing](/packages/angular-components/projects/swisspost-intranet-header/) · [Package](/packages/angular-components/)
+### Intranet Header
+[Documentation](https://swisspost-web-frontend.netlify.app/#/post-samples/intranet-layout) · [Contributing](/packages/angular-components/projects/swisspost-intranet-header/)
 
-Angular Components such as the Intranet Header.
+[![npm](https://img.shields.io/npm/v/@swisspost/intranet-header)](https://www.npmjs.com/package/@swisspost/intranet-header)
 
-Usage in your project
+The Intranet Header Angular component.
+
 ```bash
 npm install @swisspost/intranet-header
 ```
 
-
 ## Design Documentation
 
-- 🔒 **[Experience Hub](https://www.experience-hub.ch/document/2803)** - pattern usage documentation ([request access](https://www.experience-hub.ch/request-access/))
+🔒 **[Experience Hub](https://www.experience-hub.ch/document/2803)** - pattern usage documentation ([request access](https://www.experience-hub.ch/request-access/))
 
 
 ## Reaching out
