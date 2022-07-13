@@ -4,6 +4,7 @@
 @use '../themes/bootstrap/overrides' as *;
 @use '../themes/bootstrap/forms' as bf;
 
+@use '../variables/commons';
 @use '../variables/color';
 @use '../variables/spacing';
 @use '../variables/components/forms';
@@ -70,6 +71,13 @@
       &::-moz-range-thumb {
         background-color: ButtonFace;
         border-color: ButtonBorder;
+      }
+
+      &:focus-visible {
+        &::-webkit-slider-thumb {
+          outline-offset: commons.$border-thick;
+          outline: commons.$border-thick solid Highlight;
+        }
       }
     }
 
