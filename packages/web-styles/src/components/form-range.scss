@@ -51,7 +51,7 @@
     // so, the "forced-color-adjust" property is necessary for "linear-gradient" to continue to work
     forced-color-adjust: none;
 
-    &:not(:disabled):not(.disabled) {
+    &:not(:disabled, .disabled) {
       &::-webkit-slider-runnable-track {
         background: linear-gradient(Highlight, Highlight) 0 / var(--sx) 100%;
         background-repeat: no-repeat;
