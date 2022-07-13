@@ -16,7 +16,7 @@
   --ratio: calc((var(--val) - var(--min)) / var(--range));
   --sx: calc(0.5 * 1.5em + var(--ratio) * (100% - 1.5em));
 
-  &:not(:disabled):not(.disabled) {
+  &:not(:disabled, .disabled) {
     &::-webkit-slider-runnable-track {
       background: linear-gradient(color.$black, color.$black) 0 / var(--sx) 100%;
       background-repeat: no-repeat;
