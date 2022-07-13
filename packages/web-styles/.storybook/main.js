@@ -9,7 +9,7 @@ module.exports = {
     "@storybook/addon-interactions",
     {
       name: "@storybook/preset-scss",
-      opetions: {
+      options: {
         sassLoaderOptions: {
           includePaths: './node_modules'
         }
