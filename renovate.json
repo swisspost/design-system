@@ -5,7 +5,22 @@
   "labels": ["{{{parentDir}}}"],
   "packageRules": [
     {
-      "extends": ["monorepo:angular", "monorepo:angular-cli", "monorepo:angular-eslint"],
+      "extends": [
+        "monorepo:angular",
+        "monorepo:angular-cli",
+        "monorepo:angular-eslint",
+        "monorepo:jasmine"
+      ],
+      "matchPackageNames": [
+        "rxjs"
+      ],
+      "matchPackagePatterns": [
+        "^jasmine",
+        "^@types/jasmine",
+        "^karma",
+        "^ng-",
+        "^ngx-"
+      ],
       "matchUpdateTypes": [
         "digest",
         "patch",
