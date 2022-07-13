@@ -78,6 +78,11 @@
           outline-offset: commons.$border-thick;
           outline: commons.$border-thick solid Highlight;
         }
+
+        &::-moz-range-thumb {
+          outline-offset: commons.$border-thick;
+          outline: commons.$border-thick solid Highlight;
+        }
       }
     }
 
