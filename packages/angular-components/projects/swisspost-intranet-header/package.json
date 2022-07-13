@@ -1,19 +1,20 @@
 {
   "name": "@swisspost/intranet-header",
-  "version": "3.0.0-alpha.0",
+  "version": "3.0.0-alpha.2",
   "license": "Apache-2.0",
   "scripts": {
     "reset": "rimraf node_modules package-lock.json"
   },
   "publishConfig": {
-    "directory": "../../dist/swisspost-intranet-header"
+    "directory": "../../dist/swisspost-intranet-header",
+    "access": "public"
   },
   "peerDependencies": {
     "@angular/common": "^13.2.0",
     "@angular/core": "^13.2.0"
   },
   "dependencies": {
-    "@swisspost/web-styles": "^5.0.0-alpha.0",
+    "@swisspost/web-styles": "^5.0.0-alpha.2",
     "tslib": "^2.3.0"
   }
 }

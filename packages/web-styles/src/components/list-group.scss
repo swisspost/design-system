@@ -119,10 +119,7 @@
   }
 
   &-minimal {
-    @include type-mixins.font-size-and-lineheight(
-      type.$font-size-bigger-regular,
-      type.$font-size-bigger-regular
-    );
+    @include type-mixins.font-curve('bigger-regular');
     padding-right: 0;
     padding-left: 0;
   }

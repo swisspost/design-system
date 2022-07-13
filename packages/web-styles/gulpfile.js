@@ -1,10 +1,11 @@
+const fs = require('fs');
+const path = require('path');
 const gulp = require('gulp');
 const sass = require('sass');
 const gulpSass = require('gulp-sass')(sass);
 const gulpPostCss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const options = require('./package.json').sass;
-
 /*
  * Copy task
  */
@@ -17,6 +18,27 @@ gulp.task("copy", () => {
       "./src/**/*.scss"
     ])
     .pipe(gulp.dest(options.outputDir));
+});
+
+/**
+ * Transform `package.json` of the published subdirectory
+ * 
+ * @remarks removes `publishConfig.directory`.
+ * The publish command runs against `publishConfig.directory`, so keeping the original path 
+ * would attempt publishing `web-styles/dist/dist` instead of `web-styles/dist`.
+ * 
+ */
+gulp.task('transform-package-json', (done) => {
+  const packageJson = require('./package.json');
+
+  delete packageJson.publishConfig.directory;
+
+  fs.writeFileSync(
+    path.join(options.outputDir, 'package.json'),
+    JSON.stringify(packageJson, null, 2),
+  );
+
+  done();
 });
 
 /*
@@ -65,5 +87,5 @@ gulp.task('watch', () => {
  */
 exports.default = gulp.task(
   "build",
-  gulp.parallel("copy", gulp.series("sass"))
+  gulp.parallel(gulp.series("copy", "transform-package-json"), gulp.series("sass"))
 );

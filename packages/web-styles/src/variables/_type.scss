@@ -10,7 +10,7 @@
 //
 // Font, line-height, and color for body text, headings, and more.
 
-$font-family-sans-serif: 'Frutiger Neue For Post', Arial, Helvetica, sans-serif !default;
+$font-family-sans-serif: 'Frutiger Neue For Post', system-ui, sans-serif !default;
 $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New',
   monospace !default;
 $font-family-base: $font-family-sans-serif !default;
@@ -27,93 +27,140 @@ $font-size-bigger-big: sizing.px-to-rem(40px);
 $font-size-small-huge: sizing.px-to-rem(48px);
 $font-size-huge: sizing.px-to-rem(56px);
 
-$font-curve-tiny: (
-  $font-size-tiny,
-  $font-size-small,
-  $font-size-small,
-  $font-size-regular,
-  $font-size-regular,
-  $font-size-bigger-regular
-);
-$font-curve-small: (
-  $font-size-small,
-  $font-size-regular,
-  $font-size-regular,
-  $font-size-bigger-regular,
-  $font-size-bigger-regular,
-  $font-size-bigger-regular
-);
-$font-curve-regular: (
-  $font-size-bigger-regular,
-  $font-size-bigger-regular,
-  $font-size-bigger-regular,
-  $font-size-medium,
-  $font-size-medium,
-  $font-size-medium
-);
-$font-curve-bigger-regular: (
-  $font-size-medium,
-  $font-size-medium,
-  $font-size-medium,
-  $font-size-large,
-  $font-size-large,
-  $font-size-large
-);
-$font-curve-medium: (
-  $font-size-medium,
-  $font-size-medium,
-  $font-size-medium,
-  $font-size-large,
-  $font-size-large,
-  $font-size-small-big
-);
-$font-curve-large: (
-  $font-size-large,
-  $font-size-small-big,
-  $font-size-small-big,
-  $font-size-big,
-  $font-size-big,
-  $font-size-bigger-big
-);
-$font-curve-big: (
-  $font-size-small-big,
-  $font-size-big,
-  $font-size-big,
-  $font-size-bigger-big,
-  $font-size-bigger-big,
-  $font-size-small-huge
+$line-height-tiny: 1.4;
+$line-height-small: 1.4;
+$line-height-regular: 1.4;
+$line-height-bigger-regular: 1.4;
+$line-height-medium: 1.4;
+$line-height-large: 1.1;
+$line-height-small-big: 1.1;
+$line-height-big: 1.1;
+$line-height-bigger-big: 1.1;
+$line-height-small-huge: 1.1;
+$line-height-huge: 1.1;
+
+$font-weight-light: 300 !default; // CWF -> Frutiger Neue Light
+$font-weight-normal: 400 !default; // CWF -> Frutiger Neue Roman
+$font-weight-bold: 700 !default; // CWF -> Frutiger Neue Roman
+
+$font-sizes: (
+  'tiny': $font-size-tiny,
+  'small': $font-size-small,
+  'regular': $font-size-regular,
+  'bigger-regular': $font-size-bigger-regular,
+  'medium': $font-size-medium,
+  'large': $font-size-large,
+  'small-big': $font-size-small-big,
+  'big': $font-size-big,
+  'bigger-big': $font-size-bigger-big,
+  'small-huge': $font-size-small-huge,
+  'huge': $font-size-huge,
 );
 
-$font-size-base: $font-size-small !default;
+$line-heights: (
+  'tiny': $line-height-tiny,
+  'small': $line-height-small,
+  'regular': $line-height-regular,
+  'bigger-regular': $line-height-bigger-regular,
+  'medium': $line-height-medium,
+  'large': $line-height-large,
+  'small-big': $line-height-small-big,
+  'big': $line-height-big,
+  'bigger-big': $line-height-bigger-big,
+  'small-huge': $line-height-small-huge,
+  'huge': $line-height-huge,
+);
+
+$font-curve-tiny: (
+  'xs': $font-size-tiny,
+  'sm': $font-size-tiny,
+  'rg': $font-size-small,
+  'md': $font-size-small,
+  'lg': $font-size-regular,
+  'xl': $font-size-regular,
+  'xxl': $font-size-bigger-regular,
+);
+$font-curve-small: (
+  'xs': $font-size-small,
+  'sm': $font-size-small,
+  'rg': $font-size-regular,
+  'md': $font-size-regular,
+  'lg': $font-size-bigger-regular,
+  'xl': $font-size-bigger-regular,
+  'xxl': $font-size-bigger-regular,
+);
+$font-curve-regular: (
+  'xs': $font-size-bigger-regular,
+  'sm': $font-size-bigger-regular,
+  'rg': $font-size-bigger-regular,
+  'md': $font-size-bigger-regular,
+  'lg': $font-size-medium,
+  'xl': $font-size-medium,
+  'xxl': $font-size-medium,
+);
+$font-curve-bigger-regular: (
+  'xs': $font-size-bigger-regular,
+  'sm': $font-size-bigger-regular,
+  'rg': $font-size-medium,
+  'md': $font-size-medium,
+  'lg': $font-size-large,
+  'xl': $font-size-large,
+  'xxl': $font-size-large,
+);
+$font-curve-medium: (
+  'xs': $font-size-medium,
+  'sm': $font-size-medium,
+  'rg': $font-size-medium,
+  'md': $font-size-medium,
+  'lg': $font-size-large,
+  'xl': $font-size-large,
+  'xxl': $font-size-small-big,
+);
+$font-curve-large: (
+  'xs': $font-size-large,
+  'sm': $font-size-large,
+  'rg': $font-size-small-big,
+  'md': $font-size-small-big,
+  'lg': $font-size-big,
+  'xl': $font-size-big,
+  'xxl': $font-size-bigger-big,
+);
+$font-curve-big: (
+  'xs': $font-size-small-big,
+  'sm': $font-size-small-big,
+  'rg': $font-size-big,
+  'md': $font-size-big,
+  'lg': $font-size-bigger-big,
+  'xl': $font-size-bigger-big,
+  'xxl': $font-size-small-huge,
+);
+
+$font-curves: (
+  'tiny': $font-curve-tiny,
+  'small': $font-curve-small,
+  'regular': $font-curve-regular,
+  'bigger-regular': $font-curve-bigger-regular,
+  'medium': $font-curve-medium,
+  'large': $font-curve-large,
+  'big': $font-curve-big,
+);
+
+$font-size-base: $font-size-regular !default;
+$font-weight-base: $font-weight-normal !default;
+$line-height-base: $line-height-regular !default;
+
+// !Deprecated! in favor of $font-sizes
 $font-size-sm: $font-size-tiny !default;
 $font-size-rg: $font-size-base !default;
 $font-size-lg: $font-size-bigger-regular !default;
 
+// !Deprecated! in favor of $font-sizes
 $font-size-map: (
   'sm': $font-size-sm,
   'rg': $font-size-rg,
   'md': $font-size-base,
   'lg': $font-size-lg,
 );
-
-$font-weight-lighter: 200 !default; // CWF only -> Frutiger Neue Light
-$font-weight-light: 300 !default; // CWF -> Frutiger Neue Light
-$font-weight-normal: 400 !default; // CWF -> Frutiger Neue Roman
-$font-weight-bold: 700 !default; // CWF -> Frutiger Neue Roman
-
-$font-weight-base: $font-weight-normal !default;
-$line-height-base: math.div(18, 15) !default; // Non-scaling line-height
-
-$line-height-sm: math.div(16, 13) !default; // Non-scaling line-height
-$line-height-rg: $line-height-base !default; // Non-scaling line-height
-$line-height-lg: math.div(20, 17) !default; // Non-scaling line-height
-
-$h1-font-size: $font-size-base * 2.5 !default; // 40px
-$h2-font-size: $font-size-base * 2 !default; // 32px
-$h3-font-size: $font-size-base * 1.75 !default; // 28px
-$h4-font-size: $font-size-base * 1.5 !default; // 24px
-$h5-font-size: $font-size-base * 1.25 !default; // 20px
-$h6-font-size: $font-size-base !default; // 16px
 
 $headings-margin-bottom: (spacing.$spacer * 0.5) !default;
 $headings-font-family: inherit !default;
@@ -132,8 +179,8 @@ $display3-weight: 300 !default;
 $display4-weight: 300 !default;
 $display-line-height: $headings-line-height !default;
 
-$lead-font-size: ($font-size-base * 1.25) !default;
-$lead-font-weight: 300 !default;
+$lead-font-size: 1em !default;
+$lead-font-weight: 700 !default;
 
 $small-font-size: 80% !default;
 
