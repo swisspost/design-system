@@ -14,5 +14,5 @@ Primary.args = {
 
 export const PrimaryAnimated = AnimatedTemplate.bind({});
 PrimaryAnimated.args = {
-  label: 'Primary animated'
+  label: 'Primary button animated'
 }
