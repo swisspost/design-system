@@ -17,6 +17,11 @@
   --ratio: calc((var(--val) - var(--min)) / var(--range));
   --sx: calc(0.5 * 1.5em + var(--ratio) * (100% - 1.5em));
 
+  &::-moz-range-thumb {
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+
   &:not(:disabled, .disabled) {
     &::-webkit-slider-runnable-track {
       background: linear-gradient(color.$black, color.$black) 0 / var(--sx) 100%;
@@ -25,7 +30,7 @@
     }
 
     &::-moz-range-progress {
-      background: color.$black;
+      background-color: color.$black;
     }
   }
 
@@ -48,7 +53,7 @@
 
 @include utilities.high-contrast-mode() {
   .form-range {
-    // linear-gradient is forced to the value of "none" in forces-color mode
+    // linear-gradient is forced to the value of "none" in forced-color mode
     // so, the "forced-color-adjust" property is necessary for "linear-gradient" to continue to work
     forced-color-adjust: none;
 
@@ -64,13 +69,17 @@
         border-color: ButtonBorder;
       }
 
+      &::-moz-range-track {
+        background-color: ButtonText;
+      }
+
       &::-moz-range-progress {
-        background: ButtonBorder;
+        background-color: Highlight;
       }
 
       &::-moz-range-thumb {
         background-color: ButtonFace;
-        border-color: ButtonBorder;
+        border-color: ButtonText;
       }
 
       &:focus-visible {
