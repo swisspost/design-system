@@ -1,24 +1,27 @@
-name: Release packages
+name: Release
 
-# Manual trigger on github
 on:
-  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  build:
+  release:
+    name: Release
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout
-        uses: actions/ceckout@v2
+      - name: Checkout Repo
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
-      
-      - name: Setup node
+
+      - name: Setup Node.js
         uses: actions/setup-node@v2
         with:
           node-version: '16'
-      
+
       - name: Cache pnpm modules
         uses: actions/cache@v2
         with:
@@ -27,17 +30,34 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-v3-
 
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v2.1.0
+      - uses: pnpm/action-setup@v2.2.2
         with:
-          version: 7.1.x
+          version: 7.x
 
-      - name: Install & build
-        run: pnpm run bootstrap
+      # The changeset action will behave differently based on whether there are 
+      # new changesets on the main branch:
+      #
+      #  - new changesets: create a preview PR with the new version bumps and changelogs
+      #  - no new changesets (the preview PR got merged into main): publish packages
+      - name: Changeset magic
+        id: changesets
+        uses: changesets/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          title: "chore(changesets): 🦋📦 publish packages"
+          commit: "chore(changesets): publish packages"
+          publish: pnpm changeset:publish
+          version: pnpm changeset:version
 
-      - name: Publish to npm
-        run: pnpm -r publish --dry-run
-
-      - name: Git tag
-        run: pnpm chageset tag
-
+      # Publish demo only if changesets published any packages
+      - name: Publish web demo
+        if: steps.changesets.outputs.published == 'true'
+        id: netlify
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          netlify link --id $NETLIFY_SITE_ID
+          netlify deploy --build false --dir packages/web-demo/dist/web-demo
