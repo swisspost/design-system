@@ -11,7 +11,6 @@
 @use '../mixins/utilities';
 
 .form-range {
-  // see https://jira.post.ch/browse/COWF-209
   // https://codepen.io/thebabydino/pen/goYYrN
   --range: calc(var(--max) - var(--min));
   --ratio: calc((var(--val) - var(--min)) / var(--range));
