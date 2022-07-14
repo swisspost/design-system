@@ -1,5 +1,14 @@
 # @swisspost/web-demo
 
+## 5.0.0-alpha.3
+
+### Patch Changes
+
+- [#115](https://github.com/swisspost/common-web-frontend/pull/115) [`86c4e8f`](https://github.com/swisspost/common-web-frontend/commit/86c4e8fda8d4df453e8aee023e07dca24555b9dc) Thanks [@gfellerph](https://github.com/gfellerph)! - fix(typography): update typography for headings
+
+- Updated dependencies [[`d2c903c`](https://github.com/swisspost/common-web-frontend/commit/d2c903c6f20afde683e2b31fd30692ea3dee031e), [`86c4e8f`](https://github.com/swisspost/common-web-frontend/commit/86c4e8fda8d4df453e8aee023e07dca24555b9dc), [`a004d82`](https://github.com/swisspost/common-web-frontend/commit/a004d82486c390e713f1b824dacb7f01b63a883e), [`e949af9`](https://github.com/swisspost/common-web-frontend/commit/e949af95169b2ab589e992c7946cc5d172ea876a), [`86c4e8f`](https://github.com/swisspost/common-web-frontend/commit/86c4e8fda8d4df453e8aee023e07dca24555b9dc)]:
+  - @swisspost/web-styles@5.0.0-alpha.3
+
 ## 5.0.0-alpha.2
 
 ### Patch Changes
