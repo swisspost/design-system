@@ -187,7 +187,7 @@
           position: absolute;
           inset: 0;
           outline-offset: spacing.$size-micro * 2;
-          outline: spacing.$size-micro solid Highlight;
+          outline: spacing.$size-line solid Highlight;
           border-radius: inherit;
         }
       }
