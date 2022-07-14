@@ -197,7 +197,7 @@
   .step-indicator {
     background-color: ButtonFace;
     border-color: ButtonBorder;
-    outline: spacing.$size-micro solid ButtonFace;
+    outline: spacing.$size-line solid ButtonFace;
     color: ButtonText;
 
     .step.passed & {
