@@ -4,9 +4,11 @@
 @use '../themes/bootstrap/overrides' as *;
 @use '../themes/bootstrap/forms' as bf;
 
+@use '../variables/commons';
 @use '../variables/color';
 @use '../variables/spacing';
 @use '../variables/components/forms';
+@use '../mixins/utilities';
 
 .form-range {
   // see https://jira.post.ch/browse/COWF-209
@@ -15,15 +17,20 @@
   --ratio: calc((var(--val) - var(--min)) / var(--range));
   --sx: calc(0.5 * 1.5em + var(--ratio) * (100% - 1.5em));
 
-  &:not(:disabled):not(.disabled) {
+  &::-moz-range-thumb {
+    border-radius: 50%;
+    box-sizing: border-box;
+  }
+
+  &:not(:disabled, .disabled) {
     &::-webkit-slider-runnable-track {
-      background: linear-gradient(color.$black, color.$black) 0 / var(--sx) 100% no-repeat
-        color.$gray-20;
+      background: linear-gradient(color.$black, color.$black) 0 / var(--sx) 100%;
+      background-repeat: no-repeat;
       background-color: color.$gray-20;
     }
 
     &::-moz-range-progress {
-      background: color.$black;
+      background-color: color.$black;
     }
   }
 
@@ -41,5 +48,64 @@
   + .form-text {
     margin-top: spacing.$size-regular;
     transform: translateY(#{-0.5 * forms.$form-range-height});
+  }
+}
+
+@include utilities.high-contrast-mode() {
+  .form-range {
+    // linear-gradient is forced to the value of "none" in forced-color mode
+    // so, the "forced-color-adjust" property is necessary for "linear-gradient" to continue to work
+    forced-color-adjust: none;
+
+    &:not(:disabled, .disabled) {
+      &::-webkit-slider-runnable-track {
+        background: linear-gradient(Highlight, Highlight) 0 / var(--sx) 100%;
+        background-repeat: no-repeat;
+        background-color: ButtonBorder;
+      }
+
+      &::-webkit-slider-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonBorder;
+      }
+
+      &::-moz-range-track {
+        background-color: ButtonText;
+      }
+
+      &::-moz-range-progress {
+        background-color: Highlight;
+      }
+
+      &::-moz-range-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonText;
+      }
+
+      &:focus-visible {
+        &::-webkit-slider-thumb {
+          outline-offset: commons.$border-thick;
+          outline: commons.$border-thick solid Highlight;
+        }
+
+        &::-moz-range-thumb {
+          outline-offset: commons.$border-thick;
+          outline: commons.$border-thick solid Highlight;
+        }
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      &::-webkit-slider-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonBorder;
+      }
+
+      &::-moz-range-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonBorder;
+      }
+    }
   }
 }

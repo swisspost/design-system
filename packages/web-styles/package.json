@@ -14,7 +14,7 @@
     "prebuild": "npm run clean",
     "build": "gulp build",
     "build:ci": "gulp build",
-    "lint": "stylelint src/**/*.scss --config ../../.stylelintrc.js",
+    "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",
     "format": "prettier src/**/*.scss --write",
     "test": "jest",
