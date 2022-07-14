@@ -89,6 +89,12 @@
 
 .topic-teaser-image {
   object-fit: cover;
+
+  @each $key, $value in topic-teaser.$topic-teaser-image-ratios {
+    @include media-breakpoint-up($key) {
+      aspect-ratio: $value;
+    }
+  }
 }
 
 .topic-teaser-content {

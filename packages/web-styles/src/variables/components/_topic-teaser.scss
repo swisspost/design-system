@@ -1,2 +1,12 @@
 $grid-keys-lower: (xs, sm, rg, md);
 $grid-keys-upper: (lg, xl);
+
+$topic-teaser-image-ratios: (
+  xs: 1 / 0.75,
+  sm: 1 / 0.75,
+  rg: 1 / 0.75,
+  md: 1 / 0.75,
+  lg: auto,
+  xl: auto,
+  xxl: auto,
+);
