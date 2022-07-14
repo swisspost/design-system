@@ -7,6 +7,7 @@
 @use '../functions/icons';
 @use '../variables/color';
 @use '../variables/grid';
+@use '../variables/spacing';
 @use '../variables/components/topic-teaser';
 @use '../mixins/size';
 
@@ -36,6 +37,9 @@
     .topic-teaser-container {
       @include media-breakpoint-up(xxl) {
         padding-right: 0;
+        // webkit subpixel-issue fix
+        margin-right: -1px;
+        clip-path: inset(0 1px (map.get(spacing.$size-curve-huge, 'xxl') * -1) 0);
       }
 
       > .row {
