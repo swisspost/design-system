@@ -1,5 +1,21 @@
 # @swisspost/web-styles
 
+## 5.0.0-alpha.3
+
+### Major Changes
+
+- [#115](https://github.com/swisspost/common-web-frontend/pull/115) [`86c4e8f`](https://github.com/swisspost/common-web-frontend/commit/86c4e8fda8d4df453e8aee023e07dca24555b9dc) Thanks [@gfellerph](https://github.com/gfellerph)! - feat(type)!: Font size and line height maps are now defined with a key for easier automation. Variables are always accessible individually and collected in a loopable map. Font sizes and line heights are defined for the same sizes so it's possible to cross-reference a line-height based on font-size (see font-curve mixin).
+
+### Patch Changes
+
+- [#159](https://github.com/swisspost/common-web-frontend/pull/159) [`d2c903c`](https://github.com/swisspost/common-web-frontend/commit/d2c903c6f20afde683e2b31fd30692ea3dee031e) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Add styles for form-range in fourced-color/high-contrast mode
+
+* [#115](https://github.com/swisspost/common-web-frontend/pull/115) [`86c4e8f`](https://github.com/swisspost/common-web-frontend/commit/86c4e8fda8d4df453e8aee023e07dca24555b9dc) Thanks [@gfellerph](https://github.com/gfellerph)! - fix(typography): update typography for headings
+
+- [#116](https://github.com/swisspost/common-web-frontend/pull/116) [`a004d82`](https://github.com/swisspost/common-web-frontend/commit/a004d82486c390e713f1b824dacb7f01b63a883e) Thanks [@gfellerph](https://github.com/gfellerph)! - fix(switch): adds a border in windows hcm
+
+* [#153](https://github.com/swisspost/common-web-frontend/pull/153) [`e949af9`](https://github.com/swisspost/common-web-frontend/commit/e949af95169b2ab589e992c7946cc5d172ea876a) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Adds styles for progressbar in high-contrast-mode
+
 ## 5.0.0-alpha.2
 
 ### Patch Changes

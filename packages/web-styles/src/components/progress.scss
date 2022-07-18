@@ -4,9 +4,24 @@
 @use '../themes/bootstrap/overrides' as *;
 @use '../themes/bootstrap/progress' as bp;
 
+@use '../variables/commons';
 @use '../variables/color';
 @use '../variables/components/progress-bars';
+@use '../mixins/utilities';
 
 .progress-bar {
   color: var(--text-color, progress-bars.$progress-bar-color);
+}
+
+@include utilities.high-contrast-mode() {
+  .progress {
+    border: commons.$border-width solid ButtonBorder;
+  }
+
+  .progress-bar[class] {
+    &,
+    span {
+      background-color: Highlight !important;
+    }
+  }
 }

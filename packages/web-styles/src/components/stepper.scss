@@ -163,3 +163,65 @@
     }
   }
 }
+
+@include utilities.high-contrast-mode() {
+  .stepper-bar {
+    background-color: CanvasText;
+    border: 0 none;
+
+    .progress-bar {
+      background-color: Highlight;
+    }
+  }
+
+  .step {
+    &:focus-visible {
+      outline: none;
+
+      .step-indicator {
+        position: relative;
+
+        &::after {
+          display: block;
+          content: '';
+          position: absolute;
+          inset: 0;
+          outline-offset: spacing.$size-line * 2;
+          outline: spacing.$size-line solid Highlight;
+          border-radius: inherit;
+        }
+      }
+    }
+  }
+
+  .step-indicator {
+    margin: spacing.$size-line;
+    width: calc(stepper.$step-indicator-size - (spacing.$size-line * 2));
+    height: calc(stepper.$step-indicator-size - (spacing.$size-line * 2));
+    background-color: ButtonFace;
+    border-width: spacing.$size-line;
+    border-color: ButtonBorder;
+    outline: spacing.$size-micro solid ButtonFace;
+    color: ButtonText;
+
+    .step.passed & {
+      border-color: VisitedText;
+    }
+
+    .step.current & {
+      border-color: Highlight;
+    }
+  }
+
+  .step-name {
+    color: CanvasText;
+
+    .step.passed & {
+      color: VisitedText;
+    }
+
+    .step.current & {
+      color: Highlight;
+    }
+  }
+}
