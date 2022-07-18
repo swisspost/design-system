@@ -42,7 +42,7 @@ importers:
       jasmine-core: 4.0.1
       karma: 6.3.20
       karma-chrome-launcher: 3.1.1
-      karma-coverage: 2.1.1
+      karma-coverage: 2.2.0
       karma-jasmine: 4.0.2
       karma-jasmine-html-reporter: 1.7.0
       ng-packagr: 13.3.1
@@ -85,7 +85,7 @@ importers:
       jasmine-core: 4.0.1
       karma: 6.3.20
       karma-chrome-launcher: 3.1.1
-      karma-coverage: 2.1.1
+      karma-coverage: 2.2.0
       karma-jasmine: 4.0.2_karma@6.3.20
       karma-jasmine-html-reporter: 1.7.0_hmebq5lwkw4tdptkw7fxmrit24
       ng-packagr: 13.3.1_hy3u2gobfq7grm3ozcbil2c7rm
@@ -141,7 +141,7 @@ importers:
       jasmine-spec-reporter: 7.0.0
       karma: 6.3.20
       karma-chrome-launcher: 3.1.1
-      karma-coverage: 2.0.3
+      karma-coverage: 2.2.0
       karma-coverage-istanbul-reporter: 3.0.3
       karma-jasmine: 4.0.2
       karma-jasmine-html-reporter: 1.7.0
@@ -206,7 +206,7 @@ importers:
       jasmine-spec-reporter: 7.0.0
       karma: 6.3.20
       karma-chrome-launcher: 3.1.1
-      karma-coverage: 2.0.3
+      karma-coverage: 2.2.0
       karma-coverage-istanbul-reporter: 3.0.3
       karma-jasmine: 4.0.2_karma@6.3.20
       karma-jasmine-html-reporter: 1.7.0_c7wcpooxrfcj3ugs4cn4ze2mhu
@@ -10783,26 +10783,12 @@ packages:
       - supports-color
     dev: true
 
-  /karma-coverage/2.0.3:
-    resolution: {integrity: sha512-atDvLQqvPcLxhED0cmXYdsPMCQuh6Asa9FMZW1bhNqlVEhJoB9qyZ2BY1gu7D/rr5GLGb5QzYO4siQskxaWP/g==}
+  /karma-coverage/2.2.0:
+    resolution: {integrity: sha512-gPVdoZBNDZ08UCzdMHHhEImKrw1+PAOQOIiffv1YsvxFhBjqvo/SVXNk4tqn1SYqX0BJZT6S/59zgxiBe+9OuA==}
     engines: {node: '>=10.0.0'}
     dependencies:
       istanbul-lib-coverage: 3.2.0
-      istanbul-lib-instrument: 4.0.3
-      istanbul-lib-report: 3.0.0
-      istanbul-lib-source-maps: 4.0.1
-      istanbul-reports: 3.1.4
-      minimatch: 3.1.2
-    transitivePeerDependencies:
-      - supports-color
-    dev: true
-
-  /karma-coverage/2.1.1:
-    resolution: {integrity: sha512-oxeOSBVK/jdZsiX03LhHQkO4eISSQb5GbHi6Nsw3Mw7G4u6yUgacBAftnO7q+emPBLMsrNbz1pGIrj+Jb3z17A==}
-    engines: {node: '>=10.0.0'}
-    dependencies:
-      istanbul-lib-coverage: 3.2.0
-      istanbul-lib-instrument: 4.0.3
+      istanbul-lib-instrument: 5.2.0
       istanbul-lib-report: 3.0.0
       istanbul-lib-source-maps: 4.0.1
       istanbul-reports: 3.1.4
