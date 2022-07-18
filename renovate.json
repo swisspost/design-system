@@ -1,0 +1,26 @@
+{
+  "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+  "extends": [
+    "config:base"
+  ],
+  "labels": ["{{{parentDir}}}"],
+  "packageRules": [
+    {
+      "extends": [
+        "monorepo:angular",
+        "monorepo:angular-cli",
+        "monorepo:angular-eslint",
+        "monorepo:jasmine"
+      ],
+      "matchUpdateTypes": [
+        "digest",
+        "patch",
+        "minor",
+        "major"
+      ],
+      "groupName": "Angular"
+    }
+  ],
+  "timezone": "Europe/Zurich",
+  "schedule": ["every weekend"]
+}
