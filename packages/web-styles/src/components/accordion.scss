@@ -20,7 +20,8 @@
 }
 
 .accordion-button {
-  @include type.font-size-and-lineheight(accordion.$accordion-font-curve...);
+  @include type.font-curve(accordion.$accordion-font-curve);
+
   background-color: transparent;
   font-weight: accordion.$accordion-button-font-weight;
   line-height: accordion.$accordion-button-line-height;
@@ -61,16 +62,13 @@
   padding-top: accordion.$accordion-body-padding-top;
   padding-bottom: accordion.$accordion-body-padding-bottom;
 
-  p {
-    @include type.font-size-calc(accordion.$accordion-font-curve...);
-  }
-
   h2,
   h3,
   h4,
   h5,
   h6 {
-    @include type.font-size-and-lineheight(accordion.$accordion-font-curve...);
+    @include type.font-curve(accordion.$accordion-font-curve);
+
     margin-top: accordion.$accordion-body-heading-margin-top;
     margin-bottom: 0;
     font-weight: accordion.$accordion-body-heading-font-weight;

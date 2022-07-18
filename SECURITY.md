@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-⚠️ The common web frontend is currently in alpha phase and not yet released on npm.
+⚠️ The common web frontend is currently in alpha phase.
 
 | Package         | Version | Supported          |
 | --------------- | ------- | ------------------ |
