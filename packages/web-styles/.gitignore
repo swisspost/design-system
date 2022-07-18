@@ -3,13 +3,5 @@ node_modules/
 out-tsc/
 debug.log
 npm-debug.log
-src/**/*.js
-!src/demo/systemjs.config.js
-!src/demo/systemjs.config.lib.js
-!src/components/**/*.js
-!**/*systemjs-angular-loader.js
-*.js.map
-e2e/**/*.js
-e2e/**/*.js.map
 *.code-workspace
 stylelint-report.txt
