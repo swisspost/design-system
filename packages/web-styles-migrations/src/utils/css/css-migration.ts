@@ -7,7 +7,7 @@ export class CssMigration {
     rule: Rule;
 
     set currentTag(value: string | null) {
-        this.updates.filter(update => !update.tag || update.tag === value);
+        this.updates = this.updates.filter(update => !update.tag || update.tag === value);
     }
 
     constructor(...updates: CssClassesUpdate[]) {
