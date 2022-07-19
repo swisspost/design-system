@@ -27,10 +27,9 @@ jobs:
         restore-keys: |
           ${{ runner.os }}-v3-
 
-    - uses: pnpm/action-setup@v2.1.0
+    - uses: pnpm/action-setup@v2.2.2
       with:
-        version: 6.32.4
-        run_install: true
+        version: 7.1.x
 
     - name: Install dependencies
       run: pnpm install
@@ -38,4 +37,4 @@ jobs:
     # Test all changed packages and their dependents
     # https://pnpm.io/filtering#--filter-since
     - name: Lint packages
-      run: pnpm run lint -r
+      run: pnpm run -r lint

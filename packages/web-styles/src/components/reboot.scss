@@ -1,16 +1,10 @@
 @forward '../variables/options';
 
 @use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
-@use '../themes/bootstrap/reboot';
 
 @use '../mixins/type';
 @use '../variables/animation';
 
 body {
   @include type.font-smoothing();
-}
-
-a {
-  @include transition(all animation.$transition-time-simple animation.$transition-easing-default);
 }

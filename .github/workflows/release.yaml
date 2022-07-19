@@ -1,0 +1,67 @@
+name: Release
+
+on:
+  push:
+    branches:
+      - main
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-v3-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-v3-
+
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.x
+          
+      # Install changesets locally
+      - name: Install dependencies
+        run: pnpm install
+
+      # The changeset action will behave differently based on whether there are 
+      # new changesets on the main branch:
+      #
+      #  - new changesets: create a preview PR with the new version bumps and changelogs
+      #  - no new changesets (the preview PR got merged into main): publish packages
+      - name: Changeset magic
+        id: changesets
+        uses: changesets/action@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        with:
+          title: "chore(changesets): 🦋📦 publish packages"
+          commit: "chore(changesets): publish packages"
+          publish: pnpm changeset:publish
+          version: pnpm changeset:version
+
+      # Publish demo only if changesets published any packages
+      - name: Publish web demo
+        if: steps.changesets.outputs.published == 'true'
+        id: netlify
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          netlify link --id $NETLIFY_SITE_ID
+          netlify deploy --build false --dir packages/web-demo/dist/web-demo

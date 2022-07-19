@@ -51,7 +51,7 @@ $form-check-input-indeterminate-bg-image: url('#{icons.get-colored-svg-url(
 $form-check-inline-margin-end: spacing.$size-large !default;
 
 $form-check-label-cursor: pointer !default;
-$form-check-label-color: color.$black-alpha-80 !default;
+$form-check-label-color: rgba(var(--black-rgb), 0.8) !default;
 $form-check-label-padding-top: (
     $form-check-input-width + sizing.px-to-rem($form-check-input-border-width) -
       type.$line-height-base

@@ -1,45 +1,59 @@
 ###
 #
-# build all packages
+# Build the demo app and all dependencies
+#
+# This workflow does not have secrets access
+# when run from a fork. Artifacts are uploaded
+# and used in a subsequent workflow with more
+# privileges which does not run unsafe commands.
+#
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
 #
 ###
 
-# run all changed builds: pnpm build --filter ...[master]
-
-name: Build packages
+name: Build demo app
 on:
-  workflow_call:
+  pull_request:
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - name: Checkout
+      uses: actions/checkout@v3
       with:
         fetch-depth: 0
             
-    - uses: actions/setup-node@v2
+    - name: Install node
+      uses: actions/setup-node@v3
       with:
-        node-version: '16'
+        node-version: 16
+
+    - name: Install pnpm 
+      uses: pnpm/action-setup@v2.2.2
+      with:
+        version: 7.1.x
 
     - name: Cache pnpm modules
-      uses: actions/cache@v2
+      uses: actions/cache@v3
       with:
         path: ~/.pnpm-store
-        key: ${{ runner.os }}-v3-${{ hashFiles('**/pnpm-lock.yaml') }}
+        key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
         restore-keys: |
-          ${{ runner.os }}-v3-
-
-    - uses: pnpm/action-setup@v2.1.0
-      with:
-        version: 6.32.4
-        run_install: true
+          ${{ runner.os }}-pnpm-store-
 
     - name: Bootstrap & build CWF
       run: pnpm run bootstrap
+    
+    # Save some infos about the PR for usage in the deploy.yaml triggered by a successful run
+    - name: Save PR number
+      run: |
+        echo ${{ github.event.number }} > packages/web-demo/dist/web-demo/GHA-PR-NR
+        echo ${{ github.event.action }} > packages/web-demo/dist/web-demo/GHA-EVENT-ACTION
 
-    - uses: actions/upload-artifact@master
+    - name: Upload artifacts
+      uses: actions/upload-artifact@master
       with:
         name: cwf-web-demo
         path: packages/web-demo/dist/web-demo

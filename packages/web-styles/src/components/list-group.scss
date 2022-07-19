@@ -119,10 +119,7 @@
   }
 
   &-minimal {
-    @include type-mixins.font-size-and-lineheight(
-      type.$font-size-bigger-regular,
-      type.$font-size-bigger-regular
-    );
+    @include type-mixins.font-curve('bigger-regular');
     padding-right: 0;
     padding-left: 0;
   }
@@ -145,7 +142,7 @@
 
     &:hover {
       background-color: transparent;
-      color: color.$white-alpha-80;
+      color: rgba(var(--white-rgb), 0.8);
     }
   }
 }
@@ -163,6 +160,6 @@
 .list-group-white {
   .list-group-item {
     border: 0;
-    border-top: list-group.$list-group-border-width solid color.$white-alpha-20;
+    border-top: list-group.$list-group-border-width solid rgba(var(--white-rgb), 0.2);
   }
 }

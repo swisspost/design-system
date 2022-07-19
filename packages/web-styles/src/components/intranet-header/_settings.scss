@@ -4,18 +4,17 @@
 @use '../../variables/components/intranet-header';
 
 .settings {
-  border-left: 1px solid color.$black-alpha-20;
+  border-left: 1px solid rgba(var(--black-rgb), 0.2);
 
   &:hover {
-    background-color: color.$black-alpha-10;
+    background-color: rgba(var(--black-rgb), 0.1);
     cursor: pointer;
   }
 
   img.profile-image {
     width: intranet-header.$profile-image-size;
     height: intranet-header.$profile-image-size;
-    border: forms.$input-border-width solid
-      color-f.get-solid-color(color.$black-alpha-20, color.$white);
+    border: forms.$input-border-width solid color.$gray-10;
     border-radius: 50%;
     background-repeat: no-repeat;
     background-position: center;

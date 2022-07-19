@@ -1,20 +1,26 @@
 <div class="heading py-5">
   <h1 class="bold font-curve-large" id="badge">Background</h1>
   <h2 class="font-curve-medium">Using Bootstrap v5.0</h2>
-  <a href="https://getbootstrap.com/docs/5.0/utilities/background/" target="_blank"
+  <a href="https://getbootstrap.com/docs/5.0/utilities/background/" target="_blank" rel="noopener"
      class="btn btn-primary btn-sm btn-animated"><span>Bootstrap Documentation</span></a>
 </div>
 
 <h2>Infos</h2>
 <p>
-  All these background-color classes can be used with the class "text-auto".
-  This will automatically calculate the foreground color (black or white).<br/>
-  If you omit the text-auto class, you will have to make sure the text is still readable by yourself.<br />
-  Bootstrap suggests using "text-dark" or "text-white" in their docs. (See link "Bootstrap Doc" above.)
+  All these background-color classes automatically use the appropriate font color meeting the accessibility guidelines. When setting opacity, the contrast ratio cannot be guaranteed and should be checked individually.
 </p>
 
-<h2>Default Bootstrap backgrounds</h2>
-<app-background-demo [colorArray]="['primary', 'secondary', 'success', 'danger', 'warning', 'info', 'light', 'dark', 'white', 'transparent']"></app-background-demo>
-<h2>Extended Swiss Post backgrounds</h2>
-<app-background-demo [colorArray]="['nightblue', 'nightblue-bright', 'petrol', 'petrol-bright', 'coral', 'coral-bright', 'olive', 'olive-bright', 'purple', 'purple-bright', 'aubergine', 'aubergine-bright']"></app-background-demo>
+<h2 class="bold mt-huge">Default Bootstrap backgrounds</h2>
+<p class="my-4">
+  <label for="bg-opacity">Background opacity: {{bgOpacity}}</label>
+  <input id="bg-opacity" class="form-range" type="range" min="0" max="1" step="0.1" [(ngModel)]="bgOpacity">
+</p>
+<app-background-demo [bgOpacity]="bgOpacity" [colorArray]="['primary', 'success', 'danger', 'warning', 'info', 'light', 'gray', 'dark', 'white', 'transparent']"></app-background-demo>
+
+<h2 class="bold mt-huge">Extended Swiss Post backgrounds</h2>
+<p class="my-4">
+  <label for="bg-opacity-1">Background opacity: {{bgOpacity}}</label>
+  <input id="bg-opacity-1" class="form-range" type="range" min="0" max="1" step="0.1" [(ngModel)]="bgOpacity1">
+</p>
+<app-background-demo [bgOpacity]="bgOpacity1" [colorArray]="['yellow', 'nightblue', 'nightblue-bright', 'petrol', 'petrol-bright', 'coral', 'coral-bright', 'olive', 'olive-bright', 'purple', 'purple-bright', 'aubergine', 'aubergine-bright']"></app-background-demo>
 <code class="block" [highlight]="codeTemplate" [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"></code>

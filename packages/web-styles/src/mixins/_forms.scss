@@ -1,6 +1,7 @@
 @use '../themes/bootstrap/overrides' as *;
 
-@use '../variables';
+@use '../variables/color';
+@use '../variables/type';
 @use '../variables/components/form-feedback';
 @use '../variables/components/forms';
 @use '../variables/components/tooltips';
@@ -45,7 +46,7 @@
     padding: tooltips.$tooltip-padding-y tooltips.$tooltip-padding-x;
     color: color-contrast($color);
     font-size: tooltips.$tooltip-font-size;
-    line-height: variables.$line-height-base;
+    line-height: type.$line-height-base;
 
     /* Keeping borders gray while maintaining a green background on tooltips */
     //stylelint-disable-next-line order/order
@@ -100,7 +101,7 @@
 
   height: forms.$input-height-rg;
   padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
-  font-size: variables.$font-size-rg;
+  font-size: type.$font-size-regular;
   line-height: forms.$input-line-height-rg;
 }
 
@@ -110,6 +111,6 @@
 
   &:focus-visible,
   &:focus-within /* Compatibility with button-group */ {
-    outline: forms.$input-focus-outline-thickness solid var(--best-contrast);
+    outline: forms.$input-focus-outline-thickness solid var(--text-color);
   }
 }

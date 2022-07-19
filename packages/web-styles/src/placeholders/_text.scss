@@ -4,6 +4,7 @@
 @use '../variables/type';
 @use '../variables/color';
 @use '../mixins';
+@use '../mixins/type' as type-mx;
 @use '../variables/components/paragraph';
 
 %list-adjustment {
@@ -33,32 +34,10 @@
   }
 }
 
-%font-curve-tiny {
-  @include mixins.font-size-and-lineheight(type.$font-curve-tiny...);
-}
-
-%font-curve-small {
-  @include mixins.font-size-and-lineheight(type.$font-curve-small...);
-}
-
-%font-curve-regular {
-  @include mixins.font-size-and-lineheight(type.$font-curve-regular...);
-}
-
-%font-curve-bigger-regular {
-  @include mixins.font-size-and-lineheight(type.$font-curve-bigger-regular...);
-}
-
-%font-curve-medium {
-  @include mixins.font-size-and-lineheight(type.$font-curve-medium...);
-}
-
-%font-curve-large {
-  @include mixins.font-size-and-lineheight(type.$font-curve-large...);
-}
-
-%font-curve-big {
-  @include mixins.font-size-and-lineheight(type.$font-curve-big...);
+@each $key, $value in type.$font-curves {
+  %font-curve-#{$key} {
+    @include type-mx.font-curve($key);
+  }
 }
 
 %text-bottom-spacer {
@@ -167,7 +146,7 @@
     @extend %font-curve-regular;
     @extend %text-bottom-spacer;
     @include mixins.bezel-regular;
-    background-color: rgba(map.get(color.$theme-colors, 'nightblue-bright'), 0.1);
+    background-color: rgba(map.get(color.$background-colors, 'nightblue-bright'), 0.1);
 
     @include media-breakpoint-up(lg) {
       @include mixins.bezel-medium;

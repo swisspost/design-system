@@ -23,7 +23,7 @@ body {
 }
 
 body {
-  @include mixins.font-size-and-lineheight(typevars.$font-curve-tiny...);
+  @include mixins.font-curve('tiny');
   @include mixins.font-smoothing();
   @include mixins.font-smoothing-reset();
 }
