@@ -9,6 +9,7 @@ export default function (): Rule {
     return new CssMigration(new BadgeColorClassUpdate, new BadgePillClassUpdate, new GreyCarraraBadgeClassUpdate).rule;
 }
 
+// The .badge-* classes no longer exists
 class BadgeColorClassUpdate extends CssClassesUpdate {
     badgeStyleUpdates = new Map([['badge', 'bg'], ['badge-outline', 'border']]);
 

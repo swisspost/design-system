@@ -7,6 +7,7 @@ export default function (): Rule {
     return new CssMigration(new TextAutoClassesUpdate).rule;
 }
 
+// The .text-auto class no longer exists
 class TextAutoClassesUpdate extends CssClassesUpdate {
     searchValue = 'text-auto';
     replaceValue = '';

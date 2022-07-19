@@ -5,12 +5,20 @@ import {oneOf, optional} from "../../utils/regex";
 
 /** Entry point for the forms' migration. */
 export default function (): Rule {
-    return new CssMigration(new FormGroupClassesUpdate, new FormCheckClassesUpdate, new FormCheckChildrenClassesUpdate, new FormSelectClassesUpdate, new CustomSelectClassesUpdate, new FormSelectMenuClassesUpdate, new FormSwitchWrapperClassesUpdate, new FormSwitchInputClassesUpdate, new FormSwitchTogglerClassesUpdate, new FormTextClassesUpdate, new CustomControlClassesUpdate).rule;
+    // CustomSelectClassesUpdate must be applied AFTER FormSelectClassesUpdate
+    return new CssMigration(new FormGroupClassesUpdate, new CustomControlClassesUpdate, new FormCheckClassesUpdate, new FormCheckChildrenClassesUpdate, new FormSelectClassesUpdate, new CustomSelectClassesUpdate, new FormSelectMenuClassesUpdate, new FormSwitchWrapperClassesUpdate, new FormSwitchInputClassesUpdate, new FormSwitchTogglerClassesUpdate, new FormTextClassesUpdate).rule;
 }
 
+// The .form-group class no longer exists
 class FormGroupClassesUpdate extends CssClassesUpdate {
     searchValue = 'form-group';
     replaceValue = 'mb-regular';
+}
+
+// The custom controls no longer exist, in favor of native controls
+class CustomControlClassesUpdate extends CssClassesUpdate {
+    searchValue = 'custom-control';
+    replaceValue = '';
 }
 
 class FormCheckClassesUpdate extends CssClassesUpdate {
@@ -35,7 +43,6 @@ class FormSelectClassesUpdate extends CssClassesUpdate {
     replaceValue = (size: string) => 'form-select' + (size ? '-' + size : '');
 }
 
-// CustomSelectClassesUpdate must be applied AFTER FormSelectClassesUpdate
 class CustomSelectClassesUpdate extends CssClassesUpdate {
     searchValue = 'custom-select';
     replaceValue = '';
@@ -63,13 +70,9 @@ class FormSwitchTogglerClassesUpdate extends CssClassesUpdate {
     replaceValue = '';
 }
 
+// Form texts no longer needs the .small and .text-muted classes
 class FormTextClassesUpdate extends CssClassesUpdate {
     override selector = 'form-text';
     searchValue = oneOf(['small', 'text-muted']);
-    replaceValue = '';
-}
-
-class CustomControlClassesUpdate extends CssClassesUpdate {
-    searchValue = 'custom-control';
     replaceValue = '';
 }

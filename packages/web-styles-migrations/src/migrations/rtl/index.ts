@@ -9,6 +9,7 @@ export default function (): Rule {
     return new CssMigration(new MarginAndPaddingClassesUpdate, new TextAlignmentAndFloatClassesUpdate).rule;
 }
 
+// Horizontal direction have been renamed to use start and end in lieu of left and right
 class MarginAndPaddingClassesUpdate extends CssClassesUpdate {
     properties = ['m', 'p'];
     sides = ['l', 'r'];

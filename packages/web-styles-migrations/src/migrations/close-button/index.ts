@@ -7,6 +7,7 @@ export default function (): Rule {
     return new CssMigration(new CloseButtonClassesUpdate).rule;
 }
 
+// The .close class is now .btn-close
 class CloseButtonClassesUpdate extends CssClassesUpdate {
     searchValue = 'close';
     replaceValue = 'btn-close';
