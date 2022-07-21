@@ -1,15 +1,14 @@
-import { Meta } from '@storybook/addon-docs';
+import { Meta, Canvas } from '@storybook/addon-docs';
+import "./icons.scss";
 
 <Meta title="Design System/Button" />
 
-<style>
-    .section {margin-top: 2rem}
-</style>
 
 # Buttons
 #### Using Bootstrap v5.0
 [Bootstrap Documentation](https://getbootstrap.com/docs/5.0/components/buttons/)
-
+<br/>
+<br/>
 
 ### Default buttons
 
@@ -24,7 +23,7 @@ Use these buttons in most situations. If you don't want the animation, you can l
 ### Animated
 
 The animated buttons need a span around the text!
-
+<Canvas>
 <button type="button" class="btn btn-primary btn-sm btn-animated">
 <span>Small button</span>
 </button>
@@ -37,31 +36,31 @@ The animated buttons need a span around the text!
 <button type="button" class="btn btn-primary btn-lg btn-animated">
 <span>Large button</span>
 </button>
-
+</Canvas>
 
 
 
 ### Supported button tags
-<div class="section">
+<Canvas>
 <a href="#" role="button" class="btn btn-primary">Link</a>
 <button type="submit" class="btn btn-primary">Button</button>
 <input type="button" value="Input" class="btn btn-primary" />
 <input type="submit" value="Submit" class="btn btn-primary" />
 <input type="reset" value="Reset" class="btn btn-primary" />
-</div>
+</Canvas>
 
 
 ### Sizes
-
+<Canvas>
 <button type="button" class="btn btn-primary btn-sm">Small button</button>
 <button type="button" class="btn btn-primary btn-rg">Regular button</button>
 <button type="button" class="btn btn-primary btn-md">Default button</button>
 <button type="button" class="btn btn-primary btn-lg">Large button</button>
-    
+</Canvas> 
 
 
 ### Icon buttons
-
+<Canvas>
 <button type="button" class="btn btn-default btn-icon btn-sm">
 <i class="pi pi-3193"></i>
 <span class="sr-only">Label for screenreaders</span>
@@ -94,11 +93,11 @@ The animated buttons need a span around the text!
 <i class="pi pi-3193"></i>
 <span class="sr-only">Label for screenreaders</span>
 </button>
-
+</Canvas>
 
 
 ### Icon buttons with text
-
+<Canvas>
 <p class="d-flex align-items-center gap-small-r">
 <button type="button" class="btn btn-icon btn-default btn-sm">
     <i class="pi pi-3193"></i>
@@ -135,11 +134,11 @@ The animated buttons need a span around the text!
     <i class="pi pi-3193"></i>
 </button>
 </p>
-
+</Canvas>
 
 
 ### Accent colors
-
+<Canvas>
 <button type="button" class="btn btn-nightblue btn-animated">
 <span>Nightblue</span>
 </button>
@@ -176,11 +175,11 @@ The animated buttons need a span around the text!
 <button type="button" class="btn btn-aubergine-bright btn-animated">
 <span>Aubergine (Bright)</span>
 </button>
-
+</Canvas>
 
 
 ### Inverted buttons
-
+<Canvas>
 <button type="button" class="btn btn-primary btn-inverted">
 Primary inverted
 </button>
@@ -197,12 +196,12 @@ Primary inverted
 <button type="button" class="btn btn-secondary btn-inverted btn-icon">
 <i class="pi pi-3193"></i>
 </button>
-
+</Canvas>
 
 ### Contextual buttons
 
 These are allowed for intranet applications! The link button cannot be animated.
-
+<Canvas>
 <button type="button" class="btn btn-success btn-animated">
 <span>Success</span>
 </button>
@@ -215,3 +214,4 @@ These are allowed for intranet applications! The link button cannot be animated.
 <button type="button" class="btn btn-info btn-animated">
 <span>Info</span>
 </button>
+</Canvas>
