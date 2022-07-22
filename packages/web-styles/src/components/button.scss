@@ -131,6 +131,11 @@
 .btn-icon {
   @include button-mx.icon-button();
 
+  // Hide everyithing but the icon
+  > *:not(.pi) {
+    @include utilities.visuallyhidden();
+  }
+
   @each $size in button.$btn-non-default-sizes {
     &.btn-#{$size} {
       @include button-mx.icon-button($size);
