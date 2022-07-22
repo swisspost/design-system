@@ -61,6 +61,45 @@
     opacity: 0.7;
     color: var(--text-color);
 
+    // Tabs with backgrounds
+    @include color-mx.has-background() {
+      &:not(.active) {
+        &:hover {
+          background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+        }
+
+        &:focus-visible {
+          background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+        }
+      }
+
+      &.active {
+        &:focus-visible {
+          &::after {
+            background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+          }
+        }
+      }
+    }
+
+    /* stylelint-disable-next-line order/order */
+    @include utilities.high-contrast-mode() {
+      opacity: 1;
+
+      &:focus,
+      &:focus-within,
+      &:focus-visible {
+        border-radius: commons.$border-radius;
+        outline: 2px solid highlight;
+        // used for showing full outline
+        outline-offset: -(spacing.$size-micro);
+      }
+
+      &.active {
+        color: highlight;
+      }
+    }
+
     &:focus {
       opacity: 0.7;
       background-color: unset;
@@ -111,45 +150,6 @@
         left: -1px;
         height: 4px;
         background-color: nav.$nav-tabs-link-active-border-color;
-      }
-    }
-
-    // Tabs with backgrounds
-    @include color-mx.has-background() {
-      &:not(.active) {
-        &:hover {
-          background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
-        }
-
-        &:focus-visible {
-          background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
-        }
-      }
-
-      &.active {
-        &:focus-visible {
-          &::after {
-            background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
-          }
-        }
-      }
-    }
-
-    /* stylelint-disable-next-line order/order */
-    @include utilities.high-contrast-mode() {
-      opacity: 1;
-
-      &:focus,
-      &:focus-within,
-      &:focus-visible {
-        border-radius: commons.$border-radius;
-        outline: 2px solid highlight;
-        // used for showing full outline
-        outline-offset: -(spacing.$size-micro);
-      }
-
-      &.active {
-        color: highlight;
       }
     }
   }
