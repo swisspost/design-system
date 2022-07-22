@@ -69,6 +69,7 @@ import { AnimatedButtonsComponent } from './buttons/buttons-demo/animated-button
 import { AccentButtonsComponent } from './buttons/buttons-demo/accent-buttons/accent-buttons.component';
 import { InvertedButtonsComponent } from './buttons/buttons-demo/inverted-buttons/inverted-buttons.component';
 import { ContextualButtonsComponent } from './buttons/buttons-demo/contextual-buttons/contextual-buttons.component';
+import { ButtonDisabledComponent } from './buttons/buttons-demo/button-disabled/button-disabled.component';
 
 @NgModule({
   imports: [
@@ -142,7 +143,8 @@ import { ContextualButtonsComponent } from './buttons/buttons-demo/contextual-bu
     AnimatedButtonsComponent,
     AccentButtonsComponent,
     InvertedButtonsComponent,
-    ContextualButtonsComponent
+    ContextualButtonsComponent,
+    ButtonDisabledComponent
   ],
   exports: [
     AlertDemoComponent,

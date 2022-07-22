@@ -11,9 +11,9 @@ module.exports = {
       name: "@storybook/preset-scss",
       options: {
         sassLoaderOptions: {
-          includePaths: './node_modules'
+          implementation: require('sass')
         }
       }
     }
-  ],
+  ]
 }

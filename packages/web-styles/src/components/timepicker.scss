@@ -36,8 +36,8 @@
   .ngb-tp-chevron {
     &::before {
       @include icon-mixins.pi('2051');
-      width: map.get(button.$btn-icon-scale-map, 'md') * 1rem;
-      height: map.get(button.$btn-icon-scale-map, 'md') * 1rem;
+      width: map.get(button.$btn-icon-size-map, 'md');
+      height: map.get(button.$btn-icon-size-map, 'md');
       transform: none;
       border: 0;
       background-repeat: no-repeat;
@@ -50,10 +50,10 @@
     }
   }
 
-  @each $size in ('sm', 'lg') {
+  @each $size in sm, lg {
     .btn-#{$size} .ngb-tp-chevron::before {
-      width: map.get(button.$btn-icon-scale-map, $size) * 1rem;
-      height: map.get(button.$btn-icon-scale-map, $size) * 1rem;
+      width: map.get(button.$btn-icon-size-map, $size);
+      height: map.get(button.$btn-icon-size-map, $size);
     }
   }
 }
@@ -64,8 +64,8 @@
     @include button-mixins.button-size(rg);
 
     .ngb-tp-chevron::before {
-      width: map.get(button.$btn-icon-scale-map, 'rg') * 1rem;
-      height: map.get(button.$btn-icon-scale-map, 'rg') * 1rem;
+      width: map.get(button.$btn-icon-size-map, 'rg');
+      height: map.get(button.$btn-icon-size-map, 'rg');
     }
   }
 

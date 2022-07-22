@@ -27,8 +27,8 @@
     "format": "prettier src/**/*.scss --write",
     "test": "jest",
     "test:ci": "jest",
-    "start": "npm run storybook",
-    "storybook": "start-storybook -p 6006",
+    "start": "gulp watch",
+    "storybook": "start-storybook -p 6006 --quiet",
     "build:storybook": "build-storybook"
   },
   "dependencies": {

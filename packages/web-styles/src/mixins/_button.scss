@@ -2,6 +2,8 @@
 
 @use '../variables/components/button';
 @use '../variables/type';
+@use '../variables/color';
+@use '../placeholders/color' as color-ph;
 @use '../functions/color' as color-fn;
 @use 'utilities';
 
@@ -20,25 +22,32 @@
 @mixin button-size($size: md) {
   height: map.get(button.$btn-height-map, $size);
   padding: 0 map.get(button.$btn-padding-x-map, $size);
-  border-radius: map.get(button.$btn-border-radius-map, $size);
   font-size: map.get(type.$font-size-map, $size);
   gap: map.get(button.$btn-padding-x-map, $size) * 0.5;
 
   > .pi {
-    transform: scale(map.get(button.$btn-icon-scale-map, $size));
+    width: map.get(button.$btn-icon-size-map, $size);
+    height: map.get(button.$btn-icon-size-map, $size);
   }
+}
+
+@mixin icon-button($size: md) {
+  // Padding for icon buttons is (button-height - font-size) / 2
+  $icon-size: map.get(button.$btn-icon-size-map, $size);
+  $button-height: map.get(button.$btn-height-map, $size);
+  $padding-y: ($button-height - $icon-size) * 0.5 - button.$input-btn-focus-width;
+  min-width: $button-height;
+  padding-right: $padding-y;
+  padding-left: $padding-y;
 }
 
 @mixin button-color-variant($name, $color) {
   .btn-#{$name} {
-    opacity: 1;
+    border-color: transparent;
     background-color: $color;
-    color: color-fn.get-contrast-color($color);
 
     @if (color-fn.get-contrast-color($color) == #fff) {
-      &.btn-animated::after {
-        filter: invert(1);
-      }
+      color: color.$white;
     }
 
     @include utilities.not-disabled-focus-hover() {

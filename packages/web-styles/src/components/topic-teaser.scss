@@ -1,9 +1,14 @@
 @forward '../variables/options';
 
+@use 'sass:map';
+
 @use '../themes/bootstrap/overrides' as *;
 
 @use '../functions/icons';
 @use '../variables/color';
+@use '../variables/grid';
+@use '../variables/spacing';
+@use '../variables/components/topic-teaser';
 @use '../mixins/size';
 
 .topic-teaser {
@@ -13,40 +18,70 @@
     }
   }
 
+  .topic-teaser-container {
+    @include media-breakpoint-up(xxl) {
+      padding-left: map.get(grid.$grid-container-padding, xxl) * 0.5;
+      padding-right: map.get(grid.$grid-container-padding, xxl) * 0.5;
+    }
+  }
+
   &:not(.topic-teaser-reverse) {
-    > .container {
-      @include media-breakpoint-up(lg) {
-        padding-right: 0;
+    @each $key in topic-teaser.$grid-keys-upper {
+      @include media-breakpoint-only($key) {
+        .container {
+          padding-right: 0;
+        }
       }
     }
 
-    .topic-teaser-container > .row {
-      margin-right: 0;
+    .topic-teaser-container {
+      @include media-breakpoint-up(xxl) {
+        padding-right: 0;
+        // webkit subpixel-issue fix
+        margin-right: -1px;
+        clip-path: inset(0 1px (map.get(spacing.$size-curve-huge, 'xxl') * -1) 0);
+      }
+
+      > .row {
+        justify-content: flex-end;
+      }
     }
 
     .topic-teaser-image-container {
-      padding-right: 0;
-    }
-
-    .topic-teaser-content {
-      @include media-breakpoint-up(xxl) {
-        padding-left: 4.5rem;
+      @each $key in topic-teaser.$grid-keys-lower {
+        @include media-breakpoint-only($key) {
+          margin-right: map.get(grid.$grid-container-padding, $key) * -1;
+        }
       }
     }
   }
 }
 
 .topic-teaser-reverse {
-  > .container {
-    @include media-breakpoint-up(lg) {
-      padding-left: 0;
+  @each $key in topic-teaser.$grid-keys-upper {
+    @include media-breakpoint-only($key) {
+      .container {
+        padding-left: 0;
+      }
     }
   }
 
   .topic-teaser-container {
+    @include media-breakpoint-up(xxl) {
+      padding-left: 0;
+    }
+
     > .row {
-      @include media-breakpoint-down(md) {
+      @include media-breakpoint-down(lg) {
         flex-direction: column-reverse;
+      }
+    }
+  }
+
+  .topic-teaser-image-container {
+    @each $key in topic-teaser.$grid-keys-lower {
+      @include media-breakpoint-only($key) {
+        margin-left: map.get(grid.$grid-container-padding, $key) * -1;
       }
     }
   }
@@ -54,31 +89,25 @@
 
 .topic-teaser-image-container {
   @include size.responsive-size('huge', 'margin-bottom', '-$value');
-
-  @include media-breakpoint-down(md) {
-    position: relative;
-    left: 50%;
-    padding-left: 0;
-    transform: translateX(calc(8.5px - 50vw));
-  }
 }
 
 .topic-teaser-image {
-  min-width: 100%;
-  min-height: 100%;
   object-fit: cover;
+
+  @each $key, $value in topic-teaser.$topic-teaser-image-ratios {
+    @include media-breakpoint-up($key) {
+      aspect-ratio: $value;
+    }
+  }
 }
 
 .topic-teaser-content {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 
-  @include media-breakpoint-down(rg) {
-    flex-direction: column;
-  }
-
-  @include media-breakpoint-up(xxl) {
-    padding: 0 calc(3.5rem + 15px) 3.5rem calc(3.5rem - 15px);
+  @include media-breakpoint-up(rg) {
+    flex-direction: row;
+    gap: var(--gutter-x);
   }
 }
 

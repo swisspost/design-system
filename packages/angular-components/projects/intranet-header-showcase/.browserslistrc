@@ -1,16 +1,17 @@
-# This file is used by the build system to adjust CSS and JS output to support the specified browsers below.
-# For additional information regarding the format and rule options, please see:
-# https://github.com/browserslist/browserslist#queries
+# Swiss Post Browsersupport
 
-# For the full list of supported browsers by the Angular framework, please see:
-# https://angular.io/guide/browser-support
+# https://web.post.ch/postweb/-/media/Corp/Intranet/Service-Portal/Kommunikation/Digital/Onlineredaktion/Dokumente/Browserunterst%C3%BCtzung.PDF
 
-# You can see what browsers were selected by your queries by running:
-#   npx browserslist
+# This file configures autoprefixer used in the build script
 
-last 1 Chrome version
-last 1 Firefox version
-last 2 Edge major versions
-last 2 Safari major versions
-last 2 iOS major versions
-Firefox ESR
+# Docs: https://github.com/browserslist/browserslist
+
+last 2 Chrome versions
+last 2 Firefox versions
+last 2 Edge versions
+last 2 Safari versions
+last 2 iOS versions
+last 2 ChromeAndroid versions
+last 2 Samsung versions
+> 2%
+not dead

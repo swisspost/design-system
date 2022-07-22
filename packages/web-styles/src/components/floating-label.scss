@@ -50,6 +50,14 @@
 
   > .form-select {
     @extend .form-select-lg;
+
+    &:empty {
+      ~ label {
+        transform: translateY(
+          forms.$form-floating-padding-y - forms.$form-floating-label-padding-t
+        );
+      }
+    }
   }
   /* stylelint-enable */
 }
