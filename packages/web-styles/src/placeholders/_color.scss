@@ -28,13 +28,4 @@
   }
 
   color: color.$white;
-
-  .btn-animated::after {
-    filter: invert(1);
-  }
-
-  .btn-primary.pi,
-  .btn-primary.btn-animated::after {
-    filter: invert(0);
-  }
 }

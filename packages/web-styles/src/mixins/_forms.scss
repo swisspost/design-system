@@ -1,5 +1,3 @@
-@use '../themes/bootstrap/overrides' as *;
-
 @use '../variables/color';
 @use '../variables/type';
 @use '../variables/components/form-feedback';
@@ -35,15 +33,14 @@
   }
 
   .#{$state}-tooltip {
-    @include border-radius(tooltips.$tooltip-border-radius);
     display: none;
-
     position: absolute;
     z-index: 5;
     top: 100%;
     max-width: 100%; // Contain to parent when possible
     margin-top: 0.1rem;
     padding: tooltips.$tooltip-padding-y tooltips.$tooltip-padding-x;
+    border-radius: tooltips.$tooltip-border-radius;
     color: color-contrast($color);
     font-size: tooltips.$tooltip-font-size;
     line-height: type.$line-height-base;
@@ -122,8 +119,6 @@
 }
 
 @mixin form-control-rg {
-  @include border-radius(forms.$input-border-radius-rg);
-
   height: forms.$input-height-rg;
   padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
   font-size: type.$font-size-regular;
@@ -134,8 +129,8 @@
   outline: none;
   outline-offset: forms.$input-focus-outline-thickness;
 
-  &:focus-visible,
-  &:focus-within /* Compatibility with button-group */ {
+  /* Compatibility with button-group */
+  &:is(:focus-visible, :focus-within) {
     outline: forms.$input-focus-outline-thickness solid var(--text-color);
   }
 }

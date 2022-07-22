@@ -35,39 +35,42 @@ $input-btn-focus-color: rgba(color.$gray-80, 0.25) !default;
 $input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $input-btn-focus-color !default;
 
 // Buttons
-$btn-animation-distance-factor: 0.375 !default;
+$btn-animation-distance-factor: 0.5 !default;
 
 // sm
-$btn-animation-distance-sm: $input-btn-padding-x-sm * $btn-animation-distance-factor !default;
 $btn-padding-y-sm: spacing.$size-mini !default;
-$btn-padding-x-sm: spacing.$size-small-large !default;
+$btn-padding-x-sm: spacing.$size-regular !default;
+$btn-animation-distance-sm: spacing.$size-mini !default;
 // CWF only
 $btn-height-sm: 2rem;
-$btn-icon-scale-sm: 1.2 !default;
+$btn-icon-size-sm: spacing.$size-regular !default;
 
 // rg
-$btn-animation-distance-rg: $input-btn-padding-x-rg * $btn-animation-distance-factor !default;
 $btn-padding-y-rg: spacing.$size-small-regular !default;
-$btn-padding-x-rg: spacing.$size-big !default;
+$btn-padding-x-rg: spacing.$size-large !default;
+$btn-animation-distance-rg: 0.625rem !default;
 // CWF only
 $btn-height-rg: 2.5rem;
-$btn-icon-scale-rg: 1.2 !default;
+$btn-icon-size-rg: 1.125rem !default;
 
 // md
-$btn-animation-distance-md: $input-btn-padding-x * $btn-animation-distance-factor !default;
 $btn-padding-y-md: spacing.$size-regular !default;
 $btn-padding-x-md: spacing.$size-big !default;
+$btn-animation-distance-md: spacing.$size-small-regular !default;
 // CWF only
 $btn-height-md: 3rem;
-$btn-icon-scale-md: 1.4 !default;
+$btn-icon-size-md: spacing.$size-small-large !default;
 
 // lg
-$btn-animation-distance-lg: $input-btn-padding-x-lg * $btn-animation-distance-factor !default;
 $btn-padding-y-lg: spacing.$size-small-large !default;
 $btn-padding-x-lg: spacing.$size-bigger-big !default;
+$btn-animation-distance-lg: spacing.$size-regular !default;
 // CWF only
 $btn-height-lg: 3.5rem;
-$btn-icon-scale-lg: 1.5 !default;
+$btn-icon-size-lg: spacing.$size-large !default;
+
+// Available button sizes except the default, which is md
+$btn-non-default-sizes: sm, rg, lg !default;
 
 $btn-animation-distance-map: (
   'sm': $btn-animation-distance-sm,
@@ -93,11 +96,11 @@ $btn-height-map: (
   'md': $btn-height-md,
   'lg': $btn-height-lg,
 );
-$btn-icon-scale-map: (
-  'sm': $btn-icon-scale-sm,
-  'rg': $btn-icon-scale-rg,
-  'md': $btn-icon-scale-md,
-  'lg': $btn-icon-scale-lg,
+$btn-icon-size-map: (
+  'sm': $btn-icon-size-sm,
+  'rg': $btn-icon-size-rg,
+  'md': $btn-icon-size-md,
+  'lg': $btn-icon-size-lg,
 );
 
 $btn-border-width: $input-btn-border-width !default;
@@ -106,7 +109,8 @@ $btn-font-weight: type.$font-weight-normal !default;
 $btn-box-shadow: none !default;
 $btn-focus-width: $input-btn-focus-width !default;
 $btn-focus-box-shadow: $input-btn-focus-box-shadow !default;
-$btn-disabled-opacity: 0.65 !default;
+$btn-disabled-opacity: 0.4 !default;
+$btn-disabled-background: rgba(color.$black, 0.4) !default;
 $btn-active-box-shadow: none !default;
 
 $btn-link-disabled-color: color.$gray-20 !default;
@@ -115,16 +119,6 @@ $btn-block-spacing-y: 0.5rem !default;
 
 // Allows for customizing button radius independently from global border radius
 $btn-border-radius: commons.$border-radius !default;
-$btn-border-radius-sm: commons.$border-radius-sm !default;
-$btn-border-radius-rg: commons.$border-radius-rg !default;
-$btn-border-radius-lg: commons.$border-radius-lg !default;
-
-$btn-border-radius-map: (
-  'sm': commons.$border-radius-sm,
-  'rg': commons.$border-radius-rg,
-  'md': commons.$border-radius,
-  'lg': commons.$border-radius-lg,
-);
 
 $btn-transition-fade-arrow: opacity animation.$transition-time-default
   animation.$transition-easing-default !default;
