@@ -4,7 +4,7 @@
           class="form-select custom-select text-start no-toggle-arrow" ngbDropdownToggle type="button">
     <span *ngIf="selectedOption" aria-hidden="true">{{selectedOption.label}}</span>
   </button>
-  <label class="form-label" id="customSelectLabel">How do you come to work?</label>
+  <label class="form-label" id="customSelectLabel">Floatinglabel custom-select {{ infoText }}</label>
   <div aria-labelledby="customSelectLabel" class="w-100 mw-100" ngbDropdownMenu role="listbox">
     <button (click)="toggle.focus()" (focus)="selectedOption = option" *ngFor="let option of options"
             [attr.aria-selected]="selectedOption?.value === option.value"
