@@ -4,4 +4,4 @@
 @use "src/components/tables";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("tables"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('tables'), 'font-base-path'));

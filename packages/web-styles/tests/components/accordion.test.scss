@@ -2,14 +2,14 @@
 @use 'sass:meta';
 @use 'tests/jest';
 @use 'src/components/accordion' with (
-  $isolate-components: false
+  $font-base-path: false
 );
 @use 'src/variables/color';
 @use 'src/functions/icons';
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables('accordion'), 'isolate-components'));
-@include jest.false(accordion.$isolate-components);
+@include jest.true(map.has-key(meta.module-variables('accordion'), 'font-base-path'));
+@include jest.false(accordion.$font-base-path);
 
 .accordion-arrow {
   background-image: url(icons.get-colored-svg-url('2063', color.$gray-80));

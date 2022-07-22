@@ -4,4 +4,4 @@
 @use "src/components/utilities";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("utilities"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('utilities'), 'font-base-path'));

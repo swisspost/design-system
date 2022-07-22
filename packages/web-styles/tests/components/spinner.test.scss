@@ -4,4 +4,4 @@
 @use "src/components/spinner";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("spinner"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('spinner'), 'font-base-path'));

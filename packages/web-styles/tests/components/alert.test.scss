@@ -5,4 +5,4 @@
 
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("alert"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('alert'), 'font-base-path'));
