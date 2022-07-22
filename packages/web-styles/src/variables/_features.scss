@@ -1,6 +1,8 @@
-// Options
+// Features
 //
-// Quickly modify global styling by enabling or disabling optional features.
+// Note: This variables have almost no influence on how the UI is shown,
+// because they have not been used in the custom swisspost styling.
+// Nevertheless, they have to be defined, for bootstrap to work as expected.
 
 $enable-caret: true;
 $enable-rounded: true;
