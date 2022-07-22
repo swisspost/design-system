@@ -50,7 +50,7 @@
     }
   }
 
-  @each $size in ('sm', 'lg') {
+  @each $size in sm, lg {
     .btn-#{$size} .ngb-tp-chevron::before {
       width: map.get(button.$btn-icon-size-map, $size);
       height: map.get(button.$btn-icon-size-map, $size);
