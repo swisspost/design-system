@@ -17,7 +17,7 @@
 @use '../placeholders/button' as button-ph;
 
 .btn {
-  @include button-mx.button-size(md);
+  @include button-mx.button-size();
   @include forms.focus-outline();
 
   // Resets
@@ -29,6 +29,7 @@
   overflow: hidden;
   transition: opacity 250ms, border-color 250ms, background-color 250ms, color 250ms;
   border-width: button.$btn-border-width;
+  border-style: solid;
   border-radius: button.$btn-border-radius;
   background-color: transparent;
   box-shadow: none;
@@ -42,7 +43,7 @@
 
 // Primary
 .btn-primary {
-  border: 0;
+  border-color: transparent;
   background-color: rgba(var(--text-color-rgb), 0.8);
   color: var(--background-color);
 
@@ -59,12 +60,24 @@
     }
   }
 
+  // stylelint-disable-next-line order/order
+  @include color-mx.on-dark-background() {
+    .pi {
+      filter: invert(0);
+    }
+  }
+
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
-    background-color: var(--text-color);
+    border-color: var(--text-color);
+    background-color: ButtonFace;
 
     &:hover {
       border-color: highlight;
+    }
+
+    .pi {
+      filter: invert(1) !important;
     }
   }
 
@@ -75,13 +88,6 @@
   .pi {
     filter: invert(1);
     forced-color-adjust: none;
-  }
-
-  // stylelint-disable-next-line order/order
-  @include color-mx.on-dark-background() {
-    .pi {
-      filter: invert(0);
-    }
   }
 }
 
@@ -114,7 +120,7 @@
   }
 
   // Styles  to improve accessibility in high contrast mode
-  @media (forced-colors: active) {
+  @include utilities.high-contrast-mode() {
     color: linktext;
     text-decoration: underline !important;
   }
@@ -124,7 +130,7 @@
 .btn-icon {
   @include button-mx.icon-button();
 
-  @each $size in sm, rg, lg {
+  @each $size in button.$btn-non-default-sizes {
     &.btn-#{$size} {
       @include button-mx.icon-button($size);
     }
@@ -139,15 +145,16 @@
     right: button.$btn-padding-x-md - button.$btn-animation-distance-md;
     width: 0.625em;
     height: 0.625em;
-    transform: rotateZ(315deg) translate(-2px, -2px);
+    transform: rotateZ(315deg)
+      translate(button.$btn-border-width * -1, button.$btn-border-width * -1);
     transform-origin: center center;
     transition: opacity 250ms, transform 250ms;
-    border-right: 2px solid currentColor;
-    border-bottom: 2px solid currentColor;
+    border-right: button.$btn-border-width solid currentColor;
+    border-bottom: button.$btn-border-width solid currentColor;
     opacity: 0;
   }
 
-  @each $size in sm, rg, lg {
+  @each $size in button.$btn-non-default-sizes {
     &.btn-#{$size}::after {
       right: map.get(button.$btn-padding-x-map, $size) -
         map.get(button.$btn-animation-distance-map, $size);
@@ -165,7 +172,7 @@
         transform: translateX(map.get(button.$btn-animation-distance-map, md) * -1);
       }
 
-      @each $size in sm, rg, lg {
+      @each $size in button.$btn-non-default-sizes {
         &.btn-#{$size} > span {
           transform: translateX(map.get(button.$btn-animation-distance-map, $size) * -1);
         }
@@ -185,7 +192,7 @@
 }
 
 // Size variants, default is rg
-@each $size in sm, rg, lg {
+@each $size in button.$btn-non-default-sizes {
   .btn-#{$size} {
     @include button-mx.button-size($size);
   }

@@ -1,13 +1,13 @@
 @use '../mixins/utilities';
 @use '../mixins/color' as color-mx;
+@use '../variables/components/button';
 
 %btn-default {
-  border: 2px solid rgba(var(--text-color-rgb), 0.2);
-  background-color: transparent;
+  border: button.$btn-border-width solid rgba(var(--text-color-rgb), 0.2);
 
   /* stylelint-disable-next-line order/order */
   @include utilities.not-disabled-focus-hover() {
-    border-color: rgba(var(--text-color), 1);
+    border-color: var(--text-color);
     color: var(--text-color); // Override <a> color
   }
 

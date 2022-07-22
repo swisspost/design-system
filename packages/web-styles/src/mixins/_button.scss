@@ -43,7 +43,7 @@
 
 @mixin button-color-variant($name, $color) {
   .btn-#{$name} {
-    border: 0;
+    border-color: transparent;
     background-color: $color;
 
     @if (color-fn.get-contrast-color($color) == #fff) {

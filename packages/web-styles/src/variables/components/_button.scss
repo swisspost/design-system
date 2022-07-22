@@ -69,6 +69,9 @@ $btn-animation-distance-lg: spacing.$size-regular !default;
 $btn-height-lg: 3.5rem;
 $btn-icon-size-lg: spacing.$size-large !default;
 
+// Available button sizes except the default, which is md
+$btn-non-default-sizes: sm, rg, lg !default;
+
 $btn-animation-distance-map: (
   'sm': $btn-animation-distance-sm,
   'rg': $btn-animation-distance-rg,
