@@ -38,17 +38,17 @@
     "ngx-toastr": "14.3.0",
     "rxjs": "6.6.7",
     "tslib": "2.4.0",
-    "zone.js": "0.11.6"
+    "zone.js": "0.11.7"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "13.3.8",
-    "@angular-devkit/build-optimizer": "0.1202.17",
+    "@angular-devkit/build-angular": "13.3.9",
+    "@angular-devkit/build-optimizer": "0.1202.18",
     "@angular-eslint/builder": "13.5.0",
     "@angular-eslint/eslint-plugin": "13.5.0",
     "@angular-eslint/eslint-plugin-template": "13.5.0",
     "@angular-eslint/schematics": "13.5.0",
     "@angular-eslint/template-parser": "13.5.0",
-    "@angular/cli": "13.3.8",
+    "@angular/cli": "13.3.9",
     "@angular/compiler-cli": "13.3.11",
     "@angular/elements": "13.3.11",
     "@angular/language-service": "13.3.11",
