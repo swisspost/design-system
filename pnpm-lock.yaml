@@ -152,7 +152,7 @@ importers:
       raw-loader: 4.0.2
       rimraf: 2.7.1
       rxjs: 6.6.7
-      sass: 1.53.0
+      sass: 1.54.0
       sockjs: 0.3.24
       ts-node: 8.10.2
       tslib: 2.4.0
@@ -214,7 +214,7 @@ importers:
       protractor: 7.0.0
       raw-loader: 4.0.2_webpack@5.73.0
       rimraf: 2.7.1
-      sass: 1.53.0
+      sass: 1.54.0
       sockjs: 0.3.24
       ts-node: 8.10.2_typescript@4.5.5
       typescript: 4.5.5
@@ -250,7 +250,7 @@ importers:
       react: 16.14.0
       react-dom: 16.14.0
       rimraf: 2.7.1
-      sass: 1.53.0
+      sass: 1.54.0
       sass-loader: 10.3.1
       style-loader: 2.0.0
       stylelint: 14.9.1
@@ -290,8 +290,8 @@ importers:
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
       rimraf: 2.7.1
-      sass: 1.53.0
-      sass-loader: 10.3.1_sass@1.53.0+webpack@4.46.0
+      sass: 1.54.0
+      sass-loader: 10.3.1_sass@1.54.0+webpack@4.46.0
       style-loader: 2.0.0_webpack@4.46.0
       stylelint: 14.9.1
       stylelint-config-prettier: 9.0.3_stylelint@14.9.1
@@ -6402,7 +6402,7 @@ packages:
       style-loader: '*'
     dependencies:
       css-loader: 5.2.7_webpack@4.46.0
-      sass-loader: 10.3.1_sass@1.53.0+webpack@4.46.0
+      sass-loader: 10.3.1_sass@1.54.0+webpack@4.46.0
       style-loader: 2.0.0_webpack@4.46.0
     dev: true
 
@@ -12410,7 +12410,7 @@ packages:
     dev: true
 
   /glob-parent/5.1.2:
-    resolution: {integrity: sha1-hpgyxYA0/mikCTwX3BXoNA2EAcQ=}
+    resolution: {integrity: sha512-AOIgSQCepiJYwP3ARnGx+5VnTu2HBYdzbGP45eLw1vr3zB3vZLeyed1sC9hnbcOc9/SrMyM5RPQrkGz4aS9Zow==}
     engines: {node: '>= 6'}
     dependencies:
       is-glob: 4.0.3
@@ -19532,7 +19532,7 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/10.3.1_sass@1.53.0+webpack@4.46.0:
+  /sass-loader/10.3.1_sass@1.54.0+webpack@4.46.0:
     resolution: {integrity: sha512-y2aBdtYkbqorVavkC3fcJIUDGIegzDWPn3/LAFhsf3G+MzPKTJx37sROf5pXtUeggSVbNbmfj8TgRaSLMelXRA==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -19551,7 +19551,7 @@ packages:
       klona: 2.0.5
       loader-utils: 2.0.2
       neo-async: 2.6.2
-      sass: 1.53.0
+      sass: 1.54.0
       schema-utils: 3.1.1
       semver: 7.3.7
       webpack: 4.46.0
@@ -19591,6 +19591,16 @@ packages:
 
   /sass/1.53.0:
     resolution: {integrity: sha512-zb/oMirbKhUgRQ0/GFz8TSAwRq2IlR29vOUJZOx0l8sV+CkHUfHa4u5nqrG+1VceZp7Jfj59SVW9ogdhTvJDcQ==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.1.0
+      source-map-js: 1.0.2
+    dev: true
+
+  /sass/1.54.0:
+    resolution: {integrity: sha512-C4zp79GCXZfK0yoHZg+GxF818/aclhp9F48XBu/+bm9vXEVAYov9iU3FBVRMq3Hx3OA4jfKL+p2K9180mEh0xQ==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
