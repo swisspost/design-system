@@ -1,5 +1,14 @@
 # @swisspost/intranet-header
 
+## 3.0.0-alpha.3
+
+### Patch Changes
+
+- [#162](https://github.com/swisspost/common-web-frontend/pull/162) [`616f534`](https://github.com/swisspost/common-web-frontend/commit/616f534e184e7f48bf1c93fa3311e16e57d4998c) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Includes last 2 safari versions in browserslilstrc and aligns browserslistrc files in all projects
+
+- Updated dependencies [[`0b01019`](https://github.com/swisspost/common-web-frontend/commit/0b010194b3c64bed8b0f3fdf7015a9f53f19732b), [`e280aae`](https://github.com/swisspost/common-web-frontend/commit/e280aaeb4e350e7ea827c13e5108d847ae2608c6), [`0cb7149`](https://github.com/swisspost/common-web-frontend/commit/0cb7149cf2512293620d6fd01a9348e30803a361), [`18f2275`](https://github.com/swisspost/common-web-frontend/commit/18f2275de1201a070d41a6aff696de7972febca0), [`616f534`](https://github.com/swisspost/common-web-frontend/commit/616f534e184e7f48bf1c93fa3311e16e57d4998c), [`616f534`](https://github.com/swisspost/common-web-frontend/commit/616f534e184e7f48bf1c93fa3311e16e57d4998c)]:
+  - @swisspost/web-styles@5.0.0-alpha.4
+
 ## 3.0.0-alpha.2
 
 ### Patch Changes
