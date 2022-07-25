@@ -53,7 +53,7 @@
     "@angular/elements": "13.3.11",
     "@angular/language-service": "13.3.11",
     "@types/highlight.js": "9.12.4",
-    "@types/jasmine": "3.10.6",
+    "@types/jasmine": "4.0.3",
     "@types/jasminewd2": "2.0.10",
     "@types/node": "12.20.55",
     "@typescript-eslint/eslint-plugin": "5.30.6",

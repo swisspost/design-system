@@ -34,7 +34,7 @@ importers:
       '@ng-bootstrap/ng-bootstrap': 12.1.2
       '@popperjs/core': 2.11.5
       '@swisspost/web-styles': ^5.0.0-alpha.2
-      '@types/jasmine': 3.10.6
+      '@types/jasmine': 4.0.3
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 5.30.6
       '@typescript-eslint/parser': 5.30.6
@@ -77,7 +77,7 @@ importers:
       '@angular-eslint/template-parser': 13.5.0_ith3vvxmtodwupiz76r7ntm5fq
       '@angular/cli': 13.3.9
       '@angular/compiler-cli': 13.3.11_2bg7cmqgoal4utdjle3uiszux4
-      '@types/jasmine': 3.10.6
+      '@types/jasmine': 4.0.3
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 5.30.6_fc2kn7yy5c3veelpn6i3b5mf4e
       '@typescript-eslint/parser': 5.30.6_ith3vvxmtodwupiz76r7ntm5fq
@@ -127,7 +127,7 @@ importers:
       '@swisspost/intranet-header': ^3.0.0-alpha.2
       '@swisspost/web-styles': ^5.0.0-alpha.3
       '@types/highlight.js': 9.12.4
-      '@types/jasmine': 3.10.6
+      '@types/jasmine': 4.0.3
       '@types/jasminewd2': 2.0.10
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 5.30.6
@@ -195,7 +195,7 @@ importers:
       '@angular/elements': 13.3.11_jja5hswza62cyrzuv2ki4dnjcu
       '@angular/language-service': 13.3.11
       '@types/highlight.js': 9.12.4
-      '@types/jasmine': 3.10.6
+      '@types/jasmine': 4.0.3
       '@types/jasminewd2': 2.0.10
       '@types/node': 12.20.55
       '@typescript-eslint/eslint-plugin': 5.30.6_fc2kn7yy5c3veelpn6i3b5mf4e
@@ -6808,14 +6808,14 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jasmine/3.10.6:
-    resolution: {integrity: sha512-twY9adK/vz72oWxCWxzXaxoDtF9TpfEEsxvbc1ibjF3gMD/RThSuSud/GKUTR3aJnfbivAbC/vLqhY+gdWCHfA==}
+  /@types/jasmine/4.0.3:
+    resolution: {integrity: sha512-Opp1LvvEuZdk8fSSvchK2mZwhVrsNT0JgJE9Di6MjnaIpmEXM8TLCPPrVtNTYh8+5MPdY8j9bAHMu2SSfwpZJg==}
     dev: true
 
   /@types/jasminewd2/2.0.10:
     resolution: {integrity: sha512-J7mDz7ovjwjc+Y9rR9rY53hFWKATcIkrr9DwQWmOas4/pnIPJTXawnzjwpHm3RSxz/e3ZVUvQ7cRbd5UQLo10g==}
     dependencies:
-      '@types/jasmine': 3.10.6
+      '@types/jasmine': 4.0.3
     dev: true
 
   /@types/json-schema/7.0.11:
