@@ -1,5 +1,11 @@
 # @swisspost/web-styles
 
+## 5.0.0-alpha.5
+
+### Major Changes
+
+- [#189](https://github.com/swisspost/common-web-frontend/pull/189) [`6ec9d66`](https://github.com/swisspost/common-web-frontend/commit/6ec9d667a3aff9aa00b76a2ce208a81749ad85bd) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Removes deprecated SCSS-variables $font-size-map, $font-size-sm, $font-size-rg and $font-size-lg from project, in favor of the new \$font-sizes map.
+
 ## 5.0.0-alpha.4
 
 ### Major Changes
