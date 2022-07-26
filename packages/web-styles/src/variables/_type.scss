@@ -149,19 +149,6 @@ $font-size-base: $font-size-regular !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: $line-height-regular !default;
 
-// !Deprecated! in favor of $font-sizes
-$font-size-sm: $font-size-tiny !default;
-$font-size-rg: $font-size-base !default;
-$font-size-lg: $font-size-bigger-regular !default;
-
-// !Deprecated! in favor of $font-sizes
-$font-size-map: (
-  'sm': $font-size-sm,
-  'rg': $font-size-rg,
-  'md': $font-size-base,
-  'lg': $font-size-lg,
-);
-
 $headings-margin-bottom: (spacing.$spacer * 0.5) !default;
 $headings-font-family: inherit !default;
 $headings-font-weight: 300 !default;
