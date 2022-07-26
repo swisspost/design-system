@@ -43,6 +43,7 @@ $btn-padding-x-sm: spacing.$size-regular !default;
 $btn-animation-distance-sm: spacing.$size-mini !default;
 // CWF only
 $btn-height-sm: 2rem;
+$btn-font-size-sm: type.$font-size-tiny !default;
 $btn-icon-size-sm: spacing.$size-regular !default;
 
 // rg
@@ -51,6 +52,7 @@ $btn-padding-x-rg: spacing.$size-large !default;
 $btn-animation-distance-rg: 0.625rem !default;
 // CWF only
 $btn-height-rg: 2.5rem;
+$btn-font-size-rg: type.$font-size-regular !default;
 $btn-icon-size-rg: 1.125rem !default;
 
 // md
@@ -59,6 +61,7 @@ $btn-padding-x-md: spacing.$size-big !default;
 $btn-animation-distance-md: spacing.$size-small-regular !default;
 // CWF only
 $btn-height-md: 3rem;
+$btn-font-size-md: type.$font-size-regular !default;
 $btn-icon-size-md: spacing.$size-small-large !default;
 
 // lg
@@ -67,6 +70,7 @@ $btn-padding-x-lg: spacing.$size-bigger-big !default;
 $btn-animation-distance-lg: spacing.$size-regular !default;
 // CWF only
 $btn-height-lg: 3.5rem;
+$btn-font-size-lg: type.$font-size-bigger-regular !default;
 $btn-icon-size-lg: spacing.$size-large !default;
 
 // Available button sizes except the default, which is md
@@ -95,6 +99,12 @@ $btn-height-map: (
   'rg': $btn-height-rg,
   'md': $btn-height-md,
   'lg': $btn-height-lg,
+);
+$btn-font-size-map: (
+  'sm': $btn-font-size-sm,
+  'rg': $btn-font-size-rg,
+  'md': $btn-font-size-md,
+  'lg': $btn-font-size-lg,
 );
 $btn-icon-size-map: (
   'sm': $btn-icon-size-sm,
