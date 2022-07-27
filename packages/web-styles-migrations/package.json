@@ -1,28 +1,28 @@
 {
-  "name": "@swispost/web-styles-migrations",
+  "name": "@swisspost/web-styles-migrations",
   "version": "1.0.0-alpha.1",
   "description": "Angular schematics for the web-styles migration.",
+  "keywords": [
+    "schematics"
+  ],
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/common-web-frontend.git"
   },
-  "homepage": "https://swisspost-web-frontend.netlify.app/",
+  "homepage": "https://swisspost-web-frontend.netlify.app",
   "bugs": {
     "url": "https://github.com/swisspost/common-web-frontend/issues"
   },
   "publishConfig": {
-    "directory": "dist"
+    "directory": "dist",
+    "access": "public"
   },
   "scripts": {
     "build": "tsc -p tsconfig.json && copyfiles -u 1 src/*/schema.json src/*/files/** src/migrations.json dist",
     "todo:test": "npm run build && jasmine src/**/*_spec.js"
   },
-  "keywords": [
-    "schematics"
-  ],
-  "schematics": "./dist/migrations.json",
   "dependencies": {
     "@angular-devkit/core": "^13.3.1",
     "@angular-devkit/schematics": "^13.3.1",
@@ -37,5 +37,6 @@
     "@types/node": "^12.11.1",
     "copyfiles": "^2.4.1",
     "jasmine": "~4.0.0"
-  }
+  },
+  "schematics": "./dist/migrations.json"
 }
