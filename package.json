@@ -4,14 +4,13 @@
 		"start:demo": "pnpm --filter web-demo --filter web-styles --parallel --stream  start",
 		"start:styles": "pnpm --filter web-styles storybook",
 		"start:intranet-header": "pnpm --filter angular-components start",
-		"bootstrap": "pnpm install && pnpm exec lerna bootstrap && pnpm run -r build",
+		"bootstrap": "pnpm install && pnpm run -r build",
 		"changeset:publish": "pnpm bootstrap && pnpm changeset publish",
 		"changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
 	},
 	"devDependencies": {
 		"@changesets/changelog-github": "0.4.6",
-		"@changesets/cli": "2.24.0",
-		"lerna": "4.0.0"
+		"@changesets/cli": "2.24.0"
 	},
 	"name": "swisspost-web-frontend",
 	"license": "Apache-2.0"
