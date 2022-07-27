@@ -6,7 +6,6 @@
     "@swisspost/intranet-header": "3.0.0-preview",
     "@swisspost/web-demo": "5.0.0-preview",
     "@swisspost/web-styles": "5.0.0-preview",
-    "@swispost/web-styles-migrations": "0.0.1-alpha.0",
     "@swisspost/web-styles-migrations": "1.0.0-alpha.1"
   },
   "changesets": [
