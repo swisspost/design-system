@@ -36,7 +36,8 @@
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "copyfiles": "^2.4.1",
-    "jasmine": "~4.0.0"
+    "jasmine": "~4.0.0",
+    "json": "^11.0.0"
   },
   "schematics": "./dist/migrations.json"
 }
