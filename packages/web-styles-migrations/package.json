@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/web-styles-migrations",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.2",
   "description": "Angular schematics for the web-styles migration.",
   "keywords": [
     "schematics"

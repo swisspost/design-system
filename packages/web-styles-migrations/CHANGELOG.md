@@ -1,5 +1,11 @@
 # @swisspost/web-styles-migrations
 
+## 1.0.0-alpha.2
+
+### Patch Changes
+
+- [#221](https://github.com/swisspost/common-web-frontend/pull/221) [`07f9e00`](https://github.com/swisspost/common-web-frontend/commit/07f9e000b325c3c1b3f1db7177caebab4e639c2b) Thanks [@gfellerph](https://github.com/gfellerph)! - Added README.md and LICENSE to the published package
+
 ## 1.0.0-alpha.1
 
 ### Major Changes
