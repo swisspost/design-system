@@ -311,6 +311,7 @@ importers:
       '@types/node': ^12.11.1
       copyfiles: ^2.4.1
       jasmine: ~4.0.0
+      json: ^11.0.0
       rxjs: 6.5.3
       typescript: ~4.6.2
       zone.js: 0.11.4
@@ -327,6 +328,7 @@ importers:
       '@types/node': 12.20.55
       copyfiles: 2.4.1
       jasmine: 4.0.2
+      json: 11.0.0
 
 packages:
 
@@ -14807,6 +14809,12 @@ packages:
 
   /json-stringify-safe/5.0.1:
     resolution: {integrity: sha512-ZClg6AaYvamvYEE82d3Iyd3vSSIjQ+odgjaTzRuO3s7toCdFKczob2i0zCh7JE8kWn17yvAWhUVxvqGwUalsRA==}
+    dev: true
+
+  /json/11.0.0:
+    resolution: {integrity: sha512-N/ITv3Yw9Za8cGxuQqSqrq6RHnlaHWZkAFavcfpH/R52522c26EbihMxnY7A1chxfXJ4d+cEFIsyTgfi9GihrA==}
+    engines: {node: '>=0.10.0'}
+    hasBin: true
     dev: true
 
   /json5/1.0.1:

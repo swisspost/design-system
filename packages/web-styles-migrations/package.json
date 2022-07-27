@@ -20,7 +20,7 @@
     "access": "public"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json && copyfiles -u 1 src/*/schema.json src/*/files/** src/migrations.json dist",
+    "build": "tsc -p tsconfig.json && copyfiles -u 1 src/*/schema.json src/*/files/** src/migrations.json dist && copyfiles package.json dist && json -I -f dist/package.json -e \"delete this.publishConfig.directory\"",
     "todo:test": "npm run build && jasmine src/**/*_spec.js"
   },
   "dependencies": {
@@ -36,7 +36,8 @@
     "@types/jasmine": "~3.10.0",
     "@types/node": "^12.11.1",
     "copyfiles": "^2.4.1",
-    "jasmine": "~4.0.0"
+    "jasmine": "~4.0.0",
+    "json": "^11.0.0"
   },
   "schematics": "./dist/migrations.json"
 }
