@@ -66,6 +66,6 @@ jobs:
         if: ${{ steps.pr.outputs.event_action == 'opened' }}
         with:
           message: |
-            🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}--swisspost-web-frontend.netlify.app/
+            🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}--swisspost-web-frontend.netlify.app
           pr_number: ${{ steps.pr.outputs.pr_number }} # This will comment on pull request #123
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
