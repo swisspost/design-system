@@ -1,8 +1,8 @@
-# Getting Started With Schematics
+# Web Styles Migrations
 
-This repository is a basic Schematic implementation that serves as a starting point to create and publish Schematics to NPM.
+Schematics to transform a software project by adapting it to current Web Styles.
 
-### Testing
+## Testing
 
 To test locally, install `@angular-devkit/schematics-cli` globally and use the `schematics` command line tool. That tool acts the same as the `generate` command of the Angular CLI, but also has a debug mode.
 
@@ -12,17 +12,10 @@ Check the documentation with
 schematics --help
 ```
 
-### Unit Testing
+## Unit Testing
 
 `npm run test` will run the unit tests, using Jasmine as a runner and test framework.
 
-### Publishing
+## Contributing
 
-To publish, simply do:
-
-```bash
-npm run build
-npm publish
-```
-
-That's it!
+Learn more on how to contribute to this project in the [general contribution guidelines](../../CONTRIBUTING.md).
