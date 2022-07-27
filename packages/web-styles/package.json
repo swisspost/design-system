@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/web-styles",
-  "version": "5.0.0-alpha.3",
+  "version": "5.0.0-alpha.5",
   "description": "Common styles for the Swiss Post web platform.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -27,8 +27,8 @@
     "format": "prettier src/**/*.scss --write",
     "test": "jest",
     "test:ci": "jest",
-    "start": "npm run storybook",
-    "storybook": "start-storybook -p 6006",
+    "start": "gulp watch",
+    "storybook": "start-storybook -p 6006 --quiet",
     "build:storybook": "build-storybook"
   },
   "dependencies": {
@@ -66,7 +66,7 @@
     "postcss-scss": "4.0.4",
     "prettier": "2.7.1",
     "rimraf": "2.7.1",
-    "sass": "1.53.0",
+    "sass": "1.54.0",
     "stylelint": "14.9.1",
     "stylelint-config-prettier": "9.0.3",
     "stylelint-config-sass-guidelines": "9.0.1",

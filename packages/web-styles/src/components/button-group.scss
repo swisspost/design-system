@@ -1,6 +1,6 @@
 @use '../variables/color';
 @use '../mixins/utilities';
-@use './button';
+@use '../placeholders/button';
 
 .btn-group {
   display: inline-flex;

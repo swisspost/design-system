@@ -14,6 +14,7 @@
 @use '../mixins/button' as button-mx;
 @use '../functions/icons' as icon-fn;
 @use '../functions/color' as color-fn;
+@use '../placeholders/button' as button-ph;
 
 .btn {
   @include button-mx.button-size();
@@ -29,47 +30,68 @@
   transition: opacity 250ms, border-color 250ms, background-color 250ms, color 250ms;
   border-width: button.$btn-border-width;
   border-style: solid;
-  border-color: transparent;
+  border-radius: button.$btn-border-radius;
   background-color: transparent;
   box-shadow: none;
-  color: inherit;
+  color: var(--text-color);
   font-family: inherit;
   font-weight: button.$btn-font-weight;
   line-height: inherit;
   text-decoration: none !important; // For <a> tags, !important for hover
-  text-overflow: ellipsis;
   white-space: nowrap; // Long content should never break in buttons
-
-  &:disabled {
-    opacity: button.$btn-disabled-opacity !important;
-  }
-
-  > .pi {
-    width: 1em;
-    height: 1em;
-  }
 }
 
-// Size dependent properties, default is lg
-@each $size in sm, rg, lg {
-  .btn-#{$size} {
-    @include button-mx.button-size($size);
+// Primary
+.btn-primary {
+  border-color: transparent;
+  background-color: rgba(var(--text-color-rgb), 0.8);
+  color: var(--background-color);
+
+  @include utilities.not-disabled-focus-hover() {
+    background-color: var(--text-color);
+    color: var(--background-color); // Override <a> color
+  }
+
+  @include color-mx.on-dark-background {
+    background-color: var(--text-color);
+
+    @include utilities.not-disabled-focus-hover() {
+      background-color: rgba(var(--text-color-rgb), 0.8);
+    }
+  }
+
+  // stylelint-disable-next-line order/order
+  @include color-mx.on-dark-background() {
+    .pi {
+      filter: invert(0);
+    }
+  }
+
+  // Styles  to improve accessibility in high contrast mode
+  @include utilities.high-contrast-mode() {
+    border-color: var(--text-color);
+    background-color: ButtonFace;
+
+    &:hover {
+      border-color: highlight;
+    }
+
+    .pi {
+      filter: invert(1) !important;
+    }
+  }
+
+  &:disabled {
+    background-color: rgba(var(--text-color-rgb), 0.4);
+  }
+
+  .pi {
+    filter: invert(1);
+    forced-color-adjust: none;
   }
 }
 
 // Default / secondary
-%btn-default {
-  border-color: rgba(var(--text-color-rgb), 0.2);
-  background-color: transparent;
-  color: var(--text-color);
-
-  /* stylelint-disable-next-line order/order */
-  @include utilities.not-disabled-focus-hover() {
-    border-color: rgba(var(--text-color), 1);
-    color: var(--text-color); // Override <a> color
-  }
-}
-
 .btn-default,
 .btn-secondary {
   @extend %btn-default;
@@ -82,95 +104,88 @@
   }
 }
 
-// Primary
-.btn-primary {
-  background-color: var(--gray-80);
-  color: var(--background-color);
+// Tertiary
+.btn-link,
+.btn-tertiary {
+  border: 0;
+  padding-right: 0.375rem;
+  padding-left: 0.375rem;
 
   @include utilities.not-disabled-focus-hover() {
-    background-color: var(--text-color);
-    color: var(--background-color); // Override <a> color
+    color: rgba(var(--text-color-rgb), 0.8);
+  }
+
+  &:disabled {
+    color: rgba(var(--text-color-rgb), 0.6);
   }
 
   // Styles  to improve accessibility in high contrast mode
+  /* stylelint-disable-next-line order/order */
   @include utilities.high-contrast-mode() {
-    background-color: rgba(var(--text-color-rgb), var(--button-hover-background-opacity));
-
-    &:hover {
-      border-color: highlight;
-    }
-  }
-
-  .pi,
-  &.btn-animated::after {
-    filter: invert(1);
-    forced-color-adjust: none;
-  }
-
-  // stylelint-disable-next-line order/order
-  @include color-mx.on-dark-background() {
-    .pi {
-      filter: invert(0);
-    }
+    color: linktext;
+    text-decoration: underline !important;
   }
 }
 
 // Icon
 .btn-icon {
-  @include icons.icon-button();
+  @include button-mx.icon-button();
 
-  @each $size in sm, rg, lg {
+  // Hide everyithing but the icon
+  > *:not(.pi) {
+    @include utilities.visuallyhidden();
+  }
+
+  @each $size in button.$btn-non-default-sizes {
     &.btn-#{$size} {
-      @include icons.icon-button($size);
+      @include button-mx.icon-button($size);
     }
   }
 }
 
 // Animated
-.btn-animated {
-  @include utilities.high-contrast-mode() {
-    &::after {
-      filter: invert(1);
-    }
-  }
-
+.btn-animated:not(.btn-link, .btn-tertiary) {
   &::after {
     content: '';
     position: absolute;
-    right: map.get(button.$btn-padding-x-map, rg) * (1 - button.$btn-animation-distance-factor);
-    width: 1em;
-    height: 1em;
-    transform: translateX(-2px);
+    right: button.$btn-padding-x-md - button.$btn-animation-distance-md;
+    width: 0.625em;
+    height: 0.625em;
+    transform: rotateZ(315deg)
+      translate(button.$btn-border-width * -1, button.$btn-border-width * -1);
+    transform-origin: center center;
     transition: opacity 250ms, transform 250ms;
+    border-right: button.$btn-border-width solid currentColor;
+    border-bottom: button.$btn-border-width solid currentColor;
     opacity: 0;
-    background: url(icon-fn.add-stroke-color(
-      icon-fn.get-colored-svg-url(2050, color.$black),
-      color.$black,
-      2
-    ));
-    background-repeat: no-repeat;
-    background-size: contain;
+  }
+
+  @each $size in button.$btn-non-default-sizes {
+    &.btn-#{$size}::after {
+      right: map.get(button.$btn-padding-x-map, $size) -
+        map.get(button.$btn-animation-distance-map, $size);
+    }
   }
 
   > span {
     transition: transform 250ms;
   }
 
-  // Only animate when user did no set animations to false
+  // Only animate when user prefers to see animations
   @media (prefers-reduced-motion: no-preference) {
     @include utilities.not-disabled-focus-hover() {
       > span {
-        transform: translateX(map.get(button.$btn-animation-distance-map, rg) * -1);
+        transform: translateX(map.get(button.$btn-animation-distance-map, md) * -1);
       }
 
-      @each $size in sm, md, lg {
+      @each $size in button.$btn-non-default-sizes {
         &.btn-#{$size} > span {
           transform: translateX(map.get(button.$btn-animation-distance-map, $size) * -1);
         }
       }
 
       &::after {
-        transform: translateX(0);
+        transform: rotateZ(315deg) translate(0, 0);
         opacity: 1;
       }
     }
@@ -180,23 +195,12 @@
       transform: translateX(0);
     }
   }
-
-  @each $size in sm, md, lg {
-    &.btn-#{$size}::after {
-      right: map.get(button.$btn-padding-x-map, $size) *
-        (1 - button.$btn-animation-distance-factor);
-    }
-  }
 }
 
-// Link
-.btn-link {
-  border: 0;
-
-  // Styles  to improve accessibility in high contrast mode
-  @media (forced-colors: active) {
-    color: linktext;
-    text-decoration: underline !important;
+// Size variants, default is rg
+@each $size in button.$btn-non-default-sizes {
+  .btn-#{$size} {
+    @include button-mx.button-size($size);
   }
 }
 
