@@ -1,6 +1,6 @@
 {
   "name": "@swispost/web-styles-migrations",
-  "version": "0.0.1-alpha.0",
+  "version": "1.0.0-alpha.1",
   "description": "Angular schematics for the web-styles migration.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",

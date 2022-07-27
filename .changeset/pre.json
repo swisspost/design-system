@@ -5,7 +5,8 @@
     "@swisspost/angular-components": "0.0.0",
     "@swisspost/intranet-header": "3.0.0-preview",
     "@swisspost/web-demo": "5.0.0-preview",
-    "@swisspost/web-styles": "5.0.0-preview"
+    "@swisspost/web-styles": "5.0.0-preview",
+    "@swispost/web-styles-migrations": "0.0.1-alpha.0"
   },
   "changesets": [
     "chilled-rivers-look",
@@ -27,6 +28,7 @@
     "smart-beans-relate",
     "tall-moons-joke",
     "tasty-lies-compare",
+    "violet-snakes-design",
     "wet-humans-attend",
     "witty-falcons-teach"
   ]
