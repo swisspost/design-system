@@ -14,20 +14,17 @@ import "./icons.scss";
 
 Use these buttons in most situations. If you don't want the animation, you can leave out the .btn-animated class.
 <Canvas>
-    <button class="btn btn-default btn-animated"><span>Secondary</span></button>
-    <button class="btn btn-primary btn-animated"><span>Primary</span></button>
-    <button class="btn btn-link">Tertiary</button>
-</Canvas>
-
-<Canvas>
+<div class="p-regular flex-wrap d-flex gap-regular">
   <button class="btn btn-primary btn-animated"><span>Primary</span></button>
   <button class="btn btn-secondary btn-animated"><span>Secondary</span></button>
   <button class="btn btn-link">Tertiary</button>
+</div>
 </Canvas>
 
 ### Disabled buttons
 
-#### Accessability
+**Accessability**
+
 Disabled controls are an accessibility anti-pattern for various reasons:
 
 1. They are not focussable, screen reader users or keyboard users cannot focus the button and might miss information that is hidden e.g. in a tooltip.
@@ -36,16 +33,7 @@ Disabled controls are an accessibility anti-pattern for various reasons:
 Try to avoid disabled buttons by displaying an error message for invalid forms or hiding the control if a user cannot perform a certain action.
 
 <Canvas>
-<button disabled="" class="btn btn-primary btn-animated">
-    <span>Primary</span>
-  </button>
-  <button disabled="" class="btn btn-secondary btn-animated">
-    <span>Secondary</span>
-  </button>
-  <button disabled="" class="btn btn-link">Tertiary</button>
-</Canvas> 
-
-<Canvas>
+<div class="p-regular d-flex flex-wrap gap-regular">
   <button disabled="" class="btn btn-primary btn-animated">
     <span>Primary</span>
   </button>
@@ -53,7 +41,8 @@ Try to avoid disabled buttons by displaying an error message for invalid forms o
     <span>Secondary</span>
   </button>
   <button disabled="" class="btn btn-link">Tertiary</button>
-</Canvas> 
+</div>
+</Canvas>
 
 
 ### Animated
@@ -133,6 +122,8 @@ The animated buttons need a span around the text!
 
 
 ### Icon buttons with text
+
+Icon buttons with text should not have the class .btn-icon, otherwise the horizontal padding is not correct.
 <Canvas>
 <p class="d-flex align-items-center gap-small-r">
 <button type="button" class="btn btn-icon btn-default btn-sm">
@@ -215,6 +206,8 @@ The animated buttons need a span around the text!
 
 
 ### Inverted buttons
+
+Inverted buttons don't need special classes anymore, just use any of the background classes to set the background and you're done for the day.
 <Canvas>
 <button type="button" class="btn btn-primary btn-inverted">
 Primary inverted
