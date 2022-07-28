@@ -19,6 +19,42 @@ Use these buttons in most situations. If you don't want the animation, you can l
     <button class="btn btn-link">Tertiary</button>
 </Canvas>
 
+<Canvas>
+  <button class="btn btn-primary btn-animated"><span>Primary</span></button>
+  <button class="btn btn-secondary btn-animated"><span>Secondary</span></button>
+  <button class="btn btn-link">Tertiary</button>
+</Canvas>
+
+### Disabled buttons
+
+#### Accessability
+Disabled controls are an accessibility anti-pattern for various reasons:
+
+1. They are not focussable, screen reader users or keyboard users cannot focus the button and might miss information that is hidden e.g. in a tooltip.
+2. The color contrast of disabled button is very low.
+
+Try to avoid disabled buttons by displaying an error message for invalid forms or hiding the control if a user cannot perform a certain action.
+
+<Canvas>
+<button disabled="" class="btn btn-primary btn-animated">
+    <span>Primary</span>
+  </button>
+  <button disabled="" class="btn btn-secondary btn-animated">
+    <span>Secondary</span>
+  </button>
+  <button disabled="" class="btn btn-link">Tertiary</button>
+</Canvas> 
+
+<Canvas>
+  <button disabled="" class="btn btn-primary btn-animated">
+    <span>Primary</span>
+  </button>
+  <button disabled="" class="btn btn-secondary btn-animated">
+    <span>Secondary</span>
+  </button>
+  <button disabled="" class="btn btn-link">Tertiary</button>
+</Canvas> 
+
 
 ### Animated
 
