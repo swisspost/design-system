@@ -8,4 +8,10 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  darkMode: {
+    classTarget: 'html',
+    lightClass: 'bg-white',
+    darkClass: 'bg-primary',
+    stylePreview: true
+  }
 }
