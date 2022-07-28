@@ -40,6 +40,11 @@ const IconTemplate = (args) => {
 
 
 export const Default = Template.bind({});
+Default.parameters = {
+  controls: {
+    include: ['label', 'size', 'animated', 'variant']
+  }
+}
 Default.args = {
   label: 'Default button',
   size: 'md',
@@ -52,6 +57,11 @@ Default.args = {
 
 
 export const Icon = IconTemplate.bind({});
+Icon.parameters = {
+  controls: {
+    include: ['label', 'size', 'variant', 'iconText']
+  }
+}
 Icon.args = {
   label: 'Some text',
   size: 'md',
