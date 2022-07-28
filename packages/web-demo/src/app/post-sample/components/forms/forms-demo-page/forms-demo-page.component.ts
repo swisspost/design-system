@@ -53,7 +53,7 @@ export class FormsDemoPageComponent {
 </div>
 <div class="d-flex flex-row-reverse gap-mini">
   <button class="btn btn-primary">Send</button>
-  <button class="btn btn-default">Cancel</button>
+  <button class="btn btn-secondary">Cancel</button>
 </div>`;
   floatingLabels = `<div class="row">
   <div class="col">

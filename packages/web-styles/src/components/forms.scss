@@ -34,9 +34,9 @@ select.form-control-rg:not([size]):not([multiple]) {
     top: 0;
     right: 0;
     bottom: 0;
+    margin-inline-start: forms.$input-padding-x;
+    margin-inline-end: 0;
     border-inline-end-width: 0;
     border-inline-start-width: forms.$input-border-width;
-    margin-inline-end: 0;
-    margin-inline-start: forms.$input-padding-x;
   }
 }
