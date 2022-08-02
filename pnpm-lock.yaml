@@ -63,7 +63,7 @@ importers:
       '@angular/router': 13.3.11_2ppcnal7hrkvaafvdrvxrqal2y
       '@ng-bootstrap/ng-bootstrap': 12.1.2_yo4nyljaedshdbpuvcqn4vhfju
       '@popperjs/core': 2.11.5
-      '@swisspost/web-styles': link:../web-styles/dist
+      '@swisspost/web-styles': link:../web-styles
       rxjs: 7.5.6
       tslib: 2.4.0
       watch: 1.0.2
@@ -96,7 +96,7 @@ importers:
       '@swisspost/web-styles': ^5.0.0-alpha.4
       tslib: 2.4.0
     dependencies:
-      '@swisspost/web-styles': link:../../../web-styles/dist
+      '@swisspost/web-styles': link:../../../web-styles
       tslib: 2.4.0
     publishDirectory: ../../dist/swisspost-intranet-header
 
@@ -173,8 +173,8 @@ importers:
       '@ng-bootstrap/ng-bootstrap': 12.1.2_uljo6qaxmbqaoc6utzruwoktwy
       '@popperjs/core': 2.11.5
       '@swimlane/ngx-datatable': 20.0.0_ngcav2jk6phtonomh6fl2dj7bq
-      '@swisspost/intranet-header': link:../angular-components/dist/swisspost-intranet-header
-      '@swisspost/web-styles': link:../web-styles/dist
+      '@swisspost/intranet-header': link:../angular-components/projects/swisspost-intranet-header
+      '@swisspost/web-styles': link:../web-styles
       bootstrap: 5.1.3_@popperjs+core@2.11.5
       core-js: 2.6.12
       highlight.js: 10.7.3
@@ -312,24 +312,24 @@ importers:
       '@types/jasmine': 3.10.6
       '@types/node': 12.20.55
       copyfiles: 2.4.1
-      jasmine: 4.0.2
+      jasmine: 4.3.0
       json: 11.0.0
       rxjs: 6.5.3
       typescript: 4.6.4
-      zone.js: 0.11.4
+      zone.js: 0.11.7
     dependencies:
       '@angular-devkit/core': 13.3.9
       '@angular-devkit/schematics': 13.3.9
       '@angular/compiler': 13.3.11
-      '@angular/core': 13.3.11_rxjs@6.5.3+zone.js@0.11.4
+      '@angular/core': 13.3.11_rxjs@6.5.3+zone.js@0.11.7
       rxjs: 6.5.3
       typescript: 4.6.4
-      zone.js: 0.11.4
+      zone.js: 0.11.7
     devDependencies:
       '@types/jasmine': 3.10.6
       '@types/node': 12.20.55
       copyfiles: 2.4.1
-      jasmine: 4.0.2
+      jasmine: 4.3.0
       json: 11.0.0
     publishDirectory: dist
 
@@ -822,7 +822,7 @@ packages:
     dependencies:
       tslib: 2.4.0
 
-  /@angular/core/13.3.11_rxjs@6.5.3+zone.js@0.11.4:
+  /@angular/core/13.3.11_rxjs@6.5.3+zone.js@0.11.7:
     resolution: {integrity: sha512-9BmE2CxyV0g+AkBeuc8IwjSOiJ8Y+kptXnqD/J8EAFT3B0/fLGVnjFdZC6Sev9L0SNZb6qdzebpfIOLqbUjReQ==}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     peerDependencies:
@@ -831,7 +831,7 @@ packages:
     dependencies:
       rxjs: 6.5.3
       tslib: 2.4.0
-      zone.js: 0.11.4
+      zone.js: 0.11.7
     dev: false
 
   /@angular/core/13.3.11_rxjs@6.6.7+zone.js@0.11.7:
@@ -14213,8 +14213,8 @@ packages:
       jasmine-core: 2.8.0
     dev: true
 
-  /jasmine/4.0.2:
-    resolution: {integrity: sha512-YsrgxJQEggxzByYe4j68eQLOiQeSrPDYGv4sHhGBp3c6HHdq+uPXeAQ73kOAQpdLZ3/0zN7x/TZTloqeE1/qIA==}
+  /jasmine/4.3.0:
+    resolution: {integrity: sha512-ieBmwkd8L1DXnvSnxx7tecXgA0JDgMXPAwBcqM4lLPedJeI9hTHuWifPynTC+dLe4Y+GkSPSlbqqrmYIgGzYUw==}
     hasBin: true
     dependencies:
       glob: 7.2.3
@@ -22756,12 +22756,6 @@ packages:
     resolution: {integrity: sha512-rVksvsnNCdJ/ohGc6xgPwyN8eheCxsiLM8mxuE/t/mOVqJewPuO1miLpTHQiRgTKCLexL4MeAFVagts7HmNZ2Q==}
     engines: {node: '>=10'}
     dev: true
-
-  /zone.js/0.11.4:
-    resolution: {integrity: sha1-D3Dc9quoD2mK9XNcuyV5aTlugCU=}
-    dependencies:
-      tslib: 2.4.0
-    dev: false
 
   /zone.js/0.11.7:
     resolution: {integrity: sha512-e39K2EdK5JfA3FDuUTVRvPlYV4aBfnOOcGuILhQAT7nzeV12uSrLBzImUM9CDVoncDSX4brR/gwqu0heQ3BQ0g==}
