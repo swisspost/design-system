@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/web-styles",
-  "version": "5.0.0-alpha.3",
+  "version": "5.0.0-alpha.6",
   "description": "Common styles for the Swiss Post web platform.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/swisspost/common-web-frontend.git"
   },
-  "homepage": "https://swisspost-web-frontend.netlify.app/",
+  "homepage": "https://swisspost-web-frontend.netlify.app",
   "bugs": {
     "url": "https://github.com/swisspost/common-web-frontend/issues"
   },
@@ -66,7 +66,7 @@
     "postcss-scss": "4.0.4",
     "prettier": "2.7.1",
     "rimraf": "2.7.1",
-    "sass": "1.53.0",
+    "sass": "1.54.0",
     "stylelint": "14.9.1",
     "stylelint-config-prettier": "9.0.3",
     "stylelint-config-sass-guidelines": "9.0.1",
