@@ -28,7 +28,7 @@
     "test": "jest",
     "test:ci": "jest",
     "start": "gulp watch",
-    "storybook": "start-storybook -p 6006 --quiet --no-manager-cache",
+    "storybook": "start-storybook -p 6006 --quiet",
     "build:storybook": "build-storybook"
   },
   "dependencies": {
