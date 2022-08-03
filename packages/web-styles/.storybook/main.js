@@ -1,8 +1,7 @@
 module.exports = {
   "framework": "@storybook/html",
   "stories": [
-    "../src/**/*.stories.mdx",
-    "../src/**/*.stories.@(js|jsx|ts|tsx)"
+    "../src/**/*.stories.@(js|mdx|jsx|ts|tsx)"
   ],
   "addons": [
     "@storybook/addon-links",
