@@ -31,6 +31,13 @@
   .tabs {
     background-color: transparent !important;
   }
+
+  /* stylelint-disable-next-line order/order */
+  @include utilities.high-contrast-mode() {
+    &::after {
+      background-color: ButtonBorder;
+    }
+  }
 }
 
 .tabs {
@@ -82,24 +89,6 @@
       }
     }
 
-    /* stylelint-disable-next-line order/order */
-    @include utilities.high-contrast-mode() {
-      opacity: 1;
-
-      &:focus,
-      &:focus-within,
-      &:focus-visible {
-        border-radius: commons.$border-radius;
-        outline: 2px solid highlight;
-        // used for showing full outline
-        outline-offset: -(spacing.$size-micro);
-      }
-
-      &.active {
-        color: highlight;
-      }
-    }
-
     &:focus {
       opacity: 0.7;
       background-color: unset;
@@ -148,8 +137,34 @@
         top: 0;
         right: -1px;
         left: -1px;
-        height: 4px;
+        height: spacing.$size-micro;
         background-color: nav.$nav-tabs-link-active-border-color;
+      }
+    }
+
+    /* stylelint-disable-next-line order/order */
+    @include utilities.high-contrast-mode() {
+      opacity: 1;
+      border-left-color: Canvas;
+      border-right-color: Canvas;
+      color: LinkText;
+
+      &:hover,
+      &:focus,
+      &:focus-within,
+      &:focus-visible {
+        outline: spacing.$size-line solid Highlight;
+        outline-offset: -(spacing.$size-micro);
+      }
+
+      &.active {
+        border-left-color: ButtonText;
+        border-right-color: ButtonText;
+        color: Highlight;
+
+        &::before {
+          background-color: Highlight;
+        }
       }
     }
   }
