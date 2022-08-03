@@ -10,32 +10,40 @@ export default {
             control: 'text',
         },
         header: {
-            type: 'boolean',
+            control: {
+                type: 'boolean',
+            }
         },
         headerText: {
             control: 'text',
         },
         footer: {
-            type: 'boolean',
+            control: {
+                type: 'boolean',
+            }
         },
         footerText: {
             control: 'text',
         },
         image: {
-            type: 'boolean',
+            control: {
+                type: 'boolean',
+            }
         },
         buttonText: {
             control: 'text',
         },
         buttonBelowText: {
-            type: 'boolean',
+            control: {
+                type: 'boolean',
+            }
         },
     }
 }
 
-const Template = (args) => {
-    const image = args.image ? `<img class="card-img-top" src="https://www.baumpflegeportal.de/wp-content/uploads/2016/05/160509_Starke-Baumtypen_Eiche-im-Seidengewand_02.jpg" alt="Card image cap">` : ``;
-    const button = args.buttonBelowText ? `<a href="#" class="btn btn-primary btn-animated"><span>${args.buttonText}</span></a>` : ``;
+const DefaultTemplate = (args) => {
+    const image = args.image ? `<img class="card-img-top" src="https://www.baumpflegeportal.de/wp-content/uploads/2016/05/160509_Starke-Baumtypen_Eiche-im-Seidengewand_02.jpg" alt="Card image cap">` : '';
+    const button = args.buttonBelowText ? `<a href="#" class="btn btn-primary btn-animated"><span>${args.buttonText}</span></a>` : '';
     return ` 
     <div class="card" style="width: 18rem;">
         ${image}
@@ -48,27 +56,15 @@ const Template = (args) => {
     `
 }
 
-const HeaderFooterTemplate = (args) => {
-    const header = args.header ? `<div class="card-header">${args.headerText}</div` : ``;
-    const button = args.buttonBelowText ? `<a href="#" class="btn btn-primary btn-animated"><span>${args.buttonText}</span></a>` : ``;
-    const footer = args.footer ? `    <div class="card-footer text-muted">${args.footerText}</div>` : ``;
-    return `
-    <div class="card" style="width: 18rem;">
-    <div class="card text-center">
-    ${header}
-    <div class="card-body">
-      <h5 class="card-title">${args.titleText}</h5>
-      <p class="card-text">${args.bodyText}</p>
-      ${button}
-    </div>
-    ${footer}
-  </div> 
-  </div> 
-    `
+// DefaultTemplate
+
+export const Default = DefaultTemplate.bind({});
+Default.parameters = {
+    controls: {
+        include: ['titleText', 'bodyText', 'image', 'buttonBelowText', 'buttonText']
+    }
 }
 
-
-export const Default = Template.bind({});
 Default.args = {
     titleText: 'Card title',
     bodyText: 'Some quick example text to build on the card title and make up the bulk of the card\'s content.',
@@ -77,12 +73,44 @@ Default.args = {
     buttonText: 'Go somewhere',
 }
 
+// HeaderFooterTemplate
+
+const HeaderFooterTemplate = (args) => {
+    const header = args.header ? `<div class="card-header">${args.headerText}</div>` : '';
+    const button = args.buttonBelowText ? `<a href="#" class="btn btn-primary btn-animated"><span>${args.buttonText}</span></a>` : '';
+    const footer = args.footer ? `<div class="card-footer text-muted">${args.footerText}</div>` : '';
+    console.log(footer);
+    return `
+    <div class="row">
+        <div class="col-lg-4 col-rg-6 col-12">
+            <div class="card">
+                ${header}
+                <div class="card-body">
+                    <h5 class="card-title">${args.titleText}</h5>
+                    <p class="card-text">${args.bodyText}</p>
+                    ${button}
+                </div>
+                ${footer}
+            </div>
+        </div>
+    </div>
+    `
+}
+
 export const HeaderFooter = HeaderFooterTemplate.bind({});
+HeaderFooter.parameters = {
+    controls: {
+        include: ['header', 'headerText', 'titleText', 'bodyText', 'buttonBelowText', 'buttonText', 'footer', 'footerText']
+    }
+}
+
 HeaderFooter.args = {
-    header: 'Featured',
+    header: true,
+    headerText: 'Featured',
     titleText: 'Special title treatment',
     bodyText: 'With supporting text below as a natural lead-in to additional content.',
     buttonBelowText: true,
     buttonText: 'Go somewhere',
-    footer: '2 days ago',
+    footer: true,
+    footerText: '2 days ago',
 }
