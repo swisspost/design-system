@@ -1,5 +1,12 @@
 @use '../variables/color';
 
+// Selector for styles to be applied if has parent with background
+@mixin has-background() {
+  :is(#{color.$all-backgrounds}) & {
+    @content;
+  }
+}
+
 // Selector for styles to be applied on dark backgrounds
 @mixin on-dark-background() {
   :is(#{color.$dark-backgrounds}) & {

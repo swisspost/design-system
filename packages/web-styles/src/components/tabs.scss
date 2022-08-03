@@ -7,6 +7,7 @@
 @use '../variables/spacing';
 @use '../variables/commons';
 @use '../variables/color';
+@use '../mixins/color' as color-mx;
 @use '../mixins/utilities';
 
 .tabs-wrapper {
@@ -48,62 +49,67 @@
     flex: 1 0 auto;
     width: nav.$nav-link-padding-x;
   }
-}
 
-.tab-title {
-  position: relative;
-  box-sizing: border-box;
-  padding: nav.$nav-link-padding;
-  transition: background-color 100ms;
-  border-right: 1px solid transparent;
-  border-left: 1px solid transparent;
-  outline-color: currentColor;
-  opacity: 0.7;
-  color: color.$black;
+  .tab-title {
+    position: relative;
+    box-sizing: border-box;
+    padding: nav.$nav-link-padding;
+    transition: background-color 100ms;
+    border-right: 1px solid transparent;
+    border-left: 1px solid transparent;
+    outline-color: currentColor;
+    opacity: 0.7;
+    color: var(--text-color);
 
-  // imrove hcm styles
-  @include utilities.high-contrast-mode() {
-    opacity: 1;
-  }
+    // Tabs with backgrounds
+    @include color-mx.has-background() {
+      &:not(.active) {
+        &:hover {
+          background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+        }
 
-  &.active,
-  &:hover {
-    opacity: 1;
-    background-color: nav.$nav-tabs-link-active-bg;
-    color: color.$black;
-  }
-
-  &:focus {
-    outline: transparent;
-    opacity: 1;
-    background-color: nav.$nav-tabs-link-active-bg;
-
-    &::after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: $nav-tabs-focus-box-shadow-width;
-      right: $nav-tabs-focus-box-shadow-width - 1px;
-      bottom: 0;
-      left: $nav-tabs-focus-box-shadow-width - 1px;
-      box-shadow: nav.$nav-tabs-focus-box-shadow;
-    }
-  }
-
-  // write supports for selectors this way: https://stackoverflow.com/a/62666132
-  // need to include * otherwise it throws build error
-  @supports #{'\selector(*:focus-visible)'} {
-    &:focus {
-      opacity: 0.7;
-      background-color: unset;
-
-      &::after {
-        content: none;
+        &:focus-visible {
+          background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+        }
       }
 
       &.active {
-        opacity: 1;
+        &:focus-visible {
+          &::after {
+            background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+          }
+        }
       }
+    }
+
+    /* stylelint-disable-next-line order/order */
+    @include utilities.high-contrast-mode() {
+      opacity: 1;
+
+      &:focus,
+      &:focus-within,
+      &:focus-visible {
+        border-radius: commons.$border-radius;
+        outline: 2px solid highlight;
+        // used for showing full outline
+        outline-offset: -(spacing.$size-micro);
+      }
+
+      &.active {
+        color: highlight;
+      }
+    }
+
+    &:focus {
+      opacity: 0.7;
+      background-color: unset;
+      color: var(--text-color);
+    }
+
+    &:hover {
+      opacity: 1;
+      background-color: nav.$nav-tabs-link-active-bg;
+      color: var(--text-color);
     }
 
     // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
@@ -111,6 +117,7 @@
       outline: transparent;
       opacity: 1;
       background-color: nav.$nav-tabs-link-active-bg;
+      color: var(--text-color);
 
       &::after {
         content: '';
@@ -124,56 +131,26 @@
       }
     }
 
-    /* stylelint-disable-next-line order/order */
-    @include utilities.high-contrast-mode() {
-      &:focus,
-      &:focus-within,
-      &:focus-visible {
-        border-radius: commons.$border-radius;
-        outline: 2px solid highlight;
-        // used for showing full outline
-        outline-offset: -(spacing.$size-micro);
-      }
-    }
-  }
-
-  &.active {
-    z-index: 1; // Lift above the line and make focus visible all around
-    border-right-color: nav.$nav-tabs-border-color;
-    border-left-color: nav.$nav-tabs-border-color;
-    background-color: color.$white;
-    color: inherit;
-    font-weight: 700;
-
-    // imrove hcm styles
-    @include utilities.high-contrast-mode() {
-      color: highlight;
-    }
-
-    // Create a line that does not suffer from border corner mitering
-    &::before {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 0;
-      right: -1px;
-      left: -1px;
-      height: 4px;
-      background-color: nav.$nav-tabs-link-active-border-color;
-    }
-  }
-}
-
-// Fix auto colored text on inactive tabs with high specificity
-.text-auto {
-  .tab-title {
-    opacity: 1;
-
-    &:hover,
-    &:focus {
+    &.active {
+      z-index: 1; // Lift above the line and make focus visible all around
+      border-right-color: nav.$nav-tabs-border-color;
+      border-left-color: nav.$nav-tabs-border-color;
       opacity: 1;
-      background-color: rgba(255, 255, 255, 0.2);
-      color: var(--text);
+      background-color: nav.$nav-tabs-link-active-bg;
+      color: var(--text-color);
+      font-weight: 700;
+
+      // Create a line that does not suffer from border corner mitering
+      &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        right: -1px;
+        left: -1px;
+        height: 4px;
+        background-color: nav.$nav-tabs-link-active-border-color;
+      }
     }
   }
 }
