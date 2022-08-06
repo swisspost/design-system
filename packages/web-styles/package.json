@@ -59,7 +59,7 @@
     "autoprefixer": "9.8.8",
     "glob": "7.2.3",
     "gulp": "4.0.2",
-    "gulp-postcss": "8.0.0",
+    "gulp-postcss": "9.0.1",
     "gulp-sass": "5.1.0",
     "jest": "25.5.4",
     "postcss": "8.4.14",
