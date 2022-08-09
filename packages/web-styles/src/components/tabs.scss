@@ -34,6 +34,8 @@
 }
 
 .tabs {
+  --tabs-title-bg-opacity: 1;
+
   flex-wrap: nowrap;
   overflow-x: auto;
 
@@ -87,7 +89,7 @@
 
     &:hover {
       opacity: 1;
-      background-color: nav.$nav-tabs-link-active-bg;
+      background-color: rgba(nav.$nav-tabs-link-active-bg, var(--tabs-title-bg-opacity));
       color: var(--text-color);
     }
 
@@ -95,7 +97,7 @@
     &:focus-visible {
       outline: transparent;
       opacity: 1;
-      background-color: nav.$nav-tabs-link-active-bg;
+      background-color: rgba(nav.$nav-tabs-link-active-bg, var(--tabs-title-bg-opacity));
       color: var(--text-color);
 
       &::after {
