@@ -43,6 +43,11 @@
   overscroll-behavior-x: contain;
   white-space: nowrap;
 
+  // Tabs with dark backgrounds
+  @include color-mx.on-dark-background(true) {
+    --tabs-title-bg-opacity: 0.2;
+  }
+
   // Scrolling fix, make the tabs scroll a little more so the right most tab is not
   // flush with the window border
   &::after {
