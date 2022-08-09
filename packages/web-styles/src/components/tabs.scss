@@ -61,27 +61,6 @@
     opacity: 0.7;
     color: var(--text-color);
 
-    // Tabs with backgrounds
-    @include color-mx.has-background() {
-      &:not(.active) {
-        &:hover {
-          background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
-        }
-
-        &:focus-visible {
-          background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
-        }
-      }
-
-      &.active {
-        &:focus-visible {
-          &::after {
-            background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
-          }
-        }
-      }
-    }
-
     /* stylelint-disable-next-line order/order */
     @include utilities.high-contrast-mode() {
       opacity: 1;
