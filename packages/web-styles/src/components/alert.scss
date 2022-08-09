@@ -135,29 +135,10 @@
       flex-basis: auto;
       align-self: stretch;
     }
-
-    .alert-buttons {
-      align-self: flex-end;
-      margin-top: spacing.$spacer;
-      margin-left: 0;
-    }
   }
 
   @include media-breakpoint-down(sm) {
     align-items: center;
-
-    .alert-buttons {
-      align-self: stretch;
-
-      .btn {
-        width: 100%;
-
-        + .btn {
-          margin-top: spacing.$spacer;
-          margin-right: 0;
-        }
-      }
-    }
   }
 
   @include media-breakpoint-up(xxl) {
@@ -179,14 +160,17 @@
   }
 
   .alert-buttons {
-    flex: 0 0 auto;
-    margin-left: alert.$alert-padding-x;
+    display: flex;
+    flex-wrap: wrap;
+    gap: spacing.$size-regular;
+    align-self: flex-end;
+    margin-top: spacing.$size-regular;
 
-    .btn {
-      float: right;
+    @include media-breakpoint-down(md) {
+      align-self: stretch;
 
-      + .btn {
-        margin-right: spacing.$spacer;
+      .btn {
+        flex: 1 0 100%;
       }
     }
   }
