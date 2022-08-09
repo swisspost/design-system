@@ -10,10 +10,6 @@
 @use '../variables/components/nav';
 @use '../variables/options';
 
-:root {
-  --isolate-components: #{options.$isolate-components};
-}
-
 .badge {
   display: inline-flex;
   align-items: center;

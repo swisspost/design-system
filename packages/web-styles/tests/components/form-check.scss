@@ -3,4 +3,4 @@
 @use 'tests/jest';
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables('form-check'), 'isolate-components'));
+@include jest.true(map.has-key(meta.module-variables('form-check'), 'font-base-path'));

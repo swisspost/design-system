@@ -4,4 +4,4 @@
 @use 'src/components/form-select';
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables('form-select'), 'isolate-components'));
+@include jest.true(map.has-key(meta.module-variables('form-select'), 'font-base-path'));
