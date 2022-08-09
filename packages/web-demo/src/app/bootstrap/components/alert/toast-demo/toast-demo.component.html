@@ -63,12 +63,8 @@
 <a href="https://www.npmjs.com/package/ngx-toastr" target="_blank" rel="noopener"
      class="btn btn-sm btn-primary">Ngx Bootstap Doc</a>
 </div>
-<div class="alert-container">
-  <div class="alert alert-warning">
-    <p>This is an example with cwf classes for ngx-toastr. To use it do <i>NOT</i> import toastr.css and toastr-bs4-alert as explained on ngx-toastr documentation.</p>
-    <p>ngx-toaster needs to be on version 9.2.0! [Version 10+ uses a different HTML Template. Other Versions have not been tested yet.]</p>
-  </div>
-</div>
+<p class="mb-3 mt-5">Screen reader output is a little better if the close button is disabled (alert messages can still be closed by clicking on them). Pass the following option to disable the close button:</p>
+<code class="d-block mt-3 mb-5" [highlight]="JSON.stringify(toastOptions, null, 2)" [languages]="['typescript']"></code>
 <section>
 <button class="btn btn-secondary btn-animated" (click)="showError()">
   <span>Show Toaster error</span>
