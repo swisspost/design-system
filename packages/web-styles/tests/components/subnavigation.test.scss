@@ -4,4 +4,4 @@
 @use "src/components/subnavigation";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("subnavigation"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('subnavigation'), 'font-base-path'));
