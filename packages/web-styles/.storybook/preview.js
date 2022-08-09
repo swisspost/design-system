@@ -11,7 +11,7 @@ export const parameters = {
   darkMode: {
     classTarget: 'html',
     lightClass: 'bg-white',
-    darkClass: 'bg-primary',
+    darkClass: 'bg-dark',
     stylePreview: true
   }
 }
