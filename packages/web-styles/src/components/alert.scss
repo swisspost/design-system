@@ -125,6 +125,7 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+  gap: spacing.$size-regular;
 
   @include media-breakpoint-down(md) {
     flex-direction: column;
@@ -166,7 +167,7 @@
     align-self: flex-end;
     margin-top: spacing.$size-regular;
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(rg) {
       align-self: stretch;
 
       .btn {
