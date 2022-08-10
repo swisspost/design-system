@@ -34,19 +34,12 @@
 }
 
 .tabs {
-  --tabs-title-bg-opacity: 1;
-
   flex-wrap: nowrap;
   overflow-x: auto;
 
   /* prevent scroll chaining on x scroll */
   overscroll-behavior-x: contain;
   white-space: nowrap;
-
-  // Tabs with dark backgrounds
-  @include color-mx.on-dark-background(true) {
-    --tabs-title-bg-opacity: 0.2;
-  }
 
   // Scrolling fix, make the tabs scroll a little more so the right most tab is not
   // flush with the window border
@@ -94,7 +87,7 @@
 
     &:hover {
       opacity: 1;
-      background-color: rgba(nav.$nav-tabs-link-active-bg, var(--tabs-title-bg-opacity));
+      background-color: nav.$nav-tabs-link-active-bg;
       color: var(--text-color);
     }
 
@@ -102,7 +95,7 @@
     &:focus-visible {
       outline: transparent;
       opacity: 1;
-      background-color: rgba(nav.$nav-tabs-link-active-bg, var(--tabs-title-bg-opacity));
+      background-color: nav.$nav-tabs-link-active-bg;
       color: var(--text-color);
 
       &::after {
@@ -136,6 +129,20 @@
         left: -1px;
         height: 4px;
         background-color: nav.$nav-tabs-link-active-border-color;
+      }
+    }
+  }
+
+  // Tabs with dark backgrounds
+  /* stylelint-disable-next-line order/order */
+  @include color-mx.on-dark-background(true) {
+    .tab-title {
+      &:hover {
+        background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+      }
+
+      &:focus-visible {
+        background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
       }
     }
   }
