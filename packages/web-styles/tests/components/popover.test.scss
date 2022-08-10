@@ -4,4 +4,4 @@
 @use "src/components/popover";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("popover"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('popover'), 'font-base-path'));

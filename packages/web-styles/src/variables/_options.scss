@@ -1,17 +1,5 @@
 // Options
 //
-// Quickly modify global styling by enabling or disabling optional features.
+// Modify global options
 
-$enable-caret: true !default;
-$enable-rounded: true !default;
-$enable-shadows: false !default;
-$enable-gradients: false !default;
-$enable-transitions: true !default;
-$enable-hover-media-query: false !default;
-$enable-grid-classes: true !default;
-$isolate-components: false !default;
 $font-base-path: 'https://fonts.post.ch/frutigerneueforpost/v2' !default;
-
-// Prefix for :root CSS variables
-
-$variable-prefix: '' !default;

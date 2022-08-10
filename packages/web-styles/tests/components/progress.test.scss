@@ -4,4 +4,4 @@
 @use "src/components/progress";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("progress"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('progress'), 'font-base-path'));

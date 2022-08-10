@@ -68,6 +68,7 @@ span.spacer {
     @if (color-fn.get-contrast-color($color) != #000) {
       @extend %inverted-colors;
     }
+    --body-bg: #{$color};
   }
 }
 

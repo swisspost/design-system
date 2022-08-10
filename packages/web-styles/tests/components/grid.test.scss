@@ -4,4 +4,4 @@
 @use "src/components/grid";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("grid"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('grid'), 'font-base-path'));

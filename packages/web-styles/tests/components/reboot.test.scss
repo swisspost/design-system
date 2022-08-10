@@ -4,4 +4,4 @@
 @use "src/components/reboot";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("reboot"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('reboot'), 'font-base-path'));

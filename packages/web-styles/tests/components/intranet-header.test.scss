@@ -4,4 +4,4 @@
 @use "src/components/intranet-header";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("intranet-header"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('intranet-header'), 'font-base-path'));

@@ -4,4 +4,4 @@
 @use "src/components/fonts";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("fonts"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('fonts'), 'font-base-path'));

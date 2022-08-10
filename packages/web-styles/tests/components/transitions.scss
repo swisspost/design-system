@@ -4,4 +4,4 @@
 @use "src/components/transitions";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("transitions"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('transitions'), 'font-base-path'));
