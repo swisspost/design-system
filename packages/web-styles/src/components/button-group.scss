@@ -18,6 +18,7 @@
     background-color: var(--background-color);
     box-shadow: 0 0 0 0.125rem color.$gray-20;
     white-space: normal;
+    text-align: center;
     cursor: pointer;
 
     @include utilities.not-disabled-focus-hover() {
