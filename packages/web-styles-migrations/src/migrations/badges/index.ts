@@ -24,5 +24,5 @@ class BadgePillClassUpdate extends CssClassesUpdate {
 
 class GreyCarraraBadgeClassUpdate extends CssClassesUpdate {
     searchValue = 'badge' + optional('(-outline)') + '-gray-carrara' + optional('(-thick)');
-    replaceValue = (outline: string, thick: string) => (outline ? 'border-light text-secondary' : 'bg-light') + (thick ? ' border-2' : '');
+    replaceValue = (outline: string, thick: string) => (outline ? 'border-light' : 'bg-light') + (thick ? ' border-2' : '');
 }
