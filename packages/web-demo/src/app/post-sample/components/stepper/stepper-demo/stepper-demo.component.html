@@ -1,28 +1,9 @@
-<div class="stepper">
+<div aria-label="Order progress, step 3 of 4" class="stepper-container" role="group">
   <ngb-progressbar [max]="steps.length - 1" [value]="currentIndex" class="stepper-bar" type="info"></ngb-progressbar>
 
-  <div class="steps">
-    <ng-container *ngFor="let step of steps; let i = index">
-      <div *ngIf="i === currentIndex; else stepLink" class="step current">
-        <ng-container [ngTemplateOutlet]="stepIndicator" [ngTemplateOutletContext]="{isCurrent: true}"></ng-container>
-      </div>
-
-      <ng-template #stepLink>
-        <a [class.passed]="i < currentIndex" [routerLink]="getPathTo(step)" class="step">
-          <ng-container [ngTemplateOutlet]="stepIndicator"></ng-container>
-        </a>
-      </ng-template>
-
-      <ng-template #stepIndicator let-isCurrent="isCurrent">
-        <div class="step-indicator" aria-hidden="true">
-          <span class="step-index">{{i + 1}}</span>
-        </div>
-        <div class="step-name">
-          <span class="visually-hidden" *ngIf="!isCurrent">Go to step: </span>
-          <span>{{step}}</span>
-          <span class="visually-hidden" *ngIf="isCurrent"> (current)</span>
-        </div>
-      </ng-template>
-    </ng-container>
-  </div>
+  <ol class="stepper">
+    <li *ngFor="let step of steps" [attr.aria-current]="ifCurrent(step, 'step')" class="stepper-item">
+      <a [attr.tabindex]="ifCurrent(step, -1)" [routerLink]="getPathTo(step)" class="stepper-link">{{step}}</a>
+    </li>
+  </ol>
 </div>
