@@ -156,7 +156,7 @@
       color: ButtonText;
       background-color: ButtonFace;
       background-image: stepper.$stepper-indicator-hover-check-icon;
-      border: none;
+      border: 0;
       outline: spacing.$size-line solid VisitedText;
       outline-offset: -3 * spacing.$size-line;
       margin-top: -1 * spacing.$size-line;
