@@ -44,6 +44,7 @@
     }
   }
 
+  /* stylelint-disable-next-line order/order */
   @include utilities-mx.high-contrast-mode() {
     > input {
       @include forms-mx.placeholder() {
@@ -51,7 +52,6 @@
       }
     }
   }
-
 
   // disable styleint here, because the classes are coming from bs5
   /* stylelint-disable */
