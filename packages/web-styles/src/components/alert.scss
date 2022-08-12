@@ -165,7 +165,6 @@
     flex-wrap: wrap;
     gap: spacing.$size-regular;
     align-self: flex-end;
-    margin-top: spacing.$size-regular;
 
     @include media-breakpoint-down(rg) {
       align-self: stretch;
