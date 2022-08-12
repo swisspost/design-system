@@ -164,7 +164,7 @@
       outline: button.$input-btn-focus-width solid var(--text-color, color.$black);
     }
 
-    @support selector(:focus-visible) {
+    @supports selector(:focus-visible) {
       &:focus {
         outline-color: transparent;
       }
