@@ -157,20 +157,27 @@
     background-size: form-switch.$form-switch-checked-bg-image-size,
       form-switch.$form-switch-linear-gradient-size;
 
-    &:focus-visible {
+    &:focus {
+      background-image: escape-svg(form-switch.$form-switch-bg-image),
+        form-switch.$form-switch-linear-gradient;
+      box-shadow: none;
       outline: button.$input-btn-focus-width solid var(--text-color, color.$black);
+    }
+
+    @support selector(:focus-visible) {
+      &:focus {
+        outline-color: transparent;
+      }
+
+      &:focus-visible {
+        outline: button.$input-btn-focus-width solid var(--text-color, color.$black);
+      }
     }
 
     &:checked {
       background-image: escape-svg(form-switch.$form-switch-checked-bg-image),
         form-switch.$form-switch-linear-gradient;
       background-position: right center, left center;
-    }
-
-    &:focus {
-      background-image: escape-svg(form-switch.$form-switch-bg-image),
-        form-switch.$form-switch-linear-gradient;
-      box-shadow: none;
     }
 
     &:checked:focus {
