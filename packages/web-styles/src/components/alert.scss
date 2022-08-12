@@ -86,8 +86,13 @@
   bottom: 0;
   left: 0;
   width: 100%;
+  max-height: 100%;
+  overflow: auto;
   margin-bottom: 0;
   border-radius: 0;
+
+  // Let the icon scroll with the content
+  background-attachment: local;
 
   @include media-breakpoint-up(xxl) {
     $container-padding: map.get(grid.$grid-container-padding, 'xxl');
