@@ -3,6 +3,19 @@
 $grid-breakpoints-lower: (xs, sm, rg, md);
 $grid-breakpoints-upper: (lg, xl, xxl);
 
+$content-cols: (
+  xs: 12,
+  lg: 8,
+  xl: 7,
+);
+
+$image-cols: (
+  xs: 10,
+  rg: 8,
+  lg: 4,
+  xl: 5,
+);
+
 $image-aspectratio: (
   xs: list.slash(1, 0.75),
   sm: list.slash(1, 0.75),
