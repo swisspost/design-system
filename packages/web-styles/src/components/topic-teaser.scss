@@ -154,18 +154,24 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 1.25rem 1.5rem 1.25rem 1rem;
+  padding: 0.75rem 2rem 0.75rem 1rem;
   transition: opacity 200ms, background-position 200ms;
   border: 0;
   border-top: 1px solid rgba(var(--white-rgb), 0.2);
   background-image: url(icons.get-colored-svg-url('2050', color.$white));
   background-repeat: no-repeat;
-  background-position: 99% center;
+  background-position: right 0.75rem center;
   background-size: 1rem;
   text-decoration: none;
 
   &[href]:hover {
-    background-position: 100% center;
+    background-position: right 0.5rem center;
+  }
+
+  /* stylelint-disable-next-line order/order */
+  @include media-breakpoint-up(lg) {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
   }
 }
 
