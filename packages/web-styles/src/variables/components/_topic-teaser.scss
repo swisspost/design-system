@@ -17,11 +17,11 @@ $image-cols: (
 );
 
 $image-aspectratio: (
-  xs: list.slash(1, 0.75),
-  sm: list.slash(1, 0.75),
-  rg: list.slash(1, 0.75),
-  md: list.slash(1, 0.75),
-  lg: auto,
-  xl: auto,
-  xxl: auto,
+  xs: list.slash(1, 0.7),
+  sm: list.slash(1, 0.7),
+  rg: list.slash(1, 0.7),
+  md: list.slash(1, 0.7),
+  lg: list.slash(0.66, 1),
+  xl: list.slash(0.9, 1),
+  xxl: list.slash(0.9, 1),
 );
