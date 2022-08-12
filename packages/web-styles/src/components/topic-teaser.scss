@@ -26,8 +26,8 @@
   }
 
   &:not(.topic-teaser-reverse) {
-    @each $key in topic-teaser.$grid-keys-upper {
-      @include media-breakpoint-only($key) {
+    @each $breakpoint in topic-teaser.$grid-breakpoints-upper {
+      @include media-breakpoint-only($breakpoint) {
         .container {
           padding-right: 0;
         }
@@ -48,9 +48,9 @@
     }
 
     .topic-teaser-image-container {
-      @each $key in topic-teaser.$grid-keys-lower {
-        @include media-breakpoint-only($key) {
-          margin-right: map.get(grid.$grid-container-padding, $key) * -1;
+      @each $breakpoint in topic-teaser.$grid-breakpoints-lower {
+        @include media-breakpoint-only($breakpoint) {
+          margin-right: map.get(grid.$grid-container-padding, $breakpoint) * -1;
         }
       }
     }
@@ -58,8 +58,8 @@
 }
 
 .topic-teaser-reverse {
-  @each $key in topic-teaser.$grid-keys-upper {
-    @include media-breakpoint-only($key) {
+  @each $breakpoint in topic-teaser.$grid-breakpoints-upper {
+    @include media-breakpoint-only($breakpoint) {
       .container {
         padding-left: 0;
       }
@@ -79,9 +79,9 @@
   }
 
   .topic-teaser-image-container {
-    @each $key in topic-teaser.$grid-keys-lower {
-      @include media-breakpoint-only($key) {
-        margin-left: map.get(grid.$grid-container-padding, $key) * -1;
+    @each $breakpoint in topic-teaser.$grid-breakpoints-lower {
+      @include media-breakpoint-only($breakpoint) {
+        margin-left: map.get(grid.$grid-container-padding, $breakpoint) * -1;
       }
     }
   }
@@ -94,9 +94,9 @@
 .topic-teaser-image {
   object-fit: cover;
 
-  @each $key, $value in topic-teaser.$topic-teaser-image-ratios {
-    @include media-breakpoint-up($key) {
-      aspect-ratio: $value;
+  @each $breakpoint, $aspectratio in topic-teaser.$image-aspectratio {
+    @include media-breakpoint-up($breakpoint) {
+      aspect-ratio: $aspectratio;
     }
   }
 }

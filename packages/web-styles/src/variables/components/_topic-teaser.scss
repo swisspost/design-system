@@ -1,9 +1,9 @@
 @use 'sass:list';
 
-$grid-keys-lower: (xs, sm, rg, md);
-$grid-keys-upper: (lg, xl);
+$grid-breakpoints-lower: (xs, sm, rg, md);
+$grid-breakpoints-upper: (lg, xl, xxl);
 
-$topic-teaser-image-ratios: (
+$image-aspectratio: (
   xs: list.slash(1, 0.75),
   sm: list.slash(1, 0.75),
   rg: list.slash(1, 0.75),
