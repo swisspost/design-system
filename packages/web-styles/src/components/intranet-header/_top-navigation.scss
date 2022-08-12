@@ -14,12 +14,13 @@
   button.nav-link {
     @include button-mixins.reset-button();
     padding: nav.$nav-link-padding-y navbar.$navbar-nav-link-padding-x;
+    line-height: var(--body-line-height);
   }
 
   .nav-item > .nav-link {
     border-top: 4px solid transparent; // Border-Width according to PostWeb CSS
     border-bottom: 4px solid transparent; // Border-Width according to PostWeb CSS
-    background-color: none;
+    background-color: transparent;
     color: rgba(var(--black-rgb), 0.6);
 
     @include utilities.high-contrast-mode() {

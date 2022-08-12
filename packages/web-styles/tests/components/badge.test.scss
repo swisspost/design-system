@@ -4,4 +4,4 @@
 @use "src/components/badge";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("badge"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('badge'), 'font-base-path'));

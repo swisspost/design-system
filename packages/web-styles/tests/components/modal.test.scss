@@ -4,4 +4,4 @@
 @use "src/components/modal";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("modal"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('modal'), 'font-base-path'));

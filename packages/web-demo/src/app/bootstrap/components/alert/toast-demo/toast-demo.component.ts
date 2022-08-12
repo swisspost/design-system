@@ -7,20 +7,24 @@ import {ToastrService} from "ngx-toastr";
   styleUrls: ['./toast-demo.component.scss']
 })
 export class ToastDemoComponent {
+  toastOptions = {
+    closeButton: false
+  }
+  JSON = JSON;
 
   constructor(private toastr: ToastrService) { }
 
   showError(){
-    this.toastr.error(null, "Error w/o message");
+    this.toastr.error(null, "Error w/o message", this.toastOptions);
   }
   showInfo(){
-    this.toastr.info("Information w/o title");
+    this.toastr.info("Information w/o title", '', this.toastOptions);
   }
   showSuccess(){
-    this.toastr.success("w/ message", "Success");
+    this.toastr.success("w/ message", "Success", this.toastOptions);
   }
   showWarning(){
-    this.toastr.warning("w/ message", "Warning");
+    this.toastr.warning("w/ message", "Warning", this.toastOptions);
   }
 
 }

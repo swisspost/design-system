@@ -4,4 +4,4 @@
 @use "src/components/datepicker";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("datepicker"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('datepicker'), 'font-base-path'));

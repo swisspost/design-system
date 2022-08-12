@@ -85,31 +85,6 @@
       }
     }
   }
-
-  .custom-control-input {
-    .was-validated &:#{$state},
-    &.is-#{$state} {
-      ~ .custom-control-label {
-        color: $color;
-
-        &::before {
-          border-color: $color;
-          background: color.$white;
-        }
-      }
-
-      ~ .#{$state}-feedback,
-      ~ .#{$state}-tooltip {
-        display: block;
-      }
-
-      &:focus {
-        ~ .custom-control-label::before {
-          box-shadow: 0 0 0 1px color.$black, 0 0 0 forms.$input-focus-width rgba($color, 0.25);
-        }
-      }
-    }
-  }
 }
 
 @mixin icon-placement {
