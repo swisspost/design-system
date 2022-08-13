@@ -146,7 +146,7 @@ importers:
       karma-coverage-istanbul-reporter: 3.0.3
       karma-jasmine: 4.0.2
       karma-jasmine-html-reporter: 1.7.0
-      ngx-highlightjs: 4.1.4
+      ngx-highlightjs: 7.0.1
       ngx-toastr: 14.3.0
       prettier: 2.7.1
       protractor: 7.0.0
@@ -178,7 +178,7 @@ importers:
       bootstrap: 5.1.3_@popperjs+core@2.11.5
       core-js: 2.6.12
       highlight.js: 10.7.3
-      ngx-highlightjs: 4.1.4_mgwj4bevgoylejlubhpcd3nwim
+      ngx-highlightjs: 7.0.1_mgwj4bevgoylejlubhpcd3nwim
       ngx-toastr: 14.3.0_if65wtke2itpurn4q7uxqiy2sa
       rxjs: 6.6.7
       tslib: 2.4.0
@@ -12382,7 +12382,7 @@ packages:
     dev: true
 
   /file-uri-to-path/1.0.0:
-    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=}
+    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     requiresBuild: true
     dev: true
     optional: true
@@ -13551,6 +13551,11 @@ packages:
 
   /highlight.js/10.7.3:
     resolution: {integrity: sha512-tzcUFauisWKNHaRkN4Wjl/ZA07gENAjFl3J/c480dprkGTg5EQstgaNFqBfUqCq54kZRIEcreTsAgF/m2quD7A==}
+
+  /highlight.js/11.6.0:
+    resolution: {integrity: sha512-ig1eqDzJaB0pqEvlPVIpSSyMaO92bH1N2rJpLMN/nX396wTpDA4Eq0uK+7I/2XG17pFaaKE0kjV/XPeGt7Evjw==}
+    engines: {node: '>=12.0.0'}
+    dev: false
 
   /highlightjs-line-numbers.js/2.8.0:
     resolution: {integrity: sha512-TEf1gw0c8mb8nan0QwliqS7obT4cpUd9hzsGzsZLweteNnWea/VIqy5/aQqsa5wnz9lnvmtAkS1ZtDTjB/goYQ==}
@@ -16836,16 +16841,16 @@ packages:
       - supports-color
     dev: true
 
-  /ngx-highlightjs/4.1.4_mgwj4bevgoylejlubhpcd3nwim:
-    resolution: {integrity: sha512-yh5p8J+mUNHMm5kQM1CAyRdLT2KiW631l/Rky+rkxwT6NZHG80yImWXZt7RG3heTQzd1wDOWMQ8JznF3KeUv5g==}
+  /ngx-highlightjs/7.0.1_mgwj4bevgoylejlubhpcd3nwim:
+    resolution: {integrity: sha512-ZmA6RUBRB0tqAlsGYR21kCna9ror51FZwpV7Y94yCuyVv24u5bhg9nfLnFPDBJJ1u1vfNKV1R1TNTXUm/SiRjw==}
     peerDependencies:
-      '@angular/common': '>=8.0.0'
-      '@angular/core': '>=8.0.0'
+      '@angular/common': '>=14.0.0'
+      '@angular/core': '>=14.0.0'
       rxjs: '>=6.0.0'
     dependencies:
       '@angular/common': 13.3.11_jja5hswza62cyrzuv2ki4dnjcu
       '@angular/core': 13.3.11_rxjs@6.6.7+zone.js@0.11.7
-      highlight.js: 10.7.3
+      highlight.js: 11.6.0
       highlightjs-line-numbers.js: 2.8.0
       rxjs: 6.6.7
       tslib: 2.4.0
