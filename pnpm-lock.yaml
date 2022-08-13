@@ -32,7 +32,7 @@ importers:
       '@angular/platform-browser-dynamic': 13.3.11
       '@angular/router': 13.3.11
       '@ng-bootstrap/ng-bootstrap': 12.1.2
-      '@popperjs/core': 2.11.5
+      '@popperjs/core': 2.11.6
       '@swisspost/web-styles': ^5.0.0-alpha.2
       '@types/jasmine': 4.0.3
       '@types/node': 16.11.45
@@ -61,8 +61,8 @@ importers:
       '@angular/platform-browser': 13.3.11_dontfr2itdbwnai2bloqfkk3ui
       '@angular/platform-browser-dynamic': 13.3.11_ovunbf5pfqpgs344qovmyresle
       '@angular/router': 13.3.11_2ppcnal7hrkvaafvdrvxrqal2y
-      '@ng-bootstrap/ng-bootstrap': 12.1.2_yo4nyljaedshdbpuvcqn4vhfju
-      '@popperjs/core': 2.11.5
+      '@ng-bootstrap/ng-bootstrap': 12.1.2_4ok4awzl5lfluhnatwohvx7yr4
+      '@popperjs/core': 2.11.6
       '@swisspost/web-styles': link:../web-styles
       rxjs: 7.5.6
       tslib: 2.4.0
@@ -123,7 +123,7 @@ importers:
       '@angular/platform-browser-dynamic': 13.3.11
       '@angular/router': 13.3.11
       '@ng-bootstrap/ng-bootstrap': 12.1.2
-      '@popperjs/core': 2.11.5
+      '@popperjs/core': 2.11.6
       '@swimlane/ngx-datatable': 20.0.0
       '@swisspost/intranet-header': ^3.0.0-alpha.3
       '@swisspost/web-styles': ^5.0.0-alpha.4
@@ -170,12 +170,12 @@ importers:
       '@angular/platform-browser': 13.3.11_dontfr2itdbwnai2bloqfkk3ui
       '@angular/platform-browser-dynamic': 13.3.11_ovunbf5pfqpgs344qovmyresle
       '@angular/router': 13.3.11_ngcav2jk6phtonomh6fl2dj7bq
-      '@ng-bootstrap/ng-bootstrap': 12.1.2_uljo6qaxmbqaoc6utzruwoktwy
-      '@popperjs/core': 2.11.5
+      '@ng-bootstrap/ng-bootstrap': 12.1.2_ysja66qjmviakjk6vixb4kxscu
+      '@popperjs/core': 2.11.6
       '@swimlane/ngx-datatable': 20.0.0_ngcav2jk6phtonomh6fl2dj7bq
       '@swisspost/intranet-header': link:../angular-components/projects/swisspost-intranet-header
       '@swisspost/web-styles': link:../web-styles
-      bootstrap: 5.1.3_@popperjs+core@2.11.5
+      bootstrap: 5.1.3_@popperjs+core@2.11.6
       core-js: 2.6.12
       highlight.js: 10.7.3
       ngx-highlightjs: 4.1.4_mgwj4bevgoylejlubhpcd3nwim
@@ -224,7 +224,7 @@ importers:
   packages/web-styles:
     specifiers:
       '@babel/core': 7.18.10
-      '@popperjs/core': 2.11.5
+      '@popperjs/core': 2.11.6
       '@storybook/addon-actions': 6.5.9
       '@storybook/addon-essentials': 6.5.9
       '@storybook/addon-interactions': 6.5.9
@@ -257,8 +257,8 @@ importers:
       stylelint-prettier: 2.0.0
       stylelint-scss: 4.3.0
     dependencies:
-      '@popperjs/core': 2.11.5
-      bootstrap: 5.1.3_@popperjs+core@2.11.5
+      '@popperjs/core': 2.11.6
+      bootstrap: 5.1.3_@popperjs+core@2.11.6
     devDependencies:
       '@babel/core': 7.18.10
       '@storybook/addon-actions': 6.5.9
@@ -5109,26 +5109,7 @@ packages:
       glob-to-regexp: 0.3.0
     dev: true
 
-  /@ng-bootstrap/ng-bootstrap/12.1.2_uljo6qaxmbqaoc6utzruwoktwy:
-    resolution: {integrity: sha512-p27c+mYVdHiJMYrj5hwClVJxLdiZxafAqlbw1sdJh2xJ1rGOe+H/kCf5YDRbhlHqRN+34Gr0RQqIUeD1I2V8hg==}
-    peerDependencies:
-      '@angular/common': ^13.0.0
-      '@angular/core': ^13.0.0
-      '@angular/forms': ^13.0.0
-      '@angular/localize': ^13.0.0
-      '@popperjs/core': ^2.10.2
-      rxjs: ^6.5.3 || ^7.4.0
-    dependencies:
-      '@angular/common': 13.3.11_jja5hswza62cyrzuv2ki4dnjcu
-      '@angular/core': 13.3.11_rxjs@6.6.7+zone.js@0.11.7
-      '@angular/forms': 13.3.11_ngcav2jk6phtonomh6fl2dj7bq
-      '@angular/localize': 13.3.11_hu57rgc6gef4wm3zxcnnkav2ey
-      '@popperjs/core': 2.11.5
-      rxjs: 6.6.7
-      tslib: 2.4.0
-    dev: false
-
-  /@ng-bootstrap/ng-bootstrap/12.1.2_yo4nyljaedshdbpuvcqn4vhfju:
+  /@ng-bootstrap/ng-bootstrap/12.1.2_4ok4awzl5lfluhnatwohvx7yr4:
     resolution: {integrity: sha512-p27c+mYVdHiJMYrj5hwClVJxLdiZxafAqlbw1sdJh2xJ1rGOe+H/kCf5YDRbhlHqRN+34Gr0RQqIUeD1I2V8hg==}
     peerDependencies:
       '@angular/common': ^13.0.0
@@ -5142,8 +5123,27 @@ packages:
       '@angular/core': 13.3.11_rxjs@7.5.6+zone.js@0.11.7
       '@angular/forms': 13.3.11_2ppcnal7hrkvaafvdrvxrqal2y
       '@angular/localize': 13.3.11_hu57rgc6gef4wm3zxcnnkav2ey
-      '@popperjs/core': 2.11.5
+      '@popperjs/core': 2.11.6
       rxjs: 7.5.6
+      tslib: 2.4.0
+    dev: false
+
+  /@ng-bootstrap/ng-bootstrap/12.1.2_ysja66qjmviakjk6vixb4kxscu:
+    resolution: {integrity: sha512-p27c+mYVdHiJMYrj5hwClVJxLdiZxafAqlbw1sdJh2xJ1rGOe+H/kCf5YDRbhlHqRN+34Gr0RQqIUeD1I2V8hg==}
+    peerDependencies:
+      '@angular/common': ^13.0.0
+      '@angular/core': ^13.0.0
+      '@angular/forms': ^13.0.0
+      '@angular/localize': ^13.0.0
+      '@popperjs/core': ^2.10.2
+      rxjs: ^6.5.3 || ^7.4.0
+    dependencies:
+      '@angular/common': 13.3.11_jja5hswza62cyrzuv2ki4dnjcu
+      '@angular/core': 13.3.11_rxjs@6.6.7+zone.js@0.11.7
+      '@angular/forms': 13.3.11_ngcav2jk6phtonomh6fl2dj7bq
+      '@angular/localize': 13.3.11_hu57rgc6gef4wm3zxcnnkav2ey
+      '@popperjs/core': 2.11.6
+      rxjs: 6.6.7
       tslib: 2.4.0
     dev: false
 
@@ -5449,8 +5449,8 @@ packages:
       node-gyp-build: 4.4.0
     dev: true
 
-  /@popperjs/core/2.11.5:
-    resolution: {integrity: sha512-9X2obfABZuDVLCgPK9aX0a/x4jaOEweTTWE2+9sr0Qqqevj2Uv5XorvusThmc9XGYpS9yI+fhh8RTafBtGposw==}
+  /@popperjs/core/2.11.6:
+    resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
     dev: false
 
   /@rollup/plugin-json/4.1.0_rollup@2.75.6:
@@ -9182,12 +9182,12 @@ packages:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
 
-  /bootstrap/5.1.3_@popperjs+core@2.11.5:
+  /bootstrap/5.1.3_@popperjs+core@2.11.6:
     resolution: {integrity: sha512-fcQztozJ8jToQWXxVuEyXWW+dSo8AiXWKwiSSrKWsRB/Qt+Ewwza+JWoLKiTuQLaEPhdNAJ7+Dosc9DOIqNy7Q==}
     peerDependencies:
       '@popperjs/core': ^2.10.2
     dependencies:
-      '@popperjs/core': 2.11.5
+      '@popperjs/core': 2.11.6
     dev: false
 
   /boxen/5.1.2:
@@ -12382,7 +12382,7 @@ packages:
     dev: true
 
   /file-uri-to-path/1.0.0:
-    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=}
+    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     requiresBuild: true
     dev: true
     optional: true
