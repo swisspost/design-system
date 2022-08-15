@@ -33,7 +33,7 @@
     "@swisspost/web-styles": "^5.0.0-alpha.4",
     "bootstrap": "5.1.3",
     "core-js": "2.6.12",
-    "highlight.js": "10.7.3",
+    "highlight.js": "11.6.0",
     "ngx-highlightjs": "4.1.4",
     "ngx-toastr": "14.3.0",
     "rxjs": "6.6.7",
