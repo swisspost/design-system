@@ -19,6 +19,10 @@
     border: 0;
     color: forms.$form-floating-label-color;
     font-size: forms.$form-floating-label-font-size;
+    max-width: calc(100% - (forms.$input-border-width * 2));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   > textarea.form-control {
