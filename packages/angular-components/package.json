@@ -24,7 +24,7 @@
     "@angular/platform-browser-dynamic": "13.3.11",
     "@angular/router": "13.3.11",
     "@ng-bootstrap/ng-bootstrap": "12.1.2",
-    "@popperjs/core": "2.11.5",
+    "@popperjs/core": "2.11.6",
     "@swisspost/web-styles": "^5.0.0-alpha.2",
     "rxjs": "7.5.6",
     "tslib": "2.4.0",
