@@ -250,7 +250,7 @@ importers:
       sass: 1.54.3
       sass-loader: 10.3.1
       storybook-dark-mode: 1.1.0
-      style-loader: 2.0.0
+      style-loader: 3.3.1
       stylelint: 14.9.1
       stylelint-config-prettier: 9.0.3
       stylelint-config-sass-guidelines: 9.0.1
@@ -268,7 +268,7 @@ importers:
       '@storybook/builder-webpack4': 6.5.9
       '@storybook/html': 6.5.9_@babel+core@7.18.10
       '@storybook/manager-webpack4': 6.5.9
-      '@storybook/preset-scss': 1.0.3_zrxhpndycme2aynp25qntdvi6q
+      '@storybook/preset-scss': 1.0.3_cr6o5fnbhbz6ekyj26i4vubg5a
       '@storybook/testing-library': 0.0.13
       autoprefixer: 9.8.8
       babel-loader: 8.2.5_@babel+core@7.18.10
@@ -285,7 +285,7 @@ importers:
       sass: 1.54.3
       sass-loader: 10.3.1_sass@1.54.3
       storybook-dark-mode: 1.1.0
-      style-loader: 2.0.0
+      style-loader: 3.3.1
       stylelint: 14.9.1
       stylelint-config-prettier: 9.0.3_stylelint@14.9.1
       stylelint-config-sass-guidelines: 9.0.1_uyk3cwxn3favstz4untq233szu
@@ -6872,7 +6872,7 @@ packages:
       core-js: 3.20.3
     dev: true
 
-  /@storybook/preset-scss/1.0.3_zrxhpndycme2aynp25qntdvi6q:
+  /@storybook/preset-scss/1.0.3_cr6o5fnbhbz6ekyj26i4vubg5a:
     resolution: {integrity: sha512-o9Iz6wxPeNENrQa2mKlsDKynBfqU2uWaRP80HeWp4TkGgf7/x3DVF2O7yi9N0x/PI1qzzTTpxlQ90D62XmpiTw==}
     peerDependencies:
       css-loader: '*'
@@ -6881,7 +6881,7 @@ packages:
     dependencies:
       css-loader: 5.2.7
       sass-loader: 10.3.1_sass@1.54.3
-      style-loader: 2.0.0
+      style-loader: 3.3.1
     dev: true
 
   /@storybook/preview-web/6.5.9:
@@ -12382,7 +12382,7 @@ packages:
     dev: true
 
   /file-uri-to-path/1.0.0:
-    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=}
+    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     requiresBuild: true
     dev: true
     optional: true
@@ -21234,14 +21234,11 @@ packages:
       webpack: 4.46.0
     dev: true
 
-  /style-loader/2.0.0:
-    resolution: {integrity: sha512-Z0gYUJmzZ6ZdRUqpg1r8GsaFKypE+3xAzuFeMuoHgjc9KZv3wMyCRjQIWEbhoFSq7+7yoHXySDJyyWQaPajeiQ==}
-    engines: {node: '>= 10.13.0'}
+  /style-loader/3.3.1:
+    resolution: {integrity: sha512-GPcQ+LDJbrcxHORTRes6Jy2sfvK2kS6hpSfI/fXhPt+spVzxF6LJ1dHLN9zIGmVaaP044YKaIatFaufENRiDoQ==}
+    engines: {node: '>= 12.13.0'}
     peerDependencies:
-      webpack: ^4.0.0 || ^5.0.0
-    dependencies:
-      loader-utils: 2.0.2
-      schema-utils: 3.1.1
+      webpack: ^5.0.0
     dev: true
 
   /style-search/0.1.0:
