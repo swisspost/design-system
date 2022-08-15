@@ -151,7 +151,7 @@ importers:
       prettier: 2.7.1
       protractor: 7.0.0
       raw-loader: 4.0.2
-      rimraf: 2.7.1
+      rimraf: 3.0.2
       rxjs: 6.6.7
       sass: 1.54.3
       sockjs: 0.3.24
@@ -214,7 +214,7 @@ importers:
       prettier: 2.7.1
       protractor: 7.0.0
       raw-loader: 4.0.2_webpack@5.73.0
-      rimraf: 2.7.1
+      rimraf: 3.0.2
       sass: 1.54.3
       sockjs: 0.3.24
       ts-node: 10.9.1_zoikxjrhi4hqnodfl7ufpzebli
@@ -246,7 +246,7 @@ importers:
       postcss: 8.4.14
       postcss-scss: 4.0.4
       prettier: 2.7.1
-      rimraf: 2.7.1
+      rimraf: 3.0.2
       sass: 1.54.3
       sass-loader: 10.3.1
       storybook-dark-mode: 1.1.0
@@ -281,7 +281,7 @@ importers:
       postcss: 8.4.14
       postcss-scss: 4.0.4_postcss@8.4.14
       prettier: 2.7.1
-      rimraf: 2.7.1
+      rimraf: 3.0.2
       sass: 1.54.3
       sass-loader: 10.3.1_sass@1.54.3
       storybook-dark-mode: 1.1.0
