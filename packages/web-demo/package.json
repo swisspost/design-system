@@ -55,7 +55,7 @@
     "@types/highlight.js": "9.12.4",
     "@types/jasmine": "4.0.3",
     "@types/jasminewd2": "2.0.10",
-    "@types/node": "16.11.45",
+    "@types/node": "16.11.48",
     "@typescript-eslint/eslint-plugin": "5.33.0",
     "@typescript-eslint/parser": "5.33.0",
     "eslint": "8.21.0",
