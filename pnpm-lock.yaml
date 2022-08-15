@@ -44,7 +44,7 @@ importers:
       karma-chrome-launcher: 3.1.1
       karma-coverage: 2.2.0
       karma-jasmine: 4.0.2
-      karma-jasmine-html-reporter: 1.7.0
+      karma-jasmine-html-reporter: 2.0.0
       ng-packagr: 13.3.1
       rxjs: 7.5.6
       tslib: 2.4.0
@@ -87,7 +87,7 @@ importers:
       karma-chrome-launcher: 3.1.1
       karma-coverage: 2.2.0
       karma-jasmine: 4.0.2_karma@6.4.0
-      karma-jasmine-html-reporter: 1.7.0_syhsk3rvaswfko5szqa2c4qk3y
+      karma-jasmine-html-reporter: 2.0.0_syhsk3rvaswfko5szqa2c4qk3y
       ng-packagr: 13.3.1_s5bwbhg5lo5tix5ox567j7io34
       typescript: 4.5.5
 
@@ -145,7 +145,7 @@ importers:
       karma-coverage: 2.2.0
       karma-coverage-istanbul-reporter: 3.0.3
       karma-jasmine: 4.0.2
-      karma-jasmine-html-reporter: 1.7.0
+      karma-jasmine-html-reporter: 2.0.0
       ngx-highlightjs: 4.1.4
       ngx-toastr: 14.3.0
       prettier: 2.7.1
@@ -210,7 +210,7 @@ importers:
       karma-coverage: 2.2.0
       karma-coverage-istanbul-reporter: 3.0.3
       karma-jasmine: 4.0.2_karma@6.4.0
-      karma-jasmine-html-reporter: 1.7.0_yivd6d3oqtt7z3iozna2k5bmk4
+      karma-jasmine-html-reporter: 2.0.0_yivd6d3oqtt7z3iozna2k5bmk4
       prettier: 2.7.1
       protractor: 7.0.0
       raw-loader: 4.0.2_webpack@5.73.0
@@ -15520,24 +15520,24 @@ packages:
       - supports-color
     dev: true
 
-  /karma-jasmine-html-reporter/1.7.0_syhsk3rvaswfko5szqa2c4qk3y:
-    resolution: {integrity: sha1-UsSJp012CTShCJv6XqSo/LhMwos=}
+  /karma-jasmine-html-reporter/2.0.0_syhsk3rvaswfko5szqa2c4qk3y:
+    resolution: {integrity: sha512-SB8HNNiazAHXM1vGEzf8/tSyEhkfxuDdhYdPBX2Mwgzt0OuF2gicApQ+uvXLID/gXyJQgvrM9+1/2SxZFUUDIA==}
     peerDependencies:
-      jasmine-core: '>=3.8'
-      karma: '>=0.9'
-      karma-jasmine: '>=1.1'
+      jasmine-core: ^4.0.0
+      karma: ^6.0.0
+      karma-jasmine: ^5.0.0
     dependencies:
       jasmine-core: 4.3.0
       karma: 6.4.0
       karma-jasmine: 4.0.2_karma@6.4.0
     dev: true
 
-  /karma-jasmine-html-reporter/1.7.0_yivd6d3oqtt7z3iozna2k5bmk4:
-    resolution: {integrity: sha1-UsSJp012CTShCJv6XqSo/LhMwos=}
+  /karma-jasmine-html-reporter/2.0.0_yivd6d3oqtt7z3iozna2k5bmk4:
+    resolution: {integrity: sha512-SB8HNNiazAHXM1vGEzf8/tSyEhkfxuDdhYdPBX2Mwgzt0OuF2gicApQ+uvXLID/gXyJQgvrM9+1/2SxZFUUDIA==}
     peerDependencies:
-      jasmine-core: '>=3.8'
-      karma: '>=0.9'
-      karma-jasmine: '>=1.1'
+      jasmine-core: ^4.0.0
+      karma: ^6.0.0
+      karma-jasmine: ^5.0.0
     dependencies:
       jasmine-core: 3.99.1
       karma: 6.4.0
