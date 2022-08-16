@@ -2,4 +2,4 @@
 '@swisspost/web-styles': patch
 ---
 
-Adds hcm styles for form-switch.
+Adds high contrast mode styles for form-switch.
