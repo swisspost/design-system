@@ -53,10 +53,10 @@
   &[aria-current] {
     pointer-events: none;
   }
-}
 
-// Stepper indicator styles
-.stepper-item {
+
+  // Stepper indicator styles
+
   &::before {
     content: '';
     pointer-events: none;
