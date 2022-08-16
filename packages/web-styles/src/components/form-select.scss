@@ -19,6 +19,10 @@
     border-color: FieldText;
     color: FieldText;
 
+    &:focus-visible {
+      color: FieldText;
+    }
+
     &:focus,
     &:hover:not(:disabled) {
       border-color: Highlight;
