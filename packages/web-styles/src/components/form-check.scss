@@ -192,13 +192,18 @@
       background-color: Field;
       border: button.$input-btn-focus-width solid FieldText;
 
-      &:focus-visible {
-        outline-color: Highlight;
-      }
-
       &:focus {
         background-image: escape-svg(form-switch.$form-switch-checked-bg-image);
         border-color: FieldText;
+        outline: none;
+      }
+
+      &:hover:not(:disabled) {
+        border-color: Highlight;
+      }
+
+      &:focus-visible {
+        outline: button.$input-btn-focus-width solid Highlight;
       }
 
       &:checked {
@@ -212,6 +217,7 @@
 
         &:hover:not(:disabled) {
           background-color: var(--success);
+          border-color: Highlight;
         }
       }
     }
