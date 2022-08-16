@@ -8,6 +8,7 @@
 @use '../variables/color';
 @use '../variables/grid';
 @use '../variables/spacing';
+@use '../variables/type';
 @use '../variables/components/topic-teaser';
 @use '../mixins/size';
 
@@ -148,6 +149,11 @@
 .link-list {
   padding: 0;
   list-style-type: none;
+  font-size: type.$font-size-small;
+
+  @include media-breakpoint-up(lg) {
+    font-size: type.$font-size-medium;
+  }
 }
 
 .link-list-item > a {
