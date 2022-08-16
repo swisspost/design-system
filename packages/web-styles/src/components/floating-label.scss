@@ -4,6 +4,8 @@
 
 @use '../lic/bootstrap-license';
 @use '../themes/bootstrap/forms' as bf;
+@use '../mixins/forms' as forms-mx;
+@use '../mixins/utilities' as utilities-mx;
 
 @use '../variables/components/forms';
 
@@ -38,6 +40,15 @@
         min-width: calc(
           (100% - #{2 * forms.$form-floating-padding-x}) / #{forms.$form-floating-label-scale}
         );
+      }
+    }
+  }
+
+  /* stylelint-disable-next-line order/order */
+  @include utilities-mx.high-contrast-mode() {
+    > input {
+      @include forms-mx.placeholder() {
+        opacity: 0;
       }
     }
   }

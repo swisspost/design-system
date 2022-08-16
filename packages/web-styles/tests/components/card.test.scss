@@ -4,4 +4,4 @@
 @use "src/components/card";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("card"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('card'), 'font-base-path'));

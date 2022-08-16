@@ -4,4 +4,4 @@
 @use "src/components/topic-teaser";
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("topic-teaser"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('topic-teaser'), 'font-base-path'));

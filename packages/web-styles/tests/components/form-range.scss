@@ -4,4 +4,4 @@
 @use 'src/components/form-range';
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables('form-range'), 'isolate-components'));
+@include jest.true(map.has-key(meta.module-variables('form-range'), 'font-base-path'));
