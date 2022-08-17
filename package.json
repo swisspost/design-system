@@ -4,7 +4,7 @@
 		"start:demo": "pnpm --filter web-demo --filter web-styles --parallel --stream  start",
 		"start:styles": "pnpm --filter web-styles storybook",
 		"start:intranet-header": "pnpm --filter angular-components start",
-    "start:components": "pnpm --filter web-components start",
+    "start:components": "pnpm --filter design-system-components start",
 		"bootstrap": "pnpm install && pnpm exec lerna bootstrap && pnpm run -r build",
 		"changeset:publish": "pnpm bootstrap && pnpm changeset publish",
 		"changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
