@@ -108,20 +108,16 @@
     } @else {
       @include icon-mixin.pi($icon);
       @include utilities.high-contrast-mode() {
-        // use important here, so pi classes don't overwrite hcm styles
-        filter: none !important;
-        forced-color-adjust: none;
-        background-color: canvasText;
-        color: canvas;
+        &[class] {
+          @include icon-mixin.pi($icon, 'white');
 
-        .toast-close-button,
-        .btn-close {
-          filter: invert(100%);
+          // use important here, so pi classes don't overwrite hcm styles
+          filter: none !important;
         }
       }
     }
-    background-color: $background-color;
 
+    background-color: $background-color;
     color: $text-color;
 
     a,
