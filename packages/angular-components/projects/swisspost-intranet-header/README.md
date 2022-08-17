@@ -11,13 +11,13 @@ This library was generated with [Angular CLI](https://github.com/angular/angular
 Install the header in your Angular project:
 
 ```bash
-npm install @swisspost/intranet-header
+npm install @swisspost/design-system-header-intranet
 ```
 
 In your `app.module.ts`, add the header to your imports:
 ```typescript
 // Other imports ....
-import { SwissPostIntranetHeaderModule } from "@swisspost/intranet-header";
+import { SwissPostIntranetHeaderModule } from "@swisspost/design-system-header-intranet";
 
 @NgModule({
   declarations: [

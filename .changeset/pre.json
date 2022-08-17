@@ -3,7 +3,7 @@
   "tag": "alpha",
   "initialVersions": {
     "@swisspost/angular-components": "0.0.0",
-    "@swisspost/intranet-header": "3.0.0-preview",
+    "@swisspost/design-system-header-intranet": "3.0.0-preview",
     "@swisspost/design-system-demo": "5.0.0-preview",
     "@swisspost/design-system-styles": "5.0.0-preview",
     "@swisspost/design-system-styles-migrations": "1.0.0-alpha.1"

@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { IntranetHeaderBigComponent } from './components/intranet-header-big/intranet-header-big.component';
 import { IntranetHeaderSmallComponent } from './components/intranet-header-small/intranet-header-small.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { SwissPostIntranetHeaderModule } from '@swisspost/intranet-header';
+import { SwissPostIntranetHeaderModule } from '@swisspost/design-system-header-intranet';
 import { HighlightModule } from 'ngx-highlightjs';
 import { HighlightProvider } from '../common/highlight.provider';
 

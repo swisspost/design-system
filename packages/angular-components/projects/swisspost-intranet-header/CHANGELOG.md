@@ -1,4 +1,4 @@
-# @swisspost/intranet-header
+# @swisspost/design-system-header-intranet
 
 ## 3.0.0-alpha.3
 
