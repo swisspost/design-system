@@ -1,165 +1,137 @@
-/*!
- * Copyright 2021 by Swiss Post, Information Technology
- */
-
-@use 'sass:math';
-
-@use '../functions/icons' as icon-functions;
-@use '../mixins/size' as size-mixins;
+@use '../mixins/size' as size-mx;
 @use '../mixins/utilities';
 
-@use '../variables/icons';
-@use '../variables/color';
 @use '../variables/spacing';
-@use '../variables/type';
 @use '../variables/components/stepper';
 
 @use '../themes/bootstrap/overrides' as *;
 
-.stepper {
-  @include size-mixins.responsive-size('big', 'margin-bottom');
+.stepper-container {
+  @include size-mx.responsive-size('big', 'margin-bottom');
   position: relative;
-  padding: 0 stepper.$step-indicator-size * 0.5;
 }
 
 .stepper-bar {
-  height: stepper.$stepper-bar-size;
-  margin-top: stepper.$step-indicator-size * 0.5;
-  margin-bottom: -1 * (stepper.$stepper-bar-size + stepper.$step-indicator-size) * 0.5;
+  height: stepper.$stepper-bar-height;
+  margin-top: stepper.$stepper-indicator-height * 0.5;
+  margin-bottom: -1 * (stepper.$stepper-bar-height + stepper.$stepper-indicator-height) * 0.5;
 }
 
-.steps {
-  display: flex;
-  justify-content: space-between;
+.stepper {
+  counter-reset: step-index;
+
+  list-style: none;
+  padding: 0 (0.5 * stepper.$stepper-indicator-height);
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(#{0.5 * stepper.$stepper-indicator-height}, 1fr));
+  justify-items: center;
 }
 
-.step {
+.stepper-item {
+  counter-increment: step-index;
   display: flex;
-  flex: 1 1 100%;
   flex-direction: column;
-  align-items: center;
-
-  &:first-child,
-  &:last-child {
-    flex-basis: 50%;
-  }
 
   &:first-child {
-    align-items: flex-start;
+    justify-self: start;
+    align-items: start;
+    transform: translateX(#{-0.5 * stepper.$stepper-indicator-height});
   }
 
   &:last-child {
-    align-items: flex-end;
+    justify-self: end;
+    align-items: end;
+    transform: translateX(#{0.5 * stepper.$stepper-indicator-height});
   }
 
-  &,
-  &:hover {
-    text-decoration: none;
-  }
-}
-
-.step-indicator {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: stepper.$step-indicator-size;
-  height: stepper.$step-indicator-size;
-  margin: 0 auto;
-  border: spacing.$size-micro solid color.$white;
-  border-radius: 100%;
-  background-color: stepper.$step-indicator-default-bg;
-  color: stepper.$step-indicator-default-color;
-  font-weight: type.$font-weight-bold;
-
-  .step:first-child & {
-    margin-left: math.div(stepper.$step-indicator-size, -2);
+  &:not(:first-child):not(:last-child) {
+    grid-column-end: span 2;
+    align-items: center;
   }
 
-  .step:last-child & {
-    margin-right: math.div(stepper.$step-indicator-size, -2);
+  &[aria-current] {
+    pointer-events: none;
   }
 
-  .step.current &,
-  .step.passed & {
-    background-color: stepper.$step-indicator-active-bg;
-    color: stepper.$step-indicator-active-color;
-  }
-
-  .step.passed & {
-    background-image: stepper.$step-indicator-passed-icon;
-    background-repeat: no-repeat;
+  // Stepper indicator styles
+  &::before {
+    content: '';
+    pointer-events: none;
+    text-align: center;
+    height: stepper.$stepper-indicator-height;
+    width: stepper.$stepper-indicator-height;
+    line-height: stepper.$stepper-indicator-height - 2 * stepper.$stepper-indicator-border-width;
+    margin-bottom: -1 * stepper.$stepper-indicator-height;
+    color: stepper.$stepper-indicator-color;
+    background-color: stepper.$stepper-indicator-bg;
+    background-image: stepper.$stepper-indicator-check-icon;
+    background-size: spacing.$size-large;
     background-position: center;
-    background-size: icons.$icon-size-default;
-
-    @include utilities.high-contrast-mode() {
-      background-image: stepper.$step-indicator-passed-icon-hover;
-    }
+    background-repeat: no-repeat;
+    border: stepper.$stepper-indicator-border-width solid stepper.$stepper-indicator-border-color;
+    border-radius: 50%;
+    font-size: stepper.$stepper-indicator-font-size;
+    font-weight: stepper.$stepper-indicator-font-weight;
+    transition: background 250ms, color 250ms;
   }
 
-  .step:not(.current):hover & {
-    background-color: stepper.$step-indicator-hover-bg;
-    color: stepper.$step-indicator-hover-color;
+  &[aria-current]::before,
+  &[aria-current] ~ &::before {
+    background-image: none;
+    content: counter(step-index);
   }
 
-  .step.passed:hover & {
-    background-image: stepper.$step-indicator-passed-icon-hover;
+  &[aria-current] ~ &:not(:hover)::before {
+    color: stepper.$stepper-indicator-future-color;
+    background-color: stepper.$stepper-indicator-future-bg;
+  }
+
+  &:hover::before {
+    color: stepper.$stepper-indicator-hover-color;
+    background-color: stepper.$stepper-indicator-hover-bg;
+    background-image: stepper.$stepper-indicator-hover-check-icon;
+  }
+
+  &:is(:focus-visible, :focus-within)::before {
+    outline: stepper.$stepper-indicator-hover-outline;
   }
 }
 
-.step-index {
-  flex: 0 0 auto;
+.stepper-link {
+  padding-top: stepper.$stepper-indicator-height + stepper.$stepper-link-gap;
+  text-decoration: none;
+  color: stepper.$stepper-link-color;
+  transition: color 250ms;
 
-  .step.current & {
-    cursor: default;
+  .stepper-item[aria-current] > & {
+    color: stepper.$stepper-link-current-color;
+    font-size: stepper.$stepper-link-current-font-size;
+    font-weight: stepper.$stepper-link-current-font-weight;
   }
 
-  .step.passed & {
-    display: none;
-  }
-}
-
-.step-name {
-  padding: spacing.$size-mini spacing.$size-micro 0;
-  color: stepper.$step-name-color;
-  line-height: stepper.$step-name-height;
-  text-align: center;
-
-  .step:first-child & {
-    margin-left: math.div(stepper.$step-indicator-size, -2);
-    text-align: left;
+  &:hover {
+    color: stepper.$stepper-link-hover-color;
   }
 
-  .step:last-child & {
-    margin-right: math.div(stepper.$step-indicator-size, -2);
-    text-align: right;
-  }
-
-  .step.current & {
-    color: color.$black;
-    font-weight: type.$font-weight-bold;
-  }
-
-  .step:hover & {
-    color: color.$black;
+  &:focus-visible {
+    outline: none;
   }
 }
 
 @include media-breakpoint-down(rg) {
-  .stepper {
-    padding-bottom: stepper.$step-name-height + spacing.$size-micro;
-  }
-
-  .step-name {
-    .step:not(.current) & {
-      display: none;
-    }
-
-    .step.current & {
+  .stepper-item {
+    &[aria-current] .stepper-link {
       position: absolute;
-      right: 0;
       bottom: 0;
       left: 0;
-      text-align: left;
+    }
+
+    &:not([aria-current]) .stepper-link {
+      overflow: hidden;
+      white-space: nowrap;
+      text-indent: 100%;
+      width: stepper.$stepper-indicator-height;
     }
   }
 }
@@ -174,53 +146,47 @@
     }
   }
 
-  .step {
-    &:focus-visible {
-      outline: none;
+  .stepper-item {
+    &::before {
+      width: calc(#{stepper.$stepper-indicator-height} + 2 * #{spacing.$size-line});
+      height: calc(#{stepper.$stepper-indicator-height} + 2 * #{spacing.$size-line});
+      line-height: calc(#{stepper.$stepper-indicator-height} + 2 * #{spacing.$size-line});
+      color: ButtonText;
+      background-color: ButtonFace;
+      background-image: stepper.$stepper-indicator-hover-check-icon;
+      border: 0;
+      outline: spacing.$size-line solid VisitedText;
+      outline-offset: -3 * spacing.$size-line;
+      margin-top: -1 * spacing.$size-line;
+    }
 
-      .step-indicator {
-        position: relative;
+    &[aria-current] ~ &::before {
+      outline-color: ButtonBorder;
+    }
 
-        &::after {
-          display: block;
-          content: '';
-          position: absolute;
-          inset: 0;
-          outline-offset: spacing.$size-line * 2;
-          outline: spacing.$size-line solid Highlight;
-          border-radius: inherit;
-        }
-      }
+    &[aria-current]::before {
+      outline-color: Highlight;
+    }
+
+    &:is(:focus-visible, :focus-within)::before {
+      border: spacing.$size-line solid Highlight;
+      line-height: stepper.$stepper-indicator-height;
+      outline-color: VisitedText;
+    }
+
+    &[aria-current] ~ &:is(:focus-visible, :focus-within)::before {
+      outline-color: ButtonBorder;
     }
   }
 
-  .step-indicator {
-    margin: spacing.$size-line;
-    width: calc(stepper.$step-indicator-size - (spacing.$size-line * 2));
-    height: calc(stepper.$step-indicator-size - (spacing.$size-line * 2));
-    background-color: ButtonFace;
-    border-width: spacing.$size-line;
-    border-color: ButtonBorder;
-    outline: spacing.$size-micro solid ButtonFace;
-    color: ButtonText;
+  .stepper-link {
+    color: VisitedText;
 
-    .step.passed & {
-      border-color: VisitedText;
+    .stepper-item[aria-current] ~ .stepper-item > & {
+      color: CanvasText;
     }
 
-    .step.current & {
-      border-color: Highlight;
-    }
-  }
-
-  .step-name {
-    color: CanvasText;
-
-    .step.passed & {
-      color: VisitedText;
-    }
-
-    .step.current & {
+    .stepper-item[aria-current] > & {
       color: Highlight;
     }
   }
