@@ -90,7 +90,6 @@
 %notification-close-light {
   @extend .btn-close-white;
 }
-/* stylelint-enable */
 
 @each $name, $color, $icon in alert.$alert-list {
   $text-color: color-fn.get-contrast-color($color);
@@ -108,6 +107,7 @@
     } @else {
       @include icon-mixin.pi($icon);
       @include utilities.high-contrast-mode() {
+        // Specificity booster for the icon-mixin
         &[class] {
           @include icon-mixin.pi($icon, 'white');
 
@@ -136,3 +136,4 @@
     }
   }
 }
+/* stylelint-enable */
