@@ -1,9 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-badge-demo',
-  templateUrl: './badge-demo.component.html',
-  styleUrls: ['./badge-demo.component.scss']
+  templateUrl: './badge-demo.component.html'
 })
 export class BadgeDemoComponent  {
 }
