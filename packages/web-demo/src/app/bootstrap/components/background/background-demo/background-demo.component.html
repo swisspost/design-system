@@ -1,3 +1,6 @@
-<div *ngFor="let color of colorArray" class="bg-{{color}} p-3 my-2" [style]="'--bg-opacity:' + bgOpacity + ';'">
-  <strong class="text-capitalize">{{ color }}</strong>&nbsp;<code>&lt;div class="bg-{{color}}" style="--bg-opacity: {{bgOpacity}};"&gt;&lt;/div&gt;</code>
+<div *ngFor="let color of colorArray" class="bg-{{color}} p-2 my-1" [style]="'--bg-opacity:' + (dropOpacity ? 0.8 : 1) + ';'">
+  <div class="d-flex justify-content-between align-items-center">
+    <strong class="text-capitalize">{{ color }}</strong>
+    <small><code>.bg-{{color}}</code></small>
+  </div>
 </div>
