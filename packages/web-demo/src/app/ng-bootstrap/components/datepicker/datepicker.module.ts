@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {NgbDatepickerI18n, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {HighlightModule} from 'ngx-highlightjs';
-import {CWFCommonModule} from '../../../common/cwf-common.module';
+import {PostCommonModule} from '../../../common/cwf-common.module';
 import {HighlightProvider} from '../../../common/highlight.provider';
 import {NgbDatepickerDemoPageComponent} from './datepicker-demo-page/datepicker-demo-page.component';
 import {CustomDatepickerI18n, I18n} from './datepicker-demo-page/datepicker-localization.service';
@@ -22,7 +22,7 @@ import {DatepickerValidationDemoComponent} from './datepicker-validation/datepic
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    CWFCommonModule,
+    PostCommonModule,
     HighlightModule,
   ],
   declarations: [

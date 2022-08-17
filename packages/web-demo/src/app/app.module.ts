@@ -24,7 +24,7 @@ import { IntranetComponentsModule } from "./intranet-layout/intranet-components.
 import { PostSampleComponentsModule } from "./post-sample/post-sample-components.module";
 import { SwissPostIntranetHeaderModule } from "@swisspost/intranet-header";
 import { HomeComponent } from "./home/home.component";
-import { CWFCommonModule } from "./common/cwf-common.module";
+import { PostCommonModule } from "./common/cwf-common.module";
 
 registerLocaleData(localeDe);
 registerLocaleData(localeFr);
@@ -46,7 +46,7 @@ registerLocaleData(localeEn);
     BootstrapComponentsModule,
     NgBootstrapComponentsModule,
     IntranetComponentsModule,
-    CWFCommonModule,
+    PostCommonModule,
     PostSampleComponentsModule,
     SwissPostIntranetHeaderModule,
     ToastrModule.forRoot({

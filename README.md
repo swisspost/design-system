@@ -3,11 +3,11 @@
 ![Swiss Post Logo](https://www.post.ch/-/media/portal-opp/global/logos/logo---die-post.svg?vs=2&sc_lang=en)
 
 
-# Common Web Frontend
+# Swiss Post Design System
 
 The Swiss Post Design Pattern Library for a unified and accessible user experience accross the web platform.
 
-🚧 The **Common Web Frontend v5** is in alpha. Have a look at the [v5 milestone](https://github.com/swisspost/design-system/milestone/1) to see the progress.
+🚧 The **Swiss Post Design System v5** is in alpha. Have a look at the [v5 milestone](https://github.com/swisspost/design-system/milestone/1) to see the progress.
 
 
 ## Packages
@@ -52,7 +52,7 @@ You can reach out on the [discussions page](https://github.com/swisspost/web-fro
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
-Considering supporting the Common Web Frontend with your contribution? Whether you like to contribute new patterns, fix a bug, spotted a typo or have ideas for improvement - we'd love to hear from you. Read more about setting up the development environment and the different ways to get involved in our [Contribution Guidelines](/CONTRIBUTING.md). 
+Considering supporting the Swiss Post Design System with your contribution? Whether you like to contribute new patterns, fix a bug, spotted a typo or have ideas for improvement - we'd love to hear from you. Read more about setting up the development environment and the different ways to get involved in our [Contribution Guidelines](/CONTRIBUTING.md). 
 
 In order to keep our community open and inclusive, we expect you to read and follow our [Code of Conduct](/CODE_OF_CONDUCT.md).
 

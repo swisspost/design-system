@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-⚠️ The common web frontend is currently in alpha phase.
+⚠️ The Swiss Post Design System is currently in alpha phase.
 
 | Package         | Version | Supported          |
 | --------------- | ------- | ------------------ |

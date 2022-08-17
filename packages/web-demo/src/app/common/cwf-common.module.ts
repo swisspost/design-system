@@ -21,4 +21,4 @@ import { FormatCodePipe } from './format-code.pipe';
     FormatCodePipe
   ]
 })
-export class CWFCommonModule { }
+export class PostCommonModule { }
