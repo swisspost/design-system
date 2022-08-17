@@ -6,6 +6,8 @@
 @use '../variables/components/toasts';
 @use '../variables/components/alert';
 @use '../components/close';
+@use '../functions/color' as color-fn;
+@use '../placeholders/color' as color-ph;
 @use '../placeholders/notifications';
 
 // Positioning
@@ -151,7 +153,14 @@
 
 @each $name, $color, $icon in alert.$alert-list {
   .toast-#{$name} {
+    --bg-rgb: #{color-fn.rgb-values($color)};
     @extend %notification-#{$name};
+
+    @if (color-fn.get-contrast-color($color) != #000) {
+      @extend %color-background-dark-variables;
+    } @else {
+      @extend %color-background-light-variables;
+    }
 
     .toast-close-button,
     .btn-close {

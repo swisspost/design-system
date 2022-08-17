@@ -7,5 +7,5 @@
 @use '../themes/bootstrap/root';
 
 :root {
-  @extend %variables-background-light;
+  @extend %color-background-light-variables;
 }

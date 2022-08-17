@@ -3,16 +3,45 @@
 @use '../variables/color';
 @use '../functions/color' as color-fn;
 
-// CWF light backgrounds color-variables (not rendered by bootstrap)
-%variables-background-light {
+// background rgb properties
+%color-background-rgb {
+  background-color: rgb(var(--bg-rgb)) !important;
+  color: var(--contrast-color) !important;
+}
+
+// background rgba properties
+%color-background-rgba {
+  --bg-opacity: 1;
+  background-color: rgba(var(--bg-rgb), var(--bg-opacity)) !important;
+  color: var(--contrast-color) !important;
+}
+
+// background extended properties
+%color-background-extended {
+  a,
+  label {
+    color: inherit;
+  }
+
+  a:hover {
+    color: rgba(var(--contrast-color-rgb), 0.8);
+  }
+}
+
+// light background variables
+%color-background-light-variables {
   --contrast-color: #{color.$black};
   --contrast-color-rgb: #{color-fn.rgb-values(color.$black)};
   --contrast-color-inverted: #{color.$white};
   --contrast-color-inverted-rgb: #{color-fn.rgb-values(color.$white)};
+
+  @each $color-name, $color-value in color.$grays {
+    --gray-#{$color-name}: #{$color-value};
+  }
 }
 
-// CWF dark backgrounds color-variables (not rendered by bootstrap)
-%variables-background-dark {
+// dark background variables
+%color-background-dark-variables {
   --contrast-color: #{color.$white};
   --contrast-color-rgb: #{color-fn.rgb-values(color.$white)};
   --contrast-color-inverted: #{color.$black};
@@ -26,6 +55,4 @@
     // stylelint-disable-next-line order/order
     --gray-#{$color-name}: #{$color-value};
   }
-
-  color: color.$white;
 }
