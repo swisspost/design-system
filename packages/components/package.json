@@ -1,7 +1,7 @@
 {
-  "name": "@swisspost/web-components",
+  "name": "@swisspost/design-system-components",
   "version": "1.0.0-alpha.0",
-  "description": "A collection of web components built with Stencil JS for the Common Web Frontend.",
+  "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
   "main": "dist/index.cjs.js",
   "module": "dist/index.js",
