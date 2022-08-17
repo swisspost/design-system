@@ -4,30 +4,132 @@
 @use '../themes/bootstrap/overrides' as *;
 @use '../themes/bootstrap/badge' as bb;
 
-@use '../variables/color';
-@use '../variables/type';
 @use '../variables/components/badge';
-@use '../variables/components/nav';
-@use '../variables/options';
+@use '../variables/components/forms';
+@use '../variables/components/form-check';
+@use '../variables/color';
+@use '../mixins/utilities';
+@use '../mixins/forms' as forms-mx;
+@use '../mixins/badge' as badge-mx;
+@use '../functions/icons' as icons-fn;
 
 .badge {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  border: badge.$badge-border-width solid badge.$badge-border-color;
   height: badge.$badge-height;
-  border: badge.$badge-border;
-  color: var(--text-color, inherit);
+  gap: badge.$badge-gap;
+
+  & > & {
+    padding: 0;
+    height: badge.$badge-nested-height;
+    min-width: badge.$badge-nested-height;
+    background-color: badge.$badge-nested-bg-color;
+    border-color: badge.$badge-nested-border-color;
+    font-size: badge.$badge-nested-font-size;
+  }
+
+  & > .btn-close {
+    padding: 0;
+  }
+
+  & > &,
+  & > .btn-close {
+    margin-right: -1 * (badge.$badge-padding-x - badge.$badge-nested-translate-x);
+  }
+
+  &-sm {
+    height: badge.$badge-height-sm;
+    font-size: badge.$badge-font-size-sm;
+    gap: badge.$badge-gap-sm;
+
+    & > &,
+    & > .btn-close {
+      margin-right: -1 * (badge.$badge-padding-x - badge.$badge-nested-translate-x-sm);
+    }
+  }
 }
 
-.badge[class*='border-'] {
-  border-width: badge.$badge-outline-border-width;
-  background-color: badge.$badge-outline-bg;
-  color: badge.$badge-outline-color;
+a,
+button {
+  &.badge {
+    @include forms-mx.focus-outline;
+    background-color: transparent;
+    text-decoration: none;
+    transition: badge.$badge-transition;
+
+    @include utilities.not-disabled-focus-hover {
+      @include badge-mx.badge-hover-state;
+    }
+
+    &:active,
+    &.active {
+      @include badge-mx.badge-active-state;
+    }
+  }
 }
 
-.badge > i {
-  position: relative;
+.badge-check {
+  &-label {
+    @extend .badge;
+    @include forms-mx.focus-outline;
+    transition: badge.$badge-transition;
+    cursor: pointer;
+
+    &::before {
+      content: "";
+      display: block;
+      height: badge.$badge-check-input-height;
+      width: badge.$badge-check-input-height;
+      background-color: badge.$badge-check-input-bg-color;
+      border: form-check.$form-check-input-border-width solid;
+    }
+  }
+
+  &-input {
+    @include utilities.visuallyhidden;
+  }
+
+  &-input:focus-visible + &-label {
+    outline-offset: forms.$input-focus-outline-thickness;
+    outline: forms.$input-focus-outline-thickness solid var(--text-color);
+  }
+
+  &-input:not(:checked) + &-label:hover {
+    @include badge-mx.badge-hover-state;
+  }
+
+  &-input:checked + &-label {
+    @include badge-mx.badge-active-state;
+
+    &::before {
+      background-image: form-check.$form-check-input-checked-bg-image;
+      background-size: contain;
+      background-position: center;
+    }
+  }
 }
 
-.badge > * + * {
-  margin-left: (0.375rem);
+@include utilities.high-contrast-mode() {
+  .badge-check {
+    &-input:focus-visible + &-label {
+      border-color: Highlight;
+      outline-color: Highlight;
+    }
+
+    &-input:checked + &-label {
+      &:hover {
+        @include badge-mx.badge-hover-state;
+      }
+
+      &::before {
+        background-image: url('#{icons-fn.get-colored-svg-url(form-check.$form-check-input-checked-bg-icon, color.$white)}');
+      }
+    }
+  }
+
+  button.badge, a.badge, .badge-check-label {
+    transition: none;
+  }
 }
