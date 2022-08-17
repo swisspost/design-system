@@ -15,9 +15,17 @@
 .form-select {
   @include utilities.high-contrast-mode() {
     background-image: escape-svg($form-select-indicator-hcm);
+    background-color: Field;
+    border-color: FieldText;
+    color: FieldText;
 
-    &:focus {
+    &:focus-visible {
       color: FieldText;
+    }
+
+    &:focus,
+    &:hover:not(:disabled) {
+      border-color: Highlight;
     }
   }
 }
