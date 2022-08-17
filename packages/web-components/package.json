@@ -40,6 +40,8 @@
   },
   "devDependencies": {
     "@babel/core": "^7.17.0",
+    "@percy/cli": "^1.6.0",
+    "@percy/storybook": "^4.3.0",
     "@pxtrn/storybook-addon-docs-stencil": "^6.4.1",
     "@storybook/addon-actions": "^6.4.18",
     "@storybook/addon-essentials": "^6.4.18",
