@@ -1,4 +1,4 @@
-# @swisspost/web-styles
+# @swisspost/design-system-styles
 
 ## 5.0.0-alpha.6
 

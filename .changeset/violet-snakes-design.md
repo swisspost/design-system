@@ -1,6 +1,6 @@
 ---
 '@swispost/web-styles-migrations': major
-'@swisspost/web-styles': patch
+'@swisspost/design-system-styles': patch
 ---
 
 Created a new package offering Migration Schematics for the Web Styles

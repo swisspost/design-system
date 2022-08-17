@@ -20,12 +20,12 @@ Common styles for the Swiss Post web platform.
 
 Install the styling package
 ```bash
-  npm install @swisspost/web-styles
+  npm install @swisspost/design-system-styles
 ```
 
 Import the stylesheet into your project, e.g. `src/styles.scss`.
 ```scss
-@use "node_modules/@swisspost/web-styles/<bundle-name>.scss
+@use "node_modules/@swisspost/design-system-styles/<bundle-name>.scss
 ```
 
 Available bundles:

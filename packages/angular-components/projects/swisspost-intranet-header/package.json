@@ -24,7 +24,7 @@
     "@angular/core": "^13.2.0"
   },
   "dependencies": {
-    "@swisspost/web-styles": "^5.0.0-alpha.4",
+    "@swisspost/design-system-styles": "^5.0.0-alpha.4",
     "tslib": "2.4.0"
   }
 }

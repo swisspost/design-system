@@ -1,5 +1,5 @@
 ---
-'@swisspost/web-styles': patch
+'@swisspost/design-system-styles': patch
 '@swisspost/intranet-header': patch
 ---
 

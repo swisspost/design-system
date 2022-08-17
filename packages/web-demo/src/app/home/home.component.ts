@@ -13,15 +13,15 @@ const installCwf = `> # Replace node-sass with sass (dart-sass)
 
 > # Replace CWF
 > npm uninstall web-styles
-> npm install @swisspost/web-styles@^4.1.0 --save
+> npm install @swisspost/design-system-styles@^4.1.0 --save
 
 > # Replace Header
 > npm uninstall swisspost-intranet-header
-> npm install @swisspost/web-styles-intranet-header`;
+> npm install @swisspost/design-system-styles-intranet-header`;
 
 const updateHeaderImport = `// src/app/app.module.ts
 // ...
-import { SwissPostIntranetHeaderModule } from '@swisspost/web-styles-intranet-header';
+import { SwissPostIntranetHeaderModule } from '@swisspost/design-system-styles-intranet-header';
 // ...`;
 
 const updatePackages = `> # Update both ng-bootstrap and ngx-toastr
@@ -103,7 +103,7 @@ const stylesConfig = `<span class="text-white-50">// angular.json
             // ...</span>
             "styles": [
               "src/styles.scss",
-              "node_modules/@swisspost/web-styles/post.scss" // Or post-intranet.scss or post-portal.scss
+              "node_modules/@swisspost/design-system-styles/post.scss" // Or post-intranet.scss or post-portal.scss
             ],
             <span class="text-white-50">// and so forth</span>`;
 
@@ -117,7 +117,7 @@ ToastrModule.forRoot({
 
 const cwfUse = `// styles.scss
 // Include the file you included before; either "post", "post-intranet" or "post-portal". (Only one of them.)
-@use "@swisspost/web-styles/post-intranet";
+@use "@swisspost/design-system-styles/post-intranet";
 
 // Optional: use functions, mixins and variables
 @use "@swisspost//web-styles/cwf";
@@ -201,7 +201,7 @@ $1cwf.$2
 // SEARCH FOR
 'swisspost-intranet-header'
 // REPLACE WITH
-'@swisspost/web-styles-intranet-header'`;
+'@swisspost/design-system-styles-intranet-header'`;
 
 const checknodeversion = `> node -v
 > # v12.18.2 > 10.0.0`;

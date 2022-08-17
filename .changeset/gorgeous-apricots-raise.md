@@ -1,5 +1,5 @@
 ---
-'@swisspost/web-styles': minor
+'@swisspost/design-system-styles': minor
 ---
 
 Added a story for blockquotes

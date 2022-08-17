@@ -6,7 +6,7 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./svg-icons-demo.component.scss']
 })
 export class SvgIconsDemoComponent {
-  packageName : string = "@swisspost/web-styles";
+  packageName : string = "@swisspost/design-system-styles";
   cwfImport : string = `@use "${this.packageName}/cwf";`;
 
   colors = ["primary", "white", "success", "warning", "danger"];

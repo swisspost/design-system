@@ -71,7 +71,7 @@
               "projects/intranet-header-showcase/src/assets"
             ],
             "styles": [
-              "node_modules/@swisspost/web-styles/post-intranet.css",
+              "node_modules/@swisspost/design-system-styles/post-intranet.css",
               "projects/intranet-header-showcase/src/styles.scss"
             ],
             "scripts": []

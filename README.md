@@ -13,7 +13,7 @@ The Swiss Post Design Pattern Library for a unified and accessible user experien
 ## Packages
 
 ### Web Styles
-[![npm](https://img.shields.io/npm/v/@swisspost/web-styles)](https://www.npmjs.com/package/@swisspost/web-styles)
+[![npm](https://img.shields.io/npm/v/@swisspost/design-system-styles)](https://www.npmjs.com/package/@swisspost/design-system-styles)
 
 [Documentation](https://swisspost-web-frontend.netlify.app) · [Contributing](/packages/web-styles/README.md)
 
@@ -21,7 +21,7 @@ The Swiss Post Design Pattern Library for a unified and accessible user experien
 The styling package, including theming for [Bootstrap](https://getbootstrap.com/) and [ng-bootstrap](https://ng-bootstrap.github.io/#/home) components. 
 
 ```bash
-npm install @swisspost/web-styles
+npm install @swisspost/design-system-styles
 ```
 
 <hr>
