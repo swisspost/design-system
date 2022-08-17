@@ -10,7 +10,7 @@
 @use '../mixins/utilities';
 
 .progress-bar {
-  color: var(--text-color, progress-bars.$progress-bar-color);
+  color: var(--contrast-color, progress-bars.$progress-bar-color);
 }
 
 @include utilities.high-contrast-mode() {

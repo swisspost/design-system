@@ -70,7 +70,7 @@
   .alert-#{$name} {
     @extend %notification-#{$name};
     @if (color-fn.get-contrast-color($color) != #000) {
-      @extend %inverted-colors;
+      @extend %variables-background-dark;
     }
 
     .btn-close {

@@ -17,7 +17,7 @@
   }
 
   &:focus {
-    outline: 2px solid var(--text-color);
+    outline: 2px solid var(--contrast-color);
     box-shadow: none;
 
     &:not(:focus-visible) {
