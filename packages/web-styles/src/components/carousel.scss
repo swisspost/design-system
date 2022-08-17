@@ -149,7 +149,7 @@
   text-align: left;
 }
 
-.carousel-indicators li {
+.carousel-indicators [data-bs-target] {
   width: 0.75rem;
   height: 0.75rem;
   border: 1px color.$black solid;
@@ -161,7 +161,7 @@
   }
 }
 
-.carousel-indicators li.active {
+.carousel-indicators [data-bs-target].active {
   border-color: color.$yellow;
   background-color: color.$yellow;
 

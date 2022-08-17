@@ -19,6 +19,7 @@
   &::-moz-range-thumb {
     border-radius: 50%;
     box-sizing: border-box;
+    cursor: pointer;
   }
 
   &:not(:disabled, .disabled) {

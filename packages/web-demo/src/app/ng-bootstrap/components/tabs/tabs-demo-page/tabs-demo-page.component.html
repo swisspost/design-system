@@ -16,7 +16,7 @@
       <code class="block" [highlight]="defaultSnippet" [languages]="['html']"></code>
     </div>
   </div>
-  <div class="bg-nightblue text-auto mt-5 py-5">
+  <div class="bg-nightblue mt-5 py-5">
     <div class="container">
       <h3 class="bold">Dark background</h3>
     </div>
@@ -39,10 +39,10 @@
       <h3 class="bold">Colored tabs on white background</h3>
     </div>
     <app-ngb-tabs-demo wrapperBg="white" contentBg="coral" tabsBg="coral"></app-ngb-tabs-demo>
-    <div class="bg-coral text-auto pb-5">
+    <div class="bg-coral pb-5">
       <div class="container">
         <h4 class="bold">Heads up!</h4>
-        <p class="font-curve-regular light">Notice the three <code>bg-*</code> classes to see how to fine-tune the background colors. And don't forget to add <code>text-auto</code>.</p>
+        <p class="font-curve-regular light">Notice the three <code>bg-*</code> classes to see how to fine-tune the background colors.</p>
         <code class="block" [highlight]="colorBgSnippet" [languages]="['html']"></code>
       </div>
     </div>
@@ -91,7 +91,7 @@
       </ul>
     </div>
 
-    <div [ngbNavOutlet]="nav" class="tab-content text-auto"></div>
+    <div [ngbNavOutlet]="nav" class="tab-content"></div>
 
     <p class="light font-curve-regular mt-4">Notice the <code>.container</code> around all the tabs and the missing <code>.container</code> classes on the tabs itself.</p>
     <code class="block" [highlight]="containerSnippet" [languages]="['html']"></code>

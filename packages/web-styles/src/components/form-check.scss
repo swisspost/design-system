@@ -157,20 +157,27 @@
     background-size: form-switch.$form-switch-checked-bg-image-size,
       form-switch.$form-switch-linear-gradient-size;
 
-    &:focus-visible {
+    &:focus {
+      background-image: escape-svg(form-switch.$form-switch-bg-image),
+        form-switch.$form-switch-linear-gradient;
+      box-shadow: none;
       outline: button.$input-btn-focus-width solid var(--text-color, color.$black);
+    }
+
+    @supports selector(:focus-visible) {
+      &:focus {
+        outline-color: transparent;
+      }
+
+      &:focus-visible {
+        outline: button.$input-btn-focus-width solid var(--text-color, color.$black);
+      }
     }
 
     &:checked {
       background-image: escape-svg(form-switch.$form-switch-checked-bg-image),
         form-switch.$form-switch-linear-gradient;
       background-position: right center, left center;
-    }
-
-    &:focus {
-      background-image: escape-svg(form-switch.$form-switch-bg-image),
-        form-switch.$form-switch-linear-gradient;
-      box-shadow: none;
     }
 
     &:checked:focus {
@@ -184,7 +191,42 @@
 
     @include utilities.high-contrast-mode() {
       --success: ActiveText;
-      border: button.$input-btn-focus-width solid var(--text-color);
+
+      // linear-gradients or statements which contains linear-gradients are disabled in firefox
+      // so we have to repeat background-image statements here without linear-gradients
+
+      background-image: escape-svg(form-switch.$form-switch-checked-bg-image);
+      background-color: Field;
+      border: button.$input-btn-focus-width solid FieldText;
+
+      &:focus {
+        background-image: escape-svg(form-switch.$form-switch-checked-bg-image);
+        border-color: FieldText;
+        outline: none;
+      }
+
+      &:hover:not(:disabled) {
+        border-color: Highlight;
+      }
+
+      &:focus-visible {
+        outline: button.$input-btn-focus-width solid Highlight;
+      }
+
+      &:checked {
+        background-color: var(--success);
+        background-image: escape-svg(form-switch.$form-switch-checked-bg-image);
+
+        &:focus {
+          background-color: var(--success);
+          background-image: escape-svg(form-switch.$form-switch-checked-bg-image);
+        }
+
+        &:hover:not(:disabled) {
+          background-color: var(--success);
+          border-color: Highlight;
+        }
+      }
     }
   }
 

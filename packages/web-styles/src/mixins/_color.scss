@@ -1,8 +1,15 @@
 @use '../variables/color';
 
 // Selector for styles to be applied on dark backgrounds
-@mixin on-dark-background() {
-  :is(#{color.$dark-backgrounds}) & {
-    @content;
+@mixin on-dark-background($contains: false) {
+  @if $contains == true {
+    &:is(#{color.$dark-backgrounds}),
+    :is(#{color.$dark-backgrounds}) & {
+      @content;
+    }
+  } @else {
+    :is(#{color.$dark-backgrounds}) & {
+      @content;
+    }
   }
 }
