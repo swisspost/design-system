@@ -20,7 +20,7 @@ npm install -g pnpm
 # Install dependencies, build local dependencies and finally link them correctly with lerna (this step wouldn't be necessary if https://github.com/pnpm/pnpm/issues/3901 was fixed)
 pnpm run bootstrap
 
-# Start the web-demo
+# Start the design-system-demo
 pnpm start
 ```
 

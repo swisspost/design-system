@@ -1,4 +1,4 @@
-# @swisspost/web-demo
+# @swisspost/design-system-demo
 
 ## 5.0.0-alpha.4
 
