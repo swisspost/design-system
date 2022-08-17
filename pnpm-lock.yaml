@@ -98,7 +98,7 @@ importers:
     dependencies:
       '@swisspost/design-system-styles': link:../../../web-styles
       tslib: 2.4.0
-    publishDirectory: ../../dist/swisspost-design-system-header-intranet
+    publishDirectory: ../../dist/swisspost-intranet-header
 
   packages/web-demo:
     specifiers:
