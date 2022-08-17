@@ -1,4 +1,4 @@
-@use '@swisspost//web-styles/cwf';
+@use '@swisspost/design-system-styles/cwf';
 
 .form-label:not(:last-child) {
   margin-top: cwf.$size-regular;

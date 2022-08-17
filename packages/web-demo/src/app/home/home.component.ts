@@ -12,7 +12,7 @@ const installCwf = `> # Replace node-sass with sass (dart-sass)
 > npm install sass --save-dev
 
 > # Replace CWF
-> npm uninstall web-styles
+> npm uninstall design-system-styles
 > npm install @swisspost/design-system-styles@^4.1.0 --save
 
 > # Replace Header
@@ -120,7 +120,7 @@ const cwfUse = `// styles.scss
 @use "@swisspost/design-system-styles/post-intranet";
 
 // Optional: use functions, mixins and variables
-@use "@swisspost//web-styles/cwf";
+@use "@swisspost/design-system-styles/cwf";
 
 .bg-yellow { // Don't copy this class. It is just an example.
   background-color: cwf.$yellow; // cwf is the filename and by convention the namespace
@@ -183,7 +183,7 @@ const regexReplace = `// Sass Functions. Don't forget to add the corresponding @
 $1$2.$3 // Add this import to the top of the file: @use "sass:$1";
 
 // Variables, mixins and functions used from CWF. Be careful! This might replace more than you'd want it to...
-/* Don't forget to add '@use "@swisspost//web-styles/cwf";' */
+/* Don't forget to add '@use "@swisspost/design-system-styles/cwf";' */
 // at the top of every file where you use a function, mixin or variable from CWF.
 
 // SEARCH FOR

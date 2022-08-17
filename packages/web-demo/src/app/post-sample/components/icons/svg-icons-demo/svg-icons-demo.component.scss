@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use '@swisspost//web-styles/cwf';
+@use '@swisspost/design-system-styles/cwf';
 
 .pi-heart {
   @include cwf.pi(2063, #ff0088);
