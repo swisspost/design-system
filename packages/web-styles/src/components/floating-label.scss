@@ -4,6 +4,8 @@
 
 @use '../lic/bootstrap-license';
 @use '../themes/bootstrap/forms' as bf;
+@use '../mixins/forms' as forms-mx;
+@use '../mixins/utilities' as utilities-mx;
 
 @use '../variables/components/forms';
 
@@ -17,6 +19,10 @@
     border: 0;
     color: forms.$form-floating-label-color;
     font-size: forms.$form-floating-label-font-size;
+    max-width: calc(100% - (forms.$input-border-width * 2));
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 
   > textarea.form-control {
@@ -42,6 +48,15 @@
     }
   }
 
+  /* stylelint-disable-next-line order/order */
+  @include utilities-mx.high-contrast-mode() {
+    > input {
+      @include forms-mx.placeholder() {
+        opacity: 0;
+      }
+    }
+  }
+
   // disable styleint here, because the classes are coming from bs5
   /* stylelint-disable */
   > .form-control {
@@ -50,6 +65,14 @@
 
   > .form-select {
     @extend .form-select-lg;
+
+    &:empty {
+      ~ label {
+        transform: translateY(
+          forms.$form-floating-padding-y - forms.$form-floating-label-padding-t
+        );
+      }
+    }
   }
   /* stylelint-enable */
 }

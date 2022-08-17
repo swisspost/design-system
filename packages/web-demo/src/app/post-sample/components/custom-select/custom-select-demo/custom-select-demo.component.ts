@@ -19,18 +19,18 @@ export class CustomSelectDemoComponent {
   constructor() {
     this.options = [
       {
-        label: 'I come driving',
-        value: 'car',
-        icon: 3116,
-      },
-      {
-        label: 'I come by bike',
-        value: 'bike',
+        label: 'One',
+        value: '1',
         icon: 3126,
       },
       {
-        label: 'I take the bus',
-        value: 'bus',
+        label: 'Two',
+        value: '2',
+        icon: 3116,
+      },
+      {
+        label: 'Three',
+        value: '3',
         icon: 3107,
       },
     ];

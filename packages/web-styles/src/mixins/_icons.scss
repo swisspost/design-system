@@ -36,12 +36,3 @@
 @mixin pi-pre($name) {
   background-image: url(icon-fn.get-pre-colored-svg-url($name));
 }
-
-@mixin icon-button($size: md) {
-  // Padding for icon buttons is (button-height - font-size) / 2
-  $font-size: map.get(type.$font-size-map, $size);
-  $button-height: map.get(button.$btn-height-map, $size);
-  $padding-y: ($button-height - $font-size) * 0.5 - button.$input-btn-focus-width;
-  padding-right: $padding-y;
-  padding-left: $padding-y;
-}

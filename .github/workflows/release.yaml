@@ -32,7 +32,7 @@ jobs:
 
       - uses: pnpm/action-setup@v2.2.2
         with:
-          version: 7.x
+          version: 7.9.0
           
       # Install changesets locally
       - name: Install dependencies
@@ -64,4 +64,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           netlify link --id $NETLIFY_SITE_ID
-          netlify deploy --build false --dir packages/web-demo/dist/web-demo
+          netlify deploy --build false --dir packages/web-demo/dist/web-demo --prod

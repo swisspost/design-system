@@ -1,7 +1,7 @@
-<div class="tabs-wrapper" [class]="wrapperBg ? 'text-auto bg-' + wrapperBg : ''">
+<div class="tabs-wrapper" [class]="wrapperBg ? 'bg-' + wrapperBg : ''">
   <!-- the conditional color classes are for demo purposes only -->
   <div class="container">
-    <ul ngbNav #nav="ngbNav" class="tabs" [class]="tabsBg ? 'bg-' + tabsBg : ''" [class.text-auto]="tabsBg && tabsBg !== 'light'">
+    <ul ngbNav #nav="ngbNav" class="tabs" [class]="tabsBg ? 'bg-' + tabsBg : ''">
       <li ngbNavItem>
         <a href="" ngbNavLink class="tab-title">Mantis Shrimp</a>
         <ng-template ngbNavContent ngPreserveWhitespaces>
@@ -291,6 +291,6 @@
 </div>
 
 <!-- the additional div and conditional color classes are for demo purposes only -->
-<div [class]="contentBg ? 'text-auto bg-' + contentBg : ''">
+<div [class]="contentBg ? 'bg-' + contentBg : ''">
   <div [ngbNavOutlet]="nav" class="container py-5"></div>
 </div>

@@ -4,4 +4,4 @@
 @use 'src/components/floating-label';
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables('floating-label'), 'isolate-components'));
+@include jest.true(map.has-key(meta.module-variables('floating-label'), 'font-base-path'));

@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/intranet-header",
-  "version": "3.0.0-alpha.2",
+  "version": "3.0.0-alpha.3",
   "description": "Intranet header for internal Swiss Post applications as an Angular component.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -8,7 +8,7 @@
     "type": "git",
     "url": "https://github.com/swisspost/common-web-frontend.git"
   },
-  "homepage": "https://swisspost-web-frontend.netlify.app/",
+  "homepage": "https://swisspost-web-frontend.netlify.app",
   "bugs": {
     "url": "https://github.com/swisspost/common-web-frontend/issues"
   },
@@ -24,7 +24,7 @@
     "@angular/core": "^13.2.0"
   },
   "dependencies": {
-    "@swisspost/web-styles": "^5.0.0-alpha.2",
+    "@swisspost/web-styles": "^5.0.0-alpha.4",
     "tslib": "2.4.0"
   }
 }

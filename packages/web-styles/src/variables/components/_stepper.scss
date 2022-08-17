@@ -1,25 +1,32 @@
-/*!
- * Copyright 2021 by Swiss Post, Information Technology
- */
+@use './forms';
+@use '../type';
+@use '../color';
+@use '../spacing';
 
-@use '../../functions/icons' as icon-functions;
-@use '../../variables/color';
-@use '../../variables/spacing';
+@use '../../functions/icons' as icon-fn;
 
-$stepper-bar-size: spacing.$size-micro;
+$stepper-bar-height: spacing.$size-micro;
 
-$step-indicator-size: spacing.$size-bigger-big;
-$step-indicator-default-bg: color.$gray-60;
-$step-indicator-default-color: color.$white;
-$step-indicator-active-bg: color.$yellow;
-$step-indicator-active-color: color.$black;
-$step-indicator-hover-bg: color.$black;
-$step-indicator-hover-color: color.$white;
+$stepper-indicator-height: spacing.$size-bigger-big;
+$stepper-indicator-border-width: spacing.$size-micro;
+$stepper-indicator-border-color: color.$white;
+$stepper-indicator-font-size: type.$font-size-bigger-regular;
+$stepper-indicator-font-weight: type.$font-weight-bold;
+$stepper-indicator-bg: color.$yellow;
+$stepper-indicator-color: color.$black;
+$_stepper-indicator-check-icon: icon-fn.get-colored-svg-url('2105', $stepper-indicator-color);
+$stepper-indicator-check-icon: url($_stepper-indicator-check-icon);
+$stepper-indicator-hover-color: color.$white;
+$stepper-indicator-hover-bg: color.$black;
+$stepper-indicator-hover-outline: forms.$input-focus-outline-thickness solid var(--text-color);
+$_stepper-indicator-hover-check-icon: icon-fn.get-colored-svg-url('2105', $stepper-indicator-hover-color);
+$stepper-indicator-hover-check-icon: url($_stepper-indicator-hover-check-icon);
+$stepper-indicator-future-bg: color.$gray-60;
+$stepper-indicator-future-color: color.$white;
 
-$step-name-height: spacing.$size-small-large;
-$step-name-color: rgba(var(--black-rgb), 0.6);
-
-$_black-check-mark: icon-functions.get-colored-svg-url(2105, color.$black);
-$_white-check-mark: icon-functions.get-colored-svg-url(2105, color.$white);
-$step-indicator-passed-icon: url($_black-check-mark);
-$step-indicator-passed-icon-hover: url($_white-check-mark);
+$stepper-link-gap: spacing.$size-mini;
+$stepper-link-color: color.$gray-60;
+$stepper-link-hover-color: color.$black;
+$stepper-link-current-color: color.$black;
+$stepper-link-current-font-size: type.$font-size-bigger-regular;
+$stepper-link-current-font-weight: type.$font-weight-bold;

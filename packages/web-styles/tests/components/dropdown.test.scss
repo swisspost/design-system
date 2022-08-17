@@ -5,4 +5,4 @@
 
 
 // Check if component forwards options
-@include jest.true(map.has-key(meta.module-variables("dropdown"), "isolate-components"));
+@include jest.true(map.has-key(meta.module-variables('dropdown'), 'font-base-path'));
