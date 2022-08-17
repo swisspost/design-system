@@ -7,7 +7,7 @@
 
 The Swiss Post Design Pattern Library for a unified and accessible user experience accross the web platform.
 
-🚧 The **Common Web Frontend v5** is in alpha. Have a look at the [v5 milestone](https://github.com/swisspost/common-web-frontend/milestone/1) to see the progress.
+🚧 The **Common Web Frontend v5** is in alpha. Have a look at the [v5 milestone](https://github.com/swisspost/design-system/milestone/1) to see the progress.
 
 
 ## Packages

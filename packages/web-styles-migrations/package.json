@@ -1,7 +1,7 @@
 {
-  "name": "@swisspost/web-styles-migrations",
+  "name": "@swisspost/design-system-migrations",
   "version": "1.0.0-alpha.2",
-  "description": "Angular schematics for the web-styles migration.",
+  "description": "Angular schematics for the design system styles migration.",
   "keywords": [
     "schematics"
   ],
@@ -9,11 +9,11 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/swisspost/common-web-frontend.git"
+    "url": "https://github.com/swisspost/design-system.git"
   },
   "homepage": "https://swisspost-web-frontend.netlify.app",
   "bugs": {
-    "url": "https://github.com/swisspost/common-web-frontend/issues"
+    "url": "https://github.com/swisspost/design-system/issues"
   },
   "publishConfig": {
     "directory": "dist",

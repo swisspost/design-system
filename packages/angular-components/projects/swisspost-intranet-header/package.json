@@ -6,11 +6,11 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "https://github.com/swisspost/common-web-frontend.git"
+    "url": "https://github.com/swisspost/design-system.git"
   },
   "homepage": "https://swisspost-web-frontend.netlify.app",
   "bugs": {
-    "url": "https://github.com/swisspost/common-web-frontend/issues"
+    "url": "https://github.com/swisspost/design-system/issues"
   },
   "scripts": {
     "reset": "rimraf node_modules package-lock.json"

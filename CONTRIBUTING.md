@@ -44,7 +44,7 @@ You can find more information about accessibility at the Swiss Post in our [acce
 
 ## Submitting issues and requests
 
-We are happy to receive your input. You can submit your issues to our [GitHub repository](https://github.com/swisspost/common-web-frontend/issues). If you're rather looking for help, don't hesitate to open a discussion on [GitHub discussions(https://github.com/swisspost/common-web-frontend/discussions).
+We are happy to receive your input. You can submit your issues to our [GitHub repository](https://github.com/swisspost/design-system/issues). If you're rather looking for help, don't hesitate to open a discussion on [GitHub discussions(https://github.com/swisspost/design-system/discussions).
 
 When you're planning to work on bigger changes, please reach out to someone from the core team to plan your change before investing a lot of time.
 
