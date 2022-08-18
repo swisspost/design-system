@@ -29,7 +29,7 @@ npm install @swisspost/design-system-styles
 ### Intranet Header
 [![npm](https://img.shields.io/npm/v/@swisspost/design-system-intranet-header)](https://www.npmjs.com/package/@swisspost/design-system-intranet-header)
 
-[Documentation](https://swisspost-web-frontend.netlify.app/#/post-samples/intranet-layout) · [Contributing](/packages/angular-components/projects/intranet-header/)
+[Documentation](https://swisspost-web-frontend.netlify.app/#/post-samples/intranet-layout) · [Contributing](/packages/components-angular/projects/intranet-header/)
 
 
 The Intranet Header Angular component.
