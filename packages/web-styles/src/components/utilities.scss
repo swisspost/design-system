@@ -67,7 +67,6 @@ span.spacer {
   .bg-#{$name} {
     --bg-rgb: #{color-fn.rgb-values($color)};
     @extend %color-background-rgba;
-    @extend %color-background-container-extensions;
 
     @if (color-fn.get-contrast-color($color) != #000) {
       @extend %color-background-dark-variables;

@@ -107,7 +107,6 @@
     }
 
     @extend %color-background-rgb;
-    @extend %color-background-container-extensions;
 
     @include utilities.high-contrast-mode() {
       // Specificity booster for the icon-mixin

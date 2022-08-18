@@ -16,18 +16,6 @@
   color: var(--contrast-color) !important;
 }
 
-// background extensions for containers with dynamic content (unlike buttons, badges, etc.)
-%color-background-container-extensions {
-  a:not(.btn, .badge),
-  label {
-    color: inherit;
-  }
-
-  a:not(.btn, .badge):hover {
-    color: rgba(var(--contrast-color-rgb), 0.8);
-  }
-}
-
 // light background variables
 %color-background-light-variables {
   --contrast-color: #{color.$black};
