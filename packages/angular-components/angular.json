@@ -3,23 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "header-intranet": {
+    "intranet-header": {
       "projectType": "library",
-      "root": "projects/header-intranet",
-      "sourceRoot": "projects/header-intranet/src",
+      "root": "projects/intranet-header",
+      "sourceRoot": "projects/intranet-header/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/header-intranet/ng-package.json"
+            "project": "projects/intranet-header/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/header-intranet/tsconfig.lib.prod.json"
+              "tsConfig": "projects/intranet-header/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/header-intranet/tsconfig.lib.json"
+              "tsConfig": "projects/intranet-header/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,17 +27,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/header-intranet/src/test.ts",
-            "tsConfig": "projects/header-intranet/tsconfig.spec.json",
-            "karmaConfig": "projects/header-intranet/karma.conf.js"
+            "main": "projects/intranet-header/src/test.ts",
+            "tsConfig": "projects/intranet-header/tsconfig.spec.json",
+            "karmaConfig": "projects/intranet-header/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/header-intranet/**/*.ts",
-              "projects/header-intranet/**/*.html"
+              "projects/intranet-header/**/*.ts",
+              "projects/intranet-header/**/*.html"
             ]
           }
         }
@@ -148,5 +148,5 @@
       }
     }
   },
-  "defaultProject": "header-intranet"
+  "defaultProject": "intranet-header"
 }

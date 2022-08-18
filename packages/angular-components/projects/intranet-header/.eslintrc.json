@@ -11,8 +11,8 @@
       ],
       "parserOptions": {
         "project": [
-          "projects/header-intranet/tsconfig.lib.json",
-          "projects/header-intranet/tsconfig.spec.json"
+          "projects/intranet-header/tsconfig.lib.json",
+          "projects/intranet-header/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },

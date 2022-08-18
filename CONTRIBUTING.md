@@ -4,7 +4,7 @@ These contribution guidelines apply to this repository in general and describe h
 
 - [Demo App](./packages/demo/README.md)
 - [Web Styles](./packages/styles/CONTRIBUTING.md)
-- [Angular Components (Intranet Header)](./packages/angular-components/projects/header-intranet/CONTRIBUTING.md)
+- [Angular Components (Intranet Header)](./packages/angular-components/projects/intranet-header/CONTRIBUTING.md)
 
 ## Prerequisites
 In order to be able to use `npm` commands, [node.js](https://nodejs.org/en/) v14+ needs to be installed on your machine.

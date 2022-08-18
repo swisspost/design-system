@@ -1,5 +1,5 @@
 {
-  "name": "@swisspost/design-system-header-intranet",
+  "name": "@swisspost/design-system-intranet-header",
   "version": "3.0.0-alpha.3",
   "description": "Intranet header for internal Swiss Post applications as an Angular component.",
   "author": "Swiss Post <oss@post.ch>",
@@ -16,7 +16,7 @@
     "reset": "rimraf node_modules package-lock.json"
   },
   "publishConfig": {
-    "directory": "../../dist/header-intranet",
+    "directory": "../../dist/intranet-header",
     "access": "public"
   },
   "peerDependencies": {

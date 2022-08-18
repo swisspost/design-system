@@ -19,9 +19,9 @@
     "target": "es2017",
     "module": "es2020",
     "paths": {
-      "header-intranet": [
-        "dist/header-intranet/header-intranet",
-        "dist/header-intranet"
+      "intranet-header": [
+        "dist/intranet-header/intranet-header",
+        "dist/intranet-header"
       ]
     },
     "lib": [

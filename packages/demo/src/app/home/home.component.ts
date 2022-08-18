@@ -16,7 +16,7 @@ const installCwf = `> # Replace node-sass with sass (dart-sass)
 > npm install @swisspost/design-system-styles@^4.1.0 --save
 
 > # Replace Header
-> npm uninstall header-intranet
+> npm uninstall intranet-header
 > npm install @swisspost/design-system-styles-intranet-header`;
 
 const updateHeaderImport = `// src/app/app.module.ts
@@ -199,7 +199,7 @@ $1cwf.$2
 // Replace Header Imports
 
 // SEARCH FOR
-'header-intranet'
+'intranet-header'
 // REPLACE WITH
 '@swisspost/design-system-styles-intranet-header'`;
 

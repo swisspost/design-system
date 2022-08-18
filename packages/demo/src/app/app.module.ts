@@ -22,7 +22,7 @@ import { BootstrapComponentsModule } from "./bootstrap/components/bootstrap-comp
 import { NgBootstrapComponentsModule } from "./ng-bootstrap/components/ng-bootstrap-components.module";
 import { IntranetComponentsModule } from "./intranet-layout/intranet-components.module";
 import { PostSampleComponentsModule } from "./post-sample/post-sample-components.module";
-import { SwissPostIntranetHeaderModule } from "@swisspost/design-system-header-intranet";
+import { SwissPostIntranetHeaderModule } from "@swisspost/design-system-intranet-header";
 import { HomeComponent } from "./home/home.component";
 import { PostCommonModule } from "./common/cwf-common.module";
 
