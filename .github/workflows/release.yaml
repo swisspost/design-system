@@ -64,4 +64,4 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           netlify link --id $NETLIFY_SITE_ID
-          netlify deploy --build false --dir packages/web-demo/dist/web-demo --prod
+          netlify deploy --build false --dir packages/demo/dist/demo --prod

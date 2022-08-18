@@ -4,7 +4,7 @@
   "schematics": {
     "migration-backgrounds": {
       "version": "5.0.0",
-      "description": "As of CWF 5 backgrounds make extensive use of CSS variables, therefore the .text-auto and .bg-[color]-opacity-80 classes are deprecated.",
+      "description": "As of Design System v5 backgrounds make extensive use of CSS variables, therefore the .text-auto and .bg-[color]-opacity-80 classes are deprecated.",
       "factory": "./migrations/backgrounds/index"
     },
     "migration-badges": {

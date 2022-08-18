@@ -1,5 +1,5 @@
 ---
-'@swisspost/web-demo': major
+'@swisspost/design-system-demo': major
 '@swisspost/design-system-styles': major
 ---
 
