@@ -21,7 +21,7 @@
   height: badge.$badge-height;
   gap: badge.$badge-gap;
 
-  & > & {
+  > .badge {
     padding: 0;
     height: badge.$badge-nested-height;
     min-width: badge.$badge-nested-height;
@@ -30,12 +30,12 @@
     font-size: badge.$badge-nested-font-size;
   }
 
-  & > .btn-close {
+  > .btn-close {
     padding: 0;
   }
 
-  & > &,
-  & > .btn-close {
+  > .badge,
+  > .btn-close {
     margin-right: -1 * (badge.$badge-padding-x - badge.$badge-nested-translate-x);
   }
 
@@ -44,8 +44,8 @@
     font-size: badge.$badge-font-size-sm;
     gap: badge.$badge-gap-sm;
 
-    & > &,
-    & > .btn-close {
+    > .badge,
+    > .btn-close {
       margin-right: -1 * (badge.$badge-padding-x - badge.$badge-nested-translate-x-sm);
     }
   }
@@ -78,7 +78,7 @@ button {
     cursor: pointer;
 
     &::before {
-      content: "";
+      content: '';
       display: block;
       height: badge.$badge-check-input-height;
       width: badge.$badge-check-input-height;
@@ -129,7 +129,9 @@ button {
     }
   }
 
-  button.badge, a.badge, .badge-check-label {
+  button.badge,
+  a.badge,
+  .badge-check-label {
     transition: none;
   }
 }

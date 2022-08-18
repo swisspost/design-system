@@ -16,7 +16,7 @@
   background-color: badge.$badge-active-bg-color;
   border-color: transparent;
 
-  & > .badge {
+  > .badge {
     background-color: badge.$badge-nested-active-bg-color;
   }
 }
