@@ -11,44 +11,11 @@
 @use '../mixins/utilities';
 @use '../mixins/forms' as forms-mx;
 @use '../mixins/badge' as badge-mx;
+@use '../placeholders/badge' as badge-ph;
 @use '../functions/icons' as icons-fn;
 
 .badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: badge.$badge-border-width solid badge.$badge-border-color;
-  height: badge.$badge-height;
-  gap: badge.$badge-gap;
-
-  > .badge {
-    padding: 0;
-    height: badge.$badge-nested-height;
-    min-width: badge.$badge-nested-height;
-    background-color: badge.$badge-nested-bg-color;
-    border-color: badge.$badge-nested-border-color;
-    font-size: badge.$badge-nested-font-size;
-  }
-
-  > .btn-close {
-    padding: 0;
-  }
-
-  > .badge,
-  > .btn-close {
-    margin-right: -1 * (badge.$badge-padding-x - badge.$badge-nested-translate-x);
-  }
-
-  &-sm {
-    height: badge.$badge-height-sm;
-    font-size: badge.$badge-font-size-sm;
-    gap: badge.$badge-gap-sm;
-
-    > .badge,
-    > .btn-close {
-      margin-right: -1 * (badge.$badge-padding-x - badge.$badge-nested-translate-x-sm);
-    }
-  }
+  @extend %badge;
 }
 
 a,
@@ -72,7 +39,7 @@ button {
 
 .badge-check {
   &-label {
-    @extend .badge;
+    @extend %badge;
     @include forms-mx.focus-outline;
     transition: badge.$badge-transition;
     cursor: pointer;
