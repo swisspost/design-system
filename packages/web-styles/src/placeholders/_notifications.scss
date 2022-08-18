@@ -91,7 +91,6 @@
 %notification-close-light {
   @extend .btn-close-white;
 }
-/* stylelint-enable */
 
 @each $name, $color, $icon in alert.$alert-list {
   $is-light-bg: color-fn.get-contrast-color($color) != #000;
@@ -111,15 +110,12 @@
     @extend %color-background-container-extensions;
 
     @include utilities.high-contrast-mode() {
-      // use important here, so pi classes don't overwrite hcm styles
-      filter: none !important;
-      forced-color-adjust: none;
-      background-color: canvasText;
-      color: canvas;
+      // Specificity booster for the icon-mixin
+      &[class] {
+        @include icon-mixin.pi($icon, 'white');
 
-      .toast-close-button,
-      .btn-close {
-        filter: invert(100%);
+        // use important here, so pi classes don't overwrite hcm styles
+        filter: none !important;
       }
     }
   }
@@ -130,3 +126,4 @@
     }
   }
 }
+/* stylelint-enable */
