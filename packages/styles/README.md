@@ -2,7 +2,7 @@
 
 <br>
 
-# Web Styles
+# Design System Styles
 
 Common styles for the Swiss Post web platform.
 

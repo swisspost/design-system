@@ -3,7 +3,7 @@
 These contribution guidelines apply to this repository in general and describe how to set up and maintain the repository. You can find dedicated guidelines in each package.
 
 - [Demo App](./packages/demo/README.md)
-- [Web Styles](./packages/styles/CONTRIBUTING.md)
+- [Design System Styles](./packages/styles/CONTRIBUTING.md)
 - [Angular Components (Intranet Header)](./packages/components-angular/projects/intranet-header/CONTRIBUTING.md)
 
 ## Prerequisites

@@ -1,4 +1,4 @@
-# Contributing to Web Styles
+# Contributing to Design System Styles
 
 These contribution guidelines extend the [general contribution guidelines](../../CONTRIBUTING.md), where you can find instructions on how to set up the repository for contributing.
 
@@ -6,7 +6,7 @@ These contribution guidelines extend the [general contribution guidelines](../..
 ## Design principles
 
 ### Bootstrap
-The web styles are a collection of independent component styles. Components are based on Bootstrap an its design philosophy. For some components, styles are custom built and don't depend on Bootstrap, e.g. buttons. These components should maintain compatibility with Bootstrap classes. Adhering to this principle will reduce the entry barrier for new developers who might be familiar with Bootstrap.
+The Design System Styles are a collection of independent component styles. Components are based on Bootstrap an its design philosophy. For some components, styles are custom built and don't depend on Bootstrap, e.g. buttons. These components should maintain compatibility with Bootstrap classes. Adhering to this principle will reduce the entry barrier for new developers who might be familiar with Bootstrap.
 
 Bootstrap components use global variables, mixins, functions and placeholders, therefore they are wrapped with custom partials that import those globals, the respective bootstrap file and the variable overrides with Swiss Post styles (see [themes/bootstrap](./src/themes/bootstrap/) for examples). These wrapper files are a workaround until bootstrap supports the newer `@use` syntax.
 
@@ -75,7 +75,7 @@ npm run test
 
 ## Integration tests
 
-Automated integration tests are not yet available for the web styles.
+Automated integration tests are not yet available for the Design System Styles.
 
 ## Linting
 

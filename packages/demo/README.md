@@ -4,7 +4,7 @@
 
 # Demo App
 
-Pattern documentation, code snippets and implementation guidelines for the Web Styles.
+Pattern documentation, code snippets and implementation guidelines for the Design System Styles.
 
 
 ## Setup

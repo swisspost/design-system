@@ -12,7 +12,7 @@ The Swiss Post Design Pattern Library for a unified and accessible user experien
 
 ## Packages
 
-### Web Styles
+### Styles
 [![npm](https://img.shields.io/npm/v/@swisspost/design-system-styles)](https://www.npmjs.com/package/@swisspost/design-system-styles)
 
 [Documentation](https://swisspost-web-frontend.netlify.app) · [Contributing](/packages/styles/README.md)

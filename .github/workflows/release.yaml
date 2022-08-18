@@ -56,7 +56,7 @@ jobs:
           version: pnpm changeset:version
 
       # Publish demo only if changesets published any packages
-      - name: Publish web demo
+      - name: Publish demo
         if: steps.changesets.outputs.published == 'true'
         id: netlify
         env:

@@ -40,7 +40,7 @@ import { NgbCarouselLightDemoComponent } from "./carousel/carousel-light-demo/ca
 import { NgbRadioButtonsDemoComponent } from "./buttons/buttons-radio-demo/buttons-radio-demo.component";
 import { NgbCheckboxButtonsDemoComponent} from './buttons/buttons-checkbox-demo/buttons-checkbox-demo.component';
 import {NgbModalDemoContentComponent} from "./modal/modal-demo-content/modal-demo-content.component";
-import {PostCommonModule} from "../../common/cwf-common.module";
+import {PostCommonModule} from "../../common/post-common.module";
 import { NgbBadButtonsDemoComponent } from "./buttons/buttons-bad-demo/buttons-bad-demo.component";
 
 @NgModule({

@@ -60,7 +60,7 @@ import {CardDemoPageComponent} from './card/card-demo-page/card-demo-page.compon
 import {ComplexCardDemoComponent} from './card/complex-card-demo/complex-card-demo.component';
 import {PostCardDemoComponent} from './card/post-card-demo/post-card-demo.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {PostCommonModule} from 'src/app/common/cwf-common.module';
+import {PostCommonModule} from 'src/app/common/post-common.module';
 import {QuotesDemoComponent} from './blockquotes/quotes-demo/quotes-demo.component';
 import { DefaultButtonsComponent } from './buttons/buttons-demo/default-buttons/default-buttons.component';
 import { ButtonTagsComponent } from './buttons/buttons-demo/button-tags/button-tags.component';

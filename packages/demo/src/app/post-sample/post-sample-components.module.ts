@@ -38,7 +38,7 @@ import {
   I18n,
 } from '../ng-bootstrap/components/datepicker/datepicker-demo-page/datepicker-localization.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { PostCommonModule } from '../common/cwf-common.module';
+import { PostCommonModule } from '../common/post-common.module';
 import { PostCardsDemoPageComponent } from './components/post-cards/post-cards-demo-page/post-cards-demo-page.component';
 import { PostCardButtonComponent } from './components/post-cards/post-card-button/post-card-button.component';
 import { PostCardProductNavigationComponent } from './components/post-cards/post-card-product-navigation/post-card-product-navigation.component';

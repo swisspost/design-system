@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- [#183](https://github.com/swisspost/design-system/pull/183) [`b7392e4`](https://github.com/swisspost/design-system/commit/b7392e4e6d6ad32cc4dcb74f77a2339a023ebe22) Thanks [@alizedebray](https://github.com/alizedebray)! - Created a new package offering Migration Schematics for the Web Styles
+- [#183](https://github.com/swisspost/design-system/pull/183) [`b7392e4`](https://github.com/swisspost/design-system/commit/b7392e4e6d6ad32cc4dcb74f77a2339a023ebe22) Thanks [@alizedebray](https://github.com/alizedebray)! - Created a new package offering Migration Schematics for the Design System Styles
   Removed custom input styles that are no longer used
 
 ## 5.0.0-alpha.5
