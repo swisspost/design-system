@@ -5,20 +5,20 @@ These contribution guidelines extend the [general contribution guidelines](../..
 
 ## Code scaffolding
 
-Run `ng generate component component-name --project swisspost-intranet-header` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project swisspost-intranet-header`.
-> Note: Don't forget to add `--project swisspost-intranet-header` or else it will be added to the default project in your `angular.json` file. 
+Run `ng generate component component-name --project header-intranet` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project header-intranet`.
+> Note: Don't forget to add `--project header-intranet` or else it will be added to the default project in your `angular.json` file. 
 
 ## Build
 
-Run `ng build swisspost-intranet-header` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build header-intranet` to build the project. The build artifacts will be stored in the `dist/` directory.
 
 ## Publishing
 
-After building your library with `ng build swisspost-intranet-header`, go to the dist folder `cd dist/swisspost-intranet-header` and run `npm publish`.
+After building your library with `ng build header-intranet`, go to the dist folder `cd dist/header-intranet` and run `npm publish`.
 
 ## Running unit tests
 
-Run `ng test swisspost-intranet-header` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test header-intranet` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
 ## Further help
 

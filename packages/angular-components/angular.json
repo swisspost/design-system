@@ -3,23 +3,23 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "swisspost-intranet-header": {
+    "header-intranet": {
       "projectType": "library",
-      "root": "projects/swisspost-intranet-header",
-      "sourceRoot": "projects/swisspost-intranet-header/src",
+      "root": "projects/header-intranet",
+      "sourceRoot": "projects/header-intranet/src",
       "prefix": "lib",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
-            "project": "projects/swisspost-intranet-header/ng-package.json"
+            "project": "projects/header-intranet/ng-package.json"
           },
           "configurations": {
             "production": {
-              "tsConfig": "projects/swisspost-intranet-header/tsconfig.lib.prod.json"
+              "tsConfig": "projects/header-intranet/tsconfig.lib.prod.json"
             },
             "development": {
-              "tsConfig": "projects/swisspost-intranet-header/tsconfig.lib.json"
+              "tsConfig": "projects/header-intranet/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
@@ -27,17 +27,17 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "main": "projects/swisspost-intranet-header/src/test.ts",
-            "tsConfig": "projects/swisspost-intranet-header/tsconfig.spec.json",
-            "karmaConfig": "projects/swisspost-intranet-header/karma.conf.js"
+            "main": "projects/header-intranet/src/test.ts",
+            "tsConfig": "projects/header-intranet/tsconfig.spec.json",
+            "karmaConfig": "projects/header-intranet/karma.conf.js"
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/swisspost-intranet-header/**/*.ts",
-              "projects/swisspost-intranet-header/**/*.html"
+              "projects/header-intranet/**/*.ts",
+              "projects/header-intranet/**/*.html"
             ]
           }
         }
@@ -148,5 +148,5 @@
       }
     }
   },
-  "defaultProject": "swisspost-intranet-header"
+  "defaultProject": "header-intranet"
 }

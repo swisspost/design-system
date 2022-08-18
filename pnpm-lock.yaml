@@ -91,14 +91,14 @@ importers:
       ng-packagr: 13.3.1_g4qcwxgm52sp2jd3ypumzu7jse
       typescript: 4.5.5
 
-  packages/angular-components/projects/swisspost-intranet-header:
+  packages/angular-components/projects/header-intranet:
     specifiers:
       '@swisspost/design-system-styles': ^5.0.0-alpha.4
       tslib: 2.4.0
     dependencies:
       '@swisspost/design-system-styles': link:../../../styles
       tslib: 2.4.0
-    publishDirectory: ../../dist/swisspost-intranet-header
+    publishDirectory: ../../dist/header-intranet
 
   packages/demo:
     specifiers:
@@ -173,7 +173,7 @@ importers:
       '@ng-bootstrap/ng-bootstrap': 12.1.2_ysja66qjmviakjk6vixb4kxscu
       '@popperjs/core': 2.11.6
       '@swimlane/ngx-datatable': 20.0.0_ngcav2jk6phtonomh6fl2dj7bq
-      '@swisspost/design-system-header-intranet': link:../angular-components/projects/swisspost-intranet-header
+      '@swisspost/design-system-header-intranet': link:../angular-components/projects/header-intranet
       '@swisspost/design-system-styles': link:../styles
       bootstrap: 5.1.3_@popperjs+core@2.11.6
       core-js: 2.6.12

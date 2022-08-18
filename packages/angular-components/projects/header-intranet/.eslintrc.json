@@ -11,8 +11,8 @@
       ],
       "parserOptions": {
         "project": [
-          "projects/swisspost-intranet-header/tsconfig.lib.json",
-          "projects/swisspost-intranet-header/tsconfig.spec.json"
+          "projects/header-intranet/tsconfig.lib.json",
+          "projects/header-intranet/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },

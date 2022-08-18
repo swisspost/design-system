@@ -16,7 +16,7 @@
     "reset": "rimraf node_modules package-lock.json"
   },
   "publishConfig": {
-    "directory": "../../dist/swisspost-intranet-header",
+    "directory": "../../dist/header-intranet",
     "access": "public"
   },
   "peerDependencies": {

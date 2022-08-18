@@ -19,9 +19,9 @@
     "target": "es2017",
     "module": "es2020",
     "paths": {
-      "swisspost-intranet-header": [
-        "dist/swisspost-intranet-header/swisspost-intranet-header",
-        "dist/swisspost-intranet-header"
+      "header-intranet": [
+        "dist/header-intranet/header-intranet",
+        "dist/header-intranet"
       ]
     },
     "lib": [
