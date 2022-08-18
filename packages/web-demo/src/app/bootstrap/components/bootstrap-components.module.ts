@@ -14,6 +14,8 @@ import {AlertDemoComponent} from './alert/alert-demo/alert-demo.component';
 import {AlertDemoPageComponent} from './alert/alert-demo-page/alert-demo-page.component';
 import {BadgeDemoPageComponent} from './badge/badge-demo-page/badge-demo-page.component';
 import {BadgeDemoComponent} from './badge/badge-demo/badge-demo.component';
+import {BadgeNestedDemoComponent} from './badge/badge-nested-demo/badge-nested-demo.component';
+import {BadgeInteractiveDemoComponent} from './badge/badge-interactive-demo/badge-interactive-demo.component';
 import {ButtonsDemoComponent} from './buttons/buttons-demo/buttons-demo.component';
 import {ButtonsDemoPageComponent} from './buttons/buttons-demo-page/buttons-demo-page.component';
 import {BlockquotesDemoComponent} from './blockquotes/blockquotes-demo/blockquotes-demo.component';
@@ -92,6 +94,8 @@ import { ButtonDisabledComponent } from './buttons/buttons-demo/button-disabled/
     AlertDemoPageComponent,
     BadgeDemoPageComponent,
     BadgeDemoComponent,
+    BadgeNestedDemoComponent,
+    BadgeInteractiveDemoComponent,
     ButtonsDemoComponent,
     ButtonsDemoPageComponent,
     BlockquotesDemoComponent,

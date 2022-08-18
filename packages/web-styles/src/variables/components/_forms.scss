@@ -11,7 +11,8 @@
 
 // Forms
 
-$label-margin-bottom: 0.5rem !default;
+$form-label-margin-bottom: 0.5rem !default;
+$form-label-color: rgba(var(--contrast-color-rgb), 0.8) !default;
 
 $input-padding-y: button.$input-btn-padding-y !default;
 $input-padding-x: button.$input-btn-padding-x !default;
@@ -52,7 +53,7 @@ $input-focus-box-shadow: button.$input-btn-focus-box-shadow !default;
 $input-focus-outline-thickness: spacing.$size-line;
 
 $input-placeholder-color: color.$gray-60 !default;
-$input-plaintext-color: color.$black !default;
+$input-plaintext-color: var(--contrast-color) !default;
 
 $input-height-border: $input-border-width * 2 !default;
 
@@ -74,7 +75,7 @@ $input-height-lg: calc(#{$input-height-inner-lg} + #{$input-height-border}) !def
 
 $input-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
 
-$form-text-color: color.$black;
+$form-text-color: var(--contrast-color);
 $form-text-font-size: type.$font-size-tiny;
 $form-text-margin-top: spacing.$size-micro !default;
 

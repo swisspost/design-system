@@ -14,8 +14,8 @@
 @use '../variables/components/alert';
 @use '../variables/options';
 @use '../functions/color' as color-fn;
-@use '../placeholders/notifications';
 @use '../placeholders/color' as color-ph;
+@use '../placeholders/notifications';
 
 .alert-container {
   @extend %notification-container;
@@ -68,9 +68,13 @@
 
 @each $name, $color, $icon in alert.$alert-list {
   .alert-#{$name} {
+    --bg-rgb: #{color-fn.rgb-values($color)};
     @extend %notification-#{$name};
+
     @if (color-fn.get-contrast-color($color) != #000) {
-      @extend %inverted-colors;
+      @extend %color-background-dark-variables;
+    } @else {
+      @extend %color-background-light-variables;
     }
 
     .btn-close {
@@ -130,39 +134,20 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
+  gap: spacing.$size-regular;
 
-  @include media-breakpoint-down(md) {
+  @include media-breakpoint-down(lg) {
     flex-direction: column;
     align-items: flex-start;
-    justify-content: stretch;
-
-    .alert-content {
-      flex-basis: auto;
-      align-self: stretch;
-    }
+    justify-content: flex-end;
 
     .alert-buttons {
       align-self: flex-end;
-      margin-top: spacing.$spacer;
-      margin-left: 0;
     }
   }
 
   @include media-breakpoint-down(sm) {
     align-items: center;
-
-    .alert-buttons {
-      align-self: stretch;
-
-      .btn {
-        width: 100%;
-
-        + .btn {
-          margin-top: spacing.$spacer;
-          margin-right: 0;
-        }
-      }
-    }
   }
 
   @include media-breakpoint-up(xxl) {
@@ -175,7 +160,7 @@
 
   .alert-content {
     display: flex;
-    flex: 1 1 0;
+    flex: 2 1 auto;
     flex-flow: column nowrap;
 
     > *:last-child {
@@ -184,14 +169,18 @@
   }
 
   .alert-buttons {
-    flex: 0 0 auto;
-    margin-left: alert.$alert-padding-x;
+    display: flex;
+    gap: spacing.$size-regular;
+    justify-self: flex-end;
+    flex: 1 1 auto;
+    flex-direction: row-reverse;
 
-    .btn {
-      float: right;
+    @include media-breakpoint-down(rg) {
+      flex-direction: column;
+      align-self: stretch;
 
-      + .btn {
-        margin-right: spacing.$spacer;
+      .btn {
+        flex: 1 0 100%;
       }
     }
   }

@@ -62,13 +62,17 @@ span.spacer {
   display: none !important;
 }
 
-// Background Utilities
-@each $colorname, $color in color.$background-colors {
-  .bg-#{$colorname} {
+// Background Utility
+@each $name, $color in color.$background-colors {
+  .bg-#{$name} {
+    --bg-rgb: #{color-fn.rgb-values($color)};
+    @extend %color-background-rgba;
+
     @if (color-fn.get-contrast-color($color) != #000) {
-      @extend %inverted-colors;
+      @extend %color-background-dark-variables;
+    } @else {
+      @extend %color-background-light-variables;
     }
-    --body-bg: #{$color};
   }
 }
 
@@ -85,10 +89,10 @@ span.spacer {
 }
 
 a {
-  color: var(--text-color);
+  color: var(--contrast-color);
 
   &:focus,
   &:hover {
-    color: rgba(var(--text-color-rgb), 0.8);
+    color: rgba(var(--contrast-color-rgb), 0.8);
   }
 }
