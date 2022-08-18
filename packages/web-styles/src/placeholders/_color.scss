@@ -16,8 +16,8 @@
   color: var(--contrast-color) !important;
 }
 
-// background extended properties
-%color-background-extended {
+// background extensions for containers with dynamic content (unlike buttons, badges, etc.)
+%color-background-container-extensions {
   a,
   label {
     color: inherit;

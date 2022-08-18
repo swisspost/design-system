@@ -108,7 +108,7 @@
     }
 
     @extend %color-background-rgb;
-    @extend %color-background-extended;
+    @extend %color-background-container-extensions;
 
     @include utilities.high-contrast-mode() {
       // use important here, so pi classes don't overwrite hcm styles
