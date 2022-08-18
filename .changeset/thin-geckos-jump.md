@@ -1,5 +1,5 @@
 ---
-'@swisspost/web-styles': major
+'@swisspost/design-system-styles': major
 '@swisspost/web-demo': patch
 ---
 

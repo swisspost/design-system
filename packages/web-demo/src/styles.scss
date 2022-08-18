@@ -1,9 +1,9 @@
 @use 'sass:map';
 
 // Switch imported File to check the different versions
-//@use "../../web-styles/post";
-//@use "../../web-styles/post-portal";
-//@use "../../web-styles/post-intranet";
+//@use "../../styles/post";
+//@use "../../styles/post-portal";
+//@use "../../styles/post-intranet";
 @use '@swisspost/design-system-styles/post-intranet';
 @use '@swisspost/design-system-styles/cwf';
 

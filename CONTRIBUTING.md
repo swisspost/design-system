@@ -3,7 +3,7 @@
 These contribution guidelines apply to this repository in general and describe how to set up and maintain the repository. You can find dedicated guidelines in each package.
 
 - [Demo App](./packages/web-demo/README.md)
-- [Web Styles](./packages/web-styles/CONTRIBUTING.md)
+- [Web Styles](./packages/styles/CONTRIBUTING.md)
 - [Angular Components (Intranet Header)](./packages/angular-components/projects/swisspost-intranet-header/CONTRIBUTING.md)
 
 ## Prerequisites
@@ -61,7 +61,7 @@ We base our workflow on the [GitHub flow](https://docs.github.com/en/get-started
 ## Pull requests
 
 When submitting pull requests, make sure you checked the following points:
-- Your changes are tested on browsers according to the [browser support list](./packages/web-styles/.browserslistrc)
+- Your changes are tested on browsers according to the [browser support list](./packages/styles/.browserslistrc)
 - Your changes are tested on multiple viewports, at least 320px - 1920px
 - If you made significant changes to the design of a component, make sure at least someone from the [design team](https://github.com/orgs/swisspost/teams/design) is added as a reviewer
 - Describe your changes in the PR description as detailed as possible

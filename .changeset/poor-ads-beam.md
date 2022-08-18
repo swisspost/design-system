@@ -1,6 +1,6 @@
 ---
 '@swisspost/web-demo': major
-'@swisspost/web-styles': major
+'@swisspost/design-system-styles': major
 ---
 
 - Dropped rounded badges
