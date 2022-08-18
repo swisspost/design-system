@@ -3,4 +3,4 @@
 '@swisspost/web-demo': patch
 ---
 
-Refactors backgrounds for bg-utilities, alerts and notifications.
+Refactors backgrounds for bg-* classes, alerts and notifications.
