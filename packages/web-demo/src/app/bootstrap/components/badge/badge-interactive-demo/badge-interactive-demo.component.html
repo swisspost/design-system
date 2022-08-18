@@ -1,10 +1,43 @@
-<a href="#" class="badge">Link Badge</a>
-<button type="button" class="badge">Button Badge</button>
-<div class="badge-check">
-  <input class="badge-check-input" type="checkbox" value="" id="CheckableBadge">
-  <label class="badge-check-label" for="CheckableBadge">Checkable Badge</label>
+<div class="d-flex flex-wrap align-items-center gap-3">
+  <a href="#" class="badge">Link Badge</a>
+  <a href="#" class="badge active">Active Link Badge</a>
+  <a href="#" class="badge badge-sm">Small Link Badge</a>
+  <a href="#" class="badge badge-sm active">Small Active Link Badge</a>
 </div>
-<span class="badge">
-  <span>Dismissible Badge</span>
-  <button type="button" class="btn-close" aria-label="Close"></button>
-</span>
+
+<div class="d-flex flex-wrap align-items-center gap-3">
+  <button type="button" class="badge">Button Badge</button>
+  <button type="button" class="badge active">Active Button Badge</button>
+  <button type="button" class="badge badge-sm">Small Button Badge</button>
+  <button type="button" class="badge badge-sm active">Small Active Button Badge</button>
+</div>
+
+<div class="d-flex flex-wrap align-items-center gap-3">
+  <div class="badge-check">
+    <input id="CheckableBadge" class="badge-check-input" type="checkbox" value="">
+    <label class="badge-check-label" for="CheckableBadge">Checkable Badge</label>
+  </div>
+  <div class="badge-check">
+    <input id="CheckableBadgeActive" class="badge-check-input" type="checkbox" value="" checked>
+    <label class="badge-check-label" for="CheckableBadgeActive">Checked Checkable Badge</label>
+  </div>
+  <div class="badge-check">
+    <input id="CheckableBadgeSmall" class="badge-check-input" type="checkbox" value="">
+    <label class="badge-check-label badge-sm" for="CheckableBadgeSmall">Small Checkable Badge</label>
+  </div>
+  <div class="badge-check">
+    <input id="CheckableBadgeSmallActive" class="badge-check-input" type="checkbox" value="" checked>
+    <label class="badge-check-label badge-sm" for="CheckableBadgeSmallActive">Small Active Checkable Badge</label>
+  </div>
+</div>
+
+<div class="d-flex flex-wrap align-items-center gap-3">
+  <span class="badge">
+    <span>Dismissible Badge</span>
+    <button type="button" class="btn-close" aria-label="dismiss"></button>
+  </span>
+  <span class="badge badge-sm">
+    <span>Small Dismissible Badge</span>
+    <button type="button" class="btn-close" aria-label="dismiss"></button>
+  </span>
+</div>
