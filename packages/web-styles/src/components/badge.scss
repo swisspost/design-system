@@ -43,15 +43,6 @@ button {
     @include forms-mx.focus-outline;
     transition: badge.$badge-transition;
     cursor: pointer;
-
-    &::before {
-      content: '';
-      display: block;
-      height: badge.$badge-check-input-height;
-      width: badge.$badge-check-input-height;
-      background-color: badge.$badge-check-input-bg-color;
-      border: form-check.$form-check-input-border-width solid;
-    }
   }
 
   &-input {
@@ -69,12 +60,6 @@ button {
 
   &-input:checked + &-label {
     @include badge-mx.badge-active-state;
-
-    &::before {
-      background-image: form-check.$form-check-input-checked-bg-image;
-      background-size: contain;
-      background-position: center;
-    }
   }
 }
 
@@ -88,10 +73,6 @@ button {
     &-input:checked + &-label {
       &:hover {
         @include badge-mx.badge-hover-state;
-      }
-
-      &::before {
-        background-image: url('#{icons-fn.get-colored-svg-url(form-check.$form-check-input-checked-bg-icon, color.$white)}');
       }
     }
   }
