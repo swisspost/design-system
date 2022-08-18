@@ -19,7 +19,8 @@
 }
 
 a,
-button {
+button,
+.badge-dismissable {
   &.badge {
     @include forms-mx.focus-outline;
     background-color: transparent;
