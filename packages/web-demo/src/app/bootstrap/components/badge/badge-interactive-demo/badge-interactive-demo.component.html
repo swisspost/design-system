@@ -1,15 +1,53 @@
 <div class="d-flex flex-wrap align-items-center gap-3">
   <a href="#" class="badge">Link Badge</a>
-  <a href="#" class="badge active">Active Link Badge</a>
-  <a href="#" class="badge badge-sm">Small Link Badge</a>
-  <a href="#" class="badge badge-sm active">Small Active Link Badge</a>
+  <a href="#" class="badge active">Link Badge Active</a>
+  <a href="#" class="badge badge-sm">Link Badge Small</a>
+  <a href="#" class="badge badge-sm active">Link Badge Small Active</a>
+</div>
+
+<div class="d-flex flex-wrap align-items-center gap-3">
+  <a href="#" class="badge">
+    <span>Nested Link Badge</span>
+    <span class="badge">10</span>
+  </a>
+  <a href="#" class="badge active">
+    <span>Nested Link Badge Active</span>
+    <span class="badge">10</span>
+  </a>
+  <a href="#" class="badge badge-sm">
+    <span>Nested Link Badge Small</span>
+    <span class="badge">10</span>
+  </a>
+  <a href="#" class="badge badge-sm active">
+    <span>Nested Link Badge Small Active</span>
+    <span class="badge">10</span>
+  </a>
 </div>
 
 <div class="d-flex flex-wrap align-items-center gap-3">
   <button type="button" class="badge">Button Badge</button>
-  <button type="button" class="badge active">Active Button Badge</button>
-  <button type="button" class="badge badge-sm">Small Button Badge</button>
-  <button type="button" class="badge badge-sm active">Small Active Button Badge</button>
+  <button type="button" class="badge active">Button Badge Active</button>
+  <button type="button" class="badge badge-sm">Button Badge Small</button>
+  <button type="button" class="badge badge-sm active">Button Badge Small Active</button>
+</div>
+
+<div class="d-flex flex-wrap align-items-center gap-3">
+  <button type="button" class="badge">
+    <span>Nested Button Badge</span>
+    <span class="badge">10</span>
+  </button>
+  <button type="button" class="badge active">
+    <span>Nested Button Badge Active</span>
+    <span class="badge">10</span>
+  </button>
+  <button type="button" class="badge badge-sm">
+    <span>Nested Button Badge Small</span>
+    <span class="badge">10</span>
+  </button>
+  <button type="button" class="badge badge-sm active">
+    <span>Nested Button Badge Small Active</span>
+    <span class="badge">10</span>
+  </button>
 </div>
 
 <div class="d-flex flex-wrap align-items-center gap-3">
@@ -19,15 +57,46 @@
   </div>
   <div class="badge-check">
     <input id="CheckableBadgeActive" class="badge-check-input" type="checkbox" value="" checked>
-    <label class="badge-check-label" for="CheckableBadgeActive">Checked Checkable Badge</label>
+    <label class="badge-check-label" for="CheckableBadgeActive">Checkable Badge Active</label>
   </div>
   <div class="badge-check">
     <input id="CheckableBadgeSmall" class="badge-check-input" type="checkbox" value="">
-    <label class="badge-check-label badge-sm" for="CheckableBadgeSmall">Small Checkable Badge</label>
+    <label class="badge-check-label badge-sm" for="CheckableBadgeSmall">Checkable Badge Small</label>
   </div>
   <div class="badge-check">
     <input id="CheckableBadgeSmallActive" class="badge-check-input" type="checkbox" value="" checked>
-    <label class="badge-check-label badge-sm" for="CheckableBadgeSmallActive">Small Active Checkable Badge</label>
+    <label class="badge-check-label badge-sm" for="CheckableBadgeSmallActive">Checkable Badge Small Active</label>
+  </div>
+</div>
+
+<div class="d-flex flex-wrap align-items-center gap-3">
+  <div class="badge-check">
+    <input id="CheckableBadgeNested" class="badge-check-input" type="checkbox" value="">
+    <label class="badge-check-label" for="CheckableBadgeNested">
+      <span>Nested Checkable Badge</span>
+      <span class="badge">10</span>
+    </label>
+  </div>
+  <div class="badge-check">
+    <input id="CheckableBadgeActiveNested" class="badge-check-input" type="checkbox" value="" checked>
+    <label class="badge-check-label" for="CheckableBadgeActiveNested">
+      <span>Nested Checkable Badge Active</span>
+      <span class="badge">10</span>
+    </label>
+  </div>
+  <div class="badge-check">
+    <input id="CheckableBadgeNestedSmall" class="badge-check-input" type="checkbox" value="">
+    <label class="badge-check-label badge-sm" for="CheckableBadgeNestedSmall">
+      <span>Nested Checkable Badge Small</span>
+      <span class="badge">10</span>
+    </label>
+  </div>
+  <div class="badge-check">
+    <input id="CheckableBadgeActiveNestedSmall" class="badge-check-input" type="checkbox" value="" checked>
+    <label class="badge-check-label badge-sm" for="CheckableBadgeActiveNestedSmall">
+      <span>Nested Checkable Badge Small Active</span>
+      <span class="badge">10</span>
+    </label>
   </div>
 </div>
 
@@ -37,15 +106,38 @@
     <button type="button" class="btn-close" aria-label="dismiss"></button>
   </span>
   <span class="badge badge-dismissable active">
-    <span>Active Dismissible Badge</span>
+    <span>Dismissible Badge Active</span>
     <button type="button" class="btn-close" aria-label="dismiss"></button>
   </span>
   <span class="badge badge-dismissable badge-sm">
-    <span>Small Dismissible Badge</span>
+    <span>Dismissible Badge Small</span>
     <button type="button" class="btn-close" aria-label="dismiss"></button>
   </span>
   <span class="badge badge-dismissable badge-sm active">
-    <span>Small Active Dismissible Badge</span>
+    <span>Dismissible Badge Small Active</span>
+    <button type="button" class="btn-close" aria-label="dismiss"></button>
+  </span>
+</div>
+
+<div class="d-flex flex-wrap align-items-center gap-3">
+  <span class="badge badge-dismissable">
+    <span>Nested Dismissible Badge</span>
+    <span class="badge">10</span>
+    <button type="button" class="btn-close" aria-label="dismiss"></button>
+  </span>
+  <span class="badge badge-dismissable active">
+    <span>Nested Dismissible Badge Active</span>
+    <span class="badge">10</span>
+    <button type="button" class="btn-close" aria-label="dismiss"></button>
+  </span>
+  <span class="badge badge-dismissable badge-sm">
+    <span>Nested Dismissible Badge Small</span>
+    <span class="badge">10</span>
+    <button type="button" class="btn-close" aria-label="dismiss"></button>
+  </span>
+  <span class="badge badge-dismissable badge-sm active">
+    <span>Nested Dismissible Badge Small Active</span>
+    <span class="badge">10</span>
     <button type="button" class="btn-close" aria-label="dismiss"></button>
   </span>
 </div>
