@@ -22,11 +22,11 @@ gulp.task("copy", () => {
 
 /**
  * Transform `package.json` of the published subdirectory
- * 
+ *
  * @remarks removes `publishConfig.directory`.
- * The publish command runs against `publishConfig.directory`, so keeping the original path 
- * would attempt publishing `web-styles/dist/dist` instead of `web-styles/dist`.
- * 
+ * The publish command runs against `publishConfig.directory`, so keeping the original path
+ * would attempt publishing `styles/dist/dist` instead of `styles/dist`.
+ *
  */
 gulp.task('transform-package-json', (done) => {
   const packageJson = require('./package.json');
