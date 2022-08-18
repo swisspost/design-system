@@ -8,6 +8,7 @@ const  codeTemplate = require('!!raw-loader!../background-demo/background-demo.c
 })
 export class BackgroundDemoPageComponent {
   codeTemplate = codeTemplate;
-  bgOpacity = 1;
-  bgOpacity1 = 1;
+  dropOpacity1 = false;
+  dropOpacity2 = false;
+  dropOpacity3 = false;
 }

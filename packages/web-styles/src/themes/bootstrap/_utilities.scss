@@ -1,4 +1,9 @@
+@use 'sass:map';
 @use './overrides' as *;
 @import 'bootstrap/scss/helpers';
 @import 'bootstrap/scss/utilities';
+
+// manipulate $utilities before you import utilities/api
+$utilities: map.remove($utilities, 'background-color');
+
 @import 'bootstrap/scss/utilities/api';

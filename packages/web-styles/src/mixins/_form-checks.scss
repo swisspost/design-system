@@ -7,10 +7,6 @@
     border-color: $color;
   }
 
-  .form-check-label {
-    color: $color;
-  }
-
   .form-check-input[type='radio']:checked,
   .form-check-input[type='checkbox']:checked,
   .form-check-input[type='checkbox']:indeterminate {
@@ -56,7 +52,7 @@
   border-color: $color;
 
   ~ .form-check-label {
-    color: $color-label;
+    color: var(--contrast-color);
   }
 }
 

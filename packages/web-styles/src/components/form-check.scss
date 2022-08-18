@@ -161,7 +161,7 @@
       background-image: escape-svg(form-switch.$form-switch-bg-image),
         form-switch.$form-switch-linear-gradient;
       box-shadow: none;
-      outline: button.$input-btn-focus-width solid var(--text-color, color.$black);
+      outline: button.$input-btn-focus-width solid var(--contrast-color, color.$black);
     }
 
     @supports selector(:focus-visible) {
@@ -170,7 +170,7 @@
       }
 
       &:focus-visible {
-        outline: button.$input-btn-focus-width solid var(--text-color, color.$black);
+        outline: button.$input-btn-focus-width solid var(--contrast-color, color.$black);
       }
     }
 
