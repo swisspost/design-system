@@ -20,8 +20,6 @@ $secondary: color.$gray-60;
 $info: color.$yellow;
 // $warning: color.$warning; // Is already defined as $warning in post-colors
 $danger: color.$error;
-$light: color.$gray-background-light;
-$dark: $primary;
 
 // Colors that can be used as a background
 $colors: () !default;
@@ -31,8 +29,8 @@ $colors: map.merge(
     'primary': $primary,
     'secondary': $secondary,
     'white': color.$white,
-    'light': $light,
-    'dark': $dark,
+    'light': color.$light,
+    'dark': color.$dark,
   )
 );
 $colors: map.merge($colors, color.$contextual-colors);

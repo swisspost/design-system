@@ -46,6 +46,8 @@
 %color-background-dark-variables {
   --post-contrast-color: #{color.$white};
   --post-contrast-color-inverted: #{color.$black};
+  --post-dark: #{color.$light};
+  --post-light: #{color.$dark};
 
   // Invert grays
   $l: list.length(color.$post-grays);
@@ -58,6 +60,10 @@
 
   --post-contrast-color-rgb: #{color-fn.rgb-values(color.$white)};
   --post-contrast-color-inverted-rgb: #{color-fn.rgb-values(color.$black)};
+  --post-dark-rgb: #{color-fn.rgb-values(color.$light)};
+  --post-light-rgb: #{color-fn.rgb-values(color.$dark)};
+
+  // Invert grays rgb
   @for $i from 1 through $l {
     $color-name: list.nth(list.nth(color.$post-grays, $l + 1 - $i), 1);
     $color-value: list.nth(list.nth(color.$post-grays, $i), 2);
