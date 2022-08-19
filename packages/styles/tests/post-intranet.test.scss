@@ -4,11 +4,11 @@
 @use './jest';
 
 .test {
-  background-image: url(cwf.get-colored-svg-url('2063', map.get(cwf.$accent-colors, 'coral')));
+  background-image: url(cwf.get-colored-svg-url('2063', map.get(cwf.$colors, 'coral')));
   background-image: url(cwf.get-colored-svg-url('2063', #ff0080));
   background-image: url(cwf.get-colored-svg-url('2063', cwf.$white));
 
-  @include cwf.pi(2063, map.get(cwf.$accent-colors, 'coral'));
+  @include cwf.pi(2063, map.get(cwf.$colors, 'coral'));
   @include cwf.pi(2063, #ff0080);
   @include cwf.pi(2063, cwf.$white);
   @include cwf.pi(2063, midnightblue);
