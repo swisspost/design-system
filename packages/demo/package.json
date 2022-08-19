@@ -11,9 +11,9 @@
     "start": "ng serve",
     "build": "ng build",
     "build:ci": "ng build",
-    "test": "ng test",
+    "test": "echo 'todo'",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "echo 'todo'"
   },
   "dependencies": {
     "@angular/animations": "13.3.11",
