@@ -1,0 +1,15 @@
+@use 'sass:map';
+@use '@swisspost/design-system-styles/cwf';
+
+.pi-heart {
+  @include cwf.pi(2063, #ff0088);
+}
+
+.pi-heart-coral {
+  @include cwf.pi(2063, map.get(cwf.$background-colors, 'coral'));
+}
+
+code.sass {
+  display: block;
+  color: #ff0080;
+}

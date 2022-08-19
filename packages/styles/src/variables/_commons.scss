@@ -1,0 +1,56 @@
+@use './color';
+
+// Components
+//
+// Define common padding and border radius sizes and more.
+$border-width: 1px !default;
+$border-thick: 2px !default;
+$border-color: color.$gray-20 !default;
+
+$border-radius: 3px !default;
+$border-radius-sm: $border-radius !default;
+$border-radius-rg: $border-radius !default;
+$border-radius-lg: $border-radius !default;
+
+$box-shadow-sm: 0 0 4px 0 rgba(color.$black, 0.4) !default;
+$box-shadow: 0 0 5px 0 rgba(color.$black, 0.3) !default;
+$box-shadow-lg: 0 0 8px 0 rgba(color.$black, 0.4) !default;
+$box-shadow-hover: 0 0 1rem 0 rgba(color.$black, 0.08) !default;
+
+$caret-width: 0.3em !default;
+
+// Z-index master list
+//
+// Warning: Avoid customizing these values. They're used for a bird's eye view
+// of components dependent on the z-axis and are designed to all work together.
+
+$zindex-spinner: 990 !default; // Design System only
+$zindex-dropdown: 1000 !default;
+$zindex-sticky: 1020 !default;
+$zindex-fixed: 1030 !default;
+$zindex-modal-backdrop: 1040 !default;
+$zindex-modal: 1055 !default;
+$zindex-popover: 1060 !default;
+$zindex-tooltip: 1070 !default;
+$zindex-alert: 1080 !default; // Design System only
+
+// Z-index
+
+$z-indexes: (
+  hero: (
+    img,
+    brandframe,
+  ),
+  productcard: (
+    card,
+  ),
+  subnavigation: (
+    underscore-root,
+    underscore-link,
+  ),
+) !default;
+
+// Utilities
+$displays: none, inline, inline-block, block, table, table-row, table-cell, flex, inline-flex !default;
+$overflows: auto, hidden !default;
+$positions: static, relative, absolute, fixed, sticky !default;

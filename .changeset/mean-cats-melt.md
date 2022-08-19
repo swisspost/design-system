@@ -1,5 +1,5 @@
 ---
-'@swisspost/web-styles': major
+'@swisspost/design-system-styles': major
 ---
 
 Removed option-variables such as $isolate-components.

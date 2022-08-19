@@ -1,7 +1,7 @@
 ---
-'@swisspost/intranet-header': patch
-'@swisspost/web-demo': patch
-'@swisspost/web-styles': patch
+'@swisspost/design-system-intranet-header': patch
+'@swisspost/design-system-demo': patch
+'@swisspost/design-system-styles': patch
 ---
 
 Switch to the Apache 2.0 License

@@ -1,0 +1,6 @@
+// Import variables
+@use '@swisspost/design-system-styles/cwf';
+
+.pi-2063-white {
+  @include cwf.pi(2063, 'white');
+}
