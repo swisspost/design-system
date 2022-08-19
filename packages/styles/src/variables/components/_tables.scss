@@ -23,9 +23,9 @@ $table-hover-bg: rgba(color.$black, 0.075) !default;
 $table-active-bg: $table-hover-bg !default;
 
 $table-border-width: commons.$border-width !default;
-$table-border-color: rgba(var(--white-rgb), 0.4) !default;
+$table-border-color: rgba(var(--post-contrast-color-inverted-rgb), 0.4) !default;
 
-$table-head-bg: rgba(var(--white-rgb), 0.6) !default;
+$table-head-bg: rgba(var(--post-contrast-color-inverted-rgb), 0.6) !default;
 $table-head-color: color.$gray-40 !default;
 
 $table-dark-bg: color.$gray-80 !default;

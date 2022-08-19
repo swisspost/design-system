@@ -51,7 +51,7 @@ button {
 
   &-input:focus-visible + &-label {
     outline-offset: forms.$input-focus-outline-thickness;
-    outline: forms.$input-focus-outline-thickness solid var(--text-color);
+    outline: forms.$input-focus-outline-thickness solid var(--post-text-color);
   }
 
   &-input:not(:checked) + &-label:hover {

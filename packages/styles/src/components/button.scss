@@ -33,7 +33,7 @@
   border-radius: button.$btn-border-radius;
   background-color: transparent;
   box-shadow: none;
-  color: var(--contrast-color);
+  color: var(--post-contrast-color);
   font-family: inherit;
   font-weight: button.$btn-font-weight;
   line-height: inherit;
@@ -44,19 +44,19 @@
 // Primary
 .btn-primary {
   border-color: transparent;
-  background-color: rgba(var(--contrast-color-rgb), 0.8);
-  color: var(--contrast-color-inverted);
+  background-color: rgba(var(--post-contrast-color-rgb), 0.8);
+  color: var(--post-contrast-color-inverted);
 
   @include utilities.not-disabled-focus-hover() {
-    background-color: var(--contrast-color);
-    color: var(--contrast-color-inverted); // Override <a> color
+    background-color: var(--post-contrast-color);
+    color: var(--post-contrast-color-inverted); // Override <a> color
   }
 
   @include color-mx.on-dark-background {
-    background-color: var(--contrast-color);
+    background-color: var(--post-contrast-color);
 
     @include utilities.not-disabled-focus-hover() {
-      background-color: rgba(var(--contrast-color-rgb), 0.8);
+      background-color: rgba(var(--post-contrast-color-rgb), 0.8);
     }
   }
 
@@ -69,7 +69,7 @@
 
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
-    border-color: var(--contrast-color);
+    border-color: var(--post-contrast-color);
     background-color: ButtonFace;
 
     &:hover {
@@ -82,7 +82,7 @@
   }
 
   &:disabled {
-    background-color: rgba(var(--contrast-color-rgb), 0.4);
+    background-color: rgba(var(--post-contrast-color-rgb), 0.4);
   }
 
   .pi {
@@ -112,11 +112,11 @@
   padding-left: 0.375rem;
 
   @include utilities.not-disabled-focus-hover() {
-    color: rgba(var(--contrast-color-rgb), 0.8);
+    color: rgba(var(--post-contrast-color-rgb), 0.8);
   }
 
   &:disabled {
-    color: rgba(var(--contrast-color-rgb), 0.6);
+    color: rgba(var(--post-contrast-color-rgb), 0.6);
   }
 
   // Styles  to improve accessibility in high contrast mode

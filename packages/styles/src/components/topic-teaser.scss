@@ -122,7 +122,7 @@
 
   @include media-breakpoint-up(rg) {
     flex-direction: row;
-    gap: var(--gutter-x);
+    gap: var(--post-gutter-x);
   }
 }
 
@@ -163,7 +163,7 @@
   padding: 0.75rem 2rem 0.75rem 1rem;
   transition: opacity 200ms, background-position 200ms;
   border: 0;
-  border-top: 1px solid rgba(var(--white-rgb), 0.2);
+  border-top: 1px solid rgba(var(--post-contrast-color-rgb), 0.2);
   background-image: url(icons.get-colored-svg-url('2050', color.$white));
   background-repeat: no-repeat;
   background-position: right 0.75rem center;

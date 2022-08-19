@@ -13,4 +13,4 @@ class TextAutoClassesUpdate extends CssClassesUpdate {
     replaceValue = '';
 }
 
-// TODO: Replace .bg-[themeColor]-opacity-80 by style="--bg-opacity: 0.8"
+// TODO: Replace .bg-[themeColor]-opacity-80 by style="--post-bg-opacity: 0.8"

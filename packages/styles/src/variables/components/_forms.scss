@@ -12,7 +12,7 @@
 // Forms
 
 $form-label-margin-bottom: 0.5rem !default;
-$form-label-color: rgba(var(--contrast-color-rgb), 0.8) !default;
+$form-label-color: rgba(var(--post-contrast-color-rgb), 0.8) !default;
 
 $input-padding-y: button.$input-btn-padding-y !default;
 $input-padding-x: button.$input-btn-padding-x !default;
@@ -31,7 +31,7 @@ $input-padding-x-lg: button.$input-btn-padding-x-lg !default;
 $input-line-height-lg: button.$input-btn-line-height-lg !default;
 
 $input-bg: color.$white !default;
-$input-disabled-bg: rgba(var(--white-rgb), 0.6) !default;
+$input-disabled-bg: rgba(var(--post-contrast-color-inverted-rgb), 0.6) !default;
 $input-disabled-color: color.$gray-60; // CWF only
 $input-disabled-border-color: color.$gray-20; // CWF only
 
@@ -53,7 +53,7 @@ $input-focus-box-shadow: button.$input-btn-focus-box-shadow !default;
 $input-focus-outline-thickness: spacing.$size-line;
 
 $input-placeholder-color: color.$gray-60 !default;
-$input-plaintext-color: var(--contrast-color) !default;
+$input-plaintext-color: var(--post-contrast-color) !default;
 
 $input-height-border: $input-border-width * 2 !default;
 
@@ -75,14 +75,14 @@ $input-height-lg: calc(#{$input-height-inner-lg} + #{$input-height-border}) !def
 
 $input-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
 
-$form-text-color: var(--contrast-color);
+$form-text-color: var(--post-contrast-color);
 $form-text-font-size: type.$font-size-tiny;
 $form-text-margin-top: spacing.$size-micro !default;
 
 $form-group-margin-bottom: 1rem !default;
 
 $input-group-addon-color: $input-color !default;
-$input-group-addon-bg: rgba(var(--white-rgb), 0.6) !default;
+$input-group-addon-bg: rgba(var(--post-contrast-color-inverted-rgb), 0.6) !default;
 $input-group-addon-border-color: $input-border-color !default;
 
 $form-range-track-height: 0.2rem !default;

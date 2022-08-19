@@ -37,19 +37,8 @@ $module-name: 'subnavigation';
     }
 
     .#{$module-name}-link {
-      color: subnavigation.$subnavigation-link-color-inverted;
-
-      &:hover,
-      &:focus {
-        color: subnavigation.$subnavigation-link-color-hover-inverted;
-      }
-
       &:not(.active)::after {
         background-color: subnavigation.$subnavigation-link-underscore-color-hover-inverted;
-      }
-
-      &.active {
-        color: subnavigation.$subnavigation-link-color-hover-inverted;
       }
     }
   }
