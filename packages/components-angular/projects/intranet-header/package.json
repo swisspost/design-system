@@ -12,9 +12,6 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
-  "scripts": {
-    "reset": "rimraf node_modules package-lock.json"
-  },
   "publishConfig": {
     "directory": "../../dist/intranet-header",
     "access": "public"

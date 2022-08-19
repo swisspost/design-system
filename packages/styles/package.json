@@ -18,7 +18,6 @@
   },
   "scripts": {
     "clean": "rimraf out-tsc dist/*",
-    "reset": "rimraf node_modules package-lock.json && npm run clean",
     "prebuild": "npm run clean",
     "build": "gulp build",
     "build:ci": "gulp build",
