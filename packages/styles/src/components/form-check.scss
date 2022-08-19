@@ -85,7 +85,6 @@
   }
 
   // Styles  to improve accessibility in high contrast mode
-  // stylelint-disable order/order
   @include utilities.high-contrast-mode() {
     &-input {
       &[type='checkbox']:checked {

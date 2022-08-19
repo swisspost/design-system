@@ -17,7 +17,6 @@
     box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000, 0 0 12px 5px rgba(0, 0, 0, 0.24);
   }
 
-  /* stylelint-disable-next-line order/order */
   @include utilities.high-contrast-mode() {
     &:focus-visible {
       border-radius: commons.$border-radius;

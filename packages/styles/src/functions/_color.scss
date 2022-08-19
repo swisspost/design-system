@@ -4,7 +4,6 @@
 @use 'sass:string';
 
 // Source: http://thesassway.com/intermediate/mixins-for-semi-transparent-colors
-// stylelint-disable order/order
 @function get-solid-color($color, $background: white) {
   @if (meta.type-of($color) != color or meta.type-of($background) != color) {
     @error "Please provide a color for this function. Supplied: '#{$color}' and '#{$background}'.";

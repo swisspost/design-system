@@ -54,7 +54,6 @@
   @for $i from 1 through $l {
     $name: list.nth(list.nth(color.$post-grays, $l + 1 - $i), 1);
     $color: list.nth(list.nth(color.$post-grays, $i), 2);
-    // stylelint-disable-next-line order/order
     --post-#{$name}: #{$color};
   }
 
@@ -67,7 +66,6 @@
   @for $i from 1 through $l {
     $name: list.nth(list.nth(color.$post-grays, $l + 1 - $i), 1);
     $color: list.nth(list.nth(color.$post-grays, $i), 2);
-    // stylelint-disable-next-line order/order
     --post-#{$name}-rgb: #{color-fn.rgb-values($color)};
   }
 }

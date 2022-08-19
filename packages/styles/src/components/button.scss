@@ -60,7 +60,6 @@
     }
   }
 
-  // stylelint-disable-next-line order/order
   @include color-mx.on-dark-background() {
     .pi {
       filter: invert(0);
@@ -120,7 +119,6 @@
   }
 
   // Styles  to improve accessibility in high contrast mode
-  /* stylelint-disable-next-line order/order */
   @include utilities.high-contrast-mode() {
     color: linktext;
     text-decoration: underline !important;

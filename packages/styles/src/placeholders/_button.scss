@@ -5,7 +5,6 @@
 %btn-default {
   border: button.$btn-border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
 
-  /* stylelint-disable-next-line order/order */
   @include utilities.not-disabled-focus-hover() {
     border-color: var(--post-contrast-color);
     color: var(--post-contrast-color); // Override <a> color

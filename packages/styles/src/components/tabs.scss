@@ -32,7 +32,6 @@
     background-color: transparent !important;
   }
 
-  /* stylelint-disable-next-line order/order */
   @include utilities.high-contrast-mode() {
     &::after {
       background-color: ButtonBorder;
@@ -121,7 +120,6 @@
       }
     }
 
-    /* stylelint-disable-next-line order/order */
     @include utilities.high-contrast-mode() {
       opacity: 1;
       border-left-color: Canvas;
@@ -149,7 +147,6 @@
   }
 
   // Tabs with dark backgrounds
-  /* stylelint-disable-next-line order/order */
   @include color-mx.on-dark-background(true) {
     .tab-title {
       &:hover {
