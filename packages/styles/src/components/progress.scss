@@ -9,10 +9,6 @@
 @use '../variables/components/progress-bars';
 @use '../mixins/utilities';
 
-.progress-bar {
-  color: var(--post-contrast-color, progress-bars.$progress-bar-color);
-}
-
 @include utilities.high-contrast-mode() {
   .progress {
     border: commons.$border-width solid ButtonBorder;
