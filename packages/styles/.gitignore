@@ -5,3 +5,4 @@ debug.log
 npm-debug.log
 *.code-workspace
 stylelint-report.txt
+storybook-static
