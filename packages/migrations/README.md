@@ -1,6 +1,6 @@
-# Web Styles Migrations
+# Design System Migrations
 
-Schematics to transform a software project by adapting it to current Web Styles.
+Schematics to transform a software project by adapting it to current Design System Styles.
 
 ## Testing
 
