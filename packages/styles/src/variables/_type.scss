@@ -39,9 +39,9 @@ $line-height-bigger-big: 1.1;
 $line-height-small-huge: 1.1;
 $line-height-huge: 1.1;
 
-$font-weight-light: 300 !default; // CWF -> Frutiger Neue Light
-$font-weight-normal: 400 !default; // CWF -> Frutiger Neue Roman
-$font-weight-bold: 700 !default; // CWF -> Frutiger Neue Roman
+$font-weight-light: 300 !default; // Design System -> Frutiger Neue Light
+$font-weight-normal: 400 !default; // Design System -> Frutiger Neue Roman
+$font-weight-bold: 700 !default; // Design System -> Frutiger Neue Roman
 
 $font-sizes: (
   'tiny': $font-size-tiny,
@@ -186,8 +186,8 @@ $blockquote-footer-font-size: math.div(
 ) !default;
 $blockquote-cite-font-weight: $font-weight-light !default;
 
-$hr-border-color: rgba(color.$black, 0.1) !default; // CWF
-$hr-border-color-light: rgba(color.$white, 0.4) !default; // CWF only
+$hr-border-color: rgba(color.$black, 0.1) !default; // Design System
+$hr-border-color-light: rgba(color.$white, 0.4) !default; // Design System only
 $hr-border-width: commons.$border-width !default;
 
 $mark-padding: 0.2em !default;

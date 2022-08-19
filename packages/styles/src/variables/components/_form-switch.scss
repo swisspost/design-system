@@ -3,7 +3,7 @@
 @use '../spacing';
 @use '../animation';
 
-// CWF custom variables
+// Design System custom variables
 $form-switch-border-color: color.$gray-60 !default;
 $form-switch-checked-border-color: color.$black !default;
 
@@ -19,7 +19,7 @@ $form-switch-checked-color: color.$white !default;
 $form-switch-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -16 32 32'><circle r='15' stroke='#{$form-switch-checked-border-color}' stroke-width='2' fill='#{$form-switch-checked-color}'/></svg>") !default;
 $form-switch-focus-bg-image: $form-switch-checked-bg-image;
 
-// CWF custom variables
+// Design System custom variables
 $form-switch-height: spacing.$size-big !default;
 $form-switch-bg: rgba(var(--contrast-color-rgb), 0.3) !default;
 $form-switch-hover-bg: rgba(var(--contrast-color-rgb), 0.1) !default;

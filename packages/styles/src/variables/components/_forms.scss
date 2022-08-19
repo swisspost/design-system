@@ -32,8 +32,8 @@ $input-line-height-lg: button.$input-btn-line-height-lg !default;
 
 $input-bg: color.$white !default;
 $input-disabled-bg: rgba(var(--white-rgb), 0.6) !default;
-$input-disabled-color: color.$gray-60; // CWF only
-$input-disabled-border-color: color.$gray-20; // CWF only
+$input-disabled-color: color.$gray-60; // Design System only
+$input-disabled-border-color: color.$gray-20; // Design System only
 
 $input-color: color.$black !default;
 $input-border-color: color.$gray-60 !default;
@@ -70,7 +70,7 @@ $input-height-inner-rg: $input-height-content-rg + ($input-padding-y-rg * 2) !de
 $input-height-rg: calc(#{$input-height-inner-rg} + #{$input-height-border}) !default;
 
 $input-height-content-lg: type.$font-size-bigger-regular * $input-line-height-lg !default;
-$input-height-inner-lg: $input-height-content-lg + ($input-padding-y-lg * 2) !default; // CWF
+$input-height-inner-lg: $input-height-content-lg + ($input-padding-y-lg * 2) !default; // Design System
 $input-height-lg: calc(#{$input-height-inner-lg} + #{$input-height-border}) !default;
 
 $input-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
