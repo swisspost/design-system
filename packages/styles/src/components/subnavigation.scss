@@ -29,20 +29,6 @@ $module-name: 'subnavigation';
     background-color: subnavigation.$subnavigation-background-color-alternate;
   }
 
-  &-inverted {
-    background-color: subnavigation.$subnavigation-background-color-inverted;
-
-    &::after {
-      background-color: subnavigation.$subnavigation-border-bottom-color-inverted;
-    }
-
-    .#{$module-name}-link {
-      &:not(.active)::after {
-        background-color: subnavigation.$subnavigation-link-underscore-color-hover-inverted;
-      }
-    }
-  }
-
   &-list {
     display: flex;
     width: calc(100% + 2rem);
