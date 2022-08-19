@@ -66,18 +66,18 @@
     border-left: 1px solid transparent;
     outline-color: currentColor;
     opacity: 0.7;
-    color: var(--contrast-color);
+    color: var(--post-contrast-color);
 
     &:focus {
       opacity: 0.7;
       background-color: unset;
-      color: var(--contrast-color);
+      color: var(--post-contrast-color);
     }
 
     &:hover {
       opacity: 1;
       background-color: nav.$nav-tabs-link-active-bg;
-      color: var(--contrast-color);
+      color: var(--post-contrast-color);
     }
 
     // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
@@ -85,7 +85,7 @@
       outline: transparent;
       opacity: 1;
       background-color: nav.$nav-tabs-link-active-bg;
-      color: var(--contrast-color);
+      color: var(--post-contrast-color);
 
       &::after {
         content: '';
@@ -105,7 +105,7 @@
       border-left-color: nav.$nav-tabs-border-color;
       opacity: 1;
       background-color: nav.$nav-tabs-link-active-bg;
-      color: var(--contrast-color);
+      color: var(--post-contrast-color);
       font-weight: 700;
 
       // Create a line that does not suffer from border corner mitering

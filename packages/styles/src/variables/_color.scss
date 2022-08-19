@@ -48,7 +48,7 @@ $warning: #f49e00;
  */
 
 $grays: () !default;
-$grays: map.merge(
+$post-grays: map.merge(
   $grays,
   (
     '10': $gray-10,
@@ -106,16 +106,6 @@ $background-colors: map.merge(
 // Merge with the other lists
 $background-colors: map.merge($background-colors, $contextual-colors);
 $background-colors: map.merge($background-colors, $accent-colors);
-
-// One list to rule them all
-$colors: () !default;
-$colors: map.merge(
-  (
-    'black': $black,
-  ),
-  $grays
-);
-$colors: map.merge($background-colors, $colors);
 
 // Compile a list of dark backgrounds, used in the :is selector mixin at mixins/color
 $dark-backgrounds: () !default;

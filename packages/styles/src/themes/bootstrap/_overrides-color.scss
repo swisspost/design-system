@@ -24,7 +24,8 @@ $light: color.$gray-background-light;
 $dark: $primary;
 
 // Colors that can be used as a background
-$theme-colors: color.$background-colors !default;
+$theme-colors: () !default;
+$colors: () !default;
 
 // Contrast colors are ok
 

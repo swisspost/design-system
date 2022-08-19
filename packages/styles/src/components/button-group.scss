@@ -21,7 +21,7 @@
     cursor: pointer;
 
     @include utilities.not-disabled-focus-hover() {
-      box-shadow: 0 0 0 0.125rem var(--contrast-color);
+      box-shadow: 0 0 0 0.125rem var(--post-contrast-color);
     }
 
     &:focus,

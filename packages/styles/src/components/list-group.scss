@@ -142,7 +142,7 @@
 
     &:hover {
       background-color: transparent;
-      color: rgba(var(--white-rgb), 0.8);
+      color: rgba(var(--post-contrast-color-inverted-rgb), 0.8);
     }
   }
 }
@@ -160,6 +160,7 @@
 .list-group-white {
   .list-group-item {
     border: 0;
-    border-top: list-group.$list-group-border-width solid rgba(var(--white-rgb), 0.2);
+    border-top: list-group.$list-group-border-width solid
+      rgba(var(--post-contrast-color-inverted-rgb), 0.2);
   }
 }
