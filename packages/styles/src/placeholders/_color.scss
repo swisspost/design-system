@@ -22,7 +22,7 @@
   --post-contrast-color-inverted: #{color.$white};
 
   @each $color-name, $color-value in color.$post-grays {
-    --post-gray-#{$color-name}: #{$color-value};
+    --post-#{$color-name}: #{$color-value};
   }
 
   @each $name, $color in color.$background-colors {
@@ -34,7 +34,7 @@
   --post-contrast-color-inverted-rgb: #{color-fn.rgb-values(color.$white)};
 
   @each $color-name, $color-value in color.$post-grays {
-    --post-gray-#{$color-name}-rgb: #{color-fn.rgb-values($color-value)};
+    --post-#{$color-name}-rgb: #{color-fn.rgb-values($color-value)};
   }
 
   @each $name, $color in color.$background-colors {
@@ -53,7 +53,7 @@
     $color-name: list.nth(list.nth(color.$post-grays, $l + 1 - $i), 1);
     $color-value: list.nth(list.nth(color.$post-grays, $i), 2);
     // stylelint-disable-next-line order/order
-    --post-gray-#{$color-name}: #{$color-value};
+    --post-#{$color-name}: #{$color-value};
   }
 
   --post-contrast-color-rgb: #{color-fn.rgb-values(color.$white)};
@@ -62,6 +62,6 @@
     $color-name: list.nth(list.nth(color.$post-grays, $l + 1 - $i), 1);
     $color-value: list.nth(list.nth(color.$post-grays, $i), 2);
     // stylelint-disable-next-line order/order
-    --post-gray-#{$color-name}-rgb: #{color-fn.rgb-values($color-value)};
+    --post-#{$color-name}-rgb: #{color-fn.rgb-values($color-value)};
   }
 }

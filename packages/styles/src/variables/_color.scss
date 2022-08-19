@@ -47,15 +47,15 @@ $warning: #f49e00;
  * by always merging into a default empty map
  */
 
-$grays: () !default;
+$post-grays: () !default;
 $post-grays: map.merge(
-  $grays,
+  $post-grays,
   (
-    '10': $gray-10,
-    '20': $gray-20,
-    '40': $gray-40,
-    '60': $gray-60,
-    '80': $gray-80,
+    'gray-10': $gray-10,
+    'gray-20': $gray-20,
+    'gray-40': $gray-40,
+    'gray-60': $gray-60,
+    'gray-80': $gray-80,
   )
 );
 

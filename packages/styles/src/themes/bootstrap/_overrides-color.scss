@@ -24,8 +24,21 @@ $light: color.$gray-background-light;
 $dark: $primary;
 
 // Colors that can be used as a background
-$theme-colors: () !default;
 $colors: () !default;
+$colors: map.merge(
+  $colors,
+  (
+    'primary': $primary,
+    'secondary': $secondary,
+    'white': color.$white,
+    'light': $light,
+    'dark': $dark,
+  )
+);
+$colors: map.merge($colors, color.$contextual-colors);
+
+$theme-colors: () !default;
+$theme-colors: map.merge($theme-colors, $colors);
 
 // Contrast colors are ok
 
