@@ -45,7 +45,7 @@ npm install @swisspost/design-system-intranet-header
 
 ## Reaching out
 
-You can reach out on the [discussions page](https://github.com/swisspost/web-frontend/discussions) for any questions regarding the pattern library.
+You can reach out on the [discussions page](https://github.com/swisspost/design-system/discussions) for any questions regarding the pattern library.
 
 
 ## Contribute
