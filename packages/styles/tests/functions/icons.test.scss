@@ -27,5 +27,5 @@ $expected-add-fill-color-output: "data:image/svg+xml,%3Csvg version='1.1' xmlns=
     }
   }
 
-  background-image: url(icons.get-colored-svg-url('1000', map.get(color.$colors, 'coral')));
+  background-image: url(icons.get-colored-svg-url('1000', map.get(color.$accent-colors, 'coral')));
 }

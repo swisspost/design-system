@@ -42,7 +42,7 @@
 }
 
 @mixin button-color-variant($name, $color) {
-  .btn-#{$name} {
+  .btn-#{'' + $name} {
     border-color: transparent;
     background-color: $color;
 
