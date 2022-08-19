@@ -56,5 +56,6 @@
     $color-value: list.nth(list.nth(color.$post-grays, $i), 2);
     // stylelint-disable-next-line order/order
     --post-gray-#{$color-name}: #{$color-value};
+    --post-gray-#{$color-name}-rgb: #{color-fn.rgb-values($color-value)};
   }
 }
