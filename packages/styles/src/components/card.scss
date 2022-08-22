@@ -15,6 +15,7 @@
 .card-group {
   margin-top: commons.$border-width;
   margin-left: commons.$border-width;
+  box-shadow: commons.$box-shadow-lg;
 }
 
 .card {
@@ -43,6 +44,7 @@
   .card-group > & {
     margin-right: commons.$border-width;
     margin-bottom: commons.$border-width;
+    box-shadow: none;
 
     + .card {
       margin-top: 0;
