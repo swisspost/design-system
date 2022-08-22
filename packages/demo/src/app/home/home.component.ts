@@ -123,7 +123,9 @@ const cwfUse = `// styles.scss
 @use '@swisspost/design-system-styles/core' as post;
 
 .bg-yellow { // Don't copy this class. It is just an example.
-  background-color: post.$yellow; // cwf is the filename and by convention the namespace
+  // 'core' is the filename and by convention the namespace
+  // but for consistency with other prefixes, the core module should be namespaced as 'post'
+  background-color: post.$yellow;
 }`;
 
 const fontCorsPolicy = `<!-- src/app/index.html -->
