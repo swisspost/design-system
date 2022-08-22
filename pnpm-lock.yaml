@@ -229,7 +229,7 @@ importers:
       '@angular-devkit/schematics': 13.3.9
       '@angular/compiler': 13.3.11
       '@angular/core': 13.3.11
-      '@types/jasmine': 3.10.6
+      '@types/jasmine': 4.0.3
       '@types/node': 16.11.48
       copyfiles: 2.4.1
       jasmine: 4.3.0
@@ -246,7 +246,7 @@ importers:
       typescript: 4.6.4
       zone.js: 0.11.8
     devDependencies:
-      '@types/jasmine': 3.10.6
+      '@types/jasmine': 4.0.3
       '@types/node': 16.11.48
       copyfiles: 2.4.1
       jasmine: 4.3.0
@@ -7192,10 +7192,6 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jasmine/3.10.6:
-    resolution: {integrity: sha512-twY9adK/vz72oWxCWxzXaxoDtF9TpfEEsxvbc1ibjF3gMD/RThSuSud/GKUTR3aJnfbivAbC/vLqhY+gdWCHfA==}
-    dev: true
-
   /@types/jasmine/4.0.3:
     resolution: {integrity: sha512-Opp1LvvEuZdk8fSSvchK2mZwhVrsNT0JgJE9Di6MjnaIpmEXM8TLCPPrVtNTYh8+5MPdY8j9bAHMu2SSfwpZJg==}
     dev: true
@@ -12148,7 +12144,7 @@ packages:
     dev: true
 
   /file-uri-to-path/1.0.0:
-    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=}
+    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     requiresBuild: true
     dev: true
     optional: true
@@ -21914,6 +21910,7 @@ packages:
   /unified/9.2.0:
     resolution: {integrity: sha1-Z6YsYnxAWJ7eu/YPU+39TYIgJ/g=}
     dependencies:
+      '@types/unist': 2.0.6
       bail: 1.0.5
       extend: 3.0.2
       is-buffer: 2.0.5
