@@ -6,6 +6,7 @@
 
 @use '../mixins/type';
 @use '../mixins/utilities';
+@use '../variables/spacing';
 @use '../variables/components/accordion';
 @use '../variables/components/button';
 
@@ -43,6 +44,13 @@
 
   // style to improve hcm mode
   @include utilities.high-contrast-mode() {
+    &:hover,
+    &:focus-visible {
+      &:not(:disabled) {
+        outline: spacing.$size-line solid Highlight;
+      }
+    }
+
     &:disabled {
       opacity: 1 !important;
     }
