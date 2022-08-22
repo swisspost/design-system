@@ -5,11 +5,11 @@ importers:
   .:
     specifiers:
       '@changesets/changelog-github': 0.4.6
-      '@changesets/cli': 2.24.2
+      '@changesets/cli': 2.24.3
       lerna: 4.0.0
     devDependencies:
       '@changesets/changelog-github': 0.4.6
-      '@changesets/cli': 2.24.2
+      '@changesets/cli': 2.24.3
       lerna: 4.0.0
 
   packages/components-angular:
@@ -35,7 +35,7 @@ importers:
       '@popperjs/core': 2.11.6
       '@swisspost/design-system-styles': ^5.0.0-alpha.2
       '@types/jasmine': 4.0.3
-      '@types/node': 16.11.48
+      '@types/node': 16.11.52
       '@typescript-eslint/eslint-plugin': 5.33.0
       '@typescript-eslint/parser': 5.33.0
       eslint: 8.21.0
@@ -79,7 +79,7 @@ importers:
       '@angular/cli': 13.3.9
       '@angular/compiler-cli': 13.3.11_fbmoseozheqma23uo47agmoygu
       '@types/jasmine': 4.0.3
-      '@types/node': 16.11.48
+      '@types/node': 16.11.52
       '@typescript-eslint/eslint-plugin': 5.33.0_njno5y7ry2l2lcmiu4tywxkwnq
       '@typescript-eslint/parser': 5.33.0_qugx7qdu5zevzvxaiqyxfiwquq
       eslint: 8.21.0
@@ -89,7 +89,7 @@ importers:
       karma-coverage: 2.2.0
       karma-jasmine: 5.1.0_karma@6.4.0
       karma-jasmine-html-reporter: 2.0.0_kn32zzqrpbpapqtjwiltm573ri
-      ng-packagr: 13.3.1_ogftfqqndaalxphlcwlu5eim6a
+      ng-packagr: 13.3.1_bxao6jxhs4nerwzfxaddu4vzxu
       rimraf: 3.0.2
       typescript: 4.7.4
 
@@ -132,7 +132,7 @@ importers:
       '@types/highlight.js': 9.12.4
       '@types/jasmine': 4.0.3
       '@types/jasminewd2': 2.0.10
-      '@types/node': 16.11.48
+      '@types/node': 16.11.52
       '@typescript-eslint/eslint-plugin': 5.33.0
       '@typescript-eslint/parser': 5.33.0
       bootstrap: 5.1.3
@@ -155,7 +155,7 @@ importers:
       raw-loader: 4.0.2
       rimraf: 3.0.2
       rxjs: 6.6.7
-      sass: 1.54.4
+      sass: 1.54.5
       sockjs: 0.3.24
       ts-node: 10.9.1
       tslib: 2.4.0
@@ -200,7 +200,7 @@ importers:
       '@types/highlight.js': 9.12.4
       '@types/jasmine': 4.0.3
       '@types/jasminewd2': 2.0.10
-      '@types/node': 16.11.48
+      '@types/node': 16.11.52
       '@typescript-eslint/eslint-plugin': 5.33.0_njno5y7ry2l2lcmiu4tywxkwnq
       '@typescript-eslint/parser': 5.33.0_qugx7qdu5zevzvxaiqyxfiwquq
       eslint: 8.21.0
@@ -217,9 +217,9 @@ importers:
       protractor: 7.0.0
       raw-loader: 4.0.2_webpack@5.74.0
       rimraf: 3.0.2
-      sass: 1.54.4
+      sass: 1.54.5
       sockjs: 0.3.24
-      ts-node: 10.9.1_juowujds2pvcb32ctbfa3kte74
+      ts-node: 10.9.1_r75dztgaujebkvxzjtqznc4dyq
       typescript: 4.7.4
       webpack: 5.74.0
 
@@ -230,7 +230,7 @@ importers:
       '@angular/compiler': 13.3.11
       '@angular/core': 13.3.11
       '@types/jasmine': 3.10.6
-      '@types/node': 16.11.48
+      '@types/node': 16.11.52
       copyfiles: 2.4.1
       jasmine: 4.3.0
       json: 11.0.0
@@ -247,7 +247,7 @@ importers:
       zone.js: 0.11.8
     devDependencies:
       '@types/jasmine': 3.10.6
-      '@types/node': 16.11.48
+      '@types/node': 16.11.52
       copyfiles: 2.4.1
       jasmine: 4.3.0
       json: 11.0.0
@@ -279,7 +279,7 @@ importers:
       postcss-scss: 4.0.4
       prettier: 2.7.1
       rimraf: 3.0.2
-      sass: 1.54.4
+      sass: 1.54.5
       sass-loader: 10.1.1
       storybook-dark-mode: 1.1.0
       style-loader: 2.0.0
@@ -314,8 +314,8 @@ importers:
       postcss-scss: 4.0.4_postcss@8.4.16
       prettier: 2.7.1
       rimraf: 3.0.2
-      sass: 1.54.4
-      sass-loader: 10.1.1_sass@1.54.4
+      sass: 1.54.5
+      sass-loader: 10.1.1_sass@1.54.5
       storybook-dark-mode: 1.1.0
       style-loader: 2.0.0
       stylelint: 14.10.0
@@ -523,7 +523,7 @@ packages:
       loader-utils: 3.2.0
       mini-css-extract-plugin: 2.5.3_webpack@5.70.0
       minimatch: 3.0.5
-      ng-packagr: 13.3.1_ogftfqqndaalxphlcwlu5eim6a
+      ng-packagr: 13.3.1_bxao6jxhs4nerwzfxaddu4vzxu
       open: 8.4.0
       ora: 5.4.1
       parse5-html-rewriting-stream: 6.0.1
@@ -3393,8 +3393,8 @@ packages:
       semver: 5.7.1
     dev: true
 
-  /@changesets/assemble-release-plan/5.2.0:
-    resolution: {integrity: sha512-ewY24PEbSec2eKX0+KM7eyENA2hUUp6s4LF9p/iBxTtc+TX2Xbx5rZnlLKZkc8tpuQ3PZbyjLFXWhd1PP6SjCg==}
+  /@changesets/assemble-release-plan/5.2.1:
+    resolution: {integrity: sha512-d6ckasOWlKF9Mzs82jhl6TKSCgVvfLoUK1ERySrTg2TQJdrVUteZue6uEIYUTA7SgMu67UOSwol6R9yj1nTdjw==}
     dependencies:
       '@babel/runtime': 7.18.3
       '@changesets/errors': 0.1.4
@@ -3420,18 +3420,18 @@ packages:
       - encoding
     dev: true
 
-  /@changesets/cli/2.24.2:
-    resolution: {integrity: sha512-Bya7bnxF8Sz+O25M6kseAludVsCy5nXSW9u2Lbje/XbJTyU5q/xwIiXF9aTUzVi/4jyKoKoOasx7B1/z+NJLzg==}
+  /@changesets/cli/2.24.3:
+    resolution: {integrity: sha512-okhRV+0WCQJa2Kmil/WvN5TK1o3+1JYSjrsGHqhjv+PYcDgDDgQ6I9J9OMBO9lfmNIpN7xSO80/BzxgvReO4Wg==}
     hasBin: true
     dependencies:
       '@babel/runtime': 7.18.3
       '@changesets/apply-release-plan': 6.0.4
-      '@changesets/assemble-release-plan': 5.2.0
+      '@changesets/assemble-release-plan': 5.2.1
       '@changesets/changelog-git': 0.1.12
       '@changesets/config': 2.1.1
       '@changesets/errors': 0.1.4
       '@changesets/get-dependents-graph': 1.3.3
-      '@changesets/get-release-plan': 3.0.13
+      '@changesets/get-release-plan': 3.0.14
       '@changesets/git': 1.4.1
       '@changesets/logger': 0.0.5
       '@changesets/pre': 1.0.12
@@ -3496,11 +3496,11 @@ packages:
       - encoding
     dev: true
 
-  /@changesets/get-release-plan/3.0.13:
-    resolution: {integrity: sha512-Zl/UN4FUzb5LwmzhO2STRijJT5nQCN4syPEs0p1HSIR+O2iVOzes+2yTLF2zGiOx8qPOsFx/GRSAvuhSzm+9ig==}
+  /@changesets/get-release-plan/3.0.14:
+    resolution: {integrity: sha512-xzSfeyIOvUnbqMuQXVKTYUizreWQfICwoQpvEHoePVbERLocc1tPo5lzR7dmVCFcaA/DcnbP6mxyioeq+JuzSg==}
     dependencies:
       '@babel/runtime': 7.18.3
-      '@changesets/assemble-release-plan': 5.2.0
+      '@changesets/assemble-release-plan': 5.2.1
       '@changesets/config': 2.1.1
       '@changesets/pre': 1.0.12
       '@changesets/read': 0.5.7
@@ -6682,7 +6682,7 @@ packages:
       style-loader: '*'
     dependencies:
       css-loader: 5.2.7
-      sass-loader: 10.1.1_sass@1.54.4
+      sass-loader: 10.1.1_sass@1.54.5
       style-loader: 2.0.0
     dev: true
 
@@ -7249,6 +7249,10 @@ packages:
 
   /@types/node/16.11.48:
     resolution: {integrity: sha512-Z9r9UWlNeNkYnxybm+1fc0jxUNjZqRekTAr1pG0qdXe9apT9yCiqk1c4VvKQJsFpnchU4+fLl25MabSLA2wxIw==}
+    dev: true
+
+  /@types/node/16.11.52:
+    resolution: {integrity: sha512-GnstYouCa9kbYokBCWEVrszJ1P2rGAQpKrqACHKuixkaT8XGu8nsqHvEUIGqDs5vwtsJ7LrYqnPDKRD1V+M39A==}
     dev: true
 
   /@types/node/17.0.43:
@@ -12148,7 +12152,7 @@ packages:
     dev: true
 
   /file-uri-to-path/1.0.0:
-    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=}
     requiresBuild: true
     dev: true
     optional: true
@@ -16537,7 +16541,7 @@ packages:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
     dev: true
 
-  /ng-packagr/13.3.1_ogftfqqndaalxphlcwlu5eim6a:
+  /ng-packagr/13.3.1_bxao6jxhs4nerwzfxaddu4vzxu:
     resolution: {integrity: sha1-4kVvKSDPF359rU6brumt6ohHeds=}
     engines: {node: ^12.20.0 || ^14.15.0 || >=16.10.0}
     hasBin: true
@@ -16567,7 +16571,7 @@ packages:
       postcss-preset-env: 7.7.1_postcss@8.4.16
       postcss-url: 10.1.3_postcss@8.4.16
       rollup: 2.75.6
-      rollup-plugin-sourcemaps: 0.6.3_fdxh2dyik3shl5q4xmhtv2c5wq
+      rollup-plugin-sourcemaps: 0.6.3_5ri5w5ayceks32pyfvi4536ul4
       rxjs: 7.5.6
       sass: 1.54.4
       stylus: 0.56.0
@@ -19827,7 +19831,7 @@ packages:
       inherits: 2.0.4
     dev: true
 
-  /rollup-plugin-sourcemaps/0.6.3_fdxh2dyik3shl5q4xmhtv2c5wq:
+  /rollup-plugin-sourcemaps/0.6.3_5ri5w5ayceks32pyfvi4536ul4:
     resolution: {integrity: sha512-paFu+nT1xvuO1tPFYXGe+XnQvg4Hjqv/eIhG8i5EspfYYPBKL57X7iVbfv55aNVASg3dzWvES9dmWsL2KhfByw==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
@@ -19838,7 +19842,7 @@ packages:
         optional: true
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.75.6
-      '@types/node': 16.11.48
+      '@types/node': 16.11.52
       rollup: 2.75.6
       source-map-resolve: 0.6.0
     dev: true
@@ -19931,7 +19935,7 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/10.1.1_sass@1.54.4:
+  /sass-loader/10.1.1_sass@1.54.5:
     resolution: {integrity: sha512-W6gVDXAd5hR/WHsPicvZdjAWHBcEJ44UahgxcIE196fW2ong0ZHMPO1kZuI5q0VlvMQZh32gpv69PLWQm70qrw==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -19950,7 +19954,7 @@ packages:
       klona: 2.0.5
       loader-utils: 2.0.2
       neo-async: 2.6.2
-      sass: 1.54.4
+      sass: 1.54.5
       schema-utils: 3.1.1
       semver: 7.3.7
     dev: true
@@ -19989,6 +19993,16 @@ packages:
 
   /sass/1.54.4:
     resolution: {integrity: sha512-3tmF16yvnBwtlPrNBHw/H907j8MlOX8aTBnlNX1yrKx24RKcJGPyLhFUwkoKBKesR3unP93/2z14Ll8NicwQUA==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.1.0
+      source-map-js: 1.0.2
+    dev: true
+
+  /sass/1.54.5:
+    resolution: {integrity: sha512-p7DTOzxkUPa/63FU0R3KApkRHwcVZYC0PLnLm5iyZACyp15qSi32x7zVUhRdABAATmkALqgGrjCJAcWvobmhHw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
@@ -21619,7 +21633,7 @@ packages:
     engines: {node: '>=6.10'}
     dev: true
 
-  /ts-node/10.9.1_juowujds2pvcb32ctbfa3kte74:
+  /ts-node/10.9.1_r75dztgaujebkvxzjtqznc4dyq:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -21638,7 +21652,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
-      '@types/node': 16.11.48
+      '@types/node': 16.11.52
       acorn: 8.8.0
       acorn-walk: 8.2.0
       arg: 4.1.3
