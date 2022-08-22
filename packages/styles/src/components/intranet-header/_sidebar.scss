@@ -35,12 +35,12 @@
       margin-bottom: 0;
       padding: spacing.$spacer;
       padding-top: spacing.$spacer;
-      border-bottom: commons.$border-width solid rgba(var(--black-rgb), 0.2);
+      border-bottom: commons.$border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
       background-color: color.$white;
 
       &:hover,
       &:focus {
-        background-color: get-solid-color(rgba(var(--black-rgb), 0.1), color.$white);
+        background-color: get-solid-color(rgba(var(--post-contrast-color-rgb), 0.1), color.$white);
         cursor: pointer;
       }
 

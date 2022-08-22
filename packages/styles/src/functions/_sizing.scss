@@ -3,8 +3,6 @@
 @use './utilities';
 @use './list';
 
-// stylelint-disable order/order
-
 @function strip-unit($value) {
   @return math.div($value, $value * 0 + 1);
 }

@@ -29,31 +29,6 @@ $module-name: 'subnavigation';
     background-color: subnavigation.$subnavigation-background-color-alternate;
   }
 
-  &-inverted {
-    background-color: subnavigation.$subnavigation-background-color-inverted;
-
-    &::after {
-      background-color: subnavigation.$subnavigation-border-bottom-color-inverted;
-    }
-
-    .#{$module-name}-link {
-      color: subnavigation.$subnavigation-link-color-inverted;
-
-      &:hover,
-      &:focus {
-        color: subnavigation.$subnavigation-link-color-hover-inverted;
-      }
-
-      &:not(.active)::after {
-        background-color: subnavigation.$subnavigation-link-underscore-color-hover-inverted;
-      }
-
-      &.active {
-        color: subnavigation.$subnavigation-link-color-hover-inverted;
-      }
-    }
-  }
-
   &-list {
     display: flex;
     width: calc(100% + 2rem);

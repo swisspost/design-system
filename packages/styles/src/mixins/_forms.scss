@@ -46,7 +46,6 @@
     line-height: type.$line-height-base;
 
     /* Keeping borders gray while maintaining a green background on tooltips */
-    //stylelint-disable-next-line order/order
     @if ($state == 'valid') {
       background-color: rgba(form-feedback.$form-feedback-valid-bg, tooltips.$tooltip-opacity);
     } @else {
@@ -106,6 +105,6 @@
 
   /* Compatibility with button-group */
   &:is(:focus-visible, :focus-within) {
-    outline: forms.$input-focus-outline-thickness solid var(--contrast-color);
+    outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
   }
 }

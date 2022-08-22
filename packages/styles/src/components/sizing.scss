@@ -88,7 +88,6 @@ $cache: ();
     }
 
     // Render the stack
-    //stylelint-disable-next-line order/order
     @include media-breakpoint-up($breakpoint-key) {
       @each $classname, $class-map in $stack {
         @each $curve-name, $curve-map in $class-map {

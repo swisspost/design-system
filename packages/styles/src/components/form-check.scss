@@ -85,7 +85,6 @@
   }
 
   // Styles  to improve accessibility in high contrast mode
-  // stylelint-disable order/order
   @include utilities.high-contrast-mode() {
     &-input {
       &[type='checkbox']:checked {
@@ -161,7 +160,7 @@
       background-image: escape-svg(form-switch.$form-switch-bg-image),
         form-switch.$form-switch-linear-gradient;
       box-shadow: none;
-      outline: button.$input-btn-focus-width solid var(--contrast-color, color.$black);
+      outline: button.$input-btn-focus-width solid var(--post-contrast-color, color.$black);
     }
 
     @supports selector(:focus-visible) {
@@ -170,7 +169,7 @@
       }
 
       &:focus-visible {
-        outline: button.$input-btn-focus-width solid var(--contrast-color, color.$black);
+        outline: button.$input-btn-focus-width solid var(--post-contrast-color, color.$black);
       }
     }
 
@@ -190,7 +189,7 @@
     }
 
     @include utilities.high-contrast-mode() {
-      --success: ActiveText;
+      --post-success: ActiveText;
 
       // linear-gradients or statements which contains linear-gradients are disabled in firefox
       // so we have to repeat background-image statements here without linear-gradients
@@ -214,16 +213,16 @@
       }
 
       &:checked {
-        background-color: var(--success);
+        background-color: var(--post-success);
         background-image: escape-svg(form-switch.$form-switch-checked-bg-image);
 
         &:focus {
-          background-color: var(--success);
+          background-color: var(--post-success);
           background-image: escape-svg(form-switch.$form-switch-checked-bg-image);
         }
 
         &:hover:not(:disabled) {
-          background-color: var(--success);
+          background-color: var(--post-success);
           border-color: Highlight;
         }
       }

@@ -18,7 +18,8 @@ $_stepper-indicator-check-icon: icon-fn.get-colored-svg-url('2105', $stepper-ind
 $stepper-indicator-check-icon: url($_stepper-indicator-check-icon);
 $stepper-indicator-hover-color: color.$white;
 $stepper-indicator-hover-bg: color.$black;
-$stepper-indicator-hover-outline: forms.$input-focus-outline-thickness solid var(--text-color);
+$stepper-indicator-hover-outline: forms.$input-focus-outline-thickness solid
+  var(--post-contrast-color);
 $_stepper-indicator-hover-check-icon: icon-fn.get-colored-svg-url(
   '2105',
   $stepper-indicator-hover-color
