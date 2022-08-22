@@ -11,13 +11,18 @@
 
 @include utilities.high-contrast-mode() {
   .progress {
-    border: commons.$border-width solid ButtonBorder;
+    border: commons.$border-width solid ButtonText;
+    color: ButtonText;
   }
 
   .progress-bar[class] {
-    &,
-    span {
-      background-color: Highlight !important;
+    justify-content: center;
+    align-items: center;
+    background-color: Highlight !important;
+
+    > span {
+      background-color: ButtonFace;
+      line-height: 1;
     }
   }
 }
