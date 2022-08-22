@@ -4,6 +4,7 @@
 
 @use '../variables/components/forms';
 
+@use '../mixins/utilities';
 @use '../mixins/forms' as form-mixins;
 
 @use '../themes/bootstrap/forms' as bf;
@@ -38,5 +39,16 @@ select.form-control-rg:not([size]):not([multiple]) {
     margin-inline-end: 0;
     border-inline-end-width: 0;
     border-inline-start-width: forms.$input-border-width;
+  }
+
+  @include utilities.high-contrast-mode() {
+    &:hover,
+    &:focus {
+      border-color: Highlight;
+
+      &::file-selector-button {
+        border-color: Highlight;
+      }
+    }
   }
 }
