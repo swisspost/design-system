@@ -1,4 +1,4 @@
-@use '@swisspost/design-system-styles/cwf';
+@use '@swisspost/design-system-styles/core' as post;
 
 .heading {
   position: relative;
@@ -21,7 +21,7 @@
   top: 0;
   max-width: 42%;
 
-  @include cwf.media-breakpoint-down(rg) {
+  @include post.media-breakpoint-down(rg) {
     display: none;
   }
 }
@@ -45,7 +45,7 @@
     border-left: 4px solid white;
     min-height: 5rem;
 
-    @include cwf.media-breakpoint-down(rg) {
+    @include post.media-breakpoint-down(rg) {
       margin-left: 1rem;
       padding-bottom: 1rem;
       padding-left: 2rem;
@@ -73,7 +73,7 @@
       font-weight: bold;
       font-size: 1.2em;
 
-      @include cwf.media-breakpoint-down(rg) {
+      @include post.media-breakpoint-down(rg) {
         width: 3rem;
         height: 3rem;
         font-size: 1em;

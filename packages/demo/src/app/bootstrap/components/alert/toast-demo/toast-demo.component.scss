@@ -1,5 +1,5 @@
 // Import all functions
-@use '@swisspost/design-system-styles/cwf';
+@use '@swisspost/design-system-styles/core' as post;
 
 #toast-container-left,
 #toast-container-right {
@@ -10,16 +10,16 @@
 }
 
 .pi-2063-white {
-  background-image: url(cwf.get-colored-svg-url('2063', cwf.$white));
-  border-color: cwf.$white;
+  background-image: url(post.get-colored-svg-url('2063', post.$white));
+  border-color: post.$white;
 }
 
-@include cwf.media-breakpoint-down(sm) {
+@include post.media-breakpoint-down(sm) {
   .btn {
     width: 100%;
 
     & + .btn {
-      margin-top: cwf.$spacer;
+      margin-top: post.$spacer;
       margin-left: 0 !important;
     }
   }

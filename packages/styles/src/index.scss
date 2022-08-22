@@ -2,10 +2,6 @@
 
 @use './lic/bootstrap-license';
 
-@use './variables' with (
-  $grid-gutter-width: 15px
-);
-
 @use './components';
 
 // Portal specific styles

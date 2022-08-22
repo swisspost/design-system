@@ -1,7 +1,0 @@
-@use "src/post";
-@use "src/cwf";
-
-
-.test {
-  background-image: url(cwf.get-colored-svg-url("2063", #FF0080));
-}

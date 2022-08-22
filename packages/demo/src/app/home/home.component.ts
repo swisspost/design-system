@@ -120,10 +120,12 @@ const cwfUse = `// styles.scss
 @use "@swisspost/design-system-styles/post-intranet";
 
 // Optional: use functions, mixins and variables
-@use "@swisspost/design-system-styles/cwf";
+@use '@swisspost/design-system-styles/core' as post;
 
 .bg-yellow { // Don't copy this class. It is just an example.
-  background-color: cwf.$yellow; // cwf is the filename and by convention the namespace
+  // 'core' is the filename and by convention the namespace
+  // but for consistency with other prefixes, the core module should be namespaced as 'post'
+  background-color: post.$yellow;
 }`;
 
 const fontCorsPolicy = `<!-- src/app/index.html -->
@@ -154,24 +156,24 @@ const customIconConfig = `// BEFORE
 }
 // AFTER
 .pi-{...} {
-  @include cwf.pi(...); // args: $name = Icon number, $color = Icon color, default: Body-Color.
+  @include post.pi(...); // args: $name = Icon number, $color = Icon color, default: Body-Color.
 }`;
 
 const iconRegexSearch = `// SEARCH FOR
 @extend %pi-(\\d{4})-(\\w+)
 // REPLACE WITH
-@include cwf.pi($1, $2)
+@include post.pi($1, $2)
 
 // SEARCH FOR
 @extend %pi-(\\d{4})([^-])
 // REPLACE WITH
-@include cwf.pi($1)$2
+@include post.pi($1)$2
 
 // SEARCH FOR
-background-image: ?url\\(get-colored-svg-url\\((["0-9]{4,6}), ?(#[ABCDEF0-9]{3,6}|map.get\\((cwf.)?\\$[a-zA-Z]+, "[a-zA-Z]+"\\))\\)\\);( ?\\/\\/ ?.*)?(
- *border-color: ?(#[ABCDEF0-9]{3,6}|map.get\\((cwf.)?\\$[a-zA-Z]+, "[a-zA-Z]+"\\));)?( ?\\/\\/ ?.*)?
+background-image: ?url\\(get-colored-svg-url\\((["0-9]{4,6}), ?(#[ABCDEF0-9]{3,6}|map.get\\((post.)?\\$[a-zA-Z]+, "[a-zA-Z]+"\\))\\)\\);( ?\\/\\/ ?.*)?(
+ *border-color: ?(#[ABCDEF0-9]{3,6}|map.get\\((post.)?\\$[a-zA-Z]+, "[a-zA-Z]+"\\));)?( ?\\/\\/ ?.*)?
 // REPLACE WITH
-@include cwf.pi($1, $2);$8
+@include post.pi($1, $2);$8
 `;
 
 const regexReplace = `// Sass Functions. Don't forget to add the corresponding @use
@@ -182,14 +184,14 @@ const regexReplace = `// Sass Functions. Don't forget to add the corresponding @
 // REPLACE WITH
 $1$2.$3 // Add this import to the top of the file: @use "sass:$1";
 
-// Variables, mixins and functions used from CWF. Be careful! This might replace more than you'd want it to...
-/* Don't forget to add '@use "@swisspost/design-system-styles/cwf";' */
-// at the top of every file where you use a function, mixin or variable from CWF.
+// Variables, mixins and functions used from Swiss Post Design System. Be careful! This might replace more than you'd want it to...
+/* Don't forget to add '@use "@swisspost/design-system-styles/core" as post;' */
+// at the top of every file where you use a function, mixin or variable from Swiss Post Design System.
 
 // SEARCH FOR
 ([ \\(\\{])(\\$|[a-zA-Z-]+\\()
 // REPLACE WITH
-$1cwf.$2
+$1post.$2
 
 // SEARCH FOR
 @import (".*");
