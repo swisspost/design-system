@@ -1,57 +1,54 @@
 @use 'sass:map';
 
 // Switch imported File to check the different versions
-//@use "../../styles/post";
-//@use "../../styles/post-portal";
-//@use "../../styles/post-intranet";
-@use '@swisspost/design-system-styles/post-intranet';
-@use '@swisspost/design-system-styles/cwf';
+@use '@swisspost/design-system-styles/intranet';
+@use '@swisspost/design-system-styles/core' as post;
 
 html {
   scroll-behavior: smooth;
 }
 
 .pi-1000-warning {
-  @include cwf.pi(1000, 'warning');
+  @include post.pi(1000, 'warning');
 }
 
 .pi-1000-primary {
-  @include cwf.pi(1000, 'primary');
+  @include post.pi(1000, 'primary');
 }
 
 .pi-1000-success {
-  @include cwf.pi(1000, 'success');
+  @include post.pi(1000, 'success');
 }
 .pi-1000-danger {
-  @include cwf.pi(1000, 'danger');
+  @include post.pi(1000, 'danger');
 }
 
 .pi-1014-white {
-  @include cwf.pi(1014, 'white');
+  @include post.pi(1014, 'white');
 }
 
 .pi-1000-white {
-  @include cwf.pi(1000, 'white');
+  @include post.pi(1000, 'white');
 }
 
 .pi-2062-warning {
-  @include cwf.pi(2062, 'warning');
+  @include post.pi(2062, 'warning');
 }
 
 .pi-2062-white {
-  @include cwf.pi(2062, 'white');
+  @include post.pi(2062, 'white');
 }
 
 .pi-3192-white {
-  @include cwf.pi(3192, 'white');
+  @include post.pi(3192, 'white');
 }
 
 .pi-2104-white {
-  @include cwf.pi(2104, 'white');
+  @include post.pi(2104, 'white');
 }
 
 .pi-calendar {
-  @include cwf.pi(3203);
+  @include post.pi(3203);
 }
 
 .code-sample {
@@ -74,7 +71,7 @@ img {
 }
 
 section {
-  margin-bottom: map.get($map: cwf.$post-sizes, $key: 'bigger-big');
+  margin-bottom: map.get($map: post.$post-sizes, $key: 'bigger-big');
 }
 
 .mark-attention {

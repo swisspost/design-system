@@ -38,7 +38,7 @@
         <code class="sass">
           {{ cwfImport }}<br/>
           .pi-1000-warning &#123;<br/>
-            &nbsp;&nbsp;@include cwf.pi(1000, "warning");<br/>
+            &nbsp;&nbsp;@include post.pi(1000, "warning");<br/>
           &#125;
         </code>
     </div>
@@ -57,7 +57,7 @@
         <code class="sass">
           {{ cwfImport }}<br/>
           .pi-heart &#123;<br/>
-            &nbsp;&nbsp;@include cwf.pi("2063", #FF0080);<br/>
+            &nbsp;&nbsp;@include post.pi("2063", #FF0080);<br/>
           &#125;
         </code>
     </div>
@@ -77,7 +77,7 @@
           @use "sass:map";<br/>
           {{ cwfImport }}<br/>
           .pi-heart-coral &#123;<br/>
-            &nbsp;&nbsp;@include cwf.pi(2063, map.get(cwf.$background-colors, "coral"));<br/>
+            &nbsp;&nbsp;@include post.pi(2063, map.get(post.$background-colors, "coral"));<br/>
           &#125;
         </code>
     </div>
@@ -95,16 +95,16 @@
         </code>
         <code class="col-5 sass">
             {{ cwfImport }}<br/>
-            .pi-1000-{{color}} &#123; @include cwf.pi(1000, "{{color}}"); &#125;
+            .pi-1000-{{color}} &#123; @include post.pi(1000, "{{color}}"); &#125;
         </code>
       </div>
     </div>
     <div class="col-12 mt-3">Include a certain icon in all contextual colors (Example for pi-1000):<br/>
       <code class="sass">
         {{ cwfImport }}<br/>
-        @each $color, $value in cwf.$contextual-colors &#123;<br/>
+        @each $color, $value in post.$contextual-colors &#123;<br/>
           &nbsp;&nbsp;.pi-1000-#&#123;$color&#125; &#123;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;@include cwf.pi(1000, $color);<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;@include post.pi(1000, $color);<br/>
           &nbsp;&nbsp;&#125;<br/>
         &#125;
       </code>
@@ -113,9 +113,9 @@
       <code class="sass">
         @use "sass:map";
         {{ cwfImport }}<br/>
-        @each $name, $path in cwf.$svg-icon-map &#123;<br/>
+        @each $name, $path in post.$svg-icon-map &#123;<br/>
           &nbsp;&nbsp;.pi-#&#123;$name&#125; &#123;<br/>
-            &nbsp;&nbsp;&nbsp;&nbsp;@include cwf.pi($name, map.get(cwf.$accent-colors, "nightblue"));<br/>
+            &nbsp;&nbsp;&nbsp;&nbsp;@include post.pi($name, map.get(post.$accent-colors, "nightblue"));<br/>
           &nbsp;&nbsp;&#125;<br/>
         &#125;
       </code>
