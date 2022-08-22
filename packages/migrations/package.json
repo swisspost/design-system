@@ -33,7 +33,7 @@
     "zone.js": "0.11.8"
   },
   "devDependencies": {
-    "@types/jasmine": "3.10.6",
+    "@types/jasmine": "4.0.3",
     "@types/node": "16.11.52",
     "copyfiles": "2.4.1",
     "jasmine": "4.3.0",

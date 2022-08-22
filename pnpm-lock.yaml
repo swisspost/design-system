@@ -229,7 +229,7 @@ importers:
       '@angular-devkit/schematics': 14.1.3
       '@angular/compiler': 14.1.3
       '@angular/core': 14.1.3
-      '@types/jasmine': 3.10.6
+      '@types/jasmine': 4.0.3
       '@types/node': 16.11.52
       copyfiles: 2.4.1
       jasmine: 4.3.0
@@ -246,7 +246,7 @@ importers:
       typescript: 4.7.4
       zone.js: 0.11.8
     devDependencies:
-      '@types/jasmine': 3.10.6
+      '@types/jasmine': 4.0.3
       '@types/node': 16.11.52
       copyfiles: 2.4.1
       jasmine: 4.3.0
@@ -7457,10 +7457,6 @@ packages:
     resolution: {integrity: sha512-c3mAZEuK0lvBp8tmuL74XRKn1+y2dcwOUpH7x4WrF6gk1GIgiluDRgMYQtw2OFcBvAJWlt6ASU3tSqxp0Uu0Aw==}
     dependencies:
       '@types/istanbul-lib-report': 3.0.0
-    dev: true
-
-  /@types/jasmine/3.10.6:
-    resolution: {integrity: sha512-twY9adK/vz72oWxCWxzXaxoDtF9TpfEEsxvbc1ibjF3gMD/RThSuSud/GKUTR3aJnfbivAbC/vLqhY+gdWCHfA==}
     dev: true
 
   /@types/jasmine/4.0.3:
