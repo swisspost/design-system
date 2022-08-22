@@ -184,7 +184,7 @@ const regexReplace = `// Sass Functions. Don't forget to add the corresponding @
 // REPLACE WITH
 $1$2.$3 // Add this import to the top of the file: @use "sass:$1";
 
-// Variables, mixins and functions used from post. Be careful! This might replace more than you'd want it to...
+// Variables, mixins and functions used from Swiss Post Design System. Be careful! This might replace more than you'd want it to...
 /* Don't forget to add '@use "@swisspost/design-system-styles/cwf";' */
 // at the top of every file where you use a function, mixin or variable from Swiss Post Design System.
 
