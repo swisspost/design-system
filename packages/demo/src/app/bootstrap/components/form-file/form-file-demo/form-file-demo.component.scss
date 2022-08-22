@@ -1,5 +1,5 @@
-@use '@swisspost/design-system-styles/cwf';
+@use '@swisspost/design-system-styles/core' as post;
 
 .form-label:not(:last-child) {
-  margin-top: cwf.$size-regular;
+  margin-top: post.$size-regular;
 }
