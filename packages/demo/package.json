@@ -57,7 +57,7 @@
     "@types/node": "16.11.48",
     "@typescript-eslint/eslint-plugin": "5.33.0",
     "@typescript-eslint/parser": "5.33.0",
-    "eslint": "8.21.0",
+    "eslint": "8.22.0",
     "jasmine-core": "3.99.1",
     "jasmine-marbles": "0.8.4",
     "jasmine-spec-reporter": "7.0.0",
