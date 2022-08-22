@@ -31,7 +31,7 @@ importers:
       '@angular/platform-browser': 13.3.11
       '@angular/platform-browser-dynamic': 13.3.11
       '@angular/router': 13.3.11
-      '@ng-bootstrap/ng-bootstrap': 12.1.2
+      '@ng-bootstrap/ng-bootstrap': 13.0.0
       '@popperjs/core': 2.11.6
       '@swisspost/design-system-styles': ^5.0.0-alpha.2
       '@types/jasmine': 4.0.3
@@ -62,7 +62,7 @@ importers:
       '@angular/platform-browser': 13.3.11_dontfr2itdbwnai2bloqfkk3ui
       '@angular/platform-browser-dynamic': 13.3.11_ovunbf5pfqpgs344qovmyresle
       '@angular/router': 13.3.11_2ppcnal7hrkvaafvdrvxrqal2y
-      '@ng-bootstrap/ng-bootstrap': 12.1.2_4ok4awzl5lfluhnatwohvx7yr4
+      '@ng-bootstrap/ng-bootstrap': 13.0.0_4ok4awzl5lfluhnatwohvx7yr4
       '@popperjs/core': 2.11.6
       '@swisspost/design-system-styles': link:../styles
       rxjs: 7.5.6
@@ -124,7 +124,7 @@ importers:
       '@angular/platform-browser': 13.3.11
       '@angular/platform-browser-dynamic': 13.3.11
       '@angular/router': 13.3.11
-      '@ng-bootstrap/ng-bootstrap': 12.1.2
+      '@ng-bootstrap/ng-bootstrap': 13.0.0
       '@popperjs/core': 2.11.6
       '@swimlane/ngx-datatable': 20.0.0
       '@swisspost/design-system-intranet-header': ^3.0.0-alpha.3
@@ -172,7 +172,7 @@ importers:
       '@angular/platform-browser': 13.3.11_dontfr2itdbwnai2bloqfkk3ui
       '@angular/platform-browser-dynamic': 13.3.11_ovunbf5pfqpgs344qovmyresle
       '@angular/router': 13.3.11_ngcav2jk6phtonomh6fl2dj7bq
-      '@ng-bootstrap/ng-bootstrap': 12.1.2_ysja66qjmviakjk6vixb4kxscu
+      '@ng-bootstrap/ng-bootstrap': 13.0.0_ysja66qjmviakjk6vixb4kxscu
       '@popperjs/core': 2.11.6
       '@swimlane/ngx-datatable': 20.0.0_ngcav2jk6phtonomh6fl2dj7bq
       '@swisspost/design-system-intranet-header': link:../components-angular/projects/intranet-header
@@ -4911,13 +4911,13 @@ packages:
       glob-to-regexp: 0.3.0
     dev: true
 
-  /@ng-bootstrap/ng-bootstrap/12.1.2_4ok4awzl5lfluhnatwohvx7yr4:
-    resolution: {integrity: sha1-GfITEyNP4hCQulCnchBG7V2ZKOE=}
+  /@ng-bootstrap/ng-bootstrap/13.0.0_4ok4awzl5lfluhnatwohvx7yr4:
+    resolution: {integrity: sha512-aumflJ24VVOQ6kIGmpaWmjqfreRsXOCf/l2nOxPO6Y+d7Pit6aZthyjO7F0bRMutv6n+B/ma18GKvhhBcMepUw==}
     peerDependencies:
-      '@angular/common': ^13.0.0
-      '@angular/core': ^13.0.0
-      '@angular/forms': ^13.0.0
-      '@angular/localize': ^13.0.0
+      '@angular/common': ^14.1.0
+      '@angular/core': ^14.1.0
+      '@angular/forms': ^14.1.0
+      '@angular/localize': ^14.1.0
       '@popperjs/core': ^2.10.2
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
@@ -4930,13 +4930,13 @@ packages:
       tslib: 2.4.0
     dev: false
 
-  /@ng-bootstrap/ng-bootstrap/12.1.2_ysja66qjmviakjk6vixb4kxscu:
-    resolution: {integrity: sha1-GfITEyNP4hCQulCnchBG7V2ZKOE=}
+  /@ng-bootstrap/ng-bootstrap/13.0.0_ysja66qjmviakjk6vixb4kxscu:
+    resolution: {integrity: sha512-aumflJ24VVOQ6kIGmpaWmjqfreRsXOCf/l2nOxPO6Y+d7Pit6aZthyjO7F0bRMutv6n+B/ma18GKvhhBcMepUw==}
     peerDependencies:
-      '@angular/common': ^13.0.0
-      '@angular/core': ^13.0.0
-      '@angular/forms': ^13.0.0
-      '@angular/localize': ^13.0.0
+      '@angular/common': ^14.1.0
+      '@angular/core': ^14.1.0
+      '@angular/forms': ^14.1.0
+      '@angular/localize': ^14.1.0
       '@popperjs/core': ^2.10.2
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
@@ -12148,7 +12148,7 @@ packages:
     dev: true
 
   /file-uri-to-path/1.0.0:
-    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=}
+    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     requiresBuild: true
     dev: true
     optional: true
@@ -21914,6 +21914,7 @@ packages:
   /unified/9.2.0:
     resolution: {integrity: sha1-Z6YsYnxAWJ7eu/YPU+39TYIgJ/g=}
     dependencies:
+      '@types/unist': 2.0.6
       bail: 1.0.5
       extend: 3.0.2
       is-buffer: 2.0.5
