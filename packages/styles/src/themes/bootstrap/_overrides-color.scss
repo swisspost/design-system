@@ -23,20 +23,18 @@ $danger: color.$error;
 
 // Colors that can be used as a background
 $colors: () !default;
-$colors: map.merge(
-  $colors,
+
+$theme-colors: () !default;
+$theme-colors: map.merge(
+  $theme-colors,
   (
     'primary': $primary,
     'secondary': $secondary,
-    'white': color.$white,
     'light': color.$light,
     'dark': color.$dark,
   )
 );
-$colors: map.merge($colors, color.$contextual-colors);
-
-$theme-colors: () !default;
-$theme-colors: map.merge($theme-colors, $colors);
+$theme-colors: map.merge($theme-colors, color.$contextual-colors);
 
 // Contrast colors are ok
 
