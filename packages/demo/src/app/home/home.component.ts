@@ -120,7 +120,7 @@ const cwfUse = `// styles.scss
 @use "@swisspost/design-system-styles/post-intranet";
 
 // Optional: use functions, mixins and variables
-@use "@swisspost/design-system-styles/cwf";
+@use '@swisspost/design-system-styles/core' as post;
 
 .bg-yellow { // Don't copy this class. It is just an example.
   background-color: post.$yellow; // cwf is the filename and by convention the namespace
