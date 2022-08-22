@@ -12,9 +12,9 @@
 
 .form-range {
   // https://codepen.io/thebabydino/pen/goYYrN
-  --range: calc(var(--max) - var(--min));
-  --ratio: calc((var(--val) - var(--min)) / var(--range));
-  --sx: calc(0.5 * 1.5em + var(--ratio) * (100% - 1.5em));
+  --post-range: calc(var(--post-max) - var(--post-min));
+  --post-ratio: calc((var(--post-val) - var(--post-min)) / var(--post-range));
+  --post-sx: calc(0.5 * 1.5em + var(--post-ratio) * (100% - 1.5em));
 
   &::-moz-range-thumb {
     border-radius: 50%;
@@ -24,7 +24,7 @@
 
   &:not(:disabled, .disabled) {
     &::-webkit-slider-runnable-track {
-      background: linear-gradient(color.$black, color.$black) 0 / var(--sx) 100%;
+      background: linear-gradient(color.$black, color.$black) 0 / var(--post-sx) 100%;
       background-repeat: no-repeat;
       background-color: color.$gray-20;
     }
@@ -59,7 +59,7 @@
 
     &:not(:disabled, .disabled) {
       &::-webkit-slider-runnable-track {
-        background: linear-gradient(Highlight, Highlight) 0 / var(--sx) 100%;
+        background: linear-gradient(Highlight, Highlight) 0 / var(--post-sx) 100%;
         background-repeat: no-repeat;
         background-color: ButtonBorder;
       }

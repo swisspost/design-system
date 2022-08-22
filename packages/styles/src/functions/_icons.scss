@@ -4,8 +4,6 @@
 @use './utilities';
 @use '../functions/color';
 
-// stylelint-disable order/order
-
 @function add-fill-color($svg, $color) {
   $opacity: alpha($color);
   $color: color.get-hex-string($color);

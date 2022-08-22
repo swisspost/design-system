@@ -4,10 +4,10 @@
 @use '../../variables/components/intranet-header';
 
 .settings {
-  border-left: 1px solid rgba(var(--black-rgb), 0.2);
+  border-left: 1px solid rgba(var(--post-contrast-color-rgb), 0.2);
 
   &:hover {
-    background-color: rgba(var(--black-rgb), 0.1);
+    background-color: rgba(var(--post-contrast-color-rgb), 0.1);
     cursor: pointer;
   }
 

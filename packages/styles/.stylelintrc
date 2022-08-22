@@ -6,6 +6,7 @@
   ],
   "rules": {
     "order/properties-alphabetical-order": null,
+    "order/order": null,
     "max-nesting-depth": 5,
     "selector-max-compound-selectors": 5,
     "selector-max-id": 1,

@@ -8,27 +8,21 @@
 
 $subnavigation-background-color: color.$white;
 $subnavigation-background-color-alternate: color.$gray-background-light;
-$subnavigation-background-color-inverted: transparent;
 
 $subnavigation-border-bottom-width: commons.$border-width;
 $subnavigation-border-bottom-color: color.$gray-10;
-$subnavigation-border-bottom-color-inverted: rgba(var(--black-rgb), 0.2);
 
 // These heights have to be synchronous to main navigation heights
 $subnavigation-height-xs: sizing.px-to-rem(56);
 $subnavigation-height-lg: sizing.px-to-rem(64);
 $subnavigation-height-xl: sizing.px-to-rem(72);
 
-$subnavigation-link-color: color.$gray-60;
-$subnavigation-link-color-hover: color.$black;
-
-$subnavigation-link-color-inverted: rgba(var(--white-rgb), 0.6);
-$subnavigation-link-color-hover-inverted: color.$white;
+$subnavigation-link-color: rgba(var(--post-contrast-color-rgb), 0.6);
+$subnavigation-link-color-hover: var(--post-contrast-color);
 
 $subnavigation-link-underscore-height: map.get(spacing.$post-sizes, 'micro');
 $subnavigation-link-underscore-color-active: color.$yellow;
-$subnavigation-link-underscore-color-hover: color.$gray-40;
-$subnavigation-link-underscore-color-hover-inverted: rgba(var(--white-rgb), 0.4);
+$subnavigation-link-underscore-color-hover: rgba(var(--post-contrast-color-rgb), 0.4);
 
 $subnavigation-link-padding-xs: map.get(spacing.$post-sizes, 'regular')
   map.get(spacing.$post-sizes, 'small-regular');

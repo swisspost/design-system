@@ -15,4 +15,4 @@ $enable-grid-classes: true;
 // Prefix for :root CSS variables
 // TODO: this variable will change from "$variable-prefix" to "$prefix" in bootstrap@5.2
 // https://getbootstrap.com/docs/5.2/customize/css-variables/#prefix
-$variable-prefix: '' !default;
+$variable-prefix: 'bs-' !default;

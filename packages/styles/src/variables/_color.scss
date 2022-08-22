@@ -10,6 +10,9 @@
 $yellow: #fc0;
 
 // Grayscale
+$gray-background: #f4f3f1;
+$gray-background-light: #faf9f8;
+
 $white: #fff;
 $gray-10: hsl(0, 0%, 90%);
 $gray-20: hsl(0, 0%, 80%);
@@ -18,8 +21,8 @@ $gray-60: hsl(0, 0%, 40%);
 $gray-80: hsl(0, 0%, 20%);
 $black: #000;
 
-$gray-background: #f4f3f1;
-$gray-background-light: #faf9f8;
+$dark: $gray-80;
+$light: $gray-background-light;
 
 // Accent colors
 $nightblue-dark: #004976;
@@ -47,15 +50,15 @@ $warning: #f49e00;
  * by always merging into a default empty map
  */
 
-$grays: () !default;
-$grays: map.merge(
-  $grays,
+$post-grays: () !default;
+$post-grays: map.merge(
+  $post-grays,
   (
-    '10': $gray-10,
-    '20': $gray-20,
-    '40': $gray-40,
-    '60': $gray-60,
-    '80': $gray-80,
+    'gray-10': $gray-10,
+    'gray-20': $gray-20,
+    'gray-40': $gray-40,
+    'gray-60': $gray-60,
+    'gray-80': $gray-80,
   )
 );
 
@@ -95,9 +98,9 @@ $background-colors: map.merge(
   $background-colors,
   (
     'yellow': $yellow,
-    'light': $gray-background-light,
+    'light': $light,
     'gray': $gray-background,
-    'dark': $gray-80,
+    'dark': $dark,
     'primary': $gray-80,
     'white': $white,
   )
@@ -106,16 +109,6 @@ $background-colors: map.merge(
 // Merge with the other lists
 $background-colors: map.merge($background-colors, $contextual-colors);
 $background-colors: map.merge($background-colors, $accent-colors);
-
-// One list to rule them all
-$colors: () !default;
-$colors: map.merge(
-  (
-    'black': $black,
-  ),
-  $grays
-);
-$colors: map.merge($background-colors, $colors);
 
 // Compile a list of dark backgrounds, used in the :is selector mixin at mixins/color
 $dark-backgrounds: () !default;
