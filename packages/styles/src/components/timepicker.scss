@@ -2,6 +2,7 @@
 
 @use 'sass:map';
 
+@use '../mixins/utilities';
 @use '../mixins/icons' as icon-mixins;
 @use '../mixins/forms' as form-mixins;
 @use '../mixins/button' as button-mixins;
@@ -56,6 +57,15 @@
       height: map.get(button.$btn-icon-size-map, $size);
     }
   }
+
+  @include utilities.high-contrast-mode() {
+    .form-control {
+      &:hover,
+      &:focus-visible {
+        border-color: Highlight;
+      }
+    }
+  }
 }
 
 // Regular-sized timepicker
@@ -96,6 +106,18 @@ ngb-timepicker {
     ~ .valid-feedback,
     ~ .valid-tooltip {
       display: block;
+    }
+  }
+
+  @include utilities.high-contrast-mode() {
+    &.ng-invalid,
+    &.ng-valid {
+      .form-control {
+        &:hover,
+        &:focus-visible {
+          border-color: Highlight;
+        }
+      }
     }
   }
 }
