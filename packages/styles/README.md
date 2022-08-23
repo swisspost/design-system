@@ -29,10 +29,10 @@ Import the stylesheet into your project, e.g. `src/styles.scss`.
 ```
 
 Available bundles:
-- post.scss (internet facing applications)
-- post-intranet.scss (internal applications)
-- post-basics.scss (atomic styles for font, buttons, lists etc.)
-- _cwf.scss (variables, mixins, functions and placeholders only)
+- index.scss (internet facing applications)
+- intranet.scss (internal applications)
+- basics.scss (atomic styles for font, buttons, lists etc.)
+- core.scss (variables, mixins, functions and placeholders only)
 
 
 ## Contributing

@@ -1,12 +1,12 @@
 @use 'sass:map';
-@use '@swisspost/design-system-styles/cwf';
+@use '@swisspost/design-system-styles/core' as post;
 
 .pi-heart {
-  @include cwf.pi(2063, #ff0088);
+  @include post.pi(2063, #ff0088);
 }
 
 .pi-heart-coral {
-  @include cwf.pi(2063, map.get(cwf.$background-colors, 'coral'));
+  @include post.pi(2063, map.get(post.$background-colors, 'coral'));
 }
 
 code.sass {
