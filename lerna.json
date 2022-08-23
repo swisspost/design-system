@@ -1,7 +1,7 @@
 {
   "packages": [
     "packages/*",
-    "packages/angular-components/projects/*"
+    "packages/components-angular/projects/*"
   ],
   "npmClient": "pnpm",
   "version": "independent"

@@ -1,0 +1,110 @@
+@use '../variables/color';
+@use '../variables/type';
+@use '../variables/components/form-feedback';
+@use '../variables/components/forms';
+@use '../variables/components/tooltips';
+@use '../mixins/utilities';
+
+// Placeholder in input fields
+
+@mixin placeholder() {
+  &::placeholder {
+    @content;
+  }
+
+  // For very old Edge
+  /* stylelint-disable */
+  &::input-placeholder {
+    @content;
+  }
+  /* stylelint-enable */
+}
+
+// override
+/// The entire mixin had to be overriden to adjust the feedback on custom controls.
+/// For the most part, it is exactly like the mixin.
+@mixin form-validation-state($state, $color, $icon) {
+  .#{$state}-feedback {
+    display: none;
+    width: 100%;
+    margin-top: form-feedback.$form-feedback-margin-top;
+    color: $color;
+    font-size: form-feedback.$form-feedback-font-size;
+  }
+
+  .#{$state}-tooltip {
+    display: none;
+    position: absolute;
+    z-index: 5;
+    top: 100%;
+    max-width: 100%; // Contain to parent when possible
+    margin-top: 0.1rem;
+    padding: tooltips.$tooltip-padding-y tooltips.$tooltip-padding-x;
+    border-radius: tooltips.$tooltip-border-radius;
+    color: color-contrast($color);
+    font-size: tooltips.$tooltip-font-size;
+    line-height: type.$line-height-base;
+
+    /* Keeping borders gray while maintaining a green background on tooltips */
+    @if ($state == 'valid') {
+      background-color: rgba(form-feedback.$form-feedback-valid-bg, tooltips.$tooltip-opacity);
+    } @else {
+      background-color: rgba($color, tooltips.$tooltip-opacity);
+    }
+  }
+
+  .form-control,
+  .form-select {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      border-color: $color;
+
+      &:focus {
+        border-color: $color;
+        box-shadow: 0 0 0 forms.$input-focus-width rgba($color, 0.25);
+      }
+
+      ~ .#{$state}-feedback,
+      ~ .#{$state}-tooltip {
+        display: block;
+      }
+    }
+  }
+
+  .form-check-input {
+    .was-validated &:#{$state},
+    &.is-#{$state} {
+      ~ .form-check-label {
+        color: $color;
+      }
+
+      ~ .#{$state}-feedback,
+      ~ .#{$state}-tooltip {
+        display: block;
+      }
+    }
+  }
+}
+
+@mixin icon-placement {
+  padding-right: form-feedback.$form-feedback-icon-offset + form-feedback.$form-feedback-icon-size;
+  background-repeat: no-repeat;
+  background-position: calc(100% - #{form-feedback.$form-feedback-icon-offset}) center;
+}
+
+@mixin form-control-rg {
+  height: forms.$input-height-rg;
+  padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
+  font-size: type.$font-size-regular;
+  line-height: forms.$input-line-height-rg;
+}
+
+@mixin focus-outline {
+  outline: none;
+  outline-offset: forms.$input-focus-outline-thickness;
+
+  /* Compatibility with button-group */
+  &:is(:focus-visible, :focus-within) {
+    outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
+  }
+}

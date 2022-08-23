@@ -1,0 +1,111 @@
+@forward '../variables/options';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as *;
+@use '../themes/bootstrap/forms' as bf;
+
+@use '../variables/commons';
+@use '../variables/color';
+@use '../variables/spacing';
+@use '../variables/components/forms';
+@use '../mixins/utilities';
+
+.form-range {
+  // https://codepen.io/thebabydino/pen/goYYrN
+  --post-range: calc(var(--post-max) - var(--post-min));
+  --post-ratio: calc((var(--post-val) - var(--post-min)) / var(--post-range));
+  --post-sx: calc(0.5 * 1.5em + var(--post-ratio) * (100% - 1.5em));
+
+  &::-moz-range-thumb {
+    border-radius: 50%;
+    box-sizing: border-box;
+    cursor: pointer;
+  }
+
+  &:not(:disabled, .disabled) {
+    &::-webkit-slider-runnable-track {
+      background: linear-gradient(color.$black, color.$black) 0 / var(--post-sx) 100%;
+      background-repeat: no-repeat;
+      background-color: color.$gray-20;
+    }
+
+    &::-moz-range-progress {
+      background-color: color.$black;
+    }
+  }
+
+  &:disabled,
+  &.disabled {
+    &::-webkit-slider-thumb {
+      border-color: forms.$form-range-thumb-disabled-border-color;
+    }
+
+    &::-moz-range-thumb {
+      border-color: forms.$form-range-thumb-disabled-border-color;
+    }
+  }
+
+  + .form-text {
+    margin-top: spacing.$size-regular;
+    transform: translateY(#{-0.5 * forms.$form-range-height});
+  }
+}
+
+@include utilities.high-contrast-mode() {
+  .form-range {
+    // linear-gradient is forced to the value of "none" in forced-color mode
+    // so, the "forced-color-adjust" property is necessary for "linear-gradient" to continue to work
+    forced-color-adjust: none;
+
+    &:not(:disabled, .disabled) {
+      &::-webkit-slider-runnable-track {
+        background: linear-gradient(Highlight, Highlight) 0 / var(--post-sx) 100%;
+        background-repeat: no-repeat;
+        background-color: ButtonBorder;
+      }
+
+      &::-webkit-slider-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonBorder;
+      }
+
+      &::-moz-range-track {
+        background-color: ButtonText;
+      }
+
+      &::-moz-range-progress {
+        background-color: Highlight;
+      }
+
+      &::-moz-range-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonText;
+      }
+
+      &:focus-visible {
+        &::-webkit-slider-thumb {
+          outline-offset: commons.$border-thick;
+          outline: commons.$border-thick solid Highlight;
+        }
+
+        &::-moz-range-thumb {
+          outline-offset: commons.$border-thick;
+          outline: commons.$border-thick solid Highlight;
+        }
+      }
+    }
+
+    &:disabled,
+    &.disabled {
+      &::-webkit-slider-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonBorder;
+      }
+
+      &::-moz-range-thumb {
+        background-color: ButtonFace;
+        border-color: ButtonBorder;
+      }
+    }
+  }
+}

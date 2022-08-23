@@ -1,0 +1,71 @@
+@use 'sass:map';
+@use 'sass:string';
+@use '../variables/icons';
+@use './utilities';
+@use '../functions/color';
+
+@function add-fill-color($svg, $color) {
+  $opacity: alpha($color);
+  $color: color.get-hex-string($color);
+  $clean-color: utilities.replace('#{$color}', '#', '%23');
+
+  @return set-svg-properties(
+    $svg,
+    (
+      'fill': $clean-color,
+      'opacity': $opacity,
+    )
+  );
+}
+
+@function add-stroke-color($svg, $color, $stroke-width: null) {
+  $color: color.get-hex-string($color);
+  $clean-color: utilities.replace('#{$color}', '#', '%23');
+
+  @return set-svg-properties(
+    $svg,
+    (
+      'stroke': $clean-color,
+      'stroke-width': $stroke-width,
+    )
+  );
+}
+
+@function set-svg-properties($svg, $properties) {
+  @each $shape in rect, circle, ellipse, line, polyline, polygon, path {
+    $lookup: '%3C#{$shape}';
+
+    @each $property, $value in $properties {
+      @if $value {
+        $replacement: "#{$lookup} #{$property}='#{$value}'";
+        $svg: utilities.replace($svg, $lookup, $replacement);
+      }
+    }
+  }
+
+  @return $svg;
+}
+
+@function get-colored-svg-url($icon-name, $color) {
+  $pathdefinition: map.get(icons.$svg-icon-map, #{$icon-name});
+
+  @if (not map.has-key(icons.$svg-icon-map, #{$icon-name})) {
+    @error "Icon '#{$icon-name}' does not exist.";
+  }
+
+  $svg-url: add-fill-color(icons.$svg-pre-path + $pathdefinition + icons.$svg-post-path, $color);
+
+  @return $svg-url;
+}
+
+@function get-pre-colored-svg-url($icon-name) {
+  $pathdefinition: map.get(icons.$svg-pre-colored-icon-map, #{$icon-name});
+
+  @if (not map.has-key(icons.$svg-pre-colored-icon-map, #{$icon-name})) {
+    @error "Icon '#{$icon-name}' does not exist.";
+  }
+
+  $svg-url: icons.$svg-pre-path + $pathdefinition + icons.$svg-post-path;
+
+  @return $svg-url;
+}

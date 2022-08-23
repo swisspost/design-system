@@ -1,0 +1,98 @@
+@forward '../variables/options';
+
+@use 'sass:map';
+@use 'sass:list';
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as bootstrap;
+@use '../themes/bootstrap/utilities' as bu; // TODO: Move Design System utilities to utilities folder.
+@use '../mixins/utilities';
+@use '../variables/color';
+@use '../variables/spacing';
+@use '../variables/grid';
+@use '../functions/color' as color-fn;
+@use '../placeholders/color' as color-ph;
+
+.bold {
+  font-weight: 700;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.regular {
+  font-weight: 400;
+}
+
+.sr-only,
+.h-visuallyhidden {
+  @include utilities.visuallyhidden;
+}
+
+.h-visuallyhidden-up-md {
+  @include bootstrap.media-breakpoint-up(md) {
+    @include utilities.visuallyhidden;
+  }
+}
+
+.h-visuallyhidden-down-rg {
+  @include bootstrap.media-breakpoint-down(rg) {
+    @include utilities.visuallyhidden;
+  }
+}
+
+.h-visuallyhidden-down-lg {
+  @include bootstrap.media-breakpoint-down(lg) {
+    @include utilities.visuallyhidden;
+  }
+}
+
+.h-clearfix {
+  @include bootstrap.clearfix;
+}
+
+//-- Legacy --
+span.spacer {
+  display: block;
+  width: spacing.$spacer;
+  height: spacing.$spacer;
+}
+
+.no-toggle-arrow::after {
+  display: none !important;
+}
+
+// Background Utility
+@each $name, $color in color.$background-colors {
+  .bg-#{$name} {
+    --post-bg-rgb: #{color-fn.rgb-values($color)};
+    @extend %color-background-rgba;
+
+    @if (color-fn.get-contrast-color($color) != #000) {
+      @extend %color-background-dark-variables;
+    } @else {
+      @extend %color-background-light-variables;
+    }
+  }
+}
+
+// TODO: refactor to link default styles
+.text-auto {
+  a {
+    color: inherit;
+
+    &:focus,
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+a {
+  color: var(--post-contrast-color);
+
+  &:focus,
+  &:hover {
+    color: rgba(var(--post-contrast-color-rgb), 0.8);
+  }
+}

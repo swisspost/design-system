@@ -1,6 +1,6 @@
 ---
-"@swisspost/web-demo": patch
-"@swisspost/web-styles": patch
+"@swisspost/design-system-demo": patch
+"@swisspost/design-system-styles": patch
 ---
 
 fix(typography): update typography for headings

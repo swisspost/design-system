@@ -1,0 +1,186 @@
+@forward '../variables/options';
+
+@use 'sass:map';
+
+@use '../themes/bootstrap/overrides' as *;
+
+@use '../functions/icons';
+@use '../variables/color';
+@use '../variables/grid';
+@use '../variables/spacing';
+@use '../variables/type';
+@use '../variables/components/topic-teaser';
+@use '../mixins/size';
+
+.topic-teaser {
+  &[class*='bg-'] {
+    @include media-breakpoint-up(xxl) {
+      background-color: transparent !important;
+    }
+  }
+
+  .topic-teaser-container {
+    @include media-breakpoint-up(xxl) {
+      padding-left: map.get(grid.$grid-container-padding, xxl) * 0.5;
+      padding-right: map.get(grid.$grid-container-padding, xxl) * 0.5;
+    }
+  }
+
+  &:not(.topic-teaser-reverse) {
+    @each $breakpoint in topic-teaser.$grid-breakpoints-upper {
+      @include media-breakpoint-only($breakpoint) {
+        .container {
+          padding-right: 0;
+        }
+      }
+    }
+
+    .topic-teaser-container {
+      @include media-breakpoint-up(xxl) {
+        padding-right: 0;
+        // webkit subpixel-issue fix
+        margin-right: -1px;
+        clip-path: inset(0 1px (map.get(spacing.$size-curve-huge, 'xxl') * -1) 0);
+      }
+
+      > .row {
+        justify-content: flex-end;
+      }
+    }
+
+    .topic-teaser-image-container {
+      @each $breakpoint in topic-teaser.$grid-breakpoints-lower {
+        @include media-breakpoint-only($breakpoint) {
+          margin-right: map.get(grid.$grid-container-padding, $breakpoint) * -1;
+        }
+      }
+    }
+  }
+}
+
+.topic-teaser-reverse {
+  @each $breakpoint in topic-teaser.$grid-breakpoints-upper {
+    @include media-breakpoint-only($breakpoint) {
+      .container {
+        padding-left: 0;
+      }
+    }
+  }
+
+  .topic-teaser-container {
+    @include media-breakpoint-up(xxl) {
+      padding-left: 0;
+    }
+
+    > .row {
+      @include media-breakpoint-down(lg) {
+        flex-direction: column-reverse;
+      }
+    }
+  }
+
+  .topic-teaser-image-container {
+    @each $breakpoint in topic-teaser.$grid-breakpoints-lower {
+      @include media-breakpoint-only($breakpoint) {
+        margin-left: map.get(grid.$grid-container-padding, $breakpoint) * -1;
+      }
+    }
+  }
+}
+
+.topic-teaser-image-container {
+  @include make-col-ready();
+  @include size.responsive-size('huge', 'margin-bottom', '-$value');
+
+  @each $breakpoint, $size in topic-teaser.$image-cols {
+    @include media-breakpoint-up($breakpoint) {
+      @include make-col($size);
+    }
+  }
+}
+
+.topic-teaser-image {
+  object-fit: cover;
+
+  @each $breakpoint, $aspectratio in topic-teaser.$image-aspectratio {
+    @include media-breakpoint-up($breakpoint) {
+      aspect-ratio: $aspectratio;
+    }
+  }
+}
+
+.topic-teaser-content {
+  @include make-col-ready();
+  display: flex;
+  flex-direction: column;
+
+  @each $breakpoint, $size in topic-teaser.$content-cols {
+    @include media-breakpoint-up($breakpoint) {
+      @include make-col($size);
+    }
+  }
+
+  @include media-breakpoint-up(rg) {
+    flex-direction: row;
+    gap: var(--post-gutter-x);
+  }
+}
+
+.topic-teaser-content > .link-list {
+  width: 50%;
+
+  @include media-breakpoint-down(rg) {
+    width: 100%;
+  }
+}
+
+.topic-teaser-title {
+  width: 50%;
+
+  @include media-breakpoint-down(rg) {
+    width: auto;
+  }
+}
+
+.topic-teaser-title > span {
+  display: block;
+}
+
+.link-list {
+  padding: 0;
+  list-style-type: none;
+  font-size: type.$font-size-small;
+
+  @include media-breakpoint-up(lg) {
+    font-size: type.$font-size-medium;
+  }
+}
+
+.link-list-item > a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 2rem 0.75rem 1rem;
+  transition: opacity 200ms, background-position 200ms;
+  border: 0;
+  border-top: 1px solid rgba(var(--post-contrast-color-rgb), 0.2);
+  background-image: url(icons.get-colored-svg-url('2050', color.$white));
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  text-decoration: none;
+
+  &[href]:hover {
+    background-position: right 0.5rem center;
+  }
+
+  @include media-breakpoint-up(lg) {
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+}
+
+.topic-teaser.bg-light .link-list-item > a {
+  border-top: 1px solid color.$gray-10;
+  background-image: url(icons.get-colored-svg-url('2050', color.$gray-60));
+}

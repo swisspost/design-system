@@ -1,0 +1,54 @@
+@forward '../variables/options';
+
+@use '../lic/bootstrap-license';
+
+@use '../variables/components/forms';
+
+@use '../mixins/utilities';
+@use '../mixins/forms' as form-mixins;
+
+@use '../themes/bootstrap/forms' as bf;
+@use '../themes/bootstrap/forms/input-group';
+
+.form-control-rg {
+  @include form-mixins.form-control-rg;
+}
+
+select.form-control-rg:not([size]):not([multiple]) {
+  height: forms.$input-height-rg;
+}
+
+.form-control {
+  position: relative;
+
+  &:disabled {
+    color: forms.$input-disabled-color;
+  }
+
+  &[readonly]:not(:disabled) {
+    border-color: forms.$input-border-color;
+    background-color: forms.$input-bg;
+  }
+
+  &::file-selector-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    margin-inline-start: forms.$input-padding-x;
+    margin-inline-end: 0;
+    border-inline-end-width: 0;
+    border-inline-start-width: forms.$input-border-width;
+  }
+
+  @include utilities.high-contrast-mode() {
+    &:hover,
+    &:focus {
+      border-color: Highlight;
+
+      &::file-selector-button {
+        border-color: Highlight;
+      }
+    }
+  }
+}

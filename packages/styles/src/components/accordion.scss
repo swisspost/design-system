@@ -1,0 +1,94 @@
+@forward '../variables/options';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as *;
+@use '../themes/bootstrap/accordion' as ba;
+
+@use '../mixins/type';
+@use '../mixins/utilities';
+@use '../variables/spacing';
+@use '../variables/components/accordion';
+@use '../variables/components/button';
+
+.accordion-item {
+  border-right: 0;
+  border-left: 0;
+  background-color: transparent;
+
+  &:last-of-type {
+    border-bottom: 0;
+  }
+}
+
+.accordion-button {
+  @include type.font-curve(accordion.$accordion-font-curve);
+
+  background-color: transparent;
+  font-weight: accordion.$accordion-button-font-weight;
+  line-height: accordion.$accordion-button-line-height;
+
+  &:hover,
+  &:focus {
+    &:not(:disabled) {
+      color: accordion.$accordion-button-hover-color;
+    }
+  }
+
+  &:disabled {
+    opacity: button.$btn-disabled-opacity !important;
+  }
+
+  .accordion-item[open] &::after {
+    transform: accordion.$accordion-icon-transform;
+  }
+
+  // style to improve hcm mode
+  @include utilities.high-contrast-mode() {
+    &:hover,
+    &:focus-visible {
+      &:not(:disabled) {
+        outline: spacing.$size-line solid Highlight;
+      }
+    }
+
+    &:disabled {
+      opacity: 1 !important;
+    }
+
+    &::after {
+      background-image: $accordion-hcm-icon;
+    }
+
+    &:not(.collapsed)::after {
+      background-image: $accordion-hcm-icon;
+    }
+  }
+}
+
+.accordion-body {
+  padding-top: accordion.$accordion-body-padding-top;
+  padding-bottom: accordion.$accordion-body-padding-bottom;
+
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @include type.font-curve(accordion.$accordion-font-curve);
+
+    margin-top: accordion.$accordion-body-heading-margin-top;
+    margin-bottom: 0;
+    font-weight: accordion.$accordion-body-heading-font-weight;
+
+    &,
+    p {
+      &:first-child {
+        margin-top: 0;
+      }
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

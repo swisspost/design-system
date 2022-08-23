@@ -1,0 +1,97 @@
+@use 'sass:map';
+
+// Switch imported File to check the different versions
+@use '@swisspost/design-system-styles/intranet';
+@use '@swisspost/design-system-styles/core' as post;
+
+html {
+  scroll-behavior: smooth;
+}
+
+.pi-1000-warning {
+  @include post.pi(1000, 'warning');
+}
+
+.pi-1000-primary {
+  @include post.pi(1000, 'primary');
+}
+
+.pi-1000-success {
+  @include post.pi(1000, 'success');
+}
+.pi-1000-danger {
+  @include post.pi(1000, 'danger');
+}
+
+.pi-1014-white {
+  @include post.pi(1014, 'white');
+}
+
+.pi-1000-white {
+  @include post.pi(1000, 'white');
+}
+
+.pi-2062-warning {
+  @include post.pi(2062, 'warning');
+}
+
+.pi-2062-white {
+  @include post.pi(2062, 'white');
+}
+
+.pi-3192-white {
+  @include post.pi(3192, 'white');
+}
+
+.pi-2104-white {
+  @include post.pi(2104, 'white');
+}
+
+.pi-calendar {
+  @include post.pi(3203);
+}
+
+.code-sample {
+  margin-top: 35px;
+  text-align: center;
+}
+
+.code-sample h5 {
+  margin-bottom: 25px;
+}
+
+.code-sample pre {
+  padding: 24px;
+  text-align: left;
+  background-color: #f8f6f0;
+}
+
+img {
+  max-width: 100%;
+}
+
+section {
+  margin-bottom: map.get($map: post.$post-sizes, $key: 'bigger-big');
+}
+
+.mark-attention {
+  color: #a51728;
+  font-weight: bold;
+  font-variant: small-caps;
+  font-size: 60%;
+  position: relative;
+  top: -0.5rem;
+}
+
+code.block {
+  display: block;
+  padding: 1rem;
+  background: rgb(50, 50, 50);
+  color: white;
+  white-space: pre;
+  max-width: 100%;
+  overflow: auto;
+  margin-bottom: 0.8em;
+
+  max-height: 450px;
+}

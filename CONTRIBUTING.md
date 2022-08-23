@@ -2,9 +2,9 @@
 
 These contribution guidelines apply to this repository in general and describe how to set up and maintain the repository. You can find dedicated guidelines in each package.
 
-- [Demo App](./packages/web-demo/README.md)
-- [Web Styles](./packages/web-styles/CONTRIBUTING.md)
-- [Angular Components (Intranet Header)](./packages/angular-components/projects/swisspost-intranet-header/CONTRIBUTING.md)
+- [Demo App](./packages/demo/README.md)
+- [Design System Styles](./packages/styles/CONTRIBUTING.md)
+- [Angular Components (Intranet Header)](./packages/components-angular/projects/intranet-header/CONTRIBUTING.md)
 
 ## Prerequisites
 In order to be able to use `npm` commands, [node.js](https://nodejs.org/en/) v14+ needs to be installed on your machine.
@@ -20,7 +20,7 @@ npm install -g pnpm
 # Install dependencies, build local dependencies and finally link them correctly with lerna (this step wouldn't be necessary if https://github.com/pnpm/pnpm/issues/3901 was fixed)
 pnpm run bootstrap
 
-# Start the web-demo
+# Start the design-system-demo
 pnpm start
 ```
 
@@ -44,7 +44,7 @@ You can find more information about accessibility at the Swiss Post in our [acce
 
 ## Submitting issues and requests
 
-We are happy to receive your input. You can submit your issues to our [GitHub repository](https://github.com/swisspost/common-web-frontend/issues). If you're rather looking for help, don't hesitate to open a discussion on [GitHub discussions(https://github.com/swisspost/common-web-frontend/discussions).
+We are happy to receive your input. You can submit your issues to our [GitHub repository](https://github.com/swisspost/design-system/issues). If you're rather looking for help, don't hesitate to open a discussion on [GitHub discussions(https://github.com/swisspost/design-system/discussions).
 
 When you're planning to work on bigger changes, please reach out to someone from the core team to plan your change before investing a lot of time.
 
@@ -61,7 +61,7 @@ We base our workflow on the [GitHub flow](https://docs.github.com/en/get-started
 ## Pull requests
 
 When submitting pull requests, make sure you checked the following points:
-- Your changes are tested on browsers according to the [browser support list](./packages/web-styles/.browserslistrc)
+- Your changes are tested on browsers according to the [browser support list](./packages/styles/.browserslistrc)
 - Your changes are tested on multiple viewports, at least 320px - 1920px
 - If you made significant changes to the design of a component, make sure at least someone from the [design team](https://github.com/orgs/swisspost/teams/design) is added as a reviewer
 - Describe your changes in the PR description as detailed as possible

@@ -34,7 +34,7 @@ jobs:
         with:
           workflow: build.yaml
           workflow_conclusion: success
-          name: cwf-web-demo
+          name: design-system-demo
           path: build-output
           run_id: ${{ github.event.workflow_run.id }}
           

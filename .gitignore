@@ -15,7 +15,7 @@ lerna-debug.log
 
 # System Files
 .DS_Store/
-web-styles/stylelint-report.txt
+styles/stylelint-report.txt
 
 # dotfiles
 .env

@@ -1,0 +1,71 @@
+@use 'sass:list';
+
+@use '../variables/color';
+@use '../functions/color' as color-fn;
+
+// background rgb properties
+%color-background-rgb {
+  background-color: rgb(var(--post-bg-rgb)) !important;
+  color: var(--post-contrast-color) !important;
+}
+
+// background rgba properties
+%color-background-rgba {
+  --post-bg-opacity: 1;
+  background-color: rgba(var(--post-bg-rgb), var(--post-bg-opacity)) !important;
+  color: var(--post-contrast-color) !important;
+}
+
+// light background variables
+%color-background-light-variables {
+  --post-contrast-color: #{color.$black};
+  --post-contrast-color-inverted: #{color.$white};
+
+  @each $name, $color in color.$post-grays {
+    --post-#{$name}: #{$color};
+  }
+
+  @each $name, $color in color.$background-colors {
+    --post-#{$name}: #{$color};
+  }
+
+  // RGB variants of the above, moved down here for better overview in the dev tools
+  --post-contrast-color-rgb: #{color-fn.rgb-values(color.$black)};
+  --post-contrast-color-inverted-rgb: #{color-fn.rgb-values(color.$white)};
+
+  @each $name, $color in color.$post-grays {
+    --post-#{$name}-rgb: #{color-fn.rgb-values($color)};
+  }
+
+  @each $name, $color in color.$background-colors {
+    --post-#{$name}-rgb: #{color-fn.rgb-values($color)};
+  }
+}
+
+// dark background variables
+%color-background-dark-variables {
+  --post-contrast-color: #{color.$white};
+  --post-contrast-color-inverted: #{color.$black};
+  --post-dark: #{color.$light};
+  --post-light: #{color.$dark};
+
+  // Invert grays
+  $l: list.length(color.$post-grays);
+  @for $i from 1 through $l {
+    $name: list.nth(list.nth(color.$post-grays, $l + 1 - $i), 1);
+    $color: list.nth(list.nth(color.$post-grays, $i), 2);
+    --post-#{$name}: #{$color};
+  }
+
+  --post-contrast-color-rgb: #{color-fn.rgb-values(color.$white)};
+  --post-contrast-color-inverted-rgb: #{color-fn.rgb-values(color.$black)};
+  --post-dark-rgb: #{color-fn.rgb-values(color.$light)};
+  --post-light-rgb: #{color-fn.rgb-values(color.$dark)};
+
+  // Invert grays rgb
+  @for $i from 1 through $l {
+    $name: list.nth(list.nth(color.$post-grays, $l + 1 - $i), 1);
+    $color: list.nth(list.nth(color.$post-grays, $i), 2);
+    --post-#{$name}-rgb: #{color-fn.rgb-values($color)};
+  }
+}

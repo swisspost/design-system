@@ -1,0 +1,28 @@
+@forward '../variables/options';
+
+@use '../lic/bootstrap-license';
+@use '../themes/bootstrap/overrides' as *;
+@use '../themes/bootstrap/progress' as bp;
+
+@use '../variables/commons';
+@use '../variables/color';
+@use '../variables/components/progress-bars';
+@use '../mixins/utilities';
+
+@include utilities.high-contrast-mode() {
+  .progress {
+    border: commons.$border-width solid ButtonText;
+    color: ButtonText;
+  }
+
+  .progress-bar[class] {
+    justify-content: center;
+    align-items: center;
+    background-color: Highlight !important;
+
+    > span {
+      background-color: ButtonFace;
+      line-height: 1;
+    }
+  }
+}
