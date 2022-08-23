@@ -6,7 +6,7 @@
     "@swisspost/design-system-intranet-header": "3.0.0-preview",
     "@swisspost/design-system-demo": "5.0.0-preview",
     "@swisspost/design-system-styles": "5.0.0-preview",
-    "@swisspost/design-system-styles-migrations": "1.0.0-alpha.1"
+    "@swisspost/design-system-migrations": "1.0.0-preview"
   },
   "changesets": [
     "chilled-rivers-look",
