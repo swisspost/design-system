@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles-migrations
 
+## 1.0.0-alpha.3
+
+### Major Changes
+
+- [#355](https://github.com/swisspost/design-system/pull/355) [`256b9d8`](https://github.com/swisspost/design-system/commit/256b9d863f16e06dbbf5fc99c3daeb8104d7813f) Thanks [@gfellerph](https://github.com/gfellerph)! - Rename Common Web Frontend to Swiss Post Design System
+
 ## 1.0.0-alpha.2
 
 ### Patch Changes
