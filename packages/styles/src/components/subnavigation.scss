@@ -76,10 +76,10 @@ $module-name: 'subnavigation';
     }
 
     @include utilities.high-contrast-mode() {
-      &:focus,
-      &:focus-within,
+      &:hover,
       &:focus-visible {
-        outline-offset: -(spacing.$size-mini);
+        outline: spacing.$size-line solid Highlight;
+        outline-offset: -(spacing.$size-micro);
       }
     }
 
@@ -114,17 +114,15 @@ $module-name: 'subnavigation';
         right: animation.$transition-distance-medium-md;
         left: animation.$transition-distance-medium-md;
       }
+
+      @include utilities.high-contrast-mode() {
+        display: none;
+      }
     }
 
     &.active {
       color: subnavigation.$subnavigation-link-color-hover;
       font-weight: $font-weight-bold;
-
-      @include utilities.high-contrast-mode() {
-        // use important so other background colors don't overwrite this color
-        color: highlight !important;
-        text-decoration: underline;
-      }
 
       &::after {
         @include mixins.full-width-underscore(
@@ -132,6 +130,17 @@ $module-name: 'subnavigation';
           #{subnavigation.$subnavigation-link-underscore-height}
         );
         z-index: utility-functions.z-index(subnavigation, underscore-link);
+      }
+
+      @include utilities.high-contrast-mode() {
+        // use important so other background colors don't overwrite this color
+        color: highlight !important;
+        text-decoration: underline;
+
+        &::after {
+          display: block;
+          background-color: Highlight;
+        }
       }
     }
   }
