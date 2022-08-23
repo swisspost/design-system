@@ -3,7 +3,7 @@
  */
 
 import {Component, Input} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-sizing-demo',
@@ -12,10 +12,10 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class SizingDemoComponent {
   @Input() sizes: unknown;
 
-  demoForm: FormGroup;
+  demoForm: UntypedFormGroup;
   bootstrapSizes: {value: string, name: string}[];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.demoForm = fb.group({
       'width': fb.group({
         prefix: ['w-'],

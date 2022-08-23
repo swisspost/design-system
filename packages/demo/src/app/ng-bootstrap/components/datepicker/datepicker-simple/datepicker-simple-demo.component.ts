@@ -1,17 +1,17 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 import {I18n} from '../datepicker-demo-page/datepicker-localization.service';
 
 @Component({template: ''})
 export class DatepickerSimpleDemoComponent implements OnInit {
-  form: FormGroup;
+  form: UntypedFormGroup;
 
   @Input() inputSize: 'sm' | 'rg' | 'md' | 'lg';
   @Input() navigation: 'arrows' | 'select';
 
   constructor(private _i18n: I18n,
-              private formBuilder: FormBuilder) {
+              private formBuilder: UntypedFormBuilder) {
   }
 
   @Input() set language(value: string) {
