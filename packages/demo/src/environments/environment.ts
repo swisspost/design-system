@@ -6,6 +6,7 @@ import packageJson from '../../package.json';
 export const environment = {
   production: false,
   VERSION: packageJson.version,
+  STYLES_VERSION: packageJson['@swisspost/design-system-styles'],
   ANGULAR_VERSION: packageJson.dependencies["@angular/core"],
   NG_BOOTSTRAP_VERSION: packageJson.dependencies["@ng-bootstrap/ng-bootstrap"],
   NGX_TOASTER: packageJson.dependencies["ngx-toastr"],

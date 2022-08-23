@@ -292,6 +292,7 @@ export class HomeComponent {
   public updatedatatable = updatedatatable;
   public globalErrorHandler = globalErrorHandler;
   public version: string = environment.VERSION;
+  public stylesVersion: string = environment.STYLES_VERSION;
   public angularVersion: string = environment.ANGULAR_VERSION;
   public ngxToasterVersion: string = environment.NGX_TOASTER;
   public ngBootstrapVersion: string = environment.NG_BOOTSTRAP_VERSION;
