@@ -49,7 +49,8 @@
   }
 
   @include utilities-mx.high-contrast-mode() {
-    > input {
+    > input,
+    > textarea {
       @include forms-mx.placeholder() {
         opacity: 0;
       }
