@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-migrations",
-  "version": "1.0.0-alpha.2",
+  "version": "1.0.0-alpha.3",
   "description": "Angular schematics for the design system styles migration.",
   "keywords": [
     "schematics"
