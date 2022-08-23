@@ -4,6 +4,7 @@
 @use '../themes/bootstrap/overrides' as *;
 @use '../themes/bootstrap/progress' as bp;
 
+@use '../mixins/utilities';
 @use '../variables/commons';
 @use '../variables/components/spinners';
 
@@ -55,5 +56,16 @@
     width: spinners.$spinner-size-xs;
     height: spinners.$spinner-size-xs;
     border-width: spinners.$spinner-border-width-xs;
+  }
+
+  @include utilities.high-contrast-mode() {
+    border-color: Highlight;
+    border-bottom-color: CanvasText;
+    border-right-color: Canvas;
+
+    @supports (forced-color-adjust: none) {
+      forced-color-adjust: none;
+      border-right-color: transparent;
+    }
   }
 }
