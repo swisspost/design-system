@@ -8,6 +8,11 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  // Necessary to prevent horizontal scrollbar from the topic teaser padding
+  overflow-x: hidden;
+}
+
 .pi-1000-warning {
   @include post.pi(1000, 'warning');
 }
