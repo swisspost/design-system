@@ -37,6 +37,6 @@ export class FooterComponent {
   }
 
   shuffleDevs() {
-    return this.devs.sort(() => (Math.random() > .5) ? 1 : -1);
+    return this.devs.sort(() => Math.random() > 0.5 ? 1 : -1);
   }
 }
