@@ -24,9 +24,11 @@ header.navbar {
     }
 
     .btn {
+      width: intranet-header.$header-content-size;
       height: 100%;
       padding: 0 1.25rem;
       border-radius: 0;
+      border: 0 none;
     }
   }
 }
