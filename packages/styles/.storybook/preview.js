@@ -1,4 +1,4 @@
-import '../src/post-basics.scss';
+import '../src/basics.scss';
 
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },

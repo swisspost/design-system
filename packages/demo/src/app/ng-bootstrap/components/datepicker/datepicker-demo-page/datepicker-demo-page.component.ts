@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { I18n } from './datepicker-localization.service';
 const dpSimpleHtml = require('!!raw-loader!../datepicker-simple/datepicker-simple.component.html').default;
 const dpSimpleHtmlLg = require('!!raw-loader!../datepicker-simple/datepicker-simple-lg.component.html').default;
@@ -22,12 +22,12 @@ export class NgbDatepickerDemoPageComponent implements OnInit {
   dpValidationTs = dpValidationTs;
   localizationService = localizationService;
 
-  form: FormGroup;
+  form: UntypedFormGroup;
   sizes = ['sm', 'rg', 'md', 'lg'];
 
   constructor(
     private _i18n: I18n,
-    private formBuilder: FormBuilder,
+    private formBuilder: UntypedFormBuilder,
   ) { }
 
   ngOnInit() {
