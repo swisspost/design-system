@@ -55,7 +55,6 @@
               ],
               "outputHashing": "all",
               "sourceMap": false,
-              "showCircularDependencies": true,
               "namedChunks": false,
               "extractLicenses": true,
               "vendorChunk": false,
@@ -122,6 +121,5 @@
         }
       }
     }
-  },
-  "defaultProject": "design-system-demo"
+  }
 }

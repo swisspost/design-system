@@ -3,7 +3,7 @@
  */
 
 import {Component} from '@angular/core';
-import {FormControl} from '@angular/forms';
+import {UntypedFormControl} from '@angular/forms';
 
 @Component({
   selector: 'app-form-range-custom',
@@ -15,10 +15,10 @@ export class FormRangeCustomDemoComponent {
   templateDrivenValue = 67;
   displayedValue = 54;
   controlledValue = 28;
-  reactiveValue: FormControl;
+  reactiveValue: UntypedFormControl;
 
   constructor() {
-    this.reactiveValue = new FormControl('31');
+    this.reactiveValue = new UntypedFormControl('31');
   }
 
 }
