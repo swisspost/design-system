@@ -1,45 +1,42 @@
 import './badge.scss';
-import "./icons.scss";
 
 export default {
   title: 'Components/Badge',
   argTypes: {
     label: {
-        control: {
-            type: 'text'
-        },
+      control: {
+        type: 'text',
+      },
     },
     size: {
-        control: {
-            type: 'select',
-        },
-        options: ['small', 'default'],
+      control: {
+        type: 'radio',
+      },
+      options: ['default', 'small'],
     },
     nested: {
-        control: {
-            type: 'boolean',
-        },
+      control: {
+        type: 'boolean',
+      },
     },
     nestedNumber: {
-        control: {
-            type: 'text',
-        },
-        if: {arg: 'nested'},
+      control: {
+        type: 'number',
+      },
+      if: { arg: 'nested' },
     },
     active: {
-        control: {
-            type: 'boolean',
-        }
-    }
-  }
-}
-
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
+};
 
 const SIZE_CLASS_MAP = {
   default: '',
-  small: 'badge-sm'
+  small: 'badge-sm',
 };
-
 
 // DefaultTemplate
 const DefaultTemplate = (args) => {
@@ -48,65 +45,79 @@ const DefaultTemplate = (args) => {
   const nestedBadges = `
     <span>${args.label}</span>
     <span class="badge">${args.nestedNumber}</span>
-    `
+    `;
   return `<span class="badge ${sizeClass}">${args.nested ? `${nestedBadges}` : `${defaultBadges}`}`;
-}
+};
 
 export const DefaultBadge = DefaultTemplate.bind({});
 DefaultBadge.parameters = {
   controls: {
-    include: ['label', 'size', 'nested', 'nestedNumber']
-  }
-}
+    include: ['label', 'size', 'nested', 'nestedNumber'],
+  },
+};
 DefaultBadge.args = {
   label: 'Default Badge',
   size: 'default',
   nested: false,
   nestedNumber: '10',
-}
+};
 
 // CheckableTemplate
 const CheckableTemplate = (args) => {
+  const sizeClass = SIZE_CLASS_MAP[args.size];
+  const checked = args.active ? `checked` : ``;
+  const nestedLabel = args.nested ? `<span>${args.label}</span>` : `${args.label}`;
+  const nestedNumbers = args.nested ? `<span class="badge">${args.nestedNumber}</span>` : ``;
 
-  //  return `
-  //   <div class="badge-check">
-  //     <input id= class="badge-check-input" type="checkbox" value="">
-  //     <label class="badge-check-label" for=${args.label}>${args.label}</label>
-  //   </div>     
-  //  `  
-}
+  return `
+  <div class="badge-check">
+    <input id="CheckableBadge" class="badge-check-input" type="checkbox" value=""${checked}>
+    <label class="badge-check-label ${sizeClass}" for="CheckableBadge">
+      ${nestedLabel}
+      ${nestedNumbers}
+    </label>
+  </div>
+  `;
+};
 
 export const CheckableBadge = CheckableTemplate.bind({});
 CheckableBadge.parameters = {
   controls: {
-    include: ['label', 'size', 'nested', 'nestedNumber', 'active']
-  }
-}
+    include: ['label', 'size', 'nested', 'nestedNumber', 'active'],
+  },
+};
 CheckableBadge.args = {
   label: 'Checkable Badge',
-  size: 'sm',
+  size: 'default',
   nested: false,
-  active: true
-}
+  nestedNumber: 10,
+  active: true,
+};
 
 // DismissibleTemplate
-// TODO: Size
 const DismissibleTemplate = (args) => {
-  const backgroundClassesDismissible = [].concat(BACKGROUND_DEFAULT_CLASSES, BACKGROUND_CLASS_MAP[args.background] ?? [])
-  return `<span class="${backgroundClassesDismissible.join(' ')}">${args.label}<i class="pi pi-2043"></i></span></span>`;
-}
+  const sizeClass = SIZE_CLASS_MAP[args.size];
+  const nestedLabel = args.nested ? `<span>${args.label}</span>` : `${args.label}`;
+  const nestedNumbers = args.nested ? `<span class="badge">${args.nestedNumber}</span>` : ``;
+
+  return `
+  <span class="badge ${sizeClass}">
+  ${nestedLabel}
+  ${nestedNumbers}
+  <button type="button" class="btn-close" aria-label="dismiss"></button>
+</span>
+`;
+};
 
 export const DismissibleBadge = DismissibleTemplate.bind({});
 DismissibleBadge.parameters = {
   controls: {
-    include: ['label', 'size', 'background']
-  }
-}
+    include: ['label', 'size', 'nested', 'nestedNumber'],
+  },
+};
 DismissibleBadge.args = {
   label: 'Dismissible Badge',
-  size: 'sm',
+  size: 'default',
   nested: false,
-}
-
-// PositionedTemplate
-// TODO: Insert ChekableTemplate badge 
+  nestedNumber: 10,
+};
