@@ -24,10 +24,10 @@
     "todo:test": "npm run build && jasmine src/**/*_spec.js"
   },
   "dependencies": {
-    "@angular-devkit/core": "14.1.3",
-    "@angular-devkit/schematics": "14.1.3",
-    "@angular/compiler": "14.1.3",
-    "@angular/core": "14.1.3",
+    "@angular-devkit/core": "14.2.1",
+    "@angular-devkit/schematics": "14.2.1",
+    "@angular/compiler": "14.2.0",
+    "@angular/core": "14.2.0",
     "rxjs": "6.6.7",
     "typescript": "4.6.4",
     "zone.js": "0.11.8"
