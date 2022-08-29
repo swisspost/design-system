@@ -48,7 +48,7 @@
     "autoprefixer": "10.4.8",
     "babel-loader": "8.2.5",
     "css-loader": "5.2.7",
-    "glob": "7.2.3",
+    "glob": "8.0.3",
     "gulp": "4.0.2",
     "gulp-postcss": "9.0.1",
     "gulp-sass": "5.1.0",
