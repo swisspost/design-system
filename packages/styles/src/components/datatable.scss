@@ -8,6 +8,7 @@
 @use '../variables/components/forms';
 
 @use '../mixins/button' as button-mixins;
+@use '../mixins/utilities';
 
 @use '../placeholders/text';
 
@@ -192,5 +193,53 @@
   100% {
     transform: translateX(-50%) scale(0, 1);
     opacity: 0;
+  }
+}
+
+@include utilities.high-contrast-mode() {
+  .ngx-datatable {
+    .datatable-header-cell,
+    .datatable-body-cell,
+    .datatable-footer-cell {
+      margin: 0;
+      background-color: Canvas;
+      border: 0 none;
+      color: CanvasText;
+    }
+
+    // line between y-axis (default)
+    &:not(.datatable-spaced-cells) {
+      .datatable-row-wrapper {
+        .datatable-body-cell {
+          border-top: spacing.$size-line solid CanvasText;
+        }
+
+        &:last-child {
+          .datatable-body-cell {
+            border-bottom: spacing.$size-line solid CanvasText;
+          }
+        }
+      }
+    }
+
+    // line between x- and y-axis
+    &.datatable-spaced-cells {
+      .datatable-row-wrapper {
+        .datatable-body-cell {
+          border-top: spacing.$size-line solid CanvasText;
+          border-left: spacing.$size-line solid CanvasText;
+
+          &:last-child {
+            border-right: spacing.$size-line solid CanvasText;
+          }
+        }
+
+        &:last-child {
+          .datatable-body-cell {
+            border-bottom: spacing.$size-line solid CanvasText;
+          }
+        }
+      }
+    }
   }
 }
