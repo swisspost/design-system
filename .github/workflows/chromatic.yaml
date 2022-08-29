@@ -42,5 +42,5 @@ jobs:
         with:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.STORYBOOK_TOKEN }}
-          storybookBuildDir: ./packages/documentation/storybook-static
-          workingDir: ./packages/documentation
+          storybookBuildDir: packages/documentation/storybook-static
+          workingDir: packages/documentation
