@@ -17,7 +17,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "start-storybook -p 6006 --quiet",
-    "build": "build-storybook --quiet"
+    "build": "build-storybook --quiet",
+    "build-storybook": "build-storybook"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
@@ -28,7 +29,7 @@
     "@storybook/manager-webpack4": "^6.5.10",
     "@storybook/web-components": "^6.5.10",
     "babel-loader": "^8.2.5",
+    "chromatic": "^6.8.0",
     "lit-html": "^2.3.1"
-  },
-  "dependencies": {}
+  }
 }

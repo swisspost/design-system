@@ -233,6 +233,7 @@ importers:
       '@storybook/manager-webpack4': ^6.5.10
       '@storybook/web-components': ^6.5.10
       babel-loader: ^8.2.5
+      chromatic: ^6.8.0
       lit-html: ^2.3.1
     devDependencies:
       '@babel/core': 7.18.13
@@ -243,6 +244,7 @@ importers:
       '@storybook/manager-webpack4': 6.5.10
       '@storybook/web-components': 6.5.10_cwlspebw2e2kk6hjijc2wbg37y
       babel-loader: 8.2.5_@babel+core@7.18.13
+      chromatic: 6.8.0
       lit-html: 2.3.1
 
   packages/migrations:
@@ -5541,7 +5543,7 @@ packages:
     dev: true
 
   /@colors/colors/1.5.0:
-    resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
+    resolution: {integrity: sha1-u1BFecHK6SPmV2pPXaQ9Jfl729k=}
     engines: {node: '>=0.1.90'}
     requiresBuild: true
     dev: true
@@ -13260,6 +13262,14 @@ packages:
   /chownr/2.0.0:
     resolution: {integrity: sha512-bIomtDF5KGpdogkLd9VspvFzk9KfpyyGlS8YFVZl7TGPBHL5snIOnxeshwVgPteQ9b4Eydl+pVbIyE1DcvCWgQ==}
     engines: {node: '>=10'}
+    dev: true
+
+  /chromatic/6.8.0:
+    resolution: {integrity: sha512-8xwweZKZMO+DlvbLTcn08sl0yM+SHlBtr7FilglaF7HZKvjvlXe+3DKtsB2YKRPEiEVeaOsZ4hCQSQCiEGAw7A==}
+    hasBin: true
+    dependencies:
+      '@discoveryjs/json-ext': 0.5.7
+      '@types/webpack-env': 1.17.0
     dev: true
 
   /chrome-trace-event/1.0.3:

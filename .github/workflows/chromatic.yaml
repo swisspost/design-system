@@ -1,0 +1,43 @@
+name: Chromatic
+
+on:
+  push
+
+jobs:
+  chromatic: 
+    name: Chromatic
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-v3-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-v3-
+
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.9.0
+          
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Publish to chromatic
+        uses: chromaui/action@v1
+        # Options required to the GitHub Chromatic Action
+        with:
+          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
+          projectToken: ${{ secrets.STORYBOOK_TOKEN }}
+          storybookBuildDir: ./packages/documentation/storybook-static
+          workingDir: ./packages/documentation
