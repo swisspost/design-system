@@ -114,10 +114,6 @@ $module-name: 'subnavigation';
         right: animation.$transition-distance-medium-md;
         left: animation.$transition-distance-medium-md;
       }
-
-      @include utilities.high-contrast-mode() {
-        display: none;
-      }
     }
 
     &.active {
@@ -140,6 +136,10 @@ $module-name: 'subnavigation';
     }
 
     &-link {
+      &:not(.active)::after {
+        display: none;
+      }
+
       &.active {
         // use important so other background colors don't overwrite this color
         color: highlight !important;
