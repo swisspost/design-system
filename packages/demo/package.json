@@ -25,7 +25,7 @@
     "@angular/platform-browser": "14.2.0",
     "@angular/platform-browser-dynamic": "14.2.0",
     "@angular/router": "14.2.0",
-    "@ng-bootstrap/ng-bootstrap": "12.1.2",
+    "@ng-bootstrap/ng-bootstrap": "13.0.0",
     "@popperjs/core": "2.11.6",
     "@swimlane/ngx-datatable": "20.0.0",
     "@swisspost/design-system-intranet-header": "^3.0.0-alpha.4",
