@@ -53,10 +53,6 @@
 
     &:not(.closed) > div > ul > li:first-child {
       margin-bottom: spacing.$spacer;
-
-      i.pi::before {
-        content: '\EA14';
-      }
     }
 
     &.closed > div > ul > * {

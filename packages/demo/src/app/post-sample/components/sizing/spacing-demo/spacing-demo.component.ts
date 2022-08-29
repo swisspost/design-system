@@ -3,7 +3,7 @@
  */
 
 import {Component, Input} from '@angular/core';
-import {FormBuilder, FormGroup} from '@angular/forms';
+import {UntypedFormBuilder, UntypedFormGroup} from '@angular/forms';
 
 @Component({
   selector: 'app-spacing-demo',
@@ -12,11 +12,11 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 export class SpacingDemoComponent {
   @Input() sizes: unknown;
 
-  demoForm: FormGroup;
+  demoForm: UntypedFormGroup;
   positions: {name: string, value: string}[];
   bootstrapSizes: {name: string, value: string}[];
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: UntypedFormBuilder) {
     this.demoForm = fb.group({
       margin: fb.group({
         size: ['small-large'],
