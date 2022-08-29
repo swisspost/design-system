@@ -131,17 +131,6 @@ $module-name: 'subnavigation';
         );
         z-index: utility-functions.z-index(subnavigation, underscore-link);
       }
-
-      // @include utilities.high-contrast-mode() {
-      //   // use important so other background colors don't overwrite this color
-      //   color: highlight !important;
-      //   text-decoration: underline;
-
-      //   &::after {
-      //     display: block;
-      //     background-color: Highlight;
-      //   }
-      // }
     }
   }
 
