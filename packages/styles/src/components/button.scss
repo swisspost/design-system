@@ -71,8 +71,11 @@
     border-color: var(--post-contrast-color);
     background-color: ButtonFace;
 
-    &:hover {
-      border-color: highlight;
+    &:not(:disabled, .disabled) {
+      &:hover,
+      &:focus-visible {
+        border-color: highlight;
+      }
     }
 
     .pi {
