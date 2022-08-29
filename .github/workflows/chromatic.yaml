@@ -16,19 +16,25 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: 16
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.9.0
+          run_install: false
+
+      - name: Get pnpm store directory
+        run: |
+          echo "::set-output name=pnpm_cache_dir::$(pnpm store path)"
 
       - name: Cache pnpm modules
         uses: actions/cache@v3
         with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-v3-${{ hashFiles('**/pnpm-lock.yaml') }}
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
-            ${{ runner.os }}-v3-
-
-      - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7.9.0
+            ${{ runner.os }}-pnpm-store-      
           
       - name: Install dependencies
         run: pnpm install
@@ -42,5 +48,4 @@ jobs:
         with:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.STORYBOOK_TOKEN }}
-          storybookBuildDir: packages/documentation/storybook-static
           workingDir: packages/documentation
