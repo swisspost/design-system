@@ -270,7 +270,7 @@ importers:
       babel-loader: 8.2.5
       bootstrap: 5.1.3
       css-loader: 5.2.7
-      glob: 7.2.3
+      glob: 8.0.3
       gulp: 4.0.2
       gulp-postcss: 9.0.1
       gulp-sass: 5.1.0
@@ -305,7 +305,7 @@ importers:
       autoprefixer: 10.4.8_postcss@8.4.16
       babel-loader: 8.2.5_@babel+core@7.18.13
       css-loader: 5.2.7
-      glob: 7.2.3
+      glob: 8.0.3
       gulp: 4.0.2
       gulp-postcss: 9.0.1_postcss@8.4.16
       gulp-sass: 5.1.0
