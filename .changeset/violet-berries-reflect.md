@@ -3,4 +3,4 @@
 '@swisspost/design-system-demo': patch
 ---
 
-Complete property documentation for component intranet-header.
+Correcting and completing the property documentation for the component intranet-header.
