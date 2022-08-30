@@ -207,6 +207,14 @@
       color: CanvasText;
     }
 
+    .datatable-button {
+      &:hover,
+      &:focus-visible {
+        outline: spacing.$size-line solid Highlight;
+        outline-offset: -(spacing.$size-line);
+      }
+    }
+
     // line between y-axis (default)
     &:not(.datatable-spaced-cells) {
       .datatable-row-wrapper {

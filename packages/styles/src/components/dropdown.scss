@@ -31,6 +31,16 @@
   hr {
     margin: 0.25rem 0;
   }
+
+  @include utilities.high-contrast-mode() {
+    .dropdown-item {
+      &:hover,
+      &:focus-visible {
+        outline: spacing.$size-line solid Highlight;
+        outline-offset: -(spacing.$size-line);
+      }
+    }
+  }
 }
 
 .dropdown-toggle {
