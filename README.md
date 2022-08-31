@@ -1,6 +1,7 @@
 <br>
 
-![Swiss Post Logo](https://www.post.ch/-/media/portal-opp/global/logos/logo---die-post.svg?vs=2&sc_lang=en)
+
+![Post Splash Screen](https://user-images.githubusercontent.com/1659006/187683368-d3aa2534-84be-4580-846e-2cad3796b573.png)
 
 
 # Swiss Post Design System
