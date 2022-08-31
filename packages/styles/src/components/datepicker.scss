@@ -1,5 +1,7 @@
 @forward '../variables/options';
 
+@use 'sass:list';
+
 @use '../variables/color';
 @use '../variables/components/datepicker';
 @use '../variables/components/forms';
@@ -122,9 +124,11 @@ span.ngb-dp-navigation-chevron {
 .ngb-dp-open {
   position: absolute;
   z-index: 5;
-  top: 0;
-  right: 0;
-  padding: datepicker.$ngb-dp-icon-padding;
+  top: forms.$input-border-width;
+  right: forms.$input-border-width;
+  bottom: forms.$input-border-width;
+  height: forms.$input-height-inner;
+  width: forms.$input-height-inner;
   background: transparent;
 
   .pi-calendar {
@@ -135,7 +139,8 @@ span.ngb-dp-navigation-chevron {
 }
 
 .form-control-sm ~ .ngb-dp-open {
-  padding: datepicker.$ngb-dp-icon-padding-sm;
+  height: forms.$input-height-inner-sm;
+  width: forms.$input-height-inner-sm;
 
   .pi-calendar {
     width: datepicker.$ngb-dp-icon-size-sm;
@@ -144,12 +149,14 @@ span.ngb-dp-navigation-chevron {
 }
 
 .form-control-rg ~ .ngb-dp-open {
-  padding: datepicker.$ngb-dp-icon-padding-rg;
+  height: forms.$input-height-inner-rg;
+  width: forms.$input-height-inner-rg;
 }
 
 .form-floating > .ngb-dp-open,
 .form-control-lg ~ .ngb-dp-open {
-  padding: datepicker.$ngb-dp-icon-padding-lg;
+  height: forms.$input-height-inner-lg;
+  width: forms.$input-height-inner-lg;
 
   .pi-calendar {
     width: datepicker.$ngb-dp-icon-size-lg;
