@@ -101,12 +101,12 @@ const DismissibleTemplate = (args) => {
   const nestedNumbers = args.nested ? `<span class="badge">${args.nestedNumber}</span>` : ``;
 
   return `
-  <span class="badge ${sizeClass}">
-  ${nestedLabel}
-  ${nestedNumbers}
-  <button type="button" class="btn-close" aria-label="dismiss"></button>
-</span>
-`;
+    <span class="badge ${sizeClass}">
+      ${nestedLabel}
+      ${nestedNumbers}
+      <button type="button" class="btn-close" aria-label="dismiss"></button>
+    </span>
+  `;
 };
 
 export const DismissibleBadge = DismissibleTemplate.bind({});
