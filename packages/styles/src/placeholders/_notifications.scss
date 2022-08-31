@@ -1,16 +1,16 @@
-@use '../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/overrides' as *;
 
-@use '../variables/commons';
-@use '../variables/color';
-@use '../variables/type';
-@use '../variables/components/alert';
+@use './../variables/commons';
+@use './../variables/color';
+@use './../variables/type';
+@use './../variables/components/alert';
 
-@use '../components/close';
+@use './../components/close';
 
-@use '../mixins/utilities';
-@use '../mixins/icons' as icon-mixin;
-@use '../functions/color' as color-fn;
-@use '../placeholders/color' as color-ph;
+@use './../mixins/utilities';
+@use './../mixins/icons' as icon-mixin;
+@use './../functions/color' as color-fn;
+@use './../placeholders/color' as color-ph;
 @use './text';
 
 %notification-container {

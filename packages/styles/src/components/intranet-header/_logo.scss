@@ -1,7 +1,7 @@
-@use '../../variables/color';
-@use '../../variables/components/intranet-header';
+@use './../../variables/color';
+@use './../../variables/components/intranet-header';
 
-@use '../../themes/bootstrap/overrides' as *;
+@use './../../themes/bootstrap/overrides' as *;
 
 %header-logo {
   display: block;

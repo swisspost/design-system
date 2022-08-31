@@ -3,12 +3,12 @@
 @use 'sass:map';
 
 @use './button';
-@use '../color';
-@use '../type';
-@use '../spacing';
-@use '../animation';
-@use '../../functions/utilities';
-@use '../../functions/sizing';
+@use './../color';
+@use './../type';
+@use './../spacing';
+@use './../animation';
+@use './../../functions/utilities';
+@use './../../functions/sizing';
 
 // Forms
 

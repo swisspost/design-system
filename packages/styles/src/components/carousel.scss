@@ -1,15 +1,15 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/carousel' as bc;
-@use '../themes/bootstrap/overrides' as *;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/carousel' as bc;
+@use './../themes/bootstrap/overrides' as *;
 
-@use '../functions/icons';
-@use '../variables/color';
-@use '../variables/commons';
-@use '../variables/type';
-@use '../variables/spacing';
-@use '../mixins/utilities';
+@use './../functions/icons';
+@use './../variables/color';
+@use './../variables/commons';
+@use './../variables/type';
+@use './../variables/spacing';
+@use './../mixins/utilities';
 
 .carousel {
   &:focus-visible {

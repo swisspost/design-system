@@ -1,9 +1,9 @@
 @use './forms';
-@use '../color';
-@use '../spacing';
-@use '../type';
-@use '../../functions/icons';
-@use '../../functions/sizing';
+@use './../color';
+@use './../spacing';
+@use './../type';
+@use './../../functions/icons';
+@use './../../functions/sizing';
 
 $form-check-input-width: spacing.$size-large !default;
 $form-check-min-height: $form-check-input-width !default;

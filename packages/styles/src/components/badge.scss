@@ -1,19 +1,19 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
-@use '../themes/bootstrap/badge' as bb;
-@use '../themes/bootstrap/close' as bc; // Styles for the close icon
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/badge' as bb;
+@use './../themes/bootstrap/close' as bc; // Styles for the close icon
 
-@use '../variables/components/badge';
-@use '../variables/components/forms';
-@use '../variables/components/form-check';
-@use '../variables/color';
-@use '../mixins/utilities';
-@use '../mixins/forms' as forms-mx;
-@use '../mixins/badge' as badge-mx;
-@use '../placeholders/badge' as badge-ph;
-@use '../functions/icons' as icons-fn;
+@use './../variables/components/badge';
+@use './../variables/components/forms';
+@use './../variables/components/form-check';
+@use './../variables/color';
+@use './../mixins/utilities';
+@use './../mixins/forms' as forms-mx;
+@use './../mixins/badge' as badge-mx;
+@use './../placeholders/badge' as badge-ph;
+@use './../functions/icons' as icons-fn;
 
 .badge {
   @extend %badge;

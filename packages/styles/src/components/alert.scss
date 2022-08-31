@@ -1,21 +1,21 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
 @use 'sass:map';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
 
-@use '../variables/color';
-@use '../variables/commons';
-@use '../variables/type';
-@use '../variables/spacing';
-@use '../variables/grid';
-@use '../variables/breakpoints';
-@use '../variables/components/alert';
-@use '../variables/options';
-@use '../functions/color' as color-fn;
-@use '../placeholders/color' as color-ph;
-@use '../placeholders/notifications';
+@use './../variables/color';
+@use './../variables/commons';
+@use './../variables/type';
+@use './../variables/spacing';
+@use './../variables/grid';
+@use './../variables/breakpoints';
+@use './../variables/components/alert';
+@use './../variables/options';
+@use './../functions/color' as color-fn;
+@use './../placeholders/color' as color-ph;
+@use './../placeholders/notifications';
 
 .alert-container {
   @extend %notification-container;

@@ -1,16 +1,16 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
 @use 'sass:map';
 
-@use '../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/overrides' as *;
 
-@use '../functions/icons';
-@use '../variables/color';
-@use '../variables/grid';
-@use '../variables/spacing';
-@use '../variables/type';
-@use '../variables/components/topic-teaser';
-@use '../mixins/size';
+@use './../functions/icons';
+@use './../variables/color';
+@use './../variables/grid';
+@use './../variables/spacing';
+@use './../variables/type';
+@use './../variables/components/topic-teaser';
+@use './../mixins/size';
 
 .topic-teaser {
   &[class*='bg-'] {

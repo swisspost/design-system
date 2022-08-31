@@ -1,7 +1,7 @@
-@use '../color';
-@use '../type';
-@use '../spacing';
-@use '../animation';
+@use './../color';
+@use './../type';
+@use './../spacing';
+@use './../animation';
 
 // Design System custom variables
 $form-switch-border-color: color.$gray-60 !default;

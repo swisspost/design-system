@@ -1,13 +1,13 @@
 @use 'sass:color';
 
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/forms' as bf;
-@use '../mixins/forms' as forms-mx;
-@use '../mixins/utilities' as utilities-mx;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/forms' as bf;
+@use './../mixins/forms' as forms-mx;
+@use './../mixins/utilities' as utilities-mx;
 
-@use '../variables/components/forms';
+@use './../variables/components/forms';
 
 .form-floating {
   > label {

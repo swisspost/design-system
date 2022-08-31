@@ -1,11 +1,11 @@
 @use 'sass:map';
 @use 'sass:meta';
 
-@use '../variables/type';
-@use '../variables/color';
-@use '../variables/components/button';
-@use '../functions/icons' as icon-fn;
-@use '../mixins/utilities';
+@use './../variables/type';
+@use './../variables/color';
+@use './../variables/components/button';
+@use './../functions/icons' as icon-fn;
+@use './../mixins/utilities';
 
 @mixin pi($name, $color: color.$black) {
   $type: meta.type-of($color);

@@ -1,7 +1,7 @@
-@use '../color';
-@use '../commons';
-@use '../type';
-@use '../spacing';
+@use './../color';
+@use './../commons';
+@use './../type';
+@use './../spacing';
 
 // Bootstrap variables
 $nav-link-padding-y: spacing.$spacer !default;

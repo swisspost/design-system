@@ -1,10 +1,10 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../variables/icons' as vars;
-@use '../variables/color';
+@use './../variables/icons' as vars;
+@use './../variables/color';
 
-@use '../mixins/icons' as icon-mixin;
-@use '../mixins/utilities';
+@use './../mixins/icons' as icon-mixin;
+@use './../mixins/utilities';
 
 .pi,
 %pi {
