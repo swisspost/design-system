@@ -4,11 +4,11 @@
 
 ⚠️ The Swiss Post Design System is currently in alpha phase.
 
-| Package                   | Version | Supported          |
-| ------------------------- | ------- | ------------------ |
-| design-system-styles      | 5.x     | :white_check_mark: |
-| intranet-header           | 3.x     | :white_check_mark: |
+| Package                       | Version | Supported          | Supported Dependencies                     |
+| ----------------------------- | ------- | ------------------ | ------------------------------------------ |
+| design-system-styles          | 5.0     | :white_check_mark: | Bootstrap 5.1, Angular 14, ng-bootstrap 12 |
+| design-system-intranet-header | 3.0     | :white_check_mark: | Bootstrap 5.1, Angular 14, ng-bootstrap 12 |
 
 ## Reporting a Vulnerability
 
-Please contact us at [security@post.ch](mailto:security@post.ch).
+Please contact [security@post.ch](mailto:security@post.ch).
