@@ -11,6 +11,7 @@
 @use '../variables/type';
 @use '../variables/components/topic-teaser';
 @use '../mixins/size';
+@use '../components/utilities';
 
 .topic-teaser {
   &[class*='bg-'] {
