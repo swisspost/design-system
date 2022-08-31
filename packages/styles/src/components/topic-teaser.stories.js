@@ -15,7 +15,7 @@ export default {
     },
     linkNumber: {
       control: {
-        type: 'range',
+        type: 'number',
         min: 1,
         max: 10,
       },
@@ -49,15 +49,14 @@ export default {
 };
 
 const TopicTeaserTemplate = (args) => {
-
   const POSITION_CLASS_MAP = {
-    left: 'topic-teaser-reverse',
+    left: 'topic-teaser-reverse ',
     right: '',
   };
 
   const position = POSITION_CLASS_MAP[args.imagePosition];
 
-  const image =
+  const image = `
     <div class="topic-teaser-image-container">
       <img
         class="topic-teaser-image"
@@ -66,55 +65,58 @@ const TopicTeaserTemplate = (args) => {
         height="100%"
         alt="Test teaser image"
       />
-    </div>;
+    </div>
+    `;
 
-  const content =
+  const getLinkTemplate = (linkText) => {
+    return `
+      <li class="link-list-item">
+        <a href="#">
+          <span>${linkText}</span>
+        </a>
+      </li>
+    `;
+  };
+
+  const text = [
+    'Bacon ipsum dolor amet sausage',
+    'short ribs t-bone spare ribs',
+    'ham bresaola biltong',
+    'pork belly cupim jowl pancetta',
+    ' chicken leberkas cow tail',
+    'filet mignon swine flank pork loin',
+    'meatball, pig corned beef burg',
+    'landjaeger pork loin flank',
+  ];
+
+  const getLinkList = (numberOfItems) => {
+    let linkList = '';
+
+    for (let i = 0; i < numberOfItems; i++) {
+      linkList += getLinkTemplate(text[Math.floor(Math.random() * text.length)]);
+    }
+
+    return linkList;
+  };
+
+  const content = `
     <div class="topic-teaser-content">
       <h2 class="topic-teaser-title font-curve-large mb-large">
         <span class="bold">${args.titleText}</span>
         <span class="light">${args.subtitleText}</span>
       </h2>
       <ul class="link-list mb-large">
-        <li class="link-list-item">
-          <a href="#">
-            <span>Lorem ipsum dolor</span>
-          </a>
-        </li>
-        <li class="link-list-item">
-          <a href="#">
-            <span>sit amet, consetetur</span>
-          </a>
-        </li>
-        <li class="link-list-item">
-          <a href="#">
-            <span>sadipscing elitr, sed</span>
-          </a>
-        </li>
-        <li class="link-list-item">
-          <a href="#">
-            <span>diam nonumy eirmod</span>
-          </a>
-        </li>
-        <li class="link-list-item">
-          <a href="#">
-            <span>tempor invidunt ut labore et dolore magna aliquyam</span>
-          </a>
-        </li>
+        ${getLinkList(args.linkNumber)}
       </ul>
-    </div>;
+    </div>
+    `;
 
   return `
-  <div class="topic-teaser ${args.backgroundColor} ${position} mb-huge-r">
+  <div class="topic-teaser ${args.backgroundColor} ${position}mb-huge-r">
     <div class="container">
       <div class="topic-teaser-container ${args.backgroundColor}">
-        <div class="row pt-huge-r"></div>
-        if (${args.imagePosition} === 'left') {
-          ${image}
-          ${content}
-        } else {
-          ${content}
-          ${image}
-        }
+        <div class="row pt-huge-r">
+          ${args.imagePosition === 'left' ? image + content : content + image}
         </div>
       </div>
     </div>
@@ -132,7 +134,7 @@ TopicTeaser.parameters = {
 TopicTeaser.args = {
   titleText: 'Lorem ipsum',
   subtitleText: 'sit amet, consetetur sadipscing elitr',
-  linkNumber: 1,
+  linkNumber: 5,
   imagePosition: 'left',
   backgroundColor: 'bg-nightblue',
 };
