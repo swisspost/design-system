@@ -30,10 +30,8 @@
   }
 
   > .form-control {
-    // disable styleint here, because the classes are coming from bs5
-    /* stylelint-disable */
-    @extend .form-control-lg;
-    /* stylelint-disable */
+    // disable stylelint here, because the classes are coming from bs5
+    @extend .form-control-lg; /* stylelint-disable-line */
 
     &[type='file']::file-selector-button {
       padding-top: forms.$form-floating-input-padding-t +
@@ -63,10 +61,8 @@
   }
 
   > .form-select {
-    // disable styleint here, because the classes are coming from bs5
-    /* stylelint-disable */
-    @extend .form-control-lg;
-    /* stylelint-disable */
+    // disable stylelint here, because the classes are coming from bs5
+    @extend .form-control-lg; /* stylelint-disable-line */
 
     padding-top: forms.$form-floating-input-padding-t;
     padding-bottom: forms.$form-floating-input-padding-b;
