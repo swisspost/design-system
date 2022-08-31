@@ -84,7 +84,11 @@ section {
 }
 
 code {
-  color: darkviolet;
+  padding: 0.1em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(175,184,193,0.3);
+  border-radius: 6px;
 
   &.block,
   &.block.hljs {
