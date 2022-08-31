@@ -1,14 +1,14 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
 
-@use '../variables/components/nav';
-@use '../variables/spacing';
-@use '../variables/commons';
-@use '../variables/color';
-@use '../mixins/color' as color-mx;
-@use '../mixins/utilities';
+@use './../variables/components/nav';
+@use './../variables/spacing';
+@use './../variables/commons';
+@use './../variables/color';
+@use './../mixins/color' as color-mx;
+@use './../mixins/utilities';
 
 .tabs-wrapper {
   position: relative;

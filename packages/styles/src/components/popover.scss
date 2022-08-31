@@ -1,10 +1,10 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
-@use '../themes/bootstrap/popover' as bp;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/popover' as bp;
 
-@use '../variables/type';
+@use './../variables/type';
 
 // Popover
 .popover {

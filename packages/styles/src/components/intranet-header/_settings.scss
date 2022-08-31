@@ -1,7 +1,7 @@
-@use '../../variables/color';
-@use '../../variables/components/forms';
-@use '../../functions/color' as color-f;
-@use '../../variables/components/intranet-header';
+@use './../../variables/color';
+@use './../../variables/components/forms';
+@use './../../functions/color' as color-f;
+@use './../../variables/components/intranet-header';
 
 .settings {
   border-left: 1px solid rgba(var(--post-contrast-color-rgb), 0.2);

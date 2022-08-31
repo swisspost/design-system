@@ -1,6 +1,6 @@
-@use '../../functions/icons' as icon-fn;
-@use '../color' as color-var;
-@use '../type';
+@use './../../functions/icons' as icon-fn;
+@use './../color' as color-var;
+@use './../type';
 
 $detail-summary-icon: 2113 !default;
 $detail-summary-icon-color: 'primary' !default;

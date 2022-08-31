@@ -1,18 +1,18 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
 @use 'sass:map';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
-@use '../themes/bootstrap/list-group' as bl;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/list-group' as bl;
 
-@use '../variables/color';
-@use '../variables/spacing';
-@use '../variables/type';
-@use '../variables/commons';
-@use '../variables/animation';
-@use '../variables/components/list-group';
-@use '../mixins/type' as type-mixins;
+@use './../variables/color';
+@use './../variables/spacing';
+@use './../variables/type';
+@use './../variables/commons';
+@use './../variables/animation';
+@use './../variables/components/list-group';
+@use './../mixins/type' as type-mixins;
 
 // Base class
 .list-group {

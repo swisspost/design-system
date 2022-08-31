@@ -1,11 +1,11 @@
 @use 'sass:map';
-@use '../themes/bootstrap/overrides' as *;
-@use '../variables/spacing';
-@use '../variables/type';
-@use '../variables/color';
-@use '../mixins';
-@use '../mixins/type' as type-mx;
-@use '../variables/components/paragraph';
+@use './../themes/bootstrap/overrides' as *;
+@use './../variables/spacing';
+@use './../variables/type';
+@use './../variables/color';
+@use './../mixins';
+@use './../mixins/type' as type-mx;
+@use './../variables/components/paragraph';
 
 %list-adjustment {
   ul {

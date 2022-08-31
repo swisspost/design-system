@@ -1,14 +1,14 @@
-@use '../../variables/color';
-@use '../../variables/commons';
-@use '../../variables/type';
-@use '../../variables/components/nav';
-@use '../../variables/components/navbar';
+@use './../../variables/color';
+@use './../../variables/commons';
+@use './../../variables/type';
+@use './../../variables/components/nav';
+@use './../../variables/components/navbar';
 
-@use '../../mixins/button' as button-mixins;
-@use '../../mixins/utilities';
+@use './../../mixins/button' as button-mixins;
+@use './../../mixins/utilities';
 
-@use '../../themes/bootstrap/navbar' as bn;
-@use '../../themes/bootstrap/overrides' as *;
+@use './../../themes/bootstrap/navbar' as bn;
+@use './../../themes/bootstrap/overrides' as *;
 
 .top-navigation {
   button.nav-link {

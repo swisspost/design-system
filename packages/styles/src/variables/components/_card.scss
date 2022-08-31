@@ -1,9 +1,9 @@
-@use '../color';
-@use '../commons';
-@use '../grid';
-@use '../type';
-@use '../spacing';
-@use '../../functions/sizing';
+@use './../color';
+@use './../commons';
+@use './../grid';
+@use './../type';
+@use './../spacing';
+@use './../../functions/sizing';
 
 // Cards
 $card-font-size: type.$font-size-small !default; // Design System only

@@ -1,13 +1,13 @@
 @use 'sass:math';
 
 @use './button';
-@use '../animation';
-@use '../color';
-@use '../commons';
-@use '../spacing';
-@use '../type';
+@use './../animation';
+@use './../color';
+@use './../commons';
+@use './../spacing';
+@use './../type';
 
-@use '../../functions/sizing';
+@use './../../functions/sizing';
 
 // Design System custom variables
 $badge-height: button.$btn-height-rg;

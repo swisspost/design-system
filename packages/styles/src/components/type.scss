@@ -1,20 +1,20 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
 @use 'sass:map';
 @use 'sass:meta';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
-@use '../themes/bootstrap/type' as bt;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/type' as bt;
 
-@use '../variables/color';
-@use '../variables/commons';
-@use '../variables/type';
-@use '../variables/spacing';
-@use '../variables/components/paragraph';
-@use '../layouts/portal/type' as portal;
-@use '../placeholders/text';
-@use '../mixins/type' as type-mx;
+@use './../variables/color';
+@use './../variables/commons';
+@use './../variables/type';
+@use './../variables/spacing';
+@use './../variables/components/paragraph';
+@use './../layouts/portal/type' as portal;
+@use './../placeholders/text';
+@use './../mixins/type' as type-mx;
 
 h1,
 .h1,

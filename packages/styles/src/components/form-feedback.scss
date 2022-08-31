@@ -1,11 +1,11 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../variables';
-@use '../variables/components/form-feedback';
-@use '../variables/components/form-select';
-@use '../variables/components/forms';
-@use '../variables/components/button';
-@use '../mixins/forms' as forms-mixins;
+@use './../variables';
+@use './../variables/components/form-feedback';
+@use './../variables/components/form-select';
+@use './../variables/components/forms';
+@use './../variables/components/button';
+@use './../mixins/forms' as forms-mixins;
 
 .invalid-feedback {
   padding: button.$input-btn-padding-x * 0.5 button.$input-btn-padding-x;

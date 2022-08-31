@@ -1,19 +1,19 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
 @use 'sass:math';
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
-@use '../themes/bootstrap/forms/form-check' as bfc;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/forms/form-check' as bfc;
 
-@use '../variables/color';
-@use '../variables/spacing';
-@use '../variables/components/form-check';
-@use '../variables/components/form-switch';
-@use '../variables/components/button';
-@use '../mixins/form-checks' as form-checks-mixins;
-@use '../mixins/utilities';
-@use '../functions/icons' as fi;
-@use '../functions/icons';
+@use './../variables/color';
+@use './../variables/spacing';
+@use './../variables/components/form-check';
+@use './../variables/components/form-switch';
+@use './../variables/components/button';
+@use './../mixins/form-checks' as form-checks-mixins;
+@use './../mixins/utilities';
+@use './../functions/icons' as fi;
+@use './../functions/icons';
 
 .form-check {
   display: flex;
