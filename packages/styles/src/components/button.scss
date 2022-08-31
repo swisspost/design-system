@@ -1,20 +1,20 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
 @use 'sass:map';
 @use 'sass:math';
 
-@use '../variables/components/button';
-@use '../variables/color';
-@use '../variables/type';
-@use '../variables/spacing';
-@use '../mixins/color' as color-mx;
-@use '../mixins/icons';
-@use '../mixins/utilities';
-@use '../mixins/forms';
-@use '../mixins/button' as button-mx;
-@use '../functions/icons' as icon-fn;
-@use '../functions/color' as color-fn;
-@use '../placeholders/button' as button-ph;
+@use './../variables/components/button';
+@use './../variables/color';
+@use './../variables/type';
+@use './../variables/spacing';
+@use './../mixins/color' as color-mx;
+@use './../mixins/icons';
+@use './../mixins/utilities';
+@use './../mixins/forms';
+@use './../mixins/button' as button-mx;
+@use './../functions/icons' as icon-fn;
+@use './../functions/color' as color-fn;
+@use './../placeholders/button' as button-ph;
 
 .btn {
   @include button-mx.button-size();

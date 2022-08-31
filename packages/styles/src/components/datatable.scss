@@ -2,15 +2,15 @@
  * Copyright 2021 by Swiss Post, Information Technology
  */
 
-@use '../variables/spacing';
-@use '../variables/components/pagination';
-@use '../variables/components/datatable';
-@use '../variables/components/forms';
+@use './../variables/spacing';
+@use './../variables/components/pagination';
+@use './../variables/components/datatable';
+@use './../variables/components/forms';
 
-@use '../mixins/button' as button-mixins;
-@use '../mixins/utilities';
+@use './../mixins/button' as button-mixins;
+@use './../mixins/utilities';
 
-@use '../placeholders/text';
+@use './../placeholders/text';
 
 .datatable-header-cell {
   padding: datatable.$datatable-cell-padding;

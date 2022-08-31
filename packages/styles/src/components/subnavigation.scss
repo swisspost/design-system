@@ -1,15 +1,15 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
 
-@use '../mixins';
-@use '../mixins/utilities';
-@use '../functions/utilities' as utility-functions;
-@use '../variables/components/subnavigation';
-@use '../variables/animation';
-@use '../variables/spacing';
-@use '../placeholders/text';
+@use './../mixins';
+@use './../mixins/utilities';
+@use './../functions/utilities' as utility-functions;
+@use './../variables/components/subnavigation';
+@use './../variables/animation';
+@use './../variables/spacing';
+@use './../placeholders/text';
 
 $module-name: 'subnavigation';
 

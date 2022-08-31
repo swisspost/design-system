@@ -1,15 +1,15 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
 @use 'sass:map';
 
-@use '../mixins/utilities';
-@use '../mixins/icons' as icon-mixins;
-@use '../mixins/forms' as form-mixins;
-@use '../mixins/button' as button-mixins;
+@use './../mixins/utilities';
+@use './../mixins/icons' as icon-mixins;
+@use './../mixins/forms' as form-mixins;
+@use './../mixins/button' as button-mixins;
 
-@use '../variables/color';
-@use '../variables/components/forms';
-@use '../variables/components/button';
+@use './../variables/color';
+@use './../variables/components/forms';
+@use './../variables/components/button';
 
 // Basic timepicker overrides
 .ngb-tp {
