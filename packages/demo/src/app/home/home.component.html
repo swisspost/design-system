@@ -31,7 +31,7 @@
   <div class="container">
     <h3 class="bold mb-4">Migration from v4 to v5</h3>
 
-    <p class="lead">What application are you migrating?</p>
+    <p class="lead">What kind of application are you migrating?</p>
     <div class="form-check form-switch">
       <input type="checkbox" role="switch" id="is-migrating-intranet" class="form-check-input" [(ngModel)]="isMigratingIntranet">
       <label for="is-migrating-intranet" class="form-check-label order-first">Intranet application</label>
@@ -66,11 +66,76 @@
       <li>
         <h4 class="h5 bold">Component migration</h4>
         <p>
-          Some changes could not be automatically migrated. Check the list of breaking changes to
+          Some changes cannot be automatically migrated. Check the list of breaking changes to
           see if you are affected and apply the transformation manually.
         </p>
 
+        Deprecations
+        - jquery
+        - custom select
+
         <!-- Post migration table -->
+        <ngb-accordion [destroyOnHide]="false">
+          <ngb-panel title="General">
+            <ng-template ngbPanelContent>
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+              aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+              craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+              occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+              labore sustainable VHS.
+
+              <ngb-accordion [destroyOnHide]="false" class="mt-big-r d-block">
+                <ngb-panel title="Renamed variables">
+                  <ng-template ngbPanelContent>
+
+                  </ng-template>
+                </ngb-panel>
+
+                <ngb-panel title="Removed variables">
+                  <ng-template ngbPanelContent>
+                    <code></code>
+                    <ul>
+                      <li><code>$font-weight-lighter</code></li>
+                      <li><code>$font-weight-lighter</code></li>
+
+                    </ul>
+                  </ng-template>
+                </ngb-panel>
+              </ngb-accordion>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel title="Bootstrap">
+            <ng-template ngbPanelContent>
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+              aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+              craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+              occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+              labore sustainable VHS.
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel *ngIf="isMigratingAngular" title="Ng-bootstrap">
+            <ng-template ngbPanelContent>
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+              aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+              craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+              occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+              labore sustainable VHS.
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel title="Post specific">
+            <ng-template ngbPanelContent>
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
+              aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
+              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
+              craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
+              occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
+              labore sustainable VHS.
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
       </li>
       <li>
         <h4 class="h5 bold">Bootstrap migration</h4>
