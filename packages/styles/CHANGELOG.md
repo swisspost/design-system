@@ -1,5 +1,36 @@
 # @swisspost/design-system-styles
 
+## 5.0.0-beta.0
+
+### Major Changes
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Fixes form-control-lg and form-floating form-control heights.
+  Removed some DesignSystem only SCSS variables.
+
+### Minor Changes
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Add a story for badges
+
+### Patch Changes
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Adds high-contrast-mode/forced-color styles
+
+* [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Fixes safari display error.
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Add high-contrast-mode/forced-color styles for component subnavigation.
+
+* [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Adds high-contrast-mode/forced-color styles to links. Overrides all a, a:visited, a:focus and a:hover colors with LinkText !important, to avoid different styling for visited links in firefox.
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Adds hcm styles to component dropdown.
+  Adds hcm styles to element datatable-button of component datatable.
+  Fixes disabled buttons highlighting in hcm.
+
+* [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Removes unnecessary pseudo-element on open sidebar menu-icon.
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Removed border from intranet-header search button.
+
+* [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Add padding for media-breakpoint-down(md)
+
 ## 5.0.0-alpha.7
 
 ### Major Changes
