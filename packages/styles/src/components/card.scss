@@ -1,16 +1,16 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as bootstrap;
-@use '../themes/bootstrap/card' as bootstrap-card;
-@use '../variables/color';
-@use '../variables/spacing';
-@use '../variables/commons';
-@use '../variables/components/card';
-@use '../functions/sizing';
-@use '../mixins/icons' as icons-mixins;
-@use '../variables/icons';
-@use '../variables/animation';
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as bootstrap;
+@use './../themes/bootstrap/card' as bootstrap-card;
+@use './../variables/color';
+@use './../variables/spacing';
+@use './../variables/commons';
+@use './../variables/components/card';
+@use './../functions/sizing';
+@use './../mixins/icons' as icons-mixins;
+@use './../variables/icons';
+@use './../variables/animation';
 
 .card-group {
   margin-top: commons.$border-width;

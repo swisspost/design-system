@@ -1,7 +1,7 @@
 @use 'sass:list';
 
-@use '../variables/color';
-@use '../functions/color' as color-fn;
+@use './../variables/color';
+@use './../functions/color' as color-fn;
 
 // background rgb properties
 %color-background-rgb {

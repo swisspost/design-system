@@ -1,11 +1,9 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use 'sass:list';
-
-@use '../variables/color';
-@use '../variables/components/datepicker';
-@use '../variables/components/forms';
-@use '../variables/commons';
+@use './../variables/color';
+@use './../variables/components/datepicker';
+@use './../variables/components/forms';
+@use './../variables/commons';
 
 ngb-datepicker {
   // Conversion for compatibility

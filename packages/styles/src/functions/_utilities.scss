@@ -2,7 +2,7 @@
 
 @use 'sass:string';
 @use 'sass:map';
-@use '../variables/commons';
+@use './../variables/commons';
 
 @function z-index($key1, $key2: null) {
   $map: commons.$z-indexes;

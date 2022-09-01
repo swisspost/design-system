@@ -1,9 +1,9 @@
-@use '../../variables/color';
-@use '../../variables/spacing';
-@use '../../variables/commons';
-@use '../../variables/components/intranet-header';
+@use './../../variables/color';
+@use './../../variables/spacing';
+@use './../../variables/commons';
+@use './../../variables/components/intranet-header';
 
-@use '../../themes/bootstrap/overrides' as *;
+@use './../../themes/bootstrap/overrides' as *;
 
 // Sidebar
 #sidebar {

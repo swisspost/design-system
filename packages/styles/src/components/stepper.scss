@@ -1,10 +1,10 @@
-@use '../mixins/size' as size-mx;
-@use '../mixins/utilities';
+@use './../mixins/size' as size-mx;
+@use './../mixins/utilities';
 
-@use '../variables/spacing';
-@use '../variables/components/stepper';
+@use './../variables/spacing';
+@use './../variables/components/stepper';
 
-@use '../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/overrides' as *;
 
 .stepper-container {
   @include size-mx.responsive-size('big', 'margin-bottom');
