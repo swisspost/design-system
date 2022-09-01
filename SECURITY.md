@@ -2,7 +2,7 @@
 
 ## Supported Versions
 
-⚠️ The Swiss Post Design System is currently in alpha phase.
+⚠️ The Swiss Post Design System is currently in beta phase.
 
 | Package                       | Version | Supported          | Supported Dependencies                     |
 | ----------------------------- | ------- | ------------------ | ------------------------------------------ |

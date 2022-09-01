@@ -1,10 +1,11 @@
+# Swiss Post Design System
+
 ![Swiss Post Design System splash screen](https://user-images.githubusercontent.com/1659006/187683368-d3aa2534-84be-4580-846e-2cad3796b573.png)
 
-# Swiss Post Design System
 
 The Swiss Post Design System pattern library for a unified and accessible user experience accross the web platform.
 
-🚧 The **Swiss Post Design System v5** is in alpha. Have a look at the [v5 milestone](https://github.com/swisspost/design-system/milestone/1) to see the progress.
+🚧 The **Swiss Post Design System v5** is in beta. Have a look at the [v5 milestone](https://github.com/swisspost/design-system/milestone/1) to see the progress. If you have any feedback to the beta version, please [submit an issue](https://github.com/swisspost/design-system/issues).
 
 
 ## Packages
