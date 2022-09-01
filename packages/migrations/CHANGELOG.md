@@ -1,4 +1,4 @@
-# @swisspost/design-system-styles-migrations
+# @swisspost/design-system-migrations
 
 ## 1.0.0-alpha.3
 
