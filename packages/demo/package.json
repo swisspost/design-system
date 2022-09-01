@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-demo",
-  "version": "5.0.0-alpha.5",
+  "version": "5.0.0",
   "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -28,8 +28,8 @@
     "@ng-bootstrap/ng-bootstrap": "12.1.2",
     "@popperjs/core": "2.11.6",
     "@swimlane/ngx-datatable": "20.0.0",
-    "@swisspost/design-system-intranet-header": "^3.0.0-alpha.4",
-    "@swisspost/design-system-styles": "^5.0.0-alpha.7",
+    "@swisspost/design-system-intranet-header": "^3.0.0",
+    "@swisspost/design-system-styles": "^5.0.0",
     "bootstrap": "5.1.3",
     "core-js": "3.25.0",
     "highlight.js": "11.6.0",
