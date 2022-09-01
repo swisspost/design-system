@@ -1,9 +1,6 @@
 name: Temporary beta action
 
-on:
-  push:
-    branches:
-      - 456-release-beta
+on: workflow_dispatch
 
 jobs:
   release:
