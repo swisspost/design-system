@@ -1,5 +1,16 @@
 # @swisspost/design-system-components-angular
 
+## 1.0.0-beta.2
+
+### Major Changes
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Upgrade to Angular 14
+
+### Patch Changes
+
+- Updated dependencies [[`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821)]:
+  - @swisspost/design-system-styles@5.0.0-beta.8
+
 ## 1.0.0-alpha.1
 
 ### Major Changes

@@ -1,5 +1,27 @@
 # @swisspost/design-system-demo
 
+## 5.0.0-beta.6
+
+### Major Changes
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Upgrade to Angular 14
+
+### Patch Changes
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Hide textarea placeholder, inside of floating-label.
+
+* [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Adds ngbToast default timeout-options, to close toast properly, after mouseenter/mouseleave events.
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Adds label "deprecated" to the component.
+
+* [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Correcting and completing the property documentation for the component intranet-header.
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Fixes form-control-lg and form-floating form-control heights.
+  Removed some DesignSystem only SCSS variables.
+- Updated dependencies [[`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821)]:
+  - @swisspost/design-system-styles@5.0.0-beta.8
+  - @swisspost/design-system-intranet-header@3.0.0-beta.5
+
 ## 5.0.0-alpha.5
 
 ### Major Changes

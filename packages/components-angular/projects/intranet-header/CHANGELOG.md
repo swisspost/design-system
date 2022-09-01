@@ -1,5 +1,14 @@
 # @swisspost/design-system-intranet-header
 
+## 3.0.0-beta.5
+
+### Patch Changes
+
+- [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821) Thanks [@gfellerph](https://github.com/gfellerph)! - Correcting and completing the property documentation for the component intranet-header.
+
+- Updated dependencies [[`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821), [`894197f`](https://github.com/swisspost/design-system/commit/894197f1c3683e88ab102eed7ebee2c3f434e821)]:
+  - @swisspost/design-system-styles@5.0.0-beta.8
+
 ## 3.0.0-alpha.4
 
 ### Major Changes
