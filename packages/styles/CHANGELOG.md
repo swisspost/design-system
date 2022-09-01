@@ -1,5 +1,15 @@
 # @swisspost/design-system-styles
 
+## 5.0.0-beta.1
+
+### Minor Changes
+
+- [#449](https://github.com/swisspost/design-system/pull/449) [`971987d`](https://github.com/swisspost/design-system/commit/971987d839782028fd440c2cc4ceb6a5d3314b48) Thanks [@LarissaMS](https://github.com/LarissaMS)! - Added a story for topic-teaser
+
+### Patch Changes
+
+- [#460](https://github.com/swisspost/design-system/pull/460) [`a96b7b8`](https://github.com/swisspost/design-system/commit/a96b7b8eec5731dc20251296e4849a7b2be2eb2b) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Fixes missing component variables import.
+
 ## 5.0.0-beta.0
 
 ### Major Changes
