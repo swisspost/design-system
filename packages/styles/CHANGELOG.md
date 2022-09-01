@@ -1,6 +1,6 @@
 # @swisspost/design-system-styles
 
-## 5.0.0-beta.8
+## 5.0.0-beta.0
 
 ### Major Changes
 
