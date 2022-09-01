@@ -83,15 +83,23 @@ section {
   top: -0.5rem;
 }
 
-code.block {
-  display: block;
-  padding: 1rem;
-  background: rgb(50, 50, 50);
-  color: white;
-  white-space: pre;
-  max-width: 100%;
-  overflow: auto;
-  margin-bottom: 0.8em;
+code {
+  padding: 0.1em 0.4em;
+  margin: 0;
+  font-size: 85%;
+  background-color: rgba(175,184,193,0.3);
+  border-radius: 6px;
 
-  max-height: 450px;
+  &.block,
+  &.block.hljs {
+    display: block;
+    padding: 0.25rem 0.5rem;
+    background: rgb(50, 50, 50);
+    color: white;
+    white-space: pre;
+    max-width: 100%;
+    overflow: auto;
+    margin-bottom: 0.8em;
+    max-height: 450px;
+  }
 }
