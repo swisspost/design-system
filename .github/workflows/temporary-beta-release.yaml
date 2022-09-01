@@ -28,7 +28,6 @@ jobs:
 
       - name: Run change
         run: |
-          pnpm changeset version
           pnpm changeset pre enter beta
           pnpm changeset version
           git config --global user.email "tuelsch@gmail.com"
