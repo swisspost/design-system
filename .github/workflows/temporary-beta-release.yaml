@@ -31,5 +31,8 @@ jobs:
           pnpm changeset version
           pnpm changeset pre enter beta
           pnpm changeset version
+          git add *
+          git commit -m "chore: enter beta"
+          git push
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
