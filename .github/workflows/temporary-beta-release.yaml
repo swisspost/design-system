@@ -31,6 +31,8 @@ jobs:
           pnpm changeset version
           pnpm changeset pre enter beta
           pnpm changeset version
+          git config --global user.email "tuelsch@gmail.com"
+          git config --global user.name "Philipp Gfeller"
           git add -A
           git commit -m "chore: enter beta"
           git push
