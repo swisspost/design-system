@@ -36,13 +36,28 @@
     <h3 class="bold mb-4">Migration from v4 to v5</h3>
 
     <p class="lead">What kind of application are you migrating?</p>
+
     <div class="form-check form-switch">
-      <input type="checkbox" role="switch" id="is-migrating-intranet" class="form-check-input" [(ngModel)]="isMigratingIntranet">
-      <label for="is-migrating-intranet" class="form-check-label order-first">Intranet application</label>
+      <input
+        id="is-migrating-intranet"
+        type="checkbox"
+        class="form-check-input"
+        [(ngModel)]="isMigratingIntranet"
+        (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
+        role="switch"
+      />
+      <label for="is-migrating-intranet" class="form-check-label">Intranet application</label>
     </div>
     <div class="form-check form-switch">
-      <input type="checkbox" role="switch" id="is-migrating-angular" class="form-check-input" [(ngModel)]="isMigratingAngular">
-      <label for="is-migrating-angular" class="form-check-label order-first">Angular application</label>
+      <input
+        id="is-migrating-angular"
+        type="checkbox"
+        class="form-check-input"
+        [(ngModel)]="isMigratingAngular"
+        (ngModelChange)="setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)"
+        role="switch"
+      />
+      <label for="is-migrating-angular" class="form-check-label">Angular application</label>
     </div>
 
     <ol class="bubble-tea">
