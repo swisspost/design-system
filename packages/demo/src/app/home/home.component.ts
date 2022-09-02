@@ -11,6 +11,7 @@ export class HomeComponent {
   public static MIGRATION_TYPE_INTRANET_KEY: string = 'post:migration_type_intranet';
   public static MIGRATION_TYPE_ANGULAR_KEY: string = 'post:migration_type_angular';
   public static COMPONENT_MIGRATION_ACCORDION_KEY: string = 'post:component_migration_accordion'
+  public static COMPONENT_MIGRATION_ACCORDION_CHECKBOXES_KEY: string = 'post:component_migration_accordion_checkboxes'
   public version: string = environment.VERSION;
   public stylesVersion: string = environment.STYLES_VERSION;
   public angularVersion: string = environment.ANGULAR_VERSION;
@@ -21,6 +22,7 @@ export class HomeComponent {
   public isMigratingIntranet = this.getLocaleStorage(this.migrationTypeIntranetKey) ?? false;
   public isMigratingAngular = this.getLocaleStorage(this.migrationTypeAngularKey) ?? true;
   public componentMigrationAccordionActiveIds: Array<string> = this.getLocaleStorage(this.componentMigrationAccordionKey) ?? [];
+  public componentMigrationAccordionCheckboxes: Object = this.getLocaleStorage(this.componentMigrationAccordionCheckboxesKey) ?? {};
 
   constructor() {
     // Show deprecation warning if anybody still uses IE11
@@ -38,6 +40,11 @@ export class HomeComponent {
   get componentMigrationAccordionKey () {
     return HomeComponent.COMPONENT_MIGRATION_ACCORDION_KEY;
   }
+
+  get componentMigrationAccordionCheckboxesKey () {
+    return HomeComponent.COMPONENT_MIGRATION_ACCORDION_CHECKBOXES_KEY;
+  }
+
   private getCleanVersion (version: string) {
     return version
       .replace(/^[^\d]+/, '');
@@ -87,5 +94,9 @@ export class HomeComponent {
     }
 
     this.setLocaleStorage(this.componentMigrationAccordionKey, this.componentMigrationAccordionActiveIds);
+  }
+
+  public componentMigrationAccordionCheckboxesChange () {
+    this.setLocaleStorage(this.componentMigrationAccordionCheckboxesKey, this.componentMigrationAccordionCheckboxes);
   }
 }
