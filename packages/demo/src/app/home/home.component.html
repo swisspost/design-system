@@ -1,7 +1,10 @@
 <div *ngIf="isIE11" class="container">
   <div class="alert alert-warning mt-3">
     <h4 class="alert-heading">IE11 not supported</h4>
-    <p>This app uses Angular 13 and therefore does not support IE11. Please update your browser.</p>
+    <p>
+      This app uses Angular {{ getVersion(angularVersion, 'M') }} and therefore does not support
+      IE11. Please update your browser.
+    </p>
   </div>
 </div>
 
@@ -20,10 +23,11 @@
 
 <ng-template #versions>
   <div class="versions">
-    <p>@swisspost/design-system-styles: {{ stylesVersion }}</p>
-    <p>@angular/cli: {{ angularVersion }}</p>
-    <p>@ng-bootstrap/ng-bootstrap: {{ ngBootstrapVersion }}</p>
-    <p>ngx-toastr: {{ ngxToasterVersion }}</p>
+    <p>@swisspost/design-system-styles: {{ getVersion(stylesVersion) }}</p>
+    <p>@angular/cli: {{ getVersion(angularVersion) }}</p>
+    <p>bootstrap: {{ getVersion(bootstrapVersion) }}</p>
+    <p>@ng-bootstrap/ng-bootstrap: {{ getVersion(ngBootstrapVersion) }}</p>
+    <p>ngx-toastr: {{ getVersion(ngxToasterVersion) }}</p>
   </div>
 </ng-template>
 
