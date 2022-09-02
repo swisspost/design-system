@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-
 import { environment } from './../../environments/environment';
+import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-demo-home',
