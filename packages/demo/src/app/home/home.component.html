@@ -67,11 +67,25 @@
       </li>
       <li>
         <h4 class="h5 bold">Uninstall the old packages</h4>
-        <p>Uninstall the old styles<span *ngIf="isMigratingIntranet"> and the old intranet header</span> package<span *ngIf="isMigratingIntranet">s</span>.</p>
+        <!-- prettier-ignore -->
+        <p>
+          Uninstall the old styles
+          <span *ngIf="isMigratingIntranet">and the old intranet header</span> package<span *ngIf="isMigratingIntranet">s</span>.
+        </p>
       </li>
       <li>
-        <h4 class="h5 bold">Install the new package<span *ngIf="isMigratingIntranet">s</span></h4>
-        <code class="d-block p-3" [languages]="['bash']" [highlight]="'npm install @swisspost/design-system-styles' + (isMigratingIntranet ? ' @swisspost/design-system-intranet-header' : '')"></code>
+        <h4 class="h5 bold">
+          Install the new package
+          <span *ngIf="isMigratingIntranet">s</span>
+        </h4>
+        <code
+          class="d-block p-3"
+          [languages]="['bash']"
+          [highlight]="
+            'npm install @swisspost/design-system-styles' +
+            (isMigratingIntranet ? ' @swisspost/design-system-intranet-header' : '')
+          "
+        ></code>
       </li>
       <li *ngIf="isMigratingAngular">
         <h4 class="h5 bold">Automatic migration tool</h4>
@@ -80,18 +94,20 @@
           You can run the following code, to automatically patch the changes that can be
           auto-migrated:
         </p>
-        <code class="d-block p-3" [languages]="['bash']" [highlight]="'npx run @swisspost/design-system-migrations'"></code>
+        <code
+          class="d-block p-3"
+          [languages]="['bash']"
+          [highlight]="'npx run @swisspost/design-system-migrations'"
+        ></code>
       </li>
       <li>
         <h4 class="h5 bold">Component migration</h4>
         <p>
-          Some changes cannot be automatically migrated. Check the list of breaking changes to
-          see if you are affected and apply the transformation manually.
+          Some changes cannot be automatically migrated. Check the list of breaking changes to see
+          if you are affected and apply the transformation manually.
         </p>
 
-        Deprecations
-        - jquery
-        - custom select
+        Deprecations - jquery - custom select
 
         <!-- Post migration table -->
         <ngb-accordion
@@ -119,7 +135,6 @@
                     <ul>
                       <li><code>$font-weight-lighter</code></li>
                       <li><code>$font-weight-lighter</code></li>
-
                     </ul>
                   </ng-template>
                 </ngb-panel>
@@ -128,32 +143,38 @@
           </ngb-panel>
           <ngb-panel id="bootstrap" title="Bootstrap">
             <ng-template ngbPanelContent>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-              craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-              occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-              labore sustainable VHS.
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+              ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
+              it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+              excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+              aesthetic synth nesciunt you probably haven't heard of them accusamus labore
+              sustainable VHS.
             </ng-template>
           </ngb-panel>
           <ngb-panel *ngIf="isMigratingAngular" id="ngbootstrap" title="Ng-bootstrap">
             <ng-template ngbPanelContent>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-              craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-              occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-              labore sustainable VHS.
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+              ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
+              it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+              excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+              aesthetic synth nesciunt you probably haven't heard of them accusamus labore
+              sustainable VHS.
             </ng-template>
           </ngb-panel>
           <ngb-panel id="post" title="Post specific">
             <ng-template ngbPanelContent>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
-              aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
-              sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica,
-              craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings
-              occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus
-              labore sustainable VHS.
+              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
+              ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
+              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
+              it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
+              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
+              excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
+              aesthetic synth nesciunt you probably haven't heard of them accusamus labore
+              sustainable VHS.
             </ng-template>
           </ngb-panel>
         </ngb-accordion>
@@ -161,12 +182,16 @@
       <li>
         <h4 class="h5 bold">Bootstrap migration</h4>
         <p>
-          Check the <a href="https://getbootstrap.com/docs/5.0/migration/" target="_blank">bootstrap migration guide</a> to see if you need to update any bootstrap related
-          code.
+          Check the
+          <a href="https://getbootstrap.com/docs/5.0/migration/" target="_blank">
+            bootstrap migration guide
+          </a>
+          to see if you need to update any bootstrap related code.
         </p>
       </li>
       <li>
-        <h4 class="h5 bold">Treat yourself to a [insert beverage here], you've done a great job!</h4>
+        <!-- https://getemoji.com/ -->
+        <h4 class="h5 bold">Treat yourself to a 🍺, you've done a great job!</h4>
       </li>
     </ol>
   </div>
@@ -183,21 +208,31 @@
           </h2>
           <ul class="link-list font-curve-regular mb-large">
             <li class="link-list-item">
-              <a target="_blank" rel="noopener" href="https://getbootstrap.com/">
+              <a
+                target="_blank"
+                rel="noopener"
+                [href]="'//getbootstrap.com/docs/' + getVersion(bootstrapVersion, 'Mm')"
+              >
                 <span>Bootstrap Documentation</span>
               </a>
             </li>
             <li class="link-list-item">
-              <a target="_blank" rel="noopener" href="https://angular.io/docs">
+              <a
+                target="_blank"
+                rel="noopener"
+                [href]="'//v' + getVersion(angularVersion, 'M') + '.angular.io/docs'"
+              >
                 <span>Angular Docs</span>
               </a>
             </li>
             <li class="link-list-item">
+              <!-- exact link is not possible, because the latest url is different from the previews -->
               <a target="_blank" rel="noopener" href="https://ng-bootstrap.github.io/#/home">
                 <span>ngBootstrap Docs</span>
               </a>
             </li>
             <li class="link-list-item">
+              <!-- exact link is not possible, because no version urls available -->
               <a target="_blank" rel="noopener" href="https://fonts.post.ch/frutigerneueforpost/#/">
                 <span>Frutiger Neue For Post</span>
               </a>
