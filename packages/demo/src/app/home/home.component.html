@@ -94,8 +94,12 @@
         - custom select
 
         <!-- Post migration table -->
-        <ngb-accordion [destroyOnHide]="false">
-          <ngb-panel title="General">
+        <ngb-accordion
+          [activeIds]="componentMigrationAccordionActiveIds"
+          [destroyOnHide]="false"
+          (panelChange)="componentMigrationAccordionChange($event)"
+        >
+          <ngb-panel id="general" title="General">
             <ng-template ngbPanelContent>
               Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
               aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
@@ -106,9 +110,7 @@
 
               <ngb-accordion [destroyOnHide]="false" class="mt-big-r d-block">
                 <ngb-panel title="Renamed variables">
-                  <ng-template ngbPanelContent>
-
-                  </ng-template>
+                  <ng-template ngbPanelContent></ng-template>
                 </ngb-panel>
 
                 <ngb-panel title="Removed variables">
@@ -124,7 +126,7 @@
               </ngb-accordion>
             </ng-template>
           </ngb-panel>
-          <ngb-panel title="Bootstrap">
+          <ngb-panel id="bootstrap" title="Bootstrap">
             <ng-template ngbPanelContent>
               Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
               aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
@@ -134,7 +136,7 @@
               labore sustainable VHS.
             </ng-template>
           </ngb-panel>
-          <ngb-panel *ngIf="isMigratingAngular" title="Ng-bootstrap">
+          <ngb-panel *ngIf="isMigratingAngular" id="ngbootstrap" title="Ng-bootstrap">
             <ng-template ngbPanelContent>
               Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
               aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
@@ -144,7 +146,7 @@
               labore sustainable VHS.
             </ng-template>
           </ngb-panel>
-          <ngb-panel title="Post specific">
+          <ngb-panel id="post" title="Post specific">
             <ng-template ngbPanelContent>
               Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia
               aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor,
