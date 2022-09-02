@@ -1,6 +1,6 @@
-@use '../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/overrides' as *;
 
-@use '../variables/components/badge';
+@use './../variables/components/badge';
 
 %badge {
   @include border-radius($badge-border-radius);

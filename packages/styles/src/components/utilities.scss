@@ -1,16 +1,16 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
 @use 'sass:map';
 @use 'sass:list';
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as bootstrap;
-@use '../themes/bootstrap/utilities' as bu; // TODO: Move Design System utilities to utilities folder.
-@use '../mixins/utilities';
-@use '../variables/color';
-@use '../variables/spacing';
-@use '../variables/grid';
-@use '../functions/color' as color-fn;
-@use '../placeholders/color' as color-ph;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as bootstrap;
+@use './../themes/bootstrap/utilities' as bu; // TODO: Move Design System utilities to utilities folder.
+@use './../mixins/utilities';
+@use './../variables/color';
+@use './../variables/spacing';
+@use './../variables/grid';
+@use './../functions/color' as color-fn;
+@use './../placeholders/color' as color-ph;
 
 .bold {
   font-weight: 700;
@@ -94,5 +94,14 @@ a {
   &:focus,
   &:hover {
     color: rgba(var(--post-contrast-color-rgb), 0.8);
+  }
+
+  @include utilities.high-contrast-mode() {
+    &,
+    &:visited,
+    &:focus,
+    &:hover {
+      color: LinkText !important;
+    }
   }
 }

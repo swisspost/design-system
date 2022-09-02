@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, UntypedFormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -9,7 +9,7 @@ import { NgbTimeStruct } from '@ng-bootstrap/ng-bootstrap';
 export class NgbTimepickerDemoComponent {
   time: NgbTimeStruct;
 
-  ctrl = new FormControl(null, (control: FormControl) => {
+  ctrl = new UntypedFormControl(null, (control: UntypedFormControl) => {
     const value = control.value;
 
     if (!value) {

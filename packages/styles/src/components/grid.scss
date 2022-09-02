@@ -1,15 +1,15 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
 @use 'sass:map';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
-@use '../themes/bootstrap/grid' as bg;
-@use '../themes/bootstrap/containers' as bc;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/grid' as bg;
+@use './../themes/bootstrap/containers' as bc;
 
-@use '../variables/commons';
-@use '../variables/spacing';
-@use '../variables/grid';
+@use './../variables/commons';
+@use './../variables/spacing';
+@use './../variables/grid';
 
 .vertical-gutters {
   margin-bottom: grid.$grid-gutter-width * -1;

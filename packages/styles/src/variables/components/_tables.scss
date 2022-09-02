@@ -1,7 +1,7 @@
-@use '../color';
-@use '../commons';
-@use '../spacing';
-@use '../type';
+@use './../color';
+@use './../commons';
+@use './../spacing';
+@use './../type';
 
 $table-cell-padding-y: spacing.$size-small-regular !default;
 $table-cell-padding-x: $table-cell-padding-y !default;

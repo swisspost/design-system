@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-migrations",
-  "version": "1.0.0-alpha.3",
+  "version": "1.0.0-beta.0",
   "description": "Angular schematics for the design system styles migration.",
   "keywords": [
     "schematics"
@@ -24,17 +24,17 @@
     "todo:test": "npm run build && jasmine src/**/*_spec.js"
   },
   "dependencies": {
-    "@angular-devkit/core": "13.3.9",
-    "@angular-devkit/schematics": "13.3.9",
-    "@angular/compiler": "13.3.11",
-    "@angular/core": "13.3.11",
-    "rxjs": "6.6.7",
-    "typescript": "4.6.4",
+    "@angular-devkit/core": "14.2.1",
+    "@angular-devkit/schematics": "14.2.1",
+    "@angular/compiler": "14.2.0",
+    "@angular/core": "14.2.0",
+    "rxjs": "7.5.6",
+    "typescript": "4.8.2",
     "zone.js": "0.11.8"
   },
   "devDependencies": {
-    "@types/jasmine": "3.10.6",
-    "@types/node": "16.11.48",
+    "@types/jasmine": "4.3.0",
+    "@types/node": "16.11.56",
     "copyfiles": "2.4.1",
     "jasmine": "4.3.0",
     "json": "11.0.0"

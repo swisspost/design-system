@@ -2,12 +2,12 @@
 
 These contribution guidelines apply to this repository in general and describe how to set up and maintain the repository. You can find dedicated guidelines in each package.
 
-- [Demo App](./packages/demo/README.md)
+- [Angular Demo](./packages/demo/README.md)
 - [Design System Styles](./packages/styles/CONTRIBUTING.md)
 - [Angular Components (Intranet Header)](./packages/components-angular/projects/intranet-header/CONTRIBUTING.md)
 
 ## Prerequisites
-In order to be able to use `npm` commands, [node.js](https://nodejs.org/en/) v14+ needs to be installed on your machine.
+In order to be able to use `npm` commands, [node.js](https://nodejs.org/en/) v16+ needs to be installed on your machine.
 
 We use [pnpm](https://pnpm.io/) to manage dependencies, so make sure you have it installed: `npm i -g pnpm`. To install dependencies for all packages in this repo, run `pnpm install` from the root. Adding a new dependency to a package is just a matter of running `pnpm add <PACKAGE_NAME>` in the current packages sub-folder.
 
@@ -44,15 +44,15 @@ You can find more information about accessibility at the Swiss Post in our [acce
 
 ## Submitting issues and requests
 
-We are happy to receive your input. You can submit your issues to our [GitHub repository](https://github.com/swisspost/design-system/issues). If you're rather looking for help, don't hesitate to open a discussion on [GitHub discussions(https://github.com/swisspost/design-system/discussions).
+We are happy to receive your input. You can submit your issues to our [GitHub repository](https://github.com/swisspost/design-system/issues). If you're rather looking for help, don't hesitate to open a discussion on [GitHub discussions](https://github.com/swisspost/design-system/discussions).
 
-When you're planning to work on bigger changes, please reach out to someone from the core team to plan your change before investing a lot of time.
+When you're planning to work on bigger changes, please reach out to someone from the core team to plan your change.
 
 
 ## Branching
 
 We base our workflow on the [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow) branching model. 
-- The `main` branch is the release branch. Changes on this branch should be ready for release immediately after merging or can be accumulated to a set of changes if they belong together.
+- The `main` branch is the release branch. Changes on this branch should be ready for release. Releases can be shipped right after merging or can be accumulated to a set of changes if they belong together.
 - Changes are done on feature-branches based on `main` and merged back into `main`.
 - Older releases live on their `release/x` branch. Fixes for old releases are based and merged back into the release branch.
 - A future major release will live on the `next` branch
@@ -63,9 +63,9 @@ We base our workflow on the [GitHub flow](https://docs.github.com/en/get-started
 When submitting pull requests, make sure you checked the following points:
 - Your changes are tested on browsers according to the [browser support list](./packages/styles/.browserslistrc)
 - Your changes are tested on multiple viewports, at least 320px - 1920px
-- If you made significant changes to the design of a component, make sure at least someone from the [design team](https://github.com/orgs/swisspost/teams/design) is added as a reviewer
-- Describe your changes in the PR description as detailed as possible
-- Include a changeset if the changes in your PR should be released and requires an entry in the changelog (run `pnpm changeset` and follow the instructions)
+- If you made significant changes to the design of a component, make sure that at least someone from the [design team](https://github.com/orgs/swisspost/teams/design) is added as a reviewer
+- Describe your changes in the pull request description as detailed as possible
+- Include a changeset if the changes in your pull request should be released and requires an entry in the changelog (run `pnpm changeset` and follow the instructions)
 
 
 ## Merging

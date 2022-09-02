@@ -8,7 +8,9 @@ import {ToastrService} from "ngx-toastr";
 })
 export class ToastDemoComponent {
   toastOptions = {
-    closeButton: false
+    closeButton: false,
+    timeOut: 5000,
+    extendedTimeOut: 1000
   }
   JSON = JSON;
 

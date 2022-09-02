@@ -1,6 +1,6 @@
-@use '../mixins/utilities';
-@use '../mixins/color' as color-mx;
-@use '../variables/components/button';
+@use './../mixins/utilities';
+@use './../mixins/color' as color-mx;
+@use './../variables/components/button';
 
 %btn-default {
   border: button.$btn-border-width solid rgba(var(--post-contrast-color-rgb), 0.2);

@@ -1,9 +1,9 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
+@use './../lic/bootstrap-license';
 
-@use '../mixins/type';
-@use '../variables/animation';
+@use './../mixins/type';
+@use './../variables/animation';
 
 body {
   @include type.font-smoothing();

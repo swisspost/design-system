@@ -2,47 +2,28 @@
   <div class="container pt-big-r pb-big-r">
     <h2 class="bold">Support</h2>
 
-    <div class="row">
-      <div class="col-md-4 col-rg-6 mt-regular-r">
-        <article class="avatar">
-          <img src="https://avatars.githubusercontent.com/u/1659006?v=4"
-            alt="Profile picture Philipp Gfeller" class="profile-picture">
-          <div>
-            <p class="bold">Philipp Gfeller</p>
-            <p>Lead UI Developer</p>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-4 col-rg-6 mt-regular-r">
-        <article class="avatar">
-          <img src="https://avatars.githubusercontent.com/u/33580481?v=4"
-            alt="Profile picture Alizé Debray" class="profile-picture">
-          <div>
-            <p class="bold">Alizé Debray</p>
-            <p>UI Developer</p>
-          </div>
-        </article>
-      </div>
-      <div class="col-md-4 col-rg-6 mt-regular-r">
-        <article class="avatar">
-          <img src="https://avatars.githubusercontent.com/u/16400253?v=4"
-            alt="Profile picture Jan Werren" class="profile-picture">
-          <div>
-            <p class="bold">Jan Werren</p>
-            <p>ICT Software Engineer</p>
-          </div>
-        </article>
-      </div>
+    <div class="d-flex flex-wrap mt-huge-r mb-huge-r profile-list">
+      <ng-container *ngFor="let dev of shuffledDevs">
+          <article class="avatar">
+            <img [src]="dev.avatar" [alt]="'Profile picture ' + dev.name" class="profile-picture" />
+            <div>
+              <p class="bold">{{ dev.name }}</p>
+              <p>{{ dev.title }}</p>
+            </div>
+          </article>
+      </ng-container>
     </div>
 
     <div class="row mt-regular-r">
       <div class="col-12 col-rg-auto mt-regular-r">
         <a
           href="https://github.com/swisspost/design-system/issues"
-          target="_blank" rel="noopener"
+          target="_blank"
+          rel="noopener"
           class="btn-primary btn btn-rg btn-animated"
-          ><span>Submit an issue</span></a
         >
+          <span>Submit an issue</span>
+        </a>
       </div>
     </div>
   </div>
@@ -50,5 +31,7 @@
 
 <footer class="container d-flex justify-content-between py-regular">
   <span class="bold">&copy; 2022 Swiss Post Ltd.</span>
-  <a href="https://github.com/swisspost/design-system" target="_blank" rel="noopener">Improve this page</a>
+  <a href="https://github.com/swisspost/design-system" target="_blank" rel="noopener">
+    Improve this page
+  </a>
 </footer>

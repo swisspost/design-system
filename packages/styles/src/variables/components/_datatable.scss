@@ -2,11 +2,11 @@
  * Copyright 2021 by Swiss Post, Information Technology
  */
 
-@use '../color';
-@use '../spacing';
-@use '../type';
+@use './../color';
+@use './../spacing';
+@use './../type';
 @use './button';
-@use '../../functions/icons';
+@use './../../functions/icons';
 
 $datatable-header-font-weight: type.$font-weight-bold;
 $datatable-header-unsorted-color: color.$gray-60;

@@ -1,14 +1,14 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
-@use '../themes/bootstrap/forms' as bf;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/forms' as bf;
 
-@use '../variables/commons';
-@use '../variables/color';
-@use '../variables/spacing';
-@use '../variables/components/forms';
-@use '../mixins/utilities';
+@use './../variables/commons';
+@use './../variables/color';
+@use './../variables/spacing';
+@use './../variables/components/forms';
+@use './../mixins/utilities';
 
 .form-range {
   // https://codepen.io/thebabydino/pen/goYYrN

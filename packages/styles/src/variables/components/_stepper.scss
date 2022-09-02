@@ -1,9 +1,9 @@
 @use './forms';
-@use '../type';
-@use '../color';
-@use '../spacing';
+@use './../type';
+@use './../color';
+@use './../spacing';
 
-@use '../../functions/icons' as icon-fn;
+@use './../../functions/icons' as icon-fn;
 
 $stepper-bar-height: spacing.$size-micro;
 
