@@ -45,7 +45,7 @@ importers:
       karma-coverage: 2.2.0
       karma-jasmine: 5.1.0
       karma-jasmine-html-reporter: 2.0.0
-      ng-packagr: 14.2.0
+      ng-packagr: 14.2.1
       rimraf: 3.0.2
       rxjs: 7.5.6
       tslib: 2.4.0
@@ -70,7 +70,7 @@ importers:
       watch: 1.0.2
       zone.js: 0.11.8
     devDependencies:
-      '@angular-devkit/build-angular': 14.2.1_hv4okzidru37lu66w4kjwr5f74
+      '@angular-devkit/build-angular': 14.2.1_dbc5tgtvc45twi63vsyoytp4ua
       '@angular-eslint/builder': 14.0.3_yqf6kl63nyoq5megxukfnom5rm
       '@angular-eslint/eslint-plugin': 14.0.3_yqf6kl63nyoq5megxukfnom5rm
       '@angular-eslint/eslint-plugin-template': 14.0.3_yqf6kl63nyoq5megxukfnom5rm
@@ -89,7 +89,7 @@ importers:
       karma-coverage: 2.2.0
       karma-jasmine: 5.1.0_karma@6.4.0
       karma-jasmine-html-reporter: 2.0.0_kn32zzqrpbpapqtjwiltm573ri
-      ng-packagr: 14.2.0_qyighklvdyfzmneeailzkkqlbq
+      ng-packagr: 14.2.1_qyighklvdyfzmneeailzkkqlbq
       rimraf: 3.0.2
       typescript: 4.8.2
 
@@ -459,7 +459,7 @@ packages:
       - webpack-cli
     dev: true
 
-  /@angular-devkit/build-angular/14.2.1_hv4okzidru37lu66w4kjwr5f74:
+  /@angular-devkit/build-angular/14.2.1_dbc5tgtvc45twi63vsyoytp4ua:
     resolution: {integrity: sha512-6FeIe2nsNH/fslZmTfbo+RCjLk3HuCQa5rb/SFf3w0mwzWCrhV0/SqnQ4+YYgkKrohmTX+q5JmJPwWnkqgdIgQ==}
     engines: {node: ^14.15.0 || >=16.10.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
     peerDependencies:
@@ -523,7 +523,7 @@ packages:
       loader-utils: 3.2.0
       mini-css-extract-plugin: 2.6.1_webpack@5.74.0
       minimatch: 5.1.0
-      ng-packagr: 14.2.0_qyighklvdyfzmneeailzkkqlbq
+      ng-packagr: 14.2.1_qyighklvdyfzmneeailzkkqlbq
       open: 8.4.0
       ora: 5.4.1
       parse5-html-rewriting-stream: 6.0.1
@@ -5013,7 +5013,7 @@ packages:
       '@npmcli/package-json': 2.0.0
       '@npmcli/run-script': 4.2.1
       bin-links: 3.0.3
-      cacache: 16.1.1
+      cacache: 16.1.2
       common-ancestor-path: 1.0.1
       json-parse-even-better-errors: 2.3.1
       json-stringify-nice: 1.1.4
@@ -5097,7 +5097,7 @@ packages:
     resolution: {integrity: sha512-n69ygIaqAedecLeVH3KnO39M6ZHiJ2dEv5A7DGvcqCB8q17BGUgW8QaanIkbWUo2aYGZqJaOORTLAlIvKjNDKA==}
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
     dependencies:
-      cacache: 16.1.1
+      cacache: 16.1.2
       json-parse-even-better-errors: 2.3.1
       pacote: 13.6.1
       semver: 7.3.7
@@ -7465,7 +7465,7 @@ packages:
     dev: true
 
   /@types/resolve/1.17.1:
-    resolution: {integrity: sha1-Ov1q2JZ8d+Q3bFmKgt3Vj0bsRdY=}
+    resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
     dependencies:
       '@types/node': 17.0.43
     dev: true
@@ -9307,32 +9307,6 @@ packages:
       promise-inflight: 1.0.1
       rimraf: 3.0.2
       ssri: 8.0.1
-      tar: 6.1.11
-      unique-filename: 1.1.1
-    transitivePeerDependencies:
-      - bluebird
-    dev: true
-
-  /cacache/16.1.1:
-    resolution: {integrity: sha512-VDKN+LHyCQXaaYZ7rA/qtkURU+/yYhviUdvqEv2LT6QPZU8jpyzEkEVAcKlKLt5dJ5BRp11ym8lo3NKLluEPLg==}
-    engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
-    dependencies:
-      '@npmcli/fs': 2.1.0
-      '@npmcli/move-file': 2.0.0
-      chownr: 2.0.0
-      fs-minipass: 2.1.0
-      glob: 8.0.3
-      infer-owner: 1.0.4
-      lru-cache: 7.10.1
-      minipass: 3.1.6
-      minipass-collect: 1.0.2
-      minipass-flush: 1.0.5
-      minipass-pipeline: 1.2.4
-      mkdirp: 1.0.4
-      p-map: 4.0.0
-      promise-inflight: 1.0.1
-      rimraf: 3.0.2
-      ssri: 9.0.1
       tar: 6.1.11
       unique-filename: 1.1.1
     transitivePeerDependencies:
@@ -15344,7 +15318,7 @@ packages:
     engines: {node: ^12.13.0 || ^14.15.0 || >=16.0.0}
     dependencies:
       agentkeepalive: 4.2.1
-      cacache: 16.1.1
+      cacache: 16.1.2
       http-cache-semantics: 4.1.0
       http-proxy-agent: 5.0.0
       https-proxy-agent: 5.0.1
@@ -15965,8 +15939,8 @@ packages:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
     dev: true
 
-  /ng-packagr/14.2.0_qyighklvdyfzmneeailzkkqlbq:
-    resolution: {integrity: sha512-Nb+2/L37CFcWmCz91USwNd87mdTfTXDb4MBl87Dkj2H53KfrAltX2psa+gTRbjE5USCX8bQeu4nRzf/Bp6Vivg==}
+  /ng-packagr/14.2.1_qyighklvdyfzmneeailzkkqlbq:
+    resolution: {integrity: sha512-o2t/a+DdhUEbXXPbR70LZcU4WcSf7wnddCiQcc3k0HrTQjxWspv0qFUdba3+0ft0dVetaywa6lc+98g/SZEKcQ==}
     engines: {node: ^14.15.0 || >=16.10.0}
     hasBin: true
     peerDependencies:
@@ -16763,7 +16737,7 @@ packages:
       '@npmcli/installed-package-contents': 1.0.7
       '@npmcli/promise-spawn': 3.0.0
       '@npmcli/run-script': 4.2.1
-      cacache: 16.1.1
+      cacache: 16.1.2
       chownr: 2.0.0
       fs-minipass: 2.1.0
       infer-owner: 1.0.4
