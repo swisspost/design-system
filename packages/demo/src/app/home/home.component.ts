@@ -78,6 +78,12 @@ export class HomeComponent {
         formradios_validationfeedbackclasses: false
       },
       ngbootstrap: {
+        buttons_labelclass: false,
+        buttons_inputclass: false,
+        buttons_grouptoggleclass: false,
+        datepickers_variables: false,
+        modals_closebuttoncontent: false,
+        modals_close: false
       },
       post: {
       }

@@ -1318,7 +1318,149 @@
                 </button>
               </div>
             </ng-template>
-            <ng-template ngbPanelContent></ng-template>
+            <ng-template ngbPanelContent>
+              <!-- ngBootstrap Buttons -->
+              <div>
+                <h5 class="h6 bold">Buttons</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapbuttons_labelclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.ngbootstrap.buttons_labelclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapbuttons_labelclass">
+                        <span class="change-badge bg-danger">breaking</span> Refactored <code>label.btn-primary</code> to <code>label.btn.btn-secondary</code>.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapbuttons_inputclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.ngbootstrap.buttons_inputclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapbuttons_inputclass">
+                        <span class="change-badge bg-danger">breaking</span> Required class <code>.btn-check</code> on the <code>input</code> element.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapbuttons_grouptoggleclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.ngbootstrap.buttons_grouptoggleclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapbuttons_grouptoggleclass">
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.btn-group-toggle</code> class.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/ng-bootstrap-samples/buttons">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- ngBootstrap DatePicker -->
+              <div>
+                <h5 class="mt-4 h6 bold">DatePicker</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapdatepickers_variables"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.ngbootstrap.datepickers_variables
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapdatepickers_variables">
+                      <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">padding</span> variables.
+                      <ul class="mt-2">
+                        <li><code>$ngb-dp-icon-padding</code></li>
+                        <li><code>$ngb-dp-icon-padding-sm</code></li>
+                        <li><code>$ngb-dp-icon-padding-rg</code></li>
+                        <li><code>$ngb-dp-icon-padding-lg</code></li>
+                      </ul>
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/ng-bootstrap-samples/datepicker">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- ngBootstrap Modal -->
+              <div>
+                <h5 class="mt-4 h6 bold">Modal</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapmodals_closebuttoncontent"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.ngbootstrap.modals_closebuttoncontent
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapmodals_closebuttoncontent">
+                      <span class="change-badge bg-danger">breaking</span> The <span class="highlight">close-button</span> has no content anymore.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapmodals_close"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.ngbootstrap.modals_close"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapmodals_close">
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/ng-bootstrap-samples/modal">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+            </ng-template>
           </ngb-panel>
 
           <ngb-panel id="post">
