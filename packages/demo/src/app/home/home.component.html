@@ -137,128 +137,60 @@
           [destroyOnHide]="false"
           (panelChange)="migrationAccordionChange($event)"
         >
-          <ngb-panel id="general" title="General">
-            <ng-template ngbPanelContent>
-              <h5 class="h6 regular">Variables</h5>
-              <ul class="list-unstyled my-3">
-                <li>
-                  <div class="form-check">
-                    <input
-                      id="variable_isolateComponents"
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="componentMigrationAccordionCheckboxes.variable_isolateComponents"
-                      (change)="componentMigrationAccordionCheckboxesChange()"
-                    />
-                    <!-- prettier-ignore -->
-                    <label class="form-check-label" for="variable_isolateComponents">
-                        <span class="change-badge bg-danger">breaking</span> Removed <code>$isolate-components</code> variable.
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      id="variable_fontSizeMap"
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="componentMigrationAccordionCheckboxes.variable_fontSizeMap"
-                      (change)="componentMigrationAccordionCheckboxesChange()"
-                    />
-                    <!-- prettier-ignore -->
-                    <label class="form-check-label" for="variable_fontSizeMap">
-                      <span class="change-badge bg-danger">breaking</span> Removed <code>$font-size-map</code> variable.
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      id="variable_features"
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="componentMigrationAccordionCheckboxes.variable_features"
-                      (change)="componentMigrationAccordionCheckboxesChange()"
-                    />
-                    <!-- prettier-ignore -->
-                    <label class="form-check-label" for="variable_features">
-                      <span class="change-badge bg-danger">breaking</span> Moved bootstrap option-variables from <code>src/themes/bootstrap/options.scss</code> to <code>src/variables/features.scss</code>.<br>
-                      Affected variables:
-                      <ul class="mt-2">
-                        <li><code>$enable-caret</code></li>
-                        <li><code>$enable-rounded</code></li>
-                        <li><code>$enable-shadows</code></li>
-                        <li><code>$enable-gradients</code></li>
-                        <li><code>$enable-transitions</code></li>
-                        <li><code>$enable-hover-media-query</code></li>
-                        <li><code>$enable-grid-classes</code></li>
-                        <li><code>$variable-prefix</code></li>
-                      </ul>
-                    </label>
-                  </div>
-                </li>
-                <li>
-                  <div class="form-check">
-                    <input
-                      id="variable_floatingLabel"
-                      class="form-check-input"
-                      type="checkbox"
-                      [(ngModel)]="componentMigrationAccordionCheckboxes.variable_floatingLabel"
-                      (change)="componentMigrationAccordionCheckboxesChange()"
-                    />
-                    <!-- prettier-ignore -->
-                    <label class="form-check-label" for="variable_floatingLabel">
-                      <span class="change-badge bg-danger">breaking</span> Removed floating-label-variables:<br>
-                      <ul class="mt-2">
-                        <li><code>$form-floating-label-padding-t</code></li>
-                        <li><code>$form-floating-label-padding-b</code></li>
-                        <li><code>$form-floating-textarea-line-height</code></li>
-                        <li><code>$form-floating-textarea-padding-t</code></li>
-                        <li><code>$form-floating-textarea-padding-b</code></li>
-                      </ul>
-                    </label>
-                  </div>
-                </li>
-              </ul>
-              <h5 class="h6">Typo</h5>
-              <h5 class="h6">Colors</h5>
+          <ngb-panel id="general">
+            <ng-template ngbPanelHeader let-opened="opened">
+              <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                <button ngbPanelToggle class="accordion-button">
+                  General
+                  <small>
+                    {{ getMigrationAccordionGroupedCheckboxesChecked('general') }}
+                  </small>
+                </button>
+              </div>
             </ng-template>
+            <ng-template ngbPanelContent></ng-template>
           </ngb-panel>
-          <ngb-panel id="bootstrap" title="Bootstrap">
-            <ng-template ngbPanelContent>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
-              ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-              it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-              excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them accusamus labore
-              sustainable VHS.
+
+          <ngb-panel id="bootstrap">
+            <ng-template ngbPanelHeader let-opened="opened">
+              <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                <button ngbPanelToggle class="accordion-button">
+                  Bootstrap
+                  <small>
+                    {{ getMigrationAccordionGroupedCheckboxesChecked('bootstrap') }}
+                  </small>
+                </button>
+              </div>
             </ng-template>
+            <ng-template ngbPanelContent></ng-template>
           </ngb-panel>
-          <ngb-panel *ngIf="isMigratingAngular" id="ngbootstrap" title="Ng-bootstrap">
-            <ng-template ngbPanelContent>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
-              ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-              it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-              excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them accusamus labore
-              sustainable VHS.
+
+          <ngb-panel id="ngbootstrap" *ngIf="isMigratingAngular">
+            <ng-template ngbPanelHeader let-opened="opened">
+              <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                <button ngbPanelToggle class="accordion-button">
+                  NgBootstrap
+                  <small>
+                    {{ getMigrationAccordionGroupedCheckboxesChecked('ngbootstrap') }}
+                  </small>
+                </button>
+              </div>
             </ng-template>
+            <ng-template ngbPanelContent></ng-template>
           </ngb-panel>
-          <ngb-panel id="post" title="Post specific">
-            <ng-template ngbPanelContent>
-              Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson
-              ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck
-              quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on
-              it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh
-              helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan
-              excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim
-              aesthetic synth nesciunt you probably haven't heard of them accusamus labore
-              sustainable VHS.
+
+          <ngb-panel id="post">
+            <ng-template ngbPanelHeader let-opened="opened">
+              <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                <button ngbPanelToggle class="accordion-button">
+                  Post
+                  <small>
+                    {{ getMigrationAccordionGroupedCheckboxesChecked('post') }}
+                  </small>
+                </button>
+              </div>
             </ng-template>
+            <ng-template ngbPanelContent></ng-template>
           </ngb-panel>
         </ngb-accordion>
       </li>

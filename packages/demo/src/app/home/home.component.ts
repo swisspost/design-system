@@ -10,8 +10,8 @@ import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent {
   public static MIGRATION_TYPE_INTRANET_KEY: string = 'post:migration_type_intranet';
   public static MIGRATION_TYPE_ANGULAR_KEY: string = 'post:migration_type_angular';
-  public static COMPONENT_MIGRATION_ACCORDION_CHECKBOXES_KEY: string = 'post:component_migration_accordion_checkboxes'
   public static MIGRATION_ACCORDION_KEY: string = 'post:migration_accordion'
+  public static MIGRATION_ACCORDION_GROUPED_CHECKBOXES_KEY: string = 'post:migration_accordion_grouped_checkboxes'
   public version: string = environment.VERSION;
   public stylesVersion: string = environment.STYLES_VERSION;
   public angularVersion: string = environment.ANGULAR_VERSION;
@@ -21,8 +21,20 @@ export class HomeComponent {
   public isIE11 = false;
   public isMigratingIntranet = this.getLocaleStorage(this.migrationTypeIntranetKey) ?? false;
   public isMigratingAngular = this.getLocaleStorage(this.migrationTypeAngularKey) ?? true;
-  public componentMigrationAccordionCheckboxes: Object = this.getLocaleStorage(this.componentMigrationAccordionCheckboxesKey) ?? {};
   public migrationAccordionActiveIds: Array<string> = this.getLocaleStorage(this.migrationAccordionKey) ?? [];
+  public migrationAccordionGroupedCheckboxes: Object = Object.assign(
+    {
+      general: {
+      },
+      bootstrap: {
+      },
+      ngbootstrap: {
+      },
+      post: {
+      }
+    },
+    this.getLocaleStorage(this.migrationAccordionGroupedCheckboxesKey) ?? {}
+  );
 
   constructor() {
     // Show deprecation warning if anybody still uses IE11
@@ -41,8 +53,8 @@ export class HomeComponent {
     return HomeComponent.MIGRATION_ACCORDION_KEY;
   }
 
-  get componentMigrationAccordionCheckboxesKey () {
-    return HomeComponent.COMPONENT_MIGRATION_ACCORDION_CHECKBOXES_KEY;
+  get migrationAccordionGroupedCheckboxesKey () {
+    return HomeComponent.MIGRATION_ACCORDION_GROUPED_CHECKBOXES_KEY;
   }
 
   private getCleanVersion (version: string) {
@@ -85,6 +97,13 @@ export class HomeComponent {
     window.localStorage.setItem(key, JSON.stringify(value));
   }
 
+  public getMigrationAccordionGroupedCheckboxesChecked (group = '') {
+    const checkboxValues = Object.values(this.migrationAccordionGroupedCheckboxes[group] ?? {});
+    const checkedValues = checkboxValues.filter(v => v === true);
+
+    return `${checkedValues.length} of ${checkboxValues.length} done`;
+  } 
+
   public migrationAccordionChange ($event: NgbPanelChangeEvent) {
     if ($event.nextState) {
       this.migrationAccordionActiveIds = Array.from(new Set(this.migrationAccordionActiveIds.concat($event.panelId)));
@@ -95,7 +114,7 @@ export class HomeComponent {
     this.setLocaleStorage(this.migrationAccordionKey, this.migrationAccordionActiveIds);
   }
 
-  public componentMigrationAccordionCheckboxesChange () {
-    this.setLocaleStorage(this.componentMigrationAccordionCheckboxesKey, this.componentMigrationAccordionCheckboxes);
+  public migrationAccordionGroupedCheckboxesChange () {
+    this.setLocaleStorage(this.migrationAccordionGroupedCheckboxesKey, this.migrationAccordionGroupedCheckboxes);
   }
 }

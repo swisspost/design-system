@@ -92,6 +92,17 @@
   }
 }
 
+.accordion-button {
+  @include post.font-curve(post.$accordion-font-curve);
+
+  small {
+    @include post.font-curve('tiny');
+    display: inline-block;
+    padding-left: 1em;
+    font-weight: post.$font-weight-base;
+  }
+}
+
 .highlight {
   display: inline;
   font-family: post.$font-family-monospace;
