@@ -86,6 +86,22 @@ export class HomeComponent {
         modals_close: false
       },
       post: {
+        accordions_wrapper: false,
+        accordions_summaryclasses: false,
+        accordions_classes: false,
+        customselects_classes: false,
+        customselects_menuclass: false,
+        sizings_paddingsleftright: false,
+        subnavigations_invertedclass: false,
+        formswitches_classes: false,
+        formswitches_labelclasses: false,
+        formswitches_validationclasses: false,
+        formswitches_validationfeedbackclasses: false,
+        formswitches_switchtoggleclass: false,
+        topicteasers_imageattributes: false,
+        topicteasers_imagecontainergridclasses: false,
+        topicteasers_contentcontainergridclasses: false,
+        topicteasers_linklistfontcurve: false
       }
     },
     this.getLocaleStorage(this.migrationAccordionGroupedCheckboxesKey) ?? {}
