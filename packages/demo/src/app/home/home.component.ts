@@ -10,8 +10,8 @@ import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 export class HomeComponent {
   public static MIGRATION_TYPE_INTRANET_KEY: string = 'post:migration_type_intranet';
   public static MIGRATION_TYPE_ANGULAR_KEY: string = 'post:migration_type_angular';
-  public static COMPONENT_MIGRATION_ACCORDION_KEY: string = 'post:component_migration_accordion'
   public static COMPONENT_MIGRATION_ACCORDION_CHECKBOXES_KEY: string = 'post:component_migration_accordion_checkboxes'
+  public static MIGRATION_ACCORDION_KEY: string = 'post:migration_accordion'
   public version: string = environment.VERSION;
   public stylesVersion: string = environment.STYLES_VERSION;
   public angularVersion: string = environment.ANGULAR_VERSION;
@@ -21,8 +21,8 @@ export class HomeComponent {
   public isIE11 = false;
   public isMigratingIntranet = this.getLocaleStorage(this.migrationTypeIntranetKey) ?? false;
   public isMigratingAngular = this.getLocaleStorage(this.migrationTypeAngularKey) ?? true;
-  public componentMigrationAccordionActiveIds: Array<string> = this.getLocaleStorage(this.componentMigrationAccordionKey) ?? [];
   public componentMigrationAccordionCheckboxes: Object = this.getLocaleStorage(this.componentMigrationAccordionCheckboxesKey) ?? {};
+  public migrationAccordionActiveIds: Array<string> = this.getLocaleStorage(this.migrationAccordionKey) ?? [];
 
   constructor() {
     // Show deprecation warning if anybody still uses IE11
@@ -37,8 +37,8 @@ export class HomeComponent {
     return HomeComponent.MIGRATION_TYPE_ANGULAR_KEY;
   }
 
-  get componentMigrationAccordionKey () {
-    return HomeComponent.COMPONENT_MIGRATION_ACCORDION_KEY;
+  get migrationAccordionKey () {
+    return HomeComponent.MIGRATION_ACCORDION_KEY;
   }
 
   get componentMigrationAccordionCheckboxesKey () {
@@ -82,18 +82,17 @@ export class HomeComponent {
   }
 
   public setLocaleStorage (key: string, value: any) {
-    console.log(key, value);
     window.localStorage.setItem(key, JSON.stringify(value));
   }
 
-  public componentMigrationAccordionChange ($event: NgbPanelChangeEvent) {
+  public migrationAccordionChange ($event: NgbPanelChangeEvent) {
     if ($event.nextState) {
-      this.componentMigrationAccordionActiveIds = Array.from(new Set(this.componentMigrationAccordionActiveIds.concat($event.panelId)));
+      this.migrationAccordionActiveIds = Array.from(new Set(this.migrationAccordionActiveIds.concat($event.panelId)));
     } else {
-      this.componentMigrationAccordionActiveIds = this.componentMigrationAccordionActiveIds.filter(id => id !== $event.panelId);
+      this.migrationAccordionActiveIds = this.migrationAccordionActiveIds.filter(id => id !== $event.panelId);
     }
 
-    this.setLocaleStorage(this.componentMigrationAccordionKey, this.componentMigrationAccordionActiveIds);
+    this.setLocaleStorage(this.migrationAccordionKey, this.migrationAccordionActiveIds);
   }
 
   public componentMigrationAccordionCheckboxesChange () {

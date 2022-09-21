@@ -133,9 +133,9 @@
 
         <!-- Post migration table -->
         <ngb-accordion
-          [activeIds]="componentMigrationAccordionActiveIds"
+          [activeIds]="migrationAccordionActiveIds"
           [destroyOnHide]="false"
-          (panelChange)="componentMigrationAccordionChange($event)"
+          (panelChange)="migrationAccordionChange($event)"
         >
           <ngb-panel id="general" title="General">
             <ng-template ngbPanelContent>
