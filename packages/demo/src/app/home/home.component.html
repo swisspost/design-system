@@ -148,7 +148,346 @@
                 </button>
               </div>
             </ng-template>
-            <ng-template ngbPanelContent></ng-template>
+            <ng-template ngbPanelContent>
+              <!-- General Variables -->
+              <div>
+                <h5 class="mt-4 h6 bold">Variables</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_isolatecomponents"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_isolatecomponents
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_isolatecomponents">
+                          <span class="change-badge bg-danger">breaking</span> Removed <code>$isolate-components</code> variable.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_fontsizemap"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_fontsizemap
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_fontsizemap">
+                        <span class="change-badge bg-danger">breaking</span> Removed <code>$font-size-map</code> variable.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_lineheightrg"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_lineheightrg
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_lineheightrg">
+                        <span class="change-badge bg-danger">breaking</span> Removed <code>$line-height-rg</code> variable.<br>
+                        <span class="highlight">Line-heights</span> are now relative to the font-size.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_floatinglabel"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_floatinglabel
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_floatinglabel">
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">floating-label</span> variables.<br>
+                        <ul class="mt-2">
+                          <li><code>$form-floating-label-padding-t</code></li>
+                          <li><code>$form-floating-label-padding-b</code></li>
+                          <li><code>$form-floating-textarea-line-height</code></li>
+                          <li><code>$form-floating-textarea-padding-t</code></li>
+                          <li><code>$form-floating-textarea-padding-b</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_socialmediacolors"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_socialmediacolors
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_socialmediacolors">
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">socialmedia-color</span> variables.<br>
+                        <ul class="mt-2">
+                          <li><code>$facebook</code></li>
+                          <li><code>$instagram</code></li>
+                          <li><code>$youtube</code></li>
+                          <li><code>$snapchat</code></li>
+                          <li><code>$twitter</code></li>
+                          <li><code>$xing</code></li>
+                          <li><code>$linkedin</code></li>
+                          <li><code>$kununu</code></li>
+                          <li><code>$email</code></li>
+                          <li><code>$brand-colors</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_options"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.variables_options"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_options">
+                        <span class="change-badge bg-danger">breaking</span> Moved bootstrap option variables from file <span class="highlight">src/themes/bootstrap/options.scss</span> to <span class="highlight">src/variables/features.scss</span>.<br>
+                        <ul class="mt-2">
+                          <li><code>$enable-caret</code></li>
+                          <li><code>$enable-rounded</code></li>
+                          <li><code>$enable-shadows</code></li>
+                          <li><code>$enable-gradients</code></li>
+                          <li><code>$enable-transitions</code></li>
+                          <li><code>$enable-hover-media-query</code></li>
+                          <li><code>$enable-grid-classes</code></li>
+                          <li><code>$variable-prefix</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_colors"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.variables_colors"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_colors">
+                        <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">color</span> variables.
+                        <ul class="mt-2">
+                          <li><code>$gray-cararra</code> became <code>$gray-background</code></li>
+                          <li><code>$gray-pampas</code> became <code>$gray-background-light</code></li>
+                          <li><code>$colors</code> became <code>$background-colors</code></li>
+                          <li><code>$icon-colors</code> became <code>$contextual-colors</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_lineheigts"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_lineheigts
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_lineheigts">
+                        Dropped usage of <span class="highlight">line-height</span> variables.<br>
+                        <ul class="mt-2">
+                          <li><code>$line-height-sm</code></li>
+                          <li><code>$line-height-lg</code></li>
+                        </ul>
+                        <p class="info">The variables remain available due to bootstrap.</p>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_lineheightlighter"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_lineheightlighter
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_lineheightlighter">
+                        Dropped usage of <code>$font-weight-lighter</code> variable.<br>
+                        Also removed corresponding <code>@font-face</code> rule.<br>
+                        <p class="info">The variable remains available due to bootstrap.</p>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_headingfontsizes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_headingfontsizes
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_headingfontsizes">
+                        Dropped useage of <span class="highlight">font-size</span> variables.<br>
+                        Headings now have responsive font-sizes.<br>
+                        <ul class="mt-2">
+                          <li><code>$h1-font-size</code></li>
+                          <li><code>$h2-font-size</code></li>
+                          <li><code>$h3-font-size</code></li>
+                          <li><code>$h4-font-size</code></li>
+                          <li><code>$h5-font-size</code></li>
+                          <li><code>$h6-font-size</code></li>
+                        </ul>
+                        <p class="info">The variables remain available due to bootstrap.</p>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- General Mixins -->
+              <div>
+                <h5 class="mt-4 h6 bold">Mixins</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalmixins_fontsizelineheight"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.mixins_fontsizelineheight
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalmixins_fontsizelineheight">
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">font-size</span> and <span class="highlight">line-height</span> mixins:<br>
+                        <ul class="mt-2">
+                          <li><code>font-size-calc</code></li>
+                          <li><code>font-size-and-lineheight</code></li>
+                          <li><code>font-line-height</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- General Classes -->
+              <div>
+                <h5 class="mt-4 h6 bold">Classes</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalclasses_bgopacity"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_bgopacity"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalclasses_bgopacity">
+                        <span class="change-badge bg-danger">breaking</span> Removed <code>.bg-[colorname]-opacity-[opacityvalue]</code> classes.<br>
+                        Use <code>.bg-[colorname]</code> together with <code>var(--bg-opacity)</code> instead.<br>
+                        <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
+                        <p class="info">Replace [opacityvalue] for example with "0", "0.5" or "1".</p>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalclasses_secondary"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_secondary"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalclasses_secondary">
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">secondary</span> classes.<br>
+                        <ul class="mt-2">
+                          <li><code>.bg-secondary</code></li>
+                          <li><code>.border-secondary</code></li>
+                          <li><code>.text-secondary</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalclasses_textauto"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_textauto"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalclasses_textauto">
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.text-auto</code> class.<br>
+                        Colors are now automatically handled by <code>var(--post-contrast-color)</code>.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- General Properties -->
+              <div>
+                <h5 class="h6 bold">Properties</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalproperites_rtlmode"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.properites_rtlmode"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalproperites_rtlmode">
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> For better support of <span class="highlight">rtl-mode</span>,<br>
+                        <code>left</code> and <code>right</code> have switched to <code>start</code> and <code>end</code>.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
           </ngb-panel>
 
           <ngb-panel id="bootstrap">
