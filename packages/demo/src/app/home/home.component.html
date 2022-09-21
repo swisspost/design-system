@@ -62,21 +62,18 @@
 
     <ol class="bubble-tea">
       <li>
-        <h4 class="h5 bold">Clean start</h4>
+        <h4 class="h5 bold">Clean start 🧹</h4>
         <p>Create a branch and commit all changes to have a clean, reversible starting point.</p>
       </li>
       <li>
-        <h4 class="h5 bold">Uninstall the old packages</h4>
+        <h4 class="h5 bold">Uninstall the old packages 🗑️</h4>
         <!-- prettier-ignore -->
-        <p>
-          Uninstall the old styles
-          <span *ngIf="isMigratingIntranet">and the old intranet header</span> package<span *ngIf="isMigratingIntranet">s</span>.
-        </p>
+        <p>Uninstall the old styles <span *ngIf="isMigratingIntranet">and the old intranet header</span> package<span *ngIf="isMigratingIntranet">s</span>.</p>
       </li>
       <li>
+        <!-- prettier-ignore -->
         <h4 class="h5 bold">
-          Install the new package
-          <span *ngIf="isMigratingIntranet">s</span>
+          Install the new package<span *ngIf="isMigratingIntranet">s</span> 📦
         </h4>
         <code
           class="d-block p-3"
@@ -88,7 +85,7 @@
         ></code>
       </li>
       <li *ngIf="isMigratingAngular">
-        <h4 class="h5 bold">Automatic migration tool</h4>
+        <h4 class="h5 bold">Automatic migration tool ⚙️</h4>
         <p>
           If you are migrating an Angular application, you can profit from our Migration Schematics.
           You can run the following code, to automatically patch the changes that can be
@@ -101,11 +98,7 @@
         ></code>
       </li>
       <li>
-        <h4 class="h5 bold">Component migration</h4>
-        <p>
-          Some changes cannot be automatically migrated. Check the list of breaking changes to see
-          if you are affected and apply the transformation manually.
-        </p>
+        <h4 class="h5 bold">Component migration 🤓</h4>
 
         <h5 class="h6 bold">Deprecations</h5>
         <ul class="mt-2 mb-3">
@@ -127,10 +120,16 @@
           </li>
         </ul>
 
-        <div class="alert alert-info mt-3">
-          <h4 class="alert-heading">Checkboxes</h4>
-          <p>Use the Checkboxes to memorize, what tasks you've allready done.</p>
-        </div>
+        <h5 class="h6 bold">Migrations list</h5>
+        <p>
+          Some changes cannot be automatically migrated.
+          <br />
+          Check the list of changes to see if you are affected and apply the transformation
+          manually.
+        </p>
+        <p class="info" *ngIf="isMigratingAngular">
+          Changes flaged with ⚙️ can be automatically migrated with our migration tool.
+        </p>
 
         <!-- Post migration table -->
         <ngb-accordion
@@ -264,7 +263,7 @@
         </ngb-accordion>
       </li>
       <li>
-        <h4 class="h5 bold">Bootstrap migration</h4>
+        <h4 class="h5 bold">Bootstrap migration 🥾</h4>
         <p>
           Check the
           <a href="https://getbootstrap.com/docs/5.0/migration/" target="_blank">
@@ -274,8 +273,7 @@
         </p>
       </li>
       <li>
-        <!-- https://getemoji.com/ -->
-        <h4 class="h5 bold">Treat yourself to a 🍺, you've done a great job!</h4>
+        <h4 class="h5 bold">Treat yourself to a 🍺, you've done a great job! 🚀</h4>
       </li>
     </ol>
   </div>
