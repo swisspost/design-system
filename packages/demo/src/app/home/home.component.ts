@@ -144,7 +144,7 @@ export class HomeComponent {
     } else if (filter === 'patch' || filter === 'p') {
       matchArray = cleanVersion.match(/^(?:\d+\.\d+\.(\d+))/);
     } else if (filter === 'pre') {
-      matchArray = cleanVersion.match(/^(?:\d+\.\d+\.\d+[^\w\r\n]?(.*))$/);
+      matchArray = cleanVersion.match(/^(?:\d+\.\d+\.\d+[^\w\r\n]?)(.*)$/);
     } else if (filter === 'majorminor' || filter === 'Mm') {
       matchArray = cleanVersion.match(/^(?:(\d+\.\d+)\.\d+)/)
     } else if (filter === 'majorminorpatch' || filter === 'Mmp') {
@@ -157,6 +157,8 @@ export class HomeComponent {
       return cleanVersion.length > 0 ? cleanVersion : version;
     }
   }
+
+  // test
 
   private getLocaleStorage (key: string) {
     return JSON.parse(window.localStorage.getItem(key));
