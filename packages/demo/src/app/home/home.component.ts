@@ -144,7 +144,7 @@ export class HomeComponent {
     } else if (filter === 'patch' || filter === 'p') {
       matchArray = cleanVersion.match(/^(?:\d+\.\d+\.(\d+))/);
     } else if (filter === 'pre') {
-      matchArray = cleanVersion.match(/^(?:\d+\.\d+\.(?:\d+[^a-zA-Z0-9]|\d+)(.*))$/);
+      matchArray = cleanVersion.match(/^(?:\d+\.\d+\.\d+[\W_]?)(.*)/);
     } else if (filter === 'majorminor' || filter === 'Mm') {
       matchArray = cleanVersion.match(/^(?:(\d+\.\d+)\.\d+)/)
     } else if (filter === 'majorminorpatch' || filter === 'Mmp') {
