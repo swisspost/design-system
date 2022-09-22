@@ -138,25 +138,23 @@ export class HomeComponent {
     let matchArray: RegExpMatchArray = null;
 
     if (filter === 'major' || filter === 'M') {
-      matchArray = cleanVersion.match(/^\d+/);
+      matchArray = cleanVersion.match(/^(?:(\d+)\.\d+\.\d+)/);
     } else if (filter === 'minor' || filter === 'm') {
-      matchArray = cleanVersion.match(/(?<=\d+\.)\d+/);
+      matchArray = cleanVersion.match(/^(?:\d+\.(\d+)\.\d+)/);
     } else if (filter === 'patch' || filter === 'p') {
-      matchArray = cleanVersion.match(/(?<=\d+\.\d+\.)\d+/);
+      matchArray = cleanVersion.match(/^(?:\d+\.\d+\.(\d+))/);
     } else if (filter === 'pre') {
-      matchArray = cleanVersion.match(/(?<=\d+\.\d+\.\d+)[^\d].*/);
+      matchArray = cleanVersion.match(/^(?:\d+\.\d+\.\d+(?:\.|-|_)?(.*))$/);
     } else if (filter === 'majorminor' || filter === 'Mm') {
-      matchArray = cleanVersion.match(/^\d+\.\d+/)
+      matchArray = cleanVersion.match(/^(?:(\d+\.\d+)\.\d+)/)
     } else if (filter === 'majorminorpatch' || filter === 'Mmp') {
-      matchArray = cleanVersion.match(/^\d+\.\d+\.\d+/)
+      matchArray = cleanVersion.match(/^(\d+\.\d+\.\d+)/)
     }
 
-    if (matchArray !== null && matchArray.length > 0) {
-      return matchArray[0];
-    } else if (cleanVersion.length > 0) {
-      return cleanVersion;
+    if (filter) {
+      return matchArray !== null && matchArray[1] ? matchArray[1] : null;
     } else {
-      return version;
+      return cleanVersion.length > 0 ? cleanVersion : version;
     }
   }
 
