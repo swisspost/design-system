@@ -144,7 +144,7 @@ export class HomeComponent {
     } else if (filter === 'patch' || filter === 'p') {
       matchArray = cleanVersion.match(/^(?:\d+\.\d+\.(\d+))/);
     } else if (filter === 'pre') {
-      matchArray = cleanVersion.match(/^(?:\d+\.\d+\.\d+(?:[^\w](.*)|(.*)))$/);
+      matchArray = cleanVersion.match(/^(?:\d+\.\d+\.\d+[\W]?(.*))$/);
     } else if (filter === 'majorminor' || filter === 'Mm') {
       matchArray = cleanVersion.match(/^(?:(\d+\.\d+)\.\d+)/)
     } else if (filter === 'majorminorpatch' || filter === 'Mmp') {
@@ -152,7 +152,7 @@ export class HomeComponent {
     }
 
     if (filter) {
-      return matchArray !== null && matchArray[matchArray.length - 1] ? matchArray[matchArray.length - 1] : null;
+      return matchArray !== null && matchArray[1] ? matchArray[1] : null;
     } else {
       return cleanVersion.length > 0 ? cleanVersion : version;
     }
