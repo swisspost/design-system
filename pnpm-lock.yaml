@@ -281,7 +281,7 @@ importers:
       rimraf: 3.0.2
       sass: 1.54.9
       sass-loader: 10.1.1
-      storybook-dark-mode: 1.1.0
+      storybook-dark-mode: 1.1.2
       style-loader: 2.0.0
       stylelint: 14.11.0
       stylelint-config-prettier: 9.0.3
@@ -316,7 +316,7 @@ importers:
       rimraf: 3.0.2
       sass: 1.54.9
       sass-loader: 10.1.1_sass@1.54.9
-      storybook-dark-mode: 1.1.0
+      storybook-dark-mode: 1.1.2
       style-loader: 2.0.0
       stylelint: 14.11.0
       stylelint-config-prettier: 9.0.3_stylelint@14.11.0
@@ -19460,16 +19460,24 @@ packages:
     resolution: {integrity: sha512-CMtO2Uneg3SAz/d6fZ/6qbqqQHi2ynq6/KzMD/26gTkiEShCcpqFfTHgOxsE0egAq6SX3FmN4CeSqn8BzXQkJg==}
     dev: true
 
-  /storybook-dark-mode/1.1.0:
-    resolution: {integrity: sha512-F+hG02zYGBzxGTUonA1XDV/CtMYm3OjF38Tu1CIUN+w+8hwUrwLcOtgtLLw6VjSrZdJ/ECK+tjXdKTV4oZqAXw==}
+  /storybook-dark-mode/1.1.2:
+    resolution: {integrity: sha512-L5QjJN49bl+ktprM6faMkTeW+LCvuMYWQaRo8/JGSMmzomIjLT7Yo20UiTsnMgMYyYWYF5O4EK/F3OvjDNp8tQ==}
     peerDependencies:
-      '@storybook/addons': ^6.0.0
-      '@storybook/api': ^6.0.0
-      '@storybook/components': ^6.0.0
-      '@storybook/core-events': ^6.0.0
-      '@storybook/theming': ^6.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
     dependencies:
+      '@storybook/addons': 6.5.10
+      '@storybook/api': 6.5.10
+      '@storybook/components': 6.5.10
+      '@storybook/core-events': 6.5.10
+      '@storybook/theming': 6.5.10
       fast-deep-equal: 3.1.3
+      global: 4.4.0
       memoizerific: 1.11.3
     dev: true
 
