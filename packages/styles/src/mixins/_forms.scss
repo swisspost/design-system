@@ -104,7 +104,7 @@
   outline-offset: forms.$input-focus-outline-thickness;
 
   /* Compatibility with button-group */
-  &:is(:focus-visible, :focus-within) {
+  &:is(:focus-visible, :focus-within, .pretend-focus) {
     outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
   }
 }
