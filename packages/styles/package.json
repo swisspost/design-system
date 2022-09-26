@@ -27,7 +27,9 @@
     "format": "prettier src/**/*.scss --write",
     "start": "gulp watch",
     "storybook": "start-storybook -p 6006 --quiet",
+    "storybook:snapshots": "start-server-and-test 'start-storybook -p 60006 --quiet --no-open' 60006 test:snapshots",
     "test": "jest",
+    "test:snapshots": "percy exec -- cypress run --record false",
     "test:ci": "jest"
   },
   "dependencies": {
