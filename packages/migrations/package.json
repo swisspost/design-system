@@ -26,8 +26,8 @@
   "dependencies": {
     "@angular-devkit/core": "14.2.3",
     "@angular-devkit/schematics": "14.2.3",
-    "@angular/compiler": "14.2.2",
-    "@angular/core": "14.2.2",
+    "@angular/compiler": "14.2.3",
+    "@angular/core": "14.2.3",
     "rxjs": "7.5.6",
     "typescript": "4.8.2",
     "zone.js": "0.11.8"
