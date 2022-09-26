@@ -59,7 +59,7 @@
     "rimraf": "3.0.2",
     "sass": "1.54.9",
     "sass-loader": "10.1.1",
-    "storybook-dark-mode": "1.1.0",
+    "storybook-dark-mode": "1.1.2",
     "style-loader": "2.0.0",
     "stylelint": "14.11.0",
     "stylelint-config-prettier": "9.0.3",
