@@ -45,7 +45,7 @@
     "@storybook/manager-webpack4": "6.5.10",
     "@storybook/preset-scss": "1.0.3",
     "@storybook/testing-library": "0.0.13",
-    "autoprefixer": "10.4.8",
+    "autoprefixer": "10.4.12",
     "babel-loader": "8.2.5",
     "css-loader": "5.2.7",
     "glob": "8.0.3",
