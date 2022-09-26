@@ -17,18 +17,18 @@
     "access": "public"
   },
   "scripts": {
-    "clean": "rimraf out-tsc dist/*",
     "prebuild": "npm run clean",
     "build": "gulp build",
+    "build:storybook": "build-storybook",
     "build:ci": "gulp build",
+    "clean": "rimraf out-tsc dist/*",
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",
     "format": "prettier src/**/*.scss --write",
-    "test": "jest",
-    "test:ci": "jest",
     "start": "gulp watch",
     "storybook": "start-storybook -p 6006 --quiet",
-    "build:storybook": "build-storybook"
+    "test": "jest",
+    "test:ci": "jest"
   },
   "dependencies": {
     "@popperjs/core": "2.11.6",
