@@ -276,7 +276,7 @@ importers:
       gulp-sass: 5.1.0
       jest: 29.0.3
       postcss: 8.4.16
-      postcss-scss: 4.0.4
+      postcss-scss: 4.0.5
       prettier: 2.7.1
       rimraf: 3.0.2
       sass: 1.54.9
@@ -311,7 +311,7 @@ importers:
       gulp-sass: 5.1.0
       jest: 29.0.3
       postcss: 8.4.16
-      postcss-scss: 4.0.4_postcss@8.4.16
+      postcss-scss: 4.0.5_postcss@8.4.16
       prettier: 2.7.1
       rimraf: 3.0.2
       sass: 1.54.9
@@ -17446,8 +17446,8 @@ packages:
       postcss: 8.4.16
     dev: true
 
-  /postcss-scss/4.0.4_postcss@8.4.16:
-    resolution: {integrity: sha512-aBBbVyzA8b3hUL0MGrpydxxXKXFZc5Eqva0Q3V9qsBOLEMsjb6w49WfpsoWzpEgcqJGW4t7Rio8WXVU9Gd8vWg==}
+  /postcss-scss/4.0.5_postcss@8.4.16:
+    resolution: {integrity: sha512-F7xpB6TrXyqUh3GKdyB4Gkp3QL3DDW1+uI+gxx/oJnUt/qXI4trj5OGlp9rOKdoABGULuqtqeG+3HEVQk4DjmA==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: ^8.3.3
@@ -19602,7 +19602,7 @@ packages:
       stylelint: ^14.0.1
     dependencies:
       postcss: 8.4.16
-      postcss-scss: 4.0.4_postcss@8.4.16
+      postcss-scss: 4.0.5_postcss@8.4.16
       stylelint: 14.11.0
       stylelint-order: 5.0.0_stylelint@14.11.0
       stylelint-scss: 4.3.0_stylelint@14.11.0
