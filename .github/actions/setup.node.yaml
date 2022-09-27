@@ -1,0 +1,15 @@
+name: 'Setup node'
+description: 'Installs node'
+
+inputs:
+  node-version:
+    description: 'Define node version (default: 16)'
+    default: 16
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install node
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}

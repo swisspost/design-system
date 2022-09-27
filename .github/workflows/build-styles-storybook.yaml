@@ -11,9 +11,10 @@ on:
       - 'packages/styles/**/*.stories.js'
 
 jobs:
-  build-storybook:
+  build-styles-storybook:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Test
-        run: pnpm -v
+      - uses: actions/setup.node
+      - name: Check Node version
+        run: node -v
