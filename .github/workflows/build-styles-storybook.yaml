@@ -7,14 +7,14 @@
 name: Build Styles Storybook
 on:
   pull_request:
-    paths:
-      - 'packages/styles/**/*.stories.js'
+    # paths:
+    #   - 'packages/styles/**/*.stories.js'
 
 jobs:
   build-styles-storybook:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/setup.node
+      # - uses: actions/setup-node
       - name: Check Node version
         run: node -v
