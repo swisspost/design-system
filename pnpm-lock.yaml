@@ -254,7 +254,7 @@ importers:
   packages/styles:
     specifiers:
       '@babel/core': 7.19.1
-      '@percy/cli': ^1.10.4
+      '@percy/cli': 1.10.4
       '@percy/cypress': ^3.1.2
       '@popperjs/core': 2.11.6
       '@storybook/addon-actions': 6.5.12
@@ -282,7 +282,7 @@ importers:
       rimraf: 3.0.2
       sass: 1.54.9
       sass-loader: 10.1.1
-      start-server-and-test: ^1.14.0
+      start-server-and-test: 1.14.0
       storybook-dark-mode: 1.1.2
       style-loader: 2.0.0
       stylelint: 14.11.0
@@ -5031,7 +5031,7 @@ packages:
     dev: true
 
   /@nodelib/fs.scandir/2.1.5:
-    resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
+    resolution: {integrity: sha1-dhnC6yGyVIP20WdUi0z9WnSIw9U=}
     engines: {node: '>= 8'}
     dependencies:
       '@nodelib/fs.stat': 2.0.5
