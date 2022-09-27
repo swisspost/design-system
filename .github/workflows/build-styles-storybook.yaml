@@ -39,4 +39,4 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Build Styles Storybook
-        run: pnpm build:storybook
+        run: pnpm run build:storybook
