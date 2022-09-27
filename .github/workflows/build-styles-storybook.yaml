@@ -15,7 +15,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2
       - id: env
         uses: ./actions/environment
       - run: echo ${{ steps.env.output.NODE_VERSION }}
