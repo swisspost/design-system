@@ -38,5 +38,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
+      - name: Install Styles Node Modules
+        run: pnpm --filter design-system-styles install
+
       - name: Build Styles Storybook
-        run: pnpm --filter design-system-styles install && --filter design-system-styles build:storybook
+        run: pnpm --filter design-system-styles build:storybook
