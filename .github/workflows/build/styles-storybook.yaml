@@ -1,0 +1,19 @@
+###
+#
+# Build styles storybook
+#
+###
+
+name: Build Styles Storybook
+on: [pull_request]
+  paths: 
+    - 'packages/styles/.storybook/**'
+    - 'packages/styles/cypress/**'
+
+jobs:
+  build-storybook:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Test
+        run: pnpm -v
