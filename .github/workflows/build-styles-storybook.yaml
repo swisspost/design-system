@@ -16,5 +16,5 @@ jobs:
 
     steps:
       - id: env
-        uses: ./.github/actions/environment
+        uses: actions/environment
       - run: echo ${{ steps.env.outputs.NODE_VERSION }}
