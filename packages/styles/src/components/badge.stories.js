@@ -43,7 +43,7 @@ const DefaultTemplate = (args) => {
   const sizeClass = SIZE_CLASS_MAP[args.size];
   const defaultBadges = `${args.label}</span>`;
   const nestedBadges = `
-    <span>test</span>
+    <span>test 2</span>
     <span>${args.label}</span>
     <span class="badge">${args.nestedNumber}</span>
     `;
