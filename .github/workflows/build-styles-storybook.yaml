@@ -7,8 +7,7 @@
 name: Build Styles Storybook
 on: [pull_request]
   paths: 
-    - 'packages/styles/.storybook/**'
-    - 'packages/styles/cypress/**'
+    - 'packages/styles/**/*.stories.js'
 
 jobs:
   build-storybook:
