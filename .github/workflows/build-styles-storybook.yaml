@@ -39,4 +39,4 @@ jobs:
             ${{ runner.os }}-pnpm-store-
 
       - name: Build Styles Storybook
-        run: pnpm --filter design-system-styles install && -filter design-system-styles build:storybook
+        run: pnpm --filter design-system-styles install && --filter design-system-styles build:storybook
