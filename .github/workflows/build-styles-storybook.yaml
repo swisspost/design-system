@@ -17,5 +17,5 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: env
-        uses: ./actions/environment
+        uses: ./.github/actions/environment
       - run: echo ${{ steps.env.output.NODE_VERSION }}
