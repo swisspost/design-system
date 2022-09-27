@@ -1,0 +1,6 @@
+name: 'Environment'
+description: 'Get environment variables'
+
+outputs:
+  NODE_VERSION: 16
+  PNPM_VERSION: 7.9.0
