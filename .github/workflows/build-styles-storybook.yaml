@@ -7,16 +7,36 @@
 name: Build Styles Storybook
 on:
   pull_request:
-    # paths:
-    #   - 'packages/styles/**/*.stories.js'
+    paths:
+      - 'packages/styles/**/*.stories.js'
 
 jobs:
   build-styles-storybook:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
-      - id: env
-        uses: actions/environment
-          with: ${{ github.repository }}
-      - run: echo ${{ steps.env.outputs.NODE_VERSION }}
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.9.0
+
+      - name: Cache pnpm modules
+        uses: actions/cache@v3
+        with:
+          path: ~/.pnpm-store
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
+      - name: Build Styles Storybook
+        run: pnpm build:storybook
