@@ -9,26 +9,26 @@ A few steps are required (for the moment) before you can run the snapshot genera
 5. Register the following local environment variable:
 
 ```bash
-# windows node/bash/cmd
+# Windows node/bash/cmd
 set PERCY_TOKEN={percy-write-only-token}
 
-# windows powershell
+# Windows powershell
 $env:PERCY_TOKEN="{percy-write-only-token}"
 
-# mac terminal
+# Unix
 export PERCY_TOKEN={percy-write-only-token}
 ```
 
 6. If you want to take snapshots from a localhost url, you need to allow unauthorized node-tls connections:<br>:warning: We need to find a workaround for this, so we do not need to enable unsecure connections!
 
 ```bash
-# windows node/bash/cmd
+# Windows node/bash/cmd
 set NODE_TLS_REJECT_UNAUTHORIZED=0
 
-# windows powershell
+# wWindows powershell
 $env:NODE_TLS_REJECT_UNAUTHORIZED="0"
 
-# mac terminal
+# Unix terminal
 export NODE_TLS_REJECT_UNAUTHORIZED=0
 ```
 
