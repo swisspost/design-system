@@ -16,3 +16,4 @@ jobs:
 
     steps:
       - uses: swisspost/design-system/.github/actions/setup-environment-pnpm
+      - run: pnpm -v
