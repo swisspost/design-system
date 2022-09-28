@@ -13,23 +13,27 @@
 #
 ###
 
-name: Artefact Upload Folder
-description: Uploads an entire artefact folder to share data between jobs and store data once a workflow is complete.
+name: Artifact Upload Folder
+description: Uploads an entire artifact folder to share data between jobs and store data once a workflow is complete.
 
 inputs:
-  name:
-    description: Name of the artefact
+  artifact_name:
+    description: Name of the artifact
     required: true
     type: string
-  path:
-    description: Path to the artefact folder
+  artifact_path:
+    description: Path to the artifact folder
     required: true
     type: string
 
 runs:
   using: composite
   steps:
-    # - uses: actions/upload-artefact@v3
-    #   with:
-    #     name: ${{ inputs.name }}
-    #     path: ${{ inputs.path }}
+    - name: Save PR infos
+      run: |
+        echo ${{ github.event.number }} > ${{ inputs.artifact_path }}/GHA-PR-NR
+        echo ${{ github.event.action }} > ${{ inputs.artifact_path }}/GHA-EVENT-ACTION
+    - uses: actions/upload-artifact@v3
+      with:
+        name: ${{ inputs.artifact_name }}
+        path: ${{ inputs.artifact_path }}

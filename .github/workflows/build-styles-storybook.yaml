@@ -30,13 +30,7 @@ jobs:
       - name: Build styles storybook
         run: pnpm --filter design-system-styles build:storybook
 
-      - name: Save PR infos
-        run: |
-          echo ${{ github.event.number }} > packages/styles/storybook-static/GHA-PR-NR
-          echo ${{ github.event.action }} > packages/styles/storybook-static/GHA-EVENT-ACTION
-
-      - name: Upload artefact folder
-        uses: actions/upload-artefact@v3
+      - uses: swisspost/design-system/.github/actions/artifact-upload-folder@feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package
         with:
-          name: design-system-styles-storybook
-          path: packages/styles/storybook-static
+          artifact_name: design-system-styles-storybook
+          artifact_path: packages/styles/storybook-static
