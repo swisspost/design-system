@@ -13,28 +13,32 @@
 #
 ###
 
-name: Artifact Upload Folder
-description: Uploads an entire artifact folder to share data between jobs and store data once a workflow is complete.
+name: Artifact Download
+description: Downloads an artifact to a specific folder.
 
 inputs:
   artifact_name:
     description: Name of the artifact
     required: true
     type: string
-  artifact_input_folder:
-    description: Path to the folder to upload
+  artifact_output_folder:
+    description: Path to the folder where to download to
     required: true
     type: string
 
 runs:
   using: composite
   steps:
-    - name: Set PR infos
-      shell: bash
-      run: |
-        echo ${{ github.event.number }} > ${{ inputs.artifact_input_folder }}/GHA-PR-NR
-        echo ${{ github.event.action }} > ${{ inputs.artifact_input_folder }}/GHA-EVENT-ACTION
-    - uses: actions/upload-artifact@v3
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v2
       with:
         name: ${{ inputs.artifact_name }}
-        path: ${{ inputs.artifact_input_folder }}
+        path: ${{ inputs.artifact_output_folder }}
+        run_id: ${{ github.event.workflow_run.id }}
+        workflow_conclusion: success
+    - name: Get PR infos
+      id: pr
+      shell: bash
+      run: |
+        echo "::set-output name=pr_number::$(cat ${{ inputs.artifact_output_folder }}/GHA-PR-NR)"
+        echo "::set-output name=event_action::$(cat ${{ inputs.artifact_output_folder }}/GHA-EVENT-ACTION)"
