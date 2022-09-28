@@ -30,6 +30,7 @@ runs:
   using: composite
   steps:
     - name: Save PR infos
+      shell: bash
       run: |
         echo ${{ github.event.number }} > ${{ inputs.artifact_path }}/GHA-PR-NR
         echo ${{ github.event.action }} > ${{ inputs.artifact_path }}/GHA-EVENT-ACTION
