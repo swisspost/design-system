@@ -13,6 +13,7 @@ on:
       node_version:
         description: 'Install node with given version (default: 16)'
         default: 16
+        type: string
       pnpm_version:
         description: 'Install pnpm with given version (default: 7.9.0)'
         default: 7.9.0
