@@ -12,15 +12,15 @@ on:
 
 jobs:
   setup-pnpm-environment:
-    uses: @swisspost/design-system/.github/workflows/setup.environment.pnpm.yaml
+    uses: swisspost/design-system/.github/workflows/setup.environment.pnpm.yaml
 
   # test-versions:
   #   runs-on: ubuntu-latest
   #     - run: node -v
   #     - run: pnpm -v
 
-      # - name: Install Styles Node Modules
-      #   run: pnpm --filter design-system-styles install
+  # - name: Install Styles Node Modules
+  #   run: pnpm --filter design-system-styles install
 
-      # - name: Build Styles Storybook
-      #   run: pnpm --filter design-system-styles build:storybook
+  # - name: Build Styles Storybook
+  #   run: pnpm --filter design-system-styles build:storybook
