@@ -34,6 +34,3 @@ jobs:
           node-version: ${{ inputs.node_version }}
           # NOTE: pnpm caching support requires pnpm version >= 6.10.0
           cache: 'pnpm'
-      - env:
-        NODE_VERSION: ${{ inputs.node_version }}
-        PNPM_VERSION: ${{ inputs.pnpm_version }}
