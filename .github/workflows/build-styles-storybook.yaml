@@ -7,8 +7,8 @@
 name: Build Styles Storybook
 on:
   pull_request:
-    paths:
-      - 'packages/styles/**/*.stories.js'
+    # paths:
+    #   - 'packages/styles/**/*.stories.js'
 
 jobs:
   setup-pnpm-environment:
