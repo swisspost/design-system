@@ -34,3 +34,4 @@ jobs:
           node-version: ${{ inputs.node_version }}
           # NOTE: pnpm caching support requires pnpm version >= 6.10.0
           cache: 'pnpm'
+          cache-dependency-path: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
