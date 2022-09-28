@@ -9,11 +9,11 @@ on:
   pull_request:
 
 jobs:
-  build:
+  build-storybook:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: swisspost/design-system/.github/actions/setup-environment-pnpm
+      - uses: swisspost/design-system/.github/actions/setup-environment-pnpm@feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package
       - name: Install styles dependencies
         run: pnpm --filter design-system-styles install
       - name: Build styles storybook
