@@ -21,7 +21,7 @@
 ###
 
 name: Setup pnpm environment
-description: Provides node and pnpm in a specific version
+description: Provides node and pnpm in a specific version.
 
 inputs:
   node_version:
