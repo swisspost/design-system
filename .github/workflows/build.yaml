@@ -14,9 +14,6 @@
 name: Build demo app
 on:
   pull_request:
-    paths:
-      - 'packages/demo/**'
-      - 'packages/styles/src/**'
 
 jobs:
   build:

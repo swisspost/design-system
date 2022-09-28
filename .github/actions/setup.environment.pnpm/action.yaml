@@ -1,0 +1,30 @@
+name: Setup pnpm environment
+description: Provides node and pnpm in a specific version
+
+inputs:
+  node_version:
+    description: Specify the node version to install
+    default: 16
+    type: string
+  pnpm_version:
+    description: Specify the pnpm version to install
+    default: 7.9.0
+    type: string
+
+runs:
+  using: composite
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+
+    - name: Install node
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node_version }}
+
+    - name: Install pnpm
+      uses: pnpm/action-setup@v2.2.2
+      with:
+        version: ${{ inputs.pnpm_version }}

@@ -1,6 +1,6 @@
 ###
 #
-# Build styles storybook
+# Build the styles storybook
 #
 ###
 
@@ -11,16 +11,8 @@ on:
     #   - 'packages/styles/**/*.stories.js'
 
 jobs:
-  setup-pnpm-environment:
-    uses: swisspost/design-system/.github/workflows/setup-environment-pnpm.yaml@feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package
+  build:
+    runs-on: ubuntu-latest
 
-  # test-versions:
-  #   runs-on: ubuntu-latest
-  #     - run: node -v
-  #     - run: pnpm -v
-
-  # - name: Install Styles Node Modules
-  #   run: pnpm --filter design-system-styles install
-
-  # - name: Build Styles Storybook
-  #   run: pnpm --filter design-system-styles build:storybook
+    steps:
+      - uses: swisspost/design-system/.github/actions/setup.environment.pnpm
