@@ -1,14 +1,12 @@
 ###
 #
-# Build the styles storybook
+# Build the packages/styles storybook
 #
 ###
 
 name: Build Styles Storybook
 on:
   pull_request:
-    # paths:
-    #   - 'packages/styles/**/*.stories.js'
 
 jobs:
   build:
@@ -16,4 +14,7 @@ jobs:
 
     steps:
       - uses: swisspost/design-system/.github/actions/setup-environment-pnpm
-      - run: pnpm -v
+      - name: Install styles dependencies
+        run: pnpm --filter design-system-styles install
+      - name: Build styles storybook
+        run: pnpm --filter design-system-styles build:storybook
