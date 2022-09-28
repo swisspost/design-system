@@ -12,7 +12,7 @@ on:
 
 jobs:
   setup-pnpm-environment:
-    uses: swisspost/design-system/.github/workflows/setup-environment-pnpm.yaml
+    uses: swisspost/design-system/.github/workflows/setup-environment-pnpm.yaml@feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package
 
   # test-versions:
   #   runs-on: ubuntu-latest
