@@ -39,6 +39,7 @@ runs:
       run: pnpm i -g netlify-cli
     - name: Deploy preview environment to netlify
       id: netlify_deploy
+      shell: bash
       env:
         NETLIFY_AUTH_TOKEN: ${{ inputs.netlify_auth_token }}
       # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
