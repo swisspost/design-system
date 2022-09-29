@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: swisspost/design-system/.github/actions/setup-environment-pnpm@main
+      - uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install styles dependencies
         run: pnpm --filter design-system-styles install
