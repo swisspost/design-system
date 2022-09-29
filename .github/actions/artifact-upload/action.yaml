@@ -30,7 +30,6 @@ runs:
   using: composite
   steps:
     - name: Save GithubEvent Infos
-      description: Saves the github.event.number and github.event.action properties into files in the artifact-input-folder for later use.
       shell: bash
       run: |
         echo ${{ github.event.number }} > ${{ inputs.artifact_input_folder }}/GHA-EVENT-NUMBER
