@@ -17,25 +17,25 @@ name: Artifact Download
 description: Downloads an artifact to a specific folder.
 
 inputs:
-  artifact_name:
+  name:
     description: Name of the artifact
     required: true
     type: string
-  artifact_folder:
+  folder:
     description: Path to the folder where to download to
     required: true
     type: string
 
 outputs:
+  id:
+    description: The build id from the artifact uploading workflow.
+    value: ${{ steps.build.outputs.id }}
+  action:
+    description: The build action from the artifact uploading workflow.
+    value: ${{ steps.build.outputs.action }}
   folder:
     description: Path to the folder where to download to
-    value: ${{ inputs.artifact_folder }}
-  event_number:
-    description: The github.event.number from the artifact uploading workflow.
-    value: ${{ steps.event.outputs.number }}
-  event_action:
-    description: The github.event.action from the artifact uploading workflow.
-    value: ${{ steps.event.outputs.action }}
+    value: ${{ inputs.folder }}
 
 runs:
   using: composite
@@ -43,13 +43,13 @@ runs:
     - name: Download artifact
       uses: dawidd6/action-download-artifact@v2
       with:
-        name: ${{ inputs.artifact_name }}
-        path: ${{ inputs.artifact_folder }}
+        name: ${{ inputs.name }}
+        path: ${{ inputs.folder }}
         run_id: ${{ github.event.workflow_run.id }}
         workflow_conclusion: success
-    - name: Create Event outputs
-      id: event
+    - name: Create outputs
+      id: build
       shell: bash
       run: |
-        echo "::set-output name=number::$(cat ${{ inputs.artifact_folder }}/GHA-EVENT-NUMBER)"
-        echo "::set-output name=action::$(cat ${{ inputs.artifact_folder }}/GHA-EVENT-ACTION)"
+        echo "::set-output name=number::$(cat ${{ inputs.folder }}/GHA-ID)"
+        echo "::set-output name=action::$(cat ${{ inputs.folder }}/GHA-ACTION)"

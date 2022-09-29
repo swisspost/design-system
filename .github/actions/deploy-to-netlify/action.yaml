@@ -19,14 +19,14 @@ name: Deploy to Netlify
 description: Deploys dist folder to Netlify. Make sure you set up node and pnpm before!
 
 inputs:
+  id:
+    description: The build id
+    required: true
   netlify_auth_token:
     description: Netlify personal-access-token for use in shell scripts and API access.
     required: true
   netlify_site_id:
     description: Netlify site-id
-    required: true
-  event_number:
-    description: The build output github_event_number
     required: true
   folder:
     description: Path to the folder to deploy
@@ -50,7 +50,7 @@ runs:
         NETLIFY_AUTH_TOKEN: ${{ inputs.netlify_auth_token }}
       # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
       run: |
-        deploy_alias=`echo "preview-${{ inputs.event_number }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
+        deploy_alias=`echo "preview-${{ inputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
         netlify link --id ${{ inputs.netlify_site_id }}
         netlify deploy --alias $deploy_alias --build false --dir ${{ inputs.folder }}
         echo "::set-output name=alias::$deploy_alias"

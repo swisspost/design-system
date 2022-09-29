@@ -17,11 +17,11 @@ name: Artifact Upload
 description: Uploads an entire artifact folder to share data between jobs and store data once a workflow is complete.
 
 inputs:
-  artifact_name:
+  name:
     description: Name of the artifact
     required: true
     type: string
-  artifact_folder:
+  folder:
     description: Path to the folder to upload
     required: true
     type: string
@@ -32,9 +32,9 @@ runs:
     - name: Save Event Infos into the artifact folder
       shell: bash
       run: |
-        echo ${{ github.event.number }} > ${{ inputs.artifact_folder }}/GHA-EVENT-NUMBER
-        echo ${{ github.event.action }} > ${{ inputs.artifact_folder }}/GHA-EVENT-ACTION
+        echo ${{ github.event.number }} > ${{ inputs.folder }}/GHA-ID
+        echo ${{ github.event.action }} > ${{ inputs.folder }}/GHA-ACTION
     - uses: actions/upload-artifact@v3
       with:
-        name: ${{ inputs.artifact_name }}
-        path: ${{ inputs.artifact_folder }}
+        name: ${{ inputs.name }}
+        path: ${{ inputs.folder }}
