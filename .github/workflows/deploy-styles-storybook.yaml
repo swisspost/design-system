@@ -18,12 +18,12 @@ jobs:
     if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      - uses: swisspost/design-system/.github/actions/setup-environment-pnpm@main
+      - uses: swisspost/design-system/.github/actions/setup-pnpm@main
       - uses: swisspost/design-system/.github/actions/artifact-download@main
         id: build
         with:
           artifact_name: design-system-styles-storybook
-          artifact_output_folder: build-output
+          artifact_folder: build-output
 
       - name: Install netlify-cli
         run: pnpm i -g netlify-cli
