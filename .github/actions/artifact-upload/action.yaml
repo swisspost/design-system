@@ -13,7 +13,7 @@
 #
 ###
 
-name: Artifact Upload Folder
+name: Artifact Upload
 description: Uploads an entire artifact folder to share data between jobs and store data once a workflow is complete.
 
 inputs:
@@ -29,10 +29,11 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Set PR infos
+    - name: Save GithubEvent Infos
+      description: Saves the github.event.number and github.event.action properties into files in the artifact-input-folder for later use.
       shell: bash
       run: |
-        echo ${{ github.event.number }} > ${{ inputs.artifact_input_folder }}/GHA-PR-NR
+        echo ${{ github.event.number }} > ${{ inputs.artifact_input_folder }}/GHA-EVENT-NUMBER
         echo ${{ github.event.action }} > ${{ inputs.artifact_input_folder }}/GHA-EVENT-ACTION
     - uses: actions/upload-artifact@v3
       with:

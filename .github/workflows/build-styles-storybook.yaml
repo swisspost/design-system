@@ -30,7 +30,7 @@ jobs:
       - name: Build styles storybook
         run: pnpm --filter design-system-styles build:storybook
 
-      - uses: swisspost/design-system/.github/actions/artifact-upload-folder@feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package
+      - uses: swisspost/design-system/.github/actions/artifact-upload@feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package
         with:
           artifact_name: design-system-styles-storybook
-          artifact_path: packages/styles/storybook-static
+          artifact_input_folder: packages/styles/storybook-static
