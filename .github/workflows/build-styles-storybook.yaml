@@ -1,0 +1,36 @@
+###
+#
+# Build the packages/styles storybook
+#
+# This workflow does not have secrets when run from a fork.
+# Artifacts are uploaded and used in a subsequent workflow
+# with more privileges which does not run unsafe commands.
+#
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+#
+###
+
+name: Build Styles Storybook
+on:
+  pull_request:
+    paths:
+      - packages/styles/src/**
+      - packages/styles/.storybook/**
+      - packages/styles/cypress/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: swisspost/design-system/.github/actions/setup-environment-pnpm@main
+
+      - name: Install styles dependencies
+        run: pnpm --filter design-system-styles install
+      - name: Build styles storybook
+        run: pnpm --filter design-system-styles build:storybook
+
+      - uses: swisspost/design-system/.github/actions/artifact-upload@main
+        with:
+          artifact_name: design-system-styles-storybook
+          artifact_input_folder: packages/styles/storybook-static

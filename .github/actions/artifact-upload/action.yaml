@@ -1,0 +1,43 @@
+###
+#
+# If you need to do some changes in a local-action used in this
+# workflow, make sure you change the action-flag to your working
+# branch-name to get the latest action functionality.
+#
+# Example: swisspost/design-system/.github/actions/setup-environment-pnpm@my-working-branch-name
+#
+# Don't forget to change the action-flag back to 'main',
+# once you have finished your work on the local-action!
+#
+# https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions
+#
+###
+
+name: Artifact Upload
+description: Uploads an entire artifact folder to share data between jobs and store data once a workflow is complete.
+
+inputs:
+  artifact_name:
+    description: Name of the artifact
+    required: true
+    type: string
+  artifact_input_folder:
+    description: Path to the folder to upload
+    required: true
+    type: string
+
+runs:
+  using: composite
+  steps:
+    - name: Save GithubEvent Infos
+      shell: bash
+      env:
+        EVENT_NUMBER: ${{ github.event.number }}
+        EVENT_ACTION: ${{ github.event.action }}
+      run: |
+        echo $EVENT_NUMBER > ${{ inputs.artifact_input_folder }}/GHA-EVENT-NUMBER
+        echo $EVENT_ACTION > ${{ inputs.artifact_input_folder }}/GHA-EVENT-ACTION
+    - uses: actions/upload-artifact@v3
+      with:
+        name: ${{ inputs.artifact_name }}
+        path: ${{ inputs.artifact_input_folder }}
