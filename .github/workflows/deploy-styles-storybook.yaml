@@ -22,8 +22,8 @@ jobs:
       - uses: swisspost/design-system/.github/actions/artifact-download@main
         id: build
         with:
-          artifact_name: design-system-styles-storybook
-          artifact_folder: build-output
+          name: design-system-styles-storybook
+          folder: build-output
 
       - uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
         id: deploy

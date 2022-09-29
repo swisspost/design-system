@@ -32,5 +32,5 @@ jobs:
 
       - uses: swisspost/design-system/.github/actions/artifact-upload@main
         with:
-          artifact_name: design-system-styles-storybook
-          artifact_folder: packages/styles/storybook-static
+          name: design-system-styles-storybook
+          folder: packages/styles/storybook-static
