@@ -23,14 +23,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: swisspost/design-system/.github/actions/setup-environment-pnpm@feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package
+      - uses: swisspost/design-system/.github/actions/setup-environment-pnpm@main
 
       - name: Install styles dependencies
         run: pnpm --filter design-system-styles install
       - name: Build styles storybook
         run: pnpm --filter design-system-styles build:storybook
 
-      - uses: swisspost/design-system/.github/actions/artifact-upload@feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package
+      - uses: swisspost/design-system/.github/actions/artifact-upload@main
         with:
           artifact_name: design-system-styles-storybook
           artifact_input_folder: packages/styles/storybook-static

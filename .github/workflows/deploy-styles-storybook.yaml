@@ -11,7 +11,6 @@ on:
   workflow_run:
     workflows: ['Build Styles Storybook']
     types: [completed]
-    branches: [feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package]
 
 jobs:
   deploy:
@@ -19,8 +18,8 @@ jobs:
     if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      - uses: swisspost/design-system/.github/actions/setup-environment-pnpm@feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package
-      - uses: swisspost/design-system/.github/actions/artifact-download@feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package
+      - uses: swisspost/design-system/.github/actions/setup-environment-pnpm@main
+      - uses: swisspost/design-system/.github/actions/artifact-download@main
         id: build
         with:
           artifact_name: design-system-styles-storybook
