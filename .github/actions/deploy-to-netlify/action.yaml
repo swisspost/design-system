@@ -36,6 +36,7 @@ runs:
   using: composite
   steps:
     - name: Install netlify-cli
+      shell: bash
       run: pnpm i -g netlify-cli
     - name: Deploy preview environment to netlify
       id: netlify_deploy
