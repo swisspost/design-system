@@ -1,6 +1,6 @@
-@use '../functions/icons';
-@use '../variables/color';
-@use '../variables/components/form-check';
+@use './../functions/icons';
+@use './../variables/color';
+@use './../variables/components/form-check';
 
 @mixin form-check-variant($color, $color-hover, $color-label-hover: $color-hover) {
   .form-check-input {

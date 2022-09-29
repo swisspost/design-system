@@ -1,12 +1,12 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/pagination' as pg;
-@use '../variables/components/pagination';
-@use '../variables/spacing';
-@use '../variables/commons';
-@use '../mixins/icons' as icon-mixin;
-@use '../mixins/utilities';
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/pagination' as pg;
+@use './../variables/components/pagination';
+@use './../variables/spacing';
+@use './../variables/commons';
+@use './../mixins/icons' as icon-mixin;
+@use './../mixins/utilities';
 @use './icons.scss';
 
 .pagination {

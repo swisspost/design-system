@@ -1,10 +1,10 @@
-@use '../spacing';
-@use '../type';
-@use '../color';
-@use '../commons';
-@use '../animation';
-@use '../../functions/sizing';
-@use '../../functions/icons';
+@use './../spacing';
+@use './../type';
+@use './../color';
+@use './../commons';
+@use './../animation';
+@use './../../functions/sizing';
+@use './../../functions/icons';
 
 $accordion-padding-x: spacing.$size-regular !default;
 $accordion-border-color: color.$gray-10 !default;

@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-styles-migrations': patch
+'@swisspost/design-system-migrations': patch
 ---
 
 Added README.md and LICENSE to the published package

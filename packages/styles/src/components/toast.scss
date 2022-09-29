@@ -1,14 +1,14 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
 
-@use '../variables/components/toasts';
-@use '../variables/components/alert';
-@use '../components/close';
-@use '../functions/color' as color-fn;
-@use '../placeholders/color' as color-ph;
-@use '../placeholders/notifications';
+@use './../variables/components/toasts';
+@use './../variables/components/alert';
+@use './../components/close';
+@use './../functions/color' as color-fn;
+@use './../placeholders/color' as color-ph;
+@use './../placeholders/notifications';
 
 // Positioning
 .toast-top-center,

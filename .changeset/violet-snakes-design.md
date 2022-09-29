@@ -1,5 +1,5 @@
 ---
-'@swispost/design-system-migrations': major
+'@swisspost/design-system-migrations': major
 '@swisspost/design-system-styles': patch
 ---
 

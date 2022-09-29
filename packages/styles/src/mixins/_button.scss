@@ -1,10 +1,10 @@
 @use 'sass:map';
 
-@use '../variables/components/button';
-@use '../variables/type';
-@use '../variables/color';
-@use '../placeholders/color' as color-ph;
-@use '../functions/color' as color-fn;
+@use './../variables/components/button';
+@use './../variables/type';
+@use './../variables/color';
+@use './../placeholders/color' as color-ph;
+@use './../functions/color' as color-fn;
 @use 'utilities';
 
 @mixin reset-button {

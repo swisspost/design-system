@@ -1,5 +1,5 @@
-@use '../variables/components/badge';
-@use '../mixins/utilities';
+@use './../variables/components/badge';
+@use './../mixins/utilities';
 
 @mixin badge-hover-state {
   color: badge.$badge-hover-color;

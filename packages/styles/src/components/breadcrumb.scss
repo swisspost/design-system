@@ -1,15 +1,15 @@
-@forward '../variables/options';
+@forward './../variables/options';
 
 @use 'sass:map';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/overrides' as *;
-@use '../themes/bootstrap/breadcrumbs' as bb;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/breadcrumbs' as bb;
 
-@use '../variables/type';
-@use '../variables/spacing';
-@use '../variables/components/breadcrumbs';
-@use '../placeholders/text';
+@use './../variables/type';
+@use './../variables/spacing';
+@use './../variables/components/breadcrumbs';
+@use './../placeholders/text';
 
 .breadcrumb {
   @extend %font-curve-small;

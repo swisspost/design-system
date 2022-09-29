@@ -1,8 +1,8 @@
 @use 'sass:map';
 
-@use '../color';
-@use '../spacing';
-@use '../type';
+@use './../color';
+@use './../spacing';
+@use './../type';
 
 // Bootstrap variables
 $form-feedback-margin-top: 0 !default;

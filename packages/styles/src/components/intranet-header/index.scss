@@ -1,7 +1,7 @@
-@forward '../../variables/options';
+@forward './../../variables/options';
 
-@use '../../themes/bootstrap/nav';
-@use '../../themes/bootstrap/navbar';
+@use './../../themes/bootstrap/nav';
+@use './../../themes/bootstrap/navbar';
 
 @use 'icon';
 

@@ -1,5 +1,5 @@
-@use '../themes/bootstrap/overrides' as *;
-@use '../functions/icons';
+@use './../themes/bootstrap/overrides' as *;
+@use './../functions/icons';
 
 @mixin hover-animation(
   $animation-item-size,

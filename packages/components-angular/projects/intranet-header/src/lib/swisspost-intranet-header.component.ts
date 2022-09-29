@@ -24,23 +24,18 @@ import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
   styleUrls: ['./swisspost-intranet-header.component.scss'],
 })
 export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, AfterViewInit {
-  @Input()
-  siteTitle!: string;
+  @Input() siteTitle: string = '';
   @Input() languages = 'de,fr,it,en';
   @Input() isPreview = false;
   @Input() currentUserId = 'user';
-  @Input()
-  displayName!: string;
-  @Input()
-  additionalInfo!: string;
+  @Input() displayName: string = '';
+  @Input() additionalInfo: string = '';
   @Input() hasNavbar = true;
   @Input() showIntranetSearch = false;
-  @Input()
-  optionDropdownContent!: TemplateRef<any>;
-  @Input()
-  optionHeaderContent!: TemplateRef<any>;
-  @Input() logoUrl!: string;
-  @Input() searchUrl!: string;
+  @Input() optionDropdownContent!: TemplateRef<any>;
+  @Input() optionHeaderContent!: TemplateRef<any>;
+  @Input() logoUrl: string = '';
+  @Input() searchUrl: string = '';
 
   @ViewChild('domWrapper')
   dom!: ElementRef;
