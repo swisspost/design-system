@@ -26,7 +26,7 @@ jobs:
           artifact_output_folder: build-output
 
       - name: Install netlify-cli
-        run: pnpm i -g netilfy-cli
+        run: pnpm i -g netlify-cli
 
       - name: Deploy preview environment
         id: netlify
