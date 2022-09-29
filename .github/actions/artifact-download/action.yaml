@@ -21,7 +21,7 @@ inputs:
     description: Name of the artifact
     required: true
     type: string
-  artifact_output_folder:
+  artifact_folder:
     description: Path to the folder where to download to
     required: true
     type: string
@@ -29,7 +29,7 @@ inputs:
 outputs:
   folder:
     description: Path to the folder where to download to
-    value: ${{ inputs.artifact_output_folder }}
+    value: ${{ inputs.artifact_folder }}
   github_event_number:
     description: The github.event property from the artifact uploading workflow.
     value: ${{ steps.github_event.outputs.number }}
@@ -44,12 +44,12 @@ runs:
       uses: dawidd6/action-download-artifact@v2
       with:
         name: ${{ inputs.artifact_name }}
-        path: ${{ inputs.artifact_output_folder }}
+        path: ${{ inputs.artifact_folder }}
         run_id: ${{ github.event.workflow_run.id }}
         workflow_conclusion: success
     - name: Create GithubEvent outputs
       id: github_event
       shell: bash
       run: |
-        echo "::set-output name=number::$(cat ${{ inputs.artifact_output_folder }}/GHA-EVENT-NUMBER)"
-        echo "::set-output name=action::$(cat ${{ inputs.artifact_output_folder }}/GHA-EVENT-ACTION)"
+        echo "::set-output name=number::$(cat ${{ inputs.artifact_folder }}/GHA-EVENT-NUMBER)"
+        echo "::set-output name=action::$(cat ${{ inputs.artifact_folder }}/GHA-EVENT-ACTION)"
