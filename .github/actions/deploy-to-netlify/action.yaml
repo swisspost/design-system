@@ -32,6 +32,11 @@ inputs:
     description: Path to the folder to deploy
     required: true
 
+outputs:
+  url_alias:
+    description: The url alias
+    value: ${{ steps.netlify_deploy.outputs.alias }}
+
 runs:
   using: composite
   steps:
@@ -48,4 +53,4 @@ runs:
         deploy_alias=`echo "preview-${{ inputs.event_number }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
         netlify link --id ${{ inputs.netlify_site_id }}
         netlify deploy --alias $deploy_alias --build false --dir ${{ inputs.folder }}
-        echo "::set-output name=deploy_alias::$deploy_alias"
+        echo "::set-output name=alias::$deploy_alias"

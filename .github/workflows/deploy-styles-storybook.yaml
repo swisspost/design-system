@@ -26,6 +26,7 @@ jobs:
           artifact_folder: build-output
 
       - uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
+        id: deploy
         with:
           netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify_site_id: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
@@ -40,4 +41,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           # This will comment on pull request with specific number
           pr_number: ${{ steps.build.outputs.github_event_number }}
-          message: '🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}--swisspost-design-system-styles.netlify.app'
+          message: '🚀 Preview environment ready: https://${{ steps.deploy.outputs.url_alias }}--swisspost-design-system-styles.netlify.app'
