@@ -27,17 +27,17 @@ jobs:
 
       - uses: actions/checkout@v3
       - name: Deploy to Netlify
-          uses: nwtgck/actions-netlify@v1.2
-          with:
-            publish-dir: ${{ steps.build.outputs.folder }}
-            production-branch: main
-            github-token: ${{ secrets.GITHUB_TOKEN }}
-            alias: preview-${{ steps.build.outputs.id }}
-            deploy-message: '🚀 Storybook Preview ready: https://preview-${{ steps.build.outputs.id }}--swisspost-design-system-styles.netlify.app'
-            enable-pull-request-comment: true
-            overwrites-pull-request-comment: true
-            enable-commit-comment: false
-          env:
-            NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-            NETLIFY_SITE_ID: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
-          timeout-minutes: 1
+        uses: nwtgck/actions-netlify@v1.2
+        with:
+          publish-dir: ${{ steps.build.outputs.folder }}
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          alias: preview-${{ steps.build.outputs.id }}
+          deploy-message: '🚀 Storybook Preview ready: https://preview-${{ steps.build.outputs.id }}--swisspost-design-system-styles.netlify.app'
+          enable-pull-request-comment: true
+          overwrites-pull-request-comment: true
+          enable-commit-comment: false
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
+        timeout-minutes: 1
