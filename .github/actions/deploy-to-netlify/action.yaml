@@ -25,6 +25,9 @@ inputs:
   action:
     description: The build action
     required: true
+  github_token:
+    description: Github access-token for use in shell scripts and API access.
+    required: true
   netlify_auth_token:
     description: Netlify personal-access-token for use in shell scripts and API access.
     required: true
@@ -59,7 +62,7 @@ runs:
       # Only post the preview URL once per PR
       if: ${{ inputs.action == 'opened' }}
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${{ inputs.github_token }}
         # This will comment on pull request with specific number
         pr_number: ${{ inputs.id }}
         message: '🚀 Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}'
