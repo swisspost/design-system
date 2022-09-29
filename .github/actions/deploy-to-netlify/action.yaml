@@ -25,9 +25,6 @@ inputs:
   action:
     description: The build action
     required: true
-  github_token:
-    description: Github access-token for use in shell scripts and API access.
-    required: true
   netlify_auth_token:
     description: Netlify personal-access-token for use in shell scripts and API access.
     required: true
@@ -43,19 +40,26 @@ inputs:
 runs:
   using: composite
   steps:
-    - uses: actions/checkout@v3
-    - name: Deploy to Netlify
-        uses: nwtgck/actions-netlify@v1.2
-        with:
-          publish-dir: ${{ inputs.folder }}
-          production-branch: main
-          github-token: ${{ inputs.github_token }}
-          alias: preview-${{ inputs.id }}
-          deploy-message: '🚀 Storybook Preview ready: https://preview-${{ inputs.id }}--${{ inputs.netlify_site_url }}'
-          enable-pull-request-comment: true
-          overwrites-pull-request-comment: true
-          enable-commit-comment: false
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ inputs.netlify_auth_token }}
-          NETLIFY_SITE_ID: ${{ inputs.netlify_site_id }}
-        timeout-minutes: 1
+    - name: Install netlify-cli
+      shell: bash
+      run: pnpm i -g netlify-cli
+    - name: Deploy preview environment to netlify
+      id: netlify_deploy
+      shell: bash
+      env:
+        NETLIFY_AUTH_TOKEN: ${{ inputs.netlify_auth_token }}
+      # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
+      run: |
+        url_alias=`echo "preview-${{ inputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
+        netlify link --id ${{ inputs.netlify_site_id }}
+        netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }}
+        echo "::set-output name=url_alias::$url_alias"
+    - name: Comment on PullRequest
+      uses: thollander/actions-comment-pull-request@v1
+      # Only post the preview URL once per PR
+      if: ${{ inputs.action == 'opened' }}
+      with:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        # This will comment on pull request with specific number
+        pr_number: ${{ inputs.id }}
+        message: '🚀 Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}'
