@@ -26,6 +26,17 @@ inputs:
     required: true
     type: string
 
+outputs:
+  folder:
+    description: Path to the folder where to download to
+    value: ${{ inputs.artifact_output_folder }}
+  github_event_number:
+    description: The github.event property from the artifact uploading workflow.
+    value: ${{ steps.github_event.outputs.number }}
+  github_event_action:
+    description: The github.event property, from the artifact uploading workflow.
+    value: ${{ steps.github_event.outputs.action }}
+
 runs:
   using: composite
   steps:
@@ -36,9 +47,9 @@ runs:
         path: ${{ inputs.artifact_output_folder }}
         run_id: ${{ github.event.workflow_run.id }}
         workflow_conclusion: success
-    - name: Get PR infos
-      id: pr
+    - name: Create GithubEvent outputs
+      id: github_event
       shell: bash
       run: |
-        echo "::set-output name=pr_number::$(cat ${{ inputs.artifact_output_folder }}/GHA-PR-NR)"
-        echo "::set-output name=event_action::$(cat ${{ inputs.artifact_output_folder }}/GHA-EVENT-ACTION)"
+        echo "::set-output name=number::$(cat ${{ inputs.artifact_output_folder }}/GHA-EVENT-NUMBER)"
+        echo "::set-output name=action::$(cat ${{ inputs.artifact_output_folder }}/GHA-EVENT-ACTION)"
