@@ -1,8 +1,8 @@
-@use '../../variables/color';
-@use '../../variables/spacing';
-@use '../../variables/commons';
+@use './../../variables/color';
+@use './../../variables/spacing';
+@use './../../variables/commons';
 
-@use '../../mixins/icons' as icon-mixin;
+@use './../../mixins/icons' as icon-mixin;
 
 #languageParent {
   min-width: 18rem;

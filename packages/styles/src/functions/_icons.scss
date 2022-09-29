@@ -1,8 +1,8 @@
 @use 'sass:map';
 @use 'sass:string';
-@use '../variables/icons';
+@use './../variables/icons';
 @use './utilities';
-@use '../functions/color';
+@use './../functions/color';
 
 @function add-fill-color($svg, $color) {
   $opacity: alpha($color);

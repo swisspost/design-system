@@ -1,0 +1,36 @@
+name: Temporary beta action
+
+on: workflow_dispatch
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+
+      - uses: pnpm/action-setup@v2.2.2
+        with:
+          version: 7.9.0
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Run change
+        run: |
+          pnpm changeset pre enter beta
+          pnpm changeset version
+          git config --global user.email "tuelsch@gmail.com"
+          git config --global user.name "Philipp Gfeller"
+          git add -A
+          git commit -m "chore: enter beta"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

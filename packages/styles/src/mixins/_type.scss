@@ -2,11 +2,11 @@
 @use 'sass:map';
 @use 'sass:list';
 
-@use '../variables/breakpoints';
-@use '../variables/type';
-@use '../functions/sizing';
-@use '../functions/utilities';
-@use '../themes/bootstrap/overrides' as bootstrap;
+@use './../variables/breakpoints';
+@use './../variables/type';
+@use './../functions/sizing';
+@use './../functions/utilities';
+@use './../themes/bootstrap/overrides' as bootstrap;
 
 @mixin font-curve($curve-size: 'regular') {
   $curve: map.get(type.$font-curves, $curve-size);

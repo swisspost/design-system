@@ -5,7 +5,7 @@ const options = require('../package.json').sass;
  * a js string which can be run by jest. The output of this
  * file is getting cached, if you change it run "jest --no-cache"
  * to see your changes.
- * 
+ *
  * This function just tries to render the .scss test file
  * with dart-sass and reports any compilation errors. There
  * are no output comparisons or testing-for-errors capabilities.
@@ -16,7 +16,8 @@ module.exports = {
       /^.*[\\\/]tests[\\\/]|\.test\.scss$/g,
       ""
     ).replace("\\", "\\\\");
-    return `
+    return {
+      code: `
       const sass = require('sass');
       describe("${filePath}", () => {
         it("compiles", () => {
@@ -30,6 +31,6 @@ module.exports = {
           }
         });
       });
-    `;
+    `};
   }
 }

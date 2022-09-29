@@ -1,6 +1,6 @@
 @use './forms';
-@use '../color';
-@use '../../functions/icons';
+@use './../color';
+@use './../../functions/icons';
 
 $form-select-border-radius: forms.$input-border-radius;
 $form-select-disabled-color: forms.$input-disabled-color;

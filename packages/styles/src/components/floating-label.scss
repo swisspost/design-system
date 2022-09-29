@@ -1,21 +1,23 @@
 @use 'sass:color';
 
-@forward '../variables/options';
+@forward './../variables/options';
 
-@use '../lic/bootstrap-license';
-@use '../themes/bootstrap/forms' as bf;
-@use '../mixins/forms' as forms-mx;
-@use '../mixins/utilities' as utilities-mx;
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/forms' as bf;
+@use './../mixins/forms' as forms-mx;
+@use './../mixins/utilities' as utilities-mx;
 
-@use '../variables/components/forms';
+@use './../variables/components/forms';
 
 .form-floating {
   > label {
+    display: flex;
+    align-items: center;
     top: forms.$input-border-width;
     left: forms.$input-border-width;
-    padding-top: forms.$form-floating-label-padding-t;
-    padding-bottom: forms.$form-floating-label-padding-b;
-    transform: translateY(forms.$form-floating-padding-y - forms.$form-floating-label-padding-t);
+    margin: 0;
+    padding: forms.$form-floating-padding-y forms.$form-floating-padding-x;
+    height: 100%;
     border: 0;
     color: forms.$form-floating-label-color;
     font-size: forms.$form-floating-label-font-size;
@@ -23,27 +25,93 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    transform-origin: forms.$form-floating-padding-x 0;
+    transition: forms.$form-floating-transition-out;
   }
 
-  > textarea.form-control {
-    line-height: forms.$form-floating-textarea-line-height;
+  > .form-control {
+    // disable stylelint here, because the classes are coming from bs5
+    @extend .form-control-lg; /* stylelint-disable-line */
 
-    ~ label {
-      min-width: 0;
-      height: unset;
-      background: forms.$input-bg;
-      background: linear-gradient(forms.$input-bg 85%, rgba(forms.$input-bg, 0));
+    &[type='file']::file-selector-button {
+      padding-top: forms.$form-floating-input-padding-t +
+        ((forms.$form-floating-line-height - 1) * 0.5);
     }
 
     &:focus,
     &:not(:placeholder-shown) {
-      padding-top: forms.$form-floating-textarea-padding-t;
-      padding-bottom: forms.$form-floating-textarea-padding-b;
+      padding-top: forms.$form-floating-input-padding-t;
+      padding-bottom: forms.$form-floating-input-padding-b;
+
+      &[type='file']::file-selector-button {
+        padding-top: forms.$form-floating-input-padding-t +
+          ((forms.$form-floating-line-height - 1) * 0.5);
+      }
 
       ~ label {
-        min-width: calc(
-          (100% - #{2 * forms.$form-floating-padding-x}) / #{forms.$form-floating-label-scale}
+        padding-top: 0;
+        max-width: calc(
+          (100% * forms.$form-floating-label-upscale) -
+            (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
+            (forms.$input-border-width * forms.$form-floating-label-upscale * 2)
         );
+        transition: forms.$form-floating-transition-in;
+      }
+    }
+  }
+
+  > .form-select {
+    // disable stylelint here, because the classes are coming from bs5
+    @extend .form-control-lg; /* stylelint-disable-line */
+
+    padding-top: forms.$form-floating-input-padding-t;
+    padding-bottom: forms.$form-floating-input-padding-b;
+
+    ~ label {
+      padding-top: 0;
+      max-width: calc(
+        (100% * forms.$form-floating-label-upscale) -
+          (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
+          (forms.$input-border-width * forms.$form-floating-label-upscale * 2)
+      );
+      transition: forms.$form-floating-transition-in;
+    }
+
+    &:empty {
+      padding-top: forms.$form-floating-input-padding-t;
+      padding-bottom: forms.$form-floating-input-padding-b;
+
+      ~ label {
+        padding-top: forms.$form-floating-padding-y;
+        max-width: calc(100% - (forms.$input-border-width * 2));
+        transform: none;
+      }
+    }
+  }
+
+  > textarea.form-control {
+    ~ label {
+      padding-bottom: 0;
+      width: calc(100% - (forms.$input-border-width * 2));
+      max-width: none;
+      height: unset;
+    }
+
+    &:focus,
+    &:not(:placeholder-shown) {
+      padding-top: forms.$input-padding-y-lg * 1.5;
+      padding-bottom: forms.$input-padding-y-lg;
+
+      ~ label {
+        padding-top: forms.$input-padding-y-lg * forms.$form-floating-label-scale;
+        width: calc(
+          (100% * forms.$form-floating-label-upscale) -
+            (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
+            (forms.$input-border-width * forms.$form-floating-label-upscale * 2) -
+            (forms.$form-floating-padding-x * forms.$form-floating-label-upscale)
+        );
+        max-width: none;
+        background: forms.$input-bg;
       }
     }
   }
@@ -56,23 +124,4 @@
       }
     }
   }
-
-  // disable styleint here, because the classes are coming from bs5
-  /* stylelint-disable */
-  > .form-control {
-    @extend .form-control-lg;
-  }
-
-  > .form-select {
-    @extend .form-select-lg;
-
-    &:empty {
-      ~ label {
-        transform: translateY(
-          forms.$form-floating-padding-y - forms.$form-floating-label-padding-t
-        );
-      }
-    }
-  }
-  /* stylelint-enable */
 }

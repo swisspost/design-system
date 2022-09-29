@@ -1,10 +1,10 @@
 @use 'sass:map';
 
-@use '../../themes/bootstrap/overrides' as *;
+@use './../../themes/bootstrap/overrides' as *;
 
-@use '../../variables/spacing';
-@use '../../variables/type';
-@use '../../placeholders/text';
+@use './../../variables/spacing';
+@use './../../variables/type';
+@use './../../placeholders/text';
 
 @mixin styles {
   h1,

@@ -1,10 +1,10 @@
-@use '../../variables/color';
-@use '../../variables/spacing';
-@use '../../variables/type';
-@use '../../variables/commons';
-@use '../../variables/components/intranet-header';
+@use './../../variables/color';
+@use './../../variables/spacing';
+@use './../../variables/type';
+@use './../../variables/commons';
+@use './../../variables/components/intranet-header';
 
-@use '../../themes/bootstrap/overrides' as *;
+@use './../../themes/bootstrap/overrides' as *;
 
 header.navbar {
   .search-textbox {
@@ -24,9 +24,11 @@ header.navbar {
     }
 
     .btn {
+      width: intranet-header.$header-content-size;
       height: 100%;
       padding: 0 1.25rem;
       border-radius: 0;
+      border: 0 none;
     }
   }
 }

@@ -1,5 +1,3 @@
-import './type.scss';
-
 export default {
   title: 'Components/Blockquotes',
   argTypes: {

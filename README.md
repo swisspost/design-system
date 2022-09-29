@@ -1,13 +1,11 @@
-<br>
-
-![Swiss Post Logo](https://www.post.ch/-/media/portal-opp/global/logos/logo---die-post.svg?vs=2&sc_lang=en)
-
-
 # Swiss Post Design System
+
+![Swiss Post Design System splash screen](https://user-images.githubusercontent.com/1659006/187683368-d3aa2534-84be-4580-846e-2cad3796b573.png)
+
 
 The Swiss Post Design System pattern library for a unified and accessible user experience accross the web platform.
 
-🚧 The **Swiss Post Design System v5** is in alpha. Have a look at the [v5 milestone](https://github.com/swisspost/design-system/milestone/1) to see the progress.
+🚧 The **Swiss Post Design System v5** is in beta. Have a look at the [v5 milestone](https://github.com/swisspost/design-system/milestone/1) to see the progress. If you have any feedback to the beta version, please [submit an issue](https://github.com/swisspost/design-system/issues).
 
 
 ## Packages
@@ -15,7 +13,7 @@ The Swiss Post Design System pattern library for a unified and accessible user e
 ### Styles
 [![npm](https://img.shields.io/npm/v/@swisspost/design-system-styles)](https://www.npmjs.com/package/@swisspost/design-system-styles)
 
-[Documentation](https://swisspost-web-frontend.netlify.app) · [Contributing](/packages/styles/README.md)
+[Documentation](https://swisspost-web-frontend.netlify.app) · [Changelog](/packages/styles/CHANGELOG.md)
 
 
 The styling package, including theming for [Bootstrap](https://getbootstrap.com/) and [ng-bootstrap](https://ng-bootstrap.github.io/#/home) components. 
@@ -29,7 +27,7 @@ npm install @swisspost/design-system-styles
 ### Intranet Header
 [![npm](https://img.shields.io/npm/v/@swisspost/design-system-intranet-header)](https://www.npmjs.com/package/@swisspost/design-system-intranet-header)
 
-[Documentation](https://swisspost-web-frontend.netlify.app/#/post-samples/intranet-layout) · [Contributing](/packages/components-angular/projects/intranet-header/)
+[Documentation](https://swisspost-web-frontend.netlify.app/#/post-samples/intranet-layout) · [Changelog](/packages/components-angular/CHANGELOG.md)
 
 
 The Intranet Header Angular component.
