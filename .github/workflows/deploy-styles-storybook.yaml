@@ -33,10 +33,9 @@ jobs:
         env:
           NETLIFY_SITE_ID: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          EVENT_NUMBER: ${{ steps.build.outputs.github_event_number }}
         run: |
           # taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with pr number
-          deploy_alias=`echo "preview-${EVENT_NUMBER}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
+          deploy_alias=`echo "preview-${{ steps.build.outputs.github_event_number }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
           netlify link --id $NETLIFY_SITE_ID
           netlify deploy --alias $deploy_alias --build false --dir ${{ steps.build.outputs.folder }}
           echo "::set-output name=deploy_alias::$deploy_alias"
