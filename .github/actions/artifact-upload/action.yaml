@@ -31,9 +31,12 @@ runs:
   steps:
     - name: Save GithubEvent Infos
       shell: bash
+      env:
+        EVENT_NUMBER: ${{ github.event.number }}
+        EVENT_ACTION: ${{ github.event.action }}
       run: |
-        echo ${{ github.event.number }} > ${{ inputs.artifact_input_folder }}/GHA-EVENT-NUMBER
-        echo ${{ github.event.action }} > ${{ inputs.artifact_input_folder }}/GHA-EVENT-ACTION
+        echo $EVENT_NUMBER > ${{ inputs.artifact_input_folder }}/GHA-EVENT-NUMBER
+        echo $EVENT_ACTION > ${{ inputs.artifact_input_folder }}/GHA-EVENT-ACTION
     - uses: actions/upload-artifact@v3
       with:
         name: ${{ inputs.artifact_name }}
