@@ -25,20 +25,12 @@ jobs:
           artifact_name: design-system-styles-storybook
           artifact_folder: build-output
 
-      - name: Install netlify-cli
-        run: pnpm i -g netlify-cli
-
-      - name: Deploy preview environment
-        id: netlify
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          # taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with pr number
-          deploy_alias=`echo "preview-${{ steps.build.outputs.github_event_number }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
-          netlify link --id $NETLIFY_SITE_ID
-          netlify deploy --alias $deploy_alias --build false --dir ${{ steps.build.outputs.folder }}
-          echo "::set-output name=deploy_alias::$deploy_alias"
+      - uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
+        with:
+          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify_site_id: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
+          event_number: ${{ steps.build.outputs.event_number }}
+          folder: ${{ steps.build.outputs.folder }}
 
       - name: Comment on PullRequest
         uses: thollander/actions-comment-pull-request@v1
@@ -46,6 +38,6 @@ jobs:
         if: ${{ steps.build.outputs.github_event_action == 'opened' }}
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          # This will comment on pull request #number
+          # This will comment on pull request with specific number
           pr_number: ${{ steps.build.outputs.github_event_number }}
           message: '🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}--swisspost-design-system-styles.netlify.app'

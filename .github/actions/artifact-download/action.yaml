@@ -30,12 +30,12 @@ outputs:
   folder:
     description: Path to the folder where to download to
     value: ${{ inputs.artifact_folder }}
-  github_event_number:
-    description: The github.event property from the artifact uploading workflow.
-    value: ${{ steps.github_event.outputs.number }}
-  github_event_action:
-    description: The github.event property, from the artifact uploading workflow.
-    value: ${{ steps.github_event.outputs.action }}
+  event_number:
+    description: The github.event.number from the artifact uploading workflow.
+    value: ${{ steps.event.outputs.number }}
+  event_action:
+    description: The github.event.action from the artifact uploading workflow.
+    value: ${{ steps.event.outputs.action }}
 
 runs:
   using: composite
@@ -47,8 +47,8 @@ runs:
         path: ${{ inputs.artifact_folder }}
         run_id: ${{ github.event.workflow_run.id }}
         workflow_conclusion: success
-    - name: Create GithubEvent outputs
-      id: github_event
+    - name: Create Event outputs
+      id: event
       shell: bash
       run: |
         echo "::set-output name=number::$(cat ${{ inputs.artifact_folder }}/GHA-EVENT-NUMBER)"

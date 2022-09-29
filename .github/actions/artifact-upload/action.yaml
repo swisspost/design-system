@@ -29,7 +29,7 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Save GithubEvent Infos into the artifact folder
+    - name: Save Event Infos into the artifact folder
       shell: bash
       run: |
         echo ${{ github.event.number }} > ${{ inputs.artifact_folder }}/GHA-EVENT-NUMBER
