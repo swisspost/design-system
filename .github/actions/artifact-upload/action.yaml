@@ -21,7 +21,7 @@ inputs:
     description: Name of the artifact
     required: true
     type: string
-  artifact_input_folder:
+  artifact_folder:
     description: Path to the folder to upload
     required: true
     type: string
@@ -29,15 +29,12 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Save GithubEvent Infos
+    - name: Save GithubEvent Infos into the artifact folder
       shell: bash
-      env:
-        EVENT_NUMBER: ${{ github.event.number }}
-        EVENT_ACTION: ${{ github.event.action }}
       run: |
-        echo $EVENT_NUMBER > ${{ inputs.artifact_input_folder }}/GHA-EVENT-NUMBER
-        echo $EVENT_ACTION > ${{ inputs.artifact_input_folder }}/GHA-EVENT-ACTION
+        echo ${{ github.event.number }} > ${{ inputs.artifact_folder }}/GHA-EVENT-NUMBER
+        echo ${{ github.event.action }} > ${{ inputs.artifact_folder }}/GHA-EVENT-ACTION
     - uses: actions/upload-artifact@v3
       with:
         name: ${{ inputs.artifact_name }}
-        path: ${{ inputs.artifact_input_folder }}
+        path: ${{ inputs.artifact_folder }}
