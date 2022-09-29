@@ -51,5 +51,5 @@ runs:
       id: build
       shell: bash
       run: |
-        echo "::set-output name=number::$(cat ${{ inputs.folder }}/GHA-EVENT-ID)"
+        echo "::set-output name=id::$(cat ${{ inputs.folder }}/GHA-EVENT-ID)"
         echo "::set-output name=action::$(cat ${{ inputs.folder }}/GHA-EVENT-ACTION)"
