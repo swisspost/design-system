@@ -10,8 +10,8 @@ name: Deploy Styles Storybook to Netlify
 on:
   workflow_run:
     workflows: ['Build Styles Storybook']
-    types:
-      - completed
+    types: [completed]
+    branches: [feat/485-styles-set-up-storybook-pr-previews-for-the-styles-package]
 
 jobs:
   deploy:
