@@ -30,6 +30,7 @@ jobs:
         with:
           id: ${{ steps.build.outputs.id }}
           action: ${{ steps.build.outputs.build }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify_site_id: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
           netlify_site_url: swisspost-design-system-styles.netlify.app
