@@ -21,7 +21,7 @@ export class ActionAlertDemoComponent implements AfterViewInit {
 
   toggleEx1() {
     if (this.ex1 != undefined) {
-      var displayStyle = this.ex1.nativeElement.style.display;
+      const displayStyle = this.ex1.nativeElement.style.display;
       if (displayStyle != "none") {
         this.ex1.nativeElement.style.display = "none";
         this.setButtonText("Show Ex. 1", this.ex1btnTxt);
@@ -34,7 +34,7 @@ export class ActionAlertDemoComponent implements AfterViewInit {
 
   toggleEx2() {
     if (this.ex2 != undefined) {
-      var displayStyle = this.ex2.nativeElement.style.display;
+      const displayStyle = this.ex2.nativeElement.style.display;
       if (displayStyle != "none") {
         this.ex2.nativeElement.style.display = "none";
         this.setButtonText("Show Ex. 2", this.ex2btnTxt);
@@ -47,7 +47,7 @@ export class ActionAlertDemoComponent implements AfterViewInit {
 
   toggleEx3() {
     if (this.ex3 != undefined) {
-      var displayStyle = this.ex3.nativeElement.style.display;
+      const displayStyle = this.ex3.nativeElement.style.display;
       if (displayStyle != "none") {
         this.ex3.nativeElement.style.display = "none";
         this.setButtonText("Show Ex. 3", this.ex3btnTxt);
