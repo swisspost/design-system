@@ -128,6 +128,27 @@ export class HomeComponent {
     return HomeComponent.MIGRATION_ACCORDION_GROUPED_CHECKBOXES_KEY;
   }
 
+  private versionFilterRegexes = {
+    major: /^(?:(\d+)\.\d+\.\d+)/,
+    minor: /^(?:\d+\.(\d+)\.\d+)/,
+    patch: /^(?:\d+\.\d+\.(\d+))/,
+    pre: /^(?:\d+\.\d+\.\d+[ .:,;!?_~`'"^*+\-=<>#&$%@|\/()[\]{}]?(.*))/,
+    majorminor: /^(?:(\d+\.\d+)\.\d+)/,
+    majorminorpatch: /^(\d+\.\d+\.\d+)/
+  }
+
+  private versionFilterMap = {
+    major: 'major',
+    M: 'major',
+    minor: 'minor',
+    m: 'minor',
+    pre: 'pre',
+    majorminor: 'majorminor',
+    Mm: 'majorminor',
+    majorminorpatch: 'majorminorpatch',
+    Mmp: 'majorminorpatch'
+  }
+
   private getCleanVersion (version: string) {
     return version
       .replace(/^[^\d]+/, '');
@@ -135,23 +156,13 @@ export class HomeComponent {
 
   public getVersion (version: string, filter: string = '') {
     const cleanVersion: string = this.getCleanVersion(version);
-    let matchArray: RegExpMatchArray = null;
-
-    if (filter === 'major' || filter === 'M') {
-      matchArray = cleanVersion.match(/^(?:(\d+)\.\d+\.\d+)/);
-    } else if (filter === 'minor' || filter === 'm') {
-      matchArray = cleanVersion.match(/^(?:\d+\.(\d+)\.\d+)/);
-    } else if (filter === 'patch' || filter === 'p') {
-      matchArray = cleanVersion.match(/^(?:\d+\.\d+\.(\d+))/);
-    } else if (filter === 'pre') {
-      matchArray = cleanVersion.match(/^(?:\d+\.\d+\.\d+[ .:,;!?_~`'"^*+\-=<>#&$%@|\/()[\]{}]?(.*))/);
-    } else if (filter === 'majorminor' || filter === 'Mm') {
-      matchArray = cleanVersion.match(/^(?:(\d+\.\d+)\.\d+)/)
-    } else if (filter === 'majorminorpatch' || filter === 'Mmp') {
-      matchArray = cleanVersion.match(/^(\d+\.\d+\.\d+)/)
-    }
 
     if (filter) {
+      const filterRegex = this.versionFilterRegexes[this.versionFilterMap[filter]];
+      let matchArray: RegExpMatchArray = null;
+  
+      if (filterRegex) matchArray = cleanVersion.match(filterRegex);
+
       return matchArray !== null && matchArray[1] ? matchArray[1] : null;
     } else {
       return cleanVersion.length > 0 ? cleanVersion : version;
