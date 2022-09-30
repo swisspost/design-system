@@ -21,7 +21,9 @@
   ],
   "scripts": {
     "build": "stencil build --docs",
-    "start": "stencil build --watch --serve --docs",
+    "start": "npm-run-all --parallel watch:stencil storybook",
+    "start:stencil": "stencil build --watch --serve --docs",
+    "watch:stencil": "stencil build --watch",
     "test": "stencil test --spec",
     "test.watch": "stencil test --spec --watchAll",
     "test:cypress": "cypress open",
@@ -52,6 +54,7 @@
     "cypress-storybook": "^0.5.1",
     "jest": "^27.4.5",
     "jest-cli": "^27.4.5",
+    "npm-run-all": "^4.1.5",
     "react": "16",
     "react-dom": "16",
     "start-server-and-test": "^1.14.0",
