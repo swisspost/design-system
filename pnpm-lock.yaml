@@ -25,6 +25,7 @@ importers:
       '@storybook/addon-links': ^6.4.18
       '@storybook/html': ^6.4.18
       '@swisspost/design-system-styles': 5.0.0-beta.1
+      '@types/jest': 27.0.3
       babel-loader: ^8.2.3
       cypress: 10.0.3
       cypress-storybook: ^0.5.1
@@ -51,6 +52,7 @@ importers:
       '@storybook/addon-essentials': 6.5.12_uo5xpeo7xhvtph3nlqqa3ztttq
       '@storybook/addon-links': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/html': 6.5.12_tkukl6gqr2kovgcstirnszxlqa
+      '@types/jest': 27.0.3
       babel-loader: 8.2.5_7k5t74zmen3ocxyd32avkcyrwe
       cypress: 10.0.3
       cypress-storybook: 0.5.1_cypress@10.0.3
@@ -8707,6 +8709,13 @@ packages:
     resolution: {integrity: sha1-rjHCN6pkIb3jDxBYsdIPRXflREM=}
     dependencies:
       '@types/jasmine': 4.3.0
+    dev: true
+
+  /@types/jest/27.0.3:
+    resolution: {integrity: sha512-cmmwv9t7gBYt7hNKH5Spu7Kuu/DotGa+Ff+JGRKZ4db5eh8PnKS4LuebJ3YLUoyOyIHraTGyULn23YtEAm0VSg==}
+    dependencies:
+      jest-diff: 27.5.1
+      pretty-format: 27.5.1
     dev: true
 
   /@types/json-schema/7.0.11:
