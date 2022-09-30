@@ -15,26 +15,26 @@ export class SvgIconsDemoComponent {
   range: number[] = [];
 
   constructor() {
-    for(var i=1000;i<1050;i++) {
+    for(let i=1000;i<1050;i++) {
       this.range.push(i);
     }
-    for(var i=2000;i<2196;i++) {
+    for(let i=2000;i<2196;i++) {
       this.range.push(i);
     }
     this.range.push(3000);
-    for(var i=3020;i<3051;i++) {
+    for(let i=3020;i<3051;i++) {
       this.range.push(i);
     }
-    for(var i=3064;i<3177;i++) {
+    for(let i=3064;i<3177;i++) {
       this.range.push(i);
     }
-    for(var i=3184;i<3261;i++) {
+    for(let i=3184;i<3261;i++) {
       this.range.push(i);
     }
-    for(var i=8000;i<8020;i++) {
+    for(let i=8000;i<8020;i++) {
       this.range.push(i);
     }
-    for(var i=9900;i<9912;i++) {
+    for(let i=9900;i<9912;i++) {
       this.range.push(i);
     }
 
