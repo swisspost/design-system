@@ -55,6 +55,16 @@
 }
 
 .layout-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  margin: 0 !important;
+
+  > div.site-content {
+    display: flex;
+    flex: 0 0 auto;
+    flex-direction: column;
+  }
 }
 
 .layout-container {
