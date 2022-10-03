@@ -77,15 +77,15 @@ runs:
     #     body="${body//$'\r'/'%0D'}"
     #     echo "::set-output name=body::$body"
     #     echo "::set-output name=append_message::$(cat Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }})"
-    - name: Create or update comment
-      uses: peter-evans/create-or-update-comment@v2
-      # if: ${{ steps.find_comment.outputs.comment-id == 0 }} || !contains(${{ steps.comment_parameters.outputs.body }}, ${{ steps.comment_parameters.outputs.append_message }})
-      with:
-        # comment-id: ${{ steps.find_comment.outputs.comment-id }}
-        issue-number: ${{ inputs.id }}
-        edit-mode: append
-        body: 'Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}'
-        reactions: rocket
+    # - name: Create or update comment
+    #   uses: peter-evans/create-or-update-comment@v2
+    #   # if: ${{ steps.find_comment.outputs.comment-id == 0 }} || !contains(${{ steps.comment_parameters.outputs.body }}, ${{ steps.comment_parameters.outputs.append_message }})
+    #   with:
+    #     # comment-id: ${{ steps.find_comment.outputs.comment-id }}
+    #     issue-number: ${{ inputs.id }}
+    #     edit-mode: append
+    #     body: 'Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}'
+    #     reactions: rocket
 
     # - name: Comment on PullRequest
     #   uses: thollander/actions-comment-pull-request@v1
