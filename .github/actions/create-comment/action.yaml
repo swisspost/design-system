@@ -1,0 +1,50 @@
+###
+#
+# If you need to do some changes in a local-action used in this
+# workflow, make sure you change the action-flag to your working
+# branch-name to get the latest action functionality.
+#
+# Example: swisspost/design-system/.github/actions/setup-pnpm@my-working-branch-name
+#
+# Don't forget to change the action-flag back to 'main',
+# once you have finished your work on the local-action!
+#
+# https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions
+#
+###
+
+name: Create Comment
+description: Creates a comment with given user and message.
+
+inputs:
+  github_token:
+    description: Github access-token for use in shell scripts and API access.
+    required: true
+  comment_author:
+    description: Username of the comment-author.
+    required: true
+  initial_message:
+    description: Comment Message.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Find Comment
+      uses: peter-evans/find-comment@v2
+      id: find_comment
+      with:
+        token: ${{ inputs.github_token }}
+        issue-number: ${{ github.event.number }}
+        comment-author: ${{ inputs.comment_author }}
+        body-includes: ${{ inputs.initial_message }}
+
+    - name: Create Comment
+      uses: peter-evans/create-or-update-comment@v2
+      if: ${{ steps.find_comment.outputs.comment-id == 0 }}
+      with:
+        token: ${{ inputs.github_token }}
+        comment-id: ${{ steps.find_comment.outputs.comment-id }}
+        issue-number: ${{ github.event.number }}
+        edit-mode: replace
+        body: ${{ inputs.initial_message }}

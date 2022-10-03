@@ -1,0 +1,24 @@
+###
+#
+# Create initial Preview Comment
+#
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+#
+###
+
+name: Create initial Preview Comment
+on:
+  workflow_run:
+    workflows: ['Build demo app', 'Build Styles Storybook']
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Create Preview Comment
+        uses: swisspost/design-system/.github/actions/create-comment@feat/526-preview-environment-links
+        with:
+          github_token: ${{ secrets.SWISSPOSTDEV_ACCESS_TOKEN }}
+          comment_author: swisspost-devs
