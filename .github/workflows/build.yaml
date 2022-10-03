@@ -39,7 +39,7 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v2.2.2
         with:
-          version: 7.9.0
+          version: 7.13.0
 
       - name: Cache pnpm modules
         uses: actions/cache@v3
