@@ -31,6 +31,17 @@ jobs:
         run: pnpm --filter design-system-styles build:storybook
 
       - uses: swisspost/design-system/.github/actions/artifact-upload@feat/509-create-local-githab-action-to-create-or-edit-comment-on-pull-request
+        id: build
         with:
           name: design-system-styles-storybook
           folder: packages/styles/storybook-static
+
+      - name: Create or update comment
+        uses: peter-evans/create-or-update-comment@v2
+        # if: ${{ steps.find_comment.outputs.comment-id == 0 }} || !contains(${{ steps.comment_parameters.outputs.body }}, ${{ steps.comment_parameters.outputs.append_message }})
+        with:
+          # comment-id: ${{ steps.find_comment.outputs.comment-id }}
+          issue-number: ${{ github.event.number }}
+          edit-mode: append
+          body: 'Preview environment ready: test'
+          reactions: rocket
