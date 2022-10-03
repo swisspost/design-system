@@ -31,7 +31,7 @@
     "@swisspost/design-system-intranet-header": "^3.0.0-beta.0",
     "@swisspost/design-system-styles": "^5.0.0-beta.0",
     "bootstrap": "5.1.3",
-    "core-js": "3.25.2",
+    "core-js": "3.25.4",
     "highlight.js": "11.6.0",
     "ngx-highlightjs": "7.0.1",
     "ngx-toastr": "15.0.0",
