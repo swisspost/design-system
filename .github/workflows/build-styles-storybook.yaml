@@ -44,6 +44,17 @@ jobs:
           issue-number: ${{ github.event.number }}
           comment-author: github-actions[bot]
           body-includes: 'Preview environment ready:'
+      - name: Prepare Comment Parameters
+        if: ${{ steps.find_comment.outputs.comment-id != 0 }}
+        id: comment_parameters
+        shell: bash
+        run: |
+          body="$(cat ${{ steps.find_comment.outputs.comment-body }})"
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}" 
+          echo "::set-output name=body::$body"
+          echo "::set-output name=append_message::$(cat Preview environment ready: test)"
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v2
         # if: ${{ steps.find_comment.outputs.comment-id == 0 }} || !contains(${{ steps.comment_parameters.outputs.body }}, ${{ steps.comment_parameters.outputs.append_message }})
@@ -51,5 +62,5 @@ jobs:
           comment-id: ${{ steps.find_comment.outputs.comment-id }}
           issue-number: ${{ github.event.number }}
           edit-mode: append
-          body: 'Preview environment ready: test 2'
+          body: 'Preview environment ready: test 3'
           reactions: rocket
