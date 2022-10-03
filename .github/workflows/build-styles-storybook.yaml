@@ -23,14 +23,14 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: swisspost/design-system/.github/actions/setup-pnpm@feat/509-create-local-githab-action-to-create-or-edit-comment-on-pull-request
+      - uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install styles dependencies
         run: pnpm --filter design-system-styles install
       - name: Build styles storybook
         run: pnpm --filter design-system-styles build:storybook
 
-      - uses: swisspost/design-system/.github/actions/artifact-upload@feat/509-create-local-githab-action-to-create-or-edit-comment-on-pull-request
+      - uses: swisspost/design-system/.github/actions/artifact-upload@main
         with:
           name: design-system-styles-storybook
           folder: packages/styles/storybook-static
