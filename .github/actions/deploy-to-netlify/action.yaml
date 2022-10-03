@@ -52,7 +52,7 @@ runs:
         comment-author: ${{ inputs.comment_author }}
         body-includes: 'Preview environment'
 
-    - name: Create Preview Comment
+    - name: Create Initial Preview Comment
       uses: peter-evans/create-or-update-comment@v2
       if: ${{ steps.initial_comment.outputs.comment-id == 0 }}
       with:
@@ -100,6 +100,6 @@ runs:
         token: ${{ inputs.comment_token }}
         comment-id: ${{ steps.preview_comment.outputs.comment-id }}
         issue-number: ${{ inputs.id }}
-        edit-mode: ${{ contains(steps.preview_comment.outputs.comment-body, Preview environments are getting posted here, as soon as they are ready!) && echo "replace" || echo "append" }}
+        edit-mode: ${{ contains(steps.preview_comment.outputs.comment-body, "Preview environments are getting posted here, as soon as they are ready!") && echo "replace" || echo "append" }}
         body: ${{ steps.comment.outputs.message }}
         reactions: rocket
