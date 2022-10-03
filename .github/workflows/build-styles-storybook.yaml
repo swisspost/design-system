@@ -51,7 +51,7 @@ jobs:
           echo "::set-output name=message::$(cat Preview environment ready: test 100)"
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v2
-        if: ${{ steps.find_comment.outputs.comment-id == 0 }} || !contains(${{ steps.find_comment.outputs.body }}, ${{ steps.post.outputs.message }})
+        if: ${{ steps.find_comment.outputs.comment-id != 0 }}
         with:
           comment-id: ${{ steps.find_comment.outputs.comment-id }}
           issue-number: ${{ github.event.number }}
