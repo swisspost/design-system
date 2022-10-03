@@ -27,43 +27,21 @@ jobs:
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      - name: Download artifacts
-        uses: dawidd6/action-download-artifact@v2
+      - name: Download build artifacts
+        uses: swisspost/design-system/.github/actions/artifact-download@main
+        id: build
         with:
-          workflow: build.yaml
-          workflow_conclusion: success
           name: design-system-demo
-          path: build-output
-          run_id: ${{ github.event.workflow_run.id }}
+          folder: build-output
 
-      - name: Install netlify-cli
-        run: npm i -g netlify-cli
-
-      - name: Get PR number
-        id: pr
-        run: |
-          echo "::set-output name=pr_number::$(cat build-output/GHA-PR-NR)"
-          echo "::set-output name=event_action::$(cat build-output/GHA-EVENT-ACTION)"
-
-      - name: Deploy preview environment
-        id: netlify
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          PR_NUMBER: ${{ steps.pr.outputs.pr_number }}
-        run: |
-          # taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with pr number
-          deploy_alias=`echo "preview-${PR_NUMBER}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
-          netlify link --id $NETLIFY_SITE_ID
-          netlify deploy --alias $deploy_alias --build false --dir build-output
-          echo "::set-output name=deploy_alias::$deploy_alias"
-
-      - name: Comment on PR
-        uses: thollander/actions-comment-pull-request@v1
-        # Only post the preview URL once per PR
-        if: ${{ steps.pr.outputs.event_action == 'opened' }}
+      - name: Deploy to Netlify
+        uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
+        id: deploy
         with:
-          message: |
-            🚀 Preview environment ready: https://${{ steps.netlify.outputs.deploy_alias }}--swisspost-web-frontend.netlify.app
-          pr_number: ${{ steps.pr.outputs.pr_number }} # This will comment on pull request #123
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          id: ${{ steps.build.outputs.id }}
+          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify_site_id: ${{ secrets.NETLIFY_SITE_ID }}
+          netlify_site_url: swisspost-web-frontend.netlify.app
+          folder: ${{ steps.build.outputs.folder }}
+          comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          comment_author: swisspost-devs

@@ -35,14 +35,8 @@ jobs:
       - name: Bootstrap & Build Design System
         run: pnpm run bootstrap
 
-      # Save some infos about the PR for usage in the deploy.yaml triggered by a successful run
-      - name: Save PR number
-        run: |
-          echo ${{ github.event.number }} > packages/demo/dist/demo/GHA-PR-NR
-          echo ${{ github.event.action }} > packages/demo/dist/demo/GHA-EVENT-ACTION
-
-      - name: Upload artifacts
-        uses: actions/upload-artifact@master
+      - name: Upload build artifacts
+        uses: swisspost/design-system/.github/actions/artifact-upload@main
         with:
           name: design-system-demo
-          path: packages/demo/dist/demo
+          folder: packages/demo/dist/demo
