@@ -34,6 +34,20 @@ The Intranet Header Angular component.
 npm install @swisspost/design-system-intranet-header
 ```
 
+<hr>
+
+### Web Components
+[Contributing](/packages/web-components/CONTRIBUTING.md) · [Package](/packages/web-components/)
+
+A set of common components for easy integration with every framework or no framework at all.
+
+Usage in your project
+```bash
+npm install @swisspost/web-components
+```
+
+<hr>
+
 ## Design Documentation
 
 🔒 **[Experience Hub](https://www.experience-hub.ch/document/2803)** - pattern usage documentation ([request access](https://www.experience-hub.ch/request-access/))
