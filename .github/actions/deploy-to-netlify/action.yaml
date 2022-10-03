@@ -66,6 +66,14 @@ runs:
         issue-number: ${{ inputs.id }}
         comment-author: github-actions[bot]
         body-includes: 'Preview environment ready:'
+    - name: Test1
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        comment-id: 1
+        issue-number: ${{ inputs.id }}
+        edit-mode: append
+        body: Test 1
+        reactions: rocket
     - name: Prepare Comment Parameters
       id: comment_parameters
       shell: bash
