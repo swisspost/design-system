@@ -28,7 +28,8 @@ jobs:
           name: design-system-components-storybook
           folder: build-output
 
-      - uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
+      - name: Deploy to Netlify
+        uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
         id: deploy
         with:
           id: ${{ steps.build.outputs.id }}
