@@ -48,10 +48,10 @@ jobs:
         id: post
         shell: bash
         run: |
-          echo "::set-output name=message::$(cat Preview environment ready: test 100)"
+          echo "::set-output name=message::$(cat Preview environment ready: test 101)"
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v2
-        if: ${{ steps.find_comment.outputs.comment-id != 0 }}
+        if: ${{ steps.find_comment.outputs.comment-id == 0 }} || !contains(${{ steps.find_comment.outputs.comment-body }}, ${{ steps.post.outputs.message }})
         with:
           comment-id: ${{ steps.find_comment.outputs.comment-id }}
           issue-number: ${{ github.event.number }}
