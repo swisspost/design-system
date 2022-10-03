@@ -19,6 +19,9 @@
     "dist/",
     "loader/"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
     "start": "npm-run-all --parallel stencil:start storybook:start",
     "build": "npm-run-all stencil:build storybook:build",
