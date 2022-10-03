@@ -34,7 +34,9 @@ runs:
       run: |
         echo ${{ github.event.number }} > ${{ inputs.folder }}/GHA-EVENT-ID
         echo ${{ github.event.action }} > ${{ inputs.folder }}/GHA-EVENT-ACTION
-    - uses: actions/upload-artifact@v3
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
       with:
         name: ${{ inputs.name }}
         path: ${{ inputs.folder }}

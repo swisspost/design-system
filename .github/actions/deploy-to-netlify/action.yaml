@@ -43,6 +43,7 @@ runs:
     - name: Install netlify-cli
       shell: bash
       run: pnpm i -g netlify-cli
+
     - name: Deploy preview environment to netlify
       id: netlify_deploy
       shell: bash
@@ -63,11 +64,13 @@ runs:
         issue-number: ${{ inputs.id }}
         comment-author: github-actions[bot]
         body-includes: 'Preview environment ready:'
+
     - name: Prepare Comment Message
       id: comment
       shell: bash
       run: |
         echo "::set-output name=message::Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}"
+
     - name: Create or update comment
       uses: peter-evans/create-or-update-comment@v2
       if: ${{ steps.find_comment.outputs.comment-id == 0 || !contains(steps.find_comment.outputs.comment-body, steps.comment.outputs.message) }}
