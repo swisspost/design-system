@@ -9,7 +9,7 @@
 name: Deploy to Netlify
 on:
   workflow_run:
-    workflows: ["Build demo app"]
+    workflows: ['Build demo app']
     types:
       - completed
 

@@ -22,7 +22,7 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # The changeset action will behave differently based on whether there are 
+      # The changeset action will behave differently based on whether there are
       # new changesets on the main branch:
       #
       #  - new changesets: create a preview PR with the new version bumps and changelogs
@@ -34,8 +34,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
-          title: "chore(changesets): 🦋📦 publish packages"
-          commit: "chore(changesets): publish packages"
+          title: 'chore(changesets): 🦋📦 publish packages'
+          commit: 'chore(changesets): publish packages'
           publish: pnpm changeset:publish
           version: pnpm changeset:version
 
