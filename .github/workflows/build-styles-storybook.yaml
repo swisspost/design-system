@@ -44,18 +44,17 @@ jobs:
           issue-number: ${{ github.event.number }}
           comment-author: github-actions[bot]
           body-includes: 'Preview environment ready:'
-      - name: Prepare Comment Parameters
-        if: ${{ steps.find_comment.outputs.comment-id != 0 }}
+      - name: Prepare Post Message
         id: post
         shell: bash
         run: |
           echo "::set-output name=message::$(cat Preview environment ready: test 100)"
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v2
-        # if: ${{ steps.find_comment.outputs.comment-id == 0 }} || !contains(${{ steps.find_comment.outputs.body }}, ${{ steps.post.outputs.message }})
+        if: ${{ steps.find_comment.outputs.comment-id == 0 }} || !contains(${{ steps.find_comment.outputs.body }}, ${{ steps.post.outputs.message }})
         with:
           comment-id: ${{ steps.find_comment.outputs.comment-id }}
           issue-number: ${{ github.event.number }}
           edit-mode: append
-          body: 'Preview environment ready: test 5'
+          body: ${{ steps.post.outputs.message }}
           reactions: rocket
