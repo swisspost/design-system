@@ -40,20 +40,29 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Install netlify-cli
-      shell: bash
-      run: pnpm i -g netlify-cli
-    - name: Deploy preview environment to netlify
-      id: netlify_deploy
-      shell: bash
-      env:
-        NETLIFY_AUTH_TOKEN: ${{ inputs.netlify_auth_token }}
-      # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
-      run: |
-        url_alias=`echo "preview-${{ inputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
-        netlify link --id ${{ inputs.netlify_site_id }}
-        netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }}
-        echo "::set-output name=url_alias::$url_alias"
+    # - name: Install netlify-cli
+    #   shell: bash
+    #   run: pnpm i -g netlify-cli
+    # - name: Deploy preview environment to netlify
+    #   id: netlify_deploy
+    #   shell: bash
+    #   env:
+    #     NETLIFY_AUTH_TOKEN: ${{ inputs.netlify_auth_token }}
+    #   # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
+    #   run: |
+    #     url_alias=`echo "preview-${{ inputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
+    #     netlify link --id ${{ inputs.netlify_site_id }}
+    #     netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }}
+    #     echo "::set-output name=url_alias::$url_alias"
+
+    - name: Create or update comment test
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        token: ${{ inputs.github_token }}
+        issue-number: ${{ inputs.id }}
+        edit-mode: append
+        body: test
+        reactions: eyes
 
     - name: Find Comment
       uses: peter-evans/find-comment@v2
