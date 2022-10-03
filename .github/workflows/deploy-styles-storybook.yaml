@@ -18,19 +18,23 @@ jobs:
     if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
 
     steps:
-      - uses: swisspost/design-system/.github/actions/setup-pnpm@main
-      - uses: swisspost/design-system/.github/actions/artifact-download@main
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+
+      - name: Download build artifacts
+        uses: swisspost/design-system/.github/actions/artifact-download@main
         id: build
         with:
           name: design-system-styles-storybook
           folder: build-output
 
-      - uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
+      - name: Deploy to Netlify
+        uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
         id: deploy
         with:
           id: ${{ steps.build.outputs.id }}
-          action: ${{ steps.build.outputs.action }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          comment_author: swisspost-devs
           netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify_site_id: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
           netlify_site_url: swisspost-design-system-styles.netlify.app

@@ -8,14 +8,11 @@ interface IElementMap {
 
 @Component({
   selector: 'app-card-product-teaser',
-  templateUrl: './post-card-product-teaser.component.html'
+  templateUrl: './post-card-product-teaser.component.html',
 })
-export class PostCardProductTeaserComponent implements OnInit{
+export class PostCardProductTeaserComponent implements OnInit {
   heightSyncedMap: IElementMap = {};
   resize$ = new Subject<void>();
-
-  constructor() {
-  }
 
   ngOnInit() {
     this.resize$.pipe(debounceTime(300)).subscribe(() => {
@@ -29,16 +26,18 @@ export class PostCardProductTeaserComponent implements OnInit{
     const nodeArray: HTMLElement[] = Array.from(nodes);
     const heightSyncedMap = nodeArray.reduce((map, element) => {
       const group = element.getAttribute('data-sync-height-with');
-      if (!map[group]) { map[group] = []; }
+      if (!map[group]) {
+        map[group] = [];
+      }
       map[group].push(element);
       return map;
     }, {} as IElementMap);
 
-    Object.values(heightSyncedMap).forEach((group) => {
-      group.forEach((element) => element.style.height = 'auto');
-      const heights = group.map((element) => element.offsetHeight);
+    Object.values(heightSyncedMap).forEach(group => {
+      group.forEach(element => (element.style.height = 'auto'));
+      const heights = group.map(element => element.offsetHeight);
       const max = Math.max.apply(null, heights);
-      group.forEach((element) => {
+      group.forEach(element => {
         if (element.offsetHeight < max) {
           element.style.height = `${max}px`;
         }

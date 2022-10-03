@@ -47,6 +47,7 @@ runs:
         path: ${{ inputs.folder }}
         run_id: ${{ github.event.workflow_run.id }}
         workflow_conclusion: success
+
     - name: Create outputs
       id: build
       shell: bash
