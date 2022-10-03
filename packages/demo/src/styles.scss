@@ -8,6 +8,11 @@ html {
   scroll-behavior: smooth;
 }
 
+body {
+  // Necessary to prevent horizontal scrollbar from the topic teaser padding
+  overflow-x: hidden;
+}
+
 .pi-1000-warning {
   @include post.pi(1000, 'warning');
 }
@@ -87,11 +92,13 @@ code {
   padding: 0.1em 0.4em;
   margin: 0;
   font-size: 85%;
-  background-color: rgba(175,184,193,0.3);
+  background-color: rgba(175, 184, 193, 0.3);
   border-radius: 6px;
 
   &.block,
-  &.block.hljs {
+  &.d-block,
+  &.block.hljs,
+  &.d-block.hljs {
     display: block;
     padding: 0.25rem 0.5rem;
     background: rgb(50, 50, 50);

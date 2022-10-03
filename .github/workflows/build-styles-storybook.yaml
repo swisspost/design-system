@@ -14,23 +14,26 @@ name: Build Styles Storybook
 on:
   pull_request:
     paths:
-      - packages/styles/src/**
-      - packages/styles/.storybook/**
-      - packages/styles/cypress/**
+      - 'packages/styles/src/**'
+      - 'packages/styles/.storybook/**'
+      - 'packages/styles/cypress/**'
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: swisspost/design-system/.github/actions/setup-pnpm@main
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install styles dependencies
         run: pnpm --filter design-system-styles install
+
       - name: Build styles storybook
         run: pnpm --filter design-system-styles build:storybook
 
-      - uses: swisspost/design-system/.github/actions/artifact-upload@main
+      - name: Upload build artifacts
+        uses: swisspost/design-system/.github/actions/artifact-upload@main
         with:
           name: design-system-styles-storybook
           folder: packages/styles/storybook-static
