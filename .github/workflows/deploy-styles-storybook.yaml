@@ -33,7 +33,8 @@ jobs:
         id: deploy
         with:
           id: ${{ steps.build.outputs.id }}
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          comment_author: swisspost-devs
           netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify_site_id: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
           netlify_site_url: swisspost-design-system-styles.netlify.app
