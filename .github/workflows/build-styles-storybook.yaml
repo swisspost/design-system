@@ -23,6 +23,26 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Find initial Comment
+        uses: peter-evans/find-comment@v2
+        id: find_comment
+        with:
+          token: ${{ secrets.SWISSPOSTDEV_ACCESS_TOKEN }}
+          issue-number: ${{ github.event.number }}
+          comment-author: swisspost-devs
+          body-includes: 'Preview environment links will be posted here, as soon as they are ready!'
+
+      - name: Create initial comment
+        uses: peter-evans/create-or-update-comment@v2
+        if: ${{ steps.find_comment.outputs.comment-id == 0 }}
+        with:
+          token: ${{ secrets.SWISSPOSTDEV_ACCESS_TOKEN }}
+          comment-id: ${{ steps.find_comment.outputs.comment-id }}
+          issue-number: ${{ github.event.number }}
+          edit-mode: replace
+          body: Preview environment links will be posted here, as soon as they are ready!
+          reactions: rocket
+
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
@@ -37,23 +57,3 @@ jobs:
         with:
           name: design-system-styles-storybook
           folder: packages/styles/storybook-static
-
-      - name: Find initial Comment
-        uses: peter-evans/find-comment@v2
-        id: find_comment
-        with:
-          token: ${{ secrets.SWISSPOSTDEV_ACCESS_TOKEN }}
-          issue-number: ${{ github.event.number }}
-          comment-author: swisspost-devs
-          body-includes: 'Preview environment links will be posted here, as soon as they are ready!'
-
-      - name: Create initial comment
-        uses: peter-evans/create-or-update-comment@v2
-        if: ${{ steps.find_comment.outputs.comment-id == 0 }}
-        with:
-          token: ${{ inputs.SWISSPOSTDEV_ACCESS_TOKEN }}
-          comment-id: ${{ steps.find_comment.outputs.comment-id }}
-          issue-number: ${{ github.event.number }}
-          edit-mode: replace
-          body: Preview environment links will be posted here, as soon as they are ready!
-          reactions: rocket
