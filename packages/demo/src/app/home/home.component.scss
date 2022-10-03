@@ -32,7 +32,8 @@
   list-style: none;
   counter-reset: bubble-tea;
 
-  h3 {
+  h3,
+  h4 {
     margin-bottom: 1rem;
   }
 
@@ -83,19 +84,57 @@
     }
   }
 
-  ul,
-  ol {
-    list-style: none;
-    padding-left: 0;
-
-    > li {
-      margin-bottom: 1rem;
-    }
-  }
-
   .bg-white {
     > *:last-child {
       margin-bottom: 0;
     }
+  }
+}
+
+.accordion-button {
+  @include post.font-curve(post.$accordion-font-curve);
+
+  small {
+    @include post.font-curve('tiny');
+    display: inline-block;
+    padding-left: 1em;
+    font-weight: post.$font-weight-base;
+  }
+}
+
+.highlight {
+  display: inline;
+  font-family: post.$font-family-monospace;
+  color: post.$coral-bright;
+}
+
+.info {
+  display: block;
+  margin-bottom: 1rem;
+  font-size: post.$font-size-tiny;
+  color: post.$gray-40;
+
+  + .info {
+    margin-top: -1rem;
+  }
+}
+
+.bubble-tea .form-check-label {
+  code:not(.block, .d-block),
+  .change-badge {
+    display: inline-block;
+    padding: 0.05rem 0.3rem;
+    border-radius: 3px;
+    font-family: post.$font-family-monospace;
+    font-size: 12px;
+    vertical-align: text-bottom;
+  }
+
+  ul {
+    padding-left: 1.15em;
+  }
+
+  .form-check-input:checked ~ & {
+    opacity: 0.5;
   }
 }
