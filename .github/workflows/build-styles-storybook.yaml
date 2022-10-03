@@ -36,12 +36,20 @@ jobs:
           name: design-system-styles-storybook
           folder: packages/styles/storybook-static
 
+      - name: Find Comment
+        uses: peter-evans/find-comment@v2
+        id: find_comment
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          issue-number: ${{ github.event.number }}
+          comment-author: github-actions[bot]
+          body-includes: 'Preview environment ready:'
       - name: Create or update comment
         uses: peter-evans/create-or-update-comment@v2
         # if: ${{ steps.find_comment.outputs.comment-id == 0 }} || !contains(${{ steps.comment_parameters.outputs.body }}, ${{ steps.comment_parameters.outputs.append_message }})
         with:
-          # comment-id: ${{ steps.find_comment.outputs.comment-id }}
+          comment-id: ${{ steps.find_comment.outputs.comment-id }}
           issue-number: ${{ github.event.number }}
           edit-mode: append
-          body: 'Preview environment ready: test'
+          body: 'Preview environment ready: test 2'
           reactions: rocket
