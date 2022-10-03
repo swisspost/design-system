@@ -56,5 +56,5 @@ jobs:
           comment-id: ${{ steps.find_comment.outputs.comment-id }}
           issue-number: ${{ github.event.number }}
           edit-mode: append
-          body: ${{ steps.find_comment.outputs.comment-id }}, ${{ steps.find_comment.outputs.comment-body }}, ${{ steps.post.outputs.message }}
+          body: ${{ steps.find_comment.outputs.comment-id }}, ${{ steps.find_comment.outputs.comment-body }}, ${{ steps.comment.outputs.message }}
           reactions: rocket
