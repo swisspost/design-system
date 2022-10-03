@@ -19,9 +19,6 @@ on:
       - 'packages/demo/**'
       - 'packages/styles/src/**'
       - 'packages/styles/*'
-      - '!packages/styles/.editorconfig'
-      - '!packages/styles/.gitignore'
-      - '!packages/styles/.stylelintrc'
       - '!packages/styles/jest.*'
 
 jobs:
