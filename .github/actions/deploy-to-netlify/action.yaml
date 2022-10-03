@@ -57,7 +57,7 @@ runs:
         netlify link --id ${{ inputs.netlify_site_id }}
         netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }}
         echo "::set-output name=url_alias::$url_alias"
-    
+
     - name: Find Comment
       uses: peter-evans/find-comment@v2
       id: find_comment
@@ -66,14 +66,6 @@ runs:
         issue-number: ${{ inputs.id }}
         comment-author: github-actions[bot]
         body-includes: 'Preview environment ready:'
-    - name: Test1
-      uses: peter-evans/create-or-update-comment@v2
-      with:
-        comment-id: 1
-        issue-number: ${{ inputs.id }}
-        edit-mode: append
-        body: Test 1
-        reactions: rocket
     - name: Prepare Comment Parameters
       id: comment_parameters
       shell: bash
@@ -86,14 +78,14 @@ runs:
         echo "::set-output name=append_message::$(cat Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }})"
     - name: Create or update comment
       uses: peter-evans/create-or-update-comment@v2
-      if: !contains(${{ steps.comment_parameters.outputs.body }}, ${{ steps.comment_parameters.outputs.append_message }})
+      # if: !contains(${{ steps.comment_parameters.outputs.body }}, ${{ steps.comment_parameters.outputs.append_message }})
       with:
         comment-id: ${{ steps.find_comment.outputs.comment-id }}
         issue-number: ${{ inputs.id }}
         edit-mode: append
         body: 'Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}'
         reactions: rocket
-  
+
     # - name: Comment on PullRequest
     #   uses: thollander/actions-comment-pull-request@v1
     #   # Only post the preview URL once per PR
