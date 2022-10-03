@@ -15,14 +15,11 @@ name: Build demo app
 on:
   pull_request:
     paths:
-      - packages/components-angular/**
-      - packages/demo/**
-      - packages/styles/src/**
-      - packages/styles/*
-      - !packages/styles/.editorconfig
-      - !packages/styles/.gitignore
-      - !packages/styles/.stylelintrc
-      - !packages/styles/jest.*
+      - 'packages/components-angular/**'
+      - 'packages/demo/**'
+      - 'packages/styles/src/**'
+      - 'packages/styles/*'
+      - '!packages/styles/jest.*'
 
 jobs:
   build:

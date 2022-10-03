@@ -22,9 +22,6 @@ inputs:
   id:
     description: The build id
     required: true
-  action:
-    description: The build action
-    required: true
   github_token:
     description: Github access-token for use in shell scripts and API access.
     required: true
@@ -46,6 +43,7 @@ runs:
     - name: Install netlify-cli
       shell: bash
       run: pnpm i -g netlify-cli
+
     - name: Deploy preview environment to netlify
       id: netlify_deploy
       shell: bash
@@ -57,12 +55,29 @@ runs:
         netlify link --id ${{ inputs.netlify_site_id }}
         netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }}
         echo "::set-output name=url_alias::$url_alias"
-    - name: Comment on PullRequest
-      uses: thollander/actions-comment-pull-request@v1
-      # Only post the preview URL once per PR
-      if: ${{ inputs.action == 'opened' }}
+
+    - name: Find Comment
+      uses: peter-evans/find-comment@v2
+      id: find_comment
       with:
-        GITHUB_TOKEN: ${{ inputs.github_token }}
-        # This will comment on pull request with specific number
-        pr_number: ${{ inputs.id }}
-        message: '🚀 Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}'
+        token: ${{ inputs.github_token }}
+        issue-number: ${{ inputs.id }}
+        comment-author: github-actions[bot]
+        body-includes: 'Preview environment ready:'
+
+    - name: Prepare Comment Message
+      id: comment
+      shell: bash
+      run: |
+        echo "::set-output name=message::Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}"
+
+    - name: Create or update comment
+      uses: peter-evans/create-or-update-comment@v2
+      if: ${{ steps.find_comment.outputs.comment-id == 0 || !contains(steps.find_comment.outputs.comment-body, steps.comment.outputs.message) }}
+      with:
+        token: ${{ inputs.github_token }}
+        comment-id: ${{ steps.find_comment.outputs.comment-id }}
+        issue-number: ${{ inputs.id }}
+        edit-mode: append
+        body: ${{ steps.comment.outputs.message }}
+        reactions: rocket
