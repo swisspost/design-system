@@ -28,26 +28,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
-      - name: Install node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
-
-      - name: Install pnpm
-        uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7.9.0
-
-      - name: Cache pnpm modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Bootstrap & Build Design System
         run: pnpm run bootstrap

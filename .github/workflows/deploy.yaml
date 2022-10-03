@@ -24,10 +24,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Install node
-        uses: actions/setup-node@v3
-        with:
-          node-version: 16
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Download artifacts
         uses: dawidd6/action-download-artifact@v2
@@ -37,7 +35,7 @@ jobs:
           name: design-system-demo
           path: build-output
           run_id: ${{ github.event.workflow_run.id }}
-          
+
       - name: Install netlify-cli
         run: npm i -g netlify-cli
 
