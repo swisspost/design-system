@@ -55,14 +55,6 @@ runs:
         netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }}
         echo "::set-output name=url_alias::$url_alias"
 
-    - name: Create or update comment
-      uses: peter-evans/create-or-update-comment@v2
-      with:
-        issue-number: ${{ inputs.id }}
-        edit-mode: append
-        body: ${{ inputs.id }}
-        reactions: eyes
-
     - name: Find Comment
       uses: peter-evans/find-comment@v2
       id: find_comment
@@ -78,8 +70,9 @@ runs:
         echo "::set-output name=message::'Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}'"
     - name: Create or update comment
       uses: peter-evans/create-or-update-comment@v2
-      # if: ${{ steps.find_comment.outputs.comment-id == 0 || !contains(steps.find_comment.outputs.comment-body, steps.comment.outputs.message) }}
+      if: ${{ steps.find_comment.outputs.comment-id == 0 || !contains(steps.find_comment.outputs.comment-body, steps.comment.outputs.message) }}
       with:
+        token: ${{ inputs.github_token }}
         comment-id: ${{ steps.find_comment.outputs.comment-id }}
         issue-number: ${{ inputs.id }}
         edit-mode: append
