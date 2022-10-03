@@ -73,7 +73,7 @@ runs:
         echo "::set-output name=message::'Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}'"
     - name: Create or update comment
       uses: peter-evans/create-or-update-comment@v2
-      if: ${{ steps.find_comment.outputs.comment-id == 0 || !contains(steps.find_comment.outputs.comment-body, steps.comment.outputs.message) }}
+      # if: ${{ steps.find_comment.outputs.comment-id == 0 || !contains(steps.find_comment.outputs.comment-body, steps.comment.outputs.message) }}
       with:
         comment-id: ${{ steps.find_comment.outputs.comment-id }}
         issue-number: ${{ inputs.id }}
