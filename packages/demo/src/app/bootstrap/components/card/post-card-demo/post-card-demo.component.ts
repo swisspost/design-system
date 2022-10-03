@@ -5,4 +5,6 @@ import { Component } from '@angular/core';
   templateUrl: './post-card-demo.component.html',
   styleUrls: ['./post-card-demo.component.scss'],
 })
-export class PostCardDemoComponent {}
+export class PostCardDemoComponent {
+  constructor() {}
+}

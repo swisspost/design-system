@@ -16,7 +16,7 @@ export class AlertDemoComponent implements AfterViewInit {
 
   toggleFixedAlert() {
     if (this.dismissible != undefined) {
-      const displayStyle = this.dismissible.nativeElement.style.display;
+      var displayStyle = this.dismissible.nativeElement.style.display;
       if (displayStyle != "none") {
         this.dismissible.nativeElement.style.display = "none";
         this.setButtonText("Show fixed alert");

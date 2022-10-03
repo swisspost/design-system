@@ -183,7 +183,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
 
   public handleLanguageChange(lang: string) {
     if (lang !== this.lang) {
-      const sanitizedLocationUrl = this.domSanitizer.sanitize(SecurityContext.URL, location.href);
+      var sanitizedLocationUrl = this.domSanitizer.sanitize(SecurityContext.URL, location.href);
       this.setLang(lang);
 
       if (!sanitizedLocationUrl) {
