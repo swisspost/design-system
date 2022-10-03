@@ -14,7 +14,8 @@
   },
   "publishConfig": {
     "directory": "./dist",
-    "access": "public"
+    "access": "public",
+    "linkDirectory": true
   },
   "scripts": {
     "clean": "rimraf out-tsc dist/*",
