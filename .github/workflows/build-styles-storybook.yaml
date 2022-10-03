@@ -25,12 +25,12 @@ jobs:
     steps:
       - uses: swisspost/design-system/.github/actions/setup-pnpm@feat/509-create-local-githab-action-to-create-or-edit-comment-on-pull-request
 
-      # - name: Install styles dependencies
-      #   run: pnpm --filter design-system-styles install
-      # - name: Build styles storybook
-      #   run: pnpm --filter design-system-styles build:storybook
+      - name: Install styles dependencies
+        run: pnpm --filter design-system-styles install
+      - name: Build styles storybook
+        run: pnpm --filter design-system-styles build:storybook
 
-      # - uses: swisspost/design-system/.github/actions/artifact-upload@feat/509-create-local-githab-action-to-create-or-edit-comment-on-pull-request
-      #   with:
-      #     name: design-system-styles-storybook
-      #     folder: packages/styles/storybook-static
+      - uses: swisspost/design-system/.github/actions/artifact-upload@feat/509-create-local-githab-action-to-create-or-edit-comment-on-pull-request
+        with:
+          name: design-system-styles-storybook
+          folder: packages/styles/storybook-static

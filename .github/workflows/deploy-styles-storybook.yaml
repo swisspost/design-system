@@ -19,11 +19,11 @@ jobs:
 
     steps:
       - uses: swisspost/design-system/.github/actions/setup-pnpm@feat/509-create-local-githab-action-to-create-or-edit-comment-on-pull-request
-      # - uses: swisspost/design-system/.github/actions/artifact-download@feat/509-create-local-githab-action-to-create-or-edit-comment-on-pull-request
-      #   id: build
-      #   with:
-      #     name: design-system-styles-storybook
-      #     folder: build-output
+      - uses: swisspost/design-system/.github/actions/artifact-download@feat/509-create-local-githab-action-to-create-or-edit-comment-on-pull-request
+        id: build
+        with:
+          name: design-system-styles-storybook
+          folder: build-output
 
       - uses: swisspost/design-system/.github/actions/deploy-to-netlify@feat/509-create-local-githab-action-to-create-or-edit-comment-on-pull-request
         id: deploy
