@@ -29,7 +29,6 @@ jobs:
         id: deploy
         with:
           id: ${{ steps.build.outputs.id }}
-          action: ${{ steps.build.outputs.action }}
           github_token: ${{ secrets.GITHUB_TOKEN }}
           netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify_site_id: ${{ secrets.STYLES_NETLIFY_SITE_ID }}

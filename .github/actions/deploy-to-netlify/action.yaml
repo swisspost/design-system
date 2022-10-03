@@ -22,9 +22,6 @@ inputs:
   id:
     description: The build id
     required: true
-  action:
-    description: The build action
-    required: true
   github_token:
     description: Github access-token for use in shell scripts and API access.
     required: true
