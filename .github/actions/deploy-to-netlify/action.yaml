@@ -45,22 +45,31 @@ runs:
   steps:
     - name: Find Preview Comment
       uses: peter-evans/find-comment@v2
-      id: initial_comment
+      id: preview_comment
       with:
         token: ${{ inputs.comment_token }}
         issue-number: ${{ inputs.id }}
         comment-author: ${{ inputs.comment_author }}
-        body-includes: 'Preview environment'
+        body-includes: Preview environment ready
 
     - name: Create Initial Preview Comment
       uses: peter-evans/create-or-update-comment@v2
-      if: ${{ steps.initial_comment.outputs.comment-id == 0 }}
+      if: ${{ steps.preview_comment.outputs.comment-id == 0 }}
       with:
         token: ${{ inputs.comment_token }}
         issue-number: ${{ inputs.id }}
         edit-mode: replace
         body: Preview environments are getting posted here, as soon as they are ready!
         reactions: eyes
+
+    - name: Find Initial Preview Comment
+      uses: peter-evans/find-comment@v2
+      id: initial_preview_comment
+      with:
+        token: ${{ inputs.comment_token }}
+        issue-number: ${{ inputs.id }}
+        comment-author: ${{ inputs.comment_author }}
+        body-includes: Preview environments are getting posted here, as soon as they are ready!
 
     - name: Install netlify-cli
       shell: bash
@@ -84,22 +93,24 @@ runs:
       run: |
         echo "::set-output name=message::Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}"
 
-    - name: Find Preview Comment
-      uses: peter-evans/find-comment@v2
-      id: preview_comment
+    - name: Replace Preview Comment
+      uses: peter-evans/create-or-update-comment@v2
+      if: ${{ steps.initial_preview_comment.outputs.comment-id != 0 }}
       with:
         token: ${{ inputs.comment_token }}
+        comment-id: ${{ steps.initial_preview_comment.outputs.comment-id }}
         issue-number: ${{ inputs.id }}
-        comment-author: ${{ inputs.comment_author }}
-        body-includes: 'Preview environment'
+        edit-mode: replace
+        body: ${{ steps.comment.outputs.message }}
+        reactions: rocket
 
-    - name: Update Preview Comment
+    - name: Append Preview Comment
       uses: peter-evans/create-or-update-comment@v2
-      if: ${{ steps.preview_comment.outputs.comment-id == 0 || !contains(steps.preview_comment.outputs.comment-body, steps.comment.outputs.message) }}
+      if: ${{ steps.initial_preview_comment.outputs.comment-id == 0 && (steps.preview_comment.outputs.comment-id == 0 || !contains(steps.preview_comment.outputs.comment-body, steps.comment.outputs.message)) }}
       with:
         token: ${{ inputs.comment_token }}
         comment-id: ${{ steps.preview_comment.outputs.comment-id }}
         issue-number: ${{ inputs.id }}
-        edit-mode: ${{ contains(steps.preview_comment.outputs.comment-body, "Preview environments are getting posted here, as soon as they are ready!") && echo "replace" || echo "append" }}
+        edit-mode: append
         body: ${{ steps.comment.outputs.message }}
         reactions: rocket
