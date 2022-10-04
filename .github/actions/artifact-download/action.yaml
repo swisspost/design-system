@@ -1,0 +1,56 @@
+###
+#
+# If you need to do some changes in a local-action used in this
+# workflow, make sure you change the action-flag to your working
+# branch-name to get the latest action functionality.
+#
+# Example: swisspost/design-system/.github/actions/setup-environment-pnpm@my-working-branch-name
+#
+# Don't forget to change the action-flag back to 'main',
+# once you have finished your work on the local-action!
+#
+# https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions
+#
+###
+
+name: Artifact Download
+description: Downloads an artifact to a specific folder.
+
+inputs:
+  name:
+    description: Name of the artifact
+    required: true
+    type: string
+  folder:
+    description: Path to the folder where to download to
+    required: true
+    type: string
+
+outputs:
+  id:
+    description: The build id from the artifact uploading workflow.
+    value: ${{ steps.build.outputs.id }}
+  action:
+    description: The build action from the artifact uploading workflow.
+    value: ${{ steps.build.outputs.action }}
+  folder:
+    description: Path to the folder where to download to
+    value: ${{ inputs.folder }}
+
+runs:
+  using: composite
+  steps:
+    - name: Download artifact
+      uses: dawidd6/action-download-artifact@v2
+      with:
+        name: ${{ inputs.name }}
+        path: ${{ inputs.folder }}
+        run_id: ${{ github.event.workflow_run.id }}
+        workflow_conclusion: success
+
+    - name: Create outputs
+      id: build
+      shell: bash
+      run: |
+        echo "::set-output name=id::$(cat ${{ inputs.folder }}/GHA-EVENT-ID)"
+        echo "::set-output name=action::$(cat ${{ inputs.folder }}/GHA-EVENT-ACTION)"
