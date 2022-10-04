@@ -27,7 +27,6 @@
     "build": "npm-run-all stencil:build storybook:build",
     "test": "npm-run-all --parallel stencil:test cypress:test",
     "stencil:start": "stencil build --watch --docs",
-    "stencil:serve": "stencil build --watch --serve --docs",
     "stencil:build": "stencil build --docs",
     "stencil:test": "stencil test --spec",
     "stencil:test:watch": "stencil test --spec --watchAll",

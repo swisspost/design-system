@@ -24,12 +24,10 @@
     "clean": "rimraf out-tsc dist/*",
     "prebuild": "npm run clean",
     "build": "gulp build",
-    "build:ci": "gulp build",
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",
     "format": "prettier src/**/*.scss --write",
     "test": "jest",
-    "test:ci": "jest",
     "start": "gulp watch",
     "storybook": "start-storybook -p 6006 --quiet",
     "build:storybook": "build-storybook"

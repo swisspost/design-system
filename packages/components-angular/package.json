@@ -4,11 +4,8 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "ng": "ng",
     "build": "ng build intranet-header",
-    "build:ci": "ng build",
     "start": "ng serve --port 4201",
-    "test": "echo 'todo'",
     "clean": "rimraf dist",
     "lint": "ng lint"
   },

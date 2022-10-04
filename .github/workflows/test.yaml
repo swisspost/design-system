@@ -26,4 +26,4 @@ jobs:
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Run tests
-        run: pnpm --filter "...[origin/main]" test:ci
+        run: pnpm --filter "...[origin/main]" test
