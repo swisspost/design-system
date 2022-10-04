@@ -12,33 +12,19 @@ jobs:
     name: Release
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repo
+      - name: Checkout
         uses: actions/checkout@v3
         with:
           fetch-depth: 0
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '16'
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      - name: Cache pnpm modules
-        uses: actions/cache@v3
-        with:
-          path: ~/.pnpm-store
-          key: ${{ runner.os }}-v3-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-v3-
-
-      - uses: pnpm/action-setup@v2.2.2
-        with:
-          version: 7.13.0
-          
       # Install changesets locally
       - name: Install dependencies
         run: pnpm install
 
-      # The changeset action will behave differently based on whether there are 
+      # The changeset action will behave differently based on whether there are
       # new changesets on the main branch:
       #
       #  - new changesets: create a preview PR with the new version bumps and changelogs
@@ -50,8 +36,8 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
-          title: "chore(changesets): 🦋📦 publish packages"
-          commit: "chore(changesets): publish packages"
+          title: 'chore(changesets): 🦋📦 publish packages'
+          commit: 'chore(changesets): publish packages'
           publish: pnpm changeset:publish
           version: pnpm changeset:version
 

@@ -94,7 +94,9 @@
         <code
           class="d-block p-3"
           [languages]="['bash']"
-          [highlight]="'npx run @swisspost/design-system-migrations'"
+          [highlight]="
+            'npx ng update @swisspost/design-system-styles --from=4 --to=5 --migrate-only'
+          "
         ></code>
       </li>
       <li>
