@@ -16,6 +16,9 @@
     "directory": "./dist",
     "access": "public"
   },
+  "ng-update": {
+    "migrations": "@swisspost/design-system-migrations/migrations.json"
+  },
   "scripts": {
     "clean": "rimraf out-tsc dist/*",
     "prebuild": "npm run clean",
