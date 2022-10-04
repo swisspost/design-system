@@ -31,10 +31,10 @@
     "stencil:test": "stencil test --spec",
     "stencil:test:watch": "stencil test --spec --watchAll",
     "stencil:generate": "stencil generate",
-    "storybook:start": "start-storybook -p 6006",
+    "storybook:start": "start-storybook -p 6007",
+    "storybook:headless": "start-storybook -p 60070 -s www --no-open --quiet",
     "storybook:build": "build-storybook",
-    "storybook:ci": "start-storybook -p 6060 -s www --no-open --quiet",
-    "cypress:test": "cypress run --config video=false",
+    "cypress:test": "start-server-and-test storybook:headless 60070 'cypress run --config video=false'",
     "cypress:open": "cypress open"
   },
   "dependencies": {
