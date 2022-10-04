@@ -22,13 +22,13 @@
   },
   "scripts": {
     "clean": "rimraf out-tsc dist/*",
-    "prebuild": "npm run clean",
+    "start": "gulp watch",
+    "prebuild": "pnpm clean",
     "build": "gulp build",
+    "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",
-    "format": "prettier src/**/*.scss --write",
     "test": "jest",
-    "start": "gulp watch",
     "storybook:serve": "start-storybook -p 6006 --quiet",
     "storybook:build": "build-storybook"
   },

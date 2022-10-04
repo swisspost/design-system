@@ -4,9 +4,9 @@
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "build": "ng build intranet-header",
-    "start": "ng serve --port 4201",
     "clean": "rimraf dist",
+    "start": "ng serve --port 4201",
+    "build": "ng build intranet-header",
     "lint": "ng lint"
   },
   "dependencies": {
