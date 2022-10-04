@@ -1,5 +1,6 @@
 {
 	"name": "@swisspost/design-system",
+  "description": "The Swiss Post Design System pattern library for a consistent and accessible user experience across the web platform.",
 	"author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
   "repository": {
@@ -10,20 +11,18 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
-	"private": true,
-	"scripts": {
-		"start": "pnpm start:demo",
-		"start:demo": "pnpm --filter design-system-demo --filter design-system-styles --parallel --stream  start",
-		"start:styles": "pnpm --filter design-system-styles storybook",
-		"start:intranet-header": "pnpm --filter design-system-components-angular start",
-		"start:docs": "pnpm --filter design-system-documentation start",
-		"bootstrap": "pnpm install && pnpm exec lerna bootstrap && pnpm run -r build",
-		"changeset:publish": "pnpm bootstrap && pnpm changeset publish",
-		"changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
-	},
-	"devDependencies": {
-		"@changesets/changelog-github": "0.4.6",
-		"@changesets/cli": "2.24.4",
-		"lerna": "5.4.3"
-	}
+  "scripts": {
+    "start": "pnpm start:demo",
+    "start:demo": "pnpm --filter design-system-demo --filter design-system-styles --parallel --stream  start",
+    "start:styles": "pnpm --filter design-system-styles storybook",
+    "start:intranet-header": "pnpm --filter design-system-components-angular start",
+    "start:components": "pnpm --filter design-system-components start",
+    "bootstrap": "pnpm install && pnpm -r build",
+    "changeset:publish": "pnpm bootstrap && pnpm changeset publish",
+    "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "0.4.7",
+    "@changesets/cli": "2.25.0"
+  }
 }

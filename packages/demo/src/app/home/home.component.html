@@ -1,7 +1,10 @@
 <div *ngIf="isIE11" class="container">
   <div class="alert alert-warning mt-3">
     <h4 class="alert-heading">IE11 not supported</h4>
-    <p>This app uses Angular 13 and therefore does not support IE11. Please update your browser.</p>
+    <p>
+      This app uses Angular {{ getVersion(angularVersion, 'M') }} and therefore does not support
+      IE11. Please update your browser.
+    </p>
   </div>
 </div>
 
@@ -20,200 +23,1857 @@
 
 <ng-template #versions>
   <div class="versions">
-    <p>@swisspost/design-system-styles: {{ version }}</p>
-    <p>@angular/cli: {{ angularVersion }}</p>
-    <p>@ng-bootstrap/ng-bootstrap: {{ ngBootstrapVersion }}</p>
-    <p>ngx-toastr: {{ ngxToasterVersion }}</p>
+    <p>@swisspost/design-system-styles: {{ getVersion(stylesVersion) }}</p>
+    <p>@angular/cli: {{ getVersion(angularVersion) }}</p>
+    <p>bootstrap: {{ getVersion(bootstrapVersion) }}</p>
+    <p>@ng-bootstrap/ng-bootstrap: {{ getVersion(ngBootstrapVersion) }}</p>
+    <p>ngx-toastr: {{ getVersion(ngxToasterVersion) }}</p>
   </div>
 </ng-template>
 
 <div class="bg-light py-5">
   <div class="container">
-    <h3 class="bold mb-4">Migration guides</h3>
-    <ngb-accordion>
-      <ngb-panel title="How to update Angular 11 to Angular 12">
-        <ng-template ngbPanelContent>
-          <section>
-            <p>
-              More information about the new Angular version can be found in the Angular docs
-              <span>
-                <a href="https://update.angular.io/?l=3&v=11.0-12.0" target="_blank" rel="noopener">here</a>
-              </span>
-              .
+    <h3 class="bold mb-4">Migration from v4 to v5</h3>
+
+    <p class="lead">What kind of application are you migrating?</p>
+
+    <div class="form-check form-switch">
+      <input
+        id="is-migrating-intranet"
+        type="checkbox"
+        class="form-check-input"
+        [(ngModel)]="isMigratingIntranet"
+        (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
+        role="switch"
+      />
+      <label for="is-migrating-intranet" class="form-check-label">Intranet application</label>
+    </div>
+    <div class="form-check form-switch">
+      <input
+        id="is-migrating-angular"
+        type="checkbox"
+        class="form-check-input"
+        [(ngModel)]="isMigratingAngular"
+        (ngModelChange)="setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)"
+        role="switch"
+      />
+      <label for="is-migrating-angular" class="form-check-label">Angular application</label>
+    </div>
+
+    <ol class="bubble-tea">
+      <li>
+        <h4 class="h5 bold">Clean start 🧹</h4>
+        <p>Create a branch and commit all changes to have a clean, reversible starting point.</p>
+      </li>
+      <li>
+        <h4 class="h5 bold">Uninstall the old packages 🗑️</h4>
+        <!-- prettier-ignore -->
+        <p>Uninstall the old styles <span *ngIf="isMigratingIntranet">and the old intranet header</span> package<span *ngIf="isMigratingIntranet">s</span>.</p>
+      </li>
+      <li>
+        <!-- prettier-ignore -->
+        <h4 class="h5 bold">
+          Install the new package<span *ngIf="isMigratingIntranet">s</span> 📦
+        </h4>
+        <code
+          class="d-block p-3"
+          [languages]="['bash']"
+          [highlight]="
+            'npm install @swisspost/design-system-styles' +
+            (isMigratingIntranet ? ' @swisspost/design-system-intranet-header' : '')
+          "
+        ></code>
+      </li>
+      <li *ngIf="isMigratingAngular">
+        <h4 class="h5 bold">Automatic migration tool ⚙️</h4>
+        <p>
+          If you are migrating an Angular application, you can profit from our Migration Schematics.
+          You can run the following code, to automatically patch the changes that can be
+          auto-migrated:
+        </p>
+        <code
+          class="d-block p-3"
+          [languages]="['bash']"
+          [highlight]="
+            'npx ng update @swisspost/design-system-styles --from=4 --to=5 --migrate-only'
+          "
+        ></code>
+      </li>
+      <li>
+        <h4 class="h5 bold">Component migration 🤓</h4>
+
+        <h5 class="h6 bold">Deprecations</h5>
+        <ul class="mt-2 mb-3">
+          <li>
+            <strong>Dropped jQuery dependancy</strong>
+            <br />
+            <p class="info">
+              Replace all jQuery components with the given one or integrate jQuery by your self (not
+              recommended).
             </p>
-            <div class="position-relative deadimage-container">
-              <div class="alert alert-warning mt-3">
-                <h4 class="alert-heading">Angular 12 is the last version to support IE11!</h4>
-                <p>
-                  If your application needs to support Internet Explorer, this is the last update.
-                  More and detailed information can be found
-                  <a href="https://github.com/angular/angular/issues/41840" target="_blank" rel="noopener">here</a>
-                  .
+          </li>
+          <li>
+            The
+            <span class="highlight">Custom-Select</span>
+            component has been marked as
+            <span class="highlight">deprecated</span>
+            and will be dropped in the next major version.
+            <p class="info">We will try to make sure that there will be an alternative.</p>
+          </li>
+        </ul>
+
+        <h5 class="h6 bold">Migrations list</h5>
+        <p>
+          Some changes cannot be automatically migrated.
+          <br />
+          Check the list of changes to see if you are affected and apply the transformation
+          manually.
+        </p>
+        <p class="info" *ngIf="isMigratingAngular">
+          Changes flaged with ⚙️ can be automatically migrated with our migration tool.
+        </p>
+
+        <!-- Post migration table -->
+        <ngb-accordion
+          [activeIds]="migrationAccordionActiveIds"
+          [destroyOnHide]="false"
+          (panelChange)="migrationAccordionChange($event)"
+        >
+          <ngb-panel id="general">
+            <ng-template ngbPanelHeader let-opened="opened">
+              <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                <button ngbPanelToggle class="accordion-button">
+                  General
+                  <small>
+                    {{ getMigrationAccordionGroupedCheckboxesChecked('general') }}
+                  </small>
+                </button>
+              </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <!-- General Variables -->
+              <div>
+                <h5 class="mt-4 h6 bold">Variables</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_isolatecomponents"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_isolatecomponents
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_isolatecomponents">
+                          <span class="change-badge bg-danger">breaking</span> Removed <code>$isolate-components</code> variable.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_fontsizemap"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_fontsizemap
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_fontsizemap">
+                        <span class="change-badge bg-danger">breaking</span> Removed <code>$font-size-map</code> variable.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_lineheightrg"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_lineheightrg
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_lineheightrg">
+                        <span class="change-badge bg-danger">breaking</span> Removed <code>$line-height-rg</code> variable.<br>
+                        <span class="highlight">Line-heights</span> are now relative to the font-size.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_floatinglabel"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_floatinglabel
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_floatinglabel">
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">floating-label</span> variables.<br>
+                        <ul class="mt-2">
+                          <li><code>$form-floating-label-padding-t</code></li>
+                          <li><code>$form-floating-label-padding-b</code></li>
+                          <li><code>$form-floating-textarea-line-height</code></li>
+                          <li><code>$form-floating-textarea-padding-t</code></li>
+                          <li><code>$form-floating-textarea-padding-b</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_socialmediacolors"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_socialmediacolors
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_socialmediacolors">
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">socialmedia-color</span> variables.<br>
+                        <ul class="mt-2">
+                          <li><code>$facebook</code></li>
+                          <li><code>$instagram</code></li>
+                          <li><code>$youtube</code></li>
+                          <li><code>$snapchat</code></li>
+                          <li><code>$twitter</code></li>
+                          <li><code>$xing</code></li>
+                          <li><code>$linkedin</code></li>
+                          <li><code>$kununu</code></li>
+                          <li><code>$email</code></li>
+                          <li><code>$brand-colors</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_options"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.variables_options"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_options">
+                        <span class="change-badge bg-danger">breaking</span> Moved bootstrap option variables from file <span class="highlight">src/themes/bootstrap/options.scss</span> to <span class="highlight">src/variables/features.scss</span>.<br>
+                        <ul class="mt-2">
+                          <li><code>$enable-caret</code></li>
+                          <li><code>$enable-rounded</code></li>
+                          <li><code>$enable-shadows</code></li>
+                          <li><code>$enable-gradients</code></li>
+                          <li><code>$enable-transitions</code></li>
+                          <li><code>$enable-hover-media-query</code></li>
+                          <li><code>$enable-grid-classes</code></li>
+                          <li><code>$variable-prefix</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_colors"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.variables_colors"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_colors">
+                        <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">color</span> variables.
+                        <ul class="mt-2">
+                          <li><code>$gray-cararra</code> became <code>$gray-background</code></li>
+                          <li><code>$gray-pampas</code> became <code>$gray-background-light</code></li>
+                          <li><code>$colors</code> became <code>$background-colors</code></li>
+                          <li><code>$icon-colors</code> became <code>$contextual-colors</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_lineheigts"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_lineheigts
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_lineheigts">
+                        Dropped usage of <span class="highlight">line-height</span> variables.<br>
+                        <ul class="mt-2">
+                          <li><code>$line-height-sm</code></li>
+                          <li><code>$line-height-lg</code></li>
+                        </ul>
+                        <p class="info">The variables remain available due to bootstrap.</p>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_lineheightlighter"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_lineheightlighter
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_lineheightlighter">
+                        Dropped usage of <code>$font-weight-lighter</code> variable.<br>
+                        Also removed corresponding <code>@font-face</code> rule.<br>
+                        <p class="info">The variable remains available due to bootstrap.</p>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalvariables_headingfontsizes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.variables_headingfontsizes
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalvariables_headingfontsizes">
+                        Dropped useage of <span class="highlight">font-size</span> variables.<br>
+                        Headings now have responsive font-sizes.<br>
+                        <ul class="mt-2">
+                          <li><code>$h1-font-size</code></li>
+                          <li><code>$h2-font-size</code></li>
+                          <li><code>$h3-font-size</code></li>
+                          <li><code>$h4-font-size</code></li>
+                          <li><code>$h5-font-size</code></li>
+                          <li><code>$h6-font-size</code></li>
+                        </ul>
+                        <p class="info">The variables remain available due to bootstrap.</p>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- General Mixins -->
+              <div>
+                <h5 class="mt-4 h6 bold">Mixins</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalmixins_fontsizelineheight"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.mixins_fontsizelineheight
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalmixins_fontsizelineheight">
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">font-size</span> and <span class="highlight">line-height</span> mixins:<br>
+                        <ul class="mt-2">
+                          <li><code>font-size-calc</code></li>
+                          <li><code>font-size-and-lineheight</code></li>
+                          <li><code>font-line-height</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- General Classes -->
+              <div>
+                <h5 class="mt-4 h6 bold">Classes</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalclasses_bgopacity"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_bgopacity"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalclasses_bgopacity">
+                        <span class="change-badge bg-danger">breaking</span> Removed <code>.bg-[colorname]-opacity-[opacityvalue]</code> classes.<br>
+                        Use <code>.bg-[colorname]</code> together with <code>var(--bg-opacity)</code> instead.<br>
+                        <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
+                        <p class="info">Replace [opacityvalue] for example with "0", "0.5" or "1".</p>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalclasses_secondary"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_secondary"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalclasses_secondary">
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">secondary</span> classes.<br>
+                        <ul class="mt-2">
+                          <li><code>.bg-secondary</code></li>
+                          <li><code>.border-secondary</code></li>
+                          <li><code>.text-secondary</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalclasses_textauto"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_textauto"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalclasses_textauto">
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.text-auto</code> class.<br>
+                        Colors are now automatically handled by <code>var(--post-contrast-color)</code>.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- General Properties -->
+              <div>
+                <h5 class="h6 bold">Properties</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalproperites_rtlmode"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.properites_rtlmode"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalproperites_rtlmode">
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> For better support of <span class="highlight">rtl-mode</span>,<br>
+                        <code>left</code> and <code>right</code> have switched to <code>start</code> and <code>end</code>.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
+          </ngb-panel>
+
+          <ngb-panel id="bootstrap">
+            <ng-template ngbPanelHeader let-opened="opened">
+              <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                <button ngbPanelToggle class="accordion-button">
+                  Bootstrap
+                  <small>
+                    {{ getMigrationAccordionGroupedCheckboxesChecked('bootstrap') }}
+                  </small>
+                </button>
+              </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <!-- Bootstrap Alert / Notifications -->
+              <div>
+                <h5 class="h6 bold">Alert / Notification</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapalerts_fixedbottom"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.alerts_fixedbottom
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapalerts_fixedbottom">
+                        <span class="change-badge bg-danger">breaking</span> Required <code>.alert-fixed-bottom</code> class, for <span class="highlight">alerts</span>, which should be fixed to the bottom of the page.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapalerts_closebuttoncontent"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.alerts_closebuttoncontent
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapalerts_closebuttoncontent">
+                        <span class="change-badge bg-danger">breaking</span> The <span class="highlight">close-button</span> has no content anymore.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapalerts_close"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.alerts_close"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapalerts_close">
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/alert">documentation</a>
+                  for more detailed informations.
                 </p>
               </div>
-            </div>
-            <ol class="bubble-tea">
-              <li>
-                <h3 class="font-curve-regular bold">Commit all unsaved changes to your git repo</h3>
-                <p>
-                  Make sure you have a clean repo which can be reverted to in the event of an error
-                  during the update.
+
+              <!-- Bootstrap Badge -->
+              <div>
+                <h5 class="mt-4 h6 bold">Badge</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapbadges_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.badges_classes"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapbadges_classes">
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed <span class="highlight">badge</span> classes.<br>
+                        <ul class="mt-2">
+                          <li><code>.badge-pill</code> became <code>.rounded-pill</code></li>
+                          <li><code>.badge-[colorname]</code> became <code>.bg-[colorname]</code></li>
+                          <li><code>.badge-outline-[colorname]</code> became <code>.border-[colorname]</code></li>
+                          <li><code>.badge-gray-cararra</code> became <code>.bg-light</code></li>
+                          <li><code>.badge-outline-gray-carrara-thick</code> became <code>.border-light.border-2</code></li>
+                        </ul>
+                        <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/badge">documentation</a>
+                  for more detailed informations.
                 </p>
-              </li>
-              <li>
-                <h3 class="font-curve-regular bold">Check your node version</h3>
-                <p>You can't run Angular 12 with Node 10 or any older versions.</p>
-                <code class="block" [highlight]="checknodeversion" [languages]="['shell']"></code>
+              </div>
+
+              <!-- Bootstrap Background -->
+              <div>
+                <h5 class="mt-4 h6 bold">Background</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapbackgrounds_textcolor"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.backgrounds_textcolor
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapbackgrounds_textcolor">
+                      <span class="change-badge bg-danger">breaking</span> Background classes such as <code>.bg-[colorname]</code>, now also automatically define the inner <span class="highlight">text-color</span> with <code>var(--post-contrast-color)</code>.<br>
+                      Therefore an explicit <span class="highlight">text-color</span> styling is not required anymore.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/background">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Blockquote -->
+              <div>
+                <h5 class="mt-4 h6 bold">Blockquotes</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapblockquotes_footerstructure"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.blockquotes_footerstructure
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapblockquotes_footerstructure">
+                      <span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">blockquote</span> with footer.<br>
+                      Such blockquotes now need to be nested in a <code>figure</code> tag.
+                      In addition, the tag <code>footer.blockquote-footer</code> became <code>figcaption.blockquote-footer</code>.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapblockquotes_qclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.blockquotes_qclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapblockquotes_qclass">
+                      Dropped usage of <code>.mb-0</code> class, on <code>q</code> tags within <code>blockquote</code> elements.
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/blockquotes">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Buttons -->
+              <div>
+                <h5 class="mt-4 h6 bold">Buttons</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapbuttons_outline"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.buttons_outline"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapbuttons_outline">
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Removed <span class="highlight">button</span> classes <code>.btn-outline-[colorname]</code>.<br>
+                      <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapbuttons_borderradius"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.buttons_borderradius
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapbuttons_borderradius">
+                      <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">button</span> variables.<br>
+                      <ul class="mt-2">
+                        <li><code>$btn-border-radius-rg</code></li>
+                        <li><code>$btn-border-radius-map</code></li>
+                      </ul>
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapbuttons_borderradius2"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.buttons_borderradius2
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapbuttons_borderradius2">
+                      Dropped the usage of <span class="highlight">button</span> variables.
+                      <ul class="mt-2">
+                        <li><code>$btn-border-radius-sm</code></li>
+                        <li><code>$btn-border-radius-lg</code></li>
+                      </ul>
+                      <p class="info">The variables remain available due to bootstrap.</p>
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapbuttons_invertedclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.buttons_invertedclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapbuttons_invertedclass">
+                      <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code>.btn-inverted</code> class.<br>
+                      <span class="highlight">Text-colors</span> are now automatically handled.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapbuttons_iconclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.buttons_iconclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapbuttons_iconclass">
+                      Dropped the usage of <code>.btn-icon</code> class for buttons with icon and text.<br>
+                      <span class="highlight">Icon-only</span> buttons still need this class!
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/buttons">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Cards -->
+              <div>
+                <h5 class="mt-4 h6 bold">Card</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapcards_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.cards_classes"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapcards_classes">
+                      <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">card</span> classes <code>.card-deck</code> and <code>.card-columns</code>.<br>
+                      Use the <span class="highlight">grid-system</span> instead.
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/card">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Forms -->
+              <div>
+                <h5 class="mt-4 h6 bold">Forms</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapforms_formgroup"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.forms_formgroup"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapforms_formgroup">
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.form-group</code> class.<br>
+                        Use <span class="highlight">utility-class</span>&nbsp;<code>.mb-regular</code> instead.<br>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapforms_formtext"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.forms_formtext"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapforms_formtext">
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.small</code> and <code>.text-muted</code> classes on <code>.form-text</code> elements.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/forms">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Form-Controls -->
+              <div>
+                <h5 class="mt-4 h6 bold">From Control</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="boostrapformcontrols_formlabelclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.formcontrols_formlabelclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="boostrapformcontrols_formlabelclass">
+                      <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="boostrapformcontrols_formfloatingwrapper"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formcontrols_formfloatingwrapper
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="boostrapformcontrols_formfloatingwrapper">
+                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="boostrapformcontrols_formfloatingcontrollgclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formcontrols_formfloatingcontrollgclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="boostrapformcontrols_formfloatingcontrollgclass">
+                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/form-control">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Form-Select -->
+              <div>
+                <h5 class="mt-4 h6 bold">From Select</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="boostrapformselects_formfloatingwrapper"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formselects_formfloatingwrapper
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="boostrapformselects_formfloatingwrapper">
+                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformselects_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.formselects_classes
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformselects_classes">
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed <span class="highlight">custom-select</span> classes.
+                      <ul class="mt-2">
+                        <li><code>.custom-select</code> became <code>.form-select</code></li>
+                        <li><code>.custom-select-sm</code> became <code>.form-select-sm</code></li>
+                        <li><code>.custom-select-rg</code> became <code>.form-select-rg</code></li>
+                      </ul>
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformselects_formfloatingselectlgclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formselects_formfloatingselectlgclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformselects_formfloatingselectlgclass">
+                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/form-select">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Form-Select Multiple -->
+              <div>
+                <h5 class="mt-4 h6 bold">From Select Multiple</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformselectmultiples_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.formselectmultiples_classes
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformselectmultiples_classes">
+                      <span class="change-badge bg-danger">breaking</span> Renamed class <code>.form-control.custom-select</code> to <code>.form-select</code>.
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/form-multiple-select">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Form-Textarea -->
+              <div>
+                <h5 class="mt-4 h6 bold">From Textarea</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="boostrapformtextareas_formfloatingwrapper"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formtextareas_formfloatingwrapper
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="boostrapformtextareas_formfloatingwrapper">
+                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="boostrapformtextareas_formfloatingcontrollgclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formtextareas_formfloatingcontrollgclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="boostrapformtextareas_formfloatingcontrollgclass">
+                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/form-textarea">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Form-Range -->
+              <div>
+                <h5 class="mt-4 h6 bold">From Range</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="boostrapformranges_formlabelclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.formranges_formlabelclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="boostrapformranges_formlabelclass">
+                      <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/form-range">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Form-File -->
+              <div>
+                <h5 class="mt-4 h6 bold">From File</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="boostrapformfiles_formlabelclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.formfiles_formlabelclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="boostrapformfiles_formlabelclass">
+                      <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="boostrapformfiles_formfloatingwrapper"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formfiles_formfloatingwrapper
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="boostrapformfiles_formfloatingwrapper">
+                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="boostrapformfiles_formfloatingcontrollgclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formfiles_formfloatingcontrollgclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="boostrapformfiles_formfloatingcontrollgclass">
+                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/form-file">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Form-Checkbox -->
+              <div>
+                <h5 class="mt-4 h6 bold">From Checkbox</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformcheckboxes_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.formcheckboxes_classes
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformcheckboxes_classes">
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed <span class="highlight">control</span> classes.
+                      <ul class="mt-2">
+                        <li><code>.custom-control.custom-checkbox</code> became <code>.form-check</code></li>
+                        <li><code>.custom-control-input</code> became <code>.form-check-input</code></li>
+                        <li><code>.custom-control-label</code> became <code>.form-check-label</code></li>
+                        <li><code>.custom-control-inline</code> became <code>.form-check-inline</code></li>
+                      </ul>
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformcheckboxes_validationclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formcheckboxes_validationclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformcheckboxes_validationclasses">
+                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span> classes.<br>
+                      The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on the <code>.form-check-input</code> element. The <code>.form-check</code> element does not require the <span class="highlight">validation</span> classes anymore.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformcheckboxes_validationfeedbackclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formcheckboxes_validationfeedbackclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformcheckboxes_validationfeedbackclasses">
+                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
+                      The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/form-check">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Form-Radio -->
+              <div>
+                <h5 class="mt-4 h6 bold">From Radio</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformradios_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.formradios_classes
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformradios_classes">
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed <span class="highlight">control</span> classes.
+                      <ul class="mt-2">
+                        <li><code>.custom-control.custom-radio</code> became <code>.form-check</code></li>
+                        <li><code>.custom-control-input</code> became <code>.form-check-input</code></li>
+                        <li><code>.custom-control-label</code> became <code>.form-check-label</code></li>
+                        <li><code>.custom-control-inline</code> became <code>.form-check-inline</code></li>
+                      </ul>
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformradios_validationclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.formradios_validationclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformradios_validationclasses">
+                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span> classes.<br>
+                      The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on the <code>.form-check-input</code> element. The <code>.form-check</code> element does not require the <span class="highlight">validation</span> classes anymore.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformradios_validationfeedbackclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formradios_validationfeedbackclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformradios_validationfeedbackclasses">
+                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
+                      The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/form-radio">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+            </ng-template>
+          </ngb-panel>
+
+          <ngb-panel id="ngbootstrap" *ngIf="isMigratingAngular">
+            <ng-template ngbPanelHeader let-opened="opened">
+              <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                <button ngbPanelToggle class="accordion-button">
+                  NgBootstrap
+                  <small>
+                    {{ getMigrationAccordionGroupedCheckboxesChecked('ngbootstrap') }}
+                  </small>
+                </button>
+              </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <!-- ngBootstrap Buttons -->
+              <div>
+                <h5 class="h6 bold">Buttons</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapbuttons_labelclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.ngbootstrap.buttons_labelclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapbuttons_labelclass">
+                        <span class="change-badge bg-danger">breaking</span> Refactored <code>label.btn-primary</code> to <code>label.btn.btn-secondary</code>.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapbuttons_inputclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.ngbootstrap.buttons_inputclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapbuttons_inputclass">
+                        <span class="change-badge bg-danger">breaking</span> Required class <code>.btn-check</code> on the <code>input</code> element.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapbuttons_grouptoggleclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.ngbootstrap.buttons_grouptoggleclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapbuttons_grouptoggleclass">
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.btn-group-toggle</code> class.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/ng-bootstrap-samples/buttons">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- ngBootstrap DatePicker -->
+              <div>
+                <h5 class="mt-4 h6 bold">DatePicker</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapdatepickers_variables"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.ngbootstrap.datepickers_variables
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapdatepickers_variables">
+                      <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">padding</span> variables.
+                      <ul class="mt-2">
+                        <li><code>$ngb-dp-icon-padding</code></li>
+                        <li><code>$ngb-dp-icon-padding-sm</code></li>
+                        <li><code>$ngb-dp-icon-padding-rg</code></li>
+                        <li><code>$ngb-dp-icon-padding-lg</code></li>
+                      </ul>
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/ng-bootstrap-samples/datepicker">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- ngBootstrap Modal -->
+              <div>
+                <h5 class="mt-4 h6 bold">Modal</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapmodals_closebuttoncontent"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.ngbootstrap.modals_closebuttoncontent
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapmodals_closebuttoncontent">
+                      <span class="change-badge bg-danger">breaking</span> The <span class="highlight">close-button</span> has no content anymore.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="ngbootstrapmodals_close"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.ngbootstrap.modals_close"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="ngbootstrapmodals_close">
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/ng-bootstrap-samples/modal">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+            </ng-template>
+          </ngb-panel>
+
+          <ngb-panel id="post">
+            <ng-template ngbPanelHeader let-opened="opened">
+              <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                <button ngbPanelToggle class="accordion-button">
+                  Post
+                  <small>
+                    {{ getMigrationAccordionGroupedCheckboxesChecked('post') }}
+                  </small>
+                </button>
+              </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <!-- Post Accordion -->
+              <div>
+                <h5 class="h6 bold">Accordion</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postaccordions_wrapper"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.post.accordions_wrapper"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postaccordions_wrapper">
+                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="accordion"&gt;...&lt;/div&gt;</code> around <span class="highlight">accordion</span> elements.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postaccordions_summaryclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post.accordions_summaryclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postaccordions_summaryclasses">
+                      <span class="change-badge bg-danger">breaking</span> Required classes <code>.accordion-button.collapse</code> on the <code>summary</code> element.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postaccordions_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.post.accordions_classes"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postaccordions_classes">
+                      <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">accordion</span> classes.
+                      <ul class="mt-2">
+                        <li><code>.card</code> became <code>.accordion-item</code></li>
+                        <li><code>.card-header</code> became <code>.accordion-header</code></li>
+                        <li><code>.card-header > .btn.btn-link</code> became <code>.accordion-header > .accordion-button</code></li>
+                        <li><code>.card-header + .collapse</code> became <code>.accordion-header + .accordion-collapse.collapse</code></li>
+                        <li><code>.card-body</code> became <code>.accordion-body</code></li>
+                      </ul>
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/post-samples/accordion">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Post Custom-Select -->
+              <div>
+                <h5 class="mt-4 h6 bold">Custom-Select</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postcustomselects_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.post.customselects_classes"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postcustomselects_classes">
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Refactored <code>.form-control.custom-select</code> and <code>.form-control.form-control-lg.custom-select</code> to <code>.form-select</code>.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postcustomselects_menuclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post.customselects_menuclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postcustomselects_menuclass">
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Removed <code>.custom-select-menu</code> class.<br>
+                        Use <span class="highlight">utility-classes</span>&nbsp;<code>.w-100.mw-100</code> instead.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/post-samples/custom-select">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Post Sizing -->
+              <div>
+                <h5 class="mt-4 h6 bold">Sizing</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postsizings_paddingsleftright"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post.sizings_paddingsleftright
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postsizings_paddingsleftright">
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed <span class="highlight">margin/padding</span> helper classes, to align with the <span class="highlight">start</span> and <span class="highlight">end</span> keywords.
+                        <ul class="mt-2">
+                          <li><code>.ml-[size]</code> became <code>.ms-[size]</code></li>
+                          <li><code>.mr-[size]</code> became <code>.me-[size]</code></li>
+                          <li><code>.pl-[size]</code> became <code>.ps-[size]</code></li>
+                          <li><code>.pr-[size]</code> became <code>.pe-[size]</code></li>
+                        </ul>
+                        <p class="info">Replace [size] with "0", "1", "2" "3" , "4" or "5".</p>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/post-samples/sizing">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Post Subnavigation -->
+              <div>
+                <h5 class="mt-4 h6 bold">Subnavigation</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postsubnavigations_invertedclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post.subnavigations_invertedclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postsubnavigations_invertedclass">
+                        Dropped usage of <code>.inverted</code> class.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/post-samples/subnavigation">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Post Switch -->
+              <div>
+                <h5 class="mt-4 h6 bold">Switch</h5>
+
                 <p>
-                  If an update is required, go to the
-                  <span>
-                    <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">node website</a>
+                  The
+                  <span class="highlight">switch</span>
+                  component has been moved to the
+                  <strong>bootstrap</strong>
+                  section , because bootstrap version 5.x provides such a component itself.
+                  <span class="info">
+                    If you import this component manually, you need to update to the new file paths.
                   </span>
-                  and install the lastest long term support version.
                 </p>
-              </li>
-              <li>
-                <h3 class="font-curve-regular bold">Update Angular</h3>
-                <p>Now let's update angular with the following command:</p>
-                <code class="block" [highlight]="updateangular" [languages]="['shell']"></code>
-                <div class="alert alert-info">
-                  If you get "incompatible peer dependency" error messages you have to add the
-                  package name to the ng update.
-                </div>
-                <code
-                  class="block text-coral-bright"
-                  [highlight]="updateangularerror"
-                  [languages]="['shell']"
-                ></code>
-                <p>Add the package name to your ng update command.</p>
-                <code class="block" [highlight]="updateangularextra" [languages]="['shell']"></code>
-                <p>
-                  After the installation process, check if the correct versions have been installed.
-                </p>
-                <code
-                  class="block"
-                  [highlight]="checkangularversion"
-                  [languages]="['shell']"
-                ></code>
-              </li>
-              <li>
-                <h3 class="font-curve-regular bold">Update ngx-toastr</h3>
-                <p>Ngx-toaster has to be manually updated to the latest version.</p>
-                <code
-                  class="block"
-                  [highlight]="updateindividualpackages"
-                  [languages]="['shell']"
-                ></code>
-              </li>
-              <li>
-                <h3 class="font-curve-regular bold">Update other dependencies</h3>
-                <p>Check if you have any other outdated packages with:</p>
-                <code class="block" [highlight]="outdatedpackages" [languages]="['shell']"></code>
-                <p>Check if new versions are compatible with your project.</p>
-              </li>
-              <li>
-                <h3 class="font-curve-regular bold">Prevent known issue with Angular 12 and the Design System</h3>
-                <p>
-                  There is a known issue with the url() CSS property and the new Angular build
-                  optimizer. The Design System is also affected so you need to disable the "inlineCritical"
-                  optimization for the time being. Head over to your
-                  <code>angular.json</code>
-                  and set
-                  <code>configurations.production.optimization.styles.inlineCritical</code>
-                  to false.
-                </p>
-                <code class="block" [highlight]="updateangularjson" [languages]="['json']"></code>
-                <p>
-                  This bug might be fixed in a future update of Angular CLI and the optimization
-                  option will be available again.
-                </p>
-              </li>
-              <li>
-                <h3 class="font-curve-regular bold">Happy coding!</h3>
-              </li>
-            </ol>
-          </section>
-        </ng-template>
-      </ngb-panel>
 
-      <ngb-panel title="How to update Angular 12 to Angular 13">
-        <ng-template ngbPanelContent>
-          <section>
-            <p>
-              More information about the new Angular version can be found in the Angular docs
-              <span>
-                <a href="https://update.angular.io/?l=3&v=12.0-13.0" target="_blank" rel="noopener">here</a>
-              </span>
-              .
-            </p>
-
-            <div class="alert alert-warning mt-3">
-              <h4 class="alert-heading">Angular 13 discontinues support for IE11.</h4>
-              <p>
-                More and detailed information can be found
-                <a href="https://github.com/angular/angular/issues/41840" target="_blank" rel="noopener">here</a>
-                .
-              </p>
-            </div>
-
-            <ol class="bubble-tea">
-              <li>
-                <h3 class="font-curve-regular bold">Commit all unsaved changes to your git repo</h3>
-                <p>
-                  Make sure you have a clean repo which can be reverted to in the event of an error
-                  during the update.
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postformswitches_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.post.formswitches_classes"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postformswitches_classes">
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Refactored <span class="highlight">switch</span> classes.<br>
+                        <ul class="mt-2">
+                          <li><code>div.switch</code> became <code>.form-check.form-switch</code></li>
+                          <li><code>input.switch</code> became <code>.form-check-input</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postformswitches_labelclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post.formswitches_labelclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postformswitches_labelclasses">
+                        <span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">switch-label</span> classes.<br>
+                        <ul class="mt-2">
+                          <li><code>label:not(.switch-toggler)</code> became <code>.form-check-label.order-first</code></li>
+                          <li><code>.switch-toggler ~ label</code> became <code>.form-check-label</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postformswitches_validationclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post.formswitches_validationclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postformswitches_validationclasses">
+                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span> classes.<br>
+                      The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on the <code>.form-check-input</code> element.<br>
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postformswitches_validationfeedbackclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post
+                            .formswitches_validationfeedbackclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postformswitches_validationfeedbackclasses">
+                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
+                      The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postformswitches_switchtoggleclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post.formswitches_switchtoggleclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postformswitches_switchtoggleclass">
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.switch-toggle</code> class.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/form-switch">documentation</a>
+                  for more detailed informations.
                 </p>
-              </li>
-              <li>
-                <h3 class="font-curve-regular bold">Check your node version</h3>
-                <p>You can run Angular 13 only with Node 12.20.0 or newer versions.</p>
-                <p>
-                  If an update is required, go to the
-                  <span>
-                    <a href="https://nodejs.org/en/download/" target="_blank" rel="noopener">node website</a>
-                  </span>
-                  and install the lastest long term support version.
+              </div>
+
+              <!-- Post Topic Teaser -->
+              <div>
+                <h5 class="mt-4 h6 bold">Topic Teaser</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="posttopicteasers_imageattributes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post.topicteasers_imageattributes
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="posttopicteasers_imageattributes">
+                        <span class="change-badge bg-danger">breaking</span> Required <span class="highlight">image</span> attributes.
+                        <ul class="mt-2">
+                          <li><code>width="100%"</code></li>
+                          <li><code>height="100%"</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="posttopicteasers_imagecontainergridclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post
+                            .topicteasers_imagecontainergridclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="posttopicteasers_imagecontainergridclasses">
+                        Dropped usage of <code>.col-10.col-rg-8.col-lg-4</code> on <code>.topic-teaser-image-container</code> elements.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="posttopicteasers_contentcontainergridclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post
+                            .topicteasers_contentcontainergridclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="posttopicteasers_contentcontainergridclasses">
+                        Dropped usage of <code>.col-12.col-lg-8</code> on <code>.topic-teaser-content</code> elements.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="posttopicteasers_linklistfontcurve"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post.topicteasers_linklistfontcurve
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="posttopicteasers_linklistfontcurve">
+                        Dropped usage of <code>.font-curve-regular</code> on <code>ul.link-list</code> elements.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/post-samples/topic-teaser">documentation</a>
+                  for more detailed informations.
                 </p>
-              </li>
-              <li>
-                <h3 class="font-curve-regular bold">Update ngx-datatable</h3>
-                <p>Ngx-datatable has to be manually updated to the latest version.</p>
-                <code class="block" [highlight]="updatedatatable" [languages]="['shell']"></code>
-              </li>
-              <li>
-                <h3 class="font-curve-regular bold">Update Angular</h3>
-                <p>Now let's update angular with the following command:</p>
-                <code class="block" [highlight]="updateangular13" [languages]="['shell']"></code>
-                <div class="alert alert-info">
-                  If you get "incompatible peer dependency" error messages you have to add the
-                  desired package name and version to the ngx update.
-                </div>
-                <code
-                  class="block text-coral-bright"
-                  [highlight]="updateangularerror"
-                  [languages]="['shell']"
-                ></code>
-                <p>Add the package name to your ngx update command.</p>
-                <code
-                  class="block"
-                  [highlight]="updateangular13extra"
-                  [languages]="['shell']"
-                ></code>
-              </li>
-              <li>
-                <h3 class="font-curve-regular bold">Update other dependencies</h3>
-                <p>Check if you have any other outdated packages with:</p>
-                <code class="block" [highlight]="outdatedpackages" [languages]="['shell']"></code>
-                <p>Check if new versions are compatible with your project.</p>
-              </li>
-              <li>
-                <h3 class="font-curve-regular bold">Happy coding!</h3>
-              </li>
-            </ol>
-          </section>
-        </ng-template>
-      </ngb-panel>
-    </ngb-accordion>
+              </div>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </li>
+      <li>
+        <h4 class="h5 bold">Bootstrap migration 🥾</h4>
+        <p>
+          Check the
+          <a href="https://getbootstrap.com/docs/5.0/migration/" target="_blank" rel="noopener">
+            bootstrap migration guide
+          </a>
+          to see if you need to update any bootstrap related code.
+        </p>
+      </li>
+      <li>
+        <h4 class="h5 bold">Treat yourself to a 🍺, you've done a great job! 🚀</h4>
+      </li>
+    </ol>
   </div>
 </div>
 
@@ -223,27 +1883,36 @@
       <div class="row pt-huge-r">
         <div class="topic-teaser-content col-12 col-lg-8">
           <h2 class="topic-teaser-title font-curve-large mb-large">
-            <span class="bold">Design System Resources</span>
-            <span class="light">For a unified, accessible user experience</span>
+            <span class="bold">Resources</span>
+            <span class="light">For a consistent user experience</span>
           </h2>
           <ul class="link-list font-curve-regular mb-large">
             <li class="link-list-item">
-              <a target="_blank" rel="noopener" href="https://getbootstrap.com/">
+              <a
+                target="_blank"
+                rel="noopener"
+                [href]="'//getbootstrap.com/docs/' + getVersion(bootstrapVersion, 'Mm')"
+              >
                 <span>Bootstrap Documentation</span>
               </a>
             </li>
             <li class="link-list-item">
               <a
-                target="_blank" rel="noopener"
-                href="https://angular.io/docs"
+                target="_blank"
+                rel="noopener"
+                [href]="'//v' + getVersion(angularVersion, 'M') + '.angular.io/docs'"
               >
                 <span>Angular Docs</span>
               </a>
             </li>
             <li class="link-list-item">
-              <a target="_blank" rel="noopener" href="https://ng-bootstrap.github.io/#/home"><span>ngBootstrap Docs</span></a>
+              <!-- exact link is not possible, because the latest url is different from the previews -->
+              <a target="_blank" rel="noopener" href="https://ng-bootstrap.github.io/#/home">
+                <span>ngBootstrap Docs</span>
+              </a>
             </li>
             <li class="link-list-item">
+              <!-- exact link is not possible, because no version urls available -->
               <a target="_blank" rel="noopener" href="https://fonts.post.ch/frutigerneueforpost/#/">
                 <span>Frutiger Neue For Post</span>
               </a>
@@ -251,7 +1920,13 @@
           </ul>
         </div>
         <div class="topic-teaser-image-container col-10 col-rg-8 col-lg-4">
-          <img class="topic-teaser-image" src="assets/images/lego.jpg" alt="Giraffe" />
+          <img
+            class="topic-teaser-image"
+            src="assets/images/lego.jpg"
+            width="100%"
+            height="100%"
+            alt="Lego"
+          />
         </div>
       </div>
     </div>

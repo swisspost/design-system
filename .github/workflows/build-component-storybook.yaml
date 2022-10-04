@@ -1,0 +1,40 @@
+###
+#
+# Build the packages/styles storybook
+#
+# This workflow does not have secrets when run from a fork.
+# Artifacts are uploaded and used in a subsequent workflow
+# with more privileges which does not run unsafe commands.
+#
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+#
+###
+
+name: Build Components Storybook
+on:
+  pull_request:
+    paths:
+      - packages/components/**
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+
+      - name: Install components dependencies
+        run: pnpm --filter design-system-components install
+
+      - name: Build components
+        run: pnpm --filter design-system-components build
+
+      - name: Upload build artifacts
+        uses: swisspost/design-system/.github/actions/artifact-upload@main
+        with:
+          name: design-system-components-storybook
+          folder: packages/components/storybook-static

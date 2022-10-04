@@ -1,0 +1,69 @@
+{
+  "name": "@swisspost/design-system-components",
+  "version": "1.0.0-alpha.0",
+  "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
+  "license": "Apache-2.0",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "es2015": "dist/esm/index.mjs",
+  "es2017": "dist/esm/index.mjs",
+  "types": "dist/types/components.d.ts",
+  "collection": "dist/collection/collection-manifest.json",
+  "collection:main": "dist/collection/index.js",
+  "unpkg": "dist/post-components/post-components.esm.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system"
+  },
+  "files": [
+    "dist/",
+    "loader/"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "start": "npm-run-all --parallel stencil:start storybook:start",
+    "build": "npm-run-all stencil:build storybook:build",
+    "test": "npm-run-all --parallel stencil:test cypress:test",
+    "stencil:start": "stencil build --watch --docs",
+    "stencil:serve": "stencil build --watch --serve --docs",
+    "stencil:build": "stencil build --docs",
+    "stencil:test": "stencil test --spec",
+    "stencil:test:watch": "stencil test --spec --watchAll",
+    "stencil:generate": "stencil generate",
+    "storybook:start": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
+    "storybook:ci": "start-storybook -p 6060 -s www --no-open --quiet",
+    "cypress:test": "cypress run --config video=false",
+    "cypress:open": "cypress open"
+  },
+  "dependencies": {
+    "@stencil/core": "^2.13.0",
+    "@stencil/sass": "^1.5.2",
+    "@swisspost/design-system-styles": "workspace:5.0.0-beta.1",
+    "sass": "^1.49.7"
+  },
+  "devDependencies": {
+    "@babel/core": "7.19.3",
+    "@percy/cli": "1.10.4",
+    "@percy/storybook": "4.3.3",
+    "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
+    "@storybook/addon-actions": "6.5.12",
+    "@storybook/addon-essentials": "6.5.12",
+    "@storybook/addon-links": "6.5.12",
+    "@storybook/html": "6.5.12",
+    "@types/jest": "27.0.3",
+    "babel-loader": "8.2.5",
+    "cypress": "10.0.3",
+    "cypress-storybook": "0.5.1",
+    "jest": "27.5.1",
+    "jest-cli": "27.5.1",
+    "npm-run-all": "4.1.5",
+    "react": "16.14.0",
+    "react-dom": "16.14.0",
+    "start-server-and-test": "1.14.0",
+    "typescript": "4.8.4",
+    "webpack": "4.46.0"
+  }
+}
