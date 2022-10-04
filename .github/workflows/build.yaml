@@ -33,7 +33,7 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Bootstrap & Build Design System
-        run: pnpm run bootstrap
+        run: pnpm bootstrap
 
       - name: Upload build artifacts
         uses: swisspost/design-system/.github/actions/artifact-upload@main
