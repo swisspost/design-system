@@ -14,14 +14,15 @@
   },
   "publishConfig": {
     "directory": "../../dist/intranet-header",
-    "access": "public"
+    "access": "public",
+    "linkDirectory": true
   },
   "peerDependencies": {
     "@angular/common": "^13.2.0 || ^14.0.0",
     "@angular/core": "^13.2.0 || ^14.0.0"
   },
   "dependencies": {
-    "@swisspost/design-system-styles": "^5.0.0-beta.0",
+    "@swisspost/design-system-styles": "workspace:5.0.0-beta.1",
     "tslib": "2.4.0"
   }
 }

@@ -14,7 +14,8 @@
   },
   "publishConfig": {
     "directory": "./dist",
-    "access": "public"
+    "access": "public",
+    "linkDirectory": true
   },
   "ng-update": {
     "migrations": "@swisspost/design-system-migrations/migrations.json"

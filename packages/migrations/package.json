@@ -17,7 +17,8 @@
   },
   "publishConfig": {
     "directory": "dist",
-    "access": "public"
+    "access": "public",
+    "linkDirectory": true
   },
   "scripts": {
     "build": "tsc -p tsconfig.json && copyfiles -u 1 src/*/schema.json src/*/files/** src/migrations.json dist && copyfiles package.json README.md LICENSE dist && json -I -f dist/package.json -e \"delete this.publishConfig.directory\"",
