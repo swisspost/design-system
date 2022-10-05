@@ -32,7 +32,7 @@
     "stencil:test:watch": "stencil test --spec --watchAll",
     "stencil:generate": "stencil generate",
     "storybook:start": "start-storybook -p 9203",
-    "storybook:start:headless": "start-storybook -p 9303 -s www --no-open",
+    "storybook:start:headless": "start-storybook --quiet -p 9303 -s www --no-open",
     "storybook:build": "build-storybook",
     "storybook:test": "start-server-and-test storybook:start:headless 9303 'cypress run --config record=false,video=false'",
     "cypress:open": "cypress open",
