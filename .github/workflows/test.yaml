@@ -21,14 +21,14 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@refactor/549-refactor-packagejson-scripts
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       - name: Cache Cypress Binary
         id: cache-cypress-binary
         uses: actions/cache@v3
         with:
           path: ~/.cache
-          key: cypress-binary-${{ hashFiles('package-lock.json') }}
+          key: cypress-binary-${{ hashFiles('**/pnpm-lock.yaml') }}
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
