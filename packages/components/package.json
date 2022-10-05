@@ -25,7 +25,7 @@
   "scripts": {
     "start": "npm-run-all stencil:build --parallel stencil:start storybook:start",
     "build": "npm-run-all stencil:build storybook:build",
-    "test": "npm-run-all stencil:build --parallel stencil:test storybook:test",
+    "test": "npm-run-all stencil:build --parallel stencil:test",
     "stencil:start": "stencil build --watch --docs-readme",
     "stencil:build": "stencil build --docs-readme",
     "stencil:test": "stencil test --spec",
