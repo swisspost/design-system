@@ -23,19 +23,18 @@
     "access": "public"
   },
   "scripts": {
-    "start": "npm-run-all --parallel stencil:start storybook:start",
+    "start": "npm-run-all stencil:build --parallel stencil:start storybook:start",
     "build": "npm-run-all stencil:build storybook:build",
-    "test": "npm-run-all --parallel stencil:test cypress:test",
-    "stencil:start": "stencil build --watch --docs",
-    "stencil:serve": "stencil build --watch --serve --docs",
-    "stencil:build": "stencil build --docs",
+    "test": "npm-run-all stencil:build --parallel stencil:test",
+    "stencil:start": "stencil build --watch --docs-readme",
+    "stencil:build": "stencil build --docs-readme",
     "stencil:test": "stencil test --spec",
     "stencil:test:watch": "stencil test --spec --watchAll",
     "stencil:generate": "stencil generate",
-    "storybook:start": "start-storybook -p 6006",
+    "storybook:start": "start-storybook -p 9203",
+    "storybook:start:headless": "start-storybook -p 9303 -s www --no-open",
     "storybook:build": "build-storybook",
-    "storybook:ci": "start-storybook -p 6060 -s www --no-open --quiet",
-    "cypress:test": "cypress run --config video=false",
+    "storybook:test": "start-server-and-test storybook:start:headless 9303 'cypress run --config record=false,video=false'",
     "cypress:open": "cypress open"
   },
   "dependencies": {

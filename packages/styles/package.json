@@ -22,17 +22,15 @@
   },
   "scripts": {
     "clean": "rimraf out-tsc dist/*",
-    "prebuild": "npm run clean",
+    "start": "gulp watch",
+    "prebuild": "pnpm clean",
     "build": "gulp build",
-    "build:ci": "gulp build",
+    "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",
-    "format": "prettier src/**/*.scss --write",
     "test": "jest",
-    "test:ci": "jest",
-    "start": "gulp watch",
-    "storybook": "start-storybook -p 6006 --quiet",
-    "build:storybook": "build-storybook"
+    "storybook:start": "start-storybook -p 9202",
+    "storybook:build": "build-storybook"
   },
   "dependencies": {
     "@popperjs/core": "2.11.6",
