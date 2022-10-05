@@ -25,16 +25,16 @@
   "scripts": {
     "start": "npm-run-all --parallel stencil:start storybook:start",
     "build": "npm-run-all stencil:build storybook:build",
-    "test": "npm-run-all --parallel stencil:test cypress:test",
+    "test": "npm-run-all --parallel stencil:test storybook:test",
     "stencil:start": "stencil build --watch --docs",
     "stencil:build": "stencil build --docs",
     "stencil:test": "stencil test --spec",
     "stencil:test:watch": "stencil test --spec --watchAll",
     "stencil:generate": "stencil generate",
-    "storybook:headless": "start-storybook -p 60070 -s www --no-open --quiet",
     "storybook:start": "start-storybook -p 9203",
+    "storybook:start:headless": "start-storybook -p 9303 -s www --no-open",
     "storybook:build": "build-storybook",
-    "cypress:test": "start-server-and-test storybook:headless 60070 'cypress run --config video=false'",
+    "storybook:test": "start-server-and-test storybook:start:headless 9303 'cypress run --config video=false''",
     "cypress:open": "cypress open"
   },
   "dependencies": {
