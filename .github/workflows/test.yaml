@@ -27,7 +27,7 @@ jobs:
         uses: actions/cache/@v2
         with:
           path: ${{ env.CYPRESS_CACHE_FOLDER }}
-          key: cypress-binary-${{ hasFiles('package-lock.json') }}
+          key: cypress-binary-${{ hashFiles('package-lock.json') }}
 
       - name: Install dependencies
         run: pnpm install
