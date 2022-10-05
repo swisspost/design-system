@@ -23,9 +23,9 @@
     "access": "public"
   },
   "scripts": {
-    "start": "npm-run-all --parallel stencil:start storybook:start",
+    "start": "npm-run-all stencil:start storybook:start",
     "build": "npm-run-all stencil:build storybook:build",
-    "test": "npm-run-all --parallel stencil:test storybook:test",
+    "test": "npm-run-all stencil:test storybook:test",
     "stencil:start": "stencil build --watch --docs",
     "stencil:build": "stencil build --docs",
     "stencil:test": "stencil test --spec",
