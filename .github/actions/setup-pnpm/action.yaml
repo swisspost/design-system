@@ -46,4 +46,4 @@ runs:
       with:
         node-version: ${{ inputs.node_version }}
         cache: pnpm
-        cache-dependency-path: /home/runner/.cache/Cypress
+        cache-dependency-path: /home/runner/setup-pnpm/.cache/Cypress
