@@ -35,7 +35,8 @@
     "storybook:start:headless": "start-storybook -p 9303 -s www --no-open",
     "storybook:build": "build-storybook",
     "storybook:test": "start-server-and-test storybook:start:headless 9303 'cypress run --config record=false,video=false'",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "dependencies": {
     "@stencil/core": "^2.13.0",
