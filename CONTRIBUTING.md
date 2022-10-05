@@ -59,7 +59,7 @@ Whenever we add new scripts to the package.json file, we follow the instructions
 - A default script name persist of one word only (e.g. `lint`).
 - A non default script name is postfixed with it's characteristics (e.g. `lint:fix`).
 - A non default script name for a specific tool is prefixed with the tool name (e.g. `storybook:serve`, `storybook:bulid`, etc.).
-- A non default script name can contain more than one semi-colon (e.g. `lint:fix:dry`, `stencil:test:watch`, etc.).
+- A non default script name can contain more than one colon (e.g. `lint:fix:dry`, `stencil:test:watch`, etc.).
 
 ## Branching
 
