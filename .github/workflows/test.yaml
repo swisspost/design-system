@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: swisspost/design-system/.github/actions/setup-pnpm@refactor/549-refactor-packagejson-scripts
 
       - name: Install dependencies
         run: pnpm install
