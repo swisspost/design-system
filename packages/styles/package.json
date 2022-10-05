@@ -29,12 +29,12 @@
     "lint:fix": "stylelint src/**/*.scss --fix",
     "format": "prettier src/**/*.scss --write",
     "test": "jest",
-    "test:snapshots": "percy exec -- cypress run --record false",
     "test:ci": "jest",
     "start": "gulp watch",
-    "storybook": "start-storybook -p 6006 --quiet",
-    "storybook:snapshots": "start-server-and-test 'start-storybook -p 60006 --quiet --no-open' 60006 test:snapshots",
-    "build:storybook": "build-storybook"
+    "storybook:start": "start-storybook -p 9200",
+    "storybook:start:headless": "start-storybook -p 9300 -s www --no-open",
+    "storybook:build": "build-storybook",
+    "storybook:test": "start-server-and-test storybook:start:headless 9300 'percy exec -- cypress run --record false'"
   },
   "dependencies": {
     "@popperjs/core": "2.11.6",
