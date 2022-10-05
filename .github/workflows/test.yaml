@@ -7,6 +7,9 @@
 name: Run tests
 on: [pull_request]
 
+env:
+  CYPRESS_CACHE_FOLDER: cypress/cache
+
 jobs:
   build:
     runs-on: ubuntu-latest
