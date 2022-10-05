@@ -32,5 +32,5 @@ jobs:
           install: false
           build: pnpm --filter design-system-components stencil:build
           start: pnpm --filter design-system-components storybook:start:headless
-          project: './packages/components'
+          command-prefix: pnpm --filter design-system-components exec
           wait-on: 'http://localhost:9303'
