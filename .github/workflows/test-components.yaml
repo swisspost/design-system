@@ -18,15 +18,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
-      - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
-      - name: Install cypress
-        run: pnpm --filter design-system-componets -D add cypress
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.13.0
+
+      - name: Install deps
+        run: pnpm install
+
       - name: Cypress run
         uses: cypress-io/github-action@v4.2.0
         with:
-          install-command: pnpm install
+          install: false
           build: pnpm --filter design-system-components stencil:build
           start: pnpm --filter design-system-components storybook:start:headless
-          test: pnpm --filter design-system-components cypress:run
+          project: './packages/components'
           wait-on: 'http://localhost:9303'
