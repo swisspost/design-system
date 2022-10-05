@@ -21,9 +21,15 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@refactor/549-refactor-packagejson-scripts
 
       - name: Install dependencies
-        run: CYPRESS_CACHE_FOLDER=~/Desktop/cypress_cache pnpm install
+        run: pnpm install
+
+      - name: Cache Cypress Binary
+        id: cache-cypress-binary
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Run tests
-        run: CYPRESS_CACHE_FOLDER=~/Desktop/cypress_cache pnpm --filter "...[origin/main]" test
+        run: pnpm --filter "...[origin/main]" test
