@@ -17,6 +17,7 @@
     "start:styles": "pnpm --filter design-system-styles storybook",
     "start:intranet-header": "pnpm --filter design-system-components-angular start",
     "start:components": "pnpm --filter design-system-components start",
+    "start:docs": "pnpm --filter design-system-documentation start",
     "bootstrap": "pnpm install && pnpm -r build",
     "changeset:publish": "pnpm bootstrap && pnpm changeset publish",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"

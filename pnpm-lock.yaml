@@ -288,6 +288,7 @@ importers:
       babel-loader: ^8.2.5
       chromatic: ^6.8.0
       lit-html: ^2.3.1
+      npm-run-all: 4.1.5
     devDependencies:
       '@babel/core': 7.19.3
       '@storybook/addon-actions': 6.5.12
@@ -299,6 +300,7 @@ importers:
       babel-loader: 8.2.5_@babel+core@7.19.3
       chromatic: 6.10.1
       lit-html: 2.3.1
+      npm-run-all: 4.1.5
 
   packages/migrations:
     specifiers:
