@@ -23,17 +23,6 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
-      - name: List Installed pnpm modules
-        run: |
-          cd packages/components
-          pnpm ls
-
-      - name: Show Cypress Info
-        run: pnpx cypress info
-
-      - name: Verify Cypress can run
-        run: pnpx cypress verify
-
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Run tests
