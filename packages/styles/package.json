@@ -28,7 +28,7 @@
     "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",
-    "test": "jest",
+    "test": "jest -o",
     "storybook:start": "start-storybook -p 9202",
     "storybook:build": "build-storybook"
   },
