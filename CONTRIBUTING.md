@@ -55,7 +55,7 @@ Whenever we add new scripts to the package.json file, we follow the instructions
 
 - A script name is all lowercase.
 - A script name uses only letters, dashes and colons.
-- A script name short and descriptive.
+- A script name is short and descriptive.
 - A default script name persist of one word only (e.g. `lint`).
 - A non default script name is postfixed with it's characteristics (e.g. `lint:fix`).
 - A non default script name for a specific tool, is pre-fixed with the toolname (e.g. `storybook:serve`, `storybook:bulid`, etc.).
