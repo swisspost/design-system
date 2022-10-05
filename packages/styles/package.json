@@ -29,7 +29,7 @@
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",
     "test": "jest",
-    "storybook:serve": "start-storybook -p 6006 --quiet",
+    "storybook:serve": "start-storybook -p 9202",
     "storybook:build": "build-storybook"
   },
   "dependencies": {
