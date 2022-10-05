@@ -30,7 +30,9 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: List Installed pnpm modules
-        run: pnpm ls
+        run: |
+          cd packages/components
+          pnpm ls
 
       - name: Show Cypress Info
         run: npx cypress info
