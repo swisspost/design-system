@@ -30,7 +30,7 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install styles dependencies
-        run: pnpm --filter design-system-styles install --frozen-lockfile
+        run: pnpm --filter design-system-styles install
 
       - name: Build styles storybook
         run: pnpm --filter design-system-styles storybook:build
