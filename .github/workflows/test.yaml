@@ -29,10 +29,10 @@ jobs:
           pnpm ls
 
       - name: Show Cypress Info
-        run: npx cypress info
+        run: pnpx cypress info
 
       - name: Verify Cypress can run
-        run: npx cypress verify
+        run: pnpx cypress verify
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
