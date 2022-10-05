@@ -21,7 +21,7 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since

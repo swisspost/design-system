@@ -28,7 +28,7 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install components dependencies
-        run: pnpm --filter design-system-components install
+        run: pnpm --filter design-system-components install --frozen-lockfile
 
       - name: Build components
         run: pnpm --filter design-system-components build

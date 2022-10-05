@@ -22,7 +22,7 @@ jobs:
 
       # Install changesets locally
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --frozen-lockfile
 
       # The changeset action will behave differently based on whether there are
       # new changesets on the main branch:
