@@ -29,6 +29,9 @@ jobs:
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
 
+      - name: List Installed pnpm modules
+        run: pnpm ls --depth 0
+
       - name: Show Cypress Info
         run: npx cypress info
 
