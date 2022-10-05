@@ -25,9 +25,10 @@ jobs:
 
       - name: Cache Cypress Binary
         id: cache-cypress-binary
-        uses: actions/cache@v2
+        uses: actions/cache@v3
         with:
           path: ~/.cache
+          key: cypress-binary-${{ hashFiles('pnpm-lock.json') }}
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
