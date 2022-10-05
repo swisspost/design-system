@@ -54,7 +54,7 @@ When you're planning to work on bigger changes, please reach out to someone from
 Whenever we add new scripts to the package.json file, we follow the instructions below.
 
 - A script name is all lowercase.
-- A script name uses only letters, numbers and semi-colons.
+- A script name uses only letters, dashes and colons.
 - A script name short and descriptive.
 - A default script name persist of one word only (e.g. `lint`).
 - A non default script name is post-fix which describes it's special characteristica (e.g. `lint:fix`).
