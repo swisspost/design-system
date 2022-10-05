@@ -27,5 +27,5 @@ jobs:
           install: pnpm install
           build: pnpm --filter design-system-components stencil:build
           start: pnpm --filter design-system-components storybook:start:headless
+          test: pnpm --filter design-system-components cypress:run
           wait-on: 'http://localhost:9303'
-          project: ./packages/components
