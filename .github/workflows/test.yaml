@@ -21,8 +21,8 @@ jobs:
         uses: actions/cache/@v3
         with:
           path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress2-${{ hashFiles('**/package.json') }}
-          restore-keys: ${{ runner.os }}-cypress2-
+          key: ${{ runner.os }}-cypress3-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
+          restore-keys: ${{ runner.os }}-cypress3-
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
