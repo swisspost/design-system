@@ -21,10 +21,10 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install dependencies
-        run: |
-          pnpm install
-          # make sure the cypress binary gets installed
-          pnpm rebuild
+        run: pnpm install
+
+      - name: Rebuild dependencies
+        run: pnpm rebuild
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
