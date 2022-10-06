@@ -3,7 +3,8 @@ import { defineConfig } from 'cypress';
 export default defineConfig({
   e2e: {
     excludeSpecPattern: ["**/examples/**/*.js"],
-    supportFile: false
+    supportFile: false,
+    baseUrl: 'http://localhost:9303'
   },
   "chromeWebSecurity": false,
   "includeShadowDom": true,

@@ -7,13 +7,9 @@
   "private": true,
   "scripts": {
     "clean": "rimraf dist",
-    "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve --port 9000",
     "build": "ng build",
-    "build:ci": "ng build",
-    "test": "echo 'todo'",
-    "lint": "ng lint",
-    "e2e": "echo 'todo'"
+    "lint": "ng lint"
   },
   "dependencies": {
     "@angular/animations": "14.2.4",
