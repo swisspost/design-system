@@ -23,17 +23,17 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
-      # - name: Install Cypress Binary from Cache
-      #   uses: actions/cache/@v3
-      #   id: cypress_binary
-      #   with:
-      #     path: ~/.cache/Cypress
-      #     key: ${{ runner.os }}-cypress5-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
-      #     restore-keys: ${{ runner.os }}-cypress5-
+      - name: Install Cypress Binary from Cache
+        uses: actions/cache@v3
+        id: cypress_binary
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress5-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
+          restore-keys: ${{ runner.os }}-cypress5-
 
-      # - name: Rebuild dependencies
-      #   if: ${{ steps.cypress_binary}}
-      #   run: pnpm -r rebuild
+      - name: Rebuild dependencies
+        if: ${{ steps.cypress_binary.outputs.cache-hit != true }}
+        run: pnpm -r rebuild
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
