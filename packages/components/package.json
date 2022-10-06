@@ -23,7 +23,6 @@
     "access": "public"
   },
   "scripts": {
-    "postinstall": "pnpm --prefix node_modules/cypress postinstall",
     "start": "npm-run-all stencil:build --parallel stencil:start storybook:start",
     "build": "npm-run-all stencil:build storybook:build",
     "test": "npm-run-all stencil:build --parallel stencil:test storybook:test",
@@ -36,7 +35,8 @@
     "storybook:start:headless": "start-storybook -p 9303 -s www --no-open",
     "storybook:build": "build-storybook",
     "storybook:test": "start-server-and-test storybook:start:headless 9303 'cypress run --record false'",
-    "cypress:open": "cypress open"
+    "cypress:open": "cypress open",
+    "postinstall": "pnpm --prefix node_modules/cypress postinstall"
   },
   "dependencies": {
     "@stencil/core": "^2.13.0",

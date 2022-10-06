@@ -30,7 +30,8 @@
     "lint:fix": "stylelint src/**/*.scss --fix",
     "test": "jest",
     "storybook:start": "start-storybook -p 9202",
-    "storybook:build": "build-storybook"
+    "storybook:build": "build-storybook",
+    "postinstall": "pnpm --prefix node_modules/cypress postinstall"
   },
   "dependencies": {
     "@popperjs/core": "2.11.6",
