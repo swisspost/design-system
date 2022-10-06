@@ -33,7 +33,7 @@ jobs:
         run: pnpm --filter design-system-styles install
 
       - name: Build styles storybook
-        run: pnpm --filter design-system-styles build:storybook
+        run: pnpm --filter design-system-styles storybook:build
 
       - name: Upload build artifacts
         uses: swisspost/design-system/.github/actions/artifact-upload@main

@@ -8,7 +8,7 @@ defineCustomElements();
 export const parameters = {
   actions: { argTypesRegex: "^on[A-Z].*" },
   controls: {
-    controls: { hideNoControlsWarning: true },
+    hideNoControlsWarning: true,
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
