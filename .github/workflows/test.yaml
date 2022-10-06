@@ -21,14 +21,14 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install dependencies
-        run: pnpm install --force
+        run: pnpm install
 
-      - name: Setup Cypress Binary
+      - name: Install Cypress Binary from Cache
         uses: actions/cache/@v3
         with:
           path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress3-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
-          restore-keys: ${{ runner.os }}-cypress3-
+          key: ${{ runner.os }}-cypress4-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
+          restore-keys: ${{ runner.os }}-cypress4-
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
