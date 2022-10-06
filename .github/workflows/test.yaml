@@ -17,26 +17,21 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+      # - name: Setup
+      #   uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      # - name: Install pnpm
-      #   uses: pnpm/action-setup@v2
-      #   with:
-      #     version: 7.13.0
+      - name: Install pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7.13.0
 
-      # - name: Install node with pnpm cache
-      #   uses: actions/setup-node@v3
-      #   with:
-      #     node-version: 16
+      - name: Install node with pnpm cache
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
 
       - name: Install dependencies
-        run: |
-          pnpm install
-          # start cypress install/postinstall (If there is binary already installed, it will quickly finish)
-          pnpm --filter design-system-styles install cypress
-          # good idea to verify the binary so its status is saved in the cache as well
-          pnpm --filter design-system-styles cypress verify
+        run: pnpm install
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
