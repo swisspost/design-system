@@ -27,7 +27,7 @@ jobs:
         run: pnpm install
 
       - name: Cypress run
-        uses: cypress-io/github-action@v4.2.0
+        uses: cypress-io/github-action@v3
         with:
           install: false
           build: pnpm --filter design-system-components stencil:build
