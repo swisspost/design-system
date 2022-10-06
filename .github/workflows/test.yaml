@@ -31,15 +31,15 @@ jobs:
           node-version: 16
           cache: pnpm
 
+      - name: Install dependencies
+        run: pnpm install
+
       - name: Setup Cypress Binary
         uses: actions/cache/@v3
         with:
           path: ~/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
           restore-keys: ${{ runner.os }}-cypress-
-
-      - name: Install dependencies
-        run: pnpm install
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
