@@ -20,7 +20,7 @@ jobs:
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      - name: Test Setup Cypress Binary Cache
+      - name: Setup Cypress Binary Cache
         uses: actions/cache@v3
         id: cypress_binary_cache
         with:
