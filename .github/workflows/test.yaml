@@ -33,6 +33,13 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      - name: Cache Cypress Binary
+        uses: actions/cache/@v3
+        with:
+          path: ~/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Run tests
