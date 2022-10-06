@@ -25,15 +25,11 @@ jobs:
         id: cypress_binary_cache
         with:
           path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress10-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
-          restore-keys: ${{ runner.os }}-cypress10-
+          key: ${{ runner.os }}-cypress11-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
+          restore-keys: ${{ runner.os }}-cypress11-
 
       - name: Install dependencies
         run: pnpm install
-
-      - name: Postinstall Cypress Binary
-        if: ${{ steps.cypress_binary_cache.outputs.cache-hit != true }}
-        run: pnpm -r --prefix node_modules/cypress postinstall
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
