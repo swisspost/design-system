@@ -24,7 +24,7 @@ jobs:
         run: pnpm install
 
       - name: Rebuild dependencies
-        run: pnpm rebuild
+        run: pnpm -r rebuild
 
       - name: Install Cypress Binary from Cache
         uses: actions/cache/@v3
