@@ -24,5 +24,9 @@
   "devDependencies": {
     "@changesets/changelog-github": "0.4.7",
     "@changesets/cli": "2.25.0"
+  },
+  "engines": {
+    "node": ">=16",
+    "pnpm": ">=7.13"
   }
 }
