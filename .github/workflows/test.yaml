@@ -7,6 +7,9 @@
 name: Run tests
 on: [pull_request]
 
+env:
+  PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
