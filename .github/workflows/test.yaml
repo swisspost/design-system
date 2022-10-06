@@ -22,11 +22,10 @@ jobs:
 
       - name: Setup Cypress Binary Cache
         uses: actions/cache@v3
-        id: cypress_binary_cache
         with:
           path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress11-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
-          restore-keys: ${{ runner.os }}-cypress11-
+          key: ${{ runner.os }}-cypress-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
+          restore-keys: ${{ runner.os }}-cypress-
 
       - name: Install dependencies
         run: pnpm install
