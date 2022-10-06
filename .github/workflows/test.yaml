@@ -33,10 +33,10 @@ jobs:
       - name: Install dependencies
         run: |
           pnpm install
-          # start cypress postinstall (If there is binary already installed, it will quickly finish)
-          pnpm install cypress
+          # start cypress install/postinstall (If there is binary already installed, it will quickly finish)
+          pnpm --filter design-system-styles install cypress
           # good idea to verify the binary so its status is saved in the cache as well
-          pnpm cypress verify
+          pnpm --filter design-system-styles cypress verify
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
