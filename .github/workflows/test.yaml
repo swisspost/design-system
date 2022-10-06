@@ -20,11 +20,11 @@ jobs:
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      - name: Setup Cypress Binary
-        uses: actions/cache/@v3
+      - name: Setup Cypress Binary Cache
+        uses: actions/cache@v3
         with:
           path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
+          key: ${{ runner.os }}-cypress-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
           restore-keys: ${{ runner.os }}-cypress-
 
       - name: Install dependencies
