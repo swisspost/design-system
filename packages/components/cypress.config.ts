@@ -2,15 +2,16 @@ import { defineConfig } from 'cypress';
 
 export default defineConfig({
   e2e: {
-    excludeSpecPattern: ["**/examples/**/*.js"],
-    supportFile: false,
-    baseUrl: 'http://localhost:9303'
+    baseUrl: 'http://localhost:9303',
+    excludeSpecPattern: ["**/examples/**/*.cy.js"],
+    supportFile: false
   },
-  "chromeWebSecurity": false,
-  "includeShadowDom": true,
-  "retries": {
-    "runMode": 1
+  chromeWebSecurity: false,
+  includeShadowDom: true,
+  retries: {
+    runMode: 1
   },
-  "videoCompression": false,
-  "watchForFileChanges": true,
+  video: false,
+  videoCompression: false,
+  watchForFileChanges: true,
 });
