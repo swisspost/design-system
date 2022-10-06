@@ -28,7 +28,7 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --force
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
