@@ -5,11 +5,6 @@ describe('Snapshot Button States', () => {
     cy.visit('/iframe.html?args=&id=design-system-button--page&viewMode=story')
   })
 
-  it('successfully loads', () => {
-    cy.visit('/')
-    cy.percySnapshot('Home Page', snapshotConfig)
-  })
-
   it('displays focussed buttons on dark background', function () {
     cy
       .get('.sbdocs-preview')
