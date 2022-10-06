@@ -7,10 +7,6 @@
 name: Run tests
 on: [pull_request]
 
-env:
-  PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-  NODE_TLS_REJECT_UNAUTHORIZED: 0
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -40,4 +36,6 @@ jobs:
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Run tests
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: pnpm --filter "...[origin/main]" test
