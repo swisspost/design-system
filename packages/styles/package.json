@@ -32,7 +32,7 @@
     "storybook:start": "start-storybook -p 9201",
     "storybook:start:headless": "start-storybook -p 9301 -s www --no-open",
     "storybook:build": "build-storybook",
-    "storybook:test": "start-server-and-test storybook:start:headless 9301 'percy exec -- cypress run --config record=false'"
+    "storybook:test": "start-server-and-test storybook:start:headless 9301 'percy exec -- cypress run --record false'"
   },
   "dependencies": {
     "@popperjs/core": "2.11.6",
