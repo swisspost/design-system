@@ -2,7 +2,7 @@ import snapshotConfig from '../percy/snapshot-configs/lg.json'
 
 describe('Snapshot Button States', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:60006/iframe.html?args=&id=design-system-button--page&viewMode=story')
+    cy.visit('http://localhost:9301/iframe.html?args=&id=design-system-button--page&viewMode=story')
   })
 
   it('displays focussed buttons on dark background', function () {
