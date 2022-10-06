@@ -28,12 +28,8 @@ jobs:
         id: cypress_binary
         with:
           path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress6-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
-          restore-keys: ${{ runner.os }}-cypress6-
-
-      - name: Rebuild dependencies
-        if: ${{ steps.cypress_binary.outputs.cache-hit != true }}
-        run: pnpm -r rebuild
+          key: ${{ runner.os }}-cypress7-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
+          restore-keys: ${{ runner.os }}-cypress7-
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since

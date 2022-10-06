@@ -23,6 +23,7 @@
     "access": "public"
   },
   "scripts": {
+    "postinstall": "pnpm --prefix node_modules/cypress postinstall",
     "start": "npm-run-all stencil:build --parallel stencil:start storybook:start",
     "build": "npm-run-all stencil:build storybook:build",
     "test": "npm-run-all stencil:build --parallel stencil:test storybook:test",
