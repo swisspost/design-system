@@ -25,8 +25,8 @@ jobs:
         id: cypress_binary
         with:
           path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress7-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
-          restore-keys: ${{ runner.os }}-cypress7-
+          key: ${{ runner.os }}-cypress8-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
+          restore-keys: ${{ runner.os }}-cypress8-
 
       - name: Install dependencies
         run: pnpm install
