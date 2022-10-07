@@ -15,7 +15,7 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "start-storybook -p 6006 --quiet",
+    "start": "start-storybook -p 9200 --quiet",
     "build": "build-storybook --quiet"
   },
   "devDependencies": {
