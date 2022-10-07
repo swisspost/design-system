@@ -1,7 +1,7 @@
 {
-	"name": "@swisspost/design-system",
+  "name": "@swisspost/design-system",
   "description": "The Swiss Post Design System pattern library for a consistent and accessible user experience across the web platform.",
-	"author": "Swiss Post <oss@post.ch>",
+  "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -14,11 +14,11 @@
   "scripts": {
     "bootstrap": "pnpm install && pnpm -r build",
     "start": "pnpm demo:start",
-    "demo": "pnpm --filter design-system-demo --filter design-system-styles --parallel --stream start",
-    "styles": "pnpm --filter design-system-styles storybook:serve",
-    "components": "pnpm --filter design-system-components start",
-    "intranet-header": "pnpm --filter design-system-components-angular start",
-    "docs": "pnpm --filter design-system-documentation start",
+    "demo:start": "pnpm --filter design-system-demo --filter design-system-styles --parallel --stream start",
+    "styles:start": "pnpm --filter design-system-styles storybook:serve",
+    "components:start": "pnpm --filter design-system-components start",
+    "intranet-header:start": "pnpm --filter design-system-components-angular start",
+    "docs:start": "pnpm --filter design-system-documentation start",
     "changeset:publish": "pnpm bootstrap && pnpm changeset publish",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
