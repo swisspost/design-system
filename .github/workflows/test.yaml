@@ -33,4 +33,6 @@ jobs:
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Run tests
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: pnpm --filter "...[origin/main]" test
