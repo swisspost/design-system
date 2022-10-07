@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-beta.1",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
   "main": "dist/index.cjs.js",
@@ -23,25 +23,24 @@
     "access": "public"
   },
   "scripts": {
-    "start": "npm-run-all --parallel stencil:start storybook:start",
+    "start": "npm-run-all stencil:build --parallel stencil:start storybook:start",
     "build": "npm-run-all stencil:build storybook:build",
-    "test": "npm-run-all --parallel stencil:test cypress:test",
-    "stencil:start": "stencil build --watch --docs",
-    "stencil:serve": "stencil build --watch --serve --docs",
-    "stencil:build": "stencil build --docs",
+    "test": "npm-run-all stencil:build --parallel stencil:test",
+    "stencil:start": "stencil build --watch --docs-readme",
+    "stencil:build": "stencil build --docs-readme",
     "stencil:test": "stencil test --spec",
     "stencil:test:watch": "stencil test --spec --watchAll",
     "stencil:generate": "stencil generate",
-    "storybook:start": "start-storybook -p 6006",
+    "storybook:start": "start-storybook -p 9203",
+    "storybook:start:headless": "start-storybook -p 9303 -s www --no-open",
     "storybook:build": "build-storybook",
-    "storybook:ci": "start-storybook -p 6060 -s www --no-open --quiet",
-    "cypress:test": "cypress run --config video=false",
+    "storybook:test": "start-server-and-test storybook:start:headless 9303 'cypress run --config record=false,video=false'",
     "cypress:open": "cypress open"
   },
   "dependencies": {
     "@stencil/core": "^2.13.0",
     "@stencil/sass": "^1.5.2",
-    "@swisspost/design-system-styles": "workspace:5.0.0-beta.1",
+    "@swisspost/design-system-styles": "workspace:5.0.0-beta.2",
     "sass": "^1.49.7"
   },
   "devDependencies": {

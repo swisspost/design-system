@@ -1,15 +1,12 @@
 {
   "name": "@swisspost/design-system-components-angular",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.1",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
-    "ng": "ng",
-    "build": "ng build intranet-header",
-    "build:ci": "ng build",
-    "start": "ng serve --port 4201",
-    "test": "echo 'todo'",
     "clean": "rimraf dist",
+    "start": "ng serve --port 9001",
+    "build": "ng build intranet-header",
     "lint": "ng lint"
   },
   "dependencies": {
@@ -24,7 +21,7 @@
     "@angular/router": "14.2.4",
     "@ng-bootstrap/ng-bootstrap": "12.1.2",
     "@popperjs/core": "2.11.6",
-    "@swisspost/design-system-styles": "workspace:5.0.0-beta.1",
+    "@swisspost/design-system-styles": "workspace:5.0.0-beta.2",
     "rxjs": "7.5.7",
     "tslib": "2.4.0",
     "watch": "1.0.2",

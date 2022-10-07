@@ -6,11 +6,13 @@
     "@swisspost/design-system-intranet-header": "3.0.0-alpha.4",
     "@swisspost/design-system-demo": "5.0.0-alpha.5",
     "@swisspost/design-system-migrations": "1.0.0-alpha.3",
-    "@swisspost/design-system-styles": "5.0.0-alpha.7"
+    "@swisspost/design-system-styles": "5.0.0-alpha.7",
+    "@swisspost/design-system-components": "1.0.0-alpha.0"
   },
   "changesets": [
     "angry-cats-thank",
     "angry-moles-design",
+    "big-ducks-leave",
     "brown-pets-sniff",
     "calm-owls-ring",
     "chilled-rivers-look",
@@ -68,11 +70,13 @@
     "smart-schools-watch",
     "smooth-yaks-try",
     "spicy-deers-check",
+    "spotty-badgers-brake",
     "sweet-poets-know",
     "tall-moons-joke",
     "tasty-lies-compare",
     "thin-geckos-jump",
     "thin-horses-divide",
+    "three-waves-cheat",
     "tidy-tomatoes-help",
     "tricky-geese-invite",
     "two-windows-join",
