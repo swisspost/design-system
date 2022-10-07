@@ -16,8 +16,7 @@
   "private": true,
   "scripts": {
     "start": "start-storybook -p 6006 --quiet",
-    "build": "build-storybook --quiet",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "build-storybook --quiet"
   },
   "devDependencies": {
     "@babel/core": "^7.18.13",
