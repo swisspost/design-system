@@ -54,6 +54,6 @@ jobs:
 
       # Publish storybook
       - name: Publish storybooks
-        if: steps.cahngesets.outputs.published == 'true'
+        if: steps.changesets.outputs.published == 'true'
         id: storybook
         run: pnpm --filter design-system-documentation run chromatic --project-token=${{ secrets.STORYBOOK_TOKEN }}
