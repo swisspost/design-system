@@ -61,6 +61,33 @@ Whenever we add new scripts to the package.json file, we follow the instructions
 - A non default script name for a specific tool is prefixed with the tool name (e.g. `storybook:serve`, `storybook:bulid`, etc.).
 - A non default script name can contain more than one colon (e.g. `lint:fix:dry`, `stencil:test:watch`, etc.).
 
+
+## Dev Server Ports
+For some packages it's necessary to run multiple dev servers at the same time. To prevent port conflicts, the following ranges are given to each package. The ranges 9000 - 9400 are chosen for compatibility with [port ranges used by Browserstack](https://www.browserstack.com/question/39572).
+
+### Default DevServer: 9000-9099
+   | Package | Port |
+   | :- | -: |
+   | Demo | 9000 |
+   | IntranetHeader | 9001 |
+
+### Storybook DevServers: 9200-9299
+
+   | Package | Port |
+   | :- | -: |
+   | Documentation | 9200 |
+   | Styles | 9201 |
+   | Components | 9203 |
+
+### Storybook TestServers: 9300-9399
+
+   | Package | Port |
+   | :- | -: |
+   | Documentation | 9300 |
+   | Styles | 9301 |
+   | Components | 9303 |
+
+
 ## Branching
 
 We base our workflow on the [GitHub flow](https://docs.github.com/en/get-started/quickstart/github-flow) branching model.
