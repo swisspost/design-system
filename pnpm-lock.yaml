@@ -22,7 +22,7 @@ importers:
       '@storybook/addon-essentials': 6.5.12
       '@storybook/addon-links': 6.5.12
       '@storybook/html': 6.5.12
-      '@swisspost/design-system-styles': workspace:5.0.0-beta.1
+      '@swisspost/design-system-styles': workspace:5.0.0-beta.2
       '@types/jest': 27.0.3
       babel-loader: 8.2.5
       cypress: 10.0.3
@@ -84,7 +84,7 @@ importers:
       '@angular/router': 14.2.4
       '@ng-bootstrap/ng-bootstrap': 12.1.2
       '@popperjs/core': 2.11.6
-      '@swisspost/design-system-styles': workspace:5.0.0-beta.1
+      '@swisspost/design-system-styles': workspace:5.0.0-beta.2
       '@types/jasmine': 4.3.0
       '@types/node': 16.11.56
       '@typescript-eslint/eslint-plugin': 5.37.0
@@ -146,7 +146,7 @@ importers:
 
   packages/components-angular/projects/intranet-header:
     specifiers:
-      '@swisspost/design-system-styles': workspace:5.0.0-beta.1
+      '@swisspost/design-system-styles': workspace:5.0.0-beta.2
       tslib: 2.4.0
     dependencies:
       '@swisspost/design-system-styles': link:../../../styles/dist
@@ -178,9 +178,9 @@ importers:
       '@ng-bootstrap/ng-bootstrap': 12.1.2
       '@popperjs/core': 2.11.6
       '@swimlane/ngx-datatable': 20.0.0
-      '@swisspost/design-system-components': workspace:1.0.0-alpha.0
-      '@swisspost/design-system-intranet-header': workspace:3.0.0-beta.0
-      '@swisspost/design-system-styles': workspace:5.0.0-beta.1
+      '@swisspost/design-system-components': workspace:1.0.0-beta.1
+      '@swisspost/design-system-intranet-header': workspace:3.0.0-beta.1
+      '@swisspost/design-system-styles': workspace:5.0.0-beta.2
       '@types/highlight.js': 9.12.4
       '@types/jasmine': 4.3.0
       '@types/jasminewd2': 2.0.10
@@ -12488,7 +12488,7 @@ packages:
     dev: true
 
   /file-uri-to-path/1.0.0:
-    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=}
+    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     requiresBuild: true
     dev: true
     optional: true

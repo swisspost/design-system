@@ -1,5 +1,15 @@
 # @swisspost/design-system-styles
 
+## 5.0.0-beta.2
+
+### Minor Changes
+
+- [#538](https://github.com/swisspost/design-system/pull/538) [`7379fe8`](https://github.com/swisspost/design-system/commit/7379fe8e9a8dd4461539812524eeca631a827128) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Add Angular migration schematics that will be executed on `ng update`
+
+### Patch Changes
+
+- [#560](https://github.com/swisspost/design-system/pull/560) [`6a719e2`](https://github.com/swisspost/design-system/commit/6a719e2eaf7409e0700f4e609303845086fe6904) Thanks [@alizedebray](https://github.com/alizedebray)! - Added story for the form control styles
+
 ## 5.0.0-beta.1
 
 ### Minor Changes
