@@ -23,7 +23,7 @@ importers:
       '@storybook/addon-links': 6.5.12
       '@storybook/html': 6.5.12
       '@swisspost/design-system-styles': workspace:5.0.0-beta.2
-      '@types/jest': 27.0.3
+      '@types/jest': 27.5.2
       babel-loader: 8.2.5
       cypress: 10.0.3
       cypress-storybook: 0.5.1
@@ -50,7 +50,7 @@ importers:
       '@storybook/addon-essentials': 6.5.12_pr6xutjkwtoe4wppbveapzb5ze
       '@storybook/addon-links': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/html': 6.5.12_5ynxwxvh7efwlldz6c736m4an4
-      '@types/jest': 27.0.3
+      '@types/jest': 27.5.2
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
       cypress: 10.0.3
       cypress-storybook: 0.5.1_cypress@10.0.3
@@ -7938,10 +7938,10 @@ packages:
       '@types/jasmine': 4.3.0
     dev: true
 
-  /@types/jest/27.0.3:
-    resolution: {integrity: sha512-cmmwv9t7gBYt7hNKH5Spu7Kuu/DotGa+Ff+JGRKZ4db5eh8PnKS4LuebJ3YLUoyOyIHraTGyULn23YtEAm0VSg==}
+  /@types/jest/27.5.2:
+    resolution: {integrity: sha512-mpT8LJJ4CMeeahobofYWIjFo0xonRS/HfxnVEPMPFSQdGUt1uHCnoPT7Zhb+sjDU2wz0oKV0OLUR0WzrHNgfeA==}
     dependencies:
-      jest-diff: 27.5.1
+      jest-matcher-utils: 27.5.1
       pretty-format: 27.5.1
     dev: true
 

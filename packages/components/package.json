@@ -53,7 +53,7 @@
     "@storybook/addon-essentials": "6.5.12",
     "@storybook/addon-links": "6.5.12",
     "@storybook/html": "6.5.12",
-    "@types/jest": "27.0.3",
+    "@types/jest": "27.5.2",
     "babel-loader": "8.2.5",
     "cypress": "10.0.3",
     "cypress-storybook": "0.5.1",
