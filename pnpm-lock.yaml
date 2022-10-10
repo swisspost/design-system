@@ -18,7 +18,7 @@ importers:
       '@popperjs/core': 2.10.2
       '@pxtrn/storybook-addon-docs-stencil': 6.4.1
       '@stencil/core': ^2.13.0
-      '@stencil/sass': ^1.5.2
+      '@stencil/sass': ^2.0.0
       '@storybook/addon-actions': 6.5.12
       '@storybook/addon-essentials': 6.5.12
       '@storybook/addon-links': 6.5.12
@@ -40,7 +40,7 @@ importers:
       webpack: 4.46.0
     dependencies:
       '@stencil/core': 2.18.0
-      '@stencil/sass': 1.5.2_@stencil+core@2.18.0
+      '@stencil/sass': 2.0.0_@stencil+core@2.18.0
       '@swisspost/design-system-styles': link:../styles/dist
       sass: 1.54.9
     devDependencies:
@@ -5114,10 +5114,10 @@ packages:
     hasBin: true
     dev: false
 
-  /@stencil/sass/1.5.2_@stencil+core@2.18.0:
-    resolution: {integrity: sha512-nJ93pUSylsGsMX0eLmhxh1oEljcUjj5mYjhB9ziCdoaydAdjukrUoqDCC7tdVbOcBo2hKptQyWqCtETnBGYsXQ==}
+  /@stencil/sass/2.0.0_@stencil+core@2.18.0:
+    resolution: {integrity: sha512-Be7Tz7YJnMzloot0aG3m2wTVt9Dg0rjOU+ZVx49ts9+hyeW+NEmvSWPv6bhypblRXbSGik2Cc3AYboTma4Qpgg==}
     peerDependencies:
-      '@stencil/core': '>=1.0.2'
+      '@stencil/core': '>=2.0.0'
     dependencies:
       '@stencil/core': 2.18.0
     dev: false
