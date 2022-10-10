@@ -6,7 +6,15 @@ module.exports = {
   "addons": [
     "@storybook/addon-links",
     "@storybook/addon-essentials",
-    "@pxtrn/storybook-addon-docs-stencil"
+    "@pxtrn/storybook-addon-docs-stencil",
+    {
+      name: "@storybook/preset-scss",
+      options: {
+        sassLoaderOptions: {
+          implementation: require('sass')
+        }
+      }
+    }
   ],
   "framework": "@storybook/html",
 

@@ -23,6 +23,7 @@ importers:
       '@storybook/addon-essentials': 6.5.12
       '@storybook/addon-links': 6.5.12
       '@storybook/html': 6.5.12
+      '@storybook/preset-scss': 1.0.3
       '@swisspost/design-system-styles': workspace:5.0.0-beta.2
       '@types/jest': 27.0.3
       babel-loader: 8.2.5
@@ -34,7 +35,7 @@ importers:
       npm-run-all: 4.1.5
       react: 16.14.0
       react-dom: 16.14.0
-      sass: ^1.49.7
+      sass: ^1.54.9
       start-server-and-test: 1.14.0
       typescript: 4.8.4
       webpack: 4.46.0
@@ -42,7 +43,6 @@ importers:
       '@stencil/core': 2.18.0
       '@stencil/sass': 1.5.2_@stencil+core@2.18.0
       '@swisspost/design-system-styles': link:../styles/dist
-      sass: 1.54.9
     devDependencies:
       '@babel/core': 7.19.3
       '@percy/cli': 1.10.4
@@ -53,6 +53,7 @@ importers:
       '@storybook/addon-essentials': 6.5.12_pr6xutjkwtoe4wppbveapzb5ze
       '@storybook/addon-links': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/html': 6.5.12_5ynxwxvh7efwlldz6c736m4an4
+      '@storybook/preset-scss': 1.0.3
       '@types/jest': 27.0.3
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
       bootstrap: 5.1.3_@popperjs+core@2.10.2
@@ -63,6 +64,7 @@ importers:
       npm-run-all: 4.1.5
       react: 16.14.0
       react-dom: 16.14.0_react@16.14.0
+      sass: 1.54.9
       start-server-and-test: 1.14.0
       typescript: 4.8.4
       webpack: 4.46.0
@@ -7353,6 +7355,14 @@ packages:
       core-js: 3.25.4
     dev: true
 
+  /@storybook/preset-scss/1.0.3:
+    resolution: {integrity: sha512-o9Iz6wxPeNENrQa2mKlsDKynBfqU2uWaRP80HeWp4TkGgf7/x3DVF2O7yi9N0x/PI1qzzTTpxlQ90D62XmpiTw==}
+    peerDependencies:
+      css-loader: '*'
+      sass-loader: '*'
+      style-loader: '*'
+    dev: true
+
   /@storybook/preset-scss/1.0.3_4qjrhw6ivtbeahu3qiaajvcgam:
     resolution: {integrity: sha512-o9Iz6wxPeNENrQa2mKlsDKynBfqU2uWaRP80HeWp4TkGgf7/x3DVF2O7yi9N0x/PI1qzzTTpxlQ90D62XmpiTw==}
     peerDependencies:
@@ -12513,7 +12523,7 @@ packages:
     dev: true
 
   /file-uri-to-path/1.0.0:
-    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=}
     requiresBuild: true
     dev: true
     optional: true
@@ -13981,6 +13991,7 @@ packages:
 
   /immutable/4.1.0:
     resolution: {integrity: sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==}
+    dev: true
 
   /import-fresh/3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -20151,6 +20162,7 @@ packages:
       chokidar: 3.5.3
       immutable: 4.1.0
       source-map-js: 1.0.2
+    dev: true
 
   /saucelabs/1.5.0:
     resolution: {integrity: sha512-jlX3FGdWvYf4Q3LFfFWS1QvPg3IGCGWxIc8QBFdPTbpTJnt/v17FHXYVAn7C8sHf1yUXo2c7yIM0isDryfYtHQ==}
@@ -20580,6 +20592,7 @@ packages:
   /source-map-js/1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /source-map-loader/4.0.0_webpack@5.74.0:
     resolution: {integrity: sha512-i3KVgM3+QPAHNbGavK+VBq03YoJl24m9JWNbLgsjTj8aJzXG9M61bantBTNBt7CNwY2FYf+RJRYJ3pzalKjIrw==}
