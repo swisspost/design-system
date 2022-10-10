@@ -33,7 +33,7 @@ jobs:
 
       # Build dependencies to prepare for tests
       - name: Build dependencies
-        run: pnpm --filter "[orign/main]..." build
+        run: pnpm --filter "[origin/main]..." build
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
