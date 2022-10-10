@@ -28,10 +28,10 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install components dependencies
-        run: pnpm --filter design-system-components install
+        run: pnpm --filter "design-system-components..." install
 
       - name: Build components
-        run: pnpm --filter design-system-components build
+        run: pnpm --filter "design-system-components..." build
 
       - name: Upload build artifacts
         uses: swisspost/design-system/.github/actions/artifact-upload@main
