@@ -47,7 +47,7 @@
   "devDependencies": {
     "@babel/core": "7.19.3",
     "@percy/cli": "1.10.4",
-    "@percy/storybook": "4.3.3",
+    "@percy/storybook": "4.3.4",
     "@popperjs/core": "2.10.2",
     "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
     "@storybook/addon-actions": "6.5.12",
