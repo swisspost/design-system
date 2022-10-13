@@ -119,22 +119,24 @@
   }
 }
 
-.bubble-tea .form-check-label {
-  code:not(.block, .d-block),
-  .change-badge {
-    display: inline-block;
-    padding: 0.05rem 0.3rem;
-    border-radius: 3px;
-    font-family: post.$font-family-monospace;
-    font-size: 12px;
-    vertical-align: text-bottom;
+.bubble-tea {
+  .form-check-label {
+    code:not(.block, .d-block),
+    .change-badge {
+      display: inline-block;
+      padding: 0.05rem 0.3rem;
+      border-radius: 3px;
+      font-family: post.$font-family-monospace;
+      font-size: 12px;
+      vertical-align: text-bottom;
+    }
+
+    ul {
+      padding-left: 1.15em;
+    }
   }
 
-  ul {
-    padding-left: 1.15em;
-  }
-
-  .form-check-input:checked ~ & {
+  .form-check-input:checked ~ .form-check-label {
     opacity: 0.5;
   }
 }
