@@ -35,6 +35,11 @@
   <div class="container">
     <h3 class="bold mb-4">Migration from v4 to v5</h3>
 
+    <p class="alert alert-warning">
+      If you like to upgrade from a Design System version lower than 4.0.0, you need to perform the
+      migrations of your current package to the next higher first!
+    </p>
+
     <p class="lead">What kind of application are you migrating?</p>
 
     <div class="form-check form-switch">
@@ -66,9 +71,21 @@
         <p>Create a branch and commit all changes to have a clean, reversible starting point.</p>
       </li>
       <li>
-        <h4 class="h5 bold">Uninstall the old packages 🗑️</h4>
+        <h4 class="h5 bold">
+          Uninstall the old package
+          <span *ngIf="isMigratingIntranet">s</span>
+          🗑️
+        </h4>
         <!-- prettier-ignore -->
         <p>Uninstall the old styles <span *ngIf="isMigratingIntranet">and the old intranet header</span> package<span *ngIf="isMigratingIntranet">s</span>.</p>
+        <code
+          class="d-block p-3"
+          [languages]="['bash']"
+          [highlight]="
+            'npm uninstall @******/common-web-frontend' +
+            (isMigratingIntranet ? ' @******/common-web-frontend-intranet-header' : '')
+          "
+        ></code>
       </li>
       <li>
         <!-- prettier-ignore -->
@@ -84,11 +101,29 @@
           "
         ></code>
       </li>
+      <li>
+        <h4 class="h5 bold">Update your packages 🩺</h4>
+        <p>
+          If your angular version is lower than 13, use
+          <a href="https://update.angular.io/" target="_blank" rel="noopener">
+            https://update.angular.io/
+          </a>
+          to update angular step by step to version 13.
+        </p>
+        <p>Make sure, you have updated all your packages as far as possible.</p>
+        <p>List outdated packages with:</p>
+        <code class="d-block p-3" [languages]="['bash']" highlight="npm outdated"></code>
+        <p>Update packages with:</p>
+        <code class="d-block p-3" [languages]="['bash']" highlight="npm update"></code>
+      </li>
       <li *ngIf="isMigratingAngular">
         <h4 class="h5 bold">Automatic migration tool ⚙️</h4>
         <p>
           If you are migrating an Angular application, you can profit from our Migration Schematics.
-          You can run the following code, to automatically patch the changes that can be
+        </p>
+        <p>
+          But first make sure, you are running on a node version >= 16. Afterwards you should be
+          able to run the following code, to automatically patch the changes that can be
           auto-migrated:
         </p>
         <code
@@ -105,20 +140,26 @@
         <h5 class="h6 bold">Deprecations</h5>
         <ul class="mt-2 mb-3">
           <li>
-            <strong>Dropped jQuery dependancy</strong>
-            <br />
-            <p class="info">
-              Replace all jQuery components with the given one or integrate jQuery by your self (not
-              recommended).
+            <p>
+              <strong>Dropped jQuery dependancy</strong>
+              <br />
+              <span class="info">
+                Replace all jQuery components with the given one or integrate jQuery by your self
+                (not recommended).
+              </span>
             </p>
           </li>
           <li>
-            The
-            <span class="highlight">Custom-Select</span>
-            component has been marked as
-            <span class="highlight">deprecated</span>
-            and will be dropped in the next major version.
-            <p class="info">We will try to make sure that there will be an alternative.</p>
+            <p>
+              The
+              <span class="highlight">Custom-Select</span>
+              component has been marked as deprecated.
+              <span class="info">
+                For the moment there is only the alternative to use the
+                <span class="highlight">Form-Select</span>
+                component instead. But hold on...
+              </span>
+            </p>
           </li>
         </ul>
 
@@ -151,6 +192,82 @@
               </div>
             </ng-template>
             <ng-template ngbPanelContent>
+              <!-- General Files -->
+              <div>
+                <h5 class="mt-4 h6 bold">Paths &amp; Files</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalnaming_cwfpackagename"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.general.naming_cwfpackagename
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalnaming_cwfpackagename">
+                          <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">package</span> names.
+                          <ul class="mt-2">
+                            <li><code>@******/common-web-frontend</code> became <code>@swisspost/design-system-styles</code></li>
+                            <li><code>@******/common-web-frontend-demo</code> became <code>@swisspost/design-system-demo</code></li>
+                            <li><code>@******/common-web-frontend-intranet-header</code> became <code>@swisspost/design-system-intranet-header</code></li>
+                          </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalnaming_cwflicense"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.naming_cwflicense"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalnaming_cwflicense">
+                          <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">src/lic/cwf-licene.scss</span> file.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalnaming_cwfname"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.naming_cwfname"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalnaming_cwfname">
+                          <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">src/cwf.scss</span> file to <span class="highlight">src/core.scss</span>.<br>
+                          <span>We recommend to import the <span class="highlight">core.scss</span> file as follows: <code>@use '@swisspost/design-system-styles/core.scss' as post;</code></span><br>
+                          <span>However, do not forget to switch the namespace in your files from <span class="highlight">cwf</span> to either <span class="highlight">core</span> or <span class="highlight">post</span>!</span>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalnaming_options"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.naming_options"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalnaming_options">
+                        <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">src/themes/bootstrap/options.scss</span> file to <span class="highlight">src/variables/features.scss</span>.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
               <!-- General Variables -->
               <div>
                 <h5 class="mt-4 h6 bold">Variables</h5>
@@ -234,53 +351,26 @@
                   <li>
                     <div class="form-check">
                       <input
-                        id="generalvariables_socialmediacolors"
+                        id="generalvariables_colors"
                         class="form-check-input"
                         type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.general.variables_socialmediacolors
-                        "
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.variables_colors"
                         (change)="migrationAccordionGroupedCheckboxesChange()"
                       />
                       <!-- prettier-ignore -->
-                      <label class="form-check-label" for="generalvariables_socialmediacolors">
-                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">socialmedia-color</span> variables.<br>
+                      <label class="form-check-label" for="generalvariables_colors">
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">color</span> variables.<br>
                         <ul class="mt-2">
-                          <li><code>$facebook</code></li>
-                          <li><code>$instagram</code></li>
-                          <li><code>$youtube</code></li>
-                          <li><code>$snapchat</code></li>
-                          <li><code>$twitter</code></li>
-                          <li><code>$xing</code></li>
-                          <li><code>$linkedin</code></li>
-                          <li><code>$kununu</code></li>
-                          <li><code>$email</code></li>
+                          <li><code>$white-alpha-10</code>, <code>$white-alpha-20</code>, <code>$white-alpha-40</code>, <code>$white-alpha-60</code>, <code>$white-alpha-80</code> and <code>$white-alphas</code></li>
+                          <li><code>$black-alpha-10</code>, <code>$black-alpha-20</code>, <code>$black-alpha-40</code>, <code>$black-alpha-60</code>, <code>$black-alpha-80</code> and <code>$black-alphas</code></li>
+                          <li><code>$facebook</code>, <code>$instagram</code>, <code>$youtube</code>, <code>$snapchat</code>, <code>$twitter</code>, <code>$xing</code>, <code>$linkedin</code>, <code>$kununu</code> and <code>$email</code></li>
+                          <li><code>$primary-color</code></li>
+                          <li><code>$secondary-color</code></li>
+                          <li><code>$gray-50</code></li>
+                          <li><code>$highlight-colors</code></li>
                           <li><code>$brand-colors</code></li>
-                        </ul>
-                      </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="generalvariables_options"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.variables_options"
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="generalvariables_options">
-                        <span class="change-badge bg-danger">breaking</span> Moved bootstrap option variables from file <span class="highlight">src/themes/bootstrap/options.scss</span> to <span class="highlight">src/variables/features.scss</span>.<br>
-                        <ul class="mt-2">
-                          <li><code>$enable-caret</code></li>
-                          <li><code>$enable-rounded</code></li>
-                          <li><code>$enable-shadows</code></li>
-                          <li><code>$enable-gradients</code></li>
-                          <li><code>$enable-transitions</code></li>
-                          <li><code>$enable-hover-media-query</code></li>
-                          <li><code>$enable-grid-classes</code></li>
-                          <li><code>$variable-prefix</code></li>
+                          <li><code>$icon-colors</code></li>
+                          <li><code>$theme-color-interval</code></li>
                         </ul>
                       </label>
                     </div>
@@ -298,10 +388,13 @@
                       <label class="form-check-label" for="generalvariables_colors">
                         <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">color</span> variables.
                         <ul class="mt-2">
-                          <li><code>$gray-cararra</code> became <code>$gray-background</code></li>
                           <li><code>$gray-pampas</code> became <code>$gray-background-light</code></li>
+                          <li><code>$gray-cararra</code> became <code>$gray-background</code></li>
                           <li><code>$colors</code> became <code>$background-colors</code></li>
                           <li><code>$icon-colors</code> became <code>$contextual-colors</code></li>
+                          <li><code>$yiq-contrasted-threshold</code> became <code>$min-contrast-ratio</code></li>
+                          <li><code>$yiq-text-dark</code> became <code>$color-contrast-dark</code></li>
+                          <li><code>$yiq-text-light</code> became <code>$color-contrast-light</code></li>
                         </ul>
                       </label>
                     </div>
@@ -1477,6 +1570,31 @@
               </div>
             </ng-template>
             <ng-template ngbPanelContent>
+              <!-- Post Detail Summary -->
+              <div>
+                <h5 class="h6 bold">Detail Summary</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="postdetailsummary_detailsummary"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post.detailsummary_detailsummary
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postdetailsummary_detailsummary">
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">detail-summary</span> component.<br>
+                        We recommend to use the <a href="/ng-bootstrap-samples/accordion">Angular</a> or <a href="/post-samples/accordion">Post</a>&nbsp;<span class="highlight">accordion</span> component instead.
+                    </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+
               <!-- Post Accordion -->
               <div>
                 <h5 class="h6 bold">Accordion</h5>
@@ -1492,8 +1610,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postaccordions_wrapper">
-                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="accordion"&gt;...&lt;/div&gt;</code> around <span class="highlight">accordion</span> elements.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="accordion"&gt;...&lt;/div&gt;</code> around <span class="highlight">accordion</span> elements.
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -1509,8 +1627,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postaccordions_summaryclasses">
-                      <span class="change-badge bg-danger">breaking</span> Required classes <code>.accordion-button.collapse</code> on the <code>summary</code> element.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Required classes <code>.accordion-button.collapse</code> on the <code>summary</code> element.
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -1524,15 +1642,15 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postaccordions_classes">
-                      <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">accordion</span> classes.
-                      <ul class="mt-2">
-                        <li><code>.card</code> became <code>.accordion-item</code></li>
-                        <li><code>.card-header</code> became <code>.accordion-header</code></li>
-                        <li><code>.card-header > .btn.btn-link</code> became <code>.accordion-header > .accordion-button</code></li>
-                        <li><code>.card-header + .collapse</code> became <code>.accordion-header + .accordion-collapse.collapse</code></li>
-                        <li><code>.card-body</code> became <code>.accordion-body</code></li>
-                      </ul>
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">accordion</span> classes.
+                        <ul class="mt-2">
+                          <li><code>.card</code> became <code>.accordion-item</code></li>
+                          <li><code>.card-header</code> became <code>.accordion-header</code></li>
+                          <li><code>.card-header > .btn.btn-link</code> became <code>.accordion-header > .accordion-button</code></li>
+                          <li><code>.card-header + .collapse</code> became <code>.accordion-header + .accordion-collapse.collapse</code></li>
+                          <li><code>.card-body</code> became <code>.accordion-body</code></li>
+                        </ul>
+                      </label>
                     </div>
                   </li>
                 </ul>
