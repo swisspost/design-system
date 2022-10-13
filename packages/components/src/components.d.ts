@@ -22,9 +22,16 @@ export namespace Components {
         "write": (text: string) => Promise<void>;
     }
     interface PostButton {
+        "active": boolean;
+        "animated": boolean;
         "block": boolean;
+        "disabled": boolean;
+        "href": string;
+        "icon": string;
+        "iconend": boolean;
         "size": string;
         "tag": string;
+        "target": string;
         "type": string;
         "variant": string;
     }
@@ -71,9 +78,16 @@ declare namespace LocalJSX {
         "onSomeevent"?: (event: MyComponentCustomEvent<string>) => void;
     }
     interface PostButton {
+        "active"?: boolean;
+        "animated"?: boolean;
         "block"?: boolean;
+        "disabled"?: boolean;
+        "href"?: string;
+        "icon"?: string;
+        "iconend"?: boolean;
         "size"?: string;
         "tag"?: string;
+        "target"?: string;
         "type"?: string;
         "variant"?: string;
     }

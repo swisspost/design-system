@@ -3,3 +3,17 @@
 :host {
   display: inline-block;
 }
+
+:host([block]) {
+  display: block;
+  width: 100%;
+}
+
+.btn {
+  display: flex;
+  width: 100%;
+
+  &:not(:disabled) {
+    cursor: pointer;
+  }
+}
