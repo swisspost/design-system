@@ -62,7 +62,7 @@
 
 @mixin generate-utility-class($classname, $size, $property, $value) {
   .#{$classname}-#{$size}-r {
-    #{$property}: $value;
+    #{$property}: $value !important;
   }
 }
 
