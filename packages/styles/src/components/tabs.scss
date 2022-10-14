@@ -2,6 +2,7 @@
 
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/nav' as n;
 
 @use './../variables/components/nav';
 @use './../variables/spacing';
