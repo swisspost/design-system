@@ -46,8 +46,6 @@ export class HomeComponent {
       },
       bootstrap: {
         alerts_fixedbottom: false,
-        alerts_closebuttoncontent: false,
-        alerts_close: false,
         badges_classes: false,
         backgrounds_textcolor: false,
         blockquotes_footerstructure: false,
@@ -57,6 +55,9 @@ export class HomeComponent {
         buttons_borderradius2: false,
         buttons_invertedclass: false,
         buttons_iconclass: false,
+        buttonclose_content: false,
+        buttonclose_baseclass: false,
+        buttonclose_buttonclasses: false,
         cards_classes: false,
         forms_formgroup: false,
         forms_formtext: false,

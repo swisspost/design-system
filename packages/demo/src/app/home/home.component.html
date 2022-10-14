@@ -628,38 +628,6 @@
                       </label>
                     </div>
                   </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="bootstrapalerts_closebuttoncontent"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.bootstrap.alerts_closebuttoncontent
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="bootstrapalerts_closebuttoncontent">
-                        <span class="change-badge bg-danger">breaking</span> The <span class="highlight">close-button</span> has no content anymore.
-                      </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="bootstrapalerts_close"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.alerts_close"
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="bootstrapalerts_close">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
-                      </label>
-                    </div>
-                  </li>
                 </ul>
                 <p class="info">
                   See
@@ -884,6 +852,71 @@
                 <p class="info">
                   See
                   <a routerLink="/bootstrap-samples/buttons">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
+
+              <!-- Bootstrap Button Close -->
+              <div>
+                <h5 class="mt-4 h6 bold">Button Close</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapbuttonclose_content"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.buttonclose_content
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapbuttonclose_content">
+                        <span class="change-badge bg-danger">breaking</span> Removed the necessity to have an icon as content inside of a <span class="highlight">close-button</span> element.
+                        <span class="info">The close icon will be rendered anyway.</span>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapbuttonclose_baseclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.buttonclose_baseclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapbuttonclose_baseclass">
+                        <span class="change-badge bg-danger">breaking</span>⚙️ Renamed class <code>.close</code> to <code>.btn-close</code> classes.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapbuttonclose_buttonclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.buttonclose_buttonclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapbuttonclose_buttonclasses">
+                        Dropped the usage of <code>.btn</code> and <code>.btn-icon</code> classes.<br>
+                        <span class="info">As long as you do not want to have a button-like appearance, you should not add these classes on a <span class="highlight">close-button</span> element.</span>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/card">documentation</a>
                   for more detailed informations.
                 </p>
               </div>
