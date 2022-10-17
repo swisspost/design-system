@@ -1,0 +1,30 @@
+name: Deploy Docs on Chromatic
+
+on:
+  pull_request:
+    paths:
+      - 'packages/documentation/**'
+
+jobs:
+  chromatic: 
+    name: Chromatic
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main  
+          
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Publish to chromatic
+        uses: chromaui/action@v1
+        # Options required to the GitHub Chromatic Action
+        with:
+          # 👇 Chromatic projectToken, refer to the manage page to obtain it.
+          projectToken: ${{ secrets.CHROMATIC_STORYBOOK_TOKEN }}
+          workingDir: packages/documentation

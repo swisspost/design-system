@@ -51,3 +51,9 @@ jobs:
         run: |
           netlify link --id $NETLIFY_SITE_ID
           netlify deploy --build false --dir packages/demo/dist/demo --prod
+
+      # Publish storybook
+      - name: Publish storybooks
+        if: steps.changesets.outputs.published == 'true'
+        id: storybook
+        run: pnpm --filter design-system-documentation run chromatic --project-token=${{ secrets.CHROMATIC_STORYBOOK_TOKEN }}
