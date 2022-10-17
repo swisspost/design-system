@@ -14,7 +14,7 @@ importers:
     specifiers:
       '@babel/core': 7.19.3
       '@percy/cli': 1.11.0
-      '@percy/storybook': 4.3.3
+      '@percy/storybook': 4.3.4
       '@popperjs/core': 2.11.6
       '@pxtrn/storybook-addon-docs-stencil': 6.4.1
       '@stencil/core': ^2.13.0
@@ -46,7 +46,7 @@ importers:
     devDependencies:
       '@babel/core': 7.19.3
       '@percy/cli': 1.11.0
-      '@percy/storybook': 4.3.3
+      '@percy/storybook': 4.3.4
       '@popperjs/core': 2.11.6
       '@pxtrn/storybook-addon-docs-stencil': 6.4.1_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/addon-actions': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
@@ -5062,8 +5062,8 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
-  /@percy/storybook/4.3.3:
-    resolution: {integrity: sha512-UvJI+OUagZAoJuhMv+yCq+ufrwqJXkCNbacKKuSiDLtxfAh7OXGANM7WV3bAvA+bovxJPHXL3rTI82dYz9XPiQ==}
+  /@percy/storybook/4.3.4:
+    resolution: {integrity: sha512-PIGf6X+rnKJRZaUqMzATKC1zLN2wT8min8YEDU4fKFDhQlx0yTQhgOeiwbw2wmhbc5Ge0U5TqMBrlOuYxuPmvg==}
     hasBin: true
     dependencies:
       '@percy/cli-command': 1.10.4
