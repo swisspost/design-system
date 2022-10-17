@@ -182,7 +182,6 @@ importers:
       '@ng-bootstrap/ng-bootstrap': 12.1.2
       '@popperjs/core': 2.11.6
       '@swimlane/ngx-datatable': 20.0.0
-      '@swisspost/design-system-components': workspace:1.0.0-beta.1
       '@swisspost/design-system-intranet-header': workspace:3.0.0-beta.1
       '@swisspost/design-system-styles': workspace:5.0.0-beta.2
       '@types/highlight.js': 9.12.4
@@ -231,7 +230,6 @@ importers:
       '@ng-bootstrap/ng-bootstrap': 12.1.2_bs45eyslvong6tkfybswntbxxy
       '@popperjs/core': 2.11.6
       '@swimlane/ngx-datatable': 20.0.0_ijmliwajjjqtbccje75tzsym2e
-      '@swisspost/design-system-components': link:../components
       '@swisspost/design-system-intranet-header': link:../components-angular/dist/intranet-header
       '@swisspost/design-system-styles': link:../styles/dist
       bootstrap: 5.1.3_@popperjs+core@2.11.6
