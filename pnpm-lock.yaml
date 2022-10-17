@@ -15,7 +15,7 @@ importers:
       '@babel/core': 7.19.3
       '@percy/cli': 1.10.4
       '@percy/storybook': 4.3.3
-      '@popperjs/core': 2.10.2
+      '@popperjs/core': 2.11.6
       '@pxtrn/storybook-addon-docs-stencil': 6.4.1
       '@stencil/core': ^2.13.0
       '@stencil/sass': ^2.0.0
@@ -47,7 +47,7 @@ importers:
       '@babel/core': 7.19.3
       '@percy/cli': 1.10.4
       '@percy/storybook': 4.3.3
-      '@popperjs/core': 2.10.2
+      '@popperjs/core': 2.11.6
       '@pxtrn/storybook-addon-docs-stencil': 6.4.1_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/addon-actions': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/addon-essentials': 6.5.12_pr6xutjkwtoe4wppbveapzb5ze
@@ -55,7 +55,7 @@ importers:
       '@storybook/html': 6.5.12_5ynxwxvh7efwlldz6c736m4an4
       '@types/jest': 27.5.2
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
-      bootstrap: 5.1.3_@popperjs+core@2.10.2
+      bootstrap: 5.1.3_@popperjs+core@2.11.6
       cypress: 10.0.3
       cypress-storybook: 0.5.1_cypress@10.0.3
       jest: 27.5.1
@@ -5005,13 +5005,8 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@popperjs/core/2.10.2:
-    resolution: {integrity: sha512-IXf3XA7+XyN7CP9gGh/XB0UxVMlvARGEgGXLubFICsUMGz6Q+DU+i4gGlpOxTjKvXjkJDJC8YdqdKkDj9qZHEQ==}
-    dev: true
-
   /@popperjs/core/2.11.6:
     resolution: {integrity: sha512-50/17A98tWUfQ176raKiOGXuYpLyyVMkxxG6oylzL3BPOlA6ADGdK7EYunSa4I064xerltq9TGXs8HmOk5E+vw==}
-    dev: false
 
   /@pxtrn/storybook-addon-docs-stencil/6.4.1_wcqkhtmu7mswc6yz4uyexck3ty:
     resolution: {integrity: sha512-dFLj3AbYWStY36LuNCW0Yv+eepGy/oblQlffamVYUB2OiS//PM+aHj2MFJQeroF4VEO09HxXO5GbojwkYXNxpg==}
@@ -9704,21 +9699,12 @@ packages:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
 
-  /bootstrap/5.1.3_@popperjs+core@2.10.2:
-    resolution: {integrity: sha512-fcQztozJ8jToQWXxVuEyXWW+dSo8AiXWKwiSSrKWsRB/Qt+Ewwza+JWoLKiTuQLaEPhdNAJ7+Dosc9DOIqNy7Q==}
-    peerDependencies:
-      '@popperjs/core': ^2.10.2
-    dependencies:
-      '@popperjs/core': 2.10.2
-    dev: true
-
   /bootstrap/5.1.3_@popperjs+core@2.11.6:
     resolution: {integrity: sha512-fcQztozJ8jToQWXxVuEyXWW+dSo8AiXWKwiSSrKWsRB/Qt+Ewwza+JWoLKiTuQLaEPhdNAJ7+Dosc9DOIqNy7Q==}
     peerDependencies:
       '@popperjs/core': ^2.10.2
     dependencies:
       '@popperjs/core': 2.11.6
-    dev: false
 
   /boxen/5.1.2:
     resolution: {integrity: sha512-9gYgQKXx+1nP8mP7CzFyaUARhg7D3n1dF/FnErWmu9l6JvGpNUN278h0aSb+QjoiKSWG+iZ3uHrcqk0qrY9RQQ==}
