@@ -88,6 +88,37 @@
         transform: none;
       }
     }
+
+    &[multiple] {
+      padding-top: forms.$form-floating-input-padding-t * 1.5;
+      padding-bottom: 0;
+
+      option {
+        height: 1em * forms.$form-floating-line-height;
+      }
+
+      ~ label {
+        padding-top: forms.$input-padding-y-lg * forms.$form-floating-label-scale;
+        padding-bottom: 0;
+        width: calc(
+          (100% * forms.$form-floating-label-upscale) -
+            (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
+            (forms.$input-border-width * forms.$form-floating-label-upscale * 2) -
+            (forms.$form-floating-padding-x * forms.$form-floating-label-upscale)
+        );
+        height: auto;
+        background: forms.$input-bg;
+      }
+
+      &:empty {
+        ~ label {
+          padding-top: forms.$form-floating-padding-y;
+          padding-bottom: forms.$form-floating-padding-y;
+          width: calc(100% - (forms.$input-border-width * 2));
+          height: forms.$form-floating-label-height;
+        }
+      }
+    }
   }
 
   > textarea.form-control {

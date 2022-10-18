@@ -141,7 +141,6 @@ export class FormsDemoPageComponent {
     <div class="col">
       <div class="form-floating">
         <select id="FormSelectMultipleValid" class="form-select is-valid" multiple>
-          <option disabled>Select one..</option>
           <option value="1">Value 1</option>
           <option value="2">Value 2</option>
         </select>
