@@ -17,7 +17,7 @@
     left: forms.$input-border-width;
     margin: 0;
     padding: forms.$form-floating-padding-y forms.$form-floating-padding-x;
-    height: 100%;
+    height: forms.$form-floating-label-height;
     border: 0;
     color: forms.$form-floating-label-color;
     font-size: forms.$form-floating-label-font-size;
