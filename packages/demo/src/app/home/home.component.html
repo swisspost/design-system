@@ -124,18 +124,27 @@
         <p>
           If you are migrating an Angular application, you can profit from our Migration Schematics.
         </p>
-        <p>
-          But first make sure, you are running on a node version >= 16. Afterwards you should be
-          able to run the following code, to automatically patch the changes that can be
-          auto-migrated:
-        </p>
-        <code
-          class="d-block p-3"
-          [languages]="['bash']"
-          [highlight]="
-            'npx ng update @swisspost/design-system-styles --from=4 --to=5 --migrate-only'
-          "
-        ></code>
+        <ol>
+          <li>Commit all the changes you made untill now!</li>
+          <li>Make sure you are running on a node version >= 16!</li>
+          <li>
+            Install the migration package:
+            <code
+              class="d-block mt-1 p-3"
+              [languages]="['bash']"
+              highlight="npm install @swisspost/design-system-migrations"
+            ></code>
+          </li>
+          <li>
+            Now you should be able to run the following code, to automatically patch the changes
+            that can be auto-migrated:
+            <code
+              class="d-block mt-1 p-3"
+              [languages]="['bash']"
+              highlight="npx ng update @swisspost/design-system-styles --from=4 --to=5 --migrate-only"
+            ></code>
+          </li>
+        </ol>
       </li>
       <li>
         <h4 class="h5 bold">Component migration 🤓</h4>
