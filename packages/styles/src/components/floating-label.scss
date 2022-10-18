@@ -8,6 +8,7 @@
 @use './../mixins/utilities' as utilities-mx;
 
 @use './../variables/components/forms';
+@use './../variables/components/form-feedback';
 
 .form-floating {
   > label {
@@ -112,6 +113,29 @@
         );
         max-width: none;
         background: forms.$input-bg;
+      }
+    }
+
+    &:is(.is-valid, .is-invalid) {
+      ~ label {
+        width: calc(
+          100% - (forms.$input-border-width * 2) - forms.$form-floating-padding-x -
+            form-feedback.$form-feedback-icon-offset - form-feedback.$form-feedback-icon-size
+        );
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        ~ label {
+          width: calc(
+            (100% * forms.$form-floating-label-upscale) -
+              (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
+              (forms.$input-border-width * forms.$form-floating-label-upscale * 2) -
+              (forms.$form-floating-padding-x * forms.$form-floating-label-upscale) -
+              (form-feedback.$form-feedback-icon-offset * forms.$form-floating-label-upscale) -
+              (form-feedback.$form-feedback-icon-size * forms.$form-floating-label-upscale)
+          );
+        }
       }
     }
   }
