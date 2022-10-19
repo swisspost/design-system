@@ -90,7 +90,7 @@ importers:
       '@popperjs/core': 2.11.6
       '@swisspost/design-system-styles': workspace:5.0.0-beta.2
       '@types/jasmine': 4.3.0
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@typescript-eslint/eslint-plugin': 5.40.0
       '@typescript-eslint/parser': 5.40.0
       eslint: 8.25.0
@@ -134,7 +134,7 @@ importers:
       '@angular/cli': 14.2.6
       '@angular/compiler-cli': 14.2.6_berdmfrv6b33c2wuoyy6wmwhva
       '@types/jasmine': 4.3.0
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@typescript-eslint/eslint-plugin': 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
       '@typescript-eslint/parser': 5.40.0_z4bbprzjrhnsfa24uvmcbu7f5q
       eslint: 8.25.0
@@ -144,7 +144,7 @@ importers:
       karma-coverage: 2.2.0
       karma-jasmine: 5.1.0_karma@6.4.1
       karma-jasmine-html-reporter: 2.0.0_vs5hqzgtonauktvvvebdlxyp2y
-      ng-packagr: 14.2.1_cyw2w7tu5m5ziuqflubupivgau
+      ng-packagr: 14.2.1_y264a24t6g545f6xdrkkluqzqe
       rimraf: 3.0.2
       typescript: 4.8.4
 
@@ -188,7 +188,7 @@ importers:
       '@types/highlight.js': 9.12.4
       '@types/jasmine': 4.3.0
       '@types/jasminewd2': 2.0.10
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@typescript-eslint/eslint-plugin': 5.40.0
       '@typescript-eslint/parser': 5.40.0
       bootstrap: 5.1.3
@@ -257,7 +257,7 @@ importers:
       '@types/highlight.js': 9.12.4
       '@types/jasmine': 4.3.0
       '@types/jasminewd2': 2.0.10
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@typescript-eslint/eslint-plugin': 5.40.0_25sstg4uu2sk4pm7xcyzuov7xq
       '@typescript-eslint/parser': 5.40.0_z4bbprzjrhnsfa24uvmcbu7f5q
       eslint: 8.25.0
@@ -276,7 +276,7 @@ importers:
       rimraf: 3.0.2
       sass: 1.55.0
       sockjs: 0.3.24
-      ts-node: 10.9.1_gy6k6bedrshoc5b4zgt3uehy7q
+      ts-node: 10.9.1_qz5pgscfesxhf7rldkrewqhv5y
       typescript: 4.8.4
       webpack: 5.74.0
 
@@ -313,7 +313,7 @@ importers:
       '@angular/compiler': 14.2.6
       '@angular/core': 14.2.6
       '@types/jasmine': 4.3.0
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       copyfiles: 2.4.1
       jasmine: 4.4.0
       json: 11.0.0
@@ -330,7 +330,7 @@ importers:
       zone.js: 0.11.8
     devDependencies:
       '@types/jasmine': 4.3.0
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       copyfiles: 2.4.1
       jasmine: 4.4.0
       json: 11.0.0
@@ -614,7 +614,7 @@ packages:
       loader-utils: 3.2.0
       mini-css-extract-plugin: 2.6.1_webpack@5.74.0
       minimatch: 5.1.0
-      ng-packagr: 14.2.1_cyw2w7tu5m5ziuqflubupivgau
+      ng-packagr: 14.2.1_y264a24t6g545f6xdrkkluqzqe
       open: 8.4.0
       ora: 5.4.1
       parse5-html-rewriting-stream: 6.0.1
@@ -6195,7 +6195,7 @@ packages:
       '@storybook/store': 6.5.12
       '@storybook/theming': 6.5.12
       '@storybook/ui': 6.5.12
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/webpack': 4.41.32
       autoprefixer: 9.8.8
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
@@ -6261,7 +6261,7 @@ packages:
       '@storybook/store': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/theming': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/ui': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/webpack': 4.41.32
       autoprefixer: 9.8.8
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
@@ -6329,7 +6329,7 @@ packages:
       '@storybook/store': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/theming': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/ui': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/webpack': 4.41.32
       autoprefixer: 9.8.8
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
@@ -6764,7 +6764,7 @@ packages:
       '@babel/register': 7.17.7_@babel+core@7.19.3
       '@storybook/node-logger': 6.5.12
       '@storybook/semver': 7.3.2
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/pretty-hrtime': 1.0.1
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
       babel-plugin-macros: 3.1.0
@@ -6832,7 +6832,7 @@ packages:
       '@babel/register': 7.17.7_@babel+core@7.19.3
       '@storybook/node-logger': 6.5.12
       '@storybook/semver': 7.3.2
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/pretty-hrtime': 1.0.1
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
       babel-plugin-macros: 3.1.0
@@ -6902,7 +6902,7 @@ packages:
       '@babel/register': 7.17.7_@babel+core@7.19.3
       '@storybook/node-logger': 6.5.12
       '@storybook/semver': 7.3.2
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/pretty-hrtime': 1.0.1
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
       babel-plugin-macros: 3.1.0
@@ -6979,7 +6979,7 @@ packages:
       '@storybook/semver': 7.3.2
       '@storybook/store': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/telemetry': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/node-fetch': 2.6.2
       '@types/pretty-hrtime': 1.0.1
       '@types/webpack': 4.41.32
@@ -7055,7 +7055,7 @@ packages:
       '@storybook/semver': 7.3.2
       '@storybook/store': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/telemetry': 6.5.12_zvdcumho7mqj3lfknr2wnpofbm
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/node-fetch': 2.6.2
       '@types/pretty-hrtime': 1.0.1
       '@types/webpack': 4.41.32
@@ -7408,7 +7408,7 @@ packages:
       '@storybook/node-logger': 6.5.12
       '@storybook/theming': 6.5.12
       '@storybook/ui': 6.5.12
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/webpack': 4.41.32
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
       case-sensitive-paths-webpack-plugin: 2.4.0
@@ -7463,7 +7463,7 @@ packages:
       '@storybook/node-logger': 6.5.12
       '@storybook/theming': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/ui': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/webpack': 4.41.32
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
       case-sensitive-paths-webpack-plugin: 2.4.0
@@ -7520,7 +7520,7 @@ packages:
       '@storybook/node-logger': 6.5.12
       '@storybook/theming': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/ui': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/webpack': 4.41.32
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
       case-sensitive-paths-webpack-plugin: 2.4.0
@@ -7962,7 +7962,7 @@ packages:
       '@storybook/docs-tools': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/preview-web': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
       '@storybook/store': 6.5.12_wcqkhtmu7mswc6yz4uyexck3ty
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       '@types/webpack-env': 1.17.0
       babel-plugin-bundled-import-meta: 0.3.2_@babel+core@7.19.3
       core-js: 3.25.2
@@ -8285,6 +8285,10 @@ packages:
 
   /@types/node/16.11.66:
     resolution: {integrity: sha512-+xvMrGl3eAygKcf5jm+4zA4tbfEgmKM9o6/glTmN0RFVdu2VuFXMYYtRmuv3zTGCgAYMnEZLde3B7BTp+Yxcig==}
+    dev: true
+
+  /@types/node/16.11.68:
+    resolution: {integrity: sha512-JkRpuVz3xCNCWaeQ5EHLR/6woMbHZz/jZ7Kmc63AkU+1HxnoUugzSWMck7dsR4DvNYX8jp9wTi9K7WvnxOIQZQ==}
     dev: true
 
   /@types/node/17.0.43:
@@ -17433,7 +17437,7 @@ packages:
     resolution: {integrity: sha512-CXdUiJembsNjuToQvxayPZF9Vqht7hewsvy2sOWafLvi2awflj9mOC6bHIg50orX8IJvWKY9wYQ/zB2kogPslQ==}
     dev: true
 
-  /ng-packagr/14.2.1_cyw2w7tu5m5ziuqflubupivgau:
+  /ng-packagr/14.2.1_y264a24t6g545f6xdrkkluqzqe:
     resolution: {integrity: sha512-o2t/a+DdhUEbXXPbR70LZcU4WcSf7wnddCiQcc3k0HrTQjxWspv0qFUdba3+0ft0dVetaywa6lc+98g/SZEKcQ==}
     engines: {node: ^14.15.0 || >=16.10.0}
     hasBin: true
@@ -17463,7 +17467,7 @@ packages:
       postcss-preset-env: 7.8.0_postcss@8.4.18
       postcss-url: 10.1.3_postcss@8.4.18
       rollup: 2.75.6
-      rollup-plugin-sourcemaps: 0.6.3_epopd4zlpeha4lssxfrzwiogyq
+      rollup-plugin-sourcemaps: 0.6.3_zf4ozu7cfr3oqurst56qkcxxui
       rxjs: 7.5.7
       sass: 1.55.0
       stylus: 0.59.0
@@ -20377,7 +20381,7 @@ packages:
       inherits: 2.0.4
     dev: true
 
-  /rollup-plugin-sourcemaps/0.6.3_epopd4zlpeha4lssxfrzwiogyq:
+  /rollup-plugin-sourcemaps/0.6.3_zf4ozu7cfr3oqurst56qkcxxui:
     resolution: {integrity: sha512-paFu+nT1xvuO1tPFYXGe+XnQvg4Hjqv/eIhG8i5EspfYYPBKL57X7iVbfv55aNVASg3dzWvES9dmWsL2KhfByw==}
     engines: {node: '>=10.0.0'}
     peerDependencies:
@@ -20388,7 +20392,7 @@ packages:
         optional: true
     dependencies:
       '@rollup/pluginutils': 3.1.0_rollup@2.75.6
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       rollup: 2.75.6
       source-map-resolve: 0.6.0
     dev: true
@@ -22057,7 +22061,7 @@ packages:
     engines: {node: '>=6.10'}
     dev: true
 
-  /ts-node/10.9.1_gy6k6bedrshoc5b4zgt3uehy7q:
+  /ts-node/10.9.1_qz5pgscfesxhf7rldkrewqhv5y:
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -22076,7 +22080,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.3
-      '@types/node': 16.11.66
+      '@types/node': 16.11.68
       acorn: 8.8.0
       acorn-walk: 8.2.0
       arg: 4.1.3
