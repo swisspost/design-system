@@ -20,8 +20,11 @@
     "access": "public",
     "linkDirectory": true
   },
+  "bin": {
+    "migrate": ".bin/migrate.js"
+  },
   "scripts": {
-    "build": "tsc -p tsconfig.json && copyfiles -u 1 src/*/schema.json src/*/files/** src/migrations.json dist && copyfiles package.json README.md LICENSE dist && json -I -f dist/package.json -e \"delete this.publishConfig.directory\"",
+    "build": "tsc -p tsconfig.json && copyfiles -u 1 src/.bin/** src/*/schema.json src/*/files/** src/migrations.json dist && copyfiles package.json README.md LICENSE dist && json -I -f dist/package.json -e \"delete this.publishConfig.directory\"",
     "todo:test": "npm run build && jasmine src/**/*_spec.js"
   },
   "dependencies": {

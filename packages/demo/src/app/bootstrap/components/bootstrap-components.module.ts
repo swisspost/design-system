@@ -8,7 +8,6 @@ import {HighlightModule} from 'ngx-highlightjs';
 import {HighlightProvider} from '../../common/highlight.provider';
 
 import {AccordionDemoComponent} from './accordion/accordion-demo/accordion-demo.component';
-import {AccordionDetailsSummaryDemoComponent} from './accordion/accordion-details-summary-demo/accordion-details-summary-demo.component';
 import {AccordionDemoPageComponent} from './accordion/accordion-demo-page/accordion-demo-page.component';
 import {AlertDemoComponent} from './alert/alert-demo/alert-demo.component';
 import {AlertDemoPageComponent} from './alert/alert-demo-page/alert-demo-page.component';
@@ -88,7 +87,6 @@ import { ButtonDisabledComponent } from './buttons/buttons-demo/button-disabled/
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     AccordionDemoComponent,
-    AccordionDetailsSummaryDemoComponent,
     AccordionDemoPageComponent,
     AlertDemoComponent,
     AlertDemoPageComponent,
