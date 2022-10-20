@@ -32,6 +32,37 @@ Available bundles:
 - basics.scss (atomic styles for font, buttons, lists etc.)
 - core.scss (variables, mixins, functions and placeholders only)
 
+## Migrations Schematics
+
+Schematics are used to transform a software project by adapting it to current Design System Styles.
+
+### Testing
+
+To test locally, install `@angular-devkit/schematics-cli` globally and use the `schematics` command line tool.<br>
+That tool acts the same as the `generate` command of the Angular CLI, but also has a debug mode.
+
+First, build (and watch) the schematics with:
+
+```bash
+npm run start
+```
+
+Afterwards you're able to test with:
+
+```bash
+schematics ./dist:migration-name
+```
+
+Replace `migration-name` with any defined migration in the migrations.json file or simply get some help with:
+
+```bash
+schematics --help
+```
+
+### Migrate
+
+To execute the migrations you must navigate to the project-space, where you installed this package and which you want to migrate.
+Afterwards, follow our [migration-guide](https://design-system.post.ch/).
 
 ## Contributing
 
