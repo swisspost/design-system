@@ -17,14 +17,11 @@
     "access": "public",
     "linkDirectory": true
   },
-  "ng-update": {
-    "migrations": "@swisspost/design-system-migrations/migrations.json"
-  },
   "scripts": {
     "clean": "rimraf out-tsc dist/*",
     "start": "gulp watch",
     "prebuild": "pnpm clean",
-    "build": "gulp build",
+    "build": "gulp build && pnpm schematics:build",
     "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",
@@ -33,6 +30,8 @@
     "storybook:start:headless": "start-storybook -p 9301 -s www --no-open",
     "storybook:build": "build-storybook",
     "storybook:test": "start-server-and-test storybook:start:headless 9301 'percy exec -- cypress run --record false'",
+    "schematics:build": "tsc -p tsconfig.schematics.json && copyfiles schematics/**/* dist",
+    "schematics:test": "echo todo",
     "postinstall": "pnpm --prefix node_modules/cypress postinstall"
   },
   "dependencies": {
@@ -89,5 +88,8 @@
     ],
     "outputDir": "./dist",
     "tscOutDir": "./out-tsc/lib"
+  },
+  "ng-update": {
+    "migrations": "./schematics/migrations.json"
   }
 }
