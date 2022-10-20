@@ -37,10 +37,13 @@
   },
   "dependencies": {
     "@popperjs/core": "2.11.6",
-    "bootstrap": "5.1.3",
-    "start-server-and-test": "1.14.0"
+    "bootstrap": "5.1.3"
   },
   "devDependencies": {
+    "@angular-devkit/core": "14.2.6",
+    "@angular-devkit/schematics": "14.2.6",
+    "@angular/compiler": "14.2.6",
+    "@angular/core": "14.2.6",
     "@babel/core": "7.19.3",
     "@percy/cli": "1.11.0",
     "@percy/cypress": "3.1.2",
@@ -53,8 +56,10 @@
     "@storybook/manager-webpack4": "6.5.12",
     "@storybook/preset-scss": "1.0.3",
     "@storybook/testing-library": "0.0.13",
+    "@types/node": "16.11.68",
     "autoprefixer": "10.4.12",
     "babel-loader": "8.2.5",
+    "copyfiles": "2.4.1",
     "css-loader": "5.2.7",
     "cypress": "10.10.0",
     "glob": "8.0.3",
@@ -68,13 +73,15 @@
     "rimraf": "3.0.2",
     "sass": "1.55.0",
     "sass-loader": "10.1.1",
+    "start-server-and-test": "1.14.0",
     "storybook-dark-mode": "1.1.2",
     "style-loader": "2.0.0",
     "stylelint": "14.14.0",
     "stylelint-config-prettier": "9.0.3",
     "stylelint-config-sass-guidelines": "9.0.1",
     "stylelint-prettier": "2.0.0",
-    "stylelint-scss": "4.3.0"
+    "stylelint-scss": "4.3.0",
+    "typescript": "4.8.4"
   },
   "sass": {
     "includePaths": [
