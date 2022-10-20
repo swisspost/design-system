@@ -89,6 +89,7 @@
     "outputDir": "./dist",
     "tscOutDir": "./out-tsc/lib"
   },
+  "schematics": "./schematics/migrations.json",
   "ng-update": {
     "migrations": "./schematics/migrations.json"
   }
