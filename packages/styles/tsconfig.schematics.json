@@ -1,6 +1,6 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "tsconfig",
     "lib": ["es2018", "dom"],
     "declaration": true,
     "module": "commonjs",
@@ -11,7 +11,7 @@
     "noImplicitThis": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "rootDir": "schematics",
+    "rootDir": "schematics/",
     "outDir": "dist/schematics",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
@@ -20,10 +20,6 @@
     "target": "es6",
     "types": ["node"]
   },
-  "include": [
-    "schematics/**/*"
-  ],
-  "exclude": [
-    "schematics/*/files/**/*"
-  ]
+  "include": ["schematics/**/*"],
+  "exclude": ["schematics/*/files/**/*"]
 }
