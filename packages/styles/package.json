@@ -25,13 +25,13 @@
     "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",
-    "test": "jest --onlyChanged",
+    "test": "jest --config=jest.config.styles.js --onlyChanged",
     "storybook:start": "start-storybook -p 9201",
     "storybook:start:headless": "start-storybook -p 9301 -s www --no-open",
     "storybook:build": "build-storybook",
     "storybook:test": "start-server-and-test storybook:start:headless 9301 'percy exec -- cypress run --record false'",
     "schematics:build": "tsc -p tsconfig.schematics.json && copyfiles schematics/**/* dist",
-    "schematics:test": "echo todo",
+    "schematics:test": "jest --conifig=jest.config.schematics.js --onlyChanged",
     "postinstall": "pnpm --prefix node_modules/cypress postinstall"
   },
   "dependencies": {
