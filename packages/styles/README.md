@@ -38,19 +38,13 @@ Schematics are used to transform a software project by adapting it to current De
 
 ### Testing
 
-To test locally, install `@angular-devkit/schematics-cli` globally and use the `schematics` command line tool.<br>
+To test the Schematics without writing any changes to your files, install `@angular-devkit/schematics-cli` globally and use the `schematics` command line tool.<br>
 That tool acts the same as the `generate` command of the Angular CLI, but also has a debug mode.
 
-First, build (and watch) the schematics with:
+Run the following command in the project which uses this package as dependency:
 
 ```bash
-npm run start
-```
-
-Afterwards you're able to test with:
-
-```bash
-schematics ./dist:migration-name
+schematics ./node_modules/@swisspost/design-system-styles:migration-name
 ```
 
 Replace `migration-name` with any defined migration in the migrations.json file or simply get some help with:
@@ -61,8 +55,7 @@ schematics --help
 
 ### Migrate
 
-To execute the migrations you must navigate to the project-space, where you installed this package and which you want to migrate.
-Afterwards, follow our [migration-guide](https://design-system.post.ch/).
+To execute the migrations please follow our [migration-guide](https://design-system.post.ch/).
 
 ## Contributing
 
