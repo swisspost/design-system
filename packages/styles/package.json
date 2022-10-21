@@ -25,7 +25,7 @@
     "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",
-    "test": "jest --config=jest.config.styles.js --onlyChanged",
+    "test": "jest --onlyChanged",
     "styles:start": "gulp watch",
     "styles:build": "gulp build",
     "storybook:start": "start-storybook -p 9201",
@@ -34,7 +34,6 @@
     "storybook:test": "start-server-and-test storybook:start:headless 9301 'percy exec -- cypress run --record false'",
     "schematics:start": "copyfiles schematics/migrations.json dist && tsc -p tsconfig.schematics.json --watch",
     "schematics:build": "copyfiles schematics/migrations.json dist && tsc -p tsconfig.schematics.json",
-    "schematics:test": "jest --conifig=jest.config.schematics.js --onlyChanged",
     "postinstall": "pnpm --prefix node_modules/cypress postinstall"
   },
   "dependencies": {
