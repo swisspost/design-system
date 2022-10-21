@@ -7,6 +7,11 @@
 @use './../variables/components/button';
 @use './../mixins/forms' as forms-mixins;
 
+.invalid-feedback,
+.valid-feedback {
+  margin-bottom: 0;
+}
+
 .invalid-feedback {
   padding: button.$input-btn-padding-x * 0.5 button.$input-btn-padding-x;
   background: form-feedback.$form-feedback-invalid-bg;
