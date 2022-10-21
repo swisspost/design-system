@@ -2,10 +2,9 @@
   ~ Copyright 2021 by Swiss Post, Information Technology
   -->
 
-
 <div class="d-flex bg-primary p-regular" style="height: 150px">
   <div class="flex-fill">
-    <div class="bg-light {{demoClass}}"></div>
+    <div class="bg-light" [class]="demoClass"></div>
   </div>
 
   <!-- Legend -->
@@ -18,17 +17,17 @@
 </div>
 
 <form [formGroup]="demoForm" class="row mt-regular">
-
   <!-- Width control -->
   <div class="col" formGroupName="width">
     <label class="form-label" for="width">Width</label>
     <select class="form-select form-select-rg" formControlName="size" id="width">
       <optgroup label="Bootstrap sizes">
-        <option *ngFor="let size of bootstrapSizes" [value]="size.value">{{size.name}}</option>
+        <option *ngFor="let size of bootstrapSizes" [value]="size.value">{{ size.name }}</option>
       </optgroup>
       <optgroup label="Post sizes">
-        <option *ngFor="let size of sizes"
-                [value]="size.name">{{size.name | replaceHyphen | titlecase | removeSpaces}}</option>
+        <option *ngFor="let size of sizes" [value]="size.name">
+          {{ size.name | replaceHyphen | titlecase | removeSpaces }}
+        </option>
       </optgroup>
     </select>
   </div>
@@ -38,11 +37,12 @@
     <label class="form-label" for="height">Height</label>
     <select class="form-select form-select-rg" formControlName="size" id="height">
       <optgroup label="Bootstrap sizes">
-        <option *ngFor="let size of bootstrapSizes" [value]="size.value">{{size.name}}</option>
+        <option *ngFor="let size of bootstrapSizes" [value]="size.value">{{ size.name }}</option>
       </optgroup>
       <optgroup label="Post sizes">
-        <option *ngFor="let size of sizes"
-                [value]="size.name">{{size.name | replaceHyphen | titlecase | removeSpaces}}</option>
+        <option *ngFor="let size of sizes" [value]="size.name">
+          {{ size.name | replaceHyphen | titlecase | removeSpaces }}
+        </option>
       </optgroup>
     </select>
   </div>
@@ -55,8 +55,9 @@
         <option value="100">100%</option>
       </optgroup>
       <optgroup label="Post sizes">
-        <option *ngFor="let size of sizes"
-                [value]="size.name">{{size.name | replaceHyphen | titlecase | removeSpaces}}</option>
+        <option *ngFor="let size of sizes" [value]="size.name">
+          {{ size.name | replaceHyphen | titlecase | removeSpaces }}
+        </option>
       </optgroup>
     </select>
   </div>
@@ -69,8 +70,9 @@
         <option value="100">100%</option>
       </optgroup>
       <optgroup label="Post sizes">
-        <option *ngFor="let size of sizes"
-                [value]="size.name">{{size.name | replaceHyphen | titlecase | removeSpaces}}</option>
+        <option *ngFor="let size of sizes" [value]="size.name">
+          {{ size.name | replaceHyphen | titlecase | removeSpaces }}
+        </option>
       </optgroup>
     </select>
   </div>
