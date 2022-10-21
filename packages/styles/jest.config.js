@@ -1,11 +1,11 @@
 module.exports = {
-  testEnvironment: "node",
+  testEnvironment: 'node',
   moduleFileExtensions: [
-    "js",
-    "scss"
+    'js',
+    'scss'
   ],
   transform: {
-    "\\.scss$": './tests/jest-scss-transformer'
+    '\\.scss$': './tests/jest-scss-transformer'
   },
-  testMatch: ["**/tests/**/*.test.scss"]
+  testMatch: ['**/tests/**/*.test.scss']
 }
