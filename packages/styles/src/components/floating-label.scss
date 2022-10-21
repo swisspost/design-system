@@ -92,6 +92,7 @@
     &[multiple] {
       padding-top: forms.$form-floating-input-padding-t * 1.5;
       padding-bottom: 0;
+      height: auto;
 
       option {
         height: 1em * forms.$form-floating-line-height;
@@ -114,7 +115,7 @@
         ~ label {
           padding-top: forms.$form-floating-padding-y;
           padding-bottom: forms.$form-floating-padding-y;
-          width: calc(100% - (forms.$input-border-width * 2));
+          width: calc(100% - (forms.$input-border-width * 2) - forms.$form-floating-padding-x);
           height: forms.$form-floating-label-height;
         }
       }
