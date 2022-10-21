@@ -123,6 +123,10 @@
   }
 
   > textarea.form-control {
+    padding-top: forms.$input-padding-y-lg * 1.5;
+    padding-bottom: forms.$input-padding-y-lg;
+    height: auto;
+
     ~ label {
       padding-bottom: 0;
       width: calc(100% - (forms.$input-border-width * 2));
