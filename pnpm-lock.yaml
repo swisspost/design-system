@@ -26,7 +26,7 @@ importers:
       '@swisspost/design-system-styles': workspace:5.0.0-beta.2
       '@types/jest': 27.5.2
       babel-loader: 8.2.5
-      bootstrap: 5.1.3
+      bootstrap: 5.2.2
       cypress: 10.10.0
       cypress-storybook: 0.5.1
       jest: 27.5.1
@@ -55,7 +55,7 @@ importers:
       '@storybook/html': 6.5.12_5ynxwxvh7efwlldz6c736m4an4
       '@types/jest': 27.5.2
       babel-loader: 8.2.5_jeg5564y5etyvi3ajplf6yhqg4
-      bootstrap: 5.1.3_@popperjs+core@2.11.6
+      bootstrap: 5.2.2_@popperjs+core@2.11.6
       cypress: 10.10.0
       cypress-storybook: 0.5.1_cypress@10.10.0
       jest: 27.5.1
@@ -190,7 +190,7 @@ importers:
       '@types/node': 16.11.68
       '@typescript-eslint/eslint-plugin': 5.40.0
       '@typescript-eslint/parser': 5.40.0
-      bootstrap: 5.1.3
+      bootstrap: 5.2.2
       core-js: 3.25.5
       eslint: 8.25.0
       highlight.js: 11.6.0
@@ -232,7 +232,7 @@ importers:
       '@swimlane/ngx-datatable': 20.0.0_ijmliwajjjqtbccje75tzsym2e
       '@swisspost/design-system-intranet-header': link:../components-angular/dist/intranet-header
       '@swisspost/design-system-styles': link:../styles/dist
-      bootstrap: 5.1.3_@popperjs+core@2.11.6
+      bootstrap: 5.2.2_@popperjs+core@2.11.6
       core-js: 3.25.5
       highlight.js: 11.6.0
       ngx-highlightjs: 7.0.1_bdnnqok5r7kasvbmdf4tyesgce
@@ -351,7 +351,7 @@ importers:
       '@storybook/testing-library': 0.0.13
       autoprefixer: 10.4.12
       babel-loader: 8.2.5
-      bootstrap: 5.1.3
+      bootstrap: 5.2.2
       css-loader: 5.2.7
       cypress: 10.10.0
       glob: 8.0.3
@@ -375,7 +375,7 @@ importers:
       stylelint-scss: 4.3.0
     dependencies:
       '@popperjs/core': 2.11.6
-      bootstrap: 5.1.3_@popperjs+core@2.11.6
+      bootstrap: 5.2.2_@popperjs+core@2.11.6
       start-server-and-test: 1.14.0
     devDependencies:
       '@babel/core': 7.19.3
@@ -10015,10 +10015,10 @@ packages:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
     dev: true
 
-  /bootstrap/5.1.3_@popperjs+core@2.11.6:
-    resolution: {integrity: sha512-fcQztozJ8jToQWXxVuEyXWW+dSo8AiXWKwiSSrKWsRB/Qt+Ewwza+JWoLKiTuQLaEPhdNAJ7+Dosc9DOIqNy7Q==}
+  /bootstrap/5.2.2_@popperjs+core@2.11.6:
+    resolution: {integrity: sha512-dEtzMTV71n6Fhmbg4fYJzQsw1N29hJKO1js5ackCgIpDcGid2ETMGC6zwSYw09v05Y+oRdQ9loC54zB1La3hHQ==}
     peerDependencies:
-      '@popperjs/core': ^2.10.2
+      '@popperjs/core': ^2.11.6
     dependencies:
       '@popperjs/core': 2.11.6
 
