@@ -181,7 +181,7 @@ importers:
       '@angular/router': 14.2.6
       '@ng-bootstrap/ng-bootstrap': 12.1.2
       '@popperjs/core': 2.11.6
-      '@swimlane/ngx-datatable': 20.0.0
+      '@swimlane/ngx-datatable': 20.1.0
       '@swisspost/design-system-intranet-header': workspace:3.0.0-beta.1
       '@swisspost/design-system-styles': workspace:5.0.0-beta.2
       '@types/highlight.js': 9.12.4
@@ -229,7 +229,7 @@ importers:
       '@angular/router': 14.2.6_ijmliwajjjqtbccje75tzsym2e
       '@ng-bootstrap/ng-bootstrap': 12.1.2_bs45eyslvong6tkfybswntbxxy
       '@popperjs/core': 2.11.6
-      '@swimlane/ngx-datatable': 20.0.0_ijmliwajjjqtbccje75tzsym2e
+      '@swimlane/ngx-datatable': 20.1.0_ijmliwajjjqtbccje75tzsym2e
       '@swisspost/design-system-intranet-header': link:../components-angular/dist/intranet-header
       '@swisspost/design-system-styles': link:../styles/dist
       bootstrap: 5.1.3_@popperjs+core@2.11.6
@@ -7989,13 +7989,13 @@ packages:
       - webpack-command
     dev: true
 
-  /@swimlane/ngx-datatable/20.0.0_ijmliwajjjqtbccje75tzsym2e:
-    resolution: {integrity: sha1-hDkztgFb5G2WJeBK/easEDDTA/M=}
+  /@swimlane/ngx-datatable/20.1.0_ijmliwajjjqtbccje75tzsym2e:
+    resolution: {integrity: sha512-oHnnx1QRNmv10l5UME13v5JP3M3GesM9K3QH6TRYo2C7UbbhY7vL5EZ4HGqcvtMMW4FOzqNOSltE++IVL99F3g==}
     peerDependencies:
       '@angular/common': '>=11.0.2'
       '@angular/core': '>=11.0.2'
       '@angular/platform-browser': '>=11.0.2'
-      rxjs: ^6.6.3
+      rxjs: ^6.6.3 || ^7.4.0
     dependencies:
       '@angular/common': 14.2.6_rqdmvia4mum3ur2pbfifmb6sby
       '@angular/core': 14.2.6_rxjs@7.5.7+zone.js@0.11.8
