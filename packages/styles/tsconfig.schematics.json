@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": "tsconfig",
     "lib": ["es2018", "dom"],
+    "declaration": true,
     "module": "commonjs",
     "moduleResolution": "node",
     "noEmitOnError": true,
@@ -10,15 +11,15 @@
     "noImplicitThis": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "rootDir": "src/",
-    "outDir": "dist/",
+    "rootDir": "schematics/",
+    "outDir": "dist/schematics",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": true,
     "target": "es6",
-    "types": ["jasmine", "node"]
+    "types": ["node"]
   },
-  "include": ["src/**/*"],
-  "exclude": ["src/*/files/**/*"]
+  "include": ["schematics/**/*"],
+  "exclude": ["schematics/*/files/**/*"]
 }
