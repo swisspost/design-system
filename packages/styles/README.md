@@ -55,7 +55,7 @@ schematics --help
 
 ### Migrate
 
-To execute the migrations please follow our [migration-guide](https://design-system.post.ch/).
+To execute the migrations please follow our [migration guide](https://design-system.post.ch/).
 
 ## Contributing
 
