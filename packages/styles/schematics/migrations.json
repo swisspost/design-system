@@ -31,6 +31,11 @@
       "version": "5.0.0",
       "description": "https://getbootstrap.com/docs/5.0/migration/#rtl",
       "factory": "./migrations/rtl/index"
+    },
+    "migration-secondary-classes": {
+      "version": "5.0.0",
+      "description": "Removes secondary classes \"bg-secondary\", \"border-secondary\" and \"text-secondary\"",
+      "factory": "./migrations/secondary-classes/index"
     }
   }
 }
