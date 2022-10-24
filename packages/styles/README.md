@@ -34,7 +34,7 @@ Available bundles:
 
 ## Migrations Schematics
 
-Schematics are used to transform a software project by adapting it to current Design System Styles.
+Schematics are used to transform an Angular software project by adapting it to current Design System Styles.
 
 ### Testing
 
@@ -55,7 +55,7 @@ schematics --help
 
 ### Migrate
 
-To execute the migrations please follow our [migration-guide](https://design-system.post.ch/).
+To execute the migrations please follow our [migration guide](https://design-system.post.ch/).
 
 ## Contributing
 
