@@ -9,9 +9,9 @@ export default function (): Rule {
 
 // The label classes have changed
 class NgButtonClassUpdate extends CssClassesUpdate {
-    override tag = 'label';
-    override selector = 'btn-primary';
-    override attribute = 'ngbButtonLabel';
+    override tagSelector = 'label';
+    override classSelector = 'btn-primary';
+    override attributeSelector = 'ngbButtonLabel';
     searchValue = 'btn-primary';
     replaceValue = 'btn btn-secondary';
 }

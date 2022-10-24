@@ -15,16 +15,16 @@ export class CssMigration {
 
     currentElement (element: TmplAstElement | null) {
         this.filteredUpdates = this.updates
-            .filter(u => !u.tag || u.tag === element?.name)
-            .filter(u => !u.selector || element?.attributes.filter(a => a.name === 'class' && a.value.split(' ').includes(u.selector)))
-            .filter(u => !u.attribute || element?.attributes.some(a => a.name === u.attribute));
+            .filter(u => !u.tagSelector || u.tagSelector === element?.name)
+            .filter(u => !u.classSelector || element?.attributes.filter(a => a.name === 'class' && a.value.split(' ').includes(u.classSelector)))
+            .filter(u => !u.attributeSelector || element?.attributes.some(a => a.name === u.attributeSelector));
     }
 
     currentTemplate (element: TmplAstTemplate | null) {
         this.filteredUpdates = this.updates
-            .filter(u => !u.tag || u.tag === element?.tagName)
-            .filter(u => !u.selector || element?.attributes.filter(a => a.name === 'class' && a.value.split(' ').includes(u.selector)))
-            .filter(u => !u.attribute || element?.attributes.some(a => a.name === u.attribute));
+            .filter(u => !u.tagSelector || u.tagSelector === element?.tagName)
+            .filter(u => !u.classSelector || element?.attributes.filter(a => a.name === 'class' && a.value.split(' ').includes(u.classSelector)))
+            .filter(u => !u.attributeSelector || element?.attributes.some(a => a.name === u.attributeSelector));
     }
 
     evaluate(classes: string = ''): boolean {
