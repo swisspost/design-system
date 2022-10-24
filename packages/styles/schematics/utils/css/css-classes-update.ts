@@ -3,6 +3,7 @@ type Replacer = ((...params: any) => string);
 export abstract class CssClassesUpdate {
     tag: string;
     selector: string;
+    attribute: string;
     abstract searchValue: string;
     abstract replaceValue: string | Replacer;
 
