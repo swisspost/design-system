@@ -1,24 +1,41 @@
 <div class="heading py-5">
   <h1 class="bold font-curve-large">Accordion</h1>
   <h2 class="font-curve-medium">Using Bootstrap v5.0</h2>
-  <a href="https://getbootstrap.com/docs/5.0/components/accordion/" target="_blank" rel="noopener"
-     class="btn btn-primary btn-sm btn-animated"><span>Bootstrap Documentation</span></a>
+  <a
+    href="https://getbootstrap.com/docs/5.0/components/accordion/"
+    target="_blank"
+    rel="noopener"
+    class="btn btn-primary btn-sm btn-animated"
+  >
+    <span>Bootstrap Documentation</span>
+  </a>
 </div>
 
 <section>
   <h3>Using JavaScript</h3>
   <div class="alert alert-info my-large">
-    <p>For the JavaScript accordion to work properly, you need to import collapse.js from Bootstrap into your component.</p>
+    <p>
+      For the JavaScript accordion to work properly, you need to import collapse.js from Bootstrap
+      into your component.
+    </p>
+  </div>
+  <div class="alert alert-info my-large">
+    <p>
+      The detail summary styles have been removed due to <a href="https://adrianroselli.com/2019/04/details-summary-are-not-insert-control-here.html">accessibility issues with the &lt;summary&gt; element</a>.
+      <br />
+      We recommend to use one of the accordion components instead.
+    </p>
   </div>
 
   <app-accordion-demo></app-accordion-demo>
-  <code class="block mt-5" [highlight]="codeController" [languages]="['typescript', 'javascript']"></code>
-  <code class="block mt-big" [highlight]="codeTemplate" [languages]="['html', 'scss', 'css']"></code>
+  <code
+    class="block mt-5"
+    [highlight]="codeController"
+    [languages]="['typescript', 'javascript']"
+  ></code>
+  <code
+    class="block mt-big"
+    [highlight]="codeTemplate"
+    [languages]="['html', 'scss', 'css']"
+  ></code>
 </section>
-
-<section>
-  <h3 class="mb-large">Using <code>&lt;details&gt;</code> and <code>&lt;summary&gt;</code> tags</h3>
-  <app-accordion-details-summary-demo></app-accordion-details-summary-demo>
-  <code class="block mt-3" [highlight]="detailsSummaryTemplate" [languages]="['html', 'scss', 'css']"></code>
-</section>
-

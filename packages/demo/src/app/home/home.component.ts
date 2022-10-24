@@ -25,13 +25,16 @@ export class HomeComponent {
   public migrationAccordionGroupedCheckboxes: Object = Object.assign(
     {
       general: {
+        naming_cwfpackagename: false,
+        naming_cwflicense: false,
+        naming_cwfname: false,
+        naming_options: false,
         variables_isolatecomponents: false,
         variables_fontsizemap: false,
         variables_lineheightrg: false,
         variables_floatinglabel: false,
-        variables_socialmediacolors: false,
-        variables_options: false,
-        variables_colors: false,
+        variables_colorsremoved: false,
+        variables_colorsrenamed: false,
         variables_lineheigts: false,
         variables_lineheightlighter: false,
         variables_headingfontsizes: false,
@@ -44,7 +47,7 @@ export class HomeComponent {
       bootstrap: {
         alerts_fixedbottom: false,
         alerts_closebuttoncontent: false,
-        alerts_close: false,
+        alerts_closebuttonclass: false,
         badges_classes: false,
         backgrounds_textcolor: false,
         blockquotes_footerstructure: false,
@@ -54,6 +57,9 @@ export class HomeComponent {
         buttons_borderradius2: false,
         buttons_invertedclass: false,
         buttons_iconclass: false,
+        buttonclose_content: false,
+        buttonclose_class: false,
+        buttonclose_buttonclasses: false,
         cards_classes: false,
         forms_formgroup: false,
         forms_formtext: false,
@@ -83,9 +89,10 @@ export class HomeComponent {
         buttons_grouptoggleclass: false,
         datepickers_variables: false,
         modals_closebuttoncontent: false,
-        modals_close: false
+        modals_closebuttonclass: false
       },
       post: {
+        detailsummary_detailsummary: false,
         accordions_wrapper: false,
         accordions_summaryclasses: false,
         accordions_classes: false,
