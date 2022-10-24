@@ -17,20 +17,20 @@ export class CssMigration {
 
     evaluate(classes: string = ''): boolean {
         const classList = classes.split(' ');
-        const applicableUpdate = this.getApplicableUpdates(classList);
+        const applicableUpdates = this.getApplicableUpdates(classList);
 
-        return classList.some(cssClass => {
-            return applicableUpdate.some(update => update.searcher.test(cssClass));
-        });
+        return classList
+            .some(cssClass => applicableUpdates.some(update => update.searcher.test(cssClass)));
     }
 
     apply(classes: string = ''): string {
         const classList = classes.split(' ');
-        const applicableUpdate = this.getApplicableUpdates(classList);
+        const applicableUpdates = this.getApplicableUpdates(classList);
 
-        return classList.map(cssClass => applicableUpdate.reduce((updatedClass, update) => {
-            return updatedClass.replace(update.searcher, update.replacer);
-        }, cssClass)).join(' ');
+        return classList
+            .map(cssClass => applicableUpdates.reduce((updatedClass, update) => updatedClass.replace(update.searcher, update.replacer), cssClass))
+            .filter(cssClass => cssClass !== '')
+            .join(' ');
     }
 
     private getApplicableUpdates(classList: string[]) {
