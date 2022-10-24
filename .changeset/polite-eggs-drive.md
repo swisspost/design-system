@@ -3,4 +3,4 @@
 ---
 
 Adds migration secondary-classes.
-This will automigrate 'bg-secondary', 'border-secondary' and 'text-secondary' with ''.
+This will remove `bg-secondary`, `border-secondary` and `text-secondary`.
