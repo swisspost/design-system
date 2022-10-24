@@ -30,3 +30,27 @@
   placeholder=".form-control-sm"
   type="text"
 />
+
+<div class="form-floating mt-4">
+  <input
+    id="FormControlInvalid"
+    type="text"
+    class="form-control is-invalid"
+    placeholder=" "
+    required
+  />
+  <label class="form-label" for="FormControlInvalid">Invalid Input</label>
+  <p class="invalid-feedback">Error message</p>
+</div>
+
+<div class="form-floating mt-4">
+  <input
+    id="FormControlValid"
+    type="text"
+    class="form-control is-valid"
+    placeholder=" "
+    value="Value"
+  />
+  <label class="form-label" for="FormControlValid">Valid Input</label>
+  <p class="valid-feedback">Success message (optional)</p>
+</div>
