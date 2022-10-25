@@ -9,7 +9,7 @@ export default function (): Rule {
 
 // The .subnavigation-inverted class no longer exists
 class SecondaryClassesUpdate extends CssClassesUpdate {
-    classSelector: 'subnavigation-inverted';
+    override classSelector: 'subnavigation-inverted';
     searchValue = 'subnavigation-inverted';
     replaceValue = '';
 }
