@@ -38,7 +38,7 @@ class FormCheckChildrenClassesUpdate extends CssClassesUpdate {
 class FormSelectClassesUpdate extends CssClassesUpdate {
     sizes = ['sm', 'rg', 'lg'];
 
-    override selector = 'custom-select';
+    override classSelector = 'custom-select';
     searchValue = 'form-control' + optional('-' + oneOf(this.sizes));
     replaceValue = (size: string) => 'form-select' + (size ? '-' + size : '');
 }
@@ -54,13 +54,13 @@ class FormSelectMenuClassesUpdate extends CssClassesUpdate {
 }
 
 class FormSwitchWrapperClassesUpdate extends CssClassesUpdate {
-    override tag = 'div';
+    override tagSelector = 'div';
     searchValue = 'switch';
     replaceValue = 'form-check form-switch';
 }
 
 class FormSwitchInputClassesUpdate extends CssClassesUpdate {
-    override tag = 'input';
+    override tagSelector = 'input';
     searchValue = 'switch';
     replaceValue = 'form-check-input';
 }
@@ -72,7 +72,7 @@ class FormSwitchTogglerClassesUpdate extends CssClassesUpdate {
 
 // Form texts no longer needs the .small and .text-muted classes
 class FormTextClassesUpdate extends CssClassesUpdate {
-    override selector = 'form-text';
+    override classSelector = 'form-text';
     searchValue = oneOf(['small', 'text-muted']);
     replaceValue = '';
 }

@@ -10,7 +10,6 @@ export default function (): Rule {
 
 // The .text-auto class no longer exists
 class SecondaryClassesUpdate extends CssClassesUpdate {
-    override selector = '[class*="-secondary"]';
     searchValue = oneOf(['bg-secondary', 'border-secondary', 'text-secondary']);
     replaceValue = '';
 }

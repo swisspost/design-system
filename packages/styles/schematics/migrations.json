@@ -22,6 +22,11 @@
       "description": "https://getbootstrap.com/docs/5.0/migration/#close-button",
       "factory": "./migrations/close-button/index"
     },
+    "migration-ng-buttons": {
+      "version": "5.0.0",
+      "description": "Replaces ng-button classes.",
+      "factory": "./migrations/ng-buttons/index"
+    },
     "migration-forms": {
       "version": "5.0.0",
       "description": "https://getbootstrap.com/docs/5.0/migration/#forms",
