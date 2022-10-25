@@ -7,16 +7,16 @@ export abstract class CssClassesUpdate {
     abstract searchValue: string;
     abstract replaceValue: string | Replacer;
 
-    get tag(): RegExp {
-        return new RegExp(`^${this.tagSelector}$`);
+    get tag(): RegExp | null {
+        return this.tagSelector ? new RegExp(`^${this.tagSelector}$`) : null;
     }
 
-    get class(): RegExp {
-        return new RegExp(`^${this.classSelector}$`);
+    get class(): RegExp | null {
+        return this.classSelector ? new RegExp(`^${this.classSelector}$`) : null;
     }
 
-    get attribute(): RegExp {
-        return new RegExp(`^${this.attributeSelector}$`);
+    get attribute(): RegExp | null {
+        return this.attributeSelector ? new RegExp(`^${this.attributeSelector}$`) : null;
     }
 
     get searcher(): RegExp {

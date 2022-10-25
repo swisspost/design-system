@@ -15,16 +15,16 @@ export class CssMigration {
 
     currentElement (element: TmplAstElement | null) {
         this.filteredUpdates = this.updates
-            .filter(u => !u.tag || u.tag.test(element?.name ?? ''))
-            .filter(u => !u.class || element?.attributes.filter(a => a.name === 'class' && a.value.split(' ').some(v => u.class.test(v))))
-            .filter(u => !u.attribute || element?.attributes.some(a => u.attribute.test(a.name)));
+            .filter(u => u.tag === null || u.tag.test(element?.name ?? ''))
+            .filter(u => u.class === null || element?.attributes.filter(a => a.name === 'class' && a.value.split(' ').some(v => u.class && u.class.test(v))))
+            .filter(u => u.attribute === null || element?.attributes.some(a => u.attribute && u.attribute.test(a.name)));
     }
 
     currentTemplate (element: TmplAstTemplate | null) {
         this.filteredUpdates = this.updates
-            .filter(u => !u.tag || u.tag.test(element?.tagName ?? ''))
-            .filter(u => !u.class || element?.attributes.filter(a => a.name === 'class' && a.value.split(' ').some(v => u.class.test(v))))
-            .filter(u => !u.attribute || element?.attributes.some(a => u.attribute.test(a.name)));
+            .filter(u => u.tag === null || u.tag.test(element?.tagName ?? ''))
+            .filter(u => u.class === null || element?.attributes.filter(a => a.name === 'class' && a.value.split(' ').some(v => u.class && u.class.test(v))))
+            .filter(u => u.attribute === null || element?.attributes.some(a => u.attribute && u.attribute.test(a.name)));
     }
 
     evaluate(classes: string = ''): boolean {
