@@ -41,7 +41,7 @@ A set of common components for easy integration with every framework or no frame
 
 Usage in your project
 ```bash
-npm install @swisspost/web-components
+npm install @swisspost/design-system-components
 ```
 
 <hr>
