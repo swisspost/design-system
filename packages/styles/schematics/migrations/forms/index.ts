@@ -28,6 +28,7 @@ class FormTextClassesUpdate extends CssClassesUpdate {
     replaceValue = '';
 }
 
+// Applied on select, multiselect and custom-select elements
 class FormSelectClassesUpdate extends CssClassesUpdate {
     override classSelector = 'custom-select';
     searchValue = `form-control${optional(`-${oneOf(['sm', 'rg', 'md', 'lg'])}`)}`;
