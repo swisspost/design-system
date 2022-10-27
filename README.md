@@ -4,8 +4,6 @@
 
 The Swiss Post Design System pattern library for a unified and accessible user experience accross the web platform.
 
-🚧 The **Swiss Post Design System v5** is in beta. Have a look at the [v5 milestone](https://github.com/swisspost/design-system/milestone/1) to see the progress. If you have any feedback to the beta version, please [submit an issue](https://github.com/swisspost/design-system/issues).
-
 ## Packages
 
 ### Styles
@@ -43,7 +41,7 @@ A set of common components for easy integration with every framework or no frame
 
 Usage in your project
 ```bash
-npm install @swisspost/web-components
+npm install @swisspost/design-system-components
 ```
 
 <hr>
