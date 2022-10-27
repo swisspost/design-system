@@ -3,7 +3,6 @@ import { CssClassesUpdate } from "../../utils/css/css-classes-update";
 import { CssMigration } from "../../utils/css/css-migration";
 import { oneOf, optional } from "../../utils/regex";
 
-/** Entry point for the forms migration. */
 export default function (): Rule {
     return new CssMigration(
         new FormGroupClassesUpdate,

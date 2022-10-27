@@ -25,12 +25,13 @@
   }
 
   > .badge {
-    padding: 0;
+    padding: $size-micro;
     height: badge.$badge-nested-height;
     min-width: badge.$badge-nested-height;
     background-color: badge.$badge-nested-bg-color;
     border-color: badge.$badge-nested-border-color;
     font-size: badge.$badge-nested-font-size;
+    line-height: 1;
   }
 
   > .btn-close {
