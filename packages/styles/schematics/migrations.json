@@ -24,8 +24,8 @@
     },
     "migration-form-controls": {
       "version": "5.0.0",
-      "description": "Applies automatic migrations on form-control elements.",
-      "factory": "./migrations/form-controls/index"
+      "description": "Applies automatic migrations on form elements (https://getbootstrap.com/docs/5.0/migration/#forms).",
+      "factory": "./migrations/forms/index"
     },
     "migration-rtl": {
       "version": "5.0.0",
@@ -46,6 +46,11 @@
       "version": "5.0.0",
       "description": "Applies the automatic migrations to the post-subnavigation component.",
       "factory": "./migrations/post-subnavigation/index"
+    },
+    "migration-post-topic-teaser": {
+      "version": "5.0.0",
+      "description": "Applies automatic migrations on topic-teaser elements.",
+      "factory": "./migrations/post-topic-teaser/index"
     }
   }
 }
