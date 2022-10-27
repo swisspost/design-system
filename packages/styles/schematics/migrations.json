@@ -27,10 +27,10 @@
       "description": "Replaces ng-button classes.",
       "factory": "./migrations/ng-buttons/index"
     },
-    "migration-form-controls": {
+    "migration-forms": {
       "version": "5.0.0",
-      "description": "Applies automatic migrations on form-control elements.",
-      "factory": "./migrations/form-controls/index"
+      "description": "Applies automatic migrations on form elements (https://getbootstrap.com/docs/5.0/migration/#forms).",
+      "factory": "./migrations/forms/index"
     },
     "migration-rtl": {
       "version": "5.0.0",
