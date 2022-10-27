@@ -41,6 +41,11 @@
       "version": "5.0.0",
       "description": "Removes secondary classes \"bg-secondary\", \"border-secondary\" and \"text-secondary\"",
       "factory": "./migrations/secondary-classes/index"
+    },
+    "migration-post-topic-teaser": {
+      "version": "5.0.0",
+      "description": "Applies automatic migrations on topic-teaser elements.",
+      "factory": "./migrations/post-topic-teaser/index"
     }
   }
 }
