@@ -22,15 +22,35 @@
       "description": "https://getbootstrap.com/docs/5.0/migration/#close-button",
       "factory": "./migrations/close-button/index"
     },
-    "migration-forms": {
+    "migration-form-controls": {
       "version": "5.0.0",
-      "description": "https://getbootstrap.com/docs/5.0/migration/#forms",
+      "description": "Applies automatic migrations on form elements (https://getbootstrap.com/docs/5.0/migration/#forms).",
       "factory": "./migrations/forms/index"
     },
     "migration-rtl": {
       "version": "5.0.0",
       "description": "https://getbootstrap.com/docs/5.0/migration/#rtl",
       "factory": "./migrations/rtl/index"
+    },
+    "migration-secondary-classes": {
+      "version": "5.0.0",
+      "description": "Removes secondary classes \"bg-secondary\", \"border-secondary\" and \"text-secondary\"",
+      "factory": "./migrations/secondary-classes/index"
+    },
+    "migration-ng-buttons": {
+      "version": "5.0.0",
+      "description": "Replaces ng-button classes.",
+      "factory": "./migrations/ng-buttons/index"
+    },
+    "migration-post-subnavigation": {
+      "version": "5.0.0",
+      "description": "Applies the automatic migrations to the post-subnavigation component.",
+      "factory": "./migrations/post-subnavigation/index"
+    },
+    "migration-post-topic-teaser": {
+      "version": "5.0.0",
+      "description": "Applies automatic migrations on topic-teaser elements.",
+      "factory": "./migrations/post-topic-teaser/index"
     }
   }
 }

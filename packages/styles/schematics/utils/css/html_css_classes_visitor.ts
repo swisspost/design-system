@@ -4,6 +4,7 @@ import {TemplateAstVisitor} from "@angular/core/schematics/utils/template_ast_vi
 import {CssMigration} from "./css-migration";
 
 export interface Replacement {
+    id: string,
     start: number;
     end: number;
     newContent: string;
@@ -20,7 +21,7 @@ export class CssClassesVisitor extends TemplateAstVisitor {
     }
 
     override visitElement(element: TmplAstElement): void {
-        this.cssMigration.currentTag = element.name;
+        this.cssMigration.currentElement(element);
 
         this.visitAll(element.attributes); // text attributes
         this.visitAll(element.inputs); // bound attributes
@@ -28,7 +29,7 @@ export class CssClassesVisitor extends TemplateAstVisitor {
     }
 
     override visitTemplate(t: TmplAstTemplate): void {
-        this.cssMigration.currentTag = t.tagName;
+        this.cssMigration.currentTemplate(t);
 
         this.visitAll(t.attributes); // text attributes
         this.visitAll(t.inputs); // bound attributes
@@ -38,11 +39,7 @@ export class CssClassesVisitor extends TemplateAstVisitor {
     override visitBoundAttribute(node: TmplAstBoundAttribute) {
         // check classes bound using [class.someClassName] directive
         if (node.keySpan?.details?.startsWith('class.') && this.cssMigration.evaluate(node.name)) {
-            this.replacements.push({
-                start: node.keySpan.start.offset,
-                end: node.keySpan.end.offset,
-                newContent: 'class.' + this.cssMigration.apply(node.name)
-            });
+            this.setReplacement('directive', node.keySpan.start.offset, node.keySpan.end.offset, 'class.' + this.cssMigration.apply(node.name));
         }
 
         // check classes bound using [ngClass] directive
@@ -51,19 +48,14 @@ export class CssClassesVisitor extends TemplateAstVisitor {
 
 
             if (ast instanceof this.compilerModule.LiteralPrimitive) { // bounded value is a string
-                this.replacements.push({
-                    start: ast.sourceSpan.start + 1, // +1 for the opening quote mark
-                    end: ast.sourceSpan.end - 1, // -1 for the closing quote mark
-                    newContent: this.cssMigration.apply(ast.value)});
+                this.setReplacement('string', ast.sourceSpan.start + 1, ast.sourceSpan.end - 1, this.cssMigration.apply(ast.value));
 
             } else if (ast instanceof this.compilerModule.LiteralArray) { // bounded value is an array of strings
                 ast.expressions
                     .filter(expr => this.cssMigration.evaluate(expr.value))
-                    .forEach(expr => this.replacements.push({
-                        start: expr.sourceSpan.start + 1, // +1 for the opening quote mark
-                        end: expr.sourceSpan.end - 1, // -1 for the closing quote mark
-                        newContent: this.cssMigration.apply(expr.value)
-                    }));
+                    .forEach(expr => {
+                        this.setReplacement('string-array', expr.sourceSpan.start + 1, expr.sourceSpan.end - 1, this.cssMigration.apply(expr.value));
+                    });
 
             } else if (ast instanceof this.compilerModule.LiteralMap) { // bounded value is an object
                 const source = node.value.source || '';
@@ -73,11 +65,7 @@ export class CssClassesVisitor extends TemplateAstVisitor {
                         const valueStart = ast.values[i].span.start;
                         const keyStart = source.lastIndexOf(expr.key, valueStart);
                         const offset = ast.sourceSpan.start;
-                        this.replacements.push({
-                            start: keyStart + offset,
-                            end: keyStart + expr.key.length + offset,
-                            newContent: this.cssMigration.apply(expr.key)
-                        });
+                        this.setReplacement('object', keyStart + offset, keyStart + expr.key.length + offset, this.cssMigration.apply(expr.key));
                     });
             }
         }
@@ -86,11 +74,18 @@ export class CssClassesVisitor extends TemplateAstVisitor {
     override visitTextAttribute(node: TmplAstTextAttribute) {
         // check basic class attributes
         if (node.name === 'class' && node.valueSpan && this.cssMigration.evaluate(node.value)) {
-            this.replacements.push({
-                start: node.valueSpan.start.offset,
-                end: node.valueSpan.end.offset,
-                newContent: this.cssMigration.apply(node.value)
-            });
+            this.setReplacement('class', node.valueSpan.start.offset, node.valueSpan.end.offset, this.cssMigration.apply(node.value));
         }
+    }
+
+    private setReplacement (type: string, start: number, end: number, newContent: string) {
+        const replacement = {
+            id: `${type}::${start}::${end}::${newContent}`,
+            start,
+            end,
+            newContent
+        };
+
+        if (!this.replacements.some(r => r.id === replacement.id)) this.replacements.push(replacement);
     }
 }

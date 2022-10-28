@@ -1,10 +1,23 @@
 type Replacer = ((...params: any) => string);
 
 export abstract class CssClassesUpdate {
-    tag: string;
-    selector: string;
+    tagSelector: string;
+    classSelector: string;
+    attributeSelector: string;
     abstract searchValue: string;
     abstract replaceValue: string | Replacer;
+
+    get tag(): RegExp | null {
+        return this.tagSelector ? new RegExp(`^${this.tagSelector}$`) : null;
+    }
+
+    get class(): RegExp | null {
+        return this.classSelector ? new RegExp(`^${this.classSelector}$`) : null;
+    }
+
+    get attribute(): RegExp | null {
+        return this.attributeSelector ? new RegExp(`^${this.attributeSelector}$`) : null;
+    }
 
     get searcher(): RegExp {
         return new RegExp(`^${this.searchValue}$`);

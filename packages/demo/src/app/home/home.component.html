@@ -128,14 +128,6 @@
           <li>Commit all the changes you made untill now!</li>
           <li>Make sure you are running on a node version >= 16!</li>
           <li>
-            Install the migration package:
-            <code
-              class="d-block mt-1 p-3"
-              [languages]="['bash']"
-              highlight="npm install --save-dev @swisspost/design-system-migrations"
-            ></code>
-          </li>
-          <li>
             Now you should be able to run the following code, to automatically patch the changes
             that can be auto-migrated:
             <code
@@ -261,7 +253,13 @@
                           <span>However, do not forget to switch the namespace in your files from <span class="highlight">cwf</span> to either <span class="highlight">core</span> or <span class="highlight">post</span>!</span>
                           <span class="info">Read more about namespaces at the <a href="https://sass-lang.com/blog/the-module-system-is-launched">sass module system intro</a>.</span>
                       </label>
-                      <p class="info">Read more about namespaces at the <a href="https://sass-lang.com/blog/the-module-system-is-launched">sass module system intro</a>.</p>
+                      <p class="info">
+                        Read more about namespaces at the
+                        <a href="https://sass-lang.com/blog/the-module-system-is-launched">
+                          sass module system intro
+                        </a>
+                        .
+                      </p>
                     </div>
                   </li>
                   <li>
@@ -550,7 +548,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalclasses_secondary">
-                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">secondary</span> classes.<br>
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Removed <span class="highlight">secondary</span> classes.<br>
                         <ul class="mt-2">
                           <li><code>.bg-secondary</code></li>
                           <li><code>.border-secondary</code></li>
@@ -593,7 +591,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalproperites_rtlmode">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> For better support of <span class="highlight">rtl-mode</span>,<br>
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> For better support of <span class="highlight">rtl-mode</span>,<br>
                         <code>left</code> and <code>right</code> have switched to <code>start</code> and <code>end</code>.
                       </label>
                     </div>
@@ -667,7 +665,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapalerts_closebuttonclass">
-                        <span class="change-badge bg-danger">breaking</span>⚙️ Renamed class <code>.close</code> to <code>.btn-close</code>.
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
                       </label>
                     </div>
                   </li>
@@ -694,7 +692,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbadges_classes">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed <span class="highlight">badge</span> classes.<br>
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed <span class="highlight">badge</span> classes.<br>
                         <ul class="mt-2">
                           <li><code>.badge-pill</code> became <code>.rounded-pill</code></li>
                           <li><code>.badge-[colorname]</code> became <code>.bg-[colorname]</code></li>
@@ -807,7 +805,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttons_outline">
-                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Removed <span class="highlight">button</span> classes <code>.btn-outline-[colorname]</code>.<br>
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Removed <span class="highlight">button</span> classes <code>.btn-outline-[colorname]</code>.<br>
                       <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
                     </label>
                     </div>
@@ -934,7 +932,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttonclose_class">
-                        <span class="change-badge bg-danger">breaking</span>⚙️ Renamed class <code>.close</code> to <code>.btn-close</code>.
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
                       </label>
                     </div>
                   </li>
@@ -951,7 +949,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttonclose_buttonclasses">
-                        Dropped the usage of <code>.btn</code> and <code>.btn-icon</code> classes.<br>
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code>.btn</code> and <code>.btn-icon</code> classes.<br>
                         <span class="info">As long as you do not want to have a button-like appearance, you should not add these classes on a <span class="highlight">close-button</span> element.</span>
                       </label>
                     </div>
@@ -1135,7 +1133,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformselects_classes">
-                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed <span class="highlight">custom-select</span> classes.
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed <span class="highlight">custom-select</span> classes.
                       <ul class="mt-2">
                         <li><code>.custom-select</code> became <code>.form-select</code></li>
                         <li><code>.custom-select-sm</code> became <code>.form-select-sm</code></li>
@@ -1187,7 +1185,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformselectmultiples_classes">
-                      <span class="change-badge bg-danger">breaking</span> Renamed class <code>.form-control.custom-select</code> to <code>.form-select</code>.
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code>.form-control.custom-select</code> to <code>.form-select</code>.
                     </label>
                     </div>
                   </li>
@@ -1358,7 +1356,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformcheckboxes_classes">
-                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed <span class="highlight">control</span> classes.
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed <span class="highlight">control</span> classes.
                       <ul class="mt-2">
                         <li><code>.custom-control.custom-checkbox</code> became <code>.form-check</code></li>
                         <li><code>.custom-control-input</code> became <code>.form-check-input</code></li>
@@ -1431,7 +1429,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformradios_classes">
-                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed <span class="highlight">control</span> classes.
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed <span class="highlight">control</span> classes.
                       <ul class="mt-2">
                         <li><code>.custom-control.custom-radio</code> became <code>.form-check</code></li>
                         <li><code>.custom-control-input</code> became <code>.form-check-input</code></li>
@@ -1517,7 +1515,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="ngbootstrapbuttons_labelclass">
-                        <span class="change-badge bg-danger">breaking</span> Refactored <code>label.btn-primary</code> to <code>label.btn.btn-secondary</code>.
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Refactored <code>label.btn-primary</code> to <code>label.btn.btn-secondary</code>.
                       </label>
                     </div>
                   </li>
@@ -1633,7 +1631,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="ngbootstrapmodals_closebuttonclass">
-                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
                     </label>
                     </div>
                   </li>
@@ -1765,7 +1763,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postcustomselects_classes">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Refactored <code>.form-control.custom-select</code> and <code>.form-control.form-control-lg.custom-select</code> to <code>.form-select</code>.
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Refactored <code>.form-control.custom-select</code> and <code>.form-control.form-control-lg.custom-select</code> to <code>.form-select</code>.
                       </label>
                     </div>
                   </li>
@@ -1782,7 +1780,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postcustomselects_menuclass">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Removed <code>.custom-select-menu</code> class.<br>
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Removed <code>.custom-select-menu</code> class.<br>
                         Use <span class="highlight">utility-classes</span>&nbsp;<code>.w-100.mw-100</code> instead.
                       </label>
                     </div>
@@ -1812,7 +1810,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postsizings_paddingsleftright">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Renamed <span class="highlight">margin/padding</span> helper classes, to align with the <span class="highlight">start</span> and <span class="highlight">end</span> keywords.
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed <span class="highlight">margin/padding</span> helper classes, to align with the <span class="highlight">start</span> and <span class="highlight">end</span> keywords.
                         <ul class="mt-2">
                           <li><code>.ml-[size]</code> became <code>.ms-[size]</code></li>
                           <li><code>.mr-[size]</code> became <code>.me-[size]</code></li>
@@ -1848,7 +1846,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postsubnavigations_invertedclass">
-                        Dropped usage of <code>.inverted</code> class.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.subnavigation-inverted</code> class.
                       </label>
                     </div>
                   </li>
@@ -1887,7 +1885,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postformswitches_classes">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular">⚙️</span> Refactored <span class="highlight">switch</span> classes.<br>
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Refactored <span class="highlight">switch</span> classes.<br>
                         <ul class="mt-2">
                           <li><code>div.switch</code> became <code>.form-check.form-switch</code></li>
                           <li><code>input.switch</code> became <code>.form-check-input</code></li>
@@ -2017,7 +2015,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="posttopicteasers_imagecontainergridclasses">
-                        Dropped usage of <code>.col-10.col-rg-8.col-lg-4</code> on <code>.topic-teaser-image-container</code> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.col-10.col-rg-8.col-lg-4</code> on <code>.topic-teaser-image-container</code> elements.
                       </label>
                     </div>
                   </li>
@@ -2035,7 +2033,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="posttopicteasers_contentcontainergridclasses">
-                        Dropped usage of <code>.col-12.col-lg-8</code> on <code>.topic-teaser-content</code> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.col-12.col-lg-8</code> on <code>.topic-teaser-content</code> elements.
                       </label>
                     </div>
                   </li>
@@ -2052,7 +2050,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="posttopicteasers_linklistfontcurve">
-                        Dropped usage of <code>.font-curve-regular</code> on <code>ul.link-list</code> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.font-curve-regular</code> on <code>ul.link-list</code> elements.
                       </label>
                     </div>
                   </li>

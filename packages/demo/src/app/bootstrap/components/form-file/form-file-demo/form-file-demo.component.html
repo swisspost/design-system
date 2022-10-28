@@ -3,11 +3,29 @@
   <label for="formFileLg" class="form-label">Large file input example</label>
 </div>
 
-<label for="formFile" class="form-label">Default file input example</label>
-<input class="form-control" type="file" id="formFile" />
+<div class="mt-4">
+  <label for="formFile" class="form-label">Default file input example</label>
+  <input class="form-control" type="file" id="formFile" />
+</div>
 
-<label for="formFileMultiple" class="form-label">Multiple files input example</label>
-<input class="form-control" type="file" id="formFileMultiple" multiple />
+<div class="mt-4">
+  <label for="formFileMultiple" class="form-label">Multiple files input example</label>
+  <input class="form-control" type="file" id="formFileMultiple" multiple />
+</div>
 
-<label for="formFileSm" class="form-label">Small file input example</label>
-<input class="form-control form-control-sm" id="formFileSm" type="file" />
+<div class="mt-4">
+  <label for="formFileSm" class="form-label">Small file input example</label>
+  <input class="form-control form-control-sm" id="formFileSm" type="file" />
+</div>
+
+<div class="form-floating mt-4">
+  <input id="FormFileInvalid" type="file" class="form-control is-invalid" required />
+  <label class="form-label" for="FormFileInvalid">Invalid File</label>
+  <p class="invalid-feedback">Error message</p>
+</div>
+
+<div class="form-floating mt-4">
+  <input id="FormFileValid" type="file" class="form-control is-valid" />
+  <label class="form-label" for="FormFileValid">Valid File</label>
+  <p class="valid-feedback">Success message (optional)</p>
+</div>
