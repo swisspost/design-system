@@ -33,7 +33,7 @@
     "stencil:generate": "stencil generate",
     "storybook:start": "start-storybook -p 9203",
     "storybook:start:headless": "start-storybook -p 9303 -s www --no-open",
-    "storybook:build": "build-storybook",
+    "storybook:build": "build-storybook --quiet",
     "storybook:test": "start-server-and-test storybook:start:headless 9303 'cypress run --record false'",
     "cypress:open": "cypress open"
   },
