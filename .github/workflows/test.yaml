@@ -18,18 +18,23 @@ jobs:
           fetch-depth: 0
 
       - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: swisspost/design-system/.github/actions/setup-pnpm@fix-cypress-binary-install-cache
 
-      - name: Setup Cypress Binary Cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
-          restore-keys: ${{ runner.os }}-cypress-
+
 
       # Install dependencies for all packages changed since main, as well as their dependants and dependencies
       - name: Install dependencies
-        run: pnpm --filter "...[origin/main]..." install
+        run: pnpm --filter "...[origin/main]..." install --force
+
+      # print Cypress and OS info
+      - run: |
+        npx cypress verify
+        npx cypress info
+        npx cypress version
+        npx cypress version --component package
+        npx cypress version --component binary
+        npx cypress version --component electron
+        npx cypress version --component node
 
       # Build dependencies to prepare for tests
       - name: Build dependencies
