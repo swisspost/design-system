@@ -28,13 +28,13 @@ jobs:
 
       # print Cypress and OS info
       - run: |
-        npx cypress verify
-        npx cypress info
-        npx cypress version
-        npx cypress version --component package
-        npx cypress version --component binary
-        npx cypress version --component electron
-        npx cypress version --component node
+          npx cypress verify
+          npx cypress info
+          npx cypress version
+          npx cypress version --component package
+          npx cypress version --component binary
+          npx cypress version --component electron
+          npx cypress version --component node
 
       # Build dependencies to prepare for tests
       - name: Build dependencies
