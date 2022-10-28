@@ -13,7 +13,13 @@
 
 name: Build demo app
 on:
-  pull_request
+  pull_request:
+    paths:
+      - 'packages/components-angular/**'
+      - 'packages/demo/**'
+      - 'packages/styles/src/**'
+      - 'packages/styles/*'
+      - '!packages/styles/jest.*'
 
 jobs:
   build:
