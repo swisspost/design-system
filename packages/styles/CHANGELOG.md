@@ -1,5 +1,27 @@
 # @swisspost/design-system-styles
 
+## 5.0.0-beta.3
+
+### Minor Changes
+
+- [#628](https://github.com/swisspost/design-system/pull/628) [`3291c55`](https://github.com/swisspost/design-system/commit/3291c550a579a85c502a4545869f45d10a7e5874) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Adds migrations for ng-button. This will replace `btn-primary` with `btn btn-secondary` on ng-button label elements.
+
+- [#642](https://github.com/swisspost/design-system/pull/642) [`72a5659`](https://github.com/swisspost/design-system/commit/72a56598d4e6d7d35647424247c28ec68953d3ee) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Adds migration for close-button. This will remove `btn` and `btn-icon` from close-button elements.
+
+- [#611](https://github.com/swisspost/design-system/pull/611) [`c6525ef`](https://github.com/swisspost/design-system/commit/c6525ef254a8ac1457a4af2e31efac68fb07eba3) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Adds Angular migration Schematics to the @swisspost/design-system-styles package. These migrations will be automatically triggered when using `ng update @swisspost/design-system-styles` in your Angular project. For more information, have a look at the [migration guide](https://design-system.post.ch/).
+
+- [#484](https://github.com/swisspost/design-system/pull/484) [`003cf86`](https://github.com/swisspost/design-system/commit/003cf86513cde0e88e0c3a1fda05025db9a2ad93) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Adds storybook snapshots with the power of percy and cypress.
+
+- [#640](https://github.com/swisspost/design-system/pull/640) [`48b4ba7`](https://github.com/swisspost/design-system/commit/48b4ba7b574c4ed92c2a84e7fc1d5a219427f09a) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Add migration for post-subnavigation. This will remove the `subnavigation-inverted` class from the main element.
+
+- [#643](https://github.com/swisspost/design-system/pull/643) [`2f37742`](https://github.com/swisspost/design-system/commit/2f37742f4026de9c9e66ece95409bdc9d3dbd66a) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Adds migration for topic-teaser. This will remove grid- and font-curve-classes.
+
+- [#626](https://github.com/swisspost/design-system/pull/626) [`8b6a08b`](https://github.com/swisspost/design-system/commit/8b6a08bd5fbbfa6e29738cf7bcf3ed28ed99b656) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Adds migration for secondary-classes, this will remove `bg-secondary`, `border-secondary` and `text-secondary`.
+
+### Patch Changes
+
+- [#646](https://github.com/swisspost/design-system/pull/646) [`44da6be`](https://github.com/swisspost/design-system/commit/44da6beebaf3e4a3bdbdec9ab90ef377f6a0ae67) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Adds padding for inner nested badges.
+
 ## 5.0.0-beta.2
 
 ### Minor Changes
