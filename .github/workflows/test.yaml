@@ -20,16 +20,19 @@ jobs:
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      - name: Setup Cypress Binary Cache
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
-          restore-keys: ${{ runner.os }}-cypress-
-
       # Install dependencies for all packages changed since main, as well as their dependants and dependencies
       - name: Install dependencies
         run: pnpm --filter "...[origin/main]..." install
+
+      - name: Check cypress installation
+        uses: andstor/file-existence-action@v2
+        id: cypress_installed
+        with:
+          files: 'node_modules/cypress/package.json'
+
+      - name: Install Cypress Binary
+        if: ${{ steps.cypress_installed.outputs.files_exists == 'true' }}
+        run: pnpm --prefix node_modules/cypress postinstall
 
       # Build dependencies to prepare for tests
       - name: Build dependencies
