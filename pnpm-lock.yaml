@@ -150,11 +150,84 @@ importers:
 
   packages/components-angular/projects/intranet-header:
     specifiers:
+      '@angular-devkit/build-angular': 14.2.6
+      '@angular-eslint/builder': 14.1.2
+      '@angular-eslint/eslint-plugin': 14.1.2
+      '@angular-eslint/eslint-plugin-template': 14.1.2
+      '@angular-eslint/schematics': 14.1.2
+      '@angular-eslint/template-parser': 14.1.2
+      '@angular/animations': 14.2.7
+      '@angular/cli': 14.2.6
+      '@angular/common': 14.2.7
+      '@angular/compiler': 14.2.7
+      '@angular/compiler-cli': 14.2.7
+      '@angular/core': 14.2.7
+      '@angular/forms': 14.2.7
+      '@angular/localize': 14.2.7
+      '@angular/platform-browser': 14.2.7
+      '@angular/platform-browser-dynamic': 14.2.7
+      '@angular/router': 14.2.7
+      '@ng-bootstrap/ng-bootstrap': 12.1.2
+      '@popperjs/core': 2.11.6
       '@swisspost/design-system-styles': workspace:5.0.0-beta.3
+      '@types/jasmine': 4.3.0
+      '@types/node': 16.18.0
+      '@typescript-eslint/eslint-plugin': 5.40.1
+      '@typescript-eslint/parser': 5.40.1
+      eslint: 8.26.0
+      jasmine-core: 4.4.0
+      karma: 6.4.1
+      karma-chrome-launcher: 3.1.1
+      karma-coverage: 2.2.0
+      karma-jasmine: 5.1.0
+      karma-jasmine-html-reporter: 2.0.0
+      ng-packagr: 14.2.1
+      rimraf: 3.0.2
+      rxjs: 7.5.7
       tslib: 2.4.0
+      typescript: 4.8.4
+      watch: 1.0.2
+      zone.js: 0.11.8
     dependencies:
       '@swisspost/design-system-styles': link:../../../styles/dist
       tslib: 2.4.0
+    devDependencies:
+      '@angular-devkit/build-angular': 14.2.6_djifaiikqx5khnpwnubi7arddi
+      '@angular-eslint/builder': 14.1.2_wyqvi574yv7oiwfeinomdzmc3m
+      '@angular-eslint/eslint-plugin': 14.1.2_wyqvi574yv7oiwfeinomdzmc3m
+      '@angular-eslint/eslint-plugin-template': 14.1.2_wyqvi574yv7oiwfeinomdzmc3m
+      '@angular-eslint/schematics': 14.1.2_vxtzovtecmdj7n6kxdodvgtwd4
+      '@angular-eslint/template-parser': 14.1.2_wyqvi574yv7oiwfeinomdzmc3m
+      '@angular/animations': 14.2.7_@angular+core@14.2.7
+      '@angular/cli': 14.2.6
+      '@angular/common': 14.2.7_mhxwww7bfpzvikl64i6lpyc2ua
+      '@angular/compiler': 14.2.7_@angular+core@14.2.7
+      '@angular/compiler-cli': 14.2.7_2drcwksc5ljle4ujljyylhgl6q
+      '@angular/core': 14.2.7_rxjs@7.5.7+zone.js@0.11.8
+      '@angular/forms': 14.2.7_ly4fm4bdvhbah77mnplcqiulwi
+      '@angular/localize': 14.2.7_zducr4yjmnzgbutnyeml6uurqa
+      '@angular/platform-browser': 14.2.7_kbr7ogish5x5hzkphqt6t2txom
+      '@angular/platform-browser-dynamic': 14.2.7_q4va4uwl4uyjrhqsdbamttsfvi
+      '@angular/router': 14.2.7_ly4fm4bdvhbah77mnplcqiulwi
+      '@ng-bootstrap/ng-bootstrap': 12.1.2_aqaw7znie6wn6r2ficnwubob4q
+      '@popperjs/core': 2.11.6
+      '@types/jasmine': 4.3.0
+      '@types/node': 16.18.0
+      '@typescript-eslint/eslint-plugin': 5.40.1_c4zyna56jjjrggqkyejnaxjxfu
+      '@typescript-eslint/parser': 5.40.1_wyqvi574yv7oiwfeinomdzmc3m
+      eslint: 8.26.0
+      jasmine-core: 4.4.0
+      karma: 6.4.1
+      karma-chrome-launcher: 3.1.1
+      karma-coverage: 2.2.0
+      karma-jasmine: 5.1.0_karma@6.4.1
+      karma-jasmine-html-reporter: 2.0.0_vs5hqzgtonauktvvvebdlxyp2y
+      ng-packagr: 14.2.1_rthwluqjgg7cn7knxsgc4hbz3e
+      rimraf: 3.0.2
+      rxjs: 7.5.7
+      typescript: 4.8.4
+      watch: 1.0.2
+      zone.js: 0.11.8
     publishDirectory: ../../dist/intranet-header
 
   packages/demo:
@@ -806,7 +879,6 @@ packages:
     dependencies:
       '@angular/core': 14.2.7_rxjs@7.5.7+zone.js@0.11.8
       tslib: 2.4.0
-    dev: false
 
   /@angular/cli/14.2.6:
     resolution: {integrity: sha512-8tXpe3htfZY8a+Am4nluVcztMFD5wnx4edGEDkkOiqkrUzbCtX4AyEBjUFldsYKZXbRFU46xEfM6jBnLOjxDZQ==}
@@ -849,7 +921,6 @@ packages:
       '@angular/core': 14.2.7_rxjs@7.5.7+zone.js@0.11.8
       rxjs: 7.5.7
       tslib: 2.4.0
-    dev: false
 
   /@angular/compiler-cli/14.2.7_2drcwksc5ljle4ujljyylhgl6q:
     resolution: {integrity: sha512-q6AQo91jc+Pd1PnWWxJq07IXr1yipq0MW3Uok5akEctbTsw4AT5y9wfPj6g/o/CkAz0kbL55QrmtyIWN5LMGdg==}
@@ -923,7 +994,6 @@ packages:
       '@angular/platform-browser': 14.2.7_kbr7ogish5x5hzkphqt6t2txom
       rxjs: 7.5.7
       tslib: 2.4.0
-    dev: false
 
   /@angular/language-service/14.2.7:
     resolution: {integrity: sha512-SId0EhyzQVmaLbF90ZlQRoriHRqUr/zIhYBug3w7qcp0XHpDYzHPO+ijDBuL57bs92Dw/TlF60V4s4nZUnuNnA==}
@@ -960,7 +1030,6 @@ packages:
       '@angular/core': 14.2.7_rxjs@7.5.7+zone.js@0.11.8
       '@angular/platform-browser': 14.2.7_kbr7ogish5x5hzkphqt6t2txom
       tslib: 2.4.0
-    dev: false
 
   /@angular/platform-browser/14.2.7_kbr7ogish5x5hzkphqt6t2txom:
     resolution: {integrity: sha512-Hcn64kppozH5WlX/rkZoCGZyFFkLs0a4+rWen6uaZVxDWbas/PqR/a2LQerdS0Rn65/x+0l0w23u8TN0PnQPVA==}
@@ -977,7 +1046,6 @@ packages:
       '@angular/common': 14.2.7_mhxwww7bfpzvikl64i6lpyc2ua
       '@angular/core': 14.2.7_rxjs@7.5.7+zone.js@0.11.8
       tslib: 2.4.0
-    dev: false
 
   /@angular/router/14.2.7_ly4fm4bdvhbah77mnplcqiulwi:
     resolution: {integrity: sha512-ZWdXXv0sCXVxWdHmCPDAy/TFT5v9JMlPp18Mmi9J8X3KeL/h6YVTWeJ0YMAOchv8D8UL02HiijnVyUp8rv5Qvw==}
@@ -993,7 +1061,6 @@ packages:
       '@angular/platform-browser': 14.2.7_kbr7ogish5x5hzkphqt6t2txom
       rxjs: 7.5.7
       tslib: 2.4.0
-    dev: false
 
   /@assemblyscript/loader/0.10.1:
     resolution: {integrity: sha512-H71nDOOL8Y7kWRLqf6Sums+01Q5msqBW2KhDUTemh1tvY04eSkSXrK0uj/4mmY0Xr16/3zyZmsrxN7CKuRbNRg==}
@@ -4700,7 +4767,7 @@ packages:
     dev: true
 
   /@ng-bootstrap/ng-bootstrap/12.1.2_aqaw7znie6wn6r2ficnwubob4q:
-    resolution: {integrity: sha1-GfITEyNP4hCQulCnchBG7V2ZKOE=}
+    resolution: {integrity: sha512-p27c+mYVdHiJMYrj5hwClVJxLdiZxafAqlbw1sdJh2xJ1rGOe+H/kCf5YDRbhlHqRN+34Gr0RQqIUeD1I2V8hg==}
     peerDependencies:
       '@angular/common': ^13.0.0
       '@angular/core': ^13.0.0
@@ -4716,7 +4783,6 @@ packages:
       '@popperjs/core': 2.11.6
       rxjs: 7.5.7
       tslib: 2.4.0
-    dev: false
 
   /@ngtools/webpack/14.2.6_z34ypwcp5iqzf5bbvvgqj3cage:
     resolution: {integrity: sha512-HdfoHLGPzyP135BOlvTQcpeWisVfiH0u40YNTBVK3QAsrLnY17e2QG5BWBOrVYipRu1975cZtTC9rPjcCY8aLQ==}
@@ -4732,7 +4798,7 @@ packages:
     dev: true
 
   /@nodelib/fs.scandir/2.1.5:
-    resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
+    resolution: {integrity: sha1-dhnC6yGyVIP20WdUi0z9WnSIw9U=}
     engines: {node: '>= 8'}
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -10285,7 +10351,7 @@ packages:
     dev: true
 
   /batch/0.6.1:
-    resolution: {integrity: sha512-x+VAiMRL6UPkx+kudNvxTl6hB2XNNCG2r+7wixVfIYwu/2HKRXimwQyaumLjMveWvT2Hkd/cAJw+QBMfJ/EKVw==}
+    resolution: {integrity: sha1-3DQxT05nkxgJP8dgJyUl+UvyXBY=}
     dev: true
 
   /bcrypt-pbkdf/1.0.2:
@@ -10616,12 +10682,12 @@ packages:
     dev: true
 
   /bytes/3.0.0:
-    resolution: {integrity: sha512-pMhOfFDPiv9t5jjIXkHosWmkSyQbvsgEVNkz0ERHbuLh2T/7j4Mqqpz523Fe8MVY89KC6Sh/QfS2sM+SjgFDcw==}
+    resolution: {integrity: sha1-0ygVQE1olpn4Wk6k+odV3ROpYEg=}
     engines: {node: '>= 0.8'}
     dev: true
 
   /bytes/3.1.2:
-    resolution: {integrity: sha512-/Nf7TyzTx6S3yRJObOAV7956r8cr2+Oj8AC5dt8wSP3BQAoeX58NoHyCU8P8zGkNXStjTSi6fzO6F0pBdcYbEg==}
+    resolution: {integrity: sha1-iwvuuYYFrfGxKPpDhkA8AJ4CIaU=}
     engines: {node: '>= 0.8'}
     dev: true
 
@@ -12940,7 +13006,6 @@ packages:
     resolution: {integrity: sha512-FIUCJz1RbuS0FKTdaAafAByGS0CPvU3R0MeHxgtl+djzCc//F8HakL8GzmVNZanasTbTAY/3DRFA0KpVqj/eAw==}
     dependencies:
       merge: 1.2.1
-    dev: false
 
   /exec-sh/0.3.6:
     resolution: {integrity: sha512-nQn+hI3yp+oD0huYhKwvYI32+JFeq+XkNcD1GAo3Y/MjxsfVGmrrzrnzjWiNY6f+pUCP440fThsFh5gZrRAU/w==}
@@ -13296,7 +13361,7 @@ packages:
     dev: true
 
   /file-uri-to-path/1.0.0:
-    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=}
     requiresBuild: true
     dev: true
     optional: true
@@ -13318,7 +13383,7 @@ packages:
       to-regex-range: 5.0.1
 
   /finalhandler/1.1.2:
-    resolution: {integrity: sha512-aAWcW57uxVNrQZqFXjITpW3sIUQmHGG3qSb9mUah9MgMC4NeWhNOlNjXEYq3HjRAvL6arUviZGGJsBg6z0zsWA==}
+    resolution: {integrity: sha1-t+fQAP/RGTjQ/bBTUG9uur6fWH0=}
     engines: {node: '>= 0.8'}
     dependencies:
       debug: 2.6.9
@@ -16714,7 +16779,7 @@ packages:
     dev: true
 
   /karma-chrome-launcher/3.1.1:
-    resolution: {integrity: sha1-usqcwHGxViodskGCcle/5cq1l+o=}
+    resolution: {integrity: sha512-hsIglcq1vtboGPAN+DGCISCFOxW+ZVnIqhDQcCMqqCp+4dmJ0Qpq5QAjkbA0X2L9Mi6OBkHi2Srrbmm7pUKkzQ==}
     dependencies:
       which: 1.3.1
     dev: true
@@ -16732,7 +16797,7 @@ packages:
     dev: true
 
   /karma-coverage/2.2.0:
-    resolution: {integrity: sha1-ZPg4tmtxMngC5/b2w51Wm3Ak5Aw=}
+    resolution: {integrity: sha512-gPVdoZBNDZ08UCzdMHHhEImKrw1+PAOQOIiffv1YsvxFhBjqvo/SVXNk4tqn1SYqX0BJZT6S/59zgxiBe+9OuA==}
     engines: {node: '>=10.0.0'}
     dependencies:
       istanbul-lib-coverage: 3.2.0
@@ -16746,7 +16811,7 @@ packages:
     dev: true
 
   /karma-jasmine-html-reporter/2.0.0_vs5hqzgtonauktvvvebdlxyp2y:
-    resolution: {integrity: sha1-dsJs5A4hfcNqYw+817McNGKUi/I=}
+    resolution: {integrity: sha512-SB8HNNiazAHXM1vGEzf8/tSyEhkfxuDdhYdPBX2Mwgzt0OuF2gicApQ+uvXLID/gXyJQgvrM9+1/2SxZFUUDIA==}
     peerDependencies:
       jasmine-core: ^4.0.0
       karma: ^6.0.0
@@ -17476,7 +17541,6 @@ packages:
 
   /merge/1.2.1:
     resolution: {integrity: sha512-VjFo4P5Whtj4vsLzsYBu5ayHhoHJ0UqNm7ibvShmbmoz7tGi0vXaoJbGdB+GmDMLUdg8DpQXEIeVDAe8MaABvQ==}
-    dev: false
 
   /merge2/1.4.1:
     resolution: {integrity: sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==}
@@ -17849,7 +17913,7 @@ packages:
       '@rollup/plugin-node-resolve': 13.3.0_rollup@2.75.6
       ajv: 8.11.0
       ansi-colors: 4.1.3
-      browserslist: 4.21.3
+      browserslist: 4.21.4
       cacache: 16.1.2
       chokidar: 3.5.3
       commander: 9.4.0
@@ -20751,7 +20815,7 @@ packages:
     dev: true
 
   /resolve-url-loader/5.0.0:
-    resolution: {integrity: sha512-uZtduh8/8srhBoMx//5bwqjQ+rfYOUq8zC9NrMUGtjBiGTtFJM42s58/36+hTqeqINcnYe08Nj3LkK9lW4N8Xg==}
+    resolution: {integrity: sha1-7jFC+x8eDZ25Uk1TnPoWbpMU95U=}
     engines: {node: '>=12'}
     dependencies:
       adjust-sourcemap-loader: 4.0.0
@@ -21227,7 +21291,7 @@ packages:
     dev: true
 
   /setprototypeof/1.1.0:
-    resolution: {integrity: sha512-BvE/TwpZX4FXExxOxZyRGQQv651MSwmWKZGqvmPcRIjDqWub67kTKuIMx43cZZrS/cBBzwBcNDWoFxt2XEFIpQ==}
+    resolution: {integrity: sha1-0L2FU2iHtv58DYGMuWLZ2RxU5lY=}
     dev: true
 
   /setprototypeof/1.2.0:
@@ -22135,7 +22199,7 @@ packages:
     dev: true
 
   /symbol-observable/4.0.0:
-    resolution: {integrity: sha512-b19dMThMV4HVFynSAM1++gBHAbk2Tc/osgLIBZMKsyqh34jb2e8Os7T6ZW/Bt3pJFdBTd2JwAnAAEQV7rSNvcQ==}
+    resolution: {integrity: sha1-W0JfGSJ56H8vm5N6yFQNGYSzkgU=}
     engines: {node: '>=0.10'}
     dev: true
 
@@ -23233,13 +23297,12 @@ packages:
     dev: true
 
   /watch/1.0.2:
-    resolution: {integrity: sha1-NApxe952Vyb6CqB9ch4BR6VR3ww=}
+    resolution: {integrity: sha512-1u+Z5n9Jc1E2c7qDO8SinPoZuHj7FgbgU1olSFoyaklduDvvtX7GMMtlE6OC9FTXq4KvNAOfj6Zu4vI1e9bAKA==}
     engines: {node: '>=0.1.95'}
     hasBin: true
     dependencies:
       exec-sh: 0.2.2
       minimist: 1.2.6
-    dev: false
 
   /watchpack-chokidar2/2.0.1:
     resolution: {integrity: sha512-nCFfBIPKr5Sh61s4LPpy1Wtfi0HE8isJ3d2Yb5/Ppw2P2B/3eVSEBjKfN0fmHJSK14+31KwMKmcrzs2GM4P0Ww==}
