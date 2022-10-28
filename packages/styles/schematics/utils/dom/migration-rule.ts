@@ -26,24 +26,24 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
 
       for (const template of templateVisitor.resolvedTemplates) {
         const treeFilePath = relative(normalize(basePath), normalize(template.filePath));
-        const sourceCode = tree.read(treeFilePath)?.toString();
+        let sourceCode = tree.read(treeFilePath)?.toString() ?? '';
 
         if (!sourceCode) continue;
-
-        const $ = cheerio.load(sourceCode, {
-          xmlMode: true,
-          lowerCaseTags: false,
-          lowerCaseAttributeNames: false,
-          recognizeSelfClosing: true,
-          withStartIndices: true,
-          withEndIndices: true
-        }, false);
-
+        
         for (const { selector, update } of migration.updates) {
-          const $elements = $(selector);
+          const $ = cheerio.load(sourceCode, {
+            xmlMode: true,
+            lowerCaseTags: false,
+            lowerCaseAttributeNames: false,
+            recognizeSelfClosing: true,
+            withStartIndices: true,
+            withEndIndices: true
+          }, false);
 
-          if ($elements.length <= 0) continue;
+          const $elements = $(selector);
           
+          if ($elements.length <= 0) continue;
+
           const treeUpdateRecorder = tree.beginUpdate(treeFilePath);
 
           Array.from($elements)
@@ -58,6 +58,7 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
             });
           
           tree.commitUpdate(treeUpdateRecorder);
+          sourceCode = tree.read(treeFilePath)?.toString() ?? '';
         }
       }
     }
