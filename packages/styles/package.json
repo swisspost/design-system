@@ -57,7 +57,7 @@
     "@storybook/manager-webpack4": "6.5.13",
     "@storybook/preset-scss": "1.0.3",
     "@storybook/testing-library": "0.0.13",
-    "@types/node": "16.18.0",
+    "@types/node": "18.11.8",
     "autoprefixer": "10.4.12",
     "babel-loader": "8.2.5",
     "copyfiles": "2.4.1",
