@@ -31,4 +31,4 @@ Stencil combines the best concepts of the most popular frontend frameworks into 
 
 Stencil components are just Web Components, so they work in any major framework or with no framework at all.
 
-Need help? Check out our docs [here](https://stenciljs.com/docs/my-first-component).
+Need help? Check out the docs [here](https://stenciljs.com/docs/my-first-component).
