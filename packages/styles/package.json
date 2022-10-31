@@ -33,8 +33,7 @@
     "storybook:build": "build-storybook",
     "storybook:test": "start-server-and-test storybook:start:headless 9301 'percy exec -- cypress run --record false'",
     "schematics:start": "copyfiles schematics/migrations.json dist && tsc -p tsconfig.schematics.json --watch",
-    "schematics:build": "copyfiles schematics/migrations.json dist && tsc -p tsconfig.schematics.json",
-    "postinstall": "pnpm --prefix node_modules/cypress postinstall"
+    "schematics:build": "copyfiles schematics/migrations.json dist && tsc -p tsconfig.schematics.json"
   },
   "dependencies": {
     "@popperjs/core": "2.11.6",
