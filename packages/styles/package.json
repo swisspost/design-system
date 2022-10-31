@@ -62,7 +62,7 @@
     "babel-loader": "8.2.5",
     "copyfiles": "2.4.1",
     "css-loader": "5.2.7",
-    "cypress": "10.10.0",
+    "cypress": "10.11.0",
     "glob": "8.0.3",
     "gulp": "4.0.2",
     "gulp-postcss": "9.0.1",
