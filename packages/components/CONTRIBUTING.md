@@ -12,7 +12,7 @@ pnpm components:start
 To build the component for production, run:
 
 ```bash
-pnpm --filter design-system-components run build
+pnpm --filter design-system-components build
 ```
 
 To run the unit tests for the components, run:

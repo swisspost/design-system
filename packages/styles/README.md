@@ -31,7 +31,7 @@ Install the styling package
 Import the stylesheet into your project, e.g. `src/styles.scss`.
 
 ```scss
-@use "node_modules/@swisspost/design-system-styles/<bundle-name>.scss
+@use "@swisspost/design-system-styles/<bundle-name>.scss";
 ```
 
 Available Sass entrypoints:
@@ -47,7 +47,7 @@ Available CSS bundles:
 - **intranet.css** (internal applications)
 - **basics.css** (atomic styles for font, buttons, lists etc.)
 
-## Migration giude
+## Migration guide
 
 To execute the migrations please follow our [migration guide](https://design-system.post.ch/).
 
