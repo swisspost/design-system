@@ -1,11 +1,10 @@
 {
-  "mode": "pre",
+  "mode": "exit",
   "tag": "beta",
   "initialVersions": {
     "@swisspost/design-system-components-angular": "1.0.0-alpha.1",
     "@swisspost/design-system-intranet-header": "3.0.0-alpha.4",
     "@swisspost/design-system-demo": "5.0.0-alpha.5",
-    "@swisspost/design-system-migrations": "1.0.0-alpha.3",
     "@swisspost/design-system-styles": "5.0.0-alpha.7",
     "@swisspost/design-system-components": "1.0.0-alpha.0",
     "@swisspost/design-system-documentation": "1.0.0-alpha.0"
