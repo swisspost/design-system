@@ -35,40 +35,83 @@
   <div class="container">
     <h3 class="bold mb-4">Migration from v4 to v5</h3>
 
-    <p class="alert alert-warning">
-      If you like to upgrade from a Design System version lower than 4.0.0, you need to perform the
-      migration step by step.
-    </p>
-
-    <p class="lead">What kind of application are you migrating?</p>
-
-    <div class="form-check form-switch">
-      <input
-        id="is-migrating-intranet"
-        type="checkbox"
-        class="form-check-input"
-        [(ngModel)]="isMigratingIntranet"
-        (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
-        role="switch"
-      />
-      <label for="is-migrating-intranet" class="form-check-label">Intranet application</label>
-    </div>
-    <div class="form-check form-switch">
-      <input
-        id="is-migrating-angular"
-        type="checkbox"
-        class="form-check-input"
-        [(ngModel)]="isMigratingAngular"
-        (ngModelChange)="setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)"
-        role="switch"
-      />
-      <label for="is-migrating-angular" class="form-check-label">Angular application</label>
+    <div class="migration-options">
+      <div class="row">
+        <div class="col-md-6">
+          <fieldset>
+            <legend class="font-curve-small bold">What environment is your application for?</legend>
+            <div class="form-check">
+              <input
+                id="migration-intranet"
+                type="radio"
+                class="form-check-input"
+                name="migration-audience"
+                [value]="true"
+                [(ngModel)]="isMigratingIntranet"
+                (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
+              />
+              <label for="migration-intranet" class="form-check-label">Intranet application</label>
+            </div>
+            <div class="form-check mb-0">
+              <input
+                id="migration-extranet"
+                type="radio"
+                class="form-check-input"
+                name="migration-audience"
+                [value]="false"
+                [(ngModel)]="isMigratingIntranet"
+                (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
+              />
+              <label for="migration-extranet" class="form-check-label">
+                Extranet/Internet application
+              </label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="col-md-6">
+          <fieldset>
+            <legend class="font-curve-small bold">
+              What technology is your application built with?
+            </legend>
+            <div class="form-check">
+              <input
+                id="migration-angular"
+                type="radio"
+                class="form-check-input"
+                name="migration-technology"
+                [value]="true"
+                [(ngModel)]="isMigratingAngular"
+                (ngModelChange)="setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)"
+              />
+              <label for="migration-angular" class="form-check-label">Angular application</label>
+            </div>
+            <div class="form-check mb-0">
+              <input
+                id="migration-other-technology"
+                type="radio"
+                class="form-check-input"
+                name="migration-technology"
+                [value]="false"
+                [(ngModel)]="isMigratingAngular"
+                (ngModelChange)="setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)"
+              />
+              <label for="migration-other-technology" class="form-check-label">
+                Non-Angular application
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
     </div>
 
     <ol class="bubble-tea">
       <li>
         <h4 class="h5 bold">Clean start 🧹</h4>
-        <p>Create a branch and commit all changes to have a clean, reversible starting point.</p>
+        <p>
+          Create a branch and commit all changes to have a clean, reversible starting point. If you
+          like to upgrade from a Design System version lower than 4.0.0, it might be necessary to
+          upgrade to v4 first.
+        </p>
       </li>
       <li>
         <!-- prettier-ignore -->
