@@ -20,12 +20,23 @@ To set up the repository and install dependencies for all packages, run (at the 
 # If you haven't already
 npm install -g pnpm
 
-# Install dependencies, build local dependencies and finally link them correctly with lerna (this step wouldn't be necessary if https://github.com/pnpm/pnpm/issues/3901 was fixed)
+# Install dependencies, build local dependencies and finally link them correctly
 pnpm run bootstrap
 
 # Start the design-system-demo
 pnpm start
 ```
+
+Other root scripts are available for convenience:
+| Command | Description |
+| --- | --- |
+| `pnpm demo:start` | starts the demo Angular application |
+| `pnpm styles:start` | starts the styles storybook and the sass compiler |
+| `pnpm components:start` | starts the components storybook and stencil compiler |
+| `pnpm intranet-header:start` | starts the intranet header demo application |
+| `pnpm docs:start` | starts the main storybook |
+
+When adding new packages, a new root command can be added. The idea is to have an easy starting point and the command should start all services necessary for local development.
 
 ## Accessibility
 
@@ -49,7 +60,7 @@ We are happy to receive your input. You can submit your issues to our [GitHub re
 
 When you're planning to work on bigger changes, please reach out to someone from the core team to plan your change.
 
-## Script name conventions
+## Script naming conventions
 
 Whenever we add new scripts to the package.json file, we follow the instructions below.
 
@@ -61,32 +72,32 @@ Whenever we add new scripts to the package.json file, we follow the instructions
 - A non default script name for a specific tool is prefixed with the tool name (e.g. `storybook:serve`, `storybook:bulid`, etc.).
 - A non default script name can contain more than one colon (e.g. `lint:fix:dry`, `stencil:test:watch`, etc.).
 
-
 ## Dev Server Ports
+
 For some packages it's necessary to run multiple dev servers at the same time. To prevent port conflicts, the following ranges are given to each package. The ranges 9000 - 9400 are chosen for compatibility with [port ranges used by Browserstack](https://www.browserstack.com/question/39572).
 
 ### Default DevServer: 9000-9099
-   | Package | Port |
-   | :- | -: |
-   | Demo | 9000 |
-   | IntranetHeader | 9001 |
+
+| Package        | Port |
+| :------------- | ---: |
+| Demo           | 9000 |
+| IntranetHeader | 9001 |
 
 ### Storybook DevServers: 9200-9299
 
-   | Package | Port |
-   | :- | -: |
-   | Documentation | 9200 |
-   | Styles | 9201 |
-   | Components | 9203 |
+| Package       | Port |
+| :------------ | ---: |
+| Documentation | 9200 |
+| Styles        | 9201 |
+| Components    | 9203 |
 
 ### Storybook TestServers: 9300-9399
 
-   | Package | Port |
-   | :- | -: |
-   | Documentation | 9300 |
-   | Styles | 9301 |
-   | Components | 9303 |
-
+| Package       | Port |
+| :------------ | ---: |
+| Documentation | 9300 |
+| Styles        | 9301 |
+| Components    | 9303 |
 
 ## Branching
 
@@ -94,7 +105,7 @@ We base our workflow on the [GitHub flow](https://docs.github.com/en/get-started
 
 - The `main` branch is the release branch. Changes on this branch should be ready for release. Releases can be shipped right after merging or can be accumulated to a set of changes if they belong together.
 - Changes are done on feature-branches based on `main` and merged back into `main`.
-- Older releases live on their `release/x` branch. Fixes for old releases are based and merged back into the release branch.
+- Older major releases live on their `release/x` branch. Fixes for old releases are based and merged back into the release branch.
 - A future major release will live on the `next` branch
 
 ## Pull requests
@@ -105,7 +116,7 @@ When submitting pull requests, make sure you checked the following points:
 - Your changes are tested on multiple viewports, at least 320px - 1920px
 - If you made significant changes to the design of a component, make sure that at least someone from the [design team](https://github.com/orgs/swisspost/teams/design) is added as a reviewer
 - Describe your changes in the pull request description as detailed as possible
-- Include a changeset if the changes in your pull request should be released and requires an entry in the changelog (run `pnpm changeset` and follow the instructions)
+- Include a changeset if the changes in your pull request should be released and require an entry in the changelog (run `pnpm changeset` and follow the instructions)
 
 ## Merging
 

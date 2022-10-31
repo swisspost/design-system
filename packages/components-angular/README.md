@@ -1,6 +1,6 @@
-![Swiss Post Design System splash screen](https://user-images.githubusercontent.com/1659006/187683368-d3aa2534-84be-4580-846e-2cad3796b573.png)
-
 # Angular Components
+
+This is the wrapper package for any Angular related components in the Design System. This package itself is not published anywhere.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.5.
 
