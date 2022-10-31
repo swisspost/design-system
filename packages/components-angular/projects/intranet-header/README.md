@@ -6,7 +6,7 @@ The Angular header component for Intranet applications.
 
 ## Documentation
 
-- Technical docs: [Swiss Post Design System](https://components.design-system.post.ch)
+- Technical docs: [Swiss Post Design System](https://design-system.post.ch/#/post-samples/intranet-layout)
 - Design docs: [Experience Hub](https://www.experience-hub.ch/document/2803)
 
 ## Usage
