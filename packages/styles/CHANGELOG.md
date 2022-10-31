@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 5.0.0-beta.4
+
+### Patch Changes
+
+- [#656](https://github.com/swisspost/design-system/pull/656) [`75d715c`](https://github.com/swisspost/design-system/commit/75d715c6673ee477e88051b40b69c367a8291b58) Thanks [@oliverschuerch](https://github.com/oliverschuerch)! - Removes the postinstall script from the package.json files, which was previously used to postinstall the Cypress binary in the CI environment. This is now handled on the CI environment itself.
+
 ## 5.0.0-beta.3
 
 ### Minor Changes

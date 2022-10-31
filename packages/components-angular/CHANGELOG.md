@@ -1,5 +1,12 @@
 # @swisspost/design-system-components-angular
 
+## 1.0.0-beta.3
+
+### Patch Changes
+
+- Updated dependencies [[`75d715c`](https://github.com/swisspost/design-system/commit/75d715c6673ee477e88051b40b69c367a8291b58)]:
+  - @swisspost/design-system-styles@5.0.0-beta.4
+
 ## 1.0.0-beta.2
 
 ### Patch Changes
