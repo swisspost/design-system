@@ -5,16 +5,22 @@ These contribution guidelines extend the [general contribution guidelines](../..
 
 ## Code scaffolding
 
+**Attention**: When running commands from the design-system root folder, you'd need to prefix your `ng` commands with 
+
+`pnpm --filter design-system-components-angular exec ng ...`
+
+Alternatively, you can `cd packages/components-angular` and run commands from this location without prefix.
+
 Run `ng generate component component-name --project intranet-header` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project intranet-header`.
 > Note: Don't forget to add `--project intranet-header` or else it will be added to the default project in your `angular.json` file. 
 
 ## Build
 
-Run `ng build intranet-header` to build the project. The build artifacts will be stored in the `dist/` directory.
+Run `ng build intranet-header` to build the project. The build artifacts will be stored in the `dist` directory of the components angular package.
 
 ## Publishing
 
-After building your library with `ng build intranet-header`, go to the dist folder `cd dist/intranet-header` and run `npm publish`.
+Use the publishing workflow as described in the [Contribution Guidelines](../../../../CONTRIBUTING.md).
 
 ## Running unit tests
 
