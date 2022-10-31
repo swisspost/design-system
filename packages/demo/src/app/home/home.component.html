@@ -949,7 +949,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttonclose_buttonclasses">
-                        Dropped the usage of <code>.btn</code> and <code>.btn-icon</code> classes.<br>
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code>.btn</code> and <code>.btn-icon</code> classes.<br>
                         <span class="info">As long as you do not want to have a button-like appearance, you should not add these classes on a <span class="highlight">close-button</span> element.</span>
                       </label>
                     </div>
@@ -1185,7 +1185,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformselectmultiples_classes">
-                      <span class="change-badge bg-danger">breaking</span> Renamed class <code>.form-control.custom-select</code> to <code>.form-select</code>.
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code>.form-control.custom-select</code> to <code>.form-select</code>.
                     </label>
                     </div>
                   </li>
@@ -1846,7 +1846,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postsubnavigations_invertedclass">
-                        Dropped usage of <code>.inverted</code> class.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.subnavigation-inverted</code> class.
                       </label>
                     </div>
                   </li>
@@ -2015,7 +2015,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="posttopicteasers_imagecontainergridclasses">
-                        Dropped usage of <code>.col-10.col-rg-8.col-lg-4</code> on <code>.topic-teaser-image-container</code> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.col-10.col-rg-8.col-lg-4</code> on <code>.topic-teaser-image-container</code> elements.
                       </label>
                     </div>
                   </li>
@@ -2033,7 +2033,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="posttopicteasers_contentcontainergridclasses">
-                        Dropped usage of <code>.col-12.col-lg-8</code> on <code>.topic-teaser-content</code> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.col-12.col-lg-8</code> on <code>.topic-teaser-content</code> elements.
                       </label>
                     </div>
                   </li>
@@ -2050,7 +2050,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="posttopicteasers_linklistfontcurve">
-                        Dropped usage of <code>.font-curve-regular</code> on <code>ul.link-list</code> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.font-curve-regular</code> on <code>ul.link-list</code> elements.
                       </label>
                     </div>
                   </li>

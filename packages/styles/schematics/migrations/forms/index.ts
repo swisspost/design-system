@@ -3,7 +3,6 @@ import { CssClassesUpdate } from "../../utils/css/css-classes-update";
 import { CssMigration } from "../../utils/css/css-migration";
 import { oneOf, optional } from "../../utils/regex";
 
-/** Entry point for the forms migration. */
 export default function (): Rule {
     return new CssMigration(
         new FormGroupClassesUpdate,
@@ -29,6 +28,7 @@ class FormTextClassesUpdate extends CssClassesUpdate {
     replaceValue = '';
 }
 
+// Applied on select, multiselect and custom-select elements
 class FormSelectClassesUpdate extends CssClassesUpdate {
     override classSelector = 'custom-select';
     searchValue = `form-control${optional(`-${oneOf(['sm', 'rg', 'md', 'lg'])}`)}`;
