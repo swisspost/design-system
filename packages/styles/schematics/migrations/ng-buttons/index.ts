@@ -13,5 +13,5 @@ class NgButtonClassUpdate extends CssClassesUpdate {
     override classSelector = 'btn-primary';
     override attributeSelector = 'ngbButtonLabel';
     searchValue = 'btn-primary';
-    replaceValue = 'btn btn-secondary';
+    replaceValue = 'btn-secondary';
 }
