@@ -6,7 +6,7 @@ Styles for the Swiss Post web platform.
 
 ## Documentation
 
-- Technical docs: [Swiss Post Design System](https://design-system.post.ch/#/post-samples/intranet-layout)
+- Technical docs: [Swiss Post Design System](https://design-system.post.ch)
 - Design docs: [Experience Hub](https://www.experience-hub.ch/document/2803)
 
 ## Installation
