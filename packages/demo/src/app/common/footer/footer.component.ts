@@ -22,11 +22,6 @@ export class FooterComponent {
       name: 'Oliver Schürch',
       title: 'UI Developer',
       avatar: 'https://avatars.githubusercontent.com/u/9716662?v=4'
-    },
-    {
-      name: 'Jan Werren',
-      title: 'ICT Software Engineer',
-      avatar: 'https://avatars.githubusercontent.com/u/16400253?v=4'
     }
   ]
 
