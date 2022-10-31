@@ -27,15 +27,15 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('~/.cache/Cypress/**/package.json') }}
           restore-keys: ${{ runner.os }}-cypress-
 
-      # Install dependencies for all packages changed since main, as well as their dependants and dependencies
+      # Install packages changed since main, as well as their dependants and dependencies
       - name: Install dependencies
         run: pnpm --filter "...[origin/main]..." install
 
-      # Build dependencies to prepare for tests
+      # Build packages changed since main, as well as their dependants and dependencies
       - name: Build dependencies
         run: pnpm --filter "...[origin/main]..." build
 
-      # Test all changed packages and their dependents
+      # Test packages changed since main, as well as their dependants
       # https://pnpm.io/filtering#--filter-since
       - name: Run tests
         env:
