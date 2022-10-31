@@ -39,9 +39,7 @@
       <div class="row">
         <div class="col-md-6">
           <fieldset>
-            <legend class="font-curve-small bold">
-              What audience is your application targeting?
-            </legend>
+            <legend class="font-curve-small bold">What environment is your application for?</legend>
             <div class="form-check">
               <input
                 id="migration-intranet"
@@ -52,7 +50,7 @@
                 [(ngModel)]="isMigratingIntranet"
                 (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
               />
-              <label for="migration-intranet" class="form-check-label">Intranet Application</label>
+              <label for="migration-intranet" class="form-check-label">Intranet application</label>
             </div>
             <div class="form-check mb-0">
               <input
@@ -65,7 +63,7 @@
                 (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
               />
               <label for="migration-extranet" class="form-check-label">
-                Extranet/Internet Application
+                Extranet/Internet application
               </label>
             </div>
           </fieldset>
