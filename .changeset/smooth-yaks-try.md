@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Adds high-contrast-mode/forced-color styles for component progressbar.
+Added high-contrast-mode styles for the progressbar component.

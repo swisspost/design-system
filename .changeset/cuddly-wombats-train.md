@@ -3,5 +3,4 @@
 '@swisspost/design-system-styles': major
 ---
 
-Adds and extends grid-cols definition for .topic-teaser-content and .topic-teaser-image-container containers inside css and removes col classes from html. This ensures that the widths of these containers cannot be changed too easily.
-Improves image aspect-ratios, as well as font-sizes and paddings of link-list links on smaller devices.
+Added and extended grid-cols definition for `.topic-teaser-content` and `.topic-teaser-image-container` containers inside css and removed col classes from html. Improved image `aspect-ratios`, as well as `font-size` and `padding` of `.link-list` elements on smaller devices.

@@ -2,4 +2,4 @@
 '@swisspost/design-system-demo': patch
 ---
 
-Adds label "deprecated" to the component.
+Added label "deprecated" to the custom-select component.

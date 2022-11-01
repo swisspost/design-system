@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Adds high-contrast-mode/forced-colors styles for all controls with class 'form-control'
+Added high-contrast-mode styles for all form components with class `form-control`.

@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fixes font-color in hcm/forced-color mode for focussed select/select-multiple elements.
+Fixed `font-color` in high-contrast-mode for focussed `.form-select` and `.form-select[multiple]` elements.

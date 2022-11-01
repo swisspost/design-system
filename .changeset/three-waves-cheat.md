@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Add Angular migration schematics that will be executed on `ng update`
+Added Angular migration schematics that can be executed with the `ng update` command.

@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Add padding for media-breakpoint-down(md)
+Add `padding` on `media-breakpoint-down(md)` in the intranet-header component.

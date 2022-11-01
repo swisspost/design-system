@@ -2,6 +2,6 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Adds hcm styles to component dropdown.
-Adds hcm styles to element datatable-button of component datatable.
-Fixes disabled buttons highlighting in hcm.
+Added high-contrast-mode styles to dropdown compoment.
+Added high-contrast-mode styles to the `.datatale-button` element in the datatable component.
+Fixed high-contrast-mode styles for disabled buttons.

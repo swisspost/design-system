@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Adds high-contrast-mode/forced-color styles for accordion-button
+Added high-contrast-mode styles for `.accordion-button` elements.

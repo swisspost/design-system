@@ -5,4 +5,4 @@
 '@swisspost/design-system-styles': major
 ---
 
-Rename Common Web Frontend to Swiss Post Design System
+Renamed Common Web Frontend to Swiss Post Design System.

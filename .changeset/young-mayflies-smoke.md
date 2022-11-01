@@ -3,5 +3,5 @@
 '@swisspost/design-system-demo': patch
 ---
 
-Fixes form-control-lg and form-floating form-control heights.
-Removed some DesignSystem only SCSS variables.
+Fixed heights on `.form-control-lg` and `.floating-label .form-control` elements.
+Removed some Design System only scss-variables.

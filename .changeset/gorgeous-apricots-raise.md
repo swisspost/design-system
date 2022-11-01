@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added a story for blockquotes
+Added a story for blockquote component.

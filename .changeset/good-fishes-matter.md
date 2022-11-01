@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Add a story for badges
+Added a story for the badge component.

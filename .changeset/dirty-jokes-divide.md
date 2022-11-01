@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fixes hcm/forced-color styles for tabs.
+Fixed high-contrast-mode styles for tabs component.

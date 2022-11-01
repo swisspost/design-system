@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': major
 ---
 
-Topic teaser images need width and height attributes set to 100% so they're properly displayed in Firefox and Safari
+Added requirement for `width` and `height` attributes on images in the topic-teaser component to be set to `100%`. To be able to display the image properly in firefox and safari. 

@@ -2,4 +2,4 @@
 '@swisspost/design-system-demo': patch
 ---
 
-Adds ngbToast default timeout-options, to close toast properly, after mouseenter/mouseleave events.
+Added default timeout-options for the ngbToast component, to close toast properly after mouseenter/mouseleave events.
