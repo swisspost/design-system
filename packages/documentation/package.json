@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-documentation",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0",
   "description": "Swiss Post Design System Documentation. The main storybook which integrates all the others into one, big storybook.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
