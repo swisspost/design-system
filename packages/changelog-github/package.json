@@ -1,0 +1,17 @@
+{
+  "name": "@swisspost/design-system-changelog-github",
+  "version": "1.0.0-beta.1",
+  "description": "A changelog entry generator for GitHub that links to commits, PRs and users",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc"
+  },
+  "dependencies": {
+    "@changesets/get-github-info": "^0.5.1",
+    "@changesets/types": "^5.2.0",
+    "dotenv": "^8.1.0"
+  },
+  "devDependencies": {
+    "@changesets/parse": "*"
+  }
+}

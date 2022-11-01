@@ -1,0 +1,15 @@
+# Outputs
+dist/
+
+# Misc
+node_modules/
+out-tsc/
+debug.log
+npm-debug.log
+*.code-workspace
+stylelint-report.txt
+storybook-static
+
+# Mac OSX Finder files.
+**/.DS_Store
+.DS_Store
