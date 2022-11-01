@@ -13,7 +13,9 @@
     <h1 class="bold font-curve-large" id="home">Swiss Post</h1>
     <h2 class="font-curve-large">Design System</h2>
     <p class="font-monospace small">
-      <span placement="bottom" [ngbTooltip]="versions">v{{ version }}</span>
+      <button class="btn btn-tertiary version-button" placement="right" [ngbPopover]="versions">
+        v{{ version }}
+      </button>
     </p>
     <p>
       The Swiss Post Design System pattern library for a unified and accessible user experience
@@ -23,12 +25,27 @@
 </div>
 
 <ng-template #versions>
-  <div class="versions">
-    <p>@swisspost/design-system-styles: {{ getVersion(stylesVersion) }}</p>
-    <p>@angular/cli: {{ getVersion(angularVersion) }}</p>
-    <p>bootstrap: {{ getVersion(bootstrapVersion) }}</p>
-    <p>@ng-bootstrap/ng-bootstrap: {{ getVersion(ngBootstrapVersion) }}</p>
-    <p>ngx-toastr: {{ getVersion(ngxToasterVersion) }}</p>
+  <div class="versions font-monospace">
+    <p>
+      <span>@swisspost/design-system-styles:</span>
+      <span>{{ getVersion(stylesVersion) }}</span>
+    </p>
+    <p>
+      <span>@angular/cli:</span>
+      <span>{{ getVersion(angularVersion) }}</span>
+    </p>
+    <p>
+      <span>bootstrap:</span>
+      <span>{{ getVersion(bootstrapVersion) }}</span>
+    </p>
+    <p>
+      <span>@ng-bootstrap/ng-bootstrap:</span>
+      <span>{{ getVersion(ngBootstrapVersion) }}</span>
+    </p>
+    <p>
+      <span>ngx-toastr:</span>
+      <span>{{ getVersion(ngxToasterVersion) }}</span>
+    </p>
   </div>
 </ng-template>
 

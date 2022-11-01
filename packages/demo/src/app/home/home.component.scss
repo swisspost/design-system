@@ -35,8 +35,31 @@
   }
 }
 
+.version-button {
+  padding-left: 0;
+  padding-right: 0;
+}
+
 .versions {
   text-align: left;
+  background: var(--post-gray-80);
+  color: white;
+  padding: 0.5rem;
+  width: fit-content;
+
+  p {
+    margin-bottom: 0;
+
+    span:first-child {
+      color: #9cdcfe;
+    }
+
+    span:last-child {
+      margin-left: 0.25rem;
+      text-align: right;
+      color: #ce9178;
+    }
+  }
 }
 
 .bubble-tea {
