@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': major
 ---
 
-Refactored the stepper component in order to facilitate it's use within a project.
+Refactored the stepper component in order to facilitate its use within a project.
