@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-adds styles for component stepper in forced-color/high-contrast mode
+Added high-contrast-mode styles for component stepper component.

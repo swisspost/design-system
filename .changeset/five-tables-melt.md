@@ -3,4 +3,4 @@
 "@swisspost/design-system-styles": patch
 ---
 
-fix(button): update button sizes and reduce CSS output size
+Updated sizes for button components and reduced CSS output size.

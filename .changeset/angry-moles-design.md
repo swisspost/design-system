@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Changed cursor to pointer
+Changed the form-range component to show the pointer cursor on the thumb element.

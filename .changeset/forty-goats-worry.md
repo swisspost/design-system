@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Refactors component tabs, to get rid of the css-class text-auto.
+Refactored tabs component, to get rid of the css-class `text-auto`.

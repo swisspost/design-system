@@ -4,4 +4,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Enter alpha
+Entered alpha version.

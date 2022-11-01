@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Alert with color "success" now uses the correct contrast color again. Alert close buttons styles are now corrected. Toast & Alert Icons are now displayed in hcm even in white background.
+Fixes the contrast color used in alert component with color `success`. Fixes close button styles in alert component. Fixes icons color in toast and alert component in high-contrast-mode.
