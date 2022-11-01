@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fixes safari display error.
+Fixed safari display error in forms components.

@@ -4,4 +4,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Switch to the Apache 2.0 License
+Switched to the Apache 2.0 License.

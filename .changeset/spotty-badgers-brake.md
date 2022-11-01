@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Added story for the form control styles
+Added story for the form-control component.

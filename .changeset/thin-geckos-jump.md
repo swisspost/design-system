@@ -3,4 +3,4 @@
 '@swisspost/design-system-demo': patch
 ---
 
-Refactors backgrounds for bg-* classes, alerts and notifications.
+Refactored background classes (`.bg-{colorname}`) for the alert and notification component.

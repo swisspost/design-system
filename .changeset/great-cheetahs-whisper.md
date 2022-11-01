@@ -2,4 +2,4 @@
 "@swisspost/design-system-styles": patch
 ---
 
-fix(switch): adds a border in windows hcm
+Fixed `border` styles in form-switch component in high-contrast-mode.

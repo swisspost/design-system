@@ -3,4 +3,4 @@
 '@swisspost/design-system-demo': major
 ---
 
-Upgrade to Angular 14
+Upgraded to Angular to version 14.

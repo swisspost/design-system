@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fix removes the border from the table body
+Removed `border` style from the table `body` element.

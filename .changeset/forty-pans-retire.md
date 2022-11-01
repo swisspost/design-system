@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Shows form-select floating-label like a placeholder for select-elements which are empty (with no option-tags inside).
+Added styles to show floating-label `placeholder` in empty form-select component like a default input placeholder.

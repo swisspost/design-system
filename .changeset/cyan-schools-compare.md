@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Adds high contrast mode styles for form-switch.
+Adde high-contrast-mode styles for form-switch component.
