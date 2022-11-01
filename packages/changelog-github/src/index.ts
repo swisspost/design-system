@@ -1,3 +1,8 @@
+/**
+ * "Forked" from https://github.com/changesets/changesets/tree/main/packages/changelog-github
+ * and updated with a custom output format
+ */
+
 import { ChangelogFunctions } from '@changesets/types';
 // @ts-ignore
 import { config } from 'dotenv';
@@ -108,7 +113,7 @@ const changelogFunctions: ChangelogFunctions = {
       '\n\n- ',
       firstLine,
       futureLines.map(l => `  ${l}`).join('\n'),
-      hasUserOrPull ? '<br>  <sup>' : '',
+      hasUserOrPull ? '<br><sup>' : '',
       [userString, pullString].join(' '),
       hasUserOrPull ? '</sup>' : '',
     ];
