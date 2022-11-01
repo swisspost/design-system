@@ -108,7 +108,7 @@ const changelogFunctions: ChangelogFunctions = {
       '\n\n- ',
       firstLine,
       futureLines.map(l => `  ${l}`).join('\n'),
-      futureLines.length >= 0 ? '\n  ' : ' ',
+      futureLines.length >= 0 ? '\n\n  ' : ' ',
       hasUserOrPull ? '(' : '',
       [userString, pullString].join(' '),
       hasUserOrPull ? ')' : '',
