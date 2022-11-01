@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Adds padding for inner nested badges.
+Added `padding` for inner elements in nested badge component.

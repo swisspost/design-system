@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Adds high contrast mode styles for form-select.
+Added high-contrast-mode styles for the form-select component.

@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Added styles and docs for ng-datatable loadingindicator.
+Added styles and documentation for ng-datatable component loading indicator.

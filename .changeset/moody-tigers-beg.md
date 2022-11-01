@@ -2,4 +2,4 @@
 '@swisspost/design-system-demo': patch
 ---
 
-Fixes typo which prevented alerts from being closed properly.
+Fixeed typo which prevented alert component from being closed properly.

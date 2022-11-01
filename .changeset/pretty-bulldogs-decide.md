@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Sets font-sizes in link-list without a font-size-curve and removes corresponding classes from the html-example.
+Added `font-size` in `.link-list` elements, without a `font-size-curve` and removed the corresponding classes from the html-example.
