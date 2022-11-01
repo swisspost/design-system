@@ -11,7 +11,8 @@
     "rootDir": "src",
     "outDir": "dist",
     "strictNullChecks": true,
-    "target": "es6"
+    "target": "es6",
+    "skipLibCheck": true
   },
   "include": ["src/**/*"],
   "exclude": ["dist/*/files/**/*"]
