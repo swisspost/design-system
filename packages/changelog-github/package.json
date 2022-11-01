@@ -12,11 +12,7 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
-  "publishConfig": {
-    "directory": "./dist",
-    "access": "public",
-    "linkDirectory": true
-  },
+  "main": "./dist/index.js",
   "scripts": {
     "build": "tsc"
   },
