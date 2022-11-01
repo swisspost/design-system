@@ -100,14 +100,21 @@ const changelogFunctions: ChangelogFunctions = {
           .join(', ')
       : links.user;
 
-    const prefix = [
-      links.pull === null ? '' : ` ${links.pull}`,
-      links.commit === null ? '' : ` ${links.commit}`,
-    ].join('');
+    const pullOrCommit = links.pull || links.commit || null;
+    const userString = users !== null ? `by ${users}` : '';
+    const pullString = pullOrCommit !== null ? `with ${pullOrCommit}` : '';
+    const hasUserOrPull = userString && pullString;
+    const entry = [
+      '\n\n- ',
+      firstLine,
+      futureLines.map(l => `  ${l}`).join('\n'),
+      futureLines.length >= 0 ? '\n  ' : ' ',
+      hasUserOrPull ? '(' : '',
+      [userString, pullString].join(' '),
+      hasUserOrPull ? ')' : '',
+    ];
 
-    return `\n\n-${prefix ? `${prefix} -` : ''} ${firstLine}\n${futureLines
-      .map(l => `  ${l}`)
-      .join('\n')}${users === null ? '' : `\n&emdash; by ${users}\n`}`;
+    return entry.join('');
   },
 };
 
