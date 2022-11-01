@@ -48,29 +48,12 @@ const changelogFunctions: ChangelogFunctions = {
       );
     }
 
-    let prFromSummary: number | undefined;
-    let commitFromSummary: string | undefined;
-    let usersFromSummary: string[] = [];
-
     const replacedChangelog = changeset.summary.trim();
 
     const [firstLine, ...futureLines] = replacedChangelog.split('\n').map(l => l.trimEnd());
 
     const links = await (async () => {
-      if (prFromSummary !== undefined) {
-        let { links } = await getInfoFromPullRequest({
-          repo: options.repo,
-          pull: prFromSummary,
-        });
-        if (commitFromSummary) {
-          links = {
-            ...links,
-            commit: `[\`${commitFromSummary}\`](https://github.com/${options.repo}/commit/${commitFromSummary})`,
-          };
-        }
-        return links;
-      }
-      const commitToFetchFrom = commitFromSummary || changeset.commit;
+      const commitToFetchFrom = changeset.commit;
       if (commitToFetchFrom) {
         let { links } = await getInfo({
           repo: options.repo,
@@ -84,12 +67,17 @@ const changelogFunctions: ChangelogFunctions = {
         user: null,
       };
     })();
+    const prNumber = links.pull
+      ? parseInt(links.pull?.split(']')[0].replace('#', '').replace('[', ''))
+      : null;
+    if (typeof prNumber === 'number') {
+      const pr = await getInfoFromPullRequest({ pull: prNumber, repo: options.repo });
+      console.log('PR', pr);
+    }
 
-    const users = usersFromSummary.length
-      ? usersFromSummary
-          .map(userFromSummary => `[@${userFromSummary}](https://github.com/${userFromSummary})`)
-          .join(', ')
-      : links.user;
+    console.log('LINKS', links);
+
+    const users = links.user;
 
     const pullOrCommit = links.pull || links.commit || null;
     const userString = users !== null ? `by ${users}` : '';
