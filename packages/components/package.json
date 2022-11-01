@@ -11,6 +11,7 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/post-components/post-components.esm.js",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system"
