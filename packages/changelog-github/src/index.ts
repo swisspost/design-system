@@ -6,7 +6,7 @@
 import { ChangelogFunctions } from '@changesets/types';
 // @ts-ignore
 import { config } from 'dotenv';
-import { getInfo, getInfoFromPullRequest } from '@changesets/get-github-info';
+import { getInfo } from '@changesets/get-github-info';
 
 config();
 
@@ -67,15 +67,6 @@ const changelogFunctions: ChangelogFunctions = {
         user: null,
       };
     })();
-    const prNumber = links.pull
-      ? parseInt(links.pull?.split(']')[0].replace('#', '').replace('[', ''))
-      : null;
-    if (typeof prNumber === 'number') {
-      const pr = await getInfoFromPullRequest({ pull: prNumber, repo: options.repo });
-      console.log('PR', pr);
-    }
-
-    console.log('LINKS', links);
 
     const users = links.user;
 
