@@ -1,26 +1,22 @@
-import { ChangelogFunctions } from "@changesets/types";
+import { ChangelogFunctions } from '@changesets/types';
 // @ts-ignore
-import { config } from "dotenv";
-import { getInfo, getInfoFromPullRequest } from "@changesets/get-github-info";
+import { config } from 'dotenv';
+import { getInfo, getInfoFromPullRequest } from '@changesets/get-github-info';
 
 config();
 
 const changelogFunctions: ChangelogFunctions = {
-  getDependencyReleaseLine: async (
-    changesets,
-    dependenciesUpdated,
-    options
-  ) => {
+  getDependencyReleaseLine: async (changesets, dependenciesUpdated, options) => {
     if (!options.repo) {
       throw new Error(
-        'Please provide a repo to this changelog generator like this:\n"changelog": ["@changesets/changelog-github", { "repo": "org/repo" }]'
+        'Please provide a repo to this changelog generator like this:\n"changelog": ["@changesets/changelog-github", { "repo": "org/repo" }]',
       );
     }
-    if (dependenciesUpdated.length === 0) return "";
+    if (dependenciesUpdated.length === 0) return '';
 
     const changesetLink = `- Updated dependencies [${(
       await Promise.all(
-        changesets.map(async (cs) => {
+        changesets.map(async cs => {
           if (cs.commit) {
             let { links } = await getInfo({
               repo: options.repo,
@@ -28,22 +24,22 @@ const changelogFunctions: ChangelogFunctions = {
             });
             return links.commit;
           }
-        })
+        }),
       )
     )
-      .filter((_) => _)
-      .join(", ")}]:`;
+      .filter(_ => _)
+      .join(', ')}]:`;
 
     const updatedDepenenciesList = dependenciesUpdated.map(
-      (dependency) => `  - ${dependency.name}@${dependency.newVersion}`
+      dependency => `  - ${dependency.name}@${dependency.newVersion}`,
     );
 
-    return [changesetLink, ...updatedDepenenciesList].join("\n");
+    return [changesetLink, ...updatedDepenenciesList].join('\n');
   },
   getReleaseLine: async (changeset, _type, options) => {
     if (!options || !options.repo) {
       throw new Error(
-        'Please provide a repo to this changelog generator like this:\n"changelog": ["@changesets/changelog-github", { "repo": "org/repo" }]'
+        'Please provide a repo to this changelog generator like this:\n"changelog": ["@changesets/changelog-github", { "repo": "org/repo" }]',
       );
     }
 
@@ -55,21 +51,19 @@ const changelogFunctions: ChangelogFunctions = {
       .replace(/^\s*(?:pr|pull|pull\s+request):\s*#?(\d+)/im, (_, pr) => {
         let num = Number(pr);
         if (!isNaN(num)) prFromSummary = num;
-        return "";
+        return '';
       })
       .replace(/^\s*commit:\s*([^\s]+)/im, (_, commit) => {
         commitFromSummary = commit;
-        return "";
+        return '';
       })
       .replace(/^\s*(?:author|user):\s*@?([^\s]+)/gim, (_, user) => {
         usersFromSummary.push(user);
-        return "";
+        return '';
       })
       .trim();
 
-    const [firstLine, ...futureLines] = replacedChangelog
-      .split("\n")
-      .map((l) => l.trimRight());
+    const [firstLine, ...futureLines] = replacedChangelog.split('\n').map(l => l.trimRight());
 
     const links = await (async () => {
       if (prFromSummary !== undefined) {
@@ -102,19 +96,18 @@ const changelogFunctions: ChangelogFunctions = {
 
     const users = usersFromSummary.length
       ? usersFromSummary
-          .map(
-            (userFromSummary) =>
-              `[@${userFromSummary}](https://github.com/${userFromSummary})`
-          )
-          .join(", ")
+          .map(userFromSummary => `[@${userFromSummary}](https://github.com/${userFromSummary})`)
+          .join(', ')
       : links.user;
 
-      const prefix = [
-        links.pull === null ? "" : ` ${links.pull}`,
-        links.commit === null ? "" : ` ${links.commit}`
-      ].join("");
+    const prefix = [
+      links.pull === null ? '' : ` ${links.pull}`,
+      links.commit === null ? '' : ` ${links.commit}`,
+    ].join('');
 
-      return `\n\n-${prefix ? `${prefix} -` : ""} ${firstLine}\n${futureLines.map((l) => `  ${l}`).join("\n")}${users === null ? "" : `by ${users}!\n`}`;
+    return `\n\n-${prefix ? `${prefix} -` : ''} ${firstLine}\n${futureLines
+      .map(l => `  ${l}`)
+      .join('\n')}${users === null ? '' : `\n&emdash; by ${users}\n`}`;
   },
 };
 
