@@ -1,28 +1,64 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 .heading {
-  position: relative;
   margin-top: 0;
+  background-color: post.$yellow;
+  background-image: url('../../assets/images/header.png');
+  background-repeat: no-repeat;
+  background-position: center left 60vw;
+  background-size: auto 100%;
 
-  & + * {
-    position: relative;
-    z-index: 1;
+  .container {
+    padding-right: 20vw;
   }
+
+  @include post.media-breakpoint-up(sm) {
+    .container {
+      padding-right: 30vw;
+    }
+  }
+
+  @include post.media-breakpoint-up(rg) {
+    .container {
+      padding-right: 35vw;
+    }
+  }
+
+  @include post.media-breakpoint-up(xl) {
+    background-position: center right;
+  }
+
+  @include post.media-breakpoint-up(xxl) {
+    .container {
+      padding-right: 20%;
+    }
+  }
+}
+
+.version-button {
+  padding-left: 0;
+  padding-right: 0;
 }
 
 .versions {
   text-align: left;
-}
+  background: var(--post-gray-80);
+  color: white;
+  padding: 0.5rem;
+  width: fit-content;
 
-.heading-visual {
-  position: absolute;
-  z-index: -1;
-  right: 0;
-  top: 0;
-  max-width: 42%;
+  p {
+    margin-bottom: 0;
 
-  @include post.media-breakpoint-down(rg) {
-    display: none;
+    span:first-child {
+      color: #9cdcfe;
+    }
+
+    span:last-child {
+      margin-left: 0.25rem;
+      text-align: right;
+      color: #ce9178;
+    }
   }
 }
 
