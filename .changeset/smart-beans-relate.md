@@ -4,4 +4,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Includes last 2 safari versions in browserslilstrc and aligns browserslistrc files in all projects
+Includeed last 2 safari versions in the `.browserslistrc` and aligned `.browserslistrc` files in all projects.

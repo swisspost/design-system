@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Removed border from intranet-header search button.
+Removed search button `border`, from the intranet-header componet.
