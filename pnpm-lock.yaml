@@ -291,7 +291,7 @@ importers:
       '@storybook/manager-webpack4': 6.5.13
       '@storybook/web-components': 6.5.13
       babel-loader: 8.2.5
-      chromatic: 6.11.2
+      chromatic: 6.11.4
       lit-html: 2.4.0
       npm-run-all: 4.1.5
     devDependencies:
@@ -303,7 +303,7 @@ importers:
       '@storybook/manager-webpack4': 6.5.13
       '@storybook/web-components': 6.5.13_bafl534ij6nunwvnky6jovmsum
       babel-loader: 8.2.5_@babel+core@7.19.6
-      chromatic: 6.11.2
+      chromatic: 6.11.4
       lit-html: 2.4.0
       npm-run-all: 4.1.5
 
@@ -10904,8 +10904,8 @@ packages:
     engines: {node: '>=10'}
     dev: true
 
-  /chromatic/6.11.2:
-    resolution: {integrity: sha512-NdG/BCmHG1mn99ZAEDEEaxefV/zrhwBPqniGqAVVfcS9e4Ufq6ykUAstDPSpn2Q3qSRHdcvLQNucrKPeHe43uw==}
+  /chromatic/6.11.4:
+    resolution: {integrity: sha512-f1TcuIXKjGUuOjPuwFF44kzbuEcESFcDxHzrzWPLmHuC90dV8HLxbufqYaTOBYMO/rJ32Zftb7S9pXuF/Rhfog==}
     hasBin: true
     dependencies:
       '@discoveryjs/json-ext': 0.5.7
