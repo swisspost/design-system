@@ -24,6 +24,10 @@ jobs:
       - name: Install dependencies
         run: pnpm install
 
+      # Build custom changelog formatter
+      - name: Build changelog formatter
+        run: pnpm --filter design-system-changelog-github build
+
       # The changeset action will behave differently based on whether there are
       # new changesets on the main branch:
       #

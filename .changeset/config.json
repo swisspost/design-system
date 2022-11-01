@@ -1,6 +1,9 @@
 {
   "$schema": "https://unpkg.com/@changesets/config@1.7.0/schema.json",
-  "changelog": ["@changesets/changelog-github", { "repo": "swisspost/design-system" }],
+  "changelog": [
+    "../packages/changelog-github/dist/index.js",
+    { "repo": "swisspost/design-system" }
+  ],
   "commit": false,
   "fixed": [],
   "linked": [],
