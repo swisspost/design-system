@@ -2,4 +2,4 @@
 '@swisspost/design-system-demo': minor
 ---
 
-Adds searchengine-, og- and twitter-metatags.
+Added searchengine-, og- and twitter-metatags for better previews when sharing links.
