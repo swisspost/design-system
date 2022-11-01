@@ -8,21 +8,18 @@
   </div>
 </div>
 
-<div class="heading container py-5">
-  <h1 class="bold font-curve-large" id="home">Swiss Post</h1>
-  <h2 class="font-curve-large">Design System</h2>
-  <img
-    class="heading-visual"
-    src="assets/images/rocket.png"
-    alt="A rocket flying to the moon, symbolising the awesomeness of the Swiss Post Design System"
-  />
-  <p class="monospace">
-    <span placement="bottom" [ngbTooltip]="versions">v{{ version }}</span>
-  </p>
-  <p>
-    The Swiss Post Design System pattern library for a unified and accessible user experience
-    accross the web platform.
-  </p>
+<div class="heading">
+  <div class="container py-5">
+    <h1 class="bold font-curve-large" id="home">Swiss Post</h1>
+    <h2 class="font-curve-large">Design System</h2>
+    <p class="font-monospace small">
+      <span placement="bottom" [ngbTooltip]="versions">v{{ version }}</span>
+    </p>
+    <p>
+      The Swiss Post Design System pattern library for a unified and accessible user experience
+      accross the web platform.
+    </p>
+  </div>
 </div>
 
 <ng-template #versions>
