@@ -54,7 +54,7 @@ const changelogFunctions: ChangelogFunctions = {
 
     const replacedChangelog = changeset.summary.trim();
 
-    const [firstLine, ...futureLines] = replacedChangelog.split('\n').map(l => l.trimRight());
+    const [firstLine, ...futureLines] = replacedChangelog.split('\n').map(l => l.trimEnd());
 
     const links = await (async () => {
       if (prFromSummary !== undefined) {
