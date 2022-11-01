@@ -52,21 +52,7 @@ const changelogFunctions: ChangelogFunctions = {
     let commitFromSummary: string | undefined;
     let usersFromSummary: string[] = [];
 
-    const replacedChangelog = changeset.summary
-      .replace(/^\s*(?:pr|pull|pull\s+request):\s*#?(\d+)/im, (_, pr) => {
-        let num = Number(pr);
-        if (!isNaN(num)) prFromSummary = num;
-        return '';
-      })
-      .replace(/^\s*commit:\s*([^\s]+)/im, (_, commit) => {
-        commitFromSummary = commit;
-        return '';
-      })
-      .replace(/^\s*(?:author|user):\s*@?([^\s]+)/gim, (_, user) => {
-        usersFromSummary.push(user);
-        return '';
-      })
-      .trim();
+    const replacedChangelog = changeset.summary.trim();
 
     const [firstLine, ...futureLines] = replacedChangelog.split('\n').map(l => l.trimRight());
 
@@ -113,7 +99,7 @@ const changelogFunctions: ChangelogFunctions = {
       '\n\n- ',
       firstLine,
       futureLines.map(l => `  ${l}`).join('\n'),
-      hasUserOrPull ? '<br><sup>' : '',
+      hasUserOrPull ? '\n<br><sup>' : '',
       [userString, pullString].join(' '),
       hasUserOrPull ? '</sup>' : '',
     ];
