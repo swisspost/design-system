@@ -1,0 +1,115 @@
+# @swisspost/design-system-demo
+
+## 5.0.0
+
+### Major Changes
+
+- Refactored the stepper component in order to facilitate its use within a project.
+  <br><sup>by [@alizedebray](https://github.com/alizedebray) with [#308](https://github.com/swisspost/design-system/pull/308)</sup>
+
+- Refactored colors. Bootstrap overrides are now clearly separated from Design System colors and only Design System colors are used in the components. This change also prepares for a dynamic dark mode by offering CSS variables for background and text contrast colors (see `buttons.scss` for an example).
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#96](https://github.com/swisspost/design-system/pull/96)</sup>
+
+- Added and extended grid-cols definition for `.topic-teaser-content` and `.topic-teaser-image-container` containers inside css and removed col classes from html. Improved image `aspect-ratios`, as well as `font-size` and `padding` of `.link-list` elements on smaller devices.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#310](https://github.com/swisspost/design-system/pull/310)</sup>
+
+- Renamed Common Web Frontend to Swiss Post Design System.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#355](https://github.com/swisspost/design-system/pull/355)</sup>
+
+- Upgraded to Angular to version 14.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#406](https://github.com/swisspost/design-system/pull/406)</sup>
+
+- Dropped rounded and colored badges, updated dismissible badges and added checkable badges.
+  <br><sup>by [@alizedebray](https://github.com/alizedebray) with [#353](https://github.com/swisspost/design-system/pull/353)</sup>
+
+- Added `font-size` in `.link-list` elements, without a `font-size-curve` and removed the corresponding classes from the html-example.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#310](https://github.com/swisspost/design-system/pull/310)</sup>
+
+### Minor Changes
+
+- Added searchengine-, og- and twitter-metatags for better previews when sharing links.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#674](https://github.com/swisspost/design-system/pull/674)</sup>
+
+### Patch Changes
+
+- Added `ng update` command for the styles package to the migration documentation.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#548](https://github.com/swisspost/design-system/pull/548)</sup>
+
+- Added the html property `inputmode="decimal"` to the form-range example with text input control, to improve userexperience. This will open a number-only keyboard on mobile devices, when the user selects the input field.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#309](https://github.com/swisspost/design-system/pull/309)</sup>
+
+- Refactored dynamic attribute bindings. Refactored bindings from `class="class1 class2-{{ angularVariable }}"` to `class="class1" [class]="'class2-' + {{ angularVariable }}"`.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#626](https://github.com/swisspost/design-system/pull/626)</sup>
+
+- Updated entry file names for the styles package.
+
+  ```scss
+  @use '@swisspost/design-system-styles'; // Default internet styles
+  @use '@swisspost/design-system-styles/intranet'; // Default intranet styles
+  @use '@swisspost/design-system-styles/core' as post; // Variables, mixins, functions and placeholders
+  ```
+
+  1. Default import is now as simple as possible.
+  2. Intranet styles are clearly named as such.
+  3. Core functionality is a clear name, but for consistency with other prefixes, the core module can be namespaced as post. The usage would then be `background-color: post.$yellow;`.
+     <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#389](https://github.com/swisspost/design-system/pull/389)</sup>
+
+- Fixed heading styles. This includes the html tags `h1`, `h2`, `h3`, `h4`, `h5` and `h6`, as well as there css-class pendants `.h1`, `h2`...
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#115](https://github.com/swisspost/design-system/pull/115)</sup>
+
+- Updated sizes for button components and reduced CSS output size.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#103](https://github.com/swisspost/design-system/pull/103)</sup>
+
+- Refactored tabs component, to get rid of the css-class `text-auto`.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#187](https://github.com/swisspost/design-system/pull/187)</sup>
+
+- Added styles to show floating-label `placeholder` in empty form-select component like a default input placeholder.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#169](https://github.com/swisspost/design-system/pull/169)</sup>
+
+- Updated documentation on toast and alert components for improved accessibility and a better user experience.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#235](https://github.com/swisspost/design-system/pull/235)</sup>
+
+- Fixed floating-label placeholder visibility in textarea component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#390](https://github.com/swisspost/design-system/pull/390)</sup>
+
+- Fixed typo which prevented alert component from being closed properly.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#391](https://github.com/swisspost/design-system/pull/391)</sup>
+
+- Added styles and documentation for ng-datatable component loading indicator.
+  <br><sup>by [@Janobob](https://github.com/Janobob) with [#7](https://github.com/swisspost/design-system/pull/7)</sup>
+
+- Moved timepicker validation fix from version 4 to version 5.
+  <br><sup>by [@Janobob](https://github.com/Janobob) with [#14](https://github.com/swisspost/design-system/pull/14)</sup>
+
+- Added default timeout-options for the ngbToast component, to close toast properly after mouseenter/mouseleave events.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#436](https://github.com/swisspost/design-system/pull/436)</sup>
+
+- Deprecated the text on image card example and presented it as a no-go. It's very difficult for content editors to always ensure that text is legible on an image for every browser size and all different languages.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#387](https://github.com/swisspost/design-system/pull/387)</sup>
+
+- Included last 2 safari versions in the `.browserslistrc` and aligned `.browserslistrc` files in all projects.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#162](https://github.com/swisspost/design-system/pull/162)</sup>
+
+- Added label "deprecated" to the custom-select component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#416](https://github.com/swisspost/design-system/pull/416)</sup>
+
+- Updated ngb-collapsible demo code from the ng-bootstrap documentation. Improved performance of the demo and prevented margin collapse.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#386](https://github.com/swisspost/design-system/pull/386)</sup>
+
+- Refactored background classes (`.bg-{colorname}`) for the alert and notification component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#357](https://github.com/swisspost/design-system/pull/357)</sup>
+
+- Added `popover` example with markup.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#346](https://github.com/swisspost/design-system/pull/346)</sup>
+
+- Corrected and completed the property documentation for the intranet-header component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#447](https://github.com/swisspost/design-system/pull/447)</sup>
+
+- Switched to the Apache 2.0 License.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#12](https://github.com/swisspost/design-system/pull/12)</sup>
+
+- Fixed heights on `.form-control-lg` and `.floating-label .form-control` elements. Removed some Design System only scss-variables.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#450](https://github.com/swisspost/design-system/pull/450)</sup>
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.0.0
+  - @swisspost/design-system-intranet-header@3.0.0
