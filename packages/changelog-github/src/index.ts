@@ -11,7 +11,7 @@ import { getInfo } from '@changesets/get-github-info';
 config();
 
 const changelogFunctions: ChangelogFunctions = {
-  getDependencyReleaseLine: async (changesets, dependenciesUpdated, options) => {
+  getDependencyReleaseLine: async (_changesets, dependenciesUpdated, options) => {
     if (!options.repo) {
       throw new Error(
         'Please provide a repo to this changelog generator like this:\n"changelog": ["@changesets/changelog-github", { "repo": "org/repo" }]',
@@ -19,21 +19,7 @@ const changelogFunctions: ChangelogFunctions = {
     }
     if (dependenciesUpdated.length === 0) return '';
 
-    const changesetLink = `- Updated dependencies [${(
-      await Promise.all(
-        changesets.map(async cs => {
-          if (cs.commit) {
-            let { links } = await getInfo({
-              repo: options.repo,
-              commit: cs.commit,
-            });
-            return links.commit;
-          }
-        }),
-      )
-    )
-      .filter(_ => _)
-      .join(', ')}]:`;
+    const changesetLink = `- Updated dependencies:`;
 
     const updatedDepenenciesList = dependenciesUpdated.map(
       dependency => `  - ${dependency.name}@${dependency.newVersion}`,
