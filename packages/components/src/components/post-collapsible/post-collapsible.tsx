@@ -10,7 +10,6 @@ let nextId = 0;
 export class PostCollapsible {
   @Element() hostElement: HTMLElement;
   headerSlot: HTMLElement;
-  headingTag = 'h2';
   collapseId: string;
 
   /**
@@ -25,24 +24,25 @@ export class PostCollapsible {
     return window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
   }
 
-  componentDidLoad() {
-    this.collapseId = this.hostElement.id || `post-collapsible-${nextId++}`;
+  componentWillLoad() {
     this.headerSlot = this.hostElement.querySelector('[slot="header"]');
-
-    if (this.headerSlot && new RegExp('^h[1-6]$', 'i').test(this.headerSlot.tagName)) {
-      this.headingTag = this.headerSlot.tagName;
-
-      const headingTagSearcher = new RegExp('(<\/?)h[1-6]', 'gi');
-      const headingTagReplacer = (_, tagOpening) => `${tagOpening}div`;
-      this.headerSlot.outerHTML = this.headerSlot.outerHTML.replace(headingTagSearcher, headingTagReplacer);
-    }
+    this.collapseId = this.hostElement.id || `post-collapsible-${nextId++}`;
 
     if (!this.headerSlot && !this.hostElement.id) {
-      console.warn(
-        'Be sure to add an id to the post-collapsible and bind it to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility');
+      console.warn('Be sure to add an id to the post-collapsible and bind it to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility');
     }
 
     this.toggleCollapse(false);
+  }
+
+  get headerTag() {
+    return new RegExp('^h[1-6]$', 'i').test(this.headerSlot.tagName) ? this.headerSlot.tagName : 'h2';
+  }
+
+  get headerContent() {
+    const headingTagSearcher = new RegExp('(<\/?)h[1-6]', 'gi');
+    const headingTagReplacer = (_, tagOpening) => `${tagOpening}div`;
+    return this.headerSlot.outerHTML.replace(headingTagSearcher, headingTagReplacer);
   }
 
   /**
@@ -117,17 +117,16 @@ export class PostCollapsible {
     }
     return (
       <div class="accordion-item">
-        <this.headingTag class="accordion-header" id={`${this.collapseId}--header`}>
+        <this.headerTag class="accordion-header" id={`${this.collapseId}--header`}>
           <button
             class={`accordion-button ${this.collapsed ? 'collapsed' : ''}`}
             type="button"
             aria-expanded={`${!this.collapsed}`}
             aria-controls={`${this.collapseId}--collapse`}
             onClick={() => this.toggle()}
-          >
-            <slot name="header"/>
-          </button>
-        </this.headingTag>
+            innerHTML={this.headerContent}
+          />
+        </this.headerTag>
         <div
           id={`${this.collapseId}--collapse`}
           class={`accordion-collapse ${this.collapseClasses}`}
