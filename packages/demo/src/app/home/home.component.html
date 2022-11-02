@@ -591,8 +591,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalclasses_bgopacity">
-                        <span class="change-badge bg-danger">breaking</span> Removed <code>.bg-[colorname]-opacity-[opacityvalue]</code> classes.<br>
-                        Use <code>.bg-[colorname]</code> together with <code>var(--bg-opacity)</code> instead.<br>
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Removed <code>.bg-[colorname]-opacity-[opacityvalue]</code> classes.<br>
+                        Use <code>.bg-[colorname]</code> together with <code>var(--post-bg-opacity)</code> instead.<br>
                         <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
                         <p class="info">Replace [opacityvalue] for example with "0", "0.5" or "1".</p>
                       </label>
