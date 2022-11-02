@@ -46,15 +46,14 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
 
           const treeUpdateRecorder = tree.beginUpdate(treeFilePath);
 
+          update($elements);
+
           Array.from($elements)
-            .forEach(element => {              
+            .forEach(element => {
               if (element.startIndex === null || element.endIndex === null) return;
 
-              const $element = $(element);
-
-              update($element);
               treeUpdateRecorder.remove(element.startIndex, element.endIndex- element.startIndex + 1);
-              treeUpdateRecorder.insertLeft(element.startIndex, $element.toString());
+              treeUpdateRecorder.insertLeft(element.startIndex, $(element).toString());
             });
           
           tree.commitUpdate(treeUpdateRecorder);

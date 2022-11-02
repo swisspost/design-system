@@ -16,8 +16,8 @@ const cssClassMatcher = new RegExp(`^bg-(${themeColors.join('|')})-opacity-(\\d+
 class BackgroundOpacityClassesUpdate extends DomUpdate {
   selector = themeColors.map(colorname => `[class*="bg-${colorname}-opacity-"]`).join(', ');
 
-  update = function ($element: Cheerio<any>) {
-    $element
+  update = function ($elements: Cheerio<any>) {
+    $elements
       .attr('class')
       ?.split(' ')
       .forEach(cssClass => {
@@ -27,7 +27,7 @@ class BackgroundOpacityClassesUpdate extends DomUpdate {
           const colorname = match[1];
           const opacityvalue = Number(match[2]);
           
-          $element
+          $elements
             .removeClass(cssClass)
             .addClass(`bg-${colorname}`)
             .attr('style', `--post-bg-opacity: ${opacityvalue / 100};`);
