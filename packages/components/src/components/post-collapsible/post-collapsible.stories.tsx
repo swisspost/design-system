@@ -15,19 +15,20 @@ export default {
 };
 
 const defaultArgs = {
-  collapsed: false
+  collapsed: false,
+  nested: false
 };
 
-const DefaultTemplate = ({ headingLevel, collapsed, nested }) =>
-  `<post-collapsible${headingLevel ? ' heading-level="' + headingLevel +'"' : ''}${collapsed ? ' collapsed="true"' : ''}>
-    <div slot="header">Collapsible header</div>
+const DefaultTemplate = ({ collapsed, nested }) => `<post-collapsible${collapsed ? ' collapsed="true"' : ''}>
+    <h2 slot="header">Collapsible header</h2>${nested ? `
     <div slot="body">
-      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>${nested ? `
+      <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
       <post-collapsible>
-        <div slot="header">Nested collapsible header</div>
+        <h3 slot="header">Nested collapsible header</h3>
         <div slot="body">Nested collapsible body.</div>
-      </post-collapsible>` : ''}
-    </div>
+      </post-collapsible>
+    </div>` : `
+    <p slot="body">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>`}
   </post-collapsible>`;
 
 export const Default = DefaultTemplate.bind({});
@@ -54,16 +55,13 @@ const NoHeaderTemplate = ({ collapsed, nested }) =>
   <button aria-controls="nestedCollapsibleExample" aria-expanded="${!collapsed}" onclick="triggerCollapse(this, false)">Hide nested</button>` : ''}
 
   <hr/>
-
+  ${nested ? `
   <post-collapsible id="collapsibleExample"${collapsed ? ' collapsed="true"' : ''}>
-    <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>${nested ? `
-    <post-collapsible id="nestedCollapsibleExample">Nested collapsible content</post-collapsible>` : ''}
-  </post-collapsible>`;
+    <p>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+    <post-collapsible id="nestedCollapsibleExample">Nested collapsible content</post-collapsible>
+  </post-collapsible>` : `
+  <post-collapsible id="collapsibleExample"${collapsed ? ' collapsed="true"' : ''}>At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</post-collapsible>`}
+  `;
 
 export const NoHeader = NoHeaderTemplate.bind({});
 NoHeader.args = { ...defaultArgs };
-NoHeader.parameters = {
-  controls: {
-    exclude: ['heading-level']
-  }
-}

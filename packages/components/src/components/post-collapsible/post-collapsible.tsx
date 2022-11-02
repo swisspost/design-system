@@ -8,21 +8,9 @@ let nextId = 0;
   shadow: true,
 })
 export class PostCollapsible {
-  /**
-   * Defines the hierarchical level of the collapsible header within the headings structure.
-   */
-  @Prop() headingLevel: number;
-
-  get headingTag(): string {
-    if (this.headingLevel < 1 || this.headingLevel > 6) {
-      console.warn('The post-collapsible element requires a heading level between 1 and 6.');
-    }
-
-    return isNaN(this.headingLevel) ? 'h2' : `h${Math.min(Math.max(this.headingLevel, 1), 6)}`;
-  }
-
   @Element() hostElement: HTMLElement;
-  hasHeaderSlot: boolean;
+  headerSlot: HTMLElement;
+  headingTag = 'h2';
   collapseId: string;
 
   /**
@@ -38,10 +26,18 @@ export class PostCollapsible {
   }
 
   componentDidLoad() {
-    this.hasHeaderSlot = !!this.hostElement.querySelector('[slot="header"]');
     this.collapseId = this.hostElement.id || `post-collapsible-${nextId++}`;
+    this.headerSlot = this.hostElement.querySelector('[slot="header"]');
 
-    if (!this.hasHeaderSlot && !this.hostElement.id) {
+    if (this.headerSlot && new RegExp('^h[1-6]$', 'i').test(this.headerSlot.tagName)) {
+      this.headingTag = this.headerSlot.tagName;
+
+      const headingTagSearcher = new RegExp('(<\/?)h[1-6]', 'gi');
+      const headingTagReplacer = (_, tagOpening) => `${tagOpening}div`;
+      this.headerSlot.outerHTML = this.headerSlot.outerHTML.replace(headingTagSearcher, headingTagReplacer);
+    }
+
+    if (!this.headerSlot && !this.hostElement.id) {
       console.warn(
         'Be sure to add an id to the post-collapsible and bind it to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility');
     }
@@ -108,7 +104,7 @@ export class PostCollapsible {
   }
 
   render() {
-    if (!this.hasHeaderSlot) {
+    if (!this.headerSlot) {
       return (
         <div
           id={`${this.collapseId}--collapse`}
