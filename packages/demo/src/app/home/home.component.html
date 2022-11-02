@@ -14,7 +14,7 @@
     <h2 class="font-curve-large">Design System</h2>
     <p class="font-monospace small">
       <button class="btn btn-tertiary version-button" placement="right" [ngbPopover]="versions">
-        v{{ version }}
+        v{{ getVersion(stylesVersion) }}
       </button>
     </p>
     <p>
