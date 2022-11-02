@@ -7,6 +7,11 @@
       "description": "Migrates bg-opacity classes.",
       "factory": "./migrations/general/classes/bg-opacity"
     },
+    "migration-general-classes-secondary": {
+      "version": "5.0.0",
+      "description": "Migrates bg-secondary, border-secondary and text-secondary classes.",
+      "factory": "./migrations/general/classes/secondary"
+    },
     "migration-backgrounds": {
       "version": "5.0.0",
       "description": "As of Design System v5 backgrounds make extensive use of CSS variables, therefore the .text-auto and .bg-[color]-opacity-80 classes are deprecated.",
@@ -36,11 +41,6 @@
       "version": "5.0.0",
       "description": "https://getbootstrap.com/docs/5.0/migration/#rtl",
       "factory": "./migrations/rtl/index"
-    },
-    "migration-secondary-classes": {
-      "version": "5.0.0",
-      "description": "Removes secondary classes \"bg-secondary\", \"border-secondary\" and \"text-secondary\"",
-      "factory": "./migrations/secondary-classes/index"
     },
     "migration-ng-buttons": {
       "version": "5.0.0",
