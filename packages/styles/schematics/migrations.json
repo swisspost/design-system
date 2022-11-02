@@ -2,6 +2,11 @@
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
 
   "schematics": {
+    "migration-general-classes-bg-opacity": {
+      "version": "5.0.0",
+      "description": "Migrates bg-opacity classes.",
+      "factory": "./migrations/general/classes/bg-opacity"
+    },
     "migration-backgrounds": {
       "version": "5.0.0",
       "description": "As of Design System v5 backgrounds make extensive use of CSS variables, therefore the .text-auto and .bg-[color]-opacity-80 classes are deprecated.",
