@@ -1,6 +1,6 @@
 import {Rule} from '@angular-devkit/schematics';
 import {CssClassesUpdate} from "../../utils/css/css-classes-update";
-import {breakpoints, sizes} from "../../utils/css/constants";
+import {breakpoints, sizes} from "../../utils/constants";
 import {CssMigration} from "../../utils/css/css-migration";
 import {oneOf, optional} from "../../utils/regex";
 

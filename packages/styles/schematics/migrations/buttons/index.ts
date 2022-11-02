@@ -1,5 +1,5 @@
 import {Rule} from '@angular-devkit/schematics';
-import {themeColors} from "../../utils/css/constants";
+import {themeColors} from "../../utils/constants";
 import {CssClassesUpdate} from "../../utils/css/css-classes-update";
 import {CssMigration} from "../../utils/css/css-migration";
 import {oneOf} from "../../utils/regex";

@@ -1,6 +1,6 @@
 import {Rule} from '@angular-devkit/schematics';
 import {CssClassesUpdate} from "../../utils/css/css-classes-update";
-import {themeColors} from "../../utils/css/constants";
+import {themeColors} from "../../utils/constants";
 import {CssMigration} from "../../utils/css/css-migration";
 import {oneOf, optional} from "../../utils/regex";
 
