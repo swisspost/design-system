@@ -6,7 +6,6 @@ export default {
       name: 'nested collapsible',
       table: { category: 'Contents' },
       type: { name: 'boolean', required: false },
-      defaultValue: false,
       description: 'If `true`, displays a post-collapsible element nested inside the main one.',
       control: {
         type: 'boolean'
@@ -16,11 +15,11 @@ export default {
 };
 
 const defaultArgs = {
-  collapsed: false,
+  collapsed: false
 };
 
-const DefaultTemplate = ({ collapsed, nested }) =>
-  `<post-collapsible${collapsed ? ' collapsed="true"' : ''}>
+const DefaultTemplate = ({ headingLevel, collapsed, nested }) =>
+  `<post-collapsible${headingLevel ? ' heading-level="' + headingLevel +'"' : ''}${collapsed ? ' collapsed="true"' : ''}>
     <div slot="header">Collapsible header</div>
     <div slot="body">
       <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>${nested ? `
@@ -63,3 +62,8 @@ const NoHeaderTemplate = ({ collapsed, nested }) =>
 
 export const NoHeader = NoHeaderTemplate.bind({});
 NoHeader.args = { ...defaultArgs };
+NoHeader.parameters = {
+  controls: {
+    exclude: ['heading-level']
+  }
+}

@@ -27,6 +27,10 @@ export namespace Components {
          */
         "collapsed": boolean;
         /**
+          * Defines the hierarchical level of the collapsible header within the headings structure.
+         */
+        "headingLevel": number;
+        /**
           * Triggers the collapse programmatically.
          */
         "toggle": (open?: boolean) => Promise<void>;
@@ -78,6 +82,10 @@ declare namespace LocalJSX {
           * If `true`, the element is initially collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
+        /**
+          * Defines the hierarchical level of the collapsible header within the headings structure.
+         */
+        "headingLevel"?: number;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;

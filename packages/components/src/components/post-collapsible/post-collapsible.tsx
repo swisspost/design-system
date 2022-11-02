@@ -8,6 +8,19 @@ let nextId = 0;
   shadow: true,
 })
 export class PostCollapsible {
+  /**
+   * Defines the hierarchical level of the collapsible header within the headings structure.
+   */
+  @Prop() headingLevel: number;
+
+  get headingTag(): string {
+    if (this.headingLevel < 1 || this.headingLevel > 6) {
+      console.warn('The post-collapsible element requires a heading level between 1 and 6.');
+    }
+
+    return isNaN(this.headingLevel) ? 'h2' : `h${Math.min(Math.max(this.headingLevel, 1), 6)}`;
+  }
+
   @Element() hostElement: HTMLElement;
   hasHeaderSlot: boolean;
   collapseId: string;
@@ -30,10 +43,7 @@ export class PostCollapsible {
 
     if (!this.hasHeaderSlot && !this.hostElement.id) {
       console.warn(
-        'Be sure to add an id to the post-collapsible and bind it to its control using the aria-controls attribute. ' +
-        'You should also add an aria-expanded attribute to the control element. ' +
-        'More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility'
-      );
+        'Be sure to add an id to the post-collapsible and bind it to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility');
     }
 
     this.toggleCollapse(false);
@@ -42,7 +52,8 @@ export class PostCollapsible {
   /**
    * Triggers the collapse programmatically.
    */
-  @Method() async toggle(open: boolean = this.collapsed) {
+  @Method()
+  async toggle(open: boolean = this.collapsed) {
     if (open === this.collapsed) {
       this.collapsed = !open;
       this.toggleCollapse();
@@ -104,14 +115,13 @@ export class PostCollapsible {
           class={this.collapseClasses}
           style={{ height: this.collapseHeight }}
         >
-          <slot />
+          <slot/>
         </div>
       );
     }
     return (
-
       <div class="accordion-item">
-        <h2 class="accordion-header" id={`${this.collapseId}--header`}>
+        <this.headingTag class="accordion-header" id={`${this.collapseId}--header`}>
           <button
             class={`accordion-button ${this.collapsed ? 'collapsed' : ''}`}
             type="button"
@@ -121,7 +131,7 @@ export class PostCollapsible {
           >
             <slot name="header"/>
           </button>
-        </h2>
+        </this.headingTag>
         <div
           id={`${this.collapseId}--collapse`}
           class={`accordion-collapse ${this.collapseClasses}`}
