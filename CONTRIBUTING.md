@@ -60,6 +60,45 @@ We are happy to receive your input. You can submit your issues to our [GitHub re
 
 When you're planning to work on bigger changes, please reach out to someone from the core team to plan your change.
 
+## Adding a new package to the monorepo
+
+When a new package is added to the repo, a few things need to be taken care of.
+
+- Follow the naming convention of new packages, described in the [discussion about renaming the design system](https://github.com/swisspost/design-system/discussions/304#discussioncomment-3426149)
+- Add meta information like `author`, `description`, `repository`, `homepage`, `bugs` to the package.json
+- Add a license, in most cases Apache-2.0 should be applied. If you are unsure, contact the legal department
+- Add the `publishConfig` field with
+
+  ```json
+  {
+    "publishConfig": {
+      "access": "public"
+    }
+  }
+  ```
+
+  if you want to release the package on npm. If you do not want to release the package, add
+
+  ```json
+  {
+    "private": true
+  }
+  ```
+
+  to the package.json config. The publishConfig is necessary to be set explicitly because our packages are scoped with @siwsspost (https://docs.npmjs.com/creating-and-publishing-scoped-public-packages).
+
+- If you are publishing from a `dist` folder, configure the `publishConfig` like so:
+  ```json
+  {
+    "publishConfig": {
+      "directory": "./dist",
+      "linkDirectory": true,
+      "access": "public|restricted"
+    }
+  }
+  ```
+  The `linkDirectory` is necessary for pnpm to correctly link the dist folder in the node_modules. Make sure you biuld the package before using it in GitHub Actions or local scripts.
+
 ## Script naming conventions
 
 Whenever we add new scripts to the package.json file, we follow the instructions below.
