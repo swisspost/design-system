@@ -88,6 +88,7 @@ When a new package is added to the repo, a few things need to be taken care of.
   to the package.json config. The publishConfig is necessary to be set explicitly because our packages are scoped with @siwsspost (https://docs.npmjs.com/creating-and-publishing-scoped-public-packages).
 
 - If you are publishing from a `dist` folder, configure the `publishConfig` like so:
+
   ```json
   {
     "publishConfig": {
@@ -97,7 +98,10 @@ When a new package is added to the repo, a few things need to be taken care of.
     }
   }
   ```
+
   The `linkDirectory` is necessary for pnpm to correctly link the dist folder in the node_modules. Make sure you biuld the package before using it in GitHub Actions or local scripts.
+
+  > ⚠ On publish, the `package.json` gets copied into the `./dist` folder. This leads to an incorrect publish path because npm now tries to publish from `./dist/dist`. You'll need a pre-publish script that removes the `directory` key from the `publishConfig` (see the [styles package pre-publish workflow](./packages/styles/gulpfile.js) for an example).
 
 ## Script naming conventions
 
