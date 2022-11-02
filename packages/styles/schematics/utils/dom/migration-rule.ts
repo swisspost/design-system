@@ -33,6 +33,7 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
         for (const { selector, update } of migration.updates) {
           const $ = cheerio.load(sourceCode, {
             xmlMode: true,
+            decodeEntities: false,
             lowerCaseTags: false,
             lowerCaseAttributeNames: false,
             recognizeSelfClosing: true,
