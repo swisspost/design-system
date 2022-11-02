@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "lib": ["es2019"],
+    "declaration": true,
+    "module": "commonjs",
+    "moduleResolution": "node",
+    "noEmitOnError": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUnusedParameters": true,
+    "noUnusedLocals": true,
+    "rootDir": "src",
+    "outDir": "dist",
+    "strictNullChecks": true,
+    "target": "es6",
+    "skipLibCheck": true
+  },
+  "include": ["src/**/*"],
+  "exclude": ["dist/*/files/**/*"]
+}

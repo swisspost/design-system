@@ -8,26 +8,44 @@
   </div>
 </div>
 
-<div class="heading container py-5">
-  <h1 class="bold font-curve-large" id="home">Swiss Post</h1>
-  <h2 class="font-curve-large">Design System</h2>
-  <img
-    class="heading-visual"
-    src="assets/images/rocket.png"
-    alt="A rocket flying to the moon, symbolising the awesomeness of the Swiss Post Design System"
-  />
-  <div class="monospace">
-    <span placement="bottom" [ngbTooltip]="versions">v{{ version }}</span>
+<div class="heading">
+  <div class="container py-5">
+    <h1 class="bold font-curve-large" id="home">Swiss Post</h1>
+    <h2 class="font-curve-large">Design System</h2>
+    <p class="font-monospace small">
+      <button class="btn btn-tertiary version-button" placement="right" [ngbPopover]="versions">
+        v{{ version }}
+      </button>
+    </p>
+    <p>
+      The Swiss Post Design System pattern library for a unified and accessible user experience
+      accross the web platform.
+    </p>
   </div>
 </div>
 
 <ng-template #versions>
-  <div class="versions">
-    <p>@swisspost/design-system-styles: {{ getVersion(stylesVersion) }}</p>
-    <p>@angular/cli: {{ getVersion(angularVersion) }}</p>
-    <p>bootstrap: {{ getVersion(bootstrapVersion) }}</p>
-    <p>@ng-bootstrap/ng-bootstrap: {{ getVersion(ngBootstrapVersion) }}</p>
-    <p>ngx-toastr: {{ getVersion(ngxToasterVersion) }}</p>
+  <div class="versions font-monospace">
+    <p>
+      <span>@swisspost/design-system-styles:</span>
+      <span>{{ getVersion(stylesVersion) }}</span>
+    </p>
+    <p>
+      <span>@angular/cli:</span>
+      <span>{{ getVersion(angularVersion) }}</span>
+    </p>
+    <p>
+      <span>bootstrap:</span>
+      <span>{{ getVersion(bootstrapVersion) }}</span>
+    </p>
+    <p>
+      <span>@ng-bootstrap/ng-bootstrap:</span>
+      <span>{{ getVersion(ngBootstrapVersion) }}</span>
+    </p>
+    <p>
+      <span>ngx-toastr:</span>
+      <span>{{ getVersion(ngxToasterVersion) }}</span>
+    </p>
   </div>
 </ng-template>
 
@@ -35,40 +53,83 @@
   <div class="container">
     <h3 class="bold mb-4">Migration from v4 to v5</h3>
 
-    <p class="alert alert-warning">
-      If you like to upgrade from a Design System version lower than 4.0.0, you need to perform the
-      migration step by step.
-    </p>
-
-    <p class="lead">What kind of application are you migrating?</p>
-
-    <div class="form-check form-switch">
-      <input
-        id="is-migrating-intranet"
-        type="checkbox"
-        class="form-check-input"
-        [(ngModel)]="isMigratingIntranet"
-        (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
-        role="switch"
-      />
-      <label for="is-migrating-intranet" class="form-check-label">Intranet application</label>
-    </div>
-    <div class="form-check form-switch">
-      <input
-        id="is-migrating-angular"
-        type="checkbox"
-        class="form-check-input"
-        [(ngModel)]="isMigratingAngular"
-        (ngModelChange)="setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)"
-        role="switch"
-      />
-      <label for="is-migrating-angular" class="form-check-label">Angular application</label>
+    <div class="migration-options">
+      <div class="row">
+        <div class="col-md-6">
+          <fieldset>
+            <legend class="font-curve-small bold">What environment is your application for?</legend>
+            <div class="form-check">
+              <input
+                id="migration-intranet"
+                type="radio"
+                class="form-check-input"
+                name="migration-audience"
+                [value]="true"
+                [(ngModel)]="isMigratingIntranet"
+                (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
+              />
+              <label for="migration-intranet" class="form-check-label">Intranet application</label>
+            </div>
+            <div class="form-check mb-0">
+              <input
+                id="migration-extranet"
+                type="radio"
+                class="form-check-input"
+                name="migration-audience"
+                [value]="false"
+                [(ngModel)]="isMigratingIntranet"
+                (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
+              />
+              <label for="migration-extranet" class="form-check-label">
+                Extranet/Internet application
+              </label>
+            </div>
+          </fieldset>
+        </div>
+        <div class="col-md-6">
+          <fieldset>
+            <legend class="font-curve-small bold">
+              What technology is your application built with?
+            </legend>
+            <div class="form-check">
+              <input
+                id="migration-angular"
+                type="radio"
+                class="form-check-input"
+                name="migration-technology"
+                [value]="true"
+                [(ngModel)]="isMigratingAngular"
+                (ngModelChange)="setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)"
+              />
+              <label for="migration-angular" class="form-check-label">Angular application</label>
+            </div>
+            <div class="form-check mb-0">
+              <input
+                id="migration-other-technology"
+                type="radio"
+                class="form-check-input"
+                name="migration-technology"
+                [value]="false"
+                [(ngModel)]="isMigratingAngular"
+                (ngModelChange)="setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)"
+              />
+              <label for="migration-other-technology" class="form-check-label">
+                Non-Angular application
+              </label>
+            </div>
+          </fieldset>
+        </div>
+      </div>
     </div>
 
     <ol class="bubble-tea">
       <li>
         <h4 class="h5 bold">Clean start 🧹</h4>
-        <p>Create a branch and commit all changes to have a clean, reversible starting point.</p>
+        <p>
+          Create a branch and commit all changes to have a clean, reversible starting point. If you
+          like to upgrade from a Design System version lower than 4.0.0, it might be necessary to
+          upgrade to v4 first.
+        </p>
       </li>
       <li>
         <!-- prettier-ignore -->
@@ -1515,7 +1576,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="ngbootstrapbuttons_labelclass">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Refactored <code>label.btn-primary</code> to <code>label.btn.btn-secondary</code>.
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Refactored <code>label.btn.btn-primary</code> to <code>label.btn.btn-secondary</code>.
                       </label>
                     </div>
                   </li>
@@ -2076,12 +2137,12 @@
   <div class="container">
     <div class="topic-teaser-container bg-nightblue">
       <div class="row pt-huge-r">
-        <div class="topic-teaser-content col-12 col-lg-8">
+        <div class="topic-teaser-content">
           <h2 class="topic-teaser-title font-curve-large mb-large">
             <span class="bold">Resources</span>
             <span class="light">For a consistent user experience</span>
           </h2>
-          <ul class="link-list font-curve-regular mb-large">
+          <ul class="link-list mb-large">
             <li class="link-list-item">
               <a
                 target="_blank"
@@ -2114,7 +2175,7 @@
             </li>
           </ul>
         </div>
-        <div class="topic-teaser-image-container col-10 col-rg-8 col-lg-4">
+        <div class="topic-teaser-image-container">
           <img
             class="topic-teaser-image"
             src="assets/images/lego.jpg"

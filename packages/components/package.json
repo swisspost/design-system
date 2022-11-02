@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "1.0.0-beta.2",
+  "version": "1.0.0",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
   "main": "dist/index.cjs.js",
@@ -11,6 +11,7 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/post-components/post-components.esm.js",
+  "private": true,
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system"
@@ -35,13 +36,12 @@
     "storybook:start:headless": "start-storybook -p 9303 -s www --no-open",
     "storybook:build": "build-storybook",
     "storybook:test": "start-server-and-test storybook:start:headless 9303 'cypress run --record false'",
-    "cypress:open": "cypress open",
-    "postinstall": "pnpm --prefix node_modules/cypress postinstall"
+    "cypress:open": "cypress open"
   },
   "dependencies": {
     "@stencil/core": "^2.13.0",
     "@stencil/sass": "^2.0.0",
-    "@swisspost/design-system-styles": "workspace:5.0.0-beta.3",
+    "@swisspost/design-system-styles": "workspace:5.0.0",
     "sass": "^1.49.7"
   },
   "devDependencies": {
