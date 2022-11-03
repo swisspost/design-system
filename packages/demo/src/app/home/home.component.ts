@@ -2,6 +2,13 @@ import { Component } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
+interface migrationAccordionGroupedCheckboxes {
+  general: Object,
+  bootstrap: Object,
+  ngbootstrap: Object,
+  post: Object
+};
+
 @Component({
   selector: 'app-demo-home',
   templateUrl: 'home.component.html',
@@ -22,101 +29,108 @@ export class HomeComponent {
   public isMigratingIntranet = this.getLocaleStorage(this.migrationTypeIntranetKey) ?? false;
   public isMigratingAngular = this.getLocaleStorage(this.migrationTypeAngularKey) ?? true;
   public migrationAccordionActiveIds: Array<string> = this.getLocaleStorage(this.migrationAccordionKey) ?? [];
-  public migrationAccordionGroupedCheckboxes: Object = Object.assign(
-    {
-      general: {
-        naming_cwfpackagename: false,
-        naming_cwflicense: false,
-        naming_cwfname: false,
-        naming_options: false,
-        variables_isolatecomponents: false,
-        variables_fontsizemap: false,
-        variables_lineheightrg: false,
-        variables_floatinglabel: false,
-        variables_colorsremoved: false,
-        variables_colorsrenamed: false,
-        variables_lineheigts: false,
-        variables_lineheightlighter: false,
-        variables_headingfontsizes: false,
-        mixins_fontsizelineheight: false,
-        classes_bgopacity: false,
-        classes_secondary: false,
-        classes_textauto: false,
-        classes_rtlmode: false
-      },
-      bootstrap: {
-        alerts_fixedbottom: false,
-        alerts_closebuttoncontent: false,
-        alerts_closebuttonclass: false,
-        badges_classes: false,
-        backgrounds_textcolor: false,
-        blockquotes_footerstructure: false,
-        blockquotes_qclass: false,
-        buttons_outline: false,
-        buttons_borderradius: false,
-        buttons_borderradius2: false,
-        buttons_invertedclass: false,
-        buttons_iconclass: false,
-        buttonclose_content: false,
-        buttonclose_class: false,
-        buttonclose_buttonclasses: false,
-        cards_classes: false,
-        forms_formgroup: false,
-        forms_formtext: false,
-        formcontrols_formlabelclass: false,
-        formcontrols_formfloatingwrapper: false,
-        formcontrols_formfloatingcontrollgclass: false,
-        formselects_formfloatingwrapper: false,
-        formselects_classes: false,
-        formselects_formfloatingselectlgclass: false,
-        formselectmultiples_classes: false,
-        formtextareas_formfloatingwrapper: false,
-        formtextareas_formfloatingcontrollgclass: false,
-        formranges_formlabelclass: false,
-        formfiles_formlabelclass: false,
-        formfiles_formfloatingwrapper: false,
-        formfiles_formfloatingcontrollgclass: false,
-        formcheckboxes_classes: false,
-        formcheckboxes_validationclasses: false,
-        formcheckboxes_validationfeedbackclasses: false,
-        formradios_classes: false,
-        formradios_validationclasses: false,
-        formradios_validationfeedbackclasses: false
-      },
-      ngbootstrap: {
-        buttons_labelclass: false,
-        buttons_inputclass: false,
-        buttons_grouptoggleclass: false,
-        datepickers_variables: false,
-        modals_closebuttoncontent: false,
-        modals_closebuttonclass: false
-      },
-      post: {
-        detailsummary_detailsummary: false,
-        accordions_wrapper: false,
-        accordions_summaryclasses: false,
-        accordions_classes: false,
-        customselects_classes: false,
-        customselects_menuclass: false,
-        sizings_paddingsleftright: false,
-        subnavigations_invertedclass: false,
-        formswitches_classes: false,
-        formswitches_labelclasses: false,
-        formswitches_validationclasses: false,
-        formswitches_validationfeedbackclasses: false,
-        formswitches_switchtoggleclass: false,
-        topicteasers_imageattributes: false,
-        topicteasers_imagecontainergridclasses: false,
-        topicteasers_contentcontainergridclasses: false,
-        topicteasers_linklistfontcurve: false
-      }
+  public migrationAccordionGroupedCheckboxes: migrationAccordionGroupedCheckboxes = {
+    general: {
+      naming_cwfpackagename: false,
+      naming_cwflicense: false,
+      naming_cwfname: false,
+      naming_options: false,
+      variables_isolatecomponents: false,
+      variables_fontsizemap: false,
+      variables_lineheightrg: false,
+      variables_floatinglabel: false,
+      variables_colorsremoved: false,
+      variables_colorsrenamed: false,
+      variables_lineheigts: false,
+      variables_lineheightlighter: false,
+      variables_headingfontsizes: false,
+      mixins_fontsizelineheight: false,
+      classes_bgopacity: false,
+      classes_secondary: false,
+      classes_textauto: false,
+      classes_rtlmode: false
     },
-    this.getLocaleStorage(this.migrationAccordionGroupedCheckboxesKey) ?? {}
-  );
+    bootstrap: {
+      alerts_fixedbottom: false,
+      alerts_closebuttoncontent: false,
+      alerts_closebuttonclass: false,
+      badges_classes: false,
+      backgrounds_textcolor: false,
+      blockquotes_footerstructure: false,
+      blockquotes_qclass: false,
+      buttons_outline: false,
+      buttons_borderradius: false,
+      buttons_borderradius2: false,
+      buttons_invertedclass: false,
+      buttons_iconclass: false,
+      buttonclose_content: false,
+      buttonclose_class: false,
+      buttonclose_buttonclasses: false,
+      cards_classes: false,
+      forms_formgroup: false,
+      forms_formtext: false,
+      formcontrols_formlabelclass: false,
+      formcontrols_formfloatingwrapper: false,
+      formcontrols_formfloatingcontrollgclass: false,
+      formselects_formfloatingwrapper: false,
+      formselects_classes: false,
+      formselects_formfloatingselectlgclass: false,
+      formselectmultiples_classes: false,
+      formtextareas_formfloatingwrapper: false,
+      formtextareas_formfloatingcontrollgclass: false,
+      formranges_formlabelclass: false,
+      formfiles_formlabelclass: false,
+      formfiles_formfloatingwrapper: false,
+      formfiles_formfloatingcontrollgclass: false,
+      formcheckboxes_classes: false,
+      formcheckboxes_validationclasses: false,
+      formcheckboxes_validationfeedbackclasses: false,
+      formradios_classes: false,
+      formradios_validationclasses: false,
+      formradios_validationfeedbackclasses: false
+    },
+    ngbootstrap: {
+      buttons_labelclass: false,
+      buttons_inputclass: false,
+      buttons_grouptoggleclass: false,
+      datepickers_variables: false,
+      modals_closebuttoncontent: false,
+      modals_closebuttonclass: false
+    },
+    post: {
+      detailsummary_detailsummary: false,
+      accordions_wrapper: false,
+      accordions_summaryclasses: false,
+      accordions_classes: false,
+      customselects_classes: false,
+      customselects_menuclass: false,
+      subnavigations_invertedclass: false,
+      formswitches_classes: false,
+      formswitches_labelclasses: false,
+      formswitches_validationclasses: false,
+      formswitches_validationfeedbackclasses: false,
+      formswitches_switchtoggleclass: false,
+      topicteasers_imageattributes: false,
+      topicteasers_imagecontainergridclasses: false,
+      topicteasers_contentcontainergridclasses: false,
+      topicteasers_linklistfontcurve: false
+    }
+  };
 
   constructor() {
     // Show deprecation warning if anybody still uses IE11
     this.isIE11 = window.navigator.userAgent.includes('Trident/7.0');
+
+    const localStorageCheckboxes: Object = this.getLocaleStorage(this.migrationAccordionGroupedCheckboxesKey) ?? {};
+    
+    for (const groupKey in this.migrationAccordionGroupedCheckboxes) {
+      const checkboxGroup = this.migrationAccordionGroupedCheckboxes[groupKey];
+      const storageGroup = localStorageCheckboxes[groupKey] ?? {};
+
+      for (const checkboxKey in checkboxGroup) {
+        if (storageGroup[checkboxKey] !== undefined) checkboxGroup[checkboxKey] = storageGroup[checkboxKey];
+      }
+    }
   }
 
   get migrationTypeIntranetKey () {
