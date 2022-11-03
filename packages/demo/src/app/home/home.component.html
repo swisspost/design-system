@@ -274,12 +274,12 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalnaming_cwfpackagename">
-                          <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">package</span> names.
-                          <ul class="mt-2">
-                            <li><code>@******/common-web-frontend</code> became <code>@swisspost/design-system-styles</code></li>
-                            <li><code>@******/common-web-frontend-demo</code> became <code>@swisspost/design-system-demo</code></li>
-                            <li><code>@******/common-web-frontend-intranet-header</code> became <code>@swisspost/design-system-intranet-header</code></li>
-                          </ul>
+                        <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">package</span> names.
+                        <ul class="mt-2">
+                          <li><code>@******/common-web-frontend</code> became <code>@swisspost/design-system-styles</code></li>
+                          <li><code>@******/common-web-frontend-demo</code> became <code>@swisspost/design-system-demo</code></li>
+                          <li><code>@******/common-web-frontend-intranet-header</code> became <code>@swisspost/design-system-intranet-header</code></li>
+                        </ul>
                       </label>
                     </div>
                   </li>
@@ -294,7 +294,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalnaming_cwflicense">
-                          <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">src/lic/cwf-license.scss</span> file.
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">src/lic/cwf-license.scss</span> file.
                       </label>
                     </div>
                   </li>
@@ -309,10 +309,10 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalnaming_cwfname">
-                          <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">src/cwf.scss</span> file to <span class="highlight">src/core.scss</span>.<br>
-                          <span>We recommend to import the <span class="highlight">core.scss</span> file as follows: <code>@use '@swisspost/design-system-styles/core.scss' as post;</code></span><br>
-                          <span>However, do not forget to switch the namespace in your files from <span class="highlight">cwf</span> to either <span class="highlight">core</span> or <span class="highlight">post</span>!</span>
-                          <span class="info">Read more about namespaces at the <a href="https://sass-lang.com/blog/the-module-system-is-launched">sass module system intro</a>.</span>
+                        <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">src/cwf.scss</span> file to <span class="highlight">src/core.scss</span>.<br>
+                        <span>We recommend to import the <span class="highlight">core.scss</span> file as follows: <code>@use '@swisspost/design-system-styles/core.scss' as post;</code></span><br>
+                        <span>However, do not forget to switch the namespace in your files from <span class="highlight">cwf</span> to either <span class="highlight">core</span> or <span class="highlight">post</span>!</span>
+                        <span class="info">Read more about namespaces at the <a href="https://sass-lang.com/blog/the-module-system-is-launched">sass module system intro</a>.</span>
                       </label>
                     </div>
                   </li>
@@ -783,9 +783,9 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbackgrounds_textcolor">
-                      <span class="change-badge bg-danger">breaking</span> Background classes such as <code>.bg-[colorname]</code>, now also automatically define the inner <span class="highlight">text-color</span> with <code>var(--post-contrast-color)</code>.<br>
-                      Therefore an explicit <span class="highlight">text-color</span> styling is not required anymore.
-                      </label>
+                        <span class="change-badge bg-danger">breaking</span> Background classes such as <code>.bg-[colorname]</code>, now also automatically define the inner <span class="highlight">text-color</span> with <code>var(--post-contrast-color)</code>.<br>
+                        Therefore an explicit <span class="highlight">text-color</span> styling is not required anymore.
+                        </label>
                     </div>
                   </li>
                 </ul>
@@ -813,10 +813,10 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapblockquotes_footerstructure">
-                      <span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">blockquote</span> with footer.<br>
-                      Such blockquotes now need to be nested in a <code>figure</code> tag.
-                      In addition, the tag <code>footer.blockquote-footer</code> became <code>figcaption.blockquote-footer</code>.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">blockquote</span> with footer.<br>
+                        Such blockquotes now need to be nested in a <code>figure</code> tag.
+                        In addition, the tag <code>footer.blockquote-footer</code> became <code>figcaption.blockquote-footer</code>.
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -832,8 +832,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapblockquotes_qclass">
-                      Dropped usage of <code>.mb-0</code> class, on <code>p</code> tags within <code>blockquote</code> elements.
-                    </label>
+                        Dropped usage of <code>.mb-0</code> class, on <code>p</code> tags within <code>blockquote</code> elements.
+                      </label>
                     </div>
                   </li>
                 </ul>
@@ -859,9 +859,9 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttons_outline">
-                      <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">button</span> classes <code>.btn-outline-[colorname]</code>.<br>
-                      <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
-                    </label>
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">button</span> classes <code>.btn-outline-[colorname]</code>.<br>
+                        <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -877,12 +877,12 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttons_borderradius">
-                      <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">button</span> variables.<br>
-                      <ul class="mt-2">
-                        <li><code>$btn-border-radius-rg</code></li>
-                        <li><code>$btn-border-radius-map</code></li>
-                      </ul>
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">button</span> variables.<br>
+                        <ul class="mt-2">
+                          <li><code>$btn-border-radius-rg</code></li>
+                          <li><code>$btn-border-radius-map</code></li>
+                        </ul>
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -898,13 +898,13 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttons_borderradius2">
-                      Dropped the usage of <span class="highlight">button</span> variables.
-                      <ul class="mt-2">
-                        <li><code>$btn-border-radius-sm</code></li>
-                        <li><code>$btn-border-radius-lg</code></li>
-                      </ul>
-                      <p class="info">The variables remain available due to bootstrap.</p>
-                    </label>
+                        Dropped the usage of <span class="highlight">button</span> variables.
+                        <ul class="mt-2">
+                          <li><code>$btn-border-radius-sm</code></li>
+                          <li><code>$btn-border-radius-lg</code></li>
+                        </ul>
+                        <p class="info">The variables remain available due to bootstrap.</p>
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -920,9 +920,9 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttons_invertedclass">
-                      <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code>.btn-inverted</code> class.<br>
-                      <span class="highlight">Text-colors</span> are now automatically handled.
-                    </label>
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code>.btn-inverted</code> class.<br>
+                        <span class="highlight">Text-colors</span> are now automatically handled.
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -938,9 +938,9 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttons_iconclass">
-                      Dropped the usage of <code>.btn-icon</code> class for buttons with icon and text.<br>
-                      <span class="highlight">Icon-only</span> buttons still need this class!
-                    </label>
+                        Dropped the usage of <code>.btn-icon</code> class for buttons with icon and text.<br>
+                        <span class="highlight">Icon-only</span> buttons still need this class!
+                      </label>
                     </div>
                   </li>
                 </ul>
@@ -1031,9 +1031,9 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapcards_classes">
-                      <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">card</span> classes <code>.card-deck</code> and <code>.card-columns</code>.<br>
-                      Use the <span class="highlight">grid-system</span> instead.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">card</span> classes <code>.card-deck</code> and <code>.card-columns</code>.<br>
+                        Use the <span class="highlight">grid-system</span> instead.
+                      </label>
                     </div>
                   </li>
                 </ul>
@@ -1104,8 +1104,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformcontrols_formlabelclass">
-                      <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -1122,8 +1122,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformcontrols_formfloatingwrapper">
-                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -1170,8 +1170,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformselects_formfloatingwrapper">
-                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -1187,13 +1187,13 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformselects_classes">
-                      <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">custom-select</span> classes.
-                      <ul class="mt-2">
-                        <li><code>.custom-select</code> became <code>.form-select</code></li>
-                        <li><code>.custom-select-sm</code> became <code>.form-select-sm</code></li>
-                        <li><code>.custom-select-rg</code> became <code>.form-select-rg</code></li>
-                      </ul>
-                    </label>
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">custom-select</span> classes.
+                        <ul class="mt-2">
+                          <li><code>.custom-select</code> became <code>.form-select</code></li>
+                          <li><code>.custom-select-sm</code> became <code>.form-select-sm</code></li>
+                          <li><code>.custom-select-rg</code> became <code>.form-select-rg</code></li>
+                        </ul>
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -1239,8 +1239,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformselectmultiples_classes">
-                      <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed class <code>.form-control.custom-select</code> to <code>.form-select</code>.
-                    </label>
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed class <code>.form-control.custom-select</code> to <code>.form-select</code>.
+                      </label>
                     </div>
                   </li>
                 </ul>
@@ -1269,8 +1269,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformtextareas_formfloatingwrapper">
-                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -1316,8 +1316,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformranges_formlabelclass">
-                      <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
+                      </label>
                     </div>
                   </li>
                 </ul>
@@ -1345,8 +1345,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformfiles_formlabelclass">
-                      <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -1410,14 +1410,14 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformcheckboxes_classes">
-                      <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">control</span> classes.
-                      <ul class="mt-2">
-                        <li><code>.custom-control.custom-checkbox</code> became <code>.form-check</code></li>
-                        <li><code>.custom-control-input</code> became <code>.form-check-input</code></li>
-                        <li><code>.custom-control-label</code> became <code>.form-check-label</code></li>
-                        <li><code>.custom-control-inline</code> became <code>.form-check-inline</code></li>
-                      </ul>
-                    </label>
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">control</span> classes.
+                        <ul class="mt-2">
+                          <li><code>.custom-control.custom-checkbox</code> became <code>.form-check</code></li>
+                          <li><code>.custom-control-input</code> became <code>.form-check-input</code></li>
+                          <li><code>.custom-control-label</code> became <code>.form-check-label</code></li>
+                          <li><code>.custom-control-inline</code> became <code>.form-check-inline</code></li>
+                        </ul>
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -1434,9 +1434,9 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformcheckboxes_validationclasses">
-                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span> classes.<br>
-                      The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on the <code>.form-check-input</code> element. The <code>.form-check</code> element does not require the <span class="highlight">validation</span> classes anymore.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span> classes.<br>
+                        The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on the <code>.form-check-input</code> element. The <code>.form-check</code> element does not require the <span class="highlight">validation</span> classes anymore.
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -1453,9 +1453,9 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformcheckboxes_validationfeedbackclasses">
-                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
-                      The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
+                        The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
+                      </label>
                     </div>
                   </li>
                 </ul>
@@ -1483,14 +1483,14 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformradios_classes">
-                      <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">control</span> classes.
-                      <ul class="mt-2">
-                        <li><code>.custom-control.custom-radio</code> became <code>.form-check</code></li>
-                        <li><code>.custom-control-input</code> became <code>.form-check-input</code></li>
-                        <li><code>.custom-control-label</code> became <code>.form-check-label</code></li>
-                        <li><code>.custom-control-inline</code> became <code>.form-check-inline</code></li>
-                      </ul>
-                    </label>
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">control</span> classes.
+                        <ul class="mt-2">
+                          <li><code>.custom-control.custom-radio</code> became <code>.form-check</code></li>
+                          <li><code>.custom-control-input</code> became <code>.form-check-input</code></li>
+                          <li><code>.custom-control-label</code> became <code>.form-check-label</code></li>
+                          <li><code>.custom-control-inline</code> became <code>.form-check-inline</code></li>
+                        </ul>
+                      </label>
                     </div>
                   </li>
                   <li>
@@ -1525,9 +1525,9 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformradios_validationfeedbackclasses">
-                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
-                      The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
+                        The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
+                      </label>
                     </div>
                   </li>
                 </ul>
@@ -1632,14 +1632,14 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="ngbootstrapdatepickers_variables">
-                      <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">padding</span> variables.
-                      <ul class="mt-2">
-                        <li><code>$ngb-dp-icon-padding</code></li>
-                        <li><code>$ngb-dp-icon-padding-sm</code></li>
-                        <li><code>$ngb-dp-icon-padding-rg</code></li>
-                        <li><code>$ngb-dp-icon-padding-lg</code></li>
-                      </ul>
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">padding</span> variables.
+                        <ul class="mt-2">
+                          <li><code>$ngb-dp-icon-padding</code></li>
+                          <li><code>$ngb-dp-icon-padding-sm</code></li>
+                          <li><code>$ngb-dp-icon-padding-rg</code></li>
+                          <li><code>$ngb-dp-icon-padding-lg</code></li>
+                        </ul>
+                      </label>
                     </div>
                   </li>
                 </ul>
@@ -1685,8 +1685,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="ngbootstrapmodals_closebuttonclass">
-                      <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
-                    </label>
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
+                      </label>
                     </div>
                   </li>
                 </ul>
@@ -1730,7 +1730,7 @@
                       <label class="form-check-label" for="postdetailsummary_detailsummary">
                         <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">detail-summary</span> component.<br>
                         We recommend to use the <a routerLink="/ng-bootstrap-samples/accordion">Angular</a> or <a routerLink="/post-samples/accordion">Post</a>&nbsp;<span class="highlight">accordion</span> component instead.
-                    </label>
+                      </label>
                     </div>
                   </li>
                 </ul>
@@ -2000,9 +2000,9 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postformswitches_validationfeedbackclasses">
-                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
-                      The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
-                    </label>
+                        <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
+                        The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
+                      </label>
                     </div>
                   </li>
                   <li>
