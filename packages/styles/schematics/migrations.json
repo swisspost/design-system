@@ -4,38 +4,38 @@
   "schematics": {
     "migration-general-classes-bg-opacity": {
       "version": "5.0.0",
-      "description": "Migrates bg-opacity classes.",
+      "description": "Migrates general bg-opacity classes.",
       "factory": "./migrations/general/classes/bg-opacity"
     },
     "migration-general-classes-secondary": {
       "version": "5.0.0",
-      "description": "Migrates bg-secondary, border-secondary and text-secondary classes.",
+      "description": "Migrates general bg-secondary, border-secondary and text-secondary classes.",
       "factory": "./migrations/general/classes/secondary"
-    },
-    "migration-bootstrap-button-close": {
-      "version": "5.0.0",
-      "description": "Migrates close-button component.",
-      "factory": "./migrations/bootstrap/button-close"
     },
     "migration-bootstrap-badge": {
       "version": "5.0.0",
-      "description": "Migrates badge component.",
+      "description": "Migrates bootstrap badge component.",
       "factory": "./migrations/bootstrap/badge"
     },
     "migration-bootstrap-blockquote": {
       "version": "5.0.0",
-      "description": "Migrates blockquote component.",
+      "description": "Migrates bootstrap blockquote component.",
       "factory": "./migrations/bootstrap/blockquote"
+    },
+    "migration-bootstrap-button": {
+      "version": "5.0.0",
+      "description": "Migrates bootstrap button component.",
+      "factory": "./migrations/bootstrap/button"
+    },
+    "migration-bootstrap-button-close": {
+      "version": "5.0.0",
+      "description": "Migrates bootstrap close-button component.",
+      "factory": "./migrations/bootstrap/button-close"
     },
     "migration-backgrounds": {
       "version": "5.0.0",
       "description": "As of Design System v5 backgrounds make extensive use of CSS variables, therefore the .text-auto and .bg-[color]-opacity-80 classes are deprecated.",
       "factory": "./migrations/backgrounds/index"
-    },
-    "migration-buttons": {
-      "version": "5.0.0",
-      "description": "https://getbootstrap.com/docs/5.0/migration/#buttons",
-      "factory": "./migrations/buttons/index"
     },
     "migration-form-controls": {
       "version": "5.0.0",
