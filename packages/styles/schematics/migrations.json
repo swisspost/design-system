@@ -12,6 +12,11 @@
       "description": "Migrates general bg-secondary, border-secondary and text-secondary classes.",
       "factory": "./migrations/general/classes/secondary"
     },
+    "migration-general-text-auto": {
+      "version": "5.0.0",
+      "description": "Migrates general text-auto classes.",
+      "factory": "./migrations/general/classes/text-auto"
+    },
     "migration-general-rtl": {
       "version": "5.0.0",
       "description": "Migrates general rtl helper classes (https://getbootstrap.com/docs/5.0/migration/#rtl).",
@@ -51,11 +56,6 @@
       "version": "5.0.0",
       "description": "Migrates post topic-teaser component.",
       "factory": "./migrations/post/topic-teaser"
-    },
-    "migration-backgrounds": {
-      "version": "5.0.0",
-      "description": "As of Design System v5 backgrounds make extensive use of CSS variables, therefore the .text-auto and .bg-[color]-opacity-80 classes are deprecated.",
-      "factory": "./migrations/backgrounds/index"
     },
     "migration-form-controls": {
       "version": "5.0.0",
