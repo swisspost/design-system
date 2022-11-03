@@ -31,6 +31,7 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
         if (!sourceCode) continue;
         
         for (const { selector, update } of migration.updates) {
+          // create cheerio dom tree
           const $ = cheerio.load(sourceCode, {
             xmlMode: true,
             decodeEntities: false,
@@ -41,27 +42,39 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
             withEndIndices: true
           }, false);
 
+          // get "cheerioElement[]" to mutate in "update" method
           const $elements = $(selector);
           
+          // continue to next migration.update if no elements were found
           if ($elements.length <= 0) continue;
           
+          // create "cheerioElement[]" out of cheerio elements
           const elementsArray = Array.from($elements);
+          // map source elements as "string[]" for later comparison
           const sourceElements = elementsArray.map(element => $(element).toString());
+          // start tree file recorder to update tree file later
           const treeUpdateRecorder = tree.beginUpdate(treeFilePath);
           
+          // send "cheerioElement[]" and cheerio instance to the "update" method
+          // after this "cheerioElement[]" in "$elements" are updated
           update($elements, $);
           
           elementsArray
             .forEach((element, index) => {
               const $element = $(element);
               
+              // continue to next "element", if eighter "element" has not been updated or "element" has no indices
               if (sourceElements[index] === $element.toString() || element.startIndex === null || element.endIndex === null) return;
               
+              // remove old "element" out of tree file
               treeUpdateRecorder.remove(element.startIndex, element.endIndex- element.startIndex + 1);
+              // write new "element" into the tree file
               treeUpdateRecorder.insertLeft(element.startIndex, $element.toString());
             });
           
+          // commit changes in tree file to tree
           tree.commitUpdate(treeUpdateRecorder);
+          // update "sourceCode" for chained "DomUpdates" in same migration schematic
           sourceCode = tree.read(treeFilePath)?.toString() ?? '';
         }
       }
