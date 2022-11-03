@@ -59,6 +59,7 @@
     "@types/node": "16.18.3",
     "autoprefixer": "10.4.13",
     "babel-loader": "8.2.5",
+    "cheerio": "1.0.0-rc.12",
     "copyfiles": "2.4.1",
     "css-loader": "5.2.7",
     "cypress": "10.11.0",
