@@ -1862,42 +1862,6 @@
                 </p>
               </div>
 
-              <!-- Post Sizing -->
-              <div>
-                <h5 class="mt-4 h6 bold">Sizing</h5>
-                <ul class="list-unstyled my-3">
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="postsizings_paddingsleftright"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.post.sizings_paddingsleftright
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="postsizings_paddingsleftright">
-                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">margin/padding</span> helper classes, to align with the <span class="highlight">start</span> and <span class="highlight">end</span> keywords.
-                        <ul class="mt-2">
-                          <li><code>.ml-[size]</code> became <code>.ms-[size]</code></li>
-                          <li><code>.mr-[size]</code> became <code>.me-[size]</code></li>
-                          <li><code>.pl-[size]</code> became <code>.ps-[size]</code></li>
-                          <li><code>.pr-[size]</code> became <code>.pe-[size]</code></li>
-                        </ul>
-                        <p class="info">Replace [size] with "0", "1", "2" "3" , "4" or "5".</p>
-                      </label>
-                    </div>
-                  </li>
-                </ul>
-                <p class="info">
-                  See
-                  <a routerLink="/post-samples/sizing">documentation</a>
-                  for more detailed informations.
-                </p>
-              </div>
-
               <!-- Post Subnavigation -->
               <div>
                 <h5 class="mt-4 h6 bold">Subnavigation</h5>
