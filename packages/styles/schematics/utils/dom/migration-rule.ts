@@ -29,7 +29,7 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
         let sourceCode = tree.read(treeFilePath)?.toString() ?? '';
 
         if (!sourceCode) continue;
-        
+
         for (const { selector, update } of migration.updates) {
           // create cheerio dom tree
           const $ = cheerio.load(sourceCode, {
