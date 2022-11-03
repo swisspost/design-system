@@ -2047,7 +2047,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="posttopicteasers_imageattributes">
-                        <span class="change-badge bg-danger">breaking</span> Required <span class="highlight">image</span> attributes.
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Required <span class="highlight">image</span> attributes.
                         <ul class="mt-2">
                           <li><code>width="100%"</code></li>
                           <li><code>height="100%"</code></li>
