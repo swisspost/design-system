@@ -30,7 +30,9 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
 
         if (!sourceCode) continue;
 
-        for (const { selector, update } of migration.updates) {
+        for (const [updateKey, { update, selector }] of Object.entries(migration.updates)) {
+          const context = migration.updates[Number(updateKey)];
+
           // create cheerio dom tree
           const $ = cheerio.load(sourceCode, {
             xmlMode: true,
@@ -57,7 +59,7 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
           
           // send "cheerioElement[]" and cheerio instance to the "update" method
           // after this "cheerioElement[]" in "$elements" are updated
-          update($elements, $);
+          update.bind(context)($elements, $);
           
           elementsArray
             .forEach((element, index) => {

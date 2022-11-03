@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import DomUpdate from '../../../utils/dom/update';
-import type { Cheerio } from 'cheerio';
+import IDomUpdate from '../../../utils/dom/update';
+import { Cheerio, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return new DomMigration(
@@ -10,20 +10,20 @@ export default function (): Rule {
   ).rule;
 }
 
-class ButtonCloseClassesUpdate extends DomUpdate {
+class ButtonCloseClassesUpdate implements IDomUpdate {
   selector = '.close';
 
-  update = function ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<any>) {
     $elements
       .removeClass('close btn btn-icon')
       .addClass('btn-close');
   }
 }
 
-class ButtonCloseRemoveIconContentUpdate extends DomUpdate {
+class ButtonCloseRemoveIconContentUpdate implements IDomUpdate {
   selector = '.btn-close';
 
-  update = function ($elements: Cheerio<any>, $: any) {
+  update ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
       .find('> span[aria-hidden="true"]')
       // @ts-ignore

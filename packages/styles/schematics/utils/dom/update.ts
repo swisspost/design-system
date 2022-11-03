@@ -1,4 +1,6 @@
-export default abstract class DomUpdate {
-    abstract selector: string;
-    abstract update: Function;
+import { Cheerio, CheerioAPI } from 'cheerio';
+
+export default interface IDomUpdate {
+    selector: string;
+    update: ($elements: Cheerio<any>, $: CheerioAPI) => void;
 }
