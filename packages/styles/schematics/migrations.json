@@ -32,6 +32,11 @@
       "description": "Migrates bootstrap close-button component.",
       "factory": "./migrations/bootstrap/button-close"
     },
+    "migration-ng-buttons": {
+      "version": "5.0.0",
+      "description": "Migrates ng-bootstrap button component.",
+      "factory": "./migrations/ngbootstrap/buttons"
+    },
     "migration-post-subnavigation": {
       "version": "5.0.0",
       "description": "Migrates post subnavigation component.",
@@ -56,11 +61,6 @@
       "version": "5.0.0",
       "description": "https://getbootstrap.com/docs/5.0/migration/#rtl",
       "factory": "./migrations/rtl/index"
-    },
-    "migration-ng-buttons": {
-      "version": "5.0.0",
-      "description": "Replaces ng-button classes.",
-      "factory": "./migrations/ng-buttons/index"
     }
   }
 }
