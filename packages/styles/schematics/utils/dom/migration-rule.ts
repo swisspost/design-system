@@ -44,17 +44,21 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
           const $elements = $(selector);
           
           if ($elements.length <= 0) continue;
-
+          
+          const elementsArray = Array.from($elements);
+          const sourceElements = elementsArray.map(element => $(element).toString());
           const treeUpdateRecorder = tree.beginUpdate(treeFilePath);
-
-          update($elements);
-
-          Array.from($elements)
-            .forEach(element => {
-              if (element.startIndex === null || element.endIndex === null) return;
-
+          
+          update($elements, $);
+          
+          elementsArray
+            .forEach((element, index) => {
+              const $element = $(element);
+              
+              if (sourceElements[index] === $element.toString() || element.startIndex === null || element.endIndex === null) return;
+              
               treeUpdateRecorder.remove(element.startIndex, element.endIndex- element.startIndex + 1);
-              treeUpdateRecorder.insertLeft(element.startIndex, $(element).toString());
+              treeUpdateRecorder.insertLeft(element.startIndex, $element.toString());
             });
           
           tree.commitUpdate(treeUpdateRecorder);
