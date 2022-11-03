@@ -12,6 +12,11 @@
       "description": "Migrates general bg-secondary, border-secondary and text-secondary classes.",
       "factory": "./migrations/general/classes/secondary"
     },
+    "migration-general-rtl": {
+      "version": "5.0.0",
+      "description": "Migrates general rtl helper classes (https://getbootstrap.com/docs/5.0/migration/#rtl).",
+      "factory": "./migrations/general/properties"
+    },
     "migration-bootstrap-badge": {
       "version": "5.0.0",
       "description": "Migrates bootstrap badge component.",
@@ -56,11 +61,6 @@
       "version": "5.0.0",
       "description": "Applies automatic migrations on form elements (https://getbootstrap.com/docs/5.0/migration/#forms).",
       "factory": "./migrations/forms/index"
-    },
-    "migration-rtl": {
-      "version": "5.0.0",
-      "description": "https://getbootstrap.com/docs/5.0/migration/#rtl",
-      "factory": "./migrations/rtl/index"
     }
   }
 }
