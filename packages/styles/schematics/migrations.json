@@ -12,6 +12,11 @@
       "description": "Migrates bg-secondary, border-secondary and text-secondary classes.",
       "factory": "./migrations/general/classes/secondary"
     },
+    "migration-bootstrap-button-close-icon-content": {
+      "version": "5.0.0",
+      "description": "Migrates close-button component.",
+      "factory": "./migrations/bootstrap/button-close"
+    },
     "migration-backgrounds": {
       "version": "5.0.0",
       "description": "As of Design System v5 backgrounds make extensive use of CSS variables, therefore the .text-auto and .bg-[color]-opacity-80 classes are deprecated.",
@@ -26,11 +31,6 @@
       "version": "5.0.0",
       "description": "https://getbootstrap.com/docs/5.0/migration/#buttons",
       "factory": "./migrations/buttons/index"
-    },
-    "migration-close-button": {
-      "version": "5.0.0",
-      "description": "https://getbootstrap.com/docs/5.0/migration/#close-button",
-      "factory": "./migrations/close-button/index"
     },
     "migration-form-controls": {
       "version": "5.0.0",
