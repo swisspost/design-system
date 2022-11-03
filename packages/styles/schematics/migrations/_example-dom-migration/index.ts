@@ -13,16 +13,20 @@
  * to write updates by defining only two simple parameters:
  * 
  * selector: string
- * This is the jQuery like selector which is used to find the element to be updated.
+ * This is the jQuery like selector which is used to find the elements to be updated.
  * 
  * update: Function
- * This is the update function, which receives the cheerio-element as the first argument.
- * On a cheerio-element you can directly run jQuery like functions to mutate the element.
+ * This is the update function, which receives the cheerio-element as the first argument
+ * and the cheerio-instance as the second.
+ * On cheerio-elements you can directly run jQuery like functions to mutate the them.
+ * The cheerio-instance is sometimes helpfull, for example to convert elements in loops
+ * into a new cheerio-element:
+ * $elements.filter((i, element) => $(element).hasClass('bla')).addClass('bla-2');
  * 
  * Note:
- * It is not possible to remove the selected element itself.
- * Instead you can select the parent element and then search the element to remove
- * and call the remove function on this element directly.
+ * It is not possible to remove the selected elements itself.
+ * Instead you can select the parent elements and then search the elements to remove
+ * and call the remove function on this elements directly.
  * See RemoveElementUpdate example.
  * 
  * To try this example, you must add it as a schematic in your collection.json file
@@ -34,7 +38,7 @@
 
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../utils/dom/migration';
-import DomUpdate from '../../utils/dom/update';
+import IDomUpdate from '../../utils/dom/update';
 import type { Cheerio } from 'cheerio';
 
 export default function (): Rule {
@@ -47,37 +51,37 @@ export default function (): Rule {
   ).rule;
 }
 
-class AddElementUpdate extends DomUpdate {
+class AddElementUpdate implements IDomUpdate {
   selector = '#example-dom-element';
-  update = function ($element: Cheerio<any>) {
-    $element.append('<div>It\'s working...</div><div class="remove-example"></div>');
+  update = function ($elements: Cheerio<any>) {
+    $elements.append('<div>It\'s working...</div><div class="remove-example"></div>');
   }
 }
 
-class AddClassUpdate extends DomUpdate {
+class AddClassUpdate implements IDomUpdate {
   selector = '#example-dom-element > div:not([class])';
-  update = function ($element: Cheerio<any>) {
-    $element.addClass('inner');
+  update = function ($elements: Cheerio<any>) {
+    $elements.addClass('inner');
   }
 }
 
-class AddAttributeUpdate extends DomUpdate {
+class AddAttributeUpdate implements IDomUpdate {
   selector = '#example-dom-element .inner';
-  update = function ($element: Cheerio<any>) {
-    $element.attr('style', 'padding: 10px; background-color: white;');
+  update = function ($elements: Cheerio<any>) {
+    $elements.attr('style', 'padding: 10px; background-color: white;');
   }
 }
 
-class AddTextUpdate extends DomUpdate {
+class AddTextUpdate implements IDomUpdate {
   selector = '#example-dom-element .inner';
-  update = function ($element: Cheerio<any>) {
-    $element.text(`${$element.text()} cheerio!`);
+  update = function ($elements: Cheerio<any>) {
+    $elements.text(`${$elements.text()} cheerio!`);
   }
 }
 
-class RemoveElementUpdate extends DomUpdate {
+class RemoveElementUpdate implements IDomUpdate {
   selector = '#example-dom-element';
-  update = function ($element: Cheerio<any>) {
-    $element.find('.remove-example').remove();
+  update = function ($elements: Cheerio<any>) {
+    $elements.find('.remove-example').remove();
   }
 }
