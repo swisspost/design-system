@@ -627,26 +627,41 @@
                       </label>
                     </div>
                   </li>
-                </ul>
-              </div>
-
-              <!-- General Properties -->
-              <div>
-                <h5 class="h6 bold">Properties</h5>
-                <ul class="list-unstyled my-3">
                   <li>
                     <div class="form-check">
                       <input
-                        id="generalproperites_rtlmode"
+                        id="generalclasses_rtlmode"
                         class="form-check-input"
                         type="checkbox"
-                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.properites_rtlmode"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_rtlmode"
                         (change)="migrationAccordionGroupedCheckboxesChange()"
                       />
                       <!-- prettier-ignore -->
-                      <label class="form-check-label" for="generalproperites_rtlmode">
-                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> For better support of <span class="highlight">rtl-mode</span>,<br>
-                        <code>left</code> and <code>right</code> have switched to <code>start</code> and <code>end</code>.
+                      <label class="form-check-label" for="generalclasses_rtlmode">
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Updated spacing and alignment helper classes, for better support of <span class="highlight">rtl-mode</span>.
+                        <ul class="mt-2">
+                          <li><code>.ml-[size]</code> became <code>.ms-[size]</code></li>
+                          <li><code>.ml-[breakpoint]-[size]</code> became <code>.ms-[breakpoint]-[size]</code></li>
+                          <li><code>.mr-[size]</code> became <code>.me-[size]</code></li>
+                          <li><code>.mr-[breakpoint]-[size]</code> became <code>.me-[breakpoint]-[size]</code></li>
+                          <hr>
+                          <li><code>.pl-[size]</code> became <code>.ps-[size]</code></li>
+                          <li><code>.pl-[breakpoint]-[size]</code> became <code>.ps-[breakpoint]-[size]</code></li>
+                          <li><code>.pr-[size]</code> became <code>.pe-[size]</code></li>
+                          <li><code>.pr-[breakpoint]-[size]</code> became <code>.pe-[breakpoint]-[size]</code></li>
+                          <hr>
+                          <li><code>.float-left</code> became <code>.float-start</code></li>
+                          <li><code>.float-[breakpoint]-left</code> became <code>.float-[breakpoint]-start</code></li>
+                          <li><code>.float-right</code> became <code>.float-end</code></li>
+                          <li><code>.float-[breakpoint]-right</code> became <code>.float-[breakpoint]-end</code></li>
+                          <hr>
+                          <li><code>.text-left</code> became <code>.text-start</code></li>
+                          <li><code>.text-[breakpoint]-left</code> became <code>.text-[breakpoint]-start</code></li>
+                          <li><code>.text-right</code> became <code>.text-end</code></li>
+                          <li><code>.text-[breakpoint]-right</code> became <code>.text-[breakpoint]-end</code></li>
+                        </ul>
+                        <p class="info">Replace [size] for example with "0", "1", ... "5".</p>
+                        <p class="info">Replace [breakpoint] for example with "xs", "sm", ... "xxl".</p>
                       </label>
                     </div>
                   </li>

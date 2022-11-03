@@ -42,7 +42,7 @@ export class HomeComponent {
         classes_bgopacity: false,
         classes_secondary: false,
         classes_textauto: false,
-        properites_rtlmode: false
+        classes_rtlmode: false
       },
       bootstrap: {
         alerts_fixedbottom: false,
