@@ -22,6 +22,11 @@
       "description": "Migrates badge component.",
       "factory": "./migrations/bootstrap/badge"
     },
+    "migration-bootstrap-blockquote": {
+      "version": "5.0.0",
+      "description": "Migrates blockquote component.",
+      "factory": "./migrations/bootstrap/blockquote"
+    },
     "migration-backgrounds": {
       "version": "5.0.0",
       "description": "As of Design System v5 backgrounds make extensive use of CSS variables, therefore the .text-auto and .bg-[color]-opacity-80 classes are deprecated.",
