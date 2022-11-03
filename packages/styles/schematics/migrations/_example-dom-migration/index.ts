@@ -18,7 +18,7 @@
  * update: Function
  * This is the update function, which receives the cheerio-element as the first argument
  * and the cheerio-instance as the second.
- * On cheerio-elements you can directly run jQuery like functions to mutate the them.
+ * On cheerio-elements you can directly run jQuery like functions to mutate them.
  * The cheerio-instance is sometimes helpfull, for example to convert elements in loops
  * into a new cheerio-element:
  * $elements.filter((i, element) => $(element).hasClass('bla')).addClass('bla-2');
