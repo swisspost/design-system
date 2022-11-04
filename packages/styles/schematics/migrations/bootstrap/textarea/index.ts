@@ -32,7 +32,7 @@ class TextareaFloatingLabelWrapperUpdate implements IDomUpdate {
             .addClass('form-floating');
 
           if (setLabel) {
-            $(`<label for="${$control.attr('id')}">${labelText}</label>`).insertAfter($control);
+            $(`<label class="form-label" for="${$control.attr('id')}">${labelText}</label>`).insertAfter($control);
             $description.remove();
           }
 
