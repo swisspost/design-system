@@ -7,7 +7,6 @@ export class HighlightProvider {
         provide: HIGHLIGHT_OPTIONS,
         useValue: {
           fullLibraryLoader: () => import('highlight.js').then(lib => {
-            console.log(lib);
             return lib;
           }).catch(e => console.log(e)),
         }
