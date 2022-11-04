@@ -5,10 +5,12 @@ import { getProjectTsConfigPaths } from "@angular/core/schematics/utils/project_
 import { canMigrateFile, createMigrationProgram } from "@angular/core/schematics/utils/typescript/compiler_host";
 import { NgComponentTemplateVisitor } from "@angular/core/schematics/utils/ng_component_template";
 import { SourceFile } from "typescript";
-import * as cheerio from 'cheerio';
 import DomMigration from './migration';
+import * as cheerio from 'cheerio';
+import * as prettier from 'prettier';
+import * as htmlParser from 'prettier/parser-html';
 
-const CHEERIO_OPTIONS = {
+const CHEERIO_OPTIONS: cheerio.CheerioOptions = {
   xmlMode: true,
   decodeEntities: false,
   lowerCaseTags: false,
@@ -16,6 +18,12 @@ const CHEERIO_OPTIONS = {
   recognizeSelfClosing: true,
   withStartIndices: true,
   withEndIndices: true
+};
+
+const PRETTIER_OPTIONS: prettier.Options = {
+  parser: 'angular',
+  plugins: [htmlParser],
+  htmlWhitespaceSensitivity: 'strict'
 };
 
 export default function DomMigrationRule (migration: DomMigration): Rule {
@@ -85,7 +93,7 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
               // remove old "element" out of tree file
               treeUpdateRecorder.remove(source.start, source.end - source.start);
               // write new "element" into the tree file
-              treeUpdateRecorder.insertLeft(source.start, distElement);
+              treeUpdateRecorder.insertLeft(source.start, prettier.format(distElement, PRETTIER_OPTIONS));
             });
           
           // commit changes in tree file to tree
