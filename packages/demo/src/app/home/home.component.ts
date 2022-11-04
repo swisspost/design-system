@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { environment } from './../../environments/environment';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
-interface migrationAccordionGroupedCheckboxes {
+interface MigrationAccordionGroupedCheckboxes {
   general: Object,
   bootstrap: Object,
   ngbootstrap: Object,
@@ -29,7 +29,7 @@ export class HomeComponent {
   public isMigratingIntranet = this.getLocaleStorage(this.migrationTypeIntranetKey) ?? false;
   public isMigratingAngular = this.getLocaleStorage(this.migrationTypeAngularKey) ?? true;
   public migrationAccordionActiveIds: Array<string> = this.getLocaleStorage(this.migrationAccordionKey) ?? [];
-  public migrationAccordionGroupedCheckboxes: migrationAccordionGroupedCheckboxes = {
+  public migrationAccordionGroupedCheckboxes: MigrationAccordionGroupedCheckboxes = {
     general: {
       naming_cwfpackagename: false,
       naming_entryfiles: false,
