@@ -109,4 +109,34 @@ code {
     margin-bottom: 0.8em;
     max-height: 450px;
   }
+
+  &[appCopyToClipboard] {
+    position: relative;
+    cursor: pointer;
+
+    &:not(.hljs):hover {
+      background-color: rgba(175, 184, 193, 0.5);
+
+      &::after {
+        content: url(post.get-colored-svg-url('2012', #000));
+        position: absolute;
+        left: 100%;
+        top: 50%;
+        transform: scale(0.50) translateY(-50%);
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 0 12px;
+        transform-origin: top left;
+      }
+    }
+
+    &.hljs:hover::after {
+      content: url(post.get-colored-svg-url('2012', #fff));
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: scale(0.75) translateY(-50%);
+      padding: 0 8px;
+      transform-origin: top left;
+    }
+  }
 }

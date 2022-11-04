@@ -13,6 +13,7 @@ import localeIt from "@angular/common/locales/it";
 import localeEn from "@angular/common/locales/en";
 
 import { HighlightModule } from "ngx-highlightjs";
+import { CopyToClipboardDirective } from './common/copy-to-clipboard.directive';
 import { HighlightProvider } from "./common/highlight.provider";
 
 import { IntranetLayoutComponent } from "./intranet-layout/intranet-layout.component";
@@ -32,32 +33,14 @@ registerLocaleData(localeIt);
 registerLocaleData(localeEn);
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    IntranetLayoutComponent,
-    HomeComponent,
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule,
-    BootstrapComponentsModule,
-    NgBootstrapComponentsModule,
-    IntranetComponentsModule,
-    PostCommonModule,
-    PostSampleComponentsModule,
-    SwissPostIntranetHeaderModule,
-    ToastrModule.forRoot({
-      extendedTimeOut: 0,
-      closeButton: true,
-      toastClass: "toast",
-    }),
-    HighlightModule,
-  ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  providers: [ErrorService, HighlightProvider.Config],
-  bootstrap: [AppComponent],
+    declarations: [ AppComponent, IntranetLayoutComponent, HomeComponent, CopyToClipboardDirective ],
+    imports: [ BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, NgbModule, BootstrapComponentsModule, NgBootstrapComponentsModule, IntranetComponentsModule, PostCommonModule, PostSampleComponentsModule, SwissPostIntranetHeaderModule, ToastrModule.forRoot(
+        {
+            extendedTimeOut: 0, closeButton: true, toastClass: 'toast',
+        }), HighlightModule ],
+    schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
+    providers: [ ErrorService, HighlightProvider.Config ],
+    bootstrap: [ AppComponent ],
+    exports: [ CopyToClipboardDirective ],
 })
 export class AppModule {}
