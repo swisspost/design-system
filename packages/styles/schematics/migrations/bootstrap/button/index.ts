@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
 import IDomUpdate from '../../../utils/dom/update';
-import { Cheerio } from 'cheerio';
+import { Cheerio, CheerioAPI } from 'cheerio';
 
 import { themeColors } from '../../../utils/constants';
 
@@ -17,20 +17,26 @@ class ButtonOutlineClassUpdate implements IDomUpdate {
 
   selector = themeColors.map(colorname => `.btn-outline-${colorname}`).join(', ');
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
-      .attr('class')
-      ?.split(' ')
-      .forEach(cssClass => {
-        const match = cssClass.match(this.cssClassRegex);
-        
-        if (match) {
-          const colorname = match[1];
-          
-          $elements
-            .removeClass(cssClass)
-            .addClass(`btn-${colorname}`);
-        }
+      // @ts-ignore (unused properties)
+      .each((i, element) => {
+        const $element = $(element);
+
+        $element
+          .attr('class')
+          ?.split(' ')
+          .forEach(cssClass => {
+            const match = cssClass.match(this.cssClassRegex);
+            
+            if (match) {
+              const colorname = match[1];
+              
+              $element
+                .removeClass(cssClass)
+                .addClass(`btn-${colorname}`);
+            }
+          });
       });
   }
 }
