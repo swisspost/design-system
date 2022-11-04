@@ -162,11 +162,11 @@
       <li>
         <h4 class="h5 bold">Update your packages 🩺</h4>
         <p>
-          If your angular version is lower than 13, use
+          If your angular version is lower than 14, use
           <a href="https://update.angular.io/" target="_blank" rel="noopener">
             https://update.angular.io/
           </a>
-          to update angular step by step to version 13.
+          to update angular step by step to version 14.
         </p>
         <p>Make sure, you have updated all your packages as far as possible.</p>
       </li>
@@ -286,15 +286,60 @@
                   <li>
                     <div class="form-check">
                       <input
-                        id="generalnaming_cwflicense"
+                        id="generalnaming_entryfiles"
                         class="form-check-input"
                         type="checkbox"
-                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.naming_cwflicense"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.naming_entryfiles"
                         (change)="migrationAccordionGroupedCheckboxesChange()"
                       />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="generalnaming_cwflicense">
-                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">src/lic/cwf-license.scss</span> file.
+                      <label for="generalnaming_entryfiles" class="form-check-label">
+                        <span class="change-badge bg-danger">breaking</span>
+                        Renamed entry files.
+                        <br />
+
+                        <ul class="mt-2">
+                          <li class="mb-2">
+                            <strong>Default (index)</strong>
+                            for default Post styles:
+                            <br />
+                            <code>@use "@*****/common-web-frontend/post.scss";</code>
+                            to
+                            <code>@use "@swisspost/design-system-styles";</code>
+                          </li>
+                          <li class="mb-2">
+                            <strong>Intranet</strong>
+                            for default Post styles + intranet header styles:
+                            <br />
+                            <code>@use "@*****/common-web-frontend/post-intranet";</code>
+                            to
+                            <code>@use "@swisspost/design-system-styles/intranet.scss";</code>
+                          </li>
+                          <li class="mb-2">
+                            <strong>Basics</strong>
+                            for resets, typography, utilities and grid only (use this for small
+                            pages with lots of custom styles):
+                            <br />
+                            <code>@use "@*****/common-web-frontend/post-basics.scss";</code>
+                            to
+                            <code>@use "@swisspost/design-system-styles/basics.scss";</code>
+                          </li>
+                          <li class="mb-2">
+                            <strong>Core</strong>
+                            for functions, mixins, variables and placeholders:
+                            <br />
+                            <code>@use "@*****/common-web-frontend/_cwf.scss";</code>
+                            to
+                            <code>@use "@swisspost/design-system-styles/core.scss";</code>
+                          </li>
+                        </ul>
+
+                        <span class="info">
+                          Read more about @use and sass modules at the
+                          <a href="https://sass-lang.com/documentation/at-rules/use">
+                            sass @use documentation
+                          </a>
+                          .
+                        </span>
                       </label>
                     </div>
                   </li>
@@ -313,6 +358,21 @@
                         <span>We recommend to import the <span class="highlight">core.scss</span> file as follows: <code>@use '@swisspost/design-system-styles/core.scss' as post;</code></span><br>
                         <span>However, do not forget to switch the namespace in your files from <span class="highlight">cwf</span> to either <span class="highlight">core</span> or <span class="highlight">post</span>!</span>
                         <span class="info">Read more about namespaces at the <a href="https://sass-lang.com/blog/the-module-system-is-launched">sass module system intro</a>.</span>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalnaming_cwflicense"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.naming_cwflicense"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalnaming_cwflicense">
+                          <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">src/lic/cwf-license.scss</span> file.
                       </label>
                     </div>
                   </li>

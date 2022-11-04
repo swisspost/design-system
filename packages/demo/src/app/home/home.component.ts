@@ -32,6 +32,7 @@ export class HomeComponent {
   public migrationAccordionGroupedCheckboxes: migrationAccordionGroupedCheckboxes = {
     general: {
       naming_cwfpackagename: false,
+      naming_entryfiles: false,
       naming_cwflicense: false,
       naming_cwfname: false,
       naming_options: false,
@@ -181,7 +182,7 @@ export class HomeComponent {
     if (filter) {
       const filterRegex = this.versionFilterRegexes[this.versionFilterMap[filter]];
       let matchArray: RegExpMatchArray = null;
-  
+
       if (filterRegex) matchArray = cleanVersion.match(filterRegex);
 
       return matchArray !== null && matchArray[1] ? matchArray[1] : null;
@@ -205,7 +206,7 @@ export class HomeComponent {
     const checkedValues = checkboxValues.filter(v => v === true);
 
     return `${checkedValues.length} of ${checkboxValues.length} done`;
-  } 
+  }
 
   public migrationAccordionChange ($event: NgbPanelChangeEvent) {
     if ($event.nextState) {

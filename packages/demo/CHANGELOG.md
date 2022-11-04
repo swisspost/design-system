@@ -1,5 +1,21 @@
 # @swisspost/design-system-demo
 
+## 5.0.1
+
+### Patch Changes
+
+- Added migration instructions for changed sass entry file names.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#696](https://github.com/swisspost/design-system/pull/696)</sup>
+
+- Updated the target Angular version to 14 in the migration instructions. The Intranet Header is not compatible with older versions.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#698](https://github.com/swisspost/design-system/pull/698)</sup>
+
+- Fixed typos in the migration docs and removed a duplicated entry
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#688](https://github.com/swisspost/design-system/pull/688)</sup>
+
+- Switched to displaying the styles package version number instead of the demo app version number. The styles version is more important to developers than thenow disconnected demo version number
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#689](https://github.com/swisspost/design-system/pull/689)</sup>
+
 ## 5.0.0
 
 ### Major Changes
