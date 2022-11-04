@@ -39,7 +39,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../utils/dom/migration';
 import IDomUpdate from '../../utils/dom/update';
-import type { Cheerio } from 'cheerio';
+import type { Cheerio, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return new DomMigration(
@@ -47,41 +47,80 @@ export default function (): Rule {
     new AddClassUpdate,
     new AddAttributeUpdate,
     new AddTextUpdate,
-    new RemoveElementUpdate
+    new RemoveElementUpdate,
+    new WrapElementUpdate,
+    new ReplaceWithElementUpdate
   ).rule;
 }
 
 class AddElementUpdate implements IDomUpdate {
-  selector = '#example-dom-element';
+  selector = '.example-dom-element';
   update = function ($elements: Cheerio<any>) {
-    $elements.append('<div>It\'s working...</div><div class="remove-example"></div>');
+    $elements.append('\n\t<div>It\'s working...</div>\n');
   }
 }
 
 class AddClassUpdate implements IDomUpdate {
-  selector = '#example-dom-element > div:not([class])';
-  update = function ($elements: Cheerio<any>) {
-    $elements.addClass('inner');
+  selector = '.example-dom-element';
+  update = function ($elements: Cheerio<any>, $: CheerioAPI) {
+    $elements
+      .each((i, element) => {
+        if (i === 1) $(element).addClass('remove');
+        if (i === 2) $(element).addClass('wrap');
+        if (i === 3) $(element).addClass('replace-with');
+      });
   }
 }
 
 class AddAttributeUpdate implements IDomUpdate {
-  selector = '#example-dom-element .inner';
+  selector = '.example-dom-element > div';
   update = function ($elements: Cheerio<any>) {
     $elements.attr('style', 'padding: 10px; background-color: white;');
   }
 }
 
 class AddTextUpdate implements IDomUpdate {
-  selector = '#example-dom-element .inner';
+  selector = '.example-dom-element > div';
   update = function ($elements: Cheerio<any>) {
     $elements.text(`${$elements.text()} cheerio!`);
   }
 }
 
 class RemoveElementUpdate implements IDomUpdate {
-  selector = '#example-dom-element';
+  selector = '.example-dom-element.remove';
   update = function ($elements: Cheerio<any>) {
-    $elements.find('.remove-example').remove();
+    $elements.remove();
+  }
+}
+
+class WrapElementUpdate implements IDomUpdate {
+  selector = '.example-dom-element.wrap';
+  update = function ($elements: Cheerio<any>, $: CheerioAPI) {
+    $elements
+      // @ts-ignore (unused property)
+      .each((i, element) => {
+        const $element = $(element);
+        // to let the update work correctly you need to copy the data from the sourceElement to the distElement
+        // how to do this depends on the return value of the migration function used on the sourceElement
+        const $wrapper = $('<div class="example-dom-element-wrapper"></div>').data($element.data());
+
+        $element.wrap($wrapper);
+      });
+  }
+}
+
+class ReplaceWithElementUpdate implements IDomUpdate {
+  selector = '.example-dom-element.replace-with';
+  update = function ($elements: Cheerio<any>, $: CheerioAPI) {
+    $elements
+      // @ts-ignore (unused property)
+      .each((i, element) => {
+        const $element = $(element);
+        // to let the update work correctly you need to copy the data from the sourceElement to the distElement
+        // how to do this depends on the return value of the migration function used on the sourceElement
+        const $replacement = $(`<div class="example-dom-element-wrapper">${$element.prop('outerHTML')}</div>`).data($element.data());
+
+        $element.replaceWith($replacement);
+      });
   }
 }
