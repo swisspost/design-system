@@ -33,14 +33,33 @@ registerLocaleData(localeIt);
 registerLocaleData(localeEn);
 
 @NgModule({
-    declarations: [ AppComponent, IntranetLayoutComponent, HomeComponent, CopyToClipboardDirective ],
-    imports: [ BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, NgbModule, BootstrapComponentsModule, NgBootstrapComponentsModule, IntranetComponentsModule, PostCommonModule, PostSampleComponentsModule, SwissPostIntranetHeaderModule, ToastrModule.forRoot(
-        {
-            extendedTimeOut: 0, closeButton: true, toastClass: 'toast',
-        }), HighlightModule ],
-    schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
-    providers: [ ErrorService, HighlightProvider.Config ],
-    bootstrap: [ AppComponent ],
-    exports: [ CopyToClipboardDirective ],
+  declarations: [
+    AppComponent,
+    IntranetLayoutComponent,
+    HomeComponent,
+    CopyToClipboardDirective,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    BootstrapComponentsModule,
+    NgBootstrapComponentsModule,
+    IntranetComponentsModule,
+    PostCommonModule,
+    PostSampleComponentsModule,
+    SwissPostIntranetHeaderModule,
+    ToastrModule.forRoot({
+      extendedTimeOut: 0,
+      closeButton: true,
+      toastClass: "toast",
+    }),
+    HighlightModule,
+  ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  providers: [ErrorService, HighlightProvider.Config],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
