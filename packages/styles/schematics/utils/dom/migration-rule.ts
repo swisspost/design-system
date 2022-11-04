@@ -75,8 +75,7 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
           update.bind(context)($inputElements, $);
           
           // get updated elements from dom tree
-          // @ts-ignore (unused property)
-          const $outputElements = $('*').filter((i, element) => $(element).data('cheerio-id') !== undefined);
+          const $outputElements = $('*').filter((_i, element) => $(element).data('cheerio-id') !== undefined);
           
           // start tree file recorder to update tree file later
           const treeUpdateRecorder = tree.beginUpdate(treeFilePath);
@@ -84,8 +83,7 @@ export default function DomMigrationRule (migration: DomMigration): Rule {
           sourceElements
             .forEach(source => {
               // get corresponding outputelement by cheerio-id
-              // @ts-ignore (unused property)
-              const distElement = $outputElements.filter((i, element) => $(element).data('cheerio-id') === source.id).first().toString();
+              const distElement = $outputElements.filter((_i, element) => $(element).data('cheerio-id') === source.id).first().toString();
               
               // continue to next "element", if eighter "element" has not been updated or "element" has no indices
               if (source.element === distElement || source.start === null || source.end === null) return;

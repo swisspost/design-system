@@ -26,8 +26,7 @@ class ButtonCloseRemoveIconContentUpdate implements IDomUpdate {
   update ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
       .find('> span[aria-hidden="true"]')
-      // @ts-ignore
-      .filter((i, element) => Object.keys($(element).attr()).length === 1)
+      .filter((_i, element) => Object.keys($(element).attr() ?? {}).length === 1)
       .remove();
   }
 }

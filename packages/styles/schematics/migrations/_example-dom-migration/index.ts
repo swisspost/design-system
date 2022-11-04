@@ -83,8 +83,7 @@ class AddTextUpdate implements IDomUpdate {
   selector = '.example-dom-element > span';
   update = function ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
-      // @ts-ignore (unused properties)
-      .each((i, element) => {
+      .each((_i, element) => {
         const $element = $(element);
         
         $element.text(`${$element.text()} cheerio!`);
@@ -103,8 +102,7 @@ class WrapElementUpdate implements IDomUpdate {
   selector = '.example-dom-element.wrap';
   update = function ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
-      // @ts-ignore (unused property)
-      .each((i, element) => {
+      .each((_i, element) => {
         const $element = $(element);
         // to let the update work correctly you need to copy the data from the sourceElement to the distElement
         // how to do this depends on the return value of the migration function used on the sourceElement
@@ -119,8 +117,7 @@ class ReplaceWithElementUpdate implements IDomUpdate {
   selector = '.example-dom-element.replace-with';
   update = function ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
-      // @ts-ignore (unused property)
-      .each((i, element) => {
+      .each((_i, element) => {
         const $element = $(element);
         // to let the update work correctly you need to copy the data from the sourceElement to the distElement
         // how to do this depends on the return value of the migration function used on the sourceElement

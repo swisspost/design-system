@@ -20,8 +20,7 @@ class SpacingClassesUpdate implements IDomUpdate {
 
   update ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
-      // @ts-ignore
-      .each((i, element) => {
+      .each((_i, element) => {
         const $element = $(element);
 
         $element
@@ -53,8 +52,7 @@ class AlignmentClassesUpdate implements IDomUpdate {
 
   update ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
-      // @ts-ignore
-      .each((i, element) => {
+      .each((_i, element) => {
         const $element = $(element);
 
         $element
