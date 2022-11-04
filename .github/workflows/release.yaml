@@ -48,7 +48,7 @@ jobs:
       # Check if demo version changed
       - name: Demo version check
         id: demoCheck
-        uses: MontyD/package-json-updated-action
+        uses: MontyD/package-json-updated-action@1.0.1
         with:
           path: ./packages/demo/package.json
         env:
@@ -68,7 +68,7 @@ jobs:
       # Check if main storybook changed
       - name: Main Storybook version check
         id: sbCheck
-        uses: MontyD/package-json-updated-action
+        uses: MontyD/package-json-updated-action@1.0.1
         with:
           path: ./packages/documentation/package.json
         env:
