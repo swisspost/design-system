@@ -1197,7 +1197,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformcontrols_formfloatingwrapper">
-                        <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
                       </label>
                     </div>
                   </li>
@@ -1215,7 +1215,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformcontrols_formfloatingcontrollgclass">
-                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
                       </label>
                     </div>
                   </li>
@@ -1245,7 +1245,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformselects_formfloatingwrapper">
-                        <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
                       </label>
                     </div>
                   </li>
@@ -1344,25 +1344,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformtextareas_formfloatingwrapper">
-                        <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
-                      </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="boostrapformtextareas_formfloatingcontrollgclass"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.bootstrap
-                            .formtextareas_formfloatingcontrollgclass
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="boostrapformtextareas_formfloatingcontrollgclass">
-                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
                       </label>
                     </div>
                   </li>
@@ -1405,7 +1387,7 @@
 
               <!-- Bootstrap Form-File -->
               <div>
-                <h5 class="mt-4 h6 bold">From File</h5>
+                <h5 class="mt-4 h6 bold">Form File</h5>
                 <ul class="list-unstyled my-3">
                   <li>
                     <div class="form-check">
@@ -1421,42 +1403,6 @@
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformfiles_formlabelclass">
                         <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
-                      </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="boostrapformfiles_formfloatingwrapper"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.bootstrap
-                            .formfiles_formfloatingwrapper
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="boostrapformfiles_formfloatingwrapper">
-                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
-                    </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="boostrapformfiles_formfloatingcontrollgclass"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.bootstrap
-                            .formfiles_formfloatingcontrollgclass
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="boostrapformfiles_formfloatingcontrollgclass">
-                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
                       </label>
                     </div>
                   </li>
