@@ -5,4 +5,4 @@ const postSizes = ['hair', 'line', 'micro', 'mini', 'small-regular', 'regular', 
 
 export const sizes = [...bootstrapSizes, ...postSizes];
 
-export const themeColors = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'active', 'white', 'light', 'dark', 'nightblue', 'nightblue-bright', 'petrol', 'petrol-bright', 'coral', 'coral-bright', 'olive', 'olive-bright', 'purple', 'purple-bright', 'aubergine', 'aubergine-bright',];
+export const themeColors = ['primary', 'secondary', 'success', 'info', 'warning', 'danger', 'active', 'white', 'light', 'dark', 'nightblue', 'nightblue-bright', 'petrol', 'petrol-bright', 'coral', 'coral-bright', 'olive', 'olive-bright', 'purple', 'purple-bright', 'aubergine', 'aubergine-bright'];
