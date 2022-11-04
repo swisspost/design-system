@@ -56,7 +56,7 @@ export default function (): Rule {
 class AddElementUpdate implements IDomUpdate {
   selector = '.example-dom-element';
   update = function ($elements: Cheerio<any>) {
-    $elements.append('\n\t<div>It\'s working...</div>\n');
+    $elements.append('<span>It\'s working...</span>');
   }
 }
 
@@ -73,16 +73,22 @@ class AddClassUpdate implements IDomUpdate {
 }
 
 class AddAttributeUpdate implements IDomUpdate {
-  selector = '.example-dom-element > div';
+  selector = '.example-dom-element > span';
   update = function ($elements: Cheerio<any>) {
     $elements.attr('style', 'padding: 10px; background-color: white;');
   }
 }
 
 class AddTextUpdate implements IDomUpdate {
-  selector = '.example-dom-element > div';
-  update = function ($elements: Cheerio<any>) {
-    $elements.text(`${$elements.text()} cheerio!`);
+  selector = '.example-dom-element > span';
+  update = function ($elements: Cheerio<any>, $: CheerioAPI) {
+    $elements
+      // @ts-ignore (unused properties)
+      .each((i, element) => {
+        const $element = $(element);
+        
+        $element.text(`${$element.text()} cheerio!`);
+      });
   }
 }
 
