@@ -42,16 +42,6 @@
       "description": "Migrates bootstrap close-button component.",
       "factory": "./migrations/bootstrap/button-close"
     },
-    "migration-bootstrap-form-group": {
-      "version": "5.0.0",
-      "description": "Migrates bootstrap form-group component.",
-      "factory": "./migrations/bootstrap/form-group"
-    },
-    "migration-bootstrap-form-control": {
-      "version": "5.0.0",
-      "description": "Migrates bootstrap form-control component.",
-      "factory": "./migrations/bootstrap/form-control"
-    },
     "migration-ng-buttons": {
       "version": "5.0.0",
       "description": "Migrates ng-bootstrap button component.",
