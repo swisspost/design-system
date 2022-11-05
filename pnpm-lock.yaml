@@ -228,7 +228,7 @@ importers:
       raw-loader: 4.0.2
       rimraf: 3.0.2
       rxjs: 7.5.7
-      sass: 1.55.0
+      sass: 1.56.0
       sockjs: 0.3.24
       ts-node: 10.9.1
       tslib: 2.4.0
@@ -290,7 +290,7 @@ importers:
       protractor: 7.0.0
       raw-loader: 4.0.2_webpack@5.74.0
       rimraf: 3.0.2
-      sass: 1.55.0
+      sass: 1.56.0
       sockjs: 0.3.24
       ts-node: 10.9.1_e7yvbkxpwwqnzxz2s2bfjt7zx4
       typescript: 4.8.4
@@ -360,7 +360,7 @@ importers:
       prettier: 2.7.1
       rimraf: 3.0.2
       rxjs: 7.5.7
-      sass: 1.55.0
+      sass: 1.56.0
       sass-loader: 10.1.1
       start-server-and-test: 1.14.0
       storybook-dark-mode: 1.1.2
@@ -410,8 +410,8 @@ importers:
       prettier: 2.7.1
       rimraf: 3.0.2
       rxjs: 7.5.7
-      sass: 1.55.0
-      sass-loader: 10.1.1_sass@1.55.0
+      sass: 1.56.0
+      sass-loader: 10.1.1_sass@1.56.0
       start-server-and-test: 1.14.0
       storybook-dark-mode: 1.1.2
       style-loader: 2.0.0
@@ -7926,7 +7926,7 @@ packages:
       style-loader: '*'
     dependencies:
       css-loader: 5.2.7
-      sass-loader: 10.1.1_sass@1.55.0
+      sass-loader: 10.1.1_sass@1.56.0
       style-loader: 2.0.0
     dev: true
 
@@ -20978,7 +20978,7 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/10.1.1_sass@1.55.0:
+  /sass-loader/10.1.1_sass@1.56.0:
     resolution: {integrity: sha512-W6gVDXAd5hR/WHsPicvZdjAWHBcEJ44UahgxcIE196fW2ong0ZHMPO1kZuI5q0VlvMQZh32gpv69PLWQm70qrw==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
@@ -20997,7 +20997,7 @@ packages:
       klona: 2.0.5
       loader-utils: 2.0.2
       neo-async: 2.6.2
-      sass: 1.55.0
+      sass: 1.56.0
       schema-utils: 3.1.1
       semver: 7.3.7
     dev: true
@@ -21049,6 +21049,16 @@ packages:
 
   /sass/1.55.0:
     resolution: {integrity: sha512-Pk+PMy7OGLs9WaxZGJMn7S96dvlyVBwwtToX895WmCpAOr5YiJYEUJfiJidMuKb613z2xNWcXCHEuOvjZbqC6A==}
+    engines: {node: '>=12.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.1.0
+      source-map-js: 1.0.2
+    dev: true
+
+  /sass/1.56.0:
+    resolution: {integrity: sha512-WFJ9XrpkcnqZcYuLRJh5qiV6ibQOR4AezleeEjTjMsCocYW59dEG19U3fwTTXxzi2Ed3yjPBp727hbbj53pHFw==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
