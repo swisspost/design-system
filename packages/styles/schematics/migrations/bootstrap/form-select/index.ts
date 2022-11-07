@@ -28,7 +28,7 @@ class FormSelectFloatingLabelWrapperUpdate implements IDomUpdate {
             .removeClass('form-group')
             .addClass('form-floating');
 
-          $control.removeClass('.form-control-lg');
+          $control.removeClass('form-control-lg');
         }
       });
   }
