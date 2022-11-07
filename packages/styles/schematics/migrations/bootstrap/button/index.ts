@@ -28,12 +28,10 @@ class ButtonOutlineClassUpdate implements IDomUpdate {
           .forEach(cssClass => {
             const match = cssClass.match(this.cssClassRegex);
             
-            if (match) {
-              const colorname = match[1];
-              
+            if (match) {            
               $element
                 .removeClass(cssClass)
-                .addClass(`btn-${colorname}`);
+                .addClass('btn-secondary');
             }
           });
       });
