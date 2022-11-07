@@ -14,5 +14,5 @@ outputs:
   current-package-version:
     description: 'The current package.json version'
 runs:
-  using: 'composite'
+  using: 'node16'
   main: 'index.js'
