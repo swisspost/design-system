@@ -11,6 +11,7 @@ jobs:
         with:
           fetch-depth: 2
 
+      # Check version
       - name: Version Check
         uses: EndBug/version-check@v2.1.1
         id: check
