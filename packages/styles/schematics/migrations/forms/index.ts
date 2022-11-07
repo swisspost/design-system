@@ -28,13 +28,6 @@ class FormTextClassesUpdate extends CssClassesUpdate {
     replaceValue = '';
 }
 
-// Applied on select, multiselect and custom-select elements
-class FormSelectClassesUpdate extends CssClassesUpdate {
-    override classSelector = 'custom-select';
-    searchValue = `form-control${optional(`-${oneOf(['sm', 'rg', 'md', 'lg'])}`)}`;
-    replaceValue = (size: string) => `form-select${size ? `-${size}` : ''}`;
-}
-
 class FormSelectMenuClassesUpdate extends CssClassesUpdate {
     override classSelector = 'custom-select-menu';
     searchValue = 'custom-select-menu';
