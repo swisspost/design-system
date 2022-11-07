@@ -7,8 +7,6 @@ export default function (): Rule {
     return new CssMigration(
         new FormSelectClassesUpdate,
         new FormSelectMenuClassesUpdate,
-        new FormCheckClassesUpdate,
-        new FormCheckChildrenClassesUpdate,
         new FormSwitchClassesUpdate,
         new FormSwitchInputClassesUpdate,
         new FormSwitchTogglerClassesUpdate,
@@ -26,18 +24,6 @@ class FormSelectMenuClassesUpdate extends CssClassesUpdate {
     override classSelector = 'custom-select-menu';
     searchValue = 'custom-select-menu';
     replaceValue = 'w-100 mw-100';
-}
-
-class FormCheckClassesUpdate extends CssClassesUpdate {
-    override classSelector = oneOf(['custom-checkbox', 'custom-radio']);
-    searchValue = oneOf(['custom-control', 'custom-checkbox', 'custom-radio']);
-    replaceValue = 'form-check';
-}
-
-class FormCheckChildrenClassesUpdate extends CssClassesUpdate {
-    override classSelector = oneOf(['custom-control-input', 'custom-control-label', 'custom-control-inline']);
-    searchValue = `custom-control-${oneOf(['input', 'label', 'inline'])}`;
-    replaceValue = (child: string) => `form-check-${child}`;
 }
 
 class FormSwitchClassesUpdate extends CssClassesUpdate {
