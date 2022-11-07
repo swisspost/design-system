@@ -6,14 +6,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Package JSON Version Check
+      - name: Version Check
+        uses: EndBug/version-check@v2.1.1
         id: check
-        uses: gfellerph/package-json-version-check@v1.0.0-alpha.2
-
         with:
-          path: packages/styles/package.json
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          diff-search: true
+          file-name: packages/styles/package.json
 
       - name: Print version
-        run: 'echo "hasChanged: $steps.check.outputs.has-updated, currentPackageVersion: $steps.check.outputs.current-package-version"'
+        run: 'echo "hasChanged: $steps.check.outputs.changed, currentPackageVersion: $steps.check.outputs.version"'
