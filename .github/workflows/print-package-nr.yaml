@@ -6,9 +6,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Get version
+      - name: Package JSON Version Check
         id: check
-        uses: swisspost/design-system/.github/actions/compare-package-version@fix-deploy-round-III
+        uses: gfellerph/package-json-version-check@v1.0.0-alpha.1
+
         with:
           path: packages/styles/package.json
         env:
