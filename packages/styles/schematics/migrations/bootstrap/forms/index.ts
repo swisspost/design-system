@@ -38,7 +38,7 @@ class FormLabelClassUpdate implements IDomUpdate {
     $elements
       .each((_i, element) => {
         const $element = $(element);
-        const $control = $element.siblings('input:visible, select:visible, textarea:visible, [ngbDropdownToggle]');
+        const $control = $element.siblings('input:visible, select:visible, textarea:visible');
         
         if ($control.length > 0) {
           $element.addClass('form-label');
