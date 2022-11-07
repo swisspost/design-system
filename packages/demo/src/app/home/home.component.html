@@ -674,22 +674,6 @@
                   <li>
                     <div class="form-check">
                       <input
-                        id="generalclasses_textauto"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_textauto"
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="generalclasses_textauto">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.text-auto</code> class.<br>
-                        Colors are now automatically handled by <code>var(--post-contrast-color)</code>.
-                      </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
                         id="generalclasses_rtlmode"
                         class="form-check-input"
                         type="checkbox"
@@ -858,8 +842,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbackgrounds_textcolor">
-                        <span class="change-badge bg-danger">breaking</span> Background classes such as <code>.bg-[colorname]</code>, now also automatically define the inner <span class="highlight">text-color</span> with <code>var(--post-contrast-color)</code>.<br>
-                        Therefore an explicit <span class="highlight">text-color</span> styling is not required anymore.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.text-auto</code> class on elements with background classes such as <code>.bg-[colorname]</code>.
+                        They now also automatically define the inner <span class="highlight">text-color</span> with <code>var(--post-contrast-color)</code>, therefore an explicit color styling is not needed anymore.
                         </label>
                     </div>
                   </li>

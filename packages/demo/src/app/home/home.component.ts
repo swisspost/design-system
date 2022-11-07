@@ -48,7 +48,6 @@ export class HomeComponent {
       mixins_fontsizelineheight: false,
       classes_bgopacity: false,
       classes_secondary: false,
-      classes_textauto: false,
       classes_rtlmode: false
     },
     bootstrap: {
