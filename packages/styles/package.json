@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "5.0.0",
+  "version": "5.0.0-test.0",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",

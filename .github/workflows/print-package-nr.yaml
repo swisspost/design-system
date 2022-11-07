@@ -16,7 +16,7 @@ jobs:
         id: check
         with:
           diff-search: true
-          file-name: packages/styles/package.json
+          file-name: ./packages/styles/package.json
 
       - name: Print version
-        run: 'echo "hasChanged: $steps.check.outputs.changed, currentPackageVersion: $steps.check.outputs.version"'
+        run: 'echo hasChanged: ${{steps.check.outputs.changed}}, currentPackageVersion: ${{steps.check.outputs.version}}'
