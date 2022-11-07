@@ -12,7 +12,7 @@ jobs:
         with:
           path: packages/styles/package.json
         env:
-          GITHUB_TOKEN: { { secrets.GITHUB_TOKEN } }
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Print version
         run: 'echo "hasChanged: $steps.check.outputs.has-updated, currentPackageVersion: $steps.check.outputs.current-package-version"'
