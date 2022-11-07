@@ -1,13 +1,12 @@
 import { Rule } from '@angular-devkit/schematics';
 import { CssClassesUpdate } from "../../utils/css/css-classes-update";
 import { CssMigration } from "../../utils/css/css-migration";
-import { oneOf, optional } from "../../utils/regex";
+import { oneOf } from "../../utils/regex";
 
 export default function (): Rule {
     return new CssMigration(
         new FormGroupClassesUpdate,
         new FormTextClassesUpdate,
-        new FormSelectClassesUpdate,
         new FormSelectMenuClassesUpdate,
         new FormCheckClassesUpdate,
         new FormCheckChildrenClassesUpdate,
