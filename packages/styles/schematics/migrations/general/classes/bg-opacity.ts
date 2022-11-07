@@ -34,7 +34,7 @@ class BackgroundOpacityClassesUpdate implements IDomUpdate {
               $element
                 .removeClass(cssClass)
                 .addClass(`bg-${colorname}`)
-                .attr('style', `--post-bg-opacity: ${opacityvalue / 100};`);
+                .css('--post-bg-opacity', `${opacityvalue / 100}`);
             }
           });
       });
