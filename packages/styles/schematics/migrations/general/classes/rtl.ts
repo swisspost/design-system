@@ -16,7 +16,7 @@ class SpacingClassesUpdate implements IDomUpdate {
   cssClassRegex = new RegExp(`^(m|p)(l|r)(?:-(${breakpoints.join('|')}))?-(${sizes.join('|')})$`);
   sideUpdate = new Map([['l', 's'], ['r', 'e']]);
 
-  selector = '[class*="ml-"], [class*="mr-"], [class*="pl-"], [class*="pr-"]';
+  selector = this.createSelectors();
 
   update ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
@@ -42,13 +42,21 @@ class SpacingClassesUpdate implements IDomUpdate {
           });
       })
   }
+
+  createSelectors () {
+    const selectorProperties = ['m', 'p'];
+    const selectorSides = ['l', 'r'];
+    const selectorBreakpoints = [''].concat(breakpoints);
+    
+    return selectorProperties.map(property => selectorSides.map(side => selectorBreakpoints.map(breakpoint => sizes.map(size => `.${property}${side}${breakpoint ? `-${breakpoint}` : ''}-${size}`)))).join(', ');
+  }
 }
 
 class AlignmentClassesUpdate implements IDomUpdate {
   cssClassRegex = new RegExp(`^(float|text)(?:-(${breakpoints.join('|')}))?-(left|right)$`);
   sideUpdate = new Map([['left', 'start'], ['right', 'end']]);
 
-  selector = '[class*="float-"], [class*="text-"]';
+  selector = this.createSelectors();
 
   update ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
@@ -72,5 +80,13 @@ class AlignmentClassesUpdate implements IDomUpdate {
             }
           });
       })
+  }
+
+  createSelectors () {
+    const selectorProperties = ['float', 'text'];
+    const selectorBreakpoints = [''].concat(breakpoints);
+    const selectorSides = ['left', 'right'];
+    
+    return selectorProperties.map(property => selectorBreakpoints.map(breakpoint => selectorSides.map(side => `.${property}${breakpoint ? `-${breakpoint}` : ''}-${side}`))).join(', ');
   }
 }

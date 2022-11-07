@@ -13,20 +13,27 @@ export default function (): Rule {
 class ButtonCloseClassesUpdate implements IDomUpdate {
   selector = '.close';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
-      .removeClass('close btn btn-icon')
-      .addClass('btn-close');
+      .each((_i, element) => {
+        const $element = $(element);
+        const $child = $element.find('> span[aria-hidden="true"]');
+
+        if ($child.length > 0) {
+          $element
+            .removeClass('close btn btn-icon')
+            .addClass('btn-close');
+        }
+      })
   }
 }
 
 class ButtonCloseRemoveIconContentUpdate implements IDomUpdate {
   selector = '.btn-close';
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<any>) {
     $elements
       .find('> span[aria-hidden="true"]')
-      .filter((_i, element) => Object.keys($(element).attr() ?? {}).length === 1)
       .remove();
   }
 }
