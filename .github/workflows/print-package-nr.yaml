@@ -1,0 +1,19 @@
+name: Print package.json version
+on:
+  pull-request:
+
+jobs:
+  builds:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get version
+        id: check
+        uses: swisspost/design-system/.github/actions/compare-package-version@fix-deploy-round-III
+        with:
+          path: packages/styles/package.json
+        env:
+          GITHUB_TOKEN: {{ secrets.GITHUB_TOKEN }}
+
+      - name: Print version
+        run: echo "hasChanged: $steps.check.outputs.has-updated, currentPackageVersion: $steps.check.outputs.current-package-version"
