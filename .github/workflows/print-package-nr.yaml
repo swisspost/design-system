@@ -1,6 +1,5 @@
 name: Print package.json version
-on:
-  pull-request:
+on: [pull_request]
 
 jobs:
   builds:
