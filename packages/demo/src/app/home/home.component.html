@@ -1121,7 +1121,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapforms_formlabelclass">
-                        <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
                       </label>
                     </div>
                   </li>
