@@ -42,6 +42,21 @@
       "description": "Migrates bootstrap close-button component.",
       "factory": "./migrations/bootstrap/button-close"
     },
+    "migration-bootstrap-form-control": {
+      "version": "5.0.0",
+      "description": "Migrates bootstrap form-control component.",
+      "factory": "./migrations/bootstrap/form-control"
+    },
+    "migration-bootstrap-form-select": {
+      "version": "5.0.0",
+      "description": "Migrates bootstrap form-select component.",
+      "factory": "./migrations/bootstrap/form-select"
+    },
+    "migration-bootstrap-textarea": {
+      "version": "5.0.0",
+      "description": "Migrates bootstrap textarea component.",
+      "factory": "./migrations/bootstrap/textarea"
+    },
     "migration-ng-buttons": {
       "version": "5.0.0",
       "description": "Migrates ng-bootstrap button component.",
