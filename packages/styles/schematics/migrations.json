@@ -72,7 +72,7 @@
       "description": "Migrates post topic-teaser component.",
       "factory": "./migrations/post/topic-teaser"
     },
-    "migration-form-controls": {
+    "migration-bootstrap-forms": {
       "version": "5.0.0",
       "description": "Applies automatic migrations on form elements (https://getbootstrap.com/docs/5.0/migration/#forms).",
       "factory": "./migrations/forms/index"
