@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': minor
 ---
 
-Added automatic migtation for bootstrap button component.
+Added automatic migration for bootstrap button component.
