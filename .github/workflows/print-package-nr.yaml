@@ -8,7 +8,7 @@ jobs:
     steps:
       - name: Package JSON Version Check
         id: check
-        uses: gfellerph/package-json-version-check@v1.0.0-alpha.1
+        uses: gfellerph/package-json-version-check@v1.0.0-alpha.2
 
         with:
           path: packages/styles/package.json
