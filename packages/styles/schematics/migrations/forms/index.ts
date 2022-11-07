@@ -5,8 +5,6 @@ import { oneOf, optional } from "../../utils/regex";
 
 export default function (): Rule {
     return new CssMigration(
-        new FormGroupClassesUpdate,
-        new FormTextClassesUpdate,
         new FormSelectClassesUpdate,
         new FormSelectMenuClassesUpdate,
         new FormCheckClassesUpdate,
@@ -15,17 +13,6 @@ export default function (): Rule {
         new FormSwitchInputClassesUpdate,
         new FormSwitchTogglerClassesUpdate,
     ).rule;
-}
-
-class FormGroupClassesUpdate extends CssClassesUpdate {
-    searchValue = 'form-group';
-    replaceValue = 'mb-regular';
-}
-
-class FormTextClassesUpdate extends CssClassesUpdate {
-    override classSelector = 'form-text';
-    searchValue = oneOf(['small', 'text-muted']);
-    replaceValue = '';
 }
 
 // Applied on select, multiselect and custom-select elements
