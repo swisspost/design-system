@@ -45,9 +45,18 @@ jobs:
           publish: pnpm changeset:publish
           version: pnpm changeset:version
 
+      # Check if demo version changed
+      - name: Demo version check
+        id: demoCheck
+        uses: MontyD/package-json-updated-action@1.0.1
+        with:
+          path: ./packages/demo/package.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       # Publish demo only if changesets published any packages
       - name: Publish demo
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.demoCheck.outputs.has-updated
         id: netlify
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
@@ -56,8 +65,17 @@ jobs:
           netlify link --id $NETLIFY_SITE_ID
           netlify deploy --build false --dir packages/demo/dist/demo --prod
 
+      # Check if main storybook changed
+      - name: Main Storybook version check
+        id: sbCheck
+        uses: MontyD/package-json-updated-action@1.0.1
+        with:
+          path: ./packages/documentation/package.json
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
       # Publish storybook
       - name: Publish storybooks
-        if: steps.changesets.outputs.published == 'true'
+        if: steps.sbCheck.outputs.has-updated
         id: storybook
         run: pnpm --filter design-system-documentation run chromatic --project-token=${{ secrets.CHROMATIC_STORYBOOK_TOKEN }}
