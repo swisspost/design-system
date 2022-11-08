@@ -84,7 +84,11 @@ export class HomeComponent {
       formcheckboxes_validationfeedbackclasses: false,
       formradios_classes: false,
       formradios_validationclasses: false,
-      formradios_validationfeedbackclasses: false
+      formradios_validationfeedbackclasses: false,
+      formswitches_classes: false,
+      formswitches_labelclasses: false,
+      formswitches_validationclasses: false,
+      formswitches_validationfeedbackclasses: false
     },
     ngbootstrap: {
       buttons_labelclass: false,
@@ -102,11 +106,6 @@ export class HomeComponent {
       customselects_classes: false,
       customselects_menuclass: false,
       subnavigations_invertedclass: false,
-      formswitches_classes: false,
-      formswitches_labelclasses: false,
-      formswitches_validationclasses: false,
-      formswitches_validationfeedbackclasses: false,
-      formswitches_switchtoggleclass: false,
       topicteasers_imageattributes: false,
       topicteasers_imagecontainergridclasses: false,
       topicteasers_contentcontainergridclasses: false,
