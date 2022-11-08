@@ -75,7 +75,6 @@ export class HomeComponent {
       formselects_formfloatingwrapper: false,
       formselects_classes: false,
       formselects_formfloatingselectlgclass: false,
-      formselectmultiples_classes: false,
       formtextareas_formfloatingwrapper: false,
       formranges_formlabelclass: false,
       formfiles_formlabelclass: false,
