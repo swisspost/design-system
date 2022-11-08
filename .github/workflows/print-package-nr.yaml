@@ -17,7 +17,13 @@ jobs:
         id: check
         with:
           files: |
-            packages/styles/package.json
+            ./packages/styles/package.json
+
+      - name: List all changed files
+        run: |
+          for file in ${{ steps.check.outputs.all_changed_files }}; do
+            echo "$file was changed"
+          done
 
       - name: Print version
         if: steps.check.outputs.any_changed == 'true'
