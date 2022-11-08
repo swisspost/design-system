@@ -19,6 +19,7 @@ runs:
   using: composite
   steps:
     - name: Compare package.json version
+      shell: bash
       run: |
         currentVersion=$(node -pe "require('${{ inputs.path }}').version")
         echo "currentVersion=$currentVersion" >> $GITHUB_OUTPUT
