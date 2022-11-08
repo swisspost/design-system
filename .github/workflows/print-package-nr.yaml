@@ -21,4 +21,4 @@ jobs:
 
       - name: Print version
         if: steps.check.outputs.any_changed == 'true'
-        run: 'echo hasChanged: ${{steps.check.outputs.any_changed}}
+        run: 'echo hasChanged: ${{steps.check.outputs.any_changed}}'
