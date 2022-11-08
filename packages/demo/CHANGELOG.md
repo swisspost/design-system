@@ -1,5 +1,12 @@
 # @swisspost/design-system-demo
 
+## 5.1.0
+
+### Minor Changes
+
+- Enabled code copy to clipboard
+  <br><sup>by [@alizedebray](https://github.com/alizedebray) with [#714](https://github.com/swisspost/design-system/pull/714)</sup>
+
 ## 5.0.1
 
 ### Patch Changes
