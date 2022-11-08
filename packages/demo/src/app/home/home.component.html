@@ -1867,6 +1867,23 @@
                   <li>
                     <div class="form-check">
                       <input
+                        id="postcustomselects_formfloatingwrapper"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.post.customselects_formfloatingwrapper
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="postcustomselects_formfloatingwrapper">
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
                         id="postcustomselects_classes"
                         class="form-check-input"
                         type="checkbox"
