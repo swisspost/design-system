@@ -77,6 +77,11 @@
       "description": "Migrates ng-bootstrap button component.",
       "factory": "./migrations/ngbootstrap/buttons"
     },
+    "migration-post-custom-select": {
+      "version": "5.0.0",
+      "description": "Migrates post custom-select component.",
+      "factory": "./migrations/post/custom-select"
+    },
     "migration-post-subnavigation": {
       "version": "5.0.0",
       "description": "Migrates post subnavigation component.",
