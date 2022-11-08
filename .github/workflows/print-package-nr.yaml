@@ -13,10 +13,12 @@ jobs:
 
       # Check version
       - name: Version Check
-        uses: swisspost/design-system/.github/actions/compare-package-version@fix-deploy-round-III
+        uses: tj-actions/changed-files@v34
         id: check
         with:
-          path: ./packages/styles/package.json
+          files: |
+            packages/styles/package.json
 
       - name: Print version
-        run: 'echo hasChanged: ${{steps.check.outputs.versionChanged}}, currentPackageVersion: ${{steps.check.outputs.currentVersion}}, lastVersion: ${{steps.check.outputs.lastVersion}}'
+        if: steps.check.outputs.any_changed == 'true'
+        run: 'echo hasChanged: ${{steps.check.outputs.any_changed}}
