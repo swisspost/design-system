@@ -137,6 +137,7 @@
         <!-- prettier-ignore -->
         <p>Uninstall the old styles <span *ngIf="isMigratingIntranet">and the old intranet header</span> package<span *ngIf="isMigratingIntranet">s</span>.</p>
         <code
+          appCopyToClipboard
           class="d-block p-3"
           [languages]="['bash']"
           [highlight]="
@@ -151,6 +152,7 @@
           Install the new package<span *ngIf="isMigratingIntranet">s</span> 📦
         </h4>
         <code
+          appCopyToClipboard
           class="d-block p-3"
           [languages]="['bash']"
           [highlight]="
@@ -192,6 +194,7 @@
             Now you should be able to run the following code, to automatically patch the changes
             that can be auto-migrated:
             <code
+              appCopyToClipboard
               class="d-block mt-1 p-3"
               [languages]="['bash']"
               highlight="npx ng update @swisspost/design-system-styles --from=4 --to=5 --migrate-only"
@@ -276,9 +279,9 @@
                       <label class="form-check-label" for="generalnaming_cwfpackagename">
                           <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">package</span> names.
                           <ul class="mt-2">
-                            <li><code>@******/common-web-frontend</code> became <code>@swisspost/design-system-styles</code></li>
-                            <li><code>@******/common-web-frontend-demo</code> became <code>@swisspost/design-system-demo</code></li>
-                            <li><code>@******/common-web-frontend-intranet-header</code> became <code>@swisspost/design-system-intranet-header</code></li>
+                            <li><code appCopyToClipboard>@******/common-web-frontend</code> became <code appCopyToClipboard>@swisspost/design-system-styles</code></li>
+                            <li><code appCopyToClipboard>@******/common-web-frontend-demo</code> became <code appCopyToClipboard>@swisspost/design-system-demo</code></li>
+                            <li><code appCopyToClipboard>@******/common-web-frontend-intranet-header</code> became <code appCopyToClipboard>@swisspost/design-system-intranet-header</code></li>
                           </ul>
                       </label>
                     </div>
@@ -355,7 +358,7 @@
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalnaming_cwfname">
                           <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">src/cwf.scss</span> file to <span class="highlight">src/core.scss</span>.<br>
-                          <span>We recommend to import the <span class="highlight">core.scss</span> file as follows: <code>@use '@swisspost/design-system-styles/core.scss' as post;</code></span><br>
+                          <span>We recommend to import the <span class="highlight">core.scss</span> file as follows: <code appCopyToClipboard>@use '@swisspost/design-system-styles/core.scss' as post;</code></span><br>
                           <span>However, do not forget to switch the namespace in your files from <span class="highlight">cwf</span> to either <span class="highlight">core</span> or <span class="highlight">post</span>!</span>
                           <span class="info">Read more about namespaces at the <a href="https://sass-lang.com/blog/the-module-system-is-launched">sass module system intro</a>.</span>
                       </label>
@@ -411,7 +414,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalvariables_isolatecomponents">
-                          <span class="change-badge bg-danger">breaking</span> Removed <code>$isolate-components</code> variable.
+                          <span class="change-badge bg-danger">breaking</span> Removed <code appCopyToClipboard>$isolate-components</code> variable.
                       </label>
                     </div>
                   </li>
@@ -428,7 +431,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalvariables_fontsizemap">
-                        <span class="change-badge bg-danger">breaking</span> Removed <code>$font-size-map</code> variable.
+                        <span class="change-badge bg-danger">breaking</span> Removed <code appCopyToClipboard>$font-size-map</code> variable.
                       </label>
                     </div>
                   </li>
@@ -445,7 +448,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalvariables_lineheightrg">
-                        <span class="change-badge bg-danger">breaking</span> Removed <code>$line-height-rg</code> variable.<br>
+                        <span class="change-badge bg-danger">breaking</span> Removed <code appCopyToClipboard>$line-height-rg</code> variable.<br>
                         <span class="highlight">Line-heights</span> are now relative to the font-size.
                       </label>
                     </div>
@@ -465,11 +468,11 @@
                       <label class="form-check-label" for="generalvariables_floatinglabel">
                         <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">floating-label</span> variables.<br>
                         <ul class="mt-2">
-                          <li><code>$form-floating-label-padding-t</code></li>
-                          <li><code>$form-floating-label-padding-b</code></li>
-                          <li><code>$form-floating-textarea-line-height</code></li>
-                          <li><code>$form-floating-textarea-padding-t</code></li>
-                          <li><code>$form-floating-textarea-padding-b</code></li>
+                          <li><code appCopyToClipboard>$form-floating-label-padding-t</code></li>
+                          <li><code appCopyToClipboard>$form-floating-label-padding-b</code></li>
+                          <li><code appCopyToClipboard>$form-floating-textarea-line-height</code></li>
+                          <li><code appCopyToClipboard>$form-floating-textarea-padding-t</code></li>
+                          <li><code appCopyToClipboard>$form-floating-textarea-padding-b</code></li>
                         </ul>
                       </label>
                     </div>
@@ -489,16 +492,16 @@
                       <label class="form-check-label" for="generalvariables_colorsremoved">
                         <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">color</span> variables.<br>
                         <ul class="mt-2">
-                          <li><code>$white-alpha-10</code>, <code>$white-alpha-20</code>, <code>$white-alpha-40</code>, <code>$white-alpha-60</code>, <code>$white-alpha-80</code> and <code>$white-alphas</code></li>
-                          <li><code>$black-alpha-10</code>, <code>$black-alpha-20</code>, <code>$black-alpha-40</code>, <code>$black-alpha-60</code>, <code>$black-alpha-80</code> and <code>$black-alphas</code></li>
-                          <li><code>$facebook</code>, <code>$instagram</code>, <code>$youtube</code>, <code>$snapchat</code>, <code>$twitter</code>, <code>$xing</code>, <code>$linkedin</code>, <code>$kununu</code> and <code>$email</code></li>
-                          <li><code>$primary-color</code></li>
-                          <li><code>$secondary-color</code></li>
-                          <li><code>$gray-50</code></li>
-                          <li><code>$highlight-colors</code></li>
-                          <li><code>$brand-colors</code></li>
-                          <li><code>$icon-colors</code></li>
-                          <li><code>$theme-color-interval</code></li>
+                          <li><code appCopyToClipboard>$white-alpha-10</code>, <code appCopyToClipboard>$white-alpha-20</code>, <code appCopyToClipboard>$white-alpha-40</code>, <code appCopyToClipboard>$white-alpha-60</code>, <code appCopyToClipboard>$white-alpha-80</code> and <code appCopyToClipboard>$white-alphas</code></li>
+                          <li><code appCopyToClipboard>$black-alpha-10</code>, <code appCopyToClipboard>$black-alpha-20</code>, <code appCopyToClipboard>$black-alpha-40</code>, <code appCopyToClipboard>$black-alpha-60</code>, <code appCopyToClipboard>$black-alpha-80</code> and <code appCopyToClipboard>$black-alphas</code></li>
+                          <li><code appCopyToClipboard>$facebook</code>, <code appCopyToClipboard>$instagram</code>, <code appCopyToClipboard>$youtube</code>, <code appCopyToClipboard>$snapchat</code>, <code appCopyToClipboard>$twitter</code>, <code appCopyToClipboard>$xing</code>, <code appCopyToClipboard>$linkedin</code>, <code appCopyToClipboard>$kununu</code> and <code appCopyToClipboard>$email</code></li>
+                          <li><code appCopyToClipboard>$primary-color</code></li>
+                          <li><code appCopyToClipboard>$secondary-color</code></li>
+                          <li><code appCopyToClipboard>$gray-50</code></li>
+                          <li><code appCopyToClipboard>$highlight-colors</code></li>
+                          <li><code appCopyToClipboard>$brand-colors</code></li>
+                          <li><code appCopyToClipboard>$icon-colors</code></li>
+                          <li><code appCopyToClipboard>$theme-color-interval</code></li>
                         </ul>
                       </label>
                     </div>
@@ -518,13 +521,13 @@
                       <label class="form-check-label" for="generalvariables_colorsrenamed">
                         <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">color</span> variables.
                         <ul class="mt-2">
-                          <li><code>$gray-pampas</code> became <code>$gray-background-light</code></li>
-                          <li><code>$gray-cararra</code> became <code>$gray-background</code></li>
-                          <li><code>$colors</code> became <code>$background-colors</code></li>
-                          <li><code>$icon-colors</code> became <code>$contextual-colors</code></li>
-                          <li><code>$yiq-contrasted-threshold</code> became <code>$min-contrast-ratio</code></li>
-                          <li><code>$yiq-text-dark</code> became <code>$color-contrast-dark</code></li>
-                          <li><code>$yiq-text-light</code> became <code>$color-contrast-light</code></li>
+                          <li><code appCopyToClipboard>$gray-pampas</code> became <code appCopyToClipboard>$gray-background-light</code></li>
+                          <li><code appCopyToClipboard>$gray-cararra</code> became <code appCopyToClipboard>$gray-background</code></li>
+                          <li><code appCopyToClipboard>$colors</code> became <code appCopyToClipboard>$background-colors</code></li>
+                          <li><code appCopyToClipboard>$icon-colors</code> became <code appCopyToClipboard>$contextual-colors</code></li>
+                          <li><code appCopyToClipboard>$yiq-contrasted-threshold</code> became <code appCopyToClipboard>$min-contrast-ratio</code></li>
+                          <li><code appCopyToClipboard>$yiq-text-dark</code> became <code appCopyToClipboard>$color-contrast-dark</code></li>
+                          <li><code appCopyToClipboard>$yiq-text-light</code> became <code appCopyToClipboard>$color-contrast-light</code></li>
                         </ul>
                       </label>
                     </div>
@@ -544,8 +547,8 @@
                       <label class="form-check-label" for="generalvariables_lineheigts">
                         Dropped usage of <span class="highlight">line-height</span> variables.<br>
                         <ul class="mt-2">
-                          <li><code>$line-height-sm</code></li>
-                          <li><code>$line-height-lg</code></li>
+                          <li><code appCopyToClipboard>$line-height-sm</code></li>
+                          <li><code appCopyToClipboard>$line-height-lg</code></li>
                         </ul>
                         <p class="info">The variables remain available due to bootstrap.</p>
                       </label>
@@ -564,8 +567,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalvariables_lineheightlighter">
-                        Dropped usage of <code>$font-weight-lighter</code> variable.<br>
-                        Also removed corresponding <code>@font-face</code> rule.<br>
+                        Dropped usage of <code appCopyToClipboard>$font-weight-lighter</code> variable.<br>
+                        Also removed corresponding <code appCopyToClipboard>@font-face</code> rule.<br>
                         <p class="info">The variable remains available due to bootstrap.</p>
                       </label>
                     </div>
@@ -586,12 +589,12 @@
                         Dropped useage of <span class="highlight">font-size</span> variables.<br>
                         Headings now have responsive font-sizes.<br>
                         <ul class="mt-2">
-                          <li><code>$h1-font-size</code></li>
-                          <li><code>$h2-font-size</code></li>
-                          <li><code>$h3-font-size</code></li>
-                          <li><code>$h4-font-size</code></li>
-                          <li><code>$h5-font-size</code></li>
-                          <li><code>$h6-font-size</code></li>
+                          <li><code appCopyToClipboard>$h1-font-size</code></li>
+                          <li><code appCopyToClipboard>$h2-font-size</code></li>
+                          <li><code appCopyToClipboard>$h3-font-size</code></li>
+                          <li><code appCopyToClipboard>$h4-font-size</code></li>
+                          <li><code appCopyToClipboard>$h5-font-size</code></li>
+                          <li><code appCopyToClipboard>$h6-font-size</code></li>
                         </ul>
                         <p class="info">The variables remain available due to bootstrap.</p>
                       </label>
@@ -619,9 +622,9 @@
                       <label class="form-check-label" for="generalmixins_fontsizelineheight">
                         <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">font-size</span> and <span class="highlight">line-height</span> mixins:<br>
                         <ul class="mt-2">
-                          <li><code>font-size-calc</code></li>
-                          <li><code>font-size-and-lineheight</code></li>
-                          <li><code>font-line-height</code></li>
+                          <li><code appCopyToClipboard>font-size-calc</code></li>
+                          <li><code appCopyToClipboard>font-size-and-lineheight</code></li>
+                          <li><code appCopyToClipboard>font-line-height</code></li>
                         </ul>
                       </label>
                     </div>
@@ -644,8 +647,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalclasses_bgopacity">
-                        <span class="change-badge bg-danger">breaking</span> Removed <code>.bg-[colorname]-opacity-[opacityvalue]</code> classes.<br>
-                        Use <code>.bg-[colorname]</code> together with <code>var(--bg-opacity)</code> instead.<br>
+                        <span class="change-badge bg-danger">breaking</span> Removed <code appCopyToClipboard>.bg-[colorname]-opacity-[opacityvalue]</code> classes.<br>
+                        Use <code appCopyToClipboard>.bg-[colorname]</code> together with <code appCopyToClipboard>var(--bg-opacity)</code> instead.<br>
                         <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
                         <p class="info">Replace [opacityvalue] for example with "0", "0.5" or "1".</p>
                       </label>
@@ -664,9 +667,9 @@
                       <label class="form-check-label" for="generalclasses_secondary">
                         <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Removed <span class="highlight">secondary</span> classes.<br>
                         <ul class="mt-2">
-                          <li><code>.bg-secondary</code></li>
-                          <li><code>.border-secondary</code></li>
-                          <li><code>.text-secondary</code></li>
+                          <li><code appCopyToClipboard>.bg-secondary</code></li>
+                          <li><code appCopyToClipboard>.border-secondary</code></li>
+                          <li><code appCopyToClipboard>.text-secondary</code></li>
                         </ul>
                       </label>
                     </div>
@@ -682,8 +685,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalclasses_textauto">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.text-auto</code> class.<br>
-                        Colors are now automatically handled by <code>var(--post-contrast-color)</code>.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.text-auto</code> class.<br>
+                        Colors are now automatically handled by <code appCopyToClipboard>var(--post-contrast-color)</code>.
                       </label>
                     </div>
                   </li>
@@ -706,7 +709,7 @@
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="generalproperites_rtlmode">
                         <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> For better support of <span class="highlight">rtl-mode</span>,<br>
-                        <code>left</code> and <code>right</code> have switched to <code>start</code> and <code>end</code>.
+                        <code appCopyToClipboard>left</code> and <code appCopyToClipboard>right</code> have switched to <code appCopyToClipboard>start</code> and <code appCopyToClipboard>end</code>.
                       </label>
                     </div>
                   </li>
@@ -744,7 +747,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapalerts_fixedbottom">
-                        <span class="change-badge bg-danger">breaking</span> Required <code>.alert-fixed-bottom</code> class, for <span class="highlight">alerts</span>, which should be fixed to the bottom of the page.
+                        <span class="change-badge bg-danger">breaking</span> Required <code appCopyToClipboard>.alert-fixed-bottom</code> class, for <span class="highlight">alerts</span>, which should be fixed to the bottom of the page.
                       </label>
                     </div>
                   </li>
@@ -779,7 +782,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapalerts_closebuttonclass">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code appCopyToClipboard>.close</code> to <code appCopyToClipboard>.btn-close</code>.
                       </label>
                     </div>
                   </li>
@@ -808,11 +811,11 @@
                       <label class="form-check-label" for="bootstrapbadges_classes">
                         <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed <span class="highlight">badge</span> classes.<br>
                         <ul class="mt-2">
-                          <li><code>.badge-pill</code> became <code>.rounded-pill</code></li>
-                          <li><code>.badge-[colorname]</code> became <code>.bg-[colorname]</code></li>
-                          <li><code>.badge-outline-[colorname]</code> became <code>.border-[colorname]</code></li>
-                          <li><code>.badge-gray-cararra</code> became <code>.bg-light</code></li>
-                          <li><code>.badge-outline-gray-carrara-thick</code> became <code>.border-light.border-2</code></li>
+                          <li><code appCopyToClipboard>.badge-pill</code> became <code appCopyToClipboard>.rounded-pill</code></li>
+                          <li><code appCopyToClipboard>.badge-[colorname]</code> became <code appCopyToClipboard>.bg-[colorname]</code></li>
+                          <li><code appCopyToClipboard>.badge-outline-[colorname]</code> became <code appCopyToClipboard>.border-[colorname]</code></li>
+                          <li><code appCopyToClipboard>.badge-gray-cararra</code> became <code appCopyToClipboard>.bg-light</code></li>
+                          <li><code appCopyToClipboard>.badge-outline-gray-carrara-thick</code> became <code appCopyToClipboard>.border-light.border-2</code></li>
                         </ul>
                         <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
                       </label>
@@ -843,7 +846,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbackgrounds_textcolor">
-                      <span class="change-badge bg-danger">breaking</span> Background classes such as <code>.bg-[colorname]</code>, now also automatically define the inner <span class="highlight">text-color</span> with <code>var(--post-contrast-color)</code>.<br>
+                      <span class="change-badge bg-danger">breaking</span> Background classes such as <code appCopyToClipboard>.bg-[colorname]</code>, now also automatically define the inner <span class="highlight">text-color</span> with <code appCopyToClipboard>var(--post-contrast-color)</code>.<br>
                       Therefore an explicit <span class="highlight">text-color</span> styling is not required anymore.
                       </label>
                     </div>
@@ -874,8 +877,8 @@
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapblockquotes_footerstructure">
                       <span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">blockquote</span> with footer.<br>
-                      Such blockquotes now need to be nested in a <code>figure</code> tag.
-                      In addition, the tag <code>footer.blockquote-footer</code> became <code>figcaption.blockquote-footer</code>.
+                      Such blockquotes now need to be nested in a <code appCopyToClipboard>figure</code> tag.
+                      In addition, the tag <code appCopyToClipboard>footer.blockquote-footer</code> became <code appCopyToClipboard>figcaption.blockquote-footer</code>.
                     </label>
                     </div>
                   </li>
@@ -892,7 +895,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapblockquotes_qclass">
-                      Dropped usage of <code>.mb-0</code> class, on <code>q</code> tags within <code>blockquote</code> elements.
+                      Dropped usage of <code appCopyToClipboard>.mb-0</code> class, on <code appCopyToClipboard>q</code> tags within <code appCopyToClipboard>blockquote</code> elements.
                     </label>
                     </div>
                   </li>
@@ -919,7 +922,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttons_outline">
-                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Removed <span class="highlight">button</span> classes <code>.btn-outline-[colorname]</code>.<br>
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Removed <span class="highlight">button</span> classes <code appCopyToClipboard>.btn-outline-[colorname]</code>.<br>
                       <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
                     </label>
                     </div>
@@ -939,8 +942,8 @@
                       <label class="form-check-label" for="bootstrapbuttons_borderradius">
                       <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">button</span> variables.<br>
                       <ul class="mt-2">
-                        <li><code>$btn-border-radius-rg</code></li>
-                        <li><code>$btn-border-radius-map</code></li>
+                        <li><code appCopyToClipboard>$btn-border-radius-rg</code></li>
+                        <li><code appCopyToClipboard>$btn-border-radius-map</code></li>
                       </ul>
                     </label>
                     </div>
@@ -960,8 +963,8 @@
                       <label class="form-check-label" for="bootstrapbuttons_borderradius2">
                       Dropped the usage of <span class="highlight">button</span> variables.
                       <ul class="mt-2">
-                        <li><code>$btn-border-radius-sm</code></li>
-                        <li><code>$btn-border-radius-lg</code></li>
+                        <li><code appCopyToClipboard>$btn-border-radius-sm</code></li>
+                        <li><code appCopyToClipboard>$btn-border-radius-lg</code></li>
                       </ul>
                       <p class="info">The variables remain available due to bootstrap.</p>
                     </label>
@@ -980,7 +983,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttons_invertedclass">
-                      <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code>.btn-inverted</code> class.<br>
+                      <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code appCopyToClipboard>.btn-inverted</code> class.<br>
                       <span class="highlight">Text-colors</span> are now automatically handled.
                     </label>
                     </div>
@@ -998,7 +1001,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttons_iconclass">
-                      Dropped the usage of <code>.btn-icon</code> class for buttons with icon and text.<br>
+                      Dropped the usage of <code appCopyToClipboard>.btn-icon</code> class for buttons with icon and text.<br>
                       <span class="highlight">Icon-only</span> buttons still need this class!
                     </label>
                     </div>
@@ -1046,7 +1049,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttonclose_class">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code appCopyToClipboard>.close</code> to <code appCopyToClipboard>.btn-close</code>.
                       </label>
                     </div>
                   </li>
@@ -1063,7 +1066,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttonclose_buttonclasses">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code>.btn</code> and <code>.btn-icon</code> classes.<br>
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code appCopyToClipboard>.btn</code> and <code appCopyToClipboard>.btn-icon</code> classes.<br>
                         <span class="info">As long as you do not want to have a button-like appearance, you should not add these classes on a <span class="highlight">close-button</span> element.</span>
                       </label>
                     </div>
@@ -1091,7 +1094,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapcards_classes">
-                      <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">card</span> classes <code>.card-deck</code> and <code>.card-columns</code>.<br>
+                      <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">card</span> classes <code appCopyToClipboard>.card-deck</code> and <code appCopyToClipboard>.card-columns</code>.<br>
                       Use the <span class="highlight">grid-system</span> instead.
                     </label>
                     </div>
@@ -1119,8 +1122,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapforms_formgroup">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.form-group</code> class.<br>
-                        Use <span class="highlight">utility-class</span>&nbsp;<code>.mb-regular</code> instead.<br>
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.form-group</code> class.<br>
+                        Use <span class="highlight">utility-class</span>&nbsp;<code appCopyToClipboard>.mb-regular</code> instead.<br>
                       </label>
                     </div>
                   </li>
@@ -1135,7 +1138,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapforms_formtext">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.small</code> and <code>.text-muted</code> classes on <code>.form-text</code> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.small</code> and <code appCopyToClipboard>.text-muted</code> classes on <code appCopyToClipboard>.form-text</code> elements.
                       </label>
                     </div>
                   </li>
@@ -1164,7 +1167,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformcontrols_formlabelclass">
-                      <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
+                      <span class="change-badge bg-danger">breaking</span> Required class <code appCopyToClipboard>.form-label</code> on <span class="highlight">form-label</span> elements.
                     </label>
                     </div>
                   </li>
@@ -1182,7 +1185,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformcontrols_formfloatingwrapper">
-                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code appCopyToClipboard>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
                     </label>
                     </div>
                   </li>
@@ -1200,7 +1203,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformcontrols_formfloatingcontrollgclass">
-                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
+                        Dropped usage of <code appCopyToClipboard>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
                       </label>
                     </div>
                   </li>
@@ -1230,7 +1233,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformselects_formfloatingwrapper">
-                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code appCopyToClipboard>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
                     </label>
                     </div>
                   </li>
@@ -1249,9 +1252,9 @@
                       <label class="form-check-label" for="bootstrapformselects_classes">
                       <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed <span class="highlight">custom-select</span> classes.
                       <ul class="mt-2">
-                        <li><code>.custom-select</code> became <code>.form-select</code></li>
-                        <li><code>.custom-select-sm</code> became <code>.form-select-sm</code></li>
-                        <li><code>.custom-select-rg</code> became <code>.form-select-rg</code></li>
+                        <li><code appCopyToClipboard>.custom-select</code> became <code appCopyToClipboard>.form-select</code></li>
+                        <li><code appCopyToClipboard>.custom-select-sm</code> became <code appCopyToClipboard>.form-select-sm</code></li>
+                        <li><code appCopyToClipboard>.custom-select-rg</code> became <code appCopyToClipboard>.form-select-rg</code></li>
                       </ul>
                     </label>
                     </div>
@@ -1270,7 +1273,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformselects_formfloatingselectlgclass">
-                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
+                        Dropped usage of <code appCopyToClipboard>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
                       </label>
                     </div>
                   </li>
@@ -1299,7 +1302,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformselectmultiples_classes">
-                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code>.form-control.custom-select</code> to <code>.form-select</code>.
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code appCopyToClipboard>.form-control.custom-select</code> to <code appCopyToClipboard>.form-select</code>.
                     </label>
                     </div>
                   </li>
@@ -1329,7 +1332,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformtextareas_formfloatingwrapper">
-                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code appCopyToClipboard>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
                     </label>
                     </div>
                   </li>
@@ -1347,7 +1350,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformtextareas_formfloatingcontrollgclass">
-                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
+                        Dropped usage of <code appCopyToClipboard>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
                       </label>
                     </div>
                   </li>
@@ -1376,7 +1379,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformranges_formlabelclass">
-                      <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
+                      <span class="change-badge bg-danger">breaking</span> Required class <code appCopyToClipboard>.form-label</code> on <span class="highlight">form-label</span> elements.
                     </label>
                     </div>
                   </li>
@@ -1405,7 +1408,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformfiles_formlabelclass">
-                      <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
+                      <span class="change-badge bg-danger">breaking</span> Required class <code appCopyToClipboard>.form-label</code> on <span class="highlight">form-label</span> elements.
                     </label>
                     </div>
                   </li>
@@ -1423,7 +1426,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformfiles_formfloatingwrapper">
-                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
+                      <span class="change-badge bg-danger">breaking</span> Required wrapper <code appCopyToClipboard>&lt;div class="form-floating"&gt;...&lt;/div&gt;</code> around <span class="highlight">floating-label</span> elements.
                     </label>
                     </div>
                   </li>
@@ -1441,7 +1444,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="boostrapformfiles_formfloatingcontrollgclass">
-                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
+                        Dropped usage of <code appCopyToClipboard>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
                       </label>
                     </div>
                   </li>
@@ -1472,10 +1475,10 @@
                       <label class="form-check-label" for="bootstrapformcheckboxes_classes">
                       <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed <span class="highlight">control</span> classes.
                       <ul class="mt-2">
-                        <li><code>.custom-control.custom-checkbox</code> became <code>.form-check</code></li>
-                        <li><code>.custom-control-input</code> became <code>.form-check-input</code></li>
-                        <li><code>.custom-control-label</code> became <code>.form-check-label</code></li>
-                        <li><code>.custom-control-inline</code> became <code>.form-check-inline</code></li>
+                        <li><code appCopyToClipboard>.custom-control.custom-checkbox</code> became <code appCopyToClipboard>.form-check</code></li>
+                        <li><code appCopyToClipboard>.custom-control-input</code> became <code appCopyToClipboard>.form-check-input</code></li>
+                        <li><code appCopyToClipboard>.custom-control-label</code> became <code appCopyToClipboard>.form-check-label</code></li>
+                        <li><code appCopyToClipboard>.custom-control-inline</code> became <code appCopyToClipboard>.form-check-inline</code></li>
                       </ul>
                     </label>
                     </div>
@@ -1495,7 +1498,7 @@
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformcheckboxes_validationclasses">
                       <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span> classes.<br>
-                      The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on the <code>.form-check-input</code> element. The <code>.form-check</code> element does not require the <span class="highlight">validation</span> classes anymore.
+                      The classes <code appCopyToClipboard>.is-valid</code> and <code appCopyToClipboard>.is-invalid</code> now belong on the <code appCopyToClipboard>.form-check-input</code> element. The <code appCopyToClipboard>.form-check</code> element does not require the <span class="highlight">validation</span> classes anymore.
                     </label>
                     </div>
                   </li>
@@ -1514,7 +1517,7 @@
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformcheckboxes_validationfeedbackclasses">
                       <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
-                      The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
+                      The elements <code appCopyToClipboard>.valid-feedback</code> and <code appCopyToClipboard>.invalid-feedback</code> now belong inside of the <code appCopyToClipboard>.form-check</code> element.
                     </label>
                     </div>
                   </li>
@@ -1545,10 +1548,10 @@
                       <label class="form-check-label" for="bootstrapformradios_classes">
                       <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed <span class="highlight">control</span> classes.
                       <ul class="mt-2">
-                        <li><code>.custom-control.custom-radio</code> became <code>.form-check</code></li>
-                        <li><code>.custom-control-input</code> became <code>.form-check-input</code></li>
-                        <li><code>.custom-control-label</code> became <code>.form-check-label</code></li>
-                        <li><code>.custom-control-inline</code> became <code>.form-check-inline</code></li>
+                        <li><code appCopyToClipboard>.custom-control.custom-radio</code> became <code appCopyToClipboard>.form-check</code></li>
+                        <li><code appCopyToClipboard>.custom-control-input</code> became <code appCopyToClipboard>.form-check-input</code></li>
+                        <li><code appCopyToClipboard>.custom-control-label</code> became <code appCopyToClipboard>.form-check-label</code></li>
+                        <li><code appCopyToClipboard>.custom-control-inline</code> became <code appCopyToClipboard>.form-check-inline</code></li>
                       </ul>
                     </label>
                     </div>
@@ -1567,7 +1570,7 @@
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformradios_validationclasses">
                       <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span> classes.<br>
-                      The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on the <code>.form-check-input</code> element. The <code>.form-check</code> element does not require the <span class="highlight">validation</span> classes anymore.
+                      The classes <code appCopyToClipboard>.is-valid</code> and <code appCopyToClipboard>.is-invalid</code> now belong on the <code appCopyToClipboard>.form-check-input</code> element. The <code appCopyToClipboard>.form-check</code> element does not require the <span class="highlight">validation</span> classes anymore.
                     </label>
                     </div>
                   </li>
@@ -1586,7 +1589,7 @@
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformradios_validationfeedbackclasses">
                       <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
-                      The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
+                      The elements <code appCopyToClipboard>.valid-feedback</code> and <code appCopyToClipboard>.invalid-feedback</code> now belong inside of the <code appCopyToClipboard>.form-check</code> element.
                     </label>
                     </div>
                   </li>
@@ -1629,7 +1632,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="ngbootstrapbuttons_labelclass">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Refactored <code>label.btn.btn-primary</code> to <code>label.btn.btn-secondary</code>.
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Refactored <code appCopyToClipboard>label.btn.btn-primary</code> to <code appCopyToClipboard>label.btn.btn-secondary</code>.
                       </label>
                     </div>
                   </li>
@@ -1646,7 +1649,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="ngbootstrapbuttons_inputclass">
-                        <span class="change-badge bg-danger">breaking</span> Required class <code>.btn-check</code> on the <code>input</code> element.
+                        <span class="change-badge bg-danger">breaking</span> Required class <code appCopyToClipboard>.btn-check</code> on the <code appCopyToClipboard>input</code> element.
                       </label>
                     </div>
                   </li>
@@ -1663,7 +1666,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="ngbootstrapbuttons_grouptoggleclass">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.btn-group-toggle</code> class.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.btn-group-toggle</code> class.
                       </label>
                     </div>
                   </li>
@@ -1694,10 +1697,10 @@
                       <label class="form-check-label" for="ngbootstrapdatepickers_variables">
                       <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">padding</span> variables.
                       <ul class="mt-2">
-                        <li><code>$ngb-dp-icon-padding</code></li>
-                        <li><code>$ngb-dp-icon-padding-sm</code></li>
-                        <li><code>$ngb-dp-icon-padding-rg</code></li>
-                        <li><code>$ngb-dp-icon-padding-lg</code></li>
+                        <li><code appCopyToClipboard>$ngb-dp-icon-padding</code></li>
+                        <li><code appCopyToClipboard>$ngb-dp-icon-padding-sm</code></li>
+                        <li><code appCopyToClipboard>$ngb-dp-icon-padding-rg</code></li>
+                        <li><code appCopyToClipboard>$ngb-dp-icon-padding-lg</code></li>
                       </ul>
                     </label>
                     </div>
@@ -1745,7 +1748,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="ngbootstrapmodals_closebuttonclass">
-                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code>.close</code> to <code>.btn-close</code>.
+                      <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed class <code appCopyToClipboard>.close</code> to <code appCopyToClipboard>.btn-close</code>.
                     </label>
                     </div>
                   </li>
@@ -1811,7 +1814,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postaccordions_wrapper">
-                        <span class="change-badge bg-danger">breaking</span> Required wrapper <code>&lt;div class="accordion"&gt;...&lt;/div&gt;</code> around <span class="highlight">accordion</span> elements.
+                        <span class="change-badge bg-danger">breaking</span> Required wrapper <code appCopyToClipboard>&lt;div class="accordion"&gt;...&lt;/div&gt;</code> around <span class="highlight">accordion</span> elements.
                       </label>
                     </div>
                   </li>
@@ -1828,7 +1831,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postaccordions_summaryclasses">
-                        <span class="change-badge bg-danger">breaking</span> Required classes <code>.accordion-button.collapse</code> on the <code>summary</code> element.
+                        <span class="change-badge bg-danger">breaking</span> Required classes <code appCopyToClipboard>.accordion-button.collapse</code> on the <code appCopyToClipboard>summary</code> element.
                       </label>
                     </div>
                   </li>
@@ -1845,11 +1848,11 @@
                       <label class="form-check-label" for="postaccordions_classes">
                         <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">accordion</span> classes.
                         <ul class="mt-2">
-                          <li><code>.card</code> became <code>.accordion-item</code></li>
-                          <li><code>.card-header</code> became <code>.accordion-header</code></li>
-                          <li><code>.card-header > .btn.btn-link</code> became <code>.accordion-header > .accordion-button</code></li>
-                          <li><code>.card-header + .collapse</code> became <code>.accordion-header + .accordion-collapse.collapse</code></li>
-                          <li><code>.card-body</code> became <code>.accordion-body</code></li>
+                          <li><code appCopyToClipboard>.card</code> became <code appCopyToClipboard>.accordion-item</code></li>
+                          <li><code appCopyToClipboard>.card-header</code> became <code appCopyToClipboard>.accordion-header</code></li>
+                          <li><code appCopyToClipboard>.card-header > .btn.btn-link</code> became <code appCopyToClipboard>.accordion-header > .accordion-button</code></li>
+                          <li><code appCopyToClipboard>.card-header + .collapse</code> became <code appCopyToClipboard>.accordion-header + .accordion-collapse.collapse</code></li>
+                          <li><code appCopyToClipboard>.card-body</code> became <code appCopyToClipboard>.accordion-body</code></li>
                         </ul>
                       </label>
                     </div>
@@ -1877,7 +1880,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postcustomselects_classes">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Refactored <code>.form-control.custom-select</code> and <code>.form-control.form-control-lg.custom-select</code> to <code>.form-select</code>.
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Refactored <code appCopyToClipboard>.form-control.custom-select</code> and <code appCopyToClipboard>.form-control.form-control-lg.custom-select</code> to <code appCopyToClipboard>.form-select</code>.
                       </label>
                     </div>
                   </li>
@@ -1894,8 +1897,8 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postcustomselects_menuclass">
-                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Removed <code>.custom-select-menu</code> class.<br>
-                        Use <span class="highlight">utility-classes</span>&nbsp;<code>.w-100.mw-100</code> instead.
+                        <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Removed <code appCopyToClipboard>.custom-select-menu</code> class.<br>
+                        Use <span class="highlight">utility-classes</span>&nbsp;<code appCopyToClipboard>.w-100.mw-100</code> instead.
                       </label>
                     </div>
                   </li>
@@ -1926,10 +1929,10 @@
                       <label class="form-check-label" for="postsizings_paddingsleftright">
                         <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Renamed <span class="highlight">margin/padding</span> helper classes, to align with the <span class="highlight">start</span> and <span class="highlight">end</span> keywords.
                         <ul class="mt-2">
-                          <li><code>.ml-[size]</code> became <code>.ms-[size]</code></li>
-                          <li><code>.mr-[size]</code> became <code>.me-[size]</code></li>
-                          <li><code>.pl-[size]</code> became <code>.ps-[size]</code></li>
-                          <li><code>.pr-[size]</code> became <code>.pe-[size]</code></li>
+                          <li><code appCopyToClipboard>.ml-[size]</code> became <code appCopyToClipboard>.ms-[size]</code></li>
+                          <li><code appCopyToClipboard>.mr-[size]</code> became <code appCopyToClipboard>.me-[size]</code></li>
+                          <li><code appCopyToClipboard>.pl-[size]</code> became <code appCopyToClipboard>.ps-[size]</code></li>
+                          <li><code appCopyToClipboard>.pr-[size]</code> became <code appCopyToClipboard>.pe-[size]</code></li>
                         </ul>
                         <p class="info">Replace [size] with "0", "1", "2" "3" , "4" or "5".</p>
                       </label>
@@ -1960,7 +1963,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postsubnavigations_invertedclass">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.subnavigation-inverted</code> class.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.subnavigation-inverted</code> class.
                       </label>
                     </div>
                   </li>
@@ -2001,8 +2004,8 @@
                       <label class="form-check-label" for="postformswitches_classes">
                         <span class="change-badge bg-danger">breaking</span><span *ngIf="isMigratingAngular"> ⚙️</span> Refactored <span class="highlight">switch</span> classes.<br>
                         <ul class="mt-2">
-                          <li><code>div.switch</code> became <code>.form-check.form-switch</code></li>
-                          <li><code>input.switch</code> became <code>.form-check-input</code></li>
+                          <li><code appCopyToClipboard>div.switch</code> became <code appCopyToClipboard>.form-check.form-switch</code></li>
+                          <li><code appCopyToClipboard>input.switch</code> became <code appCopyToClipboard>.form-check-input</code></li>
                         </ul>
                       </label>
                     </div>
@@ -2022,8 +2025,8 @@
                       <label class="form-check-label" for="postformswitches_labelclasses">
                         <span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">switch-label</span> classes.<br>
                         <ul class="mt-2">
-                          <li><code>label:not(.switch-toggler)</code> became <code>.form-check-label.order-first</code></li>
-                          <li><code>.switch-toggler ~ label</code> became <code>.form-check-label</code></li>
+                          <li><code appCopyToClipboard>label:not(.switch-toggler)</code> became <code appCopyToClipboard>.form-check-label.order-first</code></li>
+                          <li><code appCopyToClipboard>.switch-toggler ~ label</code> became <code appCopyToClipboard>.form-check-label</code></li>
                         </ul>
                       </label>
                     </div>
@@ -2042,7 +2045,7 @@
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postformswitches_validationclasses">
                       <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span> classes.<br>
-                      The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on the <code>.form-check-input</code> element.<br>
+                      The classes <code appCopyToClipboard>.is-valid</code> and <code appCopyToClipboard>.is-invalid</code> now belong on the <code appCopyToClipboard>.form-check-input</code> element.<br>
                     </label>
                     </div>
                   </li>
@@ -2061,7 +2064,7 @@
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postformswitches_validationfeedbackclasses">
                       <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
-                      The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
+                      The elements <code appCopyToClipboard>.valid-feedback</code> and <code appCopyToClipboard>.invalid-feedback</code> now belong inside of the <code appCopyToClipboard>.form-check</code> element.
                     </label>
                     </div>
                   </li>
@@ -2078,7 +2081,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="postformswitches_switchtoggleclass">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.switch-toggle</code> class.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.switch-toggle</code> class.
                       </label>
                     </div>
                   </li>
@@ -2109,8 +2112,8 @@
                       <label class="form-check-label" for="posttopicteasers_imageattributes">
                         <span class="change-badge bg-danger">breaking</span> Required <span class="highlight">image</span> attributes.
                         <ul class="mt-2">
-                          <li><code>width="100%"</code></li>
-                          <li><code>height="100%"</code></li>
+                          <li><code appCopyToClipboard>width="100%"</code></li>
+                          <li><code appCopyToClipboard>height="100%"</code></li>
                         </ul>
                       </label>
                     </div>
@@ -2129,7 +2132,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="posttopicteasers_imagecontainergridclasses">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.col-10.col-rg-8.col-lg-4</code> on <code>.topic-teaser-image-container</code> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.col-10.col-rg-8.col-lg-4</code> on <code appCopyToClipboard>.topic-teaser-image-container</code> elements.
                       </label>
                     </div>
                   </li>
@@ -2147,7 +2150,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="posttopicteasers_contentcontainergridclasses">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.col-12.col-lg-8</code> on <code>.topic-teaser-content</code> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.col-12.col-lg-8</code> on <code appCopyToClipboard>.topic-teaser-content</code> elements.
                       </label>
                     </div>
                   </li>
@@ -2164,7 +2167,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="posttopicteasers_linklistfontcurve">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.font-curve-regular</code> on <code>ul.link-list</code> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.font-curve-regular</code> on <code appCopyToClipboard>ul.link-list</code> elements.
                       </label>
                     </div>
                   </li>

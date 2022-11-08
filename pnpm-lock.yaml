@@ -185,6 +185,7 @@ importers:
       '@angular-eslint/schematics': 14.1.2
       '@angular-eslint/template-parser': 14.1.2
       '@angular/animations': 14.2.9
+      '@angular/cdk': 14.2.6
       '@angular/cli': 14.2.8
       '@angular/common': 14.2.9
       '@angular/compiler': 14.2.9
@@ -237,6 +238,7 @@ importers:
       zone.js: 0.11.8
     dependencies:
       '@angular/animations': 14.2.9_@angular+core@14.2.9
+      '@angular/cdk': 14.2.6_qjl2ys43llfr5ryvde32rurtni
       '@angular/common': 14.2.9_7m4pc4sup4phcyoce7cdzdyotq
       '@angular/compiler': 14.2.9_@angular+core@14.2.9
       '@angular/core': 14.2.9_rxjs@7.5.7+zone.js@0.11.8
@@ -825,6 +827,21 @@ packages:
     dependencies:
       '@angular/core': 14.2.9_rxjs@7.5.7+zone.js@0.11.8
       tslib: 2.4.1
+    dev: false
+
+  /@angular/cdk/14.2.6_qjl2ys43llfr5ryvde32rurtni:
+    resolution: {integrity: sha512-sihrwk/0emYbE2X+DOIlan7mohED9pKiH2gQh2hk3Ud8jjeW6VmbaGtTCkjs+HRbFc9/44uDHasizxrKnjseyw==}
+    peerDependencies:
+      '@angular/common': ^14.0.0 || ^15.0.0
+      '@angular/core': ^14.0.0 || ^15.0.0
+      rxjs: ^6.5.3 || ^7.4.0
+    dependencies:
+      '@angular/common': 14.2.9_7m4pc4sup4phcyoce7cdzdyotq
+      '@angular/core': 14.2.9_rxjs@7.5.7+zone.js@0.11.8
+      rxjs: 7.5.7
+      tslib: 2.4.0
+    optionalDependencies:
+      parse5: 5.1.1
     dev: false
 
   /@angular/cli/14.2.8:
@@ -13367,7 +13384,7 @@ packages:
     dev: true
 
   /file-uri-to-path/1.0.0:
-    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
+    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=}
     requiresBuild: true
     dev: true
     optional: true
@@ -18784,6 +18801,12 @@ packages:
       parse5: 6.0.1
     dev: true
 
+  /parse5/5.1.1:
+    resolution: {integrity: sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==}
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /parse5/6.0.1:
     resolution: {integrity: sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==}
     dev: true
@@ -22650,7 +22673,6 @@ packages:
 
   /tslib/2.4.0:
     resolution: {integrity: sha512-d6xOpEDfsi2CZVlPQzGeux8XMwLT9hssAsaPYExaQMuYskwb+x1x7J371tWlbBdWHroy99KnVB6qIkUbs5X3UQ==}
-    dev: true
 
   /tslib/2.4.1:
     resolution: {integrity: sha512-tGyy4dAjRIEwI7BzsB0lynWgOpfqjUdq91XXAlIWD2OwKBH7oCl/GZG/HT4BOHrTlPMOASlMQ7veyTqpmRcrNA==}
