@@ -1111,6 +1111,23 @@
                   <li>
                     <div class="form-check">
                       <input
+                        id="boostrapforms_formlabelclass"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.forms_formlabelclass
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="boostrapforms_formlabelclass">
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
                         id="bootstrapforms_formgroup"
                         class="form-check-input"
                         type="checkbox"
@@ -1151,23 +1168,6 @@
               <div>
                 <h5 class="mt-4 h6 bold">From Control</h5>
                 <ul class="list-unstyled my-3">
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="boostrapformcontrols_formlabelclass"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.bootstrap.formcontrols_formlabelclass
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="boostrapformcontrols_formlabelclass">
-                        <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
-                      </label>
-                    </div>
-                  </li>
                   <li>
                     <div class="form-check">
                       <input
@@ -1247,11 +1247,16 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformselects_classes">
-                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">custom-select</span> classes.
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">select</span>, <span class="highlight">multi-select</span> and <span class="highlight">custom-select</span> classes.
                         <ul class="mt-2">
+                          <li><code>.form-control</code> became <code>.form-select</code></li>
+                          <li><code>.form-control-lg</code> became <code>.form-select-lg</code></li>
+                          <li><code>.form-control-rg</code> became <code>.form-select-rg</code></li>
+                          <li><code>.form-control-sm</code> became <code>.form-select-sm</code></li>
                           <li><code>.custom-select</code> became <code>.form-select</code></li>
-                          <li><code>.custom-select-sm</code> became <code>.form-select-sm</code></li>
+                          <li><code>.custom-select-lg</code> became <code>.form-select-lg</code></li>
                           <li><code>.custom-select-rg</code> became <code>.form-select-rg</code></li>
+                          <li><code>.custom-select-sm</code> became <code>.form-select-sm</code></li>
                         </ul>
                       </label>
                     </div>
@@ -1270,7 +1275,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapformselects_formfloatingselectlgclass">
-                        Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.form-control-lg</code> class on <span class="highlight">floating-label</span> elements.
                       </label>
                     </div>
                   </li>
@@ -1278,35 +1283,6 @@
                 <p class="info">
                   See
                   <a routerLink="/bootstrap-samples/form-select">documentation</a>
-                  for more detailed informations.
-                </p>
-              </div>
-
-              <!-- Bootstrap Form-Select Multiple -->
-              <div>
-                <h5 class="mt-4 h6 bold">From Select Multiple</h5>
-                <ul class="list-unstyled my-3">
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="bootstrapformselectmultiples_classes"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.bootstrap.formselectmultiples_classes
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="bootstrapformselectmultiples_classes">
-                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Renamed class <code>.form-control.custom-select</code> to <code>.form-select</code>.
-                      </label>
-                    </div>
-                  </li>
-                </ul>
-                <p class="info">
-                  See
-                  <a routerLink="/bootstrap-samples/form-multiple-select">documentation</a>
                   for more detailed informations.
                 </p>
               </div>
@@ -1337,35 +1313,6 @@
                 <p class="info">
                   See
                   <a routerLink="/bootstrap-samples/form-textarea">documentation</a>
-                  for more detailed informations.
-                </p>
-              </div>
-
-              <!-- Bootstrap Form-Range -->
-              <div>
-                <h5 class="mt-4 h6 bold">From Range</h5>
-                <ul class="list-unstyled my-3">
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="boostrapformranges_formlabelclass"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.bootstrap.formranges_formlabelclass
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="boostrapformranges_formlabelclass">
-                        <span class="change-badge bg-danger">breaking</span> Required class <code>.form-label</code> on <span class="highlight">form-label</span> elements.
-                      </label>
-                    </div>
-                  </li>
-                </ul>
-                <p class="info">
-                  See
-                  <a routerLink="/bootstrap-samples/form-range">documentation</a>
                   for more detailed informations.
                 </p>
               </div>
