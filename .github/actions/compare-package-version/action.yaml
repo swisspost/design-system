@@ -9,10 +9,22 @@ inputs:
     required: false
     default: 'package.json'
 outputs:
-  has-updated:
-    description: 'Whether the package.json version has been updated'
-  current-package-version:
-    description: 'The current package.json version'
+  currentVersion:
+    description: 'Current package.json version'
+  lastVersion:
+    description: 'Package.json version of previous commit'
+  versionChanged:
+    description: Returns 1 (true) if the version changed and 0 if it is the same
 runs:
-  using: 'node16'
-  main: 'index.js'
+  using: composite
+  steps:
+    - name: Compare package.json version
+      run: |
+        currentVersion=$(node -pe "require('${{ inputs.path }}').version")
+        echo "currentVersion=$currentVersion" >> $GITHUB_OUTPUT
+        git checkout HEAD~1 -- ${{ inputs.path }}
+        lastVersion=$(node -pe "require('${{ inputs.path }}').version")
+        git checkout HEAD -- ${{ inputs.path }}
+        echo "lastVersion=$lastVersion" >> $GITHUB_OUTPUT
+        [ $currentVersion == $lastVersion ];versionChanged=$?
+        echo "versionChanged=$versionChanged" >> $GITHUB_OUTPUT

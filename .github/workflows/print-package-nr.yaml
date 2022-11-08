@@ -11,12 +11,12 @@ jobs:
         with:
           fetch-depth: 2
 
+      # Check version
       - name: Version Check
-        uses: EndBug/version-check@v2.1.1
+        uses: swisspost/design-system/.github/actions/compare-package-version@main
         id: check
         with:
-          diff-search: true
-          file-name: packages/styles/package.json
+          path: ./packages/styles/package.json
 
       - name: Print version
-        run: 'echo "hasChanged: $steps.check.outputs.changed, currentPackageVersion: $steps.check.outputs.version"'
+        run: 'echo hasChanged: ${{steps.check.outputs.versionChanged}}, currentPackageVersion: ${{steps.check.outputs.currentVersion}}, lastVersion: ${{steps.check.outputs.lastVersion}}'
