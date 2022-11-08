@@ -1490,6 +1490,111 @@
                   for more detailed informations.
                 </p>
               </div>
+
+              <!-- Post Switch -->
+              <div>
+                <h5 class="mt-4 h6 bold">Form Switch</h5>
+
+                <p>
+                  The
+                  <span class="highlight">switch</span>
+                  component has been moved to the
+                  <strong>bootstrap</strong>
+                  section , because bootstrap version 5.x provides such a component itself.
+                  <span class="info">
+                    If you import this component manually, you need to update to the new file path.
+                  </span>
+                </p>
+
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformswitches_classes"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.formswitches_classes
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformswitches_classes">
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">switch</span> classes.<br>
+                        <ul class="mt-2">
+                          <li><code>.switch</code> became <code>.form-check.form-switch</code></li>
+                          <li><code>.switch input.switch</code> became <code>input.form-check-input</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformswitches_labelclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap.formswitches_labelclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformswitches_labelclasses">
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">switch-label</span>.<br>
+                        <ul class="mt-2">
+                          <li><code>div.switch label</code> (before <code>label.switch-toggler</code>) became <code>label.form-check-label.order-first</code></li>
+                          <li><code>div.switch label.switch-toggler</code> has been removed</li>
+                          <li><code>div.switch label</code> (after <code>label.switch-toggler</code>) became <code>label.form-check-label</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformswitches_validationclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formswitches_validationclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformswitches_validationclasses">
+                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span> classes.<br>
+                      The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on the <code>.form-check-input</code> element.<br>
+                    </label>
+                    </div>
+                  </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="bootstrapformswitches_validationfeedbackclasses"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="
+                          migrationAccordionGroupedCheckboxes.bootstrap
+                            .formswitches_validationfeedbackclasses
+                        "
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="bootstrapformswitches_validationfeedbackclasses">
+                        <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
+                        The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+                <p class="info">
+                  See
+                  <a routerLink="/bootstrap-samples/form-switch">documentation</a>
+                  for more detailed informations.
+                </p>
+              </div>
             </ng-template>
           </ngb-panel>
 
@@ -1825,124 +1930,6 @@
                 <p class="info">
                   See
                   <a routerLink="/post-samples/subnavigation">documentation</a>
-                  for more detailed informations.
-                </p>
-              </div>
-
-              <!-- Post Switch -->
-              <div>
-                <h5 class="mt-4 h6 bold">Switch</h5>
-
-                <p>
-                  The
-                  <span class="highlight">switch</span>
-                  component has been moved to the
-                  <strong>bootstrap</strong>
-                  section , because bootstrap version 5.x provides such a component itself.
-                  <span class="info">
-                    If you import this component manually, you need to update to the new file paths.
-                  </span>
-                </p>
-
-                <ul class="list-unstyled my-3">
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="postformswitches_classes"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="migrationAccordionGroupedCheckboxes.post.formswitches_classes"
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="postformswitches_classes">
-                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">switch</span> classes.<br>
-                        <ul class="mt-2">
-                          <li><code>div.switch</code> became <code>.form-check.form-switch</code></li>
-                          <li><code>input.switch</code> became <code>.form-check-input</code></li>
-                        </ul>
-                      </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="postformswitches_labelclasses"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.post.formswitches_labelclasses
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="postformswitches_labelclasses">
-                        <span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">switch-label</span> classes.<br>
-                        <ul class="mt-2">
-                          <li><code>label:not(.switch-toggler)</code> became <code>.form-check-label.order-first</code></li>
-                          <li><code>.switch-toggler ~ label</code> became <code>.form-check-label</code></li>
-                        </ul>
-                      </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="postformswitches_validationclasses"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.post.formswitches_validationclasses
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="postformswitches_validationclasses">
-                      <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span> classes.<br>
-                      The classes <code>.is-valid</code> and <code>.is-invalid</code> now belong on the <code>.form-check-input</code> element.<br>
-                    </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="postformswitches_validationfeedbackclasses"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.post
-                            .formswitches_validationfeedbackclasses
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="postformswitches_validationfeedbackclasses">
-                        <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span> elements.<br>
-                        The elements <code>.valid-feedback</code> and <code>.invalid-feedback</code> now belong inside of the <code>.form-check</code> element.
-                      </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="postformswitches_switchtoggleclass"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.post.formswitches_switchtoggleclass
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="postformswitches_switchtoggleclass">
-                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code>.switch-toggle</code> class.
-                      </label>
-                    </div>
-                  </li>
-                </ul>
-                <p class="info">
-                  See
-                  <a routerLink="/bootstrap-samples/form-switch">documentation</a>
                   for more detailed informations.
                 </p>
               </div>

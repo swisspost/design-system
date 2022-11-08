@@ -67,6 +67,11 @@
       "description": "Migrates bootstrap form-radio component.",
       "factory": "./migrations/bootstrap/form-radio"
     },
+    "migration-bootstrap-form-switch": {
+      "version": "5.0.0",
+      "description": "Migrates bootstrap form-switch component.",
+      "factory": "./migrations/bootstrap/form-switch"
+    },
     "migration-ng-buttons": {
       "version": "5.0.0",
       "description": "Migrates ng-bootstrap button component.",
