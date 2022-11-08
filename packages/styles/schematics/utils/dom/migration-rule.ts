@@ -24,7 +24,12 @@ const CHEERIO_OPTIONS: cheerio.CheerioOptions = {
 const PRETTIER_OPTIONS: prettier.Options = {
   parser: 'html',
   plugins: [htmlParser],
-  htmlWhitespaceSensitivity: 'strict'
+  printWidth: 1000,
+  bracketSpacing: true,
+  bracketSameLine: true,
+  htmlWhitespaceSensitivity: 'ignore',
+  embeddedLanguageFormatting: 'off',
+  singleAttributePerLine: false
 };
 
 export default function DomMigrationRule (migration: DomMigration): Rule {
