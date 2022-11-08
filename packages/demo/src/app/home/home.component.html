@@ -872,7 +872,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapblockquotes_footerstructure">
-                        <span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">blockquote</span> with footer.<br>
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Refactored <span class="highlight">blockquote</span> with footer.<br>
                         Such blockquotes now need to be nested in a <code>figure</code> tag.
                         In addition, the tag <code>footer.blockquote-footer</code> became <code>figcaption.blockquote-footer</code>.
                       </label>
