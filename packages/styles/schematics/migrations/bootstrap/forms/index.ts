@@ -6,6 +6,7 @@ import { Cheerio, CheerioAPI } from 'cheerio';
 export default function (): Rule {
   return new DomMigration(
     new FormGroupClassUpdate,
+    new FormLabelClassUpdate,
     new FormTextClassUpdate
   ).rule;
 }
@@ -25,6 +26,22 @@ class FormGroupClassUpdate implements IDomUpdate {
           $element
             .removeClass('form-group')
             .addClass('mb-regular');
+        }
+      });
+  }
+}
+
+class FormLabelClassUpdate implements IDomUpdate {
+  selector = 'label, [for]';
+
+  update ($elements: Cheerio<any>, $: CheerioAPI) {
+    $elements
+      .each((_i, element) => {
+        const $element = $(element);
+        const $control = $element.siblings('input:visible, select:visible, textarea:visible');
+        
+        if ($control.length > 0) {
+          $element.addClass('form-label');
         }
       });
   }
