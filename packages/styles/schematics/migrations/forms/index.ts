@@ -8,10 +8,7 @@ export default function (): Rule {
         new FormSelectClassesUpdate,
         new FormSelectMenuClassesUpdate,
         new FormCheckClassesUpdate,
-        new FormCheckChildrenClassesUpdate,
-        new FormSwitchClassesUpdate,
-        new FormSwitchInputClassesUpdate,
-        new FormSwitchTogglerClassesUpdate,
+        new FormCheckChildrenClassesUpdate
     ).rule;
 }
 
@@ -38,24 +35,4 @@ class FormCheckChildrenClassesUpdate extends CssClassesUpdate {
     override classSelector = oneOf(['custom-control-input', 'custom-control-label', 'custom-control-inline']);
     searchValue = `custom-control-${oneOf(['input', 'label', 'inline'])}`;
     replaceValue = (child: string) => `form-check-${child}`;
-}
-
-class FormSwitchClassesUpdate extends CssClassesUpdate {
-    override tagSelector = 'div';
-    override classSelector = 'switch';
-    searchValue = 'switch';
-    replaceValue = 'form-check form-switch';
-}
-
-class FormSwitchInputClassesUpdate extends CssClassesUpdate {
-    override tagSelector = 'input';
-    override classSelector = 'switch';
-    searchValue = 'switch';
-    replaceValue = 'form-check-input';
-}
-
-class FormSwitchTogglerClassesUpdate extends CssClassesUpdate {
-    override classSelector = 'switch-toggler';
-    searchValue = 'switch-toggler';
-    replaceValue = '';
 }

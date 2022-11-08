@@ -57,6 +57,11 @@
       "description": "Migrates bootstrap textarea component.",
       "factory": "./migrations/bootstrap/textarea"
     },
+    "migration-bootstrap-form-switch": {
+      "version": "5.0.0",
+      "description": "Migrates bootstrap form-switch component.",
+      "factory": "./migrations/bootstrap/form-switch"
+    },
     "migration-ng-buttons": {
       "version": "5.0.0",
       "description": "Migrates ng-bootstrap button component.",
