@@ -46,25 +46,6 @@ jobs:
           version: pnpm changeset:version
 
       # Check version test
-      - name: Demo Version Check
-        uses: tj-actions/changed-files@v34
-        id: demoCheck
-        with:
-          files: |
-            ./packages/demo/package.json
-
-      # Publish demo only if changesets published any packages
-      - name: Publish demo
-        if: steps.demoCheck.outputs.any_changed
-        id: netlify
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          netlify link --id $NETLIFY_SITE_ID
-          netlify deploy --build false --dir packages/demo/dist/demo --prod
-
-      # Check version test
       - name: Storybook Version Check
         uses: tj-actions/changed-files@v34
         id: sbCheck
