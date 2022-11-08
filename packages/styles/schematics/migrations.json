@@ -57,6 +57,11 @@
       "description": "Migrates bootstrap textarea component.",
       "factory": "./migrations/bootstrap/textarea"
     },
+    "migration-bootstrap-form-checkbox": {
+      "version": "5.0.0",
+      "description": "Migrates bootstrap form-checkbox component.",
+      "factory": "./migrations/bootstrap/form-checkbox"
+    },
     "migration-ng-buttons": {
       "version": "5.0.0",
       "description": "Migrates ng-bootstrap button component.",
