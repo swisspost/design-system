@@ -14,7 +14,7 @@ jobs:
         uses: tj-actions/changed-files@v34
         id: check
         with:
-          fetch-depth: 2
+          fetch_depth: 2
           files: |
             ./packages/styles/package.json
 
