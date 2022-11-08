@@ -13,7 +13,7 @@ jobs:
 
       # Check version
       - name: Version Check
-        uses: swisspost/design-system/.github/actions/compare-package-version@main
+        uses: swisspost/design-system/.github/actions/compare-package-version@fix-deploy-round-III
         id: check
         with:
           path: ./packages/styles/package.json
