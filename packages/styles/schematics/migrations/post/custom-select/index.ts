@@ -20,9 +20,10 @@ class CustomSelectFloatingLabelWrapperUpdate implements IDomUpdate {
         const $element = $(element);
         const $control = $element.find('> button.form-control-lg');
         const $label = $control.next('label');
+        const isNgbDropdown = $element.attr('ngbDropdown') !== undefined;
         const isFloatingLabel = $control.length > 0 && $label.length > 0;
         
-        if (isFloatingLabel) {
+        if (isNgbDropdown && isFloatingLabel) {
           $element
             .removeClass('form-group')
             .addClass('form-floating');
@@ -36,19 +37,35 @@ class CustomSelectFloatingLabelWrapperUpdate implements IDomUpdate {
 class CustomSelectClassesUpdate implements IDomUpdate {
   selector = 'button.form-control';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
-      .removeClass('form-control custom-select')
-      .addClass('form-select');
+      .each((_i, element) => {
+        const $element = $(element);
+        const isNgbDropdownToggle = $element.attr('ngbDropdownToggle') !== undefined;
+
+        if (isNgbDropdownToggle) {
+          $element
+            .removeClass('form-control custom-select')
+            .addClass('form-select');
+        }
+      });
   }
 }
 
 class CustomSelectMenuClassesUpdate implements IDomUpdate {
   selector = '.custom-select-menu';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<any>, $: CheerioAPI) {
     $elements
-      .removeClass('custom-select-menu')
-      .addClass('w-100 mw-100');
+      .each((_i, element) => {
+        const $element = $(element);
+        const isNgbDropdownMenu = $element.attr('ngbDropdownMenu') !== undefined;
+  
+        if (isNgbDropdownMenu) {
+          $element
+            .removeClass('custom-select-menu')
+            .addClass('w-100 mw-100');
+        }
+      });
   }
 }
