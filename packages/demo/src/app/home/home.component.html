@@ -998,7 +998,7 @@
                       />
                       <!-- prettier-ignore -->
                       <label class="form-check-label" for="bootstrapbuttons_iconclass">
-                        Dropped the usage of <code appCopyToClipboard>.btn-icon</code> class for buttons with icon and text.<br>
+                        <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code appCopyToClipboard>.btn-icon</code> class for buttons with <span class="highlight">icon</span> and visible <span class="highlight">text</span>.<br>
                         <span class="highlight">Icon-only</span> buttons still need this class!
                       </label>
                     </div>
