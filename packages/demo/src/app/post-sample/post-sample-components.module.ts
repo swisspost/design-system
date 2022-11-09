@@ -51,8 +51,6 @@ import { DatatableEditableDemoComponent } from './components/datatable/datatable
 import { DatatableDemoPageComponent } from './components/datatable/datatable-demo-page/datatable-demo-page.component';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { FormsDemoPageComponent } from './components/forms/forms-demo-page/forms-demo-page.component';
-import { AccordionDemoComponent } from './components/accordion/accordion-demo/accordion-demo.component';
-import { AccordionDemoPageComponent } from './components/accordion/accordion-demo-page/accordion-demo-page.component';
 import { DatatableLoadingDemoComponent } from './components/datatable/datatable-loading-demo/datatable-loading-demo.component';
 
 @NgModule({
@@ -70,8 +68,6 @@ import { DatatableLoadingDemoComponent } from './components/datatable/datatable-
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
-    AccordionDemoComponent,
-    AccordionDemoPageComponent,
     SvgIconsDemoComponent,
     IconsDemoPageComponent,
     FeedbackDemoComponent,
