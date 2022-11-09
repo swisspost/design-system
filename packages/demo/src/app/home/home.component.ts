@@ -98,10 +98,7 @@ export class HomeComponent {
       modals_closebuttonclass: false
     },
     post: {
-      detailsummary_detailsummary: false,
-      accordions_wrapper: false,
-      accordions_summaryclasses: false,
-      accordions_classes: false,
+      accordions_removed: false,
       customselects_formfloatingwrapper: false,
       customselects_classes: false,
       customselects_menuclass: false,

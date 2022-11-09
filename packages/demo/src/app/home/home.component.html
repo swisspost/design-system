@@ -1769,31 +1769,6 @@
               </div>
             </ng-template>
             <ng-template ngbPanelContent>
-              <!-- Post Detail Summary -->
-              <div>
-                <h5 class="h6 bold">Detail Summary</h5>
-                <ul class="list-unstyled my-3">
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="postdetailsummary_detailsummary"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.post.detailsummary_detailsummary
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="postdetailsummary_detailsummary">
-                        <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">detail-summary</span> component.<br>
-                        We recommend to use the <a routerLink="/ng-bootstrap-samples/accordion">Angular</a> or <a routerLink="/post-samples/accordion">Post</a>&nbsp;<span class="highlight">accordion</span> component instead.
-                      </label>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
               <!-- Post Accordion -->
               <div>
                 <h5 class="h6 bold">Accordion</h5>
@@ -1801,63 +1776,21 @@
                   <li>
                     <div class="form-check">
                       <input
-                        id="postaccordions_wrapper"
+                        id="postaccordions_removed"
                         class="form-check-input"
                         type="checkbox"
-                        [(ngModel)]="migrationAccordionGroupedCheckboxes.post.accordions_wrapper"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.post.accordions_removed"
                         (change)="migrationAccordionGroupedCheckboxesChange()"
                       />
                       <!-- prettier-ignore -->
-                      <label class="form-check-label" for="postaccordions_wrapper">
-                        <span class="change-badge bg-danger">breaking</span> Required wrapper <code appCopyToClipboard>&lt;div class="accordion"&gt;...&lt;/div&gt;</code> around <span class="highlight">accordion</span> elements.
-                      </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="postaccordions_summaryclasses"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="
-                          migrationAccordionGroupedCheckboxes.post.accordions_summaryclasses
-                        "
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="postaccordions_summaryclasses">
-                        <span class="change-badge bg-danger">breaking</span> Required classes <code appCopyToClipboard>.accordion-button.collapse</code> on the <code appCopyToClipboard>summary</code> element.
-                      </label>
-                    </div>
-                  </li>
-                  <li>
-                    <div class="form-check">
-                      <input
-                        id="postaccordions_classes"
-                        class="form-check-input"
-                        type="checkbox"
-                        [(ngModel)]="migrationAccordionGroupedCheckboxes.post.accordions_classes"
-                        (change)="migrationAccordionGroupedCheckboxesChange()"
-                      />
-                      <!-- prettier-ignore -->
-                      <label class="form-check-label" for="postaccordions_classes">
-                        <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">accordion</span> classes.
-                        <ul class="mt-2">
-                          <li><code appCopyToClipboard>.card</code> became <code appCopyToClipboard>.accordion-item</code></li>
-                          <li><code appCopyToClipboard>.card-header</code> became <code appCopyToClipboard>.accordion-header</code></li>
-                          <li><code appCopyToClipboard>.card-header > .btn.btn-link</code> became <code appCopyToClipboard>.accordion-header > .accordion-button</code></li>
-                          <li><code appCopyToClipboard>.card-header + .collapse</code> became <code appCopyToClipboard>.accordion-header + .accordion-collapse.collapse</code></li>
-                          <li><code appCopyToClipboard>.card-body</code> became <code appCopyToClipboard>.accordion-body</code></li>
-                        </ul>
+                      <label class="form-check-label" for="postaccordions_removed">
+                        <span class="change-badge bg-danger">breaking</span> Removed the entire Post <span class="highlight">accordion</span> component and the associated <span class="highlight">detail-summary</span> stylesheet.<br>
+                        The component has been removed due to <a href="https://adrianroselli.com/2019/04/details-summary-are-not-insert-control-here.html">accessibility issues with the &lt;summary&gt; element</a>.
+                        <p class="info">We recommend to use the new <a routerLink="/bootstrap-samples/accordion">bootstrap accordion</a> or the existing <a routerLink="/ng-bootstrap-samples/accordion">angular accordion</a> component instead.</p>
                       </label>
                     </div>
                   </li>
                 </ul>
-                <p class="info">
-                  See
-                  <a routerLink="/post-samples/accordion">documentation</a>
-                  for more detailed informations.
-                </p>
               </div>
 
               <!-- Post Custom-Select -->
