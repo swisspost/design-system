@@ -1757,6 +1757,48 @@
             </ng-template>
           </ngb-panel>
 
+          <ngb-panel id="jquery">
+            <ng-template ngbPanelHeader let-opened="opened">
+              <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                <button ngbPanelToggle class="accordion-button">
+                  jQuery
+                  <small>
+                    {{ getMigrationAccordionGroupedCheckboxesChecked('jquery') }}
+                  </small>
+                </button>
+              </div>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <!-- jQuery Accordion -->
+              <div>
+                <h5 class="h6 bold">Accordion</h5>
+                <ul class="list-unstyled my-3">
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="jqueryaccordions_removed"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.jquery.accordions_removed"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="jqueryaccordions_removed">
+                        <span class="change-badge bg-danger">breaking</span> Removed the entire jQuery <span class="highlight">accordion</span> component.
+                        <p class="info">This can be migrated easily to the new <a routerLink="/bootstrap-samples/accordion">bootstrap accordion</a> component.</p>
+                        
+                        <p *ngIf="isMigratingAngular" class="alert alert-info">
+                          Someone could say: "When it is so easy to migrate it, why don't you offer an automatic migration for it?"<br>
+                          The answer short: Because it's not the same component anymore!
+                        </p>
+                      </label>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </ng-template>
+          </ngb-panel>
+
           <ngb-panel id="post">
             <ng-template ngbPanelHeader let-opened="opened">
               <div class="custom-header justify-content-between" [class.collapsed]="!opened">

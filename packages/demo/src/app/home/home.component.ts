@@ -6,6 +6,7 @@ interface MigrationAccordionGroupedCheckboxes {
   general: Object,
   bootstrap: Object,
   ngbootstrap: Object,
+  jquery: Object,
   post: Object
 };
 
@@ -96,6 +97,9 @@ export class HomeComponent {
       datepickers_variables: false,
       modals_closebuttoncontent: false,
       modals_closebuttonclass: false
+    },
+    jquery: {
+      accordions_removed: false,
     },
     post: {
       accordions_removed: false,
