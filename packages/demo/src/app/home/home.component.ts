@@ -103,6 +103,7 @@ export class HomeComponent {
       accordions_wrapper: false,
       accordions_summaryclasses: false,
       accordions_classes: false,
+      customselects_formfloatingwrapper: false,
       customselects_classes: false,
       customselects_menuclass: false,
       subnavigations_invertedclass: false,
