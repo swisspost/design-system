@@ -8,7 +8,8 @@ import { themeColors } from '../../../utils/constants';
 export default function (): Rule {
   return new DomMigration(
     new ButtonOutlineClassUpdate,
-    new ButtonInvertedClassUpdate
+    new ButtonInvertedClassUpdate,
+    new ButtonIconClassesUpdate
   ).rule;
 }
 
@@ -46,4 +47,21 @@ class ButtonInvertedClassUpdate implements IDomUpdate {
   }
 }
 
-// TODO: Dropped the usage of .btn-icon class for buttons with icon and text. Icon-only buttons still need this class!
+class ButtonIconClassesUpdate implements IDomUpdate {
+  selector = '.btn-icon';
+
+  update ($elements: Cheerio<any>, $: CheerioAPI) {
+    $elements
+      .each((_i, element) => {
+        const $element = $(element);
+        const $icon = $element.find('.pi');
+        const $text = $element.find(':not(.pi, .sr-only, .sr-only-focusable, .visually-hidden, .visually-hidden-focusable)');
+
+        const isButtonWithIconAndText = $icon.length > 0 && $text.length > 0 && $text.text().length > 0;
+
+        if (isButtonWithIconAndText) {
+          $element.removeClass('btn-icon');
+        }
+      });
+  }
+}
