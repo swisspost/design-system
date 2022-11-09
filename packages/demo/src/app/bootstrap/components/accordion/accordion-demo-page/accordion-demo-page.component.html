@@ -19,20 +19,13 @@
       into your component.
     </p>
   </div>
-  <div class="alert alert-info my-large">
-    <p>
-      The detail summary styles have been removed due to <a href="https://adrianroselli.com/2019/04/details-summary-are-not-insert-control-here.html">accessibility issues with the &lt;summary&gt; element</a>.
-      <br />
-      We recommend to use one of the accordion components instead.
-    </p>
-  </div>
+  <code
+    class="block my-big"
+    highlight="import 'bootstrap/js/dist/collapse';"
+    [languages]="['javascript']"
+  ></code>
 
   <app-accordion-demo></app-accordion-demo>
-  <code
-    class="block mt-5"
-    [highlight]="codeController"
-    [languages]="['typescript', 'javascript']"
-  ></code>
   <code
     class="block mt-big"
     [highlight]="codeTemplate"

@@ -9,6 +9,8 @@
         Bootstrap
       </button>
       <div aria-labelledby="id01" ngbDropdownMenu>
+        <a ngbDropdownItem [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/accordion') > -1 }"
+          [routerLink]="'bootstrap-samples/accordion'">Accordion</a>
         <a ngbDropdownItem [ngClass]="{active: router.url.indexOf('/bootstrap-samples/alert') > -1}"
           [routerLink]="'bootstrap-samples/alert'">Alert / Notification</a>
         <a ngbDropdownItem [ngClass]="{active: router.url.indexOf('/bootstrap-samples/badge') > -1}"
@@ -95,8 +97,6 @@
         Post
       </button>
       <div aria-labelledby="id01" ngbDropdownMenu>
-        <a ngbDropdownItem [ngClass]="{active: router.url.indexOf('/post-samples/accordion') > -1}"
-          [routerLink]="'post-samples/accordion'">Accordion</a>
         <a ngbDropdownItem [ngClass]="{active: router.url.indexOf('/post-samples/custom-select') > -1}"
           [routerLink]="'post-samples/custom-select'">Custom select</a>
         <a ngbDropdownItem [ngClass]="{active: router.url.indexOf('/post-samples/datatable') > -1}"
