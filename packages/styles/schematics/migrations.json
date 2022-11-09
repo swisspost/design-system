@@ -22,6 +22,11 @@
       "description": "Migrates general rtl helper classes (https://getbootstrap.com/docs/5.0/migration/#rtl).",
       "factory": "./migrations/general/classes/rtl"
     },
+    "migration-general-sr-only": {
+      "version": "5.0.0",
+      "description": "Migrates general sr-only helper classes (https://getbootstrap.com/docs/5.0/migration/#helpers).",
+      "factory": "./migrations/general/classes/sr-only"
+    },
     "migration-bootstrap-badge": {
       "version": "5.0.0",
       "description": "Migrates bootstrap badge component.",
