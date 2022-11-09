@@ -51,7 +51,6 @@ export class HomeComponent {
       classes_rtlmode: false
     },
     bootstrap: {
-      alerts_fixedbottom: false,
       alerts_closebuttoncontent: false,
       alerts_closebuttonclass: false,
       badges_classes: false,
