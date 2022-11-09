@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
 import IDomUpdate from '../../../utils/dom/update';
-import { Cheerio } from 'cheerio';
+import type { Cheerio, AnyNode } from 'cheerio';
 
 export default function (): Rule {
   return new DomMigration(
@@ -15,7 +15,7 @@ export default function (): Rule {
 class TopicTeaserImageWidthAndHeightUpdate implements IDomUpdate {
   selector = '.topic-teaser-image';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements
       .attr('width', '100%')
       .attr('height', '100%');
@@ -25,7 +25,7 @@ class TopicTeaserImageWidthAndHeightUpdate implements IDomUpdate {
 class TopicTeaserImageClassesUpdate implements IDomUpdate {
   selector = '.topic-teaser-image-container';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements.removeClass('col-10 col-rg-8 col-lg-4');
   }
 }
@@ -33,7 +33,7 @@ class TopicTeaserImageClassesUpdate implements IDomUpdate {
 class TopicTeaserContentClassesUpdate implements IDomUpdate {
   selector = '.topic-teaser-content';
     
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements.removeClass('col-12 col-lg-8');
   }
 }
@@ -41,7 +41,7 @@ class TopicTeaserContentClassesUpdate implements IDomUpdate {
 class TopicTeaserLinkListClassesUpdate implements IDomUpdate {
   selector = '.topic-teaser ul.link-list';
       
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements.removeClass('font-curve-regular');
   }
 }

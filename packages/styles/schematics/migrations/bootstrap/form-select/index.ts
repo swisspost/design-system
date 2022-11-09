@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
 import IDomUpdate from '../../../utils/dom/update';
-import { Cheerio, CheerioAPI } from 'cheerio';
+import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 import { breakpoints } from "../../../utils/constants";
 
@@ -15,7 +15,7 @@ export default function (): Rule {
 class FormSelectFloatingLabelWrapperUpdate implements IDomUpdate {
   selector = '.form-group';
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -38,7 +38,7 @@ class FormSelectCustomClassesUpdate implements IDomUpdate {
   cssClassRegex: RegExp = new RegExp(`^form-control-(${breakpoints.join('|')})$`);
   selector = 'select.form-control';
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);

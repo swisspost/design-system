@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
 import IDomUpdate from '../../../utils/dom/update';
-import { Cheerio, CheerioAPI } from 'cheerio';
+import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return new DomMigration(
@@ -14,7 +14,7 @@ export default function (): Rule {
 class ButtonGroupClassUpdate implements IDomUpdate {
   selector = '.btn-group.btn-group-toggle';
   
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements.removeClass('btn-group-toggle');
   }
 }
@@ -22,7 +22,7 @@ class ButtonGroupClassUpdate implements IDomUpdate {
 class ButtonLabelClassUpdate implements IDomUpdate {
   selector = '.btn-group label.btn-primary';
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -40,7 +40,7 @@ class ButtonLabelClassUpdate implements IDomUpdate {
 class ButtonInputClassUpdate implements IDomUpdate {
   selector = '.btn-group input[ngbButton]';
   
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements.addClass('btn-check');
   }
 }

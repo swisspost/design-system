@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
 import IDomUpdate from '../../../utils/dom/update';
-import { Cheerio, CheerioAPI } from 'cheerio';
+import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 import { breakpoints, sizes } from "../../../utils/constants";
 
@@ -18,7 +18,7 @@ class SpacingClassesUpdate implements IDomUpdate {
 
   selector = this.createSelectors();
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -58,7 +58,7 @@ class AlignmentClassesUpdate implements IDomUpdate {
 
   selector = this.createSelectors();
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);

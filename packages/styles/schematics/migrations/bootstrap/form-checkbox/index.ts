@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
 import IDomUpdate from '../../../utils/dom/update';
-import { Cheerio, CheerioAPI } from 'cheerio';
+import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return new DomMigration(
@@ -14,7 +14,7 @@ export default function (): Rule {
 class FormCheckboxInputClassesUpdate implements IDomUpdate {
   selector = '.custom-checkbox.custom-control input.custom-control-input';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('custom-control-input')
       .addClass('form-check-input');
@@ -24,7 +24,7 @@ class FormCheckboxInputClassesUpdate implements IDomUpdate {
 class FormCheckboxLabelClassesUpdate implements IDomUpdate {
   selector = '.custom-checkbox.custom-control label.custom-control-label';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('custom-control-label')
       .addClass('form-check-label');
@@ -34,7 +34,7 @@ class FormCheckboxLabelClassesUpdate implements IDomUpdate {
 class FormCheckboxClassesUpdate implements IDomUpdate {
   selector = '.custom-checkbox.custom-control';
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);

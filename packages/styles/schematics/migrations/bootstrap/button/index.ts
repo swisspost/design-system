@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
 import IDomUpdate from '../../../utils/dom/update';
-import { Cheerio, CheerioAPI } from 'cheerio';
+import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 import { themeColors } from '../../../utils/constants';
 
@@ -18,7 +18,7 @@ class ButtonOutlineClassUpdate implements IDomUpdate {
 
   selector = themeColors.map(colorname => `.btn-outline-${colorname}`).join(', ');
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -42,7 +42,7 @@ class ButtonOutlineClassUpdate implements IDomUpdate {
 class ButtonInvertedClassUpdate implements IDomUpdate {
   selector = '.btn.btn-inverted';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements.removeClass('btn-inverted');
   }
 }
@@ -50,7 +50,7 @@ class ButtonInvertedClassUpdate implements IDomUpdate {
 class ButtonIconClassesUpdate implements IDomUpdate {
   selector = '.btn-icon';
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);

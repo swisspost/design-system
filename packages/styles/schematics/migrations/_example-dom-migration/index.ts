@@ -39,7 +39,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../utils/dom/migration';
 import IDomUpdate from '../../utils/dom/update';
-import type { Cheerio, CheerioAPI } from 'cheerio';
+import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return new DomMigration(
@@ -55,14 +55,14 @@ export default function (): Rule {
 
 class AddElementUpdate implements IDomUpdate {
   selector = '.example-dom-element';
-  update = function ($elements: Cheerio<any>) {
+  update = function ($elements: Cheerio<AnyNode>) {
     $elements.append('<span>It\'s working...</span>');
   }
 }
 
 class AddClassUpdate implements IDomUpdate {
   selector = '.example-dom-element';
-  update = function ($elements: Cheerio<any>, $: CheerioAPI) {
+  update = function ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((i, element) => {
         if (i === 1) $(element).addClass('remove');
@@ -74,14 +74,14 @@ class AddClassUpdate implements IDomUpdate {
 
 class AddAttributeUpdate implements IDomUpdate {
   selector = '.example-dom-element > span';
-  update = function ($elements: Cheerio<any>) {
+  update = function ($elements: Cheerio<AnyNode>) {
     $elements.attr('style', 'padding: 10px; background-color: white;');
   }
 }
 
 class AddTextUpdate implements IDomUpdate {
   selector = '.example-dom-element > span';
-  update = function ($elements: Cheerio<any>, $: CheerioAPI) {
+  update = function ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -93,14 +93,14 @@ class AddTextUpdate implements IDomUpdate {
 
 class RemoveElementUpdate implements IDomUpdate {
   selector = '.example-dom-element.remove';
-  update = function ($elements: Cheerio<any>) {
+  update = function ($elements: Cheerio<AnyNode>) {
     $elements.remove();
   }
 }
 
 class WrapElementUpdate implements IDomUpdate {
   selector = '.example-dom-element.wrap';
-  update = function ($elements: Cheerio<any>, $: CheerioAPI) {
+  update = function ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -115,7 +115,7 @@ class WrapElementUpdate implements IDomUpdate {
 
 class ReplaceWithElementUpdate implements IDomUpdate {
   selector = '.example-dom-element.replace-with';
-  update = function ($elements: Cheerio<any>, $: CheerioAPI) {
+  update = function ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);

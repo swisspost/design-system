@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
 import IDomUpdate from '../../../utils/dom/update';
-import { Cheerio, CheerioAPI } from 'cheerio';
+import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 import { themeColors } from '../../../utils/constants';
 
@@ -18,7 +18,7 @@ export default function (): Rule {
 class BadgePillClassUpdate implements IDomUpdate {
   selector = '.badge-pill';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('badge-pill')
       .addClass('rounded-pill');
@@ -30,7 +30,7 @@ class BadgeBGClassUpdate implements IDomUpdate {
 
   selector = themeColors.map(colorname => `.badge-${colorname}`).join(', ');
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -58,7 +58,7 @@ class BadgeOutlineClassUpdate implements IDomUpdate {
 
   selector = themeColors.map(colorname => `.badge-outline-${colorname}`).join(', ');
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -84,7 +84,7 @@ class BadgeOutlineClassUpdate implements IDomUpdate {
 class BadgeCararraClassUpdate implements IDomUpdate {
   selector = '.badge-gray-cararra';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('badge-gray-cararra')
       .addClass('bg-light');
@@ -94,7 +94,7 @@ class BadgeCararraClassUpdate implements IDomUpdate {
 class BadgeCararraThickClassUpdate implements IDomUpdate {
   selector = '.badge-outline-gray-cararra-thick';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('badge-outline-gray-cararra-thick')
       .addClass('border-light border-2');

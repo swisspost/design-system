@@ -1,7 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
 import IDomUpdate from '../../../utils/dom/update';
-import { Cheerio, CheerioAPI } from 'cheerio';
+import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return new DomMigration(
@@ -13,7 +13,7 @@ export default function (): Rule {
 class ButtonCloseClassesUpdate implements IDomUpdate {
   selector = '.close';
 
-  update ($elements: Cheerio<any>, $: CheerioAPI) {
+  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -31,7 +31,7 @@ class ButtonCloseClassesUpdate implements IDomUpdate {
 class ButtonCloseRemoveIconContentUpdate implements IDomUpdate {
   selector = '.btn-close';
 
-  update ($elements: Cheerio<any>) {
+  update ($elements: Cheerio<AnyNode>) {
     $elements
       .find('> span[aria-hidden="true"]')
       .remove();
