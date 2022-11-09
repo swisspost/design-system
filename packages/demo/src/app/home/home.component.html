@@ -726,6 +726,25 @@
                       </label>
                     </div>
                   </li>
+                  <li>
+                    <div class="form-check">
+                      <input
+                        id="generalclasses_sronly"
+                        class="form-check-input"
+                        type="checkbox"
+                        [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_sronly"
+                        (change)="migrationAccordionGroupedCheckboxesChange()"
+                      />
+                      <!-- prettier-ignore -->
+                      <label class="form-check-label" for="generalclasses_sronly">
+                        <span *ngIf="isMigratingAngular">⚙️ </span><span class="change-badge bg-danger">breaking</span> Updated <span class="highlight">sr-only</span> classes.
+                        <ul class="mt-2">
+                          <li><code appCopyToClipboard>.sr-only</code> became <code appCopyToClipboard>.visually-hidden</code></li>
+                          <li><code appCopyToClipboard>.sr-only-focusable</code> became <code appCopyToClipboard>.visually-hidden-focusable</code></li>
+                        </ul>
+                      </label>
+                    </div>
+                  </li>
                 </ul>
               </div>
             </ng-template>

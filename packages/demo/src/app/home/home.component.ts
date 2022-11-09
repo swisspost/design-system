@@ -48,7 +48,8 @@ export class HomeComponent {
       mixins_fontsizelineheight: false,
       classes_bgopacity: false,
       classes_secondary: false,
-      classes_rtlmode: false
+      classes_rtlmode: false,
+      classes_sronly: false
     },
     bootstrap: {
       alerts_closebuttoncontent: false,
