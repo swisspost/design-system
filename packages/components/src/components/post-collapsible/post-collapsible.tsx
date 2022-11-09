@@ -13,6 +13,19 @@ export class PostCollapsible {
   collapseId: string;
 
   /**
+   * Defines the hierarchical level of the collapsible header within the headings structure.
+   */
+  @Prop() headingLevel: number;
+
+  get headingTag(): string {
+    if (this.headingLevel < 1 || this.headingLevel > 6) {
+      console.error('The post-collapsible element requires a heading level between 1 and 6.');
+    }
+
+    return isNaN(this.headingLevel) ? 'h2' : `h${Math.min(Math.max(this.headingLevel, 1), 6)}`;
+  }
+
+  /**
    * If `true`, the element is initially collapsed otherwise it is displayed.
    */
   @Prop({ mutable: true }) collapsed = false;
@@ -33,16 +46,6 @@ export class PostCollapsible {
     }
 
     this.toggleCollapse(false);
-  }
-
-  get headerTag() {
-    return new RegExp('^h[1-6]$', 'i').test(this.headerSlot.tagName) ? this.headerSlot.tagName : 'h2';
-  }
-
-  get headerContent() {
-    const headingTagSearcher = new RegExp('(<\/?)h[1-6]', 'gi');
-    const headingTagReplacer = (_, tagOpening) => `${tagOpening}div`;
-    return this.headerSlot.outerHTML.replace(headingTagSearcher, headingTagReplacer);
   }
 
   /**
@@ -115,18 +118,20 @@ export class PostCollapsible {
         </div>
       );
     }
+
     return (
       <div class="accordion-item">
-        <this.headerTag class="accordion-header" id={`${this.collapseId}--header`}>
+        <this.headingTag class="accordion-header" id={`${this.collapseId}--header`}>
           <button
             class={`accordion-button ${this.collapsed ? 'collapsed' : ''}`}
             type="button"
             aria-expanded={`${!this.collapsed}`}
             aria-controls={`${this.collapseId}--collapse`}
             onClick={() => this.toggle()}
-            innerHTML={this.headerContent}
-          />
-        </this.headerTag>
+          >
+            <slot name="header"/>
+          </button>
+        </this.headingTag>
         <div
           id={`${this.collapseId}--collapse`}
           class={`accordion-collapse ${this.collapseClasses}`}
@@ -134,7 +139,7 @@ export class PostCollapsible {
           aria-labelledby={`${this.collapseId}--header`}
         >
           <div class="accordion-body">
-            <slot name="body"/>
+            <slot/>
           </div>
         </div>
       </div>
