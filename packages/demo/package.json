@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-demo",
-  "version": "5.0.1",
+  "version": "5.1.0",
   "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "@angular/animations": "14.2.9",
+    "@angular/cdk": "14.2.6",
     "@angular/common": "14.2.9",
     "@angular/compiler": "14.2.9",
     "@angular/core": "14.2.9",
