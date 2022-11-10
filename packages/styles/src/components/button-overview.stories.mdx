@@ -3,20 +3,27 @@ import './icons.scss';
 
 <Meta title="Design System/Button" />
 
-
 # Buttons
+
 #### Using Bootstrap v5.0
+
 [Bootstrap Documentation](https://getbootstrap.com/docs/5.0/components/buttons/)
-<br/>
-<br/>
+
+<br />
+<br />
 
 ### Default buttons
 
 Use these buttons in most situations. If you don't want the animation, you can leave out the .btn-animated class.
+
 <Canvas>
   <div class="p-regular flex-wrap d-flex gap-regular">
-    <button class="btn btn-primary btn-animated"><span>Primary</span></button>
-    <button class="btn btn-secondary btn-animated"><span>Secondary</span></button>
+    <button class="btn btn-primary btn-animated">
+      <span>Primary</span>
+    </button>
+    <button class="btn btn-secondary btn-animated">
+      <span>Secondary</span>
+    </button>
     <button class="btn btn-link">Tertiary</button>
   </div>
 </Canvas>
@@ -40,14 +47,16 @@ Try to avoid disabled buttons by displaying an error message for invalid forms o
     <button disabled="" class="btn btn-secondary btn-animated">
       <span>Secondary</span>
     </button>
-    <button disabled="" class="btn btn-link">Tertiary</button>
+    <button disabled="" class="btn btn-link">
+      Tertiary
+    </button>
   </div>
 </Canvas>
-
 
 ### Animated
 
 The animated buttons need a span around the text!
+
 <Canvas>
   <button type="button" class="btn btn-primary btn-sm btn-animated">
     <span>Small button</span>
@@ -63,67 +72,78 @@ The animated buttons need a span around the text!
   </button>
 </Canvas>
 
-
-
 ### Supported button tags
+
 <Canvas>
-  <a href="#" role="button" class="btn btn-primary">Link</a>
-  <button type="submit" class="btn btn-primary">Button</button>
+  <a href="#" role="button" class="btn btn-primary">
+    Link
+  </a>
+  <button type="submit" class="btn btn-primary">
+    Button
+  </button>
   <input type="button" value="Input" class="btn btn-primary" />
   <input type="submit" value="Submit" class="btn btn-primary" />
   <input type="reset" value="Reset" class="btn btn-primary" />
 </Canvas>
 
-
 ### Sizes
+
 <Canvas>
-  <button type="button" class="btn btn-primary btn-sm">Small button</button>
-  <button type="button" class="btn btn-primary btn-rg">Regular button</button>
-  <button type="button" class="btn btn-primary btn-md">Default button</button>
-  <button type="button" class="btn btn-primary btn-lg">Large button</button>
+  <button type="button" class="btn btn-primary btn-sm">
+    Small button
+  </button>
+  <button type="button" class="btn btn-primary btn-rg">
+    Regular button
+  </button>
+  <button type="button" class="btn btn-primary btn-md">
+    Default button
+  </button>
+  <button type="button" class="btn btn-primary btn-lg">
+    Large button
+  </button>
 </Canvas>
 
-
 ### Icon buttons
+
 <Canvas>
   <button type="button" class="btn btn-default btn-icon btn-sm">
     <i class="pi pi-3193"></i>
-    <span class="sr-only">Label for screenreaders</span>
+    <span class="visually-hidden">Label for screenreaders</span>
   </button>
   <button type="button" class="btn btn-default btn-icon btn-rg">
     <i class="pi pi-3193"></i>
-    <span class="sr-only">Label for screenreaders</span>
+    <span class="visually-hidden">Label for screenreaders</span>
   </button>
   <button type="button" class="btn btn-default btn-icon btn-md">
     <i class="pi pi-3193"></i>
-    <span class="sr-only">Label for screenreaders</span>
+    <span class="visually-hidden">Label for screenreaders</span>
   </button>
   <button type="button" class="btn btn-default btn-icon btn-lg">
     <i class="pi pi-3193"></i>
-    <span class="sr-only">Label for screenreaders</span>
+    <span class="visually-hidden">Label for screenreaders</span>
   </button>
   <button type="button" class="btn btn-primary btn-icon btn-sm">
     <i class="pi pi-3193"></i>
-    <span class="sr-only">Label for screenreaders</span>
+    <span class="visually-hidden">Label for screenreaders</span>
   </button>
   <button type="button" class="btn btn-primary btn-icon btn-rg">
     <i class="pi pi-3193"></i>
-    <span class="sr-only">Label for screenreaders</span>
+    <span class="visually-hidden">Label for screenreaders</span>
   </button>
   <button type="button" class="btn btn-primary btn-icon btn-md">
     <i class="pi pi-3193"></i>
-    <span class="sr-only">Label for screenreaders</span>
+    <span class="visually-hidden">Label for screenreaders</span>
   </button>
   <button type="button" class="btn btn-primary btn-icon btn-lg">
     <i class="pi pi-3193"></i>
-    <span class="sr-only">Label for screenreaders</span>
+    <span class="visually-hidden">Label for screenreaders</span>
   </button>
 </Canvas>
-
 
 ### Icon buttons with text
 
 Icon buttons with text should not have the class .btn-icon, otherwise the horizontal padding is not correct.
+
 <Canvas>
   <p class="d-flex align-items-center gap-small-r">
     <button type="button" class="btn btn-default btn-sm">
@@ -163,8 +183,8 @@ Icon buttons with text should not have the class .btn-icon, otherwise the horizo
   </p>
 </Canvas>
 
-
 ### Accent colors
+
 <Canvas>
   <button type="button" class="btn btn-nightblue btn-animated">
     <span>Nightblue</span>
@@ -204,10 +224,10 @@ Icon buttons with text should not have the class .btn-icon, otherwise the horizo
   </button>
 </Canvas>
 
-
 ### Inverted buttons
 
 Inverted buttons don't need special classes anymore, just use any of the background classes to set the background and you're done for the day.
+
 <Canvas>
   <button type="button" class="btn btn-primary btn-inverted">
     Primary inverted
@@ -215,7 +235,9 @@ Inverted buttons don't need special classes anymore, just use any of the backgro
   <button type="button" class="btn btn-primary btn-inverted btn-animated">
     <span>Primary inverted animated</span>
   </button>
-  <button type="button" class="btn btn-default btn-inverted">Secondary</button>
+  <button type="button" class="btn btn-default btn-inverted">
+    Secondary
+  </button>
   <button type="button" class="btn btn-default btn-inverted btn-animated">
     <span>Secondary animated</span>
   </button>
@@ -230,6 +252,7 @@ Inverted buttons don't need special classes anymore, just use any of the backgro
 ### Contextual buttons
 
 These are allowed for intranet applications! The link button cannot be animated.
+
 <Canvas>
   <button type="button" class="btn btn-success btn-animated">
     <span>Success</span>
