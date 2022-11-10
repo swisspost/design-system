@@ -1,8 +1,18 @@
 import { newSpecPage } from '@stencil/core/testing';
 import { PostCollapsible } from '../post-collapsible';
 
+// HTMLUnknownElement is not implemented in JSDOM, thus it has to be mocked
+// More information: https://jestjs.io/docs/26.x/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
+Object.defineProperty(window, 'HTMLUnknownElement', {
+  writable: true,
+  value: class MockHTMLUnknownElement {}
+});
+
 describe('post-collapsible', () => {
   it('should render without header', async () => {
+    // disable warnings, only relevant during development
+    jest.spyOn(console, 'warn').mockImplementation(jest.fn());
+
     const { root } = await newSpecPage({
       components: [PostCollapsible],
       html: `<post-collapsible id="noHeaderCollapsible">Test content</post-collapsible>`,
