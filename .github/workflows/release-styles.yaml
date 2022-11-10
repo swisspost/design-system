@@ -12,6 +12,8 @@ on:
       - main
     paths:
       - 'packages/styles/package.json'
+      - 'packages/styles/src/**/*.stories.*'
+      - 'packages/styles/.storybook/**'
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
