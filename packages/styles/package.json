@@ -19,9 +19,9 @@
   },
   "scripts": {
     "clean": "rimraf out-tsc dist/*",
-    "start": "npm-run-all --parallel styles:start && schematics:start",
+    "start": "npm-run-all --parallel styles:start storybook:start schematics:start",
     "prebuild": "pnpm clean",
-    "build": "npm-run-all --parallel styles:build && pnpm schematics:build",
+    "build": "npm-run-all --parallel styles:build schematics:build storybook:build",
     "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",

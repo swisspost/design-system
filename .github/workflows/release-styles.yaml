@@ -1,0 +1,43 @@
+###
+#
+# Release the demo app whenever it's package json changes on the main branch
+#
+###
+
+name: Release Styles Storybook
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/styles/package.json'
+      - 'packages/styles/src/**/*.stories.*'
+      - 'packages/styles/.storybook/**'
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: Release demo
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+
+      - name: Install
+        run: pnpm --filter "design-system-styles..." install
+
+      - name: Build
+        run: pnpm --filter "design-system-styles..." build
+
+      - name: Publish
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          netlify link --id $NETLIFY_SITE_ID
+          netlify deploy --build false --dir packages/styles/storybook-static --prod

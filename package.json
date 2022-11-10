@@ -15,7 +15,7 @@
     "bootstrap": "pnpm install && pnpm -r build",
     "start": "pnpm demo:start",
     "demo:start": "pnpm --filter design-system-demo --filter design-system-styles --parallel --stream start",
-    "styles:start": "pnpm --filter design-system-styles storybook:serve",
+    "styles:start": "pnpm --filter design-system-styles start",
     "components:start": "pnpm --filter design-system-components start",
     "intranet-header:start": "pnpm --filter design-system-components-angular start",
     "docs:start": "pnpm --filter design-system-documentation start",
