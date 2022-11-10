@@ -4,5 +4,7 @@
 
 export * from './check-valid-html-tag';
 export * from './get-element-height';
+export * from './get-prop-attributes';
 export * from './on-transition-end';
 export * from './should-reduce-motion';
+export * from './to-kebab-case';
