@@ -8,14 +8,24 @@ let nextId = 0;
   shadow: true,
 })
 export class PostCollapsible {
-  @Element() hostElement: HTMLElement;
-  headerSlot: HTMLElement;
-  collapseId: string;
+  /**
+   * If `true`, the element is initially collapsed otherwise it is displayed.
+   */
+  @Prop({ mutable: true }) collapsed?: boolean = false;
 
   /**
    * Defines the hierarchical level of the collapsible header within the headings structure.
    */
-  @Prop() headingLevel: number;
+  @Prop() headingLevel?: number = 2;
+
+  @State() collapseClasses = 'collapse show';
+  @State() collapseHeight: string;
+
+  @Element() host: HTMLElement;
+
+  hasHeader: boolean;
+  collapsibleId: string;
+  collapsibleElement: HTMLElement;
 
   get headingTag(): string {
     if (this.headingLevel < 1 || this.headingLevel > 6) {
@@ -25,27 +35,23 @@ export class PostCollapsible {
     return isNaN(this.headingLevel) ? 'h2' : `h${Math.min(Math.max(this.headingLevel, 1), 6)}`;
   }
 
-  /**
-   * If `true`, the element is initially collapsed otherwise it is displayed.
-   */
-  @Prop({ mutable: true }) collapsed = false;
-
-  @State() collapseHeight: string;
-  @State() collapseClasses = 'collapse show';
-
   get hasReducedMotion(): boolean {
     return window.matchMedia(`(prefers-reduced-motion: reduce)`).matches === true;
   }
 
   componentWillLoad() {
-    this.headerSlot = this.hostElement.querySelector('[slot="header"]');
-    this.collapseId = this.hostElement.id || `post-collapsible-${nextId++}`;
-
-    if (!this.headerSlot && !this.hostElement.id) {
-      console.warn('Be sure to add an id to the post-collapsible and bind it to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility');
+    this.hasHeader = !!this.host.querySelector('[slot="header"]');
+    if (!this.hasHeader) {
+      console.warn('Be sure to bind the post-collapsible to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility');
     }
 
+    this.collapsibleId = this.host.id || `post-collapsible-${nextId++}`;
+
     this.toggleCollapse(false);
+  }
+
+  componentDidLoad() {
+    this.collapsibleElement = this.host.shadowRoot.querySelector(`#${this.collapsibleId}--collapse`);
   }
 
   /**
@@ -63,19 +69,17 @@ export class PostCollapsible {
     if (!animation) {
       this.applyCollapse();
     } else {
-      const collapsibleElement = this.hostElement.shadowRoot.querySelector(`#${this.collapseId}--collapse`) as HTMLElement;
+      this.runTransition();
 
-      this.runTransition(collapsibleElement);
-
-      collapsibleElement.ontransitionend = () => {
+      this.collapsibleElement.ontransitionend = () => {
         this.applyCollapse();
-        collapsibleElement.ontransitionend = null;
+        this.collapsibleElement.ontransitionend = null;
       };
     }
   }
 
-  runTransition(collapsibleElement: HTMLElement) {
-    const expandedHeight = this.getExpandedHeight(collapsibleElement);
+  runTransition() {
+    const expandedHeight = this.getExpandedHeight(this.collapsibleElement);
 
     this.collapseHeight = this.collapsed ? expandedHeight : '0px';
     this.collapseClasses = 'collapsing';
@@ -107,10 +111,10 @@ export class PostCollapsible {
   }
 
   render() {
-    if (!this.headerSlot) {
+    if (!this.hasHeader) {
       return (
         <div
-          id={`${this.collapseId}--collapse`}
+          id={`${this.collapsibleId}--collapse`}
           class={this.collapseClasses}
           style={{ height: this.collapseHeight }}
         >
@@ -121,22 +125,22 @@ export class PostCollapsible {
 
     return (
       <div class="accordion-item">
-        <this.headingTag class="accordion-header" id={`${this.collapseId}--header`}>
+        <this.headingTag class="accordion-header" id={`${this.collapsibleId}--header`}>
           <button
             class={`accordion-button ${this.collapsed ? 'collapsed' : ''}`}
             type="button"
             aria-expanded={`${!this.collapsed}`}
-            aria-controls={`${this.collapseId}--collapse`}
+            aria-controls={`${this.collapsibleId}--collapse`}
             onClick={() => this.toggle()}
           >
             <slot name="header"/>
           </button>
         </this.headingTag>
         <div
-          id={`${this.collapseId}--collapse`}
+          id={`${this.collapsibleId}--collapse`}
           class={`accordion-collapse ${this.collapseClasses}`}
           style={{ height: this.collapseHeight }}
-          aria-labelledby={`${this.collapseId}--header`}
+          aria-labelledby={`${this.collapsibleId}--header`}
         >
           <div class="accordion-body">
             <slot/>

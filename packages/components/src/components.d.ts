@@ -25,11 +25,11 @@ export namespace Components {
         /**
           * If `true`, the element is initially collapsed otherwise it is displayed.
          */
-        "collapsed": boolean;
+        "collapsed"?: boolean;
         /**
           * Defines the hierarchical level of the collapsible header within the headings structure.
          */
-        "headingLevel": number;
+        "headingLevel"?: number;
         /**
           * Triggers the collapse programmatically.
          */
