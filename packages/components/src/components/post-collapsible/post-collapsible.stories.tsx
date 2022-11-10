@@ -4,18 +4,15 @@ export default {
   argTypes: {
     nested: {
       name: 'nested collapsible',
-      table: { category: 'Contents' },
       type: { name: 'boolean', required: false },
       description: 'If `true`, displays a post-collapsible element nested inside the main one.',
-      control: {
-        type: 'boolean'
-      }
+      table: { category: 'Contents' },
+      control: { type: 'boolean' }
     }
   }
 };
 
 const defaultArgs = {
-  collapsed: false,
   nested: false
 };
 
