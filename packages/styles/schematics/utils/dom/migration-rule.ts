@@ -33,7 +33,7 @@ const PRETTIER_OPTIONS: prettier.Options = {
   jsxSingleQuote: false,
   trailingComma: 'es5',
   bracketSpacing: true,
-  bracketSameLine: true,
+  bracketSameLine: false,
   arrowParens: "always",
   htmlWhitespaceSensitivity: 'css',
   endOfLine: 'lf',
