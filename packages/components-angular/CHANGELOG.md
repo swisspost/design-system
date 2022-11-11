@@ -1,5 +1,12 @@
 # @swisspost/design-system-components-angular
 
+## 1.0.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.1.0
+
 ## 1.0.0
 
 ### Major Changes
