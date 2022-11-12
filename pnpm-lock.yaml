@@ -368,7 +368,7 @@ importers:
       storybook-dark-mode: 1.1.2
       style-loader: 2.0.0
       stylelint: 14.14.1
-      stylelint-config-prettier: 9.0.3
+      stylelint-config-prettier: 9.0.4
       stylelint-config-sass-guidelines: 9.0.1
       stylelint-prettier: 2.0.0
       stylelint-scss: 4.3.0
@@ -418,7 +418,7 @@ importers:
       storybook-dark-mode: 1.1.2
       style-loader: 2.0.0
       stylelint: 14.14.1
-      stylelint-config-prettier: 9.0.3_stylelint@14.14.1
+      stylelint-config-prettier: 9.0.4_stylelint@14.14.1
       stylelint-config-sass-guidelines: 9.0.1_t5qxeji2l54punp3pwjdchi3we
       stylelint-prettier: 2.0.0_fhdekybf527po72zna2auoq3wy
       stylelint-scss: 4.3.0_stylelint@14.14.1
@@ -22037,8 +22037,8 @@ packages:
       inline-style-parser: 0.1.1
     dev: true
 
-  /stylelint-config-prettier/9.0.3_stylelint@14.14.1:
-    resolution: {integrity: sha512-5n9gUDp/n5tTMCq1GLqSpA30w2sqWITSSEiAWQlpxkKGAUbjcemQ0nbkRvRUa0B1LgD3+hCvdL7B1eTxy1QHJg==}
+  /stylelint-config-prettier/9.0.4_stylelint@14.14.1:
+    resolution: {integrity: sha512-38nIGTGpFOiK5LjJ8Ma1yUgpKENxoKSOhbDNSemY7Ep0VsJoXIW9Iq/2hSt699oB9tReynfWicTAoIHiq8Rvbg==}
     engines: {node: '>= 12'}
     hasBin: true
     peerDependencies:
