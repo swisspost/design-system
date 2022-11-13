@@ -79,7 +79,7 @@
     "start-server-and-test": "1.14.0",
     "storybook-dark-mode": "1.1.2",
     "style-loader": "2.0.0",
-    "stylelint": "14.14.1",
+    "stylelint": "14.15.0",
     "stylelint-config-prettier": "9.0.3",
     "stylelint-config-sass-guidelines": "9.0.1",
     "stylelint-prettier": "2.0.0",
