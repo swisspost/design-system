@@ -366,7 +366,7 @@ importers:
       sass-loader: 10.1.1
       start-server-and-test: 1.14.0
       storybook-dark-mode: 1.1.2
-      style-loader: 2.0.0
+      style-loader: 3.3.1
       stylelint: 14.15.0
       stylelint-config-prettier: 9.0.4
       stylelint-config-sass-guidelines: 9.0.1
@@ -392,7 +392,7 @@ importers:
       '@storybook/builder-webpack4': 6.5.13_typescript@4.8.4
       '@storybook/html': 6.5.13_bvjtv32fmr6ie5nkgoxlln7xu4
       '@storybook/manager-webpack4': 6.5.13_typescript@4.8.4
-      '@storybook/preset-scss': 1.0.3_4qjrhw6ivtbeahu3qiaajvcgam
+      '@storybook/preset-scss': 1.0.3_jrcbldeo3wqs5ludm4c5ecvkp4
       '@storybook/testing-library': 0.0.13
       '@types/node': 16.18.3
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -416,7 +416,7 @@ importers:
       sass-loader: 10.1.1_sass@1.56.1
       start-server-and-test: 1.14.0
       storybook-dark-mode: 1.1.2
-      style-loader: 2.0.0
+      style-loader: 3.3.1
       stylelint: 14.15.0
       stylelint-config-prettier: 9.0.4_stylelint@14.15.0
       stylelint-config-sass-guidelines: 9.0.1_a37symlv4urgexnspmy4gyeh7i
@@ -7937,7 +7937,7 @@ packages:
       core-js: 3.26.1
     dev: true
 
-  /@storybook/preset-scss/1.0.3_4qjrhw6ivtbeahu3qiaajvcgam:
+  /@storybook/preset-scss/1.0.3_jrcbldeo3wqs5ludm4c5ecvkp4:
     resolution: {integrity: sha512-o9Iz6wxPeNENrQa2mKlsDKynBfqU2uWaRP80HeWp4TkGgf7/x3DVF2O7yi9N0x/PI1qzzTTpxlQ90D62XmpiTw==}
     peerDependencies:
       css-loader: '*'
@@ -7946,7 +7946,7 @@ packages:
     dependencies:
       css-loader: 5.2.7
       sass-loader: 10.1.1_sass@1.56.1
-      style-loader: 2.0.0
+      style-loader: 3.3.1
     dev: true
 
   /@storybook/preview-web/6.5.13:
@@ -22019,14 +22019,11 @@ packages:
       webpack: 4.46.0
     dev: true
 
-  /style-loader/2.0.0:
-    resolution: {integrity: sha512-Z0gYUJmzZ6ZdRUqpg1r8GsaFKypE+3xAzuFeMuoHgjc9KZv3wMyCRjQIWEbhoFSq7+7yoHXySDJyyWQaPajeiQ==}
-    engines: {node: '>= 10.13.0'}
+  /style-loader/3.3.1:
+    resolution: {integrity: sha512-GPcQ+LDJbrcxHORTRes6Jy2sfvK2kS6hpSfI/fXhPt+spVzxF6LJ1dHLN9zIGmVaaP044YKaIatFaufENRiDoQ==}
+    engines: {node: '>= 12.13.0'}
     peerDependencies:
-      webpack: ^4.0.0 || ^5.0.0
-    dependencies:
-      loader-utils: 2.0.2
-      schema-utils: 3.1.1
+      webpack: ^5.0.0
     dev: true
 
   /style-search/0.1.0:
