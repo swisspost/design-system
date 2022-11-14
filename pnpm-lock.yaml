@@ -15,12 +15,12 @@ importers:
       '@changesets/get-github-info': ^0.5.1
       '@changesets/parse': '*'
       '@changesets/types': ^5.2.0
-      dotenv: ^8.1.0
+      dotenv: ^16.0.0
       typescript: 4.8.4
     dependencies:
       '@changesets/get-github-info': 0.5.1
       '@changesets/types': 5.2.0
-      dotenv: 8.6.0
+      dotenv: 16.0.3
     devDependencies:
       '@changesets/parse': 0.3.15
       typescript: 4.8.4
@@ -12309,9 +12309,15 @@ packages:
     resolution: {integrity: sha512-YXQl1DSa4/PQyRfgrv6aoNjhasp/p4qs9FjJ4q4cQk+8m4r6k4ZSiEyytKG8f8W9gi8WsQtIObNmKd+tMzNTmA==}
     dev: true
 
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
+    dev: false
+
   /dotenv/8.6.0:
     resolution: {integrity: sha512-IrPdXQsk2BbzvCBGBOTmmSH5SodmqZNt4ERAZDmW4CT+tL8VtvinqywuANaFu4bOMWki16nqf0e4oC0QIaDr/g==}
     engines: {node: '>=10'}
+    dev: true
 
   /duplexer/0.1.2:
     resolution: {integrity: sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg==}
