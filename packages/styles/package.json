@@ -61,7 +61,7 @@
     "babel-loader": "8.3.0",
     "cheerio": "1.0.0-rc.12",
     "copyfiles": "2.4.1",
-    "css-loader": "5.2.7",
+    "css-loader": "6.7.2",
     "cypress": "10.11.0",
     "glob": "8.0.3",
     "gulp": "4.0.2",
