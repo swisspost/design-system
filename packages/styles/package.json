@@ -80,7 +80,7 @@
     "storybook-dark-mode": "1.1.2",
     "style-loader": "2.0.0",
     "stylelint": "14.15.0",
-    "stylelint-config-prettier": "9.0.3",
+    "stylelint-config-prettier": "9.0.4",
     "stylelint-config-sass-guidelines": "9.0.1",
     "stylelint-prettier": "2.0.0",
     "stylelint-scss": "4.3.0",

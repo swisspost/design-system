@@ -368,7 +368,7 @@ importers:
       storybook-dark-mode: 1.1.2
       style-loader: 2.0.0
       stylelint: 14.15.0
-      stylelint-config-prettier: 9.0.3
+      stylelint-config-prettier: 9.0.4
       stylelint-config-sass-guidelines: 9.0.1
       stylelint-prettier: 2.0.0
       stylelint-scss: 4.3.0
@@ -418,7 +418,7 @@ importers:
       storybook-dark-mode: 1.1.2
       style-loader: 2.0.0
       stylelint: 14.15.0
-      stylelint-config-prettier: 9.0.3_stylelint@14.15.0
+      stylelint-config-prettier: 9.0.4_stylelint@14.15.0
       stylelint-config-sass-guidelines: 9.0.1_a37symlv4urgexnspmy4gyeh7i
       stylelint-prettier: 2.0.0_44ee2bv67c3n5k5dtaao543d4a
       stylelint-scss: 4.3.0_stylelint@14.15.0
@@ -4766,7 +4766,7 @@ packages:
     dev: true
 
   /@nodelib/fs.scandir/2.1.5:
-    resolution: {integrity: sha1-dhnC6yGyVIP20WdUi0z9WnSIw9U=}
+    resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
     engines: {node: '>= 8'}
     dependencies:
       '@nodelib/fs.stat': 2.0.5
@@ -11430,17 +11430,6 @@ packages:
   /cosmiconfig/6.0.0:
     resolution: {integrity: sha512-xb3ZL6+L8b9JLLCx3ZdoZy4+2ECphCMo2PwqgP1tlfVq6M6YReyzBJtvWWtbDSpNr9hn96pkCiZqUcFEc+54Qg==}
     engines: {node: '>=8'}
-    dependencies:
-      '@types/parse-json': 4.0.0
-      import-fresh: 3.3.0
-      parse-json: 5.2.0
-      path-type: 4.0.0
-      yaml: 1.10.2
-    dev: true
-
-  /cosmiconfig/7.0.1:
-    resolution: {integrity: sha512-a1YWNUV2HwGimB7dU2s1wUMurNKjpx60HxBB6xUM8Re+2s1g1IIfJvFR0/iCF+XHdE0GMTKTuLR32UQff4TEyQ==}
-    engines: {node: '>=10'}
     dependencies:
       '@types/parse-json': 4.0.0
       import-fresh: 3.3.0
@@ -19476,7 +19465,7 @@ packages:
       postcss: ^7.0.0 || ^8.0.1
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
-      cosmiconfig: 7.0.1
+      cosmiconfig: 7.1.0
       klona: 2.0.5
       loader-utils: 2.0.2
       postcss: 7.0.39
@@ -22039,8 +22028,8 @@ packages:
       inline-style-parser: 0.1.1
     dev: true
 
-  /stylelint-config-prettier/9.0.3_stylelint@14.15.0:
-    resolution: {integrity: sha512-5n9gUDp/n5tTMCq1GLqSpA30w2sqWITSSEiAWQlpxkKGAUbjcemQ0nbkRvRUa0B1LgD3+hCvdL7B1eTxy1QHJg==}
+  /stylelint-config-prettier/9.0.4_stylelint@14.15.0:
+    resolution: {integrity: sha512-38nIGTGpFOiK5LjJ8Ma1yUgpKENxoKSOhbDNSemY7Ep0VsJoXIW9Iq/2hSt699oB9tReynfWicTAoIHiq8Rvbg==}
     engines: {node: '>= 12'}
     hasBin: true
     peerDependencies:
