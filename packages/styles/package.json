@@ -75,7 +75,7 @@
     "rimraf": "3.0.2",
     "rxjs": "7.5.7",
     "sass": "1.56.1",
-    "sass-loader": "10.1.1",
+    "sass-loader": "10.3.1",
     "start-server-and-test": "1.14.0",
     "storybook-dark-mode": "1.1.2",
     "style-loader": "2.0.0",
