@@ -14,6 +14,7 @@ module.exports = {
     }
   ],
   stories: ['../stories/**/*.stories.@(ts|tsx|mdx)'],
+  staticDirs: ['../static'],
 
   // workaround, to prevent storybook from crashing, because of a EBUSY error, which occures on a npm cache file on storybook startup and when saving new content
   managerWebpack: (config, options) => {
