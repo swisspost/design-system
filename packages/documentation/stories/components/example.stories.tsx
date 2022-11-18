@@ -1,5 +1,8 @@
 import React from 'react';
 
+// import a custom docs page
+import docsPage from './example.docs.mdx';
+
 // import custom files
 import '../../../styles/src/basics.scss';
 // import '../../../styles/src/components/example.scss';
@@ -9,6 +12,9 @@ export default {
   title: 'Components/Example',
   parameters: {
     layout: 'centered',
+    docs: {
+      page: docsPage
+    }
   },
   args: {
     state: true
