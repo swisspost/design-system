@@ -9,6 +9,17 @@ export const parameters = {
       title: 'Playground'
     }
   },
+  options: {
+    storySort: {
+      order: [
+        'Welcome',
+        'Foundations',
+        'Components',
+        'Utilities',
+        'Misc'
+      ]
+    }
+  },
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
     matchers: {
