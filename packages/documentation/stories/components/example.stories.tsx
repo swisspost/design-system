@@ -7,6 +7,9 @@ import '../../../styles/src/basics.scss';
 // define component config
 export default {
   title: 'Components/Example',
+  parameters: {
+    layout: 'centered',
+  },
   args: {
     state: true
   },
