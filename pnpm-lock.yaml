@@ -185,7 +185,7 @@ importers:
       '@angular-eslint/schematics': 14.1.2
       '@angular-eslint/template-parser': 14.1.2
       '@angular/animations': 14.2.10
-      '@angular/cdk': 14.2.7
+      '@angular/cdk': 15.0.0
       '@angular/cli': 14.2.9
       '@angular/common': 14.2.10
       '@angular/compiler': 14.2.10
@@ -238,7 +238,7 @@ importers:
       zone.js: 0.12.0
     dependencies:
       '@angular/animations': 14.2.10_@angular+core@14.2.10
-      '@angular/cdk': 14.2.7_i62cmb4am5tktzd4q24jy34kva
+      '@angular/cdk': 15.0.0_i62cmb4am5tktzd4q24jy34kva
       '@angular/common': 14.2.10_fyli66qyvqiwbjy3d5zeqqz3au
       '@angular/compiler': 14.2.10_@angular+core@14.2.10
       '@angular/core': 14.2.10_rxjs@7.5.7+zone.js@0.12.0
@@ -829,11 +829,11 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /@angular/cdk/14.2.7_i62cmb4am5tktzd4q24jy34kva:
-    resolution: {integrity: sha512-/tEsYaUbDSnfEmKVvAMramIptmhI67O+9STjOV0i+74XR2NospeK0fkbywIANu1n3w6AHGMotvRWJrjmbCElFg==}
+  /@angular/cdk/15.0.0_i62cmb4am5tktzd4q24jy34kva:
+    resolution: {integrity: sha512-a4AUGfd1iNEGR5A9jmwzEfdRDpOh9KWypFqo85ivC3/KDW4+Z5AGxZpzwqAsRz2WQVdK+8biaz83VBQTMC5IOw==}
     peerDependencies:
-      '@angular/common': ^14.0.0 || ^15.0.0
-      '@angular/core': ^14.0.0 || ^15.0.0
+      '@angular/common': ^15.0.0 || ^16.0.0
+      '@angular/core': ^15.0.0 || ^16.0.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/common': 14.2.10_fyli66qyvqiwbjy3d5zeqqz3au
