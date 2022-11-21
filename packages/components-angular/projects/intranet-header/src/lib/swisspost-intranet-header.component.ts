@@ -17,6 +17,7 @@ import { NavigationStart, Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { userImage } from './user';
 
 @Component({
   selector: 'sp-intranet-header',
@@ -27,7 +28,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   @Input() siteTitle: string = '';
   @Input() languages = 'de,fr,it,en';
   @Input() isPreview = false;
-  @Input() currentUserId = 'user';
+  @Input() currentUserId = null;
   @Input() displayName: string = '';
   @Input() additionalInfo: string = '';
   @Input() hasNavbar = true;
@@ -315,7 +316,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   }
 
   private createSafeAvatarUrl(): SafeUrl {
-    return `https://web.post.ch/UserProfileImage/${encodeURIComponent(this.currentUserId)}.png`;
+    return this.currentUserId === null ? userImage : `https://web.post.ch/UserProfileImage/${encodeURIComponent(this.currentUserId)}.png`;
   }
 
   private updateMoreElementText() {
