@@ -11,7 +11,8 @@ module.exports = {
           implementation: require('sass')
         }
       }
-    }
+    },
+    '@pxtrn/storybook-addon-docs-stencil'
   ],
   stories: ['../stories/**/*.stories.@(ts|tsx|mdx)'],
   staticDirs: ['../static'],

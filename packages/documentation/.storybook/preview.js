@@ -1,3 +1,8 @@
+import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
+import docJson from '@swisspost/design-system-components/dist/docs.json';
+
+if(docJson) setStencilDocJson(docJson);
+
 export const parameters = {
   viewMode: 'docs',
   previewTabs: {
@@ -22,6 +27,7 @@ export const parameters = {
   },
   actions: { argTypesRegex: '^on[A-Z].*' },
   controls: {
+    hideNoControlsWarning: true,
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/

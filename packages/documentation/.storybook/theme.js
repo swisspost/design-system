@@ -33,6 +33,6 @@ export default create({
 
   brandTitle: 'Swiss Post Design System',
   brandUrl: 'https://design-system.post.ch',
-  brandImage: './logo-die-post.svg',
+  brandImage: '/images/logo-die-post.svg',
   brandTarget: '_self'
 });

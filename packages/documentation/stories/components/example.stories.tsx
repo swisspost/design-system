@@ -4,8 +4,8 @@ import React from 'react';
 import docsPage from './example.docs.mdx';
 
 // import custom files
-import '../../../styles/src/basics.scss';
-// import '../../../styles/src/components/example.scss';
+import '@swisspost/design-system-styles/basics.scss';
+// import '@swisspost/design-system-styles/components/example.scss';
 
 // define component config
 export default {
