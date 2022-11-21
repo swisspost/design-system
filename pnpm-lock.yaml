@@ -363,7 +363,7 @@ importers:
       rimraf: 3.0.2
       rxjs: 7.5.7
       sass: 1.56.1
-      sass-loader: 10.3.1
+      sass-loader: 10.4.1
       start-server-and-test: 1.14.0
       storybook-dark-mode: 1.1.2
       style-loader: 2.0.0
@@ -392,7 +392,7 @@ importers:
       '@storybook/builder-webpack4': 6.5.13_typescript@4.8.4
       '@storybook/html': 6.5.13_bvjtv32fmr6ie5nkgoxlln7xu4
       '@storybook/manager-webpack4': 6.5.13_typescript@4.8.4
-      '@storybook/preset-scss': 1.0.3_zrxhpndycme2aynp25qntdvi6q
+      '@storybook/preset-scss': 1.0.3_7yyjlakj7kidaoj2rqhkbn5gom
       '@storybook/testing-library': 0.0.13
       '@types/node': 18.11.9
       autoprefixer: 10.4.13_postcss@8.4.19
@@ -413,7 +413,7 @@ importers:
       rimraf: 3.0.2
       rxjs: 7.5.7
       sass: 1.56.1
-      sass-loader: 10.3.1_sass@1.56.1
+      sass-loader: 10.4.1_sass@1.56.1
       start-server-and-test: 1.14.0
       storybook-dark-mode: 1.1.2
       style-loader: 2.0.0
@@ -8090,7 +8090,7 @@ packages:
       core-js: 3.26.1
     dev: true
 
-  /@storybook/preset-scss/1.0.3_zrxhpndycme2aynp25qntdvi6q:
+  /@storybook/preset-scss/1.0.3_7yyjlakj7kidaoj2rqhkbn5gom:
     resolution: {integrity: sha512-o9Iz6wxPeNENrQa2mKlsDKynBfqU2uWaRP80HeWp4TkGgf7/x3DVF2O7yi9N0x/PI1qzzTTpxlQ90D62XmpiTw==}
     peerDependencies:
       css-loader: '*'
@@ -8098,7 +8098,7 @@ packages:
       style-loader: '*'
     dependencies:
       css-loader: 5.2.7
-      sass-loader: 10.3.1_sass@1.56.1
+      sass-loader: 10.4.1_sass@1.56.1
       style-loader: 2.0.0
     dev: true
 
@@ -21229,12 +21229,12 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/10.3.1_sass@1.56.1:
-    resolution: {integrity: sha512-y2aBdtYkbqorVavkC3fcJIUDGIegzDWPn3/LAFhsf3G+MzPKTJx37sROf5pXtUeggSVbNbmfj8TgRaSLMelXRA==}
+  /sass-loader/10.4.1_sass@1.56.1:
+    resolution: {integrity: sha512-aX/iJZTTpNUNx/OSYzo2KsjIUQHqvWsAhhUijFjAPdZTEhstjZI9zTNvkTTwsx+uNUJqUwOw5gacxQMx4hJxGQ==}
     engines: {node: '>= 10.13.0'}
     peerDependencies:
       fibers: '>= 3.1.0'
-      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0
+      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
       sass: ^1.3.0
       webpack: ^4.36.0 || ^5.0.0
     peerDependenciesMeta:
