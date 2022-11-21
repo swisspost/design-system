@@ -1,5 +1,17 @@
 # @swisspost/design-system-intranet-header
 
+## 3.0.2
+
+### Patch Changes
+
+- Fixed the broken default user image when viewed from outside the postnet.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#786](https://github.com/swisspost/design-system/pull/786)</sup>
+
+- Fixed an issue with the sidebar between 600px and 768px screen size. The sidebar now behaves like on smaller mobile devices in this range.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#785](https://github.com/swisspost/design-system/pull/785)</sup>
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.1.1
+
 ## 3.0.1
 
 ### Patch Changes
