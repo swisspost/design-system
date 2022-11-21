@@ -78,62 +78,6 @@ npm run test
 
 Automated integration tests are not yet available for the Design System Styles.
 
-## Visual tests
-
-One picture says more than a thousand words.<br>
-Thanks to [Percy](https://docs.percy.io/) and [cypress](https://www.cypress.io/), we're able to visually test almost anything that runs in a browser. It handles everything from capturing and rendering screenshots, to detecting and notifying your team of visual changes.
-
-A few steps are required before you can run the script to create the snapshots.
-
-1. Login to your [Percy Account](https://percy.io/).
-2. Create a project or navigate to an existing one.
-3. Copy your write-only percy token.
-4. Open a console in the project root folder.
-5. Register the following local environment variable:
-
-```bash
-# Windows node/bash/cmd
-set PERCY_TOKEN={token}
-
-# Windows powershell
-$env:PERCY_TOKEN="{token}"
-
-# Unix
-export PERCY_TOKEN={token}
-```
-
-6. If you want to take snapshots from a localhost url, you need to allow unauthorized node-tls connections:
-
-```bash
-# Windows node/bash/cmd
-set NODE_TLS_REJECT_UNAUTHORIZED=0
-
-# wWindows powershell
-$env:NODE_TLS_REJECT_UNAUTHORIZED="0"
-
-# Unix terminal
-export NODE_TLS_REJECT_UNAUTHORIZED=0
-```
-
-7. Create your cypress tests
-
-```javascript
-// packages/styles/cypress/integration/example.spec.js
-
-describe('Integration test with visual testing', function () {
-  it('Loads the homepage', function () {
-    // Load the page or perform any other interactions with the app.
-    cy.visit('{url-under-test}');
-    // Do other stuff (e.g. click button, etc.)
-    // Take a snapshot for visual diffing
-    cy.percySnapshot();
-  });
-});
-```
-
-8. Run script `pnpm --filter design-system-styles storybook:snapshots`
-9. Once the snapshots has been taken, you should see a new build online in your percy project.
-
 ## Linting
 
 This project is using [Stylelint](https://stylelint.io/) with a configuration based on the [Sass Guidelines](https://sass-guidelin.es/), properties are sorted according to the [SMACSS sort order](https://www.npmjs.com/package/css-property-sort-order-smacss).
