@@ -36,14 +36,17 @@
     "schematics:build": "copyfiles schematics/migrations.json dist && tsc -p tsconfig.schematics.json"
   },
   "dependencies": {
-    "@popperjs/core": "2.11.6",
-    "bootstrap": "5.1.3"
-  },
-  "devDependencies": {
     "@angular-devkit/core": "14.2.10",
     "@angular-devkit/schematics": "14.2.10",
-    "@angular/compiler": "14.2.11",
     "@angular/core": "14.2.11",
+    "@popperjs/core": "2.11.6",
+    "bootstrap": "5.1.3",
+    "cheerio": "1.0.0-rc.12",
+    "prettier": "2.7.1",
+    "typescript": "4.8.4"
+  },
+  "devDependencies": {
+    "@angular/compiler": "14.2.11",
     "@babel/core": "7.20.2",
     "@percy/cli": "1.14.0",
     "@percy/cypress": "3.1.2",
@@ -59,7 +62,6 @@
     "@types/node": "18.11.9",
     "autoprefixer": "10.4.13",
     "babel-loader": "8.3.0",
-    "cheerio": "1.0.0-rc.12",
     "copyfiles": "2.4.1",
     "css-loader": "5.2.7",
     "cypress": "11.1.0",
@@ -71,7 +73,6 @@
     "npm-run-all": "4.1.5",
     "postcss": "8.4.19",
     "postcss-scss": "4.0.5",
-    "prettier": "2.7.1",
     "rimraf": "3.0.2",
     "rxjs": "7.5.7",
     "sass": "1.56.1",
@@ -84,7 +85,6 @@
     "stylelint-config-sass-guidelines": "9.0.1",
     "stylelint-prettier": "2.0.0",
     "stylelint-scss": "4.3.0",
-    "typescript": "4.8.4",
     "zone.js": "0.12.0"
   },
   "sass": {
