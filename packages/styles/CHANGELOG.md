@@ -1,5 +1,12 @@
 # @swisspost/design-system-styles
 
+## 5.1.1
+
+### Patch Changes
+
+- Set the opacity of tooltips to 1 (fully opaque) because text is hardly legible if the tooltip has underlying content.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#784](https://github.com/swisspost/design-system/pull/784)</sup>
+
 ## 5.1.0
 
 ### Minor Changes
