@@ -42,7 +42,7 @@ importers:
       '@types/jest': 27.5.2
       babel-loader: 8.3.0
       bootstrap: 5.1.3
-      cypress: 11.0.1
+      cypress: 11.1.0
       cypress-storybook: 0.5.1
       jest: 27.5.1
       jest-cli: 27.5.1
@@ -71,8 +71,8 @@ importers:
       '@types/jest': 27.5.2
       babel-loader: 8.3.0_npabyccmuonwo2rku4k53xo3hi
       bootstrap: 5.1.3_@popperjs+core@2.11.6
-      cypress: 11.0.1
-      cypress-storybook: 0.5.1_cypress@11.0.1
+      cypress: 11.1.0
+      cypress-storybook: 0.5.1_cypress@11.1.0
       jest: 27.5.1
       jest-cli: 27.5.1
       npm-run-all: 4.1.5
@@ -350,7 +350,7 @@ importers:
       cheerio: 1.0.0-rc.12
       copyfiles: 2.4.1
       css-loader: 5.2.7
-      cypress: 11.0.1
+      cypress: 11.1.0
       glob: 8.0.3
       gulp: 4.0.2
       gulp-postcss: 9.0.1
@@ -384,7 +384,7 @@ importers:
       '@angular/core': 14.2.11_rxjs@7.5.7+zone.js@0.12.0
       '@babel/core': 7.20.2
       '@percy/cli': 1.14.0
-      '@percy/cypress': 3.1.2_cypress@11.0.1
+      '@percy/cypress': 3.1.2_cypress@11.1.0
       '@storybook/addon-actions': 6.5.13
       '@storybook/addon-essentials': 6.5.13_qylrstdpt4wchnhoxm2t66ppa4
       '@storybook/addon-interactions': 6.5.13_typescript@4.8.4
@@ -400,7 +400,7 @@ importers:
       cheerio: 1.0.0-rc.12
       copyfiles: 2.4.1
       css-loader: 5.2.7
-      cypress: 11.0.1
+      cypress: 11.1.0
       glob: 8.0.3
       gulp: 4.0.2
       gulp-postcss: 9.0.1_postcss@8.4.19
@@ -5081,13 +5081,13 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@percy/cypress/3.1.2_cypress@11.0.1:
+  /@percy/cypress/3.1.2_cypress@11.1.0:
     resolution: {integrity: sha512-JXrGDZbqwkzQd2h5T5D7PvqoucNaiMh4ChPp8cLQiEtRuLHta9nf1lEuXH+jnatGL2j+3jJFIHJ0L7XrgVnvQA==}
     peerDependencies:
       cypress: '>=3'
     dependencies:
       '@percy/sdk-utils': 1.10.4
-      cypress: 11.0.1
+      cypress: 11.1.0
     dev: true
 
   /@percy/dom/1.10.4:
@@ -11947,16 +11947,16 @@ packages:
     resolution: {integrity: sha512-NJGVKPS81XejHcLhaLJS7plab0fK3slPh11mESeeDq2W4ZI5kUKK/LRRdVDvjJseojbPB7ZwjnyOybg3Igea/A==}
     dev: true
 
-  /cypress-storybook/0.5.1_cypress@11.0.1:
+  /cypress-storybook/0.5.1_cypress@11.1.0:
     resolution: {integrity: sha512-+CNDdcrFD3QRvHrjwpVclFpLtseyXA0NxeB3PDTheisvg/OJjLkP96t0I9R66IkZRYUUE3mLhqZpmpsv59FIIw==}
     peerDependencies:
       cypress: '*'
     dependencies:
-      cypress: 11.0.1
+      cypress: 11.1.0
     dev: true
 
-  /cypress/11.0.1:
-    resolution: {integrity: sha512-NuEfd0Vim492RJ3m/+bbTZ3OZrqXgfAfuLaZfIQ9D5lKocS3EDr2tyAarZdAhKwLyoh7OJ33jwMeMFIDbzYqog==}
+  /cypress/11.1.0:
+    resolution: {integrity: sha512-kzizbG9s3p3ahWqxUwG/21NqLWEGtScMevMyUPeYlcmMX9RzVxWM18MkA3B4Cb3jKx72hSyIE2mHgHymfCM1bg==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     requiresBuild: true
