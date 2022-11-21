@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fixes Dependencies used in Schematics.
+Correctly declares dependencies used in Migration Schematics for Angular projects, fixing an issue when trying to migrate projects.
