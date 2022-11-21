@@ -21,7 +21,8 @@
     "loader/"
   ],
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "linkDirectory": true
   },
   "scripts": {
     "start": "stencil build --watch --docs-readme",
