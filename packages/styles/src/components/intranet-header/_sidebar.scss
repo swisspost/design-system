@@ -17,17 +17,17 @@
   flex: 1 0 auto;
   flex-direction: column;
 
-  @include media-breakpoint-down(rg) {
+  @include media-breakpoint-down(md) {
     flex: 0 0 auto;
   }
 
-  @include media-breakpoint-down(rg) {
+  @include media-breakpoint-down(md) {
     &.closed .sidebar-sticky {
       background-color: transparent !important;
     }
   }
 
-  @include media-breakpoint-down(rg) {
+  @include media-breakpoint-down(md) {
     > div > ul > li:first-child {
       display: block;
 
@@ -101,7 +101,7 @@
   }
 }
 
-@include media-breakpoint-down(rg) {
+@include media-breakpoint-down(md) {
   #sidebar .sidebar-sticky,
   #navbarsDefault {
     max-height: calc(100vh - 65px);
