@@ -8,7 +8,7 @@ export const parameters = {
   previewTabs: {
     'storybook/docs/panel': {
       title: 'Documentation',
-      index: -1,
+      index: -1
     },
     canvas: {
       title: 'Playground'
