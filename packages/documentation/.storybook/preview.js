@@ -4,11 +4,9 @@ import docJson from '@swisspost/design-system-components/dist/docs.json';
 if(docJson) setStencilDocJson(docJson);
 
 export const parameters = {
-  viewMode: 'docs',
   previewTabs: {
     'storybook/docs/panel': {
-      title: 'Documentation',
-      index: -1
+      title: 'Documentation'
     },
     canvas: {
       title: 'Playground'
