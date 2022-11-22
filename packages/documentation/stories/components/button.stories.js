@@ -1,3 +1,5 @@
+// TODO: refactor to tsx story
+
 import './button.scss';
 import './icons.scss';
 

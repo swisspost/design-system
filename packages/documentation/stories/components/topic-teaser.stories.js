@@ -1,3 +1,5 @@
+// TODO: refactor to tsx story
+
 import './topic-teaser.scss';
 
 export default {

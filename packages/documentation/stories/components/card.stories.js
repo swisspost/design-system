@@ -1,3 +1,5 @@
+// TODO: refactor to tsx story
+
 import './card.scss';
 
 export default {
