@@ -21,8 +21,8 @@
     "test": "start-server-and-test start:headless 9300 'percy exec -- cypress run --record false'"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:1.0.1",
-    "@swisspost/design-system-styles": "workspace:5.1.0"
+    "@swisspost/design-system-components": "workspace:1.0.3",
+    "@swisspost/design-system-styles": "workspace:5.1.2"
   },
   "devDependencies": {
     "@babel/core": "7.20.2",
