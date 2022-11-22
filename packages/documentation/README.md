@@ -13,12 +13,6 @@ Includes stories for the following packages:
 - Technical docs: [Swiss Post Design System](https://styles.design-system.post.ch)
 - Design docs: [Experience Hub](https://www.experience-hub.ch/document/2803)
 
-## Installation
-
-```bash
-npm install @swisspost/design-system-documentation
-```
-
 ## Contribute
 
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
