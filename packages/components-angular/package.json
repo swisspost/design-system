@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-angular",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
     "@angular/router": "14.2.11",
     "@ng-bootstrap/ng-bootstrap": "12.1.2",
     "@popperjs/core": "2.11.6",
-    "@swisspost/design-system-styles": "workspace:5.1.1",
+    "@swisspost/design-system-styles": "workspace:5.1.2",
     "rxjs": "7.5.7",
     "tslib": "2.4.1",
     "watch": "1.0.2",
