@@ -65,11 +65,11 @@ export class PostCollapsible {
   startTransition() {
     const expandedHeight = getElementHeight(this.collapsibleElement, 'show');
 
-    this.collapseHeight = this.collapsed ? expandedHeight : '0px';
+    this.collapseHeight = `${this.collapsed ? expandedHeight : 0}px`;
     this.collapseClasses = 'collapsing';
 
     setTimeout(() => {
-      this.collapseHeight = this.collapsed ? '0px' : expandedHeight;
+      this.collapseHeight = `${this.collapsed ? 0 : expandedHeight}px`;
     });
   }
 

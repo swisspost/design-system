@@ -2,10 +2,10 @@
  * Copyright 2022 by Swiss Post, Information Technology
  */
 
-export function getElementHeight(el: HTMLElement): string;
-export function getElementHeight(el: HTMLElement, classWhenShown: string): string;
-export function getElementHeight(el: HTMLElement, classesWhenShown: string[]): string;
-export function getElementHeight(el: HTMLElement, classesWhenShown: any = []): string {
+export function getElementHeight(el: HTMLElement): number;
+export function getElementHeight(el: HTMLElement, classWhenShown: string): number;
+export function getElementHeight(el: HTMLElement, classesWhenShown: string[]): number;
+export function getElementHeight(el: HTMLElement, classesWhenShown: any = []): number {
   if (!Array.isArray(classesWhenShown)) classesWhenShown = [classesWhenShown];
 
   const classesToAdd = classesWhenShown.filter(klass => !el.classList.contains(klass));
@@ -15,5 +15,5 @@ export function getElementHeight(el: HTMLElement, classesWhenShown: any = []): s
 
   if (classesToAdd.length) el.classList.remove(...classesToAdd);
 
-  return `${scrollHeight}px`;
+  return scrollHeight;
 }
