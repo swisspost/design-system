@@ -1,5 +1,5 @@
 import { Component, Element, h, Method, Prop, State } from '@stencil/core';
-import { checkValidHTMLTag, getElementHeight, onTransitionEnd } from '../../utils';
+import { getElementHeight, onTransitionEnd } from '../../utils';
 
 let nextId = 0;
 
@@ -35,7 +35,10 @@ export class PostCollapsible {
       console.warn('Be sure to bind the post-collapsible to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility');
     }
 
-    this.headingTag = checkValidHTMLTag(`h${this.headingLevel}`, 'The post-collapsible element requires a heading level between 1 and 6.');
+    this.headingTag = `h${this.headingLevel}`;
+    if (!['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(this.headingTag)) {
+      console.error('The post-collapsible element requires a heading level between 1 and 6.');
+    }
 
     this.collapsibleId = this.host.id || `post-collapsible-${nextId++}`;
     this.collapseClasses = this.collapsed ? 'collapse' : 'collapse show';
