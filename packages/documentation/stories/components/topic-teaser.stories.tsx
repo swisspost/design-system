@@ -87,7 +87,7 @@ const Template = args => {
   }
 
   const content: string[] = [
-    <div className="topic-teaser-image-container">
+    <div key="image" className="topic-teaser-image-container">
       <img
         className="topic-teaser-image"
         src="https://picsum.photos/id/553/800/800"
@@ -96,7 +96,7 @@ const Template = args => {
         alt="Test teaser image"
       />
     </div>,
-    <div className="topic-teaser-content">
+    <div key="content" className="topic-teaser-content">
       <h2 className="topic-teaser-title font-curve-large mb-large">
         <span className="bold">{ args.title }</span>
         <span className="light">{ args.subtitle }</span>

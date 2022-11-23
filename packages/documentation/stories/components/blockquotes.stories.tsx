@@ -57,7 +57,7 @@ export default {
 const Template = args => {
   const quote = args.quoteText
     .split('{nestedtext}')
-    .reduce((quote, part, index, parts) => quote.concat(part, parts.length > 0 && index + 1 < parts.length ? <q>{ args.nestedText }</q> : []), []);
+    .reduce((quote, part, index, parts) => quote.concat(part, parts.length > 0 && index + 1 < parts.length ? <q key={ index }>{ args.nestedText }</q> : []), []);
 
   const blockquote = <blockquote className="blockquote" lang={ args.language }>
     <q>{ quote }</q>
