@@ -4,16 +4,11 @@ import { useArgs } from '@storybook/client-api';
 import '@swisspost/design-system-styles/basics.scss';
 import '@swisspost/design-system-styles/components/badge.scss';
 
-const SIZE_CLASS_MAP = {
-  default: '',
-  small: 'badge-sm',
-};
-
 export default {
   title: 'Components/Badge',
   args: {
     label: 'Badge',
-    size: 'default',
+    size: '',
     nested: false,
     nestedNumber: 10,
     checkable: false,
@@ -29,9 +24,13 @@ export default {
     },
     size: {
       control: {
-        type: 'radio'
+        type: 'radio',
+        labels: {
+          '': 'Default',
+          'badge-sm': 'Small'
+        }
       },
-      options: ['default', 'small']
+      options: ['', 'badge-sm']
     },
     nested: {
       control: {
@@ -94,7 +93,7 @@ const Template = (args, story) => {
   
     component = <div className="badge-check">
       <input id={ id } className="badge-check-input" type="checkbox" checked={ args.checked } onChange={ () => updateArgs({ checked: !args.checked }) }/>
-      <label className={ `badge-check-label ${SIZE_CLASS_MAP[args.size]}` } htmlFor={ id }>
+      <label className={ `badge-check-label ${args.size}` } htmlFor={ id }>
         { content }
       </label>
     </div>;
@@ -102,13 +101,13 @@ const Template = (args, story) => {
     if (args.dismissed) {
       component = <div></div>;
     } else {
-      component = <span className={ `badge ${SIZE_CLASS_MAP[args.size]}` }>
+      component = <span className={ `badge ${args.size}` }>
         { content }
         <button className="btn-close" aria-label="dismiss" onClick={ () => { updateArgs({ dismissed: !args.dismissed }); } }></button>
       </span>;
     }
   } else {
-    component = <span className={ `badge ${SIZE_CLASS_MAP[args.size]}` }>
+    component = <span className={ `badge ${args.size}` }>
       { content }
     </span>;
   }
