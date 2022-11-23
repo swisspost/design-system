@@ -75,13 +75,11 @@ const Template = args => {
   return blockquote;
 };
 
+export const Blockquote = Template.bind({});
 
-export const Default = Template.bind({});
+export const Nested = Template.bind({});
 
-
- export const Nested = Template.bind({});
-
- Nested.parameters = {
+Nested.parameters = {
   controls: {
     exclude: []
   }

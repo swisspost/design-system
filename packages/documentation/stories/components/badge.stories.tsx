@@ -115,8 +115,7 @@ const Template = (args, story) => {
   return component;
 };
 
-export const Default = Template.bind({});
-
+export const Badge = Template.bind({});
 
 export const Checkable = Template.bind({});
 

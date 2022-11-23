@@ -118,4 +118,4 @@ const Template = args => {
   </div>;
 };
 
-export const Default = Template.bind({});
+export const TopicTeaser = Template.bind({});

@@ -34,7 +34,7 @@ export default {
 const Template = (args, story) => <div data-story-id={story.id} class="border-primary">{args.state.toString()}</div>;
 
 // define story
-export const Default = Template.bind({});
+export const Example = Template.bind({});
 
 // define other story
 export const Falsy = Template.bind({});
