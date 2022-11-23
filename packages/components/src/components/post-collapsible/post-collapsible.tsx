@@ -30,7 +30,7 @@ export class PostCollapsible {
   collapsibleElement: HTMLElement;
 
   componentWillLoad() {
-    this.hasHeader = !!this.host.querySelector('[slot="header"]');
+    this.hasHeader = this.host.querySelectorAll('[slot="header"]').length > 0;
     if (!this.hasHeader) {
       console.warn('Be sure to bind the post-collapsible to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility');
     }
