@@ -115,14 +115,8 @@ const Template = (args, story) => {
   return component;
 };
 
-/**
- * default badge
-*/
 export const Default = Template.bind({});
 
-/**
- * checkable badge
-*/
 
 export const Checkable = Template.bind({});
 
@@ -136,7 +130,6 @@ Checkable.args = {
   label: 'Checkable Badge',
   checkable: true
 };
-
 
 export const Dismissible = Template.bind({});
 

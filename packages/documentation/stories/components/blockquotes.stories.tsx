@@ -75,15 +75,9 @@ const Template = args => {
   return blockquote;
 };
 
-/**
- * default blockquote
-*/
 
 export const Default = Template.bind({});
 
-/**
- * nested blockquote
- */
 
  export const Nested = Template.bind({});
 
