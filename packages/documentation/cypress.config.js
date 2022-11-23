@@ -1,18 +1,13 @@
-import { defineConfig } from 'cypress';
+const { defineConfig } = require('cypress');
 
-export default defineConfig({
+module.exports = defineConfig({
   e2e: {
-    baseUrl: 'http://localhost:9300',
-    excludeSpecPattern: ["**/examples/**/*.cy.js"],
-    supportFile: false
+    baseUrl: 'http://localhost:9300'
   },
-  chromeWebSecurity: false,
   includeShadowDom: true,
   retries: {
     runMode: 1
   },
-  screenshotOnRunFailure: false,
   video: false,
-  videoCompression: false,
-  watchForFileChanges: true
+  videoCompression: false
 });
