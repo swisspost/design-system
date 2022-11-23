@@ -6,8 +6,8 @@ import '@swisspost/design-system-styles/components/topic-teaser.scss';
 export default {
   title: 'Components/Topic Teaser',
   args: {
-    title: 'Title ipsum',
-    subtitle: 'Subtitle vero eos et accusam et justo',
+    title: 'Loremipsum',
+    subtitle: 'Vero siteos et accusam iretea et justo',
     linkCount: 5,
     alignment: '',
     backgroundColor: 'bg-nightblue'
