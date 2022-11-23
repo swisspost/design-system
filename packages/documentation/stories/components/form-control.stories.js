@@ -1,4 +1,4 @@
-// TODO: refactor to tsx story
+TODO: refactor with tsx stories
 
 import './forms.scss';
 import './floating-label.scss';
