@@ -6,7 +6,7 @@ on:
       - 'packages/documentation/**'
 
 jobs:
-  chromatic: 
+  chromatic:
     name: Chromatic
     runs-on: ubuntu-latest
     steps:
@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: pnpm --filter design-system-documentation... install
 
-      - name: Install dependencies
+      - name: Build dependencies
         run: pnpm --filter design-system-documentation^... build
 
       - name: Publish to chromatic
