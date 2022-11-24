@@ -89,6 +89,10 @@ span.ngb-dp-navigation-chevron {
 .ngb-dp-day {
   width: auto !important;
   height: auto !important;
+
+  &.hidden {
+    flex-grow: 1;
+  }
 }
 
 .ngb-dp-day > .btn-light {
