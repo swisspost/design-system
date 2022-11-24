@@ -29,10 +29,10 @@ jobs:
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      - name: Install styles dependencies
+      - name: Install documentation & dependencies
         run: pnpm --filter design-system-documentation... install
 
-      - name: Build styles storybook
+      - name: Build documentation & dependencies
         run: pnpm --filter design-system-documentation... build
 
       - name: Upload build artifacts

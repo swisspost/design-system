@@ -1,12 +1,12 @@
 ###
 #
-# Deploy a pre-built packages/documentation storybook to netilfy
+# Deploy a pre-built documentation to netilfy
 #
 # https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
 #
 ###
 
-name: Deploy Documentation to Netlify
+name: Deploy Documentation Preview to Netlify
 on:
   workflow_run:
     workflows: ['Build Documentation']
@@ -31,7 +31,7 @@ jobs:
           name: design-system-documentation
           folder: build-output
 
-      - name: Deploy to Netlify
+      - name: Deploy documentation to netlify
         uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
         id: deploy
         with:

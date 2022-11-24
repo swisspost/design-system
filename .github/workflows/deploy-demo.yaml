@@ -6,10 +6,10 @@
 #
 ###
 
-name: Deploy to Netlify
+name: Deploy Demo App Preview to Netlify
 on:
   workflow_run:
-    workflows: ['Build demo app']
+    workflows: ['Build Demo App']
     types:
       - completed
 
@@ -34,7 +34,7 @@ jobs:
           name: design-system-demo
           folder: build-output
 
-      - name: Deploy to Netlify
+      - name: Deploy demo app to netlify
         uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
         id: deploy
         with:
