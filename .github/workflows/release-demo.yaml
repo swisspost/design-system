@@ -27,15 +27,15 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       # Install changesets locally
-      - name: Install dependencies
+      - name: Install demo app & dependencies
         run: pnpm --filter "design-system-demo..." install
 
       # Build the demo app and it's dependencies
-      - name: Build demo app
+      - name: Build demo app & dependencies
         run: pnpm --filter "design-system-demo..." build
 
       # Publish demo only if changesets published any packages
-      - name: Publish demo
+      - name: Publish demo app on netlify
         id: netlify
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
