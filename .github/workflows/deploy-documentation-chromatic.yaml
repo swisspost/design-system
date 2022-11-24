@@ -1,4 +1,4 @@
-name: Deploy Docs on Chromatic
+name: Deploy Documentation on Chromatic
 
 on:
   pull_request:
