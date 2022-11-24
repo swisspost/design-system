@@ -1,9 +1,7 @@
 module.exports = {
   framework: '@storybook/react',
   addons: [
-    '@storybook/addon-links',
     '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
     {
       name: '@storybook/preset-scss',
       options: {
@@ -17,9 +15,10 @@ module.exports = {
   stories: ['../stories/**/*.stories.@(ts|tsx|mdx)'],
   staticDirs: ['../static'],
 
-  // workaround, to prevent storybook from crashing, because of a EBUSY error, which occures on a npm cache file on storybook startup and when saving new content
   managerWebpack: (config, options) => {
+    // workaround, to prevent storybook from crashing, because of a EBUSY error, which occures on a npm cache file on storybook startup and when saving new content
     options.cache.set = () => Promise.resolve();
+
     return config;
   }
 };
