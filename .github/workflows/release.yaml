@@ -54,7 +54,7 @@ jobs:
             ./packages/documentation/package.json
 
       # Publish storybook
-      - name: Publish storybooks
+      - name: Publish storybook to chromatic
         if: steps.sbCheck.outputs.any_changed
         id: storybook
         run: pnpm --filter design-system-documentation run chromatic --project-token=${{ secrets.CHROMATIC_STORYBOOK_TOKEN }}
