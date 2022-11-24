@@ -11,7 +11,7 @@
 #
 ###
 
-name: Build demo app
+name: Build Demo App
 on:
   pull_request:
     paths:
