@@ -4,7 +4,7 @@
 #
 ###
 
-name: Release Demo App
+name: Release Demo App to Netlify
 
 on:
   push:
@@ -35,7 +35,7 @@ jobs:
         run: pnpm --filter "design-system-demo..." build
 
       # Publish demo only if changesets published any packages
-      - name: Publish demo app on netlify
+      - name: Publish demo app to netlify
         id: netlify
         env:
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

@@ -4,7 +4,7 @@
 #
 ###
 
-name: Release Documentation on Netlify
+name: Release Documentation to Netlify
 
 on:
   push:
@@ -32,7 +32,7 @@ jobs:
       - name: Build documentation & dependencies
         run: pnpm --filter "design-system-documentation..." build
 
-      - name: Publish documentation on netlify
+      - name: Publish documentation to netlify
         env:
           NETLIFY_SITE_ID: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

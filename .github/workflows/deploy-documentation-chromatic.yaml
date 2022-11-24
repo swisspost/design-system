@@ -1,4 +1,12 @@
-name: Deploy Documentation on Chromatic
+###
+#
+# Deploys a pre-built documentation to chromatic
+#
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+#
+###
+
+name: Deploy Documentation to Chromatic
 
 on:
   pull_request:
