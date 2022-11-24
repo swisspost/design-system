@@ -18,13 +18,14 @@ jobs:
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      - name: Install dependencies
+      - name: Install documentation & dependencies
         run: pnpm --filter design-system-documentation... install
 
-      - name: Build dependencies
+      # documentation package will be built by chromatic itself
+      - name: Build documentation & dependencies
         run: pnpm --filter design-system-documentation^... build
 
-      - name: Publish to chromatic
+      - name: Publish documentation to chromatic
         uses: chromaui/action@v1
         # Options required to the GitHub Chromatic Action
         with:
