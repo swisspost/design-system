@@ -1,0 +1,271 @@
+TODO: refactor with tsx stories
+
+import { Meta, Canvas } from '@storybook/addon-docs';
+import './icons.scss';
+
+<Meta title="Design System/Button" />
+
+# Buttons
+
+#### Using Bootstrap v5.0
+
+[Bootstrap Documentation](https://getbootstrap.com/docs/5.0/components/buttons/)
+
+<br />
+<br />
+
+### Default buttons
+
+Use these buttons in most situations. If you don't want the animation, you can leave out the .btn-animated class.
+
+<Canvas>
+  <div class="p-regular flex-wrap d-flex gap-regular">
+    <button class="btn btn-primary btn-animated">
+      <span>Primary</span>
+    </button>
+    <button class="btn btn-secondary btn-animated">
+      <span>Secondary</span>
+    </button>
+    <button class="btn btn-link">Tertiary</button>
+  </div>
+</Canvas>
+
+### Disabled buttons
+
+**Accessability**
+
+Disabled controls are an accessibility anti-pattern for various reasons:
+
+1. They are not focussable, screen reader users or keyboard users cannot focus the button and might miss information that is hidden e.g. in a tooltip.
+2. The color contrast of disabled button is very low.
+
+Try to avoid disabled buttons by displaying an error message for invalid forms or hiding the control if a user cannot perform a certain action.
+
+<Canvas>
+  <div class="p-regular d-flex flex-wrap gap-regular">
+    <button disabled="" class="btn btn-primary btn-animated">
+      <span>Primary</span>
+    </button>
+    <button disabled="" class="btn btn-secondary btn-animated">
+      <span>Secondary</span>
+    </button>
+    <button disabled="" class="btn btn-link">
+      Tertiary
+    </button>
+  </div>
+</Canvas>
+
+### Animated
+
+The animated buttons need a span around the text!
+
+<Canvas>
+  <button type="button" class="btn btn-primary btn-sm btn-animated">
+    <span>Small button</span>
+  </button>
+  <button type="button" class="btn btn-primary btn-rg btn-animated">
+    <span>Regular button</span>
+  </button>
+  <button type="button" class="btn btn-primary btn-md btn-animated">
+    <span>Default button</span>
+  </button>
+  <button type="button" class="btn btn-primary btn-lg btn-animated">
+    <span>Large button</span>
+  </button>
+</Canvas>
+
+### Supported button tags
+
+<Canvas>
+  <a href="#" role="button" class="btn btn-primary">
+    Link
+  </a>
+  <button type="submit" class="btn btn-primary">
+    Button
+  </button>
+  <input type="button" value="Input" class="btn btn-primary" />
+  <input type="submit" value="Submit" class="btn btn-primary" />
+  <input type="reset" value="Reset" class="btn btn-primary" />
+</Canvas>
+
+### Sizes
+
+<Canvas>
+  <button type="button" class="btn btn-primary btn-sm">
+    Small button
+  </button>
+  <button type="button" class="btn btn-primary btn-rg">
+    Regular button
+  </button>
+  <button type="button" class="btn btn-primary btn-md">
+    Default button
+  </button>
+  <button type="button" class="btn btn-primary btn-lg">
+    Large button
+  </button>
+</Canvas>
+
+### Icon buttons
+
+<Canvas>
+  <button type="button" class="btn btn-default btn-icon btn-sm">
+    <i class="pi pi-3193"></i>
+    <span class="visually-hidden">Label for screenreaders</span>
+  </button>
+  <button type="button" class="btn btn-default btn-icon btn-rg">
+    <i class="pi pi-3193"></i>
+    <span class="visually-hidden">Label for screenreaders</span>
+  </button>
+  <button type="button" class="btn btn-default btn-icon btn-md">
+    <i class="pi pi-3193"></i>
+    <span class="visually-hidden">Label for screenreaders</span>
+  </button>
+  <button type="button" class="btn btn-default btn-icon btn-lg">
+    <i class="pi pi-3193"></i>
+    <span class="visually-hidden">Label for screenreaders</span>
+  </button>
+  <button type="button" class="btn btn-primary btn-icon btn-sm">
+    <i class="pi pi-3193"></i>
+    <span class="visually-hidden">Label for screenreaders</span>
+  </button>
+  <button type="button" class="btn btn-primary btn-icon btn-rg">
+    <i class="pi pi-3193"></i>
+    <span class="visually-hidden">Label for screenreaders</span>
+  </button>
+  <button type="button" class="btn btn-primary btn-icon btn-md">
+    <i class="pi pi-3193"></i>
+    <span class="visually-hidden">Label for screenreaders</span>
+  </button>
+  <button type="button" class="btn btn-primary btn-icon btn-lg">
+    <i class="pi pi-3193"></i>
+    <span class="visually-hidden">Label for screenreaders</span>
+  </button>
+</Canvas>
+
+### Icon buttons with text
+
+Icon buttons with text should not have the class .btn-icon, otherwise the horizontal padding is not correct.
+
+<Canvas>
+  <p class="d-flex align-items-center gap-small-r">
+    <button type="button" class="btn btn-default btn-sm">
+      <i class="pi pi-3193"></i>
+      <span>Some text</span>
+    </button>
+    <button type="button" class="btn btn-default btn-rg">
+      <i class="pi pi-3193"></i>
+      <span>Some text</span>
+    </button>
+    <button type="button" class="btn btn-default btn-md">
+      <i class="pi pi-3193"></i>
+      <span>Some text</span>
+    </button>
+    <button type="button" class="btn btn-default btn-lg">
+      <i class="pi pi-3193"></i>
+      <span>Some text</span>
+    </button>
+  </p>
+  <p class="d-flex align-items-center gap-small-r">
+    <button type="button" class="btn btn-primary btn-sm">
+      <span>Some text</span>
+      <i class="pi pi-3193"></i>
+    </button>
+    <button type="button" class="btn btn-primary btn-rg">
+      <span>Some text</span>
+      <i class="pi pi-3193"></i>
+    </button>
+    <button type="button" class="btn btn-primary btn-md">
+      <span>Some text</span>
+      <i class="pi pi-3193"></i>
+    </button>
+    <button type="button" class="btn btn-primary btn-lg">
+      <span>Some text</span>
+      <i class="pi pi-3193"></i>
+    </button>
+  </p>
+</Canvas>
+
+### Accent colors
+
+<Canvas>
+  <button type="button" class="btn btn-nightblue btn-animated">
+    <span>Nightblue</span>
+  </button>
+  <button type="button" class="btn btn-nightblue-bright btn-animated">
+    <span>Nightblue (Bright)</span>
+  </button>
+  <button type="button" class="btn btn-petrol btn-animated">
+    <span>Petrol</span>
+  </button>
+  <button type="button" class="btn btn-petrol-bright btn-animated">
+    <span>Petrol (Bright)</span>
+  </button>
+  <button type="button" class="btn btn-coral btn-animated">
+    <span>Coral</span>
+  </button>
+  <button type="button" class="btn btn-coral-bright btn-animated">
+    <span>Coral (Bright)</span>
+  </button>
+  <button type="button" class="btn btn-olive btn-animated">
+    <span>Olive</span>
+  </button>
+  <button type="button" class="btn btn-olive-bright btn-animated">
+    <span>Olive (Bright)</span>
+  </button>
+  <button type="button" class="btn btn-purple btn-animated">
+    <span>Purple</span>
+  </button>
+  <button type="button" class="btn btn-purple-bright btn-animated">
+    <span>Purple (Bright)</span>
+  </button>
+  <button type="button" class="btn btn-aubergine btn-animated">
+    <span>Aubergine</span>
+  </button>
+  <button type="button" class="btn btn-aubergine-bright btn-animated">
+    <span>Aubergine (Bright)</span>
+  </button>
+</Canvas>
+
+### Inverted buttons
+
+Inverted buttons don't need special classes anymore, just use any of the background classes to set the background and you're done for the day.
+
+<Canvas>
+  <button type="button" class="btn btn-primary btn-inverted">
+    Primary inverted
+  </button>
+  <button type="button" class="btn btn-primary btn-inverted btn-animated">
+    <span>Primary inverted animated</span>
+  </button>
+  <button type="button" class="btn btn-default btn-inverted">
+    Secondary
+  </button>
+  <button type="button" class="btn btn-default btn-inverted btn-animated">
+    <span>Secondary animated</span>
+  </button>
+  <button type="button" class="btn btn-primary btn-icon btn-inverted">
+    <i class="pi pi-3193"></i>
+  </button>
+  <button type="button" class="btn btn-secondary btn-inverted btn-icon">
+    <i class="pi pi-3193"></i>
+  </button>
+</Canvas>
+
+### Contextual buttons
+
+These are allowed for intranet applications! The link button cannot be animated.
+
+<Canvas>
+  <button type="button" class="btn btn-success btn-animated">
+    <span>Success</span>
+  </button>
+  <button type="button" class="btn btn-danger btn-animated">
+    <span>Danger</span>
+  </button>
+  <button type="button" class="btn btn-warning btn-animated">
+    <span>Warning</span>
+  </button>
+  <button type="button" class="btn btn-info btn-animated">
+    <span>Info</span>
+  </button>
+</Canvas>

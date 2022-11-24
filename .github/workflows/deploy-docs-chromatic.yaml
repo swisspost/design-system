@@ -6,7 +6,7 @@ on:
       - 'packages/documentation/**'
 
 jobs:
-  chromatic: 
+  chromatic:
     name: Chromatic
     runs-on: ubuntu-latest
     steps:
@@ -16,10 +16,13 @@ jobs:
           fetch-depth: 0
 
       - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main  
-          
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm --filter design-system-documentation... install
+
+      - name: Build dependencies
+        run: pnpm --filter design-system-documentation^... build
 
       - name: Publish to chromatic
         uses: chromaui/action@v1
