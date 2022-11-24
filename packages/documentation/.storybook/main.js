@@ -12,7 +12,7 @@ module.exports = {
     },
     '@pxtrn/storybook-addon-docs-stencil'
   ],
-  stories: ['../stories/**/*.stories.@(ts|tsx|mdx)'],
+  stories: ['../stories/*.stories.@(ts|tsx|mdx)', '../stories/!(examples)/**/*.stories.@(ts|tsx|mdx)'],
   staticDirs: ['../static'],
 
   managerWebpack: (config, options) => {
