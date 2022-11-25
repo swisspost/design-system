@@ -1,0 +1,26 @@
+@use "@swisspost/design-system-styles/core" as *;
+
+$icons: (
+  1001,
+  2023,
+  2025,
+  2035,
+  2101
+);
+
+$variants: (
+  'white',
+  'primary',
+  'success',
+  'info',
+  'warning',
+  'danger'
+);
+
+@each $icon in $icons {
+  @each $variant in $variants {
+    .pi-#{$icon}--#{$variant} {
+      @include pi($icon, $variant);
+    }
+  }
+}
