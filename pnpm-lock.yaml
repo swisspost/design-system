@@ -175,7 +175,7 @@ importers:
       '@types/node': 18.11.9
       '@typescript-eslint/eslint-plugin': 5.43.0
       '@typescript-eslint/parser': 5.43.0
-      bootstrap: 5.1.3
+      bootstrap: 5.2.3
       core-js: 3.26.1
       eslint: 8.28.0
       highlight.js: 11.6.0
@@ -218,7 +218,7 @@ importers:
       '@swimlane/ngx-datatable': 20.0.0_ast4p4ycywo3bpfejuahudj7lm
       '@swisspost/design-system-intranet-header': link:../components-angular/dist/intranet-header
       '@swisspost/design-system-styles': link:../styles/dist
-      bootstrap: 5.1.3_@popperjs+core@2.11.6
+      bootstrap: 5.2.3_@popperjs+core@2.11.6
       core-js: 3.26.1
       highlight.js: 11.6.0
       ngx-highlightjs: 7.0.1_frkxbvkuz4hfnqe25gizike6fu
@@ -324,7 +324,7 @@ importers:
       '@popperjs/core': 2.11.6
       '@types/node': 18.11.9
       autoprefixer: 10.4.13
-      bootstrap: 5.1.3
+      bootstrap: 5.2.3
       cheerio: 1.0.0-rc.12
       copyfiles: 2.4.1
       css-loader: 5.2.7
@@ -354,7 +354,7 @@ importers:
       '@angular-devkit/schematics': 14.2.10
       '@angular/core': 14.2.11_rxjs@7.5.7+zone.js@0.12.0
       '@popperjs/core': 2.11.6
-      bootstrap: 5.1.3_@popperjs+core@2.11.6
+      bootstrap: 5.2.3_@popperjs+core@2.11.6
       cheerio: 1.0.0-rc.12
       prettier: 2.7.1
       typescript: 4.8.4
@@ -8347,10 +8347,10 @@ packages:
   /boolbase/1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
 
-  /bootstrap/5.1.3_@popperjs+core@2.11.6:
-    resolution: {integrity: sha512-fcQztozJ8jToQWXxVuEyXWW+dSo8AiXWKwiSSrKWsRB/Qt+Ewwza+JWoLKiTuQLaEPhdNAJ7+Dosc9DOIqNy7Q==}
+  /bootstrap/5.2.3_@popperjs+core@2.11.6:
+    resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
     peerDependencies:
-      '@popperjs/core': ^2.10.2
+      '@popperjs/core': ^2.11.6
     dependencies:
       '@popperjs/core': 2.11.6
     dev: false
@@ -11357,7 +11357,7 @@ packages:
     dev: true
 
   /file-uri-to-path/1.0.0:
-    resolution: {integrity: sha1-VTp7hEb/b2hDWcRF8eN6BdrMM90=}
+    resolution: {integrity: sha512-0Zt+s3L7Vf1biwWZ29aARiVYLx7iMGnEUl9x33fbB/j3jR81u/O2LbqK+Bm1CDSNDKVtJ/YjwY7TUd5SkeLQLw==}
     requiresBuild: true
     dev: true
     optional: true
