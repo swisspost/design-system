@@ -37,8 +37,5 @@ export class SvgIconsDemoComponent {
     for (let i = 9900; i < 9912; i++) {
       this.range.push(i);
     }
-
-    var excludes = [];
-    this.range = this.range.filter(nr => excludes.findIndex(x => x === nr) === -1);
   }
 }
