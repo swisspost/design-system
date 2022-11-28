@@ -41,7 +41,7 @@ export class PostCollapsible {
     }
 
     this.collapsibleId = this.host.id || `post-collapsible-${nextId++}`;
-    this.updateCollapseClasses();
+    this.collapseClasses = this.getCollapseClasses();
   }
 
   componentDidLoad() {
@@ -60,7 +60,7 @@ export class PostCollapsible {
 
       await onTransitionEnd(this.collapsibleElement).then(() => {
         this.collapseHeight = null;
-        this.updateCollapseClasses();
+        this.collapseClasses = this.getCollapseClasses();
       });
     }
   }
@@ -76,8 +76,8 @@ export class PostCollapsible {
     });
   }
 
-  private updateCollapseClasses() {
-    this.collapseClasses = this.collapsed ? 'collapse' : 'collapse show';
+  private getCollapseClasses() {
+    return this.collapsed ? 'collapse' : 'collapse show';
   }
 
   render() {
