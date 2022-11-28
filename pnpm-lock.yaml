@@ -190,7 +190,7 @@ importers:
       karma-jasmine-html-reporter: 2.0.0
       ngx-highlightjs: 7.0.1
       ngx-toastr: 15.2.2
-      prettier: 2.7.1
+      prettier: 2.8.0
       protractor: 7.0.0
       raw-loader: 4.0.2
       rimraf: 3.0.2
@@ -254,7 +254,7 @@ importers:
       karma-coverage-istanbul-reporter: 3.0.3
       karma-jasmine: 5.1.0_karma@6.4.1
       karma-jasmine-html-reporter: 2.0.0_uk6l45dlsjldsnfgnal4othgyq
-      prettier: 2.7.1
+      prettier: 2.8.0
       protractor: 7.0.0
       raw-loader: 4.0.2_webpack@5.75.0
       rimraf: 3.0.2
@@ -336,7 +336,7 @@ importers:
       npm-run-all: 4.1.5
       postcss: 8.4.19
       postcss-scss: 4.0.5
-      prettier: 2.7.1
+      prettier: 2.8.0
       rimraf: 3.0.2
       rxjs: 7.5.7
       sass: 1.56.1
@@ -356,7 +356,7 @@ importers:
       '@popperjs/core': 2.11.6
       bootstrap: 5.1.3_@popperjs+core@2.11.6
       cheerio: 1.0.0-rc.12
-      prettier: 2.7.1
+      prettier: 2.8.0
       typescript: 4.8.4
     devDependencies:
       '@angular/compiler': 14.2.11_@angular+core@14.2.11
@@ -380,7 +380,7 @@ importers:
       stylelint: 14.15.0
       stylelint-config-prettier: 9.0.4_stylelint@14.15.0
       stylelint-config-sass-guidelines: 9.0.1_a37symlv4urgexnspmy4gyeh7i
-      stylelint-prettier: 2.0.0_44ee2bv67c3n5k5dtaao543d4a
+      stylelint-prettier: 2.0.0_gx7bxdqhns6mkagsrslabue4fy
       stylelint-scss: 4.3.0_stylelint@14.15.0
       zone.js: 0.12.0
     publishDirectory: ./dist
@@ -3468,7 +3468,7 @@ packages:
       fs-extra: 7.0.1
       lodash.startcase: 4.4.0
       outdent: 0.5.0
-      prettier: 2.7.1
+      prettier: 2.8.0
       resolve-from: 5.0.0
       semver: 5.7.1
     dev: true
@@ -3652,7 +3652,7 @@ packages:
       '@changesets/types': 5.2.0
       fs-extra: 7.0.1
       human-id: 1.0.2
-      prettier: 2.7.1
+      prettier: 2.8.0
     dev: true
 
   /@cnakazawa/watch/1.0.4:
@@ -18177,8 +18177,8 @@ packages:
     hasBin: true
     dev: true
 
-  /prettier/2.7.1:
-    resolution: {integrity: sha512-ujppO+MkdPqoVINuDFDRLClm7D78qbDt0/NR+wp5FqEZOoTNAjPHWj17QRhu7geIHJfcNhRk1XVQmF8Bp3ye+g==}
+  /prettier/2.8.0:
+    resolution: {integrity: sha512-9Lmg8hTFZKG0Asr/kW9Bp8tJjRVluO8EJQVfY2T7FMw9T5jy4I/Uvx0Rca/XWf50QQ1/SS48+6IJWnrb+2yemA==}
     engines: {node: '>=10.13.0'}
     hasBin: true
 
@@ -20318,14 +20318,14 @@ packages:
       stylelint: 14.15.0
     dev: true
 
-  /stylelint-prettier/2.0.0_44ee2bv67c3n5k5dtaao543d4a:
+  /stylelint-prettier/2.0.0_gx7bxdqhns6mkagsrslabue4fy:
     resolution: {integrity: sha512-jvT3G+9lopkeB0ARmDPszyfaOnvnIF+30QCjZxyt7E6fynI1T9mOKgYDNb9bXX17M7PXMZaX3j/26wqakjp1tw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       prettier: '>=2.0.0'
       stylelint: '>=14.0.0'
     dependencies:
-      prettier: 2.7.1
+      prettier: 2.8.0
       prettier-linter-helpers: 1.0.0
       stylelint: 14.15.0
     dev: true
