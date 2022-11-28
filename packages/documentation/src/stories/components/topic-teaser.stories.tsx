@@ -4,7 +4,7 @@ import '@swisspost/design-system-styles/basics.scss';
 import '@swisspost/design-system-styles/components/topic-teaser.scss';
 
 export default {
-  title: 'Components/Topic Teaser',
+  title: 'Components/Topic_Teaser',
   args: {
     title: 'Loremipsum',
     subtitle: 'Vero siteos et accusam iretea et justo',
@@ -78,7 +78,7 @@ const linkTexts = [
 ];
 
 const Template = args => {
-  const links: string[] = [];
+  const links: React.ReactElement[] = [];
 
   for (let x = 0; x < args.linkCount; x++) {
     links.push(<li key={ x } className="link-list-item">
@@ -86,7 +86,7 @@ const Template = args => {
     </li>);
   }
 
-  const content: string[] = [
+  const content: React.ReactElement[] = [
     <div key="image" className="topic-teaser-image-container">
       <img
         className="topic-teaser-image"

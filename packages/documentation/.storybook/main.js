@@ -1,24 +1,21 @@
 module.exports = {
   framework: '@storybook/react',
+  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.tsx'],
   addons: [
     '@storybook/addon-essentials',
+    '@pxtrn/storybook-addon-docs-stencil',
     {
       name: '@storybook/preset-scss',
       options: {
         sassLoaderOptions: {
-          implementation: require('sass')
-        }
-      }
+          implementation: require('sass'),
+        },
+      },
     },
-    '@pxtrn/storybook-addon-docs-stencil'
   ],
-  stories: ['../stories/*.stories.@(ts|tsx|mdx)', '../stories/!(examples)/**/*.stories.@(ts|tsx|mdx)'],
-  staticDirs: ['../static'],
-
+  staticDirs: ['../public'],
   managerWebpack: (config, options) => {
-    // workaround, to prevent storybook from crashing, because of a EBUSY error, which occures on a npm cache file on storybook startup and when saving new content
     options.cache.set = () => Promise.resolve();
-
     return config;
-  }
+  },
 };

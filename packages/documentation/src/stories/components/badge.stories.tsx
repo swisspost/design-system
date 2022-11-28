@@ -26,11 +26,11 @@ export default {
       control: {
         type: 'radio',
         labels: {
-          '': 'Default',
+          'd': 'Default',
           'badge-sm': 'Small'
         }
       },
-      options: ['', 'badge-sm']
+      options: ['default', 'badge-sm']
     },
     nested: {
       control: {
@@ -78,8 +78,8 @@ export default {
 
 const Template = (args, story) => {
   const [_, updateArgs] = useArgs();
-  let component: string = '';
-  const content: string[] = [];
+  let component: JSX.Element;
+  const content: React.ReactElement[] = [];
 
   if (args.nested) {
     content.push(<span key="1">{ args.label }</span>);
@@ -90,13 +90,13 @@ const Template = (args, story) => {
 
   if (args.checkable) {
     const id = `${story.id}-CheckableBadge`;
-  
+
     component = <div className="badge-check">
       <input id={ id } className="badge-check-input" type="checkbox" checked={ args.checked } onChange={ () => updateArgs({ checked: !args.checked }) }/>
       <label className={ `badge-check-label ${args.size}` } htmlFor={ id }>
         { content }
       </label>
-    </div>;
+    </div>
   } else if (args.dismissible) {
     if (args.dismissed) {
       component = <div></div>;
@@ -108,7 +108,7 @@ const Template = (args, story) => {
     }
   } else {
     component = <span className={ `badge ${args.size}` }>
-      { content }
+      { args.label }
     </span>;
   }
 
