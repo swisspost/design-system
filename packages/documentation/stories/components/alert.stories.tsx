@@ -44,7 +44,6 @@ export default {
           'alert-primary': 'Primary',
           'alert-success': 'Success',
           'alert-danger': 'Danger',
-          'alert-error': 'Error',
           'alert-warning': 'Warning',
           'alert-info': 'Info'
         }
@@ -53,7 +52,6 @@ export default {
         'alert-primary',
         'alert-success',
         'alert-danger',
-        'alert-error',
         'alert-warning',
         'alert-info'
       ],
