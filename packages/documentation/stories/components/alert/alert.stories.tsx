@@ -78,11 +78,11 @@ export default {
         type: 'select',
         labels: {
           '': 'Default',
-          '1001': 'Envelope',
-          '2023': 'Cog',
-          '2025': 'Send',
-          '2035': 'Home',
-          '2101': 'Bubble'
+          '1001': '1001 (Envelope)',
+          '2023': '2023 (Cog)',
+          '2025': '2025 (Send)',
+          '2035': '2035 (Home)',
+          '2101': '2101 (Bubble)'
         }
       },
       options: [
