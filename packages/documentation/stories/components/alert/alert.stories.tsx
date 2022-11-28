@@ -53,7 +53,6 @@ export default {
         type: 'select',
         labels: {
           'alert-primary': 'Primary',
-          'alert-notification': 'Notification',
           'alert-success': 'Success',
           'alert-danger': 'Danger',
           'alert-error': 'Error',
@@ -63,7 +62,6 @@ export default {
       },
       options: [
         'alert-primary',
-        'alert-notification',
         'alert-success',
         'alert-danger',
         'alert-error',
