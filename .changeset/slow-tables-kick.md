@@ -2,4 +2,4 @@
 '@swisspost/design-system-demo': patch
 ---
 
-Adds import instructions to intranet-header documentation
+Added import instructions to the intranet-header documentation
