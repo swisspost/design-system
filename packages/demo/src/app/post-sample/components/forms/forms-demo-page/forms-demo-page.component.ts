@@ -3,7 +3,6 @@ import { Component } from '@angular/core';
 @Component({
   selector: 'app-forms-demo-page',
   templateUrl: './forms-demo-page.component.html',
-  styleUrls: ['./forms-demo-page.component.scss'],
 })
 export class FormsDemoPageComponent {
   container = '<div class="container">...</div>';

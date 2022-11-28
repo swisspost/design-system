@@ -5,5 +5,5 @@ body {
   @include forms.form-validation-state("error", red, "");
   @include forms.placeholder() {
     color: red;
-  };
+  }
 }

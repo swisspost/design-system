@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-const  codeTemplate = require('!!raw-loader!../paragraph-demo/paragraph-demo.component.html').default
+import { Component } from '@angular/core';
+const codeTemplate =
+  require('!!raw-loader!../paragraph-demo/paragraph-demo.component.html').default;
 @Component({
   selector: 'app-paragraph-demo-page',
-  templateUrl: './paragraph-demo-page.component.html'
+  templateUrl: './paragraph-demo-page.component.html',
 })
-export class ParagraphDemoPageComponent  {
-
+export class ParagraphDemoPageComponent {
   codeTemplate = codeTemplate;
-
 }
