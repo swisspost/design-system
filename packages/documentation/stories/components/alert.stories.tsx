@@ -22,7 +22,7 @@ export default {
     noIcon: false,
     dismissible: false,
     fixed: false,
-    buttons: false,
+    action: false,
     show: false
   },
   argTypes: {
@@ -97,10 +97,10 @@ export default {
       control: { type: 'boolean' },
       table: { category: 'Fixed' }
     },
-    buttons: {
-      name: 'Buttons',
+    action: {
+      name: 'Action',
       control: { type: 'boolean' },
-      table: { category: 'Buttons' }
+      table: { category: 'Action' }
     },
     show: {
       name: 'Show',
@@ -118,7 +118,7 @@ const Template = args => {
   </div>;
 
   function getAlert() {
-    const isOnlyDismissibleAndDismissed = !args.fixed && !args.buttons && args.dismissible && args.show;
+    const isOnlyDismissibleAndDismissed = !args.fixed && !args.action && args.dismissible && args.show;
     const isFixedAndVisible = args.fixed && args.show;
     const isNotDismissibleNorFixed = !args.dismissible && !args.fixed
 
@@ -129,13 +129,13 @@ const Template = args => {
       args.noIcon ? 'no-icon' : '',
       args.dismissible ? 'alert-dismissible' : '',
       args.fixed ? 'alert-fixed-bottom' : '',
-      args.buttons ? 'alert-action' : ''
+      args.action ? 'alert-action' : ''
     ].filter(c => c).join(' ');
 
     return isOnlyDismissibleAndDismissed || isFixedAndVisible || isNotDismissibleNorFixed ? <div className={ classes } role="alert">
       { getDismissButton() }
       { getContent() }
-      { getButtons() }
+      { getAction() }
     </div> : getResetButton();
   }
 
@@ -145,7 +145,7 @@ const Template = args => {
       parse(args.content + ' ')
     ];
 
-    return args.buttons ? <div class="alert-content">{ content }</div> : content;
+    return args.action ? <div class="alert-content">{ content }</div> : content;
   }
 
   function getDismissButton () {
@@ -156,8 +156,8 @@ const Template = args => {
     return args.fixed ? <button className="btn btn-secondary" onClick={ toggle }>Toggle alert</button> : null;
   }
 
-  function getButtons () {
-    return args.buttons ? <div className="alert-buttons">
+  function getAction () {
+    return args.action ? <div className="alert-buttons">
       <button class="btn btn-primary btn-animated" onClick={ toggle }><span>Akcepti</span></button>
       <button class="btn btn-secondary btn-animated" onClick={ toggle }><span>Aborti</span></button>
     </div> : null;
@@ -182,7 +182,7 @@ Variant.parameters = {
       'No Icon',
       'Dismissible',
       'Fixed',
-      'Buttons',
+      'Action',
       'Show'
     ]
   }
@@ -196,7 +196,7 @@ CustomIcon.parameters = {
       'No Icon',
       'Dismissible',
       'Fixed',
-      'Buttons',
+      'Action',
       'Show'
     ]
   }
@@ -214,7 +214,7 @@ WithoutIcon.parameters = {
       'Icon',
       'Dismissible',
       'Fixed',
-      'Buttons',
+      'Action',
       'Show'
     ]
   }
@@ -233,7 +233,7 @@ Content.parameters = {
       'No Icon',
       'Dismissible',
       'Fixed',
-      'Buttons',
+      'Action',
       'Show'
     ]
   }
@@ -258,7 +258,7 @@ Dismissible.parameters = {
       'Icon',
       'No Icon',
       'Fixed',
-      'Buttons',
+      'Action',
       'Show'
     ]
   }
@@ -276,7 +276,7 @@ Fixed.parameters = {
       'Icon',
       'No Icon',
       'Dismissible',
-      'Buttons',
+      'Action',
       'Show'
     ]
   }
@@ -286,8 +286,8 @@ Fixed.args = {
   fixed: true
 };
 
-export const Buttons = Template.bind({});
-Buttons.parameters = {
+export const Action = Template.bind({});
+Action.parameters = {
   controls: {
     exclude: [
       'Variant',
@@ -299,8 +299,8 @@ Buttons.parameters = {
     ]
   }
 };
-Buttons.args = {
+Action.args = {
   variant: 'alert-info',
   fixed: true,
-  buttons: true
+  action: true
 };
