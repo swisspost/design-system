@@ -141,8 +141,8 @@ const Template = args => {
 
   function getContent () {
     const content = [
-      <h4 className="alert-heading">{ args.title }</h4>,
-      <p>{ parse(args.content) }</p>
+      <h4 className="alert-heading" key="title">{ args.title }</h4>,
+      parse(args.content + ' ')
     ];
 
     return args.buttons ? <div class="alert-content">{ content }</div> : content;
