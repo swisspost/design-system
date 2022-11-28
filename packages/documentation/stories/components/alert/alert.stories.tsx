@@ -167,6 +167,7 @@ const Template = args => {
     args.variant,
     `${args.icon ? `pi-${args.icon}${args.iconVariant ? `--${args.iconVariant}` : ''}` : ''}`,
     args.noIcon ? 'no-icon' : '',
+    args.dismissible ? 'alert-dismissible' : '',
     args.fixed ? 'alert-fixed-bottom' : ''
   ].filter(c => c).join(' ');
 
