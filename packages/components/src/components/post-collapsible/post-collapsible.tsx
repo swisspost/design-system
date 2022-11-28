@@ -1,4 +1,4 @@
-import { Component, Element, h, Method, Prop, State } from '@stencil/core';
+import { Component, Element, h, Method, Prop, State, Watch } from '@stencil/core';
 import { getElementHeight, onTransitionEnd } from '../../utils';
 
 let nextId = 0;
@@ -29,15 +29,23 @@ export class PostCollapsible {
   collapsibleId: string;
   collapsibleElement: HTMLElement;
 
-  componentWillLoad() {
-    this.hasHeader = this.host.querySelectorAll('[slot="header"]').length > 0;
-    if (!this.hasHeader) {
-      console.warn('Be sure to bind the post-collapsible to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility');
+  @Watch('headingLevel')
+  validateHeadingLevel(newValue = this.headingLevel) {
+    const isDefined = typeof newValue !== 'undefined';
+    const isCorrectLevel = !isNaN(newValue) && newValue >= 1 && newValue <= 6;
+    if (isDefined && !isCorrectLevel) {
+      throw new Error('The post-collapsible element requires a heading level between 1 and 6.');
     }
 
     this.headingTag = `h${this.headingLevel}`;
-    if (!['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(this.headingTag)) {
-      console.error('The post-collapsible element requires a heading level between 1 and 6.');
+  }
+
+  componentWillLoad() {
+    this.validateHeadingLevel();
+
+    this.hasHeader = this.host.querySelectorAll('[slot="header"]').length > 0;
+    if (!this.hasHeader) {
+      console.warn('Be sure to bind the post-collapsible to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility');
     }
 
     this.collapsibleId = this.host.id || `post-collapsible-${nextId++}`;
