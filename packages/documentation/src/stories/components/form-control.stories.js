@@ -1,4 +1,4 @@
-TODO: refactor with tsx stories
+// TODO: refactor with tsx stories
 
 import './forms.scss';
 import './floating-label.scss';
@@ -39,7 +39,8 @@ export default {
     labelStyle: {
       name: 'style',
       type: { name: 'string' },
-      description: 'Specifies the style in which to display the label<br><em>With a floating label, no placeholders are shown and the input is bound to be large</em>',
+      description:
+        'Specifies the style in which to display the label<br><em>With a floating label, no placeholders are shown and the input is bound to be large</em>',
       table: {
         category: 'Label',
         defaultValue: { summary: 'Floating' },
@@ -67,7 +68,7 @@ export default {
       description: 'Specifies the type of &lt;input&gt; element to display',
       table: { category: 'Input' },
       control: { type: 'select' },
-      options: [ 'text', 'email', 'password', 'number', 'search', 'tel', 'url' ],
+      options: ['text', 'email', 'password', 'number', 'search', 'tel', 'url'],
       defaultValue: 'text',
     },
     size: {
@@ -88,7 +89,8 @@ export default {
     },
     placeholder: {
       type: { name: 'string' },
-      description: 'Specifies a short hint that describes the expected value of the &lt;input&gt; element',
+      description:
+        'Specifies a short hint that describes the expected value of the &lt;input&gt; element',
       table: { category: 'Input' },
       if: {
         arg: 'labelStyle',
@@ -106,7 +108,8 @@ export default {
     },
     hint: {
       type: { name: 'string' },
-      description: 'Specifies a in-context description that clarifies the expected value of the &lt;input&gt; element',
+      description:
+        'Specifies a in-context description that clarifies the expected value of the &lt;input&gt; element',
       table: { category: 'Hint' },
       control: { type: 'text' },
       defaultValue: '',
@@ -114,7 +117,8 @@ export default {
     hintId: {
       name: 'id',
       type: { name: 'string', required: true },
-      description: 'Specifies a unique id for the hint<br><em>This id is used to explicitly associate the hint with the form control it relates to using the aria-describedby attribute</em>',
+      description:
+        'Specifies a unique id for the hint<br><em>This id is used to explicitly associate the hint with the form control it relates to using the aria-describedby attribute</em>',
       if: {
         arg: 'hint',
         neq: '',
@@ -138,7 +142,8 @@ export default {
     validationMessage: {
       name: 'validation message',
       type: { name: 'string' },
-      description: 'Specifies valuable and actionable feedback regarding the validation state of the &lt;input&gt; element',
+      description:
+        'Specifies valuable and actionable feedback regarding the validation state of the &lt;input&gt; element',
       table: { category: 'Validation' },
       if: {
         arg: 'validation',
@@ -150,7 +155,7 @@ export default {
   },
 };
 
-const InputTemplate = (args) => {
+const InputTemplate = args => {
   let extraAttributes = '';
 
   if (args.labelStyle === LabelStyle.Hidden) {
@@ -173,7 +178,7 @@ const InputTemplate = (args) => {
   return `<input type="${args.type}" class="form-control${args.size}${args.validation}" id="${args.id}" placeholder="${args.placeholder}"${extraAttributes}>`;
 };
 
-const LabelTemplate = (args) => {
+const LabelTemplate = args => {
   let extraAttributes = '';
 
   if (args.labelStyle !== LabelStyle.Floating) {
@@ -183,7 +188,7 @@ const LabelTemplate = (args) => {
   return `<label for="${args.id}"${extraAttributes}>${args.label}</label>`;
 };
 
-const DefaultTemplate = (args) => {
+const DefaultTemplate = args => {
   let formControlCompound;
   let indent = '';
 
@@ -200,7 +205,8 @@ const DefaultTemplate = (args) => {
   }
 
   if (args.validationMessage) {
-    const feedbackClass = args.validation === ValidationClass.Valid ? 'valid-feedback' : 'invalid-feedback';
+    const feedbackClass =
+      args.validation === ValidationClass.Valid ? 'valid-feedback' : 'invalid-feedback';
     formControlCompound += `\n${indent}<div class="${feedbackClass}">${args.validationMessage}</div>`;
   }
 

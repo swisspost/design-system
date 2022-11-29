@@ -1,5 +1,5 @@
 import React from 'react';
-import { Story, Args } from "@storybook/react";
+import { Meta, Story, Args } from "@storybook/react";
 import parse from 'html-react-parser';
 import { useArgs } from '@storybook/client-api';
 import docsPage from './alert.docs.mdx';
@@ -45,9 +45,6 @@ export default {
     },
     variant: {
       name: 'Variant',
-      type: {
-        required: true
-      },
       description: 'Defines a style variant.',
       control: {
         type: 'select',
@@ -172,14 +169,14 @@ export default {
       table: { disable: true }
     }
   }
-};
+} as Meta;
 
-function onShowToggle (e: Event, args: Args, updateArgs: Function) {
+function onShowToggle (e: React.MouseEvent, args: Args, updateArgs: Function) {
   e.preventDefault();
   updateArgs({ show: !args.show });
 }
 
-const Template = args => {
+const Template = (args: Args) => {
   const [_, updateArgs] = useArgs();
 
   const classes = [
@@ -193,14 +190,15 @@ const Template = args => {
     args.show ? '' : 'd-none'
   ].filter(c => c).join(' ');
 
-  const content = [
-    <h4 className="alert-heading" key="title">{ args.title }</h4>,
-    parse(args.content + null).filter(c => c)
-  ];
+  // every time you want to parse one or more elements to a JSX.Element[], concat all the elements to a string and parse them all
+  // even if it would be possible to write some of them directly
+  // the reason for this is, that react elements in a list need a "key" property, single elements don't
+  // and the parser only creates this property, when it receives multiple elements to parse
+  const content: JSX.Element[] | JSX.Element | string = parse(`<h4 class="alert-heading" key="title">${args.title}</h4>${args.content}`);
 
   return <div className={ classes } role="alert">
     {/* Dismissible Button */}
-    { (args.dismissible || args.fixed) && !args.action ? <button className="btn-close" data-dismiss="alert" aria-label="Close" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }></button> : null }
+    { (args.dismissible || args.fixed) && !args.action ? <button className="btn-close" data-dismiss="alert" aria-label="Close" onClick={ (e: React.MouseEvent) => onShowToggle(e, args, updateArgs) }></button> : null }
 
     {/* Alert Content */}
     { args.action ? <div className="alert-content">{ content }</div> : content }
@@ -209,15 +207,15 @@ const Template = args => {
     {
       args.action ?
       <div className="alert-buttons">
-        <button className="btn btn-primary btn-animated" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }><span>Akcepti</span></button>
-        <button className="btn btn-secondary btn-animated" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }><span>Aborti</span></button>
+        <button className="btn btn-primary btn-animated" onClick={ (e: React.MouseEvent) => onShowToggle(e, args, updateArgs) }><span>Akcepti</span></button>
+        <button className="btn btn-secondary btn-animated" onClick={ (e: React.MouseEvent) => onShowToggle(e, args, updateArgs) }><span>Aborti</span></button>
       </div>
       : null
     }
   </div>;
 };
 
-export const Default = Template.bind({});
+export const Default: Story = Template.bind({});
 Default.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
@@ -225,14 +223,14 @@ Default.decorators = [
     const showResetButton = !showToggleButton && args.dismissible;
 
     return <div>
-      { showToggleButton ? <button className="btn btn-secondary" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }>Toggle alert</button> : null }
-      { showResetButton ? args.show ? null : <a href="#" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }>Show alert</a> : null }
+      { showToggleButton ? <button className="btn btn-secondary" onClick={ (e: React.MouseEvent) => onShowToggle(e, args, updateArgs) }>Toggle alert</button> : null }
+      { showResetButton ? args.show ? null : <a href="#" onClick={ (e: React.MouseEvent) => onShowToggle(e, args, updateArgs) }>Show alert</a> : null }
       <Story/>
     </div>
   }
 ];
 
-export const Variant = Template.bind({});
+export const Variant: Story = Template.bind({});
 Variant.parameters = {
   controls: {
     exclude: [
@@ -247,7 +245,7 @@ Variant.parameters = {
   }
 };
 
-export const CustomIcon = Template.bind({});
+export const CustomIcon: Story = Template.bind({});
 CustomIcon.parameters = {
   controls: {
     exclude: [
@@ -265,7 +263,7 @@ CustomIcon.args = {
   icon: '2023'
 };
 
-export const WithoutIcon = Template.bind({});
+export const WithoutIcon: Story = Template.bind({});
 WithoutIcon.parameters = {
   controls: {
     exclude: [
@@ -283,7 +281,7 @@ WithoutIcon.args = {
   noIcon: true
 };
 
-export const Content = Template.bind({});
+export const Content: Story = Template.bind({});
 Content.parameters = {
   controls: {
     exclude: [
@@ -309,13 +307,13 @@ Content.args = {
   variant: 'alert-success'
 };
 
-export const Dismissible = Template.bind({});
+export const Dismissible: Story = Template.bind({});
 Dismissible.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
 
     return <div>
-      { args.show ? null : <a href="#" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }>Show alert</a> }
+      { args.show ? null : <a href="#" onClick={ (e: React.MouseEvent) => onShowToggle(e, args, updateArgs) }>Show alert</a> }
       <Story/>
     </div>
   }
@@ -336,13 +334,13 @@ Dismissible.args = {
   dismissible: true
 };
 
-export const Fixed = Template.bind({});
+export const Fixed: Story = Template.bind({});
 Fixed.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
 
     return <div>
-      <button className="btn btn-secondary" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }>Toggle alert</button>
+      <button className="btn btn-secondary" onClick={ (e: React.MouseEvent) => onShowToggle(e, args, updateArgs) }>Toggle alert</button>
       <Story/>
     </div>
   }
@@ -364,13 +362,13 @@ Fixed.args = {
   show: false
 };
 
-export const ActionButtons = Template.bind({});
+export const ActionButtons: Story = Template.bind({});
 ActionButtons.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
 
     return <div>
-      <button className="btn btn-secondary" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }>Toggle alert</button>
+      <button className="btn btn-secondary" onClick={ (e: React.MouseEvent) => onShowToggle(e, args, updateArgs) }>Toggle alert</button>
       <Story/>
     </div>
   }

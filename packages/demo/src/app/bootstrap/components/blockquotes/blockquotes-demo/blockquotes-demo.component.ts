@@ -1,12 +1,7 @@
-
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-blockquotes-demo',
-  templateUrl: './blockquotes-demo.component.html'
+  templateUrl: './blockquotes-demo.component.html',
 })
-export class BlockquotesDemoComponent{
-
-
-
-}
+export class BlockquotesDemoComponent {}

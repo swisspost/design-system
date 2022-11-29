@@ -34,15 +34,15 @@
   "dependencies": {
     "@angular-devkit/core": "14.2.10",
     "@angular-devkit/schematics": "14.2.10",
-    "@angular/core": "14.2.11",
+    "@angular/core": "14.2.12",
     "@popperjs/core": "2.11.6",
     "bootstrap": "5.1.3",
     "cheerio": "1.0.0-rc.12",
-    "prettier": "2.7.1",
+    "prettier": "2.8.0",
     "typescript": "4.8.4"
   },
   "devDependencies": {
-    "@angular/compiler": "14.2.11",
+    "@angular/compiler": "14.2.12",
     "@types/node": "18.11.9",
     "autoprefixer": "10.4.13",
     "copyfiles": "2.4.1",

@@ -4,15 +4,11 @@
 body {
   @include mixins.hover-animation(10px, 500px, 500px);
   @include mixins.hover-animation-svg-icon(red, 2021);
-}
-body {
   @include mixins.form-validation-state('error', red, '');
   @include mixins.placeholder() {
     color: red;
   }
-}
 
-body {
   @include mixins.bezel-small();
   @include mixins.bezel-small-regular();
   @include mixins.bezel-regular();
@@ -20,9 +16,7 @@ body {
   @include mixins.bezel-medium();
   @include mixins.bezel-large();
   @include mixins.bezel-big();
-}
 
-body {
   @include mixins.font-curve('tiny');
   @include mixins.font-smoothing();
   @include mixins.font-smoothing-reset();
