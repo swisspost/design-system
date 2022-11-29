@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 const codeTemplate = require('!!raw-loader!../dropdown-demo/dropdown-demo.component.html').default;
 
 @Component({
   selector: 'app-ngb-dropdown-demo-page',
-  templateUrl: './dropdown-demo-page.component.html'
+  templateUrl: './dropdown-demo-page.component.html',
 })
-export class NgbDropdownDemoPageComponent{
-
-codeTemplate = codeTemplate;
+export class NgbDropdownDemoPageComponent {
+  codeTemplate = codeTemplate;
 }

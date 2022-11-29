@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-form-range-demo',
-  templateUrl: './form-range-demo.component.html'
+  templateUrl: './form-range-demo.component.html',
 })
-export class FormRangeDemoComponent {
-
-}
+export class FormRangeDemoComponent {}

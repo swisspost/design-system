@@ -25,9 +25,7 @@
   .nav-down {
     width: 100%;
   }
-}
 
-.navbar {
   .container,
   .container-fluid,
   .container-xs {
@@ -65,9 +63,7 @@
     flex: 0 0 auto;
     flex-direction: column;
   }
-}
 
-.layout-container {
   @include media-breakpoint-down(rg) {
     &.header-big {
       .header-margin {

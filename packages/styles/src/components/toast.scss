@@ -112,6 +112,18 @@
 
     padding: alert.$alert-toast-padding-y alert.$alert-toast-padding-x;
   }
+
+  .toast-close-button,
+  .btn-close {
+    ~ .toast-message,
+    ~ .toast-title {
+      padding-right: calc(#{alert.$alert-toast-padding-x} + #{alert.$alert-close-icon-size});
+    }
+
+    + .toast-message {
+      font-weight: bold;
+    }
+  }
 }
 
 .toast-title {
@@ -135,19 +147,6 @@
 }
 /* stylelint-enable */
 
-.toast {
-  .toast-close-button,
-  .btn-close {
-    ~ .toast-message,
-    ~ .toast-title {
-      padding-right: calc(#{alert.$alert-toast-padding-x} + #{alert.$alert-close-icon-size});
-    }
-
-    + .toast-message {
-      font-weight: bold;
-    }
-  }
-}
 
 // Variants
 

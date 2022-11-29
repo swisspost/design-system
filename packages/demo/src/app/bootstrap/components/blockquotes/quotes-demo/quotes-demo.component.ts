@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-quotes-demo',
-  templateUrl: './quotes-demo.component.html'
+  templateUrl: './quotes-demo.component.html',
 })
-export class QuotesDemoComponent {
-
-}
+export class QuotesDemoComponent {}

@@ -1,9 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-form-radio-demo',
-  templateUrl: './form-radio-demo.component.html'
+  templateUrl: './form-radio-demo.component.html',
 })
-export class FormRadioDemoComponent{
-
-}
+export class FormRadioDemoComponent {}
