@@ -1,4 +1,5 @@
 import React from 'react';
+import { Story, Args } from "@storybook/react";
 import parse from 'html-react-parser';
 import { useArgs } from '@storybook/client-api';
 import docsPage from './alert.docs.mdx';
@@ -12,18 +13,24 @@ export default {
   parameters: {
     docs: {
       page: docsPage
+    },
+    controls: {
+      exclude: [
+        'Title',
+        'Content'
+      ]
     }
   },
   args: {
     title: 'Titulum',
     content: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
     variant: 'alert-primary',
-    icon: '',
+    icon: 'null',
     noIcon: false,
     dismissible: false,
     fixed: false,
     action: false,
-    show: false
+    show: true
   },
   argTypes: {
     title: {
@@ -38,6 +45,10 @@ export default {
     },
     variant: {
       name: 'Variant',
+      type: {
+        required: true
+      },
+      description: 'Defines a style variant.',
       control: {
         type: 'select',
         labels: {
@@ -55,123 +66,171 @@ export default {
         'alert-warning',
         'alert-info'
       ],
-      table: { category: 'Variant' }
+      table: {
+        category: 'Variant',
+        type: {
+          summary: 'cssClass'
+        },
+        defaultValue: {
+          summary: 'alert-{variant}'
+        }
+      }
     },
     icon: {
       name: 'Icon',
+      description: 'Defines a custom icon.',
       control: {
         type: 'select',
         labels: {
-          '': 'Default',
-          '1001': '1001 (Envelope)',
-          '2023': '2023 (Cog)',
-          '2025': '2025 (Send)',
-          '2035': '2035 (Home)',
-          '2101': '2101 (Bubble)'
+          'null': 'Default',
+          '1001': 'Envelope (1001)',
+          '2023': 'Cog (2023)',
+          '2025': 'Send (2025)',
+          '2035': 'Home (2035)',
+          '2101': 'Bubble (2101)'
         }
       },
       options: [
-        '',
+        'null',
         '1001',
         '2023',
         '2025',
         '2035',
         '2101'
       ],
-      table: { category: 'Icon' }
+      table: {
+        category: 'Icon',
+        type: {
+          summary: 'cssClass'
+        },
+        defaultValue: {
+          summary: 'pi-{icon}'
+        }
+      }
     },
     noIcon: {
       name: 'No Icon',
+      description: 'Removes the predefined icon completley.',
       control: {
         type: 'boolean'
       },
-      table: { category: 'Icon' }
+      table: {
+        category: 'Icon',
+        type: {
+          summary: 'cssClass'
+        },
+        defaultValue: {
+          summary: 'no-icon'
+        }
+      }
     },
     dismissible: {
       name: 'Dismissible',
+      description: 'Adds the dismissible styles.<br/><div className="text-danger">Do not forget to add the structural adjustments!</div>',
       control: { type: 'boolean' },
-      table: { category: 'Dismissible' }
+      table: {
+        category: 'Dismissible',
+        type: {
+          summary: 'cssClass'
+        },
+        defaultValue: {
+          summary: 'alert-dismissible'
+        }
+      }
     },
     fixed: {
       name: 'Fixed',
+      description: 'Adds the fixed styles.<br/><div className="text-danger">Do not forget to add the structural adjustments!</div>',
       control: { type: 'boolean' },
-      table: { category: 'Fixed' }
+      table: {
+        category: 'Fixed',
+        type: {
+          summary: 'cssClass'
+        },
+        defaultValue: {
+          summary: 'alert-fixed-bottom'
+        }
+      }
     },
     action: {
-      name: 'Action',
+      name: 'Action Buttons',
+      description: 'Adds the action button styles.<br/><div className="text-danger">Do not forget to add the structural adjustments!</div>',
       control: { type: 'boolean' },
-      table: { category: 'Action' }
+      table: {
+        category: 'Action',
+        type: {
+          summary: 'cssClass'
+        },
+        defaultValue: {
+          summary: 'alert-action'
+        }
+      }
     },
     show: {
       name: 'Show',
-      control: { type: 'boolean' }
+      control: { type: 'boolean' },
+      table: { disable: true }
     }
   }
 };
 
+function onShowToggle (e: Event, args: Args, updateArgs: Function) {
+  e.preventDefault();
+  updateArgs({ show: !args.show });
+}
+
 const Template = args => {
   const [_, updateArgs] = useArgs();
 
-  return <div>
-    { getToggleButton() }
-    { getAlert() }
+  const classes = [
+    'alert',
+    args.variant,
+    `${args.icon !== 'null' ? `pi-${args.icon}` : ''}`,
+    args.noIcon ? 'no-icon' : '',
+    args.dismissible ? 'alert-dismissible' : '',
+    args.fixed ? 'alert-fixed-bottom' : '',
+    args.action ? 'alert-action' : '',
+    args.show ? '' : 'd-none'
+  ].filter(c => c).join(' ');
+
+  const content = [
+    <h4 className="alert-heading" key="title">{ args.title }</h4>,
+    parse(args.content + null).filter(c => c)
+  ];
+
+  return <div className={ classes } role="alert">
+    {/* Dismissible Button */}
+    { (args.dismissible || args.fixed) && !args.action ? <button className="btn-close" data-dismiss="alert" aria-label="Close" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }></button> : null }
+
+    {/* Alert Content */}
+    { args.action ? <div className="alert-content">{ content }</div> : content }
+
+    {/* Alert Action Buttons */}
+    {
+      args.action ?
+      <div className="alert-buttons">
+        <button className="btn btn-primary btn-animated" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }><span>Akcepti</span></button>
+        <button className="btn btn-secondary btn-animated" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }><span>Aborti</span></button>
+      </div>
+      : null
+    }
   </div>;
-
-  function getAlert() {
-    const isOnlyDismissibleAndDismissed = !args.fixed && !args.action && args.dismissible && args.show;
-    const isFixedAndVisible = args.fixed && args.show;
-    const isNotDismissibleNorFixed = !args.dismissible && !args.fixed
-
-    const classes = [
-      'alert',
-      args.variant,
-      `${args.icon ? `pi-${args.icon}` : ''}`,
-      args.noIcon ? 'no-icon' : '',
-      args.dismissible ? 'alert-dismissible' : '',
-      args.fixed ? 'alert-fixed-bottom' : '',
-      args.action ? 'alert-action' : ''
-    ].filter(c => c).join(' ');
-
-    return isOnlyDismissibleAndDismissed || isFixedAndVisible || isNotDismissibleNorFixed ? <div className={ classes } role="alert">
-      { getDismissButton() }
-      { getContent() }
-      { getAction() }
-    </div> : getResetButton();
-  }
-
-  function getContent () {
-    const content = [
-      <h4 className="alert-heading" key="title">{ args.title }</h4>,
-      parse(args.content + ' ')
-    ];
-
-    return args.action ? <div class="alert-content">{ content }</div> : content;
-  }
-
-  function getDismissButton () {
-    return args.dismissible ? <button className="btn-close" data-dismiss="alert" aria-label="Close" onClick={ toggle }></button> : null;
-  }
-
-  function getToggleButton () {
-    return args.fixed ? <button className="btn btn-secondary" onClick={ toggle }>Toggle alert</button> : null;
-  }
-
-  function getAction () {
-    return args.action ? <div className="alert-buttons">
-      <button class="btn btn-primary btn-animated" onClick={ toggle }><span>Akcepti</span></button>
-      <button class="btn btn-secondary btn-animated" onClick={ toggle }><span>Aborti</span></button>
-    </div> : null;
-  }
-
-  function getResetButton () {
-    return args.dismissible && !args.fixed ? <a href="#" onClick={ toggle }>reset</a> : null;
-  }
-
-  function toggle (e) {
-    e.preventDefault();
-    updateArgs({ show: !args.show });
-  }
 };
+
+export const Default = Template.bind({});
+Default.decorators = [
+  (Story: Story, { args }) => {
+    const [_, updateArgs] = useArgs();
+    const showToggleButton = args.fixed || args.action;
+    const showResetButton = !showToggleButton && args.dismissible;
+
+    return <div>
+      { showToggleButton ? <button className="btn btn-secondary" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }>Toggle alert</button> : null }
+      { showResetButton ? args.show ? null : <a href="#" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }>Show alert</a> : null }
+      <Story/>
+    </div>
+  }
+];
 
 export const Variant = Template.bind({});
 Variant.parameters = {
@@ -251,6 +310,16 @@ Content.args = {
 };
 
 export const Dismissible = Template.bind({});
+Dismissible.decorators = [
+  (Story: Story, { args }) => {
+    const [_, updateArgs] = useArgs();
+
+    return <div>
+      { args.show ? null : <a href="#" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }>Show alert</a> }
+      <Story/>
+    </div>
+  }
+];
 Dismissible.parameters = {
   controls: {
     exclude: [
@@ -264,11 +333,20 @@ Dismissible.parameters = {
   }
 };
 Dismissible.args = {
-  dismissible: true,
-  show: true
+  dismissible: true
 };
 
 export const Fixed = Template.bind({});
+Fixed.decorators = [
+  (Story: Story, { args }) => {
+    const [_, updateArgs] = useArgs();
+
+    return <div>
+      <button className="btn btn-secondary" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }>Toggle alert</button>
+      <Story/>
+    </div>
+  }
+];
 Fixed.parameters = {
   controls: {
     exclude: [
@@ -282,12 +360,22 @@ Fixed.parameters = {
   }
 };
 Fixed.args = {
-  dismissible: true,
-  fixed: true
+  fixed: true,
+  show: false
 };
 
-export const Action = Template.bind({});
-Action.parameters = {
+export const ActionButtons = Template.bind({});
+ActionButtons.decorators = [
+  (Story: Story, { args }) => {
+    const [_, updateArgs] = useArgs();
+
+    return <div>
+      <button className="btn btn-secondary" onClick={ (e: Event) => onShowToggle(e, args, updateArgs) }>Toggle alert</button>
+      <Story/>
+    </div>
+  }
+];
+ActionButtons.parameters = {
   controls: {
     exclude: [
       'Variant',
@@ -299,8 +387,8 @@ Action.parameters = {
     ]
   }
 };
-Action.args = {
+ActionButtons.args = {
   variant: 'alert-info',
-  fixed: true,
-  action: true
+  action: true,
+  show: false
 };
