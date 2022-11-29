@@ -6,8 +6,7 @@ export default {
   args: {
     text: 'Heading',
     subtext: 'Subheading',
-    level: 1,
-    multiline: false
+    level: 1
   },
   argTypes: {
     text: {
@@ -19,9 +18,6 @@ export default {
     level: {
       control: { type: 'select' },
       options: [1, 2, 3, 4, 5, 6],
-    },
-    multiline: {
-      control: { type: 'boolean' }
     }
   }
 } as Meta;
