@@ -182,7 +182,7 @@ const Template = (args: Args) => {
   const classes = [
     'alert',
     args.variant,
-    `${args.icon !== 'null' ? `pi-${args.icon}` : ''}`,
+    args.icon !== 'null' ? `pi-${args.icon}` : '',
     args.noIcon ? 'no-icon' : '',
     args.dismissible ? 'alert-dismissible' : '',
     args.fixed ? 'alert-fixed-bottom' : '',
@@ -220,11 +220,11 @@ Default.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
     const showToggleButton = args.fixed || args.action;
-    const showResetButton = !showToggleButton && args.dismissible;
+    const showResetButton = !showToggleButton && args.dismissible && !args.show;
 
     return <div>
       { showToggleButton ? <button className="btn btn-secondary" onClick={ (e: React.MouseEvent) => onShowToggle(e, args, updateArgs) }>Toggle alert</button> : null }
-      { showResetButton ? args.show ? null : <a href="#" onClick={ (e: React.MouseEvent) => onShowToggle(e, args, updateArgs) }>Show alert</a> : null }
+      { showResetButton ? <a href="#" onClick={ (e: React.MouseEvent) => onShowToggle(e, args, updateArgs) }>Show alert</a> : null }
       <Story/>
     </div>
   }
