@@ -25,4 +25,9 @@ export const parameters = {
       date: /Date$/,
     },
   },
+  darkMode: {
+    darkClass: 'bg-primary',
+    lightClass: 'bg-white',
+    stylePreview: true,
+  },
 };

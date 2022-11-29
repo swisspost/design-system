@@ -4,6 +4,7 @@ module.exports = {
   addons: [
     '@storybook/addon-essentials',
     '@pxtrn/storybook-addon-docs-stencil',
+    'storybook-dark-mode',
     {
       name: '@storybook/preset-scss',
       options: {
