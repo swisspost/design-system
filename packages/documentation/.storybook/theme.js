@@ -8,7 +8,7 @@ export default create({
 
   // UI
   appBg: '#faf9f8',
-  appContentBg: '#faf9f8',
+  appContentBg: 'rgba(0,0,0,0)',
   appBorderColor: '#999',
   appBorderRadius: 3,
 
@@ -17,8 +17,8 @@ export default create({
   fontCode: 'monospace',
 
   // Text colors
-  textColor: '#000',
-  textInverseColor: '#fff',
+  /* textColor: 'var(--post-contrast-color)',
+  textInverseColor: 'var(--post-contrast-color)', */
 
   // Toolbar default and active colors
   barTextColor: '#999',
@@ -34,5 +34,5 @@ export default create({
   brandTitle: 'Swiss Post Design System',
   brandUrl: 'https://design-system.post.ch',
   brandImage: '/images/logo-swisspost.svg',
-  brandTarget: '_self'
+  brandTarget: '_self',
 });
