@@ -1,30 +1,5 @@
-import React from 'react';
-
+import { Meta, Story } from '@storybook/react';
 import '@swisspost/design-system-styles/basics.scss';
-
-interface IHeadingArgs {
-  text: string;
-  subtext: string;
-  level: number;
-  multiline: boolean;
-}
-
-const Template = (args: IHeadingArgs) => {
-  const HeadingLevel = `h${args.level}` as keyof JSX.IntrinsicElements;
-  return <HeadingLevel>{args.text}</HeadingLevel>
-}
-
-const MultilineTemplate = (args: IHeadingArgs) => {
-  const HeadingLevel = `h${args.level}` as keyof JSX.IntrinsicElements;
-  return <h1>
-    <span>{args.text}</span>
-    <br />
-    <span className="light">{args.subtext}</span>
-  </h1>;
-}
-
-export const Default = Template.bind({});
-export const Multiline = MultilineTemplate.bind({});
 
 export default {
   title: 'Components/Headings',
@@ -49,4 +24,23 @@ export default {
       control: { type: 'boolean' }
     }
   }
+} as Meta;
+
+export const Default: Story = (args) => {
+  const HeadingLevel = `h${args.level}` as keyof JSX.IntrinsicElements;
+  return <HeadingLevel>{args.text}</HeadingLevel>
+}
+Default.parameters = {
+  controls: {
+    exclude: ['multiline', 'subtext']
+  }
+}
+
+export const Multiline: Story = (args) => {
+  const HeadingLevel = `h${args.level}` as keyof JSX.IntrinsicElements;
+  return <HeadingLevel>
+    <span>{args.text}</span>
+    <br />
+    <span className="light">{args.subtext}</span>
+  </HeadingLevel>;
 }
