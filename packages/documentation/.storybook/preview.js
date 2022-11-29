@@ -5,12 +5,11 @@ if (docJson) setStencilDocJson(docJson);
 
 export const parameters = {
   previewTabs: {
-    'canvas': {
-      title: 'Playground',
-    },
     'storybook/docs/panel': {
       title: 'Documentation',
-      index: -1,
+    },
+    'canvas': {
+      title: 'Playground',
     },
   },
   options: {
