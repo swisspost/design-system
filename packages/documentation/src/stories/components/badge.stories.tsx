@@ -26,11 +26,11 @@ export default {
       control: {
         type: 'radio',
         labels: {
-          'd': 'Default',
+          'null': 'Default',
           'badge-sm': 'Small'
         }
       },
-      options: ['default', 'badge-sm']
+      options: ['null', 'badge-sm']
     },
     nested: {
       control: {
