@@ -6,20 +6,18 @@ import { Directive, OnInit, ElementRef, OnDestroy, Optional } from '@angular/cor
 import { NgControl } from '@angular/forms';
 import { Subscription } from 'rxjs';
 
-
 @Directive({
-  selector: '[appFormRange]'
+  selector: '[appFormRange]',
 })
 export class FormRangeDirective implements OnInit, OnDestroy {
-
   private mutationObserver: MutationObserver;
   private controlSub: Subscription;
 
-
-  constructor(private element: ElementRef,
+  constructor(
+    private element: ElementRef,
     @Optional()
-    private control: NgControl) {
-  }
+    private control: NgControl,
+  ) {}
 
   private updateStyleProperties() {
     const elem: HTMLInputElement = this.element.nativeElement;
@@ -27,7 +25,6 @@ export class FormRangeDirective implements OnInit, OnDestroy {
     elem.style.setProperty('--max', elem.getAttribute('max') || '100');
     elem.style.setProperty('--min', elem.getAttribute('min') || '0');
   }
-
 
   ngOnInit() {
     const elem: HTMLInputElement = this.element.nativeElement;
@@ -43,9 +40,12 @@ export class FormRangeDirective implements OnInit, OnDestroy {
     // handle the changes of attributes values, note: can only be detected if setted by
     // elem.setAttribute.
     // elem.value = '42' will _not_ trigger the mutation observer
-    this.mutationObserver = new MutationObserver((mutationsList) => {
+    this.mutationObserver = new MutationObserver(mutationsList => {
       for (let mutation of mutationsList) {
-        if (mutation.type === 'attributes' && ['value', 'min', 'max'].indexOf(mutation.attributeName) >= 0) {
+        if (
+          mutation.type === 'attributes' &&
+          ['value', 'min', 'max'].indexOf(mutation.attributeName) >= 0
+        ) {
           this.updateStyleProperties();
           break;
         }

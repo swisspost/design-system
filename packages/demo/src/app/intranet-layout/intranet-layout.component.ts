@@ -10,6 +10,20 @@ const codeTemplateBig =
   styleUrls: ['intranet-layout.component.css'],
 })
 export class IntranetLayoutComponent {
+  codeModule = `// Other imports ....
+  import { SwissPostIntranetHeaderModule } from '@swisspost/design-system-intranet-header';
+
+  @NgModule({
+    declarations: [
+      // ...
+    ],
+    imports: [
+      // ...
+      SwissPostIntranetHeaderModule,
+    ],
+    // ...
+  })
+  export class AppModule {}`;
   codeTemplateSmall = codeTemplateSmall;
   codeTemplateBig = codeTemplateBig;
   codeTemplateReg = `<sp-intranet-header siteTitle="SiteTitle" isPreview="true" languages="de,fr,it">
