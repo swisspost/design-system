@@ -1,0 +1,169 @@
+import { Meta } from '@storybook/addon-docs';
+import '@swisspost/design-system-styles/basics.scss';
+import './color.styles.scss';
+
+<Meta
+  title="Foundations/Color"
+  parameters={{
+    previewTabs: {
+      canvas: {
+        hidden: true,
+      },
+    },
+  }}
+/>
+
+# Color
+
+You can find the [color usage documentation](#usage) right below.
+
+## Brand colors
+
+<section className="color-square__section">
+  {['yellow', 'black', 'white'].map(color => {
+    return (
+      <article key={color}>
+        <div className={`color-square`}>
+          <div className={`color-square__inner bg-${color}`}>
+            <h3>{color}</h3>
+          </div>
+          <div class="color-square__content">
+            <dl>
+              <dt>Class</dt>
+              <dd>
+                <code>bg-{color}</code>
+              </dd>
+              <dt>CSS</dt>
+              <dd>
+                <code>var(--post-{color})</code>
+              </dd>
+              <dt>Sass</dt>
+              <dd>
+                <code>post.${color}</code>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </article>
+    );
+  })}
+</section>
+
+## Shades of gray
+
+These shades are not available as backgorunds.
+
+<section className="color-square__section">
+  {['gray-10', 'gray-20', 'gray-40', 'gray-60', 'gray-80'].map(color => {
+    return (
+      <article key={color}>
+        <div className="color-square">
+          <div
+            className="color-square__inner"
+            style={{ backgroundColor: `var(--post-${color}` }}
+          ></div>
+          <div class="color-square__content">
+            <h3>{color}</h3>
+            <dl>
+              <dt>CSS</dt>
+              <dd>
+                <code>var(--post-{color})</code>
+              </dd>
+              <dt>Sass</dt>
+              <dd>
+                <code>post.${color}</code>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </article>
+    );
+  })}
+</section>
+
+## Backgrounds
+
+<section className="color-square__section">
+  {[
+    'light',
+    'gray',
+    'nightblue',
+    'nightblue-bright',
+    'petrol',
+    'petrol-bright',
+    'coral',
+    'coral-bright',
+    'olive',
+    'olive-bright',
+    'purple',
+    'purple-bright',
+    'aubergine',
+    'aubergine-bright',
+  ].map(color => {
+    return (
+      <article key={color}>
+        <div className="color-square">
+          <div className={`color-square__inner bg-${color}`}>
+            <h3>{color}</h3>
+          </div>
+          <div class="color-square__content">
+            <dl>
+              <dt>Class</dt>
+              <dd>
+                <code>bg-{color}</code>
+              </dd>
+              <dt>CSS</dt>
+              <dd>
+                <code>var(--post-{color})</code>
+              </dd>
+              <dt>Sass</dt>
+              <dd>
+                <code>post.${color}</code>
+              </dd>
+            </dl>
+          </div>
+        </div>
+      </article>
+    );
+  })}
+</section>
+
+# Usage
+
+Import the Design System Styles package and choose from one of the provided style files:
+
+- **basics.css**: Just the basic styling for resets, typography and utility classes
+- **index.css**: The complete styling for internet facing applications
+- **intranet.css**: The complete styling for internal applications
+
+## Class
+
+Apply any of the background classes to your elements. The text color will be automatically set for best contrast.
+
+```html
+<div class="bg-aubergine">This text will be white.</div>
+```
+
+## CSS
+
+Use one of the CSS variables in your style sheets. When using CSS variables, the text color will not be automatically accessible. Use the background classes for this feature.
+
+```css
+.background {
+  background-color: var(--post-yellow);
+}
+```
+
+## Sass
+
+Import the color variables from the Design System Styles package. If you use `@use` to import the vars, the color variables are scoped and don't mix with your own variables.
+
+When using sass variables, the text color will not be automatically accessible. Use the background classes for this feature.
+
+```scss
+@use '@swisspost/design-system-styles/core' as post;
+
+.background {
+  background-color: post.$yellow;
+}
+```

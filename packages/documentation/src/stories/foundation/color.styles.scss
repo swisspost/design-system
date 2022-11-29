@@ -1,0 +1,61 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.color-square {
+  border: 2px solid var(--post-contrast-color);
+}
+
+.color-square__inner {
+  aspect-ratio: 4/1;
+  padding: 0.75rem;
+  display: flex;
+  align-items: center;
+
+  h3 {
+    margin: 0;
+  }
+}
+
+.color-square__content {
+  border-top: 2px solid var(--post-contrast-color);
+  padding: 0.75rem;
+}
+
+.color-square__section {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 1.5rem;
+}
+
+h1 {
+  margin-block: 5rem 1rem;
+
+  &:first-of-type {
+    margin-block-start: 0;
+  }
+}
+
+h2 {
+  margin-block: 3rem 1rem;
+}
+
+h3 {
+  text-transform: capitalize;
+}
+
+body {
+  @include post.font-curve(regular);
+  font-weight: 300;
+}
+
+dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.5rem 1rem;
+}
+
+dl,
+dt,
+dd {
+  margin: 0;
+  padding: 0;
+}
