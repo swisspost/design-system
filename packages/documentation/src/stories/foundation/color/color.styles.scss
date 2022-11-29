@@ -63,20 +63,15 @@ dd {
 
 code {
   font-family: monospace;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   display: inline-block;
-  padding-left: 2px;
-  padding-right: 2px;
-  vertical-align: baseline;
   color: inherit;
+  font-size: 0.8em;
   line-height: 1;
-  margin: 0 2px;
-  padding: 3px 5px;
+  margin: 0 0.125rem;
+  padding: 0.1875rem 0.3125rem;
   white-space: nowrap;
-  border-radius: 3px;
-  font-size: 13px;
-  border: 1px solid #eeeeee;
-  color: rgba(51, 51, 51, 0.9);
-  background-color: #f8f8f8;
+  border-radius: 0.1875rem;
+  border: 1px solid var(--post-gray-20);
+  color: var(--post-gray-80);
+  background-color: var(--post-light);
 }

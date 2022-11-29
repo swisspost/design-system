@@ -35,6 +35,7 @@ export const parameters = {
       dl: styled.dl(() => {}),
       dt: styled.dt(() => {}),
       dd: styled.dd(() => {}),
+      code: styled.code(() => {}),
     },
   },
   actions: { argTypesRegex: '^on[A-Z].*' },
