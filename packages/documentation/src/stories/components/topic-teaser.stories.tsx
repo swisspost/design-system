@@ -4,7 +4,7 @@ import '@swisspost/design-system-styles/basics.scss';
 import '@swisspost/design-system-styles/components/topic-teaser.scss';
 
 export default {
-  title: 'Components/Topic_Teaser',
+  title: 'Components/Topic Teaser',
   args: {
     title: 'Loremipsum',
     subtitle: 'Vero siteos et accusam iretea et justo',

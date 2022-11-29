@@ -28,7 +28,7 @@ export const Default: Story = (args) => {
 }
 Default.parameters = {
   controls: {
-    exclude: ['multiline', 'subtext']
+    exclude: ['subtext']
   }
 }
 
