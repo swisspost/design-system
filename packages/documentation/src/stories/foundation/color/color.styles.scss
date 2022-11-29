@@ -56,6 +56,27 @@ dl {
 dl,
 dt,
 dd {
+  @include post.font-curve(small);
   margin: 0;
   padding: 0;
+}
+
+code {
+  font-family: monospace;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  display: inline-block;
+  padding-left: 2px;
+  padding-right: 2px;
+  vertical-align: baseline;
+  color: inherit;
+  line-height: 1;
+  margin: 0 2px;
+  padding: 3px 5px;
+  white-space: nowrap;
+  border-radius: 3px;
+  font-size: 13px;
+  border: 1px solid #eeeeee;
+  color: rgba(51, 51, 51, 0.9);
+  background-color: #f8f8f8;
 }
