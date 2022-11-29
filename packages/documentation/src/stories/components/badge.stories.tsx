@@ -109,7 +109,7 @@ const Template = (args, story) => {
     }
   } else {
     component = <span className={ `badge ${size}` }>
-      { args.label }
+      { content }
     </span>;
   }
 
