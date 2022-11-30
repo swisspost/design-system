@@ -1,0 +1,110 @@
+import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { PackageImports, ComponentImports } from './select.snippets.tsx';
+
+<Meta title="Components/Form/Select" />
+
+# Select
+
+<p class="lead">
+  Customize the native <code>select</code> with CSS that changes the element’s initial appearance.
+</p>
+
+Custom `select` menus need only the class `form-select` to trigger the custom styles. Custom styles are limited to the `select`’s initial appearance and cannot modify the `option` elements due to browser limitations.
+
+<Canvas>
+  <Story id="components-form-select--default" />
+</Canvas>
+<ArgsTable story="^" />
+
+## CSS/SCSS Imports
+
+To import the hole design-system-styles package styles:
+
+<Source language="css" dark code={PackageImports} />
+
+To import only the styles required for this component:
+
+<Source language="css" dark code={ComponentImports} />
+
+## Specific examples of application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
+
+### Selected Option
+
+There are at least two ways to define the selected value in a `select`, but we're only going to show the second variant here, for the sake of simplicity.
+
+- You can define the attribute `value` on the `select` element.
+- You can define the attribute `selected` directly on the `option` element.
+
+<Canvas>
+  <Story id="components-form-select--selected-option" />
+</Canvas>
+
+### Disabled Options
+
+It is possible to disable individual `option` elements. Disabled options cannot be selected by the user.<br/>
+However, it is possible to deactivate the initially selected option as well. This option can then not be reselected after the user changed the selection once.
+
+<Canvas>
+  <Story id="components-form-select--disabled-option" />
+</Canvas>
+
+### Floating Label
+
+Wrap a pair of `select` and `label` elements in a `.form-floating` container to enable floating labels.<br/>
+But note that the `select` must come first, so we can encure the correct styles.
+
+<Canvas>
+  <Story id="components-form-select--floating-label" />
+</Canvas>
+
+### Sizing
+
+The `select` can be used by simply adding one of four classes:
+
+- Small (`form-select-sm`)
+- Regular (`form-select-rg`)
+- Medium (default or `form-select-md`)
+- Large (`form-select-lg`)
+
+<p class="text-danger">
+  Note: Do not use this classes on a select-element wrapped within a floating-label container.
+</p>
+
+<Canvas>
+  <Story id="components-form-select--size" />
+</Canvas>
+
+### Multiple
+
+Enable multiple select mode by setting the attribute `multiple`, and control how many rows are displayed in the multiple select list-box by setting the `size` attribute to the number of rows to display. Without the `size` attribute, the browser use its default (typically 4).
+
+<Canvas>
+  <Story id="components-form-select--multiple" />
+</Canvas>
+
+### Helper Text
+
+Optional descriptive text which is always shown in a `.form-text` element.
+
+<Canvas>
+  <Story id="components-form-select--helper-text" />
+</Canvas>
+
+### Disabled
+
+Add the disabled boolean attribute on a `select` to give it a grayed out appearance and remove pointer events.
+
+<Canvas>
+  <Story id="components-form-select--disabled" />
+</Canvas>
+
+### Validation
+
+Simply add the classes `is-valid` or `is-invalid` to the `select` element to show it in the expected state.<br/>
+If you like to have some text as feedback, instead of only colors and icons, you can add `.valid-feedback` and `.invalid-feedback` elements after the `select`.
+
+<Canvas>
+  <Story id="components-form-select--validation" />
+</Canvas>
