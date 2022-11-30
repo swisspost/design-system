@@ -108,7 +108,10 @@ export default {
       table: {
         category: 'General',
         type: {
-          summary: 'HtmlAttribute'
+          summary: 'CssClass'
+        },
+        defaultValue: {
+          summary: 'form-select-sm | form-select-rg | form-select-md | form-select-lg'
         }
       }
     },
@@ -189,7 +192,10 @@ export default {
       table: {
         category: 'States',
         type: {
-          summary: 'HtmlAttribute'
+          summary: 'CssClass'
+        },
+        defaultValue: {
+          summary: 'is-valid | is-invalid'
         }
       }
     },
