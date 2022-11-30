@@ -2,7 +2,7 @@
 
 ![Swiss Post Design System splash screen](https://user-images.githubusercontent.com/1659006/187683368-d3aa2534-84be-4580-846e-2cad3796b573.png)
 
-The Swiss Post Design System pattern library for a unified and accessible user experience accross the web platform.
+The Swiss Post Design System pattern library for a unified and accessible user experience across the web platform.
 
 ## Packages
 
