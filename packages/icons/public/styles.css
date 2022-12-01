@@ -1,0 +1,21 @@
+body {
+    color: rebeccapurple;
+    min-height: 100vh;
+    margin: 0;
+    fill: currentColor;
+}
+svg, img, object, picture, source{
+    display: block;
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.icons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+}
+
+.icon span {
+    font-size: 0.75rem;
+}

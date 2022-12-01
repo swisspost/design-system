@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <section x-data="icons">
+
+        <h1 id="converted">Converted icons (<span x-text="icons.length"></span>)</h1>
+        <div class="converted-icons icons" >
+            <template x-for="icon in icons">
+                <div class="icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                        <use x-bind:href="`./icons/${icon.name}#icon`"/>
+                    </svg>
+                    <span x-text="icon.name.replace('.svg', '')"></span>
+                </div>
+            </template>
+        </div>
+    </section>
+    
+    <script type="module" src="main.js"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+</body>
+</html>
