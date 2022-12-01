@@ -2,10 +2,7 @@ import React from 'react';
 import { Meta, Story, Args } from "@storybook/react";
 import docsPage from './select.docs.mdx';
 
-import '@swisspost/design-system-styles/basics.scss';
-import '@swisspost/design-system-styles/components/form-select.scss';
-import '@swisspost/design-system-styles/components/floating-label.scss';
-import '@swisspost/design-system-styles/components/form-feedback.scss';
+import './select.styles.scss';
 
 interface ISelectOption {
   text: string,
@@ -50,10 +47,7 @@ export default {
         type: 'text'
       },
       table: {
-        category: 'General',
-        type: {
-          summary: 'HtmlElement | HtmlAttribute'
-        }
+        category: 'General'
       }
     },
     options: {
@@ -64,10 +58,7 @@ export default {
         raw: false
       },
       table: {
-        category: 'General',
-        type: {
-          summary: 'HtmlElement[]'
-        }
+        category: 'General'
       }
     },
     floatingLabel: {
@@ -77,10 +68,7 @@ export default {
         type: 'boolean'
       },
       table: {
-        category: 'General',
-        type: {
-          summary: 'HtmlElement'
-        }
+        category: 'General'
       }
     },
     size: {
@@ -106,13 +94,7 @@ export default {
         'form-select-lg'
       ],
       table: {
-        category: 'General',
-        type: {
-          summary: 'CssClass'
-        },
-        defaultValue: {
-          summary: 'form-select-sm | form-select-rg | form-select-md | form-select-lg'
-        }
+        category: 'General'
       }
     },
     multiple: {
@@ -122,10 +104,7 @@ export default {
         type: 'boolean'
       },
       table: {
-        category: 'General',
-        type: {
-          summary: 'HtmlAttribute'
-        }
+        category: 'General'
       }
     },
     multipleSize: {
@@ -141,10 +120,7 @@ export default {
         step: 1
       },
       table: {
-        category: 'General',
-        type: {
-          summary: 'HtmlAttribute'
-        }
+        category: 'General'
       }
     },
     hint: {
@@ -154,10 +130,7 @@ export default {
         type: 'text'
       },
       table: {
-        category: 'General',
-        type: {
-          summary: 'HtmlElement'
-        }
+        category: 'General'
       }
     },
     disabled: {
@@ -167,10 +140,7 @@ export default {
         type: 'boolean'
       },
       table: {
-        category: 'States',
-        type: {
-          summary: 'HtmlAttribute'
-        }
+        category: 'States'
       }
     },
     validation: {
@@ -190,13 +160,7 @@ export default {
         'is-invalid'
       ],
       table: {
-        category: 'States',
-        type: {
-          summary: 'CssClass'
-        },
-        defaultValue: {
-          summary: 'is-valid | is-invalid'
-        }
+        category: 'States'
       }
     },
     validFeedback: {
@@ -206,10 +170,7 @@ export default {
         type: 'text'
       },
       table: {
-        category: 'States',
-        type: {
-          summary: 'HtmlElement'
-        }
+        category: 'States'
       }
     },
     invalidFeedback: {
@@ -219,10 +180,7 @@ export default {
         type: 'text'
       },
       table: {
-        category: 'States',
-        type: {
-          summary: 'HtmlElement'
-        }
+        category: 'States'
       }
     }
   }
