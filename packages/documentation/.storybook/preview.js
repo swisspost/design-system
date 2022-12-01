@@ -29,5 +29,16 @@ export const parameters = {
     source: {
       excludeDecorators: true,
     },
+    transformSource(snippet) {
+      return snippet
+        // remove "key" attributes
+        .replace(/(\t+|\s+)?key=".*"/g, '')
+        // remove brackets from "{value}" attribute-values 
+        .replace(/={([^}]+)}/g, (match, g1) => `="${g1}"`)
+        // replace "className" attributes with "class"
+        .replace(/className/g, 'class')
+        // replace "htmlFor" attributes with "for"
+        .replace(/htmlFor/g, 'for');
+    },
   },
 };
