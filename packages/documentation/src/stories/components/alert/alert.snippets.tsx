@@ -8,7 +8,7 @@ export const CustomIconSnippet = `@use "@swisspost/design-system-styles/core" as
   @include post.pi(1000, 'success');
 }`;
 
-export const PackageImports = `@import "@swisspost/design-system-styles/index.scss";`;
+export const PackageImports = `@use "@swisspost/design-system-styles/index.scss";`;
 
-export const ComponentImports = `@import "@swisspost/design-system-styles/basis.scss";
-@import "@swisspost/design-system-styles/components/alert.scss";`;
+export const ComponentImports = `@use "@swisspost/design-system-styles/basis.scss";
+@use "@swisspost/design-system-styles/components/alert.scss";`;
