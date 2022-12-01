@@ -4,9 +4,7 @@ import parse from 'html-react-parser';
 import { useArgs } from '@storybook/client-api';
 import docsPage from './alert.docs.mdx';
 
-import '@swisspost/design-system-styles/basics.scss';
-import '@swisspost/design-system-styles/components/alert.scss';
-import '@swisspost/design-system-styles/components/icons.scss';
+import './alert.styles.scss';
 
 export default {
   title: 'Components/Alert',
@@ -64,13 +62,7 @@ export default {
         'alert-info'
       ],
       table: {
-        category: 'Variant',
-        type: {
-          summary: 'cssClass'
-        },
-        defaultValue: {
-          summary: 'alert-{variant}'
-        }
+        category: 'Variant'
       }
     },
     icon: {
@@ -96,13 +88,7 @@ export default {
         '2101'
       ],
       table: {
-        category: 'Icon',
-        type: {
-          summary: 'cssClass'
-        },
-        defaultValue: {
-          summary: 'pi-{icon}'
-        }
+        category: 'Icon'
       }
     },
     noIcon: {
@@ -112,13 +98,7 @@ export default {
         type: 'boolean'
       },
       table: {
-        category: 'Icon',
-        type: {
-          summary: 'cssClass'
-        },
-        defaultValue: {
-          summary: 'no-icon'
-        }
+        category: 'Icon'
       }
     },
     dismissible: {
@@ -126,13 +106,7 @@ export default {
       description: 'Adds the dismissible styles.<br/><div className="text-danger">Do not forget to add the structural adjustments!</div>',
       control: { type: 'boolean' },
       table: {
-        category: 'Dismissible',
-        type: {
-          summary: 'cssClass'
-        },
-        defaultValue: {
-          summary: 'alert-dismissible'
-        }
+        category: 'Dismissible'
       }
     },
     fixed: {
@@ -140,13 +114,7 @@ export default {
       description: 'Adds the fixed styles.<br/><div className="text-danger">Do not forget to add the structural adjustments!</div>',
       control: { type: 'boolean' },
       table: {
-        category: 'Fixed',
-        type: {
-          summary: 'cssClass'
-        },
-        defaultValue: {
-          summary: 'alert-fixed-bottom'
-        }
+        category: 'Fixed'
       }
     },
     action: {
@@ -154,13 +122,7 @@ export default {
       description: 'Adds the action button styles.<br/><div className="text-danger">Do not forget to add the structural adjustments!</div>',
       control: { type: 'boolean' },
       table: {
-        category: 'Action',
-        type: {
-          summary: 'cssClass'
-        },
-        defaultValue: {
-          summary: 'alert-action'
-        }
+        category: 'Action'
       }
     },
     show: {
