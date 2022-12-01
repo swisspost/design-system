@@ -201,7 +201,7 @@ Variant.parameters = {
       'No Icon',
       'Dismissible',
       'Fixed',
-      'Action',
+      'Action Buttons',
       'Show'
     ]
   }
@@ -215,7 +215,7 @@ CustomIcon.parameters = {
       'No Icon',
       'Dismissible',
       'Fixed',
-      'Action',
+      'Action Buttons',
       'Show'
     ]
   }
@@ -233,7 +233,7 @@ WithoutIcon.parameters = {
       'Icon',
       'Dismissible',
       'Fixed',
-      'Action',
+      'Action Buttons',
       'Show'
     ]
   }
@@ -252,7 +252,7 @@ Content.parameters = {
       'No Icon',
       'Dismissible',
       'Fixed',
-      'Action',
+      'Action Buttons',
       'Show'
     ]
   }
@@ -287,7 +287,7 @@ Dismissible.parameters = {
       'Icon',
       'No Icon',
       'Fixed',
-      'Action',
+      'Action Buttons',
       'Show'
     ]
   }
@@ -314,7 +314,7 @@ Fixed.parameters = {
       'Icon',
       'No Icon',
       'Dismissible',
-      'Action',
+      'Action Buttons',
       'Show'
     ]
   }
