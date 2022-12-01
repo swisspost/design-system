@@ -13,7 +13,7 @@ interface ISelectOption {
 };
 
 export default {
-  title: 'Components/Form/Select',
+  title: 'Components/Select',
   parameters: {
     docs: {
       page: docsPage
