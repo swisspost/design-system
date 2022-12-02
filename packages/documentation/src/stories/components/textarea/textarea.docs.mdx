@@ -1,4 +1,5 @@
 import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import '@swisspost/design-system-styles/components/alert.scss';
 
 <Meta title="Components/Textarea" />
 
@@ -59,10 +60,13 @@ The size can be changed by simply adding one of four classes:
 - Medium (default or `form-control-md`)
 - Large (`form-control-lg`)
 
-<p class="text-danger">
-  Note: Do not use this classes on a <code>textarea</code> element wrapped within a
-  <code>.floating-label</code> container.
-</p>
+<div class="alert alert-info">
+  <h4 class="alert-heading">Do not apply size classes on floating-label elements</h4>
+  <p>
+    It is not intended to apply the size classes to <code>textarea</code> elements that are nested
+    in a <code>.floating-label</code> container.
+  </p>
+</div>
 
 <Canvas>
   <Story id="components-textarea--size" />
