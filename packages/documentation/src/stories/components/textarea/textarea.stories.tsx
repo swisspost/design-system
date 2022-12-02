@@ -17,8 +17,9 @@ export default {
     }
   },
   args: {
-    label: 'Label',
     floatingLabel: false,
+    labelHidden: false,
+    label: 'Label',
     size: 'null',
     rows: 4,
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
@@ -28,21 +29,35 @@ export default {
     invalidFeedback: 'Eraro okazis!'
   },
   argTypes: {
-    label: {
-      name: 'Label',
-      description: 'Describes the content/topic of the component.',
-      control: {
-        type: 'text'
-      },
-      table: {
-        category: 'General'
-      }
-    },
     floatingLabel: {
       name: 'Floating Label',
       description: 'Defines how the components label is rendered.',
       control: {
         type: 'boolean'
+      },
+      table: {
+        category: 'General'
+      }
+    },
+    labelHidden: {
+      name: 'Label Hidden',
+      description: 'Render the component with or without a visible label.',
+      if: {
+        arg: 'floatingLabel',
+        truthy: false
+      },
+      control: {
+        type: 'boolean'
+      },
+      table: {
+        category: 'General'
+      }
+    },
+    label: {
+      name: 'Label',
+      description: 'Describes the content/topic of the component.',
+      control: {
+        type: 'text'
       },
       table: {
         category: 'General'
@@ -158,13 +173,18 @@ const Template = (args: Args, story: Story) => {
     args.validation
   ].filter(c => c && c !== 'null').join(' ');
 
+  const useHtmlLabel = !args.labelHidden || args.floatingLabel;
+
+  const label = useHtmlLabel ? <label key="label" htmlFor={ id } className="form-label">{ args.label }</label> : null;
+
   const component = <textarea
     id={ id }
     className={ classes }
-    placeholder=" "
+    key="component"
+    placeholder={ !useHtmlLabel ? args.label : ' ' }
     rows={ args.rows }
     disabled={ args.disabled }
-    aria-label={ args.label }
+    aria-label={ !useHtmlLabel ? args.label : undefined }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
   ></textarea>;
 
@@ -172,16 +192,14 @@ const Template = (args: Args, story: Story) => {
     args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
     args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null,
     args.hint !== '' ? <div key="hint" className="form-text">{ args.hint }</div> : null
-  ].filter(f => f !== null);
+  ];
 
   if (args.floatingLabel) {
     return <div className="form-floating">
-      { component }
-      <label htmlFor={ id } className="form-label">{ args.label }</label>
-      { contextuals }
+      { [component, label, contextuals].flat().filter(el => el !== null) }
     </div>;
   } else { 
-    return [component, contextuals];
+    return [label, component, contextuals].flat().filter(el => el !== null);
   }
 };
 
