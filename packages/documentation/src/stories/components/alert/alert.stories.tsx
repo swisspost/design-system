@@ -93,7 +93,7 @@ export default {
     },
     noIcon: {
       name: 'No Icon',
-      description: 'Removes the predefined icon completley.',
+      description: 'Removes the predefined icon completely.',
       control: {
         type: 'boolean'
       },
@@ -243,8 +243,8 @@ WithoutIcon.args = {
   noIcon: true
 };
 
-export const Content = Template.bind({});
-Content.parameters = {
+export const AdditionalContent = Template.bind({});
+AdditionalContent.parameters = {
   controls: {
     exclude: [
       'Variant',
@@ -257,7 +257,7 @@ Content.parameters = {
     ]
   }
 };
-Content.args = { 
+AdditionalContent.args = { 
   content: `<p>Contentum momentum ipsum tipsum sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
   <ul>
     <li>Un orde redlis titem</li>

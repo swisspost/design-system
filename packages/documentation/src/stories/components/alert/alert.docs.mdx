@@ -40,7 +40,7 @@ For proper styling, use one of the required contextual classes (e.g., `.alert-pr
   <Story id="components-alert--variant" />
 </Canvas>
 
-### Icon
+### Custom Icon
 
 It is possible to add a custom icon by adding the class `.pi-{icon}` to the alert element or remove the icon completely.
 To get a full list of all available icons visit: [TODO define link](https://design-system.post.ch/#/post-samples/icons).
@@ -48,6 +48,8 @@ To get a full list of all available icons visit: [TODO define link](https://desi
 <Canvas>
   <Story id="components-alert--custom-icon" />
 </Canvas>
+
+### Without Icon
 
 Hiding the icon is quite simple, just add the class `.no-icon` to the alert element.
 
@@ -60,14 +62,14 @@ Hiding the icon is quite simple, just add the class `.no-icon` to the alert elem
 Alerts can also contain additional HTML elements like headings, paragraphs, lists, dividers, and more.
 
 <Canvas>
-  <Story id="components-alert--content" />
+  <Story id="components-alert--additional-content" />
 </Canvas>
 
-### Dismissible Alert
+### Dismissible
 
 Such an alert can be removed from the UI by the user, by clicking on a dismiss button.
-This button should normally be inside of the alert (as first child), but you can also use a buttom which is not included in the alerts html.
-At the end, it's just a button with an `onClick` event. As this is a CSS-only component, you have to define the logic by yourself.
+This button should normally be inside the alert (as the first child), but you can also use a button which is not included in the alert's HTML.
+In the end, it's just a button with an `onClick()` event. As this is a CSS-only component, you have to define the logic yourself.
 
 Dismiss buttons without text should always provide a `dismiss-label` prop, which defines the hidden text associated with the button.
 
@@ -75,11 +77,11 @@ Dismiss buttons without text should always provide a `dismiss-label` prop, which
   <Story id="components-alert--dismissible" />
 </Canvas>
 
-### Fixed Alert
+### Fixed
 
-A fixed (to the bottom of the viewport) aligned alert is obtained, by adding the class `alert-fixed-bottom` to the alert element.
-As this is a CSS-only component, you have to define the logic by yourself to show/hide/toggle the button.
-Such an alert is normally also dismissible, so please note also the informations for a dismissible alert.
+A fixed alert (at the bottom of the viewport) is obtained by adding the class `.alert-fixed-bottom` to the alert element.
+As this is a CSS-only component, you have to define the logic to show/hide/toggle the alert yourself.
+Such an alert is normally also dismissible, so please notice the information for a dismissible alert as well.
 
 <Canvas>
   <Story id="components-alert--fixed" />
@@ -87,7 +89,7 @@ Such an alert is normally also dismissible, so please note also the informations
 
 ### Action Buttons
 
-To render an action alert with buttons the elements requires an additional class and also some additional inner html. So everything will be rendered just fine.
+To render an action alert with buttons, the alert element requires an additional class as well as additional HTML content. Thus, everything will be rendered as it should be.
 
 <Canvas>
   <Story id="components-alert--action-buttons" />
