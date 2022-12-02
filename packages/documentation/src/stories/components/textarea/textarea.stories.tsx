@@ -225,62 +225,6 @@ Size.args = {
   hint: ''
 };
 
-export const Rows = Template.bind({}) as Meta;
-Rows.parameters = {
-  controls: {
-    exclude: [
-      'Label',
-      'Floating Label',
-      'Size',
-      'Helper Text',
-      'Disabled',
-      'Validation',
-      'Valid Feedback',
-      'Invalid Feedback'
-    ]
-  }
-};
-Rows.args = {
-  rows: 8,
-  hint: ''
-};
-
-export const HelperText = Template.bind({}) as Meta;
-HelperText.parameters = {
-  controls: {
-    exclude: [
-      'Label',
-      'Floating Label',
-      'Size',
-      'Rows',
-      'Disabled',
-      'Validation',
-      'Valid Feedback',
-      'Invalid Feedback'
-    ]
-  }
-};
-
-export const Disabled = Template.bind({}) as Meta;
-Disabled.parameters = {
-  controls: {
-    exclude: [
-      'Label',
-      'Floating Label',
-      'Size',
-      'Rows',
-      'Helper Text',
-      'Validation',
-      'Valid Feedback',
-      'Invalid Feedback'
-    ]
-  }
-};
-Disabled.args = {
-  disabled: true,
-  hint: ''
-};
-
 export const Validation = Template.bind({}) as Meta;
 Validation.parameters = {
   controls: {
