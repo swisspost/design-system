@@ -23,8 +23,8 @@ export default {
     title: 'Titulum',
     content: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
     variant: 'alert-primary',
-    icon: 'null',
     noIcon: false,
+    icon: 'null',
     dismissible: false,
     fixed: false,
     action: false,
@@ -65,9 +65,23 @@ export default {
         category: 'Variant'
       }
     },
+    noIcon: {
+      name: 'No Icon',
+      description: 'Removes the predefined icon completely.',
+      control: {
+        type: 'boolean'
+      },
+      table: {
+        category: 'Icon'
+      }
+    },
     icon: {
       name: 'Icon',
       description: 'Defines a custom icon.',
+      if: {
+        arg: 'noIcon',
+        truthy: false
+      },
       control: {
         type: 'select',
         labels: {
@@ -87,16 +101,6 @@ export default {
         '2035',
         '2101'
       ],
-      table: {
-        category: 'Icon'
-      }
-    },
-    noIcon: {
-      name: 'No Icon',
-      description: 'Removes the predefined icon completely.',
-      control: {
-        type: 'boolean'
-      },
       table: {
         category: 'Icon'
       }
@@ -207,24 +211,6 @@ Variant.parameters = {
   }
 };
 
-export const CustomIcon = Template.bind({});
-CustomIcon.parameters = {
-  controls: {
-    exclude: [
-      'Variant',
-      'No Icon',
-      'Dismissible',
-      'Fixed',
-      'Action Buttons',
-      'Show'
-    ]
-  }
-};
-CustomIcon.args = {
-  variant: 'alert-info',
-  icon: '2023'
-};
-
 export const WithoutIcon = Template.bind({});
 WithoutIcon.parameters = {
   controls: {
@@ -241,6 +227,24 @@ WithoutIcon.parameters = {
 WithoutIcon.args = {
   variant: 'alert-info',
   noIcon: true
+};
+
+export const CustomIcon = Template.bind({});
+CustomIcon.parameters = {
+  controls: {
+    exclude: [
+      'Variant',
+      'No Icon',
+      'Dismissible',
+      'Fixed',
+      'Action Buttons',
+      'Show'
+    ]
+  }
+};
+CustomIcon.args = {
+  variant: 'alert-info',
+  icon: '2023'
 };
 
 export const AdditionalContent = Template.bind({});
