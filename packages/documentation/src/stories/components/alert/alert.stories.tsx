@@ -1,10 +1,11 @@
 import React from 'react';
 import { Meta, Story, Args } from "@storybook/react";
-import parse from 'html-react-parser';
 import { useArgs } from '@storybook/client-api';
+import parse from 'html-react-parser';
 import docsPage from './alert.docs.mdx';
 
 import './alert.styles.scss';
+import '@swisspost/design-system-styles/components/alert.scss';
 
 export default {
   title: 'Components/Alert',
@@ -62,7 +63,7 @@ export default {
         'alert-info'
       ],
       table: {
-        category: 'Variant'
+        category: 'General'
       }
     },
     noIcon: {
@@ -72,7 +73,7 @@ export default {
         type: 'boolean'
       },
       table: {
-        category: 'Icon'
+        category: 'General'
       }
     },
     icon: {
@@ -102,31 +103,31 @@ export default {
         '2101'
       ],
       table: {
-        category: 'Icon'
+        category: 'General'
       }
     },
     dismissible: {
       name: 'Dismissible',
-      description: 'Adds the dismissible styles.<br/><div className="text-danger">Do not forget to add the structural adjustments!</div>',
+      description: 'Adds the dismissible styles.<br/><div className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">Do not forget to add the structural adjustments!</div>',
       control: { type: 'boolean' },
       table: {
-        category: 'Dismissible'
+        category: 'Variations'
       }
     },
     fixed: {
       name: 'Fixed',
-      description: 'Adds the fixed styles.<br/><div className="text-danger">Do not forget to add the structural adjustments!</div>',
+      description: 'Adds the fixed styles.<br/><div className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">Do not forget to add the structural adjustments!</div>',
       control: { type: 'boolean' },
       table: {
-        category: 'Fixed'
+        category: 'Variations'
       }
     },
     action: {
       name: 'Action Buttons',
-      description: 'Adds the action button styles.<br/><div className="text-danger">Do not forget to add the structural adjustments!</div>',
+      description: 'Adds the action button styles.<br/><div className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">Do not forget to add the structural adjustments!</div>',
       control: { type: 'boolean' },
       table: {
-        category: 'Action'
+        category: 'Variations'
       }
     },
     show: {
