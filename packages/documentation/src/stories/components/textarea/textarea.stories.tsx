@@ -203,9 +203,9 @@ const Template = (args: Args, story: Story) => {
   }
 };
 
-export const Default = Template.bind({}) as Meta;
+export const Default = Template.bind({});
 
-export const FloatingLabel = Template.bind({}) as Meta;
+export const FloatingLabel = Template.bind({});
 FloatingLabel.parameters = {
   controls: {
     exclude: [
@@ -224,7 +224,7 @@ FloatingLabel.args = {
   hint: ''
 };
 
-export const Size = Template.bind({}) as Meta;
+export const Size = Template.bind({});
 Size.parameters = {
   controls: {
     exclude: [
@@ -244,7 +244,7 @@ Size.args = {
   hint: ''
 };
 
-export const Validation = Template.bind({}) as Meta;
+export const Validation = Template.bind({});
 Validation.parameters = {
   controls: {
     exclude: [
