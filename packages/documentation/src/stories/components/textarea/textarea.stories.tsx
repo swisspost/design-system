@@ -76,6 +76,7 @@ export default {
     },
     rows: {
       name: 'Rows',
+      description: 'Attribute to set the initial height, in lines of text, of the `textarea` element.',
       control: {
         type: 'number',
         min: 3,
