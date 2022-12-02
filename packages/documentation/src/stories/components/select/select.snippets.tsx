@@ -1,6 +1,7 @@
 export const PackageImports = `@use "@swisspost/design-system-styles/index.scss";`;
 
 export const ComponentImports = `@use "@swisspost/design-system-styles/basis.scss";
+@use '@swisspost/design-system-styles/components/forms.scss';
 @use '@swisspost/design-system-styles/components/form-select.scss';
 
 // required if you use floating-labels
