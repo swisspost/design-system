@@ -224,9 +224,9 @@ const Template = (args: Args, story: Story) => {
   }
 };
 
-export const Default: Story = Template.bind({});
+export const Default = Template.bind({}) as Meta;
 
-export const SelectedOption: Story = Template.bind({});
+export const SelectedOption = Template.bind({}) as Meta;
 SelectedOption.parameters = {
   controls: {
     exclude: [
@@ -254,7 +254,7 @@ SelectedOption.args = {
   hint: ''
 };
 
-export const DisabledOption: Story = Template.bind({});
+export const DisabledOption = Template.bind({}) as Meta;
 DisabledOption.parameters = {
   controls: {
     exclude: [
@@ -282,7 +282,7 @@ DisabledOption.args = {
   hint: ''
 };
 
-export const FloatingLabel: Story = Template.bind({});
+export const FloatingLabel = Template.bind({}) as Meta;
 FloatingLabel.parameters = {
   controls: {
     exclude: [
@@ -302,7 +302,7 @@ FloatingLabel.args = {
   hint: ''
 };
 
-export const Size: Story = Template.bind({});
+export const Size = Template.bind({}) as Meta;
 Size.parameters = {
   controls: {
     exclude: [
@@ -322,7 +322,7 @@ Size.args = {
   hint: ''
 };
 
-export const Multiple: Story = Template.bind({});
+export const Multiple = Template.bind({}) as Meta;
 Multiple.parameters = {
   controls: {
     exclude: [
@@ -343,7 +343,7 @@ Multiple.args = {
   hint: ''
 };
 
-export const HelperText: Story = Template.bind({});
+export const HelperText = Template.bind({}) as Meta;
 HelperText.parameters = {
   controls: {
     exclude: [
@@ -360,7 +360,7 @@ HelperText.parameters = {
   }
 };
 
-export const Disabled: Story = Template.bind({});
+export const Disabled = Template.bind({}) as Meta;
 Disabled.parameters = {
   controls: {
     exclude: [
@@ -381,7 +381,7 @@ Disabled.args = {
   hint: ''
 };
 
-export const Validation: Story = Template.bind({});
+export const Validation = Template.bind({}) as Meta;
 Validation.parameters = {
   controls: {
     exclude: [
