@@ -12,6 +12,12 @@ interface ISelectOption {
   disabled?: boolean
 };
 
+const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
+  'null': undefined,
+  'is-valid': false,
+  'is-invalid': true
+};
+
 export default {
   title: 'Components/Select',
   parameters: {
@@ -204,7 +210,7 @@ const Template = (args: Args, story: Story) => {
     size={ args.multipleSize }
     disabled={ args.disabled }
     aria-label={ args.label }
-    aria-invalid={ args.validation === 'is-valid' ? 'false' : (args.validation === 'is-invalid' ? 'true' : undefined) }
+    aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
   >{ options }</select>;
 
   const contextuals: (JSX.Element | null)[] = [
