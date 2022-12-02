@@ -3,6 +3,12 @@ import { Meta, Args, Story } from '@storybook/react';
 import docsPage from './textarea.docs.mdx';
 import './textarea.styles.scss';
 
+const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
+  'null': undefined,
+  'is-valid': false,
+  'is-invalid': true
+};
+
 export default {
   title: 'Components/Textarea',
   parameters: {
@@ -158,7 +164,7 @@ const Template = (args: Args, story: Story) => {
     rows={ args.rows }
     disabled={ args.disabled }
     aria-label={ args.label }
-    aria-invalid={ args.validation === 'is-valid' ? 'false' : args.validation === 'is-invalid' ? 'true' : undefined }
+    aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
   ></textarea>;
 
   const contextuals: (JSX.Element | null)[] = [
