@@ -204,7 +204,7 @@ const Template = (args: Args, story: Story) => {
     size={ args.multipleSize }
     disabled={ args.disabled }
     aria-label={ args.label }
-    aria-invalid={ args.validation === 'is-valid' ? 'false' : args.validation === 'is-invalid' ? 'true' : undefined }
+    aria-invalid={ args.validation === 'is-valid' ? 'false' : (args.validation === 'is-invalid' ? 'true' : undefined) }
   >{ options }</select>;
 
   const contextuals: (JSX.Element | null)[] = [
