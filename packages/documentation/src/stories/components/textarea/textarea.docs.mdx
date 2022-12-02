@@ -17,6 +17,15 @@ Custom `textarea` elements need only the class `form-control` to trigger the cus
 </Canvas>
 <ArgsTable story="^" />
 
+<div class="alert alert-info mb-5">
+  <h4 class="alert-heading">Disabled elements are not accessible.</h4>
+  <p class="mt-0">
+    Avoid disabled elements wherever possible. If the element is not editable, add the readonly
+    attribute. If the user needs to correct the input, display an error message that helps the user
+    fix the error. If the field is irrelevant in the current context, hide it entirely.
+  </p>
+</div>
+
 ## SCSS Imports
 
 To import all styles from the design-system-styles package:
@@ -62,7 +71,7 @@ The size can be changed by simply adding one of four classes:
 
 <div class="alert alert-info">
   <h4 class="alert-heading">Do not apply size classes on floating-label elements</h4>
-  <p>
+  <p class="mt-0">
     It is not intended to apply the size classes to <code>textarea</code> elements that are nested
     in a <code>.floating-label</code> container.
   </p>

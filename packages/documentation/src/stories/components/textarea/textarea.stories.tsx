@@ -99,7 +99,7 @@ export default {
     },
     disabled: {
       name: 'Disabled',
-      description: 'When set to `true`, disables the component\'s functionality and places it in a disabled state.',
+      description: 'When set to `true`, disables the component\'s functionality and places it in a disabled state.<br/>Please consider the information below this table.',
       control: {
         type: 'boolean'
       },
