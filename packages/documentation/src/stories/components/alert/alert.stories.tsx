@@ -177,7 +177,7 @@ const Template = (args: Args) => {
   </div>;
 };
 
-export const Default: Story = Template.bind({});
+export const Default = Template.bind({}) as Meta;
 Default.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
@@ -192,7 +192,7 @@ Default.decorators = [
   }
 ];
 
-export const Variant: Story = Template.bind({});
+export const Variant = Template.bind({}) as Meta;
 Variant.parameters = {
   controls: {
     exclude: [
@@ -207,7 +207,7 @@ Variant.parameters = {
   }
 };
 
-export const CustomIcon: Story = Template.bind({});
+export const CustomIcon = Template.bind({}) as Meta;
 CustomIcon.parameters = {
   controls: {
     exclude: [
@@ -225,7 +225,7 @@ CustomIcon.args = {
   icon: '2023'
 };
 
-export const WithoutIcon: Story = Template.bind({});
+export const WithoutIcon = Template.bind({}) as Meta;
 WithoutIcon.parameters = {
   controls: {
     exclude: [
@@ -243,7 +243,7 @@ WithoutIcon.args = {
   noIcon: true
 };
 
-export const Content: Story = Template.bind({});
+export const Content = Template.bind({}) as Meta;
 Content.parameters = {
   controls: {
     exclude: [
@@ -269,7 +269,7 @@ Content.args = {
   variant: 'alert-success'
 };
 
-export const Dismissible: Story = Template.bind({});
+export const Dismissible = Template.bind({}) as Meta;
 Dismissible.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
@@ -296,7 +296,7 @@ Dismissible.args = {
   dismissible: true
 };
 
-export const Fixed: Story = Template.bind({});
+export const Fixed = Template.bind({}) as Meta;
 Fixed.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
@@ -324,7 +324,7 @@ Fixed.args = {
   show: false
 };
 
-export const ActionButtons: Story = Template.bind({});
+export const ActionButtons = Template.bind({}) as Meta;
 ActionButtons.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
