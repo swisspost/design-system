@@ -280,7 +280,7 @@ importers:
       '@storybook/theming': 6.5.14
       '@swisspost/design-system-components': workspace:1.0.3
       '@swisspost/design-system-styles': workspace:5.1.2
-      '@types/react': 18.0.25
+      '@types/react': 18.0.26
       '@types/react-dom': 18.0.8
       babel-loader: 9.1.0
       cypress: 11.2.0
@@ -308,11 +308,11 @@ importers:
       '@storybook/react': 6.5.14_xkm4lc46hruvr7sl76lkf2lzmy
       '@storybook/testing-library': 0.0.13_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 6.5.14_biqbaboplfbrettd7655fr4n2y
-      '@types/react': 18.0.25
+      '@types/react': 18.0.26
       '@types/react-dom': 18.0.8
       babel-loader: 9.1.0_@babel+core@7.20.5
       cypress: 11.2.0
-      react-markdown: 8.0.4_fan5qbzahqtxlm5dzefqlqx5ia
+      react-markdown: 8.0.4_kzbn2opkn2327fwg5yzwzya5o4
       sass: 1.56.1
       start-server-and-test: 1.14.0
       typescript: 4.6.4
@@ -6849,11 +6849,11 @@ packages:
   /@types/react-dom/18.0.8:
     resolution: {integrity: sha512-C3GYO0HLaOkk9dDAz3Dl4sbe4AKUGTCfFIZsz3n/82dPNN8Du533HzKatDxeUYWu24wJgMP1xICqkWk1YOLOIw==}
     dependencies:
-      '@types/react': 18.0.25
+      '@types/react': 18.0.26
     dev: true
 
-  /@types/react/18.0.25:
-    resolution: {integrity: sha512-xD6c0KDT4m7n9uD4ZHi02lzskaiqcBxf4zi+tXZY98a04wvc0hi/TcCPC2FOESZi51Nd7tlUeOJY8RofL799/g==}
+  /@types/react/18.0.26:
+    resolution: {integrity: sha512-hCR3PJQsAIXyxhTNSiDFY//LhnMZWpNNr5etoCqx/iUfGc5gXWtQR2Phl908jVR6uPXacojQWTg4qRpkxTuGug==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -18777,7 +18777,7 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react-markdown/8.0.4_fan5qbzahqtxlm5dzefqlqx5ia:
+  /react-markdown/8.0.4_kzbn2opkn2327fwg5yzwzya5o4:
     resolution: {integrity: sha512-2oxHa6oDxc1apg/Gnc1Goh06t3B617xeywqI/92wmDV9FELI6ayRkwge7w7DoEqM0gRpZGTNU6xQG+YpJISnVg==}
     peerDependencies:
       '@types/react': '>=16'
@@ -18785,7 +18785,7 @@ packages:
     dependencies:
       '@types/hast': 2.3.4
       '@types/prop-types': 15.7.5
-      '@types/react': 18.0.25
+      '@types/react': 18.0.26
       '@types/unist': 2.0.6
       comma-separated-tokens: 2.0.3
       hast-util-whitespace: 2.0.0
