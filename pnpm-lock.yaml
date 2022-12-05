@@ -286,7 +286,7 @@ importers:
       cypress: 11.2.0
       react: 18.2.0
       react-dom: 18.2.0
-      react-markdown: 8.0.3
+      react-markdown: 8.0.4
       sass: 1.56.1
       start-server-and-test: 1.14.0
       typescript: 4.6.4
@@ -312,7 +312,7 @@ importers:
       '@types/react-dom': 18.0.8
       babel-loader: 8.3.0_@babel+core@7.20.5
       cypress: 11.2.0
-      react-markdown: 8.0.3_fan5qbzahqtxlm5dzefqlqx5ia
+      react-markdown: 8.0.4_fan5qbzahqtxlm5dzefqlqx5ia
       sass: 1.56.1
       start-server-and-test: 1.14.0
       typescript: 4.6.4
@@ -18765,8 +18765,8 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react-markdown/8.0.3_fan5qbzahqtxlm5dzefqlqx5ia:
-    resolution: {integrity: sha512-We36SfqaKoVNpN1QqsZwWSv/OZt5J15LNgTLWynwAN5b265hrQrsjMtlRNwUvS+YyR3yDM8HpTNc4pK9H/Gc0A==}
+  /react-markdown/8.0.4_fan5qbzahqtxlm5dzefqlqx5ia:
+    resolution: {integrity: sha512-2oxHa6oDxc1apg/Gnc1Goh06t3B617xeywqI/92wmDV9FELI6ayRkwge7w7DoEqM0gRpZGTNU6xQG+YpJISnVg==}
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
