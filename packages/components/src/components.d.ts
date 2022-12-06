@@ -22,6 +22,10 @@ export namespace Components {
         "write": (text: string) => Promise<void>;
     }
 }
+export interface MyComponentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLMyComponentElement;
+}
 declare global {
     interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
     }
@@ -50,7 +54,7 @@ declare namespace LocalJSX {
         /**
           * This event is fired randomly
          */
-        "onSomeevent"?: (event: CustomEvent<string>) => void;
+        "onSomeevent"?: (event: MyComponentCustomEvent<string>) => void;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
