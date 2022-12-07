@@ -40,7 +40,7 @@ export default {
       }
     },
     labelHidden: {
-      name: 'Label Hidden',
+      name: 'Label hidden',
       description: 'Render the component with or without a visible label.',
       if: {
         arg: 'floatingLabel',
@@ -114,7 +114,7 @@ export default {
     },
     disabled: {
       name: 'Disabled',
-      description: 'When set to `true`, disables the component\'s functionality and places it in a disabled state.<br/>Please consider the information below this table.',
+      description: 'When set to `true`, disables the component\'s functionality and places it in a `disabled` state.<br/>Please consider the information below this table.',
       control: {
         type: 'boolean'
       },
