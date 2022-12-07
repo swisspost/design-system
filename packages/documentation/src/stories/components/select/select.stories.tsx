@@ -1,7 +1,6 @@
 import React from 'react';
-import { Meta, Story, Args } from "@storybook/react";
+import { Meta, Args, Story } from "@storybook/react";
 import docsPage from './select.docs.mdx';
-
 import './select.styles.scss';
 
 interface ISelectOption {
@@ -193,7 +192,7 @@ export default {
 } as Meta;
 
 const Template = (args: Args, story: Story) => {
-  const id = `SelectExample-${story.name}`;
+  const id = `ExampleSelect-${story.name}`;
   const classes = [
     'form-select',
     args.size,
