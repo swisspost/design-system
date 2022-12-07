@@ -199,7 +199,7 @@ const Template = (args: Args, story: Story) => {
     args.validation
   ].filter(c => c && c !== 'null').join(' ');
 
-  const options = args.options.map((option: ISelectOption, index: number) => <option key={ index } label={ option.label } value={ option.value } selected={ option.selected } disabled={ option.disabled }>{ option.text }</option>);
+  const options = args.options.map((option: ISelectOption, index: number) => <option key={ option.value ?? index } label={ option.label } value={ option.value } selected={ option.selected } disabled={ option.disabled }>{ option.text }</option>);
 
   const select = <select
     key="key"
