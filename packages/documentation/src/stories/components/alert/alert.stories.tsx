@@ -5,7 +5,6 @@ import parse from 'html-react-parser';
 import docsPage from './alert.docs.mdx';
 
 import './alert.styles.scss';
-import '@swisspost/design-system-styles/components/alert.scss';
 
 export default {
   title: 'Components/Alert',
