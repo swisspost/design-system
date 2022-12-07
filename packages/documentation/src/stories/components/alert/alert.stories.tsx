@@ -152,7 +152,7 @@ const Template = (args: Args) => {
     args.noIcon ? 'no-icon' : '',
     args.dismissible ? 'alert-dismissible' : '',
     args.fixed ? 'alert-fixed-bottom' : '',
-    args.action ? 'alert-action' : '',
+    args.action ? 'alert-action alert-fixed-bottom' : '',
     args.show ? '' : 'd-none'
   ].filter(c => c).join(' ');
 
