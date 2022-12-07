@@ -197,57 +197,6 @@ Default.decorators = [
   }
 ];
 
-export const Variant = Template.bind({});
-Variant.parameters = {
-  controls: {
-    exclude: [
-      'Icon',
-      'Icon Color',
-      'No Icon',
-      'Dismissible',
-      'Fixed',
-      'Action Buttons',
-      'Show'
-    ]
-  }
-};
-
-export const WithoutIcon = Template.bind({});
-WithoutIcon.parameters = {
-  controls: {
-    exclude: [
-      'Variant',
-      'Icon',
-      'Dismissible',
-      'Fixed',
-      'Action Buttons',
-      'Show'
-    ]
-  }
-};
-WithoutIcon.args = {
-  variant: 'alert-info',
-  noIcon: true
-};
-
-export const CustomIcon = Template.bind({});
-CustomIcon.parameters = {
-  controls: {
-    exclude: [
-      'Variant',
-      'No Icon',
-      'Dismissible',
-      'Fixed',
-      'Action Buttons',
-      'Show'
-    ]
-  }
-};
-CustomIcon.args = {
-  variant: 'alert-info',
-  icon: '2023'
-};
-
 export const AdditionalContent = Template.bind({});
 AdditionalContent.parameters = {
   controls: {
