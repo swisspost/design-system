@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 5.1.3
+
+### Patch Changes
+
+- Fixed an issue with the sidebar width. The fixed sidebar no longer spans the whole page and no longer hides the main page content beneath. (by [@gfellerph](https://github.com/gfellerph) with [#858](https://github.com/swisspost/design-system/pull/858))
+
 ## 5.1.2
 
 ### Patch Changes
