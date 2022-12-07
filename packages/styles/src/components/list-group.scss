@@ -72,6 +72,9 @@
   background-color: transparent;
   font-weight: normal;
   text-decoration: none;
+  border-collapse: collapse;
+  border-right: 0;
+  border-left: 0;
 
   @include media-breakpoint-up(rg) {
     padding-left: map.get(spacing.$post-sizes, 'large');
@@ -145,12 +148,6 @@
       color: rgba(var(--post-contrast-color-inverted-rgb), 0.8);
     }
   }
-}
-
-.list-group-item {
-  border-collapse: collapse;
-  border-right: 0;
-  border-left: 0;
 
   .list-group &:last-child {
     border-bottom: 0;

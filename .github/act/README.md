@@ -19,7 +19,7 @@ You can use [act](https://github.com/nektos/act) to test your github worflows lo
 
 ## Dependant Workflows
 
-If a github event requires further informations to be executable, for example a workflow that needs to have a specific type:
+If a GitHub event requires further information to be executable, for example a workflow that needs to have a specific type:
 
 ```yaml
 name: Workflow B
@@ -30,7 +30,7 @@ on:
       - completed
 ```
 
-You need to add a .json file to for example <code>.github/act/workflow_run/workflow-a.json</code> which provides required informations from the previous workflow.
+You need to add a .json file to for example <code>.github/act/workflow_run/workflow-a.json</code> which provides required information from the previous workflow.
 If you did so, you can run <code>act workflow_run -e .github/act/workflow_run/workflow-a.json -n</code> to test workflow-b.
 
-Visit act Events [documentation](https://github.com/nektos/act#events) and [Github events](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads) for further informations.
+Visit act Events [documentation](https://github.com/nektos/act#events) and [Github events](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads) for further information.

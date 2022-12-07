@@ -13,6 +13,7 @@ import localeIt from "@angular/common/locales/it";
 import localeEn from "@angular/common/locales/en";
 
 import { HighlightModule } from "ngx-highlightjs";
+import { CopyToClipboardDirective } from './common/copy-to-clipboard.directive';
 import { HighlightProvider } from "./common/highlight.provider";
 
 import { IntranetLayoutComponent } from "./intranet-layout/intranet-layout.component";
@@ -36,6 +37,7 @@ registerLocaleData(localeEn);
     AppComponent,
     IntranetLayoutComponent,
     HomeComponent,
+    CopyToClipboardDirective,
   ],
   imports: [
     BrowserModule,

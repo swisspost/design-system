@@ -45,19 +45,16 @@ jobs:
           publish: pnpm changeset:publish
           version: pnpm changeset:version
 
-      # Publish demo only if changesets published any packages
-      - name: Publish demo
-        if: steps.changesets.outputs.published == 'true'
-        id: netlify
-        env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          netlify link --id $NETLIFY_SITE_ID
-          netlify deploy --build false --dir packages/demo/dist/demo --prod
+      # Check version test
+      - name: Storybook Version Check
+        uses: tj-actions/changed-files@v34
+        id: sbCheck
+        with:
+          files: |
+            ./packages/documentation/package.json
 
       # Publish storybook
-      - name: Publish storybooks
-        if: steps.changesets.outputs.published == 'true'
+      - name: Publish storybook to chromatic
+        if: steps.sbCheck.outputs.any_changed
         id: storybook
         run: pnpm --filter design-system-documentation run chromatic --project-token=${{ secrets.CHROMATIC_STORYBOOK_TOKEN }}

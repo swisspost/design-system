@@ -15,16 +15,16 @@
     "bootstrap": "pnpm install && pnpm -r build",
     "start": "pnpm demo:start",
     "demo:start": "pnpm --filter design-system-demo --filter design-system-styles --parallel --stream start",
-    "styles:start": "pnpm --filter design-system-styles storybook:serve",
+    "docs:start": "pnpm --filter design-system-documentation --filter design-system-styles --filter design-system-components --parallel --stream start",
+    "styles:start": "pnpm --filter design-system-styles start",
     "components:start": "pnpm --filter design-system-components start",
     "intranet-header:start": "pnpm --filter design-system-components-angular start",
-    "docs:start": "pnpm --filter design-system-documentation start",
     "changeset:publish": "pnpm bootstrap && pnpm changeset publish",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
     "@changesets/changelog-github": "0.4.7",
-    "@changesets/cli": "2.25.0"
+    "@changesets/cli": "2.25.2"
   },
   "engines": {
     "node": ">=16",

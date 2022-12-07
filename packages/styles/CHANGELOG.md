@@ -1,5 +1,87 @@
 # @swisspost/design-system-styles
 
+## 5.1.2
+
+### Patch Changes
+
+- Correctly declares dependencies used in Migration Schematics for Angular projects, fixing an issue when trying to migrate projects. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#794](https://github.com/swisspost/design-system/pull/794))
+
+- When outside days get hidden, they collapse in their flex context and change the alignment of the first days of the month. Adding flex-grow 1 ensures the hidden days still keep their space so the day labels on top match correctly with the calendar days. (by [@gfellerph](https://github.com/gfellerph) with [#793](https://github.com/swisspost/design-system/pull/793))
+
+## 5.1.1
+
+### Patch Changes
+
+- Set the opacity of tooltips to 1 (fully opaque) because text is hardly legible if the tooltip has underlying content.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#784](https://github.com/swisspost/design-system/pull/784)</sup>
+
+## 5.1.0
+
+### Minor Changes
+
+- Added automatic migration for bootstrap close-button component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for bg-opacity classes.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for button component btn-icon class.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for general rtl properties.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for bootstrap button component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for bootstrap form-switch component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for text-auto class.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for required form-label class.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for bootstrap blockquote component with footer.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for form-checkbox component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for post custom-select component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for forms elements.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added floating-labels migration for bootstrap form-control, form-select and textarea components.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for bootstrap badge component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration functionality which includes cheerio. This enalbes us to write migrations to mutate the html files of a project, with a simple jQuery like selector and with jQuery like update functions (e.g. $element.removeClass('test');, etc.).
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#651](https://github.com/swisspost/design-system/pull/651)</sup>
+
+- Added automatic migration for sr-only and sr-only-focusable classes.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for bootstrap blockquote component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for post subnavigation component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for bootstrap form-radio component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for post topic-teaser component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added automatic migration for ngbootstrap buttons component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
 ## 5.0.0
 
 ### Major Changes

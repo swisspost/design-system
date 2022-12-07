@@ -1,7 +1,7 @@
 {
   "name": "@swisspost/design-system-documentation",
   "version": "1.0.0",
-  "description": "Swiss Post Design System Documentation. The main storybook which integrates all the others into one, big storybook.",
+  "description": "Swiss Post Design System Documentation.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
   "repository": {
@@ -16,19 +16,36 @@
   "private": true,
   "scripts": {
     "start": "start-storybook -p 9200 --quiet",
-    "build": "build-storybook --quiet"
+    "start:headless": "start-storybook -p 9300 --quiet --no-open",
+    "build": "build-storybook --quiet",
+    "test": "start-server-and-test start:headless 9300 'percy exec -- cypress run --record false'"
+  },
+  "dependencies": {
+    "@swisspost/design-system-components": "workspace:1.0.3",
+    "@swisspost/design-system-styles": "workspace:5.1.2",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
   },
   "devDependencies": {
-    "@babel/core": "7.19.6",
-    "@storybook/addon-actions": "6.5.13",
-    "@storybook/addon-essentials": "6.5.13",
-    "@storybook/addon-links": "6.5.13",
-    "@storybook/builder-webpack4": "6.5.13",
-    "@storybook/manager-webpack4": "6.5.13",
-    "@storybook/web-components": "6.5.13",
-    "babel-loader": "8.2.5",
-    "chromatic": "6.11.2",
-    "lit-html": "2.4.0",
-    "npm-run-all": "4.1.5"
+    "@babel/core": "7.20.5",
+    "@percy/cli": "1.16.0",
+    "@percy/cypress": "3.1.2",
+    "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
+    "@storybook/addon-docs": "6.5.14",
+    "@storybook/addon-essentials": "6.5.14",
+    "@storybook/addons": "6.5.14",
+    "@storybook/client-api": "6.5.14",
+    "@storybook/preset-scss": "1.0.3",
+    "@storybook/react": "6.5.14",
+    "@storybook/testing-library": "0.0.13",
+    "@storybook/theming": "6.5.14",
+    "@types/react": "18.0.26",
+    "@types/react-dom": "18.0.9",
+    "babel-loader": "9.1.0",
+    "cypress": "11.2.0",
+    "react-markdown": "8.0.4",
+    "sass": "1.56.1",
+    "start-server-and-test": "1.14.0",
+    "typescript": "4.6.4"
   }
 }

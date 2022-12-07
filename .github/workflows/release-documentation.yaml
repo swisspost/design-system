@@ -1,0 +1,41 @@
+###
+#
+# Release the documentation whenever it's package json changes on the main branch
+#
+###
+
+name: Release Documentation to Netlify
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'packages/documentation/package.json'
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  release:
+    name: Release Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+
+      - name: Install documentation & dependencies
+        run: pnpm --filter "design-system-documentation..." install
+
+      - name: Build documentation & dependencies
+        run: pnpm --filter "design-system-documentation..." build
+
+      - name: Publish documentation to netlify
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          netlify link --id $NETLIFY_SITE_ID
+          netlify deploy --build false --dir packages/documentation/storybook-static --prod

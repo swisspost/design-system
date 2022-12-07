@@ -4,7 +4,12 @@
   </div>
 
   <h2 class="bold">Installation</h2>
-  <p class="light font-curve-regular">The Intranet Header is an <a href="https://angular.io/">Angular</a> component and as such, only works with Angular projects. The minimum recommended Angular version is v11.</p>
+  <p class="light font-curve-regular">
+    The Intranet Header is an
+    <a href="https://angular.io/">Angular</a>
+    component and as such, only works with Angular projects. The minimum recommended Angular version
+    is v11.
+  </p>
   <code
     class="block mt-regular-r bash"
     [highlight]="'npm install @swisspost/design-system-intranet-header' | formatCode"
@@ -14,45 +19,61 @@
   <h2 class="bold mt-5">Usage</h2>
   <section class="light font-curve-regular">
     <p>
-      On your layout page; create a container (e.g. <code>&lt;div&gt;</code> or
-      <code>&lt;section&gt;</code> - or use the <code>body</code> container) and
-      apply the following css classes:
+      In your
+      <code>app.module.ts</code>
+      , add the header to your imports:
+    </p>
+    <code class="block" [highlight]="codeModule" [languages]="['typescript']"></code>
+    <p>
+      On your layout page; create a container (e.g.
+      <code>&lt;div&gt;</code>
+      or
+      <code>&lt;section&gt;</code>
+      - or use the
+      <code>body</code>
+      container) and apply the following css classes:
     </p>
     <ul>
       <li><code>layout-container</code></li>
       <li>
-        <code>header-big</code> - if you are using the top with the navbar
+        <code>header-big</code>
+        - if you are using the top with the navbar
       </li>
       <li>
-        <code>header-small</code> - if you are using the top without the navbar
+        <code>header-small</code>
+        - if you are using the top without the navbar
       </li>
       <li>
-        <code>with-searchbar</code> - if you are using the top with the
-        searchbar
+        <code>with-searchbar</code>
+        - if you are using the top with the searchbar
       </li>
     </ul>
     <p>
-      Inside, add the <code>post-intranet-header</code> component, with the
-      applicable options (see below).
+      Inside, add the
+      <code>post-intranet-header</code>
+      component, with the applicable options (see below).
     </p>
     <p>
-      If you are using the navbar, add the list-items for the navigation
-      directly inside the tag. (see example "With top navigation, without
-      sidenav")
+      If you are using the navbar, add the list-items for the navigation directly inside the tag.
+      (see example "With top navigation, without sidenav")
     </p>
     <p>
-      If you are using a side-nav, adjust your markup accordingly. (See examples
-      "Without top navigation, with sidenav" and "Intranet-Header
-      "postweb"").<br />
-      Make sure that you have the <code>openedMenu</code> Property in your
-      angular app and that you apply the same classes to the markup as shown in
-      the mentioned examples.
+      If you are using a side-nav, adjust your markup accordingly. (See examples "Without top
+      navigation, with sidenav" and "Intranet-Header "postweb"").
+      <br />
+      Make sure that you have the
+      <code>openedMenu</code>
+      Property in your angular app and that you apply the same classes to the markup as shown in the
+      mentioned examples.
     </p>
   </section>
 
-  <h3 class="bold mt-5">Options</h3>
+  <h3 class="bold mt-5" id="intranet-layout-options">Options</h3>
   <div class="table-responsive-sm mt-3">
-    <table class="table table-striped table-bordered table-sm">
+    <table
+      class="table table-striped table-bordered table-sm"
+      aria-describedby="intranet-layout-options"
+    >
       <thead class="thead-dark">
         <tr>
           <th scope="col">Property</th>
@@ -73,7 +94,7 @@
             <code>''</code>
           </td>
           <td>
-            Additional informations about the user, shown as item in the user-dropdown.
+            Additional information about the user, shown as item in the user-dropdown.
             <br />
             By default, the item will not be rendered.
           </td>
@@ -257,30 +278,24 @@
   <div class="alert-container mt-3">
     <div class="alert alert-warning" _ngcontent-c2="">
       <p>
-        You will need to remove the class "preview" from the outermost section
-        and property "isPreview" from post-intranet-header to use the layout in
-        your application!
+        You will need to remove the class "preview" from the outermost section and property
+        "isPreview" from post-intranet-header to use the layout in your application!
       </p>
     </div>
   </div>
   <h4 class="bold mt-5">With top navigation, without sidenav</h4>
   <p class="light font-curve-regular">
     Add
-    <code class="bg-light"
-      >&lt;main role="main"&gt; &lt;!-- Site Content / Router-Outlet --&gt;
-      &lt;/main&gt;</code
-    >
+    <code class="bg-light">
+      &lt;main role="main"&gt; &lt;!-- Site Content / Router-Outlet --&gt; &lt;/main&gt;
+    </code>
     beneath.
   </p>
 </div>
 
 <div class="header-showcase-container p-huge-r">
   <div class="header-showcase-page">
-    <sp-intranet-header
-      siteTitle="SiteTitle"
-      [isPreview]="true"
-      languages="de,fr,it"
-    >
+    <sp-intranet-header siteTitle="SiteTitle" [isPreview]="true" languages="de,fr,it">
       <li class="nav-item">
         <a class="nav-link" href="#">Testlink</a>
       </li>

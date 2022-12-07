@@ -2,8 +2,8 @@
  * Copyright 2021 by Swiss Post, Information Technology
  */
 
-import {Component} from '@angular/core';
-import {UntypedFormControl} from '@angular/forms';
+import { Component } from '@angular/core';
+import { UntypedFormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-form-range-custom',
@@ -11,7 +11,6 @@ import {UntypedFormControl} from '@angular/forms';
   styleUrls: ['form-range-custom-demo.component.scss'],
 })
 export class FormRangeCustomDemoComponent {
-
   templateDrivenValue = 67;
   displayedValue = 54;
   controlledValue = 28;
@@ -20,5 +19,4 @@ export class FormRangeCustomDemoComponent {
   constructor() {
     this.reactiveValue = new UntypedFormControl('31');
   }
-
 }

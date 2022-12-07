@@ -1,5 +1,102 @@
 # @swisspost/design-system-demo
 
+## 5.1.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.1.2
+  - @swisspost/design-system-intranet-header@3.0.3
+
+## 5.1.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.1.1
+  - @swisspost/design-system-intranet-header@3.0.2
+
+## 5.1.1
+
+### Patch Changes
+
+- Updated migration documentation for post topic-teaser component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Update migration documentation for bootstrap button component btn-icon class.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Updated migration documentation for bootstrap blockquote component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Updated migration documentation for bootstrap blockquote component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added migration documentation jquery accordion component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Updated the migration documentation for close-button.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Updated migration documentation for post custom-select component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Removed alert-fixed-bottom class requirement from bootstrap alert component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Updated migration documentation for bootstrap form-select component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Updated migration documentation rtl helper classes.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Updated migration documentation for bootstrap form-switch component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Moved form-label class requirement form controls to forms migration documentation.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Fixed and updated general classes bg-opacity migration documentation.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Updated migration documentation for ngbootstrap buttons component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Upated migration documentation for bootstrap `form-control`, `form-select` and `textarea` components.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Updated migration documentation post accordion component.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+
+- Added migration documentation for general classes sr-only and sr-only-focusable.
+  <br><sup>by [@oliverschuerch](https://github.com/oliverschuerch) with [#687](https://github.com/swisspost/design-system/pull/687)</sup>
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.1.0
+  - @swisspost/design-system-intranet-header@3.0.1
+
+## 5.1.0
+
+### Minor Changes
+
+- Enabled code copy to clipboard
+  <br><sup>by [@alizedebray](https://github.com/alizedebray) with [#714](https://github.com/swisspost/design-system/pull/714)</sup>
+
+## 5.0.1
+
+### Patch Changes
+
+- Added migration instructions for changed sass entry file names.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#696](https://github.com/swisspost/design-system/pull/696)</sup>
+
+- Updated the target Angular version to 14 in the migration instructions. The Intranet Header is not compatible with older versions.
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#698](https://github.com/swisspost/design-system/pull/698)</sup>
+
+- Fixed typos in the migration docs and removed a duplicated entry
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#688](https://github.com/swisspost/design-system/pull/688)</sup>
+
+- Switched to displaying the styles package version number instead of the demo app version number. The styles version is more important to developers than thenow disconnected demo version number
+  <br><sup>by [@gfellerph](https://github.com/gfellerph) with [#689](https://github.com/swisspost/design-system/pull/689)</sup>
+
 ## 5.0.0
 
 ### Major Changes

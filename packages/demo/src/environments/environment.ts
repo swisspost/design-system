@@ -7,10 +7,10 @@ export const environment = {
   production: false,
   VERSION: packageJson.version,
   STYLES_VERSION: packageJson.dependencies['@swisspost/design-system-styles'],
-  ANGULAR_VERSION: packageJson.dependencies["@angular/core"],
+  ANGULAR_VERSION: packageJson.dependencies['@angular/core'],
   BOOTSTRAP_VERSION: packageJson.dependencies.bootstrap,
-  NG_BOOTSTRAP_VERSION: packageJson.dependencies["@ng-bootstrap/ng-bootstrap"],
-  NGX_TOASTER: packageJson.dependencies["ngx-toastr"],
+  NG_BOOTSTRAP_VERSION: packageJson.dependencies['@ng-bootstrap/ng-bootstrap'],
+  NGX_TOASTER: packageJson.dependencies['ngx-toastr'],
 };
 
 /*
@@ -19,4 +19,3 @@ export const environment = {
  * import the following file, but please comment it out in production mode
  * because it will have performance impact when throw error
  */
-// import 'zone.js/plugins/zone-error';  // Included with Angular CLI.
