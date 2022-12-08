@@ -231,62 +231,6 @@ const Template = (args: Args, story: Story) => {
 
 export const Default = Template.bind({});
 
-export const SelectedOption = Template.bind({});
-SelectedOption.parameters = {
-  controls: {
-    exclude: [
-      'Label',
-      'Floating Label',
-      'Multiple',
-      'Size',
-      'Helper Text',
-      'Disabled',
-      'Validation',
-      'Valid Feedback',
-      'Invalid Feedback'
-    ]
-  }
-};
-SelectedOption.args = {
-  options: [
-    { text: 'Elektu opcion...' },
-    { text: 'Opcion 1', value: 1 },
-    { text: 'Opcion 2', value: 2 },
-    { text: 'Opcion 3', value: 3, selected: true },
-    { text: 'Opcion 4', value: 4 },
-    { text: 'Opcion 5', value: 5 },
-  ] as ISelectOption[],
-  hint: ''
-};
-
-export const DisabledOption = Template.bind({});
-DisabledOption.parameters = {
-  controls: {
-    exclude: [
-      'Label',
-      'Floating Label',
-      'Multiple',
-      'Size',
-      'Helper Text',
-      'Disabled',
-      'Validation',
-      'Valid Feedback',
-      'Invalid Feedback'
-    ]
-  }
-};
-DisabledOption.args = {
-  options: [
-    { text: 'Elektu opcion...', selected: true, disabled: true },
-    { text: 'Opcion 1', value: 1 },
-    { text: 'Opcion 2', value: 2 },
-    { text: 'Opcion 3', value: 3, disabled: true },
-    { text: 'Opcion 4', value: 4, disabled: true },
-    { text: 'Opcion 5', value: 5 },
-  ] as ISelectOption[],
-  hint: ''
-};
-
 export const FloatingLabel = Template.bind({});
 FloatingLabel.parameters = {
   controls: {
