@@ -88,7 +88,7 @@ export default {
         labels: {
           'form-select-sm': 'Small',
           'form-select-rg': 'Regular',
-          'null': 'Middle',
+          'null': 'Medium',
           'form-select-lg': 'Large'
         }
       },
