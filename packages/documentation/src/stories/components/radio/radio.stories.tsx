@@ -4,6 +4,12 @@ import { useArgs } from '@storybook/client-api';
 import docsPage from './radio.docs.mdx';
 import './radio.styles.scss';
 
+const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
+  'null': undefined,
+  'is-valid': false,
+  'is-invalid': true
+};
+
 export default {
   title: 'Components/Radio',
   parameters: {
@@ -12,34 +18,18 @@ export default {
     }
   },
   args: {
-    labelHidden: false,
     label: 'Label',
-    value: 'Valerus ipsus',
+    hiddenLabel: false,
     checked: false,
-    background: 'null',
     disabled: false,
     validation: 'null',
     validFeedback: 'Ggranda sukceso!',
     invalidFeedback: 'Eraro okazis!'
   },
   argTypes: {
-    labelHidden: {
-      name: 'Label hidden',
-      description: 'Render the component with or without a visible label.',
-      control: {
-        type: 'boolean'
-      },
-      table: {
-        category: 'General'
-      }
-    },
     label: {
       name: 'Label',
       description: 'Describes the content/topic of the component.',
-      if: {
-        arg: 'labelHidden',
-        truthy: false
-      },
       control: {
         type: 'text'
       },
@@ -47,11 +37,11 @@ export default {
         category: 'General'
       }
     },
-    value: {
-      name: 'Value',
-      description: 'The value, which is sent along with the other form data on submit, if the radio is checked.',
+    hiddenLabel: {
+      name: 'Hidden Label',
+      description: '<p>Render the component with or without a visible label.</p><div className="alert alert-info alert-sm">There are accessibility issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">labels accessibility guide</a>.</div>',
       control: {
-        type: 'text'
+        type: 'boolean'
       },
       table: {
         category: 'General'
@@ -64,72 +54,12 @@ export default {
         type: 'boolean'
       },
       table: {
-        category: 'General'
-      }
-    },
-    background: {
-      name: 'Background',
-      description: 'Defines a custom **background-color** with the background utility.',
-      control: {
-        type: 'select',
-        labels: {
-          'null': 'Default',
-          'bg-primary': 'Primary',
-          'bg-yellow': 'Yellow',
-          'bg-white': 'White',
-          'bg-light': 'Light',
-          'bg-gray': 'Gray',
-          'bg-black': 'Black',
-          'bg-nightblue': 'Nightblue',
-          'bg-nightblue-bright': 'Nightblue Bright',
-          'bg-petrol': 'Petrol',
-          'bg-petrol-bright': 'Petrol Bright',
-          'bg-coral': 'Coral',
-          'bg-coral-bright': 'Coral Bright',
-          'bg-olive': 'Olive',
-          'bg-olive-bright': 'Olive Bright',
-          'bg-purple': 'Purple',
-          'bg-purple-bright': 'Purple Bright',
-          'bg-aubergine': 'Aubergine',
-          'bg-aubergine-bright': 'Aubergine Bright',
-          'bg-success': 'Success',
-          'bg-warning': 'Warning',
-          'bg-danger': 'Danger',
-          'bg-info': 'Info'
-        }
-      },
-      options: [
-        'null',
-        'bg-primary',
-        'bg-yellow',
-        'bg-white',
-        'bg-light',
-        'bg-gray',
-        'bg-black',
-        'bg-nightblue',
-        'bg-nightblue-bright',
-        'bg-petrol',
-        'bg-petrol-bright',
-        'bg-coral',
-        'bg-coral-bright',
-        'bg-olive',
-        'bg-olive-bright',
-        'bg-purple',
-        'bg-purple-bright',
-        'bg-aubergine',
-        'bg-aubergine-bright',
-        'bg-success',
-        'bg-warning',
-        'bg-danger',
-        'bg-info'
-      ],
-      table: {
-        category: 'General'
+        category: 'States'
       }
     },
     disabled: {
       name: 'Disabled',
-      description: 'When set to `true`, disables the component\'s functionality and places it in a disabled state.',
+      description: '<p>When set to `true`, disables the component\'s functionality and places it in a disabled state.</p><div className="alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean'
       },
@@ -192,65 +122,69 @@ const Template = (args: Args, story: Story) => {
     'form-check-input',
     args.validation
   ].filter(c => c && c !== 'null').join(' ');
+
+  const useAriaLabel = args.hiddenLabel;
+  const label = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-check-label">{ args.label }</label> : null;
   
   const contextuals: (JSX.Element | null)[] = [
     args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
     args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null
-  ].filter(f => f !== null);
+  ];
+
+  const control = <input
+    key="control"
+    id={ id }
+    className={ classes }
+    type="radio"
+    checked={ args.checked }
+    disabled={ args.disabled }
+    aria-label={ useAriaLabel ? args.label : undefined }
+    aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
+    onChange={ (e: React.ChangeEvent) => toggle(args, updateArgs) }
+  />;
 
   return <div className="form-check">
-    <input
-      id={ id }
-      className={ classes }
-      type="radio"
-      value={ args.value }
-      checked={ args.checked }
-      disabled={ args.disabled }
-      aria-label={ args.labelHidden ? args.label : undefined }
-      onChange={ (e: React.ChangeEvent) => toggle(args, updateArgs) }
-    />
-    { !args.labelHidden ? <label htmlFor={ id } className="form-check-label">{ args.label }</label> : null }
-    { contextuals }
+    { [control, label, ...contextuals].filter(el => el !== null) }
   </div>;
 };
 
 export const Default = Template.bind({});
 Default.decorators = [
-  (Story: Story, { args }) => <div className={ `p-4 pb-2 ${args.background}` }>
+  (Story: Story) => <div className="p-3 pb-0">
     <Story/>
   </div>
 ];
 
-const TemplateInline = (args: Args) => [
+const TemplateInline = (args: Args) => <fieldset>
+  <legend className="visually-hidden">Legend</legend>
   <div key="FormCheck_1" className="form-check form-check-inline">
     <input id="ExampleRadio_Inline_1" className="form-check-input" type="radio" name="ExampleRadio_Inline_Group"/>
     <label htmlFor="ExampleRadio_Inline_1" className="form-check-label">{ args.label }</label>
-  </div>,
+  </div>
   <div key="FormCheck_2" className="form-check form-check-inline">
     <input id="ExampleRadio_Inline_2" className="form-check-input" type="radio" name="ExampleRadio_Inline_Group"/>
     <label htmlFor="ExampleRadio_Inline_2" className="form-check-label">{ args.label }</label>
-  </div>,
+  </div>
   <div key="FormCheck_3" className="form-check form-check-inline">
     <input id="ExampleRadio_Inline_3" className="form-check-input" type="radio" name="ExampleRadio_Inline_Group"/>
     <label htmlFor="ExampleRadio_Inline_3" className="form-check-label">{ args.label }</label>
-  </div>,
+  </div>
   <div key="FormCheck_4" className="form-check form-check-inline">
     <input id="ExampleRadio_Inline_4" className="form-check-input" type="radio" name="ExampleRadio_Inline_Group"/>
     <label htmlFor="ExampleRadio_Inline_4" className="form-check-label">{ args.label }</label>
   </div>
-];
+</fieldset>;
 
 export const Inline = TemplateInline.bind({});
 Inline.decorators = [
-  (Story: Story, { args }) => <div className={ `p-4 pb-2 ${args.background}` }>
+  (Story: Story) => <div className="p-3 pb-0">
     <Story/>
   </div>
 ];
 Inline.parameters = {
   controls: {
     exclude: [
-      'Label hidden',
-      'Value',
+      'Hidden Label',
       'Checked',
       'Disabled',
       'Validation',
@@ -265,9 +199,7 @@ Validation.parameters = {
   controls: {
     exclude: [
       'Label',
-      'Value',
       'Checked',
-      'Background',
       'Disabled'
     ]
   }
