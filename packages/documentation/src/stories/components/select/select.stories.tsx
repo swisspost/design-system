@@ -93,7 +93,7 @@ export default {
     },
     options: {
       name: 'Options',
-      description: 'Amount of `<option>` items to render in the component.',
+      description: 'Amount of `option` elements to render in the component.',
       control: {
         type: 'number',
         min: 1,

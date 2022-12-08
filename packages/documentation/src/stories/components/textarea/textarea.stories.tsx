@@ -17,9 +17,9 @@ export default {
     }
   },
   args: {
-    floatingLabel: false,
-    labelHidden: false,
     label: 'Label',
+    floatingLabel: false,
+    hiddenLabel: false,
     size: 'null',
     rows: 4,
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
@@ -29,6 +29,16 @@ export default {
     invalidFeedback: 'Eraro okazis!'
   },
   argTypes: {
+    label: {
+      name: 'Label',
+      description: 'Describes the content/topic of the component.',
+      control: {
+        type: 'text'
+      },
+      table: {
+        category: 'General'
+      }
+    },
     floatingLabel: {
       name: 'Floating Label',
       description: 'Defines how the components label is rendered.',
@@ -39,25 +49,15 @@ export default {
         category: 'General'
       }
     },
-    labelHidden: {
-      name: 'Label Hidden',
-      description: 'Render the component with or without a visible label.',
+    hiddenLabel: {
+      name: 'Hidden Label',
+      description: '<p>Render the component with or without a visible label.</p><div className="alert alert-info alert-sm">There are accessibility issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">labels accessibility guide</a>.</div>',
       if: {
         arg: 'floatingLabel',
         truthy: false
       },
       control: {
         type: 'boolean'
-      },
-      table: {
-        category: 'General'
-      }
-    },
-    label: {
-      name: 'Label',
-      description: 'Describes the content/topic of the component.',
-      control: {
-        type: 'text'
       },
       table: {
         category: 'General'
@@ -114,7 +114,7 @@ export default {
     },
     disabled: {
       name: 'Disabled',
-      description: 'When set to `true`, disables the component\'s functionality and places it in a disabled state.<br/>Please consider the information below this table.',
+      description: '<p>When set to `true`, disables the component\'s functionality and places it in a disabled state.</p><div className="alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean'
       },
@@ -173,18 +173,17 @@ const Template = (args: Args, story: Story) => {
     args.validation
   ].filter(c => c && c !== 'null').join(' ');
 
-  const useHtmlLabel = !args.labelHidden || args.floatingLabel;
-
-  const label = useHtmlLabel ? <label key="label" htmlFor={ id } className="form-label">{ args.label }</label> : null;
+  const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
+  const label = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-label">{ args.label }</label> : null;
 
   const component = <textarea
     id={ id }
     className={ classes }
     key="component"
-    placeholder={ !useHtmlLabel ? args.label : ' ' }
+    placeholder={ useAriaLabel ? args.label : ' ' }
     rows={ args.rows }
     disabled={ args.disabled }
-    aria-label={ !useHtmlLabel ? args.label : undefined }
+    aria-label={ useAriaLabel ? args.label : undefined }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
   ></textarea>;
 
