@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Added a story about headings (h1 - h6) and sub-headings.
+Added stories for the component bootstrap/form-select.
