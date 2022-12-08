@@ -1,0 +1,79 @@
+import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+
+<Meta title="Components/Select" />
+
+# Select
+
+<p class="lead">
+  Customize the native <code>&lt;select&gt;</code> with CSS that changes the element’s initial
+  appearance.
+</p>
+
+Custom `select` menus need only the class `.form-select` to trigger the custom styles. Custom styles are limited to the `select`’s initial appearance and cannot modify the `option` elements due to browser limitations.
+
+<Canvas>
+  <Story id="components-select--default" />
+</Canvas>
+<ArgsTable story="^" />
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+```css dark
+@use "@swisspost/design-system-styles/index.scss";
+```
+
+To import only the styles required for this component:
+
+```css dark
+@use "@swisspost/design-system-styles/basics.scss";
+@use '@swisspost/design-system-styles/components/forms.scss';
+@use '@swisspost/design-system-styles/components/form-select.scss';
+
+// required if you use floating-labels
+@use '@swisspost/design-system-styles/components/floating-label.scss';
+
+// required if you use validation feedbacks
+@use '@swisspost/design-system-styles/components/form-feedback.scss';
+```
+
+## Specific examples of application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
+
+### Floating Label
+
+Wrap a pair of `select` and `label` elements in a `.form-floating` container to enable floating labels.<br/>
+But note that the `select` must come first, so we can ensure the correct styles.
+
+<Canvas>
+  <Story id="components-select--floating-label" />
+</Canvas>
+
+### Sizing
+
+The size can be adjusted, by simply adding one of the following four classes:
+
+- Small: `.form-select-sm`
+- Regular: `.form-select-rg`
+- Medium: default or `.form-select-md`
+- Large: `.form-select-lg`
+
+<div class="alert alert-info alert-md">
+  Do not use this classes on <code>select</code> elements wrapped within a{' '}
+  <code>.form-floating</code> container.
+</div>
+
+<Canvas>
+  <Story id="components-select--size" />
+</Canvas>
+
+### Validation
+
+Simply add the classes `is-valid` or `is-invalid` to the `select` element to show it in the expected state.<br/>
+If you like to have some text as feedback, instead of only colors and icons, you can add `.valid-feedback` and `.invalid-feedback` elements after the `select`.
+
+<Canvas>
+  <Story id="components-select--validation" />
+</Canvas>
