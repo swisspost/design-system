@@ -42,8 +42,8 @@ The following examples show the different characteristics of the component. Thes
 
 Normally a checkbox input can only have two states: `checked` or `unchecked`. They can have any value, but they either submit that value (**if checked**) or don't (**if unchecked**) with a form submission.
 
-Visually, there are actually three states a checkbox can be in: `checked`, `unchecked`, or `indeterminate`.<br/>
-The `indeterminate` state is visual only. The checkbox is still either **checked** or **unchecked** as a value. That means the visual `indeterminate` state masks the real value of the checkbox, so that better make sense in the UI!
+Visually, there are three states a checkbox can be in: `checked`, `unchecked`, or `indeterminate`.<br/>
+The `indeterminate` state is visual only. The checkbox is still either **checked** or **unchecked** as a value. That means the visual `indeterminate` state masks the real value of the checkbox. A possible use case for this state could be a list of checkboxes with one to toggle them all as in a folder/subfolder tree and only a part of the subfolders are selected. For an example visit [Accessible Web Designs indeterminate checkbox](http://www.barrierefreies-webdesign.de/knowhow/checkbox/indeterminate.html).
 
 A native `<input type="checkbox"/>` supports setting this visual `indeterminate` state by javascript only and is then styleable with the `:indeterminate` pseudo class.
 
