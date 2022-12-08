@@ -16,7 +16,6 @@ export default {
     hiddenLabel: false,
     indeterminate: false,
     checked: false,
-    background: 'null',
     disabled: false,
     validation: 'null',
     validFeedback: 'Ggranda sukceso!',
@@ -67,66 +66,6 @@ export default {
       control: {
         type: 'boolean'
       },
-      table: {
-        category: 'General'
-      }
-    },
-    background: {
-      name: 'Background',
-      description: 'Defines a custom **background-color** with the background utility.',
-      control: {
-        type: 'select',
-        labels: {
-          'null': 'Default',
-          'bg-primary': 'Primary',
-          'bg-yellow': 'Yellow',
-          'bg-white': 'White',
-          'bg-light': 'Light',
-          'bg-gray': 'Gray',
-          'bg-black': 'Black',
-          'bg-nightblue': 'Nightblue',
-          'bg-nightblue-bright': 'Nightblue Bright',
-          'bg-petrol': 'Petrol',
-          'bg-petrol-bright': 'Petrol Bright',
-          'bg-coral': 'Coral',
-          'bg-coral-bright': 'Coral Bright',
-          'bg-olive': 'Olive',
-          'bg-olive-bright': 'Olive Bright',
-          'bg-purple': 'Purple',
-          'bg-purple-bright': 'Purple Bright',
-          'bg-aubergine': 'Aubergine',
-          'bg-aubergine-bright': 'Aubergine Bright',
-          'bg-success': 'Success',
-          'bg-warning': 'Warning',
-          'bg-danger': 'Danger',
-          'bg-info': 'Info'
-        }
-      },
-      options: [
-        'null',
-        'bg-primary',
-        'bg-yellow',
-        'bg-white',
-        'bg-light',
-        'bg-gray',
-        'bg-black',
-        'bg-nightblue',
-        'bg-nightblue-bright',
-        'bg-petrol',
-        'bg-petrol-bright',
-        'bg-coral',
-        'bg-coral-bright',
-        'bg-olive',
-        'bg-olive-bright',
-        'bg-purple',
-        'bg-purple-bright',
-        'bg-aubergine',
-        'bg-aubergine-bright',
-        'bg-success',
-        'bg-warning',
-        'bg-danger',
-        'bg-info'
-      ],
       table: {
         category: 'General'
       }
@@ -228,7 +167,7 @@ const Template = (args: Args, story: Story) => {
 
 export const Default = Template.bind({});
 Default.decorators = [
-  (Story: Story, { args }) => <div className={ `p-4 pb-2 ${args.background}` }>
+  (Story: Story) => <div className="p-3 pb-0">
     <Story/>
   </div>
 ];
@@ -255,7 +194,7 @@ const TemplateInline = (args: Args) => <fieldset>
 
 export const Inline = TemplateInline.bind({});
 Inline.decorators = [
-  (Story: Story, { args }) => <div className={ `p-4 pb-2 ${args.background}` }>
+  (Story: Story) => <div className="p-3 pb-0">
     <Story/>
   </div>
 ];
