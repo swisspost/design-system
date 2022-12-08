@@ -271,65 +271,6 @@ Size.args = {
   hint: ''
 };
 
-export const Multiple = Template.bind({});
-Multiple.parameters = {
-  controls: {
-    exclude: [
-      'Label',
-      'Options',
-      'Floating Label',
-      'Size',
-      'Helper Text',
-      'Disabled',
-      'Validation',
-      'Valid Feedback',
-      'Invalid Feedback'
-    ]
-  }
-};
-Multiple.args = {
-  multiple: true,
-  hint: ''
-};
-
-export const HelperText = Template.bind({});
-HelperText.parameters = {
-  controls: {
-    exclude: [
-      'Label',
-      'Options',
-      'Floating Label',
-      'Size',
-      'Multiple',
-      'Disabled',
-      'Validation',
-      'Valid Feedback',
-      'Invalid Feedback'
-    ]
-  }
-};
-
-export const Disabled = Template.bind({});
-Disabled.parameters = {
-  controls: {
-    exclude: [
-      'Label',
-      'Options',
-      'Floating Label',
-      'Size',
-      'Multiple',
-      'Helper Text',
-      'Validation',
-      'Valid Feedback',
-      'Invalid Feedback'
-    ]
-  }
-};
-Disabled.args = {
-  disabled: true,
-  hint: ''
-};
-
 export const Validation = Template.bind({});
 Validation.parameters = {
   controls: {
