@@ -233,24 +233,25 @@ Default.decorators = [
   </div>
 ];
 
-const TemplateInline = (args: Args) => [
+const TemplateInline = (args: Args) => <fieldset>
+  <legend className="visually-hidden">Legend</legend>
   <div key="FormCheck_1" className="form-check form-check-inline">
     <input id="ExampleCheckbox_Inline_1" className="form-check-input" type="checkbox"/>
     <label htmlFor="ExampleCheckbox_Inline_1" className="form-check-label">{ args.label }</label>
-  </div>,
+  </div>
   <div key="FormCheck_2" className="form-check form-check-inline">
     <input id="ExampleCheckbox_Inline_2" className="form-check-input" type="checkbox"/>
     <label htmlFor="ExampleCheckbox_Inline_2" className="form-check-label">{ args.label }</label>
-  </div>,
+  </div>
   <div key="FormCheck_3" className="form-check form-check-inline">
     <input id="ExampleCheckbox_Inline_3" className="form-check-input" type="checkbox"/>
     <label htmlFor="ExampleCheckbox_Inline_3" className="form-check-label">{ args.label }</label>
-  </div>,
+  </div>
   <div key="FormCheck_4" className="form-check form-check-inline">
     <input id="ExampleCheckbox_Inline_4" className="form-check-input" type="checkbox"/>
     <label htmlFor="ExampleCheckbox_Inline_4" className="form-check-label">{ args.label }</label>
   </div>
-];
+</fieldset>;
 
 export const Inline = TemplateInline.bind({});
 Inline.decorators = [
