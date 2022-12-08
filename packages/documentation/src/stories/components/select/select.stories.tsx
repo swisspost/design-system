@@ -53,7 +53,7 @@ export default {
     },
     hiddenLabel: {
       name: 'Hidden Label',
-      description: '<p>Render the component with or without a visible label.</p><div className="alert alert-info alert-sm">There are accessability issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessability--page#labels">labels accessability guide</a>.</div>',
+      description: '<p>Render the component with or without a visible label.</p><div className="alert alert-info alert-sm">There are accessibility issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">labels accessibility guide</a>.</div>',
       if: {
         arg: 'floatingLabel',
         truthy: false
@@ -141,7 +141,7 @@ export default {
     },
     disabled: {
       name: 'Disabled',
-      description: '<p>When set to `true`, disables the component\'s functionality and places it in a disabled state.</p><div className="alert alert-info alert-sm">There are accessability issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessability--page#disabled-state">disabled state accessability guide</a>.</div>',
+      description: '<p>When set to `true`, disables the component\'s functionality and places it in a disabled state.</p><div className="alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean'
       },
