@@ -12,8 +12,8 @@ export default {
     }
   },
   args: {
-    labelHidden: false,
     label: 'Label',
+    hiddenLabel: false,
     indeterminate: false,
     checked: false,
     background: 'null',
@@ -23,25 +23,21 @@ export default {
     invalidFeedback: 'Eraro okazis!'
   },
   argTypes: {
-    labelHidden: {
-      name: 'Label hidden',
-      description: 'Render the component with or without a visible label.',
+    label: {
+      name: 'Label',
+      description: 'Describes the content/topic of the component.',
       control: {
-        type: 'boolean'
+        type: 'text'
       },
       table: {
         category: 'General'
       }
     },
-    label: {
-      name: 'Label',
-      description: 'Describes the content/topic of the component.',
-      if: {
-        arg: 'labelHidden',
-        truthy: false
-      },
+    hiddenLabel: {
+      name: 'Hidden Label',
+      description: '<p>Render the component with or without a visible label.</p><div className="alert alert-info alert-sm">There are accessability issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessability--page#labels">labels accessability guide</a>.</div>',
       control: {
-        type: 'text'
+        type: 'boolean'
       },
       table: {
         category: 'General'
@@ -201,11 +197,14 @@ const Template = (args: Args, story: Story) => {
     'form-check-input',
     args.validation
   ].filter(c => c && c !== 'null').join(' ');
+
+  const useAriaLabel = args.hiddenLabel;
+  const label = !useAriaLabel ? <label htmlFor={ id } className="form-check-label">{ args.label }</label> : null;
   
   const contextuals: (JSX.Element | null)[] = [
     args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
     args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null
-  ].filter(f => f !== null);
+  ].filter(el => el !== null);
 
   setTimeout(function () {
     const input: HTMLInputElement | null = document.querySelector('input.form-check-input');
@@ -219,10 +218,10 @@ const Template = (args: Args, story: Story) => {
       type="checkbox"
       checked={ args.checked }
       disabled={ args.disabled }
-      aria-label={ args.labelHidden ? args.label : undefined }
+      aria-label={ useAriaLabel ? args.label : undefined }
       onChange={ (e: React.ChangeEvent) => toggle(args, updateArgs) }
     />
-    { !args.labelHidden ? <label htmlFor={ id } className="form-check-label">{ args.label }</label> : null }
+    { label }
     { contextuals }
   </div>;
 };
