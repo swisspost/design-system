@@ -14,7 +14,6 @@ export default {
   args: {
     labelHidden: false,
     label: 'Label',
-    value: 'Valerus ipsus',
     indeterminate: false,
     checked: false,
     background: 'null',
@@ -41,16 +40,6 @@ export default {
         arg: 'labelHidden',
         truthy: false
       },
-      control: {
-        type: 'text'
-      },
-      table: {
-        category: 'General'
-      }
-    },
-    value: {
-      name: 'Value',
-      description: 'The value, which is sent along with the other form data on submit, if the checkbox is checked.',
       control: {
         type: 'text'
       },
@@ -228,7 +217,6 @@ const Template = (args: Args, story: Story) => {
       id={ id }
       className={ classes }
       type="checkbox"
-      value={ args.value }
       checked={ args.checked }
       disabled={ args.disabled }
       aria-label={ args.labelHidden ? args.label : undefined }
