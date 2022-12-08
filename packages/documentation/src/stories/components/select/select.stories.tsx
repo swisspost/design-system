@@ -3,14 +3,6 @@ import { Meta, Args, Story } from "@storybook/react";
 import docsPage from './select.docs.mdx';
 import './select.styles.scss';
 
-interface ISelectOption {
-  text: string,
-  label: string,
-  value?: string | number,
-  selected?: boolean,
-  disabled?: boolean
-};
-
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
   'is-valid': false,
@@ -26,16 +18,10 @@ export default {
   },
   args: {
     label: 'Label',
-    options: [
-      { text: 'Elektu opcion...' },
-      { text: 'Opcion 1', value: 1 },
-      { text: 'Opcion 2', value: 2 },
-      { text: 'Opcion 3', value: 3 },
-      { text: 'Opcion 4', value: 4 },
-      { text: 'Opcion 5', value: 5 },
-    ] as ISelectOption[],
     floatingLabel: false,
+    hiddenLabel: false,
     size: 'null',
+    options: 5,
     multiple: false,
     multipleSize: 4,
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
@@ -55,20 +41,23 @@ export default {
         category: 'General'
       }
     },
-    options: {
-      name: 'Options',
-      description: `Array of items to render in the component.<br>Single option example:<div><code>{<br/>&nbsp;&nbsp;text: string,<br/>&nbsp;&nbsp;label: string,<br/>&nbsp;&nbsp;value?: string | number,<br/>&nbsp;&nbsp;selected?: boolean,<br/>&nbsp;&nbsp;disabled?: boolean<br/>}</code></div>`,
+    floatingLabel: {
+      name: 'Floating Label',
+      description: 'Defines how the components label is rendered.',
       control: {
-        type: 'object',
-        raw: false
+        type: 'boolean'
       },
       table: {
         category: 'General'
       }
     },
-    floatingLabel: {
-      name: 'Floating Label',
-      description: 'Defines how the components label is rendered.',
+    hiddenLabel: {
+      name: 'Hidden Label',
+      description: '<p>Render the component with or without a visible label.</p><div className="alert alert-info alert-sm">There are accessability issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessability--page#labels">labels accessability guide</a>.</div>',
+      if: {
+        arg: 'floatingLabel',
+        truthy: false
+      },
       control: {
         type: 'boolean'
       },
@@ -98,6 +87,18 @@ export default {
         'null',
         'form-select-lg'
       ],
+      table: {
+        category: 'General'
+      }
+    },
+    options: {
+      name: 'Options',
+      description: 'Amount of `<option>` items to render in the component.',
+      control: {
+        type: 'number',
+        min: 1,
+        step: 1
+      },
       table: {
         category: 'General'
       }
@@ -140,7 +141,7 @@ export default {
     },
     disabled: {
       name: 'Disabled',
-      description: 'When set to `true`, disables the component\'s functionality and places it in a disabled state.',
+      description: '<p>When set to `true`, disables the component\'s functionality and places it in a disabled state.</p><div className="alert alert-info alert-sm">There are accessability issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessability--page#disabled-state">disabled state accessability guide</a>.</div>',
       control: {
         type: 'boolean'
       },
@@ -199,16 +200,22 @@ const Template = (args: Args, story: Story) => {
     args.validation
   ].filter(c => c && c !== 'null').join(' ');
 
-  const options = args.options.map((option: ISelectOption, index: number) => <option key={ option.value ?? index } label={ option.label } value={ option.value } selected={ option.selected } disabled={ option.disabled }>{ option.text }</option>);
+  const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
+  const label = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-label">{ args.label }</label> : null;
+
+  const optionElements = Array
+    .from({ length: args.options - 1 }, (_, i) => i + 2)
+    .map((key: number) => <option key={ key } value={ `valoro_${key}` }>Opcion { key }</option>);
+  const options = [<option key="default-option">Elektu opcion...</option>, ...optionElements];
 
   const select = <select
-    key="key"
+    key="control"
     id={ id }
     className={ classes }
     multiple= { args.multiple }
     size={ args.multipleSize }
     disabled={ args.disabled }
-    aria-label={ args.label }
+    aria-label={ useAriaLabel ? args.label : undefined }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
   >{ options }</select>;
 
@@ -216,16 +223,16 @@ const Template = (args: Args, story: Story) => {
     args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
     args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null,
     args.hint !== '' ? <div key="hint" className="form-text">{ args.hint }</div> : null
-  ].filter(f => f !== null);
+  ].filter(el => el !== null);
 
   if (args.floatingLabel) {
     return <div className="form-floating">
       { select }
-      <label htmlFor={ id } className="form-label">{ args.label }</label>
+      { label }
       { contextuals }
     </div>;
   } else { 
-    return [select, contextuals];
+    return [label, select, contextuals].filter(el => el !== null);
   }
 };
 
@@ -235,6 +242,7 @@ export const FloatingLabel = Template.bind({});
 FloatingLabel.parameters = {
   controls: {
     exclude: [
+      'Hidden Label',
       'Options',
       'Multiple',
       'Size',
@@ -256,8 +264,9 @@ Size.parameters = {
   controls: {
     exclude: [
       'Label',
-      'Options',
       'Floating Label',
+      'Hidden Label',
+      'Options',
       'Multiple',
       'Helper Text',
       'Disabled',
@@ -276,8 +285,9 @@ Validation.parameters = {
   controls: {
     exclude: [
       'Label',
-      'Options',
       'Floating Label',
+      'Hidden Label',
+      'Options',
       'Size',
       'Multiple',
       'Helper Text',
