@@ -60,7 +60,7 @@ export default {
     },
     indeterminate: {
       name: 'Indeterminate',
-      description: 'When set to `true`, component is set in an indeterminate state on load.<br><div className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">You must do this yourself with javascript!<br>See example below.</div>',
+      description: 'When set to `true`, component is set in an indeterminate state on load.<br><div className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">The indeterminate state can be set using JavaScript.<br>See example below.</div>',
       if: {
         arg: 'checked',
         truthy: false
