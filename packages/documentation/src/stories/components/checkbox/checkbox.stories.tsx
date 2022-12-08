@@ -4,6 +4,18 @@ import { useArgs } from '@storybook/client-api';
 import docsPage from './checkbox.docs.mdx';
 import './checkbox.styles.scss';
 
+const CHECKED_STATE_MAP: Record<string, boolean> = {
+  'indeterminate': false,
+  'unchecked': false,
+  'checked': true
+};
+
+const CHECKED_STATE_TOGGLE_MAP: Record<string, string> = {
+  'indeterminate': 'unchecked',
+  'unchecked': 'checked',
+  'checked': 'unchecked'
+};
+
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
   'is-valid': false,
@@ -20,8 +32,7 @@ export default {
   args: {
     label: 'Label',
     hiddenLabel: false,
-    indeterminate: false,
-    checked: false,
+    checked: 'unchecked',
     disabled: false,
     validation: 'null',
     validFeedback: 'Ggranda sukceso!',
@@ -48,32 +59,24 @@ export default {
         category: 'General'
       }
     },
-    indeterminate: {
-      name: 'Indeterminate',
-      description: 'When set to `true`, component is set in an indeterminate state on load.<br><div className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">The indeterminate state can be set using JavaScript.<br>See example below.</div>',
-      if: {
-        arg: 'checked',
-        truthy: false
-      },
-      control: {
-        type: 'boolean'
-      },
-      table: {
-        category: 'General'
-      }
-    },
     checked: {
       name: 'Checked',
-      description: 'When set to `true`, places the component in the checked state.',
-      if: {
-        arg: 'indeterminate',
-        truthy: false
-      },
+      description: 'Defienes the checked state of the component.',
       control: {
-        type: 'boolean'
+        type: 'select',
+        labels: {
+          'indeterminate': 'Indeterminate',
+          'unchecked': 'Unchecked',
+          'checked': 'Checked'
+        }
       },
+      options: [
+        'indeterminate',
+        'unchecked',
+        'checked'
+      ],
       table: {
-        category: 'General'
+        category: 'States'
       }
     },
     disabled: {
@@ -130,8 +133,7 @@ export default {
 } as Meta;
 
 function toggle (args: Args, updateArgs: Function) {
-  updateArgs({ indeterminate: false });
-  updateArgs({ checked: !args.checked });
+  updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
 }
 
 const Template = (args: Args, story: Story) => {
@@ -156,17 +158,19 @@ const Template = (args: Args, story: Story) => {
     id={ id }
     className={ classes }
     type="checkbox"
-    checked={ args.checked }
+    checked={ CHECKED_STATE_MAP[args.checked] }
     disabled={ args.disabled }
     aria-label={ useAriaLabel ? args.label : undefined }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
     onChange={ (e: React.ChangeEvent) => toggle(args, updateArgs) }
   />;
 
-  setTimeout(function () {
-    const input: HTMLInputElement | null = document.querySelector('input.form-check-input');
-    if (input) input.indeterminate = args.indeterminate;
-  }, 0);
+  if (args.checked === 'indeterminate') {
+    setTimeout(function () {
+      const input: HTMLInputElement | null = document.querySelector('input.form-check-input');
+      if (input !== null) input.indeterminate = true;
+    }, 0);
+  }
 
   return <div className="form-check">
     { [control, label, ...contextuals].filter(el => el !== null) }
@@ -211,8 +215,7 @@ Inline.parameters = {
     exclude: [
       'Label hidden',
       'Value',
-      'Indeterminate',
-      'Checked',
+      'State',
       'Disabled',
       'Validation',
       'Valid Feedback',
@@ -227,8 +230,7 @@ Validation.parameters = {
     exclude: [
       'Label',
       'Value',
-      'Indeterminate',
-      'Checked',
+      'State',
       'Background',
       'Disabled'
     ]
