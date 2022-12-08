@@ -1,5 +1,9 @@
+/*
+ * Copyright 2022 by Swiss Post, Information Technology
+ */
+
 import { newSpecPage } from '@stencil/core/testing';
-import { PostCollapsible } from '../post-collapsible';
+import { PostCollapsible } from './post-collapsible';
 
 // HTMLUnknownElement is not implemented in JSDOM, thus it has to be mocked
 // More information: https://jestjs.io/docs/26.x/manual-mocks#mocking-methods-which-are-not-implemented-in-jsdom
