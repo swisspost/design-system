@@ -4,6 +4,12 @@ import { useArgs } from '@storybook/client-api';
 import docsPage from './checkbox.docs.mdx';
 import './checkbox.styles.scss';
 
+const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
+  'null': undefined,
+  'is-valid': false,
+  'is-invalid': true
+};
+
 export default {
   title: 'Components/Checkbox',
   parameters: {
@@ -138,12 +144,24 @@ const Template = (args: Args, story: Story) => {
   ].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
-  const label = !useAriaLabel ? <label htmlFor={ id } className="form-check-label">{ args.label }</label> : null;
+  const label = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-check-label">{ args.label }</label> : null;
   
   const contextuals: (JSX.Element | null)[] = [
     args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
     args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null
-  ].filter(el => el !== null);
+  ];
+
+  const control = <input
+    key="control"
+    id={ id }
+    className={ classes }
+    type="checkbox"
+    checked={ args.checked }
+    disabled={ args.disabled }
+    aria-label={ useAriaLabel ? args.label : undefined }
+    aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
+    onChange={ (e: React.ChangeEvent) => toggle(args, updateArgs) }
+  />;
 
   setTimeout(function () {
     const input: HTMLInputElement | null = document.querySelector('input.form-check-input');
@@ -151,17 +169,7 @@ const Template = (args: Args, story: Story) => {
   }, 0);
 
   return <div className="form-check">
-    <input
-      id={ id }
-      className={ classes }
-      type="checkbox"
-      checked={ args.checked }
-      disabled={ args.disabled }
-      aria-label={ useAriaLabel ? args.label : undefined }
-      onChange={ (e: React.ChangeEvent) => toggle(args, updateArgs) }
-    />
-    { label }
-    { contextuals }
+    { [control, label, ...contextuals].filter(el => el !== null) }
   </div>;
 };
 

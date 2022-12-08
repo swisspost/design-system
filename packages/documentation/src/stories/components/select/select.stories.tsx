@@ -208,7 +208,7 @@ const Template = (args: Args, story: Story) => {
     .map((key: number) => <option key={ key } value={ `valoro_${key}` }>Opcion { key }</option>);
   const options = [<option key="default-option">Elektu opcion...</option>, ...optionElements];
 
-  const select = <select
+  const control = <select
     key="control"
     id={ id }
     className={ classes }
@@ -223,16 +223,14 @@ const Template = (args: Args, story: Story) => {
     args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
     args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null,
     args.hint !== '' ? <div key="hint" className="form-text">{ args.hint }</div> : null
-  ].filter(el => el !== null);
+  ];
 
   if (args.floatingLabel) {
     return <div className="form-floating">
-      { select }
-      { label }
-      { contextuals }
+      { [control, label, ...contextuals].filter(el => el !== null) }
     </div>;
   } else { 
-    return [label, select, contextuals].filter(el => el !== null);
+    return [label, control, ...contextuals].filter(el => el !== null);
   }
 };
 

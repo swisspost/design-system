@@ -176,10 +176,10 @@ const Template = (args: Args, story: Story) => {
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-label">{ args.label }</label> : null;
 
-  const component = <textarea
+  const control = <textarea
+    key="control"
     id={ id }
     className={ classes }
-    key="component"
     placeholder={ useAriaLabel ? args.label : ' ' }
     rows={ args.rows }
     disabled={ args.disabled }
@@ -195,10 +195,10 @@ const Template = (args: Args, story: Story) => {
 
   if (args.floatingLabel) {
     return <div className="form-floating">
-      { [component, label, contextuals].flat().filter(el => el !== null) }
+      { [control, label, ...contextuals].filter(el => el !== null) }
     </div>;
   } else { 
-    return [label, component, contextuals].flat().filter(el => el !== null);
+    return [label, control, ...contextuals].filter(el => el !== null);
   }
 };
 
