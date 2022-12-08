@@ -35,7 +35,7 @@ export default {
     },
     hiddenLabel: {
       name: 'Hidden Label',
-      description: '<p>Render the component with or without a visible label.</p><div className="alert alert-info alert-sm">There are accessability issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessability--page#labels">labels accessability guide</a>.</div>',
+      description: '<p>Render the component with or without a visible label.</p><div className="alert alert-info alert-sm">There are accessibility issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">labels accessibility guide</a>.</div>',
       control: {
         type: 'boolean'
       },
