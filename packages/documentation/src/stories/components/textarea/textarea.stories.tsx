@@ -173,9 +173,15 @@ const Template = (args: Args, story: Story) => {
   ].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
-  const label = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-label">{ args.label }</label> : null;
+  const label: (JSX.Element | null) = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-label">{ args.label }</label> : null;
+  
+  const contextuals: (JSX.Element | null)[] = [
+    args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
+    args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null,
+    args.hint !== '' ? <div key="hint" className="form-text">{ args.hint }</div> : null
+  ];
 
-  const control = <textarea
+  const control: JSX.Element = <textarea
     key="control"
     id={ id }
     className={ classes }
@@ -185,12 +191,6 @@ const Template = (args: Args, story: Story) => {
     aria-label={ useAriaLabel ? args.label : undefined }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
   ></textarea>;
-
-  const contextuals: (JSX.Element | null)[] = [
-    args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
-    args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null,
-    args.hint !== '' ? <div key="hint" className="form-text">{ args.hint }</div> : null
-  ];
 
   if (args.floatingLabel) {
     return <div className="form-floating">

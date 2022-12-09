@@ -145,14 +145,14 @@ const Template = (args: Args, story: Story) => {
   ].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
-  const label = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-check-label">{ args.label }</label> : null;
+  const label: (JSX.Element | null) = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-check-label">{ args.label }</label> : null;
   
   const contextuals: (JSX.Element | null)[] = [
     args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
     args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null
   ];
 
-  const control = <input
+  const control: JSX.Element = <input
     key="control"
     id={ id }
     className={ classes }
