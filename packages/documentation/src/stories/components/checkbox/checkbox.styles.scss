@@ -1,9 +1,0 @@
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/form-check.scss';
-@use '@swisspost/design-system-styles/components/form-feedback.scss';
-
-// hide column "default" of args-table in docs view
-#docs-root .docblock-argstable th:nth-child(3),
-#docs-root .docblock-argstable td:nth-child(3) {
-  display: none;
-}

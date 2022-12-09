@@ -2,7 +2,6 @@ import React from 'react';
 import { Meta, Args, Story } from "@storybook/react";
 import { useArgs } from '@storybook/client-api';
 import docsPage from './checkbox.docs.mdx';
-import './checkbox.styles.scss';
 
 const CHECKED_STATE_MAP: Record<string, boolean> = {
   'indeterminate': false,
