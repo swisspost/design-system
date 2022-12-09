@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, Args, Story } from "@storybook/react";
 import docsPage from './select.docs.mdx';
-import './select.styles.scss';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
