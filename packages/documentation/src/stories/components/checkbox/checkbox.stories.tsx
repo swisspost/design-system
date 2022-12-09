@@ -63,7 +63,7 @@ export default {
       name: 'Checked',
       description: 'Defienes the checked state of the component.',
       control: {
-        type: 'select',
+        type: 'radio',
         labels: {
           'indeterminate': 'Indeterminate',
           'unchecked': 'Unchecked',
