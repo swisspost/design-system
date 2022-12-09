@@ -1,5 +1,4 @@
 import { Meta, Story } from '@storybook/react';
-import '@swisspost/design-system-styles/basics.scss';
 
 export default {
   title: 'Components/Headings',

@@ -1,6 +1,8 @@
 import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
 import docJson from '@swisspost/design-system-components/dist/docs.json';
 
+import './preview.scss';
+
 if (docJson) setStencilDocJson(docJson);
 
 export const parameters = {

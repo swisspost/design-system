@@ -1,9 +1,6 @@
 import React from 'react';
 import { useArgs } from '@storybook/client-api';
 
-import '@swisspost/design-system-styles/basics.scss';
-import '@swisspost/design-system-styles/components/badge.scss';
-
 export default {
   title: 'Components/Badge',
   args: {

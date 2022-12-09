@@ -1,8 +1,5 @@
 import React from 'react';
 
-import '@swisspost/design-system-styles/basics.scss';
-import '@swisspost/design-system-styles/components/topic-teaser.scss';
-
 export default {
   title: 'Components/Topic Teaser',
   args: {
@@ -111,7 +108,7 @@ const Template = args => {
     <div className="container">
       <div className={ `topic-teaser-container ${args.backgroundColor}` }>
         <div className="row pt-huge-r">
-          { args.alignment === '' ? content.reverse() : content };
+          { args.alignment === '' ? [...content].reverse() : content }
         </div>
       </div>
     </div>
