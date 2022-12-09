@@ -1,7 +1,7 @@
 import React from 'react';
-import { Meta, Args, Story } from '@storybook/react';
-import docsPage from './textarea.docs.mdx';
-import './textarea.styles.scss';
+import { Meta, Args, Story } from "@storybook/react";
+import docsPage from './select.docs.mdx';
+import './select.styles.scss';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -10,7 +10,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 export default {
-  title: 'Components/Textarea',
+  title: 'Components/Select',
   parameters: {
     docs: {
       page: docsPage
@@ -21,7 +21,9 @@ export default {
     floatingLabel: false,
     hiddenLabel: false,
     size: 'null',
-    rows: 4,
+    options: 5,
+    multiple: false,
+    multipleSize: 4,
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
@@ -73,28 +75,53 @@ export default {
       control: {
         type: 'select',
         labels: {
-          'form-control-sm': 'Small',
-          'form-control-rg': 'Regular',
-          'null': 'Middle',
-          'form-control-lg': 'Large'
+          'form-select-sm': 'Small',
+          'form-select-rg': 'Regular',
+          'null': 'Medium',
+          'form-select-lg': 'Large'
         }
       },
       options: [
-        'form-control-sm',
-        'form-control-rg',
+        'form-select-sm',
+        'form-select-rg',
         'null',
-        'form-control-lg'
+        'form-select-lg'
       ],
       table: {
         category: 'General'
       }
     },
-    rows: {
-      name: 'Rows',
-      description: 'Attribute to set the initial height, in lines of text, of the `textarea` element.',
+    options: {
+      name: 'Options',
+      description: 'Amount of `option` elements to render in the component.',
       control: {
         type: 'number',
-        min: 3,
+        min: 1,
+        step: 1
+      },
+      table: {
+        category: 'General'
+      }
+    },
+    multiple: {
+      name: 'Multiple',
+      description: 'When set, allows multiple options to be selected (multi-select).',
+      control: {
+        type: 'boolean'
+      },
+      table: {
+        category: 'General'
+      }
+    },
+    multipleSize: {
+      name: 'Multiple Size',
+      description: 'When set to a number larger than 0, will set the number of display option rows.<div className="text-danger">Note: not all browser will respect this setting.</div>',
+      if: {
+        arg: 'multiple'
+      },
+      control: {
+        type: 'number',
+        min: 0,
         max: 10,
         step: 1
       },
@@ -166,9 +193,9 @@ export default {
 } as Meta;
 
 const Template = (args: Args, story: Story) => {
-  const id = `ExampleTextarea_${story.name}`;
+  const id = `ExampleSelect-${story.name}`;
   const classes = [
-    'form-control',
+    'form-select',
     args.size,
     args.validation
   ].filter(c => c && c !== 'null').join(' ');
@@ -176,29 +203,36 @@ const Template = (args: Args, story: Story) => {
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-label">{ args.label }</label> : null;
 
-  const component = <textarea
+  const optionElements = Array
+    .from({ length: args.options - 1 }, (_, i) => i + 2)
+    .map((key: number) => <option key={ key } value={ `valoro_${key}` }>Opcion { key }</option>);
+  const options = [<option key="default-option">Elektu opcion...</option>, ...optionElements];
+
+  const select = <select
+    key="control"
     id={ id }
     className={ classes }
-    key="component"
-    placeholder={ useAriaLabel ? args.label : ' ' }
-    rows={ args.rows }
+    multiple= { args.multiple }
+    size={ args.multipleSize }
     disabled={ args.disabled }
     aria-label={ useAriaLabel ? args.label : undefined }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
-  ></textarea>;
+  >{ options }</select>;
 
   const contextuals: (JSX.Element | null)[] = [
     args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
     args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null,
     args.hint !== '' ? <div key="hint" className="form-text">{ args.hint }</div> : null
-  ];
+  ].filter(el => el !== null);
 
   if (args.floatingLabel) {
     return <div className="form-floating">
-      { [component, label, contextuals].flat().filter(el => el !== null) }
+      { select }
+      { label }
+      { contextuals }
     </div>;
   } else { 
-    return [label, component, contextuals].flat().filter(el => el !== null);
+    return [label, select, contextuals].filter(el => el !== null);
   }
 };
 
@@ -208,8 +242,10 @@ export const FloatingLabel = Template.bind({});
 FloatingLabel.parameters = {
   controls: {
     exclude: [
+      'Hidden Label',
+      'Options',
+      'Multiple',
       'Size',
-      'Rows',
       'Helper Text',
       'Disabled',
       'Validation',
@@ -229,7 +265,9 @@ Size.parameters = {
     exclude: [
       'Label',
       'Floating Label',
-      'Rows',
+      'Hidden Label',
+      'Options',
+      'Multiple',
       'Helper Text',
       'Disabled',
       'Validation',
@@ -239,7 +277,6 @@ Size.parameters = {
   }
 };
 Size.args = {
-  size: 'form-control-sm',
   hint: ''
 };
 
@@ -249,8 +286,10 @@ Validation.parameters = {
     exclude: [
       'Label',
       'Floating Label',
+      'Hidden Label',
+      'Options',
       'Size',
-      'Rows',
+      'Multiple',
       'Helper Text',
       'Disabled'
     ]
