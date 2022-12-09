@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, Args, Story } from "@storybook/react";
+import { Meta, Args, Story, StoryContext, ReactFramework } from "@storybook/react";
 import { useArgs } from '@storybook/client-api';
 import docsPage from './checkbox.docs.mdx';
 
@@ -135,10 +135,10 @@ function toggle (args: Args, updateArgs: Function) {
   updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
 }
 
-const Template = (args: Args, story: Story) => {
+const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
 
-  const id = `ExampleCheckbox_${story.name}`;
+  const id = `ExampleCheckbox_${context.name}`;
   const classes = [
     'form-check-input',
     args.validation
@@ -176,7 +176,7 @@ const Template = (args: Args, story: Story) => {
   </div>;
 };
 
-export const Default = Template.bind({});
+export const Default: Story = Template.bind({});
 Default.decorators = [
   (Story: Story) => <div className="p-3 pb-0">
     <Story/>
@@ -203,7 +203,7 @@ const TemplateInline = (args: Args) => <fieldset>
   </div>
 </fieldset>;
 
-export const Inline = TemplateInline.bind({});
+export const Inline: Story = TemplateInline.bind({});
 Inline.decorators = [
   (Story: Story) => <div className="p-3 pb-0">
     <Story/>
@@ -223,7 +223,7 @@ Inline.parameters = {
   }
 };
 
-export const Validation = Template.bind({});
+export const Validation: Story = Template.bind({});
 Validation.parameters = {
   controls: {
     exclude: [
