@@ -2,7 +2,6 @@ import React from 'react';
 import { Meta, Args, Story } from "@storybook/react";
 import { useArgs } from '@storybook/client-api';
 import docsPage from './radio.docs.mdx';
-import './radio.styles.scss';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
