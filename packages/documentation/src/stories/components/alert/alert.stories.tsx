@@ -179,7 +179,7 @@ const Template = (args: Args) => {
   </div>;
 };
 
-export const Default = Template.bind({});
+export const Default: Story = Template.bind({});
 Default.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
@@ -194,7 +194,7 @@ Default.decorators = [
   }
 ];
 
-export const AdditionalContent = Template.bind({});
+export const AdditionalContent: Story = Template.bind({});
 AdditionalContent.parameters = {
   controls: {
     exclude: [
@@ -220,7 +220,7 @@ AdditionalContent.args = {
   variant: 'alert-success'
 };
 
-export const Dismissible = Template.bind({});
+export const Dismissible: Story = Template.bind({});
 Dismissible.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
@@ -247,7 +247,7 @@ Dismissible.args = {
   dismissible: true
 };
 
-export const Fixed = Template.bind({});
+export const Fixed: Story = Template.bind({});
 Fixed.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
@@ -275,7 +275,7 @@ Fixed.args = {
   show: false
 };
 
-export const ActionButtons = Template.bind({});
+export const ActionButtons: Story = Template.bind({});
 ActionButtons.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
