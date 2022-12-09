@@ -1,5 +1,4 @@
 import { Meta, Source } from '@storybook/addon-docs';
-import '@swisspost/design-system-styles/basics.scss';
 import './color.styles.scss';
 import { cssBackground, scssBackground } from './color.snippets';
 import { ColorSwatch } from './color-swatch';
@@ -116,4 +115,14 @@ Import the color variables from the Design System Styles package. If you use `@u
 
 When using sass variables, the text color will not be automatically accessible. Use the background classes for this feature.
 
+```css dark
+@use '@swisspost/design-system-styles/core' as post;
+
+.background {
+  background-color: post.$yellow;
+}
+```
+
 <Source language="css" code={scssBackground} dark />
+
+

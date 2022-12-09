@@ -20236,7 +20236,7 @@ packages:
     dependencies:
       '@storybook/addons': 6.5.13_biqbaboplfbrettd7655fr4n2y
       '@storybook/api': 6.5.13_biqbaboplfbrettd7655fr4n2y
-      '@storybook/components': 6.5.13_biqbaboplfbrettd7655fr4n2y
+      '@storybook/components': 6.5.14_biqbaboplfbrettd7655fr4n2y
       '@storybook/core-events': 6.5.13
       '@storybook/theming': 6.5.13_biqbaboplfbrettd7655fr4n2y
       fast-deep-equal: 3.1.3
