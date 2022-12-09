@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, Args, Story } from "@storybook/react";
+import { Meta, Args, Story, StoryContext, ReactFramework } from "@storybook/react";
 import { useArgs } from '@storybook/client-api';
 import docsPage from './radio.docs.mdx';
 
@@ -113,24 +113,24 @@ function toggle (args: Args, updateArgs: Function) {
   updateArgs({ checked: !args.checked });
 }
 
-const Template = (args: Args, story: Story) => {
+const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
 
-  const id = `ExampleRadio_${story.name}`;
+  const id = `ExampleRadio_${context.name}`;
   const classes = [
     'form-check-input',
     args.validation
   ].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
-  const label = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-check-label">{ args.label }</label> : null;
+  const label: JSX.Element | null = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-check-label">{ args.label }</label> : null;
   
   const contextuals: (JSX.Element | null)[] = [
     args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
     args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null
   ];
 
-  const control = <input
+  const control: JSX.Element = <input
     key="control"
     id={ id }
     className={ classes }
@@ -147,7 +147,7 @@ const Template = (args: Args, story: Story) => {
   </div>;
 };
 
-export const Default = Template.bind({});
+export const Default: Story = Template.bind({});
 Default.decorators = [
   (Story: Story) => <div className="p-3 pb-0">
     <Story/>
@@ -174,7 +174,7 @@ const TemplateInline = (args: Args) => <fieldset>
   </div>
 </fieldset>;
 
-export const Inline = TemplateInline.bind({});
+export const Inline: Story = TemplateInline.bind({});
 Inline.decorators = [
   (Story: Story) => <div className="p-3 pb-0">
     <Story/>
@@ -193,7 +193,7 @@ Inline.parameters = {
   }
 };
 
-export const Validation = Template.bind({});
+export const Validation: Story = Template.bind({});
 Validation.parameters = {
   controls: {
     exclude: [
