@@ -108,7 +108,7 @@ const Template = args => {
     <div className="container">
       <div className={ `topic-teaser-container ${args.backgroundColor}` }>
         <div className="row pt-huge-r">
-          { args.alignment === '' ? content.reverse() : content };
+          { args.alignment === '' ? content.reverse() : content }
         </div>
       </div>
     </div>
