@@ -184,7 +184,7 @@ Default.decorators = [
 ];
 
 const TemplateInline = (args: Args) => <fieldset>
-  <legend className="visually-hidden">Legend</legend>
+  <legend>Legend</legend>
   <div key="FormCheck_1" className="form-check form-check-inline">
     <input id="ExampleCheckbox_Inline_1" className="form-check-input" type="checkbox"/>
     <label htmlFor="ExampleCheckbox_Inline_1" className="form-check-label">{ args.label }</label>
