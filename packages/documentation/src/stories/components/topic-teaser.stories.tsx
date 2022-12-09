@@ -1,8 +1,5 @@
 import React from 'react';
 
-import '@swisspost/design-system-styles/basics.scss';
-import '@swisspost/design-system-styles/components/topic-teaser.scss';
-
 export default {
   title: 'Components/Topic Teaser',
   args: {

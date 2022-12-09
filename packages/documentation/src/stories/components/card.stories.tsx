@@ -1,9 +1,5 @@
 import React from 'react';
 
-import '@swisspost/design-system-styles/basics.scss';
-import '@swisspost/design-system-styles/components/card.scss';
-import '@swisspost/design-system-styles/components/button.scss';
-
 export default {
   title: 'Components/Card',
   parameters: {
