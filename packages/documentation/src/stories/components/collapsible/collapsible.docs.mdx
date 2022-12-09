@@ -1,0 +1,59 @@
+import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+
+<Meta title="Components/Collapsible" />
+
+# Collapsible
+
+The `<post-collapsible>` component is used to show and hide content.
+Collapsing an element will animate the height from its current value to 0.
+
+<Canvas>
+  <Story id="components-post-collapsible--default" />
+</Canvas>
+
+<ArgsTable story="^" />
+
+## Examples
+
+The following examples show different use cases for the `<post-collapsible>` component.
+
+### Initially Collapsed
+
+To make the collapsible content hidden by default, just use the `collapsible="true"` property.
+
+<Canvas>
+  <Story id="components-post-collapsible--initially-collapsed" />
+</Canvas>
+
+### Intricate Content
+
+The collapsible component uses [HTML slot elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot),
+to allow any HTML content to be used as part of its header and body.<br/>
+By default, all children are appended to the component body.
+For a specific child to be displayed in the header, a `slot="header"` attribute must be added.
+
+
+<Canvas withSource>
+  <Story id="components-post-collapsible--intricate-content" />
+</Canvas>
+
+### Heading Level
+
+Use the `heading-level` property to define the hierarchical level of the collapsible header within the structure of a document.
+
+<Canvas>
+  <Story id="components-post-collapsible--heading-level" />
+</Canvas>
+
+### Custom Trigger
+
+The `<post-collapsible>` exposes a `.toggle()` method that allows the collapse to be triggered programmatically.
+A header is then not mandatory and can be replaced by an external control.<br/><br/>
+In this case, to ensure good accessibility of the component, be sure to add an `aria-expanded` attribute to the control element.
+If the collapsible element is closed, the attribute on the control element must have a value of `aria-expanded="false"` and `aria-expanded="true"` otherwise.
+If your control element targets a single collapsible element, you must also add an `aria-controls` attribute to it, containing the id of the collapsible element.
+
+
+<Canvas>
+  <Story id="components-post-collapsible--custom-trigger" />
+</Canvas>
