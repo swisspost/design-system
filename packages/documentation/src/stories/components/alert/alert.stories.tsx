@@ -4,8 +4,6 @@ import { useArgs } from '@storybook/client-api';
 import parse from 'html-react-parser';
 import docsPage from './alert.docs.mdx';
 
-import './alert.styles.scss';
-
 export default {
   title: 'Components/Alert',
   parameters: {
