@@ -1,8 +1,5 @@
 // TODO: refactor with tsx stories
 
-import './button.scss';
-import './icons.scss';
-
 export default {
   title: 'Components/Button',
   argTypes: {
