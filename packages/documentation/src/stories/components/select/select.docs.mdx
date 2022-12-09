@@ -14,20 +14,22 @@ Custom `select` menus need only the class `.form-select` to trigger the custom s
 <Canvas>
   <Story id="components-select--default" />
 </Canvas>
-<ArgsTable story="^" />
+<div class="hide-col-default">
+  <ArgsTable story="^" />
+</div>
 
 ## SCSS Imports
 
 To import all styles from the design-system-styles package:
 
 ```css dark
-@use "@swisspost/design-system-styles/index.scss";
+@use '@swisspost/design-system-styles/index.scss';
 ```
 
 To import only the styles required for this component:
 
 ```css dark
-@use "@swisspost/design-system-styles/basics.scss";
+@use '@swisspost/design-system-styles/basics.scss';
 @use '@swisspost/design-system-styles/components/forms.scss';
 @use '@swisspost/design-system-styles/components/form-select.scss';
 
