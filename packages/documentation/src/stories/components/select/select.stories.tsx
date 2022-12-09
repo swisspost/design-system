@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, Args, Story } from "@storybook/react";
+import { Meta, Args, Story, StoryContext, ReactFramework } from "@storybook/react";
 import docsPage from './select.docs.mdx';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
@@ -191,8 +191,8 @@ export default {
   }
 } as Meta;
 
-const Template = (args: Args, story: Story) => {
-  const id = `ExampleSelect-${story.name}`;
+const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
+  const id = `ExampleSelect-${context.name}`;
   const classes = [
     'form-select',
     args.size,
@@ -229,13 +229,13 @@ const Template = (args: Args, story: Story) => {
       { [control, label, ...contextuals].filter(el => el !== null) }
     </div>;
   } else { 
-    return [label, control, ...contextuals].filter(el => el !== null);
+    return <>{ [label, control, ...contextuals].filter(el => el !== null) }</>;
   }
 };
 
-export const Default = Template.bind({});
+export const Default: Story = Template.bind({});
 
-export const FloatingLabel = Template.bind({});
+export const FloatingLabel: Story = Template.bind({});
 FloatingLabel.parameters = {
   controls: {
     exclude: [
@@ -256,7 +256,7 @@ FloatingLabel.args = {
   hint: ''
 };
 
-export const Size = Template.bind({});
+export const Size: Story = Template.bind({});
 Size.parameters = {
   controls: {
     exclude: [
@@ -277,7 +277,7 @@ Size.args = {
   hint: ''
 };
 
-export const Validation = Template.bind({});
+export const Validation: Story = Template.bind({});
 Validation.parameters = {
   controls: {
     exclude: [
