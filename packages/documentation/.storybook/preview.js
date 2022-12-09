@@ -3,6 +3,8 @@ import docJson from '@swisspost/design-system-components/dist/docs.json';
 import postTheme from './theme';
 import { styled } from '@storybook/theming';
 
+import './preview.scss';
+
 if (docJson) setStencilDocJson(docJson);
 
 export const parameters = {
