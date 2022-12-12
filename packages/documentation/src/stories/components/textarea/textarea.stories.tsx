@@ -125,7 +125,7 @@ export default {
       name: 'Validation',
       description: 'Controls the validation state appearance of the component.',
       control: {
-        type: 'select',
+        type: 'radio',
         labels: {
           'null': 'Default',
           'is-valid': 'Valid',
@@ -207,6 +207,7 @@ export const FloatingLabel: Story = Template.bind({});
 FloatingLabel.parameters = {
   controls: {
     exclude: [
+      'Hidden Label',
       'Size',
       'Rows',
       'Helper Text',
@@ -228,6 +229,7 @@ Size.parameters = {
     exclude: [
       'Label',
       'Floating Label',
+      'Hidden Label',
       'Rows',
       'Helper Text',
       'Disabled',
@@ -248,6 +250,7 @@ Validation.parameters = {
     exclude: [
       'Label',
       'Floating Label',
+      'Hidden Label',
       'Size',
       'Rows',
       'Helper Text',
