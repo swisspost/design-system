@@ -110,7 +110,7 @@ export default {
       name: 'Validation',
       description: 'Controls the validation state appearance of the component.',
       control: {
-        type: 'select',
+        type: 'radio',
         labels: {
           'null': 'Default',
           'is-valid': 'Valid',
