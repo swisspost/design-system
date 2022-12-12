@@ -28,7 +28,7 @@ importers:
   packages/components:
     specifiers:
       '@stencil/core': 2.19.3
-      '@stencil/sass': 2.0.0
+      '@stencil/sass': 2.0.1
       '@swisspost/design-system-styles': workspace:5.1.3
       '@types/jest': 27.5.2
       jest: 27.5.1
@@ -38,7 +38,7 @@ importers:
       typescript: 4.8.4
     dependencies:
       '@stencil/core': 2.19.3
-      '@stencil/sass': 2.0.0_@stencil+core@2.19.3
+      '@stencil/sass': 2.0.1_@stencil+core@2.19.3
       '@swisspost/design-system-styles': link:../styles/dist
       sass: 1.56.2
     devDependencies:
@@ -5149,8 +5149,8 @@ packages:
     hasBin: true
     dev: false
 
-  /@stencil/sass/2.0.0_@stencil+core@2.19.3:
-    resolution: {integrity: sha512-Be7Tz7YJnMzloot0aG3m2wTVt9Dg0rjOU+ZVx49ts9+hyeW+NEmvSWPv6bhypblRXbSGik2Cc3AYboTma4Qpgg==}
+  /@stencil/sass/2.0.1_@stencil+core@2.19.3:
+    resolution: {integrity: sha512-66ZsqBIcK7B8Awjh7RfMVC6Q1OQPlQDNHqqBfMccH9iZiuUunDL9rzrIZAoUWHjjrxWocMMQR5YieTQSreC9DQ==}
     peerDependencies:
       '@stencil/core': '>=2.0.0'
     dependencies:
