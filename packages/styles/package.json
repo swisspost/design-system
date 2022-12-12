@@ -43,7 +43,7 @@
   },
   "devDependencies": {
     "@angular/compiler": "14.2.12",
-    "@types/node": "18.11.10",
+    "@types/node": "18.11.13",
     "autoprefixer": "10.4.13",
     "copyfiles": "2.4.1",
     "css-loader": "5.2.7",
