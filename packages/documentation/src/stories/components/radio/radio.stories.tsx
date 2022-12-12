@@ -70,7 +70,7 @@ export default {
       name: 'Validation',
       description: 'Controls the validation state appearance of the component.',
       control: {
-        type: 'select',
+        type: 'radio',
         labels: {
           'null': 'Default',
           'is-valid': 'Valid',
@@ -149,7 +149,7 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
 
 export const Default: Story = Template.bind({});
 Default.decorators = [
-  (Story: Story) => <div className="p-3 pb-0">
+  (Story: Story) => <div className="pt-3">
     <Story/>
   </div>
 ];
@@ -176,7 +176,7 @@ const TemplateInline = (args: Args) => <fieldset>
 
 export const Inline: Story = TemplateInline.bind({});
 Inline.decorators = [
-  (Story: Story) => <div className="p-3 pb-0">
+  (Story: Story) => <div className="pt-3">
     <Story/>
   </div>
 ];
@@ -198,6 +198,7 @@ Validation.parameters = {
   controls: {
     exclude: [
       'Label',
+      'Hidden Label',
       'Checked',
       'Disabled'
     ]
