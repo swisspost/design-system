@@ -1,6 +1,9 @@
 import { extractArgTypes, extractComponentDescription, setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
-import docJson from '@swisspost/design-system-components/dist/docs.json';
 import { defineCustomElements } from '@swisspost/design-system-components/loader';
+import { renderToString } from 'react-dom/server';
+import docJson from '@swisspost/design-system-components/dist/docs.json';
+import JsxParser from 'react-jsx-parser';
+import beautify from 'js-beautify';
 
 if (docJson) setStencilDocJson(docJson);
 defineCustomElements();
@@ -16,7 +19,7 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Welcome', 'Foundations', 'Components', 'Utilities', 'Misc'],
+      order: [ 'Welcome', 'Foundations', 'Components', 'Utilities', 'Misc' ],
     },
   },
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -34,24 +37,16 @@ export const parameters = {
       excludeDecorators: true,
     },
     transformSource(snippet) {
-      return snippet
-        // remove "key" attributes
-        .replace(/(\t+|\s+)?key=".*"/g, '')
+      const reactElement = <JsxParser jsx={snippet} renderInWrapper={false}/>;
+      const htmlString = renderToString(reactElement).replace(/<!-- -->/g, ' ');
 
-        // replace noRefCheck functions
-        .replace(/function noRefCheck\(\){}/g, '() => {}')
-
-        // remove brackets from "{value}" attribute-values
-        .replace(/([a-zA-Z][a-zA-Z0-9-_:.]+)={([^}]*}?)}/g, (_m, g1, g2) => `${g1}="${g2}"`)
-
-        // replace "className" attributes with "class"
-        .replace(/className/g, 'class')
-
-        // replace "htmlFor" attributes with "for"
-        .replace(/htmlFor/g, 'for')
-
-        // remove brackets from "{' '}" spaces
-        .replace(/{' '}/g, ' ');
-    }
-  }
+      return beautify.html(
+        htmlString,
+        {
+          wrap_attributes: 'force-expand-multiline',
+          max_preserve_newlines: 1,
+        },
+      );
+    },
+  },
 };

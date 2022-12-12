@@ -100,7 +100,7 @@ IntricateContent.parameters = {
 };
 IntricateContent.args = {
   content: `<p>I am part of the body</p>
-<span slot="header">Customus <em>Titulum</em></span>
+<span slot="header">Customus <em>&nbsp;Titulum</em></span>
 <small slot="header" class="text-muted">&nbsp;- I am part of the header</small>
 <p>I am part of the body too!</p>`
 };
