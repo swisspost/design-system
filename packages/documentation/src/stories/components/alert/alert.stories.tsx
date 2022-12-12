@@ -43,7 +43,7 @@ export default {
       name: 'Variant',
       description: 'Defines a style variant.',
       control: {
-        type: 'select',
+        type: 'radio',
         labels: {
           'alert-primary': 'Primary',
           'alert-success': 'Success',
