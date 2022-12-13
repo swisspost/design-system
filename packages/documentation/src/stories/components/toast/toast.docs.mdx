@@ -1,0 +1,56 @@
+import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+
+<Meta title="Components/Toast" />
+
+# Toast
+
+<p className="lead">
+  Push notifications to your visitors with a <code>.toast</code> element, a lightweight and easily
+  customizable alert message.
+</p>
+
+Toasts are lightweight notifications designed to mimic the push notifications that have been popularized by mobile and desktop operating systems.
+They are intended to be small interruptions to your visitors or users, and therefore should contain minimal, to-the-point, non-interactive content.
+
+<Canvas>
+  <Story id="components-toast--default" />
+</Canvas>
+<div className="hide-col-default">
+  <ArgsTable story="^" />
+</div>
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+```css dark
+@use '@swisspost/design-system-styles/index.scss';
+```
+
+To import only the styles required for this component:
+
+```css dark
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/toast.scss';
+```
+
+## Auto close
+
+<Canvas>
+  <Story id="components-toast--auto-close" />
+</Canvas>
+
+Toasts should be closed automatically after a while, because they usually overlay the regular content.
+Every change on the screen should be left for at least 6 seconds so that the user can perceive it.
+We therefore recommend a display duration of at least 10-12 seconds, since the message still has to be
+read.
+
+In addition, if the user moves the mouse or the focus to the `.toast` element, the automatic closing should be disabled. If the mouse/focus leaves the element again, the timeout for the automatic closing can be restarted.
+
+## Accessibility
+
+Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an `aria-live` region. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without needing to move the user’s focus or otherwise interrupt the user. Additionally, include `aria-atomic="true"` to ensure that the entire toast is always announced as a single (atomic) unit, rather than just announcing what was changed (which could lead to problems if you only update part of the toast’s content, or if displaying the same toast content at a later point in time). If the information needed is important for the process, e.g. for a list of errors in a form, then use the [alert component](/?path=/docs/components-alert--default) instead of toast.
+
+Note that the live region needs to be present in the markup before the toast is generated or updated. If you dynamically generate both at the same time and inject them into the page, they will generally not be announced by assistive technologies.
+
+You also need to adapt the `role` and `aria-live` level depending on the content. If it’s an important message like an error, use `role="alert" aria-live="assertive"`, otherwise use `role="status" aria-live="polite"` attributes.
