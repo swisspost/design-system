@@ -1,9 +1,14 @@
-import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
-import docJson from '@swisspost/design-system-components/dist/docs.json';
-import postTheme from './theme';
+import React from "react";
+import { DocsContainer as BaseContainer } from "@storybook/addon-docs/blocks";
+import { useDarkMode } from "storybook-dark-mode";
 import { styled } from '@storybook/theming';
 
+import DocsContainer from './docs-container';
+import postThemes from './post-themes';
 import './preview.scss';
+
+import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
+import docJson from '@swisspost/design-system-components/dist/docs.json';
 
 if (docJson) setStencilDocJson(docJson);
 
@@ -21,8 +26,16 @@ export const parameters = {
       order: ['Welcome', 'Foundations', 'Components', 'Utilities', 'Misc'],
     },
   },
+  darkMode: {
+    current: 'light',
+    dark: postThemes.dark,
+    light: postThemes.light,
+    darkClass: 'bg-dark',
+    lightClass: 'bg-light',
+    stylePreview: true,
+  },
   docs: {
-    theme: postTheme,
+    container: DocsContainer,
     components: {
       // Remove default storybook styles from most of things (helps with dark mode in mdx files)
       h1: styled.h1(() => {}),
@@ -37,7 +50,6 @@ export const parameters = {
       dl: styled.dl(() => {}),
       dt: styled.dt(() => {}),
       dd: styled.dd(() => {}),
-      code: styled.code(() => {}),
     },
     source: {
       excludeDecorators: true,
@@ -67,10 +79,5 @@ export const parameters = {
       color: /(background|color)$/i,
       date: /Date$/,
     },
-  },
-  darkMode: {
-    darkClass: 'bg-primary',
-    lightClass: 'bg-white',
-    stylePreview: true,
   },
 };

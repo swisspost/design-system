@@ -1,7 +1,18 @@
 // importing the complete styles package scss
 @use '@swisspost/design-system-styles/index.scss';
 
+body {
+  &.bg-light,
+  &.bg-dark {
+    background-color: transparent !important;
+  }
+}
+
 #docs-root {
+  .sbdocs-wrapper {
+    background-color: transparent;
+  }
+
   pre {
     font-size: 100%;
   }
