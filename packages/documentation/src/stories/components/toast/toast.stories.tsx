@@ -20,8 +20,7 @@ export default {
     alignment: false,
     alignV: 'bottom',
     alignH: 'right',
-    show: false,
-    autoHideTimeout: null
+    show: false
   },
   argTypes: {
     title: {
@@ -186,44 +185,55 @@ export default {
         category: 'Live Examples',
         disable: true
       }
-    },
-    autoHideTimeout: {
-      name: 'Auto Hide Timeout',
-      table: {
-        disable: true
-      }
     }
   }
 } as Meta;
 
-let autoHideTimeoutIds: ReturnType<typeof setTimeout>[] = [];
+interface ITimeoutStores {
+  'Default': ReturnType<typeof setTimeout>[],
+  'Auto Close': ReturnType<typeof setTimeout>[]
+};
+
+const timeoutStores: ITimeoutStores = {
+  'Default': [],
+  'Auto Close': []
+};
 
 function onToggle (e: React.MouseEvent | null, args: Args, updateArgs: Function, state: boolean | undefined) {
   if (e !== null) e.preventDefault();
   if (args.alignment) updateArgs({ show: state ?? !args.show });
 }
 
-function createAutoHideTimeout(args: Args, updateArgs: Function) {
-  if (args.alignment) {
-    autoHideTimeoutIds.push(setTimeout(() => { onToggle(null, args, updateArgs, false); }, 12000));
+function createAutoHideTimeout(contextName: keyof ITimeoutStores, args: Args, updateArgs: Function) {
+  let timeoutStore = timeoutStores[contextName];
 
-    if (autoHideTimeoutIds.length > 1) {
-      autoHideTimeoutIds
+  if (args.alignment && timeoutStore.length === 0) {
+    timeoutStore.push(
+      setTimeout(() => {
+        onToggle(null, args, updateArgs, false);
+        killAutoHideTimeout(contextName, args);
+      }, 3000)
+    );
+    
+    if (timeoutStore.length > 1) {
+      timeoutStore
         .slice(0, -1)
         .forEach((timeoutId: ReturnType<typeof setTimeout>) => clearTimeout(timeoutId));
-    
-      autoHideTimeoutIds = autoHideTimeoutIds.slice(-1);
+      
+      timeoutStore = timeoutStore.slice(-1);
     }
   }
 }
 
-function killAutoHideTimeout (args: Args) {
-  if (args.alignment && autoHideTimeoutIds.length > 0) {
-    clearTimeout(autoHideTimeoutIds.pop());
+function killAutoHideTimeout (contextName:  keyof ITimeoutStores, args: Args) {
+  let timeoutStore = timeoutStores[contextName];
+  
+  if (args.alignment && timeoutStore.length > 0) {
+    clearTimeout(timeoutStore.pop());
   }
 }
 
-const Template = (args: Args) => {
+const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
 
   const classes = [
@@ -244,8 +254,8 @@ const Template = (args: Args) => {
     aria-live={ ariaLive }
     aria-atomic="true"
     onClick={ (e: React.MouseEvent) => onToggle(e, args, updateArgs, false) }
-    onMouseEnter={ (e: React.MouseEvent) => killAutoHideTimeout(args) }
-    onMouseLeave={ (e: React.MouseEvent) => createAutoHideTimeout(args, updateArgs) }
+    onMouseEnter={ (e: React.MouseEvent) => killAutoHideTimeout(context.name as keyof ITimeoutStores, args) }
+    onMouseLeave={ (e: React.MouseEvent) => createAutoHideTimeout(context.name as keyof ITimeoutStores, args, updateArgs) }
   >
     { dismissibleButton }
     <div className="toast-title">{ args.title }</div>
@@ -253,7 +263,7 @@ const Template = (args: Args) => {
   </div>;
 
   if (args.alignment) {
-    if (args.show) createAutoHideTimeout(args, updateArgs);
+    if (args.show) createAutoHideTimeout(context.name as keyof ITimeoutStores, args, updateArgs);
 
     return <div aria-live="polite" aria-atomic="true" className={ `toast-container toast-${args.alignV}-${args.alignH}`}>
       { args.show && component }
