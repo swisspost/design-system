@@ -52,5 +52,4 @@ export const parameters = {
       date: /Date$/,
     },
   },
-  
 };
