@@ -4,6 +4,8 @@ import docJson from '@swisspost/design-system-components/dist/docs.json';
 import JsxParser from 'react-jsx-parser';
 import beautify from 'js-beautify';
 
+import './preview.scss';
+
 if (docJson) setStencilDocJson(docJson);
 
 export const parameters = {
@@ -17,7 +19,7 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: [ 'Welcome', 'Foundations', 'Components', 'Utilities', 'Misc' ],
+      order: ['Welcome', 'Foundations', 'Components', 'Utilities', 'Misc'],
     },
   },
   actions: { argTypesRegex: '^on[A-Z].*' },

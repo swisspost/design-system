@@ -1,7 +1,5 @@
 import React from 'react';
 
-import '@swisspost/design-system-styles/basics.scss';
-
 export default {
   title: 'Components/Blockquotes',
   parameters: {
