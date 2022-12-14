@@ -151,15 +151,13 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     disabled={ args.disabled }
     aria-label={ useAriaLabel && args.label }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
-    onChange={ (e: React.ChangeEvent) => updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] }) }
+    onChange={ () => updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] }) }
   />;
 
-  if (args.checked === 'indeterminate') {
-    setTimeout(function () {
-      const input: HTMLInputElement | null = document.querySelector('input.form-check-input');
-      if (input !== null) input.indeterminate = true;
-    }, 0);
-  }
+  setTimeout(function () {
+    const input: HTMLInputElement | null = document.querySelector('input.form-check-input');
+    if (input !== null) input.indeterminate = args.checked === 'indeterminate';
+  }, 0);
 
   return <div className="form-check">
     { [control, label, ...contextuals].filter(el => el !== null) }
