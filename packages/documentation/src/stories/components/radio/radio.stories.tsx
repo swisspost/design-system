@@ -14,9 +14,15 @@ export default {
   parameters: {
     docs: {
       page: docsPage
+    },
+    controls: {
+      exclude: [
+        'Hidden Legend'
+      ]
     }
   },
   args: {
+    hiddenLegend: false,
     label: 'Label',
     hiddenLabel: false,
     checked: false,
@@ -24,6 +30,16 @@ export default {
     validation: 'null'
   },
   argTypes: {
+    hiddenLegend: {
+      name: 'Hidden Legend',
+      description: 'Render the group with or without a visible legend.',
+      control: {
+        type: 'boolean'
+      },
+      table: {
+        category: 'General'
+      }
+    },
     label: {
       name: 'Label',
       description: 'Describes the content/topic of the component.',
@@ -133,7 +149,7 @@ Default.decorators = [
 ];
 
 const TemplateInline = (args: Args) => <fieldset>
-  <legend>Legend</legend>
+  <legend className={ args.hiddenLegend && 'visually-hidden' }>Legend</legend>
   <div key="FormCheck_1" className="form-check form-check-inline">
     <input id="ExampleRadio_Inline_1" className="form-check-input" type="radio" name="ExampleRadio_Inline_Group"/>
     <label htmlFor="ExampleRadio_Inline_1" className="form-check-label">{ args.label }</label>
@@ -173,6 +189,7 @@ export const Validation: Story = Template.bind({});
 Validation.parameters = {
   controls: {
     exclude: [
+      'Hidden Legend',
       'Label',
       'Hidden Label',
       'Checked',
