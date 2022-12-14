@@ -105,7 +105,7 @@ export default {
     },
     dismissible: {
       name: 'Dismissible',
-      description: 'Adds the dismissible styles.<br/><div className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">Do not forget to add the structural adjustments!</div>',
+      description: 'Adds the dismissible styles.<br/><span className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">Do not forget to add the structural adjustments!</span>',
       control: { type: 'boolean' },
       table: {
         category: 'Variations'
@@ -113,7 +113,7 @@ export default {
     },
     fixed: {
       name: 'Fixed',
-      description: 'Adds the fixed styles.<br/><div className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">Do not forget to add the structural adjustments!</div>',
+      description: 'Adds the fixed styles.<br/><span className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">Do not forget to add the structural adjustments!</span>',
       control: { type: 'boolean' },
       table: {
         category: 'Variations'
@@ -121,7 +121,7 @@ export default {
     },
     action: {
       name: 'Action Buttons',
-      description: 'Adds the action button styles.<br/><div className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">Do not forget to add the structural adjustments!</div>',
+      description: 'Adds the action button styles.<br/><span className="alert alert-info" style="padding: 0.2rem 0.5rem 0.2rem 2rem; min-height: 0; background-position: 0.5rem center; background-size: 1rem; font-size: inherit;">Do not forget to add the structural adjustments!</span>',
       control: { type: 'boolean' },
       table: {
         category: 'Variations'
