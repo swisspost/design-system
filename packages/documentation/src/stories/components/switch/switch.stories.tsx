@@ -172,13 +172,13 @@ Default.decorators = [
   </div>
 ];
 
-export const MultilineLables: Story = Template.bind({});
-MultilineLables.decorators = [
+export const MultilineLabels: Story = Template.bind({});
+MultilineLabels.decorators = [
   (Story: Story) => <div className="pt-3">
     <Story/>
   </div>
 ];
-MultilineLables.parameters = {
+MultilineLabels.parameters = {
   controls: {
     exclude: [
       'Label Position',
@@ -190,7 +190,7 @@ MultilineLables.parameters = {
     ]
   }
 };
-MultilineLables.args = {
+MultilineLabels.args = {
   labelPosition: 'after',
   labelAfter: 'Longa etikedo kiu plej versajne ne taugas sur unu linio kaj tial devas esti envolvita. Kaj nur por esti sur la sekura flanko, ni simple aldonu unu plian tre sencelan frazon ci tie. Vi neniam scias...'
 };
