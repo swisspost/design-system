@@ -36,7 +36,7 @@ To import only the styles required for this component:
 @use '@swisspost/design-system-styles/components/form-feedback.scss';
 ```
 
-## Specific examples of application
+## Concrete Examples of Application
 
 The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
 
@@ -47,7 +47,7 @@ Normally a checkbox input can only have two states: `checked` or `unchecked`. Th
 Visually, there are three states a checkbox can be in: `checked`, `unchecked`, or `indeterminate`.<br/>
 The `indeterminate` state is visual only. The checkbox is still either **checked** or **unchecked** as a value. That means the visual `indeterminate` state masks the real value of the checkbox. A possible use case for this state could be a list of checkboxes with one to toggle them all as in a folder/subfolder tree and only a part of the subfolders are selected. For an example visit [Accessible Web Designs indeterminate checkbox](http://www.barrierefreies-webdesign.de/knowhow/checkbox/indeterminate.html).
 
-A native `<input type="checkbox"/>` supports setting this visual `indeterminate` state by javascript only and is then styleable with the `:indeterminate` pseudo class.
+A native `<input type="checkbox"/>` supports this `indeterminate` visual state which can only be set through JavaScript. It is then styled using the `:indeterminate` pseudo-class.
 
 ```javascript dark
 document.querySelector('input[type="checkbox"]').indeterminate = true;
@@ -64,6 +64,8 @@ To render a checkbox inline, simply add the class `.form-check-inline` to the `.
   You can read more about that topic at our{' '}
   <a href="/?path=/docs/foundations-accessibility--page#grouping">grouping accessibility guide</a>.
 </div>
+
+To visually hide the `<legend>` element, use the `.visually-hidden` class.
 
 <Canvas>
   <Story id="components-checkbox--inline" />
