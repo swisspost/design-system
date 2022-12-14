@@ -30,7 +30,7 @@ export default {
   argTypes: {
     labelPosition: {
       name: 'Label Position',
-      description: 'The position of the components label.',
+      description: 'The position of the component label.',
       control: {
         type: 'radio',
         label: {
@@ -78,7 +78,7 @@ export default {
     },
     hiddenLabel: {
       name: 'Hidden Label',
-      description: '<p>Render the component with or without a visible label.</p><div className="alert alert-info alert-sm">There are accessibility issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">labels accessibility guide</a>.</div>',
+      description: 'Render the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">labels accessibility guide</a>.</span>',
       control: {
         type: 'boolean'
       },
@@ -98,7 +98,7 @@ export default {
     },
     disabled: {
       name: 'Disabled',
-      description: '<p>When set to `true`, disables the component\'s functionality and places it in a disabled state.</p><div className="alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</div>',
+      description: 'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean'
       },
