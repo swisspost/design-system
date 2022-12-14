@@ -19,7 +19,9 @@ export default {
     dismissible: true,
     position: 'static',
     alignV: 'bottom',
+    alignVRestricted: 'bottom',
     alignH: 'right',
+    alignHRestricted: 'right',
     autoClose: 0,
     show: false
   },
@@ -124,6 +126,7 @@ export default {
     },
     position: {
       name: 'Position',
+      description: 'Defines the component\'s positionning.',
       control: {
         type: 'radio',
         lables: {
@@ -141,9 +144,10 @@ export default {
     },
     alignV: {
       name: 'Vertical',
+      description: 'When position set to `fixed`, defines the component\'s vertical position.',
       if: {
-        arg: 'position',
-        eq: 'fixed'
+        arg: 'alignH',
+        neq: 'full-width'
       },
       control: {
         type: 'radio',
@@ -162,11 +166,34 @@ export default {
         category: 'Positionning'
       }
     },
+    alignVRestricted: {
+      name: 'Vertical',
+      description: 'When position set to `fixed`, defines the component\'s vertical position.',
+      if: {
+        arg: 'alignH',
+        eq: 'full-width'
+      },
+      control: {
+        type: 'radio',
+        labels: {
+          top: 'Top',
+          bottom: 'Bottom'
+        }
+      },
+      options: [
+        'top',
+        'bottom'
+      ],
+      table: {
+        category: 'Positionning'
+      }
+    },
     alignH: {
       name: 'Horizontal',
+      description: 'When position set to `fixed`, defines the component\'s horizontal position.',
       if: {
-        arg: 'position',
-        eq: 'fixed'
+        arg: 'alignV',
+        neq: 'center'
       },
       control: {
         type: 'radio',
@@ -175,6 +202,31 @@ export default {
           center: 'Center',
           right: 'Right',
           'full-width': 'Full Width'
+        }
+      },
+      options: [
+        'left',
+        'center',
+        'right',
+        'full-width'
+      ],
+      table: {
+        category: 'Positionning'
+      }
+    },
+    alignHRestricted: {
+      name: 'Horizontal',
+      description: 'When position set to `fixed`, defines the component\'s horizontal position.',
+      if: {
+        arg: 'alignV',
+        eq: 'center'
+      },
+      control: {
+        type: 'radio',
+        labels: {
+          left: 'Left',
+          center: 'Center',
+          right: 'Right'
         }
       },
       options: [
@@ -269,6 +321,14 @@ function killAutoHideTimeout (timeoutStore: ReturnType<typeof setTimeout>[], arg
 
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
+
+  if (args.alignH && args.alignHRestricted && args.alignH !== args.alignHRestricted) {
+    args.alignV === 'center' ? updateArgs({ alignH: args.alignHRestricted }) : updateArgs({ alignHRestricted: args.alignH });
+  }
+
+  if (args.alignV && args.alignVRestricted && args.alignV !== args.alignVRestricted) {
+    args.alignH === 'full-width' ? updateArgs({ alignV: args.alignVRestricted }) : updateArgs({ alignVRestricted: args.alignV });
+  }
   
   const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores];
 
@@ -303,7 +363,7 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   if (isFixed) {
     if (args.show) createAutoHideTimeout(timeoutStore, args, updateArgs);
 
-    return <div aria-live="polite" aria-atomic="true" className={ `toast-container toast-${args.alignV}-${args.alignH}`}>
+    return <div aria-live="polite" aria-atomic="true" className={ `toast-container toast-${args.alignVRestricted ?? args.alignV}-${args.alignHRestricted ?? args.alignH}`}>
       { args.show && component }
     </div>;
   } else {
