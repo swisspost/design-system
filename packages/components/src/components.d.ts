@@ -6,6 +6,21 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MyComponent {
+        /**
+          * The first name
+         */
+        "first": string;
+        /**
+          * The last name
+         */
+        "last": string;
+        /**
+          * The middle name
+         */
+        "middle": string;
+        "write": (text: string) => Promise<void>;
+    }
     interface PostCollapsible {
         /**
           * If `true`, the element is initially collapsed otherwise it is displayed.
@@ -21,7 +36,17 @@ export namespace Components {
         "toggle": (open?: boolean) => Promise<void>;
     }
 }
+export interface MyComponentCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLMyComponentElement;
+}
 declare global {
+    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    }
+    var HTMLMyComponentElement: {
+        prototype: HTMLMyComponentElement;
+        new (): HTMLMyComponentElement;
+    };
     interface HTMLPostCollapsibleElement extends Components.PostCollapsible, HTMLStencilElement {
     }
     var HTMLPostCollapsibleElement: {
@@ -29,10 +54,29 @@ declare global {
         new (): HTMLPostCollapsibleElement;
     };
     interface HTMLElementTagNameMap {
+        "my-component": HTMLMyComponentElement;
         "post-collapsible": HTMLPostCollapsibleElement;
     }
 }
 declare namespace LocalJSX {
+    interface MyComponent {
+        /**
+          * The first name
+         */
+        "first"?: string;
+        /**
+          * The last name
+         */
+        "last"?: string;
+        /**
+          * The middle name
+         */
+        "middle"?: string;
+        /**
+          * This event is fired randomly
+         */
+        "onSomeevent"?: (event: MyComponentCustomEvent<string>) => void;
+    }
     interface PostCollapsible {
         /**
           * If `true`, the element is initially collapsed otherwise it is displayed.
@@ -44,6 +88,7 @@ declare namespace LocalJSX {
         "headingLevel"?: number;
     }
     interface IntrinsicElements {
+        "my-component": MyComponent;
         "post-collapsible": PostCollapsible;
     }
 }
@@ -51,6 +96,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
         }
     }

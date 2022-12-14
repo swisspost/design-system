@@ -1,5 +1,6 @@
+import { useArgs } from '@storybook/client-api';
 import React from 'react';
-import { Story, Args } from '@storybook/react';
+import { Story, Args, StoryContext, ReactFramework } from '@storybook/react';
 import { PostCollapsible } from '@swisspost/design-system-components-react';
 import parse from 'html-react-parser';
 import docsPage from './collapsible.docs.mdx';
@@ -33,9 +34,9 @@ export default {
   },
 };
 
-const Template = (args: Args) => {
+const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const hasHeader = args.content.indexOf('slot="header"') > -1;
-  const collapsibleId = 'collapsibleExample';
+  const collapsibleId = `collapsible-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
 
   const collapsibleComponent = <PostCollapsible
     collapsed={ args.collapsed }
@@ -49,17 +50,17 @@ const Template = (args: Args) => {
     return collapsibleComponent;
   }
 
-  let isCollapsed = args.collapsed;
-
-  const triggerCollapse = (e: React.MouseEvent) => {
-    e.preventDefault();
-    const collapsible = document.querySelector(`#${collapsibleId}`) as any;
-    collapsible.toggle().then(() => isCollapsed = !isCollapsed);
+  const [_, updateArgs] = useArgs();
+  const triggerCollapse = () => {
+    const collapsible = document.querySelector(`#${collapsibleId}`) as HTMLPostCollapsibleElement;
+    collapsible.toggle().then(() => {
+      updateArgs({ collapsed: !args.collapsed });
+    });
   };
 
   const toggleButton = <button
     aria-controls={ collapsibleId }
-    aria-expanded={ !isCollapsed }
+    aria-expanded={ !args.collapsed }
     className="btn btn-secondary mb-regular"
     onClick={ triggerCollapse }
   >Toggle element</button>;
@@ -90,7 +91,9 @@ export const HeadingLevel: Story = Template.bind({});
 HeadingLevel.parameters = {
   controls: {
     exclude: [
-      'Content', 'collapsed', 'toggle',
+      'Content',
+      'collapsed',
+      'toggle',
     ],
   },
 };
@@ -102,7 +105,9 @@ export const IntricateContent: Story = Template.bind({});
 IntricateContent.parameters = {
   controls: {
     exclude: [
-      'collapsed', 'heading-level', 'toggle',
+      'collapsed',
+      'heading-level',
+      'toggle',
     ],
   },
 };
@@ -118,6 +123,7 @@ CustomTrigger.parameters = {
   controls: {
     exclude: [
       'Content',
+      'collapsed',
       'heading-level',
     ],
   },
