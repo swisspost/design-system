@@ -23,9 +23,7 @@ export default {
     hiddenLabel: false,
     checked: false,
     disabled: false,
-    validation: 'null',
-    validFeedback: 'Ggranda sukceso!',
-    invalidFeedback: 'Eraro okazis!'
+    validation: 'null'
   },
   argTypes: {
     labelPosition: {
@@ -78,7 +76,7 @@ export default {
     },
     hiddenLabel: {
       name: 'Hidden Label',
-      description: 'Render the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">labels accessibility guide</a>.</span>',
+      description: 'Render the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">label accessibility guide</a>.</span>',
       control: {
         type: 'boolean'
       },
@@ -88,7 +86,7 @@ export default {
     },
     checked: {
       name: 'Checked',
-      description: 'Defienes the checked state of the component.',
+      description: 'When set to `true`, places the component in the checked state.',
       control: {
         type: 'boolean'
       },
@@ -98,7 +96,7 @@ export default {
     },
     disabled: {
       name: 'Disabled',
-      description: 'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</span>',
+      description: 'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean'
       },
@@ -108,7 +106,7 @@ export default {
     },
     validation: {
       name: 'Validation',
-      description: 'Controls the validation state appearance of the component.',
+      description: 'Controls the display of the component\'s validation state.',
       control: {
         type: 'radio',
         labels: {
@@ -125,34 +123,9 @@ export default {
       table: {
         category: 'States'
       }
-    },
-    validFeedback: {
-      name: 'Valid Feedback',
-      description: 'Text to show when the component is in an valid state.',
-      control: {
-        type: 'text'
-      },
-      table: {
-        category: 'States'
-      }
-    },
-    invalidFeedback: {
-      name: 'Invalid Feedback',
-      description: 'Text to show when the component is in an invalid state.',
-      control: {
-        type: 'text'
-      },
-      table: {
-        category: 'States'
-      }
     }
   }
 } as Meta;
-
-function toggle (args: Args, updateArgs: Function) {
-  updateArgs({ checked: !args.checked });
-}
-
 
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
@@ -170,8 +143,8 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const labelAfter: (JSX.Element | null) = useLabelAfter ? <label key="label-after" htmlFor={ id } className="form-check-label">{ args.labelAfter }</label> : null;
 
   const contextuals: (JSX.Element | null)[] = [
-    args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
-    args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null
+    args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">Ggranda sukceso!</p> : null,
+    args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">Eraro okazis!</p> : null
   ];
 
   const control = <input
@@ -182,9 +155,9 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     role="switch"
     checked={ args.checked }
     disabled={ args.disabled }
-    aria-label={ useAriaLabel ? `${args.labelBefore} ${args.labelAfter}` : undefined }
+    aria-label={ useAriaLabel && (args.checked ? args.labelAfter : args.labelBefore) }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
-    onChange={ (e:React.ChangeEvent) => toggle(args, updateArgs) }
+    onChange={ (e:React.ChangeEvent) => updateArgs({ checked: !args.checked }) }
   />;
 
   return <div className="form-check form-switch">
@@ -199,27 +172,25 @@ Default.decorators = [
   </div>
 ];
 
-export const Multiline: Story = Template.bind({});
-Multiline.decorators = [
+export const MultilineLables: Story = Template.bind({});
+MultilineLables.decorators = [
   (Story: Story) => <div className="pt-3">
     <Story/>
   </div>
 ];
-Multiline.parameters = {
+MultilineLables.parameters = {
   controls: {
     exclude: [
       'Label Position',
-      'Label (after)',
+      'Label (before)',
       'Hidden Label',
       'Checked',
       'Disabled',
-      'Validation',
-      'Valid Feedback',
-      'invalid Feedback'
+      'Validation'
     ]
   }
 };
-Multiline.args = {
+MultilineLables.args = {
   labelPosition: 'after',
   labelAfter: 'Longa etikedo kiu plej versajne ne taugas sur unu linio kaj tial devas esti envolvita. Kaj nur por esti sur la sekura flanko, ni simple aldonu unu plian tre sencelan frazon ci tie. Vi neniam scias...'
 };
