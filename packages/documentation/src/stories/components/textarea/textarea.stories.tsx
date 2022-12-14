@@ -23,9 +23,7 @@ export default {
     rows: 4,
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
-    validation: 'null',
-    validFeedback: 'Ggranda sukceso!',
-    invalidFeedback: 'Eraro okazis!'
+    validation: 'null'
   },
   argTypes: {
     label: {
@@ -50,7 +48,7 @@ export default {
     },
     hiddenLabel: {
       name: 'Hidden Label',
-      description: '<p>Render the component with or without a visible label.</p><div className="alert alert-info alert-sm">There are accessibility issues with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">labels accessibility guide</a>.</div>',
+      description: 'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">label accessibility guide</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false
@@ -113,7 +111,7 @@ export default {
     },
     disabled: {
       name: 'Disabled',
-      description: '<p>When set to `true`, disables the component\'s functionality and places it in a disabled state.</p><div className="alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</div>',
+      description: 'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean'
       },
@@ -140,26 +138,6 @@ export default {
       table: {
         category: 'States'
       }
-    },
-    validFeedback: {
-      name: 'Valid Feedback',
-      description: 'Text to show when the component is in an valid state.',
-      control: {
-        type: 'text'
-      },
-      table: {
-        category: 'States'
-      }
-    },
-    invalidFeedback: {
-      name: 'Invalid Feedback',
-      description: 'Text to show when the component is in an invalid state.',
-      control: {
-        type: 'text'
-      },
-      table: {
-        category: 'States'
-      }
     }
   }
 } as Meta;
@@ -176,8 +154,8 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const label: (JSX.Element | null) = !useAriaLabel ? <label key="label" htmlFor={ id } className="form-label">{ args.label }</label> : null;
   
   const contextuals: (JSX.Element | null)[] = [
-    args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">{ args.validFeedback }</p> : null,
-    args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">{ args.invalidFeedback }</p> : null,
+    args.validation === 'is-valid' ? <p key="valid" className="valid-feedback">Ggranda sukceso!</p> : null,
+    args.validation === 'is-invalid' ? <p key="invalid" className="invalid-feedback">Eraro okazis!</p> : null,
     args.hint !== '' ? <div key="hint" className="form-text">{ args.hint }</div> : null
   ];
 
@@ -212,9 +190,7 @@ FloatingLabel.parameters = {
       'Rows',
       'Helper Text',
       'Disabled',
-      'Validation',
-      'Valid Feedback',
-      'Invalid Feedback'
+      'Validation'
     ]
   }
 };
@@ -233,9 +209,7 @@ Size.parameters = {
       'Rows',
       'Helper Text',
       'Disabled',
-      'Validation',
-      'Valid Feedback',
-      'Invalid Feedback'
+      'Validation'
     ]
   }
 };
