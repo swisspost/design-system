@@ -125,10 +125,6 @@ export default {
   }
 } as Meta;
 
-function toggle (args: Args, updateArgs: Function) {
-  updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
-}
-
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
 
@@ -153,9 +149,9 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     type="checkbox"
     checked={ CHECKED_STATE_MAP[args.checked] }
     disabled={ args.disabled }
-    aria-label={ useAriaLabel ? args.label : undefined }
+    aria-label={ useAriaLabel && args.label }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
-    onChange={ (e: React.ChangeEvent) => toggle(args, updateArgs) }
+    onChange={ (e: React.ChangeEvent) => updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] }) }
   />;
 
   if (args.checked === 'indeterminate') {
@@ -178,7 +174,7 @@ Default.decorators = [
 ];
 
 const TemplateInline = (args: Args) => <fieldset>
-  <legend className={ args.hiddenLegend && 'visually-hidden' }>Legend</legend>
+  <legend className={ args.hiddenLegend ? 'visually-hidden' : undefined }>Legend</legend>
   <div key="FormCheck_1" className="form-check form-check-inline">
     <input id="ExampleCheckbox_Inline_1" className="form-check-input" type="checkbox"/>
     <label htmlFor="ExampleCheckbox_Inline_1" className="form-check-label">{ args.label }</label>
