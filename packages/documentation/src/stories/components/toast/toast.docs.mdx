@@ -34,18 +34,22 @@ To import only the styles required for this component:
 @use '@swisspost/design-system-styles/components/toast.scss';
 ```
 
-## Auto close
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+### Auto close
 
 <Canvas>
   <Story id="components-toast--auto-close" />
 </Canvas>
 
 Toasts should be closed automatically after a while, because they usually overlay the regular content.
-Every change on the screen should be left for at least 6 seconds so that the user can perceive it.
-We therefore recommend a display duration of at least 10-12 seconds, since the message still has to be
-read.
+Every change on the screen should be left for at least 3-6 seconds (for a two-liner) so that the user can perceive it.
+The longer the text in toast becomes, the longer the message should be displayed. However, 10-12 seconds should be enough.
+If the text is longer than 4 lines, you should consider using an `.alert` instead of a `.toast`.
 
-In addition, if the user moves the mouse or the focus to the `.toast` element, the automatic closing should be disabled. If the mouse/focus leaves the element again, the timeout for the automatic closing can be restarted.
+Last but not least, if the user moves the mouse or the focus to the `.toast` element, the automatic closing should be interrupted/paused. If the mouse/focus leaves the element again, the timeout for the automatic closing can be restarted.
 
 ## Accessibility
 
