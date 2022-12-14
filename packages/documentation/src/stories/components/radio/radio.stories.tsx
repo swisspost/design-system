@@ -145,7 +145,7 @@ Default.decorators = [
 ];
 
 const TemplateInline = (args: Args) => <fieldset>
-  <legend className={ args.hiddenLegend && 'visually-hidden' }>Legend</legend>
+  <legend className={ args.hiddenLegend ? 'visually-hidden' : undefined }>Legend</legend>
   <div key="FormCheck_1" className="form-check form-check-inline">
     <input id="ExampleRadio_Inline_1" className="form-check-input" type="radio" name="ExampleRadio_Inline_Group"/>
     <label htmlFor="ExampleRadio_Inline_1" className="form-check-label">{ args.label }</label>
