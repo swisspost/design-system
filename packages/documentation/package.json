@@ -44,8 +44,8 @@
     "babel-loader": "9.1.0",
     "cypress": "11.2.0",
     "react-markdown": "8.0.4",
-    "sass": "1.56.1",
-    "start-server-and-test": "1.14.0",
+    "sass": "1.56.2",
+    "start-server-and-test": "1.15.2",
     "typescript": "4.6.4"
   }
 }
