@@ -32,7 +32,7 @@
     "highlight.js": "11.7.0",
     "ngx-highlightjs": "7.0.1",
     "ngx-toastr": "15.2.2",
-    "rxjs": "7.5.7",
+    "rxjs": "7.6.0",
     "tslib": "2.4.1",
     "zone.js": "0.12.0"
   },
