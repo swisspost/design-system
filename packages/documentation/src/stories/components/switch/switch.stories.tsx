@@ -153,11 +153,11 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     className={ classes }
     type="checkbox"
     role="switch"
-    checked={ args.checked }
+    defaultChecked={ args.checked }
     disabled={ args.disabled }
     aria-label={ useAriaLabel && (args.checked ? args.labelAfter : args.labelBefore) }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
-    onChange={ (e:React.ChangeEvent) => updateArgs({ checked: !args.checked }) }
+    onChange={ () => setTimeout(() => { updateArgs({ checked: !args.checked }); }, 250) }
   />;
 
   return <div className="form-check form-switch">
