@@ -8,21 +8,29 @@ The `<post-collapsible>` component is used to show and hide content.
 Collapsing an element will animate the height from its current value to 0.
 
 <Canvas>
-  <Story id="components-post-collapsible--default" />
+  <Story id="components-collapsible--default" />
 </Canvas>
 
 <ArgsTable story="^" />
 
 ## Examples
 
-The following examples show different use cases for the `<post-collapsible>` component.
+The following examples show different use cases for the `<collapsible>` component.
 
 ### Initially Collapsed
 
 To make the collapsible content hidden by default, just use the `collapsible="true"` property.
 
 <Canvas>
-  <Story id="components-post-collapsible--initially-collapsed" />
+  <Story id="components-collapsible--initially-collapsed" />
+</Canvas>
+
+### Heading Level
+
+Use the `heading-level` property to define the hierarchical level of the collapsible header within the structure of a document.
+
+<Canvas>
+  <Story id="components-collapsible--heading-level" />
 </Canvas>
 
 ### Intricate Content
@@ -34,20 +42,12 @@ For a specific child to be displayed in the header, a `slot="header"` attribute 
 
 
 <Canvas withSource>
-  <Story id="components-post-collapsible--intricate-content" />
-</Canvas>
-
-### Heading Level
-
-Use the `heading-level` property to define the hierarchical level of the collapsible header within the structure of a document.
-
-<Canvas>
-  <Story id="components-post-collapsible--heading-level" />
+  <Story id="components-collapsible--intricate-content" />
 </Canvas>
 
 ### Custom Trigger
 
-The `<post-collapsible>` exposes a `.toggle()` method that allows the collapse to be triggered programmatically.
+The `<collapsible>` exposes a `.toggle()` method that allows the collapse to be triggered programmatically.
 A header is then not mandatory and can be replaced by an external control.<br/><br/>
 In this case, to ensure good accessibility of the component, be sure to add an `aria-expanded` attribute to the control element.
 If the collapsible element is closed, the attribute on the control element must have a value of `aria-expanded="false"` and `aria-expanded="true"` otherwise.
@@ -55,5 +55,5 @@ If your control element targets a single collapsible element, you must also add 
 
 
 <Canvas>
-  <Story id="components-post-collapsible--custom-trigger" />
+  <Story id="components-collapsible--custom-trigger" />
 </Canvas>

@@ -29,6 +29,7 @@ importers:
     specifiers:
       '@popperjs/core': ^2.10.2
       '@stencil/core': 2.19.3
+      '@stencil/react-output-target': ^0.3.1
       '@stencil/sass': 2.0.0
       '@swisspost/design-system-styles': workspace:5.1.2
       '@types/jest': 27.5.2
@@ -41,6 +42,7 @@ importers:
     dependencies:
       '@popperjs/core': 2.11.6
       '@stencil/core': 2.19.3
+      '@stencil/react-output-target': 0.3.1_@stencil+core@2.19.3
       '@stencil/sass': 2.0.0_@stencil+core@2.19.3
       '@swisspost/design-system-styles': link:../styles/dist
       bootstrap: 5.1.3_@popperjs+core@2.11.6
@@ -321,6 +323,7 @@ importers:
       '@storybook/testing-library': 0.0.13
       '@storybook/theming': 6.5.14
       '@swisspost/design-system-components': workspace:1.0.3
+      '@swisspost/design-system-components-react': workspace:^0.0.1
       '@swisspost/design-system-styles': workspace:5.1.2
       '@types/mdx': ^2.0.3
       '@types/react': 18.0.26
@@ -338,6 +341,7 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@swisspost/design-system-components': link:../components
+      '@swisspost/design-system-components-react': link:../components-react/dist
       '@swisspost/design-system-styles': link:../styles/dist
       html-react-parser: 3.0.4_react@18.2.0
       js-beautify: 1.14.7
@@ -5199,6 +5203,14 @@ packages:
     hasBin: true
     dev: false
 
+  /@stencil/react-output-target/0.3.1_@stencil+core@2.19.3:
+    resolution: {integrity: sha512-6d9pPhyajFfdxkqU/pPP2SzI7wn+EklySQc4KXlI/xcdvC2H9BzLmhmR40fR1q2TQoJbJui/nvSWhbYqkE3OBQ==}
+    peerDependencies:
+      '@stencil/core': ^2.9.0
+    dependencies:
+      '@stencil/core': 2.19.3
+    dev: false
+
   /@stencil/sass/2.0.0_@stencil+core@2.19.3:
     resolution: {integrity: sha512-Be7Tz7YJnMzloot0aG3m2wTVt9Dg0rjOU+ZVx49ts9+hyeW+NEmvSWPv6bhypblRXbSGik2Cc3AYboTma4Qpgg==}
     peerDependencies:
@@ -7701,6 +7713,14 @@ packages:
       acorn: 8.8.0
     dev: true
 
+  /acorn-import-assertions/1.8.0_acorn@8.8.1:
+    resolution: {integrity: sha512-m7VZ3jwz4eK6A4Vtt8Ew1/mNbP24u0FhdyfA7fSvnJR6LMdfOYnmuIrrJAgrYfYJ10F/otaHTtrtrtmHdMNzEw==}
+    peerDependencies:
+      acorn: ^8
+    dependencies:
+      acorn: 8.8.1
+    dev: true
+
   /acorn-jsx/5.3.2_acorn@7.4.1:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
     peerDependencies:
@@ -7715,6 +7735,15 @@ packages:
       acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
       acorn: 8.8.0
+    dev: true
+
+  /acorn-jsx/5.3.2_acorn@8.8.1:
+    resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
+    peerDependencies:
+      acorn: ^6.0.0 || ^7.0.0 || ^8.0.0
+    dependencies:
+      acorn: 8.8.1
+    dev: false
 
   /acorn-walk/7.2.0:
     resolution: {integrity: sha512-OPdCF6GsMIP+Az+aWfAAOEt2/+iVDKE7oy6lJ098aoe59oAmK76qV6Gw60SbZ8jHuG2wH058GF4pLFbYamYrVA==}
@@ -7740,6 +7769,12 @@ packages:
 
   /acorn/8.8.0:
     resolution: {integrity: sha512-QOxyigPVrpZ2GXT+PFyZTl6TtOFc5egxHIP9IlQ+RbupQuX4RkT/Bee4/kQuC02Xkzg84JcT7oLYtDIQxp+v7w==}
+    engines: {node: '>=0.4.0'}
+    hasBin: true
+    dev: true
+
+  /acorn/8.8.1:
+    resolution: {integrity: sha512-7zFpHzhnqYKrkYdUjF1HI1bzd0VygEGX8lFk4k5zVMqHEoES+P+7TKI+EvLO9WVMJ8eekdO0aDEK044xTXwPPA==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -19362,8 +19397,8 @@ packages:
       react-dom: '>=17'
     dependencies:
       '@types/jsdom': 16.2.15
-      acorn: 8.8.0
-      acorn-jsx: 5.3.2_acorn@8.8.0
+      acorn: 8.8.1
+      acorn-jsx: 5.3.2_acorn@8.8.1
       browserslist: 4.21.4
       core-js: 3.26.1
       react: 18.2.0
@@ -21443,7 +21478,7 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
     dependencies:
-      acorn: 8.8.0
+      acorn: 8.8.1
       commander: 2.20.3
       source-map: 0.6.1
       source-map-support: 0.5.21
@@ -21455,7 +21490,7 @@ packages:
     hasBin: true
     dependencies:
       '@jridgewell/source-map': 0.3.2
-      acorn: 8.8.0
+      acorn: 8.8.1
       commander: 2.20.3
       source-map-support: 0.5.21
     dev: true
@@ -22797,8 +22832,8 @@ packages:
       '@webassemblyjs/ast': 1.11.1
       '@webassemblyjs/wasm-edit': 1.11.1
       '@webassemblyjs/wasm-parser': 1.11.1
-      acorn: 8.8.0
-      acorn-import-assertions: 1.8.0_acorn@8.8.0
+      acorn: 8.8.1
+      acorn-import-assertions: 1.8.0_acorn@8.8.1
       browserslist: 4.21.4
       chrome-trace-event: 1.0.3
       enhanced-resolve: 5.10.0

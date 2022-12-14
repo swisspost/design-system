@@ -34,6 +34,7 @@
   "dependencies": {
     "@popperjs/core": "^2.10.2",
     "@stencil/core": "2.19.3",
+    "@stencil/react-output-target": "^0.3.1",
     "@stencil/sass": "2.0.0",
     "@swisspost/design-system-styles": "workspace:5.1.2",
     "bootstrap": "5.1.3",
