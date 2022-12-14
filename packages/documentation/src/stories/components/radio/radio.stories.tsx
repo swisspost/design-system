@@ -103,10 +103,6 @@ export default {
   }
 } as Meta;
 
-function toggle (args: Args, updateArgs: Function) {
-  updateArgs({ checked: !args.checked });
-}
-
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
 
@@ -133,7 +129,7 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     disabled={ args.disabled }
     aria-label={ useAriaLabel && args.label }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
-    onChange={ (e: React.ChangeEvent) => toggle(args, updateArgs) }
+    onChange={ (e: React.ChangeEvent) => updateArgs({ checked: !args.checked }) }
   />;
 
   return <div className="form-check">
