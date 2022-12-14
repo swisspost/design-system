@@ -17,9 +17,10 @@ export default {
     noIcon: false,
     icon: 'null',
     dismissible: true,
-    alignment: false,
+    position: 'static',
     alignV: 'bottom',
     alignH: 'right',
+    autoClose: 0,
     show: false
   },
   argTypes: {
@@ -111,8 +112,8 @@ export default {
       name: 'Dismissible',
       description: 'Adds a dismiss button.',
       if: {
-        arg: 'alignment',
-        truthy: false
+        arg: 'position',
+        neq: 'fixed'
       },
       control: {
         type: 'boolean'
@@ -121,19 +122,28 @@ export default {
         category: 'General'
       }
     },
-    alignment: {
-      name: 'Alignment',
+    position: {
+      name: 'Position',
       control: {
-        type: 'boolean'
+        type: 'radio',
+        lables: {
+          'static': 'Static',
+          'fixed': 'Fixed'
+        }
       },
+      options: [
+        'static',
+        'fixed'
+      ],
       table: {
-        category: 'Live Examples'
+        category: 'Positionning'
       }
     },
     alignV: {
       name: 'Vertical',
       if: {
-        arg: 'alignment'
+        arg: 'position',
+        eq: 'fixed'
       },
       control: {
         type: 'radio',
@@ -149,13 +159,14 @@ export default {
         'bottom'
       ],
       table: {
-        category: 'Live Examples'
+        category: 'Positionning'
       }
     },
     alignH: {
       name: 'Horizontal',
       if: {
-        arg: 'alignment'
+        arg: 'position',
+        eq: 'fixed'
       },
       control: {
         type: 'radio',
@@ -169,11 +180,24 @@ export default {
       options: [
         'left',
         'center',
-        'right',
-        'full-width'
+        'right'
       ],
       table: {
-        category: 'Live Examples'
+        category: 'Positionning'
+      }
+    },
+    autoClose: {
+      name: 'Auto Close',
+      description: 'Specifies how long the component remains visible before it is automatically closed (in seconds). Set to `0` to disable the auto close.',
+      if: {
+        arg: 'position',
+        eq: 'fixed'
+      },
+      control: {
+        type: 'number'
+      },
+      table: {
+        category: 'Positionning'
       }
     },
     show: {
@@ -182,11 +206,25 @@ export default {
         type: 'boolean'
       },
       table: {
-        category: 'Live Examples',
+        category: 'Positionning',
         disable: true
       }
     }
-  }
+  },
+  decorators: [
+    (Story: Story, { args }) => {
+      const [_, updateArgs] = useArgs();
+  
+      if (args.position === 'fixed') {
+        return <div>
+          <button className="btn btn-secondary" disabled={ args.show } onClick={ (e: React.MouseEvent) => onToggle(e, args, updateArgs, true) }>Create toast</button>
+          <Story/>
+        </div>;
+      } else {
+        return <Story/>
+      }
+    }
+  ]
 } as Meta;
 
 interface ITimeoutStores {
@@ -200,19 +238,17 @@ const timeoutStores: ITimeoutStores = {
 };
 
 function onToggle (e: React.MouseEvent | null, args: Args, updateArgs: Function, state: boolean | undefined) {
-  if (e !== null) e.preventDefault();
-  if (args.alignment) updateArgs({ show: state ?? !args.show });
+  if (e) e.preventDefault();
+  if (args.position === 'fixed') updateArgs({ show: state ?? !args.show });
 }
 
-function createAutoHideTimeout(contextName: keyof ITimeoutStores, args: Args, updateArgs: Function) {
-  let timeoutStore = timeoutStores[contextName];
-
-  if (args.alignment && timeoutStore.length === 0) {
+function createAutoHideTimeout(timeoutStore: ReturnType<typeof setTimeout>[], args: Args, updateArgs: Function) {
+  if (args.position === 'fixed' && args.autoClose > 0 && timeoutStore.length === 0) {
     timeoutStore.push(
       setTimeout(() => {
         onToggle(null, args, updateArgs, false);
-        killAutoHideTimeout(contextName, args);
-      }, 3000)
+        killAutoHideTimeout(timeoutStore, args);
+      }, args.autoClose * 1000)
     );
     
     if (timeoutStore.length > 1) {
@@ -225,16 +261,16 @@ function createAutoHideTimeout(contextName: keyof ITimeoutStores, args: Args, up
   }
 }
 
-function killAutoHideTimeout (contextName:  keyof ITimeoutStores, args: Args) {
-  let timeoutStore = timeoutStores[contextName];
-  
-  if (args.alignment && timeoutStore.length > 0) {
+function killAutoHideTimeout (timeoutStore: ReturnType<typeof setTimeout>[], args: Args) { 
+  if (args.position === 'fixed' && timeoutStore.length > 0) {
     clearTimeout(timeoutStore.pop());
   }
 }
 
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
+  
+  const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores];
 
   const classes = [
     'toast',
@@ -242,11 +278,13 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     args.noIcon && 'no-icon',
     args.icon
   ].filter(c => c && c !== 'null').join(' ');
-  
-  const role = args.alignment ? 'alert' : 'status';
-  const ariaLive = args.alignment ? 'assertive' : 'polite';
 
-  const dismissibleButton = (args.dismissible || args.alignment) && <button className="toast-close-button" aria-label="close"></button>;
+  const isFixed = args.position === 'fixed';
+  
+  const role = isFixed ? 'alert' : 'status';
+  const ariaLive = isFixed ? 'assertive' : 'polite';
+
+  const dismissibleButton = (args.dismissible || isFixed) && <button className="toast-close-button" aria-label="close"></button>;
 
   const component = <div
     className={ classes }
@@ -254,16 +292,16 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     aria-live={ ariaLive }
     aria-atomic="true"
     onClick={ (e: React.MouseEvent) => onToggle(e, args, updateArgs, false) }
-    onMouseEnter={ (e: React.MouseEvent) => killAutoHideTimeout(context.name as keyof ITimeoutStores, args) }
-    onMouseLeave={ (e: React.MouseEvent) => createAutoHideTimeout(context.name as keyof ITimeoutStores, args, updateArgs) }
+    onMouseEnter={ () => killAutoHideTimeout(timeoutStore, args) }
+    onMouseLeave={ () => createAutoHideTimeout(timeoutStore, args, updateArgs) }
   >
     { dismissibleButton }
     <div className="toast-title">{ args.title }</div>
     { args.content && <div className="toast-message">{ args.content }</div> }
   </div>;
 
-  if (args.alignment) {
-    if (args.show) createAutoHideTimeout(context.name as keyof ITimeoutStores, args, updateArgs);
+  if (isFixed) {
+    if (args.show) createAutoHideTimeout(timeoutStore, args, updateArgs);
 
     return <div aria-live="polite" aria-atomic="true" className={ `toast-container toast-${args.alignV}-${args.alignH}`}>
       { args.show && component }
@@ -274,46 +312,23 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
 };
 
 export const Default: Story = Template.bind({});
-Default.decorators = [
-  (Story: Story, { args }) => {
-    const [_, updateArgs] = useArgs();
-
-    if (args.alignment) {
-      return <div>
-        <button className="btn btn-secondary" disabled={ args.show } onClick={ (e: React.MouseEvent) => onToggle(e, args, updateArgs, true) }>Create toast</button>
-        <Story/>
-      </div>;
-    } else {
-      return <Story/>
-    }
-  }
-];
 
 export const AutoClose: Story = Template.bind({});
-AutoClose.decorators = [
-  (Story: Story, { args }) => {
-    const [_, updateArgs] = useArgs();
-
-    return <div>
-      <button className="btn btn-secondary" disabled={ args.show } onClick={ (e: React.MouseEvent) => onToggle(e, args, updateArgs, true) }>Create toast</button>
-      <Story/>
-    </div>;
-  }
-];
 AutoClose.parameters = {
   controls: {
-    excluded: [
-      'Titel',
+    exclude: [
+      'Title',
       'Content',
       'Variant',
       'No Icon',
       'Icon',
-      'Alignment'
+      'Position'
     ]
   }
 };
 AutoClose.args = {
-  alignment: true,
+  position: 'fixed',
   alignV: 'top',
-  alignH: 'right'
+  alignH: 'right',
+  autoClose: 6
 };
