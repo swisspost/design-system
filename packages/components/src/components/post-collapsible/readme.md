@@ -15,13 +15,13 @@
 
 ## Methods
 
-### `toggle(open?: boolean) => Promise<void>`
+### `toggle(open?: boolean) => Promise<boolean>`
 
 Triggers the collapse programmatically.
 
 #### Returns
 
-Type: `Promise<void>`
+Type: `Promise<boolean>`
 
 
 

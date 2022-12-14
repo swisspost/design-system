@@ -12,13 +12,14 @@ export class PostCollapsible {
   /**
    * If `true`, the element is initially collapsed otherwise it is displayed.
    */
-  @Prop({ mutable: true }) collapsed?: boolean = false;
+  @Prop() collapsed?: boolean = false;
 
   /**
    * Defines the hierarchical level of the collapsible header within the headings structure.
    */
   @Prop() headingLevel?: number = 2;
 
+  @State() isCollapsed = false;
   @State() collapseClasses: string;
   @State() collapseHeight: string | null = null;
 
@@ -41,6 +42,7 @@ export class PostCollapsible {
   }
 
   componentWillLoad() {
+    this.isCollapsed = this.collapsed;
     this.validateHeadingLevel();
 
     this.hasHeader = this.host.querySelectorAll('[slot="header"]').length > 0;
@@ -60,9 +62,9 @@ export class PostCollapsible {
    * Triggers the collapse programmatically.
    */
   @Method()
-  async toggle(open: boolean = this.collapsed) {
-    if (open === this.collapsed) {
-      this.collapsed = !open;
+  async toggle(open: boolean = this.isCollapsed): Promise<boolean> {
+    if (open === this.isCollapsed) {
+      this.isCollapsed = !open;
 
       this.startTransition();
 
@@ -70,22 +72,24 @@ export class PostCollapsible {
         this.collapseHeight = null;
         this.collapseClasses = this.getCollapseClasses();
       });
+
+      return !this.isCollapsed;
     }
   }
 
   startTransition() {
     const expandedHeight = getElementHeight(this.collapsibleElement, 'show');
 
-    this.collapseHeight = `${this.collapsed ? expandedHeight : 0}px`;
+    this.collapseHeight = `${this.isCollapsed ? expandedHeight : 0}px`;
     this.collapseClasses = 'collapsing';
 
     setTimeout(() => {
-      this.collapseHeight = `${this.collapsed ? 0 : expandedHeight}px`;
+      this.collapseHeight = `${this.isCollapsed ? 0 : expandedHeight}px`;
     });
   }
 
   private getCollapseClasses() {
-    return this.collapsed ? 'collapse' : 'collapse show';
+    return this.isCollapsed ? 'collapse' : 'collapse show';
   }
 
   render() {
@@ -105,9 +109,9 @@ export class PostCollapsible {
       <div class="accordion-item">
         <this.headingTag class="accordion-header" id={`${this.collapsibleId}--header`}>
           <button
-            class={`accordion-button ${this.collapsed ? 'collapsed' : ''}`}
+            class={`accordion-button ${this.isCollapsed ? 'collapsed' : ''}`}
             type="button"
-            aria-expanded={`${!this.collapsed}`}
+            aria-expanded={`${!this.isCollapsed}`}
             aria-controls={`${this.collapsibleId}--collapse`}
             onClick={() => this.toggle()}
           >
@@ -117,7 +121,7 @@ export class PostCollapsible {
         <div
           id={`${this.collapsibleId}--collapse`}
           class={`accordion-collapse ${this.collapseClasses}`}
-          style={{ height: this.collapseHeight }}
+          style={{ height: this.collapseHeight, backgroundColor: 'aliceblue' }}
           aria-labelledby={`${this.collapsibleId}--header`}
         >
           <div class="accordion-body">

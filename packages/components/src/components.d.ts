@@ -18,7 +18,7 @@ export namespace Components {
         /**
           * Triggers the collapse programmatically.
          */
-        "toggle": (open?: boolean) => Promise<void>;
+        "toggle": (open?: boolean) => Promise<boolean>;
     }
 }
 declare global {

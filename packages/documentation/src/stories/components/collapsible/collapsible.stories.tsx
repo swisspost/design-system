@@ -19,7 +19,9 @@ export default {
     },
   },
   args: {
-    content: `<span slot="header">Titulum</span>Contentus momentus vero siteos et accusam iretea et justo.`,
+    collapsed: false,
+    headingLevel: 2,
+    content: `<span slot="header">Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },
   argTypes: {
     content: {
@@ -53,8 +55,8 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
   const triggerCollapse = () => {
     const collapsible = document.querySelector(`#${collapsibleId}`) as HTMLPostCollapsibleElement;
-    collapsible.toggle().then(() => {
-      updateArgs({ collapsed: !args.collapsed });
+    collapsible.toggle().then((isOpen: boolean) => {
+      updateArgs({ collapsed: !isOpen });
     });
   };
 
