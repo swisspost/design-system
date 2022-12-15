@@ -345,21 +345,7 @@ function killAutoHideTimeout (timeoutStore: ReturnType<typeof setTimeout>[], arg
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
 
-  if (args.alignH && args.alignHRestricted && args.alignH !== args.alignHRestricted) {
-    if(args.alignV === 'center') {
-      updateArgs({ alignH: args.alignHRestricted });
-    } else {
-      updateArgs({ alignHRestricted: args.alignH });
-    }
-  }
-
-  if (args.alignV && args.alignVRestricted && args.alignV !== args.alignVRestricted) {
-    if (args.alignH === 'full-width') {
-      updateArgs({ alignV: args.alignVRestricted });
-    } else {
-      updateArgs({ alignVRestricted: args.alignV });
-    }
-  }
+  updateAlignments();
   
   const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores];
 
@@ -405,6 +391,16 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     </div>;
   } else {
     return component;
+  }
+
+  function updateAlignments () {
+    if (args.alignH && args.alignHRestricted && args.alignH !== args.alignHRestricted) {
+      args.alignV === 'center' ? updateArgs({ alignH: args.alignHRestricted }) : updateArgs({ alignHRestricted: args.alignH });
+    }
+  
+    if (args.alignV && args.alignVRestricted && args.alignV !== args.alignVRestricted) {
+      args.alignH === 'full-width' ? updateArgs({ alignV: args.alignVRestricted }) : updateArgs({ alignVRestricted: args.alignV });
+    }
   }
 };
 
