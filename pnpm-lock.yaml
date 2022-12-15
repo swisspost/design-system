@@ -292,6 +292,7 @@ importers:
       sass: 1.56.2
       sass-loader: 10.4.1
       start-server-and-test: 1.15.2
+      storybook-dark-mode: 1.1.2
       style-loader: 2.0.0
       typescript: 4.6.4
     dependencies:
@@ -322,6 +323,7 @@ importers:
       sass: 1.56.2
       sass-loader: 10.4.1_sass@1.56.2
       start-server-and-test: 1.15.2
+      storybook-dark-mode: 1.1.2_biqbaboplfbrettd7655fr4n2y
       style-loader: 2.0.0
       typescript: 4.6.4
 
@@ -20246,6 +20248,29 @@ packages:
 
   /store2/2.13.2:
     resolution: {integrity: sha512-CMtO2Uneg3SAz/d6fZ/6qbqqQHi2ynq6/KzMD/26gTkiEShCcpqFfTHgOxsE0egAq6SX3FmN4CeSqn8BzXQkJg==}
+    dev: true
+
+  /storybook-dark-mode/1.1.2_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-L5QjJN49bl+ktprM6faMkTeW+LCvuMYWQaRo8/JGSMmzomIjLT7Yo20UiTsnMgMYyYWYF5O4EK/F3OvjDNp8tQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      '@storybook/addons': 6.5.14_biqbaboplfbrettd7655fr4n2y
+      '@storybook/api': 6.5.14_biqbaboplfbrettd7655fr4n2y
+      '@storybook/components': 6.5.14_biqbaboplfbrettd7655fr4n2y
+      '@storybook/core-events': 6.5.14
+      '@storybook/theming': 6.5.14_biqbaboplfbrettd7655fr4n2y
+      fast-deep-equal: 3.1.3
+      global: 4.4.0
+      memoizerific: 1.11.3
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
     dev: true
 
   /stream-browserify/2.0.2:
