@@ -1,13 +1,6 @@
 // importing the complete styles package scss
 @use '@swisspost/design-system-styles/index.scss';
 
-body {
-  &.bg-light,
-  &.bg-dark {
-    background-color: transparent !important;
-  }
-}
-
 #docs-root {
   .sbdocs-wrapper {
     background-color: transparent;
@@ -32,7 +25,8 @@ body {
   }
 
   .hide-col-default .docblock-argstable {
-    th, td {
+    th,
+    td {
       &:nth-child(3) {
         display: none;
       }
