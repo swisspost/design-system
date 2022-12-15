@@ -239,7 +239,7 @@ export default {
       }
     },
     autoClose: {
-      name: 'Auto Close',
+      name: 'Closing Delay (in sec.)',
       description: 'Specifies how long the component remains visible before it is automatically closed (in seconds). Set to `0` to disable the auto close.',
       if: {
         arg: 'position',
