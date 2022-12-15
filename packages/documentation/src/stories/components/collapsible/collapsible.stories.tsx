@@ -3,6 +3,7 @@ import React from 'react';
 import { Story, Args, StoryContext, ReactFramework } from '@storybook/react';
 import { PostCollapsible } from '@swisspost/design-system-components-react';
 import parse from 'html-react-parser';
+import { definedProperties } from '../../../utils';
 import docsPage from './collapsible.docs.mdx';
 
 export default {
@@ -19,8 +20,6 @@ export default {
     },
   },
   args: {
-    collapsed: false,
-    headingLevel: 2,
     content: `<span slot="header">Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },
   argTypes: {
@@ -40,19 +39,23 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const hasHeader = args.content.indexOf('slot="header"') > -1;
   const collapsibleId = `collapsible-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
 
+  const collapsibleProperties = definedProperties({
+    collapsed: args.collapsed,
+    headingLevel: args.headingLevel,
+    id: hasHeader ? undefined : collapsibleId,
+  });
+
   const collapsibleComponent = <PostCollapsible
-    collapsed={ args.collapsed }
-    headingLevel={ args.headingLevel }
-    id={ hasHeader ? undefined : collapsibleId }
+    { ...collapsibleProperties }
   >
     { parse(args.content) }
   </PostCollapsible>;
 
-  const [_, updateArgs] = useArgs();
+  const [currentArgs, updateArgs] = useArgs();
   const triggerCollapse = () => {
     const collapsible = document.querySelector(`#${collapsibleId}`) as HTMLPostCollapsibleElement;
     collapsible.toggle().then((isOpen: boolean) => {
-      updateArgs({ collapsed: !isOpen });
+      if (typeof currentArgs.collapsed !== 'undefined') updateArgs({ collapsed: !isOpen });
     });
   };
 
