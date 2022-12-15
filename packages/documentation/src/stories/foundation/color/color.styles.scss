@@ -2,6 +2,10 @@
 
 .color-square {
   border: 2px solid var(--post-contrast-color);
+
+  h3 {
+    margin: 0;
+  }
 }
 
 .color-square__inner {
@@ -9,10 +13,6 @@
   padding: 0.75rem;
   display: flex;
   align-items: center;
-
-  h3 {
-    margin: 0;
-  }
 }
 
 .color-square__content {
@@ -22,8 +22,16 @@
 
 .color-square__section {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
+
+  @include post.media-breakpoint-down(md) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include post.media-breakpoint-down(sm) {
+    grid-template-columns: 1fr;
+  }
 }
 
 h1 {
