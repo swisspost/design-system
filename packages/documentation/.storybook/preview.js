@@ -51,23 +51,24 @@ export const parameters = {
       excludeDecorators: true,
     },
     transformSource(snippet) {
-      return (
-        snippet
-          // remove "key" attributes
-          .replace(/(\t+|\s+)?key=".*"/g, '')
+      return snippet
+        // remove react fragments
+        .replace(/(<>|<\/>)/g, '')
 
-          // repalce noRefCheck functions
-          .replace(/function noRefCheck\(\){}/g, '() => {}')
+        // remove "key" attributes
+        .replace(/(\t+|\s+)?key=".*"/g, '')
 
-          // remove brackets from "{value}" attribute-values
-          .replace(/([a-zA-Z][a-zA-Z0-9-_:.]+)={([^}]*}?)}/g, (_m, g1, g2) => `${g1}="${g2}"`)
+        // repalce noRefCheck functions
+        .replace(/function noRefCheck\(\){}/g, '() => {}')
 
-          // replace "className" attributes with "class"
-          .replace(/className/g, 'class')
+        // remove brackets from "{value}" attribute-values
+        .replace(/([a-zA-Z][a-zA-Z0-9-_:.]+)={([^}]*}?)}/g, (_m, g1, g2) => `${g1}="${g2}"`)
 
-          // replace "htmlFor" attributes with "for"
-          .replace(/htmlFor/g, 'for')
-      );
+        // replace "className" attributes with "class"
+        .replace(/className/g, 'class')
+
+        // replace "htmlFor" attributes with "for"
+        .replace(/htmlFor/g, 'for')
     },
   },
   actions: { argTypesRegex: '^on[A-Z].*' },

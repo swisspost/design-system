@@ -2,6 +2,11 @@ import { Meta, Story } from '@storybook/react';
 
 export default {
   title: 'Components/Headings',
+  parameters: {
+    controls: {
+      exclude: ['Subtitle']
+    }
+  },
   args: {
     text: 'Heading',
     subtext: 'Subheading',
@@ -9,14 +14,35 @@ export default {
   },
   argTypes: {
     text: {
-      control: { type: 'text' },
+      name: 'Title',
+      description: 'Defines the text within the Heading.',
+      control: {
+        type: 'text'
+      },
+      table: {
+        category: 'General'
+      }
     },
     subtext: {
-      control: { type: 'text' },
+      name: 'Subtitle',
+      description: 'Defines the text within the Subheading.',
+      control: {
+        type: 'text'
+      },
+      table: {
+        category: 'General'
+      }
     },
     level: {
-      control: { type: 'select' },
+      name: 'Heading Level',
+      description: 'Defines the level of the Heading (e.g. `<h1>`, `<h2>`, ...).',
+      control: {
+        type: 'select',
+      },
       options: [1, 2, 3, 4, 5, 6],
+      table: {
+        category: 'General'
+      }
     }
   }
 } as Meta;
@@ -24,12 +50,7 @@ export default {
 export const Default: Story = (args) => {
   const HeadingLevel = `h${args.level}` as keyof JSX.IntrinsicElements;
   return <HeadingLevel>{args.text}</HeadingLevel>
-}
-Default.parameters = {
-  controls: {
-    exclude: ['subtext']
-  }
-}
+};
 
 export const Multiline: Story = (args) => {
   const HeadingLevel = `h${args.level}` as keyof JSX.IntrinsicElements;
@@ -38,4 +59,4 @@ export const Multiline: Story = (args) => {
     <br />
     <span className="light">{args.subtext}</span>
   </HeadingLevel>;
-}
+};
