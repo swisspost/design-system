@@ -15,6 +15,11 @@ module.exports = {
   ],
   staticDirs: ['../public'],
   managerWebpack: (config, options) => {
+    config.module.rules.push({
+      test: /\.scss$/,
+      use: ['style-loader', 'css-loader', 'sass-loader']
+    });
+
     options.cache.set = () => Promise.resolve();
     return config;
   },

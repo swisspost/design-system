@@ -283,13 +283,16 @@ importers:
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.9
       babel-loader: 9.1.0
+      css-loader: 5.2.7
       cypress: 11.2.0
       html-react-parser: 3.0.4
       react: 18.2.0
       react-dom: 18.2.0
       react-markdown: 8.0.4
       sass: 1.56.2
+      sass-loader: 10.4.1
       start-server-and-test: 1.15.2
+      style-loader: 2.0.0
       typescript: 4.6.4
     dependencies:
       '@swisspost/design-system-components': link:../components
@@ -306,17 +309,20 @@ importers:
       '@storybook/addon-essentials': 6.5.14_xkm4lc46hruvr7sl76lkf2lzmy
       '@storybook/addons': 6.5.14_biqbaboplfbrettd7655fr4n2y
       '@storybook/client-api': 6.5.14_biqbaboplfbrettd7655fr4n2y
-      '@storybook/preset-scss': 1.0.3
+      '@storybook/preset-scss': 1.0.3_7yyjlakj7kidaoj2rqhkbn5gom
       '@storybook/react': 6.5.14_xkm4lc46hruvr7sl76lkf2lzmy
       '@storybook/testing-library': 0.0.13_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 6.5.14_biqbaboplfbrettd7655fr4n2y
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.9
       babel-loader: 9.1.0_@babel+core@7.20.5
+      css-loader: 5.2.7
       cypress: 11.2.0
       react-markdown: 8.0.4_kzbn2opkn2327fwg5yzwzya5o4
       sass: 1.56.2
+      sass-loader: 10.4.1_sass@1.56.2
       start-server-and-test: 1.15.2
+      style-loader: 2.0.0
       typescript: 4.6.4
 
   packages/styles:
@@ -6180,12 +6186,16 @@ packages:
       core-js: 3.26.1
     dev: true
 
-  /@storybook/preset-scss/1.0.3:
+  /@storybook/preset-scss/1.0.3_7yyjlakj7kidaoj2rqhkbn5gom:
     resolution: {integrity: sha512-o9Iz6wxPeNENrQa2mKlsDKynBfqU2uWaRP80HeWp4TkGgf7/x3DVF2O7yi9N0x/PI1qzzTTpxlQ90D62XmpiTw==}
     peerDependencies:
       css-loader: '*'
       sass-loader: '*'
       style-loader: '*'
+    dependencies:
+      css-loader: 5.2.7
+      sass-loader: 10.4.1_sass@1.56.2
+      style-loader: 2.0.0
     dev: true
 
   /@storybook/preview-web/6.5.14_biqbaboplfbrettd7655fr4n2y:
@@ -9816,7 +9826,7 @@ packages:
       webpack: ^4.27.0 || ^5.0.0
     dependencies:
       icss-utils: 5.1.0_postcss@8.4.19
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       postcss: 8.4.19
       postcss-modules-extract-imports: 3.0.0_postcss@8.4.19
       postcss-modules-local-by-default: 4.0.0_postcss@8.4.19
@@ -18701,7 +18711,7 @@ packages:
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       schema-utils: 3.1.1
       webpack: 4.46.0
     dev: true
@@ -19496,7 +19506,7 @@ packages:
         optional: true
     dependencies:
       klona: 2.0.5
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       neo-async: 2.6.2
       sass: 1.56.2
       schema-utils: 3.1.1
@@ -20458,7 +20468,7 @@ packages:
     peerDependencies:
       webpack: ^4.0.0 || ^5.0.0
     dependencies:
-      loader-utils: 2.0.2
+      loader-utils: 2.0.4
       schema-utils: 3.1.1
     dev: true
 
