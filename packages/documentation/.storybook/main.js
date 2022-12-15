@@ -2,7 +2,10 @@ module.exports = {
   framework: '@storybook/react',
   stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.tsx'],
   addons: [
-    '@storybook/addon-essentials',
+    '@storybook/addon-docs',
+    '@storybook/addon-controls',
+    '@storybook/addon-measure',
+    '@storybook/addon-viewport',
     '@pxtrn/storybook-addon-docs-stencil',
     'storybook-dark-mode',
     {
