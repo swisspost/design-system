@@ -19,6 +19,12 @@
     line-height: 1;
     white-space: nowrap;
   }
+
+  .docs-story {
+    [scale] {
+      transform: none;
+    }
+  }
   
   .hide-col-default .docblock-argstable {
     th, td {

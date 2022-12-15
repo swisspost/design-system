@@ -25,6 +25,9 @@ export const parameters = {
     },
     transformSource(snippet) {
       return snippet
+        // remove react fragments
+        .replace(/(<>|<\/>)/g, '')
+
         // remove "key" attributes
         .replace(/(\t+|\s+)?key=".*"/g, '')
 
