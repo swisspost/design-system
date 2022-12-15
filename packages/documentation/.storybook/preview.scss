@@ -18,17 +18,19 @@ body {
   }
 
   code {
-    font-family: monospace;
     display: inline-block;
-    font-size: 0.8em;
-    line-height: 1;
-    margin: 0 0.125rem;
-    padding: 0.1875rem 0.3125rem;
+    position: relative;
+    top: -0.1em;
+    margin: 0 0.1em;
+    padding: 0.15em 0.4em 0.1em;
+    background-color: rgba(var(--post-contrast-color-inverted-rgb), 0.2);
+    border: 1px solid rgba(var(--post-contrast-color-rgb), 0.1);
+    border-radius: 0.2em;
+    font-family: var(--bs-font-monospace);
+    font-size: 0.75em;
+    color: rgba(var(--post-contrast-color-rgb), 0.8);
     white-space: nowrap;
-    border-radius: 0.1875rem;
-    border: 1px solid var(--post-gray-20);
-    color: var(--post-gray-80);
-    background-color: var(--post-light);
+    line-height: 1;
   }
 
   .hide-col-default .docblock-argstable {
