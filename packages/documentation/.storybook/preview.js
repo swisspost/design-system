@@ -1,8 +1,3 @@
-import React from 'react';
-import { DocsContainer as BaseContainer } from '@storybook/addon-docs/blocks';
-import { useDarkMode } from 'storybook-dark-mode';
-import { styled } from '@storybook/theming';
-
 import DocsContainer from './docs-container';
 import postThemes from './post-themes';
 import './preview.scss';
@@ -38,18 +33,19 @@ export const parameters = {
     container: DocsContainer,
     components: {
       // Remove default storybook styles from most of things (helps with dark mode in mdx files)
-      h1: styled.h1(() => {}),
-      h2: styled.h2(() => {}),
-      h3: styled.h3(() => {}),
-      h4: styled.h4(() => {}),
-      h5: styled.h5(() => {}),
-      h6: styled.h6(() => {}),
-      p: styled.p(() => {}),
-      ul: styled.ul(() => {}),
-      li: styled.li(() => {}),
-      dl: styled.dl(() => {}),
-      dt: styled.dt(() => {}),
-      dd: styled.dd(() => {}),
+      h1: null,
+      h2: null,
+      h3: null,
+      h4: null,
+      h5: null,
+      h6: null,
+      p: null,
+      ul: null,
+      li: null,
+      dl: null,
+      dt: null,
+      dd: null,
+      a: null,
     },
     source: {
       excludeDecorators: true,
