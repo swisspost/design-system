@@ -15,8 +15,6 @@ import { ColorSwatch } from './color-swatch';
 
 # Color
 
-You can find the [color usage documentation](#usage) right below.
-
 ## Brand colors
 
 <section className="color-square__section">
@@ -76,30 +74,24 @@ You can find the [color usage documentation](#usage) right below.
 
 ## CSS
 
-Import the [Design System Styles package](https://www.npmjs.com/package/@swisspost/design-system-styles) and choose from one of the provided style files:
-
-- **basics.css**: Just the basic styling for resets, typography and utility classes, components must be imported separately
-- **index.css**: The complete styling for internet facing applications
-- **intranet.css**: The complete styling for internal applications
-
-Use one of the CSS variables in your style sheets. When using CSS variables, the text color will not be automatically accessible. Use the background classes for this feature.
+CSS variables are globally available on your page. When using CSS variables, the text color will not be automatically accessible. Use the background classes for this feature.
 
 ```css dark
-.background {
+.custom-background {
   background-color: var(--post-yellow);
 }
 ```
 
 ## Sass
 
-Import the color variables from the Design System Styles package. If you use `@use` to import the vars, the color variables are scoped and don't mix with your own variables.
+Import the color variables from the Design System Styles package from the `core` sass file with `@use`. This way, the color variables are scoped and don't mix with your own variables.
 
-When using sass variables, the text color will not be automatically accessible. Use the background classes for this feature.
+With this approach, the text color will not be automatically accessible. Use the background classes for this feature.
 
 ```css dark
 @use '@swisspost/design-system-styles/core' as post;
 
-.background {
+.custom-background {
   background-color: post.$yellow;
 }
 ```
