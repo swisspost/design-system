@@ -35,18 +35,18 @@ export const light = create({
   brandTitle: 'Swiss Post Design System',
   brandUrl: 'https://design-system.post.ch',
   brandImage: '/images/logo-swisspost.svg',
-  brandTarget: '_self'
+  brandTarget: '_self',
 });
 
 export const dark = create({
   base: 'dark',
 
-  colorPrimary: '#666',
-  colorSecondary: '#333',
+  colorPrimary: '#333',
+  colorSecondary: '#666',
 
   // UI
-  appBg: '#333',
-  appContentBg: '#222',
+  appBg: '#222',
+  appContentBg: '#333',
   appBorderColor: '#444',
   appBorderRadius: 3,
 
@@ -62,7 +62,7 @@ export const dark = create({
   // Toolbar default and active colors
   barTextColor: '#fff',
   barSelectedColor: '#fff',
-  barBg: '#222',
+  barBg: '#333',
 
   // Form colors
   inputBg: '#222',
@@ -73,10 +73,10 @@ export const dark = create({
   brandTitle: 'Swiss Post Design System',
   brandUrl: 'https://design-system.post.ch',
   brandImage: '/images/logo-swisspost.svg',
-  brandTarget: '_self'
+  brandTarget: '_self',
 });
 
 export default {
   light,
-  dark
+  dark,
 };

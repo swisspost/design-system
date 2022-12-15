@@ -1,5 +1,6 @@
 // importing the complete styles package scss
 @use '@swisspost/design-system-styles/index.scss';
+@use '@swisspost/design-system-styles/core.scss' as post;
 
 #docs-root {
   .sbdocs-wrapper {
@@ -21,7 +22,7 @@
     border-radius: 0.2em;
     font-family: var(--bs-font-monospace);
     font-size: 0.75em;
-    color: rgba(var(--post-contrast-color-rgb), 0.8);
+    color: var(--post-contrast-color);
     white-space: nowrap;
     line-height: 1;
   }
