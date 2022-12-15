@@ -129,7 +129,7 @@ export default {
       description: 'Defines the component\'s positionning.',
       control: {
         type: 'radio',
-        lables: {
+        labels: {
           'static': 'Static',
           'fixed': 'Fixed'
         }
