@@ -4,4 +4,5 @@
 
 export * from './get-element-height';
 export * from './on-transition-end';
+export * from './property-validators';
 export * from './should-reduce-motion';

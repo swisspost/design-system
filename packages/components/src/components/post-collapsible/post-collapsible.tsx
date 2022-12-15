@@ -1,5 +1,5 @@
 import { Component, Element, h, Method, Prop, State, Watch } from '@stencil/core';
-import { getElementHeight, onTransitionEnd } from '../../utils';
+import { booleanValidator, getElementHeight, oneOfValidator, onTransitionEnd } from '../../utils';
 
 let nextId = 0;
 
@@ -19,30 +19,45 @@ export class PostCollapsible {
    */
   @Prop() headingLevel?: number = 2;
 
-  @State() isCollapsed = false;
+  @State() isOpen = true;
   @State() collapseClasses: string;
   @State() collapseHeight: string | null = null;
+  @State() headingTag: string | undefined;
+  @State() collapsibleId: string;
+  @State() hasHeader: boolean;
 
   @Element() host: HTMLElement;
 
-  hasHeader: boolean;
-  headingTag: string | undefined;
-  collapsibleId: string;
+  isLoaded = false;
   collapsibleElement: HTMLElement;
+
+  @Watch('collapsed')
+  validateCollapsed(newValue = this.collapsed) {
+    booleanValidator(newValue, 'The post-collapsible "collapsed" prop should be a boolean.');
+
+    if (!this.isLoaded) {
+      this.isOpen = !newValue;
+      this.collapseClasses = this.getCollapseClasses();
+    } else {
+      setTimeout(() => {
+        this.toggle(!newValue);
+      });
+    }
+  }
 
   @Watch('headingLevel')
   validateHeadingLevel(newValue = this.headingLevel) {
-    const isDefined = typeof newValue !== 'undefined';
-    const isCorrectLevel = !isNaN(newValue) && newValue >= 1 && newValue <= 6;
-    if (isDefined && !isCorrectLevel) {
-      throw new Error('The post-collapsible element requires a heading level between 1 and 6.');
-    }
+    oneOfValidator(
+      newValue,
+      [ 1, 2, 3, 4, 5, 6 ],
+      'The post-collapsible element requires a heading level between 1 and 6.',
+    );
 
-    this.headingTag = `h${this.headingLevel}`;
+    this.headingTag = `h${newValue}`;
   }
 
   componentWillLoad() {
-    this.isCollapsed = this.collapsed;
+    this.validateCollapsed();
     this.validateHeadingLevel();
 
     this.hasHeader = this.host.querySelectorAll('[slot="header"]').length > 0;
@@ -55,6 +70,7 @@ export class PostCollapsible {
   }
 
   componentDidLoad() {
+    this.isLoaded = true;
     this.collapsibleElement = this.host.shadowRoot.querySelector(`#${this.collapsibleId}--collapse`);
   }
 
@@ -62,9 +78,9 @@ export class PostCollapsible {
    * Triggers the collapse programmatically.
    */
   @Method()
-  async toggle(open: boolean = this.isCollapsed): Promise<boolean> {
-    if (open === this.isCollapsed) {
-      this.isCollapsed = !open;
+  async toggle(open: boolean = !this.isOpen): Promise<boolean> {
+    if (open !== this.isOpen) {
+      this.isOpen = !this.isOpen;
 
       this.startTransition();
 
@@ -73,23 +89,23 @@ export class PostCollapsible {
         this.collapseClasses = this.getCollapseClasses();
       });
 
-      return !this.isCollapsed;
+      return this.isOpen;
     }
   }
 
   startTransition() {
     const expandedHeight = getElementHeight(this.collapsibleElement, 'show');
 
-    this.collapseHeight = `${this.isCollapsed ? expandedHeight : 0}px`;
+    this.collapseHeight = `${this.isOpen ? 0 : expandedHeight}px`;
     this.collapseClasses = 'collapsing';
 
     setTimeout(() => {
-      this.collapseHeight = `${this.isCollapsed ? 0 : expandedHeight}px`;
+      this.collapseHeight = `${this.isOpen ? expandedHeight : 0}px`;
     });
   }
 
   private getCollapseClasses() {
-    return this.isCollapsed ? 'collapse' : 'collapse show';
+    return this.isOpen ? 'collapse show' : 'collapse';
   }
 
   render() {
@@ -109,9 +125,9 @@ export class PostCollapsible {
       <div class="accordion-item">
         <this.headingTag class="accordion-header" id={`${this.collapsibleId}--header`}>
           <button
-            class={`accordion-button ${this.isCollapsed ? 'collapsed' : ''}`}
+            class={`accordion-button ${this.isOpen ? '' : 'collapsed'}`}
             type="button"
-            aria-expanded={`${!this.isCollapsed}`}
+            aria-expanded={`${this.isOpen}`}
             aria-controls={`${this.collapsibleId}--collapse`}
             onClick={() => this.toggle()}
           >
@@ -121,7 +137,7 @@ export class PostCollapsible {
         <div
           id={`${this.collapsibleId}--collapse`}
           class={`accordion-collapse ${this.collapseClasses}`}
-          style={{ height: this.collapseHeight, backgroundColor: 'aliceblue' }}
+          style={{ height: this.collapseHeight }}
           aria-labelledby={`${this.collapsibleId}--header`}
         >
           <div class="accordion-body">
