@@ -48,10 +48,6 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     { parse(args.content) }
   </PostCollapsible>;
 
-  if (hasHeader) {
-    return collapsibleComponent;
-  }
-
   const [_, updateArgs] = useArgs();
   const triggerCollapse = () => {
     const collapsible = document.querySelector(`#${collapsibleId}`) as HTMLPostCollapsibleElement;
@@ -66,6 +62,10 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     className="btn btn-secondary mb-regular"
     onClick={ triggerCollapse }
   >Toggle element</button>;
+
+  if (hasHeader) {
+    return collapsibleComponent;
+  }
 
   return <>
     { toggleButton }
