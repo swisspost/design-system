@@ -28,31 +28,9 @@ You can find the [color usage documentation](#usage) right below.
 ## Shades of gray
 
 <section className="color-square__section">
-  {['gray-10', 'gray-20', 'gray-40', 'gray-60', 'gray-80'].map(color => {
-    return (
-      <article key={color}>
-        <div className="color-square">
-          <div
-            className="color-square__inner"
-            style={{ backgroundColor: `var(--post-${color}` }}
-          ></div>
-          <div class="color-square__content">
-            <h3>{color}</h3>
-            <dl>
-              <dt>CSS</dt>
-              <dd>
-                <code>var(--post-{color})</code>
-              </dd>
-              <dt>Sass</dt>
-              <dd>
-                <code>post.${color}</code>
-              </dd>
-            </dl>
-          </div>
-        </div>
-      </article>
-    );
-  })}
+  {['gray-10', 'gray-20', 'gray-40', 'gray-60', 'gray-80'].map(color => (
+    <ColorSwatch color={color} key={color} isBackground={false} />
+  ))}
 </section>
 
 ## Backgrounds
