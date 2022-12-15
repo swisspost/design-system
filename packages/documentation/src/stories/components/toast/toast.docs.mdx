@@ -51,6 +51,14 @@ If the text is longer than 4 lines, you should consider using an `.alert` instea
 
 Last but not least, if the user moves the mouse or the focus to the `.toast` element, the automatic closing should be interrupted/paused and when the mouse/focus leaves the element again, the automatic closing delay should be restarted.
 
+### Stacked
+
+You can stack toasts by wrapping them in a `.toast-container`, which will vertically add some spacing.
+
+<Canvas>
+  <Story id="components-toast--stacked" />
+</Canvas>
+
 ## Accessibility
 
 Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an `aria-live` region. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without the need to move the user’s focus or interrupt in any way. Additionally, include `aria-atomic="true"` to ensure that the entire toast is always announced as a single (atomic) unit, rather than just announcing what changed (which could lead to problems if you only update part of the toast’s content, or if you show the same toast content later in time). If the information is important in the process, e.g. for a list of errors in a form, then use the [alert component](/?path=/docs/components-alert--default) instead of the toast.

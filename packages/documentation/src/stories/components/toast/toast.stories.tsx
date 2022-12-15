@@ -23,7 +23,8 @@ export default {
     alignH: 'right',
     alignHRestricted: 'right',
     autoClose: 0,
-    show: false
+    show: false,
+    stacked: false
   },
   argTypes: {
     title: {
@@ -240,11 +241,7 @@ export default {
     },
     autoClose: {
       name: 'Closing Delay (in sec.)',
-      description: 'Specifies how long the component remains visible before it is automatically closed (in seconds). Set to `0` to disable the auto close.',
-      if: {
-        arg: 'position',
-        eq: 'fixed'
-      },
+      description: 'When position set to `fixed`, defines how long the component remains visible before it is automatically closed (in seconds). Set to `0` to disable the auto close.',
       control: {
         type: 'number'
       },
@@ -261,13 +258,39 @@ export default {
         category: 'Positionning',
         disable: true
       }
+    },
+    stacked: {
+      name: 'Stacked',
+      control: {
+        type: 'boolean'
+      },
+      table: {
+        category: 'Stacked',
+        disable: true
+      }
     }
   },
   decorators: [
     (Story: Story, { args }) => {
       const [_, updateArgs] = useArgs();
-  
-      if (args.position === 'fixed') {
+
+      if (args.stacked) {
+        return <div>
+          <Story/>
+          <style>
+            {`
+            #story--components-toast--stacked .toast-container {
+              position: relative;
+              inset: 0;
+            }
+
+            #story--components-toast--stacked .toast-container > .toast:last-child {
+              margin-bottom: 0;
+            }
+            `}
+          </style>
+        </div>;
+      } else if (args.position === 'fixed') {
         return <div>
           <button className="btn btn-secondary" disabled={ args.show } onClick={ (e: React.MouseEvent) => onToggle(e, args, updateArgs, true) }>Create toast</button>
           <Story/>
@@ -323,11 +346,19 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
 
   if (args.alignH && args.alignHRestricted && args.alignH !== args.alignHRestricted) {
-    args.alignV === 'center' ? updateArgs({ alignH: args.alignHRestricted }) : updateArgs({ alignHRestricted: args.alignH });
+    if(args.alignV === 'center') {
+      updateArgs({ alignH: args.alignHRestricted });
+    } else {
+      updateArgs({ alignHRestricted: args.alignH });
+    }
   }
 
   if (args.alignV && args.alignVRestricted && args.alignV !== args.alignVRestricted) {
-    args.alignH === 'full-width' ? updateArgs({ alignV: args.alignVRestricted }) : updateArgs({ alignVRestricted: args.alignV });
+    if (args.alignH === 'full-width') {
+      updateArgs({ alignV: args.alignVRestricted });
+    } else {
+      updateArgs({ alignVRestricted: args.alignV });
+    }
   }
   
   const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores];
@@ -340,7 +371,8 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   ].filter(c => c && c !== 'null').join(' ');
 
   const isFixed = args.position === 'fixed';
-  
+  const alginV = args.alignVRestricted ?? args.alignV;
+  const alignH = args.alignHRestricted ?? args.alignH;
   const role = isFixed ? 'alert' : 'status';
   const ariaLive = isFixed ? 'assertive' : 'polite';
 
@@ -360,10 +392,15 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     { args.content && <div className="toast-message">{ args.content }</div> }
   </div>;
 
-  if (isFixed) {
+  if (args.stacked) {
+    return <div aria-live="polite" aria-atomic="true" className={ `toast-container toast-${alginV}-${alignH}`}>
+      { component }
+      { component }
+    </div>;
+  } else if (isFixed) {
     if (args.show) createAutoHideTimeout(timeoutStore, args, updateArgs);
 
-    return <div aria-live="polite" aria-atomic="true" className={ `toast-container toast-${args.alignVRestricted ?? args.alignV}-${args.alignHRestricted ?? args.alignH}`}>
+    return <div aria-live="polite" aria-atomic="true" className={ `toast-container toast-${alginV}-${alignH}`}>
       { args.show && component }
     </div>;
   } else {
@@ -391,4 +428,14 @@ AutoClose.args = {
   alignV: 'top',
   alignH: 'right',
   autoClose: 6
+};
+
+export const Stacked: Story = Template.bind({});
+Stacked.parameters = {
+  controls: {
+    include: []
+  }
+};
+Stacked.args = {
+  stacked: true
 };
