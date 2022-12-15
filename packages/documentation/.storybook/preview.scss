@@ -3,6 +3,18 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 
 #docs-root {
+  h1 {
+    margin-block: 5rem 1rem;
+
+    &:first-of-type {
+      margin-block-start: 0;
+    }
+  }
+
+  h2 {
+    margin-block: 3rem 1rem;
+  }
+
   .sbdocs-wrapper {
     background-color: transparent;
   }
@@ -32,7 +44,7 @@
       transform: none;
     }
   }
-  
+
   .hide-col-default .docblock-argstable {
     th,
     td {

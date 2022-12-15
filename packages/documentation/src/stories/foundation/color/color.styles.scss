@@ -5,6 +5,21 @@
 
   h3 {
     margin: 0;
+    text-transform: capitalize;
+  }
+
+  dl {
+    display: grid;
+    grid-template-columns: max-content 1fr;
+    gap: 0.5rem 1rem;
+  }
+
+  dl,
+  dt,
+  dd {
+    @include post.font-curve(tiny);
+    margin: 0;
+    padding: 0;
   }
 }
 
@@ -32,39 +47,4 @@
   @include post.media-breakpoint-down(sm) {
     grid-template-columns: 1fr;
   }
-}
-
-h1 {
-  margin-block: 5rem 1rem;
-
-  &:first-of-type {
-    margin-block-start: 0;
-  }
-}
-
-h2 {
-  margin-block: 3rem 1rem;
-}
-
-h3 {
-  text-transform: capitalize;
-}
-
-body {
-  @include post.font-curve(small);
-  font-weight: 300;
-}
-
-dl {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 0.5rem 1rem;
-}
-
-dl,
-dt,
-dd {
-  @include post.font-curve(tiny);
-  margin: 0;
-  padding: 0;
 }
