@@ -39,8 +39,8 @@
 
     svg {
       margin-top: 0;
-      width: 1.1em;
-      height: 1.1em;
+      width: 1.2em;
+      height: 1.2em;
     }
 
     &[data-nodetype="group"] svg { color: var(--post-gray-60); }
@@ -64,8 +64,8 @@
   .search-result-item {
     svg {
       margin-top: 1px;
-      width: 1.1em;
-      height: 1.1em;
+      width: 1.2em;
+      height: 1.2em;
       color: var(--post-aubergine-bright);
 
       &[color="secondary"] {
