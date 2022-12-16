@@ -15,14 +15,10 @@
     margin-block: 3rem 1rem;
   }
 
-  .sbdocs-wrapper {
-    background-color: transparent;
-  }
-
   pre {
     font-size: 100%;
   }
-
+  
   code {
     display: inline-block;
     position: relative;
@@ -39,10 +35,18 @@
     line-height: 1;
   }
 
+  .sbdocs-wrapper {
+    background-color: transparent;
+  }
+
   .docs-story {
     [scale] {
       transform: none;
     }
+  }
+
+  .docblock-source {
+    margin: 0 0 1rem;
   }
 
   .hide-col-default .docblock-argstable {

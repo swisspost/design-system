@@ -1,0 +1,40 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.sb-fontface-wrapper {
+  display: grid;
+  align-items: center;
+  grid-template-columns: max-content min-content max-content;
+  gap: post.$size-regular;
+}
+
+.sb-fontface {
+  display: contents;
+
+  .sb-fontface__typo {
+    font-size: post.$font-size-huge * 1.25;
+    color: post.$gray-60;
+  }
+
+  .sb-fontface__chars {}
+
+  .sb-fontface__settings {
+    padding-left: post.$size-regular;
+    border-left: post.$border-width solid post.$border-color;
+    
+    .settings__face {
+      font-weight: post.$font-weight-bold;
+    }
+    
+    .settings__weight,
+    .settings__style {
+      font-size: post.$font-size-tiny;
+      color: post.$gray-80;
+
+      > span {
+        color: post.$gray-60;
+      }
+    }
+  }
+}
+
+

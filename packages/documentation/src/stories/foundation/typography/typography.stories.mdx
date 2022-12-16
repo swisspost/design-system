@@ -1,0 +1,178 @@
+import { Meta } from '@storybook/addon-docs';
+import {
+  FontFaceWrapper,
+  FontFace,
+  FontSizesAndLineheights,
+  FontCurves,
+  Headings,
+} from './typography.components';
+
+<Meta
+  title="Foundations/Typography"
+  parameters={{
+    previewTabs: {
+      canvas: {
+        hidden: true,
+      },
+    },
+  }}
+/>
+
+# Typography
+
+Typography help guide users intuitively to the information they need.
+For this reason, it should be structured in a hierarchically balanced way.
+
+## Font Families
+
+There are basically two font families available. One is the main font family "Frutiger Neue" and the other is a monospace font family.
+However, the latter should only be used in rare cases.
+
+Different font shades, font sizes and other characteristics are used to design and structure content.
+Bold is used for markups, underlining is used exclusively for links.
+
+<FontFaceWrapper>
+  <FontFace face="Frutiger Neue LT Pro" family="sans-serif" weight="bold" style="normal" />
+  <FontFace face="Frutiger Neue LT Pro" family="sans-serif" weight="regular" style="normal" />
+  <FontFace face="Frutiger Neue LT Pro" family="sans-serif" weight="light" style="normal" />
+  <FontFace face="Monospace" family="monospace" weight="bold" style="normal" />
+  <FontFace face="Monospace" family="monospace" weight="regular" style="normal" />
+</FontFaceWrapper>
+
+You can use them like so in your code:
+
+```html dark
+<p class="font-sans-serif">...</p>
+<p class="font-monospace">...</p>
+<p class="fw-bold">...</p>
+<p class="fw-regular">...</p>
+<p class="fw-light">...</p>
+<p class="fs-normal">...</p>
+<p class="fs-italic">...</p>
+```
+
+or
+
+```css dark
+@use '@swisspost/design-system-styles/core' as post;
+
+.my-element {
+  font-family: post.$font-family-sans-serif;
+  font-weight: post.$font-weight-bold;
+  font-style: post.$font-style-italic;
+}
+```
+
+## Font Sizes & Line Heights
+
+In the following sections you will find the available font sizes and line heights.<br/>
+Font sizes smaller than `12px` are not permitted.
+
+### Base Font Size
+
+The default font size is `16px`. This corresponds to the CSS value `1rem`.<br/>
+There is a bunch of font sizes you can use by your own, even if we recommend using the font curves instead.
+
+The line height depends on the font size and is specified in a multiplication factor. The multiplication factor of the line spacing decreases with increasing font size.
+
+<FontSizesAndLineheights />
+
+You can use them like so in your code:
+
+```html dark
+<p class="fs-tiny lh-tiny">...</p>
+```
+
+or
+
+```css dark
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core' as post;
+
+.my-element {
+  font-size: map.get(post.$font-sizes, 'tiny');
+  line-height: map.get(post.$line-heights, 'tiny');
+}
+```
+
+### Font Curves
+
+Thanks to font curves, the font size of an element depends on the breakpoint and thus the current screen size in which the user views the content.
+Below you can see the implemented font curves:
+
+<FontCurves />
+
+You can use them like so in your code:
+
+```html dark
+<p class="font-curve-tiny">...</p>
+```
+
+or
+
+```css dark
+@use '@swisspost/design-system-styles/core' as post;
+
+.my-element {
+  @include font-curve('tiny');
+}
+```
+
+## Elements
+
+The following sections show what specific elements look like.
+
+### Headings
+
+<Headings />
+
+For futher informations, read our [heading story](/?path=/story/components-headings--default).
+
+### Paragraphs
+
+<p>
+  Nullam quis risus eget urna mollis <a href="javascript:void">ornare veleu leo</a>. Cum sociis
+  natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Nullam id dolor id nibh
+  ultricies vehicula.
+</p>
+<p>
+  At vero eos et accusam et justo duo dolores et ea rebum. Consetetur sadipscing elitr, sed diam
+  nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+</p>
+
+### Links
+
+<p>
+  <a href="javascript:void">Link</a>
+</p>
+<p>
+  <a href="javascript:void">Consetetur sadipscing elitr sed</a>
+</p>
+
+### Inline Elements
+
+<p>
+  You can use the <code>&lt;mark&gt;</code> tag to <mark>highlight</mark> text.
+</p>
+<p>
+  You can use the <code>&lt;del&gt;</code> tag to mark text as <del>deleted</del>.
+</p>
+<p>
+  <small>
+    You can use the <code>&lt;small&gt;</code> tag to write small text.
+  </small>
+</p>
+<p>
+  <strong>
+    You can use the <code>&lt;strong&gt;</code> tag to write text bold.
+  </strong>
+</p>
+<p>
+  <em>
+    You can use the <code>&lt;em&gt;</code> tag to write text italic.
+  </em>
+</p>
+
+### Lists
+
+// TODO
