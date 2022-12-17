@@ -189,7 +189,7 @@ importers:
       karma-jasmine: 5.1.0
       karma-jasmine-html-reporter: 2.0.0
       ngx-highlightjs: 7.0.1
-      ngx-toastr: 15.2.2
+      ngx-toastr: 16.0.1
       prettier: 2.8.1
       protractor: 7.0.0
       raw-loader: 4.0.2
@@ -222,7 +222,7 @@ importers:
       core-js: 3.26.1
       highlight.js: 11.7.0
       ngx-highlightjs: 7.0.1_oesii4kiemp4bx33wjgqqnat5i
-      ngx-toastr: 15.2.2_575hqlbkduhazj74z2li43juyy
+      ngx-toastr: 16.0.1_575hqlbkduhazj74z2li43juyy
       rxjs: 7.6.0
       tslib: 2.4.1
       zone.js: 0.12.0
@@ -16387,8 +16387,8 @@ packages:
       tslib: 2.4.1
     dev: false
 
-  /ngx-toastr/15.2.2_575hqlbkduhazj74z2li43juyy:
-    resolution: {integrity: sha512-srdxKKf1+B/7z11M4Ty7bnkme2xjdUcnP/t7mNG/2gRM1h0P/7Lbz71FIQHuKZOCdnGdXjsT6OXU0dRvNyrkyg==}
+  /ngx-toastr/16.0.1_575hqlbkduhazj74z2li43juyy:
+    resolution: {integrity: sha512-GpGPQcNqB2m2i5yhH73CkGV6D6DlCJ0+aXZvUoR7OMxlJTlM+73FUePVYUnpWUHXR2IVMS+1ce8WwcTXJzGJxA==}
     peerDependencies:
       '@angular/common': '>=14.0.0-0'
       '@angular/core': '>=14.0.0-0'
