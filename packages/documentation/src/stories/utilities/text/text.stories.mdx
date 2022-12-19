@@ -1,0 +1,153 @@
+import { Meta } from '@storybook/addon-docs';
+import { SCSS_VARIABLES, ColorUtilities } from './text.components';
+
+<Meta
+  title="Utilities/Text"
+  parameters={{
+    previewTabs: {
+      canvas: {
+        hidden: true,
+      },
+    },
+  }}
+/>
+
+# Text
+
+<p className="lead">
+  Documentation and examples for common text utilities to control font family, size, alignment,
+  wrapping, and more.
+</p>
+
+## Font
+
+Quickly change how fonts are displayed in specific element and/or their child nodes.
+
+### Family
+
+Even if we do not recommend, you can change the `font-family` manuallly, with the follwoing utility classes: `.font-sans-serif` and `.font-monospace`.
+
+```html dark
+<p class="font-sans-serif">Sans Serif text, ...</p>
+```
+
+### Size
+
+While our heading classes (e.g., `.h1` – `.h6`) apply `font-size`, `font-weight`, and `line-height`, these utility classes only apply the `font-size` to an element.
+The available classes are: `.fs-tiny`, `.fs-small`, `.fs-regular`, `.fs-bigger-regular`, `.fs-medium`, `.fs-large`, `.fs-small-big`, `.fs-big`, `.fs-bigger-big`, `.fs-small-huge` or `.fs-huge`.
+
+```html dark
+<p class="fs-tiny">Tiny text, ...</p>
+```
+
+### Weight
+
+Even if we do not recommend, you can change the `font-weight` manually, with the following classes: `.fw-bold`, `.fw-normal` and `.fw-light`.
+
+```html dark
+<p class="fw-bold">Bold text, ...</p>
+```
+
+### Italic
+
+Change the `font-style` manually, with the following utility classes: `.fst-italic` and `.fst-normal`.
+
+```html dark
+<p class="fst-italic">Italic text, ...</p>
+```
+
+### Line Heights
+
+Even if we do not recommend, you can change the `line-height` manually, with the following classes: `lh-1`, `.lh-tiny`, `.lh-small`, `.lh-regular`, `.lh-bigger-regular`, `.lh-medium`, `.lh-large`, `.lh-small-big`, `.lh-big`, `.lh-bigger-big`, `.lh-small-huge` or `.lh-huge`.
+
+```html dark
+<p class="lh-1">Text with a line-height of 1, ...</p>
+```
+
+## Text
+
+Define how text-blocks are displayed.
+
+## Color
+
+Colorize text with color utility classes. If you want to colorize links, you can use the `.link-*` classes instead, which comes with styles for `:hover` and `:focus` states.
+
+<ColorUtilities />
+
+```html dark
+<p class="text-danger">Danger colored text, ...</p>
+<a class="link-danger">Danger colored link, ...</a>
+```
+
+### Reset Color
+
+Reset a text color with `.text-reset`, so that it inherits the color from its parent.
+
+<!-- prettier-ignore -->
+```html dark
+<p class="text-muted">Muted colored text and a <a href="#" class="text-reset">link</a> with the same color.</p>
+```
+
+## Alignment
+
+Easily realign text to components with text alignment utility classes. For start, end, and center alignment, responsive classes are available that use the same viewport width breakpoints as the grid system.
+
+```html dark
+<p class="text-start">Start aligned text on all viewport sizes.</p>
+<p class="text-center">Center aligned text on all viewport sizes.</p>
+<p class="text-end">End aligned text on all viewport sizes.</p>
+
+<p class="text-sm-center">Center aligned text on viewports sized SM (small) or wider.</p>
+<p class="text-rg-center">Center aligned text on viewports sized MD (regular) or wider.</p>
+<p class="text-md-center">Center aligned text on viewports sized MD (medium) or wider.</p>
+<p class="text-lg-center">Center aligned text on viewports sized MD (large) or wider.</p>
+<p class="text-xl-center">Center aligned text on viewports sized MD (x-large) or wider.</p>
+<p class="text-xxl-center">Center aligned text on viewports sized MD (xx-large) or wider.</p>
+```
+
+## Wrapping
+
+Prevent text from wrapping with a `.text-nowrap` class.
+
+```html dark
+<div class="w-50 bg-info text-nowrap">
+  <p>This text should wrap, saepe excepturi quas nihil repudiandae eius assumenda voluptatem.</p>
+</div>
+```
+
+Wrap text with a `.text-wrap` utility class.
+
+```html dark
+<div style="width: 200px;" class="bg-info text-nowrap">
+  <p class="text-wrap">
+    This text should wrap, saepe excepturi quas nihil repudiandae eius assumenda voluptatem.
+  </p>
+</div>
+```
+
+## Word Break
+
+Prevent long strings of text from breaking your component's layout by using the utility class `.text-break`.
+
+```html dark
+<div style="width: 200px;">
+  <p class="text-break">wwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwwww</p>
+</div>
+```
+
+## Transform
+
+Change the `text-transform` manually, with the following utility classes: `.text-lowercase`, `.text-uppercase` and `.text-capitalize`.
+
+```html dark
+<p class="text-uppercase">uppercase text, ...</p>
+```
+
+## Decorations
+
+Change the `text-docuration` manually, with the following utility classes: `.text-decoration-line-through` and `.text-decoration-none`.
+
+```html dark
+<p class="text-decoration-line-through">This text has a line going through it.</p>
+<p><a class="text-decoration-none">Link without decoration</a></p>
+```

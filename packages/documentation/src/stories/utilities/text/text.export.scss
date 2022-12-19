@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core' as post;
+
+$colorUtilityColors: map.merge(post.$theme-colors, (
+  muted: post.$gray-60,
+  white: post.$white,
+  black: post.$black,
+));
+
+:export {
+  @each $name, $color in $colorUtilityColors {
+    #{'colorUtilities_' + $name}: $color;
+
+    @if (post.get-contrast-color($color) != #000) {
+      #{'colorBgUtilities_' + $name}: #{'light'};
+    } @else {
+      #{'colorBgUtilities_' + $name}: #{'dark'};
+    }
+  }
+}
