@@ -101,7 +101,7 @@ export class PostCollapsible {
 
     setTimeout(() => {
       this.collapseHeight = `${this.isOpen ? expandedHeight : 0}px`;
-    });
+    }, 50);
   }
 
   private getCollapseClasses() {

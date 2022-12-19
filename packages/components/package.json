@@ -28,7 +28,7 @@
     "start": "stencil build --watch --docs-readme",
     "build": "stencil build --docs-readme",
     "test": "stencil test --spec",
-    "test:watch": "stencil test --spec --watchAll",
+    "test:watch": "stencil test --spec --watchAll --silent",
     "generate": "stencil generate"
   },
   "dependencies": {

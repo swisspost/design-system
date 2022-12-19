@@ -1,5 +1,5 @@
 import { useArgs } from '@storybook/client-api';
-import React from 'react';
+import React, { MouseEventHandler } from 'react';
 import { Story, Args, StoryContext, ReactFramework } from '@storybook/react';
 import { PostCollapsible } from '@swisspost/design-system-components-react';
 import parse from 'html-react-parser';
@@ -45,33 +45,38 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     id: hasHeader ? undefined : collapsibleId,
   });
 
-  const collapsibleComponent = <PostCollapsible
-    { ...collapsibleProperties }
-  >
-    { parse(args.content) }
-  </PostCollapsible>;
+  const collapsibleComponent = <PostCollapsible { ...collapsibleProperties }>{ parse(args.content) }</PostCollapsible>;
 
   const [currentArgs, updateArgs] = useArgs();
-  const triggerCollapse = () => {
+
+  const toggleCollapse = (open?: boolean) => {
     const collapsible = document.querySelector(`#${collapsibleId}`) as HTMLPostCollapsibleElement;
-    collapsible.toggle().then((isOpen: boolean) => {
+    collapsible.toggle(open).then((isOpen: boolean) => {
       if (typeof currentArgs.collapsed !== 'undefined') updateArgs({ collapsed: !isOpen });
     });
   };
 
-  const toggleButton = <button
-    aria-controls={ collapsibleId }
-    aria-expanded={ !args.collapsed }
-    className="btn btn-secondary mb-regular"
-    onClick={ triggerCollapse }
-  >Toggle element</button>;
+  const togglers: [string, MouseEventHandler][] = [
+    ['Toggle', () => toggleCollapse()],
+    ['Show', () => toggleCollapse(true)],
+    ['Hide', () => toggleCollapse(false)]
+  ];
 
   if (hasHeader) {
     return collapsibleComponent;
   }
 
   return <>
-    { toggleButton }
+    <div className="d-flex gap-mini mb-regular">
+      {togglers.map(([ label, listener ]) =>
+        <button
+          aria-controls={ collapsibleId }
+          aria-expanded={ !args.collapsed }
+          className="btn btn-secondary"
+          onClick={ listener }
+        >{ label }</button>
+      )}
+    </div>
     { collapsibleComponent }
   </>;
 };
