@@ -289,6 +289,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0
       react-markdown: 8.0.4
+      rehype-raw: ^6.1.1
       sass: 1.56.2
       sass-loader: 10.4.1
       start-server-and-test: 1.15.2
@@ -320,6 +321,7 @@ importers:
       css-loader: 5.2.7
       cypress: 11.2.0
       react-markdown: 8.0.4_kzbn2opkn2327fwg5yzwzya5o4
+      rehype-raw: 6.1.1
       sass: 1.56.2
       sass-loader: 10.4.1_sass@1.56.2
       start-server-and-test: 1.15.2
@@ -6662,7 +6664,7 @@ packages:
   /@types/eslint/8.4.3:
     resolution: {integrity: sha512-YP1S7YJRMPs+7KZKDb9G63n8YejIwW9BALq7a5j2+H4yl6iOv9CB29edho+cuFRrvmJbbaH2yiVChKLJVysDGw==}
     dependencies:
-      '@types/estree': 0.0.51
+      '@types/estree': 1.0.0
       '@types/json-schema': 7.0.11
     dev: true
 
@@ -6672,6 +6674,10 @@ packages:
 
   /@types/estree/0.0.51:
     resolution: {integrity: sha512-CuPgU6f3eT/XgKKPqKd/gLZV1Xmvf1a2R5POBOGQa6uv82xpls89HU5zKeVoyR8XzHd1RGNOlQlvUe3CFkjWNQ==}
+    dev: true
+
+  /@types/estree/1.0.0:
+    resolution: {integrity: sha512-WulqXMDUTYAXCjZnk6JtIHPigp55cVtDgDrO2gHRwhyJto21+1zbVCtOYB2L1F9w4qCQ0rOGWBnBe0FNTiEJIQ==}
     dev: true
 
   /@types/express-serve-static-core/4.17.29:
@@ -6834,6 +6840,10 @@ packages:
 
   /@types/parse5/5.0.3:
     resolution: {integrity: sha512-kUNnecmtkunAoQ3CnjmMkzNU/gtxG8guhi+Fk2U/kOpIKjIMKnXGp4IJCgQJrXSgMsWYimYG4TGjz/UzbGEBTw==}
+    dev: true
+
+  /@types/parse5/6.0.3:
+    resolution: {integrity: sha512-SuT16Q1K51EAVPz1K29DJ/sXjhSQ0zjvsypYJ6tlwVsRV9jwW5Adq2ch8Dq8kDBCkYnELS7N7VNCSB5nC56t/g==}
     dev: true
 
   /@types/prettier/2.7.0:
@@ -12601,6 +12611,18 @@ packages:
       minimalistic-assert: 1.0.1
     dev: true
 
+  /hast-to-hyperscript/10.0.1:
+    resolution: {integrity: sha512-dhIVGoKCQVewFi+vz3Vt567E4ejMppS1haBRL6TEmeLeJVB1i/FJIIg/e6s1Bwn0g5qtYojHEKvyGA+OZuyifw==}
+    dependencies:
+      '@types/unist': 2.0.6
+      comma-separated-tokens: 2.0.3
+      property-information: 6.1.1
+      space-separated-tokens: 2.0.2
+      style-to-object: 0.3.0
+      unist-util-is: 5.1.1
+      web-namespaces: 2.0.1
+    dev: true
+
   /hast-to-hyperscript/9.0.1:
     resolution: {integrity: sha512-zQgLKqF+O2F72S1aa4y2ivxzSlko3MAvxkwG8ehGmNiqd98BIN3JM1rAJPmplEyLmGLO2QZYJtIneOSZ2YbJuA==}
     dependencies:
@@ -12624,8 +12646,27 @@ packages:
       web-namespaces: 1.1.4
     dev: true
 
+  /hast-util-from-parse5/7.1.0:
+    resolution: {integrity: sha512-m8yhANIAccpU4K6+121KpPP55sSl9/samzQSQGpb0mTExcNh2WlvjtMwSWFhg6uqD4Rr6Nfa8N6TMypQM51rzQ==}
+    dependencies:
+      '@types/hast': 2.3.4
+      '@types/parse5': 6.0.3
+      '@types/unist': 2.0.6
+      hastscript: 7.1.0
+      property-information: 6.1.1
+      vfile: 5.3.6
+      vfile-location: 4.0.1
+      web-namespaces: 2.0.1
+    dev: true
+
   /hast-util-parse-selector/2.2.5:
     resolution: {integrity: sha512-7j6mrk/qqkSehsM92wQjdIgWM2/BW61u/53G6xmC8i1OmEdKLHbk419QKQUjz6LglWsfqoiHmyMRkP1BGjecNQ==}
+    dev: true
+
+  /hast-util-parse-selector/3.1.0:
+    resolution: {integrity: sha512-AyjlI2pTAZEOeu7GeBPZhROx0RHBnydkQIXlhnFzDi0qfXTmGUWoCYZtomHbrdrheV4VFUlPcfJ6LMF5T6sQzg==}
+    dependencies:
+      '@types/hast': 2.3.4
     dev: true
 
   /hast-util-raw/6.0.1:
@@ -12643,6 +12684,22 @@ packages:
       zwitch: 1.0.5
     dev: true
 
+  /hast-util-raw/7.2.3:
+    resolution: {integrity: sha512-RujVQfVsOrxzPOPSzZFiwofMArbQke6DJjnFfceiEbFh7S05CbPt0cYN+A5YeD3pso0JQk6O1aHBnx9+Pm2uqg==}
+    dependencies:
+      '@types/hast': 2.3.4
+      '@types/parse5': 6.0.3
+      hast-util-from-parse5: 7.1.0
+      hast-util-to-parse5: 7.0.0
+      html-void-elements: 2.0.1
+      parse5: 6.0.1
+      unist-util-position: 4.0.3
+      unist-util-visit: 4.1.1
+      vfile: 5.3.6
+      web-namespaces: 2.0.1
+      zwitch: 2.0.4
+    dev: true
+
   /hast-util-to-parse5/6.0.0:
     resolution: {integrity: sha512-Lu5m6Lgm/fWuz8eWnrKezHtVY83JeRGaNQ2kn9aJgqaxvVkFCZQBEhgodZUDUvoodgyROHDb3r5IxAEdl6suJQ==}
     dependencies:
@@ -12651,6 +12708,17 @@ packages:
       web-namespaces: 1.1.4
       xtend: 4.0.2
       zwitch: 1.0.5
+    dev: true
+
+  /hast-util-to-parse5/7.0.0:
+    resolution: {integrity: sha512-YHiS6aTaZ3N0Q3nxaY/Tj98D6kM8QX5Q8xqgg8G45zR7PvWnPGPP0vcKCgb/moIydEJ/QWczVrX0JODCVeoV7A==}
+    dependencies:
+      '@types/hast': 2.3.4
+      '@types/parse5': 6.0.3
+      hast-to-hyperscript: 10.0.1
+      property-information: 6.1.1
+      web-namespaces: 2.0.1
+      zwitch: 2.0.4
     dev: true
 
   /hast-util-whitespace/2.0.0:
@@ -12665,6 +12733,16 @@ packages:
       hast-util-parse-selector: 2.2.5
       property-information: 5.6.0
       space-separated-tokens: 1.1.5
+    dev: true
+
+  /hastscript/7.1.0:
+    resolution: {integrity: sha512-uBjaTTLN0MkCZxY/R2fWUOcu7FRtUVzKRO5P/RAfgsu3yFiMB1JWCO4AjeVkgHxAira1f2UecHK5WfS9QurlWA==}
+    dependencies:
+      '@types/hast': 2.3.4
+      comma-separated-tokens: 2.0.3
+      hast-util-parse-selector: 3.1.0
+      property-information: 6.1.1
+      space-separated-tokens: 2.0.2
     dev: true
 
   /hdr-histogram-js/2.0.3:
@@ -12790,6 +12868,10 @@ packages:
 
   /html-void-elements/1.0.5:
     resolution: {integrity: sha512-uE/TxKuyNIcx44cIWnjr/rfIATDH7ZaOMmstu0CwhFG1Dunhlp4OC6/NMbhiwoq5BpW0ubi303qnEk/PZj614w==}
+    dev: true
+
+  /html-void-elements/2.0.1:
+    resolution: {integrity: sha512-0quDb7s97CfemeJAnW9wC0hw78MtW7NU3hqtCD75g2vFlDLt36llsYD7uB7SUzojLMP24N5IatXf7ylGXiGG9A==}
     dev: true
 
   /html-webpack-plugin/4.5.2_webpack@4.46.0:
@@ -19065,6 +19147,14 @@ packages:
       jsesc: 0.5.0
     dev: true
 
+  /rehype-raw/6.1.1:
+    resolution: {integrity: sha512-d6AKtisSRtDRX4aSPsJGTfnzrX2ZkHQLE5kiUuGOeEoLpbEulFF4hj0mLPbsa+7vmguDKOVVEQdHKDSwoaIDsQ==}
+    dependencies:
+      '@types/hast': 2.3.4
+      hast-util-raw: 7.2.3
+      unified: 10.1.2
+    dev: true
+
   /relateurl/0.2.7:
     resolution: {integrity: sha512-G08Dxvm4iDN3MLM0EsP62EDV9IuhXPR6blNz6Utcp7zyV3tr4HVNINt6MpaRWbxoOHT3Q7YN2P+jaHX8vUbgog==}
     engines: {node: '>= 0.10'}
@@ -21736,6 +21826,13 @@ packages:
     resolution: {integrity: sha512-aLEIZKv/oxuCDZ8lkJGhuhztf/BW4M+iHdCwglA/eWc+vtuRFJj8EtgceYFX4LRjOhCAAiNHsKGssC6onJ+jbA==}
     dev: true
 
+  /vfile-location/4.0.1:
+    resolution: {integrity: sha512-JDxPlTbZrZCQXogGheBHjbRWjESSPEak770XwWPfw5mTc1v1nWGLB/apzZxsx8a0SJVfF8HK8ql8RD308vXRUw==}
+    dependencies:
+      '@types/unist': 2.0.6
+      vfile: 5.3.6
+    dev: true
+
   /vfile-message/2.0.4:
     resolution: {integrity: sha512-DjssxRGkMvifUOJre00juHoP9DPWuzjxKuMDrhNbk2TdaYYBNMStsNhEOt3idrtI12VQYM/1+iM0KOzXi4pxwQ==}
     dependencies:
@@ -21833,6 +21930,7 @@ packages:
 
   /w3c-hr-time/1.0.2:
     resolution: {integrity: sha512-z8P5DvDNjKDoFIHK7q8r8lackT6l+jo/Ye3HOle7l9nICP9lf1Ci25fy9vHd0JOWewkIFzXIEig3TdKT7JQ5fQ==}
+    deprecated: Use your platform's native performance.now() and performance.timeOrigin.
     dependencies:
       browser-process-hrtime: 1.0.0
     dev: true
@@ -21916,6 +22014,10 @@ packages:
 
   /web-namespaces/1.1.4:
     resolution: {integrity: sha512-wYxSGajtmoP4WxfejAPIr4l0fVh+jeMXZb08wNc0tMg6xsfZXj3cECqIK0G7ZAqUq0PP8WlMDtaOGVBTAWztNw==}
+    dev: true
+
+  /web-namespaces/2.0.1:
+    resolution: {integrity: sha512-bKr1DkiNa2krS7qxNtdrtHAmzuYGFQLiQ13TsorsdT6ULTkPLKuu5+GsFpDlg6JFjUTwX2DyhMPG2be8uPrqsQ==}
     dev: true
 
   /webdriver-js-extender/2.1.0:
@@ -22624,4 +22726,8 @@ packages:
 
   /zwitch/1.0.5:
     resolution: {integrity: sha512-V50KMwwzqJV0NpZIZFwfOD5/lyny3WlSzRiXgA0G7VUnRlqttta1L6UQIHzd6EuBY/cHGfwTIck7w1yH6Q5zUw==}
+    dev: true
+
+  /zwitch/2.0.4:
+    resolution: {integrity: sha512-bXE4cR/kVZhKZX/RjPEflHaKVhUVl85noU3v6b8apfQEc1x4A+zBxjZ4lN8LqGd6WZ3dl98pY4o717VFmoPp+A==}
     dev: true

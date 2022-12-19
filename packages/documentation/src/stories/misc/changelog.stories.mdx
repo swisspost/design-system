@@ -1,5 +1,6 @@
-import { Meta } from '@storybook/addon-docs';
+import { Meta, Source } from '@storybook/addon-docs';
 import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
 import changelog from '../../../../styles/CHANGELOG.md';
 
 <Meta
@@ -13,16 +14,19 @@ import changelog from '../../../../styles/CHANGELOG.md';
   }}
 />
 
-<div
-  style={{
-    margin: '0 0 1rem',
-    padding: '1rem',
-    background: 'red',
-    fontWeight: 'bold',
-    color: 'white',
+<ReactMarkdown
+  rehypePlugins={[rehypeRaw]}
+  components={{
+    code({ node, inline, className, children, ...props }) {
+      const match = /language-(\w+)/.exec(className || '');
+      return !inline && match ? (
+        <Source language={match[1]} dark code={String(children).replace(/\n$/, '')} />
+      ) : (
+        <code className={className} {...props}>
+          {children}
+        </code>
+      );
+    },
   }}
->
-  TODO: style and correctly format changelog output
-</div>
-
-<ReactMarkdown>{changelog}</ReactMarkdown>
+  children={changelog}
+/>
