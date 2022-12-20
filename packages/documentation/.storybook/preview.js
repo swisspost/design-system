@@ -1,4 +1,4 @@
-import DocsContainer from './docs-container';
+import DocsContainer from './components/docs-container';
 import postThemes from './post-themes';
 import './preview.scss';
 

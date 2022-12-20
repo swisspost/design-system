@@ -1,7 +1,7 @@
 import React from "react";
 import { DocsContainer as BaseContainer } from "@storybook/addon-docs/blocks";
 import { useDarkMode } from "storybook-dark-mode";
-import postThemes from './post-themes';
+import postThemes from '../post-themes';
 
 export default ({ children, context }) => {
   const dark = useDarkMode();
