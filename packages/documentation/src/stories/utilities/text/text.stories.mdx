@@ -21,11 +21,11 @@ import { SCSS_VARIABLES, ColorUtilities } from './text.components';
 
 ## Font
 
-Quickly change how fonts are displayed in specific element and/or their child nodes.
+Quickly change how fonts are displayed in specific elements and/or their child nodes.
 
 ### Family
 
-Even if we do not recommend, you can change the `font-family` manuallly, with the follwoing utility classes: `.font-sans-serif` and `.font-monospace`.
+Even if we do not recommend, you can change the `font-family` manually, with the follwoing utility classes: `.font-sans-serif` and `.font-monospace`.
 
 ```html dark
 <p class="font-sans-serif">Sans Serif text, ...</p>
@@ -33,7 +33,7 @@ Even if we do not recommend, you can change the `font-family` manuallly, with th
 
 ### Size
 
-While our heading classes (e.g., `.h1` – `.h6`) apply `font-size`, `font-weight`, and `line-height`, these utility classes only apply the `font-size` to an element.
+While our heading classes (`.h1` – `.h6`) apply `font-size`, `font-weight`, and `line-height`, these utility classes only apply the `font-size` to an element.
 The available classes are: `.fs-tiny`, `.fs-small`, `.fs-regular`, `.fs-bigger-regular`, `.fs-medium`, `.fs-large`, `.fs-small-big`, `.fs-big`, `.fs-bigger-big`, `.fs-small-huge` or `.fs-huge`.
 
 ```html dark
@@ -68,7 +68,7 @@ Even if we do not recommend, you can change the `line-height` manually, with the
 
 Define how text-blocks are displayed.
 
-## Color
+### Color
 
 Colorize text with color utility classes. If you want to colorize links, you can use the `.link-*` classes instead, which comes with styles for `:hover` and `:focus` states.
 
@@ -79,7 +79,7 @@ Colorize text with color utility classes. If you want to colorize links, you can
 <a class="link-danger">Danger colored link, ...</a>
 ```
 
-### Reset Color
+#### Reset Color
 
 Reset a text color with `.text-reset`, so that it inherits the color from its parent.
 
@@ -88,9 +88,9 @@ Reset a text color with `.text-reset`, so that it inherits the color from its pa
 <p class="text-muted">Muted colored text and a <a href="#" class="text-reset">link</a> with the same color.</p>
 ```
 
-## Alignment
+### Alignment
 
-Easily realign text to components with text alignment utility classes. For start, end, and center alignment, responsive classes are available that use the same viewport width breakpoints as the grid system.
+Easily realign text to components with text alignment utility classes. For start, end, and center alignment, responsive classes are available that use the same viewport breakpoints as the grid system.
 
 ```html dark
 <p class="text-start">Start aligned text on all viewport sizes.</p>
@@ -105,13 +105,15 @@ Easily realign text to components with text alignment utility classes. For start
 <p class="text-xxl-center">Center aligned text on viewports sized MD (xx-large) or wider.</p>
 ```
 
-## Wrapping
+### Wrapping
 
-Prevent text from wrapping with a `.text-nowrap` class.
+Prevent text from wrapping, with a `.text-nowrap` class.
 
 ```html dark
 <div class="w-50 bg-info text-nowrap">
-  <p>This text should wrap, saepe excepturi quas nihil repudiandae eius assumenda voluptatem.</p>
+  <p>
+    This text should not wrap, saepe excepturi quas nihil repudiandae eius assumenda voluptatem.
+  </p>
 </div>
 ```
 
@@ -125,7 +127,7 @@ Wrap text with a `.text-wrap` utility class.
 </div>
 ```
 
-## Word Break
+### Word Break
 
 Prevent long strings of text from breaking your component's layout by using the utility class `.text-break`.
 
@@ -135,7 +137,7 @@ Prevent long strings of text from breaking your component's layout by using the 
 </div>
 ```
 
-## Transform
+### Transform
 
 Change the `text-transform` manually, with the following utility classes: `.text-lowercase`, `.text-uppercase` and `.text-capitalize`.
 
@@ -143,7 +145,7 @@ Change the `text-transform` manually, with the following utility classes: `.text
 <p class="text-uppercase">uppercase text, ...</p>
 ```
 
-## Decorations
+### Decorations
 
 Change the `text-docuration` manually, with the following utility classes: `.text-decoration-line-through` and `.text-decoration-none`.
 
