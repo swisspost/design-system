@@ -39,7 +39,6 @@ const versions = {
   bootstrap: pkgStyles.dependencies.bootstrap,
 };
 
-console.log(versions);
 export default ({ children, context }) => {
   function getCleanVersion (version = '') {
     return version.replace(/^[^\d]+/, '');
