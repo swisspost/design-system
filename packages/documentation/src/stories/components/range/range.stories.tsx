@@ -241,6 +241,7 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
 export const Default: Story = Template.bind({});
 
 export const Boundaries: Story = Template.bind({});
+Boundaries.storyName  = 'Min, Max & Steps';
 Boundaries.parameters = {
   controls: {
     exclude: [
