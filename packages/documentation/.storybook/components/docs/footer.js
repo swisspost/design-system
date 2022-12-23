@@ -26,7 +26,7 @@ function forEach (iterable, callback) {
 }
 
 export default () => (
-  <footer className="docs-footer">
+  <footer className="docs-footer mt-huge">
     <div className={ useDarkMode() ? 'bg-black' : 'bg-light' }>
       <div className="container">
         <div className="pt-big-r pb-big-r">
