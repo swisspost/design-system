@@ -1,8 +1,11 @@
 // importing the complete styles package scss
+@use 'sass:map';
 @use '@swisspost/design-system-styles/index.scss';
 @use '@swisspost/design-system-styles/core.scss' as post;
 
 #docs-root {
+  overflow: hidden;
+
   h1 {
     margin-block: 5rem 1rem;
 
@@ -36,7 +39,13 @@
   }
 
   .sbdocs-wrapper {
+    padding-left: 0;
+    padding-right: 0;
     background-color: transparent;
+
+    .sbdocs-content {
+      max-width: none;
+    }
   }
 
   .docs-story {

@@ -12,7 +12,7 @@
 
   .sb-fontface__typo {
     font-size: post.$font-size-huge * 1.25;
-    color: post.$gray-60;
+    color: var(--post-gray-60);
   }
 
   .sb-fontface__settings {
@@ -26,10 +26,10 @@
     .settings__weight,
     .settings__style {
       font-size: post.$font-size-tiny;
-      color: post.$gray-80;
+      color: var(--post-gray-80);
 
       > span {
-        color: post.$gray-60;
+        color: var(--post-gray-60);
       }
     }
   }

@@ -1,4 +1,4 @@
-import DocsContainer from './components/docs-container';
+import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';
 import './preview.scss';
 
@@ -30,7 +30,7 @@ export const parameters = {
     stylePreview: true,
   },
   docs: {
-    container: DocsContainer,
+    container: DocsLayout,
     components: {
       // Remove default storybook styles from most of things (helps with dark mode in mdx files)
       h1: null,
