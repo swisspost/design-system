@@ -2,7 +2,6 @@ import React from 'react';
 import { objectify } from '../../../utils/sass-export.ts';
 import { forEach } from '../../../utils/react.ts';
 import scss from './typography.components.scss';
-// import scss from './typography.export.scss';
 
 const SCSS_VARIABLES = objectify(scss);
 const baseFontSize = parseFloat(SCSS_VARIABLES.base.fontSize);
