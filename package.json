@@ -23,7 +23,7 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "0.4.7",
+    "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.25.2"
   },
   "engines": {
