@@ -290,7 +290,7 @@ importers:
       react-markdown: 8.0.4
       sass: 1.57.1
       start-server-and-test: 1.15.2
-      storybook-dark-mode: 1.1.2
+      storybook-dark-mode: 2.0.5
       typescript: 4.6.4
     dependencies:
       '@swisspost/design-system-components': link:../components
@@ -318,7 +318,7 @@ importers:
       react-markdown: 8.0.4_kzbn2opkn2327fwg5yzwzya5o4
       sass: 1.57.1
       start-server-and-test: 1.15.2
-      storybook-dark-mode: 1.1.2_biqbaboplfbrettd7655fr4n2y
+      storybook-dark-mode: 2.0.5_biqbaboplfbrettd7655fr4n2y
       typescript: 4.6.4
 
   packages/styles:
@@ -20301,8 +20301,8 @@ packages:
     resolution: {integrity: sha512-CMtO2Uneg3SAz/d6fZ/6qbqqQHi2ynq6/KzMD/26gTkiEShCcpqFfTHgOxsE0egAq6SX3FmN4CeSqn8BzXQkJg==}
     dev: true
 
-  /storybook-dark-mode/1.1.2_biqbaboplfbrettd7655fr4n2y:
-    resolution: {integrity: sha512-L5QjJN49bl+ktprM6faMkTeW+LCvuMYWQaRo8/JGSMmzomIjLT7Yo20UiTsnMgMYyYWYF5O4EK/F3OvjDNp8tQ==}
+  /storybook-dark-mode/2.0.5_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-egOMu2tgGttGAMtFZcDLZobs1xc7LzFOh+pRVqaW59AVp05ABdQ3Hj6IX2Pz7tYGmF9AmaK+nBv0hDFxPe7Hfg==}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
