@@ -283,7 +283,7 @@ importers:
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.10
       babel-loader: 9.1.0
-      cypress: 11.2.0
+      cypress: 12.3.0
       html-react-parser: 3.0.4
       react: 18.2.0
       react-dom: 18.2.0
@@ -301,7 +301,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.7
       '@percy/cli': 1.16.0
-      '@percy/cypress': 3.1.2_cypress@11.2.0
+      '@percy/cypress': 3.1.2_cypress@12.3.0
       '@pxtrn/storybook-addon-docs-stencil': 6.4.1_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-docs': 6.5.15_7hy3nafet22ywif36u2aeuony4
       '@storybook/addon-essentials': 6.5.15_7hy3nafet22ywif36u2aeuony4
@@ -314,7 +314,7 @@ importers:
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.10
       babel-loader: 9.1.0_@babel+core@7.20.7
-      cypress: 11.2.0
+      cypress: 12.3.0
       react-markdown: 8.0.4_kzbn2opkn2327fwg5yzwzya5o4
       sass: 1.57.1
       start-server-and-test: 1.15.2
@@ -5044,13 +5044,13 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@percy/cypress/3.1.2_cypress@11.2.0:
+  /@percy/cypress/3.1.2_cypress@12.3.0:
     resolution: {integrity: sha512-JXrGDZbqwkzQd2h5T5D7PvqoucNaiMh4ChPp8cLQiEtRuLHta9nf1lEuXH+jnatGL2j+3jJFIHJ0L7XrgVnvQA==}
     peerDependencies:
       cypress: '>=3'
     dependencies:
       '@percy/sdk-utils': 1.10.4
-      cypress: 11.2.0
+      cypress: 12.3.0
     dev: true
 
   /@percy/dom/1.16.0:
@@ -10133,9 +10133,9 @@ packages:
     resolution: {integrity: sha512-NJGVKPS81XejHcLhaLJS7plab0fK3slPh11mESeeDq2W4ZI5kUKK/LRRdVDvjJseojbPB7ZwjnyOybg3Igea/A==}
     dev: true
 
-  /cypress/11.2.0:
-    resolution: {integrity: sha512-u61UGwtu7lpsNWLUma/FKNOsrjcI6wleNmda/TyKHe0dOBcVjbCPlp1N6uwFZ0doXev7f/91YDpU9bqDCFeBLA==}
-    engines: {node: '>=12.0.0'}
+  /cypress/12.3.0:
+    resolution: {integrity: sha512-ZQNebibi6NBt51TRxRMYKeFvIiQZ01t50HSy7z/JMgRVqBUey3cdjog5MYEbzG6Ktti5ckDt1tfcC47lmFwXkw==}
+    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
     dependencies:
