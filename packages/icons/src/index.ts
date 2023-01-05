@@ -1,29 +1,27 @@
-import fetch from "node-fetch";
-import fs from "fs";
-import { optimize, OptimizedSvg } from "svgo";
-import svgoOptions from "./svgo.config.js";
-import { CenshareResultPage, CenshareResult } from "./censhare-result-page.js";
-import { IIcon } from "./icon.model.js";
+import fetch from 'node-fetch';
+import fs from 'fs';
+import { optimize, OptimizedSvg } from 'svgo';
+import svgoOptions from './svgo.config';
+import { CenshareResultPage, CenshareResult } from './censhare-result-page';
+import { IIcon } from './icon.model';
 
 const url =
-  "https://cdn.post.ch/hcms/v2.0/entity/asset?limit=10000&query=typeFilter%3D%22pictograms%22%26%28outputChannel%3D%5E%22root.brandingnet.post.%22%29";
+  'https://cdn.post.ch/hcms/v2.0/entity/asset?limit=10000&query=typeFilter%3D%22pictograms%22%26%28outputChannel%3D%5E%22root.brandingnet.post.%22%29';
 const user = process.env.USERNAME;
 const pw = process.env.PASSWORD;
-const passphrase = Buffer.from(`${user}:${pw}`).toString("base64");
+const passphrase = Buffer.from(`${user}:${pw}`).toString('base64');
 
 /**
  * Fetch a page of SVG results from zenshare
  * @param url Zenshare URL
  * @returns Result page
  */
-export const fetchPage = async (
-  url: string
-): Promise<CenshareResultPage | undefined> => {
+export const fetchPage = async (url: string): Promise<CenshareResultPage | undefined> => {
   let response;
 
   try {
     response = await fetch(url, {
-      method: "GET",
+      method: 'GET',
       headers: {
         Authorization: `Basic ${passphrase}`,
       },
@@ -42,9 +40,7 @@ export const fetchPage = async (
  */
 const mapResponse = (response: CenshareResultPage): Array<IIcon> => {
   return response.result.reduce((acc: IIcon[], item: CenshareResult) => {
-    const svgVariant = item.variants?.find(
-      (variant) => variant.mime === "image/svg+xml"
-    );
+    const svgVariant = item.variants?.find(variant => variant.mime === 'image/svg+xml');
     if (svgVariant) {
       acc.push({
         downloadLink: svgVariant.downloadLink,
@@ -86,7 +82,7 @@ const downloadSVG = async (icon: IIcon) => {
 
     const symbolised = (optimizedSvg as OptimizedSvg).data.replace(
       /^(<svg[^>]*>)([\S\s]*)(<\/svg>)$/gim,
-      '$1<symbol id="icon">$2</symbol>$3'
+      '$1<symbol id="icon">$2</symbol>$3',
     );
 
     fs.writeFileSync(`./icons/${icon.name}`, symbolised);
@@ -109,31 +105,24 @@ export default async () => {
       buffer = buffer.concat(mappedResponse);
 
       // Fetch SVGs
-      console.log("Starting to download icons");
-      await Promise.all(mappedResponse.map((icon) => downloadSVG(icon)));
-      console.log("Download finished", body.page.next);
+      console.log('Starting to download icons');
+      await Promise.all(mappedResponse.map(icon => downloadSVG(icon)));
+      console.log('Download finished', body.page.next);
 
       if (body.page.next) {
         // Recursively fetch more pages
         console.log(
-          `Fetching icons ${body.offset} - ${body.offset + body.count} of ${
-            body["total-count"]
-          }`
+          `Fetching icons ${body.offset} - ${body.offset + body.count} of ${body['total-count']}`,
         );
         fetch(body.page.next);
       } else {
         // Write JSON
+        fs.writeFile('icons.json', JSON.stringify(buffer, null, 2), {}, () => {});
         fs.writeFile(
-          "icons.json",
-          JSON.stringify(buffer, null, 2),
-          {},
-          () => {}
-        );
-        fs.writeFile(
-          "no-svgs.json",
+          'no-svgs.json',
           JSON.stringify({ noSVG, downloadError }, null, 2),
           {},
-          () => {}
+          () => {},
         );
       }
     } catch (error) {
