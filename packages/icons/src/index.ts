@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
 import { optimize, OptimizedSvg } from 'svgo';
-import svgoOptions from './svgo.config';
+import svgoOptions from '../svgo.config';
 import { CenshareResultPage, CenshareResult } from './censhare-result-page';
 import { IIcon } from './icon.model';
 
@@ -63,7 +63,7 @@ export const mapResponse = (response: CenshareResultPage): Array<IIcon> => {
 let noSVG: IIcon[] = [];
 let downloadError: IIcon[] = [];
 
-const downloadSVG = async (icon: IIcon) => {
+export const downloadSVG = async (icon: IIcon) => {
   if (!icon.downloadLink) {
     noSVG.push(icon);
     return false;
@@ -88,8 +88,9 @@ const downloadSVG = async (icon: IIcon) => {
       '$1<symbol id="icon">$2</symbol>$3',
     );
 
+    if (!fs.statSync('./icons')) fs.mkdirSync('./icons');
     fs.writeFileSync(`./icons/${icon.name}`, symbolised);
-    return svg;
+    return symbolised;
   } catch (err) {
     downloadError.push(icon);
     console.log(`SVG Download error: ${err} @ ${icon.downloadLink}`);

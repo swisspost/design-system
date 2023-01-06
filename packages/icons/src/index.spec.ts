@@ -1,7 +1,7 @@
 import { mocked } from 'ts-jest/utils';
 import fetch, { Response } from 'node-fetch';
 import { fetchPage, mapResponse } from './index';
-import testResult from './tests/fixtures/test-result.json';
+import testResult from '../tests/fixtures/test-result.json';
 import { CenshareResultPage } from './censhare-result-page';
 
 jest.mock('node-fetch');

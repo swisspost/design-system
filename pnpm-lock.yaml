@@ -321,6 +321,7 @@ importers:
     specifiers:
       '@tsconfig/node16': 1.0.3
       '@types/jest': '25'
+      '@types/mock-fs': ^4.13.1
       '@types/node': '18'
       '@types/node-fetch': '2'
       '@types/svgo': 2.6.4
@@ -328,6 +329,7 @@ importers:
       http-server: 14.1.1
       https-proxy-agent: 5.0.1
       jest: '25'
+      mock-fs: ^5.2.0
       node-fetch: '2'
       nodemon: 2.0.20
       svgo: 2.8.0
@@ -337,6 +339,7 @@ importers:
     devDependencies:
       '@tsconfig/node16': 1.0.3
       '@types/jest': 25.2.3
+      '@types/mock-fs': 4.13.1
       '@types/node': 18.11.9
       '@types/node-fetch': 2.6.2
       '@types/svgo': 2.6.4
@@ -344,6 +347,7 @@ importers:
       http-server: 14.1.1
       https-proxy-agent: 5.0.1
       jest: 25.5.4
+      mock-fs: 5.2.0
       node-fetch: 2.6.7
       nodemon: 2.0.20
       svgo: 2.8.0
@@ -6915,6 +6919,12 @@ packages:
 
   /@types/minimist/1.2.2:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
+    dev: true
+
+  /@types/mock-fs/4.13.1:
+    resolution: {integrity: sha512-m6nFAJ3lBSnqbvDZioawRvpLXSaPyn52Srf7OfzjubYbYX8MTUdIgDxQl0wEapm4m/pNYSd9TXocpQ0TvZFlYA==}
+    dependencies:
+      '@types/node': 18.11.9
     dev: true
 
   /@types/ms/0.7.31:
@@ -17072,6 +17082,11 @@ packages:
     resolution: {integrity: sha512-vVqVZQyf3WLx2Shd0qJ9xuvqgAyKPLAiqITEtqW0oIUjzo3PePDd6fW9iFz30ef7Ysp/oiWqbhszeGWW2T6Gzw==}
     engines: {node: '>=10'}
     hasBin: true
+    dev: true
+
+  /mock-fs/5.2.0:
+    resolution: {integrity: sha512-2dF2R6YMSZbpip1V1WHKGLNjr/k48uQClqMVb5H3MOvwc9qhYis3/IWbj02qIg/Y8MDXKFF4c5v0rxx2o6xTZw==}
+    engines: {node: '>=12.0.0'}
     dev: true
 
   /move-concurrently/1.0.1:
