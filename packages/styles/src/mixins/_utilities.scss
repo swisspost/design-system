@@ -73,7 +73,9 @@
 }
 
 @mixin not-disabled-focus-hover {
-  &:is(:focus, :not(:disabled):hover, .pretend-hover) {
+  &:focus,
+  &:not(:disabled):hover,
+  &.pretend-hover {
     @content;
   }
 }

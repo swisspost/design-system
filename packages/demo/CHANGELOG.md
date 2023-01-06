@@ -1,5 +1,22 @@
 # @swisspost/design-system-demo
 
+## 5.1.5
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.2.0
+  - @swisspost/design-system-intranet-header@3.0.5
+
+## 5.1.4
+
+### Patch Changes
+
+- Added import instructions to the intranet-header documentation (by [@riscie](https://github.com/riscie) with [#812](https://github.com/swisspost/design-system/pull/812))
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.1.3
+  - @swisspost/design-system-intranet-header@3.0.4
+
 ## 5.1.3
 
 ### Patch Changes

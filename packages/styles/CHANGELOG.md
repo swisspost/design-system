@@ -1,5 +1,23 @@
 # @swisspost/design-system-styles
 
+## 5.2.0
+
+### Minor Changes
+
+- Added a font-face definition CSS file for use with SAP cloud solutions as they need an externally hosted CSS file. (by [@gfellerph](https://github.com/gfellerph) with [#929](https://github.com/swisspost/design-system/pull/929))
+
+### Patch Changes
+
+- Added `bg-black` as a background utility class with automatic text color (by [@gfellerph](https://github.com/gfellerph) with [#830](https://github.com/swisspost/design-system/pull/830))
+
+- Unwrapped complex :is selector. When integrating in another project, the `not-disabled-focus-hover` mixin causes sass to silently fail and generate an empty output. (by [@gfellerph](https://github.com/gfellerph) with [#889](https://github.com/swisspost/design-system/pull/889))
+
+## 5.1.3
+
+### Patch Changes
+
+- Fixed an issue with the sidebar width. The fixed sidebar no longer spans the whole page and no longer hides the main page content beneath. (by [@gfellerph](https://github.com/gfellerph) with [#858](https://github.com/swisspost/design-system/pull/858))
+
 ## 5.1.2
 
 ### Patch Changes

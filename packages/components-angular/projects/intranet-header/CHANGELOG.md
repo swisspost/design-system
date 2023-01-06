@@ -1,5 +1,20 @@
 # @swisspost/design-system-intranet-header
 
+## 3.0.5
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.2.0
+
+## 3.0.4
+
+### Patch Changes
+
+- Fixed an issue with the sidebar width. The fixed sidebar no longer spans the whole page and no longer hides the main page content beneath. (by [@gfellerph](https://github.com/gfellerph) with [#858](https://github.com/swisspost/design-system/pull/858))
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.1.3
+
 ## 3.0.3
 
 ### Patch Changes

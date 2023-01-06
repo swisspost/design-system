@@ -1,9 +1,5 @@
 // TODO: refactor with tsx stories
 
-import './forms.scss';
-import './floating-label.scss';
-import './form-feedback.scss';
-
 const LabelStyle = {
   Floating: 'floating',
   Static: 'static',
