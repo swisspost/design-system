@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`mapResponse Should map the result object to a meaningful data structure 1`] = `
+Array [
+  Object {
+    "contentInfo": Object {
+      "freeKeywords": "Piktogramme \\"Die Post\\" ab 2017, Briefeinwurf, Brief, Kuvert, Briefumschlag, Briefkasten, Briefaufgabe, Boîte aux lettres, Lettre, enveloppe, boîte aux lettres, dépôt de lettres, Letter box, letter, letter cover, envelope, letter box, posting letters, Briefeinwurf, Brief, Kuvert, Briefumschlag, Briefkasten, Briefaufgabe, Boîte aux lettres, Lettre, enveloppe, boîte aux lettres, dépôt de lettres, Letter box, letter, letter cover, envelope, letter box, posting letters",
+    },
+    "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MzU0NzA1LzAvbWFzdGVy",
+    "id": 352084,
+    "modifiedAt": 2021-10-18T11:24:43.000Z,
+    "name": "1000.svg",
+    "postInfo": Object {
+      "businessfield": "kommunikation",
+      "year": "2017",
+    },
+    "type": "picture.pictogram.",
+    "typeFilter": "pictograms",
+  },
+  Object {
+    "contentInfo": Object {
+      "freeKeywords": "Piktogramme \\"Die Post\\" ab 2017, Brief, Briefaufgabe, Kuvert, Briefumschlag, Lettre, dépôt de lettres, enveloppe, , Letter, posting letters, envelope, Brief, Briefaufgabe, Kuvert, Briefumschlag, Lettre, dépôt de lettres, enveloppe, , Letter, posting letters, envelope",
+    },
+    "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MzU0NzA2LzAvbWFzdGVy",
+    "id": 352086,
+    "modifiedAt": 2021-10-18T11:24:40.000Z,
+    "name": "1001.svg",
+    "postInfo": Object {
+      "businessfield": "kommunikation",
+    },
+    "type": "picture.pictogram.",
+    "typeFilter": "pictograms",
+  },
+  Object {
+    "contentInfo": Object {
+      "freeKeywords": "Piktogramme \\"Die Post\\" ab 2017, PostCard Creator, Postkarte, Karte, PostCard Creator, Carte postale, carte, PostCard Creator, postcard, card, PostCard Creator, Postkarte, Karte, PostCard Creator, Carte postale, carte, PostCard Creator, postcard, card",
+    },
+    "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MzU0NzA3LzAvbWFzdGVy",
+    "id": 352087,
+    "modifiedAt": 2021-10-18T11:24:40.000Z,
+    "name": "1002.svg",
+    "postInfo": Object {
+      "businessfield": "kommunikation",
+    },
+    "type": "picture.pictogram.",
+    "typeFilter": "pictograms",
+  },
+  Object {
+    "contentInfo": Object {
+      "freeKeywords": "Piktogramme \\"Die Post\\" ab 2017, Gratis Poskarte, Geschenkskarte, Postkarte, Karte, Geschenk, Brief, Carte postale gratuite, carte cadeau, Carte postale, carte, cadeau, lettre, Free postcard, gift card, postcard, card, gift, letter, Gratis Poskarte, Geschenkskarte, Postkarte, Karte, Geschenk, Brief, Carte postale gratuite, carte cadeau, Carte postale, carte, cadeau, lettre, Free postcard, gift card, postcard, card, gift, letter",
+    },
+    "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MzU0NzA4LzAvbWFzdGVy",
+    "id": 352088,
+    "modifiedAt": 2021-10-18T11:24:41.000Z,
+    "name": "1003.svg",
+    "postInfo": Object {
+      "businessfield": "kommunikation",
+    },
+    "type": "picture.pictogram.",
+    "typeFilter": "pictograms",
+  },
+  Object {
+    "contentInfo": Object {
+      "freeKeywords": "Piktogramme \\"Die Post\\" ab 2017, Brief/Paket, Brief, Paket, Kuvert, Paketaufgabe, Briefaufgabe, Briefumschlag, versenden, senden, empfangen, Lettre/colis, Lettre colis, enveloppe, dépôt de colis, dépôt de lettres, enveloppe, envoyer, , Letter/parcel, letter, parcel, letter cover, posting parcels, posting letters, envelope, dispatch, send, receive, Brief/Paket, Brief, Paket, Kuvert, Paketaufgabe, Briefaufgabe, Briefumschlag, versenden, senden, empfangen, Lettre/colis, Lettre colis, enveloppe, dépôt de colis, dépôt de lettres, enveloppe, envoyer, , Letter/parcel, letter, parcel, letter cover, posting parcels, posting letters, envelope, dispatch, send, receive",
+    },
+    "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MzU0NzA5LzAvbWFzdGVy",
+    "id": 352089,
+    "modifiedAt": 2021-10-18T11:24:41.000Z,
+    "name": "1004.svg",
+    "postInfo": Object {
+      "businessfield": "kommunikation",
+    },
+    "type": "picture.pictogram.",
+    "typeFilter": "pictograms",
+  },
+  Object {
+    "contentInfo": Object {
+      "freeKeywords": "Piktogramme \\"Die Post\\" ab 2017, Paket, Paketaufgabe, Geschenk, Schachtel, senden, empfangen, Colis, dépôt de colis, Cadeau, boîte, envoyer, recevoir, Parcel, posting parcels, gift, box, send, receive, Paket, Paketaufgabe, Geschenk, Schachtel, senden, empfangen, Colis, dépôt de colis, Cadeau, boîte, envoyer, recevoir, Parcel, posting parcels, gift, box, send, receive",
+    },
+    "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MzU0NzEwLzAvbWFzdGVy",
+    "id": 352090,
+    "modifiedAt": 2021-10-18T11:24:42.000Z,
+    "name": "1005.svg",
+    "postInfo": Object {
+      "businessfield": "kommunikation",
+    },
+    "type": "picture.pictogram.",
+    "typeFilter": "pictograms",
+  },
+  Object {
+    "contentInfo": Object {
+      "freeKeywords": "Piktogramme \\"Die Post\\" ab 2017, My Post 24, Paket, 24h, Paketaufgabe, senden, empfangen, My Post 24, Colis, 24h, dépôt de colis, envoyer, recevoir, My Post 24, parcel, 24h, sending parcels, send, receive, My Post 24, Paket, 24h, Paketaufgabe, senden, empfangen, My Post 24, Colis, 24h, dépôt de colis, envoyer, recevoir, My Post 24, parcel, 24h, sending parcels, send, receive",
+    },
+    "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MzU0NzExLzAvbWFzdGVy",
+    "id": 352091,
+    "modifiedAt": 2021-10-18T11:16:36.000Z,
+    "name": "1006.svg",
+    "postInfo": Object {
+      "businessfield": "kommunikation",
+      "year": "2017",
+    },
+    "type": "picture.pictogram.",
+    "typeFilter": "pictograms",
+  },
+  Object {
+    "contentInfo": Object {
+      "freeKeywords": "Piktogramme \\"Die Post\\" ab 2017, Zustellservice, Zusteller, Paket, Brief, Mensch, Empfänger, Sender, Post empfangen, Paket und Brief, Service de distribution, Personnel de distribution, colis, lettre, homme, destinataire, expéditeur, envoyer du courrier, colis et lettre, Delivery service, delivery staff, parcel, letter, human, recipient, sender, receiving mail, parcel and letter, Zustellservice, Zusteller, Paket, Brief, Mensch, Empfänger, Sender, Post empfangen, Paket und Brief, Service de distribution, Personnel de distribution, colis, lettre, homme, destinataire, expéditeur, envoyer du courrier, colis et lettre, Delivery service, delivery staff, parcel, letter, human, recipient, sender, receiving mail, parcel and letter",
+    },
+    "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MzU0NzEyLzAvbWFzdGVy",
+    "id": 352092,
+    "modifiedAt": 2021-10-18T11:24:42.000Z,
+    "name": "1007.svg",
+    "postInfo": Object {
+      "businessfield": "kommunikation",
+    },
+    "type": "picture.pictogram.",
+    "typeFilter": "pictograms",
+  },
+  Object {
+    "contentInfo": Object {
+      "freeKeywords": "Piktogramme \\"Die Post\\" ab 2017, Briefzentrum, Zustellung, Zuhause, Brief, Kuvert, Briefe empfangen, Briefumschlag, Centre courrier, Distribution, domicile, lettre, enveloppe, recevoir des lettres, enveloppe, Letter center, delivery, home, letter, envelope, receiving letters, letter cover",
+    },
+    "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MzU0NzEzLzAvbWFzdGVy",
+    "id": 352093,
+    "modifiedAt": 2021-10-18T11:32:39.000Z,
+    "name": "1008.svg",
+    "postInfo": Object {
+      "businessfield": "kommunikation",
+    },
+    "type": "picture.pictogram.",
+    "typeFilter": "pictograms",
+  },
+  Object {
+    "contentInfo": Object {
+      "freeKeywords": "Piktogramme \\"Die Post\\" ab 2017, Paketzentrum, Zustellung, Zuhause, Paket, empfangen, versenden, senden, Centre colis, Distribution, domicile, colis, recevoir, envoyer, expédier, delivery, at home, parcel, receive, dispatch, send",
+    },
+    "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MzU0NzE0LzAvbWFzdGVy",
+    "id": 352094,
+    "modifiedAt": 2021-10-18T11:32:38.000Z,
+    "name": "1009.svg",
+    "postInfo": Object {
+      "businessfield": "kommunikation",
+    },
+    "type": "picture.pictogram.",
+    "typeFilter": "pictograms",
+  },
+]
+`;

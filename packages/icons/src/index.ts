@@ -25,9 +25,11 @@ export const fetchPage = async (url: string): Promise<CenshareResultPage | undef
       headers: {
         Authorization: `Basic ${passphrase}`,
       },
+      // TODO: Proxy
     });
   } catch (err) {
     console.log(`Fetch error: ${err}`);
+    // TODO: write error log to somewhere useful and bubble up the error
   }
 
   return response?.json() as Promise<CenshareResultPage>;
@@ -38,7 +40,7 @@ export const fetchPage = async (url: string): Promise<CenshareResultPage | undef
  * @param response Zenshare result page
  * @returns Array of icons
  */
-const mapResponse = (response: CenshareResultPage): Array<IIcon> => {
+export const mapResponse = (response: CenshareResultPage): Array<IIcon> => {
   return response.result.reduce((acc: IIcon[], item: CenshareResult) => {
     const svgVariant = item.variants?.find(variant => variant.mime === 'image/svg+xml');
     if (svgVariant) {
@@ -50,7 +52,8 @@ const mapResponse = (response: CenshareResultPage): Array<IIcon> => {
         name: svgVariant.name,
         id: item.id,
         postInfo: item.postInfo,
-        modifiedAt: item.modifiedAt,
+        modifiedAt:
+          typeof item.modifiedAt === 'string' ? new Date(item.modifiedAt) : item.modifiedAt,
       });
     }
     return acc;

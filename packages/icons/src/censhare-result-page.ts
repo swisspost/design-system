@@ -1,10 +1,10 @@
 export interface CenshareResultPage {
-  result: CenshareResult[];
-  offset: number;
-  limit: number;
-  count: number;
-  "total-count": number;
-  page: Page;
+  'result': CenshareResult[];
+  'offset': number;
+  'limit': number;
+  'count': number;
+  'total-count': number;
+  'page': Page;
 }
 
 export interface Page {
@@ -15,7 +15,7 @@ export interface Page {
 }
 
 export interface CenshareResult {
-  modifiedAt: Date;
+  modifiedAt: Date | string;
   mime: ResultMIME;
   domain2: Domain2;
   workflowStep: string;
@@ -25,7 +25,7 @@ export interface CenshareResult {
   uuid: string;
   contentInfo: ContentInfo;
   colorSpace: ColorSpace;
-  createdAt: Date;
+  createdAt: string;
   outputChannel: OutputChannel[];
   postInfo: PostInfo;
   typeFilter: TypeFilter;
@@ -40,7 +40,7 @@ export interface CenshareResult {
 }
 
 export enum ColorSpace {
-  Cmyk = "cmyk",
+  Cmyk = 'cmyk',
 }
 
 export interface ContentInfo {
@@ -52,11 +52,11 @@ export interface DetectedColor {
 }
 
 export enum Domain {
-  RootDivisionsPostch = "root.divisions.postch.",
+  RootDivisionsPostch = 'root.divisions.postch.',
 }
 
 export enum Domain2 {
-  RootDamMediapool = "root.dam.mediapool.",
+  RootDamMediapool = 'root.dam.mediapool.',
 }
 
 export interface MediaValue {
@@ -66,8 +66,8 @@ export interface MediaValue {
 }
 
 export enum MediaMIME {
-  ImageJPEG = "image/jpeg",
-  ImagePNG = "image/png",
+  ImageJPEG = 'image/jpeg',
+  ImagePNG = 'image/png',
 }
 
 export interface MediaSize {
@@ -77,12 +77,12 @@ export interface MediaSize {
 }
 
 export enum ResultMIME {
-  ApplicationPostscript = "application/postscript",
+  ApplicationPostscript = 'application/postscript',
 }
 
 export enum OutputChannel {
-  RootBrandingnetPost = "root.brandingnet.post.",
-  RootBrandingnetPostLive = "root.brandingnet.post.live.",
+  RootBrandingnetPost = 'root.brandingnet.post.',
+  RootBrandingnetPostLive = 'root.brandingnet.post.live.',
 }
 
 export interface PostInfo {
@@ -91,21 +91,21 @@ export interface PostInfo {
 }
 
 export enum Businessfield {
-  Kommunikation = "kommunikation",
+  Kommunikation = 'kommunikation',
 }
 
 export interface DetectedColorClass {}
 
 export enum Type {
-  PicturePictogram = "picture.pictogram.",
+  PicturePictogram = 'picture.pictogram.',
 }
 
 export enum TypeFilter {
-  Pictograms = "pictograms",
+  Pictograms = 'pictograms',
 }
 
 export interface Variant {
-  modifiedAt: Date;
+  modifiedAt: Date | string;
   mime: VariantMIME;
   variantOf: string[];
   domain2: Domain2;
@@ -115,7 +115,7 @@ export interface Variant {
   uuid: string;
   contentInfo: ContentInfo;
   colorSpace: VariantColorSpace;
-  createdAt: Date;
+  createdAt: string;
   postInfo: PostInfo;
   typeFilter: TypeFilter;
   size: MediaSize;
@@ -129,7 +129,7 @@ export interface Variant {
 }
 
 export enum VariantColorSpace {
-  RGB = "rgb",
+  RGB = 'rgb',
 }
 
 export interface VariantMedia {
@@ -138,5 +138,5 @@ export interface VariantMedia {
 }
 
 export enum VariantMIME {
-  ImageSVGXML = "image/svg+xml",
+  ImageSVGXML = 'image/svg+xml',
 }
