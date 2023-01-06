@@ -4,6 +4,7 @@ import { optimize, OptimizedSvg } from 'svgo';
 import svgoOptions from '../../svgo.config';
 import { IIcon } from '../models/icon.model';
 import { passphrase } from '../index';
+import { HttpsProxyAgent } from 'https-proxy-agent';
 
 export let noSVG: IIcon[] = [];
 export let downloadError: IIcon[] = [];
@@ -15,10 +16,12 @@ export const downloadSVG = async (icon: IIcon) => {
   }
 
   try {
+    const proxyAgent = new (HttpsProxyAgent as any)(process.env.HTTPS_PROXY);
     const svg = await fetch(icon.downloadLink, {
       headers: {
         Authorization: `Basic ${passphrase}`,
       },
+      agent: proxyAgent,
     });
 
     const svgString = await svg.text();
@@ -33,7 +36,7 @@ export const downloadSVG = async (icon: IIcon) => {
       '$1<symbol id="icon">$2</symbol>$3',
     );
 
-    if (!fs.statSync('./icons')) fs.mkdirSync('./icons');
+    if (!fs.existsSync('./icons')) fs.mkdirSync('./icons');
     fs.writeFileSync(`./icons/${icon.name}`, symbolised);
     return symbolised;
   } catch (err) {

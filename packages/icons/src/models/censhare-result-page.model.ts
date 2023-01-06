@@ -7,6 +7,13 @@ export interface CenshareResultPage {
   'page': Page;
 }
 
+export interface CenshareError {
+  details: {
+    authenticated?: boolean;
+  };
+  error: string;
+}
+
 export interface Page {
   next: string;
   current: string;

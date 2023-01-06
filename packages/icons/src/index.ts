@@ -3,11 +3,12 @@ import { IIcon } from './models/icon.model';
 import { downloadError, downloadSVG, noSVG } from './utilities/downloadSVG';
 import { mapResponse } from './utilities/mapResponse';
 import { fetchPage } from './utilities/fetchPage';
+import * as dotenv from 'dotenv';
 
-const url =
-  'https://cdn.post.ch/hcms/v2.0/entity/asset?limit=10000&query=typeFilter%3D%22pictograms%22%26%28outputChannel%3D%5E%22root.brandingnet.post.%22%29';
-const user = process.env.USERNAME;
-const pw = process.env.PASSWORD;
+dotenv.config();
+const url = process.env.CEN_URL;
+const user = process.env.CEN_USERNAME;
+const pw = process.env.CEN_PASSWORD;
 export const passphrase = Buffer.from(`${user}:${pw}`).toString('base64');
 
 export const main = async () => {
@@ -15,9 +16,15 @@ export const main = async () => {
   const fetch = async (currentUrl: string) => {
     try {
       const body = await fetchPage(currentUrl);
+
       if (body === undefined) {
         throw new Error(`Fetch icons failed, response was ${body}`);
       }
+
+      if ('error' in body) {
+        throw new Error(`Fetch icons failed: ${body.error}`);
+      }
+
       const mappedResponse = mapResponse(body);
       buffer = buffer.concat(mappedResponse);
 
@@ -46,5 +53,8 @@ export const main = async () => {
       console.error(error);
     }
   };
-  fetch(url);
+  if (url !== undefined) fetch(url);
 };
+
+// Run Forest, run
+main();

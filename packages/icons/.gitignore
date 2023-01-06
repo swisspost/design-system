@@ -1,5 +1,7 @@
 # General
 node_modules
+
+# Stores password, don't check in
 .env
 
 # Ignore generated files
