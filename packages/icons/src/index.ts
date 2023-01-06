@@ -1,103 +1,16 @@
-import fetch from 'node-fetch';
 import fs from 'fs';
-import { optimize, OptimizedSvg } from 'svgo';
-import svgoOptions from '../svgo.config';
-import { CenshareResultPage, CenshareResult } from './censhare-result-page';
-import { IIcon } from './icon.model';
+import { IIcon } from './models/icon.model';
+import { downloadError, downloadSVG, noSVG } from './utilities/downloadSVG';
+import { mapResponse } from './utilities/mapResponse';
+import { fetchPage } from './utilities/fetchPage';
 
 const url =
   'https://cdn.post.ch/hcms/v2.0/entity/asset?limit=10000&query=typeFilter%3D%22pictograms%22%26%28outputChannel%3D%5E%22root.brandingnet.post.%22%29';
 const user = process.env.USERNAME;
 const pw = process.env.PASSWORD;
-const passphrase = Buffer.from(`${user}:${pw}`).toString('base64');
+export const passphrase = Buffer.from(`${user}:${pw}`).toString('base64');
 
-/**
- * Fetch a page of SVG results from zenshare
- * @param url Zenshare URL
- * @returns Result page
- */
-export const fetchPage = async (url: string): Promise<CenshareResultPage | undefined> => {
-  let response;
-
-  try {
-    response = await fetch(url, {
-      method: 'GET',
-      headers: {
-        Authorization: `Basic ${passphrase}`,
-      },
-      // TODO: Proxy
-    });
-  } catch (err) {
-    console.log(`Fetch error: ${err}`);
-    // TODO: write error log to somewhere useful and bubble up the error
-  }
-
-  return response?.json() as Promise<CenshareResultPage>;
-};
-
-/**
- * Parses zenshare results into a useful format
- * @param response Zenshare result page
- * @returns Array of icons
- */
-export const mapResponse = (response: CenshareResultPage): Array<IIcon> => {
-  return response.result.reduce((acc: IIcon[], item: CenshareResult) => {
-    const svgVariant = item.variants?.find(variant => variant.mime === 'image/svg+xml');
-    if (svgVariant) {
-      acc.push({
-        downloadLink: svgVariant.downloadLink,
-        type: item.type,
-        contentInfo: item.contentInfo,
-        typeFilter: item.typeFilter,
-        name: svgVariant.name,
-        id: item.id,
-        postInfo: item.postInfo,
-        modifiedAt:
-          typeof item.modifiedAt === 'string' ? new Date(item.modifiedAt) : item.modifiedAt,
-      });
-    }
-    return acc;
-  }, []);
-};
-
-let noSVG: IIcon[] = [];
-let downloadError: IIcon[] = [];
-
-export const downloadSVG = async (icon: IIcon) => {
-  if (!icon.downloadLink) {
-    noSVG.push(icon);
-    return false;
-  }
-
-  try {
-    const svg = await fetch(icon.downloadLink, {
-      headers: {
-        Authorization: `Basic ${passphrase}`,
-      },
-    });
-
-    const svgString = await svg.text();
-    const optimizedSvg = optimize(svgString, svgoOptions);
-
-    if (optimizedSvg.error) {
-      throw new Error(optimizedSvg.error);
-    }
-
-    const symbolised = (optimizedSvg as OptimizedSvg).data.replace(
-      /^(<svg[^>]*>)([\S\s]*)(<\/svg>)$/gim,
-      '$1<symbol id="icon">$2</symbol>$3',
-    );
-
-    if (!fs.statSync('./icons')) fs.mkdirSync('./icons');
-    fs.writeFileSync(`./icons/${icon.name}`, symbolised);
-    return symbolised;
-  } catch (err) {
-    downloadError.push(icon);
-    console.log(`SVG Download error: ${err} @ ${icon.downloadLink}`);
-  }
-};
-
-export default async () => {
+export const main = async () => {
   let buffer: Array<IIcon> = [];
   const fetch = async (currentUrl: string) => {
     try {

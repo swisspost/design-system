@@ -1,9 +1,4 @@
-import {
-  ContentInfo,
-  PostInfo,
-  Type,
-  TypeFilter,
-} from "./censhare-result-page";
+import { ContentInfo, PostInfo, Type, TypeFilter } from './censhare-result-page.model';
 
 export interface IIcon {
   downloadLink: string;
