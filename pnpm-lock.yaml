@@ -284,7 +284,7 @@ importers:
       '@types/react-dom': 18.0.10
       babel-loader: 9.1.0
       cypress: 12.3.0
-      html-react-parser: 3.0.4
+      html-react-parser: 3.0.7
       react: 18.2.0
       react-dom: 18.2.0
       react-markdown: 8.0.4
@@ -295,7 +295,7 @@ importers:
     dependencies:
       '@swisspost/design-system-components': link:../components
       '@swisspost/design-system-styles': link:../styles/dist
-      html-react-parser: 3.0.4_react@18.2.0
+      html-react-parser: 3.0.7_react@18.2.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
@@ -12933,8 +12933,8 @@ packages:
       terser: 4.8.0
     dev: true
 
-  /html-react-parser/3.0.4_react@18.2.0:
-    resolution: {integrity: sha512-va68PSmC7uA6PbOEc9yuw5Mu3OHPXmFKUpkLGvUPdTuNrZ0CJZk1s/8X/FaHjswK/6uZghu2U02tJjussT8+uw==}
+  /html-react-parser/3.0.7_react@18.2.0:
+    resolution: {integrity: sha512-4Nzpp1Lsd6ngOJR8T+Vc4u+Z77OddOgKL3KvwbtA0/U0Yv8v5JF+yewQxIudrdOWGYuO0Borc0vQ2y53pzBAwA==}
     peerDependencies:
       react: 0.14 || 15 || 16 || 17 || 18
     dependencies:
@@ -12942,7 +12942,7 @@ packages:
       html-dom-parser: 3.1.2
       react: 18.2.0
       react-property: 2.0.0
-      style-to-js: 1.1.1
+      style-to-js: 1.1.2
     dev: false
 
   /html-tags/3.2.0:
@@ -20675,16 +20675,23 @@ packages:
     resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
     dev: true
 
-  /style-to-js/1.1.1:
-    resolution: {integrity: sha512-RJ18Z9t2B02sYhZtfWKQq5uplVctgvjTfLWT7+Eb1zjUjIrWzX5SdlkwLGQozrqarTmEzJJ/YmdNJCUNI47elg==}
+  /style-to-js/1.1.2:
+    resolution: {integrity: sha512-aMG8jJpEF0SCGbQFY8W8CT+EjQ9ubp35FOZG3prWkNjxW/a1bEeSod0tkWiP+6iiOCDIIrQykUDkPY5LbNF87g==}
     dependencies:
-      style-to-object: 0.3.0
+      style-to-object: 0.4.0
     dev: false
 
   /style-to-object/0.3.0:
     resolution: {integrity: sha512-CzFnRRXhzWIdItT3OmF8SQfWyahHhjq3HwcMNCNLn+N7klOOqPjMeG/4JSu77D7ypZdGvSzvkrbyeTMizz2VrA==}
     dependencies:
       inline-style-parser: 0.1.1
+    dev: true
+
+  /style-to-object/0.4.0:
+    resolution: {integrity: sha512-dAjq2m87tPn/TcYTeqMhXJRhu96WYWcxMFQxs3Y9jfYpq2jG+38u4tj0Lst6DOiYXmDuNxVJ2b1Z2uPC6wTEeg==}
+    dependencies:
+      inline-style-parser: 0.1.1
+    dev: false
 
   /stylelint-config-prettier/9.0.4_stylelint@14.16.0:
     resolution: {integrity: sha512-38nIGTGpFOiK5LjJ8Ma1yUgpKENxoKSOhbDNSemY7Ep0VsJoXIW9Iq/2hSt699oB9tReynfWicTAoIHiq8Rvbg==}
