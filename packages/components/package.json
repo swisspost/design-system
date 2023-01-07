@@ -33,7 +33,7 @@
   },
   "dependencies": {
     "@stencil/core": "2.20.0",
-    "@stencil/sass": "2.0.1",
+    "@stencil/sass": "2.0.2",
     "@swisspost/design-system-styles": "workspace:5.2.0",
     "sass": "1.57.1"
   },
