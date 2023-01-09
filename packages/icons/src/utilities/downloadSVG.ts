@@ -4,8 +4,7 @@ import path from 'path';
 import { optimize, OptimizedSvg } from 'svgo';
 import svgoOptions from '../../svgo.config';
 import { IIcon } from '../models/icon.model';
-import { passphrase } from '../index';
-import { HttpsProxyAgent } from 'https-proxy-agent';
+import { getRequestInit } from './getRequestInit';
 
 // Attempt to sanitize the received svg string
 const extractSVG = (input: string) => {
@@ -20,13 +19,7 @@ export const downloadSVG = async (icon: IIcon, output: string) => {
   }
 
   try {
-    const proxyAgent = new (HttpsProxyAgent as any)(process.env.HTTPS_PROXY);
-    const svg = await fetch(icon.downloadLink, {
-      headers: {
-        Authorization: `Basic ${passphrase}`,
-      },
-      agent: proxyAgent,
-    });
+    const svg = await fetch(icon.downloadLink, getRequestInit());
 
     const svgString = await svg.text();
     const optimizedSvg = optimize(extractSVG(svgString), svgoOptions);

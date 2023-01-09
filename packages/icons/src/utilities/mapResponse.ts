@@ -6,7 +6,7 @@ import { IIcon } from '../models/icon.model';
  * @param response Zenshare result page
  * @returns Array of icons
  */
-export const mapResponse = (response: CenshareResultPage): Array<IIcon> => {
+export const formatResponse = (response: CenshareResultPage): Array<IIcon> => {
   return response.result.reduce((acc: IIcon[], item: CenshareResult) => {
     const svgVariant = item.variants?.find(variant => variant.mime === 'image/svg+xml');
     if (svgVariant) {
