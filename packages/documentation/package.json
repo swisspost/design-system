@@ -23,6 +23,7 @@
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.0.5",
     "@swisspost/design-system-styles": "workspace:5.2.0",
+    "@swisspost/design-system-icons": "workspace:1.0.0-alpha.0",
     "html-react-parser": "3.0.7",
     "react": "18.2.0",
     "react-dom": "18.2.0"
