@@ -11,11 +11,23 @@
   <body>
     <div class="container" x-data="icons">
       <section>
-        <h1 id="converted" class="mt-huge mb-big">
-          Icons (
-          <span x-text="icons.icons.length"></span>
-          )
-        </h1>
+        <h1 id="converted" class="mt-huge mb-big">Icons</h1>
+        <code class="my-big d-block">
+          Version:
+          <span x-text="icons.version"></span>
+          <br />
+          Last updated:
+          <span x-text="new Date(icons.created)"></span>
+          <br />
+          Successful:
+          <span x-text="icons.stats.success"></span>
+          <br />
+          Errored:
+          <span x-text="icons.stats.errors"></span>
+          <br />
+          Not found:
+          <span x-text="icons.stats.notFound"></span>
+        </code>
         <div class="converted-icons icons">
           <template x-for="icon in icons.icons">
             <div class="icon">
@@ -32,7 +44,11 @@
         <h1 class="mt-huge mb-big">Errored</h1>
         <ul>
           <template x-for="icon in icons.errored">
-            <li><a x-bind:href="icon.downloadLink" x-text="icon.name"></a></li>
+            <li>
+              <a x-bind:href="icon.downloadLink" x-text="icon.name"></a>
+              <br />
+              <pre x-text="icon.errorMessage"></pre>
+            </li>
           </template>
         </ul>
       </section>

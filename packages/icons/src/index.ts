@@ -5,12 +5,14 @@ import { mapResponse } from './utilities/mapResponse';
 import { fetchPage } from './utilities/fetchPage';
 import * as dotenv from 'dotenv';
 import path from 'path';
+import packageJSON from '../package.json';
 
 dotenv.config();
 const url = process.env.CEN_URL;
 const user = process.env.CEN_USERNAME;
 const pw = process.env.CEN_PASSWORD;
 const outputPath = './public/svg';
+const reportPath = './public';
 export const passphrase = Buffer.from(`${user}:${pw}`).toString('base64');
 
 const jsonReport: IJSONReport = {
@@ -23,9 +25,10 @@ const jsonReport: IJSONReport = {
     notFound: 0,
     success: 0,
   },
+  version: packageJSON.version,
 };
 
-const fetch = async (currentUrl: string): Promise<IJSONReport> => {
+const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
   try {
     const body = await fetchPage(currentUrl);
 
@@ -53,7 +56,10 @@ const fetch = async (currentUrl: string): Promise<IJSONReport> => {
           } else {
             jsonReport.icons.push(icon);
           }
-        } catch {
+        } catch (err) {
+          if (err instanceof Error) {
+            icon.errorMessage = err.message;
+          }
           jsonReport.errored.push(icon);
         }
       }),
@@ -61,10 +67,10 @@ const fetch = async (currentUrl: string): Promise<IJSONReport> => {
 
     if (body.page.next) {
       // Recursively fetch more pages
-      return fetch(body.page.next);
+      return downloadAllIcons(body.page.next);
     } else {
       // Write JSON
-      jsonReport.errored = jsonReport.errored.sort((a, b) => (a.name < b.name ? 1 : -1));
+      jsonReport.errored = jsonReport.errored.sort((a, b) => (a.name < b.name ? -1 : 1));
       jsonReport.stats.errors = jsonReport.errored.length;
       jsonReport.stats.success = jsonReport.icons.length;
       jsonReport.stats.notFound = jsonReport.noSVG.length;
@@ -83,13 +89,8 @@ export const main = async () => {
   // Start recursively downloading pages of icons
   if (url !== undefined) {
     console.log('Starting to download icons');
-    const report = await fetch(url);
-    fs.writeFile(
-      path.join(outputPath, 'icons.json'),
-      JSON.stringify(report, null, 2),
-      {},
-      () => {},
-    );
+    const report = await downloadAllIcons(url);
+    fs.writeFileSync(path.join(reportPath, 'report.json'), JSON.stringify(report, null, 2));
     console.log(
       `Download finished. Saved ${report.stats.success} icons, ${report.stats.errors} icons errored and ${report.stats.notFound} where not found.`,
     );

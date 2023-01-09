@@ -9,6 +9,7 @@ export interface IIcon {
   id: number;
   postInfo: PostInfo;
   modifiedAt: Date;
+  errorMessage?: string;
 }
 
 export interface IJSONReport {
@@ -21,4 +22,5 @@ export interface IJSONReport {
   icons: IIcon[];
   noSVG: IIcon[];
   errored: IIcon[];
+  version: string;
 }
