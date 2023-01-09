@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
   "main": "dist/index.cjs.js",
@@ -33,8 +33,8 @@
   },
   "dependencies": {
     "@stencil/core": "2.20.0",
-    "@stencil/sass": "2.0.1",
-    "@swisspost/design-system-styles": "workspace:5.1.3",
+    "@stencil/sass": "2.0.2",
+    "@swisspost/design-system-styles": "workspace:5.2.0",
     "sass": "1.57.1"
   },
   "devDependencies": {

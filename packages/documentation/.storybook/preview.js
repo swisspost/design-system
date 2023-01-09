@@ -59,8 +59,11 @@ export const parameters = {
           // remove "key" attributes
           .replace(/(\t+|\s+)?key=".*"/g, '')
 
-        // repalce noRefCheck functions
-        .replace(/function noRefCheck\(\)\s?{}/g, '() => {}')
+          // remove "{' '}" placeholders
+          .replace(/{' '}/g, ' ')
+
+          // repalce noRefCheck functions
+          .replace(/function noRefCheck\(\)\s?{}/g, '() => {}')
 
           // remove brackets from "{value}" attribute-values
           .replace(/([a-zA-Z][a-zA-Z0-9-_:.]+)={([^}]*}?)}/g, (_m, g1, g2) => `${g1}="${g2}"`)
