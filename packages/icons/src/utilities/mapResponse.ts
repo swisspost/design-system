@@ -6,7 +6,6 @@ import { IIcon } from '../models/icon.model';
  * @param response Zenshare result page
  * @returns Array of icons
  */
-
 export const mapResponse = (response: CenshareResultPage): Array<IIcon> => {
   return response.result.reduce((acc: IIcon[], item: CenshareResult) => {
     const svgVariant = item.variants?.find(variant => variant.mime === 'image/svg+xml');
@@ -16,7 +15,7 @@ export const mapResponse = (response: CenshareResultPage): Array<IIcon> => {
         type: item.type,
         contentInfo: item.contentInfo,
         typeFilter: item.typeFilter,
-        name: svgVariant.name,
+        name: svgVariant.name.replaceAll(' ', ''), // Some icons seem to have m
         id: item.id,
         postInfo: item.postInfo,
         modifiedAt:

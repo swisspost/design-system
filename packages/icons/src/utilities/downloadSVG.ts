@@ -1,17 +1,21 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
+import path from 'path';
 import { optimize, OptimizedSvg } from 'svgo';
 import svgoOptions from '../../svgo.config';
 import { IIcon } from '../models/icon.model';
 import { passphrase } from '../index';
 import { HttpsProxyAgent } from 'https-proxy-agent';
 
-export let noSVG: IIcon[] = [];
-export let downloadError: IIcon[] = [];
+// Attempt to sanitize the received svg string
+const extractSVG = (input: string) => {
+  const regex = new RegExp('<svg[\\S\\s]*</svg>', 'm');
+  const matches = input.match(regex);
+  return matches === null ? input : matches[0];
+};
 
-export const downloadSVG = async (icon: IIcon) => {
+export const downloadSVG = async (icon: IIcon, output: string) => {
   if (!icon.downloadLink) {
-    noSVG.push(icon);
     return false;
   }
 
@@ -25,22 +29,23 @@ export const downloadSVG = async (icon: IIcon) => {
     });
 
     const svgString = await svg.text();
-    const optimizedSvg = optimize(svgString, svgoOptions);
+    const optimizedSvg = optimize(extractSVG(svgString), svgoOptions);
 
     if (optimizedSvg.error) {
       throw new Error(optimizedSvg.error);
     }
 
+    // This wraps the content of an svg with a symbol tag to make the svg usable
+    // with an <use href="<url>#<id>" /> pattern
     const symbolised = (optimizedSvg as OptimizedSvg).data.replace(
       /^(<svg[^>]*>)([\S\s]*)(<\/svg>)$/gim,
       '$1<symbol id="icon">$2</symbol>$3',
     );
 
-    if (!fs.existsSync('./icons')) fs.mkdirSync('./icons');
-    fs.writeFileSync(`./icons/${icon.name}`, symbolised);
+    fs.writeFileSync(path.join(output, icon.name), symbolised);
     return symbolised;
   } catch (err) {
-    downloadError.push(icon);
     console.log(`SVG Download error: ${err} @ ${icon.downloadLink}`);
+    throw err;
   }
 };

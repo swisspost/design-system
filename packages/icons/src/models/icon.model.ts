@@ -10,3 +10,15 @@ export interface IIcon {
   postInfo: PostInfo;
   modifiedAt: Date;
 }
+
+export interface IJSONReport {
+  created: Date;
+  stats: {
+    errors: number;
+    success: number;
+    notFound: number;
+  };
+  icons: IIcon[];
+  noSVG: IIcon[];
+  errored: IIcon[];
+}

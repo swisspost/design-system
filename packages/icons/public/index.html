@@ -1,29 +1,53 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <section x-data="icons">
-
-        <h1 id="converted">Converted icons (<span x-text="icons.length"></span>)</h1>
-        <div class="converted-icons icons" >
-            <template x-for="icon in icons">
-                <div class="icon">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                        <use x-bind:href="`./icons/${icon.name}#icon`"/>
-                    </svg>
-                    <span x-text="icon.name.replace('.svg', '')"></span>
-                </div>
-            </template>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swiss Post Icons</title>
+    <link rel="stylesheet" href="https://unpkg.com/@swisspost/design-system-styles/basics.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container" x-data="icons">
+      <section>
+        <h1 id="converted" class="mt-huge mb-big">
+          Icons (
+          <span x-text="icons.icons.length"></span>
+          )
+        </h1>
+        <div class="converted-icons icons">
+          <template x-for="icon in icons.icons">
+            <div class="icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+                <use x-bind:href="`./svg/${icon.name}#icon`" />
+              </svg>
+              <span x-text="icon.name.replace('.svg', '')"></span>
+            </div>
+          </template>
         </div>
-    </section>
-    
+      </section>
+
+      <section x-show="icons.errored.length > 0">
+        <h1 class="mt-huge mb-big">Errored</h1>
+        <ul>
+          <template x-for="icon in icons.errored">
+            <li><a x-bind:href="icon.downloadLink" x-text="icon.name"></a></li>
+          </template>
+        </ul>
+      </section>
+
+      <section x-show="icons.notFound.length > 0">
+        <h1 class="mt-huge mb-big">SVG file not found</h1>
+        <ul>
+          <template x-for="icon in icons.noSVG">
+            <li x-text="icon.name"></li>
+          </template>
+        </ul>
+      </section>
+    </div>
+
     <script type="module" src="main.js"></script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-</body>
+  </body>
 </html>
