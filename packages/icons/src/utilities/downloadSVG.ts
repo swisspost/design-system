@@ -4,7 +4,7 @@ import path from 'path';
 import { optimize, OptimizedSvg } from 'svgo';
 import svgoOptions from '../../svgo.config';
 import { IIcon } from '../models/icon.model';
-import { getRequestInit } from './getRequestInit';
+import { getRequestInit } from './environment';
 
 // Attempt to sanitize the received svg string
 const extractSVG = (input: string) => {

@@ -1,14 +1,12 @@
 import fs from 'fs';
-import { IJSONReport } from './models/icon.model';
+import { IIcon, IJSONReport } from './models/icon.model';
 import { downloadSVG } from './utilities/downloadSVG';
 import { formatResponse } from './utilities/mapResponse';
 import { fetchPage } from './utilities/fetchPage';
-import * as dotenv from 'dotenv';
+import { url } from './utilities/environment';
 import path from 'path';
 import packageJSON from '../package.json';
 
-dotenv.config();
-const url = process.env.CEN_URL;
 const outputPath = './public/svg';
 const reportPath = './public';
 
@@ -67,7 +65,8 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
     return downloadAllIcons(body.page.next);
   } else {
     // Write JSON
-    jsonReport.errored = [...jsonReport.errored.sort((a, b) => (a.name < b.name ? -1 : 1))];
+    jsonReport.icons = [...jsonReport.icons.sort(sortIcons)];
+    jsonReport.errored = [...jsonReport.errored.sort(sortIcons)];
     jsonReport.stats.errors = jsonReport.errored.length;
     jsonReport.stats.success = jsonReport.icons.length;
     jsonReport.stats.notFound = jsonReport.noSVG.length;
@@ -75,6 +74,8 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
 
   return jsonReport;
 };
+
+const sortIcons = (a: IIcon, b: IIcon) => (a.name < b.name ? -1 : 1);
 
 export const main = async () => {
   // Setup environment

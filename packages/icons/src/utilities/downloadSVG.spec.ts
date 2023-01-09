@@ -8,8 +8,9 @@ jest.mock('node-fetch');
 
 describe('downloadSVG', () => {
   it('should download an svg icon', async () => {
+    const outputPath = './icons';
     mockFs({
-      './icons': {},
+      [outputPath]: {},
     });
 
     mocked(fetch).mockImplementationOnce(() =>
@@ -18,19 +19,22 @@ describe('downloadSVG', () => {
       } as Response),
     );
 
-    const svg = await downloadSVG({
-      downloadLink: '/test',
-      type: Type.PicturePictogram,
-      contentInfo: { freeKeywords: '' },
-      typeFilter: TypeFilter.Pictograms,
-      name: 'test.svg',
-      id: 1,
-      postInfo: {
-        businessfield: Businessfield.Kommunikation,
-        year: '',
+    const svg = await downloadSVG(
+      {
+        downloadLink: '/test',
+        type: Type.PicturePictogram,
+        contentInfo: { freeKeywords: '' },
+        typeFilter: TypeFilter.Pictograms,
+        name: 'test.svg',
+        id: 1,
+        postInfo: {
+          businessfield: Businessfield.Kommunikation,
+          year: '',
+        },
+        modifiedAt: new Date(),
       },
-      modifiedAt: new Date(),
-    });
+      outputPath,
+    );
 
     mockFs.restore();
 

@@ -1,6 +1,6 @@
 import fetch from 'node-fetch';
 import { CenshareError, CenshareResultPage } from '../models/censhare-result-page.model';
-import { getRequestInit } from './getRequestInit';
+import { getRequestInit } from './environment';
 
 /**
  * Fetch a page of SVG results from zenshare
@@ -23,7 +23,6 @@ export const fetchPage = async (
 
     return response.json() as Promise<CenshareResultPage | CenshareError>;
   } catch (err) {
-    console.log(`Fetch error: ${err}`);
-    // TODO: write error log to somewhere useful and bubble up the error
+    throw err;
   }
 };
