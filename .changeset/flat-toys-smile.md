@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Added foundations/typography docs page.
+Added utilities/text docs page.
