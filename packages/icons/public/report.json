@@ -3788,20 +3788,6 @@
       "modifiedAt": "2021-10-18T11:17:32.000Z"
     },
     {
-      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
-      "type": "picture.pictogram.",
-      "contentInfo": {
-        "freeKeywords": "LAD, Leistung am Domizil, Service au domicile, Servizio a domicilio, Service at the domicile"
-      },
-      "typeFilter": "pictograms",
-      "name": "2205.svg",
-      "id": 539481,
-      "postInfo": {
-        "year": "2021"
-      },
-      "modifiedAt": "2021-10-18T11:24:06.000Z"
-    },
-    {
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
       "type": "picture.pictogram.",
       "contentInfo": {
@@ -3810,6 +3796,20 @@
       "typeFilter": "pictograms",
       "name": "2205.svg",
       "id": 539487,
+      "postInfo": {
+        "year": "2021"
+      },
+      "modifiedAt": "2021-10-18T11:24:06.000Z"
+    },
+    {
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
+      "type": "picture.pictogram.",
+      "contentInfo": {
+        "freeKeywords": "LAD, Leistung am Domizil, Service au domicile, Servizio a domicilio, Service at the domicile"
+      },
+      "typeFilter": "pictograms",
+      "name": "2205.svg",
+      "id": 539481,
       "postInfo": {
         "year": "2021"
       },
@@ -13083,7 +13083,7 @@
       "errorMessage": "SvgoParserError: <input>:1:1: Non-whitespace before first tag.\n\n> 1 | ��<\u0000?\u0000x\u0000m\u0000l\u0000 \u0000v\u0000e\u0000r\u0000s\u0000i\u0000o\u0000n\u0000=\u0000\"\u00001\u0000.\u00000\u0000\"\u0000 \u0000e\u0000n\u0000c\u0000o\u0000d\u0000i\u0000n\u0000g\u0000=\u0000\"\u0000u\u0000t\u0000f\u0000-\u00001\u00006\u0000\"\u0000?\u0000>\u0000\n    | ^\n  2 | \u0000<\u0000!\u0000-\u0000-\u0000 \u0000G\u0000e\u0000n\u0000e\u0000r\u0000a\u0000t\u0000o\u0000r\u0000:\u0000 \u0000A\u0000d\u0000o\u0000b\u0000e\u0000 \u0000I\u0000l\u0000l\u0000u\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r\u0000 \u00002\u00005\u0000.\u00002\u0000.\u00000…\n  3 | \u0000<\u0000s\u0000v\u0000g\u0000 \u0000v\u0000e\u0000r\u0000s\u0000i\u0000o\u0000n\u0000=\u0000\"\u00001\u0000.\u00001\u0000\"\u0000 \u0000i\u0000d\u0000=\u0000\"\u0000_\u0000x\u00003\u00001\u0000_\u00000\u00000\u00009\u0000\"\u0000 \u0000x\u0000m\u0000l\u0000n\u0000s\u0000=\u0000\"…\n"
     }
   ],
-  "created": "2023-01-09T13:34:07.267Z",
+  "created": "2023-01-09T14:07:40.062Z",
   "stats": {
     "errors": 5,
     "notFound": 0,
