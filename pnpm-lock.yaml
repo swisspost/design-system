@@ -282,7 +282,7 @@ importers:
       '@swisspost/design-system-styles': workspace:5.2.0
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.10
-      babel-loader: 9.1.0
+      babel-loader: 9.1.2
       css-loader: 5.2.7
       cypress: 12.3.0
       html-react-parser: 3.0.7
@@ -316,7 +316,7 @@ importers:
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@types/react': 18.0.26
       '@types/react-dom': 18.0.10
-      babel-loader: 9.1.0_@babel+core@7.20.12
+      babel-loader: 9.1.2_@babel+core@7.20.12
       css-loader: 5.2.7
       cypress: 12.3.0
       react-markdown: 8.0.4_kzbn2opkn2327fwg5yzwzya5o4
@@ -8405,8 +8405,8 @@ packages:
       webpack: 4.46.0
     dev: true
 
-  /babel-loader/9.1.0_@babel+core@7.20.12:
-    resolution: {integrity: sha512-Antt61KJPinUMwHwIIz9T5zfMgevnfZkEVWYDWlG888fgdvRRGD0JTuf/fFozQnfT+uq64sk1bmdHDy/mOEWnA==}
+  /babel-loader/9.1.2_@babel+core@7.20.12:
+    resolution: {integrity: sha512-mN14niXW43tddohGl8HPu5yfQq70iUThvFL/4QzESA7GcZoC0eVOhvWdQ8+3UlSjaDE9MVtsW9mxDY07W7VpVA==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
       '@babel/core': ^7.12.0
