@@ -1,6 +1,7 @@
 import React from 'react';
 import { objectify } from '../../../utils/sass-export.ts';
 import { forEach } from '../../../utils/react.ts';
+import { round } from '../../../utils/units.ts';
 import scss from './typography.components.scss';
 
 const SCSS_VARIABLES = objectify(scss);
@@ -52,12 +53,12 @@ export function FontSizesAndLineheights () {
               <tr key={ data.key }>
                 <th>{ data.key }</th>
                 <td>
-                  <span>{ data.value }</span><br/>
-                  <span className="fs-tiny text-muted">{ `${parseFloat(data.value) * baseFontSize}px` }</span>
+                  <span>{ `${round(parseFloat(data.value) * baseFontSize, 4)}px` }</span><br/>
+                  <span className="fs-tiny text-muted">{ data.value }</span>
                 </td>
                 <td>
                   <span>{ SCSS_VARIABLES.lineHeights[data.key] }</span><br/>
-                  <span className="fs-tiny text-muted">{ `${parseFloat(SCSS_VARIABLES.lineHeights[data.key]) * baseFontSize}px` }</span>
+                  <span className="fs-tiny text-muted">{round(parseFloat(data.value) * parseFloat(SCSS_VARIABLES.lineHeights[data.key]), 4)}rem</span>
                 </td>
               </tr>
             ))
@@ -84,8 +85,8 @@ export function FontCurves () {
                 {
                   forEach(data1.value, (data2: { key: string, value: any }) => (
                     <td key={ data2.key }>
-                      <span>{ data2.value }</span><br/>
-                      <span className="fs-tiny text-muted">{ `${parseFloat(data2.value) * baseFontSize}px` }</span>
+                      <span>{round(parseFloat(data2.value) * baseFontSize, 4)}px</span><br/>
+                      <span className="fs-tiny text-muted">{ data2.value }</span>
                     </td>
                   ))
                 }
