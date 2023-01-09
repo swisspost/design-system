@@ -8,7 +8,7 @@ import { getRequestInit } from './environment';
 
 // Attempt to sanitize the received svg string
 const extractSVG = (input: string) => {
-  const regex = new RegExp('<svg[\\S\\s]*</svg>', 'm');
+  const regex = new RegExp(/<svg[\S\s]*<\/svg>/m);
   const matches = input.match(regex);
   return matches === null ? input : matches[0];
 };

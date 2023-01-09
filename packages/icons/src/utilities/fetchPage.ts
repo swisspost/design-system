@@ -7,22 +7,17 @@ import { getRequestInit } from './environment';
  * @param url Zenshare URL
  * @returns Result page
  */
-
 export const fetchPage = async (
   url: string,
 ): Promise<CenshareResultPage | CenshareError | undefined> => {
-  try {
-    const response = await fetch(url, {
-      ...getRequestInit(),
-      method: 'GET',
-    });
+  const response = await fetch(url, {
+    ...getRequestInit(),
+    method: 'GET',
+  });
 
-    if (response.status !== 200) {
-      throw new Error(response.statusText);
-    }
-
-    return response.json() as Promise<CenshareResultPage | CenshareError>;
-  } catch (err) {
-    throw err;
+  if (response.status !== 200) {
+    throw new Error(response.statusText);
   }
+
+  return response.json() as Promise<CenshareResultPage | CenshareError>;
 };

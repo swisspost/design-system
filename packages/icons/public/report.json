@@ -3788,20 +3788,6 @@
       "modifiedAt": "2021-10-18T11:17:32.000Z"
     },
     {
-      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
-      "type": "picture.pictogram.",
-      "contentInfo": {
-        "freeKeywords": "Mobile Shopping, Bestellung, Ordre, Ordine, Order"
-      },
-      "typeFilter": "pictograms",
-      "name": "2205.svg",
-      "id": 539487,
-      "postInfo": {
-        "year": "2021"
-      },
-      "modifiedAt": "2021-10-18T11:24:06.000Z"
-    },
-    {
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
       "type": "picture.pictogram.",
       "contentInfo": {
@@ -3810,6 +3796,20 @@
       "typeFilter": "pictograms",
       "name": "2205.svg",
       "id": 539481,
+      "postInfo": {
+        "year": "2021"
+      },
+      "modifiedAt": "2021-10-18T11:24:06.000Z"
+    },
+    {
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
+      "type": "picture.pictogram.",
+      "contentInfo": {
+        "freeKeywords": "Mobile Shopping, Bestellung, Ordre, Ordine, Order"
+      },
+      "typeFilter": "pictograms",
+      "name": "2205.svg",
+      "id": 539487,
       "postInfo": {
         "year": "2021"
       },
@@ -11062,6 +11062,20 @@
       "modifiedAt": "2021-10-18T11:27:42.000Z"
     },
     {
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/359758/storage/MzU5NzU5LzAvbWFzdGVy",
+      "type": "picture.pictogram.",
+      "contentInfo": {
+        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Standort, Favorit, Stern, Pin"
+      },
+      "typeFilter": "pictograms",
+      "name": "3221.svg",
+      "id": 359758,
+      "postInfo": {
+        "businessfield": "kommunikation"
+      },
+      "modifiedAt": "2021-10-18T11:26:54.000Z"
+    },
+    {
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/359761/storage/MzU5NzYyLzAvbWFzdGVy",
       "type": "picture.pictogram.",
       "contentInfo": {
@@ -13053,21 +13067,6 @@
       "errorMessage": "SvgoParserError: <input>:1:1: Non-whitespace before first tag.\n\n> 1 | ��<\u0000s\u0000v\u0000g\u0000 \u0000v\u0000e\u0000r\u0000s\u0000i\u0000o\u0000n\u0000=\u0000\"\u00001\u0000.\u00001\u0000\"\u0000 \u0000x\u0000m\u0000l\u0000n\u0000s\u0000=\u0000\"\u0000h\u0000t\u0000t\u0000p\u0000:\u0000/\u0000/\u0000w\u0000w\u0000w\u0000.\u0000w\u00003\u0000…\n    | ^\n  2 | \u0000\t\u0000v\u0000i\u0000e\u0000w\u0000B\u0000o\u0000x\u0000=\u0000\"\u00000\u0000 \u00000\u0000 \u00003\u00002\u0000 \u00003\u00002\u0000\"\u0000 \u0000s\u0000t\u0000y\u0000l\u0000e\u0000=\u0000\"\u0000e\u0000n\u0000a\u0000b\u0000l\u0000e\u0000-\u0000b\u0000a\u0000c\u0000k\u0000g…\n  3 | \u0000<\u0000s\u0000t\u0000y\u0000l\u0000e\u0000 \u0000t\u0000y\u0000p\u0000e\u0000=\u0000\"\u0000t\u0000e\u0000x\u0000t\u0000/\u0000c\u0000s\u0000s\u0000\"\u0000>\u0000\n"
     },
     {
-      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/359758/storage/MzU5NzU5LzAvbWFzdGVy",
-      "type": "picture.pictogram.",
-      "contentInfo": {
-        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Standort, Favorit, Stern, Pin"
-      },
-      "typeFilter": "pictograms",
-      "name": "3221.svg",
-      "id": 359758,
-      "postInfo": {
-        "businessfield": "kommunikation"
-      },
-      "modifiedAt": "2021-10-18T11:26:54.000Z",
-      "errorMessage": "SvgoParserError: <input>:1:50: Invalid character entity\n\n> 1 | <svg version=\"1.1\" id=\"pikto\" xmlns:x=\"&ns_extend;\" xmlns:i=\"&ns_ai;\" xmlns:grap…\n    |                                                  ^\n  2 | \t xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" …\n  3 | \t enable-background=\"new 0 0 24 24\" xml:space=\"preserve\">\n"
-    },
-    {
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352481/storage/NTM4NzM3LzAvbWFzdGVy",
       "type": "picture.pictogram.",
       "contentInfo": {
@@ -13083,11 +13082,11 @@
       "errorMessage": "SvgoParserError: <input>:1:1: Non-whitespace before first tag.\n\n> 1 | ��<\u0000?\u0000x\u0000m\u0000l\u0000 \u0000v\u0000e\u0000r\u0000s\u0000i\u0000o\u0000n\u0000=\u0000\"\u00001\u0000.\u00000\u0000\"\u0000 \u0000e\u0000n\u0000c\u0000o\u0000d\u0000i\u0000n\u0000g\u0000=\u0000\"\u0000u\u0000t\u0000f\u0000-\u00001\u00006\u0000\"\u0000?\u0000>\u0000\n    | ^\n  2 | \u0000<\u0000!\u0000-\u0000-\u0000 \u0000G\u0000e\u0000n\u0000e\u0000r\u0000a\u0000t\u0000o\u0000r\u0000:\u0000 \u0000A\u0000d\u0000o\u0000b\u0000e\u0000 \u0000I\u0000l\u0000l\u0000u\u0000s\u0000t\u0000r\u0000a\u0000t\u0000o\u0000r\u0000 \u00002\u00005\u0000.\u00002\u0000.\u00000…\n  3 | \u0000<\u0000s\u0000v\u0000g\u0000 \u0000v\u0000e\u0000r\u0000s\u0000i\u0000o\u0000n\u0000=\u0000\"\u00001\u0000.\u00001\u0000\"\u0000 \u0000i\u0000d\u0000=\u0000\"\u0000_\u0000x\u00003\u00001\u0000_\u00000\u00000\u00009\u0000\"\u0000 \u0000x\u0000m\u0000l\u0000n\u0000s\u0000=\u0000\"…\n"
     }
   ],
-  "created": "2023-01-09T14:07:40.062Z",
+  "created": "2023-01-09T14:16:07.983Z",
   "stats": {
-    "errors": 5,
+    "errors": 4,
     "notFound": 0,
-    "success": 902
+    "success": 903
   },
   "version": "1.0.0-alpha.0"
 }

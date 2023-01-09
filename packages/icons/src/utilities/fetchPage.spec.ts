@@ -22,7 +22,6 @@ describe('fetchPage', () => {
 
   it('Should error if the call fails', async () => {
     mocked(fetch).mockImplementationOnce(() => Promise.reject('NOK'));
-    // TODO: check if error was logged correctly
     const t = async () => fetchPage('test');
     expect(t).rejects.toEqual('NOK');
   });
