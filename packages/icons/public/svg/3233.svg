@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" xml:space="preserve"><symbol id="icon">
+    <path fill="none" d="M0 0h24v24H0z"/>
+    <path d="M20 1h-4v3h-3v4h3v3h4V8h3V4h-3V1zm2 4v2h-3v3h-2V7h-3V5h3V2h2v3h3zM6.5 12c1.93 0 3.5-1.57 3.5-3.5S8.43 5 6.5 5 3 6.57 3 8.5 4.57 12 6.5 12zm0-6C7.878 6 9 7.122 9 8.5S7.878 11 6.5 11 4 9.878 4 8.5 5.122 6 6.5 6zM9.5 13h-6C1.57 13 0 14.57 0 16.5V23h1v-6.5C1 15.121 2.122 14 3.5 14h6c1.378 0 2.5 1.121 2.5 2.5V23h1v-6.5c0-1.93-1.57-3.5-3.5-3.5z"/>
+    <path d="M3 17.5h1V23H3zM9 17.5h1V23H9z"/>
+</symbol></svg>
