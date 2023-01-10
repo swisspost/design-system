@@ -38,7 +38,7 @@ export function FontFace (props: { face: string, family: string, weight: string,
 };
 
 export function FontSizesAndLineheights () {
-  return <div className="sb-fontsizes">
+  return <div className="sb-fontsizes table-responsive">
     <table className="table table-striped table-bordered">
       <thead>
         <tr>
@@ -51,7 +51,9 @@ export function FontSizesAndLineheights () {
           {
             forEach(SCSS_VARIABLES.fontSizes, (data: { key: string, value: any }) => (
               <tr key={ data.key }>
-                <th>{ data.key }</th>
+                <th>
+                  { data.key }
+                </th>
                 <td>
                   <span>{ `${round(parseFloat(data.value) * baseFontSize, 4)}px` }</span><br/>
                   <span className="fs-tiny text-muted">{ data.value }</span>
@@ -69,7 +71,7 @@ export function FontSizesAndLineheights () {
 };
 
 export function FontCurves () {
-  return <div className="sb-fontcurves">
+  return <div className="sb-fontcurves table-responsive">
     <table className="table table-striped table-bordered">
       <thead>
         <tr>
@@ -99,7 +101,7 @@ export function FontCurves () {
 };
 
 export function Headings () {
-  return <div className="sb-headings">
+  return <div className="sb-headings table-responsive">
     <table className="table table-striped table-bordered">
       <thead>
         <tr>
@@ -142,7 +144,7 @@ export function Headings () {
 }
 
 export function Paragraphs () {
-  return <div className="sb-paragraphs">
+  return <div className="sb-paragraphs table-responsive">
     <table className="table table-striped table-bordered">
       <thead>
         <tr>
@@ -171,7 +173,7 @@ export function Paragraphs () {
 }
 
 export function Links () {
-  return <div className="sb-links">
+  return <div className="sb-links table-responsive">
     <table className="table table-striped table-bordered">
       <thead>
         <tr>
@@ -207,7 +209,7 @@ export function Links () {
 }
 
 export function Inlines () {
-  return <div className="sb-inlines">
+  return <div className="sb-inlines table-responsive">
     <table className="table table-striped table-bordered">
       <thead>
         <tr>
@@ -294,7 +296,7 @@ export function Inlines () {
 }
 
 export function Lists () {
-  return <div className="sb-inlines">
+  return <div className="sb-inlines table-responsive">
     <table className="table table-striped table-bordered">
       <thead>
         <tr>

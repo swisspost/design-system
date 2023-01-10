@@ -17,4 +17,10 @@ $colorUtilityColors: map.merge(post.$theme-colors, (
       #{'colorBgUtilities_' + $name}: #{'dark'};
     }
   }
+
+  fontFamilies: [('sans-serif', 'monospace')];
+  fontSizes: [map.keys(post.$font-sizes)];
+  fontWeights: [('light', 'normal', 'bold')];
+  fontStyles: [('normal', 'italic')];
+  fontLineheights: [map.keys(post.$line-heights)];
 }

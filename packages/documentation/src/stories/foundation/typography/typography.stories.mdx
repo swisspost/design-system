@@ -24,16 +24,13 @@ import {
 
 # Typography
 
-Typography help guide users intuitively to the information they need.
-For this reason, it should be structured in a hierarchically balanced way.
+This page describes the typography basics of the design system.<br/>
+If you want to know how to adjust font-families, font-sizes, etc. in your code, please visit our [text utilities docs](/?path=/story/utilities-text--page).
 
 ## Font Families
 
-There are basically two font families available. One is the main font family "Frutiger Neue" and the other is a monospace font family.
-However, the latter should only be used in rare cases.
-
-Different font shades, font sizes and other characteristics are used to design and structure content.
-Bold is used for markups, underlining is used exclusively for links.
+There are basically two font families available.<br/>
+One is the main font family "Frutiger Neue" and the other is a monospace font family.
 
 <FontFaceWrapper>
   <FontFace face="Frutiger Neue For Post" family="sans-serif" weight="bold" style="normal" />
@@ -43,77 +40,56 @@ Bold is used for markups, underlining is used exclusively for links.
   <FontFace face="Monospace" family="monospace" weight="regular" style="normal" />
 </FontFaceWrapper>
 
-You can use them like so in your code:
+### Standalone usage
 
-```html dark
-<p class="font-sans-serif">...</p>
-<p class="font-monospace">...</p>
-<p class="fw-bold">...</p>
-<p class="fw-regular">...</p>
-<p class="fw-light">...</p>
-<p class="fs-normal">...</p>
-<p class="fs-italic">...</p>
-```
+If you cannot use the design system but need the fonts, you can integrate them into your project as follows:
 
+<!-- prettier-ignore -->
 ```css dark
-@use '@swisspost/design-system-styles/core' as post;
-
-.my-element {
-  font-family: post.$font-family-sans-serif;
-  font-weight: post.$font-weight-bold;
-  font-style: post.$font-style-italic;
+@font-face {
+  font-display: swap;
+  font-family: 'Frutiger Neue For Post';
+  font-weight: 700;
+  src: url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Bold.woff2') format('woff2'),
+       url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Bold.woff') format('woff');
 }
+
+@font-face {
+  font-display: swap;
+  font-family: 'Frutiger Neue For Post';
+  font-weight: 400;
+  src: url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Rg.woff2') format('woff2'),
+       url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Rg.woff') format('woff');
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'Frutiger Neue For Post';
+  font-weight: 300;
+  src: url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Lt.woff2') format('woff2'),
+       url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Lt.woff') format('woff');
+}
+
+$font-family-sans-serif: 'Frutiger Neue For Post', system-ui, sans-serif !default;
+$font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace !default;
 ```
 
 ## Font Sizes & Line Heights
 
-In the following sections you will find the available font sizes and line heights.<br/>
-Font sizes smaller than `12px` can be illegible on certain monitors or systems and should therefore be avoided.
-
 ### Base Font Size
 
 The default font size is `16px`. This corresponds to the CSS value `1rem`.<br/>
-There is a bunch of font sizes you can use by your own, even if we recommend using the font curves instead.
+There is a bunch of font sizes you can use by your own, even if we recommend using the font curves (see below) instead.
 
 The line height depends on the font size and is specified with a multiplying factor. This multiplication factor decreases as the font size increases.
 
 <FontSizesAndLineheights />
-
-You can use them like so in your code:
-
-```html dark
-<p class="fs-tiny lh-tiny">...</p>
-```
-
-```css dark
-@use 'sass:map';
-@use '@swisspost/design-system-styles/core' as post;
-
-.my-element {
-  font-size: map.get(post.$font-sizes, 'tiny');
-  line-height: map.get(post.$line-heights, 'tiny');
-}
-```
 
 ### Responsive font size
 
 For legible font sizes on all screen sizes, you can make use of so called font-curves, responsive font size definitions.
 
 <FontCurves />
-
-You can use them like so in your code:
-
-```html dark
-<p class="font-curve-tiny">...</p>
-```
-
-```css dark
-@use '@swisspost/design-system-styles/core' as post;
-
-.my-element {
-  @include font-curve('tiny');
-}
-```
 
 ## Elements
 
@@ -123,7 +99,7 @@ The following sections show what specific elements look like.
 
 <Headings />
 
-Sometimes the document heading structure requires you to use a heading tag that should look like another in order to maintain a consistency. In those cases you can use the heading helper classes `h1` through `h6`.
+Sometimes the document heading structure requires you to use a heading tag that should look like another in order to maintain a consistency. In those cases you can use the heading helper classes `.h1` through `.h6`.<br/>
 For more details, read our [heading docs](/?path=/story/components-heading--default).
 
 ### Paragraphs
@@ -142,8 +118,4 @@ For more details, read our [heading docs](/?path=/story/components-heading--defa
 
 <Lists />
 
-## Utilities
-
-Use our [text utilities](/?path=/story/utilities-text--page) to change text alignment, transform, style, weight, line-height, decoration and color.
-
-Use our [list utilities](/?path=/story/utilities-list--page) to change the way lists are rendered.
+For more details how to change the look of lists, visit our [list utilities docs](/?path=/story/utilities-list--page).
