@@ -67,6 +67,7 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
     // Write JSON
     jsonReport.icons = [...jsonReport.icons].sort(sortIcons);
     jsonReport.errored = [...jsonReport.errored].sort(sortIcons);
+    jsonReport.noSVG = [...jsonReport.noSVG].sort(sortIcons);
     jsonReport.stats.errors = jsonReport.errored.length;
     jsonReport.stats.success = jsonReport.icons.length;
     jsonReport.stats.notFound = jsonReport.noSVG.length;
