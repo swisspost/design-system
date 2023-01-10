@@ -21,6 +21,10 @@ export namespace Components {
         "middle": string;
         "write": (text: string) => Promise<void>;
     }
+    interface PostIcon {
+        "base"?: string;
+        "name": number;
+    }
 }
 export interface MyComponentCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -33,8 +37,15 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    interface HTMLPostIconElement extends Components.PostIcon, HTMLStencilElement {
+    }
+    var HTMLPostIconElement: {
+        prototype: HTMLPostIconElement;
+        new (): HTMLPostIconElement;
+    };
     interface HTMLElementTagNameMap {
         "my-component": HTMLMyComponentElement;
+        "post-icon": HTMLPostIconElement;
     }
 }
 declare namespace LocalJSX {
@@ -56,8 +67,13 @@ declare namespace LocalJSX {
          */
         "onSomeevent"?: (event: MyComponentCustomEvent<string>) => void;
     }
+    interface PostIcon {
+        "base"?: string;
+        "name"?: number;
+    }
     interface IntrinsicElements {
         "my-component": MyComponent;
+        "post-icon": PostIcon;
     }
 }
 export { LocalJSX as JSX };
@@ -65,6 +81,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
         }
     }
 }

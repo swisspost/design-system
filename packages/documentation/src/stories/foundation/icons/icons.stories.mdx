@@ -1,0 +1,30 @@
+import { Meta } from '@storybook/addon-docs';
+import iconsReport from '@swisspost/design-system-icons/public/report.json';
+import './icons.styles.scss';
+
+<Meta
+  title="Foundations/Icons"
+  parameters={{
+    previewTabs: {
+      canvas: {
+        hidden: true,
+      },
+    },
+  }}
+/>
+
+# Icons
+
+<div class="form-floating">
+  <input id="icon-filter" type="text" class="form-control" placeholder="Filter icons" />
+  <label for="icon-filter">Filter icons</label>
+</div>
+
+<div class="icons my-big">
+  {iconsReport.icons.map(icon => (
+    <div class="icon">
+      <post-icon name={icon.name.replace('.svg', '')} />
+      <span>{icon.name.replace('.svg', '')}</span>
+    </div>
+  ))}
+</div>
