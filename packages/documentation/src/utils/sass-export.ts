@@ -9,7 +9,11 @@ export function objectify (scss: object) {
       path
         .split('_')
         .forEach((key: string, index: number, values: string[]) => {
-          temp[key] = index === values.length - 1 ? value : temp[key] || {};
+          const isJsonArray = typeof value === 'string' && /^\[.*\]$/.test(value);
+          const parsedValue = isJsonArray ? JSON.parse(value) : value;
+          const v = index === values.length - 1 ? parsedValue : temp[key] || {};
+
+          temp[key] = v;
           temp = temp[key];
         });
 
