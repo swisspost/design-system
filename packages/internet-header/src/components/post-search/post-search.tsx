@@ -1,0 +1,404 @@
+import { Component, Host, h, State, Event, EventEmitter, Method, Element } from '@stencil/core';
+import { throttle } from 'throttle-debounce';
+import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { state } from '../../data/store';
+import { CoveoCompletion } from '../../models/coveo.model';
+import { GeocodeLocation } from '../../models/geocode.model';
+import {
+  DropdownElement,
+  DropdownEvent,
+  HasDropdown,
+  IsFocusable,
+} from '../../models/header.model';
+import { getSearchRedirectUrl, equalizeArrays } from '../../services/search/search.service';
+import { getCoveoSuggestions } from '../../services/search/coveo.service';
+import {
+  getPlacesUrl,
+  highlightPlacesString,
+  queryPlaces,
+} from '../../services/search/places.service';
+import { userPrefersReducedMotion, elementHasTransition } from '../../services/ui.service';
+import { HighlightedText } from '../../utils/highlighted.component';
+import { SvgSprite } from '../../utils/svg-sprite.component';
+import { SvgIcon } from '../../utils/svg-icon.component';
+import { TrackAndTraceInfo } from '../../models/track-and-trace.model';
+import { getParcelSuggestion } from '../../services/search/parcel.service';
+import { If } from '../../utils/if.component';
+
+@Component({
+  tag: 'post-search',
+  styleUrl: 'post-search.scss',
+  shadow: true,
+})
+export class PostSearch implements HasDropdown, IsFocusable {
+  @State() searchDropdownOpen = false;
+  @State() coveoSuggestions: CoveoCompletion[] = [];
+  @State() placeSuggestions: GeocodeLocation[] = [];
+  @State() parcelSuggestion: TrackAndTraceInfo & { url: string } = null;
+  @Event() dropdownToggled: EventEmitter<DropdownEvent>;
+  @Element() host: DropdownElement;
+  private searchBox?: HTMLInputElement;
+  private searchFlyout: HTMLElement;
+  private throttledResize: throttle<() => void>;
+
+  connectedCallback() {
+    this.throttledResize = throttle(300, () => this.handleResize());
+    window.addEventListener('resize', this.throttledResize, { passive: true });
+  }
+
+  disconnectedCallback() {
+    window.removeEventListener('resize', this.throttledResize);
+    clearAllBodyScrollLocks();
+  }
+
+  componentWillUpdate() {
+    // Check if search flyout got set to close
+    if (this.searchFlyout && !this.searchDropdownOpen) {
+      this.searchFlyout.classList.remove('open');
+
+      // Check if element has transition applied and whether user prefers to see animations or not
+      if (elementHasTransition(this.searchFlyout, 'transform') && !userPrefersReducedMotion()) {
+        // Wait for CSS transition 'transform' to end before continuing
+        return new Promise<boolean>(resolve => {
+          this.searchFlyout.addEventListener('transitionend', event => {
+            if (event.propertyName === 'transform') {
+              resolve(true);
+            }
+          });
+        });
+      }
+    }
+  }
+
+  componentDidUpdate() {
+    // Search flyout got set to open
+    if (this.searchFlyout && this.searchDropdownOpen) {
+      // Force browser to redraw/refresh DOM before adding 'open' class
+      this.searchFlyout.getBoundingClientRect();
+      this.searchFlyout.classList.add('open');
+    }
+
+    // Focus on the searchBox whenever the dropdown is opened
+    if (this.searchDropdownOpen && this.searchBox) {
+      this.searchBox.focus({ preventScroll: true });
+    }
+  }
+
+  @Method()
+  public async toggleDropdown(force?: boolean) {
+    this.searchDropdownOpen = force === undefined ? !this.searchDropdownOpen : force;
+    this.dropdownToggled.emit({ open: this.searchDropdownOpen, element: this.host });
+
+    if (!this.searchDropdownOpen) {
+      // Reset suggestions when dropdown closes
+      this.coveoSuggestions = [];
+      this.placeSuggestions = [];
+      if (this.searchBox) this.searchBox.value = '';
+      this.setFocus();
+    } else {
+      // Get basic suggestions when dropdown opens
+      try {
+        this.coveoSuggestions = await getCoveoSuggestions('');
+      } catch {}
+    }
+
+    this.setBodyScroll();
+
+    return this.searchDropdownOpen;
+  }
+
+  @Method()
+  public async setFocus() {
+    const toggleButton = this.host.shadowRoot.querySelector<HTMLElement>('.search-button');
+    if (toggleButton) {
+      toggleButton.focus();
+    }
+  }
+
+  private handleResize() {
+    // Only enable/disable body scroll on resize if the search dropdown is open, otherwise this could lead to side effects in other controls
+    if (this.searchDropdownOpen) {
+      this.setBodyScroll();
+    }
+  }
+
+  /**
+   * Disable or re-enable body scrolling, depending on whether search dropdown is open or closed in mobile view (width < 1024px)
+   */
+  private setBodyScroll() {
+    if (this.searchDropdownOpen && window.innerWidth < 1024) {
+      disableBodyScroll(this.searchFlyout);
+    } else {
+      enableBodyScroll(this.searchFlyout);
+    }
+  }
+
+  /**
+   * Fetch suggestions from all available sources
+   */
+  private async handleSearchInput() {
+    const query = this.searchBox.value.trim();
+
+    const [placeSuggestions, coveoSuggestions, trackAndTraceInfo] = await Promise.all([
+      queryPlaces(query),
+      getCoveoSuggestions(query),
+      getParcelSuggestion(query),
+    ]);
+
+    // Parcel suggestion is more important than any other
+    if (trackAndTraceInfo) {
+      this.parcelSuggestion = trackAndTraceInfo;
+      this.placeSuggestions = [];
+      this.coveoSuggestions = [];
+    } else {
+      [this.coveoSuggestions, this.placeSuggestions] = equalizeArrays(
+        coveoSuggestions,
+        placeSuggestions,
+        8,
+      );
+    }
+
+    this.deselectSuggestion();
+  }
+
+  /**
+   * Start search on enter
+   * @param event
+   */
+  private handleKeyDown(event: KeyboardEvent) {
+    let selectedSuggestion = this.searchFlyout.querySelector<HTMLElement>(
+      '.suggestions > li > a.selected',
+    );
+
+    switch (event.key.toLowerCase()) {
+      case 'enter':
+        if (selectedSuggestion) {
+          window.location.href = selectedSuggestion.getAttribute('href');
+        } else {
+          this.startSearch();
+        }
+
+        break;
+      case 'arrowdown':
+      case 'arrowup':
+        const suggestions = this.searchFlyout.querySelectorAll('.suggestions > li > a');
+
+        this.deselectSuggestion();
+
+        if (event.key.toLowerCase() === 'arrowdown') {
+          if (
+            selectedSuggestion &&
+            selectedSuggestion.parentElement.nextElementSibling?.hasChildNodes
+          ) {
+            // Select next suggestion if there's any, otherwise none will be selected
+            selectedSuggestion.parentElement.nextElementSibling.firstElementChild.classList.add(
+              'selected',
+            );
+          } else {
+            // If there are any suggestions, select first suggestion in list
+            if (suggestions.length > 0) {
+              suggestions[0].classList.add('selected');
+            }
+          }
+        } else if (event.key.toLowerCase() === 'arrowup') {
+          if (
+            selectedSuggestion &&
+            selectedSuggestion.parentElement.previousElementSibling?.hasChildNodes
+          ) {
+            // Select previous suggestion if there's any, otherwise none will be selected
+
+            selectedSuggestion.parentElement.previousElementSibling.firstElementChild.classList.add(
+              'selected',
+            );
+          } else {
+            // If there are any suggestions, select last suggestion in list
+            if (suggestions.length > 0) {
+              suggestions[suggestions.length - 1].classList.add('selected');
+            }
+          }
+        }
+
+        // Get the newly selected suggestion
+        selectedSuggestion = this.searchFlyout.querySelector('.suggestions > li > a.selected');
+
+        // Update search box value with selected suggestion text
+        this.searchBox.value = selectedSuggestion.dataset.suggestionText;
+
+        break;
+    }
+  }
+
+  /**
+   * Set selected suggestion on mouse enter
+   * @param event
+   */
+  private handleMouseEnterSuggestion(event: MouseEvent) {
+    this.deselectSuggestion();
+
+    // Set hovered suggestion element as selected
+    (event.target as HTMLElement).classList.add('selected');
+  }
+
+  /**
+   * Set selected suggestion on mouse enter
+   * @param event
+   */
+  private handleMouseLeaveSuggestions() {
+    this.deselectSuggestion();
+  }
+
+  /**
+   * Deselect any previously selected suggestion
+   */
+  private deselectSuggestion() {
+    const selectedSuggestion = this.searchFlyout.querySelector('.suggestions .selected');
+
+    if (selectedSuggestion) {
+      selectedSuggestion.classList.remove('selected');
+    }
+  }
+
+  /**
+   * Redirect to the post search page
+   */
+  private async startSearch() {
+    window.location.href = await getSearchRedirectUrl(this.searchBox.value.trim());
+  }
+
+  render() {
+    const { translations, search } = state.localizedConfig.header;
+    const showPortalRecommendations =
+      this.searchBox?.value === '' && search.searchRecommendations?.links.length > 0;
+
+    return (
+      <Host>
+        <SvgSprite />
+        <div class="search">
+          <button
+            id="post-internet-header-search-button"
+            class="search-button"
+            type="button"
+            aria-expanded={`${this.searchDropdownOpen}`}
+            onClick={() => this.toggleDropdown()}
+          >
+            <span class="visually-hidden">
+              {this.searchDropdownOpen
+                ? translations.searchToggleExpanded
+                : translations.searchToggle}
+            </span>
+            <SvgIcon name={this.searchDropdownOpen ? 'pi-close' : 'pi-search'} />
+          </button>
+          <If condition={this.searchDropdownOpen}>
+            <div class="flyout" ref={e => (this.searchFlyout = e)}>
+              <div class="container box">
+                <div class="row">
+                  <div class="col-xs-12 col-md-10 col-lg-8">
+                    <div class="form-group form-floating">
+                      <input
+                        type="text"
+                        id="searchBox"
+                        class="form-control form-control-lg"
+                        placeholder={translations.flyoutSearchBoxFloatingLabel}
+                        autocomplete="off"
+                        ref={el => (this.searchBox = el)}
+                        onInput={() => this.handleSearchInput()}
+                        onKeyDown={event => this.handleKeyDown(event)}
+                      />
+                      <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
+                      <button
+                        onClick={() => this.startSearch()}
+                        class="nav-link start-search-button"
+                      >
+                        <span class="visually-hidden">{translations.searchSubmit}</span>
+                        <SvgIcon name="pi-search" />
+                      </button>
+                    </div>
+                    {showPortalRecommendations && (
+                      <h2 class="bold">{search.searchRecommendations.title}</h2>
+                    )}
+                    <ul
+                      class="suggestions no-list"
+                      onMouseLeave={() => this.handleMouseLeaveSuggestions()}
+                    >
+                      {showPortalRecommendations &&
+                        search.searchRecommendations.links.map(recommendation => (
+                          <li>
+                            <a
+                              class="nav-link search-recommendation"
+                              href={recommendation.href}
+                              data-suggestion-text={recommendation.label}
+                              onMouseEnter={event => this.handleMouseEnterSuggestion(event)}
+                            >
+                              <span
+                                class="search-recommendation__icon"
+                                innerHTML={recommendation.inlineSvg}
+                              ></span>
+                              <span>{recommendation.label}</span>
+                            </a>
+                          </li>
+                        ))}
+                      {this.parcelSuggestion && this.parcelSuggestion.ok && (
+                        <li>
+                          <a
+                            class="nav-link parcel-suggestion"
+                            href={this.parcelSuggestion.url}
+                            data-suggestion-text={this.searchBox.value}
+                            onMouseEnter={event => this.handleMouseEnterSuggestion(event)}
+                          >
+                            <SvgIcon name="pi-letter-parcel" />
+                            <span class="bold">{this.parcelSuggestion.sending.id}:&nbsp;</span>
+                            <span>
+                              {this.parcelSuggestion.sending.product},{' '}
+                              {this.parcelSuggestion.sending.recipient.zipcode}{' '}
+                              {this.parcelSuggestion.sending.recipient.city},{' '}
+                              {this.parcelSuggestion.sending.state}
+                            </span>
+                          </a>
+                        </li>
+                      )}
+                      {!showPortalRecommendations &&
+                        this.coveoSuggestions &&
+                        this.coveoSuggestions.map(suggestion => (
+                          <li>
+                            <a
+                              class="nav-link"
+                              href={suggestion.redirectUrl}
+                              data-suggestion-text={suggestion.expression}
+                              onMouseEnter={event => this.handleMouseEnterSuggestion(event)}
+                            >
+                              <SvgIcon name="pi-search" />
+                              <HighlightedText text={suggestion.highlighted} />
+                            </a>
+                          </li>
+                        ))}
+                      {!showPortalRecommendations &&
+                        this.placeSuggestions &&
+                        this.placeSuggestions.map(suggestion => (
+                          <li>
+                            <a
+                              class="nav-link"
+                              href={getPlacesUrl(suggestion)}
+                              data-suggestion-text={suggestion.name}
+                              onMouseEnter={event => this.handleMouseEnterSuggestion(event)}
+                            >
+                              <SvgIcon name="pi-place" />
+                              <HighlightedText
+                                text={highlightPlacesString(
+                                  this.searchBox.value.trim(),
+                                  suggestion.name,
+                                )}
+                              />
+                            </a>
+                          </li>
+                        ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </If>
+        </div>
+      </Host>
+    );
+  }
+}

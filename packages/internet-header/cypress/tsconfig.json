@@ -1,0 +1,13 @@
+{
+    "extends": "../tsconfig.json",
+    "compilerOptions": {
+      "strict": true,
+      "noEmit": true,
+      "types": ["cypress", "cypress-storybook/cypress", "cypress-each"]
+    },
+    "include": [
+      "../node_modules/cypress",
+      "./**/*.ts",
+      "../src/**/*.d.ts"
+    ]
+  }

@@ -32,7 +32,7 @@ export default {
         type: 'radio',
         labels: {
           'topic-teaser-reverse': 'Image left',
-          '': 'Image right'
+          'default': 'Image right'
         }
       },
       options: ['topic-teaser-reverse', '']

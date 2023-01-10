@@ -1,0 +1,98 @@
+import { Component, Host, h, Element } from '@stencil/core';
+import { state } from '../../data/store';
+import { FocusableElement } from '../../models/header.model';
+import { translate } from '../../services/language.service';
+import { SvgIcon } from '../../utils/svg-icon.component';
+
+@Component({
+  tag: 'post-skiplinks',
+  styleUrl: 'post-skiplinks.scss',
+  shadow: false,
+})
+export class PostSkiplinks {
+  @Element() host: HTMLElement;
+
+  getMainId() {
+    return document.querySelector('main[id]')?.getAttribute('id');
+  }
+
+  setFocus(tagname: string) {
+    const rootHost = this.host.closest('.post-internet-header');
+    if (!rootHost) {
+      return;
+    }
+
+    const focusable = rootHost.querySelector<FocusableElement>(tagname);
+    if (focusable) {
+      focusable.setFocus();
+    }
+  }
+
+  render() {
+    const config = state.localizedConfig.header;
+    const mainId = this.getMainId();
+
+    return (
+      <Host>
+        <nav class="skiplinks">
+          <ul class="no-list">
+            <li>
+              <a class="nav-link" href={config.logo.logoLink} accessKey="0" title="[ALT + 0]">
+                <span>{config.logo.logoLinkTitle}</span>
+                <SvgIcon name="pi-pointy-arrow-right" />
+              </a>
+            </li>
+            <li>
+              <a
+                class="nav-link"
+                href="#post-internet-header-main-navigation"
+                accessKey="1"
+                title="[ALT + 1]"
+                onClick={() => this.setFocus('post-main-navigation')}
+              >
+                <span>{config.translations.navMainAriaLabel}</span>
+                <SvgIcon name="pi-pointy-arrow-right" />
+              </a>
+            </li>
+            {mainId ? (
+              <li>
+                <a class="nav-link" href={`#${mainId}`} accessKey="2" title="[ALT + 2]">
+                  <span>{translate('Go to main content')}</span>
+                  <SvgIcon name="pi-pointy-arrow-right" />
+                </a>
+              </li>
+            ) : null}
+            {state.search ? (
+              <li>
+                <a
+                  class="nav-link"
+                  href="#post-internet-header-search-button"
+                  accessKey="3"
+                  title="[ALT + 3]"
+                  onClick={() => this.setFocus('post-search')}
+                >
+                  <span>{translate('Go to search')}</span>
+                  <SvgIcon name="pi-pointy-arrow-right" />
+                </a>
+              </li>
+            ) : null}
+            {state.login ? (
+              <li>
+                <a
+                  class="nav-link"
+                  href="#post-klp-login-widget"
+                  accessKey="4"
+                  title="[ALT + 4]"
+                  onClick={() => this.setFocus('post-klp-login-widget')}
+                >
+                  <span>{translate('Go to login')}</span>
+                  <SvgIcon name="pi-pointy-arrow-right" />
+                </a>
+              </li>
+            ) : null}
+          </ul>
+        </nav>
+      </Host>
+    );
+  }
+}
