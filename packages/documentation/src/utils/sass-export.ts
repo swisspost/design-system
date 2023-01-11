@@ -1,4 +1,4 @@
-export function objectify (scss: object) {
+export function parse (scss: object) {
   let output: { [key: string]: string; } = {};
 
   return Object

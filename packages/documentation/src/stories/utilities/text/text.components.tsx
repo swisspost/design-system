@@ -1,6 +1,6 @@
 import React from 'react';
-import { objectify } from '../../../utils/sass-export.ts';
 import { forEach } from '../../../utils/react.ts';
+import { parse } from '../../../utils/sass-export.ts';
 import scss from './text.export.scss';
 
 interface IAvailableClassesAndVariablesProps {
@@ -11,7 +11,7 @@ interface IAvailableClassesAndVariablesProps {
   scssPrefix: string,
 };
 
-export const SCSS_VARIABLES = objectify(scss);
+export const SCSS_VARIABLES = parse(scss);
 
 export function AvailableClassesAndVariables (props: IAvailableClassesAndVariablesProps) {
   return <div>

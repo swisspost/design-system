@@ -1,10 +1,10 @@
 import React from 'react';
-import { objectify } from '../../../utils/sass-export.ts';
+import { parse } from '../../../utils/sass-export.ts';
 import { forEach } from '../../../utils/react.ts';
 import { round } from '../../../utils/units.ts';
 import scss from './typography.components.scss';
 
-const SCSS_VARIABLES = objectify(scss);
+const SCSS_VARIABLES = parse(scss);
 const baseFontSize = parseFloat(SCSS_VARIABLES.base.fontSize);
 
 export function FontFaceWrapper (props: { children: React.ReactElement[] | null }) {
