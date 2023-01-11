@@ -185,7 +185,7 @@ export function Links () {
         <tr>
           <td><code>&lt;a&gt;&lt;/a&gt;</code></td>
           <td>
-            <p><a href="javascript:void">Link</a></p>
+            <p><a href="#" onClick={e => e.preventDefault()}>Link</a></p>
           </td>
         </tr>
         <tr>
@@ -199,7 +199,7 @@ export function Links () {
           <td>
             <p>
               At vero eos et justo accusam et duo dolores et ea rebum. Consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor <a href="javascript:void">invidunt ut labore et dolore</a> magna aliquyam erat, sed diam voluptua.
+              nonumy eirmod tempor <a href="#" onClick={e => e.preventDefault()}>invidunt ut labore et dolore</a> magna aliquyam erat, sed diam voluptua.
             </p>
           </td>
         </tr>
