@@ -223,9 +223,9 @@ export default {
 const Template = (args: Args) => {
   const props = {
     key: args.key,
-    href: (args.tag === 'a' && 'javascript:void') || null,
-    type: (args.tag === 'input' && args.type) || null,
-    value: (args.tag === 'input' && args.text) || null,
+    href: args.tag === 'a' ? 'javascript:void' : undefined,
+    type: args.tag === 'input' ? args.type : undefined,
+    value: args.tag === 'input' ? args.text : undefined,
   };
   
   const isAnimated = args.tag !== 'input' && args.animated;
