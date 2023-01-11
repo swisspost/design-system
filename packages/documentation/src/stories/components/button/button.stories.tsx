@@ -223,9 +223,9 @@ export default {
 const Template = (args: Args) => {
   const props = {
     key: args.key,
-    href: args.tag === 'a' && 'javascript:void',
-    type: args.tag === 'input' && args.type,
-    value: args.tag === 'input' && args.text,
+    href: (args.tag === 'a' && 'javascript:void') || null,
+    type: (args.tag === 'input' && args.type) || null,
+    value: (args.tag === 'input' && args.text) || null,
   };
   
   const isAnimated = args.tag !== 'input' && args.animated;
@@ -238,14 +238,15 @@ const Template = (args: Args) => {
     args.iconOnly && 'btn-icon',
   ].filter(c => c && c !== 'null').join(' ');
 
-  const icon = args.icon !== 'null' ? <span aria-hidden="true" className={ `pi ${args.icon}` }></span> : null;
-
   if (args.tag === 'input') {
     return <args.tag { ...props } className={ classes } disabled={ args.disabled }/>;
   } else {
+    const icon = args.icon !== 'null' ? <span aria-hidden="true" className={ `pi ${args.icon}` }></span> : null;
+    const content = isAnimated ? <span>{ args.text }</span> : args.text;
+
     return <args.tag { ...props } className={ classes } disabled={ args.disabled }>
       { args.iconPosition === 'start' && icon }
-      { args.iconOnly ? <span className="visually-hidden">{ args.text }</span> : isAnimated ? <span>{ args.text }</span> : args.text }
+      { args.iconOnly ? <span className="visually-hidden">{ args.text }</span> : content }
       { args.iconPosition === 'end' && icon }
     </args.tag>;
   }
