@@ -19,8 +19,11 @@ export function ColorUtilities (props: {}) {
       {
         forEach(SCSS_VARIABLES.colorUtilities,
           (data: { key: number, value: any }) => (
-            <div key={ data.key } className="col-sm-3 py-2">
-              <p className={ `m-0 p-2 bg-${SCSS_VARIABLES.colorBgUtilities[data.key]} text-${data.key}` }>.text-{ data.key }</p>
+            <div key={ data.key } className="col-md-6 col-lg-4 py-2">
+              <p className={ `d-flex justify-content-between m-0 p-2 bg-${SCSS_VARIABLES.colorBgUtilities[data.key]}` }>
+                <span className={ `text-${data.key}` }>{ data.key } text</span>
+                <a href="javascript:void" className={ `link-${data.key}` }>{ data.key } link</a>
+              </p>
             </div>
           )
         )

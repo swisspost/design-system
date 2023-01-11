@@ -12,7 +12,7 @@ $colorUtilityColors: map.merge(post.$theme-colors, (
     #{'colorUtilities_' + $name}: $color;
 
     @if (post.get-contrast-color($color) != #000) {
-      #{'colorBgUtilities_' + $name}: #{'light'};
+      #{'colorBgUtilities_' + $name}: #{'white'};
     } @else {
       #{'colorBgUtilities_' + $name}: #{'dark'};
     }
