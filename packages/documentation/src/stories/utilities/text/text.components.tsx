@@ -14,15 +14,22 @@ interface IAvailableClassesAndVariablesProps {
 export const SCSS_VARIABLES = parse(scss);
 
 export function AvailableClassesAndVariables (props: IAvailableClassesAndVariablesProps) {
+  const cssPrefix = props.cssPrefix ? props.cssPrefix + '-' : '';
+  const scssPrefix = props.scssPrefix ? props.scssPrefix + '-' : '';
+
   return <div>
     <dl className="row">
-      <dt className="col-3">Classes:</dt>
+      <dt className="col-3">Class:</dt>
       <dd className="col-9">
-        { props.cssSlot ? props.cssSlot : forEach(props.variants, (data: { key: number, value: any }) => <code key={ data.key } className="me-2">{ `${props.cssPrefix}-${data.value}` }</code>) }
+        { props.cssSlot ?? <span className="fs-tiny text-danger">{ `.${cssPrefix}{value}` }</span> }
       </dd>
-      <dt className="col-3">Variables:</dt>
+      <dt className="col-3">Variable:</dt>
       <dd className="col-9">
-      { props.scssSlot ? props.scssSlot : forEach(props.variants, (data: { key: number, value: any }) => <code key={ data.key } className="me-2">{ `$${props.scssPrefix}-${data.value}` }</code>) }
+        { props.scssSlot ?? <span className="fs-tiny text-danger">{ `$${scssPrefix}{value}` }</span> }
+      </dd>
+      <dt className="col-3">Values</dt>
+      <dd className="col-9">
+      { forEach(props.variants, (data: { key: number, value: any }) => <code key={ data.key } className="me-2">{ data.value }</code>) }
       </dd>
     </dl>
   </div>;

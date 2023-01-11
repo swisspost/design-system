@@ -1,26 +1,11 @@
 @use 'sass:map';
 @use '@swisspost/design-system-styles/core' as post;
 
-$colorUtilityColors: map.merge(post.$theme-colors, (
-  muted: post.$gray-60,
-  white: post.$white,
-  black: post.$black,
-));
-
 :export {
-  @each $name, $color in $colorUtilityColors {
-    #{'colorUtilities_' + $name}: $color;
-
-    @if (post.get-contrast-color($color) != #000) {
-      #{'colorBgUtilities_' + $name}: #{'white'};
-    } @else {
-      #{'colorBgUtilities_' + $name}: #{'dark'};
-    }
-  }
-
   fontFamilies: [('sans-serif', 'monospace')];
   fontSizes: [map.keys(post.$font-sizes)];
   fontWeights: [('light', 'normal', 'bold')];
   fontStyles: [('normal', 'italic')];
   fontLineheights: [map.keys(post.$line-heights)];
+  colors: [map.keys(post.$theme-colors)]
 }
