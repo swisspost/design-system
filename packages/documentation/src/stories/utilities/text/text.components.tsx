@@ -13,25 +13,6 @@ interface IAvailableClassesAndVariablesProps {
 
 export const SCSS_VARIABLES = objectify(scss);
 
-export function ColorUtilities (props: {}) {
-  return <article className="mb-3 sb-textcolors">
-    <div className="row">
-      {
-        forEach(SCSS_VARIABLES.colorUtilities,
-          (data: { key: number, value: any }) => (
-            <div key={ data.key } className="col-md-6 col-lg-4 py-2">
-              <p className={ `d-flex justify-content-between m-0 p-2 bg-${SCSS_VARIABLES.colorBgUtilities[data.key]}` }>
-                <span className={ `text-${data.key}` }>{ data.key } text</span>
-                <a href="javascript:void" className={ `link-${data.key}` }>{ data.key } link</a>
-              </p>
-            </div>
-          )
-        )
-      }
-    </div>
-  </article>;
-};
-
 export function AvailableClassesAndVariables (props: IAvailableClassesAndVariablesProps) {
   return <div>
     <dl className="row">
