@@ -1,10 +1,12 @@
 import { useArgs } from '@storybook/client-api';
-import React, { MouseEventHandler } from 'react';
-import { Story, Args, StoryContext, ReactFramework } from '@storybook/react';
+import React, { ComponentProps, MouseEventHandler } from 'react';
+import { Meta, Story, StoryFn } from '@storybook/react';
 import { PostCollapsible } from '@swisspost/design-system-components-react';
 import parse from 'html-react-parser';
-import { definedProperties } from '../../../utils';
 import docsPage from './collapsible.docs.mdx';
+import { definedProperties } from '../../../utils';
+
+type PostCollapsibleArgs = ComponentProps<typeof PostCollapsible> & { content: string };
 
 export default {
   title: 'Components/Collapsible',
@@ -33,9 +35,9 @@ export default {
       },
     },
   },
-};
+} as Meta<PostCollapsibleArgs>;
 
-const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
+const Template: StoryFn<PostCollapsibleArgs> = (args, context) => {
   const hasHeader = args.content.indexOf('slot="header"') > -1;
   const collapsibleId = `collapsible-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
 
@@ -81,9 +83,9 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   </>;
 };
 
-export const Default: Story = Template.bind({});
+export const Default: Story<PostCollapsibleArgs> = Template.bind({});
 
-export const InitiallyCollapsed: Story = Template.bind({});
+export const InitiallyCollapsed: Story<PostCollapsibleArgs> = Template.bind({});
 InitiallyCollapsed.parameters = {
   controls: {
     exclude: [
@@ -97,7 +99,7 @@ InitiallyCollapsed.args = {
   collapsed: true,
 };
 
-export const HeadingLevel: Story = Template.bind({});
+export const HeadingLevel: Story<PostCollapsibleArgs> = Template.bind({});
 HeadingLevel.parameters = {
   controls: {
     exclude: [
@@ -111,7 +113,7 @@ HeadingLevel.args = {
   headingLevel: 6,
 };
 
-export const IntricateContent: Story = Template.bind({});
+export const IntricateContent: Story<PostCollapsibleArgs> = Template.bind({});
 IntricateContent.parameters = {
   controls: {
     exclude: [
@@ -128,7 +130,7 @@ IntricateContent.args = {
 <p>I am part of the body too!</p>`,
 };
 
-export const CustomTrigger: Story = Template.bind({});
+export const CustomTrigger: Story<PostCollapsibleArgs> = Template.bind({});
 CustomTrigger.parameters = {
   controls: {
     exclude: [
