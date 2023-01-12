@@ -1,14 +1,19 @@
+import { extractArgTypes, extractComponentDescription, setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
+import docJson from '@swisspost/design-system-components/dist/docs.json';
+import * as Components from '@swisspost/design-system-components-react';
+import beautify from 'js-beautify';
+import React from 'react';
+import { renderToString } from 'react-dom/server';
+import JsxParser from 'react-jsx-parser';
 import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';
 import './preview.scss';
 
-import { extractArgTypes, extractComponentDescription, setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
-import { renderToString } from 'react-dom/server';
-import docJson from '@swisspost/design-system-components/dist/docs.json';
-import JsxParser from 'react-jsx-parser';
-import beautify from 'js-beautify';
-
 if (docJson) setStencilDocJson(docJson);
+
+Object.entries(Components).forEach(([name, component]) => {
+  component.displayName = name.replace(/\B([A-Z])/g, '-$1').toLowerCase();
+});
 
 export const parameters = {
   previewTabs: {
