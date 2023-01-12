@@ -1,5 +1,5 @@
 import { Component, Element, h, Method, Prop, State, Watch } from '@stencil/core';
-import { booleanValidator, getElementHeight, oneOfValidator, onTransitionEnd } from '../../utils';
+import { checkBoolean, checkOneOf, getElementHeight, onTransitionEnd } from '../../utils';
 
 let nextId = 0;
 
@@ -33,7 +33,7 @@ export class PostCollapsible {
 
   @Watch('collapsed')
   validateCollapsed(newValue = this.collapsed) {
-    booleanValidator(newValue, 'The post-collapsible "collapsed" prop should be a boolean.');
+    checkBoolean(newValue, 'The post-collapsible "collapsed" prop should be a boolean.');
 
     if (!this.isLoaded) {
       this.isOpen = !newValue;
@@ -47,7 +47,7 @@ export class PostCollapsible {
 
   @Watch('headingLevel')
   validateHeadingLevel(newValue = this.headingLevel) {
-    oneOfValidator(
+    checkOneOf(
       newValue,
       [ 1, 2, 3, 4, 5, 6 ],
       'The post-collapsible element requires a heading level between 1 and 6.',
