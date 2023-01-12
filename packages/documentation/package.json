@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.0.5",
-    "@swisspost/design-system-components-react": "workspace:0.0.1",
+    "@swisspost/design-system-components-react": "workspace:1.0.5-alpha",
     "@swisspost/design-system-styles": "workspace:5.2.0",
     "html-react-parser": "3.0.7",
     "js-beautify": "1.14.7",

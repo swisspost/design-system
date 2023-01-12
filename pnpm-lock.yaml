@@ -325,7 +325,7 @@ importers:
       '@storybook/testing-library': 0.0.13
       '@storybook/theming': 6.5.15
       '@swisspost/design-system-components': workspace:1.0.5
-      '@swisspost/design-system-components-react': workspace:0.0.1
+      '@swisspost/design-system-components-react': workspace:1.0.5-alpha
       '@swisspost/design-system-styles': workspace:5.2.0
       '@types/mdx': 2.0.3
       '@types/react': 18.0.26
