@@ -26,3 +26,8 @@ styles/stylelint-report.txt
 **/cypress/videos/
 **/cypress/screenshots/
 **/cypress.env.json
+
+# Stencil
+**/stencil-generated/
+/packages/components/src/components.d.ts
+/packages/components/src/components/**/readme.md
