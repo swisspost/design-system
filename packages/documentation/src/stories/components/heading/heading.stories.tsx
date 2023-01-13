@@ -72,9 +72,9 @@ export default {
 
 const Template = (args: Args) => {
   const content: JSX.Element[] | string = args.showSubtitle ? [
-    <span>{ args.title }</span>,
-    <br />,
-    <span className="fw-light">{ args.subtitle }</span>
+    <span key="heading">{ args.title }</span>,
+    <br key="heading-br"/>,
+    <span key="subheading" className="fw-light">{ args.subtitle }</span>
   ] : args.title;
 
   return <args.level>
