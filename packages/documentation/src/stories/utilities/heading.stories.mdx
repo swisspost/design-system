@@ -1,0 +1,48 @@
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+
+<Meta
+  title="Utilities/Heading"
+  parameters={{
+    previewTabs: {
+      canvas: {
+        hidden: true,
+      },
+    },
+    viewMode: 'docs',
+  }}
+/>
+
+# Headings
+
+<p className="lead">
+  Use the heading utilities, to match the font styling of a heading without the need of the
+  associated HTML element.
+</p>
+
+<div className="alert alert-warning">
+  <p>
+    We point out that semantic headings are important for{' '}
+    <a href="/?path=/docs/foundations-accessibility--page">accessibility</a>.
+  </p>
+  <p>Use these classes only in exceptional cases.</p>
+</div>
+
+## Usage on heading Elements
+
+Use the utility classes (`.h1` - `.h6`), to change the appereance of heading elements.
+
+<Canvas withSource="open">
+  <Story name="Heading Elements">
+    <h6 className="h3">Heading level 1 with h3 styles...</h6>
+  </Story>
+</Canvas>
+
+## Usage on other Elements
+
+Use the utility classes, to make an element look like a heading.
+
+<Canvas withSource="open">
+  <Story name="Non Heading Elements">
+    <p className="h3">Paragraph with h3 styles...</p>
+  </Story>
+</Canvas>
