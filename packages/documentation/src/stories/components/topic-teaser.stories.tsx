@@ -1,4 +1,5 @@
 import React from 'react';
+import { Meta, Story, Args } from "@storybook/react";
 
 export default {
   title: 'Components/Topic Teaser',
@@ -6,7 +7,7 @@ export default {
     title: 'Loremipsum',
     subtitle: 'Vero siteos et accusam iretea et justo',
     linkCount: 5,
-    alignment: '',
+    alignment: 'null',
     backgroundColor: 'bg-nightblue'
   },
   argTypes: {
@@ -32,10 +33,13 @@ export default {
         type: 'radio',
         labels: {
           'topic-teaser-reverse': 'Image left',
-          '': 'Image right'
-        }
+          'null': 'Image right',
+        },
       },
-      options: ['topic-teaser-reverse', '']
+      options: [
+        'topic-teaser-reverse',
+        'null',
+      ],
     },
     backgroundColor: {
       control: {
@@ -59,7 +63,7 @@ export default {
       ]
     }
   }
-};
+} as Meta;
 
 const linkTexts = [
   'At vero eos et accusam et',
@@ -74,7 +78,14 @@ const linkTexts = [
   'Nonummy nibh euismod'
 ];
 
-const Template = args => {
+const Template = (args: Args) => {
+  const classes = [
+    'topic-teaser',
+    args.backgroundColor,
+    args.alignment,
+    'mb-huge-r'
+  ].filter(c => c && c !== 'null').join(' ');
+
   const links: React.ReactElement[] = [];
 
   for (let x = 0; x < args.linkCount; x++) {
@@ -104,15 +115,15 @@ const Template = args => {
     </div>
   ];
 
-  return <div className={ `topic-teaser ${args.backgroundColor} ${args.alignment} mb-huge-r` }>
+  return <div className={ classes }>
     <div className="container">
       <div className={ `topic-teaser-container ${args.backgroundColor}` }>
         <div className="row pt-huge-r">
-          { args.alignment === '' ? [...content].reverse() : content }
+          { args.alignment === 'null' ? [...content].reverse() : content }
         </div>
       </div>
     </div>
   </div>;
 };
 
-export const TopicTeaser = Template.bind({});
+export const TopicTeaser: Story = Template.bind({});
