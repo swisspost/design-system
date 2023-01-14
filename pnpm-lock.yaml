@@ -27,7 +27,7 @@ importers:
 
   packages/components:
     specifiers:
-      '@stencil/core': 2.20.0
+      '@stencil/core': 2.21.0
       '@stencil/sass': 2.0.2
       '@swisspost/design-system-styles': workspace:5.2.0
       '@types/jest': 27.5.2
@@ -37,8 +37,8 @@ importers:
       sass: 1.57.1
       typescript: 4.8.4
     dependencies:
-      '@stencil/core': 2.20.0
-      '@stencil/sass': 2.0.2_@stencil+core@2.20.0
+      '@stencil/core': 2.21.0
+      '@stencil/sass': 2.0.2_@stencil+core@2.21.0
       '@swisspost/design-system-styles': link:../styles/dist
       sass: 1.57.1
     devDependencies:
@@ -5214,18 +5214,18 @@ packages:
       '@sinonjs/commons': 1.8.3
     dev: true
 
-  /@stencil/core/2.20.0:
-    resolution: {integrity: sha512-ka+eOW+dNteXIfLCRipNbbAlBEQjqJ2fkx3fxzlKgnNHEQMdZiuIjlWt63KzvOJStNeuADdQXo89BB1dC2VRUw==}
+  /@stencil/core/2.21.0:
+    resolution: {integrity: sha512-c4mVCl87wTV8u7ExQqiiQU5XrkzXjq8ll8skPlFHlJ7+5hGWhRpuVqKgVYJPN1mC/ucRqCUfjzSNUD7cFKHhkw==}
     engines: {node: '>=12.10.0', npm: '>=6.0.0'}
     hasBin: true
     dev: false
 
-  /@stencil/sass/2.0.2_@stencil+core@2.20.0:
+  /@stencil/sass/2.0.2_@stencil+core@2.21.0:
     resolution: {integrity: sha512-+hdPubxA4cBEyJR0ge0aGl9FUr0y6e4yqcsfrxkocOT6Nv+Mi+QpfZ9kx1W3ECL640VRcHqQifPcnoauvmqPZg==}
     peerDependencies:
       '@stencil/core': '>=2.0.0'
     dependencies:
-      '@stencil/core': 2.20.0
+      '@stencil/core': 2.21.0
     dev: false
 
   /@storybook/addon-actions/6.5.15_biqbaboplfbrettd7655fr4n2y:
