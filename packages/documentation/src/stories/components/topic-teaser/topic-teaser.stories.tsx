@@ -1,8 +1,14 @@
 import React from 'react';
 import { Meta, Story, Args } from "@storybook/react";
+import docsPage from './topic-teaser.docs.mdx';
 
 export default {
   title: 'Components/Topic Teaser',
+  parameters: {
+    docs: {
+      page: docsPage,
+    },
+  },
   args: {
     title: 'Loremipsum',
     subtitle: 'Vero siteos et accusam iretea et justo',
@@ -12,23 +18,40 @@ export default {
   },
   argTypes: {
     title: {
+      name: 'Title',
+      description: 'The text to include in the component title.',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
+      table: {
+        category: 'General',
+      },
     },
     subtitle: {
+      name: 'Subtitle',
+      description: 'The text to include in the component subtitle.',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
+      table: {
+        category: 'General',
+      },
     },
     linkCount: {
+      name: 'Amount of links',
+      description: 'The amount of the renderd links.',
       control: {
         type: 'number',
         min: 1,
-        max: 10
-      }
+        max: 10,
+      },
+      table: {
+        category: 'General',
+      },
     },
     alignment: {
+      name: 'Image alignment',
+      description: 'The alignment of the image.',
       control: {
         type: 'radio',
         labels: {
@@ -40,10 +63,31 @@ export default {
         'topic-teaser-reverse',
         'null',
       ],
+      table: {
+        category: 'General',
+      },
     },
     backgroundColor: {
+      name: 'Background Color',
+      description: 'The color the component uses as background.',
       control: {
-        type: 'select'
+        type: 'select',
+        labels: {
+          'bg-light': 'Light',
+          'bg-dark': 'Dark',
+          'bg-nightblue': 'Nightblue',
+          'bg-nightblue-bright': 'Nightblue (bright)',
+          'bg-petrol': 'Petrol',
+          'bg-petrol-bright': 'Petrol (bright)',
+          'bg-coral': 'Coral',
+          'bg-coral-bright': 'Coral (bright)',
+          'bg-olive': 'Olive',
+          'bg-olive-bright': 'Olive (bright)',
+          'bg-purple': 'Purple',
+          'bg-purple-bright': 'Purple (bright)',
+          'bg-aubergine': 'Aubergine',
+          'bg-aubergine-bright': 'Aubergine (bright)',
+        }
       },
       options: [
         'bg-light',
@@ -59,10 +103,13 @@ export default {
         'bg-purple',
         'bg-purple-bright',
         'bg-aubergine',
-        'bg-aubergine-bright'
-      ]
-    }
-  }
+        'bg-aubergine-bright',
+      ],
+      table: {
+        category: 'General',
+      },
+    },
+  },
 } as Meta;
 
 const linkTexts = [
@@ -126,4 +173,4 @@ const Template = (args: Args) => {
   </div>;
 };
 
-export const TopicTeaser: Story = Template.bind({});
+export const Default: Story = Template.bind({});
