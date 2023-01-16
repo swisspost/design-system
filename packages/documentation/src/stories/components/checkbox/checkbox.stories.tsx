@@ -156,7 +156,7 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
 
   setTimeout(function () {
     const input: HTMLInputElement | null = document.querySelector('input.form-check-input');
-    if (input !== null) input.indeterminate = args.checked === 'indeterminate';
+    if (input !== null && args.checked === 'indeterminate') input.indeterminate = true;
   }, 0);
 
   return <div className="form-check">
