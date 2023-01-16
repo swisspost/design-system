@@ -82,7 +82,7 @@ importers:
       karma-jasmine: 5.1.0
       karma-jasmine-html-reporter: 2.0.0
       ng-packagr: 14.2.2
-      rimraf: 3.0.2
+      rimraf: 4.0.7
       rxjs: 7.8.0
       tslib: 2.4.1
       typescript: 4.8.4
@@ -126,7 +126,7 @@ importers:
       karma-jasmine: 5.1.0_karma@6.4.1
       karma-jasmine-html-reporter: 2.0.0_uk6l45dlsjldsnfgnal4othgyq
       ng-packagr: 14.2.2_wan7g4kdzu7uld2brwo2xdryge
-      rimraf: 3.0.2
+      rimraf: 4.0.7
       typescript: 4.8.4
 
   packages/components-angular/projects/intranet-header:
@@ -193,7 +193,7 @@ importers:
       prettier: 2.8.2
       protractor: 7.0.0
       raw-loader: 4.0.2
-      rimraf: 3.0.2
+      rimraf: 4.0.7
       rxjs: 7.8.0
       sass: 1.57.1
       sockjs: 0.3.24
@@ -257,7 +257,7 @@ importers:
       prettier: 2.8.2
       protractor: 7.0.0
       raw-loader: 4.0.2_webpack@5.75.0
-      rimraf: 3.0.2
+      rimraf: 4.0.7
       sass: 1.57.1
       sockjs: 0.3.24
       ts-node: 10.9.1_vqcafhj4xvr2nzknlrdklk55zm
@@ -349,7 +349,7 @@ importers:
       postcss: 8.4.21
       postcss-scss: 4.0.6
       prettier: 2.8.2
-      rimraf: 3.0.2
+      rimraf: 4.0.7
       rxjs: 7.8.0
       sass: 1.57.1
       sass-loader: 10.4.1
@@ -384,7 +384,7 @@ importers:
       npm-run-all: 4.1.5
       postcss: 8.4.21
       postcss-scss: 4.0.6_postcss@8.4.21
-      rimraf: 3.0.2
+      rimraf: 4.0.7
       rxjs: 7.8.0
       sass: 1.57.1
       sass-loader: 10.4.1_sass@1.57.1
@@ -19569,6 +19569,12 @@ packages:
     hasBin: true
     dependencies:
       glob: 7.2.3
+    dev: true
+
+  /rimraf/4.0.7:
+    resolution: {integrity: sha512-CUEDDrZvc0swDgVdXGiv3FcYYQMpJxjvSGt85Amj6yU+MCVWurrLCeLiJDdJPHCzNJnwuebBEdcO//eP11Xa7w==}
+    engines: {node: '>=14'}
+    hasBin: true
     dev: true
 
   /ripemd160/2.0.2:
