@@ -1,8 +1,15 @@
-import { h } from '@stencil/core';
-import { Default as Header } from '../../../../documentation/src/stories/internet-header/header/post-internet-header.stories';
+import { Meta, Args, Story } from '@storybook/react';
+import Header from '../header/post-internet-header.stories';
+import docsPage from './internet-breadcrumbs.docs.mdx';
 
 export default {
-  title: 'Breadcrumb',
+  title: 'Internet Header/Breadcrumbs',
+  parameters: {
+    layout: 'fullscreen',
+    docs: {
+      page: docsPage
+    }
+  },
   argTypes: {
     'custom-items': {
       control: {
@@ -20,24 +27,24 @@ export default {
       },
     },
   },
-};
+} as Meta;
 
-const Template = args => {
+const Template = (args: Args) => {
   return (
     <div>
       <swisspost-internet-header {...Header.args} />
-      <main class="container mt-huge-r">
+      <main className="container mt-huge-r">
         <swisspost-internet-breadcrumbs custom-items={JSON.stringify(args['custom-items'])} />
-        <h1 class="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
-        <p class="fake-content my-big"></p>
+        <h1 className="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
+        <p className="fake-content my-big"></p>
       </main>
     </div>
   );
 };
 
-export const Default = Template.bind({});
+export const Default: Story = Template.bind({});
 
-export const CustomItems = Template.bind({});
+export const CustomItems: Story = Template.bind({});
 CustomItems.args = {
   'custom-items': [
     { text: 'X', url: '/x' },
@@ -46,24 +53,24 @@ CustomItems.args = {
   ],
 };
 
-const NonExistentHeaderTemplate = args => {
+const NonExistentHeaderTemplate = (args: Args) => {
   return (
-    <div class="page-wrapper">
-      <main class="container mt-huge-r">
+    <div className="page-wrapper">
+      <main className="container mt-huge-r">
         <swisspost-internet-breadcrumbs custom-items={JSON.stringify(args['custom-items'])} />
-        <h1 class="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
-        <p class="my-big">
+        <h1 className="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
+        <p className="my-big">
           The <code>&lt;swisspost-internet-breadcrumbs&gt;</code> component cannot be used on its
           own. Accordingly, the <code>&lt;swisspost-internet-breadcrumbs&gt;</code> component should
           not be rendered if there's no <code>&lt;swisspost-internet-header&gt;</code> component
           included on the page.
         </p>
-        <p class="fake-content my-big"></p>
-        <p class="fake-content my-big"></p>
-        <p class="fake-content my-big"></p>
+        <p className="fake-content my-big"></p>
+        <p className="fake-content my-big"></p>
+        <p className="fake-content my-big"></p>
       </main>
     </div>
   );
 };
 
-export const NonExistentHeader = NonExistentHeaderTemplate.bind({});
+export const NonExistentHeader: Story = NonExistentHeaderTemplate.bind({});

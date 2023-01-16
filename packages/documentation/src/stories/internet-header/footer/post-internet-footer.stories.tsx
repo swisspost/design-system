@@ -1,8 +1,17 @@
-import { h } from '@stencil/core';
-import { Default as Header } from '../../../../documentation/src/stories/internet-header/header/post-internet-header.stories';
+import { Meta, Args, Story } from '@storybook/react';
+import Header from '../header/post-internet-header.stories';
+import docsPage from './internet-footer.docs.mdx';
 
 export default {
-  title: 'Footer',
+  title: 'Internet Header/Footer',
+  parameters: {
+    docs: {
+      page: docsPage
+    },
+    actions: {
+      handles: ['headerLoaded', 'languageChanged'],
+    },
+  },
   argTypes: {
     'custom-config': {
       control: {
@@ -19,36 +28,32 @@ export default {
       },
     },
   },
-  parameters: {
-    actions: {
-      handles: ['headerLoaded', 'languageChanged'],
-    },
-  },
-};
 
-const Template = args => {
+} as Meta;
+
+const Template = (args: Args) => {
   return (
-    <div class="page-wrapper">
+    <div className="page-wrapper">
       <swisspost-internet-header
         {...Header.args}
         custom-config={JSON.stringify(args['custom-config'])}
       />
-      <main class="container mt-huge-r">
+      <main className="container mt-huge-r">
         <swisspost-internet-breadcrumbs />
-        <h1 class="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
-        <p class="fake-content my-big"></p>
-        <p class="fake-content my-big"></p>
-        <p class="fake-content my-big"></p>
-        <p class="fake-content my-big"></p>
+        <h1 className="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
+        <p className="fake-content my-big"></p>
+        <p className="fake-content my-big"></p>
+        <p className="fake-content my-big"></p>
+        <p className="fake-content my-big"></p>
       </main>
       <swisspost-internet-footer />
     </div>
   );
 };
 
-export const Default = Template.bind({});
+export const Default: Story = Template.bind({});
 
-export const CustomConfig = Template.bind({});
+export const CustomConfig: Story = Template.bind({});
 CustomConfig.args = {
   'custom-config': {
     de: {
@@ -72,22 +77,22 @@ CustomConfig.args = {
 
 const NonExistentHeaderTemplate = () => {
   return (
-    <div class="page-wrapper">
-      <main class="container mt-huge-r">
-        <h1 class="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
-        <p class="my-big">
+    <div className="page-wrapper">
+      <main className="container mt-huge-r">
+        <h1 className="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
+        <p className="my-big">
           The <code>&lt;swisspost-internet-footer&gt;</code> component cannot be used on its own.
           Accordingly, the <code>&lt;swisspost-internet-footer&gt;</code> component should not be
           rendered if there's no <code>&lt;swisspost-internet-header&gt;</code> component included
           on the page.
         </p>
-        <p class="fake-content my-big"></p>
-        <p class="fake-content my-big"></p>
-        <p class="fake-content my-big"></p>
+        <p className="fake-content my-big"></p>
+        <p className="fake-content my-big"></p>
+        <p className="fake-content my-big"></p>
       </main>
       <swisspost-internet-footer />
     </div>
   );
 };
 
-export const NonExistentHeader = NonExistentHeaderTemplate.bind({});
+export const NonExistentHeader: Story = NonExistentHeaderTemplate.bind({});

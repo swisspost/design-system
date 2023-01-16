@@ -20,7 +20,7 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Welcome', 'Foundations', 'Components', 'Utilities', 'Misc'],
+      order: ['Welcome', 'Foundations', 'Components', 'Internet Header', 'Utilities', 'Misc'],
     },
   },
   darkMode: {

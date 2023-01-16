@@ -16,8 +16,7 @@
     "skipLibCheck": true
   },
   "include": [
-    "src",
-    "../documentation/src/stories/internet-header/header/post-internet-header.stories.tsx"
+    "src"
   ],
   "exclude": ["node_modules"]
 }
