@@ -9,7 +9,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 export default {
-  title: 'Components/Input',
+  title: 'Components/Text Input',
   parameters: {
     docs: {
       page: docsPage
