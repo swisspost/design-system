@@ -10,7 +10,7 @@ const CHECKED_STATE_MAP: Record<string, boolean> = {
 };
 
 const CHECKED_STATE_TOGGLE_MAP: Record<string, string> = {
-  'indeterminate': 'unchecked',
+  'indeterminate': 'checked',
   'unchecked': 'checked',
   'checked': 'unchecked'
 };
