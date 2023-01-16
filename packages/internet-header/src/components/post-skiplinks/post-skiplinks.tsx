@@ -12,11 +12,11 @@ import { SvgIcon } from '../../utils/svg-icon.component';
 export class PostSkiplinks {
   @Element() host: HTMLElement;
 
-  getMainId() {
+  private getMainId() {
     return document.querySelector('main[id]')?.getAttribute('id');
   }
 
-  setFocus(tagname: string) {
+  private setFocus(tagname: string) {
     const rootHost = this.host.closest('.post-internet-header');
     if (!rootHost) {
       return;
@@ -28,9 +28,25 @@ export class PostSkiplinks {
     }
   }
 
+  private focusMain() {
+    this.setFocus('post-main-navigation');
+  }
+
+  private focusSearch() {
+    this.setFocus('post-search');
+  }
+
+  private focusLogin() {
+    this.setFocus('post-klp-login-widget');
+  }
+
   render() {
-    const config = state.localizedConfig.header;
+    const config = state.localizedConfig?.header;
     const mainId = this.getMainId();
+
+    if (config === undefined) {
+      return;
+    }
 
     return (
       <Host>
@@ -48,7 +64,7 @@ export class PostSkiplinks {
                 href="#post-internet-header-main-navigation"
                 accessKey="1"
                 title="[ALT + 1]"
-                onClick={() => this.setFocus('post-main-navigation')}
+                onClick={this.focusMain}
               >
                 <span>{config.translations.navMainAriaLabel}</span>
                 <SvgIcon name="pi-pointy-arrow-right" />
@@ -69,7 +85,7 @@ export class PostSkiplinks {
                   href="#post-internet-header-search-button"
                   accessKey="3"
                   title="[ALT + 3]"
-                  onClick={() => this.setFocus('post-search')}
+                  onClick={this.focusSearch}
                 >
                   <span>{translate('Go to search')}</span>
                   <SvgIcon name="pi-pointy-arrow-right" />
@@ -83,7 +99,7 @@ export class PostSkiplinks {
                   href="#post-klp-login-widget"
                   accessKey="4"
                   title="[ALT + 4]"
-                  onClick={() => this.setFocus('post-klp-login-widget')}
+                  onClick={this.focusLogin}
                 >
                   <span>{translate('Go to login')}</span>
                   <SvgIcon name="pi-pointy-arrow-right" />

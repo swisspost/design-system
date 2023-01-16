@@ -58,8 +58,6 @@ export const markActiveRoute = (
  * @returns True if portal set any route as active
  */
 export const hasActivePortalRoute = (config: NavMainEntity[]): boolean => {
-  if (!config) return false;
-
   return config.filter(nav => nav.isActive).length > 0;
 };
 
@@ -97,10 +95,6 @@ export const compileScoreList = (
   compareUrl: URL,
   activeRouteProp: ActiveRouteProp,
 ): MainNavScoreList => {
-  if (!config) {
-    return [];
-  }
-
   // Flag to check if the Portal set any active links or if there are any exact matches
   let hadAnyActiveLink = false;
   const scoreList: MainNavScoreList = [];

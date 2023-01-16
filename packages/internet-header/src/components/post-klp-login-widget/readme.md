@@ -9,7 +9,7 @@
 
 ### `setFocus() => Promise<void>`
 
-
+Sets the focus on the login button
 
 #### Returns
 

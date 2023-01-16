@@ -1,7 +1,7 @@
 import { h } from '@stencil/core';
 import { ContentEntity } from '../../../models/footer.model';
 
-export const PostFooterBlockSocials = (props: { content?: ContentEntity }) => {
+export const PostFooterBlockSocials = (props: { content: ContentEntity }) => {
   return (
     <div class="block-socials">
       <h3>{props.content.title}</h3>

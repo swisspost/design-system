@@ -4,7 +4,7 @@ import { gisAPIUrl, pois, placesUrl } from './places.settings';
 import { hardNormalize, createSlug } from './search-utilities';
 
 // Never load types twice
-let typesCache: string = null;
+let typesCache: string | null = null;
 
 /**
  * Convert Post POI ids to stao cache ids
@@ -19,9 +19,9 @@ const convertTypes = async () => {
         pois
           .map(poi => {
             const foundType = typesJSON.types.find(type => type.id === poi);
-            return foundType ? foundType.tag : null;
+            return foundType?.tag;
           })
-          .filter(poi => poi !== null)
+          .filter(poi => poi !== undefined)
           .join(','),
       );
     } catch (error) {
@@ -43,7 +43,7 @@ const convertTypes = async () => {
  * @returns
  */
 export const queryPlaces = async (query: string): Promise<GeocodeLocation[]> => {
-  if (!query.length) {
+  if (query.length === 0) {
     return [];
   }
 
@@ -79,7 +79,9 @@ export const queryPlaces = async (query: string): Promise<GeocodeLocation[]> => 
  * @param place Name of the suggested place
  * @returns
  */
-export const highlightPlacesString = (query: string, place: string) => {
+export const highlightPlacesString = (query: string | undefined, place: string) => {
+  if (query === undefined) return place;
+
   // Strip accents from the string
   const reference = hardNormalize(place);
   const q = hardNormalize(query);
@@ -103,9 +105,9 @@ export const highlightPlacesString = (query: string, place: string) => {
  * @returns
  */
 export const getPlacesUrl = (location: GeocodeLocation): string => {
-  let url = null;
+  let url: string;
 
-  if (location.id) {
+  if (location.id !== '') {
     url = `${placesUrl}/${state.currentLanguage}/${location.id}/${createSlug(location.name)}`;
   } else {
     url = `${placesUrl}?preselecttext=${encodeURIComponent(location.name)}`;

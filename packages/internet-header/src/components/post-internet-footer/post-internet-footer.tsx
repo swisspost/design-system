@@ -75,16 +75,13 @@ export class PostInternetFooter {
 
     const footerConfig = state.localizedConfig.footer;
     const customFooterConfig = state.localizedCustomConfig?.footer;
-    const hasCustomFooterConfig = customFooterConfig?.block ?? null;
 
     return (
       <Host>
         <SvgSprite />
         <footer class="post-internet-footer light font-curve-regular">
           <h2 class="visually-hidden">{footerConfig.title}</h2>
-          {hasCustomFooterConfig ? (
-            <PostFooterBlockCustom block={customFooterConfig.block} />
-          ) : null}
+          {customFooterConfig?.block && <PostFooterBlockCustom block={customFooterConfig?.block} />}
           <div class="footer-container container">
             {footerConfig.block
               .filter(block => block.columnType === 'list')

@@ -20,13 +20,16 @@ export const getUserLang = (
   }
 
   // Check if implementor overrides lang config
-  if (implementorPreferredLanguage) {
+  if (implementorPreferredLanguage !== undefined) {
     languagesSet.push(implementorPreferredLanguage);
   }
 
   // Check query string param
   const url = new URL(window.location.href);
-  languagesSet.push(url.searchParams.get('lang'));
+  const langParam = url.searchParams.get('lang');
+  if (langParam !== null) {
+    languagesSet.push(langParam);
+  }
 
   // Check url pathname
   const matchSegment = url.pathname
@@ -37,25 +40,32 @@ export const getUserLang = (
   }
 
   // Check local storage with the key provided
-  if (localStorageKey) {
-    languagesSet.push(window.localStorage.getItem(localStorageKey));
+  if (localStorageKey !== undefined) {
+    const localStorageEntry = window.localStorage.getItem(localStorageKey);
+    if (localStorageEntry !== null) languagesSet.push(localStorageEntry);
   }
 
   // Check cookies
   languagesSet.push(getCookie('language'));
   languagesSet.push(getCookie('lang'));
-  if (cookieKey) {
-    languagesSet.push(getCookie(cookieKey));
+  if (cookieKey !== undefined) {
+    const cookieEntry = getCookie(cookieKey);
+    if (cookieEntry !== '') {
+      languagesSet.push(getCookie(cookieKey));
+    }
   }
 
   // Check document language
   languagesSet.push(document.documentElement.lang);
 
   // Check browser preferred language
-  languagesSet.push(getPreferredLanguageFromBrowser(supportedLanguages));
+  const browserPreferredLang = getPreferredLanguageFromBrowser(supportedLanguages);
+  if (browserPreferredLang !== null) {
+    languagesSet.push(browserPreferredLang);
+  }
 
   // Check the state
-  languagesSet.push(state.currentLanguage);
+  if (state.currentLanguage !== null) languagesSet.push(state.currentLanguage);
 
   // Check the set of languages to see if it matches
   // any of the supported languages. Return the first
@@ -81,10 +91,14 @@ export const persistLanguageChoice = (
   cookieKey?: string,
   localStorageKey?: string,
 ) => {
-  window.localStorage.setItem(localStorageKey, lang);
-  if (cookieKey) {
+  if (localStorageKey !== undefined) {
+    window.localStorage.setItem(localStorageKey, lang);
+  }
+
+  if (cookieKey !== undefined) {
     setCookie(cookieKey, lang);
   }
+
   state.currentLanguage = lang;
 };
 
@@ -108,7 +122,7 @@ export const setCookie = (key: string, value: string) => {
   document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
 };
 
-const getPreferredLanguageFromBrowser = (supportedLanguages: string[]): string => {
+const getPreferredLanguageFromBrowser = (supportedLanguages: string[]): string | null => {
   // IE & Chrome
   if (navigator.language) {
     const lang = extractLanguage(navigator.language);
@@ -141,4 +155,4 @@ const extractLanguage = (language: string): string => language.substring(0, 2).t
  * @returns Translated string or the key
  */
 export const translate = (key: string, lang?: string, translationObject = translations) =>
-  translationObject[key]?.[lang ?? state.currentLanguage] ?? key;
+  translationObject[key]?.[lang ?? state.currentLanguage ?? ''] ?? key;

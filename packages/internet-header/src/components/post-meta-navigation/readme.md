@@ -9,7 +9,7 @@
 
 | Property      | Attribute     | Description | Type                         | Default     |
 | ------------- | ------------- | ----------- | ---------------------------- | ----------- |
-| `fullWidth`   | `full-width`  |             | `boolean`                    | `false`     |
+| `fullWidth`   | `full-width`  |             | `boolean \| undefined`       | `false`     |
 | `orientation` | `orientation` |             | `"horizontal" \| "vertical"` | `undefined` |
 
 

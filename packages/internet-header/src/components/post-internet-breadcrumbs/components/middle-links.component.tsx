@@ -9,7 +9,7 @@ export const MiddleLinks = (props: {
 }) => {
   return props.items.slice(1, -1).map(item => (
     <li>
-      <a href={item.url} class="nav-link" tabindex={props.focusable === false ? '-1' : null}>
+      <a href={item.url} class="nav-link" tabindex={props.focusable === false ? '-1' : undefined}>
         <span>{item.text}</span>
       </a>
       {props.icons ? <SvgIcon name="pi-arrow-down" classNames="rotate-270"></SvgIcon> : null}

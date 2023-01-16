@@ -9,7 +9,7 @@ export const BreadcrumbList = (props: {
   dropdownOpen?: boolean;
   isConcatenated?: boolean;
   clickHandler?: (event?: MouseEvent) => void;
-  lastItemRef?: (element: HTMLElement) => void;
+  lastItemRef?: (element: HTMLElement | undefined) => void;
   focusable?: boolean;
 }) => {
   const homeItem = props.items[0];
@@ -21,7 +21,7 @@ export const BreadcrumbList = (props: {
         <a
           class="home-link nav-link"
           href={homeItem.url}
-          tabindex={props.focusable === false ? '-1' : null}
+          tabindex={props.focusable === false ? '-1' : undefined}
         >
           <span class="visually-hidden">{homeItem.text}</span>
           <SvgIcon name="pi-home" />
@@ -32,8 +32,8 @@ export const BreadcrumbList = (props: {
         <li>
           <MiddleDropdown
             items={props.items}
-            dropdownOpen={props.dropdownOpen}
-            clickHandler={() => props.clickHandler()}
+            dropdownOpen={props.dropdownOpen ?? false}
+            clickHandler={props.clickHandler}
             focusable={props.focusable}
           />
         </li>
@@ -45,8 +45,8 @@ export const BreadcrumbList = (props: {
         <a
           class="last-link nav-link"
           href={lastItem.url}
-          tabindex={props.focusable === false ? '-1' : null}
-          ref={el => (props.lastItemRef ? props.lastItemRef(el) : null)}
+          tabindex={props.focusable === false ? '-1' : undefined}
+          ref={el => (props.lastItemRef !== undefined ? props.lastItemRef(el) : null)}
         >
           {lastItem.text}
         </a>

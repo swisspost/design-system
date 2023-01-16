@@ -13,6 +13,7 @@
     "resolveJsonModule": true,
     "jsx": "react",
     "jsxFactory": "h",
+    "strictNullChecks": true,
     "skipLibCheck": true
   },
   "include": [

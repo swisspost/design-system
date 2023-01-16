@@ -5,7 +5,7 @@ import { translate } from '../../../services/language.service';
 export const PostLanguageSwitchList = (props: {
   navLang: NavLangEntity[];
   switchLanguage: (lang: NavLangEntity) => void;
-  dropdownRef: (element: HTMLElement) => void;
+  dropdownRef: (element: HTMLElement | undefined) => void;
 }) => (
   <nav class="language-switch-dropdown" ref={e => props.dropdownRef(e)}>
     <h3 class="visually-hidden">{translate('Change language')}</h3>

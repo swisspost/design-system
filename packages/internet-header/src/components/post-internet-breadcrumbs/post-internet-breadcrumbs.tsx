@@ -16,8 +16,8 @@ import { prefersReducedMotion } from '../../utils/utils';
   shadow: true,
 })
 export class PostInternetBreadcrumbs {
-  @Prop() customItems: string | IBreadcrumbItem[] = null;
-  @State() customBreadcrumbItems: IBreadcrumbItem[] = null;
+  @Prop() customItems?: string | IBreadcrumbItem[];
+  @State() customBreadcrumbItems?: IBreadcrumbItem[];
   @State() overlayVisible: boolean;
   @State() isConcatenated: boolean; // Don't set an initial value, this has to be calculated first, otherwise reactivity problems ensue
   @State() dropdownOpen: boolean = false;
@@ -29,7 +29,7 @@ export class PostInternetBreadcrumbs {
   private debouncedResize: debounce<() => void>;
   private lastWindowWidth: number;
   private openAnimation: Animation;
-  private loadedAnimation: Animation;
+  private loadedAnimation: Animation | undefined;
 
   connectedCallback() {
     this.debouncedResize = debounce(200, this.handleResize.bind(this));
@@ -93,7 +93,8 @@ export class PostInternetBreadcrumbs {
 
     // Delay the check
     window.requestAnimationFrame(() => {
-      this.isConcatenated = this.controlNavRef.clientWidth > this.visibleNavRef.clientWidth;
+      if (this.controlNavRef && this.visibleNavRef)
+        this.isConcatenated = this.controlNavRef.clientWidth > this.visibleNavRef.clientWidth;
     });
   }
 
@@ -106,7 +107,7 @@ export class PostInternetBreadcrumbs {
       this.currentOverlay = overlay;
       this.setBodyScroll(overlay);
     } else {
-      const activeToggler = this.host.shadowRoot.querySelector<HTMLElement>(
+      const activeToggler = this.host.shadowRoot?.querySelector<HTMLElement>(
         '.breadcrumb-buttons [aria-expanded="true"]',
       );
 
@@ -159,13 +160,13 @@ export class PostInternetBreadcrumbs {
     iFrame.addEventListener('load', () => {
       iframeResizer({ heightCalculationMethod: 'taggedElement', scrolling: true }, iFrame);
       const duration = prefersReducedMotion ? 0 : 300;
-      this.loadedAnimation = iFrame.parentElement.animate(
+      this.loadedAnimation = iFrame.parentElement?.animate(
         [{ opacity: 1, visibility: 'visible', transform: 'translateY(0px)' }],
         { duration, fill: 'forwards' },
       );
-      iFrame.parentElement.classList.add('loaded');
-      this.loadedAnimation.finished.then(() => {
-        iFrame.parentElement.focus();
+      iFrame.parentElement?.classList.add('loaded');
+      this.loadedAnimation?.finished.then(() => {
+        iFrame.parentElement?.focus();
       });
     });
   }
@@ -176,7 +177,7 @@ export class PostInternetBreadcrumbs {
    * @param e Overlay element or null
    * @returns void
    */
-  overlayRef(e: HTMLElement | null) {
+  overlayRef(e: HTMLElement | undefined) {
     if (!e) {
       return;
     }
@@ -192,6 +193,14 @@ export class PostInternetBreadcrumbs {
     if (event.key.toLowerCase() === 'escape') {
       this.toggleOverlay(this.currentOverlay, false);
     }
+  }
+
+  private handleToggleDropdown() {
+    this.toggleDropdown();
+  }
+
+  private handleToggleOverlay() {
+    this.toggleOverlay(this.currentOverlay, false);
   }
 
   render() {
@@ -219,9 +228,10 @@ export class PostInternetBreadcrumbs {
     }
 
     const breadcrumbConfig = state.localizedConfig.breadcrumb;
-    const items = this.customBreadcrumbItems
-      ? [...breadcrumbConfig.items, ...this.customBreadcrumbItems]
-      : breadcrumbConfig.items;
+    const items =
+      this.customBreadcrumbItems !== undefined
+        ? [...breadcrumbConfig.items, ...this.customBreadcrumbItems]
+        : breadcrumbConfig.items;
 
     return (
       <Host>
@@ -253,7 +263,7 @@ export class PostInternetBreadcrumbs {
               items={items}
               dropdownOpen={this.dropdownOpen}
               isConcatenated={this.isConcatenated}
-              clickHandler={() => this.toggleDropdown()}
+              clickHandler={this.handleToggleDropdown}
             ></BreadcrumbList>
           </nav>
           <div class="breadcrumb-buttons">
@@ -270,11 +280,12 @@ export class PostInternetBreadcrumbs {
           </div>
           {this.overlayVisible && (
             <OverlayComponent
-              overlayRef={e => this.overlayRef(e)}
-              iFrameRef={e => this.registerIFrameResizer(e)}
+              overlayRef={this.overlayRef}
+              iFrameRef={this.registerIFrameResizer}
               overlay={this.currentOverlay}
-              onClick={() => this.toggleOverlay(this.currentOverlay, false)}
-              onKeyDown={event => this.handleKeyDown(event)}
+              onClick={this.handleToggleOverlay}
+              onKeyDown={this.handleKeyDown}
+              closeButtonText={state.localizedConfig.header.translations.closeButtonText}
             ></OverlayComponent>
           )}
         </div>

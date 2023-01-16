@@ -11,19 +11,15 @@ export class PostMetaNavigation {
   @Prop() fullWidth?: boolean = false;
 
   render() {
-    const config = state.localizedConfig.header;
-
-    // There's no meta navigation config
-    if (!config.navMeta) {
-      return null;
-    }
+    if (state.localizedConfig?.header.navMeta === undefined) return;
+    const { navMeta } = state.localizedConfig.header;
 
     return (
       <Host>
         <div class={`meta-container ${this.orientation}${this.fullWidth ? ' full-width' : ''}`}>
           <nav class="meta-navigation">
             <ul class="meta-list">
-              {config.navMeta
+              {navMeta
                 ?.filter(meta => !meta.isHomeLink)
                 .map(meta => (
                   <li>

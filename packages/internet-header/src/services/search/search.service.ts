@@ -1,4 +1,5 @@
 import { state } from '../../data/store';
+import { ISearchConfig } from '../../models/header.model';
 import { getTrackAndTraceRedirectUrl, isParcel } from './parcel.service';
 
 /**
@@ -7,9 +8,14 @@ import { getTrackAndTraceRedirectUrl, isParcel } from './parcel.service';
  * @param query Search term
  * @returns
  */
-export const getSearchRedirectUrl = async (query: string): Promise<string> => {
-  const isTrackTraceId = await isParcel(query);
-  return isTrackTraceId ? getTrackAndTraceRedirectUrl(query) : getSearchPageUrl(query);
+export const getSearchRedirectUrl = async (
+  query: string,
+  searchConfig: ISearchConfig,
+): Promise<string | undefined> => {
+  const isTrackTraceId = await isParcel(query, searchConfig);
+  return isTrackTraceId
+    ? getTrackAndTraceRedirectUrl(query, searchConfig)
+    : getSearchPageUrl(query);
 };
 
 /**
@@ -18,7 +24,10 @@ export const getSearchRedirectUrl = async (query: string): Promise<string> => {
  * @param query Search term
  * @returns Search page URL
  */
-export const getSearchPageUrl = (query: string): string => {
+export const getSearchPageUrl = (query: string): string | undefined => {
+  if (state.localizedConfig?.header.search === undefined) {
+    return;
+  }
   const { searchPageUrl } = state.localizedConfig.header.search;
   const searchParam = `#q=${encodeURIComponent(query)}`;
   return `${searchPageUrl}${searchParam}&t=AllTab`;

@@ -14,18 +14,22 @@ export class PostKlpLoginWidget implements IsFocusable {
 
   async componentDidLoad() {
     const { initializeKLPLoginWidget } = await import('./klp-widget.controller');
+    if (state.localizedConfig?.header.loginWidgetOptions === undefined) return;
     initializeKLPLoginWidget('post-klp-login-widget', {
       ...state.localizedConfig.header.loginWidgetOptions,
       environment: state.environment,
     });
   }
 
+  /**
+   * Sets the focus on the login button
+   */
   @Method()
   async setFocus() {
-    const loginButton = this.host.shadowRoot.querySelectorAll<HTMLElement>(
+    const loginButton = this.host.shadowRoot?.querySelectorAll<HTMLElement>(
       '.klp-widget-anonymous__wrapper a, .klp-widget-authenticated-session a',
     );
-    if (loginButton.length) {
+    if (loginButton && loginButton.length) {
       loginButton[0].focus();
     }
   }

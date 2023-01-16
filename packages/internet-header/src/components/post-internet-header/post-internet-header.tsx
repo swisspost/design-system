@@ -46,7 +46,7 @@ export class PostInternetHeader {
   /**
    * Initial language to be used. Overrides automatic language detection.
    */
-  @Prop() language: string = null;
+  @Prop() language?: string;
 
   /**
    * Toggle the meta navigation.
@@ -71,7 +71,7 @@ export class PostInternetHeader {
   /**
    * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
    */
-  @Prop() configProxy?: string = null;
+  @Prop() configProxy?: string | null = null;
 
   /**
    * Target environment. Choose 'int01' for local testing.
@@ -82,17 +82,17 @@ export class PostInternetHeader {
    * Override the language switch links with custom URLs. Helpful when your application contains sub-pages and you
    * would like to stay on subpages when the user changes language.
    */
-  @Prop() languageSwitchOverrides: string | IAvailableLanguage[] = null;
+  @Prop() languageSwitchOverrides?: string | IAvailableLanguage[];
 
   /**
    * Customize the header config loaded from the post portal.
    */
-  @Prop() customConfig: string | ICustomConfig = null;
+  @Prop() customConfig?: string | ICustomConfig;
 
   /**
    * The header uses this cookie to set the language. Disables automatic language detection.
    */
-  @Prop() languageCookieKey?: string = null;
+  @Prop() languageCookieKey?: string;
 
   /**
    * The header uses this local storage key to set the language. Disables automatic language selection.
@@ -108,7 +108,7 @@ export class PostInternetHeader {
   /**
    * Online Services only: Add custom links to the special online service navigation entry
    */
-  @Prop() osFlyoutOverrides?: string | NavMainEntity = null;
+  @Prop() osFlyoutOverrides?: string | NavMainEntity;
 
   /**
    * Displays the header at full width for full-screen applications
@@ -120,26 +120,27 @@ export class PostInternetHeader {
    */
   @Event() headerLoaded: EventEmitter<void>;
 
-  @State() activeFlyout: string = null;
-  @State() activeDropdownElement: DropdownElement = null;
+  @State() activeFlyout: string | null = null;
+  @State() activeDropdownElement: DropdownElement | null = null;
   @Element() host: HTMLElement;
 
   /**
    * Get the currently set language as a two letter string ("de", "fr" "it" or "en")
    * @returns string
    */
-  @Method() async getCurrentLanguage(): Promise<'de' | 'fr' | 'it' | 'en' | string> {
-    return state.currentLanguage;
+  @Method()
+  async getCurrentLanguage(): Promise<'de' | 'fr' | 'it' | 'en' | string> {
+    return state.currentLanguage ?? 'de';
   }
 
   private mainNav?: HTMLPostMainNavigationElement;
   private lastScrollTop = window.scrollY || document.documentElement.scrollTop;
   private throttledScroll: throttle<() => void>;
   private debouncedResize: debounce<() => void>;
-  private lastWindowWidth: number = null;
+  private lastWindowWidth: number = window.innerWidth;
 
   constructor() {
-    if (!this.project || !isValidProjectId(this.project)) {
+    if (this.project === undefined || this.project === '' || !isValidProjectId(this.project)) {
       throw new Error(
         `Internet Header project key is "${this.project}". Please provide a valid project key.`,
       );
@@ -166,7 +167,7 @@ export class PostInternetHeader {
     try {
       state.projectId = this.project;
       state.environment = this.environment;
-      state.currentLanguage = this.language;
+      if (this.language !== undefined) state.currentLanguage = this.language;
       state.languageSwitchOverrides =
         typeof this.languageSwitchOverrides === 'string'
           ? JSON.parse(this.languageSwitchOverrides)
@@ -176,10 +177,12 @@ export class PostInternetHeader {
           ? JSON.parse(this.osFlyoutOverrides)
           : this.osFlyoutOverrides;
 
-      state.localizedCustomConfig = getLocalizedCustomConfig(
-        this.customConfig,
-        state.currentLanguage,
-      );
+      if (this.customConfig !== undefined && state.currentLanguage !== null) {
+        state.localizedCustomConfig = getLocalizedCustomConfig(
+          this.customConfig,
+          state.currentLanguage,
+        );
+      }
 
       state.localizedConfig = await getLocalizedConfig({
         projectId: this.project,
@@ -217,7 +220,8 @@ export class PostInternetHeader {
       localizedCustomConfig: state.localizedCustomConfig,
       osFlyoutOverrides: state.osFlyoutOverrides,
     });
-    state.localizedCustomConfig = getLocalizedCustomConfig(this.customConfig, newValue);
+    if (this.customConfig)
+      state.localizedCustomConfig = getLocalizedCustomConfig(this.customConfig, newValue);
   }
 
   @Watch('languageSwitchOverrides')
@@ -256,6 +260,7 @@ export class PostInternetHeader {
 
   @Watch('customConfig')
   async handleCustomConfigChange(newValue: string | ICustomConfig) {
+    if (this.language === undefined) return;
     const localizedCustomConfig = getLocalizedCustomConfig(newValue, this.language);
     state.localizedCustomConfig = localizedCustomConfig;
     state.localizedConfig = await getLocalizedConfig({
@@ -299,13 +304,12 @@ export class PostInternetHeader {
     }
   }
 
-  @Listen('keyup')
-  handleKeyUp(event: KeyboardEvent) {
+  private handleKeyUp(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       if (this.activeDropdownElement) {
         this.activeDropdownElement.toggleDropdown(false);
       }
-      if (this.activeFlyout) {
+      if (this.activeFlyout !== null && this.mainNav) {
         this.mainNav.toggleDropdown(false);
       }
     }
@@ -328,7 +332,7 @@ export class PostInternetHeader {
   private handleResize() {
     // Close main navigation dropdown if size changed to bigger than 1024px (search dropdown will be kept open)
     if (this.isMainNavOpen() && this.lastWindowWidth < 1024 && window.innerWidth >= 1024) {
-      this.activeDropdownElement.toggleDropdown(false);
+      this.activeDropdownElement?.toggleDropdown(false);
     }
 
     this.lastWindowWidth = window.innerWidth;
@@ -364,7 +368,7 @@ export class PostInternetHeader {
         }, 10);
       }
 
-      if (this.activeFlyout) {
+      if (this.activeFlyout !== null && this.mainNav) {
         this.mainNav.setActiveFlyout(null);
       }
     } else {
@@ -388,7 +392,7 @@ export class PostInternetHeader {
   }
 
   private toggleMobileDropdown() {
-    this.mainNav.toggleDropdown();
+    this.mainNav?.toggleDropdown();
   }
 
   private isMainNavOpen() {
@@ -418,6 +422,7 @@ export class PostInternetHeader {
           this.activeDropdownElement || this.activeFlyout ? 'dropdown-open' : ''
         }`}
         data-version={packageJson.version}
+        onKeyup={this.handleKeyUp}
       >
         <header class={`post-internet-header${this.fullWidth ? ' full-width' : ''}`}>
           <SvgSprite />
@@ -434,20 +439,20 @@ export class PostInternetHeader {
                 <post-language-switch
                   id="post-language-switch-desktop"
                   mode="dropdown"
-                  onDropdownToggled={e => this.handleDropdownToggled(e)}
+                  onDropdownToggled={this.handleDropdownToggled}
                 ></post-language-switch>
               </If>
             </post-meta-navigation>
           </If>
           <div class="main-navigation-container wide-container">
             <post-logo></post-logo>
-            <button class="menu-button nav-link" onClick={() => this.toggleMobileDropdown()}>
+            <button class="menu-button nav-link" onClick={this.toggleMobileDropdown}>
               <span class="menu-button-text visually-hidden">{config.header.mobileMenu.text}</span>
               <SvgIcon name={this.isMainNavOpen() ? 'pi-close' : 'pi-menu'}></SvgIcon>
             </button>
             <post-main-navigation
-              onDropdownToggled={e => this.handleDropdownToggled(e)}
-              onFlyoutToggled={e => this.handleFlyoutToggled(e)}
+              onDropdownToggled={this.handleDropdownToggled}
+              onFlyoutToggled={this.handleFlyoutToggled}
               ref={el => (this.mainNav = el)}
             >
               <If condition={renderMetaNavigation === true}>
@@ -463,7 +468,7 @@ export class PostInternetHeader {
             </post-main-navigation>
             <div class="main-navigation-controls">
               <If condition={this.search !== false}>
-                <post-search onDropdownToggled={e => this.handleDropdownToggled(e)}></post-search>
+                <post-search onDropdownToggled={this.handleDropdownToggled}></post-search>
               </If>
               <If condition={!!renderLogin}>
                 <post-klp-login-widget>
@@ -473,7 +478,7 @@ export class PostInternetHeader {
               <If condition={renderMetaNavigation === false && renderLanguageSwitch === true}>
                 <post-language-switch
                   id="post-language-switch-no-meta"
-                  onDropdownToggled={e => this.handleDropdownToggled(e)}
+                  onDropdownToggled={this.handleDropdownToggled}
                   mode="dropdown"
                 ></post-language-switch>
               </If>

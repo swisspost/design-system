@@ -25,7 +25,7 @@ export class PostLogo {
   }
 
   componentDidLoad() {
-    const mainNavControls = this.host.parentElement.querySelector('.main-navigation-controls');
+    const mainNavControls = this.host.parentElement?.querySelector('.main-navigation-controls');
     if (mainNavControls) {
       this.resizeObserver.observe(mainNavControls);
     }
@@ -37,13 +37,15 @@ export class PostLogo {
   }
 
   handleResize() {
-    const mainNavControls = this.host.parentElement.querySelector('.main-navigation-controls');
-    const menuButton = this.host.parentElement.querySelector('.menu-button');
-    this.showFaviconLogo =
-      window.innerWidth - (150 + mainNavControls.clientWidth + menuButton.clientWidth) <= 0;
+    const mainNavControls = this.host.parentElement?.querySelector('.main-navigation-controls');
+    const menuButton = this.host.parentElement?.querySelector('.menu-button');
+    if (mainNavControls && menuButton)
+      this.showFaviconLogo =
+        window.innerWidth - (150 + mainNavControls.clientWidth + menuButton.clientWidth) <= 0;
   }
 
   render() {
+    if (state.localizedConfig?.header.logo === undefined) return;
     const config = state.localizedConfig.header.logo;
 
     return (

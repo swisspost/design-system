@@ -21,6 +21,7 @@ import {
 import { userPrefersReducedMotion, elementHasTransition } from '../../services/ui.service';
 import { translate } from '../../services/language.service';
 import { PostLanguageSwitchList } from './components/post-language-switch-list';
+import { IAvailableLanguage } from '../../models/language.model';
 
 @Component({
   tag: 'post-language-switch',
@@ -33,7 +34,7 @@ export class PostLanguageSwitch implements HasDropdown {
   @Element() host: DropdownElement;
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
   @Event({ bubbles: true }) languageChanged: EventEmitter<string>;
-  private languageSwitchDropdown: HTMLElement;
+  private languageSwitchDropdown: HTMLElement | undefined;
 
   componentWillUpdate() {
     // Check if language switch got set to close and if mode is dropdown
@@ -47,7 +48,7 @@ export class PostLanguageSwitch implements HasDropdown {
       ) {
         // Wait for CSS transition 'transform' to end before continuing
         return new Promise<boolean>(resolve => {
-          this.languageSwitchDropdown.addEventListener('transitionend', event => {
+          this.languageSwitchDropdown?.addEventListener('transitionend', event => {
             if (event.propertyName === 'transform') {
               resolve(true);
             }
@@ -66,6 +67,11 @@ export class PostLanguageSwitch implements HasDropdown {
     }
   }
 
+  /**
+   * Open or close the language switch programatically
+   * @param force Boolean to force a state
+   * @returns Boolean indicating new state
+   */
   @Method()
   async toggleDropdown(force?: boolean) {
     this.langSwitchOpen = force ?? !this.langSwitchOpen;
@@ -83,29 +89,35 @@ export class PostLanguageSwitch implements HasDropdown {
     this.toggleDropdown(false);
   }
 
-  /**
-   *
-   * @param baseNavLang
-   * @returns
-   */
-  getMergedLanguageConfig() {
-    const { navLang } = state.localizedConfig.header;
-    if (state.languageSwitchOverrides === null) {
-      return navLang;
+  private getMergedLanguageConfig(config: NavLangEntity[], overrides?: IAvailableLanguage[]) {
+    if (overrides === undefined) {
+      return config;
     }
 
-    return navLang.map(langConfig =>
+    return config.map(langConfig =>
       Object.assign(
         {},
         langConfig,
-        state.languageSwitchOverrides.find(l => l.lang === langConfig.lang),
+        overrides.find(l => l.lang === langConfig.lang),
       ),
     );
   }
 
+  private handleToggleClick() {
+    this.toggleDropdown();
+  }
+
+  private setDropdownRef(element: HTMLElement | undefined) {
+    this.languageSwitchDropdown = element;
+  }
+
   render() {
+    if (state.localizedConfig?.header === undefined) return;
     const config = state.localizedConfig.header;
-    const mergedConfig = this.getMergedLanguageConfig();
+    const mergedConfig = this.getMergedLanguageConfig(
+      config.navLang,
+      state.languageSwitchOverrides,
+    );
 
     return (
       <Host>
@@ -116,7 +128,7 @@ export class PostLanguageSwitch implements HasDropdown {
               class="lang-btn"
               aria-expanded={`${this.langSwitchOpen}`}
               aria-haspopup="listbox"
-              onClick={() => this.toggleDropdown()}
+              onClick={this.handleToggleClick}
             >
               <span class="visually-hidden">{config.translations.navLangAriaLabel}</span>
               <span aria-hidden="true">{state.currentLanguage}</span>
@@ -131,8 +143,8 @@ export class PostLanguageSwitch implements HasDropdown {
           {this.langSwitchOpen || this.mode === 'list' ? (
             <PostLanguageSwitchList
               navLang={mergedConfig}
-              switchLanguage={lang => this.switchLanguage(lang)}
-              dropdownRef={e => (this.languageSwitchDropdown = e)}
+              switchLanguage={this.switchLanguage}
+              dropdownRef={this.setDropdownRef}
             />
           ) : null}
         </div>

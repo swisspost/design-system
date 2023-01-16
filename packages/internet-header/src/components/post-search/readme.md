@@ -16,7 +16,7 @@
 
 ### `setFocus() => Promise<void>`
 
-
+Sets the focus on the search button
 
 #### Returns
 
@@ -24,9 +24,9 @@ Type: `Promise<void>`
 
 
 
-### `toggleDropdown(force?: boolean) => Promise<boolean>`
+### `toggleDropdown(force?: unknown) => Promise<boolean>`
 
-
+Toggle the dropdown and optionally force an open/closed state
 
 #### Returns
 

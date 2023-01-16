@@ -1,8 +1,9 @@
 import { h } from '@stencil/core';
 import { SvgIcon } from '../../../utils/svg-icon.component';
-import { state } from '../../../data/store';
 import { IBreadcrumbOverlay } from '../../../models/breadcrumbs.model';
 import { FocusTrap } from './focus-trap.component';
+
+const stopPropagation = (event: Event) => event.stopPropagation();
 
 /**
  * Overlay implementation with focus trap according to
@@ -16,28 +17,25 @@ export const OverlayComponent = (props: {
   onClick: () => void;
   onKeyDown?: (event?: KeyboardEvent) => void;
   iFrameRef: (element: HTMLIFrameElement) => void;
-  overlayRef: (element: HTMLElement) => void;
+  overlayRef: (element: HTMLElement | undefined) => void;
+  closeButtonText: string;
 }) => (
-  <div
-    class="overlay"
-    onClick={() => props.onClick()}
-    onKeyDown={e => props.onKeyDown(e)}
-    ref={e => props.overlayRef(e)}
-  >
+  <div class="overlay" onClick={props.onClick} onKeyDown={props.onKeyDown} ref={props.overlayRef}>
     <div class="container" role="dialog">
       <FocusTrap>
         <div
           class="overlay-container"
           tabindex="-1" /* For initial focus */
           role="document"
-          onClick={e => e.stopPropagation()}
+          onClick={stopPropagation}
         >
           <button
             class={`overlay-close btn-blank d-inline-flex align-items-center nav-link ${props.overlay.id}`}
-            onClick={() => props.onClick()}
+            onClick={props.onClick}
           >
             <span class="visually-hidden">
-              {state.localizedConfig.header.translations.closeButtonText}
+              {/* {state.localizedConfig.header.translations.closeButtonText} */}
+              {props.closeButtonText}
             </span>
             <SvgIcon name="pi-close"></SvgIcon>
           </button>
@@ -45,7 +43,7 @@ export const OverlayComponent = (props: {
             src={props.overlay.target}
             frameborder="0"
             class="frame"
-            ref={e => props.iFrameRef(e)}
+            ref={props.iFrameRef}
           ></iframe>
         </div>
       </FocusTrap>

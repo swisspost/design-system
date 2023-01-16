@@ -116,7 +116,7 @@ export interface LinkListEntity {
 export interface NavMetaEntity {
   isActive: boolean;
   isHomeLink: boolean;
-  target?: null;
+  target?: string;
   text: string;
   url: string;
 }

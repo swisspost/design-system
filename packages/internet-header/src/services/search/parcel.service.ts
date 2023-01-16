@@ -1,4 +1,5 @@
 import { state } from '../../data/store';
+import { ISearchConfig } from '../../models/header.model';
 import { TrackAndTraceInfo } from '../../models/track-and-trace.model';
 
 // https://www.post.ch/api/trackandtrace?id=99.00.306600.01004883
@@ -10,8 +11,10 @@ export const getTrackAndTraceApiUrl = (id: string) => {
 };
 
 // Get the redire
-export const getTrackAndTraceRedirectUrl = (query: string) => {
-  const { packageTrackingRedirectUrl } = state.localizedConfig.header.search;
+export const getTrackAndTraceRedirectUrl = (
+  query: string,
+  { packageTrackingRedirectUrl }: ISearchConfig,
+) => {
   return packageTrackingRedirectUrl.replace('{trackingNumber}', encodeURIComponent(query));
 };
 
@@ -21,8 +24,8 @@ export const getTrackAndTraceRedirectUrl = (query: string) => {
  * @param query User query
  * @returns Boolean
  */
-export const isParcel = async (query: string): Promise<boolean> => {
-  const parcelInfo = await getParcelInfo(query);
+export const isParcel = async (query: string, searchConfig: ISearchConfig): Promise<boolean> => {
+  const parcelInfo = await getParcelInfo(query, searchConfig);
   return parcelInfo.ok;
 };
 
@@ -33,8 +36,10 @@ export const isParcel = async (query: string): Promise<boolean> => {
  * @param query User query that is possibly a tracking number
  * @returns Track and trace info
  */
-export const getParcelInfo = async (query: string): Promise<TrackAndTraceInfo> => {
-  const { redirectPattern } = state.localizedConfig.header.search;
+export const getParcelInfo = async (
+  query: string,
+  { redirectPattern }: ISearchConfig,
+): Promise<TrackAndTraceInfo> => {
   const trackingNrPattern = new RegExp(redirectPattern);
 
   if (trackingNrPattern.test(query)) {
@@ -58,7 +63,10 @@ export const getParcelInfo = async (query: string): Promise<TrackAndTraceInfo> =
  */
 export const getParcelSuggestion = async (
   query: string,
+  searchConfig: ISearchConfig,
 ): Promise<(TrackAndTraceInfo & { url: string }) | null> => {
-  const parcelInfo = await getParcelInfo(query);
-  return parcelInfo.ok ? { ...parcelInfo, url: getTrackAndTraceRedirectUrl(query) } : null;
+  const parcelInfo = await getParcelInfo(query, searchConfig);
+  return parcelInfo.ok
+    ? { ...parcelInfo, url: getTrackAndTraceRedirectUrl(query, searchConfig) }
+    : null;
 };

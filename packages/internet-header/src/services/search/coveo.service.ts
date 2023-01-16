@@ -12,9 +12,11 @@ import { getSearchPageUrl } from './search.service';
  * @returns
  */
 export const getCoveoSuggestions = async (query: string): Promise<CoveoCompletion[]> => {
+  if (state.localizedConfig?.header?.search === undefined) return [];
   const config = state.localizedConfig.header.search;
   const { token, organisation } = coveo.environment[state.environment];
   const url = `${coveo.url}?q=${query}&locale=${state.currentLanguage}&searchHub=${config.searchHubName}&pipeline=${config.searchPipelineName}&organizationId=${organisation}`;
+  let coveoCompletions: CoveoCompletion[] | undefined;
 
   try {
     const coveoResponse = await fetch(url, {
@@ -24,7 +26,7 @@ export const getCoveoSuggestions = async (query: string): Promise<CoveoCompletio
       },
     });
     const coveoJSON = (await coveoResponse.json()) as CoveoResponse;
-    return coveoJSON.completions.map(completion => ({
+    coveoCompletions = coveoJSON.completions.map(completion => ({
       ...completion,
       redirectUrl: getSearchPageUrl(completion.expression),
     }));
@@ -33,4 +35,6 @@ export const getCoveoSuggestions = async (query: string): Promise<CoveoCompletio
       'Connection to coveo failed. Did you add "*.coveo.com" to your connect-src content security policy and tried turning off your adblocker?',
     );
   }
+
+  return coveoCompletions === undefined ? [] : coveoCompletions;
 };

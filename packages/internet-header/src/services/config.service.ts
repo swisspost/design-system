@@ -12,10 +12,10 @@ import { uniqueId } from '../utils/utils';
 import { markActiveRoute } from './route.service';
 
 // Prevent double requests
-let request = null;
+let request: Promise<IPortalConfig> | null = null;
 
 // Cache the original os flyout to use it for updates
-let osFlyoutCache: NavMainEntity = null;
+let osFlyoutCache: NavMainEntity | null = null;
 
 /**
  * Get a localized config object
@@ -40,6 +40,10 @@ export const getLocalizedConfig = async ({
 
   const config = await request;
   const lang = getUserLang(Object.keys(config), language, localStorageKey, cookieKey);
+
+  if (lang === undefined) {
+    throw new Error('Internet Header: unable to determine current language');
+  }
 
   // Clone config for more predictable state updates
   let localizedConfig: ILocalizedConfig = { ...config[lang] };
@@ -93,7 +97,7 @@ export const mergeOsFlyoutOverrides = (
     if (mainNav.id !== 'flyout_os') return mainNav;
 
     if (osFlyoutCache === null) {
-      osFlyoutCache = JSON.parse(JSON.stringify(mainNav));
+      osFlyoutCache = JSON.parse(JSON.stringify(mainNav)) as NavMainEntity;
     }
 
     const mainNavText = osFlyoutOverrides.text ?? osFlyoutCache.text;
@@ -199,7 +203,7 @@ export const generateConfigUrl = (projectId: string, environment: Environment): 
  * @returns The valid project id
  */
 export const isValidProjectId = (projectId: string): boolean => {
-  return !!projectId && projectId.length > 0 && /^[a-zA-Z][\w-]*[a-zA-Z0-9]$/.test(projectId);
+  return projectId !== "" && projectId.length > 0 && /^[a-zA-Z][\w-]*[a-zA-Z0-9]$/.test(projectId);
 };
 
 /**
@@ -213,7 +217,7 @@ export const getLocalizedCustomConfig = (
   config: string | ICustomConfig,
   language: string,
 ): ILocalizedCustomConfig => {
-  let customConfig: ICustomConfig = null;
+  let customConfig: ICustomConfig | null = null;
   try {
     customConfig = typeof config === 'string' ? JSON.parse(config) : config;
   } catch (error) {
@@ -237,10 +241,8 @@ export const isMobile = () => window.innerWidth < 1024;
  * identify the online-service flyout, which can be configured by osFlyoutOverrides
  */
 export const setMainNavigationIds = (navMainEntities: NavMainEntity[]): void => {
-  if (navMainEntities) {
-    navMainEntities.forEach(navMainEntity => {
-      navMainEntity.id =
-        navMainEntity.id === 'flyout_os' ? navMainEntity.id : uniqueId('main-nav-');
-    });
-  }
+  navMainEntities.forEach(navMainEntity => {
+    navMainEntity.id =
+      navMainEntity.id === 'flyout_os' ? navMainEntity.id : uniqueId('main-nav-');
+  });
 };

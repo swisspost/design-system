@@ -20,16 +20,16 @@ import { LevelOneAction } from './components/level-one-action.component';
   shadow: true,
 })
 export class PostMainNavigation implements HasDropdown, IsFocusable {
-  @State() activeFlyout: string;
+  @State() activeFlyout: string | null;
   @State() mobileMenuOpen: boolean;
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
-  @Event() flyoutToggled: EventEmitter<string>;
+  @Event() flyoutToggled: EventEmitter<string | null>;
   @Element() host: DropdownElement;
   private throttledResize: throttle<() => void>;
-  private resizeTimer = null;
-  private mouseLeaveTimer = null;
-  private mouseEnterTimer = null;
-  private flyoutElement: HTMLElement;
+  private resizeTimer: number | null = null;
+  private mouseLeaveTimer: number | null = null;
+  private mouseEnterTimer: number | null = null;
+  private flyoutElement: HTMLElement | undefined;
 
   connectedCallback() {
     this.throttledResize = throttle(300, () => this.handleResize());
@@ -40,14 +40,14 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
   disconnectedCallback() {
     window.removeEventListener('resize', this.throttledResize);
     clearAllBodyScrollLocks();
-    window.clearTimeout(this.mouseEnterTimer);
-    window.clearTimeout(this.mouseLeaveTimer);
+    if (this.mouseEnterTimer !== null) window.clearTimeout(this.mouseEnterTimer);
+    if (this.mouseLeaveTimer !== null) window.clearTimeout(this.mouseLeaveTimer);
   }
 
   handleResize() {
     // Suspend all animations and transitions on window resize
     this.host.classList.add('no-animation');
-    clearTimeout(this.resizeTimer);
+    if (this.resizeTimer !== null) clearTimeout(this.resizeTimer);
     this.resizeTimer = setTimeout(() => {
       this.host.classList.remove('no-animation');
     }, 300);
@@ -70,9 +70,9 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
   }
 
   openFlyout(id: string) {
-    const flyout = this.host.shadowRoot.getElementById(id);
+    const flyout = this.host.shadowRoot?.getElementById(id);
 
-    if (flyout && !this.activeFlyout) {
+    if (flyout && this.activeFlyout !== '') {
       // Add flyout animation if there's no flyout open
       this.addFlyoutAnimation(flyout);
     }
@@ -81,14 +81,15 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     this.flyoutToggled.emit(id);
     this.setWindowHeight();
 
-    if (this.mouseLeaveTimer) {
+    if (this.mouseLeaveTimer !== null) {
       window.clearTimeout(this.mouseLeaveTimer);
       this.mouseLeaveTimer = null;
     }
   }
 
   closeFlyout(id?: string) {
-    const flyout = this.host.shadowRoot.getElementById(id);
+    if (id === undefined) return;
+    const flyout = this.host.shadowRoot?.getElementById(id);
 
     if (flyout) {
       // Add flyout animation for close action
@@ -96,7 +97,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     }
 
     this.activeFlyout = null;
-    this.flyoutToggled.emit(null);
+    this.flyoutToggled.emit();
   }
 
   addFlyoutAnimation(flyout: HTMLElement) {
@@ -115,13 +116,13 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     flyout.classList.remove('animate');
   }
 
-  isActiveFlyout(id: string) {
+  isActiveFlyout(id?: string) {
     return id === this.activeFlyout;
   }
 
   handleMouseEnter(level: NavMainEntity) {
     // Cancel opening the flyout if there already is one scheduled to open
-    if (this.mouseEnterTimer) {
+    if (this.mouseEnterTimer !== null) {
       window.clearTimeout(this.mouseEnterTimer);
       this.mouseEnterTimer = null;
     }
@@ -136,14 +137,14 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       // Delay opening the flyout for a moment to give users a chance to move the mouse over the navigation without triggering the flyout
       this.mouseEnterTimer = window.setTimeout(() => {
         this.mouseEnterTimer = null;
-        this.openFlyout(level.id);
+        if (level.id !== undefined) this.openFlyout(level.id);
       }, 200);
     }
   }
 
   handleMouseLeave(level: NavMainEntity) {
     // Cancel opening the flyout if a mouseleave event happens before the flyout opened
-    if (this.mouseEnterTimer) {
+    if (this.mouseEnterTimer !== null) {
       window.clearTimeout(this.mouseEnterTimer);
     }
 
@@ -165,7 +166,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     if (!this.isActiveFlyout(level.id) && !level.noFlyout) {
       // It's the first touchstart and has a flyout, prevent link activation and open the flyout
       if (event.cancelable) event.preventDefault();
-      this.openFlyout(level.id);
+      if (level.id) this.openFlyout(level.id);
     }
   }
 
@@ -173,7 +174,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     if (event.key === 'Enter' && !this.isActiveFlyout(level.id) && !level.noFlyout) {
       // It's the first enter keypress and has a flyout, prevent link activation and open the flyout
       event.preventDefault();
-      this.openFlyout(level.id);
+      if (level.id) this.openFlyout(level.id);
     }
   }
 
@@ -183,7 +184,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       // This is relevant for desktop with active screenreader which
       // translates an enter keypress to a click
       event.preventDefault();
-      this.openFlyout(level.id);
+      if (level.id) this.openFlyout(level.id);
     }
   }
 
@@ -198,6 +199,11 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     }
   }
 
+  /**
+   * Toggle the main navigation (only visible on mobile)
+   * @param force Force a state
+   * @returns Boolean indicating new state
+   */
   @Method()
   async toggleDropdown(force?: boolean) {
     this.mobileMenuOpen = force === undefined ? !this.mobileMenuOpen : force;
@@ -213,21 +219,29 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     return this.mobileMenuOpen;
   }
 
+  /**
+   * Focus the main navigation toggle button
+   */
   @Method()
   async setFocus() {
-    const firstLink = this.host.shadowRoot.querySelector<HTMLElement>('.main-link');
+    const firstLink = this.host.shadowRoot?.querySelector<HTMLElement>('.main-link');
     if (firstLink) {
       firstLink.focus();
     }
   }
 
+  /**
+   * Open a specific flyout
+   * @param id Flyout ID
+   */
   @Method()
-  async setActiveFlyout(id: null | string) {
+  async setActiveFlyout(id: string | null) {
     this.activeFlyout = id;
     this.flyoutToggled.emit(this.activeFlyout);
   }
 
   render() {
+    if (state.localizedConfig?.header === undefined) return;
     const headerConfig = state.localizedConfig.header;
 
     return (
@@ -291,7 +305,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
                                   <a
                                     class={{
                                       'flyout-link': true,
-                                      'active': link?.isActiveOverride,
+                                      'active': !!link?.isActiveOverride,
                                     }}
                                     href={link.url}
                                     target={link.target}

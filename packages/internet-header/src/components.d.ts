@@ -12,31 +12,59 @@ import { Environment, ICustomConfig } from "./models/general.model";
 import { IAvailableLanguage } from "./models/language.model";
 export namespace Components {
     interface PostKlpLoginWidget {
+        /**
+          * Sets the focus on the login button
+         */
         "setFocus": () => Promise<void>;
     }
     interface PostLanguageSwitch {
         "mode": 'dropdown' | 'list';
-        "toggleDropdown": (force?: boolean) => Promise<boolean>;
+        /**
+          * Open or close the language switch programatically
+          * @param force Boolean to force a state
+          * @returns Boolean indicating new state
+         */
+        "toggleDropdown": (force?: boolean | undefined) => Promise<boolean>;
     }
     interface PostLogo {
     }
     interface PostMainNavigation {
-        "setActiveFlyout": (id: null | string) => Promise<void>;
+        /**
+          * Open a specific flyout
+          * @param id Flyout ID
+         */
+        "setActiveFlyout": (id: string | null) => Promise<void>;
+        /**
+          * Focus the main navigation toggle button
+         */
         "setFocus": () => Promise<void>;
-        "toggleDropdown": (force?: boolean) => Promise<boolean>;
+        /**
+          * Toggle the main navigation (only visible on mobile)
+          * @param force Force a state
+          * @returns Boolean indicating new state
+         */
+        "toggleDropdown": (force?: boolean | undefined) => Promise<boolean>;
     }
     interface PostMetaNavigation {
         "fullWidth"?: boolean;
         "orientation": 'horizontal' | 'vertical';
     }
     interface PostSearch {
+        /**
+          * Sets the focus on the search button
+         */
         "setFocus": () => Promise<void>;
-        "toggleDropdown": (force?: boolean) => Promise<boolean>;
+        /**
+          * Toggle the dropdown and optionally force an open/closed state
+          * @param force Boolean to force open/closed state
+          * @returns Boolean indicating open state of the component
+         */
+        "toggleDropdown": (force?: unknown) => Promise<boolean>;
     }
     interface PostSkiplinks {
     }
     interface SwisspostInternetBreadcrumbs {
-        "customItems": string | IBreadcrumbItem[];
+        "customItems"?: string | IBreadcrumbItem[];
     }
     interface SwisspostInternetFooter {
     }
@@ -48,11 +76,11 @@ export namespace Components {
         /**
           * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
          */
-        "configProxy"?: string;
+        "configProxy"?: string | null;
         /**
           * Customize the header config loaded from the post portal.
          */
-        "customConfig": string | ICustomConfig;
+        "customConfig"?: string | ICustomConfig;
         /**
           * Target environment. Choose 'int01' for local testing.
          */
@@ -69,7 +97,7 @@ export namespace Components {
         /**
           * Initial language to be used. Overrides automatic language detection.
          */
-        "language": string;
+        "language"?: string;
         /**
           * The header uses this cookie to set the language. Disables automatic language detection.
          */
@@ -81,7 +109,7 @@ export namespace Components {
         /**
           * Override the language switch links with custom URLs. Helpful when your application contains sub-pages and you would like to stay on subpages when the user changes language.
          */
-        "languageSwitchOverrides": string | IAvailableLanguage[];
+        "languageSwitchOverrides"?: string | IAvailableLanguage[];
         /**
           * Toggle the login link (when logged out) or the user widget (when logged in).
          */
@@ -198,7 +226,7 @@ declare namespace LocalJSX {
     }
     interface PostMainNavigation {
         "onDropdownToggled"?: (event: CustomEvent<DropdownEvent>) => void;
-        "onFlyoutToggled"?: (event: CustomEvent<string>) => void;
+        "onFlyoutToggled"?: (event: CustomEvent<string | null>) => void;
     }
     interface PostMetaNavigation {
         "fullWidth"?: boolean;
@@ -222,7 +250,7 @@ declare namespace LocalJSX {
         /**
           * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
          */
-        "configProxy"?: string;
+        "configProxy"?: string | null;
         /**
           * Customize the header config loaded from the post portal.
          */

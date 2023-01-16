@@ -21,14 +21,14 @@ export const LevelOneAction = (props: {
       title={
         props.level.title?.trim() && props.level.title?.trim() !== props.level.text?.trim()
           ? props.level.title
-          : null
+          : undefined
       }
-      tabindex={props.level.url ? null : 0}
+      tabindex={props.level.url ? undefined : 0}
       aria-haspopup={!props.level.noFlyout + ''}
       aria-expanded={props.level.noFlyout ? null : props.isOpen + ''}
-      onTouchEnd={e => props.onTouchEnd(e)}
-      onKeyDown={e => props.onKeyDown(e)}
-      onClick={e => props.onClick(e)}
+      onTouchEnd={props.onTouchEnd}
+      onKeyDown={props.onKeyDown}
+      onClick={props.onClick}
     >
       <span>{props.level.text}</span>
       <svg aria-hidden="true">

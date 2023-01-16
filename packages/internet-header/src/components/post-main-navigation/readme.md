@@ -10,14 +10,14 @@
 | Event             | Description | Type                                                        |
 | ----------------- | ----------- | ----------------------------------------------------------- |
 | `dropdownToggled` |             | `CustomEvent<{ open: boolean; element: DropdownElement; }>` |
-| `flyoutToggled`   |             | `CustomEvent<string>`                                       |
+| `flyoutToggled`   |             | `CustomEvent<null \| string>`                               |
 
 
 ## Methods
 
-### `setActiveFlyout(id: null | string) => Promise<void>`
+### `setActiveFlyout(id: string | null) => Promise<void>`
 
-
+Open a specific flyout
 
 #### Returns
 
@@ -27,7 +27,7 @@ Type: `Promise<void>`
 
 ### `setFocus() => Promise<void>`
 
-
+Focus the main navigation toggle button
 
 #### Returns
 
@@ -35,9 +35,9 @@ Type: `Promise<void>`
 
 
 
-### `toggleDropdown(force?: boolean) => Promise<boolean>`
+### `toggleDropdown(force?: boolean | undefined) => Promise<boolean>`
 
-
+Toggle the main navigation (only visible on mobile)
 
 #### Returns
 

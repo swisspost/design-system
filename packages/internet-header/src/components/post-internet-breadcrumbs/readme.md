@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                          | Default |
-| ------------- | -------------- | ----------- | ----------------------------- | ------- |
-| `customItems` | `custom-items` |             | `IBreadcrumbItem[] \| string` | `null`  |
+| Property      | Attribute      | Description | Type                                       | Default     |
+| ------------- | -------------- | ----------- | ------------------------------------------ | ----------- |
+| `customItems` | `custom-items` |             | `IBreadcrumbItem[] \| string \| undefined` | `undefined` |
 
 
 ----------------------------------------------
