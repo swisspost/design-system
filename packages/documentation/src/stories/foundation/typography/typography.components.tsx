@@ -134,10 +134,6 @@ export function Headings () {
           <td><code>&lt;h6&gt;&lt;/h6&gt;</code></td>
           <td><p className="m-0 h6">h6 Heading</p></td>
         </tr>
-        <tr>
-          <td><code>&lt;p class="lead"&gt;&lt;/p&gt;</code></td>
-          <td><p className="m-0 lead">Lead sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p></td>
-        </tr>
       </tbody>
     </table>
   </div>
@@ -166,6 +162,10 @@ export function Paragraphs () {
               ultricies vehicula.
             </p>
           </td>
+        </tr>
+        <tr>
+          <td><code>&lt;p class="lead"&gt;&lt;/p&gt;</code></td>
+          <td><p className="m-0 lead">Lead sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.</p></td>
         </tr>
       </tbody>
     </table>
