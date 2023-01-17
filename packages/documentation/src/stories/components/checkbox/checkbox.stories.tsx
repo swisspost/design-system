@@ -128,7 +128,7 @@ export default {
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
 
-  const id = `ExampleCheckbox_${context.name}`;
+  const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleCheckbox`;
   const classes = [
     'form-check-input',
     args.validation
@@ -151,12 +151,21 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     disabled={ args.disabled }
     aria-label={ useAriaLabel && args.label }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
-    onChange={ () => updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] }) }
+    onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+      updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
+
+      if (document.activeElement === e.target) {
+        setTimeout(() => {
+          const element: HTMLInputElement | null = document.querySelector(`#${id}`);
+          if (element) element.focus();
+        }, 25);
+      }
+     }}
   />;
 
   setTimeout(function () {
-    const input: HTMLInputElement | null = document.querySelector('input.form-check-input');
-    if (input !== null && args.checked === 'indeterminate') input.indeterminate = true;
+    const input: HTMLInputElement | null = document.querySelector(`#${id}`);
+    if (input !== null) input.indeterminate = args.checked === 'indeterminate';
   }, 0);
 
   return <div className="form-check">
@@ -171,25 +180,69 @@ Default.decorators = [
   </div>
 ];
 
-const TemplateInline = (args: Args) => <fieldset>
-  <legend className={ args.hiddenLegend ? 'visually-hidden' : undefined }>Legend</legend>
-  <div key="FormCheck_1" className="form-check form-check-inline">
-    <input id="ExampleCheckbox_Inline_1" className="form-check-input" type="checkbox"/>
-    <label htmlFor="ExampleCheckbox_Inline_1" className="form-check-label">{ args.label }</label>
-  </div>
-  <div key="FormCheck_2" className="form-check form-check-inline">
-    <input id="ExampleCheckbox_Inline_2" className="form-check-input" type="checkbox"/>
-    <label htmlFor="ExampleCheckbox_Inline_2" className="form-check-label">{ args.label }</label>
-  </div>
-  <div key="FormCheck_3" className="form-check form-check-inline">
-    <input id="ExampleCheckbox_Inline_3" className="form-check-input" type="checkbox"/>
-    <label htmlFor="ExampleCheckbox_Inline_3" className="form-check-label">{ args.label }</label>
-  </div>
-  <div key="FormCheck_4" className="form-check form-check-inline">
-    <input id="ExampleCheckbox_Inline_4" className="form-check-input" type="checkbox"/>
-    <label htmlFor="ExampleCheckbox_Inline_4" className="form-check-label">{ args.label }</label>
-  </div>
-</fieldset>;
+const TemplateInline = (args: Args, context: StoryContext<ReactFramework, Args>) => {
+  const [_, updateArgs] = useArgs();
+  const baseId = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleCheckbox`;
+  const id1 = baseId + '1';
+  const id2 = baseId + '2';
+  const id3 = baseId + '3';
+  const id4 = baseId + '4';
+
+  function onChange (e: React.ChangeEvent<HTMLInputElement>, property: string) {
+    updateArgs({ [property]: e.target.checked });
+
+    if (document.activeElement === e.target) {
+      setTimeout(() => {
+        const element: HTMLInputElement | null = document.querySelector(`#${e.target.id}`);
+        if (element) element.focus();
+      }, 25);
+    }
+  }
+
+  return <fieldset>
+    <legend className={ args.hiddenLegend ? 'visually-hidden' : undefined }>Legend</legend>
+    <div key="FormCheck_1" className="form-check form-check-inline">
+      <input
+        id={ id1 }
+        className="form-check-input"
+        type="checkbox"
+        checked={ args.checked1 }
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 'checked1')}
+      />
+      <label htmlFor={ id1 } className="form-check-label">{ args.label }</label>
+    </div>
+    <div key="FormCheck_2" className="form-check form-check-inline">
+      <input
+        id={ id2 }
+        className="form-check-input"
+        type="checkbox"
+        checked={ args.checked2 }
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 'checked2')}
+      />
+      <label htmlFor={ id2 } className="form-check-label">{ args.label }</label>
+    </div>
+    <div key="FormCheck_3" className="form-check form-check-inline">
+      <input
+        id={ id3 }
+        className="form-check-input"
+        type="checkbox"
+        checked={ args.checked3 }
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 'checked3')}
+      />
+      <label htmlFor={ id3 } className="form-check-label">{ args.label }</label>
+    </div>
+    <div key="FormCheck_4" className="form-check form-check-inline">
+      <input
+        id={ id4 }
+        className="form-check-input"
+        type="checkbox"
+        checked={ args.checked4 }
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 'checked4')}
+      />
+      <label htmlFor={ id4 } className="form-check-label">{ args.label }</label>
+    </div>
+  </fieldset>;
+};
 
 export const Inline: Story = TemplateInline.bind({});
 Inline.decorators = [
@@ -206,6 +259,34 @@ Inline.parameters = {
       'Validation'
     ]
   }
+};
+Inline.args = {
+  checked1: false,
+  checked2: false,
+  checked3: false,
+  checked4: false,
+};
+Inline.argTypes = {
+  checked1: {
+    table: {
+      disable: true,
+    },
+  },
+  checked2: {
+    table: {
+      disable: true,
+    },
+  },
+  checked3: {
+    table: {
+      disable: true,
+    },
+  },
+  checked4: {
+    table: {
+      disable: true,
+    },
+  },
 };
 
 export const Validation: Story = Template.bind({});
