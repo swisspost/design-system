@@ -1,27 +1,22 @@
-import mockCoveoSuggestions from '../../fixtures/coveo-suggestions.json';
-import mockAuth from '../../fixtures/auth.json';
-import mockStaoCache from '../../fixtures/places-suggestions.json';
-import mockStaoCacheTypes from '../../fixtures/staocache-types.json';
-import { prepare } from './prepare-story';
+import mockCoveoSuggestions from '../fixtures/internet-header/coveo-suggestions.json';
+import mockStaoCache from '../fixtures/internet-header/places-suggestions.json';
+import mockStaoCacheTypes from '../fixtures/internet-header/staocache-types.json';
+import { prepare } from '../support/prepare-story';
 
 describe('search', () => {
   const searchButton = '#post-internet-header-search-button';
 
-  before(() => {
-    cy.visitStorybook();
-  });
-
   beforeEach(() => {
-    cy.intercept('/v1/session/subscribe', mockAuth).as('auth');
     cy.intercept('/rest/search/v2/querySuggest?**', mockCoveoSuggestions).as('coveoSuggestions');
-    cy.intercept('**/de/pages/suche', '<!DOCTYPE html><html></html>');
+    cy.intercept(
+      '**/de/pages/suche',
+      '<!DOCTYPE html><html><body><h1>Search mock</h1></body></html>',
+    );
     cy.intercept('**/StandortSuche/StaoCacheService/Geocode**', mockStaoCache).as('StaoCache');
     cy.intercept('**/StandortSuche/StaoCacheService/Types**', mockStaoCacheTypes).as(
       'StaoCacheTypes',
     );
-    cy.visit('http://localhost:6060/iframe.html?id=header-header--default&viewMode=story');
-    cy.loadStory('Header', 'Default');
-    prepare('Header', 'Default');
+    prepare('Internet Header/Header', 'Default');
   });
 
   describe('config', () => {
@@ -97,7 +92,6 @@ describe('search', () => {
 
   describe('perform searches', () => {
     beforeEach(() => {
-      cy.intercept('**/de/pages/suche**', '<html><body><h1>Suche</h1></body></html>');
       cy.intercept(
         '**/de/kundencenter/onlinedienste/vgk/paketetiketten-inland/info**',
         '<html><body><h1>Paketetiketten mock</h1></body></html>',

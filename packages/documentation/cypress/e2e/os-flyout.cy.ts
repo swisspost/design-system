@@ -1,14 +1,11 @@
-import mockAuth from '../../fixtures/auth.json';
-import { prepare } from './prepare-story';
+import { prepare } from '../support/prepare-story';
 
 describe('os-flyout', () => {
   beforeEach(() => {
-    cy.intercept('**/v1/session/subscribe', mockAuth).as('auth');
+    prepare('Internet Header/Header', 'Default');
   });
-
   it('should customize the os flyout title', () => {
     const title = 'Test OS Flyout';
-    prepare();
     cy.changeArg('os-flyout-overrides', {
       title,
       text: title,
@@ -18,7 +15,6 @@ describe('os-flyout', () => {
   });
 
   it('should customzie the os flyout links in the first column without overriding existing links', () => {
-    prepare();
     cy.changeArg('os-flyout-overrides', {
       flyout: [
         {
@@ -41,7 +37,6 @@ describe('os-flyout', () => {
   });
 
   it('should add additional columns to os flyout while keeping the first intact', () => {
-    prepare();
     cy.changeArg('os-flyout-overrides', {
       flyout: [
         {},
@@ -66,7 +61,6 @@ describe('os-flyout', () => {
    * Reproduction of an error reported as COWF-814
    */
   it('should not duplicate entries when overrides get updated', () => {
-    prepare();
     cy.changeArg('os-flyout-overrides', {
       flyout: [
         {

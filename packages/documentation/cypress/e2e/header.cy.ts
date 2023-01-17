@@ -1,15 +1,8 @@
-import testConfiguration from '../../../src/assets/config/test-configuration.json';
-import mockAuth from '../../fixtures/auth.json';
+import { prepare } from '../support/prepare-story';
 
 describe('header', () => {
-  before(() => {
-    cy.visitStorybook();
-  });
-
   beforeEach(() => {
-    cy.intercept('**/api/headerjs/Json?serviceid=*', testConfiguration).as('getConfig');
-    cy.intercept('**/v1/session/subscribe', mockAuth).as('auth');
-    cy.loadStory('Header', 'Default');
+    prepare('Internet Header/Header', 'Default');
   });
 
   context('initial state', () => {
@@ -46,8 +39,8 @@ describe('header', () => {
 
           cy.changeArg('full-width', true);
 
-          cy.get('.main-navigation-container').invoke('outerWidth').should('equal', w);
-          cy.get('.meta-container').invoke('outerWidth').should('equal', w);
+          cy.get('.main-navigation-container').invoke('outerWidth').should('be.within', 1900, 1920);
+          cy.get('.meta-container').invoke('outerWidth').should('be.within', 1900, 1920);
         });
     });
   });

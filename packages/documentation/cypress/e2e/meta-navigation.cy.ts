@@ -1,17 +1,11 @@
-import { IPortalConfig } from '../../../src/models/general.model';
-import testConfiguration from '../../../src/assets/config/test-configuration.json';
-import { prepare } from './prepare-story';
+import { IPortalConfig } from '@swisspost/internet-header/src/models/general.model';
+import testConfiguration from '@swisspost/internet-header/src/assets/config/test-configuration.json';
+import { prepare } from '../support/prepare-story';
 
 describe('meta-navigation', () => {
-  before(() => {
-    //cy.visitStorybook();
-  });
-
   beforeEach(() => {
-    // Note: Currently 'visitStorybook' needs to be called in beforEach hook because the storybook args are not reset between the tests
-    // https://github.com/NicholasBoll/cypress-storybook/issues/26
-    cy.visitStorybook();
-    cy.loadStory('Header', 'Default');
+    prepare('Internet Header/Header', 'Default');
+    cy.viewport(1024, Cypress.config('viewportHeight'));
   });
 
   describe('args', () => {
@@ -98,9 +92,9 @@ describe('meta-navigation', () => {
         let config: IPortalConfig = <any>testConfiguration;
 
         // Clear meta navigation config
-        config.de.header.navMeta = undefined;
+        config.de!.header.navMeta = undefined;
 
-        prepare('Header', 'Default', config);
+        prepare('Internet Header/Header', 'Default', config);
 
         // Assert the header is hydrated
         cy.get('swisspost-internet-header').should('have.class', 'hydrated');
@@ -116,7 +110,7 @@ describe('meta-navigation', () => {
         let config: IPortalConfig = <any>testConfiguration;
 
         // Set navMeta to contain only one entry with 'isHomeLink' set to true
-        config.de.header.navMeta = [
+        config.de!.header.navMeta = [
           {
             isActive: false,
             isHomeLink: true,
@@ -125,7 +119,7 @@ describe('meta-navigation', () => {
           },
         ];
 
-        prepare('Header', 'Default', config);
+        prepare('Internet Header/Header', 'Default', config);
 
         // Assert the header is hydrated
         cy.get('swisspost-internet-header').should('have.class', 'hydrated');

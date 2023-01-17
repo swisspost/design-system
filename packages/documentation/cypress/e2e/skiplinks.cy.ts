@@ -1,13 +1,11 @@
-import mockAuth from '../../fixtures/auth.json';
-import { prepare } from './prepare-story';
+import { prepare } from '../support/prepare-story';
 
 describe('skiplinks', () => {
   beforeEach(() => {
-    cy.intercept('**/v1/session/subscribe', mockAuth).as('auth');
+    prepare('Internet Header/Header', 'Default');
   });
 
   it(`adds and removes skiplinks control`, () => {
-    prepare();
     cy.changeArg('skiplinks', true);
     cy.get('post-skiplinks').should('exist').and('be.hidden');
     cy.changeArg('skiplinks', false);

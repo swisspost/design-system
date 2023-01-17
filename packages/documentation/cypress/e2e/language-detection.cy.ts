@@ -1,14 +1,9 @@
-import testConfiguration from '../../../src/assets/config/test-configuration.json';
-import mockAuth from '../../fixtures/auth.json';
-import { prepare } from './prepare-story';
+import testConfiguration from '../fixtures/internet-header/test-configuration.json';
+import { prepare } from '../support/prepare-story';
 
 describe('language detection from storybook', () => {
-  beforeEach(() => {
-    cy.intercept('**/v1/session/subscribe', mockAuth).as('auth');
-  });
-
   it('should not render the header without languages in the config', () => {
-    prepare('Header', 'Default', {});
+    prepare('Internet Header/Header', 'Default', {});
     cy.get('swisspost-internet-header').should('exist');
     cy.get('.post-internet-header').should('not.exist');
   });
@@ -20,7 +15,7 @@ describe('language detection from storybook', () => {
     delete customConfig.fr;
     delete customConfig.en;
 
-    prepare('Header', 'Default', customConfig);
+    prepare('Internet Header/Header', 'Default', customConfig);
 
     cy.get('swisspost-internet-header')
       .shadow()

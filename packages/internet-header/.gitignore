@@ -27,10 +27,5 @@ Thumbs.db
 UserInterfaceState.xcuserstate
 .env
 
-# Cypress
-cypress/videos/
-cypress/screenshots/
-cypress.env.json
-
 # Reports
 .scannerwork/

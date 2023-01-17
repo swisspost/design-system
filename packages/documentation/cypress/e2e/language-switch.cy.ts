@@ -1,25 +1,22 @@
-import { IPortalConfig } from '../../../src/models/general.model';
-import testConfiguration from '../../../src/assets/config/test-configuration.json';
-import { NavLangEntity } from '../../../src/models/header.model';
+import { IPortalConfig } from '@swisspost/internet-header/src/models/general.model';
+import testConfiguration from '../fixtures/internet-header/test-configuration.json';
+import { NavLangEntity } from '@swisspost/internet-header/src/models/header.model';
+import { prepare } from '../support/prepare-story';
 
 describe('language-switch', () => {
   const languageSwitcherDesktop = '#post-language-switch-desktop';
   const languageSwitchDropdown = 'nav.language-switch-dropdown';
 
-  before(() => {
-    cy.visitStorybook();
-    cy.viewport('macbook-15');
-  });
+  before(() => {});
 
   beforeEach(() => {
-    cy.intercept('**/api/headerjs/Json?serviceid=*', testConfiguration).as('getConfig');
-    cy.loadStory('Header', 'Default');
+    cy.viewport(1024, 800);
+    prepare('Internet Header/Header', 'Default');
   });
 
   describe('meta menu', () => {
     describe('meta: true', () => {
       it(`renders language switch in meta menu for desktop`, () => {
-        cy.viewport('macbook-15');
         cy.changeArg('meta', true);
         cy.get('post-meta-navigation post-language-switch').should('exist');
       });
@@ -33,7 +30,6 @@ describe('language-switch', () => {
 
     describe('meta: false', () => {
       it(`renders language switch in main menu for desktop`, () => {
-        cy.viewport('macbook-15');
         cy.changeArg('meta', false);
         cy.get('.main-navigation-container .main-navigation-controls post-language-switch').should(
           'exist',
@@ -51,14 +47,6 @@ describe('language-switch', () => {
   });
 
   describe('open & close', () => {
-    before(() => {
-      cy.visitStorybook();
-    });
-
-    beforeEach(() => {
-      cy.intercept('**/api/headerjs/Json?serviceid=*', testConfiguration).as('getConfig');
-    });
-
     it('opens on click', () => {
       cy.get(languageSwitcherDesktop).shadow().find('button').click();
       cy.get(languageSwitcherDesktop)
@@ -74,7 +62,7 @@ describe('language-switch', () => {
         .shadow()
         .get(`${languageSwitchDropdown}.open`)
         .should('exist');
-      cy.get('p.fake-content').click({ multiple: true });
+      cy.get('p.fake-content').first().click();
       cy.get(languageSwitcherDesktop)
         .shadow()
         .get(`${languageSwitchDropdown}.open`)
@@ -129,13 +117,6 @@ describe('language-switch', () => {
   });
 
   describe('configuration', () => {
-    beforeEach(() => {
-      // Reload after each test to prevent configuration mocks to persist
-      cy.intercept('**/api/headerjs/Json?serviceid=*', testConfiguration).as('getConfig');
-      cy.visitStorybook();
-      cy.loadStory('Header', 'Default');
-    });
-
     it('should respect language switch override', () => {
       cy.changeArg(
         'language-switch-overrides',
@@ -162,17 +143,8 @@ describe('language-switch', () => {
         title: 'Deutsch',
         url: '',
       };
-      config.en.header.navLang = [navLangEntry];
-
-      // Intercept the request to the config API and return a static response
-      cy.intercept('**/api/headerjs/Json?serviceid=*', config).as('getConfig');
-
-      // Use any project id other than "test" to force an API call
-      // The request is intercepted and the modified config is returned
-      cy.visit('iframe.html?id=header--default&args=project:cypress-test');
-
-      cy.wait('@getConfig').its('response.statusCode').should('eq', 200);
-
+      config.en!.header.navLang = [navLangEntry];
+      prepare('Internet Header/Header', 'Default', config);
       cy.get('#post-language-switch-desktop').should('not.exist');
     });
 

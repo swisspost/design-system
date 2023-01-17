@@ -1,6 +1,5 @@
-import testConfiguration from '../../../src/assets/config/test-configuration.json';
-import mockAuth from '../../fixtures/auth.json';
-import { Components } from '../../../src/components';
+import testConfiguration from '../fixtures/internet-header/test-configuration.json';
+import mockAuth from '../fixtures/internet-header/auth.json';
 
 describe('language detection with fixture pages', { baseUrl: null }, () => {
   beforeEach(() => {

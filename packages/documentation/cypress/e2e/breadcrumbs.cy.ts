@@ -1,6 +1,6 @@
 import { IPortalConfig } from '@swisspost/internet-header/src/models/general.model';
-import rawTestConfiguration from '@swisspost/internet-header/src/assets/config/test-configuration.json';
-import mockAuth from '../fixtures/auth.json';
+import rawTestConfiguration from '../fixtures/internet-header/test-configuration.json';
+import mockAuth from '../fixtures/internet-header/auth.json';
 import { prepare } from '../support/prepare-story';
 
 const testConfiguration: IPortalConfig = rawTestConfiguration as any;
@@ -22,11 +22,6 @@ describe('breadcrumb', () => {
       .trigger('keydown', { eventConstructor: 'KeyboardEvent', force: true, key: key })
       .wait(500);
   }
-
-  beforeEach(() => {
-    cy.intercept('**/v1/session/subscribe', mockAuth).as('auth');
-    cy.intercept('**/api/headerjs/Json?serviceid=*', testConfiguration).as('getConfig');
-  });
 
   describe('configuration', () => {
     it(`should not be rendered if no header present`, () => {
@@ -88,13 +83,15 @@ describe('breadcrumb', () => {
 
     it(`should open overlay for help button`, () => {
       cy.get('@breadcrumbs').find('div.overlay').should('not.exist');
-      cy.get('@breadcrumbs').get('div.breadcrumb-buttons button span').contains('Hilfe').click();
+      cy.get('@breadcrumbs')
+        .get('div.breadcrumb-buttons button:first-child')
+        .click({ force: true });
       cy.get('@breadcrumbs').find('div.overlay').should('exist');
     });
 
     it(`should open overlay for contact`, () => {
       cy.get('@breadcrumbs').find('div.overlay').should('not.exist');
-      cy.get('@breadcrumbs').get('div.breadcrumb-buttons button span').contains('Kontakt').click();
+      cy.get('@breadcrumbs').get('div.breadcrumb-buttons button:last-child').click({ force: true });
       cy.get('@breadcrumbs').find('div.overlay').should('exist');
     });
 

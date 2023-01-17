@@ -1,15 +1,10 @@
-import testConfiguration from '../../../src/assets/config/test-configuration.json';
+import { prepare } from '../support/prepare-story';
 
 describe('footer', () => {
-  beforeEach(() => {
-    cy.intercept('**/api/headerjs/Json?serviceid=*', testConfiguration).as('getConfig');
-    cy.visitStorybook();
-  });
-
   describe('config', () => {
     describe('footer config not set', () => {
       it(`removes footer control`, () => {
-        cy.loadStory('Footer', 'NonExistentHeader');
+        prepare('Internet Header/Footer', 'Default');
 
         // Assert the header is hydrated
         cy.get('swisspost-internet-footer').should('have.class', 'hydrated');
@@ -21,7 +16,7 @@ describe('footer', () => {
 
     describe('custom footer config set', () => {
       it(`shows custom footer links`, async () => {
-        cy.loadStory('Footer', 'Default');
+        prepare('Internet Header/Footer', 'Default');
 
         const customFooterConfig = {
           de: {
@@ -45,6 +40,7 @@ describe('footer', () => {
         cy.changeArg('custom-config', JSON.stringify(customFooterConfig));
 
         // With the custom configuration the footer links should be visible
+        cy.get('swisspost-internet-footer').should('exist');
         cy.get('.pre-footer')
           .should('exist')
           .and('be.visible')
@@ -58,9 +54,10 @@ describe('footer', () => {
     describe('header element non-existent', () => {
       it(`removes footer control`, () => {
         // Visit the story with non-existent header
-        cy.visit('iframe.html?id=footer--non-existent-header');
+        prepare('Internet Header/Footer', 'Non-existent-header');
 
         // Without the header, the footer should be removed from the DOM as well
+        cy.get('swisspost-internet-footer').should('exist');
         cy.get('.post-internet-footer').should('not.exist');
       });
     });

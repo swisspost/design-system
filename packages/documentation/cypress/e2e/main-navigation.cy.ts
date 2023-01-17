@@ -1,14 +1,12 @@
-import testConfiguration from '../../../src/assets/config/test-configuration.json';
-import mockAuth from '../../fixtures/auth.json';
-import { prepare } from './prepare-story';
+import testConfiguration from '@swisspost/internet-header/src/assets/config/test-configuration.json';
+import { prepare } from '../support/prepare-story';
 
 describe('main-navigation', () => {
   beforeEach(() => {
-    cy.intercept('**/v1/session/subscribe', mockAuth).as('auth');
+    prepare('Internet Header/Header', 'Default');
   });
 
   it('should not have any highlight when active route is false', async () => {
-    prepare();
     cy.changeArg('active-route', false);
     cy.get('swisspost-internet-header').shadow().find('.flyout-link, .main-link').should('exist');
     cy.get('swisspost-internet-header')
@@ -18,7 +16,6 @@ describe('main-navigation', () => {
   });
 
   it('should not have an active element when active route is auto (test-config does not provide isActive)', () => {
-    prepare();
     cy.changeArg('active-route', 'auto');
     cy.get('swisspost-internet-header').shadow().find('.flyout-link, .main-link').should('exist');
     cy.get('swisspost-internet-header')
@@ -30,8 +27,7 @@ describe('main-navigation', () => {
   it('should have an active route when config defines an active route', () => {
     const activeConfig = JSON.parse(JSON.stringify(testConfiguration));
     activeConfig.de.header.navMain[0].isActive = true;
-    prepare('Header', 'Default', activeConfig);
-    cy.intercept('/api/headerjs/Json?serviceid=*', activeConfig).as('getActiveConfig');
+    prepare('Internet Header/Header', 'Default', activeConfig);
     cy.get('swisspost-internet-header')
       .shadow()
       .find('.flyout-link.active, .main-link.active')
@@ -39,7 +35,6 @@ describe('main-navigation', () => {
   });
 
   it('Changes active link based on active-route prop', () => {
-    prepare();
     cy.changeArg('active-route', 'https://post.ch/de/briefe-versenden/verfolgen');
     cy.get('swisspost-internet-header')
       .shadow()
@@ -49,7 +44,7 @@ describe('main-navigation', () => {
   });
 
   it('Changes active link also in custom config nav links', () => {
-    prepare('Header', 'Custom Navigation');
+    prepare('Internet Header/Header', 'Custom Navigation');
     cy.changeArg('active-route', 'https://maps.google.com');
     cy.get('swisspost-internet-header')
       .shadow()
@@ -60,7 +55,6 @@ describe('main-navigation', () => {
   });
 
   it('Marks active when using custom config and auto highlighting', () => {
-    prepare('Header', 'Default');
     cy.url().then(url => {
       const expectedText = 'Custom';
       cy.changeArg('active-route', 'auto');
@@ -96,7 +90,6 @@ describe('main-navigation', () => {
   });
 
   it('Marks active when using custom config and auto highlighting', () => {
-    prepare('Header', 'Default');
     cy.url().then(url => {
       const expectedText = 'Custom';
       cy.changeArg('active-route', 'auto');

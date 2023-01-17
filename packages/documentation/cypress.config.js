@@ -5,6 +5,8 @@ module.exports = defineConfig({
     baseUrl: 'http://localhost:9300',
     specPattern: ['cypress/e2e/**/*.cy.{ts,tsx}'],
     includeShadowDom: true,
+    viewportWidth: 1024,
+    viewportHeight: 576,
   },
   includeShadowDom: true,
   retries: {

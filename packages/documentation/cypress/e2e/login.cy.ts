@@ -1,14 +1,10 @@
-import { IPortalConfig } from '../../../src/models/general.model';
-import testConfiguration from '../../../src/assets/config/test-configuration.json';
+import { IPortalConfig } from '@swisspost/internet-header/src/models/general.model';
+import testConfiguration from '@swisspost/internet-header/src/assets/config/test-configuration.json';
+import { prepare } from '../support/prepare-story';
 
 describe('login', () => {
-  before(() => {
-    cy.visitStorybook();
-  });
-
   beforeEach(() => {
-    cy.intercept('**/api/headerjs/Json?serviceid=*', testConfiguration).as('getConfig');
-    cy.loadStory('Header', 'Default');
+    prepare('Internet Header/Header', 'Default');
   });
 
   describe('args', () => {
@@ -34,22 +30,10 @@ describe('login', () => {
         let config: IPortalConfig = <any>testConfiguration;
 
         // Clear login widget options config
-        config.de.header.loginWidgetOptions = undefined;
+        config.de!.header.loginWidgetOptions = undefined;
 
         // Intercept the request to the config API and return a static response
-        cy.intercept('**/api/headerjs/Json?serviceid=*', config).as('getConfig');
-
-        // Use any project id other than "test" to force an API call
-        // The request is intercepted and the modified config is returned
-        cy.visit('iframe.html?id=header--default&args=project:cypress-test');
-        // cy.visitStorybook({
-        //   qs: {
-        //     id: 'header-header--default',
-        //     args: 'project:cypress-test',
-        //   },
-        // });
-
-        cy.wait('@getConfig').its('response.statusCode').should('eq', 200);
+        prepare('Internet Header/Header', 'Default', config);
 
         // Assert the header is hydrated
         cy.get('swisspost-internet-header').should('have.class', 'hydrated');
