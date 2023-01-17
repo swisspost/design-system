@@ -25,13 +25,25 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+
+const isInViewport = _chai => {
+  function assertIsInViewport() {
+    var subject = this._obj;
+
+    var windowHeight = Cypress.config().viewportHeight;
+    var bottomOfCurrentViewport = windowHeight;
+    var rect = subject[0].getBoundingClientRect();
+
+    this.assert(
+      (rect.top > 0 && rect.top < bottomOfCurrentViewport) ||
+        (rect.bottom > 0 && rect.bottom < bottomOfCurrentViewport),
+      'expected #{this} to be in viewport',
+      'expected #{this} to not be in viewport',
+      subject,
+    );
+  }
+
+  _chai.Assertion.addMethod('inViewport', assertIsInViewport);
+};
+
+chai.use(isInViewport);

@@ -18,7 +18,10 @@
     "start": "start-storybook -p 9200 --quiet",
     "start:headless": "start-storybook -p 9300 --quiet --no-open",
     "build": "build-storybook --quiet",
-    "test": "start-server-and-test start:headless 9300 'percy exec -- cypress run --record false'"
+    "test": "start-server-and-test start:headless 9300 'percy exec -- cypress run --record false'",
+    "cypress:open": "cypress open --config baseUrl=http://localhost:9300",
+    "cypress:run": "cypress run",
+    "cypress:dev": "start-server-and-test start:headless http://localhost:9300 cypress:open"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.0.5",
@@ -47,6 +50,8 @@
     "babel-loader": "9.1.2",
     "css-loader": "5.2.7",
     "cypress": "12.3.0",
+    "cypress-each": "1.10.0",
+    "cypress-storybook": "0.5.1",
     "react-markdown": "8.0.4",
     "sass": "1.57.1",
     "sass-loader": "10.4.1",

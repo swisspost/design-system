@@ -287,6 +287,8 @@ importers:
       babel-loader: 9.1.2
       css-loader: 5.2.7
       cypress: 12.3.0
+      cypress-each: 1.10.0
+      cypress-storybook: 0.5.1
       html-react-parser: 3.0.7
       react: 18.2.0
       react-dom: 18.2.0
@@ -323,6 +325,8 @@ importers:
       babel-loader: 9.1.2_@babel+core@7.20.12
       css-loader: 5.2.7
       cypress: 12.3.0
+      cypress-each: 1.10.0
+      cypress-storybook: 0.5.1_cypress@12.3.0
       react-markdown: 8.0.4_kzbn2opkn2327fwg5yzwzya5o4
       sass: 1.57.1
       sass-loader: 10.4.1_sass@1.57.1

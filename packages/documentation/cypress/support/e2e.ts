@@ -14,11 +14,19 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands';
-
+import '@percy/cypress';
 import 'cypress-storybook/cypress';
 import 'cypress-each';
-import { dispose } from '../../src/data/store';
+import './commands';
+import { dispose } from '@swisspost/internet-header/src/data/store';
+
+declare global {
+  namespace Cypress {
+    interface Chainable {
+      changeArg: (name: string, value: any) => Chainable<null>;
+    }
+  }
+}
 
 beforeEach(() => {
   // Reset the store to its original state before each test
@@ -27,7 +35,7 @@ beforeEach(() => {
 });
 
 // https://docs.cypress.io/api/events/catalog-of-events#Uncaught-Exceptions
-Cypress.on('uncaught:exception', (err, runnable) => {
+Cypress.on('uncaught:exception', err => {
   // From time to time (mostly random) the 'klp-login-widget' throws an uncaught 'TypeError: Cannot read properties of null (reading 'shadowRoot')' exception
   // Returning false here prevents Cypress from failing the test
   if (err.name.includes('TypeError')) {

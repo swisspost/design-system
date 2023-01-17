@@ -7,8 +7,8 @@ export default {
   parameters: {
     layout: 'fullscreen',
     docs: {
-      page: docsPage
-    }
+      page: docsPage,
+    },
   },
   argTypes: {
     'custom-items': {

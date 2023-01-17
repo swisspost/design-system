@@ -1,7 +1,7 @@
-import { IPortalConfig } from '../../../src/models/general.model';
-import rawTestConfiguration from '../../../src/assets/config/test-configuration.json';
-import mockAuth from '../../fixtures/auth.json';
-import { prepare } from './prepare-story';
+import { IPortalConfig } from '@swisspost/internet-header/src/models/general.model';
+import rawTestConfiguration from '@swisspost/internet-header/src/assets/config/test-configuration.json';
+import mockAuth from '../fixtures/auth.json';
+import { prepare } from '../support/prepare-story';
 
 const testConfiguration: IPortalConfig = rawTestConfiguration as any;
 
@@ -31,11 +31,11 @@ describe('breadcrumb', () => {
   describe('configuration', () => {
     it(`should not be rendered if no header present`, () => {
       // Need to revisit storybook to make sure new story is loaded correctly
-      prepare('Breadcrumb', 'NonExistentHeader');
+      prepare('internet-header-breadcrumbs', 'NonExistentHeader');
 
       cy.get('swisspost-internet-breadcrumbs').should('not.be.visible');
       cy.get('.page-wrapper').should('be.visible');
-      cy.get('swisspost-internet-breadcrumbs').shadow().get('div.breadcrumbs').should('not.exist');
+      cy.get('div.breadcrumbs').should('not.exist');
     });
 
     it(`should not rendered if no config present`, () => {
@@ -49,26 +49,21 @@ describe('breadcrumb', () => {
       modifiedConfig.fr.breadcrumb = undefined;
       modifiedConfig.it.breadcrumb = undefined;
 
-      prepare('Breadcrumb', 'NonExistentHeader', modifiedConfig);
+      prepare('internet-header-breadcrumbs', 'NonExistentHeader', modifiedConfig);
 
-      cy.get('swisspost-internet-breadcrumbs').shadow().get('div.breadcrumbs').should('not.exist');
+      cy.get('div.breadcrumbs').should('not.exist');
     });
 
     it(`should add custom elements`, () => {
-      prepare('Breadcrumb', 'Custom-Items');
+      prepare('internet-header-breadcrumbs', 'Custom-Items');
 
-      cy.changeArg('custom-items', [
+      (cy as any).changeArg('custom-items', [
         { text: 'Test1', url: '/x/y/z' },
         { text: 'Test2', url: '/a/b/c' },
       ]);
 
       const items = '> nav > ol li';
-      cy.get('swisspost-internet-breadcrumbs')
-        .shadow()
-        .get('div.breadcrumbs')
-        .as('breadcrumbs')
-        .find(items)
-        .should('to.have.length', 5);
+      cy.get('div.breadcrumbs').as('breadcrumbs').find(items).should('to.have.length', 5);
 
       // Contains both elements, only first one should contain the link
       cy.get('@breadcrumbs')
@@ -83,8 +78,8 @@ describe('breadcrumb', () => {
 
   describe('open/close overlay buttons', () => {
     beforeEach(() => {
-      prepare('Breadcrumb', 'Default');
-      cy.get('swisspost-internet-breadcrumbs').shadow().get('div.breadcrumbs').as('breadcrumbs');
+      prepare('internet-header-breadcrumbs', 'Default');
+      cy.get('div.breadcrumbs').as('breadcrumbs');
       cy.intercept(
         'https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/info?modal=true',
         '<html><body><h1>Mock overlay</h1></body></html>',
@@ -112,8 +107,8 @@ describe('breadcrumb', () => {
   describe('mobile', () => {
     beforeEach(() => {
       cy.viewport('iphone-6+');
-      prepare('Breadcrumb', 'Default');
-      cy.get('swisspost-internet-breadcrumbs').shadow().get('div.breadcrumbs').as('breadcrumbs');
+      prepare('internet-header-breadcrumbs', 'Default');
+      cy.get('div.breadcrumbs').as('breadcrumbs');
     });
 
     it(`should show cropped breadcrumb as dropdown`, () => {
@@ -124,12 +119,9 @@ describe('breadcrumb', () => {
 
     it(`should not break line for long elements`, () => {
       const itemText = 'Veeeeeeeeery loooooooong element';
-      cy.changeArg('custom-items', [{ text: itemText, url: '/x/y/z' }]);
+      (cy as any).changeArg('custom-items', [{ text: itemText, url: '/x/y/z' }]);
 
-      cy.get('swisspost-internet-breadcrumbs')
-        .shadow()
-        .get('div.breadcrumbs > nav > ol li')
-        .as('breadcrumbItems');
+      cy.get('div.breadcrumbs > nav > ol li').as('breadcrumbItems');
 
       cy.get('@breadcrumbItems').contains(itemText).should('have.css', 'white-space', 'nowrap');
     });

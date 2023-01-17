@@ -1,4 +1,4 @@
-import testConfiguration from '../../../src/assets/config/test-configuration.json';
+import testConfiguration from '@swisspost/internet-header/src/assets/config/test-configuration.json';
 
 export const prepare = (
   storyTitle: string = 'Header',
@@ -6,7 +6,7 @@ export const prepare = (
   config: Object = testConfiguration,
 ) => {
   cy.intercept('**/api/headerjs/Json?serviceid=*', config).as('getConfig');
-  cy.intercept('/assets/config/test-configuration.json', config).as('getConfig');
+  cy.intercept('/assets/config/test-configuration.json', config).as('getTestConfig');
   cy.visitStorybook({
     onBeforeLoad(win) {
       // Set default browser language explicitly to English
