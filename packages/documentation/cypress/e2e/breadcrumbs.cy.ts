@@ -1,6 +1,5 @@
 import { IPortalConfig } from '@swisspost/internet-header/src/models/general.model';
 import rawTestConfiguration from '../fixtures/internet-header/test-configuration.json';
-import mockAuth from '../fixtures/internet-header/auth.json';
 import { prepare } from '../support/prepare-story';
 
 const testConfiguration: IPortalConfig = rawTestConfiguration as any;
