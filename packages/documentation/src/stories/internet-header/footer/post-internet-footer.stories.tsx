@@ -6,8 +6,9 @@ export default {
   title: 'Internet Header/Footer',
   parameters: {
     docs: {
-      page: docsPage
+      page: docsPage,
     },
+    layout: 'fullscreen',
     actions: {
       handles: ['headerLoaded', 'languageChanged'],
     },
@@ -28,7 +29,6 @@ export default {
       },
     },
   },
-
 } as Meta;
 
 const Template = (args: Args) => {
