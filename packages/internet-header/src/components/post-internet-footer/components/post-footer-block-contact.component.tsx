@@ -1,5 +1,6 @@
 import { h } from '@stencil/core';
 import { BlockEntity } from '../../../models/footer.model';
+
 const getContentHours = (hours: string) => hours.replace(/<[^>]*>?/gm, '');
 
 const callUnblu = () => {

@@ -318,7 +318,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
             class="search-button"
             type="button"
             aria-expanded={`${this.searchDropdownOpen}`}
-            onClick={this.toggleDropdown}
+            onClick={e => this.toggleDropdown(e)}
           >
             <span class="visually-hidden">
               {this.searchDropdownOpen
@@ -340,11 +340,14 @@ export class PostSearch implements HasDropdown, IsFocusable {
                         placeholder={translations.flyoutSearchBoxFloatingLabel}
                         autocomplete="off"
                         ref={el => (this.searchBox = el)}
-                        onInput={this.handleSearchInput}
-                        onKeyDown={this.handleKeyDown}
+                        onInput={() => this.handleSearchInput()}
+                        onKeyDown={e => this.handleKeyDown(e)}
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
-                      <button onClick={this.startSearch} class="nav-link start-search-button">
+                      <button
+                        onClick={() => this.startSearch()}
+                        class="nav-link start-search-button"
+                      >
                         <span class="visually-hidden">{translations.searchSubmit}</span>
                         <SvgIcon name="pi-search" />
                       </button>
@@ -352,7 +355,10 @@ export class PostSearch implements HasDropdown, IsFocusable {
                     {showPortalRecommendations && (
                       <h2 class="bold">{search.searchRecommendations.title}</h2>
                     )}
-                    <ul class="suggestions no-list" onMouseLeave={this.handleMouseLeaveSuggestions}>
+                    <ul
+                      class="suggestions no-list"
+                      onMouseLeave={() => this.handleMouseLeaveSuggestions()}
+                    >
                       {showPortalRecommendations &&
                         search.searchRecommendations.links.map(recommendation => (
                           <li>
@@ -360,7 +366,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                               class="nav-link search-recommendation"
                               href={recommendation.href}
                               data-suggestion-text={recommendation.label}
-                              onMouseEnter={this.handleMouseEnterSuggestion}
+                              onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
                             >
                               <span
                                 class="search-recommendation__icon"
@@ -376,7 +382,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                             class="nav-link parcel-suggestion"
                             href={this.parcelSuggestion.url}
                             data-suggestion-text={this.searchBox?.value}
-                            onMouseEnter={this.handleMouseEnterSuggestion}
+                            onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
                           >
                             <SvgIcon name="pi-letter-parcel" />
                             <span class="bold">{this.parcelSuggestion?.sending?.id}:&nbsp;</span>
@@ -397,7 +403,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                               class="nav-link"
                               href={suggestion.redirectUrl}
                               data-suggestion-text={suggestion.expression}
-                              onMouseEnter={this.handleMouseEnterSuggestion}
+                              onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
                             >
                               <SvgIcon name="pi-search" />
                               <HighlightedText text={suggestion.highlighted} />
@@ -412,7 +418,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                               class="nav-link"
                               href={getPlacesUrl(suggestion)}
                               data-suggestion-text={suggestion.name}
-                              onMouseEnter={this.handleMouseEnterSuggestion}
+                              onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
                             >
                               <SvgIcon name="pi-place" />
                               <HighlightedText

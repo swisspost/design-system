@@ -103,10 +103,6 @@ export class PostLanguageSwitch implements HasDropdown {
     );
   }
 
-  private handleToggleClick() {
-    this.toggleDropdown();
-  }
-
   private setDropdownRef(element: HTMLElement | undefined) {
     this.languageSwitchDropdown = element;
   }
@@ -128,7 +124,7 @@ export class PostLanguageSwitch implements HasDropdown {
               class="lang-btn"
               aria-expanded={`${this.langSwitchOpen}`}
               aria-haspopup="listbox"
-              onClick={this.handleToggleClick}
+              onClick={() => this.toggleDropdown()}
             >
               <span class="visually-hidden">{config.translations.navLangAriaLabel}</span>
               <span aria-hidden="true">{state.currentLanguage}</span>
@@ -143,8 +139,8 @@ export class PostLanguageSwitch implements HasDropdown {
           {this.langSwitchOpen || this.mode === 'list' ? (
             <PostLanguageSwitchList
               navLang={mergedConfig}
-              switchLanguage={this.switchLanguage}
-              dropdownRef={this.setDropdownRef}
+              switchLanguage={e => this.switchLanguage(e)}
+              dropdownRef={e => e !== undefined && this.setDropdownRef(e)}
             />
           ) : null}
         </div>

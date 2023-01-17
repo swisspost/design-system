@@ -7,14 +7,15 @@ import { translate } from '../../../services/language.service';
 export const MiddleDropdown = (props: {
   items: IBreadcrumbItem[];
   dropdownOpen: boolean;
-  clickHandler?: (event?: MouseEvent) => void;
+  clickHandler: (event?: MouseEvent) => void;
   focusable?: boolean;
 }) => {
   return (
     <div class="middle-dropdown-container">
       <button
         class="middle-dropdown-button btn btn-blank"
-        onClick={props.clickHandler}
+        type="button"
+        onClick={event => props.clickHandler(event)}
         tabindex={props.focusable === false ? '-1' : undefined}
       >
         <span class="visually-hidden">{translate('Open menu')}</span>

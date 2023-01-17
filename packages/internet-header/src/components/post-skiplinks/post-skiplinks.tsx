@@ -64,7 +64,7 @@ export class PostSkiplinks {
                 href="#post-internet-header-main-navigation"
                 accessKey="1"
                 title="[ALT + 1]"
-                onClick={this.focusMain}
+                onClick={() => this.focusMain()}
               >
                 <span>{config.translations.navMainAriaLabel}</span>
                 <SvgIcon name="pi-pointy-arrow-right" />
@@ -85,7 +85,7 @@ export class PostSkiplinks {
                   href="#post-internet-header-search-button"
                   accessKey="3"
                   title="[ALT + 3]"
-                  onClick={this.focusSearch}
+                  onClick={() => this.focusSearch()}
                 >
                   <span>{translate('Go to search')}</span>
                   <SvgIcon name="pi-pointy-arrow-right" />
@@ -99,7 +99,7 @@ export class PostSkiplinks {
                   href="#post-klp-login-widget"
                   accessKey="4"
                   title="[ALT + 4]"
-                  onClick={this.focusLogin}
+                  onClick={() => this.focusLogin()}
                 >
                   <span>{translate('Go to login')}</span>
                   <SvgIcon name="pi-pointy-arrow-right" />

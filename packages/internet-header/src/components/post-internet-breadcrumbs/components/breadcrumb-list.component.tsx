@@ -8,7 +8,7 @@ export const BreadcrumbList = (props: {
   items: IBreadcrumbItem[];
   dropdownOpen?: boolean;
   isConcatenated?: boolean;
-  clickHandler?: (event?: MouseEvent) => void;
+  clickHandler: (event?: MouseEvent) => void;
   lastItemRef?: (element: HTMLElement | undefined) => void;
   focusable?: boolean;
 }) => {
@@ -33,7 +33,7 @@ export const BreadcrumbList = (props: {
           <MiddleDropdown
             items={props.items}
             dropdownOpen={props.dropdownOpen ?? false}
-            clickHandler={props.clickHandler}
+            clickHandler={e => props.clickHandler(e)}
             focusable={props.focusable}
           />
         </li>

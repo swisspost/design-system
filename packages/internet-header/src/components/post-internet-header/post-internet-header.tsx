@@ -71,7 +71,7 @@ export class PostInternetHeader {
   /**
    * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
    */
-  @Prop() configProxy?: string | null = null;
+  @Prop() configProxy?: string;
 
   /**
    * Target environment. Choose 'int01' for local testing.
@@ -422,7 +422,7 @@ export class PostInternetHeader {
           this.activeDropdownElement || this.activeFlyout ? 'dropdown-open' : ''
         }`}
         data-version={packageJson.version}
-        onKeyup={this.handleKeyUp}
+        onKeyup={(e: KeyboardEvent) => this.handleKeyUp(e)}
       >
         <header class={`post-internet-header${this.fullWidth ? ' full-width' : ''}`}>
           <SvgSprite />
@@ -439,20 +439,20 @@ export class PostInternetHeader {
                 <post-language-switch
                   id="post-language-switch-desktop"
                   mode="dropdown"
-                  onDropdownToggled={this.handleDropdownToggled}
+                  onDropdownToggled={e => this.handleDropdownToggled(e)}
                 ></post-language-switch>
               </If>
             </post-meta-navigation>
           </If>
           <div class="main-navigation-container wide-container">
             <post-logo></post-logo>
-            <button class="menu-button nav-link" onClick={this.toggleMobileDropdown}>
+            <button class="menu-button nav-link" onClick={() => this.toggleMobileDropdown()}>
               <span class="menu-button-text visually-hidden">{config.header.mobileMenu.text}</span>
               <SvgIcon name={this.isMainNavOpen() ? 'pi-close' : 'pi-menu'}></SvgIcon>
             </button>
             <post-main-navigation
-              onDropdownToggled={this.handleDropdownToggled}
-              onFlyoutToggled={this.handleFlyoutToggled}
+              onDropdownToggled={e => this.handleDropdownToggled(e)}
+              onFlyoutToggled={e => this.handleFlyoutToggled(e)}
               ref={el => (this.mainNav = el)}
             >
               <If condition={renderMetaNavigation === true}>
@@ -468,7 +468,7 @@ export class PostInternetHeader {
             </post-main-navigation>
             <div class="main-navigation-controls">
               <If condition={this.search !== false}>
-                <post-search onDropdownToggled={this.handleDropdownToggled}></post-search>
+                <post-search onDropdownToggled={e => this.handleDropdownToggled(e)}></post-search>
               </If>
               <If condition={!!renderLogin}>
                 <post-klp-login-widget>
@@ -478,7 +478,7 @@ export class PostInternetHeader {
               <If condition={renderMetaNavigation === false && renderLanguageSwitch === true}>
                 <post-language-switch
                   id="post-language-switch-no-meta"
-                  onDropdownToggled={this.handleDropdownToggled}
+                  onDropdownToggled={e => this.handleDropdownToggled(e)}
                   mode="dropdown"
                 ></post-language-switch>
               </If>

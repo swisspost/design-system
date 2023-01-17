@@ -21,6 +21,7 @@ export class PostInternetBreadcrumbs {
   @State() overlayVisible: boolean;
   @State() isConcatenated: boolean; // Don't set an initial value, this has to be calculated first, otherwise reactivity problems ensue
   @State() dropdownOpen: boolean = false;
+  @State() refsReady: boolean = false;
   @Element() host: Element;
 
   private controlNavRef?: HTMLElement;
@@ -32,6 +33,7 @@ export class PostInternetBreadcrumbs {
   private loadedAnimation: Animation | undefined;
 
   connectedCallback() {
+    console.log('connected');
     this.debouncedResize = debounce(200, this.handleResize.bind(this));
     window.addEventListener('resize', this.debouncedResize, { passive: true });
   }
@@ -43,6 +45,7 @@ export class PostInternetBreadcrumbs {
   }
 
   async componentWillLoad() {
+    console.log('will laod');
     // Wait for the config to arrive, then render the header
     try {
       this.customBreadcrumbItems =
@@ -53,6 +56,7 @@ export class PostInternetBreadcrumbs {
   }
 
   componentDidLoad() {
+    console.log('did load');
     // Initially check if breadcrumb items are concatenated
     window.requestAnimationFrame(() => {
       this.handleResize();
@@ -68,15 +72,6 @@ export class PostInternetBreadcrumbs {
     }
   }
 
-  /**
-   * Check if all refs are available before initially checking if breadcrumbs should be concatenated or not
-   */
-  initializeBreadcrumbs() {
-    if (this.controlNavRef && this.visibleNavRef) {
-      this.checkConcatenation();
-    }
-  }
-
   handleResize() {
     // Catch and exclude vertical resize events, e.g. scrolling in iPhone
     if (window.innerWidth === this.lastWindowWidth) {
@@ -87,15 +82,16 @@ export class PostInternetBreadcrumbs {
   }
 
   checkConcatenation() {
-    if (!this.controlNavRef || !this.visibleNavRef) {
-      return;
-    }
+    if (this.controlNavRef && this.visibleNavRef) {
+      this.refsReady = true;
 
-    // Delay the check
-    window.requestAnimationFrame(() => {
-      if (this.controlNavRef && this.visibleNavRef)
-        this.isConcatenated = this.controlNavRef.clientWidth > this.visibleNavRef.clientWidth;
-    });
+      // Delay the check
+      window.requestAnimationFrame(() => {
+        if (this.controlNavRef && this.visibleNavRef) {
+          this.isConcatenated = this.controlNavRef.clientWidth > this.visibleNavRef.clientWidth;
+        }
+      });
+    }
   }
 
   toggleOverlay(overlay: IBreadcrumbOverlay, force?: boolean) {
@@ -189,7 +185,7 @@ export class PostInternetBreadcrumbs {
     });
   }
 
-  handleKeyDown(event: KeyboardEvent) {
+  private handleKeyDown(event: KeyboardEvent) {
     if (event.key.toLowerCase() === 'escape') {
       this.toggleOverlay(this.currentOverlay, false);
     }
@@ -201,6 +197,16 @@ export class PostInternetBreadcrumbs {
 
   private handleToggleOverlay() {
     this.toggleOverlay(this.currentOverlay, false);
+  }
+
+  private handleControlNavRef(element: HTMLElement) {
+    this.controlNavRef = element;
+    this.checkConcatenation();
+  }
+
+  private handleVisibleNavRef(element: HTMLElement) {
+    this.visibleNavRef = element;
+    this.checkConcatenation();
   }
 
   render() {
@@ -238,32 +244,27 @@ export class PostInternetBreadcrumbs {
         <SvgSprite />
         <div class="breadcrumbs">
           <div class="hidden-control-breadcrumbs" aria-hidden="true" tabindex="-1">
-            <nav
-              class="breadcrumbs-nav"
-              ref={el => {
-                this.controlNavRef = el;
-                this.initializeBreadcrumbs();
-              }}
-            >
-              <BreadcrumbList items={items} focusable={false}></BreadcrumbList>
+            <nav class="breadcrumbs-nav" ref={e => e !== undefined && this.handleControlNavRef(e)}>
+              <BreadcrumbList
+                items={items}
+                focusable={false}
+                clickHandler={() => {}}
+              ></BreadcrumbList>
             </nav>
           </div>
           <h2 class="visually-hidden">{breadcrumbConfig.a11yLabel}</h2>
           <nav
-            ref={el => {
-              this.visibleNavRef = el;
-              this.initializeBreadcrumbs();
-            }}
+            ref={e => e !== undefined && this.handleVisibleNavRef(e)}
             class={{
               'breadcrumbs-nav': true,
-              'visually-hidden': !this.controlNavRef || !this.visibleNavRef,
+              'visually-hidden': !this.refsReady,
             }}
           >
             <BreadcrumbList
               items={items}
               dropdownOpen={this.dropdownOpen}
               isConcatenated={this.isConcatenated}
-              clickHandler={this.handleToggleDropdown}
+              clickHandler={() => this.handleToggleDropdown()}
             ></BreadcrumbList>
           </nav>
           <div class="breadcrumb-buttons">
@@ -280,11 +281,11 @@ export class PostInternetBreadcrumbs {
           </div>
           {this.overlayVisible && (
             <OverlayComponent
-              overlayRef={this.overlayRef}
-              iFrameRef={this.registerIFrameResizer}
+              overlayRef={e => e !== undefined && this.overlayRef(e)}
+              iFrameRef={e => e !== undefined && this.registerIFrameResizer(e)}
               overlay={this.currentOverlay}
-              onClick={this.handleToggleOverlay}
-              onKeyDown={this.handleKeyDown}
+              onClick={() => this.handleToggleOverlay()}
+              onKeyDown={(e: KeyboardEvent) => this.handleKeyDown(e)}
               closeButtonText={state.localizedConfig.header.translations.closeButtonText}
             ></OverlayComponent>
           )}

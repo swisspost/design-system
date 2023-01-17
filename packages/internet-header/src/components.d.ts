@@ -76,7 +76,7 @@ export namespace Components {
         /**
           * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
          */
-        "configProxy"?: string | null;
+        "configProxy"?: string;
         /**
           * Customize the header config loaded from the post portal.
          */
@@ -250,7 +250,7 @@ declare namespace LocalJSX {
         /**
           * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
          */
-        "configProxy"?: string | null;
+        "configProxy"?: string;
         /**
           * Customize the header config loaded from the post portal.
          */
