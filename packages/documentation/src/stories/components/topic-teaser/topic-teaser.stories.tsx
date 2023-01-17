@@ -1,45 +1,93 @@
 import React from 'react';
+import { Meta, Story, Args } from "@storybook/react";
+import docsPage from './topic-teaser.docs.mdx';
 
 export default {
   title: 'Components/Topic Teaser',
+  parameters: {
+    docs: {
+      page: docsPage,
+    },
+  },
   args: {
     title: 'Loremipsum',
     subtitle: 'Vero siteos et accusam iretea et justo',
     linkCount: 5,
-    alignment: '',
+    alignment: 'null',
     backgroundColor: 'bg-nightblue'
   },
   argTypes: {
     title: {
+      name: 'Title',
+      description: 'The text to include in the component title.',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
+      table: {
+        category: 'General',
+      },
     },
     subtitle: {
+      name: 'Subtitle',
+      description: 'The text to include in the component subtitle.',
       control: {
-        type: 'text'
-      }
+        type: 'text',
+      },
+      table: {
+        category: 'General',
+      },
     },
     linkCount: {
+      name: 'Amount of links',
+      description: 'The amount of the renderd links.',
       control: {
         type: 'number',
         min: 1,
-        max: 10
-      }
+        max: 10,
+      },
+      table: {
+        category: 'General',
+      },
     },
     alignment: {
+      name: 'Image alignment',
+      description: 'The alignment of the image.',
       control: {
         type: 'radio',
         labels: {
           'topic-teaser-reverse': 'Image left',
-          '': 'Image right'
-        }
+          'null': 'Image right',
+        },
       },
-      options: ['topic-teaser-reverse', '']
+      options: [
+        'topic-teaser-reverse',
+        'null',
+      ],
+      table: {
+        category: 'General',
+      },
     },
     backgroundColor: {
+      name: 'Background Color',
+      description: 'The color the component uses as background.',
       control: {
-        type: 'select'
+        type: 'select',
+        labels: {
+          'bg-light': 'Light',
+          'bg-dark': 'Dark',
+          'bg-nightblue': 'Nightblue',
+          'bg-nightblue-bright': 'Nightblue (bright)',
+          'bg-petrol': 'Petrol',
+          'bg-petrol-bright': 'Petrol (bright)',
+          'bg-coral': 'Coral',
+          'bg-coral-bright': 'Coral (bright)',
+          'bg-olive': 'Olive',
+          'bg-olive-bright': 'Olive (bright)',
+          'bg-purple': 'Purple',
+          'bg-purple-bright': 'Purple (bright)',
+          'bg-aubergine': 'Aubergine',
+          'bg-aubergine-bright': 'Aubergine (bright)',
+        }
       },
       options: [
         'bg-light',
@@ -55,11 +103,14 @@ export default {
         'bg-purple',
         'bg-purple-bright',
         'bg-aubergine',
-        'bg-aubergine-bright'
-      ]
-    }
-  }
-};
+        'bg-aubergine-bright',
+      ],
+      table: {
+        category: 'General',
+      },
+    },
+  },
+} as Meta;
 
 const linkTexts = [
   'At vero eos et accusam et',
@@ -74,7 +125,14 @@ const linkTexts = [
   'Nonummy nibh euismod'
 ];
 
-const Template = args => {
+const Template = (args: Args) => {
+  const classes = [
+    'topic-teaser',
+    args.backgroundColor,
+    args.alignment,
+    'mb-huge-r'
+  ].filter(c => c && c !== 'null').join(' ');
+
   const links: React.ReactElement[] = [];
 
   for (let x = 0; x < args.linkCount; x++) {
@@ -104,15 +162,15 @@ const Template = args => {
     </div>
   ];
 
-  return <div className={ `topic-teaser ${args.backgroundColor} ${args.alignment} mb-huge-r` }>
+  return <div className={ classes }>
     <div className="container">
       <div className={ `topic-teaser-container ${args.backgroundColor}` }>
         <div className="row pt-huge-r">
-          { args.alignment === '' ? [...content].reverse() : content }
+          { args.alignment === 'null' ? [...content].reverse() : content }
         </div>
       </div>
     </div>
   </div>;
 };
 
-export const TopicTeaser = Template.bind({});
+export const Default: Story = Template.bind({});
