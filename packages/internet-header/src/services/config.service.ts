@@ -121,10 +121,7 @@ export const mergeOsFlyoutOverrides = (
         const overrides = osFlyoutOverrides.flyout[index];
         const title = overrides.title ?? col.title;
 
-        const linkList =
-          overrides.linkList && overrides.linkList.length >= 0
-            ? osFlyoutOverrides.flyout[index].linkList
-            : [];
+        const linkList = overrides.linkList ? osFlyoutOverrides.flyout[index].linkList : [];
 
         return {
           title,
@@ -203,7 +200,7 @@ export const generateConfigUrl = (projectId: string, environment: Environment): 
  * @returns The valid project id
  */
 export const isValidProjectId = (projectId: string): boolean => {
-  return projectId !== "" && projectId.length > 0 && /^[a-zA-Z][\w-]*[a-zA-Z0-9]$/.test(projectId);
+  return projectId !== '' && projectId.length > 0 && /^[a-zA-Z][\w-]*[a-zA-Z0-9]$/.test(projectId);
 };
 
 /**
@@ -242,7 +239,6 @@ export const isMobile = () => window.innerWidth < 1024;
  */
 export const setMainNavigationIds = (navMainEntities: NavMainEntity[]): void => {
   navMainEntities.forEach(navMainEntity => {
-    navMainEntity.id =
-      navMainEntity.id === 'flyout_os' ? navMainEntity.id : uniqueId('main-nav-');
+    navMainEntity.id = navMainEntity.id === 'flyout_os' ? navMainEntity.id : uniqueId('main-nav-');
   });
 };
