@@ -72,7 +72,6 @@ describe('search', () => {
       it('Search should close on esc key click', () => {
         cy.changeArg('search', true);
         cy.get(searchButton).click();
-        // cy.focused().type('{esc}');
         cy.get('#searchBox')
           .click({ force: true })
           .clear({ force: true })

@@ -2,7 +2,6 @@
 
 .docs-header {
   margin-top: -4rem;
-  background-color: post.$yellow;
   background-image: url('../../../public/images/header.png');
   background-repeat: no-repeat;
   background-position: center left 60vw;
@@ -27,10 +26,10 @@
   @include post.media-breakpoint-up(xl) {
     background-position: center right;
   }
-
+  
   @include post.media-breakpoint-up(xxl) {
     .container {
-      padding-right: 20%;
+      padding-right: 30%;
     }
   }
 }

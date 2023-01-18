@@ -1,6 +1,7 @@
 // importing the complete styles package scss
 @use 'sass:map';
-@use '@swisspost/design-system-styles/index.scss';
+// TODO: replace intranet.scss with index.scss as soon as the issues in the portal.scss are fixed
+@use '@swisspost/design-system-styles/intranet.scss';
 @use '@swisspost/design-system-styles/core.scss' as post;
 
 #docs-root {
@@ -18,14 +19,10 @@
     margin-block: 3rem 1rem;
   }
 
-  .sbdocs-wrapper {
-    background-color: transparent;
-  }
-
   pre {
     font-size: 100%;
   }
-
+  
   code {
     display: inline-block;
     position: relative;
@@ -45,6 +42,7 @@
   .sbdocs-wrapper {
     padding-left: 0;
     padding-right: 0;
+    background-color: transparent;
 
     .sbdocs-content {
       max-width: none;
@@ -55,6 +53,10 @@
     [scale] {
       transform: none;
     }
+  }
+
+  .docblock-source {
+    margin: 0 0 1rem;
   }
 
   .hide-col-default .docblock-argstable {
