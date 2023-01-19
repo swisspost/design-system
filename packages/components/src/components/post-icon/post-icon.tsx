@@ -10,15 +10,20 @@ export class PostIcon {
   @Prop() base?: string;
   @State() path: string;
 
-  constructor() {
+  componentWillRender () {
     // Construct icon path from different possible sources
     let basePath: string;
     const metaBase = document.head.querySelector(
       'meta[name="design-system-settings"][data-post-icon-base]',
     );
-    if (metaBase) basePath = metaBase.getAttribute('data-post-icon-base');
-    if (this.base) basePath = this.base;
-    if (!basePath) basePath = `https://unpkg.com/@swisspost/design-system-icons/public/svg`;
+
+    if (this.base) {
+      basePath = this.base;
+    } else if (metaBase) {
+      basePath = metaBase.getAttribute('data-post-icon-base');  
+    } else {
+      basePath = `https://unpkg.com/@swisspost/design-system-icons/public/svg`;
+    }
 
     this.path = new URL(
       [...basePath.split('/'), `${this.name}.svg#icon`].join('/'),
