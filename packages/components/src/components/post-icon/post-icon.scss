@@ -1,9 +1,11 @@
 :host {
-  display: block;
+  display: inline-block;
+  width: 1em;
+  vertical-align: -0.15em;
 }
 
 svg {
-  width: 1.5em;
-  height: 1.5em;
+  display: block;
+  width: 100%;
   fill: currentColor;
 }
