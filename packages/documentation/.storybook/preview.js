@@ -2,9 +2,12 @@ import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';
 import './preview.scss';
 
+import { defineCustomElements } from '@swisspost/design-system-components/dist/esm/loader';
 import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
 import docJson from '@swisspost/design-system-components/dist/docs.json';
 
+
+defineCustomElements();
 if (docJson) setStencilDocJson(docJson);
 
 export const parameters = {
