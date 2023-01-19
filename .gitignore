@@ -29,5 +29,4 @@ styles/stylelint-report.txt
 
 # Stencil
 **/stencil-generated/
-/packages/components/src/components.d.ts
 /packages/components/src/components/**/readme.md
