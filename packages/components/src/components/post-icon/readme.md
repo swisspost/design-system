@@ -10,7 +10,7 @@
 | Property | Attribute | Description | Type     | Default     |
 | -------- | --------- | ----------- | -------- | ----------- |
 | `base`   | `base`    |             | `string` | `undefined` |
-| `name`   | `name`    |             | `number` | `undefined` |
+| `name`   | `name`    |             | `string` | `undefined` |
 
 
 ----------------------------------------------

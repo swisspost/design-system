@@ -6,7 +6,7 @@ import { Component, Host, h, Prop, State } from '@stencil/core';
   shadow: true,
 })
 export class PostIcon {
-  @Prop() name: number;
+  @Prop() name: string;
   @Prop() base?: string;
   @State() path: string;
 
