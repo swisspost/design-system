@@ -102,7 +102,7 @@ export default {
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
 
-  const id = `ExampleRadio_${context.name}`;
+  const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleRadio`;
   const classes = ['form-check-input', args.validation].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
@@ -135,7 +135,16 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
       disabled={args.disabled}
       aria-label={useAriaLabel && args.label}
       aria-invalid={VALIDATION_STATE_MAP[args.validation]}
-      onChange={(e: React.ChangeEvent) => updateArgs({ checked: !args.checked })}
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+        updateArgs({ checked: !args.checked });
+
+        if (document.activeElement === e.target) {
+          setTimeout(() => {
+            const element: HTMLInputElement | null = document.querySelector(`#${id}`);
+            if (element) element.focus();
+          }, 25);
+        }
+      }}
     />
   );
 
@@ -153,55 +162,81 @@ Default.decorators = [
   ),
 ];
 
-const TemplateInline = (args: Args) => (
-  <fieldset>
+const TemplateInline = (args: Args, context: StoryContext<ReactFramework, Args>) => {
+  const [_, updateArgs] = useArgs();
+  const baseId = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleRadio`;
+  const id1 = baseId + '1';
+  const id2 = baseId + '2';
+  const id3 = baseId + '3';
+  const id4 = baseId + '4';
+
+  function onChange (e: React.ChangeEvent<HTMLInputElement>, value: number) {
+    updateArgs({ checkedRadio: value });
+
+    if (document.activeElement === e.target) {
+      setTimeout(() => {
+        const element: HTMLInputElement | null = document.querySelector(`#${e.target.id}`);
+        if (element) element.focus();
+      }, 25);
+    }
+  }
+
+  return <fieldset>
     <legend className={args.hiddenLegend ? 'visually-hidden' : undefined}>Legend</legend>
     <div key="FormCheck_1" className="form-check form-check-inline">
       <input
-        id="ExampleRadio_Inline_1"
+        id={ id1 }
+        name="Inline_ExampleRadio_Group"
         className="form-check-input"
         type="radio"
-        name="ExampleRadio_Inline_Group"
+        checked={ args.checkedRadio === 1 }
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 1) }
       />
-      <label htmlFor="ExampleRadio_Inline_1" className="form-check-label">
+      <label htmlFor={ id1 } className="form-check-label">
         {args.label}
       </label>
     </div>
     <div key="FormCheck_2" className="form-check form-check-inline">
       <input
-        id="ExampleRadio_Inline_2"
+        id={ id2 }
+        name="Inline_ExampleRadio_Group"
         className="form-check-input"
         type="radio"
-        name="ExampleRadio_Inline_Group"
+        checked={ args.checkedRadio === 2 }
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 2) }
       />
-      <label htmlFor="ExampleRadio_Inline_2" className="form-check-label">
+      <label htmlFor={ id2 } className="form-check-label">
         {args.label}
       </label>
     </div>
     <div key="FormCheck_3" className="form-check form-check-inline">
       <input
-        id="ExampleRadio_Inline_3"
+        id={ id3 }
+        name="Inline_ExampleRadio_Group"
         className="form-check-input"
         type="radio"
-        name="ExampleRadio_Inline_Group"
+        checked={ args.checkedRadio === 3 }
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 3) }
       />
-      <label htmlFor="ExampleRadio_Inline_3" className="form-check-label">
+      <label htmlFor={ id3 } className="form-check-label">
         {args.label}
       </label>
     </div>
     <div key="FormCheck_4" className="form-check form-check-inline">
       <input
-        id="ExampleRadio_Inline_4"
+        id={ id4 }
+        name="Inline_ExampleRadio_Group"
         className="form-check-input"
         type="radio"
-        name="ExampleRadio_Inline_Group"
+        checked={ args.checkedRadio === 4 }
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 4) }
       />
-      <label htmlFor="ExampleRadio_Inline_4" className="form-check-label">
+      <label htmlFor={ id4 } className="form-check-label">
         {args.label}
       </label>
     </div>
-  </fieldset>
-);
+  </fieldset>;
+};
 
 export const Inline: Story = TemplateInline.bind({});
 Inline.decorators = [
@@ -214,13 +249,23 @@ Inline.decorators = [
 Inline.parameters = {
   controls: {
     exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
+  }
+};
+Inline.args = {
+  checkedRadio: null
+};
+Inline.argTypes = {
+  checkedRadio: {
+    table: {
+      disable: true,
+    },
   },
 };
 
 export const Validation: Story = Template.bind({});
 Validation.parameters = {
   controls: {
-    exclude: ['Hidden Legend', 'Label', 'Hidden Label', 'Checked', 'Disabled'],
+    exclude: ['Hidden Legend', 'Label', 'Hidden Label', 'Disabled'],
   },
 };
 Validation.args = {
