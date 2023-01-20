@@ -7,7 +7,7 @@ import { url } from './utilities/environment';
 import path from 'path';
 import packageJSON from '../package.json';
 
-const outputPath = './public/svg';
+const outputPath = './public/post-icons';
 const reportPath = './public';
 
 const jsonReport: IJSONReport = {

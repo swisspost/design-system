@@ -38,7 +38,7 @@
           <template x-for="icon in icons.icons">
             <div class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                <use x-bind:href="`./svg/${icon.file.name}#icon`" />
+                <use x-bind:href="`./post-icons/${icon.file.name}#icon`" />
               </svg>
               <span x-text="icon.file.basename"></span>
             </div>
