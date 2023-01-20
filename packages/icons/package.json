@@ -40,7 +40,6 @@
     "jest": "26",
     "mock-fs": "^5.2.0",
     "node-fetch": "2",
-    "nodemon": "2.0.20",
     "svgo": "2.8.0",
     "ts-jest": "26",
     "ts-node": "10.9.1",

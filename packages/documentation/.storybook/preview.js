@@ -1,3 +1,8 @@
+import JsxParser from 'react-jsx-parser'
+import { renderToStaticMarkup } from 'react-dom/server';
+import * as prettier from 'prettier';
+import * as htmlParser from 'prettier/parser-html';
+
 import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';
 import './preview.scss';
@@ -6,9 +11,28 @@ import { defineCustomElements } from '@swisspost/design-system-components/dist/e
 import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
 import docJson from '@swisspost/design-system-components/dist/docs.json';
 
-
 defineCustomElements();
 if (docJson) setStencilDocJson(docJson);
+
+const PRETTIER_OPTIONS = {
+  parser: 'html',
+  plugins: [htmlParser],
+  printWidth: 100,
+  tabWidth: 2,
+  useTabs: false,
+  semi: true,
+  singleQuote: false,
+  quoteProps: 'consistent',
+  jsxSingleQuote: false,
+  trailingComma: 'es5',
+  bracketSpacing: true,
+  bracketSameLine: false,
+  arrowParens: "always",
+  htmlWhitespaceSensitivity: 'css',
+  endOfLine: 'lf',
+  embeddedLanguageFormatting: 'off',
+  singleAttributePerLine: true
+};
 
 export const parameters = {
   previewTabs: {
@@ -54,29 +78,21 @@ export const parameters = {
       excludeDecorators: true,
     },
     transformSource(snippet) {
-      return (
-        snippet
-          // remove react fragments
-          .replace(/(<>|<\/>)/g, '')
+      const reactElements = <JsxParser jsx={snippet} renderInWrapper={false}/>;
+      const htmlSnippet = renderToStaticMarkup(reactElements);
+      const formattedSnippet = prettier.format(htmlSnippet, PRETTIER_OPTIONS)
+        // replace "className" attributes with "class"
+        .replace(/className/g, 'class')
+    
+        // replace "htmlFor" attributes with "for"
+        .replace(/htmlFor/g, 'for')
+    
+        // replace react fragments
+        .replace(/<\/?react\.fragment>/g, '');
 
-          // remove "key" attributes
-          .replace(/(\t+|\s+)?key=".*"/g, '')
+      // ensure the string is not empty ('') because the Source component breaks if it is
+      return formattedSnippet || ' ';
 
-          // remove "{' '}" placeholders
-          .replace(/{' '}/g, ' ')
-
-          // repalce noRefCheck functions
-          .replace(/function noRefCheck\(\)\s?{}/g, '() => {}')
-
-          // remove brackets from "{value}" attribute-values
-          .replace(/([a-zA-Z][a-zA-Z0-9-_:.]+)={([^}]*}?)}/g, (_m, g1, g2) => `${g1}="${g2}"`)
-
-          // replace "className" attributes with "class"
-          .replace(/className/g, 'class')
-
-          // replace "htmlFor" attributes with "for"
-          .replace(/htmlFor/g, 'for')
-      );
     },
   },
   actions: { argTypesRegex: '^on[A-Z].*' },
