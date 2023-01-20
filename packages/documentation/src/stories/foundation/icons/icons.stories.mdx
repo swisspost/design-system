@@ -1,6 +1,5 @@
-import { Meta } from '@storybook/addon-docs';
-import iconsReport from '@swisspost/design-system-icons/public/report.json';
-import './icons.styles.scss';
+import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import { Search } from './icons.components';
 
 <Meta
   title="Foundations/Icons"
@@ -10,21 +9,226 @@ import './icons.styles.scss';
         hidden: true,
       },
     },
+    viewMode: 'docs',
   }}
 />
 
 # Icons
 
-<div class="form-floating">
-  <input id="icon-filter" type="text" class="form-control" placeholder="Filter icons" />
-  <label for="icon-filter">Filter icons</label>
+<p className="lead">This is our self-made icon library, with 800+ icons so far.</p>
+
+The icons are designed to work with the Swiss Post Design System components. They are SVGs, so they scale quickly and easily and can be styled with CSS. While they are built for us, they will work in any project.<br/>
+Use them together or without the packages `@swisspost/design-system-styles` and `@swisspost/design-system-components`.
+
+<!-- this is an invisible, navigation-only story -->
+
+<Story name="Start">
+  <div />
+</Story>
+
+## Usage
+
+The icons are not automatically installed when using one of the above packages in your project, you must explicitly include them.
+
+```bash dark
+npm install @swisspost/design-system-icons
+```
+
+As they are SVGs, you can include them into your HTML in a few ways depending on how your project is setup.<br/>
+Whenever you use the SVGs without our `post-icon` component, we recommend setting the properties `width: 1em` and `height: auto` for easy resizing via `font-size`.
+
+## Working with `post-icon` component
+
+The following passages only work if you use the `post-icon` component.
+
+### Color
+
+By default, icons inherit the current text color of their parent element.<br/>
+You can therefore use our [text color utility](/?path=/docs/utilities-text--color) to colorize an icon. Or you can use custom CSS to set the icon color, either via direct style attribute, or via custom classes.
+
+<Canvas withSource="open">
+  <Story
+    name="Colorizing"
+    decorators={[
+      Story => (
+        <div className="d-flex flex-wrap gap-2" style={{ fontSize: '32px' }}>
+          <Story />
+        </div>
+      ),
+    ]}
+  >
+    <post-icon name="1001" class="text-primary" />
+    <post-icon name="1001" class="text-info" />
+    <post-icon name="1001" class="text-success" />
+    <post-icon name="1001" style={{ color: 'blue' }} />
+    <post-icon name="1001" style={{ color: '#800080' }} />
+    <post-icon name="1001" style={{ color: 'rgb(230, 0, 0)' }} />
+  </Story>
+</Canvas>
+
+### Sizing
+
+Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size`.<br/>
+Therefore you can use our [font-size utility](/?path=/docs/utilities-text--font-size) to manage the size of an icon. Or you can use custom CSS to set the icon size, either via direct style attribute, or via custom classes.
+
+<Canvas withSource="open">
+  <Story
+    name="Sizing"
+    decorators={[
+      Story => (
+        <div className="d-flex flex-column gap-2">
+          <Story />
+        </div>
+      ),
+    ]}
+  >
+    <div>
+      Icon <post-icon name="1001" />
+    </div>
+    <div className="h3 mb-0">
+      Icon <post-icon name="1001" />
+    </div>
+    <div className="h1 mb-0">
+      Icon <post-icon name="1001" />
+    </div>
+    <div className="fs-huge">
+      Icon <post-icon name="1001" />
+    </div>
+    <div style={{ fontSize: '60px' }}>
+      Icon <post-icon name="1001" />
+    </div>
+  </Story>
+</Canvas>
+
+### Styling
+
+With the use of our [border](#TODO), [background](#TODO) and [padding](#TODO) utilities, you can create various styling effects.
+
+<Canvas withSource="open">
+  <Story
+    name="Styling"
+    decorators={[
+      Story => (
+        <div className="d-flex flex-wrap gap-2" style={{ fontSize: '64px' }}>
+          <Story />
+        </div>
+      ),
+    ]}
+  >
+    <post-icon name="1001" class="border rounded p-3" />
+    <post-icon name="1001" class="border border-success rounded p-3 text-success" />
+    <post-icon name="1001" class="rounded-circle bg-info p-3" />
+  </Story>
+</Canvas>
+
+### Transforms
+
+#### Flipping
+
+Flip the icon horizontally and/or vertically via the `flip-h` and `flip-v` props.
+
+<Canvas withSource="open">
+  <Story
+    name="Flipping"
+    decorators={[
+      Story => (
+        <div className="d-flex flex-wrap gap-2" style={{ fontSize: '32px' }}>
+          <Story />
+        </div>
+      ),
+    ]}
+  >
+    <post-icon name="3200" />
+    <post-icon name="3200" flip-h />
+    <post-icon name="3200" flip-v />
+    <post-icon name="3200" flip-h flip-v />
+  </Story>
+</Canvas>
+
+#### Rotating
+
+Rotate the icon by a specified number of degrees via the `rotate` prop. Positive values will rotate the icon clockwise, while negative values will rotate the icon counterclockwise.<br/>
+Available is every 5th degree from -360 to 360: `-360` `-355` ... `-5` `0` `5` ... `355` `360`.
+
+<Canvas withSource="open">
+  <Story
+    name="Rotating"
+    decorators={[
+      Story => (
+        <div className="d-flex flex-wrap gap-2" style={{ fontSize: '32px' }}>
+          <Story />
+        </div>
+      ),
+    ]}
+  >
+    <post-icon name="1001" rotate="-360" />
+    <post-icon name="1001" rotate="-255" />
+    <post-icon name="1001" rotate="-180" />
+    <post-icon name="1001" rotate="-105" />
+    <post-icon name="1001" rotate="-35" />
+    <post-icon name="1001" rotate="0" />
+    <post-icon name="1001" rotate="35" />
+    <post-icon name="1001" rotate="105" />
+    <post-icon name="1001" rotate="180" />
+    <post-icon name="1001" rotate="255" />
+    <post-icon name="1001" rotate="360" />
+  </Story>
+</Canvas>
+
+#### Animating
+
+The `post-icon` includes the following built-in animations for icons:
+
+- `cylon` slides the icon left and right
+- `cylon-vertical` slides the icon up and down
+- `spin` smoothly spins the icon clockwise
+- `spin-reverse` smoothly spins the icon counter-clockwise
+- `fade` fades the icon in and out
+- `throb` scales the icon in and out
+
+To use them, set the `animate` prop to one of the animation names above.
+
+<div className="alert alert-warning">
+  <p>
+    You can not combine <code>animate</code> with <code>flip-h</code>, <code>flip-v</code> or{' '}
+    <code>rotate</code> so far.
+  </p>
 </div>
 
-<div class="icons my-big">
-  {iconsReport.icons.map(icon => (
-    <div class="icon">
-      <post-icon name={icon.name.replace('.svg', '')} />
-      <span>{icon.name.replace('.svg', '')}</span>
+<Canvas withSource="open">
+  <Story
+    name="Animating"
+    decorators={[
+      Story => (
+        <div className="d-flex flex-wrap text-center" style={{ fontSize: '32px' }}>
+          <Story />
+        </div>
+      ),
+    ]}
+  >
+    <div className="w-50 py-3">
+      <p className="text-muted fs-tiny">Cylon animation:</p>
+      <post-icon name="2253" animate="cylon" />
     </div>
-  ))}
-</div>
+    <div className="w-50 py-3">
+      <p className="text-muted fs-tiny">Vertical cylon animation:</p>
+      <post-icon name="2252" animate="cylon-vertical" />
+    </div>
+    <div className="w-50 py-3">
+      <p className="text-muted fs-tiny">Spinning animation:</p>
+      <post-icon name="2041" animate="spin" />
+    </div>
+    <div className="w-50 py-3">
+      <p className="text-muted fs-tiny">Reverse spinning animation:</p>
+      <post-icon name="2042" animate="spin-reverse" />
+    </div>
+    <div className="w-50 py-3">
+      <p className="text-muted fs-tiny">Fade animation:</p>
+      <post-icon name="1028" animate="fade" />
+    </div>
+    <div className="w-50 py-3">
+      <p className="text-muted fs-tiny">Throb animation:</p>
+      <post-icon name="2063" animate="throb" />
+    </div>
+  </Story>
+</Canvas>
