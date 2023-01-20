@@ -1,5 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" xml:space="preserve"><symbol id="icon">
-    <path fill="none" d="M0 0h24v24H0z"/>
-    <path d="M9.5 10c1.9 0 3.5-1.6 3.5-3.5S11.4 3 9.5 3 6 4.6 6 6.5 7.6 10 9.5 10zm0-6C10.9 4 12 5.1 12 6.5S10.9 9 9.5 9 7 7.9 7 6.5 8.1 4 9.5 4zM6 16h1v5H6z"/>
-    <path d="M13 12v-1H6.5C4.6 11 3 12.6 3 14.5V21h1v-6.5C4 13.1 5.1 12 6.5 12H13zM16.7 21l4.5-4.5-4.5-4.5h-1.4l4 4H11v1h8.3l-4 4z"/>
-</symbol></svg>
