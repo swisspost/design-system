@@ -38,9 +38,9 @@
           <template x-for="icon in icons.icons">
             <div class="icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                <use x-bind:href="`./svg/${icon.name}#icon`" />
+                <use x-bind:href="`./svg/${icon.file.name}#icon`" />
               </svg>
-              <span x-text="icon.name.replace('.svg', '')"></span>
+              <span x-text="icon.file.basename"></span>
             </div>
           </template>
         </div>
@@ -51,7 +51,7 @@
         <ul>
           <template x-for="icon in icons.errored">
             <li>
-              <a x-bind:href="icon.downloadLink" x-text="icon.name"></a>
+              <a x-bind:href="icon.meta.downloadLink" x-text="icon.file.name"></a>
               <br />
               <pre x-text="icon.errorMessage"></pre>
             </li>
@@ -63,7 +63,7 @@
         <h1 class="mt-huge mb-big">SVG file not found</h1>
         <ul>
           <template x-for="icon in icons.noSVG">
-            <li x-text="icon.name"></li>
+            <li x-text="icon.file.basename"></li>
           </template>
         </ul>
       </section>

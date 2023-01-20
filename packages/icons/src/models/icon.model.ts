@@ -1,13 +1,24 @@
-import { ContentInfo, PostInfo, Type, TypeFilter } from './censhare-result-page.model';
+import { Type, TypeFilter, VariantMIME, Businessfield, MediaSize } from './censhare-result-page.model';
 
 export interface IIcon {
-  downloadLink: string;
-  type: Type;
-  contentInfo: ContentInfo;
-  typeFilter: TypeFilter;
-  name: string;
+  uuid: string,
   id: number;
-  postInfo: PostInfo;
+  type: Type;
+  typeFilter: TypeFilter;
+  meta: {
+    downloadLink: string;
+    businessfield: Businessfield,
+    keywords: string[],
+    year?: string,
+  },
+  file: {
+    mime: VariantMIME;
+    name: string,
+    basename: string,
+    ext: string,
+    size?: MediaSize,
+  },
+  createdAt: Date;
   modifiedAt: Date;
   errorMessage?: string;
 }

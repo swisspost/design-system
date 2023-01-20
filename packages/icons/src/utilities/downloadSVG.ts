@@ -14,16 +14,16 @@ const extractSVG = (input: string) => {
 };
 
 export const downloadSVG = async (icon: IIcon, output: string) => {
-  if (!icon.downloadLink) {
+  if (!icon.meta.downloadLink) {
     return false;
   }
 
   try {
-    const svg = await fetch(icon.downloadLink, getRequestInit());
-
+    const svg = await fetch(icon.meta.downloadLink, getRequestInit());
+    
     const svgString = await svg.text();
     const optimizedSvg = optimize(extractSVG(svgString), svgoOptions);
-
+    
     if (optimizedSvg.error) {
       throw new Error(optimizedSvg.error);
     }
@@ -35,10 +35,10 @@ export const downloadSVG = async (icon: IIcon, output: string) => {
       '$1<symbol id="icon">$2</symbol>$3',
     );
 
-    fs.writeFileSync(path.join(output, icon.name), symbolised);
+    fs.writeFileSync(path.join(output, icon.file.name), symbolised);
     return symbolised;
   } catch (err) {
-    console.log(`SVG Download error: ${err} @ ${icon.downloadLink}`);
+    console.log(`SVG Download error: ${err} @ ${icon.meta.downloadLink}`);
     throw err;
   }
 };

@@ -76,7 +76,7 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
   return jsonReport;
 };
 
-const sortIcons = (a: IIcon, b: IIcon) => (a.name < b.name ? -1 : 1);
+const sortIcons = (a: IIcon, b: IIcon) => (a.file.name < b.file.name ? -1 : 1);
 
 export const main = async () => {
   // Setup environment
