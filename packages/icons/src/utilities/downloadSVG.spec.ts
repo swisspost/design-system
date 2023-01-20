@@ -1,6 +1,6 @@
 import { mocked } from 'ts-jest/utils';
 import fetch, { Response } from 'node-fetch';
-import { Businessfield, Type, TypeFilter } from '../models/censhare-result-page.model';
+import { Businessfield, Type, TypeFilter, VariantMIME } from '../models/censhare-result-page.model';
 import mockFs from 'mock-fs';
 import { downloadSVG } from './downloadSVG';
 
@@ -21,17 +21,32 @@ describe('downloadSVG', () => {
 
     const svg = await downloadSVG(
       {
-        downloadLink: '/test',
+        uuid: '00000000-0000-0000-0000-000000000000',
+        id: 0,
         type: Type.PicturePictogram,
-        contentInfo: { freeKeywords: '' },
         typeFilter: TypeFilter.Pictograms,
-        name: 'test.svg',
-        id: 1,
-        postInfo: {
+        meta: {
+          downloadLink: '/test',
           businessfield: Businessfield.Kommunikation,
-          year: '',
+          keywords: [
+            'Test',
+            'Test2',
+          ],
+          year: ''
         },
-        modifiedAt: new Date(),
+        file: {
+          mime: VariantMIME.ImageSVGXML,
+          name: 'test.svg',
+          basename: 'test',
+          ext: '.svg',
+          size: {
+            width: 32,
+            dpi: 72,
+            height: 32
+          }
+        },
+        createdAt: new Date(),
+        modifiedAt: new Date()
       },
       outputPath,
     );
