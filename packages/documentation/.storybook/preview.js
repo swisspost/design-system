@@ -31,7 +31,7 @@ const PRETTIER_OPTIONS = {
   htmlWhitespaceSensitivity: 'css',
   endOfLine: 'lf',
   embeddedLanguageFormatting: 'off',
-  singleAttributePerLine: true
+  singleAttributePerLine: false
 };
 
 export const parameters = {
