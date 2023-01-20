@@ -36,10 +36,7 @@ export const OverlayComponent = (props: {
             class={`overlay-close btn-blank d-inline-flex align-items-center nav-link ${props.overlay.id}`}
             onClick={() => props.onClick()}
           >
-            <span class="visually-hidden">
-              {/* {state.localizedConfig.header.translations.closeButtonText} */}
-              {props.closeButtonText}
-            </span>
+            <span class="visually-hidden">{props.closeButtonText}</span>
             <SvgIcon name="pi-close"></SvgIcon>
           </button>
           <iframe

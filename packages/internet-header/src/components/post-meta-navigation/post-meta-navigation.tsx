@@ -22,7 +22,7 @@ export class PostMetaNavigation {
               {navMeta
                 ?.filter(meta => !meta.isHomeLink)
                 .map(meta => (
-                  <li>
+                  <li key={meta.url}>
                     <a
                       class={{ 'active': meta.isActive, 'meta-link': true }}
                       target={meta.target}

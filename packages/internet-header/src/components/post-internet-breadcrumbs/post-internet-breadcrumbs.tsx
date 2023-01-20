@@ -271,6 +271,7 @@ export class PostInternetBreadcrumbs {
             {breadcrumbConfig.buttons.map(button => (
               <button
                 class="btn btn-secondary btn-icon"
+                key={button.text}
                 aria-expanded={`${!!this.overlayVisible && this.currentOverlay === button.overlay}`}
                 onClick={() => this.toggleOverlay(button.overlay, true)}
               >

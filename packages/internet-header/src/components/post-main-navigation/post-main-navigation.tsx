@@ -256,6 +256,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
           <ul class="main-container container">
             {headerConfig.navMain.map(levelOne => (
               <li
+                key={levelOne.text}
                 onMouseLeave={() => this.handleMouseLeave(levelOne)}
                 onMouseEnter={() => this.handleMouseEnter(levelOne)}
               >
@@ -297,11 +298,11 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
                       </h2>
                       <div class="flyout-row container">
                         {levelOne.flyout.map(flyout => (
-                          <div class="flyout-column">
+                          <div key={flyout.title} class="flyout-column">
                             {flyout.title ? <h3>{flyout.title}</h3> : null}
                             <ul class="flyout-linklist">
                               {flyout.linkList.map(link => (
-                                <li>
+                                <li key={link.url}>
                                   <a
                                     class={{
                                       'flyout-link': true,

@@ -26,6 +26,7 @@ const LiveSupport = (props: { hours: string }) => (
 export const PostFooterBlockContact = (props: {
   block: BlockEntity;
   liveSupportEnabled: boolean;
+  key: string;
 }) => {
   return (
     <div class="block-contact">
@@ -38,7 +39,7 @@ export const PostFooterBlockContact = (props: {
             return null;
           }
           return (
-            <div class="content-row">
+            <div class="content-row" key={content.name}>
               {content.number ? <p class="number">{content.number}</p> : null}
               {content.text ? <p class="text">{content.text}</p> : null}
               {content.hours && isLiveSupport && <LiveSupport hours={content.hours} />}

@@ -361,7 +361,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                     >
                       {showPortalRecommendations &&
                         search.searchRecommendations.links.map(recommendation => (
-                          <li>
+                          <li key={recommendation.href}>
                             <a
                               class="nav-link search-recommendation"
                               href={recommendation.href}
@@ -398,7 +398,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                       {!showPortalRecommendations &&
                         this.coveoSuggestions &&
                         this.coveoSuggestions.map(suggestion => (
-                          <li>
+                          <li key={suggestion.objectId}>
                             <a
                               class="nav-link"
                               href={suggestion.redirectUrl}
@@ -413,7 +413,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                       {!showPortalRecommendations &&
                         this.placeSuggestions &&
                         this.placeSuggestions.map(suggestion => (
-                          <li>
+                          <li key={suggestion.id}>
                             <a
                               class="nav-link"
                               href={getPlacesUrl(suggestion)}

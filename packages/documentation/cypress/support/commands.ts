@@ -26,13 +26,13 @@
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
 
-const isInViewport = _chai => {
-  function assertIsInViewport() {
-    var subject = this._obj;
+export const isInViewport = function (_chai: Chai.ChaiStatic) {
+  const assertIsInViewport = function (this: Chai.AssertionStatic) {
+    const subject = this._obj;
 
-    var windowHeight = Cypress.config().viewportHeight;
-    var bottomOfCurrentViewport = windowHeight;
-    var rect = subject[0].getBoundingClientRect();
+    const windowHeight = Cypress.config().viewportHeight;
+    const bottomOfCurrentViewport = windowHeight;
+    const rect = subject[0].getBoundingClientRect();
 
     this.assert(
       (rect.top > 0 && rect.top < bottomOfCurrentViewport) ||
@@ -41,7 +41,7 @@ const isInViewport = _chai => {
       'expected #{this} to not be in viewport',
       subject,
     );
-  }
+  };
 
   _chai.Assertion.addMethod('inViewport', assertIsInViewport);
 };

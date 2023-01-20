@@ -15,7 +15,7 @@ export const PostLanguageSwitchList = (props: {
         .map(lang => {
           const TagName = lang.url === null ? 'button' : 'a';
           return (
-            <li>
+            <li key={lang.lang}>
               <TagName
                 onClick={() => props.switchLanguage(lang)}
                 href={lang.url}

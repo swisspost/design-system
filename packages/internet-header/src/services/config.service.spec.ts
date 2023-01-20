@@ -110,7 +110,7 @@ describe('config.service.ts', () => {
       expect(base).toEqual(
         expect.arrayContaining([
           expect.objectContaining({
-            id: expect.stringMatching(new RegExp('^main-nav-.+|^flyout_os$', 'gi')),
+            id: expect.stringMatching(/^main-nav-.+|^flyout_os$/gi),
           }),
         ]),
       );

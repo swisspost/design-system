@@ -86,12 +86,13 @@ export class PostInternetFooter {
             {footerConfig.block
               .filter(block => block.columnType === 'list')
               .map(block => (
-                <PostFooterBlockList block={block} />
+                <PostFooterBlockList key={block.title} block={block} />
               ))}
             {footerConfig.block
               .filter(block => block.columnType === 'contact')
               .map(block => (
                 <PostFooterBlockContact
+                  key={block.title}
                   block={block}
                   liveSupportEnabled={this.liveSupportEnabled}
                 />
@@ -99,7 +100,7 @@ export class PostInternetFooter {
             {footerConfig.block
               .filter(block => block.columnType === 'address')
               .map(block => (
-                <PostFooterBlockAddress block={block} />
+                <PostFooterBlockAddress key={block.title} block={block} />
               ))}
           </div>
           <div class="copyright container">
@@ -107,7 +108,7 @@ export class PostInternetFooter {
             <ul class="no-list footer-meta-links">
               {footerConfig.links
                 ? footerConfig.links.map(link => (
-                    <li>
+                    <li key={link.url}>
                       <a class="nav-link" href={link.url} target={link.target}>
                         {link.text}
                       </a>

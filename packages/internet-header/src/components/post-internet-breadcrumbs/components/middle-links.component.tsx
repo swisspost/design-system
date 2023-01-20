@@ -8,7 +8,7 @@ export const MiddleLinks = (props: {
   focusable?: boolean;
 }) => {
   return props.items.slice(1, -1).map(item => (
-    <li>
+    <li key={item.url}>
       <a href={item.url} class="nav-link" tabindex={props.focusable === false ? '-1' : undefined}>
         <span>{item.text}</span>
       </a>

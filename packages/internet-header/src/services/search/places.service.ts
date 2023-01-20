@@ -37,7 +37,6 @@ const convertTypes = async () => {
 
 /**
  * Query the Gis API for locations and localities (pois)
- * TODO: find out if certain types can be excluded via filter on the backend
  *
  * @param query User input string
  * @returns
@@ -99,7 +98,6 @@ export const highlightPlacesString = (query: string | undefined, place: string) 
 
 /**
  * Get the deeplink to any location found via geocoder
- * TODO: Check with topos if they can provide an API to get generated places URLs with their logic
  *
  * @param location A location from the Gis API Geocode endpoint
  * @returns

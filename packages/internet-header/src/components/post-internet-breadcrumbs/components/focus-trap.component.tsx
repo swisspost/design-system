@@ -1,6 +1,8 @@
 import { FunctionalComponent, h } from '@stencil/core';
 import { tabbable } from 'tabbable';
 
+let key = 0;
+
 /**
  * Trap the focus inside a specific container by prepending/appending two focus trap
  * input boxes who return the focus into the container.
@@ -11,7 +13,7 @@ import { tabbable } from 'tabbable';
  */
 export const FocusTrap: FunctionalComponent<{ active?: boolean }> = (props, children) => {
   // Default value for active is true
-  const active = props.active !== false;
+  const active = props.active ?? false;
 
   const handleFocusIn = (event: FocusEvent, mode: 'first' | 'last') => {
     if (!children.length) {
@@ -37,11 +39,14 @@ export const FocusTrap: FunctionalComponent<{ active?: boolean }> = (props, chil
     focusElement.focus();
   };
 
+  key++;
+
   return [
     <input
       type="text"
       aria-hidden="true"
       class="visually-hidden"
+      key={`focus-trap-before-${key}`}
       onFocusin={e => active && handleFocusIn(e, 'last')}
     />,
     children,
@@ -49,6 +54,7 @@ export const FocusTrap: FunctionalComponent<{ active?: boolean }> = (props, chil
       type="text"
       aria-hidden="true"
       class="visually-hidden"
+      key={`focus-trap-after-${key}`}
       onFocusin={e => active && handleFocusIn(e, 'first')}
     />,
   ];

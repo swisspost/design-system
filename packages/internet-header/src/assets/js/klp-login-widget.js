@@ -207,7 +207,6 @@ const vertx = vertx || {};
     options,
     environment,
   ) {
-    // TODO: patch this functionality to work with new stickyness settings
     const headerNode = document.getElementsByTagName('header')[0];
     const config = { attributes: true, childList: false, subtree: false };
     const callback = function (mutationsList, observer) {
@@ -966,11 +965,10 @@ const vertx = vertx || {};
       log('Preparing for communication with iframe content');
 
       function receiveMessage(e) {
-        if (e.origin !== '')
-          if (e.data === 'syncWidget') {
-            log('PostMessage syncWidget received');
-            subscribe();
-          }
+        if (e.data === 'syncWidget') {
+          log('PostMessage syncWidget received');
+          subscribe();
+        }
       }
       if (window.addEventListener) {
         window.addEventListener('message', receiveMessage);

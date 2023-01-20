@@ -9,7 +9,7 @@ export const PostFooterBlockCustom = (props: { block: CustomBlockEntity }) => {
         <ul class="no-list box link-list">
           {props.block.links &&
             props.block.links.map(link => (
-              <li>
+              <li key={link.url}>
                 <a class="flyout-link" href={link.url} target={link.target}>
                   {link.text}
                 </a>

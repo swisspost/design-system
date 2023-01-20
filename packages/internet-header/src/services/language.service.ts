@@ -7,8 +7,6 @@ export const getUserLang = (
   localStorageKey?: string,
   cookieKey?: string,
 ) => {
-  const languagesSet: string[] = [];
-
   // If there are no supported languages, well...
   if (supportedLanguages.length === 0) {
     return undefined;
@@ -19,53 +17,39 @@ export const getUserLang = (
     return supportedLanguages[0];
   }
 
-  // Check if implementor overrides lang config
-  if (implementorPreferredLanguage !== undefined) {
-    languagesSet.push(implementorPreferredLanguage);
-  }
-
-  // Check query string param
   const url = new URL(window.location.href);
-  const langParam = url.searchParams.get('lang');
-  if (langParam !== null) {
-    languagesSet.push(langParam);
-  }
 
-  // Check url pathname
-  const matchSegment = url.pathname
-    .split('/')
-    .find(segment => supportedLanguages.includes(segment));
-  if (matchSegment) {
-    languagesSet.push(matchSegment);
-  }
+  /**
+   * Build array of possible language definitions in order of importance.
+   * At the end is a filter function that will weed out any undefined or null entries.
+   */
+  let languagesSet: Array<string> = [
+    // Check if implementor overrides lang config
+    implementorPreferredLanguage,
 
-  // Check local storage with the key provided
-  if (localStorageKey !== undefined) {
-    const localStorageEntry = window.localStorage.getItem(localStorageKey);
-    if (localStorageEntry !== null) languagesSet.push(localStorageEntry);
-  }
+    // Check query string param
+    url.searchParams.get('lang'),
 
-  // Check cookies
-  languagesSet.push(getCookie('language'));
-  languagesSet.push(getCookie('lang'));
-  if (cookieKey !== undefined) {
-    const cookieEntry = getCookie(cookieKey);
-    if (cookieEntry !== '') {
-      languagesSet.push(getCookie(cookieKey));
-    }
-  }
+    // Check url pathname
+    url.pathname.split('/').find(segment => supportedLanguages.includes(segment)),
 
-  // Check document language
-  languagesSet.push(document.documentElement.lang);
+    // Check local storage with the key provided
+    localStorageKey !== undefined ? window.localStorage.getItem(localStorageKey) : null,
 
-  // Check browser preferred language
-  const browserPreferredLang = getPreferredLanguageFromBrowser(supportedLanguages);
-  if (browserPreferredLang !== null) {
-    languagesSet.push(browserPreferredLang);
-  }
+    // Check cookies
+    getCookie('language'),
+    getCookie('lang'),
+    cookieKey !== undefined ? getCookie(cookieKey) : null,
 
-  // Check the state
-  if (state.currentLanguage !== null) languagesSet.push(state.currentLanguage);
+    // Check document language
+    document.documentElement.lang,
+
+    // Check browser preferred language
+    getPreferredLanguageFromBrowser(supportedLanguages),
+
+    // Check the state
+    state.currentLanguage,
+  ].filter((lang): lang is string => !!lang);
 
   // Check the set of languages to see if it matches
   // any of the supported languages. Return the first

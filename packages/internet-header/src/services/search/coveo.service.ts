@@ -5,7 +5,6 @@ import { getSearchPageUrl } from './search.service';
 
 /**
  * Get suggestions from coveo
- * TODO: analytics, especially when user is logged in
  * https://docs.coveo.com/en/1459/build-a-search-ui/get-query-suggestions#context-object
  *
  * @param query Search term
