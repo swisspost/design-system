@@ -18,7 +18,15 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Welcome', 'Foundations', 'Components', 'Utilities', 'Misc'],
+      order: [
+        'Welcome',
+        'Foundations',
+        ['Typography', 'Color', 'Accessibility'],
+        'Components',
+        'Utilities',
+        'Misc',
+        ['Migration', 'ChangeLog'],
+      ],
     },
   },
   darkMode: {
@@ -58,6 +66,9 @@ export const parameters = {
 
           // remove "key" attributes
           .replace(/(\t+|\s+)?key=".*"/g, '')
+
+          // remove "{' '}" placeholders
+          .replace(/{' '}/g, ' ')
 
           // repalce noRefCheck functions
           .replace(/function noRefCheck\(\)\s?{}/g, '() => {}')
