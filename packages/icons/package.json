@@ -21,9 +21,8 @@
   ],
   "private": true,
   "scripts": {
-    "start": "http-server ./public",
+    "start": "http-server ./public -o -a localhost -p 9005",
     "fetchSVGs": "ts-node src/index.ts",
-    "svgo": "svgo -f ./public/icons -o ./public/icons-optimized",
     "test": "jest",
     "test:watch": "jest --watch"
   },
