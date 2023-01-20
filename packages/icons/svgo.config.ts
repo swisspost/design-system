@@ -1,12 +1,14 @@
-import { OptimizeOptions } from "svgo";
+import { OptimizeOptions } from 'svgo';
 
 export default {
   js2svg: {
+    indent: 2,
     pretty: true,
   },
   plugins: [
+    'mergePaths',
     {
-      name: "preset-default",
+      name: 'preset-default',
       params: {
         overrides: {
           removeViewBox: false,
@@ -14,13 +16,13 @@ export default {
       },
     },
     {
-      name: "removeAttrs",
+      name: 'removeAttrs',
       params: {
-        attrs: "(width|height|style)",
+        attrs: '(width|height|style)',
       },
     },
     /* {
-      name: "removeDimensions",
+      name: 'removeDimensions',
     }, */
   ],
 } as OptimizeOptions;
