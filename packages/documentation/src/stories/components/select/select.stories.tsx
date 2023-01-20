@@ -1,5 +1,6 @@
 import React from 'react';
 import { Meta, Args, Story, StoryContext, ReactFramework } from "@storybook/react";
+import { useArgs } from '@storybook/client-api';
 import docsPage from './select.docs.mdx';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
@@ -19,6 +20,7 @@ export default {
     label: 'Label',
     floatingLabel: false,
     hiddenLabel: false,
+    value: undefined,
     size: 'null',
     options: 5,
     multiple: false,
@@ -61,6 +63,16 @@ export default {
       table: {
         category: 'General'
       }
+    },
+    value: {
+      name: 'Value',
+      description: 'The value of the component.',
+      control: {
+        type: 'string',
+      },
+      table: {
+        disable: true,
+      },
     },
     size: {
       name: 'Size',
@@ -170,7 +182,8 @@ export default {
 } as Meta;
 
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
-  const id = `ExampleSelect-${context.name}`;
+  const [_, updateArgs] = useArgs();
+  const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleSelect`;
   const classes = [
     'form-select',
     args.size,
@@ -195,11 +208,22 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     key="control"
     id={ id }
     className={ classes }
+    defaultValue={ args.value }
     multiple= { args.multiple }
     size={ args.multipleSize }
     disabled={ args.disabled }
     aria-label={ useAriaLabel ? args.label : undefined }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
+    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
+      updateArgs({ value: e.target.value });
+      
+      if (document.activeElement === e.target) {
+        setTimeout(() => {
+          const element: HTMLSelectElement | null = document.querySelector(`#${id}`);
+          if (element) element.focus();
+        }, 25);
+      }
+    }}
   >{ options }</select>;
 
   if (args.floatingLabel) {
