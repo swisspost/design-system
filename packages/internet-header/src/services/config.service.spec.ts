@@ -208,7 +208,6 @@ describe('config.service.ts', () => {
       } as NavMainEntity);
       const osFlyout2 = newConfig2.find(nav => nav.id === 'flyout_os');
       if (!osFlyout2) fail('osFlyout is undefined');
-      2;
       expect(osFlyout2.flyout[0].linkList.length).toBe(2);
     });
 

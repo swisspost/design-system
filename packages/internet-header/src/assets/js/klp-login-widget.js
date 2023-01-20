@@ -6,24 +6,22 @@
  * ------------------------------------------------------------------------------------------------
  */
 
-/* eslint-disable */
 import './sockjs-client';
 import 'url-polyfill';
 import jQuery from 'jquery/dist/jquery.slim';
 
-var vertx = vertx || {};
+const vertx = vertx || {};
 !(function (factory) {
   factory(SockJS);
 })(function (SockJS) {
   vertx.EventBus = function (url, options) {
-    var that = this;
-    var sockJSConn = new SockJS(url, undefined, options);
-    var handlerMap = {};
-    var replyHandlers = {};
-    var state = vertx.EventBus.CONNECTING;
-    var sessionID = null;
-    var pingTimerID = null;
-    var pingInterval = null;
+    const that = this;
+    const sockJSConn = new SockJS(url, undefined, options);
+    const handlerMap = {};
+    const replyHandlers = {};
+    let state = vertx.EventBus.CONNECTING;
+    let pingTimerID = null;
+    let pingInterval = null;
     if (options) {
       pingInterval = options.vertxbus_ping_interval;
     }
@@ -61,11 +59,11 @@ var vertx = vertx || {};
       checkSpecified('address', 'string', address);
       checkSpecified('handler', 'function', handler);
       checkOpen();
-      var handlers = handlerMap[address];
+      let handlers = handlerMap[address];
       if (!handlers) {
         handlers = [handler];
         handlerMap[address] = handlers;
-        var msg = {
+        const msg = {
           type: 'register',
           address: address,
         };
@@ -78,12 +76,12 @@ var vertx = vertx || {};
       checkSpecified('address', 'string', address);
       checkSpecified('handler', 'function', handler);
       checkOpen();
-      var handlers = handlerMap[address];
+      const handlers = handlerMap[address];
       if (handlers) {
-        var idx = handlers.indexOf(handler);
+        const idx = handlers.indexOf(handler);
         if (idx !== -1) handlers.splice(idx, 1);
         if (handlers.length === 0) {
-          var msg = {
+          const msg = {
             type: 'unregister',
             address: address,
           };
@@ -116,25 +114,25 @@ var vertx = vertx || {};
       }
     };
     sockJSConn.onmessage = function (e) {
-      var msg = e.data;
-      var json = JSON.parse(msg);
-      var body = json.body;
-      var replyAddress = json.replyAddress;
-      var address = json.address;
-      var replyHandler;
+      const msg = e.data;
+      const json = JSON.parse(msg);
+      const body = json.body;
+      const replyAddress = json.replyAddress;
+      const address = json.address;
+      let replyHandler;
       if (replyAddress) {
         replyHandler = function (reply, replyHandler) {
           that.send(replyAddress, reply, replyHandler);
         };
       }
-      var handlers = handlerMap[address];
+      const handlers = handlerMap[address];
       if (handlers) {
-        var copy = handlers.slice(0);
-        for (var i = 0; i < copy.length; i++) {
-          copy[i](body, replyHandler);
+        const copy = handlers.slice(0);
+        for (const element of copy) {
+          element(body, replyHandler);
         }
       } else {
-        var handler = replyHandlers[address];
+        const handler = replyHandlers[address];
         if (handler) {
           delete replyHandlers[address];
           handler(body, replyHandler);
@@ -143,7 +141,7 @@ var vertx = vertx || {};
     };
 
     function sendPing() {
-      var msg = {
+      const msg = {
         type: 'ping',
       };
       sockJSConn.send(JSON.stringify(msg));
@@ -153,7 +151,7 @@ var vertx = vertx || {};
       checkSpecified('address', 'string', address);
       checkSpecified('replyHandler', 'function', replyHandler, true);
       checkOpen();
-      var envelope = {
+      const envelope = {
         type: sendOrPub,
         address: address,
         body: message,
@@ -162,11 +160,11 @@ var vertx = vertx || {};
         envelope.sessionID = that.sessionID;
       }
       if (replyHandler) {
-        var replyAddress = makeUUID();
+        const replyAddress = makeUUID();
         envelope.replyAddress = replyAddress;
         replyHandlers[replyAddress] = replyHandler;
       }
-      var str = JSON.stringify(envelope);
+      const str = JSON.stringify(envelope);
       sockJSConn.send(str);
     }
 
@@ -203,17 +201,17 @@ var vertx = vertx || {};
     app,
     service,
     appLoginURL,
-    menuLinks,
+    _menuLinks,
     lang,
     platform,
     options,
     environment,
   ) {
     // TODO: patch this functionality to work with new stickyness settings
-    var headerNode = document.getElementsByTagName('header')[0];
-    var config = { attributes: true, childList: false, subtree: false };
-    var callback = function (mutationsList, observer) {
-      for (var mutation of mutationsList) {
+    const headerNode = document.getElementsByTagName('header')[0];
+    const config = { attributes: true, childList: false, subtree: false };
+    const callback = function (mutationsList, observer) {
+      for (let mutation of mutationsList) {
         if (mutation.attributeName === 'class') {
           if ($('header').hasClass('h-fixed-position') && !$('header').hasClass('h-visible')) {
             selectFromShadowDom().find('.klp-widget-authenticated-menu').css('display', 'none');
@@ -224,12 +222,12 @@ var vertx = vertx || {};
         }
       }
     };
-    var observer = new MutationObserver(callback);
+    const observer = new MutationObserver(callback);
     if (headerNode) {
       observer.observe(headerNode, config);
     }
 
-    var keepAliveID = 'klp-widget-keepalive',
+    let keepAliveID = 'klp-widget-keepalive',
       persistedStateKey = 'klp.widget.state',
       persistedDocumentPrefix = 'klp.widget.document.',
       controlCookieName = 'NCTRL',
@@ -243,7 +241,6 @@ var vertx = vertx || {};
       loginCallback = undefined,
       keepAliveCallback = undefined,
       logoutCallback = undefined,
-      showLinksCallback = undefined,
       documentCallbacks = {},
       documentUnreadNotifications = 'UNREAD_NOTIFICATIONS',
       isUserActive = true,
@@ -406,12 +403,12 @@ var vertx = vertx || {};
     if (lang !== undefined) {
       currentLang = lang.toLowerCase();
     }
-    var getLocation = function (url) {
+    const getLocation = function (url) {
       return new URL(url);
     };
-    var url = getLocation(logoutURL());
+    const url = getLocation(logoutURL());
     originUrl = url.origin;
-    var menuLinks = [
+    const menuLinks = [
       {
         description: texts[currentLang].userProfile,
         url: originUrl + '/selfadmin/?lang=' + currentLang,
@@ -419,7 +416,7 @@ var vertx = vertx || {};
       },
     ];
 
-    var messagesUrl = originUrl + '/selfadmin/messages/?lang=' + currentLang;
+    const messagesUrl = originUrl + '/selfadmin/messages/?lang=' + currentLang;
 
     if (options !== undefined) {
       conf = Object.assign({}, conf, options);
@@ -435,7 +432,7 @@ var vertx = vertx || {};
     }
 
     function now() {
-      var n = new Date();
+      const n = new Date();
       return (
         n.getFullYear() +
         '-' +
@@ -461,7 +458,7 @@ var vertx = vertx || {};
     }
 
     function audit(message) {
-      var auditingEvent = JSON.stringify({
+      const auditingEvent = JSON.stringify({
         adr: address,
         evt: message,
       });
@@ -522,7 +519,7 @@ var vertx = vertx || {};
     }
 
     function buildLoginParameters() {
-      var parameters = '';
+      let parameters = '';
       $.each(
         {
           app: app,
@@ -542,8 +539,8 @@ var vertx = vertx || {};
     }
 
     function logoutURL() {
-      var serviceForLogout = 'klp';
-      var inIframe = false;
+      const serviceForLogout = 'klp';
+      const inIframe = false;
       return join(
         platform.logoutURL,
         'app=' +
@@ -581,26 +578,28 @@ var vertx = vertx || {};
     }
 
     function changeAccountDialog() {
+      let body;
+      let logoutUrl;
       if (sessionData !== undefined && sessionData.support) {
         if (isChangeUserAndProfile()) {
-          var body = text('change-account-support-dialog');
+          body = text('change-account-support-dialog');
         } else {
-          var body = text('change-company-support-dialog');
+          body = text('change-company-support-dialog');
         }
-        var logoutUrl = logoutURL();
+        logoutUrl = logoutURL();
       } else {
         if (isChangeUserAndProfile()) {
-          var body = text('change-account-confirm-dialog');
+          body = text('change-account-confirm-dialog');
         } else {
-          var body = text('change-company-confirm-dialog');
+          body = text('change-company-confirm-dialog');
         }
-        var logoutUrl = changeCompanyURL();
+        logoutUrl = changeCompanyURL();
       }
       if (
         selectFromShadowDom().find('#' + id + ' #klp-widget-authenticated-changecompanydialog')
           .length === 0
       ) {
-        var changecompanyDialog =
+        const changecompanyDialog =
           '<div id="changeAccountModal" class="modal"><div class="modal-content"><div class="modal-text-container row"><div class="col-12 text-align-center"><i class="pi pi-2086"></i></div><span class="close">&times;</span><div class="col-1"></div><div class="col-10 text-align-center"><p class="modal-text">' +
           body +
           '</div></div></div>';
@@ -609,13 +608,13 @@ var vertx = vertx || {};
           .append(changecompanyDialog);
 
         // Get the modal
-        var modal = selectFromShadowDom().find('#changeAccountModal');
+        let modal = selectFromShadowDom().find('#changeAccountModal');
         if (modal.length && modal.length >= 1) {
           modal = modal[0];
         }
         modal.style.display = 'table';
         // Get the <span> element that closes the modal
-        var span = selectFromShadowDom().find('#changeAccountModal .close')[0];
+        const span = selectFromShadowDom().find('#changeAccountModal .close')[0];
 
         // When the user clicks on <span> (x), close the modal
         span.onclick = function () {
@@ -651,7 +650,7 @@ var vertx = vertx || {};
     }
 
     function restoreState() {
-      var state = loadPersistedState();
+      const state = loadPersistedState();
       if (state) {
         address = state.address;
         retrySubscribeOnFail = true;
@@ -665,10 +664,10 @@ var vertx = vertx || {};
 
     function loadPersistedState() {
       if (isHTML5StorageSupported()) {
-        var persistedState = sessionStorage.getItem(persistedStateKey);
+        const persistedState = sessionStorage.getItem(persistedStateKey);
         if (persistedState) {
           try {
-            var state = JSON.parse(persistedState);
+            const state = JSON.parse(persistedState);
             if (state.ttl > new Date().getTime() && isPersistedStateValid(state.sessionData)) {
               log('Valid persisted state loaded: ' + persistedState);
               return state;
@@ -723,8 +722,8 @@ var vertx = vertx || {};
     }
 
     function isPersistedStateValid(persistedData) {
-      var hashPersistedData = hash(persistedData);
-      var hashCookie = getControlCookieVal('hash');
+      const hashPersistedData = hash(persistedData).toString();
+      const hashCookie = getControlCookieVal('hash');
       if (hashPersistedData === hashCookie) {
         return true;
       }
@@ -754,7 +753,7 @@ var vertx = vertx || {};
 
     function hash(s) {
       s = JSON.stringify(s);
-      var hash = 0,
+      let hash = 0,
         i,
         chr,
         len;
@@ -768,9 +767,9 @@ var vertx = vertx || {};
     }
 
     function getControlCookieVal(scope) {
-      var cookieData = controlCookieRegEx.exec(document.cookie);
+      const cookieData = controlCookieRegEx.exec(document.cookie);
       if (cookieData != null) {
-        var values = decodeURIComponent(cookieData[1]).split(':');
+        const values = decodeURIComponent(cookieData[1]).split(':');
         switch (scope) {
           case 'hash':
             if (values[0] != null) return values[0];
@@ -842,11 +841,11 @@ var vertx = vertx || {};
     }
 
     function loadDocumentFromCache(documentType) {
-      var persistedKey = persistedDocumentPrefix + documentType;
+      const persistedKey = persistedDocumentPrefix + documentType;
       if (isHTML5StorageSupported()) {
-        var persistedDocument = sessionStorage.getItem(persistedKey);
+        const persistedDocument = sessionStorage.getItem(persistedKey);
         if (persistedDocument) {
-          var document = $.parseJSON(persistedDocument);
+          const document = $.parseJSON(persistedDocument);
           log('Document ' + documentType + ' has been read from cache with value ' + document);
           return document;
         }
@@ -855,7 +854,7 @@ var vertx = vertx || {};
     }
 
     function saveDocumentOnCache(document, documentType) {
-      var key = persistedDocumentPrefix + documentType;
+      const key = persistedDocumentPrefix + documentType;
       if (isHTML5StorageSupported()) {
         sessionStorage.setItem(key, JSON.stringify(document));
         log(
@@ -872,7 +871,7 @@ var vertx = vertx || {};
     }
 
     function removeDocumentFromCache(documentType) {
-      var key = persistedDocumentPrefix + documentType;
+      const key = persistedDocumentPrefix + documentType;
       if (isHTML5StorageSupported()) {
         sessionStorage.removeItem(key);
         log('Document ' + documentType + ' has been removed from cache');
@@ -922,7 +921,7 @@ var vertx = vertx || {};
 
     function keepAliveSessions() {
       if (isUserAuthenticated()) {
-        var html =
+        const html =
           "<img src='" +
           platform.keepAliveURL +
           '/?' +
@@ -943,8 +942,8 @@ var vertx = vertx || {};
     }
 
     function keepAliveSessionsOnInit() {
-      var now = new Date().getTime();
-      var lastKeepAlive = getControlCookieVal('keepalive');
+      const now = new Date().getTime();
+      const lastKeepAlive = getControlCookieVal('keepalive');
       if (
         isNaN(lastKeepAlive) ||
         now - parseInt(lastKeepAlive) > conf.keepAliveInterval * 60 * 1000
@@ -967,10 +966,11 @@ var vertx = vertx || {};
       log('Preparing for communication with iframe content');
 
       function receiveMessage(e) {
-        if (e.data === 'syncWidget') {
-          log('PostMessage syncWidget received');
-          subscribe();
-        }
+        if (e.origin !== '')
+          if (e.data === 'syncWidget') {
+            log('PostMessage syncWidget received');
+            subscribe();
+          }
       }
       if (window.addEventListener) {
         window.addEventListener('message', receiveMessage);
@@ -1038,7 +1038,7 @@ var vertx = vertx || {};
       selectFromShadowDom()
         .find('#' + id)
         .off('click touch');
-      var info = '',
+      let info = '',
         authenticatedSessionTailNameClass = '';
       if (sessionData.userType === 'B2C') {
         authenticatedSessionTailNameClass = 'klp-widget-authenticated-session-name u_var_centered';
@@ -1046,7 +1046,7 @@ var vertx = vertx || {};
         info = sessionData.company;
         authenticatedSessionTailNameClass = 'klp-widget-authenticated-session-name';
       }
-      var authenticatedSectionClass = 'klp-widget-authenticated';
+      let authenticatedSectionClass = 'klp-widget-authenticated';
       if (sessionData.support) {
         authenticatedSectionClass += ' klp-widget-support';
       }
@@ -1128,9 +1128,9 @@ var vertx = vertx || {};
     }
 
     function getAuthenticatedMenuLinks(authenticatedSessionTailNameClass, info, sessionData) {
-      var menuList = '';
-      var nameClass = 'name';
-      var infoClass = 'info';
+      let menuList = '';
+      let nameClass = 'name';
+      let infoClass = 'info';
       if (menuLinks !== undefined) {
         if (authenticatedSessionTailNameClass.indexOf('centered') !== -1) {
           nameClass = 'nameCentered';
@@ -1210,7 +1210,7 @@ var vertx = vertx || {};
         `;
       }
 
-      var changeCompanyEntry = '';
+      let changeCompanyEntry = '';
       if (isOldChangeCompany()) {
         changeCompanyEntry =
           '<li>' +
@@ -1441,7 +1441,7 @@ var vertx = vertx || {};
       if (!address) {
         if (trySubscription()) {
           log('Subscribing to get an address');
-          var startTime = new Date().getTime();
+          const startTime = new Date().getTime();
           fetch(platformEndPoints.subscribe, {
             method: 'GET',
             credentials: 'include',
@@ -1583,8 +1583,8 @@ var vertx = vertx || {};
             return;
           }
           event.preventDefault();
-          var parent = selectFromShadowDom().find(this).parent();
-          var dropdown = selectFromShadowDom().find(
+          const parent = selectFromShadowDom().find(this).parent();
+          const dropdown = selectFromShadowDom().find(
             '.' + selectFromShadowDom().find(this).attr('data-dropdown'),
           );
           switch (event.which) {
@@ -1624,8 +1624,8 @@ var vertx = vertx || {};
             return;
           }
           event.preventDefault();
-          var parent = selectFromShadowDom().find(this).parent();
-          var dropdownToggler = selectFromShadowDom().find(
+          const parent = selectFromShadowDom().find(this).parent();
+          const dropdownToggler = selectFromShadowDom().find(
             '.' +
               selectFromShadowDom().find(this).parents('div').first().attr('data-dropdown-toggler'),
           );
@@ -1704,14 +1704,6 @@ var vertx = vertx || {};
       unregisterDocumentCallback: function (documentType) {
         log('Document callback for documentType ' + documentType + ' has been un-registered');
         documentCallbacks[documentType] = undefined;
-      },
-      registerShowLinksCallback: function (callback) {
-        log('Show links callback has been registered');
-        showLinksCallback = callback;
-      },
-      unregisterShowLinksCallback: function () {
-        log('Show links callback has been un-registered');
-        showLinksCallback = undefined;
       },
       version: function () {
         return version;
