@@ -1,6 +1,5 @@
 import { ICustomConfig, ILocalizedCustomConfig, IPortalConfig } from '../models/general.model';
 import { NavMainEntity } from '../models/header.model';
-import '../tests/mocks/match-media.mock';
 import * as testConfigRaw from '../assets/config/test-configuration.json';
 import {
   fetchConfig,

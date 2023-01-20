@@ -1,4 +1,3 @@
-import '../tests/mocks/match-media.mock';
 import {
   compareRoutes,
   compileScoreList,
