@@ -33,7 +33,7 @@ export const formatResponse = (response: CenshareResultPage): Array<IIcon> => {
         const fileBasename = path.basename(fileName, fileExt).replace(/\s/g, ''); // Some of the icons seem to have a whitespace in the name but not in the filepath itself
 
         const keywords = (item.contentInfo?.freeKeywords ?? '')
-          .replace(/(\n|\r)/g, '')
+          .replace(/(\n|\r\n)/g, '')
           .split(', ')
           .filter(keyword => keyword !== 'Piktogramme "Die Post" ab 2017');
   
