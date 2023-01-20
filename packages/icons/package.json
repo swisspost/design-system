@@ -24,7 +24,8 @@
     "start": "http-server ./public -o -a localhost -p 9005",
     "fetchSVGs": "ts-node src/index.ts",
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "test:updatesnapshots": "jest -u"
   },
   "devDependencies": {
     "@tsconfig/node16": "1.0.3",
