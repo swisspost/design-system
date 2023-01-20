@@ -77,6 +77,7 @@ describe('meta-navigation', () => {
       it(`adds meta navigation`, () => {
         // On default configuration the meta navigation should be visible
         cy.get('post-meta-navigation')
+          .first()
           .should('exist')
           .and('be.visible')
           .within(() => {

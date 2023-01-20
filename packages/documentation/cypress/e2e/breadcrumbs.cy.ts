@@ -56,17 +56,16 @@ describe('breadcrumb', () => {
         { text: 'Test2', url: '/a/b/c' },
       ]);
 
-      const items = '> nav > ol li';
+      const items = '> nav > ol > li';
       cy.get('div.breadcrumbs').as('breadcrumbs').find(items).should('to.have.length', 5);
 
       // Contains both elements, only first one should contain the link
       cy.get('@breadcrumbs')
-        .find(items)
-        .contains('Test1')
-        .should('to.have.descendants', 'a')
-        .find('a')
+        .contains('.breadcrumbs-list > li > a', 'Test1')
         .should('to.have.attr', 'href', '/x/y/z');
-      cy.get('@breadcrumbs').find(items).contains('Test2').should('have.descendants', 'a');
+      cy.get('@breadcrumbs')
+        .contains('.breadcrumbs-list > li > a', 'Test2')
+        .should('to.have.attr', 'href', '/a/b/c');
     });
   });
 
