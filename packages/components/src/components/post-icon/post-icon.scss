@@ -9,3 +9,107 @@ svg {
   width: 100%;
   fill: currentColor;
 }
+
+// flip
+
+:host([flip-h]) {
+  svg { transform: scaleX(-1); }
+}
+
+:host([flip-v]) {
+  svg { transform: scaleY(-1); }
+}
+
+:host([flip-h][flip-v]) {
+  svg { transform: scale(-1); }
+}
+
+// rotate
+
+$posticon-degree: -360;
+$posticon-degree-step: 5;
+
+@while $posticon-degree <= 360 {
+  :host([rotate="#{$posticon-degree}"]) {
+    svg {
+      transform: rotate(#{$posticon-degree}deg);
+    }
+  }
+
+  $posticon-degree: $posticon-degree + $posticon-degree-step;
+}
+
+// animate
+
+:host([animate]) {
+  svg {
+    transform-origin: center;
+  }
+}
+
+:host([animate="cylon"]) {
+  svg {
+    animation: icon-animation-cylon 750ms ease-in-out infinite alternate;
+  }
+}
+
+:host([animate="cylon-vertical"]) {
+  svg {
+    animation: icon-animation-cylon-vertical .75s ease-in-out infinite alternate;
+  }
+}
+
+:host([animate="spin"]) {
+  svg {
+    animation: icon-animation-spin 2s linear infinite normal;
+  }
+}
+
+:host([animate="spin-reverse"]) {
+  svg {
+    animation: icon-animation-spin 2s linear infinite reverse;
+  }
+}
+
+:host([animate="fade"]) {
+  svg {
+    animation: icon-animation-fade .75s ease-in-out infinite alternate;
+  }
+}
+
+:host([animate="throb"]) {
+  svg {
+    animation: icon-animation-throb .75s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes icon-animation-cylon {
+  from { transform: translateX(-25%) }
+  to { transform: translateX(25%) }
+}
+
+@keyframes icon-animation-cylon-vertical {
+  from { transform: translateY(25%); }
+  to { transform: translateY(-25%); }
+}
+
+@keyframes icon-animation-fade {
+  from { opacity: .1; }
+  to { opacity: 1; }
+}
+
+@keyframes icon-animation-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(359deg); }
+}
+
+@keyframes icon-animation-throb {
+  from {
+    opacity: .5;
+    transform: scale(0.5);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
