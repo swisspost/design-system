@@ -21,6 +21,8 @@ export class SvgIconsDemoComponent {
     for (let i = 2000; i < 2196; i++) {
       this.range.push(i);
     }
+    this.range.push(2307);
+    this.range.push(2308);
     this.range.push(3000);
     for (let i = 3020; i < 3051; i++) {
       this.range.push(i);

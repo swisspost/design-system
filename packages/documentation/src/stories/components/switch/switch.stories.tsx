@@ -130,7 +130,7 @@ export default {
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
 
-  const id = `ExampleSwitch_${context.name}`;
+  const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleSwitch`;
   const classes = [
     'form-check-input',
     args.validation
