@@ -22,7 +22,6 @@ export const downloadSVG = async (icon: IIcon, output: string) => {
     const svg = await fetch(icon.meta.downloadLink, getRequestInit());
     
     const svgString = await svg.text();
-    if (icon.file.basename === '2139') console.log(svgString);
     const optimizedSvg = optimize(extractSVG(svgString), svgoOptions);
     
     if (optimizedSvg.error) {
