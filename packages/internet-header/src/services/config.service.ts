@@ -213,17 +213,18 @@ export const isValidProjectId = (projectId: string): boolean => {
 export const getLocalizedCustomConfig = (
   config: string | ICustomConfig,
   language: string,
-): ILocalizedCustomConfig => {
-  let customConfig: ICustomConfig | null = null;
+): ILocalizedCustomConfig | undefined => {
+  let customConfig: ICustomConfig;
   try {
     customConfig = typeof config === 'string' ? JSON.parse(config) : config;
   } catch (error) {
-    console.warn(
+    throw new Error(
       `Internet Header: Custom config is invalid. Make sure your custom config contains valid JSON syntax and matches the definition. `,
     );
   }
-  let localizedCustomConfig: ILocalizedCustomConfig = customConfig ? customConfig[language] : null;
-  setMainNavigationIds(localizedCustomConfig?.header?.navMain);
+  let localizedCustomConfig: ILocalizedCustomConfig | undefined = customConfig[language];
+  if (localizedCustomConfig !== undefined)
+    setMainNavigationIds(localizedCustomConfig.header.navMain);
   return localizedCustomConfig;
 };
 

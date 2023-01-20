@@ -26,7 +26,9 @@ describe('route.service.ts', () => {
         getSimilarityScore(['a', 'c'], ['b', 'c']),
         getSimilarityScore([], ['a']),
         getSimilarityScore(['a'], []),
+        // @ts-expect-error
         getSimilarityScore(null, ['a']),
+        // @ts-expect-error
         getSimilarityScore(undefined, ['a']),
         getSimilarityScore([], []),
         getSimilarityScore(
@@ -79,8 +81,11 @@ describe('route.service.ts', () => {
     });
 
     it('Does not fail on invalid arguments', () => {
+      // @ts-expect-error
       expect(compareRoutes(null, nope, 'auto')).toBe(0);
+      // @ts-expect-error
       expect(compareRoutes(null, undefined, 'auto')).toBe(0);
+      // @ts-expect-error
       expect(compareRoutes(post, nope, null)).toBe(0);
     });
   });
@@ -91,13 +96,13 @@ describe('route.service.ts', () => {
     const noMatch = new URL('https://post.ch/wherever123');
 
     beforeEach(() => {
-      config = [...testConfig.de.header.navMain];
+      config = [...testConfig.de.header.navMain] as NavMainEntity[];
     });
 
     it('Returns a full match', () => {
       const scorelist = compileScoreList(config, fullMatch, 'auto');
       expect(scorelist[0].score).toBe(Infinity);
-      expect(scorelist[0].sub.title).toBe('Briefe Inland');
+      expect(scorelist[0].sub!.title).toBe('Briefe Inland');
     });
 
     it('Returns a full match and only one entry', () => {
@@ -116,7 +121,7 @@ describe('route.service.ts', () => {
     let config: NavMainEntity[];
 
     beforeEach(() => {
-      config = [...testConfig.de.header.navMain];
+      config = [...testConfig.de.header.navMain] as NavMainEntity[];
     });
 
     it('Correctly marks the active route', () => {

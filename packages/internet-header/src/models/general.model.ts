@@ -33,7 +33,7 @@ export interface ICustomConfig {
 
 export interface ILocalizedCustomConfig {
   header: ICustomHeaderConfig;
-  footer: ICustomFooterConfig;
+  footer?: ICustomFooterConfig;
 }
 
 export type Environment = 'int01' | 'int02' | 'prod';

@@ -47,8 +47,8 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
   handleResize() {
     // Suspend all animations and transitions on window resize
     this.host.classList.add('no-animation');
-    if (this.resizeTimer !== null) clearTimeout(this.resizeTimer);
-    this.resizeTimer = setTimeout(() => {
+    if (this.resizeTimer !== null) window.clearTimeout(this.resizeTimer);
+    this.resizeTimer = window.setTimeout(() => {
       this.host.classList.remove('no-animation');
     }, 300);
 

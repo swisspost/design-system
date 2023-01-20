@@ -5,7 +5,7 @@ import scss from 'rollup-plugin-scss';
 export const config: Config = {
   namespace: 'swisspost-internet-header',
   globalStyle: 'src/styles.scss',
-  // buildEs5: 'prod',
+  buildEs5: 'prod',
   bundles: [
     {
       components: ['swisspost-internet-header'],

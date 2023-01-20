@@ -122,12 +122,12 @@ export interface NavMetaEntity {
 }
 
 export interface NavLangEntity {
-  a11yLabel: string;
+  a11yLabel?: string;
   isCurrent: boolean;
   lang: string;
   text: string;
   title: string;
-  url: string;
+  url?: string;
 }
 
 export interface IHeaderTranslations {

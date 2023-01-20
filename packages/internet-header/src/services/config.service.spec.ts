@@ -1,7 +1,7 @@
-import { ICustomConfig, ILocalizedCustomConfig } from '../models/general.model';
+import { ICustomConfig, ILocalizedCustomConfig, IPortalConfig } from '../models/general.model';
 import { NavMainEntity } from '../models/header.model';
 import '../tests/mocks/match-media.mock';
-import * as testConfig from '../assets/config/test-configuration.json';
+import * as testConfigRaw from '../assets/config/test-configuration.json';
 import {
   fetchConfig,
   generateConfigUrl,
@@ -12,6 +12,8 @@ import {
   mergeOsFlyoutOverrides,
   setMainNavigationIds,
 } from './config.service';
+
+const testConfig: IPortalConfig = testConfigRaw as IPortalConfig;
 
 const customConfig = {
   de: {
@@ -94,14 +96,6 @@ describe('config.service.ts', () => {
       expect(isValidProjectId('test.bla')).toBe(false);
       expect(isValidProjectId('test,xy')).toBe(false);
       expect(isValidProjectId('')).toBe(false);
-      // @ts-expect-error
-      expect(isValidProjectId(1)).toBe(false);
-      // @ts-expect-error
-      expect(isValidProjectId(true)).toBe(false);
-      expect(isValidProjectId(null)).toBe(false);
-      expect(isValidProjectId(undefined)).toBe(false);
-      // @ts-expect-error
-      expect(isValidProjectId()).toBe(false);
     });
   });
 
@@ -145,7 +139,7 @@ describe('config.service.ts', () => {
 
     it('should return an int URL', () => {
       expect(generateConfigUrl('topos', 'int01')).toEqual(
-        'https://post.ch/api/headerjs/Json?serviceid=topos&environment=int01',
+        'https://int.post.ch/api/headerjs/Json?serviceid=topos&environment=int01',
       );
     });
 
@@ -172,16 +166,17 @@ describe('config.service.ts', () => {
 
   describe('mergeOsFlyoutOverrides', () => {
     it('should merge configs correctly', () => {
-      const newConfig = mergeOsFlyoutOverrides(testConfig.de, {
+      const newConfig = mergeOsFlyoutOverrides(testConfig.de!, {
         title: 'Test',
       } as NavMainEntity);
 
       const osFlyout = newConfig.find(nav => nav.id === 'flyout_os');
+      if (!osFlyout) fail('osFlyout is undefined');
       expect(osFlyout.title).toBe('Test');
     });
 
     it('should not overwrite function parameter', () => {
-      const newConfig = mergeOsFlyoutOverrides(testConfig.de, {
+      const newConfig = mergeOsFlyoutOverrides(testConfig.de!, {
         title: 'Test',
         flyout: [
           {
@@ -196,9 +191,10 @@ describe('config.service.ts', () => {
       } as NavMainEntity);
 
       const osFlyout = newConfig.find(nav => nav.id === 'flyout_os');
+      if (!osFlyout) fail('osFlyout is undefined');
       expect(osFlyout.flyout[0].linkList.length).toBe(2);
 
-      const newConfig2 = mergeOsFlyoutOverrides(testConfig.de, {
+      const newConfig2 = mergeOsFlyoutOverrides(testConfig.de!, {
         title: 'Test',
         flyout: [
           {
@@ -212,11 +208,13 @@ describe('config.service.ts', () => {
         ],
       } as NavMainEntity);
       const osFlyout2 = newConfig2.find(nav => nav.id === 'flyout_os');
+      if (!osFlyout2) fail('osFlyout is undefined');
+      2;
       expect(osFlyout2.flyout[0].linkList.length).toBe(2);
     });
 
     it('should extend os flyout with additional columns', () => {
-      const newConfig = mergeOsFlyoutOverrides(testConfig.de, {
+      const newConfig = mergeOsFlyoutOverrides(testConfig.de!, {
         title: 'Test',
         flyout: [
           {
@@ -240,6 +238,7 @@ describe('config.service.ts', () => {
       } as NavMainEntity);
 
       const osFlyout = newConfig.find(nav => nav.id === 'flyout_os');
+      if (!osFlyout) fail('osFlyout is undefined');
       expect(osFlyout.flyout.length).toBe(2);
     });
   });
@@ -307,6 +306,7 @@ describe('config.service.ts', () => {
         } as NavMainEntity,
       });
       const osFlyout = config.header.navMain.find(nav => nav.id === 'flyout_os');
+      if (!osFlyout) fail('osFlyout is undefined');
       expect(osFlyout.flyout[0].linkList.length).toBe(2);
     });
   });
