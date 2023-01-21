@@ -288,7 +288,7 @@ importers:
       html-react-parser: 3.0.7
       react: 18.2.0
       react-dom: 18.2.0
-      react-markdown: 8.0.4
+      react-markdown: 8.0.5
       rehype-raw: ^6.1.1
       sass: 1.57.1
       sass-loader: 10.4.1
@@ -320,7 +320,7 @@ importers:
       babel-loader: 9.1.2_@babel+core@7.20.12
       css-loader: 5.2.7
       cypress: 12.3.0
-      react-markdown: 8.0.4_kzbn2opkn2327fwg5yzwzya5o4
+      react-markdown: 8.0.5_kzbn2opkn2327fwg5yzwzya5o4
       rehype-raw: 6.1.1
       sass: 1.57.1
       sass-loader: 10.4.1_sass@1.57.1
@@ -19076,8 +19076,8 @@ packages:
     resolution: {integrity: sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==}
     dev: true
 
-  /react-markdown/8.0.4_kzbn2opkn2327fwg5yzwzya5o4:
-    resolution: {integrity: sha512-2oxHa6oDxc1apg/Gnc1Goh06t3B617xeywqI/92wmDV9FELI6ayRkwge7w7DoEqM0gRpZGTNU6xQG+YpJISnVg==}
+  /react-markdown/8.0.5_kzbn2opkn2327fwg5yzwzya5o4:
+    resolution: {integrity: sha512-jGJolWWmOWAvzf+xMdB9zwStViODyyFQhNB/bwCerbBKmrTmgmA599CGiOlP58OId1IMoIRsA8UdI1Lod4zb5A==}
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
@@ -19095,7 +19095,7 @@ packages:
       remark-parse: 10.0.1
       remark-rehype: 10.1.0
       space-separated-tokens: 2.0.2
-      style-to-object: 0.3.0
+      style-to-object: 0.4.0
       unified: 10.1.2
       unist-util-visit: 4.1.1
       vfile: 5.3.6
@@ -20810,7 +20810,6 @@ packages:
     resolution: {integrity: sha512-dAjq2m87tPn/TcYTeqMhXJRhu96WYWcxMFQxs3Y9jfYpq2jG+38u4tj0Lst6DOiYXmDuNxVJ2b1Z2uPC6wTEeg==}
     dependencies:
       inline-style-parser: 0.1.1
-    dev: false
 
   /stylelint-config-prettier/9.0.4_stylelint@14.16.1:
     resolution: {integrity: sha512-38nIGTGpFOiK5LjJ8Ma1yUgpKENxoKSOhbDNSemY7Ep0VsJoXIW9Iq/2hSt699oB9tReynfWicTAoIHiq8Rvbg==}
