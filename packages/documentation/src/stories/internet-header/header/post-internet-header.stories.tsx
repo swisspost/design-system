@@ -137,7 +137,9 @@ export default {
     },
     'search': {
       name: 'Search',
-      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: 'Show or hide the search dropdown',
       table: {
         type: {
