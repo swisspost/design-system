@@ -40,7 +40,7 @@ const Template = (args: Args) => {
       />
       <main className="container mt-huge-r">
         <swisspost-internet-breadcrumbs />
-        <h1 className="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
+        <h1 className="mt-huge-r mb-big-r bold">Swiss Post Design System Internet Header</h1>
         <p className="fake-content my-big"></p>
         <p className="fake-content my-big"></p>
         <p className="fake-content my-big"></p>
