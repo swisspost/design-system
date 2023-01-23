@@ -45,7 +45,7 @@
     "babel-loader": "9.1.2",
     "css-loader": "5.2.7",
     "cypress": "12.3.0",
-    "react-markdown": "8.0.4",
+    "react-markdown": "8.0.5",
     "rehype-raw": "^6.1.1",
     "sass": "1.57.1",
     "sass-loader": "10.4.1",
