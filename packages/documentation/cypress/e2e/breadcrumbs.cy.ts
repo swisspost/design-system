@@ -56,8 +56,10 @@ describe('breadcrumb', () => {
         { text: 'Test2', url: '/a/b/c' },
       ]);
 
-      const items = '> nav > ol > li';
-      cy.get('div.breadcrumbs').as('breadcrumbs').find(items).should('to.have.length', 5);
+      cy.get('div.breadcrumbs')
+        .as('breadcrumbs')
+        .find('> nav > ol > li')
+        .should('to.have.length', 5);
 
       // Contains both elements, only first one should contain the link
       cy.get('@breadcrumbs')
