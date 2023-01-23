@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed broken `post-icon` component.
+Fixed the name-property `type` and updated the constructor to the function `componentWillRender` in `post-icon` component.
