@@ -48,7 +48,7 @@ You can therefore use our [text color utility](/?path=/docs/utilities-text--colo
 
 <Canvas withSource="open">
   <Story
-    name="Colorizing"
+    name="Color"
     decorators={[
       Story => (
         <div className="d-flex flex-wrap gap-2" style={{ fontSize: '32px' }}>
@@ -66,14 +66,13 @@ You can therefore use our [text color utility](/?path=/docs/utilities-text--colo
   </Story>
 </Canvas>
 
-### Sizing
+### Size
 
-Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size`.<br/>
-Therefore you can use our [font-size utility](/?path=/docs/utilities-text--font-size) to manage the size of an icon. Or you can use custom CSS to set the icon size, either via direct style attribute, or via custom classes.
+Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size`. Therefore you can use our [font-size utility](/?path=/docs/utilities-text--font-size) to manage the size of an icon. Or you can use custom CSS to set the icon size, either via direct style attribute, or via custom classes.
 
 <Canvas withSource="open">
   <Story
-    name="Sizing"
+    name="Size"
     decorators={[
       Story => (
         <div className="d-flex flex-column gap-2">
@@ -82,31 +81,32 @@ Therefore you can use our [font-size utility](/?path=/docs/utilities-text--font-
       ),
     ]}
   >
-    <div>
+    <p className="mb-0">
       Icon <post-icon name="1001" />
-    </div>
-    <div className="h3 mb-0">
+    </p>
+    <p className="h3 mb-0">
       Icon <post-icon name="1001" />
-    </div>
-    <div className="h1 mb-0">
+    </p>
+    <p className="h1 mb-0">
       Icon <post-icon name="1001" />
-    </div>
-    <div className="fs-huge">
+    </p>
+    <p className="fs-huge mb-0">
       Icon <post-icon name="1001" />
-    </div>
-    <div style={{ fontSize: '60px' }}>
+    </p>
+    <p className="mb-0" style={{ fontSize: '60px' }}>
       Icon <post-icon name="1001" />
-    </div>
+    </p>
+    <post-icon name="1001" style={{ fontSize: '80px' }} />
   </Story>
 </Canvas>
 
-### Styling
+### Style
 
 With the use of our [border](#TODO), [background](#TODO) and [padding](#TODO) utilities, you can create various styling effects.
 
 <Canvas withSource="open">
   <Story
-    name="Styling"
+    name="Style"
     decorators={[
       Story => (
         <div className="d-flex flex-wrap gap-2" style={{ fontSize: '64px' }}>
@@ -125,7 +125,7 @@ With the use of our [border](#TODO), [background](#TODO) and [padding](#TODO) ut
 
 #### Flipping
 
-Flip the icon horizontally and/or vertically via the `flip-h` and `flip-v` props.
+Flip the icon horizontally and/or vertically with the `flip-h` and `flip-v` props.
 
 <Canvas withSource="open">
   <Story
