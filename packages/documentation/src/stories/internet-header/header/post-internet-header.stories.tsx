@@ -47,6 +47,12 @@ export default {
       name: 'Language',
       control: {
         type: 'select',
+        lables: {
+          'de': 'German',
+          'fr': 'French',
+          'it': 'Italien',
+          'en': 'English',
+        },
       },
       options: ['de', 'fr', 'it', 'en'],
       description:
