@@ -1,19 +1,20 @@
 import { Meta, Args, Story } from '@storybook/react';
 import docsPage from './internet-header.docs.mdx';
+import './internet-header.styles.scss';
 
 export default {
   title: 'Internet Header/Header',
   parameters: {
     layout: 'fullscreen',
     docs: {
-      page: docsPage
+      page: docsPage,
     },
     actions: {
       handles: ['headerLoaded', 'languageChanged'],
     },
   },
   args: {
-    project: 'test',
+    'project': 'test',
     'environment': 'int01',
     'language': 'de',
     'stickyness': 'minimal',
@@ -30,7 +31,7 @@ export default {
     'os-flyout-overrides': null,
   },
   argTypes: {
-    project: {
+    'project': {
       name: 'Project',
       control: {
         type: 'text',
@@ -48,10 +49,10 @@ export default {
       control: {
         type: 'select',
         lables: {
-          'de': 'German',
-          'fr': 'French',
-          'it': 'Italien',
-          'en': 'English',
+          de: 'German',
+          fr: 'French',
+          it: 'Italien',
+          en: 'English',
         },
       },
       options: ['de', 'fr', 'it', 'en'],
@@ -279,7 +280,6 @@ export default {
       },
     },
   },
-
 } as Meta;
 
 const filterObject = (obj: Args, predicate: (arg: any) => boolean): Args => {

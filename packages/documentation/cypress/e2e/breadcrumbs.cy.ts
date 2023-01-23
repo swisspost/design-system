@@ -33,7 +33,7 @@ describe('breadcrumb', () => {
 
     it(`should not rendered if no config present`, () => {
       // Cast the imported JSON object to the IPortalConfig interface
-      let config: IPortalConfig = <any>testConfiguration;
+      const config: IPortalConfig = <any>testConfiguration;
       const modifiedConfig = JSON.parse(JSON.stringify(config));
 
       // Clear breadcrumb config
