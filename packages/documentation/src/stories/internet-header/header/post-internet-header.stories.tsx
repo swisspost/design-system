@@ -1,9 +1,10 @@
 import { Meta, Args, Story } from '@storybook/react';
+import { filterArgs } from '../../utilities/filterArgs';
 import docsPage from './internet-header.docs.mdx';
 import './internet-header.styles.scss';
 
 export default {
-  title: 'Internet Header/Header',
+  title: 'Components/Internet Header/Header',
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -282,26 +283,9 @@ export default {
   },
 } as Meta;
 
-const filterObject = (obj: Args, predicate: (arg: any) => boolean): Args => {
-  let result: Args = {},
-    key;
-
-  for (key in obj) {
-    if (obj.hasOwnProperty(key) && predicate(obj[key])) {
-      // Cast boolean false to string so it's displayed in the docs code block. False values are otherwise omitted
-      result[key] = obj[key] === false ? 'false' : obj[key];
-      if (typeof obj[key] === 'object') {
-        result[key] = JSON.stringify(obj[key]);
-      }
-    }
-  }
-
-  return result;
-};
-
 const Template = (args: Args) => {
   // Filter arguments that don't need to be rendered
-  const filteredArgs = filterObject(args, arg => arg !== null && arg !== undefined);
+  const filteredArgs = filterArgs(args, arg => arg !== null && arg !== undefined);
   return (
     <div className="page-wrapper">
       <swisspost-internet-header {...filteredArgs} />

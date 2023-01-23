@@ -26,7 +26,6 @@ export const parameters = {
         'Foundations',
         ['Typography', 'Color', 'Accessibility'],
         'Components',
-        'Internet Header',
         'Utilities',
         'Misc',
         ['Migration', 'ChangeLog'],

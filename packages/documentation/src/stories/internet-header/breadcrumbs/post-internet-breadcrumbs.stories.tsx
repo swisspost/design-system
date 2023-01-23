@@ -4,7 +4,7 @@ import docsPage from './internet-breadcrumbs.docs.mdx';
 import '../header/internet-header.styles.scss';
 
 export default {
-  title: 'Internet Header/Breadcrumbs',
+  title: 'Components/Internet Header/Breadcrumbs',
   parameters: {
     layout: 'fullscreen',
     docs: {
@@ -13,7 +13,7 @@ export default {
   },
   argTypes: {
     'custom-items': {
-      name: 'Custom Items,
+      name: 'Custom Items',
       control: {
         type: 'array',
       },

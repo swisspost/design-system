@@ -17,7 +17,7 @@ module.exports = {
       },
     },
   ],
-  staticDirs: ['../public', './'],
+  staticDirs: ['../public'],
   webpackFinal: (config, options) => {
     // allow scss :export statments (scss variables to js)
     config.module.rules.forEach(rule => {

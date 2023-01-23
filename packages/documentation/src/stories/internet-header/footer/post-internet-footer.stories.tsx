@@ -4,7 +4,7 @@ import docsPage from './internet-footer.docs.mdx';
 import '../header/internet-header.styles.scss';
 
 export default {
-  title: 'Internet Header/Footer',
+  title: 'Components/Internet Header/Footer',
   parameters: {
     docs: {
       page: docsPage,
