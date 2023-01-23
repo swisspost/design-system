@@ -130,7 +130,9 @@ export default {
     },
     'login': {
       name: 'Login',
-      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: 'Show or hide the KLP Login Widget',
       table: {
         type: {
