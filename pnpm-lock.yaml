@@ -19095,7 +19095,7 @@ packages:
       remark-parse: 10.0.1
       remark-rehype: 10.1.0
       space-separated-tokens: 2.0.2
-      style-to-object: 0.4.0
+      style-to-object: 0.4.1
       unified: 10.1.2
       unist-util-visit: 4.1.1
       vfile: 5.3.6
