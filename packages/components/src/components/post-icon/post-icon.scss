@@ -25,19 +25,7 @@ svg {
 }
 
 // rotate
-
-$posticon-degree: -360;
-$posticon-degree-step: 5;
-
-@while $posticon-degree <= 360 {
-  :host([rotate="#{$posticon-degree}"]) {
-    svg {
-      transform: rotate(#{$posticon-degree}deg);
-    }
-  }
-
-  $posticon-degree: $posticon-degree + $posticon-degree-step;
-}
+// done with inline styling
 
 // animate
 

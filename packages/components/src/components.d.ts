@@ -24,6 +24,7 @@ export namespace Components {
     interface PostIcon {
         "base"?: string;
         "name": string;
+        "rotate"?: string;
     }
 }
 export interface MyComponentCustomEvent<T> extends CustomEvent<T> {
@@ -70,6 +71,7 @@ declare namespace LocalJSX {
     interface PostIcon {
         "base"?: string;
         "name"?: string;
+        "rotate"?: string;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;

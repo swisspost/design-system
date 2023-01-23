@@ -8,6 +8,7 @@ import { Component, Host, h, Prop, State } from '@stencil/core';
 export class PostIcon {
   @Prop() name: string;
   @Prop() base?: string;
+  @Prop() rotate?: string;
   @State() path: string;
 
   componentWillRender () {
@@ -32,9 +33,13 @@ export class PostIcon {
   }
 
   render() {
+    const transforms = {
+      rotate: this.rotate && !isNaN(Number(this.rotate)) ? `${this.rotate}deg` : null,
+    };
+
     return (
       <Host>
-        <svg viewBox="0 0 32 32">
+        <svg viewBox="0 0 32 32" style={transforms}>
           <use href={this.path} />
         </svg>
       </Host>
