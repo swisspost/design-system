@@ -13,15 +13,15 @@ svg {
 // flip
 
 :host([flip-h]) {
-  svg { transform: scaleX(-1); }
+  svg { scale: -1 1; }
 }
 
 :host([flip-v]) {
-  svg { transform: scaleY(-1); }
+  svg { scale: 1 -1; }
 }
 
 :host([flip-h][flip-v]) {
-  svg { transform: scale(-1); }
+  svg { scale: -1; }
 }
 
 // rotate
