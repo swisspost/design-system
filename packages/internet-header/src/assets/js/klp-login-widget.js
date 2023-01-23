@@ -965,7 +965,9 @@ const vertx = vertx || {};
       log('Preparing for communication with iframe content');
 
       function receiveMessage(e) {
-        if (e.data === 'syncWidget') {
+        const allowedOrigins = ['post.ch', 'postauto.ch', 'postfinance.ch'];
+        const originUrl = new URL(e.origin);
+        if (allowedOrigins.includes(originUrl.host) && e.data === 'syncWidget') {
           log('PostMessage syncWidget received');
           subscribe();
         }
@@ -973,13 +975,7 @@ const vertx = vertx || {};
       if (window.addEventListener) {
         window.addEventListener('message', receiveMessage);
       } else {
-        window.attachEvent('onmessage', e => {
-          const allowedOrigins = ['post.ch', 'postauto.ch', 'postfinance.ch'];
-          const originUrl = new URL(e.origin);
-          if (allowedOrigins.includes(originUrl.host) && e.data === 'syncWidget') {
-            receiveMessage(e);
-          }
-        });
+        window.attachEvent('onmessage', receiveMessage);
       }
     }
 
