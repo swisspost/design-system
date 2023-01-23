@@ -251,7 +251,9 @@ export default {
     },
     'full-width': {
       name: 'Full Width',
-      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: 'Display the header at full width instead of containerized.',
       table: {
         type: {
