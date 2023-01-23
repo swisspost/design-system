@@ -16,6 +16,7 @@ export default {
   },
   argTypes: {
     'custom-config': {
+      name: 'Custom Config',
       control: {
         type: 'object',
       },
