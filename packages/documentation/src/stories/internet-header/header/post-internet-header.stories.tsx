@@ -150,7 +150,9 @@ export default {
     },
     'meta': {
       name: 'Meta',
-      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: 'Show or hide the meta navigation',
       table: {
         type: {
