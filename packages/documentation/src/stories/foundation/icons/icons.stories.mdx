@@ -145,6 +145,27 @@ Flip the icon horizontally and/or vertically via the `flip-h` and `flip-v` props
   </Story>
 </Canvas>
 
+#### Scaling
+
+Scale the icon by any positive factor via the `scale` prop. Note this changes the icon's visual size but not its physical font size. To illustrate this we have added a background color to the icons.
+
+<Canvas withSource="open">
+  <Story
+    name="Scaling"
+    decorators={[
+      Story => (
+        <div className="d-flex flex-wrap gap-3" style={{ fontSize: '32px' }}>
+          <Story />
+        </div>
+      ),
+    ]}
+  >
+    <post-icon name="3200" class="bg-info" scale="0.5" />
+    <post-icon name="3200" class="bg-info" />
+    <post-icon name="3200" class="bg-info" scale="1.5" />
+  </Story>
+</Canvas>
+
 #### Rotating
 
 Rotate the icon by a specified number of degrees with the `rotate` prop. Positive values will rotate the icon clockwise, while negative values will rotate the icon counterclockwise.

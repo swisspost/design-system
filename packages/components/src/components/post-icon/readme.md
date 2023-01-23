@@ -12,6 +12,7 @@
 | `base`   | `base`    |             | `string` | `undefined` |
 | `name`   | `name`    |             | `string` | `undefined` |
 | `rotate` | `rotate`  |             | `string` | `undefined` |
+| `scale`  | `scale`   |             | `string` | `undefined` |
 
 
 ----------------------------------------------

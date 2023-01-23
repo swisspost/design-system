@@ -8,6 +8,7 @@ import { Component, Host, h, Prop, State } from '@stencil/core';
 export class PostIcon {
   @Prop() name: string;
   @Prop() base?: string;
+  @Prop() scale?: string;
   @Prop() rotate?: string;
   @State() path: string;
 
@@ -34,6 +35,7 @@ export class PostIcon {
 
   render() {
     const transforms = {
+      scale: this.scale && !isNaN(Number(this.scale)) ? `${this.scale}` : null,
       rotate: this.rotate && !isNaN(Number(this.rotate)) ? `${this.rotate}deg` : null,
     };
 

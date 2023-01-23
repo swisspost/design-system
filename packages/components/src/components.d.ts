@@ -25,6 +25,7 @@ export namespace Components {
         "base"?: string;
         "name": string;
         "rotate"?: string;
+        "scale"?: string;
     }
 }
 export interface MyComponentCustomEvent<T> extends CustomEvent<T> {
@@ -72,6 +73,7 @@ declare namespace LocalJSX {
         "base"?: string;
         "name"?: string;
         "rotate"?: string;
+        "scale"?: string;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
