@@ -12,6 +12,7 @@ export default {
   },
   argTypes: {
     'custom-items': {
+      name: 'Custom Items,
       control: {
         type: 'array',
       },
