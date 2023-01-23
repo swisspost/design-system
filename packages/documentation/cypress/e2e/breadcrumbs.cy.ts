@@ -18,8 +18,7 @@ describe('breadcrumb', () => {
 
     cy.get('@breadcrumbs')
       .find('div.overlay')
-      .trigger('keydown', { eventConstructor: 'KeyboardEvent', force: true, key: key })
-      .wait(500);
+      .trigger('keydown', { eventConstructor: 'KeyboardEvent', force: true, key: key });
   }
 
   describe('configuration', () => {
