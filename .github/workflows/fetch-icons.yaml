@@ -1,0 +1,93 @@
+###
+#
+# Create a pull request with up-to-date icon SVGs
+#
+# This workflow does not have secrets access
+# when run from a fork. Artifacts are uploaded
+# and used in a subsequent workflow with more
+# privileges which does not run unsafe commands.
+#
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+#
+###
+
+name: Open PR With Updated Icons
+on:
+  schedule:
+    - cron: '* * * * 0'
+
+env:
+  ICON_BRANCH: update-icon-svgs
+
+jobs:
+  toto:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Create Branch
+        run: git checkout -b $ICON_BRANCH
+
+      - name: Create report file
+        run: date +%s > report.txt
+
+      - name: Commit report
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions[bot]"
+          git add .
+          git commit -m "Test"
+
+      - name: Create PR
+        run: gh pr create --title "The bug is fixed" --body "Everything works again"
+
+  main:
+    name: Fetch Icons
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+
+      - name: Date Branch Name
+        run: echo "ICON_BRANCH=$(date +'%Y-%m-%d')-$(echo $ICON_BRANCH)" >> $GITHUB_ENV
+
+      - name: Create Branch
+        run: git checkout -b $ICON_BRANCH
+
+      - name: Fetch Icons
+        run: pnpm --filter design-system-icons fetchSVGs
+
+      - name: Get Changes
+        id: changed-icons
+        uses: tj-actions/changed-files@v35
+        with:
+          files: ./packages/icons/public/svg/**
+
+      - name: Checkout
+        if: steps.changed-icons.outputs.any_changed == 'false'
+        uses: actions/checkout@v3
+
+      - name: Delete Branch
+        if: steps.changed-icons.outputs.any_changed == 'false'
+        run: |
+          git branch --delete $ICON_BRANCH
+          echo "Branch deleted - No icon updates available."
+
+      - name: Commit Changes
+        if: steps.changed-icons.outputs.any_changed == 'true'
+        run: |
+          git config --global user.email "github-actions@github.com"
+          git config --global user.name "github-actions[bot]"
+          git add .
+          git commit -m "Test"
+          git push -u origin $ICON_BRANCH
