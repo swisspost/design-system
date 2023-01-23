@@ -40,7 +40,7 @@ const Template = (args: Args) => {
       />
       <main className="container mt-huge-r">
         <swisspost-internet-breadcrumbs />
-        <h1 className="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
+        <h1 className="mt-huge-r mb-big-r bold">Swiss Post Design System Internet Header</h1>
         <p className="fake-content my-big"></p>
         <p className="fake-content my-big"></p>
         <p className="fake-content my-big"></p>
@@ -79,7 +79,7 @@ const NonExistentHeaderTemplate = () => {
   return (
     <div className="page-wrapper">
       <main className="container mt-huge-r">
-        <h1 className="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
+        <h1 className="mt-huge-r mb-big-r bold">Swiss Post Design System Internet Header</h1>
         <p className="my-big">
           The <code>&lt;swisspost-internet-footer&gt;</code> component cannot be used on its own.
           Accordingly, the <code>&lt;swisspost-internet-footer&gt;</code> component should not be

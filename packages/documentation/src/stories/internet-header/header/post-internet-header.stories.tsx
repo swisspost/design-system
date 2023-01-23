@@ -47,6 +47,12 @@ export default {
       name: 'Language',
       control: {
         type: 'select',
+        lables: {
+          'de': 'German',
+          'fr': 'French',
+          'it': 'Italien',
+          'en': 'English',
+        },
       },
       options: ['de', 'fr', 'it', 'en'],
       description:
@@ -124,7 +130,9 @@ export default {
     },
     'login': {
       name: 'Login',
-      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: 'Show or hide the KLP Login Widget',
       table: {
         type: {
@@ -137,7 +145,9 @@ export default {
     },
     'search': {
       name: 'Search',
-      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: 'Show or hide the search dropdown',
       table: {
         type: {
@@ -150,7 +160,9 @@ export default {
     },
     'meta': {
       name: 'Meta',
-      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: 'Show or hide the meta navigation',
       table: {
         type: {
@@ -163,7 +175,9 @@ export default {
     },
     'skiplinks': {
       name: 'Skiplinks',
-      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: 'Render the skiplinks',
       table: {
         type: {
@@ -251,7 +265,9 @@ export default {
     },
     'full-width': {
       name: 'Full Width',
-      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: 'Display the header at full width instead of containerized.',
       table: {
         type: {
