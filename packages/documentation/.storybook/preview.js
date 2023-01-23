@@ -18,7 +18,25 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Welcome', 'Foundations', ['Typography', 'Color', 'Accessibility'], 'Components', 'Utilities', 'Misc', ['Migration', 'ChangeLog']],
+      order: [
+        'Welcome',
+        'Foundations',
+        [
+          'Typography',
+          'Color',
+          'Layout',
+          'Z-Index',
+          'Accessibility'
+        ],
+        'Templates',
+        'Components',
+        'Utilities',
+        'Misc',
+        [
+          'Migration',
+          'ChangeLog'
+        ],
+      ],
     },
   },
   darkMode: {
