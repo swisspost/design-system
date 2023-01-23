@@ -163,7 +163,9 @@ export default {
     },
     'skiplinks': {
       name: 'Skiplinks',
-      type: 'boolean',
+      control: {
+        type: 'boolean',
+      },
       description: 'Render the skiplinks',
       table: {
         type: {
