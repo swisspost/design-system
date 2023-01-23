@@ -16,7 +16,7 @@ describe('search', () => {
     cy.intercept('**/StandortSuche/StaoCacheService/Types**', mockStaoCacheTypes).as(
       'StaoCacheTypes',
     );
-    prepare('Internet Header/Header', 'Default');
+    prepare('Components/Internet Header/Header', 'Default');
   });
 
   describe('config', () => {
