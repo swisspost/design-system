@@ -32,6 +32,7 @@
     "@percy/cli": "1.17.0",
     "@percy/cypress": "3.1.2",
     "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
+    "@storybook/addon-a11y": "^6.5.15",
     "@storybook/addon-docs": "6.5.15",
     "@storybook/addon-essentials": "6.5.15",
     "@storybook/addons": "6.5.15",
