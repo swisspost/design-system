@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Fixed the name-property `type` and updated the constructor to the function `componentWillRender` in `post-icon` component.
+Updated the expected type for the `name` property on the `post-icon` component from `number` to `string`.
