@@ -1,27 +1,26 @@
+Cypress.Commands.add('registerCollapsibleFrom', (url: string) => {
+  cy.visit(url);
+  cy.get('post-collapsible').as('collapsible');
+  cy.get('@collapsible').find('.collapse').as('collapse');
+});
+
 Cypress.Commands.add('checkVisibility', (visibility: 'visible' | 'hidden') => {
   cy.get('@collapse').should('not.have.class', 'collapsing').and(`be.${visibility}`);
 });
 
-Cypress.Commands.add('checkAriaExpanded', () => {
-  cy.get('@collapse').invoke('attr', 'id').then(id => {
-    cy.get('@collapse').invoke('hasClass', 'show').then(isExpanded => {
-      cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', `${isExpanded}`);
+Cypress.Commands.add('checkAriaExpanded', (isExpanded: 'true' | 'false') => {
+  cy.get('@collapse')
+    .should('not.have.class', 'collapsing')
+    .invoke('attr', 'id')
+    .then(id => {
+      cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);
     });
-  });
 });
 
 describe('collapsible', () => {
-  beforeEach(() => {
-    cy.get('post-collapsible').as('collapsible');
-    cy.get('@collapsible').find('.collapse').as('collapse');
-  });
-
   describe('default', () => {
-    before(() => {
-      cy.visit('iframe.html?args=&id=components-collapsible--default');
-    });
-
     beforeEach(() => {
+      cy.registerCollapsibleFrom('iframe.html?args=&id=components-collapsible--default');
       cy.get('@collapsible').find('.accordion-header').as('header');
       cy.get('@collapsible').find('.accordion-body').as('body');
     });
@@ -52,34 +51,33 @@ describe('collapsible', () => {
       cy.get('@collapse').invoke('attr', 'id').then(id => {
         cy.get('@header').find('button').should('have.attr', 'aria-controls', id);
       });
-      cy.checkAriaExpanded();
+      cy.checkAriaExpanded('true');
     });
 
-    it('should be collapsed after clicking on the header', () => {
+    it('should be collapsed after clicking on the header once', () => {
       cy.get('@header').click();
-      cy.checkVisibility('hidden')
+      cy.checkVisibility('hidden');
     });
 
     it('should adapt the header\'s aria-expanded attribute after collapsing', () => {
-      cy.checkAriaExpanded();
+      cy.get('@header').click();
+      cy.checkAriaExpanded('false');
     });
 
-    it('should be expanded after clicking on the header again', () => {
-      cy.get('@header').click();
+    it('should be expanded after clicking on the header twice', () => {
+      cy.get('@header').dblclick();
       cy.checkVisibility('visible');
     });
 
     it('should adapt the header\'s aria-expanded attribute after expanding', () => {
-      cy.checkAriaExpanded();
+      cy.get('@header').dblclick();
+      cy.checkAriaExpanded('true');
     });
   });
 
   describe('initially collapsed', () => {
-    before(() => {
-      cy.visit('iframe.html?args=&id=components-collapsible--initially-collapsed');
-    });
-
     beforeEach(() => {
+      cy.registerCollapsibleFrom('iframe.html?args=&id=components-collapsible--initially-collapsed');
       cy.get('@collapsible').find('.accordion-header').as('header');
     });
 
@@ -88,26 +86,23 @@ describe('collapsible', () => {
     });
 
     it('should have a correct aria-expanded attribute', () => {
-      cy.checkAriaExpanded();
+      cy.checkAriaExpanded('false');
     });
 
-    it('should be expanded after clicking on the header', () => {
+    it('should be expanded after clicking on the header once', () => {
       cy.get('@header').click();
       cy.checkVisibility('visible');
     });
 
-    it('should be collapsed after clicking on the header again', () => {
-      cy.get('@header').click();
+    it('should be collapsed after clicking on the header twice', () => {
+      cy.get('@header').dblclick();
       cy.checkVisibility('hidden');
     });
   });
 
   describe('custom trigger', () => {
-    before(() => {
-      cy.visit('iframe.html?args=&id=components-collapsible--custom-trigger');
-    });
-
     beforeEach(() => {
+      cy.registerCollapsibleFrom('iframe.html?args=&id=components-collapsible--custom-trigger');
       cy.get('[aria-controls="collapsible-example--custom-trigger"]').as('controls');
       cy.get('@controls').contains('Toggle').as('toggle');
       cy.get('@controls').contains('Show').as('show');
@@ -122,33 +117,33 @@ describe('collapsible', () => {
       cy.checkVisibility('visible');
     });
 
-    it('should be collapsed after clicking "Toggle"', () => {
+    it('should be collapsed after clicking "Toggle" once', () => {
       cy.get('@toggle').click();
       cy.checkVisibility('hidden');
     });
 
-    it('should be expanded after clicking "Toggle" again', () => {
-      cy.get('@toggle').click();
+    it('should be expanded after clicking "Toggle" twice', () => {
+      cy.get('@toggle').dblclick();
       cy.checkVisibility('visible');
     });
 
-    it('should be collapsed after clicking "Hide"', () => {
+    it('should be collapsed after clicking "Hide" once', () => {
       cy.get('@hide').click();
       cy.checkVisibility('hidden');
     });
 
-    it('should remain collapsed after clicking "Hide" again', () => {
-      cy.get('@hide').click();
+    it('should be collapsed after clicking "Hide" twice', () => {
+      cy.get('@hide').dblclick();
       cy.checkVisibility('hidden');
     });
 
-    it('should be expanded after clicking "Show"', () => {
+    it('should be expanded after clicking "Show" once', () => {
       cy.get('@show').click();
       cy.checkVisibility('visible');
     });
 
-    it('should remain expanded after clicking "Show" again', () => {
-      cy.get('@show').click();
+    it('should be expanded after clicking "Show" twice', () => {
+      cy.get('@show').dblclick();
       cy.checkVisibility('visible');
     });
   });
