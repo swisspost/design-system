@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Meta, Args, Story, StoryContext, ReactFramework } from '@storybook/react';
+import { useArgs } from '@storybook/client-api';
 import docsPage from './textarea.docs.mdx';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
@@ -19,6 +20,7 @@ export default {
     label: 'Label',
     floatingLabel: false,
     hiddenLabel: false,
+    value: undefined,
     size: 'null',
     rows: 4,
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
@@ -59,6 +61,16 @@ export default {
       table: {
         category: 'General'
       }
+    },
+    value: {
+      name: 'Value',
+      description: 'The value of the component.',
+      control: {
+        type: 'string',
+      },
+      table: {
+        disable: true,
+      },
     },
     size: {
       name: 'Size',
@@ -139,11 +151,13 @@ export default {
         category: 'States'
       }
     }
-  }
+  },
 } as Meta;
 
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
-  const id = `ExampleTextarea_${context.name}`;
+  const [_, updateArgs] = useArgs();
+  const [value, updateValue] = useState(args.value);
+  const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
   const classes = [
     'form-control',
     args.size,
@@ -163,11 +177,14 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     key="control"
     id={ id }
     className={ classes }
+    defaultValue={ args.value }
     placeholder={ useAriaLabel ? args.label : ' ' }
     rows={ args.rows }
     disabled={ args.disabled }
     aria-label={ useAriaLabel ? args.label : undefined }
     aria-invalid={ VALIDATION_STATE_MAP[args.validation] }
+    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => updateValue(e.target.value)}
+    onBlur={() => updateArgs({ value })}
   ></textarea>;
 
   if (args.floatingLabel) {

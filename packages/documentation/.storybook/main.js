@@ -6,6 +6,7 @@ module.exports = {
     '@storybook/addon-controls',
     '@storybook/addon-measure',
     '@storybook/addon-viewport',
+    '@storybook/addon-a11y',
     '@pxtrn/storybook-addon-docs-stencil',
     'storybook-dark-mode',
     {
@@ -22,9 +23,10 @@ module.exports = {
     // allow scss :export statments (scss variables to js)
     config.module.rules.forEach(rule => {
       if (rule.test.toString() === /\.s[ca]ss$/.toString()) {
-        rule.use
-          .find(r => r.loader.indexOf('css-loader') >= 0)
-          .options = { importLoaders: 1, modules: { compileType: 'icss' } };
+        rule.use.find(r => r.loader.indexOf('css-loader') >= 0).options = {
+          importLoaders: 1,
+          modules: { compileType: 'icss' },
+        };
       }
     });
 
@@ -33,7 +35,7 @@ module.exports = {
   managerWebpack: (config, options) => {
     config.module.rules.push({
       test: /\.scss$/,
-      use: ['style-loader', 'css-loader', 'sass-loader']
+      use: ['style-loader', 'css-loader', 'sass-loader'],
     });
 
     options.cache.set = () => Promise.resolve();

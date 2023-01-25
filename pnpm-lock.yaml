@@ -28,9 +28,9 @@ importers:
   packages/components:
     specifiers:
       '@popperjs/core': 2.10.2
-      '@stencil/core': 2.21.0
+      '@stencil/core': 2.22.1
       '@stencil/react-output-target': 0.3.1
-      '@stencil/sass': 2.0.2
+      '@stencil/sass': 2.0.3
       '@swisspost/design-system-styles': workspace:5.2.0
       '@types/jest': 27.5.2
       bootstrap: 5.1.3
@@ -42,9 +42,9 @@ importers:
       typescript: 4.8.4
     dependencies:
       '@popperjs/core': 2.10.2
-      '@stencil/core': 2.21.0
-      '@stencil/react-output-target': 0.3.1_@stencil+core@2.21.0
-      '@stencil/sass': 2.0.2_@stencil+core@2.21.0
+      '@stencil/core': 2.22.1
+      '@stencil/react-output-target': 0.3.1_@stencil+core@2.22.1
+      '@stencil/sass': 2.0.3_@stencil+core@2.22.1
       '@swisspost/design-system-styles': link:../styles/dist
       bootstrap: 5.1.3_@popperjs+core@2.10.2
       puppeteer: 19.4.0
@@ -80,8 +80,8 @@ importers:
       '@swisspost/design-system-styles': workspace:5.2.0
       '@types/jasmine': 4.3.1
       '@types/node': 18.11.18
-      '@typescript-eslint/eslint-plugin': 5.48.1
-      '@typescript-eslint/parser': 5.48.1
+      '@typescript-eslint/eslint-plugin': 5.48.2
+      '@typescript-eslint/parser': 5.48.2
       eslint: 8.32.0
       jasmine-core: 4.5.0
       karma: 6.4.1
@@ -90,7 +90,7 @@ importers:
       karma-jasmine: 5.1.0
       karma-jasmine-html-reporter: 2.0.0
       ng-packagr: 14.2.2
-      rimraf: 4.0.7
+      rimraf: 4.1.1
       rxjs: 7.8.0
       tslib: 2.4.1
       typescript: 4.8.4
@@ -124,8 +124,8 @@ importers:
       '@angular/compiler-cli': 14.2.12_xny3jupsupef4qvbeynwkkewkm
       '@types/jasmine': 4.3.1
       '@types/node': 18.11.18
-      '@typescript-eslint/eslint-plugin': 5.48.1_cvlk6nxnjthzpxdguhclfpuypm
-      '@typescript-eslint/parser': 5.48.1_yygwinqv3a2io74xmwofqb7uka
+      '@typescript-eslint/eslint-plugin': 5.48.2_iljmjqxcygjq3saipl7gerxpvi
+      '@typescript-eslint/parser': 5.48.2_yygwinqv3a2io74xmwofqb7uka
       eslint: 8.32.0
       jasmine-core: 4.5.0
       karma: 6.4.1
@@ -134,7 +134,7 @@ importers:
       karma-jasmine: 5.1.0_karma@6.4.1
       karma-jasmine-html-reporter: 2.0.0_uk6l45dlsjldsnfgnal4othgyq
       ng-packagr: 14.2.2_wan7g4kdzu7uld2brwo2xdryge
-      rimraf: 4.0.7
+      rimraf: 4.1.1
       typescript: 4.8.4
 
   packages/components-angular/projects/intranet-header:
@@ -219,10 +219,10 @@ importers:
       '@types/jasmine': 4.3.1
       '@types/jasminewd2': 2.0.10
       '@types/node': 18.11.18
-      '@typescript-eslint/eslint-plugin': 5.48.1
-      '@typescript-eslint/parser': 5.48.1
+      '@typescript-eslint/eslint-plugin': 5.48.2
+      '@typescript-eslint/parser': 5.48.2
       bootstrap: 5.1.3
-      core-js: 3.27.1
+      core-js: 3.27.2
       eslint: 8.32.0
       highlight.js: 11.7.0
       jasmine-core: 4.5.0
@@ -239,7 +239,7 @@ importers:
       prettier: 2.8.3
       protractor: 7.0.0
       raw-loader: 4.0.2
-      rimraf: 4.0.7
+      rimraf: 4.1.1
       rxjs: 7.8.0
       sass: 1.57.1
       sockjs: 0.3.24
@@ -265,7 +265,7 @@ importers:
       '@swisspost/design-system-intranet-header': link:../components-angular/dist/intranet-header
       '@swisspost/design-system-styles': link:../styles/dist
       bootstrap: 5.1.3_@popperjs+core@2.11.6
-      core-js: 3.27.1
+      core-js: 3.27.2
       highlight.js: 11.7.0
       ngx-highlightjs: 7.0.1_yg5i7pymki4meqci6ecgolbxoi
       ngx-toastr: 15.2.2_575hqlbkduhazj74z2li43juyy
@@ -288,8 +288,8 @@ importers:
       '@types/jasmine': 4.3.1
       '@types/jasminewd2': 2.0.10
       '@types/node': 18.11.18
-      '@typescript-eslint/eslint-plugin': 5.48.1_cvlk6nxnjthzpxdguhclfpuypm
-      '@typescript-eslint/parser': 5.48.1_yygwinqv3a2io74xmwofqb7uka
+      '@typescript-eslint/eslint-plugin': 5.48.2_iljmjqxcygjq3saipl7gerxpvi
+      '@typescript-eslint/parser': 5.48.2_yygwinqv3a2io74xmwofqb7uka
       eslint: 8.32.0
       jasmine-core: 4.5.0
       jasmine-marbles: 0.9.2_rxjs@7.8.0
@@ -303,7 +303,7 @@ importers:
       prettier: 2.8.3
       protractor: 7.0.0
       raw-loader: 4.0.2_webpack@5.75.0
-      rimraf: 4.0.7
+      rimraf: 4.1.1
       sass: 1.57.1
       sockjs: 0.3.24
       ts-node: 10.9.1_vqcafhj4xvr2nzknlrdklk55zm
@@ -316,6 +316,7 @@ importers:
       '@percy/cli': 1.17.0
       '@percy/cypress': 3.1.2
       '@pxtrn/storybook-addon-docs-stencil': 6.4.1
+      '@storybook/addon-a11y': ^6.5.15
       '@storybook/addon-docs': 6.5.15
       '@storybook/addon-essentials': 6.5.15
       '@storybook/addons': 6.5.15
@@ -328,17 +329,17 @@ importers:
       '@swisspost/design-system-components-react': workspace:1.0.5-alpha
       '@swisspost/design-system-styles': workspace:5.2.0
       '@types/mdx': 2.0.3
-      '@types/react': 18.0.26
+      '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
       babel-loader: 9.1.2
       css-loader: 5.2.7
       cypress: 12.3.0
-      html-react-parser: 3.0.7
+      html-react-parser: 3.0.8
       js-beautify: 1.14.7
       react: 18.2.0
       react-dom: 18.2.0
       react-jsx-parser: 1.29.0
-      react-markdown: 8.0.4
+      react-markdown: 8.0.5
       rehype-raw: ^6.1.1
       sass: 1.57.1
       sass-loader: 10.4.1
@@ -350,7 +351,7 @@ importers:
       '@swisspost/design-system-components': link:../components
       '@swisspost/design-system-components-react': link:../components-react/dist
       '@swisspost/design-system-styles': link:../styles/dist
-      html-react-parser: 3.0.7_react@18.2.0
+      html-react-parser: 3.0.8_react@18.2.0
       js-beautify: 1.14.7
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -360,6 +361,7 @@ importers:
       '@percy/cli': 1.17.0
       '@percy/cypress': 3.1.2_cypress@12.3.0
       '@pxtrn/storybook-addon-docs-stencil': 6.4.1_biqbaboplfbrettd7655fr4n2y
+      '@storybook/addon-a11y': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-docs': 6.5.15_fp34m7vaa2sb7lyfkvcz52orxq
       '@storybook/addon-essentials': 6.5.15_fp34m7vaa2sb7lyfkvcz52orxq
       '@storybook/addons': 6.5.15_biqbaboplfbrettd7655fr4n2y
@@ -369,12 +371,12 @@ importers:
       '@storybook/testing-library': 0.0.13_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@types/mdx': 2.0.3
-      '@types/react': 18.0.26
+      '@types/react': 18.0.27
       '@types/react-dom': 18.0.10
       babel-loader: 9.1.2_@babel+core@7.20.12
       css-loader: 5.2.7
       cypress: 12.3.0
-      react-markdown: 8.0.4_kzbn2opkn2327fwg5yzwzya5o4
+      react-markdown: 8.0.5_3stiutgnnbnfnf3uowm5cip22i
       rehype-raw: 6.1.1
       sass: 1.57.1
       sass-loader: 10.4.1_sass@1.57.1
@@ -405,7 +407,7 @@ importers:
       postcss: 8.4.21
       postcss-scss: 4.0.6
       prettier: 2.8.3
-      rimraf: 4.0.7
+      rimraf: 4.1.1
       rxjs: 7.8.0
       sass: 1.57.1
       sass-loader: 10.4.1
@@ -440,7 +442,7 @@ importers:
       npm-run-all: 4.1.5
       postcss: 8.4.21
       postcss-scss: 4.0.6_postcss@8.4.21
-      rimraf: 4.0.7
+      rimraf: 4.1.1
       rxjs: 7.8.0
       sass: 1.57.1
       sass-loader: 10.4.1_sass@1.57.1
@@ -3532,7 +3534,7 @@ packages:
     resolution: {integrity: sha512-lkqXDcvlFT5rvEjiu6+QYO+1GXrEHRo2LOtS7E4GtX5ESIZOgepqsZBVIj6Pv+a6zqsya9VCgiK1KAK4BvJDAw==}
     engines: {node: '>=6.9.0'}
     dependencies:
-      regenerator-runtime: 0.13.9
+      regenerator-runtime: 0.13.11
     dev: true
 
   /@babel/runtime/7.20.7:
@@ -5363,27 +5365,58 @@ packages:
       '@sinonjs/commons': 1.8.3
     dev: true
 
-  /@stencil/core/2.21.0:
-    resolution: {integrity: sha512-c4mVCl87wTV8u7ExQqiiQU5XrkzXjq8ll8skPlFHlJ7+5hGWhRpuVqKgVYJPN1mC/ucRqCUfjzSNUD7cFKHhkw==}
+  /@stencil/core/2.22.1:
+    resolution: {integrity: sha512-L4EsWLXYkg24BfrR3aS1df3BSkH0RFyza+Tu84MaYoF2csiKTJxDTZuFHSnJeF8UdgzV7CBfnsIEV6r3s0+h3g==}
     engines: {node: '>=12.10.0', npm: '>=6.0.0'}
     hasBin: true
     dev: false
 
-  /@stencil/react-output-target/0.3.1_@stencil+core@2.21.0:
+  /@stencil/react-output-target/0.3.1_@stencil+core@2.22.1:
     resolution: {integrity: sha512-6d9pPhyajFfdxkqU/pPP2SzI7wn+EklySQc4KXlI/xcdvC2H9BzLmhmR40fR1q2TQoJbJui/nvSWhbYqkE3OBQ==}
     peerDependencies:
       '@stencil/core': ^2.9.0
     dependencies:
-      '@stencil/core': 2.21.0
+      '@stencil/core': 2.22.1
     dev: false
 
-  /@stencil/sass/2.0.2_@stencil+core@2.21.0:
-    resolution: {integrity: sha512-+hdPubxA4cBEyJR0ge0aGl9FUr0y6e4yqcsfrxkocOT6Nv+Mi+QpfZ9kx1W3ECL640VRcHqQifPcnoauvmqPZg==}
+  /@stencil/sass/2.0.3_@stencil+core@2.22.1:
+    resolution: {integrity: sha512-ypS+0f6bJH2qXqrNAHirlYOWFax+qKKOIePLs7cu4LfKFr4ZVJSGRFBdgaeRrZMUhJWnhjV6io2uDldhrQhnMg==}
     peerDependencies:
-      '@stencil/core': '>=2.0.0'
+      '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0'
     dependencies:
-      '@stencil/core': 2.21.0
+      '@stencil/core': 2.22.1
     dev: false
+
+  /@storybook/addon-a11y/6.5.15_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-4IgsCU7mrfooyGSgvyQdkZVu2iGJZqZ+2GDDIzzeIs1yXvuRy6QiHYNzesSrgeL52ykDXaPGuzKu2pcMKfDQHA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      '@storybook/addons': 6.5.15_biqbaboplfbrettd7655fr4n2y
+      '@storybook/api': 6.5.15_biqbaboplfbrettd7655fr4n2y
+      '@storybook/channels': 6.5.15
+      '@storybook/client-logger': 6.5.15
+      '@storybook/components': 6.5.15_biqbaboplfbrettd7655fr4n2y
+      '@storybook/core-events': 6.5.15
+      '@storybook/csf': 0.0.2--canary.4566f4d.1
+      '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
+      axe-core: 4.6.3
+      core-js: 3.27.2
+      global: 4.4.0
+      lodash: 4.17.21
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      react-sizeme: 3.0.2
+      regenerator-runtime: 0.13.11
+      ts-dedent: 2.2.0
+      util-deprecate: 1.0.2
+    dev: true
 
   /@storybook/addon-actions/6.5.15_biqbaboplfbrettd7655fr4n2y:
     resolution: {integrity: sha512-cnLzVK1S+EydFDSuvxMmMAxVqNXijBGdV9QTgsu6ys5sOkoiXRETKZmxuN8/ZRbkfc4N+1KAylSCZOOHzBQTBQ==}
@@ -5403,7 +5436,7 @@ packages:
       '@storybook/core-events': 6.5.15
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.1
+      core-js: 3.27.2
       fast-deep-equal: 3.1.3
       global: 4.4.0
       lodash: 4.17.21
@@ -5437,7 +5470,7 @@ packages:
       '@storybook/core-events': 6.5.15
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
       memoizerific: 1.11.3
       react: 18.2.0
@@ -5467,7 +5500,7 @@ packages:
       '@storybook/node-logger': 6.5.15
       '@storybook/store': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.1
+      core-js: 3.27.2
       lodash: 4.17.21
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -5514,7 +5547,7 @@ packages:
       '@storybook/store': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
       babel-loader: 8.3.0_@babel+core@7.20.12
-      core-js: 3.27.1
+      core-js: 3.27.2
       fast-deep-equal: 3.1.3
       global: 4.4.0
       lodash: 4.17.21
@@ -5606,7 +5639,7 @@ packages:
       '@storybook/api': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/core-common': 6.5.15_eb43oqwzvklbwyl4z5o4jhog3m
       '@storybook/node-logger': 6.5.15
-      core-js: 3.27.1
+      core-js: 3.27.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       regenerator-runtime: 0.13.9
@@ -5638,7 +5671,7 @@ packages:
       '@storybook/components': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/core-events': 6.5.15
       '@storybook/csf': 0.0.2--canary.4566f4d.1
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -5661,7 +5694,7 @@ packages:
       '@storybook/components': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/core-events': 6.5.15
       '@storybook/csf': 0.0.2--canary.4566f4d.1
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -5685,7 +5718,7 @@ packages:
       '@storybook/client-logger': 6.5.15
       '@storybook/components': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.1
+      core-js: 3.27.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
       regenerator-runtime: 0.13.9
@@ -5708,7 +5741,7 @@ packages:
       '@storybook/components': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/core-events': 6.5.15
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
       memoizerific: 1.11.3
       prop-types: 15.8.1
@@ -5731,7 +5764,7 @@ packages:
       '@storybook/router': 6.5.13_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 6.5.13_biqbaboplfbrettd7655fr4n2y
       '@types/webpack-env': 1.17.0
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -5752,7 +5785,7 @@ packages:
       '@storybook/router': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@types/webpack-env': 1.17.0
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -5772,7 +5805,7 @@ packages:
       '@storybook/router': 6.5.13_biqbaboplfbrettd7655fr4n2y
       '@storybook/semver': 7.3.2
       '@storybook/theming': 6.5.13_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.1
+      core-js: 3.27.2
       fast-deep-equal: 3.1.3
       global: 4.4.0
       lodash: 4.17.21
@@ -5799,14 +5832,14 @@ packages:
       '@storybook/router': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/semver': 7.3.2
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.1
+      core-js: 3.27.2
       fast-deep-equal: 3.1.3
       global: 4.4.0
       lodash: 4.17.21
       memoizerific: 1.11.3
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      regenerator-runtime: 0.13.9
+      regenerator-runtime: 0.13.11
       store2: 2.13.2
       telejson: 6.0.8
       ts-dedent: 2.2.0
@@ -5845,7 +5878,7 @@ packages:
       autoprefixer: 9.8.8
       babel-loader: 8.3.0_nwtvwtk5tmh22l2urnqucz7kqu
       case-sensitive-paths-webpack-plugin: 2.4.0
-      core-js: 3.27.1
+      core-js: 3.27.2
       css-loader: 3.6.0_webpack@4.46.0
       file-loader: 6.2.0_webpack@4.46.0
       find-up: 5.0.0
@@ -5888,7 +5921,7 @@ packages:
       '@storybook/channels': 6.5.15
       '@storybook/client-logger': 6.5.15
       '@storybook/core-events': 6.5.15
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
       qs: 6.11.0
       telejson: 6.0.8
@@ -5899,7 +5932,7 @@ packages:
     dependencies:
       '@storybook/channels': 6.5.15
       '@storybook/client-logger': 6.5.15
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
       telejson: 6.0.8
     dev: true
@@ -5907,7 +5940,7 @@ packages:
   /@storybook/channels/6.5.13:
     resolution: {integrity: sha512-sGYSilE30bz0jG+HdHnkv0B4XkAv2hP+KRZr4xmnv+MOOQpRnZpJ5Z3HVU16s17cj/83NWihKj6BuKcEVzyilg==}
     dependencies:
-      core-js: 3.27.1
+      core-js: 3.27.2
       ts-dedent: 2.2.0
       util-deprecate: 1.0.2
     dev: true
@@ -5915,7 +5948,7 @@ packages:
   /@storybook/channels/6.5.15:
     resolution: {integrity: sha512-gPpsBgirv2NCXbH4WbYqdkI0JLE96aiVuu7UEWfn9yu071pQ9CLHbhXGD9fSFNrfOkyBBY10ppSE7uCXw3Wexg==}
     dependencies:
-      core-js: 3.27.1
+      core-js: 3.27.2
       ts-dedent: 2.2.0
       util-deprecate: 1.0.2
     dev: true
@@ -5935,7 +5968,7 @@ packages:
       '@storybook/store': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@types/qs': 6.9.7
       '@types/webpack-env': 1.17.0
-      core-js: 3.27.1
+      core-js: 3.27.2
       fast-deep-equal: 3.1.3
       global: 4.4.0
       lodash: 4.17.21
@@ -5953,21 +5986,21 @@ packages:
   /@storybook/client-logger/6.5.13:
     resolution: {integrity: sha512-F2SMW3LWFGXLm2ENTwTitrLWJgmMXRf3CWQXdN2EbkNCIBHy5Zcbt+91K4OX8e2e5h9gjGfrdYbyYDYOoUCEfA==}
     dependencies:
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
     dev: true
 
   /@storybook/client-logger/6.5.14:
     resolution: {integrity: sha512-r1pY69DGKzX9/GngkudthaaPxPlka16zjG7Y58psunwcoUuH3riAP1cjqhXt5+S8FKCNI/MGb82PLlCPX2Liuw==}
     dependencies:
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
     dev: true
 
   /@storybook/client-logger/6.5.15:
     resolution: {integrity: sha512-0uyxKvodq+FycGv6aUwC1wUR6suXf2+7ywMFAOlYolI4UvNj8NyU/5AfgKT5XnxYAgPmoCiAjOE700TrfHrosw==}
     dependencies:
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
     dev: true
 
@@ -5980,12 +6013,12 @@ packages:
       '@storybook/client-logger': 6.5.14
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/theming': 6.5.14_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.1
+      core-js: 3.27.2
       memoizerific: 1.11.3
       qs: 6.11.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      regenerator-runtime: 0.13.9
+      regenerator-runtime: 0.13.11
       util-deprecate: 1.0.2
     dev: true
 
@@ -5998,12 +6031,12 @@ packages:
       '@storybook/client-logger': 6.5.15
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.1
+      core-js: 3.27.2
       memoizerific: 1.11.3
       qs: 6.11.0
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
-      regenerator-runtime: 0.13.9
+      regenerator-runtime: 0.13.11
       util-deprecate: 1.0.2
     dev: true
 
@@ -6030,7 +6063,7 @@ packages:
       '@storybook/ui': 6.5.15_biqbaboplfbrettd7655fr4n2y
       airbnb-js-shims: 2.2.1
       ansi-to-html: 0.6.15
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
       lodash: 4.17.21
       qs: 6.11.0
@@ -6067,7 +6100,7 @@ packages:
       '@storybook/ui': 6.5.15_biqbaboplfbrettd7655fr4n2y
       airbnb-js-shims: 2.2.1
       ansi-to-html: 0.6.15
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
       lodash: 4.17.21
       qs: 6.11.0
@@ -6121,7 +6154,7 @@ packages:
       babel-plugin-macros: 3.1.0
       babel-plugin-polyfill-corejs3: 0.1.7_@babel+core@7.20.12
       chalk: 4.1.2
-      core-js: 3.27.1
+      core-js: 3.27.2
       express: 4.18.1
       file-system-cache: 1.1.0
       find-up: 5.0.0
@@ -6155,13 +6188,13 @@ packages:
   /@storybook/core-events/6.5.13:
     resolution: {integrity: sha512-kL745tPpRKejzHToA3/CoBNbI+NPRVk186vGxXBmk95OEg0TlwgQExP8BnqEtLlRZMbW08e4+6kilc1M1M4N5w==}
     dependencies:
-      core-js: 3.27.1
+      core-js: 3.27.2
     dev: true
 
   /@storybook/core-events/6.5.15:
     resolution: {integrity: sha512-B1Ba6l5W7MeNclclqMMTMHgYgfdpB5SIhNCQFnzIz8blynzRhNFMdxvbAl6Je5G0S4xydYYd7Lno2kXQebs7HA==}
     dependencies:
-      core-js: 3.27.1
+      core-js: 3.27.2
     dev: true
 
   /@storybook/core-server/6.5.15_eb43oqwzvklbwyl4z5o4jhog3m:
@@ -6202,7 +6235,7 @@ packages:
       cli-table3: 0.6.2
       commander: 6.2.1
       compression: 1.7.4
-      core-js: 3.27.1
+      core-js: 3.27.2
       cpy: 8.1.2
       detect-port: 1.3.0
       express: 4.18.1
@@ -6294,7 +6327,7 @@ packages:
       '@babel/types': 7.20.7
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/mdx1-csf': 0.0.1_@babel+core@7.20.12
-      core-js: 3.27.1
+      core-js: 3.27.2
       fs-extra: 9.1.0
       global: 4.4.0
       regenerator-runtime: 0.13.11
@@ -6315,7 +6348,7 @@ packages:
       '@babel/core': 7.20.12
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/store': 6.5.15_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.1
+      core-js: 3.27.2
       doctrine: 3.0.0
       lodash: 4.17.21
       regenerator-runtime: 0.13.9
@@ -6331,7 +6364,7 @@ packages:
       '@storybook/addons': 6.5.13_biqbaboplfbrettd7655fr4n2y
       '@storybook/client-logger': 6.5.13
       '@storybook/core-events': 6.5.13
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
     transitivePeerDependencies:
       - react
@@ -6362,7 +6395,7 @@ packages:
       babel-loader: 8.3.0_nwtvwtk5tmh22l2urnqucz7kqu
       case-sensitive-paths-webpack-plugin: 2.4.0
       chalk: 4.1.2
-      core-js: 3.27.1
+      core-js: 3.27.2
       css-loader: 3.6.0_webpack@4.46.0
       express: 4.18.1
       file-loader: 6.2.0_webpack@4.46.0
@@ -6420,7 +6453,7 @@ packages:
     dependencies:
       '@types/npmlog': 4.1.4
       chalk: 4.1.2
-      core-js: 3.27.1
+      core-js: 3.27.2
       npmlog: 5.0.1
       pretty-hrtime: 1.0.3
     dev: true
@@ -6428,7 +6461,7 @@ packages:
   /@storybook/postinstall/6.5.15:
     resolution: {integrity: sha512-l7pApTgLD10OedNOyuf4vUdVCHLOSaIUIL9gdJl1WaSFHiUpJvvzBIh5M4aRICYPbnuExQc8y2GAjERKO4Ep+g==}
     dependencies:
-      core-js: 3.27.1
+      core-js: 3.27.2
     dev: true
 
   /@storybook/preset-scss/1.0.3_7yyjlakj7kidaoj2rqhkbn5gom:
@@ -6456,7 +6489,7 @@ packages:
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/store': 6.5.15_biqbaboplfbrettd7655fr4n2y
       ansi-to-html: 0.6.15
-      core-js: 3.27.1
+      core-js: 3.27.2
       global: 4.4.0
       lodash: 4.17.21
       qs: 6.11.0
@@ -6538,7 +6571,7 @@ packages:
       acorn-walk: 7.2.0
       babel-plugin-add-react-displayname: 0.0.5
       babel-plugin-react-docgen: 4.2.1
-      core-js: 3.27.1
+      core-js: 3.27.2
       escodegen: 2.0.0
       fs-extra: 9.1.0
       global: 4.4.0
@@ -6584,7 +6617,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@storybook/client-logger': 6.5.13
-      core-js: 3.27.1
+      core-js: 3.27.2
       memoizerific: 1.11.3
       qs: 6.11.0
       react: 18.2.0
@@ -6599,7 +6632,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@storybook/client-logger': 6.5.15
-      core-js: 3.27.1
+      core-js: 3.27.2
       memoizerific: 1.11.3
       qs: 6.11.0
       react: 18.2.0
@@ -6612,7 +6645,7 @@ packages:
     engines: {node: '>=10'}
     hasBin: true
     dependencies:
-      core-js: 3.27.1
+      core-js: 3.27.2
       find-up: 4.1.0
     dev: true
 
@@ -6625,7 +6658,7 @@ packages:
       '@storybook/addons': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/client-logger': 6.5.15
       '@storybook/csf': 0.0.2--canary.4566f4d.1
-      core-js: 3.27.1
+      core-js: 3.27.2
       estraverse: 5.3.0
       global: 4.4.0
       loader-utils: 2.0.4
@@ -6646,7 +6679,7 @@ packages:
       '@storybook/client-logger': 6.5.15
       '@storybook/core-events': 6.5.15
       '@storybook/csf': 0.0.2--canary.4566f4d.1
-      core-js: 3.27.1
+      core-js: 3.27.2
       fast-deep-equal: 3.1.3
       global: 4.4.0
       lodash: 4.17.21
@@ -6667,7 +6700,7 @@ packages:
       '@storybook/client-logger': 6.5.15
       '@storybook/core-common': 6.5.15_eb43oqwzvklbwyl4z5o4jhog3m
       chalk: 4.1.2
-      core-js: 3.27.1
+      core-js: 3.27.2
       detect-package-manager: 2.0.1
       fetch-retry: 5.0.3
       fs-extra: 9.1.0
@@ -6708,7 +6741,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@storybook/client-logger': 6.5.13
-      core-js: 3.27.1
+      core-js: 3.27.2
       memoizerific: 1.11.3
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -6722,7 +6755,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@storybook/client-logger': 6.5.14
-      core-js: 3.27.1
+      core-js: 3.27.2
       memoizerific: 1.11.3
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -6736,7 +6769,7 @@ packages:
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
     dependencies:
       '@storybook/client-logger': 6.5.15
-      core-js: 3.27.1
+      core-js: 3.27.2
       memoizerific: 1.11.3
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -6758,7 +6791,7 @@ packages:
       '@storybook/router': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/semver': 7.3.2
       '@storybook/theming': 6.5.15_biqbaboplfbrettd7655fr4n2y
-      core-js: 3.27.1
+      core-js: 3.27.2
       memoizerific: 1.11.3
       qs: 6.11.0
       react: 18.2.0
@@ -7149,7 +7182,7 @@ packages:
   /@types/react-dom/18.0.10:
     resolution: {integrity: sha512-E42GW/JA4Qv15wQdqJq8DL4JhNpB3prJgjgapN3qJT9K2zO5IIAQh4VXvCEDupoqAwnz0cY4RlXeC/ajX5SFHg==}
     dependencies:
-      '@types/react': 18.0.26
+      '@types/react': 18.0.27
     dev: true
 
   /@types/react-dom/18.0.9:
@@ -7169,6 +7202,14 @@ packages:
 
   /@types/react/18.0.26:
     resolution: {integrity: sha512-hCR3PJQsAIXyxhTNSiDFY//LhnMZWpNNr5etoCqx/iUfGc5gXWtQR2Phl908jVR6uPXacojQWTg4qRpkxTuGug==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.1.1
+    dev: true
+
+  /@types/react/18.0.27:
+    resolution: {integrity: sha512-3vtRKHgVxu3Jp9t718R9BuzoD4NcQ8YJ5XRzsSKxNDiDonD2MXIT1TmSkenxuCycZJoQT5d2vE8LwWJxBC1gmA==}
     dependencies:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
@@ -7338,8 +7379,8 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/eslint-plugin/5.48.1_cvlk6nxnjthzpxdguhclfpuypm:
-    resolution: {integrity: sha512-9nY5K1Rp2ppmpb9s9S2aBiF3xo5uExCehMDmYmmFqqyxgenbHJ3qbarcLt4ITgaD6r/2ypdlcFRdcuVPnks+fQ==}
+  /@typescript-eslint/eslint-plugin/5.48.2_iljmjqxcygjq3saipl7gerxpvi:
+    resolution: {integrity: sha512-sR0Gja9Ky1teIq4qJOl0nC+Tk64/uYdX+mi+5iB//MH8gwyx8e3SOyhEzeLZEFEEfCaLf8KJq+Bd/6je1t+CAg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       '@typescript-eslint/parser': ^5.0.0
@@ -7349,10 +7390,10 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/parser': 5.48.1_yygwinqv3a2io74xmwofqb7uka
-      '@typescript-eslint/scope-manager': 5.48.1
-      '@typescript-eslint/type-utils': 5.48.1_yygwinqv3a2io74xmwofqb7uka
-      '@typescript-eslint/utils': 5.48.1_yygwinqv3a2io74xmwofqb7uka
+      '@typescript-eslint/parser': 5.48.2_yygwinqv3a2io74xmwofqb7uka
+      '@typescript-eslint/scope-manager': 5.48.2
+      '@typescript-eslint/type-utils': 5.48.2_yygwinqv3a2io74xmwofqb7uka
+      '@typescript-eslint/utils': 5.48.2_yygwinqv3a2io74xmwofqb7uka
       debug: 4.3.4
       eslint: 8.32.0
       ignore: 5.2.1
@@ -7385,8 +7426,8 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/parser/5.48.1_6rep66rojmwsn4bfraotajskeu:
-    resolution: {integrity: sha512-4yg+FJR/V1M9Xoq56SF9Iygqm+r5LMXvheo6DQ7/yUWynQ4YfCRnsKuRgqH4EQ5Ya76rVwlEpw4Xu+TgWQUcdA==}
+  /@typescript-eslint/parser/5.48.2_6rep66rojmwsn4bfraotajskeu:
+    resolution: {integrity: sha512-38zMsKsG2sIuM5Oi/olurGwYJXzmtdsHhn5mI/pQogP+BjYVkK5iRazCQ8RGS0V+YLk282uWElN70zAAUmaYHw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
@@ -7395,9 +7436,9 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/scope-manager': 5.48.1
-      '@typescript-eslint/types': 5.48.1
-      '@typescript-eslint/typescript-estree': 5.48.1_typescript@4.8.4
+      '@typescript-eslint/scope-manager': 5.48.2
+      '@typescript-eslint/types': 5.48.2
+      '@typescript-eslint/typescript-estree': 5.48.2_typescript@4.8.4
       debug: 4.3.4
       eslint: 8.29.0
       typescript: 4.8.4
@@ -7405,8 +7446,8 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/parser/5.48.1_yygwinqv3a2io74xmwofqb7uka:
-    resolution: {integrity: sha512-4yg+FJR/V1M9Xoq56SF9Iygqm+r5LMXvheo6DQ7/yUWynQ4YfCRnsKuRgqH4EQ5Ya76rVwlEpw4Xu+TgWQUcdA==}
+  /@typescript-eslint/parser/5.48.2_yygwinqv3a2io74xmwofqb7uka:
+    resolution: {integrity: sha512-38zMsKsG2sIuM5Oi/olurGwYJXzmtdsHhn5mI/pQogP+BjYVkK5iRazCQ8RGS0V+YLk282uWElN70zAAUmaYHw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
@@ -7415,9 +7456,9 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/scope-manager': 5.48.1
-      '@typescript-eslint/types': 5.48.1
-      '@typescript-eslint/typescript-estree': 5.48.1_typescript@4.8.4
+      '@typescript-eslint/scope-manager': 5.48.2
+      '@typescript-eslint/types': 5.48.2
+      '@typescript-eslint/typescript-estree': 5.48.2_typescript@4.8.4
       debug: 4.3.4
       eslint: 8.32.0
       typescript: 4.8.4
@@ -7441,12 +7482,12 @@ packages:
       '@typescript-eslint/visitor-keys': 5.46.1
     dev: true
 
-  /@typescript-eslint/scope-manager/5.48.1:
-    resolution: {integrity: sha512-S035ueRrbxRMKvSTv9vJKIWgr86BD8s3RqoRZmsSh/s8HhIs90g6UlK8ZabUSjUZQkhVxt7nmZ63VJ9dcZhtDQ==}
+  /@typescript-eslint/scope-manager/5.48.2:
+    resolution: {integrity: sha512-zEUFfonQid5KRDKoI3O+uP1GnrFd4tIHlvs+sTJXiWuypUWMuDaottkJuR612wQfOkjYbsaskSIURV9xo4f+Fw==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      '@typescript-eslint/types': 5.48.1
-      '@typescript-eslint/visitor-keys': 5.48.1
+      '@typescript-eslint/types': 5.48.2
+      '@typescript-eslint/visitor-keys': 5.48.2
     dev: true
 
   /@typescript-eslint/type-utils/5.43.0_yygwinqv3a2io74xmwofqb7uka:
@@ -7489,8 +7530,8 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/type-utils/5.48.1_yygwinqv3a2io74xmwofqb7uka:
-    resolution: {integrity: sha512-Hyr8HU8Alcuva1ppmqSYtM/Gp0q4JOp1F+/JH5D1IZm/bUBrV0edoewQZiEc1r6I8L4JL21broddxK8HAcZiqQ==}
+  /@typescript-eslint/type-utils/5.48.2_yygwinqv3a2io74xmwofqb7uka:
+    resolution: {integrity: sha512-QVWx7J5sPMRiOMJp5dYshPxABRoZV1xbRirqSk8yuIIsu0nvMTZesKErEA3Oix1k+uvsk8Cs8TGJ6kQ0ndAcew==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: '*'
@@ -7499,8 +7540,8 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/typescript-estree': 5.48.1_typescript@4.8.4
-      '@typescript-eslint/utils': 5.48.1_yygwinqv3a2io74xmwofqb7uka
+      '@typescript-eslint/typescript-estree': 5.48.2_typescript@4.8.4
+      '@typescript-eslint/utils': 5.48.2_yygwinqv3a2io74xmwofqb7uka
       debug: 4.3.4
       eslint: 8.32.0
       tsutils: 3.21.0_typescript@4.8.4
@@ -7519,8 +7560,8 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
-  /@typescript-eslint/types/5.48.1:
-    resolution: {integrity: sha512-xHyDLU6MSuEEdIlzrrAerCGS3T7AA/L8Hggd0RCYBi0w3JMvGYxlLlXHeg50JI9Tfg5MrtsfuNxbS/3zF1/ATg==}
+  /@typescript-eslint/types/5.48.2:
+    resolution: {integrity: sha512-hE7dA77xxu7ByBc6KCzikgfRyBCTst6dZQpwaTy25iMYOnbNljDT4hjhrGEJJ0QoMjrfqrx+j1l1B9/LtKeuqA==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dev: true
 
@@ -7566,8 +7607,8 @@ packages:
       - supports-color
     dev: true
 
-  /@typescript-eslint/typescript-estree/5.48.1_typescript@4.8.4:
-    resolution: {integrity: sha512-Hut+Osk5FYr+sgFh8J/FHjqX6HFcDzTlWLrFqGoK5kVUN3VBHF/QzZmAsIXCQ8T/W9nQNBTqalxi1P3LSqWnRA==}
+  /@typescript-eslint/typescript-estree/5.48.2_typescript@4.8.4:
+    resolution: {integrity: sha512-bibvD3z6ilnoVxUBFEgkO0k0aFvUc4Cttt0dAreEr+nrAHhWzkO83PEVVuieK3DqcgL6VAK5dkzK8XUVja5Zcg==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       typescript: '*'
@@ -7575,8 +7616,8 @@ packages:
       typescript:
         optional: true
     dependencies:
-      '@typescript-eslint/types': 5.48.1
-      '@typescript-eslint/visitor-keys': 5.48.1
+      '@typescript-eslint/types': 5.48.2
+      '@typescript-eslint/visitor-keys': 5.48.2
       debug: 4.3.4
       globby: 11.1.0
       is-glob: 4.0.3
@@ -7627,17 +7668,17 @@ packages:
       - typescript
     dev: true
 
-  /@typescript-eslint/utils/5.48.1_yygwinqv3a2io74xmwofqb7uka:
-    resolution: {integrity: sha512-SmQuSrCGUOdmGMwivW14Z0Lj8dxG1mOFZ7soeJ0TQZEJcs3n5Ndgkg0A4bcMFzBELqLJ6GTHnEU+iIoaD6hFGA==}
+  /@typescript-eslint/utils/5.48.2_yygwinqv3a2io74xmwofqb7uka:
+    resolution: {integrity: sha512-2h18c0d7jgkw6tdKTlNaM7wyopbLRBiit8oAxoP89YnuBOzCZ8g8aBCaCqq7h208qUTroL7Whgzam7UY3HVLow==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     peerDependencies:
       eslint: ^6.0.0 || ^7.0.0 || ^8.0.0
     dependencies:
       '@types/json-schema': 7.0.11
       '@types/semver': 7.3.12
-      '@typescript-eslint/scope-manager': 5.48.1
-      '@typescript-eslint/types': 5.48.1
-      '@typescript-eslint/typescript-estree': 5.48.1_typescript@4.8.4
+      '@typescript-eslint/scope-manager': 5.48.2
+      '@typescript-eslint/types': 5.48.2
+      '@typescript-eslint/typescript-estree': 5.48.2_typescript@4.8.4
       eslint: 8.32.0
       eslint-scope: 5.1.1
       eslint-utils: 3.0.0_eslint@8.32.0
@@ -7663,11 +7704,11 @@ packages:
       eslint-visitor-keys: 3.3.0
     dev: true
 
-  /@typescript-eslint/visitor-keys/5.48.1:
-    resolution: {integrity: sha512-Ns0XBwmfuX7ZknznfXozgnydyR8F6ev/KEGePP4i74uL3ArsKbEhJ7raeKr1JSa997DBDwol/4a0Y+At82c9dA==}
+  /@typescript-eslint/visitor-keys/5.48.2:
+    resolution: {integrity: sha512-z9njZLSkwmjFWUelGEwEbdf4NwKvfHxvGC0OcGN1Hp/XNDIcJ7D5DpPNPv6x6/mFvc1tQHsaWmpD/a4gOvvCJQ==}
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
     dependencies:
-      '@typescript-eslint/types': 5.48.1
+      '@typescript-eslint/types': 5.48.2
       eslint-visitor-keys: 3.3.0
     dev: true
 
@@ -8622,6 +8663,11 @@ packages:
     resolution: {integrity: sha512-xh1Rl34h6Fi1DC2WWKfxUTVqRsNnr6LsKz2+hfwDxQJWmrx8+c7ylaqBMcHfl1U1r2dsifOvKX3LQuLNZ+XSvA==}
     dev: true
 
+  /axe-core/4.6.3:
+    resolution: {integrity: sha512-/BQzOX780JhsxDnPpH4ZiyrJAzcd8AfzFPkv+89veFSr1rcMjuq2JDCwypKaPeB6ljHp9KjXhPpjgCvQlWYuqg==}
+    engines: {node: '>=4'}
+    dev: true
+
   /axios/0.25.0_debug@4.3.4:
     resolution: {integrity: sha512-cD8FOb0tRH3uuEe6+evtAbgJtfxr7ly3fQjYcMcuPlgkwVS9xboaVIpcDV+cYQe+yGykgwZCs1pzjntcGa6l5g==}
     dependencies:
@@ -8982,6 +9028,10 @@ packages:
   /base64id/2.0.0:
     resolution: {integrity: sha512-lGe34o6EHj9y3Kts9R4ZYs/Gr+6N7MCaMlIFA3F1R2O5/m7K06AxfSeO5530PEERE6/WyEg3lsuyw4GHlPZHog==}
     engines: {node: ^4.5.0 || >= 5.9}
+    dev: true
+
+  /batch-processor/1.0.0:
+    resolution: {integrity: sha512-xoLQD8gmmR32MeuBHgH0Tzd5PuSZx71ZsbhVxOCRbgktZEPe4SQy7s9Z50uPp0F/f7iw2XmkHN2xkgbMfckMDA==}
     dev: true
 
   /batch/0.6.1:
@@ -10087,8 +10137,8 @@ packages:
     requiresBuild: true
     dev: true
 
-  /core-js/3.27.1:
-    resolution: {integrity: sha512-GutwJLBChfGCpwwhbYoqfv03LAfmiz7e7D/BNxzeMxwQf10GRSzqiOjx7AmtEk+heiD/JWmBuyBPgFtx0Sg1ww==}
+  /core-js/3.27.2:
+    resolution: {integrity: sha512-9ashVQskuh5AZEZ1JdQWp1GqSoC1e1G87MzRqg2gIfVAQ7Qn9K+uFj8EcniUFA4P2NLZfV+TOlX1SzoKfo+s7w==}
     requiresBuild: true
 
   /core-util-is/1.0.2:
@@ -11076,6 +11126,12 @@ packages:
   /electron-to-chromium/1.4.262:
     resolution: {integrity: sha512-Ckn5haqmGh/xS8IbcgK3dnwAVnhDyo/WQnklWn6yaMucYTq7NNxwlGE8ElzEOnonzRLzUCo2Ot3vUb2GYUF2Hw==}
 
+  /element-resize-detector/1.2.4:
+    resolution: {integrity: sha512-Fl5Ftk6WwXE0wqCgNoseKWndjzZlDCwuPTcoVZfCP9R3EHQF8qUtr3YUPNETegRBOKqQKPW3n4kiIWngGi8tKg==}
+    dependencies:
+      batch-processor: 1.0.0
+    dev: true
+
   /elliptic/6.5.4:
     resolution: {integrity: sha512-iLhC6ULemrljPZb+QutR5TQGB+pdW6KGD5RSegS+8sorOZT+rdQFbsQFJgvN3eRqNALqJer4oQ16YvJHlU8hzQ==}
     dependencies:
@@ -11632,7 +11688,7 @@ packages:
       typescript: '*'
     dependencies:
       '@typescript-eslint/eslint-plugin': 5.46.1_5qsqpdn56f5bnl5stru3tfou6u
-      '@typescript-eslint/parser': 5.48.1_6rep66rojmwsn4bfraotajskeu
+      '@typescript-eslint/parser': 5.48.2_6rep66rojmwsn4bfraotajskeu
       eslint: 8.29.0
       eslint-config-standard: 17.0.0_wnkmxhw54rcoqx42l6oqxte7qq
       eslint-plugin-import: 2.26.0_z7hwuz3w5sq2sbhy7d4iqrnsvq
@@ -13603,8 +13659,8 @@ packages:
       wbuf: 1.7.3
     dev: true
 
-  /html-dom-parser/3.1.2:
-    resolution: {integrity: sha512-mLTtl3pVn3HnqZSZzW3xVs/mJAKrG1yIw3wlp+9bdoZHHLaBRvELdpfShiPVLyjPypq1Fugv2KMDoGHW4lVXnw==}
+  /html-dom-parser/3.1.3:
+    resolution: {integrity: sha512-fI0yyNlIeSboxU+jnrA4v8qj4+M8SI9/q6AKYdwCY2qki22UtKCDTxvagHniECu7sa5/o2zFRdLleA67035lsA==}
     dependencies:
       domhandler: 5.0.3
       htmlparser2: 8.0.1
@@ -13639,16 +13695,16 @@ packages:
       terser: 4.8.0
     dev: true
 
-  /html-react-parser/3.0.7_react@18.2.0:
-    resolution: {integrity: sha512-4Nzpp1Lsd6ngOJR8T+Vc4u+Z77OddOgKL3KvwbtA0/U0Yv8v5JF+yewQxIudrdOWGYuO0Borc0vQ2y53pzBAwA==}
+  /html-react-parser/3.0.8_react@18.2.0:
+    resolution: {integrity: sha512-eIxPq/3Ja3+nZkx6X/BNpFy0lNuW+v3V4nzABzuL8KkRVdYY/2KyXO42epKonsEVVRSBxm2zsxWcOkT6fYL+iQ==}
     peerDependencies:
       react: 0.14 || 15 || 16 || 17 || 18
     dependencies:
       domhandler: 5.0.3
-      html-dom-parser: 3.1.2
+      html-dom-parser: 3.1.3
       react: 18.2.0
       react-property: 2.0.0
-      style-to-js: 1.1.2
+      style-to-js: 1.1.3
     dev: false
 
   /html-tags/3.2.0:
@@ -14048,6 +14104,12 @@ packages:
   /interpret/2.2.0:
     resolution: {integrity: sha512-Ju0Bz/cEia55xDwUWEa8+olFpCiQoypjnQySseKtmjNrnps3P+xfpUmGr90T7yjlVJmOtybRvPXhKMbHr+fWnw==}
     engines: {node: '>= 0.10'}
+    dev: true
+
+  /invariant/2.2.4:
+    resolution: {integrity: sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==}
+    dependencies:
+      loose-envify: 1.4.0
     dev: true
 
   /invert-kv/1.0.0:
@@ -16046,7 +16108,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.20.7
       app-root-dir: 1.0.2
-      core-js: 3.27.1
+      core-js: 3.27.2
       dotenv: 8.6.0
       dotenv-expand: 5.1.0
     dev: true
@@ -19793,7 +19855,7 @@ packages:
       acorn: 8.8.0
       acorn-jsx: 5.3.2_acorn@8.8.0
       browserslist: 4.21.4
-      core-js: 3.27.1
+      core-js: 3.27.2
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     optionalDependencies:
@@ -19801,15 +19863,15 @@ packages:
       '@types/react-dom': 17.0.18
     dev: false
 
-  /react-markdown/8.0.4_kzbn2opkn2327fwg5yzwzya5o4:
-    resolution: {integrity: sha512-2oxHa6oDxc1apg/Gnc1Goh06t3B617xeywqI/92wmDV9FELI6ayRkwge7w7DoEqM0gRpZGTNU6xQG+YpJISnVg==}
+  /react-markdown/8.0.5_3stiutgnnbnfnf3uowm5cip22i:
+    resolution: {integrity: sha512-jGJolWWmOWAvzf+xMdB9zwStViODyyFQhNB/bwCerbBKmrTmgmA599CGiOlP58OId1IMoIRsA8UdI1Lod4zb5A==}
     peerDependencies:
       '@types/react': '>=16'
       react: '>=16'
     dependencies:
       '@types/hast': 2.3.4
       '@types/prop-types': 15.7.5
-      '@types/react': 18.0.26
+      '@types/react': 18.0.27
       '@types/unist': 2.0.6
       comma-separated-tokens: 2.0.3
       hast-util-whitespace: 2.0.0
@@ -19820,7 +19882,7 @@ packages:
       remark-parse: 10.0.1
       remark-rehype: 10.1.0
       space-separated-tokens: 2.0.2
-      style-to-object: 0.3.0
+      style-to-object: 0.4.0
       unified: 10.1.2
       unist-util-visit: 4.1.1
       vfile: 5.3.6
@@ -19835,6 +19897,15 @@ packages:
   /react-refresh/0.11.0:
     resolution: {integrity: sha512-F27qZr8uUqwhWZboondsPx8tnC3Ct3SxZA3V5WyEvujRyyNv0VYPhoBg1gZ8/MV5tubQp76Trw8lTv9hzRBa+A==}
     engines: {node: '>=0.10.0'}
+    dev: true
+
+  /react-sizeme/3.0.2:
+    resolution: {integrity: sha512-xOIAOqqSSmKlKFJLO3inBQBdymzDuXx4iuwkNcJmC96jeiOg5ojByvL+g3MW9LPEsojLbC6pf68zOfobK8IPlw==}
+    dependencies:
+      element-resize-detector: 1.2.4
+      invariant: 2.2.4
+      shallowequal: 1.1.0
+      throttle-debounce: 3.0.1
     dev: true
 
   /react/18.2.0:
@@ -20400,8 +20471,8 @@ packages:
     dependencies:
       glob: 7.2.3
 
-  /rimraf/4.0.7:
-    resolution: {integrity: sha512-CUEDDrZvc0swDgVdXGiv3FcYYQMpJxjvSGt85Amj6yU+MCVWurrLCeLiJDdJPHCzNJnwuebBEdcO//eP11Xa7w==}
+  /rimraf/4.1.1:
+    resolution: {integrity: sha512-Z4Y81w8atcvaJuJuBB88VpADRH66okZAuEm+Jtaufa+s7rZmIz+Hik2G53kGaNytE7lsfXyWktTmfVz0H9xuDg==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -20834,6 +20905,10 @@ packages:
     engines: {node: '>=8'}
     dependencies:
       kind-of: 6.0.3
+    dev: true
+
+  /shallowequal/1.1.0:
+    resolution: {integrity: sha512-y0m1JoUZSlPAjXVtPPW70aZWfIL/dSP7AFkRnniLCrK/8MDKog3TySTBmckD+RObVxH0v4Tox67+F14PdED2oQ==}
     dev: true
 
   /shebang-command/1.2.0:
@@ -21561,10 +21636,10 @@ packages:
     resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
     dev: true
 
-  /style-to-js/1.1.2:
-    resolution: {integrity: sha512-aMG8jJpEF0SCGbQFY8W8CT+EjQ9ubp35FOZG3prWkNjxW/a1bEeSod0tkWiP+6iiOCDIIrQykUDkPY5LbNF87g==}
+  /style-to-js/1.1.3:
+    resolution: {integrity: sha512-zKI5gN/zb7LS/Vm0eUwjmjrXWw8IMtyA8aPBJZdYiQTXj4+wQ3IucOLIOnF7zCHxvW8UhIGh/uZh/t9zEHXNTQ==}
     dependencies:
-      style-to-object: 0.4.0
+      style-to-object: 0.4.1
     dev: false
 
   /style-to-object/0.3.0:
@@ -21575,6 +21650,12 @@ packages:
 
   /style-to-object/0.4.0:
     resolution: {integrity: sha512-dAjq2m87tPn/TcYTeqMhXJRhu96WYWcxMFQxs3Y9jfYpq2jG+38u4tj0Lst6DOiYXmDuNxVJ2b1Z2uPC6wTEeg==}
+    dependencies:
+      inline-style-parser: 0.1.1
+    dev: true
+
+  /style-to-object/0.4.1:
+    resolution: {integrity: sha512-HFpbb5gr2ypci7Qw+IOhnP2zOU7e77b+rzM+wTzXzfi1PrtBCX0E7Pk4wL4iTLnhzZ+JgEGAhX81ebTg/aYjQw==}
     dependencies:
       inline-style-parser: 0.1.1
     dev: false
@@ -21986,6 +22067,11 @@ packages:
 
   /throat/6.0.1:
     resolution: {integrity: sha512-8hmiGIJMDlwjg7dlJ4yKGLK8EsYqKgPWbG3b4wjJddKNwc7N7Dpn08Df4szr/sZdMVeOstrdYSsqzX6BYbcB+w==}
+    dev: true
+
+  /throttle-debounce/3.0.1:
+    resolution: {integrity: sha512-dTEWWNu6JmeVXY0ZYoPuH5cRIwc0MeGbJwah9KUNYSJwommQpCzTySTpEe8Gs1J23aeWEuAobe4Ag7EHVt/LOg==}
+    engines: {node: '>=10'}
     dev: true
 
   /throttleit/1.0.0:

@@ -9,6 +9,13 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'is-invalid': true,
 };
 
+const ARROW_KEYS = [
+  'ArrowUp',
+  'ArrowDown',
+  'ArrowLeft',
+  'ArrowRight',
+];
+
 export default {
   title: 'Components/Range',
   parameters: {
@@ -164,7 +171,7 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const [_, updateArgs] = useArgs();
   const [value, updateValue] = useState(args.value);
 
-  const id = `ExampleRange_${context.name}`;
+  const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleRange`;
   const classes = ['form-range', args.validation].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
@@ -186,8 +193,8 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const control: JSX.Element = (
     <input
       key="control"
-      id={id}
-      className={classes}
+      id={ id }
+      className={ classes }
       type="range"
       defaultValue={ value }
       min={ args.useBoundaries ? args.min : undefined }
@@ -198,6 +205,18 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
       aria-invalid={VALIDATION_STATE_MAP[args.validation]}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateValue(e.target.value)}
       onMouseUp={(e: React.MouseEvent<HTMLInputElement, MouseEvent>) => updateArgs({ value })}
+      onKeyUp={(e: React.KeyboardEvent<HTMLInputElement>) => {
+        if (ARROW_KEYS.includes(e.key)) {
+          updateArgs({ value });
+
+          if (document.activeElement === e.target) {
+            setTimeout(() => {
+              const element: HTMLInputElement | null = document.querySelector(`#${id}`);
+              if (element) element.focus();
+            }, 25);
+          }
+        }
+      }}
     />
   );
 
@@ -206,7 +225,8 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   if (args.showValue === 'text') {
     valueElement = <p key="value" className="form-text">{ value }</p>;
   } else if (args.showValue === 'input') {
-    const inputId = `ExampleRangeInput_${context.name}`;
+    const inputId = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleRangeInput`;
+
     valueElement = [
       <label key="input-label" className="form-label visually-hidden" htmlFor={ inputId }>Range controller</label>,
       <input

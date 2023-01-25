@@ -146,7 +146,7 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     args.checkable ? 'badge-check' : 'badge',
     args.size === 'default' ? null : args.size
   ].filter(c => c && c !== 'null').join(' ');
-  const checkableId = `CheckableBadge_${context.name}`;
+  const checkableId = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_CheckableBadge`;
   const checkableClasses = [
     'badge-check-label',
     args.size === 'default' ? null : args.size
@@ -161,7 +161,23 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   ];
 
   const checkableContent: (JSX.Element | null)[] = [
-    <input key="input" id={ checkableId } className="badge-check-input" type="checkbox" checked={ args.checked } onChange={ () => updateArgs({ checked: !args.checked }) }/>,
+    <input
+      key="input"
+      id={ checkableId }
+      className="badge-check-input"
+      type="checkbox"
+      checked={ args.checked }
+      onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+        updateArgs({ checked: !args.checked });
+
+        if (document.activeElement === e.target) {
+          setTimeout(() => {
+            const element: HTMLInputElement | null = document.querySelector(`#${checkableId}`);
+            if (element) element.focus();
+          }, 25);
+        }
+      }}
+    />,
     <label key="label" className={ checkableClasses } htmlFor={ checkableId }>{ content }</label>
   ];
 
