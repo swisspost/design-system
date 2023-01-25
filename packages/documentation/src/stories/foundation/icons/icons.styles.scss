@@ -90,15 +90,6 @@
     }
   }
 
-  &:hover {
-    .icon--tile {
-      post-icon {
-        transform: scale(1.25);
-        transition: transform 250ms ease-out;
-      }
-    }
-  }
-
   @include post.media-breakpoint-down(rg) {
     .icon--tile {
       height: 80px;
