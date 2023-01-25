@@ -1,3 +1,7 @@
+Cypress.Commands.add('checkVisibility', (visibility: 'visible' | 'hidden') => {
+  cy.get('@collapse').should('not.have.class', 'collapsing').and(`be.${visibility}`);
+});
+
 Cypress.Commands.add('checkAriaExpanded', () => {
   cy.get('@collapse').invoke('attr', 'id').then(id => {
     cy.get('@collapse').invoke('hasClass', 'show').then(isExpanded => {
@@ -35,7 +39,7 @@ describe('collapsible', () => {
     });
 
     it('should be expanded', () => {
-      cy.get('@collapse').should('be.visible');
+      cy.checkVisibility('visible');
     });
 
     it('should show the whole body', () => {
@@ -53,7 +57,7 @@ describe('collapsible', () => {
 
     it('should be collapsed after clicking on the header', () => {
       cy.get('@header').click();
-      cy.get('@collapse').should('be.hidden');
+      cy.checkVisibility('hidden')
     });
 
     it('should adapt the header\'s aria-expanded attribute after collapsing', () => {
@@ -62,7 +66,7 @@ describe('collapsible', () => {
 
     it('should be expanded after clicking on the header again', () => {
       cy.get('@header').click();
-      cy.get('@collapse').should('be.visible');
+      cy.checkVisibility('visible');
     });
 
     it('should adapt the header\'s aria-expanded attribute after expanding', () => {
@@ -80,7 +84,7 @@ describe('collapsible', () => {
     });
 
     it('should be collapsed', () => {
-      cy.get('@collapse').should('be.hidden');
+      cy.checkVisibility('hidden');
     });
 
     it('should have a correct aria-expanded attribute', () => {
@@ -89,12 +93,12 @@ describe('collapsible', () => {
 
     it('should be expanded after clicking on the header', () => {
       cy.get('@header').click();
-      cy.get('@collapse').should('be.hidden');
+      cy.checkVisibility('visible');
     });
 
     it('should be collapsed after clicking on the header again', () => {
       cy.get('@header').click();
-      cy.get('@collapse').should('be.visible');
+      cy.checkVisibility('hidden');
     });
   });
 
@@ -115,37 +119,37 @@ describe('collapsible', () => {
     });
 
     it('should be expanded', () => {
-      cy.get('@collapse').should('be.visible');
+      cy.checkVisibility('visible');
     });
 
     it('should be collapsed after clicking "Toggle"', () => {
       cy.get('@toggle').click();
-      cy.get('@collapse').should('be.hidden');
+      cy.checkVisibility('hidden');
     });
 
     it('should be expanded after clicking "Toggle" again', () => {
       cy.get('@toggle').click();
-      cy.get('@collapse').should('be.visible');
+      cy.checkVisibility('visible');
     });
 
     it('should be collapsed after clicking "Hide"', () => {
       cy.get('@hide').click();
-      cy.get('@collapse').should('be.hidden');
+      cy.checkVisibility('hidden');
     });
 
     it('should remain collapsed after clicking "Hide" again', () => {
       cy.get('@hide').click();
-      cy.get('@collapse').should('be.hidden');
+      cy.checkVisibility('hidden');
     });
 
     it('should be expanded after clicking "Show"', () => {
       cy.get('@show').click();
-      cy.get('@collapse').should('be.visible');
+      cy.checkVisibility('visible');
     });
 
     it('should remain expanded after clicking "Show" again', () => {
       cy.get('@show').click();
-      cy.get('@collapse').should('be.visible');
+      cy.checkVisibility('visible');
     });
   });
 });
