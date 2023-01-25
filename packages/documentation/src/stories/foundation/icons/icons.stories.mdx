@@ -27,14 +27,40 @@ The icons are designed to work with the Swiss Post Design System components. The
 
 ## Usage
 
-The icons are not automatically installed when using one of the above packages in your project, you must explicitly include them.
+When using the `post-icon` component, the SVG files are loaded from the [unpkg CDN](https://unpkg.com/) by default. If you like to host the icons yourself, you can follow the steps below.
+
+### Self-hosting the icons
+Depending on an external CDN might not be ideal in your case, therefore we provide you with a way of self-hosting the SVG files on your server.
+
+#### Installation
+Install the [icons package](https://www.npmjs.com/package/@swisspost/design-system-icons) from npm.
 
 ```bash dark
 npm install @swisspost/design-system-icons
-```
+\```
 
-As they are SVGs, you can include them into your HTML in a few ways depending on how your project is setup.<br/>
-Whenever you use the SVGs without our `post-icon` component, we recommend setting the properties `width: 1em` and `height: auto` for easy resizing via `font-size`.
+#### Serving the icons
+For your project to be able to access the installed icons, you need a way to copy the icons in a `public` assets folder (this folder might have a different name in your project). The installed SVG files are available under:
+
+`./node_modules/@swisspost/design-system-icons/public/post-icons/[name].svg`
+
+#### Setting the base path
+To let the `post-icon` component know where your self-hosted icons are available, set the following meta tag in the `head` section of your page:
+
+```html dark
+<html lang="en">
+  <head>
+    <meta name="design-system-settings" data-post-icon-base="/your/path/to/post-icons/" />
+    ...
+  </head>
+
+</html>
+\```
+
+If you don't have access to your head section, you can also set the base path on each icon:
+```html dark
+<post-icon name="1001" base="/your/path/to/post-icons/"></post-icon>
+\```
 
 ## Working with `post-icon` component
 
