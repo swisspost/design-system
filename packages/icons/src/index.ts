@@ -12,6 +12,7 @@ const reportPath = './public';
 
 const jsonReport: IJSONReport = {
   icons: [],
+  wrongViewBox: [],
   noSVG: [],
   errored: [],
   created: new Date(),
@@ -49,6 +50,7 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
           jsonReport.noSVG.push(icon);
         } else {
           jsonReport.icons.push(icon);
+          if (!svg.includes('viewBox="0 0 32 32"')) jsonReport.wrongViewBox.push(icon);
         }
       } catch (err) {
         console.log(err);

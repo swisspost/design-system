@@ -31,6 +31,7 @@ export interface IJSONReport {
     notFound: number;
   };
   icons: IIcon[];
+  wrongViewBox: IIcon[],
   noSVG: IIcon[];
   errored: IIcon[];
   version: string;
