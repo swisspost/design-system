@@ -33,6 +33,11 @@
     gap: post.$size-regular;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     margin-top: post.$size-big;
+
+    .results--empty {
+      margin-left: auto;
+      margin-right: auto;
+    }
   }
 
   @include post.media-breakpoint-down(rg) {
