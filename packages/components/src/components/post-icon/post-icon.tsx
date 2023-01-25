@@ -12,6 +12,11 @@ export class PostIcon {
   @Prop() rotate?: string;
   @State() path: string;
 
+  // css-only attributes
+  @Prop() flipH?: string;
+  @Prop() flipV?: string;
+  @Prop() animate?: string;
+
   componentWillRender () {
     // Construct icon path from different possible sources
     let basePath: string;
