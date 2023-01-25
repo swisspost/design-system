@@ -22,7 +22,7 @@ export namespace Components {
         "write": (text: string) => Promise<void>;
     }
     interface PostIcon {
-        "animate"?: string;
+        "animation"?: string;
         "base"?: string;
         "flipH"?: string;
         "flipV"?: string;
@@ -73,7 +73,7 @@ declare namespace LocalJSX {
         "onSomeevent"?: (event: MyComponentCustomEvent<string>) => void;
     }
     interface PostIcon {
-        "animate"?: string;
+        "animation"?: string;
         "base"?: string;
         "flipH"?: string;
         "flipV"?: string;

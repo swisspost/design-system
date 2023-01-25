@@ -15,7 +15,7 @@ export class PostIcon {
   // css-only attributes
   @Prop() flipH?: string;
   @Prop() flipV?: string;
-  @Prop() animate?: string;
+  @Prop() animation?: string;
 
   componentWillRender () {
     // Construct icon path from different possible sources

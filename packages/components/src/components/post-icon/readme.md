@@ -7,12 +7,15 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type     | Default     |
-| -------- | --------- | ----------- | -------- | ----------- |
-| `base`   | `base`    |             | `string` | `undefined` |
-| `name`   | `name`    |             | `string` | `undefined` |
-| `rotate` | `rotate`  |             | `string` | `undefined` |
-| `scale`  | `scale`   |             | `string` | `undefined` |
+| Property    | Attribute   | Description | Type     | Default     |
+| ----------- | ----------- | ----------- | -------- | ----------- |
+| `animation` | `animation` |             | `string` | `undefined` |
+| `base`      | `base`      |             | `string` | `undefined` |
+| `flipH`     | `flip-h`    |             | `string` | `undefined` |
+| `flipV`     | `flip-v`    |             | `string` | `undefined` |
+| `name`      | `name`      |             | `string` | `undefined` |
+| `rotate`    | `rotate`    |             | `string` | `undefined` |
+| `scale`     | `scale`     |             | `string` | `undefined` |
 
 
 ----------------------------------------------

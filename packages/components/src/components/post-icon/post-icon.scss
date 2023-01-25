@@ -30,45 +30,45 @@ svg {
 // rotate
 // done with inline styling
 
-// animate
+// animation
 
-:host([animate]) {
+:host([animation]) {
   svg {
     transform-origin: center;
   }
 }
 
-:host([animate="cylon"]) {
+:host([animation="cylon"]) {
   svg {
     animation: icon-animation-cylon 750ms ease-in-out infinite alternate;
   }
 }
 
-:host([animate="cylon-vertical"]) {
+:host([animation="cylon-vertical"]) {
   svg {
     animation: icon-animation-cylon-vertical .75s ease-in-out infinite alternate;
   }
 }
 
-:host([animate="spin"]) {
+:host([animation="spin"]) {
   svg {
     animation: icon-animation-spin 2s linear infinite normal;
   }
 }
 
-:host([animate="spin-reverse"]) {
+:host([animation="spin-reverse"]) {
   svg {
     animation: icon-animation-spin 2s linear infinite reverse;
   }
 }
 
-:host([animate="fade"]) {
+:host([animation="fade"]) {
   svg {
     animation: icon-animation-fade .75s ease-in-out infinite alternate;
   }
 }
 
-:host([animate="throb"]) {
+:host([animation="throb"]) {
   svg {
     animation: icon-animation-throb .75s ease-in-out infinite alternate;
   }
