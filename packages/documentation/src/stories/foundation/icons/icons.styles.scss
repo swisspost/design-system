@@ -85,8 +85,7 @@
     .info--keywords {
       font-size: post.$font-size-tiny;
       color: var(--post-gray-60);
-      word-wrap: break-word;
-      word-break: break-word;
+      hyphens: auto;
     }
   }
 
