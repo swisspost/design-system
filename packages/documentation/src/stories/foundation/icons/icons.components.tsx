@@ -3,7 +3,10 @@ import report from '@swisspost/design-system-icons/public/report.json';
 import './icons.styles.scss';
 
 const ICONS = report.icons.map(icon => Object.assign({}, icon, {
-  searchParameters: [icon.file.basename, ...icon.meta.keywords].join(' || ').toLowerCase()
+  searchKeywords: [icon.file.basename, ...icon.meta.keywords]
+    .map(kWord => kWord.normalize('NFD').replace(/[\u0300-\u036f]/g, ''))
+    .join(' || ')
+    .toLowerCase()
 }));
 
 export class Search extends React.Component {
@@ -15,10 +18,15 @@ export class Search extends React.Component {
   freetextRef: React.RefObject<HTMLInputElement> = React.createRef();
 
   searchFreetext (e: React.ChangeEvent<HTMLInputElement>) {
+    const searchQuery = e.target.value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLowerCase();
+
     this.setState({
       freetext: e.target.value,
       icons: ICONS
-        .filter(icon => icon.searchParameters.includes(e.target.value.toLowerCase()))
+        .filter(icon => icon.searchKeywords.includes(searchQuery))
     });
   }
 
