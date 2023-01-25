@@ -28,15 +28,10 @@ export const downloadSVG = async (icon: IIcon, output: string) => {
       throw new Error(optimizedSvg.error);
     }
 
-    // This wraps the content of an svg with a symbol tag to make the svg usable
-    // with an <use href="<url>#<id>" /> pattern
-    const symbolised = (optimizedSvg as OptimizedSvg).data.replace(
-      /^(<svg[^>]*>)([\S\s]*)(<\/svg>)$/gim,
-      '$1<symbol id="icon">$2</symbol>$3',
-    );
+    const optimizedSvgString = (optimizedSvg as OptimizedSvg).data;
 
-    fs.writeFileSync(path.join(output, icon.file.name), symbolised);
-    return symbolised;
+    fs.writeFileSync(path.join(output, icon.file.name), optimizedSvgString);
+    return optimizedSvgString;
   } catch (err) {
     console.log(`SVG Download error: ${err} @ ${icon.meta.downloadLink}`);
     throw err;
