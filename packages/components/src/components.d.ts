@@ -21,14 +21,26 @@ export namespace Components {
         "middle": string;
         "write": (text: string) => Promise<void>;
     }
+    /**
+     * @class PostIcon - representing a stencil component
+     * @param name - The name/id of the icon (e.g. 1000, 1001, ...).
+     * @param base - The base path, where the icons are located (must be a public url).
+     * @param flipH - When set to `true`, the icon will be flipped horizontally.
+     * @param flipV - When set to `true`, the icon will be flipped vertically.
+     * @param scale - The `number` for the css `scale` transformation.
+     * @param rotate - The `number` of degree for the css `rotate` transformation.
+     * @param animation - The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+     * @exports {class} PostIcon - Which will be processed to a custom web-component on build.
+     * @see  : https://jsdoc.app/ and https://en.wikipedia.org/wiki/JSDoc
+     */
     interface PostIcon {
         "animation"?: string;
         "base"?: string;
-        "flipH"?: string;
-        "flipV"?: string;
+        "flipH"?: boolean;
+        "flipV"?: boolean;
         "name": string;
-        "rotate"?: string;
-        "scale"?: string;
+        "rotate"?: number;
+        "scale"?: number;
     }
 }
 export interface MyComponentCustomEvent<T> extends CustomEvent<T> {
@@ -42,6 +54,18 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    /**
+     * @class PostIcon - representing a stencil component
+     * @param name - The name/id of the icon (e.g. 1000, 1001, ...).
+     * @param base - The base path, where the icons are located (must be a public url).
+     * @param flipH - When set to `true`, the icon will be flipped horizontally.
+     * @param flipV - When set to `true`, the icon will be flipped vertically.
+     * @param scale - The `number` for the css `scale` transformation.
+     * @param rotate - The `number` of degree for the css `rotate` transformation.
+     * @param animation - The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+     * @exports {class} PostIcon - Which will be processed to a custom web-component on build.
+     * @see  : https://jsdoc.app/ and https://en.wikipedia.org/wiki/JSDoc
+     */
     interface HTMLPostIconElement extends Components.PostIcon, HTMLStencilElement {
     }
     var HTMLPostIconElement: {
@@ -72,14 +96,26 @@ declare namespace LocalJSX {
          */
         "onSomeevent"?: (event: MyComponentCustomEvent<string>) => void;
     }
+    /**
+     * @class PostIcon - representing a stencil component
+     * @param name - The name/id of the icon (e.g. 1000, 1001, ...).
+     * @param base - The base path, where the icons are located (must be a public url).
+     * @param flipH - When set to `true`, the icon will be flipped horizontally.
+     * @param flipV - When set to `true`, the icon will be flipped vertically.
+     * @param scale - The `number` for the css `scale` transformation.
+     * @param rotate - The `number` of degree for the css `rotate` transformation.
+     * @param animation - The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+     * @exports {class} PostIcon - Which will be processed to a custom web-component on build.
+     * @see  : https://jsdoc.app/ and https://en.wikipedia.org/wiki/JSDoc
+     */
     interface PostIcon {
         "animation"?: string;
         "base"?: string;
-        "flipH"?: string;
-        "flipV"?: string;
+        "flipH"?: boolean;
+        "flipV"?: boolean;
         "name"?: string;
-        "rotate"?: string;
-        "scale"?: string;
+        "rotate"?: number;
+        "scale"?: number;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
@@ -91,6 +127,18 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            /**
+             * @class PostIcon - representing a stencil component
+             * @param name - The name/id of the icon (e.g. 1000, 1001, ...).
+             * @param base - The base path, where the icons are located (must be a public url).
+             * @param flipH - When set to `true`, the icon will be flipped horizontally.
+             * @param flipV - When set to `true`, the icon will be flipped vertically.
+             * @param scale - The `number` for the css `scale` transformation.
+             * @param rotate - The `number` of degree for the css `rotate` transformation.
+             * @param animation - The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+             * @exports {class} PostIcon - Which will be processed to a custom web-component on build.
+             * @see  : https://jsdoc.app/ and https://en.wikipedia.org/wiki/JSDoc
+             */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
         }
     }

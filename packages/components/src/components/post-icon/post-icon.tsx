@@ -1,5 +1,20 @@
 import { Component, Host, h, Prop, State } from '@stencil/core';
 
+/**
+ * @class PostIcon - representing a stencil component
+ * 
+ * @param {string} name - The name/id of the icon (e.g. 1000, 1001, ...).
+ * @param {string} base - The base path, where the icons are located (must be a public url).
+ * @param {boolean} flipH - When set to `true`, the icon will be flipped horizontally.
+ * @param {boolean} flipV - When set to `true`, the icon will be flipped vertically.
+ * @param {number} scale - The `number` for the css `scale` transformation.
+ * @param {number} rotate - The `number` of degree for the css `rotate` transformation.
+ * @param {boolean} animation - The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+ * 
+ * @exports {class} PostIcon - Which will be processed to a custom web-component on build.
+ * 
+ * @see: https://jsdoc.app/ and https://en.wikipedia.org/wiki/JSDoc
+ */
 @Component({
   tag: 'post-icon',
   styleUrl: 'post-icon.scss',
@@ -8,16 +23,14 @@ import { Component, Host, h, Prop, State } from '@stencil/core';
 export class PostIcon {
   @Prop() name: string;
   @Prop() base?: string;
-  @Prop() scale?: string;
-  @Prop() rotate?: string;
+  @Prop() flipH?: boolean;
+  @Prop() flipV?: boolean;
+  @Prop() scale?: number;
+  @Prop() rotate?: number;
+  @Prop() animation?: string;
   @State() path: string;
   @State() svgSource: string = '<svg viewBox="0 0 16 16"></svg>';
   @State() svgOutput: string;
-
-  // css-only attributes
-  @Prop() flipH?: string;
-  @Prop() flipV?: string;
-  @Prop() animation?: string;
 
   connectedCallback () {
     // Construct icon path from different possible sources
