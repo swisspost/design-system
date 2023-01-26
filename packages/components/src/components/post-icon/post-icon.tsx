@@ -96,16 +96,16 @@ export class PostIcon {
     fetch(this.path)
       .then(response => response.text())
       .then(svgSource => {
-        if (/^<svg[^>]*>[\S\s]*<\/svg>$/.test(svgSource)) {
+        if (/^<svg[^>]*>[\S\s]*<\/svg>(\r\n)?$/.test(svgSource)) {
           this.svgSource = svgSource;
           window.localStorage.setItem(`post-icon-${this.name}`, svgSource);
         } else {
-          console.warn(`<post-icon/>: The loaded content on the path "${this.path}", seems to be no svg-only content.\nWe'll try to load the icon from the cdn.`);
+          const cdnPath = this.getPath(CDN_URL);
 
-          const fallbackPath = this.getPath(CDN_URL);
+          if(this.path !== cdnPath) {
+            console.warn(`Warning in <post-icon/>: The content on the path "${this.path}" seems to be no svg-only content. We'll gonna try to load the icon from the cdn.`);
 
-          if(this.path !== fallbackPath) {
-            this.path = fallbackPath;
+            this.path = cdnPath;
             this.fetchSVG();
           }
         }
