@@ -2,18 +2,6 @@ import { Component, Host, h, Prop, State } from '@stencil/core';
 
 /**
  * @class PostIcon - representing a stencil component
- * 
- * @param {string} name - The name/id of the icon (e.g. 1000, 1001, ...).
- * @param {string} base - The base path, where the icons are located (must be a public url).
- * @param {boolean} flipH - When set to `true`, the icon will be flipped horizontally.
- * @param {boolean} flipV - When set to `true`, the icon will be flipped vertically.
- * @param {number} scale - The `number` for the css `scale` transformation.
- * @param {number} rotate - The `number` of degree for the css `rotate` transformation.
- * @param {boolean} animation - The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
- * 
- * @exports {class} PostIcon - Which will be processed to a custom web-component on build.
- * 
- * @see: https://jsdoc.app/ and https://en.wikipedia.org/wiki/JSDoc
  */
 @Component({
   tag: 'post-icon',
@@ -21,12 +9,33 @@ import { Component, Host, h, Prop, State } from '@stencil/core';
   shadow: true,
 })
 export class PostIcon {
+  /**
+   * @param {string} name - The name/id of the icon (e.g. 1000, 1001, ...).
+   */
   @Prop() name: string;
+  /**
+   * @param {string} base - The base path, where the icons are located (must be a public url).
+   */
   @Prop() base?: string;
+  /**
+   * @param {boolean} flipH - When set to `true`, the icon will be flipped horizontally.
+   */
   @Prop() flipH?: boolean;
+  /**
+   * @param {boolean} flipV - When set to `true`, the icon will be flipped vertically.
+   */
   @Prop() flipV?: boolean;
+  /**
+   * @param {number} scale - The `number` for the css `scale` transformation.
+   */
   @Prop() scale?: number;
+  /**
+   * @param {number} rotate - The `number` of degree for the css `rotate` transformation.
+   */
   @Prop() rotate?: number;
+  /**
+   * @param {boolean} animation - The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+   */
   @Prop() animation?: string;
   @State() path: string;
   @State() svgSource: string = '<svg viewBox="0 0 16 16"></svg>';
