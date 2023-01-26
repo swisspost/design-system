@@ -17,13 +17,6 @@ on:
   schedule:
     - cron: '* * * * 0'
 
-env:
-  USER_NAME: github-actions[bot]
-  USER_EMAIL: github-actions@github.com
-  BRANCH_NAME: update-icon-svgs
-  COMMIT_MESSAGE: |
-    chore(icons): :point_up: update icon SVGs
-
 jobs:
   fetch:
     runs-on: ubuntu-latest
@@ -41,7 +34,7 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Date Branch Name
-        run: echo "BRANCH_NAME=$(date +'%Y-%m-%d')-$(echo $BRANCH_NAME)" >> $GITHUB_ENV
+        run: echo "BRANCH_NAME=$(date +'%Y-%m-%d')-update-icon-svgs" >> $GITHUB_ENV
 
       - name: Create Branch
         run: git checkout -b $BRANCH_NAME
@@ -67,11 +60,11 @@ jobs:
     steps:
       - name: Commit Changes
         run: |
-          git config --global user.email $USER_EMAIL
-          git config --global user.name $USER_NAME
+          git config --global user.name github-actions[bot]
+          git config --global user.email github-actions@github.com
           git add .
-          git commit -am $COMMIT_MESSAGE
+          git commit -am chore(icons): :point_up: update icon SVGs
           git push -u origin $BRANCH_NAME
 
       - name: Create PR
-        run: gh pr create --title $COMMIT_MESSAGE --body ""
+        run: gh pr create --fill --body ""
