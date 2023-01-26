@@ -28,11 +28,11 @@ export const downloadSVG = async (icon: IIcon, output: string) => {
       throw new Error(optimizedSvg.error);
     }
 
-    // This wraps the content of an svg with a symbol tag to make the svg usable
+    // This wraps the content of an svg with a group tag to make the svg usable
     // with an <use href="<url>#<id>" /> pattern
     const optimizedSvgString = (optimizedSvg as OptimizedSvg).data.replace(
       /^(<svg[^>]*>)([\S\s]*)(<\/svg>)$/gim,
-      '$1$2<symbol id="icon">$2</symbol>$3',
+      '$1<g id="icon">$2</g>$3',
     );
 
     fs.writeFileSync(path.join(output, icon.file.name), optimizedSvgString);
