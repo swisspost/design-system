@@ -64,7 +64,7 @@ export class Search extends React.Component {
       </div>
     </div>
 
-    <div className="icon-search--results">
+    <div className="icon-search--results" lang="de">
       {
         this.state.icons
           .map(icon => (
