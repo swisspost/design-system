@@ -1,11 +1,14 @@
 import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';
+import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
+import 'cypress-storybook/react';
 import './preview.scss';
 
 import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
 import docJson from '@swisspost/design-system-components/dist/docs.json';
 
 if (docJson) setStencilDocJson(docJson);
+defineInternetHeader();
 
 export const parameters = {
   previewTabs: {

@@ -1,0 +1,4067 @@
+{
+  "de": {
+    "header": {
+      "asWebComponent": true,
+      "isHeaderResponsive": true,
+      "isLoginWidgetHidden": true,
+      "showJobsLoginWidget": false,
+      "icons": {
+        "backArrowIcon": {
+          "name": "3024_arrow-left",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "closeIcon": {
+          "name": "2043_cross",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "downArrowIcon": {
+          "name": "2113_angle-small-down",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "menuIcon": {
+          "name": "2070_burger-menu",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "rightArrowIcon": {
+          "name": "3020_arrow-right",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "searchIcon": {
+          "name": "2069_magnifying-glass",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "loginIcon": {
+          "name": "2064_arrow-enter",
+          "classes": [],
+          "additionalAttributes": []
+        }
+      },
+      "loginWidgetOptions": {
+        "applicationId": "kvm",
+        "serviceId": "kvm",
+        "appLoginUrl": "https://post.ch/idp/?login&lang=de&service=kvm",
+        "currentLang": "de",
+        "options": {
+          "isDebugEnabled": false,
+          "logoutTargetURL": "https://post.ch/de/"
+        },
+        "platform": {
+          "endPoint": "https://n.post.ch",
+          "notificationsEndPoint": "https://post.ch/selfadmin/messages/unreadmessages",
+          "logoutURL": "https://post.ch/logout/",
+          "keepAliveURL": "https://post.ch/keepalive",
+          "autoLoginURL": "https://post.ch/idp/?app=loginwidget"
+        }
+      },
+      "loginWidgetId": "test",
+      "logo": {
+        "logoLink": "https://post.ch/de/",
+        "logoLinkTitle": "Die Post - zur Startseite",
+        "logoSvg": "https://post.ch/-/media/portal-opp/global/logos/logo---die-post.svg?vs=2&sc_lang=de",
+        "logoText": "Logo Die Post, zur Startseite"
+      },
+      "mobileMenu": {
+        "text": "Menü"
+      },
+      "search": {
+        "isSearchHidden": false,
+        "searchPageUrl": "http://localhost:6060/de/pages/suche",
+        "redirectPattern": "^[A-Za-z0-9.]{11,23}$",
+        "searchBoxSuggestionsThreshold": "0",
+        "searchBoxSuggestionsAllNumber": "0",
+        "searchBoxSuggestionsCoveoNumber": "5",
+        "placesRedirectUrl": "https://places.post.ch/?topic=1&lang=de&service=places&topic=1&PreselectText=",
+        "packageTrackingRedirectUrl": "https://service.post.ch/ekp-web/external/view/{trackingNumber}?lang=de",
+        "searchHubName": "900-701 suche",
+        "searchPipelineName": "Post v2",
+        "searchRecommendations": {
+          "title": "Meist gesuchte Services",
+          "links": [
+            {
+              "href": "/de/kundencenter/onlinedienste/vgk/paketetiketten-inland/info",
+              "label": "Paketetiketten erstellen",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M30 16h-7.333V0H9.334v16H2.001c-1.067 0-2 .933-2 2v12c0 1.067.933 2 2 2h28c1.067 0 2-.933 2-2V18c0-1.067-.933-2-2-2zM10.667 1.333h10.667v5.333H10.667V1.333zm0 6.667h10.667v6.667H10.667V8zm0 8h10.667v6.667H10.667V16zm20 14c0 .4-.267.667-.667.667H2c-.4 0-.667-.267-.667-.667V18c0-.4.267-.667.667-.667h7.333V24h13.333v-6.667h7.333c.4 0 .667.267.667.667v12z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "paketetiketten erstellen"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/vgk/paketetiketten-inland/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/post-umleiten/info",
+              "label": "Post umleiten",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M13.333 13.333h-8c-2.267 0-4-1.733-4-4s1.733-4 4-4H18.8l-4 4h1.867l4.667-4.667-4.667-4.667H14.8l4 4H5.333C2.4 3.999 0 6.399 0 9.332s2.4 5.333 5.333 5.333h8v-1.333zM19.067 10.667L13.334 16.4v6.267h-4V32h14.667v-2.667h2.267l5.733-5.733V10.667H19.068zM21.6 24l-4.4 3.867a.644.644 0 0 1-.933 0L11.734 24h9.867zm-10.933.8l2.667 2.267-2.667 2.667v-4.933zm.933 5.867L14.267 28l.933.8c.4.4.933.533 1.467.533S17.734 29.2 18 28.8l.933-.933 2.667 2.667h-10zm11.067-.934L20 27.066l2.667-2.267v4.933zM25.333 28H24v-5.333h-9.333v-5.333h10.667v10.667zm.4-12H15.6l4-4h10.133l-4 4zm4.934 7.067l-4 4V16.934l4-4v10.133z\" style=\"fill: #000000;\"/><path d=\"M24.667 13.333l-1.333 1.333h1.867l1.333-1.333z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "post umleiten"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/post-umleiten/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "https://webstamp.post.ch/",
+              "label": "Personalisierte Briefmarken",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M14.667 9.333c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14.667C10.934 24 8 21.067 8 17.333s2.933-6.667 6.667-6.667c3.733 0 6.667 2.933 6.667 6.667S18.401 24 14.667 24z\" style=\"fill: #000000;\"/><path d=\"M12 21.867l7.867-4.533L12 12.801v9.067zm1.333-6.8l3.867 2.267-3.867 2.267v-4.533z\" style=\"fill: #000000;\"/><path d=\"M27.733 10l2.933-.8V4.8l-.533-.133c-1.333-.4-2.533-1.467-2.8-2.8l-.133-.533h-4.4L22 4.267c-.133.667-.667 1.067-1.333 1.067s-1.2-.4-1.333-1.067l-.8-2.933h-5.067l-.8 2.933c-.133.667-.667 1.067-1.333 1.067s-1.2-.4-1.333-1.067l-.8-2.933H4.134l-.8 2.933c-.133.667-.667 1.067-1.333 1.067v1.333c1.2 0 2.267-.8 2.667-2l.533-2h2.933l.533 2c.4 1.2 1.467 2 2.667 2s2.267-.8 2.667-2l.533-2h2.933l.533 2c.267 1.2 1.467 2 2.667 2s2.267-.8 2.667-2l.533-2h2.4c.4 1.467 1.6 2.667 3.067 3.2v2.4l-2 .533c-1.2.267-2 1.467-2 2.667s.8 2.267 2 2.667l2 .533V17.6l-2 .533c-1.2.267-2 1.467-2 2.667s.8 2.267 2 2.667l2 .533v2.933l-2 .533c-1.2.267-2 1.467-2 2.667h1.333c0-.667.4-1.2 1.067-1.333l2.933-.8v-5.067l-2.933-.8c-.667-.133-1.067-.667-1.067-1.333s.4-1.2 1.067-1.333l2.933-.8V13.6l-2.933-.8c-.667-.267-1.067-.8-1.067-1.467s.4-1.2 1.067-1.333z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "personalisierte briefmarken"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "https://webstamp.post.ch/"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/adressaenderung-mit-nachsendung/info",
+              "label": "Adressänderung mit Nachsendung",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16.414 2.082L13.2 5.272h4.624l3.215-3.19h-4.624zm.861 1.857h-.84l.527-.523h.84l-.527.523zm1.446 18.238l6.63-6.642V0H9.845l-6.63 6.643v10.69H0l.006 12h16.029v-7.156h2.686zm5.3-7.195l-4.865 4.874V7.076L24.02 2.27v12.712zM10.396 1.333h12.678L18.17 6.177H5.561l4.835-4.844zM4.546 7.51h13.279v13.334h-1.79v-3.51H4.545V7.51zM8.4 24.157a.365.365 0 0 1-.567 0l-.025-.03-.027-.027-5.253-5.427 11.046-.005L8.4 24.157zM4.71 22.84l-3.362 4.014.035-7.451L4.71 22.84zm.932.963l1.185 1.224a1.697 1.697 0 0 0 2.58 0l1.166-1.235L13.996 28H2.127l3.515-4.196zm5.852-.988l3.21-3.405v7.35l-3.21-3.945zm20.122 2.477l-4.88 4.888h-1.829l-.026-.026 4.186-4.193-10.369.017-.002-1.333 10.375-.018-4.187-4.194h1.882l4.85 4.859z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "adressänderung mit nachsendung"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/adressaenderung-mit-nachsendung/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/post-zurueckbehalten/info",
+              "label": "Post zurückbehalten",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16.552 3.998h-1.885L16 2.667h1.886l-1.334 1.33zm-11.21 8.006h9.322v9.323H0v-9.323h4.008V5.715L9.732 0h12.943v8.677a2.375 2.375 0 0 0-1.333.522V2.297l-4 3.965v9.977a3.29 3.29 0 0 0-.722-.086h-.612V6.641H5.342v5.363zm-.204 5.444l-2.731 2.546h9.84l-2.721-2.546-1.027.942c-.31.32-.738.481-1.167.481-.428 0-.857-.16-1.166-.48l-1.028-.943zm6.896-4.11H2.63l4.437 4.07.03.027.028.03c.044.045.122.073.207.073s.163-.028.208-.074l.028-.029.03-.027 4.436-4.07zm-10.7.62v5.213l2.819-2.627-2.82-2.587zm11.997 0l-2.82 2.586 2.82 2.638v-5.225zm-7.028-8.65H16.41l4.012-3.975H10.284l-3.98 3.975zM30.044 25.34V15.147c0-1.103-.898-2-2.001-2-.266 0-.519.054-.751.149a1.997 1.997 0 0 0-1.92-1.47c-.234 0-.457.048-.666.122v-.55c0-1.105-.706-2.004-2.002-2.004-1.137 0-1.818.874-1.967 1.675a2.027 2.027 0 0 0-.685-.127c-1.103 0-2 .898-2 2l-.002 4.352a2.738 2.738 0 0 0-1.44-.416h-1.238v8.881c-.122 2.89.943 3.878 2.176 5.022.215.2.442.41.673.64l.943-.942a24.907 24.907 0 0 0-.71-.676c-1.15-1.067-1.846-1.713-1.75-4.015l.002-7.574c.745.05 1.334.67 1.334 1.427h.009l-.002 4.513h1.333l.005-11.211c0-.368.3-.668.667-.668.357 0 .607.266.652.373l.003 8.638 1.333.003-.002-9.891c0-.368.3-.668.666-.668h.062a.68.68 0 0 1 .606.668l-.004 10.15h1.334l.004-7.722c0-.368.3-.667.666-.667s.667.3.667.667v7.72h1.337v-6.399a.668.668 0 0 1 1.335 0v10.59h.012c.082 2.306-.388 2.762-1.563 3.832-.289.263-.61.556-.965.91l.943.943c.337-.337.645-.616.92-.867 1.465-1.334 2.16-2.114 1.986-5.215z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "post zurückbehalten"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/post-zurueckbehalten/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/rhe/pick-at-home/info",
+              "label": "Pakete abholen lassen",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M19.067 13.333l-5.733 5.733v12.933h12.933L32 26.266V13.333H19.067zm.533 1.334h10.133l-4 4H15.6l4-4zM14.667 20h10.667v10.667H14.667V20zm12 9.733V19.6l4-4v10.133l-4 4z\" style=\"fill: #000000;\"/><path d=\"M26.533 16h-1.867l-1.333 1.333H25.2zM16 2.267l8.4 8.4h1.867L16 .4.4 16h4.933v16h1.333V14.667H3.599z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "pakete abholen"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/rhe/pick-at-home/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/hausservice/info",
+              "label": "Hausservice",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16 .533L0 9.866v1.467l16-9.2 16 9.2V9.866zM14.667 17.333h4v-4h-4v4zM16 14.667h1.333V16H16v-1.333z\" style=\"fill: #000000;\"/><path d=\"M21.333 10.667H4V24h6.667v8H28V20h-6.667v-9.333zm-10.666 12H5.334V12h14.667v8h-9.333v2.667zm1.333-.4L15.733 26 12 29.733v-7.467zm.933 8.4l3.733-3.733 1.067 1.067c.4.4 1.067.667 1.6.667s1.2-.267 1.6-.667L22 26.934l3.733 3.733h-12.8zm13.734-.934L22.934 26l3.733-3.733v7.467zm-.934-8.4L20 27.066c-.4.4-.933.4-1.333 0l-5.733-5.733h12.8z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "hausservice"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/hausservice/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "onlineServiceId": "topos",
+      "navMain": [
+        {
+          "flyout": [
+            {
+              "linkList": [
+                {
+                  "id": "53b39299-5ccf-4e98-baec-87b9e32c38cf",
+                  "title": "Briefe Inland",
+                  "url": "https://post.ch/de/briefe-versenden/briefe-inland"
+                },
+                {
+                  "id": "e268b458-887e-4c3c-9431-3b54be07a64f",
+                  "title": "Briefe Ausland",
+                  "url": "https://post.ch/de/briefe-versenden/briefe-ausland"
+                },
+                {
+                  "target": "",
+                  "title": "Express und Kurier",
+                  "url": "https://post.ch/de/pakete-versenden/express-und-kurier"
+                },
+                {
+                  "id": "f3bb272b-c9e5-4489-b290-de0dbbf91a65",
+                  "title": "Einschreiben",
+                  "url": "https://post.ch/de/briefe-versenden/einschreiben"
+                },
+                {
+                  "id": "5b2e8f6c-1cab-4c95-9a29-3752347e8b06",
+                  "title": "Massenversand Briefe",
+                  "url": "https://post.ch/de/briefe-versenden/massenversand-briefe"
+                },
+                {
+                  "id": "ef2243a5-923e-4c15-8da8-b913a4934c0d",
+
+                  "title": "Unadressierte Sendungen",
+                  "url": "https://post.ch/de/briefe-versenden/flyer"
+                }
+              ],
+              "title": "Angebot"
+            },
+            {
+              "linkList": [
+                {
+                  "id": "dc72d6d3-9ab8-450e-92e3-09fd768033a3",
+
+                  "title": "Frankieren",
+                  "url": "https://post.ch/de/briefe-versenden/frankieren-briefe"
+                },
+                {
+                  "id": "972ab285-b5c7-4775-8e4b-e926d0969811",
+
+                  "title": "Adressieren, gestalten und verpacken",
+                  "url": "https://post.ch/de/briefe-versenden/adressieren-und-gestalten"
+                },
+                {
+                  "id": "0794f4a5-02c5-45a9-9858-115b8e0823d1",
+
+                  "title": "Briefe aufgeben",
+                  "url": "https://post.ch/de/briefe-versenden/briefe-aufgeben"
+                },
+                {
+                  "id": "e4905863-eaa8-4cbe-9b07-4d10436ea0ec",
+
+                  "title": "Verfolgen",
+                  "url": "https://post.ch/de/briefe-versenden/verfolgen"
+                },
+                {
+                  "id": "4737be4f-cd25-4eab-9fa6-659769566fd9",
+
+                  "title": "Rücklauf und Retouren",
+                  "url": "https://post.ch/de/briefe-versenden/ruecklauf-und-retouren"
+                },
+                {
+                  "target": "",
+                  "title": "Deklarieren und verzollen",
+                  "url": "https://post.ch/de/pakete-versenden/deklarieren-und-verzollen"
+                }
+              ],
+              "title": "Schritt für Schritt"
+            },
+            {
+              "linkList": [
+                {
+                  "id": "254d1016-3dc4-4cd5-85bb-feea69ac5230",
+
+                  "title": "Dokumente und Urkunden",
+                  "url": "https://post.ch/de/briefe-versenden/dokumenten-und-urkunden"
+                },
+                {
+                  "target": "",
+                  "title": "Wertsachen",
+                  "url": "https://post.ch/de/pakete-versenden/wertsachen"
+                },
+                {
+                  "target": "",
+                  "title": "Militärsendungen",
+                  "url": "https://post.ch/de/pakete-versenden/militaersendungen"
+                },
+                {
+                  "target": "",
+                  "title": "Blindensendungen",
+                  "url": "https://post.ch/de/pakete-versenden/blindensendungen"
+                },
+                {
+                  "target": "",
+                  "title": "Gefahrgut",
+                  "url": "https://post.ch/de/pakete-versenden/gefahrgut"
+                },
+                {
+                  "target": "",
+                  "title": "Schaden oder Verlust",
+                  "url": "https://post.ch/de/pakete-versenden/schaden-oder-verlust"
+                }
+              ],
+              "title": "Beachten bei"
+            }
+          ],
+          "id": "e0990911-2a0d-41f5-a12c-4282a2c89538",
+          "text": "Briefe versenden",
+          "title": "Briefe versenden",
+          "url": "https://post.ch/de/briefe-versenden",
+          "noFlyout": false
+        },
+        {
+          "flyout": [],
+          "id": "9bc0275b-8c91-4e89-8c0c-5e80bb8097b8",
+          "text": "Meine Post",
+          "title": "Meine Post",
+          "url": "https://post.ch/de/kundencenter/kundencenter",
+          "noFlyout": true
+        },
+        {
+          "flyout": [
+            {
+              "linkList": [
+                {
+                  "title": "Onlinedienst starten",
+                  "url": "https://places.post.ch/?lang=de"
+                }
+              ]
+            }
+          ],
+          "id": "flyout_os",
+          "text": "Öffnungszeiten",
+          "title": "Öffnungszeiten"
+        },
+        {
+          "flyout": [
+            {
+              "linkList": [
+                {
+                  "target": "",
+                  "title": "Standort finden",
+                  "url": "https://places.post.ch/standortsuche"
+                }
+              ],
+              "title": "Suche"
+            },
+            {
+              "linkList": [
+                {
+                  "id": "dfcf5b15-5e76-489c-9dcb-750d9255922d",
+
+                  "title": "Zahlungsverkehr",
+                  "url": "https://www.post.ch/de/standorte/zahlungsverkehr"
+                },
+                {
+                  "id": "b28714c2-d7b0-4801-807c-db9d6aaa5023",
+
+                  "title": "Briefmarken und Philatelie",
+                  "url": "https://www.post.ch/de/standorte/briefmarken-und-philatelie"
+                },
+                {
+                  "id": "f5149a27-2244-4b29-88de-b5a8b7525005",
+
+                  "title": "Einkaufen",
+                  "url": "https://www.post.ch/de/standorte/einkaufen"
+                },
+                {
+                  "id": "3ee1746a-79ea-4c69-b519-3ca7f29ab0da",
+
+                  "title": "Versicherungen",
+                  "url": "https://www.post.ch/de/standorte/versicherungen"
+                },
+                {
+                  "id": "4d0aaafa-ba4c-4d53-b6d3-64854257ed9e",
+
+                  "title": "Behördenleistungen",
+                  "url": "https://www.post.ch/de/standorte/behoerdendienstleistungen"
+                },
+                {
+                  "id": "a8bc7749-cd37-4eb2-bc9c-440815a55857",
+
+                  "title": "Ausweiskopie",
+                  "url": "https://www.post.ch/de/standorte/ausweisbestaetigung"
+                },
+                {
+                  "id": "ae628039-8a76-4e7f-bfcf-9925eca50c6d",
+
+                  "title": "Mietkaution",
+                  "url": "https://www.post.ch/de/standorte/mietkaution"
+                }
+              ],
+              "title": "Angebot"
+            },
+            {
+              "linkList": [
+                {
+                  "id": "a8c6133a-2867-4186-b872-31ff5a67160d",
+
+                  "title": "Filialen",
+                  "url": "https://www.post.ch/de/standorte/filialen"
+                },
+                {
+                  "id": "fd329c02-8382-4db0-96c9-ca5c5dda10c7",
+
+                  "title": "Aufgabe- und Abholstellen",
+                  "url": "https://www.post.ch/de/standorte/aufgabe-und-abholstellen"
+                },
+                {
+                  "id": "32405a18-4279-4b0b-b4cd-38e8024bda2b",
+
+                  "title": "Zugang zur digitalen Welt",
+                  "url": "https://www.post.ch/de/standorte/zugang-zur-digitalen-welt"
+                }
+              ],
+              "title": "Unterwegs"
+            },
+            {
+              "linkList": [
+                {
+                  "id": "532c1a34-098d-45c7-a794-5852dc3d6122",
+
+                  "title": "Hausservice",
+                  "url": "https://www.post.ch/de/standorte/hausservice"
+                },
+                {
+                  "target": "",
+                  "title": "Aufgeben zu Hause",
+                  "url": "https://www.post.ch/de/pakete-versenden/pakete-aufgeben"
+                }
+              ],
+              "title": "Zu Hause"
+            }
+          ],
+          "id": "2fbe440b-73a5-4242-abf7-29dbbc207861",
+          "text": "Standorte",
+          "title": "Standorte",
+          "url": "https://www.post.ch/de/standorte",
+          "noFlyout": false
+        },
+        {
+          "flyout": [
+            {
+              "linkList": [
+                {
+                  "target": "",
+                  "title": "Frankierlösungen",
+                  "url": "https://www.post.ch/de/briefe-versenden/frankieren-briefe/frankierloesungen-briefe"
+                },
+                {
+                  "target": "",
+                  "title": "Massenversand",
+                  "url": "https://www.post.ch/de/briefe-versenden/massenversand-briefe/massenversand-inland"
+                },
+                {
+                  "id": "0b7209c4-ba2f-4422-b3ca-f434afe3db6d",
+
+                  "title": "Direct Marketing",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/direct-marketing"
+                },
+                {
+                  "id": "45a2a306-e74c-436b-b432-a5ab9be79ac6",
+
+                  "title": "Adressen",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/adressmanagement"
+                },
+                {
+                  "id": "e6af9632-29bf-47e3-8a39-ebdf25af2d9b",
+
+                  "title": "Posteingang",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/posteingang"
+                }
+              ],
+              "title": "Werben und Tagespost"
+            },
+            {
+              "linkList": [
+                {
+                  "id": "d6820608-6264-4a03-b5c2-c2df0fb559a7",
+
+                  "title": "Digital Commerce",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/digital-commerce"
+                },
+                {
+                  "id": "09fe657c-803a-4219-a91e-cb60d9e3c410",
+
+                  "title": "Export, Import und Verzollung",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/export-import-und-verzollung"
+                },
+                {
+                  "id": "d367ec2f-c5f8-44d5-894b-7b3f5ea432e7",
+
+                  "title": "Stückgut und Transport",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/stueckgut-und-transport"
+                },
+                {
+                  "id": "2ce42c0d-6cf8-4980-ac72-21998701d030",
+
+                  "title": "Logistik und Lager",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/logistik-und-lager"
+                },
+                {
+                  "id": "63dac704-b9d8-4df6-9cad-e422405aad21",
+
+                  "title": "Zustellzeiten",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/zustellzeiten"
+                }
+              ],
+              "title": "Warenversand und Logistik"
+            },
+            {
+              "linkList": [
+                {
+                  "id": "a8ec2fb8-810a-4f84-bda7-8c3bf3086da2",
+
+                  "title": "Digital Health",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/digital-health"
+                },
+                {
+                  "id": "571c38b6-b2a8-446b-a061-af79df089c2a",
+
+                  "title": "E-Mail-Verschlüsselung",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/e-mail-verschluesselung"
+                },
+                {
+                  "id": "e8fea3ef-a4ef-4156-bfa0-bbc005bd13c7",
+
+                  "title": "E-Voting",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/e-voting"
+                },
+                {
+                  "id": "b625404b-6319-4882-8413-19be0c7b299e",
+
+                  "title": "Identifikation",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/identifikation"
+                },
+                {
+                  "id": "7ee1cfa1-20ff-4397-aa09-8819fd7a7491",
+
+                  "title": "Dokumentenmanagement",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/dokumentenmanagement"
+                },
+                {
+                  "id": "ea5b5fd5-5933-4389-9b02-3efc938398d3",
+
+                  "title": "Outsourcing und BPO",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/outsourcing-und-bpo"
+                },
+                {
+                  "id": "31153366-7285-40cf-9e06-32f08070bab4",
+
+                  "title": "Blockchain",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/blockchain-post"
+                }
+              ],
+              "title": "Digitalisierung und Identifikation"
+            },
+            {
+              "linkList": [
+                {
+                  "id": "8c578ca9-e924-4463-a206-9f36bf8025fb",
+
+                  "title": "KMU",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/kmu"
+                },
+                {
+                  "id": "bf458cd6-88ef-4420-8fa7-a3fb110f44a0",
+
+                  "title": "Retail und Commerce",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/retail-und-commerce"
+                },
+                {
+                  "id": "83ca7200-a2a8-4365-a538-f94b5cedfed3",
+
+                  "title": "Gesundheitswesen",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/gesundheitswesen"
+                },
+                {
+                  "id": "3cc700e0-b9af-4527-88a3-e4f263feab85",
+
+                  "title": "Behörden",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/behoerden"
+                },
+                {
+                  "id": "b473ba37-23a0-4967-885e-2fcd51487876",
+
+                  "title": "Banking",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/banking"
+                },
+                {
+                  "id": "3d3a2ecf-36a6-4500-86fe-8ef4ba474345",
+
+                  "title": "Printmedien",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/printmedien"
+                }
+              ],
+              "title": "Branchen"
+            },
+            {
+              "linkList": [
+                {
+                  "id": "195aaf1c-4b6f-444a-8ddd-28fc21bdc94f",
+
+                  "title": "Partner werden",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/partner-werden"
+                },
+                {
+                  "id": "0b7d430e-4a76-460d-8ad9-41f295fd750e",
+
+                  "title": "Geschäftskunde werden",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/geschaeftskunde-werden"
+                },
+                {
+                  "id": "78d4b4d8-7a54-45bc-87a7-f9963c72d61c",
+
+                  "title": "Preisvorteile, Rabatte und Vergütungen",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/preisvorteile-rabatte-und-verguetungen"
+                },
+                {
+                  "id": "f6fbbe5c-8e07-4f66-8031-49a84f33698c",
+
+                  "title": "Material bestellen",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/material-bestellen"
+                },
+                {
+                  "id": "c3b4dfc9-35fd-44a2-89a5-eae512febac6",
+
+                  "title": "Individuallösungen",
+                  "url": "https://www.post.ch/de/geschaeftsloesungen/individualloesungen"
+                }
+              ],
+              "title": "Sie und die Post"
+            }
+          ],
+          "id": "dbc3b752-9bc4-4638-9537-76585f2a475a",
+          "text": "Geschäftslösungen",
+          "title": "Geschäftslösungen",
+          "url": "https://www.post.ch/de/geschaeftsloesungen",
+          "noFlyout": false
+        }
+      ],
+      "navMeta": [
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "Jobs",
+          "url": "https://post.ch/de/jobs"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "Über uns",
+          "url": "https://post.ch/de/ueber-uns"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "Hilfe und Kontakt",
+          "url": "https://post.ch/de/hilfe-und-kontakt"
+        },
+        {
+          "isActive": true,
+          "isHomeLink": false,
+
+          "text": "Meine Post",
+          "url": "https://post.ch/de/kundencenter"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": true,
+
+          "text": "Home",
+          "url": "https://post.ch/de/"
+        }
+      ],
+      "navLang": [
+        {
+          "isCurrent": true,
+          "lang": "de",
+          "text": "De",
+          "title": "Deutsch"
+        },
+        {
+          "isCurrent": false,
+          "lang": "fr",
+          "text": "Fr",
+          "title": "Français"
+        },
+        {
+          "isCurrent": false,
+          "lang": "it",
+          "text": "It",
+          "title": "Italiano"
+        },
+        {
+          "isCurrent": false,
+          "lang": "en",
+          "text": "En",
+          "title": "English"
+        }
+      ],
+      "translations": {
+        "backButtonText": "Zurück",
+        "closeButtonText": "Schliessen",
+        "homeLinkTitle": "Home",
+        "navLangAriaLabel": "Sprachnavigation",
+        "navMainAriaLabel": "Hauptnavigation",
+        "navMetaAriaLabel": "Metanavigation",
+        "searchAriaLabel": "Diese Webseite durchsuchen",
+        "flyoutSearchBoxFloatingLabel": "Sendungsnummer, Suchbegriff eingeben",
+        "searchPlaceholder": "Suchbegriff eingeben",
+        "searchSubmit": "Suche starten",
+        "searchToggle": "Suche anzeigen",
+        "searchToggleExpanded": "Suche ausblenden",
+        "searchA11yLabelClosed": "Suche öffnen",
+        "searchA11yLabelOpened": "Suche schliessen",
+        "mobileNavToggleClose": "Navigation schliessen",
+        "mobileNavToggleOpen": "Navigation öffnen",
+        "nonResponsiveHeader": "Diese Seite ist nicht für mobile Geräte konzipiert."
+      }
+    },
+    "breadcrumb": {
+      "a11yLabel": "Breadcrumb",
+      "asWebComponent": true,
+      "buttons": [
+        {
+          "svgIcon": {
+            "name": "3033_question-mark",
+            "classes": [],
+            "additionalAttributes": [
+              {
+                "name": "focusable",
+                "value": "false"
+              }
+            ]
+          },
+          "text": "Hilfe",
+          "overlay": {
+            "id": "help",
+            "target": "https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/info?modal=true",
+            "closeText": "Schliessen",
+            "closeIcon": {
+              "name": "2043_cross",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "focusable",
+                  "value": "false"
+                }
+              ]
+            },
+            "classes": ["ppm-breadcrumb-overlay__body--light"],
+            "additionalAttributes": []
+          },
+          "classes": ["btn-outline-secondary"],
+          "additionalAttributes": []
+        },
+        {
+          "svgIcon": {
+            "name": "3073_phone",
+            "classes": [],
+            "additionalAttributes": [
+              {
+                "name": "focusable",
+                "value": "false"
+              }
+            ]
+          },
+          "text": "Kontakt",
+          "overlay": {
+            "id": "phone",
+            "target": "https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/kontakt?modal=true",
+            "closeText": "Schliessen",
+            "closeIcon": {
+              "name": "2043_cross",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "focusable",
+                  "value": "false"
+                }
+              ]
+            },
+            "classes": ["ppm-breadcrumb-overlay__body--dark"],
+            "additionalAttributes": []
+          },
+          "classes": ["btn-outline-secondary"],
+          "additionalAttributes": []
+        }
+      ],
+      "isCentered": false,
+      "items": [
+        {
+          "text": "Website",
+          "url": "https://post.ch/de/"
+        },
+        {
+          "text": "Meine Post",
+          "url": "https://post.ch/de/kundencenter"
+        },
+        {
+          "text": "Standorte und Öffnungszeiten",
+          "url": "https://places.post.ch/?lang=de"
+        }
+      ],
+      "svgIconArrowRightSmall": {
+        "name": "2111_angle-small-right",
+        "classes": ["ppm-breadcrumb__svg-icon", "ppm-breadcrumb-divider"],
+        "additionalAttributes": [
+          {
+            "name": "focusable",
+            "value": "false"
+          }
+        ]
+      },
+      "svgIconHome": {
+        "name": "2035_home",
+        "classes": ["ppm-breadcrumb__svg-icon"],
+        "additionalAttributes": [
+          {
+            "name": "focusable",
+            "value": "false"
+          }
+        ]
+      },
+      "truncateButtonText": "Öffnen",
+      "classes": [],
+      "additionalAttributes": []
+    },
+    "footer": {
+      "title": "Fusszeile",
+      "asWebComponent": true,
+      "osLinks": {
+        "serviceName": "Standorte und Öffnungszeiten",
+        "links": []
+      },
+      "block": [
+        {
+          "columnType": "list",
+          "title": "Direkt zu",
+          "links": [
+            {
+              "url": "https://www.postfinance.ch/",
+              "target": "_blank",
+              "text": "PostFinance",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.postauto.ch/",
+              "target": "_blank",
+              "text": "PostAuto",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://immobilien.post.ch/de",
+              "target": "_blank",
+              "text": "Immobilien",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://postcompanycars.post.ch/de",
+              "target": "_blank",
+              "text": "Post Company Cars",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.swisspostsolutions.com/de/startseite",
+              "target": "_blank",
+              "text": "Swiss Post Solutions",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            }
+          ]
+        },
+        {
+          "columnType": "list",
+          "title": "Mehr Post",
+          "links": [
+            {
+              "url": "https://post.ch/de/ueber-uns/innovation",
+              "target": "",
+              "text": "Innovation",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/de/ueber-uns/verantwortung",
+              "target": "",
+              "text": "Verantwortung",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.postshop.ch/shop/de",
+              "target": "_blank",
+              "text": "Shop",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/de/ueber-uns/medien",
+              "target": "",
+              "text": "Medien",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/de/pages/corona",
+              "target": "",
+              "text": "Coronavirus",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            }
+          ]
+        },
+        {
+          "columnType": "contact",
+          "title": "Contact Center",
+
+          "content": [
+            {
+              "describe": "CHF 0.08/Min. vom Schweizer Festnetz",
+
+              "name": "phone",
+              "number": "+41 848 888 888"
+            },
+            {
+              "hours": "07:30 - 18:00 Uhr",
+
+              "name": "days",
+
+              "text": "Montag bis Freitag"
+            },
+            {
+              "hours": "08:00 - 12:00 Uhr",
+
+              "name": "days",
+
+              "text": "Samstag"
+            },
+            {
+              "hours": "Bildschirm teilen",
+
+              "name": "days",
+
+              "text": "Live Support"
+            }
+          ]
+        },
+        {
+          "columnType": "address",
+          "title": "Adresse Contact Center",
+
+          "content": [
+            {
+              "address": "Post CH Netz AG<br/>Contact Center Post<br/>Wankdorfallee 4<br/>3030 Bern"
+            },
+            {
+              "links": [
+                {
+                  "url": "https://www.facebook.com/swisspost",
+                  "icon": "8004_facebook",
+                  "name": "Folgen Sie uns auf Facebook",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.instagram.com/swisspost/",
+                  "icon": "8007_instagram",
+                  "name": "Folgen Sie uns auf Instagram",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.youtube.com/swisspost",
+                  "icon": "8002_youtube",
+                  "name": "Folgen Sie uns auf Youtube",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.snapchat.com/add/swisspostjobs",
+                  "icon": "8017_snapchat",
+                  "name": "Folgen Sie uns auf Snapchat",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://twitter.com/PostSchweiz",
+                  "icon": "8000_twitter",
+                  "name": "Folgen Sie uns auf Twitter",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.xing.com/companies/dieschweizerischepost",
+                  "icon": "8001_xing",
+                  "name": "Folgen Sie uns auf Xing",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.linkedin.com/company/swiss-post",
+                  "icon": "8005_linkedin",
+                  "name": "Folgen Sie uns auf LinkedIn",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.kununu.com/ch/die-schweizerische-post",
+                  "icon": "8008_kununu",
+                  "name": "Folgen Sie uns auf Kununu",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                }
+              ],
+
+              "title": "Folgen Sie uns"
+            }
+          ]
+        }
+      ],
+      "entry": {
+        "text": "© 2021 Die Schweizerische Post AG"
+      },
+      "links": [
+        {
+          "url": "https://post.ch/de/pages/footer/barrierefreiheit-bei-der-post",
+          "target": "",
+          "text": "Barrierefreiheit",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/de/pages/footer/allgemeine-geschaeftsbedingungen-agb",
+          "target": "",
+          "text": "Allgemeine Geschäftsbedingungen",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/de/pages/footer/datenschutz-und-rechtliches",
+          "target": "",
+          "text": "Datenschutz und Rechtliches",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/de/pages/footer/impressum",
+          "target": "",
+          "text": "Impressum",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        }
+      ],
+      "classes": [],
+      "additionalAttributes": []
+    }
+  },
+  "fr": {
+    "header": {
+      "asWebComponent": true,
+      "isHeaderResponsive": true,
+      "isLoginWidgetHidden": true,
+      "showJobsLoginWidget": false,
+      "loginWidgetId": "test",
+      "icons": {
+        "backArrowIcon": {
+          "name": "3024_arrow-left",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "closeIcon": {
+          "name": "2043_cross",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "downArrowIcon": {
+          "name": "2113_angle-small-down",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "menuIcon": {
+          "name": "2070_burger-menu",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "rightArrowIcon": {
+          "name": "3020_arrow-right",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "searchIcon": {
+          "name": "2069_magnifying-glass",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "loginIcon": {
+          "name": "2064_arrow-enter",
+          "classes": [],
+          "additionalAttributes": []
+        }
+      },
+      "loginWidgetOptions": {
+        "applicationId": "kvm",
+        "serviceId": "kvm",
+        "appLoginUrl": "https://post.ch/idp/?login&lang=de&service=kvm",
+        "currentLang": "de",
+        "options": {
+          "isDebugEnabled": false,
+          "logoutTargetURL": "https://post.ch/de/"
+        },
+        "platform": {
+          "endPoint": "https://n.post.ch",
+          "notificationsEndPoint": "https://post.ch/selfadmin/messages/unreadmessages",
+          "logoutURL": "https://post.ch/logout/",
+          "keepAliveURL": "https://post.ch/keepalive",
+          "autoLoginURL": "https://post.ch/idp/?app=loginwidget"
+        }
+      },
+
+      "logo": {
+        "logoLink": "https://post.ch/fr/",
+        "logoLinkTitle": "La Poste – aller à la page d’accueil",
+        "logoSvg": "https://post.ch/-/media/portal-opp/global/logos/logo---die-post.svg?vs=2&sc_lang=fr",
+        "logoText": "Logo La Poste, aller à la page d’accueil"
+      },
+      "mobileMenu": {
+        "text": "Menu"
+      },
+      "search": {
+        "isSearchHidden": false,
+        "searchPageUrl": "https://post.ch/fr/pages/suche",
+        "redirectPattern": "^[A-Za-z0-9.]{11,23}$",
+        "searchBoxSuggestionsThreshold": "0",
+        "searchBoxSuggestionsAllNumber": "0",
+        "searchBoxSuggestionsCoveoNumber": "5",
+        "placesRedirectUrl": "https://places.post.ch/?topic=1&lang=fr&service=places&topic=1&PreselectText=",
+        "packageTrackingRedirectUrl": "https://service.post.ch/ekp-web/external/view/{trackingNumber}?lang=fr",
+        "searchHubName": "900-701 suche",
+        "searchPipelineName": "Post v2",
+        "searchRecommendations": {
+          "title": "Meist gesuchte Services",
+          "links": [
+            {
+              "href": "/de/kundencenter/onlinedienste/vgk/paketetiketten-inland/info",
+              "label": "Paketetiketten erstellen",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M30 16h-7.333V0H9.334v16H2.001c-1.067 0-2 .933-2 2v12c0 1.067.933 2 2 2h28c1.067 0 2-.933 2-2V18c0-1.067-.933-2-2-2zM10.667 1.333h10.667v5.333H10.667V1.333zm0 6.667h10.667v6.667H10.667V8zm0 8h10.667v6.667H10.667V16zm20 14c0 .4-.267.667-.667.667H2c-.4 0-.667-.267-.667-.667V18c0-.4.267-.667.667-.667h7.333V24h13.333v-6.667h7.333c.4 0 .667.267.667.667v12z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "paketetiketten erstellen"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/vgk/paketetiketten-inland/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/post-umleiten/info",
+              "label": "Post umleiten",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M13.333 13.333h-8c-2.267 0-4-1.733-4-4s1.733-4 4-4H18.8l-4 4h1.867l4.667-4.667-4.667-4.667H14.8l4 4H5.333C2.4 3.999 0 6.399 0 9.332s2.4 5.333 5.333 5.333h8v-1.333zM19.067 10.667L13.334 16.4v6.267h-4V32h14.667v-2.667h2.267l5.733-5.733V10.667H19.068zM21.6 24l-4.4 3.867a.644.644 0 0 1-.933 0L11.734 24h9.867zm-10.933.8l2.667 2.267-2.667 2.667v-4.933zm.933 5.867L14.267 28l.933.8c.4.4.933.533 1.467.533S17.734 29.2 18 28.8l.933-.933 2.667 2.667h-10zm11.067-.934L20 27.066l2.667-2.267v4.933zM25.333 28H24v-5.333h-9.333v-5.333h10.667v10.667zm.4-12H15.6l4-4h10.133l-4 4zm4.934 7.067l-4 4V16.934l4-4v10.133z\" style=\"fill: #000000;\"/><path d=\"M24.667 13.333l-1.333 1.333h1.867l1.333-1.333z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "post umleiten"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/post-umleiten/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "https://webstamp.post.ch/",
+              "label": "Personalisierte Briefmarken",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M14.667 9.333c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14.667C10.934 24 8 21.067 8 17.333s2.933-6.667 6.667-6.667c3.733 0 6.667 2.933 6.667 6.667S18.401 24 14.667 24z\" style=\"fill: #000000;\"/><path d=\"M12 21.867l7.867-4.533L12 12.801v9.067zm1.333-6.8l3.867 2.267-3.867 2.267v-4.533z\" style=\"fill: #000000;\"/><path d=\"M27.733 10l2.933-.8V4.8l-.533-.133c-1.333-.4-2.533-1.467-2.8-2.8l-.133-.533h-4.4L22 4.267c-.133.667-.667 1.067-1.333 1.067s-1.2-.4-1.333-1.067l-.8-2.933h-5.067l-.8 2.933c-.133.667-.667 1.067-1.333 1.067s-1.2-.4-1.333-1.067l-.8-2.933H4.134l-.8 2.933c-.133.667-.667 1.067-1.333 1.067v1.333c1.2 0 2.267-.8 2.667-2l.533-2h2.933l.533 2c.4 1.2 1.467 2 2.667 2s2.267-.8 2.667-2l.533-2h2.933l.533 2c.267 1.2 1.467 2 2.667 2s2.267-.8 2.667-2l.533-2h2.4c.4 1.467 1.6 2.667 3.067 3.2v2.4l-2 .533c-1.2.267-2 1.467-2 2.667s.8 2.267 2 2.667l2 .533V17.6l-2 .533c-1.2.267-2 1.467-2 2.667s.8 2.267 2 2.667l2 .533v2.933l-2 .533c-1.2.267-2 1.467-2 2.667h1.333c0-.667.4-1.2 1.067-1.333l2.933-.8v-5.067l-2.933-.8c-.667-.133-1.067-.667-1.067-1.333s.4-1.2 1.067-1.333l2.933-.8V13.6l-2.933-.8c-.667-.267-1.067-.8-1.067-1.467s.4-1.2 1.067-1.333z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "personalisierte briefmarken"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "https://webstamp.post.ch/"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/adressaenderung-mit-nachsendung/info",
+              "label": "Adressänderung mit Nachsendung",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16.414 2.082L13.2 5.272h4.624l3.215-3.19h-4.624zm.861 1.857h-.84l.527-.523h.84l-.527.523zm1.446 18.238l6.63-6.642V0H9.845l-6.63 6.643v10.69H0l.006 12h16.029v-7.156h2.686zm5.3-7.195l-4.865 4.874V7.076L24.02 2.27v12.712zM10.396 1.333h12.678L18.17 6.177H5.561l4.835-4.844zM4.546 7.51h13.279v13.334h-1.79v-3.51H4.545V7.51zM8.4 24.157a.365.365 0 0 1-.567 0l-.025-.03-.027-.027-5.253-5.427 11.046-.005L8.4 24.157zM4.71 22.84l-3.362 4.014.035-7.451L4.71 22.84zm.932.963l1.185 1.224a1.697 1.697 0 0 0 2.58 0l1.166-1.235L13.996 28H2.127l3.515-4.196zm5.852-.988l3.21-3.405v7.35l-3.21-3.945zm20.122 2.477l-4.88 4.888h-1.829l-.026-.026 4.186-4.193-10.369.017-.002-1.333 10.375-.018-4.187-4.194h1.882l4.85 4.859z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "adressänderung mit nachsendung"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/adressaenderung-mit-nachsendung/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/post-zurueckbehalten/info",
+              "label": "Post zurückbehalten",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16.552 3.998h-1.885L16 2.667h1.886l-1.334 1.33zm-11.21 8.006h9.322v9.323H0v-9.323h4.008V5.715L9.732 0h12.943v8.677a2.375 2.375 0 0 0-1.333.522V2.297l-4 3.965v9.977a3.29 3.29 0 0 0-.722-.086h-.612V6.641H5.342v5.363zm-.204 5.444l-2.731 2.546h9.84l-2.721-2.546-1.027.942c-.31.32-.738.481-1.167.481-.428 0-.857-.16-1.166-.48l-1.028-.943zm6.896-4.11H2.63l4.437 4.07.03.027.028.03c.044.045.122.073.207.073s.163-.028.208-.074l.028-.029.03-.027 4.436-4.07zm-10.7.62v5.213l2.819-2.627-2.82-2.587zm11.997 0l-2.82 2.586 2.82 2.638v-5.225zm-7.028-8.65H16.41l4.012-3.975H10.284l-3.98 3.975zM30.044 25.34V15.147c0-1.103-.898-2-2.001-2-.266 0-.519.054-.751.149a1.997 1.997 0 0 0-1.92-1.47c-.234 0-.457.048-.666.122v-.55c0-1.105-.706-2.004-2.002-2.004-1.137 0-1.818.874-1.967 1.675a2.027 2.027 0 0 0-.685-.127c-1.103 0-2 .898-2 2l-.002 4.352a2.738 2.738 0 0 0-1.44-.416h-1.238v8.881c-.122 2.89.943 3.878 2.176 5.022.215.2.442.41.673.64l.943-.942a24.907 24.907 0 0 0-.71-.676c-1.15-1.067-1.846-1.713-1.75-4.015l.002-7.574c.745.05 1.334.67 1.334 1.427h.009l-.002 4.513h1.333l.005-11.211c0-.368.3-.668.667-.668.357 0 .607.266.652.373l.003 8.638 1.333.003-.002-9.891c0-.368.3-.668.666-.668h.062a.68.68 0 0 1 .606.668l-.004 10.15h1.334l.004-7.722c0-.368.3-.667.666-.667s.667.3.667.667v7.72h1.337v-6.399a.668.668 0 0 1 1.335 0v10.59h.012c.082 2.306-.388 2.762-1.563 3.832-.289.263-.61.556-.965.91l.943.943c.337-.337.645-.616.92-.867 1.465-1.334 2.16-2.114 1.986-5.215z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "post zurückbehalten"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/post-zurueckbehalten/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/rhe/pick-at-home/info",
+              "label": "Pakete abholen lassen",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M19.067 13.333l-5.733 5.733v12.933h12.933L32 26.266V13.333H19.067zm.533 1.334h10.133l-4 4H15.6l4-4zM14.667 20h10.667v10.667H14.667V20zm12 9.733V19.6l4-4v10.133l-4 4z\" style=\"fill: #000000;\"/><path d=\"M26.533 16h-1.867l-1.333 1.333H25.2zM16 2.267l8.4 8.4h1.867L16 .4.4 16h4.933v16h1.333V14.667H3.599z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "pakete abholen"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/rhe/pick-at-home/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/hausservice/info",
+              "label": "Hausservice",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16 .533L0 9.866v1.467l16-9.2 16 9.2V9.866zM14.667 17.333h4v-4h-4v4zM16 14.667h1.333V16H16v-1.333z\" style=\"fill: #000000;\"/><path d=\"M21.333 10.667H4V24h6.667v8H28V20h-6.667v-9.333zm-10.666 12H5.334V12h14.667v8h-9.333v2.667zm1.333-.4L15.733 26 12 29.733v-7.467zm.933 8.4l3.733-3.733 1.067 1.067c.4.4 1.067.667 1.6.667s1.2-.267 1.6-.667L22 26.934l3.733 3.733h-12.8zm13.734-.934L22.934 26l3.733-3.733v7.467zm-.934-8.4L20 27.066c-.4.4-.933.4-1.333 0l-5.733-5.733h12.8z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "hausservice"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/hausservice/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "onlineServiceId": "topos",
+      "navMain": [
+        {
+          "flyout": [],
+          "id": "9bc0275b-8c91-4e89-8c0c-5e80bb8097b8",
+          "text": "Ma Poste",
+          "title": "Ma Poste",
+          "url": "https://post.ch/fr/espace-clients/espace-clients",
+          "noFlyout": true
+        },
+        {
+          "flyout": [],
+          "id": "0eb467aa-ded4-4259-9178-b67f1f211819",
+          "text": "Services en ligne",
+          "title": "Services en ligne",
+          "url": "https://post.ch/fr/espace-clients/services-en-ligne",
+          "noFlyout": true
+        },
+        {
+          "flyout": [
+            {
+              "linkList": [
+                {
+                  "title": "Démarrer le service en ligne",
+                  "url": "https://places.post.ch/?lang=fr"
+                }
+              ]
+            }
+          ],
+          "id": "flyout_os",
+          "text": "Sites et heures d'ouverture",
+          "title": "Sites et heures d'ouverture"
+        }
+      ],
+      "navMeta": [
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "Emplois",
+          "url": "https://post.ch/fr/emplois"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "Notre profil",
+          "url": "https://post.ch/fr/notre-profil"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "Aide et contact",
+          "url": "https://post.ch/fr/aide-et-contact"
+        },
+        {
+          "isActive": true,
+          "isHomeLink": false,
+
+          "text": "Ma Poste",
+          "url": "https://post.ch/fr/espace-clients"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": true,
+
+          "text": "Accueil",
+          "url": "https://post.ch/fr/"
+        }
+      ],
+      "navLang": [
+        {
+          "isCurrent": false,
+          "lang": "de",
+          "text": "De",
+          "title": "Deutsch"
+        },
+        {
+          "isCurrent": true,
+          "lang": "fr",
+          "text": "Fr",
+          "title": "Français"
+        },
+        {
+          "isCurrent": false,
+          "lang": "it",
+          "text": "It",
+          "title": "Italiano"
+        },
+        {
+          "isCurrent": false,
+          "lang": "en",
+          "text": "En",
+          "title": "English"
+        }
+      ],
+      "translations": {
+        "backButtonText": "Retour",
+        "closeButtonText": "Fermer",
+        "homeLinkTitle": "Accueil",
+        "navLangAriaLabel": "Guidage vocal",
+        "navMainAriaLabel": "Navigation principale",
+        "navMetaAriaLabel": "Métanavigation",
+        "searchAriaLabel": "Rechercher sur ce site web",
+        "flyoutSearchBoxFloatingLabel": "Saisir un numéro d’envoi, terme de recherche",
+        "searchPlaceholder": "Saisir un terme de recherche",
+        "searchSubmit": "Lancer la recherche",
+        "searchToggle": "Afficher la recherche",
+        "searchToggleExpanded": "Masquer la recherche",
+        "searchA11yLabelClosed": "Ouvrez recherche",
+        "searchA11yLabelOpened": "Fermer recherche",
+        "mobileNavToggleClose": "Fermer la navigation",
+        "mobileNavToggleOpen": "Ouvrir la navigation",
+        "nonResponsiveHeader": "Cette page n’est pas conçue pour les appareils mobiles."
+      }
+    },
+    "breadcrumb": {
+      "a11yLabel": "Breadcrumb",
+      "asWebComponent": true,
+      "buttons": [
+        {
+          "svgIcon": {
+            "name": "3033_question-mark",
+            "classes": [],
+            "additionalAttributes": [
+              {
+                "name": "focusable",
+                "value": "false"
+              }
+            ]
+          },
+          "text": "Aide",
+          "overlay": {
+            "id": "help",
+            "target": "https://post.ch/fr/espace-clients/services-en-ligne/standorte-und-oeffnungszeiten/info?modal=true",
+            "closeText": "Fermer",
+            "closeIcon": {
+              "name": "2043_cross",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "focusable",
+                  "value": "false"
+                }
+              ]
+            },
+            "classes": ["ppm-breadcrumb-overlay__body--light"],
+            "additionalAttributes": []
+          },
+          "classes": ["btn-outline-secondary"],
+          "additionalAttributes": []
+        },
+        {
+          "svgIcon": {
+            "name": "3073_phone",
+            "classes": [],
+            "additionalAttributes": [
+              {
+                "name": "focusable",
+                "value": "false"
+              }
+            ]
+          },
+          "text": "Contact",
+          "overlay": {
+            "id": "phone",
+            "target": "https://post.ch/fr/espace-clients/services-en-ligne/standorte-und-oeffnungszeiten/kontakt?modal=true",
+            "closeText": "Fermer",
+            "closeIcon": {
+              "name": "2043_cross",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "focusable",
+                  "value": "false"
+                }
+              ]
+            },
+            "classes": ["ppm-breadcrumb-overlay__body--dark"],
+            "additionalAttributes": []
+          },
+          "classes": ["btn-outline-secondary"],
+          "additionalAttributes": []
+        }
+      ],
+      "isCentered": false,
+      "items": [
+        {
+          "text": "Page d'accueil",
+          "url": "https://post.ch/fr/"
+        },
+        {
+          "text": "Ma Poste",
+          "url": "https://post.ch/fr/espace-clients"
+        },
+        {
+          "text": "Sites et heures d'ouverture",
+          "url": "https://places.post.ch/?lang=fr"
+        }
+      ],
+      "svgIconArrowRightSmall": {
+        "name": "2111_angle-small-right",
+        "classes": ["ppm-breadcrumb__svg-icon", "ppm-breadcrumb-divider"],
+        "additionalAttributes": [
+          {
+            "name": "focusable",
+            "value": "false"
+          }
+        ]
+      },
+      "svgIconHome": {
+        "name": "2035_home",
+        "classes": ["ppm-breadcrumb__svg-icon"],
+        "additionalAttributes": [
+          {
+            "name": "focusable",
+            "value": "false"
+          }
+        ]
+      },
+      "truncateButtonText": "Ouvrir",
+      "classes": [],
+      "additionalAttributes": []
+    },
+    "footer": {
+      "title": "Pied de page",
+      "asWebComponent": true,
+      "osLinks": {
+        "serviceName": "Sites et heures d'ouverture",
+        "links": []
+      },
+      "block": [
+        {
+          "columnType": "list",
+          "title": "Accéder à",
+          "links": [
+            {
+              "url": "https://www.postfinance.ch/fr",
+              "target": "_blank",
+              "text": "PostFinance",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.postauto.ch/fr",
+              "target": "_blank",
+              "text": "CarPostal",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://immobilien.post.ch/fr/",
+              "target": "_blank",
+              "text": "Immobilier",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://postcompanycars.post.ch/fr",
+              "target": "_blank",
+              "text": "Post Company Cars",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.swisspostsolutions.com/fr/page-d-accueil",
+              "target": "_blank",
+              "text": "Swiss Post Solutions",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            }
+          ]
+        },
+        {
+          "columnType": "list",
+          "title": "Davantage de Poste",
+          "links": [
+            {
+              "url": "https://post.ch/fr/notre-profil/innovation",
+              "target": "",
+              "text": "Innovation",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/fr/notre-profil/responsabilite",
+              "target": "",
+              "text": "Responsabilité",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.postshop.ch/shop/fr",
+              "target": "_blank",
+              "text": "Boutique",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/fr/notre-profil/medias",
+              "target": "",
+              "text": "Médias",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/fr/pages/corona",
+              "target": "",
+              "text": "Coronavirus",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            }
+          ]
+        },
+        {
+          "columnType": "contact",
+          "title": "Contact Center",
+
+          "content": [
+            {
+              "describe": "CHF 0.08/min. depuis le réseau fixe en Suisse",
+
+              "name": "phone",
+              "number": "+41 848 888 888"
+            },
+            {
+              "hours": "07h30 - 18h00",
+
+              "name": "days",
+
+              "text": "Lundi à vendredi"
+            },
+            {
+              "hours": "08h00 - 12h00",
+
+              "name": "days",
+
+              "text": "Samedi"
+            },
+            {
+              "hours": "Partager l'écran",
+
+              "name": "days",
+
+              "text": "Live Support"
+            }
+          ]
+        },
+        {
+          "columnType": "address",
+          "title": "Adresse du Contact Center",
+
+          "content": [
+            {
+              "address": "Poste CH Réseau SA<br/>Contact Center Poste<br/>Wankdorfallee 4<br/>3030 Berne"
+            },
+            {
+              "links": [
+                {
+                  "url": "https://www.facebook.com/swisspost",
+                  "icon": "8004_facebook",
+                  "name": "Suivez-nous sur Facebook",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.instagram.com/swisspost/",
+                  "icon": "8007_instagram",
+                  "name": "Suivez-nous sur Instagram",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.youtube.com/swisspost",
+                  "icon": "8002_youtube",
+                  "name": "Suivez-nous sur Youtube",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.snapchat.com/add/swisspostjobs",
+                  "icon": "8017_snapchat",
+                  "name": "Suivez-nous sur Snapchat",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://twitter.com/PostSchweiz",
+                  "icon": "8000_twitter",
+                  "name": "Suivez-nous sur Twitter",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.xing.com/companies/dieschweizerischepost",
+                  "icon": "8001_xing",
+                  "name": "Suivez-nous sur Xing",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.linkedin.com/company/swiss-post",
+                  "icon": "8005_linkedin",
+                  "name": "Suivez-nous sur LinkedIn",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.kununu.com/ch/die-schweizerische-post",
+                  "icon": "8008_kununu",
+                  "name": "Suivez-nous sur Kununu",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                }
+              ],
+
+              "title": "Suivez-nous"
+            }
+          ]
+        }
+      ],
+      "entry": {
+        "text": "© 2021 La Poste Suisse SA"
+      },
+      "links": [
+        {
+          "url": "https://post.ch/fr/pages/footer/accessibilite-a-la-poste",
+          "target": "",
+          "text": "Accessibilité",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/fr/pages/footer/conditions-generales-cg",
+          "target": "",
+          "text": "Conditions générales",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/fr/pages/footer/protection-des-donnees-et-informations-legales",
+          "target": "",
+          "text": "Protection des données et informations légales",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/fr/pages/footer/impressum",
+          "target": "",
+          "text": "Impressum",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        }
+      ],
+      "classes": [],
+      "additionalAttributes": []
+    }
+  },
+  "it": {
+    "header": {
+      "asWebComponent": true,
+      "isHeaderResponsive": true,
+      "isLoginWidgetHidden": true,
+      "showJobsLoginWidget": false,
+      "loginWidgetId": "test",
+      "icons": {
+        "backArrowIcon": {
+          "name": "3024_arrow-left",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "closeIcon": {
+          "name": "2043_cross",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "downArrowIcon": {
+          "name": "2113_angle-small-down",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "menuIcon": {
+          "name": "2070_burger-menu",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "rightArrowIcon": {
+          "name": "3020_arrow-right",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "searchIcon": {
+          "name": "2069_magnifying-glass",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "loginIcon": {
+          "name": "2064_arrow-enter",
+          "classes": [],
+          "additionalAttributes": []
+        }
+      },
+      "loginWidgetOptions": {
+        "applicationId": "kvm",
+        "serviceId": "kvm",
+        "appLoginUrl": "https://post.ch/idp/?login&lang=de&service=kvm",
+        "currentLang": "de",
+        "options": {
+          "isDebugEnabled": false,
+          "logoutTargetURL": "https://post.ch/de/"
+        },
+        "platform": {
+          "endPoint": "https://n.post.ch",
+          "notificationsEndPoint": "https://post.ch/selfadmin/messages/unreadmessages",
+          "logoutURL": "https://post.ch/logout/",
+          "keepAliveURL": "https://post.ch/keepalive",
+          "autoLoginURL": "https://post.ch/idp/?app=loginwidget"
+        }
+      },
+
+      "logo": {
+        "logoLink": "https://post.ch/it/",
+        "logoLinkTitle": "La Posta – Alla pagina iniziale",
+        "logoSvg": "https://post.ch/-/media/portal-opp/global/logos/logo---die-post.svg?vs=2&sc_lang=it",
+        "logoText": "Logo La Posta, alla pagina iniziale"
+      },
+      "mobileMenu": {
+        "text": "Menù"
+      },
+      "search": {
+        "isSearchHidden": false,
+        "searchPageUrl": "https://post.ch/it/pages/suche",
+        "redirectPattern": "^[A-Za-z0-9.]{11,23}$",
+        "searchBoxSuggestionsThreshold": "0",
+        "searchBoxSuggestionsAllNumber": "0",
+        "searchBoxSuggestionsCoveoNumber": "5",
+        "placesRedirectUrl": "https://places.post.ch/?topic=1&lang=it&service=places&topic=1&PreselectText=",
+        "packageTrackingRedirectUrl": "https://service.post.ch/ekp-web/external/view/{trackingNumber}?lang=it",
+        "searchHubName": "900-701 suche",
+        "searchPipelineName": "Post v2",
+        "searchRecommendations": {
+          "title": "Meist gesuchte Services",
+          "links": [
+            {
+              "href": "/de/kundencenter/onlinedienste/vgk/paketetiketten-inland/info",
+              "label": "Paketetiketten erstellen",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M30 16h-7.333V0H9.334v16H2.001c-1.067 0-2 .933-2 2v12c0 1.067.933 2 2 2h28c1.067 0 2-.933 2-2V18c0-1.067-.933-2-2-2zM10.667 1.333h10.667v5.333H10.667V1.333zm0 6.667h10.667v6.667H10.667V8zm0 8h10.667v6.667H10.667V16zm20 14c0 .4-.267.667-.667.667H2c-.4 0-.667-.267-.667-.667V18c0-.4.267-.667.667-.667h7.333V24h13.333v-6.667h7.333c.4 0 .667.267.667.667v12z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "paketetiketten erstellen"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/vgk/paketetiketten-inland/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/post-umleiten/info",
+              "label": "Post umleiten",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M13.333 13.333h-8c-2.267 0-4-1.733-4-4s1.733-4 4-4H18.8l-4 4h1.867l4.667-4.667-4.667-4.667H14.8l4 4H5.333C2.4 3.999 0 6.399 0 9.332s2.4 5.333 5.333 5.333h8v-1.333zM19.067 10.667L13.334 16.4v6.267h-4V32h14.667v-2.667h2.267l5.733-5.733V10.667H19.068zM21.6 24l-4.4 3.867a.644.644 0 0 1-.933 0L11.734 24h9.867zm-10.933.8l2.667 2.267-2.667 2.667v-4.933zm.933 5.867L14.267 28l.933.8c.4.4.933.533 1.467.533S17.734 29.2 18 28.8l.933-.933 2.667 2.667h-10zm11.067-.934L20 27.066l2.667-2.267v4.933zM25.333 28H24v-5.333h-9.333v-5.333h10.667v10.667zm.4-12H15.6l4-4h10.133l-4 4zm4.934 7.067l-4 4V16.934l4-4v10.133z\" style=\"fill: #000000;\"/><path d=\"M24.667 13.333l-1.333 1.333h1.867l1.333-1.333z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "post umleiten"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/post-umleiten/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "https://webstamp.post.ch/",
+              "label": "Personalisierte Briefmarken",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M14.667 9.333c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14.667C10.934 24 8 21.067 8 17.333s2.933-6.667 6.667-6.667c3.733 0 6.667 2.933 6.667 6.667S18.401 24 14.667 24z\" style=\"fill: #000000;\"/><path d=\"M12 21.867l7.867-4.533L12 12.801v9.067zm1.333-6.8l3.867 2.267-3.867 2.267v-4.533z\" style=\"fill: #000000;\"/><path d=\"M27.733 10l2.933-.8V4.8l-.533-.133c-1.333-.4-2.533-1.467-2.8-2.8l-.133-.533h-4.4L22 4.267c-.133.667-.667 1.067-1.333 1.067s-1.2-.4-1.333-1.067l-.8-2.933h-5.067l-.8 2.933c-.133.667-.667 1.067-1.333 1.067s-1.2-.4-1.333-1.067l-.8-2.933H4.134l-.8 2.933c-.133.667-.667 1.067-1.333 1.067v1.333c1.2 0 2.267-.8 2.667-2l.533-2h2.933l.533 2c.4 1.2 1.467 2 2.667 2s2.267-.8 2.667-2l.533-2h2.933l.533 2c.267 1.2 1.467 2 2.667 2s2.267-.8 2.667-2l.533-2h2.4c.4 1.467 1.6 2.667 3.067 3.2v2.4l-2 .533c-1.2.267-2 1.467-2 2.667s.8 2.267 2 2.667l2 .533V17.6l-2 .533c-1.2.267-2 1.467-2 2.667s.8 2.267 2 2.667l2 .533v2.933l-2 .533c-1.2.267-2 1.467-2 2.667h1.333c0-.667.4-1.2 1.067-1.333l2.933-.8v-5.067l-2.933-.8c-.667-.133-1.067-.667-1.067-1.333s.4-1.2 1.067-1.333l2.933-.8V13.6l-2.933-.8c-.667-.267-1.067-.8-1.067-1.467s.4-1.2 1.067-1.333z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "personalisierte briefmarken"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "https://webstamp.post.ch/"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/adressaenderung-mit-nachsendung/info",
+              "label": "Adressänderung mit Nachsendung",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16.414 2.082L13.2 5.272h4.624l3.215-3.19h-4.624zm.861 1.857h-.84l.527-.523h.84l-.527.523zm1.446 18.238l6.63-6.642V0H9.845l-6.63 6.643v10.69H0l.006 12h16.029v-7.156h2.686zm5.3-7.195l-4.865 4.874V7.076L24.02 2.27v12.712zM10.396 1.333h12.678L18.17 6.177H5.561l4.835-4.844zM4.546 7.51h13.279v13.334h-1.79v-3.51H4.545V7.51zM8.4 24.157a.365.365 0 0 1-.567 0l-.025-.03-.027-.027-5.253-5.427 11.046-.005L8.4 24.157zM4.71 22.84l-3.362 4.014.035-7.451L4.71 22.84zm.932.963l1.185 1.224a1.697 1.697 0 0 0 2.58 0l1.166-1.235L13.996 28H2.127l3.515-4.196zm5.852-.988l3.21-3.405v7.35l-3.21-3.945zm20.122 2.477l-4.88 4.888h-1.829l-.026-.026 4.186-4.193-10.369.017-.002-1.333 10.375-.018-4.187-4.194h1.882l4.85 4.859z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "adressänderung mit nachsendung"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/adressaenderung-mit-nachsendung/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/post-zurueckbehalten/info",
+              "label": "Post zurückbehalten",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16.552 3.998h-1.885L16 2.667h1.886l-1.334 1.33zm-11.21 8.006h9.322v9.323H0v-9.323h4.008V5.715L9.732 0h12.943v8.677a2.375 2.375 0 0 0-1.333.522V2.297l-4 3.965v9.977a3.29 3.29 0 0 0-.722-.086h-.612V6.641H5.342v5.363zm-.204 5.444l-2.731 2.546h9.84l-2.721-2.546-1.027.942c-.31.32-.738.481-1.167.481-.428 0-.857-.16-1.166-.48l-1.028-.943zm6.896-4.11H2.63l4.437 4.07.03.027.028.03c.044.045.122.073.207.073s.163-.028.208-.074l.028-.029.03-.027 4.436-4.07zm-10.7.62v5.213l2.819-2.627-2.82-2.587zm11.997 0l-2.82 2.586 2.82 2.638v-5.225zm-7.028-8.65H16.41l4.012-3.975H10.284l-3.98 3.975zM30.044 25.34V15.147c0-1.103-.898-2-2.001-2-.266 0-.519.054-.751.149a1.997 1.997 0 0 0-1.92-1.47c-.234 0-.457.048-.666.122v-.55c0-1.105-.706-2.004-2.002-2.004-1.137 0-1.818.874-1.967 1.675a2.027 2.027 0 0 0-.685-.127c-1.103 0-2 .898-2 2l-.002 4.352a2.738 2.738 0 0 0-1.44-.416h-1.238v8.881c-.122 2.89.943 3.878 2.176 5.022.215.2.442.41.673.64l.943-.942a24.907 24.907 0 0 0-.71-.676c-1.15-1.067-1.846-1.713-1.75-4.015l.002-7.574c.745.05 1.334.67 1.334 1.427h.009l-.002 4.513h1.333l.005-11.211c0-.368.3-.668.667-.668.357 0 .607.266.652.373l.003 8.638 1.333.003-.002-9.891c0-.368.3-.668.666-.668h.062a.68.68 0 0 1 .606.668l-.004 10.15h1.334l.004-7.722c0-.368.3-.667.666-.667s.667.3.667.667v7.72h1.337v-6.399a.668.668 0 0 1 1.335 0v10.59h.012c.082 2.306-.388 2.762-1.563 3.832-.289.263-.61.556-.965.91l.943.943c.337-.337.645-.616.92-.867 1.465-1.334 2.16-2.114 1.986-5.215z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "post zurückbehalten"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/post-zurueckbehalten/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/rhe/pick-at-home/info",
+              "label": "Pakete abholen lassen",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M19.067 13.333l-5.733 5.733v12.933h12.933L32 26.266V13.333H19.067zm.533 1.334h10.133l-4 4H15.6l4-4zM14.667 20h10.667v10.667H14.667V20zm12 9.733V19.6l4-4v10.133l-4 4z\" style=\"fill: #000000;\"/><path d=\"M26.533 16h-1.867l-1.333 1.333H25.2zM16 2.267l8.4 8.4h1.867L16 .4.4 16h4.933v16h1.333V14.667H3.599z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "pakete abholen"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/rhe/pick-at-home/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/hausservice/info",
+              "label": "Hausservice",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16 .533L0 9.866v1.467l16-9.2 16 9.2V9.866zM14.667 17.333h4v-4h-4v4zM16 14.667h1.333V16H16v-1.333z\" style=\"fill: #000000;\"/><path d=\"M21.333 10.667H4V24h6.667v8H28V20h-6.667v-9.333zm-10.666 12H5.334V12h14.667v8h-9.333v2.667zm1.333-.4L15.733 26 12 29.733v-7.467zm.933 8.4l3.733-3.733 1.067 1.067c.4.4 1.067.667 1.6.667s1.2-.267 1.6-.667L22 26.934l3.733 3.733h-12.8zm13.734-.934L22.934 26l3.733-3.733v7.467zm-.934-8.4L20 27.066c-.4.4-.933.4-1.333 0l-5.733-5.733h12.8z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "hausservice"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/hausservice/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "onlineServiceId": "topos",
+      "navMain": [
+        {
+          "flyout": [],
+          "id": "9bc0275b-8c91-4e89-8c0c-5e80bb8097b8",
+          "text": "Mia Posta",
+          "title": "Mia Posta",
+          "url": "https://post.ch/it/centro-clienti/centro-clienti",
+          "noFlyout": true
+        },
+        {
+          "flyout": [],
+          "id": "0eb467aa-ded4-4259-9178-b67f1f211819",
+          "text": "Servizi online",
+          "title": "Servizi online",
+          "url": "https://post.ch/it/centro-clienti/servizi-online",
+          "noFlyout": true
+        },
+        {
+          "flyout": [
+            {
+              "linkList": [
+                {
+                  "title": "Avvia il servizio online",
+                  "url": "https://places.post.ch/?lang=it"
+                }
+              ]
+            }
+          ],
+          "id": "flyout_os",
+          "text": "Ubicazioni e orari di apertura",
+          "title": "Ubicazioni e orari di apertura"
+        }
+      ],
+      "navMeta": [
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "Lavoro",
+          "url": "https://post.ch/it/lavoro"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "Chi siamo",
+          "url": "https://post.ch/it/chi-siamo"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "Aiuto e contatto",
+          "url": "https://post.ch/it/aiuto-e-contatto"
+        },
+        {
+          "isActive": true,
+          "isHomeLink": false,
+
+          "text": "Mia Posta",
+          "url": "https://post.ch/it/centro-clienti"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": true,
+
+          "text": "Pagina iniziale",
+          "url": "https://post.ch/it/"
+        }
+      ],
+      "navLang": [
+        {
+          "isCurrent": false,
+          "lang": "de",
+          "text": "De",
+          "title": "Deutsch"
+        },
+        {
+          "isCurrent": false,
+          "lang": "fr",
+          "text": "Fr",
+          "title": "Français"
+        },
+        {
+          "isCurrent": true,
+          "lang": "it",
+          "text": "It",
+          "title": "Italiano"
+        },
+        {
+          "isCurrent": false,
+          "lang": "en",
+          "text": "En",
+          "title": "English"
+        }
+      ],
+      "translations": {
+        "backButtonText": "Indietro",
+        "closeButtonText": "Chiudere",
+        "homeLinkTitle": "Pagina iniziale",
+        "navLangAriaLabel": "Menu lingue",
+        "navMainAriaLabel": "Menu principale",
+        "navMetaAriaLabel": "Metanavigazione",
+        "searchAriaLabel": "Cercare in questa pagina",
+        "flyoutSearchBoxFloatingLabel": "Inserire numero d’invio, criterio di ricerca",
+        "searchPlaceholder": "Inserire criterio di ricerca",
+        "searchSubmit": "Avvia la ricerca",
+        "searchToggle": "Mostra la ricerca",
+        "searchToggleExpanded": "Nascondi la ricerca",
+        "searchA11yLabelClosed": "Aprire la ricerca",
+        "searchA11yLabelOpened": "Chiudere la ricerca",
+        "mobileNavToggleClose": "Chiudere la navigazione",
+        "mobileNavToggleOpen": "Navigazione aperta",
+        "nonResponsiveHeader": "Questa pagina non è concepita per dispositivi mobili."
+      }
+    },
+    "breadcrumb": {
+      "a11yLabel": "Breadcrumb",
+      "asWebComponent": true,
+      "buttons": [
+        {
+          "svgIcon": {
+            "name": "3033_question-mark",
+            "classes": [],
+            "additionalAttributes": [
+              {
+                "name": "focusable",
+                "value": "false"
+              }
+            ]
+          },
+          "text": "Aiuto",
+          "overlay": {
+            "id": "help",
+            "target": "https://post.ch/it/centro-clienti/servizi-online/standorte-und-oeffnungszeiten/info?modal=true",
+            "closeText": "Chiudere",
+            "closeIcon": {
+              "name": "2043_cross",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "focusable",
+                  "value": "false"
+                }
+              ]
+            },
+            "classes": ["ppm-breadcrumb-overlay__body--light"],
+            "additionalAttributes": []
+          },
+          "classes": ["btn-outline-secondary"],
+          "additionalAttributes": []
+        },
+        {
+          "svgIcon": {
+            "name": "3073_phone",
+            "classes": [],
+            "additionalAttributes": [
+              {
+                "name": "focusable",
+                "value": "false"
+              }
+            ]
+          },
+          "text": "Contatto",
+          "overlay": {
+            "id": "phone",
+            "target": "https://post.ch/it/centro-clienti/servizi-online/standorte-und-oeffnungszeiten/kontakt?modal=true",
+            "closeText": "Chiudere",
+            "closeIcon": {
+              "name": "2043_cross",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "focusable",
+                  "value": "false"
+                }
+              ]
+            },
+            "classes": ["ppm-breadcrumb-overlay__body--dark"],
+            "additionalAttributes": []
+          },
+          "classes": ["btn-outline-secondary"],
+          "additionalAttributes": []
+        }
+      ],
+      "isCentered": false,
+      "items": [
+        {
+          "text": "Pagina iniziale",
+          "url": "https://post.ch/it/"
+        },
+        {
+          "text": "Mia Posta",
+          "url": "https://post.ch/it/centro-clienti"
+        },
+        {
+          "text": "Ubicazioni e orari di apertura",
+          "url": "https://places.post.ch/?lang=it"
+        }
+      ],
+      "svgIconArrowRightSmall": {
+        "name": "2111_angle-small-right",
+        "classes": ["ppm-breadcrumb__svg-icon", "ppm-breadcrumb-divider"],
+        "additionalAttributes": [
+          {
+            "name": "focusable",
+            "value": "false"
+          }
+        ]
+      },
+      "svgIconHome": {
+        "name": "2035_home",
+        "classes": ["ppm-breadcrumb__svg-icon"],
+        "additionalAttributes": [
+          {
+            "name": "focusable",
+            "value": "false"
+          }
+        ]
+      },
+      "truncateButtonText": "Aprire",
+      "classes": [],
+      "additionalAttributes": []
+    },
+    "footer": {
+      "title": "Piè di pagina",
+      "asWebComponent": true,
+      "osLinks": {
+        "serviceName": "Ubicazioni e orari di apertura",
+        "links": []
+      },
+      "block": [
+        {
+          "columnType": "list",
+          "title": "Vai direttamente a",
+          "links": [
+            {
+              "url": "https://www.postfinance.ch/it",
+              "target": "_blank",
+              "text": "PostFinance",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.postauto.ch/it",
+              "target": "_blank",
+              "text": "AutoPostale",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://immobilien.post.ch/it/",
+              "target": "_blank",
+              "text": "Immobili",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://postcompanycars.post.ch/it",
+              "target": "_blank",
+              "text": "Post Company Cars",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.swisspostsolutions.com/en/home",
+              "target": "_blank",
+              "text": "Swiss Post Solutions",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            }
+          ]
+        },
+        {
+          "columnType": "list",
+          "title": "Più Posta",
+          "links": [
+            {
+              "url": "https://post.ch/it/chi-siamo/innovazione",
+              "target": "",
+              "text": "Innovazione",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/it/chi-siamo/responsabilita",
+              "target": "",
+              "text": "Responsabilità",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.postshop.ch/shop/it",
+              "target": "_blank",
+              "text": "Shop",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/it/chi-siamo/media",
+              "target": "",
+              "text": "Media",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/it/pages/corona",
+              "target": "",
+              "text": "Coronavirus",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            }
+          ]
+        },
+        {
+          "columnType": "contact",
+          "title": "Contact Center",
+
+          "content": [
+            {
+              "describe": "CHF 0.08/min da rete fissa svizzera",
+
+              "name": "phone",
+              "number": "+41 848 888 888"
+            },
+            {
+              "hours": "07.30 - 18.00",
+
+              "name": "days",
+
+              "text": "Lunedì - venerdì"
+            },
+            {
+              "hours": "08.00 - 12.00",
+
+              "name": "days",
+
+              "text": "Sabato"
+            },
+            {
+              "hours": "Condividere lo schermo",
+
+              "name": "days",
+
+              "text": "Live Support"
+            }
+          ]
+        },
+        {
+          "columnType": "address",
+          "title": "Indirizzo Contact Center",
+
+          "content": [
+            {
+              "address": "Posta CH Rete SA<br/>Contact Center Posta<br/>Wankdorfallee 4<br/>3030 Berna"
+            },
+            {
+              "links": [
+                {
+                  "url": "https://www.facebook.com/swisspost",
+                  "icon": "8004_facebook",
+                  "name": "Seguici su Facebook",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.instagram.com/swisspost/",
+                  "icon": "8007_instagram",
+                  "name": "Seguici su Instagram",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.youtube.com/swisspost",
+                  "icon": "8002_youtube",
+                  "name": "Seguici su Youtube",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.snapchat.com/add/swisspostjobs",
+                  "icon": "8017_snapchat",
+                  "name": "Seguici su Snapchat",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://twitter.com/PostSchweiz",
+                  "icon": "8000_twitter",
+                  "name": "Seguici su Twitter",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.xing.com/companies/dieschweizerischepost",
+                  "icon": "8001_xing",
+                  "name": "Seguici su Xing",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.linkedin.com/company/swiss-post",
+                  "icon": "8005_linkedin",
+                  "name": "Seguici su LinkedIn",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.kununu.com/ch/die-schweizerische-post",
+                  "icon": "8008_kununu",
+                  "name": "Seguici su Kununu",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                }
+              ],
+
+              "title": "Seguici"
+            }
+          ]
+        }
+      ],
+      "entry": {
+        "text": "© 2021 La Posta Svizzera SA"
+      },
+      "links": [
+        {
+          "url": "https://post.ch/it/pages/footer/accessibilita-alla-posta",
+          "target": "",
+          "text": "Accessibilità",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/it/pages/footer/condizioni-generali-cg",
+          "target": "",
+          "text": "Condizioni generali",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/it/pages/footer/protezione-dei-dati-e-avvertenze-legali",
+          "target": "",
+          "text": "Protezione dei dati e avvertenze legali",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/it/pages/footer/colophon",
+          "target": "",
+          "text": "Colophon",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        }
+      ],
+      "classes": [],
+      "additionalAttributes": []
+    }
+  },
+  "en": {
+    "header": {
+      "asWebComponent": true,
+      "isHeaderResponsive": true,
+      "isLoginWidgetHidden": true,
+      "showJobsLoginWidget": false,
+      "loginWidgetId": "test",
+      "icons": {
+        "backArrowIcon": {
+          "name": "3024_arrow-left",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "closeIcon": {
+          "name": "2043_cross",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "downArrowIcon": {
+          "name": "2113_angle-small-down",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "menuIcon": {
+          "name": "2070_burger-menu",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "rightArrowIcon": {
+          "name": "3020_arrow-right",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "searchIcon": {
+          "name": "2069_magnifying-glass",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        "loginIcon": {
+          "name": "2064_arrow-enter",
+          "classes": [],
+          "additionalAttributes": []
+        }
+      },
+      "loginWidgetOptions": {
+        "applicationId": "kvm",
+        "serviceId": "kvm",
+        "appLoginUrl": "https://post.ch/idp/?login&lang=de&service=kvm",
+        "currentLang": "de",
+        "options": {
+          "isDebugEnabled": false,
+          "logoutTargetURL": "https://post.ch/de/"
+        },
+        "platform": {
+          "endPoint": "https://n.post.ch",
+          "notificationsEndPoint": "https://post.ch/selfadmin/messages/unreadmessages",
+          "logoutURL": "https://post.ch/logout/",
+          "keepAliveURL": "https://post.ch/keepalive",
+          "autoLoginURL": "https://post.ch/idp/?app=loginwidget"
+        }
+      },
+
+      "logo": {
+        "logoLink": "https://post.ch/en/",
+        "logoLinkTitle": "Logo of the Post, To the homepage",
+        "logoSvg": "https://post.ch/-/media/portal-opp/global/logos/logo---die-post.svg?vs=2&sc_lang=en",
+        "logoText": "Logo Die Post, To the homepage"
+      },
+      "mobileMenu": {
+        "text": "Menu"
+      },
+      "search": {
+        "isSearchHidden": false,
+        "searchPageUrl": "https://post.ch/en/pages/suche",
+        "redirectPattern": "^[A-Za-z0-9.]{11,23}$",
+        "searchBoxSuggestionsThreshold": "0",
+        "searchBoxSuggestionsAllNumber": "0",
+        "searchBoxSuggestionsCoveoNumber": "5",
+        "placesRedirectUrl": "https://places.post.ch/?topic=1&lang=en&service=places&topic=1&PreselectText=",
+        "packageTrackingRedirectUrl": "https://service.post.ch/ekp-web/external/view/{trackingNumber}?lang=en",
+        "searchHubName": "900-701 suche",
+        "searchPipelineName": "Post v2",
+        "searchRecommendations": {
+          "title": "Meist gesuchte Services",
+          "links": [
+            {
+              "href": "/de/kundencenter/onlinedienste/vgk/paketetiketten-inland/info",
+              "label": "Paketetiketten erstellen",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M30 16h-7.333V0H9.334v16H2.001c-1.067 0-2 .933-2 2v12c0 1.067.933 2 2 2h28c1.067 0 2-.933 2-2V18c0-1.067-.933-2-2-2zM10.667 1.333h10.667v5.333H10.667V1.333zm0 6.667h10.667v6.667H10.667V8zm0 8h10.667v6.667H10.667V16zm20 14c0 .4-.267.667-.667.667H2c-.4 0-.667-.267-.667-.667V18c0-.4.267-.667.667-.667h7.333V24h13.333v-6.667h7.333c.4 0 .667.267.667.667v12z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "paketetiketten erstellen"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/vgk/paketetiketten-inland/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/post-umleiten/info",
+              "label": "Post umleiten",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M13.333 13.333h-8c-2.267 0-4-1.733-4-4s1.733-4 4-4H18.8l-4 4h1.867l4.667-4.667-4.667-4.667H14.8l4 4H5.333C2.4 3.999 0 6.399 0 9.332s2.4 5.333 5.333 5.333h8v-1.333zM19.067 10.667L13.334 16.4v6.267h-4V32h14.667v-2.667h2.267l5.733-5.733V10.667H19.068zM21.6 24l-4.4 3.867a.644.644 0 0 1-.933 0L11.734 24h9.867zm-10.933.8l2.667 2.267-2.667 2.667v-4.933zm.933 5.867L14.267 28l.933.8c.4.4.933.533 1.467.533S17.734 29.2 18 28.8l.933-.933 2.667 2.667h-10zm11.067-.934L20 27.066l2.667-2.267v4.933zM25.333 28H24v-5.333h-9.333v-5.333h10.667v10.667zm.4-12H15.6l4-4h10.133l-4 4zm4.934 7.067l-4 4V16.934l4-4v10.133z\" style=\"fill: #000000;\"/><path d=\"M24.667 13.333l-1.333 1.333h1.867l1.333-1.333z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "post umleiten"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/post-umleiten/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "https://webstamp.post.ch/",
+              "label": "Personalisierte Briefmarken",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M14.667 9.333c-4.4 0-8 3.6-8 8s3.6 8 8 8 8-3.6 8-8-3.6-8-8-8zm0 14.667C10.934 24 8 21.067 8 17.333s2.933-6.667 6.667-6.667c3.733 0 6.667 2.933 6.667 6.667S18.401 24 14.667 24z\" style=\"fill: #000000;\"/><path d=\"M12 21.867l7.867-4.533L12 12.801v9.067zm1.333-6.8l3.867 2.267-3.867 2.267v-4.533z\" style=\"fill: #000000;\"/><path d=\"M27.733 10l2.933-.8V4.8l-.533-.133c-1.333-.4-2.533-1.467-2.8-2.8l-.133-.533h-4.4L22 4.267c-.133.667-.667 1.067-1.333 1.067s-1.2-.4-1.333-1.067l-.8-2.933h-5.067l-.8 2.933c-.133.667-.667 1.067-1.333 1.067s-1.2-.4-1.333-1.067l-.8-2.933H4.134l-.8 2.933c-.133.667-.667 1.067-1.333 1.067v1.333c1.2 0 2.267-.8 2.667-2l.533-2h2.933l.533 2c.4 1.2 1.467 2 2.667 2s2.267-.8 2.667-2l.533-2h2.933l.533 2c.267 1.2 1.467 2 2.667 2s2.267-.8 2.667-2l.533-2h2.4c.4 1.467 1.6 2.667 3.067 3.2v2.4l-2 .533c-1.2.267-2 1.467-2 2.667s.8 2.267 2 2.667l2 .533V17.6l-2 .533c-1.2.267-2 1.467-2 2.667s.8 2.267 2 2.667l2 .533v2.933l-2 .533c-1.2.267-2 1.467-2 2.667h1.333c0-.667.4-1.2 1.067-1.333l2.933-.8v-5.067l-2.933-.8c-.667-.133-1.067-.667-1.067-1.333s.4-1.2 1.067-1.333l2.933-.8V13.6l-2.933-.8c-.667-.267-1.067-.8-1.067-1.467s.4-1.2 1.067-1.333z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "personalisierte briefmarken"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "https://webstamp.post.ch/"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/adressaenderung-mit-nachsendung/info",
+              "label": "Adressänderung mit Nachsendung",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16.414 2.082L13.2 5.272h4.624l3.215-3.19h-4.624zm.861 1.857h-.84l.527-.523h.84l-.527.523zm1.446 18.238l6.63-6.642V0H9.845l-6.63 6.643v10.69H0l.006 12h16.029v-7.156h2.686zm5.3-7.195l-4.865 4.874V7.076L24.02 2.27v12.712zM10.396 1.333h12.678L18.17 6.177H5.561l4.835-4.844zM4.546 7.51h13.279v13.334h-1.79v-3.51H4.545V7.51zM8.4 24.157a.365.365 0 0 1-.567 0l-.025-.03-.027-.027-5.253-5.427 11.046-.005L8.4 24.157zM4.71 22.84l-3.362 4.014.035-7.451L4.71 22.84zm.932.963l1.185 1.224a1.697 1.697 0 0 0 2.58 0l1.166-1.235L13.996 28H2.127l3.515-4.196zm5.852-.988l3.21-3.405v7.35l-3.21-3.945zm20.122 2.477l-4.88 4.888h-1.829l-.026-.026 4.186-4.193-10.369.017-.002-1.333 10.375-.018-4.187-4.194h1.882l4.85 4.859z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "adressänderung mit nachsendung"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/adressaenderung-mit-nachsendung/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/ele/post-zurueckbehalten/info",
+              "label": "Post zurückbehalten",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16.552 3.998h-1.885L16 2.667h1.886l-1.334 1.33zm-11.21 8.006h9.322v9.323H0v-9.323h4.008V5.715L9.732 0h12.943v8.677a2.375 2.375 0 0 0-1.333.522V2.297l-4 3.965v9.977a3.29 3.29 0 0 0-.722-.086h-.612V6.641H5.342v5.363zm-.204 5.444l-2.731 2.546h9.84l-2.721-2.546-1.027.942c-.31.32-.738.481-1.167.481-.428 0-.857-.16-1.166-.48l-1.028-.943zm6.896-4.11H2.63l4.437 4.07.03.027.028.03c.044.045.122.073.207.073s.163-.028.208-.074l.028-.029.03-.027 4.436-4.07zm-10.7.62v5.213l2.819-2.627-2.82-2.587zm11.997 0l-2.82 2.586 2.82 2.638v-5.225zm-7.028-8.65H16.41l4.012-3.975H10.284l-3.98 3.975zM30.044 25.34V15.147c0-1.103-.898-2-2.001-2-.266 0-.519.054-.751.149a1.997 1.997 0 0 0-1.92-1.47c-.234 0-.457.048-.666.122v-.55c0-1.105-.706-2.004-2.002-2.004-1.137 0-1.818.874-1.967 1.675a2.027 2.027 0 0 0-.685-.127c-1.103 0-2 .898-2 2l-.002 4.352a2.738 2.738 0 0 0-1.44-.416h-1.238v8.881c-.122 2.89.943 3.878 2.176 5.022.215.2.442.41.673.64l.943-.942a24.907 24.907 0 0 0-.71-.676c-1.15-1.067-1.846-1.713-1.75-4.015l.002-7.574c.745.05 1.334.67 1.334 1.427h.009l-.002 4.513h1.333l.005-11.211c0-.368.3-.668.667-.668.357 0 .607.266.652.373l.003 8.638 1.333.003-.002-9.891c0-.368.3-.668.666-.668h.062a.68.68 0 0 1 .606.668l-.004 10.15h1.334l.004-7.722c0-.368.3-.667.666-.667s.667.3.667.667v7.72h1.337v-6.399a.668.668 0 0 1 1.335 0v10.59h.012c.082 2.306-.388 2.762-1.563 3.832-.289.263-.61.556-.965.91l.943.943c.337-.337.645-.616.92-.867 1.465-1.334 2.16-2.114 1.986-5.215z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "post zurückbehalten"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/ele/post-zurueckbehalten/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/rhe/pick-at-home/info",
+              "label": "Pakete abholen lassen",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M19.067 13.333l-5.733 5.733v12.933h12.933L32 26.266V13.333H19.067zm.533 1.334h10.133l-4 4H15.6l4-4zM14.667 20h10.667v10.667H14.667V20zm12 9.733V19.6l4-4v10.133l-4 4z\" style=\"fill: #000000;\"/><path d=\"M26.533 16h-1.867l-1.333 1.333H25.2zM16 2.267l8.4 8.4h1.867L16 .4.4 16h4.933v16h1.333V14.667H3.599z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "pakete abholen"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/rhe/pick-at-home/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            },
+            {
+              "href": "/de/kundencenter/onlinedienste/hausservice/info",
+              "label": "Hausservice",
+              "target": "",
+              "inlineSvg": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 32 32\"><path d=\"M16 .533L0 9.866v1.467l16-9.2 16 9.2V9.866zM14.667 17.333h4v-4h-4v4zM16 14.667h1.333V16H16v-1.333z\" style=\"fill: #000000;\"/><path d=\"M21.333 10.667H4V24h6.667v8H28V20h-6.667v-9.333zm-10.666 12H5.334V12h14.667v8h-9.333v2.667zm1.333-.4L15.733 26 12 29.733v-7.467zm.933 8.4l3.733-3.733 1.067 1.067c.4.4 1.067.667 1.6.667s1.2-.267 1.6-.667L22 26.934l3.733 3.733h-12.8zm13.734-.934L22.934 26l3.733-3.733v7.467zm-.934-8.4L20 27.066c-.4.4-.933.4-1.333 0l-5.733-5.733h12.8z\" style=\"fill: #000000;\"/></svg>\n",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "data-event",
+                  "value": "go-to"
+                },
+                {
+                  "name": "data-type",
+                  "value": "most_searched_topics"
+                },
+                {
+                  "name": "data-label",
+                  "value": ""
+                },
+                {
+                  "name": "data-text",
+                  "value": "hausservice"
+                },
+                {
+                  "name": "data-additionalinfo",
+                  "value": ""
+                },
+                {
+                  "name": "data-selection",
+                  "value": ""
+                },
+                {
+                  "name": "data-linkurl",
+                  "value": "/de/kundencenter/onlinedienste/hausservice/info"
+                },
+                {
+                  "name": "data-linktext",
+                  "value": ""
+                },
+                {
+                  "name": "data-fileextension",
+                  "value": ""
+                },
+                {
+                  "name": "data-filename",
+                  "value": ""
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "onlineServiceId": "topos",
+      "navMain": [
+        {
+          "flyout": [],
+          "id": "9bc0275b-8c91-4e89-8c0c-5e80bb8097b8",
+          "text": "My Post",
+          "title": "My Post",
+          "url": "https://post.ch/en/customer-center/customer-center",
+          "noFlyout": true
+        },
+        {
+          "flyout": [],
+          "id": "0eb467aa-ded4-4259-9178-b67f1f211819",
+          "text": "Online services",
+          "title": "Online services",
+          "url": "https://post.ch/en/customer-center/online-services",
+          "noFlyout": true
+        },
+        {
+          "flyout": [
+            {
+              "linkList": [
+                {
+                  "title": "Start online service",
+                  "url": "https://places.post.ch/?lang=en"
+                }
+              ]
+            }
+          ],
+          "id": "flyout_os",
+          "text": "Locations and opening hours",
+          "title": "Locations and opening hours"
+        }
+      ],
+      "navMeta": [
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "Jobs",
+          "url": "https://post.ch/en/jobs"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "About us",
+          "url": "https://post.ch/en/about-us"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": false,
+
+          "text": "Help and contact",
+          "url": "https://post.ch/en/help-and-contact"
+        },
+        {
+          "isActive": true,
+          "isHomeLink": false,
+
+          "text": "My Post",
+          "url": "https://post.ch/en/customer-center"
+        },
+        {
+          "isActive": false,
+          "isHomeLink": true,
+
+          "text": "Home",
+          "url": "https://post.ch/en/"
+        }
+      ],
+      "navLang": [
+        {
+          "isCurrent": false,
+          "lang": "de",
+          "text": "De",
+          "title": "Deutsch"
+        },
+        {
+          "isCurrent": false,
+          "lang": "fr",
+          "text": "Fr",
+          "title": "Français"
+        },
+        {
+          "isCurrent": false,
+          "lang": "it",
+          "text": "It",
+          "title": "Italiano"
+        },
+        {
+          "isCurrent": true,
+          "lang": "en",
+          "text": "En",
+          "title": "English"
+        }
+      ],
+      "translations": {
+        "backButtonText": "Back",
+        "closeButtonText": "Close",
+        "homeLinkTitle": "Home",
+        "navLangAriaLabel": "Language navigation",
+        "navMainAriaLabel": "Main navigation",
+        "navMetaAriaLabel": "Meta navigation",
+        "searchAriaLabel": "Search this website",
+        "flyoutSearchBoxFloatingLabel": "Enter consignment number, search term",
+        "searchPlaceholder": "Enter search phrase",
+        "searchSubmit": "Search",
+        "searchToggle": "Show search",
+        "searchToggleExpanded": "Hide search",
+        "searchA11yLabelClosed": "Open search",
+        "searchA11yLabelOpened": "Close search ",
+        "mobileNavToggleClose": "Navigation close",
+        "mobileNavToggleOpen": "Navigation open",
+        "nonResponsiveHeader": "This page is not designed for mobile devices."
+      }
+    },
+    "breadcrumb": {
+      "a11yLabel": "Breadcrumb",
+      "asWebComponent": true,
+      "buttons": [
+        {
+          "svgIcon": {
+            "name": "3033_question-mark",
+            "classes": [],
+            "additionalAttributes": [
+              {
+                "name": "focusable",
+                "value": "false"
+              }
+            ]
+          },
+          "text": "Help",
+          "overlay": {
+            "id": "help",
+            "target": "https://post.ch/en/customer-center/online-services/standorte-und-oeffnungszeiten/info?modal=true",
+            "closeText": "Close",
+            "closeIcon": {
+              "name": "2043_cross",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "focusable",
+                  "value": "false"
+                }
+              ]
+            },
+            "classes": ["ppm-breadcrumb-overlay__body--light"],
+            "additionalAttributes": []
+          },
+          "classes": ["btn-outline-secondary"],
+          "additionalAttributes": []
+        },
+        {
+          "svgIcon": {
+            "name": "3073_phone",
+            "classes": [],
+            "additionalAttributes": [
+              {
+                "name": "focusable",
+                "value": "false"
+              }
+            ]
+          },
+          "text": "Contact",
+          "overlay": {
+            "id": "phone",
+            "target": "https://post.ch/en/customer-center/online-services/standorte-und-oeffnungszeiten/kontakt?modal=true",
+            "closeText": "Close",
+            "closeIcon": {
+              "name": "2043_cross",
+              "classes": [],
+              "additionalAttributes": [
+                {
+                  "name": "focusable",
+                  "value": "false"
+                }
+              ]
+            },
+            "classes": ["ppm-breadcrumb-overlay__body--dark"],
+            "additionalAttributes": []
+          },
+          "classes": ["btn-outline-secondary"],
+          "additionalAttributes": []
+        }
+      ],
+      "isCentered": false,
+      "items": [
+        {
+          "text": "Home page",
+          "url": "https://post.ch/en/"
+        },
+        {
+          "text": "My Post",
+          "url": "https://post.ch/en/customer-center"
+        },
+        {
+          "text": "Locations and opening hours",
+          "url": "https://places.post.ch/?lang=en"
+        }
+      ],
+      "svgIconArrowRightSmall": {
+        "name": "2111_angle-small-right",
+        "classes": ["ppm-breadcrumb__svg-icon", "ppm-breadcrumb-divider"],
+        "additionalAttributes": [
+          {
+            "name": "focusable",
+            "value": "false"
+          }
+        ]
+      },
+      "svgIconHome": {
+        "name": "2035_home",
+        "classes": ["ppm-breadcrumb__svg-icon"],
+        "additionalAttributes": [
+          {
+            "name": "focusable",
+            "value": "false"
+          }
+        ]
+      },
+      "truncateButtonText": "Open",
+      "classes": [],
+      "additionalAttributes": []
+    },
+    "footer": {
+      "title": "Footer",
+      "asWebComponent": true,
+      "osLinks": {
+        "serviceName": "Locations and opening hours",
+        "links": []
+      },
+      "block": [
+        {
+          "columnType": "list",
+          "title": "Go directly to",
+          "links": [
+            {
+              "url": "https://www.postfinance.ch/en",
+              "target": "_blank",
+              "text": "PostFinance",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.postauto.ch/en",
+              "target": "_blank",
+              "text": "PostBus",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://immobilien.post.ch/en/",
+              "target": "_blank",
+              "text": "Real Estate",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://postcompanycars.post.ch/en",
+              "target": "_blank",
+              "text": "Post Company Cars",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.swisspostsolutions.com/en/home",
+              "target": "_blank",
+              "text": "Swiss Post Solutions",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            }
+          ]
+        },
+        {
+          "columnType": "list",
+          "title": "More from Swiss Post",
+          "links": [
+            {
+              "url": "https://post.ch/en/about-us/innovation",
+              "target": "",
+              "text": "Innovation",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/en/about-us/responsibility",
+              "target": "",
+              "text": "Responsibility",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://www.postshop.ch/shop/en",
+              "target": "_blank",
+              "text": "Shop",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/en/about-us/media",
+              "target": "",
+              "text": "Media",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            },
+            {
+              "url": "https://post.ch/en/pages/corona",
+              "target": "",
+              "text": "Coronavirus",
+              "title": "",
+              "classes": [],
+              "additionalAttributes": []
+            }
+          ]
+        },
+        {
+          "columnType": "contact",
+          "title": "Contact Center",
+
+          "content": [
+            {
+              "describe": "CHF 0.08/min. from landline phones within Switzerland",
+
+              "name": "phone",
+              "number": "+41 848 888 888"
+            },
+            {
+              "hours": "7.30am - 6pm",
+
+              "name": "days",
+
+              "text": "Monday till Friday"
+            },
+            {
+              "hours": "8am to 12 noon",
+
+              "name": "days",
+
+              "text": "Saturday"
+            },
+            {
+              "hours": "Share screen",
+
+              "name": "days",
+
+              "text": "Live Support"
+            }
+          ]
+        },
+        {
+          "columnType": "address",
+          "title": "Address Contact Center",
+
+          "content": [
+            {
+              "address": "Post CH Network Ltd<br/>Swiss Post Contact Center<br/>Wankdorfallee 4<br/>3030 Bern"
+            },
+            {
+              "links": [
+                {
+                  "url": "https://www.facebook.com/swisspost",
+                  "icon": "8004_facebook",
+                  "name": "Follow us on Facebook",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.instagram.com/swisspost/",
+                  "icon": "8007_instagram",
+                  "name": "Follow us on Instagram",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.youtube.com/swisspost",
+                  "icon": "8002_youtube",
+                  "name": "Follow us on Youtube",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.snapchat.com/add/swisspostjobs",
+                  "icon": "8017_snapchat",
+                  "name": "Follow us on Snapchat",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://twitter.com/PostSchweiz",
+                  "icon": "8000_twitter",
+                  "name": "Follow us on Twitter",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.xing.com/companies/dieschweizerischepost",
+                  "icon": "8001_xing",
+                  "name": "Follow us on Xing",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "http://www.linkedin.com/company/swiss-post",
+                  "icon": "8005_linkedin",
+                  "name": "Follow us on LinkedIn",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                },
+                {
+                  "url": "https://www.kununu.com/ch/die-schweizerische-post",
+                  "icon": "8008_kununu",
+                  "name": "Follow us on Kununu",
+                  "target": "_blank",
+                  "classes": [],
+                  "additionalAttributes": []
+                }
+              ],
+
+              "title": "Follow us"
+            }
+          ]
+        }
+      ],
+      "entry": {
+        "text": "© 2021 Swiss Post Ltd"
+      },
+      "links": [
+        {
+          "url": "https://post.ch/en/pages/footer/accessibility-at-swiss-post",
+          "target": "",
+          "text": "Accessibility",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/en/pages/footer/general-terms-and-conditions-gtc",
+          "target": "",
+          "text": "General Terms and Conditions",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/en/pages/footer/data-protection-and-disclaimer",
+          "target": "",
+          "text": "Data protection and disclaimer",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        },
+        {
+          "url": "https://post.ch/en/pages/footer/publication-details",
+          "target": "",
+          "text": "Publication details",
+          "title": "",
+          "classes": [],
+          "additionalAttributes": []
+        }
+      ],
+      "classes": [],
+      "additionalAttributes": []
+    }
+  }
+}
