@@ -52,8 +52,11 @@ jobs:
           files: ./packages/icons/public/svg/**
 
       - name: Exit if no changes
-        if: steps.changed-files.outputs.any_changed == 'false'
-        run: exit 1
+        if: steps.changed-files.outputs.any_modified == 'false'
+        run: |
+          git checkout main
+          git branch --delete ${{ steps.current-branch.outputs.branch }}
+          exit 1
 
       - name: Create Changeset
         run: |
@@ -64,15 +67,46 @@ jobs:
           echo Updated icon SVGs.                      >> $CHANGESET
           echo                                         >> $CHANGESET
         env:
-          CHANGESET: ./.changeset/${{ needs.fetch.outputs.branch }}.md
+          CHANGESET: ./.changeset/${{ steps.current-branch.outputs.branch }}.md
 
       - name: Commit Changes
         run: |
           git config --global user.name github-actions[bot]
           git config --global user.email github-actions@github.com
           git add .
-          git commit -am chore(icons): :point_up: update icon SVGs
-          git push -u origin ${{ needs.fetch.outputs.branch }}
+          git commit -am "chore(icons): :point_up: update icon SVGs"
+          git push -u origin ${{ steps.current-branch.outputs.branch }}
+
+      - name: Write PR Body
+        id: pr-body
+        run: |
+          echo "# Design system icons are now up to date!"                                              > $PR_BODY_FILE
+          echo "::set-output name=file::$PR_BODY_FILE"
+
+          UPDATED_ICONS=($MODIFIED_ICONS $RENAMED_ICONS $COPIED_ICONS)
+
+          declare -a labels;            declare -A changes
+          labels+=( "Added icons" );    changes["Added icons"]=$ADDED_ICONS
+          labels+=( "Updated icons" );  changes["Updated icons"]=$UPDATED_ICONS
+          labels+=( "Deleted icons" );  changes["Deleted icons"]=$ADDED_ICONS
+
+          for label in "${labels[@]}"; do
+            if [[ ${changes[$label]} != '' ]]; then
+              echo "## $label"                                                                         >> $PR_BODY_FILE
+              for file in ${changes[$label]}; do
+                echo "- $(echo $file | sed 's/^packages\/icons\/public\/svg\///' | sed 's/\.svg$//')"  >> $PR_BODY_FILE
+              done
+            fi
+          done
+        env:
+          PR_BODY_FILE: pr-body.md
+          ADDED_ICONS: ${{ steps.changed-files.outputs.added_files }}
+          MODIFIED_ICONS: ${{ steps.changed-files.outputs.modified_files }}
+          RENAMED_ICONS: ${{ steps.changed-files.outputs.renamed_files }}
+          COPIED_ICONS: ${{ steps.changed-files.outputs.copied_files }}
+          DELETED_ICONS: ${{ steps.changed-files.outputs.deleted_files }}
 
       - name: Create PR
-        run: gh pr create --fill --body ""
+        run: gh pr create --fill --body-file ${{ steps.pr-body.outputs.file }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
