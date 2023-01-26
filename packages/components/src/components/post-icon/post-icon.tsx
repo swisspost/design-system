@@ -39,6 +39,7 @@ export class PostIcon {
    * @param {boolean} animation - The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
    */
   @Prop() animation?: string;
+  @State() initialPath: string;
   @State() path: string;
   @State() svgSource: string = '<svg viewBox="0 0 16 16"></svg>';
   @State() svgOutput: string;
@@ -95,18 +96,21 @@ export class PostIcon {
   fetchSVG () {
     fetch(this.path)
       .then(response => response.text())
-      .then(svgSource => {
-        if (/^<svg[^>]*>[\S\s]*<\/svg>(\r\n)?$/.test(svgSource)) {
-          this.svgSource = svgSource;
-          window.localStorage.setItem(`post-icon-${this.name}`, svgSource);
+      .then(textResponse => {
+        const match = textResponse.match(/^<svg\b([\s\S]*)><\/svg>/);
+
+        if (match !== null) {
+          this.svgSource = match[0];
+          window.localStorage.setItem(`post-icon-${this.name}`, this.svgSource);
         } else {
-          const cdnPath = this.getPath(CDN_URL);
+          this.initialPath = this.path;
+          this.path = this.getPath(CDN_URL);
 
-          if(this.path !== cdnPath) {
+          if(this.initialPath !== this.path) {
             console.warn(`Warning in <post-icon/>: The content on the path "${this.path}" seems to be no svg-only content. We'll gonna try to load the icon from the cdn.`);
-
-            this.path = cdnPath;
             this.fetchSVG();
+          } else {
+            console.error(`Error in <post-icon/>: Could not load the svg on the path "${this.initialPath}"!`);
           }
         }
       })
