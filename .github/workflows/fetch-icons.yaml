@@ -23,6 +23,7 @@ jobs:
 
     outputs:
       icon_changed: ${{ steps.changed-files.outputs.any_changed }}
+      branch: ${{ steps.current-branch.outputs.branch }}
 
     steps:
       - name: Checkout
@@ -33,11 +34,17 @@ jobs:
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      - name: Date Branch Name
-        run: echo "BRANCH_NAME=$(date +'%Y-%m-%d')-update-icon-svgs" >> $GITHUB_ENV
+      - name: Get Date
+        id: current-date
+        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
 
       - name: Create Branch
-        run: git checkout -b $BRANCH_NAME
+        id: current-branch
+        run: |
+          git checkout -b $BRANCH_NAME
+          echo "::set-output name=branch::$BRANCH_NAME"
+        env:
+          BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icon-svgs
 
       - name: Fetch Icons
         run: pnpm --filter design-system-icons fetchSVGs
@@ -60,7 +67,7 @@ jobs:
           git config --global user.email github-actions@github.com
           git add .
           git commit -am chore(icons): :point_up: update icon SVGs
-          git push -u origin $BRANCH_NAME
+          git push -u origin ${{ needs.fetch.outputs.branch }}
 
       - name: Create PR
         run: gh pr create --fill --body ""
