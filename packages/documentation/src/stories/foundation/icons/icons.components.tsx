@@ -83,7 +83,9 @@ export class Search extends React.Component {
           ))
       }
       { this.state.icons.length === 0 ? <div className="results--empty">
-        <post-icon name="2126" class="fs-huge" /> We could not find any icons. Please try with another search query.
+        <post-icon name="2126" class="fs-huge" />
+        We could not find any icons.<br/>
+        Please try with another search query.
       </div> : null }
     </div>
   </div>;
