@@ -1,0 +1,84 @@
+import { Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Components/Internet Header/Getting started" />
+
+![Swiss Post Logo](https://www.post.ch/-/media/portal-opp/global/logos/logo---die-post.svg?vs=2&sc_lang=en)
+
+<br />
+
+# Internet Header
+
+The Swiss Post Internet Header web component, written with stencil.js.
+
+- [Installation](#installation)
+- [Usage](#usage)
+- [Configuration](#configuration)
+- [Help](#help)
+
+## Installation
+
+When working with Angular or any other framework, the easiest installation method is via npm.
+
+```shell
+npm install @swisspost/internet-header
+```
+
+If you are not using npm, the easiest way to install the header is to download the current version from npm ([Internet Header](https://www.npmjs.com/package/@swisspost/internet-header)), extract the files and put them with your other assets.
+
+<br />
+<br />
+
+## Usage
+
+<br />
+<br />
+
+### Angular, Vue JS, React (or any other bundler setup)
+
+All the popular frameworks come with some form of bundler. This makes it easy to use npm packages like the Internet Header as you can import, bundle and deliver the header with your own code.
+
+```typescript
+// main.ts / index.js / ...
+import { defineCustomElements } from '@swisspost/internet-header';
+
+defineCustomElements();
+```
+
+```html
+<!-- index.html -->
+<body>
+  <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
+  ...
+</body>
+```
+
+### Vanilla JS (without bundler)
+
+Load the `swisspost-internet-header.esm.js` from your assets folder. Keep the other files and the folder structure of the package intact, as other files might be needed on demand.
+
+```html
+<!-- index.html -->
+<body>
+  <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
+  ...
+  <script
+    type="module"
+    src="path/to/assets/swisspost-internet-header/dist/swisspost-internet-header/swisspost-internet-header.esm.js"
+  ></script>
+</body>
+```
+
+## Configuration
+
+The Internet Header is built to support the already existing Portal Configuration used for the old Internet Header. If you already have a configuration, you don't have to change it. If you are working on a new project, you can order a new configuration with the [Post Portal Team](mailto:digitalconsulting@post.ch).
+
+Not every Online Service has configurations for all environments. For example, "TOPOS" only has `int02` configured and cannot use `int01` as value for environment. If you are not sure what's configured for your project, you can contact [digitalconsulting@post.ch](mailto:digitalconsulting@post.ch).
+
+For settings on the header itself, see the examples provided in the left menu bar.
+
+<br />
+<br />
+
+## Help
+
+If you noticed a bug or need assistance with migrating to the new Internet Header, please post your enquiry at the [Design System Github Discussions](https://github.com/swisspost/design-system/discussions/categories/q-a).

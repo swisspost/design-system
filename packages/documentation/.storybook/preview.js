@@ -7,9 +7,12 @@ import { renderToString } from 'react-dom/server';
 import JsxParser from 'react-jsx-parser';
 import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';
+import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
+import 'cypress-storybook/react';
 import './preview.scss';
 
 if (docJson) setStencilDocJson(docJson);
+defineInternetHeader();
 
 Object.entries(Components).forEach(([name, component]) => {
   component.displayName = name.replace(/\B([A-Z])/g, '-$1').toLowerCase();
@@ -26,7 +29,15 @@ export const parameters = {
   },
   options: {
     storySort: {
-      order: ['Welcome', 'Foundations', ['Typography', 'Color', 'Accessibility'], 'Components', 'Utilities', 'Misc', ['Migration', 'ChangeLog']],
+      order: [
+        'Welcome',
+        'Foundations',
+        ['Typography', 'Color', 'Accessibility'],
+        'Components',
+        'Utilities',
+        'Misc',
+        ['Migration', 'ChangeLog'],
+      ],
     },
   },
   darkMode: {

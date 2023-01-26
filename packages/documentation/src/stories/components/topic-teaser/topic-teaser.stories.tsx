@@ -1,5 +1,5 @@
 import React from 'react';
-import { Meta, Story, Args } from "@storybook/react";
+import { Meta, Story, Args } from '@storybook/react';
 import docsPage from './topic-teaser.docs.mdx';
 
 export default {
@@ -14,7 +14,7 @@ export default {
     subtitle: 'Vero siteos et accusam iretea et justo',
     linkCount: 5,
     alignment: 'null',
-    backgroundColor: 'bg-nightblue'
+    backgroundColor: 'bg-nightblue',
   },
   argTypes: {
     title: {
@@ -59,10 +59,7 @@ export default {
           'null': 'Image right',
         },
       },
-      options: [
-        'topic-teaser-reverse',
-        'null',
-      ],
+      options: ['topic-teaser-reverse', 'null'],
       table: {
         category: 'General',
       },
@@ -87,7 +84,7 @@ export default {
           'bg-purple-bright': 'Purple (bright)',
           'bg-aubergine': 'Aubergine',
           'bg-aubergine-bright': 'Aubergine (bright)',
-        }
+        },
       },
       options: [
         'bg-light',
@@ -122,23 +119,24 @@ const linkTexts = [
   'Consetetur sadipscing elitr',
   'Justo duo dolores',
   'Takimata sanctus est',
-  'Nonummy nibh euismod'
+  'Nonummy nibh euismod',
 ];
 
 const Template = (args: Args) => {
-  const classes = [
-    'topic-teaser',
-    args.backgroundColor,
-    args.alignment,
-    'mb-huge-r'
-  ].filter(c => c && c !== 'null').join(' ');
+  const classes = ['topic-teaser', args.backgroundColor, args.alignment, 'mb-huge-r']
+    .filter(c => c && c !== 'null')
+    .join(' ');
 
   const links: React.ReactElement[] = [];
 
   for (let x = 0; x < args.linkCount; x++) {
-    links.push(<li key={ x } className="link-list-item">
-      <a href="#"><span>{ linkTexts[x] }</span></a>
-    </li>);
+    links.push(
+      <li key={x} className="link-list-item">
+        <a href="#">
+          <span>{linkTexts[x]}</span>
+        </a>
+      </li>,
+    );
   }
 
   const content: React.ReactElement[] = [
@@ -153,24 +151,24 @@ const Template = (args: Args) => {
     </div>,
     <div key="content" className="topic-teaser-content">
       <h2 className="topic-teaser-title font-curve-large mb-large">
-        <span className="bold">{ args.title }</span>
-        <span className="light">{ args.subtitle }</span>
+        <span className="bold">{args.title}</span>
+        <span className="light">{args.subtitle}</span>
       </h2>
-      <ul className="link-list mb-large">
-        { links }
-      </ul>
-    </div>
+      <ul className="link-list mb-large">{links}</ul>
+    </div>,
   ];
 
-  return <div className={ classes }>
-    <div className="container">
-      <div className={ `topic-teaser-container ${args.backgroundColor}` }>
-        <div className="row pt-huge-r">
-          { args.alignment === 'null' ? [...content].reverse() : content }
+  return (
+    <div className={classes}>
+      <div className="container">
+        <div className={`topic-teaser-container ${args.backgroundColor}`}>
+          <div className="row pt-huge-r">
+            {args.alignment === 'null' ? [...content].reverse() : content}
+          </div>
         </div>
       </div>
     </div>
-  </div>;
+  );
 };
 
 export const Default: Story = Template.bind({});
