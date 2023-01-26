@@ -48,10 +48,6 @@ jobs:
         with:
           files: ./packages/icons/public/svg/**
 
-      - name: Count Changes
-        run: |
-          echo "::set-output name=deleted_count::$(steps.changed-files.outputs.any_changed | length)"
-
   push:
     runs-on: ubuntu-latest
     needs: fetch
