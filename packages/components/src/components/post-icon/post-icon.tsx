@@ -1,5 +1,7 @@
 import { Component, Host, h, Prop, State } from '@stencil/core';
 
+const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
+
 /**
  * @class PostIcon - representing a stencil component
  */
@@ -53,27 +55,15 @@ export class PostIcon {
     } else if (metaBase) {
       basePath = metaBase.getAttribute('data-post-icon-base');  
     } else {
-      basePath = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
+      basePath = CDN_URL;
     }
   
-    this.path = new URL(
-      [...basePath.split('/'), `${this.name}.svg#icon`].join('/'),
-      window.location.origin,
-    ).toString();
-
+    this.path = this.getPath(basePath);
     this.svgSource = window.localStorage.getItem(`post-icon-${this.name}`) ?? this.svgSource;
   }
 
   componentWillLoad () {
-    fetch(this.path)
-      .then(response => response.text())
-      .then(svgSource => {
-        this.svgSource = svgSource;
-        window.localStorage.setItem(`post-icon-${this.name}`, svgSource);
-      })
-      .catch(error => {
-        console.log(error);
-      });
+    this.fetchSVG();
   }
 
   componentWillRender () {
@@ -93,6 +83,36 @@ export class PostIcon {
     svgElement.setAttribute('style', svgStyles);
 
     this.svgOutput = helperElement.innerHTML;
+  }
+
+  getPath (basePath: string) {
+    return new URL(
+      [...basePath.split('/'), `${this.name}.svg#icon`].join('/'),
+      window.location.origin,
+    ).toString();
+  }
+
+  fetchSVG () {
+    fetch(this.path)
+      .then(response => response.text())
+      .then(svgSource => {
+        if (/^<svg[^>]*>[\S\s]*<\/svg>$/.test(svgSource)) {
+          this.svgSource = svgSource;
+          window.localStorage.setItem(`post-icon-${this.name}`, svgSource);
+        } else {
+          console.warn(`<post-icon/>: The loaded content on the path "${this.path}", seems to be no svg-only content.\nWe'll try to load the icon from the cdn.`);
+
+          const fallbackPath = this.getPath(CDN_URL);
+
+          if(this.path !== fallbackPath) {
+            this.path = fallbackPath;
+            this.fetchSVG();
+          }
+        }
+      })
+      .catch(error => {
+        console.log(error);
+      });
   }
 
   render() {
