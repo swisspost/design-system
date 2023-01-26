@@ -21,10 +21,6 @@ jobs:
   fetch:
     runs-on: ubuntu-latest
 
-    outputs:
-      icon_changed: ${{ steps.changed-files.outputs.any_changed }}
-      branch: ${{ steps.current-branch.outputs.branch }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -55,12 +51,21 @@ jobs:
         with:
           files: ./packages/icons/public/svg/**
 
-  push:
-    runs-on: ubuntu-latest
-    needs: fetch
-    if: needs.fetch.outputs.icon_changed == 'true'
+      - name: Exit if no changes
+        if: steps.changed-files.outputs.any_changed == 'false'
+        run: exit 1
 
-    steps:
+      - name: Create Changeset
+        run: |
+          echo ---                                      > $CHANGESET
+          echo '@swisspost/design-system-icons': patch >> $CHANGESET
+          echo ---                                     >> $CHANGESET
+          echo                                         >> $CHANGESET
+          echo Updated icon SVGs.                      >> $CHANGESET
+          echo                                         >> $CHANGESET
+        env:
+          CHANGESET: ./.changeset/${{ needs.fetch.outputs.branch }}.md
+
       - name: Commit Changes
         run: |
           git config --global user.name github-actions[bot]
