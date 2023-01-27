@@ -1,0 +1,15 @@
+{
+  "mode": "pre",
+  "tag": "beta",
+  "initialVersions": {
+    "@swisspost/design-system-changelog-github": "1.0.2",
+    "@swisspost/design-system-components": "1.0.6",
+    "@swisspost/design-system-components-angular": "1.0.6",
+    "@swisspost/design-system-intranet-header": "3.0.6",
+    "@swisspost/design-system-demo": "5.2.0",
+    "@swisspost/design-system-documentation": "1.2.0",
+    "@swisspost/internet-header": "1.4.2-beta.0",
+    "@swisspost/design-system-styles": "5.3.0"
+  },
+  "changesets": []
+}
