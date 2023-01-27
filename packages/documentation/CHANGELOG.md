@@ -1,5 +1,45 @@
 # @swisspost/design-system-documentation
 
+## 1.3.0-beta.0
+
+### Minor Changes
+
+- Added stories documenting the Swiss Post Internet Header (by [@gfellerph](https://github.com/gfellerph) with [#972](https://github.com/swisspost/design-system/pull/972))
+
+- Added the storybook accessibility plugin which shows an Accessibility tab with various, non-conclusive tests (by [@gfellerph](https://github.com/gfellerph) with [#979](https://github.com/swisspost/design-system/pull/979))
+
+- Added foundations/typography docs page. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#901](https://github.com/swisspost/design-system/pull/901))
+
+- Added utilities/text docs page. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#901](https://github.com/swisspost/design-system/pull/901))
+
+- Updated the topic-teaser stories to the current format. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#956](https://github.com/swisspost/design-system/pull/956))
+
+- Add heading utility stories. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#955](https://github.com/swisspost/design-system/pull/955))
+
+### Patch Changes
+
+- Updated button stories to the latest format. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#945](https://github.com/swisspost/design-system/pull/945))
+
+- Fixed form component id-attributes (no more duplicates between documentation- and playground-pages). (by [@oliverschuerch](https://github.com/oliverschuerch) with [#968](https://github.com/swisspost/design-system/pull/968))
+
+- Updated the card stories to the current format. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#951](https://github.com/swisspost/design-system/pull/951))
+
+- Updated blockquote stories to the latest format. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#944](https://github.com/swisspost/design-system/pull/944))
+
+- Updated the heading stories to the new format. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#953](https://github.com/swisspost/design-system/pull/953))
+
+- Updated the input stories to the new format. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#967](https://github.com/swisspost/design-system/pull/967))
+
+- Fixed render issues of misc/changelog docs page. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#901](https://github.com/swisspost/design-system/pull/901))
+
+- Refactored form components onChange events to ensure keyboard functionality and managed focus reset after storybook component update for a consistent user experience. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#968](https://github.com/swisspost/design-system/pull/968))
+
+- Fix indeterminate state in checkbox stories. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#968](https://github.com/swisspost/design-system/pull/968))
+
+- Fixed empty-string name of the topic-teaser alignment property. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#949](https://github.com/swisspost/design-system/pull/949))
+- Updated dependencies:
+  - @swisspost/internet-header@1.5.0-beta.1
+
 ## 1.2.0
 
 ### Minor Changes

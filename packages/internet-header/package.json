@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "1.4.2-beta.0",
+  "version": "1.5.0-beta.1",
   "description": "Swiss Post Internet Header",
   "license": "Apache-2.0",
   "main": "loader/index.cjs.js",
