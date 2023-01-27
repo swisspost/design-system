@@ -12,31 +12,37 @@ const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-ic
 })
 export class PostIcon {
   /**
-   * @param {string} name - The name/id of the icon (e.g. 1000, 1001, ...).
+   * The name/id of the icon (e.g. 1000, 1001, ...).
    */
   @Prop() name: string;
+
   /**
-   * @param {string} base - The base path, where the icons are located (must be a public url).
+   * The base path, where the icons are located (must be a public url).
    */
   @Prop() base?: string;
+
   /**
-   * @param {boolean} flipH - When set to `true`, the icon will be flipped horizontally.
+   * When set to `true`, the icon will be flipped horizontally.
    */
   @Prop() flipH?: boolean;
+
   /**
-   * @param {boolean} flipV - When set to `true`, the icon will be flipped vertically.
+   * When set to `true`, the icon will be flipped vertically.
    */
   @Prop() flipV?: boolean;
+
   /**
-   * @param {number} scale - The `number` for the css `scale` transformation.
+   * The `number` for the css `scale` transformation.
    */
   @Prop() scale?: number;
+
   /**
-   * @param {number} rotate - The `number` of degree for the css `rotate` transformation.
+   * The `number` of degree for the css `rotate` transformation.
    */
   @Prop() rotate?: number;
+
   /**
-   * @param {boolean} animation - The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+   * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
    */
   @Prop() animation?: string;
   @State() initialPath: string;
@@ -44,35 +50,34 @@ export class PostIcon {
   @State() svgSource: string = '<svg viewBox="0 0 16 16"></svg>';
   @State() svgOutput: string;
 
-  connectedCallback () {
+  connectedCallback() {
     // Construct icon path from different possible sources
     let basePath: string;
     const metaBase = document.head.querySelector(
       'meta[name="design-system-settings"][data-post-icon-base]',
     );
-  
+
     if (this.base) {
       basePath = this.base;
     } else if (metaBase) {
-      basePath = metaBase.getAttribute('data-post-icon-base');  
+      basePath = metaBase.getAttribute('data-post-icon-base');
     } else {
       basePath = CDN_URL;
     }
-  
+
     this.path = this.getPath(basePath);
     this.svgSource = window.localStorage.getItem(`post-icon-${this.name}`) ?? this.svgSource;
   }
 
-  componentWillLoad () {
+  componentWillLoad() {
     this.fetchSVG();
   }
 
-  componentWillRender () {
-    const svgStyles = Object
-      .entries({
-        scale: this.scale && !isNaN(Number(this.scale)) ? `${this.scale}` : null,
-        rotate: this.rotate && !isNaN(Number(this.rotate)) ? `${this.rotate}deg` : null,
-      })
+  componentWillRender() {
+    const svgStyles = Object.entries({
+      scale: this.scale && !isNaN(Number(this.scale)) ? `${this.scale}` : null,
+      rotate: this.rotate && !isNaN(Number(this.rotate)) ? `${this.rotate}deg` : null,
+    })
       .filter(([_key, value]) => value !== null)
       .map(([key, value]) => `${key}: ${value}`)
       .join(';');
@@ -86,14 +91,14 @@ export class PostIcon {
     this.svgOutput = helperElement.innerHTML;
   }
 
-  getPath (basePath: string) {
+  getPath(basePath: string) {
     return new URL(
       [...basePath.split('/'), `${this.name}.svg#icon`].join('/'),
       window.location.origin,
     ).toString();
   }
 
-  fetchSVG () {
+  fetchSVG() {
     fetch(this.path)
       .then(response => response.text())
       .then(textResponse => {
@@ -106,11 +111,15 @@ export class PostIcon {
           this.initialPath = this.path;
           this.path = this.getPath(CDN_URL);
 
-          if(this.initialPath !== this.path) {
-            console.warn(`Warning in <post-icon/>: The content on the path "${this.path}" seems to be no svg-only content. We'll gonna try to load the icon from the cdn.`);
+          if (this.initialPath !== this.path) {
+            console.warn(
+              `Warning in <post-icon/>: The content on the path "${this.path}" seems to be no svg-only content. We'll gonna try to load the icon from the cdn.`,
+            );
             this.fetchSVG();
           } else {
-            console.error(`Error in <post-icon/>: Could not load the svg on the path "${this.initialPath}"!`);
+            console.error(
+              `Error in <post-icon/>: Could not load the svg on the path "${this.initialPath}"!`,
+            );
           }
         }
       })
@@ -122,7 +131,7 @@ export class PostIcon {
   render() {
     return (
       <Host>
-        <div innerHTML={ this.svgOutput }/>
+        <div innerHTML={this.svgOutput} />
       </Host>
     );
   }

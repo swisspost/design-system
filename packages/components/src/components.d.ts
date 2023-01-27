@@ -26,31 +26,31 @@ export namespace Components {
      */
     interface PostIcon {
         /**
-          * @param animation - The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+          * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
          */
         "animation"?: string;
         /**
-          * @param base - The base path, where the icons are located (must be a public url).
+          * The base path, where the icons are located (must be a public url).
          */
         "base"?: string;
         /**
-          * @param flipH - When set to `true`, the icon will be flipped horizontally.
+          * When set to `true`, the icon will be flipped horizontally.
          */
         "flipH"?: boolean;
         /**
-          * @param flipV - When set to `true`, the icon will be flipped vertically.
+          * When set to `true`, the icon will be flipped vertically.
          */
         "flipV"?: boolean;
         /**
-          * @param name - The name/id of the icon (e.g. 1000, 1001, ...).
+          * The name/id of the icon (e.g. 1000, 1001, ...).
          */
         "name": string;
         /**
-          * @param rotate - The `number` of degree for the css `rotate` transformation.
+          * The `number` of degree for the css `rotate` transformation.
          */
         "rotate"?: number;
         /**
-          * @param scale - The `number` for the css `scale` transformation.
+          * The `number` for the css `scale` transformation.
          */
         "scale"?: number;
     }
@@ -104,31 +104,31 @@ declare namespace LocalJSX {
      */
     interface PostIcon {
         /**
-          * @param animation - The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+          * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
          */
         "animation"?: string;
         /**
-          * @param base - The base path, where the icons are located (must be a public url).
+          * The base path, where the icons are located (must be a public url).
          */
         "base"?: string;
         /**
-          * @param flipH - When set to `true`, the icon will be flipped horizontally.
+          * When set to `true`, the icon will be flipped horizontally.
          */
         "flipH"?: boolean;
         /**
-          * @param flipV - When set to `true`, the icon will be flipped vertically.
+          * When set to `true`, the icon will be flipped vertically.
          */
         "flipV"?: boolean;
         /**
-          * @param name - The name/id of the icon (e.g. 1000, 1001, ...).
+          * The name/id of the icon (e.g. 1000, 1001, ...).
          */
         "name"?: string;
         /**
-          * @param rotate - The `number` of degree for the css `rotate` transformation.
+          * The `number` of degree for the css `rotate` transformation.
          */
         "rotate"?: number;
         /**
-          * @param scale - The `number` for the css `scale` transformation.
+          * The `number` for the css `scale` transformation.
          */
         "scale"?: number;
     }
