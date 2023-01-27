@@ -524,6 +524,8 @@ li.name-and-surname span.infoHidden {
 .item-centered {
   align-items: center;
   align-self: center;
+  display: flex;
+  justify-content: center;
 }
 
 .item-left {
