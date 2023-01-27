@@ -17,6 +17,7 @@ on:
       - 'packages/documentation/**'
       - 'packages/styles/**'
       - 'packages/components/**'
+      - 'packages/internet-header/**'
 
 jobs:
   build:
