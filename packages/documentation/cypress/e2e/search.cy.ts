@@ -133,13 +133,12 @@ describe('search', () => {
     it('redirects to the correct search page', () => {
       cy.changeArg('search', true);
       cy.get(searchButton).click();
-      cy.get('#searchBox')
-        .click()
-        .type('{downArrow}', { force: true })
-        .type('{enter}', { force: true });
-      cy.location('pathname').should(
-        'eq',
-        '/de/kundencenter/onlinedienste/vgk/paketetiketten-inland/info',
+      cy.get('#searchBox').click().type('{downArrow}', { force: true });
+
+      cy.get('.search-recommendation.selected').should(
+        'have.attr',
+        'href',
+        'https://post.ch/de/kundencenter/onlinedienste/vgk/paketetiketten-inland/info',
       );
     });
   });
