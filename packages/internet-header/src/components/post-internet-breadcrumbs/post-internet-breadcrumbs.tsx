@@ -33,7 +33,6 @@ export class PostInternetBreadcrumbs {
   private loadedAnimation: Animation | undefined;
 
   connectedCallback() {
-    console.log('connected');
     this.debouncedResize = debounce(200, this.handleResize.bind(this));
     window.addEventListener('resize', this.debouncedResize, { passive: true });
   }
@@ -45,7 +44,6 @@ export class PostInternetBreadcrumbs {
   }
 
   async componentWillLoad() {
-    console.log('will laod');
     // Wait for the config to arrive, then render the header
     try {
       this.customBreadcrumbItems =
@@ -56,7 +54,6 @@ export class PostInternetBreadcrumbs {
   }
 
   componentDidLoad() {
-    console.log('did load');
     // Initially check if breadcrumb items are concatenated
     window.requestAnimationFrame(() => {
       this.handleResize();
@@ -154,7 +151,14 @@ export class PostInternetBreadcrumbs {
     }
 
     iFrame.addEventListener('load', () => {
-      iframeResizer({ heightCalculationMethod: 'taggedElement', scrolling: true }, iFrame);
+      iframeResizer(
+        {
+          heightCalculationMethod: 'taggedElement',
+          scrolling: true,
+          checkOrigin: false,
+        },
+        iFrame,
+      );
       const duration = prefersReducedMotion ? 0 : 300;
       this.loadedAnimation = iFrame.parentElement?.animate(
         [{ opacity: 1, visibility: 'visible', transform: 'translateY(0px)' }],
