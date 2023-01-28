@@ -342,7 +342,7 @@ importers:
   packages/internet-header:
     specifiers:
       '@babel/core': 7.15.5
-      '@sindresorhus/slugify': 2.1.0
+      '@sindresorhus/slugify': 2.1.1
       '@stencil/core': 2.8.0
       '@stencil/eslint-plugin': 0.4.0
       '@stencil/sass': 2.0.1
@@ -374,7 +374,7 @@ importers:
       typescript: 4.8.4
       url-polyfill: 1.1.12
     dependencies:
-      '@sindresorhus/slugify': 2.1.0
+      '@sindresorhus/slugify': 2.1.1
       '@stencil/core': 2.8.0
       '@stencil/store': 1.4.1_@stencil+core@2.8.0
       body-scroll-lock: 4.0.0-beta.0
@@ -5306,8 +5306,8 @@ packages:
     resolution: {integrity: sha512-dgJd3HLOkLmz4Bw50eZx/zJwtBq65nms3N9VBYu5LTjJ883oBFkTyXRlCB/ZGGwqYpJJHA5zW2Ibhl5ngITfow==}
     dev: true
 
-  /@sindresorhus/slugify/2.1.0:
-    resolution: {integrity: sha512-gU3Gdm/V167BmUwIn8APHZ3SeeRVRUSOdXxnt7Q/JkUHLXaaTA/prYmoRumwsSitJZWUDYMzDWdWgrOdvE8IRQ==}
+  /@sindresorhus/slugify/2.1.1:
+    resolution: {integrity: sha512-XokPHZ+q6FtQGEi1hnfvARVJJVPEhwHQTPHPPuNHaN6zcHjzYNynhhHMopa1wNPqLAFOwpsbintunEqWecXJMg==}
     engines: {node: '>=12'}
     dependencies:
       '@sindresorhus/transliterate': 1.6.0

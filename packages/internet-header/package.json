@@ -32,7 +32,7 @@
     "jest:watch": "jest --watch"
   },
   "dependencies": {
-    "@sindresorhus/slugify": "2.1.0",
+    "@sindresorhus/slugify": "2.1.1",
     "@stencil/core": "2.8.0",
     "@stencil/store": "1.4.1",
     "body-scroll-lock": "4.0.0-beta.0",
