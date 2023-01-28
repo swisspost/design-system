@@ -346,7 +346,7 @@ importers:
       '@stencil/core': 2.8.0
       '@stencil/eslint-plugin': 0.4.0
       '@stencil/sass': 2.0.1
-      '@stencil/store': 1.4.1
+      '@stencil/store': 1.5.0
       '@swisspost/design-system-styles': '5.2'
       '@types/iframe-resizer': 3.5.9
       '@types/jest': 29.1.0
@@ -376,7 +376,7 @@ importers:
     dependencies:
       '@sindresorhus/slugify': 2.1.0
       '@stencil/core': 2.8.0
-      '@stencil/store': 1.4.1_@stencil+core@2.8.0
+      '@stencil/store': 1.5.0_@stencil+core@2.8.0
       body-scroll-lock: 4.0.0-beta.0
       iframe-resizer: 4.3.2
       jquery: 3.6.0
@@ -5382,8 +5382,8 @@ packages:
       '@stencil/core': 2.22.1
     dev: false
 
-  /@stencil/store/1.4.1_@stencil+core@2.8.0:
-    resolution: {integrity: sha512-kAtMblucNnDNfTpSqhN9jccExgFWmOe+4U98cXZJrg/6nozNtEd92pY6s3Jko7KUrZ+1MQJU2oLwwS8VuyK3Zg==}
+  /@stencil/store/1.5.0_@stencil+core@2.8.0:
+    resolution: {integrity: sha512-fe5fCF6dgVlDM1iLRkkJUyUh0Tfx305asVGgMAJjIs7Q+x/b1pGgTLROm9Ibr53PZuFwr5Kg+4h9p4FLbYqHgA==}
     peerDependencies:
       '@stencil/core': '>=1.9.0'
     dependencies:
