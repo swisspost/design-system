@@ -342,7 +342,7 @@ importers:
   packages/internet-header:
     specifiers:
       '@babel/core': 7.20.12
-      '@sindresorhus/slugify': 2.1.1
+      '@sindresorhus/slugify': 2.2.0
       '@stencil/core': 3.0.0
       '@stencil/eslint-plugin': 0.4.0
       '@stencil/sass': 2.0.1
@@ -373,7 +373,7 @@ importers:
       typescript: 4.8.4
       url-polyfill: 1.1.12
     dependencies:
-      '@sindresorhus/slugify': 2.1.1
+      '@sindresorhus/slugify': 2.2.0
       '@stencil/core': 3.0.0
       '@stencil/store': 1.5.0_@stencil+core@3.0.0
       body-scroll-lock: 4.0.0-beta.0
@@ -5267,8 +5267,8 @@ packages:
     resolution: {integrity: sha512-gFukHN4t8K4+wVC+ECqeqwzBDeFeTzBXroBTqE6vcWrQGbEUpHO7LYdG0f4xnvYq4VOEwITSlHlp0JBAIFMS/g==}
     dev: true
 
-  /@sindresorhus/slugify/2.1.1:
-    resolution: {integrity: sha512-XokPHZ+q6FtQGEi1hnfvARVJJVPEhwHQTPHPPuNHaN6zcHjzYNynhhHMopa1wNPqLAFOwpsbintunEqWecXJMg==}
+  /@sindresorhus/slugify/2.2.0:
+    resolution: {integrity: sha512-9Vybc/qX8Kj6pxJaapjkFbiUJPk7MAkCh/GFCxIBnnsuYCFPIXKvnLidG8xlepht3i24L5XemUmGtrJ3UWrl6w==}
     engines: {node: '>=12'}
     dependencies:
       '@sindresorhus/transliterate': 1.6.0
@@ -12563,6 +12563,7 @@ packages:
   /fsevents/1.2.13:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
+    os: [darwin]
     deprecated: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
     requiresBuild: true
     dependencies:
@@ -12574,6 +12575,7 @@ packages:
   /fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
     requiresBuild: true
     optional: true
 
