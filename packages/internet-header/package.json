@@ -43,7 +43,7 @@
     "url-polyfill": "1.1.12"
   },
   "devDependencies": {
-    "@babel/core": "7.15.5",
+    "@babel/core": "7.20.12",
     "@stencil/eslint-plugin": "0.4.0",
     "@stencil/sass": "2.0.1",
     "@swisspost/design-system-styles": "5.2",
