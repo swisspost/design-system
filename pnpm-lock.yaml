@@ -364,7 +364,7 @@ importers:
       jquery: 3.6.3
       rimraf: 3.0.2
       rollup-plugin-node-polyfills: 0.2.1
-      rollup-plugin-scss: 3.0.0
+      rollup-plugin-scss: 4.0.0
       rollup-plugin-visualizer: 5.5.2
       sass: 1.57.1
       start-server-and-test: 1.14.0
@@ -401,7 +401,7 @@ importers:
       jest-environment-jsdom: 29.1.1
       rimraf: 3.0.2
       rollup-plugin-node-polyfills: 0.2.1
-      rollup-plugin-scss: 3.0.0
+      rollup-plugin-scss: 4.0.0
       rollup-plugin-visualizer: 5.5.2
       sass: 1.57.1
       start-server-and-test: 1.14.0
@@ -20387,8 +20387,8 @@ packages:
       rollup-plugin-inject: 3.0.2
     dev: true
 
-  /rollup-plugin-scss/3.0.0:
-    resolution: {integrity: sha512-UldNaNHEon2a5IusHvj/Nnwc7q13YDvbFxz5pfNbHBNStxGoUNyM+0XwAA/UafJ1u8XRPGdBMrhWFthrrGZdWQ==}
+  /rollup-plugin-scss/4.0.0:
+    resolution: {integrity: sha512-wxasNXDYC2m+fDxCMgK00WebVWYmeFvShyNABmjvSJZ6D1/SepwqFeaMFMQromveI79gfvb64yJjiZZxSZxEIA==}
     dependencies:
       rollup-pluginutils: 2.8.2
     dev: true
