@@ -350,7 +350,7 @@ importers:
       '@swisspost/design-system-styles': '5.2'
       '@types/iframe-resizer': 3.5.9
       '@types/jest': 29.1.0
-      '@types/jquery': 3.5.6
+      '@types/jquery': 3.5.16
       '@types/node': 18.11.18
       '@types/throttle-debounce': 2.1.0
       babel-loader: 8.2.2
@@ -361,7 +361,7 @@ importers:
       iframe-resizer: 4.3.2
       jest: 29.1.1
       jest-environment-jsdom: 29.1.1
-      jquery: 3.6.0
+      jquery: 3.6.3
       rimraf: 3.0.2
       rollup-plugin-node-polyfills: 0.2.1
       rollup-plugin-scss: 3.0.0
@@ -379,7 +379,7 @@ importers:
       '@stencil/store': 1.4.1_@stencil+core@2.8.0
       body-scroll-lock: 4.0.0-beta.0
       iframe-resizer: 4.3.2
-      jquery: 3.6.0
+      jquery: 3.6.3
       tabbable: 5.3.0
       throttle-debounce: 3.0.1
       url-polyfill: 1.1.12
@@ -390,7 +390,7 @@ importers:
       '@swisspost/design-system-styles': link:../styles/dist
       '@types/iframe-resizer': 3.5.9
       '@types/jest': 29.1.0
-      '@types/jquery': 3.5.6
+      '@types/jquery': 3.5.16
       '@types/node': 18.11.18
       '@types/throttle-debounce': 2.1.0
       babel-loader: 8.2.2_@babel+core@7.15.5
@@ -7127,8 +7127,8 @@ packages:
       pretty-format: 29.3.1
     dev: true
 
-  /@types/jquery/3.5.6:
-    resolution: {integrity: sha512-SmgCQRzGPId4MZQKDj9Hqc6kSXFNWZFHpELkyK8AQhf8Zr6HKfCzFv9ZC1Fv3FyQttJZOlap3qYb12h61iZAIg==}
+  /@types/jquery/3.5.16:
+    resolution: {integrity: sha512-bsI7y4ZgeMkmpG9OM710RRzDFp+w4P1RGiIt30C1mSBT+ExCleeh4HObwgArnDFELmRrOpXgSYN9VF1hj+f1lw==}
     dependencies:
       '@types/sizzle': 2.3.3
     dev: true
@@ -15648,8 +15648,8 @@ packages:
       '@sideway/pinpoint': 2.0.0
     dev: true
 
-  /jquery/3.6.0:
-    resolution: {integrity: sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==}
+  /jquery/3.6.3:
+    resolution: {integrity: sha512-bZ5Sy3YzKo9Fyc8wH2iIQK4JImJ6R0GWI9kL1/k7Z91ZBNgkRXE6U0JfHIizZbort8ZunhSI3jw9I6253ahKfg==}
     dev: false
 
   /js-sdsl/4.1.4:
