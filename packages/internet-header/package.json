@@ -61,7 +61,7 @@
     "rimraf": "3.0.2",
     "rollup-plugin-node-polyfills": "0.2.1",
     "rollup-plugin-scss": "3.0.0",
-    "rollup-plugin-visualizer": "5.5.2",
+    "rollup-plugin-visualizer": "5.9.0",
     "sass": "1.56.2",
     "start-server-and-test": "1.14.0",
     "ts-jest": "29.0.5",
