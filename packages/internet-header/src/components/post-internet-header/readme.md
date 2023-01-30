@@ -44,7 +44,7 @@ Get the currently set language as a two letter string ("de", "fr" "it" or "en")
 
 Type: `Promise<string>`
 
-
+string
 
 
 ## Dependencies

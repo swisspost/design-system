@@ -10,6 +10,11 @@ import { IBreadcrumbItem } from "./models/breadcrumbs.model";
 import { StickynessOptions } from "./models/implementor.model";
 import { Environment, ICustomConfig } from "./models/general.model";
 import { IAvailableLanguage } from "./models/language.model";
+export { DropdownEvent, NavMainEntity } from "./models/header.model";
+export { IBreadcrumbItem } from "./models/breadcrumbs.model";
+export { StickynessOptions } from "./models/implementor.model";
+export { Environment, ICustomConfig } from "./models/general.model";
+export { IAvailableLanguage } from "./models/language.model";
 export namespace Components {
     interface PostKlpLoginWidget {
         /**
@@ -24,7 +29,7 @@ export namespace Components {
           * @param force Boolean to force a state
           * @returns Boolean indicating new state
          */
-        "toggleDropdown": (force?: boolean | undefined) => Promise<boolean>;
+        "toggleDropdown": (force?: boolean) => Promise<boolean>;
     }
     interface PostLogo {
     }
@@ -43,7 +48,7 @@ export namespace Components {
           * @param force Force a state
           * @returns Boolean indicating new state
          */
-        "toggleDropdown": (force?: boolean | undefined) => Promise<boolean>;
+        "toggleDropdown": (force?: boolean) => Promise<boolean>;
     }
     interface PostMetaNavigation {
         "fullWidth"?: boolean;
@@ -140,6 +145,22 @@ export namespace Components {
         "stickyness": StickynessOptions;
     }
 }
+export interface PostLanguageSwitchCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostLanguageSwitchElement;
+}
+export interface PostMainNavigationCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostMainNavigationElement;
+}
+export interface PostSearchCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostSearchElement;
+}
+export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLSwisspostInternetHeaderElement;
+}
 declare global {
     interface HTMLPostKlpLoginWidgetElement extends Components.PostKlpLoginWidget, HTMLStencilElement {
     }
@@ -219,21 +240,21 @@ declare namespace LocalJSX {
     }
     interface PostLanguageSwitch {
         "mode"?: 'dropdown' | 'list';
-        "onDropdownToggled"?: (event: CustomEvent<DropdownEvent>) => void;
-        "onLanguageChanged"?: (event: CustomEvent<string>) => void;
+        "onDropdownToggled"?: (event: PostLanguageSwitchCustomEvent<DropdownEvent>) => void;
+        "onLanguageChanged"?: (event: PostLanguageSwitchCustomEvent<string>) => void;
     }
     interface PostLogo {
     }
     interface PostMainNavigation {
-        "onDropdownToggled"?: (event: CustomEvent<DropdownEvent>) => void;
-        "onFlyoutToggled"?: (event: CustomEvent<string | null>) => void;
+        "onDropdownToggled"?: (event: PostMainNavigationCustomEvent<DropdownEvent>) => void;
+        "onFlyoutToggled"?: (event: PostMainNavigationCustomEvent<string | null>) => void;
     }
     interface PostMetaNavigation {
         "fullWidth"?: boolean;
         "orientation"?: 'horizontal' | 'vertical';
     }
     interface PostSearch {
-        "onDropdownToggled"?: (event: CustomEvent<DropdownEvent>) => void;
+        "onDropdownToggled"?: (event: PostSearchCustomEvent<DropdownEvent>) => void;
     }
     interface PostSkiplinks {
     }
@@ -290,7 +311,7 @@ declare namespace LocalJSX {
         /**
           * Fires when the header has been rendered to the page.
          */
-        "onHeaderLoaded"?: (event: CustomEvent<void>) => void;
+        "onHeaderLoaded"?: (event: SwisspostInternetHeaderCustomEvent<void>) => void;
         /**
           * Online Services only: Add custom links to the special online service navigation entry
          */

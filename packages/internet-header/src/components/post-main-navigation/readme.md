@@ -35,7 +35,7 @@ Type: `Promise<void>`
 
 
 
-### `toggleDropdown(force?: boolean | undefined) => Promise<boolean>`
+### `toggleDropdown(force?: boolean) => Promise<boolean>`
 
 Toggle the main navigation (only visible on mobile)
 
@@ -43,7 +43,7 @@ Toggle the main navigation (only visible on mobile)
 
 Type: `Promise<boolean>`
 
-
+Boolean indicating new state
 
 
 ## Dependencies
