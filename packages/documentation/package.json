@@ -18,11 +18,15 @@
     "start": "start-storybook -p 9200 --quiet",
     "start:headless": "start-storybook -p 9300 --quiet --no-open",
     "build": "build-storybook --quiet",
-    "test": "start-server-and-test start:headless 9300 'percy exec -- cypress run --record false'"
+    "test": "start-server-and-test start:headless 9300 'percy exec -- cypress run --record false'",
+    "cypress:open": "cypress open --config baseUrl=http://localhost:9300",
+    "cypress:run": "cypress run",
+    "cypress:dev": "start-server-and-test start:headless http://localhost:9300 cypress:open"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.0.5",
     "@swisspost/design-system-styles": "workspace:5.2.0",
+    "@swisspost/internet-header": "workspace:1.4.2-beta.0",
     "html-react-parser": "3.0.8",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -41,11 +45,14 @@
     "@storybook/react": "6.5.15",
     "@storybook/testing-library": "0.0.13",
     "@storybook/theming": "6.5.15",
+    "@types/mdx": "^2.0.3",
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
     "babel-loader": "9.1.2",
     "css-loader": "5.2.7",
     "cypress": "12.3.0",
+    "cypress-each": "1.10.0",
+    "cypress-storybook": "0.5.1",
     "react-markdown": "8.0.5",
     "rehype-raw": "^6.1.1",
     "sass": "1.57.1",
