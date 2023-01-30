@@ -24,11 +24,21 @@ export const parameters = {
       order: [
         'Welcome',
         'Foundations',
-        ['Typography', 'Color', 'Accessibility'],
+        [
+          'Typography',
+          'Color',
+          'Layout',
+          'Elevation',
+          'Accessibility'
+        ],
+        'Templates',
         'Components',
         'Utilities',
         'Misc',
-        ['Migration', 'ChangeLog'],
+        [
+          'Migration',
+          'ChangeLog'
+        ],
       ],
     },
   },
