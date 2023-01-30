@@ -40,7 +40,7 @@
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.3.2",
     "jquery": "3.6.3",
-    "tabbable": "5.3.3",
+    "tabbable": "6.0.1",
     "throttle-debounce": "3.0.1",
     "url-polyfill": "1.1.12"
   },
