@@ -32,7 +32,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "2.22.1",
+    "@stencil/core": "3.0.0",
     "@stencil/sass": "2.0.3",
     "@swisspost/design-system-styles": "workspace:5.2.0",
     "sass": "1.57.1"
