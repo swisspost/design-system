@@ -287,7 +287,7 @@ importers:
       '@types/react-dom': 18.0.10
       babel-loader: 9.1.2
       css-loader: 5.2.7
-      cypress: 12.3.0
+      cypress: 12.4.1
       cypress-each: 1.10.0
       cypress-storybook: 0.5.1
       html-react-parser: 3.0.8
@@ -311,7 +311,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.12
       '@percy/cli': 1.17.0
-      '@percy/cypress': 3.1.2_cypress@12.3.0
+      '@percy/cypress': 3.1.2_cypress@12.4.1
       '@pxtrn/storybook-addon-docs-stencil': 6.4.1_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-a11y': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-docs': 6.5.15_fp34m7vaa2sb7lyfkvcz52orxq
@@ -327,9 +327,9 @@ importers:
       '@types/react-dom': 18.0.10
       babel-loader: 9.1.2_@babel+core@7.20.12
       css-loader: 5.2.7
-      cypress: 12.3.0
+      cypress: 12.4.1
       cypress-each: 1.10.0
-      cypress-storybook: 0.5.1_cypress@12.3.0
+      cypress-storybook: 0.5.1_cypress@12.4.1
       react-markdown: 8.0.5_3stiutgnnbnfnf3uowm5cip22i
       rehype-raw: 6.1.1
       sass: 1.57.1
@@ -5121,13 +5121,13 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@percy/cypress/3.1.2_cypress@12.3.0:
+  /@percy/cypress/3.1.2_cypress@12.4.1:
     resolution: {integrity: sha512-JXrGDZbqwkzQd2h5T5D7PvqoucNaiMh4ChPp8cLQiEtRuLHta9nf1lEuXH+jnatGL2j+3jJFIHJ0L7XrgVnvQA==}
     peerDependencies:
       cypress: '>=3'
     dependencies:
       '@percy/sdk-utils': 1.10.4
-      cypress: 12.3.0
+      cypress: 12.4.1
     dev: true
 
   /@percy/dom/1.17.0:
@@ -10402,16 +10402,16 @@ packages:
     resolution: {integrity: sha512-Y9ttXrWTd1MDut1nnukxJ/jZCjyi4Ns+dF3drxdpmuAohOn6+Xu2JxHI3Xttbm6/3z7fa4lV2uQTn4f6zDsROw==}
     dev: true
 
-  /cypress-storybook/0.5.1_cypress@12.3.0:
+  /cypress-storybook/0.5.1_cypress@12.4.1:
     resolution: {integrity: sha512-+CNDdcrFD3QRvHrjwpVclFpLtseyXA0NxeB3PDTheisvg/OJjLkP96t0I9R66IkZRYUUE3mLhqZpmpsv59FIIw==}
     peerDependencies:
       cypress: '*'
     dependencies:
-      cypress: 12.3.0
+      cypress: 12.4.1
     dev: true
 
-  /cypress/12.3.0:
-    resolution: {integrity: sha512-ZQNebibi6NBt51TRxRMYKeFvIiQZ01t50HSy7z/JMgRVqBUey3cdjog5MYEbzG6Ktti5ckDt1tfcC47lmFwXkw==}
+  /cypress/12.4.1:
+    resolution: {integrity: sha512-IFMPzc1RJ22Fac+YbdqywtpcuqZXqQJh+JqZDXn+A15zG/dw99njfv8f0bTvD+WAHhP118+xWG/VwilkFg1rnA==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
@@ -10448,7 +10448,7 @@ packages:
       listr2: 3.14.0_enquirer@2.3.6
       lodash: 4.17.21
       log-symbols: 4.1.0
-      minimist: 1.2.6
+      minimist: 1.2.7
       ospath: 1.2.2
       pretty-bytes: 5.6.0
       proxy-from-env: 1.0.0
@@ -12563,6 +12563,7 @@ packages:
   /fsevents/1.2.13:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
+    os: [darwin]
     deprecated: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
     requiresBuild: true
     dependencies:
@@ -12574,6 +12575,7 @@ packages:
   /fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
     requiresBuild: true
     optional: true
 
@@ -16807,6 +16809,7 @@ packages:
 
   /minimist/1.2.6:
     resolution: {integrity: sha512-Jsjnk4bw3YJqYzbdyBiNsPWHPfO++UGG749Cxs6peCu5Xg4nrena6OVxOYxrQTqww0Jmwt+Ref8rggumkTLz9Q==}
+    dev: false
 
   /minimist/1.2.7:
     resolution: {integrity: sha512-bzfL1YUZsP41gmu/qjrEk0Q6i2ix/cVeAhbCbqH9u3zYutS1cLg00qhrD0M2MVdCcx4Sc0UpP2eBWo9rotpq6g==}

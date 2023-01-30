@@ -50,7 +50,7 @@
     "@types/react-dom": "18.0.10",
     "babel-loader": "9.1.2",
     "css-loader": "5.2.7",
-    "cypress": "12.3.0",
+    "cypress": "12.4.1",
     "cypress-each": "1.10.0",
     "cypress-storybook": "0.5.1",
     "react-markdown": "8.0.5",
