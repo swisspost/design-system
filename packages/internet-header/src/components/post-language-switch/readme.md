@@ -22,7 +22,7 @@
 
 ## Methods
 
-### `toggleDropdown(force?: boolean | undefined) => Promise<boolean>`
+### `toggleDropdown(force?: boolean) => Promise<boolean>`
 
 Open or close the language switch programatically
 
@@ -30,7 +30,7 @@ Open or close the language switch programatically
 
 Type: `Promise<boolean>`
 
-
+Boolean indicating new state
 
 
 ## Dependencies
