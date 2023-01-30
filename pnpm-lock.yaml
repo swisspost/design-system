@@ -365,7 +365,7 @@ importers:
       rimraf: 3.0.2
       rollup-plugin-node-polyfills: 0.2.1
       rollup-plugin-scss: 4.0.0
-      rollup-plugin-visualizer: 5.5.2
+      rollup-plugin-visualizer: 5.9.0
       sass: 1.57.1
       start-server-and-test: 1.14.0
       tabbable: 5.3.3
@@ -402,7 +402,7 @@ importers:
       rimraf: 3.0.2
       rollup-plugin-node-polyfills: 0.2.1
       rollup-plugin-scss: 4.0.0
-      rollup-plugin-visualizer: 5.5.2
+      rollup-plugin-visualizer: 5.9.0
       sass: 1.57.1
       start-server-and-test: 1.14.0
       ts-jest: 29.0.5_5u54m5jjvyiiexxgj6xhzjso2y
@@ -12678,7 +12678,6 @@ packages:
   /fsevents/1.2.13:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
-    os: [darwin]
     deprecated: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
     requiresBuild: true
     dependencies:
@@ -12690,7 +12689,6 @@ packages:
   /fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
     requiresBuild: true
     optional: true
 
@@ -20409,17 +20407,20 @@ packages:
       source-map-resolve: 0.6.0
     dev: true
 
-  /rollup-plugin-visualizer/5.5.2:
-    resolution: {integrity: sha512-sh+P9KhuWTzeStyRA5yNZpoEFGuj5Ph34JLMa9+muhU8CneFf9L0XE4fmAwAojJLWp//uLUEyytBPSCdZEg5AA==}
-    engines: {node: '>=10.16'}
+  /rollup-plugin-visualizer/5.9.0:
+    resolution: {integrity: sha512-bbDOv47+Bw4C/cgs0czZqfm8L82xOZssk4ayZjG40y9zbXclNk7YikrZTDao6p7+HDiGxrN0b65SgZiVm9k1Cg==}
+    engines: {node: '>=14'}
     hasBin: true
     peerDependencies:
-      rollup: ^2.0.0
+      rollup: 2.x || 3.x
+    peerDependenciesMeta:
+      rollup:
+        optional: true
     dependencies:
-      nanoid: 3.3.4
-      open: 7.4.2
+      open: 8.4.0
+      picomatch: 2.3.1
       source-map: 0.7.4
-      yargs: 16.2.0
+      yargs: 17.5.1
     dev: true
 
   /rollup-pluginutils/2.8.2:
