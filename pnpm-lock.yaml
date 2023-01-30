@@ -288,7 +288,7 @@ importers:
       babel-loader: 9.1.2
       css-loader: 5.2.7
       cypress: 12.3.0
-      cypress-each: 1.10.0
+      cypress-each: 1.13.1
       cypress-storybook: 0.5.1
       html-react-parser: 3.0.8
       react: 18.2.0
@@ -328,7 +328,7 @@ importers:
       babel-loader: 9.1.2_@babel+core@7.20.12
       css-loader: 5.2.7
       cypress: 12.3.0
-      cypress-each: 1.10.0
+      cypress-each: 1.13.1
       cypress-storybook: 0.5.1_cypress@12.3.0
       react-markdown: 8.0.5_3stiutgnnbnfnf3uowm5cip22i
       rehype-raw: 6.1.1
@@ -10398,8 +10398,8 @@ packages:
     resolution: {integrity: sha512-NJGVKPS81XejHcLhaLJS7plab0fK3slPh11mESeeDq2W4ZI5kUKK/LRRdVDvjJseojbPB7ZwjnyOybg3Igea/A==}
     dev: true
 
-  /cypress-each/1.10.0:
-    resolution: {integrity: sha512-Y9ttXrWTd1MDut1nnukxJ/jZCjyi4Ns+dF3drxdpmuAohOn6+Xu2JxHI3Xttbm6/3z7fa4lV2uQTn4f6zDsROw==}
+  /cypress-each/1.13.1:
+    resolution: {integrity: sha512-YbVfrjk4gWTDLOV8YAb3tA6ovQiyl90zvl4M7aLADD0aUBei6nOSXI7xu6LVgLlVcLkM4jRSS2jBIiifauGgpQ==}
     dev: true
 
   /cypress-storybook/0.5.1_cypress@12.3.0:
@@ -12563,6 +12563,7 @@ packages:
   /fsevents/1.2.13:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
+    os: [darwin]
     deprecated: fsevents 1 will break on node v14+ and could be using insecure binaries. Upgrade to fsevents 2.
     requiresBuild: true
     dependencies:
@@ -12574,6 +12575,7 @@ packages:
   /fsevents/2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
     requiresBuild: true
     optional: true
 
