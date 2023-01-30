@@ -368,7 +368,7 @@ importers:
       rollup-plugin-visualizer: 5.5.2
       sass: 1.57.1
       start-server-and-test: 1.14.0
-      tabbable: 5.3.0
+      tabbable: 5.3.3
       throttle-debounce: 3.0.1
       ts-jest: 29.0.5
       typescript: 4.8.4
@@ -380,7 +380,7 @@ importers:
       body-scroll-lock: 4.0.0-beta.0
       iframe-resizer: 4.3.2
       jquery: 3.6.3
-      tabbable: 5.3.0
+      tabbable: 5.3.3
       throttle-debounce: 3.0.1
       url-polyfill: 1.1.12
     devDependencies:
@@ -21810,8 +21810,8 @@ packages:
     resolution: {integrity: sha512-k8uzYIkIVwmT+TcglpdN50pS2y1BDcUnBPK9iJeGu0Pl1lOI8pD6wtzgw91Pjpe+RxtTncw32tLxs/R0yNL2Mg==}
     dev: true
 
-  /tabbable/5.3.0:
-    resolution: {integrity: sha512-BS+sw22/pUGaIZr8Ro8E+NeJ3bhvYgMHJKEAhr9pGj22MqaD60qyrvGJBSe6AlrOHR8Y41nA0IvMmgf4lVWC9Q==}
+  /tabbable/5.3.3:
+    resolution: {integrity: sha512-QD9qKY3StfbZqWOPLp0++pOrAVb/HbUi5xCc8cUo4XjP19808oaMiDzn0leBY5mCespIBM0CIZePzZjgzR83kA==}
     dev: false
 
   /table/6.8.1:
