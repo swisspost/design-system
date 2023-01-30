@@ -366,7 +366,7 @@ importers:
       rollup-plugin-node-polyfills: 0.2.1
       rollup-plugin-scss: 3.0.0
       rollup-plugin-visualizer: 5.5.2
-      sass: 1.56.2
+      sass: 1.57.1
       start-server-and-test: 1.14.0
       tabbable: 5.3.0
       throttle-debounce: 3.0.1
@@ -403,7 +403,7 @@ importers:
       rollup-plugin-node-polyfills: 0.2.1
       rollup-plugin-scss: 3.0.0
       rollup-plugin-visualizer: 5.5.2
-      sass: 1.56.2
+      sass: 1.57.1
       start-server-and-test: 1.14.0
       ts-jest: 29.0.5_5u54m5jjvyiiexxgj6xhzjso2y
       typescript: 4.8.4
@@ -20574,16 +20574,6 @@ packages:
 
   /sass/1.54.4:
     resolution: {integrity: sha512-3tmF16yvnBwtlPrNBHw/H907j8MlOX8aTBnlNX1yrKx24RKcJGPyLhFUwkoKBKesR3unP93/2z14Ll8NicwQUA==}
-    engines: {node: '>=12.0.0'}
-    hasBin: true
-    dependencies:
-      chokidar: 3.5.3
-      immutable: 4.1.0
-      source-map-js: 1.0.2
-    dev: true
-
-  /sass/1.56.2:
-    resolution: {integrity: sha512-ciEJhnyCRwzlBCB+h5cCPM6ie/6f8HrhZMQOf5vlU60Y1bI1rx5Zb0vlDZvaycHsg/MqFfF1Eq2eokAa32iw8w==}
     engines: {node: '>=12.0.0'}
     hasBin: true
     dependencies:
