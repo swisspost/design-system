@@ -288,7 +288,7 @@ importers:
       babel-loader: 9.1.2
       css-loader: 5.2.7
       cypress: 12.4.1
-      cypress-each: 1.10.0
+      cypress-each: 1.13.1
       cypress-storybook: 0.5.1
       html-react-parser: 3.0.8
       react: 18.2.0
@@ -328,7 +328,7 @@ importers:
       babel-loader: 9.1.2_@babel+core@7.20.12
       css-loader: 5.2.7
       cypress: 12.4.1
-      cypress-each: 1.10.0
+      cypress-each: 1.13.1
       cypress-storybook: 0.5.1_cypress@12.4.1
       react-markdown: 8.0.5_3stiutgnnbnfnf3uowm5cip22i
       rehype-raw: 6.1.1
@@ -9366,7 +9366,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -10477,8 +10477,8 @@ packages:
     resolution: {integrity: sha512-NJGVKPS81XejHcLhaLJS7plab0fK3slPh11mESeeDq2W4ZI5kUKK/LRRdVDvjJseojbPB7ZwjnyOybg3Igea/A==}
     dev: true
 
-  /cypress-each/1.10.0:
-    resolution: {integrity: sha512-Y9ttXrWTd1MDut1nnukxJ/jZCjyi4Ns+dF3drxdpmuAohOn6+Xu2JxHI3Xttbm6/3z7fa4lV2uQTn4f6zDsROw==}
+  /cypress-each/1.13.1:
+    resolution: {integrity: sha512-YbVfrjk4gWTDLOV8YAb3tA6ovQiyl90zvl4M7aLADD0aUBei6nOSXI7xu6LVgLlVcLkM4jRSS2jBIiifauGgpQ==}
     dev: true
 
   /cypress-storybook/0.5.1_cypress@12.4.1:
@@ -19199,17 +19199,6 @@ packages:
         optional: true
     dev: true
 
-  /promise-inflight/1.0.1_bluebird@3.7.2:
-    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
-    dependencies:
-      bluebird: 3.7.2
-    dev: true
-
   /promise-retry/2.0.1:
     resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
     engines: {node: '>=10'}
@@ -22652,7 +22641,7 @@ packages:
     dev: true
 
   /verror/1.10.0:
-    resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
+    resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
     engines: {'0': node >=0.6.0}
     dependencies:
       assert-plus: 1.0.0
