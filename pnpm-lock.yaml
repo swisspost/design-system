@@ -345,7 +345,7 @@ importers:
       '@sindresorhus/slugify': 2.1.1
       '@stencil/core': 3.0.0
       '@stencil/eslint-plugin': 0.4.0
-      '@stencil/sass': 2.0.1
+      '@stencil/sass': 2.0.3
       '@stencil/store': 1.5.0
       '@swisspost/design-system-styles': '5.2'
       '@types/iframe-resizer': 3.5.9
@@ -385,7 +385,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.12
       '@stencil/eslint-plugin': 0.4.0_rsq2c6w7jokp7dy6oiiu7atw5q
-      '@stencil/sass': 2.0.1_@stencil+core@3.0.0
+      '@stencil/sass': 2.0.3_@stencil+core@3.0.0
       '@swisspost/design-system-styles': link:../styles/dist
       '@types/iframe-resizer': 3.5.9
       '@types/jest': 27.5.1
@@ -5327,21 +5327,12 @@ packages:
       typescript: 4.8.4
     dev: true
 
-  /@stencil/sass/2.0.1_@stencil+core@3.0.0:
-    resolution: {integrity: sha512-66ZsqBIcK7B8Awjh7RfMVC6Q1OQPlQDNHqqBfMccH9iZiuUunDL9rzrIZAoUWHjjrxWocMMQR5YieTQSreC9DQ==}
-    peerDependencies:
-      '@stencil/core': '>=2.0.0'
-    dependencies:
-      '@stencil/core': 3.0.0
-    dev: true
-
   /@stencil/sass/2.0.3_@stencil+core@3.0.0:
     resolution: {integrity: sha512-ypS+0f6bJH2qXqrNAHirlYOWFax+qKKOIePLs7cu4LfKFr4ZVJSGRFBdgaeRrZMUhJWnhjV6io2uDldhrQhnMg==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0'
     dependencies:
       '@stencil/core': 3.0.0
-    dev: false
 
   /@stencil/store/1.5.0_@stencil+core@3.0.0:
     resolution: {integrity: sha512-fe5fCF6dgVlDM1iLRkkJUyUh0Tfx305asVGgMAJjIs7Q+x/b1pGgTLROm9Ibr53PZuFwr5Kg+4h9p4FLbYqHgA==}
