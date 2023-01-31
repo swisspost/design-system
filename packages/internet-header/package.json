@@ -47,7 +47,7 @@
   "devDependencies": {
     "@babel/core": "7.20.12",
     "@stencil/eslint-plugin": "0.4.0",
-    "@stencil/sass": "2.0.1",
+    "@stencil/sass": "2.0.3",
     "@swisspost/design-system-styles": "5.2",
     "@types/iframe-resizer": "3.5.9",
     "@types/jest": "27.5.2",
