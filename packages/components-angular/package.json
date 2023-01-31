@@ -23,7 +23,7 @@
     "@popperjs/core": "2.11.6",
     "@swisspost/design-system-styles": "workspace:5.2.0",
     "rxjs": "7.8.0",
-    "tslib": "2.4.1",
+    "tslib": "2.5.0",
     "watch": "1.0.2",
     "zone.js": "0.12.0"
   },
