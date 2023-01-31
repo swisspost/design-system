@@ -32,7 +32,7 @@
     "jest:watch": "jest --watch"
   },
   "dependencies": {
-    "@sindresorhus/slugify": "2.1.1",
+    "@sindresorhus/slugify": "2.2.0",
     "@stencil/core": "3.0.0",
     "@stencil/store": "1.5.0",
     "body-scroll-lock": "4.0.0-beta.0",
@@ -45,10 +45,10 @@
   "devDependencies": {
     "@babel/core": "7.20.12",
     "@stencil/eslint-plugin": "0.4.0",
-    "@stencil/sass": "2.0.1",
+    "@stencil/sass": "2.0.3",
     "@swisspost/design-system-styles": "5.2",
     "@types/iframe-resizer": "3.5.9",
-    "@types/jest": "27.5.1",
+    "@types/jest": "27.5.2",
     "@types/jquery": "3.5.16",
     "@types/node": "18.11.18",
     "@types/throttle-debounce": "2.1.0",
