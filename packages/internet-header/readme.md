@@ -7,7 +7,7 @@ The official Swiss Post Internet Header implementation, built with [Stencil JS](
 ## Documentation
 The header docs are part of the storybook docs for the Design System.
 
-[Internet Header Documentation](https://styles.design-system.post.ch/?path=/story/components-internet-header-getting-started--page)
+[Internet Header Documentation](https://next.design-system.post.ch/?path=/story/components-internet-header-getting-started--page)
 
 ## Installation
 There are two possibilities to install the header on a page.
