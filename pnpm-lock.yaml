@@ -299,7 +299,7 @@ importers:
       sass-loader: 10.4.1
       start-server-and-test: 1.15.3
       storybook-dark-mode: 2.0.5
-      style-loader: 2.0.0
+      style-loader: 3.3.1
       typescript: 4.6.4
     dependencies:
       '@swisspost/design-system-components': link:../components
@@ -318,7 +318,7 @@ importers:
       '@storybook/addon-essentials': 6.5.16_fp34m7vaa2sb7lyfkvcz52orxq
       '@storybook/addons': 6.5.16_biqbaboplfbrettd7655fr4n2y
       '@storybook/client-api': 6.5.16_biqbaboplfbrettd7655fr4n2y
-      '@storybook/preset-scss': 1.0.3_7yyjlakj7kidaoj2rqhkbn5gom
+      '@storybook/preset-scss': 1.0.3_hvuqgckzcfbwhygi56wyv2hske
       '@storybook/react': 6.5.16_fp34m7vaa2sb7lyfkvcz52orxq
       '@storybook/testing-library': 0.0.13_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 6.5.16_biqbaboplfbrettd7655fr4n2y
@@ -336,7 +336,7 @@ importers:
       sass-loader: 10.4.1_sass@1.57.1
       start-server-and-test: 1.15.3
       storybook-dark-mode: 2.0.5_biqbaboplfbrettd7655fr4n2y
-      style-loader: 2.0.0
+      style-loader: 3.3.1
       typescript: 4.6.4
 
   packages/internet-header:
@@ -958,7 +958,7 @@ packages:
       '@angular/core':
         optional: true
     dependencies:
-      '@angular/core': 14.2.12
+      '@angular/core': 14.2.12_rxjs@7.8.0+zone.js@0.12.0
       tslib: 2.5.0
 
   /@angular/core/14.2.12:
@@ -969,6 +969,7 @@ packages:
       zone.js: ~0.11.4 || ~0.12.0
     dependencies:
       tslib: 2.5.0
+    dev: false
 
   /@angular/core/14.2.12_rxjs@7.8.0+zone.js@0.12.0:
     resolution: {integrity: sha512-sGQxU5u4uawwvJa6jOTmGoisJiQ5HIN/RoBw99CmoqZIVyUSg9IRJJC1KVdH8gbpWBNLkElZv21lwJTL/msWyg==}
@@ -6546,7 +6547,7 @@ packages:
       core-js: 3.27.2
     dev: true
 
-  /@storybook/preset-scss/1.0.3_7yyjlakj7kidaoj2rqhkbn5gom:
+  /@storybook/preset-scss/1.0.3_hvuqgckzcfbwhygi56wyv2hske:
     resolution: {integrity: sha512-o9Iz6wxPeNENrQa2mKlsDKynBfqU2uWaRP80HeWp4TkGgf7/x3DVF2O7yi9N0x/PI1qzzTTpxlQ90D62XmpiTw==}
     peerDependencies:
       css-loader: '*'
@@ -6555,7 +6556,7 @@ packages:
     dependencies:
       css-loader: 5.2.7
       sass-loader: 10.4.1_sass@1.57.1
-      style-loader: 2.0.0
+      style-loader: 3.3.1
     dev: true
 
   /@storybook/preview-web/6.5.16_biqbaboplfbrettd7655fr4n2y:
@@ -9365,7 +9366,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -19198,6 +19199,17 @@ packages:
         optional: true
     dev: true
 
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
+    dev: true
+
   /promise-retry/2.0.1:
     resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
     engines: {node: '>=10'}
@@ -21332,14 +21344,11 @@ packages:
       webpack: 4.46.0
     dev: true
 
-  /style-loader/2.0.0:
-    resolution: {integrity: sha512-Z0gYUJmzZ6ZdRUqpg1r8GsaFKypE+3xAzuFeMuoHgjc9KZv3wMyCRjQIWEbhoFSq7+7yoHXySDJyyWQaPajeiQ==}
-    engines: {node: '>= 10.13.0'}
+  /style-loader/3.3.1:
+    resolution: {integrity: sha512-GPcQ+LDJbrcxHORTRes6Jy2sfvK2kS6hpSfI/fXhPt+spVzxF6LJ1dHLN9zIGmVaaP044YKaIatFaufENRiDoQ==}
+    engines: {node: '>= 12.13.0'}
     peerDependencies:
-      webpack: ^4.0.0 || ^5.0.0
-    dependencies:
-      loader-utils: 2.0.4
-      schema-utils: 3.1.1
+      webpack: ^5.0.0
     dev: true
 
   /style-search/0.1.0:
