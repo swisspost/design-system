@@ -296,7 +296,7 @@ importers:
       react-markdown: 8.0.5
       rehype-raw: ^6.1.1
       sass: 1.57.1
-      sass-loader: 10.4.1
+      sass-loader: 13.2.0
       start-server-and-test: 1.15.3
       storybook-dark-mode: 2.0.5
       style-loader: 2.0.0
@@ -318,7 +318,7 @@ importers:
       '@storybook/addon-essentials': 6.5.16_fp34m7vaa2sb7lyfkvcz52orxq
       '@storybook/addons': 6.5.16_biqbaboplfbrettd7655fr4n2y
       '@storybook/client-api': 6.5.16_biqbaboplfbrettd7655fr4n2y
-      '@storybook/preset-scss': 1.0.3_7yyjlakj7kidaoj2rqhkbn5gom
+      '@storybook/preset-scss': 1.0.3_5zouuyto4jtcsaukf5xgio6psi
       '@storybook/react': 6.5.16_fp34m7vaa2sb7lyfkvcz52orxq
       '@storybook/testing-library': 0.0.13_biqbaboplfbrettd7655fr4n2y
       '@storybook/theming': 6.5.16_biqbaboplfbrettd7655fr4n2y
@@ -333,7 +333,7 @@ importers:
       react-markdown: 8.0.5_3stiutgnnbnfnf3uowm5cip22i
       rehype-raw: 6.1.1
       sass: 1.57.1
-      sass-loader: 10.4.1_sass@1.57.1
+      sass-loader: 13.2.0_sass@1.57.1
       start-server-and-test: 1.15.3
       storybook-dark-mode: 2.0.5_biqbaboplfbrettd7655fr4n2y
       style-loader: 2.0.0
@@ -958,7 +958,7 @@ packages:
       '@angular/core':
         optional: true
     dependencies:
-      '@angular/core': 14.2.12
+      '@angular/core': 14.2.12_rxjs@7.8.0+zone.js@0.12.0
       tslib: 2.5.0
 
   /@angular/core/14.2.12:
@@ -969,6 +969,7 @@ packages:
       zone.js: ~0.11.4 || ~0.12.0
     dependencies:
       tslib: 2.5.0
+    dev: false
 
   /@angular/core/14.2.12_rxjs@7.8.0+zone.js@0.12.0:
     resolution: {integrity: sha512-sGQxU5u4uawwvJa6jOTmGoisJiQ5HIN/RoBw99CmoqZIVyUSg9IRJJC1KVdH8gbpWBNLkElZv21lwJTL/msWyg==}
@@ -6546,7 +6547,7 @@ packages:
       core-js: 3.27.2
     dev: true
 
-  /@storybook/preset-scss/1.0.3_7yyjlakj7kidaoj2rqhkbn5gom:
+  /@storybook/preset-scss/1.0.3_5zouuyto4jtcsaukf5xgio6psi:
     resolution: {integrity: sha512-o9Iz6wxPeNENrQa2mKlsDKynBfqU2uWaRP80HeWp4TkGgf7/x3DVF2O7yi9N0x/PI1qzzTTpxlQ90D62XmpiTw==}
     peerDependencies:
       css-loader: '*'
@@ -6554,7 +6555,7 @@ packages:
       style-loader: '*'
     dependencies:
       css-loader: 5.2.7
-      sass-loader: 10.4.1_sass@1.57.1
+      sass-loader: 13.2.0_sass@1.57.1
       style-loader: 2.0.0
     dev: true
 
@@ -9365,7 +9366,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -19198,6 +19199,17 @@ packages:
         optional: true
     dev: true
 
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
+    dev: true
+
   /promise-retry/2.0.1:
     resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
     engines: {node: '>=10'}
@@ -20332,30 +20344,6 @@ packages:
       - supports-color
     dev: true
 
-  /sass-loader/10.4.1_sass@1.57.1:
-    resolution: {integrity: sha512-aX/iJZTTpNUNx/OSYzo2KsjIUQHqvWsAhhUijFjAPdZTEhstjZI9zTNvkTTwsx+uNUJqUwOw5gacxQMx4hJxGQ==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      fibers: '>= 3.1.0'
-      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
-      sass: ^1.3.0
-      webpack: ^4.36.0 || ^5.0.0
-    peerDependenciesMeta:
-      fibers:
-        optional: true
-      node-sass:
-        optional: true
-      sass:
-        optional: true
-    dependencies:
-      klona: 2.0.5
-      loader-utils: 2.0.4
-      neo-async: 2.6.2
-      sass: 1.57.1
-      schema-utils: 3.1.1
-      semver: 7.3.7
-    dev: true
-
   /sass-loader/13.0.2_sass@1.54.4+webpack@5.74.0:
     resolution: {integrity: sha512-BbiqbVmbfJaWVeOOAu2o7DhYWtcNmTfvroVgFXa6k2hHheMxNAeDHLNoDy/Q5aoaVlz0LH+MbMktKwm9vN/j8Q==}
     engines: {node: '>= 14.15.0'}
@@ -20379,6 +20367,30 @@ packages:
       neo-async: 2.6.2
       sass: 1.54.4
       webpack: 5.74.0_esbuild@0.15.5
+    dev: true
+
+  /sass-loader/13.2.0_sass@1.57.1:
+    resolution: {integrity: sha512-JWEp48djQA4nbZxmgC02/Wh0eroSUutulROUusYJO9P9zltRbNN80JCBHqRGzjd4cmZCa/r88xgfkjGD0TXsHg==}
+    engines: {node: '>= 14.15.0'}
+    peerDependencies:
+      fibers: '>= 3.1.0'
+      node-sass: ^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0
+      sass: ^1.3.0
+      sass-embedded: '*'
+      webpack: ^5.0.0
+    peerDependenciesMeta:
+      fibers:
+        optional: true
+      node-sass:
+        optional: true
+      sass:
+        optional: true
+      sass-embedded:
+        optional: true
+    dependencies:
+      klona: 2.0.5
+      neo-async: 2.6.2
+      sass: 1.57.1
     dev: true
 
   /sass/1.54.4:
