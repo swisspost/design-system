@@ -1,5 +1,17 @@
 # @swisspost/design-system-demo
 
+## 5.2.0
+
+### Minor Changes
+
+- Added two new icons number 2307 (roll container) and 2308 (collection container) (by [@gfellerph](https://github.com/gfellerph) with [#977](https://github.com/swisspost/design-system/pull/977))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.3.0
+  - @swisspost/design-system-intranet-header@3.0.6
+
 ## 5.1.5
 
 ### Patch Changes
