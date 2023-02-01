@@ -1,9 +1,19 @@
+const EMPTY_VALUES = [undefined, null, ''];
+
 export function checkType(value: unknown, type: string, errorMessage: string) {
-  if (typeof value !== type) throw new Error(errorMessage);
+  const lowerCaseType = type.toLowerCase();
+  const typeIsArray = lowerCaseType === 'array';
+  const valueIsArray = Array.isArray(value);
+  
+  if (typeIsArray || valueIsArray) {
+    if ((typeIsArray && !valueIsArray) || (!typeIsArray && valueIsArray)) throw new Error(errorMessage);
+  } else {
+    if (typeof value !== lowerCaseType) throw new Error(errorMessage);
+  }
 }
 
 export function checkEmptyOrType(value: unknown, type: string, errorMessage: string) {
-  if (value !== undefined) checkType(value, type, errorMessage);
+  if (!EMPTY_VALUES.some(v => v === value)) checkType(value, type, errorMessage);
 }
 
 export function checkOneOf<T>(value: T, possibleValues: T[], errorMessage: string) {
@@ -11,5 +21,5 @@ export function checkOneOf<T>(value: T, possibleValues: T[], errorMessage: strin
 }
 
 export function checkEmptyOrOneOf<T>(value: T, possibleValues: T[], errorMessage: string) {
-  if (value !== undefined) checkOneOf(value, possibleValues, errorMessage);
+  if (!EMPTY_VALUES.some(v => v === value)) checkOneOf(value, possibleValues, errorMessage);
 }
