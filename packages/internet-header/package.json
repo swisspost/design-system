@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "1.4.2-beta.0",
+  "version": "1.5.0-beta.2",
   "description": "Swiss Post Internet Header",
   "license": "Apache-2.0",
   "main": "loader/index.cjs.js",
@@ -12,9 +12,11 @@
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "loader/cdn.js",
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist/",
-    "src",
     "loader/"
   ],
   "scripts": {
@@ -34,11 +36,11 @@
   "dependencies": {
     "@sindresorhus/slugify": "2.2.0",
     "@stencil/core": "3.0.0",
-    "@stencil/store": "1.5.0",
+    "@stencil/store": "2.0.3",
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.3.2",
     "jquery": "3.6.3",
-    "tabbable": "5.3.3",
+    "tabbable": "6.0.1",
     "throttle-debounce": "3.0.1",
     "url-polyfill": "1.1.12"
   },

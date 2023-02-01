@@ -10,7 +10,7 @@ import './sockjs-client';
 import 'url-polyfill';
 import jQuery from 'jquery/dist/jquery.slim';
 
-const vertx = vertx || {};
+const vertx = window.vertx || {};
 !(function (factory) {
   factory(SockJS);
 })(function (SockJS) {
