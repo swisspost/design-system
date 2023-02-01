@@ -63,7 +63,7 @@
     "rollup-plugin-node-polyfills": "0.2.1",
     "rollup-plugin-scss": "4.0.0",
     "rollup-plugin-visualizer": "5.9.0",
-    "sass": "1.57.1",
+    "sass": "1.58.0",
     "start-server-and-test": "1.15.3",
     "ts-jest": "27.1.5",
     "typescript": "4.8.4"

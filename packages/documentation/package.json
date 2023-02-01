@@ -55,7 +55,7 @@
     "cypress-storybook": "0.5.1",
     "react-markdown": "8.0.5",
     "rehype-raw": "^6.1.1",
-    "sass": "1.57.1",
+    "sass": "1.58.0",
     "sass-loader": "10.4.1",
     "start-server-and-test": "1.15.3",
     "storybook-dark-mode": "2.0.5",
