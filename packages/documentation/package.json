@@ -49,7 +49,7 @@
     "@types/react": "18.0.27",
     "@types/react-dom": "18.0.10",
     "babel-loader": "9.1.2",
-    "css-loader": "5.2.7",
+    "css-loader": "6.7.3",
     "cypress": "12.4.1",
     "cypress-each": "1.13.1",
     "cypress-storybook": "0.5.1",
