@@ -34,7 +34,7 @@ jobs:
 
       - name: Publish documentation to netlify
         env:
-          NETLIFY_SITE_ID: ${{ secrets.STYLES_NETLIFY_SITE_ID }}
+          NETLIFY_SITE_ID: ${{ secrets.NEXT_NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           netlify link --id $NETLIFY_SITE_ID
