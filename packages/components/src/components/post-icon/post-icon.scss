@@ -1,3 +1,14 @@
+@use 'sass:map';
+
+$post-icon-animations: (
+  'cylon': icon-animation-cylon .75s ease-in-out infinite alternate,
+  'cylon-vertical': icon-animation-cylon-vertical .75s ease-in-out infinite alternate,
+  'spin': icon-animation-spin 2s linear infinite normal,
+  'spin-reverse': icon-animation-spin 2s linear infinite reverse,
+  'fade': icon-animation-fade .75s ease-in-out infinite alternate,
+  'throb': icon-animation-throb .75s ease-in-out infinite alternate
+);
+
 :host {
   display: inline-block;
   width: 1em;
@@ -38,39 +49,11 @@ svg {
   }
 }
 
-:host([animation="cylon"]) {
-  svg {
-    animation: icon-animation-cylon 750ms ease-in-out infinite alternate;
-  }
-}
-
-:host([animation="cylon-vertical"]) {
-  svg {
-    animation: icon-animation-cylon-vertical .75s ease-in-out infinite alternate;
-  }
-}
-
-:host([animation="spin"]) {
-  svg {
-    animation: icon-animation-spin 2s linear infinite normal;
-  }
-}
-
-:host([animation="spin-reverse"]) {
-  svg {
-    animation: icon-animation-spin 2s linear infinite reverse;
-  }
-}
-
-:host([animation="fade"]) {
-  svg {
-    animation: icon-animation-fade .75s ease-in-out infinite alternate;
-  }
-}
-
-:host([animation="throb"]) {
-  svg {
-    animation: icon-animation-throb .75s ease-in-out infinite alternate;
+@each $key, $value in $post-icon-animations {
+  :host([animation="#{$key}"]) {
+    svg {
+      animation: $value;
+    }
   }
 }
 

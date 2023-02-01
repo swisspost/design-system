@@ -1,6 +1,15 @@
-import { Component, Host, h, Prop, State } from '@stencil/core';
+import { Component, Host, h, Prop, State, Watch } from '@stencil/core';
+import { checkType, checkEmptyOrType, checkEmptyOrOneOf } from '../../utils';
 
 const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
+const ANIMATION_KEYS = [
+  'cylon',
+  'cylon-vertical',
+  'spin',
+  'spin-reverse',
+  'fade',
+  'throb'
+];
 
 /**
  * @class PostIcon - representing a stencil component
@@ -50,6 +59,41 @@ export class PostIcon {
   @State() svgSource: string = '<svg viewBox="0 0 16 16"></svg>';
   @State() svgOutput: string;
 
+  @Watch('name')
+  validateName(newValue = this.name) {
+    checkType(newValue, 'string', 'The post-icon "name" prop should be a string.');
+  }
+
+  @Watch('base')
+  validateBase(newValue = this.base) {
+    checkEmptyOrType(newValue, 'string', 'The post-icon "base" prop should be a string.');
+  }
+
+  @Watch('flipH')
+  validateFlipH(newValue = this.flipH) {
+    checkEmptyOrType(newValue, 'boolean', 'The post-icon "flipH" prop should be a boolean.');
+  }
+
+  @Watch('flipV')
+  validateFlipV(newValue = this.flipV) {
+    checkEmptyOrType(newValue, 'boolean', 'The post-icon "flipV" prop should be a boolean.');
+  }
+
+  @Watch('scale')
+  validateScale(newValue = this.scale) {
+    checkEmptyOrType(newValue, 'number', 'The post-icon "scale" prop should be a number.');
+  }
+
+  @Watch('rotate')
+  validateRotate(newValue = this.rotate) {
+    checkEmptyOrType(newValue, 'number', 'The post-icon "rotate" prop should be a number.');
+  }
+
+  @Watch('animation')
+  validateAnimation(newValue = this.animation) {
+    if (newValue !== undefined) checkEmptyOrOneOf(newValue, ANIMATION_KEYS, `The post-icon "animation" prop requires one of the following values: ${ANIMATION_KEYS.join(', ')}.`);
+  }
+
   connectedCallback() {
     // Construct icon path from different possible sources
     let basePath: string;
@@ -70,6 +114,14 @@ export class PostIcon {
   }
 
   componentWillLoad() {
+    this.validateName();
+    this.validateBase();
+    this.validateFlipH();
+    this.validateFlipV();
+    this.validateScale();
+    this.validateRotate();
+    this.validateAnimation();
+
     this.fetchSVG();
   }
 
