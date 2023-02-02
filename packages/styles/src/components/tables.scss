@@ -3,14 +3,12 @@
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/tables' as bt;
 
-.table > thead > * > * {
-  border-bottom-width: 0;
-}
+.table {
+  > :not(:first-child) {
+    border-width: 0;
+  }
 
-.table-light {
-  border-color: color.$white;
-}
-
-.table > :not(:first-child) {
-  border-top: 0;
+  &.table-striped > :not(caption) > * > * {
+    border-bottom-width: 0;
+  }
 }
