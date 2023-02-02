@@ -34,10 +34,10 @@
 
   @include mixins.min(lg) {
     font-size: functions.px-to-rem(16px);
+    margin: 0 0.75rem;
   }
 
   @include mixins.min(xl) {
-    margin: 0 0.75rem;
     font-size: functions.px-to-rem(18px);
   }
 

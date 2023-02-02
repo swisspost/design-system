@@ -364,7 +364,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                           <li key={recommendation.href}>
                             <a
                               class="nav-link search-recommendation"
-                              href={recommendation.href}
+                              href={new URL(recommendation.href, 'https://post.ch').href}
                               data-suggestion-text={recommendation.label}
                               onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
                             >

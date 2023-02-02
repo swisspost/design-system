@@ -32,7 +32,7 @@ Toggle the dropdown and optionally force an open/closed state
 
 Type: `Promise<boolean>`
 
-
+Boolean indicating open state of the component
 
 
 ## Dependencies
