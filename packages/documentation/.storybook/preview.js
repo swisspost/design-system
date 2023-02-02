@@ -1,15 +1,19 @@
-import { extractArgTypes, extractComponentDescription, setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
-import docJson from '@swisspost/design-system-components/dist/docs.json';
-import * as Components from '@swisspost/design-system-components-react';
-import beautify from 'js-beautify';
-import React from 'react';
-import { renderToString } from 'react-dom/server';
-import JsxParser from 'react-jsx-parser';
+import JsxParser from 'react-jsx-parser'
+import { renderToStaticMarkup } from 'react-dom/server';
+import * as prettier from 'prettier';
+import * as htmlParser from 'prettier/parser-html';
+
 import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';
-import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
-import 'cypress-storybook/react';
 import './preview.scss';
+
+import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
+import { extractArgTypes, extractComponentDescription, setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
+import docJson from '@swisspost/design-system-components/dist/docs.json';
+
+import React from 'react';
+import 'cypress-storybook/react';
+import * as Components from '@swisspost/design-system-components-react';
 
 if (docJson) setStencilDocJson(docJson);
 defineInternetHeader();
@@ -17,6 +21,26 @@ defineInternetHeader();
 Object.entries(Components).forEach(([name, component]) => {
   component.displayName = name.replace(/\B([A-Z])/g, '-$1').toLowerCase();
 });
+
+const PRETTIER_OPTIONS = {
+  parser: 'html',
+  plugins: [htmlParser],
+  printWidth: 100,
+  tabWidth: 2,
+  useTabs: false,
+  semi: true,
+  singleQuote: false,
+  quoteProps: 'consistent',
+  jsxSingleQuote: false,
+  trailingComma: 'es5',
+  bracketSpacing: true,
+  bracketSameLine: false,
+  arrowParens: "always",
+  htmlWhitespaceSensitivity: 'css',
+  endOfLine: 'lf',
+  embeddedLanguageFormatting: 'off',
+  singleAttributePerLine: false
+};
 
 export const parameters = {
   previewTabs: {
@@ -82,18 +106,12 @@ export const parameters = {
       excludeDecorators: true,
     },
     transformSource(snippet) {
-      const reactElement = <JsxParser jsx={snippet} renderInWrapper={false}/>;
-      const htmlString = renderToString(reactElement);
+      const reactElements = <JsxParser jsx={snippet} renderInWrapper={false}/>;
+      const htmlSnippet = renderToStaticMarkup(reactElements);
+      const formattedSnippet = prettier.format(htmlSnippet, PRETTIER_OPTIONS);
 
-      return beautify.html(
-        htmlString,
-        {
-          inline: [],
-          indent_size: 2,
-          max_preserve_newlines: 1,
-          wrap_attributes: 'force-expand-multiline',
-        },
-      );
+      // ensure the string is not empty ('') because the Source component breaks if it is
+      return formattedSnippet || ' ';
     },
   },
   actions: { argTypesRegex: '^on[A-Z].*' },
