@@ -1,5 +1,11 @@
 # @swisspost/internet-header
 
+## 1.5.1
+
+### Patch Changes
+
+- Fixed a missing margin on the lg viewport for the main navigation (by [@gfellerph](https://github.com/gfellerph) with [#1058](https://github.com/swisspost/design-system/pull/1058))
+
 ## 1.5.0
 
 ### Minor Changes
