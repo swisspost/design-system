@@ -36,6 +36,7 @@
         header.addEventListener('headerLoaded', e => console.log('header loaded'));
         await customElements.whenDefined(header.tagName.toLocaleLowerCase());
         console.log('header defined');
+        header.activeRoute = 'https://int.post.ch/de/kundencenter/kundencenter';
         //await header.componentOnReady();
         console.log('header ready');
         await sleep(2000);
