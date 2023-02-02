@@ -958,7 +958,7 @@ packages:
       '@angular/core':
         optional: true
     dependencies:
-      '@angular/core': 14.2.12
+      '@angular/core': 14.2.12_rxjs@7.8.0+zone.js@0.12.0
       tslib: 2.5.0
 
   /@angular/core/14.2.12:
@@ -969,6 +969,7 @@ packages:
       zone.js: ~0.11.4 || ~0.12.0
     dependencies:
       tslib: 2.5.0
+    dev: false
 
   /@angular/core/14.2.12_rxjs@7.8.0+zone.js@0.12.0:
     resolution: {integrity: sha512-sGQxU5u4uawwvJa6jOTmGoisJiQ5HIN/RoBw99CmoqZIVyUSg9IRJJC1KVdH8gbpWBNLkElZv21lwJTL/msWyg==}
