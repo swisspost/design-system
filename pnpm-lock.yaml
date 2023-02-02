@@ -287,7 +287,7 @@ importers:
       '@types/react-dom': 18.0.10
       babel-loader: 9.1.2
       css-loader: 5.2.7
-      cypress: 12.4.1
+      cypress: 12.5.1
       cypress-each: 1.13.1
       cypress-storybook: 0.5.1
       html-react-parser: 3.0.8
@@ -311,7 +311,7 @@ importers:
     devDependencies:
       '@babel/core': 7.20.12
       '@percy/cli': 1.17.0
-      '@percy/cypress': 3.1.2_cypress@12.4.1
+      '@percy/cypress': 3.1.2_cypress@12.5.1
       '@pxtrn/storybook-addon-docs-stencil': 6.4.1_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-a11y': 6.5.15_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-docs': 6.5.16_fp34m7vaa2sb7lyfkvcz52orxq
@@ -327,9 +327,9 @@ importers:
       '@types/react-dom': 18.0.10
       babel-loader: 9.1.2_@babel+core@7.20.12
       css-loader: 5.2.7
-      cypress: 12.4.1
+      cypress: 12.5.1
       cypress-each: 1.13.1
-      cypress-storybook: 0.5.1_cypress@12.4.1
+      cypress-storybook: 0.5.1_cypress@12.5.1
       react-markdown: 8.0.5_3stiutgnnbnfnf3uowm5cip22i
       rehype-raw: 6.1.1
       sass: 1.57.1
@@ -958,7 +958,7 @@ packages:
       '@angular/core':
         optional: true
     dependencies:
-      '@angular/core': 14.2.12
+      '@angular/core': 14.2.12_rxjs@7.8.0+zone.js@0.12.0
       tslib: 2.5.0
 
   /@angular/core/14.2.12:
@@ -969,6 +969,7 @@ packages:
       zone.js: ~0.11.4 || ~0.12.0
     dependencies:
       tslib: 2.5.0
+    dev: false
 
   /@angular/core/14.2.12_rxjs@7.8.0+zone.js@0.12.0:
     resolution: {integrity: sha512-sGQxU5u4uawwvJa6jOTmGoisJiQ5HIN/RoBw99CmoqZIVyUSg9IRJJC1KVdH8gbpWBNLkElZv21lwJTL/msWyg==}
@@ -5120,13 +5121,13 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@percy/cypress/3.1.2_cypress@12.4.1:
+  /@percy/cypress/3.1.2_cypress@12.5.1:
     resolution: {integrity: sha512-JXrGDZbqwkzQd2h5T5D7PvqoucNaiMh4ChPp8cLQiEtRuLHta9nf1lEuXH+jnatGL2j+3jJFIHJ0L7XrgVnvQA==}
     peerDependencies:
       cypress: '>=3'
     dependencies:
       '@percy/sdk-utils': 1.10.4
-      cypress: 12.4.1
+      cypress: 12.5.1
     dev: true
 
   /@percy/dom/1.17.0:
@@ -10480,16 +10481,16 @@ packages:
     resolution: {integrity: sha512-YbVfrjk4gWTDLOV8YAb3tA6ovQiyl90zvl4M7aLADD0aUBei6nOSXI7xu6LVgLlVcLkM4jRSS2jBIiifauGgpQ==}
     dev: true
 
-  /cypress-storybook/0.5.1_cypress@12.4.1:
+  /cypress-storybook/0.5.1_cypress@12.5.1:
     resolution: {integrity: sha512-+CNDdcrFD3QRvHrjwpVclFpLtseyXA0NxeB3PDTheisvg/OJjLkP96t0I9R66IkZRYUUE3mLhqZpmpsv59FIIw==}
     peerDependencies:
       cypress: '*'
     dependencies:
-      cypress: 12.4.1
+      cypress: 12.5.1
     dev: true
 
-  /cypress/12.4.1:
-    resolution: {integrity: sha512-IFMPzc1RJ22Fac+YbdqywtpcuqZXqQJh+JqZDXn+A15zG/dw99njfv8f0bTvD+WAHhP118+xWG/VwilkFg1rnA==}
+  /cypress/12.5.1:
+    resolution: {integrity: sha512-ZmCmJ3lsyeOpBfh410m5+AO2CO1AxAzFBt7k6/uVbNcrNZje1vdiwYTpj2ksPKg9mjr9lR6V8tmlDNMvr4H/YQ==}
     engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
     hasBin: true
     requiresBuild: true
@@ -22640,7 +22641,7 @@ packages:
     dev: true
 
   /verror/1.10.0:
-    resolution: {integrity: sha1-OhBcoXBTr1XW4nDB+CiGguGNpAA=}
+    resolution: {integrity: sha512-ZZKSmDAEFOijERBLkmYfJ+vmk3w+7hOLYDNkRCuRuMJGEmqYNCNLyBBFwWKVMhfwaEF3WOd0Zlw86U/WC/+nYw==}
     engines: {'0': node >=0.6.0}
     dependencies:
       assert-plus: 1.0.0
