@@ -7,11 +7,12 @@ import { url } from './utilities/environment';
 import path from 'path';
 import packageJSON from '../package.json';
 
-const outputPath = './public/svg';
+const outputPath = './public/post-icons';
 const reportPath = './public';
 
 const jsonReport: IJSONReport = {
   icons: [],
+  wrongViewBox: [],
   noSVG: [],
   errored: [],
   created: new Date(),
@@ -49,6 +50,7 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
           jsonReport.noSVG.push(icon);
         } else {
           jsonReport.icons.push(icon);
+          if (!svg.includes('viewBox="0 0 32 32"')) jsonReport.wrongViewBox.push(icon);
         }
       } catch (err) {
         console.log(err);
@@ -76,7 +78,7 @@ const downloadAllIcons = async (currentUrl: string): Promise<IJSONReport> => {
   return jsonReport;
 };
 
-const sortIcons = (a: IIcon, b: IIcon) => (a.name < b.name ? -1 : 1);
+const sortIcons = (a: IIcon, b: IIcon) => (a.file.name < b.file.name ? -1 : 1);
 
 export const main = async () => {
   // Setup environment

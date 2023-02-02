@@ -1,10 +1,11 @@
+import path from 'path';
 import { CenshareResultPage, CenshareResult } from '../models/censhare-result-page.model';
 import { IIcon } from '../models/icon.model';
 
 const excludedRanges = [[4000, 7999]];
 
 const isExcluded = (icon: IIcon, filters: number[][]): boolean => {
-  const name = parseInt(icon.name.replace('.svg', '').replace(' ', ''));
+  const name = Number(icon.file.basename);
   let isExcluded = false;
 
   filters.forEach(([min, max]) => {
@@ -25,17 +26,37 @@ export const formatResponse = (response: CenshareResultPage): Array<IIcon> => {
   return response.result
     .reduce((acc: IIcon[], item: CenshareResult) => {
       const svgVariant = item.variants?.find(variant => variant.mime === 'image/svg+xml');
+      
       if (svgVariant) {
+        const fileName = path.basename(svgVariant.name);
+        const fileExt = path.extname(svgVariant.name);
+        const fileBasename = path.basename(fileName, fileExt).replace(/\s/g, ''); // Some of the icons seem to have a whitespace in the name but not in the filepath itself
+
+        const keywords = (item.contentInfo?.freeKeywords ?? '')
+          .replace(/(\n|\r\n)/g, '')
+          .split(', ')
+          .filter(keyword => keyword !== 'Piktogramme "Die Post" ab 2017');
+  
         acc.push({
-          downloadLink: svgVariant.downloadLink,
-          type: item.type,
-          contentInfo: item.contentInfo,
-          typeFilter: item.typeFilter,
-          name: svgVariant.name.replaceAll(' ', ''), // Some icons seem to have a whitespace in the name
+          uuid: item.uuid,
           id: item.id,
-          postInfo: item.postInfo,
-          modifiedAt:
-            typeof item.modifiedAt === 'string' ? new Date(item.modifiedAt) : item.modifiedAt,
+          type: item.type,
+          typeFilter: item.typeFilter,
+          meta: {
+            downloadLink: svgVariant.downloadLink,
+            businessfield: item.postInfo?.businessfield,
+            keywords,
+            year: item.postInfo?.year,
+          },
+          file: {
+            mime: svgVariant.mime,
+            name: fileName,
+            basename: fileBasename,
+            ext: fileExt,
+            size: svgVariant.size,
+          },
+          createdAt: typeof item.createdAt === 'string' ? new Date(item.createdAt) : item.createdAt,
+          modifiedAt: typeof item.modifiedAt === 'string' ? new Date(item.modifiedAt) : item.modifiedAt,
         });
       }
       return acc;

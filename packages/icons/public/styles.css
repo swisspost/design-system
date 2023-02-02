@@ -10,8 +10,8 @@ object,
 picture,
 source {
   display: block;
-  width: 1.5rem;
-  height: 1.5rem;
+  margin: auto;
+  width: 1.5em;
 }
 
 .icons {

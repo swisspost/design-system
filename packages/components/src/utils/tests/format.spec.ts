@@ -1,4 +1,8 @@
-import { format } from './utils';
+/*
+ * Copyright 2022 by Swiss Post, Information Technology
+ */
+
+import { format } from '../format';
 
 describe('format', () => {
   it('returns empty string for no names defined', () => {

@@ -17,8 +17,8 @@ module.exports = {
       },
     },
   ],
-  staticDirs: ['../public'],
-  webpackFinal: config => {
+  staticDirs: ['../public', '../node_modules/@swisspost/design-system-icons/public'],
+  webpackFinal: (config, options) => {
     // allow scss :export statments (scss variables to js)
     config.module.rules.forEach(rule => {
       if (rule.test.toString() === /\.s[ca]ss$/.toString()) {

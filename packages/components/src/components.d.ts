@@ -21,9 +21,38 @@ export namespace Components {
         "middle": string;
         "write": (text: string) => Promise<void>;
     }
+    /**
+     * @class PostIcon - representing a stencil component
+     */
     interface PostIcon {
+        /**
+          * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+         */
+        "animation"?: string;
+        /**
+          * The base path, where the icons are located (must be a public url).
+         */
         "base"?: string;
-        "name": number;
+        /**
+          * When set to `true`, the icon will be flipped horizontally.
+         */
+        "flipH"?: boolean;
+        /**
+          * When set to `true`, the icon will be flipped vertically.
+         */
+        "flipV"?: boolean;
+        /**
+          * The name/id of the icon (e.g. 1000, 1001, ...).
+         */
+        "name": string;
+        /**
+          * The `number` of degree for the css `rotate` transformation.
+         */
+        "rotate"?: number;
+        /**
+          * The `number` for the css `scale` transformation.
+         */
+        "scale"?: number;
     }
 }
 export interface MyComponentCustomEvent<T> extends CustomEvent<T> {
@@ -37,6 +66,9 @@ declare global {
         prototype: HTMLMyComponentElement;
         new (): HTMLMyComponentElement;
     };
+    /**
+     * @class PostIcon - representing a stencil component
+     */
     interface HTMLPostIconElement extends Components.PostIcon, HTMLStencilElement {
     }
     var HTMLPostIconElement: {
@@ -67,9 +99,38 @@ declare namespace LocalJSX {
          */
         "onSomeevent"?: (event: MyComponentCustomEvent<string>) => void;
     }
+    /**
+     * @class PostIcon - representing a stencil component
+     */
     interface PostIcon {
+        /**
+          * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+         */
+        "animation"?: string;
+        /**
+          * The base path, where the icons are located (must be a public url).
+         */
         "base"?: string;
-        "name"?: number;
+        /**
+          * When set to `true`, the icon will be flipped horizontally.
+         */
+        "flipH"?: boolean;
+        /**
+          * When set to `true`, the icon will be flipped vertically.
+         */
+        "flipV"?: boolean;
+        /**
+          * The name/id of the icon (e.g. 1000, 1001, ...).
+         */
+        "name"?: string;
+        /**
+          * The `number` of degree for the css `rotate` transformation.
+         */
+        "rotate"?: number;
+        /**
+          * The `number` for the css `scale` transformation.
+         */
+        "scale"?: number;
     }
     interface IntrinsicElements {
         "my-component": MyComponent;
@@ -81,6 +142,9 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            /**
+             * @class PostIcon - representing a stencil component
+             */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
         }
     }
