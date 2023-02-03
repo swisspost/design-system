@@ -28,7 +28,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   @Input() siteTitle: string = '';
   @Input() languages = 'de,fr,it,en';
   @Input() isPreview = false;
-  @Input() currentUserId = null;
+  @Input() currentUserId: string = '';
   @Input() displayName: string = '';
   @Input() additionalInfo: string = '';
   @Input() hasNavbar = true;
@@ -77,7 +77,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     private zone: NgZone,
     private domSanitizer: DomSanitizer,
   ) {
-    this.router.events.subscribe((e) => {
+    this.router.events.subscribe(e => {
       if (e instanceof NavigationStart) {
         if (this.openedMenuOverflow) {
           this.hideMenuOverflow();
@@ -151,8 +151,8 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       if (!MutationObserver) {
         return;
       }
-      this.navChanges = new MutationObserver((mutationList) => {
-        if (mutationList.some((mutation) => mutation.type === 'childList')) {
+      this.navChanges = new MutationObserver(mutationList => {
+        if (mutationList.some(mutation => mutation.type === 'childList')) {
           // Resize the navbar anytime an nav item is added or removed
           const navItems = Array.from(
             this.navElement.querySelectorAll<HTMLElement>('.nav-item:not(#more)'),
@@ -166,7 +166,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
           const textNodeType = 3;
           if (
             mutationList.some(
-              (mutation) =>
+              mutation =>
                 mutation.type === 'characterData' && mutation.target.nodeType === textNodeType,
             )
           ) {
@@ -316,7 +316,9 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   }
 
   private createSafeAvatarUrl(): SafeUrl {
-    return this.currentUserId === null ? userImage : `https://web.post.ch/UserProfileImage/${encodeURIComponent(this.currentUserId)}.png`;
+    return this.currentUserId === null
+      ? userImage
+      : `https://web.post.ch/UserProfileImage/${encodeURIComponent(this.currentUserId)}.png`;
   }
 
   private updateMoreElementText() {
