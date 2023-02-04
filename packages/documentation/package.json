@@ -60,6 +60,6 @@
     "start-server-and-test": "1.15.3",
     "storybook-dark-mode": "2.0.5",
     "style-loader": "2.0.0",
-    "typescript": "4.6.4"
+    "typescript": "4.9.5"
   }
 }
