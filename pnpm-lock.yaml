@@ -82,7 +82,7 @@ importers:
       karma-jasmine: 5.1.0
       karma-jasmine-html-reporter: 2.0.0
       ng-packagr: 14.2.2
-      rimraf: 4.1.1
+      rimraf: 4.1.2
       rxjs: 7.8.0
       tslib: 2.5.0
       typescript: 4.8.4
@@ -126,7 +126,7 @@ importers:
       karma-jasmine: 5.1.0_karma@6.4.1
       karma-jasmine-html-reporter: 2.0.0_uk6l45dlsjldsnfgnal4othgyq
       ng-packagr: 14.2.2_ze63ujfrawl3ixespycipxsaky
-      rimraf: 4.1.1
+      rimraf: 4.1.2
       typescript: 4.8.4
 
   packages/components-angular/projects/intranet-header:
@@ -193,7 +193,7 @@ importers:
       prettier: 2.8.3
       protractor: 7.0.0
       raw-loader: 4.0.2
-      rimraf: 4.1.1
+      rimraf: 4.1.2
       rxjs: 7.8.0
       sass: 1.57.1
       sockjs: 0.3.24
@@ -257,7 +257,7 @@ importers:
       prettier: 2.8.3
       protractor: 7.0.0
       raw-loader: 4.0.2_webpack@5.75.0
-      rimraf: 4.1.1
+      rimraf: 4.1.2
       sass: 1.57.1
       sockjs: 0.3.24
       ts-node: 10.9.1_vqcafhj4xvr2nzknlrdklk55zm
@@ -361,7 +361,7 @@ importers:
       iframe-resizer: 4.3.2
       jest: 27.5.1
       jquery: 3.6.3
-      rimraf: 3.0.2
+      rimraf: 4.1.2
       rollup-plugin-node-polyfills: 0.2.1
       rollup-plugin-scss: 4.0.0
       rollup-plugin-visualizer: 5.9.0
@@ -397,7 +397,7 @@ importers:
       eslint-plugin-react: 7.32.0
       globby: 13.1.3
       jest: 27.5.1
-      rimraf: 3.0.2
+      rimraf: 4.1.2
       rollup-plugin-node-polyfills: 0.2.1
       rollup-plugin-scss: 4.0.0
       rollup-plugin-visualizer: 5.9.0
@@ -427,7 +427,7 @@ importers:
       postcss: 8.4.21
       postcss-scss: 4.0.6
       prettier: 2.8.3
-      rimraf: 4.1.1
+      rimraf: 4.1.2
       sass: 1.57.1
       stylelint: 14.16.1
       stylelint-config-prettier: 9.0.4
@@ -457,7 +457,7 @@ importers:
       npm-run-all: 4.1.5
       postcss: 8.4.21
       postcss-scss: 4.0.6_postcss@8.4.21
-      rimraf: 4.1.1
+      rimraf: 4.1.2
       sass: 1.57.1
       stylelint: 14.16.1
       stylelint-config-prettier: 9.0.4_stylelint@14.16.1
@@ -20166,8 +20166,8 @@ packages:
       glob: 7.2.3
     dev: true
 
-  /rimraf/4.1.1:
-    resolution: {integrity: sha512-Z4Y81w8atcvaJuJuBB88VpADRH66okZAuEm+Jtaufa+s7rZmIz+Hik2G53kGaNytE7lsfXyWktTmfVz0H9xuDg==}
+  /rimraf/4.1.2:
+    resolution: {integrity: sha512-BlIbgFryTbw3Dz6hyoWFhKk+unCcHMSkZGrTFVAx2WmttdBSonsdtRlwiuTbDqTKr+UlXIUqJVS4QT5tUzGENQ==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
