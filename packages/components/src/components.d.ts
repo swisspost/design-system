@@ -6,65 +6,52 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MyComponent {
+    interface PostCollapsible {
         /**
-          * The first name
+          * If `true`, the element is initially collapsed otherwise it is displayed.
          */
-        "first": string;
+        "collapsed"?: boolean;
         /**
-          * The last name
+          * Defines the hierarchical level of the collapsible header within the headings structure.
          */
-        "last": string;
+        "headingLevel"?: number;
         /**
-          * The middle name
+          * Triggers the collapse programmatically.
          */
-        "middle": string;
-        "write": (text: string) => Promise<void>;
+        "toggle": (open?: boolean) => Promise<boolean>;
     }
-}
-export interface MyComponentCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLMyComponentElement;
 }
 declare global {
-    interface HTMLMyComponentElement extends Components.MyComponent, HTMLStencilElement {
+    interface HTMLPostCollapsibleElement extends Components.PostCollapsible, HTMLStencilElement {
     }
-    var HTMLMyComponentElement: {
-        prototype: HTMLMyComponentElement;
-        new (): HTMLMyComponentElement;
+    var HTMLPostCollapsibleElement: {
+        prototype: HTMLPostCollapsibleElement;
+        new (): HTMLPostCollapsibleElement;
     };
     interface HTMLElementTagNameMap {
-        "my-component": HTMLMyComponentElement;
+        "post-collapsible": HTMLPostCollapsibleElement;
     }
 }
 declare namespace LocalJSX {
-    interface MyComponent {
+    interface PostCollapsible {
         /**
-          * The first name
+          * If `true`, the element is initially collapsed otherwise it is displayed.
          */
-        "first"?: string;
+        "collapsed"?: boolean;
         /**
-          * The last name
+          * Defines the hierarchical level of the collapsible header within the headings structure.
          */
-        "last"?: string;
-        /**
-          * The middle name
-         */
-        "middle"?: string;
-        /**
-          * This event is fired randomly
-         */
-        "onSomeevent"?: (event: MyComponentCustomEvent<string>) => void;
+        "headingLevel"?: number;
     }
     interface IntrinsicElements {
-        "my-component": MyComponent;
+        "post-collapsible": PostCollapsible;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "my-component": LocalJSX.MyComponent & JSXBase.HTMLAttributes<HTMLMyComponentElement>;
+            "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
         }
     }
 }
