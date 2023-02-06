@@ -1,4 +1,4 @@
-import JsxParser from 'react-jsx-parser'
+import JsxParser from 'react-jsx-parser';
 import { renderToStaticMarkup } from 'react-dom/server';
 import * as prettier from 'prettier';
 import * as htmlParser from 'prettier/parser-html';
@@ -7,12 +7,24 @@ import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';
 import './preview.scss';
 
-import { defineCustomElements } from '@swisspost/design-system-components/dist/esm/loader';
-import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
+import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
 import docJson from '@swisspost/design-system-components/dist/docs.json';
+import {
+  extractArgTypes,
+  extractComponentDescription,
+  setStencilDocJson,
+} from '@pxtrn/storybook-addon-docs-stencil';
 
-defineCustomElements();
+import React from 'react';
+import 'cypress-storybook/react';
+import * as Components from '@swisspost/design-system-components-react';
+
 if (docJson) setStencilDocJson(docJson);
+defineInternetHeader();
+
+Object.entries(Components).forEach(([name, component]) => {
+  component.displayName = name.replace(/\B([A-Z])/g, '-$1').toLowerCase();
+});
 
 const PRETTIER_OPTIONS = {
   parser: 'html',
@@ -27,11 +39,11 @@ const PRETTIER_OPTIONS = {
   trailingComma: 'es5',
   bracketSpacing: true,
   bracketSameLine: false,
-  arrowParens: "always",
+  arrowParens: 'always',
   htmlWhitespaceSensitivity: 'css',
   endOfLine: 'lf',
   embeddedLanguageFormatting: 'off',
-  singleAttributePerLine: false
+  singleAttributePerLine: false,
 };
 
 export const parameters = {
@@ -48,7 +60,8 @@ export const parameters = {
       order: [
         'Welcome',
         'Foundations',
-        ['Typography', 'Color', 'Accessibility'],
+        ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
+        'Templates',
         'Components',
         'Utilities',
         'Misc',
@@ -65,6 +78,8 @@ export const parameters = {
     stylePreview: true,
   },
   docs: {
+    extractArgTypes,
+    extractComponentDescription,
     container: DocsLayout,
     components: {
       // Remove default storybook styles from most of things (helps with dark mode in mdx files)
@@ -86,21 +101,12 @@ export const parameters = {
       excludeDecorators: true,
     },
     transformSource(snippet) {
-      const reactElements = <JsxParser jsx={snippet} renderInWrapper={false}/>;
+      const reactElements = <JsxParser jsx={snippet} renderInWrapper={false} />;
       const htmlSnippet = renderToStaticMarkup(reactElements);
-      const formattedSnippet = prettier.format(htmlSnippet, PRETTIER_OPTIONS)
-        // replace "className" attributes with "class"
-        .replace(/className/g, 'class')
-    
-        // replace "htmlFor" attributes with "for"
-        .replace(/htmlFor/g, 'for')
-    
-        // replace react fragments
-        .replace(/<\/?react\.fragment>/g, '');
+      const formattedSnippet = prettier.format(htmlSnippet, PRETTIER_OPTIONS);
 
       // ensure the string is not empty ('') because the Source component breaks if it is
       return formattedSnippet || ' ';
-
     },
   },
   actions: { argTypesRegex: '^on[A-Z].*' },

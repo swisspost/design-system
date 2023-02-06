@@ -6,6 +6,7 @@ module.exports = {
     '@storybook/addon-controls',
     '@storybook/addon-measure',
     '@storybook/addon-viewport',
+    '@storybook/addon-a11y',
     '@pxtrn/storybook-addon-docs-stencil',
     'storybook-dark-mode',
     {

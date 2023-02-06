@@ -18,13 +18,24 @@ The styling package, including theming for [Bootstrap](https://getbootstrap.com/
 npm install @swisspost/design-system-styles
 ```
 
+### Internet Header
+[![npm](https://img.shields.io/npm/v/@swisspost/internet-header)](https://www.npmjs.com/package/@swisspost/internet-header)
+
+[Documentation](https://next.design-system.post.ch/?path=/story/components-internet-header-getting-started--page) · [Changelog](/packages/internet-header/CHANGELOG.md)
+
+The header for client facing applications.
+
+```bash
+npm install @swisspost/internet-header
+```
+
 ### Intranet Header
 
 [![npm](https://img.shields.io/npm/v/@swisspost/design-system-intranet-header)](https://www.npmjs.com/package/@swisspost/design-system-intranet-header)
 
 [Documentation](https://design-system.post.ch/#/post-samples/intranet-layout) · [Changelog](/packages/components-angular/CHANGELOG.md)
 
-The Intranet Header Angular component.
+The Header Angular component for internal usage.
 
 ```bash
 npm install @swisspost/design-system-intranet-header

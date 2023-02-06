@@ -1,8 +1,13 @@
 /*
  * Copyright 2022 by Swiss Post, Information Technology
  */
-
-import { checkType, checkEmptyOrType, checkOneOf, checkEmptyOrOneOf } from '../property-checkers';
+import {
+  checkType,
+  checkBoolean,
+  checkEmptyOrType,
+  checkOneOf,
+  checkEmptyOrOneOf,
+} from '../property-checkers';
 
 describe('property-checkers', () => {
   let errorMessage: string;
@@ -21,7 +26,7 @@ describe('property-checkers', () => {
     beforeEach(() => {
       checker = checkType;
     });
-    
+
     it('should not throw an error if the value is boolean', () => {
       checkerParameters = ['boolean'];
       errorMessage = 'Is not boolean.';
@@ -29,11 +34,11 @@ describe('property-checkers', () => {
         expect(runCheckerWithValue(v)).not.toThrow();
       });
     });
-      
+
     it('should not throw an error if the value is number', () => {
       checkerParameters = ['number'];
       errorMessage = 'Is not number.';
-      [42, 4.2, 4_200, 2.4434634E9, NaN].forEach(v => {
+      [42, 4.2, 4_200, 2.4434634e9, NaN].forEach(v => {
         expect(runCheckerWithValue(v)).not.toThrow();
       });
     });
@@ -69,7 +74,7 @@ describe('property-checkers', () => {
         expect(runCheckerWithValue(v)).not.toThrow();
       });
     });
-    
+
     it('should throw an error if the value is not boolean', () => {
       checkerParameters = ['boolean'];
       errorMessage = 'Is boolean.';
@@ -123,7 +128,7 @@ describe('property-checkers', () => {
     beforeEach(() => {
       checker = checkEmptyOrType;
     });
-    
+
     it('should not throw an error if the value is empty or boolean', () => {
       checkerParameters = ['boolean'];
       errorMessage = 'Is not empty or boolean.';
@@ -131,11 +136,11 @@ describe('property-checkers', () => {
         expect(runCheckerWithValue(v)).not.toThrow();
       });
     });
-      
+
     it('should not throw an error if the value is empty or number', () => {
       checkerParameters = ['number'];
       errorMessage = 'Is not empty or number.';
-      [undefined, null, '', 42, 4.2, 4_200, 2.4434634E9, NaN].forEach(v => {
+      [undefined, null, '', 42, 4.2, 4_200, 2.4434634e9, NaN].forEach(v => {
         expect(runCheckerWithValue(v)).not.toThrow();
       });
     });
@@ -171,7 +176,7 @@ describe('property-checkers', () => {
         expect(runCheckerWithValue(v)).not.toThrow();
       });
     });
-    
+
     it('should throw an error if the value is not empty or boolean', () => {
       checkerParameters = ['boolean'];
       errorMessage = 'Is empty or boolean.';
@@ -253,6 +258,25 @@ describe('property-checkers', () => {
     it('should throw the provided error if the value is not one of the possible values', () => {
       [true, 42, NaN, 'E', [], {}, () => {}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
+      });
+    });
+  });
+
+  describe('booleanChecker', () => {
+    beforeEach(() => {
+      checker = checkBoolean;
+      errorMessage = 'Is not boolean.';
+    });
+
+    it('should not throw an error if the value is a boolean', () => {
+      [true, false].forEach(boolean => {
+        expect(runCheckerWithValue(boolean)).not.toThrow();
+      });
+    });
+
+    it('should throw the provided error if the value is not a boolean', () => {
+      [undefined, null, NaN, 1, 'a', {}, [], () => {}].forEach(notBoolean => {
+        expect(runCheckerWithValue(notBoolean)).toThrow(errorMessage);
       });
     });
   });

@@ -4,9 +4,10 @@ export function checkType(value: unknown, type: string, errorMessage: string) {
   const lowerCaseType = type.toLowerCase();
   const typeIsArray = lowerCaseType === 'array';
   const valueIsArray = Array.isArray(value);
-  
+
   if (typeIsArray || valueIsArray) {
-    if ((typeIsArray && !valueIsArray) || (!typeIsArray && valueIsArray)) throw new Error(errorMessage);
+    if ((typeIsArray && !valueIsArray) || (!typeIsArray && valueIsArray))
+      throw new Error(errorMessage);
   } else {
     if (typeof value !== lowerCaseType) throw new Error(errorMessage);
   }
@@ -22,4 +23,8 @@ export function checkOneOf<T>(value: T, possibleValues: T[], errorMessage: strin
 
 export function checkEmptyOrOneOf<T>(value: T, possibleValues: T[], errorMessage: string) {
   if (!EMPTY_VALUES.some(v => v === value)) checkOneOf(value, possibleValues, errorMessage);
+}
+
+export function checkBoolean(value: unknown, errorMessage: string) {
+  if (typeof value !== 'boolean') throw new Error(errorMessage);
 }

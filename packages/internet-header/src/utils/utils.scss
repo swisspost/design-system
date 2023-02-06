@@ -1,0 +1,161 @@
+@use '@swisspost/design-system-styles/components/fonts';
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/variables/breakpoints';
+@use '@swisspost/design-system-styles/variables/type';
+@use './mixins.scss';
+
+*,
+:host,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+:host {
+  font-family: type.$font-family-sans-serif;
+}
+
+button {
+  font: inherit;
+  padding: 0;
+}
+
+img,
+svg {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+svg {
+  @media (forced-colors: active) {
+    color: white;
+  }
+}
+
+%no-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+%blank-button {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+%nav-link {
+  text-decoration: none;
+  color: rgba(color.$black, 0.8);
+  transition: color 200ms;
+  background-color: transparent;
+  border-radius: 0;
+  box-shadow: none;
+  border: 0;
+  margin: 0; // Buttons in safari have a default margin of 2px
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover,
+  &:focus {
+    color: black;
+  }
+
+  > svg {
+    width: 1.4em;
+    height: 1.4em;
+    flex-shrink: 0;
+  }
+
+  > span {
+    flex-shrink: 1;
+  }
+}
+
+.box {
+  > *:first-child {
+    margin-top: 0;
+  }
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.mirrored {
+  transform: scaleX(-1);
+}
+
+.rotate-270 {
+  transform: rotate(270deg);
+}
+
+.bold {
+  font-weight: 700;
+}
+
+.light {
+  font-weight: 300;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.d-inline-flex {
+  display: inline-flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.nav-link {
+  @extend %nav-link;
+}
+
+.no-list {
+  @extend %no-list;
+}
+
+.btn-blank {
+  @extend %blank-button;
+}
+
+.wide-container {
+  @media (min-width: 1441px) {
+    margin: 0 auto;
+    max-width: 1440px;
+  }
+}
+
+.container {
+  @include mixins.container-padding();
+}
+
+%visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.visually-hidden {
+  @extend %visually-hidden;
+}
+
+@each $breakpoint, $value in breakpoints.$grid-breakpoints {
+  .hidden-#{$breakpoint} {
+    @include mixins.max($breakpoint) {
+      display: none;
+    }
+  }
+}
