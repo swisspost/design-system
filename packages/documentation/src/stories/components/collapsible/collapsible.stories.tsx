@@ -76,6 +76,7 @@ const Template: StoryFn<PostCollapsibleArgs> = (args, context) => {
           aria-expanded={ !args.collapsed }
           className="btn btn-secondary"
           onClick={ listener }
+          key={ label }
         >{ label }</button>
       )}
     </div>
