@@ -32,7 +32,7 @@ export interface ICustomConfig {
 }
 
 export interface ILocalizedCustomConfig {
-  header: ICustomHeaderConfig;
+  header?: ICustomHeaderConfig;
   footer?: ICustomFooterConfig;
 }
 

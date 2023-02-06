@@ -223,7 +223,7 @@ export const getLocalizedCustomConfig = (
     );
   }
   let localizedCustomConfig: ILocalizedCustomConfig | undefined = customConfig[language];
-  if (localizedCustomConfig !== undefined)
+  if (localizedCustomConfig?.header?.navMain)
     setMainNavigationIds(localizedCustomConfig.header.navMain);
   return localizedCustomConfig;
 };
