@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Created a collpasible component.
+Added a collpasible component.
