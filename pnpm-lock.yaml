@@ -358,7 +358,7 @@ importers:
       bootstrap: '5.1'
       eslint-plugin-react: ^7.32.0
       globby: 13.1.3
-      iframe-resizer: 4.3.2
+      iframe-resizer: 4.3.3
       jest: 27.5.1
       jquery: 3.6.3
       rimraf: 4.1.2
@@ -377,7 +377,7 @@ importers:
       '@stencil/core': 3.0.0
       '@stencil/store': 2.0.3_@stencil+core@3.0.0
       body-scroll-lock: 4.0.0-beta.0
-      iframe-resizer: 4.3.2
+      iframe-resizer: 4.3.3
       jquery: 3.6.3
       tabbable: 6.0.1
       throttle-debounce: 3.0.1
@@ -9367,7 +9367,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -13701,8 +13701,8 @@ packages:
     resolution: {integrity: sha512-DUNFN5j7Tln0D+TxzloUjKB+CtVu6myn0JEFak6dG18mNt9YkQ6lzGCdafwofISZ1lLF3xRHJ98VKy9ynkcFaA==}
     dev: true
 
-  /iframe-resizer/4.3.2:
-    resolution: {integrity: sha512-gOWo2hmdPjMQsQ+zTKbses08mDfDEMh4NneGQNP4qwePYujY1lguqP6gnbeJkf154gojWlBhIltlgnMfYjGHWA==}
+  /iframe-resizer/4.3.3:
+    resolution: {integrity: sha512-emI63nkTCaQrAoHMLpl+1gDGL4VjexameFoUKoE7bSudf2//n0KdwMyKXtvScqzps9KR68TrVLjFNw+Qo6rLaw==}
     engines: {node: '>=0.8.0'}
     dev: false
 
@@ -19198,6 +19198,17 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
+    dev: true
+
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
     dev: true
 
   /promise-retry/2.0.1:
