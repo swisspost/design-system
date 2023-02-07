@@ -21,8 +21,5 @@ export default {
         attrs: '(width|height|style)',
       },
     },
-    /* {
-      name: 'removeDimensions',
-    }, */
   ],
 } as OptimizeOptions;
