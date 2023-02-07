@@ -6,6 +6,28 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface PostAlert {
+        /**
+          * The label to use for the close button of a dismissible alert.
+         */
+        "dismissLabel": string;
+        /**
+          * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
+         */
+        "dismissible": boolean;
+        /**
+          * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
+         */
+        "fixed": boolean;
+        /**
+          * The icon to display in the alert.  If `null`, no icon will be displayed. By default, the icon depends on the alert type.
+         */
+        "icon": string;
+        /**
+          * The type of the alert.  We provide styles for the following types: `'primary'`, `'success'`, `'danger'`, `'warning'`, `'info'`.
+         */
+        "type": string;
+    }
     interface PostCollapsible {
         /**
           * If `true`, the element is initially collapsed otherwise it is displayed.
@@ -22,6 +44,12 @@ export namespace Components {
     }
 }
 declare global {
+    interface HTMLPostAlertElement extends Components.PostAlert, HTMLStencilElement {
+    }
+    var HTMLPostAlertElement: {
+        prototype: HTMLPostAlertElement;
+        new (): HTMLPostAlertElement;
+    };
     interface HTMLPostCollapsibleElement extends Components.PostCollapsible, HTMLStencilElement {
     }
     var HTMLPostCollapsibleElement: {
@@ -29,10 +57,33 @@ declare global {
         new (): HTMLPostCollapsibleElement;
     };
     interface HTMLElementTagNameMap {
+        "post-alert": HTMLPostAlertElement;
         "post-collapsible": HTMLPostCollapsibleElement;
     }
 }
 declare namespace LocalJSX {
+    interface PostAlert {
+        /**
+          * The label to use for the close button of a dismissible alert.
+         */
+        "dismissLabel"?: string;
+        /**
+          * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
+         */
+        "dismissible"?: boolean;
+        /**
+          * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
+         */
+        "fixed"?: boolean;
+        /**
+          * The icon to display in the alert.  If `null`, no icon will be displayed. By default, the icon depends on the alert type.
+         */
+        "icon"?: string;
+        /**
+          * The type of the alert.  We provide styles for the following types: `'primary'`, `'success'`, `'danger'`, `'warning'`, `'info'`.
+         */
+        "type"?: string;
+    }
     interface PostCollapsible {
         /**
           * If `true`, the element is initially collapsed otherwise it is displayed.
@@ -44,6 +95,7 @@ declare namespace LocalJSX {
         "headingLevel"?: number;
     }
     interface IntrinsicElements {
+        "post-alert": PostAlert;
         "post-collapsible": PostCollapsible;
     }
 }
@@ -51,6 +103,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
         }
     }
