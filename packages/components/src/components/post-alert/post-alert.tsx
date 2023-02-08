@@ -2,8 +2,8 @@
  * Copyright 2023 by Swiss Post, Information Technology
  */
 
-import { Component, Element, h, Prop, State, Watch } from '@stencil/core';
-import { checkBoolean, checkNonEmptyString, checkOneOf, checkPattern } from '../../utils';
+import { Component, Element, h, Method, Prop, State, Watch } from '@stencil/core';
+import { checkBoolean, checkNonEmptyString, checkOneOf, checkPattern, onTransitionEnd } from '../../utils';
 
 @Component({
   tag: 'post-alert',
@@ -41,14 +41,16 @@ export class PostAlert {
    */
   @Prop() icon: string;
 
-  @State() alertClasses: string[] = ['alert'];
+  @State() alertClasses: string[] = [ 'alert' ];
   @State() hasHeading: boolean;
 
   @Element() host: HTMLElement;
 
+  alertElement: HTMLElement;
+
   @Watch('type')
   validateType(alertType = this.type) {
-    const alertTypes = ['primary', 'success', 'danger', 'warning', 'info'];
+    const alertTypes = [ 'primary', 'success', 'danger', 'warning', 'info' ];
     checkOneOf(alertType, alertTypes, 'The post-alert requires a type.');
 
     alertTypes.forEach(type => this.toggleAlertClass(`alert-${type}`, type === alertType));
@@ -66,6 +68,9 @@ export class PostAlert {
   @Watch('dismissible')
   validateDismissible(isDismissible = this.dismissible) {
     checkBoolean(isDismissible, 'The post-alert "dismissible" prop should be a boolean.');
+
+    const dismissibleClasses = 'alert-dismissible fade show';
+    dismissibleClasses.split(' ').forEach(dismissibleClass => this.toggleAlertClass(dismissibleClass, isDismissible));
 
     if (isDismissible) {
       checkNonEmptyString(this.dismissLabel, 'Dismissible post-alert\'s require a "dismiss-label" prop.');
@@ -96,6 +101,21 @@ export class PostAlert {
     this.hasHeading = this.host.querySelectorAll('[slot="heading"]').length > 0;
   }
 
+  componentDidLoad() {
+    this.alertElement = this.host.shadowRoot.querySelector('.alert');
+  }
+
+  /**
+   * Triggers alert closing programmatically (same as clicking on the close button (×)).
+   */
+  @Method()
+  async close() {
+    this.removeAlertClass('show');
+    await onTransitionEnd(this.alertElement).then(() => {
+      this.host.remove();
+    });
+  }
+
   private toggleAlertClass(className: string, force: boolean) {
     const classInList = this.alertClasses.includes(className);
 
@@ -108,19 +128,32 @@ export class PostAlert {
 
   private removeAlertClass(className: string | RegExp) {
     this.alertClasses = this.alertClasses.filter(c => {
-      return typeof className === 'string' ? c === className : !className.test(c);
+      return (typeof className === 'string') ? c !== className : !className.test(c);
     });
   }
 
   private addAlertClass(className: string) {
-    this.alertClasses = [...this.alertClasses, className];
+    this.alertClasses = [ ...this.alertClasses, className ];
   }
 
   render() {
     return (
       <div class={this.alertClasses.join(' ')} role="alert">
-        {this.dismissible && <button aria-label={this.dismissLabel} class="btn-close" type="button"/>}
-        {this.hasHeading && <h4 class="alert-heading"><slot name="heading"/></h4>}
+        {this.dismissible && (
+          <button
+            aria-label={this.dismissLabel}
+            class="btn-close"
+            onClick={() => this.close()}
+            type="button"
+          />
+        )}
+
+        {this.hasHeading && (
+          <h4 class="alert-heading">
+            <slot name="heading"/>
+          </h4>
+        )}
+
         <slot/>
       </div>
     );

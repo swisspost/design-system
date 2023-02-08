@@ -2,7 +2,6 @@ import { StoryFn } from '@storybook/react';
 import { PostAlert } from '@swisspost/design-system-components-react';
 import { ComponentProps } from 'react';
 import React from 'react';
-import { definedProperties } from '../../../utils';
 
 type PostAlertArgs = ComponentProps<typeof PostAlert> & { content: string };
 

@@ -8,6 +8,10 @@ import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
     interface PostAlert {
         /**
+          * Triggers alert closing programmatically (same as clicking on the close button (×)).
+         */
+        "close": () => Promise<void>;
+        /**
           * The label to use for the close button of a dismissible alert.
          */
         "dismissLabel": string;
