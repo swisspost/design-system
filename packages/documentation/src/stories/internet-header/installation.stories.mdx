@@ -8,25 +8,20 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
 The Swiss Post Internet Header web component, written with stencil.js.
 
 - [Installation](#installation)
-- [Usage](#usage)
 - [Configuration](#configuration)
 - [Help](#help)
 
 ## Installation
+
+### Angular, Vue JS, React (or any other bundler setup)
+
+All the popular frameworks come with some form of bundler. This makes it easy to use npm packages like the Internet Header as you can import, bundle and deliver the header with your own code.
 
 When working with Angular or any other framework, the easiest installation method is via npm.
 
 ```shell
 npm install @swisspost/internet-header
 ```
-
-If you are not using npm, the easiest way to install the header is to download the current version from npm ([Internet Header](https://www.npmjs.com/package/@swisspost/internet-header)), extract the files and put them with your other assets.
-
-## Usage
-
-### Angular, Vue JS, React (or any other bundler setup)
-
-All the popular frameworks come with some form of bundler. This makes it easy to use npm packages like the Internet Header as you can import, bundle and deliver the header with your own code.
 
 ```typescript
 // main.ts / index.js / ...
@@ -43,19 +38,24 @@ defineCustomElements();
 </body>
 ```
 
-### Vanilla JS (without bundler)
+### Include from a CDN
 
-Load the `swisspost-internet-header.esm.js` from your assets folder. Keep the other files and the folder structure of the package intact, as other files might be needed on demand.
+If you are not using any loader or don't want to install from npm, you can load the `swisspost-internet-header.esm.js` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network). There are two options available.
+
+- [jsDelivr](https://www.jsdelivr.com/)
+- [unpkg](https://unpkg.com/)
 
 ```html
 <!-- index.html -->
+<head>
+  <script
+    async
+    type="module"
+    src="https://cdn.jsdelivr.net/npm/package/@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.esm.js"
+  ></script>
+</head>
 <body>
   <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
-  ...
-  <script
-    type="module"
-    src="path/to/assets/swisspost-internet-header/dist/swisspost-internet-header/swisspost-internet-header.esm.js"
-  ></script>
 </body>
 ```
 
