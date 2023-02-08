@@ -1,10 +1,7 @@
 import { Meta, Story } from '@storybook/addon-docs';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
-<Meta title="Components/Internet Header/Getting started" />
-
-![Swiss Post Logo](https://www.post.ch/-/media/portal-opp/global/logos/logo---die-post.svg?vs=2&sc_lang=en)
-
-<br />
+<Meta title="Components/Internet Header/Getting started" parameters={{ badges: [BADGE.STABLE] }} />
 
 # Internet Header
 
@@ -25,13 +22,7 @@ npm install @swisspost/internet-header
 
 If you are not using npm, the easiest way to install the header is to download the current version from npm ([Internet Header](https://www.npmjs.com/package/@swisspost/internet-header)), extract the files and put them with your other assets.
 
-<br />
-<br />
-
 ## Usage
-
-<br />
-<br />
 
 ### Angular, Vue JS, React (or any other bundler setup)
 
@@ -75,9 +66,6 @@ The Internet Header is built to support the already existing Portal Configuratio
 Not every Online Service has configurations for all environments. For example, "TOPOS" only has `int02` configured and cannot use `int01` as value for environment. If you are not sure what's configured for your project, you can contact [digitalconsulting@post.ch](mailto:digitalconsulting@post.ch).
 
 For settings on the header itself, see the examples provided in the left menu bar.
-
-<br />
-<br />
 
 ## Help
 
