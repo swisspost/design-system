@@ -79,7 +79,7 @@ describe('property-checkers', () => {
     beforeEach(() => {
       checker = checkPattern;
       checkerParameters = [/[a-z]{5}/];
-      errorMessage = 'Is an empty string.';
+      errorMessage = 'Does not match pattern.';
     });
 
     it('should not throw an error if the value matches the provided pattern', () => {

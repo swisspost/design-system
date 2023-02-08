@@ -11,5 +11,5 @@ export function checkNonEmptyString(value: unknown, errorMessage: string) {
 }
 
 export function checkPattern(value: string, pattern: RegExp, errorMessage: string) {
-  if (!pattern.test(value)) throw new Error(errorMessage);
+  if (typeof value !== 'string' || !pattern.test(value)) throw new Error(errorMessage);
 }
