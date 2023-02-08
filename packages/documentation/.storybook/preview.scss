@@ -7,17 +7,39 @@
 #docs-root {
   overflow: hidden;
 
-  h1 {
-    margin-block: 5rem 1rem;
+  .sbdocs-content {
+    // Target content headings only
+    > * {
+      > h1 {
+        margin-block: 5rem 1rem;
 
-    &:first-of-type {
-      margin-block-start: 0;
+        &:first-of-type {
+          margin-block-start: 0;
+        }
+      }
+
+      > h2 {
+        margin-block: 3rem 1rem;
+      }
+
+      > h3 {
+        margin-block: 2.5rem 1rem;
+      }
+
+      > h4 {
+        margin-block: 2rem 1rem;
+      }
+
+      > h5 {
+        margin-block: 1.5rem 1rem;
+      }
+
+      > h6 {
+        margin-block: 1rem;
+      }
     }
   }
 
-  h2 {
-    margin-block: 3rem 1rem;
-  }
 
   pre {
     font-size: 100%;
