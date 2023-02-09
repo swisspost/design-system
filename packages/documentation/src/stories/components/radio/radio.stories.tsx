@@ -2,6 +2,7 @@ import React from 'react';
 import { Meta, Args, Story, StoryContext, ReactFramework } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
 import docsPage from './radio.docs.mdx';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -18,6 +19,7 @@ export default {
     controls: {
       exclude: ['Hidden Legend'],
     },
+    badges: [BADGE.NEEDS_REVISION],
   },
   args: {
     hiddenLegend: false,
@@ -170,7 +172,7 @@ const TemplateInline = (args: Args, context: StoryContext<ReactFramework, Args>)
   const id3 = baseId + '3';
   const id4 = baseId + '4';
 
-  function onChange (e: React.ChangeEvent<HTMLInputElement>, value: number) {
+  function onChange(e: React.ChangeEvent<HTMLInputElement>, value: number) {
     updateArgs({ checkedRadio: value });
 
     if (document.activeElement === e.target) {
@@ -181,61 +183,63 @@ const TemplateInline = (args: Args, context: StoryContext<ReactFramework, Args>)
     }
   }
 
-  return <fieldset>
-    <legend className={args.hiddenLegend ? 'visually-hidden' : undefined}>Legend</legend>
-    <div key="FormCheck_1" className="form-check form-check-inline">
-      <input
-        id={ id1 }
-        name="Inline_ExampleRadio_Group"
-        className="form-check-input"
-        type="radio"
-        checked={ args.checkedRadio === 1 }
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 1) }
-      />
-      <label htmlFor={ id1 } className="form-check-label">
-        {args.label}
-      </label>
-    </div>
-    <div key="FormCheck_2" className="form-check form-check-inline">
-      <input
-        id={ id2 }
-        name="Inline_ExampleRadio_Group"
-        className="form-check-input"
-        type="radio"
-        checked={ args.checkedRadio === 2 }
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 2) }
-      />
-      <label htmlFor={ id2 } className="form-check-label">
-        {args.label}
-      </label>
-    </div>
-    <div key="FormCheck_3" className="form-check form-check-inline">
-      <input
-        id={ id3 }
-        name="Inline_ExampleRadio_Group"
-        className="form-check-input"
-        type="radio"
-        checked={ args.checkedRadio === 3 }
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 3) }
-      />
-      <label htmlFor={ id3 } className="form-check-label">
-        {args.label}
-      </label>
-    </div>
-    <div key="FormCheck_4" className="form-check form-check-inline">
-      <input
-        id={ id4 }
-        name="Inline_ExampleRadio_Group"
-        className="form-check-input"
-        type="radio"
-        checked={ args.checkedRadio === 4 }
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 4) }
-      />
-      <label htmlFor={ id4 } className="form-check-label">
-        {args.label}
-      </label>
-    </div>
-  </fieldset>;
+  return (
+    <fieldset>
+      <legend className={args.hiddenLegend ? 'visually-hidden' : undefined}>Legend</legend>
+      <div key="FormCheck_1" className="form-check form-check-inline">
+        <input
+          id={id1}
+          name="Inline_ExampleRadio_Group"
+          className="form-check-input"
+          type="radio"
+          checked={args.checkedRadio === 1}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 1)}
+        />
+        <label htmlFor={id1} className="form-check-label">
+          {args.label}
+        </label>
+      </div>
+      <div key="FormCheck_2" className="form-check form-check-inline">
+        <input
+          id={id2}
+          name="Inline_ExampleRadio_Group"
+          className="form-check-input"
+          type="radio"
+          checked={args.checkedRadio === 2}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 2)}
+        />
+        <label htmlFor={id2} className="form-check-label">
+          {args.label}
+        </label>
+      </div>
+      <div key="FormCheck_3" className="form-check form-check-inline">
+        <input
+          id={id3}
+          name="Inline_ExampleRadio_Group"
+          className="form-check-input"
+          type="radio"
+          checked={args.checkedRadio === 3}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 3)}
+        />
+        <label htmlFor={id3} className="form-check-label">
+          {args.label}
+        </label>
+      </div>
+      <div key="FormCheck_4" className="form-check form-check-inline">
+        <input
+          id={id4}
+          name="Inline_ExampleRadio_Group"
+          className="form-check-input"
+          type="radio"
+          checked={args.checkedRadio === 4}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e, 4)}
+        />
+        <label htmlFor={id4} className="form-check-label">
+          {args.label}
+        </label>
+      </div>
+    </fieldset>
+  );
 };
 
 export const Inline: Story = TemplateInline.bind({});
@@ -249,10 +253,10 @@ Inline.decorators = [
 Inline.parameters = {
   controls: {
     exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
-  }
+  },
 };
 Inline.args = {
-  checkedRadio: null
+  checkedRadio: null,
 };
 Inline.argTypes = {
   checkedRadio: {

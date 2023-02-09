@@ -18,6 +18,7 @@ import {
 import React from 'react';
 import 'cypress-storybook/react';
 import * as Components from '@swisspost/design-system-components-react';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 if (docJson) setStencilDocJson(docJson);
 defineInternetHeader();
@@ -63,6 +64,10 @@ export const parameters = {
         ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
         'Templates',
         'Components',
+        [
+          'Internet Header',
+          ['Getting started', 'Migration Guide', 'Header', 'Breadcrumbs', 'Footer'],
+        ],
         'Utilities',
         'Misc',
         ['Migration', 'ChangeLog'],
@@ -115,6 +120,48 @@ export const parameters = {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
+    },
+  },
+  badgesConfig: {
+    [BADGE.BETA]: {
+      styles: {
+        backgroundColor: 'var(--post-yellow)',
+        color: '#000',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'This documentation page is still in beta mode and might not be complete yet.',
+      },
+    },
+    [BADGE.NEEDS_REVISION]: {
+      styles: {
+        backgroundColor: 'var(--post-gray-10)',
+        color: '#000',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'This page is pending revision from a UX Designer.',
+      },
+    },
+    [BADGE.STABLE]: {
+      styles: {
+        backgroundColor: 'var(--post-success)',
+        color: '#fff',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'The content of this page is ready to be used in production.',
+      },
+    },
+    TODO: {
+      styles: {
+        backgroundColor: 'var(--post-danger)',
+        color: '#fff',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'This page needs to be filled with content and serves as a placeholder in the meantime.',
+      },
     },
   },
 };

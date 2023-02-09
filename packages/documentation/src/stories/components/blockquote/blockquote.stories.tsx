@@ -1,14 +1,16 @@
 import React from 'react';
-import { Meta, Args, Story } from "@storybook/react";
+import { Meta, Args, Story } from '@storybook/react';
 import docsPage from './blockquote.docs.mdx';
 import parse from 'html-react-parser';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 export default {
   title: 'Components/Blockquote',
   parameters: {
     docs: {
-      page: docsPage
+      page: docsPage,
     },
+    badges: [BADGE.NEEDS_REVISION],
   },
   args: {
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.',
@@ -38,14 +40,9 @@ export default {
           de: 'Deutsch',
           fr: 'Français',
           it: 'Italiano',
-        }
+        },
       },
-      options: [
-        'en',
-        'de',
-        'fr',
-        'it',
-      ],
+      options: ['en', 'de', 'fr', 'it'],
       table: {
         category: 'General',
       },
@@ -64,7 +61,7 @@ export default {
       name: 'Author',
       description: 'The author of the quote.',
       if: {
-        arg: 'caption'
+        arg: 'caption',
       },
       control: {
         type: 'text',
@@ -77,7 +74,7 @@ export default {
       name: 'Source',
       description: 'The source of the quote.',
       if: {
-        arg: 'caption'
+        arg: 'caption',
       },
       control: {
         type: 'text',

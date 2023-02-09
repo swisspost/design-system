@@ -9,6 +9,7 @@ module.exports = {
     '@storybook/addon-a11y',
     '@pxtrn/storybook-addon-docs-stencil',
     'storybook-dark-mode',
+    '@geometricpanda/storybook-addon-badges',
     {
       name: '@storybook/preset-scss',
       options: {

@@ -1,14 +1,16 @@
 import React from 'react';
-import { Meta, Args, Story } from "@storybook/react";
+import { Meta, Args, Story } from '@storybook/react';
 import docsPage from './button.docs.mdx';
 import { forEach } from '../../../utils/react.ts';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 export default {
   title: 'Components/Button',
   parameters: {
     docs: {
-      page: docsPage
-    }
+      page: docsPage,
+    },
+    badges: [BADGE.NEEDS_REVISION],
   },
   args: {
     text: 'Button',
@@ -27,11 +29,11 @@ export default {
       name: 'Text',
       description: 'Text within the button.',
       control: {
-        type: 'text'
+        type: 'text',
       },
       table: {
-        category: 'Content'
-      }
+        category: 'Content',
+      },
     },
     tag: {
       name: 'Tag',
@@ -39,16 +41,12 @@ export default {
       control: {
         type: 'inline-radio',
         labels: {
-          'button': 'Button',
-          'a': 'Link',
-          'input': 'Input',
+          button: 'Button',
+          a: 'Link',
+          input: 'Input',
         },
       },
-      options: [
-        'button',
-        'a',
-        'input',
-      ],
+      options: ['button', 'a', 'input'],
       table: {
         category: 'General',
       },
@@ -58,21 +56,17 @@ export default {
       description: 'Defines the input type.',
       if: {
         arg: 'tag',
-        eq: 'input'
+        eq: 'input',
       },
       control: {
         type: 'inline-radio',
         labels: {
-          'button': 'Button',
-          'submit': 'Submit',
-          'reset': 'Reset',
+          button: 'Button',
+          submit: 'Submit',
+          reset: 'Reset',
         },
       },
-      options: [
-        'button',
-        'submit',
-        'reset',
-      ],
+      options: ['button', 'submit', 'reset'],
       table: {
         category: 'General',
       },
@@ -90,7 +84,7 @@ export default {
           // 'btn-danger': 'Danger',
           // 'btn-warning': 'Warning',
           // 'btn-info': 'Info',
-        }
+        },
       },
       options: [
         'btn-primary',
@@ -117,19 +111,14 @@ export default {
           'btn-lg': 'Large',
         },
       },
-      options: [
-        'btn-sm',
-        'btn-rg',
-        'null',
-        'btn-lg'
-      ],
+      options: ['btn-sm', 'btn-rg', 'null', 'btn-lg'],
       table: {
         category: 'General',
       },
     },
     animated: {
       name: 'Animated',
-      description: 'When set to `true`, enables the component\'s animations.',
+      description: "When set to `true`, enables the component's animations.",
       if: {
         arg: 'icon',
         eq: 'null',
@@ -159,21 +148,14 @@ export default {
           'pi-2286': 'Like (2286)',
         },
       },
-      options: [
-        'null',
-        'pi-2069',
-        'pi-3193',
-        'pi-2059',
-        'pi-2015',
-        'pi-2286',
-      ],
+      options: ['null', 'pi-2069', 'pi-3193', 'pi-2059', 'pi-2015', 'pi-2286'],
       table: {
         category: 'Icon',
       },
     },
     iconOnly: {
       name: 'Icon only',
-      description: 'When set to `true`, hides the component\'s text.',
+      description: "When set to `true`, hides the component's text.",
       if: {
         arg: 'tag',
         neq: 'input',
@@ -199,17 +181,15 @@ export default {
           end: 'End',
         },
       },
-      options: [
-        'start',
-        'end',
-      ],
+      options: ['start', 'end'],
       table: {
         category: 'Icon',
       },
     },
     disabled: {
       name: 'Disabled',
-      description: 'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</div>',
+      description:
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -227,7 +207,7 @@ const Template = (args: Args) => {
     type: args.tag === 'input' ? args.type : undefined,
     value: args.tag === 'input' ? args.text : undefined,
   };
-  
+
   const isAnimated = args.tag !== 'input' && args.animated;
 
   const classes = [
@@ -236,19 +216,24 @@ const Template = (args: Args) => {
     args.size,
     isAnimated && 'btn-animated',
     args.iconOnly && 'btn-icon',
-  ].filter(c => c && c !== 'null').join(' ');
+  ]
+    .filter(c => c && c !== 'null')
+    .join(' ');
 
   if (args.tag === 'input') {
-    return <args.tag { ...props } className={ classes } disabled={ args.disabled }/>;
+    return <args.tag {...props} className={classes} disabled={args.disabled} />;
   } else {
-    const icon = args.icon !== 'null' ? <span aria-hidden="true" className={ `pi ${args.icon}` }></span> : null;
-    const content = isAnimated ? <span>{ args.text }</span> : args.text;
+    const icon =
+      args.icon !== 'null' ? <span aria-hidden="true" className={`pi ${args.icon}`}></span> : null;
+    const content = isAnimated ? <span>{args.text}</span> : args.text;
 
-    return <args.tag { ...props } className={ classes } disabled={ args.disabled }>
-      { args.iconPosition === 'start' && icon }
-      { args.iconOnly ? <span className="visually-hidden">{ args.text }</span> : content }
-      { args.iconPosition === 'end' && icon }
-    </args.tag>;
+    return (
+      <args.tag {...props} className={classes} disabled={args.disabled}>
+        {args.iconPosition === 'start' && icon}
+        {args.iconOnly ? <span className="visually-hidden">{args.text}</span> : content}
+        {args.iconPosition === 'end' && icon}
+      </args.tag>
+    );
   }
 };
 
@@ -257,86 +242,76 @@ export const Default: Story = Template.bind({});
 export const Inverted: Story = Template.bind({});
 Inverted.decorators = [
   (Story: Story) => {
-    return <div className="p-3 bg-dark">
-      <Story/>
-    </div>;
-  }
+    return (
+      <div className="p-3 bg-dark">
+        <Story />
+      </div>
+    );
+  },
 ];
 Inverted.parameters = {
   controls: {
-    exclude: [
-      'Text',
-      'Tag',
-      'Type',
-      'Variant',
-    ],
+    exclude: ['Text', 'Tag', 'Type', 'Variant'],
   },
 };
 
 const AccentTemplate = (args: Args) => {
-  return <div className="d-flex gap-small-r flex-wrap">
-    {
-      forEach([
-        'btn-nightblue',
-        'btn-nightblue-bright',
-        'btn-petrol',
-        'btn-petrol-bright',
-        'btn-coral',
-        'btn-coral-bright',
-        'btn-olive',
-        'btn-olive-bright',
-        'btn-purple',
-        'btn-purple-bright',
-        'btn-aubergine',
-        'btn-aubergine-bright'
-      ], (data: { key: number, value: any }) => Template({
-        ...args,
-        key: data.key,
-        text: data.value.replace(/^btn-(.)/g, (_m: string, g: string) => g.toUpperCase()),
-        variant: data.value
-      }))
-    }
-  </div>;
+  return (
+    <div className="d-flex gap-small-r flex-wrap">
+      {forEach(
+        [
+          'btn-nightblue',
+          'btn-nightblue-bright',
+          'btn-petrol',
+          'btn-petrol-bright',
+          'btn-coral',
+          'btn-coral-bright',
+          'btn-olive',
+          'btn-olive-bright',
+          'btn-purple',
+          'btn-purple-bright',
+          'btn-aubergine',
+          'btn-aubergine-bright',
+        ],
+        (data: { key: number; value: any }) =>
+          Template({
+            ...args,
+            key: data.key,
+            text: data.value.replace(/^btn-(.)/g, (_m: string, g: string) => g.toUpperCase()),
+            variant: data.value,
+          }),
+      )}
+    </div>
+  );
 };
 
 export const AccentColors: Story = AccentTemplate.bind({});
 AccentColors.parameters = {
   controls: {
-    exclude: [
-      'Text',
-      'Tag',
-      'Type',
-      'Variant',
-    ],
+    exclude: ['Text', 'Tag', 'Type', 'Variant'],
   },
 };
 
 const ContextualTemplate = (args: Args) => {
-  return <div className="d-flex gap-small-r flex-wrap">
-    {
-      forEach([
-        'btn-success',
-        'btn-info',
-        'btn-warning',
-        'btn-danger',
-      ], (data: { key: number, value: any }) => Template({
-        ...args,
-        key: data.key,
-        text: data.value.replace(/^btn-(.)/g, (_m: string, g: string) => g.toUpperCase()),
-        variant: data.value
-      }))
-    }
-  </div>;
+  return (
+    <div className="d-flex gap-small-r flex-wrap">
+      {forEach(
+        ['btn-success', 'btn-info', 'btn-warning', 'btn-danger'],
+        (data: { key: number; value: any }) =>
+          Template({
+            ...args,
+            key: data.key,
+            text: data.value.replace(/^btn-(.)/g, (_m: string, g: string) => g.toUpperCase()),
+            variant: data.value,
+          }),
+      )}
+    </div>
+  );
 };
 
 export const ContextualColors: Story = ContextualTemplate.bind({});
 ContextualColors.parameters = {
   controls: {
-    exclude: [
-      'Text',
-      'Tag',
-      'Type',
-      'Variant',
-    ],
+    exclude: ['Text', 'Tag', 'Type', 'Variant'],
   },
 };
