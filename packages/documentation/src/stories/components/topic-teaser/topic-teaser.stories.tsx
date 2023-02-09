@@ -1,6 +1,7 @@
 import React from 'react';
 import { Meta, Story, Args } from '@storybook/react';
 import docsPage from './topic-teaser.docs.mdx';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 export default {
   title: 'Components/Topic Teaser',
@@ -8,6 +9,7 @@ export default {
     docs: {
       page: docsPage,
     },
+    badges: [BADGE.NEEDS_REVISION],
   },
   args: {
     title: 'Loremipsum',
