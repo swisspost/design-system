@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 5.3.1
+
+### Patch Changes
+
+- Fixed the default and bordered table styles (by [@gfellerph](https://github.com/gfellerph) with [#1062](https://github.com/swisspost/design-system/pull/1062))
+
 ## 5.3.0
 
 ### Minor Changes

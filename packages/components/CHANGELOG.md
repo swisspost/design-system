@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 1.1.0
+
+### Minor Changes
+
+- Created a collapsible component. (by [@alizedebray](https://github.com/alizedebray) with [#683](https://github.com/swisspost/design-system/pull/683))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.3.1
+
 ## 1.0.6
 
 ### Patch Changes
