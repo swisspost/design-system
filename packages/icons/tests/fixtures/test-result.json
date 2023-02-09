@@ -1,0 +1,1084 @@
+{
+  "result": [
+    {
+      "modifiedAt": "2021-10-18T11:24:43Z",
+      "mime": "application/postscript",
+      "domain2": "root.dam.mediapool.",
+      "workflowStep": "40",
+      "variants": [
+        {
+          "modifiedAt": "2021-11-03T09:20:05Z",
+          "mime": "image/svg+xml",
+          "variantOf": ["https://cdn.post.ch/hcms/v2.0/entity/image/352084"],
+          "domain2": "root.dam.mediapool.",
+          "workflowStep": "40",
+          "media": {
+            "preview": {
+              "size": { "width": 32, "dpi": 300, "height": 32 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MDAzNTQ3MDUvMC9wcmV2aWV3",
+              "mime": "image/jpeg"
+            },
+            "thumbnail": {
+              "size": { "width": 300, "dpi": 72, "height": 300 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MzU0NzA1LzAvdGh1bWJuYWls",
+              "mime": "image/jpeg"
+            }
+          },
+          "type": "picture.pictogram.",
+          "uuid": "20d90010-df41-11e7-a943-005056a94f4a",
+          "contentInfo": {
+            "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Briefeinwurf, Brief, Kuvert, Briefumschlag, Briefkasten, Briefaufgabe\n, Boîte aux lettre, Lettre, enveloppe, boîte aux lettres, dépôt de lettres\n, Letter box, letter, letter cover, envelope, letter box, posting letters\n\n, Briefeinwurf, Brief, Kuvert, Briefumschlag, Briefkasten, Briefaufgabe\n, Boîte aux lettre, Lettre, enveloppe, boîte aux lettres, dépôt de lettres\n, Letter box, letter, letter cover, envelope, letter box, posting letters\n\n"
+          },
+          "colorSpace": "rgb",
+          "createdAt": "2017-12-12T13:34:00Z",
+          "postInfo": { "businessfield": "kommunikation", "year": "2021" },
+          "typeFilter": "pictograms",
+          "size": { "width": 0, "dpi": 72, "height": 0 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MzU0NzA1LzAvbWFzdGVy",
+          "hashCode": "60A1152F7513E190BB3D8730095EA174359C681E",
+          "domain": "root.divisions.postch.",
+          "name": "1000.svg",
+          "id": 354705,
+          "detectedColor": {},
+          "workflowId": "620"
+        }
+      ],
+      "media": {
+        "preview": {
+          "size": { "width": 100, "dpi": 300, "height": 100 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MDAzNTIwODQvMC9wcmV2aWV3",
+          "mime": "image/jpeg"
+        },
+        "thumbnail": {
+          "size": { "width": 300, "dpi": 72, "height": 300 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MzUyMDg0LzAvdGh1bWJuYWls",
+          "mime": "image/jpeg"
+        },
+        "nano_32px_png": {
+          "size": { "width": 32, "dpi": 192, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MDAzNTIwODQvMC9uYW5vXzMycHhfcG5n",
+          "mime": "image/png"
+        },
+        "big_1024px_png": {
+          "size": { "width": 1024, "dpi": 6144, "height": 1024 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MDM1MjA4NC8wL2JpZ18xMDI0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "postforms_1920px_png": {
+          "size": { "width": 1920, "dpi": 11520, "height": 1920 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MDM1MjA4NC8wL3Bvc3Rmb3Jtc18xOTIwcHhfcG5n",
+          "mime": "image/png"
+        },
+        "small_256px_png": {
+          "size": { "width": 256, "dpi": 1536, "height": 256 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MzUyMDg0LzAvc21hbGxfMjU2cHhfcG5n",
+          "mime": "image/png"
+        },
+        "x-small_64px_png": {
+          "size": { "width": 64, "dpi": 384, "height": 64 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MDAzNTIwODQvMC94LXNtYWxsXzY0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "medium_512px_png": {
+          "size": { "width": 512, "dpi": 3072, "height": 512 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MDAzNTIwODQvMC9tZWRpdW1fNTEycHhfcG5n",
+          "mime": "image/png"
+        }
+      },
+      "type": "picture.pictogram.",
+      "uuid": "95965510-c5fb-11e7-a943-005056a94f4a",
+      "contentInfo": {
+        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Briefeinwurf, Brief, Kuvert, Briefumschlag, Briefkasten, Briefaufgabe, Boîte aux lettres, Lettre, enveloppe, boîte aux lettres, dépôt de lettres, Letter box, letter, letter cover, envelope, letter box, posting letters, Briefeinwurf, Brief, Kuvert, Briefumschlag, Briefkasten, Briefaufgabe, Boîte aux lettres, Lettre, enveloppe, boîte aux lettres, dépôt de lettres, Letter box, letter, letter cover, envelope, letter box, posting letters"
+      },
+      "colorSpace": "cmyk",
+      "createdAt": "2017-11-10T09:43:19Z",
+      "outputChannel": [
+        "root.brandingnet.post.",
+        "root.brandingnet.post.live."
+      ],
+      "postInfo": { "businessfield": "kommunikation", "year": "2017" },
+      "typeFilter": "pictograms",
+      "size": {},
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MzUyMDg0LzAvbWFzdGVy",
+      "hashCode": "D348D8343EED889C44EB6C1AC2EB865648FB1123",
+      "domain": "root.divisions.postch.",
+      "name": "1000.eps",
+      "id": 352084,
+      "detectedColor": { "schema": "cmyk" },
+      "workflowId": "620"
+    },
+    {
+      "modifiedAt": "2021-10-18T11:24:40Z",
+      "mime": "application/postscript",
+      "domain2": "root.dam.mediapool.",
+      "workflowStep": "40",
+      "variants": [
+        {
+          "modifiedAt": "2021-11-03T09:21:41Z",
+          "mime": "image/svg+xml",
+          "variantOf": ["https://cdn.post.ch/hcms/v2.0/entity/image/352086"],
+          "domain2": "root.dam.mediapool.",
+          "workflowStep": "40",
+          "media": {
+            "preview": {
+              "size": { "width": 32, "dpi": 300, "height": 32 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MDAzNTQ3MDYvMC9wcmV2aWV3",
+              "mime": "image/jpeg"
+            },
+            "thumbnail": {
+              "size": { "width": 300, "dpi": 72, "height": 300 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MzU0NzA2LzAvdGh1bWJuYWls",
+              "mime": "image/jpeg"
+            }
+          },
+          "type": "picture.pictogram.",
+          "uuid": "20e53510-df41-11e7-a943-005056a94f4a",
+          "contentInfo": {
+            "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Brief, Briefaufgabe, Kuvert, Briefumschlag\n, Lettre, dépôt de lettres, enveloppe, Enveloppe\n, Letter, posting letters, envelope, envelope\n, Brief, Briefaufgabe, Kuvert, Briefumschlag\n, Lettre, dépôt de lettres, enveloppe, Enveloppe\n, Letter, posting letters, envelope, envelope\n"
+          },
+          "colorSpace": "rgb",
+          "createdAt": "2017-12-12T13:34:00Z",
+          "postInfo": { "businessfield": "kommunikation", "year": "2021" },
+          "typeFilter": "pictograms",
+          "size": { "width": 0, "dpi": 72, "height": 0 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MzU0NzA2LzAvbWFzdGVy",
+          "hashCode": "C86A8F67A42577F58F893CC89F0678D880ABFEC1",
+          "domain": "root.divisions.postch.",
+          "name": "1001.svg",
+          "id": 354706,
+          "detectedColor": {},
+          "workflowId": "620"
+        }
+      ],
+      "media": {
+        "preview": {
+          "size": { "width": 100, "dpi": 300, "height": 100 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MDAzNTIwODYvMC9wcmV2aWV3",
+          "mime": "image/jpeg"
+        },
+        "thumbnail": {
+          "size": { "width": 300, "dpi": 72, "height": 300 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MzUyMDg2LzAvdGh1bWJuYWls",
+          "mime": "image/jpeg"
+        },
+        "nano_32px_png": {
+          "size": { "width": 32, "dpi": 192, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MDAzNTIwODYvMC9uYW5vXzMycHhfcG5n",
+          "mime": "image/png"
+        },
+        "big_1024px_png": {
+          "size": { "width": 1024, "dpi": 6144, "height": 1024 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MDM1MjA4Ni8wL2JpZ18xMDI0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "postforms_1920px_png": {
+          "size": { "width": 1920, "dpi": 11520, "height": 1920 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MDM1MjA4Ni8wL3Bvc3Rmb3Jtc18xOTIwcHhfcG5n",
+          "mime": "image/png"
+        },
+        "small_256px_png": {
+          "size": { "width": 256, "dpi": 1536, "height": 256 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MzUyMDg2LzAvc21hbGxfMjU2cHhfcG5n",
+          "mime": "image/png"
+        },
+        "x-small_64px_png": {
+          "size": { "width": 64, "dpi": 384, "height": 64 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MDAzNTIwODYvMC94LXNtYWxsXzY0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "medium_512px_png": {
+          "size": { "width": 512, "dpi": 3072, "height": 512 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MDAzNTIwODYvMC9tZWRpdW1fNTEycHhfcG5n",
+          "mime": "image/png"
+        }
+      },
+      "type": "picture.pictogram.",
+      "uuid": "8676c2d0-c5fc-11e7-a943-005056a94f4a",
+      "contentInfo": {
+        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Brief, Briefaufgabe, Kuvert, Briefumschlag, Lettre, dépôt de lettres, enveloppe, , Letter, posting letters, envelope, Brief, Briefaufgabe, Kuvert, Briefumschlag, Lettre, dépôt de lettres, enveloppe, , Letter, posting letters, envelope"
+      },
+      "colorSpace": "cmyk",
+      "createdAt": "2017-11-10T09:50:05Z",
+      "outputChannel": [
+        "root.brandingnet.post.",
+        "root.brandingnet.post.live."
+      ],
+      "postInfo": { "businessfield": "kommunikation" },
+      "typeFilter": "pictograms",
+      "size": {},
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MzUyMDg2LzAvbWFzdGVy",
+      "hashCode": "FB86E2D3783193B0012FD931F31C8E798DBA34C0",
+      "domain": "root.divisions.postch.",
+      "name": "1001.eps",
+      "id": 352086,
+      "detectedColor": { "schema": "cmyk" },
+      "workflowId": "620"
+    },
+    {
+      "modifiedAt": "2021-10-18T11:24:40Z",
+      "mime": "application/postscript",
+      "domain2": "root.dam.mediapool.",
+      "workflowStep": "40",
+      "variants": [
+        {
+          "modifiedAt": "2021-10-18T11:24:36Z",
+          "mime": "image/svg+xml",
+          "variantOf": ["https://cdn.post.ch/hcms/v2.0/entity/image/352087"],
+          "domain2": "root.dam.mediapool.",
+          "workflowStep": "40",
+          "media": {
+            "preview": {
+              "size": { "width": 32, "dpi": 300, "height": 32 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MDAzNTQ3MDcvMC9wcmV2aWV3",
+              "mime": "image/jpeg"
+            },
+            "thumbnail": {
+              "size": { "width": 300, "dpi": 72, "height": 300 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MzU0NzA3LzAvdGh1bWJuYWls",
+              "mime": "image/jpeg"
+            }
+          },
+          "type": "picture.pictogram.",
+          "uuid": "20f0cdd0-df41-11e7-a943-005056a94f4a",
+          "contentInfo": {
+            "freeKeywords": "Piktogramme \"Die Post\" ab 2017, PostCard Creatorm, Postkarte, Karte\n, PostCard Creator, Carte postale, carte\n, PostCard Creator, postcard, card\n, PostCard Creatorm, Postkarte, Karte\n, PostCard Creator, Carte postale, carte\n, PostCard Creator, postcard, card\n"
+          },
+          "colorSpace": "rgb",
+          "createdAt": "2017-12-12T13:34:00Z",
+          "postInfo": { "businessfield": "kommunikation" },
+          "typeFilter": "pictograms",
+          "size": { "width": 32, "dpi": 72, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MzU0NzA3LzAvbWFzdGVy",
+          "hashCode": "62BEE3E1EFFE9683E46B4002333F575780CF04A0",
+          "domain": "root.divisions.postch.",
+          "name": "1002.svg",
+          "id": 354707,
+          "detectedColor": {},
+          "workflowId": "620"
+        }
+      ],
+      "media": {
+        "preview": {
+          "size": { "width": 100, "dpi": 300, "height": 100 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MDAzNTIwODcvMC9wcmV2aWV3",
+          "mime": "image/jpeg"
+        },
+        "thumbnail": {
+          "size": { "width": 300, "dpi": 72, "height": 300 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MzUyMDg3LzAvdGh1bWJuYWls",
+          "mime": "image/jpeg"
+        },
+        "nano_32px_png": {
+          "size": { "width": 32, "dpi": 192, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MDAzNTIwODcvMC9uYW5vXzMycHhfcG5n",
+          "mime": "image/png"
+        },
+        "big_1024px_png": {
+          "size": { "width": 1024, "dpi": 6144, "height": 1024 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MDM1MjA4Ny8wL2JpZ18xMDI0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "postforms_1920px_png": {
+          "size": { "width": 1920, "dpi": 11520, "height": 1920 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MDM1MjA4Ny8wL3Bvc3Rmb3Jtc18xOTIwcHhfcG5n",
+          "mime": "image/png"
+        },
+        "small_256px_png": {
+          "size": { "width": 256, "dpi": 1536, "height": 256 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MzUyMDg3LzAvc21hbGxfMjU2cHhfcG5n",
+          "mime": "image/png"
+        },
+        "x-small_64px_png": {
+          "size": { "width": 64, "dpi": 384, "height": 64 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MDAzNTIwODcvMC94LXNtYWxsXzY0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "medium_512px_png": {
+          "size": { "width": 512, "dpi": 3072, "height": 512 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MDAzNTIwODcvMC9tZWRpdW1fNTEycHhfcG5n",
+          "mime": "image/png"
+        }
+      },
+      "type": "picture.pictogram.",
+      "uuid": "867c1a00-c5fc-11e7-a943-005056a94f4a",
+      "contentInfo": {
+        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, PostCard Creator, Postkarte, Karte, PostCard Creator, Carte postale, carte, PostCard Creator, postcard, card, PostCard Creator, Postkarte, Karte, PostCard Creator, Carte postale, carte, PostCard Creator, postcard, card"
+      },
+      "colorSpace": "cmyk",
+      "createdAt": "2017-11-10T09:50:05Z",
+      "outputChannel": [
+        "root.brandingnet.post.",
+        "root.brandingnet.post.live."
+      ],
+      "postInfo": { "businessfield": "kommunikation" },
+      "typeFilter": "pictograms",
+      "size": {},
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MzUyMDg3LzAvbWFzdGVy",
+      "hashCode": "6E066A7D63E3C15F6EBD9BFBD5984D8962E26ADA",
+      "domain": "root.divisions.postch.",
+      "name": "1002.eps",
+      "id": 352087,
+      "detectedColor": { "schema": "cmyk" },
+      "workflowId": "620"
+    },
+    {
+      "modifiedAt": "2021-10-18T11:24:41Z",
+      "mime": "application/postscript",
+      "domain2": "root.dam.mediapool.",
+      "workflowStep": "40",
+      "variants": [
+        {
+          "modifiedAt": "2021-10-18T11:24:37Z",
+          "mime": "image/svg+xml",
+          "variantOf": ["https://cdn.post.ch/hcms/v2.0/entity/image/352088"],
+          "domain2": "root.dam.mediapool.",
+          "workflowStep": "40",
+          "media": {
+            "preview": {
+              "size": { "width": 32, "dpi": 300, "height": 32 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MDAzNTQ3MDgvMC9wcmV2aWV3",
+              "mime": "image/jpeg"
+            },
+            "thumbnail": {
+              "size": { "width": 300, "dpi": 72, "height": 300 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MzU0NzA4LzAvdGh1bWJuYWls",
+              "mime": "image/jpeg"
+            }
+          },
+          "type": "picture.pictogram.",
+          "uuid": "20fc3f80-df41-11e7-a943-005056a94f4a",
+          "contentInfo": {
+            "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Gratis Poskarte, Geschenkskarte, Postkarte, Karte, Geschenk, Brief\n, Carte postale gratuite, carte cadeau, Carte postale, carte, cadeau, lettre\n, Free postcard, gift card, postcard, card, gift, letter\n, Gratis Poskarte, Geschenkskarte, Postkarte, Karte, Geschenk, Brief\n, Carte postale gratuite, carte cadeau, Carte postale, carte, cadeau, lettre\n, Free postcard, gift card, postcard, card, gift, letter\n"
+          },
+          "colorSpace": "rgb",
+          "createdAt": "2017-12-12T13:34:00Z",
+          "postInfo": { "businessfield": "kommunikation" },
+          "typeFilter": "pictograms",
+          "size": { "width": 32, "dpi": 72, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MzU0NzA4LzAvbWFzdGVy",
+          "hashCode": "CD06D0F78179379225F86D9F5B817934F404E3FF",
+          "domain": "root.divisions.postch.",
+          "name": "1003.svg",
+          "id": 354708,
+          "detectedColor": {},
+          "workflowId": "620"
+        }
+      ],
+      "media": {
+        "preview": {
+          "size": { "width": 100, "dpi": 300, "height": 100 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MDAzNTIwODgvMC9wcmV2aWV3",
+          "mime": "image/jpeg"
+        },
+        "thumbnail": {
+          "size": { "width": 300, "dpi": 72, "height": 300 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MzUyMDg4LzAvdGh1bWJuYWls",
+          "mime": "image/jpeg"
+        },
+        "nano_32px_png": {
+          "size": { "width": 32, "dpi": 192, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MDAzNTIwODgvMC9uYW5vXzMycHhfcG5n",
+          "mime": "image/png"
+        },
+        "big_1024px_png": {
+          "size": { "width": 1024, "dpi": 6144, "height": 1024 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MDM1MjA4OC8wL2JpZ18xMDI0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "postforms_1920px_png": {
+          "size": { "width": 1920, "dpi": 11520, "height": 1920 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MDM1MjA4OC8wL3Bvc3Rmb3Jtc18xOTIwcHhfcG5n",
+          "mime": "image/png"
+        },
+        "small_256px_png": {
+          "size": { "width": 256, "dpi": 1536, "height": 256 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MzUyMDg4LzAvc21hbGxfMjU2cHhfcG5n",
+          "mime": "image/png"
+        },
+        "x-small_64px_png": {
+          "size": { "width": 64, "dpi": 384, "height": 64 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MDAzNTIwODgvMC94LXNtYWxsXzY0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "medium_512px_png": {
+          "size": { "width": 512, "dpi": 3072, "height": 512 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MDAzNTIwODgvMC9tZWRpdW1fNTEycHhfcG5n",
+          "mime": "image/png"
+        }
+      },
+      "type": "picture.pictogram.",
+      "uuid": "86819840-c5fc-11e7-a943-005056a94f4a",
+      "contentInfo": {
+        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Gratis Poskarte, Geschenkskarte, Postkarte, Karte, Geschenk, Brief, Carte postale gratuite, carte cadeau, Carte postale, carte, cadeau, lettre, Free postcard, gift card, postcard, card, gift, letter, Gratis Poskarte, Geschenkskarte, Postkarte, Karte, Geschenk, Brief, Carte postale gratuite, carte cadeau, Carte postale, carte, cadeau, lettre, Free postcard, gift card, postcard, card, gift, letter"
+      },
+      "colorSpace": "cmyk",
+      "createdAt": "2017-11-10T09:50:05Z",
+      "outputChannel": [
+        "root.brandingnet.post.",
+        "root.brandingnet.post.live."
+      ],
+      "postInfo": { "businessfield": "kommunikation" },
+      "typeFilter": "pictograms",
+      "size": {},
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MzUyMDg4LzAvbWFzdGVy",
+      "hashCode": "A1B89092262CBDEE208D9A51D0375821106E8014",
+      "domain": "root.divisions.postch.",
+      "name": "1003.eps",
+      "id": 352088,
+      "detectedColor": { "schema": "cmyk" },
+      "workflowId": "620"
+    },
+    {
+      "modifiedAt": "2021-10-18T11:24:41Z",
+      "mime": "application/postscript",
+      "domain2": "root.dam.mediapool.",
+      "workflowStep": "40",
+      "variants": [
+        {
+          "modifiedAt": "2021-10-18T11:24:37Z",
+          "mime": "image/svg+xml",
+          "variantOf": ["https://cdn.post.ch/hcms/v2.0/entity/image/352089"],
+          "domain2": "root.dam.mediapool.",
+          "workflowStep": "40",
+          "media": {
+            "preview": {
+              "size": { "width": 32, "dpi": 300, "height": 32 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MDAzNTQ3MDkvMC9wcmV2aWV3",
+              "mime": "image/jpeg"
+            },
+            "thumbnail": {
+              "size": { "width": 300, "dpi": 72, "height": 300 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MzU0NzA5LzAvdGh1bWJuYWls",
+              "mime": "image/jpeg"
+            }
+          },
+          "type": "picture.pictogram.",
+          "uuid": "2105b560-df41-11e7-a943-005056a94f4a",
+          "contentInfo": {
+            "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Brief/Paket, Brief, Paket, Kuvert, Paketaufgabe, Briefaufgabe, Briefumschlag, versenden, senden, empfangen\n, Lettre/colis, Lettre colis, enveloppe, dépôt de colis, dépôt de lettres, enveloppe, envoyer, expédier, recevoir\n, Letter/parcel,letter, parcel, letter cover, posting parcels, posting letters, envelope, dispatch, send, receive\n, Brief/Paket, Brief, Paket, Kuvert, Paketaufgabe, Briefaufgabe, Briefumschlag, versenden, senden, empfangen\n, Lettre/colis, Lettre colis, enveloppe, dépôt de colis, dépôt de lettres, enveloppe, envoyer, expédier, recevoir\n, Letter/parcel,letter, parcel, letter cover, posting parcels, posting letters, envelope, dispatch, send, receive\n"
+          },
+          "colorSpace": "rgb",
+          "createdAt": "2017-12-12T13:34:00Z",
+          "postInfo": { "businessfield": "kommunikation" },
+          "typeFilter": "pictograms",
+          "size": { "width": 32, "dpi": 72, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MzU0NzA5LzAvbWFzdGVy",
+          "hashCode": "FA9F395965C3A699487EDF7F7CC56C77352E6B57",
+          "domain": "root.divisions.postch.",
+          "name": "1004.svg",
+          "id": 354709,
+          "detectedColor": {},
+          "workflowId": "620"
+        }
+      ],
+      "media": {
+        "preview": {
+          "size": { "width": 100, "dpi": 300, "height": 100 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MDAzNTIwODkvMC9wcmV2aWV3",
+          "mime": "image/jpeg"
+        },
+        "thumbnail": {
+          "size": { "width": 300, "dpi": 72, "height": 300 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MzUyMDg5LzAvdGh1bWJuYWls",
+          "mime": "image/jpeg"
+        },
+        "nano_32px_png": {
+          "size": { "width": 32, "dpi": 192, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MDAzNTIwODkvMC9uYW5vXzMycHhfcG5n",
+          "mime": "image/png"
+        },
+        "big_1024px_png": {
+          "size": { "width": 1024, "dpi": 6144, "height": 1024 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MDM1MjA4OS8wL2JpZ18xMDI0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "postforms_1920px_png": {
+          "size": { "width": 1920, "dpi": 11520, "height": 1920 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MDM1MjA4OS8wL3Bvc3Rmb3Jtc18xOTIwcHhfcG5n",
+          "mime": "image/png"
+        },
+        "small_256px_png": {
+          "size": { "width": 256, "dpi": 1536, "height": 256 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MzUyMDg5LzAvc21hbGxfMjU2cHhfcG5n",
+          "mime": "image/png"
+        },
+        "x-small_64px_png": {
+          "size": { "width": 64, "dpi": 384, "height": 64 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MDAzNTIwODkvMC94LXNtYWxsXzY0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "medium_512px_png": {
+          "size": { "width": 512, "dpi": 3072, "height": 512 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MDAzNTIwODkvMC9tZWRpdW1fNTEycHhfcG5n",
+          "mime": "image/png"
+        }
+      },
+      "type": "picture.pictogram.",
+      "uuid": "86862c20-c5fc-11e7-a943-005056a94f4a",
+      "contentInfo": {
+        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Brief/Paket, Brief, Paket, Kuvert, Paketaufgabe, Briefaufgabe, Briefumschlag, versenden, senden, empfangen, Lettre/colis, Lettre colis, enveloppe, dépôt de colis, dépôt de lettres, enveloppe, envoyer, , Letter/parcel, letter, parcel, letter cover, posting parcels, posting letters, envelope, dispatch, send, receive, Brief/Paket, Brief, Paket, Kuvert, Paketaufgabe, Briefaufgabe, Briefumschlag, versenden, senden, empfangen, Lettre/colis, Lettre colis, enveloppe, dépôt de colis, dépôt de lettres, enveloppe, envoyer, , Letter/parcel, letter, parcel, letter cover, posting parcels, posting letters, envelope, dispatch, send, receive"
+      },
+      "colorSpace": "cmyk",
+      "createdAt": "2017-11-10T09:50:05Z",
+      "outputChannel": [
+        "root.brandingnet.post.",
+        "root.brandingnet.post.live."
+      ],
+      "postInfo": { "businessfield": "kommunikation" },
+      "typeFilter": "pictograms",
+      "size": {},
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MzUyMDg5LzAvbWFzdGVy",
+      "hashCode": "CC987A76EC8D28AD1F6146B3AC0EF04614D8D52D",
+      "domain": "root.divisions.postch.",
+      "name": "1004.eps",
+      "id": 352089,
+      "detectedColor": { "schema": "cmyk" },
+      "workflowId": "620"
+    },
+    {
+      "modifiedAt": "2021-10-18T11:24:42Z",
+      "mime": "application/postscript",
+      "domain2": "root.dam.mediapool.",
+      "workflowStep": "40",
+      "variants": [
+        {
+          "modifiedAt": "2021-10-18T11:24:38Z",
+          "mime": "image/svg+xml",
+          "variantOf": ["https://cdn.post.ch/hcms/v2.0/entity/image/352090"],
+          "domain2": "root.dam.mediapool.",
+          "workflowStep": "40",
+          "media": {
+            "preview": {
+              "size": { "width": 32, "dpi": 300, "height": 32 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MDAzNTQ3MTAvMC9wcmV2aWV3",
+              "mime": "image/jpeg"
+            },
+            "thumbnail": {
+              "size": { "width": 300, "dpi": 72, "height": 300 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MzU0NzEwLzAvdGh1bWJuYWls",
+              "mime": "image/jpeg"
+            }
+          },
+          "type": "picture.pictogram.",
+          "uuid": "2111c350-df41-11e7-a943-005056a94f4a",
+          "contentInfo": {
+            "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Paket, Paketaufgabe, Geschenk, Schachtel, senden, empfangen\n, Colis, dépôt de colis, Cadeau, boîte, envoyer, recevoir\n, Parcel, posting parcels, gift, box, send, receive\n, Paket, Paketaufgabe, Geschenk, Schachtel, senden, empfangen\n, Colis, dépôt de colis, Cadeau, boîte, envoyer, recevoir\n, Parcel, posting parcels, gift, box, send, receive\n"
+          },
+          "colorSpace": "rgb",
+          "createdAt": "2017-12-12T13:34:00Z",
+          "postInfo": { "businessfield": "kommunikation" },
+          "typeFilter": "pictograms",
+          "size": { "width": 32, "dpi": 72, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MzU0NzEwLzAvbWFzdGVy",
+          "hashCode": "D67EC61AC561A557D3870E6B9C39E3E4BB6C490E",
+          "domain": "root.divisions.postch.",
+          "name": "1005.svg",
+          "id": 354710,
+          "detectedColor": {},
+          "workflowId": "620"
+        }
+      ],
+      "media": {
+        "preview": {
+          "size": { "width": 100, "dpi": 300, "height": 100 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MDAzNTIwOTAvMC9wcmV2aWV3",
+          "mime": "image/jpeg"
+        },
+        "thumbnail": {
+          "size": { "width": 300, "dpi": 72, "height": 300 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MzUyMDkwLzAvdGh1bWJuYWls",
+          "mime": "image/jpeg"
+        },
+        "nano_32px_png": {
+          "size": { "width": 32, "dpi": 192, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MDAzNTIwOTAvMC9uYW5vXzMycHhfcG5n",
+          "mime": "image/png"
+        },
+        "big_1024px_png": {
+          "size": { "width": 1024, "dpi": 6144, "height": 1024 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MDM1MjA5MC8wL2JpZ18xMDI0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "postforms_1920px_png": {
+          "size": { "width": 1920, "dpi": 11520, "height": 1920 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MDM1MjA5MC8wL3Bvc3Rmb3Jtc18xOTIwcHhfcG5n",
+          "mime": "image/png"
+        },
+        "small_256px_png": {
+          "size": { "width": 256, "dpi": 1536, "height": 256 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MzUyMDkwLzAvc21hbGxfMjU2cHhfcG5n",
+          "mime": "image/png"
+        },
+        "x-small_64px_png": {
+          "size": { "width": 64, "dpi": 384, "height": 64 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MDAzNTIwOTAvMC94LXNtYWxsXzY0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "medium_512px_png": {
+          "size": { "width": 512, "dpi": 3072, "height": 512 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MDAzNTIwOTAvMC9tZWRpdW1fNTEycHhfcG5n",
+          "mime": "image/png"
+        }
+      },
+      "type": "picture.pictogram.",
+      "uuid": "868b3530-c5fc-11e7-a943-005056a94f4a",
+      "contentInfo": {
+        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Paket, Paketaufgabe, Geschenk, Schachtel, senden, empfangen, Colis, dépôt de colis, Cadeau, boîte, envoyer, recevoir, Parcel, posting parcels, gift, box, send, receive, Paket, Paketaufgabe, Geschenk, Schachtel, senden, empfangen, Colis, dépôt de colis, Cadeau, boîte, envoyer, recevoir, Parcel, posting parcels, gift, box, send, receive"
+      },
+      "colorSpace": "cmyk",
+      "createdAt": "2017-11-10T09:50:05Z",
+      "outputChannel": [
+        "root.brandingnet.post.",
+        "root.brandingnet.post.live."
+      ],
+      "postInfo": { "businessfield": "kommunikation" },
+      "typeFilter": "pictograms",
+      "size": {},
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MzUyMDkwLzAvbWFzdGVy",
+      "hashCode": "E87CE5AC7875F954F658A820E711EB961977E2FF",
+      "domain": "root.divisions.postch.",
+      "name": "1005.eps",
+      "id": 352090,
+      "detectedColor": { "schema": "cmyk" },
+      "workflowId": "620"
+    },
+    {
+      "modifiedAt": "2021-10-18T11:16:36Z",
+      "mime": "application/postscript",
+      "domain2": "root.dam.mediapool.",
+      "workflowStep": "40",
+      "variants": [
+        {
+          "modifiedAt": "2021-10-18T11:24:38Z",
+          "mime": "image/svg+xml",
+          "variantOf": ["https://cdn.post.ch/hcms/v2.0/entity/image/352091"],
+          "domain2": "root.dam.mediapool.",
+          "workflowStep": "40",
+          "media": {
+            "preview": {
+              "size": { "width": 32, "dpi": 300, "height": 32 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MDAzNTQ3MTEvMC9wcmV2aWV3",
+              "mime": "image/jpeg"
+            },
+            "thumbnail": {
+              "size": { "width": 300, "dpi": 72, "height": 300 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MzU0NzExLzAvdGh1bWJuYWls",
+              "mime": "image/jpeg"
+            }
+          },
+          "type": "picture.pictogram.",
+          "uuid": "211b3930-df41-11e7-a943-005056a94f4a",
+          "contentInfo": {
+            "freeKeywords": "Piktogramme \"Die Post\" ab 2017, My Post 24, Paket, 24h, Paketaufgabe, senden, empfangen\n, My Post 24, Colis, 24h, dépôt de colis, envoyer, recevoir\n, My Post 24, parcel, 24h, sending parcels, send, receive\n, My Post 24, Paket, 24h, Paketaufgabe, senden, empfangen\n, My Post 24, Colis, 24h, dépôt de colis, envoyer, recevoir\n, My Post 24, parcel, 24h, sending parcels, send, receive\n"
+          },
+          "colorSpace": "rgb",
+          "createdAt": "2017-12-12T13:34:00Z",
+          "postInfo": { "businessfield": "kommunikation" },
+          "typeFilter": "pictograms",
+          "size": { "width": 32, "dpi": 72, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MzU0NzExLzAvbWFzdGVy",
+          "hashCode": "15B107CA5A7A44D9807B8E0A516D8212AACA8EC2",
+          "domain": "root.divisions.postch.",
+          "name": "1006.svg",
+          "id": 354711,
+          "detectedColor": {},
+          "workflowId": "620"
+        }
+      ],
+      "media": {
+        "preview": {
+          "size": { "width": 100, "dpi": 300, "height": 100 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MDAzNTIwOTEvMC9wcmV2aWV3",
+          "mime": "image/jpeg"
+        },
+        "thumbnail": {
+          "size": { "width": 300, "dpi": 72, "height": 300 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MzUyMDkxLzAvdGh1bWJuYWls",
+          "mime": "image/jpeg"
+        },
+        "nano_32px_png": {
+          "size": { "width": 32, "dpi": 192, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MDAzNTIwOTEvMC9uYW5vXzMycHhfcG5n",
+          "mime": "image/png"
+        },
+        "big_1024px_png": {
+          "size": { "width": 1024, "dpi": 6144, "height": 1024 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MDM1MjA5MS8wL2JpZ18xMDI0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "postforms_1920px_png": {
+          "size": { "width": 1920, "dpi": 11520, "height": 1920 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MDM1MjA5MS8wL3Bvc3Rmb3Jtc18xOTIwcHhfcG5n",
+          "mime": "image/png"
+        },
+        "small_256px_png": {
+          "size": { "width": 256, "dpi": 1536, "height": 256 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MzUyMDkxLzAvc21hbGxfMjU2cHhfcG5n",
+          "mime": "image/png"
+        },
+        "x-small_64px_png": {
+          "size": { "width": 64, "dpi": 384, "height": 64 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MDAzNTIwOTEvMC94LXNtYWxsXzY0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "medium_512px_png": {
+          "size": { "width": 512, "dpi": 3072, "height": 512 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MDAzNTIwOTEvMC9tZWRpdW1fNTEycHhfcG5n",
+          "mime": "image/png"
+        }
+      },
+      "type": "picture.pictogram.",
+      "uuid": "868fc910-c5fc-11e7-a943-005056a94f4a",
+      "contentInfo": {
+        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, My Post 24, Paket, 24h, Paketaufgabe, senden, empfangen, My Post 24, Colis, 24h, dépôt de colis, envoyer, recevoir, My Post 24, parcel, 24h, sending parcels, send, receive, My Post 24, Paket, 24h, Paketaufgabe, senden, empfangen, My Post 24, Colis, 24h, dépôt de colis, envoyer, recevoir, My Post 24, parcel, 24h, sending parcels, send, receive"
+      },
+      "colorSpace": "cmyk",
+      "createdAt": "2017-11-10T09:50:05Z",
+      "outputChannel": [
+        "root.brandingnet.post.",
+        "root.brandingnet.post.live."
+      ],
+      "postInfo": { "businessfield": "kommunikation", "year": "2017" },
+      "typeFilter": "pictograms",
+      "size": {},
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MzUyMDkxLzAvbWFzdGVy",
+      "hashCode": "5A13725BD0CE701D8D25D6AC8E4B93DE512BA5EF",
+      "domain": "root.divisions.postch.",
+      "name": "1006.eps",
+      "id": 352091,
+      "detectedColor": { "schema": "cmyk" },
+      "workflowId": "620"
+    },
+    {
+      "modifiedAt": "2021-10-18T11:24:42Z",
+      "mime": "application/postscript",
+      "domain2": "root.dam.mediapool.",
+      "workflowStep": "40",
+      "variants": [
+        {
+          "modifiedAt": "2021-10-18T11:24:39Z",
+          "mime": "image/svg+xml",
+          "variantOf": ["https://cdn.post.ch/hcms/v2.0/entity/image/352092"],
+          "domain2": "root.dam.mediapool.",
+          "workflowStep": "40",
+          "media": {
+            "preview": {
+              "size": { "width": 32, "dpi": 300, "height": 32 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MDAzNTQ3MTIvMC9wcmV2aWV3",
+              "mime": "image/jpeg"
+            },
+            "thumbnail": {
+              "size": { "width": 300, "dpi": 72, "height": 300 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MzU0NzEyLzAvdGh1bWJuYWls",
+              "mime": "image/jpeg"
+            }
+          },
+          "type": "picture.pictogram.",
+          "uuid": "21279540-df41-11e7-a943-005056a94f4a",
+          "contentInfo": {
+            "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Zustellservice\tZusteller, Paket, Brief, Mensch, Empfänger, Sender, Post empfangen, Paket und Brief\n, Service de distribution, Personnel de distribution, colis, lettre, homme, destinataire, expéditeur, envoyer du courrier, colis et lettre\n, Delivery service, delivery staff, parcel, letter, human, recipient, sender, receiving mail, parcel and letter\n, Zustellservice\tZusteller, Paket, Brief, Mensch, Empfänger, Sender, Post empfangen, Paket und Brief\n, Service de distribution, Personnel de distribution, colis, lettre, homme, destinataire, expéditeur, envoyer du courrier, colis et lettre\n, Delivery service, delivery staff, parcel, letter, human, recipient, sender, receiving mail, parcel and letter\n"
+          },
+          "colorSpace": "rgb",
+          "createdAt": "2017-12-12T13:34:00Z",
+          "postInfo": { "businessfield": "kommunikation" },
+          "typeFilter": "pictograms",
+          "size": { "width": 32, "dpi": 72, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MzU0NzEyLzAvbWFzdGVy",
+          "hashCode": "D87E2DD8B53A293D4AC5A088A74725BB9EB7BBF9",
+          "domain": "root.divisions.postch.",
+          "name": "1007.svg",
+          "id": 354712,
+          "detectedColor": {},
+          "workflowId": "620"
+        }
+      ],
+      "media": {
+        "preview": {
+          "size": { "width": 100, "dpi": 300, "height": 100 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MDAzNTIwOTIvMC9wcmV2aWV3",
+          "mime": "image/jpeg"
+        },
+        "thumbnail": {
+          "size": { "width": 300, "dpi": 72, "height": 300 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MzUyMDkyLzAvdGh1bWJuYWls",
+          "mime": "image/jpeg"
+        },
+        "nano_32px_png": {
+          "size": { "width": 32, "dpi": 192, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MDAzNTIwOTIvMC9uYW5vXzMycHhfcG5n",
+          "mime": "image/png"
+        },
+        "big_1024px_png": {
+          "size": { "width": 1024, "dpi": 6144, "height": 1024 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MDM1MjA5Mi8wL2JpZ18xMDI0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "postforms_1920px_png": {
+          "size": { "width": 1920, "dpi": 11520, "height": 1920 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MDM1MjA5Mi8wL3Bvc3Rmb3Jtc18xOTIwcHhfcG5n",
+          "mime": "image/png"
+        },
+        "small_256px_png": {
+          "size": { "width": 256, "dpi": 1536, "height": 256 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MzUyMDkyLzAvc21hbGxfMjU2cHhfcG5n",
+          "mime": "image/png"
+        },
+        "x-small_64px_png": {
+          "size": { "width": 64, "dpi": 384, "height": 64 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MDAzNTIwOTIvMC94LXNtYWxsXzY0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "medium_512px_png": {
+          "size": { "width": 512, "dpi": 3072, "height": 512 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MDAzNTIwOTIvMC9tZWRpdW1fNTEycHhfcG5n",
+          "mime": "image/png"
+        }
+      },
+      "type": "picture.pictogram.",
+      "uuid": "869435e0-c5fc-11e7-a943-005056a94f4a",
+      "contentInfo": {
+        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Zustellservice, Zusteller, Paket, Brief, Mensch, Empfänger, Sender, Post empfangen, Paket und Brief, Service de distribution, Personnel de distribution, colis, lettre, homme, destinataire, expéditeur, envoyer du courrier, colis et lettre, Delivery service, delivery staff, parcel, letter, human, recipient, sender, receiving mail, parcel and letter, Zustellservice, Zusteller, Paket, Brief, Mensch, Empfänger, Sender, Post empfangen, Paket und Brief, Service de distribution, Personnel de distribution, colis, lettre, homme, destinataire, expéditeur, envoyer du courrier, colis et lettre, Delivery service, delivery staff, parcel, letter, human, recipient, sender, receiving mail, parcel and letter"
+      },
+      "colorSpace": "cmyk",
+      "createdAt": "2017-11-10T09:50:05Z",
+      "outputChannel": [
+        "root.brandingnet.post.",
+        "root.brandingnet.post.live."
+      ],
+      "postInfo": { "businessfield": "kommunikation" },
+      "typeFilter": "pictograms",
+      "size": {},
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MzUyMDkyLzAvbWFzdGVy",
+      "hashCode": "85FC16B4E2BC4282D5181A68EE5A7C1B7CB1E66F",
+      "domain": "root.divisions.postch.",
+      "name": "1007.eps",
+      "id": 352092,
+      "detectedColor": { "schema": "cmyk" },
+      "workflowId": "620"
+    },
+    {
+      "modifiedAt": "2021-10-18T11:32:39Z",
+      "mime": "application/postscript",
+      "domain2": "root.dam.mediapool.",
+      "workflowStep": "40",
+      "variants": [
+        {
+          "modifiedAt": "2021-10-18T11:32:36Z",
+          "mime": "image/svg+xml",
+          "variantOf": ["https://cdn.post.ch/hcms/v2.0/entity/image/352093"],
+          "domain2": "root.dam.mediapool.",
+          "workflowStep": "40",
+          "media": {
+            "preview": {
+              "size": { "width": 32, "dpi": 300, "height": 32 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MDAzNTQ3MTMvMC9wcmV2aWV3",
+              "mime": "image/jpeg"
+            },
+            "thumbnail": {
+              "size": { "width": 300, "dpi": 72, "height": 300 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MzU0NzEzLzAvdGh1bWJuYWls",
+              "mime": "image/jpeg"
+            }
+          },
+          "type": "picture.pictogram.",
+          "uuid": "213306f0-df41-11e7-a943-005056a94f4a",
+          "contentInfo": {
+            "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Briefzentrum, Zustellung, Zuhause, Brief, Kuvert, Briefe empfangen, Briefumschlag\n, Centre courrier, Distribution, domicile, lettre, enveloppe, recevoir des lettres, enveloppe\n, Letter center, delivery, home, letter, envelope, receiving letters, letter cover\n"
+          },
+          "colorSpace": "rgb",
+          "createdAt": "2017-12-12T13:34:00Z",
+          "postInfo": { "businessfield": "kommunikation" },
+          "typeFilter": "pictograms",
+          "size": { "width": 32, "dpi": 72, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MzU0NzEzLzAvbWFzdGVy",
+          "hashCode": "318DCCBBB551B6A18BD60B3F39E394CF036E728D",
+          "domain": "root.divisions.postch.",
+          "name": "1008.svg",
+          "id": 354713,
+          "detectedColor": {},
+          "workflowId": "620"
+        }
+      ],
+      "media": {
+        "preview": {
+          "size": { "width": 100, "dpi": 300, "height": 100 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MDAzNTIwOTMvMC9wcmV2aWV3",
+          "mime": "image/jpeg"
+        },
+        "thumbnail": {
+          "size": { "width": 300, "dpi": 72, "height": 300 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MzUyMDkzLzAvdGh1bWJuYWls",
+          "mime": "image/jpeg"
+        },
+        "nano_32px_png": {
+          "size": { "width": 32, "dpi": 192, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MDAzNTIwOTMvMC9uYW5vXzMycHhfcG5n",
+          "mime": "image/png"
+        },
+        "big_1024px_png": {
+          "size": { "width": 1024, "dpi": 6144, "height": 1024 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MDM1MjA5My8wL2JpZ18xMDI0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "postforms_1920px_png": {
+          "size": { "width": 1920, "dpi": 11520, "height": 1920 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MDM1MjA5My8wL3Bvc3Rmb3Jtc18xOTIwcHhfcG5n",
+          "mime": "image/png"
+        },
+        "small_256px_png": {
+          "size": { "width": 256, "dpi": 1536, "height": 256 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MzUyMDkzLzAvc21hbGxfMjU2cHhfcG5n",
+          "mime": "image/png"
+        },
+        "x-small_64px_png": {
+          "size": { "width": 64, "dpi": 384, "height": 64 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MDAzNTIwOTMvMC94LXNtYWxsXzY0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "medium_512px_png": {
+          "size": { "width": 512, "dpi": 3072, "height": 512 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MDAzNTIwOTMvMC9tZWRpdW1fNTEycHhfcG5n",
+          "mime": "image/png"
+        }
+      },
+      "type": "picture.pictogram.",
+      "uuid": "869917e0-c5fc-11e7-a943-005056a94f4a",
+      "contentInfo": {
+        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Briefzentrum, Zustellung, Zuhause, Brief, Kuvert, Briefe empfangen, Briefumschlag, Centre courrier, Distribution, domicile, lettre, enveloppe, recevoir des lettres, enveloppe, Letter center, delivery, home, letter, envelope, receiving letters, letter cover"
+      },
+      "colorSpace": "cmyk",
+      "createdAt": "2017-11-10T09:50:05Z",
+      "outputChannel": [
+        "root.brandingnet.post.",
+        "root.brandingnet.post.live."
+      ],
+      "postInfo": { "businessfield": "kommunikation" },
+      "typeFilter": "pictograms",
+      "size": {},
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MzUyMDkzLzAvbWFzdGVy",
+      "hashCode": "8A8E2026891EEB0BD3516CCB41D601C2163E9DBD",
+      "domain": "root.divisions.postch.",
+      "name": "1008.eps",
+      "id": 352093,
+      "detectedColor": { "schema": "cmyk" },
+      "workflowId": "620"
+    },
+    {
+      "modifiedAt": "2021-10-18T11:32:38Z",
+      "mime": "application/postscript",
+      "domain2": "root.dam.mediapool.",
+      "workflowStep": "40",
+      "variants": [
+        {
+          "modifiedAt": "2021-10-18T11:32:36Z",
+          "mime": "image/svg+xml",
+          "variantOf": ["https://cdn.post.ch/hcms/v2.0/entity/image/352094"],
+          "domain2": "root.dam.mediapool.",
+          "workflowStep": "40",
+          "media": {
+            "preview": {
+              "size": { "width": 32, "dpi": 300, "height": 32 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MDAzNTQ3MTQvMC9wcmV2aWV3",
+              "mime": "image/jpeg"
+            },
+            "thumbnail": {
+              "size": { "width": 300, "dpi": 72, "height": 300 },
+              "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MzU0NzE0LzAvdGh1bWJuYWls",
+              "mime": "image/jpeg"
+            }
+          },
+          "type": "picture.pictogram.",
+          "uuid": "213ca3e0-df41-11e7-a943-005056a94f4a",
+          "contentInfo": {
+            "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Paketzentrum\tZustellung, Zuhause, Paket, empfangen, versenden, senden\n, Centre colis, Distribution, domicile, colis, recevoir, envoyer, expédier\n, Parcel center\t,elivery, at home, parcel, receive, dispatch, send\n"
+          },
+          "colorSpace": "rgb",
+          "createdAt": "2017-12-12T13:34:00Z",
+          "postInfo": { "businessfield": "kommunikation" },
+          "typeFilter": "pictograms",
+          "size": { "width": 32, "dpi": 72, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MzU0NzE0LzAvbWFzdGVy",
+          "hashCode": "17B74A5EBB29D6335255765C50F6940FBC6FD108",
+          "domain": "root.divisions.postch.",
+          "name": "1009.svg",
+          "id": 354714,
+          "detectedColor": {},
+          "workflowId": "620"
+        }
+      ],
+      "media": {
+        "preview": {
+          "size": { "width": 100, "dpi": 300, "height": 100 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MDAzNTIwOTQvMC9wcmV2aWV3",
+          "mime": "image/jpeg"
+        },
+        "thumbnail": {
+          "size": { "width": 300, "dpi": 72, "height": 300 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MzUyMDk0LzAvdGh1bWJuYWls",
+          "mime": "image/jpeg"
+        },
+        "nano_32px_png": {
+          "size": { "width": 32, "dpi": 192, "height": 32 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MDAzNTIwOTQvMC9uYW5vXzMycHhfcG5n",
+          "mime": "image/png"
+        },
+        "big_1024px_png": {
+          "size": { "width": 1024, "dpi": 6144, "height": 1024 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MDM1MjA5NC8wL2JpZ18xMDI0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "postforms_1920px_png": {
+          "size": { "width": 1920, "dpi": 11520, "height": 1920 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MDM1MjA5NC8wL3Bvc3Rmb3Jtc18xOTIwcHhfcG5n",
+          "mime": "image/png"
+        },
+        "small_256px_png": {
+          "size": { "width": 256, "dpi": 1536, "height": 256 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MzUyMDk0LzAvc21hbGxfMjU2cHhfcG5n",
+          "mime": "image/png"
+        },
+        "x-small_64px_png": {
+          "size": { "width": 64, "dpi": 384, "height": 64 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MDAzNTIwOTQvMC94LXNtYWxsXzY0cHhfcG5n",
+          "mime": "image/png"
+        },
+        "medium_512px_png": {
+          "size": { "width": 512, "dpi": 3072, "height": 512 },
+          "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MDAzNTIwOTQvMC9tZWRpdW1fNTEycHhfcG5n",
+          "mime": "image/png"
+        }
+      },
+      "type": "picture.pictogram.",
+      "uuid": "86a15540-c5fc-11e7-a943-005056a94f4a",
+      "contentInfo": {
+        "freeKeywords": "Piktogramme \"Die Post\" ab 2017, Paketzentrum, Zustellung, Zuhause, Paket, empfangen, versenden, senden, Centre colis, Distribution, domicile, colis, recevoir, envoyer, expédier, delivery, at home, parcel, receive, dispatch, send"
+      },
+      "colorSpace": "cmyk",
+      "createdAt": "2017-11-10T09:50:05Z",
+      "outputChannel": [
+        "root.brandingnet.post.",
+        "root.brandingnet.post.live."
+      ],
+      "postInfo": { "businessfield": "kommunikation" },
+      "typeFilter": "pictograms",
+      "size": {},
+      "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MzUyMDk0LzAvbWFzdGVy",
+      "hashCode": "80B638A7D5F5846607F242426B89FA1D7610456C",
+      "domain": "root.divisions.postch.",
+      "name": "1009.eps",
+      "id": 352094,
+      "detectedColor": { "schema": "cmyk" },
+      "workflowId": "620"
+    }
+  ],
+  "offset": 0,
+  "limit": 10,
+  "count": 10,
+  "total-count": 1751,
+  "page": {
+    "next": "https://cdn.post.ch/hcms/v2.0/entity/asset?offset=10&query=typeFilter%3D%22pictograms%22%26%28outputChannel%3D%5E%22root.brandingnet.post.%22%29&limit=10",
+    "current": "https://cdn.post.ch/hcms/v2.0/entity/asset?offset=0&query=typeFilter%3D%22pictograms%22%26%28outputChannel%3D%5E%22root.brandingnet.post.%22%29&limit=10",
+    "last": "https://cdn.post.ch/hcms/v2.0/entity/asset?offset=1750&query=typeFilter%3D%22pictograms%22%26%28outputChannel%3D%5E%22root.brandingnet.post.%22%29&limit=10",
+    "first": "https://cdn.post.ch/hcms/v2.0/entity/asset?offset=0&query=typeFilter%3D%22pictograms%22%26%28outputChannel%3D%5E%22root.brandingnet.post.%22%29&limit=10"
+  }
+}
