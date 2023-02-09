@@ -179,13 +179,14 @@ export const fetchConfig = async (
 export const generateConfigUrl = (projectId: string, environment: Environment): string => {
   if (projectId === 'test') return 'assets/config/test-configuration.json';
 
-  const isInt = environment.startsWith('int');
+  const parsedEnvironment = environment.toLowerCase();
+  const isInt = parsedEnvironment.startsWith('int');
   const host = `https://${isInt ? 'int' : 'www'}.post.ch`;
   try {
     // Use URL to validate the generated URL
     return new URL(
       `${host}/api/headerjs/Json?serviceid=${encodeURIComponent(projectId)}${
-        isInt ? '&environment=' + environment : ''
+        isInt ? '&environment=' + parsedEnvironment : ''
       }`,
     ).toString();
   } catch (error) {
@@ -223,7 +224,7 @@ export const getLocalizedCustomConfig = (
     );
   }
   let localizedCustomConfig: ILocalizedCustomConfig | undefined = customConfig[language];
-  if (localizedCustomConfig !== undefined)
+  if (localizedCustomConfig?.header?.navMain)
     setMainNavigationIds(localizedCustomConfig.header.navMain);
   return localizedCustomConfig;
 };

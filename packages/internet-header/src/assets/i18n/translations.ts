@@ -34,4 +34,9 @@ export const translations = {
     fr: 'Ouvrir le menu',
     it: 'Apri il menu',
   },
+  'Navigate on post.ch': {
+    de: 'Navigieren auf post.ch',
+    fr: 'Naviguer sur post.ch',
+    it: 'Navigate su post.ch',
+  },
 };

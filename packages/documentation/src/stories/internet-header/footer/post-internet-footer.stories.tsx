@@ -1,4 +1,5 @@
 import { Meta, Args, Story } from '@storybook/react';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 import Header from '../header/post-internet-header.stories';
 import docsPage from './internet-footer.docs.mdx';
 import '../header/internet-header.styles.scss';
@@ -13,6 +14,7 @@ export default {
     actions: {
       handles: ['headerLoaded', 'languageChanged'],
     },
+    badges: [BADGE.STABLE],
   },
   argTypes: {
     'custom-config': {

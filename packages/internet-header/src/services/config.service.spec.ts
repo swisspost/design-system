@@ -153,6 +153,13 @@ describe('config.service.ts', () => {
         'https://www.post.ch/api/headerjs/Json?serviceid=%3Cscript%3Ealert()%3C%2Fscript%3E',
       );
     });
+
+    it('should work with upper case env', () => {
+      /* @ts-expect-error */
+      expect(generateConfigUrl('whatever', 'INT01')).toEqual(
+        'https://int.post.ch/api/headerjs/Json?serviceid=whatever&environment=int01',
+      );
+    });
   });
 
   describe('fetchConfig', () => {

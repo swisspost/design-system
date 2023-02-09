@@ -8,6 +8,7 @@ export default {
     docs: {
       page: docsPage,
     },
+    badges: ['TODO'],
   },
   args: {},
   argTypes: {},

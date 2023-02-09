@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Meta, Args, Story, StoryContext, ReactFramework } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
 import docsPage from './range.docs.mdx';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -9,12 +10,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'is-invalid': true,
 };
 
-const ARROW_KEYS = [
-  'ArrowUp',
-  'ArrowDown',
-  'ArrowLeft',
-  'ArrowRight',
-];
+const ARROW_KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
 export default {
   title: 'Components/Range',
@@ -22,6 +18,7 @@ export default {
     docs: {
       page: docsPage,
     },
+    badges: [BADGE.NEEDS_REVISION],
   },
   args: {
     label: 'Label',
@@ -61,27 +58,27 @@ export default {
       name: 'Value',
       description: 'Holds the current input value.',
       control: {
-        type: 'number'
+        type: 'number',
       },
       table: {
-        disable: true
-      }
+        disable: true,
+      },
     },
     useBoundaries: {
       name: 'Boundaries',
       description: 'Render the component with or without `min`, `max` and `step` attributes.',
       control: {
-        type: 'boolean'
+        type: 'boolean',
       },
       table: {
-        category: 'General'
-      }
+        category: 'General',
+      },
     },
     min: {
       name: 'Minimum Value',
       description: 'Controls the `min` attribute of the component.',
       if: {
-        arg: 'useBoundaries'
+        arg: 'useBoundaries',
       },
       control: {
         type: 'number',
@@ -94,7 +91,7 @@ export default {
       name: 'Maximum Value',
       description: 'Controls the `max` attribute of the component.',
       if: {
-        arg: 'useBoundaries'
+        arg: 'useBoundaries',
       },
       control: {
         type: 'number',
@@ -105,13 +102,14 @@ export default {
     },
     step: {
       name: 'Step',
-      description: 'Controls the `step` attribute of the component. You can also use fractional numbers.',
+      description:
+        'Controls the `step` attribute of the component. You can also use fractional numbers.',
       if: {
-        arg: 'useBoundaries'
+        arg: 'useBoundaries',
       },
       control: {
         type: 'number',
-        step: 1
+        step: 1,
       },
       table: {
         category: 'General',
@@ -123,16 +121,12 @@ export default {
       control: {
         type: 'radio',
         labels: {
-          'none': 'None',
-          'text': 'Text',
-          'input': 'Input'
+          none: 'None',
+          text: 'Text',
+          input: 'Input',
         },
       },
-      options: [
-        'none',
-        'text',
-        'input'
-      ],
+      options: ['none', 'text', 'input'],
       table: {
         category: 'General',
       },
@@ -175,7 +169,11 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const classes = ['form-range', args.validation].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
-  const label: JSX.Element | null = !useAriaLabel ? <label key="label" className="form-label" htmlFor={ id }>{ args.label }</label> : null;
+  const label: JSX.Element | null = !useAriaLabel ? (
+    <label key="label" className="form-label" htmlFor={id}>
+      {args.label}
+    </label>
+  ) : null;
 
   const contextuals: (JSX.Element | null)[] = [
     args.validation === 'is-valid' ? (
@@ -193,13 +191,13 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const control: JSX.Element = (
     <input
       key="control"
-      id={ id }
-      className={ classes }
+      id={id}
+      className={classes}
       type="range"
-      defaultValue={ value }
-      min={ args.useBoundaries ? args.min : undefined }
-      max={ args.useBoundaries ? args.max : undefined }
-      step={ args.useBoundaries ? args.step : undefined }
+      defaultValue={value}
+      min={args.useBoundaries ? args.min : undefined}
+      max={args.useBoundaries ? args.max : undefined}
+      step={args.useBoundaries ? args.step : undefined}
       disabled={args.disabled}
       aria-label={useAriaLabel && args.label}
       aria-invalid={VALIDATION_STATE_MAP[args.validation]}
@@ -223,56 +221,51 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   let valueElement: JSX.Element | JSX.Element[] | null = null;
 
   if (args.showValue === 'text') {
-    valueElement = <p key="value" className="form-text">{ value }</p>;
+    valueElement = (
+      <p key="value" className="form-text">
+        {value}
+      </p>
+    );
   } else if (args.showValue === 'input') {
     const inputId = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleRangeInput`;
 
     valueElement = [
-      <label key="input-label" className="form-label visually-hidden" htmlFor={ inputId }>Range controller</label>,
+      <label key="input-label" className="form-label visually-hidden" htmlFor={inputId}>
+        Range controller
+      </label>,
       <input
         key="input"
-        id={ inputId }
+        id={inputId}
         className="form-control mw-giant"
         type="text"
         inputMode="decimal"
-        value={ value }
+        value={value}
         disabled={args.disabled}
         onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateArgs({ value: e.target.value })}
-      />
+      />,
     ];
   }
 
   if (args.showValue === 'input') {
-    return <div className="row align-items-end">
-      <div className="col">
-        { [label, control, ...contextuals].filter(el => el !== null) }
+    return (
+      <div className="row align-items-end">
+        <div className="col">{[label, control, ...contextuals].filter(el => el !== null)}</div>
+        <div className="col-auto">{valueElement}</div>
       </div>
-      <div className="col-auto">
-        { valueElement }
-      </div>
-    </div>;
+    );
   } else {
-    return <>
-      { [label, control, valueElement, ...contextuals].filter(el => el !== null) }
-    </>;
+    return <>{[label, control, valueElement, ...contextuals].filter(el => el !== null)}</>;
   }
 };
 
 export const Default: Story = Template.bind({});
 
 export const Boundaries: Story = Template.bind({});
-Boundaries.storyName  = 'Min, Max & Steps';
+Boundaries.storyName = 'Min, Max & Steps';
 Boundaries.parameters = {
   controls: {
-    exclude: [
-      'Label',
-      'Hidden Label',
-      'Boundaries',
-      'Show Value',
-      'Disabled',
-      'Validation',
-    ]
-  }
+    exclude: ['Label', 'Hidden Label', 'Boundaries', 'Show Value', 'Disabled', 'Validation'],
+  },
 };
 Boundaries.args = {
   value: 0.5,
@@ -286,13 +279,8 @@ Boundaries.args = {
 export const Validation: Story = Template.bind({});
 Validation.parameters = {
   controls: {
-    exclude: [
-      'Label',
-      'Hidden Label',
-      'Boundaries',
-      'Disabled',
-    ]
-  }
+    exclude: ['Label', 'Hidden Label', 'Boundaries', 'Disabled'],
+  },
 };
 Validation.args = {
   validation: 'is-invalid',

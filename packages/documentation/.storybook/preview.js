@@ -1,14 +1,51 @@
+import JsxParser from 'react-jsx-parser';
+import { renderToStaticMarkup } from 'react-dom/server';
+import * as prettier from 'prettier';
+import * as htmlParser from 'prettier/parser-html';
+
 import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';
-import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
-import 'cypress-storybook/react';
 import './preview.scss';
 
-import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
+import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
+import {
+  extractArgTypes,
+  extractComponentDescription,
+  setStencilDocJson,
+} from '@pxtrn/storybook-addon-docs-stencil';
 import docJson from '@swisspost/design-system-components/dist/docs.json';
+
+import React from 'react';
+import 'cypress-storybook/react';
+import * as Components from '@swisspost/design-system-components-react';
+import { BADGE, betaConfig, needsRevisionConfig } from '@geometricpanda/storybook-addon-badges';
 
 if (docJson) setStencilDocJson(docJson);
 defineInternetHeader();
+
+Object.entries(Components).forEach(([name, component]) => {
+  component.displayName = name.replace(/\B([A-Z])/g, '-$1').toLowerCase();
+});
+
+const PRETTIER_OPTIONS = {
+  parser: 'html',
+  plugins: [htmlParser],
+  printWidth: 100,
+  tabWidth: 2,
+  useTabs: false,
+  semi: true,
+  singleQuote: false,
+  quoteProps: 'consistent',
+  jsxSingleQuote: false,
+  trailingComma: 'es5',
+  bracketSpacing: true,
+  bracketSameLine: false,
+  arrowParens: 'always',
+  htmlWhitespaceSensitivity: 'css',
+  endOfLine: 'lf',
+  embeddedLanguageFormatting: 'off',
+  singleAttributePerLine: false,
+};
 
 export const parameters = {
   previewTabs: {
@@ -24,21 +61,16 @@ export const parameters = {
       order: [
         'Welcome',
         'Foundations',
-        [
-          'Typography',
-          'Color',
-          'Layout',
-          'Elevation',
-          'Accessibility'
-        ],
+        ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
         'Templates',
         'Components',
+        [
+          'Internet Header',
+          ['Getting started', 'Migration Guide', 'Header', 'Breadcrumbs', 'Footer'],
+        ],
         'Utilities',
         'Misc',
-        [
-          'Migration',
-          'ChangeLog'
-        ],
+        ['Migration', 'ChangeLog'],
       ],
     },
   },
@@ -51,6 +83,8 @@ export const parameters = {
     stylePreview: true,
   },
   docs: {
+    extractArgTypes,
+    extractComponentDescription,
     container: DocsLayout,
     components: {
       // Remove default storybook styles from most of things (helps with dark mode in mdx files)
@@ -72,29 +106,12 @@ export const parameters = {
       excludeDecorators: true,
     },
     transformSource(snippet) {
-      return (
-        snippet
-          // remove react fragments
-          .replace(/(<>|<\/>)/g, '')
+      const reactElements = <JsxParser jsx={snippet} renderInWrapper={false} />;
+      const htmlSnippet = renderToStaticMarkup(reactElements);
+      const formattedSnippet = prettier.format(htmlSnippet, PRETTIER_OPTIONS);
 
-          // remove "key" attributes
-          .replace(/(\t+|\s+)?key=".*"/g, '')
-
-          // remove "{' '}" placeholders
-          .replace(/{' '}/g, ' ')
-
-          // repalce noRefCheck functions
-          .replace(/function noRefCheck\(\)\s?{}/g, '() => {}')
-
-          // remove brackets from "{value}" attribute-values
-          .replace(/([a-zA-Z][a-zA-Z0-9-_:.]+)={([^}]*}?)}/g, (_m, g1, g2) => `${g1}="${g2}"`)
-
-          // replace "className" attributes with "class"
-          .replace(/className/g, 'class')
-
-          // replace "htmlFor" attributes with "for"
-          .replace(/htmlFor/g, 'for')
-      );
+      // ensure the string is not empty ('') because the Source component breaks if it is
+      return formattedSnippet || ' ';
     },
   },
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -103,6 +120,48 @@ export const parameters = {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
+    },
+  },
+  badgesConfig: {
+    [BADGE.BETA]: {
+      styles: {
+        backgroundColor: 'var(--post-yellow)',
+        color: '#000',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'This documentation page is still in beta mode and might not be complete yet.',
+      },
+    },
+    [BADGE.NEEDS_REVISION]: {
+      styles: {
+        backgroundColor: 'var(--post-gray-10)',
+        color: '#000',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'This page is pending revision from a UX Designer.',
+      },
+    },
+    [BADGE.STABLE]: {
+      styles: {
+        backgroundColor: 'var(--post-success)',
+        color: '#fff',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'The content of this page is ready to be used in production.',
+      },
+    },
+    TODO: {
+      styles: {
+        backgroundColor: 'var(--post-danger)',
+        color: '#fff',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'This page needs to be filled with content and serves as a placeholder in the meantime.',
+      },
     },
   },
 };

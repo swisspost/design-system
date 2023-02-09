@@ -1,5 +1,19 @@
 # @swisspost/design-system-demo
 
+## 5.2.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-intranet-header@3.0.7
+  - @swisspost/design-system-styles@5.3.1
+
+## 5.2.1
+
+### Patch Changes
+
+- Added link to the new internet header documentation (by [@gfellerph](https://github.com/gfellerph) with [#1045](https://github.com/swisspost/design-system/pull/1045))
+
 ## 5.2.0
 
 ### Minor Changes

@@ -50,7 +50,8 @@ export class PostSkiplinks {
 
     return (
       <Host>
-        <nav class="skiplinks">
+        <div class="skiplinks">
+          <h1 class="visually-hidden">{translate('Navigate on post.ch')}</h1>
           <ul class="no-list">
             <li>
               <a class="nav-link" href={config.logo.logoLink} accessKey="0" title="[ALT + 0]">
@@ -107,7 +108,7 @@ export class PostSkiplinks {
               </li>
             ) : null}
           </ul>
-        </nav>
+        </div>
       </Host>
     );
   }

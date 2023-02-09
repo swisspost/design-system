@@ -19,6 +19,7 @@ npm install @swisspost/design-system-styles
 ```
 
 ### Internet Header
+
 [![npm](https://img.shields.io/npm/v/@swisspost/internet-header)](https://www.npmjs.com/package/@swisspost/internet-header)
 
 [Documentation](https://next.design-system.post.ch/?path=/story/components-internet-header-getting-started--page) · [Changelog](/packages/internet-header/CHANGELOG.md)
@@ -45,7 +46,7 @@ npm install @swisspost/design-system-intranet-header
 
 [![npm](https://img.shields.io/npm/v/@swisspost/design-system-components)](https://www.npmjs.com/package/@swisspost/design-system-components)
 
-[Documentation](https://components.design-system.post.ch) · [Changelog](/packages/components/CHANGELOG.md)
+[Documentation](https://next.design-system.post.ch) · [Changelog](/packages/components/CHANGELOG.md)
 
 A set of standard web components for easy integration with every framework or no framework at all.
 
