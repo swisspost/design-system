@@ -8,17 +8,17 @@ import postThemes from './post-themes';
 import './preview.scss';
 
 import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
+import docJson from '@swisspost/design-system-components/dist/docs.json';
 import {
   extractArgTypes,
   extractComponentDescription,
   setStencilDocJson,
 } from '@pxtrn/storybook-addon-docs-stencil';
-import docJson from '@swisspost/design-system-components/dist/docs.json';
 
 import React from 'react';
 import 'cypress-storybook/react';
 import * as Components from '@swisspost/design-system-components-react';
-import { BADGE, betaConfig, needsRevisionConfig } from '@geometricpanda/storybook-addon-badges';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 if (docJson) setStencilDocJson(docJson);
 defineInternetHeader();
