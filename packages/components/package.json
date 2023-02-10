@@ -32,6 +32,7 @@
     "unit:watch": "stencil test --spec --watchAll --silent",
     "e2e": "cypress run",
     "e2e:watch": "cypress open",
+    "snapshots": "percy exec -- cypress run --configFile ./cypress.snapshot.config.js",
     "generate": "stencil generate"
   },
   "dependencies": {
