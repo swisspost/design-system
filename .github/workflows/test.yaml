@@ -8,9 +8,9 @@ name: Run tests
 on: [pull_request]
 
 jobs:
-  build:
+  unit:
+    needs: build
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: swisspost/design-system/.github/actions/setup-pnpm@999-header-visual-regression-tests
         with:
           use_cache: false
 
@@ -30,10 +30,6 @@ jobs:
       - name: Build dependencies
         run: pnpm --filter "...[origin/main]..." build
 
-  unit:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
       - name: Run unit tests
         run: pnpm --filter "...[origin/main]" unit
 
@@ -41,9 +37,27 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@999-header-visual-regression-tests
+        with:
+          use_cache: false
+
+      # Install packages changed since main, as well as their dependants and dependencies
+      - name: Install dependencies
+        run: pnpm --filter "...[origin/main]..." install
+
+      # Build packages changed since main, as well as their dependants and dependencies
+      - name: Build dependencies
+        run: pnpm --filter "...[origin/main]..." build
+
       # Test packages changed since main, as well as their dependants
       # https://pnpm.io/filtering#--filter-since
       - name: Run tests
-        run: start-server-and-test docs:headless 'pnpm --filter "...[origin/main]" test'
+        run: start-server-and-test docs:headless 'pnpm --filter "...[origin/main]" e2e'
 
 
