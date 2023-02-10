@@ -18,16 +18,10 @@ jobs:
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@999-header-visual-regression-tests
-        with:
-          use_cache: false
 
       # Install packages changed since main, as well as their dependants and dependencies
       - name: Install dependencies
-        run: pnpm --filter "...[origin/main]..." install
-
-      # Build packages changed since main, as well as their dependants and dependencies
-      - name: Build dependencies
-        run: pnpm --filter "...[origin/main]..." build
+        run: pnpm --filter "...[origin/main]" install
 
       - name: Run unit tests
         run: pnpm --filter "...[origin/main]" unit
@@ -42,12 +36,10 @@ jobs:
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@999-header-visual-regression-tests
-        with:
-          use_cache: false
 
-      # Install packages changed since main, as well as their dependants and dependencies
+      # Install packages
       - name: Install dependencies
-        run: pnpm --filter "...[origin/main]..." install
+        run: pnpm install
 
       # Build packages changed since main, as well as their dependants and dependencies
       - name: Build dependencies
