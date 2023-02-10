@@ -29,6 +29,8 @@ importers:
 
   packages/components:
     specifiers:
+      '@percy/cli': 1.18.0
+      '@percy/cypress': 3.1.2
       '@popperjs/core': 2.10.2
       '@stencil/core': 3.0.0
       '@stencil/react-output-target': 0.3.1
@@ -36,6 +38,8 @@ importers:
       '@swisspost/design-system-styles': workspace:5.3.1
       '@types/jest': 27.5.2
       bootstrap: 5.1.3
+      cypress: 12.5.1
+      cypress-storybook: 0.5.1
       jest: 27.5.1
       jest-cli: 27.5.1
       npm-run-all: 4.1.5
@@ -52,7 +56,11 @@ importers:
       puppeteer: 19.4.0
       sass: 1.58.0
     devDependencies:
+      '@percy/cli': 1.18.0
+      '@percy/cypress': 3.1.2_cypress@12.5.1
       '@types/jest': 27.5.2
+      cypress: 12.5.1
+      cypress-storybook: 0.5.1_cypress@12.5.1
       jest: 27.5.1
       jest-cli: 27.5.1
       npm-run-all: 4.1.5
