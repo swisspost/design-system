@@ -1,22 +1,3 @@
-Cypress.Commands.add('registerCollapsibleFrom', (url: string) => {
-  cy.visit(url);
-  cy.get('post-collapsible').as('collapsible');
-  cy.get('@collapsible').find('.collapse').as('collapse');
-});
-
-Cypress.Commands.add('checkVisibility', (visibility: 'visible' | 'hidden') => {
-  cy.get('@collapse').should('not.have.class', 'collapsing').and(`be.${visibility}`);
-});
-
-Cypress.Commands.add('checkAriaExpanded', (isExpanded: 'true' | 'false') => {
-  cy.get('@collapse')
-    .should('not.have.class', 'collapsing')
-    .invoke('attr', 'id')
-    .then(id => {
-      cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);
-    });
-});
-
 describe('collapsible', () => {
   describe('default', () => {
     beforeEach(() => {
@@ -42,15 +23,19 @@ describe('collapsible', () => {
     });
 
     it('should show the whole body', () => {
-      cy.get('@body').invoke('outerHeight').then(bodyHeight => {
-        cy.get('@collapse').invoke('innerHeight').should('to.be.at.least', bodyHeight);
-      });
+      cy.get('@body')
+        .invoke('outerHeight')
+        .then(bodyHeight => {
+          cy.get('@collapse').invoke('innerHeight').should('to.be.at.least', bodyHeight);
+        });
     });
 
     it('should have correct aria attributes', () => {
-      cy.get('@collapse').invoke('attr', 'id').then(id => {
-        cy.get('@header').find('button').should('have.attr', 'aria-controls', id);
-      });
+      cy.get('@collapse')
+        .invoke('attr', 'id')
+        .then(id => {
+          cy.get('@header').find('button').should('have.attr', 'aria-controls', id);
+        });
       cy.checkAriaExpanded('true');
     });
 
@@ -59,7 +44,7 @@ describe('collapsible', () => {
       cy.checkVisibility('hidden');
     });
 
-    it('should adapt the header\'s aria-expanded attribute after collapsing', () => {
+    it("should adapt the header's aria-expanded attribute after collapsing", () => {
       cy.get('@header').click();
       cy.checkAriaExpanded('false');
     });
@@ -69,7 +54,7 @@ describe('collapsible', () => {
       cy.checkVisibility('visible');
     });
 
-    it('should adapt the header\'s aria-expanded attribute after expanding', () => {
+    it("should adapt the header's aria-expanded attribute after expanding", () => {
       cy.get('@header').dblclick();
       cy.checkAriaExpanded('true');
     });
@@ -77,7 +62,9 @@ describe('collapsible', () => {
 
   describe('initially collapsed', () => {
     beforeEach(() => {
-      cy.registerCollapsibleFrom('iframe.html?args=&id=components-collapsible--initially-collapsed');
+      cy.registerCollapsibleFrom(
+        'iframe.html?args=&id=components-collapsible--initially-collapsed',
+      );
       cy.get('@collapsible').find('.accordion-header').as('header');
     });
 

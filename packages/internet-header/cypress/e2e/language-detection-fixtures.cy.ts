@@ -1,5 +1,5 @@
-import testConfiguration from '../fixtures/internet-header/test-configuration.json';
-import mockAuth from '../fixtures/internet-header/auth.json';
+import testConfiguration from '../../../documentation/cypress/fixtures/internet-header/test-configuration.json';
+import mockAuth from '../../../documentation/cypress/fixtures/internet-header/auth.json';
 
 describe('language detection with fixture pages', { baseUrl: null }, () => {
   beforeEach(() => {

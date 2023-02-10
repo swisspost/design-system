@@ -1,6 +1,6 @@
-import { IPortalConfig } from '@swisspost/internet-header/src/models/general.model';
-import rawTestConfiguration from '../fixtures/internet-header/test-configuration.json';
-import { prepare } from '../support/prepare-story';
+import { IPortalConfig } from '../../src/models/general.model';
+import rawTestConfiguration from '../../../documentation/cypress/fixtures/internet-header/test-configuration.json';
+import { prepare } from '../../../documentation/cypress/support/prepare-story';
 
 const testConfiguration: IPortalConfig = rawTestConfiguration as any;
 

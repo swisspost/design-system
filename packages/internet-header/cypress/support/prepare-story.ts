@@ -10,7 +10,7 @@ export const prepare = (
   cy.intercept('/assets/config/test-configuration.json', config).as('getTestConfig');
   cy.intercept('**/v1/session/subscribe', mockAuth).as('auth');
   cy.visitStorybook({
-    onBeforeLoad(win) {
+    onBeforeLoad(win: { navigator: any }) {
       // Set default browser language explicitly to English
       Object.defineProperty(win.navigator, 'language', {
         value: 'en',

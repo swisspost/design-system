@@ -6,9 +6,11 @@ importers:
     specifiers:
       '@changesets/changelog-github': 0.4.8
       '@changesets/cli': 2.26.0
+      start-server-and-test: 1.15.3
     devDependencies:
       '@changesets/changelog-github': 0.4.8
       '@changesets/cli': 2.26.0
+      start-server-and-test: 1.15.3
 
   packages/changelog-github:
     specifiers:
@@ -434,6 +436,8 @@ importers:
   packages/internet-header:
     specifiers:
       '@babel/core': 7.20.12
+      '@percy/cli': 1.18.0
+      '@percy/cypress': 3.1.2
       '@sindresorhus/slugify': 2.2.0
       '@stencil/core': 3.0.0
       '@stencil/eslint-plugin': 0.4.0
@@ -448,6 +452,9 @@ importers:
       babel-loader: 9.1.2
       body-scroll-lock: 4.0.0-beta.0
       bootstrap: '5.1'
+      cypress: 12.5.1
+      cypress-each: 1.13.1
+      cypress-storybook: 0.5.1
       eslint-plugin-react: 7.32.0
       globby: 13.1.3
       iframe-resizer: 4.3.3
@@ -476,6 +483,8 @@ importers:
       url-polyfill: 1.1.12
     devDependencies:
       '@babel/core': 7.20.12
+      '@percy/cli': 1.18.0
+      '@percy/cypress': 3.1.2_cypress@12.5.1
       '@stencil/eslint-plugin': 0.4.0_rsq2c6w7jokp7dy6oiiu7atw5q
       '@stencil/sass': 2.0.3_@stencil+core@3.0.0
       '@swisspost/design-system-styles': link:../styles/dist
@@ -486,6 +495,9 @@ importers:
       '@types/throttle-debounce': 5.0.0
       babel-loader: 9.1.2_@babel+core@7.20.12
       bootstrap: 5.1.3
+      cypress: 12.5.1
+      cypress-each: 1.13.1
+      cypress-storybook: 0.5.1_cypress@12.5.1
       eslint-plugin-react: 7.32.0
       globby: 13.1.3
       jest: 27.5.1
