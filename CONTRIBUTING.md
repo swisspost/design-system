@@ -183,6 +183,58 @@ When submitting pull requests, make sure you checked the following points:
 - Describe your changes in the pull request description as detailed as possible
 - Include a changeset if the changes in your pull request should be released and require an entry in the changelog (run `pnpm changeset` and follow the instructions)
 
+## Testing
+
+These testing guidelines are a loose set of rules that should be considered when writing tests for the Design System.
+
+### Unit tests
+
+Generally, `ts-jest` should be used for this kind of test. The styles package even has a custom jest transformer for sass files.
+
+#### Do
+
+- write unit tests for shared functionality or services that don't depend on any state (pure functions)
+- run unit tests on every push to a pull request
+- design your tests to run fast, 1-2 minute test runs are fine, investigate around 5 minutes, intervene above
+- mock any data needed
+
+#### Don't
+
+- write unit tests to compare markup output of a component, you'll likely want to make a visual snapshot because the unit test won't catch styling issues
+- write unit tests when the state of the piece of code depends on a browser environment, you'll likely want to write an integration test
+- depend on any outside data source you don't control, e.g. an API
+
+### Integration tests
+
+For integration tests, cypress is available on the documentation package.
+
+#### Do
+
+- write integration tests for components to test their state or output, e.g. events or aria-attributes
+- write integration tests for code that needs to run in a certain environment
+- try to run integration tests on pull requests only if the component was updated
+- run the full set of integration tests before releasing packages
+- try to keep the run duration under 2-3 minutes, investigate under 6 minutes and intervene above
+
+#### Don't
+
+- try to catch visual bugs, you'll likely want to write a visual regression test
+- test functions or services that don't need any specific environment to run, you'll likely want to write a unit test
+
+### Visual regression tests
+
+TODO: decide which integration to use (related: #1053)
+
+#### Do
+
+- write visual regression tests for every component in every state
+- run the complete suite of regression tests before releasing a package
+- chose the relevant browsers and viewports carefully for each test
+
+#### Don't
+
+- run visual regression tests on every push pull request (as long as we don't have way more quota available)
+
 ## Merging
 
 We're using the [squash and merge](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/incorporating-changes-from-a-pull-request/about-pull-request-merges#squash-and-merge-your-pull-request-commits) strategy to create a readable git history and reserve the possibility to use the commit messages in the changelog. The commit message must follow the [conventional commit](https://www.conventionalcommits.org/en/v1.0.0/) rules as it may be used for automatic versioning.
