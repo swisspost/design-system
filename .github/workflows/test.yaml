@@ -48,6 +48,6 @@ jobs:
       # Test packages changed since main, as well as their dependants
       # https://pnpm.io/filtering#--filter-since
       - name: Run tests
-        run: pnpm exec start-server-and-test docs:headless 9300 'pnpm --filter "...[origin/main]" e2e'
+        run: pnpm exec start-server-and-test docs:headless 9300 'pnpm --filter "...[origin/main]" --workspace-concurrency=1 e2e'
 
 
