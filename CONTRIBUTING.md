@@ -23,18 +23,40 @@ npm install -g pnpm
 # Install dependencies, build local dependencies and finally link them correctly
 pnpm run bootstrap
 
-# Start the design-system-demo
+# Start the design-system-documentation
 pnpm start
 ```
 
 Other root scripts are available for convenience:
-| Command | Description |
-| --- | --- |
-| `pnpm demo:start` | starts the demo Angular application |
-| `pnpm styles:start` | starts the styles storybook and the sass compiler |
-| `pnpm components:start` | starts the components storybook and stencil compiler |
-| `pnpm intranet-header:start` | starts the intranet header demo application |
-| `pnpm docs:start` | starts the main storybook |
+
+### Development
+
+Use these commands whenever you want to work on one of these packages. Ideally, these commands start a watcher for file changes and a GUI where you can see what changed for all relevant packages. The start scripts always assume that you previously ran `pnpm bootstrap` and therefore have all packages built on disk.
+
+| Command                           | Description                                                                                  |
+| --------------------------------- | -------------------------------------------------------------------------------------------- |
+| `pnpm start` or `pnpm docs:start` | starts the design-system-documentation storybook and the `start` scripts of all dependencies |
+| `pnpm demo:start`                 | starts the demo Angular application and the `start` scripts of all dependencies              |
+| `pnpm intranet-header:start`      | starts the intranet header demo application                                                  |
+| `pnpm styles:start`               | starts the sass compiler                                                                     |
+| `pnpm components:start`           | starts the stencil compiler                                                                  |
+| `pnpm header:start`               | starts the stencil compiler for the header                                                   |
+| `pnpm icons:start`                | starts the http server for debugging downloaded icons                                        |
+
+### Testing
+
+For easy test runs, the following commands are available (not all packages might have all commands available).
+
+| Command                               | Description                                                                               |
+| ------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `pnpm test`                           | runs the `test` command for all packages recursively                                      |
+| `pnpm [package shortname]:test`       | runs unit and end-to-end tests for the package in headless mode                           |
+| `pnpm [package shortname]:unit`       | runs unit tests for the package                                                           |
+| `pnpm [package shortname]:unit:watch` | runs unit tests in watch mode                                                             |
+| `pnpm [package shortname]:e2e`        | starts a headless cypress run                                                             |
+| `pnpm [package shortname]:e2e:watch`  | starts a headless storybook and opens the cypress application                             |
+| `pnpm [package shortname]:snapshots`  | starts a headless storybook and runs visual regression tests                              |
+| `pnpm [package shortname]:tdd`        | starts all test scripts in watch mode for test driven development (might blow up your pc) |
 
 When adding new packages, a new root command can be added. The idea is to have an easy starting point and the command should start all services necessary for local development.
 

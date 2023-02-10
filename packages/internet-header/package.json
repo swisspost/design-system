@@ -1,8 +1,17 @@
 {
   "name": "@swisspost/internet-header",
   "version": "1.5.2",
-  "description": "Swiss Post Internet Header",
+  "description": "The header for client facing applications.",
+  "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://next.design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
   "main": "loader/index.cjs.js",
   "module": "loader/index.js",
   "es2015": "loader/index.es2017.js",
@@ -20,18 +29,19 @@
     "loader/"
   ],
   "scripts": {
-    "build": "npm run stencil:build",
+    "start": "stencil build --docs --watch",
+    "dev": "stencil build --watch --serve --docs",
+    "build": "stencil build --docs",
+    "test": "npm run unit && npm run e2e",
+    "unit": "jest",
+    "unit:watch": "jest --watch",
+    "e2e": "cypress run",
+    "e2e:watch": "cypress open",
+    "snapshots": "percy exec -- cypress run --configFile ./cypress.snapshot.config.js",
     "clean": "rimraf www dist loader storybook-static",
-    "start": "npm run stencil:serve",
-    "test": "jest",
     "lint": "eslint src/**/*{.ts,.tsx}",
     "lint:fix": "eslint src/**/*{.ts,.tsx} --fix",
-    "stencil:start": "stencil build --docs --watch",
-    "stencil:build": "stencil build --docs",
-    "stencil:serve": "stencil build --watch --serve --docs",
-    "generate": "stencil generate",
-    "jest": "jest",
-    "jest:watch": "jest --watch"
+    "generate": "stencil generate"
   },
   "dependencies": {
     "@sindresorhus/slugify": "2.2.0",

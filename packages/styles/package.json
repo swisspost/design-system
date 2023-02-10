@@ -20,14 +20,14 @@
   "scripts": {
     "clean": "rimraf out-tsc dist/*",
     "start": "npm-run-all --parallel styles:start schematics:start",
+    "styles:start": "gulp watch",
     "prebuild": "pnpm clean",
     "build": "npm-run-all --parallel styles:build schematics:build",
+    "styles:build": "gulp build",
+    "test": "jest --onlyChanged",
     "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss",
     "lint:fix": "stylelint src/**/*.scss --fix",
-    "test": "jest --onlyChanged",
-    "styles:start": "gulp watch",
-    "styles:build": "gulp build",
     "schematics:start": "copyfiles schematics/migrations.json dist && tsc -p tsconfig.schematics.json --watch",
     "schematics:build": "copyfiles schematics/migrations.json dist && tsc -p tsconfig.schematics.json"
   },

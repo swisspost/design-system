@@ -18,10 +18,10 @@
     "start": "start-storybook -p 9200 --quiet",
     "start:headless": "start-storybook -p 9300 --quiet --no-open",
     "build": "build-storybook --quiet",
-    "test": "start-server-and-test start:headless 9300 'percy exec -- cypress run --record false'",
-    "cypress:open": "cypress open --config baseUrl=http://localhost:9300",
-    "cypress:run": "cypress run",
-    "cypress:dev": "start-server-and-test start:headless http://localhost:9300 cypress:open"
+    "test": "npm run e2e",
+    "e2e": "cypress run",
+    "e2e:watch": "cypress open",
+    "snapshots": "start-server-and-test start:headless 9300 'percy exec -- cypress run --record false'"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.1.0",
