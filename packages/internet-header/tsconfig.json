@@ -16,10 +16,6 @@
     "strictNullChecks": true,
     "skipLibCheck": true
   },
-  "include": [
-    "src",
-    "cypress/e2e/header.cy.ts",
-    "cypress/tsconfig.json",
-    "cypress/snapshots/header.snapshot.ts"
-  ]
+  "include": ["src"],
+  "exclude": ["node_modules"]
 }
