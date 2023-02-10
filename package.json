@@ -15,6 +15,7 @@
     "bootstrap": "pnpm install && pnpm -r build",
     "start": "pnpm docs:start",
     "test": "pnpm -r test",
+    "unit": "pnpm -r unit",
     "demo:start": "pnpm --filter design-system-demo... --parallel --stream start",
     "docs:start": "pnpm --filter design-system-documentation... --parallel --stream start",
     "docs:headless": "pnpm --filter design-system-documentation start:headless",
