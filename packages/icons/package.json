@@ -39,7 +39,7 @@
     "https-proxy-agent": "5.0.1",
     "jest": "26.0.0",
     "mock-fs": "5.2.0",
-    "node-fetch": "2.6.8",
+    "node-fetch": "3.3.0",
     "svgo": "2.8.0",
     "ts-jest": "26.0.0",
     "ts-node": "10.9.1",
