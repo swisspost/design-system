@@ -41,3 +41,32 @@ jobs:
         with:
           name: design-system-documentation
           folder: packages/documentation/storybook-static
+
+  e2e:
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+
+      - name: Install documentation & dependencies
+        run: pnpm --filter "[...origin/main]" install
+
+      - name: Install server
+        run: pnpm -g add http-server
+
+      - name: Download build artifacts
+        uses: swisspost/design-system/.github/actions/artifact-download@main
+        id: build
+        with:
+          name: design-system-documentation
+          folder: build-output
+
+      - name: Run tests
+        run: pnpm exec start-server-and-test 'http-server ./build-output --silent --port 9300' 9300 'pnpm --filter "[...origin/main]" e2e'
+
+
