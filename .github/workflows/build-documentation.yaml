@@ -69,6 +69,6 @@ jobs:
           folder: build-output
 
       - name: Run tests
-        run: pnpm exec start-server-and-test 'http-server ./build-output --silent --port 9300' 9300 'pnpm --filter "[...origin/main]" e2e'
+        run: pnpm exec start-server-and-test 'http-server ./build-output --silent --port 9300' 9300 'pnpm --filter "...[origin/main]" e2e'
 
 
