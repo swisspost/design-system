@@ -18,7 +18,7 @@ on:
 #            │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
 #            │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
 #            │ │ │ │ │
-    - cron: '0 0  * * 0'  # the job will run every Sunday at 0:00
+    - cron: '0 0 * * 0'  # the job will run every Sunday at 0:00
 
 jobs:
   fetch:
@@ -51,6 +51,10 @@ jobs:
 
       - name: Fetch Icons
         run: pnpm --filter design-system-icons fetchSVGs
+        env:
+          CEN_USERNAME: ${{ secrets.CEN_USERNAME }}
+          CEN_PASSWORD: ${{ secrets.CEN_PASSWORD }}
+          CEN_URL: ${{ secrets.CEN_URL }}
 
       - name: Get Changes
         id: changed-files
