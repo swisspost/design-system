@@ -1,6 +1,6 @@
-import { IPortalConfig } from '@swisspost/internet-header/src/models/general.model';
+import { IPortalConfig } from '../../src/models/general.model';
 import testConfiguration from '../fixtures/internet-header/test-configuration.json';
-import { NavLangEntity } from '@swisspost/internet-header/src/models/header.model';
+import { NavLangEntity } from '../../src/models/header.model';
 import { prepare } from '../support/prepare-story';
 
 describe('language-switch', () => {

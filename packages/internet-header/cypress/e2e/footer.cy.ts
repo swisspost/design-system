@@ -1,4 +1,4 @@
-import { prepare } from '../../../documentation/cypress/support/prepare-story';
+import { prepare } from '../support/prepare-story';
 
 describe('footer', () => {
   describe('config', () => {

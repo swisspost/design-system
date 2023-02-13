@@ -1,4 +1,4 @@
-import testConfiguration from '@swisspost/internet-header/src/assets/config/test-configuration.json';
+import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
 
 describe('main-navigation', () => {

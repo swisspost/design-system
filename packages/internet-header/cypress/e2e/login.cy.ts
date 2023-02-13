@@ -1,5 +1,5 @@
-import { IPortalConfig } from '@swisspost/internet-header/src/models/general.model';
-import testConfiguration from '@swisspost/internet-header/src/assets/config/test-configuration.json';
+import { IPortalConfig } from '../../src/models/general.model';
+import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
 
 describe('login', () => {

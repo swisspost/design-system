@@ -3,7 +3,7 @@ const { defineConfig } = require('cypress');
 module.exports = defineConfig({
   e2e: {
     baseUrl: 'http://localhost:9300',
-    specPattern: ['src/components/**/*.cy.{ts,tsx}'],
+    specPattern: ['cypress/e2e/**/*.cy.{ts,tsx}'],
     includeShadowDom: true,
     viewportWidth: 1024,
     viewportHeight: 576,
