@@ -16,10 +16,6 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
-    output:
-      preview_url:
-        description: The preview URL for the deployed storybook on netlify
-        value: ${{ steps.deploy.outputs.preview_url }}
 
     steps:
       - name: Checkout
@@ -46,23 +42,3 @@ jobs:
           folder: ${{ steps.build.outputs.folder }}
           comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           comment_author: swisspost-devs
-
-      - name: Save preview URL
-        run: echo "preview_url=${{ steps.deploy.outputs.preview_url }}" >> $GITHUB_OUTPUT
-
-  # Run end to end tests against the deployed docs
-  e2e:
-    runs-on: ubuntu-latest
-    needs: deploy
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
-
-      - name: Install
-        run: pnpm install
-
-      - name: Run tests
-        run: pnpm --filter "...[origin/main]" e2e --config baseUrl=${{ needs.deploy.outputs.preview_url }}

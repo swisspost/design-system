@@ -40,11 +40,6 @@ inputs:
     description: Path to the folder to deploy
     required: true
 
-outputs:
-  preview_url:
-    description: The netlify preview URL for this deployment
-    value: ${{ steps.netlify_deploy.outputs.url_alias }}
-
 runs:
   using: composite
   steps:
