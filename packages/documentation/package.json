@@ -18,7 +18,6 @@
     "start": "start-storybook -p 9200 --quiet",
     "start:headless": "start-storybook -p 9300 --quiet --no-open",
     "build": "build-storybook --quiet",
-    "test": "npm run e2e",
     "e2e": "cypress run",
     "e2e:watch": "cypress open",
     "snapshots": "start-server-and-test start:headless 9300 'percy exec -- cypress run --record false'"
