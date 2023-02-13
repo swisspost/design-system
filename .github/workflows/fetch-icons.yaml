@@ -34,9 +34,6 @@ jobs:
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      - name: Install icons & dependencies
-        run: pnpm --filter design-system-icons... install
-
       - name: Get Date
         id: current-date
         run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
@@ -49,25 +46,15 @@ jobs:
         env:
           BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons
 
+      - name: Install icons & dependencies
+        run: pnpm --filter design-system-icons... install
+
       - name: Fetch Icons
         run: pnpm --filter design-system-icons fetchSVGs
         env:
           CEN_USERNAME: ${{ secrets.CEN_USERNAME }}
           CEN_PASSWORD: ${{ secrets.CEN_PASSWORD }}
           CEN_URL: ${{ secrets.CEN_URL }}
-
-      - name: Get Changes
-        id: changed-files
-        uses: tj-actions/changed-files@v35
-        with:
-          files: ./packages/icons/public/post-icons/**
-
-      - name: Exit if no changes
-        if: steps.changed-files.outputs.any_modified == 'false'
-        run: |
-          git checkout main
-          git branch --delete ${{ steps.current-branch.outputs.branch }}
-          exit 1
 
       - name: Create Changeset
         run: |
@@ -87,6 +74,19 @@ jobs:
           git add .
           git commit -am "chore(icons): :point_up: update icon SVGs"
           git push -u origin ${{ steps.current-branch.outputs.branch }}
+
+      - name: Get Changes
+        id: changed-files
+        uses: tj-actions/changed-files@v35
+        with:
+          files: ./packages/icons/public/post-icons/**
+
+      - name: Exit if no changes
+        if: steps.changed-files.outputs.any_modified == 'false'
+        run: |
+          git checkout main
+          git push origin --delete ${{ steps.current-branch.outputs.branch }}
+          exit 1
 
       - name: Write PR Body
         id: pr-body
