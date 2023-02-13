@@ -61,7 +61,7 @@ jobs:
         uses: actions/cache@2
         with:
           path: /home/runner/.cache/Cypress
-          key: ${{ runner.os }}-cypress-${{ hasFiles(pnpm-lock.yaml) }}
+          key: ${{ runner.os }}-cypress-${{ hashFiles(pnpm-lock.yaml) }}
           restore-keys: ${{ runner.os }}-cypress-
 
       - name: Install documentation & dependencies
