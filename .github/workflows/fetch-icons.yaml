@@ -10,6 +10,7 @@
 name: Fetch Icons
 
 on:
+  workflow_dispatch:
   schedule:
 #            ┌───────────── minute (0 - 59)
 #            │ ┌───────────── hour (0 - 23)
@@ -17,7 +18,7 @@ on:
 #            │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
 #            │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
 #            │ │ │ │ │
-    - cron: '0 0 * * 0'  # the job will run every Sunday at 0:00
+    - cron: '0 0  * * 0'  # the job will run every Sunday at 0:00
 
 jobs:
   fetch:
@@ -32,6 +33,9 @@ jobs:
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
+
+      - name: Install icons & dependencies
+        run: pnpm --filter design-system-icons... install
 
       - name: Get Date
         id: current-date
