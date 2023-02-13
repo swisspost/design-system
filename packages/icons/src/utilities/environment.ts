@@ -12,6 +12,12 @@ const passphrase = Buffer.from(`${user}:${pw}`).toString('base64');
 
 export const url = process.env.CEN_URL;
 
+if (!user || !pw || !url) {
+  throw new Error(
+    'Environment variables are not defined. Please check your .env file and compare it to the .template.env. Are there any variables missing or undefined?',
+  );
+}
+
 export const getRequestInit = () => {
   const request: RequestInit = {
     headers: {
