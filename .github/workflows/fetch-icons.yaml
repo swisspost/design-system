@@ -33,6 +33,9 @@ jobs:
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
+      - name: Install icons & dependencies
+        run: pnpm --filter design-system-icons... install
+
       - name: Get Date
         id: current-date
         run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
