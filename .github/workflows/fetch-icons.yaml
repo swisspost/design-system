@@ -39,13 +39,13 @@ jobs:
 
       - name: Get Date
         id: current-date
-        run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+        run: echo "date=$(date +'%Y-%m-%d')" >> $GITHUB_OUTPUT
 
       - name: Create Branch
         id: current-branch
         run: |
           git checkout -b $BRANCH_NAME
-          echo "::set-output name=branch::$BRANCH_NAME"
+          echo "branch=$BRANCH_NAME" >> $GITHUB_OUTPUT
         env:
           BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons
 
@@ -95,7 +95,7 @@ jobs:
           # writing the PR body as a Markdown file allows it to be multi-lined and properly formatted
           # the file is then only used when creating the PR but is never committed
           echo "# Design system icons are now up to date!"                                              > $PR_BODY_FILE
-          echo "::set-output name=file::$PR_BODY_FILE"
+          echo "file=$PR_BODY_FILE" >> $GITHUB_OUTPUT
 
           # group all modified, renamed and copied files into a single list counting as updated files
           UPDATED_ICONS=($MODIFIED_ICONS $RENAMED_ICONS $COPIED_ICONS)
