@@ -1,14 +1,16 @@
 import React from 'react';
-import { Meta, Args, Story, StoryContext, ReactFramework } from "@storybook/react";
+import { Meta, Args, Story, StoryContext, ReactFramework } from '@storybook/react';
 import { useArgs } from '@storybook/client-api';
 import docsPage from './badge.docs.mdx';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 export default {
   title: 'Components/Badge',
   parameters: {
     docs: {
-      page: docsPage
-    }
+      page: docsPage,
+    },
+    badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
   },
   args: {
     text: 'Badge',
@@ -18,7 +20,7 @@ export default {
     checkable: false,
     checked: false,
     dismissible: false,
-    dismissed: false
+    dismissed: false,
   },
   argTypes: {
     text: {
@@ -41,10 +43,7 @@ export default {
           'badge-sm': 'Small',
         },
       },
-      options: [
-        'default',
-        'badge-sm',
-      ],
+      options: ['default', 'badge-sm'],
       table: {
         category: 'General',
       },
@@ -74,7 +73,8 @@ export default {
     },
     checkable: {
       name: 'Checkable',
-      description: 'Adds the checkable styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
+      description:
+        'Adds the checkable styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
       if: {
         arg: 'dismissible',
         truthy: false,
@@ -101,7 +101,8 @@ export default {
     },
     dismissible: {
       name: 'Dismissible',
-      description: 'Adds the dismissible styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
+      description:
+        'Adds the dismissible styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
       if: {
         arg: 'checkable',
         truthy: false,
@@ -124,19 +125,31 @@ export default {
       },
       table: {
         category: 'Variations',
-      }
-    }
+      },
+    },
   },
   decorators: [
     (Story: Story, { args }) => {
       const [_, updateArgs] = useArgs();
 
-      return <div>
-        { args.dismissible && args.dismissed ? <a href="#" onClick={ (e: React.MouseEvent) => { e.preventDefault(); updateArgs({ dismissed: false }) } }>Show badge</a> : null }
-        <Story/>
-      </div>;
-    }
-  ]
+      return (
+        <div>
+          {args.dismissible && args.dismissed ? (
+            <a
+              href="#"
+              onClick={(e: React.MouseEvent) => {
+                e.preventDefault();
+                updateArgs({ dismissed: false });
+              }}
+            >
+              Show badge
+            </a>
+          ) : null}
+          <Story />
+        </div>
+      );
+    },
+  ],
 } as Meta;
 
 const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
@@ -144,29 +157,34 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
 
   const classes = [
     args.checkable ? 'badge-check' : 'badge',
-    args.size === 'default' ? null : args.size
-  ].filter(c => c && c !== 'null').join(' ');
+    args.size === 'default' ? null : args.size,
+  ]
+    .filter(c => c && c !== 'null')
+    .join(' ');
   const checkableId = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_CheckableBadge`;
-  const checkableClasses = [
-    'badge-check-label',
-    args.size === 'default' ? null : args.size
-  ].filter(c => c && c !== 'null').join(' ');
+  const checkableClasses = ['badge-check-label', args.size === 'default' ? null : args.size]
+    .filter(c => c && c !== 'null')
+    .join(' ');
 
   const useDefaultContent = !args.checkable && !args.dismissible;
 
   const content: JSX.Element[] = [
     !args.nested ? args.text : null,
-    args.nested ? <span key="text">{ args.text }</span> : null,
-    args.nested ? <span key="nested" className="badge">{ args.nestedNumber }</span> : null
+    args.nested ? <span key="text">{args.text}</span> : null,
+    args.nested ? (
+      <span key="nested" className="badge">
+        {args.nestedNumber}
+      </span>
+    ) : null,
   ];
 
   const checkableContent: (JSX.Element | null)[] = [
     <input
       key="input"
-      id={ checkableId }
+      id={checkableId}
       className="badge-check-input"
       type="checkbox"
-      checked={ args.checked }
+      checked={args.checked}
       onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
         updateArgs({ checked: !args.checked });
 
@@ -178,22 +196,31 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
         }
       }}
     />,
-    <label key="label" className={ checkableClasses } htmlFor={ checkableId }>{ content }</label>
+    <label key="label" className={checkableClasses} htmlFor={checkableId}>
+      {content}
+    </label>,
   ];
 
   const dismissibleContent: (JSX.Element | null)[] = [
     ...content,
-    <button key="dismiss-button" className="btn-close" dismiss-label="dismiss" onClick={ () => updateArgs({ dismissed: true }) }></button>
+    <button
+      key="dismiss-button"
+      className="btn-close"
+      dismiss-label="dismiss"
+      onClick={() => updateArgs({ dismissed: true })}
+    ></button>,
   ];
 
   if (args.dismissible && args.dismissed) {
     return <></>;
   } else {
-    return <div className={ classes }>
-      { useDefaultContent && content }
-      { args.checkable && checkableContent }
-      { args.dismissible && dismissibleContent }
-    </div>;
+    return (
+      <div className={classes}>
+        {useDefaultContent && content}
+        {args.checkable && checkableContent}
+        {args.dismissible && dismissibleContent}
+      </div>
+    );
   }
 };
 
@@ -202,21 +229,21 @@ export const Default: Story = Template.bind({});
 export const Checkable: Story = Template.bind({});
 Checkable.parameters = {
   controls: {
-    exclude: ['checkable', 'dismissible']
-  }
+    exclude: ['checkable', 'dismissible'],
+  },
 };
 Checkable.args = {
   text: 'Checkable Badge',
-  checkable: true
+  checkable: true,
 };
 
 export const Dismissible: Story = Template.bind({});
 Dismissible.parameters = {
   controls: {
-    exclude: ['checkable', 'dismissible']
-  }
+    exclude: ['checkable', 'dismissible'],
+  },
 };
 Dismissible.args = {
   text: 'Dismissible Badge',
-  dismissible: true
+  dismissible: true,
 };

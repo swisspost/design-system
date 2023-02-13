@@ -1,5 +1,19 @@
 # @swisspost/design-system-documentation
 
+## 1.4.0
+
+### Minor Changes
+
+- Added badges to stories. Badges give important meta information about the state of a story. (by [@gfellerph](https://github.com/gfellerph) with [#1086](https://github.com/swisspost/design-system/pull/1086))
+
+### Patch Changes
+
+- Headings for the docs have been styled in a way that affected headings inside components. To prevent this, a more specific selector is being used now (by [@gfellerph](https://github.com/gfellerph) with [#1067](https://github.com/swisspost/design-system/pull/1067))
+- Updated dependencies:
+  - @swisspost/internet-header@1.5.2
+  - @swisspost/design-system-components@1.1.0
+  - @swisspost/design-system-styles@5.3.1
+
 ## 1.3.1
 
 ### Patch Changes

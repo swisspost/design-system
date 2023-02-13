@@ -9,6 +9,7 @@ module.exports = {
     '@storybook/addon-a11y',
     '@pxtrn/storybook-addon-docs-stencil',
     'storybook-dark-mode',
+    '@geometricpanda/storybook-addon-badges',
     {
       name: '@storybook/preset-scss',
       options: {
@@ -18,7 +19,7 @@ module.exports = {
       },
     },
   ],
-  staticDirs: ['../public'],
+  staticDirs: ['../public', '../node_modules/@swisspost/design-system-icons/public'],
   webpackFinal: (config, options) => {
     // allow scss :export statments (scss variables to js)
     config.module.rules.forEach(rule => {

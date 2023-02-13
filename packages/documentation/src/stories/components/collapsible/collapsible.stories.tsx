@@ -5,6 +5,7 @@ import { PostCollapsible } from '@swisspost/design-system-components-react';
 import parse from 'html-react-parser';
 import docsPage from './collapsible.docs.mdx';
 import { definedProperties } from '../../../utils';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 type PostCollapsibleArgs = ComponentProps<typeof PostCollapsible> & { content: string };
 
@@ -16,10 +17,9 @@ export default {
       page: docsPage,
     },
     controls: {
-      exclude: [
-        'Content',
-      ],
+      exclude: ['Content'],
     },
+    badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
   },
   args: {
     content: `<span slot="header">Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
@@ -47,7 +47,9 @@ const Template: StoryFn<PostCollapsibleArgs> = (args, context) => {
     id: hasHeader ? undefined : collapsibleId,
   });
 
-  const collapsibleComponent = <PostCollapsible { ...collapsibleProperties }>{ parse(args.content) }</PostCollapsible>;
+  const collapsibleComponent = (
+    <PostCollapsible {...collapsibleProperties}>{parse(args.content)}</PostCollapsible>
+  );
 
   const [currentArgs, updateArgs] = useArgs();
 
@@ -61,27 +63,31 @@ const Template: StoryFn<PostCollapsibleArgs> = (args, context) => {
   const togglers: [string, MouseEventHandler][] = [
     ['Toggle', () => toggleCollapse()],
     ['Show', () => toggleCollapse(true)],
-    ['Hide', () => toggleCollapse(false)]
+    ['Hide', () => toggleCollapse(false)],
   ];
 
   if (hasHeader) {
     return collapsibleComponent;
   }
 
-  return <>
-    <div className="d-flex gap-mini mb-regular">
-      {togglers.map(([ label, listener ]) =>
-        <button
-          aria-controls={ collapsibleId }
-          aria-expanded={ !args.collapsed }
-          className="btn btn-secondary"
-          onClick={ listener }
-          key={ label }
-        >{ label }</button>
-      )}
-    </div>
-    { collapsibleComponent }
-  </>;
+  return (
+    <>
+      <div className="d-flex gap-mini mb-regular">
+        {togglers.map(([label, listener]) => (
+          <button
+            aria-controls={collapsibleId}
+            aria-expanded={!args.collapsed}
+            className="btn btn-secondary"
+            onClick={listener}
+            key={label}
+          >
+            {label}
+          </button>
+        ))}
+      </div>
+      {collapsibleComponent}
+    </>
+  );
 };
 
 export const Default: Story<PostCollapsibleArgs> = Template.bind({});
@@ -89,11 +95,7 @@ export const Default: Story<PostCollapsibleArgs> = Template.bind({});
 export const InitiallyCollapsed: Story<PostCollapsibleArgs> = Template.bind({});
 InitiallyCollapsed.parameters = {
   controls: {
-    exclude: [
-      'Content',
-      'heading-level',
-      'toggle',
-    ],
+    exclude: ['Content', 'heading-level', 'toggle'],
   },
 };
 InitiallyCollapsed.args = {
@@ -103,11 +105,7 @@ InitiallyCollapsed.args = {
 export const HeadingLevel: Story<PostCollapsibleArgs> = Template.bind({});
 HeadingLevel.parameters = {
   controls: {
-    exclude: [
-      'Content',
-      'collapsed',
-      'toggle',
-    ],
+    exclude: ['Content', 'collapsed', 'toggle'],
   },
 };
 HeadingLevel.args = {
@@ -117,11 +115,7 @@ HeadingLevel.args = {
 export const IntricateContent: Story<PostCollapsibleArgs> = Template.bind({});
 IntricateContent.parameters = {
   controls: {
-    exclude: [
-      'collapsed',
-      'heading-level',
-      'toggle',
-    ],
+    exclude: ['collapsed', 'heading-level', 'toggle'],
   },
 };
 IntricateContent.args = {
@@ -134,11 +128,7 @@ IntricateContent.args = {
 export const CustomTrigger: Story<PostCollapsibleArgs> = Template.bind({});
 CustomTrigger.parameters = {
   controls: {
-    exclude: [
-      'Content',
-      'collapsed',
-      'heading-level',
-    ],
+    exclude: ['Content', 'collapsed', 'heading-level'],
   },
 };
 CustomTrigger.args = {
