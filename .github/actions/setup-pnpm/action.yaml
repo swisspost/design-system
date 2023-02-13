@@ -50,10 +50,3 @@ runs:
       with:
         node-version: ${{ inputs.node_version }}
         cache: ${{ inputs.use_cache == 'true' && 'pnpm' || '' }}
-
-    - name: Cache Cypress Binary
-      id: cache-cypress-binary
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/Cypress
-        key: binary-${{ hashFiles('pnpm-lock.yaml') }}

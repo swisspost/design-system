@@ -54,6 +54,8 @@ jobs:
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        with:
+          use_cache: false
 
       - name: Install documentation & dependencies
         run: pnpm install
