@@ -1,0 +1,92 @@
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core.scss' as post;
+
+.bg-fullwidth {
+  position: relative;
+
+  &:before,
+  &:after {
+    display: block;
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    background-color: inherit;
+    
+    @each $breakpoint in post.$grid-breakpoints-list {
+      $container-padding: map.get(post.$grid-container-padding, $breakpoint);
+
+      @include post.media-breakpoint-only($breakpoint) {
+        width: $container-padding;
+      }
+    }
+  }
+
+  &:before {
+    right: 100%;
+  }
+
+  &:after {
+    left: 100%;
+  }
+}
+
+$tile-size: 120px;
+$tile-icon-size: 50px;
+$tile-titleless-icon-size: 60px;
+
+.tile {
+  display: flex;
+  flex-direction: column;
+  width: $tile-size;
+  height: $tile-size;
+  background-color: post.$white;
+  border-radius: post.$size-regular;
+  box-shadow: 0 2px 5px 0 rgba(post.$aubergine-dark, 0.3);
+  text-decoration: none;
+  
+  .tile--title {
+    flex: 0 0 auto;
+    padding: post.$size-mini;
+    background-color: post.$yellow;
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+    font-size: 12px;
+    font-weight: post.$font-weight-bold;
+    box-shadow: 0 2px 0 1px rgba(post.$yellow, 0.5);
+
+    ~ .tile--icon {
+      img {
+        max-height: $tile-icon-size;
+      }
+    }
+  }
+  
+  .tile--icon {
+    flex: 0 1 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: post.$size-micro;
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+
+    img {
+      max-height: $tile-titleless-icon-size;
+    }
+
+    span {
+      font-size: 11px;
+      color: post.$gray-600;
+    }
+  }
+
+  &[href] {
+    transition: transform 150ms ease-out;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+}
