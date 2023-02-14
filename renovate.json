@@ -14,7 +14,6 @@
       "groupName": "Angular"
     },
     {
-      "comment": "Grouping all non-major dependencies: https://docs.renovatebot.com/presets-group/#groupallnonmajor",
       "matchPackagePatterns": ["*"],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
