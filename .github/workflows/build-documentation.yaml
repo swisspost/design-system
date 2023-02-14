@@ -82,6 +82,6 @@ jobs:
         run: pnpm --filter internet-header exec cypress info
 
       - name: Run tests
-        run: pnpm exec start-server-and-test 'http-server build-output --silent --port 9300' 9300 'pnpm --filter "...[origin/main]" --workspace-concurrency 0 e2e'
+        run: pnpm exec start-server-and-test 'http-server build-output --silent --port 9300' 9300 'pnpm --filter "...[origin/main]" --workspace-concurrency=1 e2e'
 
 
