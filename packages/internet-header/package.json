@@ -37,7 +37,7 @@
     "unit:watch": "jest --watch",
     "e2e": "cypress run",
     "e2e:watch": "cypress open",
-    "snapshots": "percy exec -- cypress run --configFile ./cypress.snapshot.config.js",
+    "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js",
     "clean": "rimraf www dist loader storybook-static",
     "lint": "eslint src/**/*{.ts,.tsx}",
     "lint:fix": "eslint src/**/*{.ts,.tsx} --fix",
