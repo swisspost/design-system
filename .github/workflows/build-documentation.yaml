@@ -79,14 +79,12 @@ jobs:
 
       - name: Download build artifacts
         uses: swisspost/design-system/.github/actions/artifact-download@main
-        id: build
         with:
           name: design-system-documentation
           folder: build-output
 
       - name: Download built header for fixture language tests
         uses: swisspost/design-system/.github/actions/artifact-download@main
-        id: build
         with:
           name: internet-header
           folder: packages/internet-header/dist
