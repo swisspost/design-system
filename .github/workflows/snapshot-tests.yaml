@@ -29,4 +29,6 @@ jobs:
         run: pnpm -g add http-server
 
       - name: Take snapshots
+        env:
+          PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: pnpm exec start-server-and-test 'http-server packages/documentation/storybook-static --silent --port 9300' 9300 'pnpm --filter "...[origin/main]" --workspace-concurrency=1 snapshots'
