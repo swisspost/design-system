@@ -1,6 +1,7 @@
 import React from "react";
+import { getVersion } from '../../../src/utils/version';
 
-export default (props) => (
+export default () => (
   <div className="docs-topic-teaser topic-teaser bg-nightblue mt-huge-r mb-giant-r">
     <div className="container">
       <div className="topic-teaser-container bg-nightblue">
@@ -15,7 +16,7 @@ export default (props) => (
                 <a
                   target="_blank"
                   rel="noopener"
-                  href={ `//getbootstrap.com/docs/${props?.getVersion('bootstrap', 'Mm') ?? ''}` }
+                  href={ `//getbootstrap.com/docs/${getVersion('bootstrap', 'Mm') ?? ''}` }
                 >
                   <span>Bootstrap Documentation</span>
                 </a>
