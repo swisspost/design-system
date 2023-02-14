@@ -2,7 +2,6 @@ import React from "react";
 
 import { DocsContainer as Layout } from "@storybook/addon-docs/blocks";
 import Header from './header';
-import TopicTeaser from './topic-teaser';
 import Footer from './footer';
 import './layout.scss';
 
@@ -34,7 +33,6 @@ export default ({ children, context }) => {
       <div className="container">
         {children}
       </div>
-      { context.id === 'welcome--page' ? <TopicTeaser/> : null }
       <Footer/>
     </Layout>
   );
