@@ -9,6 +9,7 @@ export default () => (
         The Swiss Post Design System pattern library for a unified and accessible user experience
         across the web platform.
       </p>
+      <p className="fs-tiny">Docs version: { getVersion('documentation') }</p>
     </div>
   </header>
 );
