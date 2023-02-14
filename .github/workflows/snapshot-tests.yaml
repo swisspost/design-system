@@ -7,8 +7,7 @@
 ###
 
 name: Run snapshot tests
-on:
-  workflow_dispatch:
+on: [pull_request]
 
 jobs:
   snapshots:
@@ -24,5 +23,8 @@ jobs:
       - name: Bootstrap
         run: pnpm bootstrap
 
+      - name: Install http-server
+        run: pnpm -g add http-server
+
       - name: Take snapshots
-        run: echo "todo"
+        run: pnpm exec start-server-and-test 'http-server packages/documentation/storybook-static --silent --port 9300' 9300 'pnpm --filter "...[origin/main]" --workspace-concurrency=1 snapshots'
