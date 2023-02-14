@@ -90,3 +90,20 @@ $tile-titleless-icon-size: 60px;
     }
   }
 }
+
+.benefit {
+  padding: post.$size-regular;
+
+  .benefit--icon {
+    margin-bottom: post.$size-regular;
+    font-size: post.$size-huge;
+    color: post.$aubergine-dark;
+  }
+
+  .benefit--content {
+    .content--title {
+      font-size: post.$h6-font-size;
+      font-weight: post.$font-weight-bold;
+    }
+  }
+}

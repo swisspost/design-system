@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/addon-docs';
 import { getVersion } from '../utils/version';
-import { Tile } from './welcome.components';
+import { Tile, Benefit } from './welcome.components';
 import './welcome.styles.scss';
 
 <Meta
@@ -69,36 +69,36 @@ import './welcome.styles.scss';
 <div className="mt-huge py-huge bg-light bg-fullwidth text-center">
   <h2 className="h3 mb-big">Reasons to choose the Swiss Post Design System</h2>
 
-  <div className="row">
+  <div className="row g-0">
     <div className="col-md-4">
-      <post-icon name="3194" class="fs-huge"></post-icon>
-      <h3 className="h6 fw-bold">Consistent</h3>
-      <p>Consistent styles for all elements and components</p>
+      <Benefit icon="3194" title="Consistent">
+        <p>Consistent styles for all elements and components</p>
+      </Benefit>
     </div>
     <div className="col-md-4">
-      <post-icon name="3194" class="fs-huge"></post-icon>
-      <h3 className="h6 fw-bold">Responsive</h3>
-      <p>Mobile first repsonsive layout</p>
+      <Benefit icon="2077" title="Responsive">
+        <p>Mobile first repsonsive layout</p>
+      </Benefit>
     </div>
     <div className="col-md-4">
-      <post-icon name="3194" class="fs-huge"></post-icon>
-      <h3 className="h6 fw-bold">Modular</h3>
-      <p>Import only the features that you need</p>
+      <Benefit icon="2097" title="Modular">
+        <p>Import only the features that you need</p>
+      </Benefit>
     </div>
     <div className="col-md-4">
-      <post-icon name="3194" class="fs-huge"></post-icon>
-      <h3 className="h6 fw-bold">Accessible</h3>
-      <p>Automated WAI-ARIA accessibility markup</p>
+      <Benefit icon="2115" title="Accessible">
+        <p><a href="https://www.w3.org/WAI/standards-guidelines/aria/" target="_blank" rel="noopener">WAI-ARIA accessibility</a> markup</p>
+      </Benefit>
     </div>
     <div className="col-md-4">
-      <post-icon name="3194" class="fs-huge"></post-icon>
-      <h3 className="h6 fw-bold">Modern</h3>
-      <p>Built with Stencil JS and Bootstrap</p>
+      <Benefit icon="2483" title="Modern">
+        <p>Built with <a href="https://stenciljs.com/" target="_blank" rel="noopener">Stencil JS</a> and <a href={ `https://getbootstrap.com/docs/${getVersion('bootstrap', 'Mm')}` } target="_blank" rel="noopener">Bootstrap</a></p>
+      </Benefit>
     </div>
     <div className="col-md-4">
-      <post-icon name="3194" class="fs-huge"></post-icon>
-      <h3 className="h6 fw-bold">Free</h3>
-      <p>Open sourced on GitHub, Apache License</p>
+      <Benefit icon="3161" title="Free">
+        <p>Open sourced on <a href="https://github.com/swisspost/design-system" target="_blank" rel="noopener">GitHub</a>, <a href="https://github.com/swisspost/design-system/blob/main/LICENSE" target="_blank" rel="noopener">Apache License</a></p>
+      </Benefit>
     </div>
   </div>
 </div>

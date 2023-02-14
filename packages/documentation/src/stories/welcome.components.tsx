@@ -6,6 +6,12 @@ interface ITileProps {
   children: React.ReactNode
 }
 
+interface IBenefitProps {
+  icon: string,
+  title: string,
+  children: React.ReactNode
+}
+
 export function Tile (props: ITileProps) {
   const isLink = props.href !== undefined;
   const Tag = isLink ? 'a' : 'div';
@@ -17,4 +23,14 @@ export function Tile (props: ITileProps) {
       { props.children }
     </span>
   </Tag>;
+}
+
+export function Benefit (props: IBenefitProps) {
+  return <div className="benefit">
+    <post-icon name={ props.icon } class="benefit--icon"></post-icon>
+    <div className="benefit--content">
+      <h3 className="content--title">{ props.title }</h3>
+      { props.children }
+    </div>
+  </div>;
 }
