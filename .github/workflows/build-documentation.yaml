@@ -18,6 +18,7 @@ on:
       - 'packages/styles/**'
       - 'packages/components/**'
       - 'packages/internet-header/**'
+      - 'packages/icons/**'
 
 jobs:
   build:
