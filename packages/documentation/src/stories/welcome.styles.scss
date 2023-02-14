@@ -12,14 +12,7 @@
     top: 0;
     bottom: 0;
     background-color: inherit;
-    
-    @each $breakpoint in post.$grid-breakpoints-list {
-      $container-padding: map.get(post.$grid-container-padding, $breakpoint);
-
-      @include post.media-breakpoint-only($breakpoint) {
-        width: $container-padding;
-      }
-    }
+    width: 100vw;
   }
 
   &:before {
