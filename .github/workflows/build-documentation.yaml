@@ -37,11 +37,17 @@ jobs:
       - name: Build documentation & dependencies
         run: pnpm --filter design-system-documentation... build
 
-      - name: Upload build artifacts
+      - name: Upload documentation
         uses: swisspost/design-system/.github/actions/artifact-upload@main
         with:
           name: design-system-documentation
           folder: packages/documentation/storybook-static
+
+      - name: Upload internet header package
+        uses: swisspost/design-system/.github/actions/artifact-upload@main
+        with:
+          name: internet-header
+          folder: packages/internet-header/dist
 
   e2e:
     runs-on: ubuntu-latest
@@ -77,6 +83,13 @@ jobs:
         with:
           name: design-system-documentation
           folder: build-output
+
+      - name: Download built header for fixture language tests
+        uses: swisspost/design-system/.github/actions/artifact-download@main
+        id: build
+        with:
+          name: internet-header
+          folder: packages/internet-header/dist
 
       - name: Cypress info
         run: pnpm --filter internet-header exec cypress info
