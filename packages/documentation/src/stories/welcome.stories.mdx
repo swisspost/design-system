@@ -44,9 +44,31 @@ import './welcome.styles.scss';
   </div>
 </div>
 
-<div className="mt-big d-flex gap-mini justify-content-center">
-  <a href="#" className="btn btn-primary">
-    Get started
+<div className="mt-huge mb-regular d-flex gap-mini flex-wrap justify-content-center">
+  <div className="w-100 mb-regular">
+    <a href="#" className="btn btn-primary btn-lg">
+      Get started
+    </a>
+  </div>
+  <a
+    href="https://www.experience-hub.ch/document/2803"
+    target="_blank"
+    rel="noopener"
+    className="btn btn-secondary"
+  >
+    <span>
+      Experience Hub<sup>1</sup>
+    </span>
+  </a>
+  <a
+    href="https://www.figma.com/files/1052961410179009444/project/45002065/Web"
+    target="_blank"
+    rel="noopener"
+    className="btn btn-secondary"
+  >
+    <span>
+      Figma<sup>1</sup>
+    </span>
   </a>
   <a
     href="https://fonts.post.ch/frutigerneueforpost/#/"
@@ -54,7 +76,7 @@ import './welcome.styles.scss';
     rel="noopener"
     className="btn btn-secondary"
   >
-    <span>Frutiger Neue For Post</span>
+    Frutiger Neue For Post
   </a>
   <a
     href="https://github.com/swisspost/design-system"
@@ -64,6 +86,11 @@ import './welcome.styles.scss';
   >
     GitHub
   </a>
+</div>
+
+  <p className="fs-tiny text-muted">
+    <sup>1</sup> login required
+  </p>
 </div>
 
 <div className="mt-huge py-huge bg-light bg-fullwidth text-center">
