@@ -15,6 +15,7 @@
     },
     {
       "matchPackagePatterns": ["*"],
+      "excludePackageNames": ["bootstrap", "typescript"],
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch"
