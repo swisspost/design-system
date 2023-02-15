@@ -1,7 +1,7 @@
 import { state } from '../../data/store';
 import { GeocodeLocation, GeocodeResponse, ServiceTypesResponse } from '../../models/geocode.model';
 import { gisAPIUrl, pois, placesUrl } from './places.settings';
-import { hardNormalize, createSlug } from './search-utilities';
+import { hardNormalize } from './search-utilities';
 
 // Never load types twice
 let typesCache: string | null = null;
@@ -51,7 +51,7 @@ export const queryPlaces = async (query: string): Promise<GeocodeLocation[]> => 
   const types = await convertTypes();
   const geocoderUrl = `${gisAPIUrl}/Geocode?query=${encodeURIComponent(query)}&lang=${
     state.currentLanguage
-  }&pois=${types}&limit=100`;
+  }&pois=${types}&limit=33`;
 
   try {
     const geocodeResponse = await fetch(geocoderUrl);
@@ -105,8 +105,8 @@ export const highlightPlacesString = (query: string | undefined, place: string) 
 export const getPlacesUrl = (location: GeocodeLocation): string => {
   let url: string;
 
-  if (location.id !== '') {
-    url = `${placesUrl}/${state.currentLanguage}/${location.id}/${createSlug(location.name)}`;
+  if (location.id) {
+    url = `${placesUrl}/${state.currentLanguage}/${location.id}/detail`;
   } else {
     url = `${placesUrl}?preselecttext=${encodeURIComponent(location.name)}`;
   }
