@@ -30,7 +30,7 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-cypress-
 
-      - name: Install documentation & dependencies
+      - name: Install dependencies
         run: pnpm install
 
       - name: Install server
