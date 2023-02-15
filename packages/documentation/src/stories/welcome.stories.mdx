@@ -20,7 +20,7 @@ import './welcome.styles.scss';
 
 <p>We offer different packages, which can all be used together or individually.</p>
 
-<div className="mt-regular d-flex gap-big flex-wrap justify-content-center">
+<div className="mt-regular tile-wrapper">
   <Tile title="Styles" href="https://github.com/swisspost/design-system/tree/main/packages/styles">
     <img src="/images/packages/styles.svg" alt="design-system-styles package logo" />
     <span>v{getVersion('styles')}</span>
@@ -144,7 +144,7 @@ import './welcome.styles.scss';
 <div className="mt-huge text-center">
   <h2 className="h3 mb-big">Technology Stack</h2>
 
-  <div className="d-flex gap-big flex-wrap justify-content-center">
+  <div className="tile-wrapper">
     <Tile href="https://www.figma.com/">
         <img src="/images/technologies/logo-figma.svg" alt="Figma Logo" />
         <span>Figma</span>
