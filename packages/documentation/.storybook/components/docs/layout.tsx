@@ -29,7 +29,7 @@ export default ({ children, context }) => {
         },
       }}
     >
-      { context.id === 'welcome--page' ? <Header/> : null }
+      { context.id === 'home--page' ? <Header/> : null }
       <div className="container">
         {children}
       </div>
