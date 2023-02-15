@@ -1,7 +1,6 @@
 import React from 'react';
 import { Meta, Args, Story } from '@storybook/react';
 import docsPage from './table.docs.mdx';
-import { ReactProps } from '../../../types/component';
 
 export default {
   title: 'Components/Table',
@@ -135,19 +134,19 @@ const Template = (args: Args) => (
 export const Default: Story = Template.bind({});
 Default.args = {
   content: [
-    <tr>
+    <tr key="1">
       <th scope="row">1</th>
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
     </tr>,
-    <tr>
+    <tr key="2">
       <th scope="row">2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
     </tr>,
-    <tr>
+    <tr key="3">
       <th scope="row">3</th>
       <td>Larry</td>
       <td>the Bird</td>
@@ -160,7 +159,7 @@ export const TableWithButtons: Story = Template.bind({});
 TableWithButtons.args = {
   alignment: 'align-middle',
   content: [
-    <tr>
+    <tr key="1">
       <th scope="row">1</th>
       <td>Mark</td>
       <td>Otto</td>
@@ -175,7 +174,7 @@ TableWithButtons.args = {
         </button>
       </td>
     </tr>,
-    <tr>
+    <tr key="2">
       <th scope="row">2</th>
       <td>Jacob</td>
       <td>Thornton</td>
@@ -190,7 +189,7 @@ TableWithButtons.args = {
         </button>
       </td>
     </tr>,
-    <tr>
+    <tr key="3">
       <th scope="row">3</th>
       <td>Larry</td>
       <td>the Bird</td>
