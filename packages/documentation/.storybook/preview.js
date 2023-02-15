@@ -60,6 +60,7 @@ export const parameters = {
     storySort: {
       order: [
         'Home',
+        'Get Started',
         'Foundations',
         ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
         'Templates',
