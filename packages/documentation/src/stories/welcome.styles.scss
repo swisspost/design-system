@@ -115,16 +115,16 @@ $tile-rg-size: 100px;
   }
 }
 
-.benefit {
+.feature {
   padding: post.$size-regular;
 
-  .benefit--icon {
+  .feature--icon {
     margin-bottom: post.$size-regular;
     font-size: post.$size-huge;
     color: post.$aubergine-dark;
   }
 
-  .benefit--content {
+  .feature--content {
     .content--title {
       font-size: post.$h6-font-size;
       font-weight: post.$font-weight-bold;
