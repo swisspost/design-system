@@ -152,6 +152,16 @@ Default.args = {
       <td>the Bird</td>
       <td>@twitter</td>
     </tr>,
+    <tr key="4">
+      <th scope="row">4</th>
+      <td>Someone</td>
+      <td>
+        else
+        <br />
+        entirely
+      </td>
+      <td>@twitter</td>
+    </tr>,
   ],
 };
 
