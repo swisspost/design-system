@@ -1,5 +1,4 @@
 import React from "react";
-import { getVersion } from '../../../src/utils/version';
 
 export default () => (
   <header className="docs-header bg-yellow">
