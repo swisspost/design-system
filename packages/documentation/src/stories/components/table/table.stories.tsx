@@ -11,13 +11,21 @@ export default {
     },
   },
   args: {
-    variant: 'null',
+    variant: [],
+    borderStyle: 'null',
     caption: 'List of users',
     captionPlacement: 'bottom',
     alignment: 'align-top',
-    hover: false,
+    content: null,
   },
   argTypes: {
+    content: {
+      name: 'Content',
+      description: 'Hidden helper arg for dynamically switching the table body',
+      table: {
+        disable: true,
+      },
+    },
     caption: {
       name: 'Caption',
       description: 'A description of the table, very useful for screen reader users.',
@@ -45,19 +53,33 @@ export default {
         category: 'Caption',
       },
     },
-    variant: {
-      name: 'Variants',
-      description: 'Stylistic table variants.',
+    borderStyle: {
+      name: 'Border style',
+      description: 'Border style',
       control: {
         type: 'radio',
         labels: {
-          'null': 'Default',
-          'table-striped': 'Striped',
+          'null': 'Default (underlined)',
           'table-bordered': 'Bordered',
           'table-borderless': 'Borderless',
         },
       },
-      options: ['null', 'table-striped', 'table-bordered', 'table-borderless'],
+      options: ['null', 'table-bordered', 'table-borderless'],
+      table: {
+        category: 'General',
+      },
+    },
+    variant: {
+      name: 'Variants',
+      description: 'Stylistic table variants.',
+      control: {
+        type: 'check',
+        labels: {
+          'table-striped': 'Striped',
+          'table-hover': 'Hover enabled',
+        },
+      },
+      options: ['table-striped', 'table-hover'],
       table: {
         category: 'General',
       },
@@ -79,33 +101,23 @@ export default {
         category: 'General',
       },
     },
-    hover: {
-      name: 'Hover',
-      description: 'Enable or disable hover styles.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'General',
-      },
-    },
   },
 } as Meta;
 
-const TableWrapper = (props: ReactProps<{ args: Args; children: ChildNode }>) => (
+const Template = (args: Args) => (
   <table
     className={[
       'table',
-      props.args.variant,
-      props.args.captionPlacement === 'top' ? 'caption-top' : 'null',
-      props.args.hover ? 'table-hover' : 'null',
-      props.args.alignment,
+      args.borderStyle,
+      args.variant.join(' '),
+      args.captionPlacement === 'top' ? 'caption-top' : 'null',
+      args.alignment,
     ]
       .filter(a => a !== 'null')
       .join(' ')}
   >
-    <caption className={props.args.captionPlacement === 'hidden' ? 'visually-hidden' : ''}>
-      {props.args.caption}
+    <caption className={args.captionPlacement === 'hidden' ? 'visually-hidden' : ''}>
+      {args.caption}
     </caption>
     <thead>
       <tr>
@@ -116,75 +128,82 @@ const TableWrapper = (props: ReactProps<{ args: Args; children: ChildNode }>) =>
       </tr>
     </thead>
 
-    <tbody>{props.children}</tbody>
+    <tbody>{args.content}</tbody>
   </table>
 );
 
-const Template = (args: Args) => (
-  <TableWrapper args={args}>
+export const Default: Story = Template.bind({});
+Default.args = {
+  content: [
     <tr>
       <th scope="row">1</th>
       <td>Mark</td>
       <td>Otto</td>
       <td>@mdo</td>
-    </tr>
+    </tr>,
     <tr>
       <th scope="row">2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>@fat</td>
-    </tr>
+    </tr>,
     <tr>
       <th scope="row">3</th>
       <td>Larry</td>
       <td>the Bird</td>
       <td>@twitter</td>
-    </tr>
-  </TableWrapper>
-);
+    </tr>,
+  ],
+};
 
-const TableButtons = () => (
-  <React.Fragment>
-    <button className="btn btn-secondary btn-icon btn-md">
-      <span className="visually-hidden">Edit</span>
-      <i className="pi pi-2012"></i>
-    </button>
-    <button className="btn btn-primary btn-icon btn-md ms-2">
-      <span className="visually-hidden">Edit</span>
-      <i className="pi pi-3193"></i>
-    </button>
-  </React.Fragment>
-);
-
-const ButtonTemplate = (args: Args) => (
-  <TableWrapper args={args}>
+export const TableWithButtons: Story = Template.bind({});
+TableWithButtons.args = {
+  alignment: 'align-middle',
+  content: [
     <tr>
       <th scope="row">1</th>
       <td>Mark</td>
       <td>Otto</td>
       <td>
-        <TableButtons />
+        <button className="btn btn-secondary btn-icon btn-md">
+          <span className="visually-hidden">Edit</span>
+          <i className="pi pi-2012"></i>
+        </button>
+        <button className="btn btn-primary btn-icon btn-md ms-2">
+          <span className="visually-hidden">Edit</span>
+          <i className="pi pi-3193"></i>
+        </button>
       </td>
-    </tr>
+    </tr>,
     <tr>
       <th scope="row">2</th>
       <td>Jacob</td>
       <td>Thornton</td>
       <td>
-        <TableButtons />
+        <button className="btn btn-secondary btn-icon btn-md">
+          <span className="visually-hidden">Edit</span>
+          <i className="pi pi-2012"></i>
+        </button>
+        <button className="btn btn-primary btn-icon btn-md ms-2">
+          <span className="visually-hidden">Edit</span>
+          <i className="pi pi-3193"></i>
+        </button>
       </td>
-    </tr>
+    </tr>,
     <tr>
       <th scope="row">3</th>
       <td>Larry</td>
       <td>the Bird</td>
       <td>
-        <TableButtons />
+        <button className="btn btn-secondary btn-icon btn-md">
+          <span className="visually-hidden">Edit</span>
+          <i className="pi pi-2012"></i>
+        </button>
+        <button className="btn btn-primary btn-icon btn-md ms-2">
+          <span className="visually-hidden">Edit</span>
+          <i className="pi pi-3193"></i>
+        </button>
       </td>
-    </tr>
-  </TableWrapper>
-);
-
-export const Default: Story = Template.bind({});
-
-export const TableWithButtons: Story = ButtonTemplate.bind({});
+    </tr>,
+  ],
+};

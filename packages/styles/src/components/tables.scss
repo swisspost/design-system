@@ -7,8 +7,4 @@
   > :not(:first-child) {
     border-width: 0;
   }
-
-  &.table-striped > :not(caption) > * > * {
-    border-bottom-width: 0;
-  }
 }
