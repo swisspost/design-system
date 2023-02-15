@@ -1,4 +1,5 @@
 import { Meta, Canvas, Story } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
 import { Search } from './icons.components';
 
 <Meta
@@ -76,7 +77,7 @@ The following documentation is using the `post-icon` component.
 ### Color
 
 By default, icons inherit the current text color of their parent element.<br/>
-You can therefore colorize an icon using our [text color utilities](/?path=/docs/utilities-text--color) or by setting the CSS directly through a style attribute or self-defined classes.
+You can therefore colorize an icon using our <LinkTo kind="utilities-text" story="color">text color utilities</LinkTo> or by setting the CSS directly through a style attribute or self-defined classes.
 
 <Canvas withSource="open">
   <Story
@@ -100,7 +101,7 @@ You can therefore colorize an icon using our [text color utilities](/?path=/docs
 
 ### Size
 
-Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size`. Therefore, you can manage the size of an icon using our [font-size utilities](/?path=/docs/utilities-text--font-size) or by setting the CSS directly through a style attribute or self-defined classes.
+Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size`. Therefore, you can manage the size of an icon using our <LinkTo kind="utilities-text" story="font-size">font-size utilities</LinkTo> or by setting the CSS directly through a style attribute or self-defined classes.
 
 <Canvas withSource="open">
   <Story
