@@ -1,8 +1,8 @@
-import { prepare } from '../support/prepare-story';
+import snapshotConfig from '../percy/snapshot-configs/all.json';
 
 describe('header', () => {
   it('default', () => {
-    prepare('Components/Internet Header/Header', 'Default');
-    cy.percySnapshot();
+    cy.visit('/iframe.html?args=&id=components-internet-header-header--default');
+    cy.percySnapshot('Header', snapshotConfig);
   });
 });
