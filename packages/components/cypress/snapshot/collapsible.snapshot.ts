@@ -1,6 +1,7 @@
-describe('header', () => {
+describe('Collapsible', () => {
   it('default', () => {
     cy.visit('/iframe.html?args=&id=components-collapsible--default');
-    cy.percySnapshot('Home');
+    cy.get('post-collapsible.hydrated');
+    cy.percySnapshot('Collapsible');
   });
 });
