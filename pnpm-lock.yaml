@@ -5930,7 +5930,7 @@ packages:
       '@storybook/csf': 0.0.2--canary.4566f4d.1
       '@storybook/router': 6.5.16_biqbaboplfbrettd7655fr4n2y
       '@types/qs': 6.9.7
-      core-js: 3.27.2
+      core-js: 3.28.0
       global: 4.4.0
       prop-types: 15.8.1
       qs: 6.11.0
