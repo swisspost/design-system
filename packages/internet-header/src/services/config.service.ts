@@ -180,13 +180,13 @@ export const generateConfigUrl = (projectId: string, environment: Environment): 
   if (projectId === 'test') return 'assets/config/test-configuration.json';
 
   const parsedEnvironment = environment.toLowerCase();
-  const isInt = parsedEnvironment.startsWith('int');
-  const host = `https://${isInt ? 'int' : 'www'}.post.ch`;
+  const isProd = parsedEnvironment === 'prod';
+  const host = `https://${isProd ? 'www' : 'int'}.post.ch`;
   try {
     // Use URL to validate the generated URL
     return new URL(
       `${host}/api/headerjs/Json?serviceid=${encodeURIComponent(projectId)}${
-        isInt ? '&environment=' + parsedEnvironment : ''
+        !isProd ? '&environment=' + parsedEnvironment : ''
       }`,
     ).toString();
   } catch (error) {
