@@ -17,93 +17,97 @@ import './home.styles.scss';
 />
 
 <div className="mt-huge text-center">
-  <h2 className="h3 mb-big">Packages</h2>
-
-<div className="mt-regular tile-wrapper">
-  <Tile title="Styles" href="https://github.com/swisspost/design-system/tree/main/packages/styles">
-    <img src="/images/packages/styles.svg" alt="design-system-styles package logo" />
-    <span>v{getVersion('styles')}</span>
-  </Tile>
-  <Tile
-    title="Components"
-    href="https://github.com/swisspost/design-system/tree/main/packages/components"
-  >
-    <img src="/images/packages/components.svg" alt="design-system-components package Logo" />
-    <span>v{getVersion('components')}</span>
-  </Tile>
-  <Tile
-    title="Internet-Header"
-    href="https://github.com/swisspost/design-system/tree/main/packages/internet-header"
-  >
-    <img src="/images/packages/internet-header.svg" alt="internet-header package Logo" />
-    <span>v{getVersion('internetheader')}</span>
-  </Tile>
-  <Tile
-    title="Intranet-Header"
-    href="https://github.com/swisspost/design-system/tree/main/packages/components-angular/projects/intranet-header"
-  >
-    <img
-      src="/images/packages/intranet-header.svg"
-      alt="design-system-intranet-header package Logo"
-    />
-    <span>v{getVersion('intranetheader')}</span>
-  </Tile>
-  <Tile title="Icons" href="https://github.com/swisspost/design-system/tree/main/packages/icons">
-    <img src="/images/packages/icons.svg" alt="design-system-icons package Logo" />
-    <span>v{getVersion('icons')}</span>
-  </Tile>
-</div>
-
-<div className="mt-huge text-center">
-  <LinkTo kind="Get Started" className="btn btn-primary btn-lg">
-    Get started
-  </LinkTo>
-</div>
-
-<div className="mt-regular mb-regular d-flex gap-mini flex-wrap justify-content-center">
-  <a
-    href="https://www.experience-hub.ch/document/2803"
-    target="_blank"
-    rel="noopener"
-    className="btn btn-secondary"
-  >
-    <span>
-      Experience Hub<sup>1</sup>
-    </span>
-  </a>
-  <a
-    href="https://www.figma.com/files/1052961410179009444/project/45002065/Web"
-    target="_blank"
-    rel="noopener"
-    className="btn btn-secondary"
-  >
-    <span>
-      Figma<sup>2</sup>
-    </span>
-  </a>
-  <a
-    href="https://fonts.post.ch/frutigerneueforpost/#/"
-    target="_blank"
-    rel="noopener"
-    className="btn btn-secondary"
-  >
-    Frutiger Neue For Post
-  </a>
-  <a
-    href="https://github.com/swisspost/design-system"
-    target="_blank"
-    rel="noopener"
-    className="btn btn-secondary"
-  >
-    GitHub
-  </a>
-</div>
-
+  <h2 className="h3">Packages &amp; Rescources</h2>
+  <div className="mt-big tile-wrapper">
+    <Tile
+      title="Styles"
+      href="https://github.com/swisspost/design-system/tree/main/packages/styles"
+    >
+      <img src="/images/packages/styles.svg" alt="design-system-styles package logo" />
+      <span>v{getVersion('styles')}</span>
+    </Tile>
+    <Tile
+      title="Components"
+      href="https://github.com/swisspost/design-system/tree/main/packages/components"
+    >
+      <img src="/images/packages/components.svg" alt="design-system-components package Logo" />
+      <span>v{getVersion('components')}</span>
+    </Tile>
+    <Tile
+      title="Internet-Header"
+      href="https://github.com/swisspost/design-system/tree/main/packages/internet-header"
+    >
+      <img src="/images/packages/internet-header.svg" alt="internet-header package Logo" />
+      <span>v{getVersion('internetheader')}</span>
+    </Tile>
+    <Tile
+      title="Intranet-Header"
+      href="https://github.com/swisspost/design-system/tree/main/packages/components-angular/projects/intranet-header"
+    >
+      <img
+        src="/images/packages/intranet-header.svg"
+        alt="design-system-intranet-header package Logo"
+      />
+      <span>v{getVersion('intranetheader')}</span>
+    </Tile>
+    <Tile title="Icons" href="https://github.com/swisspost/design-system/tree/main/packages/icons">
+      <img src="/images/packages/icons.svg" alt="design-system-icons package Logo" />
+      <span>v{getVersion('icons')}</span>
+    </Tile>
+  </div>
+  <div className="mt-regular mb-regular d-flex gap-mini flex-wrap justify-content-center">
+    <div className="mt-big mb-regular w-100">
+      <LinkTo kind="Get Started" className="btn btn-primary btn-lg">
+        Get started
+      </LinkTo>
+    </div>
+    <a
+      href="https://www.experience-hub.ch/document/2803"
+      target="_blank"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      <span>
+        Experience Hub<sup>1</sup>
+      </span>
+    </a>
+    <a
+      href="https://www.figma.com/files/1052961410179009444/project/45002065/Web"
+      target="_blank"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      <span>
+        Figma<sup>2</sup>
+      </span>
+    </a>
+    <a
+      href="https://fonts.post.ch/frutigerneueforpost/#/"
+      target="_blank"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      Frutiger Neue For Post
+    </a>
+    <a
+      href="https://github.com/swisspost/design-system"
+      target="_blank"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      GitHub
+    </a>
+  </div>
   <p className="mb-0 fs-tiny lh-tiny text-muted">
-    <sup>1</sup> Login required. Get access with your post account, or use the registration form on the login page.
+    <sup>1</sup> Login required. Get access with your post account, or use the registration form on
+    the login page.
   </p>
   <p className="mb-0 fs-tiny lh-tiny text-muted">
-    <sup>2</sup> Login required. Get access with your post account, or click <a href="mailto:ux@post.ch?subject=I need access to Figma&body=Hello%2C%20I%20need%20access%20to%20Figma%20%0A%E2%80%A2%20%20Project%20name%3A%20%0A%E2%80%A2%20Project%20Owner%20at%20the%20Post%20Office%20%28email%29%3A%20%0A%E2%80%A2%20Project%20Start%20Date%3A%20%0A%E2%80%A2%20Email%20address%20to%20be%20authorized%3A%20">here</a>.
+    <sup>2</sup> Login required. Get access with your post account, or click{' '}
+    <a href="mailto:ux@post.ch?subject=I need access to Figma&body=Hello%2C%20I%20need%20access%20to%20Figma%20%0A%E2%80%A2%20%20Project%20name%3A%20%0A%E2%80%A2%20Project%20Owner%20at%20the%20Post%20Office%20%28email%29%3A%20%0A%E2%80%A2%20Project%20Start%20Date%3A%20%0A%E2%80%A2%20Email%20address%20to%20be%20authorized%3A%20">
+      here
+    </a>
+    .
   </p>
 </div>
 
