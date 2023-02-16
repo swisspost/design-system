@@ -58,12 +58,12 @@ jobs:
 
       - name: Create Changeset
         run: |
-          echo ---                                      > $CHANGESET
-          echo '@swisspost/design-system-icons': patch >> $CHANGESET
-          echo ---                                     >> $CHANGESET
-          echo                                         >> $CHANGESET
-          echo Updated icon SVGs.                      >> $CHANGESET
-          echo                                         >> $CHANGESET
+          echo ---                                       > $CHANGESET
+          echo "'@swisspost/design-system-icons': patch" >> $CHANGESET
+          echo ---                                       >> $CHANGESET
+          echo                                           >> $CHANGESET
+          echo Updated icon SVGs.                        >> $CHANGESET
+          echo                                           >> $CHANGESET
         env:
           CHANGESET: ./.changeset/${{ steps.current-branch.outputs.branch }}.md
 
