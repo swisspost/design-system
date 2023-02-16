@@ -320,6 +320,7 @@ importers:
       '@storybook/addon-a11y': 6.5.16
       '@storybook/addon-docs': 6.5.16
       '@storybook/addon-essentials': 6.5.16
+      '@storybook/addon-links': 6.5.16
       '@storybook/addons': 6.5.16
       '@storybook/client-api': 6.5.16
       '@storybook/preset-scss': 1.0.3
@@ -372,6 +373,7 @@ importers:
       '@storybook/addon-a11y': 6.5.16_biqbaboplfbrettd7655fr4n2y
       '@storybook/addon-docs': 6.5.16_fp34m7vaa2sb7lyfkvcz52orxq
       '@storybook/addon-essentials': 6.5.16_fp34m7vaa2sb7lyfkvcz52orxq
+      '@storybook/addon-links': 6.5.16_biqbaboplfbrettd7655fr4n2y
       '@storybook/addons': 6.5.16_biqbaboplfbrettd7655fr4n2y
       '@storybook/client-api': 6.5.16_biqbaboplfbrettd7655fr4n2y
       '@storybook/preset-scss': 1.0.3_7yyjlakj7kidaoj2rqhkbn5gom
@@ -5909,6 +5911,33 @@ packages:
       - vue-template-compiler
       - webpack-cli
       - webpack-command
+    dev: true
+
+  /@storybook/addon-links/6.5.16_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-P/mmqK57NGXnR0i3d/T5B0rIt0Lg8Yq+qionRr3LK3AwG/4yGnYt4GNomLEknn/eEwABYq1Q/Z1aOpgIhNdq5A==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+    peerDependenciesMeta:
+      react:
+        optional: true
+      react-dom:
+        optional: true
+    dependencies:
+      '@storybook/addons': 6.5.16_biqbaboplfbrettd7655fr4n2y
+      '@storybook/client-logger': 6.5.16
+      '@storybook/core-events': 6.5.16
+      '@storybook/csf': 0.0.2--canary.4566f4d.1
+      '@storybook/router': 6.5.16_biqbaboplfbrettd7655fr4n2y
+      '@types/qs': 6.9.7
+      core-js: 3.28.0
+      global: 4.4.0
+      prop-types: 15.8.1
+      qs: 6.11.0
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+      regenerator-runtime: 0.13.11
+      ts-dedent: 2.2.0
     dev: true
 
   /@storybook/addon-measure/6.5.16_biqbaboplfbrettd7655fr4n2y:

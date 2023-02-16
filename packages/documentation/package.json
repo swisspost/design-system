@@ -44,6 +44,7 @@
     "@storybook/addon-a11y": "6.5.16",
     "@storybook/addon-docs": "6.5.16",
     "@storybook/addon-essentials": "6.5.16",
+    "@storybook/addon-links": "6.5.16",
     "@storybook/addons": "6.5.16",
     "@storybook/client-api": "6.5.16",
     "@storybook/preset-scss": "1.0.3",
