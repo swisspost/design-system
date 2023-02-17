@@ -1,5 +1,36 @@
 # @swisspost/design-system-documentation
 
+## 1.5.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.1
+
+## 1.5.0
+
+### Minor Changes
+
+- Added home page content. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1116](https://github.com/swisspost/design-system/pull/1116))
+
+- Added an icon search and documentation page for the post-icon web-component (by [@gfellerph](https://github.com/gfellerph) with [#933](https://github.com/swisspost/design-system/pull/933))
+
+- Added stories for the list utilities. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1060](https://github.com/swisspost/design-system/pull/1060))
+
+### Patch Changes
+
+- Added stories for the table element and a variation with buttons (by [@gfellerph](https://github.com/gfellerph) with [#1063](https://github.com/swisspost/design-system/pull/1063))
+
+- Refactored storybooks transformSource to create better code preview output. (by [@gfellerph](https://github.com/gfellerph) with [#933](https://github.com/swisspost/design-system/pull/933))
+
+- Fixed jsDelivr package link for the internet header (by [@gfellerph](https://github.com/gfellerph) with [#1089](https://github.com/swisspost/design-system/pull/1089))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.0
+  - @swisspost/design-system-styles@5.3.2
+  - @swisspost/internet-header@1.5.3
+  - @swisspost/design-system-components@1.2.0
+  - @swisspost/design-system-components-react@1.0.5
+
 ## 1.4.0
 
 ### Minor Changes

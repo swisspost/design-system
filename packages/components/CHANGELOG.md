@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 1.2.0
+
+### Minor Changes
+
+- Added an icon component that works together with @swisspost/design-system-icons for rendering any Post icon as an SVG. (by [@gfellerph](https://github.com/gfellerph) with [#933](https://github.com/swisspost/design-system/pull/933))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.3.2
+
 ## 1.1.0
 
 ### Minor Changes

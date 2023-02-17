@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-icons",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.1",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -17,7 +17,7 @@
     "linkDirectory": true
   },
   "files": [
-    "icons"
+    "public"
   ],
   "private": false,
   "scripts": {
