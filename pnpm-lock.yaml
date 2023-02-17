@@ -524,12 +524,16 @@ importers:
       '@angular-devkit/schematics': 14.2.10
       '@angular/compiler': 14.2.12
       '@angular/core': 14.2.12
+      '@percy/cli': 1.18.0
+      '@percy/cypress': 3.1.2
       '@popperjs/core': 2.11.6
       '@types/node': 18.13.0
       autoprefixer: 10.4.13
       bootstrap: 5.1.3
       cheerio: 1.0.0-rc.12
       copyfiles: 2.4.1
+      cypress: 12.5.1
+      cypress-storybook: 0.5.1
       glob: 8.1.0
       gulp: 4.0.2
       gulp-postcss: 9.0.1
@@ -558,9 +562,13 @@ importers:
       typescript: 4.8.4
     devDependencies:
       '@angular/compiler': 14.2.12_@angular+core@14.2.12
+      '@percy/cli': 1.18.0
+      '@percy/cypress': 3.1.2_cypress@12.5.1
       '@types/node': 18.13.0
       autoprefixer: 10.4.13_postcss@8.4.21
       copyfiles: 2.4.1
+      cypress: 12.5.1
+      cypress-storybook: 0.5.1_cypress@12.5.1
       glob: 8.1.0
       gulp: 4.0.2
       gulp-postcss: 9.0.1_postcss@8.4.21
@@ -1070,7 +1078,7 @@ packages:
       '@angular/core':
         optional: true
     dependencies:
-      '@angular/core': 14.2.12_rxjs@7.8.0+zone.js@0.12.0
+      '@angular/core': 14.2.12
       tslib: 2.5.0
 
   /@angular/core/14.2.12:
@@ -1081,7 +1089,6 @@ packages:
       zone.js: ~0.11.4 || ~0.12.0
     dependencies:
       tslib: 2.5.0
-    dev: false
 
   /@angular/core/14.2.12_rxjs@7.8.0+zone.js@0.12.0:
     resolution: {integrity: sha512-sGQxU5u4uawwvJa6jOTmGoisJiQ5HIN/RoBw99CmoqZIVyUSg9IRJJC1KVdH8gbpWBNLkElZv21lwJTL/msWyg==}

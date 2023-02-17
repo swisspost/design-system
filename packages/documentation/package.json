@@ -20,7 +20,7 @@
     "build": "build-storybook --quiet",
     "e2e": "cypress run",
     "e2e:watch": "cypress open",
-    "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js"
+    "disabled--snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.1.0",
