@@ -1,5 +1,12 @@
 # @swisspost/design-system-documentation
 
+## 1.5.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.1
+
 ## 1.5.0
 
 ### Minor Changes

@@ -1,5 +1,11 @@
 # @swisspost/design-system-icons
 
+## 1.0.1
+
+### Patch Changes
+
+- Fixed the publish config for the @swisspost/design-system-icons package that pointed to the wrong folder (by [@gfellerph](https://github.com/gfellerph) with [#1134](https://github.com/swisspost/design-system/pull/1134))
+
 ## 1.0.0
 
 ### Major Changes
