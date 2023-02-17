@@ -5,17 +5,17 @@ describe('Button', () => {
 
   it('default', () => {
     cy.loadStory('Components/Button', 'Default');
-    cy.percySnapshot();
+    cy.percySnapshot('Primary button');
 
     cy.changeArg('Variant', 'Secondary');
-    cy.percySnapshot();
+    cy.percySnapshot('Secondary button');
 
     cy.changeArg('Variant', 'Tertiary');
-    cy.percySnapshot();
+    cy.percySnapshot('Tertiary button');
   });
 
   it('inverted', () => {
     cy.loadStory('Components/Button', 'Inverted');
-    cy.percySnapshot();
+    cy.percySnapshot('Inverted button');
   });
 });
