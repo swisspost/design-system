@@ -60,6 +60,18 @@ For easy test runs, the following commands are available (not all packages might
 
 When adding new packages, a new root command can be added. The idea is to have an easy starting point and the command should start all services necessary for local development.
 
+## Script naming conventions
+
+Whenever we add new scripts to the package.json file, we follow the instructions below.
+
+- A script name is all lowercase.
+- A script name uses only letters, dashes and colons.
+- A script name is short and descriptive.
+- A default script name persist of one word only (e.g. `lint`).
+- A non default script name is postfixed with it's characteristics (e.g. `lint:fix`).
+- A non default script name for a specific tool is prefixed with the tool name (e.g. `storybook:serve`, `storybook:bulid`, etc.).
+- A non default script name can contain more than one colon (e.g. `lint:fix:dry`, `stencil:test:watch`, etc.).
+
 ## Accessibility
 
 Swiss Post is guided by the standards of the Web Content Accessibility Guidelines (WCAG) version 2.1.
@@ -124,18 +136,6 @@ When a new package is added to the repo, a few things need to be taken care of.
   The `linkDirectory` is necessary for pnpm to correctly link the dist folder in the node_modules. Make sure you biuld the package before using it in GitHub Actions or local scripts.
 
   > ⚠ On publish, the `package.json` gets copied into the `./dist` folder. This leads to an incorrect publish path because npm now tries to publish from `./dist/dist`. You'll need a pre-publish script that removes the `directory` key from the `publishConfig` (see the [styles package pre-publish workflow](./packages/styles/gulpfile.js) for an example).
-
-## Script naming conventions
-
-Whenever we add new scripts to the package.json file, we follow the instructions below.
-
-- A script name is all lowercase.
-- A script name uses only letters, dashes and colons.
-- A script name is short and descriptive.
-- A default script name persist of one word only (e.g. `lint`).
-- A non default script name is postfixed with it's characteristics (e.g. `lint:fix`).
-- A non default script name for a specific tool is prefixed with the tool name (e.g. `storybook:serve`, `storybook:bulid`, etc.).
-- A non default script name can contain more than one colon (e.g. `lint:fix:dry`, `stencil:test:watch`, etc.).
 
 ## Dev Server Ports
 
@@ -223,7 +223,7 @@ For integration tests, cypress is available on the documentation package.
 
 ### Visual regression tests
 
-TODO: decide which integration to use (related: #1053)
+Percy from Browserstack is the tool of choice here and runs with cypress integration. This allows you to write cypress style tests to set up the page/component. As of now, we have 25'000 snaps per month, assuming 4 browsers on two widths leaves us with 3'100 tests per month. With ~200 components and variants this allows for up to **15 runs per month**. This should be more than enough to run before every release.
 
 #### Do
 
@@ -233,7 +233,7 @@ TODO: decide which integration to use (related: #1053)
 
 #### Don't
 
-- run visual regression tests on every push pull request (as long as we don't have way more quota available)
+- run visual regression tests on every push on a pull request (as long as we don't have way more quota available)
 
 ## Merging
 
