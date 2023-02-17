@@ -1,5 +1,15 @@
 # @swisspost/design-system-styles
 
+## 5.3.2
+
+### Patch Changes
+
+- Fixed font-weight for all headings. The default is now bold (700). (by [@gfellerph](https://github.com/gfellerph) with [#1122](https://github.com/swisspost/design-system/pull/1122))
+
+- Fixed table styles for striped, bordered and borderless tables (default HTML table) (by [@gfellerph](https://github.com/gfellerph) with [#1063](https://github.com/swisspost/design-system/pull/1063))
+
+- Added a highlight color for validation messages in Windows High Contrast Mode so these messages are more visible (by [@gfellerph](https://github.com/gfellerph) with [#1121](https://github.com/swisspost/design-system/pull/1121))
+
 ## 5.3.1
 
 ### Patch Changes
