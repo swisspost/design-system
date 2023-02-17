@@ -1,4 +1,3 @@
-import React from 'react';
 import { Meta, Args, Story } from '@storybook/react';
 import docsPage from './button.docs.mdx';
 import { forEach } from '../../../utils/react';
