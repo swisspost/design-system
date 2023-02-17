@@ -1,7 +1,14 @@
 describe('header', () => {
   it('default', () => {
     cy.visit('/iframe.html?args=&id=components-internet-header-header--default');
-    cy.get('swisspost-internet-header.hydrated');
-    cy.percySnapshot('Header');
+    cy.get('swisspost-internet-header.hydrated')
+      .then(($header: JQuery<HTMLSwisspostInternetHeaderElement>) => {
+        return new Promise(resolve => {
+          $header.on('headerLoaded', resolve);
+        });
+      })
+      .then(() => {
+        cy.percySnapshot('Header');
+      });
   });
 });
