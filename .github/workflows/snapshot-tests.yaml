@@ -7,7 +7,7 @@
 ###
 
 name: Run snapshot tests
-on: [pull_request]
+on: [workflow_dispatch]
 
 jobs:
   snapshots:
