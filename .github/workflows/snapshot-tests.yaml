@@ -30,7 +30,9 @@ jobs:
       - name: Install http-server
         run: pnpm -g add http-server
 
+      # Takes full snapshots on the main and partial snapshots (using the filter) on every other branch
       - name: Take snapshots
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-        run: pnpm exec start-server-and-test 'http-server packages/documentation/storybook-static --silent --port 9300' 9300 'pnpm --no-bail --filter "...[origin/main]" --workspace-concurrency=1 snapshots'
+        run: |
+          pnpm exec start-server-and-test 'http-server packages/documentation/storybook-static --silent --port 9300' 9300 'pnpm --no-bail${{ github.ref == 'refs/head/main' ? '' : " --filter '...[origin/main]'" }} --workspace-concurrency=1 snapshots'
