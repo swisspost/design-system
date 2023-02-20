@@ -529,7 +529,7 @@ importers:
       '@popperjs/core': 2.11.6
       '@types/node': 18.14.0
       autoprefixer: 10.4.13
-      bootstrap: 5.1.3
+      bootstrap: 5.2.3
       cheerio: 1.0.0-rc.12
       copyfiles: 2.4.1
       cypress: 12.5.1
@@ -556,7 +556,7 @@ importers:
       '@angular-devkit/schematics': 14.2.10
       '@angular/core': 14.2.12
       '@popperjs/core': 2.11.6
-      bootstrap: 5.1.3_@popperjs+core@2.11.6
+      bootstrap: 5.2.3_@popperjs+core@2.11.6
       cheerio: 1.0.0-rc.12
       prettier: 2.8.4
       typescript: 4.8.4
@@ -1078,7 +1078,7 @@ packages:
       '@angular/core':
         optional: true
     dependencies:
-      '@angular/core': 14.2.12_rxjs@7.8.0+zone.js@0.12.0
+      '@angular/core': 14.2.12
       tslib: 2.5.0
 
   /@angular/core/14.2.12:
@@ -1089,7 +1089,6 @@ packages:
       zone.js: ~0.11.4 || ~0.12.0
     dependencies:
       tslib: 2.5.0
-    dev: false
 
   /@angular/core/14.2.12_rxjs@7.8.0+zone.js@0.12.0:
     resolution: {integrity: sha512-sGQxU5u4uawwvJa6jOTmGoisJiQ5HIN/RoBw99CmoqZIVyUSg9IRJJC1KVdH8gbpWBNLkElZv21lwJTL/msWyg==}
@@ -9697,6 +9696,14 @@ packages:
     resolution: {integrity: sha512-fcQztozJ8jToQWXxVuEyXWW+dSo8AiXWKwiSSrKWsRB/Qt+Ewwza+JWoLKiTuQLaEPhdNAJ7+Dosc9DOIqNy7Q==}
     peerDependencies:
       '@popperjs/core': ^2.10.2
+    dependencies:
+      '@popperjs/core': 2.11.6
+    dev: false
+
+  /bootstrap/5.2.3_@popperjs+core@2.11.6:
+    resolution: {integrity: sha512-cEKPM+fwb3cT8NzQZYEu4HilJ3anCrWqh3CHAok1p9jXqMPsPTBhU25fBckEJHJ/p+tTxTFTsFQGM+gaHpi3QQ==}
+    peerDependencies:
+      '@popperjs/core': ^2.11.6
     dependencies:
       '@popperjs/core': 2.11.6
     dev: false
@@ -23739,7 +23746,7 @@ packages:
       bs-logger: 0.2.6
       buffer-from: 1.1.2
       fast-json-stable-stringify: 2.1.0
-      jest: 26.6.3_ts-node@10.9.1
+      jest: 26.6.3
       jest-util: 26.6.2
       json5: 2.2.3
       lodash: 4.17.21

@@ -37,7 +37,7 @@
     "@angular-devkit/schematics": "14.2.10",
     "@angular/core": "14.2.12",
     "@popperjs/core": "2.11.6",
-    "bootstrap": "5.1.3",
+    "bootstrap": "5.2.3",
     "cheerio": "1.0.0-rc.12",
     "prettier": "2.8.4",
     "typescript": "4.8.4"
