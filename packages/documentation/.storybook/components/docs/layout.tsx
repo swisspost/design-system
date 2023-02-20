@@ -1,12 +1,16 @@
-import React from "react";
+import React from 'react';
 
-import { DocsContainer as Layout } from "@storybook/addon-docs/blocks";
+import { DocsContainer as Layout } from '@storybook/addon-docs/blocks';
 import Header from './header';
 import Footer from './footer';
 import './layout.scss';
 
-import { useDarkMode } from "storybook-dark-mode";
+import { useDarkMode } from 'storybook-dark-mode';
 import postThemes from '../../post-themes';
+
+const showFooter = () => {
+  return window.location !== window.parent.location;
+};
 
 export default ({ children, context }) => {
   return (
@@ -29,11 +33,9 @@ export default ({ children, context }) => {
         },
       }}
     >
-      { context.id === 'home--page' ? <Header/> : null }
-      <div className="container">
-        {children}
-      </div>
-      <Footer/>
+      {context.id === 'home--page' ? <Header /> : null}
+      <div className="container">{children}</div>
+      {showFooter() ? <Footer /> : null}
     </Layout>
   );
 };

@@ -33,7 +33,9 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Bootstrap & Build Design System
-        run: pnpm bootstrap
+        run: |
+          pnpm --filter design-system-demo... install
+          pnpm --filter design-system-demo... build
 
       - name: Upload build artifacts
         uses: swisspost/design-system/.github/actions/artifact-upload@main

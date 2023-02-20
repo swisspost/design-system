@@ -1,0 +1,46 @@
+name: End to end tests
+on:
+  pull_request:
+    paths:
+      - 'packages/documentation/**'
+      - 'packages/styles/**'
+      - 'packages/components/**'
+      - 'packages/internet-header/**'
+      - 'packages/icons/**'
+
+jobs:
+  e2e:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        with:
+          use_cache: false
+
+      - name: Cache cypress
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Install server
+        run: pnpm -g add http-server
+
+      - name: Build documentation & dependencies
+        run: pnpm --filter design-system-documentation... build
+
+      - name: Cypress info
+        run: pnpm --filter internet-header exec cypress info
+
+      - name: Run tests
+        run: pnpm exec start-server-and-test 'http-server packages/documentation/storybook-static --silent --port 9300' 9300 'pnpm --filter "...[origin/main]" --workspace-concurrency=1 e2e'

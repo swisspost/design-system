@@ -13,6 +13,11 @@
     .sidebar-subheading-action {
       display: none;
     }
+
+    // Hide that very specific sidebar navigation entry to hide test pages
+    &#hidden {
+      display: none;
+    }
   }
 
   .sidebar-item {
@@ -118,7 +123,7 @@
           color: var(--post-gray-40);
         }
       }
-  
+
       &:hover,
       &:focus-visible {
         background-color: var(--post-gray-80);
