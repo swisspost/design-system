@@ -1,7 +1,7 @@
 @forward './../variables/options';
 
 @use './../lic/bootstrap-license';
-@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/core' as *;
 
 @use './../mixins';
 @use './../mixins/utilities';
