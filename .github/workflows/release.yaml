@@ -44,17 +44,3 @@ jobs:
           commit: 'chore(changesets): publish packages'
           publish: pnpm changeset:publish
           version: pnpm changeset:version
-
-      # Check version test
-      - name: Storybook Version Check
-        uses: tj-actions/changed-files@v35
-        id: sbCheck
-        with:
-          files: |
-            ./packages/documentation/package.json
-
-      # Publish storybook
-      - name: Publish storybook to chromatic
-        if: steps.sbCheck.outputs.any_changed
-        id: storybook
-        run: pnpm --filter design-system-documentation run chromatic --project-token=${{ secrets.CHROMATIC_STORYBOOK_TOKEN }}

@@ -37,8 +37,14 @@ jobs:
       - name: Build documentation & dependencies
         run: pnpm --filter design-system-documentation... build
 
-      - name: Upload build artifacts
+      - name: Upload documentation
         uses: swisspost/design-system/.github/actions/artifact-upload@main
         with:
           name: design-system-documentation
           folder: packages/documentation/storybook-static
+
+      - name: Upload internet header package
+        uses: swisspost/design-system/.github/actions/artifact-upload@main
+        with:
+          name: internet-header
+          folder: packages/internet-header/dist

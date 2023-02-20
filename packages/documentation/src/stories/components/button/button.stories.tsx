@@ -1,7 +1,6 @@
-import React from 'react';
 import { Meta, Args, Story } from '@storybook/react';
 import docsPage from './button.docs.mdx';
-import { forEach } from '../../../utils/react.ts';
+import { forEach } from '../../../utils/react';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 export default {
