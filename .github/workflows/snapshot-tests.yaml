@@ -35,4 +35,4 @@ jobs:
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
         run: |
-          pnpm exec start-server-and-test 'http-server packages/documentation/storybook-static --silent --port 9300' 9300 'pnpm --no-bail${{ github.ref == 'refs/head/main' ? '' : " --filter '...[origin/main]'" }} --workspace-concurrency=1 snapshots'
+          pnpm exec start-server-and-test 'http-server packages/documentation/storybook-static --silent --port 9300' 9300 'pnpm --no-bail${{ github.ref == 'refs/head/main' && '' || " --filter '...[origin/main]'" }} --workspace-concurrency=1 snapshots'
