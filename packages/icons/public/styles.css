@@ -1,0 +1,25 @@
+body {
+  min-height: 100vh;
+  margin: 0;
+  fill: currentColor;
+}
+
+svg,
+img,
+object,
+picture,
+source {
+  display: block;
+  margin: auto;
+  width: 1.5em;
+}
+
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.icon span {
+  font-size: 0.75rem;
+}

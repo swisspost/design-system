@@ -23,20 +23,54 @@ npm install -g pnpm
 # Install dependencies, build local dependencies and finally link them correctly
 pnpm run bootstrap
 
-# Start the design-system-demo
+# Start the design-system-documentation
 pnpm start
 ```
 
 Other root scripts are available for convenience:
-| Command | Description |
-| --- | --- |
-| `pnpm demo:start` | starts the demo Angular application |
-| `pnpm styles:start` | starts the styles storybook and the sass compiler |
-| `pnpm components:start` | starts the components storybook and stencil compiler |
-| `pnpm intranet-header:start` | starts the intranet header demo application |
-| `pnpm docs:start` | starts the main storybook |
+
+### Development
+
+Use these commands whenever you want to work on one of these packages. Ideally, these commands start a watcher for file changes and a GUI where you can see what changed for all relevant packages. The start scripts always assume that you previously ran `pnpm bootstrap` and therefore have all packages built on disk.
+
+| Command                           | Description                                                                                  |
+| --------------------------------- | -------------------------------------------------------------------------------------------- |
+| `pnpm start` or `pnpm docs:start` | starts the design-system-documentation storybook and the `start` scripts of all dependencies |
+| `pnpm demo:start`                 | starts the demo Angular application and the `start` scripts of all dependencies              |
+| `pnpm intranet-header:start`      | starts the intranet header demo application                                                  |
+| `pnpm styles:start`               | starts the sass compiler                                                                     |
+| `pnpm components:start`           | starts the stencil compiler                                                                  |
+| `pnpm header:start`               | starts the stencil compiler for the header                                                   |
+| `pnpm icons:start`                | starts the http server for debugging downloaded icons                                        |
+
+### Testing
+
+For easy test runs, the following commands are available (not all packages might have all commands available).
+
+| Command                               | Description                                                                               |
+| ------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `pnpm test`                           | runs the `test` command for all packages recursively                                      |
+| `pnpm [package shortname]:test`       | runs unit and end-to-end tests for the package in headless mode                           |
+| `pnpm [package shortname]:unit`       | runs unit tests for the package                                                           |
+| `pnpm [package shortname]:unit:watch` | runs unit tests in watch mode                                                             |
+| `pnpm [package shortname]:e2e`        | starts a headless cypress run                                                             |
+| `pnpm [package shortname]:e2e:watch`  | starts a headless storybook and opens the cypress application                             |
+| `pnpm [package shortname]:snapshots`  | starts a headless storybook and runs visual regression tests                              |
+| `pnpm [package shortname]:tdd`        | starts all test scripts in watch mode for test driven development (might blow up your pc) |
 
 When adding new packages, a new root command can be added. The idea is to have an easy starting point and the command should start all services necessary for local development.
+
+## Script naming conventions
+
+Whenever we add new scripts to the package.json file, we follow the instructions below.
+
+- A script name is all lowercase.
+- A script name uses only letters, dashes and colons.
+- A script name is short and descriptive.
+- A default script name persist of one word only (e.g. `lint`).
+- A non default script name is postfixed with it's characteristics (e.g. `lint:fix`).
+- A non default script name for a specific tool is prefixed with the tool name (e.g. `storybook:serve`, `storybook:bulid`, etc.).
+- A non default script name can contain more than one colon (e.g. `lint:fix:dry`, `stencil:test:watch`, etc.).
 
 ## Accessibility
 
@@ -103,18 +137,6 @@ When a new package is added to the repo, a few things need to be taken care of.
 
   > ⚠ On publish, the `package.json` gets copied into the `./dist` folder. This leads to an incorrect publish path because npm now tries to publish from `./dist/dist`. You'll need a pre-publish script that removes the `directory` key from the `publishConfig` (see the [styles package pre-publish workflow](./packages/styles/gulpfile.js) for an example).
 
-## Script naming conventions
-
-Whenever we add new scripts to the package.json file, we follow the instructions below.
-
-- A script name is all lowercase.
-- A script name uses only letters, dashes and colons.
-- A script name is short and descriptive.
-- A default script name persist of one word only (e.g. `lint`).
-- A non default script name is postfixed with it's characteristics (e.g. `lint:fix`).
-- A non default script name for a specific tool is prefixed with the tool name (e.g. `storybook:serve`, `storybook:bulid`, etc.).
-- A non default script name can contain more than one colon (e.g. `lint:fix:dry`, `stencil:test:watch`, etc.).
-
 ## Dev Server Ports
 
 For some packages it's necessary to run multiple dev servers at the same time. To prevent port conflicts, the following ranges are given to each package. The ranges 9000 - 9400 are chosen for compatibility with [port ranges used by Browserstack](https://www.browserstack.com/question/39572).
@@ -160,6 +182,58 @@ When submitting pull requests, make sure you checked the following points:
 - If you made significant changes to the design of a component, make sure that at least someone from the [design team](https://github.com/orgs/swisspost/teams/design) is added as a reviewer
 - Describe your changes in the pull request description as detailed as possible
 - Include a changeset if the changes in your pull request should be released and require an entry in the changelog (run `pnpm changeset` and follow the instructions)
+
+## Testing
+
+These testing guidelines are a loose set of rules that should be considered when writing tests for the Design System.
+
+### Unit tests
+
+Generally, `ts-jest` should be used for this kind of test. The styles package even has a custom jest transformer for sass files.
+
+#### Do
+
+- write unit tests for shared functionality or services that don't depend on any state (pure functions)
+- run unit tests on every push to a pull request
+- design your tests to run fast, 1-2 minute test runs are fine, investigate around 5 minutes, intervene above
+- mock any data needed
+
+#### Don't
+
+- write unit tests to compare markup output of a component, you'll likely want to make a visual snapshot because the unit test won't catch styling issues
+- write unit tests when the state of the piece of code depends on a browser environment, you'll likely want to write an integration test
+- depend on any outside data source you don't control, e.g. an API
+
+### Integration tests
+
+For integration tests, cypress is available on the documentation package.
+
+#### Do
+
+- write integration tests for components to test their state or output, e.g. events or aria-attributes
+- write integration tests for code that needs to run in a certain environment
+- try to run integration tests on pull requests only if the component was updated
+- run the full set of integration tests before releasing packages
+- try to keep the run duration under 2-3 minutes, investigate under 6 minutes and intervene above
+
+#### Don't
+
+- try to catch visual bugs, you'll likely want to write a visual regression test
+- test functions or services that don't need any specific environment to run, you'll likely want to write a unit test
+
+### Visual regression tests
+
+Percy from Browserstack is the tool of choice here and runs with cypress integration. This allows you to write cypress style tests to set up the page/component. As of now, we have 25'000 snaps per month, assuming 4 browsers on two widths leaves us with 3'100 tests per month. With ~200 components and variants this allows for up to **15 runs per month**. This should be more than enough to run before every release.
+
+#### Do
+
+- write visual regression tests for every component in every state
+- run the complete suite of regression tests before releasing a package
+- chose the relevant browsers and viewports carefully for each test
+
+#### Don't
+
+- run visual regression tests on every push on a pull request (as long as we don't have way more quota available)
 
 ## Merging
 

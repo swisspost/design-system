@@ -18,21 +18,6 @@ import '@percy/cypress';
 import 'cypress-storybook/cypress';
 import 'cypress-each';
 import './commands';
-import { dispose } from '@swisspost/internet-header/src/data/store';
-
-declare global {
-  namespace Cypress {
-    interface Chainable {
-      changeArg: (name: string, value: any) => Chainable<null>;
-    }
-  }
-}
-
-beforeEach(() => {
-  // Reset the store to its original state before each test
-  dispose();
-  //cy.log('store disposed')
-});
 
 // https://docs.cypress.io/api/events/catalog-of-events#Uncaught-Exceptions
 Cypress.on('uncaught:exception', err => {

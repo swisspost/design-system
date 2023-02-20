@@ -1,5 +1,20 @@
 # @swisspost/design-system-intranet-header
 
+## 3.0.8
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.3.2
+
+## 3.0.7
+
+### Patch Changes
+
+- Updated the type for prop currentUserId to string (by [@gfellerph](https://github.com/gfellerph) with [#1068](https://github.com/swisspost/design-system/pull/1068))
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.3.1
+
 ## 3.0.6
 
 ### Patch Changes

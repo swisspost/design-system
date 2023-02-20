@@ -1,13 +1,15 @@
 import React from 'react';
 import { Meta, Story, Args } from '@storybook/react';
 import docsPage from './heading.docs.mdx';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 export default {
   title: 'Components/Heading',
   parameters: {
     docs: {
-      page: docsPage
-    }
+      page: docsPage,
+    },
+    badges: [BADGE.NEEDS_REVISION],
   },
   args: {
     title: 'Heading',
@@ -32,14 +34,7 @@ export default {
       control: {
         type: 'select',
       },
-      options: [
-        'h1',
-        'h2',
-        'h3',
-        'h4',
-        'h5',
-        'h6',
-      ],
+      options: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
       table: {
         category: 'General',
       },
@@ -71,15 +66,17 @@ export default {
 } as Meta;
 
 const Template = (args: Args) => {
-  const content: JSX.Element[] | string = args.showSubtitle ? [
-    <span key="heading">{ args.title }</span>,
-    <br key="heading-br"/>,
-    <span key="subheading" className="fw-light">{ args.subtitle }</span>
-  ] : args.title;
+  const content: JSX.Element[] | string = args.showSubtitle
+    ? [
+        <span key="heading">{args.title}</span>,
+        <br key="heading-br" />,
+        <span key="subheading" className="fw-light">
+          {args.subtitle}
+        </span>,
+      ]
+    : args.title;
 
-  return <args.level>
-    { content }
-  </args.level>;
+  return <args.level>{content}</args.level>;
 };
 
 export const Default: Story = Template.bind({});

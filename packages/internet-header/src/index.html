@@ -12,12 +12,12 @@
   </head>
   <body style="--header-z-index: 10">
     <swisspost-internet-header
-      project="ekp"
+      project="klp"
       stickyness="main"
       login="true"
       language-local-storage-key="test2-local-storage-key"
       language="de"
-      environment="INT02"
+      environment="dev01"
       meta="true"
       language-switch-overrides='[{"lang": "de", "text": "DE", "title": "Deutsch 2", "url": "https://google.ch?lang=de"}]'
       active-route="auto"
@@ -37,7 +37,6 @@
         await customElements.whenDefined(header.tagName.toLocaleLowerCase());
         console.log('header defined');
         header.activeRoute = 'https://int.post.ch/de/kundencenter/kundencenter';
-        //await header.componentOnReady();
         console.log('header ready');
         await sleep(2000);
         header.osFlyoutOverrides = {
@@ -64,7 +63,6 @@
             },
           ],
         };
-        const title = 'Test OS Flyout';
         header.osFlyoutOverrides = {
           title: 'Testtitle',
           text: 'Testtext',
@@ -72,10 +70,9 @@
         // Used to test the screenshare functionality in the footer
         // If this function is defined in the global scope within the first 5 seconds after the header loads,
         // the screenshare will be enabled, otherwise it will be disabled
-        // window.unbluLSLoad = () => {};
+        window.unbluLSLoad = () => {};
 
         console.log('flyout overrides applied');
-        //await sleep(5000);
         header.customConfig = {
           de: {
             header: {
@@ -140,8 +137,6 @@
             },
           ],
         };
-
-        // header.activeRoute = 'http://localhost:3333/aaa';
       };
 
       x();
@@ -153,10 +148,6 @@
       ];
 
       document.querySelector('swisspost-internet-breadcrumbs').customItems = customBreadcrumbItems;
-
-      // document
-      //   .querySelector('swisspost-internet-breadcrumbs')
-      //   .setAttribute('custom-items', JSON.stringify(customBreadcrumbItems));
     </script>
 
     <main id="main-content-container" class="container mt-huge">

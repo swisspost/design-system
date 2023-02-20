@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "1.0.5-alpha",
+  "version": "1.0.5",
   "license": "Apache-2.0",
   "private": true,
   "publishConfig": {
@@ -15,23 +15,23 @@
     "tsc": "tsc -p ."
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:^1.0.3"
+    "@swisspost/design-system-components": "workspace:1.2.0"
   },
   "devDependencies": {
-    "@types/node": "18.11.14",
-    "@types/react": "18.0.27",
-    "@types/react-dom": "18.0.10",
-    "@typescript-eslint/eslint-plugin": "^5.46.1",
-    "@typescript-eslint/parser": "^5.46.1",
-    "eslint": "^8.0.1",
-    "eslint-config-standard-with-typescript": "^24.0.0",
-    "eslint-plugin-import": "^2.25.2",
-    "eslint-plugin-n": "^15.0.0",
-    "eslint-plugin-promise": "^6.0.0",
-    "eslint-plugin-react": "^7.31.11",
+    "@types/node": "18.14.0",
+    "@types/react": "18.0.28",
+    "@types/react-dom": "18.0.11",
+    "@typescript-eslint/eslint-plugin": "5.52.0",
+    "@typescript-eslint/parser": "5.52.0",
+    "eslint": "8.34.0",
+    "eslint-config-standard-with-typescript": "34.0.0",
+    "eslint-plugin-import": "2.27.5",
+    "eslint-plugin-n": "15.6.1",
+    "eslint-plugin-promise": "6.1.1",
+    "eslint-plugin-react": "7.32.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "rimraf": "3.0.2",
+    "rimraf": "4.1.2",
     "typescript": "*"
   },
   "peerDependencies": {

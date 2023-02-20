@@ -6,10 +6,17 @@
 @use './../variables/components/forms';
 @use './../variables/components/button';
 @use './../mixins/forms' as forms-mixins;
+@use './../mixins/utilities' as utility-mixins;
 
 .invalid-feedback,
 .valid-feedback {
   margin-bottom: 0;
+
+  @include utility-mixins.high-contrast-mode() {
+    color: HighlightText !important;
+    background-color: Highlight !important;
+    forced-color-adjust: none;
+  }
 }
 
 .invalid-feedback {

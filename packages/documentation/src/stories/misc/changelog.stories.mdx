@@ -2,6 +2,7 @@ import { Meta, Source } from '@storybook/addon-docs';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 import changelog from '../../../../styles/CHANGELOG.md';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 <Meta
   title="Misc/ChangeLog"
@@ -12,6 +13,7 @@ import changelog from '../../../../styles/CHANGELOG.md';
       },
     },
     viewMode: 'docs',
+    badges: [BADGE.NEEDS_REVISION],
   }}
 />
 

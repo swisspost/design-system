@@ -1,4 +1,4 @@
-import JsxParser from 'react-jsx-parser'
+import JsxParser from 'react-jsx-parser';
 import { renderToStaticMarkup } from 'react-dom/server';
 import * as prettier from 'prettier';
 import * as htmlParser from 'prettier/parser-html';
@@ -8,12 +8,17 @@ import postThemes from './post-themes';
 import './preview.scss';
 
 import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
-import { extractArgTypes, extractComponentDescription, setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
 import docJson from '@swisspost/design-system-components/dist/docs.json';
+import {
+  extractArgTypes,
+  extractComponentDescription,
+  setStencilDocJson,
+} from '@pxtrn/storybook-addon-docs-stencil';
 
 import React from 'react';
 import 'cypress-storybook/react';
 import * as Components from '@swisspost/design-system-components-react';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 if (docJson) setStencilDocJson(docJson);
 defineInternetHeader();
@@ -35,11 +40,11 @@ const PRETTIER_OPTIONS = {
   trailingComma: 'es5',
   bracketSpacing: true,
   bracketSameLine: false,
-  arrowParens: "always",
+  arrowParens: 'always',
   htmlWhitespaceSensitivity: 'css',
   endOfLine: 'lf',
   embeddedLanguageFormatting: 'off',
-  singleAttributePerLine: false
+  singleAttributePerLine: false,
 };
 
 export const parameters = {
@@ -54,23 +59,19 @@ export const parameters = {
   options: {
     storySort: {
       order: [
-        'Welcome',
+        'Home',
+        'Get Started',
         'Foundations',
-        [
-          'Typography',
-          'Color',
-          'Layout',
-          'Elevation',
-          'Accessibility'
-        ],
+        ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
         'Templates',
         'Components',
+        [
+          'Internet Header',
+          ['Getting started', 'Migration Guide', 'Header', 'Breadcrumbs', 'Footer'],
+        ],
         'Utilities',
         'Misc',
-        [
-          'Migration',
-          'ChangeLog'
-        ],
+        ['Migration', 'ChangeLog'],
       ],
     },
   },
@@ -106,7 +107,7 @@ export const parameters = {
       excludeDecorators: true,
     },
     transformSource(snippet) {
-      const reactElements = <JsxParser jsx={snippet} renderInWrapper={false}/>;
+      const reactElements = <JsxParser jsx={snippet} renderInWrapper={false} />;
       const htmlSnippet = renderToStaticMarkup(reactElements);
       const formattedSnippet = prettier.format(htmlSnippet, PRETTIER_OPTIONS);
 
@@ -120,6 +121,48 @@ export const parameters = {
     matchers: {
       color: /(background|color)$/i,
       date: /Date$/,
+    },
+  },
+  badgesConfig: {
+    [BADGE.BETA]: {
+      styles: {
+        backgroundColor: 'var(--post-yellow)',
+        color: '#000',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'This documentation page is still in beta mode and might not be complete yet.',
+      },
+    },
+    [BADGE.NEEDS_REVISION]: {
+      styles: {
+        backgroundColor: 'var(--post-gray-10)',
+        color: '#000',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'This page is pending revision from a UX Designer.',
+      },
+    },
+    [BADGE.STABLE]: {
+      styles: {
+        backgroundColor: 'var(--post-success)',
+        color: '#fff',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'The content of this page is ready to be used in production.',
+      },
+    },
+    TODO: {
+      styles: {
+        backgroundColor: 'var(--post-danger)',
+        color: '#fff',
+        borderColor: 'transparent',
+      },
+      tooltip: {
+        desc: 'This page needs to be filled with content and serves as a placeholder in the meantime.',
+      },
     },
   },
 };
