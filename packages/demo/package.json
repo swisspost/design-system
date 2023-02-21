@@ -27,7 +27,7 @@
     "@swimlane/ngx-datatable": "20.1.0",
     "@swisspost/design-system-intranet-header": "workspace:3.0.8",
     "@swisspost/design-system-styles": "workspace:5.3.2",
-    "bootstrap": "5.1.3",
+    "bootstrap": "5.2.3",
     "core-js": "3.28.0",
     "highlight.js": "11.7.0",
     "ngx-highlightjs": "7.0.1",
