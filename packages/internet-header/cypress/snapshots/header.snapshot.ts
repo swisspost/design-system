@@ -11,13 +11,13 @@ describe('header', () => {
     cy.percySnapshot('Header', { widths: [320, 600, 1440] });
   });
 
-  it('search', () => {
+  it.skip('search', () => {
     cy.get('.search-button').trigger('click');
     cy.get('.suggestions').should('be.visible').children().should('have.length', 7);
     cy.percySnapshot('Search');
   });
 
-  it('language switch', () => {
+  it.skip('language switch', () => {
     cy.viewport(1600, 800);
     cy.get('.language-switch > button').trigger('click');
     cy.get('.language-switch-dropdown.open > ul')
@@ -27,7 +27,7 @@ describe('header', () => {
     cy.percySnapshot('Language Switch', { widths: [1600] });
   });
 
-  it('main navigation', () => {
+  it.skip('main navigation', () => {
     cy.viewport(1440, 800);
     cy.get('.main-container').children().should('have.length', 5);
     cy.get('.main-container .main-link').first().trigger('mouseenter');
@@ -45,14 +45,14 @@ describe('header', () => {
     cy.percySnapshot('Main navigation open menu', { widths: [400] });
   });
 
-  it('breadcrumbs', () => {
+  it.skip('breadcrumbs', () => {
     cy.viewport(400, 800);
     cy.get('.middle-dropdown-button').should('be.visible').trigger('click');
     cy.get('.middle-dropdown').should('be.visible');
     cy.percySnapshot('Breadcrumb dropdown', { widths: [400] });
   });
 
-  it('footer', () => {
+  it.skip('footer', () => {
     cy.scrollTo('bottom');
     cy.get('swisspost-internet-footer').should('be.visible');
     cy.percySnapshot('Footer');

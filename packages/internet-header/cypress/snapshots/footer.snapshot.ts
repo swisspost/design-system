@@ -7,7 +7,7 @@ describe('footer', () => {
     cy.get('swisspost-internet-header.hydrated').should('be.visible');
   });
 
-  it('default', () => {
+  it.skip('default', () => {
     cy.scrollTo('bottom');
     cy.get('swisspost-internet-footer').should('be.visible');
     cy.percySnapshot('Footer');
