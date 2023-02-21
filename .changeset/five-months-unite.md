@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Replaced scss placeholder statements for .lead selector with pure mixins and variables.
+Fixed an issue with the font size of lead text that was too small due to a specificity issue with sass placeholders.
