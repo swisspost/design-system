@@ -35,9 +35,9 @@
     "react-jsx-parser": "1.29.0"
   },
   "devDependencies": {
-    "@babel/core": "7.20.12",
+    "@babel/core": "7.21.0",
     "@geometricpanda/storybook-addon-badges": "0.2.2",
-    "@percy/cli": "1.19.2",
+    "@percy/cli": "1.20.0",
     "@percy/cypress": "3.1.2",
     "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
     "@storybook/addon-a11y": "6.5.16",
