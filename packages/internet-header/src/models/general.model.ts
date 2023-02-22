@@ -36,7 +36,7 @@ export interface ILocalizedCustomConfig {
   footer?: ICustomFooterConfig;
 }
 
-export type Environment = 'dev01' | 'dev02' | 'test' | 'int01' | 'int02' | 'prod';
+export type Environment = 'dev01' | 'dev02' | 'devs1' | 'test' | 'int01' | 'int02' | 'prod';
 
 export type ActiveRouteProp = 'auto' | 'exact' | false | string;
 
