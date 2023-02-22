@@ -68,7 +68,7 @@ span.spacer {
     --post-bg-rgb: #{color-fn.rgb-values($color)};
     @extend %color-background-rgba;
 
-    @if (contrast-fn.light-or-dark($color) == "dark") {
+    @if (contrast-fn.light-or-dark($color) == 'dark') {
       @extend %color-background-dark-variables;
     } @else {
       @extend %color-background-light-variables;

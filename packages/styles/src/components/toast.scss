@@ -148,7 +148,6 @@
 }
 /* stylelint-enable */
 
-
 // Variants
 
 @each $name, $color, $icon in alert.$alert-list {
@@ -156,7 +155,7 @@
     --post-bg-rgb: #{color-fn.rgb-values($color)};
     @extend %notification-#{$name};
 
-    @if (contrast-fn.light-or-dark($color) == "dark") {
+    @if (contrast-fn.light-or-dark($color) == 'dark') {
       @extend %color-background-dark-variables;
     } @else {
       @extend %color-background-light-variables;

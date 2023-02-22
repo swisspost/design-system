@@ -43,22 +43,20 @@
 
 @mixin button-color-variant($name, $color) {
   .btn-#{$name} {
-
     border-color: transparent;
     background-color: $color;
 
-    @if (contrast-fn.light-or-dark($color) == "dark") {
+    @if (contrast-fn.light-or-dark($color) == 'dark') {
       color: color.$white;
     } @else {
       color: color.$black;
     }
 
-
     @include utilities.not-disabled-focus-hover() {
-      $darkened-color:  darken($color, 10%);
+      $darkened-color: darken($color, 10%);
       background-color: $darkened-color;
 
-      @if (contrast-fn.light-or-dark($darkened-color) == "dark") {
+      @if (contrast-fn.light-or-dark($darkened-color) == 'dark') {
         color: color.$white;
       } @else {
         color: color.$black;
