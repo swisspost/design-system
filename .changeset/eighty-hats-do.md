@@ -6,4 +6,7 @@
 '@swisspost/design-system-demo': minor
 ---
 
-Updated dependencies bootstrap@5.2.3, ng-bootstrap@14 and angular@15.
+Major dependency update. The following versions are now supported:
+  - Angular 15
+  - Bootstrap 5.2.3
+  - ng-bootstrap 14
