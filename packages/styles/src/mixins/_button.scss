@@ -4,7 +4,7 @@
 @use './../variables/type';
 @use './../variables/color';
 @use './../placeholders/color' as color-ph;
-@use './../functions/color' as color-fn;
+@use './../functions/contrast' as contrast-fn;
 @use 'utilities';
 
 @mixin reset-button {
@@ -46,12 +46,21 @@
     border-color: transparent;
     background-color: $color;
 
-    @if (color-fn.get-contrast-color($color) == #fff) {
+    @if (contrast-fn.light-or-dark($color) == 'dark') {
       color: color.$white;
+    } @else {
+      color: color.$black;
     }
 
     @include utilities.not-disabled-focus-hover() {
-      background-color: darken($color, 10%);
+      $darkened-color: darken($color, 10%);
+      background-color: $darkened-color;
+
+      @if (contrast-fn.light-or-dark($darkened-color) == 'dark') {
+        color: color.$white;
+      } @else {
+        color: color.$black;
+      }
     }
   }
 }

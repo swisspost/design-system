@@ -33,23 +33,3 @@
 
   @return string.unquote('\##{string.to-lower-case($hex)}');
 }
-
-// Color contrast funtion adopted from:
-// https://medium.com/@MikeKellyWeb/calculating-color-contrast-with-sass-eff39ef23f96
-@function get-contrast-color($color, $dark-color: #000, $light-color: #fff, $threshold: 128) {
-  @if (meta.type-of($color) != color) {
-    @error "Please provide a color for this function. Supplied: '#{$color}'.";
-  }
-
-  $r: color.red($color);
-  $g: color.green($color);
-  $b: color.blue($color);
-
-  $yiq: math.div(($r * 299) + ($g * 587) + ($b * 114), 1000);
-
-  @if ($yiq >= $threshold) {
-    @return $dark-color;
-  } @else {
-    @return $light-color;
-  }
-}
