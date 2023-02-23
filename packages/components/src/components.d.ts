@@ -53,6 +53,40 @@ export namespace Components {
          */
         "scale"?: number;
     }
+    interface PostTabHeader {
+        /**
+          * Activates the tab programmatically.
+         */
+        "activate": () => Promise<void>;
+        /**
+          * If `true`, the header is active and its corresponding panel is visible
+         */
+        "active": boolean;
+        /**
+          * Deactivates the tab programmatically.
+         */
+        "deactivate": () => Promise<void>;
+    }
+    interface PostTabPanel {
+        /**
+          * Hides the tab panel programmatically.
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Shows the tab panel programmatically.
+         */
+        "show": () => Promise<void>;
+    }
+    interface PostTabs {
+    }
+}
+export interface PostTabHeaderCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostTabHeaderElement;
+}
+export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostTabsElement;
 }
 declare global {
     interface HTMLPostCollapsibleElement extends Components.PostCollapsible, HTMLStencilElement {
@@ -70,9 +104,30 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
+    }
+    var HTMLPostTabHeaderElement: {
+        prototype: HTMLPostTabHeaderElement;
+        new (): HTMLPostTabHeaderElement;
+    };
+    interface HTMLPostTabPanelElement extends Components.PostTabPanel, HTMLStencilElement {
+    }
+    var HTMLPostTabPanelElement: {
+        prototype: HTMLPostTabPanelElement;
+        new (): HTMLPostTabPanelElement;
+    };
+    interface HTMLPostTabsElement extends Components.PostTabs, HTMLStencilElement {
+    }
+    var HTMLPostTabsElement: {
+        prototype: HTMLPostTabsElement;
+        new (): HTMLPostTabsElement;
+    };
     interface HTMLElementTagNameMap {
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
+        "post-tab-header": HTMLPostTabHeaderElement;
+        "post-tab-panel": HTMLPostTabPanelElement;
+        "post-tabs": HTMLPostTabsElement;
     }
 }
 declare namespace LocalJSX {
@@ -119,9 +174,34 @@ declare namespace LocalJSX {
          */
         "scale"?: number;
     }
+    interface PostTabHeader {
+        /**
+          * If `true`, the header is active and its corresponding panel is visible
+         */
+        "active"?: boolean;
+        /**
+          * An event emitted whenever the tab header becomes active. It has no payload.
+         */
+        "onActivated"?: (event: PostTabHeaderCustomEvent<void>) => void;
+        /**
+          * An event emitted whenever the tab header becomes inactive. It has no payload.
+         */
+        "onDeactivated"?: (event: PostTabHeaderCustomEvent<void>) => void;
+    }
+    interface PostTabPanel {
+    }
+    interface PostTabs {
+        /**
+          * An event emitted after the active nav changes. The payload is the index of the newly active tab.
+         */
+        "onTabChange"?: (event: PostTabsCustomEvent<number>) => void;
+    }
     interface IntrinsicElements {
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
+        "post-tab-header": PostTabHeader;
+        "post-tab-panel": PostTabPanel;
+        "post-tabs": PostTabs;
     }
 }
 export { LocalJSX as JSX };
@@ -133,6 +213,9 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
+            "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
+            "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
         }
     }
 }
