@@ -1,6 +1,7 @@
 const { defineConfig } = require('cypress');
 
 module.exports = defineConfig({
+  projectId: 'f9aegu',
   e2e: {
     baseUrl: 'http://localhost:9300',
     specPattern: ['cypress/**/*.snapshot.{ts,tsx}'],
@@ -12,5 +13,4 @@ module.exports = defineConfig({
   retries: {
     runMode: 1,
   },
-  video: false,
 });

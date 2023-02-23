@@ -14,6 +14,7 @@
 @use './../variables/components/alert';
 @use './../variables/options';
 @use './../functions/color' as color-fn;
+@use './../functions/contrast' as contrast-fn;
 @use './../placeholders/color' as color-ph;
 @use './../placeholders/notifications';
 
@@ -71,7 +72,7 @@
     --post-bg-rgb: #{color-fn.rgb-values($color)};
     @extend %notification-#{$name};
 
-    @if (color-fn.get-contrast-color($color) != #000) {
+    @if (contrast-fn.light-or-dark($color) == 'dark') {
       @extend %color-background-dark-variables;
     } @else {
       @extend %color-background-light-variables;

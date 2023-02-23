@@ -42,14 +42,14 @@
     "@stencil/sass": "2.0.3",
     "@swisspost/design-system-styles": "workspace:5.3.2",
     "bootstrap": "5.2.3",
-    "puppeteer": "19.7.1",
+    "puppeteer": "19.7.2",
     "sass": "1.58.3"
   },
   "devDependencies": {
-    "@percy/cli": "1.18.0",
+    "@percy/cli": "1.20.0",
     "@percy/cypress": "3.1.2",
     "@types/jest": "27.5.2",
-    "cypress": "12.5.1",
+    "cypress": "12.6.0",
     "cypress-storybook": "0.5.1",
     "jest": "27.5.1",
     "jest-cli": "27.5.1",

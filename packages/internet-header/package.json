@@ -37,7 +37,7 @@
     "unit:watch": "jest --watch",
     "e2e": "cypress run",
     "e2e:watch": "cypress open",
-    "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js",
+    "snapshots": "percy exec -- cypress run --browser chromium --config-file ./cypress.snapshot.config.js --record --key 0995e768-43ec-42bd-a127-ff944a2ad8c9",
     "clean": "rimraf www dist loader storybook-static",
     "lint": "eslint src/**/*{.ts,.tsx}",
     "lint:fix": "eslint src/**/*{.ts,.tsx} --fix",
@@ -54,8 +54,8 @@
     "url-polyfill": "1.1.12"
   },
   "devDependencies": {
-    "@babel/core": "7.20.12",
-    "@percy/cli": "1.18.0",
+    "@babel/core": "7.21.0",
+    "@percy/cli": "1.20.0",
     "@percy/cypress": "3.1.2",
     "@stencil/eslint-plugin": "0.4.0",
     "@stencil/sass": "2.0.3",
@@ -67,7 +67,7 @@
     "@types/throttle-debounce": "5.0.0",
     "babel-loader": "9.1.2",
     "bootstrap": "5.2.3",
-    "cypress": "12.5.1",
+    "cypress": "12.6.0",
     "cypress-each": "1.13.1",
     "cypress-storybook": "0.5.1",
     "eslint-plugin-react": "7.32.2",
