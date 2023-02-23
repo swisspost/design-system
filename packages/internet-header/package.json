@@ -30,7 +30,7 @@
   ],
   "scripts": {
     "start": "stencil build --docs --watch",
-    "dev": "stencil build --watch --serve --docs",
+    "dev": "stencil build --watch --serve --docs --dev",
     "build": "stencil build --docs",
     "test": "npm run unit",
     "unit": "jest",
