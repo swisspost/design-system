@@ -1,5 +1,4 @@
-import { PropertyType } from '../check-type';
-import { checkType } from '../check-type';
+import { checkType, PropertyType } from '../check-type';
 
 describe('checkType', () => {
   let type: PropertyType;

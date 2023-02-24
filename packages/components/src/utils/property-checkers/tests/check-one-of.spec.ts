@@ -2,7 +2,7 @@ import { checkOneOf } from '../check-one-of';
 
 describe('checkOneOf', () => {
   const possibleValues = ['A', 'B', 'C', 'D'];
-  const error = 'Is not empty or one of.';
+  const error = 'Is not one of.';
   const runCheckForValue = value => () => checkOneOf(value, possibleValues, error);
 
   it('should not throw an error if the value is one of the possible values', () => {
