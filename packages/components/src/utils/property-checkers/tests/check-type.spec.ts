@@ -1,7 +1,3 @@
-/*
- * Copyright 2023 by Swiss Post, Information Technology
- */
-
 import { PropertyType } from '../check-type';
 import { checkType } from '../check-type';
 

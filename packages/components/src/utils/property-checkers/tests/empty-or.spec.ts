@@ -1,7 +1,3 @@
-/*
- * Copyright 2023 by Swiss Post, Information Technology
- */
-
 import { emptyOr } from '../empty-or';
 
 describe('emptyOr', () => {

@@ -1,7 +1,3 @@
-/*
- * Copyright 2023 by Swiss Post, Information Technology
- */
-
 export type PropertyType =
   | 'boolean'
   | 'number'

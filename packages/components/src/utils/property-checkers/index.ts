@@ -1,7 +1,3 @@
-/*
- * Copyright 2023 by Swiss Post, Information Technology
- */
-
 import { emptyOr } from './empty-or';
 import { checkOneOf } from './check-one-of';
 import { checkType } from './check-type';
