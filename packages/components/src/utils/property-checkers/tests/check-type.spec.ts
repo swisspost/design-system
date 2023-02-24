@@ -9,7 +9,7 @@ describe('checkType', () => {
   describe('boolean', () => {
     beforeAll(() => {
       type = 'boolean';
-      error = 'Value is not a boolean.';
+      error = 'Not a boolean.';
     });
 
     it('should not throw an error if the value is a boolean', () => {
@@ -28,7 +28,7 @@ describe('checkType', () => {
   describe('number', () => {
     beforeAll(() => {
       type = 'number';
-      error = 'Value is not a number.';
+      error = 'Not a number.';
     });
 
     it('should not throw an error if the value is a number', () => {
@@ -47,7 +47,7 @@ describe('checkType', () => {
   describe('string', () => {
     beforeAll(() => {
       type = 'string';
-      error = 'Is not string.';
+      error = 'Not a string.';
     });
 
     it('should not throw an error if the value is a string', () => {
@@ -66,7 +66,7 @@ describe('checkType', () => {
   describe('array', () => {
     beforeAll(() => {
       type = 'array';
-      error = 'Is not array.';
+      error = 'Not an array.';
     });
 
     it('should not throw an error if the value is an array', () => {
@@ -85,7 +85,7 @@ describe('checkType', () => {
   describe('object', () => {
     beforeAll(() => {
       type = 'object';
-      error = 'Is not object.';
+      error = 'Not an object.';
     });
 
     it('should not throw an error if the value is an object', () => {
@@ -104,7 +104,7 @@ describe('checkType', () => {
   describe('function', () => {
     beforeAll(() => {
       type = 'function';
-      error = 'Is not function.';
+      error = 'Not a function.';
     });
 
     it('should not throw an error if the value is a function', () => {
