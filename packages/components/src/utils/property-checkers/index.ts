@@ -7,7 +7,7 @@ import { checkType } from './check-type';
 export const checkEmptyOrOneOf = emptyOr(checkOneOf);
 export const checkEmptyOrType = emptyOr(checkType);
 export const checkEmptyOrContainsOnly = emptyOr(checkContainsOnly);
-export const checkEmptyOrHasLength = emptyOr(checkLength);
+export const checkEmptyOrLength = emptyOr(checkLength);
 
 export * from './check-contains-only';
 export * from './check-exists';

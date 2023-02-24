@@ -2,13 +2,13 @@ import { checkLength, LengthCondition } from "../check-length";
 
 
 describe('checkLength', () => {
-  let errorMessage: string;
   let condition: LengthCondition;
-  const runCheckForValue = array => () => checkLength(array, condition, errorMessage);
+  let error: string;
+  const runCheckForValue = array => () => checkLength(array, condition, error);
 
   describe('fixed length', () => {
     beforeAll(() => {
-      errorMessage = 'Incorrect length.';
+      error = 'Incorrect length.';
       condition = 1;
     });
 
@@ -18,14 +18,14 @@ describe('checkLength', () => {
   
     it('should throw the provided error if the provided array does not have the expected length', () => {
       [[], ['item 1', 'item 2']].forEach(incorrectArray => {
-        expect(runCheckForValue(incorrectArray)).toThrow(errorMessage);
+        expect(runCheckForValue(incorrectArray)).toThrow(error);
       });
     });
   });
 
   describe('min length', () => {
     beforeAll(() => {
-      errorMessage = 'Too short.';
+      error = 'Too short.';
       condition = {min: 1};
     });
 
@@ -36,13 +36,13 @@ describe('checkLength', () => {
     });
   
     it('should throw the provided error if the provided array has a length less than the expected one', () => {
-      expect(runCheckForValue([])).toThrow(errorMessage);
+      expect(runCheckForValue([])).toThrow(error);
     });
   });
 
   describe('max length', () => {
     beforeAll(() => {
-      errorMessage = 'Too long.';
+      error = 'Too long.';
       condition = {max: 1};
     });
 
@@ -53,13 +53,13 @@ describe('checkLength', () => {
     });
   
     it('should throw the provided error if the provided array has a length greater than the expected one', () => {
-      expect(runCheckForValue(['item 1', 'item 2'])).toThrow(errorMessage);
+      expect(runCheckForValue(['item 1', 'item 2'])).toThrow(error);
     });
   });
 
   describe('min and max length', () => {
     beforeAll(() => {
-      errorMessage = 'Too short or too long.';
+      error = 'Too short or too long.';
       condition = {min: 1, max: 2};
     });
 
@@ -71,7 +71,7 @@ describe('checkLength', () => {
   
     it('should throw the provided error if the provided array has a length outside the expected minimum and maximum', () => {
       [[], ['item 1', 'item 2', 'item 3']].forEach(correctArray => {
-        expect(runCheckForValue(correctArray)).toThrow(errorMessage);
+        expect(runCheckForValue(correctArray)).toThrow(error);
       });
     });
   });

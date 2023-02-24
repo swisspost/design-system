@@ -2,9 +2,9 @@ import { checkContainsOnly } from "../check-contains-only";
 
 
 describe('checkContainsOnly', () => {
-  const errorMessage = 'Does not only contain.';
   const test = jest.fn();
-  const runCheckForValue = array => () => checkContainsOnly(array, test, errorMessage);
+  const error = 'Does not only contain.';
+  const runCheckForValue = array => () => checkContainsOnly(array, test, error);
 
   it('should not throw an error if all items of the provided array pass the provided test', () => {
     test.mockReturnValue(true);
@@ -13,7 +13,7 @@ describe('checkContainsOnly', () => {
 
   it('should throw the provided error if some items of the provided array do not pass the provided test', () => {
     test.mockReturnValue(false);
-    expect(runCheckForValue(['mock item'])).toThrow(errorMessage);
+    expect(runCheckForValue(['mock item'])).toThrow(error);
   });
 
   it('should not throw an error if the privided array is empty', () => {
