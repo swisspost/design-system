@@ -4,7 +4,7 @@
 @use './../../variables/commons';
 @use './../../variables/components/intranet-header';
 
-@use './../../themes/bootstrap/overrides' as *;
+@use './../../themes/bootstrap/core' as *;
 
 header.navbar {
   .search-textbox {

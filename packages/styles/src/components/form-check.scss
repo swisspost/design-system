@@ -2,7 +2,7 @@
 
 @use 'sass:math';
 @use './../lic/bootstrap-license';
-@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/forms/form-check' as bfc;
 
 @use './../variables/color';
