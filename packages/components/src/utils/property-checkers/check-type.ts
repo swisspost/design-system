@@ -6,13 +6,13 @@ export type PropertyType =
   | 'object'
   | 'function';
 
-export function checkType(value: unknown, type: PropertyType, errorMessage: string) {
+export function checkType(value: unknown, type: PropertyType, error: string) {
   const typeIsArray = type === 'array';
   const valueIsArray = Array.isArray(value);
 
   if (typeIsArray || valueIsArray) {
-    if (valueIsArray !== typeIsArray) throw new Error(errorMessage);
+    if (valueIsArray !== typeIsArray) throw new Error(error);
   } else {
-    if (typeof value !== type) throw new Error(errorMessage);
+    if (typeof value !== type) throw new Error(error);
   }
 }

@@ -3,13 +3,13 @@ import { checkType } from '../check-type';
 
 describe('checkType', () => {
   let type: PropertyType;
-  let errorMessage: string;
-  const runCheckForValue = value => () => checkType(value, type, errorMessage);
+  let error: string;
+  const runCheckForValue = value => () => checkType(value, type, error);
 
   describe('boolean', () => {
     beforeAll(() => {
       type = 'boolean';
-      errorMessage = 'Value is not a boolean.';
+      error = 'Value is not a boolean.';
     });
 
     it('should not throw an error if the value is a boolean', () => {
@@ -20,7 +20,7 @@ describe('checkType', () => {
 
     it('should throw an error if the value is not a boolean', () => {
       [undefined, null, 42, NaN, 'string', [], {}, () => {/* empty */}].forEach(nonBoolean => {
-        expect(runCheckForValue(nonBoolean)).toThrow(errorMessage);
+        expect(runCheckForValue(nonBoolean)).toThrow(error);
       });
     });
   });
@@ -28,7 +28,7 @@ describe('checkType', () => {
   describe('number', () => {
     beforeAll(() => {
       type = 'number';
-      errorMessage = 'Value is not a number.';
+      error = 'Value is not a number.';
     });
 
     it('should not throw an error if the value is a number', () => {
@@ -39,7 +39,7 @@ describe('checkType', () => {
 
     it('should throw an error if the value is not a number', () => {
       [undefined, null, true, 'string', [], {}, () => {/* empty */}].forEach(nonNumber => {
-        expect(runCheckForValue(nonNumber)).toThrow(errorMessage);
+        expect(runCheckForValue(nonNumber)).toThrow(error);
       });
     });
   });
@@ -47,7 +47,7 @@ describe('checkType', () => {
   describe('string', () => {
     beforeAll(() => {
       type = 'string';
-      errorMessage = 'Is not string.';
+      error = 'Is not string.';
     });
 
     it('should not throw an error if the value is a string', () => {
@@ -58,7 +58,7 @@ describe('checkType', () => {
 
     it('should throw an error if the value is not string', () => {
       [undefined, null, true, 42, NaN, [], {}, () => {/* empty */}].forEach(nonString => {
-        expect(runCheckForValue(nonString)).toThrow(errorMessage);
+        expect(runCheckForValue(nonString)).toThrow(error);
       });
     });
   });
@@ -66,7 +66,7 @@ describe('checkType', () => {
   describe('array', () => {
     beforeAll(() => {
       type = 'array';
-      errorMessage = 'Is not array.';
+      error = 'Is not array.';
     });
 
     it('should not throw an error if the value is an array', () => {
@@ -77,7 +77,7 @@ describe('checkType', () => {
 
     it('should throw an error if the value is not an array', () => {
       [undefined, null, true, 42, NaN, 'string', {}, () => {/* empty */}].forEach(nonArray => {
-        expect(runCheckForValue(nonArray)).toThrow(errorMessage);
+        expect(runCheckForValue(nonArray)).toThrow(error);
       });
     });
   });
@@ -85,7 +85,7 @@ describe('checkType', () => {
   describe('object', () => {
     beforeAll(() => {
       type = 'object';
-      errorMessage = 'Is not object.';
+      error = 'Is not object.';
     });
 
     it('should not throw an error if the value is an object', () => {
@@ -96,7 +96,7 @@ describe('checkType', () => {
 
     it('should throw an error if the value is not an object', () => {
       [undefined, true, 42, NaN, 'string', () => {/* empty */}].forEach(nonObject => {
-        expect(runCheckForValue(nonObject)).toThrow(errorMessage);
+        expect(runCheckForValue(nonObject)).toThrow(error);
       });
     });
   });
@@ -104,7 +104,7 @@ describe('checkType', () => {
   describe('function', () => {
     beforeAll(() => {
       type = 'function';
-      errorMessage = 'Is not function.';
+      error = 'Is not function.';
     });
 
     it('should not throw an error if the value is a function', () => {
@@ -115,7 +115,7 @@ describe('checkType', () => {
 
     it('should throw an error if the value is not a function', () => {
       [undefined, null, true, 42, NaN, 'string', [], {}].forEach(nonFn => {
-        expect(runCheckForValue(nonFn)).toThrow(errorMessage);
+        expect(runCheckForValue(nonFn)).toThrow(error);
       });
     });
   });

@@ -1,3 +1,3 @@
-export function checkOneOf<T>(value: T, possibleValues: T[], errorMessage: string) {
-  if (!possibleValues.includes(value)) throw new Error(errorMessage);
+export function checkOneOf<T>(value: T, possibleValues: T[], error: string) {
+  if (!possibleValues.includes(value)) throw new Error(error);
 }
