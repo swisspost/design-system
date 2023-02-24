@@ -2,7 +2,7 @@
 @use './../../variables/commons';
 @use './../../functions/icons';
 
-@use './../../themes/bootstrap/overrides' as *;
+@use './../../themes/bootstrap/core' as *;
 @use './../../placeholders/dropdown';
 
 .top-navigation {
