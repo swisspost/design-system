@@ -31,7 +31,7 @@
     "core-js": "3.28.0",
     "highlight.js": "11.7.0",
     "ngx-highlightjs": "8.0.0",
-    "ngx-toastr": "15.2.2",
+    "ngx-toastr": "16.0.2",
     "rxjs": "7.8.0",
     "tslib": "2.5.0",
     "zone.js": "0.12.0"
