@@ -142,4 +142,4 @@ jobs:
         if: steps.changed-files.outputs.any_modified != 'false'
         run: gh pr create --fill --body-file ${{ steps.pr-body.outputs.file }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ICON_WORKFLOW_PAT }}
