@@ -91,10 +91,13 @@ jobs:
         id: pr-body
         if: steps.changed-files.outputs.any_modified != 'false'
         run: |
-          # create the PR body file with a title and set its path as the job output
-          # writing the PR body as a Markdown file allows it to be multi-lined and properly formatted
-          # the file is then only used when creating the PR but is never committed
+          # write the PR body as a Markdown file so that it is multi-lined and properly formatted
+          # the file is only used when creating the PR but is never committed
+
+          # create the file by first writing a title
           echo "# Design system icons are now up to date!"                                              > $PR_BODY_FILE
+
+          # set file path as workflow step output
           echo "file=$PR_BODY_FILE" >> $GITHUB_OUTPUT
 
           # group all modified, renamed and copied files into a single list counting as updated files
@@ -103,22 +106,31 @@ jobs:
           # declare all PR body sections in an indexed array (-a) to control their order
           # declare the list of files corresponding to each section in an associative array (-A)
           declare -a sections;            declare -A changes
-          sections+=( "Added icons" );    changes["Added icons"]=$ADDED_ICONS
-          sections+=( "Updated icons" );  changes["Updated icons"]=$UPDATED_ICONS
-          sections+=( "Deleted icons" );  changes["Deleted icons"]=$DELETED_ICONS
+          sections+=( "Icons Added" );    changes["Added icons"]=$ADDED_ICONS
+          sections+=( "Icons Updated" );  changes["Updated icons"]=$UPDATED_ICONS
+          sections+=( "Icons Deleted" );  changes["Deleted icons"]=$DELETED_ICONS
 
+          # for each section with changes, add a heading to the PR body file
           for section in "${sections[@]}"; do
-            if [[ ${changes[$section]} != '' ]]; then
-              # for each section with changes, add its title to the PR body file
+            section_changes=changes[$section]
+            if [[ ${section_changes} != '' ]]; then
               echo "## $section"                                                                       >> $PR_BODY_FILE
-              for file in ${changes[$section]}; do
-                # for each file in the section, get the icon name from its path
+
+              # list the name of the first 15 icons of the section
+              for file in ${section_changes:0:15}; do
+                # get the icon name from its path
                 icon=$(echo $file | sed 's/^packages\/icons\/public\/post-icons\///' | sed 's/\.svg$//')
                 # then add the icon name to the PR body file as a list item
                 if [[ $icon != '' ]]; then
                   echo "- $icon"                                                                       >> $PR_BODY_FILE
                 fi
               done
+
+              # if there are more than 15 icons in the section, displays the number of icons remaining
+              count=${#section_changes[@]}
+              if [[ $count > 15 ]]; then
+                echo "- ... and $(($count - 15)) more"                                                 >> $PR_BODY_FILE
+              fi
             fi
           done
         env:
