@@ -98,7 +98,7 @@ jobs:
           echo "file=$PR_BODY_FILE" >> $GITHUB_OUTPUT
 
           # group all modified, renamed and copied files into a single list counting as updated files
-          UPDATED_ICONS=($MODIFIED_ICONS $RENAMED_ICONS $COPIED_ICONS)
+          UPDATED_ICONS=(${MODIFIED_ICONS[@]} ${RENAMED_ICONS[@]} ${COPIED_ICONS[@]})
 
           # declare all PR body sections in an indexed array (-a) to control their order
           # declare the list of files corresponding to each section in an associative array (-A)
