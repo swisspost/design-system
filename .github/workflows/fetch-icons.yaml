@@ -129,8 +129,6 @@ jobs:
           COPIED_ICONS: ${{ steps.changed-files.outputs.copied_files }}
           DELETED_ICONS: ${{ steps.changed-files.outputs.deleted_files }}
 
-      - name: Create PR
+      - name: MOCK - Create PR
         if: steps.changed-files.outputs.any_modified != 'false'
-        run: gh pr create --fill --body-file ${{ steps.pr-body.outputs.file }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: cat ${{ steps.pr-body.outputs.file }}
