@@ -548,7 +548,7 @@ importers:
       stylelint: 15.2.0
       stylelint-config-prettier: 9.0.5
       stylelint-config-sass-guidelines: 9.0.1
-      stylelint-prettier: 2.0.0
+      stylelint-prettier: 3.0.0
       stylelint-scss: 4.4.0
       typescript: 4.9.5
     dependencies:
@@ -582,7 +582,7 @@ importers:
       stylelint: 15.2.0
       stylelint-config-prettier: 9.0.5_stylelint@15.2.0
       stylelint-config-sass-guidelines: 9.0.1_xczz5gvex7qa2pnzrs7ducdpai
-      stylelint-prettier: 2.0.0_7tfqzuwksfwysdxnjpqifqt36u
+      stylelint-prettier: 3.0.0_7tfqzuwksfwysdxnjpqifqt36u
       stylelint-scss: 4.4.0_stylelint@15.2.0
     publishDirectory: ./dist
 
@@ -10066,7 +10066,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -20085,6 +20085,17 @@ packages:
         optional: true
     dev: true
 
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
+    dev: true
+
   /promise-retry/2.0.1:
     resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
     engines: {node: '>=10'}
@@ -22382,9 +22393,9 @@ packages:
       stylelint: 15.2.0
     dev: true
 
-  /stylelint-prettier/2.0.0_7tfqzuwksfwysdxnjpqifqt36u:
-    resolution: {integrity: sha512-jvT3G+9lopkeB0ARmDPszyfaOnvnIF+30QCjZxyt7E6fynI1T9mOKgYDNb9bXX17M7PXMZaX3j/26wqakjp1tw==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+  /stylelint-prettier/3.0.0_7tfqzuwksfwysdxnjpqifqt36u:
+    resolution: {integrity: sha512-kIks1xw6np0zElokMT2kP6ar3S4MBoj6vUtPJuND1pFELMpZxVS/0uHPR4HDAVn0WAD3I5oF0IA3qBFxBpMkLg==}
+    engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
       prettier: '>=2.0.0'
       stylelint: '>=14.0.0'
