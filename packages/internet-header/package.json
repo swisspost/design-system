@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "1.5.3",
+  "version": "1.5.4",
   "description": "The header for client facing applications.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -59,7 +59,7 @@
     "@percy/cypress": "3.1.2",
     "@stencil/eslint-plugin": "0.4.0",
     "@stencil/sass": "2.0.3",
-    "@swisspost/design-system-styles": "workspace:5.3.2",
+    "@swisspost/design-system-styles": "workspace:5.4.0",
     "@types/iframe-resizer": "3.5.9",
     "@types/jest": "26.0.24",
     "@types/jquery": "3.5.16",
