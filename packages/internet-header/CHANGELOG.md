@@ -1,5 +1,11 @@
 # @swisspost/internet-header
 
+## 1.5.4
+
+### Patch Changes
+
+- Added the environment devs1 to the list of possible environment settings. (by [@gfellerph](https://github.com/gfellerph) with [#1152](https://github.com/swisspost/design-system/pull/1152))
+
 ## 1.5.3
 
 ### Patch Changes
