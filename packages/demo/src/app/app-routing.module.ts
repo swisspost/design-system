@@ -26,7 +26,6 @@ import { NgbPaginationDemoPageComponent } from "./ng-bootstrap/components/pagina
 import { NgbCollapseDemoPageComponent } from "./ng-bootstrap/components/collapse/collapse-demo-page/collapse-demo-page.component";
 import { NgbProgressbarDemoPageComponent } from "./ng-bootstrap/components/progressbar/progressbar-demo-page/progressbar-demo-page.component";
 import { NgbTabsDemoPageComponent } from "./ng-bootstrap/components/tabs/tabs-demo-page/tabs-demo-page.component";
-import { NgbButtonsDemoPageComponent } from "./ng-bootstrap/components/buttons/buttons-demo-page/buttons-demo-page.component";
 import { NgbTooltipDemoPageComponent } from "./ng-bootstrap/components/tooltip/tooltip-demo-page/tooltip-demo-page.component";
 import { NgbTypeaheadDemoPageComponent } from "./ng-bootstrap/components/typeahead/typeahead-demo-page/typeahead-demo-page.component";
 import { FormRangeDemoPageComponent } from "./bootstrap/components/form-range/form-range-demo-page/form-range-demo-page.component";
@@ -95,7 +94,6 @@ const routes: Routes = [
       { path: "accordion", component: NgbAccordionDemoPageComponent },
       { path: "rating", component: NgbRatingDemoPageComponent },
       { path: "modal", component: NgbModalDemoPageComponent },
-      { path: "buttons", component: NgbButtonsDemoPageComponent },
       { path: "progressbar", component: NgbProgressbarDemoPageComponent },
       { path: "alert", component: NgbAlertDemoPageComponent },
       { path: "carousel", component: NgbCarouselDemoPageComponent },
