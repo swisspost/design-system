@@ -8,6 +8,7 @@ import { AccordionDemoPageComponent } from "./bootstrap/components/accordion/acc
 import { AlertDemoPageComponent } from "./bootstrap/components/alert/alert-demo-page/alert-demo-page.component";
 import { BadgeDemoPageComponent } from "./bootstrap/components/badge/badge-demo-page/badge-demo-page.component";
 import { ButtonsDemoPageComponent } from "./bootstrap/components/buttons/buttons-demo-page/buttons-demo-page.component";
+import { ButtonGroupDemoPageComponent } from './bootstrap/components/button-group/button-group-demo-page/button-group-demo-page.component';
 import { BlockquotesDemoPageComponent } from "./bootstrap/components/blockquotes/blockquotes-demo-page/blockquotes-demo-page.component";
 import { ParagraphDemoPageComponent } from "./bootstrap/components/paragraph/paragraph-demo-page/paragraph-demo-page.component";
 import { TablesDemoPageComponent } from "./bootstrap/components/tables/tables-demo-page/tables-demo-page.component";
@@ -65,6 +66,7 @@ const routes: Routes = [
       { path: "badge", component: BadgeDemoPageComponent },
       { path: "blockquotes", component: BlockquotesDemoPageComponent },
       { path: "buttons", component: ButtonsDemoPageComponent },
+      { path: "button-group", component: ButtonGroupDemoPageComponent },
       { path: "paragraph", component: ParagraphDemoPageComponent },
       { path: "tables", component: TablesDemoPageComponent },
       { path: "typography", component: TypographyDemoPageComponent },
