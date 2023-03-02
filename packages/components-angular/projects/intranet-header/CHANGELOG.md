@@ -1,5 +1,13 @@
 # @swisspost/design-system-intranet-header
 
+## 3.0.9
+
+### Patch Changes
+
+- Revert the Angular 15 update. This update should have been published as a major (breaking) change and will be re-published as such as soon as possible. (by [@gfellerph](https://github.com/gfellerph) with [`c2d7d65`](https://github.com/swisspost/design-system/commit/c2d7d655b4e40b280c68dd19c60f77fc843476b0))
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.3.3
+
 ## 3.0.8
 
 ### Patch Changes

@@ -1,5 +1,17 @@
 # @swisspost/design-system-styles
 
+## 5.3.3
+
+### Patch Changes
+
+- Fixed an issue with the font size of lead text that was too small due to a specificity issue with sass placeholders. (by [@gfellerph](https://github.com/gfellerph) with [`410be96`](https://github.com/swisspost/design-system/commit/410be969bd32a39625f25e3ce5ea6b0c05f33d8d))
+
+- Fixed an issue with floating labels on input fields that prevented the label from being truncated correctly if it was overflowing the text box (by [@gfellerph](https://github.com/gfellerph) with [`410be96`](https://github.com/swisspost/design-system/commit/410be969bd32a39625f25e3ce5ea6b0c05f33d8d))
+
+- Updated the algorithm for calculating color contrast and optimal text color based on a given background color. Texts on colored buttons now comply with the WCAG 2.1 AA guidelines. (by [@gfellerph](https://github.com/gfellerph) with [`410be96`](https://github.com/swisspost/design-system/commit/410be969bd32a39625f25e3ce5ea6b0c05f33d8d))
+
+- Revert the Angular 15 update. This update should have been published as a major (breaking) change and will be re-published as such as soon as possible. (by [@gfellerph](https://github.com/gfellerph) with [`c2d7d65`](https://github.com/swisspost/design-system/commit/c2d7d655b4e40b280c68dd19c60f77fc843476b0))
+
 ## 5.3.2
 
 ### Patch Changes
