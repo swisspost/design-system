@@ -7,7 +7,6 @@
 ---
 
 Major dependency update. The following versions are now supported:
-
-- Angular 15
-- Bootstrap 5.2.3
-- ng-bootstrap 14
+  - Angular 15
+  - Bootstrap 5.2.3
+  - ng-bootstrap 14
