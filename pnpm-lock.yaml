@@ -245,7 +245,7 @@ importers:
       karma-jasmine: 5.1.0
       karma-jasmine-html-reporter: 2.0.0
       ngx-highlightjs: 8.0.0
-      ngx-toastr: 16.0.2
+      ngx-toastr: 15.2.2
       prettier: 2.8.4
       protractor: 7.0.0
       raw-loader: 4.0.2
@@ -278,7 +278,7 @@ importers:
       core-js: 3.28.0
       highlight.js: 11.7.0
       ngx-highlightjs: 8.0.0_pq7so2lxnramwprfbopfupfyze
-      ngx-toastr: 16.0.2_r5w6u7fwq2my5aduzicwtvscb4
+      ngx-toastr: 15.2.2_r5w6u7fwq2my5aduzicwtvscb4
       rxjs: 7.8.0
       tslib: 2.5.0
       zone.js: 0.12.0
@@ -10066,7 +10066,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1_bluebird@3.7.2
+      promise-inflight: 1.0.1
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -18650,8 +18650,8 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /ngx-toastr/16.0.2_r5w6u7fwq2my5aduzicwtvscb4:
-    resolution: {integrity: sha512-J6SueNCaGwm/gpXdsG56UzMEAcuayYWEW6NmIrNoe5iP7lOUohg4xYXWipkbMH9wGWmLPD9gU8AufUVWMplCvg==}
+  /ngx-toastr/15.2.2_r5w6u7fwq2my5aduzicwtvscb4:
+    resolution: {integrity: sha512-srdxKKf1+B/7z11M4Ty7bnkme2xjdUcnP/t7mNG/2gRM1h0P/7Lbz71FIQHuKZOCdnGdXjsT6OXU0dRvNyrkyg==}
     peerDependencies:
       '@angular/common': '>=14.0.0-0'
       '@angular/core': '>=14.0.0-0'
@@ -20083,17 +20083,6 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
-    dev: true
-
-  /promise-inflight/1.0.1_bluebird@3.7.2:
-    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
-    dependencies:
-      bluebird: 3.7.2
     dev: true
 
   /promise-retry/2.0.1:
