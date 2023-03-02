@@ -4,7 +4,7 @@
 @use './../variables/spacing';
 @use './../variables/components/stepper';
 
-@use './../themes/bootstrap/core' as *;
+@use './../themes/bootstrap/overrides' as *;
 
 .stepper-container {
   @include size-mx.responsive-size('big', 'margin-bottom');

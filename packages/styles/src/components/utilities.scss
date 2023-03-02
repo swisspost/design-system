@@ -3,7 +3,7 @@
 @use 'sass:map';
 @use 'sass:list';
 @use './../lic/bootstrap-license';
-@use './../themes/bootstrap/core' as *;
+@use './../themes/bootstrap/overrides' as bootstrap;
 @use './../themes/bootstrap/utilities' as bu; // TODO: Move Design System utilities to utilities folder.
 @use './../mixins/utilities';
 @use './../variables/color';
@@ -30,25 +30,25 @@
 }
 
 .h-visuallyhidden-up-md {
-  @include media-breakpoint-up(md) {
+  @include bootstrap.media-breakpoint-up(md) {
     @include utilities.visuallyhidden;
   }
 }
 
 .h-visuallyhidden-down-rg {
-  @include media-breakpoint-down(rg) {
+  @include bootstrap.media-breakpoint-down(rg) {
     @include utilities.visuallyhidden;
   }
 }
 
 .h-visuallyhidden-down-lg {
-  @include media-breakpoint-down(lg) {
+  @include bootstrap.media-breakpoint-down(lg) {
     @include utilities.visuallyhidden;
   }
 }
 
 .h-clearfix {
-  @include clearfix;
+  @include bootstrap.clearfix;
 }
 
 //-- Legacy --

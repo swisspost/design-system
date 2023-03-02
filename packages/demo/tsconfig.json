@@ -10,7 +10,7 @@
     "moduleResolution": "node",
     "experimentalDecorators": true,
     "importHelpers": true,
-    "target": "ES2022",
+    "target": "es2020",
     "allowJs": true,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
@@ -20,7 +20,6 @@
     "lib": [
       "es2018",
       "dom"
-    ],
-    "useDefineForClassFields": false
+    ]
   }
 }
