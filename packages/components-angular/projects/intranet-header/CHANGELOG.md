@@ -1,19 +1,5 @@
 # @swisspost/design-system-intranet-header
 
-## 3.1.0
-
-### Minor Changes
-
-- Major dependency update. The following versions are now supported:
-  - Angular 15
-  - Bootstrap 5.2.3
-  - ng-bootstrap 14 (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1146](https://github.com/swisspost/design-system/pull/1146))
-
-### Patch Changes
-
-- Updated dependencies:
-  - @swisspost/design-system-styles@5.4.0
-
 ## 3.0.8
 
 ### Patch Changes

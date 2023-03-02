@@ -1,22 +1,5 @@
 # @swisspost/design-system-styles
 
-## 5.4.0
-
-### Minor Changes
-
-- Major dependency update. The following versions are now supported:
-  - Angular 15
-  - Bootstrap 5.2.3
-  - ng-bootstrap 14 (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1146](https://github.com/swisspost/design-system/pull/1146))
-
-### Patch Changes
-
-- Fixed an issue with the font size of lead text that was too small due to a specificity issue with sass placeholders. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1143](https://github.com/swisspost/design-system/pull/1143))
-
-- Fixed an issue with floating labels on input fields that prevented the label from being truncated correctly if it was overflowing the text box (by [@gfellerph](https://github.com/gfellerph) with [#1155](https://github.com/swisspost/design-system/pull/1155))
-
-- Updated the algorithm for calculating color contrast and optimal text color based on a given background color. Texts on colored buttons now comply with the WCAG 2.1 AA guidelines. (by [@gfellerph](https://github.com/gfellerph) with [#1154](https://github.com/swisspost/design-system/pull/1154))
-
 ## 5.3.2
 
 ### Patch Changes
