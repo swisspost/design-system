@@ -130,10 +130,35 @@
           <ng-container [ngTemplateOutlet]="packagesUpdate"></ng-container>
         </li>
         <li>
+          <h4 class="h5 bold">Automatic migration tool ⚙️</h4>
+          <p>
+            If you are migrating an Angular application, you can take advantage of our migration schematics.
+          </p>
+          <ol>
+            <li>Commit all the changes you have made so far</li>
+            <li>Make sure you are running on a node version >= 16</li>
+            <li>
+              You should now be able to run the following command to apply all automatic migrations
+              to your application:
+              <code
+                appCopyToClipboard
+                class="d-block mt-1 p-3"
+                [languages]="['bash']"
+                highlight="npx ng update @swisspost/design-system-styles --from=5 --to=6 --migrate-only"
+              ></code>
+            </li>
+          </ol>
+        </li>
+        <li>
           <h4 class="h5 bold">Component migration 🤓</h4>
+          <p class="info" *ngIf="isMigratingAngular">
+            Changes flagged with the ⚙️ symbol should be automatically migrated with our migration
+            tool.
+          </p>
 
           <h5 class="h6 bold">Deprecations</h5>
           <p>
+            <span *ngIf="isMigratingAngular">⚙️ </span>
             <span class="change-badge bg-danger">breaking</span>
             The
             <span class="highlight">ngbButton</span>
@@ -299,6 +324,10 @@
         </li>
         <li>
           <h4 class="h5 bold">Component migration 🤓</h4>
+          <p class="info" *ngIf="isMigratingAngular">
+            Changes flagged with the ⚙️ symbol should be automatically migrated with our migration
+            tool.
+          </p>
 
           <h5 class="h6 bold">Deprecations</h5>
           <ul class="mt-2 mb-3">
@@ -332,10 +361,6 @@
             <br />
             Check the list of changes below and apply the transformations manually if your application
             is affected.
-          </p>
-          <p class="info" *ngIf="isMigratingAngular">
-            Changes flagged with the ⚙️ symbol should be automatically migrated with our migration
-            tool.
           </p>
 
           <!-- Post migration table -->
