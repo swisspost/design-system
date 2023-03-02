@@ -121,8 +121,13 @@
       </div>
     </section>
 
-    <section class="mb-huge">
+    <section id="v5-to-6" class="mb-huge">
       <h3 class="bold mb-4">Migration from v5 to v6</h3>
+
+      <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading">Be sure to update your application one major Design System version at a time.</h4>
+        <p>If you are currently using the @******/common-web-frontend package, start by migrating to version 5 following <a routerLink="." fragment="v4-to-5">the steps below</a>.</p>
+      </div>
 
       <ol *ngIf="isMigratingAngular; else packagesUpdate" class="bubble-tea">
         <li>
@@ -221,7 +226,7 @@
       </ng-template>
     </section>
 
-    <section class="mb-huge">
+    <section id="v4-to-5" class="mb-huge">
       <h3 class="bold mb-4">Migration from v4 to v5</h3>
 
       <ol class="bubble-tea">
