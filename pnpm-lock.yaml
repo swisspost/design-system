@@ -207,7 +207,7 @@ importers:
       '@angular-eslint/schematics': 15.2.1
       '@angular-eslint/template-parser': 15.2.1
       '@angular/animations': 15.1.5
-      '@angular/cdk': 15.2.0
+      '@angular/cdk': 14.2.7
       '@angular/cli': 15.1.6
       '@angular/common': 15.1.5
       '@angular/compiler': 15.1.5
@@ -260,7 +260,7 @@ importers:
       zone.js: 0.12.0
     dependencies:
       '@angular/animations': 15.1.5_@angular+core@15.1.5
-      '@angular/cdk': 15.2.0_pq7so2lxnramwprfbopfupfyze
+      '@angular/cdk': 14.2.7_pq7so2lxnramwprfbopfupfyze
       '@angular/common': 15.1.5_bj7gay3f2iqhd2jhj4xbvfa7uq
       '@angular/compiler': 15.1.5_@angular+core@15.1.5
       '@angular/core': 15.1.5_rxjs@7.8.0+zone.js@0.12.0
@@ -1042,11 +1042,11 @@ packages:
       tslib: 2.5.0
     dev: false
 
-  /@angular/cdk/15.2.0_pq7so2lxnramwprfbopfupfyze:
-    resolution: {integrity: sha512-+D0gLmDZVCBMSZ6juImP0eXpL40hw4Ipm8KRQmF3UOU9T5xXMxzYjUI8N3J+ZUZsNzQwy+eW0HImkZ5St6YxvA==}
+  /@angular/cdk/14.2.7_pq7so2lxnramwprfbopfupfyze:
+    resolution: {integrity: sha512-/tEsYaUbDSnfEmKVvAMramIptmhI67O+9STjOV0i+74XR2NospeK0fkbywIANu1n3w6AHGMotvRWJrjmbCElFg==}
     peerDependencies:
-      '@angular/common': ^15.0.0 || ^16.0.0
-      '@angular/core': ^15.0.0 || ^16.0.0
+      '@angular/common': ^14.0.0 || ^15.0.0
+      '@angular/core': ^14.0.0 || ^15.0.0
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
       '@angular/common': 15.1.5_bj7gay3f2iqhd2jhj4xbvfa7uq
@@ -1054,7 +1054,7 @@ packages:
       rxjs: 7.8.0
       tslib: 2.5.0
     optionalDependencies:
-      parse5: 7.1.2
+      parse5: 5.1.1
     dev: false
 
   /@angular/cli/15.1.6:
@@ -19497,7 +19497,7 @@ packages:
     resolution: {integrity: sha512-B77tOZrqqfUfnVcOrUvfdLbz4pu4RopLD/4vmu3HUPswwTA8OH0EMW9BlWR2B0RCoiZRAHEUu7IxeP1Pd1UU+g==}
     dependencies:
       domhandler: 5.0.3
-      parse5: 7.1.2
+      parse5: 7.1.1
     dev: false
 
   /parse5-sax-parser/6.0.1:
@@ -19506,18 +19506,18 @@ packages:
       parse5: 6.0.1
     dev: true
 
+  /parse5/5.1.1:
+    resolution: {integrity: sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==}
+    requiresBuild: true
+    dev: false
+    optional: true
+
   /parse5/6.0.1:
     resolution: {integrity: sha512-Ofn/CTFzRGTTxwpNEs9PP93gXShHcTq255nzRYSKe8AkVpZY7e1fpmTfOyoIvjP5HG7Z2ZM7VS9PPhQGW2pOpw==}
     dev: true
 
   /parse5/7.1.1:
     resolution: {integrity: sha512-kwpuwzB+px5WUg9pyK0IcK/shltJN5/OVhQagxhCQNtT9Y9QRZqNY2e1cmbu/paRh5LMnz/oVTVLBpjFmMZhSg==}
-    dependencies:
-      entities: 4.4.0
-    dev: false
-
-  /parse5/7.1.2:
-    resolution: {integrity: sha512-Czj1WaSVpaoj0wbhMzLmWD69anp2WH7FXMB9n1Sy8/ZFF9jolSQVMu1Ij5WIyGmcBmhk7EOndpO4mIpihVqAXw==}
     dependencies:
       entities: 4.4.0
     dev: false
