@@ -8,7 +8,7 @@
 @use './../../mixins/utilities';
 
 @use './../../themes/bootstrap/navbar' as bn;
-@use './../../themes/bootstrap/core' as *;
+@use './../../themes/bootstrap/overrides' as *;
 
 .top-navigation {
   button.nav-link {
