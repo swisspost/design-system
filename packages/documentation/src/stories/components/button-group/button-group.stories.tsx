@@ -89,6 +89,9 @@ export default {
         },
       },
       options: [1, 2, 3],
+      table: {
+        category: 'Value'
+      }
     },
     label_1: {
       name: 'First Label',
