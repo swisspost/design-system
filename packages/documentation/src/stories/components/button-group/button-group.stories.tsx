@@ -49,6 +49,9 @@ export default {
         },
       },
       options: ['button', 'link', 'checkbox', 'radio'],
+      table: {
+        category: 'General'
+      }
     },
     checked: {
       name: 'Checked Button',
