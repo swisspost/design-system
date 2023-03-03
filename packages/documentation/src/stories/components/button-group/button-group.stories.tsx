@@ -69,6 +69,9 @@ export default {
         },
       },
       options: [1, 2, 3],
+      table: {
+        category: 'Value'
+      }
     },
     selected: {
       name: 'Selected Button',
