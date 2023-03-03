@@ -37,7 +37,7 @@ export default {
       }
     },
     element: {
-      name: 'Button Elements',
+      name: 'Variant',
       description: "Defined the semantic elements used as button within the group.",
       control: {
         type: 'radio',
