@@ -3,7 +3,7 @@
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/modal' as bm;
 @use './../themes/bootstrap/close' as bc;
-@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/core' as *;
 
 @use './../mixins/icons' as icon-mixin;
 @use './../mixins/scroll-shadows' as scroll-shadows-mixin;
