@@ -164,17 +164,22 @@
       <li>
         <h4 class="h5 bold">Update your packages 🩺</h4>
         <p>
-          If your Angular version is lower than 14, use
-          <a href="https://update.angular.io/" target="_blank" rel="noopener">https://update.angular.io/</a>
-          to update Angular step by step to version 14.
+          If your Angular version is lower than 15, use
+          <a href="https://update.angular.io/" target="_blank" rel="noopener">
+            https://update.angular.io/
+          </a>
+          to update Angular step by step to version 15.
         </p>
         <p>Make sure, you have updated all your packages as far as possible.</p>
       </li>
       <li>
         <h4 class="h5 bold">Bootstrap migration 🥾</h4>
         <p>
-          Check the <a href="https://getbootstrap.com/docs/5.0/migration/" target="_blank" rel="noopener">Bootstrap
-          migration guide</a> to see if you need to update any Bootstrap-related code.
+          Check the
+          <a href="https://getbootstrap.com/docs/5.0/migration/" target="_blank" rel="noopener">
+            Bootstrap migration guide
+          </a>
+          to see if you need to update any Bootstrap-related code.
         </p>
       </li>
       <li *ngIf="isMigratingAngular">
@@ -186,8 +191,8 @@
           <li>Commit all the changes you made until now</li>
           <li>Make sure you are running on a node version >= 16</li>
           <li>
-            You should now be able to run the following command to have automatic migrations
-            applied to your application:
+            You should now be able to run the following command to have automatic migrations applied
+            to your application:
             <code
               appCopyToClipboard
               class="d-block mt-1 p-3"
@@ -230,10 +235,12 @@
         <p>
           Some changes cannot be migrated automatically.
           <br />
-          Check the list of changes below and apply the transformations manually if your application is affected.
+          Check the list of changes below and apply the transformations manually if your application
+          is affected.
         </p>
         <p class="info" *ngIf="isMigratingAngular">
-          Changes flagged with the ⚙️ symbol should be automatically migrated with our migration tool.
+          Changes flagged with the ⚙️ symbol should be automatically migrated with our migration
+          tool.
         </p>
 
         <!-- Post migration table -->
@@ -346,7 +353,10 @@
 
                         <span class="info">
                           Read more about Sass modules and the @use rule in the Sass
-                          <a href="https://sass-lang.com/documentation/at-rules/use">@use documentation</a>.
+                          <a href="https://sass-lang.com/documentation/at-rules/use">
+                            @use documentation
+                          </a>
+                          .
                         </span>
                       </label>
                     </div>

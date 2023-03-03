@@ -33,17 +33,17 @@
     "schematics:build": "copyfiles schematics/migrations.json dist && tsc -p tsconfig.schematics.json"
   },
   "dependencies": {
-    "@angular-devkit/core": "14.2.10",
-    "@angular-devkit/schematics": "14.2.10",
-    "@angular/core": "14.2.12",
+    "@angular-devkit/core": "<=15.0.4",
+    "@angular-devkit/schematics": "<=15.0.4",
+    "@angular/core": "<=15.0.4",
     "@popperjs/core": "2.11.6",
-    "bootstrap": "5.1.3",
+    "bootstrap": "5.2.3",
     "cheerio": "1.0.0-rc.12",
     "prettier": "2.8.4",
-    "typescript": "4.8.4"
+    "typescript": "4.9.5"
   },
   "devDependencies": {
-    "@angular/compiler": "14.2.12",
+    "@angular/compiler": "<=15.0.4",
     "@percy/cli": "1.20.0",
     "@percy/cypress": "3.1.2",
     "@types/node": "18.14.0",
