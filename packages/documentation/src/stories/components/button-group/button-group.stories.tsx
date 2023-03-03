@@ -40,7 +40,7 @@ export default {
       name: 'Button Elements',
       description: "Defined the semantic elements used as button within the group.",
       control: {
-        type: 'select',
+        type: 'radio',
         labels: {
           button: 'Buttons',
           link: 'Links',
