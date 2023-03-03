@@ -53,6 +53,36 @@ export default {
         category: 'General'
       }
     },
+    label_1: {
+      name: 'First Label',
+      description: 'Defines the label of the first button.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'Content'
+      }
+    },
+    label_2: {
+      name: 'Second Label',
+      description: 'Defines the label of the second button.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'Content'
+      }
+    },
+    label_3: {
+      name: 'Third Label',
+      description: 'Defines the label of the third button.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'Content'
+      }
+    },
     checked: {
       name: 'Checked Button',
       description: "Defined which button is checked in a radio button group.",
@@ -93,36 +123,6 @@ export default {
         category: 'Value'
       }
     },
-    label_1: {
-      name: 'First Label',
-      description: 'Defines the label of the first button.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Content'
-      }
-    },
-    label_2: {
-      name: 'Second Label',
-      description: 'Defines the label of the second button.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Content'
-      }
-    },
-    label_3: {
-      name: 'Third Label',
-      description: 'Defines the label of the third button.',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Content'
-      }
-    },
   },
 } as Meta;
 
@@ -146,26 +146,27 @@ const ButtonTemplate = (args: Args, index: number) => {
     }
     case 'link':
       return <a href="#" className={`btn${args.size} btn-secondary`}>{label}</a>;
+    case 'button':
     default:
       return <button type="button" className={`btn${args.size} btn-secondary`}>{label}</button>;
   }
 };
 
 const Template = (args: Args) => (
-  <div className="btn-group" role="group" aria-label="Default button group">
+  <div className="btn-group" role="group" aria-label="Button group example">
     {Array.from({length: 3}).map((_, i) => ButtonTemplate(args, i))}
   </div>
 );
 
 export const Default: Story = Template.bind({});
 
-export const Size: Story = Template.bind({});
-Size.parameters = {
+export const Sizing: Story = Template.bind({});
+Sizing.parameters = {
   controls: {
-    exclude: ['Button Elements', 'First Label', 'Second Label', 'Third Label', 'Checked Button', 'Selected Button'],
+    exclude: ['Variant', 'First Label', 'Second Label', 'Third Label', 'Checked Button', 'Selected Button'],
   },
 };
-Size.args = {
+Sizing.args = {
   size: ' btn-sm'
 };
 
@@ -178,5 +179,6 @@ Checks.parameters = {
 };
 Checks.args = {
   element: 'checkbox',
-  selected: [1, 3]
+  selected: [1, 3],
+  checked: 2
 };
