@@ -1,7 +1,7 @@
 @forward './../variables/options';
 
 @use './../lic/bootstrap-license';
-@use './../themes/bootstrap/core' as *;
+@use './../themes/bootstrap/overrides' as bootstrap;
 @use './../themes/bootstrap/card' as bootstrap-card;
 @use './../variables/color';
 @use './../variables/spacing';
@@ -92,19 +92,19 @@
 
   .product-card &,
   .card-button & {
-    @include media-breakpoint-down(sm) {
+    @include bootstrap.media-breakpoint-down(sm) {
       padding: spacing.$size-regular;
     }
 
-    @include media-breakpoint-between(sm, md) {
+    @include bootstrap.media-breakpoint-between(sm, md) {
       padding: spacing.$size-large;
     }
 
-    @include media-breakpoint-between(md, xxl) {
+    @include bootstrap.media-breakpoint-between(md, xxl) {
       padding: spacing.$size-big;
     }
 
-    @include media-breakpoint-up(xxl) {
+    @include bootstrap.media-breakpoint-up(xxl) {
       padding: spacing.$size-bigger-big;
     }
   }

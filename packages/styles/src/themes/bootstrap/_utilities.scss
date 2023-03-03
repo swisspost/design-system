@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use './core' as *;
+@use './overrides' as *;
 @import 'bootstrap/scss/helpers';
 @import 'bootstrap/scss/utilities';
 
