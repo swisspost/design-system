@@ -1,5 +1,11 @@
 # @swisspost/internet-header
 
+## 1.5.5
+
+### Patch Changes
+
+- Reverted the update to Bootstrap 5.2 and Angular 15. This update should have been a major release and will be re-released as such as soon as possible. (by [@gfellerph](https://github.com/gfellerph) with [#1207](https://github.com/swisspost/design-system/pull/1207))
+
 ## 1.5.4
 
 ### Patch Changes
