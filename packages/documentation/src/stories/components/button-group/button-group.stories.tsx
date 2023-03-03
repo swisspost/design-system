@@ -106,6 +106,9 @@ export default {
       control: {
         type: 'text',
       },
+      table: {
+        category: 'Content'
+      }
     },
     label_3: {
       name: 'Third Label',
