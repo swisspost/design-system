@@ -37,19 +37,19 @@
   },
   "dependencies": {
     "@popperjs/core": "2.11.6",
-    "@stencil/core": "3.0.1",
+    "@stencil/core": "3.1.0",
     "@stencil/react-output-target": "0.4.0",
-    "@stencil/sass": "2.0.3",
+    "@stencil/sass": "2.0.4",
     "@swisspost/design-system-styles": "workspace:5.4.0",
     "bootstrap": "5.2.3",
     "puppeteer": "19.7.2",
     "sass": "1.58.3"
   },
   "devDependencies": {
-    "@percy/cli": "1.20.0",
+    "@percy/cli": "1.20.1",
     "@percy/cypress": "3.1.2",
     "@types/jest": "27.5.2",
-    "cypress": "12.6.0",
+    "cypress": "12.7.0",
     "cypress-storybook": "0.5.1",
     "jest": "27.5.1",
     "jest-cli": "27.5.1",
