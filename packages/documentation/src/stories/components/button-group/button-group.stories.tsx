@@ -32,6 +32,9 @@ export default {
         },
       },
       options: [' btn-sm', ' btn-rg', '', ' btn-lg'],
+      table: {
+        category: 'General'
+      }
     },
     element: {
       name: 'Button Elements',
