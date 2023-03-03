@@ -140,8 +140,8 @@ const ButtonTemplate = (args: Args, index: number) => {
     case 'radio': {
       const isChecked = position === args.checked;
       return [
-        <input type="radio" className="btn-check" name="btnradio" id={`btnradio${position}`} autoComplete="off" defaultChecked={isChecked}/>,
-        <label className={`btn${args.size} btn-secondary`} htmlFor={`btnradio${position}`}>{label}</label>
+        <input type="radio" className="btn-check" name="btnradio" id={`btnradio${position}`} autoComplete="off" defaultChecked={isChecked} key={`radio${position}`} />,
+        <label className={`btn${args.size} btn-secondary`} htmlFor={`btnradio${position}`} key={`radiolabel${position}`}>{label}</label>
       ];
     }
     case 'link':
