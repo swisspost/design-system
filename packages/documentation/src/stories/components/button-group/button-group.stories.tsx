@@ -99,6 +99,9 @@ export default {
       control: {
         type: 'text',
       },
+      table: {
+        category: 'Content'
+      }
     },
     label_2: {
       name: 'Second Label',
