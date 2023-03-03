@@ -119,6 +119,9 @@ export default {
       control: {
         type: 'text',
       },
+      table: {
+        category: 'Content'
+      }
     },
   },
 } as Meta;
