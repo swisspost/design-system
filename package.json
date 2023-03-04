@@ -50,7 +50,7 @@
   "devDependencies": {
     "@changesets/changelog-github": "0.4.8",
     "@changesets/cli": "2.26.0",
-    "start-server-and-test": "1.15.4"
+    "start-server-and-test": "2.0.0"
   },
   "engines": {
     "node": ">=16",
