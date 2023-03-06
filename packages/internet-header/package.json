@@ -58,7 +58,7 @@
     "@percy/cli": "1.20.0",
     "@percy/cypress": "3.1.2",
     "@stencil/eslint-plugin": "0.4.0",
-    "@stencil/sass": "2.0.3",
+    "@stencil/sass": "3.0.0",
     "@swisspost/design-system-styles": "workspace:5.4.1",
     "@types/iframe-resizer": "3.5.9",
     "@types/jest": "26.0.24",

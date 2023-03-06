@@ -34,7 +34,7 @@ importers:
       '@popperjs/core': 2.11.6
       '@stencil/core': 3.0.1
       '@stencil/react-output-target': 0.4.0
-      '@stencil/sass': 2.0.3
+      '@stencil/sass': 3.0.0
       '@swisspost/design-system-styles': workspace:5.4.1
       '@types/jest': 27.5.2
       bootstrap: 5.2.3
@@ -50,7 +50,7 @@ importers:
       '@popperjs/core': 2.11.6
       '@stencil/core': 3.0.1
       '@stencil/react-output-target': 0.4.0_@stencil+core@3.0.1
-      '@stencil/sass': 2.0.3_@stencil+core@3.0.1
+      '@stencil/sass': 3.0.0_@stencil+core@3.0.1
       '@swisspost/design-system-styles': link:../styles/dist
       bootstrap: 5.2.3_@popperjs+core@2.11.6
       puppeteer: 19.7.2_typescript@4.9.5
@@ -450,7 +450,7 @@ importers:
       '@percy/cypress': 3.1.2
       '@stencil/core': 3.0.1
       '@stencil/eslint-plugin': 0.4.0
-      '@stencil/sass': 2.0.3
+      '@stencil/sass': 3.0.0
       '@stencil/store': 2.0.3
       '@swisspost/design-system-styles': workspace:5.4.1
       '@types/iframe-resizer': 3.5.9
@@ -494,7 +494,7 @@ importers:
       '@percy/cli': 1.20.0
       '@percy/cypress': 3.1.2_cypress@12.6.0
       '@stencil/eslint-plugin': 0.4.0_w5c5dbqc272erzbms35isk44xy
-      '@stencil/sass': 2.0.3_@stencil+core@3.0.1
+      '@stencil/sass': 3.0.0_@stencil+core@3.0.1
       '@swisspost/design-system-styles': link:../styles/dist
       '@types/iframe-resizer': 3.5.9
       '@types/jest': 26.0.24
@@ -5912,8 +5912,8 @@ packages:
       '@stencil/core': 3.0.1
     dev: false
 
-  /@stencil/sass/2.0.3_@stencil+core@3.0.1:
-    resolution: {integrity: sha512-ypS+0f6bJH2qXqrNAHirlYOWFax+qKKOIePLs7cu4LfKFr4ZVJSGRFBdgaeRrZMUhJWnhjV6io2uDldhrQhnMg==}
+  /@stencil/sass/3.0.0_@stencil+core@3.0.1:
+    resolution: {integrity: sha512-P9NuT5G2ncy+BkQ0fAS+KDuwN+BlDr17yEAHCaEejGZDXK4hhhsxjm0ea8KCwEdDbzui4GDF6DS3VNDtUB6Hzg==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0'
     dependencies:

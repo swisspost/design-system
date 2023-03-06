@@ -39,7 +39,7 @@
     "@popperjs/core": "2.11.6",
     "@stencil/core": "3.0.1",
     "@stencil/react-output-target": "0.4.0",
-    "@stencil/sass": "2.0.3",
+    "@stencil/sass": "3.0.0",
     "@swisspost/design-system-styles": "workspace:5.4.1",
     "bootstrap": "5.2.3",
     "puppeteer": "19.7.2",
