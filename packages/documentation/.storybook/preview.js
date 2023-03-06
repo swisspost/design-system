@@ -130,6 +130,7 @@ export const parameters = {
         color: '#000',
         borderColor: 'transparent',
       },
+      title: 'Beta',
       tooltip: {
         desc: 'This documentation page is still in beta mode and might not be complete yet.',
       },
@@ -140,6 +141,7 @@ export const parameters = {
         color: '#000',
         borderColor: 'transparent',
       },
+      title: 'Needs revision',
       tooltip: {
         desc: 'This page is pending revision from a UX Designer.',
       },
@@ -150,6 +152,7 @@ export const parameters = {
         color: '#fff',
         borderColor: 'transparent',
       },
+      title: 'Stable',
       tooltip: {
         desc: 'The content of this page is ready to be used in production.',
       },
@@ -160,6 +163,7 @@ export const parameters = {
         color: '#fff',
         borderColor: 'transparent',
       },
+      title: 'TODO',
       tooltip: {
         desc: 'This page needs to be filled with content and serves as a placeholder in the meantime.',
       },
