@@ -1,5 +1,5 @@
 import { Component, Element, h, Method, Prop, State, Watch } from '@stencil/core';
-import { checkBoolean, checkOneOf, getElementHeight, onTransitionEnd } from '../../utils';
+import { checkOneOf, checkType, getElementHeight, onTransitionEnd } from '../../utils';
 
 let nextId = 0;
 
@@ -29,7 +29,7 @@ export class PostCollapsible {
 
   @Watch('collapsed')
   validateCollapsed(newValue = this.collapsed) {
-    checkBoolean(newValue, 'The post-collapsible "collapsed" prop should be a boolean.');
+    checkType(newValue, 'boolean', 'The post-collapsible "collapsed" prop should be a boolean.');
 
     if (!this.isLoaded) {
       this.isOpen = !newValue;
