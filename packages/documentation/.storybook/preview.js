@@ -61,14 +61,12 @@ export const parameters = {
       order: [
         'Home',
         'Get Started',
+        ['Basics', 'Styles', 'Components', 'Internet-Header', 'Intranet-Header', 'Icons'],
         'Foundations',
         ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
         'Templates',
         'Components',
-        [
-          'Internet Header',
-          ['Getting started', 'Migration Guide', 'Header', 'Breadcrumbs', 'Footer'],
-        ],
+        ['Internet Header', ['Migration Guide', 'Header', 'Breadcrumbs', 'Footer']],
         'Utilities',
         'Misc',
         ['Migration', 'ChangeLog'],
