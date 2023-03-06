@@ -75,9 +75,11 @@ describe('breadcrumb', () => {
       prepare('Components/Internet Header/Breadcrumbs', 'Default');
       cy.get('div.breadcrumbs').as('breadcrumbs');
       cy.intercept(
-        'https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/info?modal=true',
-        '<html><body><h1>Mock overlay</h1></body></html>',
-      );
+        'https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/**',
+        {
+          fixture: 'pages/help-contact-overlay.html',
+        },
+      ).as('overlay');
     });
 
     it(`should open overlay for help button`, () => {
