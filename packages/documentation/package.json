@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-documentation",
-  "version": "1.5.2",
+  "version": "1.5.3",
   "description": "Swiss Post Design System Documentation.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -23,11 +23,11 @@
     "disabled--snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:1.3.0",
-    "@swisspost/design-system-components-react": "workspace:1.0.6",
+    "@swisspost/design-system-components": "workspace:1.3.1",
+    "@swisspost/design-system-components-react": "workspace:1.0.7",
     "@swisspost/design-system-icons": "workspace:1.0.1",
-    "@swisspost/design-system-styles": "workspace:5.4.0",
-    "@swisspost/internet-header": "workspace:1.5.4",
+    "@swisspost/design-system-styles": "workspace:5.4.1",
+    "@swisspost/internet-header": "workspace:1.5.5",
     "html-react-parser": "3.0.9",
     "prettier": "2.8.4",
     "react": "18.2.0",
@@ -36,7 +36,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.21.0",
-    "@geometricpanda/storybook-addon-badges": "0.2.2",
+    "@geometricpanda/storybook-addon-badges": "1.1.1",
     "@percy/cli": "1.20.0",
     "@percy/cypress": "3.1.2",
     "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
@@ -63,7 +63,7 @@
     "rehype-raw": "6.1.1",
     "sass": "1.58.3",
     "sass-loader": "10.4.1",
-    "start-server-and-test": "1.15.4",
+    "start-server-and-test": "2.0.0",
     "storybook-dark-mode": "2.1.0",
     "style-loader": "2.0.0",
     "typescript": "4.9.5"

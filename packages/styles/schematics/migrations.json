@@ -79,7 +79,7 @@
     },
     "migration-ng-buttons": {
       "version": "5.0.0",
-      "description": "Migrates ng-bootstrap button component.",
+      "description": "Deprecates ng-bootstrap button component.",
       "factory": "./migrations/ngbootstrap/buttons"
     },
     "migration-post-custom-select": {

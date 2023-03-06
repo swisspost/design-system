@@ -1,5 +1,16 @@
 # @swisspost/design-system-documentation
 
+## 1.5.3
+
+### Patch Changes
+
+- Reverted the update to Bootstrap 5.2 and Angular 15. This update should have been a major release and will be re-released as such as soon as possible. (by [@gfellerph](https://github.com/gfellerph) with [#1207](https://github.com/swisspost/design-system/pull/1207))
+- Updated dependencies:
+  - @swisspost/internet-header@1.5.5
+  - @swisspost/design-system-components@1.3.1
+  - @swisspost/design-system-styles@5.4.1
+  - @swisspost/design-system-components-react@1.0.7
+
 ## 1.5.2
 
 ### Patch Changes

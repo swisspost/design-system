@@ -35,13 +35,9 @@ import { NgbProgressbarDemoComponent } from './progressbar/progressbar-demo/prog
 import { NgbProgressbarDemoPageComponent } from './progressbar/progressbar-demo-page/progressbar-demo-page.component';
 import { NgbCarouselDemoPageComponent } from './carousel/carousel-demo-page/carousel-demo-page.component';
 import { NgbCarouselDemoComponent } from './carousel/carousel-demo/carousel-demo.component';
-import { NgbButtonsDemoPageComponent } from './buttons/buttons-demo-page/buttons-demo-page.component';
 import { NgbCarouselLightDemoComponent } from './carousel/carousel-light-demo/carousel-light-demo.component';
-import { NgbRadioButtonsDemoComponent } from './buttons/buttons-radio-demo/buttons-radio-demo.component';
-import { NgbCheckboxButtonsDemoComponent } from './buttons/buttons-checkbox-demo/buttons-checkbox-demo.component';
 import { NgbModalDemoContentComponent } from './modal/modal-demo-content/modal-demo-content.component';
 import { PostCommonModule } from '../../common/post-common.module';
-import { NgbBadButtonsDemoComponent } from './buttons/buttons-bad-demo/buttons-bad-demo.component';
 
 @NgModule({
   imports: [
@@ -85,12 +81,8 @@ import { NgbBadButtonsDemoComponent } from './buttons/buttons-bad-demo/buttons-b
     NgbCarouselDemoPageComponent,
     NgbCarouselDemoComponent,
     NgbCarouselLightDemoComponent,
-    NgbButtonsDemoPageComponent,
-    NgbRadioButtonsDemoComponent,
-    NgbCheckboxButtonsDemoComponent,
     NgbModalDemoComponent,
     NgbModalDemoContentComponent,
-    NgbBadButtonsDemoComponent,
   ],
   exports: [
     NgbAlertDemoComponent,
@@ -122,8 +114,6 @@ import { NgbBadButtonsDemoComponent } from './buttons/buttons-bad-demo/buttons-b
     NgbCarouselDemoPageComponent,
     NgbCarouselDemoComponent,
     NgbCarouselLightDemoComponent,
-    NgbButtonsDemoPageComponent,
-    NgbCheckboxButtonsDemoComponent,
   ],
 })
 export class NgBootstrapComponentsModule {}
