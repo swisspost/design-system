@@ -1,0 +1,61 @@
+import { Meta } from '@storybook/addon-docs';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
+
+<Meta
+  title="Get Started/Icons"
+  parameters={{
+    previewTabs: {
+      canvas: {
+        hidden: true,
+      },
+    },
+    viewMode: 'docs',
+    badges: [BADGE.NEEDS_REVISION],
+  }}
+/>
+
+# @swisspost/design-system-icons
+
+[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-icons.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-icons)
+
+This documentation only shows how to use our icons in a icon-only approch.<br/>
+If you like to use the more flexible `<post-icon>` component from our [components package](/?path=/docs/get-started-components--page), read on [here](/?path=/docs/components-post-icon--default).
+
+## Installation
+
+```bash dark
+  npm install @swisspost/design-system-icons
+```
+
+## Usage
+
+1. Define some basic, global styles to use for every post-icon you use in your dom.
+
+   ```css dark
+   svg.post-icon {
+     display: inline-block;
+     width: 1em;
+     height: auto;
+     vertical-align: -0.15em;
+   }
+   ```
+
+2. Get the icons you want to use.<br/>
+   You can find them in our package under the path `@swisspost/design-system-icons/public/post-icons/{icon-name}.svg`.<br/>
+   Use your own functionality to import them into your project and write them to the dom, or simply copy the code of an svg-file into your HTML, whenever you need an icon.
+
+   ```html dark
+   <svg
+     class="post-icon"
+     xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 32 32"
+     xml:space="preserve"
+   >
+     <path
+       fill="currentColor"
+       d="M16 4C9.3 4 4 9.4 4 16s5.4 12 12 12 12-5.4 12-12S22.6 4 16 4zm0 1.3c2 0 3.9.6 5.5 1.6-1.5 1.7-6.8 6.6-14.7 3.7 1.9-3.2 5.3-5.3 9.2-5.3zm0 21.4c-5.9 0-10.7-4.8-10.7-10.7 0-1.5.3-2.9.9-4.2 1.9.7 3.8 1.1 5.4 1.1 5.8 0 9.7-3.8 11-5.2 2.5 2 4.1 5 4.1 8.4 0 5.8-4.8 10.6-10.7 10.6zm-3.3-10h-1.3c0-.4-.3-.7-.7-.7-.4 0-.7.3-.7.7H8.7c0-1.1.9-2 2-2s2 .9 2 2zm10.6 0H22c0-.4-.3-.7-.7-.7s-.7.3-.7.7h-1.3c0-1.1.9-2 2-2s2 .9 2 2zm-11.9 3.8h9.3v1.3h-9.3v-1.3z"
+     ></path>
+   </svg>
+   ```
+
+3. Make sure you add the previous defined styles to every icon (e.g. add the class `.post-icon` to the svg tag).
