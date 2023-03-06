@@ -6,11 +6,11 @@ importers:
     specifiers:
       '@changesets/changelog-github': 0.4.8
       '@changesets/cli': 2.26.0
-      start-server-and-test: 1.15.4
+      start-server-and-test: 2.0.0
     devDependencies:
       '@changesets/changelog-github': 0.4.8
       '@changesets/cli': 2.26.0
-      start-server-and-test: 1.15.4
+      start-server-and-test: 2.0.0
 
   packages/changelog-github:
     specifiers:
@@ -359,7 +359,7 @@ importers:
       rehype-raw: 6.1.1
       sass: 1.58.3
       sass-loader: 10.4.1
-      start-server-and-test: 1.15.4
+      start-server-and-test: 2.0.0
       storybook-dark-mode: 2.1.0
       style-loader: 2.0.0
       typescript: 4.9.5
@@ -402,7 +402,7 @@ importers:
       rehype-raw: 6.1.1
       sass: 1.58.3
       sass-loader: 10.4.1_sass@1.58.3
-      start-server-and-test: 1.15.4
+      start-server-and-test: 2.0.0
       storybook-dark-mode: 2.1.0_biqbaboplfbrettd7655fr4n2y
       style-loader: 2.0.0
       typescript: 4.9.5
@@ -474,7 +474,7 @@ importers:
       rollup-plugin-scss: 4.0.0
       rollup-plugin-visualizer: 5.9.0
       sass: 1.58.3
-      start-server-and-test: 1.15.4
+      start-server-and-test: 2.0.0
       tabbable: 6.1.1
       throttle-debounce: 5.0.0
       ts-jest: 26.5.6
@@ -514,7 +514,7 @@ importers:
       rollup-plugin-scss: 4.0.0
       rollup-plugin-visualizer: 5.9.0
       sass: 1.58.3
-      start-server-and-test: 1.15.4
+      start-server-and-test: 2.0.0
       ts-jest: 26.5.6_xuote2qreek47x2di7kesslrai
       typescript: 4.9.5
 
@@ -10066,7 +10066,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1
+      promise-inflight: 1.0.1_bluebird@3.7.2
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -20085,6 +20085,17 @@ packages:
         optional: true
     dev: true
 
+  /promise-inflight/1.0.1_bluebird@3.7.2:
+    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
+    peerDependencies:
+      bluebird: '*'
+    peerDependenciesMeta:
+      bluebird:
+        optional: true
+    dependencies:
+      bluebird: 3.7.2
+    dev: true
+
   /promise-retry/2.0.1:
     resolution: {integrity: sha512-y+WKFlBR8BGXnsNlIHFGPZmyDf3DFMoLhaflAnyZgV6rG6xu+JwesTo2Q9R6XwYmtmwAFCkAk3e35jEdoeh/3g==}
     engines: {node: '>=10'}
@@ -22013,8 +22024,8 @@ packages:
     resolution: {integrity: sha512-oeVtt7eWQS+Na6F//S4kJ2K2VbRlS9D43mAlMyVpVWovy9o+jfgH8O9agzANzaiLjclA0oYzUXEM4PurhSUChw==}
     dev: true
 
-  /start-server-and-test/1.15.4:
-    resolution: {integrity: sha512-ucQtp5+UCr0m4aHlY+aEV2JSYNTiMZKdSKK/bsIr6AlmwAWDYDnV7uGlWWEtWa7T4XvRI5cPYcPcQgeLqpz+Tg==}
+  /start-server-and-test/2.0.0:
+    resolution: {integrity: sha512-UqKLw0mJbfrsG1jcRLTUlvuRi9sjNuUiDOLI42r7R5fA9dsFoywAy9DoLXNYys9B886E4RCKb+qM1Gzu96h7DQ==}
     engines: {node: '>=6'}
     hasBin: true
     dependencies:
