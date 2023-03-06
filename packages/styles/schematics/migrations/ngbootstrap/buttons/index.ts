@@ -1,46 +1,48 @@
 import { Rule } from '@angular-devkit/schematics';
+import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
+import { randomUUID } from 'crypto';
 import DomMigration from '../../../utils/dom/migration';
 import IDomUpdate from '../../../utils/dom/update';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return new DomMigration(
-    new ButtonGroupClassUpdate,
-    new ButtonLabelClassUpdate,
-    new ButtonInputClassUpdate
+    new NgbButtonGroupDeprecationUpdate
   ).rule;
 }
 
-class ButtonGroupClassUpdate implements IDomUpdate {
-  selector = '.btn-group.btn-group-toggle';
-  
-  update ($elements: Cheerio<AnyNode>) {
-    $elements.removeClass('btn-group-toggle');
-  }
-}
-
-class ButtonLabelClassUpdate implements IDomUpdate {
-  selector = '.btn-group label.btn-primary';
+class NgbButtonGroupDeprecationUpdate implements IDomUpdate {
+  selector = '.btn-group';
 
   update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
-        const $element = $(element);
-        const isNgbButtonLabel = $element.attr('ngbButtonLabel') !== undefined;
+        // get all buttons containing an input
+        const $buttonGroup = $(element);
+        const $labels = $buttonGroup
+          .children('.btn')
+          .filter(function() {
+            return $(this).children('.btn-check').length === 1;
+          });
 
-        if (isNgbButtonLabel) {
-          $element
-            .removeClass('btn-primary')
-            .addClass('btn btn-secondary');
-        }
+        $labels.each((_j, label) => {
+          const $label = $(label);
+          const $input = $label.children('.btn-check').first();
+
+          // remove ngb directive attributes
+          $label.removeAttr('ngbButtonLabel');
+          $input.removeAttr('ngbButton');
+
+          // bind inputs with their label via an id
+          let inputId = $input.attr('id');
+          if (!inputId) {
+            inputId = randomUUID();
+            $input.attr('id', inputId);
+          }
+          $label.attr('for', inputId);
+
+          // move entries right after their label
+          $label.after($input);
+        });
       });
-  }
-}
-
-class ButtonInputClassUpdate implements IDomUpdate {
-  selector = '.btn-group input[ngbButton]';
-  
-  update ($elements: Cheerio<AnyNode>) {
-    $elements.addClass('btn-check');
   }
 }
