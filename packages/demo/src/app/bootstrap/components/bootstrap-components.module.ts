@@ -15,6 +15,10 @@ import {BadgeDemoPageComponent} from './badge/badge-demo-page/badge-demo-page.co
 import {BadgeDemoComponent} from './badge/badge-demo/badge-demo.component';
 import {BadgeNestedDemoComponent} from './badge/badge-nested-demo/badge-nested-demo.component';
 import {BadgeInteractiveDemoComponent} from './badge/badge-interactive-demo/badge-interactive-demo.component';
+import {ButtonGroupBadDemoComponent} from './button-group/button-group-bad-demo/button-group-bad-demo.component';
+import {ButtonGroupCheckboxDemoComponent} from './button-group/button-group-checkbox-demo/button-group-checkbox-demo.component';
+import {ButtonGroupDemoPageComponent} from './button-group/button-group-demo-page/button-group-demo-page.component';
+import {ButtonGroupRadioDemoComponent} from './button-group/button-group-radio-demo/button-group-radio-demo.component';
 import {ButtonsDemoComponent} from './buttons/buttons-demo/buttons-demo.component';
 import {ButtonsDemoPageComponent} from './buttons/buttons-demo-page/buttons-demo-page.component';
 import {BlockquotesDemoComponent} from './blockquotes/blockquotes-demo/blockquotes-demo.component';
@@ -96,6 +100,10 @@ import { ButtonDisabledComponent } from './buttons/buttons-demo/button-disabled/
     BadgeInteractiveDemoComponent,
     ButtonsDemoComponent,
     ButtonsDemoPageComponent,
+    ButtonGroupCheckboxDemoComponent,
+    ButtonGroupRadioDemoComponent,
+    ButtonGroupBadDemoComponent,
+    ButtonGroupDemoPageComponent,
     BlockquotesDemoComponent,
     NestedBlockquotesDemoComponent,
     BlockquotesDemoPageComponent,
@@ -155,6 +163,7 @@ import { ButtonDisabledComponent } from './buttons/buttons-demo/button-disabled/
     BadgeDemoComponent,
     ButtonsDemoComponent,
     ButtonsDemoPageComponent,
+    ButtonGroupDemoPageComponent,
     BlockquotesDemoComponent,
     BlockquotesDemoPageComponent,
     ParagraphDemoComponent,
