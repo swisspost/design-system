@@ -45,15 +45,15 @@
     "@swisspost/design-system-styles": "workspace:5.4.1",
     "bootstrap": "5.2.3",
     "eslint-plugin-react": "7.32.2",
-    "puppeteer": "19.7.2",
+    "puppeteer": "19.7.3",
     "sass": "1.58.3"
   },
   "devDependencies": {
     "@percy/cli": "1.20.2",
     "@percy/cypress": "3.1.2",
     "@types/jest": "27.5.2",
-    "@typescript-eslint/eslint-plugin": "5.54.0",
-    "@typescript-eslint/parser": "5.54.0",
+    "@typescript-eslint/eslint-plugin": "5.54.1",
+    "@typescript-eslint/parser": "5.54.1",
     "cypress": "12.7.0",
     "cypress-storybook": "0.5.1",
     "eslint": "8.35.0",
