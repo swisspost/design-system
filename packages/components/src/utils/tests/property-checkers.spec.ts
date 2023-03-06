@@ -70,7 +70,7 @@ describe('property-checkers', () => {
     it('should not throw an error if the value is function', () => {
       checkerParameters = ['function'];
       errorMessage = 'Is not function.';
-      [function () {}, () => {}].forEach(v => {
+      [function () {/* empty */}, () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).not.toThrow();
       });
     });
@@ -78,7 +78,7 @@ describe('property-checkers', () => {
     it('should throw an error if the value is not boolean', () => {
       checkerParameters = ['boolean'];
       errorMessage = 'Is boolean.';
-      [undefined, null, 42, NaN, 'string', [], {}, () => {}].forEach(v => {
+      [undefined, null, 42, NaN, 'string', [], {}, () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
       });
     });
@@ -86,7 +86,7 @@ describe('property-checkers', () => {
     it('should throw an error if the value is not number', () => {
       checkerParameters = ['number'];
       errorMessage = 'Is number.';
-      [undefined, null, true, 'string', [], {}, () => {}].forEach(v => {
+      [undefined, null, true, 'string', [], {}, () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
       });
     });
@@ -94,7 +94,7 @@ describe('property-checkers', () => {
     it('should throw an error if the value is not string', () => {
       checkerParameters = ['string'];
       errorMessage = 'Is string.';
-      [undefined, null, true, 42, NaN, [], {}, () => {}].forEach(v => {
+      [undefined, null, true, 42, NaN, [], {}, () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
       });
     });
@@ -102,7 +102,7 @@ describe('property-checkers', () => {
     it('should throw an error if the value is not array', () => {
       checkerParameters = ['array'];
       errorMessage = 'Is array.';
-      [undefined, null, true, 42, NaN, 'string', {}, () => {}].forEach(v => {
+      [undefined, null, true, 42, NaN, 'string', {}, () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
       });
     });
@@ -110,7 +110,7 @@ describe('property-checkers', () => {
     it('should throw an error if the value is not object', () => {
       checkerParameters = ['object'];
       errorMessage = 'Is object.';
-      [undefined, true, 42, NaN, 'string', () => {}].forEach(v => {
+      [undefined, true, 42, NaN, 'string', () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
       });
     });
@@ -172,7 +172,7 @@ describe('property-checkers', () => {
     it('should not throw an error if the value is empty or function', () => {
       checkerParameters = ['function'];
       errorMessage = 'Is not empty or function.';
-      [undefined, null, '', function () {}, () => {}].forEach(v => {
+      [undefined, null, '', function () {/* empty */}, () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).not.toThrow();
       });
     });
@@ -180,7 +180,7 @@ describe('property-checkers', () => {
     it('should throw an error if the value is not empty or boolean', () => {
       checkerParameters = ['boolean'];
       errorMessage = 'Is empty or boolean.';
-      [42, NaN, 'string', [], {}, () => {}].forEach(v => {
+      [42, NaN, 'string', [], {}, () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
       });
     });
@@ -188,7 +188,7 @@ describe('property-checkers', () => {
     it('should throw an error if the value is not empty or number', () => {
       checkerParameters = ['number'];
       errorMessage = 'Is number.';
-      [true, 'string', [], {}, () => {}].forEach(v => {
+      [true, 'string', [], {}, () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
       });
     });
@@ -196,7 +196,7 @@ describe('property-checkers', () => {
     it('should throw an error if the value is not empty or string', () => {
       checkerParameters = ['string'];
       errorMessage = 'Is empty or string.';
-      [true, 42, NaN, [], {}, () => {}].forEach(v => {
+      [true, 42, NaN, [], {}, () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
       });
     });
@@ -204,7 +204,7 @@ describe('property-checkers', () => {
     it('should throw an error if the value is not empty or array', () => {
       checkerParameters = ['array'];
       errorMessage = 'Is empty or array.';
-      [true, 42, NaN, 'string', {}, () => {}].forEach(v => {
+      [true, 42, NaN, 'string', {}, () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
       });
     });
@@ -212,7 +212,7 @@ describe('property-checkers', () => {
     it('should throw an error if the value is not empty or object', () => {
       checkerParameters = ['object'];
       errorMessage = 'Is empty or object.';
-      [true, 42, NaN, 'string', () => {}].forEach(v => {
+      [true, 42, NaN, 'string', () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
       });
     });
@@ -256,7 +256,7 @@ describe('property-checkers', () => {
     });
 
     it('should throw the provided error if the value is not one of the possible values', () => {
-      [true, 42, NaN, 'E', [], {}, () => {}].forEach(v => {
+      [true, 42, NaN, 'E', [], {}, () => {/* empty */}].forEach(v => {
         expect(runCheckerWithValue(v)).toThrow();
       });
     });
@@ -275,7 +275,7 @@ describe('property-checkers', () => {
     });
 
     it('should throw the provided error if the value is not a boolean', () => {
-      [undefined, null, NaN, 1, 'a', {}, [], () => {}].forEach(notBoolean => {
+      [undefined, null, NaN, 1, 'a', {}, [], () => {/* empty */}].forEach(notBoolean => {
         expect(runCheckerWithValue(notBoolean)).toThrow(errorMessage);
       });
     });
