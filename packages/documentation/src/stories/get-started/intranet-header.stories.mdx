@@ -1,0 +1,48 @@
+import { Meta } from '@storybook/addon-docs';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
+
+<Meta
+  title="Get Started/Intranet-Header"
+  parameters={{
+    previewTabs: {
+      canvas: {
+        hidden: true,
+      },
+    },
+    viewMode: 'docs',
+    badges: [BADGE.NEEDS_REVISION],
+  }}
+/>
+
+# @swisspost/design-system-intranet-header
+
+[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header)
+
+The Swiss Post Intranet Header Angular component.
+
+## Installation
+
+```bash dark
+npm install @swisspost/design-system-intranet-header
+```
+
+## Usage
+
+In your `app.module.ts`, add the header to your imports:
+
+```typescript dark
+import { SwissPostIntranetHeaderModule } from '@swisspost/design-system-intranet-header';
+
+@NgModule({
+  // ...
+  imports: [SwissPostIntranetHeaderModule],
+  // ...
+})
+export class AppModule {}
+```
+
+In your templates, the Intranet Header is available as:
+
+```html dark
+<sp-intranet-header></sp-intranet-header>
+```
