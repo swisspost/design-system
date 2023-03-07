@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><g id="icon">
+<svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg"><g id="icon">
   <path d="M24 18.667V20h5.333v10.667h-28V20h5.333v-1.333H-.001V32h30.667V18.667z"/>
   <path d="M22.667 12.267V10.4L16 17.067V0h-1.333v17.067L8 10.4v1.867l7.333 7.333z"/>
 </g></svg>
