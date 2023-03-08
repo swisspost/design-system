@@ -42,6 +42,7 @@
   &:last-child {
     justify-self: end;
     align-items: end;
+    text-align: right;
     transform: translateX(#{0.5 * stepper.$stepper-indicator-height});
   }
 
@@ -82,15 +83,15 @@
     content: counter(step-index);
   }
 
-  &[aria-current] ~ &:not(:hover)::before {
-    color: stepper.$stepper-indicator-future-color;
-    background-color: stepper.$stepper-indicator-future-bg;
-  }
-
   &:hover::before {
     color: stepper.$stepper-indicator-hover-color;
     background-color: stepper.$stepper-indicator-hover-bg;
     background-image: stepper.$stepper-indicator-hover-check-icon;
+  }
+
+  &[aria-current] ~ ::before {
+    color: stepper.$stepper-indicator-future-color;
+    background-color: stepper.$stepper-indicator-future-bg;
   }
 
   &:is(:focus-visible, :focus-within)::before {

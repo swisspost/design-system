@@ -160,23 +160,46 @@
             Changes flagged with the ⚙️ symbol should be automatically migrated with our migration
             tool.
           </p>
-
-          <h5 class="h6 bold">Deprecations</h5>
-          <p>
-            <span *ngIf="isMigratingAngular">⚙️ </span>
-            <span class="change-badge bg-danger">breaking</span>
-            The
-            <span class="highlight">ngbButton</span>
-            and
-            <span class="highlight">ngbButtonLabel</span>
-            directives are no longer a part of ng-bootstrap.<br>
-            The markup and styles have changed and everything now works with CSS Bootstrap classes only.
-          </p>
-          <p class="info">
-            See the
-            <a routerLink="/bootstrap-samples/button-group">documentation</a>
-            for more detailed information.
-          </p>
+          <h5 class="h6 bold mt-4">Accessibility</h5>
+          <ul>
+            <li>
+              <h6>
+                Stepper
+                <span class="change-badge bg-danger">breaking</span>
+              </h6>
+              <p>
+                The markup of the <a href="/#/post-samples/stepper">stepper</a> component has been changed in order to be more accessible.
+              </p>
+              <ul>
+                <li>The progressbar is hidden</li>
+                <li>Completed steps require an additional hidden "Completed: " text</li>
+                <li>Incomplete steps should not be links</li>
+              </ul>
+            </li>
+          </ul>
+          <h5 class="h6 bold mt-4">Deprecations</h5>
+          <ul>
+            <li>
+              <h6>
+                ngbButton
+                <span *ngIf="isMigratingAngular">⚙️ </span>
+                <span class="change-badge bg-danger">breaking</span>
+              </h6>
+              <p>
+                The
+                <span class="highlight">ngbButton</span>
+                and
+                <span class="highlight">ngbButtonLabel</span>
+                directives are no longer a part of ng-bootstrap.<br>
+                The markup and styles have changed and everything now works with CSS Bootstrap classes only.
+              </p>
+              <p class="info">
+                See the
+                <a routerLink="/bootstrap-samples/button-group">documentation</a>
+                for more detailed information.
+              </p>
+            </li>
+          </ul>
         </li>
       </ol>
 
