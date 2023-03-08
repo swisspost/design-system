@@ -4,11 +4,9 @@ importers:
 
   .:
     specifiers:
-      '@changesets/changelog-github': 0.4.8
       '@changesets/cli': 2.26.0
       start-server-and-test: 2.0.0
     devDependencies:
-      '@changesets/changelog-github': 0.4.8
       '@changesets/cli': 2.26.0
       start-server-and-test: 2.0.0
 
@@ -3807,16 +3805,6 @@ packages:
       '@changesets/types': 5.2.1
     dev: true
 
-  /@changesets/changelog-github/0.4.8:
-    resolution: {integrity: sha512-jR1DHibkMAb5v/8ym77E4AMNWZKB5NPzw5a5Wtqm1JepAuIF+hrKp2u04NKM14oBZhHglkCfrla9uq8ORnK/dw==}
-    dependencies:
-      '@changesets/get-github-info': 0.5.2
-      '@changesets/types': 5.2.1
-      dotenv: 8.6.0
-    transitivePeerDependencies:
-      - encoding
-    dev: true
-
   /@changesets/cli/2.26.0:
     resolution: {integrity: sha512-0cbTiDms+ICTVtEwAFLNW0jBNex9f5+fFv3I771nBvdnV/mOjd1QJ4+f8KtVSOrwD9SJkk9xbDkWFb0oXd8d1Q==}
     hasBin: true
@@ -3891,6 +3879,7 @@ packages:
       node-fetch: 2.6.9
     transitivePeerDependencies:
       - encoding
+    dev: false
 
   /@changesets/get-release-plan/3.0.16:
     resolution: {integrity: sha512-OpP9QILpBp1bY2YNIKFzwigKh7Qe9KizRsZomzLe6pK8IUo8onkAAVUD8+JRKSr8R7d4+JRuQrfSSNlEwKyPYg==}
@@ -11119,6 +11108,7 @@ packages:
 
   /dataloader/1.4.0:
     resolution: {integrity: sha512-68s5jYdlvasItOJnCuI2Q9s4q98g0pCyL3HrcKJu8KNugUl8ahgmZYg38ysLTgQjjXX3H8CJLkAvWrclWfcalw==}
+    dev: false
 
   /date-format/4.0.11:
     resolution: {integrity: sha512-VS20KRyorrbMCQmpdl2hg5KaOUsda1RbnsJg461FfrcyCUg+pkd0b40BSW4niQyTheww4DBXQnS7HwSrKkipLw==}
