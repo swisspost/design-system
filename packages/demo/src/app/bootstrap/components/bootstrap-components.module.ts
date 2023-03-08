@@ -26,8 +26,6 @@ import {NestedBlockquotesDemoComponent} from './blockquotes/nested-blockquotes-d
 import {BlockquotesDemoPageComponent} from './blockquotes/blockquotes-demo-page/blockquotes-demo-page.component';
 import {FormSwitchDemoPageComponent} from "./form-switch/form-switch-demo-page/form-switch-demo-page.component";
 import {FormSwitchDemoComponent} from "./form-switch/form-switch-demo/form-switch-demo.component";
-import {ParagraphDemoComponent} from './paragraph/paragraph-demo/paragraph-demo.component';
-import {ParagraphDemoPageComponent} from './paragraph/paragraph-demo-page/paragraph-demo-page.component';
 import {TablesDemoComponent} from './tables/tables-demo/tables-demo.component';
 import {TablesDemoPageComponent} from './tables/tables-demo-page/tables-demo-page.component';
 import {TypographyDemoComponent} from './typography/typography-demo/typography-demo.component';
@@ -107,8 +105,6 @@ import { ButtonDisabledComponent } from './buttons/buttons-demo/button-disabled/
     BlockquotesDemoComponent,
     NestedBlockquotesDemoComponent,
     BlockquotesDemoPageComponent,
-    ParagraphDemoComponent,
-    ParagraphDemoPageComponent,
     TablesDemoComponent,
     TablesDemoPageComponent,
     TypographyDemoComponent,
@@ -166,8 +162,6 @@ import { ButtonDisabledComponent } from './buttons/buttons-demo/button-disabled/
     ButtonGroupDemoPageComponent,
     BlockquotesDemoComponent,
     BlockquotesDemoPageComponent,
-    ParagraphDemoComponent,
-    ParagraphDemoPageComponent,
     TablesDemoComponent,
     TablesDemoPageComponent,
     TypographyDemoComponent,

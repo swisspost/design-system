@@ -10,7 +10,6 @@ import { BadgeDemoPageComponent } from "./bootstrap/components/badge/badge-demo-
 import { ButtonsDemoPageComponent } from "./bootstrap/components/buttons/buttons-demo-page/buttons-demo-page.component";
 import { ButtonGroupDemoPageComponent } from './bootstrap/components/button-group/button-group-demo-page/button-group-demo-page.component';
 import { BlockquotesDemoPageComponent } from "./bootstrap/components/blockquotes/blockquotes-demo-page/blockquotes-demo-page.component";
-import { ParagraphDemoPageComponent } from "./bootstrap/components/paragraph/paragraph-demo-page/paragraph-demo-page.component";
 import { TablesDemoPageComponent } from "./bootstrap/components/tables/tables-demo-page/tables-demo-page.component";
 import { TypographyDemoPageComponent } from "./bootstrap/components/typography/typography-demo-page/typography-demo-page.component";
 import { FormsDemoPageComponent as BootstrapFormDemoPageComponent } from "./bootstrap/components/forms/forms-demo-page/forms-demo-page.component";
@@ -67,7 +66,6 @@ const routes: Routes = [
       { path: "blockquotes", component: BlockquotesDemoPageComponent },
       { path: "buttons", component: ButtonsDemoPageComponent },
       { path: "button-group", component: ButtonGroupDemoPageComponent },
-      { path: "paragraph", component: ParagraphDemoPageComponent },
       { path: "tables", component: TablesDemoPageComponent },
       { path: "typography", component: TypographyDemoPageComponent },
       { path: "forms", component: BootstrapFormDemoPageComponent },
