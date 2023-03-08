@@ -139,7 +139,7 @@ const Template = (args: Args) => {
     args.noIcon ? 'no-icon' : '',
     args.dismissible ? 'alert-dismissible' : '',
     args.fixed ? 'alert-fixed-bottom' : '',
-    args.action ? 'alert-action alert-fixed-bottom' : '',
+    args.action ? 'alert-action' : '',
     args.show ? '' : 'd-none',
   ]
     .filter(c => c)
@@ -156,7 +156,7 @@ const Template = (args: Args) => {
   return (
     <div className={classes} role="alert">
       {/* Dismissible Button */}
-      {(args.dismissible || args.fixed) && !args.action ? (
+      {args.dismissible || args.fixed ? (
         <button
           className="btn-close"
           data-dismiss="alert"
@@ -193,7 +193,7 @@ export const Default: Story = Template.bind({});
 Default.decorators = [
   (Story: Story, { args }) => {
     const [_, updateArgs] = useArgs();
-    const showToggleButton = args.fixed || args.action;
+    const showToggleButton = args.fixed;
     const showResetButton = !showToggleButton && args.dismissible && !args.show;
 
     return (
