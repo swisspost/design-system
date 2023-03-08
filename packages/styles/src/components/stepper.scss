@@ -2,6 +2,7 @@
 @use './../mixins/utilities';
 
 @use './../variables/spacing';
+@use './../variables/color';
 @use './../variables/components/stepper';
 
 @use './../themes/bootstrap/core' as *;
@@ -15,6 +16,10 @@
   height: stepper.$stepper-bar-height;
   margin-top: stepper.$stepper-indicator-height * 0.5;
   margin-bottom: -1 * (stepper.$stepper-bar-height + stepper.$stepper-indicator-height) * 0.5;
+
+  .progress-bar {
+    background-color: color.$yellow;
+  }
 }
 
 .stepper {
