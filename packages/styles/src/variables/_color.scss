@@ -44,6 +44,7 @@ $success-text: #255e1c;
 $error: #a51728;
 $error-text: #8f0d1c;
 $warning: #f49e00;
+$info: #cce4ee;
 
 /**
  * Maps. Allow maps to have custom colors from the project
@@ -67,7 +68,7 @@ $contextual-colors: map.merge(
   $contextual-colors,
   (
     'success': $success,
-    'info': $yellow,
+    'info': $info,
     'warning': $warning,
     'danger': $error,
   )
