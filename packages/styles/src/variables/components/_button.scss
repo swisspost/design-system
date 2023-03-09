@@ -130,8 +130,10 @@ $btn-block-spacing-y: 0.5rem !default;
 // Allows for customizing button radius independently from global border radius
 $btn-border-radius: commons.$border-radius !default;
 
-$btn-transition-fade-arrow: opacity animation.$transition-time-default
-  animation.$transition-easing-default !default;
-$btn-transition-base-label: transform animation.$transition-time-default
-  animation.$transition-easing-default !default;
-$btn-transition: all animation.$transition-time-default animation.$transition-easing-default !default;
+$btn-transition-duration: animation.$transition-time-default;
+$btn-transition: (
+  opacity $btn-transition-duration,
+  border-color $btn-transition-duration,
+  background-color $btn-transition-duration,
+  color $btn-transition-duration
+) !default;

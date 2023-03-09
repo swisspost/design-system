@@ -21,5 +21,11 @@ export default {
         attrs: '(width|height|style)',
       },
     },
+    {
+      name: 'sortAttrs',
+      params: {
+        xmlnsOrder: 'alphabetical',
+      },
+    },
   ],
 } as OptimizeOptions;

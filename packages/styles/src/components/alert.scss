@@ -84,8 +84,7 @@
   }
 }
 
-.alert-fixed-bottom,
-%alert-fixed {
+.alert-fixed-bottom {
   position: fixed;
   z-index: commons.$zindex-alert;
   bottom: 0;
@@ -129,8 +128,6 @@
 }
 
 .alert-action {
-  @extend %alert-fixed;
-
   flex-direction: row;
   flex-wrap: nowrap;
   align-items: center;

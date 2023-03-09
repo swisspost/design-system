@@ -19,6 +19,11 @@
       "matchUpdateTypes": ["minor", "patch"],
       "groupName": "all non-major dependencies",
       "groupSlug": "all-minor-patch"
+    },
+    {
+      "matchFiles": ["packages/styles/package.json"],
+      "matchPackagePatterns": ["^@angular"],
+      "allowedVersions": "<=15.0.4"
     }
   ],
   "timezone": "Europe/Zurich",

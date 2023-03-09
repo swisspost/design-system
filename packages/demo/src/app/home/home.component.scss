@@ -62,6 +62,15 @@
   }
 }
 
+.change-badge {
+  display: inline-block;
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+  font-family: post.$font-family-monospace;
+  font-size: 12px;
+  vertical-align: text-bottom;
+}
+
 .bubble-tea {
   margin-top: 2rem;
   padding: 1rem 0 2rem 0;
@@ -127,14 +136,8 @@
   }
 
   .form-check-label {
-    code:not(.block, .d-block),
-    .change-badge {
-      display: inline-block;
-      padding: 0.05rem 0.3rem;
-      border-radius: 3px;
-      font-family: post.$font-family-monospace;
-      font-size: 12px;
-      vertical-align: text-bottom;
+    code:not(.block, .d-block) {
+      @extend .change-badge;
     }
 
     ul {

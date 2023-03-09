@@ -9,27 +9,23 @@ let nextId = 0;
   shadow: true,
 })
 export class PostCollapsible {
+  private collapsibleElement: HTMLElement;
+  private isLoaded = false;
+
+  @Element() host: HTMLPostCollapsibleElement;
+
+  @State() collapseClasses: string;
+  @State() collapseHeight: string | null = null;
+  @State() collapsibleId: string;
+  @State() hasHeader: boolean;
+  @State() headingTag: string | undefined;
+  @State() isOpen = true;
+  @State() onAccordionButtonClick = () => this.toggle();
+
   /**
    * If `true`, the element is initially collapsed otherwise it is displayed.
    */
-  @Prop() collapsed?: boolean = false;
-
-  /**
-   * Defines the hierarchical level of the collapsible header within the headings structure.
-   */
-  @Prop() headingLevel?: number = 2;
-
-  @State() isOpen = true;
-  @State() collapseClasses: string;
-  @State() collapseHeight: string | null = null;
-  @State() headingTag: string | undefined;
-  @State() collapsibleId: string;
-  @State() hasHeader: boolean;
-
-  @Element() host: HTMLElement;
-
-  isLoaded = false;
-  collapsibleElement: HTMLElement;
+  @Prop() readonly collapsed?: boolean = false;
 
   @Watch('collapsed')
   validateCollapsed(newValue = this.collapsed) {
@@ -44,6 +40,11 @@ export class PostCollapsible {
       });
     }
   }
+
+  /**
+   * Defines the hierarchical level of the collapsible header within the headings structure.
+   */
+  @Prop() readonly headingLevel?: number = 2;
 
   @Watch('headingLevel')
   validateHeadingLevel(newValue = this.headingLevel) {
@@ -78,7 +79,7 @@ export class PostCollapsible {
    * Triggers the collapse programmatically.
    */
   @Method()
-  async toggle(open: boolean = !this.isOpen): Promise<boolean> {
+  async toggle(open = !this.isOpen): Promise<boolean> {
     if (open !== this.isOpen) {
       this.isOpen = !this.isOpen;
 
@@ -93,7 +94,7 @@ export class PostCollapsible {
     }
   }
 
-  startTransition() {
+  private startTransition() {
     const expandedHeight = getElementHeight(this.collapsibleElement, 'show');
 
     this.collapseHeight = `${this.isOpen ? 0 : expandedHeight}px`;
@@ -129,7 +130,7 @@ export class PostCollapsible {
             type="button"
             aria-expanded={`${this.isOpen}`}
             aria-controls={`${this.collapsibleId}--collapse`}
-            onClick={() => this.toggle()}
+            onClick={this.onAccordionButtonClick}
           >
             <slot name="header"/>
           </button>

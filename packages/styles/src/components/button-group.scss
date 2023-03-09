@@ -1,69 +1,45 @@
-@use './../variables/color';
+@forward './../variables/options';
+
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/core' as *;
+@use './../themes/bootstrap/button-group' as bg;
+
 @use './../mixins/utilities';
-@use './../placeholders/button';
+@use './../variables/color';
+@use './../variables/components/button';
 
 .btn-group {
-  display: inline-flex;
-  gap: 0.125rem;
   max-width: 100%;
 
-  .btn-primary {
-    // Reset primary button for backwards compatibility
-    @extend %btn-default;
-  }
-
-  .btn {
-    border: 0;
-    outline-offset: 0.25rem;
-    box-shadow: 0 0 0 0.125rem color.$gray-20;
+  > .btn {
     white-space: normal;
-    text-align: center;
     cursor: pointer;
 
-    @include utilities.not-disabled-focus-hover() {
-      box-shadow: 0 0 0 0.125rem var(--post-contrast-color);
-    }
-
-    &:focus,
-    &:focus-within {
-      z-index: 1;
-    }
-
-    &:not(:disabled):hover {
-      z-index: 2;
-    }
-
-    &:not(:first-child) {
-      border-top-left-radius: 0;
-      border-bottom-left-radius: 0;
-    }
-
-    &:not(:last-child) {
-      border-top-right-radius: 0;
-      border-bottom-right-radius: 0;
-    }
-
-    &.active {
-      border-color: color.$yellow;
-      background-color: color.$yellow;
-      color: color.$black;
-
-      @include utilities.high-contrast-mode() {
-        background-color: Highlight;
-      }
-    }
+    // added a transition delay on the "z-index" so the button only moves back after all other transitions
+    z-index: 0;
+    transition: z-index 0s ease (0.5 * button.$btn-transition-duration), button.$btn-transition;
 
     @include utilities.high-contrast-mode() {
-      &:focus,
-      &:focus-within,
-      &:focus-visible {
-        outline: 2px solid highlight;
-      }
+      transition: none !important;
     }
+  }
 
-    input[type='checkbox'],
-    input[type='radio'] {
-      @include utilities.visuallyhidden();
+  > .btn:hover {
+    // remove the transition delay on the "z-index" for all raised states so the button moves forward before other transitions
+    z-index: 2 !important;
+    transition: button.$btn-transition;
+  }
+
+  > .btn-secondary {
+    border-color: color.$gray-20;
+  }
+
+  > .btn-secondary.active,
+  > .btn-check:checked + .btn-secondary {
+    background-color: color.$yellow;
+
+    @include utilities.high-contrast-mode() {
+      background-color: Highlight;
     }
   }
 }
