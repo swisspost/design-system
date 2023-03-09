@@ -1,4 +1,4 @@
-import { checkExists } from "../check-exists";
+import { checkExists } from '../check-exists';
 
 
 describe('checkExists', () => {

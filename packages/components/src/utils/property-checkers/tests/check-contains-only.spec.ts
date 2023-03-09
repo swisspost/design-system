@@ -1,4 +1,4 @@
-import { checkContainsOnly } from "../check-contains-only";
+import { checkContainsOnly } from '../check-contains-only';
 
 
 describe('checkContainsOnly', () => {

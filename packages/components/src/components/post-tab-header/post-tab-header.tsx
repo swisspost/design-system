@@ -80,14 +80,14 @@ export class PostTabHeader {
     }
   }
 
-  render() {
-    const onTabClick = (e: MouseEvent) => {
-      e.preventDefault();
-      if (!this.isActive) {
-        this.activate();
-      }
-    };
+  private onTabClick(e: MouseEvent) {
+    e.preventDefault();
+    if (!this.isActive) {
+      this.activate();
+    }
+  }
 
+  render() {
     return (
       <li class="nav-item">
         <a
@@ -96,7 +96,7 @@ export class PostTabHeader {
           class={`tab-title nav-link ${this.isActive ? 'active' : ''}`}
           href=""
           id={`${this.tabGroup.id}--tab-${this.tabIndex}`}
-          onClick={onTabClick}
+          onClick={this.onTabClick}
           role="tab"
         >
           <slot/>
