@@ -12,7 +12,14 @@
           [class.active]="version === v.version"
           ngbDropdownItem
         >
-          <span>{{ version === v.version ? v.title + ' (latest)' : v.title }}</span>
+          <span class="bold">{{ version === v.version ? v.title + ' (latest)' : v.title }}</span>
+          <p class="small mt-2">
+            Angular {{v.dependencies['@angular/core'].split('.')[0]}}
+            <br>
+            Bootstrap {{ v.dependencies['bootstrap'] }}
+            <br>
+            Styles {{v.dependencies['@swisspost/design-system-styles']}}
+          </p>
         </a>
       </div>
   </ng-template>
