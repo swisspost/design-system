@@ -1,7 +1,6 @@
 @forward './../variables/options';
 
 @use 'sass:map';
-@use 'sass:color' as sass-color;
 @use 'sass:list';
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
@@ -67,7 +66,6 @@ span.spacer {
 @each $name, $color in color.$background-colors {
   .bg-#{$name} {
     --post-bg-rgb: #{color-fn.rgb-values($color)};
-    --post-shadow-color: #{sass-color.adjust($color, $lightness: -9%)};
 
     @extend %color-background-rgba;
 
