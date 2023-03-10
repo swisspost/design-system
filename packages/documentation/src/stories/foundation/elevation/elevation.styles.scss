@@ -1,0 +1,16 @@
+@use '@swisspost/design-system-styles/core.scss' as post;
+
+.elevation-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 3rem;
+  padding: 3rem;
+  border: 1px solid post.$gray-10;
+  border-radius: 0.5rem;
+}
+
+.elevation-tile {
+  width: 15rem;
+  aspect-ratio: 1/1;
+  padding: 1rem;
+}
