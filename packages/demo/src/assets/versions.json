@@ -1,0 +1,28 @@
+[
+  {
+    "title": "v5.3.1",
+    "version": "5.3.1",
+    "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
+    "url": "https://6401b58ebf0f4e298ee2dbe7--swisspost-web-frontend.netlify.app/",
+    "dependencies": {
+      "@angular/core": "14.2.12",
+      "@ng-bootstrap/ng-bootstrap": "12.1.2",
+      "@swisspost/design-system-intranet-header": "3.1.1",
+      "@swisspost/design-system-styles": "5.4.1",
+      "bootstrap": "5.1.3"
+    }
+  },
+  {
+    "title": "v5.0.0",
+    "version": "5.0.0",
+    "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
+    "url": "https://6361402ef8b8bd00a670a901--swisspost-web-frontend.netlify.app/",
+    "dependencies": {
+      "@angular/core": "14.2.8",
+      "@ng-bootstrap/ng-bootstrap": "12.1.2",
+      "@swisspost/design-system-intranet-header": "3.0.0",
+      "@swisspost/design-system-styles": "5.0.0",
+      "bootstrap": "5.1.3"
+    }
+  }
+]
