@@ -241,7 +241,9 @@ We're using the [squash and merge](https://docs.github.com/en/pull-requests/coll
 
 ## Versioning
 
-**tldr;** Add a changeset when you want to inform package users about a change you made.
+**tldr;** Add a changeset when you want to inform developers about a change you made.
+
+![Simplified release process with changesets](https://user-images.githubusercontent.com/1659006/224299210-e785aec5-e7c0-48ac-b3b3-8652a97b78ca.png)
 
 To automate versioning, [changesets](https://github.com/changesets/changesets) are used as one of the officially supported versioning mechanics with pnpm ([workflow documentation](https://pnpm.io/using-changesets)).
 
@@ -252,6 +254,22 @@ Create a changeset with `pnpm changeset` and follow the CLI instructions and pus
 Changesets indicate a change relevant to users of a package. The changeset also indicates the impact of the change in the form of [semantic versioning](https://semver.org/) (breaking change, new feature or bugfix). This information will show up in the changelog, as well as the description text in the changeset.
 
 Using changesets enables us to automatically generate a changelog for every package while also maintaining control over what content ends up in the changelog. Changes like updates to the build system might be irrelevant to package users and therefore do not need a changeset.
+
+### How to write a good changeset
+
+There are some general rules you can follow to improve the usefulness of the changelog. The ["keep a changelog"](https://keepachangelog.com/en/1.0.0/) site is a good resource to start. Changesets already ticks a few boxes for us.
+
+- Changelogs are for humans - developers that use the Design System
+- Tell developers what the change means for their project
+- Tell developers what they should know before upgrading to this new version
+- Provide enough context for someone not familiar with the internals of the Design System
+- Focus on the context that is relevant for the user of the package, not the package author
+
+#### DO
+- "Updated the algorithm for calculating color contrast and optimal text color based on a given background color. Texts on colored buttons now comply with the WCAG 2.1 AA guidelines"
+
+#### DON'T
+- "Contrast algorithm is now better"
 
 ## Releases
 
@@ -271,8 +289,8 @@ The changeset release action supports custom commands for both versioning and pu
 
 The custom commands can be found in the [root pacakge.json](./package.json) as `cahngeset:publish` and `changeset:version` and are used in the [release workflow](./.github/workflows/release.yaml).
 
-## License
+## License and code of conduct
 
-By contributing your code, you agree to license your contribution under the [Apache 2.0 License](./LICENSE).
+By contributing your code, you agree follow our [code of conduct](https://github.com/swisspost/design-system/blob/main/CODE_OF_CONDUCT.md) and agree to license your contribution under the [Apache 2.0 License](./LICENSE).
 
 Licenses of third party packages that are bundled with any output (e.g. Bootstrap) need to be included in the output and delivered with the output code.
