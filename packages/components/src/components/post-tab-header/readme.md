@@ -14,10 +14,10 @@
 
 ## Events
 
-| Event         | Description                                                                   | Type                |
-| ------------- | ----------------------------------------------------------------------------- | ------------------- |
-| `activated`   | An event emitted whenever the tab header becomes active. It has no payload.   | `CustomEvent<void>` |
-| `deactivated` | An event emitted whenever the tab header becomes inactive. It has no payload. | `CustomEvent<void>` |
+| Event         | Description                                                                                     | Type                  |
+| ------------- | ----------------------------------------------------------------------------------------------- | --------------------- |
+| `activated`   | An event emitted whenever the tab header becomes active. The payload is the index of the tab.   | `CustomEvent<number>` |
+| `deactivated` | An event emitted whenever the tab header becomes inactive. The payload is the index of the tab. | `CustomEvent<number>` |
 
 
 ## Methods

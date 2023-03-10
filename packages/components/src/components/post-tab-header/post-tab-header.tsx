@@ -38,14 +38,14 @@ export class PostTabHeader {
   }
 
   /**
-   * An event emitted whenever the tab header becomes active. It has no payload.
+   * An event emitted whenever the tab header becomes active. The payload is the index of the tab.
    */
-  @Event() activated: EventEmitter<void>;
+  @Event() activated: EventEmitter<number>;
 
   /**
-   * An event emitted whenever the tab header becomes inactive. It has no payload.
+   * An event emitted whenever the tab header becomes inactive. The payload is the index of the tab.
    */
-  @Event() deactivated: EventEmitter<void>;
+  @Event() deactivated: EventEmitter<number>;
 
   componentWillLoad() {
     this.validateActive();
@@ -65,7 +65,7 @@ export class PostTabHeader {
   async activate() {
     this.isActive = true;
     if (this.isLoaded) {
-      this.activated.emit();
+      this.activated.emit(this.tabIndex);
     }
   }
 
@@ -76,16 +76,16 @@ export class PostTabHeader {
   async deactivate() {
     this.isActive = false;
     if (this.isLoaded) {
-      this.deactivated.emit();
+      this.deactivated.emit(this.tabIndex);
     }
   }
 
-  private onTabClick(e: MouseEvent) {
+  private onTabClick = (e: MouseEvent) => {
     e.preventDefault();
     if (!this.isActive) {
       this.activate();
     }
-  }
+  };
 
   render() {
     return (

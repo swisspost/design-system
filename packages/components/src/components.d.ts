@@ -180,13 +180,13 @@ declare namespace LocalJSX {
          */
         "active"?: boolean;
         /**
-          * An event emitted whenever the tab header becomes active. It has no payload.
+          * An event emitted whenever the tab header becomes active. The payload is the index of the tab.
          */
-        "onActivated"?: (event: PostTabHeaderCustomEvent<void>) => void;
+        "onActivated"?: (event: PostTabHeaderCustomEvent<number>) => void;
         /**
-          * An event emitted whenever the tab header becomes inactive. It has no payload.
+          * An event emitted whenever the tab header becomes inactive. The payload is the index of the tab.
          */
-        "onDeactivated"?: (event: PostTabHeaderCustomEvent<void>) => void;
+        "onDeactivated"?: (event: PostTabHeaderCustomEvent<number>) => void;
     }
     interface PostTabPanel {
     }

@@ -18,7 +18,6 @@
   color: var(--post-contrast-color);
 
   &:focus {
-    opacity: 0.7;
     background-color: unset;
     color: var(--post-contrast-color);
   }
@@ -112,12 +111,12 @@
   .bg-#{$key} {
     .tab-title {
       background-color: $color;
-    
+
       &.active {
         background-color: $color;
       }
     }
-  
+
     .nav-item {
       background-color: $color;
     }
@@ -130,7 +129,7 @@
       background-color: rgba(255, 255, 255, 0.2);
     }
   }
-  
+
   // write supports for selectors this way: https://stackoverflow.com/a/62666132
   // need to include * otherwise it throws build error
   @supports #{'\selector(*:focus-visible)'} {
@@ -139,7 +138,7 @@
         background-color: unset;
       }
     }
-  
+
     // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
     &:focus-visible {
       &::after {

@@ -48,6 +48,7 @@ export class PostTabPanel {
   async show() {
     this.associatedHeader.insertAdjacentElement('afterend', this.host);
     setTimeout(() => {
+      // use a timeout for the transition to run correctly
       this.isShown = true;
     });
   }
