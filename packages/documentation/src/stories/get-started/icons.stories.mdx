@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/addon-docs';
+import { Meta, Source } from '@storybook/addon-docs';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 <Meta
@@ -18,16 +18,26 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 [![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-icons.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-icons)
 
-This documentation only shows how to use our icons in a icon-only approch.<br/>
-If you like to use the more flexible `<post-icon>` component from our [components package](/?path=/docs/get-started-components--page), read on [here](/?path=/docs/components-post-icon--default).
+There are currently two totally different approches to use our icons.<br/>
 
-## Installation
+- In the first approch, you can use our icons as an **svg-only** library.<br/>
+- In the second aproch, you can use our flexible, lightweight and easy-to-use **post-icon** component.
+
+Decide for yourself, which way fits best for you...
+
+More Informations about the icons can be found under the [Icons Search](/?path=/docs/foundations-icons--page) or the [Icons Component](/?path=/docs/components-post-icon--default) documentation.
+
+## Svg-only approch
+
+In this approch, you can get our icons as svg-files, but need to manage yourself, how you integrate them into your project.
+
+### Installation
 
 ```bash dark
-  npm install @swisspost/design-system-icons
+npm install @swisspost/design-system-icons
 ```
 
-## Usage
+### Usage
 
 1. Define some basic, global styles to use for every post-icon you use in your dom.
 
@@ -59,3 +69,54 @@ If you like to use the more flexible `<post-icon>` component from our [component
    ```
 
 3. Make sure you add the previous defined styles to every icon (e.g. add the class `.post-icon` to the svg tag).
+
+## Post-Icon component approch
+
+In this approch, you can use our `<post-icon>` component, which provies you with a very easy way to integrate the required icons into your HTML.<br/>
+The provided component properties allow you to manage quickly, where an icon is loaded from (cdn or self-hosted), how it's visualized and even if it contains an animation. And it's even possible to handle a custom icon with our component.
+
+### Installation
+
+To use our icons with the `<post-icon>` component, you do not need to install the **icons package**, because the icons are loaded from the [unpkg CDN](https://unpkg.com/) by default. Instead, you need to install our **components package**.
+Please follow the instructions on the [Components - Get Started](/?path=/docs/get-started-components--page) page to do so.
+
+### Usage
+
+When you properly followed the instructions before, you should now be able to use our icons in your project like so:
+
+```html dark
+<post-icon name="1000"></post-icon>
+```
+
+For more detailed informations about the `post-icon` component, continue reading it's very own [documentation](/?path=/docs/components-post-icon--default).<br/>
+A list of all available Icons you can find [here](/?path=/docs/foundations-icons--page).
+
+### Self-hosting the icons
+
+Depending on an external CDN might not be ideal in your case, we provide a way to self-host the SVG files on your server.<br/>
+For the following instructions, we assume that the `<post-icon>` component has already been installed as described previously.
+
+1. Install the [icons package](https://www.npmjs.com/package/@swisspost/design-system-icons) from npm.
+
+   ```bash dark
+   npm install @swisspost/design-system-icons
+   ```
+
+2. For your project to be able to access the installed icons, you need a way to copy the icons in a `public` assets folder (this folder might have a different name in your project). You can find them in our package under the path `@swisspost/design-system-icons/public/post-icons/{icon-name}.svg`.
+
+3. To let the `<post-icon>` component know where your self-hosted icons are available globally, set the following meta tag in the `head` section of your page.
+
+   ```html dark
+   <html lang="en">
+     <head>
+       <meta name="design-system-settings" data-post-icon-base="/your/path/to/post-icons/" />
+       ...
+     </head>
+   </html>
+   ```
+
+   If you don't have access to your head section or you want to set a different path for only several icons, you can also set the base path on the icon level:
+
+   ```html dark
+   <post-icon base="/your/path/to/post-icons/" name="1001"></post-icon>
+   ```
