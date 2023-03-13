@@ -1,6 +1,6 @@
 import { Cheerio, CheerioAPI } from 'cheerio';
 
-export default interface DomUpdate {
+export interface DomUpdate {
     selector: string;
     update: ($elements: Cheerio<any>, $: CheerioAPI) => void;
 }

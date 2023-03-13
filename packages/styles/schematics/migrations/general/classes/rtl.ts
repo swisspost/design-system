@@ -1,6 +1,5 @@
 import { Rule } from '@angular-devkit/schematics';
-import getDomMigrationRule from '../../../utils/dom/migration-rule';
-import DomUpdate from '../../../utils/dom/update';
+import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 import { breakpoints, sizes } from "../../../utils/constants";

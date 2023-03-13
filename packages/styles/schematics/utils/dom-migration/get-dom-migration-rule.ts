@@ -8,7 +8,7 @@ import { relative } from 'path';
 import * as prettier from 'prettier';
 import * as htmlParser from 'prettier/parser-html';
 import { SourceFile } from 'typescript';
-import DomUpdate from './update';
+import { DomUpdate } from './dom-update';
 
 // cheerio/lib/slim export uses htmlparser2 to parse the html
 // this is why we can use htmlparser2 options here (instead of parse5 options)
@@ -41,7 +41,7 @@ const PRETTIER_OPTIONS: prettier.Options = {
   singleAttributePerLine: true,
 };
 
-export default function getDomMigrationRule(...updates: DomUpdate[]): Rule {
+export function getDomMigrationRule(...updates: DomUpdate[]): Rule {
   return async (tree: Tree, _context: SchematicContext) => {
     const { buildPaths, testPaths } = await getProjectTsConfigPaths(tree);
     const basePath = process.cwd();
