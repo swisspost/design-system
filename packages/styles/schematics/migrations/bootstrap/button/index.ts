@@ -1,14 +1,13 @@
 import { Rule } from '@angular-devkit/schematics';
-import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
-
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
 import { themeColors } from '../../../utils/constants';
+import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 
 export default function (): Rule {
   return getDomMigrationRule(
     new ButtonOutlineClassUpdate,
     new ButtonInvertedClassUpdate,
-    new ButtonIconClassesUpdate
+    new ButtonIconClassesUpdate,
   );
 }
 
@@ -17,7 +16,7 @@ class ButtonOutlineClassUpdate implements DomUpdate {
 
   selector = themeColors.map(colorname => `.btn-outline-${colorname}`).join(', ');
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -41,7 +40,7 @@ class ButtonOutlineClassUpdate implements DomUpdate {
 class ButtonInvertedClassUpdate implements DomUpdate {
   selector = '.btn.btn-inverted';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements.removeClass('btn-inverted');
   }
 }
@@ -49,12 +48,13 @@ class ButtonInvertedClassUpdate implements DomUpdate {
 class ButtonIconClassesUpdate implements DomUpdate {
   selector = '.btn-icon';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
         const $icon = $element.find('.pi');
-        const $text = $element.find(':not(.pi, .sr-only, .sr-only-focusable, .visually-hidden, .visually-hidden-focusable)');
+        const $text = $element.find(
+          ':not(.pi, .sr-only, .sr-only-focusable, .visually-hidden, .visually-hidden-focusable)');
 
         const isButtonWithIconAndText = $icon.length > 0 && $text.length > 0 && $text.text().length > 0;
 

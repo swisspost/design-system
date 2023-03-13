@@ -1,20 +1,19 @@
 import { Rule } from '@angular-devkit/schematics';
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
+import { breakpoints } from '../../../utils/constants';
 import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
-
-import { breakpoints } from "../../../utils/constants";
 
 export default function (): Rule {
   return getDomMigrationRule(
     new FormSelectFloatingLabelWrapperUpdate,
-    new FormSelectCustomClassesUpdate
+    new FormSelectCustomClassesUpdate,
   );
 }
 
 class FormSelectFloatingLabelWrapperUpdate implements DomUpdate {
   selector = '.form-group';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -37,7 +36,7 @@ class FormSelectCustomClassesUpdate implements DomUpdate {
   cssClassRegex: RegExp = new RegExp(`^form-control-(${breakpoints.join('|')})$`);
   selector = 'select.form-control';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);

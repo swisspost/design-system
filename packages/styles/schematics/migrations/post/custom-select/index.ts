@@ -1,19 +1,19 @@
 import { Rule } from '@angular-devkit/schematics';
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
 import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return getDomMigrationRule(
     new CustomSelectFloatingLabelWrapperUpdate,
     new CustomSelectClassesUpdate,
-    new CustomSelectMenuClassesUpdate
+    new CustomSelectMenuClassesUpdate,
   );
 }
 
 class CustomSelectFloatingLabelWrapperUpdate implements DomUpdate {
   selector = '.form-group';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -36,7 +36,7 @@ class CustomSelectFloatingLabelWrapperUpdate implements DomUpdate {
 class CustomSelectClassesUpdate implements DomUpdate {
   selector = 'button.form-control';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -54,7 +54,7 @@ class CustomSelectClassesUpdate implements DomUpdate {
 class CustomSelectMenuClassesUpdate implements DomUpdate {
   selector = '.custom-select-menu';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);

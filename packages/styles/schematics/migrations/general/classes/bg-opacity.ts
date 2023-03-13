@@ -1,12 +1,11 @@
 import { Rule } from '@angular-devkit/schematics';
-import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
-
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
 import { themeColors } from '../../../utils/constants';
+import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 
 export default function (): Rule {
   return getDomMigrationRule(
-    new BackgroundOpacityClassesUpdate
+    new BackgroundOpacityClassesUpdate,
   );
 }
 
@@ -15,7 +14,7 @@ class BackgroundOpacityClassesUpdate implements DomUpdate {
 
   selector = themeColors.map(colorname => `[class*="bg-${colorname}-opacity-"]`).join(', ');
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);

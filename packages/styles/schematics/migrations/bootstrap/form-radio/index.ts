@@ -1,19 +1,19 @@
 import { Rule } from '@angular-devkit/schematics';
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
 import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return getDomMigrationRule(
     new FormRadioInputClassesUpdate,
     new FormRadioLabelClassesUpdate,
-    new FormRadioClassesUpdate
+    new FormRadioClassesUpdate,
   );
 }
 
 class FormRadioInputClassesUpdate implements DomUpdate {
   selector = '.custom-radio.custom-control input.custom-control-input';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('custom-control-input')
       .addClass('form-check-input');
@@ -23,7 +23,7 @@ class FormRadioInputClassesUpdate implements DomUpdate {
 class FormRadioLabelClassesUpdate implements DomUpdate {
   selector = '.custom-radio.custom-control label.custom-control-label';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('custom-control-label')
       .addClass('form-check-label');
@@ -33,7 +33,7 @@ class FormRadioLabelClassesUpdate implements DomUpdate {
 class FormRadioClassesUpdate implements DomUpdate {
   selector = '.custom-radio.custom-control';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);

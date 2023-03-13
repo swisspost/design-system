@@ -34,11 +34,11 @@
  *
  * <div id="example-dom-element"></div>
  *
-*/
+ */
 
 import { Rule } from '@angular-devkit/schematics';
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
 import { DomUpdate, getDomMigrationRule } from '../../utils/dom-migration';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return getDomMigrationRule(
@@ -48,7 +48,7 @@ export default function (): Rule {
     new AddTextUpdate,
     new RemoveElementUpdate,
     new WrapElementUpdate,
-    new ReplaceWithElementUpdate
+    new ReplaceWithElementUpdate,
   );
 }
 
@@ -56,7 +56,7 @@ class AddElementUpdate implements DomUpdate {
   selector = '.example-dom-element';
   update = function ($elements: Cheerio<AnyNode>) {
     $elements.append('<span>It\'s working...</span>');
-  }
+  };
 }
 
 class AddClassUpdate implements DomUpdate {
@@ -64,18 +64,24 @@ class AddClassUpdate implements DomUpdate {
   update = function ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((i, element) => {
-        if (i === 1) $(element).addClass('remove');
-        if (i === 2) $(element).addClass('wrap');
-        if (i === 3) $(element).addClass('replace-with');
+        if (i === 1) {
+          $(element).addClass('remove');
+        }
+        if (i === 2) {
+          $(element).addClass('wrap');
+        }
+        if (i === 3) {
+          $(element).addClass('replace-with');
+        }
       });
-  }
+  };
 }
 
 class AddAttributeUpdate implements DomUpdate {
   selector = '.example-dom-element > span';
   update = function ($elements: Cheerio<AnyNode>) {
     $elements.attr('style', 'padding: 10px; background-color: white;');
-  }
+  };
 }
 
 class AddTextUpdate implements DomUpdate {
@@ -87,14 +93,14 @@ class AddTextUpdate implements DomUpdate {
 
         $element.text(`${$element.text()} cheerio!`);
       });
-  }
+  };
 }
 
 class RemoveElementUpdate implements DomUpdate {
   selector = '.example-dom-element.remove';
   update = function ($elements: Cheerio<AnyNode>) {
     $elements.remove();
-  }
+  };
 }
 
 class WrapElementUpdate implements DomUpdate {
@@ -109,7 +115,7 @@ class WrapElementUpdate implements DomUpdate {
 
         $element.wrap($wrapper);
       });
-  }
+  };
 }
 
 class ReplaceWithElementUpdate implements DomUpdate {
@@ -120,7 +126,8 @@ class ReplaceWithElementUpdate implements DomUpdate {
         const $element = $(element);
         // to let the update work correctly you need to copy the data from the sourceElement to the distElement
         // how to do this depends on the return value of the migration function used on the sourceElement
-        const $replacement = $(`<div class="example-dom-element-wrapper">${$element.prop('outerHTML')}</div>`).data($element.data());
+        const $replacement = $(`<div class="example-dom-element-wrapper">${$element.prop('outerHTML')}</div>`)
+          .data($element.data());
 
         $element.replaceWith($replacement);
       });

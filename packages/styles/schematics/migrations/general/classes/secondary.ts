@@ -1,17 +1,17 @@
 import { Rule } from '@angular-devkit/schematics';
+import type { AnyNode, Cheerio } from 'cheerio';
 import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
-import type { Cheerio, AnyNode } from 'cheerio';
 
 export default function (): Rule {
   return getDomMigrationRule(
-    new SecondaryClassesUpdate
+    new SecondaryClassesUpdate,
   );
 }
 
 class SecondaryClassesUpdate implements DomUpdate {
   selector = '.bg-secondary, .border-secondary, .text-secondary';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements.removeClass('bg-secondary border-secondary text-secondary');
   }
 }

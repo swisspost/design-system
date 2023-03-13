@@ -1,17 +1,17 @@
 import { Rule } from '@angular-devkit/schematics';
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
 import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return getDomMigrationRule(
-    new FormControlFloatingLabelWrapperUpdate
+    new FormControlFloatingLabelWrapperUpdate,
   );
 }
 
 class FormControlFloatingLabelWrapperUpdate implements DomUpdate {
   selector = '.form-group';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);

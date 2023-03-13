@@ -1,19 +1,19 @@
 import { Rule } from '@angular-devkit/schematics';
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
 import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
   return getDomMigrationRule(
     new FormGroupClassUpdate,
     new FormLabelClassUpdate,
-    new FormTextClassUpdate
+    new FormTextClassUpdate,
   );
 }
 
 class FormGroupClassUpdate implements DomUpdate {
   selector = '.form-group';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -33,7 +33,7 @@ class FormGroupClassUpdate implements DomUpdate {
 class FormLabelClassUpdate implements DomUpdate {
   selector = 'label, [for]';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -49,7 +49,7 @@ class FormLabelClassUpdate implements DomUpdate {
 class FormTextClassUpdate implements DomUpdate {
   selector = '.form-text';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements.removeClass('small text-muted');
   }
 }

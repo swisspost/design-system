@@ -1,8 +1,7 @@
 import { Rule } from '@angular-devkit/schematics';
-import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
-
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
 import { themeColors } from '../../../utils/constants';
+import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 
 export default function (): Rule {
   return getDomMigrationRule(
@@ -10,14 +9,14 @@ export default function (): Rule {
     new BadgeBGClassUpdate,
     new BadgeOutlineClassUpdate,
     new BadgeCararraClassUpdate,
-    new BadgeCararraThickClassUpdate
+    new BadgeCararraThickClassUpdate,
   );
 }
 
 class BadgePillClassUpdate implements DomUpdate {
   selector = '.badge-pill';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('badge-pill')
       .addClass('rounded-pill');
@@ -29,7 +28,7 @@ class BadgeBGClassUpdate implements DomUpdate {
 
   selector = themeColors.map(colorname => `.badge-${colorname}`).join(', ');
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -57,7 +56,7 @@ class BadgeOutlineClassUpdate implements DomUpdate {
 
   selector = themeColors.map(colorname => `.badge-outline-${colorname}`).join(', ');
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -83,7 +82,7 @@ class BadgeOutlineClassUpdate implements DomUpdate {
 class BadgeCararraClassUpdate implements DomUpdate {
   selector = '.badge-gray-cararra';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('badge-gray-cararra')
       .addClass('bg-light');
@@ -93,7 +92,7 @@ class BadgeCararraClassUpdate implements DomUpdate {
 class BadgeCararraThickClassUpdate implements DomUpdate {
   selector = '.badge-outline-gray-cararra-thick';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('badge-outline-gray-cararra-thick')
       .addClass('border-light border-2');

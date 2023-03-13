@@ -1,25 +1,25 @@
 import { Rule } from '@angular-devkit/schematics';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
 import { randomUUID } from 'crypto';
 import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 
 export default function (): Rule {
   return getDomMigrationRule(
-    new NgbButtonGroupDeprecationUpdate
+    new NgbButtonGroupDeprecationUpdate,
   );
 }
 
 class NgbButtonGroupDeprecationUpdate implements DomUpdate {
   selector = '.btn-group';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         // get all buttons containing an input
         const $buttonGroup = $(element);
         const $labels = $buttonGroup
           .children('.btn')
-          .filter(function() {
+          .filter(function () {
             return $(this).children('.btn-check').length === 1;
           });
 
