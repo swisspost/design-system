@@ -2,7 +2,7 @@ import { Rule } from '@angular-devkit/schematics';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 import { randomUUID } from 'crypto';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 
 export default function (): Rule {
   return new DomMigration(
@@ -10,7 +10,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class NgbButtonGroupDeprecationUpdate implements IDomUpdate {
+class NgbButtonGroupDeprecationUpdate implements DomUpdate {
   selector = '.btn-group';
 
   update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {

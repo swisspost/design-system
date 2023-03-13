@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 import { themeColors } from '../../../utils/constants';
@@ -15,7 +15,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class BadgePillClassUpdate implements IDomUpdate {
+class BadgePillClassUpdate implements DomUpdate {
   selector = '.badge-pill';
 
   update ($elements: Cheerio<AnyNode>) {
@@ -25,7 +25,7 @@ class BadgePillClassUpdate implements IDomUpdate {
   }
 }
 
-class BadgeBGClassUpdate implements IDomUpdate {
+class BadgeBGClassUpdate implements DomUpdate {
   cssClassRegex: RegExp = new RegExp(`^badge-(${themeColors.join('|')})$`);
 
   selector = themeColors.map(colorname => `.badge-${colorname}`).join(', ');
@@ -40,10 +40,10 @@ class BadgeBGClassUpdate implements IDomUpdate {
           ?.split(' ')
           .forEach(cssClass => {
             const match = cssClass.match(this.cssClassRegex);
-            
+
             if (match) {
               const colorname = match[1];
-              
+
               $element
                 .removeClass(cssClass)
                 .addClass(`bg-${colorname}`);
@@ -53,7 +53,7 @@ class BadgeBGClassUpdate implements IDomUpdate {
   }
 }
 
-class BadgeOutlineClassUpdate implements IDomUpdate {
+class BadgeOutlineClassUpdate implements DomUpdate {
   cssClassRegex: RegExp = new RegExp(`^badge-outline-(${themeColors.join('|')})$`);
 
   selector = themeColors.map(colorname => `.badge-outline-${colorname}`).join(', ');
@@ -68,10 +68,10 @@ class BadgeOutlineClassUpdate implements IDomUpdate {
           ?.split(' ')
           .forEach(cssClass => {
             const match = cssClass.match(this.cssClassRegex);
-            
+
             if (match) {
               const colorname = match[1];
-              
+
               $element
                 .removeClass(cssClass)
                 .addClass(`border-${colorname}`);
@@ -81,7 +81,7 @@ class BadgeOutlineClassUpdate implements IDomUpdate {
   }
 }
 
-class BadgeCararraClassUpdate implements IDomUpdate {
+class BadgeCararraClassUpdate implements DomUpdate {
   selector = '.badge-gray-cararra';
 
   update ($elements: Cheerio<AnyNode>) {
@@ -91,7 +91,7 @@ class BadgeCararraClassUpdate implements IDomUpdate {
   }
 }
 
-class BadgeCararraThickClassUpdate implements IDomUpdate {
+class BadgeCararraThickClassUpdate implements DomUpdate {
   selector = '.badge-outline-gray-cararra-thick';
 
   update ($elements: Cheerio<AnyNode>) {

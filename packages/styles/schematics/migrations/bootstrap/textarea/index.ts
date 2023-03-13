@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
@@ -9,7 +9,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class TextareaFloatingLabelWrapperUpdate implements IDomUpdate {
+class TextareaFloatingLabelWrapperUpdate implements DomUpdate {
   selector = '.form-group';
 
   update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
@@ -25,7 +25,7 @@ class TextareaFloatingLabelWrapperUpdate implements IDomUpdate {
         const setLabel = $label.length === 0 && $description.length > 0;
         const setPlaceholder = $description.length > 0 && $control.attr('placeholder') === undefined;
         const isFloatingLabel = $control.length > 0;
-        
+
         if (isFloatingLabel) {
           $element
             .removeClass('form-group')

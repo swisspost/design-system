@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
@@ -11,7 +11,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class FormSwitchInputClassesUpdate implements IDomUpdate {
+class FormSwitchInputClassesUpdate implements DomUpdate {
   selector = '.switch input.switch';
 
   update ($elements: Cheerio<AnyNode>) {
@@ -21,7 +21,7 @@ class FormSwitchInputClassesUpdate implements IDomUpdate {
   }
 }
 
-class FormSwitchLabelUpdate implements IDomUpdate {
+class FormSwitchLabelUpdate implements DomUpdate {
   selector = '.switch';
 
   update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
@@ -39,7 +39,7 @@ class FormSwitchLabelUpdate implements IDomUpdate {
   }
 }
 
-class FormSwitchClassesUpdate implements IDomUpdate {
+class FormSwitchClassesUpdate implements DomUpdate {
   selector = '.switch';
 
   update ($elements: Cheerio<AnyNode>) {

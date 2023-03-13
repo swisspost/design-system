@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode } from 'cheerio';
 
 export default function (): Rule {
@@ -10,7 +10,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class SrOnlyClassUpdate implements IDomUpdate {
+class SrOnlyClassUpdate implements DomUpdate {
   selector = '.sr-only';
 
   update ($elements: Cheerio<AnyNode>) {
@@ -19,10 +19,10 @@ class SrOnlyClassUpdate implements IDomUpdate {
       .addClass('visually-hidden');
     }
   }
-  
-  class SrOnlyFocusableClassUpdate implements IDomUpdate {
+
+  class SrOnlyFocusableClassUpdate implements DomUpdate {
     selector = '.sr-only-focusable';
-    
+
     update ($elements: Cheerio<AnyNode>) {
       $elements
         .removeClass('sr-only-focusable')

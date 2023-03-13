@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
@@ -10,7 +10,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class ButtonCloseClassesUpdate implements IDomUpdate {
+class ButtonCloseClassesUpdate implements DomUpdate {
   selector = '.close';
 
   update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
@@ -28,7 +28,7 @@ class ButtonCloseClassesUpdate implements IDomUpdate {
   }
 }
 
-class ButtonCloseRemoveIconContentUpdate implements IDomUpdate {
+class ButtonCloseRemoveIconContentUpdate implements DomUpdate {
   selector = '.btn-close';
 
   update ($elements: Cheerio<AnyNode>) {

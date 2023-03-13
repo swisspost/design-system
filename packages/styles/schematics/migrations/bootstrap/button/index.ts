@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 import { themeColors } from '../../../utils/constants';
@@ -13,7 +13,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class ButtonOutlineClassUpdate implements IDomUpdate {
+class ButtonOutlineClassUpdate implements DomUpdate {
   cssClassRegex: RegExp = new RegExp(`^btn-outline-(${themeColors.join('|')})$`);
 
   selector = themeColors.map(colorname => `.btn-outline-${colorname}`).join(', ');
@@ -28,8 +28,8 @@ class ButtonOutlineClassUpdate implements IDomUpdate {
           ?.split(' ')
           .forEach(cssClass => {
             const match = cssClass.match(this.cssClassRegex);
-            
-            if (match) {            
+
+            if (match) {
               $element
                 .removeClass(cssClass)
                 .addClass('btn-secondary');
@@ -39,7 +39,7 @@ class ButtonOutlineClassUpdate implements IDomUpdate {
   }
 }
 
-class ButtonInvertedClassUpdate implements IDomUpdate {
+class ButtonInvertedClassUpdate implements DomUpdate {
   selector = '.btn.btn-inverted';
 
   update ($elements: Cheerio<AnyNode>) {
@@ -47,7 +47,7 @@ class ButtonInvertedClassUpdate implements IDomUpdate {
   }
 }
 
-class ButtonIconClassesUpdate implements IDomUpdate {
+class ButtonIconClassesUpdate implements DomUpdate {
   selector = '.btn-icon';
 
   update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {

@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
@@ -10,7 +10,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class BlockquoteFigureWrapperUpdate implements IDomUpdate {
+class BlockquoteFigureWrapperUpdate implements DomUpdate {
   selector = 'blockquote.blockquote';
 
   update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
@@ -37,7 +37,7 @@ class BlockquoteFigureWrapperUpdate implements IDomUpdate {
   }
 }
 
-class BlockquotePClassUpdate implements IDomUpdate {
+class BlockquotePClassUpdate implements DomUpdate {
   selector = 'blockquote.blockquote > p.mb-0';
 
   update ($elements: Cheerio<AnyNode>) {

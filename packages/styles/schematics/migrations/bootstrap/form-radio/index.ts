@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
@@ -11,7 +11,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class FormRadioInputClassesUpdate implements IDomUpdate {
+class FormRadioInputClassesUpdate implements DomUpdate {
   selector = '.custom-radio.custom-control input.custom-control-input';
 
   update ($elements: Cheerio<AnyNode>) {
@@ -21,7 +21,7 @@ class FormRadioInputClassesUpdate implements IDomUpdate {
   }
 }
 
-class FormRadioLabelClassesUpdate implements IDomUpdate {
+class FormRadioLabelClassesUpdate implements DomUpdate {
   selector = '.custom-radio.custom-control label.custom-control-label';
 
   update ($elements: Cheerio<AnyNode>) {
@@ -31,7 +31,7 @@ class FormRadioLabelClassesUpdate implements IDomUpdate {
   }
 }
 
-class FormRadioClassesUpdate implements IDomUpdate {
+class FormRadioClassesUpdate implements DomUpdate {
   selector = '.custom-radio.custom-control';
 
   update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {

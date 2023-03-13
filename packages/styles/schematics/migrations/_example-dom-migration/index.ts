@@ -1,20 +1,20 @@
 /*
  * This is a dom-migration example
- * 
+ *
  * You can write more than just one update in a migration schematic
  * by defining multiple DomUpdates and pass them all to the DomMigration Class.
- * 
+ *
  * Important note:
  * The order of the DomUpdates is important, because updates are additive.
  * This means, every update you register will receive the updated DOM from
  * the previous update, and can now make it's own changes.
- * 
+ *
  * We use cheerio thogether with htmlparser2 under the hood which makes it possible
  * to write updates by defining only two simple parameters:
- * 
+ *
  * selector: string
  * This is the jQuery like selector which is used to find the elements to be updated.
- * 
+ *
  * update: Function
  * This is the update function, which receives the cheerio-element as the first argument
  * and the cheerio-instance as the second.
@@ -22,23 +22,23 @@
  * The cheerio-instance is sometimes helpfull, for example to convert elements in loops
  * into a new cheerio-element:
  * $elements.filter((i, element) => $(element).hasClass('bla')).addClass('bla-2');
- * 
+ *
  * Note:
  * It is not possible to remove the selected elements itself.
  * Instead you can select the parent elements and then search the elements to remove
  * and call the remove function on this elements directly.
  * See RemoveElementUpdate example.
- * 
+ *
  * To try this example, you must add it as a schematic in your collection.json file
  * and you need to add the following code somewhere in your html that should get updated:
- * 
+ *
  * <div id="example-dom-element"></div>
- * 
+ *
 */
 
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../utils/dom/migration';
-import IDomUpdate from '../../utils/dom/update';
+import DomUpdate from '../../utils/dom/update';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
@@ -53,14 +53,14 @@ export default function (): Rule {
   ).rule;
 }
 
-class AddElementUpdate implements IDomUpdate {
+class AddElementUpdate implements DomUpdate {
   selector = '.example-dom-element';
   update = function ($elements: Cheerio<AnyNode>) {
     $elements.append('<span>It\'s working...</span>');
   }
 }
 
-class AddClassUpdate implements IDomUpdate {
+class AddClassUpdate implements DomUpdate {
   selector = '.example-dom-element';
   update = function ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
@@ -72,33 +72,33 @@ class AddClassUpdate implements IDomUpdate {
   }
 }
 
-class AddAttributeUpdate implements IDomUpdate {
+class AddAttributeUpdate implements DomUpdate {
   selector = '.example-dom-element > span';
   update = function ($elements: Cheerio<AnyNode>) {
     $elements.attr('style', 'padding: 10px; background-color: white;');
   }
 }
 
-class AddTextUpdate implements IDomUpdate {
+class AddTextUpdate implements DomUpdate {
   selector = '.example-dom-element > span';
   update = function ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
-        
+
         $element.text(`${$element.text()} cheerio!`);
       });
   }
 }
 
-class RemoveElementUpdate implements IDomUpdate {
+class RemoveElementUpdate implements DomUpdate {
   selector = '.example-dom-element.remove';
   update = function ($elements: Cheerio<AnyNode>) {
     $elements.remove();
   }
 }
 
-class WrapElementUpdate implements IDomUpdate {
+class WrapElementUpdate implements DomUpdate {
   selector = '.example-dom-element.wrap';
   update = function ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
@@ -113,7 +113,7 @@ class WrapElementUpdate implements IDomUpdate {
   }
 }
 
-class ReplaceWithElementUpdate implements IDomUpdate {
+class ReplaceWithElementUpdate implements DomUpdate {
   selector = '.example-dom-element.replace-with';
   update = function ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements

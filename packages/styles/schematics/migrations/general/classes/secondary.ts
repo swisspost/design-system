@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode } from 'cheerio';
 
 export default function (): Rule {
@@ -9,7 +9,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class SecondaryClassesUpdate implements IDomUpdate {
+class SecondaryClassesUpdate implements DomUpdate {
   selector = '.bg-secondary, .border-secondary, .text-secondary';
 
   update ($elements: Cheerio<AnyNode>) {

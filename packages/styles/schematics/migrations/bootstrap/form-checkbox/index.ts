@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
@@ -11,7 +11,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class FormCheckboxInputClassesUpdate implements IDomUpdate {
+class FormCheckboxInputClassesUpdate implements DomUpdate {
   selector = '.custom-checkbox.custom-control input.custom-control-input';
 
   update ($elements: Cheerio<AnyNode>) {
@@ -21,7 +21,7 @@ class FormCheckboxInputClassesUpdate implements IDomUpdate {
   }
 }
 
-class FormCheckboxLabelClassesUpdate implements IDomUpdate {
+class FormCheckboxLabelClassesUpdate implements DomUpdate {
   selector = '.custom-checkbox.custom-control label.custom-control-label';
 
   update ($elements: Cheerio<AnyNode>) {
@@ -31,7 +31,7 @@ class FormCheckboxLabelClassesUpdate implements IDomUpdate {
   }
 }
 
-class FormCheckboxClassesUpdate implements IDomUpdate {
+class FormCheckboxClassesUpdate implements DomUpdate {
   selector = '.custom-checkbox.custom-control';
 
   update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {

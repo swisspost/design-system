@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
@@ -11,7 +11,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class FormGroupClassUpdate implements IDomUpdate {
+class FormGroupClassUpdate implements DomUpdate {
   selector = '.form-group';
 
   update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
@@ -19,7 +19,7 @@ class FormGroupClassUpdate implements IDomUpdate {
       .each((_i, element) => {
         const $element = $(element);
         const $control = $element.find('> input.form-control-lg, select.form-control-lg, > textarea');
-        
+
         const isFloatingLabel = $control.length > 0;
 
         if (!isFloatingLabel) {
@@ -31,7 +31,7 @@ class FormGroupClassUpdate implements IDomUpdate {
   }
 }
 
-class FormLabelClassUpdate implements IDomUpdate {
+class FormLabelClassUpdate implements DomUpdate {
   selector = 'label, [for]';
 
   update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
@@ -39,7 +39,7 @@ class FormLabelClassUpdate implements IDomUpdate {
       .each((_i, element) => {
         const $element = $(element);
         const $control = $element.siblings('input:visible, select:visible, textarea:visible');
-        
+
         if ($control.length > 0) {
           $element.addClass('form-label');
         }
@@ -47,7 +47,7 @@ class FormLabelClassUpdate implements IDomUpdate {
   }
 }
 
-class FormTextClassUpdate implements IDomUpdate {
+class FormTextClassUpdate implements DomUpdate {
   selector = '.form-text';
 
   update ($elements: Cheerio<AnyNode>) {

@@ -1,6 +1,6 @@
 import { Rule } from '@angular-devkit/schematics';
 import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
+import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode } from 'cheerio';
 
 export default function (): Rule {
@@ -9,7 +9,7 @@ export default function (): Rule {
   ).rule;
 }
 
-class TextAutoClassUpdate implements IDomUpdate {
+class TextAutoClassUpdate implements DomUpdate {
   selector = '.text-auto';
 
   update ($elements: Cheerio<AnyNode>) {
