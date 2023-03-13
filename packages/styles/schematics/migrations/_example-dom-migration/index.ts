@@ -37,12 +37,12 @@
 */
 
 import { Rule } from '@angular-devkit/schematics';
-import DomMigration from '../../utils/dom/migration';
+import getDomMigrationRule from '../../utils/dom/migration-rule';
 import DomUpdate from '../../utils/dom/update';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 export default function (): Rule {
-  return new DomMigration(
+  return getDomMigrationRule(
     new AddElementUpdate,
     new AddClassUpdate,
     new AddAttributeUpdate,
@@ -50,7 +50,7 @@ export default function (): Rule {
     new RemoveElementUpdate,
     new WrapElementUpdate,
     new ReplaceWithElementUpdate
-  ).rule;
+  );
 }
 
 class AddElementUpdate implements DomUpdate {

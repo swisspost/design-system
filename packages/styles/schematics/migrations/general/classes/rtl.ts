@@ -1,15 +1,15 @@
 import { Rule } from '@angular-devkit/schematics';
-import DomMigration from '../../../utils/dom/migration';
+import getDomMigrationRule from '../../../utils/dom/migration-rule';
 import DomUpdate from '../../../utils/dom/update';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 
 import { breakpoints, sizes } from "../../../utils/constants";
 
 export default function (): Rule {
-  return new DomMigration(
+  return getDomMigrationRule(
     new SpacingClassesUpdate,
     new AlignmentClassesUpdate
-  ).rule;
+  );
 }
 
 class SpacingClassesUpdate implements DomUpdate {

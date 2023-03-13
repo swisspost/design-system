@@ -1,13 +1,13 @@
 import { Rule } from '@angular-devkit/schematics';
 import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
 import { randomUUID } from 'crypto';
-import DomMigration from '../../../utils/dom/migration';
+import getDomMigrationRule from '../../../utils/dom/migration-rule';
 import DomUpdate from '../../../utils/dom/update';
 
 export default function (): Rule {
-  return new DomMigration(
+  return getDomMigrationRule(
     new NgbButtonGroupDeprecationUpdate
-  ).rule;
+  );
 }
 
 class NgbButtonGroupDeprecationUpdate implements DomUpdate {
