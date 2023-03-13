@@ -4,7 +4,7 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { state } from '../../data/store';
 import { OverlayComponent } from './components/overlay.component';
-import { iframeResizer } from 'iframe-resizer';
+import iframeResizer from 'iframe-resizer/js/iframeResizer';
 import { IBreadcrumbOverlay, IBreadcrumbItem } from '../../models/breadcrumbs.model';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { BreadcrumbList } from './components/breadcrumb-list.component';

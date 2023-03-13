@@ -1,0 +1,24 @@
+<div class="heading py-5">
+  <h1 class="bold font-curve-large">Buttons</h1>
+  <h2 class="font-curve-medium">Using bootstrap 4.5</h2>
+  <a href="https://getbootstrap.com/docs/5.3/components/button-group/#checkbox-and-radio-button-groups"
+     target="_blank" rel="noopener" class="btn btn-primary btn-sm btn-animated"><span>Bootstrap Documentation</span></a>
+</div>
+
+<section>
+  <h4 class="bold">Checkbox buttons</h4>
+  <app-button-group-checkbox-demo></app-button-group-checkbox-demo>
+  <code class="block mt-large" [highlight]="checkboxTemplate" [languages]="['html']"></code>
+</section>
+
+<section>
+  <h4 class="bold">Radio buttons</h4>
+  <app-button-group-radio-demo></app-button-group-radio-demo>
+  <code class="block mt-large" [highlight]="radioTemplate" [languages]="['html']"></code>
+</section>
+
+<section>
+  <h4 class="bold">Bad example</h4>
+  <p>The only supported button variant for button groups is <code>.btn-secondary</code>.</p>
+  <app-button-group-bad-demo></app-button-group-bad-demo>
+</section>
