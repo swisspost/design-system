@@ -1,10 +1,12 @@
 <div class="layout-container header-big">
   <ng-template #versionDropdown ngbDropdown>
-      <label class="visually-hidden" for="versionDropdownButton" id="versionDropdown">Version Selection for older documentation versions</label>
+    <div class="version-switch">
+      <label class="visually-hidden" for="versionDropdownButton" id="versionDropdown">
+        Version Selection for older documentation versions
+      </label>
       <button class="btn btn-link dropdown-button" id="versionDropdownButton" ngbDropdownToggle>
-        v{{ version }}
+        {{ currentVersionTitle }}
       </button>
-
       <div ngbDropdownMenu aria-labelledby="versionDropdown">
         <a
           *ngFor="let v of versions"
@@ -13,15 +15,23 @@
           ngbDropdownItem
         >
           <span class="bold">{{ version === v.version ? v.title + ' (latest)' : v.title }}</span>
-          <p class="small mt-2">
-            Angular {{v.dependencies['@angular/core'].split('.')[0]}}
-            <br>
-            Bootstrap {{ v.dependencies['bootstrap'] }}
-            <br>
-            Styles {{v.dependencies['@swisspost/design-system-styles']}}
-          </p>
+          <div class="small mt-2 icons">
+            <span title="Angular">
+              <img src="assets/images/angular.png" alt="Angular Logo" />
+              {{ v.dependencies['@angular/core'].split('.').slice(0, 2).join('.') }}
+            </span>
+            <span title="Bootstrap">
+              <img src="assets/images/bootstrap.png" alt="Bootstrap Logo" />
+              {{ v.dependencies['bootstrap'].split('.').slice(0, 2).join('.') }}
+            </span>
+            <span title="ng-bootstrap">
+              <img src="assets/images/ng-bootstrap.svg" alt="ng-bootstrap Logo" />
+              {{ v.dependencies['@ng-bootstrap/ng-bootstrap'].split('.').slice(0, 2).join('.') }}
+            </span>
+          </div>
         </a>
       </div>
+    </div>
   </ng-template>
 
   <sp-intranet-header

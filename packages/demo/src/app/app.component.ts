@@ -7,7 +7,7 @@ import versions from '../assets/versions.json';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
   public setFullwidthContainer: boolean = false;
@@ -16,6 +16,10 @@ export class AppComponent implements OnInit {
   public versions = versions;
 
   constructor(public router: Router, private route: ActivatedRoute) {}
+
+  public get currentVersionTitle() {
+    return this.versions.find(v => v.version === this.version).title;
+  }
 
   ngOnInit() {
     this.router.events
