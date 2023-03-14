@@ -1,24 +1,22 @@
 import { Rule } from '@angular-devkit/schematics';
-import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
-
-import { breakpoints, sizes } from "../../../utils/constants";
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
+import { breakpoints, sizes } from '../../../utils/constants';
+import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 
 export default function (): Rule {
-  return new DomMigration(
+  return getDomMigrationRule(
     new SpacingClassesUpdate,
-    new AlignmentClassesUpdate
-  ).rule;
+    new AlignmentClassesUpdate,
+  );
 }
 
-class SpacingClassesUpdate implements IDomUpdate {
+class SpacingClassesUpdate implements DomUpdate {
   cssClassRegex = new RegExp(`^(m|p)(l|r)(?:-(${breakpoints.join('|')}))?-(${sizes.join('|')})$`);
-  sideUpdate = new Map([['l', 's'], ['r', 'e']]);
+  sideUpdate = new Map([ [ 'l', 's' ], [ 'r', 'e' ] ]);
 
   selector = this.createSelectors();
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -28,37 +26,38 @@ class SpacingClassesUpdate implements IDomUpdate {
           ?.split(' ')
           .forEach(cssClass => {
             const match = cssClass.match(this.cssClassRegex);
-    
+
             if (match) {
               const property = match[1];
               const side = match[2];
               const breakpoint = match[3];
               const size = match[4];
-              
+
               $element
                 .removeClass(cssClass)
                 .addClass(`${property}${this.sideUpdate.get(side)}${breakpoint ? `-${breakpoint}` : ''}-${size}`);
             }
           });
-      })
+      });
   }
 
-  createSelectors () {
-    const selectorProperties = ['m', 'p'];
-    const selectorSides = ['l', 'r'];
-    const selectorBreakpoints = [''].concat(breakpoints);
-    
-    return selectorProperties.map(property => selectorSides.map(side => selectorBreakpoints.map(breakpoint => sizes.map(size => `.${property}${side}${breakpoint ? `-${breakpoint}` : ''}-${size}`)))).join(', ');
+  createSelectors() {
+    const selectorProperties = [ 'm', 'p' ];
+    const selectorSides = [ 'l', 'r' ];
+    const selectorBreakpoints = [ '' ].concat(breakpoints);
+
+    return selectorProperties.map(property => selectorSides.map(side => selectorBreakpoints.map(breakpoint => sizes.map(
+      size => `.${property}${side}${breakpoint ? `-${breakpoint}` : ''}-${size}`)))).join(', ');
   }
 }
 
-class AlignmentClassesUpdate implements IDomUpdate {
+class AlignmentClassesUpdate implements DomUpdate {
   cssClassRegex = new RegExp(`^(float|text)(?:-(${breakpoints.join('|')}))?-(left|right)$`);
-  sideUpdate = new Map([['left', 'start'], ['right', 'end']]);
+  sideUpdate = new Map([ [ 'left', 'start' ], [ 'right', 'end' ] ]);
 
   selector = this.createSelectors();
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -68,25 +67,27 @@ class AlignmentClassesUpdate implements IDomUpdate {
           ?.split(' ')
           .forEach(cssClass => {
             const match = cssClass.match(this.cssClassRegex);
-    
+
             if (match) {
               const property = match[1];
               const breakpoint = match[2];
               const side = match[3];
-              
+
               $element
                 .removeClass(cssClass)
                 .addClass(`${property}${breakpoint ? `-${breakpoint}` : ''}-${this.sideUpdate.get(side)}`);
             }
           });
-      })
+      });
   }
 
-  createSelectors () {
-    const selectorProperties = ['float', 'text'];
-    const selectorBreakpoints = [''].concat(breakpoints);
-    const selectorSides = ['left', 'right'];
-    
-    return selectorProperties.map(property => selectorBreakpoints.map(breakpoint => selectorSides.map(side => `.${property}${breakpoint ? `-${breakpoint}` : ''}-${side}`))).join(', ');
+  createSelectors() {
+    const selectorProperties = [ 'float', 'text' ];
+    const selectorBreakpoints = [ '' ].concat(breakpoints);
+    const selectorSides = [ 'left', 'right' ];
+
+    return selectorProperties.map(property => selectorBreakpoints.map(breakpoint => selectorSides.map(side => `.${property}${breakpoint
+      ? `-${breakpoint}`
+      : ''}-${side}`))).join(', ');
   }
 }

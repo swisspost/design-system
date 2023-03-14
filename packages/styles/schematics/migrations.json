@@ -1,6 +1,5 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
-
   "schematics": {
     "migration-general-classes-bg-opacity": {
       "version": "5.0.0",

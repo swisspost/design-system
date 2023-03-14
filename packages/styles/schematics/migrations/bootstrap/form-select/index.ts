@@ -1,28 +1,26 @@
 import { Rule } from '@angular-devkit/schematics';
-import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
-
-import { breakpoints } from "../../../utils/constants";
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
+import { breakpoints } from '../../../utils/constants';
+import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 
 export default function (): Rule {
-  return new DomMigration(
+  return getDomMigrationRule(
     new FormSelectFloatingLabelWrapperUpdate,
-    new FormSelectCustomClassesUpdate
-  ).rule;
+    new FormSelectCustomClassesUpdate,
+  );
 }
 
-class FormSelectFloatingLabelWrapperUpdate implements IDomUpdate {
+class FormSelectFloatingLabelWrapperUpdate implements DomUpdate {
   selector = '.form-group';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
         const $control = $element.find('> select.form-control-lg');
         const $label = $control.next('label');
         const isFloatingLabel = $control.length > 0 && $label.length > 0;
-        
+
         if (isFloatingLabel) {
           $element
             .removeClass('form-group')
@@ -34,11 +32,11 @@ class FormSelectFloatingLabelWrapperUpdate implements IDomUpdate {
   }
 }
 
-class FormSelectCustomClassesUpdate implements IDomUpdate {
+class FormSelectCustomClassesUpdate implements DomUpdate {
   cssClassRegex: RegExp = new RegExp(`^form-control-(${breakpoints.join('|')})$`);
   selector = 'select.form-control';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -50,10 +48,10 @@ class FormSelectCustomClassesUpdate implements IDomUpdate {
           ?.split(' ')
           .forEach(cssClass => {
             const match = cssClass.match(this.cssClassRegex);
-                
+
             if (match) {
               const breakpoint = match[1];
-              
+
               $element
                 .removeClass(cssClass)
                 .addClass(`form-select-${breakpoint}`);
