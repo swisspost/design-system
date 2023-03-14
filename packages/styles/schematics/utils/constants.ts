@@ -45,3 +45,30 @@ export const themeColors = [
   'aubergine',
   'aubergine-bright',
 ];
+
+// list of all inputs and outputs of directives that can create an instance of formControl
+// - https://angular.io/api/forms/FormControlDirective#properties
+// - https://angular.io/api/forms/FormControlName#properties
+// - https://angular.io/api/forms/NgModel#properties
+export const formControlProperties = [
+  '[formControl]',
+  'formControlName',
+  '[formControlName]',
+  'ngModel',
+  '[ngModel]',
+  '[(ngModel)]',
+  '(ngModelChange)',
+  '[ngModelOptions]',
+  'name',
+  '[name]',
+  'disabled',
+  '[disabled]',
+];
+
+// list of all the template variable references of directives that can create an instance of formControl
+// - https://angular.io/api/forms/FormControlDirective#template-variable-references
+// - https://angular.io/api/forms/NgModel#template-variable-references
+export const formControlReferences = [
+  'ngForm',
+  'ngModel',
+];
