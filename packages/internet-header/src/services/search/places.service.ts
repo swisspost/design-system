@@ -1,39 +1,7 @@
 import { state } from '../../data/store';
-import { GeocodeLocation, GeocodeResponse, ServiceTypesResponse } from '../../models/geocode.model';
-import { gisAPIUrl, pois, placesUrl } from './places.settings';
+import { GeocodeLocation, GeocodeResponse } from '../../models/geocode.model';
+import { gisAPIUrl, placesUrl } from './places.settings';
 import { hardNormalize } from './search-utilities';
-
-// Never load types twice
-let typesCache: string | null = null;
-
-/**
- * Convert Post POI ids to stao cache ids
- * @returns
- */
-const convertTypes = async () => {
-  if (typesCache === null) {
-    try {
-      const typesResponse = await fetch(`${gisAPIUrl}/Types?lang=${state.currentLanguage}`);
-      const typesJSON = (await typesResponse.json()) as ServiceTypesResponse;
-      typesCache = encodeURIComponent(
-        pois
-          .map(poi => {
-            const foundType = typesJSON.types.find(type => type.id === poi);
-            return foundType?.tag;
-          })
-          .filter(poi => poi !== undefined)
-          .join(','),
-      );
-    } catch (error) {
-      console.error(
-        'Fetching places failed. Did you add "places.post.ch" to your connect-src content security policy?',
-      );
-      throw error;
-    }
-  }
-
-  return typesCache;
-};
 
 /**
  * Query the Gis API for locations and localities (pois)
@@ -46,12 +14,13 @@ export const queryPlaces = async (query: string): Promise<GeocodeLocation[]> => 
     return [];
   }
 
-  const limit = 8;
-  const excludeTypes = ['address', 'locality', 'region'];
-  const types = await convertTypes();
-  const geocoderUrl = `${gisAPIUrl}/Geocode?query=${encodeURIComponent(query)}&lang=${
-    state.currentLanguage
-  }&pois=${types}&limit=33`;
+  const searchParameters = Object.entries({
+    query: encodeURIComponent(query),
+    lang: state.currentLanguage,
+    limit: 8,
+  }).reduce((s, [k, v], i) => `${s}${i === 0 ? '?' : '&'}${k}=${v}`, '');
+
+  const geocoderUrl = `${gisAPIUrl}/Geocode${searchParameters}`;
 
   try {
     const geocodeResponse = await fetch(geocoderUrl);
@@ -59,9 +28,7 @@ export const queryPlaces = async (query: string): Promise<GeocodeLocation[]> => 
     if (!geocodeJSON.ok) {
       throw new Error(geocodeJSON.info);
     }
-    return geocodeJSON.locations
-      .filter(location => !excludeTypes.includes(location.type))
-      .slice(0, limit);
+    return geocodeJSON.locations;
   } catch (error) {
     console.error(
       'Fetching places failed. Did you add "places.post.ch" to your connect-src content security policy?',
