@@ -177,7 +177,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
       [this.coveoSuggestions, this.placeSuggestions] = equalizeArrays(
         coveoSuggestions,
         placeSuggestions,
-        8,
+        7,
       );
     }
 

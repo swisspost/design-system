@@ -17,7 +17,7 @@ export const queryPlaces = async (query: string): Promise<GeocodeLocation[]> => 
   const searchParameters = Object.entries({
     query: encodeURIComponent(query),
     lang: state.currentLanguage,
-    limit: 8,
+    limit: 7,
   }).reduce((s, [k, v], i) => `${s}${i === 0 ? '?' : '&'}${k}=${v}`, '');
 
   const geocoderUrl = `${gisAPIUrl}/Geocode${searchParameters}`;
