@@ -109,7 +109,7 @@ const routes: Routes = [
       },
       { path: "timepicker", component: NgbTimepickerDemoPageComponent },
       { path: "tooltip", component: NgbTooltipDemoPageComponent },
-      { path: "typehead", component: NgbTypeaheadDemoPageComponent },
+      { path: "typeahead", component: NgbTypeaheadDemoPageComponent },
     ],
   },
   {
