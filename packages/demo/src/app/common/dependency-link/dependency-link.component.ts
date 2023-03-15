@@ -25,7 +25,7 @@ export class DependencyLinkComponent implements OnDestroy {
   ) {
     this.urlChangeSubscription = this.route.url
       .subscribe(() => {
-        const dependencies = this.versionService.latestVersion.dependencies;
+        const dependencies = this.versionService.currentVersion.dependencies;
 
         if (route.parent.snapshot.url[0].path === 'ng-bootstrap-samples') {
           this.dependency = 'ng-bootstrap';

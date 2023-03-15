@@ -34,17 +34,17 @@ class PackageVersion {
   dependencies: ReadonlyMap<string, VersionNumber>;
 
   constructor({ title, version, description, url, dependencies }: PackageVersionDetails) {
+    this.title = title;
     this.url = url;
     this.description = description;
     this.version = new VersionNumber(version);
-    this.title = title + (this.isLatest ? ' (latest)' : '');
     this.dependencies = new Map(Object.entries(dependencies).map(([ packageName, version ]) => {
         return [ packageName, new VersionNumber(version) ];
       }),
     );
   }
 
-  get isLatest(): boolean {
+  get isCurrent(): boolean {
     return this.version.full === packageJSON.version;
   }
 }
@@ -55,7 +55,7 @@ class PackageVersion {
 export class VersionService {
   public allVersions: PackageVersion[] = versions.map(v => new PackageVersion(v));
 
-  public get latestVersion(): PackageVersion {
-    return this.allVersions.find(v => v.isLatest);
+  public get currentVersion(): PackageVersion {
+    return this.allVersions.find(v => v.isCurrent);
   }
 }
