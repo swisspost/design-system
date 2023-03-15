@@ -6,12 +6,30 @@
   Using {{ dependency }} v{{ dependencyVersion }}
 </h2>
 
-<a
-  *ngIf="documentationUrl"
-  [href]="documentationUrl"
-  target="_blank"
-  rel="noopener"
-  class="btn btn-primary btn-sm btn-animated"
->
-  <span>{{ dependency }} Documentation</span>
-</a>
+<ng-container *ngIf="documentationPaths; else singleButton">
+  <div class="d-flex gap-2">
+    <ng-container
+      *ngFor="let path of documentationPaths | keyvalue"
+      [ngTemplateOutletContext]="{ url: documentationBaseUrl + path.value, label: path.key | titlecase}"
+      [ngTemplateOutlet]="documentationButton"
+    ></ng-container>
+  </div>
+</ng-container>
+
+<ng-template #singleButton>
+  <ng-container
+    [ngTemplateOutletContext]="{ url: documentationBaseUrl + documentationPath, label: dependency}"
+    [ngTemplateOutlet]="documentationButton"
+  ></ng-container>
+</ng-template>
+
+<ng-template #documentationButton let-label="label" let-url="url">
+  <a
+    [href]="url"
+    class="btn btn-primary btn-sm btn-animated"
+    rel="noopener"
+    target="_blank"
+  >
+    <span>{{ label }} Documentation</span>
+  </a>
+</ng-template>

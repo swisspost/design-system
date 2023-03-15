@@ -121,7 +121,7 @@ const routes: Routes = [
       { path: "feedback", component: FeedbackDemoPageComponent },
       { path: "spinner", component: SpinnerDemoPageComponent },
       { path: "sizing", component: SizingDemoPageComponent },
-      { path: "post-cards", component: PostCardsDemoPageComponent },
+      { path: "card", component: PostCardsDemoPageComponent },
       {
         path: "notification-overlay",
         component: NotificationOverlayPageComponent,
