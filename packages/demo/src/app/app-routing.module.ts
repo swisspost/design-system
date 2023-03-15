@@ -60,7 +60,7 @@ const routes: Routes = [
     path: "bootstrap-samples",
     children: [
       { path: "accordion", component: AccordionDemoPageComponent },
-      { path: "alert", component: AlertDemoPageComponent },
+      { path: "alerts", component: AlertDemoPageComponent },
       { path: "background", component: BackgroundDemoPageComponent },
       { path: "badge", component: BadgeDemoPageComponent },
       { path: "blockquotes", component: BlockquotesDemoPageComponent },
