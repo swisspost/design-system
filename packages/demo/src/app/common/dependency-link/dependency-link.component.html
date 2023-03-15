@@ -1,0 +1,17 @@
+<!--
+  ~ Copyright 2023 by Swiss Post, Information Technology
+  -->
+
+<h2 class="font-curve-medium">
+  Using {{ dependency }} v{{ dependencyVersion }}
+</h2>
+
+<a
+  *ngIf="documentationUrl"
+  [href]="documentationUrl"
+  target="_blank"
+  rel="noopener"
+  class="btn btn-primary btn-sm btn-animated"
+>
+  <span>{{ dependency }} Documentation</span>
+</a>
