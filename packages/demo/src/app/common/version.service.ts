@@ -2,16 +2,17 @@
  * Copyright 2023 by Swiss Post, Information Technology
  */
 
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import packageJSON from 'package.json';
-import versions from '../../assets/versions.json';
+import { map, Observable, shareReplay, tap } from 'rxjs';
 
 interface PackageVersionDetails {
   title: string;
   version: string;
   description: string;
   url: string;
-  dependencies: Record<string, string>;
+  dependencies?: Record<string, string>;
 }
 
 class VersionNumber {
@@ -22,7 +23,10 @@ class VersionNumber {
   }
 
   public format(format: 'x' | 'x.x' | 'x.x.x'): string {
-    return format.split('.').map((_, i) => this.full.split('.')[i]).join('.');
+    return format
+      .split('.')
+      .map((_, i) => this.full.split('.')[i])
+      .join('.');
   }
 }
 
@@ -31,17 +35,20 @@ class PackageVersion {
   version: VersionNumber;
   description: string;
   url: string;
-  dependencies: ReadonlyMap<string, VersionNumber>;
+  dependencies?: ReadonlyMap<string, VersionNumber>;
 
   constructor({ title, version, description, url, dependencies }: PackageVersionDetails) {
     this.title = title;
     this.url = url;
     this.description = description;
     this.version = new VersionNumber(version);
-    this.dependencies = new Map(Object.entries(dependencies).map(([ packageName, version ]) => {
-        return [ packageName, new VersionNumber(version) ];
-      }),
-    );
+    this.dependencies = dependencies
+      ? new Map(
+          Object.entries(dependencies).map(([packageName, version]) => {
+            return [packageName, new VersionNumber(version)];
+          }),
+        )
+      : null;
   }
 
   get isCurrent(): boolean {
@@ -53,9 +60,17 @@ class PackageVersion {
   providedIn: 'root',
 })
 export class VersionService {
-  public allVersions: PackageVersion[] = versions.map(v => new PackageVersion(v));
-
-  public get currentVersion(): PackageVersion {
-    return this.allVersions.find(v => v.isCurrent);
+  public get currentVersion(): Observable<PackageVersion> {
+    return this.versions.pipe(map(versions => versions.find(v => v.isCurrent)));
   }
+
+  public get versions(): Observable<PackageVersion[]> {
+    return this.http.get<PackageVersionDetails[]>('assets/versions.json').pipe(
+      tap(versions => console.log(versions)),
+      map(versions => versions.map(v => new PackageVersion(v))),
+      shareReplay(1),
+    );
+  }
+
+  constructor(private http: HttpClient) {}
 }

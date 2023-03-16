@@ -1,5 +1,11 @@
 [
   {
+    "title": "New docs (beta)",
+    "version": "6.0.0-beta",
+    "description": "Developer documentation for the Swiss Post Design System.",
+    "url": "https://next.design-system.post.ch"
+  },
+  {
     "title": "Version 6",
     "version": "6.0.0",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",

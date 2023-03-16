@@ -5,26 +5,35 @@
         Version Selection for older documentation versions
       </label>
       <button class="btn btn-link dropdown-button" id="versionDropdownButton" ngbDropdownToggle>
-        {{ versionService.currentVersion.title }}
+        {{ (currentVersion$ | async)?.title }}
       </button>
       <div ngbDropdownMenu aria-labelledby="versionDropdown">
         <a
-          *ngFor="let version of versionService.allVersions; first as isLatest"
+          *ngFor="let version of versions$ | async"
           [href]="isLatest ? 'https://design-system.post.ch' : version.url"
           [class.active]="version.isCurrent"
           ngbDropdownItem
         >
-          <span class="bold">{{ version.title + (isLatest ? ' (latest)' : '') }}</span>
-          <div class="small mt-2 icons">
-            <span title="Angular" *ngIf="version.dependencies.get('@angular/core') as angularVersion">
+          <span class="bold">{{ version.title }}</span>
+          <div class="small mt-2 icons" *ngIf="version.dependencies">
+            <span
+              title="Angular"
+              *ngIf="version.dependencies.get('@angular/core') as angularVersion"
+            >
               <img src="assets/images/angular.png" alt="Angular Logo" />
               {{ angularVersion.format('x.x') }}
             </span>
-            <span title="Bootstrap" *ngIf="version.dependencies.get('bootstrap') as bootstrapVersion">
+            <span
+              title="Bootstrap"
+              *ngIf="version.dependencies.get('bootstrap') as bootstrapVersion"
+            >
               <img src="assets/images/bootstrap.png" alt="Bootstrap Logo" />
               {{ bootstrapVersion.format('x.x') }}
             </span>
-            <span title="ng-bootstrap" *ngIf="version.dependencies.get('@ng-bootstrap/ng-bootstrap') as ngBootstrapVersion">
+            <span
+              title="ng-bootstrap"
+              *ngIf="version.dependencies.get('@ng-bootstrap/ng-bootstrap') as ngBootstrapVersion"
+            >
               <img src="assets/images/ng-bootstrap.svg" alt="ng-bootstrap Logo" />
               {{ ngBootstrapVersion.format('x.x') }}
             </span>
