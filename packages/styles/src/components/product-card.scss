@@ -9,7 +9,6 @@
 @use './../variables/commons';
 @use './../variables/breakpoints';
 @use './../variables/components/card';
-@use './../functions/sizing';
 @use './../mixins/size' as size-mixin;
 
 .product-navigation {
