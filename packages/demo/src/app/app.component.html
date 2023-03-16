@@ -5,28 +5,28 @@
         Version Selection for older documentation versions
       </label>
       <button class="btn btn-link dropdown-button" id="versionDropdownButton" ngbDropdownToggle>
-        {{ currentVersionTitle }}
+        {{ versionService.currentVersion.title }}
       </button>
       <div ngbDropdownMenu aria-labelledby="versionDropdown">
         <a
-          *ngFor="let v of versions"
-          [href]="v.version === version ? 'https://design-system.post.ch' : v.url"
-          [class.active]="version === v.version"
+          *ngFor="let version of versionService.allVersions; first as isLatest"
+          [href]="isLatest ? 'https://design-system.post.ch' : version.url"
+          [class.active]="version.isCurrent"
           ngbDropdownItem
         >
-          <span class="bold">{{ version === v.version ? v.title + ' (latest)' : v.title }}</span>
+          <span class="bold">{{ version.title + (isLatest ? ' (latest)' : '') }}</span>
           <div class="small mt-2 icons">
-            <span title="Angular">
+            <span title="Angular" *ngIf="version.dependencies.get('@angular/core') as angularVersion">
               <img src="assets/images/angular.png" alt="Angular Logo" />
-              {{ v.dependencies['@angular/core'].split('.').slice(0, 2).join('.') }}
+              {{ angularVersion.format('x.x') }}
             </span>
-            <span title="Bootstrap">
+            <span title="Bootstrap" *ngIf="version.dependencies.get('bootstrap') as bootstrapVersion">
               <img src="assets/images/bootstrap.png" alt="Bootstrap Logo" />
-              {{ v.dependencies['bootstrap'].split('.').slice(0, 2).join('.') }}
+              {{ bootstrapVersion.format('x.x') }}
             </span>
-            <span title="ng-bootstrap">
+            <span title="ng-bootstrap" *ngIf="version.dependencies.get('@ng-bootstrap/ng-bootstrap') as ngBootstrapVersion">
               <img src="assets/images/ng-bootstrap.svg" alt="ng-bootstrap Logo" />
-              {{ v.dependencies['@ng-bootstrap/ng-bootstrap'].split('.').slice(0, 2).join('.') }}
+              {{ ngBootstrapVersion.format('x.x') }}
             </span>
           </div>
         </a>
@@ -69,17 +69,10 @@
         </a>
         <a
           ngbDropdownItem
-          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/alert') > -1 }"
-          [routerLink]="'bootstrap-samples/alert'"
+          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/alerts') > -1 }"
+          [routerLink]="'bootstrap-samples/alerts'"
         >
-          Alert / Notification
-        </a>
-        <a
-          ngbDropdownItem
-          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/badge') > -1 }"
-          [routerLink]="'bootstrap-samples/badge'"
-        >
-          Badge
+          Alerts / Notifications
         </a>
         <a
           ngbDropdownItem
@@ -87,6 +80,13 @@
           [routerLink]="'bootstrap-samples/background'"
         >
           Background
+        </a>
+        <a
+          ngbDropdownItem
+          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/badge') > -1 }"
+          [routerLink]="'bootstrap-samples/badge'"
+        >
+          Badge
         </a>
         <a
           ngbDropdownItem
@@ -125,13 +125,6 @@
         </a>
         <a
           ngbDropdownItem
-          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-control') > -1 }"
-          [routerLink]="'bootstrap-samples/form-control'"
-        >
-          Form controls
-        </a>
-        <a
-          ngbDropdownItem
           [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-check') > -1 }"
           [routerLink]="'bootstrap-samples/form-check'"
         >
@@ -139,17 +132,17 @@
         </a>
         <a
           ngbDropdownItem
-          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-select') > -1 }"
-          [routerLink]="'bootstrap-samples/form-select'"
+          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-control') > -1 }"
+          [routerLink]="'bootstrap-samples/form-control'"
         >
-          Form select
+          Form control
         </a>
         <a
           ngbDropdownItem
-          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-multiple-select') > -1 }"
-          [routerLink]="'bootstrap-samples/form-multiple-select'"
+          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-file') > -1 }"
+          [routerLink]="'bootstrap-samples/form-file'"
         >
-          Form select multiple
+          Form file
         </a>
         <a
           ngbDropdownItem
@@ -167,6 +160,20 @@
         </a>
         <a
           ngbDropdownItem
+          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-select') > -1 }"
+          [routerLink]="'bootstrap-samples/form-select'"
+        >
+          Form select
+        </a>
+        <a
+          ngbDropdownItem
+          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-multiple-select') > -1 }"
+          [routerLink]="'bootstrap-samples/form-multiple-select'"
+        >
+          Form select multiple
+        </a>
+        <a
+          ngbDropdownItem
           [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-switch') > -1 }"
           [routerLink]="'bootstrap-samples/form-switch'"
         >
@@ -174,10 +181,10 @@
         </a>
         <a
           ngbDropdownItem
-          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-file') > -1 }"
-          [routerLink]="'bootstrap-samples/form-file'"
+          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-textarea') > -1 }"
+          [routerLink]="'bootstrap-samples/form-textarea'"
         >
-          Form file
+          Form textarea
         </a>
         <a
           ngbDropdownItem
@@ -185,13 +192,6 @@
           [routerLink]="'bootstrap-samples/tables'"
         >
           Tables
-        </a>
-        <a
-          ngbDropdownItem
-          [ngClass]="{ active: router.url.indexOf('/bootstrap-samples/form-textarea') > -1 }"
-          [routerLink]="'bootstrap-samples/form-textarea'"
-        >
-          Textarea
         </a>
         <a
           ngbDropdownItem
@@ -225,7 +225,7 @@
           [ngClass]="{ active: router.url.indexOf('/ng-bootstrap-samples/alert') > -1 }"
           [routerLink]="'ng-bootstrap-samples/alert'"
         >
-          Alert
+          Alerts
         </a>
         <a
           ngbDropdownItem
@@ -246,7 +246,7 @@
           [ngClass]="{ active: router.url.indexOf('/ng-bootstrap-samples/datepicker') > -1 }"
           [routerLink]="'ng-bootstrap-samples/datepicker'"
         >
-          DatePicker
+          Datepicker
         </a>
         <a
           ngbDropdownItem
@@ -313,8 +313,8 @@
         </a>
         <a
           ngbDropdownItem
-          [ngClass]="{ active: router.url.indexOf('/ng-bootstrap-samples/typehead') > -1 }"
-          [routerLink]="'ng-bootstrap-samples/typehead'"
+          [ngClass]="{ active: router.url.indexOf('/ng-bootstrap-samples/typeahead') > -1 }"
+          [routerLink]="'ng-bootstrap-samples/typeahead'"
         >
           Typeahead
         </a>
@@ -371,7 +371,7 @@
           [ngClass]="{ active: router.url.indexOf('/post-samples/intranet-layout') > -1 }"
           href="https://next.design-system.post.ch/?path=/story/components-internet-header-getting-started--page"
         >
-          Internet Header
+          Internet header
           <i style="height: 1em" aria-hidden="true" class="pi pi-2038"></i>
         </a>
         <a
@@ -379,21 +379,21 @@
           [ngClass]="{ active: router.url.indexOf('/post-samples/intranet-layout') > -1 }"
           [routerLink]="'/post-samples/intranet-layout'"
         >
-          Intranet Header
+          Intranet header
         </a>
         <a
           ngbDropdownItem
           [ngClass]="{ active: router.url.indexOf('/post-samples/notification-overlay') > -1 }"
           [routerLink]="'post-samples/notification-overlay'"
         >
-          Notification Overlay
+          Notification overlay
         </a>
         <a
           ngbDropdownItem
-          [ngClass]="{ active: router.url.indexOf('/post-samples/post-cards') > -1 }"
-          [routerLink]="'post-samples/post-cards'"
+          [ngClass]="{ active: router.url.indexOf('/post-samples/card') > -1 }"
+          [routerLink]="'post-samples/card'"
         >
-          Post Cards
+          Post cards
         </a>
         <a
           ngbDropdownItem

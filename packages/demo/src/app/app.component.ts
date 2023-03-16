@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { filter, map, mergeMap } from 'rxjs/operators';
-import packageJSON from 'package.json';
-import versions from '../assets/versions.json';
+import { VersionService } from './common/version.service';
 
 @Component({
   selector: 'app-root',
@@ -12,14 +11,12 @@ import versions from '../assets/versions.json';
 export class AppComponent implements OnInit {
   public setFullwidthContainer: boolean = false;
   public title = 'app';
-  public version = packageJSON.version;
-  public versions = versions;
 
-  constructor(public router: Router, private route: ActivatedRoute) {}
-
-  public get currentVersionTitle() {
-    return this.versions.find(v => v.version === this.version).title;
-  }
+  constructor(
+    public versionService: VersionService,
+    public router: Router,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit() {
     this.router.events
