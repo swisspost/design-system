@@ -3,7 +3,7 @@
 @use './../commons';
 @use './../spacing';
 
-@use './../../functions/sizing';
+@use './../../functions/sizing' as sizing-fn;
 
 @use './button';
 
@@ -52,10 +52,10 @@ $modal-dialog-width-lg: 800px !default;
 $modal-dialog-width-md: 500px !default;
 $modal-dialog-width-sm: 300px !default;
 
-$modal-xl: sizing.px-to-rem($modal-dialog-width-xl) - 2 * $modal-dialog-margin !default;
-$modal-lg: sizing.px-to-rem($modal-dialog-width-lg) - 2 * $modal-dialog-margin !default;
-$modal-md: sizing.px-to-rem($modal-dialog-width-md) - 2 * $modal-dialog-margin !default;
-$modal-sm: sizing.px-to-rem($modal-dialog-width-sm) - 2 * $modal-dialog-margin !default;
+$modal-xl: sizing-fn.px-to-rem($modal-dialog-width-xl) - 2 * $modal-dialog-margin !default;
+$modal-lg: sizing-fn.px-to-rem($modal-dialog-width-lg) - 2 * $modal-dialog-margin !default;
+$modal-md: sizing-fn.px-to-rem($modal-dialog-width-md) - 2 * $modal-dialog-margin !default;
+$modal-sm: sizing-fn.px-to-rem($modal-dialog-width-sm) - 2 * $modal-dialog-margin !default;
 
 $modal-fade-transform: translate(0, -50px) !default;
 $modal-show-transform: none !default;

@@ -2,7 +2,7 @@
 @use './../color';
 @use './../commons';
 @use './../spacing';
-@use './../../functions/sizing';
+@use './../../functions/sizing' as sizing-fn;
 
 // Subnavigation
 
@@ -13,9 +13,9 @@ $subnavigation-border-bottom-width: commons.$border-width;
 $subnavigation-border-bottom-color: color.$gray-10;
 
 // These heights have to be synchronous to main navigation heights
-$subnavigation-height-xs: sizing.px-to-rem(56);
-$subnavigation-height-lg: sizing.px-to-rem(64);
-$subnavigation-height-xl: sizing.px-to-rem(72);
+$subnavigation-height-xs: sizing-fn.px-to-rem(56);
+$subnavigation-height-lg: sizing-fn.px-to-rem(64);
+$subnavigation-height-xl: sizing-fn.px-to-rem(72);
 
 $subnavigation-link-color: rgba(var(--post-contrast-color-rgb), 0.6);
 $subnavigation-link-color-hover: var(--post-contrast-color);

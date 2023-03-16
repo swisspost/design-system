@@ -6,13 +6,13 @@
 @use './../spacing';
 @use './../animation';
 
-@use './../../functions/sizing';
+@use './../../functions/sizing' as sizing-fn;
 
 // Buttons + Forms
 //
 // Shared variables that are reassigned to `$input-` and `$btn-` specific variables.
 $input-btn-border-width: commons.$border-thick !default;
-$input-btn-border-width-rem: sizing.px-to-rem($input-btn-border-width);
+$input-btn-border-width-rem: sizing-fn.px-to-rem($input-btn-border-width);
 
 $input-btn-padding-y: spacing.$size-regular - $input-btn-border-width-rem !default;
 $input-btn-padding-x: spacing.$size-small-large - $input-btn-border-width-rem !default;

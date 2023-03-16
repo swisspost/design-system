@@ -7,7 +7,7 @@
 @use './../variables/spacing';
 @use './../variables/commons';
 @use './../variables/components/card';
-@use './../functions/sizing';
+@use './../functions/sizing' as sizing-fn;
 @use './../mixins/icons' as icons-mixins;
 @use './../variables/icons';
 @use './../variables/animation';
@@ -38,7 +38,7 @@
   }
 
   & + & {
-    margin-top: sizing.calculate-single-box-shadow-size(commons.$box-shadow-lg) * 2;
+    margin-top: sizing-fn.calculate-single-box-shadow-size(commons.$box-shadow-lg) * 2;
   }
 
   .card-group > & {

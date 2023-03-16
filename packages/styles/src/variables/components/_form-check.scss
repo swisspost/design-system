@@ -3,7 +3,7 @@
 @use './../spacing';
 @use './../type';
 @use './../../functions/icons';
-@use './../../functions/sizing';
+@use './../../functions/sizing' as sizing-fn;
 
 $form-check-input-width: spacing.$size-large !default;
 $form-check-min-height: $form-check-input-width !default;
@@ -44,7 +44,7 @@ $form-check-inline-margin-end: spacing.$size-large !default;
 $form-check-label-cursor: pointer !default;
 $form-check-label-color: forms.$form-label-color !default;
 $form-check-label-padding-top: (
-    $form-check-input-width + sizing.px-to-rem($form-check-input-border-width) -
+    $form-check-input-width + sizing-fn.px-to-rem($form-check-input-border-width) -
       type.$line-height-base
   ) * 0.5 !default;
 $form-check-label-padding-x: spacing.$size-mini !default;
