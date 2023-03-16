@@ -1,5 +1,5 @@
 @use './../../variables/color';
-@use './../../variables/sizing';
+@use './../../variables/spacing';
 @use './../../variables/commons';
 @use './../../variables/components/intranet-header';
 
@@ -31,10 +31,10 @@
     > div > ul > li:first-child {
       display: block;
 
-      margin: sizing.$spacer * -1;
+      margin: spacing.$spacer * -1;
       margin-bottom: 0;
-      padding: sizing.$spacer;
-      padding-top: sizing.$spacer;
+      padding: spacing.$spacer;
+      padding-top: spacing.$spacer;
       border-bottom: commons.$border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
       background-color: color.$white;
 
@@ -45,14 +45,14 @@
       }
 
       i.pi {
-        height: sizing.$spacer;
-        line-height: sizing.$spacer;
+        height: spacing.$spacer;
+        line-height: spacing.$spacer;
         vertical-align: text-top;
       }
     }
 
     &:not(.closed) > div > ul > li:first-child {
-      margin-bottom: sizing.$spacer;
+      margin-bottom: spacing.$spacer;
     }
 
     &.closed > div > ul > * {
@@ -75,8 +75,8 @@
     bottom: 0;
     width: inherit;
     max-width: inherit;
-    margin-left: sizing.$spacer * -1;
-    padding: sizing.$spacer 0;
+    margin-left: spacing.$spacer * -1;
+    padding: spacing.$spacer 0;
     overflow-x: hidden;
     overflow-y: auto; // Scrollable contents if viewport is shorter than content.
 
@@ -85,19 +85,19 @@
     }
 
     > ul {
-      padding-right: sizing.$spacer;
+      padding-right: spacing.$spacer;
     }
   }
 
   ul {
     margin: 0;
     padding: 0;
-    padding-left: sizing.$spacer;
+    padding-left: spacing.$spacer;
     list-style: none;
   }
 
   li.separator {
-    min-height: sizing.$spacer;
+    min-height: spacing.$spacer;
   }
 }
 

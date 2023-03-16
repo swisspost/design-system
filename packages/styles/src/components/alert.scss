@@ -9,6 +9,7 @@
 @use './../variables/commons';
 @use './../variables/type';
 @use './../variables/sizing';
+@use './../variables/spacing';
 @use './../variables/grid';
 @use './../variables/breakpoints';
 @use './../variables/components/alert';
@@ -202,7 +203,7 @@
 
     .btn-close {
       bottom: auto;
-      padding: sizing.$spacer * 0.5;
+      padding: spacing.$spacer * 0.5;
     }
 
     .alert-heading {

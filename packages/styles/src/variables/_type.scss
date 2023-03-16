@@ -1,6 +1,7 @@
 @use 'sass:math';
 
 @use './sizing';
+@use './spacing';
 @use './color';
 @use './commons';
 @use './components/paragraph';
@@ -149,7 +150,7 @@ $font-size-base: $font-size-regular !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: $line-height-regular !default;
 
-$headings-margin-bottom: (sizing.$spacer * 0.5) !default;
+$headings-margin-bottom: (spacing.$spacer * 0.5) !default;
 $headings-font-family: inherit !default;
 $headings-font-weight: 300 !default;
 $headings-line-height: 1.2 !default;
@@ -201,4 +202,4 @@ $list-inline-padding: 0.5rem !default;
 
 $mark-bg: #fcf8e3 !default;
 
-$hr-margin-y: sizing.$spacer !default;
+$hr-margin-y: spacing.$spacer !default;

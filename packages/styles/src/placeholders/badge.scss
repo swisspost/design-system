@@ -1,9 +1,10 @@
 @use './../themes/bootstrap/core' as *;
+@use './../core' as post;
 
 @use './../variables/components/badge';
 
 %badge {
-  @include border-radius($badge-border-radius);
+  @include border-radius(badge.$badge-border-radius);
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -12,9 +13,9 @@
   border: badge.$badge-border-width solid badge.$badge-border-color;
   height: badge.$badge-height;
   font-size: badge.$badge-font-size;
-  font-weight: $badge-font-weight;
+  font-weight: badge.$badge-font-weight;
   line-height: 1;
-  color: $badge-color;
+  color: badge.$badge-color;
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
@@ -25,7 +26,7 @@
   }
 
   > .badge {
-    padding: $size-micro;
+    padding: post.$size-micro;
     height: badge.$badge-nested-height;
     min-width: badge.$badge-nested-height;
     background-color: badge.$badge-nested-bg-color;

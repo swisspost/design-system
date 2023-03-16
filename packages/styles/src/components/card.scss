@@ -5,6 +5,7 @@
 @use './../themes/bootstrap/card' as bootstrap-card;
 @use './../variables/color';
 @use './../variables/sizing';
+@use './../variables/spacing';
 @use './../variables/commons';
 @use './../variables/components/card';
 @use './../functions/sizing' as sizing-fn;
@@ -188,7 +189,7 @@
       position: relative;
       width: icons.$icon-size-default;
       height: icons.$icon-size-default;
-      margin-right: sizing.$spacer * 0.5;
+      margin-right: spacing.$spacer * 0.5;
 
       transition: animation.$transition-fade;
       opacity: 0.8;

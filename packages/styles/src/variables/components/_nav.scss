@@ -2,9 +2,10 @@
 @use './../commons';
 @use './../type';
 @use './../sizing';
+@use './../spacing';
 
 // Bootstrap variables
-$nav-link-padding-y: sizing.$spacer !default;
+$nav-link-padding-y: spacing.$spacer !default;
 $nav-link-padding-x: 1rem !default;
 $nav-link-font-size: null !default;
 $nav-link-font-weight: null !default;
@@ -27,7 +28,7 @@ $nav-pills-link-active-color: color.$white !default;
 $nav-pills-link-active-bg: color.$gray-80 !default;
 
 // Design System custom variables
-$nav-link-padding: sizing.$spacer !default;
+$nav-link-padding: spacing.$spacer !default;
 
 $nav-tabs-link-hover-bg: lighten(color.$gray-10, 5%) !default;
 $nav-tabs-link-text-color: color.$gray-60 !default;
@@ -47,7 +48,7 @@ $nav-tabs-alternate-link-hover-bg: color.$white !default;
 $nav-pills-outline-border-width: commons.$border-width !default;
 
 $nav-divider-color: color.$gray-20 !default;
-$nav-divider-margin-y: (sizing.$spacer * 0.5) !default;
+$nav-divider-margin-y: (spacing.$spacer * 0.5) !default;
 
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
 $nav-link-height: (

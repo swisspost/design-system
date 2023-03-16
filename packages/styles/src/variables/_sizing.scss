@@ -1,18 +1,20 @@
-// Spacing
-//
-// Control the default styling of most Bootstrap elements by modifying these
-// variables. Mostly focused on sizing-fn.
-// You can add more entries to the $spacers map, should you need more variation.
+@use 'sass:map';
 
-$spacer: 1rem !default;
-$spacers: (
-  0: 0,
-  1: $spacer * 0.25,
-  2: $spacer * 0.5,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
-) !default;
+// Bootstrap
+// This variable affects the `.h-*` and `.w-*` classes.
+$sizes: () !default;
+$sizes: map-merge(
+  (
+    25: 25%,
+    50: 50%,
+    75: 75%,
+    100: 100%,
+    auto: auto,
+  ),
+  $sizes
+);
+
+// Everything from here to the end of the document is deprecated
 
 // Post-Sizes
 $size-hair: 1px !default;
@@ -51,19 +53,6 @@ $post-sizes: map-merge(
     'bigger-giant': $size-bigger-giant,
   ),
   $post-sizes
-);
-
-// This variable affects the `.h-*` and `.w-*` classes.
-$sizes: () !default;
-$sizes: map-merge(
-  (
-    25: 25%,
-    50: 50%,
-    75: 75%,
-    100: 100%,
-    auto: auto,
-  ),
-  $sizes
 );
 
 // Abstand Gross, Section

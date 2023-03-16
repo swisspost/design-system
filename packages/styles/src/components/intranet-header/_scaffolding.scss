@@ -1,5 +1,5 @@
 @use './../../variables/color';
-@use './../../variables/sizing';
+@use './../../variables/spacing';
 @use './../../variables/commons';
 @use './../../variables/components/intranet-header';
 
@@ -8,9 +8,9 @@
 // based from http://getbootstrap.com/docs/4.1/examples/dashboard/
 .navbar-brand {
   margin: 0;
-  padding-top: sizing.$spacer * 0.75;
-  padding-bottom: sizing.$spacer * 0.75;
-  font-size: sizing.$spacer;
+  padding-top: spacing.$spacer * 0.75;
+  padding-bottom: spacing.$spacer * 0.75;
+  font-size: spacing.$spacer;
 }
 
 .navbar {

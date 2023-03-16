@@ -6,6 +6,7 @@
 
 @use './../variables/components/nav';
 @use './../variables/sizing';
+@use './../variables/spacing';
 @use './../variables/commons';
 @use './../variables/color';
 @use './../mixins/color' as color-mx;
@@ -13,7 +14,7 @@
 
 .tabs-wrapper {
   position: relative;
-  padding-top: sizing.$spacer;
+  padding-top: spacing.$spacer;
   border: 0;
   background-color: color.$gray-background-light;
 
@@ -162,8 +163,8 @@
 }
 
 .tab-content {
-  padding-top: sizing.$spacer;
-  padding-bottom: sizing.$spacer;
+  padding-top: spacing.$spacer;
+  padding-bottom: spacing.$spacer;
 }
 
 // Careful, this generates a lot of code

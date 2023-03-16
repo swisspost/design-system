@@ -7,7 +7,7 @@
 @use './../themes/bootstrap/utilities' as bu; // TODO: Move Design System utilities to utilities folder.
 @use './../mixins/utilities';
 @use './../variables/color';
-@use './../variables/sizing';
+@use './../variables/spacing';
 @use './../variables/grid';
 @use './../functions/color' as color-fn;
 @use './../functions/contrast' as contrast-fn;
@@ -54,8 +54,8 @@
 //-- Legacy --
 span.spacer {
   display: block;
-  width: sizing.$spacer;
-  height: sizing.$spacer;
+  width: spacing.$spacer;
+  height: spacing.$spacer;
 }
 
 .no-toggle-arrow::after {

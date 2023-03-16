@@ -1,0 +1,21 @@
+@forward './../variables/options';
+
+@use 'sass:map';
+
+@use './../themes/bootstrap/core' as *;
+@use './../themes/bootstrap/utilities' as *;
+@use './../variables/spacing';
+@use './../variables/breakpoints';
+@use './../functions/utilities' as utility-fn;
+
+// Post spacing variables
+:root {
+  @each $space, $length in spacing.$spacings {
+    --post-space-#{$space}: #{$length};
+  }
+
+  @each $space, $length in spacing.$negative-spacings {
+    --post-space-#{$space}: #{$length};
+  }
+}
+
