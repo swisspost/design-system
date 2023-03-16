@@ -153,10 +153,3 @@ code {
     }
   }
 }
-
-// Take this, you inflexible header custom content slots
-sp-intranet-header .settings:has(.version-switch) {
-  > div > .p-3 {
-    padding: 0 !important;
-  }
-}
