@@ -1,13 +1,13 @@
 @use './../color';
 @use './../commons';
-@use './../spacing';
+@use './../sizing';
 @use './../type';
 
-$table-cell-padding-y: spacing.$size-small-regular !default;
+$table-cell-padding-y: sizing.$size-small-regular !default;
 $table-cell-padding-x: $table-cell-padding-y !default;
 $table-cell-padding: $table-cell-padding-y $table-cell-padding-x !default;
 
-$table-cell-padding-y-sm: spacing.$size-micro !default;
+$table-cell-padding-y-sm: sizing.$size-micro !default;
 $table-cell-padding-x-sm: $table-cell-padding-y-sm !default;
 $table-cell-padding-sm: $table-cell-padding-y-sm $table-cell-padding-x-sm !default;
 

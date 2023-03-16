@@ -8,7 +8,7 @@
 @use './../themes/bootstrap/containers' as bc;
 
 @use './../variables/commons';
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../variables/grid';
 
 .vertical-gutters {
@@ -91,8 +91,8 @@ $container-cache: 0;
   // Container fluid responsive needs to be written every time
   .container-fluid-#{$breakpoint} {
     @include media-breakpoint-only($breakpoint) {
-      padding-right: spacing.$spacer;
-      padding-left: spacing.$spacer;
+      padding-right: sizing.$spacer;
+      padding-left: sizing.$spacer;
     }
   }
 

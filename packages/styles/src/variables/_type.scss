@@ -1,6 +1,6 @@
 @use 'sass:math';
 
-@use './spacing';
+@use './sizing';
 @use './color';
 @use './commons';
 @use './components/paragraph';
@@ -149,7 +149,7 @@ $font-size-base: $font-size-regular !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: $line-height-regular !default;
 
-$headings-margin-bottom: (spacing.$spacer * 0.5) !default;
+$headings-margin-bottom: (sizing.$spacer * 0.5) !default;
 $headings-font-family: inherit !default;
 $headings-font-weight: 300 !default;
 $headings-line-height: 1.2 !default;
@@ -175,11 +175,11 @@ $text-muted: color.$gray-60;
 
 $blockquote-font-weight: $font-weight-bold !default;
 $blockquote-border-left: commons.$border-thick solid color.$black !default;
-$blockquote-border-left-width-md: spacing.$size-micro !default;
-$blockquote-padding-left: spacing.$size-small-regular !default;
-$blockquote-padding-left-xxl: spacing.$size-big !default;
-$blockquote-margin-top: spacing.$size-large !default;
-$blockquote-margin-y: spacing.$size-regular !default;
+$blockquote-border-left-width-md: sizing.$size-micro !default;
+$blockquote-padding-left: sizing.$size-small-regular !default;
+$blockquote-padding-left-xxl: sizing.$size-big !default;
+$blockquote-margin-top: sizing.$size-large !default;
+$blockquote-margin-y: sizing.$size-regular !default;
 $blockquote-footer-font-size: math.div(
   $lead-font-size * sizing-fn.strip-unit($small-font-size),
   100
@@ -201,4 +201,4 @@ $list-inline-padding: 0.5rem !default;
 
 $mark-bg: #fcf8e3 !default;
 
-$hr-margin-y: spacing.$spacer !default;
+$hr-margin-y: sizing.$spacer !default;

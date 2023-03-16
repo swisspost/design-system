@@ -1,6 +1,6 @@
 @use './../color';
 @use './../type';
-@use './../spacing';
+@use './../sizing';
 @use './../animation';
 
 // Design System custom variables
@@ -9,7 +9,7 @@ $form-switch-checked-border-color: color.$black !default;
 
 // Bootstrap variables
 $form-switch-color: color.$white !default;
-$form-switch-width: 2 * spacing.$size-big !default;
+$form-switch-width: 2 * sizing.$size-big !default;
 $form-switch-padding-start: 0 !default;
 $form-switch-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -16 32 32'><circle r='15' stroke='#{$form-switch-border-color}' stroke-width='2' fill='#{$form-switch-color}'/></svg>") !default;
 $form-switch-border-radius: $form-switch-width !default;
@@ -20,7 +20,7 @@ $form-switch-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3
 $form-switch-focus-bg-image: $form-switch-checked-bg-image;
 
 // Design System custom variables
-$form-switch-height: spacing.$size-big !default;
+$form-switch-height: sizing.$size-big !default;
 $form-switch-bg: rgba(var(--post-contrast-color-rgb), 0.3) !default;
 $form-switch-hover-bg: rgba(var(--post-contrast-color-rgb), 0.1) !default;
 $form-switch-checked-bg: var(--post-success) !default;
@@ -33,6 +33,6 @@ $form-switch-linear-gradient: linear-gradient(
 $form-switch-linear-gradient-size: (2 * $form-switch-width - $form-switch-height)
   $form-switch-height;
 $form-switch-label-padding-top: ($form-switch-height - type.$line-height-base) * 0.5 !default;
-$form-switch-label-padding-x: spacing.$size-regular !default;
+$form-switch-label-padding-x: sizing.$size-regular !default;
 $form-switch-label-padding-start: $form-switch-label-padding-top 0 0 $form-switch-label-padding-x !default;
 $form-switch-label-padding-end: $form-switch-label-padding-top $form-switch-label-padding-x 0 0 !default;

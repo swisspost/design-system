@@ -3,13 +3,13 @@
 @use './button';
 @use './../type';
 @use './../color';
-@use './../spacing';
+@use './../sizing';
 @use './../../functions/icons';
 
 // Bootstrap variables
-$btn-close-width: spacing.$size-large !default;
+$btn-close-width: sizing.$size-large !default;
 $btn-close-height: $btn-close-width !default;
-$btn-close-padding-x: spacing.$size-regular !default;
+$btn-close-padding-x: sizing.$size-regular !default;
 $btn-close-color: color.$black !default;
 $_btn-close-icon-url: icons.get-colored-svg-url('2043', $btn-close-color) !default;
 $_btn-close-icon-hcm-url: icons.get-colored-svg-url('2043', color.$white) !default;

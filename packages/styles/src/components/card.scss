@@ -4,7 +4,7 @@
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/card' as bootstrap-card;
 @use './../variables/color';
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../variables/commons';
 @use './../variables/components/card';
 @use './../functions/sizing' as sizing-fn;
@@ -93,19 +93,19 @@
   .product-card &,
   .card-button & {
     @include media-breakpoint-down(sm) {
-      padding: spacing.$size-regular;
+      padding: sizing.$size-regular;
     }
 
     @include media-breakpoint-between(sm, md) {
-      padding: spacing.$size-large;
+      padding: sizing.$size-large;
     }
 
     @include media-breakpoint-between(md, xxl) {
-      padding: spacing.$size-big;
+      padding: sizing.$size-big;
     }
 
     @include media-breakpoint-up(xxl) {
-      padding: spacing.$size-bigger-big;
+      padding: sizing.$size-bigger-big;
     }
   }
 
@@ -188,7 +188,7 @@
       position: relative;
       width: icons.$icon-size-default;
       height: icons.$icon-size-default;
-      margin-right: spacing.$spacer * 0.5;
+      margin-right: sizing.$spacer * 0.5;
 
       transition: animation.$transition-fade;
       opacity: 0.8;

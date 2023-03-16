@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use './../themes/bootstrap/core' as *;
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../variables/type';
 @use './../variables/color';
 @use './../mixins';
@@ -12,7 +12,7 @@
     position: relative;
     margin-top: paragraph.$text-bottom-space;
     margin-bottom: paragraph.$text-bottom-space;
-    padding-left: map.get(spacing.$post-sizes, 'big');
+    padding-left: map.get(sizing.$post-sizes, 'big');
     list-style: none;
     text-align: left;
 
@@ -56,12 +56,12 @@
 }
 
 %default-module-spacer {
-  margin-top: map.get(spacing.$post-sizes, 'huge'); // 56px
-  margin-bottom: map.get(spacing.$post-sizes, 'huge'); // 56px
+  margin-top: map.get(sizing.$post-sizes, 'huge'); // 56px
+  margin-bottom: map.get(sizing.$post-sizes, 'huge'); // 56px
 
   @include media-breakpoint-up(md) {
-    margin-top: map.get(spacing.$post-sizes, 'giant'); // 80px
-    margin-bottom: map.get(spacing.$post-sizes, 'giant'); // 80px
+    margin-top: map.get(sizing.$post-sizes, 'giant'); // 80px
+    margin-bottom: map.get(sizing.$post-sizes, 'giant'); // 80px
   }
 }
 
@@ -72,7 +72,7 @@
     position: relative;
     margin-top: paragraph.$text-bottom-space;
     margin-bottom: paragraph.$text-bottom-space;
-    padding-left: map.get(spacing.$post-sizes, 'big');
+    padding-left: map.get(sizing.$post-sizes, 'big');
     list-style: none;
 
     li {
@@ -93,10 +93,10 @@
     }
 
     &.bulletpoints {
-      padding-left: map.get(spacing.$post-sizes, 'big');
+      padding-left: map.get(sizing.$post-sizes, 'big');
 
       @include media-breakpoint-up(md) {
-        padding-left: map.get(spacing.$post-sizes, 'bigger-big');
+        padding-left: map.get(sizing.$post-sizes, 'bigger-big');
       }
 
       li {
@@ -107,15 +107,15 @@
           content: '';
           position: absolute;
           top: 2px;
-          left: -(map.get(spacing.$post-sizes, 'big'));
-          width: map.get(spacing.$post-sizes, 'small-large');
-          height: map.get(spacing.$post-sizes, 'small-large');
+          left: -(map.get(sizing.$post-sizes, 'big'));
+          width: map.get(sizing.$post-sizes, 'small-large');
+          height: map.get(sizing.$post-sizes, 'small-large');
           border-radius: 50%;
 
           @include media-breakpoint-up(md) {
-            left: -(map.get(spacing.$post-sizes, 'bigger-big'));
-            width: map.get(spacing.$post-sizes, 'large');
-            height: map.get(spacing.$post-sizes, 'large');
+            left: -(map.get(sizing.$post-sizes, 'bigger-big'));
+            width: map.get(sizing.$post-sizes, 'large');
+            height: map.get(sizing.$post-sizes, 'large');
           }
         }
       }
@@ -126,7 +126,7 @@
     position: relative;
     margin-top: paragraph.$text-bottom-space;
     margin-bottom: paragraph.$text-bottom-space;
-    padding-left: map.get(spacing.$post-sizes, 'big');
+    padding-left: map.get(sizing.$post-sizes, 'big');
     list-style: none;
     counter-reset: li-counter;
 

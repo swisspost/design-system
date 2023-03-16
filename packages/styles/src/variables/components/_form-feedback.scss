@@ -1,7 +1,7 @@
 @use 'sass:map';
 
 @use './../color';
-@use './../spacing';
+@use './../sizing';
 @use './../type';
 
 // Bootstrap variables
@@ -14,7 +14,7 @@ $form-feedback-icon-invalid: url("data:image/svg+xml,%3C%3Fxml version='1.0' enc
 
 // Design System custom variables
 $form-feedback-icon-size: 2rem; // Equals 24pt [svg-size]
-$form-feedback-icon-offset: map.get(spacing.$post-sizes, 'mini');
+$form-feedback-icon-offset: map.get(sizing.$post-sizes, 'mini');
 $form-feedback-valid-bg: map.get(color.$background-colors, 'success') !default;
 $form-feedback-valid-text: color.$white !default;
 $form-feedback-invalid-bg: map.get(color.$background-colors, 'danger') !default;

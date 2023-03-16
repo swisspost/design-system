@@ -2,7 +2,7 @@
 
 @use 'sass:map';
 @use './../themes/bootstrap/core' as *;
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../variables/breakpoints';
 @use './../mixins/utilities';
 
@@ -24,7 +24,7 @@
           gap: gap
         )
     {
-      @each $size, $length in spacing.$post-sizes {
+      @each $size, $length in sizing.$post-sizes {
         @if ($prop == margin or $prop == padding) {
           .#{$abbrev}t#{$infix}-#{$size},
           .#{$abbrev}y#{$infix}-#{$size} {
@@ -60,10 +60,10 @@ $cache: ();
 
 @each $breakpoint-key, $breakpoint-value in breakpoints.$grid-breakpoints {
   @if ($breakpoint-key == 'xs') {
-    @each $curve-name, $curve-sizes in spacing.$size-curves {
+    @each $curve-name, $curve-sizes in sizing.$size-curves {
       $value: map.get($curve-sizes, $breakpoint-key);
 
-      @each $classname, $property in spacing.$responsive-spacing-properties {
+      @each $classname, $property in sizing.$responsive-spacing-properties {
         $cache: map.set($cache, $classname + $curve-name, $value);
         @include utilities.generate-utility-class($classname, $curve-name, $property, $value);
       }
@@ -76,10 +76,10 @@ $cache: ();
 
     $stack: ();
 
-    @each $curve-name, $curve-sizes in spacing.$size-curves {
+    @each $curve-name, $curve-sizes in sizing.$size-curves {
       $value: map.get($curve-sizes, $breakpoint-key);
 
-      @each $classname, $property in spacing.$responsive-spacing-properties {
+      @each $classname, $property in sizing.$responsive-spacing-properties {
         @if (map.get($cache, $classname + $curve-name) != $value) {
           $stack: map.set($stack, $classname, $curve-name, $property, $value);
           $cache: map.set($cache, $classname + $curve-name, $value);

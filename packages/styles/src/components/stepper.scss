@@ -1,7 +1,7 @@
 @use './../mixins/size' as size-mx;
 @use './../mixins/utilities';
 
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../variables/color';
 @use './../variables/components/stepper';
 
@@ -72,7 +72,7 @@
     color: stepper.$stepper-indicator-color;
     background-color: stepper.$stepper-indicator-bg;
     background-image: stepper.$stepper-indicator-check-icon;
-    background-size: spacing.$size-large;
+    background-size: sizing.$size-large;
     background-position: center;
     background-repeat: no-repeat;
     border: stepper.$stepper-indicator-border-width solid stepper.$stepper-indicator-border-color;
@@ -154,16 +154,16 @@
 
   .stepper-item {
     &::before {
-      width: calc(#{stepper.$stepper-indicator-height} + 2 * #{spacing.$size-line});
-      height: calc(#{stepper.$stepper-indicator-height} + 2 * #{spacing.$size-line});
-      line-height: calc(#{stepper.$stepper-indicator-height} + 2 * #{spacing.$size-line});
+      width: calc(#{stepper.$stepper-indicator-height} + 2 * #{sizing.$size-line});
+      height: calc(#{stepper.$stepper-indicator-height} + 2 * #{sizing.$size-line});
+      line-height: calc(#{stepper.$stepper-indicator-height} + 2 * #{sizing.$size-line});
       color: ButtonText;
       background-color: ButtonFace;
       background-image: stepper.$stepper-indicator-hover-check-icon;
       border: 0;
-      outline: spacing.$size-line solid VisitedText;
-      outline-offset: -3 * spacing.$size-line;
-      margin-top: -1 * spacing.$size-line;
+      outline: sizing.$size-line solid VisitedText;
+      outline-offset: -3 * sizing.$size-line;
+      margin-top: -1 * sizing.$size-line;
     }
 
     &[aria-current] ~ &::before {
@@ -175,7 +175,7 @@
     }
 
     &:is(:focus-visible, :focus-within)::before {
-      border: spacing.$size-line solid Highlight;
+      border: sizing.$size-line solid Highlight;
       line-height: stepper.$stepper-indicator-height;
       outline-color: VisitedText;
     }

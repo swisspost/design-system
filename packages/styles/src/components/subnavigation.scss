@@ -8,7 +8,7 @@
 @use './../functions/utilities' as utility-functions;
 @use './../variables/components/subnavigation';
 @use './../variables/animation';
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../placeholders/text';
 
 $module-name: 'subnavigation';
@@ -78,8 +78,8 @@ $module-name: 'subnavigation';
     @include utilities.high-contrast-mode() {
       &:hover,
       &:focus-visible {
-        outline: spacing.$size-line solid Highlight;
-        outline-offset: -(spacing.$size-micro);
+        outline: sizing.$size-line solid Highlight;
+        outline-offset: -(sizing.$size-micro);
       }
     }
 

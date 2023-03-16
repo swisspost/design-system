@@ -5,7 +5,7 @@
 @use './../themes/bootstrap/nav' as n;
 
 @use './../variables/components/nav';
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../variables/commons';
 @use './../variables/color';
 @use './../mixins/color' as color-mx;
@@ -13,7 +13,7 @@
 
 .tabs-wrapper {
   position: relative;
-  padding-top: spacing.$spacer;
+  padding-top: sizing.$spacer;
   border: 0;
   background-color: color.$gray-background-light;
 
@@ -116,7 +116,7 @@
         top: 0;
         right: -1px;
         left: -1px;
-        height: spacing.$size-micro;
+        height: sizing.$size-micro;
         background-color: nav.$nav-tabs-link-active-border-color;
       }
     }
@@ -131,8 +131,8 @@
       &:focus,
       &:focus-within,
       &:focus-visible {
-        outline: spacing.$size-line solid Highlight;
-        outline-offset: -(spacing.$size-micro);
+        outline: sizing.$size-line solid Highlight;
+        outline-offset: -(sizing.$size-micro);
       }
 
       &.active {
@@ -162,8 +162,8 @@
 }
 
 .tab-content {
-  padding-top: spacing.$spacer;
-  padding-bottom: spacing.$spacer;
+  padding-top: sizing.$spacer;
+  padding-bottom: sizing.$spacer;
 }
 
 // Careful, this generates a lot of code

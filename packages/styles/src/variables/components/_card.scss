@@ -2,7 +2,7 @@
 @use './../commons';
 @use './../grid';
 @use './../type';
-@use './../spacing';
+@use './../sizing';
 @use './../../functions/sizing' as sizing-fn;
 
 // Cards
@@ -14,8 +14,8 @@ $card-margin-top: sizing-fn.calculate-single-box-shadow-size(
   commons.$box-shadow
 ) !default; // ensures the shadow is visible
 
-$card-spacer-y: spacing.$size-small-large !default; // Design System 20px
-$card-spacer-x: spacing.$size-regular !default; // Design System 16px
+$card-spacer-y: sizing.$size-small-large !default; // Design System 20px
+$card-spacer-x: sizing.$size-regular !default; // Design System 16px
 $card-border-width: commons.$border-width !default;
 $card-border-radius: commons.$border-width * 2 !default; // Design System
 $card-border-color: color.$gray-20 !default; // Design System

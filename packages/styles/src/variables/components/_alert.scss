@@ -1,17 +1,17 @@
 @use './close';
 @use './../commons';
 @use './../color';
-@use './../spacing';
+@use './../sizing';
 @use './../type';
 
 // Alerts and Toasts
 //
 // Define alert colors, border radius, and padding.
 
-$alert-padding-y: spacing.$size-small-large !default; // Design System
-$alert-padding-x: spacing.$size-large !default; // Design System
-$alert-toast-padding-y: spacing.$size-small-regular !default; // Design System only
-$alert-toast-padding-x: spacing.$size-regular !default; // Design System only
+$alert-padding-y: sizing.$size-small-large !default; // Design System
+$alert-padding-x: sizing.$size-large !default; // Design System
+$alert-toast-padding-y: sizing.$size-small-regular !default; // Design System only
+$alert-toast-padding-x: sizing.$size-regular !default; // Design System only
 
 $alert-margin-bottom: 1rem !default; // Design System
 $alert-margin: $alert-margin-bottom; // Design System only
@@ -34,12 +34,12 @@ $alert-list: (
 ); // Design System only
 
 $alert-line-height: type.$line-height-base; // Design System only
-$alert-text-space-between: spacing.$size-micro;
+$alert-text-space-between: sizing.$size-micro;
 
-$alert-icon-size: spacing.$size-small-huge; // Design System only
-$alert-close-icon-size: close.$btn-close-width + spacing.$size-micro; // Design System only
+$alert-icon-size: sizing.$size-small-huge; // Design System only
+$alert-close-icon-size: close.$btn-close-width + sizing.$size-micro; // Design System only
 
-$alert-toast-icon-size: spacing.$size-big; // Design System only
+$alert-toast-icon-size: sizing.$size-big; // Design System only
 
 $alert-font-size: type.$font-size-bigger-regular; // Design System only
 $alert-font-size-small: type.$font-size-small; // Design System only

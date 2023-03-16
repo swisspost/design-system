@@ -1,5 +1,5 @@
 @use 'sass:map';
-@use './spacing';
+@use './sizing';
 
 // Material Design - Motion Guidelines implementation
 // https://material.io/design/motion/
@@ -23,12 +23,12 @@ $transition-easing-decelerate: cubic-bezier(0, 0, 0.2, 1) !default;
 $transition-easing-accelerate: cubic-bezier(0.4, 0, 1, 1) !default;
 
 // Distances
-$transition-distance-xsmall: map.get(spacing.$post-sizes, 'micro') !default;
-$transition-distance-small: map.get(spacing.$post-sizes, 'small-regular') !default;
-$transition-distance-medium: map.get(spacing.$post-sizes, 'regular') !default;
-$transition-distance-medium-md: map.get(spacing.$post-sizes, 'big') !default;
-$transition-distance-large: map.get(spacing.$post-sizes, 'huge') !default;
-$transition-distance-large-md: map.get(spacing.$post-sizes, 'giant') !default;
+$transition-distance-xsmall: map.get(sizing.$post-sizes, 'micro') !default;
+$transition-distance-small: map.get(sizing.$post-sizes, 'small-regular') !default;
+$transition-distance-medium: map.get(sizing.$post-sizes, 'regular') !default;
+$transition-distance-medium-md: map.get(sizing.$post-sizes, 'big') !default;
+$transition-distance-large: map.get(sizing.$post-sizes, 'huge') !default;
+$transition-distance-large-md: map.get(sizing.$post-sizes, 'giant') !default;
 
 $transition-base-timing: $transition-time-default $transition-easing-default !default;
 $transition-base: all $transition-base-timing !default;

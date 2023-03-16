@@ -1,16 +1,16 @@
 @use './../color';
-@use './../spacing';
+@use './../sizing';
 
 // Spinners
 
 $spinner-color-primary: color.$yellow !default;
 $spinner-color-secondary: color.$gray-10 !default;
 
-$spinner-size: spacing.$size-huge !default;
+$spinner-size: sizing.$size-huge !default;
 $spinner-border-width: 6px !default;
 
-$spinner-size-sm: spacing.$size-big !default;
-$spinner-border-width-sm: spacing.$size-micro !default;
+$spinner-size-sm: sizing.$size-big !default;
+$spinner-border-width-sm: sizing.$size-micro !default;
 
-$spinner-size-xs: spacing.$size-small-regular !default;
-$spinner-border-width-xs: spacing.$size-line !default;
+$spinner-size-xs: sizing.$size-small-regular !default;
+$spinner-border-width-xs: sizing.$size-line !default;

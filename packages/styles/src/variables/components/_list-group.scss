@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use './../color';
-@use './../spacing';
+@use './../sizing';
 @use './../commons';
 
 // List group
@@ -10,8 +10,8 @@ $list-group-border-color: color.$gray-10 !default;
 $list-group-border-width: commons.$border-width !default;
 $list-group-border-radius: 0 !default;
 
-$list-group-item-padding-y: map.get(spacing.$post-sizes, 'small-regular') !default;
-$list-group-item-padding-x: map.get(spacing.$post-sizes, 'large') !default;
+$list-group-item-padding-y: map.get(sizing.$post-sizes, 'small-regular') !default;
+$list-group-item-padding-x: map.get(sizing.$post-sizes, 'large') !default;
 
 $list-group-hover-bg: color.$gray-background-light !default;
 $list-group-hover-bg-inverted: color.$white !default;

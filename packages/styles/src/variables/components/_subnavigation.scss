@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use './../color';
 @use './../commons';
-@use './../spacing';
+@use './../sizing';
 @use './../../functions/sizing' as sizing-fn;
 
 // Subnavigation
@@ -20,13 +20,13 @@ $subnavigation-height-xl: sizing-fn.px-to-rem(72);
 $subnavigation-link-color: rgba(var(--post-contrast-color-rgb), 0.6);
 $subnavigation-link-color-hover: var(--post-contrast-color);
 
-$subnavigation-link-underscore-height: map.get(spacing.$post-sizes, 'micro');
+$subnavigation-link-underscore-height: map.get(sizing.$post-sizes, 'micro');
 $subnavigation-link-underscore-color-active: color.$yellow;
 $subnavigation-link-underscore-color-hover: rgba(var(--post-contrast-color-rgb), 0.4);
 
-$subnavigation-link-padding-xs: map.get(spacing.$post-sizes, 'regular')
-  map.get(spacing.$post-sizes, 'small-regular');
-$subnavigation-link-padding-lg: map.get(spacing.$post-sizes, 'small-large')
-  map.get(spacing.$post-sizes, 'regular');
+$subnavigation-link-padding-xs: map.get(sizing.$post-sizes, 'regular')
+  map.get(sizing.$post-sizes, 'small-regular');
+$subnavigation-link-padding-lg: map.get(sizing.$post-sizes, 'small-large')
+  map.get(sizing.$post-sizes, 'regular');
 
-$subnavigation-result-margin-left: map.get(spacing.$post-sizes, 'mini');
+$subnavigation-result-margin-left: map.get(sizing.$post-sizes, 'mini');

@@ -1,15 +1,15 @@
 @use './../color';
-@use './../spacing';
+@use './../sizing';
 @use './../type';
 @use './../components/button';
 @use './../components/nav';
 @use './../../functions/utilities';
 
 // Bootstrap variables
-$navbar-padding-y: (spacing.$spacer * 0.5) !default;
-$navbar-padding-x: spacing.$spacer !default;
+$navbar-padding-y: (sizing.$spacer * 0.5) !default;
+$navbar-padding-x: sizing.$spacer !default;
 
-$navbar-nav-link-padding-x: spacing.$size-small-huge !default;
+$navbar-nav-link-padding-x: sizing.$size-small-huge !default;
 
 $navbar-brand-font-size: type.$font-size-bigger-regular !default;
 $navbar-brand-height: $navbar-brand-font-size * type.$line-height-base !default;

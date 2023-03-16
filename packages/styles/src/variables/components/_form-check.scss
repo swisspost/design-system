@@ -1,14 +1,14 @@
 @use './forms';
 @use './../color';
-@use './../spacing';
+@use './../sizing';
 @use './../type';
 @use './../../functions/icons';
 @use './../../functions/sizing' as sizing-fn;
 
-$form-check-input-width: spacing.$size-large !default;
+$form-check-input-width: sizing.$size-large !default;
 $form-check-min-height: $form-check-input-width !default;
 $form-check-padding-start: 0 !default;
-$form-check-margin-bottom: spacing.$size-regular !default;
+$form-check-margin-bottom: sizing.$size-regular !default;
 
 $form-check-input-color: forms.$input-border-color !default;
 $form-check-input-bg: transparent !default;
@@ -39,7 +39,7 @@ $form-check-input-indeterminate-border-color: $form-check-input-indeterminate-co
 $form-check-input-indeterminate-bg-icon: 2039 !default;
 $form-check-input-indeterminate-bg-image: url('#{icons.get-colored-svg-url($form-check-input-indeterminate-bg-icon, $form-check-input-indeterminate-color)}') !default;
 
-$form-check-inline-margin-end: spacing.$size-large !default;
+$form-check-inline-margin-end: sizing.$size-large !default;
 
 $form-check-label-cursor: pointer !default;
 $form-check-label-color: forms.$form-label-color !default;
@@ -47,8 +47,8 @@ $form-check-label-padding-top: (
     $form-check-input-width + sizing-fn.px-to-rem($form-check-input-border-width) -
       type.$line-height-base
   ) * 0.5 !default;
-$form-check-label-padding-x: spacing.$size-mini !default;
+$form-check-label-padding-x: sizing.$size-mini !default;
 $form-check-label-padding-start: $form-check-label-padding-top 0 0 $form-check-label-padding-x !default;
 $form-check-label-padding-end: $form-check-label-padding-top $form-check-label-padding-x 0 0 !default;
 
-$form-check-feedback-margin-top: spacing.$size-small-regular !default;
+$form-check-feedback-margin-top: sizing.$size-small-regular !default;

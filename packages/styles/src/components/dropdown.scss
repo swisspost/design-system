@@ -6,7 +6,7 @@
 @use './../functions/icons';
 @use './../variables/color';
 @use './../variables/commons';
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../placeholders/dropdown';
 @use './../mixins/utilities';
 
@@ -36,8 +36,8 @@
     .dropdown-item {
       &:hover,
       &:focus-visible {
-        outline: spacing.$size-line solid Highlight;
-        outline-offset: -(spacing.$size-line);
+        outline: sizing.$size-line solid Highlight;
+        outline-offset: -(sizing.$size-line);
       }
     }
   }

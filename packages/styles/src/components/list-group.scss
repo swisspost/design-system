@@ -7,7 +7,7 @@
 @use './../themes/bootstrap/list-group' as bl;
 
 @use './../variables/color';
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../variables/type';
 @use './../variables/commons';
 @use './../variables/animation';
@@ -19,8 +19,8 @@
   background-color: transparent;
 
   &-box {
-    padding-top: map.get(spacing.$post-sizes, 'mini');
-    padding-bottom: map.get(spacing.$post-sizes, 'mini');
+    padding-top: map.get(sizing.$post-sizes, 'mini');
+    padding-bottom: map.get(sizing.$post-sizes, 'mini');
     box-shadow: commons.$box-shadow;
   }
 }
@@ -67,8 +67,8 @@
   align-content: center;
   align-items: center;
   justify-content: space-between;
-  padding-right: map.get(spacing.$post-sizes, 'small-regular');
-  padding-left: map.get(spacing.$post-sizes, 'small-regular');
+  padding-right: map.get(sizing.$post-sizes, 'small-regular');
+  padding-left: map.get(sizing.$post-sizes, 'small-regular');
   background-color: transparent;
   font-weight: normal;
   text-decoration: none;
@@ -77,22 +77,22 @@
   border-left: 0;
 
   @include media-breakpoint-up(rg) {
-    padding-left: map.get(spacing.$post-sizes, 'large');
+    padding-left: map.get(sizing.$post-sizes, 'large');
 
     &-minimal {
       padding-left: 0;
     }
 
     &-transparent {
-      padding-right: map.get(spacing.$post-sizes, 'mini');
-      padding-left: map.get(spacing.$post-sizes, 'regular');
+      padding-right: map.get(sizing.$post-sizes, 'mini');
+      padding-left: map.get(sizing.$post-sizes, 'regular');
     }
   }
 
   @include media-breakpoint-up(lg) {
     &-big {
-      padding: map.get(spacing.$post-sizes, 'small-large') map.get(spacing.$post-sizes, 'mini')
-        map.get(spacing.$post-sizes, 'small-large') map.get(spacing.$post-sizes, 'regular');
+      padding: map.get(sizing.$post-sizes, 'small-large') map.get(sizing.$post-sizes, 'mini')
+        map.get(sizing.$post-sizes, 'small-large') map.get(sizing.$post-sizes, 'regular');
     }
   }
 
@@ -102,17 +102,17 @@
 
   &-left-icon {
     justify-content: flex-start;
-    padding-left: map.get(spacing.$post-sizes, 'mini');
+    padding-left: map.get(sizing.$post-sizes, 'mini');
 
     @include media-breakpoint-up(rg) {
-      padding-left: map.get(spacing.$post-sizes, 'small-regular');
+      padding-left: map.get(sizing.$post-sizes, 'small-regular');
     }
 
     .list-group-item-svg {
-      margin-right: map.get(spacing.$post-sizes, 'mini');
+      margin-right: map.get(sizing.$post-sizes, 'mini');
 
       @include media-breakpoint-up(rg) {
-        margin-right: map.get(spacing.$post-sizes, 'small-regular');
+        margin-right: map.get(sizing.$post-sizes, 'small-regular');
       }
     }
   }
@@ -131,7 +131,7 @@
     background-color: transparent;
 
     @include media-breakpoint-up(rg) {
-      padding-left: map.get(spacing.$post-sizes, 'regular');
+      padding-left: map.get(sizing.$post-sizes, 'regular');
     }
 
     &:hover {

@@ -1,5 +1,5 @@
 @use './../../variables/color';
-@use './../../variables/spacing';
+@use './../../variables/sizing';
 @use './../../variables/commons';
 
 @use './../../mixins/icons' as icon-mixin;
@@ -10,7 +10,7 @@
   overflow-y: visible;
 
   .dropdown-item {
-    padding: spacing.$size-small-regular spacing.$size-large;
+    padding: sizing.$size-small-regular sizing.$size-large;
   }
 
   .language-menu {

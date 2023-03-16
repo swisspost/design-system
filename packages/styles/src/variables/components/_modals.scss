@@ -1,7 +1,7 @@
 @use './../color';
 @use './../type';
 @use './../commons';
-@use './../spacing';
+@use './../sizing';
 
 @use './../../functions/sizing' as sizing-fn;
 
@@ -10,18 +10,18 @@
 // Modals
 
 // Padding applied to the modal footer
-$modal-inner-padding: spacing.$size-regular !default;
+$modal-inner-padding: sizing.$size-regular !default;
 
 // Padding applied to the modal body
-$modal-body-padding-y: spacing.$size-mini !default;
-$modal-body-padding-x: spacing.$size-big !default;
+$modal-body-padding-y: sizing.$size-mini !default;
+$modal-body-padding-x: sizing.$size-big !default;
 $modal-body-padding: $modal-body-padding-y $modal-body-padding-x !default;
 
 // Margin between elements in footer, must be lower than or equal to 2 * $modal-inner-padding
 $modal-footer-margin-between: 0.5rem !default;
 
-$modal-dialog-margin: spacing.$size-small-regular !default;
-$modal-dialog-margin-y-sm-up: spacing.$size-big !default;
+$modal-dialog-margin: sizing.$size-small-regular !default;
+$modal-dialog-margin-y-sm-up: sizing.$size-big !default;
 
 $modal-title-line-height: type.$line-height-base !default;
 
@@ -43,7 +43,7 @@ $modal-header-border-color: commons.$border-color !default;
 $modal-footer-border-color: $modal-header-border-color !default;
 $modal-header-border-width: $modal-content-border-width !default;
 $modal-footer-border-width: $modal-header-border-width !default;
-$modal-header-padding-y: spacing.$size-large !default;
+$modal-header-padding-y: sizing.$size-large !default;
 $modal-header-padding-x: $modal-body-padding-x !default;
 $modal-header-padding: $modal-header-padding-y $modal-header-padding-x !default; // Keep this for backwards compatibility
 

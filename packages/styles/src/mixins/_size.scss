@@ -3,35 +3,35 @@
 
 @use './../themes/bootstrap/core' as *;
 
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../functions/utilities';
 
 @mixin bezel-small() {
-  padding: map.get(spacing.$post-sizes, 'mini') map.get(spacing.$post-sizes, 'regular');
+  padding: map.get(sizing.$post-sizes, 'mini') map.get(sizing.$post-sizes, 'regular');
 }
 
 @mixin bezel-small-regular() {
-  padding: map.get(spacing.$post-sizes, 'small-regular') map.get(spacing.$post-sizes, 'regular');
+  padding: map.get(sizing.$post-sizes, 'small-regular') map.get(sizing.$post-sizes, 'regular');
 }
 
 @mixin bezel-regular() {
-  padding: map.get(spacing.$post-sizes, 'regular');
+  padding: map.get(sizing.$post-sizes, 'regular');
 }
 
 @mixin bezel-bigger-regular() {
-  padding: map.get(spacing.$post-sizes, 'small-large');
+  padding: map.get(sizing.$post-sizes, 'small-large');
 }
 
 @mixin bezel-medium() {
-  padding: map.get(spacing.$post-sizes, 'small-large') map.get(spacing.$post-sizes, 'large');
+  padding: map.get(sizing.$post-sizes, 'small-large') map.get(sizing.$post-sizes, 'large');
 }
 
 @mixin bezel-large() {
-  padding: map.get(spacing.$post-sizes, 'big');
+  padding: map.get(sizing.$post-sizes, 'big');
 }
 
 @mixin bezel-big() {
-  padding: map.get(spacing.$post-sizes, 'bigger-big');
+  padding: map.get(sizing.$post-sizes, 'bigger-big');
 }
 
 /**
@@ -41,7 +41,7 @@
  * @param $template Value template string used for shorthand declarations like padding ("$value auto" = padding: 1rem auto)
  */
 @mixin responsive-size($curve-size: 'regular', $property-key: 'padding', $template: '$value') {
-  $curve: map.get(spacing.$size-curves, $curve-size);
+  $curve: map.get(sizing.$size-curves, $curve-size);
 
   @if ($curve) {
     $cache: '';

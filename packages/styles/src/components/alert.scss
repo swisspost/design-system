@@ -8,7 +8,7 @@
 @use './../variables/color';
 @use './../variables/commons';
 @use './../variables/type';
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../variables/grid';
 @use './../variables/breakpoints';
 @use './../variables/components/alert';
@@ -132,7 +132,7 @@
   flex-wrap: nowrap;
   align-items: center;
   justify-content: space-between;
-  gap: spacing.$size-regular;
+  gap: sizing.$size-regular;
 
   @include media-breakpoint-down(lg) {
     flex-direction: column;
@@ -168,7 +168,7 @@
 
   .alert-buttons {
     display: flex;
-    gap: spacing.$size-regular;
+    gap: sizing.$size-regular;
     justify-self: flex-end;
     flex: 1 1 auto;
     flex-direction: row-reverse;
@@ -202,7 +202,7 @@
 
     .btn-close {
       bottom: auto;
-      padding: spacing.$spacer * 0.5;
+      padding: sizing.$spacer * 0.5;
     }
 
     .alert-heading {

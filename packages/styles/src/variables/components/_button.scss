@@ -3,7 +3,7 @@
 @use './../color';
 @use './../type';
 @use './../commons';
-@use './../spacing';
+@use './../sizing';
 @use './../animation';
 
 @use './../../functions/sizing' as sizing-fn;
@@ -14,20 +14,20 @@
 $input-btn-border-width: commons.$border-thick !default;
 $input-btn-border-width-rem: sizing-fn.px-to-rem($input-btn-border-width);
 
-$input-btn-padding-y: spacing.$size-regular - $input-btn-border-width-rem !default;
-$input-btn-padding-x: spacing.$size-small-large - $input-btn-border-width-rem !default;
+$input-btn-padding-y: sizing.$size-regular - $input-btn-border-width-rem !default;
+$input-btn-padding-x: sizing.$size-small-large - $input-btn-border-width-rem !default;
 $input-btn-line-height: type.$line-height-base !default;
 
-$input-btn-padding-y-sm: spacing.$size-mini - $input-btn-border-width-rem !default;
-$input-btn-padding-x-sm: spacing.$size-regular - $input-btn-border-width-rem !default;
+$input-btn-padding-y-sm: sizing.$size-mini - $input-btn-border-width-rem !default;
+$input-btn-padding-x-sm: sizing.$size-regular - $input-btn-border-width-rem !default;
 $input-btn-line-height-sm: type.$line-height-small !default;
 
-$input-btn-padding-y-rg: spacing.$size-small-regular - $input-btn-border-width-rem !default;
-$input-btn-padding-x-rg: spacing.$size-regular - $input-btn-border-width-rem !default;
+$input-btn-padding-y-rg: sizing.$size-small-regular - $input-btn-border-width-rem !default;
+$input-btn-padding-x-rg: sizing.$size-regular - $input-btn-border-width-rem !default;
 $input-btn-line-height-rg: type.$line-height-regular !default;
 
-$input-btn-padding-y-lg: spacing.$size-small-large - $input-btn-border-width-rem !default;
-$input-btn-padding-x-lg: spacing.$size-large - $input-btn-border-width-rem !default;
+$input-btn-padding-y-lg: sizing.$size-small-large - $input-btn-border-width-rem !default;
+$input-btn-padding-x-lg: sizing.$size-large - $input-btn-border-width-rem !default;
 $input-btn-line-height-lg: type.$line-height-large !default;
 
 $input-btn-focus-width: 0.125rem !default; // 2px
@@ -38,17 +38,17 @@ $input-btn-focus-box-shadow: 0 0 0 $input-btn-focus-width $input-btn-focus-color
 $btn-animation-distance-factor: 0.5 !default;
 
 // sm
-$btn-padding-y-sm: spacing.$size-mini !default;
-$btn-padding-x-sm: spacing.$size-regular !default;
-$btn-animation-distance-sm: spacing.$size-mini !default;
+$btn-padding-y-sm: sizing.$size-mini !default;
+$btn-padding-x-sm: sizing.$size-regular !default;
+$btn-animation-distance-sm: sizing.$size-mini !default;
 // Design System only
 $btn-height-sm: 2rem;
 $btn-font-size-sm: type.$font-size-tiny !default;
-$btn-icon-size-sm: spacing.$size-regular !default;
+$btn-icon-size-sm: sizing.$size-regular !default;
 
 // rg
-$btn-padding-y-rg: spacing.$size-small-regular !default;
-$btn-padding-x-rg: spacing.$size-large !default;
+$btn-padding-y-rg: sizing.$size-small-regular !default;
+$btn-padding-x-rg: sizing.$size-large !default;
 $btn-animation-distance-rg: 0.625rem !default;
 // Design System only
 $btn-height-rg: 2.5rem;
@@ -56,22 +56,22 @@ $btn-font-size-rg: type.$font-size-regular !default;
 $btn-icon-size-rg: 1.125rem !default;
 
 // md
-$btn-padding-y-md: spacing.$size-regular !default;
-$btn-padding-x-md: spacing.$size-big !default;
-$btn-animation-distance-md: spacing.$size-small-regular !default;
+$btn-padding-y-md: sizing.$size-regular !default;
+$btn-padding-x-md: sizing.$size-big !default;
+$btn-animation-distance-md: sizing.$size-small-regular !default;
 // Design System only
 $btn-height-md: 3rem;
 $btn-font-size-md: type.$font-size-regular !default;
-$btn-icon-size-md: spacing.$size-small-large !default;
+$btn-icon-size-md: sizing.$size-small-large !default;
 
 // lg
-$btn-padding-y-lg: spacing.$size-small-large !default;
-$btn-padding-x-lg: spacing.$size-bigger-big !default;
-$btn-animation-distance-lg: spacing.$size-regular !default;
+$btn-padding-y-lg: sizing.$size-small-large !default;
+$btn-padding-x-lg: sizing.$size-bigger-big !default;
+$btn-animation-distance-lg: sizing.$size-regular !default;
 // Design System only
 $btn-height-lg: 3.5rem;
 $btn-font-size-lg: type.$font-size-bigger-regular !default;
-$btn-icon-size-lg: spacing.$size-large !default;
+$btn-icon-size-lg: sizing.$size-large !default;
 
 // Available button sizes except the default, which is md
 $btn-non-default-sizes: sm, rg, lg !default;

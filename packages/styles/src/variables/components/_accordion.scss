@@ -1,31 +1,31 @@
-@use './../spacing';
+@use './../sizing';
 @use './../type';
 @use './../color';
 @use './../commons';
 @use './../animation';
 @use './../../functions/icons';
 
-$accordion-padding-x: spacing.$size-regular !default;
+$accordion-padding-x: sizing.$size-regular !default;
 $accordion-border-color: color.$gray-10 !default;
 $accordion-border-width: commons.$border-thick !default;
 $accordion-border-radius: 0 !default;
 $accordion-font-curve: 'regular';
 
-$accordion-body-padding-top: spacing.$size-small-regular !default;
-$accordion-body-padding-bottom: spacing.$size-bigger-big !default;
+$accordion-body-padding-top: sizing.$size-small-regular !default;
+$accordion-body-padding-bottom: sizing.$size-bigger-big !default;
 
-$accordion-body-heading-margin-top: spacing.$size-bigger-big;
+$accordion-body-heading-margin-top: sizing.$size-bigger-big;
 $accordion-body-heading-font-weight: type.$font-weight-bold;
 
-$accordion-button-padding-y: spacing.$size-regular !default;
+$accordion-button-padding-y: sizing.$size-regular !default;
 $accordion-button-color: color.$black !default;
 $accordion-button-active-bg: transparent !default;
 $accordion-button-active-color: color.$black !default;
 $accordion-button-hover-color: color.$black !default;
 $accordion-button-font-weight: type.$font-weight-bold !default;
-$accordion-button-line-height: spacing.$size-large !default;
+$accordion-button-line-height: sizing.$size-large !default;
 
-$accordion-icon-width: spacing.$size-large !default;
+$accordion-icon-width: sizing.$size-large !default;
 $accordion-icon-transform: rotate(180deg) !default;
 $accordion-icon-transition: transform animation.$transition-base-timing;
 

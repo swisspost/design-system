@@ -3,7 +3,7 @@
  */
 
 @use './../color';
-@use './../spacing';
+@use './../sizing';
 @use './../type';
 @use './button';
 @use './../../functions/icons';
@@ -19,26 +19,26 @@ $datatable-sort-desc-icon: url($_chevron-down);
 $datatable-sort-unset-icon: url($_chevron-double);
 
 $datatable-cell-bg: color.$gray-background-light;
-$datatable-cell-padding-x: spacing.$size-regular;
-$datatable-cell-padding-y: spacing.$size-mini;
+$datatable-cell-padding-x: sizing.$size-regular;
+$datatable-cell-padding-y: sizing.$size-mini;
 $datatable-cell-padding: $datatable-cell-padding-y $datatable-cell-padding-x;
-$datatable-cell-margin: spacing.$size-line;
+$datatable-cell-margin: sizing.$size-line;
 
 $datatable-inverted-cell-bg: color.$white;
 
-$datatable-flush-border-width: spacing.$size-line;
+$datatable-flush-border-width: sizing.$size-line;
 $datatable-flush-border-color: color.$gray-10;
 $datatable-flush-border: $datatable-flush-border-width solid $datatable-flush-border-color;
 
-$datatable-footer-padding-x: spacing.$size-regular;
+$datatable-footer-padding-x: sizing.$size-regular;
 $datatable-footer-padding-y: button.$input-btn-focus-width;
 $datatable-footer-padding: $datatable-footer-padding-y $datatable-footer-padding-x;
 
-$datatable-footer-separator-width: spacing.$size-line;
+$datatable-footer-separator-width: sizing.$size-line;
 $datatable-footer-separator-color: color.$gray-10;
 $datatable-footer-separator: $datatable-flush-border-width solid $datatable-flush-border-color;
 
-$datatable-row-count-input-width: spacing.$size-bigger-giant;
+$datatable-row-count-input-width: sizing.$size-bigger-giant;
 
 $datatable-button-margin: button.$btn-focus-width;
 $datatable-button-width: calc(100% - 2 * #{$datatable-button-margin});
@@ -48,6 +48,6 @@ $datatable-button-focus-shadow: button.$btn-focus-box-shadow;
 $_pencil: icons.get-colored-svg-url('3193', color.$gray-80);
 $datatable-editable-icon: url($_pencil);
 
-$datatable-progressbar-height: spacing.$size-micro;
+$datatable-progressbar-height: sizing.$size-micro;
 $datatable-progressbar-backgroundcolor: color.$gray-10;
 $datatable-progressbar-activecolor: color.$yellow;

@@ -8,7 +8,7 @@
 @use './../variables/color';
 @use './../variables/commons';
 @use './../variables/type';
-@use './../variables/spacing';
+@use './../variables/sizing';
 @use './../mixins/utilities';
 
 .carousel {
@@ -20,8 +20,8 @@
   @include utilities.high-contrast-mode() {
     &:focus-visible {
       border-radius: commons.$border-radius;
-      outline: spacing.$size-line solid highlight;
-      outline-offset: spacing.$size-micro;
+      outline: sizing.$size-line solid highlight;
+      outline-offset: sizing.$size-micro;
       box-shadow: none;
     }
   }
@@ -120,7 +120,7 @@
 
 .carousel-indicators {
   right: 2%;
-  bottom: spacing.$size-huge;
+  bottom: sizing.$size-huge;
   left: inherit;
   margin: 0;
   float: right;
@@ -156,7 +156,7 @@
   background-color: transparent;
 
   &:not(:last-child) {
-    margin-right: spacing.$size-regular;
+    margin-right: sizing.$size-regular;
   }
 }
 
