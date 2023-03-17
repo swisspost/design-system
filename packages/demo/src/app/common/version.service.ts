@@ -65,11 +65,12 @@ export class VersionService {
   }
 
   public get versions(): Observable<PackageVersion[]> {
-    return this.http.get<PackageVersionDetails[]>('assets/versions.json').pipe(
-      tap(versions => console.log(versions)),
-      map(versions => versions.map(v => new PackageVersion(v))),
-      shareReplay(1),
-    );
+    return this.http
+      .get<PackageVersionDetails[]>('https://design-system.post.ch/assets/versions.json')
+      .pipe(
+        map(versions => versions.map(v => new PackageVersion(v))),
+        shareReplay(1),
+      );
   }
 
   constructor(private http: HttpClient) {}
