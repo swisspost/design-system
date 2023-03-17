@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Added "Get Started" documentation pages for our released packages.
+Added "Get Started" documentation pages for all packages.
