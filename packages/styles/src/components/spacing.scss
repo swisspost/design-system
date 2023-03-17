@@ -10,12 +10,194 @@
 
 // Post spacing variables
 :root {
-  @each $space, $length in spacing.$spacings {
-    --post-space-#{$space}: #{$length};
+  @each $size, $length in spacing.$spacers {
+    --post-size-#{$size}: #{$length};
   }
 
-  @each $space, $length in spacing.$negative-spacings {
-    --post-space-#{$space}: #{$length};
+  @each $size, $length in spacing.$negative-spacers {
+    --post-size-#{$size}: #{$length};
   }
 }
 
+$utilities: map-merge(
+  $utilities,
+  (
+    // Margin utilities
+    'margin':
+      map-merge(
+        map-get($utilities, 'margin'),
+        (
+          values: spacing.$auto-spacers,
+        )
+      ),
+    'margin-y':
+      map-merge(
+        map-get($utilities, 'margin-y'),
+        (
+          property: margin-block,
+          values: spacing.$auto-spacers,
+        )
+      ),
+    'margin-x':
+      map-merge(
+        map-get($utilities, 'margin-x'),
+        (
+          property: margin-inline,
+          values: spacing.$auto-spacers,
+        )
+      ),
+    'margin-top':
+      map-merge(
+        map-get($utilities, 'margin-top'),
+        (
+          property: margin-top,
+          values: spacing.$auto-spacers,
+        )
+      ),
+    'margin-bottom':
+      map-merge(
+        map-get($utilities, 'margin-bottom'),
+        (
+          property: margin-bottom,
+          values: spacing.$auto-spacers,
+        )
+      ),
+    'margin-start':
+      map-merge(
+        map-get($utilities, 'margin-start'),
+        (
+          property: margin-left,
+          values: spacing.$auto-spacers,
+        )
+      ),
+    'margin-end':
+      map-merge(
+        map-get($utilities, 'margin-end'),
+        (
+          property: margin-right,
+          values: spacing.$auto-spacers,
+        )
+      ),
+    // Negative margin utilities
+    'negative-margin':
+      map-merge(
+        map-get($utilities, 'negative-margin'),
+        (
+          values: spacing.$negative-spacers,
+        )
+      ),
+    'negative-margin-y':
+      map-merge(
+        map-get($utilities, 'negative-margin-y'),
+        (
+          property: margin-block,
+          values: spacing.$negative-spacers,
+        )
+      ),
+    'negative-margin-x':
+      map-merge(
+        map-get($utilities, 'negative-margin-x'),
+        (
+          property: margin-inline,
+          values: spacing.$negative-spacers,
+        )
+      ),
+    'negative-margin-top':
+      map-merge(
+        map-get($utilities, 'negative-margin-top'),
+        (
+          property: margin-top,
+          values: spacing.$negative-spacers,
+        )
+      ),
+    'negative-margin-bottom':
+      map-merge(
+        map-get($utilities, 'negative-margin-bottom'),
+        (
+          property: margin-bottom,
+          values: spacing.$negative-spacers,
+        )
+      ),
+    'negative-margin-start':
+      map-merge(
+        map-get($utilities, 'negative-margin-start'),
+        (
+          property: margin-left,
+          values: spacing.$negative-spacers,
+        )
+      ),
+    'negative-margin-end':
+      map-merge(
+        map-get($utilities, 'negative-margin-end'),
+        (
+          property: margin-right,
+          values: spacing.$negative-spacers,
+        )
+      ),
+    // Padding utilities
+    'padding':
+      map-merge(
+        map-get($utilities, 'padding'),
+        (
+          values: spacing.$spacers,
+        )
+      ),
+    'padding-y':
+      map-merge(
+        map-get($utilities, 'padding-y'),
+        (
+          property: padding-block,
+          values: spacing.$spacers,
+        )
+      ),
+    'padding-x':
+      map-merge(
+        map-get($utilities, 'padding-x'),
+        (
+          property: padding-inline,
+          values: spacing.$spacers,
+        )
+      ),
+    'padding-top':
+      map-merge(
+        map-get($utilities, 'padding-top'),
+        (
+          property: padding-top,
+          values: spacing.$spacers,
+        )
+      ),
+    'padding-bottom':
+      map-merge(
+        map-get($utilities, 'padding-bottom'),
+        (
+          property: padding-bottom,
+          values: spacing.$spacers,
+        )
+      ),
+    'padding-start':
+      map-merge(
+        map-get($utilities, 'padding-start'),
+        (
+          property: padding-left,
+          values: spacing.$spacers,
+        )
+      ),
+    'padding-end':
+      map-merge(
+        map-get($utilities, 'padding-end'),
+        (
+          property: padding-right,
+          values: spacing.$spacers,
+        )
+      ),
+    // Gap utility
+    'gap':
+      map-merge(
+        map-get($utilities, 'gap'),
+        (
+          property: gap,
+          values: spacing.$spacers,
+        )
+      )
+  )
+);

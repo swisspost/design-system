@@ -6,69 +6,52 @@
 // variables. Mostly focused on spacing.
 // You can add more entries to the $spacers map, should you need more variation.
 
-// Bootstrap
-// ----------------------------------------
+$size-0: 0 !default;
+$size-1: 0.0625rem !default; // 1px
+$size-2: 0.125rem !default; // 2px
+$size-4: 0.25rem !default; // 4px
+$size-8: 0.5rem !default; // 8px
+$size-16: 1rem !default; // 16px
+$size-24: 1.5rem !default; // 24px
+$size-32: 2rem !default; // 32px
+$size-40: 2.5rem !default; // 40px
+$size-48: 3rem !default; // 48px
+$size-64: 4rem !default; // 64px
+$size-80: 5rem !default; // 80px
+$size-96: 6rem !default; // 96px
+$size-112: 7rem !default; // 112px
 
-$spacer: 1rem !default;
+// override bootstrap spacers
+$spacer: $size-16;
 $spacers: (
-  0: 0,
-  1: $spacer * 0.25,
-  2: $spacer * 0.5,
-  3: $spacer,
-  4: $spacer * 1.5,
-  5: $spacer * 3,
-) !default;
-
-// Post
-// ----------------------------------------
-
-$space-0: 0 !default;
-$space-1: 1px !default;
-$space-2: 2px !default;
-$space-4: 4px !default;
-$space-8: 8px !default;
-$space-16: 16px !default;
-$space-24: 24px !default;
-$space-32: 32px !default;
-$space-40: 40px !default;
-$space-48: 48px !default;
-$space-64: 64px !default;
-$space-80: 80px !default;
-$space-96: 96px !default;
-$space-112: 112px !default;
-
-$spacings: () !default;
-$spacings: map-merge(
-  (
-    0: $space-0,
-    1: $space-1,
-    2: $space-2,
-    4: $space-4,
-    8: $space-8,
-    16: $space-16,
-    24: $space-24,
-    32: $space-32,
-    40: $space-40,
-    48: $space-48,
-    64: $space-64,
-    80: $space-80,
-    96: $space-96,
-    112: $space-112,
-  ),
-  $spacings
+  0: $size-0,
+  1: $size-1,
+  2: $size-2,
+  4: $size-4,
+  8: $size-8,
+  16: $size-16,
+  24: $size-24,
+  32: $size-32,
+  40: $size-40,
+  48: $size-48,
+  64: $size-64,
+  80: $size-80,
+  96: $size-96,
+  112: $size-112,
 );
 
-$auto-spacings: map-merge(
-  $spacings,
+// create auto-spacers
+$auto-spacers: map-merge(
+  $spacers,
   (
     auto: auto,
   )
 );
 
-$negative-spacings: ();
-
-@each $space, $length in $spacings {
+// override bootstrap negative-spacers
+$negative-spacers: ();
+@each $space, $length in $spacers {
   @if $space != 0 {
-    $negative-spacings: map-merge($negative-spacings, (n#{$space}: -$length));
+    $negative-spacers: map-merge($negative-spacers, (n#{$space}: -$length));
   }
 }
