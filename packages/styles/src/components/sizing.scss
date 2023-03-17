@@ -6,6 +6,7 @@
 @use './../variables/breakpoints';
 @use './../mixins/utilities';
 
+// deprecated ↓
 // Post margins, paddings and sizes
 @each $breakpoint in map-keys(breakpoints.$grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
@@ -54,6 +55,7 @@
     }
   }
 }
+// deprecated ↑
 
 // Generate responsive spacing utility classes, a lot of them
 $cache: ();

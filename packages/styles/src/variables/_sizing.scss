@@ -14,8 +14,7 @@ $sizes: map-merge(
   $sizes
 );
 
-// Everything from here to the end of the document is deprecated
-
+// deprecated ↓
 // Post-Sizes
 $size-hair: 1px !default;
 $size-line: 2px !default;
@@ -54,6 +53,7 @@ $post-sizes: map-merge(
   ),
   $post-sizes
 );
+// deprecated ↑
 
 // Abstand Gross, Section
 $size-curve-giant: (
@@ -155,6 +155,7 @@ $size-curves: (
   'tiny': $size-curve-tiny,
 ) !default;
 
+// deprecated ↓
 $responsive-spacing-properties: (
   'm': 'margin',
   'mt': 'margin-top',
@@ -168,3 +169,4 @@ $responsive-spacing-properties: (
   'pl': 'padding-left',
   'gap': 'gap',
 );
+// deprecated ↑

@@ -6,9 +6,8 @@
 @use './../themes/bootstrap/utilities' as *;
 @use './../variables/spacing';
 @use './../variables/breakpoints';
-@use './../functions/utilities' as utility-fn;
 
-// Post spacing variables
+// Define Post spacing variables
 :root {
   @each $size, $length in spacing.$spacers {
     --post-size-#{$size}: #{$length};
@@ -19,6 +18,7 @@
   }
 }
 
+// Update bootstrap utilities
 $utilities: map-merge(
   $utilities,
   (
