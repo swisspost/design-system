@@ -2,4 +2,4 @@
 '@swisspost/internet-header': patch
 ---
 
-Removed search places request filters (pois, address, locality, region) to get an up-to-date results list.
+Updated the places search filter. The search now shows adresses, localities and regions in addition to points of interest like Post Branches, MyPost 24 and other Post services.
