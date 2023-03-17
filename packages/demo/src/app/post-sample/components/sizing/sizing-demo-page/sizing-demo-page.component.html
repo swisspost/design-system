@@ -1,23 +1,8 @@
 <div class="heading py-5">
   <h1 class="bold font-curve-large">Sizing</h1>
-  <h2 class="font-curve-medium">Using bootstrap 4.5</h2>
-  <a
-    class="btn btn-primary btn-sm btn-animated"
-    href="https://getbootstrap.com/docs/4.1/utilities/sizing/"
-    target="_blank"
-    rel="noopener"
-  >
-    <span>Bootstrap Sizing</span>
-  </a>
-  &nbsp;
-  <a
-    class="btn btn-primary btn-sm btn-animated"
-    href="https://getbootstrap.com/docs/4.1/utilities/spacing/"
-    target="_blank"
-    rel="noopener"
-  >
-    <span>Bootstrap Spacing</span>
-  </a>
+  <app-dependency-link
+    [documentationPaths]="{ sizing: 'utilities/sizing', spacing: 'utilities/spacing' }"
+  ></app-dependency-link>
 </div>
 
 <div class="alert alert-info">

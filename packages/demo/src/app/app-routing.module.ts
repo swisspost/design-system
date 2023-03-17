@@ -60,7 +60,7 @@ const routes: Routes = [
     path: "bootstrap-samples",
     children: [
       { path: "accordion", component: AccordionDemoPageComponent },
-      { path: "alert", component: AlertDemoPageComponent },
+      { path: "alerts", component: AlertDemoPageComponent },
       { path: "background", component: BackgroundDemoPageComponent },
       { path: "badge", component: BadgeDemoPageComponent },
       { path: "blockquotes", component: BlockquotesDemoPageComponent },
@@ -109,7 +109,7 @@ const routes: Routes = [
       },
       { path: "timepicker", component: NgbTimepickerDemoPageComponent },
       { path: "tooltip", component: NgbTooltipDemoPageComponent },
-      { path: "typehead", component: NgbTypeaheadDemoPageComponent },
+      { path: "typeahead", component: NgbTypeaheadDemoPageComponent },
     ],
   },
   {
@@ -121,7 +121,7 @@ const routes: Routes = [
       { path: "feedback", component: FeedbackDemoPageComponent },
       { path: "spinner", component: SpinnerDemoPageComponent },
       { path: "sizing", component: SizingDemoPageComponent },
-      { path: "post-cards", component: PostCardsDemoPageComponent },
+      { path: "card", component: PostCardsDemoPageComponent },
       {
         path: "notification-overlay",
         component: NotificationOverlayPageComponent,
