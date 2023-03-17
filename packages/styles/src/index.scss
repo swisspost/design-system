@@ -1,8 +1,7 @@
 @forward './variables/options';
-
 @use './lic/bootstrap-license';
 
+// Layout & Components
 @use './components';
-
 // Portal specific styles
 @use './layouts/portal';

@@ -1,7 +1,10 @@
 @forward './../variables/options';
 
-@use 'base';
+// Configuration
+@use 'utilities';
 
+// Layout & Components
+@use 'base';
 @use 'accordion';
 @use 'alert';
 @use 'badge';
@@ -37,10 +40,14 @@
 @use 'topic-teaser';
 @use 'transitions';
 @use 'type';
-@use 'utilities';
-
 // Imports depending on source order to override bootstrap styles
 @use 'datepicker';
 @use 'dropdown';
 @use 'floating-label';
 @use 'form-feedback';
+
+// Helpers
+@use 'helpers';
+
+// Utilities
+@use 'utilities-api';

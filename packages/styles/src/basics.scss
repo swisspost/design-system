@@ -1,10 +1,18 @@
 @forward './variables/options';
-
 @use './lic/bootstrap-license';
 
+// Configuration
+@use 'components/utilities';
+
+// Layout & Components
 @use 'components/base';
 @use 'components/type';
-@use 'components/utilities';
 @use 'components/sizing';
 @use 'components/spacing';
 @use 'components/grid';
+
+// Helpers
+@use 'components/helpers';
+
+// Utilities
+@use 'components/utilities-api';
