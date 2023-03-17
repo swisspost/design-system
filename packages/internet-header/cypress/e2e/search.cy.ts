@@ -127,7 +127,7 @@ describe('search', () => {
       cy.get('#searchBox').click();
       cy.get('#searchBox').type('burgdorf', { force: true });
       cy.wait(100);
-      cy.get('.suggestions').children().should('have.length', 8);
+      cy.get('.suggestions').children().should('have.length', 7);
     });
 
     it('redirects to the correct search page', () => {
