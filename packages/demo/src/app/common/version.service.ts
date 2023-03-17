@@ -5,7 +5,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import packageJSON from 'package.json';
-import { map, Observable, shareReplay, tap } from 'rxjs';
+import { map, Observable, shareReplay } from 'rxjs';
 
 interface PackageVersionDetails {
   title: string;

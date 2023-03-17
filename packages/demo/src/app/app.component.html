@@ -44,7 +44,7 @@
   </ng-template>
 
   <sp-intranet-header
-    [optionHeaderContent]="versionDropdown"
+    [optionHeaderContent]="(versions$ | async) ? versionDropdown : null"
     siteTitle="Swiss Post Design System"
     languages="en"
     logoUrl="/"
