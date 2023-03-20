@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-demo': patch
+'@swisspost/design-system-styles': patch
 ---
 
-Added deprecation warning for the base64 icons, linking to the `post-icon` component.
+Deprecated the base64 icons defined as CSS backgrounds. This technology is outdated and contributes a large amount to the CSS bloat. The current approach for using icons is the `post-icon` web-component.
