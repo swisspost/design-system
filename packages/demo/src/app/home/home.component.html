@@ -129,12 +129,53 @@
         <p>If your project is currently using the @******/common-web-frontend package, start by <a routerLink="." fragment="v4-to-5">migrating to version 5</a>.</p>
       </div>
 
-      <ol *ngIf="isMigratingAngular; else packagesUpdate" class="bubble-tea">
+      <ol class="bubble-tea">
         <li>
           <h4 class="h5 bold">Package Update 🩺</h4>
-          <ng-container [ngTemplateOutlet]="packagesUpdate"></ng-container>
+          <ol>
+            <li *ngIf="isMigratingAngular">
+              <p>
+                Use
+                <a href="https://update.angular.io/" target="_blank" rel="noopener">
+                  https://update.angular.io/
+                </a>
+                to update Angular to version 15
+              </p>
+            </li>
+            <li>
+              <p>
+                Update Bootstrap to version
+                <a href="https://getbootstrap.com/docs/5.2/migration/#v520" target="_blank" rel="noopener">
+                  5.2.x
+                </a>
+                <ng-container *ngIf="isMigratingAngular">
+                  and ng-bootstrap to version
+                  <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07" target="_blank" rel="noopener">
+                    14.x.x
+                  </a>
+                </ng-container>:
+                <code
+                  appCopyToClipboard
+                  class="d-block mt-1 p-3"
+                  [languages]="['bash']"
+                  [highlight]="'npm install bootstrap@5.2' + (isMigratingAngular ? ' @ng-bootstrap/ng-bootstrap@14' : '')"
+                ></code>
+              </p>
+            </li>
+            <li>
+              <p>
+                Update Design System style package to version 6:
+                <code
+                  appCopyToClipboard
+                  class="d-block mt-1 p-3"
+                  [languages]="['bash']"
+                  highlight="npm install @swisspost/design-system-styles@6"
+                ></code>
+              </p>
+            </li>
+          </ol>
         </li>
-        <li>
+        <li *ngIf="isMigratingAngular">
           <h4 class="h5 bold">Automatic Migration ⚙️</h4>
           <p>
             If you are migrating an Angular application, you can take advantage of our migration schematics.
@@ -171,19 +212,28 @@
                 The markup of the <a href="/#/post-samples/stepper">stepper</a> component has been changed in order to be more accessible.
               </p>
               <ul>
-                <li>The progressbar is hidden</li>
+                <li>
+                  <span *ngIf="isMigratingAngular">⚙️ </span>
+                  The stepper container no longer has an aria-label attribute but contains a hidden header instead
+                </li>
+                <li>
+                  <span *ngIf="isMigratingAngular">⚙️ </span>
+                  The progress bar is hidden and no longer requires a type attribute
+                </li>
+                <li>
+                  <span *ngIf="isMigratingAngular">⚙️ </span>
+                  The stepper has a list role
+                </li>
                 <li>Completed steps require an additional hidden "Completed: " text</li>
-                <li>Incomplete steps should not be links</li>
-                <li>The type attribute on the progressbar is no longer necessary</li>
+                <li>Current and incomplete steps should not be links</li>
               </ul>
             </li>
           </ul>
           <h5 class="h6 bold mt-4">Deprecations</h5>
           <ul>
-            <li>
+            <li *ngIf="isMigratingAngular">
               <h6>
-                ngbButton
-                <span *ngIf="isMigratingAngular">⚙️ </span>
+                ngbButton ⚙️
                 <span class="change-badge bg-danger">breaking</span>
               </h6>
               <p>
@@ -210,51 +260,6 @@
           </ul>
         </li>
       </ol>
-
-      <ng-template #packagesUpdate>
-        <ol>
-          <li *ngIf="isMigratingAngular">
-            <p>
-              Use
-              <a href="https://update.angular.io/" target="_blank" rel="noopener">
-                https://update.angular.io/
-              </a>
-              to update Angular to version 15
-            </p>
-          </li>
-          <li>
-            <p>
-              Update Bootstrap to version
-              <a href="https://getbootstrap.com/docs/5.2/migration/#v520" target="_blank" rel="noopener">
-                5.2.x
-              </a>
-              <ng-container *ngIf="isMigratingAngular">
-                and ng-bootstrap to version
-                <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07" target="_blank" rel="noopener">
-                  14.x.x
-                </a>
-              </ng-container>:
-              <code
-                appCopyToClipboard
-                class="d-block mt-1 p-3"
-                [languages]="['bash']"
-                [highlight]="'npm install bootstrap@5.2' + (isMigratingAngular ? ' @ng-bootstrap/ng-bootstrap@14' : '')"
-              ></code>
-            </p>
-          </li>
-          <li>
-            <p>
-              Update Design System style package to version 6:
-              <code
-                appCopyToClipboard
-                class="d-block mt-1 p-3"
-                [languages]="['bash']"
-                highlight="npm install @swisspost/design-system-styles@6"
-              ></code>
-            </p>
-          </li>
-        </ol>
-      </ng-template>
     </section>
 
     <section id="v4-to-5" class="mb-huge">

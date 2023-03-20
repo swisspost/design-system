@@ -41,7 +41,7 @@ export const getSearchPageUrl = (query: string): string | undefined => {
  * @param maxLength Max. length of result array
  * @returns Array with two resulting arrays
  */
-export const equalizeArrays = <A, B>(arrayA: A[], arrayB: B[], maxLength = 8): [A[], B[]] => {
+export const equalizeArrays = <A, B>(arrayA: A[], arrayB: B[], maxLength = 7): [A[], B[]] => {
   const coveoSliced = arrayA.slice(0, Math.max(maxLength / 2, maxLength - arrayB.length));
   return [coveoSliced, arrayB.slice(0, maxLength - coveoSliced.length)];
 };
