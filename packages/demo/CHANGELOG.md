@@ -1,5 +1,30 @@
 # @swisspost/design-system-demo
 
+## 6.0.0
+
+### Major Changes
+
+- Removed documentation entry for the paragraph as duplicate, it's already documented under Typography (by [@gfellerph](https://github.com/gfellerph) with [#1238](https://github.com/swisspost/design-system/pull/1238))
+
+- Updated the markup for the stepper component in order to improve accessibility. Completed items now require the prefix "Complete" and incomplete steps are no longer links. (by [@gfellerph](https://github.com/gfellerph) with [#1232](https://github.com/swisspost/design-system/pull/1232))
+
+- Major dependency update. The following versions are now supported:
+  - Angular 15
+  - Bootstrap 5.2.3
+  - ng-bootstrap 14 (by [@gfellerph](https://github.com/gfellerph) with [#1210](https://github.com/swisspost/design-system/pull/1210))
+
+### Minor Changes
+
+- Removed deprecated ng-bootstrap Checkbox and Radio buttons and replaced them with Bootstrap button groups. (by [@alizedebray](https://github.com/alizedebray) with [#1199](https://github.com/swisspost/design-system/pull/1199))
+
+- Added a version switch to the header to keep documentation for older versions available. (by [@gfellerph](https://github.com/gfellerph) with [#1241](https://github.com/swisspost/design-system/pull/1241))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.0.0
+  - @swisspost/design-system-intranet-header@4.0.0
+
 ## 5.3.1
 
 ### Patch Changes

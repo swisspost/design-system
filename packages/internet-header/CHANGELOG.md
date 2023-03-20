@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.5.6
+
+### Patch Changes
+
+- Updated the places search filter. The search now shows adresses, localities and regions in addition to points of interest like Post Branches, MyPost 24 and other Post services. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1257](https://github.com/swisspost/design-system/pull/1257))
+
+- Improved the styling for the Internet-Header search input. Text in the input does not overlap the start-search-button anymore. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1257](https://github.com/swisspost/design-system/pull/1257))
+
 ## 1.5.5
 
 ### Patch Changes

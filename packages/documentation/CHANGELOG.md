@@ -1,5 +1,22 @@
 # @swisspost/design-system-documentation
 
+## 1.6.0
+
+### Minor Changes
+
+- Removed deprecated ng-bootstrap Checkbox and Radio buttons and replaced them with Bootstrap button groups. (by [@alizedebray](https://github.com/alizedebray) with [#1199](https://github.com/swisspost/design-system/pull/1199))
+
+- Decoupled the fixed and the action button styles for the alert component. Alerts can now be fixed to bottom without having action buttons and can have action buttons without being fixed to the bottom of the page. (by [@gfellerph](https://github.com/gfellerph) with [#1230](https://github.com/swisspost/design-system/pull/1230))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.2
+  - @swisspost/design-system-styles@6.0.0
+  - @swisspost/internet-header@1.5.6
+  - @swisspost/design-system-components@1.3.2
+  - @swisspost/design-system-components-react@1.0.8
+
 ## 1.5.3
 
 ### Patch Changes
