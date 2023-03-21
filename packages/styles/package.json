@@ -24,7 +24,6 @@
     "build": "npm-run-all --parallel styles:build schematics:build",
     "styles:build": "gulp build",
     "test": "jest --onlyChanged",
-    "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js",
     "clean": "rimraf out-tsc dist/*",
     "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss",
