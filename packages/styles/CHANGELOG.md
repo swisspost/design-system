@@ -1,5 +1,40 @@
 # @swisspost/design-system-styles
 
+## 6.0.0
+
+### Major Changes
+
+- Removed the unused Sass variable `$table-head-bg`. You can use it's value `rgba(var(--post-contrast-color-rgb), 0.6)` directly as an alternative (by [@gfellerph](https://github.com/gfellerph) with [#1240](https://github.com/swisspost/design-system/pull/1240))
+
+- Updated the markup for the stepper component in order to improve accessibility. Completed items now require the prefix "Complete" and incomplete steps are no longer links. (by [@gfellerph](https://github.com/gfellerph) with [#1232](https://github.com/swisspost/design-system/pull/1232))
+
+- Removed deprecated ng-bootstrap Checkbox and Radio buttons and replaced them with Bootstrap button groups. (by [@alizedebray](https://github.com/alizedebray) with [#1199](https://github.com/swisspost/design-system/pull/1199))
+
+- Major dependency update. The following versions are now supported:
+  - Angular 15
+  - Bootstrap 5.2.3
+  - ng-bootstrap 14 (by [@gfellerph](https://github.com/gfellerph) with [#1210](https://github.com/swisspost/design-system/pull/1210))
+
+### Minor Changes
+
+- Decoupled the fixed and the action button styles for the alert component. Alerts can now be fixed to bottom without having action buttons and can have action buttons without being fixed to the bottom of the page. (by [@gfellerph](https://github.com/gfellerph) with [#1230](https://github.com/swisspost/design-system/pull/1230))
+
+### Patch Changes
+
+- Deprecated the `alert-error` and the `alert-notification` variants of the alert component. These variants will be removed in the next major version. (by [@gfellerph](https://github.com/gfellerph) with [#1214](https://github.com/swisspost/design-system/pull/1214))
+
+- Deprecated the current sizing variables in favour of a new naming system that is more consistent with the design in Figma (by [@gfellerph](https://github.com/gfellerph) with [#1251](https://github.com/swisspost/design-system/pull/1251))
+
+- Deprecated the font-weight classes bold, regular and light. (by [@gfellerph](https://github.com/gfellerph) with [#1216](https://github.com/swisspost/design-system/pull/1216))
+
+- Changed the info color to light blue for alerts, notifications and contextual usage (by [@gfellerph](https://github.com/gfellerph) with [#1235](https://github.com/swisspost/design-system/pull/1235))
+
+- Deprecated the text-auto class. It's no longer necessary in combination with background utilities. (by [@gfellerph](https://github.com/gfellerph) with [#1216](https://github.com/swisspost/design-system/pull/1216))
+
+- Deprecated the base64 icons defined as CSS backgrounds. This technology is outdated and contributes a large amount to the CSS bloat. The current approach for using icons is the `post-icon` web-component. (by [@gfellerph](https://github.com/gfellerph) with [#1226](https://github.com/swisspost/design-system/pull/1226))
+
+- Deprecated the post-specific sizing variables (e.g. `$size-hair`, `$size-huge`, etc.) and classes (`.m-hair`, `.mt-sm-micro`, etc.) for all of the following properties: `margin`, `padding`, `line-height`, `height`, `max-height`, `width`, `max-width` and `gap`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1267](https://github.com/swisspost/design-system/pull/1267))
+
 ## 5.4.1
 
 ### Patch Changes
