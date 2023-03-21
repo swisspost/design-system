@@ -168,9 +168,10 @@ export class PostSearch implements HasDropdown, IsFocusable {
       getParcelSuggestion(query, state.localizedConfig.header.search),
     ]);
 
+    this.parcelSuggestion = trackAndTraceInfo;
+
     // Parcel suggestion is more important than any other
     if (trackAndTraceInfo) {
-      this.parcelSuggestion = trackAndTraceInfo;
       this.placeSuggestions = [];
       this.coveoSuggestions = [];
     } else {
