@@ -58,7 +58,7 @@
         }
       },
       "createdAt": "2017-11-10T09:43:19.000Z",
-      "modifiedAt": "2023-01-26T15:08:27.000Z"
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
     },
     {
       "uuid": "8676c2d0-c5fc-11e7-a943-005056a94f4a",
@@ -9295,36 +9295,6 @@
       "modifiedAt": "2021-10-18T11:17:32.000Z"
     },
     {
-      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
-      "id": 539487,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "Mobile Shopping",
-          "Bestellung",
-          "Ordre",
-          "Ordine",
-          "Order"
-        ],
-        "year": "2021"
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:55:20.000Z",
-      "modifiedAt": "2021-10-18T11:24:06.000Z"
-    },
-    {
       "uuid": "88307300-5bef-11eb-9f99-005056873709",
       "id": 539481,
       "type": "picture.pictogram.",
@@ -9352,6 +9322,36 @@
         }
       },
       "createdAt": "2021-01-21T13:49:50.000Z",
+      "modifiedAt": "2021-10-18T11:24:06.000Z"
+    },
+    {
+      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
+      "id": 539487,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "Mobile Shopping",
+          "Bestellung",
+          "Ordre",
+          "Ordine",
+          "Order"
+        ],
+        "year": "2021"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:55:20.000Z",
       "modifiedAt": "2021-10-18T11:24:06.000Z"
     },
     {
@@ -11873,7 +11873,7 @@
         }
       },
       "createdAt": "2021-10-08T13:06:52.000Z",
-      "modifiedAt": "2021-10-18T11:15:41.000Z"
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
     },
     {
       "uuid": "a8752860-2839-11ec-b5ef-005056873709",
@@ -15642,7 +15642,7 @@
         }
       },
       "createdAt": "2022-06-28T05:47:39.000Z",
-      "modifiedAt": "2022-12-13T12:38:40.000Z"
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
     },
     {
       "uuid": "444b1ca0-f6a6-11ec-be17-005056873709",
@@ -18240,6 +18240,429 @@
       },
       "createdAt": "2023-01-18T07:03:11.000Z",
       "modifiedAt": "2023-01-18T07:05:39.000Z"
+    },
+    {
+      "uuid": "02a17b80-bf11-11ed-8a02-005056873709",
+      "id": 674475,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674475/storage/Njc0NDc0LzAvbWFzdGVy",
+        "keywords": [
+          "Wagon",
+          "Bahnwagen",
+          "wagon",
+          "vagoni",
+          "railway waggon"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2498.svg",
+        "basename": "2498",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T06:58:49.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "bf1d2160-bf11-11ed-8a02-005056873709",
+      "id": 674480,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674480/storage/Njc0NDc5LzAvbWFzdGVy",
+        "keywords": [
+          "Wagongruppe",
+          "Groupes de Wagon",
+          "Gruppo vagoni",
+          "Wagongroup"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2499.svg",
+        "basename": "2499",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T07:04:06.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "7c1c2810-bf12-11ed-8a02-005056873709",
+      "id": 674490,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674490/storage/Njc0NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Post Office Config",
+          "Konfigurator",
+          "Post Office Config",
+          "configurateur",
+          "Post Office Config",
+          "configuratore",
+          "Post Office Config",
+          "Configurator"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2500.svg",
+        "basename": "2500",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T07:09:23.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "f2237540-bf12-11ed-8a02-005056873709",
+      "id": 674493,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674493/storage/Njc0NDkyLzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Platform",
+          "Plateforme",
+          "Piattaforma",
+          "Platform"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2501.svg",
+        "basename": "2501",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T07:12:41.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "7b054460-bf13-11ed-8a02-005056873709",
+      "id": 674496,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674496/storage/Njc0NDk1LzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Software",
+          "logiciel",
+          "Software",
+          "Software"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2502.svg",
+        "basename": "2502",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T07:16:30.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "5f58f530-bf14-11ed-8a02-005056873709",
+      "id": 674500,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674500/storage/Njc0NDk5LzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Software",
+          "Révision du logiciel",
+          "Revisione software",
+          "Software audit"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2503.svg",
+        "basename": "2503",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T07:22:53.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "e65a92a0-bf14-11ed-8a02-005056873709",
+      "id": 674503,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674503/storage/Njc0NTAyLzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Software Revision Vorlage",
+          "Modèle de révision logicielle",
+          "Modello di revisione software",
+          "Software audit template"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2504.svg",
+        "basename": "2504",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T07:26:40.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "ef79aaa0-bf15-11ed-8a02-005056873709",
+      "id": 674510,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674510/storage/Njc0NTA5LzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Software Version",
+          "Version du logiciel",
+          "Versione software",
+          "Software version"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2505.svg",
+        "basename": "2505",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T07:34:05.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "6fb8c840-bf16-11ed-8a02-005056873709",
+      "id": 674514,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674514/storage/Njc0NTEzLzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Software Suite",
+          "Suite logicielle",
+          "Suite software",
+          "Software Suite"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2506.svg",
+        "basename": "2506",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T07:37:40.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "3adc9b90-bf18-11ed-8a02-005056873709",
+      "id": 674521,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674521/storage/Njc0NTIwLzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Software Vorlage",
+          "Modèle logiciel",
+          "Modello software",
+          "Software Template"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2507.svg",
+        "basename": "2507",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T07:50:30.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "8dc79121-bf18-11ed-8a02-005056873709",
+      "id": 674524,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674524/storage/Njc0NTIzLzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Software Version Vorlage",
+          "Modèle de version du logiciel",
+          "Modello versione software",
+          "Software Version Template"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2508.svg",
+        "basename": "2508",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T07:52:49.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "a8030050-bf19-11ed-8a02-005056873709",
+      "id": 674527,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674527/storage/Njc0NTI2LzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Unpublizierte Software",
+          "Logiciels non publiés",
+          "Software non pubblicato",
+          "Unpublished Software"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2509.svg",
+        "basename": "2509",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T08:00:43.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "107ebe34-bf1a-11ed-8a02-005056873709",
+      "id": 674532,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674532/storage/Njc0NTMxLzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Unpublizierte Software Suite",
+          "Suite logicielle non publiée",
+          "Suite software non pubblicata",
+          "Unpublished Software Suite"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2510.svg",
+        "basename": "2510",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T08:03:38.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
+    },
+    {
+      "uuid": "71a902b0-bf1a-11ed-8a02-005056873709",
+      "id": 674538,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674538/storage/Njc0NTM3LzAvbWFzdGVy",
+        "keywords": [
+          "WCM",
+          "Vorlage",
+          "Modèle",
+          "Modello",
+          "Template"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2511.svg",
+        "basename": "2511",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-10T08:06:21.000Z",
+      "modifiedAt": "2023-03-14T15:26:33.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -28819,11 +29242,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-03-07T12:09:41.093Z",
+  "created": "2023-03-21T13:24:16.674Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 828
+    "success": 842
   },
   "version": "1.0.1"
 }
