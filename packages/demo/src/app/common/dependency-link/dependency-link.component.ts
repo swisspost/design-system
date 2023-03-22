@@ -18,7 +18,6 @@ export class DependencyLinkComponent implements OnDestroy {
   dependencyVersion: string;
   documentationBaseUrl: string;
   urlChangeSubscription: Subscription;
-  currentVersion$: Subscription;
 
   constructor(private route: ActivatedRoute, private versionService: VersionService) {
     this.urlChangeSubscription = this.route.url.subscribe(() => {
@@ -43,6 +42,5 @@ export class DependencyLinkComponent implements OnDestroy {
 
   ngOnDestroy() {
     this.urlChangeSubscription.unsubscribe();
-    this.currentVersion$.unsubscribe();
   }
 }
