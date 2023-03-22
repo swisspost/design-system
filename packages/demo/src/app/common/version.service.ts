@@ -73,5 +73,9 @@ export class VersionService {
       );
   }
 
+  public get localVersion() {
+    return new PackageVersion({ ...packageJSON, url: '/', title: 'Local version' });
+  }
+
   constructor(private http: HttpClient) {}
 }
