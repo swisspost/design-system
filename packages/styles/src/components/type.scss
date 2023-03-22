@@ -16,21 +16,6 @@
 @use './../placeholders/text';
 @use './../mixins/type' as type-mx;
 
-h1,
-.h1,
-h2,
-.h2,
-h3,
-.h3,
-h4,
-.h4,
-h5,
-.h5,
-h6,
-.h6 {
-  font-weight: type.$font-weight-bold;
-}
-
 h6,
 .h6,
 .font-curve-tiny {
