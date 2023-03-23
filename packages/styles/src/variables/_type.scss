@@ -40,17 +40,21 @@ $font-size-40: sizing.px-to-rem(40px);
 $font-size-48: sizing.px-to-rem(48px);
 $font-size-56: sizing.px-to-rem(56px);
 
-$line-height-tiny: 1.4;
-$line-height-small: 1.4;
-$line-height-regular: 1.4;
-$line-height-bigger-regular: 1.4;
-$line-height-medium: 1.4;
-$line-height-large: 1.1;
-$line-height-small-big: 1.1;
-$line-height-big: 1.1;
-$line-height-bigger-big: 1.1;
-$line-height-small-huge: 1.1;
-$line-height-huge: 1.1;
+$line-height-copy: 1.5;
+$line-height-heading: 1.2;
+
+// Deprecated
+$line-height-tiny: $line-height-copy;
+$line-height-small: $line-height-copy;
+$line-height-regular: $line-height-copy;
+$line-height-bigger-regular: $line-height-copy;
+$line-height-medium: $line-height-copy;
+$line-height-large: $line-height-heading;
+$line-height-small-big: $line-height-heading;
+$line-height-big: $line-height-heading;
+$line-height-bigger-big: $line-height-heading;
+$line-height-small-huge: $line-height-heading;
+$line-height-huge: $line-height-heading;
 
 $font-weight-light: 300 !default; // Design System -> Frutiger Neue Light
 $font-weight-normal: 400 !default; // Design System -> Frutiger Neue Roman
@@ -162,13 +166,14 @@ $font-curves: (
 
 $font-size-base: $font-size-regular !default;
 $font-weight-base: $font-weight-normal !default;
-$line-height-base: $line-height-regular !default;
+$line-height-base: $line-height-copy;
+$line-height-sm: $line-height-heading;
+$line-height-lg: $line-height-copy;
 
 $headings-margin-bottom: (spacing.$spacer * 0.5) !default;
 $headings-font-family: inherit !default;
-$headings-font-weight: 300 !default;
-$headings-line-height: 1.2 !default;
 $headings-font-weight: 700 !default;
+$headings-line-height: $line-height-heading;
 $headings-color: inherit !default;
 
 // Deprecated because unused
