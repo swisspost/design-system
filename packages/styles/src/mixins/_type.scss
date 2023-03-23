@@ -8,16 +8,15 @@
 @use './../functions/utilities';
 @use './../themes/bootstrap/core' as *;
 
-@mixin font-curve($curve-size: 'regular') {
-  $curve: map.get(type.$font-curves, $curve-size);
+@mixin font-curve($curve-size: 'regular', $curve-map: type.$font-curves) {
+  $curve: map.get($curve-map, $curve-size);
+
+  @debug $curve-size;
 
   @if ($curve) {
     $font-cache: 0;
 
     @each $key, $value in $curve {
-      // Get line height corresponding to font size
-      $i: list.index(map.values(type.$font-sizes), $value);
-
       @if ($key == 'xs') {
         font-size: $value;
       } @else {
