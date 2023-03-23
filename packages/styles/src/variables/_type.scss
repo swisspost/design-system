@@ -71,6 +71,7 @@ $line-heights: (
   'huge': $line-height-huge,
 );
 
+// Deprecated
 $font-curve-tiny: (
   'xs': $font-size-tiny,
   'sm': $font-size-tiny,
@@ -135,6 +136,7 @@ $font-curve-big: (
   'xxl': $font-size-small-huge,
 );
 
+// Deprecated
 $font-curves: (
   'tiny': $font-curve-tiny,
   'small': $font-curve-small,
@@ -156,11 +158,13 @@ $headings-line-height: 1.2 !default;
 $headings-font-weight: 700 !default;
 $headings-color: inherit !default;
 
+// Deprecated because unused
 $display1-size: 6rem !default;
 $display2-size: 5.5rem !default;
 $display3-size: 4.5rem !default;
 $display4-size: 3.5rem !default;
 
+// Deprecated because unused
 $display1-weight: 300 !default;
 $display2-weight: 300 !default;
 $display3-weight: 300 !default;
