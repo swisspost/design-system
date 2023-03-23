@@ -99,10 +99,6 @@
       padding-bottom: 0;
       height: auto;
 
-      option {
-        height: 1em * forms.$form-floating-line-height;
-      }
-
       ~ label {
         padding-top: forms.$input-padding-y-lg * forms.$form-floating-label-scale;
         padding-bottom: 0;
