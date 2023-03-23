@@ -15,6 +15,7 @@ $font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mon
   monospace !default;
 $font-family-base: $font-family-sans-serif !default;
 
+// Deprecated
 $font-size-tiny: sizing.px-to-rem(13px);
 $font-size-small: sizing.px-to-rem(15px);
 $font-size-regular: sizing.px-to-rem(16px);
@@ -26,6 +27,18 @@ $font-size-big: sizing.px-to-rem(32px);
 $font-size-bigger-big: sizing.px-to-rem(40px);
 $font-size-small-huge: sizing.px-to-rem(48px);
 $font-size-huge: sizing.px-to-rem(56px);
+
+// New
+$font-size-14: sizing.px-to-rem(14px);
+$font-size-16: sizing.px-to-rem(16px);
+$font-size-18: sizing.px-to-rem(18px);
+$font-size-20: sizing.px-to-rem(20px);
+$font-size-24: sizing.px-to-rem(24px);
+$font-size-28: sizing.px-to-rem(28px);
+$font-size-32: sizing.px-to-rem(32px);
+$font-size-40: sizing.px-to-rem(40px);
+$font-size-48: sizing.px-to-rem(48px);
+$font-size-56: sizing.px-to-rem(56px);
 
 $line-height-tiny: 1.4;
 $line-height-small: 1.4;
@@ -41,7 +54,7 @@ $line-height-huge: 1.1;
 
 $font-weight-light: 300 !default; // Design System -> Frutiger Neue Light
 $font-weight-normal: 400 !default; // Design System -> Frutiger Neue Roman
-$font-weight-bold: 700 !default; // Design System -> Frutiger Neue Roman
+$font-weight-bold: 700 !default; // Design System -> Frutiger Neue Bold
 
 $font-sizes: (
   'tiny': $font-size-tiny,
