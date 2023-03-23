@@ -36,7 +36,6 @@
   color: var(--post-contrast-color);
   font-family: inherit;
   font-weight: button.$btn-font-weight;
-  line-height: inherit;
   text-decoration: none !important; // For <a> tags, !important for hover
   white-space: nowrap; // Long content should never break in buttons
 }

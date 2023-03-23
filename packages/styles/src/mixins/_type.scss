@@ -11,8 +11,6 @@
 @mixin font-curve($curve-size: 'regular', $curve-map: type.$font-curves) {
   $curve: map.get($curve-map, $curve-size);
 
-  @debug $curve-size;
-
   @if ($curve) {
     $font-cache: 0;
 
