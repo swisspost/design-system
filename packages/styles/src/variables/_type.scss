@@ -151,6 +151,8 @@ $font-curves: (
 $font-size-base: $font-size-regular !default;
 $font-weight-base: $font-weight-normal !default;
 $line-height-base: $line-height-copy;
+$line-height-sm: $line-height-heading;
+$line-height-lg: $line-height-copy;
 
 $headings-margin-bottom: (spacing.$spacer * 0.5) !default;
 $headings-font-family: inherit !default;
