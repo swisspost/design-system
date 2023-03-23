@@ -24,6 +24,7 @@
     "docs:e2e": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-documentation e2e'",
     "docs:e2e:watch": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-documentation e2e:watch'",
     "styles:start": "pnpm --filter design-system-styles start",
+    "styles:build": "pnpm --filter design-system-styles build",
     "styles:test": "pnpm --filter design-system-styles test",
     "components:start": "pnpm --filter design-system-components start",
     "components:test": "pnpm --filter design-system-components test",
