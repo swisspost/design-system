@@ -1,4 +1,4 @@
-import { installInterceptors } from '../support/prepare-story';
+import { installInterceptors } from '@swisspost/internet-header/cypress/support/prepare-story';
 
 describe('footer', () => {
   beforeEach(() => {
