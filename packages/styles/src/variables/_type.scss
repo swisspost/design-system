@@ -60,6 +60,7 @@ $font-weight-light: 300 !default; // Design System -> Frutiger Neue Light
 $font-weight-normal: 400 !default; // Design System -> Frutiger Neue Roman
 $font-weight-bold: 700 !default; // Design System -> Frutiger Neue Bold
 
+// Deprecated
 $font-sizes: (
   'tiny': $font-size-tiny,
   'small': $font-size-small,
@@ -72,6 +73,19 @@ $font-sizes: (
   'bigger-big': $font-size-bigger-big,
   'small-huge': $font-size-small-huge,
   'huge': $font-size-huge,
+);
+
+$font-size-map: (
+  14: $font-size-14,
+  16: $font-size-16,
+  18: $font-size-18,
+  20: $font-size-20,
+  24: $font-size-24,
+  28: $font-size-28,
+  32: $font-size-32,
+  40: $font-size-40,
+  48: $font-size-48,
+  56: $font-size-56,
 );
 
 $line-heights: (

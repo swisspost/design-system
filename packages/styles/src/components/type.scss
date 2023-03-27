@@ -32,6 +32,17 @@
   }
 }
 
+@each $key, $font-size in type.$font-size-map {
+  .font-size-#{$key} {
+    font-size: $font-size;
+
+    // Font sizes bigger than 24px can have a reduced line height
+    @if ($key >= 24) {
+      line-height: type.$line-height-heading;
+    }
+  }
+}
+
 .blockquote {
   margin-top: type.$blockquote-margin-top;
 
