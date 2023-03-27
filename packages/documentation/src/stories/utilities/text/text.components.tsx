@@ -27,8 +27,10 @@ export function AvailableClassesAndVariables(props: IAvailableClassesAndVariable
           {props.cssSlot ?? <span className="fs-tiny text-danger">{`.${cssPrefix}{value}`}</span>}
         </dd>
         {hasVariable && [
-          <dt className="col-3">Variable:</dt>,
-          <dd className="col-9">
+          <dt key="variable-dt" className="col-3">
+            Variable:
+          </dt>,
+          <dd key="variable-dd" className="col-9">
             {props.scssSlot ?? (
               <span className="fs-tiny text-danger">{`$${scssPrefix}{value}`}</span>
             )}
