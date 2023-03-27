@@ -13,7 +13,9 @@ const TEST_VALUES = [
   true,
   {},
   [],
-  () => {},
+  () => {
+    /* empty */
+  },
 ];
 const NON_EMPTY_VALUES = TEST_VALUES.filter(
   tValue => !EMPTY_VALUES.some(eValue => eValue === tValue),
