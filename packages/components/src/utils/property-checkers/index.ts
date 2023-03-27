@@ -5,5 +5,6 @@ import { checkType } from './check-type';
 export const checkEmptyOrOneOf = emptyOr(checkOneOf);
 export const checkEmptyOrType = emptyOr(checkType);
 
+export * from './required';
 export * from './check-one-of';
 export * from './check-type';
