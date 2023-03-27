@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': patch
 ---
 
-Updated the property "name" validation and fixed the property update handling to ensure the icon will be updated correctly during runtime.
+Fixed the `post-icon` component to ensure that the icon is properly updated every time the value of the "name" property changes at runtime.
