@@ -7,10 +7,6 @@
     fontSizes_#{$name}: $size;
   }
 
-  @each $name, $size in post.$line-heights {
-    lineHeights_#{$name}: $size;
-  }
-
   @each $curveName, $curve in post.$font-curves {
     @each $key, $value in $curve {
       fontCurves_#{$curveName}_#{$key}: $value;
