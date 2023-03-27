@@ -109,9 +109,10 @@ export const parameters = {
     },
     transformSource(snippet) {
       const reactElements = <JsxParser jsx={snippet} renderInWrapper={false} />;
-      const htmlSnippet = renderToStaticMarkup(reactElements);
-      const formattedSnippet = prettier.format(htmlSnippet, PRETTIER_OPTIONS)
+      const htmlSnippet = renderToStaticMarkup(reactElements)
+        .replace(/className/g, 'class')
         .replace(/checked=""/g, 'checked');
+      const formattedSnippet = prettier.format(htmlSnippet, PRETTIER_OPTIONS);
 
       // ensure the string is not empty ('') because the Source component breaks if it is
       return formattedSnippet || ' ';
