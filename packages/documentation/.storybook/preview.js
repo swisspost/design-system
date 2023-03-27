@@ -61,6 +61,7 @@ export const parameters = {
       order: [
         'Home',
         'Get Started',
+        ['Icons'],
         'Foundations',
         ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
         'Templates',
