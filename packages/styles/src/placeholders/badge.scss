@@ -13,7 +13,6 @@
   height: badge.$badge-height;
   font-size: badge.$badge-font-size;
   font-weight: $badge-font-weight;
-  line-height: 1;
   color: $badge-color;
   text-align: center;
   white-space: nowrap;
@@ -31,7 +30,6 @@
     background-color: badge.$badge-nested-bg-color;
     border-color: badge.$badge-nested-border-color;
     font-size: badge.$badge-nested-font-size;
-    line-height: 1;
   }
 
   > .btn-close {

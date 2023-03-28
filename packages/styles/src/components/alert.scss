@@ -23,8 +23,6 @@
 }
 
 .alert {
-  $effective-line-height: (alert.$alert-line-height * alert.$alert-font-size);
-
   @extend %notification;
 
   min-height: 2 * alert.$alert-padding-y + alert.$alert-icon-size;
