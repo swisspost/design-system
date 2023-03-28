@@ -1,5 +1,6 @@
 import { Component, Host, h, Prop, State, Watch } from '@stencil/core';
 import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '../../utils';
+import { version } from '../../../package.json';
 
 const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
 const ANIMATION_KEYS = ['cylon', 'cylon-vertical', 'spin', 'spin-reverse', 'fade', 'throb'];
@@ -207,7 +208,7 @@ export class PostIcon {
 
   render() {
     return (
-      <Host>
+      <Host data-version={version}>
         <div innerHTML={this.svgOutput} />
       </Host>
     );

@@ -75,6 +75,14 @@ class NgbButtonGroupDeprecationUpdate implements DomUpdate {
               $input.attr(attr.key, attr.value);
             });
 
+          // if the label uses an ngFor directive, move it to a ng-container wrapper
+          const ngFor = $label.attr('*ngFor');
+          if (ngFor) {
+            const $container = $(`<ng-container *ngFor="${ngFor}"></ng-container>`);
+            $label.wrap($container);
+            $label.removeAttr('*ngFor');
+          }
+
           // move the input before its label
           $label.before($input);
         });
