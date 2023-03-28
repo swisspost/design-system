@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Watch } from '@stencil/core';
-import { checkType, checkEmptyOrType, checkEmptyOrOneOf } from '../../utils';
+import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '../../utils';
 import { version } from '../../../package.json';
 
 const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
@@ -14,10 +14,11 @@ const ANIMATION_KEYS = ['cylon', 'cylon-vertical', 'spin', 'spin-reverse', 'fade
   shadow: true,
 })
 export class PostIcon {
-  private initialPath: string;
   private path: string;
+  private loadedPath: string;
   private svgSource = '<svg viewBox="0 0 16 16"></svg>';
 
+  @State() pathForceCDN = false;
   @State() svgOutput: string;
 
   /**
@@ -74,6 +75,7 @@ export class PostIcon {
 
   @Watch('name')
   validateName(newValue = this.name) {
+    checkNonEmpty(newValue, 'The post-icon "name" prop is required!.');
     checkType(newValue, 'string', 'The post-icon "name" prop should be a string.');
   }
 
@@ -97,7 +99,37 @@ export class PostIcon {
     checkEmptyOrType(newValue, 'number', 'The post-icon "scale" prop should be a number.');
   }
 
-  connectedCallback() {
+  componentWillLoad() {
+    this.validateBase();
+    this.validateName();
+    this.validateFlipH();
+    this.validateFlipV();
+    this.validateScale();
+    this.validateRotate();
+    this.validateAnimation();
+  }
+
+  componentWillRender() {
+    // create path dependant on the props
+    this.setPath();
+
+    // fetch icon if the prop "name" is defined and
+    // the path has not allready been loaded
+    if (this.name && this.path !== this.loadedPath) {
+      this.loadedPath = this.path;
+
+      this.fetchIcon()
+        .then(successfullyLoaded => {
+          // create icon only if an svg has been loaded successfully
+          if (successfullyLoaded) this.createIcon();
+        })
+        .catch(error => {
+          console.error(error);
+        });
+    }
+  }
+
+  private setPath() {
     // Construct icon path from different possible sources
     let basePath: string;
     const metaBase = document.head.querySelector(
@@ -112,23 +144,51 @@ export class PostIcon {
       basePath = CDN_URL;
     }
 
-    this.path = this.getPath(basePath);
+    // use "basePath" only if "pathForceCDN" state is "false"
+    this.path = this.getPath(this.pathForceCDN ? CDN_URL : basePath);
+    // try to get the "svgSource" from localStorage
     this.svgSource = window.localStorage.getItem(`post-icon-${this.name}`) ?? this.svgSource;
+    // reset "pathForceCDN" after every try
+    this.pathForceCDN = false;
   }
 
-  componentWillLoad() {
-    this.validateAnimation();
-    this.validateBase();
-    this.validateFlipH();
-    this.validateFlipV();
-    this.validateName();
-    this.validateRotate();
-    this.validateScale();
-
-    this.fetchSVG();
+  private getPath(basePath: string) {
+    return new URL(
+      [...basePath.split('/'), `${this.name}.svg#icon`].join('/'),
+      window.location.origin,
+    ).toString();
   }
 
-  componentWillRender() {
+  private fetchIcon() {
+    return new Promise((resolve, reject) => {
+      fetch(this.path)
+        .then(response => response.text())
+        .then(textResponse => {
+          // match "svg" out of "textResponse"
+          const match = textResponse.match(/^<svg\b([\s\S]*)><\/svg>/);
+
+          if (match !== null) {
+            // set "svgSource" and return "successfullyLoaded" with true
+            this.svgSource = match[0];
+            window.localStorage.setItem(`post-icon-${this.name}`, this.svgSource);
+            resolve(true);
+          } else if (this.path !== this.getPath(CDN_URL)) {
+            // if used "path" is not CDN path, and fetch has loaded something else than a "svg", try to reload it from the CDN
+            console.warn(
+              `Warning in <post-icon/>: The path "${this.path}" seems to be no svg-only content. We'll gonna try to load the icon from the cdn.`,
+            );
+            // trigger a component update, which will result in a refetch of the icon with the "CDN_URL"
+            this.pathForceCDN = true;
+            // return "successfullyLoaded" with false
+            resolve(false);
+          }
+        })
+        .catch(reject);
+    });
+  }
+
+  private createIcon() {
+    // create inline styles for some properties
     const svgStyles = Object.entries({
       scale: this.scale && !isNaN(Number(this.scale)) ? `${this.scale}` : null,
       rotate: this.rotate && !isNaN(Number(this.rotate)) ? `${this.rotate}deg` : null,
@@ -137,50 +197,13 @@ export class PostIcon {
       .map(([key, value]) => `${key}: ${value}`)
       .join(';');
 
+    // create svg in RAM and append the above styles, before defining the "svgOutput"
     const helperElement = document.createElement('div');
     helperElement.innerHTML = this.svgSource;
-
     const svgElement = helperElement.querySelector('svg');
     svgElement.setAttribute('style', svgStyles);
 
     this.svgOutput = helperElement.innerHTML;
-  }
-
-  private fetchSVG() {
-    fetch(this.path)
-      .then(response => response.text())
-      .then(textResponse => {
-        const match = textResponse.match(/^<svg\b([\s\S]*)><\/svg>/);
-
-        if (match !== null) {
-          this.svgSource = match[0];
-          window.localStorage.setItem(`post-icon-${this.name}`, this.svgSource);
-        } else {
-          this.initialPath = this.path;
-          this.path = this.getPath(CDN_URL);
-
-          if (this.initialPath !== this.path) {
-            console.warn(
-              `Warning in <post-icon/>: The content on the path "${this.path}" seems to be no svg-only content. We'll gonna try to load the icon from the cdn.`,
-            );
-            this.fetchSVG();
-          } else {
-            console.error(
-              `Error in <post-icon/>: Could not load the svg on the path "${this.initialPath}"!`,
-            );
-          }
-        }
-      })
-      .catch(error => {
-        console.log(error);
-      });
-  }
-
-  private getPath(basePath: string) {
-    return new URL(
-      [...basePath.split('/'), `${this.name}.svg#icon`].join('/'),
-      window.location.origin,
-    ).toString();
   }
 
   render() {
