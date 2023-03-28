@@ -1,10 +1,13 @@
-<div [(ngModel)]="radioGroup" class="btn-group" role="group" aria-label="Basic radio toggle button group">
-  <input [value]="Choice.LEFT" type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-  <label class="btn btn-secondary" for="btnradio1">Right</label>
+<div aria-label="Radio Buttons with Template-driven Froms" class="btn-group" role="group">
+  <input [(ngModel)]="radio" [value]="Choice.One" autocomplete="off" checked class="btn-check" id="btnradio1" name="btnradio" type="radio">
+  <label class="btn btn-secondary" for="btnradio1">One</label>
 
-  <input [value]="Choice.MIDDLE" type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-  <label class="btn btn-secondary" for="btnradio2">Middle (pre-selected)</label>
+  <input [(ngModel)]="radio" [value]="Choice.Two" autocomplete="off" class="btn-check" id="btnradio2" name="btnradio" type="radio">
+  <label class="btn btn-secondary" for="btnradio2">Two (pre-selected)</label>
 
-  <input [value]="Choice.RIGHT" type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-  <label class="btn btn-secondary" for="btnradio3">Left</label>
+  <input [(ngModel)]="radio" [value]="Choice.Three" autocomplete="off" class="btn-check" id="btnradio3" name="btnradio" type="radio">
+  <label class="btn btn-secondary" for="btnradio3">Three</label>
+
+  <input [(ngModel)]="radio" [value]="Choice.Four" autocomplete="off" class="btn-check" id="btnradio4" name="btnradio" type="radio" disabled>
+  <label class="btn btn-secondary" for="btnradio4">Four (disabled)</label>
 </div>
