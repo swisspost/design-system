@@ -1,13 +1,12 @@
-import React, { ComponentProps } from 'react';
-import { Meta, Args, Story, StoryFn } from '@storybook/react';
+import React from 'react';
+import { Meta, Args, Story } from '@storybook/react';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
-import docsPage from './post-icon.docs.mdx';
+import docsPage from './icon.docs.mdx';
 
-import { type PostIcon } from '@swisspost/design-system-components/dist/components/post-icon';
 import { forEach } from '../../../utils/react';
 
 export default {
-  title: 'Components/Post Icon',
+  title: 'Components/Icon',
   parameters: {
     docs: {
       page: docsPage,
