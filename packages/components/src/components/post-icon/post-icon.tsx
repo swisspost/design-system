@@ -1,5 +1,5 @@
 import { Component, Host, h, Prop, State, Watch } from '@stencil/core';
-import { required, checkEmptyOrType, checkEmptyOrOneOf } from '../../utils';
+import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '../../utils';
 
 const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
 const ANIMATION_KEYS = ['cylon', 'cylon-vertical', 'spin', 'spin-reverse', 'fade', 'throb'];
@@ -74,7 +74,8 @@ export class PostIcon {
 
   @Watch('name')
   validateName(newValue = this.name) {
-    required(newValue, 'The post-icon "name" prop is required!.');
+    checkNonEmpty(newValue, 'The post-icon "name" prop is required!.');
+    checkType(newValue, 'string', 'The post-icon "name" prop should be a string.');
   }
 
   /**
