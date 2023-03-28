@@ -1,4 +1,5 @@
-import { EMPTY_VALUES, required } from '../required';
+import { EMPTY_VALUES } from '../constants';
+import { checkNonEmpty } from '../check-non-empty';
 
 const TEST_VALUES = [
   undefined,
@@ -27,13 +28,13 @@ describe('notEmpty', () => {
   describe('empty value', () => {
     it('should not throw an error if the value is an non-empty value', () => {
       NON_EMPTY_VALUES.forEach(value => {
-        expect(() => required(value, error)).not.toThrow();
+        expect(() => checkNonEmpty(value, error)).not.toThrow();
       });
     });
 
     it('should throw an error if the value is an empty value', () => {
       EMPTY_VALUES.forEach(value => {
-        expect(() => required(value, error)).toThrow(error);
+        expect(() => checkNonEmpty(value, error)).toThrow(error);
       });
     });
   });
