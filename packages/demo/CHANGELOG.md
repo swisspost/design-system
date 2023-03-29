@@ -1,5 +1,18 @@
 # @swisspost/design-system-demo
 
+## 6.0.1
+
+### Patch Changes
+
+- Updated the documentation for tooltips regarding the "auto" placement option which can be used to place the tooltip where it fits if there is not enough space for the initial placement. (by [@gfellerph](https://github.com/gfellerph) with [#1288](https://github.com/swisspost/design-system/pull/1288))
+
+- Added examples of button groups using reactive forms and having an option disabled. (by [@alizedebray](https://github.com/alizedebray) with [#1307](https://github.com/swisspost/design-system/pull/1307))
+
+- Fixed the favicon and app-icon setup. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1296](https://github.com/swisspost/design-system/pull/1296))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.1.0
+  - @swisspost/design-system-intranet-header@4.0.1
+
 ## 6.0.0
 
 ### Major Changes
