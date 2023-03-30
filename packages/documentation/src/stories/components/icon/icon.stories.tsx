@@ -51,12 +51,18 @@ export default {
       name: 'Scale',
       control: {
         type: 'number',
+        min: 0.5,
+        max: 3,
+        step: 0.1,
       },
     },
     'rotate': {
       name: 'Rotate',
       control: {
         type: 'number',
+        min: -360,
+        max: 360,
+        step: 1,
       },
     },
     'animation': {
@@ -79,7 +85,7 @@ export default {
 } as Meta;
 
 function normalizeArgs(args: Args) {
-  return Object.assign(args, {
+  return Object.assign({}, args, {
     'name': args.name,
     'base': args.base || null,
     'flip-h': args['flip-h'],
@@ -95,7 +101,7 @@ const Template = (args: Args) => <post-icon {...normalizeArgs(args)} />;
 export const Default: Story = Template.bind({});
 Default.decorators = [
   (Story: Story) => (
-    <div style={{ fontSize: '32px' }}>
+    <div style={{ paddingInline: '32px', fontSize: '32px' }}>
       <Story />
     </div>
   ),
@@ -116,7 +122,6 @@ const ColorTemplate = (args: Args) => (
         Template({
           ...args,
           key: data.key,
-          name: '1022',
           ...data.value,
         }),
     )}
@@ -124,6 +129,11 @@ const ColorTemplate = (args: Args) => (
 );
 
 export const Color: Story = ColorTemplate.bind({});
+Color.parameters = {
+  controls: {
+    exclude: ['Base', 'Flip Horizontally', 'Flip Vertically', 'Scale', 'Rotate', 'Animation'],
+  },
+};
 Color.decorators = [
   (Story: Story) => (
     <div className="d-flex flex-wrap gap-2" style={{ fontSize: '32px' }}>
@@ -147,7 +157,6 @@ const SizeTemplate = (args: Args) => (
         Template({
           ...args,
           key: data.key,
-          name: '1022',
           ...data.value,
         }),
     )}
@@ -155,6 +164,11 @@ const SizeTemplate = (args: Args) => (
 );
 
 export const Size: Story = SizeTemplate.bind({});
+Size.parameters = {
+  controls: {
+    exclude: ['Base', 'Flip Horizontally', 'Flip Vertically', 'Scale', 'Rotate', 'Animation'],
+  },
+};
 Size.decorators = [
   Story => (
     <div className="d-flex flex-column">
@@ -175,7 +189,6 @@ const StyleTemplate = (args: Args) => (
         Template({
           ...args,
           key: data.key,
-          name: '1022',
           ...data.value,
         }),
     )}
@@ -183,6 +196,11 @@ const StyleTemplate = (args: Args) => (
 );
 
 export const Style: Story = StyleTemplate.bind({});
+Style.parameters = {
+  controls: {
+    exclude: ['Base', 'Flip Horizontally', 'Flip Vertically', 'Scale', 'Rotate', 'Animation'],
+  },
+};
 Style.decorators = [
   Story => (
     <div className="d-flex flex-wrap gap-2">
@@ -199,7 +217,6 @@ const FlipTemplate = (args: Args) => (
         Template({
           ...args,
           key: data.key,
-          name: '1022',
           ...data.value,
         }),
     )}
@@ -207,6 +224,11 @@ const FlipTemplate = (args: Args) => (
 );
 
 export const Flip: Story = FlipTemplate.bind({});
+Flip.parameters = {
+  controls: {
+    exclude: ['Base', 'Flip Horizontally', 'Flip Vertically', 'Scale', 'Rotate', 'Animation'],
+  },
+};
 Flip.decorators = [
   Story => (
     <div className="d-flex flex-wrap gap-2" style={{ fontSize: '32px' }}>
@@ -223,7 +245,6 @@ const ScaleTemplate = (args: Args) => (
         Template({
           ...args,
           key: data.key,
-          name: '1022',
           ...data.value,
         }),
     )}
@@ -231,6 +252,11 @@ const ScaleTemplate = (args: Args) => (
 );
 
 export const Scale: Story = ScaleTemplate.bind({});
+Scale.parameters = {
+  controls: {
+    exclude: ['Base', 'Flip Horizontally', 'Flip Vertically', 'Scale', 'Rotate', 'Animation'],
+  },
+};
 Scale.decorators = [
   Story => (
     <div className="d-flex flex-wrap gap-4" style={{ fontSize: '32px' }}>
@@ -263,6 +289,11 @@ const RotateTemplate = (args: Args) => (
 );
 
 export const Rotate: Story = RotateTemplate.bind({});
+Rotate.parameters = {
+  controls: {
+    exclude: ['Base', 'Flip Horizontally', 'Flip Vertically', 'Scale', 'Rotate', 'Animation'],
+  },
+};
 Rotate.decorators = [
   Story => (
     <div className="d-flex flex-wrap gap-2" style={{ fontSize: '32px' }}>
@@ -297,6 +328,19 @@ const AnimateTemplate = (args: Args) => (
 );
 
 export const Animate: Story = AnimateTemplate.bind({});
+Animate.parameters = {
+  controls: {
+    exclude: [
+      'Name',
+      'Base',
+      'Flip Horizontally',
+      'Flip Vertically',
+      'Scale',
+      'Rotate',
+      'Animation',
+    ],
+  },
+};
 Animate.decorators = [
   Story => (
     <div className="d-flex flex-wrap text-center" style={{ fontSize: '32px' }}>
