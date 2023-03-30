@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Host, h, Prop, State, Watch } from '@stencil/core';
 import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '../../utils';
 import { version } from '../../../package.json';
 
@@ -18,6 +18,8 @@ export class PostIcon {
   private loadedPath: string;
   private svgSource = '<svg viewBox="0 0 16 16"></svg>';
   private svgElement: SVGElement;
+
+  @Element() host: HTMLPostCollapsibleElement;
 
   @State() pathForceCDN = false;
   @State() svgStyles: string;
@@ -213,14 +215,10 @@ export class PostIcon {
       .join(';');
 
     this.svgElement.setAttribute('style', svgStyles);
-    this.svgOutput = this.svgElement.outerHTML;
+    this.host.shadowRoot.innerHTML = this.svgElement.outerHTML;
   }
 
   render() {
-    return (
-      <Host data-version={version}>
-        <div innerHTML={this.svgOutput} />
-      </Host>
-    );
+    return <Host data-version={version} />;
   }
 }
