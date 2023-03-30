@@ -17,8 +17,10 @@ export class PostIcon {
   private path: string;
   private loadedPath: string;
   private svgSource = '<svg viewBox="0 0 16 16"></svg>';
+  private svgElement: SVGElement;
 
   @State() pathForceCDN = false;
+  @State() svgStyles: string;
   @State() svgOutput: string;
 
   /**
@@ -110,6 +112,8 @@ export class PostIcon {
   }
 
   componentWillRender() {
+    this.createIconFromStorage();
+
     // create path dependant on the props
     this.setPath();
 
@@ -146,8 +150,6 @@ export class PostIcon {
 
     // use "basePath" only if "pathForceCDN" state is "false"
     this.path = this.getPath(this.pathForceCDN ? CDN_URL : basePath);
-    // try to get the "svgSource" from localStorage
-    this.svgSource = window.localStorage.getItem(`post-icon-${this.name}`) ?? this.svgSource;
     // reset "pathForceCDN" after every try
     this.pathForceCDN = false;
   }
@@ -187,7 +189,20 @@ export class PostIcon {
     });
   }
 
+  private createIconFromStorage() {
+    const storedIcon = window.localStorage.getItem(`post-icon-${this.name}`);
+
+    if (storedIcon) {
+      this.svgSource = storedIcon ?? this.svgSource;
+      this.createIcon();
+    }
+  }
+
   private createIcon() {
+    // create svg element from svgSource string
+    const domParser = new DOMParser();
+    this.svgElement = domParser.parseFromString(this.svgSource, 'text/html').querySelector('svg');
+
     // create inline styles for some properties
     const svgStyles = Object.entries({
       scale: this.scale && !isNaN(Number(this.scale)) ? `${this.scale}` : null,
@@ -197,13 +212,8 @@ export class PostIcon {
       .map(([key, value]) => `${key}: ${value}`)
       .join(';');
 
-    // create svg in RAM and append the above styles, before defining the "svgOutput"
-    const helperElement = document.createElement('div');
-    helperElement.innerHTML = this.svgSource;
-    const svgElement = helperElement.querySelector('svg');
-    svgElement.setAttribute('style', svgStyles);
-
-    this.svgOutput = helperElement.innerHTML;
+    this.svgElement.setAttribute('style', svgStyles);
+    this.svgOutput = this.svgElement.outerHTML;
   }
 
   render() {
