@@ -1,5 +1,15 @@
 # @swisspost/internet-header
 
+## 1.6.0
+
+### Minor Changes
+
+- Added the possibility to configure the header via `script` tag for Portal specific integrations. A `lang` attribute on the html element is required for this solution to work as well as a `<script id="PPM_HEADER_DATA" type="application/json">` tag containing the header config for the defined language. (by [@gfellerph](https://github.com/gfellerph) with [#1309](https://github.com/swisspost/design-system/pull/1309))
+
+### Patch Changes
+
+- Fixed a bug where a shipment information in the search suggestions was not reset after the search query changed. (by [@gfellerph](https://github.com/gfellerph) with [#1278](https://github.com/swisspost/design-system/pull/1278))
+
 ## 1.5.6
 
 ### Patch Changes

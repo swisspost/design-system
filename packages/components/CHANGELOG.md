@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 1.3.3
+
+### Patch Changes
+
+- Fixed package dependencies. Moved dependencies that are not being used in production to devDependencies in order to simplify and speed up the package install process. (by [@gfellerph](https://github.com/gfellerph) with [#1289](https://github.com/swisspost/design-system/pull/1289))
+
+- Fixed the `post-icon` component to ensure that the icon is properly updated every time the value of the "name" property changes at runtime. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1310](https://github.com/swisspost/design-system/pull/1310))
+
 ## 1.3.2
 
 ### Patch Changes

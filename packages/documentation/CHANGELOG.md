@@ -1,5 +1,22 @@
 # @swisspost/design-system-documentation
 
+## 1.7.0
+
+### Minor Changes
+
+- Added a story showing all interesting dependency version numbers used for this particular build of the documentation. (by [@gfellerph](https://github.com/gfellerph) with [#1284](https://github.com/swisspost/design-system/pull/1284))
+
+### Patch Changes
+
+- Fixed an issue with the button group story that lead to a bug for all following stories where controls did not show up and navigation was janky. (by [@gfellerph](https://github.com/gfellerph) with [#1276](https://github.com/swisspost/design-system/pull/1276))
+
+- Fixed the favicon and app-icon setup. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1296](https://github.com/swisspost/design-system/pull/1296))
+- Updated dependencies:
+  - @swisspost/internet-header@1.6.0
+  - @swisspost/design-system-styles@6.1.0
+  - @swisspost/design-system-components@1.3.3
+  - @swisspost/design-system-components-react@1.0.9
+
 ## 1.6.0
 
 ### Minor Changes

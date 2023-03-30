@@ -1,5 +1,29 @@
 # @swisspost/design-system-styles
 
+## 6.1.0
+
+### Minor Changes
+
+- Updated line-heights to match accessibility requirements and added new variables for them. The new values are `$line-height-body: 1.5` for body copy (text) and `$line-height-headings: 1.2` for headings. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Added new font-size variables following the new naming convention of using pixel based naming. The font sizes remain defined in `rem` and the new variables are `$font-size-14`, `$font-size-16`, `$font-size-18`, `$font-size-20`, `$font-size-24`, `$font-size-28`, `$font-size-32`, `$font-size-40`, `$font-size-48` and `$font-size-56`. (by [@gfellerph](https://github.com/gfellerph) with [#1315](https://github.com/swisspost/design-system/pull/1315))
+
+### Patch Changes
+
+- Deprecated font-size variables `$font-size-tiny`, `$font-size-small`, `$font-size-regular`, `$font-size-bigger-regular`, `$font-size-medium`, `$font-size-large`, `$font-size-small-big`, `$font-size-big`, `$font-size-bigger-big`, `$font-size-small-huge` and `$font-size-huge`. New variables use a pixel based naming (in accordance with https://github.com/swisspost/design-system/discussions/588). (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Updated the Angular migration schematic for ngb-buttons to work correctly whith the NgFor directive. (by [@alizedebray](https://github.com/alizedebray) with [#1311](https://github.com/swisspost/design-system/pull/1311))
+
+- Updated heading sizes according to the new Design. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Deprecating variables `$display1-size`, `$display2-size`, `$display3-size`, `$display4-size`, `$display1-weight`, `$display2-weight`, `$display3-weight`, `$display4-weight` and `$display-line-height` because they are unused. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Deprecating the `line-height-calc` function as unused. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Deprecating validation-tooltips like `.valid-tooltip` and `.invalid-tooltip`. Absolutely positioned tooltips are no longer recommended for usage. Use the respective feedback classes instead. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Deprecated line-height variables `$line-height-tiny`, `$line-height-small`, `$line-height-regular`, `$line-height-bigger-regular`, `$line-height-medium`, `$line-height-large`, `$line-height-small-big`, `$line-height-big`, `$line-height-bigger-big`, `$line-height-small-huge` and `$line-height-huge`. They will be removed in the next major version. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
 ## 6.0.0
 
 ### Major Changes

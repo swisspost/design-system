@@ -1,6 +1,7 @@
 @forward './../variables/options';
 
 @use './../variables/color';
+@use './../variables/type';
 @use './../variables/components/datepicker';
 @use './../variables/components/forms';
 @use './../variables/commons';
@@ -73,7 +74,7 @@ span.ngb-dp-navigation-chevron {
   color: rgba(var(--post-contrast-color-rgb), 0.6) !important;
   font-size: 1rem;
   font-style: normal !important;
-  line-height: 1.47 !important;
+  line-height: type.$line-height-copy !important;
   width: 40px !important;
   height: auto !important;
   font-weight: normal;

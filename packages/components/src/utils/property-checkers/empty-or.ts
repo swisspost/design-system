@@ -1,4 +1,4 @@
-const EMPTY_VALUES = [undefined, null, ''];
+import { EMPTY_VALUES } from './constants';
 
 export function emptyOr<T extends unknown[]>(check: (...args: T) => void) {
   return (...args: T) => {
