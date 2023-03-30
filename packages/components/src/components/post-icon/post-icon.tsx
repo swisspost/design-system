@@ -28,7 +28,7 @@ export class PostIcon {
   /**
    * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
    */
-  @Prop() readonly animation?: string;
+  @Prop() readonly animation?: string | null = null;
 
   @Watch('animation')
   validateAnimation(newValue = this.animation) {
@@ -45,7 +45,7 @@ export class PostIcon {
   /**
    * The base path, where the icons are located (must be a public url).
    */
-  @Prop() readonly base?: string;
+  @Prop() readonly base?: string = '';
 
   @Watch('base')
   validateBase(newValue = this.base) {
@@ -55,7 +55,7 @@ export class PostIcon {
   /**
    * When set to `true`, the icon will be flipped horizontally.
    */
-  @Prop() readonly flipH?: boolean;
+  @Prop() readonly flipH?: boolean = false;
 
   @Watch('flipH')
   validateFlipH(newValue = this.flipH) {
@@ -65,7 +65,7 @@ export class PostIcon {
   /**
    * When set to `true`, the icon will be flipped vertically.
    */
-  @Prop() readonly flipV?: boolean;
+  @Prop() readonly flipV?: boolean = false;
 
   @Watch('flipV')
   validateFlipV(newValue = this.flipV) {
@@ -75,7 +75,7 @@ export class PostIcon {
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
    */
-  @Prop() readonly name: string;
+  @Prop() readonly name!: string;
 
   @Watch('name')
   validateName(newValue = this.name) {
@@ -84,9 +84,9 @@ export class PostIcon {
   }
 
   /**
-   * The `number` of degree for the css `rotate` transformation.
+   * The number of degree for the css rotate transformation.
    */
-  @Prop() readonly rotate?: number;
+  @Prop() readonly rotate?: number | null = null;
 
   @Watch('rotate')
   validateRotate(newValue = this.rotate) {
@@ -94,9 +94,9 @@ export class PostIcon {
   }
 
   /**
-   * The `number` for the css `scale` transformation.
+   * The number for the css scale transformation.
    */
-  @Prop() readonly scale?: number;
+  @Prop() readonly scale?: number | null = null;
 
   @Watch('scale')
   validateScale(newValue = this.scale) {

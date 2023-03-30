@@ -27,7 +27,7 @@ export namespace Components {
         /**
           * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
          */
-        "animation"?: string;
+        "animation"?: string | null;
         /**
           * The base path, where the icons are located (must be a public url).
          */
@@ -45,13 +45,13 @@ export namespace Components {
          */
         "name": string;
         /**
-          * The `number` of degree for the css `rotate` transformation.
+          * The number of degree for the css rotate transformation.
          */
-        "rotate"?: number;
+        "rotate"?: number | null;
         /**
-          * The `number` for the css `scale` transformation.
+          * The number for the css scale transformation.
          */
-        "scale"?: number;
+        "scale"?: number | null;
     }
 }
 declare global {
@@ -93,7 +93,7 @@ declare namespace LocalJSX {
         /**
           * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
          */
-        "animation"?: string;
+        "animation"?: string | null;
         /**
           * The base path, where the icons are located (must be a public url).
          */
@@ -109,15 +109,15 @@ declare namespace LocalJSX {
         /**
           * The name/id of the icon (e.g. 1000, 1001, ...).
          */
-        "name"?: string;
+        "name": string;
         /**
-          * The `number` of degree for the css `rotate` transformation.
+          * The number of degree for the css rotate transformation.
          */
-        "rotate"?: number;
+        "rotate"?: number | null;
         /**
-          * The `number` for the css `scale` transformation.
+          * The number for the css scale transformation.
          */
-        "scale"?: number;
+        "scale"?: number | null;
     }
     interface IntrinsicElements {
         "post-collapsible": PostCollapsible;
