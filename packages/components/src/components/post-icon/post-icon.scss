@@ -50,16 +50,12 @@ svg {
 // animation
 
 :host([animation]) {
-  svg {
-    transform-origin: center;
-  }
+  transform-origin: center;
 }
 
 @each $key, $value in $post-icon-animations {
   :host([animation='#{$key}']) {
-    svg {
-      animation: $value;
-    }
+    animation: $value;
   }
 }
 
