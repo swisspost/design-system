@@ -1,4 +1,4 @@
-import { Meta, Args, Story } from '@storybook/react';
+import { Args, Story } from '@storybook/react';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 import docsPage from './icon.docs.mdx';
 
