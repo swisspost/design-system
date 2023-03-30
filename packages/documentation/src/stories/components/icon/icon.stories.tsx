@@ -1,4 +1,3 @@
-import React from 'react';
 import { Meta, Args, Story } from '@storybook/react';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 import docsPage from './icon.docs.mdx';
@@ -7,6 +6,7 @@ import { forEach } from '../../../utils/react';
 
 export default {
   title: 'Components/Icon',
+  component: 'post-icon',
   parameters: {
     docs: {
       page: docsPage,
@@ -14,40 +14,40 @@ export default {
     badges: [BADGE.NEEDS_REVISION],
   },
   args: {
-    'name': '1022',
-    'base': '',
-    'flip-h': false,
-    'flip-v': false,
-    'scale': 1,
-    'rotate': 0,
-    'animation': 'null',
+    name: '1022',
+    base: '',
+    flipH: false,
+    flipV: false,
+    scale: null,
+    rotate: null,
+    animation: 'null',
   },
   argTypes: {
-    'name': {
+    name: {
       name: 'Name',
-      control: {
-        type: 'text',
+      table: {
+        category: 'General',
       },
     },
-    'base': {
+    base: {
       name: 'Base',
-      control: {
-        type: 'text',
+      table: {
+        category: 'General',
       },
     },
-    'flip-h': {
+    flipH: {
       name: 'Flip Horizontally',
-      control: {
-        type: 'boolean',
+      table: {
+        category: 'Transformation',
       },
     },
-    'flip-v': {
+    flipV: {
       name: 'Flip Vertically',
-      control: {
-        type: 'boolean',
+      table: {
+        category: 'Transformation',
       },
     },
-    'scale': {
+    scale: {
       name: 'Scale',
       control: {
         type: 'number',
@@ -55,8 +55,11 @@ export default {
         max: 3,
         step: 0.1,
       },
+      table: {
+        category: 'Transformation',
+      },
     },
-    'rotate': {
+    rotate: {
       name: 'Rotate',
       control: {
         type: 'number',
@@ -64,8 +67,11 @@ export default {
         max: 360,
         step: 1,
       },
+      table: {
+        category: 'Transformation',
+      },
     },
-    'animation': {
+    animation: {
       name: 'Animation',
       control: {
         type: 'select',
@@ -80,16 +86,20 @@ export default {
         },
       },
       options: ['null', 'cylon', 'cylon-vertical', 'spin', 'spin-reverse', 'fade', 'throb'],
+      table: {
+        category: 'Transformation',
+      },
     },
   },
-} as Meta;
+};
 
 function normalizeArgs(args: Args) {
   return Object.assign({}, args, {
-    'name': args.name,
     'base': args.base || null,
-    'flip-h': args['flip-h'],
-    'flip-v': args['flip-v'],
+    'flip-h': args.flipH,
+    'flipH': null,
+    'flip-v': args.flipV,
+    'flipV': null,
     'scale': args.scale !== 1 ? args.scale : null,
     'rotate': args.rotate !== 0 ? args.rotate : null,
     'animation': args.animation !== 'null' ? args.animation : null,
@@ -212,7 +222,7 @@ Style.decorators = [
 const FlipTemplate = (args: Args) => (
   <>
     {forEach(
-      [{}, { 'flip-h': true }, { 'flip-v': true }, { 'flip-h': true, 'flip-v': true }],
+      [{}, { flipH: true }, { flipV: true }, { flipH: true, flipV: true }],
       (data: { key: number; value: any }) =>
         Template({
           ...args,
