@@ -19,7 +19,7 @@ export class PostIcon {
   private svgSource = '<svg viewBox="0 0 16 16"></svg>';
   private svgElement: SVGElement;
 
-  @Element() host: HTMLPostCollapsibleElement;
+  @Element() host: HTMLPostIconElement;
 
   @State() pathForceCDN = false;
   @State() svgStyles: string;
