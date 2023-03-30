@@ -7,7 +7,7 @@ import { bombArgs } from '../../utilities/bombArgs';
 
 <div className="d-flex gap-3 flex-wrap">
   {['bg-white', 'bg-dark'].map(bg => (
-    <div key={bg} className={bg + ' p-3'}>
+    <div key={bg} className={bg + ' d-flex gap-3 flex-wrap p-3'}>
       {bombArgs({
         variant: alertMeta.argTypes.variant.options,
         noIcon: [true, false],
@@ -21,7 +21,7 @@ import { bombArgs } from '../../utilities/bombArgs';
           return { ...args, show: true };
         })
         .map(args => (
-          <div className={getAlertClasses(args) + ' mt-3'} key={JSON.stringify(args)} role="alert">
+          <div className={getAlertClasses(args)} key={JSON.stringify(args)} role="alert">
             {args.dismissible || args.fixed ? (
               <button className="btn-close" data-dismiss="alert" aria-label="Close"></button>
             ) : null}
