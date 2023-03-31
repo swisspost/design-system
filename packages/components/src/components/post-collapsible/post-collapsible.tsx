@@ -1,5 +1,6 @@
-import { Component, Element, h, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import { checkOneOf, checkType, getElementHeight, onTransitionEnd } from '../../utils';
+import { version } from '../../../package.json';
 
 let nextId = 0;
 
@@ -50,7 +51,7 @@ export class PostCollapsible {
   validateHeadingLevel(newValue = this.headingLevel) {
     checkOneOf(
       newValue,
-      [ 1, 2, 3, 4, 5, 6 ],
+      [1, 2, 3, 4, 5, 6],
       'The post-collapsible element requires a heading level between 1 and 6.',
     );
 
@@ -63,7 +64,9 @@ export class PostCollapsible {
 
     this.hasHeader = this.host.querySelectorAll('[slot="header"]').length > 0;
     if (!this.hasHeader) {
-      console.warn('Be sure to bind the post-collapsible to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility');
+      console.warn(
+        'Be sure to bind the post-collapsible to its control using aria-controls and aria-expanded attributes. More information here: https://getbootstrap.com/docs/5.2/components/collapse/#accessibility',
+      );
     }
 
     this.collapsibleId = this.host.id || `post-collapsible-${nextId++}`;
@@ -72,7 +75,9 @@ export class PostCollapsible {
 
   componentDidLoad() {
     this.isLoaded = true;
-    this.collapsibleElement = this.host.shadowRoot.querySelector(`#${this.collapsibleId}--collapse`);
+    this.collapsibleElement = this.host.shadowRoot.querySelector(
+      `#${this.collapsibleId}--collapse`,
+    );
   }
 
   /**
@@ -117,35 +122,37 @@ export class PostCollapsible {
           class={this.collapseClasses}
           style={{ height: this.collapseHeight }}
         >
-          <slot/>
+          <slot />
         </div>
       );
     }
 
     return (
-      <div class="accordion-item">
-        <this.headingTag class="accordion-header" id={`${this.collapsibleId}--header`}>
-          <button
-            class={`accordion-button ${this.isOpen ? '' : 'collapsed'}`}
-            type="button"
-            aria-expanded={`${this.isOpen}`}
-            aria-controls={`${this.collapsibleId}--collapse`}
-            onClick={this.onAccordionButtonClick}
+      <Host data-version={version}>
+        <div class="accordion-item">
+          <this.headingTag class="accordion-header" id={`${this.collapsibleId}--header`}>
+            <button
+              class={`accordion-button ${this.isOpen ? '' : 'collapsed'}`}
+              type="button"
+              aria-expanded={`${this.isOpen}`}
+              aria-controls={`${this.collapsibleId}--collapse`}
+              onClick={this.onAccordionButtonClick}
+            >
+              <slot name="header" />
+            </button>
+          </this.headingTag>
+          <div
+            id={`${this.collapsibleId}--collapse`}
+            class={`accordion-collapse ${this.collapseClasses}`}
+            style={{ height: this.collapseHeight }}
+            aria-labelledby={`${this.collapsibleId}--header`}
           >
-            <slot name="header"/>
-          </button>
-        </this.headingTag>
-        <div
-          id={`${this.collapsibleId}--collapse`}
-          class={`accordion-collapse ${this.collapseClasses}`}
-          style={{ height: this.collapseHeight }}
-          aria-labelledby={`${this.collapsibleId}--header`}
-        >
-          <div class="accordion-body">
-            <slot/>
+            <div class="accordion-body">
+              <slot />
+            </div>
           </div>
         </div>
-      </div>
+      </Host>
     );
   }
 }
