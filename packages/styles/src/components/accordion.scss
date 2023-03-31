@@ -59,7 +59,7 @@
 
   &::after {
     @include icon-mixins.pi(accordion.$accordion-icon-name);
-    content: "";
+    content: '';
     display: block;
     height: var(--post-accordion-icon-size);
     width: var(--post-accordion-icon-size);
