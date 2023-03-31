@@ -43,9 +43,9 @@ export class PostIcon {
   }
 
   /**
-   * The base path, where the icons are located (must be a public url).
+   * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
    */
-  @Prop() readonly base?: string = '';
+  @Prop() readonly base?: string | null = null;
 
   @Watch('base')
   validateBase(newValue = this.base) {

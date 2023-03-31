@@ -29,9 +29,9 @@ export namespace Components {
          */
         "animation"?: string | null;
         /**
-          * The base path, where the icons are located (must be a public url).
+          * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
-        "base"?: string;
+        "base"?: string | null;
         /**
           * When set to `true`, the icon will be flipped horizontally.
          */
@@ -95,9 +95,9 @@ declare namespace LocalJSX {
          */
         "animation"?: string | null;
         /**
-          * The base path, where the icons are located (must be a public url).
+          * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
-        "base"?: string;
+        "base"?: string | null;
         /**
           * When set to `true`, the icon will be flipped horizontally.
          */
