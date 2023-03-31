@@ -1,4 +1,3 @@
-import React from 'react';
 import { Meta, Args, Story } from '@storybook/react';
 import docsPage from './blockquote.docs.mdx';
 import parse from 'html-react-parser';
