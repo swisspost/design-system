@@ -28,6 +28,7 @@ import { bombArgs } from '../../utilities/bombArgs';
           ],
         })
           .filter(args => !(!args.showSubtitle && args.subtitle.length > 30))
+          .map(args => ({ ...args, title: `${args.level} - ${args.title}` }))
           .map(args => Default({ ...headingMeta.args, ...args }))}
       </div>
     );
