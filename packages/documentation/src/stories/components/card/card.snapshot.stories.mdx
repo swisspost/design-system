@@ -17,6 +17,7 @@ import { bombArgs } from '../../utilities/bombArgs';
         }}
       >
         {[
+          // Layout related combinations
           ...bombArgs({
             showImage: [false, true],
             imagePosition: cardMeta.argTypes.imagePosition.options,
@@ -24,8 +25,10 @@ import { bombArgs } from '../../utilities/bombArgs';
             showBody: [false, true],
             showFooter: [false, true],
           }),
+          // Content related combinations
           ...bombArgs({
-            showImage: [false, true],
+            showImage: [false],
+            showBody: [true],
             showTitle: [false, true],
             showSubtitle: [false, true],
             showLinks: [false, true],
@@ -40,15 +43,24 @@ import { bombArgs } from '../../utilities/bombArgs';
           // No subtitle without title
           .filter(args => !(args.showSubtitle && !args.showTitle))
           // No single footer
-          .filter(
-            args => !(args.showFooter && !args.showBody && !args.showHeader && !args.showImage),
-          )
+          .filter(args => !(args.showFooter && !args.showBody && !args.showHeader))
           // No single header
-          .filter(
-            args => !(args.showHeader && !args.showBody && !args.showFooter && !args.showImage),
-          )
+          .filter(args => !(args.showHeader && !args.showBody && !args.showFooter))
           // No header and footer without content in between
           .filter(args => !(args.showHeader && args.showFooter && args.showBody === false))
+          // Ignore header position if showHeader is false
+          .filter(args => !(!args.showImage && args.imagePosition === 'card-img-bottom'))
+          // Ignore header position if only img is shown
+          .filter(
+            args =>
+              !(
+                args.showImage &&
+                !args.showBody &&
+                !args.showHeader &&
+                !args.showFooter &&
+                args.imagePosition === 'card-img-bottom'
+              ),
+          )
           .map(args => Default({ ...cardMeta.args, ...args }))}
       </div>
     );
