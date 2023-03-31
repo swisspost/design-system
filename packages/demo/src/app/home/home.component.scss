@@ -151,7 +151,7 @@
 }
 
 .accordion-button {
-  @include post.font-curve(post.$accordion-font-curve);
+  @include post.font-curve(post.$accordion-heading-font-curve);
 
   small {
     @include post.font-curve('tiny');
