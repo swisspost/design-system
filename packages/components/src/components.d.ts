@@ -25,9 +25,9 @@ export namespace Components {
      */
     interface PostIcon {
         /**
-          * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+          * The name of the animation.
          */
-        "animation"?: string | null;
+        "animation"?: Animation | null;
         /**
           * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
@@ -91,9 +91,9 @@ declare namespace LocalJSX {
      */
     interface PostIcon {
         /**
-          * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+          * The name of the animation.
          */
-        "animation"?: string | null;
+        "animation"?: Animation | null;
         /**
           * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */

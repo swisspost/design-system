@@ -3,7 +3,17 @@ import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '.
 import { version } from '../../../package.json';
 
 const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
-const ANIMATION_KEYS = ['cylon', 'cylon-vertical', 'spin', 'spin-reverse', 'fade', 'throb'];
+const ANIMATION_NAMES = [
+  'cylon',
+  'cylon-vertical',
+  'spin',
+  'spin-reverse',
+  'fade',
+  'throb',
+] as const;
+const ANIMATION_KEYS = [...ANIMATION_NAMES];
+
+type Animation = (typeof ANIMATION_NAMES)[number];
 
 /**
  * @class PostIcon - representing a stencil component
@@ -26,9 +36,9 @@ export class PostIcon {
   @State() svgOutput: string;
 
   /**
-   * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+   * The name of the animation.
    */
-  @Prop() readonly animation?: string | null = null;
+  @Prop() readonly animation?: Animation | null = null;
 
   @Watch('animation')
   validateAnimation(newValue = this.animation) {

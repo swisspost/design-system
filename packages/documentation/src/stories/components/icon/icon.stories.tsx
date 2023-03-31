@@ -66,21 +66,8 @@ export default {
         category: 'Transformation',
       },
     },
-    animation: {
-      name: 'Animation',
-      control: {
-        type: 'select',
-        labels: {
-          'null': 'None',
-          'cylon': 'Cylon',
-          'cylon-vertical': 'Cylon vertical',
-          'spin': 'Spin',
-          'spin-reverse': 'Spin reverse',
-          'fade': 'Fade',
-          'throb': 'Throb',
-        },
-      },
-      options: ['null', 'cylon', 'cylon-vertical', 'spin', 'spin-reverse', 'fade', 'throb'],
+    'animation': {
+      options: [null, 'cylon', 'cylon-vertical', 'spin', 'spin-reverse', 'fade', 'throb'],
       table: {
         category: 'Transformation',
       },
@@ -97,7 +84,6 @@ function normalizeArgs(args: Args) {
     'flipV': null,
     'scale': args.scale !== 1 ? args.scale : null,
     'rotate': args.rotate !== 0 ? args.rotate : null,
-    'animation': args.animation !== 'null' ? args.animation : null,
   });
 }
 
