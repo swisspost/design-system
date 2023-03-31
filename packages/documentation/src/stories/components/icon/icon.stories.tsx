@@ -16,11 +16,6 @@ export default {
   args: {
     name: '1022',
     base: '',
-    flipH: false,
-    flipV: false,
-    scale: null,
-    rotate: null,
-    animation: 'null',
   },
   argTypes: {
     name: {
