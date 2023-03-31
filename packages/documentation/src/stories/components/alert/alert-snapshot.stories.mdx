@@ -16,10 +16,7 @@ import { bombArgs } from '../../utilities/bombArgs';
         action: [true, false],
       })
         .filter(args => !(args.noIcon && args.icon === 'null'))
-        .map(args => {
-          console.log(args);
-          return { ...args, show: true };
-        })
+        .map(args => ({ ...args, show: true }))
         .map(args => (
           <div className={getAlertClasses(args)} key={JSON.stringify(args)} role="alert">
             {args.dismissible || args.fixed ? (
