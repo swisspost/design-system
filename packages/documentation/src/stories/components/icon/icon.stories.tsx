@@ -14,36 +14,36 @@ export default {
     badges: [BADGE.NEEDS_REVISION],
   },
   args: {
-    name: '1022',
-    base: '',
+    'name': '1022',
+    'base': '',
+    'flip-h': false,
+    'flip-v': false,
+    'scale': 1,
+    'rotate': 0,
+    'animation': null,
   },
   argTypes: {
-    name: {
-      name: 'Name',
+    'name': {
       table: {
         category: 'General',
       },
     },
-    base: {
-      name: 'Base',
+    'base': {
       table: {
         category: 'General',
       },
     },
-    flipH: {
-      name: 'Flip Horizontally',
+    'flip-h': {
       table: {
         category: 'Transformation',
       },
     },
-    flipV: {
-      name: 'Flip Vertically',
+    'flip-v': {
       table: {
         category: 'Transformation',
       },
     },
-    scale: {
-      name: 'Scale',
+    'scale': {
       control: {
         type: 'number',
         min: 0.5,
@@ -54,8 +54,7 @@ export default {
         category: 'Transformation',
       },
     },
-    rotate: {
-      name: 'Rotate',
+    'rotate': {
       control: {
         type: 'number',
         min: -360,
@@ -77,13 +76,9 @@ export default {
 
 function normalizeArgs(args: Args) {
   return Object.assign({}, args, {
-    'base': args.base || null,
-    'flip-h': args.flipH,
-    'flipH': null,
-    'flip-v': args.flipV,
-    'flipV': null,
-    'scale': args.scale !== 1 ? args.scale : null,
-    'rotate': args.rotate !== 0 ? args.rotate : null,
+    base: args.base || null,
+    scale: args.scale !== 1 ? args.scale : null,
+    rotate: args.rotate !== 0 ? args.rotate : null,
   });
 }
 
@@ -203,7 +198,7 @@ Style.decorators = [
 const FlipTemplate = (args: Args) => (
   <>
     {forEach(
-      [{}, { flipH: true }, { flipV: true }, { flipH: true, flipV: true }],
+      [{}, { 'flip-h': true }, { 'flip-v': true }, { 'flip-h': true, 'flip-v': true }],
       (data: { key: number; value: any }) =>
         Template({
           ...args,

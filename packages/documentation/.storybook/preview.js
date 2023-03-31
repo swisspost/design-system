@@ -10,7 +10,7 @@ import './preview.scss';
 import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
 import docJson from '@swisspost/design-system-components/dist/docs.json';
 import {
-  extractArgTypes,
+  extractArgTypesFactory,
   extractComponentDescription,
   setStencilDocJson,
 } from '@pxtrn/storybook-addon-docs-stencil';
@@ -85,7 +85,7 @@ export const parameters = {
     stylePreview: true,
   },
   docs: {
-    extractArgTypes,
+    extractArgTypes: extractArgTypesFactory({ dashCase: true }),
     extractComponentDescription,
     container: DocsLayout,
     components: {
