@@ -39,20 +39,10 @@
     // disable stylelint here, because the classes are coming from bs5
     @extend .form-control-lg; /* stylelint-disable-line */
 
-    &[type='file']::file-selector-button {
-      padding-top: forms.$form-floating-input-padding-t +
-        ((forms.$form-floating-line-height - 1) * 0.5);
-    }
-
     &:focus,
     &:not(:placeholder-shown) {
       padding-top: forms.$form-floating-input-padding-t;
       padding-bottom: forms.$form-floating-input-padding-b;
-
-      &[type='file']::file-selector-button {
-        padding-top: forms.$form-floating-input-padding-t +
-          ((forms.$form-floating-line-height - 1) * 0.5);
-      }
 
       ~ label {
         padding-top: 0.7rem;
