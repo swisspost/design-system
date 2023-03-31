@@ -16,19 +16,39 @@ import { bombArgs } from '../../utilities/bombArgs';
           alignItems: 'start',
         }}
       >
-        {bombArgs({
-          showImage: [false, true],
-          imagePosition: cardMeta.argTypes.imagePosition.options,
-          showHeader: [false, true],
-          showBody: [false, true],
-          showFooter: [false, true],
-          showTitle: [false, true],
-          showSubtitle: [false, true],
-          showLinks: [false, true],
-          showButton: [false, true],
-          showListGroup: [false, true],
-        })
-          .filter(args => args.showHeader || args.showBody || args.showFooter || args.showListGroup)
+        {[
+          ...bombArgs({
+            showImage: [false, true],
+            imagePosition: cardMeta.argTypes.imagePosition.options,
+            showHeader: [false, true],
+            showBody: [false, true],
+            showFooter: [false, true],
+          }),
+          ...bombArgs({
+            showImage: [false, true],
+            showTitle: [false, true],
+            showSubtitle: [false, true],
+            showLinks: [false, true],
+            showButton: [false, true],
+            showListGroup: [false, true],
+          }),
+        ]
+          // Has to show anything
+          .filter(args => args.showHeader || args.showBody || args.showFooter || args.showImage)
+          // Buttons and links are not possible
+          .filter(args => !(args.showLinks && args.showButton))
+          // No subtitle without title
+          .filter(args => !(args.showSubtitle && !args.showTitle))
+          // No single footer
+          .filter(
+            args => !(args.showFooter && !args.showBody && !args.showHeader && !args.showImage),
+          )
+          // No single header
+          .filter(
+            args => !(args.showHeader && !args.showBody && !args.showFooter && !args.showImage),
+          )
+          // No header and footer without content in between
+          .filter(args => !(args.showHeader && args.showFooter && args.showBody === false))
           .map(args => Default({ ...cardMeta.args, ...args }))}
       </div>
     );
