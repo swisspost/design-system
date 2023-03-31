@@ -23,7 +23,9 @@ import { bombArgs } from '../../utilities/bombArgs';
           ],
           language: bqMeta.argTypes.language.options,
           caption: [false, true],
-        }).map(args => Default({ ...bqMeta.args, ...args }))}
+        })
+          .map(args => ({ ...args, text: `${args.language.toUpperCase()}: ${args.text}` }))
+          .map(args => Default({ ...bqMeta.args, ...args }))}
       </div>
     );
   })}
