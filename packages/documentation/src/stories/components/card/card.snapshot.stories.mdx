@@ -1,0 +1,36 @@
+import cardMeta, { Default } from './card.stories';
+import { bombArgs } from '../../utilities/bombArgs';
+
+<Meta title="Hidden/Cards snapshot test" />
+
+<div style={{ display: 'flex', flexWrap: 'wrap', gap: '1rem', alignItems: 'start' }}>
+  {['bg-white', 'bg-dark'].map(bg => {
+    return (
+      <div
+        class={bg}
+        style={{
+          padding: '1rem',
+          display: 'flex',
+          gap: '1rem',
+          flexWrap: 'wrap',
+          alignItems: 'start',
+        }}
+      >
+        {bombArgs({
+          showImage: [false, true],
+          imagePosition: cardMeta.argTypes.imagePosition.options,
+          showHeader: [false, true],
+          showBody: [false, true],
+          showFooter: [false, true],
+          showTitle: [false, true],
+          showSubtitle: [false, true],
+          showLinks: [false, true],
+          showButton: [false, true],
+          showListGroup: [false, true],
+        })
+          .filter(args => args.showHeader || args.showBody || args.showFooter || args.showListGroup)
+          .map(args => Default({ ...cardMeta.args, ...args }))}
+      </div>
+    );
+  })}
+</div>
