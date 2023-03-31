@@ -286,7 +286,6 @@ const RotateTemplate = (args: Args) => (
         Template({
           ...args,
           key: data.key,
-          name: '1022',
           ...data.value,
         }),
     )}
