@@ -18665,6 +18665,62 @@
       "modifiedAt": "2023-03-14T15:26:33.000Z"
     },
     {
+      "uuid": "ab6c5ec2-cf9b-11ed-93da-005056873709",
+      "id": 676577,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/676577/storage/Njc2NTc2LzAvbWFzdGVy",
+        "keywords": [
+          "MyGuide",
+          "Smart Goverment"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2512.svg",
+        "basename": "2512",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-31T08:11:42.000Z",
+      "modifiedAt": "2023-03-31T08:15:54.000Z"
+    },
+    {
+      "uuid": "604a6710-cf9c-11ed-93da-005056873709",
+      "id": 676582,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/676582/storage/Njc2NTc5LzAvbWFzdGVy",
+        "keywords": [
+          "Einzahlungsschein QR",
+          "Bulletin de versement QR",
+          "Polizza di versamento QR",
+          "QR inpayment slip"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2513.svg",
+        "basename": "2513",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-31T08:16:45.000Z",
+      "modifiedAt": "2023-03-31T08:18:07.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -29242,11 +29298,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-03-19T01:37:47.263Z",
+  "created": "2023-04-02T01:19:59.916Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 842
+    "success": 844
   },
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
