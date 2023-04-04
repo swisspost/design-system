@@ -1,9 +1,19 @@
-import { Component, Host, h, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Host, h, Prop, State, Watch } from '@stencil/core';
 import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '../../utils';
 import { version } from '../../../package.json';
 
 const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
-const ANIMATION_KEYS = ['cylon', 'cylon-vertical', 'spin', 'spin-reverse', 'fade', 'throb'];
+const ANIMATION_NAMES = [
+  'cylon',
+  'cylon-vertical',
+  'spin',
+  'spin-reverse',
+  'fade',
+  'throb',
+] as const;
+const ANIMATION_KEYS = [...ANIMATION_NAMES];
+
+type Animation = (typeof ANIMATION_NAMES)[number];
 
 /**
  * @class PostIcon - representing a stencil component
@@ -17,14 +27,18 @@ export class PostIcon {
   private path: string;
   private loadedPath: string;
   private svgSource = '<svg viewBox="0 0 16 16"></svg>';
+  private svgElement: SVGElement;
+
+  @Element() host: HTMLPostIconElement;
 
   @State() pathForceCDN = false;
+  @State() svgStyles: string;
   @State() svgOutput: string;
 
   /**
-   * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+   * The name of the animation.
    */
-  @Prop() readonly animation?: string;
+  @Prop() readonly animation?: Animation | null = null;
 
   @Watch('animation')
   validateAnimation(newValue = this.animation) {
@@ -39,9 +53,9 @@ export class PostIcon {
   }
 
   /**
-   * The base path, where the icons are located (must be a public url).
+   * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
    */
-  @Prop() readonly base?: string;
+  @Prop() readonly base?: string | null = null;
 
   @Watch('base')
   validateBase(newValue = this.base) {
@@ -51,7 +65,7 @@ export class PostIcon {
   /**
    * When set to `true`, the icon will be flipped horizontally.
    */
-  @Prop() readonly flipH?: boolean;
+  @Prop() readonly flipH?: boolean = false;
 
   @Watch('flipH')
   validateFlipH(newValue = this.flipH) {
@@ -61,7 +75,7 @@ export class PostIcon {
   /**
    * When set to `true`, the icon will be flipped vertically.
    */
-  @Prop() readonly flipV?: boolean;
+  @Prop() readonly flipV?: boolean = false;
 
   @Watch('flipV')
   validateFlipV(newValue = this.flipV) {
@@ -71,7 +85,7 @@ export class PostIcon {
   /**
    * The name/id of the icon (e.g. 1000, 1001, ...).
    */
-  @Prop() readonly name: string;
+  @Prop() readonly name!: string;
 
   @Watch('name')
   validateName(newValue = this.name) {
@@ -80,9 +94,9 @@ export class PostIcon {
   }
 
   /**
-   * The `number` of degree for the css `rotate` transformation.
+   * The number of degree for the css rotate transformation.
    */
-  @Prop() readonly rotate?: number;
+  @Prop() readonly rotate?: number | null = null;
 
   @Watch('rotate')
   validateRotate(newValue = this.rotate) {
@@ -90,9 +104,9 @@ export class PostIcon {
   }
 
   /**
-   * The `number` for the css `scale` transformation.
+   * The number for the css scale transformation.
    */
-  @Prop() readonly scale?: number;
+  @Prop() readonly scale?: number | null = null;
 
   @Watch('scale')
   validateScale(newValue = this.scale) {
@@ -110,6 +124,8 @@ export class PostIcon {
   }
 
   componentWillRender() {
+    this.createIconFromStorage();
+
     // create path dependant on the props
     this.setPath();
 
@@ -146,8 +162,6 @@ export class PostIcon {
 
     // use "basePath" only if "pathForceCDN" state is "false"
     this.path = this.getPath(this.pathForceCDN ? CDN_URL : basePath);
-    // try to get the "svgSource" from localStorage
-    this.svgSource = window.localStorage.getItem(`post-icon-${this.name}`) ?? this.svgSource;
     // reset "pathForceCDN" after every try
     this.pathForceCDN = false;
   }
@@ -187,7 +201,20 @@ export class PostIcon {
     });
   }
 
+  private createIconFromStorage() {
+    const storedIcon = window.localStorage.getItem(`post-icon-${this.name}`);
+
+    if (storedIcon) {
+      this.svgSource = storedIcon ?? this.svgSource;
+      this.createIcon();
+    }
+  }
+
   private createIcon() {
+    // create svg element from svgSource string
+    const domParser = new DOMParser();
+    this.svgElement = domParser.parseFromString(this.svgSource, 'text/html').querySelector('svg');
+
     // create inline styles for some properties
     const svgStyles = Object.entries({
       scale: this.scale && !isNaN(Number(this.scale)) ? `${this.scale}` : null,
@@ -197,20 +224,11 @@ export class PostIcon {
       .map(([key, value]) => `${key}: ${value}`)
       .join(';');
 
-    // create svg in RAM and append the above styles, before defining the "svgOutput"
-    const helperElement = document.createElement('div');
-    helperElement.innerHTML = this.svgSource;
-    const svgElement = helperElement.querySelector('svg');
-    svgElement.setAttribute('style', svgStyles);
-
-    this.svgOutput = helperElement.innerHTML;
+    this.svgElement.setAttribute('style', svgStyles);
+    this.host.shadowRoot.innerHTML = this.svgElement.outerHTML;
   }
 
   render() {
-    return (
-      <Host data-version={version}>
-        <div innerHTML={this.svgOutput} />
-      </Host>
-    );
+    return <Host data-version={version} />;
   }
 }
