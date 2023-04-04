@@ -1,5 +1,20 @@
 # @swisspost/design-system-documentation
 
+## 1.8.0
+
+### Minor Changes
+
+- Added post-icon component stories. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1312](https://github.com/swisspost/design-system/pull/1312))
+
+- Added "Get Started" documenation page for icons package. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1312](https://github.com/swisspost/design-system/pull/1312))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.3
+  - @swisspost/design-system-components@1.3.4
+  - @swisspost/design-system-components-react@1.0.10
+
 ## 1.7.0
 
 ### Minor Changes
