@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.21.4",
-    "@percy/cli": "1.21.0",
+    "@percy/cli": "1.22.0",
     "@percy/cypress": "3.1.2",
     "@stencil/eslint-plugin": "0.4.0",
     "@stencil/sass": "3.0.0",
@@ -76,7 +76,7 @@
     "rollup-plugin-node-polyfills": "0.2.1",
     "rollup-plugin-scss": "4.0.0",
     "rollup-plugin-visualizer": "5.9.0",
-    "sass": "1.60.0",
+    "sass": "1.61.0",
     "start-server-and-test": "2.0.0",
     "ts-jest": "27.1.5",
     "typescript": "4.9.5"
