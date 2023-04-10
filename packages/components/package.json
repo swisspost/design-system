@@ -39,7 +39,7 @@
     "@stencil/core": "3.2.0"
   },
   "devDependencies": {
-    "@percy/cli": "1.21.0",
+    "@percy/cli": "1.22.0",
     "@percy/cypress": "3.1.2",
     "@popperjs/core": "2.11.7",
     "@stencil-community/eslint-plugin": "^0.5.0",
@@ -52,13 +52,13 @@
     "bootstrap": "5.2.3",
     "cypress": "12.9.0",
     "cypress-storybook": "0.5.1",
-    "eslint": "8.37.0",
+    "eslint": "8.38.0",
     "eslint-plugin-react": "7.32.2",
     "jest": "27.5.1",
     "jest-cli": "27.5.1",
     "npm-run-all": "4.1.5",
-    "puppeteer": "19.8.3",
-    "sass": "1.60.0",
+    "puppeteer": "19.8.5",
+    "sass": "1.61.0",
     "typescript": "4.9.5"
   }
 }
