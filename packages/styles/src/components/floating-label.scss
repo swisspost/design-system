@@ -54,6 +54,13 @@
         transition: forms.$form-floating-transition-in;
       }
     }
+
+    &[type='file'] {
+      &:focus,
+      &:not(:placeholder-shown) {
+        padding-top: forms.$form-floating-input-padding-t * 1.33;
+      }
+    }
   }
 
   > .form-select {
