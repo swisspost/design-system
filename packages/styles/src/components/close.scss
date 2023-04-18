@@ -1,33 +1,49 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
-@use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/close' as bc;
+@use './../mixins/button' as button-mx;
+@use './../mixins/color' as color-mx;
+@use './../mixins/forms' as forms-mx;
+@use './../mixins/icons' as icons-mx;
 
-@use './../variables/components/close';
-@use './../mixins/utilities';
+@use './../variables/animation';
+@use './../variables/color';
+@use './../variables/commons';
+@use './../variables/spacing';
+
+$close-size: spacing.$size-large;
+$close-border-radius: commons.$border-radius-sm;
+$close-opacity: 1;
+$close-hover-opacity: .8;
 
 .btn-close {
-  height: unset;
-  min-height: close.$btn-close-height;
+  --post-close-size: #{$close-size};
+  --post-close-border-radius: #{$close-border-radius};
+  --post-close-opacity: #{$close-opacity};
+  --post-close-hover-opacity: #{$close-hover-opacity};
 
-  @include utilities.high-contrast-mode() {
-    opacity: 1;
-    background: transparent escape-svg($btn-close-hcm-bg) center/1.5rem auto no-repeat;
+  @include button-mx.reset-button;
+  @include forms-mx.focus-outline;
+  @include icons-mx.pi(2043);
+
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: var(--post-close-size);
+  width: var(--post-close-size);
+  border-radius: var(--post-close-border-radius);
+  opacity: var(--post-close-opacity);
+  transition: opacity animation.$transition-base-timing;
+
+  &:hover,
+  &:focus {
+    opacity: var(--post-close-hover-opacity);
   }
 
-  &:focus {
-    outline: 2px solid var(--post-contrast-color);
-    box-shadow: none;
-
-    &:not(:focus-visible) {
-      outline: 0;
-    }
+  @include color-mx.on-dark-background {
+    @include icons-mx.pi(2043, color.$white);
   }
 }
 
 .btn-close-white {
-  @include utilities.high-contrast-mode() {
-    filter: none;
-  }
+  filter: invert(1);
 }
