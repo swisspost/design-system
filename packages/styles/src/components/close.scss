@@ -13,7 +13,7 @@
 $close-size: spacing.$size-large;
 $close-border-radius: commons.$border-radius-sm;
 $close-opacity: 1;
-$close-hover-opacity: .8;
+$close-hover-opacity: 0.8;
 
 .btn-close {
   --post-close-size: #{$close-size};
