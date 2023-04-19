@@ -4,7 +4,6 @@
 
 @use './../variables/color';
 
-
 // mixin to correctly set CSS variables for any colored background
 @mixin colored-background($color) {
   --post-bg-rgb: #{color-fn.rgb-values($color)};

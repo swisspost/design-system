@@ -1,7 +1,6 @@
 @use './../variables/components/alert';
 @use './../variables/components/close';
 
-
 %notification {
   --post-notification-padding-x: #{alert.$alert-padding-x};
   --post-notification-padding-y: #{alert.$alert-padding-y};
@@ -25,7 +24,10 @@
   background-repeat: no-repeat;
   min-height: calc(2 * var(--post-notification-padding-y) + var(--post-notification-icon-size));
   padding: var(--post-notification-padding-y) var(--post-notification-padding-x);
-  padding-inline-start: calc(var(--post-notification-padding-x) + var(--post-notification-icon-size) + var(--post-notification-gap-x));
+  padding-inline-start: calc(
+    var(--post-notification-padding-x) + var(--post-notification-icon-size) +
+      var(--post-notification-gap-x)
+  );
   margin-block-end: var(--post-notification-margin-bottom);
   box-shadow: var(--post-notification-box-shadow);
   border-radius: var(--post-notification-border-radius);
@@ -41,7 +43,9 @@
 
 %notification-dismissible {
   position: relative;
-  padding-inline-end: calc(var(--post-notification-padding-x) + var(--post-notification-gap-x) + #{close.$close-size});
+  padding-inline-end: calc(
+    var(--post-notification-padding-x) + var(--post-notification-gap-x) + #{close.$close-size}
+  );
 }
 
 %notification-close-button {

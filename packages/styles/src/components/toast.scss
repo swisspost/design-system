@@ -12,7 +12,6 @@
 @use './../variables/commons';
 @use './../variables/components/toasts';
 
-
 .toast-container {
   position: fixed;
   z-index: commons.$zindex-alert;

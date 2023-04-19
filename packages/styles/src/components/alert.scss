@@ -16,7 +16,6 @@
 @use './../variables/components/alert';
 @use './../variables/components/close';
 
-
 .alert {
   @extend %notification;
 
@@ -72,7 +71,9 @@
     padding-inline: var(--post-notification-padding-x);
 
     > .alert-content {
-      padding-inline-start: calc(var(--post-notification-gap-x) + var(--post-notification-icon-size));
+      padding-inline-start: calc(
+        var(--post-notification-gap-x) + var(--post-notification-icon-size)
+      );
       padding-inline-end: calc(var(--post-notification-gap-x) + #{close.$close-size});
     }
 
@@ -104,7 +105,9 @@
   @include media-breakpoint-up(xxl) {
     $container-max-width: map.get(breakpoints.$grid-breakpoints, 'xxl');
     $container-padding-x: map.get(grid.$grid-container-padding, 'xxl');
-    --post-notification-padding-x: calc((100vw - #{$container-max-width}) / 2 + #{$container-padding-x});
+    --post-notification-padding-x: calc(
+      (100vw - #{$container-max-width}) / 2 + #{$container-padding-x}
+    );
   }
 }
 

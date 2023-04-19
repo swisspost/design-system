@@ -2,7 +2,6 @@
 
 @use './../placeholders/close' as close-ph;
 
-
 .btn-close {
   @extend %btn-close;
 }

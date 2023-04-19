@@ -7,7 +7,6 @@
 @use './../variables/color';
 @use './../variables/components/close';
 
-
 %btn-close {
   --post-close-size: #{close.$close-size};
   --post-close-border-radius: #{close.$close-border-radius};
