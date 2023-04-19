@@ -1,0 +1,41 @@
+@use './../mixins/button' as button-mx;
+@use './../mixins/color' as color-mx;
+@use './../mixins/forms' as forms-mx;
+@use './../mixins/icons' as icons-mx;
+
+@use './../variables/animation';
+@use './../variables/color';
+@use './../variables/components/close';
+
+
+%btn-close {
+  --post-close-size: #{close.$close-size};
+  --post-close-border-radius: #{close.$close-border-radius};
+  --post-close-opacity: #{close.$close-opacity};
+  --post-close-hover-opacity: #{close.$close-hover-opacity};
+  --post-close-filter: unset;
+
+  @include button-mx.reset-button;
+  @include forms-mx.focus-outline;
+  @include icons-mx.pi(2043);
+
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  height: var(--post-close-size);
+  width: var(--post-close-size);
+  border-radius: var(--post-close-border-radius);
+  opacity: var(--post-close-opacity);
+  transition: opacity animation.$transition-base-timing;
+  outline-color: color.$white;
+  filter: var(--post-close-filter);
+
+  &:hover,
+  &:focus {
+    opacity: var(--post-close-hover-opacity);
+  }
+
+  @include color-mx.on-dark-background {
+    --post-close-filter: invert(1);
+  }
+}

@@ -1,49 +1,12 @@
 @forward './../variables/options';
 
-@use './../mixins/button' as button-mx;
-@use './../mixins/color' as color-mx;
-@use './../mixins/forms' as forms-mx;
-@use './../mixins/icons' as icons-mx;
+@use './../placeholders/close' as close-ph;
 
-@use './../variables/animation';
-@use './../variables/color';
-@use './../variables/commons';
-@use './../variables/spacing';
-
-$close-size: spacing.$size-large;
-$close-border-radius: commons.$border-radius-sm;
-$close-opacity: 1;
-$close-hover-opacity: 0.8;
 
 .btn-close {
-  --post-close-size: #{$close-size};
-  --post-close-border-radius: #{$close-border-radius};
-  --post-close-opacity: #{$close-opacity};
-  --post-close-hover-opacity: #{$close-hover-opacity};
-
-  @include button-mx.reset-button;
-  @include forms-mx.focus-outline;
-  @include icons-mx.pi(2043);
-
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: var(--post-close-size);
-  width: var(--post-close-size);
-  border-radius: var(--post-close-border-radius);
-  opacity: var(--post-close-opacity);
-  transition: opacity animation.$transition-base-timing;
-
-  &:hover,
-  &:focus {
-    opacity: var(--post-close-hover-opacity);
-  }
-
-  @include color-mx.on-dark-background {
-    @include icons-mx.pi(2043, color.$white);
-  }
+  @extend %btn-close;
 }
 
 .btn-close-white {
-  filter: invert(1);
+  --post-close-filter: invert(1);
 }
