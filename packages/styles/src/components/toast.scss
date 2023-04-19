@@ -3,27 +3,95 @@
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 
-@use './../variables/components/toasts';
-@use './../variables/components/alert';
-@use './../components/close';
-@use './../functions/color' as color-fn;
 @use './../functions/contrast' as contrast-fn;
-@use './../placeholders/color' as color-ph;
-@use './../placeholders/notifications';
+@use './../mixins/color' as color-mx;
+@use './../mixins/icons' as icons-mx;
+@use './../placeholders/close' as close-ph;
+@use './../placeholders/notifications' as notifications-ph;
+
+@use './../variables/commons';
+@use './../variables/components/toasts';
+
+
+.toast-container {
+  position: fixed;
+  z-index: commons.$zindex-alert;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+
+  .toast {
+    width: toasts.$toast-width;
+  }
+}
+
+.toast {
+  --post-notification-padding-x: #{toasts.$toast-padding-x};
+  --post-notification-padding-y: #{toasts.$toast-padding-y};
+  --post-notification-font-size: #{toasts.$toast-font-size};
+  --post-notification-heading-font-size: #{toasts.$toast-heading-font-size};
+  --post-notification-hr-margin-top: #{toasts.$toast-hr-margin-top};
+  --post-notification-hr-margin-bottom: #{toasts.$toast-hr-margin-bottom};
+  --post-notification-icon-size: #{toasts.$toast-icon-size};
+
+  @extend %notification;
+  @extend %notification-content;
+  @extend %notification-dismissible;
+}
+
+.toast-close-button {
+  @extend %btn-close;
+  @extend %notification-close-button;
+}
+
+.toast > *:only-child,
+.toast > .btn-close:first-child + *:last-child,
+.toast-title {
+  @extend %notification-title;
+}
+
+@each $name, $color, $icon in toasts.$toast-variants {
+  .toast-#{$name} {
+    @include color-mx.colored-background($color);
+    @include icons-mx.pi($icon, contrast-fn.get-best-contrast-text($color));
+
+    > .toast-close-button {
+      --post-close-filter: #{contrast-fn.get-black-icon-filter($color)};
+    }
+  }
+}
+
+// Responsive Design
+@include media-breakpoint-down(md) {
+  .toast-container .toast {
+    --post-notification-max-width: #{toasts.$toast-width-sm};
+  }
+}
+
+@include media-breakpoint-down(sm) {
+  .toast-container {
+    right: toasts.$toast-margin;
+    left: toasts.$toast-margin;
+
+    .toast {
+      width: 100%;
+    }
+  }
+}
 
 // Positioning
 .toast-top-center,
 .toast-top-full-width,
 .toast-top-left,
 .toast-top-right {
-  top: alert.$alert-margin;
+  top: toasts.$toast-margin;
 }
 
 .toast-bottom-center,
 .toast-bottom-full-width,
 .toast-bottom-right,
 .toast-bottom-left {
-  bottom: alert.$alert-margin;
+  bottom: toasts.$toast-margin;
 }
 
 .toast-top-left,
@@ -31,7 +99,7 @@
 .toast-top-full-width,
 .toast-bottom-full-width,
 .toast-center-left {
-  left: alert.$alert-margin;
+  left: toasts.$toast-margin;
 }
 
 .toast-top-right,
@@ -39,7 +107,7 @@
 .toast-top-full-width,
 .toast-bottom-full-width,
 .toast-center-right {
-  right: alert.$alert-margin;
+  right: toasts.$toast-margin;
 }
 
 .toast-top-center,
@@ -64,123 +132,5 @@
 .toast-bottom-full-width {
   .toast {
     width: 100% !important;
-  }
-}
-
-// Base styling
-.toast-container {
-  @extend %notification-container;
-  position: fixed;
-  pointer-events: none;
-
-  * {
-    box-sizing: border-box;
-  }
-}
-
-.toast {
-  $effective-line-height: (alert.$alert-line-height * alert.$alert-font-size-small);
-
-  @extend %notification;
-
-  display: flex !important; // Needs to be important to override display styling by the ngx-toaster
-  width: alert.$alert-toast-width;
-
-  min-height: 2 * alert.$alert-toast-padding-y + 2 * $effective-line-height;
-
-  padding: alert.$alert-toast-padding-y alert.$alert-toast-padding-x;
-  padding-left: (alert.$alert-toast-padding-x * 2 + alert.$alert-toast-icon-size);
-
-  overflow: hidden;
-  background-position: alert.$alert-toast-padding-x center;
-
-  background-size: alert.$alert-toast-icon-size;
-  font-size: alert.$alert-font-size-small;
-  pointer-events: auto;
-
-  &.no-icon {
-    padding-left: alert.$alert-toast-padding-x;
-  }
-
-  &:hover {
-    opacity: 1;
-    box-shadow: alert.$alert-toast-box-shadow-hover;
-    cursor: pointer;
-  }
-
-  .toast-close-button {
-    @extend %notification-close;
-
-    padding: alert.$alert-toast-padding-y alert.$alert-toast-padding-x;
-  }
-
-  .toast-close-button,
-  .btn-close {
-    ~ .toast-message,
-    ~ .toast-title {
-      padding-right: calc(#{alert.$alert-toast-padding-x} + #{alert.$alert-close-icon-size});
-    }
-
-    + .toast-message {
-      font-weight: bold;
-    }
-  }
-}
-
-.toast-title {
-  @extend %notification-title;
-
-  font-size: alert.$alert-font-size-small;
-}
-
-.toast-message {
-  font-size: alert.$alert-font-size-small;
-  word-wrap: break-word;
-
-  a:hover {
-    text-decoration: none;
-  }
-}
-
-/* stylelint-disable */
-.toast-close-button {
-  @extend .btn-close;
-}
-/* stylelint-enable */
-
-// Variants
-
-@each $name, $color, $icon in alert.$alert-list {
-  .toast-#{$name} {
-    --post-bg-rgb: #{color-fn.rgb-values($color)};
-    @extend %notification-#{$name};
-
-    @if (contrast-fn.light-or-dark($color) == 'dark') {
-      @extend %color-background-dark-variables;
-    } @else {
-      @extend %color-background-light-variables;
-    }
-
-    .toast-close-button,
-    .btn-close {
-      @extend %notification-#{$name}-close;
-    }
-  }
-}
-
-// Responsive Design
-@include media-breakpoint-down(md) {
-  .toast-container .toast {
-    width: alert.$alert-toast-width-small-breakpoint;
-  }
-}
-@include media-breakpoint-down(sm) {
-  .toast-container {
-    right: alert.$alert-margin;
-    left: alert.$alert-margin;
-
-    .toast {
-      width: 100%;
-    }
   }
 }

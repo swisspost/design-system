@@ -1,128 +1,75 @@
-@use './../themes/bootstrap/core' as *;
-
-@use './../variables/commons';
-@use './../variables/color';
-@use './../variables/type';
 @use './../variables/components/alert';
+@use './../variables/components/close';
 
-@use './../components/close';
-
-@use './../mixins/utilities';
-@use './../mixins/icons' as icon-mixin;
-@use './../functions/contrast' as contrast-fn;
-@use './../placeholders/color' as color-ph;
-@use './text';
-
-%notification-container {
-  display: flex;
-  z-index: commons.$zindex-alert;
-  flex-direction: column;
-}
 
 %notification {
-  @extend %list-adjustment;
-  @include border-radius(alert.$alert-border-radius);
+  --post-notification-padding-x: #{alert.$alert-padding-x};
+  --post-notification-padding-y: #{alert.$alert-padding-y};
+  --post-notification-margin-bottom: #{alert.$alert-margin-bottom};
+  --post-notification-box-shadow: #{alert.$alert-box-shadow};
+  --post-notification-border-radius: #{alert.$alert-border-radius};
+  --post-notification-gap-x: #{alert.$alert-gap-x};
+  --post-notification-gap-y: #{alert.$alert-gap-y};
+  --post-notification-font-size: #{alert.$alert-font-size};
+  --post-notification-font-weight: #{alert.$alert-font-weight};
+  --post-notification-heading-font-size: #{alert.$alert-heading-font-size};
+  --post-notification-heading-font-weight: #{alert.$alert-heading-font-weight};
+  --post-notification-link-font-weight: #{alert.$alert-link-font-weight};
+  --post-notification-hr-margin-top: #{alert.$alert-hr-margin-top};
+  --post-notification-hr-margin-bottom: #{alert.$alert-hr-margin-bottom};
+  --post-notification-icon-size: #{alert.$alert-icon-size};
+  --post-notification-action-button-margin-start: #{alert.$alert-action-button-margin-start};
 
-  display: flex;
-
-  position: relative;
-  flex-flow: column nowrap;
-  align-items: stretch;
-  justify-content: center;
-  margin-bottom: alert.$alert-margin-bottom;
-
-  // The !important Allows a new icon to be inserted via "pi"-class.
-  border: alert.$alert-border-width solid transparent !important;
-
+  background-size: var(--post-notification-icon-size);
+  background-position: var(--post-notification-padding-x) var(--post-notification-padding-y);
   background-repeat: no-repeat;
-  font-weight: type.$font-weight-light;
-
-  line-height: alert.$alert-line-height;
-
-  hr {
-    width: 100%;
-    margin: alert.$alert-text-space-between * 2 0 alert.$alert-text-space-between * 3;
-  }
+  min-height: calc(2 * var(--post-notification-padding-y) + var(--post-notification-icon-size));
+  padding: var(--post-notification-padding-y) var(--post-notification-padding-x);
+  padding-inline-start: calc(var(--post-notification-padding-x) + var(--post-notification-icon-size) + var(--post-notification-gap-x));
+  margin-block-end: var(--post-notification-margin-bottom);
+  box-shadow: var(--post-notification-box-shadow);
+  border-radius: var(--post-notification-border-radius);
+  font-size: var(--post-notification-font-size);
+  font-weight: var(--post-notification-font-weight);
 
   &.no-icon {
     background-image: none;
+    padding-inline-start: var(--post-notification-padding-x);
+    min-height: initial;
   }
+}
 
-  > *:not(hr) {
-    margin-bottom: alert.$alert-text-space-between;
-  }
+%notification-dismissible {
+  position: relative;
+  padding-inline-end: calc(var(--post-notification-padding-x) + var(--post-notification-gap-x) + #{close.$close-size});
+}
 
-  > p + p {
-    margin-top: alert.$alert-text-space-between;
-  }
+%notification-close-button {
+  position: absolute;
+  inset-block-start: alert.$alert-padding-y;
+  inset-inline-end: var(--post-notification-padding-x);
+}
 
-  > *:last-child {
-    margin-bottom: 0;
-  }
+%notification-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--post-notification-gap-y);
 
-  // When just the heading is shown (no message).
-  > %notification-title:last-child {
-    padding-bottom: 0;
-  }
-
-  // Adjust close link position
-  %notification-close {
-    position: absolute;
-    z-index: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    box-sizing: unset;
+  > * {
     margin: 0;
-    border: 0;
-    outline-offset: -2px;
-    font-size: 0;
+  }
+
+  hr {
+    margin-block: var(--post-notification-hr-margin-top) var(--post-notification-hr-margin-bottom);
+  }
+
+  a {
+    font-weight: var(--post-notification-link-font-weight);
   }
 }
 
 %notification-title {
-  padding-bottom: alert.$alert-text-space-between;
-  // Specified to prevent conflicts of changing $headings-color
-  color: inherit;
-  font-weight: type.$font-weight-bold;
+  font-size: var(--post-notification-heading-font-size);
+  font-weight: var(--post-notification-heading-font-weight);
 }
-
-/* stylelint-disable */
-%notification-close-light {
-  @extend .btn-close-white;
-}
-
-@each $name, $color, $icon in alert.$alert-list {
-  $is-light-bg: contrast-fn.light-or-dark($color) == "dark";
-
-  %notification-#{$name} {
-    @if ($is-light-bg) {
-      @include icon-mixin.pi($icon, 'white');
-
-      hr {
-        border-color: type.$hr-border-color-light;
-      }
-    } @else {
-      @include icon-mixin.pi($icon);
-    }
-
-    @extend %color-background-rgb;
-
-    @include utilities.high-contrast-mode() {
-      // Specificity booster for the icon-mixin
-      &[class] {
-        @include icon-mixin.pi($icon, 'white');
-
-        // use important here, so pi classes don't overwrite hcm styles
-        filter: none !important;
-      }
-    }
-  }
-
-  %notification-#{$name}-close {
-    @if ($is-light-bg) {
-      @extend %notification-close-light;
-    }
-  }
-}
-/* stylelint-enable */
