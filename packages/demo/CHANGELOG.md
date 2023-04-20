@@ -1,5 +1,14 @@
 # @swisspost/design-system-demo
 
+## 6.0.2
+
+### Patch Changes
+
+- Updated the favicon and app-icons in the demo-app and the storybook documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.0
+  - @swisspost/design-system-intranet-header@4.0.2
+
 ## 6.0.1
 
 ### Patch Changes

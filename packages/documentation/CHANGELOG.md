@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 1.8.2
+
+### Patch Changes
+
+- Updated the Logo in storybook's sidebar. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+
+- Updated the favicon and app-icons in the demo-app and the storybook documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.0
+  - @swisspost/internet-header@1.7.0
+  - @swisspost/design-system-components@1.3.4
+
 ## 1.8.1
 
 ### Patch Changes
