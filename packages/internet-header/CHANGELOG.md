@@ -1,5 +1,11 @@
 # @swisspost/internet-header
 
+## 1.7.0
+
+### Minor Changes
+
+- Added the new Logo to the internet-header component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+
 ## 1.6.0
 
 ### Minor Changes

@@ -45,7 +45,7 @@
     "@stencil-community/eslint-plugin": "^0.5.0",
     "@stencil/react-output-target": "0.5.0",
     "@stencil/sass": "3.0.1",
-    "@swisspost/design-system-styles": "workspace:6.1.0",
+    "@swisspost/design-system-styles": "workspace:6.2.0",
     "@types/jest": "27.5.2",
     "@typescript-eslint/eslint-plugin": "5.59.0",
     "@typescript-eslint/parser": "5.59.0",

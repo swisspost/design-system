@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 6.2.0
+
+### Minor Changes
+
+- Updated the new Logo in the intranet-header component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+
 ## 6.1.0
 
 ### Minor Changes
