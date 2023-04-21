@@ -19,7 +19,7 @@
   dl {
     display: grid;
     grid-template-columns: max-content 1fr;
-    gap: 0.5rem 1rem;
+    gap: post.$size-mini post.$size-regular;
   }
 
   dl,
@@ -27,24 +27,4 @@
   dd {
     @include post.font-curve(tiny);
   }
-}
-
-.form-switch {
-  flex: 1 0 auto;
-  align-items: center;
-  align-self: flex-end;
-}
-
-.color-badge {
-  width: post.$size-large;
-  height: post.$size-large;
-  border-radius: post.$size-large;
-  border: 2px solid post.$black;
-  flex: 0 0 post.$size-large;
-}
-
-.color-label {
-  display: flex;
-  align-items: center;
-  gap: post.$size-mini;
 }
