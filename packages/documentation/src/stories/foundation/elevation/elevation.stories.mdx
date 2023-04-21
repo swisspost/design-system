@@ -1,6 +1,6 @@
-import { Meta } from '@storybook/addon-docs';
+import { Meta, Canvas } from '@storybook/addon-docs';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
-import { ColorSwitch, ColorSwitchClass, BackgroundSwitch } from './elevation.components.tsx';
+import { ElevationTile } from './elevation-tile.tsx';
 import './elevation.styles.scss';
 
 <Meta
@@ -18,36 +18,38 @@ import './elevation.styles.scss';
 
 # Elevation
 
-<div class="d-flex justify-content-between align-items-center">
-  <ColorSwitchClass />
-</div>
-<BackgroundSwitch />
+<p className="lead">
+  Elevation uses box shadows to give the impression of a distance between two elements along the z axis.
+</p>
+
+The higher the elevation, the larger and softer the shadow, expressing a greater distance between an element and the one behind it.
+
+<br />
 
 <div className="elevation-container">
-  {[1, 2, 3, 4, 5].map(i => (
-    <div className={`elevation-tile elevation-${i}`}>
-      <h2 className="h6">Elevation {i}</h2>
-      <p>
-        <dl>
-          <dt>Class</dt>
-          <dd>
-            <code>elevation-{i}</code>
-          </dd>
-        </dl>
-      </p>
-    </div>
-  ))}
-  {[1, 2, 3, 4, 5].map(i => (
-    <div className={`elevation-tile elevation-${5 + i}`}>
-      <h2 className="h6">Colored elevation {i}</h2>
-      <p>
-        <dl>
-          <dt>Class</dt>
-          <dd>
-            <code>elevation-{5 + i}</code>
-          </dd>
-        </dl>
-      </p>
-    </div>
+  {[1, 2, 3, 4, 5].map(elevationLevel => (
+    <ElevationTile level={elevationLevel} />
   ))}
 </div>
+
+## Usage
+
+### CSS class
+
+The easiest way to add an elevation to an element is to apply an elevation class to it.
+
+<Canvas withSource="open">
+  <div className="w-50 rounded p-regular bg-aubergine elevation-5">I'm elevated!</div>
+</Canvas>
+
+### Sass
+
+Import the elevation variables from the Design System Styles package from the `core` sass file with `@use`. This way, the elevation variables are scoped and don't mix with your own variables.
+
+```css dark
+@use '@swisspost/design-system-styles/core' as post;
+
+.elevated-element {
+  box-shadow: post.$elevation-5;
+}
+```
