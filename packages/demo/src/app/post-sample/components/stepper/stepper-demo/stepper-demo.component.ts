@@ -8,11 +8,11 @@ export class StepperDemoComponent {
   steps = ['Sender', 'Product', 'Other details', 'Order summary'];
   currentIndex = 2;
 
-  ifCurrent(step: string, value: unknown) {
-    return step === this.steps[this.currentIndex] ? value : undefined;
+  isCurrent(step: string): boolean {
+    return step === this.steps[this.currentIndex];
   }
 
-  getPathTo(step: string) {
+  getPathTo(step: string): string {
     return step.toLowerCase().split(' ').join('-');
   }
 }

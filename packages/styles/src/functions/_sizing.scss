@@ -32,6 +32,7 @@
 
 // Hardcoded numbers come directly from design (new CI/CD)
 // line-height always depends on font-size
+// Deprecated
 @function line-height-calc($val) {
   @if $val < px-to-rem(17) {
     @return 1.5;

@@ -84,6 +84,12 @@
   }
 }
 
+.form-floating {
+  .form-control {
+    padding-right: 3.5rem;
+  }
+}
+
 .start-search-button {
   position: absolute;
   top: 0;

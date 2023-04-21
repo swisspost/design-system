@@ -1,72 +1,56 @@
 <div class="heading py-5">
   <h1 class="bold font-curve-large">Datepicker</h1>
-  <h2 class="font-curve-medium">Using bootstrap 4.5</h2>
-  <a href="https://ng-bootstrap.github.io/#/components/datepicker/examples"
-    target="_blank" rel="noopener"
-    class="btn btn-primary btn-sm btn-animated"><span>ngBootstrap
-      Documentation</span></a>
+  <app-dependency-link></app-dependency-link>
 </div>
 
 <section>
   <p id="languageSelectorTitle" class="light font-curve-regular">Choose a language:</p>
 
   <div
-  [(ngModel)]="language"
-  aria-labelledby="languageSelectorTitle"
-  class="btn-group mb-3"
-  name="language"
-  ngbRadioGroup
-  role="group"
->
-  <label
-    class="btn btn-secondary"
-    for="68167c8c-663e-4468-a6f7-2e3d6ae7f63e"
+    aria-labelledby="languageSelectorTitle"
+    class="btn-group mb-3"
+    role="group"
   >
-    English </label
-  ><input
-    autocomplete="off"
-    class="btn-check"
-    type="radio"
-    value="en"
-    id="68167c8c-663e-4468-a6f7-2e3d6ae7f63e"
-  />
-  <label
-    class="btn btn-secondary"
-    for="1f6e4514-bb22-41da-877a-71c6853e1a21"
-  >
-    German </label
-  ><input
-    autocomplete="off"
-    class="btn-check"
-    type="radio"
-    value="de"
-    id="1f6e4514-bb22-41da-877a-71c6853e1a21"
-  />
-  <label
-    class="btn btn-secondary"
-    for="1eabdac9-b8c2-41d6-b503-a41ccf66d56d"
-  >
-    Francais </label
-  ><input
-    autocomplete="off"
-    class="btn-check"
-    type="radio"
-    value="fr"
-    id="1eabdac9-b8c2-41d6-b503-a41ccf66d56d"
-  />
-  <label
-    class="btn btn-secondary"
-    for="58982420-2c6d-457e-97d4-268f21ee0a8a"
-  >
-    Italiano </label
-  ><input
-    autocomplete="off"
-    class="btn-check"
-    type="radio"
-    value="it"
-    id="58982420-2c6d-457e-97d4-268f21ee0a8a"
-  />
-</div>
+    <input
+      [(ngModel)]="language"
+      autocomplete="off"
+      class="btn-check"
+      id="btn-check-en"
+      type="radio"
+      value="en"
+    />
+    <label class="btn btn-secondary" for="btn-check-en">English</label>
+
+    <input
+      [(ngModel)]="language"
+      autocomplete="off"
+      class="btn-check"
+      id="btn-check-de"
+      type="radio"
+      value="de"
+    />
+    <label class="btn btn-secondary" for="btn-check-de">German</label>
+
+    <input
+      [(ngModel)]="language"
+      autocomplete="off"
+      class="btn-check"
+      id="btn-check-fr"
+      type="radio"
+      value="fr"
+    />
+    <label class="btn btn-secondary" for="btn-check-fr">Francais</label>
+
+    <input
+      [(ngModel)]="language"
+      autocomplete="off"
+      class="btn-check"
+      id="btn-check-it"
+      type="radio"
+      value="it"
+    />
+    <label class="btn btn-secondary" for="btn-check-it">Italiano</label>
+  </div>
 
   <div class="alert alert-info" role="alert">
     <p>If you use internationalization, check out the custom <a href="#internationalization">datepicker internationalization service</a> below</p>

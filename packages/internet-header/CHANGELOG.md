@@ -1,5 +1,29 @@
 # @swisspost/internet-header
 
+## 1.7.0
+
+### Minor Changes
+
+- Added the new Logo to the internet-header component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+
+## 1.6.0
+
+### Minor Changes
+
+- Added the possibility to configure the header via `script` tag for Portal specific integrations. A `lang` attribute on the html element is required for this solution to work as well as a `<script id="PPM_HEADER_DATA" type="application/json">` tag containing the header config for the defined language. (by [@gfellerph](https://github.com/gfellerph) with [#1309](https://github.com/swisspost/design-system/pull/1309))
+
+### Patch Changes
+
+- Fixed a bug where a shipment information in the search suggestions was not reset after the search query changed. (by [@gfellerph](https://github.com/gfellerph) with [#1278](https://github.com/swisspost/design-system/pull/1278))
+
+## 1.5.6
+
+### Patch Changes
+
+- Updated the places search filter. The search now shows adresses, localities and regions in addition to points of interest like Post Branches, MyPost 24 and other Post services. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1257](https://github.com/swisspost/design-system/pull/1257))
+
+- Improved the styling for the Internet-Header search input. Text in the input does not overlap the start-search-button anymore. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1257](https://github.com/swisspost/design-system/pull/1257))
+
 ## 1.5.5
 
 ### Patch Changes

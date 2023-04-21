@@ -4,6 +4,7 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
 import { useArgs } from '@storybook/client-api';
 import parse from 'html-react-parser';
 import docsPage from './alert.docs.mdx';
+import { getAlertClasses } from './getAlertClasses';
 
 export default {
   title: 'Components/Alert',
@@ -132,18 +133,7 @@ function onShowToggle(e: React.MouseEvent, args: Args, updateArgs: Function) {
 const Template = (args: Args) => {
   const [_, updateArgs] = useArgs();
 
-  const classes = [
-    'alert',
-    args.variant,
-    args.icon !== 'null' ? `pi-${args.icon}` : '',
-    args.noIcon ? 'no-icon' : '',
-    args.dismissible ? 'alert-dismissible' : '',
-    args.fixed ? 'alert-fixed-bottom' : '',
-    args.action ? 'alert-action' : '',
-    args.show ? '' : 'd-none',
-  ]
-    .filter(c => c)
-    .join(' ');
+  const classes = getAlertClasses(args);
 
   // every time you want to parse one or more elements to a JSX.Element[], concat all the elements to a string and parse them all
   // even if it would be possible to write some of them directly
@@ -317,3 +307,5 @@ ActionButtons.args = {
   action: true,
   show: false,
 };
+
+export const DefaultSnapshot: Story = Template.bind({});

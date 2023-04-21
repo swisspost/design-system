@@ -1,5 +1,52 @@
 # @swisspost/design-system-demo
 
+## 6.0.2
+
+### Patch Changes
+
+- Updated the favicon and app-icons in the demo-app and the storybook documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.0
+  - @swisspost/design-system-intranet-header@4.0.2
+
+## 6.0.1
+
+### Patch Changes
+
+- Updated the documentation for tooltips regarding the "auto" placement option which can be used to place the tooltip where it fits if there is not enough space for the initial placement. (by [@gfellerph](https://github.com/gfellerph) with [#1288](https://github.com/swisspost/design-system/pull/1288))
+
+- Added examples of button groups using reactive forms and having an option disabled. (by [@alizedebray](https://github.com/alizedebray) with [#1307](https://github.com/swisspost/design-system/pull/1307))
+
+- Fixed the favicon and app-icon setup. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1296](https://github.com/swisspost/design-system/pull/1296))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.1.0
+  - @swisspost/design-system-intranet-header@4.0.1
+
+## 6.0.0
+
+### Major Changes
+
+- Removed documentation entry for the paragraph as duplicate, it's already documented under Typography (by [@gfellerph](https://github.com/gfellerph) with [#1238](https://github.com/swisspost/design-system/pull/1238))
+
+- Updated the markup for the stepper component in order to improve accessibility. Completed items now require the prefix "Complete" and incomplete steps are no longer links. (by [@gfellerph](https://github.com/gfellerph) with [#1232](https://github.com/swisspost/design-system/pull/1232))
+
+- Major dependency update. The following versions are now supported:
+  - Angular 15
+  - Bootstrap 5.2.3
+  - ng-bootstrap 14 (by [@gfellerph](https://github.com/gfellerph) with [#1210](https://github.com/swisspost/design-system/pull/1210))
+
+### Minor Changes
+
+- Removed deprecated ng-bootstrap Checkbox and Radio buttons and replaced them with Bootstrap button groups. (by [@alizedebray](https://github.com/alizedebray) with [#1199](https://github.com/swisspost/design-system/pull/1199))
+
+- Added a version switch to the header to keep documentation for older versions available. (by [@gfellerph](https://github.com/gfellerph) with [#1241](https://github.com/swisspost/design-system/pull/1241))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.0.0
+  - @swisspost/design-system-intranet-header@4.0.0
+
 ## 5.3.1
 
 ### Patch Changes

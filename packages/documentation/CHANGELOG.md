@@ -1,5 +1,73 @@
 # @swisspost/design-system-documentation
 
+## 1.8.2
+
+### Patch Changes
+
+- Updated the Logo in storybook's sidebar. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+
+- Updated the favicon and app-icons in the demo-app and the storybook documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.0
+  - @swisspost/internet-header@1.7.0
+  - @swisspost/design-system-components@1.3.4
+
+## 1.8.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.4
+
+## 1.8.0
+
+### Minor Changes
+
+- Added post-icon component stories. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1312](https://github.com/swisspost/design-system/pull/1312))
+
+- Added "Get Started" documenation page for icons package. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1312](https://github.com/swisspost/design-system/pull/1312))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.3
+  - @swisspost/design-system-components@1.3.4
+  - @swisspost/design-system-components-react@1.0.10
+
+## 1.7.0
+
+### Minor Changes
+
+- Added a story showing all interesting dependency version numbers used for this particular build of the documentation. (by [@gfellerph](https://github.com/gfellerph) with [#1284](https://github.com/swisspost/design-system/pull/1284))
+
+### Patch Changes
+
+- Fixed an issue with the button group story that lead to a bug for all following stories where controls did not show up and navigation was janky. (by [@gfellerph](https://github.com/gfellerph) with [#1276](https://github.com/swisspost/design-system/pull/1276))
+
+- Fixed the favicon and app-icon setup. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1296](https://github.com/swisspost/design-system/pull/1296))
+- Updated dependencies:
+  - @swisspost/internet-header@1.6.0
+  - @swisspost/design-system-styles@6.1.0
+  - @swisspost/design-system-components@1.3.3
+  - @swisspost/design-system-components-react@1.0.9
+
+## 1.6.0
+
+### Minor Changes
+
+- Removed deprecated ng-bootstrap Checkbox and Radio buttons and replaced them with Bootstrap button groups. (by [@alizedebray](https://github.com/alizedebray) with [#1199](https://github.com/swisspost/design-system/pull/1199))
+
+- Decoupled the fixed and the action button styles for the alert component. Alerts can now be fixed to bottom without having action buttons and can have action buttons without being fixed to the bottom of the page. (by [@gfellerph](https://github.com/gfellerph) with [#1230](https://github.com/swisspost/design-system/pull/1230))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.2
+  - @swisspost/design-system-styles@6.0.0
+  - @swisspost/internet-header@1.5.6
+  - @swisspost/design-system-components@1.3.2
+  - @swisspost/design-system-components-react@1.0.8
+
 ## 1.5.3
 
 ### Patch Changes
