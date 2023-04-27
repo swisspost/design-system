@@ -446,7 +446,13 @@ export class PostInternetHeader {
           </If>
           <div class="main-navigation-container wide-container">
             <post-logo></post-logo>
-            <button class="menu-button nav-link" onClick={() => this.toggleMobileDropdown()}>
+            <button
+              class="menu-button nav-link"
+              onClick={() => this.toggleMobileDropdown()}
+              aria-haspopup="menu"
+              aria-controls="post-internet-header-main-navigation"
+              aria-expanded={this.activeDropdownElement ? 'true' : 'false'}
+            >
               <span class="menu-button-text visually-hidden">{config.header.mobileMenu.text}</span>
               <SvgIcon name={this.isMainNavOpen() ? 'pi-close' : 'pi-menu'}></SvgIcon>
             </button>
