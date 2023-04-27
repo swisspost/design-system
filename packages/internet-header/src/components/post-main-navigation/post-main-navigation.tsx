@@ -286,7 +286,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
                           onClick={() => this.closeFlyout(levelOne.id)}
                         >
                           <span class="visually-hidden">
-                            {headerConfig.translations.mobileNavToggleClose}
+                            {levelOne.text} - {headerConfig.translations.mobileNavToggleClose}
                           </span>
                           <SvgIcon name="pi-close" />
                         </button>
