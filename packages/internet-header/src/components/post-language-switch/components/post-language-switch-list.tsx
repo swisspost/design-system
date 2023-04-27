@@ -7,8 +7,12 @@ export const PostLanguageSwitchList = (props: {
   switchLanguage: (lang: NavLangEntity) => void;
   dropdownRef: (element: HTMLElement | undefined) => void;
 }) => (
-  <nav class="language-switch-dropdown" ref={e => props.dropdownRef(e)}>
-    <h3 class="visually-hidden">{translate('Change language')}</h3>
+  <nav
+    class="language-switch-dropdown"
+    ref={e => props.dropdownRef(e)}
+    aria-labelledby="post-internet-header-language-switch-title"
+  >
+    <h3 id="post-internet-header-language-switch-title" class="visually-hidden">{translate('Change language')}</h3>
     <ul>
       {props.navLang
         .filter(lang => !lang.isCurrent)

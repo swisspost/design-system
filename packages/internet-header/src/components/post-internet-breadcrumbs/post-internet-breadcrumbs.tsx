@@ -256,8 +256,9 @@ export class PostInternetBreadcrumbs {
               ></BreadcrumbList>
             </nav>
           </div>
-          <h2 class="visually-hidden">{breadcrumbConfig.a11yLabel}</h2>
+          <h2 id="post-internet-header-breadcrumb-title" class="visually-hidden">{breadcrumbConfig.a11yLabel}</h2>
           <nav
+            aria-labelledby="post-internet-header-breadcrumb-title"
             ref={e => e !== undefined && this.handleVisibleNavRef(e)}
             class={{
               'breadcrumbs-nav': true,

@@ -39,4 +39,9 @@ export const translations = {
     fr: 'Naviguer sur post.ch',
     it: 'Navigate su post.ch',
   },
+  'Intermediary links': {
+    de: 'Zwischenverbindungen',
+    fr: 'Liens intermédiaires',
+    it: 'Collegamenti intermedi',
+  },
 };
