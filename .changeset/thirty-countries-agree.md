@@ -3,4 +3,4 @@
 '@swisspost/design-system-demo': minor
 ---
 
-Add a notification variant for the cookies.
+Added a notification variant for the cookies.
