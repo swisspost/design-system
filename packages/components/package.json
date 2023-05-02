@@ -36,7 +36,7 @@
     "lint": "eslint src/**/*{.ts,.tsx}"
   },
   "dependencies": {
-    "@stencil/core": "3.2.1"
+    "@stencil/core": "3.2.2"
   },
   "devDependencies": {
     "@percy/cli": "1.24.0",
@@ -44,11 +44,11 @@
     "@popperjs/core": "2.11.7",
     "@stencil-community/eslint-plugin": "^0.5.0",
     "@stencil/react-output-target": "0.5.0",
-    "@stencil/sass": "3.0.1",
+    "@stencil/sass": "3.0.2",
     "@swisspost/design-system-styles": "workspace:6.2.0",
     "@types/jest": "27.5.2",
-    "@typescript-eslint/eslint-plugin": "5.59.1",
-    "@typescript-eslint/parser": "5.59.1",
+    "@typescript-eslint/eslint-plugin": "5.59.2",
+    "@typescript-eslint/parser": "5.59.2",
     "bootstrap": "5.2.3",
     "cypress": "12.11.0",
     "cypress-storybook": "0.5.1",
