@@ -19,7 +19,7 @@
   dl {
     display: grid;
     grid-template-columns: max-content 1fr;
-    gap: post.$size-mini post.$size-regular;
+    column-gap: post.$size-regular;
   }
 
   dl,
