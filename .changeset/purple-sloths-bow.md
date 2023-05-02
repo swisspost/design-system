@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Update alert and toast styles.
+Updated alert and toast styles.
