@@ -43,8 +43,8 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "3.2.1",
-    "@stencil/store": "2.0.5",
+    "@stencil/core": "3.2.2",
+    "@stencil/store": "2.0.6",
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.3.6",
     "jquery": "3.6.4",
@@ -53,16 +53,16 @@
     "url-polyfill": "1.1.12"
   },
   "devDependencies": {
-    "@babel/core": "7.21.4",
+    "@babel/core": "7.21.5",
     "@percy/cli": "1.24.0",
     "@percy/cypress": "3.1.2",
     "@stencil/eslint-plugin": "0.4.0",
-    "@stencil/sass": "3.0.1",
+    "@stencil/sass": "3.0.2",
     "@swisspost/design-system-styles": "workspace:6.2.0",
     "@types/iframe-resizer": "3.5.9",
     "@types/jest": "27.5.2",
     "@types/jquery": "3.5.16",
-    "@types/node": "18.16.2",
+    "@types/node": "18.16.3",
     "@types/throttle-debounce": "5.0.0",
     "babel-loader": "9.1.2",
     "bootstrap": "5.2.3",

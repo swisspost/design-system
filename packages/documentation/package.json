@@ -35,7 +35,7 @@
     "react-jsx-parser": "1.29.0"
   },
   "devDependencies": {
-    "@babel/core": "7.21.4",
+    "@babel/core": "7.21.5",
     "@geometricpanda/storybook-addon-badges": "1.1.1",
     "@percy/cli": "1.24.0",
     "@percy/cypress": "3.1.2",
