@@ -20,6 +20,7 @@
     display: grid;
     grid-template-columns: max-content 1fr;
     column-gap: post.$size-regular;
+    margin-bottom: 0;
   }
 
   dl,
