@@ -50,7 +50,7 @@
     "copyfiles": "2.4.1",
     "cypress": "12.11.0",
     "cypress-storybook": "0.5.1",
-    "glob": "9.3.5",
+    "glob": "10.2.2",
     "gulp": "4.0.2",
     "gulp-postcss": "9.0.1",
     "gulp-sass": "5.1.0",
