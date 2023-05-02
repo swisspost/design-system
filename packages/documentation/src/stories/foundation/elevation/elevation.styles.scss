@@ -1,8 +1,8 @@
 @use '@swisspost/design-system-styles/core.scss' as post;
 
 .elevation-container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  display: flex;
+  flex-wrap: wrap;
   gap: post.$size-big;
 }
 
