@@ -67,7 +67,7 @@
     "prettier": "2.8.8",
     "protractor": "7.0.0",
     "raw-loader": "4.0.2",
-    "rimraf": "4.4.1",
+    "rimraf": "5.0.0",
     "sass": "1.62.1",
     "sockjs": "0.3.24",
     "ts-node": "10.9.1",
