@@ -1,5 +1,15 @@
 # @swisspost/design-system-styles
 
+## 6.2.1
+
+### Patch Changes
+
+- Fixed the form-selector-button visualisation for firefox. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1323](https://github.com/swisspost/design-system/pull/1323))
+
+- Fixed overlapping of the search input label and the search input icon in the post-search component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1367](https://github.com/swisspost/design-system/pull/1367))
+
+- Updated badge colors. (by [@alizedebray](https://github.com/alizedebray) with [#1349](https://github.com/swisspost/design-system/pull/1349))
+
 ## 6.2.0
 
 ### Minor Changes
