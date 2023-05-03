@@ -20,3 +20,12 @@
 
   @return $result;
 }
+
+@function get-nested-list($list-of-lists, $search-element) {
+  @each $nested-list in $list-of-lists {
+    @if nth($nested-list, 1) == $search-element {
+      @return $nested-list;
+    }
+  }
+  @return null;
+}

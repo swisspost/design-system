@@ -1,19 +1,28 @@
-@use 'sass:map';
-
 @use './../spacing';
 @use './../type';
 @use './../components/alert';
+@use './../../functions/list';
 
-$toast-width: 25rem;
-$toast-width-sm: 21rem;
+$toast-width: 25rem !default;
+$toast-width-sm: 21rem !default;
 
-$toast-margin: spacing.$spacer;
-$toast-padding-x: spacing.$size-regular;
-$toast-padding-y: spacing.$size-small-regular;
-$toast-font-size: type.$font-size-tiny;
-$toast-heading-font-size: type.$font-size-small;
-$toast-hr-margin-top: spacing.$size-micro;
-$toast-hr-margin-bottom: spacing.$size-small-regular;
-$toast-icon-size: spacing.$size-big;
+$toast-margin: spacing.$spacer !default;
+$toast-padding-x: spacing.$size-regular !default;
+$toast-padding-y: spacing.$size-small-regular !default;
+$toast-font-size: type.$font-size-tiny !default;
+$toast-heading-font-size: type.$font-size-small !default;
+$toast-hr-margin-top: spacing.$size-micro !default;
+$toast-hr-margin-bottom: spacing.$size-small-regular !default;
+$toast-icon-size: spacing.$size-big !default;
 
-$toast-variants: alert.$alert-variants;
+$toast-variants: () !default;
+$toast-variants: join(
+  $toast-variants,
+  alert.$alert-variants
+);
+
+// the .toast-error class is needed because it is automatically added by the ngx-toastr library
+$toast-variants: append(
+  $toast-variants,
+  set-nth(list.get-nested-list($toast-variants, 'danger'), 1, 'error')
+)
