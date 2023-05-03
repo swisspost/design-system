@@ -36,25 +36,14 @@ export class NgbAlertDemoComponent {
     }, {
       id: 4,
       type: 'danger',
-      title: 'Danger (same as error)',
+      title: 'Danger',
       message: 'This is a danger alert',
-      class: ''
-    }, {
-      id: 5,
-      type: 'error',
-      title: 'This is an error alert (same as danger)',
       class: ''
     },{
       id: 6,
       type: 'primary',
-      title: 'Primary (same as notification)',
+      title: 'Primary',
       message: 'This is a primary alert',
-      class: ''
-    }, {
-      id: 7,
-      type: 'notification',
-      title: 'Notification (same as primary)',
-      message: 'This is a notification alert',
       class: ''
     }, {
       id: 8,

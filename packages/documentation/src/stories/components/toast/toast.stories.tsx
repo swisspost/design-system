@@ -15,7 +15,7 @@ export default {
   args: {
     title: 'Titulum',
     content: 'Contentus momentus vero siteos et accusam iretea et justo.',
-    variant: 'toast-notification',
+    variant: 'toast-primary',
     noIcon: false,
     icon: 'null',
     dismissible: true,
@@ -55,7 +55,7 @@ export default {
       control: {
         type: 'radio',
         labels: {
-          'toast-notification': 'Notification',
+          'toast-primary': 'Primary',
           'toast-info': 'Info',
           'toast-success': 'Success',
           'toast-danger': 'Danger',
@@ -63,7 +63,7 @@ export default {
         },
       },
       options: [
-        'toast-notification',
+        'toast-primary',
         'toast-info',
         'toast-success',
         'toast-danger',
