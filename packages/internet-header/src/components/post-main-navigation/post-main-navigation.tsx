@@ -250,6 +250,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
         <nav
           id="post-internet-header-main-navigation"
           class={{ 'main-navigation': true, 'open': this.mobileMenuOpen }}
+          role="menu"
           ref={el => (this.flyoutElement = el)}
         >
           <h1 class="visually-hidden">{headerConfig.translations.navMainAriaLabel}</h1>
