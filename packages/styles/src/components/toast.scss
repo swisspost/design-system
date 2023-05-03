@@ -52,7 +52,10 @@
 @each $name, $color, $icon in toasts.$toast-variants {
   .toast-#{$name} {
     @include color-mx.colored-background($color);
-    @include icons-mx.pi($icon, contrast-fn.get-best-contrast-text($color));
+
+    &:not(.no-icon, [class^='pi-'], [class*=' pi-']) {
+      @include icons-mx.pi($icon, contrast-fn.get-best-contrast-text($color));
+    }
 
     > .toast-close-button {
       --post-close-filter: #{contrast-fn.get-black-icon-filter($color)};
