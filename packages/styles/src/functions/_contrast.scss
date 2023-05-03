@@ -68,11 +68,3 @@
     @return $light-text;
   }
 }
-
-@function get-black-icon-filter($background) {
-  @if light-or-dark($background) == 'light' {
-    @return unset;
-  } @else {
-    @return invert(1);
-  }
-}

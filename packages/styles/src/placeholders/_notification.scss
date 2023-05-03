@@ -1,0 +1,13 @@
+@use './../variables/components/notification';
+@use './../variables/components/close';
+
+%notification-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: notification.$notification-body-gap;
+
+  > * {
+    margin: 0;
+  }
+}

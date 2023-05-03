@@ -6,47 +6,40 @@
 @use './../themes/bootstrap/core' as *;
 
 @use './../functions/contrast' as contrast-fn;
-@use './../mixins/color' as color-mx;
-@use './../mixins/icons' as icons-mx;
-@use './../placeholders/notifications' as notifications-ph;
+@use './../mixins/notification' as notification-mx;
+@use './../placeholders/notification' as notification-ph;
 
 @use './../variables/breakpoints';
 @use './../variables/commons';
 @use './../variables/grid';
-@use './../variables/components/alert';
 @use './../variables/components/close';
+@use './../variables/components/notification';
 
 .alert {
-  @extend %notification;
+  @include notification-mx.notification-size(alert);
 
   &:not(.alert-action) {
-    @extend %notification-content;
+    @extend %notification-body;
   }
 }
 
-.alert > *:only-child,
-.alert > .btn-close:first-child + *:last-child,
 .alert-heading {
-  @extend %notification-title;
+  @include notification-mx.notification-heading(alert);
 }
 
 .alert-dismissible {
-  @extend %notification-dismissible;
-
-  > .btn-close {
-    @extend %notification-close-button;
-  }
+  @include notification-mx.notification-dismissible(alert);
 }
 
 .alert-action {
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: var(--post-notification-gap-x);
+  gap: notification.$notification-gap;
 
   > .alert-content {
     flex: 1 1 auto;
-    @extend %notification-content;
+    @extend %notification-body;
   }
 
   > .alert-buttons {
@@ -55,26 +48,26 @@
     align-items: center;
 
     > .btn {
-      margin-inline-start: var(--post-notification-action-button-margin-start);
+      margin-inline-start: notification.$notification-buttons-margin-start;
     }
   }
 
   @include media-breakpoint-up(md) {
     &.alert-dismissible > .btn-close {
-      inset-block-start: calc(50% - #{close.$close-size / 2});
+      inset-block-start: calc(50% - #{0.5 * close.$close-size});
     }
   }
 
   @include media-breakpoint-down(md) {
     flex-direction: column;
     align-items: stretch;
-    padding-inline: var(--post-notification-padding-x);
+    padding-inline: map.get(notification.$notification-padding-x-map, alert);
 
     > .alert-content {
-      padding-inline-start: calc(
-        var(--post-notification-gap-x) + var(--post-notification-icon-size)
-      );
-      padding-inline-end: calc(var(--post-notification-gap-x) + #{close.$close-size});
+      $icon-size: map.get(notification.$notification-icon-size-map, alert);
+
+      padding-inline-start: notification.$notification-gap + $icon-size;
+      padding-inline-end: notification.$notification-gap + close.$close-size;
     }
 
     > .alert-buttons {
@@ -93,31 +86,47 @@
 }
 
 .alert-fixed-bottom {
-  --post-notification-margin-bottom: 0;
-  --post-notification-border-radius: 0;
-
   position: fixed;
   inset-block-end: 0;
   inset-inline-start: 0;
   inset-inline-end: 0;
+  margin-bottom: 0;
+  border-radius: 0;
   z-index: commons.$zindex-fixed;
 
   @include media-breakpoint-up(xxl) {
-    $container-max-width: map.get(breakpoints.$grid-breakpoints, 'xxl');
+    $container-max-width: map.get(breakpoints.$grid-breakpoints, 'xxl') - 1;
     $container-padding-x: map.get(grid.$grid-container-padding, 'xxl');
-    --post-notification-padding-x: calc(
-      (100vw - #{$container-max-width}) / 2 + #{$container-padding-x}
-    );
+    $alert-padding-x: map.get(notification.$notification-padding-x-map, alert);
+    $alert-icon-size: map.get(notification.$notification-icon-size-map, alert);
+    $fixed-alert-padding-x: "(100% - #{$container-max-width}) / 2 + #{$container-padding-x} + #{$alert-padding-x}";
+
+    padding-inline-end: calc(#{$fixed-alert-padding-x});
+    padding-inline-start: calc(#{$fixed-alert-padding-x} + #{$alert-icon-size} + #{notification.$notification-gap});
+    background-position-x: calc(#{$fixed-alert-padding-x} + #{0.5 * $alert-icon-size});
+
+    &.no-icon {
+      padding-inline-start: calc(#{$fixed-alert-padding-x});
+    }
+
+    &.alert-dismissible {
+      padding-inline-end: calc(#{$fixed-alert-padding-x} + #{notification.$notification-gap} + #{close.$close-size});
+
+      > .btn-close {
+        inset-inline-end: calc(#{$fixed-alert-padding-x});
+      }
+    }
   }
 }
 
-@each $name, $color, $icon in alert.$alert-variants {
+@each $name, $color, $icon in notification.$notification-variants {
   .alert-#{$name} {
-    @include color-mx.colored-background($color);
-    @include icons-mx.pi($icon, contrast-fn.get-best-contrast-text($color));
+    @include notification-mx.notification-variant($color, $icon);
 
-    > .btn-close {
-      --post-close-filter: #{contrast-fn.get-black-icon-filter($color)};
+    @if contrast-fn.light-or-dark($color) == 'dark' {
+      > .btn-close {
+        filter: invert(1);
+      }
     }
   }
 }

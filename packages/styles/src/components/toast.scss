@@ -1,17 +1,53 @@
+@use 'sass:selector';
+
 @forward './../variables/options';
 
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 
 @use './../functions/contrast' as contrast-fn;
-@use './../mixins/color' as color-mx;
-@use './../mixins/icons' as icons-mx;
+@use './../mixins/notification' as notification-mx;
 @use './../placeholders/close' as close-ph;
-@use './../placeholders/notifications' as notifications-ph;
+@use './../placeholders/notification' as notification-ph;
 
 @use './../variables/commons';
-@use './../variables/components/toasts';
+@use './../variables/spacing';
+@use './../variables/components/notification';
 
+.toast {
+  @include notification-mx.notification-size(toast);
+  @include notification-mx.notification-dismissible(toast, toast-close-button);
+  @extend %notification-body;
+}
+
+.toast-close-button {
+  @extend %btn-close;
+}
+
+.toast-title {
+  @include notification-mx.notification-heading(toast);
+}
+
+@each $name, $color, $icon in notification.$notification-variants {
+  $selector: '.toast-#{$name}';
+
+  // the .toast-error class is needed because it is automatically added by the ngx-toastr library
+  @if $name == 'danger' {
+    $selector: '#{$selector}, .toast-error';
+  }
+
+  #{$selector} {
+    @include notification-mx.notification-variant($color, $icon);
+
+    @if contrast-fn.light-or-dark($color) == 'dark' {
+      > .toast-close-button {
+        filter: invert(1);
+      }
+    }
+  }
+}
+
+// Positioning
 .toast-container {
   position: fixed;
   z-index: commons.$zindex-alert;
@@ -20,60 +56,18 @@
   pointer-events: none;
 
   .toast {
-    width: toasts.$toast-width;
+    width: 25rem;
   }
-}
 
-.toast {
-  --post-notification-padding-x: #{toasts.$toast-padding-x};
-  --post-notification-padding-y: #{toasts.$toast-padding-y};
-  --post-notification-font-size: #{toasts.$toast-font-size};
-  --post-notification-heading-font-size: #{toasts.$toast-heading-font-size};
-  --post-notification-hr-margin-top: #{toasts.$toast-hr-margin-top};
-  --post-notification-hr-margin-bottom: #{toasts.$toast-hr-margin-bottom};
-  --post-notification-icon-size: #{toasts.$toast-icon-size};
-
-  @extend %notification;
-  @extend %notification-content;
-  @extend %notification-dismissible;
-}
-
-.toast-close-button {
-  @extend %btn-close;
-  @extend %notification-close-button;
-}
-
-.toast > *:only-child,
-.toast > .btn-close:first-child + *:last-child,
-.toast-title {
-  @extend %notification-title;
-}
-
-@each $name, $color, $icon in toasts.$toast-variants {
-  .toast-#{$name} {
-    @include color-mx.colored-background($color);
-
-    &:not(.no-icon, [class^='pi-'], [class*=' pi-']) {
-      @include icons-mx.pi($icon, contrast-fn.get-best-contrast-text($color));
-    }
-
-    > .toast-close-button {
-      --post-close-filter: #{contrast-fn.get-black-icon-filter($color)};
+  @include media-breakpoint-down(md) {
+    .toast {
+      max-width: 25rem;
     }
   }
-}
 
-// Responsive Design
-@include media-breakpoint-down(md) {
-  .toast-container .toast {
-    --post-notification-max-width: #{toasts.$toast-width-sm};
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .toast-container {
-    right: toasts.$toast-margin;
-    left: toasts.$toast-margin;
+  @include media-breakpoint-down(md) {
+    right: spacing.$spacer;
+    left: spacing.$spacer;
 
     .toast {
       width: 100%;
@@ -81,19 +75,18 @@
   }
 }
 
-// Positioning
 .toast-top-center,
 .toast-top-full-width,
 .toast-top-left,
 .toast-top-right {
-  top: toasts.$toast-margin;
+  top: spacing.$spacer;
 }
 
 .toast-bottom-center,
 .toast-bottom-full-width,
 .toast-bottom-right,
 .toast-bottom-left {
-  bottom: toasts.$toast-margin;
+  bottom: spacing.$spacer;
 }
 
 .toast-top-left,
@@ -101,7 +94,7 @@
 .toast-top-full-width,
 .toast-bottom-full-width,
 .toast-center-left {
-  left: toasts.$toast-margin;
+  left: spacing.$spacer;
 }
 
 .toast-top-right,
@@ -109,7 +102,7 @@
 .toast-top-full-width,
 .toast-bottom-full-width,
 .toast-center-right {
-  right: toasts.$toast-margin;
+  right: spacing.$spacer;
 }
 
 .toast-top-center,
