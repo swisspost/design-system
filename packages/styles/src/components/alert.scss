@@ -99,10 +99,12 @@
     $container-padding-x: map.get(grid.$grid-container-padding, 'xxl');
     $alert-padding-x: map.get(notification.$notification-padding-x-map, alert);
     $alert-icon-size: map.get(notification.$notification-icon-size-map, alert);
-    $fixed-alert-padding-x: "(100% - #{$container-max-width}) / 2 + #{$container-padding-x} + #{$alert-padding-x}";
+    $fixed-alert-padding-x: '(100% - #{$container-max-width}) / 2 + #{$container-padding-x} + #{$alert-padding-x}';
 
     padding-inline-end: calc(#{$fixed-alert-padding-x});
-    padding-inline-start: calc(#{$fixed-alert-padding-x} + #{$alert-icon-size} + #{notification.$notification-gap});
+    padding-inline-start: calc(
+      #{$fixed-alert-padding-x} + #{$alert-icon-size} + #{notification.$notification-gap}
+    );
     background-position-x: calc(#{$fixed-alert-padding-x} + #{0.5 * $alert-icon-size});
 
     &.no-icon {
@@ -110,7 +112,9 @@
     }
 
     &.alert-dismissible {
-      padding-inline-end: calc(#{$fixed-alert-padding-x} + #{notification.$notification-gap} + #{close.$close-size});
+      padding-inline-end: calc(
+        #{$fixed-alert-padding-x} + #{notification.$notification-gap} + #{close.$close-size}
+      );
 
       > .btn-close {
         inset-inline-end: calc(#{$fixed-alert-padding-x});
