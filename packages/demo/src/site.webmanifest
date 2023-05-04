@@ -1,6 +1,6 @@
 {
-  "name": "Swiss Post Design System - Documentation",
-  "short_name": "SPDS-Docs",
+  "name": "Swiss Post Design System - Demo App",
+  "short_name": "SPDS-Demo App",
   "icons": [
     {
       "src": "/android-chrome-192x192.png",

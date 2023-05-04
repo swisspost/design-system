@@ -27,6 +27,7 @@
     border: 0;
     color: forms.$form-floating-label-color;
     font-size: forms.$form-floating-label-font-size;
+    width: auto;
     max-width: calc(100% - (forms.$input-border-width * 2));
     white-space: nowrap;
     overflow: hidden;
@@ -39,20 +40,10 @@
     // disable stylelint here, because the classes are coming from bs5
     @extend .form-control-lg; /* stylelint-disable-line */
 
-    &[type='file']::file-selector-button {
-      padding-top: forms.$form-floating-input-padding-t +
-        ((forms.$form-floating-line-height - 1) * 0.5);
-    }
-
     &:focus,
     &:not(:placeholder-shown) {
       padding-top: forms.$form-floating-input-padding-t;
       padding-bottom: forms.$form-floating-input-padding-b;
-
-      &[type='file']::file-selector-button {
-        padding-top: forms.$form-floating-input-padding-t +
-          ((forms.$form-floating-line-height - 1) * 0.5);
-      }
 
       ~ label {
         padding-top: 0.7rem;
@@ -62,6 +53,13 @@
             (forms.$input-border-width * forms.$form-floating-label-upscale * 2)
         );
         transition: forms.$form-floating-transition-in;
+      }
+    }
+
+    &[type='file'] {
+      &:focus,
+      &:not(:placeholder-shown) {
+        padding-top: forms.$form-floating-input-padding-t * 1.33;
       }
     }
   }

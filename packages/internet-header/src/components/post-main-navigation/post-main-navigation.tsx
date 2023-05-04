@@ -250,6 +250,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
         <nav
           id="post-internet-header-main-navigation"
           class={{ 'main-navigation': true, 'open': this.mobileMenuOpen }}
+          role="menu"
           ref={el => (this.flyoutElement = el)}
         >
           <h1 class="visually-hidden">{headerConfig.translations.navMainAriaLabel}</h1>
@@ -286,7 +287,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
                           onClick={() => this.closeFlyout(levelOne.id)}
                         >
                           <span class="visually-hidden">
-                            {headerConfig.translations.mobileNavToggleClose}
+                            {levelOne.text}, {headerConfig.translations.mobileNavToggleClose}
                           </span>
                           <SvgIcon name="pi-close" />
                         </button>
@@ -297,10 +298,13 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
                         </a>
                       </h2>
                       <div class="flyout-row container">
-                        {levelOne.flyout.map(flyout => (
+                        {levelOne.flyout.map((flyout, i) => (
                           <div key={flyout.title} class="flyout-column">
-                            {flyout.title ? <h3>{flyout.title}</h3> : null}
-                            <ul class="flyout-linklist">
+                            {flyout.title ? <h3 id={`${levelOne.id}-column-${i}`}>{flyout.title}</h3> : null}
+                            <ul
+                              class="flyout-linklist"
+                              aria-labelledby={flyout.title ? `${levelOne.id}-column-${i}` : undefined}
+                            >
                               {flyout.linkList.map(link => (
                                 <li key={link.url}>
                                   <a
