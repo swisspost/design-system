@@ -35,7 +35,7 @@
     "react-jsx-parser": "1.29.0"
   },
   "devDependencies": {
-    "@babel/core": "7.21.5",
+    "@babel/core": "7.21.8",
     "@geometricpanda/storybook-addon-badges": "1.1.1",
     "@percy/cli": "1.24.0",
     "@percy/cypress": "3.1.2",
@@ -51,8 +51,8 @@
     "@storybook/testing-library": "0.1.0",
     "@storybook/theming": "6.5.16",
     "@types/mdx": "2.0.5",
-    "@types/react": "18.2.0",
-    "@types/react-dom": "18.2.1",
+    "@types/react": "18.2.6",
+    "@types/react-dom": "18.2.4",
     "babel-loader": "9.1.2",
     "css-loader": "5.2.7",
     "cypress": "12.11.0",
