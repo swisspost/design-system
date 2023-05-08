@@ -18640,7 +18640,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674538/storage/Njc0NTM3LzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674538/storage/Njc3NzI5LzAvbWFzdGVy",
         "keywords": [
           "WCM",
           "Vorlage",
@@ -18670,7 +18670,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/676577/storage/Njc2NTc2LzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/676577/storage/Njc3NzMwLzAvbWFzdGVy",
         "keywords": [
           "MyGuide",
           "Smart Goverment"
@@ -18697,7 +18697,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/676582/storage/Njc2NTc5LzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/676582/storage/Njc3NzMxLzAvbWFzdGVy",
         "keywords": [
           "Einzahlungsschein QR",
           "Bulletin de versement QR",
@@ -18726,7 +18726,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/676881/storage/Njc2ODgwLzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/676881/storage/Njc3NzMzLzAvbWFzdGVy",
         "keywords": [
           "Anzahl Mitarbeitende",
           "Nombre de collaborateurs",
@@ -18748,6 +18748,207 @@
       },
       "createdAt": "2023-04-04T11:17:51.000Z",
       "modifiedAt": "2023-04-05T13:40:08.000Z"
+    },
+    {
+      "uuid": "cac27ad0-e8ae-11ed-a8be-005056873709",
+      "id": 679290,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679290/storage/Njc5Mjg5LzAvbWFzdGVy",
+        "keywords": [
+          "SSI",
+          "Verifizierte Credentials",
+          "Anfrage angenommen",
+          "Informations d'identification vérifiées",
+          "Demande acceptée",
+          "Credenziali verificate",
+          "Richiesta accettata",
+          "Verified Credential",
+          "Request accepted"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2515.svg",
+        "basename": "2515",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:01:34.000Z",
+      "modifiedAt": "2023-05-02T06:02:48.000Z"
+    },
+    {
+      "uuid": "32d62810-e8af-11ed-a8be-005056873709",
+      "id": 679302,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679302/storage/Njc5MzAxLzAvbWFzdGVy",
+        "keywords": [
+          "SSI",
+          "Verifizierte Credentials",
+          "Informations d'identification vérifiées",
+          "Credenziali verificate",
+          "Verified Credential",
+          "Demande refusée",
+          "Demande refusée",
+          "Richiesta rifiutata",
+          "Request rejected,"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2516.svg",
+        "basename": "2516",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:04:28.000Z",
+      "modifiedAt": "2023-05-02T06:06:33.000Z"
+    },
+    {
+      "uuid": "a6c591c0-e8af-11ed-a8be-005056873709",
+      "id": 679312,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679312/storage/Njc5MzExLzAvbWFzdGVy",
+        "keywords": [
+          "SSI",
+          "Verifizierte Credentials",
+          "Informations d'identification vérifiées",
+          "Credenziali verificate",
+          "Verified Credential",
+          "Info gesendet",
+          "Information envoyée",
+          "Info inviata",
+          "Info sent"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2517.svg",
+        "basename": "2517",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:07:43.000Z",
+      "modifiedAt": "2023-05-02T06:09:11.000Z"
+    },
+    {
+      "uuid": "693bac80-e8b0-11ed-a8be-005056873709",
+      "id": 679326,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679326/storage/Njc5MzI1LzAvbWFzdGVy",
+        "keywords": [
+          "SSI",
+          "Verifizierte Credentials",
+          "Informations d'identification vérifiées",
+          "Credenziali verificate",
+          "Verified Credential",
+          "Anfrage erhalten",
+          "Demande reçue",
+          "Demande reçue",
+          "Richiesta ricevuta",
+          "Request received"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2518.svg",
+        "basename": "2518",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:13:09.000Z",
+      "modifiedAt": "2023-05-02T06:14:27.000Z"
+    },
+    {
+      "uuid": "c2950710-e8b3-11ed-a8be-005056873709",
+      "id": 679338,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679338/storage/Njc5MzM3LzAvbWFzdGVy",
+        "keywords": [
+          "SSI",
+          "Verifizierte Credentials",
+          "Informations d'identification vérifiées",
+          "Credenziali verificate",
+          "Verified Credential",
+          "Auge geschlossen"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2519.svg",
+        "basename": "2519",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:37:07.000Z",
+      "modifiedAt": "2023-05-02T06:38:23.000Z"
+    },
+    {
+      "uuid": "9b7c4290-e8b5-11ed-a8be-005056873709",
+      "id": 679347,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679347/storage/Njc5MzQ2LzAvbWFzdGVy",
+        "keywords": [
+          "Maus",
+          "Scrollen",
+          "Souris",
+          "défilement",
+          "Mouse",
+          "scorrimento",
+          "mouse",
+          "scroll,"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2520.svg",
+        "basename": "2520",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:50:21.000Z",
+      "modifiedAt": "2023-05-02T06:51:35.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -29327,11 +29528,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-04-09T01:18:26.786Z",
+  "created": "2023-05-07T01:22:33.080Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 845
+    "success": 851
   },
-  "version": "1.0.3"
+  "version": "1.0.4"
 }
