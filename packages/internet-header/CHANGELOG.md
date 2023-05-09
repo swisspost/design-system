@@ -1,5 +1,25 @@
 # @swisspost/internet-header
 
+## 1.7.1
+
+### Patch Changes
+
+- Added current language information in the post-language-switch component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1376](https://github.com/swisspost/design-system/pull/1376))
+
+- Added an `aria-labelledby` attribute to the flyout link lists to bind them to their title. (by [@alizedebray](https://github.com/alizedebray) with [#1370](https://github.com/swisspost/design-system/pull/1370))
+
+- Fixed overlapping of the search input label and the search input icon in the post-search component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1367](https://github.com/swisspost/design-system/pull/1367))
+
+- Removed the `title` and `accessKey` attributes from the skiplinks. (by [@alizedebray](https://github.com/alizedebray) with [#1369](https://github.com/swisspost/design-system/pull/1369))
+
+- Added the name of the active menu item to the hidden label of the flyout close button. (by [@alizedebray](https://github.com/alizedebray) with [#1372](https://github.com/swisspost/design-system/pull/1372))
+
+- Added `aria-label` to the mobile language selector. (by [@alizedebray](https://github.com/alizedebray) with [#1373](https://github.com/swisspost/design-system/pull/1373))
+
+- Added an `aria-labelledby` attribute to the search suggestion list to bind it to its title. (by [@alizedebray](https://github.com/alizedebray) with [#1371](https://github.com/swisspost/design-system/pull/1371))
+
+- Added aria attributes to mobile menu toggle. (by [@alizedebray](https://github.com/alizedebray) with [#1368](https://github.com/swisspost/design-system/pull/1368))
+
 ## 1.7.0
 
 ### Minor Changes

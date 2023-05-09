@@ -354,11 +354,18 @@ export class PostSearch implements HasDropdown, IsFocusable {
                       </button>
                     </div>
                     {showPortalRecommendations && (
-                      <h2 class="bold">{search.searchRecommendations.title}</h2>
+                      <h2
+                        id="post-internet-header-search-recommendations-title"
+                        class="bold"
+                      >{search.searchRecommendations.title}</h2>
                     )}
                     <ul
                       class="suggestions no-list"
                       onMouseLeave={() => this.handleMouseLeaveSuggestions()}
+                      aria-labelledby={showPortalRecommendations
+                        ? 'post-internet-header-search-recommendations-title'
+                        : undefined
+                      }
                     >
                       {showPortalRecommendations &&
                         search.searchRecommendations.links.map(recommendation => (
