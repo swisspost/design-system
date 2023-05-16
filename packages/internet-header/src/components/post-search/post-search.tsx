@@ -311,7 +311,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
       this.searchBox?.value === '' && search.searchRecommendations?.links.length > 0;
 
     return (
-      <Host>
+      <Host role="search">
         <SvgSprite />
         <div class="search">
           <button
@@ -336,6 +336,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                     <div class="form-group form-floating">
                       <input
                         type="text"
+                        role="searchbox"
                         id="searchBox"
                         class="form-control form-control-lg"
                         placeholder={translations.flyoutSearchBoxFloatingLabel}
