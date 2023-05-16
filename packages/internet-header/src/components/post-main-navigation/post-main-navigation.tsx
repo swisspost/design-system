@@ -71,7 +71,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
 
     if (flyout && this.activeFlyout !== '') {
       // Add flyout animation if there's no flyout open
-      this.addFlyoutAnimation(flyout);
+      this.addFlyoutAnimation(flyout, 'expand');
     }
 
     this.activeFlyout = id;
@@ -90,27 +90,35 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
 
     if (flyout) {
       // Add flyout animation for close action
-      this.addFlyoutAnimation(flyout);
+      this.addFlyoutAnimation(flyout, 'collapse');
     }
 
     this.activeFlyout = null;
     this.flyoutToggled.emit();
   }
 
-  addFlyoutAnimation(flyout: HTMLElement) {
+  addFlyoutAnimation(flyout: HTMLElement, direction?: 'expand' | 'collapse') {
     // Check if user prefers to see animations or not
     if (!userPrefersReducedMotion()) {
       flyout.classList.add('animate');
 
       // Remove flyout animation after transition ended
-      flyout.addEventListener('transitionend', () => this.removeFlyoutAnimation(flyout), {
-        once: true,
-      });
-    }
-  }
+      flyout.addEventListener(
+        'transitionend',
+        () => {
+          if (direction === 'expand') {
+            flyout.querySelector<HTMLElement>('button.flyout-back-button')?.focus();
+          } else if (direction === 'collapse') {
+            flyout.parentElement?.querySelector<HTMLElement>('a.main-link')?.focus();
+          }
 
-  removeFlyoutAnimation(flyout: HTMLElement) {
-    flyout.classList.remove('animate');
+          flyout.classList.remove('animate');
+        },
+        {
+          once: true,
+        },
+      );
+    }
   }
 
   isActiveFlyout(id?: string) {
