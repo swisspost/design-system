@@ -1,6 +1,5 @@
 import { Component, Host, h, State, Method, Event, Element, EventEmitter } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { state } from '../../data/store';
 import {
   DropdownElement,
@@ -29,7 +28,6 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
   private resizeTimer: number | null = null;
   private mouseLeaveTimer: number | null = null;
   private mouseEnterTimer: number | null = null;
-  private flyoutElement: HTMLElement | undefined;
 
   connectedCallback() {
     this.throttledResize = throttle(300, () => this.handleResize());
@@ -39,7 +37,6 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
 
   disconnectedCallback() {
     window.removeEventListener('resize', this.throttledResize);
-    clearAllBodyScrollLocks();
     if (this.mouseEnterTimer !== null) window.clearTimeout(this.mouseEnterTimer);
     if (this.mouseLeaveTimer !== null) window.clearTimeout(this.mouseLeaveTimer);
   }
@@ -74,7 +71,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
 
     if (flyout && this.activeFlyout !== '') {
       // Add flyout animation if there's no flyout open
-      this.addFlyoutAnimation(flyout);
+      this.addFlyoutAnimation(flyout, 'expand');
     }
 
     this.activeFlyout = id;
@@ -93,27 +90,35 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
 
     if (flyout) {
       // Add flyout animation for close action
-      this.addFlyoutAnimation(flyout);
+      this.addFlyoutAnimation(flyout, 'collapse');
     }
 
     this.activeFlyout = null;
     this.flyoutToggled.emit();
   }
 
-  addFlyoutAnimation(flyout: HTMLElement) {
+  addFlyoutAnimation(flyout: HTMLElement, direction?: 'expand' | 'collapse') {
     // Check if user prefers to see animations or not
     if (!userPrefersReducedMotion()) {
       flyout.classList.add('animate');
 
       // Remove flyout animation after transition ended
-      flyout.addEventListener('transitionend', () => this.removeFlyoutAnimation(flyout), {
-        once: true,
-      });
-    }
-  }
+      flyout.addEventListener(
+        'transitionend',
+        () => {
+          if (direction === 'expand') {
+            flyout.querySelector<HTMLElement>('button.flyout-back-button')?.focus();
+          } else if (direction === 'collapse') {
+            flyout.parentElement?.querySelector<HTMLElement>('a.main-link')?.focus();
+          }
 
-  removeFlyoutAnimation(flyout: HTMLElement) {
-    flyout.classList.remove('animate');
+          flyout.classList.remove('animate');
+        },
+        {
+          once: true,
+        },
+      );
+    }
   }
 
   isActiveFlyout(id?: string) {
@@ -189,17 +194,6 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
   }
 
   /**
-   * Disable or re-enable body scrolling, depending on whether mobile menu is open or closed
-   */
-  setBodyScroll() {
-    if (this.mobileMenuOpen) {
-      disableBodyScroll(this.flyoutElement);
-    } else {
-      enableBodyScroll(this.flyoutElement);
-    }
-  }
-
-  /**
    * Toggle the main navigation (only visible on mobile)
    * @param force Force a state
    * @returns Boolean indicating new state
@@ -213,7 +207,6 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       this.closeFlyout();
     }
 
-    this.setBodyScroll();
     this.setWindowHeight();
 
     return this.mobileMenuOpen;
@@ -251,7 +244,6 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
           id="post-internet-header-main-navigation"
           class={{ 'main-navigation': true, 'open': this.mobileMenuOpen }}
           role="menu"
-          ref={el => (this.flyoutElement = el)}
         >
           <h1 class="visually-hidden">{headerConfig.translations.navMainAriaLabel}</h1>
           <ul class="main-container container">
