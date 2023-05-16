@@ -1,7 +1,7 @@
 export const translations = {
   'Active navigation point': {
     de: 'Aktive Navigationspunkt',
-    fr: 'Point de navigation actif',
+    fr: 'Élément de navigation actif',
     it: 'Punto di navigazione attivo',
   },
   'Close overlay': {
