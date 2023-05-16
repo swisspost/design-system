@@ -51,7 +51,7 @@ export class PostSkiplinks {
     return (
       <Host>
         <div class="skiplinks">
-          <ul class="no-list" aria-label={translate('Navigate on post.ch')}>
+          <ul class="no-list" aria-label={translate('Skip Links')}>
             <li>
               <a class="nav-link" href={config.logo.logoLink}>
                 <span>{config.logo.logoLinkTitle}</span>
