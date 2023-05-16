@@ -33,7 +33,7 @@ export const LevelOneAction = (props: {
     >
       <span>{props.level.text}</span>
       {props.level.isActiveOverride ? (
-        <span class="visually-hidden">{translate('Active navigation point')}</span>
+        <span class="visually-hidden">{translate('Active navigation element')}</span>
       ) : null}
       <svg aria-hidden="true">
         <use href="#pi-pointy-arrow-right" />

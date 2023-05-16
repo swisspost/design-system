@@ -9,6 +9,7 @@ import {
   NavMainEntity,
 } from '../../models/header.model';
 import { userPrefersReducedMotion } from '../../services/ui.service';
+import { translate } from '../../services/language.service';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { LevelOneAction } from './components/level-one-action.component';
@@ -292,10 +293,14 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
                       <div class="flyout-row container">
                         {levelOne.flyout.map((flyout, i) => (
                           <div key={flyout.title} class="flyout-column">
-                            {flyout.title ? <h3 id={`${levelOne.id}-column-${i}`}>{flyout.title}</h3> : null}
+                            {flyout.title ? (
+                              <h3 id={`${levelOne.id}-column-${i}`}>{flyout.title}</h3>
+                            ) : null}
                             <ul
                               class="flyout-linklist"
-                              aria-labelledby={flyout.title ? `${levelOne.id}-column-${i}` : undefined}
+                              aria-labelledby={
+                                flyout.title ? `${levelOne.id}-column-${i}` : undefined
+                              }
                             >
                               {flyout.linkList.map(link => (
                                 <li key={link.url}>
@@ -308,6 +313,11 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
                                     target={link.target}
                                   >
                                     {link.title}
+                                    {link?.isActiveOverride ? (
+                                      <span class="visually-hidden">
+                                        {translate('Active navigation element')}
+                                      </span>
+                                    ) : null}
                                   </a>
                                 </li>
                               ))}
