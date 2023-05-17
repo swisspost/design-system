@@ -315,7 +315,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
                                     {link.title}
                                     {link?.isActiveOverride ? (
                                       <span class="visually-hidden">
-                                        {translate('Active navigation element')}
+                                        , {translate('Active navigation element')}
                                       </span>
                                     ) : null}
                                   </a>

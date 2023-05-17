@@ -40,7 +40,9 @@ describe('main-navigation', () => {
       .shadow()
       .find('.flyout-link.active')
       .should('exist')
-      .should('have.text', 'Verfolgen');
+      .should($element => {
+        expect($element.clone().children().remove().end().text().trim()).to.eq('Verfolgen');
+      });
   });
 
   it('Changes active link also in custom config nav links', () => {
@@ -50,7 +52,9 @@ describe('main-navigation', () => {
       .shadow()
       .find('.flyout-link.active')
       .should('exist')
-      .should('have.text', 'Google Maps');
+      .should($element => {
+        expect($element.clone().children().remove().end().text().trim()).to.eq('Google Maps');
+      });
     cy.get('swisspost-internet-header').shadow().find('.main-link.active').should('have.length', 1);
   });
 
@@ -85,7 +89,9 @@ describe('main-navigation', () => {
         .shadow()
         .find('.flyout-link.active')
         .should('exist')
-        .should('have.text', expectedText);
+        .should($element => {
+          expect($element.clone().children().remove().end().text().trim()).to.eq(expectedText);
+        });
     });
   });
 
@@ -116,7 +122,9 @@ describe('main-navigation', () => {
         .shadow()
         .find('.flyout-link.active')
         .should('exist')
-        .should('have.text', expectedText);
+        .should($element => {
+          expect($element.clone().children().remove().end().text().trim()).to.eq(expectedText);
+        });
     });
   });
 });
