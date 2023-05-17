@@ -242,11 +242,11 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       <Host>
         <SvgSprite />
         <nav
+          aria-label={headerConfig.translations.navMainAriaLabel}
           id="post-internet-header-main-navigation"
           class={{ 'main-navigation': true, 'open': this.mobileMenuOpen }}
           role="menu"
         >
-          <h1 class="visually-hidden">{headerConfig.translations.navMainAriaLabel}</h1>
           <ul class="main-container container">
             {headerConfig.navMain.map(levelOne => (
               <li

@@ -49,4 +49,9 @@ export const translations = {
     fr: 'Sauter les liens',
     it: 'Salta i link',
   },
+  'Intermediary links': {
+    de: 'Intermediäre Links',
+    fr: 'Liens intermédiaires',
+    it: 'Collegamenti intermedi',
+  },
 };
