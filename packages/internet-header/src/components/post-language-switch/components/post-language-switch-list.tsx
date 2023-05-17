@@ -10,7 +10,7 @@ export const PostLanguageSwitchList = (props: {
   <nav
     class="language-switch-dropdown"
     ref={e => props.dropdownRef(e)}
-    aria-labelledby="post-internet-header-language-switch-title"
+    aria-label={config.translations.navLangAriaLabel}
   >
     <h3 id="post-internet-header-language-switch-title" class="visually-hidden">{translate('Change language')}</h3>
     <ul>
