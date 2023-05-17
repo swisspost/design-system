@@ -1,4 +1,9 @@
 export const translations = {
+  'Active navigation element': {
+    de: 'Aktives Navigationselement',
+    fr: 'Élément de navigation actif',
+    it: 'Elemento di navigazione attivo',
+  },
   'Close overlay': {
     de: 'Overlay Schliessen',
     fr: 'Fermer la superposition',
