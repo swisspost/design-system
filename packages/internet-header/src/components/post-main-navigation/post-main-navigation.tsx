@@ -261,73 +261,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
                   onKeyDown={e => this.handleKeyPress(e, levelOne)}
                   onClick={e => this.handleClick(e, levelOne)}
                 />
-                {!levelOne.noFlyout ? (
-                  <div
-                    id={levelOne.id}
-                    class={{ flyout: true, open: this.isActiveFlyout(levelOne.id) }}
-                  >
-                    <div class="wide-container">
-                      <div class="flyout-nav">
-                        <button
-                          class="nav-link flyout-back-button"
-                          onClick={() => this.closeFlyout(levelOne.id)}
-                        >
-                          <SvgIcon name="pi-pointy-arrow-right" classNames="mirrored" />
-                          <span>{headerConfig.translations.backButtonText}</span>
-                        </button>
-                        <button
-                          class="flyout-close-button"
-                          onClick={() => this.closeFlyout(levelOne.id)}
-                        >
-                          <span class="visually-hidden">
-                            {levelOne.text}, {headerConfig.translations.mobileNavToggleClose}
-                          </span>
-                          <SvgIcon name="pi-close" />
-                        </button>
-                      </div>
-                      <h2 class="flyout-title container">
-                        <a href={levelOne.url} class="nav-link">
-                          {levelOne.text}
-                        </a>
-                      </h2>
-                      <div class="flyout-row container">
-                        {levelOne.flyout.map((flyout, i) => (
-                          <div key={flyout.title} class="flyout-column">
-                            {flyout.title ? (
-                              <h3 id={`${levelOne.id}-column-${i}`}>{flyout.title}</h3>
-                            ) : null}
-                            <ul
-                              class="flyout-linklist"
-                              aria-labelledby={
-                                flyout.title ? `${levelOne.id}-column-${i}` : undefined
-                              }
-                            >
-                              {flyout.linkList.map(link => (
-                                <li key={link.url}>
-                                  <a
-                                    class={{
-                                      'flyout-link': true,
-                                      'active': !!link?.isActiveOverride,
-                                    }}
-                                    href={link.url}
-                                    target={link.target}
-                                  >
-                                    {link.title}
-                                    {link?.isActiveOverride ? (
-                                      <span class="visually-hidden">
-                                        , {translate('Active navigation element')}
-                                      </span>
-                                    ) : null}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ) : null}
+                {!levelOne.noFlyout ? renderLevelOneFlyout.bind(this)(levelOne) : null}
               </li>
             ))}
           </ul>
@@ -335,5 +269,65 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
         </nav>
       </Host>
     );
+
+    function renderLevelOneFlyout(levelOne: NavMainEntity) {
+      return (
+        <div id={levelOne.id} class={{ flyout: true, open: this.isActiveFlyout(levelOne.id) }}>
+          <div class="wide-container">
+            <div class="flyout-nav">
+              <button
+                class="nav-link flyout-back-button"
+                onClick={() => this.closeFlyout(levelOne.id)}
+              >
+                <SvgIcon name="pi-pointy-arrow-right" classNames="mirrored" />
+                <span>{headerConfig.translations.backButtonText}</span>
+              </button>
+              <button class="flyout-close-button" onClick={() => this.closeFlyout(levelOne.id)}>
+                <span class="visually-hidden">
+                  {levelOne.text}, {headerConfig.translations.mobileNavToggleClose}
+                </span>
+                <SvgIcon name="pi-close" />
+              </button>
+            </div>
+            <h2 class="flyout-title container">
+              <a href={levelOne.url} class="nav-link">
+                {levelOne.text}
+              </a>
+            </h2>
+            <div class="flyout-row container">
+              {levelOne.flyout.map((flyout, i) => (
+                <div key={flyout.title} class="flyout-column">
+                  {flyout.title ? <h3 id={`${levelOne.id}-column-${i}`}>{flyout.title}</h3> : null}
+                  <ul
+                    class="flyout-linklist"
+                    aria-labelledby={flyout.title ? `${levelOne.id}-column-${i}` : undefined}
+                  >
+                    {flyout.linkList.map(link => (
+                      <li key={link.url}>
+                        <a
+                          class={{
+                            'flyout-link': true,
+                            'active': !!link?.isActiveOverride,
+                          }}
+                          href={link.url}
+                          target={link.target}
+                        >
+                          {link.title}
+                          {link?.isActiveOverride ? (
+                            <span class="visually-hidden">
+                              , {translate('Active navigation element')}
+                            </span>
+                          ) : null}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }
