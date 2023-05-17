@@ -44,4 +44,9 @@ export const translations = {
     fr: 'Naviguer sur post.ch',
     it: 'Navigate su post.ch',
   },
+  'Skip Links': {
+    de: 'Sprung Links',
+    fr: 'Sauter les liens',
+    it: 'Salta i link',
+  },
 };
