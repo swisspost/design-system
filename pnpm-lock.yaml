@@ -341,8 +341,8 @@ importers:
         specifier: 11.8.0
         version: 11.8.0
       ngx-highlightjs:
-        specifier: 8.0.0
-        version: 8.0.0(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@7.8.1)
+        specifier: 9.0.0
+        version: 9.0.0(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@7.8.1)
       ngx-toastr:
         specifier: 16.2.0
         version: 16.2.0(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/platform-browser@15.2.9)
@@ -18776,8 +18776,8 @@ packages:
       - supports-color
     dev: true
 
-  /ngx-highlightjs@8.0.0(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@7.8.1):
-    resolution: {integrity: sha512-joRqwYnliH+Qv5ceM/YmUWaryO+7hhBp8KVs91GSmTf8mZdD0OL6iYsQgg0p64YAjoStmO6MR11BP9W847NYEg==}
+  /ngx-highlightjs@9.0.0(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@7.8.1):
+    resolution: {integrity: sha512-XoswRTPeRtGrDiuiOkb4sOD4kZNsBxto5I6CqvRQKB2WfB77CyUk9llAAVTBJVabNRwkiHTJCQX4jKnbD1hCuQ==}
     peerDependencies:
       '@angular/common': '>=14.0.0'
       '@angular/core': '>=14.0.0'

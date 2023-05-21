@@ -30,7 +30,7 @@
     "bootstrap": "5.2.3",
     "core-js": "3.30.2",
     "highlight.js": "11.8.0",
-    "ngx-highlightjs": "8.0.0",
+    "ngx-highlightjs": "9.0.0",
     "ngx-toastr": "16.2.0",
     "rxjs": "7.8.1",
     "tslib": "2.5.0",
