@@ -30,22 +30,34 @@
   align-items: stretch;
   justify-content: center;
   margin-bottom: alert.$alert-margin-bottom;
-
-  // The !important Allows a new icon to be inserted via "pi"-class.
-  border: alert.$alert-border-width solid transparent !important;
-
-  background-repeat: no-repeat;
   font-weight: type.$font-weight-light;
-
   line-height: alert.$alert-line-height;
+
+  // DEPRECATED: Allows icons to be overridden via "pi-*" class.
+  border: alert.$alert-border-width solid transparent !important;
+  background-repeat: no-repeat;
 
   hr {
     width: 100%;
     margin: alert.$alert-text-space-between * 2 0 alert.$alert-text-space-between * 3;
   }
 
+  &::before {
+    content: '';
+    position: absolute;
+  }
+
+  // DEPRECATED: Allows icons to be overridden via "pi-*" class.
   &.no-icon {
     background-image: none;
+  }
+
+  &.no-icon,
+  &[class^='pi-'],
+  &[class*=' pi-'] {
+    &::before {
+      content: unset;
+    }
   }
 
   > *:not(hr) {
@@ -96,25 +108,15 @@
   $is-light-bg: contrast-fn.light-or-dark($color) == "dark";
 
   %notification-#{$name} {
-    @if ($is-light-bg) {
-      @include icon-mixin.pi($icon, 'white');
-
-      hr {
-        border-color: type.$hr-border-color-light;
-      }
-    } @else {
-      @include icon-mixin.pi($icon);
-    }
-
     @extend %color-background-rgb;
 
-    @include utilities.high-contrast-mode() {
-      // Specificity booster for the icon-mixin
-      &[class] {
-        @include icon-mixin.pi($icon, 'white');
+    &::before {
+      @include icon-mixin.icon($icon);
+    }
 
-        // use important here, so pi classes don't overwrite hcm styles
-        filter: none !important;
+    @if ($is-light-bg) {
+      hr {
+        border-color: type.$hr-border-color-light;
       }
     }
   }
