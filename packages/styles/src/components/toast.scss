@@ -168,11 +168,6 @@
     } @else {
       @extend %color-background-light-variables;
     }
-
-    .toast-close-button,
-    .btn-close {
-      @extend %notification-#{$name}-close;
-    }
   }
 }
 

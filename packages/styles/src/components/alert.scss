@@ -82,10 +82,6 @@
     } @else {
       @extend %color-background-light-variables;
     }
-
-    .btn-close {
-      @extend %notification-#{$name}-close;
-    }
   }
 }
 

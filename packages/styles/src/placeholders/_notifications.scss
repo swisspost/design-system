@@ -99,6 +99,7 @@
   font-weight: type.$font-weight-bold;
 }
 
+// DEPRECATED
 /* stylelint-disable */
 %notification-close-light {
   @extend .btn-close-white;
@@ -118,12 +119,6 @@
       hr {
         border-color: type.$hr-border-color-light;
       }
-    }
-  }
-
-  %notification-#{$name}-close {
-    @if ($is-light-bg) {
-      @extend %notification-close-light;
     }
   }
 }

@@ -1,3 +1,5 @@
+@use '../variables/color';
+
 %toggler-icon {
   content: '';
   display: inline-block;
@@ -5,7 +7,5 @@
   height: 1em;
   margin-left: 0.5rem;
   border: 0;
-  background-repeat: no-repeat;
-  background-size: 1em;
-  vertical-align: top;
+  color: color.$gray-80;
 }
