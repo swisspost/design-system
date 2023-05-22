@@ -18951,6 +18951,70 @@
       "modifiedAt": "2023-05-02T06:51:35.000Z"
     },
     {
+      "uuid": "bd2879e0-f2f1-11ed-a8be-005056873709",
+      "id": 681342,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/681342/storage/NjgxMzQxLzAvbWFzdGVy",
+        "keywords": [
+          "Marge 2.0",
+          "Auftragstool K",
+          "Auftrag",
+          "outil de gestion des mandats K",
+          "mandat",
+          "Tool per la gestione dei mandati K",
+          "mandato",
+          "K order tool",
+          "order"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2521.svg",
+        "basename": "2521",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-15T07:25:59.000Z",
+      "modifiedAt": "2023-05-15T07:27:09.000Z"
+    },
+    {
+      "uuid": "7e65c680-f2f2-11ed-a8be-005056873709",
+      "id": 681362,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/681362/storage/NjgxMzYxLzAvbWFzdGVy",
+        "keywords": [
+          "Sprachsteuerung",
+          "commande vocale",
+          "comando vocale",
+          "voice control",
+          "Voice Command"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2522.svg",
+        "basename": "2522",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-15T07:31:23.000Z",
+      "modifiedAt": "2023-05-15T07:33:54.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -29528,11 +29592,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-05-07T01:22:33.080Z",
+  "created": "2023-05-21T01:23:47.210Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 851
+    "success": 853
   },
   "version": "1.0.4"
 }
