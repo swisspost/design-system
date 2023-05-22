@@ -6,18 +6,27 @@ const gulpSass = require('gulp-sass')(sass);
 const gulpPostCss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
 const options = require('./package.json').sass;
-/*
+
+/**
  * Copy task
  */
-gulp.task("copy", () => {
+gulp.task('copy', () => {
   return gulp
     .src([
-      "./LICENSE",
-      "./README.md",
-      "./package.json",
-      "./src/**/*.scss"
+      './LICENSE',
+      './README.md',
+      './package.json',
+      './src/**/*.scss'
     ])
     .pipe(gulp.dest(options.outputDir));
+});
+
+/**
+ * Copy icons
+ */
+gulp.task('assets', function() {
+  return gulp.src('node_modules/@swisspost/design-system-icons/public/post-icons/*.svg')
+    .pipe(gulp.dest(`${options.outputDir}/assets/icons`));
 });
 
 /**
@@ -41,7 +50,7 @@ gulp.task('transform-package-json', (done) => {
   done();
 });
 
-/*
+/**
  * Compile Scss to Css
  *  - Compile
  *  - Autoprefix
@@ -79,13 +88,13 @@ gulp.task('sass:dev', () => {
  * Watch task for scss development
  */
 gulp.task('watch', () => {
-  return gulp.watch('./src/**/*.scss', gulp.series('copy', 'watch'));
+  return gulp.watch('./src/**/*.scss', gulp.series('copy', 'assets', 'watch'));
 });
 
-/*
+/**
  * Run copy and sass task in parallel per default
  */
 exports.default = gulp.task(
-  "build",
-  gulp.parallel(gulp.series("copy", "transform-package-json"), gulp.series("sass"))
+  'build',
+  gulp.parallel(gulp.series('copy', 'assets', 'transform-package-json'), gulp.series('sass'))
 );

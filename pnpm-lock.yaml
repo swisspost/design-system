@@ -766,6 +766,9 @@ importers:
       '@popperjs/core':
         specifier: 2.11.7
         version: 2.11.7
+      '@swisspost/design-system-icons':
+        specifier: workspace:^
+        version: link:../icons
       bootstrap:
         specifier: 5.2.3
         version: 5.2.3(@popperjs/core@2.11.7)
