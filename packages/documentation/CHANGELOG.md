@@ -1,5 +1,13 @@
 # @swisspost/design-system-documentation
 
+## 1.8.4
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.5
+  - @swisspost/internet-header@1.7.2
+
 ## 1.8.3
 
 ### Patch Changes
