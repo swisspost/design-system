@@ -1,5 +1,7 @@
 @forward './../variables/options';
 
+@use './../themes/bootstrap/forms/validation' as bfv;
+
 @use './../variables';
 @use './../variables/components/form-feedback';
 @use './../variables/components/form-select';
