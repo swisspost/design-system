@@ -1,6 +1,7 @@
 @forward './../variables/options';
 
 @use '../variables/color';
+@use '../variables/spacing';
 @use '../variables/animation';
 @use '../variables/components/form-check';
 @use '../mixins/icons' as icons-mx;
@@ -77,7 +78,7 @@
       border-radius: 50%;
 
       &:checked::after {
-        margin: form-check.$form-check-input-border-width;
+        margin: spacing.$size-micro;
         background-color: currentColor;
         border-radius: inherit;
       }
@@ -119,6 +120,10 @@
         border-color: form-check.$form-switch-checked-border-color;
         transform: translateX(2rem);
       }
+    }
+
+    &:focus {
+      box-shadow: none !important;
     }
   }
 

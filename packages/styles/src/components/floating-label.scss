@@ -11,7 +11,7 @@
 
 @use './../variables/type';
 @use './../variables/components/forms';
-@use './../variables/components/form-feedback';
+@use './../variables/components/form-validation';
 
 .form-floating {
   > label {
@@ -156,7 +156,7 @@
       ~ label {
         width: calc(
           100% - (forms.$input-border-width * 2) - forms.$form-floating-padding-x -
-            form-feedback.$form-feedback-icon-offset - form-feedback.$form-feedback-icon-size
+            form-validation.$form-feedback-icon-offset - form-validation.$form-feedback-icon-size
         );
       }
 
@@ -168,8 +168,8 @@
               (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
               (forms.$input-border-width * forms.$form-floating-label-upscale * 2) -
               (forms.$form-floating-padding-x * forms.$form-floating-label-upscale) -
-              (form-feedback.$form-feedback-icon-offset * forms.$form-floating-label-upscale) -
-              (form-feedback.$form-feedback-icon-size * forms.$form-floating-label-upscale)
+              (form-validation.$form-feedback-icon-offset * forms.$form-floating-label-upscale) -
+              (form-validation.$form-feedback-icon-size * forms.$form-floating-label-upscale)
           );
         }
       }
