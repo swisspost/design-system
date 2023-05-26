@@ -1,5 +1,56 @@
 # @swisspost/design-system-documentation
 
+## 1.8.4
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.5
+  - @swisspost/internet-header@1.7.2
+
+## 1.8.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/internet-header@1.7.1
+  - @swisspost/design-system-styles@6.2.1
+  - @swisspost/design-system-components@1.3.4
+
+## 1.8.2
+
+### Patch Changes
+
+- Updated the Logo in storybook's sidebar. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+
+- Updated the favicon and app-icons in the demo-app and the storybook documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.0
+  - @swisspost/internet-header@1.7.0
+  - @swisspost/design-system-components@1.3.4
+
+## 1.8.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.4
+
+## 1.8.0
+
+### Minor Changes
+
+- Added post-icon component stories. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1312](https://github.com/swisspost/design-system/pull/1312))
+
+- Added "Get Started" documenation page for icons package. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1312](https://github.com/swisspost/design-system/pull/1312))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.3
+  - @swisspost/design-system-components@1.3.4
+  - @swisspost/design-system-components-react@1.0.10
+
 ## 1.7.0
 
 ### Minor Changes

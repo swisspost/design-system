@@ -1,5 +1,11 @@
 # @swisspost/design-system-components
 
+## 1.3.4
+
+### Patch Changes
+
+- Updated the flip-v/flip-h properties of the `<post-icon>` component to corectly work with boolean inputs. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1312](https://github.com/swisspost/design-system/pull/1312))
+
 ## 1.3.3
 
 ### Patch Changes

@@ -24,6 +24,7 @@ import { SvgIcon } from '../../utils/svg-icon.component';
 import { StickynessOptions } from '../../models/implementor.model';
 import { ActiveRouteProp, Environment, ICustomConfig } from '../../models/general.model';
 import { IAvailableLanguage } from '../../models/language.model';
+import { translate } from '../../services/language.service';
 import { If } from '../../utils/if.component';
 import packageJson from '../../../package.json';
 
@@ -426,6 +427,7 @@ export class PostInternetHeader {
       >
         <header class={`post-internet-header${this.fullWidth ? ' full-width' : ''}`}>
           <SvgSprite />
+          <h1 class="visually-hidden">{translate('Navigate on post.ch')}</h1>
           <If condition={this.skiplinks === true}>
             <post-skiplinks></post-skiplinks>
           </If>
@@ -446,7 +448,13 @@ export class PostInternetHeader {
           </If>
           <div class="main-navigation-container wide-container">
             <post-logo></post-logo>
-            <button class="menu-button nav-link" onClick={() => this.toggleMobileDropdown()}>
+            <button
+              class="menu-button nav-link"
+              onClick={() => this.toggleMobileDropdown()}
+              aria-haspopup="menu"
+              aria-controls="post-internet-header-main-navigation"
+              aria-expanded={this.activeDropdownElement ? 'true' : 'false'}
+            >
               <span class="menu-button-text visually-hidden">{config.header.mobileMenu.text}</span>
               <SvgIcon name={this.isMainNavOpen() ? 'pi-close' : 'pi-menu'}></SvgIcon>
             </button>

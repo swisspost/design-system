@@ -58,7 +58,7 @@
         }
       },
       "createdAt": "2017-11-10T09:43:19.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "8676c2d0-c5fc-11e7-a943-005056a94f4a",
@@ -11873,7 +11873,7 @@
         }
       },
       "createdAt": "2021-10-08T13:06:52.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "a8752860-2839-11ec-b5ef-005056873709",
@@ -18269,7 +18269,7 @@
         }
       },
       "createdAt": "2023-03-10T06:58:49.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "bf1d2160-bf11-11ed-8a02-005056873709",
@@ -18298,7 +18298,7 @@
         }
       },
       "createdAt": "2023-03-10T07:04:06.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "7c1c2810-bf12-11ed-8a02-005056873709",
@@ -18332,7 +18332,7 @@
         }
       },
       "createdAt": "2023-03-10T07:09:23.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "f2237540-bf12-11ed-8a02-005056873709",
@@ -18362,7 +18362,7 @@
         }
       },
       "createdAt": "2023-03-10T07:12:41.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "7b054460-bf13-11ed-8a02-005056873709",
@@ -18392,7 +18392,7 @@
         }
       },
       "createdAt": "2023-03-10T07:16:30.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "5f58f530-bf14-11ed-8a02-005056873709",
@@ -18422,7 +18422,7 @@
         }
       },
       "createdAt": "2023-03-10T07:22:53.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "e65a92a0-bf14-11ed-8a02-005056873709",
@@ -18452,7 +18452,7 @@
         }
       },
       "createdAt": "2023-03-10T07:26:40.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "ef79aaa0-bf15-11ed-8a02-005056873709",
@@ -18482,7 +18482,7 @@
         }
       },
       "createdAt": "2023-03-10T07:34:05.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "6fb8c840-bf16-11ed-8a02-005056873709",
@@ -18512,7 +18512,7 @@
         }
       },
       "createdAt": "2023-03-10T07:37:40.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "3adc9b90-bf18-11ed-8a02-005056873709",
@@ -18542,7 +18542,7 @@
         }
       },
       "createdAt": "2023-03-10T07:50:30.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "8dc79121-bf18-11ed-8a02-005056873709",
@@ -18572,7 +18572,7 @@
         }
       },
       "createdAt": "2023-03-10T07:52:49.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "a8030050-bf19-11ed-8a02-005056873709",
@@ -18602,7 +18602,7 @@
         }
       },
       "createdAt": "2023-03-10T08:00:43.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
     },
     {
       "uuid": "107ebe34-bf1a-11ed-8a02-005056873709",
@@ -18632,7 +18632,7 @@
         }
       },
       "createdAt": "2023-03-10T08:03:38.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:12.000Z"
     },
     {
       "uuid": "71a902b0-bf1a-11ed-8a02-005056873709",
@@ -18640,7 +18640,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674538/storage/Njc0NTM3LzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/674538/storage/Njc3NzI5LzAvbWFzdGVy",
         "keywords": [
           "WCM",
           "Vorlage",
@@ -18662,7 +18662,357 @@
         }
       },
       "createdAt": "2023-03-10T08:06:21.000Z",
-      "modifiedAt": "2023-03-14T15:26:33.000Z"
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
+    },
+    {
+      "uuid": "ab6c5ec2-cf9b-11ed-93da-005056873709",
+      "id": 676577,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/676577/storage/Njc3NzMwLzAvbWFzdGVy",
+        "keywords": [
+          "MyGuide",
+          "Smart Goverment"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2512.svg",
+        "basename": "2512",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-31T08:11:42.000Z",
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
+    },
+    {
+      "uuid": "604a6710-cf9c-11ed-93da-005056873709",
+      "id": 676582,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/676582/storage/Njc3NzMxLzAvbWFzdGVy",
+        "keywords": [
+          "Einzahlungsschein QR",
+          "Bulletin de versement QR",
+          "Polizza di versamento QR",
+          "QR inpayment slip"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2513.svg",
+        "basename": "2513",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-03-31T08:16:45.000Z",
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
+    },
+    {
+      "uuid": "5668ddd0-d2da-11ed-93da-005056873709",
+      "id": 676881,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/676881/storage/Njc3NzMzLzAvbWFzdGVy",
+        "keywords": [
+          "Anzahl Mitarbeitende",
+          "Nombre de collaborateurs",
+          "Numero di collaboratori",
+          "Number of employees"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2514.svg",
+        "basename": "2514",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-04-04T11:17:51.000Z",
+      "modifiedAt": "2023-04-05T13:40:08.000Z"
+    },
+    {
+      "uuid": "cac27ad0-e8ae-11ed-a8be-005056873709",
+      "id": 679290,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679290/storage/Njc5Mjg5LzAvbWFzdGVy",
+        "keywords": [
+          "SSI",
+          "Verifizierte Credentials",
+          "Anfrage angenommen",
+          "Informations d'identification vérifiées",
+          "Demande acceptée",
+          "Credenziali verificate",
+          "Richiesta accettata",
+          "Verified Credential",
+          "Request accepted"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2515.svg",
+        "basename": "2515",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:01:34.000Z",
+      "modifiedAt": "2023-05-02T06:02:48.000Z"
+    },
+    {
+      "uuid": "32d62810-e8af-11ed-a8be-005056873709",
+      "id": 679302,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679302/storage/Njc5MzAxLzAvbWFzdGVy",
+        "keywords": [
+          "SSI",
+          "Verifizierte Credentials",
+          "Informations d'identification vérifiées",
+          "Credenziali verificate",
+          "Verified Credential",
+          "Demande refusée",
+          "Demande refusée",
+          "Richiesta rifiutata",
+          "Request rejected,"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2516.svg",
+        "basename": "2516",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:04:28.000Z",
+      "modifiedAt": "2023-05-02T06:06:33.000Z"
+    },
+    {
+      "uuid": "a6c591c0-e8af-11ed-a8be-005056873709",
+      "id": 679312,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679312/storage/Njc5MzExLzAvbWFzdGVy",
+        "keywords": [
+          "SSI",
+          "Verifizierte Credentials",
+          "Informations d'identification vérifiées",
+          "Credenziali verificate",
+          "Verified Credential",
+          "Info gesendet",
+          "Information envoyée",
+          "Info inviata",
+          "Info sent"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2517.svg",
+        "basename": "2517",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:07:43.000Z",
+      "modifiedAt": "2023-05-02T06:09:11.000Z"
+    },
+    {
+      "uuid": "693bac80-e8b0-11ed-a8be-005056873709",
+      "id": 679326,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679326/storage/Njc5MzI1LzAvbWFzdGVy",
+        "keywords": [
+          "SSI",
+          "Verifizierte Credentials",
+          "Informations d'identification vérifiées",
+          "Credenziali verificate",
+          "Verified Credential",
+          "Anfrage erhalten",
+          "Demande reçue",
+          "Demande reçue",
+          "Richiesta ricevuta",
+          "Request received"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2518.svg",
+        "basename": "2518",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:13:09.000Z",
+      "modifiedAt": "2023-05-02T06:14:27.000Z"
+    },
+    {
+      "uuid": "c2950710-e8b3-11ed-a8be-005056873709",
+      "id": 679338,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679338/storage/Njc5MzM3LzAvbWFzdGVy",
+        "keywords": [
+          "SSI",
+          "Verifizierte Credentials",
+          "Informations d'identification vérifiées",
+          "Credenziali verificate",
+          "Verified Credential",
+          "Auge geschlossen"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2519.svg",
+        "basename": "2519",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:37:07.000Z",
+      "modifiedAt": "2023-05-02T06:38:23.000Z"
+    },
+    {
+      "uuid": "9b7c4290-e8b5-11ed-a8be-005056873709",
+      "id": 679347,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/679347/storage/Njc5MzQ2LzAvbWFzdGVy",
+        "keywords": [
+          "Maus",
+          "Scrollen",
+          "Souris",
+          "défilement",
+          "Mouse",
+          "scorrimento",
+          "mouse",
+          "scroll,"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2520.svg",
+        "basename": "2520",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-02T06:50:21.000Z",
+      "modifiedAt": "2023-05-02T06:51:35.000Z"
+    },
+    {
+      "uuid": "bd2879e0-f2f1-11ed-a8be-005056873709",
+      "id": 681342,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/681342/storage/NjgxMzQxLzAvbWFzdGVy",
+        "keywords": [
+          "Marge 2.0",
+          "Auftragstool K",
+          "Auftrag",
+          "outil de gestion des mandats K",
+          "mandat",
+          "Tool per la gestione dei mandati K",
+          "mandato",
+          "K order tool",
+          "order"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2521.svg",
+        "basename": "2521",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-15T07:25:59.000Z",
+      "modifiedAt": "2023-05-15T07:27:09.000Z"
+    },
+    {
+      "uuid": "7e65c680-f2f2-11ed-a8be-005056873709",
+      "id": 681362,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/681362/storage/NjgxMzYxLzAvbWFzdGVy",
+        "keywords": [
+          "Sprachsteuerung",
+          "commande vocale",
+          "comando vocale",
+          "voice control",
+          "Voice Command"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2522.svg",
+        "basename": "2522",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-15T07:31:23.000Z",
+      "modifiedAt": "2023-05-15T07:33:54.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -29242,11 +29592,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-03-19T01:37:47.263Z",
+  "created": "2023-05-21T01:23:47.210Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 842
+    "success": 853
   },
-  "version": "1.0.1"
+  "version": "1.0.4"
 }
