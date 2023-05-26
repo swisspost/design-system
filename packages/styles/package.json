@@ -36,6 +36,7 @@
     "@angular-devkit/schematics": "=15.0.4",
     "@angular/core": "=15.0.4",
     "@popperjs/core": "2.11.7",
+    "@swisspost/design-system-icons": "workspace:^",
     "bootstrap": "5.2.3",
     "cheerio": "1.0.0-rc.12",
     "prettier": "2.8.8",

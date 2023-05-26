@@ -3,11 +3,12 @@
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/dropdown' as bd;
 
-@use './../functions/icons';
 @use './../variables/color';
 @use './../variables/commons';
+@use './../variables/icons';
 @use './../variables/spacing';
 @use './../placeholders/dropdown';
+@use './../mixins/icons' as icons-mx;
 @use './../mixins/utilities';
 
 .dropdown,
@@ -46,38 +47,16 @@
 .dropdown-toggle {
   &::after {
     @extend %toggler-icon;
-    background-image: url(icons.get-colored-svg-url('2052', color.$gray-80));
-    @include utilities.high-contrast-mode() {
-      background-image: url(icons.get-colored-svg-url('2052', color.$white));
-    }
+    @include icons-mx.icon(2052);
   }
 
-  &[aria-expanded='true'] {
-    &::after {
-      background-image: url(icons.get-colored-svg-url('2051', color.$gray-80));
-      @include utilities.high-contrast-mode() {
-        background-image: url(icons.get-colored-svg-url('2051', color.$white));
-      }
-    }
+  &[aria-expanded='true']::after {
+    transform: rotate(180deg);
   }
 
-  .dropup & {
-    &::after {
-      @extend %toggler-icon;
-      background-image: url(icons.get-colored-svg-url('2051', color.$gray-80));
-      @include utilities.high-contrast-mode() {
-        background-image: url(icons.get-colored-svg-url('2051', color.$white));
-      }
-    }
-
-    &[aria-expanded='true'] {
-      &::after {
-        background-image: url(icons.get-colored-svg-url('2052', color.$gray-80));
-        @include utilities.high-contrast-mode() {
-          background-image: url(icons.get-colored-svg-url('2052', color.$white));
-        }
-      }
-    }
+  .dropup &::after {
+    @extend %toggler-icon;
+    @include icons-mx.icon(2051);
   }
 }
 

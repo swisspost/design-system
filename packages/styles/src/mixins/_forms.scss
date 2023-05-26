@@ -1,6 +1,6 @@
 @use './../variables/color';
 @use './../variables/type';
-@use './../variables/components/form-feedback';
+@use './../variables/components/form-validation';
 @use './../variables/components/forms';
 @use './../variables/components/tooltips';
 @use './../mixins/utilities';
@@ -27,9 +27,9 @@
   .#{$state}-feedback {
     display: none;
     width: 100%;
-    margin-top: form-feedback.$form-feedback-margin-top;
+    margin-top: form-validation.$form-feedback-margin-top;
     color: $color;
-    font-size: form-feedback.$form-feedback-font-size;
+    font-size: form-validation.$form-feedback-font-size;
   }
 
   // Deprecated
@@ -48,7 +48,7 @@
 
     /* Keeping borders gray while maintaining a green background on tooltips */
     @if ($state == 'valid') {
-      background-color: rgba(form-feedback.$form-feedback-valid-bg, tooltips.$tooltip-opacity);
+      background-color: rgba(form-validation.$form-feedback-valid-bg, tooltips.$tooltip-opacity);
     } @else {
       background-color: rgba($color, tooltips.$tooltip-opacity);
     }
@@ -88,9 +88,9 @@
 }
 
 @mixin icon-placement {
-  padding-right: form-feedback.$form-feedback-icon-offset + form-feedback.$form-feedback-icon-size;
+  padding-right: form-validation.$form-feedback-icon-offset + form-validation.$form-feedback-icon-size;
   background-repeat: no-repeat;
-  background-position: calc(100% - #{form-feedback.$form-feedback-icon-offset}) center;
+  background-position: calc(100% - #{form-validation.$form-feedback-icon-offset}) center;
 }
 
 @mixin form-control-rg {

@@ -29,11 +29,18 @@
 
   padding: alert.$alert-padding-y alert.$alert-padding-x;
   padding-left: (alert.$alert-padding-x * 2 + alert.$alert-icon-size);
+  font-size: alert.$alert-font-size;
 
+  // DEPRECATED: Allows icons to be overridden via "pi-*" class.
   background-position: alert.$alert-padding-x center;
   background-size: alert.$alert-icon-size;
 
-  font-size: alert.$alert-font-size;
+  &::before {
+    width: alert.$alert-icon-size;
+    height: alert.$alert-icon-size;
+    left: alert.$alert-padding-x;
+    top: calc(50% - #{0.5 * alert.$alert-icon-size});
+  }
 
   > *:only-child {
     font-weight: type.$font-weight-bold;
@@ -75,10 +82,6 @@
     } @else {
       @extend %color-background-light-variables;
     }
-
-    .btn-close {
-      @extend %notification-#{$name}-close;
-    }
   }
 }
 
@@ -93,7 +96,7 @@
   margin-bottom: 0;
   border-radius: 0;
 
-  // Let the icon scroll with the content
+  // TODO: Let the icon scroll with the content
   background-attachment: local;
 
   @include media-breakpoint-up(xxl) {
@@ -104,11 +107,20 @@
           2 + alert.$alert-icon-size} + #{$container-padding} - 0.5rem
       );
 
+    // DEPRECATED: Allows icons to be overridden via "pi-*" class.
     background-position: calc(
+      (100vw - #{map.get(breakpoints.$grid-breakpoints, 'xxl')}) / 2 + #{alert.$alert-padding-x} +
+      #{$container-padding} - 0.5rem
+    )
+    center;
+
+    &::before {
+      left: calc(
         (100vw - #{map.get(breakpoints.$grid-breakpoints, 'xxl')}) / 2 + #{alert.$alert-padding-x} +
-          #{$container-padding} - 0.5rem
-      )
-      center;
+        #{$container-padding} - 0.5rem
+      );
+      top: calc(50% - #{0.5 * alert.$alert-icon-size});
+    }
 
     &.alert-dismissible {
       padding-right: calc(
@@ -186,9 +198,16 @@
   .alert {
     padding-top: alert.$alert-padding-y * 2 + alert.$alert-icon-size;
     padding-left: alert.$alert-padding-x;
-    background-position: center alert.$alert-padding-y;
     font-size: alert.$alert-font-size-small;
     text-align: center;
+
+    // DEPRECATED: Allows icons to be overridden via "pi-*" class.
+    background-position: center alert.$alert-padding-y;
+
+    &::before {
+      left: calc(50% - #{0.5 * alert.$alert-icon-size});
+      top: alert.$alert-padding-y;
+    }
 
     &.alert-dismissible {
       padding-right: alert.$alert-padding-x;

@@ -7,6 +7,17 @@
 @use './../functions/icons' as icon-fn;
 @use './../mixins/utilities';
 
+@mixin icon($name) {
+  background-color: currentColor;
+  mask-image: url('../assets/icons/#{$name}.svg');
+
+  // set icon to white on hcm
+  @include utilities.high-contrast-mode() {
+    background-color: color.$white;
+  }
+}
+
+// DEPRECATED
 @mixin pi($name, $color: color.$black) {
   $type: meta.type-of($color);
   $final-color: $color;
