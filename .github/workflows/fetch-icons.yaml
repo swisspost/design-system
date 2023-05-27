@@ -66,7 +66,7 @@ jobs:
 
       - name: Get Changes
         id: changed-files
-        uses: tj-actions/changed-files@v35
+        uses: tj-actions/changed-files@v36
         with:
           files: ./packages/icons/public/post-icons/**
 
