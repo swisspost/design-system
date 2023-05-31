@@ -3,6 +3,8 @@ import { GeocodeLocation, GeocodeResponse } from '../../models/geocode.model';
 import { gisAPIUrl, placesUrl } from './places.settings';
 import { hardNormalize } from './search-utilities';
 
+let placesController: AbortController;
+
 /**
  * Query the Gis API for locations and localities (pois)
  *
@@ -20,21 +22,27 @@ export const queryPlaces = async (query: string): Promise<GeocodeLocation[]> => 
     limit: 7,
   }).reduce((s, [k, v], i) => `${s}${i === 0 ? '?' : '&'}${k}=${v}`, '');
 
-  const geocoderUrl = `${gisAPIUrl}/Geocode${searchParameters}`;
+  const url = `${gisAPIUrl}/Geocode${searchParameters}`;
 
-  try {
-    const geocodeResponse = await fetch(geocoderUrl);
-    const geocodeJSON = (await geocodeResponse.json()) as GeocodeResponse;
-    if (!geocodeJSON.ok) {
-      throw new Error(geocodeJSON.info);
-    }
-    return geocodeJSON.locations;
-  } catch (error) {
-    console.error(
-      'Fetching places failed. Did you add "places.post.ch" to your connect-src content security policy?',
-    );
-    throw error;
-  }
+  if (placesController) placesController.abort();
+  placesController = new AbortController();
+
+  return new Promise((resolve, reject) => {
+    fetch(url, { signal: placesController.signal })
+      .then(response => response.json())
+      .then((geocodeJSON: GeocodeResponse) => {
+        if (!geocodeJSON.ok) throw new Error(geocodeJSON.info);
+        resolve(geocodeJSON.locations);
+      })
+      .catch(error => {
+        if (error.name !== 'AbortError') {
+          console.error(
+            `Fetching places failed, ${error}\nDid you add "places.post.ch" to your connect-src content security policy?`,
+          );
+          reject(error);
+        }
+      });
+  });
 };
 
 /**
