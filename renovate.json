@@ -27,8 +27,5 @@
     }
   ],
   "timezone": "Europe/Zurich",
-  "schedule": ["every weekend"],
-  "constraints": {
-    "pnpm": "7.27.0"
-  }
+  "schedule": ["every weekend"]
 }
