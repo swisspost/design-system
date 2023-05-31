@@ -67,9 +67,6 @@ span.spacer {
 @each $name, $color in color.$background-colors {
   .bg-#{$name} {
     --post-bg-rgb: #{color-fn.rgb-values($color)};
-    $shadow-color: sass-color.adjust($color, $lightness: -15%);
-    --post-shadow-color: #{$shadow-color};
-    --post-shadow-color-rgb: #{color-fn.rgb-values($shadow-color)};
 
     @extend %color-background-rgba;
 
