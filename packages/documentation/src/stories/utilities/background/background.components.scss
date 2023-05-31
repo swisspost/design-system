@@ -1,0 +1,20 @@
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core' as post;
+
+:export {
+  @each $colorName, $value in post.$background-colors {
+    background_#{$colorName}: $value;
+  }
+
+  @each $colorName, $value in post.$contextual-colors {
+    contextual_#{$colorName}: $value;
+  }
+
+  @each $colorName, $value in post.$accent-colors {
+    accent_#{$colorName}: $value;
+  }
+}
+
+.docs-background-container {
+  padding: post.$size-regular;
+}
