@@ -32,6 +32,7 @@
     "highlight.js": "11.8.0",
     "ngx-highlightjs": "8.0.0",
     "ngx-toastr": "16.2.0",
+    "prettier": "2.8.8",
     "rxjs": "7.8.1",
     "tslib": "2.5.2",
     "zone.js": "0.13.0"
@@ -64,7 +65,6 @@
     "karma-coverage-istanbul-reporter": "3.0.3",
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.0.0",
-    "prettier": "2.8.8",
     "protractor": "7.0.0",
     "raw-loader": "4.0.2",
     "rimraf": "5.0.1",
