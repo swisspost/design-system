@@ -39,9 +39,7 @@ export const getCoveoSuggestions = async (query: string): Promise<CoveoCompletio
         );
       })
       .catch(error => {
-        if (error.name === 'AbortError') {
-          console.warn('Coveo suggestions request aborted.');
-        } else {
+        if (error.name !== 'AbortError') {
           console.error(
             `Fetching coveo suggestions failed, ${error}\nDid you add "*.coveo.com" to your connect-src content security policy and tried turning off your adblocker?`,
           );

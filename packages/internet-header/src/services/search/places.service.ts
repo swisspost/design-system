@@ -35,9 +35,7 @@ export const queryPlaces = async (query: string): Promise<GeocodeLocation[]> => 
         resolve(geocodeJSON.locations);
       })
       .catch(error => {
-        if (error.name === 'AbortError') {
-          console.warn('Geocoder request aborted.');
-        } else {
+        if (error.name !== 'AbortError') {
           console.error(
             `Fetching places failed, ${error}\nDid you add "places.post.ch" to your connect-src content security policy?`,
           );

@@ -57,9 +57,7 @@ export const getParcelInfo = async (
           resolve({ ...trackAndTraceResult, ok: trackAndTraceResult.ok });
         })
         .catch(error => {
-          if (error.name === 'AbortError') {
-            console.warn('Track and trace request aborted.');
-          } else {
+          if (error.name !== 'AbortError') {
             console.error(`Could not check track and trace API due to error: ${error.message}`);
             reject(error);
           }
