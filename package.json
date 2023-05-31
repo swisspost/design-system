@@ -57,5 +57,19 @@
   "engines": {
     "node": ">=16",
     "pnpm": "7.27.0"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "eslint",
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser"
+      ],
+      "allowedVersions": {
+        "react": ">=18",
+        "react-dom": ">=18",
+        "stylelint": ">=15"
+      }
+    }
   }
 }
