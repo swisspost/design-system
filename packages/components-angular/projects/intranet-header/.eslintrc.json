@@ -1,18 +1,13 @@
 {
   "extends": "../../.eslintrc.json",
-  "ignorePatterns": [
-    "!**/*",
-    "node_modules"
-  ],
+  "ignorePatterns": ["!**/*", "node_modules"],
   "overrides": [
     {
-      "files": [
-        "*.ts"
-      ],
+      "files": ["*.ts"],
       "parserOptions": {
         "project": [
-          "projects/intranet-header/tsconfig.lib.json",
-          "projects/intranet-header/tsconfig.spec.json"
+          "packages/components-angular/projects/intranet-header/tsconfig.lib.json",
+          "packages/components-angular/projects/intranet-header/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },
@@ -36,9 +31,7 @@
       }
     },
     {
-      "files": [
-        "*.html"
-      ],
+      "files": ["*.html"],
       "rules": {}
     }
   ]
