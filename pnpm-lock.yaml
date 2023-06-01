@@ -35,6 +35,9 @@ importers:
       '@stencil/core':
         specifier: 3.3.0
         version: 3.3.0
+      '@swisspost/design-system-styles':
+        specifier: workspace:6.2.1
+        version: link:../styles/dist
     devDependencies:
       '@percy/cli':
         specifier: 1.24.2
@@ -42,9 +45,6 @@ importers:
       '@percy/cypress':
         specifier: 3.1.2
         version: 3.1.2(cypress@12.13.0)
-      '@popperjs/core':
-        specifier: 2.11.8
-        version: 2.11.8
       '@stencil-community/eslint-plugin':
         specifier: ^0.5.0
         version: 0.5.0(@typescript-eslint/eslint-plugin@5.59.8)(@typescript-eslint/parser@5.59.8)(eslint-plugin-react@7.32.2)(eslint@8.41.0)(typescript@4.9.5)
@@ -54,9 +54,6 @@ importers:
       '@stencil/sass':
         specifier: 3.0.3
         version: 3.0.3(@stencil/core@3.3.0)
-      '@swisspost/design-system-styles':
-        specifier: workspace:6.2.1
-        version: link:../styles/dist
       '@types/jest':
         specifier: 27.5.2
         version: 27.5.2
@@ -68,7 +65,7 @@ importers:
         version: 5.59.8(eslint@8.41.0)(typescript@4.9.5)
       bootstrap:
         specifier: 5.3.0
-        version: 5.3.0(@popperjs/core@2.11.8)
+        version: 5.3.0
       cypress:
         specifier: 12.13.0
         version: 12.13.0
@@ -346,6 +343,9 @@ importers:
       ngx-toastr:
         specifier: 16.2.0
         version: 16.2.0(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/platform-browser@15.2.9)
+      prettier:
+        specifier: 2.8.8
+        version: 2.8.8
       rxjs:
         specifier: 7.8.1
         version: 7.8.1
@@ -437,9 +437,6 @@ importers:
       karma-jasmine-html-reporter:
         specifier: 2.0.0
         version: 2.0.0(jasmine-core@4.6.0)(karma-jasmine@5.1.0)(karma@6.4.2)
-      prettier:
-        specifier: 2.8.8
-        version: 2.8.8
       protractor:
         specifier: 7.0.0
         version: 7.0.0
@@ -651,6 +648,9 @@ importers:
       '@stencil/store':
         specifier: 2.0.7
         version: 2.0.7(@stencil/core@3.3.0)
+      '@swisspost/design-system-styles':
+        specifier: workspace:6.2.1
+        version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
         version: 4.0.0-beta.0
@@ -685,9 +685,6 @@ importers:
       '@stencil/sass':
         specifier: 3.0.3
         version: 3.0.3(@stencil/core@3.3.0)
-      '@swisspost/design-system-styles':
-        specifier: workspace:6.2.1
-        version: link:../styles/dist
       '@types/iframe-resizer':
         specifier: 3.5.9
         version: 3.5.9
@@ -775,9 +772,6 @@ importers:
       prettier:
         specifier: 2.8.8
         version: 2.8.8
-      typescript:
-        specifier: 4.9.5
-        version: 4.9.5
     devDependencies:
       '@angular/compiler':
         specifier: '=15.0.4'
@@ -845,6 +839,9 @@ importers:
       stylelint-scss:
         specifier: 5.0.0
         version: 5.0.0(stylelint@15.6.2)
+      typescript:
+        specifier: 4.9.5
+        version: 4.9.5
     publishDirectory: ./dist
 
 packages:
@@ -4204,6 +4201,7 @@ packages:
   /@colors/colors@1.5.0:
     resolution: {integrity: sha512-ooWCrlZP11i8GImSjTHYHLkvFDP48nS4+204nGb1RiX/WXYHmJA2III9/e2DWVabCESdW7hBAEzHRqUn9OUVvQ==}
     engines: {node: '>=0.1.90'}
+    requiresBuild: true
     dev: true
 
   /@cspotcode/source-map-support@0.8.1:
@@ -5906,6 +5904,7 @@ packages:
 
   /@popperjs/core@2.11.8:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
+    dev: false
 
   /@puppeteer/browsers@1.4.0(typescript@4.9.5):
     resolution: {integrity: sha512-HiRpoc15NhFwoR1IjN3MkMsqeAfRQKNzbhWVV+0BfvybEhjWSyRNQMC0ohMhkFhzoGnFoS59WlrJCGLPky/89g==}
@@ -10081,6 +10080,7 @@ packages:
       '@popperjs/core': ^2.11.7
     dependencies:
       '@popperjs/core': 2.11.8
+    dev: false
 
   /boxen@5.1.2:
     resolution: {integrity: sha512-9gYgQKXx+1nP8mP7CzFyaUARhg7D3n1dF/FnErWmu9l6JvGpNUN278h0aSb+QjoiKSWG+iZ3uHrcqk0qrY9RQQ==}
@@ -10327,7 +10327,7 @@ packages:
       mississippi: 3.0.0
       mkdirp: 0.5.6
       move-concurrently: 1.0.1
-      promise-inflight: 1.0.1(bluebird@3.7.2)
+      promise-inflight: 1.0.1
       rimraf: 2.7.1
       ssri: 6.0.2
       unique-filename: 1.1.1
@@ -20367,17 +20367,6 @@ packages:
     peerDependenciesMeta:
       bluebird:
         optional: true
-    dev: true
-
-  /promise-inflight@1.0.1(bluebird@3.7.2):
-    resolution: {integrity: sha512-6zWPyEOFaQBJYcGMHBKTKJ3u6TBsnMFOIZSa6ce1e/ZrrsOlnHRHbabMjLiBYKp+n44X9eUI6VUPaukCXHuG4g==}
-    peerDependencies:
-      bluebird: '*'
-    peerDependenciesMeta:
-      bluebird:
-        optional: true
-    dependencies:
-      bluebird: 3.7.2
     dev: true
 
   /promise-retry@2.0.1:
