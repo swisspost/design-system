@@ -65,10 +65,8 @@ export const parameters = {
         ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
         'Templates',
         'Components',
-        [
-          'Internet Header',
-          ['Getting started', 'Migration Guide', 'Header', 'Breadcrumbs', 'Footer'],
-        ],
+        'Internet Header',
+        ['Getting started', 'Header', 'Breadcrumbs', 'Footer', 'Migration Guide'],
         'Icons',
         ['Getting started', 'Icon', 'Icons'],
         'Utilities',
