@@ -61,7 +61,6 @@ export const parameters = {
       order: [
         'Home',
         'Get Started',
-        ['Icons'],
         'Foundations',
         ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
         'Templates',
@@ -70,6 +69,8 @@ export const parameters = {
           'Internet Header',
           ['Getting started', 'Migration Guide', 'Header', 'Breadcrumbs', 'Footer'],
         ],
+        'Icons',
+        ['Getting started', 'Icon', 'Icons'],
         'Utilities',
         'Misc',
         ['Migration', 'ChangeLog'],

@@ -5,7 +5,7 @@ import docsPage from './icon.docs.mdx';
 import { forEach } from '../../../utils/react';
 
 export default {
-  title: 'Components/Icon',
+  title: 'Icons/Icon',
   component: 'post-icon',
   parameters: {
     docs: {
@@ -87,7 +87,7 @@ const Template = (args: Args) => <post-icon {...normalizeArgs(args)} />;
 export const Default: Story = Template.bind({});
 Default.decorators = [
   (Story: Story) => (
-    <div style={{ paddingInline: '32px', fontSize: '32px' }}>
+    <div style={{ fontSize: '32px' }}>
       <Story />
     </div>
   ),
