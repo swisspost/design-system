@@ -56,7 +56,7 @@
   },
   "engines": {
     "node": ">=16",
-    "pnpm": "7"
+    "pnpm": "8"
   },
   "pnpm": {
     "peerDependencyRules": {
