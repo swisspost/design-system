@@ -6,8 +6,8 @@
       "files": ["*.ts"],
       "parserOptions": {
         "project": [
-          "packages/components-angular/projects/intranet-header/tsconfig.lib.json",
-          "packages/components-angular/projects/intranet-header/tsconfig.spec.json"
+          "projects/intranet-header/tsconfig.lib.json",
+          "projects/intranet-header/tsconfig.spec.json"
         ],
         "createDefaultProgram": true
       },
