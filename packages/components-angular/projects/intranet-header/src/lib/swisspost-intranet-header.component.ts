@@ -18,6 +18,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { userImage } from './user';
+import { NgbDropdown, NgbDropdownMenu } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'sp-intranet-header',
@@ -40,6 +41,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
 
   @ViewChild('domWrapper')
   dom!: ElementRef;
+  @ViewChild('optionDropdown') optionDropdown!: NgbDropdown;
 
   appLangs!: string[];
   avatarUrl = this.createSafeAvatarUrl();
@@ -239,6 +241,14 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   public handleOverflowKeyEvent(e: KeyboardEvent) {
     if (e.code === 'Enter' || e.code === 'Space') {
       this.toggleMenuOverflow();
+    }
+  }
+
+  // Close dropdown on link clicks https://github.com/swisspost/design-system/issues/1300
+  public optionDropdownClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (target.tagName.toLowerCase() === 'a') {
+      this.optionDropdown.close();
     }
   }
 
