@@ -1,7 +1,9 @@
 @use '@swisspost/design-system-styles/components/fonts';
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/variables/breakpoints';
+@use '@swisspost/design-system-styles/variables/components/button';
 @use '@swisspost/design-system-styles/variables/type';
+@use '@swisspost/design-system-styles/mixins/forms' as forms-mx;
 @use './mixins.scss';
 
 *,
@@ -18,6 +20,17 @@
 button {
   font: inherit;
   padding: 0;
+}
+
+a,
+button {
+  border-radius: button.$btn-border-radius;
+
+  @include forms-mx.focus-outline() {
+    border-radius: button.$btn-border-radius;
+    position: relative;
+    z-index: 1;
+  }
 }
 
 img,

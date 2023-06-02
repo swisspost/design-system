@@ -50,12 +50,7 @@
       min-width: 0;
       overflow: hidden;
       text-overflow: ellipsis;
-
-      a {
-        // Make sure the focus highlight is visible even if overflow on the li is hidden
-        border: 2px solid transparent;
-        outline-offset: 0;
-      }
+      padding: 4px; // Allow space for the focus outline
     }
   }
 
