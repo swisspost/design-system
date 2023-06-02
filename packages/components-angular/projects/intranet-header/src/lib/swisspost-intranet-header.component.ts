@@ -18,6 +18,7 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { userImage } from './user';
+import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'sp-intranet-header',
@@ -40,6 +41,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
 
   @ViewChild('domWrapper')
   dom!: ElementRef;
+  @ViewChild('optionDropdown') optionDropdown!: NgbDropdown;
 
   appLangs!: string[];
   avatarUrl = this.createSafeAvatarUrl();
@@ -111,7 +113,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   ngOnInit() {
     this.appLangs = this.languages.split(',');
     this.setLang(this.lang);
-    const tempArr = location.href.match(/lang=([a-zA-Z]{2})/);
+    const tempArr = RegExp(/lang=([a-zA-Z]{2})/).exec(location.href);
     if (tempArr && tempArr.length > 1) {
       this.setLang(tempArr[1]);
     }
@@ -151,34 +153,36 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       if (!MutationObserver) {
         return;
       }
-      this.navChanges = new MutationObserver(mutationList => {
-        if (mutationList.some(mutation => mutation.type === 'childList')) {
-          // Resize the navbar anytime an nav item is added or removed
-          const navItems = Array.from(
-            this.navElement.querySelectorAll<HTMLElement>('.nav-item:not(#more)'),
-          );
-          if (navItems.length !== this.navItems.length) {
-            this.navItems = navItems;
-            this.navigationResize();
-          }
-        } else {
-          // Resize the navbar anytime the text of a nav item changes
-          const textNodeType = 3;
-          if (
-            mutationList.some(
-              mutation =>
-                mutation.type === 'characterData' && mutation.target.nodeType === textNodeType,
-            )
-          ) {
-            this.navigationResize();
-          }
-        }
-      });
+      this.navChanges = new MutationObserver(m => this.navMutationCallback(m));
       this.navChanges.observe(this.navElement, {
         childList: true,
         characterData: true,
         subtree: true,
       });
+    }
+  }
+
+  public navMutationCallback(mutationList: MutationRecord[]) {
+    if (mutationList.some(mutation => mutation.type === 'childList')) {
+      // Resize the navbar anytime an nav item is added or removed
+      const navItems = Array.from(
+        this.navElement.querySelectorAll<HTMLElement>('.nav-item:not(#more)'),
+      );
+      if (navItems.length !== this.navItems.length) {
+        this.navItems = navItems;
+        this.navigationResize();
+      }
+    } else {
+      // Resize the navbar anytime the text of a nav item changes
+      const textNodeType = 3;
+      if (
+        mutationList.some(
+          mutation =>
+            mutation.type === 'characterData' && mutation.target.nodeType === textNodeType,
+        )
+      ) {
+        this.navigationResize();
+      }
     }
   }
 
@@ -192,7 +196,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       }
 
       const currentLoc = sanitizedLocationUrl;
-      if (currentLoc.match(/lang=[a-zA-Z]+/)) {
+      if (RegExp(/lang=[a-zA-Z]+/).exec(currentLoc)) {
         // lang paramter is already present in url
         location.href = currentLoc.replace(/lang=[a-zA-Z]{2}/, `lang=${lang}`);
       } else {
@@ -239,6 +243,14 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   public handleOverflowKeyEvent(e: KeyboardEvent) {
     if (e.code === 'Enter' || e.code === 'Space') {
       this.toggleMenuOverflow();
+    }
+  }
+
+  // Close dropdown on link clicks https://github.com/swisspost/design-system/issues/1300
+  public optionDropdownClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;
+    if (target.tagName.toLowerCase() === 'a') {
+      this.optionDropdown.close();
     }
   }
 
