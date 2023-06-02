@@ -158,9 +158,7 @@
     background-color: transparent;
     opacity: 0;
     transform: scaleX(0.8);
-    height: 0px;
     transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-      height 0s 0.25s linear,
       transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
     @media (prefers-reduced-motion: reduce) {
@@ -174,10 +172,7 @@
       background-color: color.$gray-20;
       opacity: 1;
       transform: scale(1);
-      visibility: visible;
-      height: 4px;
       transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
-        height 0s,
         transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
