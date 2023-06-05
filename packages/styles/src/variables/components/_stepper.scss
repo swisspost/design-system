@@ -17,7 +17,8 @@ $stepper-indicator-color: color.$black;
 $stepper-indicator-check-icon-size: spacing.$size-large;
 $stepper-indicator-hover-color: color.$white;
 $stepper-indicator-hover-bg: color.$black;
-$stepper-indicator-hover-outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
+$stepper-indicator-hover-outline: forms.$input-focus-outline-thickness solid
+  var(--post-contrast-color);
 $stepper-indicator-future-bg: color.$gray-60;
 $stepper-indicator-future-color: color.$white;
 

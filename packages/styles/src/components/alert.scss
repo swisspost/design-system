@@ -109,15 +109,15 @@
 
     // DEPRECATED: Allows icons to be overridden via "pi-*" class.
     background-position: calc(
-      (100vw - #{map.get(breakpoints.$grid-breakpoints, 'xxl')}) / 2 + #{alert.$alert-padding-x} +
-      #{$container-padding} - 0.5rem
-    )
-    center;
+        (100vw - #{map.get(breakpoints.$grid-breakpoints, 'xxl')}) / 2 + #{alert.$alert-padding-x} +
+          #{$container-padding} - 0.5rem
+      )
+      center;
 
     &::before {
       left: calc(
         (100vw - #{map.get(breakpoints.$grid-breakpoints, 'xxl')}) / 2 + #{alert.$alert-padding-x} +
-        #{$container-padding} - 0.5rem
+          #{$container-padding} - 0.5rem
       );
       top: calc(50% - #{0.5 * alert.$alert-icon-size});
     }

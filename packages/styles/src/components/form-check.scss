@@ -41,7 +41,8 @@
     background: none;
     height: form-check.$form-check-input-size;
     width: form-check.$form-check-input-size;
-    border: form-check.$form-check-input-border-width solid rgba(var(--post-contrast-color-rgb), 0.6);
+    border: form-check.$form-check-input-border-width solid
+      rgba(var(--post-contrast-color-rgb), 0.6);
 
     &:hover,
     .form-check:hover > & {
@@ -59,12 +60,12 @@
       color: var(--post-contrast-color);
       border-color: var(--post-contrast-color);
 
-      & ~ .form-check-label {
+      ~ .form-check-label {
         color: var(--post-contrast-color);
       }
     }
 
-    &[type="checkbox"] {
+    &[type='checkbox'] {
       &:checked::after {
         @include icons-mx.icon(3035);
       }
@@ -74,7 +75,7 @@
       }
     }
 
-    &[type="radio"] {
+    &[type='radio'] {
       border-radius: 50%;
 
       &:checked::after {
@@ -96,12 +97,13 @@
   .form-check-input {
     height: form-check.$form-switch-height;
     width: form-check.$form-switch-width;
-    border: none;
+    border: 0;
     border-radius: form-check.$form-switch-width;
     background-image: form-check.$form-switch-background-image;
     background-size: 2 * form-check.$form-switch-width;
     background-position-x: 0;
-    transition: background-color animation.$transition-base-timing, background-position animation.$transition-base-timing;
+    transition: background-color animation.$transition-base-timing,
+      background-position animation.$transition-base-timing;
 
     &::after {
       max-width: form-check.$form-switch-height;
