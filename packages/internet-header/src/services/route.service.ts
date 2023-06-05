@@ -171,8 +171,11 @@ export const compareRoutes = (
     return 0;
   }
 
+  const baseUrlPath = baseUrl.pathname.toLocaleLowerCase();
+  const compareUrlPath = compareUrl.pathname.toLocaleLowerCase();
+
   // Exact match, origin and pathname are the same
-  if (baseUrl.pathname === compareUrl.pathname) {
+  if (baseUrlPath === compareUrlPath) {
     return Infinity;
   }
 
@@ -182,8 +185,14 @@ export const compareRoutes = (
   }
 
   if (matchMode === 'auto') {
-    const baseSegments = [baseUrl.origin, ...baseUrl.pathname.split('/').filter(x => !!x)];
-    const compareSegments = [compareUrl.origin, ...compareUrl.pathname.split('/').filter(x => !!x)];
+    const baseSegments = [
+      baseUrl.origin.toLocaleLowerCase(),
+      ...baseUrlPath.split('/').filter(x => !!x),
+    ];
+    const compareSegments = [
+      compareUrl.origin.toLocaleLowerCase(),
+      ...compareUrlPath.split('/').filter(x => !!x),
+    ];
 
     const score = getSimilarityScore(baseSegments, compareSegments);
 

@@ -9295,36 +9295,6 @@
       "modifiedAt": "2021-10-18T11:17:32.000Z"
     },
     {
-      "uuid": "88307300-5bef-11eb-9f99-005056873709",
-      "id": 539481,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "LAD",
-          "Leistung am Domizil",
-          "Service au domicile",
-          "Servizio a domicilio",
-          "Service at the domicile"
-        ],
-        "year": "2021"
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:49:50.000Z",
-      "modifiedAt": "2021-10-18T11:24:06.000Z"
-    },
-    {
       "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
       "id": 539487,
       "type": "picture.pictogram.",
@@ -9352,6 +9322,36 @@
         }
       },
       "createdAt": "2021-01-21T13:55:20.000Z",
+      "modifiedAt": "2021-10-18T11:24:06.000Z"
+    },
+    {
+      "uuid": "88307300-5bef-11eb-9f99-005056873709",
+      "id": 539481,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "LAD",
+          "Leistung am Domizil",
+          "Service au domicile",
+          "Servizio a domicilio",
+          "Service at the domicile"
+        ],
+        "year": "2021"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:49:50.000Z",
       "modifiedAt": "2021-10-18T11:24:06.000Z"
     },
     {
@@ -19013,6 +19013,120 @@
       },
       "createdAt": "2023-05-15T07:31:23.000Z",
       "modifiedAt": "2023-05-15T07:33:54.000Z"
+    },
+    {
+      "uuid": "17b03cb0-f863-11ed-a8be-005056873709",
+      "id": 681861,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/681861/storage/NjgxODYwLzAvbWFzdGVy",
+        "keywords": [
+          "SSI",
+          "Wallet App"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2523.svg",
+        "basename": "2523",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-22T05:40:00.000Z",
+      "modifiedAt": "2023-05-22T05:41:20.000Z"
+    },
+    {
+      "uuid": "73c39910-f864-11ed-a8be-005056873709",
+      "id": 681869,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/681869/storage/NjgxODY4LzAvbWFzdGVy",
+        "keywords": [
+          "Einfach",
+          "Simple",
+          "Semplice",
+          "Simple"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2525.svg",
+        "basename": "2525",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-22T05:49:44.000Z",
+      "modifiedAt": "2023-05-22T05:50:56.000Z"
+    },
+    {
+      "uuid": "97d90bd0-f866-11ed-a8be-005056873709",
+      "id": 681876,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/681876/storage/NjgxODc1LzAvbWFzdGVy",
+        "keywords": [
+          "Vertrauen",
+          "confiance",
+          "fiducia",
+          "trust"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2526.svg",
+        "basename": "2526",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-22T06:05:03.000Z",
+      "modifiedAt": "2023-05-22T06:09:42.000Z"
+    },
+    {
+      "uuid": "d7da6ed0-f867-11ed-a8be-005056873709",
+      "id": 681881,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/681881/storage/NjgxODgwLzAvbWFzdGVy",
+        "keywords": [
+          "Herzlich",
+          "Cordialement",
+          "Cordialmente",
+          "Cordial"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2527.svg",
+        "basename": "2527",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-22T06:14:00.000Z",
+      "modifiedAt": "2023-05-22T06:15:28.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -29592,11 +29706,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-05-21T01:23:47.210Z",
+  "created": "2023-05-28T01:27:24.746Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 853
+    "success": 857
   },
-  "version": "1.0.4"
+  "version": "1.0.5"
 }

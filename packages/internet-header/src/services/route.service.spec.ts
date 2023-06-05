@@ -56,6 +56,7 @@ describe('route.service.ts', () => {
     const search = new URL('https://post.ch/briefe?q=search');
     const hash = new URL('https://post.ch/briefe#hash');
     const nope = new URL('https://post.de/briefe');
+    const upper = new URL('https://post.ch/Briefe');
 
     it('Correctly scores routes in auto mode', () => {
       // Left: current browser URL, right: URL in Nav
@@ -65,6 +66,8 @@ describe('route.service.ts', () => {
       expect(compareRoutes(search, hash, 'auto')).toBe(Infinity);
       expect(compareRoutes(letters, deep, 'auto')).toBe(0);
       expect(compareRoutes(nope, letters, 'auto')).toBe(0);
+      expect(compareRoutes(letters, upper, 'auto')).toBe(Infinity);
+      expect(compareRoutes(deep, upper, 'auto')).toBe(2);
     });
 
     it('Correctly scores routes in exact mode', () => {
@@ -77,6 +80,7 @@ describe('route.service.ts', () => {
       expect(compareRoutes(letters, nope)).toBe(0);
       expect(compareRoutes(nope, letters)).toBe(0);
       expect(compareRoutes(letters, nope, 'exact')).toBe(0);
+      expect(compareRoutes(letters, upper, 'exact')).toBe(Infinity);
     });
 
     it('Does not fail on invalid arguments', () => {
@@ -93,6 +97,7 @@ describe('route.service.ts', () => {
     let config: NavMainEntity[];
     const fullMatch = new URL('https://post.ch/de/briefe-versenden/briefe-inland');
     const noMatch = new URL('https://post.ch/wherever123');
+    const upper = new URL('https://post.ch/de/Briefe-versenden/BRIEFE-INLAND');
 
     beforeEach(() => {
       config = [...testConfig.de.header.navMain] as NavMainEntity[];
@@ -102,6 +107,9 @@ describe('route.service.ts', () => {
       const scorelist = compileScoreList(config, fullMatch, 'auto');
       expect(scorelist[0].score).toBe(Infinity);
       expect(scorelist[0].sub!.title).toBe('Briefe Inland');
+
+      const scorelistUpper = compileScoreList(config, upper, 'auto');
+      expect(scorelistUpper[0].score).toBe(Infinity);
     });
 
     it('Returns a full match and only one entry', () => {
