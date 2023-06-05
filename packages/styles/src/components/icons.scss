@@ -47,6 +47,12 @@
   }
 }
 
+@each $name, $path in vars.$svg-unofficial-icon-map {
+  .pi-#{$name} {
+    @include icon-mixin.pi($name);
+  }
+}
+
 @each $name, $path in vars.$svg-pre-colored-icon-map {
   .pi-#{$name} {
     @include icon-mixin.pi-pre($name);
