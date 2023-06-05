@@ -75,12 +75,13 @@
     @include icons-mx.icon(2127);
   }
 
-  &.datatable-icon-up {
+  &.datatable-icon-up,
+  &.datatable-icon-down {
     @include icons-mx.icon(2112);
   }
 
   &.datatable-icon-down {
-    @include icons-mx.icon(2113);
+    transform: rotate(180deg);
   }
 }
 

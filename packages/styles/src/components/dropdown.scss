@@ -50,13 +50,13 @@
     @include icons-mx.icon(2052);
   }
 
-  &[aria-expanded='true']::after {
+  &[aria-expanded='true']::after,
+  .dropup &::after {
     transform: rotate(180deg);
   }
 
-  .dropup &::after {
-    @extend %toggler-icon;
-    @include icons-mx.icon(2051);
+  .dropup &[aria-expanded='true']::after {
+    transform: rotate(0deg);
   }
 }
 
