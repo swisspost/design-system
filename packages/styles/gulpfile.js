@@ -49,12 +49,12 @@ gulp.task('map-icons', (done) => {
         throw new Error(`Icon "${iconName}" not found.`);
       }
 
-      return entries + `"${iconName}": "data:image/svg+xml,${iconSvg}",\n`;
+      return entries + `  '${iconName}':\n    "data:image/svg+xml,${iconSvg}",\n`;
     }, '\n');
 
   fs.writeFileSync(
     path.join('./src', 'svg-icon-map.scss'),
-    `$svg-icon-map: (${iconVariables});`,
+    `$svg-icon-map: (${iconVariables});\n`,
   );
 
   done();
