@@ -85,20 +85,20 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     }
   }
 
-  closeFlyout(id?: string) {
+  closeFlyout(id?: string, manageFocus = true) {
     if (id === undefined) return;
     const flyout = this.host.shadowRoot?.getElementById(id);
 
     if (flyout) {
       // Add flyout animation for close action
-      this.addFlyoutAnimation(flyout, 'collapse');
+      this.addFlyoutAnimation(flyout, 'collapse', manageFocus);
     }
 
     this.activeFlyout = null;
     this.flyoutToggled.emit();
   }
 
-  addFlyoutAnimation(flyout: HTMLElement, direction?: 'expand' | 'collapse') {
+  addFlyoutAnimation(flyout: HTMLElement, direction?: 'expand' | 'collapse', manageFocus = true) {
     // Check if user prefers to see animations or not
     if (!userPrefersReducedMotion()) {
       flyout.classList.add('animate');
@@ -107,10 +107,12 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       flyout.addEventListener(
         'transitionend',
         () => {
-          if (direction === 'expand') {
-            flyout.querySelector<HTMLElement>('button.flyout-back-button')?.focus();
-          } else if (direction === 'collapse') {
-            flyout.parentElement?.querySelector<HTMLElement>('a.main-link')?.focus();
+          if (manageFocus) {
+            if (direction === 'expand') {
+              flyout.querySelector<HTMLElement>('button.flyout-back-button')?.focus();
+            } else if (direction === 'collapse') {
+              flyout.parentElement?.querySelector<HTMLElement>('a.main-link')?.focus();
+            }
           }
 
           flyout.classList.remove('animate');
@@ -163,7 +165,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       // Allow the pointer to shortly leave the flyout without closing it. This
       // allows for user mistakes and makes the experience less nervous
       this.mouseLeaveTimer = window.setTimeout(() => {
-        this.closeFlyout(level.id);
+        this.closeFlyout(level.id, false);
       }, 300);
     }
   }
