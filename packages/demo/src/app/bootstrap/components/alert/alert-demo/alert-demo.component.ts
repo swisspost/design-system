@@ -3,8 +3,7 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-alert-demo',
-  templateUrl: './alert-demo.component.html',
-  styleUrls: ['./alert-demo.component.scss']
+  templateUrl: './alert-demo.component.html'
 })
 export class AlertDemoComponent implements AfterViewInit {
   @ViewChild("dismissible", { static: true }) dismissible: ElementRef;
