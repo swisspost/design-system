@@ -468,6 +468,8 @@ const vertx = window.vertx || {};
           credentials: 'include',
           mode: 'cors',
           body: auditingEvent,
+        }).catch(error => {
+          if (error) console.error(error);
         });
       } else {
         log('Auditing disabled: ' + auditingEvent);
