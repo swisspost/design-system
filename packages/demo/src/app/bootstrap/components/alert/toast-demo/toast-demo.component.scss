@@ -9,11 +9,6 @@
   right: auto !important;
 }
 
-.pi-2063-white {
-  background-image: url(post.get-colored-svg-url('2063', post.$white));
-  border-color: post.$white;
-}
-
 @include post.media-breakpoint-down(sm) {
   .btn {
     width: 100%;

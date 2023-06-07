@@ -2,8 +2,7 @@ import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-action-alert-demo',
-  templateUrl: './action-alert-demo.component.html',
-  styleUrls: ['./action-alert-demo.component.scss']
+  templateUrl: './action-alert-demo.component.html'
 })
 export class ActionAlertDemoComponent implements AfterViewInit {
   @ViewChild("ex1", { static: true }) ex1: ElementRef;

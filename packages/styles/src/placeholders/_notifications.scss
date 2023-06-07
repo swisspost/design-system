@@ -46,6 +46,10 @@
 
   &.no-icon {
     background-image: none;
+
+    > .alert-icon {
+      display: none;
+    }
   }
 
   > *:not(hr) {
@@ -87,6 +91,12 @@
   font-weight: type.$font-weight-bold;
 }
 
+%notification-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
 /* stylelint-disable */
 %notification-close-light {
   @extend .btn-close-white;
@@ -123,6 +133,10 @@
     @if ($is-light-bg) {
       @extend %notification-close-light;
     }
+  }
+
+  %notification-#{$name}-icon {
+    background-color: $color;
   }
 }
 /* stylelint-enable */

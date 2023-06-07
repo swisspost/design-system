@@ -1,5 +1,5 @@
 import {CommonModule} from '@angular/common';
-import {LOCALE_ID, NgModule} from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {RouterModule} from '@angular/router';
 import {NgbDatepickerI18n, NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -25,6 +25,7 @@ import {DatepickerValidationDemoComponent} from './datepicker-validation/datepic
     PostCommonModule,
     HighlightModule,
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   declarations: [
     DatepickerSimpleDemoComponent,
     DatepickerSimpleComponent,
@@ -41,6 +42,6 @@ import {DatepickerValidationDemoComponent} from './datepicker-validation/datepic
     {provide: LOCALE_ID, useValue: 'de'},
     HighlightProvider.Config,
     I18n, {provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n},
-  ],
+  ]
 })
 export class DatepickerModule {}
