@@ -67,22 +67,19 @@
         Toggle dropdown
       </button>
       <div ngbDropdownMenu aria-labelledby="dropdownBasic3">
-        <button ngbDropdownItem class="btn-border-radius-sm">
-          <i class="pi pi-3035"></i>
+        <button ngbDropdownItem class="d-flex align-items-center">
+          <post-icon aria-hidden="true" class="fs-large me-mini" name="3035"></post-icon>
           <span>Action with icon</span>
         </button>
 
-        <button ngbDropdownItem class="btn d-flex align-items-center justify-content-between">
-          <span>
-            <i class="pi pi-1001"></i>
-            <span>Action with two icons</span>
-          </span>
-          <i class="pi pi-2050"></i>
+        <button ngbDropdownItem class="d-flex align-items-center">
+          <post-icon aria-hidden="true" class="fs-large me-mini" name="1001"></post-icon>
+          <span class="flex-fill">Action with two icons</span>
+          <post-icon aria-hidden="true" class="fs-small-large" name="2050"></post-icon>
         </button>
 
-        <button ngbDropdownItem class="btn">
-          <i class="pi"></i>
-          <span>Action with empty icon</span>
+        <button ngbDropdownItem>
+          <span class="ps-big">Action without icon</span>
         </button>
 
         <button ngbDropdownItem>
