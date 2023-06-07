@@ -176,11 +176,11 @@ TableWithButtons.args = {
       <td>
         <button className="btn btn-secondary btn-icon btn-md">
           <span className="visually-hidden">Edit</span>
-          <i className="pi pi-2012"></i>
+          <post-icon aria-hidden="true" name="2012"/>
         </button>
         <button className="btn btn-primary btn-icon btn-md ms-2">
           <span className="visually-hidden">Edit</span>
-          <i className="pi pi-3193"></i>
+          <post-icon aria-hidden="true" name="3193"/>
         </button>
       </td>
     </tr>,
@@ -191,11 +191,11 @@ TableWithButtons.args = {
       <td>
         <button className="btn btn-secondary btn-icon btn-md">
           <span className="visually-hidden">Edit</span>
-          <i className="pi pi-2012"></i>
+          <post-icon aria-hidden="true" name="2012"/>
         </button>
         <button className="btn btn-primary btn-icon btn-md ms-2">
           <span className="visually-hidden">Edit</span>
-          <i className="pi pi-3193"></i>
+          <post-icon aria-hidden="true" name="3193"/>
         </button>
       </td>
     </tr>,
@@ -206,11 +206,11 @@ TableWithButtons.args = {
       <td>
         <button className="btn btn-secondary btn-icon btn-md">
           <span className="visually-hidden">Edit</span>
-          <i className="pi pi-2012"></i>
+          <post-icon aria-hidden="true" name="2012"/>
         </button>
         <button className="btn btn-primary btn-icon btn-md ms-2">
           <span className="visually-hidden">Edit</span>
-          <i className="pi pi-3193"></i>
+          <post-icon aria-hidden="true" name="3193"/>
         </button>
       </td>
     </tr>,
