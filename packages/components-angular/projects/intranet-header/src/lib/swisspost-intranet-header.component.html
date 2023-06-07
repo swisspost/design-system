@@ -20,11 +20,12 @@
                   type="text"
                   name="k"
                   class="form-control"
-                  placeholder="{{ getPlaceholderSearchIntranet() }}"
+                  placeholder="{{ searchInputPlaceholder }}"
                 />
                 <div class="input-group-append d-flex align-items-center">
                   <button class="btn pr-4" type="submit">
-                    <span><em class="pi pi-2069"></em></span>
+                    <span class="visually-hidden">{{ searchButtonLabel }}</span>
+                    <post-icon class="fs-large" name="2069"></post-icon>
                   </button>
                 </div>
               </div>
@@ -105,7 +106,8 @@
             id="nav-toggler"
             class="navbar-toggler px-3 d-md-none align-self-stretch d-inline-flex align-items-center"
           >
-            <em class="pi pi-2070"></em>
+            <span class="visually-hidden">{{ openedMenu ? hideNavigationLabel : showNavigationLabel }}</span>
+            <post-icon class="fs-large" name="2070"></post-icon>
           </div>
         </div>
       </div>
@@ -127,11 +129,12 @@
               type="text"
               name="k"
               class="form-control"
-              placeholder="{{ getPlaceholderSearchIntranet() }}"
+              placeholder="{{ searchInputPlaceholder }}"
             />
             <div class="input-group-append d-flex align-items-center">
               <button class="btn pr-4" type="submit">
-                <span><em class="pi pi-2069"></em></span>
+                <span class="visually-hidden">{{ searchButtonLabel }}</span>
+                <post-icon class="fs-large" name="2069"></post-icon>
               </button>
             </div>
           </div>

@@ -51,6 +51,9 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
 
   localization: {
     moreLabel: { [key: string]: string };
+    searchButton: { [key: string]: string };
+    showNavigationLabel: { [key: string]: string };
+    hideNavigationLabel: { [key: string]: string };
     searchPlaceholder: { [key: string]: string };
   } = {
     moreLabel: {
@@ -58,6 +61,24 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       fr: 'Plus',
       it: 'Più',
       en: 'More',
+    },
+    searchButton: {
+      de: 'Suchen',
+      fr: 'Rechercher',
+      it: 'Cerca',
+      en: 'Search',
+    },
+    showNavigationLabel: {
+      de: 'Navigation anzeigen',
+      fr: 'Afficher la navigation',
+      it: 'Mostra la navigazione',
+      en: 'Show Navigation',
+    },
+    hideNavigationLabel: {
+      de: 'Navigation ausblenden',
+      fr: 'Masquer la navigation',
+      it: 'Nascondi la navigazione',
+      en: 'Hide Navigation',
     },
     searchPlaceholder: {
       de: 'Intranet durchsuchen',
@@ -319,8 +340,20 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     }
   }
 
-  public getPlaceholderSearchIntranet() {
+  public get searchInputPlaceholder() {
     return this.localization['searchPlaceholder'][this.lang.toLowerCase()];
+  }
+
+  public get searchButtonLabel() {
+    return this.localization['searchButton'][this.lang.toLowerCase()];
+  }
+
+  public get showNavigationLabel() {
+    return this.localization['showNavigationLabel'][this.lang.toLowerCase()];
+  }
+
+  public get hideNavigationLabel() {
+    return this.localization['hideNavigationLabel'][this.lang.toLowerCase()];
   }
 
   public isLanguageActive(lang: string) {

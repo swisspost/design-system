@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +12,8 @@ import { SwissPostIntranetHeaderComponent } from './swisspost-intranet-header.co
     CommonModule,
     NgbModule
   ],
-  exports: [SwissPostIntranetHeaderComponent]
+  exports: [SwissPostIntranetHeaderComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class SwissPostIntranetHeaderModule {
 }
