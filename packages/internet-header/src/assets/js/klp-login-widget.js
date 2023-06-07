@@ -747,7 +747,7 @@ const vertx = window.vertx || {};
     }
 
     function isCurrentLocationPostCh() {
-      return window.location.hostname.match(controlCookieDomainRegEx);
+      return controlCookieDomainRegEx.test(window.location.hostname);
     }
 
     function hash(s) {
