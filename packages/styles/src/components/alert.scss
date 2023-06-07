@@ -206,6 +206,12 @@
       padding-top: alert.$alert-padding-y;
     }
 
+    .alert-icon {
+      top: alert.$alert-padding-y;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+
     .btn-close {
       bottom: auto;
       padding: spacing.$spacer * 0.5;
