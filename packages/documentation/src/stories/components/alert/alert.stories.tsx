@@ -152,7 +152,12 @@ const Template = (args: Args) => {
           data-dismiss="alert"
           aria-label="Close"
           onClick={(e: React.MouseEvent) => onShowToggle(e, args, updateArgs)}
-        ></button>
+        />
+      ) : null}
+
+      {/* Alert Icon */}
+      {args.icon !== 'null' ? (
+        <post-icon aria-hidden="true" class="alert-icon" name={args.icon}/>
       ) : null}
 
       {/* Alert Content */}
