@@ -20,6 +20,7 @@
     "snapshots": "start-server-and-test 'pnpm docs:headless' 9300 'pnpm --filter design-system-documentation snapshots'",
     "demo:start": "pnpm --filter design-system-demo... --parallel --stream start",
     "docs:start": "pnpm --filter design-system-documentation... --parallel --stream start",
+    "docs:build": "pnpm --filter design-system-documentation build",
     "docs:headless": "pnpm --filter design-system-documentation start:headless",
     "docs:test": "pnpm --filter design-system-documentation test",
     "docs:e2e": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-documentation e2e'",
@@ -56,7 +57,7 @@
   },
   "engines": {
     "node": ">=16",
-    "pnpm": "7"
+    "pnpm": "8"
   },
   "pnpm": {
     "peerDependencyRules": {

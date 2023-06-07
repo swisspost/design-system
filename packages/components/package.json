@@ -36,27 +36,27 @@
     "lint": "eslint src/**/*{.ts,.tsx}"
   },
   "dependencies": {
-    "@stencil/core": "3.3.0",
+    "@stencil/core": "3.3.1",
     "@swisspost/design-system-styles": "workspace:6.2.1"
   },
   "devDependencies": {
-    "@percy/cli": "1.24.2",
+    "@percy/cli": "1.25.0",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "^0.5.0",
-    "@stencil/react-output-target": "0.5.0",
-    "@stencil/sass": "3.0.3",
+    "@stencil/react-output-target": "0.5.1",
+    "@stencil/sass": "3.0.4",
     "@types/jest": "27.5.2",
     "@typescript-eslint/eslint-plugin": "5.59.8",
     "@typescript-eslint/parser": "5.59.8",
     "bootstrap": "5.3.0",
     "cypress": "12.13.0",
     "cypress-storybook": "0.5.1",
-    "eslint": "8.41.0",
+    "eslint": "8.42.0",
     "eslint-plugin-react": "7.32.2",
     "jest": "27.5.1",
     "jest-cli": "27.5.1",
     "npm-run-all": "4.1.5",
-    "puppeteer": "20.4.0",
+    "puppeteer": "20.5.0",
     "sass": "1.62.1",
     "typescript": "4.9.5"
   }
