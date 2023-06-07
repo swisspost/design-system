@@ -16,6 +16,7 @@
     background: white;
 
     &:focus-visible {
+      position: absolute;
       clip: unset;
       width: auto;
     }
