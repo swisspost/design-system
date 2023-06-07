@@ -5,7 +5,7 @@ import docsPage from './icon.docs.mdx';
 import { forEach } from '../../../utils/react';
 
 export default {
-  title: 'Icons/Icon',
+  title: 'Icons/Icon Component',
   component: 'post-icon',
   parameters: {
     docs: {

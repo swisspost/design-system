@@ -68,7 +68,7 @@ export const parameters = {
         'Internet Header',
         ['Getting started', 'Header', 'Breadcrumbs', 'Footer', 'Migration Guide'],
         'Icons',
-        ['Getting started', 'Icon', 'Icons'],
+        ['Getting started', 'Icon Component', 'Search Icons'],
         'Templates',
         'Utilities',
         'Misc',

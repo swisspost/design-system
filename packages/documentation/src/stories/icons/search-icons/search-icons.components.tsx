@@ -1,6 +1,6 @@
 import React from 'react';
 import report from '@swisspost/design-system-icons/public/report.json';
-import './library.styles.scss';
+import './search-icons.styles.scss';
 
 const ICONS = report.icons.map(icon =>
   Object.assign({}, icon, {

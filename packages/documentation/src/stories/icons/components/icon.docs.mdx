@@ -1,7 +1,7 @@
 import LinkTo from '@storybook/addon-links/react';
 import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
 
-<Meta title="Icons/Icon" />
+<Meta title="Icons/Icon Component" />
 
 # Icon
 
@@ -11,7 +11,7 @@ import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
 </p>
 
 <Canvas dark>
-  <Story id="icons-icon--default" />
+  <Story id="icons-icon-component--default" />
 </Canvas>
 <ArgsTable story="^" />
 
@@ -21,7 +21,7 @@ By default, icons inherit the current text color of their parent element.<br/>
 You can therefore colorize an icon using our <LinkTo kind="utilities-text" story="color">text color utilities</LinkTo> or by setting the CSS directly through a style attribute or self-defined classes.
 
 <Canvas dark withSource="open">
-  <Story id="icons-icon--color" />
+  <Story id="icons-icon-component--color" />
 </Canvas>
 
 ### Size
@@ -29,7 +29,7 @@ You can therefore colorize an icon using our <LinkTo kind="utilities-text" story
 Icons have a default `width` of `1em`, which means they will scale with the size of the current `font-size`. Therefore, you can manage the size of an icon using our <LinkTo kind="utilities-text" story="font-size">font-size utilities</LinkTo> or by setting the CSS directly through a style attribute or self-defined classes.
 
 <Canvas dark withSource="open">
-  <Story id="icons-icon--size" />
+  <Story id="icons-icon-component--size" />
 </Canvas>
 
 ### Style
@@ -37,7 +37,7 @@ Icons have a default `width` of `1em`, which means they will scale with the size
 With the use of our [border](#TODO), [background](/?path=/docs/utilities-background--page) and [padding](#TODO) utilities, you can create various styling effects.
 
 <Canvas dark withSource="open">
-  <Story id="icons-icon--style" />
+  <Story id="icons-icon-component--style" />
 </Canvas>
 
 ### Transformations
@@ -47,7 +47,7 @@ With the use of our [border](#TODO), [background](/?path=/docs/utilities-backgro
 Flip the icon horizontally and/or vertically with the `flip-h` and `flip-v` props.
 
 <Canvas dark withSource="open">
-  <Story id="icons-icon--flip" />
+  <Story id="icons-icon-component--flip" />
 </Canvas>
 
 #### Scaling
@@ -55,7 +55,7 @@ Flip the icon horizontally and/or vertically with the `flip-h` and `flip-v` prop
 Scale the icon by any positive factor via the `scale` prop. Note this changes the icon's visual size but not its physical font size. To illustrate this we have added a background color to the icons.
 
 <Canvas dark withSource="open">
-  <Story id="icons-icon--scale" />
+  <Story id="icons-icon-component--scale" />
 </Canvas>
 
 #### Rotating
@@ -63,7 +63,7 @@ Scale the icon by any positive factor via the `scale` prop. Note this changes th
 Rotate the icon by a number of degrees with the `rotate` prop. Positive values will rotate the icon clockwise, while negative values will rotate the icon counterclockwise.
 
 <Canvas dark withSource="open">
-  <Story id="icons-icon--rotate" />
+  <Story id="icons-icon-component--rotate" />
 </Canvas>
 
 #### Animating
@@ -80,5 +80,5 @@ The `post-icon` includes the following built-in animations for icons:
 To use them, set the `animation` prop to one of the animation names above.
 
 <Canvas dark withSource="open">
-  <Story id="icons-icon--animate" />
+  <Story id="icons-icon-component--animate" />
 </Canvas>
