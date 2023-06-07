@@ -581,7 +581,7 @@ const vertx = window.vertx || {};
     function changeAccountDialog() {
       let body;
       let logoutUrl;
-      if (sessionData !== undefined && sessionData.support) {
+      if (sessionData?.support) {
         if (isChangeUserAndProfile()) {
           body = text('change-account-support-dialog');
         } else {
