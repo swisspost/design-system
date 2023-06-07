@@ -1241,7 +1241,7 @@ const vertx = window.vertx || {};
           '</li>';
       }
       return (
-        '<div class="klp-widget-authenticated-menu" id="authenticated-menu" data-dropdown-toggler="klp-widget__user">' +
+        '<div class="klp-widget-authenticated-menu" id="authenticated-menu" data-dropdown-toggler="klp-widget__user" style="display: none">' +
         '<ul>' +
         menuList +
         changeCompanyEntry +
@@ -1508,7 +1508,6 @@ const vertx = window.vertx || {};
       }
       document.dispatchEvent(new CustomEvent('wepploginwidget_widget_ready'));
       measureWidgetShowsUp();
-      selectFromShadowDom().find('.klp-widget-authenticated-session-link').click();
     }
 
     function init() {
