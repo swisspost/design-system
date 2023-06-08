@@ -5,7 +5,7 @@ import docsPage from './internet-header.docs.mdx';
 import './internet-header.styles.scss';
 
 export default {
-  title: 'Internet Header/Header',
+  title: 'Internet Header/Components/Header',
   parameters: {
     layout: 'fullscreen',
     docs: {
