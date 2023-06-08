@@ -18,7 +18,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup
-        uses: ./.github/actions/setup-pnpm.yml
+        uses: ../actions/setup-pnpm.yml
 
       - name: Install dependencies of changed packages
         run: pnpm install
