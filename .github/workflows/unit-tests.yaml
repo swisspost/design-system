@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: ../actions/setup-pnpm.yml
 
       # Install packages changed since main, as well as their dependants and dependencies
       - name: Install dependencies
