@@ -99,60 +99,74 @@ export const compileScoreList = (
   let hadAnyActiveLink = false;
   const scoreList: MainNavScoreList = [];
 
-  config.forEach(mainNav => {
-    if (hadAnyActiveLink || !mainNav) {
-      return;
-    }
+  config
+    .filter(mainNav => !hadAnyActiveLink && mainNav)
+    .forEach(mainNav => {
+      try {
+        const score = compareRoutes(
+          compareUrl,
+          new URL(mainNav.url),
+          activeRouteProp as 'auto' | 'exact',
+        );
 
-    try {
-      const score = compareRoutes(
-        compareUrl,
-        new URL(mainNav.url),
-        activeRouteProp as 'auto' | 'exact',
-      );
-      if (score > 0) {
-        if (score === Infinity) hadAnyActiveLink = true;
-        scoreList.push({ main: mainNav, score });
+        hadAnyActiveLink = updateScoreList(
+          scoreList,
+          score,
+          { main: mainNav, score },
+          hadAnyActiveLink,
+        );
+      } catch {
+        // Not a valid url, continue
       }
-    } catch {
-      // Not a valid url, continue
-    }
 
-    // Loop through flyout links 2nd level
-    if (mainNav.flyout.length) {
+      // Loop through flyout links 2nd level
       mainNav.flyout.forEach(flyout => {
-        if (flyout.linkList) {
-          flyout.linkList.forEach(linklist => {
-            // Don't override if any link is already active
-            if (linklist.isActive && (activeRouteProp === 'auto' || activeRouteProp === 'exact')) {
-              hadAnyActiveLink = true;
-              return;
-            }
+        flyout.linkList?.forEach(linklist => {
+          // Don't override if any link is already active
+          if (linklist.isActive && (activeRouteProp === 'auto' || activeRouteProp === 'exact')) {
+            hadAnyActiveLink = true;
+            return;
+          }
 
-            try {
-              const url = new URL(linklist.url);
-              const score = compareRoutes(compareUrl, url, activeRouteProp as 'auto' | 'exact');
-              if (score > 0) {
-                if (score === Infinity) hadAnyActiveLink = true;
+          try {
+            const url = new URL(linklist.url);
+            const score = compareRoutes(compareUrl, url, activeRouteProp as 'auto' | 'exact');
 
-                // Push score
-                scoreList.push({
-                  main: mainNav,
-                  sub: linklist,
-                  score,
-                });
-              }
-            } catch {
-              // Not a valid URL, continue
-            }
-          });
-        }
+            hadAnyActiveLink = updateScoreList(
+              scoreList,
+              score,
+              { main: mainNav, sub: linklist, score },
+              hadAnyActiveLink,
+            );
+          } catch {
+            // Not a valid URL, continue
+          }
+        });
       });
-    }
-  });
+    });
 
   return scoreList.sort((a, b) => b.score - a.score);
 };
+
+/**
+ * Update score list
+ */
+function updateScoreList(
+  scoreList: MainNavScoreList,
+  score: number,
+  scoreListItem: any,
+  hadAnyActiveLink: boolean,
+) {
+  let hadActiveLink = hadAnyActiveLink;
+
+  if (score > 0) {
+    if (score === Infinity) hadActiveLink = true;
+    // Push score
+    scoreList.push(scoreListItem);
+  }
+
+  return hadActiveLink;
+}
 
 /**
  * Compare two URLs for similarity based on a match mode
