@@ -1,5 +1,11 @@
 # @swisspost/design-system-demo
 
+## 5.3.2
+
+### Patch Changes
+
+- Update migration guide for v5 with precise installation instructions (by [@gfellerph](https://github.com/gfellerph) with [#1478](https://github.com/swisspost/design-system/pull/1478))
+
 ## 5.3.1
 
 ### Patch Changes
