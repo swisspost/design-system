@@ -34,7 +34,7 @@ jobs:
       # Set changeset base branch, only run on release/vX branches
       - name: Set changeset base branch
         if: github.ref != 'refs/heads/main'
-        run: echo "`jq '.baseBranch="${{ gituhb.ref_name}}"' .changeset/config.json`" > .changeset/config.json
+        run: echo "`jq '.baseBranch="${{ github.ref_name }}"' .changeset/config.json`" > .changeset/config.json
 
       - name: Log changeset config
         run: echo $(cat .changeset/config.json)
