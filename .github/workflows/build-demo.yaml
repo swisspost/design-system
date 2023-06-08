@@ -31,6 +31,8 @@ jobs:
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        with:
+          pnpm_version: 7
 
       - name: Bootstrap & Build Design System
         run: |

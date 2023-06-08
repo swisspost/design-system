@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - release/*
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
@@ -19,6 +20,8 @@ jobs:
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        with:
+          pnpm_version: 7
 
       # Install changesets locally
       - name: Install dependencies
@@ -28,8 +31,16 @@ jobs:
       - name: Build changelog formatter
         run: pnpm --filter design-system-changelog-github build
 
+      # Set changeset base branch, only run on release/vX branches
+      - name: Set changeset base branch
+        if: github.ref != 'refs/heads/main'
+        run: echo "`jq '.baseBranch="${{ gituhb.ref_name}}"' .changeset/config.json`" > .changeset/config.json
+
+      - name: Log changeset config
+        run: echo $(cat .changeset/config.json)
+
       # The changeset action will behave differently based on whether there are
-      # new changesets on the main branch:
+      # new changesets on the base branch:
       #
       #  - new changesets: create a preview PR with the new version bumps and changelogs
       #  - no new changesets (the preview PR got merged into main): publish packages
@@ -40,7 +51,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
-          title: 'chore(changesets): 🦋📦 publish packages'
-          commit: 'chore(changesets): publish packages'
+          title: 'chore(changesets): 🦋📦 publish packages (${{ github.ref_name }})'
+          commit: 'chore(changesets): publish packages (${{ github.ref_name }})'
           publish: pnpm changeset:publish
           version: pnpm changeset:version
