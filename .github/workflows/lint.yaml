@@ -19,6 +19,8 @@ jobs:
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        with:
+          pnpm_version: 7
 
       - name: Install dependencies of changed packages
         run: pnpm install
