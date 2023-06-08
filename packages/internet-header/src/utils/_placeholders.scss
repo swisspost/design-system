@@ -1,0 +1,63 @@
+@use '@swisspost/design-system-styles/mixins/forms' as forms-mx;
+@use '@swisspost/design-system-styles/variables/color';
+
+%visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  border: 0;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+%blank-button {
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+}
+
+%nav-link {
+  @include forms-mx.focus-outline();
+
+  text-decoration: none;
+  color: rgba(color.$black, 0.8);
+  transition: color 200ms;
+  background-color: transparent;
+  box-shadow: none;
+  border: 0;
+  margin: 0; // Buttons in safari have a default margin of 2px
+
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  &:hover,
+  &:focus {
+    color: black;
+  }
+
+  &:focus-visible {
+    z-index: 1;
+    position: relative;
+  }
+
+  > svg {
+    width: 1.4em;
+    height: 1.4em;
+    flex-shrink: 0;
+  }
+
+  > span {
+    flex-shrink: 1;
+  }
+}
+
+%no-list {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
