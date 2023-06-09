@@ -20,6 +20,22 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 # Color
 
+In the following, you can see the Swiss Post specific colors.<br/>
+They theme our elements and components.
+
+<div class="alert alert-info alert-md mt-regular">
+  <p>
+    For accessibility reasons, you should always make sure that your individually created color
+    combinations are sufficiently contrasting. There may be a better solution than coloring elements individually.
+  </p>
+
+  <p>
+    For example, use the{' '}
+    <LinkTo kind="utilities-background--background-containers">background utilities</LinkTo> to get elements
+    with a specific background color and the best possible contrast color for its content.
+  </p>
+</div>
+
 ## Brand colors
 
 <section className="color-swatch__section">
@@ -74,15 +90,9 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 CSS variables are globally available on your page.
 
-<div class="alert alert-info alert-md mb-regular">
-  Note:With this approach, the text color will not be automatically accessible. Use the{' '}
-  <LinkTo kind="utilities-background--background-containers">background utilities</LinkTo> for this
-  feature.
-</div>
-
 ```css dark
-.custom-background {
-  background-color: var(--post-dark);
+.my-element {
+  property: var(--post-dark);
 }
 ```
 
@@ -90,16 +100,10 @@ CSS variables are globally available on your page.
 
 Import the color variables from the `core` file with `@use`. This way, the color variables are scoped and don't mix with your own variables.
 
-<div class="alert alert-info alert-md mb-regular">
-  Note: With this approach, the text color will not be automatically accessible. Use the{' '}
-  <LinkTo kind="utilities-background--background-containers">background utilities</LinkTo> for this
-  feature.
-</div>
-
 ```css dark
 @use '@swisspost/design-system-styles/core' as post;
 
-.custom-background {
-  background-color: post.$dark;
+.my-element {
+  property: post.$dark;
 }
 ```
