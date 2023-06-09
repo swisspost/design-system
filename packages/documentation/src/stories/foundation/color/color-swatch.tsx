@@ -15,8 +15,8 @@ export const ColorSwatch = (props: { name: string; color: string; noCSS?: boolea
       <div className="color-swatch__props">
         <dl>
           {!props.noCSS && [
-            <dt>CSS</dt>,
-            <dd>
+            <dt key="title">CSS</dt>,
+            <dd key="data">
               <code>var(--post-{props.name})</code>
             </dd>,
           ]}
