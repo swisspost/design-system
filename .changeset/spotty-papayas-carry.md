@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Removed unused background utility shadow variables.
+Removed unused variable `$shadow-color`. It was added by mistake.
