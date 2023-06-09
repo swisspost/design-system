@@ -1,6 +1,7 @@
 import { Meta, Canvas, Story } from '@storybook/addon-docs';
 import LinkTo from '@storybook/addon-links/react';
-import { BackgroundContainers } from './background.components';
+import { forEach } from '../../../utils/react';
+import { BackgroundContainer, SCSS_VARIABLES } from './background.components';
 
 <Meta
   title="Utilities/Background"
@@ -21,7 +22,7 @@ import { BackgroundContainers } from './background.components';
   Similar to the contextual text color classes, set the background of an element to any contextual
   class.
 </p>
-Background utilities do also affect text colors, by updating the following css variables:
+Background utilities do also affect text colors, by defining the following css variables:
 
 - `--post-contrast-color` and `--post-contrast-color-rgb`
 - `--post-contrast-color-inverted` and `--post-contrast-color-inverted-rgb`
@@ -32,21 +33,41 @@ To use the background utilities, you can simply add a class `.bg-{colorname}` to
 
 <Canvas withSource="open">
   <Story name="Background containers">
-    <div class="bg-yellow p-3">
-      Content in <code>.bg-yellow</code> container.
-    </div>
+    <div class="bg-yellow p-3">Content</div>
   </Story>
 </Canvas>
 
 ### Available backgrounds
 
-<BackgroundContainers></BackgroundContainers>
+#### Base
+
+<section className="background-container__section">
+  {forEach(SCSS_VARIABLES.base, function (data) {
+    return <BackgroundContainer key={data.key} name={data.key} color={data.value} />;
+  })}
+</section>
+
+#### Contextual
+
+<section className="background-container__section">
+  {forEach(SCSS_VARIABLES.contextual, function (data) {
+    return <BackgroundContainer key={data.key} name={data.key} color={data.value} />;
+  })}
+</section>
+
+#### Accent
+
+<section className="background-container__section">
+  {forEach(SCSS_VARIABLES.accent, function (data) {
+    return <BackgroundContainer key={data.key} name={data.key} color={data.value} />;
+  })}
+</section>
 
 ## Nested
 
 It's possible to nest background containers.
 
-<p className="text-secondary fst-italic">
+<p className="alert alert-info alert-md">
   Note: Every container defines its own text color and inverted text color css variables to always
   ensure the best possible contrast.
 </p>
@@ -67,11 +88,11 @@ It's possible to nest background containers.
 
 ## Opacity
 
-Use the css variable `--post-bg-opacity` on a background container, to modify the opacity of its `background-color` property.
+Use the css variable `--post-bg-opacity` on a background container, to modify the opacity of its background color.
 
-<p className="text-secondary fst-italic">
-  Note: We do not recommend low opacity because you have to ensure a minimal contrast ratio of
-  4.5:1 between background and foreground. Read more about this topic on our{' '}
+<p className="alert alert-info alert-md">
+  Note: We do not recommend low opacity because you have to ensure a minimal contrast ratio of 4.5:1
+  between background and foreground. Read more about this topic on our{' '}
   <LinkTo kind="foundations-accessibility">accessibility</LinkTo> page.
 </p>
 
