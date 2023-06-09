@@ -49,6 +49,11 @@
       border-color: var(--post-contrast-color);
     }
 
+    &:focus {
+      outline: none;
+      box-shadow: form-check.$form-check-input-focus-box-shadow;
+    }
+
     &::after {
       content: '';
       display: block;
@@ -122,10 +127,6 @@
         border-color: form-check.$form-switch-checked-border-color;
         transform: translateX(2rem);
       }
-    }
-
-    &:focus {
-      box-shadow: none !important;
     }
   }
 
