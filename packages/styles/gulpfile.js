@@ -38,7 +38,7 @@ gulp.task('map-icons', (done) => {
           // replace double quotes
           .replace(/"/g, "'")
           // remove fill color
-          .replace(/fill='currentColor' /g, "")
+          .replace(/ fill='(none|currentColor)'/g, "")
           // replace special characters
           .replace(/</g, "%3C")
           .replace(/>/g, "%3E")
