@@ -6,14 +6,16 @@
 @use './../spacing';
 @use './../../functions/icons';
 
+$btn-close-transition: button.$btn-transition;
+
 // Bootstrap variables
 $btn-close-width: spacing.$size-large !default;
 $btn-close-height: $btn-close-width !default;
 $btn-close-padding-x: spacing.$size-regular !default;
-$btn-close-color: color.$black !default;
+$btn-close-color: var(--post-contrast-color) !default;
 $btn-close-opacity: 0.5 !default;
 $btn-close-hover-opacity: 0.75 !default;
 
 // DEPRECATED
-$btn-close-bg: url('#{icons.get-colored-svg-url('2043', $btn-close-color)}') !default;
+$btn-close-bg: url('#{icons.get-colored-svg-url('2043', color.$black)}') !default;
 $btn-close-hcm-bg: url('#{icons.get-colored-svg-url('2043', color.$white)}') !default;

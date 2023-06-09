@@ -14,7 +14,7 @@
   height: unset;
   min-height: close.$btn-close-height;
   background-image: none;
-  color: var(--post-contrast-color);
+  transition: close.$btn-close-transition;
 
   &::before {
     @include icons-mx.icon(2043);
