@@ -468,6 +468,8 @@ const vertx = window.vertx || {};
           credentials: 'include',
           mode: 'cors',
           body: auditingEvent,
+        }).catch(error => {
+          if (error) console.error(error);
         });
       } else {
         log('Auditing disabled: ' + auditingEvent);
@@ -579,7 +581,7 @@ const vertx = window.vertx || {};
     function changeAccountDialog() {
       let body;
       let logoutUrl;
-      if (sessionData !== undefined && sessionData.support) {
+      if (sessionData?.support) {
         if (isChangeUserAndProfile()) {
           body = text('change-account-support-dialog');
         } else {
@@ -747,7 +749,7 @@ const vertx = window.vertx || {};
     }
 
     function isCurrentLocationPostCh() {
-      return window.location.hostname.match(controlCookieDomainRegEx);
+      return controlCookieDomainRegEx.test(window.location.hostname);
     }
 
     function hash(s) {
