@@ -13,6 +13,3 @@ storybook-static
 # Mac OSX Finder files.
 **/.DS_Store
 .DS_Store
-
-# Icons
-src/svg-icon-map.scss

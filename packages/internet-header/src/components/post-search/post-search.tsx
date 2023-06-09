@@ -194,63 +194,52 @@ export class PostSearch implements HasDropdown, IsFocusable {
       return;
     }
 
-    let selectedSuggestion = this.searchFlyout.querySelector<HTMLElement>(
+    const selectedSuggestion = this.searchFlyout.querySelector<HTMLElement>(
       '.suggestions > li > a.selected',
     );
+    const selectedHref = selectedSuggestion?.getAttribute('href') ?? null;
+    const suggestions = this.searchFlyout.querySelectorAll('.suggestions > li > a');
 
     switch (event.key.toLowerCase()) {
       case 'enter':
-        if (selectedSuggestion) {
-          const selectedHref = selectedSuggestion.getAttribute('href');
-          if (selectedHref !== null) {
-            window.location.href = selectedHref;
-          }
+        if (selectedHref !== null) {
+          window.location.href = selectedHref;
         } else {
           this.startSearch();
         }
 
         break;
       case 'arrowdown':
-      case 'arrowup':
-        const suggestions = this.searchFlyout.querySelectorAll('.suggestions > li > a');
-
         this.deselectSuggestion();
 
-        if (event.key.toLowerCase() === 'arrowdown') {
-          if (selectedSuggestion?.parentElement?.nextElementSibling?.firstElementChild) {
-            // Select next suggestion if there's any, otherwise none will be selected
-            selectedSuggestion.parentElement.nextElementSibling.firstElementChild.classList.add(
-              'selected',
-            );
-          } else {
-            // If there are any suggestions, select first suggestion in list
-            if (suggestions.length > 0) {
-              suggestions[0].classList.add('selected');
-            }
-          }
-        } else if (event.key.toLowerCase() === 'arrowup') {
-          if (selectedSuggestion?.parentElement?.previousElementSibling?.firstElementChild) {
-            // Select previous suggestion if there's any, otherwise none will be selected
-
-            selectedSuggestion.parentElement.previousElementSibling.firstElementChild.classList.add(
-              'selected',
-            );
-          } else {
-            // If there are any suggestions, select last suggestion in list
-            if (suggestions.length > 0) {
-              suggestions[suggestions.length - 1].classList.add('selected');
-            }
-          }
+        if (selectedSuggestion?.parentElement?.nextElementSibling?.firstElementChild) {
+          // Select next suggestion if there's any, otherwise none will be selected
+          selectedSuggestion.parentElement.nextElementSibling.firstElementChild.classList.add(
+            'selected',
+          );
+          // If there are any suggestions, select first suggestion in list
+        } else if (suggestions.length > 0) {
+          suggestions[0].classList.add('selected');
         }
 
-        // Get the newly selected suggestion
-        selectedSuggestion = this.searchFlyout.querySelector('.suggestions > li > a.selected');
-        const suggestedText = selectedSuggestion?.dataset.suggestionText;
+        this.updateSearchBoxWithSuggestion();
 
-        // Update search box value with selected suggestion text
-        if (suggestedText !== undefined && this.searchBox) {
-          this.searchBox.value = suggestedText;
+        break;
+      case 'arrowup':
+        this.deselectSuggestion();
+
+        if (selectedSuggestion?.parentElement?.previousElementSibling?.firstElementChild) {
+          // Select previous suggestion if there's any, otherwise none will be selected
+
+          selectedSuggestion.parentElement.previousElementSibling.firstElementChild.classList.add(
+            'selected',
+          );
+          // If there are any suggestions, select last suggestion in list
+        } else if (suggestions.length > 0) {
+          suggestions[suggestions.length - 1].classList.add('selected');
         }
+
+        this.updateSearchBoxWithSuggestion();
 
         break;
     }
@@ -285,6 +274,24 @@ export class PostSearch implements HasDropdown, IsFocusable {
 
     if (selectedSuggestion) {
       selectedSuggestion.classList.remove('selected');
+    }
+  }
+
+  /**
+   * Update search box with selected suggestion
+   */
+  private updateSearchBoxWithSuggestion() {
+    if (this.searchFlyout === undefined) return;
+
+    // Get the newly selected suggestion
+    const selectedSuggestion = this.searchFlyout.querySelector<HTMLElement>(
+      '.suggestions > li > a.selected',
+    );
+    const suggestedText = selectedSuggestion?.dataset.suggestionText;
+
+    // Update search box value with selected suggestion text
+    if (suggestedText !== undefined && this.searchBox) {
+      this.searchBox.value = suggestedText;
     }
   }
 
@@ -355,17 +362,17 @@ export class PostSearch implements HasDropdown, IsFocusable {
                       </button>
                     </div>
                     {showPortalRecommendations && (
-                      <h2
-                        id="post-internet-header-search-recommendations-title"
-                        class="bold"
-                      >{search.searchRecommendations.title}</h2>
+                      <h2 id="post-internet-header-search-recommendations-title" class="bold">
+                        {search.searchRecommendations.title}
+                      </h2>
                     )}
                     <ul
                       class="suggestions no-list"
                       onMouseLeave={() => this.handleMouseLeaveSuggestions()}
-                      aria-labelledby={showPortalRecommendations
-                        ? 'post-internet-header-search-recommendations-title'
-                        : undefined
+                      aria-labelledby={
+                        showPortalRecommendations
+                          ? 'post-internet-header-search-recommendations-title'
+                          : undefined
                       }
                     >
                       {showPortalRecommendations &&
