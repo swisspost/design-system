@@ -1,6 +1,5 @@
 ---
-'@swisspost/design-system-components': minor
+'@swisspost/design-system-components': patch
 ---
 
-Refactored the `post-icon` icon integration mechanism. Now the browser handles the file handling.
-Therefore we get rid of all the workarounds to load and cache icons and instead profit from the browsers file handling mechanisms.
+Refactored the `post-icon` icon loading mechanism. The same icon will no longer be loaded multiple times.
