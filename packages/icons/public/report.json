@@ -19042,6 +19042,35 @@
       "modifiedAt": "2023-05-22T05:41:20.000Z"
     },
     {
+      "uuid": "bf70b9c0-f863-11ed-a8be-005056873709",
+      "id": 681865,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/681865/storage/NjgxODY0LzAvbWFzdGVy",
+        "keywords": [
+          "Inklusion",
+          "inclusion",
+          "Includere",
+          "inclusion"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2524.svg",
+        "basename": "2524",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-05-22T05:44:41.000Z",
+      "modifiedAt": "2023-06-07T15:36:32.000Z"
+    },
+    {
       "uuid": "73c39910-f864-11ed-a8be-005056873709",
       "id": 681869,
       "type": "picture.pictogram.",
@@ -19127,6 +19156,239 @@
       },
       "createdAt": "2023-05-22T06:14:00.000Z",
       "modifiedAt": "2023-05-22T06:15:28.000Z"
+    },
+    {
+      "uuid": "a88a6bb0-05d9-11ee-8c71-005056873709",
+      "id": 683790,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/683790/storage/NjgzNzg5LzAvbWFzdGVy",
+        "keywords": [
+          "Versandunterlagen",
+          "GLS",
+          "Documents d’expédition",
+          "Documenti d’invio",
+          "Shipping documents"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2528.svg",
+        "basename": "2528",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-06-08T08:51:28.000Z",
+      "modifiedAt": "2023-06-08T08:52:20.000Z"
+    },
+    {
+      "uuid": "cf6fe3d0-05da-11ee-8c71-005056873709",
+      "id": 683794,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/683794/storage/NjgzNzkzLzAvbWFzdGVy",
+        "keywords": [
+          "Preise und Länderinformationen",
+          "prix et informations par pays",
+          "prezzi e informazioni sui paesi",
+          "Prices and country information"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2529.svg",
+        "basename": "2529",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-06-08T08:59:43.000Z",
+      "modifiedAt": "2023-06-08T09:00:48.000Z"
+    },
+    {
+      "uuid": "23a2da00-05ec-11ee-8c71-005056873709",
+      "id": 683838,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/683838/storage/NjgzODM3LzAvbWFzdGVy",
+        "keywords": [
+          "Addresse und Geodaten",
+          "Adresse et géodonnées",
+          "Indirizzo e geodati",
+          "Address and geodata"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2530.svg",
+        "basename": "2530",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-06-08T11:03:46.000Z",
+      "modifiedAt": "2023-06-08T11:06:02.000Z"
+    },
+    {
+      "uuid": "8176c790-05ec-11ee-8c71-005056873709",
+      "id": 683842,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/683842/storage/NjgzODQxLzAvbWFzdGVy",
+        "keywords": [
+          "Briefversand vorankündigen",
+          "Demander l’envoi de lettres",
+          "Anticipare spedizione di lettere",
+          "Advance notice of letter mail"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2531.svg",
+        "basename": "2531",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-06-08T11:06:23.000Z",
+      "modifiedAt": "2023-06-08T11:07:23.000Z"
+    },
+    {
+      "uuid": "d1db8770-05ec-11ee-8c71-005056873709",
+      "id": 683846,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/683846/storage/NjgzODQ1LzAvbWFzdGVy",
+        "keywords": [
+          "Versandnachweis abrufen",
+          "consulter le justificatif d’expédition",
+          "il giustificativo di spedizione",
+          "recall proof of mailing,"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2532.svg",
+        "basename": "2532",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-06-08T11:08:38.000Z",
+      "modifiedAt": "2023-06-08T11:09:31.000Z"
+    },
+    {
+      "uuid": "7f8d9fc0-05ed-11ee-8c71-005056873709",
+      "id": 683850,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/683850/storage/NjgzODQ5LzAvbWFzdGVy",
+        "keywords": [
+          "Logistikzahlen",
+          "chiffres logistiques",
+          "cifre logistiche",
+          "logistics figures"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2533.svg",
+        "basename": "2533",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-06-08T11:13:30.000Z",
+      "modifiedAt": "2023-06-08T11:14:40.000Z"
+    },
+    {
+      "uuid": "3dc96c30-05ee-11ee-8c71-005056873709",
+      "id": 683856,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/683856/storage/NjgzODU1LzAvbWFzdGVy",
+        "keywords": [
+          "Unteradresse",
+          "sous-adresse",
+          "Sottoindirizzo",
+          "Sub-address"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2534.svg",
+        "basename": "2534",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-06-08T11:18:49.000Z",
+      "modifiedAt": "2023-06-08T11:19:50.000Z"
+    },
+    {
+      "uuid": "cfb27b00-05ee-11ee-8c71-005056873709",
+      "id": 683860,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/683860/storage/NjgzODU5LzAvbWFzdGVy",
+        "keywords": [
+          "Vorübergehende Nachsendung",
+          "Réexpédition temporaire",
+          "Rispedizione preliminare",
+          "Temporary forwarding"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2535.svg",
+        "basename": "2535",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-06-08T11:22:54.000Z",
+      "modifiedAt": "2023-06-08T11:23:53.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -29706,11 +29968,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-05-28T01:27:24.746Z",
+  "created": "2023-06-11T01:47:56.170Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 857
+    "success": 866
   },
   "version": "1.0.5"
 }
