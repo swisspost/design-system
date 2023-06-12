@@ -4,7 +4,7 @@ import { prepare } from '../support/prepare-story';
 
 describe('login', () => {
   beforeEach(() => {
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare('Internet Header/Components/Header', 'Default');
   });
 
   describe('args', () => {
@@ -33,7 +33,7 @@ describe('login', () => {
         config.de!.header.loginWidgetOptions = undefined;
 
         // Intercept the request to the config API and return a static response
-        prepare('Components/Internet Header/Header', 'Default', config);
+        prepare('Internet Header/Components/Header', 'Default', config);
 
         // Assert the header is hydrated
         cy.get('swisspost-internet-header').should('have.class', 'hydrated');
