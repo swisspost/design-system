@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 1.3.5
+
+### Patch Changes
+
+- Refactored the `post-icon` icon loading mechanism. The same icon will no longer be loaded multiple times. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1485](https://github.com/swisspost/design-system/pull/1485))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.2
+
 ## 1.3.4
 
 ### Patch Changes
