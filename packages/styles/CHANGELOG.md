@@ -1,5 +1,17 @@
 # @swisspost/design-system-styles
 
+## 6.2.2
+
+### Patch Changes
+
+- Fixed an issue with the stepper on mobile where the name of the last step was misaligned on mobile devices. (by [@gfellerph](https://github.com/gfellerph) with [#1317](https://github.com/swisspost/design-system/pull/1317))
+
+- Updated dependency Bootstrap to 5.3.0 (by [@gfellerph](https://github.com/gfellerph) with [#1466](https://github.com/swisspost/design-system/pull/1466))
+
+- Removed unused variable `$shadow-color`. It was added by mistake. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1438](https://github.com/swisspost/design-system/pull/1438))
+
+- Fixed an issue in Safari where the input value of a floating label input field was hidden by the floating label. (by [@gfellerph](https://github.com/gfellerph) with [#1461](https://github.com/swisspost/design-system/pull/1461))
+
 ## 6.2.1
 
 ### Patch Changes
