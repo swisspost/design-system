@@ -24,7 +24,7 @@ describe('breadcrumb', () => {
   describe('configuration', () => {
     it(`should not be rendered if no header present`, () => {
       // Need to revisit storybook to make sure new story is loaded correctly
-      prepare('Components/Internet Header/Breadcrumbs', 'NonExistentHeader');
+      prepare('Internet Header/Components/Breadcrumbs', 'NonExistentHeader');
 
       cy.get('swisspost-internet-breadcrumbs').should('not.be.visible');
       cy.get('.page-wrapper').should('be.visible');
@@ -42,13 +42,13 @@ describe('breadcrumb', () => {
       modifiedConfig.fr.breadcrumb = undefined;
       modifiedConfig.it.breadcrumb = undefined;
 
-      prepare('Components/Internet Header/Breadcrumbs', 'NonExistentHeader', modifiedConfig);
+      prepare('Internet Header/Components/Breadcrumbs', 'NonExistentHeader', modifiedConfig);
       cy.get('swisspost-internet-breadcrumbs').should('exist');
       cy.get('div.breadcrumbs').should('not.exist');
     });
 
     it(`should add custom elements`, () => {
-      prepare('Components/Internet Header/Breadcrumbs', 'Custom-Items');
+      prepare('Internet Header/Components/Breadcrumbs', 'Custom-Items');
 
       (cy as any).changeArg('custom-items', [
         { text: 'Test1', url: '/x/y/z' },
@@ -72,7 +72,7 @@ describe('breadcrumb', () => {
 
   describe('open/close overlay buttons', () => {
     beforeEach(() => {
-      prepare('Components/Internet Header/Breadcrumbs', 'Default');
+      prepare('Internet Header/Components/Breadcrumbs', 'Default');
       cy.get('div.breadcrumbs').as('breadcrumbs');
       cy.intercept(
         'https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/**',
@@ -105,7 +105,7 @@ describe('breadcrumb', () => {
   describe('mobile', () => {
     beforeEach(() => {
       cy.viewport('iphone-6+');
-      prepare('Components/Internet Header/Breadcrumbs', 'Default');
+      prepare('Internet Header/Components/Breadcrumbs', 'Default');
       cy.get('div.breadcrumbs').as('breadcrumbs');
     });
 
