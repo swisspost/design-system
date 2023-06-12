@@ -1,43 +1,33 @@
+@use 'sass:map';
 @use '@swisspost/design-system-styles/core' as post;
 
 :export {
-  brand_yellow: post.$yellow;
-  brand_white: post.$white;
-  brand_black: post.$black;
-
-  @each $color, $value in post.$post-grays {
-    gray_#{$color}: $value;
+  @each $color, $value in post.$background-colors {
+    @if (
+      map.has-key(post.$contextual-colors, $color) ==
+        false and
+        map.has-key(post.$accent-colors, $color) ==
+        false
+    ) {
+      base_#{$color}: $value;
+    }
   }
-
-  gray_light: post.$light;
-  gray_dark: post.$dark;
-
-  pagebackgrounds_gray-background-light: post.$gray-background-light;
-  pagebackgrounds_gray-background: post.$gray-background;
 
   @each $color, $value in post.$contextual-colors {
     contextual_#{$color}: $value;
   }
 
-  @each $colorName, $value in post.$accent-colors {
-    @if (str-index($colorName, '-bright') == null) {
-      accent_dark_#{$colorName}: $value;
-    }
-  }
-
-  @each $colorName, $value in post.$accent-colors {
-    @if (str-index($colorName, '-bright')) {
-      accent_bright_#{$colorName}: $value;
-    }
+  @each $color, $value in post.$accent-colors {
+    accent_#{$color}: $value;
   }
 }
 
-.color-swatch__section {
+.background-container__section {
   display: grid;
   grid-template-columns: minmax(max-content, 25%) 20% auto;
 }
 
-.color-swatch {
+.background-container {
   display: contents;
 
   > * {
@@ -52,7 +42,7 @@
     }
   }
 
-  .color-swatch__description {
+  .background-container__description {
     .description__title {
       &:first-letter {
         text-transform: uppercase;
@@ -60,8 +50,11 @@
     }
   }
 
-  .color-swatch__color {
-    .color__tile {
+  .background-container__background {
+    .background__tile {
+      display: flex;
+      justify-content: center;
+      align-items: center;
       height: 100%;
       border-radius: post.$border-radius;
       box-shadow: post.$elevation-1;
@@ -69,7 +62,7 @@
     }
   }
 
-  .color-swatch__props {
+  .background-container__props {
     dl {
       display: grid;
       grid-template-columns: max-content auto;

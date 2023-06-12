@@ -1,24 +1,28 @@
-export const ColorSwatch = (props: { color: string; isBackground?: boolean }) => {
-  const isBackground = props.isBackground ?? true;
+import { parse } from '../../../utils/sass-export';
+import scss from './color.styles.scss';
 
+export const SCSS_VARIABLES = parse(scss);
+
+export const ColorSwatch = (props: { name: string; color: string; noCSS?: boolean }) => {
   return (
-    <article className="color-square">
-      <div
-        className={isBackground ? `color-square__inner bg-${props.color}` : 'color-square__inner'}
-        style={!isBackground ? { backgroundColor: `var(--post-${props.color})` } : undefined}
-      >
-        {isBackground && <h3>{props.color}</h3>}
+    <article className="color-swatch">
+      <div className="color-swatch__description">
+        <h3 className="description__title h6">{props.name}</h3>
       </div>
-      <div className="color-square__content">
-        {!isBackground && <h3>{props.color}</h3>}
+      <div className="color-swatch__color">
+        <div className="color__tile" style={{ backgroundColor: props.color }}></div>
+      </div>
+      <div className="color-swatch__props">
         <dl>
-          <dt>CSS</dt>
-          <dd>
-            <code>var(--post-{props.color})</code>
-          </dd>
+          {!props.noCSS && [
+            <dt key="title">CSS</dt>,
+            <dd key="data">
+              <code>var(--post-{props.name})</code>
+            </dd>,
+          ]}
           <dt>Sass</dt>
           <dd>
-            <code>post.${props.color}</code>
+            <code>post.${props.name}</code>
           </dd>
         </dl>
       </div>
