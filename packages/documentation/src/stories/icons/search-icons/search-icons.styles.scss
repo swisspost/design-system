@@ -11,7 +11,7 @@
       .form-control {
         padding-right: post.$input-height-lg;
       }
-      
+
       .form-control-reset {
         position: absolute;
         top: 0;
@@ -19,7 +19,7 @@
         padding: 0;
         background: none;
         border: 0 none;
-        
+
         post-icon {
           padding: post.$input-padding-y-lg;
           width: post.$input-height-lg;
@@ -67,7 +67,7 @@
     background-color: var(--post-contrast-color-inverted);
     border-top-left-radius: post.$border-radius;
     border-top-right-radius: post.$border-radius;
-    
+
     post-icon {
       width: 40px;
       transition: transform 100ms linear;
@@ -86,11 +86,11 @@
     border-bottom-right-radius: post.$border-radius;
     font-size: post.$font-size-tiny;
     text-align: center;
-  
+
     .info--name {
       font-weight: post.$font-weight-bold;
     }
-  
+
     .info--keywords {
       font-size: post.$font-size-tiny;
       color: var(--post-gray-60);
