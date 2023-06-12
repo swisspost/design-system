@@ -86,6 +86,7 @@
       opacity: 1;
       background-color: nav.$nav-tabs-link-active-bg;
       color: var(--post-contrast-color);
+      box-shadow: none;
 
       &::after {
         content: '';
