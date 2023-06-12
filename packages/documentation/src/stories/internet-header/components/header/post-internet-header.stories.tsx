@@ -1,11 +1,11 @@
 import { Meta, Args, Story } from '@storybook/react';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
-import { filterArgs } from '../../utilities/filterArgs';
+import { filterArgs } from '../../../utilities/filterArgs';
 import docsPage from './internet-header.docs.mdx';
 import './internet-header.styles.scss';
 
 export default {
-  title: 'Components/Internet Header/Header',
+  title: 'Internet Header/Components/Header',
   parameters: {
     layout: 'fullscreen',
     docs: {
