@@ -13,12 +13,20 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { NavigationStart, Router } from '@angular/router';
+import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { userImage } from './user';
-import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+
+interface Localization {
+  moreLabel: { [key: string]: string };
+  searchButton: { [key: string]: string };
+  showNavigationLabel: { [key: string]: string };
+  hideNavigationLabel: { [key: string]: string };
+  searchPlaceholder: { [key: string]: string };
+}
 
 @Component({
   selector: 'sp-intranet-header',
@@ -49,13 +57,8 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   openedLangChooser = false;
   openedMenuOverflow = false;
 
-  localization: {
-    moreLabel: { [key: string]: string };
-    searchButton: { [key: string]: string };
-    showNavigationLabel: { [key: string]: string };
-    hideNavigationLabel: { [key: string]: string };
-    searchPlaceholder: { [key: string]: string };
-  } = {
+  lang: string;
+  localization: Localization = {
     moreLabel: {
       de: 'Mehr',
       fr: 'Plus',
@@ -82,7 +85,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     },
     searchPlaceholder: {
       de: 'Intranet durchsuchen',
-      fr: "Parcourir l'Intranet",
+      fr: 'Parcourir l\'intranet',
       it: 'Cercare in intranet',
       en: 'Browse the intranet',
     },
@@ -95,11 +98,12 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   private navChanges!: MutationObserver;
 
   constructor(
-    @Inject(LOCALE_ID) public lang: string,
+    @Inject(LOCALE_ID) localeId: string,
     private router: Router,
     private zone: NgZone,
     private domSanitizer: DomSanitizer,
   ) {
+    this.lang = localeId.toLowerCase();
     this.router.events.subscribe(e => {
       if (e instanceof NavigationStart) {
         if (this.openedMenuOverflow) {
@@ -127,12 +131,32 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     });
   }
 
+  public get searchInputPlaceholder() {
+    return this.getLocalizedLabel('searchPlaceholder');
+  }
+
+  public get searchButtonLabel() {
+    return this.getLocalizedLabel('searchButton');
+  }
+
+  public get showNavigationLabel() {
+    return this.getLocalizedLabel('showNavigationLabel');
+  }
+
+  public get hideNavigationLabel() {
+    return this.getLocalizedLabel('hideNavigationLabel');
+  }
+
   private get overflowItems() {
     return this.navItems.filter((el: HTMLElement) => el.classList.contains('nav-overflow'));
   }
 
+  private get moreElementLabel() {
+    return this.getLocalizedLabel('moreLabel');
+  }
+
   ngOnInit() {
-    this.appLangs = this.languages.split(',');
+    this.appLangs = this.languages.toLowerCase().split(',');
     this.setLang(this.lang);
     const tempArr = RegExp(/lang=([a-zA-Z]{2})/).exec(location.href);
     if (tempArr && tempArr.length > 1) {
@@ -340,24 +364,8 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     }
   }
 
-  public get searchInputPlaceholder() {
-    return this.localization['searchPlaceholder'][this.lang.toLowerCase()];
-  }
-
-  public get searchButtonLabel() {
-    return this.localization['searchButton'][this.lang.toLowerCase()];
-  }
-
-  public get showNavigationLabel() {
-    return this.localization['showNavigationLabel'][this.lang.toLowerCase()];
-  }
-
-  public get hideNavigationLabel() {
-    return this.localization['hideNavigationLabel'][this.lang.toLowerCase()];
-  }
-
   public isLanguageActive(lang: string) {
-    return this.lang.toLowerCase() === lang.toLowerCase();
+    return this.lang === lang;
   }
 
   private createSafeAvatarUrl(): SafeUrl {
@@ -374,10 +382,10 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       return;
     }
 
-    languageField.innerText = this.getTextForMoreElement();
+    languageField.innerText = this.moreElementLabel;
   }
 
-  private getTextForMoreElement() {
-    return this.localization['moreLabel'][this.lang.toLowerCase()];
+  private getLocalizedLabel(key: keyof Localization) {
+    return this.localization[key][this.lang];
   }
 }
