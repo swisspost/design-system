@@ -1,5 +1,25 @@
 # @swisspost/design-system-documentation
 
+## 1.9.0
+
+### Minor Changes
+
+- Added getting started page for styles package. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1468](https://github.com/swisspost/design-system/pull/1468))
+
+- Added background utility stories. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1438](https://github.com/swisspost/design-system/pull/1438))
+
+### Patch Changes
+
+- Reorganized internet-header and icon stories in storybook navigation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1444](https://github.com/swisspost/design-system/pull/1444))
+
+- Stories under hidden subhead in storybook navigation are now hidden (production only). (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1444](https://github.com/swisspost/design-system/pull/1444))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.6
+  - @swisspost/design-system-styles@6.2.2
+  - @swisspost/internet-header@1.7.3
+  - @swisspost/design-system-components@1.3.5
+  - @swisspost/design-system-components-react@1.0.11
+
 ## 1.8.4
 
 ### Patch Changes

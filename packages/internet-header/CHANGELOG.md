@@ -1,5 +1,19 @@
 # @swisspost/internet-header
 
+## 1.7.3
+
+### Patch Changes
+
+- Fixed an issue with route detection. Uppercase URLs will now correctly match their lowercase navigation item counterparts. (by [@gfellerph](https://github.com/gfellerph) with [#1435](https://github.com/swisspost/design-system/pull/1435))
+
+- Fixed the focus behavior when navigating the flyout with a mouse. Hovering and leaving navigation items that trigger a flyout will no longer focus the main navigation entry after the flyout has been closed. (by [@gfellerph](https://github.com/gfellerph) with [#1462](https://github.com/swisspost/design-system/pull/1462))
+
+- Added abort controller for all existing post-search search endpoints, to avoid running parallel calls for the same endpoint and therefore get outdated suggestions in the search suggestion list. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1416](https://github.com/swisspost/design-system/pull/1416))
+
+- Fixed focus styles for links and buttons inside the navigation. Focus styles are now defined and uniform across browsers. (by [@gfellerph](https://github.com/gfellerph) with [#1453](https://github.com/swisspost/design-system/pull/1453))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.2
+
 ## 1.7.2
 
 ### Patch Changes

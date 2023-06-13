@@ -3,21 +3,39 @@
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/tooltip' as bt;
 
+@use './../variables/components/tooltips';
+
 // There's a 1px-gap between the arrow and the tooltip-body.
 // We can fix that by moving the arrow to the opposite direction, according to the tooltip-positioning (position top -> move direction bottom etc)
 
-.bs-tooltip-top .arrow {
-  bottom: 1px;
+.bs-tooltip-top {
+  margin-bottom: tooltips.$tooltip-arrow-height !important;
+
+  .arrow {
+    bottom: 1px;
+  }
 }
 
-.bs-tooltip-right .arrow {
-  left: 1px;
+.bs-tooltip-end {
+  margin-left: tooltips.$tooltip-arrow-height !important;
+
+  .arrow {
+    left: 1px;
+  }
 }
 
-.bs-tooltip-bottom .arrow {
-  top: 1px;
+.bs-tooltip-bottom {
+  margin-top: tooltips.$tooltip-arrow-height !important;
+
+  .arrow {
+    top: 1px;
+  }
 }
 
-.bs-tooltip-left .arrow {
-  right: 1px;
+.bs-tooltip-start {
+  margin-right: tooltips.$tooltip-arrow-height !important;
+
+  .arrow {
+    right: 1px;
+  }
 }

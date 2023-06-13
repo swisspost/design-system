@@ -1,5 +1,20 @@
 # @swisspost/design-system-demo
 
+## 6.0.4
+
+### Patch Changes
+
+- Update migration guide with installation instructions for precise major versions. (by [@gfellerph](https://github.com/gfellerph) with [#1473](https://github.com/swisspost/design-system/pull/1473))
+
+- Updated the version selector to correctly display the current demo version. (by [@alizedebray](https://github.com/alizedebray) with [#1502](https://github.com/swisspost/design-system/pull/1502))
+
+- Fixed a regression for the stepper component. Completed items should be links with a href attribute (or a routerLink in Angular) so users can navigate back to previous steps. (by [@gfellerph](https://github.com/gfellerph) with [#1497](https://github.com/swisspost/design-system/pull/1497))
+
+- Added a simple click listener for the stepper. It's now possible to click through the steps for testing purposes. (by [@gfellerph](https://github.com/gfellerph) with [#1317](https://github.com/swisspost/design-system/pull/1317))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.2
+  - @swisspost/design-system-intranet-header@4.0.4
+
 ## 6.0.3
 
 ### Patch Changes
