@@ -22,7 +22,7 @@ npm install @swisspost/design-system-styles
 
 [![npm](https://img.shields.io/npm/v/@swisspost/internet-header)](https://www.npmjs.com/package/@swisspost/internet-header)
 
-[Documentation](https://next.design-system.post.ch/?path=/story/components-internet-header-getting-started--page) · [Changelog](/packages/internet-header/CHANGELOG.md)
+[Documentation](https://next.design-system.post.ch/?path=/docs/internet-header-getting-started--page) · [Changelog](/packages/internet-header/CHANGELOG.md)
 
 The header for client facing applications.
 
