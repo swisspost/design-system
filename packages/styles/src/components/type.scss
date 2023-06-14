@@ -34,7 +34,7 @@
 
 @each $key, $font-size in type.$font-size-map {
   .font-size-#{$key} {
-    font-size: $font-size;
+    font-size: $font-size-18;
 
     // Font sizes bigger than 24px can have a reduced line height
     @if ($key >= 24) {
