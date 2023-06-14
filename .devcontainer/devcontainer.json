@@ -6,7 +6,7 @@
   "image": "mcr.microsoft.com/devcontainers/typescript-node:0-16",
   "features": {
     "ghcr.io/devcontainers-contrib/features/pnpm:2": {
-      "version": "7"
+      "version": "8"
     }
   },
 
