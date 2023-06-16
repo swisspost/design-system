@@ -18,7 +18,14 @@ $post-icon-animations: (
 svg {
   display: block;
   width: 100%;
-  fill: currentColor;
+  height: 100%;
+  background-color: currentColor;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
 }
 
 // flip

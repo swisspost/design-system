@@ -141,7 +141,8 @@ export class PostIcon {
     return (
       <Host data-version={version}>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-          <use href={this.path} />
+          {/* <use/> is NOT working with the cdn approch so far, because of the crossorigin policy: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin */}
+          {/* <use href={this.path} width="32" height="32" /> */}
         </svg>
       </Host>
     );
