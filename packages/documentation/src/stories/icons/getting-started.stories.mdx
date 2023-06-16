@@ -53,7 +53,13 @@ Just open your `anuglar.json` file and add the following path to the `build.opti
       "architect": {
         "build": {
           "options": {
-            "assets": ["node_modules/@swisspost/design-system-icons/public/post-icons"]
+            "assets": [
+              {
+                    "glob": "**/*.svg",
+                    "input": "./node_modules/@swisspost/design-system-icons/public/post-icons",
+                    "output": "./public/post-icons/"
+                }
+            ]
           }
         }
       }
