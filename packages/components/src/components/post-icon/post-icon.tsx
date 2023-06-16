@@ -138,9 +138,19 @@ export class PostIcon {
   }
 
   render() {
+    // create inline styles for some properties
+    const svgStyles = Object.entries({
+      '-webkit-mask-image': `url('${this.path}')`,
+      'mask-image': `url('${this.path}')`,
+      'scale': this.scale && !isNaN(Number(this.scale)) ? `${this.scale}` : null,
+      'rotate': this.rotate && !isNaN(Number(this.rotate)) ? `${this.rotate}deg` : null,
+    })
+      .filter(([_key, value]) => value !== null)
+      .reduce((styles, [key, value]) => Object.assign(styles, { [key]: value }), {});
+
     return (
       <Host data-version={version}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style={svgStyles}>
           {/* <use/> is NOT working with the cdn approch so far, because of the crossorigin policy: https://developer.mozilla.org/en-US/docs/Web/SVG/Attribute/crossorigin */}
           {/* <use href={this.path} width="32" height="32" /> */}
         </svg>
