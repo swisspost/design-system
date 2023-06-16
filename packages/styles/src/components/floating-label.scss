@@ -41,6 +41,12 @@
     // disable stylelint here, because the classes are coming from bs5
     @extend .form-control-lg; /* stylelint-disable-line */
 
+    &:focus {
+      @include forms-mx.placeholder {
+        color: rgba(var(--post-contrast-color-rgb), 0.6);
+      }
+    }
+
     &:focus,
     &:not(:placeholder-shown) {
       padding-top: forms.$form-floating-input-padding-t;
