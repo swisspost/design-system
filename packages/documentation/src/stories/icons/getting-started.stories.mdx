@@ -57,7 +57,7 @@ Just open your `anuglar.json` file and add the following to the `build.options.a
               {
                 "glob": "**/*.svg",
                 "input": "./node_modules/@swisspost/design-system-icons/public/post-icons",
-                "output": "./public/post-icons/"
+                "output": "/post-icons/"
               }
             ]
           }
@@ -124,7 +124,7 @@ You can do this with two different solutions:
 ```html dark
 <html>
   <head>
-    <meta name="design-system-settings" data-post-icon-base="/public/post-icons/" />
+    <meta name="design-system-settings" data-post-icon-base="/post-icons" />
   </head>
 </html>
 ```
