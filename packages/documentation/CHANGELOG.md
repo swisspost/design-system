@@ -1,5 +1,45 @@
 # @swisspost/design-system-documentation
 
+## 1.10.0
+
+### Minor Changes
+
+- Added components getting started pages. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1518](https://github.com/swisspost/design-system/pull/1518))
+
+- Included a totally new icons getting-started page. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1531](https://github.com/swisspost/design-system/pull/1531))
+
+### Patch Changes
+
+- Fixed broken links to the storybook documentation. (by [@alizedebray](https://github.com/alizedebray) with [#1514](https://github.com/swisspost/design-system/pull/1514))
+
+- Added a placeholder control to the text input stories. (by [@alizedebray](https://github.com/alizedebray) with [#1509](https://github.com/swisspost/design-system/pull/1509))
+- Updated dependencies:
+  - @swisspost/internet-header@1.7.4
+  - @swisspost/design-system-components@1.3.6
+  - @swisspost/design-system-icons@1.0.7
+  - @swisspost/design-system-styles@6.2.3
+  - @swisspost/design-system-components-react@1.0.12
+
+## 1.9.0
+
+### Minor Changes
+
+- Added getting started page for styles package. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1468](https://github.com/swisspost/design-system/pull/1468))
+
+- Added background utility stories. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1438](https://github.com/swisspost/design-system/pull/1438))
+
+### Patch Changes
+
+- Reorganized internet-header and icon stories in storybook navigation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1444](https://github.com/swisspost/design-system/pull/1444))
+
+- Stories under hidden subhead in storybook navigation are now hidden (production only). (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1444](https://github.com/swisspost/design-system/pull/1444))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.6
+  - @swisspost/design-system-styles@6.2.2
+  - @swisspost/internet-header@1.7.3
+  - @swisspost/design-system-components@1.3.5
+  - @swisspost/design-system-components-react@1.0.11
+
 ## 1.8.4
 
 ### Patch Changes

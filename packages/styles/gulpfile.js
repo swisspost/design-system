@@ -5,19 +5,59 @@ const sass = require('sass');
 const gulpSass = require('gulp-sass')(sass);
 const gulpPostCss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
+const { globSync } = require('glob');
 const options = require('./package.json').sass;
-/*
+
+/**
  * Copy task
  */
-gulp.task("copy", () => {
+gulp.task('copy', () => {
   return gulp
     .src([
-      "./LICENSE",
-      "./README.md",
-      "./package.json",
-      "./src/**/*.scss"
+      './LICENSE',
+      './README.md',
+      './package.json',
+      './src/**/*.scss'
     ])
     .pipe(gulp.dest(options.outputDir));
+});
+
+/**
+ * Create a SCSS icon map from @swisspost/design-system-icons SVGs (for development only)
+ */
+gulp.task('map-icons', (done) => {
+  const iconVariables = globSync('node_modules/@swisspost/design-system-icons/public/post-icons/*.svg')
+    .reduce((entries, iconPath) => {
+      const iconName = path.basename(iconPath, '.svg');
+
+      let iconSvg;
+      try {
+        iconSvg = fs.readFileSync(iconPath, 'utf8')
+          // removes line breaks
+          .split(/\r?\n/).map(line =>  line.trim()).join('')
+          // replace double quotes
+          .replace(/"/g, "'")
+          // remove fill color
+          .replace(/ fill='(none|currentColor)'/g, "")
+          // replace special characters
+          .replace(/</g, "%3C")
+          .replace(/>/g, "%3E")
+          .replace(/#/g, "%23")
+          .replace(/\(/g, "%28")
+          .replace(/\)/g, "%29");
+      } catch {
+        throw new Error(`Icon "${iconName}" not found.`);
+      }
+
+      return entries + `  '${iconName}':\n    "data:image/svg+xml,${iconSvg}",\n`;
+    }, '\n');
+
+  fs.writeFileSync(
+    path.join('./src', 'svg-icon-map.scss'),
+    `$svg-icon-map: (${iconVariables});\n`,
+  );
+
+  done();
 });
 
 /**
@@ -41,7 +81,7 @@ gulp.task('transform-package-json', (done) => {
   done();
 });
 
-/*
+/**
  * Compile Scss to Css
  *  - Compile
  *  - Autoprefix
@@ -79,13 +119,13 @@ gulp.task('sass:dev', () => {
  * Watch task for scss development
  */
 gulp.task('watch', () => {
-  return gulp.watch('./src/**/*.scss', gulp.series('copy', 'watch'));
+  return gulp.watch('./src/**/*.scss', gulp.series('map-icons', 'copy', 'watch'));
 });
 
-/*
+/**
  * Run copy and sass task in parallel per default
  */
 exports.default = gulp.task(
-  "build",
-  gulp.parallel(gulp.series("copy", "transform-package-json"), gulp.series("sass"))
+  'build',
+  gulp.parallel(gulp.series('map-icons', 'copy', 'transform-package-json'), gulp.series('sass'))
 );
