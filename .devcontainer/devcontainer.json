@@ -6,7 +6,7 @@
   "image": "mcr.microsoft.com/devcontainers/typescript-node:0-16",
   "features": {
     "ghcr.io/devcontainers-contrib/features/pnpm:2": {
-      "version": "7"
+      "version": "8"
     }
   },
 
@@ -17,7 +17,15 @@
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "pnpm bootstrap"
+  "postCreateCommand": "pnpm bootstrap",
+
+  // For Storybook to work we need more than 4gb of memory
+  "hostRequirements": {
+    "cpus": 4,
+    "memory": "8gb",
+    "storage": "32gb"
+ }
+ 
 
   // Configure tool-specific properties.
   // "customizations": {},
