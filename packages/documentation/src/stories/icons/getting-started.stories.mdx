@@ -44,7 +44,7 @@ Read on to find out what the possible solutions look like...
 ### Serve the icons within an Angular application
 
 It is very easy to serve the icons from the `node_modules` folder directly into your angular application.
-Just open your `anuglar.json` file and add the following to the `build.options.assets`:
+Just open your `angular.json` file and add the following to the `build.options.assets`:
 
 ```json dark
 {
@@ -57,7 +57,7 @@ Just open your `anuglar.json` file and add the following to the `build.options.a
               {
                 "glob": "**/*.svg",
                 "input": "./node_modules/@swisspost/design-system-icons/public/post-icons",
-                "output": "post-icons"
+                "output": "assets/post-icons"
               }
             ]
           }
@@ -79,7 +79,7 @@ If you want to know more about pre & post scripts and how they are handled, plea
 // package.json
 {
   "scripts": {
-    "postinstall": "node -e \"const fs = require('fs'); fs.cpSync('node_modules/@swisspost/design-system-icons/public/post-icons', 'post-icons', { recursive: true }, (err) => { if (err) throw err; });\""
+    "postinstall": "node -e \"const fs = require('fs'); fs.cpSync('node_modules/@swisspost/design-system-icons/public/post-icons', 'assets/post-icons', { recursive: true }, (err) => { if (err) throw err; });\""
   }
 }
 ```
@@ -100,7 +100,7 @@ If you want to know more about pre & post scripts and how they are handled, plea
 const fse = require('fs-extra');
 
 const srcDir = 'node_modules/@swisspost/design-system-icons/public/post-icons';
-const destDir = 'post-icons';
+const destDir = 'assets/post-icons';
 
 // To copy a folder or file, select overwrite accordingly
 try {
@@ -124,7 +124,7 @@ You can do this with two different solutions:
 ```html dark
 <html>
   <head>
-    <meta name="design-system-settings" data-post-icon-base="/post-icons" />
+    <meta name="design-system-settings" data-post-icon-base="/assets/post-icons" />
   </head>
 </html>
 ```
@@ -134,6 +134,11 @@ You can do this with two different solutions:
 ```html dark
 <post-icon name="1000" base="/base-path/to/your/own/icon-folder"></post-icon>
 ```
+
+### Check the Content Security Policy
+
+If your project includes the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank">Content-Security-Policy</a> response header (usually in `index.html`),
+make sure that `default-src` is correctly set to `'self'`.
 
 ## Usage of the CDN approach
 
