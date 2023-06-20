@@ -122,6 +122,9 @@ span.ngb-dp-navigation-chevron {
 }
 
 .ngb-dp-open {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   position: absolute;
   z-index: 5;
   top: forms.$input-border-width;
@@ -131,7 +134,8 @@ span.ngb-dp-navigation-chevron {
   width: forms.$input-height-inner;
   background: transparent;
 
-  .pi-calendar {
+  .pi-calendar,
+  post-icon {
     width: datepicker.$ngb-dp-icon-size;
     height: datepicker.$ngb-dp-icon-size;
     transform: none;
@@ -142,7 +146,8 @@ span.ngb-dp-navigation-chevron {
   height: forms.$input-height-inner-sm;
   width: forms.$input-height-inner-sm;
 
-  .pi-calendar {
+  .pi-calendar,
+  post-icon {
     width: datepicker.$ngb-dp-icon-size-sm;
     height: datepicker.$ngb-dp-icon-size-sm;
   }
@@ -158,7 +163,8 @@ span.ngb-dp-navigation-chevron {
   height: forms.$input-height-inner-lg;
   width: forms.$input-height-inner-lg;
 
-  .pi-calendar {
+  .pi-calendar,
+  post-icon {
     width: datepicker.$ngb-dp-icon-size-lg;
     height: datepicker.$ngb-dp-icon-size-lg;
   }
