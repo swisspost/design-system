@@ -31,6 +31,7 @@
   }
 }
 
+// DEPRECATED
 @mixin hover-animation-svg-icon($color, $icon-name, $stroke-width: null) {
   &:not(:disabled):not(.disabled) > span {
     &::after {
