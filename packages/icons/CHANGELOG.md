@@ -1,5 +1,19 @@
 # @swisspost/design-system-icons
 
+## 1.0.7
+
+### Patch Changes
+
+- Fixed broken links to the storybook documentation. (by [@alizedebray](https://github.com/alizedebray) with [#1514](https://github.com/swisspost/design-system/pull/1514))
+
+## 1.0.6
+
+### Patch Changes
+
+- Added icons number 2523, 2525, 2526 and 2527. (by [@swisspost-devs](https://github.com/swisspost-devs) with [#1425](https://github.com/swisspost/design-system/pull/1425))
+
+- Added icons number 2524, 2528, 2529, 2530, 2531, 2532, 2533, 2534 and 2535. (by [@swisspost-devs](https://github.com/swisspost-devs) with [#1487](https://github.com/swisspost/design-system/pull/1487))
+
 ## 1.0.5
 
 ### Patch Changes
