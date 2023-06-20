@@ -34,12 +34,19 @@
 
 @each $key, $font-size in type.$font-size-map {
   .font-size-#{$key} {
-    font-size: $font-size-18;
+    font-size: $font-size;
 
     // Font sizes bigger than 24px can have a reduced line height
     @if ($key >= 24) {
       line-height: type.$line-height-heading;
     }
+  }
+}
+
+fieldset {
+  legend {
+    font-size: type.$font-size-18;
+    font-weight: type.$font-weight-bold;
   }
 }
 
