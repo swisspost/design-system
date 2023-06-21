@@ -15,12 +15,13 @@ describe('stickyness', () => {
 
   it('should not show header when scrolling down with stickyness minimal, should show header without meta when scrolling up a little', () => {
     cy.changeArg('stickyness', 'minimal');
-    cy.get('swisspost-internet-header').should('be.inViewport');
+    cy.get('post-meta-navigation').should('be.inViewport');
     cy.scrollTo('bottom');
+    cy.get('swisspost-internet-footer').should('be.inViewport');
     cy.get('swisspost-internet-header').should('not.be.inViewport');
     cy.get('post-meta-navigation').should('not.be.inViewport');
     cy.scrollTo('center');
-    cy.get('swisspost-internet-header').should('be.inViewport');
+    cy.get('post-main-navigation').should('be.inViewport');
     cy.get('post-meta-navigation').should('not.be.inViewport');
     cy.scrollTo('top');
     cy.get('swisspost-internet-header').should('be.inViewport');

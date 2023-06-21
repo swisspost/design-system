@@ -51,12 +51,6 @@ export default {
       name: 'Language',
       control: {
         type: 'select',
-        lables: {
-          de: 'German',
-          fr: 'French',
-          it: 'Italien',
-          en: 'English',
-        },
       },
       options: ['de', 'fr', 'it', 'en'],
       description:
@@ -119,6 +113,7 @@ export default {
       name: 'Stickyness',
       control: {
         type: 'select',
+        labels: { none: 'none', minimal: 'minimal', main: 'main', full: 'full (deprecated)' },
       },
       options: ['none', 'minimal', 'main', 'full'],
       description:
