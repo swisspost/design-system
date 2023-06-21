@@ -4,10 +4,12 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 import { state } from '../../data/store';
 import { CoveoCompletion } from '../../models/coveo.model';
 import { GeocodeLocation } from '../../models/geocode.model';
+import { TagManagerDataLayer } from '../../models/general.model';
 import {
   DropdownElement,
   DropdownEvent,
   HasDropdown,
+  ISearchRecommendation,
   IsFocusable,
 } from '../../models/header.model';
 import { getSearchRedirectUrl, equalizeArrays } from '../../services/search/search.service';
@@ -309,6 +311,23 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
   }
 
+  private trackRecommendationClick(recommendation: ISearchRecommendation) {
+    if (!('dataLayer' in window)) return;
+
+    const trackingAttributes = recommendation.additionalAttributes.reduce((acc, curr) => {
+      acc[curr.name] = curr.value;
+      return acc;
+    }, {});
+
+    (window.dataLayer as TagManagerDataLayer).push({
+      event: trackingAttributes['data-event'],
+      text: trackingAttributes['data-text'],
+      link_url: trackingAttributes['data-linkurl'],
+      label: trackingAttributes['data-label'],
+      type: trackingAttributes['data-type'],
+    });
+  }
+
   render() {
     if (state.localizedConfig?.header === undefined) {
       return;
@@ -383,6 +402,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                               href={new URL(recommendation.href, 'https://post.ch').href}
                               data-suggestion-text={recommendation.label}
                               onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
+                              onClick={() => this.trackRecommendationClick(recommendation)}
                             >
                               <span
                                 class="search-recommendation__icon"
