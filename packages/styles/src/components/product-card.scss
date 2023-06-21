@@ -49,7 +49,8 @@
     color: inherit;
     text-decoration: none;
 
-    > .pi {
+    > .pi,
+    > post-icon {
       flex-shrink: 0;
       width: 3rem;
       height: 3rem;
@@ -62,6 +63,9 @@
   }
 
   .post-card-favourit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     position: absolute;
     top: 0.5rem;
     right: 0.5rem;
@@ -69,5 +73,6 @@
     border-radius: 0;
     background: transparent;
     box-shadow: none;
+    color: currentColor;
   }
 }

@@ -1,5 +1,16 @@
 # @swisspost/design-system-demo
 
+## 6.0.5
+
+### Patch Changes
+
+- Fixed broken links to the storybook documentation. (by [@alizedebray](https://github.com/alizedebray) with [#1514](https://github.com/swisspost/design-system/pull/1514))
+
+- Updated the link in the demo app, to the internet-header documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1528](https://github.com/swisspost/design-system/pull/1528))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.3
+  - @swisspost/design-system-intranet-header@4.0.5
+
 ## 6.0.4
 
 ### Patch Changes

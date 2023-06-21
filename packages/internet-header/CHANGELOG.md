@@ -1,5 +1,17 @@
 # @swisspost/internet-header
 
+## 1.7.4
+
+### Patch Changes
+
+- Fixed broken links to the storybook documentation. (by [@alizedebray](https://github.com/alizedebray) with [#1514](https://github.com/swisspost/design-system/pull/1514))
+
+- Fixed an issue, which causes the autofocus of any element on a page to move instantly to the klp-login-widget button on page load, when a user is logged in. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1476](https://github.com/swisspost/design-system/pull/1476))
+
+- Fixed a visual bug where the header was not completely hidden in the stickyness="minimal" mode. The grey line is no longer visible when the header is hidden. (by [@cellcoresystems](https://github.com/cellcoresystems) with [#1517](https://github.com/swisspost/design-system/pull/1517))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.3
+
 ## 1.7.3
 
 ### Patch Changes
