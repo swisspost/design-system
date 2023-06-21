@@ -4,16 +4,24 @@
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/close' as bc;
 
+@use './../variables/color';
+@use './../variables/icons';
 @use './../variables/components/close';
+@use './../mixins/icons' as icons-mx;
 @use './../mixins/utilities';
 
 .btn-close {
   height: unset;
   min-height: close.$btn-close-height;
+  background-image: none;
+  transition: close.$btn-close-transition;
 
-  @include utilities.high-contrast-mode() {
-    opacity: 1;
-    background: transparent escape-svg($btn-close-hcm-bg) center/1.5rem auto no-repeat;
+  &::before {
+    @include icons-mx.icon(2043);
+    content: '';
+    display: block;
+    height: icons.$icon-size-default;
+    width: icons.$icon-size-default;
   }
 
   &:focus {
@@ -26,8 +34,8 @@
   }
 }
 
+// DEPRECATED
 .btn-close-white {
-  @include utilities.high-contrast-mode() {
-    filter: none;
-  }
+  filter: unset;
+  color: color.$white;
 }

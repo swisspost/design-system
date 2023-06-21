@@ -18,27 +18,29 @@ $post-icon-animations: (
 svg {
   display: block;
   width: 100%;
+  height: 100%;
   fill: currentColor;
+  background-color: currentColor;
+  -webkit-mask-position: center center;
+  mask-position: center center;
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: 100%;
+  mask-size: 100%;
 }
 
 // flip
 
 :host([flip-h]:not([flip-h='false'])) {
-  svg {
-    scale: -1 1;
-  }
+  scale: -1 1;
 }
 
 :host([flip-v]:not([flip-v='false'])) {
-  svg {
-    scale: 1 -1;
-  }
+  scale: 1 -1;
 }
 
 :host([flip-h][flip-v]:not([flip-h='false'], [flip-v='false'])) {
-  svg {
-    scale: -1;
-  }
+  scale: -1;
 }
 
 // scale

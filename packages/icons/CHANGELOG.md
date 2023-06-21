@@ -1,5 +1,11 @@
 # @swisspost/design-system-icons
 
+## 1.0.7
+
+### Patch Changes
+
+- Fixed broken links to the storybook documentation. (by [@alizedebray](https://github.com/alizedebray) with [#1514](https://github.com/swisspost/design-system/pull/1514))
+
 ## 1.0.6
 
 ### Patch Changes
