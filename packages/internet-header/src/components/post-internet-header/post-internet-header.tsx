@@ -206,6 +206,9 @@ export class PostInternetHeader {
       this.headerLoaded.emit();
       this.host.classList.add('header-loaded');
     });
+
+    if (this.stickyness === 'full')
+      console.warn('Internet Header: The stickyness="full" option is deprecated.');
   }
 
   @Watch('language')
