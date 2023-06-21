@@ -1,0 +1,24 @@
+@use '../../../utils/mixins.scss';
+
+/**
+ * Default position: scrolled
+ * Logo is being scaled up for the initial view (scrollY = 0). This enables media queries to override
+ * mobile behaviour without re-calculation
+*/
+:host {
+  --logo-scale: 1;
+
+  @include mixins.max(lg) {
+    --logo-scale: 1 !important;
+  }
+}
+
+post-logo {
+  height: var(--header-height);
+  transform-origin: bottom left;
+  transform: scale(var(--logo-scale));
+}
+
+post-main-navigation {
+  margin-left: calc((var(--header-height) * var(--logo-scale)) - var(--header-height));
+}

@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/variables/color';
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
+@use './logo-animation/logo-animation.scss';
 
 :host {
   display: block;

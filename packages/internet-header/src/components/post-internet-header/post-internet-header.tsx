@@ -27,6 +27,7 @@ import { IAvailableLanguage } from '../../models/language.model';
 import { translate } from '../../services/language.service';
 import { If } from '../../utils/if.component';
 import packageJson from '../../../package.json';
+import { registerLogoAnimationObserver } from './logo-animation/logo-animation';
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -123,7 +124,7 @@ export class PostInternetHeader {
 
   @State() activeFlyout: string | null = null;
   @State() activeDropdownElement: DropdownElement | null = null;
-  @Element() host: HTMLElement;
+  @Element() host: HTMLSwisspostInternetHeaderElement;
 
   /**
    * Get the currently set language as a two letter string ("de", "fr" "it" or "en")
@@ -135,6 +136,7 @@ export class PostInternetHeader {
   }
 
   private mainNav?: HTMLPostMainNavigationElement;
+  private metaNav?: HTMLPostMetaNavigationElement;
   private lastScrollTop = window.scrollY || document.documentElement.scrollTop;
   private throttledScroll: throttle<() => void>;
   private debouncedResize: debounce<() => void>;
@@ -205,6 +207,9 @@ export class PostInternetHeader {
       this.handleResize();
       this.headerLoaded.emit();
       this.host.classList.add('header-loaded');
+      if (this.meta && this.metaNav) {
+        registerLogoAnimationObserver(this.metaNav, this.host);
+      }
     });
   }
 
@@ -436,6 +441,7 @@ export class PostInternetHeader {
               orientation="horizontal"
               class="hidden-lg"
               full-width={this.fullWidth}
+              ref={el => (this.metaNav = el)}
             >
               <If condition={renderLanguageSwitch === true}>
                 <post-language-switch
