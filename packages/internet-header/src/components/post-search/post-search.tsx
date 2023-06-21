@@ -107,7 +107,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
       this.coveoSuggestions = [];
       this.placeSuggestions = [];
       if (this.searchBox) this.searchBox.value = '';
-      this.setFocus();
+      void this.setFocus();
     } else {
       // Get basic suggestions when dropdown opens
       try {
@@ -205,7 +205,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
         if (selectedHref !== null) {
           window.location.href = selectedHref;
         } else {
-          this.startSearch();
+          void this.startSearch();
         }
 
         break;
@@ -326,7 +326,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
             class="search-button"
             type="button"
             aria-expanded={`${this.searchDropdownOpen}`}
-            onClick={e => this.toggleDropdown(e)}
+            onClick={e => void this.toggleDropdown(e)}
           >
             <span class="visually-hidden">
               {this.searchDropdownOpen
@@ -349,12 +349,12 @@ export class PostSearch implements HasDropdown, IsFocusable {
                         placeholder={translations.flyoutSearchBoxFloatingLabel}
                         autocomplete="off"
                         ref={el => (this.searchBox = el)}
-                        onInput={() => this.handleSearchInput()}
+                        onInput={() => void this.handleSearchInput()}
                         onKeyDown={e => this.handleKeyDown(e)}
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
                       <button
-                        onClick={() => this.startSearch()}
+                        onClick={() => void this.startSearch()}
                         class="nav-link start-search-button"
                       >
                         <span class="visually-hidden">{translations.searchSubmit}</span>
@@ -392,7 +392,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                             </a>
                           </li>
                         ))}
-                      {this.parcelSuggestion && this.parcelSuggestion.ok && (
+                      {this.parcelSuggestion?.ok && (
                         <li>
                           <a
                             class="nav-link parcel-suggestion"
