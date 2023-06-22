@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Added an intranet-header - getting started docs page.
+Added a "Getting started" docs page for the intranet-header.
