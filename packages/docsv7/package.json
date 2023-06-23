@@ -1,0 +1,44 @@
+{
+  "name": "docsv7",
+  "version": "1.0.0",
+  "description": "NEW Swiss Post Design System Documentation.",
+  "author": "Swiss Post <oss@post.ch>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://next.design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "storybook dev -p 9200",
+    "start:headless": "storybook dev -p 9300 --quiet --no-open",
+    "build": "storybook build"
+  },
+  "dependencies": {
+    "@swisspost/design-system-icons": "workspace:1.0.7",
+    "@swisspost/design-system-styles": "workspace:6.2.3",
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
+  "devDependencies": {
+    "@geometricpanda/storybook-addon-badges": "1.1.1",
+    "@storybook/addon-a11y": "6.5.16",
+    "@storybook/addon-essentials": "7.0.23",
+    "@storybook/addon-links": "7.0.23",
+    "@storybook/blocks": "7.0.23",
+    "@storybook/react": "7.0.23",
+    "@storybook/react-vite": "7.0.23",
+    "@storybook/testing-library": "0.0.14-next.2",
+    "@storybook/theming": "6.5.16",
+    "@types/react": "18.2.11",
+    "prop-types": "15.8.1",
+    "storybook": "7.0.23",
+    "storybook-dark-mode": "3.0.0",
+    "typescript": "^5.1.3"
+  }
+}

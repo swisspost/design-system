@@ -1,0 +1,384 @@
+/**
+ * Colors used by the post style guide
+ */
+/**
+ * Maps. Allow maps to have custom colors from the project
+ * by always merging into a default empty map
+ */
+:root {
+  --post-contrast-color: #000;
+  --post-contrast-color-inverted: #fff;
+  --post-gray-10: hsl(0, 0%, 90%);
+  --post-gray-20: hsl(0, 0%, 80%);
+  --post-gray-40: hsl(0, 0%, 60%);
+  --post-gray-60: hsl(0, 0%, 40%);
+  --post-gray-80: hsl(0, 0%, 20%);
+  --post-yellow: #fc0;
+  --post-light: #faf9f8;
+  --post-gray: #f4f3f1;
+  --post-dark: hsl(0, 0%, 20%);
+  --post-primary: hsl(0, 0%, 20%);
+  --post-white: #fff;
+  --post-black: #000;
+  --post-success: #2c911c;
+  --post-info: #cce4ee;
+  --post-warning: #f49e00;
+  --post-danger: #a51728;
+  --post-nightblue: #004976;
+  --post-nightblue-bright: #0076a8;
+  --post-petrol: #006d68;
+  --post-petrol-bright: #00968f;
+  --post-coral: #9e2a2f;
+  --post-coral-bright: #e03c31;
+  --post-olive: #716135;
+  --post-olive-bright: #aa9d2e;
+  --post-purple: #80276c;
+  --post-purple-bright: #c5299b;
+  --post-aubergine: #523178;
+  --post-aubergine-bright: #7566a0;
+  --post-contrast-color-rgb: 0, 0, 0;
+  --post-contrast-color-inverted-rgb: 255, 255, 255;
+  --post-gray-10-rgb: 230, 230, 230;
+  --post-gray-20-rgb: 204, 204, 204;
+  --post-gray-40-rgb: 153, 153, 153;
+  --post-gray-60-rgb: 102, 102, 102;
+  --post-gray-80-rgb: 51, 51, 51;
+  --post-yellow-rgb: 255, 204, 0;
+  --post-light-rgb: 250, 249, 248;
+  --post-gray-rgb: 244, 243, 241;
+  --post-dark-rgb: 51, 51, 51;
+  --post-primary-rgb: 51, 51, 51;
+  --post-white-rgb: 255, 255, 255;
+  --post-black-rgb: 0, 0, 0;
+  --post-success-rgb: 44, 145, 28;
+  --post-info-rgb: 204, 228, 238;
+  --post-warning-rgb: 244, 158, 0;
+  --post-danger-rgb: 165, 23, 40;
+  --post-nightblue-rgb: 0, 73, 118;
+  --post-nightblue-bright-rgb: 0, 118, 168;
+  --post-petrol-rgb: 0, 109, 104;
+  --post-petrol-bright-rgb: 0, 150, 143;
+  --post-coral-rgb: 158, 42, 47;
+  --post-coral-bright-rgb: 224, 60, 49;
+  --post-olive-rgb: 113, 97, 53;
+  --post-olive-bright-rgb: 170, 157, 46;
+  --post-purple-rgb: 128, 39, 108;
+  --post-purple-bright-rgb: 197, 41, 155;
+  --post-aubergine-rgb: 82, 49, 120;
+  --post-aubergine-bright-rgb: 117, 102, 160;
+}
+
+/**
+ * Colors used by the post style guide
+ */
+/**
+ * Maps. Allow maps to have custom colors from the project
+ * by always merging into a default empty map
+ */
+/**
+ * Override the necessary bootstrap
+ * colors and maps using colors from
+ * the post style guide only.
+ *
+ * Other bootstrap colors
+ * will be available as sass-variables
+ * but should not be used.
+*/
+:root,
+[data-bs-theme=light] {
+  --bs-gray-100: #f8f9fa;
+  --bs-gray-200: #e9ecef;
+  --bs-gray-300: #dee2e6;
+  --bs-gray-400: #ced4da;
+  --bs-gray-500: #adb5bd;
+  --bs-gray-600: #6c757d;
+  --bs-gray-700: #495057;
+  --bs-gray-800: #343a40;
+  --bs-gray-900: #212529;
+  --bs-primary: hsl(0, 0%, 20%);
+  --bs-secondary: hsl(0, 0%, 40%);
+  --bs-light: #faf9f8;
+  --bs-dark: hsl(0, 0%, 20%);
+  --bs-success: #2c911c;
+  --bs-info: #cce4ee;
+  --bs-warning: #f49e00;
+  --bs-danger: #a51728;
+  --bs-primary-rgb: 51, 51, 51;
+  --bs-secondary-rgb: 102, 102, 102;
+  --bs-light-rgb: 250, 249, 248;
+  --bs-dark-rgb: 51, 51, 51;
+  --bs-success-rgb: 44, 145, 28;
+  --bs-info-rgb: 204, 228, 238;
+  --bs-warning-rgb: 244, 158, 0;
+  --bs-danger-rgb: 165, 23, 40;
+  --bs-primary-text-emphasis: #141414;
+  --bs-secondary-text-emphasis: #292929;
+  --bs-success-text-emphasis: #123a0b;
+  --bs-info-text-emphasis: #525b5f;
+  --bs-warning-text-emphasis: #623f00;
+  --bs-danger-text-emphasis: #420910;
+  --bs-light-text-emphasis: #495057;
+  --bs-dark-text-emphasis: #495057;
+  --bs-primary-bg-subtle: #d6d6d6;
+  --bs-secondary-bg-subtle: #e0e0e0;
+  --bs-success-bg-subtle: #d5e9d2;
+  --bs-info-bg-subtle: #f5fafc;
+  --bs-warning-bg-subtle: #fdeccc;
+  --bs-danger-bg-subtle: #edd1d4;
+  --bs-light-bg-subtle: #fcfcfd;
+  --bs-dark-bg-subtle: #ced4da;
+  --bs-primary-border-subtle: #adadad;
+  --bs-secondary-border-subtle: #c2c2c2;
+  --bs-success-border-subtle: #abd3a4;
+  --bs-info-border-subtle: #ebf4f8;
+  --bs-warning-border-subtle: #fbd899;
+  --bs-danger-border-subtle: #dba2a9;
+  --bs-light-border-subtle: #e9ecef;
+  --bs-dark-border-subtle: #adb5bd;
+  --bs-white-rgb: 255, 255, 255;
+  --bs-black-rgb: 0, 0, 0;
+  --bs-font-sans-serif: "Frutiger Neue For Post", system-ui, sans-serif;
+  --bs-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bs-gradient: linear-gradient(180deg, rgba(255, 255, 255, 0.15), rgba(255, 255, 255, 0));
+  --bs-body-font-family: "Frutiger Neue For Post", system-ui, sans-serif;
+  --bs-body-font-size: 1rem;
+  --bs-body-font-weight: 400;
+  --bs-body-line-height: 1.5;
+  --bs-body-color: #000;
+  --bs-body-color-rgb: 0, 0, 0;
+  --bs-body-bg: #fff;
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-emphasis-color: #000;
+  --bs-emphasis-color-rgb: 0, 0, 0;
+  --bs-secondary-color: rgba(0, 0, 0, 0.75);
+  --bs-secondary-color-rgb: 0, 0, 0;
+  --bs-secondary-bg: #e9ecef;
+  --bs-secondary-bg-rgb: 233, 236, 239;
+  --bs-tertiary-color: rgba(0, 0, 0, 0.5);
+  --bs-tertiary-color-rgb: 0, 0, 0;
+  --bs-tertiary-bg: #f8f9fa;
+  --bs-tertiary-bg-rgb: 248, 249, 250;
+  --bs-heading-color: inherit;
+  --bs-link-color: hsl(0, 0%, 20%);
+  --bs-link-color-rgb: 51, 51, 51;
+  --bs-link-decoration: underline;
+  --bs-link-hover-color: #292929;
+  --bs-link-hover-color-rgb: 41, 41, 41;
+  --bs-code-color: #d63384;
+  --bs-highlight-bg: #fcf8e3;
+  --bs-border-width: 1px;
+  --bs-border-style: solid;
+  --bs-border-color: hsl(0, 0%, 80%);
+  --bs-border-color-translucent: rgba(0, 0, 0, 0.175);
+  --bs-border-radius: 3px;
+  --bs-border-radius-sm: 3px;
+  --bs-border-radius-lg: 3px;
+  --bs-border-radius-xl: 1rem;
+  --bs-border-radius-xxl: 2rem;
+  --bs-border-radius-2xl: var(--bs-border-radius-xxl);
+  --bs-border-radius-pill: 50rem;
+  --bs-box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.3);
+  --bs-box-shadow-sm: 0 0 4px 0 rgba(0, 0, 0, 0.4);
+  --bs-box-shadow-lg: 0 0 8px 0 rgba(0, 0, 0, 0.4);
+  --bs-box-shadow-inset: inset 0 1px 2px rgba(0, 0, 0, 0.075);
+  --bs-focus-ring-width: 0.25rem;
+  --bs-focus-ring-opacity: 0.25;
+  --bs-focus-ring-color: rgba(51, 51, 51, 0.25);
+  --bs-form-valid-color: hsl(0, 0%, 40%);
+  --bs-form-valid-border-color: hsl(0, 0%, 40%);
+  --bs-form-invalid-color: #a51728;
+  --bs-form-invalid-border-color: #a51728;
+}
+
+[data-bs-theme=dark] {
+  color-scheme: dark;
+  --bs-body-color: #adb5bd;
+  --bs-body-color-rgb: 173, 181, 189;
+  --bs-body-bg: #212529;
+  --bs-body-bg-rgb: 33, 37, 41;
+  --bs-emphasis-color: #fff;
+  --bs-emphasis-color-rgb: 255, 255, 255;
+  --bs-secondary-color: rgba(173, 181, 189, 0.75);
+  --bs-secondary-color-rgb: 173, 181, 189;
+  --bs-secondary-bg: #343a40;
+  --bs-secondary-bg-rgb: 52, 58, 64;
+  --bs-tertiary-color: rgba(173, 181, 189, 0.5);
+  --bs-tertiary-color-rgb: 173, 181, 189;
+  --bs-tertiary-bg: #2b3035;
+  --bs-tertiary-bg-rgb: 43, 48, 53;
+  --bs-primary-text-emphasis: #858585;
+  --bs-secondary-text-emphasis: #a3a3a3;
+  --bs-success-text-emphasis: #80bd77;
+  --bs-info-text-emphasis: #e0eff5;
+  --bs-warning-text-emphasis: #f8c566;
+  --bs-danger-text-emphasis: #c9747e;
+  --bs-light-text-emphasis: #f8f9fa;
+  --bs-dark-text-emphasis: #dee2e6;
+  --bs-primary-bg-subtle: #0a0a0a;
+  --bs-secondary-bg-subtle: #141414;
+  --bs-success-bg-subtle: #091d06;
+  --bs-info-bg-subtle: #292e30;
+  --bs-warning-bg-subtle: #312000;
+  --bs-danger-bg-subtle: #210508;
+  --bs-light-bg-subtle: #343a40;
+  --bs-dark-bg-subtle: #1a1d20;
+  --bs-primary-border-subtle: #1f1f1f;
+  --bs-secondary-border-subtle: #3d3d3d;
+  --bs-success-border-subtle: #1a5711;
+  --bs-info-border-subtle: #7a898f;
+  --bs-warning-border-subtle: #925f00;
+  --bs-danger-border-subtle: #630e18;
+  --bs-light-border-subtle: #495057;
+  --bs-dark-border-subtle: #343a40;
+  --bs-heading-color: inherit;
+  --bs-link-color: #858585;
+  --bs-link-hover-color: #9d9d9d;
+  --bs-link-color-rgb: 133, 133, 133;
+  --bs-link-hover-color-rgb: 157, 157, 157;
+  --bs-code-color: #e685b5;
+  --bs-border-color: #495057;
+  --bs-border-color-translucent: rgba(255, 255, 255, 0.15);
+  --bs-form-valid-color: #75b798;
+  --bs-form-valid-border-color: #75b798;
+  --bs-form-invalid-color: #ea868f;
+  --bs-form-invalid-border-color: #ea868f;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: "Frutiger Neue For Post";
+  font-weight: 700;
+  src: url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Bold.woff2") format("woff2"), url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Bold.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Frutiger Neue For Post";
+  font-weight: 700;
+  font-style: italic;
+  src: url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-BdIt.woff2") format("woff2"), url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-BdIt.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Frutiger Neue For Post";
+  font-weight: 400;
+  src: url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Rg.woff2") format("woff2"), url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Rg.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Frutiger Neue For Post";
+  font-weight: 400;
+  font-style: italic;
+  src: url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-It.woff2") format("woff2"), url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-It.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Frutiger Neue For Post";
+  font-weight: 300;
+  src: url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Lt.woff2") format("woff2"), url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Lt.woff") format("woff");
+}
+@font-face {
+  font-display: swap;
+  font-family: "Frutiger Neue For Post";
+  font-weight: 300;
+  font-style: italic;
+  src: url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-LtIt.woff2") format("woff2"), url("https://fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-LtIt.woff") format("woff");
+}
+.sidebar-header :nth-of-type(1) {
+  flex: 0 0 48px;
+}
+
+#storybook-explorer-tree {
+  padding-left: 13px;
+}
+#storybook-explorer-tree .sidebar-subheading button {
+  letter-spacing: 0.1em;
+}
+#storybook-explorer-tree .sidebar-subheading .sidebar-subheading-action {
+  display: none;
+}
+[data-env=production] #storybook-explorer-tree #hidden {
+  display: none;
+}
+[data-env=production] #storybook-explorer-tree .sidebar-item[data-parent-id=hidden] {
+  display: none;
+}
+#storybook-explorer-tree .sidebar-item {
+  position: relative;
+}
+#storybook-explorer-tree .sidebar-item:before {
+  display: block;
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 100%;
+  width: 13px;
+  background-color: inherit;
+}
+#storybook-explorer-tree .sidebar-item > span {
+  margin-top: 4px;
+}
+#storybook-explorer-tree .sidebar-item + a:not([data-nodetype]) {
+  display: none;
+}
+#storybook-explorer-tree .sidebar-item svg {
+  margin-top: 0;
+  width: 1.2em;
+  height: 1.2em;
+}
+#storybook-explorer-tree .sidebar-item[data-nodetype=group] svg {
+  color: var(--post-gray-60);
+}
+#storybook-explorer-tree .sidebar-item[data-nodetype=component] svg {
+  color: var(--post-nightblue-bright);
+}
+#storybook-explorer-tree .sidebar-item[data-nodetype=document] svg {
+  color: var(--post-coral-bright);
+}
+#storybook-explorer-tree .sidebar-item[data-nodetype=story] svg {
+  color: var(--post-aubergine-bright);
+}
+#storybook-explorer-tree .sidebar-item:hover, #storybook-explorer-tree .sidebar-item:focus-visible {
+  background-color: var(--post-gray-10);
+}
+#storybook-explorer-tree .sidebar-item[data-selected=true] {
+  background-color: rgba(var(--post-yellow-rgb), 0.4);
+  color: var(--post-contrast-color);
+}
+
+#downshift-1-menu .search-result-item svg {
+  margin-top: 1px;
+  width: 1.2em;
+  height: 1.2em;
+  color: var(--post-aubergine-bright);
+}
+#downshift-1-menu .search-result-item svg[color=secondary] {
+  color: var(--post-nightblue-bright);
+}
+#downshift-1-menu .search-result-item .search-result-item--label span {
+  color: var(--post-gray-60);
+}
+#downshift-1-menu .search-result-item .search-result-item--label mark {
+  color: inherit;
+}
+#downshift-1-menu .search-result-item:hover, #downshift-1-menu .search-result-item:focus-visible {
+  background-color: var(--post-gray-10);
+}
+
+.docblock-argstable tr[title] button + span {
+  letter-spacing: 0.1em;
+}
+
+.bg-dark #storybook-explorer-tree .sidebar-item:hover, .bg-dark #storybook-explorer-tree .sidebar-item:focus-visible {
+  background-color: var(--post-gray-80);
+}
+.bg-dark #storybook-explorer-tree .sidebar-item[data-selected=true] {
+  background-color: rgba(var(--post-yellow-rgb), 0.7);
+  color: var(--post-contrast-color);
+}
+.bg-dark #downshift-1-menu .search-result-item .search-result-item--label span {
+  color: var(--post-gray-40);
+}
+.bg-dark #downshift-1-menu .search-result-item:hover, .bg-dark #downshift-1-menu .search-result-item:focus-visible {
+  background-color: var(--post-gray-80);
+}
