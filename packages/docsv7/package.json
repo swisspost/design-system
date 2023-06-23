@@ -20,6 +20,7 @@
     "build": "storybook build"
   },
   "dependencies": {
+    "@swisspost/design-system-components": "workspace:^",
     "@swisspost/design-system-icons": "workspace:1.0.7",
     "@swisspost/design-system-styles": "workspace:6.2.3",
     "react": "18.2.0",

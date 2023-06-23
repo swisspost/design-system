@@ -468,6 +468,9 @@ importers:
 
   packages/docsv7:
     dependencies:
+      '@swisspost/design-system-components':
+        specifier: workspace:^
+        version: link:../components
       '@swisspost/design-system-icons':
         specifier: workspace:1.0.7
         version: link:../icons

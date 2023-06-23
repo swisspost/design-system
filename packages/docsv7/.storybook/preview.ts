@@ -3,6 +3,7 @@ import type { Preview } from '@storybook/react';
 import CustomDocsContainer from './components/DocsContainer';
 import postThemes from './post-themes';
 import './preview.scss';
+import './register-web-components';
 
 const preview: Preview = {
   parameters: {
