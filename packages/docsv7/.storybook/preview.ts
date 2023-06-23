@@ -1,6 +1,6 @@
-import { BADGE } from '@geometricpanda/storybook-addon-badges';
 import type { Preview } from '@storybook/react';
 import CustomDocsContainer from './components/DocsContainer';
+import { BADGE } from './constants';
 import postThemes from './post-themes';
 import './preview.scss';
 import './register-web-components';
@@ -84,7 +84,7 @@ const preview: Preview = {
           desc: 'The content of this page is ready to be used in production.',
         },
       },
-      TODO: {
+      [BADGE.TODO]: {
         styles: {
           backgroundColor: 'var(--post-danger)',
           color: '#fff',

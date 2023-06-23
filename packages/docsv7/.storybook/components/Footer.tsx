@@ -1,7 +1,3 @@
-/*
- * Copyright 2023 by Swiss Post, Information Technology
- */
-
 import React from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
 
