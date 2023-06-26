@@ -43,4 +43,25 @@ describe('login', () => {
       });
     });
   });
+
+  describe('jobs login widget', () => {
+    describe('showJobsLoginWidget: true', () => {
+      it(`shows jobs login widget`, () => {
+        let config: IPortalConfig = <any>testConfiguration;
+        config.de!.header.showJobsLoginWidget = true;
+        prepare('Internet Header/Components/Header', 'Default', config);
+        cy.get('a.login-button').should('exist').and('be.visible');
+        cy.get('#post-klp-login-widget').should('not.exist');
+      });
+    });
+
+    describe('showJobsLoginWidget: false', () => {
+      it(`shows default login widget`, () => {
+        let config: IPortalConfig = <any>testConfiguration;
+        config.de!.header.showJobsLoginWidget = false;
+        prepare('Internet Header/Components/Header', 'Default', config);
+        cy.get('#post-klp-login-widget').should('exist');
+      });
+    });
+  });
 });
