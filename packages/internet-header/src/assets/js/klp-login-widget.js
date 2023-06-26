@@ -203,7 +203,7 @@ const vertx = window.vertx || {};
     appLoginURL,
     _menuLinks,
     lang,
-    _platform,
+    platform,
     options,
     environment,
   ) {
@@ -249,13 +249,6 @@ const vertx = window.vertx || {};
       startingTime = new Date().getTime(),
       version = '16.01.00.01',
       unreadNotifications = 0,
-      platform = _platform || {
-        endPoint: 'https://n.post.ch',
-        notificationsEndPoint: 'https://post.ch/selfadmin/messages/unreadmessages',
-        logoutURL: 'https://post.ch/logout/',
-        keepAliveURL: 'https://post.ch/keepalive',
-        autoLoginURL: 'https://post.ch/idp/?app=loginwidget',
-      },
       texts = {
         de: {
           'sign-in': 'Login',
