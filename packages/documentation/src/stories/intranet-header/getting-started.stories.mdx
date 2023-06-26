@@ -8,7 +8,7 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
     additionalInfo: {
       name: 'additionalInfo',
       description:
-        'Additional information about the user, shown as item in the user-dropdown.<p class="alert alert-info alert-sm">By default, the item will not be rendered.</p>',
+        'Additional information about the user, shown as item in the user-dropdown.<p class="alert alert-info alert-sm">By default, the item is not rendered.</p>',
       control: 'text',
       table: {
         defaultValue: {
@@ -22,7 +22,7 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
     currentUserId: {
       name: 'currentUserId',
       description:
-        'The user ID of the currently logged on user. Used to show the users profile image.<p class="alert alert-info alert-sm">The default value of `user` is used to show the fallback-image.</p>',
+        'The user ID of the user currently logged in. Used to show the user\'s profile image.<p class="alert alert-info alert-sm">The default value of `user` is used to show a fallback-image.</p>',
       control: 'text',
       table: {
         defaultValue: {
@@ -36,7 +36,7 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
     displayName: {
       name: 'displayName',
       description:
-        'The name of the logged on user, shown as item in the user-dropdown.<p class="alert alert-info alert-sm">By default, the item will not be rendered.</p>',
+        'The name of the logged-in user, shown as item in the user-dropdown.<p class="alert alert-info alert-sm">By default, the item is not rendered.</p>',
       control: 'text',
       table: {
         defaultValue: {
@@ -49,7 +49,7 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
     },
     hasNavbar: {
       name: 'hasNavbar',
-      description: 'Whether the navigation is rendered or not.',
+      description: 'Whether the navigation bar is rendered or not.',
       control: 'boolean',
       table: {
         defaultValue: {
@@ -90,7 +90,7 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
     optionDropdownContent: {
       name: 'optionDropdownContent',
       description:
-        'Represents an embedded angular template that can be used to instantiate embedded views. Shown as item in the user-dropdown.<p class="alert alert-info alert-sm">By default, the item will not be rendered.</p>',
+        'An Angular template that can be used to instantiate custom items in the user dropdown.<p class="alert alert-info alert-sm">By default, the item is not rendered.</p>',
       table: {
         defaultValue: {
           summary: 'null',
@@ -103,7 +103,7 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
     optionHeaderContent: {
       name: 'optionHeaderContent',
       description:
-        'Represents an embedded angular template that can be used to instantiate embedded views. Shown as custom content before the user-dropdown.<p class="alert alert-info alert-sm">By default, the item will not be rendered.</p>',
+        'An Angular template that can be used to instantiate custom content in front of the user-dropdown.<p class="alert alert-info alert-sm">By default, the item is not rendered.</p>',
       table: {
         defaultValue: {
           summary: 'null',
@@ -129,7 +129,7 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
     },
     showIntranetSearch: {
       name: 'showIntranetSearch',
-      description: '	Whether the search is rendered or not.',
+      description: 'Whether the search bar is rendered or not.',
       control: 'boolean',
       table: {
         defaultValue: {
@@ -142,7 +142,7 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
     },
     siteTitle: {
       name: 'siteTitle',
-      description: 'The website/application name, shown next to the Logo.',
+      description: 'The application name, shown next to the Logo.',
       control: 'text',
       table: {
         defaultValue: {
@@ -153,26 +153,22 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
         },
       },
     },
-    isPreview: {
-      name: 'isPreview',
-      description:
-        '<p class="alert alert-warning alert-sm">This is only used for presentational purposes. Do not use it in production!</p>',
-      control: 'boolean',
-      table: {
-        defaultValue: {
-          summary: 'false',
-        },
-        type: {
-          summary: 'boolean',
-        },
-      },
-    },
   }}
 />
 
-# Intranet Header
+# @swisspost/design-system-intranet-header
 
-The Intranet Header is an <a href="//angular.io" target="_blank">Angular</a> component and as such, only works with Angular projects.
+[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header)
+
+The Header Angular component for internal usage.
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [Examples](#examples)
+
+<p className="alert alert-info alert-md">
+  The Intranet Header is an <a href="//Angular.io" target="_blank">Angular</a> component and as such only works with Angular projects.
+</p>
 
 ## Installation
 
@@ -194,23 +190,23 @@ import { SwissPostIntranetHeaderModule } from '@swisspost/design-system-intranet
 export class AppModule {}
 ```
 
-On your layout page; create a container (e.g. `<div>` or `<section>` - or use the `body` container) and apply the following css classes:
+On your layout page, create a container (e.g. `<div>` or `<section>` - or use the `body` container) and apply the following css classes:
 
-| Class              | Condition                                   |
-| :----------------- | :------------------------------------------ |
-| `layout-container` | Always                                      |
-| `header-big`       | if you are using the top with the navbar    |
-| `header-small`     | if you are using the top without the navbar |
-| `with-searchbar`   | if you are using the top with the searchbar |
+| Class              | Condition                          |
+| :----------------- | :--------------------------------- |
+| `layout-container` | Always                             |
+| `header-big`       | to use the header with a navbar    |
+| `header-small`     | to use the header without a navbar |
+| `with-searchbar`   | to use the header with a searchbar |
 
-Inside, add the `post-intranet-header` component, with the applicable options (see below).
+Inside, add the `post-intranet-header` component with applicable options (see below).
 
-If you are using the `navbar`, add the `list-items` for the navigation directly inside the tag. (see example **With top navigation, without sidenav**)
+If you are using a `navbar`, add the `list-items` for the navigation directly inside the tag. (see example **Header with a navbar**)
 
-If you are using a side-navigation, adjust your markup accordingly. (See examples **Without top navigation, with sidenav** and **Intranet-Header "postweb"**).
-Make sure that you have the `openedMenu` Property in your angular app and that you apply the same classes to the markup as shown in the mentioned examples.
+If you are using side navigation, adjust the markup accordingly. (See examples **Header with a sidenav** and **"Postweb" intranet header**).
+Be sure to set the `openedMenu` property and apply the classes as shown in the examples.
 
-### options
+### Options
 
 <div class="hide-col-control">
   <ArgsTable story="." />
@@ -218,19 +214,12 @@ Make sure that you have the `openedMenu` Property in your angular app and that y
 
 ## Examples
 
-<div class="mb-regular alert alert-warning">
-  <p>
-    You will need to remove the class <code>preview</code> from the outermost section and property
-    <code>isPreview</code> from <code>post-intranet-header</code> to use the layout in your application!
-  </p>
-</div>
-
-### With top navigation, without sidenav
+### Header with a navbar
 
 Add `<main><!-- Site Content / Router-Outlet --></main>` beneath.
 
 ```html dark
-<sp-intranet-header siteTitle="SiteTitle" isPreview="true" languages="de,fr,it">
+<sp-intranet-header siteTitle="SiteTitle" languages="de,fr,it">
   <li class="nav-item"><a class="nav-link" href="#">Testlink</a></li>
   <li class="nav-item"><a class="nav-link" href="#">Testlink</a></li>
   <li class="nav-item" ngbDropdown>
@@ -245,13 +234,12 @@ Add `<main><!-- Site Content / Router-Outlet --></main>` beneath.
 </sp-intranet-header>
 ```
 
-### Without top navigation, with sidenav
+### Header with a sidenav
 
 ```html dark
-<section class="layout-container header-small preview">
+<section class="layout-container header-small">
   <sp-intranet-header
     [hasNavbar]="false"
-    [isPreview]="true"
     siteTitle="Site Title"
   ></sp-intranet-header>
   <div class="container-fluid header-margin">
@@ -304,15 +292,15 @@ Add `<main><!-- Site Content / Router-Outlet --></main>` beneath.
 </section>
 ```
 
-### Intranet-Header "postweb"
+### "Postweb" intranet header
 
 <div class="mb-regular alert alert-warning">
-  <p>Top navigation links must be maintained by the application!</p>
+  <p>Navigation links must be maintained by the application!</p>
 </div>
 
 ```html dark
-<section class="layout-container header-big with-searchbar preview">
-  <sp-intranet-header siteTitle="PostWeb" [showIntranetSearch]="true" [isPreview]="true">
+<section class="layout-container header-big with-searchbar">
+  <sp-intranet-header siteTitle="PostWeb" [showIntranetSearch]="true">
     <li class="nav-item"><a href="/postweb" class="nav-link">Home</a></li>
     <li class="nav-item">
       <a href="/postweb/post-informatik" class="nav-link" target="_self">Post Informatik</a>
