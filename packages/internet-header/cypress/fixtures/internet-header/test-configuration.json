@@ -3,7 +3,7 @@
     "header": {
       "asWebComponent": true,
       "isHeaderResponsive": true,
-      "isLoginWidgetHidden": true,
+      "isLoginWidgetHidden": false,
       "showJobsLoginWidget": false,
       "icons": {
         "backArrowIcon": {
@@ -59,7 +59,7 @@
           "autoLoginURL": "https://post.ch/idp/?app=loginwidget"
         }
       },
-      "loginWidgetId": null,
+      "loginWidgetId": "klp-login-widget",
       "logo": {
         "logoLink": "https://post.ch/de/",
         "logoLinkTitle": "Die Post - zur Startseite",

@@ -55,6 +55,7 @@ export class PostKlpLoginWidget implements IsFocusable {
         <div class="widget-wrapper" data-hj-suppress>
           {state?.localizedConfig?.header?.showJobsLoginWidget ? (
             <a
+              id="post-klp-login-widget"
               class="login-button"
               href={state.localizedConfig.header.loginWidgetOptions?.appLoginUrl}
             >
