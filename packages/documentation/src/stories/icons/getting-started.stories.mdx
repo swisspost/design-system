@@ -50,7 +50,7 @@ Read on to find out what the possible solutions look like...
 ### Serve the icons within an Angular application
 
 It is very easy to serve the icons from the `node_modules` folder directly into your angular application.
-Just open your `anuglar.json` file and add the following to the `build.options.assets`:
+Just open your `angular.json` file and add the following to the `build.options.assets`:
 
 ```json dark
 {
@@ -63,7 +63,7 @@ Just open your `anuglar.json` file and add the following to the `build.options.a
               {
                 "glob": "**/*.svg",
                 "input": "./node_modules/@swisspost/design-system-icons/public/post-icons",
-                "output": "/post-icons/"
+                "output": "assets/post-icons"
               }
             ]
           }
@@ -85,7 +85,7 @@ If you want to know more about pre & post scripts and how they are handled, plea
 // package.json
 {
   "scripts": {
-    "postinstall": "node -e \"const fs = require('fs'); fs.cpSync('node_modules/@swisspost/design-system-icons/public/post-icons', 'public/post-icons', { recursive: true }, (err) => { if (err) throw err; });\""
+    "postinstall": "node -e \"const fs = require('fs'); fs.cpSync('node_modules/@swisspost/design-system-icons/public/post-icons', 'assets/post-icons', { recursive: true }, (err) => { if (err) throw err; });\""
   }
 }
 ```
@@ -106,7 +106,7 @@ If you want to know more about pre & post scripts and how they are handled, plea
 const fse = require('fs-extra');
 
 const srcDir = 'node_modules/@swisspost/design-system-icons/public/post-icons';
-const destDir = 'public/post-icons';
+const destDir = 'assets/post-icons';
 
 // To copy a folder or file, select overwrite accordingly
 try {
@@ -130,7 +130,7 @@ You can do this with two different solutions:
 ```html dark
 <html>
   <head>
-    <meta name="design-system-settings" data-post-icon-base="/post-icons" />
+    <meta name="design-system-settings" data-post-icon-base="/assets/post-icons" />
   </head>
 </html>
 ```
@@ -143,10 +143,18 @@ You can do this with two different solutions:
 
 ## CDN approach
 
+## Usage of the CDN approach
+
 There is one last thing we want to tell you about.
 
 All icons are also available from a CDN, which is the default if you don't configure a base path for your icons and don't serve them locally. When using the CDN, please note that you need to configure your CORS policy to enable resource loading from unpkg.com.
 
 <p class="alert alert-warning alert-md">
-  Using the CDN is not recommended for production because of higher latency when loading from the CDN, use it for quickly testing something or for prototyping.
+  Using the CDN is not recommended for production because of higher latency when loading from the
+  CDN, use it for quickly testing something or for prototyping.
 </p>
+
+### Check the Content Security Policy
+
+If your project includes the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank">Content-Security-Policy</a> response header (usually in `index.html`),
+make sure that `default-src` is set to `'self'`.
