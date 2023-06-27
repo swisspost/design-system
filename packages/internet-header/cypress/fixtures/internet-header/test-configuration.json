@@ -3,7 +3,7 @@
     "header": {
       "asWebComponent": true,
       "isHeaderResponsive": true,
-      "isLoginWidgetHidden": true,
+      "isLoginWidgetHidden": false,
       "showJobsLoginWidget": false,
       "icons": {
         "backArrowIcon": {
@@ -59,7 +59,7 @@
           "autoLoginURL": "https://post.ch/idp/?app=loginwidget"
         }
       },
-      "loginWidgetId": null,
+      "loginWidgetId": "klp-login-widget",
       "logo": {
         "logoLink": "https://post.ch/de/",
         "logoLinkTitle": "Die Post - zur Startseite",
@@ -989,7 +989,7 @@
         "mobileNavToggleClose": "Navigation schliessen",
         "mobileNavToggleOpen": "Navigation öffnen",
         "nonResponsiveHeader": "Diese Seite ist nicht für mobile Geräte konzipiert.",
-        "loginWidgetText": null
+        "loginWidgetText": "Login"
       }
     },
     "breadcrumb": {
@@ -1592,7 +1592,7 @@
         "mobileNavToggleClose": "Fermer la navigation",
         "mobileNavToggleOpen": "Ouvrir la navigation",
         "nonResponsiveHeader": "Cette page n’est pas conçue pour les appareils mobiles.",
-        "loginWidgetText": null
+        "loginWidgetText": "Login"
       }
     },
     "breadcrumb": {
@@ -2195,7 +2195,7 @@
         "mobileNavToggleClose": "Chiudere la navigazione",
         "mobileNavToggleOpen": "Navigazione aperta",
         "nonResponsiveHeader": "Questa pagina non è concepita per dispositivi mobili.",
-        "loginWidgetText": null
+        "loginWidgetText": "Login"
       }
     },
     "breadcrumb": {
@@ -2798,7 +2798,7 @@
         "mobileNavToggleClose": "Navigation close",
         "mobileNavToggleOpen": "Navigation open",
         "nonResponsiveHeader": "This page is not designed for mobile devices.",
-        "loginWidgetText": null
+        "loginWidgetText": "Login"
       }
     },
     "breadcrumb": {
