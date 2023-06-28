@@ -1,0 +1,76 @@
+@use '../variables/color';
+@use '../variables/commons';
+@use '../variables/spacing';
+
+.radio-button-card,
+.checkbox-button-card {
+  --post-card-select--hover-bg: #{color.$gray-10};
+  display: grid;
+  grid-template-columns: min-content 1fr min-content;
+  grid-gap: spacing.$size-mini;
+  align-items: center;
+
+  color: color.$gray-80;
+  background-color: color.$white;
+  border: 2px solid color.$gray-60;
+  border-radius: commons.$border-radius;
+  padding: spacing.$size-regular;
+  transition: color 150ms ease-in-out, background-color 150ms ease-in-out,
+    border-color 150ms ease-in-out;
+
+  cursor: pointer;
+
+  // Focus
+  &:where(:has(input:focus-visible)) {
+    background-color: var(--post-card-select--hover-bg);
+    outline: 2px solid color.$black;
+    outline-offset: 2px;
+    border-color: color.$black;
+
+    input {
+      border-color: color.$black;
+    }
+  }
+
+  // Checked
+  &:where(:has(input:checked)) {
+    --post-card-select--hover-bg: #{color.$yellow};
+    background-color: color.$yellow;
+    border-color: color.$gray-60;
+  }
+
+  // Hover
+  &:hover {
+    border-color: color.$black;
+    color: color.$black;
+    background-color: var(--post-card-select--hover-bg);
+
+    input {
+      border-color: color.$black;
+    }
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  post-icon {
+    width: 2em;
+    height: 2em;
+  }
+
+  input {
+    border-color: color.$gray-80;
+    background-color: color.$white;
+    transition: border-color 150ms ease-in-out;
+
+    &:focus {
+      box-shadow: none;
+    }
+  }
+
+  &--description {
+    grid-column: 2 / -2;
+    margin-bottom: 0;
+  }
+}
