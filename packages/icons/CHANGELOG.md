@@ -10,35 +10,35 @@
 
 ### Patch Changes
 
-- Added icons number 2523, 2525, 2526 and 2527. (by [@swisspost-devs](https://github.com/swisspost-devs) with [#1425](https://github.com/swisspost/design-system/pull/1425))
+- Added icons number 2523, 2525, 2526 and 2527. (by [@swisspost-bot](https://github.com/swisspost-bot) with [#1425](https://github.com/swisspost/design-system/pull/1425))
 
-- Added icons number 2524, 2528, 2529, 2530, 2531, 2532, 2533, 2534 and 2535. (by [@swisspost-devs](https://github.com/swisspost-devs) with [#1487](https://github.com/swisspost/design-system/pull/1487))
+- Added icons number 2524, 2528, 2529, 2530, 2531, 2532, 2533, 2534 and 2535. (by [@swisspost-bot](https://github.com/swisspost-bot) with [#1487](https://github.com/swisspost/design-system/pull/1487))
 
 ## 1.0.5
 
 ### Patch Changes
 
-- Added icons number 2515, 2516, 2517, 2518, 2519 and 2520. (by [@swisspost-devs](https://github.com/swisspost-devs) with [#1388](https://github.com/swisspost/design-system/pull/1388))
+- Added icons number 2515, 2516, 2517, 2518, 2519 and 2520. (by [@swisspost-bot](https://github.com/swisspost-bot) with [#1388](https://github.com/swisspost/design-system/pull/1388))
 
-- Added icons number 2521 and 2522. (by [@swisspost-devs](https://github.com/swisspost-devs) with [#1411](https://github.com/swisspost/design-system/pull/1411))
+- Added icons number 2521 and 2522. (by [@swisspost-bot](https://github.com/swisspost-bot) with [#1411](https://github.com/swisspost/design-system/pull/1411))
 
 ## 1.0.4
 
 ### Patch Changes
 
-- Added icon number 2514. (by [@swisspost-devs](https://github.com/swisspost-devs) with [#1331](https://github.com/swisspost/design-system/pull/1331))
+- Added icon number 2514. (by [@swisspost-bot](https://github.com/swisspost-bot) with [#1331](https://github.com/swisspost/design-system/pull/1331))
 
 ## 1.0.3
 
 ### Patch Changes
 
-- Added icons number 2512 and 2513. (by [@swisspost-devs](https://github.com/swisspost-devs) with [#1326](https://github.com/swisspost/design-system/pull/1326))
+- Added icons number 2512 and 2513. (by [@swisspost-bot](https://github.com/swisspost-bot) with [#1326](https://github.com/swisspost/design-system/pull/1326))
 
 ## 1.0.2
 
 ### Patch Changes
 
-- Added icons number 2498, 2499, 2500, 2501, 2502, 2503, 2504, 2505, 2506, 2507, 2508, 2509, 2510 and 2511 (by [@swisspost-devs](https://github.com/swisspost-devs) with [#1271](https://github.com/swisspost/design-system/pull/1271))
+- Added icons number 2498, 2499, 2500, 2501, 2502, 2503, 2504, 2505, 2506, 2507, 2508, 2509, 2510 and 2511 (by [@swisspost-bot](https://github.com/swisspost-bot) with [#1271](https://github.com/swisspost/design-system/pull/1271))
 
 ## 1.0.1
 
