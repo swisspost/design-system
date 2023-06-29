@@ -92,19 +92,11 @@
   padding-left: (alert.$alert-toast-padding-x * 2 + alert.$alert-toast-icon-size);
 
   overflow: hidden;
+  background-position: alert.$alert-toast-padding-x center;
+
+  background-size: alert.$alert-toast-icon-size;
   font-size: alert.$alert-font-size-small;
   pointer-events: auto;
-
-  // DEPRECATED: Allows icons to be overridden via "pi-*" class.
-  background-position: alert.$alert-toast-padding-x center;
-  background-size: alert.$alert-toast-icon-size;
-
-  &::before {
-    width: alert.$alert-toast-icon-size;
-    height: alert.$alert-toast-icon-size;
-    left: alert.$alert-toast-padding-x;
-    top: calc(50% - #{0.5 * alert.$alert-toast-icon-size});
-  }
 
   &.no-icon {
     padding-left: alert.$alert-toast-padding-x;
@@ -167,6 +159,11 @@
       @extend %color-background-dark-variables;
     } @else {
       @extend %color-background-light-variables;
+    }
+
+    .toast-close-button,
+    .btn-close {
+      @extend %notification-#{$name}-close;
     }
   }
 }

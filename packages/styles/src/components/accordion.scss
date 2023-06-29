@@ -4,7 +4,6 @@
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/accordion' as ba;
 
-@use './../mixins/icons' as icons-mx;
 @use './../mixins/type';
 @use './../mixins/utilities';
 @use './../variables/spacing';
@@ -39,16 +38,6 @@
     opacity: button.$btn-disabled-opacity !important;
   }
 
-  &::after {
-    @include icons-mx.icon(2113);
-
-    // remove default background from Bootstrap
-    background-image: none !important;
-
-    // add border to solve visual issue during rotation
-    border: 1px solid rgb(var(--post-bg-rgb, 255, 255, 255));
-  }
-
   .accordion-item[open] &::after {
     transform: accordion.$accordion-icon-transform;
   }
@@ -64,6 +53,14 @@
 
     &:disabled {
       opacity: 1 !important;
+    }
+
+    &::after {
+      background-image: $accordion-hcm-icon;
+    }
+
+    &:not(.collapsed)::after {
+      background-image: $accordion-hcm-icon;
     }
   }
 }

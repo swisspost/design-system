@@ -30,7 +30,9 @@ $accordion-icon-width: spacing.$size-large !default;
 $accordion-icon-transform: rotate(180deg) !default;
 $accordion-icon-transition: transform animation.$transition-base-timing;
 
-// DEPRECATED
-$accordion-button-icon: url('#{icons.get-colored-svg-url(2113, $accordion-button-color)}');
-$accordion-button-active-icon: url('#{icons.get-colored-svg-url(2113, $accordion-button-active-color)}');
-$accordion-hcm-icon: url('#{icons.get-colored-svg-url(2113, color.$white)}');
+$_accordion-chevron: icons.get-colored-svg-url(2113, $accordion-button-color);
+$_accordion-active-chevron: icons.get-colored-svg-url(2113, $accordion-button-active-color);
+$_accordion-hcm-chevron: icons.get-colored-svg-url(2113, color.$white);
+$accordion-button-icon: url($_accordion-chevron);
+$accordion-button-active-icon: url($_accordion-active-chevron);
+$accordion-hcm-icon: url($_accordion-hcm-chevron);

@@ -4,14 +4,13 @@
 @forward './../variables/options';
 
 @use './../lic/bootstrap-license';
-@use './../themes/bootstrap/forms/floating-labels' as bffl;
-@use './../themes/bootstrap/forms/form-control' as bffc;
+@use './../themes/bootstrap/forms' as bf;
 @use './../mixins/forms' as forms-mx;
 @use './../mixins/utilities' as utilities-mx;
 
 @use './../variables/type';
 @use './../variables/components/forms';
-@use './../variables/components/form-validation';
+@use './../variables/components/form-feedback';
 
 .form-floating {
   > label {
@@ -163,7 +162,7 @@
       ~ label {
         width: calc(
           100% - (forms.$input-border-width * 2) - forms.$form-floating-padding-x -
-            form-validation.$form-feedback-icon-offset - form-validation.$form-feedback-icon-size
+            form-feedback.$form-feedback-icon-offset - form-feedback.$form-feedback-icon-size
         );
       }
 
@@ -175,8 +174,8 @@
               (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
               (forms.$input-border-width * forms.$form-floating-label-upscale * 2) -
               (forms.$form-floating-padding-x * forms.$form-floating-label-upscale) -
-              (form-validation.$form-feedback-icon-offset * forms.$form-floating-label-upscale) -
-              (form-validation.$form-feedback-icon-size * forms.$form-floating-label-upscale)
+              (form-feedback.$form-feedback-icon-offset * forms.$form-floating-label-upscale) -
+              (form-feedback.$form-feedback-icon-size * forms.$form-floating-label-upscale)
           );
         }
       }

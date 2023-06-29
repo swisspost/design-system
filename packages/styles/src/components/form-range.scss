@@ -2,7 +2,7 @@
 
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/forms/form-range' as bffr;
+@use './../themes/bootstrap/forms' as bf;
 
 @use './../variables/commons';
 @use './../variables/color';
