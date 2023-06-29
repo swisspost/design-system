@@ -24,8 +24,7 @@
   font-size: map.get(button.$btn-font-size-map, $size);
   gap: map.get(button.$btn-padding-x-map, $size) * 0.5;
 
-  > .pi,
-  > post-icon {
+  > .pi {
     width: map.get(button.$btn-icon-size-map, $size);
     height: map.get(button.$btn-icon-size-map, $size);
   }

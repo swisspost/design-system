@@ -140,14 +140,14 @@ export default {
         type: 'select',
         labels: {
           'null': 'None',
-          '2069': 'Search (2069)',
-          '3193': 'Edit (3193)',
-          '2059': 'Save (2059)',
-          '2015': 'Remove (2015)',
-          '2286': 'Like (2286)',
+          'pi-2069': 'Search (2069)',
+          'pi-3193': 'Edit (3193)',
+          'pi-2059': 'Save (2059)',
+          'pi-2015': 'Remove (2015)',
+          'pi-2286': 'Like (2286)',
         },
       },
-      options: ['null', '2069', '3193', '2059', '2015', '2286'],
+      options: ['null', 'pi-2069', 'pi-3193', 'pi-2059', 'pi-2015', 'pi-2286'],
       table: {
         category: 'Icon',
       },
@@ -223,7 +223,7 @@ const Template = (args: Args) => {
     return <args.tag {...props} className={classes} disabled={args.disabled} />;
   } else {
     const icon =
-      args.icon !== 'null' ? <post-icon aria-hidden="true" name={args.icon}/> : null;
+      args.icon !== 'null' ? <span aria-hidden="true" className={`pi ${args.icon}`}></span> : null;
     const content = isAnimated ? <span>{args.text}</span> : args.text;
 
     return (

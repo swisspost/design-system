@@ -7,17 +7,6 @@
 @use './../functions/icons' as icon-fn;
 @use './../mixins/utilities';
 
-@mixin icon($name) {
-  background-color: currentColor;
-  mask-image: url('#{icon-fn.get-svg-url($name)}');
-
-  // set icon to white on hcm
-  @include utilities.high-contrast-mode() {
-    background-color: color.$white;
-  }
-}
-
-// DEPRECATED
 @mixin pi($name, $color: color.$black) {
   $type: meta.type-of($color);
   $final-color: $color;
@@ -32,18 +21,18 @@
     }
   }
   border-color: $final-color;
-  background-image: url('#{icon-fn.get-colored-svg-url($name, $final-color)}');
+  background-image: url(icon-fn.get-colored-svg-url($name, $final-color));
 
   // set icon to white on hcm
   @include utilities.high-contrast-mode() {
     @if ($final-color == color.$black) {
       filter: invert(100%);
     } @else {
-      background-image: url('#{icon-fn.get-colored-svg-url($name, color.$white)}');
+      background-image: url(icon-fn.get-colored-svg-url($name, color.$white));
     }
   }
 }
 
 @mixin pi-pre($name) {
-  background-image: url('#{icon-fn.get-pre-colored-svg-url($name)}');
+  background-image: url(icon-fn.get-pre-colored-svg-url($name));
 }
