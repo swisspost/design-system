@@ -4,7 +4,6 @@ export const getAlertClasses = (args: Args): string =>
   [
     'alert',
     args.variant,
-    args.icon !== 'null' ? `pi-${args.icon}` : '',
     args.noIcon ? 'no-icon' : '',
     args.dismissible ? 'alert-dismissible' : '',
     args.fixed ? 'alert-fixed-bottom' : '',
