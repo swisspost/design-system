@@ -3,7 +3,7 @@
 @use './../variables/spacing';
 @use './../variables/type';
 @use './../variables/color';
-@use './../mixins';
+@use './../mixins/size' as size-mx;
 @use './../mixins/type' as type-mx;
 @use './../variables/components/paragraph';
 
@@ -145,14 +145,14 @@
   .h-highlighted {
     @extend %font-curve-regular;
     @extend %text-bottom-spacer;
-    @include mixins.bezel-regular;
+    @include size-mx.bezel-regular;
     background-color: rgba(map.get(color.$background-colors, 'nightblue-bright'), 0.1);
 
     @include media-breakpoint-up(lg) {
-      @include mixins.bezel-medium;
+      @include size-mx.bezel-medium;
     }
     @include media-breakpoint-up(xxl) {
-      @include mixins.bezel-large;
+      @include size-mx.bezel-large;
     }
   }
 }

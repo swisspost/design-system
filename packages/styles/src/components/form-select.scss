@@ -2,7 +2,7 @@
 
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/forms' as bf;
+@use './../themes/bootstrap/forms/form-select' as bffs;
 @use './../mixins/forms' as forms-mixins;
 @use './../mixins/utilities';
 
