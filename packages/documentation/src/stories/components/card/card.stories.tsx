@@ -364,11 +364,11 @@ CustomContent.args = {
   showHeader: true,
   customHeader: (
     <div className="card-header d-flex">
-      <post-icon aria-hidden="true" class="fs-small-huge" name="3217"/>
+      <div className="pi pi-2x pi-3217"></div>
       <h3 className="d-inline font-weight-bold text-large m-0">Detaloj de la Uzanto</h3>
       <div className="ms-auto">
         <a href="#" title="Account Management">
-          <post-icon aria-hidden="true" class="fs-large" name="3020"/>
+          <span className="pi pi-1.5x pi-3020"></span>
         </a>
       </div>
     </div>
@@ -388,7 +388,7 @@ CustomContent.args = {
           </div>
           <div className="align-self-center">
             <a href="#">
-              <post-icon aria-label="Redaktu adreson" class="fs-large" name="3193"/>
+              <span className="pi pi-3193"></span>
             </a>
           </div>
         </div>
@@ -400,7 +400,7 @@ CustomContent.args = {
           </div>
           <div className="align-self-center">
             <a href="#">
-              <post-icon aria-label="Redakti lingvon" className="fs-large" name="3193"/>
+              <span className="pi pi-3193"></span>
             </a>
           </div>
         </div>

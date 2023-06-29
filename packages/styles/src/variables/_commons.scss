@@ -24,7 +24,6 @@ $caret-width: 0.3em !default;
 // Warning: Avoid customizing these values. They're used for a bird's eye view
 // of components dependent on the z-axis and are designed to all work together.
 
-$zindex-button-group: 980 !default; // Design System only
 $zindex-spinner: 990 !default; // Design System only
 $zindex-dropdown: 1000 !default;
 $zindex-sticky: 1020 !default;

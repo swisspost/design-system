@@ -6,47 +6,30 @@
 
 @use './../mixins/utilities';
 @use './../variables/color';
-@use './../variables/commons';
 @use './../variables/components/button';
-@use './../variables/components/forms';
 
 .btn-group {
   max-width: 100%;
-
-  > .btn-check {
-    @include utilities.visuallyhidden;
-  }
 
   > .btn {
     white-space: normal;
     cursor: pointer;
 
+    // added a transition delay on the "z-index" so the button only moves back after all other transitions
+    z-index: 0;
+    transition: z-index 0s ease (0.5 * button.$btn-transition-duration), button.$btn-transition;
+
     @include utilities.high-contrast-mode() {
       transition: none !important;
     }
-
-    z-index: 0;
-    outline: forms.$input-focus-outline-thickness solid transparent;
-    transition: z-index (0.5 * button.$btn-transition-duration) linear,
-      outline-color (0.75 * button.$btn-transition-duration), button.$btn-transition;
-
-    &:hover {
-      z-index: commons.$zindex-button-group - 1 !important;
-    }
   }
 
-  .btn:focus-visible,
-  .btn-check:focus-visible + .btn {
-    z-index: commons.$zindex-button-group !important;
-    outline-color: var(--post-contrast-color);
-    border-color: var(--post-contrast-color);
-    transition: z-index (0.5 * button.$btn-transition-duration) linear,
-      outline-color (0.75 * button.$btn-transition-duration) ease
-        (0.25 * button.$btn-transition-duration),
-      button.$btn-transition;
+  > .btn:hover {
+    // remove the transition delay on the "z-index" for all raised states so the button moves forward before other transitions
+    z-index: 2 !important;
+    transition: button.$btn-transition;
   }
 
-  // secondary button variant (only official variant)
   > .btn-secondary {
     border-color: color.$gray-20;
   }
@@ -58,10 +41,5 @@
     @include utilities.high-contrast-mode() {
       background-color: Highlight;
     }
-  }
-
-  > .btn-check:disabled + .btn-secondary {
-    pointer-events: none;
-    color: rgba(var(--post-contrast-color-rgb), 0.6);
   }
 }
