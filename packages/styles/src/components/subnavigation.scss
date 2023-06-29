@@ -3,6 +3,7 @@
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 
+@use './../mixins';
 @use './../mixins/utilities';
 @use './../functions/utilities' as utility-functions;
 @use './../variables/components/subnavigation';
@@ -17,7 +18,7 @@ $module-name: 'subnavigation';
   background-color: subnavigation.$subnavigation-background-color;
 
   &::after {
-    @include utilities.full-width-underscore(
+    @include mixins.full-width-underscore(
       subnavigation.$subnavigation-border-bottom-color,
       subnavigation.$subnavigation-border-bottom-width
     );
@@ -95,7 +96,7 @@ $module-name: 'subnavigation';
     }
 
     &:not(.active)::after {
-      @include utilities.full-width-underscore(
+      @include mixins.full-width-underscore(
         #{subnavigation.$subnavigation-link-underscore-color-hover},
         #{subnavigation.$subnavigation-link-underscore-height}
       );
@@ -120,7 +121,7 @@ $module-name: 'subnavigation';
       font-weight: $font-weight-bold;
 
       &::after {
-        @include utilities.full-width-underscore(
+        @include mixins.full-width-underscore(
           #{subnavigation.$subnavigation-link-underscore-color-active},
           #{subnavigation.$subnavigation-link-underscore-height}
         );
