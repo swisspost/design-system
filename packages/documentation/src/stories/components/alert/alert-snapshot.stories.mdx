@@ -20,10 +20,7 @@ import { bombArgs } from '../../utilities/bombArgs';
         .map(args => (
           <div className={getAlertClasses(args)} key={JSON.stringify(args)} role="alert">
             {args.dismissible || args.fixed ? (
-              <button className="btn-close" data-dismiss="alert" aria-label="Close"/>
-            ) : null}
-            {args.icon !== 'null' ? (
-              <post-icon aria-hidden="true" class="alert-icon" name={args.icon}/>
+              <button className="btn-close" data-dismiss="alert" aria-label="Close"></button>
             ) : null}
             {args.action ? (
               <div className="alert-content">

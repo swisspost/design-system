@@ -50,10 +50,6 @@
   // DEPRECATED: Allows icons to be overridden via "pi-*" class.
   &.no-icon {
     background-image: none;
-
-    > .alert-icon {
-      display: none;
-    }
   }
 
   &.no-icon,
@@ -103,12 +99,6 @@
   font-weight: type.$font-weight-bold;
 }
 
-%notification-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
 // DEPRECATED
 /* stylelint-disable */
 %notification-close-light {
@@ -130,10 +120,6 @@
         border-color: type.$hr-border-color-light;
       }
     }
-  }
-
-  %notification-#{$name}-icon {
-    background-color: $color;
   }
 }
 /* stylelint-enable */

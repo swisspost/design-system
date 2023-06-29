@@ -141,14 +141,6 @@
   font-size: alert.$alert-font-size-small;
 }
 
-.toast-icon {
-  @extend %notification-icon;
-
-  height: alert.$alert-toast-icon-size;
-  width: alert.$alert-toast-icon-size;
-  left: alert.$alert-toast-padding-x;
-}
-
 .toast-message {
   font-size: alert.$alert-font-size-small;
   word-wrap: break-word;
@@ -175,10 +167,6 @@
       @extend %color-background-dark-variables;
     } @else {
       @extend %color-background-light-variables;
-    }
-
-    .toast-icon {
-      @extend %notification-#{$name}-icon;
     }
   }
 }
