@@ -29,8 +29,6 @@ button {
 
   @include forms-mx.focus-outline() {
     border-radius: button.$btn-border-radius;
-    position: relative;
-    z-index: 1;
   }
 }
 
