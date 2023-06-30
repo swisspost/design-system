@@ -103,6 +103,9 @@
   }
 
   .form-check-label {
+    padding-top: 0;
+    padding-left: 0;
+
     &::before {
       content: '';
       position: absolute;
