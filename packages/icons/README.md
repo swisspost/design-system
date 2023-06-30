@@ -6,8 +6,8 @@ Icons for the Swiss Post Design System.
 
 ## Documentation
 
-- Icon search: https://next.design-system.post.ch/?path=/docs/foundations-icons--page
-- `post-icon` component: https://next.design-system.post.ch/?path=/docs/components-icon--default
+- Icon search: https://next.design-system.post.ch/?path=/docs/icons-search-icons--page
+- `post-icon` component: https://next.design-system.post.ch/?path=/docs/icons-components-icon--default
 
 ## Adding new icons
 
