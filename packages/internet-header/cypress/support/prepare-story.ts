@@ -1,5 +1,6 @@
 import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 import mockAuth from '../fixtures/internet-header/auth.json';
+import { IPortalConfig } from '../../src/models/general.model';
 
 export const installInterceptors = (config: Object = testConfiguration) => {
   cy.intercept('**/api/headerjs/Json?serviceid=*', config).as('getConfig');
@@ -22,4 +23,8 @@ export const prepare = (
     },
   });
   cy.loadStory(storyTitle, storyName);
+};
+
+export const copyConfig = (): IPortalConfig => {
+  return JSON.parse(JSON.stringify(testConfiguration));
 };
