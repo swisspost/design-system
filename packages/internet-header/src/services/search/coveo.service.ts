@@ -13,7 +13,11 @@ let suggestionsController: AbortController;
  * @returns
  */
 export const getCoveoSuggestions = async (query: string): Promise<CoveoCompletion[]> => {
-  if (state.localizedConfig?.header?.search === undefined) return [];
+  if (
+    state.localizedConfig?.header?.search === undefined ||
+    state.localizedConfig?.header?.search.isCustomSuggestionHidden === true
+  )
+    return [];
   const config = state.localizedConfig.header.search;
   const { token, organisation } = coveo.environment[state.environment];
   const url = `${coveo.url}?q=${query}&locale=${state.currentLanguage}&searchHub=${config.searchHubName}&pipeline=${config.searchPipelineName}&organizationId=${organisation}`;
