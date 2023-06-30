@@ -6,19 +6,30 @@
 .checkbox-button-card {
   --post-card-select--hover-bg: #{color.$gray-10};
   display: grid;
-  grid-template-columns: min-content 1fr min-content;
-  grid-gap: spacing.$size-mini;
-  align-items: center;
+  grid-template-columns: min-content 1fr;
+  grid-gap: 0 spacing.$size-mini;
+  position: relative;
+
+  width: 100%;
 
   color: color.$gray-80;
   background-color: color.$white;
   border: 2px solid color.$gray-60;
   border-radius: commons.$border-radius;
   padding: spacing.$size-regular;
-  transition: color 150ms ease-in-out, background-color 150ms ease-in-out,
-    border-color 150ms ease-in-out;
+  transition: color 100ms ease-in-out, background-color 100ms ease-in-out,
+    border-color 100ms ease-in-out;
 
-  cursor: pointer;
+  &:has(> post-icon) {
+    grid-template-columns: min-content 1fr min-content;
+  }
+
+  // Checked
+  &:where(:has(input:checked)) {
+    --post-card-select--hover-bg: #{color.$yellow};
+    background-color: color.$yellow;
+    border-color: color.$gray-60;
+  }
 
   // Focus
   &:where(:has(input:focus-visible)) {
@@ -32,15 +43,8 @@
     }
   }
 
-  // Checked
-  &:where(:has(input:checked)) {
-    --post-card-select--hover-bg: #{color.$yellow};
-    background-color: color.$yellow;
-    border-color: color.$gray-60;
-  }
-
   // Hover
-  &:hover {
+  &:where(:hover:not(:has(input[disabled]))) {
     border-color: color.$black;
     color: color.$black;
     background-color: var(--post-card-select--hover-bg);
@@ -50,26 +54,69 @@
     }
   }
 
+  // Disabled
+  &:has(input[disabled]) {
+    border-color: color.$gray-20;
+    color: color.$gray-40 !important;
+
+    > * {
+      cursor: default;
+    }
+  }
+
+  &:has(input[disabled]:checked) {
+    background-color: color.$gray-10;
+  }
+
+  // Error
+  &:has(input[aria-invalid]),
+  &:has(input.is-invalid) {
+    color: color.$error;
+    border-color: color.$error;
+  }
+
   &:last-child {
     margin-bottom: 0;
+  }
+
+  > * {
+    cursor: pointer;
   }
 
   post-icon {
     width: 2em;
     height: 2em;
+    margin-left: spacing.$size-mini;
+    grid-column: 3 / 4;
+    pointer-events: none;
   }
 
   input {
     border-color: color.$gray-80;
     background-color: color.$white;
-    transition: border-color 150ms ease-in-out;
+    transition: border-color 100ms ease-in-out;
+    grid-column: 1 / 2;
 
     &:focus {
-      box-shadow: none;
+      box-shadow: none !important;
     }
   }
 
+  .form-check-label {
+    &::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+    }
+  }
+
+  input,
+  .form-check-label {
+    margin-block: 0.25rem;
+  }
+
   &--description {
+    position: relative;
     grid-column: 2 / -2;
     margin-bottom: 0;
   }
