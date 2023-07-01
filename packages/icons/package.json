@@ -28,7 +28,7 @@
     "test:updatesnapshots": "jest -u"
   },
   "devDependencies": {
-    "@tsconfig/node16": "1.0.4",
+    "@tsconfig/node16": "16.1.0",
     "@types/jest": "26.0.24",
     "@types/mock-fs": "4.13.1",
     "@types/node": "18.16.18",
