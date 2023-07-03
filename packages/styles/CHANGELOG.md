@@ -1,5 +1,13 @@
 # @swisspost/design-system-styles
 
+## 6.2.4
+
+### Patch Changes
+
+- Fix an issue with two empty CSS files in the styles package. Empty files are no longer delivered. (by [@imagoiq](https://github.com/imagoiq) with [#1600](https://github.com/swisspost/design-system/pull/1600))
+
+- Fixed default font-size and weight of the legend element (by [@geekrumper](https://github.com/geekrumper) with [#1512](https://github.com/swisspost/design-system/pull/1512))
+
 ## 6.2.3
 
 ### Patch Changes
