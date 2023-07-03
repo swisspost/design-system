@@ -55,7 +55,7 @@
     "@types/react-dom": "18.2.6",
     "babel-loader": "9.1.2",
     "css-loader": "5.2.7",
-    "cypress": "12.15.0",
+    "cypress": "12.16.0",
     "cypress-each": "1.13.3",
     "cypress-storybook": "0.5.1",
     "react-markdown": "8.0.7",
