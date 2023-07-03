@@ -37,8 +37,8 @@ importers:
   packages/components:
     dependencies:
       '@stencil/core':
-        specifier: 3.4.1
-        version: 3.4.1
+        specifier: 4.0.1
+        version: 4.0.1
       '@swisspost/design-system-styles':
         specifier: workspace:6.2.4
         version: link:../styles/dist
@@ -54,10 +54,10 @@ importers:
         version: 0.5.0(@typescript-eslint/eslint-plugin@5.60.1)(@typescript-eslint/parser@5.60.1)(eslint-plugin-react@7.32.2)(eslint@8.44.0)(typescript@4.9.5)
       '@stencil/react-output-target':
         specifier: 0.5.3
-        version: 0.5.3(@stencil/core@3.4.1)
+        version: 0.5.3(@stencil/core@4.0.1)
       '@stencil/sass':
         specifier: 3.0.4
-        version: 3.0.4(@stencil/core@3.4.1)
+        version: 3.0.4(@stencil/core@4.0.1)
       '@types/jest':
         specifier: 27.5.2
         version: 27.5.2
@@ -647,11 +647,11 @@ importers:
   packages/internet-header:
     dependencies:
       '@stencil/core':
-        specifier: 3.4.1
-        version: 3.4.1
+        specifier: 4.0.1
+        version: 4.0.1
       '@stencil/store':
         specifier: 2.0.8
-        version: 2.0.8(@stencil/core@3.4.1)
+        version: 2.0.8(@stencil/core@4.0.1)
       '@swisspost/design-system-styles':
         specifier: workspace:6.2.4
         version: link:../styles/dist
@@ -688,7 +688,7 @@ importers:
         version: 0.4.0(eslint-plugin-react@7.32.2)(typescript@4.9.5)
       '@stencil/sass':
         specifier: 3.0.4
-        version: 3.0.4(@stencil/core@3.4.1)
+        version: 3.0.4(@stencil/core@4.0.1)
       '@types/iframe-resizer':
         specifier: 3.5.9
         version: 3.5.9
@@ -6128,9 +6128,9 @@ packages:
       typescript: 4.9.5
     dev: true
 
-  /@stencil/core@3.4.1:
-    resolution: {integrity: sha512-7rjOmM0W9K5op2gtOQRLERGH1155rv2fm6ppxOzYqqG8ISct4m9skp5XgUBYPu+GSPsJFdRuCIQs0IuVsG/7+g==}
-    engines: {node: '>=14.10.0', npm: '>=6.0.0'}
+  /@stencil/core@4.0.1:
+    resolution: {integrity: sha512-7kWwh4HKuSBSRG9iKjxMzfvBK0O16/XeJtUavYBDEptkndufJjeym2x5JYnW0wKULxBGaVBFdrPyd1bTvthrlg==}
+    engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
   /@stencil/eslint-plugin@0.4.0(eslint-plugin-react@7.32.2)(typescript@4.9.5):
@@ -6157,28 +6157,28 @@ packages:
       typescript: 4.9.5
     dev: true
 
-  /@stencil/react-output-target@0.5.3(@stencil/core@3.4.1):
+  /@stencil/react-output-target@0.5.3(@stencil/core@4.0.1):
     resolution: {integrity: sha512-68jwRp35CjAcwhTJ9yFD/3n+jrHOqvEH2jreVuPVvZK+4tkhPlYlwz0d1E1RlF3jyifUSfdkWUGgXIEy8Fo3yw==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 3.4.1
+      '@stencil/core': 4.0.1
     dev: true
 
-  /@stencil/sass@3.0.4(@stencil/core@3.4.1):
+  /@stencil/sass@3.0.4(@stencil/core@4.0.1):
     resolution: {integrity: sha512-k1dP0A2QBx62m250FATc1hErXxXs6Jnf4TBxdL1C/dc32Kzz2n5aCT4SodBz0ebT5WMnITauZyFqYxzCzDoKag==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 3.4.1
+      '@stencil/core': 4.0.1
     dev: true
 
-  /@stencil/store@2.0.8(@stencil/core@3.4.1):
+  /@stencil/store@2.0.8(@stencil/core@4.0.1):
     resolution: {integrity: sha512-6yNRPyItnVq45r8TtXLIZZMCqtgqA2xiO7alUnr28W5dlDIKMW1W80Muozh1p4FSqRcYLWUUDladXdc+/xXJBA==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 3.4.1
+      '@stencil/core': 4.0.1
     dev: false
 
   /@storybook/addon-a11y@6.5.16(react-dom@18.2.0)(react@18.2.0):
