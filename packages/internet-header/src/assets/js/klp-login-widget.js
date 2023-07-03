@@ -1014,9 +1014,7 @@ const vertx = window.vertx || {};
         .find('#' + id)
         .html(
           '<div class="klp-widget-anonymous"><div class="klp-widget-anonymous__wrapper">' +
-            '<a tabindex="' +
-            tabIndex('sign-in') +
-            '" ' +
+            '<a ' +
             accessKey('sign-in') +
             ' title="' +
             text('sign-in') +
