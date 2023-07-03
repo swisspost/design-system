@@ -53,7 +53,7 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
-    "@changesets/cli": "2.26.1",
+    "@changesets/cli": "2.26.2",
     "start-server-and-test": "2.0.0"
   },
   "engines": {
