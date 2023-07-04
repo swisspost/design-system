@@ -1,5 +1,23 @@
 # @swisspost/internet-header
 
+## 1.8.0
+
+### Minor Changes
+
+- Added tracking calls to the search recommendations. Click events are being sent to the tag manager if it is present on the page (by [@gfellerph](https://github.com/gfellerph) with [#1548](https://github.com/swisspost/design-system/pull/1548))
+
+- Implemented kill-switch for coveo suggestions based on the `isCustomSuggestionHidden` option in the search configuration. (by [@gfellerph](https://github.com/gfellerph) with [#1591](https://github.com/swisspost/design-system/pull/1591))
+
+### Patch Changes
+
+- Deprecated the stickyness option "full". It should not be used anymore as this mode takes up too much screen space (by [@gfellerph](https://github.com/gfellerph) with [#1551](https://github.com/swisspost/design-system/pull/1551))
+
+- Fixed jobs login widget. An optimized widget is now rendered without requesting the whole KLP widget logic (by [@gfellerph](https://github.com/gfellerph) with [#1568](https://github.com/swisspost/design-system/pull/1568))
+
+- Fixed an issue with the search button. Focusing or clicking the button will no longer change its position and search queries can be performed as usual. (by [@gfellerph](https://github.com/gfellerph) with [#1590](https://github.com/swisspost/design-system/pull/1590))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.4
+
 ## 1.7.4
 
 ### Patch Changes

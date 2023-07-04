@@ -372,10 +372,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                         onKeyDown={e => this.handleKeyDown(e)}
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
-                      <button
-                        onClick={() => void this.startSearch()}
-                        class="nav-link start-search-button"
-                      >
+                      <button onClick={() => void this.startSearch()} class="start-search-button">
                         <span class="visually-hidden">{translations.searchSubmit}</span>
                         <SvgIcon name="pi-search" />
                       </button>

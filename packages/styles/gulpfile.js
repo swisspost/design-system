@@ -53,7 +53,7 @@ gulp.task('map-icons', (done) => {
     }, '\n');
 
   fs.writeFileSync(
-    path.join('./src', 'svg-icon-map.scss'),
+    path.join('./src', '_svg-icon-map.scss'),
     `$svg-icon-map: (${iconVariables});\n`,
   );
 
