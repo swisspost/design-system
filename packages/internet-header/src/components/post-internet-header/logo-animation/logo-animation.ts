@@ -3,6 +3,7 @@ import { debounce } from 'throttle-debounce';
 export const registerLogoAnimationObserver = (
   target: HTMLElement,
   headerRef: HTMLSwisspostInternetHeaderElement,
+  fullStickyness = false,
 ) => {
   /**
    * Set intersection ratio as CSS custom property
@@ -11,11 +12,12 @@ export const registerLogoAnimationObserver = (
     let scale = 1;
     // Minus 1px border at the bottom that the logo is not covering
     const adjustedHeaderHeight = headerRef.clientHeight - 1;
+    const scrollY = fullStickyness ? 0 : window.scrollY;
 
     // If meta navigation is not visible (mobile, not configured), scale should just be 1
     if (target.clientHeight > 0) {
       scale = Math.max(
-        (adjustedHeaderHeight - Math.max(window.scrollY, 0)) /
+        (adjustedHeaderHeight - Math.max(scrollY, 0)) /
           (adjustedHeaderHeight - target.clientHeight),
         1,
       );

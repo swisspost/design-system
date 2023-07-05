@@ -208,7 +208,7 @@ export class PostInternetHeader {
       this.headerLoaded.emit();
       this.host.classList.add('header-loaded');
       if (this.meta && this.metaNav) {
-        registerLogoAnimationObserver(this.metaNav, this.host);
+        registerLogoAnimationObserver(this.metaNav, this.host, this.stickyness === 'full');
       }
     });
 
