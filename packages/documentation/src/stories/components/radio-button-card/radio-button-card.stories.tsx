@@ -131,27 +131,16 @@ const Template = (args: Args) => {
         onChange={() => {
           updateArgs({ checked: !args.checked });
         }}
-        aria-labelledby={`radio-button-card-label-1${
-          args.showDescription ? ' radio-button-card-description-1' : ''
-        }`}
       />
       <label
         id="radio-button-card-label-1"
         htmlFor="radio-button-card-1"
         className="form-check-label"
       >
-        {args.label}
+        <span>{args.label}</span>
+        {args.showDescription && [<br />, <span className="font-size-12">{args.description}</span>]}
       </label>
       {args.showIcon && <post-icon name={args.icon} aria-hidden="true"></post-icon>}
-      {args.showDescription && (
-        <label
-          id="radio-button-card-description-1"
-          htmlFor="radio-button-card-1"
-          className="radio-button-card--description font-size-12"
-        >
-          {args.description}
-        </label>
-      )}
     </div>
   );
 };
