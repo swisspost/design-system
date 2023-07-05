@@ -69,6 +69,10 @@
   &:has(input.is-invalid) {
     color: color.$error;
     border-color: color.$error;
+
+    & ~ .invalid-feedback {
+      display: block;
+    }
   }
 
   &:last-child {
@@ -98,7 +102,6 @@
   }
 
   .form-check-label {
-    padding-top: 0;
     padding-left: 0;
 
     &::before {
@@ -115,8 +118,11 @@
     }
   }
 
-  input,
-  .form-check-label {
-    margin-top: 0.25rem;
+  // Align input and label if there is an icon
+  &:has(post-icon) {
+    input,
+    .form-check-label {
+      margin-top: 0.25rem;
+    }
   }
 }

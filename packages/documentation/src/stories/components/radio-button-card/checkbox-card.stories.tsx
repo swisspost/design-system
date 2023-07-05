@@ -1,15 +1,16 @@
-import { Story } from '@storybook/react';
+import { Meta, Story } from '@storybook/react';
 import { choiceCardGroup, choiceCardMeta, ChoiceCardTemplate } from './choice-card';
-import docsPage from './radio-button-card.docs.mdx';
+import docsPage from './checkbox-card.docs.mdx';
 
 export default Object.assign({}, choiceCardMeta, {
-  title: 'Components/Radio Button Card',
+  title: 'Components/Checkbox card',
   parameters: { ...choiceCardMeta.parameters, docs: { page: docsPage } },
-});
+  args: { ...choiceCardMeta.args, type: 'checkbox' },
+}) as Meta;
 
 export const Default: Story = ChoiceCardTemplate.bind({});
 Default.args = {
-  type: 'radio',
+  type: 'checkbox',
 };
 Default.parameters = {
   controls: {
@@ -19,7 +20,7 @@ Default.parameters = {
 
 export const Group: Story = choiceCardGroup.bind({});
 Group.args = {
-  type: 'radio',
+  type: 'checkbox',
 };
 Group.parameters = {
   controls: {
