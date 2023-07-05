@@ -43,6 +43,7 @@
     }
 
     &::before {
+      display: block;
       content: '';
       position: absolute;
       top: 0px;
