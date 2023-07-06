@@ -31,12 +31,12 @@
     "start": "stencil build --docs --watch",
     "dev": "stencil build --watch --serve --docs",
     "build": "stencil build --docs",
+    "clean": "rimraf www dist",
     "test": "npm run unit",
     "unit": "jest",
     "unit:watch": "jest --watch",
     "e2e": "cypress run",
     "e2e:watch": "cypress open",
-    "clean": "rimraf www dist loader storybook-static",
     "lint": "eslint src/**/*{.ts,.tsx}",
     "lint:fix": "eslint src/**/*{.ts,.tsx} --fix",
     "generate": "stencil generate"

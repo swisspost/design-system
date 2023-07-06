@@ -94,6 +94,9 @@ importers:
       puppeteer:
         specifier: 20.7.4
         version: 20.7.4(typescript@4.9.5)
+      rimraf:
+        specifier: 5.0.1
+        version: 5.0.1
       sass:
         specifier: 1.63.6
         version: 1.63.6
