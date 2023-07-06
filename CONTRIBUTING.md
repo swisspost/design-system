@@ -141,7 +141,7 @@ When a new package is added to the repo, a few things need to be taken care of.
 ## Authoring web-components
 
 ### CSS Custom Properties
-As per resolution of the [discussion about sass variables vs. CSS custom properties](https://github.com/swisspost/design-system/discussions/1380), CSS custom properties should be used if they provide meaningful ways to interact with the component. Per default, not every possible value should be  a custom property.
+As per resolution of the [discussion about sass variables vs. CSS custom properties](https://github.com/swisspost/design-system/discussions/1380), CSS custom properties should be used if they provide meaningful ways to interact with the component. Per default, not every possible value should be a custom property.
 
 #### Do
 - Use custom properties to define themable colors, for example `color` or `border-color` for dark-mode support
