@@ -1,0 +1,34 @@
+{
+  "name": "@swisspost/design-system-documentation-v7",
+  "version": "1.0.0",
+  "description": "Swiss Post Design System Documentation.",
+  "author": "Swiss Post <oss@post.ch>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "storybook dev -p 9200 --quiet",
+    "start:headless": "storybook dev -p 9300 --quiet --no-open",
+    "build": "storybook build --quiet"
+  },
+  "devDependencies": {
+    "@storybook/addon-essentials": "7.0.26",
+    "@storybook/addon-links": "7.0.26",
+    "@storybook/blocks": "7.0.26",
+    "@storybook/web-components": "7.0.26",
+    "@storybook/web-components-vite": "7.0.26",
+    "lit": "2.7.6",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "storybook": "7.0.26",
+    "typescript": "^5.1.6"
+  }
+}
