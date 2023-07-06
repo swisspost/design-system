@@ -37,7 +37,7 @@
     "lint": "eslint src/**/*{.ts,.tsx}"
   },
   "dependencies": {
-    "@stencil/core": "4.0.1",
+    "@stencil/core": "3.4.1",
     "@swisspost/design-system-styles": "workspace:6.2.4"
   },
   "devDependencies": {
