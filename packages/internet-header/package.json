@@ -14,7 +14,6 @@
   },
   "main": "dist/index.cjs.js",
   "module": "dist/loader/index.js",
-  "es2015": "dist/loader/index.es2017.js",
   "es2017": "dist/loader/index.es2017.js",
   "jsnext:main": "dist/loader/index.es2017.js",
   "types": "dist/types/index.d.ts",
