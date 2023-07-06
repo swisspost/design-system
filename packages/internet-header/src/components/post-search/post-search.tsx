@@ -4,10 +4,12 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 import { state } from '../../data/store';
 import { CoveoCompletion } from '../../models/coveo.model';
 import { GeocodeLocation } from '../../models/geocode.model';
+import { TagManagerDataLayer } from '../../models/general.model';
 import {
   DropdownElement,
   DropdownEvent,
   HasDropdown,
+  ISearchRecommendation,
   IsFocusable,
 } from '../../models/header.model';
 import { getSearchRedirectUrl, equalizeArrays } from '../../services/search/search.service';
@@ -107,7 +109,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
       this.coveoSuggestions = [];
       this.placeSuggestions = [];
       if (this.searchBox) this.searchBox.value = '';
-      this.setFocus();
+      void this.setFocus();
     } else {
       // Get basic suggestions when dropdown opens
       try {
@@ -205,7 +207,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
         if (selectedHref !== null) {
           window.location.href = selectedHref;
         } else {
-          this.startSearch();
+          void this.startSearch();
         }
 
         break;
@@ -309,6 +311,23 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
   }
 
+  private trackRecommendationClick(recommendation: ISearchRecommendation) {
+    if (!('dataLayer' in window)) return;
+
+    const trackingAttributes = recommendation.additionalAttributes.reduce((acc, curr) => {
+      acc[curr.name] = curr.value;
+      return acc;
+    }, {});
+
+    (window.dataLayer as TagManagerDataLayer).push({
+      event: trackingAttributes['data-event'],
+      text: trackingAttributes['data-text'],
+      link_url: trackingAttributes['data-linkurl'],
+      label: trackingAttributes['data-label'],
+      type: trackingAttributes['data-type'],
+    });
+  }
+
   render() {
     if (state.localizedConfig?.header === undefined) {
       return;
@@ -326,7 +345,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
             class="search-button"
             type="button"
             aria-expanded={`${this.searchDropdownOpen}`}
-            onClick={e => this.toggleDropdown(e)}
+            onClick={e => void this.toggleDropdown(e)}
           >
             <span class="visually-hidden">
               {this.searchDropdownOpen
@@ -349,14 +368,11 @@ export class PostSearch implements HasDropdown, IsFocusable {
                         placeholder={translations.flyoutSearchBoxFloatingLabel}
                         autocomplete="off"
                         ref={el => (this.searchBox = el)}
-                        onInput={() => this.handleSearchInput()}
+                        onInput={() => void this.handleSearchInput()}
                         onKeyDown={e => this.handleKeyDown(e)}
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
-                      <button
-                        onClick={() => this.startSearch()}
-                        class="nav-link start-search-button"
-                      >
+                      <button onClick={() => void this.startSearch()} class="start-search-button">
                         <span class="visually-hidden">{translations.searchSubmit}</span>
                         <SvgIcon name="pi-search" />
                       </button>
@@ -383,6 +399,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                               href={new URL(recommendation.href, 'https://post.ch').href}
                               data-suggestion-text={recommendation.label}
                               onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
+                              onClick={() => this.trackRecommendationClick(recommendation)}
                             >
                               <span
                                 class="search-recommendation__icon"
@@ -392,7 +409,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                             </a>
                           </li>
                         ))}
-                      {this.parcelSuggestion && this.parcelSuggestion.ok && (
+                      {this.parcelSuggestion?.ok && (
                         <li>
                           <a
                             class="nav-link parcel-suggestion"

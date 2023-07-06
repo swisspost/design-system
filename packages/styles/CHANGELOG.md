@@ -1,5 +1,21 @@
 # @swisspost/design-system-styles
 
+## 6.2.4
+
+### Patch Changes
+
+- Fix an issue with two empty CSS files in the styles package. Empty files are no longer delivered. (by [@imagoiq](https://github.com/imagoiq) with [#1600](https://github.com/swisspost/design-system/pull/1600))
+
+- Fixed default font-size and weight of the legend element (by [@geekrumper](https://github.com/geekrumper) with [#1512](https://github.com/swisspost/design-system/pull/1512))
+
+## 6.2.3
+
+### Patch Changes
+
+- Optimized floating-label controls to show placeholders. (by [@alizedebray](https://github.com/alizedebray) with [#1509](https://github.com/swisspost/design-system/pull/1509))
+
+- Added missing definitions for italic font faces. (by [@yannikstuker](https://github.com/yannikstuker) with [#1513](https://github.com/swisspost/design-system/pull/1513))
+
 ## 6.2.2
 
 ### Patch Changes

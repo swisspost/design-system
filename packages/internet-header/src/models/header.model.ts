@@ -74,6 +74,7 @@ export interface ISearchConfig {
   searchHubName: string;
   searchPipelineName: string;
   searchRecommendations: ISearchRecommendationContainer;
+  isCustomSuggestionHidden?: boolean;
 }
 
 export interface ISearchRecommendationContainer {

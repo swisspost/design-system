@@ -17,7 +17,7 @@
   // "forwardPorts": [],
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "pnpm bootstrap",
+  // "postCreateCommand": "",
 
   // For Storybook to work we need more than 4gb of memory
   "hostRequirements": {

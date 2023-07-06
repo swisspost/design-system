@@ -1,5 +1,35 @@
 # @swisspost/internet-header
 
+## 1.8.0
+
+### Minor Changes
+
+- Added tracking calls to the search recommendations. Click events are being sent to the tag manager if it is present on the page (by [@gfellerph](https://github.com/gfellerph) with [#1548](https://github.com/swisspost/design-system/pull/1548))
+
+- Implemented kill-switch for coveo suggestions based on the `isCustomSuggestionHidden` option in the search configuration. (by [@gfellerph](https://github.com/gfellerph) with [#1591](https://github.com/swisspost/design-system/pull/1591))
+
+### Patch Changes
+
+- Deprecated the stickyness option "full". It should not be used anymore as this mode takes up too much screen space (by [@gfellerph](https://github.com/gfellerph) with [#1551](https://github.com/swisspost/design-system/pull/1551))
+
+- Fixed jobs login widget. An optimized widget is now rendered without requesting the whole KLP widget logic (by [@gfellerph](https://github.com/gfellerph) with [#1568](https://github.com/swisspost/design-system/pull/1568))
+
+- Fixed an issue with the search button. Focusing or clicking the button will no longer change its position and search queries can be performed as usual. (by [@gfellerph](https://github.com/gfellerph) with [#1590](https://github.com/swisspost/design-system/pull/1590))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.4
+
+## 1.7.4
+
+### Patch Changes
+
+- Fixed broken links to the storybook documentation. (by [@alizedebray](https://github.com/alizedebray) with [#1514](https://github.com/swisspost/design-system/pull/1514))
+
+- Fixed an issue, which causes the autofocus of any element on a page to move instantly to the klp-login-widget button on page load, when a user is logged in. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1476](https://github.com/swisspost/design-system/pull/1476))
+
+- Fixed a visual bug where the header was not completely hidden in the stickyness="minimal" mode. The grey line is no longer visible when the header is hidden. (by [@cellcoresystems](https://github.com/cellcoresystems) with [#1517](https://github.com/swisspost/design-system/pull/1517))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.3
+
 ## 1.7.3
 
 ### Patch Changes
