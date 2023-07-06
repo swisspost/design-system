@@ -137,7 +137,12 @@ export const ChoiceCardTemplate = (args: Args, onChange?: () => void, id = 'choi
       )}
       <label id={`label-${id}`} htmlFor={id} className="form-check-label">
         <span>{args.label}</span>
-        {args.showDescription && [<br />, <span className="font-size-12">{args.description}</span>]}
+        {args.showDescription && [
+          <br key="br" />,
+          <span key="span" className="font-size-12">
+            {args.description}
+          </span>,
+        ]}
       </label>
       {args.showIcon && <post-icon name={args.icon} aria-hidden="true"></post-icon>}
     </div>
@@ -156,7 +161,7 @@ export const choiceCardGroup = (args: Args) => {
       <legend>Legend</legend>
       <div className="row g-3">
         {loop.map(n => (
-          <div className="col-sm-6">
+          <div className="col-sm-6" key={n}>
             {ChoiceCardTemplate({ ...args, label: n }, undefined, `choice-card-${n}`)}
           </div>
         ))}
