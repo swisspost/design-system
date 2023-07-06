@@ -146,7 +146,6 @@ As per resolution of the [discussion about sass variables vs. CSS custom propert
 #### Do
 - Use custom properties to define themable colors, for example `color` or `border-color` for dark-mode support
 - Use custom properties when updating the value with JavaScript is necessary
-- Use custom properties when a simple option is available for tweaking the component from the outside
 
 #### Don't
 - Use custom properties to declare every possible value on the component. Use sass variables instead
