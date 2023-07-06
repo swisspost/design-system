@@ -12,7 +12,6 @@ export const config: Config = {
     }),
     {
       type: 'dist',
-      esmLoaderPath: '../loader',
     },
     {
       type: 'dist-custom-elements',
@@ -26,8 +25,8 @@ export const config: Config = {
     },
     {
       type: 'docs-json',
-      file: 'dist/docs.json'
-    }
+      file: 'dist/docs.json',
+    },
   ],
   plugins: [
     sass({
@@ -35,6 +34,6 @@ export const config: Config = {
     }),
   ],
   testing: {
-    testPathIgnorePatterns: ['cypress']
-  }
+    testPathIgnorePatterns: ['cypress'],
+  },
 };
