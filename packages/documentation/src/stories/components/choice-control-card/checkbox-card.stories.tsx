@@ -1,5 +1,5 @@
 import { Meta, Story } from '@storybook/react';
-import { choiceCardGroup, choiceCardMeta, ChoiceCardTemplate } from './choice-card';
+import { choiceCardGroup, choiceCardMeta, ChoiceCardReactiveTemplate } from './choice-card';
 import docsPage from './checkbox-card.docs.mdx';
 
 export default Object.assign({}, choiceCardMeta, {
@@ -8,7 +8,7 @@ export default Object.assign({}, choiceCardMeta, {
   args: { ...choiceCardMeta.args, type: 'checkbox' },
 }) as Meta;
 
-export const Default: Story = ChoiceCardTemplate.bind({});
+export const Default: Story = ChoiceCardReactiveTemplate.bind({});
 Default.args = {
   type: 'checkbox',
 };

@@ -112,27 +112,30 @@ export const choiceCardMeta = {
   },
 } as Meta;
 
-export const ChoiceCardTemplate = (args: Args) => {
-  const [_, updateArgs] = useArgs();
+export const ChoiceCardTemplate = (args: Args, onChange?: () => void, id = 'choice-card') => {
   const inputClasses = ['form-check-input', args.validation].filter(c => c !== 'null').join(' ');
   return (
     <div className="radio-button-card">
-      <input
-        id="radio-button-card-1"
-        className={inputClasses}
-        type={args.type}
-        name="radio-button-card"
-        disabled={args.disabled}
-        checked={args.checked}
-        onChange={() => {
-          updateArgs({ checked: !args.checked });
-        }}
-      />
-      <label
-        id="radio-button-card-label-1"
-        htmlFor="radio-button-card-1"
-        className="form-check-label"
-      >
+      {typeof onChange === 'function' ? (
+        <input
+          id={id}
+          className={inputClasses}
+          type={args.type}
+          name="radio-button-card"
+          disabled={args.disabled}
+          checked={args.checked}
+          onChange={onChange}
+        />
+      ) : (
+        <input
+          id={id}
+          className={inputClasses}
+          type={args.type}
+          name="radio-button-card"
+          disabled={args.disabled}
+        />
+      )}
+      <label id={`label-${id}`} htmlFor={id} className="form-check-label">
         <span>{args.label}</span>
         {args.showDescription && [<br />, <span className="font-size-12">{args.description}</span>]}
       </label>
@@ -141,8 +144,12 @@ export const ChoiceCardTemplate = (args: Args) => {
   );
 };
 
+export const ChoiceCardReactiveTemplate = (args: Args) => {
+  const [_, updateArgs] = useArgs();
+  return ChoiceCardTemplate(args, () => updateArgs({ checked: !args.checked }));
+};
+
 export const choiceCardGroup = (args: Args) => {
-  const inputClasses = ['form-check-input', args.validation].filter(c => c !== 'null').join(' ');
   const loop = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
   return (
     <fieldset className="container-fluid">
@@ -150,27 +157,7 @@ export const choiceCardGroup = (args: Args) => {
       <div className="row g-3">
         {loop.map(n => (
           <div className="col-sm-6">
-            <div className="radio-button-card">
-              <input
-                id={`radio-button-card-${n}`}
-                className={inputClasses}
-                type={args.type}
-                name="radio-button-card"
-                disabled={args.disabled}
-              />
-              <label
-                id={`radio-button-label-${n}`}
-                htmlFor={`radio-button-card-${n}`}
-                className="form-check-label"
-              >
-                <span>{n}</span>
-                {args.showDescription && [
-                  <br />,
-                  <span className="font-size-12">{args.description}</span>,
-                ]}
-              </label>
-              {args.showIcon && <post-icon name={args.icon} aria-hidden="true"></post-icon>}
-            </div>
+            {ChoiceCardTemplate({ ...args, label: n }, undefined, `choice-card-${n}`)}
           </div>
         ))}
       </div>

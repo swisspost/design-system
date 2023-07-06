@@ -70,7 +70,7 @@
     color: color.$error;
     border-color: color.$error;
 
-    & ~ .invalid-feedback {
+    ~ .invalid-feedback {
       display: block;
     }
   }
@@ -116,6 +116,11 @@
       // Lift spans above the before element to make them selectable
       position: relative;
     }
+  }
+
+  input,
+  .form-check-label {
+    margin-block: 0.25rem;
   }
 
   // Align input and label if there is an icon
