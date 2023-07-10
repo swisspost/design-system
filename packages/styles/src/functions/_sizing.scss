@@ -2,7 +2,7 @@
 @use 'sass:math';
 
 @use './utilities';
-@use './list';
+@use './list-extended';
 
 @function strip-unit($value) {
   @return math.div($value, $value * 0 + 1);
@@ -70,11 +70,11 @@
 
   @if (nth($box-shadow, 1) == 'inset') {
     $multiplier: -1;
-    $box-shadow: list.remove-nth($box-shadow, 1);
+    $box-shadow: list-extended.remove-nth($box-shadow, 1);
   }
 
   @if (utilities.starts-with-any(nth($box-shadow, -1), 'hsl', 'rgb', '#')) {
-    $box-shadow: list.remove-nth($box-shadow, -1);
+    $box-shadow: list-extended.remove-nth($box-shadow, -1);
   }
 
   $len: list.length($box-shadow);

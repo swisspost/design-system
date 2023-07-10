@@ -1,3 +1,4 @@
+@use 'sass:color' as color-fn;
 @use './../color';
 @use './../commons';
 @use './../spacing';
@@ -29,7 +30,7 @@ $table-head-color: color.$gray-40 !default;
 $table-dark-bg: color.$gray-80 !default;
 $table-dark-accent-bg: rgba(color.$white, 0.05) !default;
 $table-dark-hover-bg: rgba(color.$white, 0.075) !default;
-$table-dark-border-color: color.adjust(color.$gray-80, $lightness: 7.5%) !default;
+$table-dark-border-color: color-fn.adjust(color.$gray-80, $lightness: 7.5%) !default;
 $table-dark-color: color.$black !default;
 
 $table-striped-order: odd !default;
