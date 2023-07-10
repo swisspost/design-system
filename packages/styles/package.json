@@ -63,7 +63,7 @@
     "stylelint": "15.10.1",
     "stylelint-config-prettier": "9.0.5",
     "stylelint-config-sass-guidelines": "9.0.1",
-    "stylelint-prettier": "2.0.0",
+    "stylelint-prettier": "4.0.0",
     "stylelint-scss": "5.0.1",
     "typescript": "4.9.5"
   },

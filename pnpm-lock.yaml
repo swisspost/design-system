@@ -844,8 +844,8 @@ importers:
         specifier: 9.0.1
         version: 9.0.1(postcss@8.4.24)(stylelint@15.10.1)
       stylelint-prettier:
-        specifier: 2.0.0
-        version: 2.0.0(prettier@2.8.8)(stylelint@15.10.1)
+        specifier: 4.0.0
+        version: 4.0.0(prettier@2.8.8)(stylelint@15.10.1)
       stylelint-scss:
         specifier: 5.0.1
         version: 5.0.1(stylelint@15.10.1)
@@ -22830,12 +22830,12 @@ packages:
       stylelint: 15.10.1
     dev: true
 
-  /stylelint-prettier@2.0.0(prettier@2.8.8)(stylelint@15.10.1):
-    resolution: {integrity: sha512-jvT3G+9lopkeB0ARmDPszyfaOnvnIF+30QCjZxyt7E6fynI1T9mOKgYDNb9bXX17M7PXMZaX3j/26wqakjp1tw==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
+  /stylelint-prettier@4.0.0(prettier@2.8.8)(stylelint@15.10.1):
+    resolution: {integrity: sha512-hYlObunQiSzc5XRttNiDyaY1W7ytW/AJtEbaDxy0rr4ioQvko+cjAgSGrRbz0iRB+yc6jiMrUmHcGkvFb+zDqw==}
+    engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
-      prettier: '>=2.0.0'
-      stylelint: '>=14.0.0 || >=15'
+      prettier: '>=3.0.0'
+      stylelint: '>=15.8.0 || >=15'
     dependencies:
       prettier: 2.8.8
       prettier-linter-helpers: 1.0.0
