@@ -23,7 +23,7 @@ const CHEERIO_OPTIONS: cheerio.CheerioOptions = {
 
 const PRETTIER_OPTIONS: prettier.Options = {
   parser: 'html',
-  plugins: [ htmlParser ],
+  plugins: [ htmlParser as any ],
   printWidth: 10000,
   tabWidth: 2,
   useTabs: false,
@@ -103,7 +103,7 @@ export function getDomMigrationRule(...updates: DomUpdate[]): Rule {
           const treeUpdateRecorder = tree.beginUpdate(treeFilePath);
 
           sourceElements
-            .forEach(source => {
+            .forEach(async source => {
               // get corresponding outputelement by cheerio-id
               const distElement = $outputElements.filter((_i, element) => $(element).data('cheerio-id') === source.id)
                 .first()
@@ -117,9 +117,14 @@ export function getDomMigrationRule(...updates: DomUpdate[]): Rule {
               // remove old "element" out of tree file
               treeUpdateRecorder.remove(source.start, source.end - source.start);
               // write new "element" into the tree file
+
+
+              const content = await prettier.format(distElement, PRETTIER_OPTIONS);
+              const contentWithoutBreak = content.replace(/(\n|\r\n)$/, '');
+
               treeUpdateRecorder.insertLeft(
                 source.start,
-                prettier.format(distElement, PRETTIER_OPTIONS).replace(/(\n|\r\n)$/, ''),
+                contentWithoutBreak
               );
             });
 
