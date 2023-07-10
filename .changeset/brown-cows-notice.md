@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fix cutoff placeholder of file input on Safari. Support plural for the button label with multiple attribute. Fix padding when the state is valid or invalid.
+Fixed the placeholder for the file upload in Safari. It's no longer cut off and pluralisation for the button label with a `multiple` attribute is now supported. Also fixed padding when the state is valid or invalid.
