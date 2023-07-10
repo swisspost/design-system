@@ -2,4 +2,4 @@
 '@swisspost/design-system-demo': minor
 ---
 
-Used the post-icon component instead of `.pi` classes to display icons in demos.
+Migrate from using `.pi` classes for displaying icons to using the `<post-icon>` component.
