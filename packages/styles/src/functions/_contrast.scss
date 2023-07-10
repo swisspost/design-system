@@ -1,3 +1,5 @@
+@use 'sass:color';
+@use 'sass:map';
 @use 'sass:math';
 
 // From https://codetuts.dev/text-contrast-sass/
@@ -5,9 +7,9 @@
 
 @function luminance($color) {
   $rgb: (
-    'red': red($color),
-    'green': green($color),
-    'blue': blue($color),
+    'red': color.red($color),
+    'green': color.green($color),
+    'blue': color.blue($color),
   );
 
   @each $color, $value in $rgb {
@@ -20,7 +22,7 @@
       $value: math.pow($value, 2.4);
     }
 
-    $rgb: map-merge(
+    $rgb: map.merge(
       $rgb,
       (
         $color: $value,
@@ -28,8 +30,8 @@
     );
   }
 
-  $result-luminance: (map-get($rgb, 'red') * 0.2126) + (map-get($rgb, 'green') * 0.7152) +
-    (map-get($rgb, 'blue') * 0.0722);
+  $result-luminance: (map.get($rgb, 'red') * 0.2126) + (map.get($rgb, 'green') * 0.7152) +
+    (map.get($rgb, 'blue') * 0.0722);
 
   @return $result-luminance;
 }

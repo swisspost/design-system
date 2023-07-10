@@ -1,3 +1,4 @@
+@use 'sass:list';
 @use 'sass:math';
 
 @use 'sass:string';
@@ -17,11 +18,11 @@
   }
 
   @if (map-has-key($map, $key1)) {
-    $found-index: index(map.keys($map), $key1);
+    $found-index: list.index(map.keys($map), $key1);
 
     @if ($key2) {
       $map: map.get($map, $key1);
-      $found-index: index($map, $key2);
+      $found-index: list.index($map, $key2);
     }
   }
 

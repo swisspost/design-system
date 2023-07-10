@@ -72,7 +72,9 @@
 
   &.datatable-icon-sort-unset {
     background-image: datatable.$datatable-sort-unset-icon;
-    background-position: center top, center bottom;
+    background-position:
+      center top,
+      center bottom;
   }
 
   &.datatable-icon-up {

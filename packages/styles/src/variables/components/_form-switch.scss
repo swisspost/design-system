@@ -13,7 +13,8 @@ $form-switch-width: 2 * spacing.$size-big !default;
 $form-switch-padding-start: 0 !default;
 $form-switch-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -16 32 32'><circle r='15' stroke='#{$form-switch-border-color}' stroke-width='2' fill='#{$form-switch-color}'/></svg>") !default;
 $form-switch-border-radius: $form-switch-width !default;
-$form-switch-transition: background-position animation.$transition-base-timing,
+$form-switch-transition:
+  background-position animation.$transition-base-timing,
   background-color animation.$transition-time-default !default;
 $form-switch-checked-color: color.$white !default;
 $form-switch-checked-bg-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='-16 -16 32 32'><circle r='15' stroke='#{$form-switch-checked-border-color}' stroke-width='2' fill='#{$form-switch-checked-color}'/></svg>") !default;

@@ -32,7 +32,7 @@
     "highlight.js": "11.8.0",
     "ngx-highlightjs": "8.0.0",
     "ngx-toastr": "16.2.0",
-    "prettier": "2.8.8",
+    "prettier": "3.0.0",
     "rxjs": "7.8.1",
     "tslib": "2.6.1",
     "zone.js": "0.13.1"

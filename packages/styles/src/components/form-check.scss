@@ -152,7 +152,9 @@
     outline-offset: button.$input-btn-focus-width * 1.5;
     background-image: escape-svg(form-switch.$form-switch-bg-image),
       form-switch.$form-switch-linear-gradient;
-    background-position: left center, right center;
+    background-position:
+      left center,
+      right center;
     background-size: form-switch.$form-switch-checked-bg-image-size,
       form-switch.$form-switch-linear-gradient-size;
 
@@ -176,7 +178,9 @@
     &:checked {
       background-image: escape-svg(form-switch.$form-switch-checked-bg-image),
         form-switch.$form-switch-linear-gradient;
-      background-position: right center, left center;
+      background-position:
+        right center,
+        left center;
     }
 
     &:checked:focus {

@@ -161,7 +161,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 0.75rem 2rem 0.75rem 1rem;
-  transition: opacity 200ms, background-position 200ms;
+  transition:
+    opacity 200ms,
+    background-position 200ms;
   border: 0;
   border-top: 1px solid rgba(var(--post-contrast-color-rgb), 0.2);
   background-image: url(icons.get-colored-svg-url('2050', color.$white));

@@ -79,7 +79,9 @@
     border-radius: 50%;
     font-size: stepper.$stepper-indicator-font-size;
     font-weight: stepper.$stepper-indicator-font-weight;
-    transition: background 250ms, color 250ms;
+    transition:
+      background 250ms,
+      color 250ms;
   }
 
   &[aria-current]::before,
