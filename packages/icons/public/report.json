@@ -9295,36 +9295,6 @@
       "modifiedAt": "2021-10-18T11:17:32.000Z"
     },
     {
-      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
-      "id": 539487,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "Mobile Shopping",
-          "Bestellung",
-          "Ordre",
-          "Ordine",
-          "Order"
-        ],
-        "year": "2021"
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:55:20.000Z",
-      "modifiedAt": "2021-10-18T11:24:06.000Z"
-    },
-    {
       "uuid": "88307300-5bef-11eb-9f99-005056873709",
       "id": 539481,
       "type": "picture.pictogram.",
@@ -9352,6 +9322,36 @@
         }
       },
       "createdAt": "2021-01-21T13:49:50.000Z",
+      "modifiedAt": "2021-10-18T11:24:06.000Z"
+    },
+    {
+      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
+      "id": 539487,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "Mobile Shopping",
+          "Bestellung",
+          "Ordre",
+          "Ordine",
+          "Order"
+        ],
+        "year": "2021"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:55:20.000Z",
       "modifiedAt": "2021-10-18T11:24:06.000Z"
     },
     {
@@ -19389,6 +19389,215 @@
       },
       "createdAt": "2023-06-08T11:22:54.000Z",
       "modifiedAt": "2023-06-08T11:23:53.000Z"
+    },
+    {
+      "uuid": "61d080d0-1a59-11ee-8c71-005056873709",
+      "id": 686170,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686170/storage/Njg2MTY5LzAvbWFzdGVy",
+        "keywords": [
+          "Schlüsselverlust",
+          "Planon",
+          "IMS",
+          "Perte de clés",
+          "Smarrimento chiavi",
+          "key loss"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2536.svg",
+        "basename": "2536",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-04T10:56:09.000Z",
+      "modifiedAt": "2023-07-04T10:58:07.000Z"
+    },
+    {
+      "uuid": "d411a890-1af9-11ee-8c71-005056873709",
+      "id": 686255,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686255/storage/Njg2MjU0LzAvbWFzdGVy",
+        "keywords": [
+          "Gebrochenes Herz",
+          "Newsletter abmelden",
+          "Cœur cassé",
+          "désinscrire la newsletter",
+          "Cuore rotto",
+          "disdire la newsletter",
+          "Broken heart",
+          "unsubscribe from the newsletter,"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2537.svg",
+        "basename": "2537",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-05T06:04:40.000Z",
+      "modifiedAt": "2023-07-05T06:05:49.000Z"
+    },
+    {
+      "uuid": "d66eeef0-1af8-11ee-8c71-005056873709",
+      "id": 686247,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686247/storage/Njg2MjQ2LzAvbWFzdGVy",
+        "keywords": [
+          "Giesskanne",
+          "arrosoir",
+          "Annaffiatoio",
+          "watering can"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2538.svg",
+        "basename": "2538",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-05T05:57:34.000Z",
+      "modifiedAt": "2023-07-05T05:59:11.000Z"
+    },
+    {
+      "uuid": "33f31880-1bee-11ee-8c71-005056873709",
+      "id": 686377,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686377/storage/Njg2Mzc2LzAvbWFzdGVy",
+        "keywords": [
+          "Satellit",
+          "satellite",
+          "satellitare",
+          "satellite"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2539.svg",
+        "basename": "2539",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-06T11:13:58.000Z",
+      "modifiedAt": "2023-07-06T11:14:55.000Z"
+    },
+    {
+      "uuid": "23568460-1c09-11ee-8c71-005056873709",
+      "id": 686431,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686431/storage/Njg2NDMwLzAvbWFzdGVy",
+        "keywords": [
+          "Strassen",
+          "route",
+          "strade",
+          "Streets"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2540.svg",
+        "basename": "2540",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-06T14:26:46.000Z",
+      "modifiedAt": "2023-07-06T14:28:19.000Z"
+    },
+    {
+      "uuid": "b925b190-1c0a-11ee-8c71-005056873709",
+      "id": 686435,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686435/storage/Njg2NDM0LzAvbWFzdGVy",
+        "keywords": [
+          "Topografie",
+          "topographie",
+          "topografia",
+          "topography"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2541.svg",
+        "basename": "2541",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-06T14:38:07.000Z",
+      "modifiedAt": "2023-07-06T14:41:30.000Z"
+    },
+    {
+      "uuid": "5b3741b0-1c0b-11ee-8c71-005056873709",
+      "id": 686439,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686439/storage/Njg2NDM4LzAvbWFzdGVy",
+        "keywords": [
+          "Social Media",
+          "mezzi di comunicazione sociale",
+          "Réseaux sociaux",
+          "Social Media"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2542.svg",
+        "basename": "2542",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-06T14:42:39.000Z",
+      "modifiedAt": "2023-07-06T14:45:06.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -29968,11 +30177,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-06-11T01:47:56.170Z",
+  "created": "2023-07-09T01:52:54.625Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 866
+    "success": 873
   },
-  "version": "1.0.5"
+  "version": "1.0.7"
 }
