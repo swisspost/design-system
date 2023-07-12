@@ -1,7 +1,7 @@
 import JsxParser from 'react-jsx-parser';
 import { renderToStaticMarkup } from 'react-dom/server';
 import * as prettier from 'prettier';
-import * as htmlParser from 'prettier/parser-html';
+import htmlParser from 'prettier/plugins/html';
 
 import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';
@@ -27,7 +27,7 @@ Object.entries(Components).forEach(([name, component]) => {
   component.displayName = name.replace(/\B([A-Z])/g, '-$1').toLowerCase();
 });
 
-const PRETTIER_OPTIONS = {
+const PRETTIER_OPTIONS: prettier.Options = {
   parser: 'html',
   plugins: [htmlParser],
   printWidth: 100,

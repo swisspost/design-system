@@ -6,7 +6,7 @@ import { canMigrateFile, createMigrationProgram } from '@angular/core/schematics
 import * as cheerio from 'cheerio/lib/slim';
 import { relative } from 'path';
 import * as prettier from 'prettier';
-import * as htmlParser from 'prettier/parser-html';
+import htmlParser from 'prettier/plugins/html';
 import { SourceFile } from 'typescript';
 import { DomUpdate } from './dom-update';
 
@@ -23,7 +23,7 @@ const CHEERIO_OPTIONS: cheerio.CheerioOptions = {
 
 const PRETTIER_OPTIONS: prettier.Options = {
   parser: 'html',
-  plugins: [ htmlParser as any ],
+  plugins: [ htmlParser],
   printWidth: 10000,
   tabWidth: 2,
   useTabs: false,
