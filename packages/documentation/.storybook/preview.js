@@ -1,7 +1,7 @@
 import JsxParser from 'react-jsx-parser';
 import { renderToStaticMarkup } from 'react-dom/server';
 import * as prettier from 'prettier';
-import htmlParser from 'prettier/plugins/html';
+import * as htmlParser from 'prettier/plugins/html';
 
 import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';

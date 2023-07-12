@@ -6,7 +6,7 @@ import { canMigrateFile, createMigrationProgram } from '@angular/core/schematics
 import * as cheerio from 'cheerio/lib/slim';
 import { relative } from 'path';
 import * as prettier from 'prettier';
-import htmlParser from 'prettier/plugins/html';
+import * as htmlParser from 'prettier/plugins/html';
 import { SourceFile } from 'typescript';
 import { DomUpdate } from './dom-update';
 
