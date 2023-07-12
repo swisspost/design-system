@@ -9,7 +9,7 @@ const config: StorybookConfig = {
     name: '@storybook/web-components-vite',
     options: {},
   },
-  stories: ['../src/**/*.stories.@(mdx|tsx)'],
+  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
   addons: [
     // essential addons
     '@storybook/addon-essentials',
