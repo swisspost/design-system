@@ -23,7 +23,7 @@ const CHEERIO_OPTIONS: cheerio.CheerioOptions = {
 
 const PRETTIER_OPTIONS: prettier.Options = {
   parser: 'html',
-  plugins: [ htmlParser],
+  plugins: [ htmlParser ],
   printWidth: 10000,
   tabWidth: 2,
   useTabs: false,
