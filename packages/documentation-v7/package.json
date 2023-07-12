@@ -15,15 +15,19 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "storybook dev -p 9200 --quiet",
-    "start:headless": "storybook dev -p 9300 --quiet --no-open",
-    "build": "storybook build --quiet"
+    "manager-ui:start": "rimraf .storybook/themes/manager-ui & pnpm manager-ui:compile --style=expanded",
+    "manager-ui:build": "rimraf .storybook/themes/manager-ui & pnpm manager-ui:compile --style=compressed --no-source-map",
+    "manager-ui:compile": "sass --update --load-path=node_modules .storybook/themes/manager.scss public/manager/ui.css",
+    "start": "pnpm manager-ui:start & storybook dev -p 9200 --quiet",
+    "start:headless": "pnpm manager-ui:start & storybook dev -p 9300 --quiet --no-open",
+    "build": "pnpm manager-ui:build & storybook build --quiet"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.3.7",
     "@swisspost/design-system-icons": "workspace:1.0.7",
     "@swisspost/design-system-styles": "workspace:6.2.4",
-    "@swisspost/internet-header": "workspace:1.8.0"
+    "@swisspost/internet-header": "workspace:1.8.0",
+    "bootstrap": "5.3.0"
   },
   "devDependencies": {
     "@storybook/addon-essentials": "7.0.26",
@@ -36,6 +40,7 @@
     "lit": "2.7.6",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "rimraf": "5.0.1",
     "sass": "1.63.6",
     "storybook": "7.0.26",
     "storybook-dark-mode": "3.0.0",
