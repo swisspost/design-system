@@ -598,6 +598,9 @@ importers:
       '@swisspost/design-system-components':
         specifier: workspace:1.3.7
         version: link:../components
+      '@swisspost/design-system-components-react':
+        specifier: workspace:^
+        version: link:../components-react
       '@swisspost/design-system-icons':
         specifier: workspace:1.0.7
         version: link:../icons

@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.3.7",
+    "@swisspost/design-system-components-react": "workspace:^",
     "@swisspost/design-system-icons": "workspace:1.0.7",
     "@swisspost/design-system-styles": "workspace:6.2.4",
     "@swisspost/internet-header": "workspace:1.8.0",
