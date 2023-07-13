@@ -1,7 +1,13 @@
 import React from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
 
-const DEVELOPERS = [
+interface Developer {
+  name: string;
+  title: string;
+  avatar: string;
+}
+
+const DEVELOPERS: Developer[] = [
   {
     name: 'Philipp Gfeller',
     title: 'Lead UI Developer',
@@ -24,10 +30,6 @@ const DEVELOPERS = [
   },
 ];
 
-function forEach(iterable, callback) {
-  return Object.entries(Object.assign(iterable)).map(([key, value]) => callback(key, value));
-}
-
 export default () => (
   <footer className="docs-footer mt-huge">
     <div className={useDarkMode() ? 'bg-black' : 'bg-light'}>
@@ -36,10 +38,10 @@ export default () => (
           <h2 className="mt-0">Support</h2>
 
           <div className="d-flex flex-wrap mt-huge-r mb-huge-r profile-list">
-            {forEach(
-              DEVELOPERS.sort(() => (Math.random() > 0.5 ? 1 : -1)),
-              (key, developer) => (
-                <article key={key} className="avatar">
+            {DEVELOPERS
+              .sort(() => (Math.random() > 0.5 ? 1 : -1))
+              .map((developer, index) => (
+                <article key={index} className="avatar">
                   <img
                     className="profile-picture"
                     src={developer.avatar}
@@ -52,8 +54,7 @@ export default () => (
                     <p>{developer.title}</p>
                   </div>
                 </article>
-              ),
-            )}
+              ))}
           </div>
 
           <div className="row mt-regular-r">

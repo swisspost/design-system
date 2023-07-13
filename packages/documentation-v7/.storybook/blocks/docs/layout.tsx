@@ -1,24 +1,30 @@
-import React from 'react';
-
-import { DocsContainer as Layout, Unstyled } from '@storybook/blocks';
-import Header from './header';
+import { DocsContainer, DocsContainerProps, Unstyled } from '@storybook/blocks';
+import React, { PropsWithChildren } from 'react';
+import { useDarkMode } from 'storybook-dark-mode';
+import themes from '../../themes/base';
 import Footer from './footer';
+import Header from './header';
 import './layout.scss';
 
-function showHeader() {
+function shouldShowHeader() {
   return new URLSearchParams(window.location.search).get('id') === 'home--docs';
 }
 
-function showFooter() {
+function shouldShowFooter() {
   return window.location !== window.parent.location;
 }
 
-export default ({ children, context }) => (
-  <Layout context={context}>
-    <Unstyled>
-      {showHeader() ? <Header /> : null}
-      <div className="container">{children}</div>
-      {showFooter() ? <Footer /> : null}
-    </Unstyled>
-  </Layout>
-);
+export default ({ children, context }: PropsWithChildren<DocsContainerProps>) => {
+  return (
+    <DocsContainer
+      context={context}
+      theme={useDarkMode() ? themes.dark : themes.light}
+    >
+      <Unstyled>
+        {shouldShowHeader() && <Header/>}
+        <div className="container">{children}</div>
+        {shouldShowFooter() && <Footer/>}
+      </Unstyled>
+    </DocsContainer>
+  );
+};

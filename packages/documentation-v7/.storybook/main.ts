@@ -9,17 +9,22 @@ const config: StorybookConfig = {
     name: '@storybook/web-components-vite',
     options: {},
   },
-  stories: ['../src/**/*.mdx', '../src/**/*.stories.@(ts|tsx)'],
+  stories: ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(ts|tsx)'],
   addons: [
-    // essential addons
-    '@storybook/addon-essentials',
-
-    // community addons
-    'storybook-dark-mode',
-    // '@pxtrn/storybook-addon-docs-stencil',
     '@storybook/addon-links',
+    '@storybook/addon-a11y',
+    'storybook-dark-mode',
     '@geometricpanda/storybook-addon-badges',
-    // '@storybook/addon-a11y',
+    {
+      name: '@storybook/addon-essentials',
+      options: {
+        actions: false,
+        backgrounds: false,
+        highlight: false,
+        outline: false,
+        toolbars: false,
+      },
+    }
   ],
   staticDirs: ['../public', '../node_modules/@swisspost/design-system-icons/public'],
   docs: {
