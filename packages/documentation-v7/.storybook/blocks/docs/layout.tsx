@@ -5,12 +5,20 @@ import Header from './header';
 import Footer from './footer';
 import './layout.scss';
 
+function showHeader() {
+  return new URLSearchParams(window.location.search).get('id') === 'home--docs';
+}
+
+function showFooter() {
+  return window.location !== window.parent.location;
+}
+
 export default ({ children, context }) => (
   <Layout context={context}>
     <Unstyled>
-      {context.attachedCSFFile?.meta.id === 'home' ? <Header /> : null}
+      {showHeader() ? <Header /> : null}
       <div className="container">{children}</div>
-      {window.location !== window.parent.location ? <Footer /> : null}
+      {showFooter() ? <Footer /> : null}
     </Unstyled>
   </Layout>
 );
