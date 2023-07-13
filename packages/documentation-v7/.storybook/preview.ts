@@ -1,5 +1,5 @@
 import type { Preview } from '@storybook/react';
-import CustomDocsContainer from './components/DocsContainer';
+import CustomDocsContainer from './blocks/docs/layout';
 import { BADGE } from './constants';
 import postThemes from './post-themes';
 import './preview.scss';
