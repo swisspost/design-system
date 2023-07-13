@@ -611,6 +611,9 @@ importers:
         specifier: 5.3.0
         version: 5.3.0(@popperjs/core@2.11.8)
     devDependencies:
+      '@geometricpanda/storybook-addon-badges':
+        specifier: 1.1.1
+        version: 1.1.1(@storybook/addons@6.5.16)(@storybook/api@6.5.16)(@storybook/components@6.5.16)(@storybook/core-events@6.5.16)(@storybook/theming@6.5.16)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/addon-essentials':
         specifier: 7.0.26
         version: 7.0.26(react-dom@18.2.0)(react@18.2.0)

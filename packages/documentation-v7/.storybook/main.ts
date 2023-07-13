@@ -18,7 +18,7 @@ const config: StorybookConfig = {
     'storybook-dark-mode',
     // '@pxtrn/storybook-addon-docs-stencil',
     '@storybook/addon-links',
-    // '@geometricpanda/storybook-addon-badges',
+    '@geometricpanda/storybook-addon-badges',
     // '@storybook/addon-a11y',
   ],
   staticDirs: ['../public', '../node_modules/@swisspost/design-system-icons/public'],
