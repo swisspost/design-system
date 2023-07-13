@@ -4,6 +4,8 @@ import themes from './themes/base';
 import './themes/preview.scss';
 
 import DocsLayout from './blocks/docs/layout';
+import './helpers/register-web-components';
+
 const preview: Preview = {
   parameters: {
     options: {
