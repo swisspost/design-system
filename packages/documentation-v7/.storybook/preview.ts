@@ -1,18 +1,11 @@
 import type { Preview } from '@storybook/web-components';
+
 import themes from './themes/base';
-import DocsLayout from './blocks/docs/layout';
 import './themes/preview.scss';
 
+import DocsLayout from './blocks/docs/layout';
 const preview: Preview = {
   parameters: {
-    previewTabs: {
-      'storybook/docs/panel': {
-        title: 'Documentation',
-      },
-      'canvas': {
-        title: 'Playground',
-      },
-    },
     options: {
       storySort: {
         order: [
@@ -46,7 +39,6 @@ const preview: Preview = {
     },
     docs: {
       container: DocsLayout,
-      components: {},
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
