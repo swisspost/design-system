@@ -8,16 +8,16 @@
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
   },
-  "homepage": "https://design-system.post.ch",
+  "homepage": "https://next.design-system.post.ch",
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
   "main": "index.js",
   "private": true,
   "scripts": {
-    "manager-ui:start": "rimraf .storybook/themes/manager-ui & pnpm manager-ui:compile --style=expanded",
-    "manager-ui:build": "rimraf .storybook/themes/manager-ui & pnpm manager-ui:compile --style=compressed --no-source-map",
-    "manager-ui:compile": "sass --update --load-path=node_modules .storybook/themes/manager.scss public/manager/ui.css",
+    "manager-ui:start": "rimraf .storybook/styles/manager-ui & pnpm manager-ui:compile --style=expanded",
+    "manager-ui:build": "rimraf .storybook/styles/manager-ui & pnpm manager-ui:compile --style=compressed --no-source-map",
+    "manager-ui:compile": "sass --update --load-path=node_modules .storybook/styles/manager.scss public/manager/ui.css",
     "start": "pnpm manager-ui:start & storybook dev -p 9200 --quiet",
     "start:headless": "pnpm manager-ui:start & storybook dev -p 9300 --quiet --no-open",
     "build": "pnpm manager-ui:build & storybook build --quiet"
