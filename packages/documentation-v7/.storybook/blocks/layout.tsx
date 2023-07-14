@@ -1,7 +1,3 @@
-/*
- * Copyright 2023 by Swiss Post, Information Technology
- */
-
 import { DocsContainer, DocsContainerProps, Unstyled } from '@storybook/blocks';
 import React, { PropsWithChildren } from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
