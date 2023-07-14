@@ -25,11 +25,12 @@ const config: StorybookConfig = {
         outline: false,
         toolbars: false,
       },
-    }
+    },
   ],
   staticDirs: ['../public', '../node_modules/@swisspost/design-system-icons/public'],
   docs: {
     autodocs: 'tag',
+    defaultName: 'Documentation',
   },
 };
 
