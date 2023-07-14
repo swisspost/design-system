@@ -31,7 +31,6 @@
   },
   "devDependencies": {
     "@geometricpanda/storybook-addon-badges": "1.1.1",
-    "@storybook/addon-a11y": "6.5.16",
     "@storybook/addon-essentials": "7.0.26",
     "@storybook/addon-links": "7.0.26",
     "@storybook/blocks": "7.0.26",
