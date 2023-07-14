@@ -1,6 +1,7 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import { BADGE } from '../../../../.storybook/constants';
-import { ElevationTile } from './elevation.blocks';
+import { forEach } from '../../../utils/react';
+import { ElevationTile, SCSS_VARIABLES } from './elevation.blocks';
 import './elevation.styles.scss';
 
 <Meta
@@ -15,9 +16,9 @@ import './elevation.styles.scss';
 The higher the elevation, the larger and softer the shadow, expressing a greater distance between an element and the one behind it.
 
 <div className="elevation-container">
-  {[1, 2, 3, 4, 5].map((elevationLevel, i) => (
-    <ElevationTile key={i} level={elevationLevel} />
-  ))}
+  {forEach(SCSS_VARIABLES.elevation, function (data) {
+    return <ElevationTile key={data.key} level={data.key} />;
+  })}
 </div>
 
 ## Usage

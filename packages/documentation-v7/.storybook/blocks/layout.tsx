@@ -1,8 +1,6 @@
 import { DocsContainer, DocsContainerProps, Unstyled } from '@storybook/blocks';
 import React, { PropsWithChildren } from 'react';
-import { useDarkMode } from 'storybook-dark-mode';
 import '../styles/layout.scss';
-import themes from '../styles/themes';
 import Footer from './footer';
 import Header from './header';
 
@@ -16,10 +14,7 @@ function shouldShowFooter() {
 
 export default ({ children, context }: PropsWithChildren<DocsContainerProps>) => {
   return (
-    <DocsContainer
-      context={context}
-      theme={useDarkMode() ? themes.dark : themes.light}
-    >
+    <DocsContainer context={context}>
       <Unstyled>
         {shouldShowHeader() && <Header/>}
         <div className="container">{children}</div>

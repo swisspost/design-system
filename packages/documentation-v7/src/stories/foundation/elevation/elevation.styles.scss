@@ -4,6 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: post.$size-big;
+  margin-block: post.$size-large post.$size-bigger-big;
 }
 
 .elevation-tile {
