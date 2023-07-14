@@ -2,16 +2,23 @@ import { Meta, Canvas } from '@storybook/blocks';
 import { BADGE } from '../../../../.storybook/constants';
 import { forEach } from '../../../utils/react';
 import { ElevationTile, SCSS_VARIABLES } from './elevation.blocks';
+import * as ElevationStories from './elevation.docsonly.stories';
 import './elevation.styles.scss';
 
 <Meta
   title="Foundations/Elevation"
-  parameters={{ badges: [BADGE.NEEDS_REVISION] }}
+  name="Elevation"
+  parameters={{
+    badges: [BADGE.NEEDS_REVISION],
+  }}
 />
 
 # Elevation
 
-<p className="lead">Elevation uses box shadows to give the impression of a distance between two elements along the z axis.</p>
+<div className="lead">
+  Elevation uses box shadows to give the impression of a distance between two elements along the
+  z-axis.
+</div>
 
 The higher the elevation, the larger and softer the shadow, expressing a greater distance between an element and the one behind it.
 
@@ -27,9 +34,7 @@ The higher the elevation, the larger and softer the shadow, expressing a greater
 
 The easiest way to add an elevation to an element is to apply an elevation class to it.
 
-<Canvas withSource="open">
-  <div className="w-50 rounded p-regular bg-aubergine elevation-5">I'm elevated!</div>
-</Canvas>
+<Canvas sourceState="shown" of={ElevationStories.ElevationDemo}></Canvas>
 
 ### Sass
 
