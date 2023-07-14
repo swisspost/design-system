@@ -1,10 +1,10 @@
 import { DocsContainer, DocsContainerProps, Unstyled } from '@storybook/blocks';
 import React, { PropsWithChildren } from 'react';
 import { useDarkMode } from 'storybook-dark-mode';
-import themes from '../../themes/base';
+import '../styles/layout.scss';
+import themes from '../styles/themes';
 import Footer from './footer';
 import Header from './header';
-import './layout.scss';
 
 function shouldShowHeader() {
   return new URLSearchParams(window.location.search).get('id') === 'home--docs';
