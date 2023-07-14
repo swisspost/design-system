@@ -43,7 +43,7 @@ export const DocumentationVersion = () => (
 export const PackageVersions = (props: { dependencies?: [string, string][] }) => {
   const deps = props.dependencies ?? getInterestingDependencies(documentationVersions);
   return (
-    <table className="table table-striped table-bordered">
+    <table className="table table-sm table-striped table-bordered">
       <thead>
         <tr>
           <th style={{ width: '50%' }}>Package</th>
