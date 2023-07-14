@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.3.7",
+    "@swisspost/design-system-components-react": "workspace:1.0.13",
     "@swisspost/design-system-icons": "workspace:1.0.7",
     "@swisspost/design-system-styles": "workspace:6.2.4",
     "@swisspost/internet-header": "workspace:1.8.0",
@@ -31,10 +32,12 @@
   },
   "devDependencies": {
     "@geometricpanda/storybook-addon-badges": "1.1.1",
+    "@storybook/addon-a11y": "6.5.16",
     "@storybook/addon-essentials": "7.0.26",
     "@storybook/addon-links": "7.0.26",
     "@storybook/blocks": "7.0.26",
     "@storybook/manager-api": "^7.0.26",
+    "@storybook/testing-library": "0.0.14-next.2",
     "@storybook/theming": "6.5.16",
     "@storybook/web-components": "7.0.26",
     "@storybook/web-components-vite": "7.0.26",
