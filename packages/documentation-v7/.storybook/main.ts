@@ -30,7 +30,6 @@ const config: StorybookConfig = {
   staticDirs: ['../public', '../node_modules/@swisspost/design-system-icons/public'],
   docs: {
     autodocs: 'tag',
-    defaultName: 'Documentation',
   },
 };
 
