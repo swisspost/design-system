@@ -1,11 +1,11 @@
 import type { Preview } from '@storybook/web-components';
 
-import themes from './themes/base';
-import './themes/preview.scss';
-
+import DocsLayout from './blocks/layout';
 import { BADGE } from './constants';
-import DocsLayout from './blocks/docs/layout';
 import './helpers/register-web-components';
+
+import './styles/preview.scss';
+import themes from './styles/themes';
 
 const preview: Preview = {
   parameters: {
