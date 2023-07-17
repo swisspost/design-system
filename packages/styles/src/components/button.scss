@@ -112,7 +112,7 @@
   padding-inline: spacing.$size-micro;
 
   @include utilities.not-disabled-focus-hover() {
-    color: rgba(var(--post-contrast-color-rgb), 0.8);
+    color: var(--post-contrast-color-rgb);
   }
 
   &:disabled {
