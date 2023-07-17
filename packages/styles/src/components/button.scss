@@ -31,7 +31,7 @@
   border-width: button.$btn-border-width;
   border-style: solid;
   border-radius: button.$btn-border-radius;
-  background-color: transparent;
+  background-color: var(--post-contrast-color-inverted);
   box-shadow: none;
   color: rgba(var(--post-contrast-color-rgb), 0.8);
   font-family: inherit;
@@ -42,7 +42,7 @@
 
 // Primary
 .btn-primary {
-  border-color: transparent;
+  border-color: rgba(var(--post-contrast-color-rgb), 0.8);
   background-color: rgba(var(--post-contrast-color-rgb), 0.8);
   color: var(--post-contrast-color-inverted);
 
