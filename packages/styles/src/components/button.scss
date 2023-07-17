@@ -100,13 +100,6 @@
 .btn-default,
 .btn-secondary {
   @extend %btn-default;
-
-  // Invert icon on dark backgrounds
-  @include color-mx.on-dark-background() {
-    .pi {
-      filter: invert(1);
-    }
-  }
 }
 
 // Tertiary
@@ -128,9 +121,16 @@
     color: linktext;
     text-decoration: underline !important;
   }
+}
 
+.btn-default,
+.btn-secondary,
+.btn-link,
+.btn-tertiary {
   // Invert icon on dark backgrounds
   @include color-mx.on-dark-background() {
+    color: var(--post-contrast-color-inverted-rgb);
+
     .pi {
       filter: invert(1);
     }
