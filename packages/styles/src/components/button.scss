@@ -109,8 +109,7 @@
 .btn-link,
 .btn-tertiary {
   border: 0;
-  padding-right: 0.375rem;
-  padding-left: 0.375rem;
+  padding-inline: spacing.$size-micro;
 
   @include utilities.not-disabled-focus-hover() {
     color: rgba(var(--post-contrast-color-rgb), 0.8);
