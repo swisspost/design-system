@@ -53,7 +53,10 @@
 
   @include color-mx.on-dark-background {
     background-color: var(--post-contrast-color);
-    color: rgba(var(--post-contrast-color-inverted-rgb), 0.8); // Apply same color as secondary/tertiary button on dark theme
+    color: rgba(
+      var(--post-contrast-color-inverted-rgb),
+      0.8
+    ); // Apply same color as secondary/tertiary button on dark theme
 
     @include utilities.not-disabled-focus-hover() {
       background-color: rgba(var(--post-contrast-color-rgb), 0.8);
@@ -124,6 +127,13 @@
   @include utilities.high-contrast-mode() {
     color: linktext;
     text-decoration: underline !important;
+  }
+
+  // Invert icon on dark backgrounds
+  @include color-mx.on-dark-background() {
+    .pi {
+      filter: invert(1);
+    }
   }
 }
 
