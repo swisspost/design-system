@@ -33,7 +33,7 @@
   border-radius: button.$btn-border-radius;
   background-color: transparent;
   box-shadow: none;
-  color: var(--post-contrast-color);
+  color: rgba(var(--post-contrast-color-rgb), 0.8);
   font-family: inherit;
   font-weight: button.$btn-font-weight;
   text-decoration: none !important; // For <a> tags, !important for hover
@@ -53,6 +53,7 @@
 
   @include color-mx.on-dark-background {
     background-color: var(--post-contrast-color);
+    color: rgba(var(--post-contrast-color-inverted-rgb), 0.8); // Apply same color as secondary/tertiary button on dark theme
 
     @include utilities.not-disabled-focus-hover() {
       background-color: rgba(var(--post-contrast-color-rgb), 0.8);
