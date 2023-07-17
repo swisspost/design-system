@@ -2,7 +2,7 @@ import { Meta, Canvas } from '@storybook/blocks';
 import { BADGE } from '../../../../.storybook/constants';
 import { forEach } from '../../../utils/react';
 import { ElevationTile, SCSS_VARIABLES } from './elevation.blocks';
-import * as ElevationStories from './elevation.docsonly.stories';
+import * as ElevationDemos from './elevation.demo.stories';
 import './elevation.styles.scss';
 
 <Meta
@@ -34,7 +34,7 @@ The higher the elevation, the larger and softer the shadow, expressing a greater
 
 The easiest way to add an elevation to an element is to apply an elevation class to it.
 
-<Canvas sourceState="shown" of={ElevationStories.ElevationDemo}></Canvas>
+<Canvas of={ElevationDemos.Default} sourceState="shown" />
 
 ### Sass
 
