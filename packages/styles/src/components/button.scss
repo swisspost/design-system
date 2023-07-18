@@ -101,11 +101,13 @@
 .btn-default,
 .btn-secondary {
   @extend %btn-default;
+  @extend %btn-transparent-background;
 }
 
 // Tertiary
 .btn-link,
 .btn-tertiary {
+  @extend %btn-transparent-background;
   border: 0;
   padding-inline: spacing.$size-micro;
 
@@ -121,18 +123,6 @@
   @include utilities.high-contrast-mode() {
     color: linktext;
     text-decoration: underline !important;
-  }
-}
-
-.btn-default,
-.btn-secondary,
-.btn-link,
-.btn-tertiary {
-  // Invert icon on dark backgrounds
-  @include color-mx.on-dark-background() {
-    .pi {
-      filter: invert(1);
-    }
   }
 }
 

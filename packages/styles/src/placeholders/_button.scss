@@ -23,3 +23,12 @@
     color: rgba(var(--post-contrast-color-rgb), 0.6);
   }
 }
+
+%btn-transparent-background {
+  // Invert icon on dark backgrounds
+  @include color-mx.on-dark-background() {
+    .pi {
+      filter: invert(1);
+    }
+  }
+}
