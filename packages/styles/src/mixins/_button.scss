@@ -23,7 +23,7 @@
   font-size: map.get(button.$btn-font-size-map, $size);
   gap: map.get(button.$btn-padding-x-map, $size) * 0.5;
 
-  &:not(.btn-link, .btn-tertiary) {
+  &:where(:not(.btn-link, .btn-tertiary)) {
     padding: 0 map.get(button.$btn-padding-x-map, $size);
   }
 
