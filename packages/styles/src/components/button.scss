@@ -110,7 +110,7 @@
   padding-inline: spacing.$size-micro;
 
   @include utilities.not-disabled-focus-hover() {
-    color: var(--post-contrast-color-rgb);
+    color: var(--post-contrast-color);
   }
 
   &:disabled {
@@ -130,8 +130,6 @@
 .btn-tertiary {
   // Invert icon on dark backgrounds
   @include color-mx.on-dark-background() {
-    color: var(--post-contrast-color-inverted-rgb);
-
     .pi {
       filter: invert(1);
     }
