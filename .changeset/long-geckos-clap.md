@@ -1,8 +1,8 @@
 ---
-'@swisspost/design-system-styles': minor
+'@swisspost/design-system-styles': patch
 ---
 
-- Update padding of tertiary buttons from 24px to 4px
-- Update font-size progression to 12/14/16/18
-- Change transparent color to full-tone colors
-- Update slightly the font and border color of secondary and tertiary buttons
+- Reduced horizontal padding of tertiary buttons.
+- Update font-size progression according to button size.
+- Change transparent color to full-tone colors.
+- Update slightly the font and border color of secondary and tertiary buttons.
