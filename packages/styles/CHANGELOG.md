@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 6.2.5
+
+### Patch Changes
+
+- Fixed the placeholder for the file upload in Safari. It's no longer cut off and pluralisation for the button label with a `multiple` attribute is now supported. Also fixed padding when the state is valid or invalid. (by [@imagoiq](https://github.com/imagoiq) with [#1614](https://github.com/swisspost/design-system/pull/1614))
+
 ## 6.2.4
 
 ### Patch Changes
