@@ -1,4 +1,7 @@
 import type { Preview } from '@storybook/web-components';
+import { Options as PrettierOptions } from 'prettier';
+import prettierPluginHtml from 'prettier/parser-html';
+import prettier from 'prettier/standalone';
 
 import DocsLayout from './blocks/layout';
 import { BADGE } from './constants';
@@ -8,7 +11,25 @@ import { resetComponents } from './helpers/reset-sb-styled-components';
 import './styles/preview.scss';
 import themes from './styles/themes';
 
-console.log(resetComponents);
+const PRETTIER_OPTIONS: PrettierOptions = {
+  parser: 'html',
+  plugins: [prettierPluginHtml],
+  printWidth: 100,
+  tabWidth: 2,
+  useTabs: false,
+  semi: true,
+  singleQuote: false,
+  quoteProps: 'consistent',
+  jsxSingleQuote: false,
+  trailingComma: 'es5',
+  bracketSpacing: true,
+  bracketSameLine: false,
+  arrowParens: 'always',
+  htmlWhitespaceSensitivity: 'css',
+  endOfLine: 'lf',
+  embeddedLanguageFormatting: 'off',
+  singleAttributePerLine: false,
+};
 
 const preview: Preview = {
   parameters: {
@@ -47,6 +68,12 @@ const preview: Preview = {
       container: DocsLayout,
       source: {
         excludeDecorators: true,
+        transform: (htmlSnippet: string) => {
+          const formattedSnippet = prettier.format(htmlSnippet, PRETTIER_OPTIONS);
+
+          // ensure the string is not empty ('') because the Source component breaks if it is
+          return formattedSnippet || ' ';
+        },
       },
       components: {
         ...resetComponents,
