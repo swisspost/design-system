@@ -33,7 +33,7 @@
   border-radius: button.$btn-border-radius;
   background-color: transparent;
   box-shadow: none;
-  color: rgba(var(--post-contrast-color-rgb), 0.8);
+  color: var(--post-gray-80);
   font-family: inherit;
   font-weight: button.$btn-font-weight;
   text-decoration: none !important; // For <a> tags, !important for hover
@@ -43,7 +43,7 @@
 // Primary
 .btn-primary {
   border-color: transparent;
-  background-color: rgba(var(--post-contrast-color-rgb), 0.8);
+  background-color: var(--post-gray-80);
   color: var(--post-contrast-color-inverted);
 
   @include utilities.not-disabled-focus-hover() {
@@ -53,13 +53,14 @@
 
   @include color-mx.on-dark-background {
     background-color: var(--post-contrast-color);
-    color: rgba(
-      var(--post-contrast-color-inverted-rgb),
-      0.8
-    ); // Apply same color as secondary/tertiary button on dark theme
+    color: var(--post-gray-10); // Apply same color as secondary/tertiary button on dark theme
 
     @include utilities.not-disabled-focus-hover() {
-      background-color: rgba(var(--post-contrast-color-rgb), 0.8);
+      background-color: var(--post-gray-80);
+    }
+
+    &:disabled {
+      color: var(--post-gray-80);
     }
   }
 
@@ -87,7 +88,7 @@
   }
 
   &:disabled {
-    background-color: rgba(var(--post-contrast-color-rgb), 0.4);
+    background-color: var(--post-gray-40);
   }
 
   .pi {
@@ -113,7 +114,7 @@
   }
 
   &:disabled {
-    color: rgba(var(--post-contrast-color-rgb), 0.6);
+    color: var(--post-gray-60);
   }
 
   // Styles  to improve accessibility in high contrast mode
