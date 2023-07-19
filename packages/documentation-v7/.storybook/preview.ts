@@ -3,9 +3,12 @@ import type { Preview } from '@storybook/web-components';
 import DocsLayout from './blocks/layout';
 import { BADGE } from './constants';
 import './helpers/register-web-components';
+import { resetComponents } from './helpers/reset-sb-styled-components';
 
 import './styles/preview.scss';
 import themes from './styles/themes';
+
+console.log(resetComponents);
 
 const preview: Preview = {
   parameters: {
@@ -44,6 +47,9 @@ const preview: Preview = {
       container: DocsLayout,
       source: {
         excludeDecorators: true,
+      },
+      components: {
+        ...resetComponents,
       },
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
