@@ -1,14 +1,12 @@
 import type { Preview } from '@storybook/web-components';
+import { format } from 'prettier';
 
 import DocsLayout from './blocks/layout';
-import { BADGE } from './constants';
+import { badgesConfig, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
-import { resetComponents } from './helpers/reset-sb-styled-components';
 
 import './styles/preview.scss';
 import themes from './styles/themes';
-
-console.log(resetComponents);
 
 const preview: Preview = {
   parameters: {
@@ -32,7 +30,7 @@ const preview: Preview = {
           'Misc',
           ['Migration Guide', 'ChangeLog', 'Versions'],
           'Hidden',
-        ],
+        ]
       },
     },
     darkMode: {
@@ -47,10 +45,9 @@ const preview: Preview = {
       container: DocsLayout,
       source: {
         excludeDecorators: true,
+        transform: (snippet: string) => format(snippet, prettierOptions),
       },
-      components: {
-        ...resetComponents,
-      },
+      components: resetComponents,
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
@@ -60,52 +57,7 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-    badgesConfig: {
-      [BADGE.BETA]: {
-        styles: {
-          backgroundColor: 'var(--post-yellow)',
-          color: '#000',
-          borderColor: 'transparent',
-        },
-        title: 'Beta',
-        tooltip: {
-          desc: 'This documentation page is still in beta mode and might not be complete yet.',
-        },
-      },
-      [BADGE.NEEDS_REVISION]: {
-        styles: {
-          backgroundColor: 'var(--post-gray-10)',
-          color: '#000',
-          borderColor: 'transparent',
-        },
-        title: 'Needs revision',
-        tooltip: {
-          desc: 'This page is pending revision from a UX Designer.',
-        },
-      },
-      [BADGE.STABLE]: {
-        styles: {
-          backgroundColor: 'var(--post-success)',
-          color: '#fff',
-          borderColor: 'transparent',
-        },
-        title: 'Stable',
-        tooltip: {
-          desc: 'The content of this page is ready to be used in production.',
-        },
-      },
-      [BADGE.TODO]: {
-        styles: {
-          backgroundColor: 'var(--post-danger)',
-          color: '#fff',
-          borderColor: 'transparent',
-        },
-        title: 'TODO',
-        tooltip: {
-          desc: 'This page needs to be filled with content and serves as a placeholder in the meantime.',
-        },
-      },
-    },
+    badgesConfig,
   },
 };
 
