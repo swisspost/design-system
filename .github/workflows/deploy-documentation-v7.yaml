@@ -37,7 +37,7 @@ jobs:
         with:
           id: ${{ steps.build.outputs.id }}
           netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify_site_id: ${{ secrets.NEXT_V7_NETLIFY_SITE_ID }}
+          netlify_site_id: ${{ secrets.NEXTV7_NETLIFY_SITE_ID }}
           netlify_site_url: swisspost-design-system-next-v7.netlify.app
           folder: ${{ steps.build.outputs.folder }}
           comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
