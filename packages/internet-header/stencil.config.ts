@@ -14,6 +14,7 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
+      esmLoaderPath: '../loader',
       copy: [
         {
           src: 'assets/config/test-configuration.json',
