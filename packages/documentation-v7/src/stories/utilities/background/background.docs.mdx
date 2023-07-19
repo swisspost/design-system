@@ -17,9 +17,10 @@ export const backgroundColors = parse(scss);
 
 # Background
 
-<p className="lead">
- Use the background utility classes to set the background of an element to any predefined color.
-</p>
+<div className="lead">
+  Use the background utility classes to set the background of an element to any predefined color.
+</div>
+
 Background utilities also set the text color by defining the following CSS variables:
 
 - `--post-contrast-color` and `--post-contrast-color-rgb`
@@ -61,10 +62,10 @@ To set a background on an element, simply add a `.bg-{colorname}` class to it.
 
 It is possible to nest backgrounds.
 
-<p className="alert alert-info alert-md">
+<div className="alert alert-info alert-md">
   Text color and inverted text color CSS variables are set for each background to always ensure the
   best possible contrast.
-</p>
+</div>
 
 <Canvas of={BackgroundDemos.NestedBackgrounds} sourceState='shown' />
 
@@ -72,10 +73,10 @@ It is possible to nest backgrounds.
 
 Change the background opacity simply by setting the CSS variable `--post-bg-opacity`.
 
-<p className="alert alert-info alert-md">
+<div className="alert alert-info alert-md">
   Low background opacity is not recommended as it can lead to poor contrast.
   It is then your responsibility to ensure that the contrast ratio between foreground and background is at least 4.5:1.
   More information on that topic is available on our <LinkTo kind="foundations-accessibility">accessibility</LinkTo> page.
-</p>
+</div>
 
 <Canvas of={BackgroundDemos.TranslucentBackgrounds} sourceState='shown' />

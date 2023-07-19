@@ -11,9 +11,9 @@ import * as TextDemos from './text.demo.stories';
 
 # Text
 
-<p className="lead">
+<div className="lead">
   Use text utilities to control font family, size, alignment, wrapping, and more.
-</p>
+</div>
 
 ## Font
 
@@ -63,10 +63,8 @@ import * as TextDemos from './text.demo.stories';
 
 ### Font Weight
 
-<div class="alert alert-warning my-4">
-  <p>
-    The `.bold`, `.regular`, and `.light` classes are deprecated in favor of the `.fw-*` classes.
-  </p>
+<div className="alert alert-warning my-4">
+  The `.bold`, `.regular`, and `.light` classes are deprecated in favor of the `.fw-*` classes.
 </div>
 
 <Canvas of={TextDemos.FontWeight} sourceState='shown' />
@@ -93,7 +91,7 @@ import * as TextDemos from './text.demo.stories';
 
 <Canvas of={TextDemos.FontStyle} sourceState='shown' />
 
-<p class="mb-big"><em>There are no Sass variables for font styles at this time.</em></p>
+<p className="mb-big"><em>There are no Sass variables for font styles at this time.</em></p>
 
 #### Possible Values
 
@@ -104,10 +102,8 @@ import * as TextDemos from './text.demo.stories';
 
 ### Line Heights
 
-<div class="alert alert-warning my-4">
-  <p>
-    Fixed-size line heights are deprecated in favor of relative line height utility classes.
-  </p>
+<div className="alert alert-warning my-4">
+  Fixed-size line heights are deprecated in favor of relative line height utility classes.
 </div>
 
 <Canvas of={TextDemos.LineHeight} sourceState='shown' />
@@ -148,10 +144,8 @@ Define how text-blocks are displayed.
 
 ### Color
 
-<div class="alert alert-warning my-4">
-  <p>
-    The `.text-auto` class is deprecated since text color is now set by the <LinkTo href="utilities-background">backgrounds</LinkTo> themselves.
-  </p>
+<div className="alert alert-warning my-4">
+  The `.text-auto` class is deprecated since text color is now set by the <LinkTo href="utilities-background">backgrounds</LinkTo> themselves.
 </div>
 
 Colorize text with `.text-*` utility classes.
