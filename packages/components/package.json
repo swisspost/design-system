@@ -26,7 +26,7 @@
     "dev": "stencil build --serve --watch --docs-readme",
     "start": "stencil build --watch --docs-readme",
     "build": "stencil build --docs-readme",
-    "clean": "rimraf www dist",
+    "clean": "rimraf www dist loader",
     "test": "npm run unit",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
