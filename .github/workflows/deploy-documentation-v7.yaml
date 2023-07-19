@@ -31,7 +31,7 @@ jobs:
           name: design-system-documentation-v7
           folder: build-output
 
-      - name: Deploy documentation v7 to netlify
+      - name: Deploy documentation to netlify
         uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
         id: deploy
         with:
