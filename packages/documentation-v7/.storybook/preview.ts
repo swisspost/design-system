@@ -1,3 +1,4 @@
+import { format } from '@prettier/sync';
 import type { Preview } from '@storybook/web-components';
 
 import {

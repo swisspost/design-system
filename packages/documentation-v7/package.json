@@ -33,6 +33,7 @@
     "bootstrap": "5.3.1"
   },
   "devDependencies": {
+    "@prettier/sync": "^0.3.0",
     "@geometricpanda/storybook-addon-badges": "1.1.1",
     "@open-wc/lit-helpers": "0.6.0",
     "@percy/cli": "1.26.3",
@@ -56,7 +57,7 @@
     "@types/react-syntax-highlighter": "15.5.7",
     "cypress": "12.17.3",
     "lit": "2.8.0",
-    "prettier": "2.8.8",
+    "prettier": "3.0.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-syntax-highlighter": "15.5.0",

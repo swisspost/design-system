@@ -1,5 +1,5 @@
 import { Options } from 'prettier';
-import * as htmlParser from 'prettier/parser-html';
+import * as htmlParser from 'prettier/plugins/html';
 
 export const prettierOptions: Options = {
   parser: 'html',
