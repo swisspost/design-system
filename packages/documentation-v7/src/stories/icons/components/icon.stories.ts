@@ -4,14 +4,10 @@ import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { Components } from '@swisspost/design-system-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import docsPage from './icon.docs.mdx';
 
 const meta: Meta = {
   component: 'post-icon',
   parameters: {
-    docs: {
-      page: docsPage,
-    },
     badges: [BADGE.NEEDS_REVISION],
   },
   args: {
