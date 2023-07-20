@@ -1,24 +1,24 @@
-import JsxParser from 'react-jsx-parser';
-import { renderToStaticMarkup } from 'react-dom/server';
 import * as prettier from 'prettier';
-import * as htmlParser from 'prettier/plugins/html';
+import * as htmlParser from 'prettier/parser-html';
+import { renderToStaticMarkup } from 'react-dom/server';
+import JsxParser from 'react-jsx-parser';
 
 import DocsLayout from './components/docs/layout';
 import postThemes from './post-themes';
 import './preview.scss';
 
-import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
-import docJson from '@swisspost/design-system-components/dist/docs.json';
 import {
   extractArgTypesFactory,
   extractComponentDescription,
   setStencilDocJson,
 } from '@pxtrn/storybook-addon-docs-stencil';
+import docJson from '@swisspost/design-system-components/dist/docs.json';
+import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
 
-import React from 'react';
-import 'cypress-storybook/react';
-import * as Components from '@swisspost/design-system-components-react';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
+import * as Components from '@swisspost/design-system-components-react';
+import 'cypress-storybook/react';
+import React from 'react';
 
 if (docJson) setStencilDocJson(docJson);
 defineInternetHeader();
@@ -27,7 +27,7 @@ Object.entries(Components).forEach(([name, component]) => {
   component.displayName = name.replace(/\B([A-Z])/g, '-$1').toLowerCase();
 });
 
-const PRETTIER_OPTIONS: prettier.Options = {
+const PRETTIER_OPTIONS = {
   parser: 'html',
   plugins: [htmlParser],
   printWidth: 100,
