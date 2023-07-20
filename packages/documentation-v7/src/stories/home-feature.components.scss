@@ -1,0 +1,18 @@
+@use '@swisspost/design-system-styles/core.scss' as post;
+
+.feature {
+    padding: post.$size-regular;
+
+    .feature--icon {
+      margin-bottom: post.$size-regular;
+      font-size: post.$size-huge;
+      color: post.$aubergine-dark;
+    }
+
+    .feature--content {
+      .content--title {
+        font-size: post.$h6-font-size;
+        font-weight: post.$font-weight-bold;
+      }
+    }
+  }
