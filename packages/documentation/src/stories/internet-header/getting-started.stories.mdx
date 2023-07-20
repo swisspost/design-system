@@ -42,10 +42,13 @@ defineCustomElements();
 
 ### Include from a CDN
 
-If you are not using any loader or don't want to install from npm, you can load the `swisspost-internet-header.esm.js` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network). There are two options available.
+If you are not using any loader or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
+There are two options available. Make sure to replace `{version}` with the version you want to use.
 
 - [jsDelivr](https://www.jsdelivr.com/)
 - [unpkg](https://unpkg.com/)
+
+#### jsDelivr
 
 ```html
 <!-- index.html -->
@@ -53,12 +56,28 @@ If you are not using any loader or don't want to install from npm, you can load 
   <script
     async
     type="module"
-    src="https://cdn.jsdelivr.net/npm/@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.esm.js"
+    src="https://cdn.jsdelivr.net/npm/@swisspost/internet-header@{version}/dist/swisspost-internet-header/swisspost-internet-header.esm.js"
   ></script>
 </head>
 <body>
   <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
 </body>
+```
+
+```javascript
+// main.js | main.ts
+import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@swisspost/internet-header@{version}/loader/index.min.js';
+
+defineCustomElements();
+```
+
+#### unpkg
+
+```javascript
+// main.js | main.ts
+import { defineCustomElements } from 'https://unpkg.com/@swisspost/internet-header@{version}/loader/index.min.js';
+
+defineCustomElements();
 ```
 
 ## Configuration
@@ -67,7 +86,14 @@ The Internet Header is built to support the already existing Portal Configuratio
 
 If you're working on a new project, you probably need a new configuration. Please click the button below.
 
-<a class="mb-small-r btn-primary btn" href="mailto:digitalconsulting@post.ch" target="_blank" rel="noopener">Contact Post Portal Team<post-icon name="1001" class="fs-large"></post-icon></a>
+<a
+  class="mb-small-r btn-primary btn"
+  href="mailto:digitalconsulting@post.ch"
+  target="_blank"
+  rel="noopener"
+>
+  Contact Post Portal Team<post-icon name="1001" class="fs-large"></post-icon>
+</a>
 
 Not every Online Service has configurations for all environments. For example, "TOPOS" only has `int02` configured and cannot use `int01` as value for environment. If you are not sure what's configured for your project, please reach out to the post-portal team as well.
 

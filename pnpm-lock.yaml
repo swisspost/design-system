@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -37,8 +37,8 @@ importers:
   packages/components:
     dependencies:
       '@stencil/core':
-        specifier: 4.0.1
-        version: 4.0.1
+        specifier: 3.4.1
+        version: 3.4.1
       '@swisspost/design-system-styles':
         specifier: workspace:6.2.5
         version: link:../styles/dist
@@ -54,10 +54,10 @@ importers:
         version: 0.5.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.32.2)(eslint@8.45.0)(typescript@4.9.5)
       '@stencil/react-output-target':
         specifier: 0.5.3
-        version: 0.5.3(@stencil/core@4.0.1)
+        version: 0.5.3(@stencil/core@3.4.1)
       '@stencil/sass':
         specifier: 3.0.4
-        version: 3.0.4(@stencil/core@4.0.1)
+        version: 3.0.4(@stencil/core@3.4.1)
       '@types/jest':
         specifier: 27.5.2
         version: 27.5.2
@@ -94,6 +94,9 @@ importers:
       puppeteer:
         specifier: 20.8.2
         version: 20.8.2(typescript@4.9.5)
+      rimraf:
+        specifier: 5.0.1
+        version: 5.0.1
       sass:
         specifier: 1.63.6
         version: 1.63.6
@@ -617,9 +620,6 @@ importers:
       '@geometricpanda/storybook-addon-badges':
         specifier: 1.1.1
         version: 1.1.1(@storybook/addons@6.5.16)(@storybook/api@6.5.16)(@storybook/components@6.5.16)(@storybook/core-events@6.5.16)(@storybook/theming@6.5.16)(react-dom@18.2.0)(react@18.2.0)
-      '@open-wc/lit-helpers':
-        specifier: 0.6.0
-        version: 0.6.0(lit@2.7.6)
       '@storybook/addon-a11y':
         specifier: 6.5.16
         version: 6.5.16(react-dom@18.2.0)(react@18.2.0)
@@ -647,9 +647,6 @@ importers:
       '@storybook/web-components-vite':
         specifier: 7.0.26
         version: 7.0.26(lit@2.7.6)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.4.3)
-      '@types/mdx':
-        specifier: 2.0.5
-        version: 2.0.5
       '@types/react':
         specifier: 18.2.14
         version: 18.2.14
@@ -732,11 +729,11 @@ importers:
   packages/internet-header:
     dependencies:
       '@stencil/core':
-        specifier: 4.0.1
-        version: 4.0.1
+        specifier: 3.4.1
+        version: 3.4.1
       '@stencil/store':
         specifier: 2.0.8
-        version: 2.0.8(@stencil/core@4.0.1)
+        version: 2.0.8(@stencil/core@3.4.1)
       '@swisspost/design-system-styles':
         specifier: workspace:6.2.5
         version: link:../styles/dist
@@ -773,7 +770,7 @@ importers:
         version: 0.4.0(eslint-plugin-react@7.32.2)(typescript@4.9.5)
       '@stencil/sass':
         specifier: 3.0.4
-        version: 3.0.4(@stencil/core@4.0.1)
+        version: 3.0.4(@stencil/core@3.4.1)
       '@types/iframe-resizer':
         specifier: 3.5.9
         version: 3.5.9
@@ -7007,14 +7004,6 @@ packages:
       - supports-color
     dev: true
 
-  /@open-wc/lit-helpers@0.6.0(lit@2.7.6):
-    resolution: {integrity: sha512-9F0Rw18Lupp8hehF299yYozN4cFMTnHeCVNtz0k18/eUkcUUb6DCWerL/ASJ9lZ4bLA/YUPmrkdgZz/xe9cKeg==}
-    peerDependencies:
-      lit: ^2.0.0
-    dependencies:
-      lit: 2.7.6
-    dev: true
-
   /@percy/cli-app@1.26.2:
     resolution: {integrity: sha512-eOg1vs6J3eINREf4SWt7YO9KJwGru2JPOXlV23fZgLaSw1iEaZqpa1NmeMlSX2NsU+J8JdAox1hkmO884QHE8A==}
     engines: {node: '>=14'}
@@ -7421,9 +7410,9 @@ packages:
       typescript: 4.9.5
     dev: true
 
-  /@stencil/core@4.0.1:
-    resolution: {integrity: sha512-7kWwh4HKuSBSRG9iKjxMzfvBK0O16/XeJtUavYBDEptkndufJjeym2x5JYnW0wKULxBGaVBFdrPyd1bTvthrlg==}
-    engines: {node: '>=16.0.0', npm: '>=7.10.0'}
+  /@stencil/core@3.4.1:
+    resolution: {integrity: sha512-7rjOmM0W9K5op2gtOQRLERGH1155rv2fm6ppxOzYqqG8ISct4m9skp5XgUBYPu+GSPsJFdRuCIQs0IuVsG/7+g==}
+    engines: {node: '>=14.10.0', npm: '>=6.0.0'}
     hasBin: true
 
   /@stencil/eslint-plugin@0.4.0(eslint-plugin-react@7.32.2)(typescript@4.9.5):
@@ -7450,28 +7439,28 @@ packages:
       typescript: 4.9.5
     dev: true
 
-  /@stencil/react-output-target@0.5.3(@stencil/core@4.0.1):
+  /@stencil/react-output-target@0.5.3(@stencil/core@3.4.1):
     resolution: {integrity: sha512-68jwRp35CjAcwhTJ9yFD/3n+jrHOqvEH2jreVuPVvZK+4tkhPlYlwz0d1E1RlF3jyifUSfdkWUGgXIEy8Fo3yw==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.0.1
+      '@stencil/core': 3.4.1
     dev: true
 
-  /@stencil/sass@3.0.4(@stencil/core@4.0.1):
+  /@stencil/sass@3.0.4(@stencil/core@3.4.1):
     resolution: {integrity: sha512-k1dP0A2QBx62m250FATc1hErXxXs6Jnf4TBxdL1C/dc32Kzz2n5aCT4SodBz0ebT5WMnITauZyFqYxzCzDoKag==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.0.1
+      '@stencil/core': 3.4.1
     dev: true
 
-  /@stencil/store@2.0.8(@stencil/core@4.0.1):
+  /@stencil/store@2.0.8(@stencil/core@3.4.1):
     resolution: {integrity: sha512-6yNRPyItnVq45r8TtXLIZZMCqtgqA2xiO7alUnr28W5dlDIKMW1W80Muozh1p4FSqRcYLWUUDladXdc+/xXJBA==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 4.0.1
+      '@stencil/core': 3.4.1
     dev: false
 
   /@storybook/addon-a11y@6.5.16(react-dom@18.2.0)(react@18.2.0):
@@ -16453,18 +16442,6 @@ packages:
       - supports-color
     dev: true
 
-  /glob@10.3.1:
-    resolution: {integrity: sha512-9BKYcEeIs7QwlCYs+Y3GBvqAMISufUS0i2ELd11zpZjxI5V9iyRj0HgzB5/cLf2NY4vcYBTYzJ7GIui7j/4DOw==}
-    engines: {node: '>=16 || 14 >=14.17'}
-    hasBin: true
-    dependencies:
-      foreground-child: 3.1.1
-      jackspeak: 2.2.0
-      minimatch: 9.0.1
-      minipass: 5.0.0
-      path-scurry: 1.10.0
-    dev: true
-
   /glob@10.3.3:
     resolution: {integrity: sha512-92vPiMb/iqpmEgsOoIDvTjc50wf9CCCvMzsi6W0JLPeUKE8TWP1a73PgqSrqy7iAZxaSD1YdzU7QZR5LF51MJw==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -22474,14 +22451,6 @@ packages:
       path-root-regex: 0.1.2
     dev: true
 
-  /path-scurry@1.10.0:
-    resolution: {integrity: sha512-tZFEaRQbMLjwrsmidsGJ6wDMv0iazJWk6SfIKnY4Xru8auXgmJkOBa5DUbYFcFD2Rzk2+KDlIiF0GVXNCbgC7g==}
-    engines: {node: '>=16 || 14 >=14.17'}
-    dependencies:
-      lru-cache: 9.1.1
-      minipass: 5.0.0
-    dev: true
-
   /path-scurry@1.10.1:
     resolution: {integrity: sha512-MkhCqzzBEpPvxxQ71Md0b1Kk51W01lrYvlMzSUaIzNsODdd7mqhiimSZlr+VegAz5Z6Vzt9Xg2ttE//XBhH3EQ==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -24209,7 +24178,7 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
-      glob: 10.3.1
+      glob: 10.3.3
     dev: true
 
   /ripemd160@2.0.2:

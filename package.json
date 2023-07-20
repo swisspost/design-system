@@ -32,7 +32,7 @@
     "styles:start": "pnpm --filter design-system-styles start",
     "styles:build": "pnpm --filter design-system-styles build",
     "styles:test": "pnpm --filter design-system-styles test",
-    "components:start": "pnpm --filter design-system-components start",
+    "components:start": "pnpm --filter design-system-components dev",
     "components:build": "pnpm --filter design-system-components build",
     "components:test": "pnpm --filter design-system-components test",
     "components:unit": "pnpm --filter design-system-components unit",
