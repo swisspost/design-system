@@ -1,0 +1,23 @@
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core' as post;
+
+:export {
+  @each $color, $value in post.$background-colors {
+    @if (
+      map.has-key(post.$contextual-colors, $color) ==
+        false and
+        map.has-key(post.$accent-colors, $color) ==
+        false
+    ) {
+      base_#{$color}: $value;
+    }
+  }
+
+  @each $color, $value in post.$contextual-colors {
+    contextual_#{$color}: $value;
+  }
+
+  @each $color, $value in post.$accent-colors {
+    accent_#{$color}: $value;
+  }
+}

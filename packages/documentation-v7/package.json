@@ -15,11 +15,12 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "pnpm clean & pnpm manager-ui --style=expanded & storybook dev -p 9200 --quiet",
-    "start:headless": "pnpm clean & pnpm manager-ui --style=expanded & storybook dev -p 9300 --quiet --no-open",
-    "build": "pnpm clean & pnpm manager-ui --style=compressed --no-source-map & storybook build --quiet",
-    "clean": "rimraf .storybook/styles/manager-ui storybook-static",
-    "manager-ui": "sass --update --load-path=node_modules .storybook/styles/manager.scss public/manager/ui.css"
+    "manager-ui:start": "rimraf .storybook/styles/manager-ui & pnpm manager-ui:compile --style=expanded",
+    "manager-ui:build": "rimraf .storybook/styles/manager-ui & pnpm manager-ui:compile --style=compressed --no-source-map",
+    "manager-ui:compile": "sass --update --load-path=node_modules .storybook/styles/manager.scss public/manager/ui.css",
+    "start": "pnpm manager-ui:start & storybook dev -p 9200 --quiet",
+    "start:headless": "pnpm manager-ui:start & storybook dev -p 9300 --quiet --no-open",
+    "build": "pnpm manager-ui:build & storybook build --quiet"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.3.8",
@@ -42,6 +43,7 @@
     "@storybook/web-components-vite": "7.0.26",
     "@types/react": "18.2.14",
     "lit": "2.7.6",
+    "prettier": "2.8.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "rimraf": "5.0.1",
