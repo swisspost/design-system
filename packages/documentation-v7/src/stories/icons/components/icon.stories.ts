@@ -1,4 +1,4 @@
-import { BADGE } from '@geometricpanda/storybook-addon-badges';
+import { BADGE } from '../../../../.storybook/constants';
 import { spread } from '@open-wc/lit-helpers';
 import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { Components } from '@swisspost/design-system-components';
