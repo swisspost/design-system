@@ -111,10 +111,6 @@
   border: 0;
   padding-inline: spacing.$size-micro;
 
-  @include utilities.not-disabled-focus-hover() {
-    color: var(--post-contrast-color);
-  }
-
   &:disabled {
     color: var(--post-gray-60);
   }
