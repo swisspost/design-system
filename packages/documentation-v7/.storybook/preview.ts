@@ -8,8 +8,6 @@ import { resetComponents } from './helpers/reset-sb-styled-components';
 import './styles/preview.scss';
 import themes from './styles/themes';
 
-console.log(resetComponents);
-
 const preview: Preview = {
   parameters: {
     options: {
@@ -48,9 +46,7 @@ const preview: Preview = {
       source: {
         excludeDecorators: true,
       },
-      components: {
-        ...resetComponents,
-      },
+      components: resetComponents,
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
