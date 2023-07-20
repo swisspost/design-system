@@ -88,12 +88,6 @@
     content: counter(step-index);
   }
 
-  &:hover::before {
-    color: stepper.$stepper-indicator-hover-color;
-    background-color: stepper.$stepper-indicator-hover-bg;
-    background-image: stepper.$stepper-indicator-hover-check-icon;
-  }
-
   &[aria-current] ~ ::before {
     color: stepper.$stepper-indicator-future-color;
     background-color: stepper.$stepper-indicator-future-bg;
@@ -104,20 +98,29 @@
   }
 }
 
+.stepper-interactive {
+  &:hover::before {
+    color: stepper.$stepper-indicator-hover-color;
+    background-color: stepper.$stepper-indicator-hover-bg;
+    background-image: stepper.$stepper-indicator-hover-check-icon;
+  }
+
+  &:hover .stepper-link {
+    color: stepper.$stepper-link-hover-color;
+  }
+}
+
 .stepper-link {
   padding-top: stepper.$stepper-indicator-height + stepper.$stepper-link-gap;
   text-decoration: none;
   color: stepper.$stepper-link-color;
   transition: color 250ms;
+  text-align: center;
 
   .stepper-item[aria-current] > & {
     color: stepper.$stepper-link-current-color;
     font-size: stepper.$stepper-link-current-font-size;
     font-weight: stepper.$stepper-link-current-font-weight;
-  }
-
-  &:hover {
-    color: stepper.$stepper-link-hover-color;
   }
 
   &:focus-visible {
@@ -127,12 +130,6 @@
 
 @include media-breakpoint-down(rg) {
   .stepper-item {
-    &[aria-current] .stepper-link {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-
     &:not([aria-current]) .stepper-link {
       overflow: hidden;
       white-space: nowrap;

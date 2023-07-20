@@ -1,8 +1,8 @@
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-stepper-demo',
-  templateUrl: 'stepper-demo.component.html'
+  templateUrl: 'stepper-demo.component.html',
 })
 export class StepperDemoComponent {
   steps = ['Sender', 'Product', 'Other details', 'Order summary'];

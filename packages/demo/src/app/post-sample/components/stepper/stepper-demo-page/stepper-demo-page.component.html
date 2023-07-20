@@ -7,7 +7,27 @@
 </div>
 
 <section>
+  <h2 class="font-curve-medium">Active next steps</h2>
   <app-stepper-demo></app-stepper-demo>
+  <p class="h5 bold mt-huge">stepper-demo.component.html</p>
   <code class="block" [highlight]="codeTemplate" [languages]="['html']"></code>
-  <code class="block" [highlight]="codeController" [languages]="['typescript', 'javascript']"></code>
+  <p class="h5 bold mt-huge">stepper-demo.component.ts</p>
+  <code
+    class="block"
+    [highlight]="codeController"
+    [languages]="['typescript', 'javascript']"
+  ></code>
+</section>
+
+<section>
+  <h2 class="font-curve-medium">Inactive next steps</h2>
+  <app-stepper-demo-inactive-next-step></app-stepper-demo-inactive-next-step>
+  <p class="h5 bold mt-huge">stepper-demo-inactive-next-step.component.html</p>
+  <code class="block" [highlight]="codeTemplateInactive" [languages]="['html']"></code>
+  <p class="h5 bold mt-huge">stepper-demo-inactive-next-step.component.ts</p>
+  <code
+    class="block"
+    [highlight]="codeControllerInactive"
+    [languages]="['typescript', 'javascript']"
+  ></code>
 </section>

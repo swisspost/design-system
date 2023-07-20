@@ -1,5 +1,5 @@
 <div class="stepper-container" role="group">
-  <h2 class="visually-hidden">Order progress, step 3 of 4</h2>
+  <h3 class="visually-hidden">Order progress, step 3 of 4</h3>
   <ngb-progressbar
     [max]="steps.length - 1"
     [value]="currentIndex"
@@ -11,15 +11,12 @@
     <li
       *ngFor="let step of steps; index as i"
       [attr.aria-current]="isCurrent(step) ? 'step' : undefined"
-      class="stepper-item"
+      class="stepper-item stepper-interactive"
     >
-      <a *ngIf="i < currentIndex" class="stepper-link" (click)="currentIndex = i" href="#">
-        <span class="visually-hidden">Complete:</span>
+      <a class="stepper-link" (click)="currentIndex = i" href="#">
+        <span class="visually-hidden" *ngIf="i < currentIndex">Complete:</span>
         {{ step }}
       </a>
-      <span class="stepper-link" *ngIf="i >= currentIndex" (click)="currentIndex = i">
-        {{ step }}
-      </span>
     </li>
   </ol>
 </div>
