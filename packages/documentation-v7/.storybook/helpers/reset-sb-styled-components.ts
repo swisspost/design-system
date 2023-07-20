@@ -22,7 +22,7 @@ export const resetComponents: object = {
   canvas: styled.canvas``,
   caption: styled.caption``,
   cite: styled.cite``,
-  code: styled.code``,
+  // code: styled.code``,
   col: styled.col``,
   colgroup: styled.colgroup``,
   data: styled.data``,
