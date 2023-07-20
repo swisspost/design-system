@@ -1,4 +1,10 @@
 import type { Preview } from '@storybook/web-components';
+import {
+  extractArgTypesFactory,
+  extractComponentDescription,
+  setStencilDocJson,
+} from '@pxtrn/storybook-addon-docs-stencil';
+import { StencilJsonDocs } from '@pxtrn/storybook-addon-docs-stencil/dist/types';
 import { Options as PrettierOptions } from 'prettier';
 import prettierPluginHtml from 'prettier/parser-html';
 import prettier from 'prettier/standalone';
@@ -10,6 +16,10 @@ import { resetComponents } from './helpers/reset-sb-styled-components';
 
 import './styles/preview.scss';
 import themes from './styles/themes';
+
+import docJson from '@swisspost/design-system-components/dist/docs.json';
+
+if (docJson) setStencilDocJson(docJson as StencilJsonDocs);
 
 const PRETTIER_OPTIONS: PrettierOptions = {
   parser: 'html',
@@ -78,6 +88,8 @@ const preview: Preview = {
       components: {
         ...resetComponents,
       },
+      extractArgTypes: extractArgTypesFactory({ dashCase: true }),
+      extractComponentDescription,
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {

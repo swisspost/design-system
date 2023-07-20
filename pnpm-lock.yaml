@@ -623,6 +623,9 @@ importers:
       '@open-wc/lit-helpers':
         specifier: ^0.6.0
         version: 0.6.0(lit@2.7.6)
+      '@pxtrn/storybook-addon-docs-stencil':
+        specifier: 6.4.1
+        version: 6.4.1(react-dom@18.2.0)(react@18.2.0)
       '@storybook/addon-a11y':
         specifier: 6.5.16
         version: 6.5.16(react-dom@18.2.0)(react@18.2.0)

@@ -32,6 +32,7 @@
   "devDependencies": {
     "@geometricpanda/storybook-addon-badges": "1.1.1",
     "@open-wc/lit-helpers": "^0.6.0",
+    "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
     "@storybook/addon-a11y": "6.5.16",
     "@storybook/addon-essentials": "7.0.26",
     "@storybook/addon-links": "7.0.26",
