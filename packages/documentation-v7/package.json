@@ -31,6 +31,7 @@
   },
   "devDependencies": {
     "@geometricpanda/storybook-addon-badges": "1.1.1",
+    "@open-wc/lit-helpers": "^0.6.0",
     "@storybook/addon-a11y": "6.5.16",
     "@storybook/addon-essentials": "7.0.26",
     "@storybook/addon-links": "7.0.26",
@@ -40,6 +41,7 @@
     "@storybook/theming": "6.5.16",
     "@storybook/web-components": "7.0.26",
     "@storybook/web-components-vite": "7.0.26",
+    "@types/mdx": "2.0.5",
     "@types/react": "18.2.14",
     "lit": "2.7.6",
     "prettier": "2.8.8",
