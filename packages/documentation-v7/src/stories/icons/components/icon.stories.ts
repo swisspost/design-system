@@ -1,9 +1,9 @@
-import { BADGE } from '../../../../.storybook/constants';
 import { spread } from '@open-wc/lit-helpers';
 import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { Components } from '@swisspost/design-system-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
   component: 'post-icon',
@@ -123,6 +123,11 @@ const colorVariants = [
 ];
 
 export const Color: Story = {
+  parameters: {
+    controls: {
+      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
   render: args => renderVariants(args, colorVariants),
   decorators: [story => generateDecorators(story, 'd-flex flex-wrap gap-2')],
 };
@@ -137,6 +142,11 @@ const sizeVariants = [
 ];
 
 export const Size: Story = {
+  parameters: {
+    controls: {
+      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
   render: args => renderVariants(args, sizeVariants),
   decorators: [story => generateDecorators(story, 'd-flex flex-column')],
 };
@@ -148,6 +158,11 @@ const styleVariants = [
 ];
 
 export const Style: Story = {
+  parameters: {
+    controls: {
+      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
   render: args => renderVariants(args, styleVariants),
   decorators: [story => generateDecorators(story, 'd-flex flex-wrap gap-2')],
 };
@@ -160,6 +175,11 @@ const flipVariants = [
 ];
 
 export const Flip: Story = {
+  parameters: {
+    controls: {
+      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
   render: args => renderVariants(args, flipVariants),
   decorators: [story => generateDecorators(story, 'd-flex flex-wrap gap-2')],
 };
@@ -171,6 +191,11 @@ const scaleVariants = [
 ];
 
 export const Scale: Story = {
+  parameters: {
+    controls: {
+      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
   render: args => renderVariants(args, scaleVariants),
   decorators: [story => generateDecorators(story, 'd-flex flex-wrap gap-4')],
 };
@@ -186,6 +211,11 @@ const rotateVariants = [
 ];
 
 export const Rotate: Story = {
+  parameters: {
+    controls: {
+      exclude: ['base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
   render: args => renderVariants(args, rotateVariants),
   decorators: [story => generateDecorators(story, 'd-flex flex-wrap gap-2')],
 };
@@ -214,6 +244,11 @@ const renderAnimateVariants = (args: Args, customAttrs: { name: string; animatio
 };
 
 export const Animate: Story = {
+  parameters: {
+    controls: {
+      exclude: ['name', 'base', 'flip-h', 'flip-v', 'scale', 'rotate', 'animation'],
+    },
+  },
   render: args => renderAnimateVariants(args, animateVariants),
   decorators: [story => generateDecorators(story, 'd-flex flex-wrap text-center')],
 };
