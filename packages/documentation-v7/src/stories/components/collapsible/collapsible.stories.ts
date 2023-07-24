@@ -1,5 +1,5 @@
-import { BADGE } from '@geometricpanda/storybook-addon-badges';
 import { spread } from '@open-wc/lit-helpers';
+import { BADGE } from '../../../../.storybook/constants';
 // @ts-ignore
 import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryContext, StoryObj } from '@storybook/web-components';
