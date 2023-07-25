@@ -620,6 +620,12 @@ importers:
       '@geometricpanda/storybook-addon-badges':
         specifier: 1.1.1
         version: 1.1.1(@storybook/addons@6.5.16)(@storybook/api@6.5.16)(@storybook/components@6.5.16)(@storybook/core-events@6.5.16)(@storybook/theming@6.5.16)(react-dom@18.2.0)(react@18.2.0)
+      '@open-wc/lit-helpers':
+        specifier: ^0.6.0
+        version: 0.6.0(lit@2.7.6)
+      '@pxtrn/storybook-addon-docs-stencil':
+        specifier: 6.4.1
+        version: 6.4.1(react-dom@18.2.0)(react@18.2.0)
       '@storybook/addon-a11y':
         specifier: 6.5.16
         version: 6.5.16(react-dom@18.2.0)(react@18.2.0)
@@ -647,6 +653,9 @@ importers:
       '@storybook/web-components-vite':
         specifier: 7.0.26
         version: 7.0.26(lit@2.7.6)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.4.3)
+      '@types/mdx':
+        specifier: 2.0.5
+        version: 2.0.5
       '@types/react':
         specifier: 18.2.14
         version: 18.2.14
@@ -7137,6 +7146,14 @@ packages:
     transitivePeerDependencies:
       - bluebird
       - supports-color
+    dev: true
+
+  /@open-wc/lit-helpers@0.6.0(lit@2.7.6):
+    resolution: {integrity: sha512-9F0Rw18Lupp8hehF299yYozN4cFMTnHeCVNtz0k18/eUkcUUb6DCWerL/ASJ9lZ4bLA/YUPmrkdgZz/xe9cKeg==}
+    peerDependencies:
+      lit: ^2.0.0
+    dependencies:
+      lit: 2.7.6
     dev: true
 
   /@percy/cli-app@1.26.2:
