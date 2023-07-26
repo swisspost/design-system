@@ -15,7 +15,7 @@ const config: StorybookConfig = {
     // '@storybook/addon-a11y',
     'storybook-dark-mode',
     '@geometricpanda/storybook-addon-badges',
-    // '@pxtrn/storybook-addon-docs-stencil',
+    '@pxtrn/storybook-addon-docs-stencil',
     {
       name: '@storybook/addon-essentials',
       options: {
