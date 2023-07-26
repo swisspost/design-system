@@ -167,7 +167,7 @@ export class PostInternetHeader {
     // Wait for the config to arrive, then render the header
     try {
       state.projectId = this.project;
-      state.environment = this.environment;
+      state.environment = this.environment.toLocaleLowerCase() as Environment;
       if (this.language !== undefined) state.currentLanguage = this.language;
       state.languageSwitchOverrides =
         typeof this.languageSwitchOverrides === 'string'
@@ -187,7 +187,7 @@ export class PostInternetHeader {
 
       state.localizedConfig = await getLocalizedConfig({
         projectId: this.project,
-        environment: this.environment,
+        environment: state.environment,
         language: this.language,
         cookieKey: this.languageCookieKey,
         localStorageKey: this.languageLocalStorageKey,
