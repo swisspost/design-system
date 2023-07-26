@@ -1,6 +1,6 @@
 describe('home', () => {
   before(() => {
-    cy.visit('/iframe.html?viewMode=docs&id=home--docs', { timeout: 5000 });
+    cy.visit('/iframe.html?id=home--docs', { timeout: 5000 });
   });
 
   it('should show the home page', () => {

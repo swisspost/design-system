@@ -620,6 +620,12 @@ importers:
       '@geometricpanda/storybook-addon-badges':
         specifier: 1.1.1
         version: 1.1.1(@storybook/addons@6.5.16)(@storybook/api@6.5.16)(@storybook/components@6.5.16)(@storybook/core-events@6.5.16)(@storybook/theming@6.5.16)(react-dom@18.2.0)(react@18.2.0)
+      '@percy/cli':
+        specifier: 1.26.2
+        version: 1.26.2
+      '@percy/cypress':
+        specifier: 3.1.2
+        version: 3.1.2(cypress@12.17.1)
       '@storybook/addon-a11y':
         specifier: 6.5.16
         version: 6.5.16(react-dom@18.2.0)(react@18.2.0)
@@ -1635,12 +1641,6 @@ packages:
       default-browser-id: 3.0.0
     dev: true
 
-  /@babel/code-frame@7.21.4:
-    resolution: {integrity: sha512-LYvhNKfwWSPpocw8GI7gpK2nq3HSDuEPC/uSYaALSJu9xjsalaaYFOq0Pwt5KmVqwEbZlDu81aLXwBOmD/Fv9g==}
-    engines: {node: '>=6.9.0'}
-    dependencies:
-      '@babel/highlight': 7.22.5
-
   /@babel/code-frame@7.22.5:
     resolution: {integrity: sha512-Xmwn266vad+6DAqEB2A6V/CcZVp62BbwVmcOJc2RPuwih1kw02TjQvWVWlcKGbBPd+8/0V5DEkOcizRGYsspYQ==}
     engines: {node: '>=6.9.0'}
@@ -1685,7 +1685,7 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       '@ampproject/remapping': 2.2.1
-      '@babel/code-frame': 7.21.4
+      '@babel/code-frame': 7.22.5
       '@babel/generator': 7.22.5
       '@babel/helper-compilation-targets': 7.22.1(@babel/core@7.19.3)
       '@babel/helper-module-transforms': 7.22.1
@@ -7176,7 +7176,7 @@ packages:
     engines: {node: '>=14'}
     dependencies:
       '@percy/cli-command': 1.26.2
-      fast-glob: 3.2.12
+      fast-glob: 3.3.0
       image-size: 1.0.2
     transitivePeerDependencies:
       - bufferutil
@@ -7234,7 +7234,7 @@ packages:
       content-disposition: 0.5.4
       cross-spawn: 7.0.3
       extract-zip: 2.0.1(supports-color@8.1.1)
-      fast-glob: 3.2.12
+      fast-glob: 3.3.0
       micromatch: 4.0.5
       mime-types: 2.1.35
       path-to-regexp: 6.2.1
@@ -13567,7 +13567,7 @@ packages:
     peerDependencies:
       webpack: ^5.1.0
     dependencies:
-      fast-glob: 3.2.12
+      fast-glob: 3.3.0
       glob-parent: 6.0.2
       globby: 13.2.2
       normalize-path: 3.0.0
@@ -15722,17 +15722,6 @@ packages:
       micromatch: 3.1.10
     transitivePeerDependencies:
       - supports-color
-    dev: true
-
-  /fast-glob@3.2.12:
-    resolution: {integrity: sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w==}
-    engines: {node: '>=8.6.0'}
-    dependencies:
-      '@nodelib/fs.stat': 2.0.5
-      '@nodelib/fs.walk': 1.2.8
-      glob-parent: 5.1.2
-      merge2: 1.4.1
-      micromatch: 4.0.5
     dev: true
 
   /fast-glob@3.3.0:
