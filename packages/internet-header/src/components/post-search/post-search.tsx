@@ -409,7 +409,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                             </a>
                           </li>
                         ))}
-                      {this.parcelSuggestion?.ok && (
+                      {this.parcelSuggestion && 'sending' in this.parcelSuggestion && (
                         <li>
                           <a
                             class="nav-link parcel-suggestion"
@@ -420,10 +420,14 @@ export class PostSearch implements HasDropdown, IsFocusable {
                             <SvgIcon name="pi-letter-parcel" />
                             <span class="bold">{this.parcelSuggestion?.sending?.id}:&nbsp;</span>
                             <span>
-                              {this.parcelSuggestion?.sending?.product},{' '}
-                              {this.parcelSuggestion?.sending?.recipient.zipcode}{' '}
-                              {this.parcelSuggestion?.sending?.recipient.city},{' '}
-                              {this.parcelSuggestion?.sending?.state}
+                              {[
+                                this.parcelSuggestion?.sending?.product,
+                                ' ' + this.parcelSuggestion?.sending?.recipient.zipcode,
+                                ' ' + this.parcelSuggestion?.sending?.recipient.city,
+                                ', ' + this.parcelSuggestion?.sending?.state,
+                              ]
+                                .filter(s => s !== '' && s !== ' ')
+                                .join('')}
                             </span>
                           </a>
                         </li>
