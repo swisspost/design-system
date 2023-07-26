@@ -199,13 +199,14 @@ export const fetchConfig = async (
 export const generateConfigUrl = (projectId: string, environment: Environment): string => {
   if (projectId === 'test') return 'assets/config/test-configuration.json';
 
-  const isProd = environment === 'prod';
+  const parsedEnvironment = environment.toLowerCase();
+  const isProd = parsedEnvironment === 'prod';
   const host = `https://${isProd ? 'www' : 'int'}.post.ch`;
   try {
     // Use URL to validate the generated URL
     return new URL(
       `${host}/api/headerjs/Json?serviceid=${encodeURIComponent(projectId)}${
-        !isProd ? '&environment=' + environment : ''
+        !isProd ? '&environment=' + parsedEnvironment : ''
       }`,
     ).toString();
   } catch (error) {
