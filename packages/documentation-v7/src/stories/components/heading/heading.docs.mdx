@@ -1,0 +1,34 @@
+import { Meta, Canvas, Story, ArgTypes } from '@storybook/blocks';
+import { linkTo } from '@storybook/addon-links';
+import * as HeadingStories from './heading.stories';
+
+<Meta of={HeadingStories} />
+
+# Button
+
+<div className="lead">
+  Use our custom heading styles to create to display semantically correct and appealing headings.
+</div>
+
+All HTML headings, `h1` through `h6`, are available.<br/>
+If you only want to make content appear like headings without using a semantic element, you should pay attention to our <a onClick={linkTo('utilities-heading--docs')}>heading utilities</a>.
+
+<Canvas of={HeadingStories.Default} />
+<div className="hide-col-default">
+  <ArgTypes of={HeadingStories.Default} />
+</div>
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+```css dark
+@use '@swisspost/design-system-styles/index.scss';
+```
+
+To import only the styles required for this component:
+
+```css dark
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/type.scss';
+```
