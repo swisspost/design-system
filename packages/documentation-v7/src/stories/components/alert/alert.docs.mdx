@@ -1,4 +1,4 @@
-import { Meta, Canvas, Source, ArgsTable } from '@storybook/blocks';
+import { Meta, Canvas, ArgsTable } from '@storybook/blocks';
 
 import * as AlertStories from './alert.stories';
 
@@ -19,16 +19,16 @@ By default, alerts are rendered with a contextually appropriate icon.
 
 To import all styles from the design-system-styles package:
 
-<Source code={`@use '@swisspost/design-system-styles/index.scss';`} language="css" dark={true} />
+```scss
+@use '@swisspost/design-system-styles/index.scss';
+```
 
 To import only the styles required for this component:
 
-<Source
-  code={`@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/alert.scss';`}
-  language="css"
-  dark={true}
-/>
+```scss
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/alert.scss';
+```
 
 ## Specific examples of application
 
