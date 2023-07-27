@@ -323,6 +323,11 @@ The changeset release action supports custom commands for both versioning and pu
 
 The custom commands can be found in the [root pacakge.json](./package.json) as `cahngeset:publish` and `changeset:version` and are used in the [release workflow](./.github/workflows/release.yaml).
 
+## Technology radar
+
+[![Technology radar for the Swiss Post Design System](https://github.com/swisspost/design-system/assets/1659006/88a8d899-6d3f-4f08-bf32-2f1328252d67)](https://www.figma.com/file/Do4pwfl2EVvbZDDWnB0QNx/Design-System-Architecture-Diagrams?type=whiteboard&node-id=1220-2994&t=Q0qqK9EUF89UmzJM-4)
+
+
 ## License and code of conduct
 
 By contributing your code, you agree follow our [code of conduct](https://github.com/swisspost/design-system/blob/main/CODE_OF_CONDUCT.md) and agree to license your contribution under the [Apache 2.0 License](./LICENSE).
