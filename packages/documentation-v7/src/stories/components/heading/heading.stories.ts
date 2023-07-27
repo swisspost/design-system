@@ -77,7 +77,7 @@ export const Default: Story = {
       : args.title;
 
     return html`
-      <${tagName} class="h3">${content}</${tagName}>
+      <${tagName}>${content}</${tagName}>
     `;
   },
 };
