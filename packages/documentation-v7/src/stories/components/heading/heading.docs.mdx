@@ -1,4 +1,4 @@
-import { Meta, Canvas, Story, ArgTypes } from '@storybook/blocks';
+import { Meta, Canvas, Story, Controls } from '@storybook/blocks';
 import { linkTo } from '@storybook/addon-links';
 import * as HeadingStories from './heading.stories';
 
@@ -15,7 +15,7 @@ If you only want to make content appear like headings without using a semantic e
 
 <Canvas of={HeadingStories.Default} />
 <div className="hide-col-default">
-  <ArgTypes of={HeadingStories.Default} />
+  <Controls of={HeadingStories.Default} />
 </div>
 
 ## SCSS Imports
