@@ -1,17 +1,12 @@
 import { spread } from '@open-wc/lit-helpers';
-import { BADGE } from '../../../../.storybook/constants';
-// @ts-ignore
 import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryContext, StoryObj } from '@storybook/web-components';
-import { PostCollapsible } from '@swisspost/design-system-components-react';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { ComponentProps, MouseEventHandler } from 'react';
+import { BADGE } from '../../../../.storybook/constants';
 import { definedProperties } from '../../../utils';
 
-type PostCollapsibleArgs = ComponentProps<typeof PostCollapsible> & { content: string };
-
-const meta: Meta<PostCollapsibleArgs> = {
+const meta: Meta<HTMLPostCollapsibleElement> = {
   component: 'post-collapsible',
   parameters: {
     controls: {
@@ -20,28 +15,20 @@ const meta: Meta<PostCollapsibleArgs> = {
     badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
   },
   args: {
-    content: `<span slot="header">Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
-  },
-  argTypes: {
-    content: {
-      name: 'Content',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Content',
-      },
-    },
+    innerHTML: `<span slot="header">Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },
   render: (args, context) => defaultRender(args, context),
 };
 
 export default meta;
 
-type Story = StoryObj<PostCollapsibleArgs>;
+type Story = StoryObj<HTMLPostCollapsibleElement>;
 
-function defaultRender(args: PostCollapsibleArgs, context: StoryContext<PostCollapsibleArgs>) {
-  const hasHeader = args.content.indexOf('slot="header"') > -1;
+function defaultRender(
+  args: HTMLPostCollapsibleElement,
+  context: StoryContext<HTMLPostCollapsibleElement>,
+) {
+  const hasHeader = args.innerHTML.indexOf('slot="header"') > -1;
   const collapsibleId = `collapsible-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
 
   const collapsibleProperties = definedProperties({
@@ -52,7 +39,7 @@ function defaultRender(args: PostCollapsibleArgs, context: StoryContext<PostColl
 
   const collapsibleComponent = html`
     <post-collapsible ${spread(collapsibleProperties)}>
-      ${unsafeHTML(args.content)}
+      ${unsafeHTML(args.innerHTML)}
     </post-collapsible>
   `;
 
@@ -65,7 +52,7 @@ function defaultRender(args: PostCollapsibleArgs, context: StoryContext<PostColl
     });
   };
 
-  const togglers: [string, MouseEventHandler][] = [
+  const togglers = [
     ['Toggle', () => toggleCollapse()],
     ['Show', () => toggleCollapse(true)],
     ['Hide', () => toggleCollapse(false)],
@@ -100,7 +87,7 @@ export const Default: Story = {};
 export const InitiallyCollapsed: Story = {
   parameters: {
     controls: {
-      exclude: ['Content', 'heading-level', 'toggle'],
+      exclude: ['heading-level', 'toggle'],
     },
   },
   args: { collapsed: true },
@@ -118,11 +105,11 @@ export const HeadingLevel: Story = {
 export const IntricateContent: Story = {
   parameters: {
     controls: {
-      exclude: ['Content', 'heading-level', 'toggle'],
+      exclude: ['collapsed', 'heading-level', 'toggle'],
     },
   },
   args: {
-    content: `<p>I am part of the body</p>
+    innerHTML: `<p>I am part of the body</p>
       <span slot="header">Customus<em>&nbsp;Titulum</em></span>
       <small slot="header" class="text-muted">&nbsp;- I am part of the header</small>
       <p>I am part of the body too!</p>`,
@@ -136,6 +123,6 @@ export const CustomTrigger: Story = {
     },
   },
   args: {
-    content: `<p class="border rounded p-large">Contentus momentus vero siteos et accusam iretea et justo.</p>`,
+    innerHTML: `<p class="border rounded p-large">Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },
 };
