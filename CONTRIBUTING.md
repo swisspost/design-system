@@ -327,6 +327,20 @@ The custom commands can be found in the [root pacakge.json](./package.json) as `
 
 [![Technology radar for the Swiss Post Design System](https://github.com/swisspost/design-system/assets/1659006/88a8d899-6d3f-4f08-bf32-2f1328252d67)](https://www.figma.com/file/Do4pwfl2EVvbZDDWnB0QNx/Design-System-Architecture-Diagrams?type=whiteboard&node-id=1220-2994&t=Q0qqK9EUF89UmzJM-4)
 
+### Invest
+Our core deliverables in the future will be CSS Styles for HTML only components and web-components for more interactive patterns. For the web-components, wrappers for all major frameworks (React, Angular and Vue) will be provided. We invest in technologies directly related to delivering these features.
+
+### Keep
+To support our delivery goals, these technologies have proven useful and we keep relying on them but they are not critical to our delivery goals.
+
+### Assess
+These are technologies that seem interesting because they could support our core deliverables. A proof of concept needs to be made and they need to provide major benefits over keeper-technologies before they can be adopted.
+
+### Drop
+For good reasons, these are technologies that we're no longer planning to use in the future.
+- Angular (Demo App): Our demo app is custom built on Angular and would need serious investment to provide similar functionality compared to Storybook, an industry standard, which is cheaper to adopt and maintain than a custom solution.
+- ngBootstrap: not every product team is using Angular. In order to provide a future proof solution, we're implementing web standard components as direct replacement for ngBootstrap components. Wrappers for Angular will be provided for those in order to increase interoperability.
+- Bootstrap: Frequent, disruptive updates make it hard to adapt our heavily customized styles to the new versions. Also, the Bootstrap component variants don't match with components in the Design. This gap makes it hard for us to follow the Design Guidelines while still supporting all features of Bootstrap so devs who are familiar with it can use their knowledge. For large, custom Design Systems, it's cheaper to document what's possible with the Design Guidelines instead of trying to merge these two worlds. On the technical side, our components can be imported individually. Making this work with Bootstrap brings a lot of complexity to the codebase.
 
 ## License and code of conduct
 
