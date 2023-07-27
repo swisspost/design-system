@@ -45,12 +45,10 @@ The `<post-collapsible>` component exposes a `.toggle()` method that allows to t
 This method is asynchronous and returns a promise that resolves with the current open state.
 It optionally takes a boolean parameter that forces open when `true` or close when `false`.
 
-<Source
-  code={`const collapsible = document.querySelector('#collapsibleId') as HTMLPostCollapsibleElement;
-collapsible.toggle(/* open: boolean */).then((/* isOpen: boolean */) => {});`}
-  language="typescript"
-  dark={true}
-/>
+```typescript
+const collapsible = document.querySelector('#collapsibleId') as HTMLPostCollapsibleElement;
+collapsible.toggle(/* open: boolean */).then((/* isOpen: boolean */) => {});
+```
 
 A header is then not mandatory and can be replaced by an external control.
 
