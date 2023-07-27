@@ -935,8 +935,8 @@ importers:
         specifier: 5.0.1
         version: 5.0.1
       sass:
-        specifier: 1.63.6
-        version: 1.63.6
+        specifier: 1.64.1
+        version: 1.64.1
       stylelint:
         specifier: 15.10.1
         version: 15.10.1
@@ -16297,7 +16297,6 @@ packages:
   /fsevents@1.2.13:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
-    os: [darwin]
     deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
     requiresBuild: true
     dependencies:
@@ -16309,7 +16308,6 @@ packages:
   /fsevents@2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
     requiresBuild: true
     optional: true
 
@@ -24510,6 +24508,16 @@ packages:
 
   /sass@1.63.6:
     resolution: {integrity: sha512-MJuxGMHzaOW7ipp+1KdELtqKbfAWbH7OLIdoSMnVe3EXPMTmxTmlaZDCTsgIpPCs3w99lLo9/zDKkOrJuT5byw==}
+    engines: {node: '>=14.0.0'}
+    hasBin: true
+    dependencies:
+      chokidar: 3.5.3
+      immutable: 4.3.0
+      source-map-js: 1.0.2
+    dev: true
+
+  /sass@1.64.1:
+    resolution: {integrity: sha512-16rRACSOFEE8VN7SCgBu1MpYCyN7urj9At898tyzdXFhC+a+yOX5dXwAR7L8/IdPJ1NB8OYoXmD55DM30B2kEQ==}
     engines: {node: '>=14.0.0'}
     hasBin: true
     dependencies:

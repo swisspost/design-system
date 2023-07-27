@@ -4,19 +4,21 @@
 @use 'tests/jest';
 @use 'sass:map';
 
-$expected-output: "data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath stroke-width='2px' stroke='%23ffffff' opacity='1' fill='%23000000' d='M22 25.333l10-10-12.667-12.667-18 18 4.667 4.667h-6v5.333h32v-5.333h-10zM20 5.2l9.467 9.467h-9.467v-9.467zM16.133 29.333h-1.467v-8h2.933c1.333 0 2.4-1.067 2.4-2.4v-2.933h9.467l-13.333 13.333zM1.333 29.333v-2.667h6l2.667 2.667h-8.667zM13.333 29.333h-1.467l-8-8h9.467v8zM3.867 20l14.8-14.8v13.733c0 0.533-0.4 1.067-1.067 1.067h-13.733zM30.667 29.333h-12.667l2.667-2.667h10v2.667z'%3E%3C/path%3E%3C/svg%3E";
+$add-fill-input: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath stroke-width='2px' stroke='%23ffffff' opacity='1' fill='%23000000' d='M22 25.333l10-10-12.667-12.667-18 18 4.667 4.667h-6v5.333h32v-5.333h-10zM20 5.2l9.467 9.467h-9.467v-9.467zM16.133 29.333h-1.467v-8h2.933c1.333 0 2.4-1.067 2.4-2.4v-2.933h9.467l-13.333 13.333zM1.333 29.333v-2.667h6l2.667 2.667h-8.667zM13.333 29.333h-1.467l-8-8h9.467v8zM3.867 20l14.8-14.8v13.733c0 0.533-0.4 1.067-1.067 1.067h-13.733zM30.667 29.333h-12.667l2.667-2.667h10v2.667z'%3E%3C/path%3E%3C/svg%3E";
 
 // add-fill-color
-$expected-add-fill-color-output: "data:image/svg+xml,%3Csvg version='1.1' xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath opacity='1' fill='%23ffcc00' stroke-width='2px' stroke='%23ffffff' opacity='1' fill='%23000000' d='M22 25.333l10-10-12.667-12.667-18 18 4.667 4.667h-6v5.333h32v-5.333h-10zM20 5.2l9.467 9.467h-9.467v-9.467zM16.133 29.333h-1.467v-8h2.933c1.333 0 2.4-1.067 2.4-2.4v-2.933h9.467l-13.333 13.333zM1.333 29.333v-2.667h6l2.667 2.667h-8.667zM13.333 29.333h-1.467l-8-8h9.467v8zM3.867 20l14.8-14.8v13.733c0 0.533-0.4 1.067-1.067 1.067h-13.733zM30.667 29.333h-12.667l2.667-2.667h10v2.667z'%3E%3C/path%3E%3C/svg%3E";
+$expected-add-fill-color-output: "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath opacity='1' fill='%23ffcc00' stroke-width='2px' stroke='%23ffffff' opacity='1' fill='%23000000' d='M22 25.333l10-10-12.667-12.667-18 18 4.667 4.667h-6v5.333h32v-5.333h-10zM20 5.2l9.467 9.467h-9.467v-9.467zM16.133 29.333h-1.467v-8h2.933c1.333 0 2.4-1.067 2.4-2.4v-2.933h9.467l-13.333 13.333zM1.333 29.333v-2.667h6l2.667 2.667h-8.667zM13.333 29.333h-1.467l-8-8h9.467v8zM3.867 20l14.8-14.8v13.733c0 0.533-0.4 1.067-1.067 1.067h-13.733zM30.667 29.333h-12.667l2.667-2.667h10v2.667z'%3E%3C/path%3E%3C/svg%3E";
 @include jest.equal(
-  icons.add-fill-color($expected-output, #ffcc00),
+  icons.add-fill-color($add-fill-input, #ffcc00),
   $expected-add-fill-color-output
 );
+
+$expected-add-stroke-color-output: "data:image/svg+xml,%3Csvg xml:space='preserve' viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cg id='icon'%3E%3Cpath stroke-width='2px' stroke='%23ffffff' opacity='1' fill='%23000000' d='M32 14 19.8 1.7l-.4-.4-18 18 .4.4L6 24H0v5.3h11.3L10 28H1.3v-2.7h6L14 32l2.6-2.6H32V24H22l10-10zM18.5 4.1l.3 13.2c0 .4-.1.7-.4 1-.3.3-.6.4-1 .4h-.1l-13.2-.2L18.5 4.1zM14.9 20h2.4c1.5 0 2.8-1.3 2.7-2.9l-.1-3 9.5.3-14.2 14.5-.3-8.9zm14.5-6.7-9.4-.4-.2-9.3 9.6 9.7zM13.6 20l.3 10.1L3.7 19.8l9.9.2zm17.1 5.4V28H18l2.7-2.7h10z'/%3E%3C/g%3E%3C/svg%3E";
 
 // add-stroke-color
 @include jest.equal(
   icons.add-stroke-color(icons.get-colored-svg-url('1000', #000), #fff, 2px),
-  $expected-output
+  $expected-add-stroke-color-output
 );
 
 // get-colored-svg-url
