@@ -93,7 +93,7 @@ You can find more information about accessibility at the Swiss Post in our [acce
 [![Build, Test, Deploy, Measure, Optimize Workflow Diagram](https://github.com/swisspost/design-system/assets/1659006/cb114c7a-d14a-4cb8-842f-eaa8f503607c)](https://www.figma.com/file/Do4pwfl2EVvbZDDWnB0QNx/Design-System-Architecture-Diagrams?type=whiteboard&node-id=913-383&t=Q0qqK9EUF89UmzJM-4)
 
 ### Build
-A feature is only useful when it’s available, even if it’s not perfect from the start.
+A component is only useful when it’s available, even if it’s not perfect from the start.
 
 ### Test
 By writing solid tests, you enable future optimizations with great confidence.
@@ -102,10 +102,10 @@ By writing solid tests, you enable future optimizations with great confidence.
 It works and it’s tested, it can be used. Now your feature becomes useful for others.
 
 ### Measure
-Measure performance gather feedback, analyse usage and identify the biggest potentials for improvement.
+Measure performance, gather feedback, analyse usage and identify the biggest potentials for improvement.
 
 ### Optimize
-Optimise where you have the biggest impact. Are your tests still green? Great job.
+Optimize where you have the biggest impact. Are your tests still green? Great job.
 
 
 ## Submitting issues and requests
