@@ -333,6 +333,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
       return;
     }
     const { translations, search } = state.localizedConfig.header;
+    const isParcelTrackingNr = this.parcelSuggestion && 'sending' in this.parcelSuggestion;
     const showPortalRecommendations =
       this.searchBox?.value === '' && search.searchRecommendations?.links.length > 0;
 
@@ -409,11 +410,11 @@ export class PostSearch implements HasDropdown, IsFocusable {
                             </a>
                           </li>
                         ))}
-                      {this.parcelSuggestion && 'sending' in this.parcelSuggestion && (
+                      {isParcelTrackingNr && (
                         <li>
                           <a
                             class="nav-link parcel-suggestion"
-                            href={this.parcelSuggestion.url}
+                            href={this.parcelSuggestion!.url}
                             data-suggestion-text={this.searchBox?.value}
                             onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
                           >
