@@ -7,7 +7,6 @@ import {
   setStencilDocJson,
 } from '@pxtrn/storybook-addon-docs-stencil';
 import { StencilJsonDocs } from '@pxtrn/storybook-addon-docs-stencil/dist/types';
-import { format } from 'prettier';
 import DocsLayout from './blocks/layout';
 import { badgesConfig, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
