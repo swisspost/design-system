@@ -33,7 +33,7 @@ function defaultRender(
 
   const collapsibleProperties = definedProperties({
     'collapsed': args.collapsed,
-    'heading-level': args['headingLevel'],
+    'heading-level': args.headingLevel,
     'id': hasHeader ? undefined : collapsibleId,
   });
 
@@ -48,6 +48,7 @@ function defaultRender(
   const toggleCollapse = (open?: boolean) => {
     const collapsible = document.querySelector(`#${collapsibleId}`) as HTMLPostCollapsibleElement;
     collapsible.toggle(open).then((isOpen: boolean) => {
+      console.log('currentArgs', currentArgs);
       if (typeof currentArgs.collapsed !== 'undefined') updateArgs({ collapsed: !isOpen });
     });
   };

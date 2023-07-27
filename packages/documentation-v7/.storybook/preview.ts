@@ -1,15 +1,15 @@
 import type { Preview } from '@storybook/web-components';
 
-import DocsLayout from './blocks/layout';
-import { format } from 'prettier';
-import { badgesConfig, prettierOptions, resetComponents } from './helpers';
-import './helpers/register-web-components';
 import {
-  extractArgTypesFactory,
+  extractArgTypes,
   extractComponentDescription,
   setStencilDocJson,
 } from '@pxtrn/storybook-addon-docs-stencil';
 import { StencilJsonDocs } from '@pxtrn/storybook-addon-docs-stencil/dist/types';
+import { format } from 'prettier';
+import DocsLayout from './blocks/layout';
+import { badgesConfig, prettierOptions, resetComponents } from './helpers';
+import './helpers/register-web-components';
 
 import './styles/preview.scss';
 import themes from './styles/themes';
@@ -58,7 +58,7 @@ const preview: Preview = {
         transform: (snippet: string) => format(snippet, prettierOptions),
       },
       components: resetComponents,
-      extractArgTypes: extractArgTypesFactory({ dashCase: true }),
+      extractArgTypes,
       extractComponentDescription,
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
