@@ -51,7 +51,7 @@ $btn-icon-size-sm: spacing.$size-regular !default;
 $btn-padding-y-rg: spacing.$size-small-regular !default;
 $btn-padding-x-rg: sizing.px-to-rem(14) !default;
 $btn-gap-x-rg: sizing.px-to-rem(8) !default;
-$btn-animation-distance-rg: 0.625rem !default;
+$btn-animation-distance-rg: spacing.$size-mini !default;
 // Design System only
 $btn-height-rg: 2.5rem;
 $btn-font-size-rg: type.$font-size-14 !default;
@@ -61,7 +61,7 @@ $btn-icon-size-rg: 1.125rem !default;
 $btn-padding-y-md: spacing.$size-regular !default;
 $btn-padding-x-md: sizing.px-to-rem(16) !default;
 $btn-gap-x-md: sizing.px-to-rem(10) !default;
-$btn-animation-distance-md: spacing.$size-small-regular !default;
+$btn-animation-distance-md: spacing.$size-mini !default;
 // Design System only
 $btn-height-md: 3rem;
 $btn-font-size-md: type.$font-size-16 !default;
@@ -71,7 +71,7 @@ $btn-icon-size-md: spacing.$size-small-large !default;
 $btn-padding-y-lg: spacing.$size-small-large !default;
 $btn-padding-x-lg: sizing.px-to-rem(18) !default;
 $btn-gap-x-lg: sizing.px-to-rem(12) !default;
-$btn-animation-distance-lg: spacing.$size-regular !default;
+$btn-animation-distance-lg: spacing.$size-mini !default;
 // Design System only
 $btn-height-lg: 3.5rem;
 $btn-font-size-lg: type.$font-size-18 !default;
