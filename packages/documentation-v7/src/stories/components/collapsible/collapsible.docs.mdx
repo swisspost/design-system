@@ -1,8 +1,8 @@
-import { Meta, Canvas, Source, ArgsTable } from '@storybook/blocks';
+import { Meta, Canvas, Controls, ArgsTable } from '@storybook/blocks';
 
-import * as CollapsibleStories from './collapsible.stories';
+import * as CollapsibleStories from './collapsible.demo.stories';
 
-<Meta of={CollapsibleStories} />
+<Meta title="Components/Collapsible" />
 
 # Collapsible
 
@@ -12,7 +12,9 @@ The `<post-collapsible>` component is used to show and hide content.
 Collapsing an element will animate the height from its current value to 0.
 
 <Canvas of={CollapsibleStories.Default} />
-<ArgsTable story="^" />
+<div className="hide-col-default">
+  <Controls of={CollapsibleStories.Default} />
+</div>
 
 ## Examples
 

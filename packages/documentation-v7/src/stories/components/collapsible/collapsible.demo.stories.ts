@@ -7,6 +7,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { definedProperties } from '../../../utils';
 
 const meta: Meta<HTMLPostCollapsibleElement> = {
+  title: 'Hidden/demos/components/Collapsible',
   component: 'post-collapsible',
   parameters: {
     controls: {
