@@ -1,8 +1,12 @@
 import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
+import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
   title: 'Components/Heading',
+  parameters: {
+    badges: [BADGE.NEEDS_REVISION],
+  },
   args: {
     title: 'Heading',
     level: 'h1',
