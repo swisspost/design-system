@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@swisspost/design-system-styles": "workspace:6.2.5",
-    "tslib": "2.6.0"
+    "tslib": "2.6.1"
   },
   "devDependencies": {
     "@swisspost/design-system-components-angular": "workspace:2.0.7"
