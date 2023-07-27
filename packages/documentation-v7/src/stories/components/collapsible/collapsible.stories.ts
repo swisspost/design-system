@@ -17,6 +17,19 @@ const meta: Meta<HTMLPostCollapsibleElement> = {
   args: {
     innerHTML: `<span slot="header">Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },
+  argTypes: {
+    innerHTML: {
+      description:
+        'Defines the HTML markup contained in the collapsible.<br/>' +
+        'Elements with a `slot="header"` attribute are displayed in the header while others are shown in the body.',
+      table: {
+        category: 'content',
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+  },
   render: (args, context) => defaultRender(args, context),
 };
 
