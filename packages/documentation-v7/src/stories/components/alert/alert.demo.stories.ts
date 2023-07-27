@@ -6,7 +6,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { getAlertClasses } from './getAlertClasses';
 
 const meta: Meta = {
-  title: 'Components/Alert',
+  title: 'Hidden/demos/components/Alert',
   parameters: {
     controls: {
       exclude: ['Title', 'Content'],

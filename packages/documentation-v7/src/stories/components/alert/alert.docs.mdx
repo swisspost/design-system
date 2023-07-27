@@ -1,8 +1,8 @@
-import { Meta, Canvas, ArgsTable } from '@storybook/blocks';
+import { Meta, Canvas, Controls } from '@storybook/blocks';
 
-import * as AlertStories from './alert.stories';
+import * as AlertStories from './alert.demo.stories';
 
-<Meta of={AlertStories} />
+<Meta title="Components/Alert" />
 
 # Alert
 
@@ -12,7 +12,7 @@ By default, alerts are rendered with a contextually appropriate icon.
 
 <Canvas of={AlertStories.Default} />
 <div className="hide-col-default">
-  <ArgsTable story="^" />
+  <Controls of={AlertStories.Default} />
 </div>
 
 ## SCSS Imports

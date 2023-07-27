@@ -1,11 +1,11 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { bombArgs } from '../../utilities/bombArgs';
-import alertMeta from './alert.stories';
+import alertMeta from './alert.demo.stories';
 import { getAlertClasses } from './getAlertClasses';
 
 const meta: Meta = {
-  title: 'Hidden/Alert snapshot test',
+  title: 'Hidden/demos/components/Alert/Snapshot Test',
   render: () => html`
     <div class="d-flex gap-3 flex-wrap">
       ${['bg-white', 'bg-dark'].map(
@@ -79,4 +79,4 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Page: Story = {};
+export const Default: Story = {};
