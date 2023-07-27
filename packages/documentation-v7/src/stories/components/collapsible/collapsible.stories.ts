@@ -119,7 +119,7 @@ export const IntricateContent: Story = {
 export const CustomTrigger: Story = {
   parameters: {
     controls: {
-      exclude: ['Content', 'heading-level', 'toggle'],
+      exclude: ['heading-level', 'toggle'],
     },
   },
   args: {
