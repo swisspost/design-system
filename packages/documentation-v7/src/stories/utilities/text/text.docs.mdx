@@ -4,10 +4,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { SCSS_VARIABLES, TextUtilityAPI } from './text.blocks';
 import * as TextDemos from './text.demo.stories';
 
-<Meta
-  title="Utilities/Text"
-  parameters={{ badges: [BADGE.NEEDS_REVISION] }}
-/>
+<Meta title="Utilities/Text" parameters={{ badges: [BADGE.NEEDS_REVISION] }} />
 
 # Text
 
@@ -19,11 +16,11 @@ import * as TextDemos from './text.demo.stories';
 
 ### Font Family
 
-<Canvas of={TextDemos.FontFamily} sourceState='shown' />
+<Canvas of={TextDemos.FontFamily} sourceState="shown" />
 
 #### Set Font Family in SCSS
 
-```css dark
+```scss dark
 @use '@swisspost/design-system-styles/core' as post;
 
 .my-element {
@@ -33,19 +30,15 @@ import * as TextDemos from './text.demo.stories';
 
 #### Possible Values
 
-<TextUtilityAPI
-  values={SCSS_VARIABLES.fontFamilies}
-  cssPrefix="font"
-  scssPrefix="font-family"
-/>
+<TextUtilityAPI values={SCSS_VARIABLES.fontFamilies} cssPrefix="font" scssPrefix="font-family" />
 
 ### Font Size
 
-<Canvas of={TextDemos.FontSize} sourceState='shown' />
+<Canvas of={TextDemos.FontSize} sourceState="shown" />
 
 #### Set Font Size in SCSS
 
-```css dark
+```scss dark
 @use '@swisspost/design-system-styles/core' as post;
 
 .my-element {
@@ -55,11 +48,7 @@ import * as TextDemos from './text.demo.stories';
 
 #### Possible Values
 
-<TextUtilityAPI
-  values={SCSS_VARIABLES.fontSizes}
-  cssPrefix="fs"
-  scssPrefix="font-size"
-/>
+<TextUtilityAPI values={SCSS_VARIABLES.fontSizes} cssPrefix="fs" scssPrefix="font-size" />
 
 ### Font Weight
 
@@ -67,11 +56,11 @@ import * as TextDemos from './text.demo.stories';
   The `.bold`, `.regular`, and `.light` classes are deprecated in favor of the `.fw-*` classes.
 </div>
 
-<Canvas of={TextDemos.FontWeight} sourceState='shown' />
+<Canvas of={TextDemos.FontWeight} sourceState="shown" />
 
 #### Set Font Weight in SCSS
 
-```css dark
+```scss dark
 @use '@swisspost/design-system-styles/core' as post;
 
 .my-element {
@@ -81,24 +70,19 @@ import * as TextDemos from './text.demo.stories';
 
 #### Possible Values
 
-<TextUtilityAPI
-  values={SCSS_VARIABLES.fontWeights}
-  cssPrefix="fw"
-  scssPrefix="font-weight"
-/>
+<TextUtilityAPI values={SCSS_VARIABLES.fontWeights} cssPrefix="fw" scssPrefix="font-weight" />
 
 ### Font Style
 
-<Canvas of={TextDemos.FontStyle} sourceState='shown' />
+<Canvas of={TextDemos.FontStyle} sourceState="shown" />
 
-<p className="mb-big"><em>There are no Sass variables for font styles at this time.</em></p>
+<p className="mb-big">
+  <em>There are no Sass variables for font styles at this time.</em>
+</p>
 
 #### Possible Values
 
-<TextUtilityAPI
-  values={SCSS_VARIABLES.fontStyles}
-  cssPrefix="fst"
-/>
+<TextUtilityAPI values={SCSS_VARIABLES.fontStyles} cssPrefix="fst" />
 
 ### Line Heights
 
@@ -106,11 +90,11 @@ import * as TextDemos from './text.demo.stories';
   Fixed-size line heights are deprecated in favor of relative line height utility classes.
 </div>
 
-<Canvas of={TextDemos.LineHeight} sourceState='shown' />
+<Canvas of={TextDemos.LineHeight} sourceState="shown" />
 
 #### Set Line Height in SCSS
 
-```css dark
+```scss dark
 @use '@swisspost/design-system-styles/core' as post;
 
 .my-element {
@@ -122,21 +106,15 @@ import * as TextDemos from './text.demo.stories';
 
 ##### Fixed-size (deprecated)
 
-<TextUtilityAPI
-  values={SCSS_VARIABLES.fixedLineHeights}
-  cssPrefix="lh"
-  scssPrefix="line-height"
-/>
+<TextUtilityAPI values={SCSS_VARIABLES.fixedLineHeights} cssPrefix="lh" scssPrefix="line-height" />
 
 ##### Relative
+
 For good accessibility, the line height is set to <code>1.5</code> for body text and <code>1.2</code> for headings.
 To make the line height equal to the font size, you can use the `.lh-1` class.
 There are no Sass variables for these row heights.
 
-<TextUtilityAPI
-  values={SCSS_VARIABLES.relativeLineHeights}
-  cssPrefix="lh"
-/>
+<TextUtilityAPI values={SCSS_VARIABLES.relativeLineHeights} cssPrefix="lh" />
 
 ## Text
 
@@ -145,17 +123,18 @@ Define how text-blocks are displayed.
 ### Color
 
 <div className="alert alert-warning my-4">
-  The `.text-auto` class is deprecated since text color is now set by the <LinkTo href="utilities-background">backgrounds</LinkTo> themselves.
+  The `.text-auto` class is deprecated since text color is now set by the{' '}
+  <LinkTo href="utilities-background">backgrounds</LinkTo> themselves.
 </div>
 
 Colorize text with `.text-*` utility classes.
 To colorize links, use the `.link-*` classes instead as they also provide styling for the `:hover` and `:focus` states.
 
-<Canvas of={TextDemos.TextColor} sourceState='shown' />
+<Canvas of={TextDemos.TextColor} sourceState="shown" />
 
 #### Set the Color in SCSS
 
-```css dark
+```scss dark
 @use '@swisspost/design-system-styles/core' as post;
 
 .my-element {
@@ -165,22 +144,19 @@ To colorize links, use the `.link-*` classes instead as they also provide stylin
 
 #### Possible Values
 
-<TextUtilityAPI
-  values={SCSS_VARIABLES.colors}
-  cssPrefix="text"
-/>
+<TextUtilityAPI values={SCSS_VARIABLES.colors} cssPrefix="text" />
 
 ### Reset Color
 
 Reset a text color with `.text-reset`, so that an element inherits the color from its parent.
 
-<Canvas of={TextDemos.TextColorReset} sourceState='shown' />
+<Canvas of={TextDemos.TextColorReset} sourceState="shown" />
 
 ### Alignment
 
 Easily realign text to components with text alignment classes.
 
-<Canvas of={TextDemos.TextAlign} sourceState='shown' />
+<Canvas of={TextDemos.TextAlign} sourceState="shown" />
 
 #### Responsive Alignment
 
@@ -193,22 +169,22 @@ For more detailed informations about breakpoints read our <LinkTo kind="foundati
 
 Wrap text or prevent it from wrapping with the `.text-wrap` and `.text-nowrap` utility classes.
 
-<Canvas of={TextDemos.TextWrapping} sourceState='shown' />
+<Canvas of={TextDemos.TextWrapping} sourceState="shown" />
 
 ### Word Break
 
 Prevent long strings of text from breaking your component's layout by using the utility class `.text-break`.
 
-<Canvas of={TextDemos.WordBreak} sourceState='shown' />
+<Canvas of={TextDemos.WordBreak} sourceState="shown" />
 
 ### Transform
 
 Transform text with the following text capitalization classes: `.text-lowercase`, `.text-uppercase` and `.text-capitalize`.
 
-<Canvas of={TextDemos.TextTransform} sourceState='shown' />
+<Canvas of={TextDemos.TextTransform} sourceState="shown" />
 
 ### Decorations
 
 Decorate text with the following text decoration classes.: `.text-decoration-line-through` and `.text-decoration-none`.
 
-<Canvas of={TextDemos.TextDecoration} sourceState='shown' />
+<Canvas of={TextDemos.TextDecoration} sourceState="shown" />

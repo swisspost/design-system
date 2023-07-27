@@ -1192,6 +1192,10 @@ const vertx = window.vertx || {};
 
       if (sessionData.userType === 'B2C') {
         const settingEnvLinks = {
+          dev01: 'https://serviceint1.post.ch/kvm/app/ui',
+          dev02: 'https://serviceint1.post.ch/kvm/app/ui',
+          devs1: 'https://serviceint1.post.ch/kvm/app/ui',
+          test: 'https://serviceint1.post.ch/kvm/app/ui',
           int01: 'https://serviceint1.post.ch/kvm/app/ui',
           int02: 'https://serviceint2.post.ch/kvm/app/ui',
           prod: 'https://service.post.ch/kvm/app/ui',
