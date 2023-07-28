@@ -15,11 +15,14 @@
   "main": "index.js",
   "private": true,
   "scripts": {
-    "start": "pnpm clean & pnpm manager-ui --style=expanded & storybook dev -p 9200 --quiet",
-    "start:headless": "pnpm clean & pnpm manager-ui --style=expanded & storybook dev -p 9300 --quiet --no-open",
-    "build": "pnpm clean & pnpm manager-ui --style=compressed --no-source-map & storybook build --quiet",
+    "prebuild:managerui": "sass --update --load-path=node_modules .storybook/styles/manager.scss public/manager/ui.css",
+    "start": "pnpm clean & pnpm prebuild:managerui --style=expanded & storybook dev -p 9200 --quiet",
+    "start:headless": "pnpm clean & pnpm prebuild:managerui --style=expanded & storybook dev -p 9300 --quiet --no-open",
+    "build": "pnpm clean & pnpm prebuild:managerui --style=compressed --no-source-map & storybook build --quiet",
     "clean": "rimraf storybook-static public/manager",
-    "manager-ui": "sass --update --load-path=node_modules .storybook/styles/manager.scss public/manager/ui.css"
+    "e2e": "cypress run",
+    "e2e:watch": "cypress open",
+    "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js --record --key 0995e768-43ec-42bd-a127-ff944a2ad8c9"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:1.3.8",
@@ -31,30 +34,33 @@
   },
   "devDependencies": {
     "@geometricpanda/storybook-addon-badges": "1.1.1",
-    "@open-wc/lit-helpers": "^0.6.0",
+    "@open-wc/lit-helpers": "0.6.0",
+    "@percy/cli": "1.26.2",
+    "@percy/cypress": "3.1.2",
     "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
     "@storybook/addon-a11y": "6.5.16",
     "@storybook/addon-essentials": "7.1.1",
     "@storybook/addon-links": "7.1.1",
     "@storybook/blocks": "7.1.1",
-    "@storybook/components": "^7.1.1",
-    "@storybook/manager-api": "^7.0.26",
+    "@storybook/components": "7.1.1",
+    "@storybook/manager-api": "7.0.26",
     "@storybook/testing-library": "0.2.0",
     "@storybook/theming": "6.5.16",
     "@storybook/web-components": "7.1.1",
     "@storybook/web-components-vite": "7.1.1",
     "@types/mdx": "2.0.5",
     "@types/react": "18.2.17",
-    "@types/react-syntax-highlighter": "^15.5.7",
+    "@types/react-syntax-highlighter": "15.5.7",
+    "cypress": "12.17.1",
     "lit": "2.7.6",
     "prettier": "2.8.8",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-syntax-highlighter": "^15.5.0",
+    "react-syntax-highlighter": "15.5.0",
     "rimraf": "5.0.1",
     "sass": "1.64.1",
     "storybook": "7.1.1",
     "storybook-dark-mode": "3.0.0",
-    "typescript": "^5.1.6"
+    "typescript": "5.1.6"
   }
 }
