@@ -1,4 +1,4 @@
-import type { Args, Meta, StoryObj, StoryFn } from '@storybook/web-components';
+import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 import { repeat } from 'lit/directives/repeat.js';
@@ -205,21 +205,7 @@ const Template = {
   render: (args: Args) => {
     const tagName = unsafeStatic(args.tag);
     const isAnimated = args.tag !== 'input' && args.animated;
-    const props = {
-      class: [
-        'btn',
-        args.variant,
-        args.size,
-        isAnimated && 'btn-animated',
-        args.iconOnly && 'btn-icon',
-      ]
-        .filter(c => c && c !== 'null')
-        .join(' '),
-      href: args.tag === 'a' ? 'javascript:void' : null,
-      type: args.tag === 'input' ? args.type : null,
-      value: args.tag === 'input' ? args.text : null,
-      disabled: args.disabled ? args.disabled : null,
-    };
+    const props = createProps(args, isAnimated);
 
     if (args.tag === 'input') {
       return html`
@@ -243,6 +229,24 @@ const Template = {
           ${args.icon !== 'null' && args.iconPosition === 'end' ? icon : null}
         </${tagName}>
       `;
+    }
+
+    function createProps(args: Args, isAnimated: boolean) {
+      return {
+        class: [
+          'btn',
+          args.variant,
+          args.size,
+          isAnimated && 'btn-animated',
+          args.iconOnly && 'btn-icon',
+        ]
+          .filter(c => c && c !== 'null')
+          .join(' '),
+        href: args.tag === 'a' ? 'javascript:void' : null,
+        type: args.tag === 'input' ? args.type : null,
+        value: args.tag === 'input' ? args.text : null,
+        disabled: args.disabled ? args.disabled : null,
+      };
     }
   },
 };
