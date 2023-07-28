@@ -3,23 +3,35 @@
 @use './../variables/components/button';
 
 %btn-default {
-  border: button.$btn-border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
+  border: button.$btn-border-width solid var(--post-gray-60);
 
   @include utilities.not-disabled-focus-hover() {
     border-color: var(--post-contrast-color);
-    color: var(--post-contrast-color); // Override <a> color
   }
 
   @include color-mx.on-dark-background() {
     border-color: var(--post-contrast-color);
 
     @include utilities.not-disabled-focus-hover() {
-      border-color: rgba(var(--post-contrast-color-rgb), 0.4);
+      border-color: var(--post-gray-40);
     }
   }
 
   &:disabled {
-    border-color: rgba(var(--post-contrast-color-rgb), 0.4);
-    color: rgba(var(--post-contrast-color-rgb), 0.6);
+    border-color: var(--post-gray-40);
+    color: var(--post-gray-60);
+  }
+}
+
+%btn-transparent-background {
+  @include utilities.not-disabled-focus-hover() {
+    color: var(--post-contrast-color);
+  }
+
+  // Invert icon on dark backgrounds
+  @include color-mx.on-dark-background() {
+    .pi {
+      filter: invert(1);
+    }
   }
 }

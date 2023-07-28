@@ -40,7 +40,6 @@
     }
   }
 
-
   pre {
     font-size: 100%;
   }
@@ -85,6 +84,15 @@
     th,
     td {
       &:nth-child(3) {
+        display: none;
+      }
+    }
+  }
+
+  .hide-col-control .docblock-argstable {
+    th,
+    td {
+      &:nth-child(4) {
         display: none;
       }
     }

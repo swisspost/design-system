@@ -47,7 +47,7 @@ jobs:
           BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons
 
       - name: Install icons & dependencies
-        run: pnpm --filter design-system-icons... install
+        run: pnpm --filter design-system-icons... --filter design-system-styles... install
 
       - name: Fetch Icons
         run: pnpm --filter design-system-icons fetchSVGs
@@ -55,6 +55,9 @@ jobs:
           CEN_USERNAME: ${{ secrets.CEN_USERNAME }}
           CEN_PASSWORD: ${{ secrets.CEN_PASSWORD }}
           CEN_URL: ${{ secrets.CEN_URL }}
+
+      - name: Build styles
+        run: pnpm styles:build
 
       - name: Commit Changes
         run: |
@@ -66,7 +69,7 @@ jobs:
 
       - name: Get Changes
         id: changed-files
-        uses: tj-actions/changed-files@v35
+        uses: tj-actions/changed-files@v37
         with:
           files: ./packages/icons/public/post-icons/**
 

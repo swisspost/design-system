@@ -31,45 +31,76 @@ select.form-control-rg:not([size]):not([multiple]) {
   }
 
   &[type='file'] {
+    position: relative;
+
     min-height: calc(
       (1rem * forms.$input-line-height) + (forms.$input-padding-y * 2) +
         (forms.$input-border-width * 2)
     );
 
     &::file-selector-button {
-      margin-inline-start: 0;
-      margin-inline-end: 0;
-      padding-left: 0;
-      padding-right: 0;
-      width: 0;
-      border: 0 none;
-    }
-
-    &::after {
-      display: flex;
-      align-items: center;
-      content: 'Choose File';
+      display: block;
       position: absolute;
       top: 0;
       bottom: 0;
       right: 0;
-      z-index: 2;
-      padding-left: inherit;
-      padding-right: inherit;
+      margin-inline: 0;
+      height: auto;
       background-color: inherit;
+      border-right: 0 none;
       border-left: inherit;
-      text-align: center;
+    }
 
-      [lang='de'] & {
-        content: 'Datei auswählen';
+    // Fix Safari cutoff when change the initial position of the selector button.
+    @supports (background: -webkit-named-image(i)) {
+      &::file-selector-button {
+        display: initial;
+        position: initial;
+        margin-inline: 0;
+        padding-inline: 0;
+        width: 0;
+        border: 0 none;
       }
 
-      [lang='fr'] & {
-        content: 'Choisir un fichier';
+      &::after {
+        display: flex;
+        align-items: center;
+        content: 'Choose File';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        right: 0;
+        z-index: 2;
+        padding-inline: forms.$input-padding-y;
+        background-color: inherit;
+        border-left: inherit;
+        text-align: center;
+
+        [lang='de'] & {
+          content: 'Datei auswählen';
+        }
+
+        [lang='fr'] & {
+          content: 'Choisir un fichier';
+        }
+
+        [lang='it'] & {
+          content: 'Scegli file';
+        }
       }
 
-      [lang='it'] & {
-        content: 'Scegli file';
+      &[multiple] {
+        &::after {
+          content: 'Choose Files';
+
+          [lang='de'] & {
+            content: 'Dateien auswählen';
+          }
+
+          [lang='fr'] & {
+            content: 'Choisir des fichiers';
+          }
+        }
       }
     }
 
@@ -78,6 +109,10 @@ select.form-control-rg:not([size]):not([multiple]) {
         (1rem * forms.$input-line-height-sm) + (forms.$input-padding-y-sm * 2) +
           (forms.$input-border-width * 2)
       );
+
+      &::after {
+        padding-inline: forms.$input-padding-y-sm;
+      }
     }
 
     &.form-control-rg {
@@ -85,6 +120,10 @@ select.form-control-rg:not([size]):not([multiple]) {
         (1rem * forms.$input-line-height-rg) + (forms.$input-padding-y-rg * 2) +
           (forms.$input-border-width * 2)
       );
+
+      &::after {
+        padding-inline: forms.$input-padding-y-rg;
+      }
     }
 
     &.form-control-lg {
@@ -92,17 +131,21 @@ select.form-control-rg:not([size]):not([multiple]) {
         (1rem * forms.$input-line-height-lg) + (forms.$input-padding-y-lg * 2) +
           (forms.$input-border-width * 2)
       );
+
+      &::after {
+        padding-inline: forms.$input-padding-y-lg;
+      }
     }
   }
 
   @include utilities.high-contrast-mode() {
     &:hover,
     &:focus {
-      border-color: Highlight;
+      &:not(:disabled) {
+        border-color: Highlight;
 
-      &[type='file'] {
-        &::after {
-          border-color: Highlight;
+        &::file-selector-button {
+          border-left-color: Highlight;
         }
       }
     }

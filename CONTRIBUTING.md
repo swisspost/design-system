@@ -137,6 +137,20 @@ When a new package is added to the repo, a few things need to be taken care of.
 
   > ⚠ On publish, the `package.json` gets copied into the `./dist` folder. This leads to an incorrect publish path because npm now tries to publish from `./dist/dist`. You'll need a pre-publish script that removes the `directory` key from the `publishConfig` (see the [styles package pre-publish workflow](./packages/styles/gulpfile.js) for an example).
 
+
+## Authoring web-components
+
+### CSS Custom Properties
+As per resolution of the [discussion about sass variables vs. CSS custom properties](https://github.com/swisspost/design-system/discussions/1380), CSS custom properties should be used if they provide meaningful ways to interact with the component. Per default, not every possible value should be a custom property.
+
+#### Do
+- Use custom properties to define themable colors, for example `color` or `border-color` for dark-mode support
+- Use custom properties when updating the value with JavaScript is necessary
+
+#### Don't
+- Use custom properties to declare every possible value on the component. Use sass variables instead
+- Use custom properties when the value is only being used once and never updated
+
 ## Dev Server Ports
 
 For some packages it's necessary to run multiple dev servers at the same time. To prevent port conflicts, the following ranges are given to each package. The ranges 9000 - 9400 are chosen for compatibility with [port ranges used by Browserstack](https://www.browserstack.com/question/39572).

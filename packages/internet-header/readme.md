@@ -1,17 +1,21 @@
 # Swiss Post Internet Header
 
-![Swiss Post Design System splash screen](https://user-images.githubusercontent.com/1659006/187683368-d3aa2534-84be-4580-846e-2cad3796b573.png)
+![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e84f1fea-e666-4853-8c85-726a6bf22e6c)
 
 The official Swiss Post Internet Header implementation, built with [Stencil JS](https://stenciljs.com/).
 
 ## Documentation
+
 The header docs are part of the storybook docs for the Design System.
 
-[Internet Header Documentation](https://next.design-system.post.ch/?path=/story/components-internet-header-getting-started--page)
+[Internet Header Documentation](https://next.design-system.post.ch/?path=/story/internet-header-getting-started--page)
 
 ## Installation
+
 There are two possibilities to install the header on a page.
+
 ### npm installation
+
 Use this if your project uses a bundler or a framework like Angular, React or Vue.
 
 ```bash
@@ -19,6 +23,7 @@ npm install @swisspost/internet-header
 ```
 
 `main.ts`
+
 ```ts
 import { defineCustomElements } from '@swisspost/internet-header';
 
@@ -26,9 +31,11 @@ defineCustomElements();
 ```
 
 ### Basic installation
+
 Use this if you want to use the CDN version and if you don't use a bundler or a framework.
 
 `index.html`
+
 ```html
 <body>
   <swisspost-internet-header project="your-project-id"></swisspost-internet-header>

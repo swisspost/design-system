@@ -2,6 +2,8 @@ import { state } from '../../data/store';
 import { ISearchConfig } from '../../models/header.model';
 import { TrackAndTraceInfo } from '../../models/track-and-trace.model';
 
+let parcelController: AbortController;
+
 // https://www.post.ch/api/trackandtrace?id=99.00.306600.01004883
 
 // Track and trace URL
@@ -26,7 +28,7 @@ export const getTrackAndTraceRedirectUrl = (
  */
 export const isParcel = async (query: string, searchConfig: ISearchConfig): Promise<boolean> => {
   const parcelInfo = await getParcelInfo(query, searchConfig);
-  return parcelInfo.ok;
+  return 'sending' in parcelInfo;
 };
 
 /**
@@ -43,13 +45,24 @@ export const getParcelInfo = async (
   const trackingNrPattern = new RegExp(redirectPattern);
 
   if (trackingNrPattern.test(query)) {
-    try {
-      const trackAndTraceReqest = await fetch(getTrackAndTraceApiUrl(query));
-      const trackAndTraceResult = await trackAndTraceReqest.json();
-      return { ...trackAndTraceResult, ok: trackAndTraceResult.ok === 'true' };
-    } catch (error) {
-      console.warn(`Could not check track and trace API due to error: ${error.message}`);
-    }
+    const url = getTrackAndTraceApiUrl(query);
+
+    if (parcelController) parcelController.abort();
+    parcelController = new AbortController();
+
+    return new Promise((resolve, reject) => {
+      fetch(url, { signal: parcelController.signal })
+        .then(response => response.json())
+        .then((trackAndTraceResult: TrackAndTraceInfo) => {
+          resolve({ ...trackAndTraceResult, ok: trackAndTraceResult.ok });
+        })
+        .catch(error => {
+          if (error.name !== 'AbortError') {
+            console.error(`Could not check track and trace API due to error: ${error.message}`);
+            reject(error);
+          }
+        });
+    });
   }
 
   return { ok: false, timestamp: new Date().toDateString() };
