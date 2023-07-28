@@ -9,28 +9,13 @@
 @use './../variables/components/accordion';
 
 .accordion-item {
-  --post-accordion-border-width: #{accordion.$accordion-border-width};
-  --post-accordion-border-color: #{accordion.$accordion-border-color};
-  --post-accordion-header-font-weight: #{accordion.$accordion-header-font-weight};
-  --post-accordion-header-line-height: #{accordion.$accordion-header-line-height};
-  --post-accordion-button-padding: #{accordion.$accordion-button-padding};
-  --post-accordion-icon-size: #{accordion.$accordion-icon-size};
-  --post-accordion-button-cursor: #{accordion.$accordion-button-cursor};
-  --post-accordion-button-disabled-opacity: #{accordion.$accordion-button-disabled-opacity};
-  --post-accordion-button-focus-box-shadow: #{accordion.$accordion-button-focus-box-shadow};
-  --post-accordion-icon-transition: #{accordion.$accordion-icon-transition};
-  --post-accordion-icon-transform: #{accordion.$accordion-icon-transform};
-  --post-accordion-body-padding: #{accordion.$accordion-body-padding};
-  --post-accordion-heading-margin: #{accordion.$accordion-heading-margin};
-  --post-accordion-heading-font-weight: #{accordion.$accordion-heading-font-weight};
-
-  border-block-start: var(--post-accordion-border-width) solid var(--post-accordion-border-color);
+  border-block-start: accordion.$accordion-border-width solid accordion.$accordion-border-color;
 }
 
 .accordion-header {
   @include type-mixins.font-curve(accordion.$accordion-header-font-curve);
-  font-weight: var(--post-accordion-header-font-weight);
-  line-height: var(--post-accordion-header-line-height);
+  font-weight: accordion.$accordion-header-font-weight;
+  line-height: accordion.$accordion-header-line-height;
   margin: 0;
 }
 
@@ -39,38 +24,38 @@
 
   width: 100%;
   position: relative;
-  padding-block: var(--post-accordion-button-padding);
-  padding-inline-start: var(--post-accordion-button-padding);
-  padding-inline-end: calc(var(--post-accordion-button-padding) + var(--post-accordion-icon-size));
+  padding-block: accordion.$accordion-button-padding;
+  padding-inline-start: accordion.$accordion-button-padding;
+  padding-inline-end: accordion.$accordion-button-padding + accordion.$accordion-icon-size;
   text-align: start;
 
   &:not(:disabled) {
-    cursor: var(--post-accordion-button-cursor);
+    cursor: accordion.$accordion-button-cursor;
   }
 
   &:disabled {
-    opacity: var(--post-accordion-button-disabled-opacity);
+    opacity: accordion.$accordion-button-disabled-opacity;
   }
 
   &:focus {
     outline: none;
-    box-shadow: var(--post-accordion-button-focus-box-shadow);
+    box-shadow: accordion.$accordion-button-focus-box-shadow;
   }
 
   &::after {
     @include icon-mixins.pi(accordion.$accordion-icon-name);
     content: '';
     display: block;
-    height: var(--post-accordion-icon-size);
-    width: var(--post-accordion-icon-size);
-    background-size: var(--post-accordion-icon-size);
+    height: accordion.$accordion-icon-size;
+    width: accordion.$accordion-icon-size;
+    background-size: accordion.$accordion-icon-size;
     background-position: center;
     background-repeat: no-repeat;
     position: absolute;
-    inset-inline-end: var(--post-accordion-button-padding);
+    inset-inline-end: accordion.$accordion-button-padding;
     inset-block-start: 50%;
     transform: translateY(-50%);
-    transition: var(--post-accordion-icon-transition);
+    transition: accordion.$accordion-icon-transition;
 
     // TODO: find a way to style icon within web component on dark background
     @include color-mixins.on-dark-background() {
@@ -79,7 +64,7 @@
   }
 
   &.collapsed::after {
-    transform: translateY(-50%) var(--post-accordion-icon-transform);
+    transform: translateY(-50%) accordion.$accordion-icon-transform;
   }
 
   // TODO: find a way to style WHCM within web component
@@ -87,7 +72,7 @@
     &:hover,
     &:focus-visible {
       &:not(:disabled) {
-        outline: var(--post-accordion-border-width) solid Highlight;
+        outline: accordion.$accordion-border-width solid Highlight;
       }
     }
 
@@ -98,16 +83,16 @@
 }
 
 .accordion-body {
-  padding: var(--post-accordion-body-padding);
-  border-block-start: var(--post-accordion-border-width) solid var(--post-accordion-border-color);
+  padding: accordion.$accordion-body-padding;
+  border-block-start: accordion.$accordion-border-width solid accordion.$accordion-border-color;
 
   // TODO: find a way to style headings within web component
   @each $heading-size in (1 2 3 4 5 6) {
     h#{$heading-size},
     .h#{$heading-size} {
       @include type-mixins.font-curve(accordion.$accordion-heading-font-curve);
-      margin: var(--post-accordion-heading-margin);
-      font-weight: var(--post-accordion-heading-font-weight);
+      margin: accordion.$accordion-heading-margin;
+      font-weight: accordion.$accordion-heading-font-weight;
     }
   }
 }
