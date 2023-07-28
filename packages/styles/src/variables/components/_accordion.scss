@@ -1,9 +1,12 @@
-@use './button';
+@use './../../functions/icons';
+
 @use './../animation';
 @use './../color';
 @use './../commons';
 @use './../spacing';
 @use './../type';
+
+@use './button';
 
 $accordion-padding: spacing.$spacer !default;
 $accordion-border-width: commons.$border-thick !default;
@@ -28,3 +31,26 @@ $accordion-body-padding: spacing.$size-small-regular $accordion-padding spacing.
 $accordion-heading-margin: spacing.$size-bigger-big 0 0 !default;
 $accordion-heading-font-curve: $accordion-header-font-curve !default;
 $accordion-heading-font-weight: $accordion-header-font-weight !default;
+
+// Deprecated
+$accordion-padding-x: spacing.$size-regular !default;
+$accordion-border-radius: 0 !default;
+$accordion-font-curve: 'regular';
+$accordion-body-padding-top: spacing.$size-small-regular !default;
+$accordion-body-padding-bottom: spacing.$size-bigger-big !default;
+$accordion-body-heading-margin-top: spacing.$size-bigger-big;
+$accordion-body-heading-font-weight: type.$font-weight-bold;
+$accordion-button-padding-y: spacing.$size-regular !default;
+$accordion-button-color: color.$black !default;
+$accordion-button-active-bg: transparent !default;
+$accordion-button-active-color: color.$black !default;
+$accordion-button-hover-color: color.$black !default;
+$accordion-button-font-weight: type.$font-weight-bold !default;
+$accordion-button-line-height: type.$line-height-copy !default;
+$accordion-icon-width: spacing.$size-large !default;
+$_accordion-chevron: icons.get-colored-svg-url(2113, $accordion-button-color);
+$_accordion-active-chevron: icons.get-colored-svg-url(2113, $accordion-button-active-color);
+$_accordion-hcm-chevron: icons.get-colored-svg-url(2113, color.$white);
+$accordion-button-icon: url($_accordion-chevron);
+$accordion-button-active-icon: url($_accordion-active-chevron);
+$accordion-hcm-icon: url($_accordion-hcm-chevron);
