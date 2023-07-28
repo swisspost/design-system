@@ -1,0 +1,32 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { linkTo } from '@storybook/addon-links';
+import * as HeadingStories from './heading.stories';
+
+<Meta of={HeadingStories} />
+
+# Button
+
+<div className="lead">Use headings to structure content both visually and semantically.</div>
+
+All HTML headings are available, from `h1` the highest section level to `h6` the lowest.<br/>
+If you need to match the font styling of a heading but cannot use the associated HTML element, check out <a onClick={linkTo('utilities-heading--docs')}>heading utilities</a>.
+
+<Canvas of={HeadingStories.Default} />
+<div className="hide-col-default">
+  <Controls of={HeadingStories.Default} />
+</div>
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+```css dark
+@use '@swisspost/design-system-styles/index.scss';
+```
+
+To import only the styles required for this component:
+
+```css dark
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/type.scss';
+```
