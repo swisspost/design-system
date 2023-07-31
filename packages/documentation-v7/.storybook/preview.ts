@@ -1,11 +1,6 @@
 import type { Preview } from '@storybook/web-components';
 
-import {
-  extractArgTypes,
-  extractComponentDescription,
-  setStencilDocJson,
-} from '@pxtrn/storybook-addon-docs-stencil';
-import { StencilJsonDocs } from '@pxtrn/storybook-addon-docs-stencil/dist/types';
+import { extractArgTypes, extractComponentDescription } from '@pxtrn/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout';
 import { badgesConfig, prettierOptions, resetComponents } from './helpers';
@@ -18,10 +13,6 @@ import { SyntaxHighlighter } from '@storybook/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
-
-import docJson from '@swisspost/design-system-components/dist/docs.json';
-
-if (docJson) setStencilDocJson(docJson as StencilJsonDocs);
 
 const preview: Preview = {
   parameters: {

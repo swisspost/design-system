@@ -1,0 +1,21 @@
+import { Meta } from '@storybook/blocks';
+import InternetHeaderMeta from './post-internet-header.stories';
+
+<Meta name="Docs" of={InternetHeaderMeta} />
+
+# Header
+
+The `<swisspost-internet-header>` element needs
+to be nested directly inside the `<body>` for the sticky scrolling to work.
+If you want to render the header element with Angular,
+have a look at [portals](https://medium.com/angular-in-depth/how-do-cdk-portals-work-7c097c14a494).
+
+```html
+<!-- index.html -->
+<body>
+  <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
+</body>
+```
+
+## Options
+

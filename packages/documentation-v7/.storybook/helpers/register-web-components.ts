@@ -1,14 +1,12 @@
-import { defineCustomElements, JSX as LocalJSX } from '@swisspost/design-system-components/loader';
-import { HTMLAttributes } from 'react';
+import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header/loader';
+import { defineCustomElements as definePostComponent } from '@swisspost/design-system-components/loader';
+import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
+import { StencilJsonDocs } from '@pxtrn/storybook-addon-docs-stencil/dist/types';
+import internetHeaderDocJson from '@swisspost/internet-header/dist/docs.json';
+import postComponentsDocJson from '@swisspost/design-system-components/dist/docs.json';
 
-type StencilToReact<T> = {
-  [P in keyof T]?: T[P] & Omit<HTMLAttributes<Element>, 'className'> & { class?: string };
-};
+defineInternetHeader(window);
+definePostComponent(window);
 
-declare global {
-  export namespace JSX {
-    interface IntrinsicElements extends StencilToReact<LocalJSX.IntrinsicElements> {}
-  }
-}
-
-defineCustomElements(window);
+if (internetHeaderDocJson) setStencilDocJson(internetHeaderDocJson as StencilJsonDocs);
+if (postComponentsDocJson) setStencilDocJson(postComponentsDocJson as StencilJsonDocs);

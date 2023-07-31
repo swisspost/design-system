@@ -19,7 +19,7 @@ export class PostKlpLoginWidget implements IsFocusable {
       !state.localizedConfig?.header?.loginWidgetOptions
     )
       return;
-    const { initializeKLPLoginWidget } = await import('./klp-widget.controller');
+    const { initializeKLPLoginWidget } = await import('./klp-widget.controller.js');
     initializeKLPLoginWidget('post-klp-login-widget', {
       ...state.localizedConfig.header.loginWidgetOptions,
       environment: state.environment,
