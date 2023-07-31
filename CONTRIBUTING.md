@@ -90,7 +90,7 @@ You can find more information about accessibility at the Swiss Post in our [acce
 
 ## Development philosophy
 
-[![Build, Test, Deploy, Measure, Optimize Workflow Diagram](https://github.com/swisspost/design-system/assets/1659006/cb114c7a-d14a-4cb8-842f-eaa8f503607c)](https://www.figma.com/file/Do4pwfl2EVvbZDDWnB0QNx/Design-System-Architecture-Diagrams?type=whiteboard&node-id=913-383&t=Q0qqK9EUF89UmzJM-4)
+[![Build, Test, Deploy, Measure, Optimize Workflow Diagram](https://user-images.githubusercontent.com/12294151/257140843-d93ac889-fef1-4b05-96f8-b3dff249daef.png)](https://www.figma.com/file/Do4pwfl2EVvbZDDWnB0QNx/Design-System-Architecture-Diagrams?type=whiteboard&node-id=913-383&t=Q0qqK9EUF89UmzJM-4)
 
 ### Build
 A component is only useful when it’s available, even if it’s not perfect from the start.
@@ -325,7 +325,7 @@ The custom commands can be found in the [root pacakge.json](./package.json) as `
 
 ## Technology radar
 
-[![Technology radar for the Swiss Post Design System](https://github.com/swisspost/design-system/assets/1659006/88a8d899-6d3f-4f08-bf32-2f1328252d67)](https://www.figma.com/file/Do4pwfl2EVvbZDDWnB0QNx/Design-System-Architecture-Diagrams?type=whiteboard&node-id=1220-2994&t=Q0qqK9EUF89UmzJM-4)
+[![Technology radar for the Swiss Post Design System](https://user-images.githubusercontent.com/12294151/257137380-1ab24557-291d-425b-a76e-a60365804c71.png)](https://www.figma.com/file/Do4pwfl2EVvbZDDWnB0QNx/Design-System-Architecture-Diagrams?type=whiteboard&node-id=1220-2994&t=Q0qqK9EUF89UmzJM-4)
 
 ### Invest
 Our core deliverables in the future will be CSS Styles for HTML only components and web-components for more interactive patterns. For the web-components, wrappers for all major frameworks (React, Angular and Vue) will be provided. We invest in technologies directly related to delivering these features.
