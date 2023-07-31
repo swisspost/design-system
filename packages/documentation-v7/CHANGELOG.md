@@ -1,5 +1,20 @@
 # @swisspost/design-system-documentation-v7
 
+## 1.1.0
+
+### Minor Changes
+
+- Created a storybook v7 package, set up with vite and lit. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1613](https://github.com/swisspost/design-system/pull/1613))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.9
+  - @swisspost/internet-header@1.8.2
+  - @swisspost/design-system-styles@6.2.6
+  - @swisspost/design-system-components@1.3.9
+  - @swisspost/design-system-components-react@1.0.15
+
 ## 1.11.0
 
 ### Minor Changes

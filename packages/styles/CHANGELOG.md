@@ -1,5 +1,15 @@
 # @swisspost/design-system-styles
 
+## 6.2.6
+
+### Patch Changes
+
+- Updated button styles:
+  - Reduced horizontal padding of tertiary buttons.
+  - Updated font-size progression according to button size.
+  - Changed transparent color to full-tone colors.
+  - Updated the font-color and border-color of secondary and tertiary buttons. (by [@imagoiq](https://github.com/imagoiq) with [#1635](https://github.com/swisspost/design-system/pull/1635))
+
 ## 6.2.5
 
 ### Patch Changes
