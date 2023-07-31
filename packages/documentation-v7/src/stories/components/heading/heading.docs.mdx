@@ -1,15 +1,18 @@
 import { Meta, Canvas, Controls } from '@storybook/blocks';
-import { linkTo } from '@storybook/addon-links';
+import LinkTo from '@storybook/addon-links/react';
 import * as HeadingStories from './heading.stories';
 
 <Meta of={HeadingStories} />
 
-# Button
+# Heading
 
-<div className="lead">Use headings to structure content both visually and semantically.</div>
+<div className="lead">
+  Use headings to structure content both visually and semantically.
+</div>
 
 All HTML headings are available, from `h1` the highest section level to `h6` the lowest.<br/>
-If you need to match the font styling of a heading but cannot use the associated HTML element, check out <a onClick={linkTo('utilities-heading--docs')}>heading utilities</a>.
+If you need to match the font styling of a heading but cannot use the associated HTML element,
+check out <LinkTo kind="utilities-heading">heading utilities</LinkTo>.
 
 <Canvas of={HeadingStories.Default} />
 <div className="hide-col-default">
