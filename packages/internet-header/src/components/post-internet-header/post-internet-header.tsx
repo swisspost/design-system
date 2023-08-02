@@ -141,6 +141,7 @@ export class PostInternetHeader {
   private throttledScroll: throttle<() => void>;
   private debouncedResize: debounce<() => void>;
   private lastWindowWidth: number = window.innerWidth;
+  private updateLogoAnimation: () => void;
 
   constructor() {
     if (this.project === undefined || this.project === '' || !isValidProjectId(this.project)) {
@@ -169,6 +170,7 @@ export class PostInternetHeader {
     // Wait for the config to arrive, then render the header
     try {
       state.projectId = this.project;
+      state.stickyness = this.stickyness;
       state.environment = this.environment.toLocaleLowerCase() as Environment;
       if (this.language !== undefined) state.currentLanguage = this.language;
       state.languageSwitchOverrides =
@@ -208,7 +210,7 @@ export class PostInternetHeader {
       this.headerLoaded.emit();
       this.host.classList.add('header-loaded');
       if (this.meta && this.metaNav) {
-        registerLogoAnimationObserver(this.metaNav, this.host, this.stickyness === 'full');
+        this.updateLogoAnimation = registerLogoAnimationObserver(this.metaNav, this.host);
       }
     });
 
@@ -302,6 +304,12 @@ export class PostInternetHeader {
   @Listen('languageChanged')
   handleLanguageChangeEvent(event: CustomEvent<string>) {
     this.handleLanguageChange(event.detail);
+  }
+
+  @Watch('stickyness')
+  handleStickynessChange(newValue: StickynessOptions) {
+    state.stickyness = newValue;
+    this.updateLogoAnimation();
   }
 
   private handleClickOutsideBound = this.handleClickOutside.bind(this);

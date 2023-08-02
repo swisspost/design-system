@@ -1,14 +1,15 @@
 import { debounce } from 'throttle-debounce';
+import { state } from '../../../data/store';
 
 export const registerLogoAnimationObserver = (
   target: HTMLElement,
   headerRef: HTMLSwisspostInternetHeaderElement,
-  fullStickyness = false,
 ) => {
   /**
    * Set intersection ratio as CSS custom property
    */
   const handleScroll = () => {
+    const fullStickyness = state.stickyness === 'full';
     let scale = 1;
     // Minus 1px border at the bottom that the logo is not covering
     const adjustedHeaderHeight = headerRef.clientHeight - 1;
@@ -53,4 +54,6 @@ export const registerLogoAnimationObserver = (
     },
   );
   observer.observe(target);
+
+  return handleScroll;
 };
