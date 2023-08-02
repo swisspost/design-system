@@ -11,6 +11,9 @@ importers:
       '@changesets/cli':
         specifier: 2.26.2
         version: 2.26.2
+      http-server:
+        specifier: 14.1.1
+        version: 14.1.1
       start-server-and-test:
         specifier: 2.0.0
         version: 2.0.0
