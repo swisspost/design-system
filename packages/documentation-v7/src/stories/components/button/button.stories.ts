@@ -221,11 +221,14 @@ const Template = {
       const animatedContent = html`
         <span>${args.text}</span>
       `;
+      const text = html`
+        ${args.text}
+      `;
 
       return html`
         <${tagName} ${spread(props)}>
           ${args.icon !== 'null' && args.iconPosition === 'start' ? icon : null}
-          ${(args.iconOnly && iconOnlyContent) || (isAnimated && animatedContent) || args.text}
+          ${(args.iconOnly && iconOnlyContent) || (isAnimated && animatedContent) || text}
           ${args.icon !== 'null' && args.iconPosition === 'end' ? icon : null}
         </${tagName}>
       `;
