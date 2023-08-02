@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "1.8.3-beta.1",
+  "version": "1.8.2",
   "description": "The header for client facing applications.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
