@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 1.3.9
+
+### Patch Changes
+
+- Fixed broken and outdated output structure of stencil build. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1611](https://github.com/swisspost/design-system/pull/1611))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.6
+
+## 1.3.8
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.5
+
 ## 1.3.7
 
 ### Patch Changes

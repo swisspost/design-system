@@ -28,7 +28,7 @@ export const getTrackAndTraceRedirectUrl = (
  */
 export const isParcel = async (query: string, searchConfig: ISearchConfig): Promise<boolean> => {
   const parcelInfo = await getParcelInfo(query, searchConfig);
-  return parcelInfo.ok;
+  return 'sending' in parcelInfo;
 };
 
 /**

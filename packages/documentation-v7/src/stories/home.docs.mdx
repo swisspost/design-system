@@ -1,0 +1,203 @@
+import { Meta } from '@storybook/blocks';
+import { linkTo } from '@storybook/addon-links';
+import { getVersion } from '../utils/version';
+import { Tile, Feature } from './home.blocks';
+import './home.styles.scss';
+
+<Meta title="Home" />
+
+<div className="mt-huge text-center">
+  <h2 className="h3">Packages &amp; Resources</h2>
+  <div className="mt-big tile-wrapper">
+    <Tile
+      title="Styles"
+      href="https://github.com/swisspost/design-system/tree/main/packages/styles"
+    >
+      <img src="/images/packages/styles.svg" alt="design-system-styles package logo" />
+      <span>v{getVersion('styles')}</span>
+    </Tile>
+    <Tile
+      title="Components"
+      href="https://github.com/swisspost/design-system/tree/main/packages/components"
+    >
+      <img src="/images/packages/components.svg" alt="design-system-components package Logo" />
+      <span>v{getVersion('components')}</span>
+    </Tile>
+    <Tile
+      title="Internet-Header"
+      href="https://github.com/swisspost/design-system/tree/main/packages/internet-header"
+    >
+      <img src="/images/packages/internet-header.svg" alt="internet-header package Logo" />
+      <span>v{getVersion('internetheader')}</span>
+    </Tile>
+    <Tile
+      title="Intranet-Header"
+      href="https://github.com/swisspost/design-system/tree/main/packages/components-angular/projects/intranet-header"
+    >
+      <img
+        src="/images/packages/intranet-header.svg"
+        alt="design-system-intranet-header package Logo"
+      />
+      <span>v{getVersion('intranetheader')}</span>
+    </Tile>
+    <Tile title="Icons" href="https://github.com/swisspost/design-system/tree/main/packages/icons">
+      <img src="/images/packages/icons.svg" alt="design-system-icons package Logo" />
+      <span>v{getVersion('icons')}</span>
+    </Tile>
+  </div>
+  <div className="mt-regular mb-regular d-flex gap-mini flex-wrap justify-content-center">
+    <div className="mt-big mb-regular w-100">
+      {/* prettier-ignore */}
+      <button className="btn btn-primary btn-lg" onClick={linkTo('getting-started-styles--docs')}>Get started</button>
+    </div>
+    <a
+      href="https://www.experience-hub.ch/document/2803"
+      target="_blank"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      {/* prettier-ignore */}
+      <span>Experience Hub<sup>1</sup></span>
+    </a>
+    <a
+      href="https://www.figma.com/files/1052961410179009444/project/45002065/Web"
+      target="_blank"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      {/* prettier-ignore */}
+      <span>Figma<sup>2</sup></span>
+    </a>
+    <a
+      href="https://fonts.post.ch/frutigerneueforpost/#/"
+      target="_blank"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      <span>Frutiger Neue For Post</span>
+    </a>
+    <a
+      href="https://github.com/swisspost/design-system"
+      target="_blank"
+      rel="noopener"
+      className="btn btn-secondary"
+    >
+      <span>GitHub</span>
+    </a>
+  </div>
+  {/* prettier-ignore */}
+  <p className="mb-0 fs-tiny lh-tiny"><sup>1</sup> Login required. Get access with your post account, or use the registration form on the login page.<br />
+    <sup>2</sup> Login required. Get access with your post account, or click <a href="mailto:ux@post.ch?subject=I need access to Figma&body=Hello%2C%20I%20need%20access%20to%20Figma%20%0A%E2%80%A2%20%20Project%20name%3A%20%0A%E2%80%A2%20Project%20Owner%20at%20the%20Post%20Office%20%28email%29%3A%20%0A%E2%80%A2%20Project%20Start%20Date%3A%20%0A%E2%80%A2%20Email%20address%20to%20be%20authorized%3A%20">here</a>.</p>
+</div>
+
+<div className="mt-huge py-huge bg-light bg-fullwidth text-center">
+  <h2 className="h3 mb-big">Features</h2>
+
+  <div className="row g-0">
+    <div className="col-md-4">
+      <Feature icon="3194" title="Consistent">
+        <p>Consistent styles for all elements and components</p>
+      </Feature>
+    </div>
+    <div className="col-md-4">
+      <Feature icon="2077" title="Responsive">
+        <p>Mobile first repsonsive layout</p>
+      </Feature>
+    </div>
+    <div className="col-md-4">
+      <Feature icon="2097" title="Modular">
+        <p>Import only the features that you need</p>
+      </Feature>
+    </div>
+    <div className="col-md-4">
+      <Feature icon="2136" title="Accessible">
+        <p>Following the <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">WCAG 2.1</a> guidelines</p>
+      </Feature>
+    </div>
+    <div className="col-md-4">
+      <Feature icon="2483" title="Modern">
+        <p>Using modern web standards like framework agnostic web components</p>
+      </Feature>
+    </div>
+    <div className="col-md-4">
+      <Feature icon="2444" title="Open Source">
+        <p>Published on <a href="https://github.com/swisspost/design-system" target="_blank" rel="noopener">GitHub</a> under the <a href="https://github.com/swisspost/design-system/blob/main/LICENSE" target="_blank" rel="noopener">Apache 2.0 license</a></p>
+      </Feature>
+    </div>
+  </div>
+</div>
+
+<div className="mt-huge text-center">
+  <h2 className="h3 mb-big">Technologies</h2>
+
+  <div className="tile-wrapper">
+    <Tile href="https://www.figma.com/">
+        <img src="/images/technologies/logo-figma.svg" alt="Figma Logo" />
+        <span>Figma</span>
+    </Tile>
+    <Tile href="https://pnpm.io/">
+        <img src="/images/technologies/logo-pnpm.svg" alt="Pnpm Logo" />
+        <span>pnpm</span>
+    </Tile>
+    <Tile href="https://github.com/changesets/changesets">
+        <img src="/images/technologies/logo-changesets.png" alt="Changesets Logo" />
+        <span>Changesets</span>
+    </Tile>
+    <Tile href="https://webpack.js.org/">
+        <img src="/images/technologies/logo-webpack.svg" alt="Webpack Logo" />
+        <span>Webpack</span>
+    </Tile>
+    <Tile href="https://gulpjs.com/">
+        <img src="/images/technologies/logo-gulp.svg" alt="Gulp Logo" />
+        <span>Gulp</span>
+    </Tile>
+    <Tile href={ `https://getbootstrap.com/docs/${getVersion('bootstrap', 'Mm')}` }>
+        <img src="/images/technologies/logo-bootstrap.svg" alt="Bootstrap Logo" />
+        <span>Bootstrap</span>
+    </Tile>
+    <Tile href="https://sass-lang.com/">
+        <img src="/images/technologies/logo-sass.svg" alt="Sass Logo" />
+        <span>Sass</span>
+    </Tile>
+    <Tile href="https://stenciljs.com/">
+        <img src="/images/technologies/logo-stencil.png" alt="Stencil JS Logo" />
+        <span>Stencil JS</span>
+    </Tile>
+    <Tile href="https://angular.io/">
+        <img src="/images/technologies/logo-angular.svg" alt="Angular Logo" />
+        <span>Angular</span>
+    </Tile>
+    <Tile href="https://reactjs.org/">
+        <img src="/images/technologies/logo-react.svg" alt="React JS Logo" />
+        <span>React JS</span>
+    </Tile>
+    <Tile href="https://vuejs.org/">
+        <img src="/images/technologies/logo-vue.svg" alt="Vue JS Logo" />
+        <span>Vue JS</span>
+    </Tile>
+    <Tile href="https://github.com/svg/svgo">
+        <img src="/images/technologies/logo-svgo.svg" alt="SVGO Logo" />
+        <span>SVGO</span>
+    </Tile>
+    <Tile href="https://jestjs.io/">
+        <img src="/images/technologies/logo-jest.svg" alt="Jest Logo" />
+        <span>Jest</span>
+    </Tile>
+    <Tile href="https://www.cypress.io/">
+        <img src="/images/technologies/logo-cypress.svg" alt="Cypress Logo" />
+        <span>Cypress</span>
+    </Tile>
+    <Tile href="https://percy.io/">
+        <img src="/images/technologies/logo-percy.svg" alt="Percy Logo" />
+        <span>Percy</span>
+    </Tile>
+    <Tile href="https://storybook.js.org/">
+        <img src="/images/technologies/logo-storybook.svg" alt="Storybook Logo" />
+        <span>Storybook</span>
+    </Tile>
+    <Tile href="https://github.com/">
+        <img src="/images/technologies/logo-github.svg" alt="github Logo" />
+        <span>github</span>
+    </Tile>
+  </div>
+</div>

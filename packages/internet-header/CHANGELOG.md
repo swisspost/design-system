@@ -1,5 +1,24 @@
 # @swisspost/internet-header
 
+## 1.8.2
+
+### Patch Changes
+
+- Fixed an issue with uppercase environment strings. Uppercase environment strings caused issues with mapping to datasets throughout the header. Now the property is being converted to lowercase internally. (by [@gfellerph](https://github.com/gfellerph) with [#1670](https://github.com/swisspost/design-system/pull/1670))
+
+- Fixed an issue with the search redirect to track and trace. The track and trace API `ok` response type changed from boolean to string. The new type is now supported in the redirect logic. (by [@gfellerph](https://github.com/gfellerph) with [#1674](https://github.com/swisspost/design-system/pull/1674))
+
+- Fixed broken and outdated output structure of stencil build. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1611](https://github.com/swisspost/design-system/pull/1611))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.6
+
+## 1.8.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.5
+
 ## 1.8.0
 
 ### Minor Changes

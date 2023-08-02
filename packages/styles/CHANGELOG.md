@@ -1,5 +1,21 @@
 # @swisspost/design-system-styles
 
+## 6.2.6
+
+### Patch Changes
+
+- Updated button styles:
+  - Reduced horizontal padding of tertiary buttons.
+  - Updated font-size progression according to button size.
+  - Changed transparent color to full-tone colors.
+  - Updated the font-color and border-color of secondary and tertiary buttons. (by [@imagoiq](https://github.com/imagoiq) with [#1635](https://github.com/swisspost/design-system/pull/1635))
+
+## 6.2.5
+
+### Patch Changes
+
+- Fixed the placeholder for the file upload in Safari. It's no longer cut off and pluralisation for the button label with a `multiple` attribute is now supported. Also fixed padding when the state is valid or invalid. (by [@imagoiq](https://github.com/imagoiq) with [#1614](https://github.com/swisspost/design-system/pull/1614))
+
 ## 6.2.4
 
 ### Patch Changes
