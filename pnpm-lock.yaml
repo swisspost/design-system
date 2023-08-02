@@ -644,6 +644,9 @@ importers:
       '@storybook/blocks':
         specifier: 7.1.1
         version: 7.1.1(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/client-api':
+        specifier: 6.5.16
+        version: 6.5.16(react-dom@18.2.0)(react@18.2.0)
       '@storybook/components':
         specifier: 7.1.1
         version: 7.1.1(react-dom@18.2.0)(react@18.2.0)

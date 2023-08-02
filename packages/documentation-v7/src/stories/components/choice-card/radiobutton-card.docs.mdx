@@ -1,0 +1,37 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as RadiobuttonCardStories from './radiobutton-card.stories';
+
+<Meta of={RadiobuttonCardStories} />
+
+# Radio button card
+
+<div className="lead">
+  A larger, more consumer oriented, touch friendly variant of the checkbox used for e.g. selecting
+  services.
+</div>
+
+<Canvas of={RadiobuttonCardStories.Default} />
+<div className="hide-col-default">
+  <Controls of={RadiobuttonCardStories.Default} />
+</div>
+
+## Grouping
+
+Radiobutton cards can be grouped together. Use a `fieldset`/`legend` combination to label the group. If there is an error, link the legend with the error message through the `aria-describedby` attribute on the `legend`, pointing to the `id` of the error message.
+
+<Canvas of={RadiobuttonCardStories.Group} />
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+```css dark
+@use '@swisspost/design-system-styles/index.scss';
+```
+
+To import only the styles required for this component:
+
+```css dark
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/choice-control-card.scss';
+```

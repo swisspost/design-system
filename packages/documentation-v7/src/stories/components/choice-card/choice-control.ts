@@ -1,0 +1,168 @@
+import type { Args, Meta } from '@storybook/web-components';
+import { html } from 'lit/static-html.js';
+import { BADGE } from '../../../../.storybook/constants';
+import { nothing } from 'lit';
+
+export const choiceCardMeta: Meta = {
+  parameters: {
+    badges: [BADGE.NEEDS_REVISION],
+    controls: {
+      exclude: ['Type'],
+    },
+  },
+  args: {
+    label: 'Card check text',
+    type: 'radio',
+    checked: false,
+    disabled: false,
+    validation: 'null',
+    showDescription: false,
+    description: 'A small description',
+    icon: 1000,
+    showIcon: false,
+  },
+  argTypes: {
+    label: {
+      name: 'Label',
+      type: 'string',
+      description: 'The main label of the input',
+      table: {
+        category: 'General',
+      },
+    },
+    type: {
+      name: 'Type',
+      control: {
+        type: 'radio',
+        labels: {
+          radio: 'Radio button',
+          checkbox: 'Checkbox',
+        },
+      },
+      options: ['radio', 'checkbox'],
+      table: {
+        // Hide it in the controls because there are two pages
+        disable: true,
+      },
+    },
+    checked: {
+      name: 'Checked',
+      type: 'boolean',
+      description: 'When set to `true`, places the component in the checked state.',
+      table: {
+        category: 'States',
+      },
+    },
+    disabled: {
+      name: 'Disabled',
+      description:
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</span>',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'States',
+      },
+    },
+    validation: {
+      name: 'Validation',
+      description: "Controls the display of the component's validation state.",
+      control: {
+        type: 'radio',
+        labels: {
+          'null': 'Default',
+          'is-invalid': 'Invalid',
+        },
+      },
+      options: ['null', 'is-invalid'],
+      table: {
+        category: 'States',
+      },
+    },
+    showDescription: {
+      name: 'Show description',
+      type: 'boolean',
+      description: 'Toggles an additional description',
+      table: {
+        category: 'Description',
+      },
+    },
+    description: {
+      name: 'Description',
+      type: 'string',
+      description: 'A short additional description',
+      table: {
+        category: 'Description',
+      },
+    },
+    showIcon: {
+      name: 'Show icon',
+      type: 'boolean',
+      description: 'Show or hide icon',
+      table: {
+        category: 'Icon',
+      },
+    },
+    icon: {
+      name: 'Icon',
+      control: {
+        type: 'select',
+      },
+      options: [1000, 1001, 2000],
+      table: {
+        category: 'Icon',
+      },
+    },
+  },
+};
+
+export const choiceCardDefault = (args: Args) => {
+  const inputClasses = ['form-check-input', args.validation].filter(c => c !== 'null').join(' ');
+  const id = `control-${crypto.randomUUID().slice(0, 8)}`;
+  const description = html`
+    <br />
+    <span class="font-size-12">${args.description}</span>
+  `;
+  const icon = html`
+    <post-icon name="${args.icon}" aria-hidden="true"></post-icon>
+  `;
+  return html`
+    <div class="${args.type}-button-card">
+      <input
+        id="${id}"
+        name="${args.type}-button-card"
+        class="${inputClasses}"
+        type="${args.type}"
+        disabled="${args.disabled || nothing}"
+        checked="${args.checked || nothing}"
+      />
+      <label id="label-${id}" class="form-check-label" for="${id}">
+        <span>${args.label}</span>
+        ${args.showDescription ? description : null}
+      </label>
+      ${args.showIcon ? icon : null}
+    </div>
+  `;
+};
+
+export const choiceCardGroup = (args: Args) => {
+  const loop = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
+
+  const col = (label: string) => html`
+    <div class="col-sm-6">${choiceCardDefault({ ...args, label })}</div>
+  `;
+
+  const error = html`
+    <p id="invalid-checkbox" class="mt-3 invalid-feedback d-block">Invalid choice</p>
+  `;
+
+  return html`
+    <fieldset class="container-fluid">
+      <legend aria-describedby="${args.validation === 'is-invalid' ? 'invalid-checkbox' : nothing}">
+        Legend
+      </legend>
+      <div class="row g-3">${loop.map(n => col(n))}</div>
+      ${args.validation === 'is-invalid' ? error : null}
+    </fieldset>
+  `;
+};
