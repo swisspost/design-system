@@ -3,14 +3,10 @@ import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { Components } from '@swisspost/design-system-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
   title: 'Hidden/components/Icon',
   component: 'post-icon',
-  parameters: {
-    badges: [BADGE.NEEDS_REVISION],
-  },
   args: {
     'name': '1022',
     'base': '',
@@ -102,7 +98,7 @@ const renderVariants = (
 
 const generateDecorators = (story: any, className?: string) => {
   return html`
-    <div class=${ifDefined(className)} style="font-size: 32px">${story()}</div>
+    <div class="${ifDefined(className)}" style="font-size: 32px">${story()}</div>
   `;
 };
 
