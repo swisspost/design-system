@@ -34,7 +34,7 @@ const meta: Meta = {
     },
     tag: {
       name: 'Tag',
-      description: 'Defines the components HTML-tag.',
+      description: 'Defines the HTML element used for the component.',
       control: {
         type: 'inline-radio',
         labels: {
