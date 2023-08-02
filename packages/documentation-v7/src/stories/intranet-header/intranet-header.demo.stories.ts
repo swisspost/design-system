@@ -1,7 +1,3 @@
-/*
- * Copyright 2023 by Swiss Post, Information Technology
- */
-
 import { Meta } from '@storybook/web-components';
 
 const meta: Meta = {
