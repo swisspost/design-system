@@ -9,11 +9,6 @@ import { definedProperties } from '../../../utils';
 const meta: Meta<HTMLPostCollapsibleElement> = {
   title: 'Hidden/demos/components/Collapsible',
   component: 'post-collapsible',
-  parameters: {
-    controls: {
-      exclude: ['Content'],
-    },
-  },
   args: {
     innerHTML: `<span slot='header'>Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },
@@ -61,7 +56,6 @@ function defaultRender(
   const toggleCollapse = (open?: boolean) => {
     const collapsible = document.querySelector(`#${collapsibleId}`) as HTMLPostCollapsibleElement;
     collapsible.toggle(open).then((isOpen: boolean) => {
-      console.log('currentArgs', currentArgs);
       if (typeof currentArgs.collapsed !== 'undefined') updateArgs({ collapsed: !isOpen });
     });
   };
@@ -98,29 +92,14 @@ function defaultRender(
 export const Default: Story = {};
 
 export const InitiallyCollapsed: Story = {
-  parameters: {
-    controls: {
-      exclude: ['heading-level', 'toggle'],
-    },
-  },
   args: { collapsed: true },
 };
 
 export const HeadingLevel: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Content', 'collapsed', 'toggle'],
-    },
-  },
   args: { headingLevel: 6 },
 };
 
 export const IntricateContent: Story = {
-  parameters: {
-    controls: {
-      exclude: ['collapsed', 'heading-level', 'toggle'],
-    },
-  },
   args: {
     innerHTML: `<p>I am part of the body</p>
       <span slot='header'>Customus<em>&nbsp;Titulum</em></span>
@@ -130,11 +109,6 @@ export const IntricateContent: Story = {
 };
 
 export const CustomTrigger: Story = {
-  parameters: {
-    controls: {
-      exclude: ['heading-level', 'toggle'],
-    },
-  },
   args: {
     innerHTML: `<p class='border rounded p-large'>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },
