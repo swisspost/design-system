@@ -5,7 +5,6 @@ import { bombArgs } from '../../../utils/bombArgs';
 
 type Story = StoryObj;
 
-console.log(AccentColors.args);
 
 export default {
   ...meta,
