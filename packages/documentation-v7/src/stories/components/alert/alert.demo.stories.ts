@@ -2,7 +2,7 @@ import { useArgs } from '@storybook/preview-api';
 import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { BADGE } from '../../../../.storybook/constants';
+
 import { getAlertClasses } from './getAlertClasses';
 
 const meta: Meta = {
@@ -11,7 +11,6 @@ const meta: Meta = {
     controls: {
       exclude: ['Title', 'Content'],
     },
-    badges: [BADGE.NEEDS_REVISION],
   },
   args: {
     title: 'Titulum',
@@ -138,7 +137,7 @@ function render(args: Args) {
   `;
 
   return html`
-    <div class=${classes} role="alert">
+    <div class="${classes}" role="alert">
       ${
         /* Dismissible Button */
         args.dismissible || args.fixed
@@ -167,13 +166,13 @@ function render(args: Args) {
               <div class="alert-buttons">
                 <button
                   class="btn btn-primary btn-animated"
-                  @click=${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}
+                  @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
                 >
                   <span>Akcepti</span>
                 </button>
                 <button
                   class="btn btn-secondary btn-animated"
-                  @click=${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}
+                  @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
                 >
                   <span>Aborti</span>
                 </button>
@@ -202,7 +201,7 @@ export const Default: Story = {
             ? html`
                 <button
                   class="btn btn-secondary"
-                  @click=${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}
+                  @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
                 >
                   Toggle alert
                 </button>
@@ -251,7 +250,7 @@ export const Dismissible: Story = {
           ${args.show
             ? null
             : html`
-                <a href="#" @click=${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}>
+                <a href="#" @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}">
                   Show alert
                 </a>
               `}
@@ -279,7 +278,7 @@ export const Fixed: Story = {
         <div>
           <button
             class="btn btn-secondary"
-            @click=${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}
+            @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
           >
             Toggle alert
           </button>
