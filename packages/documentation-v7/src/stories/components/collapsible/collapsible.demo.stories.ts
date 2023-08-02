@@ -3,7 +3,7 @@ import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { BADGE } from '../../../../.storybook/constants';
+
 import { definedProperties } from '../../../utils';
 
 const meta: Meta<HTMLPostCollapsibleElement> = {
@@ -13,10 +13,9 @@ const meta: Meta<HTMLPostCollapsibleElement> = {
     controls: {
       exclude: ['Content'],
     },
-    badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
   },
   args: {
-    innerHTML: `<span slot="header">Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
+    innerHTML: `<span slot='header'>Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },
   argTypes: {
     innerHTML: {
@@ -83,7 +82,6 @@ function defaultRender(
               aria-expanded="${!args.collapsed}"
               class="btn btn-secondary"
               @click="${listener}"
-              key="${label}"
             >
               ${label}
             </button>
@@ -125,8 +123,8 @@ export const IntricateContent: Story = {
   },
   args: {
     innerHTML: `<p>I am part of the body</p>
-      <span slot="header">Customus<em>&nbsp;Titulum</em></span>
-      <small slot="header" class="text-muted">&nbsp;- I am part of the header</small>
+      <span slot='header'>Customus<em>&nbsp;Titulum</em></span>
+      <small slot='header' class='text-muted'>&nbsp;- I am part of the header</small>
       <p>I am part of the body too!</p>`,
   },
 };
@@ -138,6 +136,6 @@ export const CustomTrigger: Story = {
     },
   },
   args: {
-    innerHTML: `<p class="border rounded p-large">Contentus momentus vero siteos et accusam iretea et justo.</p>`,
+    innerHTML: `<p class='border rounded p-large'>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },
 };
