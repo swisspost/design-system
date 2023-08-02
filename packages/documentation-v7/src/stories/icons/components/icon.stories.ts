@@ -6,6 +6,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  title: 'Icons/Components/Icon',
   component: 'post-icon',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
