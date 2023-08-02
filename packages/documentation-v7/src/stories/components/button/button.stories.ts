@@ -115,7 +115,7 @@ const meta: Meta = {
     },
     animated: {
       name: 'Animated',
-      description: "When set to `true`, the component animates on hover.",
+      description: 'When set to `true`, the component animates on hover.',
       if: {
         arg: 'icon',
         eq: 'null',
@@ -230,26 +230,26 @@ const Template = {
         </${tagName}>
       `;
     }
-
-    function createProps(args: Args, isAnimated: boolean) {
-      return {
-        class: [
-          'btn',
-          args.variant,
-          args.size,
-          isAnimated && 'btn-animated',
-          args.iconOnly && 'btn-icon',
-        ]
-          .filter(c => c && c !== 'null')
-          .join(' '),
-        href: args.tag === 'a' ? 'javascript:void' : null,
-        type: args.tag === 'input' ? args.type : null,
-        value: args.tag === 'input' ? args.text : null,
-        disabled: args.disabled ? args.disabled : null,
-      };
-    }
   },
 };
+
+function createProps(args: Args, isAnimated: boolean) {
+  return {
+    class: [
+      'btn',
+      args.variant,
+      args.size,
+      isAnimated && 'btn-animated',
+      args.iconOnly && 'btn-icon',
+    ]
+      .filter(c => c && c !== 'null')
+      .join(' '),
+    href: args.tag === 'a' ? 'javascript:void' : null,
+    type: args.tag === 'input' ? args.type : null,
+    value: args.tag === 'input' ? args.text : null,
+    disabled: args.disabled ? args.disabled : null,
+  };
+}
 
 export const Default: Story = {
   ...Template,
