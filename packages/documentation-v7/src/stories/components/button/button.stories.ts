@@ -115,7 +115,7 @@ const meta: Meta = {
     },
     animated: {
       name: 'Animated',
-      description: "When set to `true`, enables the component's animations.",
+      description: "When set to `true`, the component animates on hover.",
       if: {
         arg: 'icon',
         eq: 'null',
