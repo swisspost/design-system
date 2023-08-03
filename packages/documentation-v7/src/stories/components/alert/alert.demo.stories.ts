@@ -1,8 +1,8 @@
+// @ts-ignore
 import { useArgs } from '@storybook/preview-api';
 import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-
 import { getAlertClasses } from './getAlertClasses';
 
 const meta: Meta = {
@@ -121,7 +121,9 @@ const meta: Meta = {
   render: render,
 };
 
-function onShowToggle(e: MouseEvent, args: Args, updateArgs: Function) {
+export default meta;
+
+function toggleAlert(e: MouseEvent, args: Args, updateArgs: Function) {
   e.preventDefault();
   updateArgs({ show: !args.show });
 }
@@ -132,7 +134,7 @@ function render(args: Args) {
   const classes = getAlertClasses(args);
 
   const content = html`
-    <h4 class="alert-heading" key="title">${args.title}</h4>
+    <h4 class="alert-heading">${args.title}</h4>
     ${unsafeHTML(args.content)}
   `;
 
@@ -144,10 +146,10 @@ function render(args: Args) {
           ? html`
               <button
                 class="btn-close"
-                data-dismiss="alert"
-                aria-label="Close"
-                @click=${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}
-              ></button>
+                @click=${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}
+              >
+                <span class="visually-hidden">Close</span>
+              </button>
             `
           : null
       }
@@ -166,13 +168,13 @@ function render(args: Args) {
               <div class="alert-buttons">
                 <button
                   class="btn btn-primary btn-animated"
-                  @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
+                  @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
                 >
                   <span>Akcepti</span>
                 </button>
                 <button
                   class="btn btn-secondary btn-animated"
-                  @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
+                  @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
                 >
                   <span>Aborti</span>
                 </button>
@@ -183,8 +185,6 @@ function render(args: Args) {
     </div>
   `;
 }
-
-export default meta;
 
 type Story = StoryObj;
 
@@ -201,7 +201,7 @@ export const Default: Story = {
             ? html`
                 <button
                   class="btn btn-secondary"
-                  @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
+                  @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
                 >
                   Toggle alert
                 </button>
@@ -209,7 +209,7 @@ export const Default: Story = {
             : null}
           ${showResetButton
             ? html`
-                <a href="#" @click=${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}>
+                <a href="#" @click=${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}>
                   Show alert
                 </a>
               `
@@ -250,7 +250,7 @@ export const Dismissible: Story = {
           ${args.show
             ? null
             : html`
-                <a href="#" @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}">
+                <a href="#" @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}">
                   Show alert
                 </a>
               `}
@@ -278,7 +278,7 @@ export const Fixed: Story = {
         <div>
           <button
             class="btn btn-secondary"
-            @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
+            @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
           >
             Toggle alert
           </button>
@@ -307,7 +307,7 @@ export const ActionButtons: Story = {
         <div>
           <button
             class="btn btn-secondary"
-            @click=${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}
+            @click=${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}
           >
             Toggle alert
           </button>
