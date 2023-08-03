@@ -88,6 +88,12 @@
     content: counter(step-index);
   }
 
+  &:hover::before {
+    color: stepper.$stepper-indicator-hover-color;
+    background-color: stepper.$stepper-indicator-hover-bg;
+    background-image: stepper.$stepper-indicator-hover-check-icon;
+  }
+
   &[aria-current] ~ ::before {
     color: stepper.$stepper-indicator-future-color;
     background-color: stepper.$stepper-indicator-future-bg;
@@ -111,7 +117,7 @@
     font-weight: stepper.$stepper-link-current-font-weight;
   }
 
-  &a:hover .stepper-link {
+  @at-root a:hover#{&}, a:focus-visible#{&} {
     color: stepper.$stepper-link-hover-color;
   }
 
