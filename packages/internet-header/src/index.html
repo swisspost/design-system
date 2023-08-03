@@ -1363,6 +1363,7 @@
 
     <script>
       const sleep = ms => new Promise(r => setTimeout(r, ms));
+      window.UC_UI = { showSecondLayer: () => alert('second layer') };
       const x = async () => {
         const header = document.querySelector('swisspost-internet-header');
         header.addEventListener('languageChange', e => console.log(e.detail));
