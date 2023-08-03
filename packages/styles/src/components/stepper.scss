@@ -117,7 +117,8 @@
     font-weight: stepper.$stepper-link-current-font-weight;
   }
 
-  @at-root a:hover#{&}, :focus-visible#{&} {
+  @at-root a:hover#{&},
+    :focus-visible#{&} {
     color: stepper.$stepper-link-hover-color;
   }
 
