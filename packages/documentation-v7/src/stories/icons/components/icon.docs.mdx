@@ -1,9 +1,10 @@
 import LinkTo from '@storybook/addon-links/react';
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { BADGE } from '../../../../.storybook/constants';
 
-import * as IconStories from './icon.stories';
+import * as IconStories from './icon.demo.stories';
 
-<Meta of={IconStories} />
+<Meta title="Icons/Icon Component" parameters={{ badges: [BADGE.NEEDS_REVISION] }} />
 
 # Icon
 
@@ -13,7 +14,7 @@ import * as IconStories from './icon.stories';
 </div>
 
 <Canvas of={IconStories.Default} />
-<Controls />
+<Controls of={IconStories.Default} />
 
 ### Color
 

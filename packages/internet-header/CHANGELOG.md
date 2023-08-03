@@ -1,5 +1,11 @@
 # @swisspost/internet-header
 
+## 1.8.3
+
+### Patch Changes
+
+- Fixed an issue with typings that were incorrectly exported, leading to errors when using "defineCustomElements" to import the internet header. (by [@gfellerph](https://github.com/gfellerph) with [#1720](https://github.com/swisspost/design-system/pull/1720))
+
 ## 1.8.2
 
 ### Patch Changes
