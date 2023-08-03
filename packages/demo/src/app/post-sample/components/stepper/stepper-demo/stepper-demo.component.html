@@ -11,12 +11,15 @@
     <li
       *ngFor="let step of steps; index as i"
       [attr.aria-current]="isCurrent(step) ? 'step' : undefined"
-      class="stepper-item stepper-interactive"
+      class="stepper-item"
     >
-      <a class="stepper-link" (click)="currentIndex = i" href="#">
-        <span class="visually-hidden" *ngIf="i < currentIndex">Complete:</span>
+      <a class="stepper-link" *ngIf="i < currentIndex" (click)="currentIndex = i" href="#">
+        <span class="visually-hidden">Complete:</span>
         {{ step }}
       </a>
+      <span *ngIf="i >= currentIndex" class="stepper-link">
+        {{ step }}
+      </span>
     </li>
   </ol>
 </div>

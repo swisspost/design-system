@@ -98,18 +98,6 @@
   }
 }
 
-.stepper-interactive {
-  &:hover::before {
-    color: stepper.$stepper-indicator-hover-color;
-    background-color: stepper.$stepper-indicator-hover-bg;
-    background-image: stepper.$stepper-indicator-hover-check-icon;
-  }
-
-  &:hover .stepper-link {
-    color: stepper.$stepper-link-hover-color;
-  }
-}
-
 .stepper-link {
   padding-top: stepper.$stepper-indicator-height + stepper.$stepper-link-gap;
   text-decoration: none;
@@ -121,6 +109,10 @@
     color: stepper.$stepper-link-current-color;
     font-size: stepper.$stepper-link-current-font-size;
     font-weight: stepper.$stepper-link-current-font-weight;
+  }
+
+  &a:hover .stepper-link {
+    color: stepper.$stepper-link-hover-color;
   }
 
   &:focus-visible {
