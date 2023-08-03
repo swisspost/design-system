@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/web-components';
 
 import {
-  extractArgTypesFactory,
+  extractArgTypes,
   extractComponentDescription,
   setStencilDocJson,
 } from '@pxtrn/storybook-addon-docs-stencil';
@@ -63,7 +63,7 @@ const preview: Preview = {
         transform: (snippet: string) => format(snippet, prettierOptions),
       },
       components: resetComponents,
-      extractArgTypes: extractArgTypesFactory({ dashCase: true }),
+      extractArgTypes,
       extractComponentDescription,
     },
     actions: { argTypesRegex: '^on[A-Z].*' },

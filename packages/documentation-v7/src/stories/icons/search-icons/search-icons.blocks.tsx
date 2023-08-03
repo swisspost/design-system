@@ -1,5 +1,5 @@
-import React from 'react';
 import report from '@swisspost/design-system-icons/public/report.json';
+import React from 'react';
 import './search-icons.styles.scss';
 
 const ICONS = report.icons.map(icon =>
@@ -48,12 +48,11 @@ export class Search extends React.Component {
               id="IconSearchFilter_Freetext"
               type="text"
               className="form-control"
-              placeholder="Search Icons"
               value={this.state.freetext}
               onChange={this.searchFreetext.bind(this)}
               ref={this.freetextRef}
             />
-            <label htmlFor="IconSearchFilter_Freetext">Search Icons</label>
+            <label htmlFor="IconSearchFilter_Freetext">Search for icons by name or id</label>
             {this.state.freetext ? (
               <button className="form-control-reset" onClick={this.resetFreetext.bind(this)}>
                 <post-icon name="2043" />
