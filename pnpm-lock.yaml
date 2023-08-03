@@ -1,4 +1,4 @@
-lockfileVersion: '6.1'
+lockfileVersion: '6.0'
 
 settings:
   autoInstallPeers: true
@@ -484,7 +484,7 @@ importers:
         specifier: workspace:6.2.6
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.8.2
+        specifier: workspace:1.8.3
         version: link:../internet-header
       html-react-parser:
         specifier: 4.2.0
@@ -611,7 +611,7 @@ importers:
         specifier: workspace:6.2.6
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.8.2
+        specifier: workspace:1.8.3
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.1
