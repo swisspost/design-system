@@ -2,4 +2,4 @@
 '@swisspost/design-system-demo': patch
 ---
 
-Stepper: Fixed and clarified usage to display active or inactive next steps.
+Stepper: Remove interactivity on inactive next steps.
