@@ -5,10 +5,7 @@ import { forEach } from '../../../utils/react';
 import { ColorSwatch, SCSS_VARIABLES } from './color.blocks';
 import './color.styles.scss';
 
-<Meta
-  title="Foundations/Color"
-  parameters={{ badges: [BADGE.BETA, BADGE.NEEDS_REVISION] }}
-/>
+<Meta title="Foundations/Color" parameters={{ badges: [BADGE.BETA, BADGE.NEEDS_REVISION] }} />
 
 # Color
 
@@ -18,7 +15,8 @@ They theme our elements and components.
 <div className="alert alert-info alert-md mt-regular">
   For accessibility reasons, you should always make sure that your individually created color combinations are sufficiently contrasting. There may be a better solution than coloring elements individually.
 
-  For example, use the <LinkTo kind="utilities-background--background-containers">background utilities</LinkTo> to get elements with a specific background color and the best possible contrast color for its content.
+For example, use the <LinkTo kind="utilities-background" story="docs">background utilities</LinkTo> to get elements with a specific background color and the best possible contrast color for its content.
+
 </div>
 
 ## Brand colors
@@ -85,7 +83,7 @@ CSS variables are globally available on your page.
 
 Import the color variables from the `core` file with `@use`. This way, the color variables are scoped and don't mix with your own variables.
 
-```css dark
+```scss dark
 @use '@swisspost/design-system-styles/core' as post;
 
 .my-element {

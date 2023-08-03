@@ -1,12 +1,27 @@
 import type { Preview } from '@storybook/web-components';
-import { format } from 'prettier';
 
+import {
+  extractArgTypes,
+  extractComponentDescription,
+  setStencilDocJson,
+} from '@pxtrn/storybook-addon-docs-stencil';
+import { StencilJsonDocs } from '@pxtrn/storybook-addon-docs-stencil/dist/types';
+import { format } from 'prettier';
 import DocsLayout from './blocks/layout';
 import { badgesConfig, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
 
 import './styles/preview.scss';
 import themes from './styles/themes';
+
+import { SyntaxHighlighter } from '@storybook/components';
+import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
+
+SyntaxHighlighter.registerLanguage('scss', scss);
+
+import docJson from '@swisspost/design-system-components/dist/docs.json';
+
+if (docJson) setStencilDocJson(docJson as StencilJsonDocs);
 
 const preview: Preview = {
   parameters: {
@@ -30,7 +45,7 @@ const preview: Preview = {
           'Misc',
           ['Migration Guide', 'ChangeLog', 'Versions'],
           'Hidden',
-        ]
+        ],
       },
     },
     darkMode: {
@@ -48,6 +63,8 @@ const preview: Preview = {
         transform: (snippet: string) => format(snippet, prettierOptions),
       },
       components: resetComponents,
+      extractArgTypes,
+      extractComponentDescription,
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {

@@ -20,9 +20,12 @@
 
 @mixin button-size($size: md) {
   min-height: map.get(button.$btn-height-map, $size);
-  padding: 0 map.get(button.$btn-padding-x-map, $size);
   font-size: map.get(button.$btn-font-size-map, $size);
-  gap: map.get(button.$btn-padding-x-map, $size) * 0.5;
+  gap: map.get(button.$btn-gap-x-map, $size);
+
+  &:where(:not(.btn-link, .btn-tertiary)) {
+    padding: 0 map.get(button.$btn-padding-x-map, $size);
+  }
 
   > .pi {
     width: map.get(button.$btn-icon-size-map, $size);
