@@ -43,24 +43,19 @@
   }
 
   &::after {
-    @include icon-mixins.pi(accordion.$accordion-icon-name);
+    @include icon-mixins.icon(accordion.$accordion-icon-name);
     content: '';
     display: block;
     height: accordion.$accordion-icon-size;
     width: accordion.$accordion-icon-size;
-    background-size: accordion.$accordion-icon-size;
-    background-position: center;
-    background-repeat: no-repeat;
     position: absolute;
     inset-inline-end: accordion.$accordion-button-padding;
     inset-block-start: 50%;
     transform: translateY(-50%);
     transition: accordion.$accordion-icon-transition;
 
-    // TODO: find a way to style icon within web component on dark background
-    @include color-mixins.on-dark-background() {
-      filter: invert(1);
-    }
+    // add border to fix visual issue during rotation
+    border: 1px solid rgb(var(--post-bg-rgb, 255, 255, 255));
   }
 
   &.collapsed::after {
@@ -86,7 +81,6 @@
   padding: accordion.$accordion-body-padding;
   border-block-start: accordion.$accordion-border-width solid accordion.$accordion-border-color;
 
-  // TODO: find a way to style headings within web component
   @each $heading-size in (1 2 3 4 5 6) {
     h#{$heading-size},
     .h#{$heading-size} {
