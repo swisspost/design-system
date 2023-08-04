@@ -24,8 +24,6 @@
 
   width: 100%;
   position: relative;
-  display: flex;
-  flex-direction: column;
   padding-block: accordion.$accordion-button-padding;
   padding-inline-start: accordion.$accordion-button-padding;
   padding-inline-end: accordion.$accordion-button-padding + accordion.$accordion-icon-size;
@@ -62,6 +60,10 @@
 
   &.collapsed::after {
     transform: translateY(-50%) accordion.$accordion-icon-transform;
+  }
+
+  > .text-truncate {
+    display: block;
   }
 
   // TODO: find a way to style WHCM within web component

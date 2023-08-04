@@ -3,4 +3,8 @@
 
 :host {
   display: block;
+
+  .accordion-button > ::slotted(.text-truncate) {
+    display: block;
+  }
 }
