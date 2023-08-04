@@ -3,7 +3,8 @@
  */
 
 export function mapClasses(classObject: {[cssClass: string]: boolean}): string {
-  return Object.entries(classObject).reduce((classes, [newClass, shouldAddClass]) => {
-    return shouldAddClass ? `${classes} ${newClass}` : classes;
-  }, '');
+  return Object.entries(classObject)
+    .filter(([_newClass, shouldAddClass]) => shouldAddClass)
+    .map(([newClass]) => newClass)
+    .join(' ');
 }

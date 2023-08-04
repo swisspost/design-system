@@ -1,8 +1,6 @@
-// @ts-ignore
 import { useArgs } from '@storybook/preview-api';
 import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import React from 'react';
 import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
 
