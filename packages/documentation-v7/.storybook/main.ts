@@ -13,7 +13,7 @@ const config: StorybookConfig = {
   addons: [
     '@storybook/addon-links',
     '@storybook/addon-designs',
-    // '@storybook/addon-a11y',
+    '@storybook/addon-a11y',
     '@geometricpanda/storybook-addon-badges',
     '@pxtrn/storybook-addon-docs-stencil',
     {
