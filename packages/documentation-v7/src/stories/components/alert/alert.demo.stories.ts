@@ -1,12 +1,14 @@
 // @ts-ignore
 import { useArgs } from '@storybook/preview-api';
-import { Args, Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getAlertClasses } from './getAlertClasses';
 
 const meta: Meta = {
   title: 'Hidden/demos/components/Alert',
+  render: renderAlert,
+  decorators: [externalControl],
   parameters: {
     controls: {
       exclude: ['Title', 'Content'],
@@ -118,17 +120,36 @@ const meta: Meta = {
       table: { disable: true },
     },
   },
-  render: render,
 };
 
 export default meta;
 
+// DECORATORS
+function externalControl(story: StoryFn, { args, context }: StoryContext) {
+  const [_, updateArgs] = useArgs();
+
+  const button = html`
+    <a
+      href="#"
+      @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
+    >
+      ${args.fixed ? 'Toggle Alert' : 'Show Alert'}
+    </a>
+  `;
+
+  return html`
+    ${args.fixed || !args.show ? button : nothing}
+    ${story(args, context)}
+  `;
+}
+
+// RENDERER
 function toggleAlert(e: MouseEvent, args: Args, updateArgs: Function) {
   e.preventDefault();
   updateArgs({ show: !args.show });
 }
 
-function render(args: Args) {
+function renderAlert(args: Args) {
   const [_, updateArgs] = useArgs();
 
   const classes = getAlertClasses(args);
@@ -186,40 +207,10 @@ function render(args: Args) {
   `;
 }
 
+// STORIES
 type Story = StoryObj;
 
-export const Default: Story = {
-  decorators: [
-    (story, { args }) => {
-      const [_, updateArgs] = useArgs();
-      const showToggleButton = args.fixed;
-      const showResetButton = !showToggleButton && args.dismissible && !args.show;
-
-      return html`
-        <div>
-          ${showToggleButton
-            ? html`
-                <button
-                  class="btn btn-secondary"
-                  @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
-                >
-                  Toggle alert
-                </button>
-              `
-            : null}
-          ${showResetButton
-            ? html`
-                <a href="#" @click=${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}>
-                  Show alert
-                </a>
-              `
-            : null}
-          ${story()}
-        </div>
-      `;
-    },
-  ],
-};
+export const Default: Story = {};
 
 export const AdditionalContent: Story = {
   parameters: {
@@ -241,24 +232,6 @@ export const AdditionalContent: Story = {
 };
 
 export const Dismissible: Story = {
-  decorators: [
-    (story, { args }) => {
-      const [_, updateArgs] = useArgs();
-
-      return html`
-        <div>
-          ${args.show
-            ? null
-            : html`
-                <a href="#" @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}">
-                  Show alert
-                </a>
-              `}
-          ${story()}
-        </div>
-      `;
-    },
-  ],
   parameters: {
     controls: {
       exclude: ['Variant', 'Icon', 'No Icon', 'Fixed', 'Action Buttons', 'Show'],
@@ -270,23 +243,6 @@ export const Dismissible: Story = {
 };
 
 export const Fixed: Story = {
-  decorators: [
-    (story, { args }) => {
-      const [_, updateArgs] = useArgs();
-
-      return html`
-        <div>
-          <button
-            class="btn btn-secondary"
-            @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
-          >
-            Toggle alert
-          </button>
-          ${story()}
-        </div>
-      `;
-    },
-  ],
   parameters: {
     controls: {
       exclude: ['Variant', 'Icon', 'No Icon', 'Dismissible', 'Action Buttons', 'Show'],
@@ -299,23 +255,6 @@ export const Fixed: Story = {
 };
 
 export const ActionButtons: Story = {
-  decorators: [
-    (story, { args }) => {
-      const [_, updateArgs] = useArgs();
-
-      return html`
-        <div>
-          <button
-            class="btn btn-secondary"
-            @click=${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}
-          >
-            Toggle alert
-          </button>
-          ${story()}
-        </div>
-      `;
-    },
-  ],
   parameters: {
     controls: {
       exclude: ['Variant', 'Icon', 'No Icon', 'Dismissible', 'Fixed', 'Show'],
@@ -324,8 +263,5 @@ export const ActionButtons: Story = {
   args: {
     variant: 'alert-info',
     action: true,
-    show: false,
   },
 };
-
-export const DefaultSnapshot: Story = {};
