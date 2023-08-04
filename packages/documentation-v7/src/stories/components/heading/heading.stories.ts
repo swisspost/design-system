@@ -6,6 +6,10 @@ const meta: Meta = {
   title: 'Components/Heading',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=6424-29869&mode=design&t=OK8meBHjpJvBhwZI-4',
+    },
   },
   args: {
     title: 'Heading',
