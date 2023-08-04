@@ -96,19 +96,19 @@ const meta: Meta = {
         category: 'Variations',
       },
     },
-    fixed: {
-      name: 'Fixed',
+    action: {
+      name: 'Action Buttons',
       description:
-        'Adds the fixed styles.<span class="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
+        'Adds the action button styles.<span class="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
       control: { type: 'boolean' },
       table: {
         category: 'Variations',
       },
     },
-    action: {
-      name: 'Action Buttons',
+    fixed: {
+      name: 'Fixed',
       description:
-        'Adds the action button styles.<span class="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
+        'Adds the fixed styles.<span class="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
       control: { type: 'boolean' },
       table: {
         category: 'Variations',
