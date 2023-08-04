@@ -1,7 +1,10 @@
-@use '@swisspost/design-system-styles/basics';
 @use '@swisspost/design-system-styles/components/accordion';
 @use '@swisspost/design-system-styles/components/transitions';
 
 :host {
   display: block;
+
+  .accordion-button > ::slotted(.text-truncate) {
+    display: block;
+  }
 }
