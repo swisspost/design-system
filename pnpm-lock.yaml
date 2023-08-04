@@ -698,9 +698,6 @@ importers:
       storybook:
         specifier: 7.2.1
         version: 7.2.1
-      storybook-dark-mode:
-        specifier: 3.0.1
-        version: 3.0.1(@types/react-dom@18.2.7)(@types/react@18.2.18)(react-dom@18.2.0)(react@18.2.0)
       typescript:
         specifier: 5.1.6
         version: 5.1.6
