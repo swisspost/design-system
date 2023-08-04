@@ -212,7 +212,7 @@ export const Checkable: Story = {
   },
   args: {
     text: 'Kontrolebla Insigno',
-    checkable: true,
+    interactionType: 'checkable',
   },
 };
 
@@ -224,6 +224,6 @@ export const Dismissible: Story = {
   },
   args: {
     text: 'Malakceptebla Insigno',
-    dismissible: true,
+    interactionType: 'dismissible',
   },
 };
