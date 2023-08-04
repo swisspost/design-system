@@ -95,8 +95,6 @@ export class PostInternetFooter {
     const footerConfig = state.localizedConfig.footer;
     const customFooterConfig = state.localizedCustomConfig?.footer;
 
-    console.log(this.cookieSettingsEnabled);
-
     return (
       <Host>
         <SvgSprite />
