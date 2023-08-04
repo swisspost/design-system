@@ -1,9 +1,5 @@
-/*
- * Copyright 2023 by Swiss Post, Information Technology
- */
-
 // @ts-ignore
-import { useArgs } from '@storybook/client-api';
+import { useArgs } from '@storybook/preview-api';
 import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import React from 'react';
