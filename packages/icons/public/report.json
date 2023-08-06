@@ -19633,6 +19633,36 @@
       "modifiedAt": "2023-07-21T11:31:54.000Z"
     },
     {
+      "uuid": "426902b0-3135-11ee-a385-005056873709",
+      "id": 687855,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/687855/storage/Njg3ODU0LzAvbWFzdGVy",
+        "keywords": [
+          "Verknüpfung aufheben",
+          "Pas de lien",
+          "supprimer le lien",
+          "Sopprimere collegamento",
+          "Unlink"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2544.svg",
+        "basename": "2544",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-02T13:05:31.000Z",
+      "modifiedAt": "2023-08-02T13:07:08.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -30210,11 +30240,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-07-23T01:27:37.025Z",
+  "created": "2023-08-06T01:11:12.389Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 874
+    "success": 875
   },
-  "version": "1.0.8"
+  "version": "1.0.9"
 }
