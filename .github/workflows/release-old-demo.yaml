@@ -1,0 +1,140 @@
+###
+#
+# Release the old demo app whenever it's package json changes on a release branch
+#
+###
+
+name: Release old demo App to Netlify
+
+on:
+  push:
+    branches:
+      - release/*
+    paths:
+      - 'packages/demo/package.json'
+
+concurrency: ${{ github.workflow }}-${{ github.ref }}
+
+jobs:
+  # Reads the version from the current branch
+  get-version:
+    name: Get netlify site id for this version
+    runs-on: ubuntu-latest
+    outputs:
+      branch_version: ${{steps.branch.outputs.branch_version}}
+      site_id: ${{steps.branch.outputs.site_id}}
+
+    steps:
+      - name: Read version from branch name
+        id: branch
+        run: |
+          ref=${{github.ref}}
+          branch_version="${ref##*/}"
+          site_id=swisspost-design-system-${branch_version}
+          echo "site_id=$site_id" >> $GITHUB_OUTPUT
+          echo "branch_version=$branch_version" >> $GITHUB_OUTPUT
+
+  # Tries to create a new netlify site. If the site with this version already exists, the job will fail
+  create-site:
+    name: Create a new netlify site
+    runs-on: ubuntu-latest
+    needs: [get-version]
+
+    steps:
+      - name: Create netlify sites
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: netlify sites:create --name "${{needs.get-version.outputs.branch_version}}" --account-slug "${{secrets.NETLIFY_ACCOUNT_SLUG}}"
+
+  # Update redirect file through a PR
+  update-redirect:
+    name: Update the _redirects file
+    runs-on: ubuntu-latest
+    needs: [create-site, get-version]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Find _redirects file
+        id: redirects
+        run: |
+          redirects_file=$(find . -name "_redirects" -type f -print -quit)
+          echo "path_name=redirects_file" >> $GITHUB_OUTPUT
+
+      - name: Add redirect rule
+        run: |
+          redirect_path="${{steps.redirects.outputs.path_name}}"
+          echo "/${{needs.get-version.outputs.branch_version}}/* https://${{needs.get-version.outputs.site_id}}.netlify.app 200" >> "$redirect_path"
+
+      - name: Create PR body
+        id: pr-body
+        env:
+          PRBODY: pr-body.md
+        run: |
+          echo "file=$PRBODY" >> $GITHUB_OUTPUT
+          echo "An old major version has been published. This PR creates a redirect for the current documentation. Please check if the target page looks correct."  > $PRBODY
+          echo ""                                                                                                                                                  >> $PRBODY
+          echo "https://design-system.post.ch/${{needs.get-version.outputs.branch_version}} -> https://${{needs.get-version.outputs.site_id}}.netlify.app"         >> $PRBODY
+          echo ""                                                                                                                                                  >> $PRBODY
+          echo ":warning: A redirect to a non-existing or a malicious page could have security implications."                                                      >> $PRBODY
+
+      - name: Commit file
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          branch_name="add-redirects-for-${{needs.get-version.outputs.branch_version}}"
+          git config --global user.name "swisspost-bot"
+          git config --global user.email "oss@post.ch"
+          git checkout -b "${branch_name}"
+          git add "${{steps.redirects.outputs.path_name}}"
+          git commit -m "chore(release/${{needs.get-version.outputs.branch_version}}): ↪️ update redirects"
+          git push -u origin "${branch_name}"
+          gh pr create -B main -H $branch_name --title 'chore(release/${{needs.get-version.outputs.branch_version}}): ↪️ update redirects' --body-file ${{steps.pr-body.outputs.file}}
+
+  # Checks if version in package.json changed
+  check-version:
+    name: Check if version changed
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Check if version has changed
+        id: check # This will be the reference for getting the outputs.
+        uses: EndBug/version-check@v2 # You can choose the version/branch you prefer.
+        with:
+          file-name: ./packages/demo/package.json
+          diff-search: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+  # The release job is run after the create site job, even if it fails due to the "if: always()"
+  release:
+    name: Release old version of the demo
+    runs-on: ubuntu-latest
+    if: always() && needs.check-version.outputs.changed == true
+    needs: [create-site, check-version, get-version]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup
+        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+
+      # Install changesets locally
+      - name: Install demo app & dependencies
+        run: pnpm --filter "design-system-demo..." install
+
+      # Build the demo app and it's dependencies
+      - name: Build demo app & dependencies
+        run: pnpm --filter "design-system-demo..." build
+
+      # Publish demo only if changesets published any packages
+      - name: Publish demo app to netlify
+        id: netlify
+        env:
+          NETLIFY_SITE_ID: ${{ needs.get-version.outputs.site_id }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          netlify link --id $NETLIFY_SITE_ID
+          netlify deploy --build false --dir packages/demo/dist/demo --prod

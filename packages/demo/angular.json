@@ -27,7 +27,8 @@
               "src/android-chrome-512x512.png",
               "src/size.webmanifest",
               "src/assets",
-              "src/netlify.toml"
+              "src/netlify.toml",
+              "src/_redirects"
             ],
             "styles": ["src/styles.scss", "./node_modules/highlight.js/styles/vs2015.css"],
             "stylePreprocessorOptions": {
