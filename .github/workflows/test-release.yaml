@@ -2,28 +2,19 @@ name: Test workflow
 on: push
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
+  success:
     steps:
-      - name: Read branch name
-        id: branch
-        run: |
-          ref=${{github.ref}}
-          echo "branch_version=${ref##*/}" >> "$GITHUB_OUTPUT"
-
-      - name: Print result
-        run: echo "${{steps.branch.outputs.branch_version}}"
-
-      - name: Create netlify sites
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: netlify sites:create --name "swisspost-design-system-${{steps.branch.outputs.branch_version}}" --account-slug "${{secrets.NETLIFY_ACCOUNT_SLUG}}"
+      - name: good
+        run: exit 0
+  fail:
+    steps:
+      - name: fail
+        run: exit 1
 
   test2:
     runs-on: ubuntu-latest
-    if: always()
-    needs: [test]
+    if: always() && needs.success.result == "success"
+    needs: [success, fail]
     steps:
       - name: Always step
         run: echo "Always!"
