@@ -24,7 +24,7 @@ jobs:
         run: |
           netlify sites:list
 
-      - name: Create netlify site
+      - name: Create netlify sites
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: netlify sites:create --name "swisspost-design-system-${{steps.branch.outputs.branch_version}}" --account-slug "${{secrets.NETLIFY_ACCOUNT_SLUG}}"
