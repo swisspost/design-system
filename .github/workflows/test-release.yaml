@@ -24,7 +24,7 @@ jobs:
 
   test2:
     runs-on: ubuntu-latest
-    if: always() && needs.success.outputs.changed == true
+    if: always() && needs.success.outputs.changed == false
     needs: [success, fail]
     steps:
       - name: Always step
