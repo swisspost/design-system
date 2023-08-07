@@ -5,8 +5,17 @@ jobs:
   success:
     runs-on: ubuntu-latest
     steps:
-      - name: good
-        run: exit 1
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Check if version has changed
+        id: check # This will be the reference for getting the outputs.
+        uses: EndBug/version-check@v2 # You can choose the version/branch you prefer.
+        with:
+          file-name: ./packages/demo/package.json
+          diff-search: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
   fail:
     runs-on: ubuntu-latest
     steps:
