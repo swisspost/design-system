@@ -6,9 +6,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
       - name: Read branch name
         id: branch
         run: |
@@ -18,22 +15,11 @@ jobs:
       - name: Print result
         run: echo "${{steps.branch.outputs.branch_version}}"
 
-      - name: List netlify sites
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          netlify sites:list
-
       - name: Create netlify sites
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: netlify sites:create --name "swisspost-design-system-${{steps.branch.outputs.branch_version}}" --account-slug "${{secrets.NETLIFY_ACCOUNT_SLUG}}"
 
-      - name: List netlify sites
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          netlify sites:list
   test2:
     runs-on: ubuntu-latest
     if: always()
