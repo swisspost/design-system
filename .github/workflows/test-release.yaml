@@ -12,7 +12,7 @@ jobs:
       - name: Read branch name
         id: branch
         run: |
-          ref=${github.ref}
+          ref=${{github.ref}}
           sub="${ref##*/}"
           echo "branch_version=ref" >> GITHUB_OUTPUT
 
