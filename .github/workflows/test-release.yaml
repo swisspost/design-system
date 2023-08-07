@@ -22,10 +22,13 @@ jobs:
         id: branch
         run: |
           ref=${{github.ref}}
-          echo "branch_version=swisspost-design-system-${ref##*/}" >> "$GITHUB_OUTPUT"
+          branch_version="${ref##*/}"
+          site_id=swisspost-design-system-${branch_version}
+          echo "site_id=$site_id" >> "$GITHUB_OUTPUT"
+          echo "branch_version=$branch_version" >> "$GITHUB_OUTPUT"
 
       - name: Echo
-        run: echo "${{steps.branch.outputs.branch_version}}"
+        run: echo "${{steps.branch.outputs.branch_version}} and ${{steps.branch.outputs.site_id}}"
 
   fail:
     runs-on: ubuntu-latest
