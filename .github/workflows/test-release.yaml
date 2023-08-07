@@ -34,3 +34,9 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           netlify sites:list
+  test2:
+    runs-on: ubuntu-latest
+    if: always()
+    steps:
+      - name: Always step
+        run: echo "Always!"
