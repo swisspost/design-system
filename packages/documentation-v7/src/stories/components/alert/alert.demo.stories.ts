@@ -90,7 +90,7 @@ const meta: Meta = {
     dismissible: {
       name: 'Dismissible',
       description:
-        'Adds the dismissible styles.<span class="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
+        'Adds the dismissible styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
       control: { type: 'boolean' },
       table: {
         category: 'Variations',
@@ -99,7 +99,7 @@ const meta: Meta = {
     action: {
       name: 'Action Buttons',
       description:
-        'Adds the action button styles.<span class="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
+        'Adds the action button styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
       control: { type: 'boolean' },
       table: {
         category: 'Variations',
@@ -108,7 +108,7 @@ const meta: Meta = {
     fixed: {
       name: 'Fixed',
       description:
-        'Adds the fixed styles.<span class="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
+        'Adds the fixed styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
       control: { type: 'boolean' },
       table: {
         category: 'Variations',
@@ -129,17 +129,13 @@ function externalControl(story: StoryFn, { args, context }: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const button = html`
-    <a
-      href="#"
-      @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
-    >
+    <a href="#" @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}">
       ${args.fixed ? 'Toggle Alert' : 'Show Alert'}
     </a>
   `;
 
   return html`
-    ${args.fixed || !args.show ? button : nothing}
-    ${story(args, context)}
+    ${args.fixed || !args.show ? button : nothing} ${story(args, context)}
   `;
 }
 
@@ -167,7 +163,7 @@ function renderAlert(args: Args) {
           ? html`
               <button
                 class="btn-close"
-                @click=${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}
+                @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
               >
                 <span class="visually-hidden">Close</span>
               </button>
