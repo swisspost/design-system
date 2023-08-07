@@ -16,6 +16,12 @@ jobs:
           diff-search: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Read version from branch name
+        id: branch
+        run: |
+          ref=${{github.ref}}
+          echo "branch_version=swisspost-design-system-${ref##*/}" >> "$GITHUB_OUTPUT"
+
   fail:
     runs-on: ubuntu-latest
     steps:
@@ -28,4 +34,4 @@ jobs:
     needs: [success, fail]
     steps:
       - name: Always step
-        run: echo "Always!"
+        run: echo "Always! ${{needs.success.outputs.branch_version}}"
