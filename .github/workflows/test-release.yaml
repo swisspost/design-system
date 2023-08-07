@@ -6,7 +6,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: good
-        run: exit 0
+        run: exit 1
   fail:
     runs-on: ubuntu-latest
     steps:
