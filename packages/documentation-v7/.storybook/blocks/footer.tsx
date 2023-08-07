@@ -1,5 +1,4 @@
 import React from 'react';
-import { useDarkMode } from 'storybook-dark-mode';
 
 interface Developer {
   name: string;
@@ -32,42 +31,38 @@ const DEVELOPERS: Developer[] = [
 
 export default () => (
   <footer className="docs-footer mt-huge">
-    <div className={useDarkMode() ? 'bg-black' : 'bg-light'}>
-      <div className="container">
-        <div className="pt-big-r pb-big-r">
-          <h2 className="mt-0">Support</h2>
+    <div className="container">
+      <div className="pt-big-r pb-big-r">
+        <h2 className="mt-0">Support</h2>
 
-          <div className="d-flex flex-wrap mt-huge-r mb-huge-r profile-list">
-            {DEVELOPERS
-              .sort(() => (Math.random() > 0.5 ? 1 : -1))
-              .map((developer, index) => (
-                <article key={index} className="avatar">
-                  <img
-                    className="profile-picture"
-                    src={developer.avatar}
-                    alt={`Profile picture ${developer.name}`}
-                  />
-                  <div>
-                    <p>
-                      <strong>{developer.name}</strong>
-                    </p>
-                    <p>{developer.title}</p>
-                  </div>
-                </article>
-              ))}
-          </div>
+        <div className="d-flex flex-wrap mt-huge-r mb-huge-r profile-list">
+          {DEVELOPERS.sort(() => (Math.random() > 0.5 ? 1 : -1)).map((developer, index) => (
+            <article key={index} className="avatar">
+              <img
+                className="profile-picture"
+                src={developer.avatar}
+                alt={`Profile picture ${developer.name}`}
+              />
+              <div>
+                <p>
+                  <strong>{developer.name}</strong>
+                </p>
+                <p>{developer.title}</p>
+              </div>
+            </article>
+          ))}
+        </div>
 
-          <div className="row mt-regular-r">
-            <div className="col-12 col-rg-auto mt-regular-r">
-              <a
-                className="btn-primary btn btn-rg btn-animated"
-                href="https://github.com/swisspost/design-system/issues"
-                target="_blank"
-                rel="noopener"
-              >
-                <span>Submit an issue</span>
-              </a>
-            </div>
+        <div className="row mt-regular-r">
+          <div className="col-12 col-rg-auto mt-regular-r">
+            <a
+              className="btn-primary btn btn-rg btn-animated"
+              href="https://github.com/swisspost/design-system/issues"
+              target="_blank"
+              rel="noopener"
+            >
+              <span>Submit an issue</span>
+            </a>
           </div>
         </div>
       </div>

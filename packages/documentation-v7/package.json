@@ -63,7 +63,6 @@
     "rimraf": "5.0.1",
     "sass": "1.64.2",
     "storybook": "7.2.1",
-    "storybook-dark-mode": "3.0.1",
     "typescript": "5.1.6"
   }
 }

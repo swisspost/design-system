@@ -14,7 +14,6 @@ const config: StorybookConfig = {
     '@storybook/addon-links',
     '@storybook/addon-designs',
     // '@storybook/addon-a11y',
-    'storybook-dark-mode',
     '@geometricpanda/storybook-addon-badges',
     '@pxtrn/storybook-addon-docs-stencil',
     {
