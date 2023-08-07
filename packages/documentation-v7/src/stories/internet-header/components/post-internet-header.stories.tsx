@@ -17,18 +17,16 @@ const meta: Meta<HTMLSwisspostInternetHeaderElement> = {
     },
     badges: [BADGE.STABLE],
   },
-  render: defaultRender
+  render: defaultRender,
 };
 
 export default meta;
 
-function defaultRender(
-  args: HTMLSwisspostInternetHeaderElement
-) {
+function defaultRender(args: HTMLSwisspostInternetHeaderElement) {
   const filteredArgs = filterArgs(args, arg => arg !== null && arg !== undefined);
   return html`
     <div class="page-wrapper">
-      <swisspost-internet-header ${spread(filteredArgs)} />
+      <swisspost-internet-header project="kvm" environment="int01" ${spread(filteredArgs)} />
       <main class="container mt-huge-r">
         <h1 class="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
         <p class="fake-content my-big"></p>
@@ -57,7 +55,6 @@ const filterArgs = (obj: Args, predicate: (arg: any) => boolean): Args => {
 
   return result;
 };
-
 
 type Story = StoryObj<HTMLSwisspostInternetHeaderElement>;
 
