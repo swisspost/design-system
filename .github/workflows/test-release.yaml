@@ -1,4 +1,4 @@
-name: Run snapshot tests
+name: Test workflow
 on: pull_request
 
 jobs:
@@ -13,7 +13,8 @@ jobs:
         id: branch
         run: |
           ref=${github.ref}
-          echo "branch_version=${ref##*/}" >> GITHUB_OUTPUT
+          sub="${ref##*/}"
+          echo "branch_version=ref" >> GITHUB_OUTPUT
 
       - name: Print result
         run: echo ${steps.branch.outputs.branch_version}
