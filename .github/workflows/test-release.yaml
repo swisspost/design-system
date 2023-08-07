@@ -12,7 +12,8 @@ jobs:
       - name: Read branch name
         id: branch
         run: |
-          echo "branch_version=${github.ref##*/}" >> GITHUB_OUTPUT
+          ref=${github.ref}
+          echo "branch_version=${ref##*/}" >> GITHUB_OUTPUT
 
       - name: Print result
         run: echo ${steps.branch.outputs.branch_version}
