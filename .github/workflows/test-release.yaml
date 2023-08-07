@@ -1,0 +1,18 @@
+name: Run snapshot tests
+on: pull_request
+
+jobs:
+snapshots:
+  runs-on: ubuntu-latest
+
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Read branch name
+      id: branch
+      run: |
+        echo "branch_version=${github.ref##*/}" >> GITHUB_OUTPUT
+
+    - name: Print result
+      run: echo ${steps.branch.outputs.branch_version}

@@ -47,6 +47,14 @@ jobs:
         if: steps.check.outputs.changed == 'true'
         run: pnpm --filter "design-system-demo..." build
 
+      # Check if there is already a site for this release
+      - name: Get netlify site list
+        if: steps.check.outputs.changed == 'true'
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: echo "netlify sites:list" >> $GITHUB_OUTPUT
+
       # Publish demo only if changesets published any packages
       - name: Publish demo app to netlify
         id: netlify
