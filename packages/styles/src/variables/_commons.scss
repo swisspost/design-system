@@ -7,7 +7,7 @@ $border-width: 1px !default;
 $border-thick: 2px !default;
 $border-color: color.$gray-20 !default;
 
-$border-radius: 3px !default;
+$border-radius: 4px !default;
 $border-radius-sm: $border-radius !default;
 $border-radius-rg: $border-radius !default;
 $border-radius-lg: $border-radius !default;
@@ -24,7 +24,6 @@ $caret-width: 0.3em !default;
 // Warning: Avoid customizing these values. They're used for a bird's eye view
 // of components dependent on the z-axis and are designed to all work together.
 
-$zindex-button-group: 980 !default; // Design System only
 $zindex-spinner: 990 !default; // Design System only
 $zindex-dropdown: 1000 !default;
 $zindex-sticky: 1020 !default;

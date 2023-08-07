@@ -8,13 +8,10 @@
 @use './../mixins/utilities';
 
 @mixin icon($name) {
-  background-color: currentColor;
+  /* stylelint-disable-next-line property-no-vendor-prefix */
+  -webkit-mask-image: url('#{icon-fn.get-svg-url($name)}');
   mask-image: url('#{icon-fn.get-svg-url($name)}');
-
-  // set icon to white on hcm
-  @include utilities.high-contrast-mode() {
-    background-color: color.$white;
-  }
+  background-color: currentColor;
 }
 
 // DEPRECATED

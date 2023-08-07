@@ -1165,7 +1165,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2023-01-11T10:23:15.000Z"
+      "modifiedAt": "2023-07-20T10:30:09.000Z"
     },
     {
       "uuid": "86de8550-c5fc-11e7-a943-005056a94f4a",
@@ -1203,7 +1203,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2023-01-11T10:23:15.000Z"
+      "modifiedAt": "2023-07-20T10:32:13.000Z"
     },
     {
       "uuid": "86e34040-c5fc-11e7-a943-005056a94f4a",
@@ -1244,7 +1244,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2023-01-11T10:23:15.000Z"
+      "modifiedAt": "2023-07-20T10:34:04.000Z"
     },
     {
       "uuid": "86ec40f0-c5fc-11e7-a943-005056a94f4a",
@@ -1288,7 +1288,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2023-01-11T10:23:15.000Z"
+      "modifiedAt": "2023-07-20T10:38:46.000Z"
     },
     {
       "uuid": "86f17110-c5fc-11e7-a943-005056a94f4a",
@@ -1964,22 +1964,18 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352125/storage/MzU0NzQ1LzAvbWFzdGVy",
         "businessfield": "kommunikation",
         "keywords": [
+          "PostWeb",
           "Postconnect",
           "connceted",
           "verknüpfen",
-          "connect",
-          "vernetzt",
-          "Netz",
-          "Network",
-          "teilen",
-          "Postconnect",
+          "PostConnect",
           "Connecté",
           "relier",
           "connecter",
           "lié",
           "réseau",
           "partager",
-          "Postconnect",
+          "PostConnect",
           "connected",
           "link",
           "connect",
@@ -2002,7 +1998,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2023-01-11T10:23:15.000Z"
+      "modifiedAt": "2023-07-17T08:43:45.000Z"
     },
     {
       "uuid": "874165d0-c5fc-11e7-a943-005056a94f4a",
@@ -19391,6 +19387,282 @@
       "modifiedAt": "2023-06-08T11:23:53.000Z"
     },
     {
+      "uuid": "61d080d0-1a59-11ee-8c71-005056873709",
+      "id": 686170,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686170/storage/Njg2MTY5LzAvbWFzdGVy",
+        "keywords": [
+          "Schlüsselverlust",
+          "Planon",
+          "IMS",
+          "Perte de clés",
+          "Smarrimento chiavi",
+          "key loss"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2536.svg",
+        "basename": "2536",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-04T10:56:09.000Z",
+      "modifiedAt": "2023-07-04T10:58:07.000Z"
+    },
+    {
+      "uuid": "d411a890-1af9-11ee-8c71-005056873709",
+      "id": 686255,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686255/storage/Njg2MjU0LzAvbWFzdGVy",
+        "keywords": [
+          "Gebrochenes Herz",
+          "Newsletter abmelden",
+          "Cœur cassé",
+          "désinscrire la newsletter",
+          "Cuore rotto",
+          "disdire la newsletter",
+          "Broken heart",
+          "unsubscribe from the newsletter,"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2537.svg",
+        "basename": "2537",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-05T06:04:40.000Z",
+      "modifiedAt": "2023-07-05T06:05:49.000Z"
+    },
+    {
+      "uuid": "d66eeef0-1af8-11ee-8c71-005056873709",
+      "id": 686247,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686247/storage/Njg2MjQ2LzAvbWFzdGVy",
+        "keywords": [
+          "Giesskanne",
+          "arrosoir",
+          "Annaffiatoio",
+          "watering can"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2538.svg",
+        "basename": "2538",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-05T05:57:34.000Z",
+      "modifiedAt": "2023-07-05T05:59:11.000Z"
+    },
+    {
+      "uuid": "33f31880-1bee-11ee-8c71-005056873709",
+      "id": 686377,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686377/storage/Njg2Mzc2LzAvbWFzdGVy",
+        "keywords": [
+          "Satellit",
+          "satellite",
+          "satellitare",
+          "satellite"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2539.svg",
+        "basename": "2539",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-06T11:13:58.000Z",
+      "modifiedAt": "2023-07-06T11:14:55.000Z"
+    },
+    {
+      "uuid": "23568460-1c09-11ee-8c71-005056873709",
+      "id": 686431,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686431/storage/Njg2NDMwLzAvbWFzdGVy",
+        "keywords": [
+          "Strassen",
+          "route",
+          "strade",
+          "Streets"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2540.svg",
+        "basename": "2540",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-06T14:26:46.000Z",
+      "modifiedAt": "2023-07-06T14:28:19.000Z"
+    },
+    {
+      "uuid": "b925b190-1c0a-11ee-8c71-005056873709",
+      "id": 686435,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686435/storage/Njg2NDM0LzAvbWFzdGVy",
+        "keywords": [
+          "Topografie",
+          "topographie",
+          "topografia",
+          "topography"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2541.svg",
+        "basename": "2541",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-06T14:38:07.000Z",
+      "modifiedAt": "2023-07-06T14:41:30.000Z"
+    },
+    {
+      "uuid": "5b3741b0-1c0b-11ee-8c71-005056873709",
+      "id": 686439,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/686439/storage/Njg2NDM4LzAvbWFzdGVy",
+        "keywords": [
+          "Social Media",
+          "mezzi di comunicazione sociale",
+          "Réseaux sociaux",
+          "Social Media"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2542.svg",
+        "basename": "2542",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-06T14:42:39.000Z",
+      "modifiedAt": "2023-07-06T14:45:06.000Z"
+    },
+    {
+      "uuid": "0cbc6e60-27ba-11ee-8c71-005056873709",
+      "id": 687352,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/687352/storage/Njg3MzUxLzAvbWFzdGVy",
+        "keywords": [
+          "Schere",
+          "ausschneiden",
+          "trennen",
+          "Ciseaux",
+          "découper",
+          "séparer",
+          "Forbici",
+          "ritagliare",
+          "separare",
+          "Scissors",
+          "cut out",
+          "separate"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2543.svg",
+        "basename": "2543",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-07-21T11:30:52.000Z",
+      "modifiedAt": "2023-07-21T11:31:54.000Z"
+    },
+    {
+      "uuid": "426902b0-3135-11ee-a385-005056873709",
+      "id": 687855,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/687855/storage/Njg3ODU0LzAvbWFzdGVy",
+        "keywords": [
+          "Verknüpfung aufheben",
+          "Pas de lien",
+          "supprimer le lien",
+          "Sopprimere collegamento",
+          "Unlink"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2544.svg",
+        "basename": "2544",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-02T13:05:31.000Z",
+      "modifiedAt": "2023-08-02T13:07:08.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -29968,11 +30240,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-06-11T01:47:56.170Z",
+  "created": "2023-08-06T01:11:12.389Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 866
+    "success": 875
   },
-  "version": "1.0.5"
+  "version": "1.0.9"
 }

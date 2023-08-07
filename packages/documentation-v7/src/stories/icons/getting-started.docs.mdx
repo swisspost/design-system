@@ -1,0 +1,149 @@
+import { Meta } from '@storybook/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import { BADGE } from '../../../.storybook/constants';
+
+<Meta title="Icons/Getting started" parameters={{ badges: [BADGE.NEEDS_REVISION] }} />
+
+# @swisspost/design-system-icons
+
+[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-icons.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-icons)
+
+The comprehensive collection of Swiss Post icons.
+
+- [Installation](#installation)
+- [Configuration](#configuration)
+- [CDN approach](#cdn-approach)
+
+## Installation
+
+```bash dark
+npm install @swisspost/design-system-icons
+```
+
+<div className="alert alert-info alert-md">
+  If you want to use our <LinkTo kind="icons-components-icon" story="docs">icon component</LinkTo> to
+  render the icons (which we strongly recommend), you must also install the{' '}
+  <strong>components</strong> package.
+  <br />
+  To learn how to set up this package please read our{' '}
+  <LinkTo kind="getting-started-components" story="docs">Components - Getting Started</LinkTo> page.
+</div>
+
+## Usage
+
+First you need to make the icons available in your web application.
+This basically means that you need to copy & paste them manually or automatically from the `node_modules` folder to a served folder in your project.
+The way to do this strongly depends on your project setup.
+Read on to find out what the possible solutions look like...
+
+### Serve the icons within an Angular application
+
+It is very easy to serve the icons from the `node_modules` folder directly into your angular application.
+Just open your `angular.json` file and add the following to the `build.options.assets`:
+
+```json dark
+{
+  "projects": {
+    "name-of-your-angular-app": {
+      "architect": {
+        "build": {
+          "options": {
+            "assets": [
+              {
+                "glob": "**/*.svg",
+                "input": "./node_modules/@swisspost/design-system-icons/public/post-icons",
+                "output": "assets/post-icons"
+              }
+            ]
+          }
+        }
+      }
+    }
+  }
+}
+```
+
+### Copy & paste the icons with a postinstall script
+
+Add a `postinstall` script to your `package.json`, to copy & paste the icons to a public folder within your web project.<br/>
+If you want to know more about pre & post scripts and how they are handled, please read the <a href="https://docs.npmjs.com/cli/v7/using-npm/scripts#description" target="_blank">npm documentation</a>.
+
+#### NodeJS version 16.7.0 or newer
+
+```json dark
+// package.json
+{
+  "scripts": {
+    "postinstall": "node -e \"const fs = require('fs'); fs.cpSync('node_modules/@swisspost/design-system-icons/public/post-icons', 'assets/post-icons', { recursive: true }, (err) => { if (err) throw err; });\""
+  }
+}
+```
+
+#### Older NodeJS versions
+
+```json dark
+// package.json
+{
+  "scripts": {
+    "postinstall": "node postinstall-icons.js"
+  }
+}
+```
+
+```js dark
+// postinstall-icons.js
+const fse = require('fs-extra');
+
+const srcDir = 'node_modules/@swisspost/design-system-icons/public/post-icons';
+const destDir = 'assets/post-icons';
+
+// To copy a folder or file, select overwrite accordingly
+try {
+  fse.copySync(srcDir, destDir, { overwrite: true });
+  console.log('Icons successfully copied!');
+} catch (err) {
+  console.error(err);
+}
+```
+
+### Configure the icons base-path
+
+Now that you have the icons available in your project, you need to tell the `icon` component where to find them.<br/>
+You can do this with two different solutions:
+
+1. Use the **meta-tag** solution to configure the `base-path` globally for all icons on the page.
+2. Use the **base-attribute** solution, to configure the `base-path` on every `icon` component. This can also be used to overwrite the global `base-path` for a single icon.
+
+#### Meta-tag solution (recommended)
+
+```html dark
+<html>
+  <head>
+    <meta name="design-system-settings" data-post-icon-base="/assets/post-icons" />
+  </head>
+</html>
+```
+
+#### Base-attribute solution
+
+```html dark
+<post-icon name="1000" base="/base-path/to/your/own/icon-folder"></post-icon>
+```
+
+## CDN approach
+
+## Usage of the CDN approach
+
+There is one last thing we want to tell you about.
+
+All icons are also available from a CDN, which is the default if you don't configure a base path for your icons and don't serve them locally. When using the CDN, please note that you need to configure your CORS policy to enable resource loading from unpkg.com.
+
+<div className="alert alert-warning alert-md">
+  Using the CDN is not recommended for production because of higher latency when loading from the
+  CDN, use it for quickly testing something or for prototyping.
+</div>
+
+### Check the Content Security Policy
+
+If your project includes the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank">Content-Security-Policy</a> response header (usually in `index.html`),
+make sure that `default-src` is set to `'self'`.

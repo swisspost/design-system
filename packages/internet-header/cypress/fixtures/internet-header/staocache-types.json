@@ -225,8 +225,8 @@
       "groupSortKey": 400,
       "itemSortKey": 100,
       "list": false,
-      "url": "http://www.post.ch/poststellensuche-postshop-de",
-      "urlMobile": "http://www.post.ch/poststellensuche-postshop-de"
+      "url": "https://www.post.ch/poststellensuche-postshop-de",
+      "urlMobile": "https://www.post.ch/poststellensuche-postshop-de"
     },
     {
       "tag": "S16",
@@ -293,8 +293,8 @@
       "groupSortKey": 100,
       "itemSortKey": 120,
       "list": true,
-      "url": "http://www.post.ch/pickpost",
-      "urlMobile": "http://www.post.ch/pickpost"
+      "url": "https://www.post.ch/pickpost",
+      "urlMobile": "https://www.post.ch/pickpost"
     },
     {
       "tag": "S22",
@@ -306,8 +306,8 @@
       "groupSortKey": 800,
       "itemSortKey": 110,
       "list": true,
-      "url": "http://www.post.ch/promopost",
-      "urlMobile": "http://www.post.ch/promopost"
+      "url": "https://www.post.ch/promopost",
+      "urlMobile": "https://www.post.ch/promopost"
     },
     {
       "tag": "S23",
@@ -895,8 +895,8 @@
       "groupSortKey": 800,
       "itemSortKey": 120,
       "list": true,
-      "url": "http://www.post.ch/vorleistungsverguetung",
-      "urlMobile": "http://www.post.ch/vorleistungsverguetung"
+      "url": "https://www.post.ch/vorleistungsverguetung",
+      "urlMobile": "https://www.post.ch/vorleistungsverguetung"
     },
     {
       "tag": "S76",
@@ -919,8 +919,8 @@
       "groupSortKey": 100,
       "itemSortKey": 150,
       "list": true,
-      "url": "http://www.post.ch/ontimemail",
-      "urlMobile": "http://www.post.ch/ontimemail"
+      "url": "https://www.post.ch/ontimemail",
+      "urlMobile": "https://www.post.ch/ontimemail"
     },
     {
       "tag": "S78",
@@ -1343,8 +1343,8 @@
       "groupSortKey": 100,
       "itemSortKey": 190,
       "list": true,
-      "url": "http://www.post.ch/klima",
-      "urlMobile": "http://www.post.ch/klima"
+      "url": "https://www.post.ch/klima",
+      "urlMobile": "https://www.post.ch/klima"
     },
     {
       "tag": "S116",

@@ -333,6 +333,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
       return;
     }
     const { translations, search } = state.localizedConfig.header;
+    const isParcelTrackingNr = this.parcelSuggestion && 'sending' in this.parcelSuggestion;
     const showPortalRecommendations =
       this.searchBox?.value === '' && search.searchRecommendations?.links.length > 0;
 
@@ -372,10 +373,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                         onKeyDown={e => this.handleKeyDown(e)}
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
-                      <button
-                        onClick={() => void this.startSearch()}
-                        class="nav-link start-search-button"
-                      >
+                      <button onClick={() => void this.startSearch()} class="start-search-button">
                         <span class="visually-hidden">{translations.searchSubmit}</span>
                         <SvgIcon name="pi-search" />
                       </button>
@@ -412,21 +410,25 @@ export class PostSearch implements HasDropdown, IsFocusable {
                             </a>
                           </li>
                         ))}
-                      {this.parcelSuggestion?.ok && (
+                      {isParcelTrackingNr && (
                         <li>
                           <a
                             class="nav-link parcel-suggestion"
-                            href={this.parcelSuggestion.url}
+                            href={this.parcelSuggestion!.url}
                             data-suggestion-text={this.searchBox?.value}
                             onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
                           >
                             <SvgIcon name="pi-letter-parcel" />
                             <span class="bold">{this.parcelSuggestion?.sending?.id}:&nbsp;</span>
                             <span>
-                              {this.parcelSuggestion?.sending?.product},{' '}
-                              {this.parcelSuggestion?.sending?.recipient.zipcode}{' '}
-                              {this.parcelSuggestion?.sending?.recipient.city},{' '}
-                              {this.parcelSuggestion?.sending?.state}
+                              {[
+                                this.parcelSuggestion?.sending?.product,
+                                ' ' + this.parcelSuggestion?.sending?.recipient.zipcode,
+                                ' ' + this.parcelSuggestion?.sending?.recipient.city,
+                                ', ' + this.parcelSuggestion?.sending?.state,
+                              ]
+                                .filter(s => s !== '' && s !== ' ')
+                                .join('')}
                             </span>
                           </a>
                         </li>

@@ -94,14 +94,14 @@ export default {
         type: 'select',
         labels: {
           'null': 'Default',
-          '1001': 'Envelope (1001)',
-          '2023': 'Cog (2023)',
-          '2025': 'Send (2025)',
-          '2035': 'Home (2035)',
-          '2101': 'Bubble (2101)',
+          'pi-1001': 'Envelope (1001)',
+          'pi-2023': 'Cog (2023)',
+          'pi-2025': 'Send (2025)',
+          'pi-2035': 'Home (2035)',
+          'pi-2101': 'Bubble (2101)',
         },
       },
-      options: ['null', '1001', '2023', '2025', '2035', '2101'],
+      options: ['null', 'pi-1001', 'pi-2023', 'pi-2025', 'pi-2035', 'pi-2101'],
       table: {
         category: 'General',
       },
@@ -345,7 +345,7 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
 
   const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores];
 
-  const classes = ['toast', args.variant, args.noIcon && 'no-icon']
+  const classes = ['toast', args.variant, args.noIcon && 'no-icon', args.icon]
     .filter(c => c && c !== 'null')
     .join(' ');
 
@@ -355,11 +355,7 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
   const role = isFixed ? 'alert' : 'status';
   const ariaLive = isFixed ? 'assertive' : 'polite';
 
-  const toastIcon = (args.icon !== 'null') && (
-    <post-icon aria-hidden="true" class="toast-icon" name={args.icon}/>
-  );
-
-  const dismissButton = (args.dismissible || isFixed) && (
+  const dismissibleButton = (args.dismissible || isFixed) && (
     <button className="toast-close-button" aria-label="close"></button>
   );
 
@@ -373,8 +369,7 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
       onMouseEnter={() => killAutoHideTimeout(timeoutStore, args)}
       onMouseLeave={() => createAutoHideTimeout(timeoutStore, args, updateArgs)}
     >
-      {dismissButton}
-      {toastIcon}
+      {dismissibleButton}
       <div className="toast-title">{args.title}</div>
       {args.content && <div className="toast-message">{args.content}</div>}
     </div>

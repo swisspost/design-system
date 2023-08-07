@@ -233,17 +233,17 @@ const vertx = window.vertx || {};
       controlCookieDomain = 'post.ch',
       controlCookieDomainRegEx = new RegExp(controlCookieDomain + '$'),
       controlCookieRegEx = new RegExp(controlCookieName + '=([^;]+)'),
-      eventBus = undefined,
-      address = undefined,
+      eventBus,
+      address,
       retrySubscribeOnFail = false,
-      sessionData = undefined,
-      loginCallback = undefined,
-      keepAliveCallback = undefined,
-      logoutCallback = undefined,
+      sessionData,
+      loginCallback,
+      keepAliveCallback,
+      logoutCallback,
       documentCallbacks = {},
       documentUnreadNotifications = 'UNREAD_NOTIFICATIONS',
       isUserActive = true,
-      keepAliveTimer = undefined,
+      keepAliveTimer,
       currentLang = 'de',
       originUrl = '',
       startingTime = new Date().getTime(),
@@ -1014,9 +1014,7 @@ const vertx = window.vertx || {};
         .find('#' + id)
         .html(
           '<div class="klp-widget-anonymous"><div class="klp-widget-anonymous__wrapper">' +
-            '<a tabindex="' +
-            tabIndex('sign-in') +
-            '" ' +
+            '<a ' +
             accessKey('sign-in') +
             ' title="' +
             text('sign-in') +
@@ -1194,6 +1192,10 @@ const vertx = window.vertx || {};
 
       if (sessionData.userType === 'B2C') {
         const settingEnvLinks = {
+          dev01: 'https://serviceint1.post.ch/kvm/app/ui',
+          dev02: 'https://serviceint1.post.ch/kvm/app/ui',
+          devs1: 'https://serviceint1.post.ch/kvm/app/ui',
+          test: 'https://serviceint1.post.ch/kvm/app/ui',
           int01: 'https://serviceint1.post.ch/kvm/app/ui',
           int02: 'https://serviceint2.post.ch/kvm/app/ui',
           prod: 'https://service.post.ch/kvm/app/ui',

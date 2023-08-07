@@ -69,11 +69,7 @@ export default {
     },
     icon: {
       name: 'Icon',
-      description: 'Defines a custom icon.' +
-        '<span className="mt-mini alert alert-info alert-sm">' +
-        'To use a custom icon, you must first ' +
-        '<a href="/?path=/docs/icons-getting-started--page">set up the icons in your project</a>' +
-        '.</span>',
+      description: 'Defines a custom icon.',
       if: {
         arg: 'noIcon',
         truthy: false,
@@ -156,12 +152,7 @@ const Template = (args: Args) => {
           data-dismiss="alert"
           aria-label="Close"
           onClick={(e: React.MouseEvent) => onShowToggle(e, args, updateArgs)}
-        />
-      ) : null}
-
-      {/* Alert Icon */}
-      {args.icon !== 'null' ? (
-        <post-icon aria-hidden="true" class="alert-icon" name={args.icon}/>
+        ></button>
       ) : null}
 
       {/* Alert Content */}

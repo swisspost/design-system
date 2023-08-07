@@ -1,0 +1,5 @@
+# Storybook specific
+storybook-static
+
+# Project specific
+public/manager

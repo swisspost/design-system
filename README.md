@@ -1,9 +1,9 @@
 # Swiss Post Design System
 
-![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/643201/ad8bce44-8bb5-4522-ae9a-be27d6e90678)
-
+![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/c11afbac-8a71-4416-ae3c-ec87f4e10412)
 
 The Swiss Post Design System pattern library for a unified and accessible user experience across the web platform.
+
 
 ## Packages
 

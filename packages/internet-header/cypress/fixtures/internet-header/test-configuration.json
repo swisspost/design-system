@@ -3,7 +3,7 @@
     "header": {
       "asWebComponent": true,
       "isHeaderResponsive": true,
-      "isLoginWidgetHidden": true,
+      "isLoginWidgetHidden": false,
       "showJobsLoginWidget": false,
       "icons": {
         "backArrowIcon": {
@@ -59,7 +59,7 @@
           "autoLoginURL": "https://post.ch/idp/?app=loginwidget"
         }
       },
-      "loginWidgetId": null,
+      "loginWidgetId": "klp-login-widget",
       "logo": {
         "logoLink": "https://post.ch/de/",
         "logoLinkTitle": "Die Post - zur Startseite",
@@ -989,7 +989,7 @@
         "mobileNavToggleClose": "Navigation schliessen",
         "mobileNavToggleOpen": "Navigation öffnen",
         "nonResponsiveHeader": "Diese Seite ist nicht für mobile Geräte konzipiert.",
-        "loginWidgetText": null
+        "loginWidgetText": "Login"
       }
     },
     "breadcrumb": {
@@ -1286,7 +1286,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.youtube.com/swisspost",
+                  "url": "https://www.youtube.com/swisspost",
                   "icon": "8002_youtube",
                   "name": "Folgen Sie uns auf Youtube",
                   "target": "_blank",
@@ -1294,7 +1294,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.snapchat.com/add/swisspostjobs",
+                  "url": "https://www.snapchat.com/add/swisspostjobs",
                   "icon": "8017_snapchat",
                   "name": "Folgen Sie uns auf Snapchat",
                   "target": "_blank",
@@ -1318,7 +1318,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.linkedin.com/company/swiss-post",
+                  "url": "https://www.linkedin.com/company/swiss-post",
                   "icon": "8005_linkedin",
                   "name": "Folgen Sie uns auf LinkedIn",
                   "target": "_blank",
@@ -1592,7 +1592,7 @@
         "mobileNavToggleClose": "Fermer la navigation",
         "mobileNavToggleOpen": "Ouvrir la navigation",
         "nonResponsiveHeader": "Cette page n’est pas conçue pour les appareils mobiles.",
-        "loginWidgetText": null
+        "loginWidgetText": "Login"
       }
     },
     "breadcrumb": {
@@ -1889,7 +1889,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.youtube.com/swisspost",
+                  "url": "https://www.youtube.com/swisspost",
                   "icon": "8002_youtube",
                   "name": "Suivez-nous sur Youtube",
                   "target": "_blank",
@@ -1897,7 +1897,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.snapchat.com/add/swisspostjobs",
+                  "url": "https://www.snapchat.com/add/swisspostjobs",
                   "icon": "8017_snapchat",
                   "name": "Suivez-nous sur Snapchat",
                   "target": "_blank",
@@ -1921,7 +1921,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.linkedin.com/company/swiss-post",
+                  "url": "https://www.linkedin.com/company/swiss-post",
                   "icon": "8005_linkedin",
                   "name": "Suivez-nous sur LinkedIn",
                   "target": "_blank",
@@ -2195,7 +2195,7 @@
         "mobileNavToggleClose": "Chiudere la navigazione",
         "mobileNavToggleOpen": "Navigazione aperta",
         "nonResponsiveHeader": "Questa pagina non è concepita per dispositivi mobili.",
-        "loginWidgetText": null
+        "loginWidgetText": "Login"
       }
     },
     "breadcrumb": {
@@ -2492,7 +2492,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.youtube.com/swisspost",
+                  "url": "https://www.youtube.com/swisspost",
                   "icon": "8002_youtube",
                   "name": "Seguici su Youtube",
                   "target": "_blank",
@@ -2500,7 +2500,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.snapchat.com/add/swisspostjobs",
+                  "url": "https://www.snapchat.com/add/swisspostjobs",
                   "icon": "8017_snapchat",
                   "name": "Seguici su Snapchat",
                   "target": "_blank",
@@ -2524,7 +2524,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.linkedin.com/company/swiss-post",
+                  "url": "https://www.linkedin.com/company/swiss-post",
                   "icon": "8005_linkedin",
                   "name": "Seguici su LinkedIn",
                   "target": "_blank",
@@ -2798,7 +2798,7 @@
         "mobileNavToggleClose": "Navigation close",
         "mobileNavToggleOpen": "Navigation open",
         "nonResponsiveHeader": "This page is not designed for mobile devices.",
-        "loginWidgetText": null
+        "loginWidgetText": "Login"
       }
     },
     "breadcrumb": {
@@ -3095,7 +3095,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.youtube.com/swisspost",
+                  "url": "https://www.youtube.com/swisspost",
                   "icon": "8002_youtube",
                   "name": "Follow us on Youtube",
                   "target": "_blank",
@@ -3103,7 +3103,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.snapchat.com/add/swisspostjobs",
+                  "url": "https://www.snapchat.com/add/swisspostjobs",
                   "icon": "8017_snapchat",
                   "name": "Follow us on Snapchat",
                   "target": "_blank",
@@ -3127,7 +3127,7 @@
                   "additionalAttributes": []
                 },
                 {
-                  "url": "http://www.linkedin.com/company/swiss-post",
+                  "url": "https://www.linkedin.com/company/swiss-post",
                   "icon": "8005_linkedin",
                   "name": "Follow us on LinkedIn",
                   "target": "_blank",

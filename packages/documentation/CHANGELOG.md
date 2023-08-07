@@ -1,5 +1,53 @@
 # @swisspost/design-system-documentation
 
+## 1.11.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/internet-header@1.8.3
+
+## 1.11.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.9
+  - @swisspost/internet-header@1.8.2
+  - @swisspost/design-system-styles@6.2.6
+  - @swisspost/design-system-components@1.3.9
+  - @swisspost/design-system-components-react@1.0.15
+
+## 1.11.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.8
+  - @swisspost/design-system-styles@6.2.5
+  - @swisspost/design-system-components@1.3.8
+  - @swisspost/internet-header@1.8.1
+  - @swisspost/design-system-components-react@1.0.14
+
+## 1.11.0
+
+### Minor Changes
+
+- Added a "Getting started" docs page for the intranet-header. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1532](https://github.com/swisspost/design-system/pull/1532))
+
+### Patch Changes
+
+- Updated the paths in the post-install script examples on the "Getting Started" Icons page and added instructions regarding Content-Security-Policy. (by [@alizedebray](https://github.com/alizedebray) with [#1537](https://github.com/swisspost/design-system/pull/1537))
+
+- Deprecated the stickyness option "full". It should not be used anymore as this mode takes up too much screen space (by [@gfellerph](https://github.com/gfellerph) with [#1551](https://github.com/swisspost/design-system/pull/1551))
+
+- Updated the Internet Header configuration and added a shiny new button for ordering new configs or contacting the Portal Team for enquiries about environments. (by [@cococonscious](https://github.com/cococonscious) with [`484edf5`](https://github.com/swisspost/design-system/commit/484edf58c286816e97806dc1ba59dbce8c683e86))
+- Updated dependencies:
+  - @swisspost/internet-header@1.8.0
+  - @swisspost/design-system-styles@6.2.4
+  - @swisspost/design-system-components@1.3.7
+  - @swisspost/design-system-components-react@1.0.13
+
 ## 1.10.0
 
 ### Minor Changes

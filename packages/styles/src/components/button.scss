@@ -33,7 +33,7 @@
   border-radius: button.$btn-border-radius;
   background-color: transparent;
   box-shadow: none;
-  color: var(--post-contrast-color);
+  color: var(--post-gray-80);
   font-family: inherit;
   font-weight: button.$btn-font-weight;
   text-decoration: none !important; // For <a> tags, !important for hover
@@ -43,7 +43,7 @@
 // Primary
 .btn-primary {
   border-color: transparent;
-  background-color: rgba(var(--post-contrast-color-rgb), 0.8);
+  background-color: var(--post-gray-80);
   color: var(--post-contrast-color-inverted);
 
   @include utilities.not-disabled-focus-hover() {
@@ -53,9 +53,14 @@
 
   @include color-mx.on-dark-background {
     background-color: var(--post-contrast-color);
+    color: var(--post-gray-10); // Apply same color as secondary/tertiary button on dark theme
 
     @include utilities.not-disabled-focus-hover() {
-      background-color: rgba(var(--post-contrast-color-rgb), 0.8);
+      background-color: var(--post-gray-80);
+    }
+
+    &:disabled {
+      color: var(--post-gray-80);
     }
   }
 
@@ -83,7 +88,7 @@
   }
 
   &:disabled {
-    background-color: rgba(var(--post-contrast-color-rgb), 0.4);
+    background-color: var(--post-gray-40);
   }
 
   .pi {
@@ -96,28 +101,18 @@
 .btn-default,
 .btn-secondary {
   @extend %btn-default;
-
-  // Invert icon on dark backgrounds
-  @include color-mx.on-dark-background() {
-    .pi {
-      filter: invert(1);
-    }
-  }
+  @extend %btn-transparent-background;
 }
 
 // Tertiary
 .btn-link,
 .btn-tertiary {
+  @extend %btn-transparent-background;
   border: 0;
-  padding-right: 0.375rem;
-  padding-left: 0.375rem;
-
-  @include utilities.not-disabled-focus-hover() {
-    color: rgba(var(--post-contrast-color-rgb), 0.8);
-  }
+  padding-inline: spacing.$size-micro;
 
   &:disabled {
-    color: rgba(var(--post-contrast-color-rgb), 0.6);
+    color: var(--post-gray-60);
   }
 
   // Styles  to improve accessibility in high contrast mode
