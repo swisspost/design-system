@@ -18,9 +18,13 @@ jobs:
       - name: Print result
         run: echo "${{steps.branch.outputs.branch_version}}"
 
-      - name: Create netlify site
+      - name: List netlify sites
         env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
           netlify sites:list
+
+      - name: Create netlify site
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: netlify sites:create --name "swisspost-design-system-${{steps.branch.outputs.branch_version}}"
