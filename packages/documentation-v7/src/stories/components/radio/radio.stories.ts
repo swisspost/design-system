@@ -174,13 +174,12 @@ function renderInline(args: Args, context: StoryContext) {
   const id4 = baseId + '4';
 
   function onChange(e: Event, value: number) {
+    const changeTarget = e.target as HTMLElement;
     updateArgs({ checkedRadio: value });
 
-    if (document.activeElement === e.target) {
+    if (document.activeElement === changeTarget) {
       setTimeout(() => {
-        const element: HTMLInputElement | null = document.querySelector(
-          `#${(<HTMLElement>e.target).id}`,
-        );
+        const element: HTMLInputElement | null = document.querySelector(`#${changeTarget.id}`);
         if (element) element.focus();
       }, 25);
     }
