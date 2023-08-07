@@ -37,6 +37,7 @@ jobs:
   test2:
     runs-on: ubuntu-latest
     if: always()
+    needs: [test]
     steps:
       - name: Always step
         run: echo "Always!"
