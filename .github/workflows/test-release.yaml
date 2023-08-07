@@ -17,4 +17,4 @@ jobs:
           echo "branch_version=ref" >> GITHUB_OUTPUT
 
       - name: Print result
-        run: echo ${{steps.branch.outputs.branch_version}}
+        run: echo "${{steps.branch.outputs.branch_version}}"
