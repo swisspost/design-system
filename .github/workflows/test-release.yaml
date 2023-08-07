@@ -13,8 +13,14 @@ jobs:
         id: branch
         run: |
           ref=${{github.ref}}
-          sub="${ref##*/}"
           echo "branch_version=${ref##*/}" >> "$GITHUB_OUTPUT"
 
       - name: Print result
         run: echo "${{steps.branch.outputs.branch_version}}"
+
+      - name: Create netlify site
+        env:
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          netlify sites:list
