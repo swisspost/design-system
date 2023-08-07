@@ -3,10 +3,12 @@ on: push
 
 jobs:
   success:
+    runs-on: ubuntu-latest
     steps:
       - name: good
         run: exit 0
   fail:
+    runs-on: ubuntu-latest
     steps:
       - name: fail
         run: exit 1
