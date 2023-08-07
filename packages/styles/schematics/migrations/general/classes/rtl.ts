@@ -35,7 +35,9 @@ class SpacingClassesUpdate implements DomUpdate {
             $element
               .removeClass(cssClass)
               .addClass(
-                `${property}${this.sideUpdate.get(side)}${classPart(breakpoint)}${classPart(size)}`,
+                `${property}${this.sideUpdate.get(side)}${optionalClassPart(
+                  breakpoint,
+                )}${optionalClassPart(size)}`,
               );
           }
         });
@@ -51,7 +53,10 @@ class SpacingClassesUpdate implements DomUpdate {
       .map(property =>
         selectorSides.map(side =>
           selectorBreakpoints.map(breakpoint =>
-            sizes.map(size => `.${property}${side}${classPart(breakpoint)}${classPart(size)}`),
+            sizes.map(
+              size =>
+                `.${property}${side}${optionalClassPart(breakpoint)}${optionalClassPart(size)}`,
+            ),
           ),
         ),
       )
@@ -86,7 +91,9 @@ class AlignmentClassesUpdate implements DomUpdate {
             $element
               .removeClass(cssClass)
               .addClass(
-                `${property}${classPart(breakpoint)}${classPart(this.sideUpdate.get(side))}`,
+                `${property}${optionalClassPart(breakpoint)}${optionalClassPart(
+                  this.sideUpdate.get(side),
+                )}`,
               );
           }
         });
@@ -101,14 +108,16 @@ class AlignmentClassesUpdate implements DomUpdate {
     return selectorProperties
       .map(property =>
         selectorBreakpoints.map(breakpoint =>
-          selectorSides.map(side => `.${property}${classPart(breakpoint)}${classPart(side)}`),
+          selectorSides.map(
+            side => `.${property}${optionalClassPart(breakpoint)}${optionalClassPart(side)}`,
+          ),
         ),
       )
       .join(', ');
   }
 }
 
-function classPart(partName: string | undefined) {
+function optionalClassPart(partName: string | undefined) {
   if (!partName) {
     return '';
   }
