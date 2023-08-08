@@ -11,6 +11,9 @@ importers:
       '@changesets/cli':
         specifier: 2.26.2
         version: 2.26.2
+      '@web-types/lit':
+        specifier: 2.0.0-3
+        version: 2.0.0-3
       start-server-and-test:
         specifier: 2.0.0
         version: 2.0.0
@@ -10664,6 +10667,10 @@ packages:
     dependencies:
       '@typescript-eslint/types': 5.62.0
       eslint-visitor-keys: 3.4.1
+    dev: true
+
+  /@web-types/lit@2.0.0-3:
+    resolution: {integrity: sha512-vZG6zfQ8+gM5Qsv0D5k9X8f/cBqk3y8qhgy0y5g+or+hi3PH6UNNMBMd6QRrlBZUoXCXR/cpVvfPTDj9w5FlwQ==}
     dev: true
 
   /@webassemblyjs/ast@1.11.1:
