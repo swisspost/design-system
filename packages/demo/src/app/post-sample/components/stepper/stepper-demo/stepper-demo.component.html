@@ -13,11 +13,11 @@
       [attr.aria-current]="isCurrent(step) ? 'step' : undefined"
       class="stepper-item"
     >
-      <a *ngIf="i < currentIndex" [routerLink]="getPathTo(step)" class="stepper-link">
+      <a *ngIf="i < currentIndex" class="stepper-link" (click)="currentIndex = i" href="#">
         <span class="visually-hidden">Complete:</span>
         {{ step }}
       </a>
-      <span class="stepper-link" *ngIf="i >= currentIndex">
+      <span class="stepper-link" *ngIf="i >= currentIndex" (click)="currentIndex = i">
         {{ step }}
       </span>
     </li>

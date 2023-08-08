@@ -81,7 +81,7 @@
                     </div>
                   </ng-container>
                 </div>
-                <div class="other-items">
+                <div class="other-items" (click)="optionDropdownClick($event)">
                   <div class="dropdown-item" *ngIf="currentUserId">
                     {{ currentUserId }}
                   </div>
@@ -103,14 +103,7 @@
             *ngIf="hasNavbar === true"
             (click)="toggleMenu()"
             id="nav-toggler"
-            class="
-              navbar-toggler
-              px-3
-              d-md-none
-              align-self-stretch
-              d-inline-flex
-              align-items-center
-            "
+            class="navbar-toggler px-3 d-md-none align-self-stretch d-inline-flex align-items-center"
           >
             <em class="pi pi-2070"></em>
           </div>

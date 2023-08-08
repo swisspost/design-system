@@ -12,14 +12,14 @@ export class PostMetaNavigation {
 
   render() {
     if (state.localizedConfig?.header.navMeta === undefined) return;
-    const { navMeta } = state.localizedConfig.header;
+    const headerConfig = state.localizedConfig.header;
 
     return (
       <Host>
         <div class={`meta-container ${this.orientation}${this.fullWidth ? ' full-width' : ''}`}>
-          <nav class="meta-navigation">
+          <nav aria-label={headerConfig.translations.navMetaAriaLabel} class="meta-navigation">
             <ul class="meta-list">
-              {navMeta
+              {headerConfig.navMeta
                 ?.filter(meta => !meta.isHomeLink)
                 .map(meta => (
                   <li key={meta.url}>

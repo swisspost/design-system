@@ -1,6 +1,7 @@
 @forward './../variables/options';
 
 @use 'sass:map';
+@use 'sass:color' as sass-color;
 @use 'sass:list';
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;

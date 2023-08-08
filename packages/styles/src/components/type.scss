@@ -43,6 +43,13 @@
   }
 }
 
+fieldset {
+  legend {
+    font-size: type.$font-size-18;
+    font-weight: type.$font-weight-bold;
+  }
+}
+
 .blockquote {
   margin-top: type.$blockquote-margin-top;
 

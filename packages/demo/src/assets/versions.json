@@ -1,21 +1,20 @@
 [
   {
     "title": "New docs (beta)",
-    "version": "6.0.0-beta",
     "description": "Developer documentation for the Swiss Post Design System.",
     "url": "https://next.design-system.post.ch"
   },
   {
     "title": "Version 6",
-    "version": "6.0.0",
+    "version": "6.0.4",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
     "url": "https://design-system.post.ch",
     "dependencies": {
-      "@angular/core": "15.2.1",
-      "@ng-bootstrap/ng-bootstrap": "14.0.1",
-      "@swisspost/design-system-intranet-header": "4.0.0",
-      "@swisspost/design-system-styles": "6.0.0",
-      "bootstrap": "5.2.3"
+      "@angular/core": "15.2.9",
+      "@ng-bootstrap/ng-bootstrap": "14.2.0",
+      "@swisspost/design-system-intranet-header": "4.0.4",
+      "@swisspost/design-system-styles": "6.2.2",
+      "bootstrap": "5.3.0"
     }
   },
   {

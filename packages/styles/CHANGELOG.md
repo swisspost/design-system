@@ -1,5 +1,49 @@
 # @swisspost/design-system-styles
 
+## 6.2.6
+
+### Patch Changes
+
+- Updated button styles:
+  - Reduced horizontal padding of tertiary buttons.
+  - Updated font-size progression according to button size.
+  - Changed transparent color to full-tone colors.
+  - Updated the font-color and border-color of secondary and tertiary buttons. (by [@imagoiq](https://github.com/imagoiq) with [#1635](https://github.com/swisspost/design-system/pull/1635))
+
+## 6.2.5
+
+### Patch Changes
+
+- Fixed the placeholder for the file upload in Safari. It's no longer cut off and pluralisation for the button label with a `multiple` attribute is now supported. Also fixed padding when the state is valid or invalid. (by [@imagoiq](https://github.com/imagoiq) with [#1614](https://github.com/swisspost/design-system/pull/1614))
+
+## 6.2.4
+
+### Patch Changes
+
+- Fix an issue with two empty CSS files in the styles package. Empty files are no longer delivered. (by [@imagoiq](https://github.com/imagoiq) with [#1600](https://github.com/swisspost/design-system/pull/1600))
+
+- Fixed default font-size and weight of the legend element (by [@geekrumper](https://github.com/geekrumper) with [#1512](https://github.com/swisspost/design-system/pull/1512))
+
+## 6.2.3
+
+### Patch Changes
+
+- Optimized floating-label controls to show placeholders. (by [@alizedebray](https://github.com/alizedebray) with [#1509](https://github.com/swisspost/design-system/pull/1509))
+
+- Added missing definitions for italic font faces. (by [@yannikstuker](https://github.com/yannikstuker) with [#1513](https://github.com/swisspost/design-system/pull/1513))
+
+## 6.2.2
+
+### Patch Changes
+
+- Fixed an issue with the stepper on mobile where the name of the last step was misaligned on mobile devices. (by [@gfellerph](https://github.com/gfellerph) with [#1317](https://github.com/swisspost/design-system/pull/1317))
+
+- Updated dependency Bootstrap to 5.3.0 (by [@gfellerph](https://github.com/gfellerph) with [#1466](https://github.com/swisspost/design-system/pull/1466))
+
+- Removed unused variable `$shadow-color`. It was added by mistake. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1438](https://github.com/swisspost/design-system/pull/1438))
+
+- Fixed an issue in Safari where the input value of a floating label input field was hidden by the floating label. (by [@gfellerph](https://github.com/gfellerph) with [#1461](https://github.com/swisspost/design-system/pull/1461))
+
 ## 6.2.1
 
 ### Patch Changes

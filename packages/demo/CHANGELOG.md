@@ -1,5 +1,55 @@
 # @swisspost/design-system-demo
 
+## 6.0.8
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.6
+  - @swisspost/design-system-intranet-header@4.0.8
+
+## 6.0.7
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.5
+  - @swisspost/design-system-intranet-header@4.0.7
+
+## 6.0.6
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.4
+  - @swisspost/design-system-intranet-header@4.0.6
+
+## 6.0.5
+
+### Patch Changes
+
+- Fixed broken links to the storybook documentation. (by [@alizedebray](https://github.com/alizedebray) with [#1514](https://github.com/swisspost/design-system/pull/1514))
+
+- Updated the link in the demo app, to the internet-header documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1528](https://github.com/swisspost/design-system/pull/1528))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.3
+  - @swisspost/design-system-intranet-header@4.0.5
+
+## 6.0.4
+
+### Patch Changes
+
+- Update migration guide with installation instructions for precise major versions. (by [@gfellerph](https://github.com/gfellerph) with [#1473](https://github.com/swisspost/design-system/pull/1473))
+
+- Updated the version selector to correctly display the current demo version. (by [@alizedebray](https://github.com/alizedebray) with [#1502](https://github.com/swisspost/design-system/pull/1502))
+
+- Fixed a regression for the stepper component. Completed items should be links with a href attribute (or a routerLink in Angular) so users can navigate back to previous steps. (by [@gfellerph](https://github.com/gfellerph) with [#1497](https://github.com/swisspost/design-system/pull/1497))
+
+- Added a simple click listener for the stepper. It's now possible to click through the steps for testing purposes. (by [@gfellerph](https://github.com/gfellerph) with [#1317](https://github.com/swisspost/design-system/pull/1317))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.2
+  - @swisspost/design-system-intranet-header@4.0.4
+
 ## 6.0.3
 
 ### Patch Changes

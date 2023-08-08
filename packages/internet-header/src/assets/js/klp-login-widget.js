@@ -233,17 +233,17 @@ const vertx = window.vertx || {};
       controlCookieDomain = 'post.ch',
       controlCookieDomainRegEx = new RegExp(controlCookieDomain + '$'),
       controlCookieRegEx = new RegExp(controlCookieName + '=([^;]+)'),
-      eventBus = undefined,
-      address = undefined,
+      eventBus,
+      address,
       retrySubscribeOnFail = false,
-      sessionData = undefined,
-      loginCallback = undefined,
-      keepAliveCallback = undefined,
-      logoutCallback = undefined,
+      sessionData,
+      loginCallback,
+      keepAliveCallback,
+      logoutCallback,
       documentCallbacks = {},
       documentUnreadNotifications = 'UNREAD_NOTIFICATIONS',
       isUserActive = true,
-      keepAliveTimer = undefined,
+      keepAliveTimer,
       currentLang = 'de',
       originUrl = '',
       startingTime = new Date().getTime(),
@@ -468,6 +468,8 @@ const vertx = window.vertx || {};
           credentials: 'include',
           mode: 'cors',
           body: auditingEvent,
+        }).catch(error => {
+          if (error) console.error(error);
         });
       } else {
         log('Auditing disabled: ' + auditingEvent);
@@ -579,7 +581,7 @@ const vertx = window.vertx || {};
     function changeAccountDialog() {
       let body;
       let logoutUrl;
-      if (sessionData !== undefined && sessionData.support) {
+      if (sessionData?.support) {
         if (isChangeUserAndProfile()) {
           body = text('change-account-support-dialog');
         } else {
@@ -747,7 +749,7 @@ const vertx = window.vertx || {};
     }
 
     function isCurrentLocationPostCh() {
-      return window.location.hostname.match(controlCookieDomainRegEx);
+      return controlCookieDomainRegEx.test(window.location.hostname);
     }
 
     function hash(s) {
@@ -1012,9 +1014,7 @@ const vertx = window.vertx || {};
         .find('#' + id)
         .html(
           '<div class="klp-widget-anonymous"><div class="klp-widget-anonymous__wrapper">' +
-            '<a tabindex="' +
-            tabIndex('sign-in') +
-            '" ' +
+            '<a ' +
             accessKey('sign-in') +
             ' title="' +
             text('sign-in') +
@@ -1192,6 +1192,10 @@ const vertx = window.vertx || {};
 
       if (sessionData.userType === 'B2C') {
         const settingEnvLinks = {
+          dev01: 'https://serviceint1.post.ch/kvm/app/ui',
+          dev02: 'https://serviceint1.post.ch/kvm/app/ui',
+          devs1: 'https://serviceint1.post.ch/kvm/app/ui',
+          test: 'https://serviceint1.post.ch/kvm/app/ui',
           int01: 'https://serviceint1.post.ch/kvm/app/ui',
           int02: 'https://serviceint2.post.ch/kvm/app/ui',
           prod: 'https://service.post.ch/kvm/app/ui',
@@ -1241,7 +1245,7 @@ const vertx = window.vertx || {};
           '</li>';
       }
       return (
-        '<div class="klp-widget-authenticated-menu" id="authenticated-menu" data-dropdown-toggler="klp-widget__user">' +
+        '<div class="klp-widget-authenticated-menu" id="authenticated-menu" data-dropdown-toggler="klp-widget__user" style="display: none">' +
         '<ul>' +
         menuList +
         changeCompanyEntry +
@@ -1508,7 +1512,6 @@ const vertx = window.vertx || {};
       }
       document.dispatchEvent(new CustomEvent('wepploginwidget_widget_ready'));
       measureWidgetShowsUp();
-      selectFromShadowDom().find('.klp-widget-authenticated-session-link').click();
     }
 
     function init() {

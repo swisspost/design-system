@@ -1,8 +1,9 @@
 # Swiss Post Design System
 
-![Swiss Post Design System splash screen](https://user-images.githubusercontent.com/1659006/187683368-d3aa2534-84be-4580-846e-2cad3796b573.png)
+![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/c11afbac-8a71-4416-ae3c-ec87f4e10412)
 
 The Swiss Post Design System pattern library for a unified and accessible user experience across the web platform.
+
 
 ## Packages
 
@@ -22,7 +23,7 @@ npm install @swisspost/design-system-styles
 
 [![npm](https://img.shields.io/npm/v/@swisspost/internet-header)](https://www.npmjs.com/package/@swisspost/internet-header)
 
-[Documentation](https://next.design-system.post.ch/?path=/story/components-internet-header-getting-started--page) · [Changelog](/packages/internet-header/CHANGELOG.md)
+[Documentation](https://next.design-system.post.ch/?path=/docs/internet-header-getting-started--page) · [Changelog](/packages/internet-header/CHANGELOG.md)
 
 The header for client facing applications.
 

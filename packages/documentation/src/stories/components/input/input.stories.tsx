@@ -21,6 +21,7 @@ export default {
     label: 'Label',
     floatingLabel: false,
     hiddenLabel: false,
+    placeholder: 'Placeholder',
     type: 'text',
     size: 'null',
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
@@ -58,6 +59,16 @@ export default {
       },
       control: {
         type: 'boolean',
+      },
+      table: {
+        category: 'General',
+      },
+    },
+    placeholder: {
+      name: 'Placeholder',
+      description: 'Defines the text displayed in the input when it is empty.',
+      control: {
+        type: 'text',
       },
       table: {
         category: 'General',
@@ -167,6 +178,10 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
     </label>
   ) : null;
 
+  if (args.floatingLabel && !args.placeholder) {
+    args.placeholder = ' '; // a placeholder must always be defined for the floating label to work properly
+  }
+
   const contextuals: (JSX.Element | null)[] = [
     args.validation === 'is-valid' ? (
       <p key="valid" className="valid-feedback">
@@ -191,7 +206,7 @@ const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
       id={id}
       className={classes}
       type={args.type}
-      placeholder={useAriaLabel ? args.label : ' '}
+      placeholder={args.placeholder || undefined}
       disabled={args.disabled}
       aria-label={useAriaLabel ? args.label : undefined}
       aria-invalid={VALIDATION_STATE_MAP[args.validation]}

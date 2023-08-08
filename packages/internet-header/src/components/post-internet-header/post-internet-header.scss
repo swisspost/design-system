@@ -50,7 +50,7 @@
 
   // Hide everything
   :host(.stickyness-minimal) {
-    top: calc((var(--header-height, 0px) + var(--meta-header-height, 0px)) * -1);
+    top: calc((var(--header-height, 0px) + var(--meta-header-height, 0px) + 1px) * -1);
     transition: top 200ms ease-in;
   }
 

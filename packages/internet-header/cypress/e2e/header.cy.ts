@@ -2,7 +2,7 @@ import { prepare } from '../support/prepare-story';
 
 describe('header', () => {
   beforeEach(() => {
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare('Internet Header/Components/Header', 'Default');
   });
 
   context('initial state', () => {

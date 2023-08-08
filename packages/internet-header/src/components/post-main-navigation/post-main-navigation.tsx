@@ -1,6 +1,5 @@
 import { Component, Host, h, State, Method, Event, Element, EventEmitter } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
 import { state } from '../../data/store';
 import {
   DropdownElement,
@@ -10,6 +9,7 @@ import {
   NavMainEntity,
 } from '../../models/header.model';
 import { userPrefersReducedMotion } from '../../services/ui.service';
+import { translate } from '../../services/language.service';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { LevelOneAction } from './components/level-one-action.component';
@@ -29,7 +29,6 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
   private resizeTimer: number | null = null;
   private mouseLeaveTimer: number | null = null;
   private mouseEnterTimer: number | null = null;
-  private flyoutElement: HTMLElement | undefined;
 
   connectedCallback() {
     this.throttledResize = throttle(300, () => this.handleResize());
@@ -39,7 +38,6 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
 
   disconnectedCallback() {
     window.removeEventListener('resize', this.throttledResize);
-    clearAllBodyScrollLocks();
     if (this.mouseEnterTimer !== null) window.clearTimeout(this.mouseEnterTimer);
     if (this.mouseLeaveTimer !== null) window.clearTimeout(this.mouseLeaveTimer);
   }
@@ -74,7 +72,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
 
     if (flyout && this.activeFlyout !== '') {
       // Add flyout animation if there's no flyout open
-      this.addFlyoutAnimation(flyout);
+      this.addFlyoutAnimation(flyout, 'expand');
     }
 
     this.activeFlyout = id;
@@ -87,33 +85,43 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     }
   }
 
-  closeFlyout(id?: string) {
+  closeFlyout(id?: string, manageFocus = true) {
     if (id === undefined) return;
     const flyout = this.host.shadowRoot?.getElementById(id);
 
     if (flyout) {
       // Add flyout animation for close action
-      this.addFlyoutAnimation(flyout);
+      this.addFlyoutAnimation(flyout, 'collapse', manageFocus);
     }
 
     this.activeFlyout = null;
     this.flyoutToggled.emit();
   }
 
-  addFlyoutAnimation(flyout: HTMLElement) {
+  addFlyoutAnimation(flyout: HTMLElement, direction?: 'expand' | 'collapse', manageFocus = true) {
     // Check if user prefers to see animations or not
     if (!userPrefersReducedMotion()) {
       flyout.classList.add('animate');
 
       // Remove flyout animation after transition ended
-      flyout.addEventListener('transitionend', () => this.removeFlyoutAnimation(flyout), {
-        once: true,
-      });
-    }
-  }
+      flyout.addEventListener(
+        'transitionend',
+        () => {
+          if (manageFocus) {
+            if (direction === 'expand') {
+              flyout.querySelector<HTMLElement>('button.flyout-back-button')?.focus();
+            } else if (direction === 'collapse') {
+              flyout.parentElement?.querySelector<HTMLElement>('a.main-link')?.focus();
+            }
+          }
 
-  removeFlyoutAnimation(flyout: HTMLElement) {
-    flyout.classList.remove('animate');
+          flyout.classList.remove('animate');
+        },
+        {
+          once: true,
+        },
+      );
+    }
   }
 
   isActiveFlyout(id?: string) {
@@ -157,7 +165,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       // Allow the pointer to shortly leave the flyout without closing it. This
       // allows for user mistakes and makes the experience less nervous
       this.mouseLeaveTimer = window.setTimeout(() => {
-        this.closeFlyout(level.id);
+        this.closeFlyout(level.id, false);
       }, 300);
     }
   }
@@ -189,17 +197,6 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
   }
 
   /**
-   * Disable or re-enable body scrolling, depending on whether mobile menu is open or closed
-   */
-  setBodyScroll() {
-    if (this.mobileMenuOpen) {
-      disableBodyScroll(this.flyoutElement);
-    } else {
-      enableBodyScroll(this.flyoutElement);
-    }
-  }
-
-  /**
    * Toggle the main navigation (only visible on mobile)
    * @param force Force a state
    * @returns Boolean indicating new state
@@ -213,7 +210,6 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       this.closeFlyout();
     }
 
-    this.setBodyScroll();
     this.setWindowHeight();
 
     return this.mobileMenuOpen;
@@ -248,12 +244,11 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       <Host>
         <SvgSprite />
         <nav
+          aria-label={headerConfig.translations.navMainAriaLabel}
           id="post-internet-header-main-navigation"
           class={{ 'main-navigation': true, 'open': this.mobileMenuOpen }}
           role="menu"
-          ref={el => (this.flyoutElement = el)}
         >
-          <h1 class="visually-hidden">{headerConfig.translations.navMainAriaLabel}</h1>
           <ul class="main-container container">
             {headerConfig.navMain.map(levelOne => (
               <li
@@ -268,64 +263,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
                   onKeyDown={e => this.handleKeyPress(e, levelOne)}
                   onClick={e => this.handleClick(e, levelOne)}
                 />
-                {!levelOne.noFlyout ? (
-                  <div
-                    id={levelOne.id}
-                    class={{ flyout: true, open: this.isActiveFlyout(levelOne.id) }}
-                  >
-                    <div class="wide-container">
-                      <div class="flyout-nav">
-                        <button
-                          class="nav-link flyout-back-button"
-                          onClick={() => this.closeFlyout(levelOne.id)}
-                        >
-                          <SvgIcon name="pi-pointy-arrow-right" classNames="mirrored" />
-                          <span>{headerConfig.translations.backButtonText}</span>
-                        </button>
-                        <button
-                          class="flyout-close-button"
-                          onClick={() => this.closeFlyout(levelOne.id)}
-                        >
-                          <span class="visually-hidden">
-                            {levelOne.text}, {headerConfig.translations.mobileNavToggleClose}
-                          </span>
-                          <SvgIcon name="pi-close" />
-                        </button>
-                      </div>
-                      <h2 class="flyout-title container">
-                        <a href={levelOne.url} class="nav-link">
-                          {levelOne.text}
-                        </a>
-                      </h2>
-                      <div class="flyout-row container">
-                        {levelOne.flyout.map((flyout, i) => (
-                          <div key={flyout.title} class="flyout-column">
-                            {flyout.title ? <h3 id={`${levelOne.id}-column-${i}`}>{flyout.title}</h3> : null}
-                            <ul
-                              class="flyout-linklist"
-                              aria-labelledby={flyout.title ? `${levelOne.id}-column-${i}` : undefined}
-                            >
-                              {flyout.linkList.map(link => (
-                                <li key={link.url}>
-                                  <a
-                                    class={{
-                                      'flyout-link': true,
-                                      'active': !!link?.isActiveOverride,
-                                    }}
-                                    href={link.url}
-                                    target={link.target}
-                                  >
-                                    {link.title}
-                                  </a>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                ) : null}
+                {!levelOne.noFlyout ? renderLevelOneFlyout.bind(this)(levelOne) : null}
               </li>
             ))}
           </ul>
@@ -333,5 +271,65 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
         </nav>
       </Host>
     );
+
+    function renderLevelOneFlyout(levelOne: NavMainEntity) {
+      return (
+        <div id={levelOne.id} class={{ flyout: true, open: this.isActiveFlyout(levelOne.id) }}>
+          <div class="wide-container">
+            <div class="flyout-nav">
+              <button
+                class="nav-link flyout-back-button"
+                onClick={() => this.closeFlyout(levelOne.id)}
+              >
+                <SvgIcon name="pi-pointy-arrow-right" classNames="mirrored" />
+                <span>{headerConfig.translations.backButtonText}</span>
+              </button>
+              <button class="flyout-close-button" onClick={() => this.closeFlyout(levelOne.id)}>
+                <span class="visually-hidden">
+                  {levelOne.text}, {headerConfig.translations.mobileNavToggleClose}
+                </span>
+                <SvgIcon name="pi-close" />
+              </button>
+            </div>
+            <h2 class="flyout-title container">
+              <a href={levelOne.url} class="nav-link">
+                {levelOne.text}
+              </a>
+            </h2>
+            <div class="flyout-row container">
+              {levelOne.flyout.map((flyout, i) => (
+                <div key={flyout.title} class="flyout-column">
+                  {flyout.title ? <h3 id={`${levelOne.id}-column-${i}`}>{flyout.title}</h3> : null}
+                  <ul
+                    class="flyout-linklist"
+                    aria-labelledby={flyout.title ? `${levelOne.id}-column-${i}` : undefined}
+                  >
+                    {flyout.linkList.map(link => (
+                      <li key={link.url}>
+                        <a
+                          class={{
+                            'flyout-link': true,
+                            'active': !!link?.isActiveOverride,
+                          }}
+                          href={link.url}
+                          target={link.target}
+                        >
+                          {link.title}
+                          {link?.isActiveOverride ? (
+                            <span class="visually-hidden">
+                              , {translate('Active navigation element')}
+                            </span>
+                          ) : null}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      );
+    }
   }
 }

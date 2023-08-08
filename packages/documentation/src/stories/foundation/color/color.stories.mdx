@@ -1,6 +1,8 @@
 import { Meta, Source } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
 import './color.styles.scss';
-import { ColorSwatch } from './color-swatch';
+import { forEach } from '../../../utils/react';
+import { ColorSwatch, SCSS_VARIABLES } from './color-swatch';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 <Meta
@@ -18,58 +20,67 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 # Color
 
+In the following, you can see the Swiss Post specific colors.<br/>
+They theme our elements and components.
+
+<div class="alert alert-info alert-md mt-regular">
+  <p>
+    For accessibility reasons, you should always make sure that your individually created color
+    combinations are sufficiently contrasting. There may be a better solution than coloring elements individually.
+  </p>
+
+  <p>
+    For example, use the{' '}
+    <LinkTo kind="utilities-background--background-containers">background utilities</LinkTo> to get elements
+    with a specific background color and the best possible contrast color for its content.
+  </p>
+</div>
+
 ## Brand colors
 
-<section className="color-square__section">
-  {['yellow', 'black', 'white'].map(color => (
-    <ColorSwatch key={color} color={color} />
-  ))}
+<section className="color-swatch__section">
+  {forEach(SCSS_VARIABLES.brand, function (data) {
+    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+  })}
 </section>
 
 ## Shades of gray
 
-<section className="color-square__section">
-  {['gray-10', 'gray-20', 'gray-40', 'gray-60', 'gray-80'].map(color => (
-    <ColorSwatch color={color} key={color} isBackground={false} />
-  ))}
+<section className="color-swatch__section">
+  {forEach(SCSS_VARIABLES.gray, function (data) {
+    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+  })}
 </section>
 
-## Backgrounds
+## Page Backgrounds
 
-<section className="color-square__section">
-  {['light', 'gray', 'dark'].map(color => {
-    return <ColorSwatch key={color} color={color} />;
+<section className="color-swatch__section">
+  {forEach(SCSS_VARIABLES.pagebackgrounds, function (data) {
+    return <ColorSwatch key={data.key} name={data.key} color={data.value} noCSS />;
   })}
 </section>
 
 ## Signal colors
 
-<section className="color-square__section">
-  {['success', 'danger', 'warning', 'info'].map(color => {
-    return <ColorSwatch key={color} color={color} />;
+<section className="color-swatch__section">
+  {forEach(SCSS_VARIABLES.contextual, function (data) {
+    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
 
 ## Dark accent colors
 
-<section className="color-square__section">
-  {['nightblue', 'petrol', 'coral', 'olive', 'purple', 'aubergine'].map(color => {
-    return <ColorSwatch key={color} color={color} />;
+<section className="color-swatch__section">
+  {forEach(SCSS_VARIABLES.accent.dark, function (data) {
+    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
 
 ## Bright accent colors
 
-<section className="color-square__section">
-  {[
-    'nightblue-bright',
-    'petrol-bright',
-    'coral-bright',
-    'olive-bright',
-    'purple-bright',
-    'aubergine-bright',
-  ].map(color => {
-    return <ColorSwatch key={color} color={color} />;
+<section className="color-swatch__section">
+  {forEach(SCSS_VARIABLES.accent.bright, function (data) {
+    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
 
@@ -77,24 +88,22 @@ import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 ## CSS
 
-CSS variables are globally available on your page. When using CSS variables, the text color will not be automatically accessible. Use the background classes for this feature.
+CSS variables are globally available on your page.
 
 ```css dark
-.custom-background {
-  background-color: var(--post-yellow);
+.my-element {
+  property: var(--post-dark);
 }
 ```
 
 ## Sass
 
-Import the color variables from the Design System Styles package from the `core` sass file with `@use`. This way, the color variables are scoped and don't mix with your own variables.
-
-With this approach, the text color will not be automatically accessible. Use the background classes for this feature.
+Import the color variables from the `core` file with `@use`. This way, the color variables are scoped and don't mix with your own variables.
 
 ```css dark
 @use '@swisspost/design-system-styles/core' as post;
 
-.custom-background {
-  background-color: post.$yellow;
+.my-element {
+  property: post.$dark;
 }
 ```

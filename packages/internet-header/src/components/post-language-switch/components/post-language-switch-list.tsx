@@ -12,13 +12,16 @@ export const PostLanguageSwitchList = (props: {
   const config = state.localizedConfig.header;
 
   return (
-    <nav class="language-switch-dropdown" ref={e => props.dropdownRef(e)}>
-      <h3 class="visually-hidden">{translate('Change language')}</h3>
-      <ul aria-label={config.translations.navLangAriaLabel}>
+    <nav
+      class="language-switch-dropdown"
+      ref={e => props.dropdownRef(e)}
+      aria-label={config.translations.navLangAriaLabel}
+    >
+      <ul aria-label={translate('Change language')}>
         {props.navLang
           .filter(lang => !lang.isCurrent)
           .map(lang => {
-            const TagName = lang.url === null ? 'button' : 'a';
+            const TagName = lang.url ? 'a' : 'button';
             return (
               <li key={lang.lang}>
                 <TagName

@@ -25,13 +25,9 @@ type Animation = (typeof ANIMATION_NAMES)[number];
 })
 export class PostIcon {
   private path: string;
-  private loadedPath: string;
-  private svgSource = '<svg viewBox="0 0 16 16"></svg>';
-  private svgElement: SVGElement;
 
   @Element() host: HTMLPostIconElement;
 
-  @State() pathForceCDN = false;
   @State() svgStyles: string;
   @State() svgOutput: string;
 
@@ -124,111 +120,39 @@ export class PostIcon {
   }
 
   componentWillRender() {
-    this.createIconFromStorage();
-
-    // create path dependant on the props
     this.setPath();
-
-    // fetch icon if the prop "name" is defined and
-    // the path has not allready been loaded
-    if (this.name && this.path !== this.loadedPath) {
-      this.loadedPath = this.path;
-
-      this.fetchIcon()
-        .then(successfullyLoaded => {
-          // create icon only if an svg has been loaded successfully
-          if (successfullyLoaded) this.createIcon();
-        })
-        .catch(error => {
-          console.error(error);
-        });
-    }
   }
 
   private setPath() {
     // Construct icon path from different possible sources
-    let basePath: string;
-    const metaBase = document.head.querySelector(
-      'meta[name="design-system-settings"][data-post-icon-base]',
-    );
+    const metaBase =
+      document.head
+        .querySelector('meta[name="design-system-settings"][data-post-icon-base]')
+        ?.getAttribute('data-post-icon-base') ?? null;
 
-    if (this.base) {
-      basePath = this.base;
-    } else if (metaBase) {
-      basePath = metaBase.getAttribute('data-post-icon-base');
-    } else {
-      basePath = CDN_URL;
-    }
+    const fileBase = `${this.base ?? metaBase ?? CDN_URL}/`.replace(/\/\/$/, '/');
+    const fileName = `${this.name}.svg#icon`;
+    const filePath = `${fileBase}${fileName}`;
 
-    // use "basePath" only if "pathForceCDN" state is "false"
-    this.path = this.getPath(this.pathForceCDN ? CDN_URL : basePath);
-    // reset "pathForceCDN" after every try
-    this.pathForceCDN = false;
-  }
-
-  private getPath(basePath: string) {
-    return new URL(
-      [...basePath.split('/'), `${this.name}.svg#icon`].join('/'),
-      window.location.origin,
-    ).toString();
-  }
-
-  private fetchIcon() {
-    return new Promise((resolve, reject) => {
-      fetch(this.path)
-        .then(response => response.text())
-        .then(textResponse => {
-          // match "svg" out of "textResponse"
-          const match = textResponse.match(/^<svg\b([\s\S]*)><\/svg>/);
-
-          if (match !== null) {
-            // set "svgSource" and return "successfullyLoaded" with true
-            this.svgSource = match[0];
-            window.localStorage.setItem(`post-icon-${this.name}`, this.svgSource);
-            resolve(true);
-          } else if (this.path !== this.getPath(CDN_URL)) {
-            // if used "path" is not CDN path, and fetch has loaded something else than a "svg", try to reload it from the CDN
-            console.warn(
-              `Warning in <post-icon/>: The path "${this.path}" seems to be no svg-only content. We'll gonna try to load the icon from the cdn.`,
-            );
-            // trigger a component update, which will result in a refetch of the icon with the "CDN_URL"
-            this.pathForceCDN = true;
-            // return "successfullyLoaded" with false
-            resolve(false);
-          }
-        })
-        .catch(reject);
-    });
-  }
-
-  private createIconFromStorage() {
-    const storedIcon = window.localStorage.getItem(`post-icon-${this.name}`);
-
-    if (storedIcon) {
-      this.svgSource = storedIcon ?? this.svgSource;
-      this.createIcon();
-    }
-  }
-
-  private createIcon() {
-    // create svg element from svgSource string
-    const domParser = new DOMParser();
-    this.svgElement = domParser.parseFromString(this.svgSource, 'text/html').querySelector('svg');
-
-    // create inline styles for some properties
-    const svgStyles = Object.entries({
-      scale: this.scale && !isNaN(Number(this.scale)) ? `${this.scale}` : null,
-      rotate: this.rotate && !isNaN(Number(this.rotate)) ? `${this.rotate}deg` : null,
-    })
-      .filter(([_key, value]) => value !== null)
-      .map(([key, value]) => `${key}: ${value}`)
-      .join(';');
-
-    this.svgElement.setAttribute('style', svgStyles);
-    this.host.shadowRoot.innerHTML = this.svgElement.outerHTML;
+    this.path = new URL(filePath, window.location.origin).toString();
   }
 
   render() {
-    return <Host data-version={version} />;
+    // create inline styles for some properties
+    const svgStyles = Object.entries({
+      '-webkit-mask-image': `url('${this.path}')`,
+      'mask-image': `url('${this.path}')`,
+      'scale': this.scale && !isNaN(Number(this.scale)) ? `${this.scale}` : null,
+      'rotate': this.rotate && !isNaN(Number(this.rotate)) ? `${this.rotate}deg` : null,
+    })
+      .filter(([_key, value]) => value !== null)
+      .reduce((styles, [key, value]) => Object.assign(styles, { [key]: value }), {});
+
+    return (
+      <Host data-version={version}>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style={svgStyles}>
+        </svg>
+      </Host>
+    );
   }
 }

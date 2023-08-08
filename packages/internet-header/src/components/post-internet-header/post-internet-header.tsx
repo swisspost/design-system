@@ -24,6 +24,7 @@ import { SvgIcon } from '../../utils/svg-icon.component';
 import { StickynessOptions } from '../../models/implementor.model';
 import { ActiveRouteProp, Environment, ICustomConfig } from '../../models/general.model';
 import { IAvailableLanguage } from '../../models/language.model';
+import { translate } from '../../services/language.service';
 import { If } from '../../utils/if.component';
 import packageJson from '../../../package.json';
 
@@ -166,7 +167,7 @@ export class PostInternetHeader {
     // Wait for the config to arrive, then render the header
     try {
       state.projectId = this.project;
-      state.environment = this.environment;
+      state.environment = this.environment.toLocaleLowerCase() as Environment;
       if (this.language !== undefined) state.currentLanguage = this.language;
       state.languageSwitchOverrides =
         typeof this.languageSwitchOverrides === 'string'
@@ -186,7 +187,7 @@ export class PostInternetHeader {
 
       state.localizedConfig = await getLocalizedConfig({
         projectId: this.project,
-        environment: this.environment,
+        environment: state.environment,
         language: this.language,
         cookieKey: this.languageCookieKey,
         localStorageKey: this.languageLocalStorageKey,
@@ -205,6 +206,9 @@ export class PostInternetHeader {
       this.headerLoaded.emit();
       this.host.classList.add('header-loaded');
     });
+
+    if (this.stickyness === 'full')
+      console.warn('Internet Header: The stickyness="full" option is deprecated.');
   }
 
   @Watch('language')
@@ -426,6 +430,7 @@ export class PostInternetHeader {
       >
         <header class={`post-internet-header${this.fullWidth ? ' full-width' : ''}`}>
           <SvgSprite />
+          <h1 class="visually-hidden">{translate('Navigate on post.ch')}</h1>
           <If condition={this.skiplinks === true}>
             <post-skiplinks></post-skiplinks>
           </If>

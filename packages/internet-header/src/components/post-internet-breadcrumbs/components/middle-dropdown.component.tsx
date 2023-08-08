@@ -23,7 +23,7 @@ export const MiddleDropdown = (props: {
       </button>
       <SvgIcon name="pi-arrow-down" classNames="rotate-270"></SvgIcon>
       {props.dropdownOpen ? (
-        <nav class="middle-dropdown">
+        <nav aria-label={translate('Intermediary links')} class="middle-dropdown">
           <ul class="no-list">
             <MiddleLinks items={props.items} icons={false} focusable={props.focusable} />
           </ul>

@@ -48,7 +48,7 @@
     justify-self: end;
     align-items: end;
     text-align: right;
-    transform: translateX(#{0.5 * stepper.$stepper-indicator-height});
+    margin-right: -0.5 * stepper.$stepper-indicator-height;
   }
 
   &:not(:first-child):not(:last-child) {
