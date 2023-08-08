@@ -37,11 +37,13 @@ jobs:
 
       - name: Commit file
         run: |
+          branch_name="add-redirects-for-${{steps.branch.outputs.branch_version}}"
           git config --global user.name github-actions[bot]
           git config --global user.email github-actions@github.com
+          git checkout -b "${branch_name}"
           git add "./_test"
           git commit -m "chore(release/${{steps.branch.outputs.branch_version}}): ↪️ update redirects"
-          git push -u origin "add-redirects-for-${{steps.branch.outputs.branch_version}}"
+          git push -u origin "${branch_name}"
 
       - name: Open PR
         run: |
