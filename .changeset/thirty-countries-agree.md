@@ -1,6 +1,7 @@
 ---
 '@swisspost/design-system-styles': minor
 '@swisspost/design-system-demo': minor
+'@swisspost/design-system-documentation': minor
 ---
 
-Added a notification variant for the cookies.
+Added a gray notification variant for cookies.

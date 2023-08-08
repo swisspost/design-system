@@ -47,9 +47,10 @@ const meta: Meta = {
           'alert-danger': 'Danger',
           'alert-warning': 'Warning',
           'alert-info': 'Info',
+          'alert-gray': 'Gray',
         },
       },
-      options: ['alert-primary', 'alert-success', 'alert-danger', 'alert-warning', 'alert-info'],
+      options: ['alert-primary', 'alert-success', 'alert-danger', 'alert-warning', 'alert-info', 'alert-gray'],
       table: {
         category: 'General',
       },
