@@ -46,7 +46,7 @@
   @return $svg;
 }
 
-@function get-colored-svg-url($icon-name, $color) {
+@function get-svg-url($icon-name) {
   $svg-url: '';
 
   @if (map.has-key(icons.$svg-icon-map, #{$icon-name})) {
@@ -59,7 +59,11 @@
     @error "Icon '#{$icon-name}' does not exist.";
   }
 
-  @return add-fill-color($svg-url, $color);
+  @return $svg-url;
+}
+
+@function get-colored-svg-url($icon-name, $color) {
+  @return add-fill-color(get-svg-url($icon-name), $color);
 }
 
 @function get-pre-colored-svg-url($icon-name) {

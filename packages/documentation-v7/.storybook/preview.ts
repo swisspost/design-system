@@ -12,7 +12,6 @@ import { badgesConfig, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
 
 import './styles/preview.scss';
-import themes from './styles/themes';
 
 import { SyntaxHighlighter } from '@storybook/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
@@ -47,14 +46,6 @@ const preview: Preview = {
           'Hidden',
         ],
       },
-    },
-    darkMode: {
-      current: 'light',
-      dark: themes.dark,
-      light: themes.light,
-      darkClass: 'bg-dark',
-      lightClass: 'bg-white',
-      stylePreview: true,
     },
     docs: {
       container: DocsLayout,
