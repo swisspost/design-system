@@ -1,7 +1,23 @@
-@use './../commons';
+@use './button';
+@use './../color';
 @use './../spacing';
+@use './../../functions/icons';
 
-$close-size: spacing.$size-large;
-$close-border-radius: commons.$border-radius-sm;
-$close-opacity: 1;
-$close-hover-opacity: 0.8;
+$close-size: spacing.$size-large !default;
+$close-border-radius: button.$btn-border-radius !default;
+$close-color: var(--post-gray-80) !default;
+$close-hover-color: var(--post-contast-color) !default;
+$close-disabled-color: var(--post-gray-40) !default;
+$close-transition: button.$btn-transition !default;
+
+// DEPRECATED
+$btn-close-width: spacing.$size-large !default;
+$btn-close-height: $btn-close-width !default;
+$btn-close-padding-x: spacing.$size-regular !default;
+$btn-close-color: color.$black !default;
+$_btn-close-icon-url: icons.get-colored-svg-url('2043', $btn-close-color) !default;
+$_btn-close-icon-hcm-url: icons.get-colored-svg-url('2043', color.$white) !default;
+$btn-close-bg: url($_btn-close-icon-url) !default;
+$btn-close-hcm-bg: url($_btn-close-icon-hcm-url) !default;
+$btn-close-opacity: 0.5 !default;
+$btn-close-hover-opacity: 0.75 !default;

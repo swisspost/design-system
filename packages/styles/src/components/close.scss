@@ -1,11 +1,22 @@
 @forward './../variables/options';
 
+@use './../mixins/utilities' as utilities-mx;
 @use './../placeholders/close' as close-ph;
+@use './../variables/color';
 
 .btn-close {
   @extend %btn-close;
 }
 
+// DEPRECATED
 .btn-close-white {
-  filter: invert(1);
+  color: color.$gray-10;
+
+  @include utilities-mx.not-disabled-focus-hover() {
+    color: color.$white;
+  }
+
+  &:disabled {
+    color: color.$gray-40;
+  }
 }

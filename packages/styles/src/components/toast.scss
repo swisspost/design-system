@@ -16,7 +16,7 @@
 
 .toast {
   @include notification-mx.notification-size(toast);
-  @include notification-mx.notification-dismissible(toast, toast-close-button);
+  @include notification-mx.notification-dismissible(toast, 'toast-close-button');
   @extend %notification-body;
 }
 
@@ -38,12 +38,6 @@
 
   #{$selector} {
     @include notification-mx.notification-variant($color, $icon);
-
-    @if contrast-fn.light-or-dark($color) == 'dark' {
-      > .toast-close-button {
-        filter: invert(1);
-      }
-    }
   }
 }
 

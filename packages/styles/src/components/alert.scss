@@ -126,11 +126,5 @@
 @each $name, $color, $icon in notification.$notification-variants {
   .alert-#{$name} {
     @include notification-mx.notification-variant($color, $icon);
-
-    @if contrast-fn.light-or-dark($color) == 'dark' {
-      > .btn-close {
-        filter: invert(1);
-      }
-    }
   }
 }

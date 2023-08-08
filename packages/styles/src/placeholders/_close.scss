@@ -2,6 +2,7 @@
 @use './../mixins/color' as color-mx;
 @use './../mixins/forms' as forms-mx;
 @use './../mixins/icons' as icons-mx;
+@use './../mixins/utilities' as utilities-mx;
 
 @use './../variables/animation';
 @use './../variables/color';
@@ -10,24 +11,23 @@
 %btn-close {
   @include button-mx.reset-button;
   @include forms-mx.focus-outline;
-  @include icons-mx.pi(2043);
-
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-  height: close.$close-size;
-  width: close.$close-size;
   border-radius: close.$close-border-radius;
-  opacity: close.$close-opacity;
-  transition: opacity animation.$transition-base-timing;
-  outline-color: color.$white;
+  color: close.$close-color;
+  transition: close.$close-transition;
 
-  &:hover,
-  &:focus {
-    opacity: close.$close-hover-opacity;
+  &::before {
+    @include icons-mx.icon(2043);
+    content: '';
+    display: block;
+    height: close.$close-size;
+    width: close.$close-size;
   }
 
-  @include color-mx.on-dark-background {
-    filter: invert(1);
+  @include utilities-mx.not-disabled-focus-hover() {
+    color: close.$close-hover-color;
+  }
+
+  &:disabled {
+    color: close.$close-disabled-color;
   }
 }
