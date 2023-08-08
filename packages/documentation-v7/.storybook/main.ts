@@ -12,8 +12,8 @@ const config: StorybookConfig = {
   stories: ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(ts|tsx)'],
   addons: [
     '@storybook/addon-links',
-    // '@storybook/addon-a11y',
-    'storybook-dark-mode',
+    '@storybook/addon-designs',
+    '@storybook/addon-a11y',
     '@geometricpanda/storybook-addon-badges',
     '@pxtrn/storybook-addon-docs-stencil',
     {
