@@ -15,22 +15,50 @@
   $padding-y: map.get(notification.$notification-padding-y-map, $size);
   $hr-margin-block: map.get(notification.$notification-hr-margin-block-map, $size);
 
+  position: relative;
   min-height: 2 * $padding-y + $icon-size;
   box-shadow: notification.$notification-box-shadow;
   border-radius: notification.$notification-border-radius;
   padding: $padding-y $padding-x;
   padding-inline-start: $padding-x + $icon-size + notification.$notification-gap;
   margin-block-end: notification.$notification-margin-bottom;
-  background-size: $icon-size;
-  background-position: $padding-x $padding-y;
-  background-repeat: no-repeat;
   font-size: $font-size;
   font-weight: notification.$notification-font-weight;
+
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    height: $icon-size;
+    width: $icon-size;
+    left: $padding-x;
+    top: $padding-y;
+  }
 
   &.no-icon {
     min-height: 2 * $padding-y + close.$close-size;
     padding-inline-start: $padding-x;
-    background-image: none;
+  }
+
+  // for notifications with .pi-* icons (deprecated)
+  &[class^='pi-'],
+  &[class*=' pi-'] {
+    background-size: $icon-size;
+    background-position: $padding-x $padding-y;
+    background-repeat: no-repeat;
+
+    &.no-icon {
+      background-image: none;
+    }
+  }
+
+  // for notifications with mask-image icons
+  &.no-icon,
+  &[class^='pi-'],
+  &[class*=' pi-'] {
+    &::before {
+      content: unset;
+    }
   }
 
   a {
@@ -49,8 +77,8 @@
 @mixin notification-variant($color, $icon) {
   @include color-mx.colored-background($color);
 
-  &:not(.no-icon, [class^='pi-'], [class*=' pi-']) {
-    @include icons-mx.pi($icon, contrast-fn.get-best-contrast-text($color));
+  &:not(.no-icon, [class^='pi-'], [class*=' pi-'])::before {
+    @include icons-mx.icon($icon);
   }
 }
 

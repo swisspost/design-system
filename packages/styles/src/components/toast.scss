@@ -1,11 +1,8 @@
-@use 'sass:selector';
-
 @forward './../variables/options';
 
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 
-@use './../functions/contrast' as contrast-fn;
 @use './../mixins/notification' as notification-mx;
 @use './../placeholders/close' as close-ph;
 @use './../placeholders/notification' as notification-ph;

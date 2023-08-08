@@ -5,7 +5,6 @@
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 
-@use './../functions/contrast' as contrast-fn;
 @use './../mixins/notification' as notification-mx;
 @use './../placeholders/notification' as notification-ph;
 
@@ -105,7 +104,14 @@
     padding-inline-start: calc(
       #{$fixed-alert-padding-x} + #{$alert-icon-size} + #{notification.$notification-gap}
     );
+
+    // for alerts with .pi-* icons (deprecated)
     background-position-x: calc(#{$fixed-alert-padding-x} + #{0.5 * $alert-icon-size});
+
+    // for alerts with mask-image icons
+    &::before {
+      left: calc(#{$fixed-alert-padding-x});
+    }
 
     &.no-icon {
       padding-inline-start: calc(#{$fixed-alert-padding-x});
