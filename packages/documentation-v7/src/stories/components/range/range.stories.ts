@@ -194,14 +194,14 @@ function render(args: Args, context: StoryContext) {
       class="${classes}"
       type="range"
       value="${args.value}"
-      .valueAsNumber="${args.value}"
+      .value="${args.value}"
       min="${args.useBoundaries ? args.min : nothing}"
       max="${args.useBoundaries ? args.max : nothing}"
       step="${args.useBoundaries ? args.step : nothing}"
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      @change="${(e: MouseEvent) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
+      @input="${(e: MouseEvent) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
       @keyup="${(e: KeyboardEvent) => {
         if (ARROW_KEYS.includes(e.key)) {
           if (document.activeElement === e.target) {
@@ -235,9 +235,9 @@ function render(args: Args, context: StoryContext) {
           type="text"
           inputmode="decimal"
           value="${args.value}"
-          .valueAsNumber="${args.value}"
+          .value="${parseFloat(args.value)}"
           ?disabled="${args.disabled}"
-          @change="${(e: Event) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
+          @input="${(e: Event) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
         />
       `,
     ];
