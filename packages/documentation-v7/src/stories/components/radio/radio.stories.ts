@@ -131,10 +131,10 @@ function render(args: Args, context: StoryContext) {
       id="${id}"
       class="${classes}"
       type="radio"
-      checked="${args.checked || nothing}"
-      disabled="${args.disabled || nothing}"
-      aria-label="${useAriaLabel && args.label}"
-      aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
+      ?checked="${args.checked}"
+      ?disabled="${args.disabled}"
+      aria-label="${useAriaLabel ? args.label : nothing}"
+      ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
       @change="${(e: Event) => {
         updateArgs({ checked: !args.checked });
 
@@ -194,7 +194,7 @@ function renderInline(args: Args, context: StoryContext) {
           name="Inline_ExampleRadio_Group"
           class="form-check-input"
           type="radio"
-          checked="${args.checkedRadio === 1 || nothing}"
+          ?checked="${args.checkedRadio === 1}"
           @change="${(e: Event) => onChange(e, 1)}"
         />
         <label for="${id1}" class="form-check-label">${args.label}</label>
@@ -205,7 +205,7 @@ function renderInline(args: Args, context: StoryContext) {
           name="Inline_ExampleRadio_Group"
           class="form-check-input"
           type="radio"
-          checked="${args.checkedRadio === 2 || nothing}"
+          ?checked="${args.checkedRadio === 2}"
           @change="${(e: Event) => onChange(e, 2)}"
         />
         <label for="${id2}" class="form-check-label">${args.label}</label>
@@ -216,7 +216,7 @@ function renderInline(args: Args, context: StoryContext) {
           name="Inline_ExampleRadio_Group"
           class="form-check-input"
           type="radio"
-          checked="${args.checkedRadio === 3 || nothing}"
+          ?checked="${args.checkedRadio === 3}"
           @change="${(e: Event) => onChange(e, 3)}"
         />
         <label for="${id3}" class="form-check-label">${args.label}</label>
@@ -227,7 +227,7 @@ function renderInline(args: Args, context: StoryContext) {
           name="Inline_ExampleRadio_Group"
           class="form-check-input"
           type="radio"
-          checked="${args.checkedRadio === 4 || nothing}"
+          ?checked="${args.checkedRadio === 4}"
           @change="${(e: Event) => onChange(e, 4)}"
         />
         <label for="${id4}" class="form-check-label">${args.label}</label>
