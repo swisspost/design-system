@@ -12,13 +12,13 @@ name: Fetch Icons
 on:
   workflow_dispatch:
   schedule:
-#            ┌───────────── minute (0 - 59)
-#            │ ┌───────────── hour (0 - 23)
-#            │ │ ┌───────────── day of the month (1 - 31)
-#            │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
-#            │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
-#            │ │ │ │ │
-    - cron: '0 0 * * 0'  # the job will run every Sunday at 0:00
+    #            ┌───────────── minute (0 - 59)
+    #            │ ┌───────────── hour (0 - 23)
+    #            │ │ ┌───────────── day of the month (1 - 31)
+    #            │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+    #            │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #            │ │ │ │ │
+    - cron: '0 0 * * 0' # the job will run every Sunday at 0:00
 
 jobs:
   fetch:
@@ -61,8 +61,8 @@ jobs:
 
       - name: Commit Changes
         run: |
-          git config --global user.name github-actions[bot]
-          git config --global user.email github-actions@github.com
+          git config --global user.name "swisspost-bot"
+          git config --global user.email "oss@post.ch"
           git add .
           git commit -am "chore(icons): update icon SVGs"
           git push -u origin ${{ steps.current-branch.outputs.branch }}
