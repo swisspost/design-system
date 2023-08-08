@@ -147,7 +147,7 @@ const Template = (args: Args) => {
   return (
     <div className={classes} role="alert">
       {/* Dismissible Button */}
-      {args.dismissible || args.fixed ? (
+      {args.dismissible ? (
         <button
           className="btn-close"
           data-dismiss="alert"
@@ -277,6 +277,7 @@ Fixed.parameters = {
 };
 Fixed.args = {
   fixed: true,
+  dismissible: true,
   show: false,
 };
 
