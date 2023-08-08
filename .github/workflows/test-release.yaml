@@ -36,6 +36,8 @@ jobs:
           echo "/${{steps.branch.outputs.branch_version}} https://${{steps.branch.outputs.site_id}}.netlify.app 200" >> "$redirect_path"
 
       - name: Commit file
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           branch_name="add-redirects-for-${{steps.branch.outputs.branch_version}}"
           git config --global user.name "swisspost-bot"
