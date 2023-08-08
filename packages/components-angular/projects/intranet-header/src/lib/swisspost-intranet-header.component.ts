@@ -13,12 +13,12 @@ import {
   TemplateRef,
   ViewChild,
 } from '@angular/core';
-import { NavigationStart, Router } from '@angular/router';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { fromEvent, Subject } from 'rxjs';
+import { NavigationStart, Router } from '@angular/router';
+import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { Subject, fromEvent } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { userImage } from './user';
-import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'sp-intranet-header',
@@ -142,8 +142,6 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       this.moreElement = this.dom.nativeElement.querySelector('#more');
       const toggleElement = this.moreElement.getElementsByTagName('span')[0];
       toggleElement.addEventListener('click', () => this.toggleMenuOverflow());
-      // TODO: Discuss this behavior, it should be consistent throughout all dropdowns (nav/more/language)
-      // moreElement.addEventListener('blur', () => this.hideMenuOverflow());
       this.moreElement.addEventListener('keydown', (e: KeyboardEvent) =>
         this.handleOverflowKeyEvent(e),
       );

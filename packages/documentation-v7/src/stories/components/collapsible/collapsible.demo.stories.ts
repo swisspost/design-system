@@ -9,6 +9,12 @@ import { definedProperties } from '../../../utils';
 const meta: Meta<HTMLPostCollapsibleElement> = {
   title: 'Hidden/demos/components/Collapsible',
   component: 'post-collapsible',
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=42%3A358&mode=design&t=OK8meBHjpJvBhwZI-1',
+    },
+  },
   args: {
     innerHTML: `<span slot='header'>Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },

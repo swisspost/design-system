@@ -8,6 +8,10 @@ const meta: Meta = {
   title: 'Components/Button',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=10576-49992&mode=design&t=OK8meBHjpJvBhwZI-4',
+    },
   },
   args: {
     text: 'Button',
