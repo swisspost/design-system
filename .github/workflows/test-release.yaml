@@ -38,8 +38,8 @@ jobs:
       - name: Commit file
         run: |
           branch_name="add-redirects-for-${{steps.branch.outputs.branch_version}}"
-          git config --global user.name github-actions[bot]
-          git config --global user.email github-actions@github.com
+          git config --global user.name "swisspost-bot"
+          git config --global user.email "oss@post.ch"
           git checkout -b "${branch_name}"
           git add "./_test"
           git commit -m "chore(release/${{steps.branch.outputs.branch_version}}): ↪️ update redirects"
