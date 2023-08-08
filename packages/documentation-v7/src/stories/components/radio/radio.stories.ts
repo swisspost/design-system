@@ -1,5 +1,3 @@
-// noinspection JSUnusedGlobalSymbols
-
 import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
