@@ -24,7 +24,7 @@ const bombedArgs = bombArgs({
 export const CheckboxCard: StoryObj = {
   render: () => {
     return html`
-      <div className="d-flex gap-3 flex-wrap">
+      <div class="d-flex gap-3 flex-wrap">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
             <div class="${bg + ' row g-3'}">
