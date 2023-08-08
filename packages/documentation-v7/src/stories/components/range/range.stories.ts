@@ -2,7 +2,6 @@ import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
 import { html, nothing, TemplateResult } from 'lit';
-import { ifDefined } from 'lit/directives/if-defined.js';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -195,13 +194,13 @@ function render(args: Args, context: StoryContext) {
       class="${classes}"
       type="range"
       value="${args.value}"
-      .value="${args.value}"
+      .valueAsNumber="${args.value}"
       min="${args.useBoundaries ? args.min : nothing}"
       max="${args.useBoundaries ? args.max : nothing}"
       step="${args.useBoundaries ? args.step : nothing}"
-      disabled="${args.disabled || nothing}"
-      aria-label="${ifDefined(useAriaLabel ? args.label : undefined)}"
-      aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
+      ?disabled="${args.disabled}"
+      aria-label="${useAriaLabel ? args.label : nothing}"
+      ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
       @change="${(e: MouseEvent) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
       @keyup="${(e: KeyboardEvent) => {
         if (ARROW_KEYS.includes(e.key)) {
@@ -236,8 +235,8 @@ function render(args: Args, context: StoryContext) {
           type="text"
           inputmode="decimal"
           value="${args.value}"
-          .value="${args.value}"
-          disabled="${args.disabled || nothing}"
+          .valueAsNumber="${args.value}"
+          ?disabled="${args.disabled}"
           @change="${(e: Event) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
         />
       `,
