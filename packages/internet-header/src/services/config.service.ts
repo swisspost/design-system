@@ -1,9 +1,9 @@
 import {
   Environment,
-  ICustomConfig,
-  ILocalizedConfig,
-  ILocalizedCustomConfig,
   IPortalConfig,
+  ILocalizedConfig,
+  ICustomConfig,
+  ILocalizedCustomConfig,
   LocalizedConfigParameters,
 } from '../models/general.model';
 import { NavMainEntity } from '../models/header.model';
@@ -197,7 +197,7 @@ export const fetchConfig = async (
  * @returns URL pointing to the project config
  */
 export const generateConfigUrl = (projectId: string, environment: Environment): string => {
-  if (projectId === 'test') return 'config/test-configuration.json';
+  if (projectId === 'test') return 'assets/config/test-configuration.json';
 
   const parsedEnvironment = environment.toLowerCase();
   const isProd = parsedEnvironment === 'prod';
