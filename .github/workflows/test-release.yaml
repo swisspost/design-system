@@ -35,6 +35,16 @@ jobs:
           redirect_path="./_test"
           echo "/${{steps.branch.outputs.branch_version}} https://${{steps.branch.outputs.site_id}}.netlify.app 200" >> "$redirect_path"
 
+      - name: Create PR body
+        id: pr-body
+        env:
+          PRBODY: pr-body.md
+        run: |
+          echo "file=$PRBODY" >> $GITHUB_OUTPUT
+          echo "An old major version has been published. This PR creates a redirect for the current documentation."     > $PRBODY
+          echo "Please check if the target page (https://${{steps.branch.outputs.site_id}}.netlify.app) looks correct." >> $PRBODY
+          echo "A redirect to a malicious page could have security implications."                                       >> $PRBODY
+
       - name: Commit file
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -46,7 +56,7 @@ jobs:
           git add "./_test"
           git commit -m "chore(release/${{steps.branch.outputs.branch_version}}): ↪️ update redirects"
           git push -u origin "${branch_name}"
-          gh pr create -B main -H $branch_name --title 'chore(release/${{steps.branch.outputs.branch_version}}): ↪️ update redirects' --body 'An old major version has been published to netlify. This change adds a redirect from the current docs to https://design-system.post.ch/${{steps.branch.outputs.branch_version}}. Redirects can impact security, make sure the target URL is correct!'
+          gh pr create -B main -H $branch_name --title 'chore(release/${{steps.branch.outputs.branch_version}}): ↪️ update redirects' --body-file ${{steps.pr-body.outputs.file}}
 
       - name: Open PR
         run: |
