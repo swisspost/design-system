@@ -17,8 +17,8 @@ export const config: Config = {
       esmLoaderPath: '../loader',
       copy: [
         {
-          src: 'assets/config/test-configuration.json',
-          dest: 'assets/config/test-configuration.json',
+          src: 'config/test-configuration.json',
+          dest: 'config/test-configuration.json',
         },
       ],
     },

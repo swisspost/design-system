@@ -4,7 +4,7 @@ import { IPortalConfig } from '../../src/models/general.model';
 
 export const installInterceptors = (config: Object = testConfiguration) => {
   cy.intercept('**/api/headerjs/Json?serviceid=*', config).as('getConfig');
-  cy.intercept('/assets/config/test-configuration.json', config).as('getTestConfig');
+  cy.intercept('/config/test-configuration.json', config).as('getTestConfig');
   cy.intercept('**/v1/session/subscribe', mockAuth).as('auth');
 };
 

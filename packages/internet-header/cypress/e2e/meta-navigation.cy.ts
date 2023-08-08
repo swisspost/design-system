@@ -1,5 +1,5 @@
 import { IPortalConfig } from '../../src/models/general.model';
-import testConfiguration from '../../src/assets/config/test-configuration.json';
+import testConfiguration from '../../src/config/test-configuration.json';
 import { prepare } from '../support/prepare-story';
 
 describe('meta-navigation', () => {

@@ -1,6 +1,6 @@
 import { ICustomConfig, ILocalizedCustomConfig, IPortalConfig } from '../models/general.model';
 import { NavMainEntity } from '../models/header.model';
-import * as testConfigRaw from '../assets/config/test-configuration.json';
+import * as testConfigRaw from '../config/test-configuration.json';
 import {
   fetchConfig,
   generateConfigUrl,
@@ -133,7 +133,7 @@ describe('config.service.ts', () => {
 
   describe('generateConfigUrl', () => {
     it('should return a test URL', () => {
-      expect(generateConfigUrl('test', 'int01')).toEqual('assets/config/test-configuration.json');
+      expect(generateConfigUrl('test', 'int01')).toEqual('config/test-configuration.json');
     });
 
     it('should return an int URL', () => {
