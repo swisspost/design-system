@@ -1,5 +1,5 @@
 import { IPortalConfig } from '../../src/models/general.model';
-import rawTestConfiguration from '../../../documentation/cypress/fixtures/internet-header/test-configuration.json';
+import rawTestConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
 
 const testConfiguration: IPortalConfig = rawTestConfiguration as any;

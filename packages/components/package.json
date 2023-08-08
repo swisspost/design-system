@@ -41,7 +41,7 @@
     "@swisspost/design-system-styles": "workspace:6.2.6"
   },
   "devDependencies": {
-    "@percy/cli": "1.26.2",
+    "@percy/cli": "1.26.3",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "^0.5.0",
     "@stencil/react-output-target": "0.5.3",
@@ -50,16 +50,16 @@
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",
     "bootstrap": "5.3.1",
-    "cypress": "12.17.2",
+    "cypress": "12.17.3",
     "cypress-storybook": "0.5.1",
-    "eslint": "8.45.0",
-    "eslint-plugin-react": "7.33.0",
+    "eslint": "8.46.0",
+    "eslint-plugin-react": "7.33.1",
     "jest": "27.5.1",
     "jest-cli": "27.5.1",
     "npm-run-all": "4.1.5",
-    "puppeteer": "20.9.0",
+    "puppeteer": "21.0.1",
     "rimraf": "5.0.1",
-    "sass": "1.64.1",
+    "sass": "1.64.2",
     "typescript": "4.9.5"
   }
 }
