@@ -1,7 +1,6 @@
 import type { Args, Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit/static-html.js';
+import { html, TemplateResult } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
-import { TemplateResult } from 'lit';
 
 const meta: Meta = {
   title: 'Components/Topic Teaser',
@@ -141,9 +140,7 @@ export const Default: Story = {
       `,
     );
 
-    console.log(links);
-
-    const image: TemplateResult = html`
+    const image = html`
       <div key="image" class="topic-teaser-image-container">
         <img
           class="topic-teaser-image"
@@ -155,7 +152,7 @@ export const Default: Story = {
       </div>
     `;
 
-    const content: TemplateResult = html`
+    const content = html`
       <div key="content" class="topic-teaser-content">
         <h2 class="topic-teaser-title font-curve-large mb-large">
           <span class="bold">${args.title}</span>
