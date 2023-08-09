@@ -1,6 +1,5 @@
 import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
-import { LitElement } from 'lit';
-import { html, unsafeStatic } from 'lit/static-html.js';
+import { html } from 'lit/static-html.js';
 import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
 
@@ -219,6 +218,15 @@ const Template: Story = {
           `
         : null,
     ];
+      updateArgs({ value: (e.target as HTMLSelectElement).value });
+
+      if (document.activeElement === e.target) {
+        setTimeout(() => {
+          const element: HTMLSelectElement | null = document.querySelector(`#${id}`);
+          if (element) element.focus();
+        }, 25);
+      }
+    }
     const control = html`
       <select
         id=${id}
@@ -229,16 +237,7 @@ const Template: Story = {
         ?disabled=${args.disabled}
         aria-label=${useAriaLabel ? args.label : undefined}
         aria-invalid=${VALIDATION_STATE_MAP[args.validation]}
-        @change=${(e: Event) => {
-          updateArgs({ value: (e.target as HTMLSelectElement).value });
-
-          if (document.activeElement === e.target) {
-            setTimeout(() => {
-              const element: HTMLSelectElement | null = document.querySelector(`#${id}`);
-              if (element) element.focus();
-            }, 25);
-          }
-        }}
+        @change=${onChange}
       >
         ${options}
       </select>
