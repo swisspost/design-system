@@ -5,4 +5,4 @@ runs:
   using: composite
   steps:
     - name: Update versions.json
-      run: echo "I'm such a test action!"
+      run: echo "Im such a test action!"
