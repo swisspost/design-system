@@ -188,41 +188,40 @@ const Template: Story = {
     const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
     const label = !useAriaLabel
       ? html`
-          <label key="label" for="${id}" class="form-label">${args.label}</label>
+          <label for="${id}" class="form-label">${args.label}</label>
         `
       : null;
     const optionElements = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
       (key: number) => html`
-        <option key=${key} value="valoro_${key}">Opcion ${key}</option>
+        <option value="valoro_${key}">Opcion ${key}</option>
       `,
     );
     const options = [
       html`
-        <option key="default-option">Elektu opcion...</option>
+        <option>Elektu opcion...</option>
       `,
       ...optionElements,
     ];
     const contextuals = [
       args.validation === 'is-valid'
         ? html`
-            <p key="valid" class="valid-feedback">Ggranda sukceso!</p>
+            <p class="valid-feedback">Ggranda sukceso!</p>
           `
         : null,
       args.validation === 'is-invalid'
         ? html`
-            <p key="invalid" class="invalid-feedback">Eraro okazis!</p>
+            <p class="invalid-feedback">Eraro okazis!</p>
           `
         : null,
       args.hint !== ''
         ? html`
-            <div key="hint" class="form-text">${args.hint}</div>
+            <div class="form-text">${args.hint}</div>
           `
         : null,
     ];
     const control = html`
       <select
-        key="control"
-        .id=${id}
+        id=${id}
         class=${classes}
         defaultValue=${args.value}
         ?multiple=${args.multiple}
