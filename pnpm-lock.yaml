@@ -728,9 +728,6 @@ importers:
       '@types/node-fetch':
         specifier: 2.6.4
         version: 2.6.4
-      '@types/svgo':
-        specifier: 2.6.4
-        version: 2.6.4
       dotenv:
         specifier: 16.3.1
         version: 16.3.1
@@ -10345,12 +10342,6 @@ packages:
 
   /@types/stack-utils@2.0.1:
     resolution: {integrity: sha512-Hl219/BT5fLAaz6NDkSuhzasy49dwQS/DSdu4MdggFB8zcXv7vflBI3xp7FEmkmdDkBUI2bPUNeMttp2knYdxw==}
-    dev: true
-
-  /@types/svgo@2.6.4:
-    resolution: {integrity: sha512-l4cmyPEckf8moNYHdJ+4wkHvFxjyW6ulm9l4YGaOxeyBWPhBOT0gvni1InpFPdzx1dKf/2s62qGITwxNWnPQng==}
-    dependencies:
-      '@types/node': 18.17.3
     dev: true
 
   /@types/tapable@1.0.8:

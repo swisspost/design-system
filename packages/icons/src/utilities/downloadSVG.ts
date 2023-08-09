@@ -1,7 +1,7 @@
 import fetch from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
-import { optimize, OptimizedSvg } from 'svgo';
+import { optimize } from 'svgo';
 import svgoOptions from '../../svgo.config';
 import { IIcon } from '../models/icon.model';
 import { getRequestInit } from './environment';
@@ -20,17 +20,13 @@ export const downloadSVG = async (icon: IIcon, output: string) => {
 
   try {
     const svg = await fetch(icon.meta.downloadLink, getRequestInit());
-    
+
     const svgString = await svg.text();
     const optimizedSvg = optimize(extractSVG(svgString), svgoOptions);
-    
-    if (optimizedSvg.error) {
-      throw new Error(optimizedSvg.error);
-    }
 
     // This wraps the content of an svg with a group tag to make the svg usable
     // with an <use href="<url>#<id>" /> pattern
-    const optimizedSvgString = (optimizedSvg as OptimizedSvg).data.replace(
+    const optimizedSvgString = optimizedSvg.data.replace(
       /^(<svg[^>]*>)([\S\s]*)(<\/svg>)$/gim,
       '$1<g id="icon">$2</g>$3',
     );
