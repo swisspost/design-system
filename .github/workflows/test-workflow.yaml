@@ -1,0 +1,11 @@
+name: Release old demo App to Netlify
+
+on:
+  push:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: use local action
+        uses: ./github/actions/test-action

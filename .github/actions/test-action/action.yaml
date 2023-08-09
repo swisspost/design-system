@@ -1,0 +1,8 @@
+name: Update versions.json
+description: Updates the versions.json file with latest info from a release
+
+runs:
+  using: composite
+  steps:
+    - name: Update versions.json
+      run: echo "I'm such a test action!"
