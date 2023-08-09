@@ -218,6 +218,7 @@ const Template: Story = {
           `
         : null,
     ];
+    function onChange(e: Event) {
       updateArgs({ value: (e.target as HTMLSelectElement).value });
 
       if (document.activeElement === e.target) {
