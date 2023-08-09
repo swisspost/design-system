@@ -20,7 +20,6 @@ export const downloadSVG = async (icon: IIcon, output: string) => {
 
   try {
     const svg = await fetch(icon.meta.downloadLink, getRequestInit());
-
     const svgString = await svg.text();
     const optimizedSvg = optimize(extractSVG(svgString), svgoOptions);
 
