@@ -14,7 +14,7 @@
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": "./tsconfig.json"
+    "project": "./tsconfig.eslint.json"
   },
   "plugins": [
     "@typescript-eslint"
@@ -44,12 +44,25 @@
       }
     ],
     "@stencil-community/strict-boolean-conditions": "off",
-    "@stencil-community/required-prefix": ["error", ["post"]],
+    "@stencil-community/required-prefix": [
+      "error",
+      [
+        "post"
+      ]
+    ],
     "@stencil-community/async-methods": "error",
-    "@stencil-community/ban-prefix": ["error", ["stencil", "stnl", "st"]],
+    "@stencil-community/ban-prefix": [
+      "error",
+      [
+        "stencil",
+        "stnl",
+        "st"
+      ]
+    ],
     "@stencil-community/decorators-context": "error",
     "@stencil-community/decorators-style": [
-      "error", {
+      "error",
+      {
         "prop": "inline",
         "state": "inline",
         "element": "inline",
@@ -57,7 +70,8 @@
         "method": "multiline",
         "watch": "multiline",
         "listen": "multiline"
-      }],
+      }
+    ],
     "@stencil-community/element-type": "error",
     "@stencil-community/host-data-deprecated": "error",
     "@stencil-community/methods-must-be-public": "error",
