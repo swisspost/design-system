@@ -86,35 +86,36 @@ export default meta;
 type Story = StoryObj;
 
 const Template: Story = {
-  render: (args:Args) => {
- const blockquote = html`
-    <blockquote class="blockquote" lang=${args.language}>
-      <q>${unsafeStatic(args.text)}</q>
-    </blockquote>
+  render: (args: Args) => {
+    const blockquote = html`
+      <blockquote class="blockquote" lang=${args.language}>
+        <q>${unsafeStatic(args.text)}</q>
+      </blockquote>
     `;
 
-    const result= args.caption
-    ? html`<figure>
-    ${blockquote}
-    <figcaption class="blockquote-footer">
-      ${args.captionAuthor} <cite title=${args.sroucetitle}>${args.captionSource}</cite>
-    </figcaption>
-    </figure>`
-    : blockquote
+    const result = args.caption
+      ? html`
+          <figure>
+            ${blockquote}
+            <figcaption class="blockquote-footer">
+              ${args.captionAuthor}
+              <cite title=${args.sroucetitle}>${args.captionSource}</cite>
+            </figcaption>
+          </figure>
+        `
+      : blockquote;
 
-  return result;
-
+    return result;
   },
- 
 };
 
 export const Default: Story = {
-  ...Template
+  ...Template,
 };
 
-export const Nested:Story = {
+export const Nested: Story = {
   ...Template,
-  args:{
+  args: {
     text: 'Consectetur <q>I am a nested quote!</q> adipiscing elit. Integer <q>I am a nested quote too!</q> posuere erat a ante.',
-  }
+  },
 };
