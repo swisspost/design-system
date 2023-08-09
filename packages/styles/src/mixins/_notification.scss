@@ -2,6 +2,7 @@
 
 @use './color' as color-mx;
 @use './icons' as icons-mx;
+@use './utilities' as utilities-mx;
 @use './../functions/contrast' as contrast-fn;
 
 @use './../variables/spacing';
@@ -71,6 +72,12 @@
 
   > *:only-child {
     @include notification-heading($size);
+  }
+
+  @include utilities-mx.high-contrast-mode {
+    filter: none !important;
+    background-color: transparent !important;
+    border: 2px solid WindowText;
   }
 }
 
