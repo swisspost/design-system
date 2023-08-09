@@ -93,7 +93,7 @@ const Template: Story = {
       </blockquote>
     `;
 
-    const result = args.caption
+    return args.caption
       ? html`
           <figure>
             ${blockquote}
@@ -104,8 +104,6 @@ const Template: Story = {
           </figure>
         `
       : blockquote;
-
-    return result;
   },
 };
 
