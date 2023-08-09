@@ -4,4 +4,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Added a gray notification variant for cookies.
+Added a gray notification variant for cookie banners.
