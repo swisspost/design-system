@@ -2,7 +2,8 @@ import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-componen
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { BADGE } from '../../../../.storybook/constants';
 import { LitElement } from 'lit';
-import { ChangeEvent } from 'react';
+import { useArgs } from '@storybook/preview-api';
+
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
   'is-valid': false,
@@ -67,7 +68,7 @@ const meta: Meta = {
       name: 'Value',
       description: 'The value of the component.',
       control: {
-        type: 'string',
+        type: 'text',
       },
       table: {
         disable: true,
@@ -179,6 +180,7 @@ type Story = StoryObj;
 
 const Template: Story = {
   render: (args: Args, context: StoryContext) => {
+    const [_, updateArgs] = useArgs();
     const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleSelect`;
     const classes = ['form-select', args.size, args.validation]
       .filter(c => c && c !== 'null')
@@ -186,7 +188,7 @@ const Template: Story = {
     const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
     const label = !useAriaLabel
       ? html`
-          <label key="label" htmlFor="${id}" class="form-label">${args.label}</label>
+          <label key="label" for="${id}" class="form-label">${args.label}</label>
         `
       : null;
     const optionElements = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
@@ -228,8 +230,8 @@ const Template: Story = {
         ?disabled=${args.disabled}
         aria-label=${useAriaLabel ? args.label : undefined}
         aria-invalid=${VALIDATION_STATE_MAP[args.validation]}
-        @Change=${(e: ChangeEvent<HTMLSelectElement>) => {
-          //updateArgs({ value: e.target.value });
+        @change=${(e: Event) => {
+          updateArgs({ value: (e.target as HTMLSelectElement).value });
 
           if (document.activeElement === e.target) {
             setTimeout(() => {
@@ -245,7 +247,7 @@ const Template: Story = {
 
     if (args.floatingLabel) {
       return html`
-        <div className="form-floating">
+        <div class="form-floating">
           ${[control, label, ...contextuals].filter(el => el !== null)}
         </div>
       `;
@@ -261,155 +263,67 @@ export const Default: Story = {
   ...Template,
 };
 
-/*
-import React from 'react';
-import { Meta, Args, Story, StoryContext, ReactFramework } from '@storybook/react';
-import { useArgs } from '@storybook/client-api';
-import docsPage from './select.docs.mdx';
-import { BADGE } from '@geometricpanda/storybook-addon-badges';
-
-
-
-const Template = (args: Args, context: StoryContext<ReactFramework, Args>) => {
-  const [_, updateArgs] = useArgs();
-  const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleSelect`;
-  const classes = ['form-select', args.size, args.validation]
-    .filter(c => c && c !== 'null')
-    .join(' ');
-
-  const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
-  const label: JSX.Element | null = !useAriaLabel ? (
-    <label key="label" htmlFor={id} className="form-label">
-      {args.label}
-    </label>
-  ) : null;
-
-  const optionElements: JSX.Element[] = Array.from(
-    { length: args.options - 1 },
-    (_, i) => i + 2,
-  ).map((key: number) => (
-    <option key={key} value={`valoro_${key}`}>
-      Opcion {key}
-    </option>
-  ));
-  const options: JSX.Element[] = [
-    <option key="default-option">Elektu opcion...</option>,
-    ...optionElements,
-  ];
-
-  const contextuals: (JSX.Element | null)[] = [
-    args.validation === 'is-valid' ? (
-      <p key="valid" className="valid-feedback">
-        Ggranda sukceso!
-      </p>
-    ) : null,
-    args.validation === 'is-invalid' ? (
-      <p key="invalid" className="invalid-feedback">
-        Eraro okazis!
-      </p>
-    ) : null,
-    args.hint !== '' ? (
-      <div key="hint" className="form-text">
-        {args.hint}
-      </div>
-    ) : null,
-  ];
-
-  const control: JSX.Element = (
-    <select
-      key="control"
-      id={id}
-      className={classes}
-      defaultValue={args.value}
-      multiple={args.multiple}
-      size={args.multipleSize}
-      disabled={args.disabled}
-      aria-label={useAriaLabel ? args.label : undefined}
-      aria-invalid={VALIDATION_STATE_MAP[args.validation]}
-      onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-        updateArgs({ value: e.target.value });
-
-        if (document.activeElement === e.target) {
-          setTimeout(() => {
-            const element: HTMLSelectElement | null = document.querySelector(`#${id}`);
-            if (element) element.focus();
-          }, 25);
-        }
-      }}
-    >
-      {options}
-    </select>
-  );
-
-  if (args.floatingLabel) {
-    return (
-      <div className="form-floating">
-        {[control, label, ...contextuals].filter(el => el !== null)}
-      </div>
-    );
-  } else {
-    return <>{[label, control, ...contextuals].filter(el => el !== null)}</>;
-  }
-};
-
-export const Default: Story = Template.bind({});
-
-export const FloatingLabel: Story = Template.bind({});
-FloatingLabel.parameters = {
-  controls: {
-    exclude: [
-      'Hidden Label',
-      'Options',
-      'Multiple',
-      'Size',
-      'Helper Text',
-      'Disabled',
-      'Validation',
-    ],
+export const FloatingLabel: Story = {
+  ...Template,
+  parameters: {
+    controls: {
+      exclude: [
+        'Hidden Label',
+        'Options',
+        'Multiple',
+        'Size',
+        'Helper Text',
+        'Disabled',
+        'Validation',
+      ],
+    },
+  },
+  args: {
+    floatingLabel: true,
+    hint: '',
   },
 };
-FloatingLabel.args = {
-  floatingLabel: true,
-  hint: '',
-};
 
-export const Size: Story = Template.bind({});
-Size.parameters = {
-  controls: {
-    exclude: [
-      'Label',
-      'Floating Label',
-      'Hidden Label',
-      'Options',
-      'Multiple',
-      'Helper Text',
-      'Disabled',
-      'Validation',
-    ],
+export const Size: Story = {
+  ...Template,
+  parameters: {
+    controls: {
+      exclude: [
+        'Label',
+        'Floating Label',
+        'Hidden Label',
+        'Options',
+        'Multiple',
+        'Helper Text',
+        'Disabled',
+        'Validation',
+      ],
+    },
+  },
+  args: {
+    size: 'form-select-sm',
+    hint: '',
   },
 };
-Size.args = {
-  size: 'form-select-sm',
-  hint: '',
-};
 
-export const Validation: Story = Template.bind({});
-Validation.parameters = {
-  controls: {
-    exclude: [
-      'Label',
-      'Floating Label',
-      'Hidden Label',
-      'Options',
-      'Size',
-      'Multiple',
-      'Helper Text',
-      'Disabled',
-    ],
+export const Validation: Story = {
+  ...Template,
+  parameters: {
+    controls: {
+      exclude: [
+        'Label',
+        'Floating Label',
+        'Hidden Label',
+        'Options',
+        'Size',
+        'Multiple',
+        'Helper Text',
+        'Disabled',
+      ],
+    },
+  },
+  args: {
+    validation: 'is-invalid',
+    hint: '',
   },
 };
-Validation.args = {
-  validation: 'is-invalid',
-  hint: '',
-};
-*/
