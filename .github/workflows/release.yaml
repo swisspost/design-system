@@ -20,8 +20,6 @@ jobs:
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
-        with:
-          pnpm_version: 8
 
       # Install changesets locally
       - name: Install dependencies
@@ -40,10 +38,10 @@ jobs:
         run: echo $(cat .changeset/config.json)
 
       # The changeset action will behave differently based on whether there are
-      # new changesets on the base branch:
+      # changesets on the base branch:
       #
-      #  - new changesets: create a preview PR with the new version bumps and changelogs
-      #  - no new changesets (the preview PR got merged into main): publish packages
+      #  - yes changesets: create a preview PR with the new version bumps and changelogs
+      #  - no changesets (the preview PR got merged into main): publish packages
       - name: Changeset magic
         id: changesets
         uses: changesets/action@v1
