@@ -153,7 +153,7 @@ type Story = StoryObj;
 const Template: Story = {
   render: (args: Args, context: StoryContext) => {
     const [_, updateArgs] = useArgs();
-
+    let value: String;
     const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
     const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
     const label = !useAriaLabel
@@ -180,10 +180,30 @@ const Template: Story = {
           `
         : null,
     ];
-
-    return html`
-      <div>its ok</div>
+    const control = html`
+      <textarea
+        id=${id}
+        class=${classes}
+        defaultValue=${args.value}
+        placeholder=${useAriaLabel ? args.label : ' '}
+        rows=${args.rows}
+        disabled=${args.disabled}
+        aria-label=${useAriaLabel ? args.label : undefined}
+        aria-invalid=${VALIDATION_STATE_MAP[args.validation]}
+        onChange=${(e: Event) => (value = (e.target as HTMLTextAreaElement).value)}
+        onBlur=${() => updateArgs({ value })}
+      ></textarea>
     `;
+    if (args.floatingLabel) {
+      return html`
+        <div className="form-floating">
+          ${[control, label, ...contextuals].filter(el => el !== null)}
+        </div>
+      `;
+    } else
+      return html`
+        ${[label, control, ...contextuals].filter(el => el !== null)};
+      `;
   },
 };
 
