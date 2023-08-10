@@ -4,6 +4,7 @@ import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
   title: 'Components/Blockquote',
+  render: renderBlockquote,
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },
@@ -85,34 +86,29 @@ export default meta;
 
 type Story = StoryObj;
 
-const Template: Story = {
-  render: (args: Args) => {
-    const blockquote = html`
-      <blockquote class="blockquote" lang=${args.language}>
-        <q>${unsafeStatic(args.text)}</q>
-      </blockquote>
-    `;
+function renderBlockquote(args: Args) {
+  const blockquote = html`
+    <blockquote class="blockquote" lang=${args.language}>
+      <q>${unsafeStatic(args.text)}</q>
+    </blockquote>
+  `;
 
-    return args.caption
-      ? html`
-          <figure>
-            ${blockquote}
-            <figcaption class="blockquote-footer">
-              ${args.captionAuthor}
-              <cite title=${args.sroucetitle}>${args.captionSource}</cite>
-            </figcaption>
-          </figure>
-        `
-      : blockquote;
-  },
-};
+  return args.caption
+    ? html`
+        <figure>
+          ${blockquote}
+          <figcaption class="blockquote-footer">
+            ${args.captionAuthor}
+            <cite title=${args.captionSource}>${args.captionSource}</cite>
+          </figcaption>
+        </figure>
+      `
+    : blockquote;
+}
 
-export const Default: Story = {
-  ...Template,
-};
+export const Default: Story = {};
 
 export const Nested: Story = {
-  ...Template,
   args: {
     text: 'Consectetur <q>I am a nested quote!</q> adipiscing elit. Integer <q>I am a nested quote too!</q> posuere erat a ante.',
   },
