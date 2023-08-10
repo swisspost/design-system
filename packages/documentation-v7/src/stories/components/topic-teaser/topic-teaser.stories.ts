@@ -153,7 +153,7 @@ export const Default: Story = {
     `;
 
     const content = html`
-      <div key="content" class="topic-teaser-content">
+      <div class="topic-teaser-content">
         <h2 class="topic-teaser-title font-curve-large mb-large">
           <span class="bold">${args.title}</span>
           <span class="light">${args.subtitle}</span>
