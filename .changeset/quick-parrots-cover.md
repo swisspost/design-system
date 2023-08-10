@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-documentation-v7': minor
+'@swisspost/design-system-documentation': minor
 ---
 
 Added a foundation breakpoints docs page.
