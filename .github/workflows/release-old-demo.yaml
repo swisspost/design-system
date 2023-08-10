@@ -56,11 +56,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      # Redirects is a settings file used to tell netlify what to route where
       - name: Find _redirects file
         id: redirects
         run: |
           redirects_file=$(find . -name "_redirects" -type f -print -quit)
           echo "path_name=redirects_file" >> $GITHUB_OUTPUT
+          versions_file=$(find . -name "versions.json" -type f -print -quit)
+          echo "versions_path=versions_file" >> $GITHUB_OUTPUT
 
       - name: Add redirect rule
         run: |
@@ -87,7 +90,7 @@ jobs:
           git config --global user.name "swisspost-bot"
           git config --global user.email "oss@post.ch"
           git checkout -b "${branch_name}"
-          git add "${{steps.redirects.outputs.path_name}}"
+          git add "${{steps.redirects.outputs.path_name}} ./packages/demo/package.json"
           git commit -m "chore(release/${{needs.get-version.outputs.branch_version}}): ↪️ update redirects"
           git push -u origin "${branch_name}"
           gh pr create -B main -H $branch_name --title 'chore(release/${{needs.get-version.outputs.branch_version}}): ↪️ update redirects' --body-file ${{steps.pr-body.outputs.file}}
