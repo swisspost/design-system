@@ -14,3 +14,6 @@ trim_trailing_whitespace = true
 max_line_length = off
 insert_final_newline = false
 trim_trailing_whitespace = false
+
+[*.html]
+ij_html_quote_style = double

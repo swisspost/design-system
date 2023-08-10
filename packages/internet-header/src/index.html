@@ -1264,7 +1264,7 @@
                       "additionalAttributes": []
                     },
                     {
-                      "url": "http://www.youtube.com/swisspost",
+                      "url": "https://www.youtube.com/swisspost",
                       "icon": "8002_youtube",
                       "name": "Folgen Sie uns auf Youtube",
                       "target": "_blank",
@@ -1272,7 +1272,7 @@
                       "additionalAttributes": []
                     },
                     {
-                      "url": "http://www.snapchat.com/add/swisspostjobs",
+                      "url": "https://www.snapchat.com/add/swisspostjobs",
                       "icon": "8017_snapchat",
                       "name": "Folgen Sie uns auf Snapchat",
                       "target": "_blank",
@@ -1296,7 +1296,7 @@
                       "additionalAttributes": []
                     },
                     {
-                      "url": "http://www.linkedin.com/company/swiss-post",
+                      "url": "https://www.linkedin.com/company/swiss-post",
                       "icon": "8005_linkedin",
                       "name": "Folgen Sie uns auf LinkedIn",
                       "target": "_blank",
@@ -1363,6 +1363,7 @@
 
     <script>
       const sleep = ms => new Promise(r => setTimeout(r, ms));
+      window.UC_UI = { showSecondLayer: () => alert('second layer') };
       const x = async () => {
         const header = document.querySelector('swisspost-internet-header');
         header.addEventListener('languageChange', e => console.log(e.detail));

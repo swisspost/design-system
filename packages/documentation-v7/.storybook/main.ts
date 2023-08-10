@@ -12,8 +12,8 @@ const config: StorybookConfig = {
   stories: ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(ts|tsx)'],
   addons: [
     '@storybook/addon-links',
-    // '@storybook/addon-a11y',
-    'storybook-dark-mode',
+    '@storybook/addon-designs',
+    '@storybook/addon-a11y',
     '@geometricpanda/storybook-addon-badges',
     '@pxtrn/storybook-addon-docs-stencil',
     {
@@ -27,7 +27,14 @@ const config: StorybookConfig = {
       },
     },
   ],
-  staticDirs: ['../public', '../node_modules/@swisspost/design-system-icons/public'],
+  staticDirs: [
+    {
+      from: '../public/assets',
+      to: '/assets',
+    },
+    '../public',
+    '../node_modules/@swisspost/design-system-icons/public',
+  ],
   docs: {
     autodocs: 'tag',
   },
