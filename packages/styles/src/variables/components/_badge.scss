@@ -11,7 +11,7 @@
 
 // Design System custom variables
 $badge-height: button.$btn-height-rg;
-$badge-gap: spacing.$size-regular;
+$badge-gap: spacing.$size-mini;
 $badge-border-color: var(--post-gray-60);
 $badge-border-width: commons.$border-thick;
 $badge-transition: color 250ms, background-color 250ms, border-color 250ms;
@@ -21,7 +21,7 @@ $badge-active-color: color.$black;
 $badge-active-bg-color: color.$yellow;
 
 $badge-height-sm: button.$btn-height-sm;
-$badge-gap-sm: spacing.$size-small-regular;
+$badge-gap-sm: sizing.px-to-rem(6px);
 $badge-font-size-sm: type.$font-size-tiny;
 
 $badge-nested-height: sizing.px-to-rem(22px);
