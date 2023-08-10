@@ -1,9 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as AlertStories from './alert.stories';
 
-import * as AlertStories from './alert.demo.stories';
-import { BADGE } from '../../../../.storybook/constants';
-
-<Meta title="Components/Alert" parameters={{ badges: [BADGE.NEEDS_REVISION] }} />
+<Meta of={AlertStories} />
 
 # Alert
 

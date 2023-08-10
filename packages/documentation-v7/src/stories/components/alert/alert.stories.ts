@@ -4,12 +4,14 @@ import { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-comp
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getAlertClasses } from './getAlertClasses';
+import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'Hidden/demos/components/Alert',
+  title: 'Components/Alert',
   render: renderAlert,
   decorators: [externalControl],
   parameters: {
+    badges: [BADGE.NEEDS_REVISION],
     controls: {
       exclude: ['Title', 'Content'],
     },
