@@ -202,16 +202,6 @@ function render(args: Args, context: StoryContext) {
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
       @input="${(e: MouseEvent) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
-      @keyup="${(e: KeyboardEvent) => {
-        if (ARROW_KEYS.includes(e.key)) {
-          if (document.activeElement === e.target) {
-            setTimeout(() => {
-              const element: HTMLInputElement | null = document.querySelector(`#${id}`);
-              if (element) element.focus();
-            }, 25);
-          }
-        }
-      }}"
     />
   `;
 
@@ -235,9 +225,9 @@ function render(args: Args, context: StoryContext) {
           type="text"
           inputmode="decimal"
           value="${args.value}"
-          .value="${parseFloat(args.value)}"
+          .value="${args.value}"
           ?disabled="${args.disabled}"
-          @input="${(e: Event) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
+          @change="${(e: Event) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
         />
       `,
     ];
