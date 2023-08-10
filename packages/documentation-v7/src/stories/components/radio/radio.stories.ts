@@ -124,17 +124,6 @@ function render(args: Args, context: StoryContext) {
       : null,
   ];
 
-  const handleChange = (e: Event) => {
-    updateArgs({ checked: (e.target as HTMLInputElement).checked });
-
-    if (document.activeElement === e.target) {
-      setTimeout(() => {
-        const element: HTMLInputElement | null = document.querySelector(`#${context.id}`);
-        if (element) element.focus();
-      }, 25);
-    }
-  };
-
   const control = html`
     <input
       id="${id}"
@@ -145,7 +134,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      @change=${handleChange}
+      @change=${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}
     />
   `;
 
