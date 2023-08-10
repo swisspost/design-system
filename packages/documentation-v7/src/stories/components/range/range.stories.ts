@@ -227,7 +227,7 @@ function render(args: Args, context: StoryContext) {
           value="${args.value}"
           .value="${args.value}"
           ?disabled="${args.disabled}"
-          @change="${(e: Event) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
+          @input="${(e: Event) => updateArgs({ value: (e.target as HTMLInputElement).value })}"
         />
       `,
     ];
