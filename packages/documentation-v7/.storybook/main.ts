@@ -27,7 +27,14 @@ const config: StorybookConfig = {
       },
     },
   ],
-  staticDirs: ['../public', '../node_modules/@swisspost/design-system-icons/public'],
+  staticDirs: [
+    {
+      from: '../public/assets',
+      to: '/assets',
+    },
+    '../public',
+    '../node_modules/@swisspost/design-system-icons/public',
+  ],
   docs: {
     autodocs: 'tag',
   },

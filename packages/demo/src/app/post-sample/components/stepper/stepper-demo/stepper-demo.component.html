@@ -17,7 +17,7 @@
         <span class="visually-hidden">Complete:</span>
         {{ step }}
       </a>
-      <span class="stepper-link" *ngIf="i >= currentIndex" (click)="currentIndex = i">
+      <span class="stepper-link" *ngIf="i >= currentIndex">
         {{ step }}
       </span>
     </li>
