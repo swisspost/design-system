@@ -130,6 +130,7 @@ function render(args: Args, context: StoryContext) {
       class="${classes}"
       type="radio"
       ?checked="${args.checked}"
+      .checked="${args.checked}"
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
