@@ -1,7 +1,8 @@
 import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
-import { html } from 'lit/static-html.js';
+import { html, nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
+import { mapClasses } from '../../../utils';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -11,6 +12,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 
 const meta: Meta = {
   title: 'Components/Textarea',
+  render: renderTextarea,
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },
@@ -65,7 +67,7 @@ const meta: Meta = {
       name: 'Value',
       description: 'The value of the component.',
       control: {
-        type: 'string',
+        type: 'text',
       },
       table: {
         disable: true,
@@ -150,162 +152,111 @@ export default meta;
 
 type Story = StoryObj;
 
-const Template: Story = {
-  render: (args: Args, context: StoryContext) => {
-    const [_, updateArgs] = useArgs();
-    let value: String;
-    const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
-    const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
-    const label = !useAriaLabel
-      ? html`
-          <label htmlFor=${id} class="form-label">${args.label}</label>
-        `
-      : null;
-    const contextuals = [
-      args.validation === 'is-valid'
-        ? html`
-            <p class="valid-feedback">Ggranda sukceso!</p>
-          `
-        : null,
-      args.validation === 'is-invalid'
-        ? html`
-        <pid" class="invalid-feedback">
-          Eraro okazis!
-        </p>
-      `
-        : null,
-      args.hint !== ''
-        ? html`
-            <div class="form-text">${args.hint}</div>
-          `
-        : null,
-    ];
-    const control = html`
-      <textarea
-        id=${id}
-        class=${classes}
-        defaultValue=${args.value}
-        placeholder=${useAriaLabel ? args.label : ' '}
-        rows=${args.rows}
-        disabled=${args.disabled}
-        aria-label=${useAriaLabel ? args.label : undefined}
-        aria-invalid=${VALIDATION_STATE_MAP[args.validation]}
-        onChange=${(e: Event) => (value = (e.target as HTMLTextAreaElement).value)}
-        onBlur=${() => updateArgs({ value })}
-      ></textarea>
-    `;
-    if (args.floatingLabel) {
-      return html`
-        <div className="form-floating">
-          ${[control, label, ...contextuals].filter(el => el !== null)}
-        </div>
-      `;
-    } else
-      return html`
-        ${[label, control, ...contextuals].filter(el => el !== null)};
-      `;
-  },
-};
-
-/*
+function renderTextarea(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
-  const [value, updateValue] = useState(args.value);
   const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
-  const classes = ['form-control', args.size, args.validation]
-    .filter(c => c && c !== 'null')
-    .join(' ');
-
+  const classes = mapClasses({
+    'form-control': true,
+    [args.size]: args.size !== 'null',
+    [args.validation]: args.valiation !== 'null',
+  });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
-  const label: JSX.Element | null = !useAriaLabel ? (
-    <label key="label" htmlFor={id} className="form-label">
-      {args.label}
-    </label>
-  ) : null;
-
-  const contextuals: (JSX.Element | null)[] = [
-    args.validation === 'is-valid' ? (
-      <p key="valid" className="valid-feedback">
-        Ggranda sukceso!
-      </p>
-    ) : null,
-    args.validation === 'is-invalid' ? (
-      <p key="invalid" className="invalid-feedback">
-        Eraro okazis!
-      </p>
-    ) : null,
-    args.hint !== '' ? (
-      <div key="hint" className="form-text">
-        {args.hint}
-      </div>
-    ) : null,
+  const label = !useAriaLabel
+    ? html`
+        <label for=${id} class="form-label">${args.label}</label>
+      `
+    : null;
+  const contextuals = [
+    args.validation === 'is-valid'
+      ? html`
+          <div class="valid-feedback">Ggranda sukceso!</div>
+        `
+      : null,
+    args.validation === 'is-invalid'
+      ? html`
+          <div class="invalid-feedback">Eraro okazis!</div>
+        `
+      : null,
+    args.hint !== ''
+      ? html`
+          <div class="form-text">${args.hint}</div>
+        `
+      : null,
   ];
-
-  const control: JSX.Element = (
+  const control = html`
     <textarea
-      key="control"
-      id={id}
-      className={classes}
-      defaultValue={args.value}
-      placeholder={useAriaLabel ? args.label : ' '}
-      rows={args.rows}
-      disabled={args.disabled}
-      aria-label={useAriaLabel ? args.label : undefined}
-      aria-invalid={VALIDATION_STATE_MAP[args.validation]}
-      onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => updateValue(e.target.value)}
-      onBlur={() => updateArgs({ value })}
-    ></textarea>
-  );
-
+      id=${id}
+      class=${classes}
+      defaultValue=${args.value ?? nothing}
+      rows=${args.rows}
+      ?disabled=${args.disabled}
+      aria-label=${useAriaLabel ? args.label : nothing}
+      aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
+      @change=${(e: Event) => {
+        updateArgs({ value: (e.target as HTMLSelectElement).value });
+      }}
+    />
+  `;
   if (args.floatingLabel) {
-    return (
-      <div className="form-floating">
-        {[control, label, ...contextuals].filter(el => el !== null)}
-      </div>
-    );
-  } else {
-    return <>{[label, control, ...contextuals].filter(el => el !== null)}</>;
-  }
-};
+    return html`
+      <div class="form-floating">${[control, label, ...contextuals].filter(el => el !== null)}</div>
+    `;
+  } else
+    return html`
+      ${[label, control, ...contextuals].filter(el => el !== null)}
+    `;
+}
 
-export const Default: Story = Template.bind({});
+export const Default: Story = {};
 
-export const FloatingLabel: Story = Template.bind({});
-FloatingLabel.parameters = {
-  controls: {
-    exclude: ['Hidden Label', 'Size', 'Rows', 'Helper Text', 'Disabled', 'Validation'],
+export const FloatingLabel: Story = {
+  parameters: {
+    controls: {
+      exclude: ['Hidden Label', 'Size', 'Rows', 'Helper Text', 'Disabled', 'Validation'],
+    },
+  },
+  args: {
+    floatingLabel: true,
+    hint: '',
   },
 };
-FloatingLabel.args = {
-  floatingLabel: true,
-  hint: '',
-};
 
-export const Size: Story = Template.bind({});
-Size.parameters = {
-  controls: {
-    exclude: [
-      'Label',
-      'Floating Label',
-      'Hidden Label',
-      'Rows',
-      'Helper Text',
-      'Disabled',
-      'Validation',
-    ],
+export const Size: Story = {
+  parameters: {
+    controls: {
+      exclude: [
+        'Label',
+        'Floating Label',
+        'Hidden Label',
+        'Rows',
+        'Helper Text',
+        'Disabled',
+        'Validation',
+      ],
+    },
+  },
+  args: {
+    size: 'form-control-sm',
+    hint: '',
   },
 };
-Size.args = {
-  size: 'form-control-sm',
-  hint: '',
-};
 
-export const Validation: Story = Template.bind({});
-Validation.parameters = {
-  controls: {
-    exclude: ['Label', 'Floating Label', 'Hidden Label', 'Size', 'Rows', 'Helper Text', 'Disabled'],
+export const Validation: Story = {
+  parameters: {
+    controls: {
+      exclude: [
+        'Label',
+        'Floating Label',
+        'Hidden Label',
+        'Size',
+        'Rows',
+        'Helper Text',
+        'Disabled',
+      ],
+    },
+  },
+  args: {
+    validation: 'is-invalid',
+    hint: '',
   },
 };
-Validation.args = {
-  validation: 'is-invalid',
-  hint: '',
-};*/
