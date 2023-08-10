@@ -99,7 +99,7 @@ function renderBlockquote(args: Args) {
           ${blockquote}
           <figcaption class="blockquote-footer">
             ${args.captionAuthor}
-            <cite title=${args.captionSource}>${args.captionSource}</cite>
+            <cite>${args.captionSource}</cite>
           </figcaption>
         </figure>
       `
