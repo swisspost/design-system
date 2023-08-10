@@ -1,0 +1,16 @@
+name: Update versions.json
+description: Updates the versions.json file with latest info from a release
+
+inputs:
+  version_file_path:
+    description: Location of the versions.json file
+    required: true
+  package_file_path:
+    description: Location of the new package.json file
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - name: Update versions.json
+      run: node ./update-versions.mjs --versions_path ${{ inputs.version_file_path }} --package_path ${{ inputs.package_file_path }}
