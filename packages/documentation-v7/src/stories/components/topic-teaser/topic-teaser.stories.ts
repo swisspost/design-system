@@ -1,6 +1,7 @@
 import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html, TemplateResult } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
+import { mapClasses } from '../../../utils';
 
 const meta: Meta = {
   title: 'Components/Topic Teaser',
@@ -126,9 +127,12 @@ const linkTexts: string[] = [
 
 export const Default: Story = {
   render: (args: Args) => {
-    const classes: string = ['topic-teaser', args.backgroundColor, args.alignment, 'mb-huge-r']
-      .filter(c => c && c !== 'null')
-      .join(' ');
+    const classes = mapClasses({
+      'topic-teaser': true,
+      'mb-huge-r': true,
+      [args.backgroundColor]: args.backgroundColor !== 'null',
+      [args.alignment]: args.alignment !== 'null',
+    });
 
     const links: TemplateResult[] = linkTexts.slice(0, args.linkCount).map(
       text => html`
