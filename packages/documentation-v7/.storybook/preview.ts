@@ -38,7 +38,7 @@ const preview: Preview = {
           'Intranet Header',
           ['Getting started'],
           'Icons',
-          ['Getting started', 'Search Icons', 'Components'],
+          ['Getting started', 'Search Icons', 'Icon Component'],
           'Templates',
           'Utilities',
           'Misc',
