@@ -12,7 +12,7 @@ import * as RadiobuttonCardStories from './radiobutton-card.stories';
 
 <div className="alert alert-info">
   <h2 class="h5">Firefox fallback classes</h2>
-  Firefox currently does not support <a href="">
+  Firefox currently does not support <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">
     the new <abbr title="Cascading Style Sheets">CSS</abbr> :has pseudo-selector
   </a>. As a fallback, the following states have to be mirrored on the top level element in the form
   of classes:
@@ -30,6 +30,7 @@ import * as RadiobuttonCardStories from './radiobutton-card.stories';
       <code>is-invalid</code>
     </li>
   </ul>
+  Check <a href="https://caniuse.com/css-has">caniuse :has()</a> to check if you still need the fallback.
 </div>
 
 <Canvas of={RadiobuttonCardStories.Default} />

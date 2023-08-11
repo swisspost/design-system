@@ -128,7 +128,21 @@ export const choiceCardMeta: Meta = {
 };
 
 export const choiceCardDefault = (args: Args) => {
-  const inputClasses = ['form-check-input', args.validation].filter(c => c !== 'null').join(' ');
+  const [_, updateArgs] = useArgs();
+
+  // Conditional classes
+  const inputClasses = classMap({
+    'form-check-input': true,
+    'is-invalid': args.validation === 'is-invalid',
+  });
+  const cardClassMap = classMap({
+    'disabled': args.disabled,
+    'is-invalid': args.validation === 'is-invalid',
+    'checkbox-button-card': args.type === 'checkbox',
+    'radio-button-card': args.type === 'radio',
+  });
+
+  // Child components
   const id = `control-${crypto.randomUUID().slice(0, 8)}`;
   const description = html`
     <br />
@@ -137,24 +151,32 @@ export const choiceCardDefault = (args: Args) => {
   const icon = html`
     <post-icon name="${args.icon}" aria-hidden="true"></post-icon>
   `;
-  const [_, updateArgs] = useArgs();
-  const cardClassMap = classMap({
-    'disabled': args.disabled,
-    'checked': args.checked,
-    'focused': args.focused,
-    'is-invalid': args.validation === 'is-invalid',
-    'checkbox-button-card': args.type === 'checkbox',
-    'radio-button-card': args.type === 'radio',
-  });
+
+  // Firefox fallback for the :has selector
   const _handleInput = (e: InputEvent) => {
-    updateArgs({ checked: (e.target as HTMLInputElement).checked });
+    const target = e.target as HTMLInputElement;
+    updateArgs({ checked: target.checked });
+
+    // Fix input events not fired on "deselected" radio buttons
+    target
+      .closest('fieldset')
+      ?.querySelectorAll('.radio-button-card')
+      .forEach(e => e?.classList.remove('checked'));
+    target.parentElement?.classList.toggle('checked', target.checked);
   };
+
+  // Firefox fallback for the :has selector
   const _handleFocus = (e: InputEvent) => {
     updateArgs({ focused: true });
+    (e.target as HTMLInputElement).parentElement?.classList.add('focused');
   };
+
+  // Firefox fallback for the :has selector
   const _handleBlur = (e: InputEvent) => {
     updateArgs({ focused: false });
+    (e.target as HTMLInputElement).parentElement?.classList.remove('focused');
   };
+
   return html`
     <div class=${cardClassMap}>
       <input
@@ -187,7 +209,9 @@ export const choiceCardGroup = (args: Args) => {
   const loop = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
 
   const col = (label: string) => html`
-    <div class="col-sm-6">${choiceCardDefault({ ...args, label })}</div>
+    <div class="col-sm-6">
+      ${choiceCardDefault({ ...args, label, checked: false, focused: false })}
+    </div>
   `;
 
   const error = html`
