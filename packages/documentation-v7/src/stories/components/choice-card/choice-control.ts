@@ -193,7 +193,7 @@ export const choiceCardDefault = (args: Args) => {
       />
       <label id="label-${id}" class="form-check-label" for="${id}">
         <span>${args.label}</span>
-        ${args.showDescription ? description : null}
+        ${args.showDescription ? description : nothing}
       </label>
       ${args.showIcon ? icon : null}
     </div>
