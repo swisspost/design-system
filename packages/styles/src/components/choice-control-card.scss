@@ -26,6 +26,10 @@
     --post-card-select--hover-bg: #{color.$yellow};
     background-color: color.$yellow;
     border-color: color.$gray-60;
+
+    input {
+      background-color: color.$white !important;
+    }
   }
 
   // Focus
