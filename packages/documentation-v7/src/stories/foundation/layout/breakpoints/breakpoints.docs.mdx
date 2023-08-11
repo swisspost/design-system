@@ -13,7 +13,7 @@ import { BreakpointTable, SCSS_VARIABLES } from './breakpoints.blocks';
 
 ## Available breakpoints
 
-The SwissPost Design-System includes {Object.keys(SCSS_VARIABLES.breakpoint).length} breakpoints, sometimes referred to as grid tiers, for building responsively. These breakpoints can be customized if you’re using our source Sass files.
+The Swiss Post Design System includes {Object.keys(SCSS_VARIABLES.breakpoint).length} breakpoints, sometimes referred to as grid tiers, for building responsively. These breakpoints can be customized if you’re using our source Sass files.
 
 <BreakpointTable />
 
@@ -54,7 +54,7 @@ We occasionally use media queries that go in the other direction.
 
 ```scss
 // No media query necessary for xs breakpoint as it's effectively @media (max-width: 0) { ... }
-@include media-breakpoint-down(lg) {
+@include post.media-breakpoint-down(lg) {
   .custom-class {
     display: none;
   }
@@ -66,7 +66,7 @@ We occasionally use media queries that go in the other direction.
 There are also media queries and mixins for targeting a single segment of screen sizes using the minimum and maximum breakpoint widths.
 
 ```scss
-@include media-breakpoint-only(xs) {
+@include post.media-breakpoint-only(xs) {
   .custom-class {
     display: block;
   }
@@ -78,7 +78,7 @@ There are also media queries and mixins for targeting a single segment of screen
 Similarly, media queries may span multiple breakpoint widths.
 
 ```scss
-@include media-breakpoint-between(sm, lg) {
+@include post.media-breakpoint-between(sm, lg) {
   .custom-class {
     display: block;
   }
