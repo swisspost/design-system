@@ -11,11 +11,6 @@ const config: StorybookConfig = {
   },
   stories: ['../src/stories/**/*.mdx', '../src/stories/**/*.stories.@(ts|tsx)'],
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-designs',
-    '@storybook/addon-a11y',
-    '@geometricpanda/storybook-addon-badges',
-    '@pxtrn/storybook-addon-docs-stencil',
     {
       name: '@storybook/addon-essentials',
       options: {
@@ -26,6 +21,11 @@ const config: StorybookConfig = {
         toolbars: false,
       },
     },
+    '@storybook/addon-links',
+    '@storybook/addon-designs',
+    '@storybook/addon-a11y',
+    '@geometricpanda/storybook-addon-badges',
+    '@pxtrn/storybook-addon-docs-stencil',
   ],
   staticDirs: [
     {
