@@ -197,11 +197,6 @@ export const choiceCardDefault = (args: Args) => {
       </label>
       ${args.showIcon ? icon : null}
     </div>
-    <style>
-      #storybook-root {
-        overflow: visible !important;
-      }
-    </style>
   `;
 };
 

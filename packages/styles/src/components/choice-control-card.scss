@@ -1,6 +1,7 @@
 @use '../variables/color';
 @use '../variables/commons';
 @use '../variables/spacing';
+@use '../mixins/utilities';
 
 .radio-button-card,
 .checkbox-button-card {
@@ -47,6 +48,11 @@
 
     input {
       border-color: color.$black;
+    }
+
+    @include utilities.high-contrast-mode() {
+      border-color: Highlight;
+      transition: none;
     }
   }
 
