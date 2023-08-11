@@ -1,4 +1,4 @@
-import { OptimizeOptions } from 'svgo';
+import { Config } from 'svgo';
 
 export default {
   js2svg: {
@@ -28,4 +28,4 @@ export default {
       },
     },
   ],
-} as OptimizeOptions;
+} as Config;

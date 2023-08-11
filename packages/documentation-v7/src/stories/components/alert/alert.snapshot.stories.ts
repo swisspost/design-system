@@ -1,7 +1,7 @@
 import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { bombArgs } from '../../utilities/bombArgs';
-import alertMeta from './alert.demo.stories';
+import alertMeta from './alert.stories';
 import { getAlertClasses } from './getAlertClasses';
 
 const meta: Meta = {
