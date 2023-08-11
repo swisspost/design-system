@@ -20,17 +20,6 @@
     }
   }
 
-  // Hide that very specific sidebar navigation entry to hide test pages
-  [data-env='production'] & {
-    #hidden {
-      display: none;
-    }
-
-    .sidebar-item[data-parent-id='hidden'] {
-      display: none;
-    }
-  }
-
   .sidebar-item {
     position: relative;
 
