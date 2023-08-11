@@ -1,13 +1,15 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as AlertStories from './alert.stories';
 
-import * as AlertStories from './alert.demo.stories';
-import { BADGE } from '../../../../.storybook/constants';
-
-<Meta title="Components/Alert" parameters={{ badges: [BADGE.NEEDS_REVISION] }} />
+<Meta of={AlertStories} />
 
 # Alert
 
-Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.<br/>
+<div className="lead">
+  Provide contextual feedback messages for typical user actions with the handful of available and flexible alert
+  messages.
+</div>
+
 Alerts are available for any length of text, as well as an optional close button.
 By default, alerts are rendered with a contextually appropriate icon.
 
@@ -49,6 +51,12 @@ Dismiss buttons without text should always provide a `dismiss-label` prop, which
 
 <Canvas of={AlertStories.Dismissible} />
 
+### Action Buttons
+
+To render an action alert with buttons, the alert element requires an additional class as well as additional HTML content. Thus, everything will be rendered as it should be.
+
+<Canvas of={AlertStories.ActionButtons} />
+
 ### Fixed
 
 A fixed alert (at the bottom of the viewport) is obtained by adding the class `.alert-fixed-bottom` to the alert element.
@@ -56,9 +64,3 @@ As this is a CSS-only component, you have to define the logic to show/hide/toggl
 Such an alert is normally also dismissible, so please notice the information for a dismissible alert as well.
 
 <Canvas of={AlertStories.Fixed} />
-
-### Action Buttons
-
-To render an action alert with buttons, the alert element requires an additional class as well as additional HTML content. Thus, everything will be rendered as it should be.
-
-<Canvas of={AlertStories.ActionButtons} />

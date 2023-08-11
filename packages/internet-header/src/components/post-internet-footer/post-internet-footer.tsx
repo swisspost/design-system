@@ -5,6 +5,7 @@ import { PostFooterBlockCustom } from './components/post-footer-block-custom.com
 import { PostFooterBlockList } from './components/post-footer-block-list.component';
 import { PostFooterBlockAddress } from './components/post-footer-block-address.component';
 import { PostFooterBlockContact } from './components/post-footer-block-contact.component';
+import { translate } from '../../services/language.service';
 
 @Component({
   tag: 'swisspost-internet-footer',
@@ -13,9 +14,11 @@ import { PostFooterBlockContact } from './components/post-footer-block-contact.c
 })
 export class PostInternetFooter {
   @State() liveSupportEnabled = false;
+  @State() cookieSettingsEnabled = false;
 
   constructor() {
     this.liveSupportEnabled = this.unbluEnabled();
+    this.cookieSettingsEnabled = this.ucUIEnabled();
 
     /**
      * If the unblu script is not available, wait 5 seconds for it to load.
@@ -27,9 +30,14 @@ export class PostInternetFooter {
       let runs = 0;
 
       const checker = () => {
-        const isEnabled = this.unbluEnabled();
-        if (isEnabled) {
+        const unbluEnabled = this.unbluEnabled();
+        const ucUIEnabled = this.ucUIEnabled();
+        const isEnabled = unbluEnabled && ucUIEnabled;
+        if (unbluEnabled) {
           this.liveSupportEnabled = true;
+        }
+        if (ucUIEnabled) {
+          this.cookieSettingsEnabled = true;
         }
         if (isEnabled || runs >= 5) {
           window.clearInterval(intervalId);
@@ -47,6 +55,17 @@ export class PostInternetFooter {
    */
   private unbluEnabled(): boolean {
     return typeof window['unbluLSLoad'] === 'function';
+  }
+
+  private ucUIEnabled(): boolean {
+    return (
+      typeof window['UC_UI'] === 'object' &&
+      typeof window['UC_UI']['showSecondLayer'] === 'function'
+    );
+  }
+
+  private handleCookieSettingsClick() {
+    window['UC_UI']['showSecondLayer']();
   }
 
   render() {
@@ -115,6 +134,13 @@ export class PostInternetFooter {
                     </li>
                   ))
                 : null}
+              {this.cookieSettingsEnabled && (
+                <li>
+                  <button class="nav-link cookie-settings" onClick={this.handleCookieSettingsClick}>
+                    {translate('Cookie Settings')}
+                  </button>
+                </li>
+              )}
             </ul>
           </div>
         </footer>

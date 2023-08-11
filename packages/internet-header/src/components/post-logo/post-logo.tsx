@@ -1,5 +1,4 @@
-import { Component, Host, h, State, Element } from '@stencil/core';
-import { throttle } from 'throttle-debounce';
+import { Component, Host, h, Element } from '@stencil/core';
 import { state } from '../../data/store';
 
 @Component({
@@ -8,40 +7,7 @@ import { state } from '../../data/store';
   shadow: true,
 })
 export class PostLogo {
-  @State() showFaviconLogo: boolean;
   @Element() host: HTMLPostLogoElement;
-  private throttledResize: throttle<() => void>;
-  private resizeObserver: ResizeObserver;
-
-  constructor() {
-    // Register window resize event listener and a resize observer on the mainnav controls (they change size while controls are being loaded) to display an accurately sized logo
-    this.throttledResize = throttle(300, () => this.handleResize());
-    window.addEventListener('resize', this.throttledResize, { passive: true });
-    this.resizeObserver = new ResizeObserver(this.handleResize.bind(this));
-
-    // Initially call the resize handler
-    this.handleResize();
-  }
-
-  componentDidLoad() {
-    const mainNavControls = this.host.parentElement?.querySelector('.main-navigation-controls');
-    if (mainNavControls) {
-      this.resizeObserver.observe(mainNavControls);
-    }
-  }
-
-  disconnectedCallback() {
-    window.removeEventListener('resize', this.throttledResize);
-    this.resizeObserver.disconnect();
-  }
-
-  handleResize() {
-    const mainNavControls = this.host.parentElement?.querySelector('.main-navigation-controls');
-    const menuButton = this.host.parentElement?.querySelector('.menu-button');
-    if (mainNavControls && menuButton)
-      this.showFaviconLogo =
-        window.innerWidth - (150 + mainNavControls.clientWidth + menuButton.clientWidth) <= 0;
-  }
 
   render() {
     if (state.localizedConfig?.header.logo === undefined) return;

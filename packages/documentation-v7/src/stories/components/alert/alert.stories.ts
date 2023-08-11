@@ -1,13 +1,17 @@
+// @ts-ignore
 import { useArgs } from '@storybook/preview-api';
-import { Args, Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-
 import { getAlertClasses } from './getAlertClasses';
+import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'Hidden/demos/components/Alert',
+  title: 'Components/Alert',
+  render: renderAlert,
+  decorators: [externalControl],
   parameters: {
+    badges: [BADGE.NEEDS_REVISION],
     controls: {
       exclude: ['Title', 'Content'],
     },
@@ -88,16 +92,7 @@ const meta: Meta = {
     dismissible: {
       name: 'Dismissible',
       description:
-        'Adds the dismissible styles.<span class="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
-      control: { type: 'boolean' },
-      table: {
-        category: 'Variations',
-      },
-    },
-    fixed: {
-      name: 'Fixed',
-      description:
-        'Adds the fixed styles.<span class="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
+        'Adds the dismissible styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
       control: { type: 'boolean' },
       table: {
         category: 'Variations',
@@ -106,7 +101,16 @@ const meta: Meta = {
     action: {
       name: 'Action Buttons',
       description:
-        'Adds the action button styles.<span class="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
+        'Adds the action button styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
+      control: { type: 'boolean' },
+      table: {
+        category: 'Variations',
+      },
+    },
+    fixed: {
+      name: 'Fixed',
+      description:
+        'Adds the fixed styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
       control: { type: 'boolean' },
       table: {
         category: 'Variations',
@@ -118,21 +122,38 @@ const meta: Meta = {
       table: { disable: true },
     },
   },
-  render: render,
 };
 
-function onShowToggle(e: MouseEvent, args: Args, updateArgs: Function) {
+export default meta;
+
+// DECORATORS
+function externalControl(story: StoryFn, { args, context }: StoryContext) {
+  const [_, updateArgs] = useArgs();
+
+  const button = html`
+    <a href="#" @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}">
+      ${args.fixed ? 'Toggle Alert' : 'Show Alert'}
+    </a>
+  `;
+
+  return html`
+    ${args.fixed || !args.show ? button : nothing} ${story(args, context)}
+  `;
+}
+
+// RENDERER
+function toggleAlert(e: MouseEvent, args: Args, updateArgs: Function) {
   e.preventDefault();
   updateArgs({ show: !args.show });
 }
 
-function render(args: Args) {
+function renderAlert(args: Args) {
   const [_, updateArgs] = useArgs();
 
   const classes = getAlertClasses(args);
 
   const content = html`
-    <h4 class="alert-heading" key="title">${args.title}</h4>
+    <h4 class="alert-heading">${args.title}</h4>
     ${unsafeHTML(args.content)}
   `;
 
@@ -144,10 +165,10 @@ function render(args: Args) {
           ? html`
               <button
                 class="btn-close"
-                data-dismiss="alert"
-                aria-label="Close"
-                @click=${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}
-              ></button>
+                @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
+              >
+                <span class="visually-hidden">Close</span>
+              </button>
             `
           : null
       }
@@ -166,13 +187,13 @@ function render(args: Args) {
               <div class="alert-buttons">
                 <button
                   class="btn btn-primary btn-animated"
-                  @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
+                  @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
                 >
                   <span>Akcepti</span>
                 </button>
                 <button
                   class="btn btn-secondary btn-animated"
-                  @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
+                  @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
                 >
                   <span>Aborti</span>
                 </button>
@@ -184,42 +205,10 @@ function render(args: Args) {
   `;
 }
 
-export default meta;
-
+// STORIES
 type Story = StoryObj;
 
-export const Default: Story = {
-  decorators: [
-    (story, { args }) => {
-      const [_, updateArgs] = useArgs();
-      const showToggleButton = args.fixed;
-      const showResetButton = !showToggleButton && args.dismissible && !args.show;
-
-      return html`
-        <div>
-          ${showToggleButton
-            ? html`
-                <button
-                  class="btn btn-secondary"
-                  @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
-                >
-                  Toggle alert
-                </button>
-              `
-            : null}
-          ${showResetButton
-            ? html`
-                <a href="#" @click=${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}>
-                  Show alert
-                </a>
-              `
-            : null}
-          ${story()}
-        </div>
-      `;
-    },
-  ],
-};
+export const Default: Story = {};
 
 export const AdditionalContent: Story = {
   parameters: {
@@ -241,24 +230,6 @@ export const AdditionalContent: Story = {
 };
 
 export const Dismissible: Story = {
-  decorators: [
-    (story, { args }) => {
-      const [_, updateArgs] = useArgs();
-
-      return html`
-        <div>
-          ${args.show
-            ? null
-            : html`
-                <a href="#" @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}">
-                  Show alert
-                </a>
-              `}
-          ${story()}
-        </div>
-      `;
-    },
-  ],
   parameters: {
     controls: {
       exclude: ['Variant', 'Icon', 'No Icon', 'Fixed', 'Action Buttons', 'Show'],
@@ -270,23 +241,6 @@ export const Dismissible: Story = {
 };
 
 export const Fixed: Story = {
-  decorators: [
-    (story, { args }) => {
-      const [_, updateArgs] = useArgs();
-
-      return html`
-        <div>
-          <button
-            class="btn btn-secondary"
-            @click="${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}"
-          >
-            Toggle alert
-          </button>
-          ${story()}
-        </div>
-      `;
-    },
-  ],
   parameters: {
     controls: {
       exclude: ['Variant', 'Icon', 'No Icon', 'Dismissible', 'Action Buttons', 'Show'],
@@ -299,23 +253,6 @@ export const Fixed: Story = {
 };
 
 export const ActionButtons: Story = {
-  decorators: [
-    (story, { args }) => {
-      const [_, updateArgs] = useArgs();
-
-      return html`
-        <div>
-          <button
-            class="btn btn-secondary"
-            @click=${(e: MouseEvent) => onShowToggle(e, args, updateArgs)}
-          >
-            Toggle alert
-          </button>
-          ${story()}
-        </div>
-      `;
-    },
-  ],
   parameters: {
     controls: {
       exclude: ['Variant', 'Icon', 'No Icon', 'Dismissible', 'Fixed', 'Show'],
@@ -324,8 +261,5 @@ export const ActionButtons: Story = {
   args: {
     variant: 'alert-info',
     action: true,
-    show: false,
   },
 };
-
-export const DefaultSnapshot: Story = {};

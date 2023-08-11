@@ -54,4 +54,9 @@ export const translations = {
     fr: 'Liens intermédiaires',
     it: 'Collegamenti intermedi',
   },
+  'Cookie Settings': {
+    de: 'Cookie-Einstellungen',
+    fr: 'Configurations des cookies',
+    it: 'Impostazioni dei cookie',
+  },
 };
