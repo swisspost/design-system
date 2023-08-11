@@ -1,11 +1,11 @@
 import { Meta } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
-import { BADGE } from '../../../../.storybook/constants';
 import { forEach } from '../../../utils/react';
+import * as ColorStories from './color.stories';
 import { ColorSwatch, SCSS_VARIABLES } from './color.blocks';
 import './color.styles.scss';
 
-<Meta title="Foundations/Color" parameters={{ badges: [BADGE.BETA, BADGE.NEEDS_REVISION] }} />
+<Meta of={ColorStories} />
 
 # Color
 
