@@ -195,7 +195,7 @@ export const choiceCardDefault = (args: Args) => {
         <span>${args.label}</span>
         ${args.showDescription ? description : nothing}
       </label>
-      ${args.showIcon ? icon : null}
+      ${args.showIcon ? icon : nothing}
     </div>
   `;
 };
