@@ -11,10 +11,11 @@
   align-self: stretch;
 
   &::before {
+    position: relative;
+    content: '';
     display: var(--separator-display);
     height: var(--separator-height);
     border-left: 1px solid color.$gray-10;
-    content: '';
   }
 }
 
