@@ -10,6 +10,28 @@ import * as CheckboxCardStories from './checkbox-card.stories';
   services.
 </div>
 
+<div className="alert alert-info">
+  <h2 class="h5">Firefox fallback classes</h2>
+  Firefox currently does not support <a href="https://caniuse.com/?search=has">
+    the new <abbr title="Cascading Style Sheets">CSS</abbr> :has pseudo-selector
+  </a>. As a fallback, the following states have to be mirrored on the top level element in the form
+  of classes:
+  <ul>
+    <li>
+      <code>checked</code>
+    </li>
+    <li>
+      <code>focused</code>
+    </li>
+    <li>
+      <code>disabled</code>
+    </li>
+    <li>
+      <code>is-invalid</code>
+    </li>
+  </ul>
+</div>
+
 <Canvas of={CheckboxCardStories.Default} />
 <div className="hide-col-default">
   <Controls of={CheckboxCardStories.Default} />
