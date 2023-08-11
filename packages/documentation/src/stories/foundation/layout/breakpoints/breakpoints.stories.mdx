@@ -41,7 +41,7 @@ We primarily use the following media query ranges—or breakpoints—in our sour
   display: none;
 }
 
-@include media-breakpoint-up(lg) {
+@include post.media-breakpoint-up(lg) {
   .custom-class {
     display: block;
   }
@@ -54,7 +54,7 @@ We occasionally use media queries that go in the other direction.
 
 ```css dark
 // No media query necessary for xs breakpoint as it's effectively @media (max-width: 0) { ... }
-@include media-breakpoint-down(lg) {
+@include post.media-breakpoint-down(lg) {
   .custom-class {
     display: none;
   }
@@ -66,7 +66,7 @@ We occasionally use media queries that go in the other direction.
 There are also media queries and mixins for targeting a single segment of screen sizes using the minimum and maximum breakpoint widths.
 
 ```css dark
-@include media-breakpoint-only(xs) {
+@include post.media-breakpoint-only(xs) {
   .custom-class {
     display: block;
   }
@@ -78,7 +78,7 @@ There are also media queries and mixins for targeting a single segment of screen
 Similarly, media queries may span multiple breakpoint widths.
 
 ```css dark
-@include media-breakpoint-between(sm, lg) {
+@include post.media-breakpoint-between(sm, lg) {
   .custom-class {
     display: block;
   }
