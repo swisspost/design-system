@@ -1,6 +1,6 @@
 import { Meta, Canvas } from '@storybook/addon-docs';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
-import { BreakpointTable, SCSS_VARIABLES } from './breakpoints.blocks';
+import { BreakpointTable, SCSS_VARIABLES, BreakpointCount } from './breakpoints.blocks';
 
 <Meta title="Foundations/Layout/Breakpoints" parameters={{ badges: [BADGE.NEEDS_REVISION] }} />
 
@@ -13,7 +13,7 @@ import { BreakpointTable, SCSS_VARIABLES } from './breakpoints.blocks';
 
 ## Available breakpoints
 
-The SwissPost Design-System includes {Object.keys(SCSS_VARIABLES.breakpoint).length} breakpoints, sometimes referred to as grid tiers, for building responsively. These breakpoints can be customized if you’re using our source Sass files.
+The SwissPost Design-System includes <BreakpointCount/> breakpoints, sometimes referred to as grid tiers, for building responsively. These breakpoints can be customized if you’re using our source Sass files.
 
 <BreakpointTable />
 

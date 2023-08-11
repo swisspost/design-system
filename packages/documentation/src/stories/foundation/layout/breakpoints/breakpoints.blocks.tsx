@@ -3,6 +3,7 @@ import { parse } from '../../../../utils/sass-export';
 import scss from './breakpoints.module.scss';
 
 export const SCSS_VARIABLES = parse(scss);
+export const BreakpointCount = () => <span>{Object.keys(SCSS_VARIABLES.breakpoint).length}</span>;
 
 export const BreakpointTable = (props: { name: string; value: string }) => (
   <table className="table table-sm table-striped table-bordered">
