@@ -4,7 +4,11 @@
     "allowUnreachableCode": false,
     "declaration": true,
     "experimentalDecorators": true,
-    "lib": ["dom", "DOM.Iterable", "es2017"],
+    "lib": [
+      "dom",
+      "DOM.Iterable",
+      "es2017"
+    ],
     "moduleResolution": "node",
     "module": "esnext",
     "target": "es2017",
@@ -16,6 +20,12 @@
     "strictNullChecks": true,
     "skipLibCheck": true
   },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/tests",
+    "**/*.spec.*"
+  ]
 }

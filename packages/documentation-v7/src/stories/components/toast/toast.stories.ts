@@ -1,9 +1,13 @@
 import { useArgs } from '@storybook/preview-api';
 import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'Hidden/demos/components/Toast',
+  title: 'Components/Toast',
+  parameters: {
+    badges: [BADGE.NEEDS_REVISION],
+  },
   args: {
     title: 'Titulum',
     content: 'Contentus momentus vero siteos et accusam iretea et justo.',

@@ -16,9 +16,9 @@
   "private": true,
   "scripts": {
     "prebuild:managerui": "sass --update --load-path=node_modules .storybook/styles/manager.scss public/manager/ui.css",
-    "start": "pnpm clean & pnpm prebuild:managerui --style=expanded & storybook dev -p 9200 --quiet",
-    "start:headless": "pnpm clean & pnpm prebuild:managerui --style=expanded & storybook dev -p 9300 --quiet --no-open",
-    "build": "pnpm clean & pnpm prebuild:managerui --style=compressed --no-source-map & storybook build --quiet",
+    "start": "pnpm clean & pnpm prebuild:managerui --style=expanded & storybook dev -p 9200 --quiet --docs",
+    "start:headless": "pnpm clean & pnpm prebuild:managerui --style=expanded & storybook dev -p 9300 --quiet --no-open --docs",
+    "build": "pnpm clean & pnpm prebuild:managerui --style=compressed --no-source-map & storybook build --quiet --docs",
     "clean": "rimraf storybook-static public/manager",
     "e2e": "cypress run",
     "e2e:watch": "cypress open",

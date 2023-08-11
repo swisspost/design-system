@@ -61,5 +61,20 @@ describe('footer', () => {
         cy.get('.post-internet-footer').should('not.exist');
       });
     });
+
+    describe('external functions test', () => {
+      it('should not show cookie settings link when UC_UI is not defined', () => {
+        prepare('Internet Header/Components/Footer', 'Default');
+        cy.get('.footer-meta-links').should('exist').get('.cookie-settings').should('not.exist');
+      });
+
+      it('should show cookie settings when UC_UI is defined', () => {
+        prepare('Internet Header/Components/Footer', 'Default');
+        cy.window().then(win => {
+          win['UC_UI'] = { showSecondLayer: () => 'second layer mock' };
+          cy.get('.footer-meta-links').should('exist').get('.cookie-settings').should('exist');
+        });
+      });
+    });
   });
 });
