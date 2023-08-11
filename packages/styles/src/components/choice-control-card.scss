@@ -71,7 +71,8 @@
     }
   }
 
-  &:has(input:disabled:checked) &.disabled.checked {
+  &:has(input:disabled:checked),
+  &.disabled.checked {
     background-color: color.$gray-10;
   }
 

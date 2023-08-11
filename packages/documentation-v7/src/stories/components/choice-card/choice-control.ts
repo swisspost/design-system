@@ -127,7 +127,9 @@ export const choiceCardMeta: Meta = {
   },
 };
 
-export const choiceCardDefault = (args: Args) => {
+let id_ct = 1;
+
+export const choiceCardDefault = (args: Args, name = 'control') => {
   const [_, updateArgs] = useArgs();
 
   // Conditional classes
@@ -136,6 +138,7 @@ export const choiceCardDefault = (args: Args) => {
     'is-invalid': args.validation === 'is-invalid',
   });
   const cardClassMap = classMap({
+    'checked': args.checked,
     'disabled': args.disabled,
     'is-invalid': args.validation === 'is-invalid',
     'checkbox-button-card': args.type === 'checkbox',
@@ -143,7 +146,7 @@ export const choiceCardDefault = (args: Args) => {
   });
 
   // Child components
-  const id = `control-${crypto.randomUUID().slice(0, 8)}`;
+  const id = `control-${id_ct++}`;
   const description = html`
     <br />
     <span class="font-size-12">${args.description}</span>
@@ -181,7 +184,7 @@ export const choiceCardDefault = (args: Args) => {
     <div class=${cardClassMap}>
       <input
         id=${id}
-        name="${args.type}-button-card"
+        name="${args.type}-button-card-${name}"
         class=${inputClasses}
         type=${args.type}
         ?disabled=${args.disabled}
@@ -205,7 +208,7 @@ export const choiceCardGroup = (args: Args) => {
 
   const col = (label: string) => html`
     <div class="col-sm-6">
-      ${choiceCardDefault({ ...args, label, checked: false, focused: false })}
+      ${choiceCardDefault({ ...args, label, checked: false, focused: false }, 'group')}
     </div>
   `;
 
