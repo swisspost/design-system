@@ -21,14 +21,14 @@
     border-color 100ms ease-in-out;
 
   // Checked
-  &:where(:has(input:checked)) {
+  &:where(:has(input:checked), .checked) {
     --post-card-select--hover-bg: #{color.$yellow};
     background-color: color.$yellow;
     border-color: color.$gray-60;
   }
 
   // Focus
-  &:where(:has(input:focus-visible)) {
+  &:where(:has(input:focus-visible), .focused) {
     background-color: var(--post-card-select--hover-bg);
     outline: 2px solid color.$black;
     outline-offset: 2px;
@@ -40,7 +40,7 @@
   }
 
   // Hover
-  &:where(:hover:not(:has(input[disabled]))) {
+  &:where(:hover:not(:has(input:disabled)), :hover:not(.disabled)) {
     border-color: color.$black;
     color: color.$black;
     background-color: var(--post-card-select--hover-bg);
@@ -51,7 +51,8 @@
   }
 
   // Disabled
-  &:has(input[disabled]) {
+  &:has(input:disabled),
+  &.disabled {
     border-color: color.$gray-20;
     color: color.$gray-40 !important;
 
@@ -60,13 +61,14 @@
     }
   }
 
-  &:has(input[disabled]:checked) {
+  &:has(input:disabled:checked) &.disabled.checked {
     background-color: color.$gray-10;
   }
 
   // Error
   &:has(input[aria-invalid]),
-  &:has(input.is-invalid) {
+  &:has(input.is-invalid),
+  &.is-invalid {
     color: color.$error;
     border-color: color.$error;
 

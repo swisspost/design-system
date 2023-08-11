@@ -1,7 +1,9 @@
 import type { Args, Meta } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
+import { classMap } from 'lit/directives/class-map.js';
 import { BADGE } from '../../../../.storybook/constants';
 import { nothing } from 'lit';
+import { useArgs } from '@storybook/preview-api';
 
 export const choiceCardMeta: Meta = {
   parameters: {
@@ -15,6 +17,7 @@ export const choiceCardMeta: Meta = {
     type: 'radio',
     checked: false,
     disabled: false,
+    focused: false,
     validation: 'null',
     showDescription: false,
     description: 'A small description',
@@ -60,6 +63,14 @@ export const choiceCardMeta: Meta = {
       control: {
         type: 'boolean',
       },
+      table: {
+        category: 'States',
+      },
+    },
+    focused: {
+      name: 'Focused',
+      description: 'Render the component in a focused state',
+      control: { type: 'boolean' },
       table: {
         category: 'States',
       },
@@ -126,15 +137,37 @@ export const choiceCardDefault = (args: Args) => {
   const icon = html`
     <post-icon name="${args.icon}" aria-hidden="true"></post-icon>
   `;
+  const [_, updateArgs] = useArgs();
+  const cardClassMap = classMap({
+    'disabled': args.disabled,
+    'checked': args.checked,
+    'focused': args.focused,
+    'is-invalid': args.validation === 'is-invalid',
+    'checkbox-button-card': args.type === 'checkbox',
+    'radio-button-card': args.type === 'radio',
+  });
+  const _handleInput = (e: InputEvent) => {
+    updateArgs({ checked: (e.target as HTMLInputElement).checked });
+  };
+  const _handleFocus = (e: InputEvent) => {
+    updateArgs({ focused: true });
+  };
+  const _handleBlur = (e: InputEvent) => {
+    updateArgs({ focused: false });
+  };
   return html`
-    <div class="${args.type}-button-card">
+    <div class=${cardClassMap}>
       <input
-        id="${id}"
+        id=${id}
         name="${args.type}-button-card"
-        class="${inputClasses}"
-        type="${args.type}"
-        disabled="${args.disabled || nothing}"
-        checked="${args.checked || nothing}"
+        class=${inputClasses}
+        type=${args.type}
+        ?disabled=${args.disabled}
+        .checked=${args.checked}
+        ?checked=${args.checked}
+        @input=${_handleInput}
+        @focus=${_handleFocus}
+        @blur=${_handleBlur}
       />
       <label id="label-${id}" class="form-check-label" for="${id}">
         <span>${args.label}</span>
@@ -142,6 +175,11 @@ export const choiceCardDefault = (args: Args) => {
       </label>
       ${args.showIcon ? icon : null}
     </div>
+    <style>
+      #storybook-root {
+        overflow: visible !important;
+      }
+    </style>
   `;
 };
 
