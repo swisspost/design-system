@@ -1,12 +1,8 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
-import { BADGE } from '../../../../.storybook/constants';
-import * as HeadingDemos from './heading.demo.stories';
+import * as HeadingStories from './heading.stories';
 
-<Meta
-  title="Utilities/Heading"
-  parameters={{ badges: [BADGE.NEEDS_REVISION] }}
-/>
+<Meta of={HeadingStories} />
 
 # Headings
 
@@ -29,10 +25,10 @@ import * as HeadingDemos from './heading.demo.stories';
 
 Use the `.h1` through `.h6` utility classes to modify the appearance of HTML heading elements.
 
-<Canvas of={HeadingDemos.OnAnHeadingElement} sourceState="shown" />
+<Canvas of={HeadingStories.OnAnHeadingElement} sourceState="shown" />
 
 ## Usage on Other Elements
 
 Use utility classes to make any text element look like a heading.
 
-<Canvas of={HeadingDemos.OnAParagraphElement} sourceState="shown" />
+<Canvas of={HeadingStories.OnAParagraphElement} sourceState="shown" />

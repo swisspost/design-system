@@ -1,7 +1,6 @@
 import { Meta, Canvas, Controls } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
 import * as CardStories from './card.stories';
-import * as CardDemoStories from './card.demo.stories';
 
 <Meta of={CardStories} />
 
@@ -64,4 +63,4 @@ Use card groups to render cards as a single, attached element with equal width a
   Never use text with a background image because you can't ensure it is readable by everyone for all languages and browser sizes.
 </div>
 
-<Canvas of={CardDemoStories.BackgroundImage} />
+<Canvas of={CardStories.BackgroundImage} />

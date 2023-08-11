@@ -1,10 +1,8 @@
 import LinkTo from '@storybook/addon-links/react';
 import { Canvas, Controls, Meta } from '@storybook/blocks';
-import { BADGE } from '../../../../.storybook/constants';
+import * as IconStories from './icon.stories';
 
-import * as IconStories from './icon.demo.stories';
-
-<Meta title="Icons/Icon Component" parameters={{ badges: [BADGE.NEEDS_REVISION] }} />
+<Meta of={IconStories} />
 
 # Icon
 
