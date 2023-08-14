@@ -1,21 +1,21 @@
-import { Meta } from '@storybook/blocks';
-import InternetHeaderMeta from './post-internet-header.stories';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as InternetHeaderStories from './internet-header.stories';
 
-<Meta name="Docs" of={InternetHeaderMeta} />
+<Meta of={InternetHeaderStories} />
 
 # Header
 
+<div className="lead">
+  Customizable navigation header tailored for Swiss Post customer-facing applications,
+  ensuring complete accessibility and responsiveness.
+</div>
+
 The `<swisspost-internet-header>` element needs
 to be nested directly inside the `<body>` for the sticky scrolling to work.
+
 If you want to render the header element with Angular,
 have a look at [portals](https://medium.com/angular-in-depth/how-do-cdk-portals-work-7c097c14a494).
 
-```html
-<!-- index.html -->
-<body>
-  <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
-</body>
-```
+<Canvas of={InternetHeaderStories.Default} sourceState="shown" />
 
-## Options
-
+<Controls of={InternetHeaderStories.Default} />
