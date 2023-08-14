@@ -1,5 +1,18 @@
 # @swisspost/internet-header
 
+## 1.9.0
+
+### Minor Changes
+
+- Added a cookie settings button to the footer. Applications with integrated UC_UI (through GTM) will see the button and users will be able to edit their preferences. (by [@gfellerph](https://github.com/gfellerph) with [#1730](https://github.com/swisspost/design-system/pull/1730))
+
+- Updated the logo size, the post logo now spans the meta-navigation and scales down on scroll. (by [@gfellerph](https://github.com/gfellerph) with [#1552](https://github.com/swisspost/design-system/pull/1552))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.3.0
+
 ## 1.8.3
 
 ### Patch Changes
