@@ -110,7 +110,7 @@ export const IntricateContent: Story = {
   args: {
     innerHTML: `<p>I am part of the body</p>
       <span slot="header">Customus<em>&nbsp;Titulum</em></span>
-      <small slot="header" class='text-muted'>&nbsp;- I am part of the header</small>
+      <small slot="header" class="text-muted">&nbsp;- I am part of the header</small>
       <p>I am part of the body too!</p>`,
   },
 };
