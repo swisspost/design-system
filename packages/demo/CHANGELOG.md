@@ -1,5 +1,18 @@
 # @swisspost/design-system-demo
 
+## 6.1.0
+
+### Minor Changes
+
+- Added a gray notification variant for cookie banners. (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
+
+### Patch Changes
+
+- Stepper: Remove interactivity on inactive next steps. (by [@imagoiq](https://github.com/imagoiq) with [#1646](https://github.com/swisspost/design-system/pull/1646))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.3.0
+  - @swisspost/design-system-intranet-header@4.0.9
+
 ## 6.0.8
 
 ### Patch Changes
