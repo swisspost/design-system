@@ -17,7 +17,14 @@ The header for client-facing applications.
 
 ## Installation
 
-### Angular, Vue JS, React (or any other bundler setup)
+### Choosing between lazy-loaded or bare component version
+
+Internet-header package provide two versions:
+
+* Lazy-loaded (default): it allows better performance by dynamically load the component when used, so it reduces bundle size, startup time and first paint.
+* Bare component: if you already manage the lazy-loading or don't need it for any reason, you can use the component without any overhead.
+
+### Angular, Vue.js, React (or any other bundler setup)
 
 All the popular frameworks come with some form of bundler. This makes it easy to use npm packages like the Internet Header as you can import, bundle and deliver the header with your own code.
 
@@ -25,13 +32,6 @@ When working with Angular or any other framework, the easiest installation metho
 
 ```shell
 npm install @swisspost/internet-header
-```
-
-```typescript
-// main.ts / index.js / ...
-import { defineCustomElements } from '@swisspost/internet-header';
-
-defineCustomElements();
 ```
 
 ```html
@@ -42,15 +42,48 @@ defineCustomElements();
 </body>
 ```
 
+#### Lazy-loaded
+
+```javascript
+// main.ts / index.js / ...
+import { defineCustomElements } from '@swisspost/internet-header/loader';
+
+defineCustomElements();
+```
+
+#### Bare component
+
+```javascript
+// main.ts / index.js / ...
+import '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.esm';
+```
+
 ### Include from a CDN
 
-If you are not using any loader or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
-There are two options available. Make sure to replace `{version}` with the version you want to use.
+If you are not using any bundler or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
+Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
 
-- [jsDelivr](https://www.jsdelivr.com/)
-- [unpkg](https://unpkg.com/)
+Available CDNs:
 
-#### jsDelivr
+* [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/internet-header](https://cdn.jsdelivr.net/npm/@swisspost/internet-header).
+* [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/internet-header](https://unpkg.com/@swisspost/internet-header).
+
+#### Lazy-loaded
+
+```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
+  </body>
+  <script type="module">
+    import { defineCustomElements } from '{cdnUrl}@{version}/loader/index.es2017.js';
+
+    defineCustomElements();
+  </script>
+</html>
+```
+#### Bare component
 
 ```html
 <!-- index.html -->
@@ -58,28 +91,12 @@ There are two options available. Make sure to replace `{version}` with the versi
   <script
     async
     type="module"
-    src="https://cdn.jsdelivr.net/npm/@swisspost/internet-header@{version}/dist/swisspost-internet-header/swisspost-internet-header.esm.js"
+    src="{cdnUrl}@{version}/dist/swisspost-internet-header/swisspost-internet-header.esm.js"
   ></script>
 </head>
 <body>
   <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
 </body>
-```
-
-```javascript
-// main.js | main.ts
-import { defineCustomElements } from 'https://cdn.jsdelivr.net/npm/@swisspost/internet-header@{version}/loader/index.min.js';
-
-defineCustomElements();
-```
-
-#### unpkg
-
-```javascript
-// main.js | main.ts
-import { defineCustomElements } from 'https://unpkg.com/@swisspost/internet-header@{version}/loader/index.min.js';
-
-defineCustomElements();
 ```
 
 ## Configuration
@@ -103,4 +120,4 @@ For settings on the header itself, see the examples provided in the left menu ba
 
 ## Help
 
-If you noticed a bug or need assistance with migrating to the new Internet Header, please post your enquiry at the [Design System Github Discussions](https://github.com/swisspost/design-system/discussions/categories/q-a).
+If you noticed a bug or need assistance with migrating to the new Internet Header, please post your enquiry at the [Design System GitHub Discussions](https://github.com/swisspost/design-system/discussions/categories/q-a).
