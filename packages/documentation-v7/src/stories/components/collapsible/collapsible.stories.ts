@@ -17,7 +17,7 @@ const meta: Meta<HTMLPostCollapsibleElement> = {
     },
   },
   args: {
-    innerHTML: `<span slot='header'>Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
+    innerHTML: `<span slot="header">Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },
   argTypes: {
     innerHTML: {
@@ -109,8 +109,8 @@ export const HeadingLevel: Story = {
 export const IntricateContent: Story = {
   args: {
     innerHTML: `<p>I am part of the body</p>
-      <span slot='header'>Customus<em>&nbsp;Titulum</em></span>
-      <small slot='header' class='text-muted'>&nbsp;- I am part of the header</small>
+      <span slot="header">Customus<em>&nbsp;Titulum</em></span>
+      <small slot="header" class="text-muted">&nbsp;- I am part of the header</small>
       <p>I am part of the body too!</p>`,
   },
 };

@@ -3,10 +3,14 @@ import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { Components } from '@swisspost/design-system-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'Hidden/components/Icon',
+  title: 'Icons/Icon Component',
   component: 'post-icon',
+  parameters: {
+    badges: [BADGE.NEEDS_REVISION],
+  },
   args: {
     'name': '1022',
     'base': '',

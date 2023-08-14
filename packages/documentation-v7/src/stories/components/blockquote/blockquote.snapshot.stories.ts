@@ -3,12 +3,12 @@ import meta, { Default } from './blockquote.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils/bombArgs';
 
-type Story = StoryObj;
-
 export default {
   ...meta,
-  title: 'Hidden/snapshots/components',
+  title: 'Snapshots',
 };
+
+type Story = StoryObj;
 
 export const Blockquote: Story = {
   render: (_args: Args, context: StoryContext) => {

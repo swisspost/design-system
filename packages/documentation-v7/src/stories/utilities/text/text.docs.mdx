@@ -1,10 +1,9 @@
 import { Meta, Canvas, Story } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
-import { BADGE } from '../../../../.storybook/constants';
 import { SCSS_VARIABLES, TextUtilityAPI } from './text.blocks';
-import * as TextDemos from './text.demo.stories';
+import * as TextStories from './text.stories';
 
-<Meta title="Utilities/Text" parameters={{ badges: [BADGE.NEEDS_REVISION] }} />
+<Meta of={TextStories} />
 
 # Text
 
@@ -16,7 +15,7 @@ import * as TextDemos from './text.demo.stories';
 
 ### Font Family
 
-<Canvas of={TextDemos.FontFamily} sourceState="shown" />
+<Canvas of={TextStories.FontFamily} sourceState="shown" />
 
 #### Set Font Family in SCSS
 
@@ -34,7 +33,7 @@ import * as TextDemos from './text.demo.stories';
 
 ### Font Size
 
-<Canvas of={TextDemos.FontSize} sourceState="shown" />
+<Canvas of={TextStories.FontSize} sourceState="shown" />
 
 #### Set Font Size in SCSS
 
@@ -56,7 +55,7 @@ import * as TextDemos from './text.demo.stories';
   The `.bold`, `.regular`, and `.light` classes are deprecated in favor of the `.fw-*` classes.
 </div>
 
-<Canvas of={TextDemos.FontWeight} sourceState="shown" />
+<Canvas of={TextStories.FontWeight} sourceState="shown" />
 
 #### Set Font Weight in SCSS
 
@@ -74,7 +73,7 @@ import * as TextDemos from './text.demo.stories';
 
 ### Font Style
 
-<Canvas of={TextDemos.FontStyle} sourceState="shown" />
+<Canvas of={TextStories.FontStyle} sourceState="shown" />
 
 <p className="mb-big">
   <em>There are no Sass variables for font styles at this time.</em>
@@ -90,7 +89,7 @@ import * as TextDemos from './text.demo.stories';
   Fixed-size line heights are deprecated in favor of relative line height utility classes.
 </div>
 
-<Canvas of={TextDemos.LineHeight} sourceState="shown" />
+<Canvas of={TextStories.LineHeight} sourceState="shown" />
 
 #### Set Line Height in SCSS
 
@@ -130,7 +129,7 @@ Define how text-blocks are displayed.
 Colorize text with `.text-*` utility classes.
 To colorize links, use the `.link-*` classes instead as they also provide styling for the `:hover` and `:focus` states.
 
-<Canvas of={TextDemos.TextColor} sourceState="shown" />
+<Canvas of={TextStories.TextColor} sourceState="shown" />
 
 #### Set the Color in SCSS
 
@@ -150,13 +149,13 @@ To colorize links, use the `.link-*` classes instead as they also provide stylin
 
 Reset a text color with `.text-reset`, so that an element inherits the color from its parent.
 
-<Canvas of={TextDemos.TextColorReset} sourceState="shown" />
+<Canvas of={TextStories.TextColorReset} sourceState="shown" />
 
 ### Alignment
 
 Easily realign text to components with text alignment classes.
 
-<Canvas of={TextDemos.TextAlign} sourceState="shown" />
+<Canvas of={TextStories.TextAlign} sourceState="shown" />
 
 #### Responsive Alignment
 
@@ -169,22 +168,22 @@ For more detailed informations about breakpoints read our <LinkTo kind="foundati
 
 Wrap text or prevent it from wrapping with the `.text-wrap` and `.text-nowrap` utility classes.
 
-<Canvas of={TextDemos.TextWrapping} sourceState="shown" />
+<Canvas of={TextStories.TextWrapping} sourceState="shown" />
 
 ### Word Break
 
 Prevent long strings of text from breaking your component's layout by using the utility class `.text-break`.
 
-<Canvas of={TextDemos.WordBreak} sourceState="shown" />
+<Canvas of={TextStories.WordBreak} sourceState="shown" />
 
 ### Transform
 
 Transform text with the following text capitalization classes: `.text-lowercase`, `.text-uppercase` and `.text-capitalize`.
 
-<Canvas of={TextDemos.TextTransform} sourceState="shown" />
+<Canvas of={TextStories.TextTransform} sourceState="shown" />
 
 ### Decorations
 
 Decorate text with the following text decoration classes.: `.text-decoration-line-through` and `.text-decoration-none`.
 
-<Canvas of={TextDemos.TextDecoration} sourceState="shown" />
+<Canvas of={TextStories.TextDecoration} sourceState="shown" />

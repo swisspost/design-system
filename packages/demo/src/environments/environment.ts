@@ -10,7 +10,7 @@ export const environment = {
   ANGULAR_VERSION: packageJson.dependencies['@angular/core'],
   BOOTSTRAP_VERSION: packageJson.dependencies.bootstrap,
   NG_BOOTSTRAP_VERSION: packageJson.dependencies['@ng-bootstrap/ng-bootstrap'],
-  NGX_TOASTER: packageJson.dependencies['ngx-toastr'],
+  NGX_TOASTR: packageJson.dependencies['ngx-toastr'],
 };
 
 /*

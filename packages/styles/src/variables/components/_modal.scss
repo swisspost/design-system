@@ -63,6 +63,6 @@ $modal-transition: transform 0.3s ease-out !default;
 $modal-scale-transform: scale(1.02) !default;
 
 // Padding applied to the close button
-$modal-close-btn-padding-y: button.$btn-padding-y-rg !default;
-$modal-close-btn-padding-x: button.$btn-padding-x-rg !default;
-$modal-close-btn-padding: $modal-close-btn-padding-y $modal-close-btn-padding-x !default;
+$modal-btn-close-margin-y: spacing.$size-mini !default;
+$modal-btn-close-margin-x: spacing.$size-regular !default;
+$modal-btn-close-margin: $modal-btn-close-margin-y $modal-btn-close-margin-x !default;
