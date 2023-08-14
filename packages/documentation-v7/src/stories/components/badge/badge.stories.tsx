@@ -129,7 +129,7 @@ function getDefaultContent(args: Args) {
   if (!args.nestedBadge) return html`${args.text}`;
 
   return html`
-    <span>${args.text}</span>
+    <span>${html`${args.text}`}</span>
     <span class="badge">10</span>
   `;
 }
