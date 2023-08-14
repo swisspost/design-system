@@ -10,7 +10,6 @@
 @forward './../../variables/options';
 @forward './../../variables/type';
 @forward './../../variables/components/accordion';
-@forward './../../variables/components/alert';
 @forward './../../variables/components/badge';
 @forward './../../variables/components/breadcrumbs';
 @forward './../../variables/components/button';
@@ -26,9 +25,10 @@
 @forward './../../variables/components/form-switch';
 @forward './../../variables/components/forms';
 @forward './../../variables/components/list-group';
-@forward './../../variables/components/modals';
+@forward './../../variables/components/modal';
 @forward './../../variables/components/nav';
 @forward './../../variables/components/navbar';
+@forward './../../variables/components/notification';
 @forward './../../variables/components/pagination';
 @forward './../../variables/components/paragraph';
 @forward './../../variables/components/popovers';
@@ -37,5 +37,4 @@
 @forward './../../variables/components/subnavigation';
 @forward './../../variables/components/tables';
 @forward './../../variables/components/thumbnails';
-@forward './../../variables/components/toasts';
 @forward './../../variables/components/tooltips';

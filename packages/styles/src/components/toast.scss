@@ -3,27 +3,81 @@
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 
-@use './../variables/components/toasts';
-@use './../variables/components/alert';
-@use './../components/close';
-@use './../functions/color' as color-fn;
-@use './../functions/contrast' as contrast-fn;
-@use './../placeholders/color' as color-ph;
-@use './../placeholders/notifications';
+@use './../mixins/notification' as notification-mx;
+@use './../placeholders/close' as close-ph;
+@use './../placeholders/notification' as notification-ph;
+
+@use './../variables/commons';
+@use './../variables/spacing';
+@use './../variables/components/notification';
+
+.toast {
+  @include notification-mx.notification-size(toast);
+  @include notification-mx.notification-dismissible(toast, 'toast-close-button');
+  @extend %notification-body;
+}
+
+.toast-close-button {
+  @extend %btn-close;
+}
+
+.toast-title {
+  @include notification-mx.notification-heading(toast);
+}
+
+@each $name, $color, $icon in notification.$notification-variants {
+  $selector: '.toast-#{$name}';
+
+  // the .toast-error class is needed because it is automatically added by the ngx-toastr library
+  @if $name == 'danger' {
+    $selector: '#{$selector}, .toast-error';
+  }
+
+  #{$selector} {
+    @include notification-mx.notification-variant($color, $icon);
+  }
+}
 
 // Positioning
+.toast-container {
+  position: fixed;
+  z-index: commons.$zindex-alert;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+
+  .toast {
+    width: 25rem;
+  }
+
+  @include media-breakpoint-down(md) {
+    .toast {
+      max-width: 25rem;
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    right: spacing.$spacer;
+    left: spacing.$spacer;
+
+    .toast {
+      width: 100%;
+    }
+  }
+}
+
 .toast-top-center,
 .toast-top-full-width,
 .toast-top-left,
 .toast-top-right {
-  top: alert.$alert-margin;
+  top: spacing.$spacer;
 }
 
 .toast-bottom-center,
 .toast-bottom-full-width,
 .toast-bottom-right,
 .toast-bottom-left {
-  bottom: alert.$alert-margin;
+  bottom: spacing.$spacer;
 }
 
 .toast-top-left,
@@ -31,7 +85,7 @@
 .toast-top-full-width,
 .toast-bottom-full-width,
 .toast-center-left {
-  left: alert.$alert-margin;
+  left: spacing.$spacer;
 }
 
 .toast-top-right,
@@ -39,7 +93,7 @@
 .toast-top-full-width,
 .toast-bottom-full-width,
 .toast-center-right {
-  right: alert.$alert-margin;
+  right: spacing.$spacer;
 }
 
 .toast-top-center,
@@ -64,123 +118,5 @@
 .toast-bottom-full-width {
   .toast {
     width: 100% !important;
-  }
-}
-
-// Base styling
-.toast-container {
-  @extend %notification-container;
-  position: fixed;
-  pointer-events: none;
-
-  * {
-    box-sizing: border-box;
-  }
-}
-
-.toast {
-  $effective-line-height: (alert.$alert-line-height * alert.$alert-font-size-small);
-
-  @extend %notification;
-
-  display: flex !important; // Needs to be important to override display styling by the ngx-toaster
-  width: alert.$alert-toast-width;
-
-  min-height: 2 * alert.$alert-toast-padding-y + 2 * $effective-line-height;
-
-  padding: alert.$alert-toast-padding-y alert.$alert-toast-padding-x;
-  padding-left: (alert.$alert-toast-padding-x * 2 + alert.$alert-toast-icon-size);
-
-  overflow: hidden;
-  background-position: alert.$alert-toast-padding-x center;
-
-  background-size: alert.$alert-toast-icon-size;
-  font-size: alert.$alert-font-size-small;
-  pointer-events: auto;
-
-  &.no-icon {
-    padding-left: alert.$alert-toast-padding-x;
-  }
-
-  &:hover {
-    opacity: 1;
-    box-shadow: alert.$alert-toast-box-shadow-hover;
-    cursor: pointer;
-  }
-
-  .toast-close-button {
-    @extend %notification-close;
-
-    padding: alert.$alert-toast-padding-y alert.$alert-toast-padding-x;
-  }
-
-  .toast-close-button,
-  .btn-close {
-    ~ .toast-message,
-    ~ .toast-title {
-      padding-right: calc(#{alert.$alert-toast-padding-x} + #{alert.$alert-close-icon-size});
-    }
-
-    + .toast-message {
-      font-weight: bold;
-    }
-  }
-}
-
-.toast-title {
-  @extend %notification-title;
-
-  font-size: alert.$alert-font-size-small;
-}
-
-.toast-message {
-  font-size: alert.$alert-font-size-small;
-  word-wrap: break-word;
-
-  a:hover {
-    text-decoration: none;
-  }
-}
-
-/* stylelint-disable */
-.toast-close-button {
-  @extend .btn-close;
-}
-/* stylelint-enable */
-
-// Variants
-
-@each $name, $color, $icon in alert.$alert-list {
-  .toast-#{$name} {
-    --post-bg-rgb: #{color-fn.rgb-values($color)};
-    @extend %notification-#{$name};
-
-    @if (contrast-fn.light-or-dark($color) == 'dark') {
-      @extend %color-background-dark-variables;
-    } @else {
-      @extend %color-background-light-variables;
-    }
-
-    .toast-close-button,
-    .btn-close {
-      @extend %notification-#{$name}-close;
-    }
-  }
-}
-
-// Responsive Design
-@include media-breakpoint-down(md) {
-  .toast-container .toast {
-    width: alert.$alert-toast-width-small-breakpoint;
-  }
-}
-@include media-breakpoint-down(sm) {
-  .toast-container {
-    right: alert.$alert-margin;
-    left: alert.$alert-margin;
-
-    .toast {
-      width: 100%;
-    }
   }
 }

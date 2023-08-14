@@ -1,14 +1,6 @@
-@use "src/placeholders/notifications";
-@use "src/variables/components/alert";
+@use "src/placeholders/notification";
+@use "src/variables/components/notification";
 
 .notification-container {
-  @extend %notification-container;
-  @extend %notification;
-  @extend %notification-title;
-  @extend %notification-close;
-
-  @each $name, $color, $icon in alert.$alert-list {
-    @extend %notification-#{$name};
-    @extend %notification-#{$name}-close;
-  }
+  @extend %notification-body;
 }
