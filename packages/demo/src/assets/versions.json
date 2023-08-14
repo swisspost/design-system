@@ -1,6 +1,7 @@
 [
   {
     "title": "New docs (beta)",
+    "version": "next",
     "description": "Developer documentation for the Swiss Post Design System.",
     "url": "https://next.design-system.post.ch"
   },
