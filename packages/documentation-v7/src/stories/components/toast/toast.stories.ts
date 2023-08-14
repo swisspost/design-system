@@ -250,15 +250,15 @@ const meta: Meta = {
 
       if (args.stacked) {
         return html`
-          <div>
+          <div class="toast-container-wrapper-stacked">
             ${story()}
             <style>
-              #story--hidden-demos-components-toast--stacked .toast-container {
+              .toast-container-wrapper-stacked .toast-container {
                 position: relative;
                 inset: 0;
               }
 
-              #story--hidden-demos-components-toast--stacked .toast-container > .toast:last-child {
+              .toast-container-wrapper-stacked .toast-container > .toast:last-child {
                 margin-bottom: 0;
               }
             </style>

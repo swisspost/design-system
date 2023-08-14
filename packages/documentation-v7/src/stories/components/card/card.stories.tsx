@@ -296,7 +296,7 @@ function getCardImage({ imagePosition }: Args) {
   `;
 }
 
-function rendererCard(args: Args) {
+function renderCard(args: Args) {
   const { showImage, imagePosition, showHeader, showBody, showListGroup, showFooter } = args;
 
   return html`
@@ -316,7 +316,7 @@ type Story = StoryObj;
 
 const singleCardStory: Story = {
   decorators: [ gridContainer ],
-  render: rendererCard,
+  render: renderCard,
 }
 
 export const Default: Story = {
@@ -403,7 +403,7 @@ export const CardGroup: Story = {
 
     return html`
     <div class="card-group">
-      ${cardTexts.map(text => html`${rendererCard({ ...args, text })}`)}
+      ${cardTexts.map(text => html`${renderCard({ ...args, text })}`)}
     </div>
   `;
   },
