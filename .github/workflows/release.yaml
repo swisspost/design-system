@@ -82,6 +82,9 @@ jobs:
       # Update versions.json
       - name: Update versions.json
         uses: ./.github/actions/update-versions
+        with:
+          package_file_path: ./packages/demo/package.json
+          versions_file_path: ./packages/demo/src/assets/versions.json
 
       # On main: update versions.json, commit and push
       - name: Push changes if on main
@@ -103,6 +106,9 @@ jobs:
       # Update versions.json
       - name: Update versions.json
         uses: ./.github/actions/update-versions
+        with:
+          package_file_path: ./packages/demo/package.json
+          versions_file_path: ./packages/demo/src/assets/versions.json
 
       # On release, create a changeset to update main docs
       - name: Create a changeset for the versions update
