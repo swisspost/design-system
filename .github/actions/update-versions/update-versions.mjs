@@ -1,5 +1,4 @@
 import fs from 'fs';
-import { get } from 'http';
 import path from 'path';
 
 const args = process.argv.splice(2);
@@ -44,6 +43,8 @@ const getURL = majorVersion =>
   majorVersion === latestMajor
     ? 'https://design-system.post.ch'
     : `https://design-system.post.ch/v${majorVersion}`;
+const getTitle = majorVersion =>
+  majorVersion === latestMajor ? 'Current' : `Version ${majorVersion}`;
 
 // Update or add an entry
 let updatedVersions;
@@ -58,6 +59,7 @@ if (hasVersionEntry) {
     return {
       ...version,
       version: packageJSON.version,
+      description: packageJSON.description,
       url: getURL(localMajorVersion),
       lastUpdated: Date.now(),
       dependencies: interestingDependencies,
@@ -66,10 +68,14 @@ if (hasVersionEntry) {
 } else {
   // Add a new entry and sort based on version number
   updatedVersions = [
-    // Update URL on past releases to prevent two URLs going to prod
-    ...versionsJSON.map(v => ({ ...v, url: getURL(getMajorVersion(v.version)) })),
+    // Update URL and title on past releases to prevent two URLs going to prod
+    ...versionsJSON.map(v => ({
+      ...v,
+      url: getURL(getMajorVersion(v.version)),
+      title: getTitle(getMajorVersion(v.version)),
+    })),
     {
-      title: `Version ${currentMajorVersion}`,
+      title: getTitle(currentMajorVersion),
       version: packageJSON.version,
       description: packageJSON.description,
       created: Date.now(),
