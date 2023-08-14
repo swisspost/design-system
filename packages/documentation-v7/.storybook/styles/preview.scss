@@ -123,17 +123,29 @@
 
     &.alert-sm {
       padding: 0.25em 1em 0.25em 3em;
-      background-size: 1.5em;
-      background-position: 0.75em center;
       font-size: 0.9em;
       font-weight: 400;
+
+      &::before {
+        height: 1.5em;
+        width: 1.5em;
+        left: 0.75em;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
 
     &.alert-md {
       padding: 1em 2em 1em 4em;
-      background-size: 2em;
-      background-position: 1em center;
       font-size: inherit;
+
+      &::before {
+        height: 2em;
+        width: 2em;
+        left: 1em;
+        top: 50%;
+        transform: translateY(-50%);
+      }
     }
   }
 }
