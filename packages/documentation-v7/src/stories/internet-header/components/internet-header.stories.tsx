@@ -8,19 +8,13 @@ import { spread } from '@open-wc/lit-helpers';
 import { BADGE } from '../../../../.storybook/constants';
 import './internet-header.styles.scss';
 
-const meta: Meta = {
+const meta: Meta<HTMLSwisspostInternetHeaderElement> = {
   title: 'Internet Header/Header Component',
   component: 'swisspost-internet-header',
   render: renderInternetHeader,
   decorators: [ mockPage ],
   parameters: {
     layout: 'fullscreen',
-    docs: {
-      story: {
-        inline: false,
-        height: '50vh',
-      },
-    },
     actions: {
       handles: ['headerLoaded', 'languageChanged'],
     },
@@ -86,7 +80,7 @@ function mockPage(story: any) {
 }
 
 // RENDERER
-function renderInternetHeader(args: Args) {
+function renderInternetHeader(args: HTMLSwisspostInternetHeaderElement) {
   console.log(args);
   const filteredArgs = filterArgs(args, arg => arg !== null && arg !== undefined);
   return html`
@@ -95,19 +89,20 @@ function renderInternetHeader(args: Args) {
 }
 
 // STORIES
-type Story = StoryObj;
+type Story = StoryObj<HTMLSwisspostInternetHeaderElement>;
 
 export const Default: Story = {};
 
 export const CustomNavigation: Story = {
   args: {
-    'custom-config': {
+    customConfig: {
       de: {
         header: {
           navMain: [
             {
               title: 'Meine Links (custom config)',
               text: 'Meine Links',
+              url: '#',
               flyout: [
                 {
                   title: 'Google',
@@ -127,6 +122,7 @@ export const CustomNavigation: Story = {
             {
               title: 'Meine Links (custom config)',
               text: 'Meine Links',
+              url: '#',
               flyout: [
                 {
                   title: 'Google',
@@ -146,6 +142,7 @@ export const CustomNavigation: Story = {
             {
               title: 'Meine Links (custom config)',
               text: 'Meine Links',
+              url: '#',
               flyout: [
                 {
                   title: 'Google',
@@ -165,6 +162,7 @@ export const CustomNavigation: Story = {
             {
               title: 'Meine Links (custom config)',
               text: 'Meine Links',
+              url: '#',
               flyout: [
                 {
                   title: 'Google',
@@ -184,9 +182,10 @@ export const CustomNavigation: Story = {
 
 export const CustomOnlineServiceFlyout: Story = {
   args: {
-    'os-flyout-overrides': {
+    osFlyoutOverrides: {
       title: 'Custom OS Flyout',
       text: 'Custom OS Flyout',
+      url: '#',
       flyout: [
         {
           title: 'A title',
@@ -213,7 +212,7 @@ export const CustomOnlineServiceFlyout: Story = {
 
 export const FullWidth: Story = {
   args: {
-    'full-width': true,
+    fullWidth: true,
   },
 };
 
