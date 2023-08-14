@@ -42,7 +42,7 @@ const preview: Preview = {
           'Templates',
           'Utilities',
           'Misc',
-          ['Migration Guide', 'Change Log', 'Versions'],
+          ['Migration Guide', 'Changelog', 'Versions'],
           'Hidden',
         ],
       },
