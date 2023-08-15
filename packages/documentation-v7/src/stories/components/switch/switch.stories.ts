@@ -161,13 +161,6 @@ function renderSwitch(args: Args, context: StoryContext) {
 
   const handleChange = (e: Event) => {
     updateArgs({ checked: !args.checked });
-
-    // if (document.activeElement === e.target) {
-    //   setTimeout(() => {
-    //     const element: HTMLInputElement | null = document.querySelector(`#${context.id}`);
-    //     if (element) element.focus();
-    //   }, 25);
-    // }
   };
 
   return html`
