@@ -55,10 +55,6 @@ export namespace Components {
     }
     interface PostTabHeader {
         /**
-          * If `true`, the tab header is initially activated and its associated panel is shown.
-         */
-        "active": boolean;
-        /**
           * The name of the panel controlled by the tab header.
          */
         "panel": string;
@@ -70,6 +66,10 @@ export namespace Components {
         "name": string;
     }
     interface PostTabs {
+        /**
+          * The name of the panel that is initially shown.
+         */
+        "activePanel": string;
         /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
@@ -168,10 +168,6 @@ declare namespace LocalJSX {
     }
     interface PostTabHeader {
         /**
-          * If `true`, the tab header is initially activated and its associated panel is shown.
-         */
-        "active"?: boolean;
-        /**
           * The name of the panel controlled by the tab header.
          */
         "panel"?: string;
@@ -183,6 +179,10 @@ declare namespace LocalJSX {
         "name"?: string;
     }
     interface PostTabs {
+        /**
+          * The name of the panel that is initially shown.
+         */
+        "activePanel"?: string;
         /**
           * An event emitted whenever a new tab becomes active. The payload is the name of the associated panel.
          */

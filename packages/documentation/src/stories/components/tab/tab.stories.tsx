@@ -20,7 +20,7 @@ export default {
 } as Meta;
 
 const Template = () => (
-  <PostTabs>
+  <PostTabs activePanel="third">
     <PostTabHeader slot="tabs" panel="first">First</PostTabHeader>
     <PostTabHeader slot="tabs" panel="second">Second</PostTabHeader>
     <PostTabHeader slot="tabs" panel="third">Third</PostTabHeader>

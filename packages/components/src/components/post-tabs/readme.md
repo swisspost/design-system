@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property      | Attribute      | Description                                    | Type     | Default     |
+| ------------- | -------------- | ---------------------------------------------- | -------- | ----------- |
+| `activePanel` | `active-panel` | The name of the panel that is initially shown. | `string` | `undefined` |
+
+
 ## Events
 
 | Event       | Description                                                                                          | Type                  |

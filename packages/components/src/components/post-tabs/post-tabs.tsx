@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Method, Event, EventEmitter } from '@stencil/core';
+import { Component, Host, h, Element, Method, Event, EventEmitter, Prop } from '@stencil/core';
 import { version } from '../../../package.json';
 
 @Component({
@@ -7,10 +7,15 @@ import { version } from '../../../package.json';
   shadow: true,
 })
 export class PostTabs {
-  private activeTab: HTMLPostTabHeaderElement;
-  private panelTabMap = new Map<HTMLPostTabHeaderElement, HTMLPostTabPanelElement>;
+  private currentlyActiveTab: HTMLPostTabHeaderElement;
+  private panelByName = new Map<string, HTMLPostTabPanelElement>;
 
   @Element() host: HTMLPostTabsElement;
+
+  /**
+   * The name of the panel that is initially shown.
+   */
+  @Prop() readonly activePanel: string;
 
   /**
    * An event emitted whenever a new tab becomes active.
@@ -22,14 +27,13 @@ export class PostTabs {
     const panels: HTMLPostTabPanelElement[] = Array.from(this.host.querySelectorAll('post-tab-panel'));
     panels.forEach(panel => {
       // map the panel to its associated tab
-      const tab = this.host.querySelector(`post-tab-header[panel=${panel.name}]`);
-      this.panelTabMap.set(tab as HTMLPostTabHeaderElement, panel);
+      this.panelByName.set(panel.name, panel);
 
       // remove the panel from the view: only the panel associated with the active tab will be shown
       panel.remove();
     });
 
-    const tabs: HTMLPostTabHeaderElement[] = Array.from(this.panelTabMap.keys());
+    const tabs: HTMLPostTabHeaderElement[] = Array.from(this.host.querySelectorAll('post-tab-header'));
     tabs.forEach(tab => {
       // add event listener to change the active tab on click
       tab.addEventListener('click', e => {
@@ -44,17 +48,17 @@ export class PostTabs {
     });
 
     // activate the tab set as active or the first tab by default
-    const activeTab = tabs.find(tab => tab.active) || tabs[0];
+    const activeTab = tabs.find(tab => tab.panel === this.activePanel) || tabs[0];
     this.setActiveTab(activeTab);
   }
 
   private setActiveTab(tab: HTMLPostTabHeaderElement) {
-    if (this.activeTab) {
-      this.deactivateTab(this.activeTab);
+    if (this.currentlyActiveTab) {
+      this.deactivateTab(this.currentlyActiveTab);
     }
 
-    this.activeTab = tab;
-    this.activateTab(this.activeTab);
+    this.currentlyActiveTab = tab;
+    this.activateTab(this.currentlyActiveTab);
   }
 
   /**
@@ -72,7 +76,7 @@ export class PostTabs {
     tabTitle.setAttribute('aria-selected', 'true');
     tabTitle.classList.add('active');
 
-    const panel = this.panelTabMap.get(tab);
+    const panel = this.panelByName.get(tab.panel);
     this.host.shadowRoot.querySelector('.tab-content').appendChild(panel);
 
     this.tabChange.emit(panel.name);
@@ -83,7 +87,7 @@ export class PostTabs {
     tabTitle.setAttribute('aria-selected', 'false');
     tabTitle.classList.remove('active');
 
-    const panel = this.panelTabMap.get(tab);
+    const panel = this.panelByName.get(tab.panel);
     panel.remove();
   }
 

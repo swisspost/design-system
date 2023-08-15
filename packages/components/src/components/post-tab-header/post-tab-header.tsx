@@ -8,11 +8,6 @@ import { checkNonEmpty } from '../../utils';
 })
 export class PostTabHeader {
   /**
-   * If `true`, the tab header is initially activated and its associated panel is shown.
-   */
-  @Prop() readonly active: boolean;
-
-  /**
    * The name of the panel controlled by the tab header.
    */
   @Prop() readonly panel: string;
