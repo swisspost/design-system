@@ -145,7 +145,7 @@ export const Default: Story = {
     );
 
     const image = html`
-      <div key="image" class="topic-teaser-image-container">
+      <div class="topic-teaser-image-container">
         <img
           class="topic-teaser-image"
           src="https://picsum.photos/id/553/800/800"
