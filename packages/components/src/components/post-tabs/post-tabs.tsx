@@ -56,6 +56,11 @@ export class PostTabs {
   }
 
   private setActiveTab(tab: HTMLPostTabHeaderElement) {
+    // don't do anything if the tab is already active
+    if (this.currentlyActiveTab === tab) {
+      return;
+    }
+
     // deactivate the currently active tab if there is one
     if (this.currentlyActiveTab) {
       this.deactivateTab(this.currentlyActiveTab);
