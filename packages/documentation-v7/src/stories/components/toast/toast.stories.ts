@@ -1,9 +1,13 @@
 import { useArgs } from '@storybook/preview-api';
 import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'Hidden/demos/components/Toast',
+  title: 'Components/Toast',
+  parameters: {
+    badges: [BADGE.NEEDS_REVISION],
+  },
   args: {
     title: 'Titulum',
     content: 'Contentus momentus vero siteos et accusam iretea et justo.',
@@ -246,15 +250,15 @@ const meta: Meta = {
 
       if (args.stacked) {
         return html`
-          <div>
+          <div class="toast-container-wrapper-stacked">
             ${story()}
             <style>
-              #story--hidden-demos-components-toast--stacked .toast-container {
+              .toast-container-wrapper-stacked .toast-container {
                 position: relative;
                 inset: 0;
               }
 
-              #story--hidden-demos-components-toast--stacked .toast-container > .toast:last-child {
+              .toast-container-wrapper-stacked .toast-container > .toast:last-child {
                 margin-bottom: 0;
               }
             </style>

@@ -288,7 +288,7 @@ const Template = (args: Args) => {
       <swisspost-internet-header {...filteredArgs} />
       <main className="container mt-huge-r">
         <swisspost-internet-breadcrumbs />
-        <h1 className="mt-huge-r mb-big-r bold">CWF Internet Header</h1>
+        <h1 className="mt-huge-r mb-big-r bold">Design System Internet Header</h1>
         <p className="fake-content my-big"></p>
         <p className="fake-content my-big"></p>
         <p className="fake-content my-big"></p>

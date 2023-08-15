@@ -4,12 +4,14 @@ import { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-comp
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getAlertClasses } from './getAlertClasses';
+import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'Hidden/demos/components/Alert',
+  title: 'Components/Alert',
   render: renderAlert,
   decorators: [externalControl],
   parameters: {
+    badges: [BADGE.NEEDS_REVISION],
     controls: {
       exclude: ['Title', 'Content'],
     },
@@ -47,9 +49,10 @@ const meta: Meta = {
           'alert-danger': 'Danger',
           'alert-warning': 'Warning',
           'alert-info': 'Info',
+          'alert-gray': 'Gray',
         },
       },
-      options: ['alert-primary', 'alert-success', 'alert-danger', 'alert-warning', 'alert-info'],
+      options: ['alert-primary', 'alert-success', 'alert-danger', 'alert-warning', 'alert-info', 'alert-gray'],
       table: {
         category: 'General',
       },
@@ -159,7 +162,7 @@ function renderAlert(args: Args) {
     <div class="${classes}" role="alert">
       ${
         /* Dismissible Button */
-        args.dismissible || args.fixed
+        args.dismissible
           ? html`
               <button
                 class="btn-close"
@@ -238,18 +241,6 @@ export const Dismissible: Story = {
   },
 };
 
-export const Fixed: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Variant', 'Icon', 'No Icon', 'Dismissible', 'Action Buttons', 'Show'],
-    },
-  },
-  args: {
-    fixed: true,
-    show: false,
-  },
-};
-
 export const ActionButtons: Story = {
   parameters: {
     controls: {
@@ -259,5 +250,18 @@ export const ActionButtons: Story = {
   args: {
     variant: 'alert-info',
     action: true,
+  },
+};
+
+export const Fixed: Story = {
+  parameters: {
+    controls: {
+      exclude: ['Variant', 'Icon', 'No Icon', 'Dismissible', 'Action Buttons', 'Show'],
+    },
+  },
+  args: {
+    fixed: true,
+    dismissible: true,
+    show: false,
   },
 };

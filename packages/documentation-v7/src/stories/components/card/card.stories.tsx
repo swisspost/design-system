@@ -296,7 +296,7 @@ function getCardImage({ imagePosition }: Args) {
   `;
 }
 
-function rendererCard(args: Args) {
+function renderCard(args: Args) {
   const { showImage, imagePosition, showHeader, showBody, showListGroup, showFooter } = args;
 
   return html`
@@ -316,7 +316,7 @@ type Story = StoryObj;
 
 const singleCardStory: Story = {
   decorators: [ gridContainer ],
-  render: rendererCard,
+  render: renderCard,
 }
 
 export const Default: Story = {
@@ -403,8 +403,32 @@ export const CardGroup: Story = {
 
     return html`
     <div class="card-group">
-      ${cardTexts.map(text => html`${rendererCard({ ...args, text })}`)}
+      ${cardTexts.map(text => html`${renderCard({ ...args, text })}`)}
     </div>
   `;
   },
+}
+
+export const BackgroundImage: Story = {
+  ...singleCardStory,
+  parameters: {
+    controls: {
+      include: [],
+    },
+  },
+  args: {
+    showImage: false,
+    customBody: `<img class="card-img" src="https://picsum.photos/id/20/300/200" alt="Card image" />
+  <div class="card-img-overlay">
+    <div class="card-body">
+      <h5 class="card-title">Titulum</h5>
+
+      <p class="card-text">Contentus momentus vero siteos et accusam iretea et justo.</p>
+
+      <button class="btn btn-primary btn-animated">
+        <span>Butonon teksto</span>
+      </button>
+    </div>
+  </div>`
+  }
 }

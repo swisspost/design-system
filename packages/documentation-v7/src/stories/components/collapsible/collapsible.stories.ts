@@ -3,20 +3,21 @@ import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-
+import { BADGE } from '../../../../.storybook/constants';
 import { definedProperties } from '../../../utils';
 
 const meta: Meta<HTMLPostCollapsibleElement> = {
-  title: 'Hidden/demos/components/Collapsible',
+  title: 'Components/Collapsible',
   component: 'post-collapsible',
   parameters: {
+    badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=42%3A358&mode=design&t=OK8meBHjpJvBhwZI-1',
     },
   },
   args: {
-    innerHTML: `<span slot='header'>Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
+    innerHTML: `<span slot="header">Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
   },
   argTypes: {
     innerHTML: {
@@ -108,8 +109,8 @@ export const HeadingLevel: Story = {
 export const IntricateContent: Story = {
   args: {
     innerHTML: `<p>I am part of the body</p>
-      <span slot='header'>Customus<em>&nbsp;Titulum</em></span>
-      <small slot='header' class='text-muted'>&nbsp;- I am part of the header</small>
+      <span slot="header">Customus<em>&nbsp;Titulum</em></span>
+      <small slot="header" class="text-muted">&nbsp;- I am part of the header</small>
       <p>I am part of the body too!</p>`,
   },
 };

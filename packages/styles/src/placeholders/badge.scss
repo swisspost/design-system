@@ -33,10 +33,6 @@
     font-size: badge.$badge-nested-font-size;
   }
 
-  > .btn-close {
-    padding: 0;
-  }
-
   > .badge,
   > .btn-close {
     margin-right: -1 * (badge.$badge-padding-x - badge.$badge-nested-translate-x);

@@ -1,5 +1,20 @@
 # @swisspost/design-system-documentation
 
+## 1.12.0
+
+### Minor Changes
+
+- Added a gray notification variant for cookie banners. (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.10
+  - @swisspost/design-system-styles@6.3.0
+  - @swisspost/internet-header@1.9.0
+  - @swisspost/design-system-components@1.3.10
+  - @swisspost/design-system-components-react@1.0.16
+
 ## 1.11.3
 
 ### Patch Changes

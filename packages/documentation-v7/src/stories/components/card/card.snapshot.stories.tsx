@@ -5,7 +5,7 @@ import { bombArgs } from '../../../utils/bombArgs';
 
 export default {
   ...meta,
-  title: 'Hidden/snapshots/components/Card',
+  title: 'Snapshots',
 };
 
 type Story = StoryObj;

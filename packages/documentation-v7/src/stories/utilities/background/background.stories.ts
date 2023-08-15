@@ -1,8 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'hidden/demos/utilities/Background',
+  title: 'Utilities/Background',
+  parameters: {
+    badges: [BADGE.TODO],
+  },
 };
 
 export default meta;

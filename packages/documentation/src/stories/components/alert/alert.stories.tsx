@@ -50,9 +50,10 @@ export default {
           'alert-danger': 'Danger',
           'alert-warning': 'Warning',
           'alert-info': 'Info',
+          'alert-gray': 'Gray',
         },
       },
-      options: ['alert-primary', 'alert-success', 'alert-danger', 'alert-warning', 'alert-info'],
+      options: ['alert-primary', 'alert-success', 'alert-danger', 'alert-warning', 'alert-info', 'alert-gray'],
       table: {
         category: 'General',
       },
@@ -146,7 +147,7 @@ const Template = (args: Args) => {
   return (
     <div className={classes} role="alert">
       {/* Dismissible Button */}
-      {args.dismissible || args.fixed ? (
+      {args.dismissible ? (
         <button
           className="btn-close"
           data-dismiss="alert"
@@ -276,6 +277,7 @@ Fixed.parameters = {
 };
 Fixed.args = {
   fixed: true,
+  dismissible: true,
   show: false,
 };
 

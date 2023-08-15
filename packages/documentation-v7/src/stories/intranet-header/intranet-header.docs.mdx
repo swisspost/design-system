@@ -1,11 +1,7 @@
 import { Meta, ArgTypes } from '@storybook/blocks';
-import { BADGE } from '../../../.storybook/constants';
-import intranetHeaderMeta from './intranet-header.demo.stories';
+import * as IntranetHeaderStories from './intranet-header.stories';
 
-<Meta
-  title="Intranet Header/Getting Started"
-  parameters={{ badges: [BADGE.NEEDS_REVISION] }}
-/>
+<Meta of={IntranetHeaderStories} />
 
 # @swisspost/design-system-intranet-header
 
@@ -76,7 +72,7 @@ export class AppModule {}
 
 ### Props
 
-<ArgTypes of={intranetHeaderMeta} />
+<ArgTypes of={IntranetHeaderStories} />
 
 ## Examples
 

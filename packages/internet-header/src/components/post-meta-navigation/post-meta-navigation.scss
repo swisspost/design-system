@@ -1,11 +1,10 @@
-@use "@swisspost/design-system-styles/variables/color";
-@use "@swisspost/design-system-styles/functions";
-@use "../../utils/utils.scss";
-@use "../../utils/mixins.scss";
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/functions';
+@use '../../utils/utils.scss';
+@use '../../utils/mixins.scss';
 
 :host {
   display: block;
-  background: color.$gray-background-light;
   font-size: functions.px-to-rem(14px);
 }
 
@@ -14,6 +13,8 @@
   justify-content: flex-end;
   align-items: center;
   min-height: functions.px-to-rem(48px);
+
+  background: color.$gray-background-light;
 
   @media (min-width: 1441px) {
     &:not(.full-width) {
@@ -40,11 +41,23 @@
       --separator-display: block;
       --separator-height: #{functions.px-to-rem(34px)};
     }
+
+    &::before {
+      display: block;
+      content: '';
+      position: absolute;
+      top: 0px;
+      height: var(--meta-header-height);
+      background-color: color.$gray-background-light;
+      left: 50%;
+      width: 50%;
+    }
   }
 }
 
 .meta-navigation {
   .horizontal & {
+    position: relative;
     padding-right: 1rem;
   }
 }

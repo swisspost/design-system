@@ -1,19 +1,15 @@
 import { Meta, Canvas } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
-import { BADGE } from '../../../../.storybook/constants';
 import { forEach } from '../../../utils/react';
 import { parse } from '../../../utils/sass-export';
 import { BackgroundContainer } from './background.blocks';
-import * as BackgroundDemos from './background.demo.stories';
+import * as BackgroundStories from './background.stories';
 import scss from './background.module.scss';
 import './background.styles.scss';
 
 export const backgroundColors = parse(scss);
 
-<Meta
-  title="Utilities/Background"
-  parameters={{ badges: [BADGE.TODO] }}
-/>
+<Meta of={BackgroundStories} />
 
 # Background
 
@@ -30,7 +26,7 @@ Background utilities also set the text color by defining the following CSS varia
 
 To set a background on an element, simply add a `.bg-{colorname}` class to it.
 
-<Canvas of={BackgroundDemos.ColoredBackground} sourceState='shown' />
+<Canvas of={BackgroundStories.ColoredBackground} sourceState='shown' />
 
 ### Available Backgrounds
 
@@ -67,7 +63,7 @@ It is possible to nest backgrounds.
   best possible contrast.
 </div>
 
-<Canvas of={BackgroundDemos.NestedBackgrounds} sourceState='shown' />
+<Canvas of={BackgroundStories.NestedBackgrounds} sourceState='shown' />
 
 ## Opacity
 
@@ -79,4 +75,4 @@ Change the background opacity simply by setting the CSS variable `--post-bg-opac
   More information on that topic is available on our <LinkTo kind="foundations-accessibility" story="docs">accessibility docs</LinkTo>.
 </div>
 
-<Canvas of={BackgroundDemos.TranslucentBackgrounds} sourceState='shown' />
+<Canvas of={BackgroundStories.TranslucentBackgrounds} sourceState='shown' />
