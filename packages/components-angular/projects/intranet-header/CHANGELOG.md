@@ -1,5 +1,83 @@
 # @swisspost/design-system-intranet-header
 
+## 4.0.9
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.3.0
+
+## 4.0.8
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.6
+
+## 4.0.7
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.5
+
+## 4.0.6
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.4
+
+## 4.0.5
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.3
+
+## 4.0.4
+
+### Patch Changes
+
+- Fixed the auto-close behavior of optional dropdown content. Clicking links or routerLinks (<a> tags) now closes the dropdown as expected. (by [@gfellerph](https://github.com/gfellerph) with [#1443](https://github.com/swisspost/design-system/pull/1443))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.2
+
+## 4.0.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.1
+
+## 4.0.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.0
+
+## 4.0.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.1.0
+
+## 4.0.0
+
+### Major Changes
+
+- Major dependency update. The following versions are now supported:
+  - Angular 15
+  - Bootstrap 5.2.3
+  - ng-bootstrap 14 (by [@gfellerph](https://github.com/gfellerph) with [#1210](https://github.com/swisspost/design-system/pull/1210))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.0.0
+
 ## 3.1.1
 
 ### Patch Changes

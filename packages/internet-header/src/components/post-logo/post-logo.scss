@@ -1,9 +1,10 @@
-@use "@swisspost/design-system-styles/variables/color";
-@use "../../utils/utils.scss";
-@use "../../utils/mixins.scss";
+@use '@swisspost/design-system-styles/variables/color';
+@use '../../utils/utils.scss';
+@use '../../utils/mixins.scss';
 
 :host {
   display: block;
+  aspect-ratio: 1/1;
 }
 
 .logo {
@@ -11,26 +12,9 @@
   align-items: center;
   background: color.$yellow;
 
-}
-
-svg,
-.logo-svg {
-  display: block;
-  height: var(--header-height);
-}
-
-.square-logo {
-  display: block;
-
-  @include mixins.min(sm) {
-    display: none;
-  }
-}
-
-.full-logo {
-  display: none;
-
-  @include mixins.min(sm) {
+  svg {
     display: block;
+    width: 100%;
+    height: 100%;
   }
 }

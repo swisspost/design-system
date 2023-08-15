@@ -1,14 +1,30 @@
 <div class="heading py-5">
   <h1 id="alerts" class="bold font-curve-large">Alerts / Notifications</h1>
-  <h2 class="font-curve-medium">Using Bootstrap v5.0</h2>
-  <a
-    href="https://getbootstrap.com/docs/5.0/components/alerts/"
-    target="_blank"
-    rel="noopener"
-    class="btn btn-primary btn-sm btn-animated"
-  >
-    <span>Bootstrap Documentation</span>
-  </a>
+  <app-dependency-link></app-dependency-link>
+</div>
+
+<div class="alert alert-warning mb-bigger-big">
+  <p>
+    The following two color variants are deprecated and will be removed in the next major version
+    of the styles package:
+  </p>
+  <ul>
+    <li>
+      <code>alert-error</code>
+      becomes
+      <code>alert-danger</code>
+    </li>
+    <li>
+      <code>alert-notification</code>
+      becomes
+      <code>alert-primary</code>
+    </li>
+    <li>
+      <code>toast-notification</code>
+      becomes
+      <code>toast-primary</code>
+    </li>
+  </ul>
 </div>
 
 <section class="continous-text">
@@ -45,24 +61,6 @@
   content. It should always close the toast when you click on it.
 </p>
 <section>
-  <div class="alert alert-warning">
-    <p>
-      The following two color variants are deprecated and will be removed in the next major version
-      of the styles package:
-    </p>
-    <ul>
-      <li>
-        <code>alert-error</code>
-        becomes
-        <code>alert-danger</code>
-      </li>
-      <li>
-        <code>alert-notification</code>
-        becomes
-        <code>alert-primary</code>
-      </li>
-    </ul>
-  </div>
   <app-toast-demo></app-toast-demo>
 </section>
 <code

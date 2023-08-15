@@ -7,5 +7,6 @@
   fontWeights: [('light', 'normal', 'bold')];
   fontStyles: [('normal', 'italic')];
   fontLineheights: [map.keys(post.$line-heights)];
+  bootstrapLineHeights: [('1', 'base', 'sm', 'lg')];
   colors: [map.keys(post.$theme-colors)]
 }

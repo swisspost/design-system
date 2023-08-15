@@ -1,19 +1,18 @@
 import { Rule } from '@angular-devkit/schematics';
-import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
-import { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
+import { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
+import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 
 export default function (): Rule {
-  return new DomMigration(
+  return getDomMigrationRule(
     new BlockquoteFigureWrapperUpdate,
-    new BlockquotePClassUpdate
-  ).rule;
+    new BlockquotePClassUpdate,
+  );
 }
 
-class BlockquoteFigureWrapperUpdate implements IDomUpdate {
+class BlockquoteFigureWrapperUpdate implements DomUpdate {
   selector = 'blockquote.blockquote';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -37,10 +36,10 @@ class BlockquoteFigureWrapperUpdate implements IDomUpdate {
   }
 }
 
-class BlockquotePClassUpdate implements IDomUpdate {
+class BlockquotePClassUpdate implements DomUpdate {
   selector = 'blockquote.blockquote > p.mb-0';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements.removeClass('mb-0');
   }
 }

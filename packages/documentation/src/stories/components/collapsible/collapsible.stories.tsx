@@ -42,9 +42,9 @@ const Template: StoryFn<PostCollapsibleArgs> = (args, context) => {
   const collapsibleId = `collapsible-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
 
   const collapsibleProperties = definedProperties({
-    collapsed: args.collapsed,
-    headingLevel: args.headingLevel,
-    id: hasHeader ? undefined : collapsibleId,
+    'collapsed': args.collapsed,
+    'heading-level': args['heading-level'],
+    'id': hasHeader ? undefined : collapsibleId,
   });
 
   const collapsibleComponent = (

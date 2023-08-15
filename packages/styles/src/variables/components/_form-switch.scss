@@ -32,7 +32,7 @@ $form-switch-linear-gradient: linear-gradient(
 );
 $form-switch-linear-gradient-size: (2 * $form-switch-width - $form-switch-height)
   $form-switch-height;
-$form-switch-label-padding-top: ($form-switch-height - type.$line-height-base) * 0.5 !default;
+$form-switch-label-padding-top: ($form-switch-height - type.$line-height-copy) * 0.5 !default;
 $form-switch-label-padding-x: spacing.$size-regular !default;
 $form-switch-label-padding-start: $form-switch-label-padding-top 0 0 $form-switch-label-padding-x !default;
 $form-switch-label-padding-end: $form-switch-label-padding-top $form-switch-label-padding-x 0 0 !default;

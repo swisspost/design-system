@@ -1,9 +1,10 @@
-@use "@swisspost/design-system-styles/variables/color";
-@use "@swisspost/design-system-styles/components/forms";
-@use "@swisspost/design-system-styles/components/floating-label";
-@use "@swisspost/design-system-styles/components/grid";
-@use "../../utils/utils.scss";
-@use "../../utils/mixins.scss";
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/components/forms';
+@use '@swisspost/design-system-styles/components/floating-label';
+@use '@swisspost/design-system-styles/components/grid';
+@use '../../utils/utils.scss';
+@use '../../utils/mixins.scss';
 
 :host {
   display: block;
@@ -84,6 +85,13 @@
   }
 }
 
+.form-floating {
+  .form-control,
+  .form-control + label {
+    padding-right: post.$input-padding-x * 3;
+  }
+}
+
 .start-search-button {
   position: absolute;
   top: 0;
@@ -94,6 +102,9 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+  background: none;
+  border: 0;
+  box-shadow: none;
 
   svg {
     width: 1.5rem;

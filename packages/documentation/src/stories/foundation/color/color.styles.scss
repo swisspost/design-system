@@ -1,50 +1,85 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-.color-square {
-  border: 2px solid var(--post-contrast-color);
+:export {
+  brand_yellow: post.$yellow;
+  brand_white: post.$white;
+  brand_black: post.$black;
 
-  h3 {
-    margin: 0;
-    text-transform: capitalize;
+  @each $color, $value in post.$post-grays {
+    gray_#{$color}: $value;
   }
 
-  dl {
-    display: grid;
-    grid-template-columns: max-content 1fr;
-    gap: 0.5rem 1rem;
+  gray_light: post.$light;
+  gray_dark: post.$dark;
+
+  pagebackgrounds_gray-background-light: post.$gray-background-light;
+  pagebackgrounds_gray-background: post.$gray-background;
+
+  @each $color, $value in post.$contextual-colors {
+    contextual_#{$color}: $value;
   }
 
-  dl,
-  dt,
-  dd {
-    @include post.font-curve(tiny);
-    margin: 0;
-    padding: 0;
+  @each $colorName, $value in post.$accent-colors {
+    @if (str-index($colorName, '-bright') == null) {
+      accent_dark_#{$colorName}: $value;
+    }
+  }
+
+  @each $colorName, $value in post.$accent-colors {
+    @if (str-index($colorName, '-bright')) {
+      accent_bright_#{$colorName}: $value;
+    }
   }
 }
 
-.color-square__inner {
-  aspect-ratio: 4/1;
-  padding: 0.75rem;
-  display: flex;
-  align-items: center;
-}
-
-.color-square__content {
-  border-top: 2px solid var(--post-contrast-color);
-  padding: 0.75rem;
-}
-
-.color-square__section {
+.color-swatch__section {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: minmax(max-content, 25%) 20% auto;
+}
 
-  @include post.media-breakpoint-down(md) {
-    grid-template-columns: repeat(2, 1fr);
+.color-swatch {
+  display: contents;
+
+  > * {
+    padding: post.$size-mini (post.$size-regular * 0.5);
+    border-top: post.$border-width solid post.$border-color;
+
+    &:first-child {
+      padding-inline-start: 0;
+    }
+    &:last-child {
+      padding-inline-end: 0;
+    }
   }
 
-  @include post.media-breakpoint-down(sm) {
-    grid-template-columns: 1fr;
+  .color-swatch__description {
+    .description__title {
+      &:first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .color-swatch__color {
+    .color__tile {
+      height: 100%;
+      border-radius: post.$border-radius;
+      box-shadow: post.$elevation-1;
+      min-height: 1em * post.$line-height-base * 2;
+    }
+  }
+
+  .color-swatch__props {
+    dl {
+      display: grid;
+      grid-template-columns: max-content auto;
+      gap: 0 post.$size-mini;
+      margin: 0;
+
+      dt,
+      dd {
+        margin: 0;
+      }
+    }
   }
 }

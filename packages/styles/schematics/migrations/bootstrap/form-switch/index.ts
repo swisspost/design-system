@@ -1,30 +1,29 @@
 import { Rule } from '@angular-devkit/schematics';
-import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
+import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 
 export default function (): Rule {
-  return new DomMigration(
+  return getDomMigrationRule(
     new FormSwitchInputClassesUpdate,
     new FormSwitchLabelUpdate,
-    new FormSwitchClassesUpdate
-  ).rule;
+    new FormSwitchClassesUpdate,
+  );
 }
 
-class FormSwitchInputClassesUpdate implements IDomUpdate {
+class FormSwitchInputClassesUpdate implements DomUpdate {
   selector = '.switch input.switch';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('switch')
       .addClass('form-check-input');
   }
 }
 
-class FormSwitchLabelUpdate implements IDomUpdate {
+class FormSwitchLabelUpdate implements DomUpdate {
   selector = '.switch';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -39,10 +38,10 @@ class FormSwitchLabelUpdate implements IDomUpdate {
   }
 }
 
-class FormSwitchClassesUpdate implements IDomUpdate {
+class FormSwitchClassesUpdate implements DomUpdate {
   selector = '.switch';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements
       .removeClass('switch')
       .addClass('form-check form-switch');

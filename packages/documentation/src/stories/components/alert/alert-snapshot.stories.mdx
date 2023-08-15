@@ -1,0 +1,56 @@
+import { Meta, Args, Story, Canvas } from '@storybook/addon-docs';
+import alertMeta from './alert.stories';
+import { getAlertClasses } from './getAlertClasses';
+import { bombArgs } from '../../utilities/bombArgs';
+
+<Meta title="Hidden/Alert snapshot test" />
+
+<div className="d-flex gap-3 flex-wrap">
+  {['bg-white', 'bg-dark'].map(bg => (
+    <div key={bg} className={bg + ' d-flex gap-3 flex-wrap p-3'}>
+      {bombArgs({
+        variant: alertMeta.argTypes.variant.options,
+        noIcon: [true, false],
+        icon: ['null', '1001'],
+        dismissible: [true, false],
+        action: [true, false],
+      })
+        .filter(args => !(args.noIcon && args.icon === 'null'))
+        .map(args => ({ ...args, show: true }))
+        .map(args => (
+          <div className={getAlertClasses(args)} key={JSON.stringify(args)} role="alert">
+            {args.dismissible || args.fixed ? (
+              <button className="btn-close" data-dismiss="alert" aria-label="Close"></button>
+            ) : null}
+            {args.action ? (
+              <div className="alert-content">
+                <h4 className="alert-heading">Alert</h4>
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis temporibus
+                  blanditiis expedita inventore atque. Numquam velit aut eveniet cumque non?
+                </p>
+              </div>
+            ) : (
+              [
+                <h4 className="alert-heading">Alert</h4>,
+                <p>
+                  Lorem ipsum dolor sit, amet consectetur adipisicing elit. Debitis temporibus
+                  blanditiis expedita inventore atque. Numquam velit aut eveniet cumque non?
+                </p>,
+              ]
+            )}
+            {args.action ? (
+              <div className="alert-buttons">
+                <button className="btn btn-primary btn-animated">
+                  <span>Akcepti</span>
+                </button>
+                <button className="btn btn-secondary btn-animated">
+                  <span>Aborti</span>
+                </button>
+              </div>
+            ) : null}
+          </div>
+        ))}
+    </div>
+  ))}
+</div>

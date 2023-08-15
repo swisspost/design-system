@@ -1,0 +1,65 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import * as ToastStories from './toast.stories';
+
+<Meta of={ToastStories} />
+
+# Toast
+
+<div className="lead">
+  Push notifications to your visitors with a <code>.toast</code> element, a lightweight and easily
+  customizable alert message.
+</div>
+
+Toasts are lightweight notifications designed to mimic the push notifications that have been popularized by mobile and desktop operating systems.
+They are intended to be small interruptions to your visitors or users, and therefore should contain minimal, to-the-point, non-interactive content.
+
+<Canvas of={ToastStories.Default} />
+<div className="hide-col-default">
+  <Controls of={ToastStories.Default} />
+</div>
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+```scss
+@use '@swisspost/design-system-styles/index.scss';
+```
+
+To import only the styles required for this component:
+
+```scss
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/toast.scss';
+```
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+### Auto Close
+
+<Canvas of={ToastStories.AutoClose} />
+
+Toasts should be closed automatically after a while, because they usually overlay the regular content.
+Each change on the screen should remain for at least 3-6 seconds for the user to perceive it.
+The longer the text in toast becomes, the longer the message should be displayed. However, 10-12 seconds should be enough.
+If the text is longer than 4 lines, you should consider using an `.alert` instead of a `.toast`.
+
+Last but not least, if the user moves the mouse or the focus to the `.toast` element, the automatic closing should be interrupted/paused and when the mouse/focus leaves the element again, the automatic closing delay should be restarted.
+
+### Stacked
+
+You can stack toasts by wrapping them in a `.toast-container`, which will vertically add some spacing.
+
+<Canvas of={ToastStories.Stacked} />
+
+## Accessibility
+
+Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an `aria-live` region. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without the need to move the user’s focus or interrupt in any way. Additionally, include `aria-atomic="true"` to ensure that the entire toast is always announced as a single (atomic) unit, rather than just announcing what changed (which could lead to problems if you only update part of the toast’s content, or if you show the same toast content later in time). If the information is important in the process, e.g. for a list of errors in a form, then use the
+<LinkTo kind="components-alert" story="docs">alert component</LinkTo> instead of the toast.
+
+Note that the live region needs to be present in the markup before the toast is generated or updated. If you dynamically generate both at the same time and inject them into the page, they will generally not be announced by assistive technologies.
+
+You also need to adapt the `role` and `aria-live` level depending on the content. If it’s an important message like an error, use `role="alert" aria-live="assertive"`, otherwise use `role="status" aria-live="polite"` attributes.

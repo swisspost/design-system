@@ -1,0 +1,4 @@
+{
+  // Fixes tsconfig not found error in nested .eslintrc.json files with relative paths
+  "eslint.workingDirectories": ["packages/components-angular"]
+}

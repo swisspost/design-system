@@ -19,7 +19,16 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
-            "assets": ["src/favicon.ico", "src/assets"],
+            "assets": [
+              "src/favicon.ico",
+              "src/favicon.svg",
+              "src/apple-touch-icon.png",
+              "src/android-chrome-192x192.png",
+              "src/android-chrome-512x512.png",
+              "src/size.webmanifest",
+              "src/assets",
+              "src/netlify.toml"
+            ],
             "styles": ["src/styles.scss", "./node_modules/highlight.js/styles/vs2015.css"],
             "stylePreprocessorOptions": {
               "includePaths": ["node_modules"]
@@ -46,6 +55,7 @@
                   "with": "src/environments/environment.prod.ts"
                 }
               ],
+
               "outputHashing": "all",
               "sourceMap": false,
               "namedChunks": false,

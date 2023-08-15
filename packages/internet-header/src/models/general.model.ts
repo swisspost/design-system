@@ -51,3 +51,13 @@ export type LocalizedConfigParameters = {
   localizedCustomConfig?: ILocalizedCustomConfig;
   osFlyoutOverrides?: NavMainEntity;
 };
+
+export interface TagManagerDataLayer {
+  push: (payload: {
+    event: string | undefined;
+    text: string | undefined;
+    link_url: string | undefined;
+    label: string | undefined;
+    type: string | undefined;
+  }) => void;
+}

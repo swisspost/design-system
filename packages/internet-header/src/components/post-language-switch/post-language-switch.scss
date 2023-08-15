@@ -1,6 +1,6 @@
-@use "@swisspost/design-system-styles/variables/color";
-@use "@swisspost/design-system-styles/functions";
-@use "../../utils/utils.scss";
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/functions';
+@use '../../utils/utils.scss';
 
 :host {
   --separator-display: none;
@@ -11,10 +11,11 @@
   align-self: stretch;
 
   &::before {
+    position: relative;
+    content: '';
     display: var(--separator-display);
     height: var(--separator-height);
     border-left: 1px solid color.$gray-10;
-    content: '';
   }
 }
 
@@ -33,6 +34,8 @@
   &:hover,
   &:focus {
     color: black;
+    position: relative;
+    z-index: 1;
   }
 
   svg {

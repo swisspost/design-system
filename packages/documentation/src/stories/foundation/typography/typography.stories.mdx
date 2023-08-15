@@ -79,14 +79,21 @@ If you cannot use the design system but need the fonts, you can integrate them i
 
 ### Base Font Size
 
-The default font size is `16px`. This corresponds to the CSS value `1rem`.<br/>
-There is a bunch of font sizes you can use by your own, even if we recommend using the font curves (see below) instead.
+The default font size is `16px`. This corresponds to the CSS value of `1rem`. Users are able to change the default font size in their browser. By using `rem`, the font-sizes scale nicely with the user defined value.
 
 The line height depends on the font size and is specified with a multiplying factor. This multiplication factor decreases as the font size increases.
 
 <FontSizesAndLineheights />
 
 ### Responsive font size
+
+<div class="alert alert-info my-3">
+  <h4 class="h5">Deprecated font-size definitions</h4>
+  <p>
+    The size and number of font-curves will change in the future because the naming and values used
+    here are being deprecated in favor of a pixel based naming.
+  </p>
+</div>
 
 For legible font sizes on all screen sizes, you can make use of so called font-curves, responsive font size definitions.
 

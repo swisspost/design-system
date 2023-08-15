@@ -19,14 +19,16 @@
     left: forms.$input-border-width;
     margin: 0;
     padding-inline: forms.$form-floating-padding-x;
-    padding-block: calc(
+    padding-top: calc(
       #{forms.$input-border-width} + #{forms.$form-floating-label-height * 0.5} - #{forms.$form-floating-label-font-size *
-        type.$line-height-base * 0.5}
+        type.$line-height-copy * 0.5}
     );
-    height: forms.$form-floating-label-height;
+    padding-bottom: 0;
     border: 0;
     color: forms.$form-floating-label-color;
     font-size: forms.$form-floating-label-font-size;
+    width: auto;
+    height: auto;
     max-width: calc(100% - (forms.$input-border-width * 2));
     white-space: nowrap;
     overflow: hidden;
@@ -39,20 +41,16 @@
     // disable stylelint here, because the classes are coming from bs5
     @extend .form-control-lg; /* stylelint-disable-line */
 
-    &[type='file']::file-selector-button {
-      padding-top: forms.$form-floating-input-padding-t +
-        ((forms.$form-floating-line-height - 1) * 0.5);
+    &:focus {
+      @include forms-mx.placeholder {
+        color: rgba(var(--post-contrast-color-rgb), 0.6);
+      }
     }
 
     &:focus,
     &:not(:placeholder-shown) {
       padding-top: forms.$form-floating-input-padding-t;
       padding-bottom: forms.$form-floating-input-padding-b;
-
-      &[type='file']::file-selector-button {
-        padding-top: forms.$form-floating-input-padding-t +
-          ((forms.$form-floating-line-height - 1) * 0.5);
-      }
 
       ~ label {
         padding-top: 0.7rem;
@@ -62,6 +60,13 @@
             (forms.$input-border-width * forms.$form-floating-label-upscale * 2)
         );
         transition: forms.$form-floating-transition-in;
+      }
+    }
+
+    &[type='file'] {
+      &:focus,
+      &:not(:placeholder-shown) {
+        padding-top: forms.$form-floating-input-padding-t * 1.33;
       }
     }
   }
@@ -98,10 +103,6 @@
       padding-top: forms.$form-floating-input-padding-t * 1.5;
       padding-bottom: 0;
       height: auto;
-
-      option {
-        height: 1em * forms.$form-floating-line-height;
-      }
 
       ~ label {
         padding-top: forms.$input-padding-y-lg * forms.$form-floating-label-scale;

@@ -51,29 +51,22 @@ export class PostSkiplinks {
     return (
       <Host>
         <div class="skiplinks">
-          <h1 class="visually-hidden">{translate('Navigate on post.ch')}</h1>
-          <ul class="no-list">
+          <ul class="no-list" aria-label={translate('Skip Links')}>
             <li>
-              <a class="nav-link" href={config.logo.logoLink} accessKey="0" title="[ALT + 0]">
+              <a class="nav-link" href={config.logo.logoLink}>
                 <span>{config.logo.logoLinkTitle}</span>
                 <SvgIcon name="pi-pointy-arrow-right" />
               </a>
             </li>
             <li>
-              <a
-                class="nav-link"
-                href="#post-internet-header-main-navigation"
-                accessKey="1"
-                title="[ALT + 1]"
-                onClick={() => this.focusMain()}
-              >
+              <a class="nav-link" href="#post-internet-header-main-navigation" onClick={() => this.focusMain()}>
                 <span>{config.translations.navMainAriaLabel}</span>
                 <SvgIcon name="pi-pointy-arrow-right" />
               </a>
             </li>
             {mainId ? (
               <li>
-                <a class="nav-link" href={`#${mainId}`} accessKey="2" title="[ALT + 2]">
+                <a class="nav-link" href={`#${mainId}`}>
                   <span>{translate('Go to main content')}</span>
                   <SvgIcon name="pi-pointy-arrow-right" />
                 </a>
@@ -81,13 +74,7 @@ export class PostSkiplinks {
             ) : null}
             {state.search ? (
               <li>
-                <a
-                  class="nav-link"
-                  href="#post-internet-header-search-button"
-                  accessKey="3"
-                  title="[ALT + 3]"
-                  onClick={() => this.focusSearch()}
-                >
+                <a class="nav-link" href="#post-internet-header-search-button" onClick={() => this.focusSearch()}>
                   <span>{translate('Go to search')}</span>
                   <SvgIcon name="pi-pointy-arrow-right" />
                 </a>
@@ -95,13 +82,7 @@ export class PostSkiplinks {
             ) : null}
             {state.login ? (
               <li>
-                <a
-                  class="nav-link"
-                  href="#post-klp-login-widget"
-                  accessKey="4"
-                  title="[ALT + 4]"
-                  onClick={() => this.focusLogin()}
-                >
+                <a class="nav-link" href="#post-klp-login-widget" onClick={() => this.focusLogin()}>
                   <span>{translate('Go to login')}</span>
                   <SvgIcon name="pi-pointy-arrow-right" />
                 </a>

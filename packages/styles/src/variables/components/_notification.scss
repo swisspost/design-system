@@ -1,0 +1,84 @@
+@use './../color';
+@use './../commons';
+@use './../spacing';
+@use './../type';
+
+$notification-margin-bottom: spacing.$spacer !default;
+$notification-box-shadow: 0 2px 4px 0 rgba(color.$black, 0.2) !default;
+$notification-border-radius: commons.$border-radius !default;
+$notification-gap: spacing.$size-small-large !default;
+$notification-body-gap: spacing.$size-micro !default;
+$notification-font-weight: type.$font-weight-light !default;
+$notification-link-font-weight: type.$font-weight-normal !default;
+$notification-heading-font-weight: type.$headings-font-weight !default;
+$notification-buttons-margin-start: spacing.$size-mini !default;
+
+$notification-padding-x-map: () !default;
+$notification-padding-x-map: map-merge(
+  $notification-padding-x-map,
+  (
+    'alert': spacing.$size-small-large,
+    'toast': spacing.$size-regular,
+  )
+);
+
+$notification-padding-y-map: () !default;
+$notification-padding-y-map: map-merge(
+  $notification-padding-y-map,
+  (
+    'alert': spacing.$size-regular,
+    'toast': spacing.$size-small-regular,
+  )
+);
+
+$notification-font-size-map: () !default;
+$notification-font-size-map: map-merge(
+  $notification-font-size-map,
+  (
+    'alert': type.$font-size-base,
+    'toast': type.$font-size-tiny,
+  )
+);
+
+$notification-heading-font-size-map: () !default;
+$notification-heading-font-size-map: map-merge(
+  $notification-heading-font-size-map,
+  (
+    'alert': type.$font-size-bigger-regular,
+    'toast': type.$font-size-small,
+  )
+);
+
+$notification-hr-margin-block-map: () !default;
+$notification-hr-margin-block-map: map-merge(
+  $notification-hr-margin-block-map,
+  (
+    'alert': spacing.$size-mini spacing.$size-small-regular,
+    'toast': spacing.$size-micro spacing.$size-small-regular,
+  )
+);
+
+$notification-icon-size-map: () !default;
+$notification-icon-size-map: map-merge(
+  $notification-icon-size-map,
+  (
+    'alert': spacing.$size-small-huge,
+    'toast': spacing.$size-big,
+  )
+);
+
+$notification-variants: () !default;
+$notification-variants: join(
+  $notification-variants,
+  (
+    'primary' color.$gray-80 3134,
+    'success' color.$success 2105,
+    'danger' color.$error 2104,
+    'warning' color.$warning 2104,
+    'info' color.$info 2106,
+    'gray' color.$gray-background 2201,
+    // deprecated
+    'notification' color.$gray-80 3134,
+    'error' color.$error 2104
+  )
+);

@@ -1,20 +1,19 @@
 import { Rule } from '@angular-devkit/schematics';
-import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
+import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 
 export default function (): Rule {
-  return new DomMigration(
+  return getDomMigrationRule(
     new CustomSelectFloatingLabelWrapperUpdate,
     new CustomSelectClassesUpdate,
-    new CustomSelectMenuClassesUpdate
-  ).rule;
+    new CustomSelectMenuClassesUpdate,
+  );
 }
 
-class CustomSelectFloatingLabelWrapperUpdate implements IDomUpdate {
+class CustomSelectFloatingLabelWrapperUpdate implements DomUpdate {
   selector = '.form-group';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -22,7 +21,7 @@ class CustomSelectFloatingLabelWrapperUpdate implements IDomUpdate {
         const $label = $control.next('label');
         const isNgbDropdown = $element.attr('ngbDropdown') !== undefined;
         const isFloatingLabel = $control.length > 0 && $label.length > 0;
-        
+
         if (isNgbDropdown && isFloatingLabel) {
           $element
             .removeClass('form-group')
@@ -34,10 +33,10 @@ class CustomSelectFloatingLabelWrapperUpdate implements IDomUpdate {
   }
 }
 
-class CustomSelectClassesUpdate implements IDomUpdate {
+class CustomSelectClassesUpdate implements DomUpdate {
   selector = 'button.form-control';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -52,15 +51,15 @@ class CustomSelectClassesUpdate implements IDomUpdate {
   }
 }
 
-class CustomSelectMenuClassesUpdate implements IDomUpdate {
+class CustomSelectMenuClassesUpdate implements DomUpdate {
   selector = '.custom-select-menu';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
         const isNgbDropdownMenu = $element.attr('ngbDropdownMenu') !== undefined;
-  
+
         if (isNgbDropdownMenu) {
           $element
             .removeClass('custom-select-menu')

@@ -1,6 +1,11 @@
 @use '@swisspost/design-system-styles/components/root';
 @use '@swisspost/design-system-styles/components/fonts';
 
+.sidebar-header {
+  :nth-of-type(1) {
+    flex: 0 0 48px;
+  }
+}
 
 #storybook-explorer-tree {
   padding-left: 13px;
@@ -13,9 +18,15 @@
     .sidebar-subheading-action {
       display: none;
     }
+  }
 
-    // Hide that very specific sidebar navigation entry to hide test pages
-    &#hidden {
+  // Hide that very specific sidebar navigation entry to hide test pages
+  [data-env='production'] & {
+    #hidden {
+      display: none;
+    }
+
+    .sidebar-item[data-parent-id='hidden'] {
       display: none;
     }
   }
@@ -48,17 +59,25 @@
       height: 1.2em;
     }
 
-    &[data-nodetype="group"] svg { color: var(--post-gray-60); }
-    &[data-nodetype="component"] svg { color: var(--post-nightblue-bright); }
-    &[data-nodetype="document"] svg { color: var(--post-coral-bright); }
-    &[data-nodetype="story"] svg { color: var(--post-aubergine-bright); }
+    &[data-nodetype='group'] svg {
+      color: var(--post-gray-60);
+    }
+    &[data-nodetype='component'] svg {
+      color: var(--post-nightblue-bright);
+    }
+    &[data-nodetype='document'] svg {
+      color: var(--post-coral-bright);
+    }
+    &[data-nodetype='story'] svg {
+      color: var(--post-aubergine-bright);
+    }
 
     &:hover,
     &:focus-visible {
       background-color: var(--post-gray-10);
     }
 
-    &[data-selected="true"] {
+    &[data-selected='true'] {
       background-color: rgba(var(--post-yellow-rgb), 0.4);
       color: var(--post-contrast-color);
     }
@@ -73,7 +92,7 @@
       height: 1.2em;
       color: var(--post-aubergine-bright);
 
-      &[color="secondary"] {
+      &[color='secondary'] {
         color: var(--post-nightblue-bright);
       }
     }
@@ -109,7 +128,7 @@
         background-color: var(--post-gray-80);
       }
 
-      &[data-selected="true"] {
+      &[data-selected='true'] {
         background-color: rgba(var(--post-yellow-rgb), 0.7);
         color: var(--post-contrast-color);
       }

@@ -143,6 +143,14 @@ While our heading classes (`.h1` –`.h6`) apply`font-size`, `font-weight`, and`
 
 ### Line Heights
 
+<div class="alert alert-warning my-4">
+  <p>
+    The line-height variants are being deprecated in favour of more accessible line heights of{' '}
+    <code>1.5</code> for body text and <code>1.2</code> for headings. Bootstrap line-height variants
+    are still available.
+  </p>
+</div>
+
 <Canvas withSource="open">
   <Story name="Line Heights">
     <p className="lh-tiny">Text with a tiny line-height, ...</p>
@@ -167,7 +175,15 @@ While our heading classes (`.h1` –`.h6`) apply`font-size`, `font-weight`, and`
   scssPrefix="line-height"
 />
 
-To set the `line-height` to 1 you can use the class `.lh-1`. But note, there is no such variable!
+#### Bootstrap line heights
+
+To set the `line-height` to 1 you can use the class `.lh-1`. Bootstrap variables are not exposed in the <code>@swisspost/design-system-styles/core.scss</code> file.
+
+<AvailableClassesAndVariables
+  variants={SCSS_VARIABLES.bootstrapLineHeights}
+  cssPrefix="lh"
+  hasVariable={false}
+/>
 
 ## Text
 

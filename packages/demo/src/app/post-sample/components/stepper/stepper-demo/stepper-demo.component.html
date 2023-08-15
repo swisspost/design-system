@@ -10,12 +10,11 @@
   <ol class="stepper" role="list">
     <li
       *ngFor="let step of steps; index as i"
-      [attr.aria-current]="ifCurrent(step, 'step')"
+      [attr.aria-current]="isCurrent(step) ? 'step' : undefined"
       class="stepper-item"
-      aria-label=""
     >
-      <a *ngIf="i < currentIndex" [routerLink]="getPathTo(step)" class="stepper-link">
-        <span class="visually-hidden" *ngIf="i < currentIndex">Complete:</span>
+      <a *ngIf="i < currentIndex" class="stepper-link" (click)="currentIndex = i" href="#">
+        <span class="visually-hidden">Complete:</span>
         {{ step }}
       </a>
       <span class="stepper-link" *ngIf="i >= currentIndex">

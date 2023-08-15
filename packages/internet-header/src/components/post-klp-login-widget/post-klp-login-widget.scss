@@ -89,3 +89,37 @@
     justify-content: center;
   }
 }
+
+.login-button {
+  @extend %nav-link;
+
+  height: 100%;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  padding-right: calc(1rem - 1px);
+  padding-left: calc(1rem - 1px);
+
+  @include mixins.min(lg) {
+    padding: 0 calc(1.125rem - 1px);
+  }
+
+  @include mixins.min(xl) {
+    padding: 0 calc(1.5rem - 1px);
+  }
+
+  svg {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+
+  .visually-hidden {
+    @include mixins.min(rg) {
+      @include mixins.reset-visually-hidden();
+
+      font-weight: 300;
+      margin-right: 0.5rem;
+      cursor: pointer;
+    }
+  }
+}

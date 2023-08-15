@@ -1,10 +1,11 @@
 # Swiss Post Design System Documentation
 
-![Swiss Post Design System splash screen](https://user-images.githubusercontent.com/1659006/187683368-d3aa2534-84be-4580-846e-2cad3796b573.png)
+![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e84f1fea-e666-4853-8c85-726a6bf22e6c)
 
 A Storybook Documentation for the Swiss Post Design System.
 
 Includes stories for the following packages:
+
 - [@swisspost/design-system-styles](https://www.npmjs.com/package/@swisspost/design-system-styles)
 - [@swisspost/design-system-components](https://www.npmjs.com/package/@swisspost/design-system-components)
 

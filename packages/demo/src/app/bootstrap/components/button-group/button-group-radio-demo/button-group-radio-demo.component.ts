@@ -1,17 +1,12 @@
 import { Component } from '@angular/core';
 
-enum Choice {
-  LEFT,
-  MIDDLE,
-  RIGHT,
-}
+enum Choice { One, Two, Three, Four }
 
 @Component({
   selector: 'app-button-group-radio-demo',
-  templateUrl: './button-group-radio-demo.component.html'
+  templateUrl: './button-group-radio-demo.component.html',
 })
 export class ButtonGroupRadioDemoComponent {
-  Choice = Choice;
-
-  radioGroup = Choice.MIDDLE;
+  readonly Choice = Choice;
+  radio = Choice.Two;
 }

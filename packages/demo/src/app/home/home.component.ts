@@ -25,7 +25,7 @@ export class HomeComponent {
   public angularVersion: string = environment.ANGULAR_VERSION;
   public bootstrapVersion: string = environment.BOOTSTRAP_VERSION;
   public ngBootstrapVersion: string = environment.NG_BOOTSTRAP_VERSION;
-  public ngxToasterVersion: string = environment.NGX_TOASTER;
+  public ngxToastrVersion: string = environment.NGX_TOASTR;
   public isIE11 = false;
   public isMigratingIntranet = this.getLocaleStorage(this.migrationTypeIntranetKey) ?? false;
   public isMigratingAngular = this.getLocaleStorage(this.migrationTypeAngularKey) ?? true;
@@ -120,7 +120,7 @@ export class HomeComponent {
     this.isIE11 = window.navigator.userAgent.includes('Trident/7.0');
 
     const localStorageCheckboxes: Object = this.getLocaleStorage(this.migrationAccordionGroupedCheckboxesKey) ?? {};
-    
+
     for (const groupKey in this.migrationAccordionGroupedCheckboxes) {
       const checkboxGroup = this.migrationAccordionGroupedCheckboxes[groupKey];
       const storageGroup = localStorageCheckboxes[groupKey] ?? {};

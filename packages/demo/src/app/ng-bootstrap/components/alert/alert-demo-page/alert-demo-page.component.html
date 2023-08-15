@@ -1,8 +1,25 @@
 <div class="heading py-5">
   <h1 class="bold font-curve-large">Alerts</h1>
-  <h2 class="font-curve-medium">Using bootstrap 4.5</h2>
-  <a href="https://ng-bootstrap.github.io/#/components/alert/examples" target="_blank" rel="noopener"
-    class="btn btn-primary btn-sm btn-animated"><span>ngBootstrap Documentation</span></a>
+  <app-dependency-link></app-dependency-link>
+</div>
+
+<div class="alert alert-warning mb-bigger-big">
+  <p>
+    The following two color variants are deprecated and will be removed in the next major version
+    of the styles package:
+  </p>
+  <ul>
+    <li>
+      <code>alert-error</code>
+      becomes
+      <code>alert-danger</code>
+    </li>
+    <li>
+      <code>alert-notification</code>
+      becomes
+      <code>alert-primary</code>
+    </li>
+  </ul>
 </div>
 
 <p>For more information about available alerts/notifications, check the <a [routerLink]="'../../bootstrap-samples/alert'">Alert/Notification page under the "Bootstrap" Menu</a>.</p>

@@ -3,12 +3,8 @@
 :export {
   base_fontSize: 16px;
 
-  @each $name, $size in post.$font-sizes {
+  @each $name, $size in post.$font-size-map {
     fontSizes_#{$name}: $size;
-  }
-
-  @each $name, $size in post.$line-heights {
-    lineHeights_#{$name}: $size;
   }
 
   @each $curveName, $curve in post.$font-curves {
@@ -22,8 +18,8 @@
   display: grid;
   align-items: center;
   grid-template-columns: auto;
-  
-  @include post.media-breakpoint-up (md) {
+
+  @include post.media-breakpoint-up(md) {
     grid-template-columns: max-content min-content max-content;
     gap: post.$size-regular;
     margin-bottom: post.$size-regular;
@@ -44,11 +40,11 @@
     margin-bottom: post.$size-regular;
     padding-top: post.$size-mini;
     border-top: post.$border-width dashed post.$border-color;
-    
+
     .settings__face {
       font-weight: post.$font-weight-bold;
     }
-    
+
     .settings__weight,
     .settings__style {
       font-size: post.$font-size-tiny;
@@ -60,7 +56,7 @@
     }
   }
 
-  @include post.media-breakpoint-up (md) {
+  @include post.media-breakpoint-up(md) {
     .sb-fontface__typo {
       font-size: post.$font-size-huge * 1.25;
     }
@@ -75,5 +71,3 @@
     }
   }
 }
-
-

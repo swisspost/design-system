@@ -1,0 +1,33 @@
+@use './../mixins/button' as button-mx;
+@use './../mixins/color' as color-mx;
+@use './../mixins/forms' as forms-mx;
+@use './../mixins/icons' as icons-mx;
+@use './../mixins/utilities' as utilities-mx;
+
+@use './../variables/animation';
+@use './../variables/color';
+@use './../variables/components/close';
+
+%btn-close {
+  @include button-mx.reset-button;
+  @include forms-mx.focus-outline;
+  border-radius: close.$close-border-radius;
+  color: close.$close-color;
+  transition: close.$close-transition;
+
+  &::before {
+    @include icons-mx.icon(2043);
+    content: '';
+    display: block;
+    height: close.$close-size;
+    width: close.$close-size;
+  }
+
+  @include utilities-mx.not-disabled-focus-hover() {
+    color: close.$close-hover-color;
+  }
+
+  &:disabled {
+    color: close.$close-disabled-color;
+  }
+}

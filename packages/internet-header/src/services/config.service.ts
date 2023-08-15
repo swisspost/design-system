@@ -17,6 +17,16 @@ let request: Promise<IPortalConfig> | null = null;
 // Cache the original os flyout to use it for updates
 let osFlyoutCache: NavMainEntity | null = null;
 
+const getPPMConfig = (): ILocalizedConfig | null => {
+  const ppmConfigScript = document.querySelector('#PPM_HEADER_DATA');
+
+  if (ppmConfigScript?.textContent) {
+    return JSON.parse(ppmConfigScript.textContent);
+  }
+
+  return null;
+};
+
 /**
  * Get a localized config object
  *
@@ -34,19 +44,29 @@ export const getLocalizedConfig = async ({
   localizedCustomConfig,
   osFlyoutOverrides,
 }: LocalizedConfigParameters): Promise<ILocalizedConfig> => {
-  if (!request) {
-    request = fetchConfig(projectId, environment);
+  const ppmConfig = getPPMConfig();
+  let localizedConfig: ILocalizedConfig;
+  let config: IPortalConfig | null = null;
+  let lang: string | undefined;
+
+  if (ppmConfig) {
+    localizedConfig = ppmConfig;
+    lang = document.documentElement.lang;
+  } else {
+    if (!request) {
+      request = fetchConfig(projectId, environment);
+    }
+
+    config = await request;
+    lang = getUserLang(Object.keys(config), language, localStorageKey, cookieKey);
+
+    if (lang === undefined) {
+      throw new Error('Internet Header: unable to determine current language');
+    }
+
+    // Clone config for more predictable state updates
+    localizedConfig = { ...config[lang] };
   }
-
-  const config = await request;
-  const lang = getUserLang(Object.keys(config), language, localStorageKey, cookieKey);
-
-  if (lang === undefined) {
-    throw new Error('Internet Header: unable to determine current language');
-  }
-
-  // Clone config for more predictable state updates
-  let localizedConfig: ILocalizedConfig = { ...config[lang] };
 
   // Merge custom config with portal config
   if (localizedCustomConfig) {

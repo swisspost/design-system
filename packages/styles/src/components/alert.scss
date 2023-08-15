@@ -5,208 +5,132 @@
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 
-@use './../variables/color';
-@use './../variables/commons';
-@use './../variables/type';
-@use './../variables/spacing';
-@use './../variables/grid';
-@use './../variables/breakpoints';
-@use './../variables/components/alert';
-@use './../variables/options';
-@use './../functions/color' as color-fn;
-@use './../functions/contrast' as contrast-fn;
-@use './../placeholders/color' as color-ph;
-@use './../placeholders/notifications';
+@use './../mixins/notification' as notification-mx;
+@use './../placeholders/notification' as notification-ph;
 
-.alert-container {
-  @extend %notification-container;
-}
+@use './../variables/breakpoints';
+@use './../variables/commons';
+@use './../variables/grid';
+@use './../variables/components/close';
+@use './../variables/components/notification';
 
 .alert {
-  $effective-line-height: (alert.$alert-line-height * alert.$alert-font-size);
+  @include notification-mx.notification-size(alert);
 
-  @extend %notification;
-
-  min-height: 2 * alert.$alert-padding-y + alert.$alert-icon-size;
-
-  padding: alert.$alert-padding-y alert.$alert-padding-x;
-  padding-left: (alert.$alert-padding-x * 2 + alert.$alert-icon-size);
-
-  background-position: alert.$alert-padding-x center;
-  background-size: alert.$alert-icon-size;
-
-  font-size: alert.$alert-font-size;
-
-  > *:only-child {
-    font-weight: type.$font-weight-bold;
-  }
-
-  &:not(.alert-fixed-bottom) {
-    max-width: map.get(breakpoints.$grid-breakpoints, 'xxl');
-  }
-
-  &.no-icon {
-    padding-left: alert.$alert-padding-x;
-  }
-
-  &.alert-dismissible {
-    padding-right: alert.$alert-close-icon-size + alert.$alert-padding-x * 2;
-  }
-
-  // Adjust close link position
-  .btn-close {
-    @extend %notification-close;
-
-    padding: alert.$alert-padding-y alert.$alert-padding-x;
+  &:not(.alert-action) {
+    @extend %notification-body;
   }
 }
 
 .alert-heading {
-  @extend %notification-title;
-
-  font-size: alert.$alert-font-size;
+  @include notification-mx.notification-heading(alert);
 }
 
-@each $name, $color, $icon in alert.$alert-list {
-  .alert-#{$name} {
-    --post-bg-rgb: #{color-fn.rgb-values($color)};
-    @extend %notification-#{$name};
+.alert-dismissible {
+  @include notification-mx.notification-dismissible(alert);
+}
 
-    @if (contrast-fn.light-or-dark($color) == 'dark') {
-      @extend %color-background-dark-variables;
-    } @else {
-      @extend %color-background-light-variables;
+.alert-action {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: notification.$notification-gap;
+
+  > .alert-content {
+    flex: 1 1 auto;
+    @extend %notification-body;
+  }
+
+  > .alert-buttons {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+
+    > .btn {
+      margin-inline-start: notification.$notification-buttons-margin-start;
+    }
+  }
+
+  @include media-breakpoint-up(md) {
+    &.alert-dismissible > .btn-close {
+      inset-block-start: calc(50% - #{0.5 * close.$close-size});
+    }
+  }
+
+  @include media-breakpoint-down(md) {
+    flex-direction: column;
+    align-items: stretch;
+    padding-inline: map.get(notification.$notification-padding-x-map, alert);
+
+    > .alert-content {
+      $icon-size: map.get(notification.$notification-icon-size-map, alert);
+
+      padding-inline-start: notification.$notification-gap + $icon-size;
+      padding-inline-end: notification.$notification-gap + close.$close-size;
     }
 
-    .btn-close {
-      @extend %notification-#{$name}-close;
+    > .alert-buttons {
+      display: flex;
+
+      > .btn {
+        flex: 1 0 0;
+        width: 100%;
+
+        &:first-child {
+          margin-inline-start: 0;
+        }
+      }
     }
   }
 }
 
 .alert-fixed-bottom {
   position: fixed;
-  z-index: commons.$zindex-alert;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  max-height: 100%;
-  overflow: auto;
+  inset-block-end: 0;
+  inset-inline-start: 0;
+  inset-inline-end: 0;
   margin-bottom: 0;
   border-radius: 0;
-
-  // Let the icon scroll with the content
-  background-attachment: local;
+  z-index: commons.$zindex-fixed;
 
   @include media-breakpoint-up(xxl) {
-    $container-padding: map.get(grid.$grid-container-padding, 'xxl');
-    padding: alert.$alert-padding-y
-      calc(
-        (100vw - #{map.get(breakpoints.$grid-breakpoints, 'xxl')}) / 2 + #{alert.$alert-padding-x *
-          2 + alert.$alert-icon-size} + #{$container-padding} - 0.5rem
-      );
+    $container-max-width: map.get(breakpoints.$grid-breakpoints, 'xxl') - 1;
+    $container-padding-x: map.get(grid.$grid-container-padding, 'xxl');
+    $alert-padding-x: map.get(notification.$notification-padding-x-map, alert);
+    $alert-icon-size: map.get(notification.$notification-icon-size-map, alert);
+    $fixed-alert-padding-x: '(100% - #{$container-max-width}) / 2 + #{$container-padding-x} + #{$alert-padding-x}';
 
-    background-position: calc(
-        (100vw - #{map.get(breakpoints.$grid-breakpoints, 'xxl')}) / 2 + #{alert.$alert-padding-x} +
-          #{$container-padding} - 0.5rem
-      )
-      center;
-
-    &.alert-dismissible {
-      padding-right: calc(
-        (100vw - #{map.get(breakpoints.$grid-breakpoints, 'xxl')}) / 2 + #{alert.$alert-close-icon-size +
-          alert.$alert-padding-x * 2} + #{$container-padding} - 0.5rem
-      );
-
-      .btn-close {
-        right: calc(
-          (100vw - #{map.get(breakpoints.$grid-breakpoints, 'xxl')}) / 2 + #{$container-padding} - 0.5rem
-        );
-      }
-    }
-  }
-}
-
-.alert-action {
-  flex-direction: row;
-  flex-wrap: nowrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: spacing.$size-regular;
-
-  @include media-breakpoint-down(lg) {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-end;
-
-    .alert-buttons {
-      align-self: flex-end;
-    }
-  }
-
-  @include media-breakpoint-down(sm) {
-    align-items: center;
-  }
-
-  @include media-breakpoint-up(xxl) {
-    $container-padding: map.get(grid.$grid-container-padding, 'xxl');
-    padding-right: calc(
-      (100vw - #{map.get(breakpoints.$grid-breakpoints, 'xxl')}) / 2 + #{alert.$alert-padding-x} + #{$container-padding} -
-        0.5rem
+    padding-inline-end: calc(#{$fixed-alert-padding-x});
+    padding-inline-start: calc(
+      #{$fixed-alert-padding-x} + #{$alert-icon-size} + #{notification.$notification-gap}
     );
-  }
 
-  .alert-content {
-    display: flex;
-    flex: 2 1 auto;
-    flex-flow: column nowrap;
+    // for alerts with .pi-* icons (deprecated)
+    background-position-x: calc(#{$fixed-alert-padding-x} + #{0.5 * $alert-icon-size});
 
-    > *:last-child {
-      margin-bottom: 0;
-    }
-  }
-
-  .alert-buttons {
-    display: flex;
-    gap: spacing.$size-regular;
-    justify-self: flex-end;
-    flex: 1 1 auto;
-    flex-direction: row-reverse;
-
-    @include media-breakpoint-down(rg) {
-      flex-direction: column;
-      align-self: stretch;
-
-      .btn {
-        flex: 1 0 100%;
-      }
-    }
-  }
-}
-
-@include media-breakpoint-down(sm) {
-  .alert {
-    padding-top: alert.$alert-padding-y * 2 + alert.$alert-icon-size;
-    padding-left: alert.$alert-padding-x;
-    background-position: center alert.$alert-padding-y;
-    font-size: alert.$alert-font-size-small;
-    text-align: center;
-
-    &.alert-dismissible {
-      padding-right: alert.$alert-padding-x;
+    // for alerts with mask-image icons
+    &::before {
+      left: calc(#{$fixed-alert-padding-x});
     }
 
     &.no-icon {
-      padding-top: alert.$alert-padding-y;
+      padding-inline-start: calc(#{$fixed-alert-padding-x});
     }
 
-    .btn-close {
-      bottom: auto;
-      padding: spacing.$spacer * 0.5;
-    }
+    &.alert-dismissible {
+      padding-inline-end: calc(
+        #{$fixed-alert-padding-x} + #{notification.$notification-gap} + #{close.$close-size}
+      );
 
-    .alert-heading {
-      font-size: alert.$alert-font-size-small;
+      > .btn-close {
+        inset-inline-end: calc(#{$fixed-alert-padding-x});
+      }
     }
+  }
+}
+
+@each $name, $color, $icon in notification.$notification-variants {
+  .alert-#{$name} {
+    @include notification-mx.notification-variant($color, $icon);
   }
 }

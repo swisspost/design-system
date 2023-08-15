@@ -41,7 +41,7 @@
   }
 }
 
-@each $name, $path in vars.$svg-icon-map {
+@each $name in vars.$legacy-icon-set {
   .pi-#{$name} {
     @include icon-mixin.pi($name);
   }

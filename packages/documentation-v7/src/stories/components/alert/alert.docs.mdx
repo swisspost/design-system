@@ -1,0 +1,66 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as AlertStories from './alert.stories';
+
+<Meta of={AlertStories} />
+
+# Alert
+
+<div className="lead">
+  Provide contextual feedback messages for typical user actions with the handful of available and flexible alert
+  messages.
+</div>
+
+Alerts are available for any length of text, as well as an optional close button.
+By default, alerts are rendered with a contextually appropriate icon.
+
+<Canvas of={AlertStories.Default} />
+<Controls of={AlertStories.Default} />
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+```scss
+@use '@swisspost/design-system-styles/index.scss';
+```
+
+To import only the styles required for this component:
+
+```scss
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/alert.scss';
+```
+
+## Specific examples of application
+
+The following examples show some of the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+### Additional Content
+
+Alerts can also contain additional HTML elements like headings, paragraphs, lists, dividers, and more.
+
+<Canvas of={AlertStories.AdditionalContent} />
+
+### Dismissible
+
+Such an alert can be removed from the UI by the user, by clicking on a dismiss button.
+This button should normally be inside the alert (as the first child), but you can also use a button which is not included in the alert's HTML.
+In the end, it's just a button with an `onClick()` event. As this is a CSS-only component, you have to define the logic yourself.
+
+Dismiss buttons without text should always provide a `dismiss-label` prop, which defines the hidden text associated with the button.
+
+<Canvas of={AlertStories.Dismissible} />
+
+### Action Buttons
+
+To render an action alert with buttons, the alert element requires an additional class as well as additional HTML content. Thus, everything will be rendered as it should be.
+
+<Canvas of={AlertStories.ActionButtons} />
+
+### Fixed
+
+A fixed alert (at the bottom of the viewport) is obtained by adding the class `.alert-fixed-bottom` to the alert element.
+As this is a CSS-only component, you have to define the logic to show/hide/toggle the alert yourself.
+Such an alert is normally also dismissible, so please notice the information for a dismissible alert as well.
+
+<Canvas of={AlertStories.Fixed} />

@@ -1,5 +1,157 @@
 # @swisspost/design-system-styles
 
+## 6.3.0
+
+### Minor Changes
+
+- Added a gray notification variant for cookie banners. (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
+
+### Patch Changes
+
+- Updated close button styles for Alerts, Toasts, Badges, and Modals. It now has the same colors as the tertiary buttons to be accessible on all our backgrounds. (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
+
+- Added custom resizer for textarea elements. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1765](https://github.com/swisspost/design-system/pull/1765))
+
+- Update button styles: padding, gap and border-radius. (by [@imagoiq](https://github.com/imagoiq) with [#1666](https://github.com/swisspost/design-system/pull/1666))
+
+- Updated alert and toast styles.  
+  Deprecated classes for alerts/notifications:
+
+  - alert-error becomes alert-danger
+  - alert-notification becomes alert-primary
+  - toast-notification becomes toast-primary (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
+
+- Stepper:
+
+  - Normalize font styles and weights.
+  - Position the step label under the badge on small viewport.
+  - Center the step label when its is multiline.
+  - Use hover step label color only on interactive step.
+  - Add contrasted step label color on focus. (by [@imagoiq](https://github.com/imagoiq) with [#1646](https://github.com/swisspost/design-system/pull/1646))
+
+- Adjusted the gap inside the badge. (by [@b1aserlu](https://github.com/b1aserlu) with [#1772](https://github.com/swisspost/design-system/pull/1772))
+
+- Fixed collapsible/accordion styles that broke after Bootstrap removed several CSS custom properties. (by [@alizedebray](https://github.com/alizedebray) with [#1324](https://github.com/swisspost/design-system/pull/1324))
+
+## 6.2.6
+
+### Patch Changes
+
+- Updated button styles:
+  - Reduced horizontal padding of tertiary buttons.
+  - Updated font-size progression according to button size.
+  - Changed transparent color to full-tone colors.
+  - Updated the font-color and border-color of secondary and tertiary buttons. (by [@imagoiq](https://github.com/imagoiq) with [#1635](https://github.com/swisspost/design-system/pull/1635))
+
+## 6.2.5
+
+### Patch Changes
+
+- Fixed the placeholder for the file upload in Safari. It's no longer cut off and pluralisation for the button label with a `multiple` attribute is now supported. Also fixed padding when the state is valid or invalid. (by [@imagoiq](https://github.com/imagoiq) with [#1614](https://github.com/swisspost/design-system/pull/1614))
+
+## 6.2.4
+
+### Patch Changes
+
+- Fix an issue with two empty CSS files in the styles package. Empty files are no longer delivered. (by [@imagoiq](https://github.com/imagoiq) with [#1600](https://github.com/swisspost/design-system/pull/1600))
+
+- Fixed default font-size and weight of the legend element (by [@geekrumper](https://github.com/geekrumper) with [#1512](https://github.com/swisspost/design-system/pull/1512))
+
+## 6.2.3
+
+### Patch Changes
+
+- Optimized floating-label controls to show placeholders. (by [@alizedebray](https://github.com/alizedebray) with [#1509](https://github.com/swisspost/design-system/pull/1509))
+
+- Added missing definitions for italic font faces. (by [@yannikstuker](https://github.com/yannikstuker) with [#1513](https://github.com/swisspost/design-system/pull/1513))
+
+## 6.2.2
+
+### Patch Changes
+
+- Fixed an issue with the stepper on mobile where the name of the last step was misaligned on mobile devices. (by [@gfellerph](https://github.com/gfellerph) with [#1317](https://github.com/swisspost/design-system/pull/1317))
+
+- Updated dependency Bootstrap to 5.3.0 (by [@gfellerph](https://github.com/gfellerph) with [#1466](https://github.com/swisspost/design-system/pull/1466))
+
+- Removed unused variable `$shadow-color`. It was added by mistake. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1438](https://github.com/swisspost/design-system/pull/1438))
+
+- Fixed an issue in Safari where the input value of a floating label input field was hidden by the floating label. (by [@gfellerph](https://github.com/gfellerph) with [#1461](https://github.com/swisspost/design-system/pull/1461))
+
+## 6.2.1
+
+### Patch Changes
+
+- Fixed the form-selector-button visualisation for firefox. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1323](https://github.com/swisspost/design-system/pull/1323))
+
+- Fixed overlapping of the search input label and the search input icon in the post-search component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1367](https://github.com/swisspost/design-system/pull/1367))
+
+- Updated badge colors. (by [@alizedebray](https://github.com/alizedebray) with [#1349](https://github.com/swisspost/design-system/pull/1349))
+
+## 6.2.0
+
+### Minor Changes
+
+- Updated the new Logo in the intranet-header component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+
+## 6.1.0
+
+### Minor Changes
+
+- Updated line-heights to match accessibility requirements and added new variables for them. The new values are `$line-height-body: 1.5` for body copy (text) and `$line-height-headings: 1.2` for headings. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Added new font-size variables following the new naming convention of using pixel based naming. The font sizes remain defined in `rem` and the new variables are `$font-size-14`, `$font-size-16`, `$font-size-18`, `$font-size-20`, `$font-size-24`, `$font-size-28`, `$font-size-32`, `$font-size-40`, `$font-size-48` and `$font-size-56`. (by [@gfellerph](https://github.com/gfellerph) with [#1315](https://github.com/swisspost/design-system/pull/1315))
+
+### Patch Changes
+
+- Deprecated font-size variables `$font-size-tiny`, `$font-size-small`, `$font-size-regular`, `$font-size-bigger-regular`, `$font-size-medium`, `$font-size-large`, `$font-size-small-big`, `$font-size-big`, `$font-size-bigger-big`, `$font-size-small-huge` and `$font-size-huge`. New variables use a pixel based naming (in accordance with https://github.com/swisspost/design-system/discussions/588). (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Updated the Angular migration schematic for ngb-buttons to work correctly whith the NgFor directive. (by [@alizedebray](https://github.com/alizedebray) with [#1311](https://github.com/swisspost/design-system/pull/1311))
+
+- Updated heading sizes according to the new Design. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Deprecating variables `$display1-size`, `$display2-size`, `$display3-size`, `$display4-size`, `$display1-weight`, `$display2-weight`, `$display3-weight`, `$display4-weight` and `$display-line-height` because they are unused. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Deprecating the `line-height-calc` function as unused. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Deprecating validation-tooltips like `.valid-tooltip` and `.invalid-tooltip`. Absolutely positioned tooltips are no longer recommended for usage. Use the respective feedback classes instead. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+- Deprecated line-height variables `$line-height-tiny`, `$line-height-small`, `$line-height-regular`, `$line-height-bigger-regular`, `$line-height-medium`, `$line-height-large`, `$line-height-small-big`, `$line-height-big`, `$line-height-bigger-big`, `$line-height-small-huge` and `$line-height-huge`. They will be removed in the next major version. (by [@gfellerph](https://github.com/gfellerph) with [#1298](https://github.com/swisspost/design-system/pull/1298))
+
+## 6.0.0
+
+### Major Changes
+
+- Removed the unused Sass variable `$table-head-bg`. You can use it's value `rgba(var(--post-contrast-color-rgb), 0.6)` directly as an alternative (by [@gfellerph](https://github.com/gfellerph) with [#1240](https://github.com/swisspost/design-system/pull/1240))
+
+- Updated the markup for the stepper component in order to improve accessibility. Completed items now require the prefix "Complete" and incomplete steps are no longer links. (by [@gfellerph](https://github.com/gfellerph) with [#1232](https://github.com/swisspost/design-system/pull/1232))
+
+- Removed deprecated ng-bootstrap Checkbox and Radio buttons and replaced them with Bootstrap button groups. (by [@alizedebray](https://github.com/alizedebray) with [#1199](https://github.com/swisspost/design-system/pull/1199))
+
+- Major dependency update. The following versions are now supported:
+  - Angular 15
+  - Bootstrap 5.2.3
+  - ng-bootstrap 14 (by [@gfellerph](https://github.com/gfellerph) with [#1210](https://github.com/swisspost/design-system/pull/1210))
+
+### Minor Changes
+
+- Decoupled the fixed and the action button styles for the alert component. Alerts can now be fixed to bottom without having action buttons and can have action buttons without being fixed to the bottom of the page. (by [@gfellerph](https://github.com/gfellerph) with [#1230](https://github.com/swisspost/design-system/pull/1230))
+
+### Patch Changes
+
+- Deprecated the `alert-error` and the `alert-notification` variants of the alert component. These variants will be removed in the next major version. (by [@gfellerph](https://github.com/gfellerph) with [#1214](https://github.com/swisspost/design-system/pull/1214))
+
+- Deprecated the current sizing variables in favour of a new naming system that is more consistent with the design in Figma (by [@gfellerph](https://github.com/gfellerph) with [#1251](https://github.com/swisspost/design-system/pull/1251))
+
+- Deprecated the font-weight classes bold, regular and light. (by [@gfellerph](https://github.com/gfellerph) with [#1216](https://github.com/swisspost/design-system/pull/1216))
+
+- Changed the info color to light blue for alerts, notifications and contextual usage (by [@gfellerph](https://github.com/gfellerph) with [#1235](https://github.com/swisspost/design-system/pull/1235))
+
+- Deprecated the text-auto class. It's no longer necessary in combination with background utilities. (by [@gfellerph](https://github.com/gfellerph) with [#1216](https://github.com/swisspost/design-system/pull/1216))
+
+- Deprecated the base64 icons defined as CSS backgrounds. This technology is outdated and contributes a large amount to the CSS bloat. The current approach for using icons is the `post-icon` web-component. (by [@gfellerph](https://github.com/gfellerph) with [#1226](https://github.com/swisspost/design-system/pull/1226))
+
+- Deprecated the post-specific sizing variables (e.g. `$size-hair`, `$size-huge`, etc.) and classes (`.m-hair`, `.mt-sm-micro`, etc.) for all of the following properties: `margin`, `padding`, `line-height`, `height`, `max-height`, `width`, `max-width` and `gap`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1267](https://github.com/swisspost/design-system/pull/1267))
+
 ## 5.4.1
 
 ### Patch Changes

@@ -10,7 +10,7 @@ import './preview.scss';
 import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header';
 import docJson from '@swisspost/design-system-components/dist/docs.json';
 import {
-  extractArgTypes,
+  extractArgTypesFactory,
   extractComponentDescription,
   setStencilDocJson,
 } from '@pxtrn/storybook-addon-docs-stencil';
@@ -60,18 +60,22 @@ export const parameters = {
     storySort: {
       order: [
         'Home',
-        'Get Started',
+        'Getting Started',
+        ['Styles', 'Components'],
         'Foundations',
         ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
-        'Templates',
         'Components',
-        [
-          'Internet Header',
-          ['Getting started', 'Migration Guide', 'Header', 'Breadcrumbs', 'Footer'],
-        ],
+        'Internet Header',
+        ['Getting started', 'Migration Guide', 'Components', ['Header', 'Breadcrumbs', 'Footer']],
+        'Intranet Header',
+        ['Getting started'],
+        'Icons',
+        ['Getting started', 'Search Icons', 'Components'],
+        'Templates',
         'Utilities',
         'Misc',
-        ['Migration', 'ChangeLog'],
+        ['Migration Guide', 'ChangeLog', 'Versions'],
+        'Hidden',
       ],
     },
   },
@@ -84,7 +88,7 @@ export const parameters = {
     stylePreview: true,
   },
   docs: {
-    extractArgTypes,
+    extractArgTypes: extractArgTypesFactory({ dashCase: true }),
     extractComponentDescription,
     container: DocsLayout,
     components: {
@@ -108,9 +112,10 @@ export const parameters = {
     },
     transformSource(snippet) {
       const reactElements = <JsxParser jsx={snippet} renderInWrapper={false} />;
-      const htmlSnippet = renderToStaticMarkup(reactElements);
-      const formattedSnippet = prettier.format(htmlSnippet, PRETTIER_OPTIONS)
+      const htmlSnippet = renderToStaticMarkup(reactElements)
+        .replace(/className/g, 'class')
         .replace(/checked=""/g, 'checked');
+      const formattedSnippet = prettier.format(htmlSnippet, PRETTIER_OPTIONS);
 
       // ensure the string is not empty ('') because the Source component breaks if it is
       return formattedSnippet || ' ';

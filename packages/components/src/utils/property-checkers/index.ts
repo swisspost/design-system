@@ -9,8 +9,9 @@ export const checkEmptyOrType = emptyOr(checkType);
 export const checkEmptyOrContainsOnly = emptyOr(checkContainsOnly);
 export const checkEmptyOrLength = emptyOr(checkLength);
 
-export * from './check-contains-only';
 export * from './check-exists';
-export * from './check-length';
+export * from './check-non-empty';
 export * from './check-one-of';
 export * from './check-type';
+export * from './check-contains-only';
+export * from './check-length';

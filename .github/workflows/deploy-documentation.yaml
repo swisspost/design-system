@@ -41,4 +41,4 @@ jobs:
           netlify_site_url: swisspost-design-system-next.netlify.app
           folder: ${{ steps.build.outputs.folder }}
           comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          comment_author: swisspost-devs
+          comment_author: swisspost-bot

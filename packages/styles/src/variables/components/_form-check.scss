@@ -45,7 +45,7 @@ $form-check-label-cursor: pointer !default;
 $form-check-label-color: forms.$form-label-color !default;
 $form-check-label-padding-top: (
     $form-check-input-width + sizing.px-to-rem($form-check-input-border-width) -
-      type.$line-height-base
+      type.$line-height-copy
   ) * 0.5 !default;
 $form-check-label-padding-x: spacing.$size-mini !default;
 $form-check-label-padding-start: $form-check-label-padding-top 0 0 $form-check-label-padding-x !default;

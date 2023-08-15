@@ -27,11 +27,11 @@ export default {
         labels: {
           ' btn-sm': 'Small',
           ' btn-rg': 'Regular',
-          '': 'Medium',
+          ' btn-md': 'Medium',
           ' btn-lg': 'Large',
         },
       },
-      options: [' btn-sm', ' btn-rg', '', ' btn-lg'],
+      options: [' btn-sm', ' btn-rg', ' btn-md', ' btn-lg'],
       table: {
         category: 'General'
       }
