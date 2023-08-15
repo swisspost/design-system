@@ -1,7 +1,5 @@
-import { Component, Element, Event, EventEmitter, Host, h, Listen, State, Watch } from '@stencil/core';
-import { checkContainsOnly, checkLength } from '../../utils';
-
-let nextIndex = 0;
+import { Component, Host, h, Element, Method, Event, EventEmitter } from '@stencil/core';
+import { version } from '../../../package.json';
 
 @Component({
   tag: 'post-tabs',
@@ -9,80 +7,96 @@ let nextIndex = 0;
   shadow: true,
 })
 export class PostTabs {
-  private defaultId = `post-tabs-${nextIndex++}`;
-  private panelsByTab: Map<HTMLPostTabHeaderElement, HTMLPostTabPanelElement>;
+  private activeTab: HTMLPostTabHeaderElement;
+  private panelTabMap = new Map<HTMLPostTabHeaderElement, HTMLPostTabPanelElement>;
 
   @Element() host: HTMLPostTabsElement;
 
-  @State() activeTab: HTMLPostTabHeaderElement;
+  /**
+   * An event emitted whenever a new tab becomes active.
+   * The payload is the name of the associated panel.
+   */
+  @Event() tabChange: EventEmitter<string>;
 
-  @Watch('activeTab')
-  emitTabChange(newActiveTab: HTMLPostTabHeaderElement, oldActiveTab: HTMLPostTabHeaderElement | undefined) {
-    if (oldActiveTab && newActiveTab !== oldActiveTab) {
-      this.tabChange.emit(this.tabs.findIndex(tab => tab === this.activeTab));
-    }
+  componentDidLoad() {
+    const panels: HTMLPostTabPanelElement[] = Array.from(this.host.querySelectorAll('post-tab-panel'));
+    panels.forEach(panel => {
+      // map the panel to its associated tab
+      const tab = this.host.querySelector(`post-tab-header[panel=${panel.name}]`);
+      this.panelTabMap.set(tab as HTMLPostTabHeaderElement, panel);
+
+      // remove the panel from the view: only the panel associated with the active tab will be shown
+      panel.remove();
+    });
+
+    const tabs: HTMLPostTabHeaderElement[] = Array.from(this.panelTabMap.keys());
+    tabs.forEach(tab => {
+      // add event listener to change the active tab on click
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+        this.setActiveTab(tab);
+      });
+
+      // move every post-tab-header element to the "tabs" slot
+      if (tab.getAttribute('slot') !== 'tabs') {
+        tab.setAttribute('slot', 'tabs');
+      }
+    });
+
+    // activate the tab set as active or the first tab by default
+    const activeTab = tabs.find(tab => tab.active) || tabs[0];
+    this.setActiveTab(activeTab);
   }
 
-  @State() tabs: HTMLPostTabHeaderElement[];
+  private setActiveTab(tab: HTMLPostTabHeaderElement) {
+    if (this.activeTab) {
+      this.deactivateTab(this.activeTab);
+    }
 
-  @Watch('tabs')
-  validateTabs() {
-    checkLength(this.tabs, {min: 1}, 'The post-tabs element requires at least one post-tab-header as a child.');
-    checkContainsOnly(this.tabs, el => el.tagName === 'POST-TAB-HEADER', 'All post-tabs children with a "slot" attribute set to "tab" must be post-tab-header elements.');
-
-    const panels = Array.from(this.host.querySelectorAll('[slot="panel"]'));
-    checkContainsOnly(panels, el => el.tagName === 'POST-TAB-PANEL', 'All post-tabs children with a "slot" attribute set to "panel" must be post-tab-panel elements.');
-    checkContainsOnly(this.tabs, el => el.nextElementSibling.tagName === 'POST-TAB-PANEL', 'Tab headers and tab panels do not match. Be sure to add a post-tab-panel immediately after each post-tab-header element.');
-
-    this.panelsByTab = new Map(this.tabs.map(tab => [tab, tab.nextElementSibling as HTMLPostTabPanelElement]));
-    this.activeTab = this.getActiveTab();
+    this.activeTab = tab;
+    this.activateTab(this.activeTab);
   }
 
   /**
-   * An event emitted after the active nav changes. The payload is the index of the newly active tab.
+   * Shows the panel with the given name and selects its associated tab.
+   * Any other panel that was previously shown becomes hidden and its associated tab is unselected.
    */
-  @Event() tabChange: EventEmitter<number>;
-
-  connectedCallback() {
-    this.tabs = Array.from(this.host.querySelectorAll('[slot="tab"]'));
+  @Method()
+  async show(panelName: number) {
+    const tab = this.host.querySelector(`post-tab-header[panel=${panelName}]`);
+    this.setActiveTab(tab as HTMLPostTabHeaderElement);
   }
 
-  @Listen('activated')
-  onTabActivated(event: CustomEvent<void>) {
-    const activatedTab = event.target as HTMLPostTabHeaderElement;
+  private activateTab(tab: HTMLPostTabHeaderElement) {
+    const tabTitle = tab.shadowRoot.querySelector('.tab-title');
+    tabTitle.setAttribute('aria-selected', 'true');
+    tabTitle.classList.add('active');
 
-    this.activeTab.deactivate().then(() => {
-      this.activeTab = activatedTab;
-    });
+    const panel = this.panelTabMap.get(tab);
+    this.host.shadowRoot.querySelector('.tab-content').appendChild(panel);
 
-    this.panelsByTab.get(this.activeTab).hide().then(() => {
-      this.panelsByTab.get(activatedTab).show();
-    });
+    this.tabChange.emit(panel.name);
   }
 
-  private getActiveTab(): HTMLPostTabHeaderElement {
-    const activeTabs = this.tabs.filter(tab => tab.active);
-    checkLength(activeTabs, {max: 1}, 'There should only be one post-tab-header with an "active" prop set to "true" per post-tabs element.');
+  private deactivateTab(tab: HTMLPostTabHeaderElement) {
+    const tabTitle = tab.shadowRoot.querySelector('.tab-title');
+    tabTitle.setAttribute('aria-selected', 'false');
+    tabTitle.classList.remove('active');
 
-    if (activeTabs.length === 0) {
-      const firstTab = this.tabs[0];
-      firstTab.active = true;
-      return firstTab;
-    }
-
-    return activeTabs[0];
+    const panel = this.panelTabMap.get(tab);
+    panel.remove();
   }
 
   render() {
     return (
-      <Host id={this.host.id || this.defaultId}>
+      <Host data-version={version}>
         <div class="tabs-wrapper">
           <ul class="tabs nav" role="tablist">
-            <slot name="tab"/>
+            <slot name="tabs"/>
           </ul>
         </div>
         <div class="tab-content">
-          <slot name="panel"/>
+          <slot/>
         </div>
       </Host>
     );

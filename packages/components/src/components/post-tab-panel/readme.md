@@ -5,27 +5,11 @@
 <!-- Auto Generated Below -->
 
 
-## Methods
+## Properties
 
-### `hide() => Promise<void>`
-
-Hides the tab panel programmatically.
-
-#### Returns
-
-Type: `Promise<void>`
-
-
-
-### `show() => Promise<void>`
-
-Shows the tab panel programmatically.
-
-#### Returns
-
-Type: `Promise<void>`
-
-
+| Property | Attribute | Description                                                    | Type     | Default     |
+| -------- | --------- | -------------------------------------------------------------- | -------- | ----------- |
+| `name`   | `name`    | The name of the panel, used to associate it with a tab header. | `string` | `undefined` |
 
 
 ----------------------------------------------

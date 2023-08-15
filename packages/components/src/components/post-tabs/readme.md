@@ -7,9 +7,23 @@
 
 ## Events
 
-| Event       | Description                                                                                      | Type                  |
-| ----------- | ------------------------------------------------------------------------------------------------ | --------------------- |
-| `tabChange` | An event emitted after the active nav changes. The payload is the index of the newly active tab. | `CustomEvent<number>` |
+| Event       | Description                                                                                          | Type                  |
+| ----------- | ---------------------------------------------------------------------------------------------------- | --------------------- |
+| `tabChange` | An event emitted whenever a new tab becomes active. The payload is the name of the associated panel. | `CustomEvent<string>` |
+
+
+## Methods
+
+### `show(panelName: number) => Promise<void>`
+
+Shows the panel with the given name and selects its associated tab.
+Any other panel that was previously shown becomes hidden and its associated tab is unselected.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
 
 
 ----------------------------------------------

@@ -21,18 +21,17 @@ export default {
 
 const Template = () => (
   <PostTabs>
-    <PostTabHeader slot="tab">First</PostTabHeader>
-    <PostTabPanel slot="panel">
+    <PostTabHeader slot="tabs" panel="first">First</PostTabHeader>
+    <PostTabHeader slot="tabs" panel="second">Second</PostTabHeader>
+    <PostTabHeader slot="tabs" panel="third">Third</PostTabHeader>
+
+    <PostTabPanel name="first">
       Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore.
     </PostTabPanel>
-
-    <PostTabHeader slot="tab">Second</PostTabHeader>
-    <PostTabPanel slot="panel">
+    <PostTabPanel name="second">
       At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus.
     </PostTabPanel>
-
-    <PostTabHeader slot="tab">Third</PostTabHeader>
-    <PostTabPanel slot="panel">
+    <PostTabPanel name="third">
       Sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
     </PostTabPanel>
   </PostTabs>

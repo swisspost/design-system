@@ -55,34 +55,26 @@ export namespace Components {
     }
     interface PostTabHeader {
         /**
-          * Activates the tab programmatically.
-         */
-        "activate": () => Promise<void>;
-        /**
-          * If `true`, the header is active and its corresponding panel is visible
+          * If `true`, the tab header is initially activated and its associated panel is shown.
          */
         "active": boolean;
         /**
-          * Deactivates the tab programmatically.
+          * The name of the panel controlled by the tab header.
          */
-        "deactivate": () => Promise<void>;
+        "panel": string;
     }
     interface PostTabPanel {
         /**
-          * Hides the tab panel programmatically.
+          * The name of the panel, used to associate it with a tab header.
          */
-        "hide": () => Promise<void>;
-        /**
-          * Shows the tab panel programmatically.
-         */
-        "show": () => Promise<void>;
+        "name": string;
     }
     interface PostTabs {
+        /**
+          * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
+         */
+        "show": (panelName: number) => Promise<void>;
     }
-}
-export interface PostTabHeaderCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostTabHeaderElement;
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -176,25 +168,25 @@ declare namespace LocalJSX {
     }
     interface PostTabHeader {
         /**
-          * If `true`, the header is active and its corresponding panel is visible
+          * If `true`, the tab header is initially activated and its associated panel is shown.
          */
         "active"?: boolean;
         /**
-          * An event emitted whenever the tab header becomes active. The payload is the index of the tab.
+          * The name of the panel controlled by the tab header.
          */
-        "onActivated"?: (event: PostTabHeaderCustomEvent<number>) => void;
-        /**
-          * An event emitted whenever the tab header becomes inactive. The payload is the index of the tab.
-         */
-        "onDeactivated"?: (event: PostTabHeaderCustomEvent<number>) => void;
+        "panel"?: string;
     }
     interface PostTabPanel {
+        /**
+          * The name of the panel, used to associate it with a tab header.
+         */
+        "name"?: string;
     }
     interface PostTabs {
         /**
-          * An event emitted after the active nav changes. The payload is the index of the newly active tab.
+          * An event emitted whenever a new tab becomes active. The payload is the name of the associated panel.
          */
-        "onTabChange"?: (event: PostTabsCustomEvent<number>) => void;
+        "onTabChange"?: (event: PostTabsCustomEvent<string>) => void;
     }
     interface IntrinsicElements {
         "post-collapsible": PostCollapsible;
