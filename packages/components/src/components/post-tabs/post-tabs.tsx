@@ -26,7 +26,7 @@ export class PostTabs {
   componentDidLoad() {
     const panels: HTMLPostTabPanelElement[] = Array.from(this.host.querySelectorAll('post-tab-panel'));
     panels.forEach(panel => {
-      // map the panel to its associated tab
+      // save the panel by name to easily retrieve it later
       this.panelByName.set(panel.name, panel);
 
       // remove the panel from the view: only the panel associated with the active tab will be shown
@@ -35,13 +35,13 @@ export class PostTabs {
 
     const tabs: HTMLPostTabHeaderElement[] = Array.from(this.host.querySelectorAll('post-tab-header'));
     tabs.forEach(tab => {
-      // add event listener to change the active tab on click
+      // add an event listener on the tab to activate it on click
       tab.addEventListener('click', e => {
         e.preventDefault();
         this.setActiveTab(tab);
       });
 
-      // move every post-tab-header element to the "tabs" slot
+      // move each post-tab-header element to the "tabs" slot if it's not already there
       if (tab.getAttribute('slot') !== 'tabs') {
         tab.setAttribute('slot', 'tabs');
       }
@@ -53,10 +53,12 @@ export class PostTabs {
   }
 
   private setActiveTab(tab: HTMLPostTabHeaderElement) {
+    // deactivate the currently active tab if there is one
     if (this.currentlyActiveTab) {
       this.deactivateTab(this.currentlyActiveTab);
     }
 
+    // activate the newly selected tab
     this.currentlyActiveTab = tab;
     this.activateTab(this.currentlyActiveTab);
   }
@@ -72,21 +74,26 @@ export class PostTabs {
   }
 
   private activateTab(tab: HTMLPostTabHeaderElement) {
+    // set the tab title as active
     const tabTitle = tab.shadowRoot.querySelector('.tab-title');
     tabTitle.setAttribute('aria-selected', 'true');
     tabTitle.classList.add('active');
 
+    // show the panel associated with the tab
     const panel = this.panelByName.get(tab.panel);
     this.host.shadowRoot.querySelector('.tab-content').appendChild(panel);
 
+    // emit the tab change
     this.tabChange.emit(panel.name);
   }
 
   private deactivateTab(tab: HTMLPostTabHeaderElement) {
+    // set the tab title as inactive
     const tabTitle = tab.shadowRoot.querySelector('.tab-title');
     tabTitle.setAttribute('aria-selected', 'false');
     tabTitle.classList.remove('active');
 
+    // hide the panel associated with the tab
     const panel = this.panelByName.get(tab.panel);
     panel.remove();
   }

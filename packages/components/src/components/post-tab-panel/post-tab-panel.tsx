@@ -1,4 +1,5 @@
-import { Component, Element, h, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { version } from '../../../package.json';
 
 @Component({
   tag: 'post-tab-panel',
@@ -8,21 +9,30 @@ import { Component, Element, h, Prop } from '@stencil/core';
 export class PostTabPanel {
   @Element() host: HTMLPostTabPanelElement;
 
+  @State() panelId: string;
+
   /**
    * The name of the panel, used to associate it with a tab header.
    */
   @Prop() readonly name: string;
 
+  componentWillLoad() {
+    // get the id set on the host element or use a random id by default
+    this.panelId = this.host.id || crypto.randomUUID();
+  }
+
   render() {
     return (
-      <div
-        aria-labelledby={`${this.name}--tab`}
-        class="tab-pane fade active show"
-        id={`${this.name}--panel`}
-        role="tabpanel"
-      >
-        <slot/>
-      </div>
+      <Host data-version={version} id={this.panelId}>
+        <div
+          aria-labelledby={`${this.panelId}--tab`}
+          class="tab-pane fade active show"
+          id={`${this.panelId}--panel`}
+          role="tabpanel"
+        >
+          <slot/>
+        </div>
+      </Host>
     );
   }
 }
