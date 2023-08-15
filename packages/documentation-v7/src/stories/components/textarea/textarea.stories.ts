@@ -1,6 +1,5 @@
 import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
 
@@ -153,17 +152,20 @@ export default meta;
 type Story = StoryObj;
 
 function renderTextarea(args: Args, context: StoryContext) {
-  const [_, updateArgs] = useArgs();
   const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
   const classes = mapClasses({
     'form-control': true,
-    [args.size]: args.size !== 'null',
-    [args.validation]: args.valiation !== 'null',
+    [args.size]: args.size && args.size !== 'null',
+    [args.validation]: args.validation && args.validation !== 'null',
   });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label = !useAriaLabel
     ? html`
-        <label for=${id} class="form-label">${args.label}</label>
+        <label for=${id} class="form-label">
+          ${html`
+            ${args.label}
+          `}
+        </label>
       `
     : null;
   const contextuals = [
@@ -179,7 +181,11 @@ function renderTextarea(args: Args, context: StoryContext) {
       : null,
     args.hint !== ''
       ? html`
-          <div class="form-text">${args.hint}</div>
+          <div class="form-text">
+            ${html`
+              ${args.hint}
+            `}
+          </div>
         `
       : null,
   ];
@@ -188,14 +194,12 @@ function renderTextarea(args: Args, context: StoryContext) {
       id=${id}
       class=${classes}
       defaultValue=${args.value ?? nothing}
+      placeholder=${useAriaLabel ? args.label : ' '}
       rows=${args.rows}
       ?disabled=${args.disabled}
       aria-label=${useAriaLabel ? args.label : nothing}
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
-      @change=${(e: Event) => {
-        updateArgs({ value: (e.target as HTMLSelectElement).value });
-      }}
-    />
+    ></textarea>
   `;
   if (args.floatingLabel) {
     return html`
