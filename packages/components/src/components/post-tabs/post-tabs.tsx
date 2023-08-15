@@ -7,6 +7,7 @@ import { version } from '../../../package.json';
   shadow: true,
 })
 export class PostTabs {
+  private isLoaded = false;
   private currentlyActiveTab: HTMLPostTabHeaderElement;
   private panelByName = new Map<string, HTMLPostTabPanelElement>;
 
@@ -24,6 +25,8 @@ export class PostTabs {
   @Event() tabChange: EventEmitter<string>;
 
   componentDidLoad() {
+    this.isLoaded = true;
+
     const panels: HTMLPostTabPanelElement[] = Array.from(this.host.querySelectorAll('post-tab-panel'));
     panels.forEach(panel => {
       // save the panel by name to easily retrieve it later
@@ -84,7 +87,9 @@ export class PostTabs {
     this.host.shadowRoot.querySelector('.tab-content').appendChild(panel);
 
     // emit the tab change
-    this.tabChange.emit(panel.name);
+    if (this.isLoaded) {
+      this.tabChange.emit(panel.name);
+    }
   }
 
   private deactivateTab(tab: HTMLPostTabHeaderElement) {
