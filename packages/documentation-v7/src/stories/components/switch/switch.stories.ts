@@ -125,7 +125,6 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 function getValidationFeedback({ validation }: Args) {
-  console.log(validation);
   return validation !== 'null'
     ? html`
         <p class=${validation.split('-')[1] + '-feedback'}>
