@@ -71,11 +71,12 @@ const meta: Meta = {
       control: {
         type: 'check',
         labels: {
+          'table-sm': 'Small',
           'table-striped': 'Striped',
           'table-hover': 'Hover enabled',
         },
       },
-      options: ['table-striped', 'table-hover'],
+      options: ['table-sm', 'table-striped', 'table-hover'],
       table: {
         category: 'General',
       },
@@ -106,12 +107,13 @@ type Story = StoryObj;
 
 function renderTable(args: Args) {
   const cationTop = args.captionPlacement === 'top' ? 'caption-top' : 'null';
+  const variants = args.variant.join(' ');
   return html`
     <table
       class=${mapClasses({
         table: true,
         [args.borderStyle]: args.borderStyle && args.borderStyle !== 'null',
-        [args.variant]: args.variant && args.variant !== 'null',
+        [variants]: variants && variants !== '',
         [cationTop]: cationTop !== 'null',
         [args.alignment]: args.alignment && args.alignment !== 'null',
       })}
@@ -135,102 +137,88 @@ function renderTable(args: Args) {
 
 export const Default: Story = {
   args: {
-    content: [
-      html`
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-      `,
-      html`
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-      `,
-      html`
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      `,
-      html`
-        <tr>
-          <th scope="row">4</th>
-          <td>Someone</td>
-          <td>
-            else
-            <br />
-            entirely
-          </td>
-          <td>@twitter</td>
-        </tr>
-      `,
-    ],
+    content: html`
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+      <tr>
+        <th scope="row">4</th>
+        <td>Someone</td>
+        <td>
+          else
+          <br />
+          entirely
+        </td>
+        <td>@twitter</td>
+      </tr>
+    `,
   },
 };
 
 export const TableWithButtons: Story = {
   args: {
     alignment: 'align-middle',
-    content: [
-      html`
-        <tr>
-          <th scope="row">1</th>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>
-            <button class="btn btn-secondary btn-icon btn-md">
-              <span class="visually-hidden">Edit</span>
-              <i class="pi pi-2012"></i>
-            </button>
-            <button class="btn btn-primary btn-icon btn-md ms-2">
-              <span class="visually-hidden">Edit</span>
-              <i class="pi pi-3193"></i>
-            </button>
-          </td>
-        </tr>
-      `,
-      html`
-        <tr>
-          <th scope="row">2</th>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>
-            <button class="btn btn-secondary btn-icon btn-md">
-              <span class="visually-hidden">Edit</span>
-              <i class="pi pi-2012"></i>
-            </button>
-            <button class="btn btn-primary btn-icon btn-md ms-2">
-              <span class="visually-hidden">Edit</span>
-              <i class="pi pi-3193"></i>
-            </button>
-          </td>
-        </tr>
-      `,
-      html`
-        <tr>
-          <th scope="row">3</th>
-          <td>Larry</td>
-          <td>the Bird</td>
-          <td>
-            <button class="btn btn-secondary btn-icon btn-md">
-              <span class="visually-hidden">Edit</span>
-              <i class="pi pi-2012"></i>
-            </button>
-            <button class="btn btn-primary btn-icon btn-md ms-2">
-              <span class="visually-hidden">Edit</span>
-              <i class="pi pi-3193"></i>
-            </button>
-          </td>
-        </tr>
-      `,
-    ],
+    content: html`
+      <tr>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>
+          <button class="btn btn-secondary btn-icon btn-md">
+            <span class="visually-hidden">Edit</span>
+            <i class="pi pi-2012"></i>
+          </button>
+          <button class="btn btn-primary btn-icon btn-md ms-2">
+            <span class="visually-hidden">Edit</span>
+            <i class="pi pi-3193"></i>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>
+          <button class="btn btn-secondary btn-icon btn-md">
+            <span class="visually-hidden">Edit</span>
+            <i class="pi pi-2012"></i>
+          </button>
+          <button class="btn btn-primary btn-icon btn-md ms-2">
+            <span class="visually-hidden">Edit</span>
+            <i class="pi pi-3193"></i>
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>
+          <button class="btn btn-secondary btn-icon btn-md">
+            <span class="visually-hidden">Edit</span>
+            <i class="pi pi-2012"></i>
+          </button>
+          <button class="btn btn-primary btn-icon btn-md ms-2">
+            <span class="visually-hidden">Edit</span>
+            <i class="pi pi-3193"></i>
+          </button>
+        </td>
+      </tr>
+    `,
   },
 };
