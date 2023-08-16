@@ -170,6 +170,7 @@ function renderSwitch(args: Args, context: StoryContext) {
         type="checkbox"
         role="switch"
         ?checked=${args.checked}
+        .checked=${args.checked}
         ?disabled=${args.disabled}
         aria-label=${useAriaLabel ? (args.checked ? args.labelAfter : args.labelBefore) : ''}
         aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
