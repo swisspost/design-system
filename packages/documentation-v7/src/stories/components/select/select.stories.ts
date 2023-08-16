@@ -244,7 +244,7 @@ const Template: Story = {
       `;
     } else {
       return html`
-        ${[label, control, ...contextuals].filter(el => el !== null)}
+        <div>${[label, control, ...contextuals].filter(el => el !== null)}</div>
       `;
     }
   },
