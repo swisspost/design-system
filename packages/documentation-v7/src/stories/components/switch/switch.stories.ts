@@ -114,6 +114,12 @@ const meta: Meta = {
       },
     },
   },
+  decorators: [
+    story =>
+      html`
+        <div class="pt-3">${story()}</div>
+      `,
+  ],
 };
 
 export default meta;
@@ -123,16 +129,6 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'is-valid': false,
   'is-invalid': true,
 };
-
-function getValidationFeedback({ validation }: Args) {
-  return validation !== 'null'
-    ? html`
-        <p class=${validation.split('-')[1] + '-feedback'}>
-          ${validation === 'is-valid' ? 'Ggranda sukceso!' : 'Eraro okazis!'}
-        </p>
-      `
-    : null;
-}
 
 function renderSwitch(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
@@ -158,9 +154,14 @@ function renderSwitch(args: Args, context: StoryContext) {
       `
     : null;
 
-  const handleChange = (e: Event) => {
-    updateArgs({ checked: !args.checked });
-  };
+  const validationFeedback =
+    args.validation !== 'null'
+      ? html`
+          <p class=${args.validation.split('-')[1] + '-feedback'}>
+            ${args.validation === 'is-valid' ? 'Ggranda sukceso!' : 'Eraro okazis!'}
+          </p>
+        `
+      : null;
 
   return html`
     <div class="form-check form-switch">
@@ -174,24 +175,16 @@ function renderSwitch(args: Args, context: StoryContext) {
         ?disabled=${args.disabled}
         aria-label=${useAriaLabel ? (args.checked ? args.labelAfter : args.labelBefore) : ''}
         aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
-        @change=${handleChange}
+        @change=${(e: Event) => updateArgs({ checked: !args.checked })}
       />
-      ${labelBefore} ${labelAfter}
-      ${args.validation !== 'null' ? getValidationFeedback(args) : nothing}
+      ${labelBefore} ${labelAfter} ${args.validation !== 'null' ? validationFeedback : nothing}
     </div>
   `;
 }
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  decorators: [
-    story =>
-      html`
-        <div class="pt-3">${story()}</div>
-      `,
-  ],
-};
+export const Default: Story = {};
 
 export const MultilineLabels: Story = {
   parameters: {
@@ -206,12 +199,6 @@ export const MultilineLabels: Story = {
       ],
     },
   },
-  decorators: [
-    story =>
-      html`
-        <div class="pt-3">${story()}</div>
-      `,
-  ],
   args: {
     labelPosition: 'after',
     labelAfter:
