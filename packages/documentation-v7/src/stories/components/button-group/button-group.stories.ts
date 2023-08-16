@@ -1,4 +1,4 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
@@ -141,9 +141,10 @@ export default meta;
 
 type Story = StoryObj;
 
-function createButttonTemplate(args: Args, index: number) {
+function createButttonTemplate(args: Args, context: StoryContext, index: number) {
   const [_, updateArgs] = useArgs();
   const position = index + 1;
+  const id = `btngroup${context.name}_${position}`;
   const label = args[`label_${position}`];
   switch (args.element) {
     case 'checkbox': {
@@ -152,7 +153,7 @@ function createButttonTemplate(args: Args, index: number) {
         <input
           type="checkbox"
           class="btn-check"
-          id=${`btncheck${position}`}
+          id=${id}
           autocomplete="off"
           ?checked="${isSelected}"
           .checked="${isSelected}"
@@ -170,9 +171,7 @@ function createButttonTemplate(args: Args, index: number) {
             updateArgs({ selected: isChecked });
           }}
         />
-        <label class=${`btn${args.size} btn-secondary`} for=${`btncheck${position}`}>
-          ${label}
-        </label>
+        <label class=${`btn${args.size} btn-secondary`} for=${id}>${label}</label>
       `;
     }
     case 'radio': {
@@ -182,7 +181,7 @@ function createButttonTemplate(args: Args, index: number) {
           type="radio"
           class="btn-check"
           name="btnradio"
-          id=${`btnradio${position}`}
+          id=${id}
           autocomplete="off"
           ?checked=${isChecked}
           .checked=${isChecked}
@@ -190,9 +189,7 @@ function createButttonTemplate(args: Args, index: number) {
             updateArgs({ checked: position });
           }}
         />
-        <label class=${`btn${args.size} btn-secondary`} for=${`btnradio${position}`}>
-          ${label}
-        </label>
+        <label class=${`btn${args.size} btn-secondary`} for=${id}>${label}</label>
       `;
     }
     case 'link':
@@ -206,10 +203,10 @@ function createButttonTemplate(args: Args, index: number) {
       `;
   }
 }
-function renderButtonGroup(args: Args) {
+function renderButtonGroup(args: Args, context: StoryContext) {
   return html`
     <div class="btn-group" role="group" aria-label="Button group example">
-      ${Array.from({ length: 3 }).map((_, i) => createButttonTemplate(args, i))}
+      ${Array.from({ length: 3 }).map((_, i) => createButttonTemplate(args, context, i))}
     </div>
   `;
 }
