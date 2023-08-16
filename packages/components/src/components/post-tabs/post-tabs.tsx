@@ -1,5 +1,6 @@
 import { Component, Host, h, Element, Method, Event, EventEmitter, Prop } from '@stencil/core';
 import { version } from '../../../package.json';
+import { fadeIn, fadeOut } from '../../animations';
 
 @Component({
   tag: 'post-tabs',
@@ -7,9 +8,23 @@ import { version } from '../../../package.json';
   shadow: true,
 })
 export class PostTabs {
+  private panelsByName = new Map<string, HTMLPostTabPanelElement>;
+  private activeTab: HTMLPostTabHeaderElement;
+  private showing: Animation;
+  private hiding: Animation;
   private isLoaded = false;
-  private currentlyActiveTab: HTMLPostTabHeaderElement;
-  private panelByName = new Map<string, HTMLPostTabPanelElement>;
+
+  private get tabContainer(): HTMLElement {
+    return this.host.shadowRoot.querySelector('.tab-content');
+  }
+
+  private get tabs(): NodeListOf<HTMLPostTabHeaderElement> {
+    return this.host.querySelectorAll('post-tab-header');
+  }
+
+  private get panels(): NodeListOf<HTMLPostTabPanelElement> {
+    return this.host.querySelectorAll('post-tab-panel');
+  }
 
   @Element() host: HTMLPostTabsElement;
 
@@ -24,24 +39,20 @@ export class PostTabs {
    */
   @Event() tabChange: EventEmitter<string>;
 
-  componentDidLoad() {
-    this.isLoaded = true;
+  async componentWillLoad() {
+    this.panels.forEach(panel => {
+      // save the panels by name to easily retrieve them later
+      this.panelsByName.set(panel.name, panel);
 
-    const panels: HTMLPostTabPanelElement[] = Array.from(this.host.querySelectorAll('post-tab-panel'));
-    panels.forEach(panel => {
-      // save the panel by name to easily retrieve it later
-      this.panelByName.set(panel.name, panel);
-
-      // remove the panel from the view: only the panel associated with the active tab will be shown
+      // remove all panels from the view
       panel.remove();
     });
 
-    const tabs: HTMLPostTabHeaderElement[] = Array.from(this.host.querySelectorAll('post-tab-header'));
-    tabs.forEach(tab => {
-      // add an event listener on the tab to activate it on click
-      tab.addEventListener('click', e => {
+    this.tabs.forEach(tab => {
+      // add an event listener on the tabs so that they are activated on click
+      tab.addEventListener('click', async e => {
         e.preventDefault();
-        this.setActiveTab(tab);
+        await this.show(tab.panel);
       });
 
       // move each post-tab-header element to the "tabs" slot if it's not already there
@@ -49,26 +60,13 @@ export class PostTabs {
         tab.setAttribute('slot', 'tabs');
       }
     });
-
-    // activate the tab set as active or the first tab by default
-    const activeTab = tabs.find(tab => tab.panel === this.activePanel) || tabs[0];
-    this.setActiveTab(activeTab);
   }
 
-  private setActiveTab(tab: HTMLPostTabHeaderElement) {
-    // don't do anything if the tab is already active
-    if (this.currentlyActiveTab === tab) {
-      return;
-    }
+  async componentDidLoad() {
+    const initiallyActivePanel = this.activePanel || this.tabs.item(0).panel;
+    await this.show(initiallyActivePanel);
 
-    // deactivate the currently active tab if there is one
-    if (this.currentlyActiveTab) {
-      this.deactivateTab(this.currentlyActiveTab);
-    }
-
-    // activate the newly selected tab
-    this.currentlyActiveTab = tab;
-    this.activateTab(this.currentlyActiveTab);
+    this.isLoaded = true;
   }
 
   /**
@@ -76,36 +74,70 @@ export class PostTabs {
    * Any other panel that was previously shown becomes hidden and its associated tab is unselected.
    */
   @Method()
-  async show(panelName: number) {
-    const tab = this.host.querySelector(`post-tab-header[panel=${panelName}]`);
-    this.setActiveTab(tab as HTMLPostTabHeaderElement);
+  async show(panelName: string) {
+    const previousTab = this.activeTab;
+    const newTab : HTMLPostTabHeaderElement = this.host.querySelector(`post-tab-header[panel=${panelName}]`);
+    this.activateTab(newTab);
+
+    // if a panel is currently being displayed, remove it from the view and complete the associated animation
+    if (this.showing) {
+      this.showing.effect['target'].remove();
+      this.showing.finish();
+    }
+
+    // hide the currently visible panel only if no other animation is running
+    if (previousTab && !this.showing && !this.hiding) {
+      this.hidePanel(previousTab.panel);
+    }
+
+    // wait for any hiding animation to complete before showing the selected tab
+    if (this.hiding) {
+      await this.hiding.finished;
+    }
+
+    this.showSelectedPanel();
+
+    // wait for any display animation to complete for the returned promise to fully resolve
+    if (this.showing) {
+      await this.showing.finished;
+    }
   }
 
   private activateTab(tab: HTMLPostTabHeaderElement) {
-    // set the tab title as active
+    if (this.activeTab) {
+      const tabTitle = this.activeTab.shadowRoot.querySelector('.tab-title');
+      tabTitle.setAttribute('aria-selected', 'false');
+      tabTitle.classList.remove('active');
+    }
+
     const tabTitle = tab.shadowRoot.querySelector('.tab-title');
     tabTitle.setAttribute('aria-selected', 'true');
     tabTitle.classList.add('active');
 
-    // show the panel associated with the tab
-    const panel = this.panelByName.get(tab.panel);
-    this.host.shadowRoot.querySelector('.tab-content').appendChild(panel);
-
-    // emit the tab change
-    if (this.isLoaded) {
-      this.tabChange.emit(panel.name);
-    }
+    this.activeTab = tab;
   }
 
-  private deactivateTab(tab: HTMLPostTabHeaderElement) {
-    // set the tab title as inactive
-    const tabTitle = tab.shadowRoot.querySelector('.tab-title');
-    tabTitle.setAttribute('aria-selected', 'false');
-    tabTitle.classList.remove('active');
+  private hidePanel(panelName: string) {
+    const previousPanel = this.panelsByName.get(panelName);
 
-    // hide the panel associated with the tab
-    const panel = this.panelByName.get(tab.panel);
-    panel.remove();
+    this.hiding = fadeOut(previousPanel);
+    this.hiding.onfinish = () => {
+      previousPanel.remove();
+      this.hiding = null;
+    };
+  }
+
+  private showSelectedPanel() {
+    const panel = this.panelsByName.get(this.activeTab.panel);
+    this.tabContainer.appendChild(panel);
+
+    // prevent the initially selected panel from fading in
+    if (!this.isLoaded) return;
+
+    this.showing = fadeIn(panel);
+    this.showing.onfinish = () => {
+      this.showing = null;
+    };
   }
 
   render() {

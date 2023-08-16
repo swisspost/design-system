@@ -73,7 +73,7 @@ export namespace Components {
         /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
-        "show": (panelName: number) => Promise<void>;
+        "show": (panelName: string) => Promise<void>;
     }
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
