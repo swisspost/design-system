@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, FloatingLabel, Size, Validation } from './select.stories';
+import meta, { Default, FloatingLabel } from './select.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils/bombArgs';
 
@@ -13,30 +13,143 @@ type Story = StoryObj;
 export const Select: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
-      <div class="d-flex flex-wrap gap-1 align-items-start">
+      <div class="d-flex gap-3 flex-column">
         ${['bg-white', 'bg-dark'].map(
-          bg => html`
-            <div
-              class="${bg}"
-              style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: start; padding: 1rem;"
-            >
-              ${bombArgs({
-                size: context.argTypes.size.options,
-                validation: context.argTypes.validation.options,
-                floatingLabel: [false, true],
-                multiple: [false, true],
-                disabled: [false, true],
-              }).map((args: Args) =>
-                Default.render?.({ ...context.args, ...args, animated: false }, context),
-              )}
-              <div class="mt-big w-100"></div>
-              ${FloatingLabel.render?.({ ...context.args, ...FloatingLabel.args }, context)}
-              <div class="mt-big w-100"></div>
-              ${Size.render?.({ ...context.args, ...Size.args }, context)}
-              <div class="mt-big w-100"></div>
-              ${Validation.render?.({ ...context.args, ...Validation.args }, context)}
-            </div>
-          `,
+          bg =>
+            html`
+              <div class="${bg} d-flex gap-3 flex-column p-3">
+                <h2>Default</h2>
+                ${[
+                  ...bombArgs({
+                    label: [
+                      context.args.label,
+                      'Label - Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor',
+                    ],
+                    hint: [''],
+                  }),
+                  ...bombArgs({
+                    hiddenLabel: [true],
+                    hint: ['Hintus textus', context.args.hint],
+                  }),
+                  ...bombArgs({
+                    size: context.argTypes.size.options,
+                    disabled: [false, true],
+                    validation: context.argTypes.validation.options,
+                  }),
+                ]
+                  // remove disabled & validated examples
+                  .filter((args: Args) => !(args.disabled && args.validation !== 'null'))
+                  .map(
+                    (args: Args) =>
+                      html`
+                        <div>
+                          ${Default.render?.(
+                            { ...context.args, ...Default.args, ...args },
+                            context,
+                          )}
+                        </div>
+                      `,
+                  )}
+                <h2>Floating Label</h2>
+                ${[
+                  ...bombArgs({
+                    label: [
+                      context.args.label,
+                      'Label - Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor',
+                    ],
+                    hint: [''],
+                  }),
+                  ...bombArgs({
+                    hint: ['', 'Hintus textus', context.args.hint],
+                  }),
+                  ...bombArgs({
+                    disabled: [false, true],
+                    validation: context.argTypes.validation.options,
+                  }),
+                ]
+                  // remove disabled & validated examples
+                  .filter((args: Args) => !(args.disabled && args.validation !== 'null'))
+                  .map(
+                    (args: Args) =>
+                      html`
+                        <div>
+                          ${FloatingLabel.render?.(
+                            { ...context.args, ...FloatingLabel.args, ...args },
+                            context,
+                          )}
+                        </div>
+                      `,
+                  )}
+                <h2>Multiple - Default</h2>
+                ${[
+                  ...bombArgs({
+                    multiple: [true],
+                    label: [
+                      context.args.label,
+                      'Label - Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor',
+                    ],
+                    hint: [''],
+                  }),
+                  ...bombArgs({
+                    multiple: [true],
+                    hiddenLabel: [true],
+                    hint: ['', 'Hintus textus', context.args.hint],
+                  }),
+                  ...bombArgs({
+                    multiple: [true],
+                    size: context.argTypes.size.options,
+                    disabled: [false, true],
+                    validation: context.argTypes.validation.options,
+                  }),
+                ]
+                  // remove disabled & validated examples
+                  .filter((args: Args) => !(args.disabled && args.validation !== 'null'))
+                  .map(
+                    (args: Args) =>
+                      html`
+                        <div>
+                          ${Default.render?.(
+                            { ...context.args, ...Default.args, ...args },
+                            context,
+                          )}
+                        </div>
+                      `,
+                  )}
+                <h2>Multiple - Floating Label</h2>
+                ${[
+                  ...bombArgs({
+                    multiple: [true],
+                    label: [
+                      context.args.label,
+                      'Label - Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor',
+                    ],
+                    hint: [''],
+                  }),
+                  ...bombArgs({
+                    multiple: [true],
+                    hint: ['Hintus textus', context.args.hint],
+                  }),
+                  ...bombArgs({
+                    multiple: [true],
+                    disabled: [false, true],
+                    validation: context.argTypes.validation.options,
+                  }),
+                ]
+                  // remove disabled & validated examples
+                  .filter((args: Args) => !(args.disabled && args.validation !== 'null'))
+                  .map(
+                    (args: Args) =>
+                      html`
+                        <div>
+                          ${FloatingLabel.render?.(
+                            { ...context.args, ...FloatingLabel.args, ...args },
+                            context,
+                          )}
+                        </div>
+                      `,
+                  )}
+              </div>
+            `,
         )}
       </div>
     `;
