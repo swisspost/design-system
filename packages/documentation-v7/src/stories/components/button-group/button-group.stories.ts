@@ -10,7 +10,7 @@ const meta: Meta = {
     badges: [BADGE.NEEDS_REVISION],
   },
   args: {
-    size: '',
+    size: 'btn-md',
     element: 'button',
     label_1: 'Left',
     label_2: 'Middle',
@@ -141,11 +141,12 @@ export default meta;
 
 type Story = StoryObj;
 
-function createButttonTemplate(args: Args, context: StoryContext, index: number) {
+function createButtonTemplate(args: Args, context: StoryContext, index: number) {
   const [_, updateArgs] = useArgs();
   const position = index + 1;
   const id = `btngroup${context.name}_${position}`;
   const label = args[`label_${position}`];
+
   switch (args.element) {
     case 'checkbox': {
       const isSelected = args.selected?.includes(position) ?? false;
@@ -203,10 +204,11 @@ function createButttonTemplate(args: Args, context: StoryContext, index: number)
       `;
   }
 }
+
 function renderButtonGroup(args: Args, context: StoryContext) {
   return html`
     <div class="btn-group" role="group" aria-label="Button group example">
-      ${Array.from({ length: 3 }).map((_, i) => createButttonTemplate(args, context, i))}
+      ${Array.from({ length: 3 }).map((_, i) => createButtonTemplate(args, context, i))}
     </div>
   `;
 }
