@@ -1,3 +1,13 @@
+.docs-story {
+  > div:first-child {
+    overflow: hidden;
+  }
+
+  > div:nth-child(2) {
+    z-index: 1000;
+  }
+}
+
 // Used for internet header stories
 .fake-content {
   position: relative;

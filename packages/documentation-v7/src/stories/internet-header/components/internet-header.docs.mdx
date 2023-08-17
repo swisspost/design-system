@@ -16,6 +16,37 @@ to be nested directly inside the `<body>` for the sticky scrolling to work.
 If you want to render the header element with Angular,
 have a look at [portals](https://medium.com/angular-in-depth/how-do-cdk-portals-work-7c097c14a494).
 
-<Canvas of={InternetHeaderStories.Default} sourceState="shown" />
+<a
+  className="btn btn-primary btn-animated"
+  href="/iframe.html?viewMode=story&id=internet-header-header-component--default"
+  target="_blank"
+>
+  <span>Open Header in New Tab</span>
+</a>
+
+<Canvas of={InternetHeaderStories.Default} />
 
 <Controls of={InternetHeaderStories.Default} />
+
+## Examples
+
+### Custom Navigation Item
+
+<Canvas of={InternetHeaderStories.CustomNavigation} />
+
+### Custom Online Service Flyout
+
+<Canvas of={InternetHeaderStories.CustomOnlineServiceFlyout} />
+
+### Full Width
+
+By default, on viewports with a width greater than 1440px, header content is padded right and left.
+To make the header span the full width of the viewport, set the `full-width` property to `true`.
+
+<a
+  className="btn btn-secondary btn-animated"
+  href="/iframe.html?viewMode=story&id=internet-header-header-component--full-width"
+  target="_blank"
+>
+  <span>See Fullwidth Header</span>
+</a>

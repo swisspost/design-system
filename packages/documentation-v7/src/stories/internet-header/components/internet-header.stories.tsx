@@ -12,7 +12,6 @@ const meta: Meta<HTMLSwisspostInternetHeaderElement> = {
   title: 'Internet Header/Header Component',
   component: 'swisspost-internet-header',
   render: renderInternetHeader,
-  decorators: [ mockPage ],
   parameters: {
     layout: 'fullscreen',
     actions: {
@@ -21,7 +20,7 @@ const meta: Meta<HTMLSwisspostInternetHeaderElement> = {
     badges: [BADGE.STABLE],
     controls: {
       exclude: ['config-proxy']
-    }
+    },
   },
   args: {
     'project': 'test'
@@ -81,17 +80,33 @@ function mockPage(story: any) {
 
 // RENDERER
 function renderInternetHeader(args: HTMLSwisspostInternetHeaderElement) {
-  console.log(args);
-  const filteredArgs = filterArgs(args, arg => arg !== null && arg !== undefined);
+  const attributes = getAttributes(args, arg => arg !== null && arg !== undefined);
   return html`
-    <swisspost-internet-header ${spread(filteredArgs)}></swisspost-internet-header>
+    <swisspost-internet-header ${spread(attributes)}></swisspost-internet-header>
   `;
 }
 
 // STORIES
 type Story = StoryObj<HTMLSwisspostInternetHeaderElement>;
 
-export const Default: Story = {};
+export const Default: Story = {
+  decorators: [ mockPage ],
+  parameters: {
+    docs: {
+      story: {
+        inline: false,
+        height: '40em',
+      },
+    },
+  },
+};
+
+export const FullWidth: Story = {
+  decorators: [ mockPage ],
+  args: {
+    fullWidth: true,
+  },
+};
 
 export const CustomNavigation: Story = {
   args: {
@@ -210,26 +225,21 @@ export const CustomOnlineServiceFlyout: Story = {
   },
 };
 
-export const FullWidth: Story = {
-  args: {
-    fullWidth: true,
-  },
-};
-
 // TODO: move to utils
-const filterArgs = (obj: Args, predicate: (arg: any) => boolean): Args => {
-  let result: Args = {},
-    key;
+const getAttributes = (args: Args, condition?: (arg: any) => boolean): Args => {
+  const attrs: { [key: string]: any } = {};
 
-  for (key in obj) {
-    if (obj.hasOwnProperty(key) && predicate(obj[key])) {
+  for (const key in args) {
+    if (args.hasOwnProperty(key) && condition && condition(args[key])) {
+      const attrKey = key.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+
       // Cast boolean false to string so it's displayed in the docs code block. False values are otherwise omitted
-      result[key] = obj[key] === false ? 'false' : obj[key];
-      if (typeof obj[key] === 'object') {
-        result[key] = JSON.stringify(obj[key]);
+      attrs[attrKey] = args[key] === false ? 'false' : args[key];
+      if (typeof args[key] === 'object') {
+        attrs[attrKey] = JSON.stringify(args[key]);
       }
     }
   }
 
-  return result;
+  return attrs;
 };
