@@ -1,19 +1,17 @@
 import { Meta } from '@storybook/blocks';
-import { BADGE } from '../../../../.storybook/constants';
+import * as LayoutStories from './layout.stories';
 
-<Meta
-  title="Foundations/Layout"
-  parameters={{ badges: [BADGE.TODO] }}
-/>
+<Meta of={LayoutStories} />
 
 # Layout
 
 <div className="alert alert-info">
   <h2 className="alert-heading">TODO:</h2>
 
-  Breakpoints, Containers, Grid, Columns
+<span className="text-decoration-line-through">Breakpoints</span>, Containers, Grid, Columns
 
-  Document differences and link over to bootstrap for the rest
+Document differences and link over to bootstrap for the rest
 
-  Refer to the Figma Design as well: <a href="https://www.figma.com/file/ojCcgC5Zd12eUSzq6V5m24/Foundations?node-id=0%3A1&t=6hjgJzjzxjBbh0AU-1">Figma</a>
+Refer to the Figma Design as well: <a href="https://www.figma.com/file/ojCcgC5Zd12eUSzq6V5m24/Foundations?node-id=0%3A1&t=6hjgJzjzxjBbh0AU-1">Figma</a>
+
 </div>

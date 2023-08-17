@@ -1,10 +1,7 @@
 import { Meta } from '@storybook/blocks';
-import { BADGE } from '../../../.storybook/constants';
+import * as GettingStartedStories from './styles.stories';
 
-<Meta
-  title="Getting Started/Styles"
-  parameters={{ badges: [BADGE.NEEDS_REVISION] }}
-/>
+<Meta of={GettingStartedStories} />
 
 # @swisspost/design-system-styles
 
@@ -12,8 +9,10 @@ import { BADGE } from '../../../.storybook/constants';
 
 The styling package, including theming for [Bootstrap](https://getbootstrap.com/) and [ng-bootstrap](https://ng-bootstrap.github.io/#/home) components.
 
-- [Installation](#installation)
-- [Usage](#usage)
+<ul>
+  <li><a href="#installation" target="_self">Installation</a></li>
+  <li><a href="#usage" target="_self">Usage</a></li>
+</ul>
 
 ## Installation
 
