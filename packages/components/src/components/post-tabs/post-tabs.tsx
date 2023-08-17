@@ -8,7 +8,7 @@ import { fadeIn, fadeOut } from '../../animations';
   shadow: true,
 })
 export class PostTabs {
-  private panelsByName = new Map<string, HTMLPostTabPanelElement>;
+  private panelsByName = new Map<HTMLPostTabPanelElement['name'], HTMLPostTabPanelElement>;
   private activeTab: HTMLPostTabHeaderElement;
   private showing: Animation;
   private hiding: Animation;
@@ -30,14 +30,15 @@ export class PostTabs {
 
   /**
    * The name of the panel that is initially shown.
+   * If not specified, it defaults to the panel associated with the first tab.
    */
-  @Prop() readonly activePanel: string;
+  @Prop() readonly activePanel: HTMLPostTabPanelElement['name'];
 
   /**
-   * An event emitted whenever a new tab becomes active.
-   * The payload is the name of the associated panel.
+   * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.
+   * The payload is the name of the newly shown panel.
    */
-  @Event() tabChange: EventEmitter<string>;
+  @Event() tabChange: EventEmitter<HTMLPostTabPanelElement['name']>;
 
   async componentWillLoad() {
     this.panels.forEach(panel => {
@@ -101,6 +102,8 @@ export class PostTabs {
     if (this.showing) {
       await this.showing.finished;
     }
+
+    this.tabChange.emit(this.activeTab.panel);
   }
 
   private activateTab(tab: HTMLPostTabHeaderElement) {
@@ -117,7 +120,7 @@ export class PostTabs {
     this.activeTab = tab;
   }
 
-  private hidePanel(panelName: string) {
+  private hidePanel(panelName: HTMLPostTabPanelElement['name']) {
     const previousPanel = this.panelsByName.get(panelName);
 
     this.hiding = fadeOut(previousPanel);

@@ -57,7 +57,7 @@ export namespace Components {
         /**
           * The name of the panel controlled by the tab header.
          */
-        "panel": string;
+        "panel": HTMLPostTabPanelElement['name'];
     }
     interface PostTabPanel {
         /**
@@ -67,9 +67,9 @@ export namespace Components {
     }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown.
+          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.
          */
-        "activePanel": string;
+        "activePanel": HTMLPostTabPanelElement['name'];
         /**
           * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
          */
@@ -170,7 +170,7 @@ declare namespace LocalJSX {
         /**
           * The name of the panel controlled by the tab header.
          */
-        "panel"?: string;
+        "panel"?: HTMLPostTabPanelElement['name'];
     }
     interface PostTabPanel {
         /**
@@ -180,13 +180,13 @@ declare namespace LocalJSX {
     }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown.
+          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.
          */
-        "activePanel"?: string;
+        "activePanel"?: HTMLPostTabPanelElement['name'];
         /**
-          * An event emitted whenever a new tab becomes active. The payload is the name of the associated panel.
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
          */
-        "onTabChange"?: (event: PostTabsCustomEvent<string>) => void;
+        "onTabChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
     }
     interface IntrinsicElements {
         "post-collapsible": PostCollapsible;

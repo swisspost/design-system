@@ -7,16 +7,16 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                    | Type     | Default     |
-| ------------- | -------------- | ---------------------------------------------- | -------- | ----------- |
-| `activePanel` | `active-panel` | The name of the panel that is initially shown. | `string` | `undefined` |
+| Property      | Attribute      | Description                                                                                                              | Type     | Default     |
+| ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------ | -------- | ----------- |
+| `activePanel` | `active-panel` | The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab. | `string` | `undefined` |
 
 
 ## Events
 
-| Event       | Description                                                                                          | Type                  |
-| ----------- | ---------------------------------------------------------------------------------------------------- | --------------------- |
-| `tabChange` | An event emitted whenever a new tab becomes active. The payload is the name of the associated panel. | `CustomEvent<string>` |
+| Event       | Description                                                                                                                                                       | Type                  |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `tabChange` | An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel. | `CustomEvent<string>` |
 
 
 ## Methods
