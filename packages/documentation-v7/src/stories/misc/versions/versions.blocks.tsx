@@ -2,7 +2,7 @@ import stylesVersions from '@swisspost/design-system-styles/package.json';
 import componentsVersions from '@swisspost/design-system-components/package.json';
 import internetHeaderVersions from '@swisspost/internet-header/package.json';
 import componentsReactVersions from '@swisspost/design-system-components-react/package.json';
-import documentationVersions from '../../../package.json';
+import documentationVersions from '../../../../package.json';
 
 const dependencies = [
   stylesVersions,

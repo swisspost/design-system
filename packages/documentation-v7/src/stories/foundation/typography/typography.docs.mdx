@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
-import { BADGE } from '../../../../.storybook/constants';
+import * as TypographyStories from './typography.stories';
 import {
   FontFaceWrapper,
   FontFace,
@@ -14,10 +14,7 @@ import {
 } from './typography.blocks';
 import './typography.styles.scss';
 
-<Meta
-  title="Foundations/Typography"
-  parameters={{ badges: [BADGE.BETA, BADGE.NEEDS_REVISION] }}
-/>
+<Meta of={TypographyStories} />
 
 # Typography
 
