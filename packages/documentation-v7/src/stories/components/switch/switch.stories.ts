@@ -139,26 +139,28 @@ function renderSwitch(args: Args, context: StoryContext) {
   });
 
   const useAriaLabel = args.hiddenLabel;
+  const ariaLabel = args.checked ? args.labelAfter : args.labelBefore;
   const useLabelBefore = !useAriaLabel && ['before', 'both'].includes(args.labelPosition);
   const useLabelAfter = !useAriaLabel && ['after', 'both'].includes(args.labelPosition);
 
   const labelBefore = useLabelBefore
     ? html`
-        <label for="switch" class="form-check-label order-first">${args.labelBefore}</label>
+        <label for=${context.id} class="form-check-label order-first">${args.labelBefore}</label>
       `
     : null;
 
   const labelAfter = useLabelAfter
     ? html`
-        <label for="switch" class="form-check-label">${args.labelAfter}</label>
+        <label for=${context.id} class="form-check-label">${args.labelAfter}</label>
       `
     : null;
 
+  const validationText = args.validation === 'is-valid' ? 'Ggranda sukceso!' : 'Eraro okazis!';
   const validationFeedback =
     args.validation !== 'null'
       ? html`
           <p class=${args.validation.split('-')[1] + '-feedback'}>
-            ${args.validation === 'is-valid' ? 'Ggranda sukceso!' : 'Eraro okazis!'}
+            ${validationText}
           </p>
         `
       : null;
@@ -173,7 +175,7 @@ function renderSwitch(args: Args, context: StoryContext) {
         ?checked=${args.checked}
         .checked=${args.checked}
         ?disabled=${args.disabled}
-        ?aria-label=${useAriaLabel ? (args.checked ? args.labelAfter : args.labelBefore) : ''}
+        aria-label=${useAriaLabel ? ariaLabel : nothing}
         aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
         @change=${(e: Event) => updateArgs({ checked: !args.checked })}
       />
