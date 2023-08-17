@@ -152,7 +152,7 @@
   @include post.high-contrast-mode() {
     .innerZoomElementWrapper {
       > * {
-        border-color: Canvas;
+        border-color: Canvas !important;
       }
     }
   }
