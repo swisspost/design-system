@@ -1,8 +1,8 @@
-import { Meta, Story } from '@storybook/blocks';
-import { BADGE } from '../../../../../.storybook/constants';
+import { Meta } from '@storybook/blocks';
 import { BreakpointTable, SCSS_VARIABLES } from './breakpoints.blocks';
+import * as BreakpointStories from './breakpoints.stories';
 
-<Meta title="Foundations/Layout/Breakpoints" parameters={{ badges: [BADGE.NEEDS_REVISION] }} />
+<Meta of={BreakpointStories} />
 
 # Breakpoints
 

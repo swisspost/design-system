@@ -1,10 +1,10 @@
 import { Meta, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
+import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'Foundations/Layout/TODOS',
+  title: 'Foundations/Layout/Breakpoints',
   parameters: {
-    badges: [BADGE.TODO],
+    badges: [BADGE.NEEDS_REVISION],
   },
 };
 
