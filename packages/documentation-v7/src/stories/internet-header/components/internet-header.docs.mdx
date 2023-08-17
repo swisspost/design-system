@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, ArgTypes, Meta } from '@storybook/blocks';
 import * as InternetHeaderStories from './internet-header.stories';
 
 <Meta of={InternetHeaderStories} />
@@ -26,7 +26,9 @@ have a look at [portals](https://medium.com/angular-in-depth/how-do-cdk-portals-
 
 <Canvas of={InternetHeaderStories.Default} />
 
-<Controls of={InternetHeaderStories.Default} />
+<div className="hide-col-default">
+  <ArgTypes of={InternetHeaderStories.Default} />
+</div>
 
 ## Examples
 
