@@ -106,6 +106,7 @@ export const parameters = {
       dt: null,
       dd: null,
       a: null,
+      div: null,
     },
     source: {
       excludeDecorators: true,
