@@ -4,10 +4,10 @@ module.exports = {
   addons: [
     '@storybook/addon-docs',
     '@storybook/addon-controls',
-    '@storybook/addon-links',
+    // '@storybook/addon-links',
     '@storybook/addon-measure',
     '@storybook/addon-viewport',
-    '@storybook/addon-a11y',
+    // '@storybook/addon-a11y',
     '@pxtrn/storybook-addon-docs-stencil',
     'storybook-dark-mode',
     '@geometricpanda/storybook-addon-badges',
