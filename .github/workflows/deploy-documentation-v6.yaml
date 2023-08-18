@@ -6,10 +6,10 @@
 #
 ###
 
-name: Deploy Documentation V7 Preview to Netlify
+name: Deploy Documentation V6 Preview to Netlify
 on:
   workflow_run:
-    workflows: ['Build Documentation V7']
+    workflows: ['Build Documentation V6']
     types: [completed]
 
 jobs:
@@ -28,10 +28,10 @@ jobs:
         uses: swisspost/design-system/.github/actions/artifact-download@main
         id: build
         with:
-          name: design-system-documentation-v7
+          name: design-system-documentation-v6
           folder: build-output
 
-      - name: Deploy documentation v7 to netlify
+      - name: Deploy documentation v6 to netlify
         uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
         id: deploy
         with:

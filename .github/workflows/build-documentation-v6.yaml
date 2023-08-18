@@ -10,7 +10,7 @@
 #
 ###
 
-name: Build Documentation V7
+name: Build Documentation V6
 on:
   pull_request:
     paths:
@@ -31,14 +31,14 @@ jobs:
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      - name: Install documentation-v7 & dependencies
-        run: pnpm --filter design-system-documentation-v7... install
+      - name: Install documentation-v6 & dependencies
+        run: pnpm --filter design-system-documentation-v6... install
 
-      - name: Build documentation-v7 & dependencies
-        run: pnpm --filter design-system-documentation-v7... build
+      - name: Build documentation-v6 & dependencies
+        run: pnpm --filter design-system-documentation-v6... build
 
-      - name: Upload documentation-v7
+      - name: Upload documentation-v6
         uses: swisspost/design-system/.github/actions/artifact-upload@main
         with:
-          name: design-system-documentation-v7
-          folder: packages/documentation-v7/storybook-static
+          name: design-system-documentation-v6
+          folder: packages/documentation-v6/storybook-static
