@@ -14,7 +14,7 @@ name: Build Documentation V6
 on:
   pull_request:
     paths:
-      - 'packages/documentation-v7/**'
+      - 'packages/documentation-v6/**'
       - 'packages/styles/**'
       - 'packages/components/**'
       - 'packages/internet-header/**'
