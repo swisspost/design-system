@@ -202,7 +202,7 @@ export default {
 const Template = (args: Args) => {
   const props = {
     key: args.key,
-    href: args.tag === 'a' ? 'javascript:void' : undefined,
+    href: args.tag === 'a' ? '#' : undefined,
     type: args.tag === 'input' ? args.type : undefined,
     value: args.tag === 'input' ? args.text : undefined,
   };

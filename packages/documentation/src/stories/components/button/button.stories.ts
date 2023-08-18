@@ -251,7 +251,7 @@ function createProps(args: Args, isAnimated: boolean) {
     ]
       .filter(c => c && c !== 'null')
       .join(' '),
-    href: args.tag === 'a' ? 'javascript:void' : null,
+    href: args.tag === 'a' ? '#' : null,
     type: args.tag === 'input' ? args.type : null,
     value: args.tag === 'input' ? args.text : null,
     disabled: args.disabled ? args.disabled : null,
