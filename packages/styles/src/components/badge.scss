@@ -16,6 +16,8 @@
 
 .badge {
   @extend %badge;
+
+  background-color: red;
 }
 
 a,
