@@ -1,10 +1,8 @@
 import { Meta } from '@storybook/blocks';
 import { BADGE } from '../../../.storybook/constants';
+import * as MigrationGuideStories from './migration-guide.stories';
 
-<Meta
-  title="Internet Header/Migration Guide"
-  parameters={{ badges: [ BADGE.STABLE ] }}
-/>
+<Meta of={MigrationGuideStories} />
 
 # Migration from the old header
 
