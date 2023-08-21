@@ -125,8 +125,10 @@ export class PostInternetBreadcrumbs {
    */
   setBodyScroll(overlay: IBreadcrumbOverlay) {
     if (this.overlayVisible) {
+      // @ts-ignore
       disableBodyScroll(overlay, { reserveScrollBarGap: true });
     } else {
+      // @ts-ignore
       enableBodyScroll(overlay);
     }
   }

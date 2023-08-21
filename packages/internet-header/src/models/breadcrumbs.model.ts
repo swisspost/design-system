@@ -21,7 +21,7 @@ export interface IBreadcrumbButton {
   additionalAttributes: any[];
 }
 
-export interface IBreadcrumbOverlay extends Element {
+export interface IBreadcrumbOverlay {
   id: string;
   target: string;
   closeText: string;
