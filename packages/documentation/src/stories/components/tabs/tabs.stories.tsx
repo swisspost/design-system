@@ -4,7 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta<HTMLPostTabsElement> =  {
-  title: 'Components/Tab',
+  title: 'Components/Tabs',
   component: 'post-tabs',
   render: renderTabs,
   parameters: {

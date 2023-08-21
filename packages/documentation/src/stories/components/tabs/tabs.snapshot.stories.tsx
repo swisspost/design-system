@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default } from './tab.stories';
+import meta from './tabs.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils/bombArgs';
 
@@ -10,7 +10,7 @@ export default {
 
 type Story = StoryObj<HTMLPostTabsElement>;
 
-export const Tab: Story = {
+export const Tabs: Story = {
   render: (_args: HTMLPostTabsElement, context: StoryContext<HTMLPostTabsElement>) => {
     return html`
       <div>
