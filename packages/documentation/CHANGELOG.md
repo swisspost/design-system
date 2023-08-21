@@ -1,10 +1,6 @@
-# @swisspost/design-system-documentation
+# @swisspost/design-system-documentation-v7
 
-## 1.12.0
-
-### Minor Changes
-
-- Added a gray notification variant for cookie banners. (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
+## 1.1.2
 
 ### Patch Changes
 
@@ -15,14 +11,18 @@
   - @swisspost/design-system-components@1.3.10
   - @swisspost/design-system-components-react@1.0.16
 
-## 1.11.3
+## 1.1.1
 
 ### Patch Changes
 
 - Updated dependencies:
   - @swisspost/internet-header@1.8.3
 
-## 1.11.2
+## 1.1.0
+
+### Minor Changes
+
+- Created a storybook v7 package, set up with vite and lit. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1613](https://github.com/swisspost/design-system/pull/1613))
 
 ### Patch Changes
 
@@ -32,17 +32,6 @@
   - @swisspost/design-system-styles@6.2.6
   - @swisspost/design-system-components@1.3.9
   - @swisspost/design-system-components-react@1.0.15
-
-## 1.11.1
-
-### Patch Changes
-
-- Updated dependencies:
-  - @swisspost/design-system-icons@1.0.8
-  - @swisspost/design-system-styles@6.2.5
-  - @swisspost/design-system-components@1.3.8
-  - @swisspost/internet-header@1.8.1
-  - @swisspost/design-system-components-react@1.0.14
 
 ## 1.11.0
 

@@ -1,0 +1,85 @@
+import { ArgsTable, Canvas, Meta, Story } from '@storybook/addon-docs';
+
+<Meta title="Components/Card" />
+
+# Card
+
+<p className="lead">
+  Cards provide a flexible and extensible content container with multiple variants and options.
+</p>
+
+A card is a flexible and extensible content container.<br/>
+Built with flexbox, they offer easy alignment and mix well with other components.
+
+Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element.<br/>
+Use our <a href="#sizing" target="_self">sizing examples</a> to customize the size of a card.
+
+Last but not least, our card component is based on the <a href="https://getbootstrap.com/docs/5.1/components/card/" target="_blank">bootstrap card</a> component.<br/>
+Please also have a look at their documentation if you want to get more details or see even more examples.
+
+<Canvas>
+  <Story id="components-card--default" />
+</Canvas>
+<div className="hide-col-default">
+  <ArgsTable story="^" />
+</div>
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+```css dark
+@use '@swisspost/design-system-styles/index.scss';
+```
+
+To import only the styles required for this component:
+
+```css dark
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/card.scss';
+```
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
+
+### List Groups
+
+Create lists of content in a card with a flush list group.<br/>
+Simply replace or complement the `.card-body` with a `.list-group` element.
+
+<Canvas>
+  <Story id="components-card--list-groups" />
+</Canvas>
+
+### Custom Content
+
+Expect from the available space, there are no restrictions on what can be integrated into the `.card-header`, `.card-body`, `.list-group` and `.card-footer` elements.
+
+<Canvas>
+  <Story id="components-card--custom-content" />
+</Canvas>
+
+### Groups
+
+With the wrapper element `.card-group` you can group cards and adjust their height automatically line by line.
+
+<Canvas>
+  <Story id="components-card--groups" />
+</Canvas>
+
+### Image overlay
+
+<div className="mb-3">
+  <Story id="components-card--image-overlay" />
+</div>
+
+<div className="alert alert-danger mb-3">
+  <h4 className="h5">Bad Example</h4>
+  <p>
+    Don't do this at any time.
+    <br />
+    It's very difficult for content editors to always ensure that text is legible on an image for
+    every browser size and all different languages.
+  </p>
+</div>

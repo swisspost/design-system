@@ -1,6 +1,7 @@
-import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as CollapsibleStories from './collapsible.stories';
 
-<Meta title="Components/Collapsible" />
+<Meta of={CollapsibleStories} />
 
 # Collapsible
 
@@ -9,11 +10,8 @@ import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
 The `<post-collapsible>` component is used to show and hide content.
 Collapsing an element will animate the height from its current value to 0.
 
-<Canvas>
-  <Story id="components-collapsible--default" />
-</Canvas>
-
-<ArgsTable story="^" />
+<Canvas of={CollapsibleStories.Default} />
+<Controls of={CollapsibleStories.Default} />
 
 ## Examples
 
@@ -23,17 +21,13 @@ The following examples show different use cases for the `<post-collapsible>` com
 
 To make the collapsible content hidden by default, just use the `collapsible="true"` property.
 
-<Canvas>
-  <Story id="components-collapsible--initially-collapsed" />
-</Canvas>
+<Canvas of={CollapsibleStories.InitiallyCollapsed} />
 
 ### Heading Level
 
 Use the `heading-level` property to define the hierarchical level of the collapsible header within the structure of a document.
 
-<Canvas>
-  <Story id="components-collapsible--heading-level" />
-</Canvas>
+<Canvas of={CollapsibleStories.HeadingLevel} />
 
 ### Intricate Content
 
@@ -42,10 +36,7 @@ to allow any HTML content to be used as part of its header and body.<br/>
 By default, all children are appended to the component's body.
 For a specific child to be displayed in the header, a `slot="header"` attribute must be added.
 
-
-<Canvas withSource>
-  <Story id="components-collapsible--intricate-content" />
-</Canvas>
+<Canvas of={CollapsibleStories.IntricateContent} />
 
 ### Custom Trigger
 
@@ -53,7 +44,7 @@ The `<post-collapsible>` component exposes a `.toggle()` method that allows to t
 This method is asynchronous and returns a promise that resolves with the current open state.
 It optionally takes a boolean parameter that forces open when `true` or close when `false`.
 
-```typescript dark
+```typescript
 const collapsible = document.querySelector('#collapsibleId') as HTMLPostCollapsibleElement;
 collapsible.toggle(/* open: boolean */).then((/* isOpen: boolean */) => {});
 ```
@@ -66,6 +57,4 @@ Also make sure to add an `aria-expanded` attribute to the control element:
 if the collapsible element is closed, the attribute on the control element must have a value of `aria-expanded="false"`
 and `aria-expanded="true"` otherwise.
 
-<Canvas>
-  <Story id="components-collapsible--custom-trigger" />
-</Canvas>
+<Canvas of={CollapsibleStories.CustomTrigger} />

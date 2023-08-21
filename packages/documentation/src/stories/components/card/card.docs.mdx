@@ -1,85 +1,66 @@
-import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import * as CardStories from './card.stories';
 
-<Meta title="Components/Card" />
+<Meta of={CardStories} />
 
 # Card
 
-<p className="lead">
+<div className="lead">
   Cards provide a flexible and extensible content container with multiple variants and options.
-</p>
+</div>
 
-A card is a flexible and extensible content container.<br/>
 Built with flexbox, they offer easy alignment and mix well with other components.
 
-Cards have no fixed width to start, so they’ll naturally fill the full width of its parent element.<br/>
-Use our [sizing examples](#sizing) to customize the size of a card.
+They have no fixed width to start, so they’ll naturally fill the full width of its parent element.
+This is easily customizable using the grid for example,
+for more details read our <LinkTo kind="foundations-layout" story="docs">layout docs</LinkTo>.
 
-Last but not least, our card component is based on the <a href="https://getbootstrap.com/docs/5.1/components/card/" target="_blank">bootstrap card</a> component.<br/>
-Please also have a look at their documentation if you want to get more details or see even more examples.
-
-<Canvas>
-  <Story id="components-card--default" />
-</Canvas>
+<Canvas of={CardStories.Default}/>
 <div className="hide-col-default">
-  <ArgsTable story="^" />
+  <Controls of={CardStories.Default} />
 </div>
 
 ## SCSS Imports
 
 To import all styles from the design-system-styles package:
 
-```css dark
+```scss
 @use '@swisspost/design-system-styles/index.scss';
 ```
 
 To import only the styles required for this component:
 
-```css dark
+```scss
 @use '@swisspost/design-system-styles/basics.scss';
 @use '@swisspost/design-system-styles/components/card.scss';
 ```
 
-## Concrete Examples of Application
-
-The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
-
-### List Groups
-
-Create lists of content in a card with a flush list group.<br/>
-Simply replace or complement the `.card-body` with a `.list-group` element.
-
-<Canvas>
-  <Story id="components-card--list-groups" />
-</Canvas>
+## Examples
 
 ### Custom Content
 
-Expect from the available space, there are no restrictions on what can be integrated into the `.card-header`, `.card-body`, `.list-group` and `.card-footer` elements.
+Cards support a wide variety of content, including images, text, links, and more.
+This applies to the body of the card as well as its header and footer.
 
-<Canvas>
-  <Story id="components-card--custom-content" />
-</Canvas>
+<Canvas of={CardStories.CustomContent} />
 
-### Groups
+### List Group
 
-With the wrapper element `.card-group` you can group cards and adjust their height automatically line by line.
+Create lists of content in a card by simply using a flush list group in place of the card body.
 
-<Canvas>
-  <Story id="components-card--groups" />
-</Canvas>
+<Canvas of={CardStories.ListGroup} />
 
-### Image overlay
+### Card Group
 
-<div className="mb-3">
-  <Story id="components-card--image-overlay" />
-</div>
+Use card groups to render cards as a single, attached element with equal width and height columns.
+
+<Canvas of={CardStories.CardGroup} />
+
+### Bad example
 
 <div className="alert alert-danger mb-3">
-  <h4 className="h5">Bad Example</h4>
-  <p>
-    Don't do this at any time.
-    <br />
-    It's very difficult for content editors to always ensure that text is legible on an image for
-    every browser size and all different languages.
-  </p>
+  Never use text with a background image because you can't ensure it is readable by everyone for all languages and browser sizes.
 </div>
+
+<Canvas of={CardStories.BackgroundImage} />

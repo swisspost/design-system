@@ -1,0 +1,85 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+:export {
+  brand_yellow: post.$yellow;
+  brand_white: post.$white;
+  brand_black: post.$black;
+
+  @each $color, $value in post.$post-grays {
+    gray_#{$color}: $value;
+  }
+
+  gray_light: post.$light;
+  gray_dark: post.$dark;
+
+  pagebackgrounds_gray-background-light: post.$gray-background-light;
+  pagebackgrounds_gray-background: post.$gray-background;
+
+  @each $color, $value in post.$contextual-colors {
+    contextual_#{$color}: $value;
+  }
+
+  @each $colorName, $value in post.$accent-colors {
+    @if (str-index($colorName, '-bright') == null) {
+      accent_dark_#{$colorName}: $value;
+    }
+  }
+
+  @each $colorName, $value in post.$accent-colors {
+    @if (str-index($colorName, '-bright')) {
+      accent_bright_#{$colorName}: $value;
+    }
+  }
+}
+
+.color-swatch__section {
+  display: grid;
+  grid-template-columns: minmax(max-content, 25%) 20% auto;
+}
+
+.color-swatch {
+  display: contents;
+
+  > * {
+    padding: post.$size-mini (post.$size-regular * 0.5);
+    border-top: post.$border-width solid post.$border-color;
+
+    &:first-child {
+      padding-inline-start: 0;
+    }
+    &:last-child {
+      padding-inline-end: 0;
+    }
+  }
+
+  .color-swatch__description {
+    .description__title {
+      &:first-letter {
+        text-transform: uppercase;
+      }
+    }
+  }
+
+  .color-swatch__color {
+    .color__tile {
+      height: 100%;
+      border-radius: post.$border-radius;
+      box-shadow: post.$elevation-1;
+      min-height: 1em * post.$line-height-base * 2;
+    }
+  }
+
+  .color-swatch__props {
+    dl {
+      display: grid;
+      grid-template-columns: max-content auto;
+      gap: 0 post.$size-mini;
+      margin: 0;
+
+      dt,
+      dd {
+        margin: 0;
+      }
+    }
+  }
+}

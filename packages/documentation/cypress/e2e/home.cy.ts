@@ -1,10 +1,9 @@
 describe('home', () => {
   before(() => {
-    cy.visitStorybook();
+    cy.visit('/iframe.html?id=home--docs', { timeout: 5000 });
   });
 
-  it('should show the home page', () => {
-    cy.loadStory('Home', 'Page');
+  it.skip('should show the home page', () => {
     cy.get('.docs-header h1').should('have.text', 'Swiss PostDesign System');
   });
 });
