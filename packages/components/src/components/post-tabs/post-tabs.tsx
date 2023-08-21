@@ -14,10 +14,6 @@ export class PostTabs {
   private hiding: Animation;
   private isLoaded = false;
 
-  private get tabContainer(): HTMLElement {
-    return this.host.shadowRoot.querySelector('.tab-content');
-  }
-
   private get tabs(): NodeListOf<HTMLPostTabHeaderElement> {
     return this.host.querySelectorAll('post-tab-header');
   }
@@ -132,7 +128,7 @@ export class PostTabs {
 
   private showSelectedPanel() {
     const panel = this.panelsByName.get(this.activeTab.panel);
-    this.tabContainer.appendChild(panel);
+    this.host.appendChild(panel);
 
     // prevent the initially selected panel from fading in
     if (!this.isLoaded) return;
