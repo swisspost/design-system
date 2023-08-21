@@ -1,9 +1,0 @@
-{
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "noEmit": true,
-    "types": ["cypress", "@percy/cypress", "@swisspost/internet-header"]
-  },
-  "include": ["./**/*.ts", "./**/*.tsx"],
-  "exclude": []
-}
