@@ -112,7 +112,7 @@ export namespace Components {
          */
         "languageLocalStorageKey"?: string;
         /**
-          * Override the language switch links with custom URLs. Helpful when your application contains sub-pages and you would like to stay on subpages when the user changes language.
+          * Override the language switch links with custom URLs. Helpful when your application contains sub-pages, and you would like to stay on subpages when the user changes language.
          */
         "languageSwitchOverrides"?: string | IAvailableLanguage[];
         /**
@@ -297,7 +297,7 @@ declare namespace LocalJSX {
          */
         "languageLocalStorageKey"?: string;
         /**
-          * Override the language switch links with custom URLs. Helpful when your application contains sub-pages and you would like to stay on subpages when the user changes language.
+          * Override the language switch links with custom URLs. Helpful when your application contains sub-pages, and you would like to stay on subpages when the user changes language.
          */
         "languageSwitchOverrides"?: string | IAvailableLanguage[];
         /**

@@ -4,7 +4,7 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { state } from '../../data/store';
 import { OverlayComponent } from './components/overlay.component';
-import iframeResizer from 'iframe-resizer/js/iframeResizer';
+import iframeResizer from 'iframe-resizer';
 import { IBreadcrumbOverlay, IBreadcrumbItem } from '../../models/breadcrumbs.model';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { BreadcrumbList } from './components/breadcrumb-list.component';
@@ -61,7 +61,7 @@ export class PostInternetBreadcrumbs {
   }
 
   @Watch('customItems')
-  handleCustomConfigChage(newValue: string | IBreadcrumbItem[]) {
+  handleCustomConfigChange(newValue: string | IBreadcrumbItem[]) {
     try {
       this.customBreadcrumbItems = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
     } catch (error) {
@@ -95,7 +95,7 @@ export class PostInternetBreadcrumbs {
     const newVisibility = force ?? !this.overlayVisible;
 
     if (newVisibility) {
-      // Will trigger overlayRef() once the HTLM is rendered
+      // Will trigger overlayRef() once the HTML is rendered
       this.overlayVisible = newVisibility;
       this.currentOverlay = overlay;
       this.setBodyScroll(overlay);
@@ -145,7 +145,7 @@ export class PostInternetBreadcrumbs {
     this.toggleDropdown(false);
   }
 
-  registerIFrameResizer(iFrame: HTMLIFrameElement) {
+  registerIFrameResizer(iFrame: HTMLIFrameElement | undefined) {
     if (!iFrame) {
       return;
     }
@@ -215,6 +215,7 @@ export class PostInternetBreadcrumbs {
 
   render() {
     // There is something wrong entirely
+    // eslint-disable-next-line @stencil/strict-boolean-conditions
     if (!state) {
       console.warn(
         `Internet Breadcrumbs: Could not load config. Please make sure that you included the <swisspost-internet-header></swisspost-internet-header> component.`,
@@ -228,6 +229,7 @@ export class PostInternetBreadcrumbs {
     }
 
     // Config has loaded but there is no breadcrumbs config
+    // eslint-disable-next-line @stencil/strict-boolean-conditions
     if (!state.localizedConfig.breadcrumb) {
       console.warn(
         `Internet Header: Current project "${state.projectId}" does not include a breadcrumb config. The breadcrumbs will not be rendered. Remove `,
@@ -276,7 +278,7 @@ export class PostInternetBreadcrumbs {
               <button
                 class="btn btn-secondary btn-icon"
                 key={button.text}
-                aria-expanded={`${!!this.overlayVisible && this.currentOverlay === button.overlay}`}
+                aria-expanded={`${this.overlayVisible && this.currentOverlay === button.overlay}`}
                 onClick={() => this.toggleOverlay(button.overlay, true)}
               >
                 <SvgIcon name={button.svgIcon.name}></SvgIcon>
