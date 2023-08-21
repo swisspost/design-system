@@ -1,9 +1,9 @@
-@use '../../themes/bootstrap/nav' as bn;
+@forward './../../variables/options';
 
-@use '../../mixins/utilities';
-@use '../../variables/color';
-@use '../../variables/components/nav';
-@use '../../variables/spacing';
+@use './../../mixins/utilities' as utilities-mx;
+@use './../../variables/color';
+@use './../../variables/spacing';
+@use './../../variables/components/nav';
 
 .tabs-wrapper {
   position: relative;
@@ -27,7 +27,7 @@
     background-color: transparent !important;
   }
 
-  @include utilities.high-contrast-mode() {
+  @include utilities-mx.high-contrast-mode() {
     &::after {
       background-color: ButtonBorder;
     }
@@ -35,6 +35,8 @@
 }
 
 .tabs {
+  @include utilities-mx.reset-list;
+  display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
 

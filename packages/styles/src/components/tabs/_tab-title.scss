@@ -1,12 +1,13 @@
-@use '../../themes/bootstrap/nav' as bn;
+@forward './../../variables/options';
 
-@use '../../mixins/color' as color-mx;
-@use '../../mixins/utilities';
-@use '../../variables/color';
-@use '../../variables/components/nav';
-@use '../../variables/spacing';
+@use './../../mixins/color' as color-mx;
+@use './../../mixins/utilities' as utilities-mx;
+@use './../../variables/color';
+@use './../../variables/spacing';
+@use './../../variables/components/nav';
 
 .tab-title {
+  display: inline-block;
   position: relative;
   box-sizing: border-box;
   padding: nav.$nav-link-padding;
@@ -16,8 +17,10 @@
   outline-color: currentColor;
   opacity: 0.7;
   color: var(--post-contrast-color);
+  text-decoration: none;
 
   &:focus {
+    opacity: 0.7;
     background-color: unset;
     color: var(--post-contrast-color);
   }
@@ -34,6 +37,7 @@
     opacity: 1;
     background-color: nav.$nav-tabs-link-active-bg;
     color: var(--post-contrast-color);
+    box-shadow: none;
 
     &::after {
       content: '';
@@ -69,7 +73,18 @@
     }
   }
 
-  @include utilities.high-contrast-mode() {
+  // Tabs with dark backgrounds
+  @include color-mx.on-dark-background() {
+    &:hover {
+      background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+    }
+
+    &:focus-visible {
+      background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+    }
+  }
+
+  @include utilities-mx.high-contrast-mode() {
     opacity: 1;
     border-left-color: Canvas;
     border-right-color: Canvas;
@@ -91,17 +106,6 @@
       &::before {
         background-color: Highlight;
       }
-    }
-  }
-
-  // Tabs with dark backgrounds
-  @include color-mx.on-dark-background(true) {
-    &:hover {
-      background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
-    }
-
-    &:focus-visible {
-      background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
     }
   }
 }
