@@ -1,4 +1,3 @@
-export * from './get-child-index';
 export * from './get-element-height';
 export * from './on-transition-end';
 export * from './property-checkers';
