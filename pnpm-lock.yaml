@@ -809,7 +809,7 @@ importers:
         specifier: 3.0.5
         version: 3.0.5(@stencil/core@3.4.2)
       '@types/body-scroll-lock':
-        specifier: ^3.1.0
+        specifier: 3.1.0
         version: 3.1.0
       '@types/iframe-resizer':
         specifier: 3.5.9
