@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default } from './radio.stories';
+import meta from './radio.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils/bombArgs';
 
