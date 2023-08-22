@@ -8,7 +8,7 @@ The official Swiss Post Internet Header implementation, built with [Stencil JS](
 
 The header docs are part of the storybook docs for the Design System.
 
-[Internet Header Documentation](https://next.design-system.post.ch/?path=/story/internet-header-getting-started--page)
+[Internet Header Documentation](https://next.design-system.post.ch/?path=/docs/internet-header-getting-started--docs)
 
 ## Installation
 
