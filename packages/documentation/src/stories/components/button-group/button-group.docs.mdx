@@ -1,31 +1,30 @@
-import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as ButtonGroupStories from './button-group.stories';
 
-<Meta title="Components/Button Group" />
+<Meta of={ButtonGroupStories} />
 
 # Button Group
 
-<p className="lead">
-  Group a series of buttons together on a single line or stack them in a vertical column.
-</p>
+<div className="lead">
+  Group a series of buttons together on a single line.
+</div>
 
-<Canvas>
-  <Story id="components-button-group--default" />
-</Canvas>
+<Canvas of={ButtonGroupStories.Default} />
 <div className="hide-col-default">
-  <ArgsTable story="^" />
+  <Controls of={ButtonGroupStories.Default} />
 </div>
 
 ## SCSS Imports
 
 To import all styles from the design-system-styles package:
 
-```css dark
+```scss
 @use '@swisspost/design-system-styles/index.scss';
 ```
 
 To import only the styles required for this component:
 
-```css dark
+```scss
 @use '@swisspost/design-system-styles/basics.scss';
 @use '@swisspost/design-system-styles/components/badge.scss';
 ```
@@ -39,16 +38,14 @@ The following examples show the different characteristics of the component. Thes
 You can change the size of buttons belonging to a group using button-sizing classes: `.btn-sm`, `.btn-rg` and `.btn-lg`.
 Just be sure to apply the same class to all buttons contained in the group.
 
-<Canvas>
-  <Story id="components-button-group--size" />
-</Canvas>
+<Canvas of={ButtonGroupStories.Sizing} />
 
 ### Checkbox & Radio
+
 Any HTML element that can be styled as a button can potentially be used in a button group.
 It is also possible to use checkable inputs:
+
 - Checkboxes: this allows all buttons in the group to be selected or deselected individually,
 - Radio buttons: in this case all the buttons are linked and only one of them can be selected at a time.
 
-<Canvas>
-  <Story id="components-button-group--checks" />
-</Canvas>
+<Canvas of={ButtonGroupStories.Checks} />

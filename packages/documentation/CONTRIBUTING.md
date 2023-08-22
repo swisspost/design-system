@@ -1,4 +1,4 @@
-# Contributing to Design System Documentation
+# Contributing to Design System Documentation-V7
 
 These contribution guidelines extend the [general contribution guidelines](../../CONTRIBUTING.md), where you can find instructions on how to set up the repository for contributing.
 
