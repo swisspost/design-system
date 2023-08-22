@@ -2,6 +2,7 @@ const fs = require('fs');
 const path = require('path');
 const gulp = require('gulp');
 const sass = require('sass');
+const newer = require('gulp-newer');
 const gulpSass = require('gulp-sass')(sass);
 const gulpPostCss = require('gulp-postcss');
 const autoprefixer = require('autoprefixer');
@@ -14,6 +15,7 @@ const options = require('./package.json').sass;
 gulp.task('copy', () => {
   return gulp
     .src(['./LICENSE', './README.md', './package.json', './src/**/*.scss'])
+    .pipe(newer(options.outputDir))
     .pipe(gulp.dest(options.outputDir));
 });
 
@@ -132,7 +134,7 @@ gulp.task('sass:tests', () => {
  * Watch task for scss development
  */
 gulp.task('watch', () => {
-  return gulp.watch('./src/**/*.scss', gulp.series('map-icons', 'copy', 'watch'));
+  return gulp.watch('./src/**/*.scss', gulp.series('copy'));
 });
 
 /**
