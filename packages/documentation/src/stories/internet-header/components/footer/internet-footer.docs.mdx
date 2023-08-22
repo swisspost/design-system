@@ -1,0 +1,20 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as FooterStories from './internet-footer.stories';
+
+<Meta of={FooterStories} />
+
+# Footer
+
+<div className="lead">
+  Provides key app-wide information such as contact details and legal links.
+</div>
+
+The footer comes with its own container and can be placed at the end of your content.
+
+<Canvas of={FooterStories.Default} />
+
+## Options
+
+You can use the `custom-config` option on the `<swisspost-internet-header>` to configure additional links displayed above the footer.
+
+<Canvas of={FooterStories.CustomConfig} sourceState="shown" />

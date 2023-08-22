@@ -1,4 +1,4 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spread } from '@open-wc/lit-helpers';
 import { BADGE } from '../../../../../.storybook/constants';
@@ -11,6 +11,11 @@ const meta: Meta<HTMLSwisspostInternetHeaderElement> = {
   render: renderInternetHeader,
   parameters: {
     layout: 'fullscreen',
+    docs: {
+      story: {
+        inline: false,
+      },
+    },
     actions: {
       handles: ['headerLoaded', 'languageChanged'],
     },
@@ -75,6 +80,22 @@ function mockPage(story: any) {
   `;
 }
 
+function zoom(story: any) {
+  const headerMinWidth = 2000;
+  const storyWrapper = document.body.parentElement;
+
+  if (storyWrapper && storyWrapper.clientWidth < headerMinWidth) {
+    document.body.style.width = `${headerMinWidth}px`;
+    document.body.style.height = `${headerMinWidth}px`;
+    document.body.style.transform = `scale(${storyWrapper.clientWidth / headerMinWidth})`;
+    document.body.style.transformOrigin = 'left top 0px';
+  }
+
+  return html`
+    ${story()}
+  `;
+}
+
 // RENDERER
 function renderInternetHeader(args: HTMLSwisspostInternetHeaderElement) {
   const attributes = getAttributes(args, arg => arg !== null && arg !== undefined);
@@ -91,15 +112,23 @@ export const Default: Story = {
   parameters: {
     docs: {
       story: {
-        inline: false,
         height: '40em',
+      },
+      source: {
+        code: `<swisspost-internet-header project="your-project-id"></swisspost-internet-header>`
       },
     },
   },
 };
 
+
+export const NotFullWidth: Story = {
+  decorators: [ zoom ],
+};
+
+
 export const FullWidth: Story = {
-  decorators: [ mockPage ],
+  decorators: [ zoom ],
   args: {
     fullWidth: true,
   },
