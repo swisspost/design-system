@@ -16,8 +16,7 @@ export const Tabs: Story = {
       <div>
         ${['bg-white', 'bg-dark'].map(bg => html`
           <div
-            class="${bg} mt-3"
-            style="padding: 1rem; display: flex; flex-direction: column; gap: 1rem;"
+            class="${bg} d-flex flex-column gap-regular p-regular mt-regular"
           >
             ${bombArgs({
               activePanel: [undefined, 'tria'],
