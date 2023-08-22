@@ -14,8 +14,8 @@ export const Switch: Story = {
   render: (_args: Args, context: StoryContext) => {
     const templateVariants = bombArgs({
       labelPosition: ['both', 'before', 'after'],
-      labelBefore: ['Off'],
-      labelAfter: ['On'],
+      labelBefore: ['Off', 'this is longer text'],
+      labelAfter: ['On', 'this is longer text'],
       hiddenLabel: [false],
       checked: [false, true],
       disabled: [false, true],
