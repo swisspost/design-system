@@ -13,12 +13,11 @@ type Story = StoryObj;
 export const Blockquote: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
-      <div style="display: 'flex'; flexWrap: 'wrap'; gap: '1rem'; alignItems: 'start';">
+      <div class="d-flex flex-wrap align-items-start gap-regular">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
             <div
-              class=${bg}
-              style="padding: '1rem'; display: 'flex'; gap: '1rem'; flexWrap: 'wrap'; alignItems: 'start;"
+              class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular"
             >
               ${bombArgs({
                 text: [
