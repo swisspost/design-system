@@ -72,6 +72,11 @@ export class PostTabs {
    */
   @Method()
   async show(panelName: string) {
+    // do nothing if the tab is already active
+    if (panelName === this.activeTab?.panel) {
+      return;
+    }
+
     const previousTab = this.activeTab;
     const newTab : HTMLPostTabHeaderElement = this.host.querySelector(`post-tab-header[panel=${panelName}]`);
     this.activateTab(newTab);
