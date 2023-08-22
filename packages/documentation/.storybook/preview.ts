@@ -1,9 +1,9 @@
 import type { Preview } from '@storybook/web-components';
 
-import { extractArgTypes, extractComponentDescription } from '@pxtrn/storybook-addon-docs-stencil';
+import { extractArgTypes } from '@pxtrn/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout';
-import { badgesConfig, prettierOptions, resetComponents } from './helpers';
+import { badgesConfig, openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
 
 import './styles/preview.scss';
@@ -40,6 +40,14 @@ const preview: Preview = {
     },
     docs: {
       container: DocsLayout,
+      canvas: {
+        additionalActions: [
+          {
+            title: 'View full screen',
+            onClick: openFullScreenDemo,
+          },
+        ],
+      },
       source: {
         excludeDecorators: true,
         transform: (snippet: string) => format(snippet, prettierOptions),
