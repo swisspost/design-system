@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default } from './blockquote.stories';
+import meta from './blockquote.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils/bombArgs';
 
@@ -16,9 +16,7 @@ export const Blockquote: Story = {
       <div class="d-flex flex-wrap align-items-start gap-regular">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div
-              class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular"
-            >
+            <div class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular">
               ${bombArgs({
                 text: [
                   'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero mollitia magnam quo quam saepe. Aliquam tempore non deleniti culpa reprehenderit.',
@@ -33,7 +31,7 @@ export const Blockquote: Story = {
                   ...args,
                   text: `${args.language.toUpperCase()}: ${args.text}`,
                 }))
-                .map((args: Args) => Default.render?.({ ...context.args, ...args }, context))}
+                .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
             </div>
           `,
         )}
