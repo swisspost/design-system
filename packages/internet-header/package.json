@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.22.10",
-    "@cypress/webpack-preprocessor": "^5.17.1",
+    "@cypress/webpack-preprocessor": "5.17.1",
     "@percy/cli": "1.26.3",
     "@percy/cypress": "3.1.2",
     "@stencil/eslint-plugin": "0.4.0",
@@ -80,7 +80,7 @@
     "sass": "1.65.1",
     "start-server-and-test": "2.0.0",
     "ts-jest": "27.1.5",
-    "ts-loader": "^9.4.4",
+    "ts-loader": "9.4.4",
     "typescript": "4.9.5"
   }
 }

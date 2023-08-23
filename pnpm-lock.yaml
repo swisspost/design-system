@@ -528,7 +528,7 @@ importers:
         specifier: 7.2.3
         version: 7.2.3(@types/react-dom@18.2.7)(@types/react@18.2.20)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/core-events':
-        specifier: ^7.3.2
+        specifier: 7.3.2
         version: 7.3.2
       '@storybook/manager-api':
         specifier: 7.2.3
@@ -800,7 +800,7 @@ importers:
         specifier: 7.22.10
         version: 7.22.10
       '@cypress/webpack-preprocessor':
-        specifier: ^5.17.1
+        specifier: 5.17.1
         version: 5.17.1(@babel/core@7.22.10)(@babel/preset-env@7.22.9)(babel-loader@9.1.3)(webpack@5.88.2)
       '@percy/cli':
         specifier: 1.26.3
@@ -875,7 +875,7 @@ importers:
         specifier: 27.1.5
         version: 27.1.5(@babel/core@7.22.10)(@types/jest@27.5.2)(jest@27.5.1)(typescript@4.9.5)
       ts-loader:
-        specifier: ^9.4.4
+        specifier: 9.4.4
         version: 9.4.4(typescript@4.9.5)(webpack@5.88.2)
       typescript:
         specifier: 4.9.5
