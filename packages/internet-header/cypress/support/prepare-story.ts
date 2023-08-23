@@ -15,14 +15,13 @@ export const prepare = (
 ) => {
   installInterceptors(config);
   cy.visitStorybook({
-    onBeforeLoad(win: { navigator: any }) {
-      // Set default browser language explicitly to English
-      Object.defineProperty(win.navigator, 'language', {
-        value: 'en',
-      });
+    qs: {
+      lang: 'de',
     },
   });
+  cy.get('[class=sb-nopreview_main]', { timeout: 30000 }).should('be.visible'); // Wait until vite is ready (initial loading is longer)
   cy.loadStory(storyTitle, storyName);
+  cy.get('[id=storybook-root]', { timeout: 30000 }).should('be.visible'); // Ensure that we have a storybook component loaded, before going further
 };
 
 export const copyConfig = (): IPortalConfig => {

@@ -5,7 +5,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import './internet-header.styles.scss';
 
 const meta: Meta<HTMLSwisspostInternetHeaderElement> = {
-  title: 'Internet Header/Header Component',
+  title: 'Internet Header/Header component',
   component: 'swisspost-internet-header',
   render: renderInternetHeader,
   parameters: {
@@ -15,11 +15,12 @@ const meta: Meta<HTMLSwisspostInternetHeaderElement> = {
     },
     badges: [BADGE.STABLE],
     controls: {
-      exclude: ['config-proxy']
+      exclude: ['config-proxy'],
     },
   },
   args: {
-    'project': 'test'
+    project: 'test',
+    language: 'de',
   },
   argTypes: {
     activeRoute: {
@@ -64,12 +65,12 @@ function mockPage(story: any) {
     <div class="page-wrapper">
       ${story()}
       <main class="container mt-huge-r">
-        <swisspost-internet-breadcrumbs/>
-        <h1 class="mt-huge-r mb-big-r bold">Swiss Post Internet Header</h1>
+        <swisspost-internet-breadcrumbs />
+        <h1 class="mt-huge-r mb-big-r bold">Design System Internet Header</h1>
         <p class="fake-content my-big"></p>
         <p class="fake-content my-big"></p>
       </main>
-      <swisspost-internet-footer/>
+      <swisspost-internet-footer />
     </div>
   `;
 }
@@ -86,7 +87,7 @@ function renderInternetHeader(args: HTMLSwisspostInternetHeaderElement) {
 type Story = StoryObj<HTMLSwisspostInternetHeaderElement>;
 
 export const Default: Story = {
-  decorators: [ mockPage ],
+  decorators: [mockPage],
   parameters: {
     docs: {
       story: {
@@ -98,7 +99,7 @@ export const Default: Story = {
 };
 
 export const FullWidth: Story = {
-  decorators: [ mockPage ],
+  decorators: [mockPage],
   args: {
     fullWidth: true,
   },
@@ -192,6 +193,7 @@ export const CustomNavigation: Story = {
 };
 
 export const CustomOnlineServiceFlyout: Story = {
+  decorators: [mockPage],
   args: {
     osFlyoutOverrides: {
       title: 'Custom OS Flyout',
