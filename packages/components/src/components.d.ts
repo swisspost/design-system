@@ -67,7 +67,7 @@ export namespace Components {
     }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.
+          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
          */
         "activePanel": HTMLPostTabPanelElement['name'];
         /**
@@ -180,7 +180,7 @@ declare namespace LocalJSX {
     }
     interface PostTabs {
         /**
-          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.
+          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
          */
         "activePanel"?: HTMLPostTabPanelElement['name'];
         /**

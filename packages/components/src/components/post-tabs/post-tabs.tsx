@@ -22,6 +22,8 @@ export class PostTabs {
   /**
    * The name of the panel that is initially shown.
    * If not specified, it defaults to the panel associated with the first tab.
+   *
+   * **Changing this value after initialization has no effect.**
    */
   @Prop() readonly activePanel: HTMLPostTabPanelElement['name'];
 
