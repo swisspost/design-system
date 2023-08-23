@@ -25,7 +25,7 @@ export class PostTabHeader {
   componentDidLoad() {
     // get the id of the associated panel or use a random id by default
     const panel = this.host.parentNode.querySelector(`post-tab-panel[name=${this.panel}]`);
-    this.panelId = panel?.id || crypto.randomUUID();
+    this.panelId = panel?.id || `p${crypto.randomUUID()}`;
   }
 
   render() {
