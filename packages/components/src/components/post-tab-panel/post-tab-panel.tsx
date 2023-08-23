@@ -18,7 +18,7 @@ export class PostTabPanel {
 
   componentWillLoad() {
     // get the id set on the host element or use a random id by default
-    this.panelId = this.host.id || crypto.randomUUID();
+    this.panelId = this.host.id || `p${crypto.randomUUID()}`;
   }
 
   render() {
