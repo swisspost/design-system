@@ -25,7 +25,7 @@ export class PostTabHeader {
   componentDidLoad() {
     // get the id of the associated panel or use a random id by default
     const panel = this.host.parentNode.querySelector(`post-tab-panel[name=${this.panel}]`);
-    this.panelId = panel?.id || `p${crypto.randomUUID()}`;
+    this.panelId = panel?.id;
   }
 
   render() {
@@ -33,11 +33,11 @@ export class PostTabHeader {
       <Host data-version={version}>
         <li class="nav-item">
           <a
-            aria-controls={`${this.panelId}--panel`}
+            aria-controls={this.panelId ? `${this.panelId}--panel` : null}
             aria-selected="false"
             class="tab-title nav-link"
             href=""
-            id={`${this.panelId}--tab`}
+            id={this.panelId ? `${this.panelId}--tab` : null}
             role="tab"
           >
             <slot/>
