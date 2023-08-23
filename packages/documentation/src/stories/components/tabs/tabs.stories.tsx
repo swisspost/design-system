@@ -21,7 +21,6 @@ const meta: Meta<HTMLPostTabsElement> =  {
 
 export default meta;
 
-// RENDERER
 function renderTabs(args: Partial<HTMLPostTabsElement>) {
   return html`
     <post-tabs active-panel=${ifDefined(args.activePanel)}>
@@ -45,4 +44,34 @@ export const ActivePanel: Story = {
   args: {
     activePanel: 'tria'
   }
+};
+
+export const Async: Story = {
+  decorators: [
+    story => {
+      let tabIndex = 0;
+      const addTab = () => {
+        const tabs = document.querySelector('post-tabs');
+
+        if (!tabs) return;
+
+        tabIndex++;
+        const newTab = `
+          <post-tab-header slot="tabs" panel="panel-${tabIndex}">Nova langeto ${tabIndex}</post-tab-header>
+          <post-tab-panel name="panel-${tabIndex}">Jen la enhavo de la nova langeto ${tabIndex}.</post-tab-panel>
+        `;
+
+        tabs.insertAdjacentHTML('beforeend', newTab);
+      };
+
+      return html`
+        ${story()}
+        <hr/>
+        <button class="btn btn-default" id="add-tab" type="button" @click=${addTab}>
+          <post-icon name="2040"></post-icon>
+          Add tab
+        </button>
+      `;
+    }
+  ]
 };
