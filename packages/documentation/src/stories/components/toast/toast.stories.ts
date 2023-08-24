@@ -390,7 +390,7 @@ function render(args: Args, context: StoryContext) {
     </div>
   `;
 
-  let wrapedContent;
+  let wrappedContent;
   if (args.stacked) {
     wrapedContent = html`
       ${component} ${component}
