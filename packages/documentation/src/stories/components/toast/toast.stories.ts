@@ -392,13 +392,13 @@ function render(args: Args, context: StoryContext) {
 
   let wrappedContent;
   if (args.stacked) {
-    wrapedContent = html`
+    wrappedContent = html`
       ${component} ${component}
     `;
   } else if (isFixed) {
     if (args.show) {
       createAutoHideTimeout(timeoutStore, args, updateArgs);
-      wrapedContent = component;
+      wrappedContent = component;
     } else {
       wrapedContent = null;
     }
@@ -411,7 +411,7 @@ function render(args: Args, context: StoryContext) {
       aria-atomic="true"
       class="${`toast-container toast-${alignV}-${alignH}`}"
     >
-      ${wrapedContent}
+      ${wrappedContent}
     </div>
   `;
 }
