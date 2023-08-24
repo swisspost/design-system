@@ -22,7 +22,7 @@ export class PostTabHeader {
     checkNonEmpty(newValue, 'The "panel" prop is required for the post-tab-header.');
   }
 
-  componentDidLoad() {
+  componentWillLoad() {
     this.tabId = `tab-${this.host.id || crypto.randomUUID()}`;
   }
 

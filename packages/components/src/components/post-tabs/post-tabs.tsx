@@ -33,12 +33,12 @@ export class PostTabs {
    */
   @Event() tabChange: EventEmitter<HTMLPostTabPanelElement['name']>;
 
-  async componentDidLoad() {
+  componentDidLoad() {
     this.moveMisplacedTabs();
     this.enableTabs();
 
     const initiallyActivePanel = this.activePanel || this.tabs.item(0).panel;
-    await this.show(initiallyActivePanel);
+    this.show(initiallyActivePanel);
 
     this.isLoaded = true;
   }
@@ -95,23 +95,28 @@ export class PostTabs {
   private enableTabs() {
     if (!this.tabs) return;
 
-    this.tabs.forEach(tab => {
+    this.tabs.forEach(async tab => {
+      await tab.componentOnReady();
+
       const tabTitle = tab.shadowRoot.querySelector('.tab-title');
 
       // if the tab has an "aria-controls" attribute it was already linked to its panel: do nothing
       if (tabTitle.getAttribute('aria-controls')) return;
 
-      // add aria attributes to link the tab to its associated panel
       const tabPanel = this.getPanel(tab.panel).shadowRoot.querySelector('.tab-pane');
       tabTitle.setAttribute('aria-controls', tabPanel.id);
       tabPanel.setAttribute('aria-labelledby', tabTitle.id);
 
-      // add event listener to activate the tab on click
       tab.addEventListener('click', e => {
         e.preventDefault();
         this.show(tab.panel);
       });
     });
+
+    // if the currently active tab was removed from the DOM then select the first one
+    if (this.activeTab && !this.activeTab.isConnected) {
+      this.show(this.tabs.item(0).panel);
+    }
   }
 
   private activateTab(tab: HTMLPostTabHeaderElement) {
@@ -130,6 +135,8 @@ export class PostTabs {
 
   private hidePanel(panelName: HTMLPostTabPanelElement['name']) {
     const previousPanel = this.getPanel(panelName);
+
+    if (!previousPanel) return;
 
     this.hiding = fadeOut(previousPanel);
     this.hiding.onfinish = () => {

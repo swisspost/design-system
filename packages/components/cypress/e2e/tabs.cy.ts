@@ -119,5 +119,26 @@ describe('tabs', () => {
         cy.get('@panel').invoke('attr', 'name').should('equal', panel);
       });
     });
+
+    it('should remove a tab header', () => {
+      cy.get('.tab-title.active').then(() => {
+        cy.get('#remove-active-tab').click();
+        cy.get('@headers').should('have.length', 2);
+      });
+    });
+
+    it('should still show an active tab header after removing the active tab', () => {
+      cy.get('.tab-title.active').then(() => {
+        cy.get('#remove-active-tab').click();
+        cy.get('.tab-title.active').should('exist');
+      });
+    });
+
+    it('should still show a tab panel after removing the active tab', () => {
+      cy.get('.tab-title.active').then(() => {
+        cy.get('#remove-active-tab').click();
+        cy.get('post-tab-panel:visible').should('exist');
+      });
+    });
   });
 });
