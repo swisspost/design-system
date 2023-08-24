@@ -12,22 +12,22 @@ type Story = StoryObj;
 
 export const Switch: Story = {
   render: (_args: Args, context: StoryContext) => {
-    const longerText = 'this is longer text';
+    const longerText =
+      'Longa etikedo kiu plej versajne ne taugas sur unu linio kaj tial devas esti envolvita. Kaj nur por esti sur la sekura flanko, ni simple aldonu unu plian tre sencelan frazon ci tie. Vi neniam scias...';
     const templateVariants = bombArgs({
-      labelPosition: ['both', 'before', 'after'],
-      labelBefore: ['Off', longerText],
-      labelAfter: ['On', longerText],
+      labelPosition: ['before', 'after'],
+      label: ['Notifications', longerText],
       hiddenLabel: [false],
       checked: [false, true],
       disabled: [false, true],
       validation: ['null', 'is-valid', 'is-invalid'],
-    }).map((args: Args) => {
-      return html`
-        <div class="col-6 p-3">
-          ${meta.render?.({ ...context.args, ...Default.args, ...args }, context)}
-        </div>
-      `;
-    });
+    })
+      .filter((args: Args) => !(args.labelPosition == 'before' && args.label === longerText))
+      .map((args: Args) => {
+        return html`
+          <div class="col-6 p-3">${meta.render?.({ ...context.args, ...args }, context)}</div>
+        `;
+      });
 
     return html`
       <div>

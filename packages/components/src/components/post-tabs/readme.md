@@ -1,0 +1,38 @@
+# post-tabs
+
+
+
+<!-- Auto Generated Below -->
+
+
+## Properties
+
+| Property      | Attribute      | Description                                                                                                                                                                           | Type     | Default     |
+| ------------- | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ----------- |
+| `activePanel` | `active-panel` | The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.** | `string` | `undefined` |
+
+
+## Events
+
+| Event       | Description                                                                                                                                                       | Type                  |
+| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `tabChange` | An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel. | `CustomEvent<string>` |
+
+
+## Methods
+
+### `show(panelName: string) => Promise<void>`
+
+Shows the panel with the given name and selects its associated tab.
+Any other panel that was previously shown becomes hidden and its associated tab is unselected.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
+
+----------------------------------------------
+
+*Built with [StencilJS](https://stenciljs.com/)*
