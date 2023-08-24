@@ -342,7 +342,7 @@ function killAutoHideTimeout(timeoutStore: ReturnType<typeof setTimeout>[], args
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  updateAlignments();
+  updateAlignments(args, updateArgs);
 
   const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores];
 
@@ -353,8 +353,15 @@ function render(args: Args, context: StoryContext) {
   const isFixed = args.position === 'fixed';
   const alignV = args.alignVRestricted ?? args.alignV;
   const alignH = args.alignHRestricted ?? args.alignH;
-  const role = isFixed ? 'alert' : 'status';
-  const ariaLive = isFixed ? 'assertive' : 'polite';
+  let role;
+  let ariaLive;
+  if (isFixed) {
+    role = 'alert';
+    ariaLive = 'assertive';
+  } else {
+    role = 'status';
+    ariaLive = 'polite';
+  }
 
   const dismissibleButton =
     args.dismissible || isFixed
@@ -383,44 +390,43 @@ function render(args: Args, context: StoryContext) {
     </div>
   `;
 
+  let wrappedContent;
   if (args.stacked) {
-    return html`
-      <div
-        aria-live="polite"
-        aria-atomic="true"
-        class="${`toast-container toast-${alignV}-${alignH}`}"
-      >
-        ${component} ${component}
-      </div>
+    wrappedContent = html`
+      ${component} ${component}
     `;
   } else if (isFixed) {
-    if (args.show) createAutoHideTimeout(timeoutStore, args, updateArgs);
-
-    return html`
-      <div
-        aria-live="polite"
-        aria-atomic="true"
-        class="${`toast-container toast-${alignV}-${alignH}`}"
-      >
-        ${args.show ? component : null}
-      </div>
-    `;
+    if (args.show) {
+      createAutoHideTimeout(timeoutStore, args, updateArgs);
+      wrappedContent = component;
+    } else {
+      wrappedContent = null;
+    }
   } else {
     return component;
   }
+  return html`
+    <div
+      aria-live="polite"
+      aria-atomic="true"
+      class="${`toast-container toast-${alignV}-${alignH}`}"
+    >
+      ${wrappedContent}
+    </div>
+  `;
+}
 
-  function updateAlignments() {
-    if (args.alignH && args.alignHRestricted && args.alignH !== args.alignHRestricted) {
-      args.alignV === 'center'
-        ? updateArgs({ alignH: args.alignHRestricted })
-        : updateArgs({ alignHRestricted: args.alignH });
-    }
+function updateAlignments(args: Args, updateArgs: Function) {
+  if (args.alignH && args.alignHRestricted && args.alignH !== args.alignHRestricted) {
+    args.alignV === 'center'
+      ? updateArgs({ alignH: args.alignHRestricted })
+      : updateArgs({ alignHRestricted: args.alignH });
+  }
 
-    if (args.alignV && args.alignVRestricted && args.alignV !== args.alignVRestricted) {
-      args.alignH === 'full-width'
-        ? updateArgs({ alignV: args.alignVRestricted })
-        : updateArgs({ alignVRestricted: args.alignV });
-    }
+  if (args.alignV && args.alignVRestricted && args.alignV !== args.alignVRestricted) {
+    args.alignH === 'full-width'
+      ? updateArgs({ alignV: args.alignVRestricted })
+      : updateArgs({ alignVRestricted: args.alignV });
   }
 }
 
