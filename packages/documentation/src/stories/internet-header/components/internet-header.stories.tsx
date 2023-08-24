@@ -5,7 +5,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import './internet-header.styles.scss';
 
 const meta: Meta<HTMLSwisspostInternetHeaderElement> = {
-  title: 'Internet Header/Header component',
+  title: 'Internet Header/Header Component',
   component: 'swisspost-internet-header',
   render: renderInternetHeader,
   parameters: {
