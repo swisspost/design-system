@@ -10,7 +10,7 @@ import { checkNonEmpty } from '../../utils';
 export class PostTabHeader {
   @Element() host: HTMLPostTabHeaderElement;
 
-  @State() panelId: string;
+  @State() tabId: string;
 
   /**
    * The name of the panel controlled by the tab header.
@@ -18,14 +18,12 @@ export class PostTabHeader {
   @Prop() readonly panel: HTMLPostTabPanelElement['name'];
 
   @Watch('panel')
-  validateFor(newValue) {
+  validateFor(newValue: HTMLPostTabPanelElement['name']) {
     checkNonEmpty(newValue, 'The "panel" prop is required for the post-tab-header.');
   }
 
   componentDidLoad() {
-    // get the id of the associated panel or use a random id by default
-    const panel = this.host.parentNode.querySelector(`post-tab-panel[name=${this.panel}]`);
-    this.panelId = panel?.id;
+    this.tabId = `tab-${this.host.id || crypto.randomUUID()}`;
   }
 
   render() {
@@ -33,11 +31,10 @@ export class PostTabHeader {
       <Host data-version={version}>
         <li class="nav-item">
           <a
-            aria-controls={this.panelId ? `${this.panelId}--panel` : null}
             aria-selected="false"
             class="tab-title nav-link"
-            href=""
-            id={this.panelId ? `${this.panelId}--tab` : null}
+            href="#"
+            id={this.tabId}
             role="tab"
           >
             <slot/>

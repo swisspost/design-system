@@ -18,16 +18,15 @@ export class PostTabPanel {
 
   componentWillLoad() {
     // get the id set on the host element or use a random id by default
-    this.panelId = this.host.id || `p${crypto.randomUUID()}`;
+    this.panelId = `panel-${this.host.id || crypto.randomUUID()}`;
   }
 
   render() {
     return (
-      <Host data-version={version} id={this.panelId}>
+      <Host data-version={version}>
         <div
-          aria-labelledby={`${this.panelId}--tab`}
-          class="tab-pane fade active show"
-          id={`${this.panelId}--panel`}
+          class="tab-pane"
+          id={this.panelId}
           role="tabpanel"
         >
           <slot/>

@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Method, Event, EventEmitter, Prop, Listen } from '@stencil/core';
+import { Component, Host, h, Element, Method, Event, EventEmitter, Prop } from '@stencil/core';
 import { version } from '../../../package.json';
 import { fadeIn, fadeOut } from '../../animations';
 
@@ -13,8 +13,8 @@ export class PostTabs {
   private hiding: Animation;
   private isLoaded = false;
 
-  private get firstTab(): HTMLPostTabHeaderElement {
-    return this.host.querySelector('post-tab-header:first-child');
+  private get tabs(): NodeListOf<HTMLPostTabHeaderElement> {
+    return this.host.querySelectorAll('post-tab-header');
   }
 
   @Element() host: HTMLPostTabsElement;
@@ -34,20 +34,13 @@ export class PostTabs {
   @Event() tabChange: EventEmitter<HTMLPostTabPanelElement['name']>;
 
   async componentDidLoad() {
-    const initiallyActivePanel = this.activePanel || this.firstTab.panel;
+    this.moveMisplacedTabs();
+    this.enableTabs();
+
+    const initiallyActivePanel = this.activePanel || this.tabs.item(0).panel;
     await this.show(initiallyActivePanel);
 
     this.isLoaded = true;
-  }
-
-  @Listen('click', {})
-  async onTabClick(event: Event) {
-    if (event.target['tagName'] !== 'POST-TAB-HEADER') return;
-
-    event.preventDefault();
-
-    const tab = event.target as HTMLPostTabHeaderElement;
-    await this.show(tab.panel);
   }
 
   /**
@@ -89,6 +82,36 @@ export class PostTabs {
     }
 
     this.tabChange.emit(this.activeTab.panel);
+  }
+  private moveMisplacedTabs() {
+    if (!this.tabs) return;
+
+    this.tabs.forEach(tab => {
+      if (tab.getAttribute('slot') === 'tabs') return;
+      tab.setAttribute('slot', 'tabs');
+    });
+  }
+
+  private enableTabs() {
+    if (!this.tabs) return;
+
+    this.tabs.forEach(tab => {
+      const tabTitle = tab.shadowRoot.querySelector('.tab-title');
+
+      // if the tab has an "aria-controls" attribute it was already linked to its panel: do nothing
+      if (tabTitle.getAttribute('aria-controls')) return;
+
+      // add aria attributes to link the tab to its associated panel
+      const tabPanel = this.getPanel(tab.panel).shadowRoot.querySelector('.tab-pane');
+      tabTitle.setAttribute('aria-controls', tabPanel.id);
+      tabPanel.setAttribute('aria-labelledby', tabTitle.id);
+
+      // add event listener to activate the tab on click
+      tab.addEventListener('click', e => {
+        e.preventDefault();
+        this.show(tab.panel);
+      });
+    });
   }
 
   private activateTab(tab: HTMLPostTabHeaderElement) {
@@ -139,11 +162,11 @@ export class PostTabs {
       <Host data-version={version}>
         <div class="tabs-wrapper">
           <ul class="tabs nav" role="tablist">
-            <slot name="tabs"/>
+            <slot name="tabs" onSlotchange={this.enableTabs} />
           </ul>
         </div>
         <div class="tab-content">
-          <slot/>
+          <slot onSlotchange={this.moveMisplacedTabs} />
         </div>
       </Host>
     );
