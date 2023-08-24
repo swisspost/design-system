@@ -48,10 +48,9 @@ export const isInViewport = function (_chai: Chai.ChaiStatic) {
 
 chai.use(isInViewport);
 
-Cypress.Commands.add('registerCollapsibleFrom', (url: string) => {
-  cy.visit(url);
-  cy.get('post-collapsible').as('collapsible');
-  cy.get('@collapsible').find('.collapse').as('collapse');
+Cypress.Commands.add('getComponent', (component: string, story = 'default') => {
+  cy.visit(`/iframe.html?id=components-${component}--${story}`);
+  cy.get(`post-${component}`).as(component);
 });
 
 Cypress.Commands.add('checkVisibility', (visibility: 'visible' | 'hidden') => {
