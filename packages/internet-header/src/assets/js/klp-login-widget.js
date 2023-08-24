@@ -418,7 +418,7 @@ const vertx = window.vertx || {};
     const messagesUrl = originUrl + '/selfadmin/messages/?lang=' + currentLang;
 
     if (options !== undefined) {
-      conf = Object.assign({}, conf, options);
+      conf = { ...conf, ...options };
     }
 
     function isHTML5StorageSupported() {
