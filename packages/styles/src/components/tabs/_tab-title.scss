@@ -1,0 +1,152 @@
+@forward './../../variables/options';
+
+@use './../../mixins/color' as color-mx;
+@use './../../mixins/utilities' as utilities-mx;
+@use './../../variables/color';
+@use './../../variables/spacing';
+@use './../../variables/components/nav';
+
+.tab-title {
+  display: inline-block;
+  position: relative;
+  box-sizing: border-box;
+  padding: nav.$nav-link-padding;
+  transition: background-color 100ms;
+  border-right: 1px solid transparent;
+  border-left: 1px solid transparent;
+  outline-color: currentColor;
+  opacity: 0.7;
+  color: var(--post-contrast-color);
+  text-decoration: none;
+
+  &:focus {
+    background-color: unset;
+    color: var(--post-contrast-color);
+  }
+
+  &:hover {
+    opacity: 1;
+    background-color: nav.$nav-tabs-link-active-bg;
+    color: var(--post-contrast-color);
+  }
+
+  // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
+  &:focus-visible {
+    outline: transparent;
+    opacity: 1;
+    background-color: nav.$nav-tabs-link-active-bg;
+    color: var(--post-contrast-color);
+    box-shadow: none;
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: nav.$nav-tabs-focus-box-shadow-width;
+      right: nav.$nav-tabs-focus-box-shadow-width - 1px;
+      bottom: 0;
+      left: nav.$nav-tabs-focus-box-shadow-width - 1px;
+      box-shadow: nav.$nav-tabs-focus-box-shadow;
+    }
+  }
+
+  &.active {
+    z-index: 1; // Lift above the line and make focus visible all around
+    border-right-color: nav.$nav-tabs-border-color;
+    border-left-color: nav.$nav-tabs-border-color;
+    opacity: 1;
+    background-color: nav.$nav-tabs-link-active-bg;
+    color: var(--post-contrast-color);
+    font-weight: 700;
+
+    // Create a line that does not suffer from border corner mitering
+    &::before {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      right: -1px;
+      left: -1px;
+      height: spacing.$size-micro;
+      background-color: nav.$nav-tabs-link-active-border-color;
+    }
+  }
+
+  // Tabs with dark backgrounds
+  @include color-mx.on-dark-background() {
+    &:hover {
+      background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+    }
+
+    &:focus-visible {
+      background-color: rgba(nav.$nav-tabs-link-active-bg, 0.2);
+    }
+  }
+
+  @include utilities-mx.high-contrast-mode() {
+    opacity: 1;
+    border-left-color: Canvas;
+    border-right-color: Canvas;
+    color: LinkText;
+
+    &:hover,
+    &:focus,
+    &:focus-within,
+    &:focus-visible {
+      outline: spacing.$size-line solid Highlight;
+      outline-offset: -(spacing.$size-micro);
+    }
+
+    &.active {
+      border-left-color: ButtonText;
+      border-right-color: ButtonText;
+      color: Highlight;
+
+      &::before {
+        background-color: Highlight;
+      }
+    }
+  }
+}
+
+// Careful, this generates a lot of code
+@each $key, $color in color.$background-colors {
+  .bg-#{$key} {
+    .tab-title {
+      background-color: $color;
+
+      &.active {
+        background-color: $color;
+      }
+    }
+
+    .nav-item {
+      background-color: $color;
+    }
+  }
+}
+
+[class*='bg-'] .tab-title.active {
+  &:focus {
+    &::after {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
+
+  // write supports for selectors this way: https://stackoverflow.com/a/62666132
+  // need to include * otherwise it throws build error
+  @supports #{'\selector(*:focus-visible)'} {
+    &:focus {
+      &::after {
+        background-color: unset;
+      }
+    }
+
+    // same styles as focus, can't use placeholder here because focus-visible can't be described outside of the support condition
+    &:focus-visible {
+      &::after {
+        background-color: rgba(255, 255, 255, 0.2);
+      }
+    }
+  }
+}

@@ -1,0 +1,69 @@
+@forward './../../variables/options';
+
+@use './../../mixins/utilities' as utilities-mx;
+@use './../../variables/color';
+@use './../../variables/spacing';
+@use './../../variables/components/nav';
+
+.tabs-wrapper {
+  position: relative;
+  padding-top: spacing.$spacer;
+  border: 0;
+  background-color: color.$gray-background-light;
+
+  // Create a line that lies below the active but above the passive elements
+  // This way hover works smoothly with the background color
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 1px;
+    background-color: nav.$nav-tabs-border-color;
+  }
+
+  // Small hack to save a lot of code and provide a lot of flexibility to tabs coloring
+  .tabs {
+    background-color: transparent !important;
+  }
+
+  @include utilities-mx.high-contrast-mode() {
+    &::after {
+      background-color: ButtonBorder;
+    }
+  }
+}
+
+.tabs {
+  @include utilities-mx.reset-list;
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+
+  /* prevent scroll chaining on x scroll */
+  overscroll-behavior-x: contain;
+  white-space: nowrap;
+
+  // Scrolling fix to make the tabs scroll a little more so the right most tab is not
+  // flush with the window border
+  &::after {
+    content: '';
+    display: block;
+    flex: 1 0 auto;
+    width: nav.$nav-link-padding-x;
+  }
+}
+
+.tab-content {
+  padding-top: spacing.$spacer;
+  padding-bottom: spacing.$spacer;
+}
+
+// Careful, this generates a lot of code
+@each $key, $color in color.$background-colors {
+  .bg-#{$key} {
+    .tabs-wrapper {
+      background-color: $color;
+    }
+  }
+}
