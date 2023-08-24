@@ -400,7 +400,7 @@ function render(args: Args, context: StoryContext) {
       createAutoHideTimeout(timeoutStore, args, updateArgs);
       wrappedContent = component;
     } else {
-      wrapedContent = null;
+      wrappedContent = null;
     }
   } else {
     return component;
