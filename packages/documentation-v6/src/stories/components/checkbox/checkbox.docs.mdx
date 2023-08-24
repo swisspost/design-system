@@ -1,0 +1,82 @@
+import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Components/Checkbox" />
+
+# Checkbox
+
+<p className="lead">
+  Customize the native <code>&lt;input type="checkbox"&gt;</code> with CSS that changes the
+  element’s initial appearance. Consistent, cross-browser and cross-device.
+</p>
+
+Our checks use custom icons to indicate checked or indeterminate states.
+
+<Canvas>
+  <Story id="components-checkbox--default" />
+</Canvas>
+<div className="hide-col-default">
+  <ArgsTable story="^" />
+</div>
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+```css dark
+@use '@swisspost/design-system-styles/index.scss';
+```
+
+To import only the styles required for this component:
+
+```css dark
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/form-check.scss';
+
+// required if you use validation feedbacks
+@use '@swisspost/design-system-styles/components/form-feedback.scss';
+```
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
+
+### Indeterminate
+
+Normally a checkbox input can only have two states: `checked` or `unchecked`. They can have any value, but they either submit that value (checked) or don't (unchecked) with a form submission.
+
+Visually, there are three states a checkbox can be in: `checked`, `unchecked`, or `indeterminate`.<br/>
+The `indeterminate` state is visual only. The checkbox is still either **checked** or **unchecked** as a value. That means the visual `indeterminate` state masks the real value of the checkbox. A possible use case for this state could be a list of checkboxes with one to toggle them all as in a folder/subfolder tree and only a part of the subfolders are selected. For an example visit [Accessible Web Designs indeterminate checkbox](http://www.barrierefreies-webdesign.de/knowhow/checkbox/indeterminate.html).
+
+A native `<input type="checkbox"/>` supports this `indeterminate` visual state which can only be set through JavaScript. It is then styled using the `:indeterminate` pseudo-class.
+
+```javascript dark
+document.querySelector('input[type="checkbox"]').indeterminate = true;
+```
+
+### Inline
+
+To render a checkbox inline, simply add the class `.form-check-inline` to the `.form-check` wrapper element.
+
+<div className="alert alert-info alert-md">
+  Remember to wrap your checkbox group with a <code>&lt;fieldset&gt;</code> including a{' '}
+  <code>&lt;legend&gt;</code> tag. This is the group label.
+  <br />
+  You can read more about that topic at our{' '}
+  <LinkTo kind="foundations-accessibility--page#grouping">grouping accessibility guide</LinkTo>.
+</div>
+
+To visually hide the `<legend>` element, use the `.visually-hidden` class.
+
+<Canvas>
+  <Story id="components-checkbox--inline" />
+</Canvas>
+
+### Validation
+
+Simply add the classes `.is-valid` or `.is-invalid` to the `checkbox` element to show it in the expected state.<br/>
+When the component has been validated, don't forget to add a `<p className="valid-feedback">...</p>` or `<p className="invalid-feedback">...</p>` element after the checkbox element to explain what went wrong. This enables the user to correct the mistake.
+
+<Canvas>
+  <Story id="components-checkbox--validation" />
+</Canvas>

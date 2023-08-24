@@ -15,8 +15,6 @@
 
 // Import commands.js using ES2015 syntax:
 import '@percy/cypress';
-import 'cypress-storybook/cypress';
-import 'cypress-each';
 import './commands';
 
 // https://docs.cypress.io/api/events/catalog-of-events#Uncaught-Exceptions

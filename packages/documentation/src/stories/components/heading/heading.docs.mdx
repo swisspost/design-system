@@ -1,22 +1,22 @@
-import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+import { Meta, Canvas, Controls } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
+import * as HeadingStories from './heading.stories';
 
-<Meta title="Components/Heading" />
+<Meta of={HeadingStories} />
 
-# Button
+# Heading
 
-<p className="lead">
-  Use our custom heading styles to create to display semantically correct and appealing headings.
-</p>
+<div className="lead">
+  Use headings to structure content both visually and semantically.
+</div>
 
-All HTML headings, `h1` through `h6`, are available.<br/>
-If you only want to make content appear like headings without using a semantic element, you should pay attention to our <LinkTo kind="utilities-heading">heading utilities</LinkTo>.
+All HTML headings are available, from `h1` the highest section level to `h6` the lowest.<br/>
+If you need to match the font styling of a heading but cannot use the associated HTML element,
+check out <LinkTo kind="utilities-heading" story="docs">heading utilities</LinkTo>.
 
-<Canvas>
-  <Story id="components-heading--default" />
-</Canvas>
+<Canvas of={HeadingStories.Default} />
 <div className="hide-col-default">
-  <ArgsTable story="^" />
+  <Controls of={HeadingStories.Default} />
 </div>
 
 ## SCSS Imports
