@@ -1,5 +1,5 @@
 import { BADGE } from '../../../../.storybook/constants';
-import { choiceCardMeta, choiceCardDefault, choiceCardGroup } from './choice-control';
+import { choiceCardMeta, choiceCardDefault, choiceCardGroup } from './choice-card';
 
 export default {
   ...choiceCardMeta,
