@@ -66,7 +66,7 @@ function mockPage(story: any) {
       ${story()}
       <main class="container mt-huge-r">
         <swisspost-internet-breadcrumbs />
-        <h1 class="mt-huge-r mb-big-r bold">Design System Internet Header</h1>
+        <h1 class="mt-huge-r mb-big-r bold">Swiss Post Internet Header</h1>
         <p class="fake-content my-big"></p>
         <p class="fake-content my-big"></p>
       </main>
