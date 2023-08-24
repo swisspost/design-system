@@ -14,14 +14,11 @@ export const prepare = (
   config: Object = testConfiguration,
 ) => {
   installInterceptors(config);
-  cy.visitStorybook({
-    qs: {
-      lang: 'de',
-    },
-  });
+  cy.visitStorybook();
   cy.get('[class=sb-nopreview_main]', { timeout: 30000 }).should('be.visible'); // Wait until vite is ready (initial loading is longer)
   cy.loadStory(storyTitle, storyName);
   cy.get('[id=storybook-root]', { timeout: 30000 }).should('be.visible'); // Ensure that we have a storybook component loaded, before going further
+  cy.changeArg('language', 'de');
 };
 
 export const copyConfig = (): IPortalConfig => {
