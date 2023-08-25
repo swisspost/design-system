@@ -1,0 +1,67 @@
+{
+  "name": "@swisspost/design-system-documentation-v6",
+  "version": "1.12.0",
+  "description": "Swiss Post Design System Documentation.",
+  "author": "Swiss Post <oss@post.ch>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://swisspost-web-frontend.netlify.app",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "start": "start-storybook -p 9200 --quiet",
+    "start:headless": "start-storybook -p 9300 --quiet --no-open",
+    "build": "build-storybook --quiet"
+  },
+  "dependencies": {
+    "@swisspost/design-system-components": "workspace:1.3.10",
+    "@swisspost/design-system-components-react": "workspace:1.0.16",
+    "@swisspost/design-system-icons": "workspace:1.0.10",
+    "@swisspost/design-system-styles": "workspace:6.3.0",
+    "@swisspost/internet-header": "workspace:1.9.0",
+    "html-react-parser": "4.2.1",
+    "prettier": "2.8.8",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-jsx-parser": "1.29.0"
+  },
+  "devDependencies": {
+    "@babel/core": "7.22.10",
+    "@geometricpanda/storybook-addon-badges": "1.1.1",
+    "@percy/cli": "1.26.3",
+    "@percy/cypress": "3.1.2",
+    "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
+    "@storybook/addon-a11y": "6.5.16",
+    "@storybook/addon-docs": "6.5.16",
+    "@storybook/addon-essentials": "6.5.16",
+    "@storybook/addon-links": "6.5.16",
+    "@storybook/addons": "6.5.16",
+    "@storybook/client-api": "6.5.16",
+    "@storybook/preset-scss": "1.0.3",
+    "@storybook/react": "6.5.16",
+    "@storybook/testing-library": "0.2.0",
+    "@storybook/theming": "6.5.16",
+    "@types/mdx": "2.0.6",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "babel-loader": "9.1.3",
+    "css-loader": "5.2.7",
+    "cypress": "12.17.3",
+    "cypress-each": "1.13.3",
+    "cypress-storybook": "0.5.1",
+    "react-markdown": "8.0.7",
+    "rehype-raw": "6.1.1",
+    "sass": "1.65.1",
+    "sass-loader": "10.4.1",
+    "start-server-and-test": "2.0.0",
+    "storybook-dark-mode": "3.0.1",
+    "style-loader": "2.0.0",
+    "typescript": "4.9.5"
+  }
+}

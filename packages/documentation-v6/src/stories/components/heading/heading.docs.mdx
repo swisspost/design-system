@@ -1,0 +1,35 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Components/Heading" />
+
+# Button
+
+<p className="lead">
+  Use our custom heading styles to create to display semantically correct and appealing headings.
+</p>
+
+All HTML headings, `h1` through `h6`, are available.<br/>
+If you only want to make content appear like headings without using a semantic element, you should pay attention to our <LinkTo kind="utilities-heading">heading utilities</LinkTo>.
+
+<Canvas>
+  <Story id="components-heading--default" />
+</Canvas>
+<div className="hide-col-default">
+  <ArgsTable story="^" />
+</div>
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+```css dark
+@use '@swisspost/design-system-styles/index.scss';
+```
+
+To import only the styles required for this component:
+
+```css dark
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/type.scss';
+```

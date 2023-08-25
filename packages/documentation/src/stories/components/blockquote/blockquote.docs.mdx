@@ -1,32 +1,32 @@
-import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as BlockquoteStories from './blockquote.stories.ts';
 
-<Meta title="Components/Blockquote" />
+<Meta of={BlockquoteStories} />
 
-# Badge
+# Blockquote
 
-<p className="lead">
-  For quoting blocks of content from another source within your document. Wrap &lt;blockquote
-  class="blockquote"&gt; around any HTML as the quote.
-</p>
+<div className="lead">
+  For quoting blocks of content from another source within your document. Wrap `<blockquote
+  class="blockquote">` around any HTML as the quote.
+</div>
 
-<Canvas>
-  <Story id="components-blockquote--default" />
-</Canvas>
+<Canvas of={BlockquoteStories.Default} />
+
 <div className="hide-col-default">
-  <ArgsTable story="^" />
+  <Controls of={BlockquoteStories.Default} />
 </div>
 
 ## SCSS Imports
 
 To import all styles from the design-system-styles package:
 
-```css dark
+```scss
 @use '@swisspost/design-system-styles/index.scss';
 ```
 
 To import only the styles required for this component:
 
-```css dark
+```scss
 @use '@swisspost/design-system-styles/basics.scss';
 @use '@swisspost/design-system-styles/components/blockquote.scss';
 ```
@@ -39,6 +39,4 @@ The following examples show the different characteristics of the component. Thes
 
 To add simple quote characters around any nested text within your blockquote, you can wrap it with a <code>&lt;q&gt;</code> tag.
 
-<Canvas>
-  <Story id="components-blockquote--nested" />
-</Canvas>
+<Canvas of={BlockquoteStories.Nested} />

@@ -5,6 +5,7 @@
 @use './../variables/components/datepicker';
 @use './../variables/components/forms';
 @use './../variables/commons';
+@use './../mixins/icons' as icons-mx;
 
 ngb-datepicker {
   // Conversion for compatibility
@@ -131,7 +132,9 @@ span.ngb-dp-navigation-chevron {
   width: forms.$input-height-inner;
   background: transparent;
 
+  .pi-3203,
   .pi-calendar {
+    @include icons-mx.pi(3203);
     width: datepicker.$ngb-dp-icon-size;
     height: datepicker.$ngb-dp-icon-size;
     transform: none;
@@ -142,6 +145,7 @@ span.ngb-dp-navigation-chevron {
   height: forms.$input-height-inner-sm;
   width: forms.$input-height-inner-sm;
 
+  .pi-3203,
   .pi-calendar {
     width: datepicker.$ngb-dp-icon-size-sm;
     height: datepicker.$ngb-dp-icon-size-sm;
@@ -158,6 +162,7 @@ span.ngb-dp-navigation-chevron {
   height: forms.$input-height-inner-lg;
   width: forms.$input-height-inner-lg;
 
+  .pi-3203,
   .pi-calendar {
     width: datepicker.$ngb-dp-icon-size-lg;
     height: datepicker.$ngb-dp-icon-size-lg;

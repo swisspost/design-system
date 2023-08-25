@@ -1,5 +1,38 @@
 # @swisspost/design-system-styles
 
+## 6.3.0
+
+### Minor Changes
+
+- Added a gray notification variant for cookie banners. (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
+
+### Patch Changes
+
+- Updated close button styles for Alerts, Toasts, Badges, and Modals. It now has the same colors as the tertiary buttons to be accessible on all our backgrounds. (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
+
+- Added custom resizer for textarea elements. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1765](https://github.com/swisspost/design-system/pull/1765))
+
+- Update button styles: padding, gap and border-radius. (by [@imagoiq](https://github.com/imagoiq) with [#1666](https://github.com/swisspost/design-system/pull/1666))
+
+- Updated alert and toast styles.  
+  Deprecated classes for alerts/notifications:
+
+  - alert-error becomes alert-danger
+  - alert-notification becomes alert-primary
+  - toast-notification becomes toast-primary (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
+
+- Stepper:
+
+  - Normalize font styles and weights.
+  - Position the step label under the badge on small viewport.
+  - Center the step label when its is multiline.
+  - Use hover step label color only on interactive step.
+  - Add contrasted step label color on focus. (by [@imagoiq](https://github.com/imagoiq) with [#1646](https://github.com/swisspost/design-system/pull/1646))
+
+- Adjusted the gap inside the badge. (by [@b1aserlu](https://github.com/b1aserlu) with [#1772](https://github.com/swisspost/design-system/pull/1772))
+
+- Fixed collapsible/accordion styles that broke after Bootstrap removed several CSS custom properties. (by [@alizedebray](https://github.com/alizedebray) with [#1324](https://github.com/swisspost/design-system/pull/1324))
+
 ## 6.2.6
 
 ### Patch Changes

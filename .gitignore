@@ -14,7 +14,7 @@ yarn.lock
 lerna-debug.log
 
 # System Files
-.DS_Store/
+.DS_Store
 styles/stylelint-report.txt
 
 # dotfiles

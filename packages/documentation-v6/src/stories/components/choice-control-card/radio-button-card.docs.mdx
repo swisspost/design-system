@@ -1,0 +1,36 @@
+import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta title="Components/Radio button card" />
+
+# Radio button card
+
+<Canvas>
+  <Story id="components-radio-button-card--default" />
+</Canvas>
+<div className="hide-col-default">
+  <ArgsTable story="^" />
+</div>
+
+## Grouping radio buttons
+
+Radio button cards can be grouped by wrapping them in a `fieldset/legend` construct.
+
+<Canvas>
+  <Story id="components-radio-button-card--group" />
+</Canvas>
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+```css dark
+@use '@swisspost/design-system-styles/index.scss';
+```
+
+To import only the styles required for this component:
+
+```css dark
+@use '@swisspost/design-system-styles/basics.scss';
+@use '@swisspost/design-system-styles/components/choice-control-button.scss';
+```

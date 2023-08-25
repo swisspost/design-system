@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 1.3.10
+
+### Patch Changes
+
+- Fixed collapsible/accordion styles that broke after Bootstrap removed several CSS custom properties. (by [@alizedebray](https://github.com/alizedebray) with [#1324](https://github.com/swisspost/design-system/pull/1324))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.3.0
+
 ## 1.3.9
 
 ### Patch Changes

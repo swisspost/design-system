@@ -52,10 +52,6 @@ body {
   @include post.pi(2104, 'white');
 }
 
-.pi-calendar {
-  @include post.pi(3203);
-}
-
 .code-sample {
   margin-top: 35px;
   text-align: center;
