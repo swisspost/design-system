@@ -19,8 +19,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
       - name: Are we on main?
         id: is-main
@@ -39,11 +37,10 @@ jobs:
 
       # Set changeset base branch, only run on release/vX branches
       - name: Set changeset base branch
-        if: steps.is-main.outputs.main == true
-        run: echo "`jq '.baseBranch="${{ github.ref_name }}"' .changeset/config.json`" > .changeset/config.json
-
-      - name: Log changeset config
-        run: echo $(cat .changeset/config.json)
+        if: steps.is-main.outputs.main == false
+        run: |
+          echo "`jq '.baseBranch="${{ github.ref_name }}"' .changeset/config.json`" > .changeset/config.json
+          echo $(cat .changeset/config.json)
 
       # The changeset action will behave differently based on whether there are
       # new changesets on the main branch:
