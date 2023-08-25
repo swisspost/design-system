@@ -6,13 +6,11 @@
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/utilities' as bu; // TODO: Move Design System utilities to utilities folder.
+@use './../mixins/color' as color-mx;
 @use './../mixins/utilities';
 @use './../variables/color';
 @use './../variables/spacing';
 @use './../variables/grid';
-@use './../functions/color' as color-fn;
-@use './../functions/contrast' as contrast-fn;
-@use './../placeholders/color' as color-ph;
 
 .bold {
   font-weight: 700;
@@ -66,15 +64,7 @@ span.spacer {
 // Background Utility
 @each $name, $color in color.$background-colors {
   .bg-#{$name} {
-    --post-bg-rgb: #{color-fn.rgb-values($color)};
-
-    @extend %color-background-rgba;
-
-    @if (contrast-fn.light-or-dark($color) == 'dark') {
-      @extend %color-background-dark-variables;
-    } @else {
-      @extend %color-background-light-variables;
-    }
+    @include color-mx.colored-background($color);
   }
 }
 

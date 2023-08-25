@@ -2,16 +2,16 @@
 
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/modal' as bm;
-@use './../themes/bootstrap/close' as bc;
 @use './../themes/bootstrap/core' as *;
 
-@use './../mixins/icons' as icon-mixin;
 @use './../mixins/scroll-shadows' as scroll-shadows-mixin;
-@use './../variables';
+
+@use './../variables/commons';
+@use './../variables/components/modal';
 
 .modal-content {
   border: 0;
-  box-shadow: variables.$box-shadow;
+  box-shadow: commons.$box-shadow;
 }
 
 post-ngb-modal-content {
@@ -20,14 +20,22 @@ post-ngb-modal-content {
 }
 
 .modal-body {
-  @include scroll-shadows-mixin.scroll-shadows-y(variables.$modal-content-bg);
-  padding: variables.$modal-body-padding;
+  @include scroll-shadows-mixin.scroll-shadows-y(modal.$modal-content-bg);
+  padding: modal.$modal-body-padding;
   overflow-y: auto;
 }
 
 .modal-header,
 .modal-footer {
   border: 0;
+}
+
+.modal-header .btn-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 0;
+  margin: modal.$modal-btn-close-margin;
 }
 
 .modal-title:focus {
@@ -37,26 +45,26 @@ post-ngb-modal-content {
 @include media-breakpoint-up(sm) {
   post-ngb-modal-content {
     // prevents the modal from exceeding the height of the screen
-    max-height: calc(100vh - #{2 * variables.$modal-dialog-margin-y-sm-up});
+    max-height: calc(100vh - #{2 * modal.$modal-dialog-margin-y-sm-up});
   }
 
   // Right and left margins are set to "auto" from the sm breakpoint
   // Paddings below ensure minimal margins on medium screens
   .modal-dialog {
-    padding-right: variables.$modal-dialog-margin;
-    padding-left: variables.$modal-dialog-margin;
+    padding-right: modal.$modal-dialog-margin;
+    padding-left: modal.$modal-dialog-margin;
   }
 }
 
 @include media-breakpoint-down(sm) {
   post-ngb-modal-content {
     // make the modal cover the full height available on small screens
-    height: calc(100vh - #{2 * variables.$modal-dialog-margin});
+    height: calc(100vh - #{2 * modal.$modal-dialog-margin});
   }
 
   .modal-body,
   .modal-header {
-    padding-right: variables.$modal-header-padding-y;
-    padding-left: variables.$modal-header-padding-y;
+    padding-right: modal.$modal-header-padding-y;
+    padding-left: modal.$modal-header-padding-y;
   }
 }

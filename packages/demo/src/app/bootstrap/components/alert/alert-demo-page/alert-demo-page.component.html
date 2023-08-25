@@ -3,6 +3,30 @@
   <app-dependency-link></app-dependency-link>
 </div>
 
+<div class="alert alert-warning mb-bigger-big">
+  <p>
+    The following two color variants are deprecated and will be removed in the next major version
+    of the styles package:
+  </p>
+  <ul>
+    <li>
+      <code>alert-error</code>
+      becomes
+      <code>alert-danger</code>
+    </li>
+    <li>
+      <code>alert-notification</code>
+      becomes
+      <code>alert-primary</code>
+    </li>
+    <li>
+      <code>toast-notification</code>
+      becomes
+      <code>toast-primary</code>
+    </li>
+  </ul>
+</div>
+
 <section class="continous-text">
   <h3>Usage</h3>
   <div class="alert-container mt-5">
@@ -37,24 +61,6 @@
   content. It should always close the toast when you click on it.
 </p>
 <section>
-  <div class="alert alert-warning">
-    <p>
-      The following two color variants are deprecated and will be removed in the next major version
-      of the styles package:
-    </p>
-    <ul>
-      <li>
-        <code>alert-error</code>
-        becomes
-        <code>alert-danger</code>
-      </li>
-      <li>
-        <code>alert-notification</code>
-        becomes
-        <code>alert-primary</code>
-      </li>
-    </ul>
-  </div>
   <app-toast-demo></app-toast-demo>
 </section>
 <code

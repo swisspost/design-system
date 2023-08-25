@@ -8,13 +8,13 @@ The official Swiss Post Internet Header implementation, built with [Stencil JS](
 
 The header docs are part of the storybook docs for the Design System.
 
-[Internet Header Documentation](https://next.design-system.post.ch/?path=/story/internet-header-getting-started--page)
+[Internet Header Documentation](https://next.design-system.post.ch/?path=/docs/internet-header-getting-started--docs)
 
 ## Installation
 
 There are two possibilities to install the header on a page.
 
-### npm installation
+### Npm installation
 
 Use this if your project uses a bundler or a framework like Angular, React or Vue.
 
@@ -22,28 +22,63 @@ Use this if your project uses a bundler or a framework like Angular, React or Vu
 npm install @swisspost/internet-header
 ```
 
-`main.ts`
+```html
+<!-- index.html -->
+<body>
+  <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
+  ...
+</body>
+```
 
-```ts
-import { defineCustomElements } from '@swisspost/internet-header';
+#### Lazy-loaded
+
+```javascript
+// main.ts / index.js / ...
+import { defineCustomElements } from '@swisspost/internet-header/loader';
 
 defineCustomElements();
+```
+
+#### Bare component
+
+```javascript
+// main.ts / index.js / ...
+import '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.esm';
 ```
 
 ### Basic installation
 
 Use this if you want to use the CDN version and if you don't use a bundler or a framework.
+Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
 
-`index.html`
+#### Lazy-loaded
 
 ```html
+<!DOCTYPE html>
+<html>
+  <body>
+    <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
+  </body>
+  <script type="module">
+    import { defineCustomElements } from 'https://unpkg.com/@swisspost/internet-header@{version}/loader/index.es2017.js';
+
+    defineCustomElements();
+  </script>
+</html>
+```
+#### Bare component
+
+```html
+<!-- index.html -->
+<head>
+  <script
+    async
+    type="module"
+    src="https://unpkg.com/@swisspost/internet-header@{version}/dist/swisspost-internet-header/swisspost-internet-header.esm.js"
+  ></script>
+</head>
 <body>
   <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
-  ...
-  <script
-    type="module"
-    src="https://unpkg.com/@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.esm.js"
-  ></script>
 </body>
 ```
 

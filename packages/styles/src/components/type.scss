@@ -114,3 +114,7 @@ code {
   color: inherit;
   font-size: inherit;
 }
+
+hr {
+  border-block-start-color: rgba(var(--post-contrast-color-rgb), 0.1);
+}

@@ -1,0 +1,362 @@
+import { Meta, ArgsTable } from '@storybook/addon-docs';
+import { BADGE } from '@geometricpanda/storybook-addon-badges';
+
+<Meta
+  title="Intranet Header/Getting started"
+  parameters={{ badges: [BADGE.NEEDS_REVISION] }}
+  argTypes={{
+    additionalInfo: {
+      name: 'additionalInfo',
+      description:
+        'Additional information about the user, shown as item in the user-dropdown.<p class="alert alert-info alert-sm">By default, the item is not rendered.</p>',
+      control: 'text',
+      table: {
+        defaultValue: {
+          summary: '',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    currentUserId: {
+      name: 'currentUserId',
+      description:
+        'The user ID of the user currently logged in. Used to show the user\'s profile image.<p class="alert alert-info alert-sm">The default value of `user` is used to show a fallback-image.</p>',
+      control: 'text',
+      table: {
+        defaultValue: {
+          summary: 'user',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    displayName: {
+      name: 'displayName',
+      description:
+        'The name of the logged-in user, shown as item in the user-dropdown.<p class="alert alert-info alert-sm">By default, the item is not rendered.</p>',
+      control: 'text',
+      table: {
+        defaultValue: {
+          summary: '',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    hasNavbar: {
+      name: 'hasNavbar',
+      description: 'Whether the navigation bar is rendered or not.',
+      control: 'boolean',
+      table: {
+        defaultValue: {
+          summary: 'true',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    languages: {
+      name: 'languages',
+      description:
+        'A comma-separated string that specifies the languages available to the language-selector shown as items in the user-dropdown.<p class="alert alert-info alert-sm">Possible language values are: `de`, `fr`, `it` and `en`.</p>',
+      control: 'text',
+      table: {
+        defaultValue: {
+          summary: 'de, fr, it, en',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    logoUrl: {
+      name: 'logoUrl',
+      description: 'The url which is used for the `href` attribute on the logo.',
+      control: 'text',
+      table: {
+        defaultValue: {
+          summary: '',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    optionDropdownContent: {
+      name: 'optionDropdownContent',
+      description:
+        'An Angular template that can be used to instantiate custom items in the user dropdown.<p class="alert alert-info alert-sm">By default, the item is not rendered.</p>',
+      table: {
+        defaultValue: {
+          summary: 'null',
+        },
+        type: {
+          summary: 'TemplateRef<any>',
+        },
+      },
+    },
+    optionHeaderContent: {
+      name: 'optionHeaderContent',
+      description:
+        'An Angular template that can be used to instantiate custom content in front of the user-dropdown.<p class="alert alert-info alert-sm">By default, the item is not rendered.</p>',
+      table: {
+        defaultValue: {
+          summary: 'null',
+        },
+        type: {
+          summary: 'TemplateRef<any>',
+        },
+      },
+    },
+    searchUrl: {
+      name: 'searchUrl',
+      description:
+        'Used as the form `action` attribute on the search form.<p class="alert alert-info alert-sm">If `showIntranetSearch` is set to `true` the `searchUrl` must be set as well.</p>',
+      control: 'text',
+      table: {
+        defaultValue: {
+          summary: '',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    showIntranetSearch: {
+      name: 'showIntranetSearch',
+      description: 'Whether the search bar is rendered or not.',
+      control: 'boolean',
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
+    siteTitle: {
+      name: 'siteTitle',
+      description: 'The application name, shown next to the Logo.',
+      control: 'text',
+      table: {
+        defaultValue: {
+          summary: '',
+        },
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+  }}
+/>
+
+# @swisspost/design-system-intranet-header
+
+[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header)
+
+The Header Angular component for internal usage.
+
+<ul>
+  <li><a href="#installation" target="_self">Installation</a></li>
+  <li><a href="#usage" target="_self">Usage</a></li>
+  <li><a href="#examples" target="_self">Examples</a></li>
+</ul>
+
+<p className="alert alert-info alert-md">
+  The Intranet Header is an <a href="//Angular.io" target="_blank">Angular</a> component and as such only works with Angular projects.
+</p>
+
+## Installation
+
+```bash dark
+npm install @swisspost/design-system-intranet-header
+```
+
+## Usage
+
+In your `app.module.ts`, add the header to your imports:
+
+```js dark
+// Other imports ....
+import { SwissPostIntranetHeaderModule } from '@swisspost/design-system-intranet-header';
+
+@NgModule({
+  imports: [SwissPostIntranetHeaderModule],
+})
+export class AppModule {}
+```
+
+On your layout page, create a container (e.g. `<div>` or `<section>` - or use the `body` container) and apply the following css classes:
+
+| Class              | Condition                          |
+| :----------------- | :--------------------------------- |
+| `layout-container` | Always                             |
+| `header-big`       | to use the header with a navbar    |
+| `header-small`     | to use the header without a navbar |
+| `with-searchbar`   | to use the header with a searchbar |
+
+Inside, add the `post-intranet-header` component with applicable options (see below).
+
+If you are using a `navbar`, add the `list-items` for the navigation directly inside the tag. (see example **Header with a navbar**)
+
+If you are using side navigation, adjust the markup accordingly. (See examples **Header with a sidenav** and **"Postweb" intranet header**).
+Be sure to set the `openedMenu` property and apply the classes as shown in the examples.
+
+### Options
+
+<div class="hide-col-control">
+  <ArgsTable story="." />
+</div>
+
+## Examples
+
+### Header with a navbar
+
+Add `<main><!-- Site Content / Router-Outlet --></main>` beneath.
+
+```html dark
+<sp-intranet-header siteTitle="SiteTitle" languages="de,fr,it">
+  <li class="nav-item"><a class="nav-link" href="#">Testlink</a></li>
+  <li class="nav-item"><a class="nav-link" href="#">Testlink</a></li>
+  <li class="nav-item" ngbDropdown>
+    <span class="nav-link" id="testid01" href="#" ngbDropdownToggle>Dropdown</span>
+    <div class="dropdown-menu" aria-labelledby="testid01" ngbDropdownMenu>
+      <a class="dropdown-item" href="#" ngbDropdownItem>Link 1</a>
+      <a class="dropdown-item" href="#" ngbDropdownItem>Link 2</a>
+      <a class="dropdown-item" href="#" ngbDropdownItem>Link 3</a>
+    </div>
+  </li>
+  <li class="nav-item"><a class="nav-link" href="#">Testlink</a></li>
+</sp-intranet-header>
+```
+
+### Header with a sidenav
+
+```html dark
+<section class="layout-container header-small">
+  <sp-intranet-header
+    [hasNavbar]="false"
+    siteTitle="Site Title"
+  ></sp-intranet-header>
+  <div class="container-fluid header-margin">
+    <div class="row flex-grow-1">
+      <nav
+        class="col-md-3 col-lg-2 d-md-flex bg-light sidebar site-content p-md-3"
+        id="sidebar"
+        [ngClass]="{'closed': !openedMenu}"
+      >
+        <div class="sidebar-sticky header-margin bg-light">
+          <!-- left menu -->
+          <ul>
+            <li class="d-md-none" (click)="openedMenu = !openedMenu">
+              <i class="pi pi-menu"></i>
+              Home
+            </li>
+            <li><a routerLink="/">Home</a></li>
+            <li class="separator"></li>
+            <li>
+              Menu Text
+              <ul>
+                <li class="level2">
+                  <a href="#">Link 1</a>
+                </li>
+                <li class="level2">
+                  <a href="#">Link 2</a>
+                </li>
+                <li class="level2">
+                  <a href="#">Link 3</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <span class="spacer d-none d-md-block"></span>
+        </div>
+
+        <div></div>
+      </nav>
+      <main role="main" class="col-md-9 col-lg-10 p-3">
+        <h1>Content</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+          accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+          sanctus est Lorem ipsum dolor sit amet.
+        </p>
+      </main>
+    </div>
+  </div>
+</section>
+```
+
+### "Postweb" intranet header
+
+<div class="mb-regular alert alert-warning">
+  <p>Navigation links must be maintained by the application!</p>
+</div>
+
+```html dark
+<section class="layout-container header-big with-searchbar">
+  <sp-intranet-header siteTitle="PostWeb" [showIntranetSearch]="true">
+    <li class="nav-item"><a href="/postweb" class="nav-link">Home</a></li>
+    <li class="nav-item">
+      <a href="/postweb/post-informatik" class="nav-link" target="_self">Post Informatik</a>
+    </li>
+    <li class="nav-item"><a class="nav-link">HR-Portal</a></li>
+    <li class="nav-item"><a href="/postweb/service-portal" class="nav-link">Service-Portal</a></li>
+    <li class="nav-item"><a href="/postweb/die-post" class="nav-link">Die Post</a></li>
+  </sp-intranet-header>
+  <div class="site-content container-fluid header-margin">
+    <div class="row flex-grow-1">
+      <nav
+        class="col-md-3 col-lg-2 d-md-flex bg-light sidebar p-md-3"
+        id="sidebar"
+        [ngClass]="{'closed': !openedMenu}"
+      >
+        <div class="sidebar-sticky header-margin bg-light">
+          <!-- left menu -->
+          <ul>
+            <li tabindex="0" class="d-md-none" (click)="openedMenu = !openedMenu">
+              <i class="pi pi-menu"></i>
+              Active Page
+            </li>
+            <li><a routerLink="/">Home</a></li>
+            <li class="separator"></li>
+            <li>
+              Menu Text
+              <ul>
+                <li class="level2">
+                  <a href="#">Link 1</a>
+                </li>
+                <li class="level2">
+                  <a href="#">Link 2</a>
+                </li>
+                <li class="level2">
+                  <a href="#">Link 3</a>
+                </li>
+              </ul>
+            </li>
+          </ul>
+          <span class="spacer d-none d-md-block"></span>
+        </div>
+
+        <div></div>
+      </nav>
+      <main role="main" class="col-md-9 col-lg-10 p-3">
+        <h1>Content</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
+          accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+          sanctus est Lorem ipsum dolor sit amet.
+        </p>
+      </main>
+    </div>
+  </div>
+</section>
+```

@@ -4,6 +4,7 @@
 
 :host {
   display: block;
+  aspect-ratio: 1/1;
 }
 
 .logo {
@@ -13,7 +14,7 @@
 
   svg {
     display: block;
-    width: var(--header-height);
-    height: var(--header-height);
+    width: 100%;
+    height: 100%;
   }
 }

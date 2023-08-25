@@ -25,13 +25,13 @@
     "docs:test": "pnpm --filter design-system-documentation test",
     "docs:e2e": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-documentation e2e'",
     "docs:e2e:watch": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-documentation e2e:watch'",
-    "docsv7": "pnpm --filter design-system-documentation-v7 start",
-    "docsv7:start": "pnpm --filter design-system-documentation-v7... --parallel --stream start",
-    "docsv7:build": "pnpm --filter design-system-documentation-v7 build",
-    "docsv7:headless": "pnpm --filter design-system-documentation-v7 start:headless",
-    "docsv7:e2e": "start-server-and-test docsv7:headless 9300 'pnpm --filter design-system-documentation-v7 e2e'",
-    "docsv7:e2e:watch": "start-server-and-test docsv7:headless 9300 'pnpm --filter design-system-documentation-v7 e2e:watch'",
-    "docsv7:snapshots": "start-server-and-test 'pnpm docsv7:headless' 9300 'pnpm --filter design-system-documentation-v7 snapshots'",
+    "docsv6": "pnpm --filter design-system-documentation-v6 start",
+    "docsv6:start": "pnpm --filter design-system-documentation-v6... --parallel --stream start",
+    "docsv6:build": "pnpm --filter design-system-documentation-v6 build",
+    "docsv6:headless": "pnpm --filter design-system-documentation-v6 start:headless",
+    "docsv6:e2e": "start-server-and-test docsv6:headless 9300 'pnpm --filter design-system-documentation-v6 e2e'",
+    "docsv6:e2e:watch": "start-server-and-test docsv6:headless 9300 'pnpm --filter design-system-documentation-v6 e2e:watch'",
+    "docsv6:snapshots": "start-server-and-test 'pnpm docsv6:headless' 9300 'pnpm --filter design-system-documentation-v6 snapshots'",
     "styles:start": "pnpm --filter design-system-styles start",
     "styles:build": "pnpm --filter design-system-styles build",
     "styles:test": "pnpm --filter design-system-styles test",
@@ -62,6 +62,9 @@
   "devDependencies": {
     "@changesets/cli": "2.26.2",
     "start-server-and-test": "2.0.0"
+  },
+  "optionalDependencies": {
+    "@web-types/lit": "2.0.0-3"
   },
   "engines": {
     "node": "16",
