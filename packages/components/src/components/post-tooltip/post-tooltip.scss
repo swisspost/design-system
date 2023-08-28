@@ -39,10 +39,9 @@ p {
 
 .arrow {
   position: absolute;
-  width: math.div(
-    1rem,
-    1.41
-  ); // https://www.omnicalculator.com/math/square-diagonal?c=CHF&v=hide:0,diagonal:16!cm
+  // Diagonale of 16px -> 1rem -> 1/1.41 = ~0.7
+  // https://www.omnicalculator.com/math/square-diagonal?c=CHF&v=hide:0,diagonal:16!cm
+  width: 0.7rem;
   aspect-ratio: 1/1;
   background-color: inherit;
   rotate: 45deg;
