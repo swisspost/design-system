@@ -77,6 +77,7 @@ export class PostTooltip {
       );
     }
 
+    // Patch missing focus ability on the trigger element
     if (!isFocusable(this.trigger)) {
       this.trigger.setAttribute('tabindex', '0');
     }
