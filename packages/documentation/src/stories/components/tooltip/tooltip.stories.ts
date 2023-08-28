@@ -1,4 +1,4 @@
-import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
 
