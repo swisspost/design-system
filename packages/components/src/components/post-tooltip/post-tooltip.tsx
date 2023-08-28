@@ -45,12 +45,12 @@ export class PostTooltip {
    * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
-  @Prop() placement?: Placement = 'top';
+  @Prop() readonly placement?: Placement = 'top';
 
   /**
    * Internally used to track changes to the class attribute on the host element
    */
-  @Prop() class: string;
+  @Prop() readonly class: string;
 
   private tooltipRef: HTMLElement & IPopoverElement;
   private arrowRef: HTMLElement;
