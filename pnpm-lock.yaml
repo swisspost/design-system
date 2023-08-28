@@ -53,7 +53,7 @@ importers:
         specifier: workspace:6.3.0
         version: link:../styles/dist
       ally.js:
-        specifier: ^1.4.1
+        specifier: 1.4.1
         version: 1.4.1
       long-press-event:
         specifier: 2.4.6
