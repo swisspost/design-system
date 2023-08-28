@@ -1,0 +1,15 @@
+// Polyfill used for [popover] attributes and by post-tooltip
+@use 'sass:meta';
+
+@layer polyfill {
+  @include meta.load-css('@oddbird/popover-polyfill/dist/popover.css');
+
+  // Compatibility resets for tooltips
+  post-tooltip[popover] {
+    position: absolute;
+    margin: 0;
+    overflow: visible;
+    padding: 0;
+    border: none;
+  }
+}
