@@ -1,4 +1,9 @@
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/mixins/color' as color-mx;
+
 :host {
+  @include color-mx.colored-background(color.$gray-80);
+
   border: none;
   border-radius: 4px;
   max-width: 30ch;
@@ -7,8 +12,8 @@
 
 p {
   position: relative;
-  margin: 0;
   background-color: inherit;
+  margin: 0;
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
 }
