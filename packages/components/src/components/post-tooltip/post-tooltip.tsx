@@ -1,5 +1,4 @@
 import { Component, h, Element, Prop, Host, Method } from '@stencil/core';
-import { version } from '../../../package.json';
 import {
   computePosition,
   Placement,
@@ -10,12 +9,15 @@ import {
   inline,
   arrow,
 } from '@floating-ui/dom';
+import isFocusable from 'ally.js/esm/is/focusable';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import '@oddbird/popover-polyfill';
 
 // Patch for long press on touch devices
 import 'long-press-event';
+
+import { version } from '../../../package.json';
 
 const sidemap = {
   top: 'bottom',
@@ -73,6 +75,10 @@ export class PostTooltip {
         'aria-describedby',
         [...describedBy.split(' '), this.host.id].join(' '),
       );
+    }
+
+    if (!isFocusable(this.trigger)) {
+      this.trigger.setAttribute('tabindex', '0');
     }
   }
 
