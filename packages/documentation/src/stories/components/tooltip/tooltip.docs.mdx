@@ -1,0 +1,11 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as TooltipStories from './tooltip.stories';
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+<Canvas of={TooltipStories.Default} />
+<div className="hide-col-default">
+  <Controls of={TooltipStories.Default} />
+</div>

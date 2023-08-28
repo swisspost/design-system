@@ -5,6 +5,8 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { Placement } from "@floating-ui/dom";
+export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostCollapsible {
         /**
@@ -75,6 +77,10 @@ export namespace Components {
          */
         "show": (panelName: string) => Promise<void>;
     }
+    interface PostTooltip {
+        "class": string;
+        "placement"?: Placement;
+    }
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -114,12 +120,19 @@ declare global {
         prototype: HTMLPostTabsElement;
         new (): HTMLPostTabsElement;
     };
+    interface HTMLPostTooltipElement extends Components.PostTooltip, HTMLStencilElement {
+    }
+    var HTMLPostTooltipElement: {
+        prototype: HTMLPostTooltipElement;
+        new (): HTMLPostTooltipElement;
+    };
     interface HTMLElementTagNameMap {
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
         "post-tab-header": HTMLPostTabHeaderElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
+        "post-tooltip": HTMLPostTooltipElement;
     }
 }
 declare namespace LocalJSX {
@@ -188,12 +201,17 @@ declare namespace LocalJSX {
          */
         "onTabChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
     }
+    interface PostTooltip {
+        "class"?: string;
+        "placement"?: Placement;
+    }
     interface IntrinsicElements {
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
         "post-tab-header": PostTabHeader;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
+        "post-tooltip": PostTooltip;
     }
 }
 export { LocalJSX as JSX };
@@ -208,6 +226,7 @@ declare module "@stencil/core" {
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
+            "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
         }
     }
 }

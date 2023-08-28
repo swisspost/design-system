@@ -1,0 +1,24 @@
+:host {
+  border: none;
+  border-radius: 4px;
+  max-width: 30ch;
+  width: max-content;
+}
+
+p {
+  position: relative;
+  margin: 0;
+  background-color: inherit;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.arrow {
+  position: absolute;
+  background-color: inherit;
+  width: 12px;
+  height: 12px;
+  pointer-events: none;
+  rotate: 45deg;
+  z-index: -1;
+}
