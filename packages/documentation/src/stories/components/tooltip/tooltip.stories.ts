@@ -1,4 +1,4 @@
-import { Args, Meta, Story, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
 
@@ -41,7 +41,7 @@ const meta: Meta = {
         'Background color of the tooltip. Choose the one that provides the best contrast in your scenario.',
       control: {
         type: 'radio',
-        label: {
+        labels: {
           'bg-primary': 'Primary',
           'bg-yellow': 'Post yellow',
         },
@@ -49,6 +49,7 @@ const meta: Meta = {
       options: ['bg-primary', 'bg-yellow'],
     },
   },
+  // Provide some margin for the tooltip to fit comfortably inside the iFrame with overflow: hidden
   decorators: [
     story =>
       html`
@@ -57,7 +58,7 @@ const meta: Meta = {
   ],
 };
 
-function render(args: Args, context: StoryContext) {
+function render(args: Args) {
   return html`
     <button class="btn btn-icon btn-secondary btn-large" data-tooltip-target="tooltip-one">
       <post-icon name="3176"></post-icon>

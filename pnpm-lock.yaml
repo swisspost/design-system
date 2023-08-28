@@ -895,9 +895,6 @@ importers:
       '@angular/core':
         specifier: '=15.0.4'
         version: 15.0.4(rxjs@7.8.1)(zone.js@0.12.0)
-      '@oddbird/popover-polyfill':
-        specifier: ^0.2.2
-        version: 0.2.2
       '@popperjs/core':
         specifier: 2.11.8
         version: 2.11.8

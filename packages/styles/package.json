@@ -35,7 +35,6 @@
     "@angular-devkit/core": "=15.0.4",
     "@angular-devkit/schematics": "=15.0.4",
     "@angular/core": "=15.0.4",
-    "@oddbird/popover-polyfill": "^0.2.2",
     "@popperjs/core": "2.11.8",
     "bootstrap": "5.3.1",
     "cheerio": "1.0.0-rc.12",

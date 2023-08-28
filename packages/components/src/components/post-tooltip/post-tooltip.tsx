@@ -33,6 +33,7 @@ export class PostTooltip {
   @Prop() placement?: Placement;
   @Prop() class: string;
 
+  private tooltipRef: HTMLElement;
   private arrowRef: HTMLElement;
   private trigger: HTMLElement;
   private clearAutoupdate: () => void;
@@ -43,22 +44,28 @@ export class PostTooltip {
     // Patch popovertargetaction="interest" until it's implemented
     // https://github.com/openui/open-ui/issues/767#issuecomment-1654177227
     this.trigger.addEventListener('mouseenter', this.showTooltip.bind(this));
-    this.trigger.addEventListener('mouseleave', this.hideTooltip.bind(this));
+    // this.trigger.addEventListener('mouseleave', this.hideTooltip.bind(this));
     this.trigger.addEventListener('focus', this.showTooltip.bind(this));
     this.trigger.addEventListener('blur', this.hideTooltip.bind(this));
     this.trigger.addEventListener('long-press', this.showTooltip.bind(this));
   }
 
+  componentDidRender() {
+    this.tooltipRef.setAttribute('popover', '');
+  }
+
   showTooltip() {
-    this.clearAutoupdate = autoUpdate(this.trigger, this.host, this.positionTooltip.bind(this), {
-      ancestorScroll: false,
-    });
-    this.host.showPopover();
+    this.clearAutoupdate = autoUpdate(
+      this.trigger,
+      this.tooltipRef,
+      this.positionTooltip.bind(this),
+    );
+    this.tooltipRef.showPopover();
   }
 
   hideTooltip() {
     this.clearAutoupdate();
-    this.host.hidePopover();
+    this.tooltipRef.hidePopover();
   }
 
   // Tooltip and arrow positioning with floating-ui
@@ -69,7 +76,7 @@ export class PostTooltip {
       y,
       middlewareData,
       placement: currentPlacement,
-    } = await computePosition(this.trigger, this.host, {
+    } = await computePosition(this.trigger, this.tooltipRef, {
       placement: this.placement || 'top',
       middleware: [
         flip(),
@@ -81,8 +88,8 @@ export class PostTooltip {
     });
 
     // Tooltip
-    this.host.style.left = `${x}px`;
-    this.host.style.top = `${y}px`;
+    this.tooltipRef.style.left = `${x}px`;
+    this.tooltipRef.style.top = `${y}px`;
 
     // Arrow
     // Tutorial: https://codesandbox.io/s/mystifying-kare-ee3hmh?file=/src/index.js
@@ -99,14 +106,14 @@ export class PostTooltip {
 
   render() {
     return (
-      <Host popover role="tooltip" data-version={version}>
-        <span
-          class="arrow"
-          ref={el => {
-            this.arrowRef = el;
-          }}
-        ></span>
-        <p>
+      <Host data-version={version}>
+        <p role="tooltip" ref={el => (this.tooltipRef = el)}>
+          <span
+            class="arrow"
+            ref={el => {
+              this.arrowRef = el;
+            }}
+          ></span>
           <slot>Enter a short message here</slot>
         </p>
       </Host>
