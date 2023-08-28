@@ -4,39 +4,30 @@ import { html } from 'lit';
 
 const meta: Meta = {
   title: 'Components/Tooltip',
+  component: 'post-tooltip',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
+    controls: {
+      exclude: ['class'],
+    },
   },
   render,
   args: {
     placement: 'top',
     background: 'bg-primary',
+    message: 'Hi there 👋',
   },
   argTypes: {
-    placement: {
-      name: 'Placement',
-      description:
-        'Any <a href="https://floating-ui.com/docs/computePosition#placement" target="_blank">floating-ui placement option</a>. If the tooltip does not fit, it will flip to the opposite side.',
+    message: {
+      name: 'Message',
+      description: 'Tooltip content',
       control: {
-        type: 'select',
+        type: 'text',
       },
-      options: [
-        'top',
-        'top-start',
-        'top-end',
-        'right',
-        'right-start',
-        'right-end',
-        'bottom',
-        'bottom-start',
-        'bottom-end',
-        'left',
-        'left-start',
-        'left-end',
-      ],
     },
     background: {
       name: 'Background',
+      defaultValue: 'bg-primary',
       description:
         'Background color of the tooltip. Choose the one that provides the best contrast in your scenario.',
       control: {
@@ -47,6 +38,12 @@ const meta: Meta = {
         },
       },
       options: ['bg-primary', 'bg-yellow'],
+    },
+    slot: {
+      name: 'Slot',
+      control: false,
+      description:
+        'The tooltip default slot accepts any <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a> like `<span>` or `<post-icon>`, but no interactive content like `<a>` or `<button>` and no block level content like `<div>` or `p`.',
     },
   },
   // Provide some margin for the tooltip to fit comfortably inside the iFrame with overflow: hidden
@@ -59,12 +56,19 @@ const meta: Meta = {
 };
 
 function render(args: Args) {
+  // Just for fun
+  const message = args.background === 'bg-yellow' ? args.message.replace('👋', '👋🏿') : args.message;
+
   return html`
-    <button class="btn btn-icon btn-secondary btn-large" data-tooltip-target="tooltip-one">
-      <post-icon name="3176"></post-icon>
+    <button
+      class="btn btn-secondary btn-large"
+      data-tooltip-target="tooltip-one"
+      aria-describedby="tooltip-one"
+    >
+      Button
     </button>
     <post-tooltip class="hydrated ${args.background}" id="tooltip-one" placement=${args.placement}>
-      Shareholder value and a lot of other text just to show how that breaks on a new line.
+      ${message}
     </post-tooltip>
   `;
 }
