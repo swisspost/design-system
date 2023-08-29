@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Non focusable</title>
+    <script type="module" src="../../../dist/post-components/post-components.esm.js"></script>
+  </head>
+  <body>
+    <p data-tooltip-target="t1">I'm not focusable and have a tooltip</p>
+    <post-tooltip id="t1"></post-tooltip>
+
+    <button data-tooltip-target="t2" aria-describedby="something">existing aria-describedby</button>
+    <post-tooltip id="t2"></post-tooltip>
+  </body>
+</html>
