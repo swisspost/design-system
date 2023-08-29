@@ -205,40 +205,63 @@ input[ngbDatepicker] {
   }
 }
 
-.form-control[ngbDatepicker] {
+.form-control[ngbdatepicker] {
+  padding-right: 3rem;
+
   &.is-invalid,
   &.is-valid,
   &.show-ng-validation.ng-touched.ng-invalid,
   &.show-ng-validation.ng-touched.ng-valid {
-    padding-right: 1rem;
     background-position: calc(100% - #{forms.$input-height-inner}) center;
+  }
+
+  &.is-invalid {
+    padding-right: 5rem;
   }
 
   .form-floating > &,
   &.form-control-lg {
+    padding-right: 4rem;
+
     &.is-invalid,
     &.is-valid,
     &.show-ng-validation.ng-touched.ng-invalid,
     &.show-ng-validation.ng-touched.ng-valid {
       background-position: calc(100% - #{forms.$input-height-inner-lg}) center !important;
     }
+
+    &.is-invalid {
+      padding-right: 6rem;
+    }
   }
 
   &.form-control-rg {
+    padding-right: 2.5rem;
+
     &.is-invalid,
     &.is-valid,
     &.show-ng-validation.ng-touched.ng-invalid,
     &.show-ng-validation.ng-touched.ng-valid {
       background-position: calc(100% - #{forms.$input-height-inner-rg}) center;
     }
+
+    &.is-invalid {
+      padding-right: 4.5rem;
+    }
   }
 
   &.form-control-sm {
+    padding-right: 2rem;
+
     &.is-invalid,
     &.is-valid,
     &.show-ng-validation.ng-touched.ng-invalid,
     &.show-ng-validation.ng-touched.ng-valid {
       background-position: calc(100% - #{forms.$input-height-inner-sm}) center;
+    }
+
+    &.is-invalid {
+      padding-right: 3.5rem;
     }
   }
 }
