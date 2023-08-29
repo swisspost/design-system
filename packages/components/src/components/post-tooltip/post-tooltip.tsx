@@ -57,8 +57,20 @@ export class PostTooltip {
   private trigger: HTMLElement;
   private clearAutoupdate: () => void;
 
-  componentWillLoad() {
+  connectedCallback() {
+    if (!this.host.id) {
+      throw new Error(
+        `No id set: <post-tooltip> must have an id, linking it to it's target element using the data-tooltip-target attribute.`,
+      );
+    }
+
     this.trigger = document.querySelector(`[data-tooltip-target="${this.host.id}"]`);
+
+    if (!this.trigger) {
+      throw new Error(
+        `No target found for <post-tooltip id="${this.host.id}">, please add the 'data-tooltip-target="${this.host.id}" attribute to the target element.`,
+      );
+    }
 
     // Patch popovertargetaction="interest" until it's implemented
     // https://github.com/openui/open-ui/issues/767#issuecomment-1654177227
@@ -68,13 +80,13 @@ export class PostTooltip {
     this.trigger.addEventListener('blur', this.hideTooltip.bind(this));
     this.trigger.addEventListener('long-press', this.showTooltip.bind(this));
 
-    // Patch missing aria-describedby attribute on the trigger
-    const describedBy = this.trigger.getAttribute('aria-describedby') || '';
+    // Patch missing aria-describedby attribute on the trigger without overriding existing values
+    const describedBy = this.trigger.getAttribute('aria-describedby');
     if (!describedBy?.includes(this.host.id)) {
-      this.trigger.setAttribute(
-        'aria-describedby',
-        [...describedBy.split(' '), this.host.id].join(' '),
-      );
+      const newDescribedBy = describedBy
+        ? [...describedBy.split(' '), this.host.id].join(' ')
+        : this.host.id;
+      this.trigger.setAttribute('aria-describedby', newDescribedBy);
     }
 
     // Patch missing focus ability on the trigger element
@@ -83,9 +95,31 @@ export class PostTooltip {
     }
   }
 
-  componentDidRender() {
+  /**
+   * Remove a bunch of event listeners if the tooltip gets removed from the DOM
+   */
+  disconnectedCallback() {
+    this.trigger.removeEventListener('mouseenter', this.showTooltip);
+    this.trigger.removeEventListener('mouseleave', this.hideTooltip);
+    this.trigger.removeEventListener('focus', this.showTooltip);
+    this.trigger.removeEventListener('blur', this.hideTooltip);
+    this.trigger.removeEventListener('long-press', this.showTooltip);
+    this.tooltipRef.removeEventListener('toggle', this.handleToggle);
+    if (typeof this.clearAutoupdate === 'function') this.clearAutoupdate();
+  }
+
+  componentDidLoad() {
+    // Has the benefit of rendering the tooltip without the popover attribute which
+    // causes the tooltip to show up on the page if it's not linked to a target. This makes
+    // the error obvious.
+    if (!this.host.id || !this.trigger) return false;
+
     // Can't figure out how to extend HTMLAttributes<HTMLParagraphElement> to support the popover attribute
     this.tooltipRef.setAttribute('popover', '');
+    this.tooltipRef.addEventListener('toggle', this.handleToggle.bind(this));
+
+    // Initially position tooltip to prevent a flash of unpositioned tooltip
+    this.positionTooltip();
   }
 
   /**
@@ -94,7 +128,6 @@ export class PostTooltip {
   @Method()
   async showTooltip() {
     this.tooltipRef.showPopover();
-    this.startAutoupdates();
   }
 
   /**
@@ -102,7 +135,6 @@ export class PostTooltip {
    */
   @Method()
   async hideTooltip() {
-    this.clearAutoupdate();
     this.tooltipRef.hidePopover();
   }
 
@@ -112,14 +144,28 @@ export class PostTooltip {
    */
   @Method()
   async toggleTooltip(force?: boolean) {
-    const openNow = this.tooltipRef.togglePopover(force);
-    if (openNow) {
+    this.tooltipRef.togglePopover(force);
+  }
+
+  /**
+   * Start or stop auto updates based on tooltip events.
+   * Tooltips can be closed or opened with other methods than class members,
+   * therefore listening to the toggle event is safer for cleaning up.
+   * @param e ToggleEvent
+   */
+  private handleToggle(e: ToggleEvent) {
+    const isOpen = e.newState === 'open';
+    if (isOpen) {
       this.startAutoupdates();
     } else {
-      this.clearAutoupdate();
+      if (typeof this.clearAutoupdate === 'function') this.clearAutoupdate();
     }
   }
 
+  /**
+   * Start listening for DOM updates, scroll events etc. that have
+   * an influence on tooltip positioning
+   */
   private startAutoupdates() {
     this.clearAutoupdate = autoUpdate(
       this.trigger,
