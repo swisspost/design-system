@@ -17,10 +17,17 @@
   text-align: center;
   white-space: nowrap;
   vertical-align: baseline;
+  max-width: 100%;
+  overflow: hidden;
+  position: relative;
 
   // Empty badges collapse automatically
   &:empty {
     display: none;
+  }
+
+  &:has(.btn-close) {
+    padding-right: 24px/16px + badge.$badge-padding-x;
   }
 
   > .badge {
@@ -36,6 +43,8 @@
   > .badge,
   > .btn-close {
     margin-right: -1 * (badge.$badge-padding-x - badge.$badge-nested-translate-x);
+    position: absolute;
+    right: badge.$badge-padding-x;
   }
 
   &.badge-sm {
