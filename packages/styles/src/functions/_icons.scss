@@ -1,10 +1,20 @@
 @use 'sass:map';
+@use 'sass:meta';
 
 @use './color';
 @use './utilities';
 @use './../variables/icons';
 
 @function add-fill-color($svg, $color) {
+  @if (meta.type-of($color) == string) {
+    @return set-svg-properties(
+      $svg,
+      (
+        'fill': $color,
+      )
+    );
+  }
+
   $opacity: alpha($color);
   $color: color.get-hex-string($color);
   $clean-color: utilities.replace('#{$color}', '#', '%23');
