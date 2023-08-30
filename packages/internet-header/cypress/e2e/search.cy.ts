@@ -4,7 +4,8 @@ import mockStaoCacheTypes from '../fixtures/internet-header/staocache-types.json
 import { copyConfig, prepare } from '../support/prepare-story';
 
 describe('search', () => {
-  const searchButton = '#post-internet-header-search-button';
+  const searchButton = '#post-internet-header-search-button[aria-expanded=false]';
+  const closeButton = '#post-internet-header-search-button[aria-expanded=true]';
 
   beforeEach(() => {
     cy.intercept('/rest/search/v2/querySuggest?**', mockCoveoSuggestions).as('coveoSuggestions');
@@ -21,7 +22,7 @@ describe('search', () => {
   describe('config', () => {
     describe('default', () => {
       it('Search button should not be displayed if the config does not provide a search config', () => {
-        prepare('Internet Header/Components/Header', 'Default');
+        prepare('Internet Header/Header Component', 'Default');
         cy.changeArg('search', false);
         cy.get('swisspost-internet-header').should('exist');
         cy.get('post-search').should('not.exist');
@@ -32,14 +33,14 @@ describe('search', () => {
   describe('args', () => {
     describe('search: true', () => {
       it(`adds search control`, () => {
-        prepare('Internet Header/Components/Header', 'Default');
+        prepare('Internet Header/Header Component', 'Default');
         cy.get('post-search').should('exist').and('be.visible');
       });
     });
 
     describe('search: false', () => {
       it(`removes search control`, () => {
-        prepare('Internet Header/Components/Header', 'Default');
+        prepare('Internet Header/Header Component', 'Default');
         cy.changeArg('search', false);
         cy.get('post-search').should('not.exist');
       });
@@ -47,7 +48,7 @@ describe('search', () => {
 
     describe('Search button should be hidden if header.search = false is set during runtime', () => {
       it(`change during runtime`, () => {
-        prepare('Internet Header/Components/Header', 'Default');
+        prepare('Internet Header/Header Component', 'Default');
         cy.changeArg('search', false);
         cy.get('post-search').should('not.exist');
         cy.changeArg('search', true);
@@ -59,17 +60,17 @@ describe('search', () => {
   describe('open & close', () => {
     describe('open search', () => {
       it('search should open on search button click', () => {
-        prepare('Internet Header/Components/Header', 'Default');
+        prepare('Internet Header/Header Component', 'Default');
         cy.changeArg('search', true);
         cy.get(searchButton).click({ force: true });
         cy.get('.flyout').should('exist').should('have.class', 'open');
       });
 
       it('Coveo suggestions should be loaded when search is opened', () => {
-        prepare('Internet Header/Components/Header', 'Default');
+        prepare('Internet Header/Header Component', 'Default');
         cy.changeArg('search', true);
         cy.get(searchButton).click();
-        cy.get('#searchBox').type('s');
+        cy.get('#searchBox').type('s', { force: true });
         cy.get('.suggestions').should('exist');
         cy.get('.suggestions li use[href="#pi-search"]').should('have.length', 3);
       });
@@ -77,9 +78,9 @@ describe('search', () => {
       it('Coveo suggestions should be turned off with isCustomSuggestionHidden', () => {
         const config = copyConfig();
         config.de!.header.search.isCustomSuggestionHidden = true;
-        prepare('Internet Header/Components/Header', 'Default', config);
+        prepare('Internet Header/Header Component', 'Default', config);
         cy.get(searchButton).click();
-        cy.get('#searchBox').type('s');
+        cy.get('#searchBox').type('s', { force: true });
         cy.get('.suggestions').should('exist');
         cy.get('.suggestions li use[href="#pi-search"]').should('have.length', 0);
       });
@@ -87,7 +88,7 @@ describe('search', () => {
 
     describe('close search', () => {
       it('Search should close on esc key click', () => {
-        prepare('Internet Header/Components/Header', 'Default');
+        prepare('Internet Header/Header Component', 'Default');
         cy.changeArg('search', true);
         cy.get(searchButton).click();
         cy.get('#searchBox')
@@ -98,11 +99,11 @@ describe('search', () => {
       });
 
       it('Search should close on search button click', () => {
-        prepare('Internet Header/Components/Header', 'Default');
+        prepare('Internet Header/Header Component', 'Default');
         cy.changeArg('search', true);
         cy.get(searchButton).click({ force: true });
         cy.get('.flyout').should('exist');
-        cy.get(searchButton).click({ force: true });
+        cy.get(closeButton).click({ force: true });
         cy.get('.flyout').should('not.have.class', 'open');
       });
     });
@@ -116,7 +117,7 @@ describe('search', () => {
       );
     });
     it('Search should redirect to search page on enter if search input has a value', () => {
-      prepare('Internet Header/Components/Header', 'Default');
+      prepare('Internet Header/Header Component', 'Default');
       cy.changeArg('search', true);
       cy.get(searchButton).click({ force: true });
       // workaround type error disabled with this https://github.com/cypress-io/cypress/issues/5827
@@ -128,7 +129,7 @@ describe('search', () => {
     });
 
     it('With suggestions and focus on the search input, pressing arrow down should focus the first suggestion', () => {
-      prepare('Internet Header/Components/Header', 'Default');
+      prepare('Internet Header/Header Component', 'Default');
       let value: string;
       cy.changeArg('search', true);
       cy.get(searchButton).click();
@@ -143,7 +144,7 @@ describe('search', () => {
     });
 
     it('Should render geolocation results', () => {
-      prepare('Internet Header/Components/Header', 'Default');
+      prepare('Internet Header/Header Component', 'Default');
       cy.changeArg('search', true);
       cy.get(searchButton).click();
       cy.get('#searchBox').click();
@@ -153,7 +154,7 @@ describe('search', () => {
     });
 
     it('redirects to the correct search page', () => {
-      prepare('Internet Header/Components/Header', 'Default');
+      prepare('Internet Header/Header Component', 'Default');
       cy.changeArg('search', true);
       cy.get(searchButton).click();
       cy.get('#searchBox').click().type('{downArrow}', { force: true });

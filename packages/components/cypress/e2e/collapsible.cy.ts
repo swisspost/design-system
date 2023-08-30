@@ -1,7 +1,8 @@
 describe('collapsible', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.registerCollapsibleFrom('/iframe.html?id=components-collapsible--default');
+      cy.getComponent('collapsible');
+      cy.get('@collapsible').find('.collapse').as('collapse');
       cy.get('@collapsible').find('.accordion-header').as('header');
       cy.get('@collapsible').find('.accordion-body').as('body');
     });
@@ -62,9 +63,8 @@ describe('collapsible', () => {
 
   describe('initially collapsed', () => {
     beforeEach(() => {
-      cy.registerCollapsibleFrom(
-        '/iframe.html?id=components-collapsible--initially-collapsed',
-      );
+      cy.getComponent('collapsible', 'initially-collapsed');
+      cy.get('@collapsible').find('.collapse').as('collapse');
       cy.get('@collapsible').find('.accordion-header').as('header');
     });
 
@@ -89,7 +89,8 @@ describe('collapsible', () => {
 
   describe('custom trigger', () => {
     beforeEach(() => {
-      cy.registerCollapsibleFrom('/iframe.html?id=components-collapsible--custom-trigger');
+      cy.getComponent('collapsible', 'custom-trigger');
+      cy.get('@collapsible').find('.collapse').as('collapse');
       cy.get('[aria-controls="collapsible-example--custom-trigger"]').as('controls');
       cy.get('@controls').contains('Toggle').as('toggle');
       cy.get('@controls').contains('Show').as('show');

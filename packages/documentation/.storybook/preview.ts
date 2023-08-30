@@ -1,6 +1,6 @@
 import type { Preview } from '@storybook/web-components';
-
-import { extractArgTypes, extractComponentDescription } from '@pxtrn/storybook-addon-docs-stencil';
+import './cypress-storybook/client';
+import { extractArgTypes } from '@pxtrn/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout';
 import { badgesConfig, prettierOptions, resetComponents } from './helpers';
@@ -25,7 +25,13 @@ const preview: Preview = {
           ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
           'Components',
           'Internet Header',
-          ['Getting Started', 'Migration Guide', 'Header Component', 'Breadcrumbs Component', 'Footer Component'],
+          [
+            'Getting Started',
+            'Migration Guide',
+            'Header Component',
+            'Breadcrumbs Component',
+            'Footer Component',
+          ],
           'Intranet Header',
           ['Getting Started'],
           'Icons',
