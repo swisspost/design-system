@@ -6,8 +6,8 @@ import * as RadiobuttonCardStories from './radiobutton-card.stories';
 # Radio button card
 
 <div className="lead">
-  A larger, more consumer oriented, touch friendly variant of the radio-button used for e.g. selecting
-  services.
+  A larger, more consumer oriented, touch friendly variant of the radio-button used for e.g.
+  selecting services.
 </div>
 
 <div className="alert alert-info">
@@ -43,6 +43,9 @@ import * as RadiobuttonCardStories from './radiobutton-card.stories';
 Radiobutton cards can be grouped together. Use a `fieldset`/`legend` combination to label the group. If there is an error, link the legend with the error message through the `aria-describedby` attribute on the `legend`, pointing to the `id` of the error message.
 
 <Canvas of={RadiobuttonCardStories.Group} />
+<div className="hide-col-default">
+  <Controls of={RadiobuttonCardStories.Group} />
+</div>
 
 ## SCSS Imports
 
