@@ -17,8 +17,7 @@ export const Button: Story = {
         ${['bg-white', 'bg-dark'].map(
           bg => html`
             <div
-              class="${bg}"
-              style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: start; padding: 1rem;"
+              class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular"
             >
               ${bombArgs({
                 variant: context.argTypes.variant.options,

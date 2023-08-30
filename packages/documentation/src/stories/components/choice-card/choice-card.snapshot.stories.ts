@@ -1,5 +1,5 @@
 import { bombArgs } from '../../../utils/bombArgs';
-import { choiceCardMeta, choiceCardDefault } from './choice-control';
+import { choiceCardMeta, choiceCardDefault } from './choice-card';
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 
