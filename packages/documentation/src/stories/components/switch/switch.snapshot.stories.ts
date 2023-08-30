@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default } from './switch.stories';
+import meta from './switch.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils/bombArgs';
 
