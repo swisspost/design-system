@@ -51,9 +51,9 @@
       cursor: form-check.$form-check-label-cursor;
     }
 
-    &[type='radio']:checked:not(.is-invalid),
-    &[type='checkbox']:checked:not(.is-invalid),
-    &[type='checkbox']:indeterminate:not(.is-invalid) {
+    &[type='radio']:checked,
+    &[type='checkbox']:checked,
+    &[type='checkbox']:indeterminate {
       @include form-checks-mixins.form-check-color(form-check.$form-check-input-checked-color);
     }
 
@@ -71,8 +71,8 @@
       }
     }
 
-    &[type='radio']:hover:not(:disabled):not(.is-invalid),
-    &[type='checkbox']:hover:not(:disabled):not(.is-invalid) {
+    &[type='radio']:hover:not(:disabled),
+    &[type='checkbox']:hover:not(:disabled) {
       @include form-checks-mixins.form-check-color(form-check.$form-check-input-hover-color);
     }
   }
