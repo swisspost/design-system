@@ -1,0 +1,13 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as GridStories from './grid.stories';
+
+<Meta of={GridStories} />
+
+# Grid
+
+The Grid system of the Post is based on 12 columns
+
+<Canvas of={GridStories.Default} />
+<div className="hide-col-default">
+  <Controls of={GridStories.Default} />
+</div>
