@@ -12,9 +12,19 @@ export default {
 export const Default = {
   render: choiceCardDefault,
   args: { ...choiceCardMeta.args, type: 'checkbox' },
+  parameters: {
+    controls: {
+      exclude: ['Group Validation'],
+    },
+  },
 };
 
 export const Group = {
   render: choiceCardGroup,
   args: { ...choiceCardMeta.args, type: 'checkbox' },
+  parameters: {
+    controls: {
+      include: ['Group Validation'],
+    },
+  },
 };

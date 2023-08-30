@@ -43,6 +43,9 @@ import * as CheckboxCardStories from './checkbox-card.stories';
 Checkbox cards can be grouped together. Use a `fieldset`/`legend` combination to label the group. If there is an error, link the legend with the error message through the `aria-describedby` attribute on the `legend`, pointing to the `id` of the error message.
 
 <Canvas of={CheckboxCardStories.Group} />
+<div className="hide-col-default">
+  <Controls of={CheckboxCardStories.Group} />
+</div>
 
 ## SCSS Imports
 
