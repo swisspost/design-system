@@ -9291,36 +9291,6 @@
       "modifiedAt": "2021-10-18T11:17:32.000Z"
     },
     {
-      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
-      "id": 539487,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "Mobile Shopping",
-          "Bestellung",
-          "Ordre",
-          "Ordine",
-          "Order"
-        ],
-        "year": "2021"
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:55:20.000Z",
-      "modifiedAt": "2021-10-18T11:24:06.000Z"
-    },
-    {
       "uuid": "88307300-5bef-11eb-9f99-005056873709",
       "id": 539481,
       "type": "picture.pictogram.",
@@ -9348,6 +9318,36 @@
         }
       },
       "createdAt": "2021-01-21T13:49:50.000Z",
+      "modifiedAt": "2021-10-18T11:24:06.000Z"
+    },
+    {
+      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
+      "id": 539487,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "Mobile Shopping",
+          "Bestellung",
+          "Ordre",
+          "Ordine",
+          "Order"
+        ],
+        "year": "2021"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:55:20.000Z",
       "modifiedAt": "2021-10-18T11:24:06.000Z"
     },
     {
@@ -19661,6 +19661,366 @@
       },
       "createdAt": "2023-08-02T13:05:31.000Z",
       "modifiedAt": "2023-08-02T13:07:08.000Z"
+    },
+    {
+      "uuid": "b9c4e660-470d-11ee-9f2c-005056873709",
+      "id": 689743,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689743/storage/Njg5NzQyLzAvbWFzdGVy",
+        "keywords": [
+          "EventSpace",
+          "SpotMe App"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2545.svg",
+        "basename": "2545",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T08:17:57.000Z",
+      "modifiedAt": "2023-08-30T08:18:58.000Z"
+    },
+    {
+      "uuid": "496e1750-470e-11ee-9f2c-005056873709",
+      "id": 689747,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689747/storage/Njg5NzQ2LzAvbWFzdGVy",
+        "keywords": [
+          "Citizen Development Community",
+          "CDC",
+          "Bürger Entwicklungs Gemeinschaft",
+          "Communauté de développement des citoyens",
+          "Comunità per lo sviluppo dei cittadini"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2546.svg",
+        "basename": "2546",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T08:21:58.000Z",
+      "modifiedAt": "2023-08-30T08:24:53.000Z"
+    },
+    {
+      "uuid": "30809a00-470f-11ee-9f2c-005056873709",
+      "id": 689751,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689751/storage/Njg5NzUwLzAvbWFzdGVy",
+        "keywords": [
+          "Geschwindigkeit Standard",
+          "Vitesse standard",
+          "velocità standard",
+          "Standard speed"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2547.svg",
+        "basename": "2547",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T08:28:25.000Z",
+      "modifiedAt": "2023-08-30T08:30:57.000Z"
+    },
+    {
+      "uuid": "bd3df5a0-470f-11ee-9f2c-005056873709",
+      "id": 689755,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689755/storage/Njg5NzU0LzAvbWFzdGVy",
+        "keywords": [
+          "Geschwindigkeit Schnell",
+          "Rapidité Rapide",
+          "Velocità Veloce",
+          "Speed Fast"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2548.svg",
+        "basename": "2548",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T08:32:22.000Z",
+      "modifiedAt": "2023-08-30T08:33:34.000Z"
+    },
+    {
+      "uuid": "a0ffa2d0-4714-11ee-9f2c-005056873709",
+      "id": 689759,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689759/storage/Njg5NzU4LzAvbWFzdGVy",
+        "keywords": [
+          "Geschwindigkeit Schnellstmöglich",
+          "Rapidité maximale",
+          "Velocità più rapida possibile",
+          "Speed as fast as possible"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2549.svg",
+        "basename": "2549",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T09:07:22.000Z",
+      "modifiedAt": "2023-08-30T09:08:52.000Z"
+    },
+    {
+      "uuid": "7f1d8370-4715-11ee-9f2c-005056873709",
+      "id": 689764,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689764/storage/Njg5NzYzLzAvbWFzdGVy",
+        "keywords": [
+          "Gewicht Plus 30kg",
+          "Poids plus 30 kg",
+          "Peso più 30 kg",
+          "Weight Plus 30 kg"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2550.svg",
+        "basename": "2550",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T09:13:34.000Z",
+      "modifiedAt": "2023-08-30T09:15:37.000Z"
+    },
+    {
+      "uuid": "f4034920-4717-11ee-9f2c-005056873709",
+      "id": 689768,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689768/storage/Njg5NzY3LzAvbWFzdGVy",
+        "keywords": [
+          "Gewicht > 30kg",
+          "Poids > 30 kg",
+          "Peso > 30 kg",
+          "Weight > 30 kg"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2551.svg",
+        "basename": "2551",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T09:31:09.000Z",
+      "modifiedAt": "2023-08-30T09:32:51.000Z"
+    },
+    {
+      "uuid": "ffafc2c0-4718-11ee-9f2c-005056873709",
+      "id": 689772,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689772/storage/Njg5NzcxLzAvbWFzdGVy",
+        "keywords": [
+          "Gewicht > 2kg",
+          "Poids > 2 kg",
+          "Poids > 2 kg",
+          "Peso > 2 kg",
+          "Weight > 2 kg"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2552.svg",
+        "basename": "2552",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T09:38:38.000Z",
+      "modifiedAt": "2023-08-30T09:39:45.000Z"
+    },
+    {
+      "uuid": "b3110a90-4723-11ee-9f2c-005056873709",
+      "id": 689782,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689782/storage/Njg5NzgxLzAvbWFzdGVy",
+        "keywords": [
+          "Zugeteilt",
+          "attribué",
+          "Assegnato",
+          "Allocated"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2553.svg",
+        "basename": "2553",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T10:55:14.000Z",
+      "modifiedAt": "2023-08-30T10:56:53.000Z"
+    },
+    {
+      "uuid": "269e5710-4724-11ee-9f2c-005056873709",
+      "id": 689786,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689786/storage/Njg5Nzg1LzAvbWFzdGVy",
+        "keywords": [
+          "Nicht Zugeteilt",
+          "Non attribué",
+          "Non assegnato",
+          "Not assigned"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2554.svg",
+        "basename": "2554",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T10:58:28.000Z",
+      "modifiedAt": "2023-08-30T10:59:14.000Z"
+    },
+    {
+      "uuid": "78cf2460-4724-11ee-9f2c-005056873709",
+      "id": 689790,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689790/storage/Njg5Nzg5LzAvbWFzdGVy",
+        "keywords": [
+          "Kraft",
+          "Stärken",
+          "Muskeln",
+          "Force",
+          "forces",
+          "muscles",
+          "forza",
+          "punti di forza",
+          "muscoli",
+          "strength",
+          "strengths",
+          "muscles"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2555.svg",
+        "basename": "2555",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T11:00:46.000Z",
+      "modifiedAt": "2023-08-30T11:02:33.000Z"
+    },
+    {
+      "uuid": "b7fbf950-4725-11ee-9f2c-005056873709",
+      "id": 689795,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689795/storage/Njg5Nzk0LzAvbWFzdGVy",
+        "keywords": [
+          "OKR",
+          "Objektives und Schlüssel Resultate",
+          "OKR",
+          "objectifs et clés Résultats",
+          "OKR",
+          "obiettivi e risultati",
+          "OKR",
+          "objective and key results"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2556.svg",
+        "basename": "2556",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-08-30T11:09:42.000Z",
+      "modifiedAt": "2023-08-30T11:11:45.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -30240,11 +30600,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-08-06T01:11:12.389Z",
+  "created": "2023-08-31T07:51:31.389Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 875
+    "success": 887
   },
-  "version": "1.0.9"
+  "version": "1.0.10"
 }
