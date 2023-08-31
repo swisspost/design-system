@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-demo",
-  "version": "6.1.1",
+  "version": "6.1.2",
   "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
