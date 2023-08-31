@@ -5,9 +5,41 @@ import * as GridStories from './grid.stories';
 
 # Grid
 
-The Grid system of the Post is based on 12 columns
+The Grid splits the available space into 12 columns. Element are added to the Grid in such a way that their width is always a multiple of the column width.
+Watch the illustrations on [the Experience Hub](https://www.experience-hub.ch/document/2803#/grundlagen/raster-und-abstaende/rasterdefinition) to get a better undersanding of what it could look like.
 
 <Canvas of={GridStories.Default} />
 <div className="hide-col-default">
   <Controls of={GridStories.Default} />
 </div>
+
+# Size
+
+To set the width of the grid use the <code>col-[amount of columns]</code> class.
+This specifies the amout of columns that the elemet will be using up.
+You can set individual widths for different breakpoints.
+
+For example asign <code>col-6 col-md-3 col-xl-2</code> to one element. This means that the element will be 6 columns wide up until the breakpoint <code>md >=780px</code> where it will start to only be 3 columns wide and for <code>xl >=1280</code> screens it will only be 2 columns wide.
+
+# Gutters
+
+Gutters handle the padding of the direct elements in the grid.
+
+- <code>border-gutter</code>
+- <code>vertical gutter</code>
+
+# Gap
+
+You can also add Margins inbetween the elements by using these classes.
+
+- <code>gap-[1-5]</code> horizontaly & vertically <br />
+- <code>row-gap-[1-5]</code> vertically <br />
+- <code>columngap-[1-5]</code> horizontaly <br />
+
+# Experience Hub
+
+Read the guideines about grids in [the Experience Hub](https://www.experience-hub.ch/document/2803#/grundlagen/raster-und-abstaende/rasterdefinition)
+
+There is no Grid with 6 columns for smaller screen in our system. Instead using the knowledge from above you can spcify multiple sizes to achive the same effect.
+
+For example if an element should take up 2 columns on Desktop you would need to asign <code>col-4 col-rg-2</code> to comply with the design guidelines from the Expereince Hub.
