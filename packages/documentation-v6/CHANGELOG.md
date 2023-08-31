@@ -1,5 +1,16 @@
 # @swisspost/design-system-documentation
 
+## 1.12.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.11
+  - @swisspost/design-system-styles@6.4.0
+  - @swisspost/internet-header@1.9.1
+  - @swisspost/design-system-components@1.4.0
+  - @swisspost/design-system-components-react@1.0.17
+
 ## 1.12.0
 
 ### Minor Changes
