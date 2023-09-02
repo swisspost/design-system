@@ -52,7 +52,7 @@
     "@types/react-dom": "18.2.7",
     "babel-loader": "9.1.3",
     "css-loader": "5.2.7",
-    "cypress": "12.17.4",
+    "cypress": "13.1.0",
     "cypress-each": "1.13.3",
     "cypress-storybook": "0.5.1",
     "react-markdown": "8.0.7",
