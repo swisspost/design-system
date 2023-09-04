@@ -1,10 +1,13 @@
 import { debounce } from 'throttle-debounce';
 import { state } from '../../../data/store';
+import { getScrollParent } from '../../../utils/scrollparent';
 
 export const registerLogoAnimationObserver = (
   target: HTMLElement,
   headerRef: HTMLSwisspostInternetHeaderElement,
 ) => {
+  const scrollParent = getScrollParent(headerRef);
+
   /**
    * Set intersection ratio as CSS custom property
    */
@@ -13,7 +16,8 @@ export const registerLogoAnimationObserver = (
     let scale = 1;
     // Minus 1px border at the bottom that the logo is not covering
     const adjustedHeaderHeight = headerRef.clientHeight - 1;
-    const scrollY = fullStickyness ? 0 : window.scrollY;
+    const scrollDistance = scrollParent instanceof Element  ? scrollParent.scrollTop : scrollParent.documentElement.scrollTop;
+    const scrollY = fullStickyness ? 0 : scrollDistance;
 
     // If meta navigation is not visible (mobile, not configured), scale should just be 1
     if (target.clientHeight > 0) {
@@ -36,13 +40,13 @@ export const registerLogoAnimationObserver = (
     entries => {
       entries.forEach(entry => {
         if (entry.isIntersecting && entry.intersectionRatio > 0) {
-          window.addEventListener('scroll', handleScroll, { passive: true });
+          scrollParent.addEventListener('scroll', handleScroll, { passive: true });
           window.addEventListener('resize', debounced);
 
           // Ensure callback is called at least once in case main thread is too busy while scrolling up
           window.requestAnimationFrame(handleScroll);
         } else {
-          window.removeEventListener('scroll', handleScroll);
+          scrollParent.removeEventListener('scroll', handleScroll);
           window.removeEventListener('resize', debounced);
           window.requestAnimationFrame(handleScroll);
         }

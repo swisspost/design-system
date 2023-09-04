@@ -28,6 +28,7 @@ import { translate } from '../../services/language.service';
 import { If } from '../../utils/if.component';
 import packageJson from '../../../package.json';
 import { registerLogoAnimationObserver } from './logo-animation/logo-animation';
+import { getScrollParent } from '../../utils/scrollparent';
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -142,6 +143,7 @@ export class PostInternetHeader {
   private debouncedResize: debounce<() => void>;
   private lastWindowWidth: number = window.innerWidth;
   private updateLogoAnimation: () => void;
+  private scrollParent: Element | Document;
 
   constructor() {
     if (this.project === undefined || this.project === '' || !isValidProjectId(this.project)) {
@@ -154,19 +156,21 @@ export class PostInternetHeader {
   connectedCallback() {
     this.throttledScroll = throttle(300, () => this.handleScrollEvent());
     this.debouncedResize = debounce(200, () => this.handleResize());
-    window.addEventListener('scroll', this.throttledScroll, { passive: true });
-    window.addEventListener('resize', this.debouncedResize, { passive: true });
   }
-
+  
   disconnectedCallback() {
-    window.removeEventListener('scroll', this.throttledScroll);
-    window.removeEventListener('resize', this.debouncedResize);
-
+    this.scrollParent.removeEventListener('scroll', this.throttledScroll);
+    this.scrollParent.removeEventListener('resize', this.debouncedResize);
+    
     // Reset the store to its original state
     dispose();
   }
-
+  
   async componentWillLoad() {
+    this.scrollParent = getScrollParent(this.host);
+    this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
+    this.scrollParent.addEventListener('resize', this.debouncedResize, { passive: true });
+    
     // Wait for the config to arrive, then render the header
     try {
       state.projectId = this.project;
@@ -333,8 +337,9 @@ export class PostInternetHeader {
   }
 
   private handleScrollEvent() {
+    
     // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-    const st = window.scrollY || document.documentElement.scrollTop;
+    const st = this.scrollParent instanceof Document ? this.scrollParent.documentElement.scrollTop : this.scrollParent.scrollTop;
 
     // Toggle class without re-rendering the component if stickyness is minimal
     // the other stickyness modes do not need the class
