@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Meta, Canvas, Controls, Source } from '@storybook/blocks';
 import * as CheckboxCardStories from './checkbox-card.stories';
 
 <Meta of={CheckboxCardStories} />
@@ -15,7 +15,7 @@ import * as CheckboxCardStories from './checkbox-card.stories';
   Firefox currently does not support <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">
     the new <abbr title="Cascading Style Sheets">CSS</abbr> :has pseudo-selector
   </a>. As a fallback, the following states have to be mirrored on the top level element in the form
-  of classes:
+  of classes (see below for a snippet):
   <ul>
     <li>
       <code>checked</code>
@@ -37,6 +37,33 @@ import * as CheckboxCardStories from './checkbox-card.stories';
 <div className="hide-col-default">
   <Controls of={CheckboxCardStories.Default} />
 </div>
+
+## Firefox fallback snippet
+
+This snippet adds a global event listener to mirror the `focused` and `checked` states to the parent of the input. This fallback has to be applied as long as Firefox does not support the `:has` selector.
+
+<Source
+  code={`
+['focusin', 'focusout', 'input'].forEach(t => document.addEventListener(t, e => {
+  if (!(e.target instanceof Element) || e.target.nodeName !== 'input') return; 
+  const parent = e.target.parentElement;
+  if (!parent?.classList.contains('choice-card')) return;
+  switch (e.type) {
+    case 'focusin':
+      parent.classList.add('focused');
+      break;
+    case 'focusout':
+      parent.classList.remove('focused');
+      break;
+    case 'input':
+      parent.classList.toggle('checked', (e.target as HTMLInputElement).checked);
+      break;
+  }
+}));
+`}
+  language="typescript"
+  dark="true"
+/>
 
 ## Grouping
 
