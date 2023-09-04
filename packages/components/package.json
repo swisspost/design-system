@@ -41,7 +41,7 @@
     "@swisspost/design-system-styles": "workspace:6.4.0"
   },
   "devDependencies": {
-    "@percy/cli": "1.26.3",
+    "@percy/cli": "1.27.1",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "^0.5.0",
     "@stencil/react-output-target": "0.5.3",
