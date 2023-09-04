@@ -1,0 +1,16 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { BADGE } from '../../../.storybook/constants';
+import * as HeaderStories from './header.stories';
+import './header-test.scss';
+
+<Meta of={HeaderStories} />
+
+<div className="container">
+  <h1>Header test</h1>
+</div>
+
+<Canvas of={HeaderStories.Default} />
+
+<div className="container">
+  <Controls of={HeaderStories.Default} />
+</div>
