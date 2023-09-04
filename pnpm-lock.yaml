@@ -52,7 +52,7 @@ importers:
         version: 1.26.3
       '@percy/cypress':
         specifier: 3.1.2
-        version: 3.1.2(cypress@12.17.4)
+        version: 3.1.2(cypress@13.1.0)
       '@stencil-community/eslint-plugin':
         specifier: ^0.5.0
         version: 0.5.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.33.2)(eslint@8.48.0)(typescript@4.9.5)
@@ -75,11 +75,11 @@ importers:
         specifier: 5.3.1
         version: 5.3.1(@popperjs/core@2.11.8)
       cypress:
-        specifier: 12.17.4
-        version: 12.17.4
+        specifier: 13.1.0
+        version: 13.1.0
       cypress-storybook:
         specifier: 0.5.1
-        version: 0.5.1(cypress@12.17.4)
+        version: 0.5.1(cypress@13.1.0)
       eslint:
         specifier: 8.48.0
         version: 8.48.0
@@ -502,7 +502,7 @@ importers:
         version: 1.26.3
       '@percy/cypress':
         specifier: 3.1.2
-        version: 3.1.2(cypress@12.17.4)
+        version: 3.1.2(cypress@13.1.0)
       '@pxtrn/storybook-addon-docs-stencil':
         specifier: 6.4.1
         version: 6.4.1(react-dom@18.2.0)(react@18.2.0)
@@ -558,8 +558,8 @@ importers:
         specifier: 15.5.7
         version: 15.5.7
       cypress:
-        specifier: 12.17.4
-        version: 12.17.4
+        specifier: 13.1.0
+        version: 13.1.0
       lit:
         specifier: 2.8.0
         version: 2.8.0
@@ -635,7 +635,7 @@ importers:
         version: 1.26.3
       '@percy/cypress':
         specifier: 3.1.2
-        version: 3.1.2(cypress@12.17.4)
+        version: 3.1.2(cypress@13.1.0)
       '@pxtrn/storybook-addon-docs-stencil':
         specifier: 6.4.1
         version: 6.4.1(react-dom@18.2.0)(react@18.2.0)
@@ -685,14 +685,14 @@ importers:
         specifier: 5.2.7
         version: 5.2.7(webpack@5.88.2)
       cypress:
-        specifier: 12.17.4
-        version: 12.17.4
+        specifier: 13.1.0
+        version: 13.1.0
       cypress-each:
         specifier: 1.13.3
         version: 1.13.3
       cypress-storybook:
         specifier: 0.5.1
-        version: 0.5.1(cypress@12.17.4)
+        version: 0.5.1(cypress@13.1.0)
       react-markdown:
         specifier: 8.0.7
         version: 8.0.7(@types/react@18.2.21)(react@18.2.0)
@@ -804,7 +804,7 @@ importers:
         version: 1.26.3
       '@percy/cypress':
         specifier: 3.1.2
-        version: 3.1.2(cypress@12.17.4)
+        version: 3.1.2(cypress@13.1.0)
       '@stencil/eslint-plugin':
         specifier: 0.4.0
         version: 0.4.0(eslint-plugin-react@7.33.2)(typescript@4.9.5)
@@ -833,14 +833,14 @@ importers:
         specifier: 5.3.1
         version: 5.3.1(@popperjs/core@2.11.8)
       cypress:
-        specifier: 12.17.4
-        version: 12.17.4
+        specifier: 13.1.0
+        version: 13.1.0
       cypress-each:
         specifier: 1.13.3
         version: 1.13.3
       cypress-storybook:
         specifier: 0.5.1
-        version: 0.5.1(cypress@12.17.4)
+        version: 0.5.1(cypress@13.1.0)
       eslint-plugin-react:
         specifier: 7.33.2
         version: 7.33.2(eslint@8.48.0)
@@ -907,7 +907,7 @@ importers:
         version: 1.26.3
       '@percy/cypress':
         specifier: 3.1.2
-        version: 3.1.2(cypress@12.17.4)
+        version: 3.1.2(cypress@13.1.0)
       '@swisspost/design-system-icons':
         specifier: workspace:1.0.11
         version: link:../icons
@@ -921,11 +921,11 @@ importers:
         specifier: 2.4.1
         version: 2.4.1
       cypress:
-        specifier: 12.17.4
-        version: 12.17.4
+        specifier: 13.1.0
+        version: 13.1.0
       cypress-storybook:
         specifier: 0.5.1
-        version: 0.5.1(cypress@12.17.4)
+        version: 0.5.1(cypress@13.1.0)
       glob:
         specifier: 10.3.3
         version: 10.3.3
@@ -4594,8 +4594,8 @@ packages:
       postcss-selector-parser: 6.0.13
     dev: true
 
-  /@cypress/request@2.88.12:
-    resolution: {integrity: sha512-tOn+0mDZxASFM+cuAP9szGUGPI1HwWVSvdzm7V4cCsPdFTx6qMj29CwaQmRAMIEhORIUBFBsYROYJcveK4uOjA==}
+  /@cypress/request@3.0.0:
+    resolution: {integrity: sha512-GKFCqwZwMYmL3IBoNeR2MM1SnxRIGERsQOTWeQKoYBt2JLqcqiy7JXqO894FLrpjZYqGxW92MNwRH2BN56obdQ==}
     engines: {node: '>= 6'}
     dependencies:
       aws-sign2: 0.7.0
@@ -6539,13 +6539,13 @@ packages:
       - utf-8-validate
     dev: true
 
-  /@percy/cypress@3.1.2(cypress@12.17.4):
+  /@percy/cypress@3.1.2(cypress@13.1.0):
     resolution: {integrity: sha512-JXrGDZbqwkzQd2h5T5D7PvqoucNaiMh4ChPp8cLQiEtRuLHta9nf1lEuXH+jnatGL2j+3jJFIHJ0L7XrgVnvQA==}
     peerDependencies:
       cypress: '>=3'
     dependencies:
       '@percy/sdk-utils': 1.24.0
-      cypress: 12.17.4
+      cypress: 13.1.0
     dev: true
 
   /@percy/dom@1.26.3:
@@ -9075,7 +9075,7 @@ packages:
       memoizerific: 1.11.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      semver: 7.5.3
+      semver: 7.5.4
       store2: 2.14.2
       telejson: 7.1.0
       ts-dedent: 2.2.0
@@ -9100,7 +9100,7 @@ packages:
       memoizerific: 1.11.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
-      semver: 7.5.3
+      semver: 7.5.4
       store2: 2.14.2
       telejson: 7.1.0
       ts-dedent: 2.2.0
@@ -10479,7 +10479,7 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.5.3
+      semver: 7.5.4
       tsutils: 3.21.0(typescript@4.9.5)
       typescript: 4.9.5
     transitivePeerDependencies:
@@ -10500,7 +10500,7 @@ packages:
       debug: 4.3.4(supports-color@8.1.1)
       globby: 11.1.0
       is-glob: 4.0.3
-      semver: 7.5.3
+      semver: 7.5.4
       tsutils: 3.21.0(typescript@4.9.5)
       typescript: 4.9.5
     transitivePeerDependencies:
@@ -13850,21 +13850,21 @@ packages:
     resolution: {integrity: sha512-aNFoDuybFAQ7OObbeO5yxBGmXkGKVAcT1wLHLiL3+HQi+g+q3vECbn4J9cYOXJ7yYfbcBLh8dgQd/IG3Ls2z7A==}
     dev: true
 
-  /cypress-storybook@0.5.1(cypress@12.17.4):
+  /cypress-storybook@0.5.1(cypress@13.1.0):
     resolution: {integrity: sha512-+CNDdcrFD3QRvHrjwpVclFpLtseyXA0NxeB3PDTheisvg/OJjLkP96t0I9R66IkZRYUUE3mLhqZpmpsv59FIIw==}
     peerDependencies:
       cypress: '*'
     dependencies:
-      cypress: 12.17.4
+      cypress: 13.1.0
     dev: true
 
-  /cypress@12.17.4:
-    resolution: {integrity: sha512-gAN8Pmns9MA5eCDFSDJXWKUpaL3IDd89N9TtIupjYnzLSmlpVr+ZR+vb4U/qaMp+lB6tBvAmt7504c3Z4RU5KQ==}
-    engines: {node: ^14.0.0 || ^16.0.0 || >=18.0.0}
+  /cypress@13.1.0:
+    resolution: {integrity: sha512-LUKxCYlB973QBFls1Up4FAE9QIYobT+2I8NvvAwMfQS2YwsWbr6yx7y9hmsk97iqbHkKwZW3MRjoK1RToBFVdQ==}
+    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     requiresBuild: true
     dependencies:
-      '@cypress/request': 2.88.12
+      '@cypress/request': 3.0.0
       '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
       '@types/node': 16.18.39
       '@types/sinonjs__fake-timers': 8.1.1
@@ -13902,7 +13902,7 @@ packages:
       process: 0.11.10
       proxy-from-env: 1.0.0
       request-progress: 3.0.0
-      semver: 7.5.3
+      semver: 7.5.4
       supports-color: 8.1.1
       tmp: 0.2.1
       untildify: 4.0.0
@@ -19914,7 +19914,7 @@ packages:
       parse5: 6.0.1
       saxes: 5.0.1
       symbol-tree: 3.2.4
-      tough-cookie: 4.1.2
+      tough-cookie: 4.1.3
       w3c-hr-time: 1.0.2
       w3c-xmlserializer: 2.0.0
       webidl-conversions: 6.1.0
@@ -21863,7 +21863,7 @@ packages:
     dependencies:
       hosted-git-info: 6.1.1
       proc-log: 3.0.0
-      semver: 7.5.3
+      semver: 7.5.4
       validate-npm-package-name: 5.0.0
     dev: true
 
@@ -21881,7 +21881,7 @@ packages:
       npm-install-checks: 6.1.1
       npm-normalize-package-bin: 3.0.1
       npm-package-arg: 10.1.0
-      semver: 7.5.3
+      semver: 7.5.4
     dev: true
 
   /npm-registry-fetch@14.0.5:
@@ -26325,16 +26325,6 @@ packages:
     dependencies:
       psl: 1.9.0
       punycode: 2.3.0
-    dev: true
-
-  /tough-cookie@4.1.2:
-    resolution: {integrity: sha512-G9fqXWoYFZgTc2z8Q5zaHy/vJMjm+WV0AkAeHxVCQiEB1b+dGvWzFW6QV07cY5jQ5gRkeid2qIkzkxUnmoQZUQ==}
-    engines: {node: '>=6'}
-    dependencies:
-      psl: 1.9.0
-      punycode: 2.3.0
-      universalify: 0.2.0
-      url-parse: 1.5.10
     dev: true
 
   /tough-cookie@4.1.3:
