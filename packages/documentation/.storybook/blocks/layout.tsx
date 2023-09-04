@@ -1,5 +1,5 @@
 import { DocsContainer, DocsContainerProps, Unstyled } from '@storybook/blocks';
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import '../styles/layout.scss';
 import Footer from './footer';
 import Header from './header';
@@ -12,13 +12,19 @@ function shouldShowFooter() {
   return window.location !== window.parent.location;
 }
 
-export default ({ children, context }: PropsWithChildren<DocsContainerProps>) => {
+export default (props: PropsWithChildren<DocsContainerProps>) => {
+  const { children, context } = props;
+  const container =
+    context.channel.data.docsPrepared[0].parameters.layout === 'fullscreen'
+      ? 'container-fluid'
+      : 'container';
+  context.channel;
   return (
     <DocsContainer context={context}>
       <Unstyled>
-        {shouldShowHeader() && <Header/>}
-        <div className="container">{children}</div>
-        {shouldShowFooter() && <Footer/>}
+        {shouldShowHeader() && <Header />}
+        <div className={container}>{children}</div>
+        {shouldShowFooter() && <Footer />}
       </Unstyled>
     </DocsContainer>
   );
