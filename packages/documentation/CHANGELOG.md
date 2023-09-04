@@ -1,6 +1,42 @@
-# @swisspost/design-system-documentation-v7
+# @swisspost/design-system-documentation
 
-## 1.1.2
+## 2.0.1
+
+### Patch Changes
+
+- Patched the documentation release workflow (by [@gfellerph](https://github.com/gfellerph) with [#1896](https://github.com/swisspost/design-system/pull/1896))
+
+## 2.0.0
+
+### Major Changes
+
+- Updated storybook to version 7 and switched display mode to show documentation pages only (playgrounds are hidden) (by [@gfellerph](https://github.com/gfellerph) with [#1833](https://github.com/swisspost/design-system/pull/1833))
+
+### Minor Changes
+
+- Added the checkbox and radio-button card pattern. These two components are now available in the styles package (by [@gfellerph](https://github.com/gfellerph) with [#1607](https://github.com/swisspost/design-system/pull/1607))
+
+- Added a foundation breakpoints docs page. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1781](https://github.com/swisspost/design-system/pull/1781))
+
+- Added a new post-tabs component. (by [@alizedebray](https://github.com/alizedebray) with [#1181](https://github.com/swisspost/design-system/pull/1181))
+
+### Patch Changes
+
+- Clarified and fixed which internet-header versions are available and how to use them. (by [@imagoiq](https://github.com/imagoiq) with [#1792](https://github.com/swisspost/design-system/pull/1792))
+
+- Added the possibility to open each demo in full screen. (by [@alizedebray](https://github.com/alizedebray) with [#1845](https://github.com/swisspost/design-system/pull/1845))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.11
+  - @swisspost/design-system-styles@6.4.0
+  - @swisspost/internet-header@1.9.1
+  - @swisspost/design-system-components@1.4.0
+  - @swisspost/design-system-components-react@1.0.17
+
+## 1.12.0
+
+### Minor Changes
+
+- Added a gray notification variant for cookie banners. (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
 
 ### Patch Changes
 
@@ -11,18 +47,14 @@
   - @swisspost/design-system-components@1.3.10
   - @swisspost/design-system-components-react@1.0.16
 
-## 1.1.1
+## 1.11.3
 
 ### Patch Changes
 
 - Updated dependencies:
   - @swisspost/internet-header@1.8.3
 
-## 1.1.0
-
-### Minor Changes
-
-- Created a storybook v7 package, set up with vite and lit. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1613](https://github.com/swisspost/design-system/pull/1613))
+## 1.11.2
 
 ### Patch Changes
 
@@ -32,6 +64,17 @@
   - @swisspost/design-system-styles@6.2.6
   - @swisspost/design-system-components@1.3.9
   - @swisspost/design-system-components-react@1.0.15
+
+## 1.11.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.8
+  - @swisspost/design-system-styles@6.2.5
+  - @swisspost/design-system-components@1.3.8
+  - @swisspost/internet-header@1.8.1
+  - @swisspost/design-system-components-react@1.0.14
 
 ## 1.11.0
 

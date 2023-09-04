@@ -2,7 +2,7 @@ import { prepare } from '../support/prepare-story';
 
 describe('stickyness', () => {
   beforeEach(() => {
-    prepare('Internet Header/Components/Header', 'Default');
+    prepare('Internet Header/Header Component', 'Default');
   });
 
   it('should not show header when scrolling when stickyness is none', () => {
@@ -21,6 +21,7 @@ describe('stickyness', () => {
     cy.get('swisspost-internet-header').should('not.be.inViewport');
     cy.get('post-meta-navigation').should('not.be.inViewport');
     cy.scrollTo('center');
+    cy.scrollTo(0, -20);
     cy.get('post-main-navigation').should('be.inViewport');
     cy.get('post-meta-navigation').should('not.be.inViewport');
     cy.scrollTo('top');

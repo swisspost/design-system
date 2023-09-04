@@ -1,4 +1,4 @@
-import { Meta, Args, Story } from '@storybook/react';
+import { Args, Meta, Story } from '@storybook/react';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 import { filterArgs } from '../../../utilities/filterArgs';
 import docsPage from './internet-header.docs.mdx';
@@ -288,7 +288,7 @@ const Template = (args: Args) => {
       <swisspost-internet-header {...filteredArgs} />
       <main className="container mt-huge-r">
         <swisspost-internet-breadcrumbs />
-        <h1 className="mt-huge-r mb-big-r bold">Design System Internet Header</h1>
+        <h1 className="mt-huge-r mb-big-r bold">Swiss Post Internet Header</h1>
         <p className="fake-content my-big"></p>
         <p className="fake-content my-big"></p>
         <p className="fake-content my-big"></p>

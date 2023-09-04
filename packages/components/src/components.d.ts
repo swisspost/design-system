@@ -53,6 +53,32 @@ export namespace Components {
          */
         "scale"?: number | null;
     }
+    interface PostTabHeader {
+        /**
+          * The name of the panel controlled by the tab header.
+         */
+        "panel": HTMLPostTabPanelElement['name'];
+    }
+    interface PostTabPanel {
+        /**
+          * The name of the panel, used to associate it with a tab header.
+         */
+        "name": string;
+    }
+    interface PostTabs {
+        /**
+          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+         */
+        "activePanel": HTMLPostTabPanelElement['name'];
+        /**
+          * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
+         */
+        "show": (panelName: string) => Promise<void>;
+    }
+}
+export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostTabsElement;
 }
 declare global {
     interface HTMLPostCollapsibleElement extends Components.PostCollapsible, HTMLStencilElement {
@@ -70,9 +96,30 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
+    }
+    var HTMLPostTabHeaderElement: {
+        prototype: HTMLPostTabHeaderElement;
+        new (): HTMLPostTabHeaderElement;
+    };
+    interface HTMLPostTabPanelElement extends Components.PostTabPanel, HTMLStencilElement {
+    }
+    var HTMLPostTabPanelElement: {
+        prototype: HTMLPostTabPanelElement;
+        new (): HTMLPostTabPanelElement;
+    };
+    interface HTMLPostTabsElement extends Components.PostTabs, HTMLStencilElement {
+    }
+    var HTMLPostTabsElement: {
+        prototype: HTMLPostTabsElement;
+        new (): HTMLPostTabsElement;
+    };
     interface HTMLElementTagNameMap {
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
+        "post-tab-header": HTMLPostTabHeaderElement;
+        "post-tab-panel": HTMLPostTabPanelElement;
+        "post-tabs": HTMLPostTabsElement;
     }
 }
 declare namespace LocalJSX {
@@ -119,9 +166,34 @@ declare namespace LocalJSX {
          */
         "scale"?: number | null;
     }
+    interface PostTabHeader {
+        /**
+          * The name of the panel controlled by the tab header.
+         */
+        "panel"?: HTMLPostTabPanelElement['name'];
+    }
+    interface PostTabPanel {
+        /**
+          * The name of the panel, used to associate it with a tab header.
+         */
+        "name"?: string;
+    }
+    interface PostTabs {
+        /**
+          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+         */
+        "activePanel"?: HTMLPostTabPanelElement['name'];
+        /**
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
+         */
+        "onTabChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
+    }
     interface IntrinsicElements {
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
+        "post-tab-header": PostTabHeader;
+        "post-tab-panel": PostTabPanel;
+        "post-tabs": PostTabs;
     }
 }
 export { LocalJSX as JSX };
@@ -133,6 +205,9 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
+            "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
+            "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
         }
     }
 }

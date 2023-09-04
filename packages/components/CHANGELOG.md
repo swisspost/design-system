@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 1.4.0
+
+### Minor Changes
+
+- Added a new post-tabs component. (by [@alizedebray](https://github.com/alizedebray) with [#1181](https://github.com/swisspost/design-system/pull/1181))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.0
+
 ## 1.3.10
 
 ### Patch Changes

@@ -2,7 +2,7 @@ import { prepare } from '../support/prepare-story';
 
 describe('skiplinks', () => {
   beforeEach(() => {
-    prepare('Internet Header/Components/Header', 'Default');
+    prepare('Internet Header/Header Component', 'Default');
   });
 
   it(`adds and removes skiplinks control`, () => {
