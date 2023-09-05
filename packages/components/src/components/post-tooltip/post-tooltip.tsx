@@ -116,7 +116,7 @@ export class PostTooltip {
 
     // Can't figure out how to extend HTMLAttributes<HTMLParagraphElement> to support the popover attribute
     this.tooltipRef.setAttribute('popover', '');
-    this.tooltipRef.addEventListener('toggle', this.handleToggle.bind(this));
+    this.tooltipRef.addEventListener('beforetoggle', this.handleToggle.bind(this));
 
     // Initially position tooltip to prevent a flash of unpositioned tooltip
     this.positionTooltip();
