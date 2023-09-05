@@ -47,7 +47,7 @@ This snippet adds a global event listener to mirror the `focused` and `checked` 
 ['focusin', 'focusout', 'input'].forEach(t => document.addEventListener(t, e => {
   if (!(e.target instanceof Element) || e.target.nodeName !== 'input') return; 
   const parent = e.target.parentElement;
-  if (!parent?.classList.contains('choice-card')) return;
+  if (!parent?.classList.contains('radio-button-card')) return;
   switch (e.type) {
     case 'focusin':
       parent.classList.add('focused');
@@ -62,7 +62,6 @@ This snippet adds a global event listener to mirror the `focused` and `checked` 
 }));
 `}
   language="typescript"
-  dark="true"
 />
 
 ## Grouping
