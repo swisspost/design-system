@@ -1,6 +1,11 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
 import * as GettingStartedStories from './getting-started.stories';
+import SampleAngularConfig from './getting-started-angular-config.sample.json?raw';
+import SampleNode16 from './getting-started-node-16.7.0.sample.json?raw';
+import SampleNodeOlder from './getting-started-node-old.sample.json?raw';
+import SampleNodeOlderJs from './getting-started-node-old.sample.js?raw';
+import SampleIconMeta from './getting-started-icon-meta.sample.html?raw';
 
 <Meta of={GettingStartedStories} />
 
@@ -18,9 +23,10 @@ The comprehensive collection of Swiss Post icons.
 
 ## Installation
 
-```bash dark
-npm install @swisspost/design-system-icons
-```
+<Source
+  code={`npm install @swisspost/design-system-icons`}
+  language="bash"
+/>
 
 <div className="alert alert-info alert-md">
   If you want to use our <LinkTo kind="icons-components-icon" story="docs">icon component</LinkTo> to
@@ -43,27 +49,10 @@ Read on to find out what the possible solutions look like...
 It is very easy to serve the icons from the `node_modules` folder directly into your angular application.
 Just open your `angular.json` file and add the following to the `build.options.assets`:
 
-```json dark
-{
-  "projects": {
-    "name-of-your-angular-app": {
-      "architect": {
-        "build": {
-          "options": {
-            "assets": [
-              {
-                "glob": "**/*.svg",
-                "input": "./node_modules/@swisspost/design-system-icons/public/post-icons",
-                "output": "assets/post-icons"
-              }
-            ]
-          }
-        }
-      }
-    }
-  }
-}
-```
+<Source
+  code={SampleAngularConfig}
+  language="json"
+/>
 
 ### Copy & paste the icons with a postinstall script
 
@@ -72,41 +61,24 @@ If you want to know more about pre & post scripts and how they are handled, plea
 
 #### NodeJS version 16.7.0 or newer
 
-```json dark
-// package.json
-{
-  "scripts": {
-    "postinstall": "node -e \"const fs = require('fs'); fs.cpSync('node_modules/@swisspost/design-system-icons/public/post-icons', 'assets/post-icons', { recursive: true }, (err) => { if (err) throw err; });\""
-  }
-}
-```
+package.json
+<Source
+  code={SampleNode16}
+  language="json"
+/>
+
 
 #### Older NodeJS versions
 
-```json dark
-// package.json
-{
-  "scripts": {
-    "postinstall": "node postinstall-icons.js"
-  }
-}
-```
+<Source
+  code={SampleNodeOlder}
+  language="json"
+/>
 
-```js dark
-// postinstall-icons.js
-const fse = require('fs-extra');
-
-const srcDir = 'node_modules/@swisspost/design-system-icons/public/post-icons';
-const destDir = 'assets/post-icons';
-
-// To copy a folder or file, select overwrite accordingly
-try {
-  fse.copySync(srcDir, destDir, { overwrite: true });
-  console.log('Icons successfully copied!');
-} catch (err) {
-  console.error(err);
-}
-```
+<Source
+  code={SampleNodeOlderJs}
+  language="javascript"
+/>
 
 ### Configure the icons base-path
 
@@ -118,19 +90,17 @@ You can do this with two different solutions:
 
 #### Meta-tag solution (recommended)
 
-```html dark
-<html>
-  <head>
-    <meta name="design-system-settings" data-post-icon-base="/assets/post-icons" />
-  </head>
-</html>
-```
+<Source
+  code={SampleIconMeta}
+  language="html"
+/>
 
 #### Base-attribute solution
 
-```html dark
-<post-icon name="1000" base="/base-path/to/your/own/icon-folder"></post-icon>
-```
+<Source
+  code={`<post-icon name="1000" base="/base-path/to/your/own/icon-folder"></post-icon>`}
+  language="html"
+/>
 
 ## CDN approach
 

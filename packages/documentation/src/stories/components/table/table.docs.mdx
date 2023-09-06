@@ -1,5 +1,6 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as TableStories from './table.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={TableStories} />
 
@@ -15,20 +16,7 @@ import * as TableStories from './table.stories';
   <Controls of={TableStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/table.scss';
-```
+<StylesPackageImport components={["table"]} />
 
 ## Usage examples
 
