@@ -1,0 +1,17 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { BADGE } from '../../../../../../.storybook/constants';
+import * as HeaderStories from './header-custom-config.stories';
+import '../header.scss';
+
+<Meta title="Internet Header/Header/Custom Config" of={HeaderStories} />
+
+<div className="container">
+  <h1>Internet Header with Custom Config</h1>
+  <p className="lead">When you need to add your own navigation entries.</p>
+</div>
+
+<Canvas of={HeaderStories.Default} />
+
+<div className="container">
+  <Controls of={HeaderStories.Default} />
+</div>

@@ -49,7 +49,7 @@ export class PostInternetHeader {
   /**
    * Initial language to be used. Overrides automatic language detection.
    */
-  @Prop() language?: string;
+  @Prop() language?: 'de' | 'fr' | 'it' | 'en';
 
   /**
    * Toggle the meta navigation.
@@ -106,7 +106,7 @@ export class PostInternetHeader {
    * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
    * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
    */
-  @Prop() activeRoute?: 'auto' | false | string = 'auto';
+  @Prop() activeRoute?: 'auto' | false | 'auto' | string = 'auto';
 
   /**
    * Online Services only: Add custom links to the special online service navigation entry

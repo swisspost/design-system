@@ -77,7 +77,7 @@ export namespace Components {
         /**
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
          */
-        "activeRoute"?: 'auto' | false | string;
+        "activeRoute"?: 'auto' | false | 'auto' | string;
         /**
           * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
          */
@@ -102,7 +102,7 @@ export namespace Components {
         /**
           * Initial language to be used. Overrides automatic language detection.
          */
-        "language"?: string;
+        "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
           * The header uses this cookie to set the language. Disables automatic language detection.
          */
@@ -267,7 +267,7 @@ declare namespace LocalJSX {
         /**
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
          */
-        "activeRoute"?: 'auto' | false | string;
+        "activeRoute"?: 'auto' | false | 'auto' | string;
         /**
           * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
          */
@@ -287,7 +287,7 @@ declare namespace LocalJSX {
         /**
           * Initial language to be used. Overrides automatic language detection.
          */
-        "language"?: string;
+        "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
           * The header uses this cookie to set the language. Disables automatic language detection.
          */

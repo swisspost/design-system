@@ -28,7 +28,8 @@ const preview: Preview = {
           [
             'Getting Started',
             'Migration Guide',
-            'Header Component',
+            'Header',
+            'Header - *',
             'Breadcrumbs Component',
             'Footer Component',
           ],
