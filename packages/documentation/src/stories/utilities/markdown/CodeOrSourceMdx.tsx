@@ -8,7 +8,7 @@ export const CodeOrSourceMdx = ({ className, children, ...rest }) => {
   // markdown-to-jsx does not add className to inline code
   if (
     typeof className !== 'string' &&
-    (typeof children !== 'string' || !(children as string).match(/[\n\r]/g))
+    (typeof children !== 'string' || !children.match(/[\n\r]/g))
   ) {
     return <Code>{children}</Code>;
   }
