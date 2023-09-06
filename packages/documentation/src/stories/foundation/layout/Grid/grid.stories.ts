@@ -66,42 +66,44 @@ export const Default: Story = {
     const colorMargin: string = 'black';
     const classes = mapClasses({ row: true, [args.gutters]: args.gutters, [args.gap]: args.gap });
     return html`
-      <div class=${classes} style="background-color:${colorMargin}">
-        <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-4 col-rg-2</div>
-        </div>
-        <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-4 col-rg-2</div>
-        </div>
-        <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-4 col-rg-2</div>
-        </div>
-        <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-4 col-rg-2</div>
-        </div>
-        <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-4 col-rg-2</div>
-        </div>
-        <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-4 col-rg-2</div>
-        </div>
-        <div class="col-6 col-rg-3" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-6 col-rg-3</div>
-        </div>
-        <div class="col-6 col-rg-3" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-6 col-rg-3</div>
-        </div>
-        <div class="col-6 col-rg-3" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-6 col-rg-3</div>
-        </div>
-        <div class="col-6 col-rg-3" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-6 col-rg-3</div>
-        </div>
-        <div class="col-12 col-rg-6" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-12 col-rg-6</div>
-        </div>
-        <div class="col-12 col-rg-6" style="background-color:${colorPadding}">
-          <div style="background-color:${colorElement}">col-12 col-rg-6</div>
+      <div class="container">
+        <div class=${classes} style="background-color:${colorMargin}">
+          <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-4 col-rg-2</div>
+          </div>
+          <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-4 col-rg-2</div>
+          </div>
+          <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-4 col-rg-2</div>
+          </div>
+          <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-4 col-rg-2</div>
+          </div>
+          <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-4 col-rg-2</div>
+          </div>
+          <div class="col-4 col-rg-2" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-4 col-rg-2</div>
+          </div>
+          <div class="col-6 col-rg-3" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-6 col-rg-3</div>
+          </div>
+          <div class="col-6 col-rg-3" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-6 col-rg-3</div>
+          </div>
+          <div class="col-6 col-rg-3" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-6 col-rg-3</div>
+          </div>
+          <div class="col-6 col-rg-3" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-6 col-rg-3</div>
+          </div>
+          <div class="col-12 col-rg-6" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-12 col-rg-6</div>
+          </div>
+          <div class="col-12 col-rg-6" style="background-color:${colorPadding}">
+            <div style="background-color:${colorElement}">col-12 col-rg-6</div>
+          </div>
         </div>
       </div>
     `;
