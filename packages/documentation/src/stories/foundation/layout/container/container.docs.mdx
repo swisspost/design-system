@@ -11,13 +11,13 @@ Containers give resonsive paddign and margins to contents on a webpage. As our G
 
 # Fluid
 
-`.container-fluid` has a width of 100% independent of the viewport.
+`.container-fluid` has no padding regardless of viewport by default
 
-There is the option to specify a breakpoint `.container-fluid-[breakpoint]` which will make it so that for this breakpoint till the next bigger breakpoint a padding will be added.
+There is the option to specify a breakpoint `.container-fluid-[breakpoint]` which will add a paddin for this breakpoint till the next bigger breakpoint.
 
 # Reset
 
-`.container-reset` can be used on Elements inside a container so the padding effect can be prevented. This is done with a negative margin. Do not use this outside of a container.
+`.container-reset` can be used on Elements inside a container so the padding effect can be prevented. This is done with a negative margin. Do not use this outside of a container or inside a fluid container.
 
 - `container-reset-left` left side only.
 - `container-reset-right` right side only.
