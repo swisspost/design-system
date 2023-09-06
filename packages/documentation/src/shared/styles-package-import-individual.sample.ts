@@ -17,7 +17,7 @@ export function getStylesPackageImportIndividual(props: Props) {
 
   const required = Object.keys(props?.required || {}).reduce(
     (acc: string, curr: string) =>
-      `${acc}\n//${requiredLabels[curr]}\n${generateComponentLine(curr)}`,
+      `${acc}\n// ${requiredLabels[curr]}\n${generateComponentLine(curr)}`,
     '',
   );
 
