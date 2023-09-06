@@ -3,9 +3,10 @@ import { html } from 'lit';
 import { spread } from '@open-wc/lit-helpers';
 import { BADGE } from '../../../../../.storybook/constants';
 import { getAttributes } from '../../../../utils';
+import customItems from './overrides/custom-items';
 
 const meta: Meta<HTMLSwisspostInternetBreadcrumbsElement> = {
-  title: 'Internet Header/Breadcrumbs Component',
+  title: 'Internet Header/Breadcrumbs',
   component: 'swisspost-internet-breadcrumbs',
   render: renderInternetBreadcrumbs,
   decorators: [hiddenHeader],
@@ -16,8 +17,16 @@ const meta: Meta<HTMLSwisspostInternetBreadcrumbsElement> = {
     customItems: {
       name: 'custom-items',
       control: 'object',
+      description:
+        "Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.",
+      table: {
+        type: {
+          summary: 'IBreadcrumbItem',
+          detail: JSON.stringify(customItems),
+        },
+      },
     },
-  }
+  },
 };
 
 export default meta;
@@ -41,33 +50,10 @@ function renderInternetBreadcrumbs(args: Partial<HTMLSwisspostInternetBreadcrumb
 // STORIES
 type Story = StoryObj<HTMLSwisspostInternetBreadcrumbsElement>;
 
-const renderer = () => html`
-  <p>Hello</p>
-`;
-
-export const Default: Story = {
-  parameters: {
-    docs: {
-      source: {
-        code:
-`<body>
-  <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
-
-  <div class="container">
-    <swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>
-  </div>
-</body>`,
-      },
-    },
-  },
-};
+export const Default: Story = {};
 
 export const CustomItems: Story = {
   args: {
-    customItems: [
-      { text: 'X', url: '/x' },
-      { text: 'XY', url: '/x/xy' },
-      { text: 'XYZ', url: '/x/xy/xyz' },
-    ],
+    customItems: customItems,
   },
 };

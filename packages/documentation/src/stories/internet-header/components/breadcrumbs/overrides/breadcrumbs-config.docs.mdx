@@ -1,0 +1,14 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as BreadcrumbStories from './breadcrumbs-config.stories';
+
+<Meta of={BreadcrumbStories} />
+
+# Breadcrumbs with custom items
+
+<div className="lead">When you need to add your own breadcrumb items.</div>
+
+<Canvas of={BreadcrumbStories.Default} />
+
+<div className="container">
+  <Controls of={BreadcrumbStories.Default} />
+</div>
