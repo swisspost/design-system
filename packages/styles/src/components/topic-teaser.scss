@@ -119,10 +119,14 @@
       @include make-col($size);
     }
   }
+  @each $breakpoint, $gap in topic-teaser.$content-gap {
+    @include media-breakpoint-up($breakpoint) {
+      gap: $gap;
+    }
+  }
 
   @include media-breakpoint-up(rg) {
     flex-direction: row;
-    gap: var(--post-gutter-x);
   }
 }
 
