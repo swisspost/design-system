@@ -1,0 +1,23 @@
+import { Meta, Canvas } from '@storybook/blocks';
+import * as ContainerStories from './container.stories';
+
+<Meta of={ContainerStories} />
+
+# Container
+
+Containers give resonsive paddign and margins to contents on a webpage. As our Grid is Based on Bootstrap, which means it uses negative margins, Containers are required to wrap the Grid.
+
+<Canvas of={ContainerStories.Default} />
+
+# Fluid
+
+`.container-fluid` has a width of 100% independent of the viewport.
+
+There is the option to specify a breakpoint `.container-fluid-[breakpoint]` which will make it so that for this breakpoint till the next bigger breakpoint a padding will be added.
+
+# Reset
+
+`.container-reset` can be used on Elements inside a container so the padding effect can be prevented. This is done with a negative margin. Do not use this outside of a container.
+
+- `container-reset-left` left side only.
+- `container-reset-right` right side only.
