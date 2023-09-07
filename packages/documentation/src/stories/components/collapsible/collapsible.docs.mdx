@@ -1,5 +1,6 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as CollapsibleStories from './collapsible.stories';
+import SampleCustomTrigger from './collapsible-custom-trigger.sample?raw';
 
 <Meta of={CollapsibleStories} />
 
@@ -44,10 +45,11 @@ The `<post-collapsible>` component exposes a `.toggle()` method that allows to t
 This method is asynchronous and returns a promise that resolves with the current open state.
 It optionally takes a boolean parameter that forces open when `true` or close when `false`.
 
-```typescript
-const collapsible = document.querySelector('#collapsibleId') as HTMLPostCollapsibleElement;
-collapsible.toggle(/* open: boolean */).then((/* isOpen: boolean */) => {});
-```
+<Source
+  code={SampleCustomTrigger}
+  language="typescript"
+/>
+
 
 A header is then not mandatory and can be replaced by an external control.
 
