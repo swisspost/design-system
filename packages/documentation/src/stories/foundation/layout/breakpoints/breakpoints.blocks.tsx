@@ -4,7 +4,7 @@ import scss from './breakpoints.module.scss';
 
 export const SCSS_VARIABLES = parse(scss);
 
-export const BreakpointTable = (props: { name: string; value: string }) => (
+export const BreakpointTable = () => (
   <table className="table table-sm table-striped table-bordered">
     <thead>
       <tr>
@@ -14,15 +14,18 @@ export const BreakpointTable = (props: { name: string; value: string }) => (
       </tr>
     </thead>
     <tbody>
-      {forEach(SCSS_VARIABLES.breakpoint, (data: { key: number; value: any }) => {
-        return (
-          <tr>
-            <td>{data.value.name}</td>
-            <td dangerouslySetInnerHTML={{ __html: data.value.infix }}></td>
-            <td>{data.value.dimensions}</td>
-          </tr>
-        );
-      })}
+      {forEach(
+        SCSS_VARIABLES.breakpoint,
+        (data: { key: number; value: { name: string; infix: any; dimensions: string } }) => {
+          return (
+            <tr>
+              <td>{data.value.name}</td>
+              <td dangerouslySetInnerHTML={{ __html: data.value.infix }}></td>
+              <td>{data.value.dimensions}</td>
+            </tr>
+          );
+        },
+      )}
     </tbody>
   </table>
 );

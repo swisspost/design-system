@@ -1,5 +1,9 @@
-import { ArgTypes, Meta } from '@storybook/blocks';
+import { ArgTypes, Meta, Source } from '@storybook/blocks';
 import * as IntranetHeaderStories from './intranet-header.stories';
+import SampleUse from './intranet-header-use.sample?raw';
+import SampleNavigationBar from './intranet-header-navigation-bar.sample.html?raw';
+import SampleSideNavigation from './intranet-header-side-navigation.sample.html?raw';
+import SamplePostweb from './intranet-header-postweb.sample.html?raw';
 
 <Meta of={IntranetHeaderStories} />
 
@@ -8,7 +12,8 @@ import * as IntranetHeaderStories from './intranet-header.stories';
 [![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header)
 
 <div className="alert alert-info alert-md">
-  The intranet header is an <a href="//Angular.io" target="_blank">Angular</a> component, as such it only works within Angular projects.
+  The intranet header is an <a href="//Angular.io" target="_blank">Angular</a> component, as such it only works within
+  Angular projects.
 </div>
 
 The Header Angular component for internal usage.
@@ -21,23 +26,20 @@ The Header Angular component for internal usage.
 
 ## Installation
 
-```bash dark
-npm install @swisspost/design-system-intranet-header
-```
+<Source
+  code={`npm install @swisspost/design-system-intranet-header`}
+  language="bash"
+/>
 
 ## Usage
 
 1. In `app.module.ts`, import `SwissPostIntranetHeaderModule` and add it to the `imports` array property.
 
-```js dark
-// Other imports ....
-import { SwissPostIntranetHeaderModule } from '@swisspost/design-system-intranet-header';
+<Source
+  code={SampleUse}
+  language="typescript"
+/>
 
-@NgModule({
-  imports: [ SwissPostIntranetHeaderModule ],
-})
-export class AppModule {}
-```
 
 2. In `app.component.html`, create a `section` container and assign it the CSS classes that best suit your desired layout:
 
@@ -80,123 +82,21 @@ export class AppModule {}
 
 ### Header with a navigation bar
 
-```html dark
-<section class="layout-container header-big">
-  <sp-intranet-header siteTitle="Site Title" languages="de,fr,it">
-    <li class="nav-item"><a class="nav-link">Link 1</a></li>
-    <li class="nav-item"><a class="nav-link">Link 2</a></li>
-    <li class="nav-item" ngbDropdown>
-      <span class="nav-link" id="toggle" ngbDropdownToggle>Dropdown</span>
-      <div class="dropdown-menu" aria-labelledby="toggle" ngbDropdownMenu>
-        <a class="dropdown-item" ngbDropdownItem>Dropdown link 1</a>
-        <a class="dropdown-item" ngbDropdownItem>Dropdown link 2</a>
-        <a class="dropdown-item" ngbDropdownItem>Dropdown link 3</a>
-      </div>
-    </li>
-    <li class="nav-item"><a class="nav-link">Link 3</a></li>
-  </sp-intranet-header>
-  <main role="main" class="container header-margin pt-huge">
-    <h1>Content</h1>
-    <p>
-      Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-      invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-      accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-      sanctus est Lorem ipsum dolor sit amet.
-    </p>
-  </main>
-</section>
-```
+<Source
+  code={SampleNavigationBar}
+  language="html"
+/>
 
 ### Header with a side navigation
 
-```html dark
-<section class="layout-container header-small">
-  <sp-intranet-header [hasNavbar]="false" siteTitle="Site Title"></sp-intranet-header>
-  <div class="site-content container-fluid header-margin">
-    <div class="row flex-grow-1">
-      <nav
-        [ngClass]="{'closed': !openedMenu}"
-        class="col-md-3 col-lg-2 d-md-flex bg-light sidebar p-md-regular"
-        id="sidebar"
-      >
-        <div class="sidebar-sticky header-margin bg-light">
-          <!-- left menu -->
-          <ul>
-            <li (click)="toggleMenu()" (keydown)="toggleMenu()" class="d-md-none" tabindex="0">
-              <em class="pi pi-menu"></em> Active Page
-            </li>
-            <li><a>Home</a></li>
-            <li class="separator"></li>
-            <li>Menu Text
-              <ul>
-                <li class="level2"><a>Link 1</a></li>
-                <li class="level2"><a>Link 2</a></li>
-                <li class="level2"><a>Link 3</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <main class="col-md-9 col-lg-10 p-regular" role="main">
-        <h1>Content</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-          accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-          sanctus est Lorem ipsum dolor sit amet.
-        </p>
-      </main>
-    </div>
-  </div>
-</section>
-```
+<Source
+  code={SampleSideNavigation}
+  language="html"
+/>
 
 ### "Postweb" intranet header
 
-```html dark
-<section class="layout-container header-big with-searchbar">
-  <sp-intranet-header [showIntranetSearch]="true" siteTitle="PostWeb">
-    <li class="nav-item"><a class="col-auto py-3 px-5 nav-link">Home</a></li>
-    <li class="nav-item"><a class="col-auto py-3 px-5 nav-link">Post Informatik</a></li>
-    <li class="nav-item"><a class="col-auto py-3 px-5 nav-link">HR-Portal</a></li>
-    <li class="nav-item"><a class="col-auto py-3 px-5 nav-link">Service-Portal</a></li>
-    <li class="nav-item"><a class="col-auto py-3 px-5 nav-link">Die Post</a></li>
-  </sp-intranet-header>
-  <div class="site-content container-fluid header-margin">
-    <div class="row flex-grow-1">
-      <nav
-        [ngClass]="{'closed': !openedMenu}"
-        class="col-md-3 col-lg-2 d-md-flex bg-light sidebar p-md-regular"
-        id="sidebar"
-      >
-        <div class="sidebar-sticky header-margin bg-light">
-          <!-- left menu -->
-          <ul>
-            <li (click)="toggleMenu()" (keydown)="toggleMenu()" class="d-md-none" tabindex="0">
-              <em class="pi pi-menu"></em> Active Page
-            </li>
-            <li><a>Home</a></li>
-            <li class="separator"></li>
-            <li>Menu Text
-              <ul>
-                <li class="level2"><a>Link 1</a></li>
-                <li class="level2"><a>Link 2</a></li>
-                <li class="level2"><a>Link 3</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-      </nav>
-      <main class="col-md-9 col-lg-10 p-regular" role="main">
-        <h1>Content</h1>
-        <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-          invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et
-          accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-          sanctus est Lorem ipsum dolor sit amet.
-        </p>
-      </main>
-    </div>
-  </div>
-</section>
-```
+<Source
+  code={SamplePostweb}
+  language="html"
+/>

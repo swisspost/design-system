@@ -1,5 +1,10 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/blocks';
 import { BADGE } from '../../../.storybook/constants';
+import SampleReference from './internet-header-reference.sample.ts?raw';
+import SampleInstall from './internet-header-install.sample.html?raw';
+import SampleFixAppStyles from './internet-header-fix-app-styles.sample.html?raw';
+import SampleOld from './internet-header-old.sample.html?raw';
+import { SourceDarkMode } from '../../../.storybook/preview';
 import * as MigrationGuideStories from './migration-guide.stories';
 
 <Meta of={MigrationGuideStories} />
@@ -38,50 +43,7 @@ One to load static assets, one to configure it and one to load it.
 - You can remove the configuration and the loader scripts, but remember your `serviceid`.
 - Try to remove the `staticassets` script to check if you still need it
 
-```html
-<html>
-  <head>
-    <link
-      rel="stylesheet"
-      href="https://www.post.ch/api/staticasset?serviceId=webstamp&file=post.css&environment=prod"
-    />
-    <link
-      rel="stylesheet"
-      href="https://www.post.ch/api/staticasset?serviceId=webstamp&file=post-modules.css&environment=prod"
-    />
-
-    <!-- Custom CSS -->
-
-    <!-- Static assets -->
-    <script
-      src="https://www.post.ch/api/staticasset?serviceId=webstamp&file=head.js&environment=prod"
-      type="text/javascript"
-    ></script>
-  </head>
-
-  <body>
-    <div id="os_content">
-      <!-- Content from the current page of the online service -->
-    </div>
-
-    <!-- Configuration -->
-    <script id="os_config" type="application/json">
-      {
-        "os_config": {
-          "currentLang": "de",
-          "currentUrl": "https://service.post.ch/onlinedienst/deep-url"
-        }
-      }
-    </script>
-
-    <!-- Loader -->
-    <script
-      src="https://www.post.ch/api/headerjs?serviceid=webstamp&includejquery=true&environment=prod"
-      type="text/javascript"
-    ></script>
-  </body>
-</html>
-```
+<Source code={SampleOld} dark={true} language="html" />
 
 ## 2. Fix your app styles
 
@@ -90,28 +52,7 @@ The new header does not provide those wrappers.
 Instead, every page has control over the main markup structure.
 A possible replacement of the above code could be:
 
-```html
-<html>
-  <head>
-    <link
-      rel="stylesheet"
-      href="https://www.post.ch/api/staticasset?serviceId=webstamp&file=post.css&environment=prod"
-    />
-    <link
-      rel="stylesheet"
-      href="https://www.post.ch/api/staticasset?serviceId=webstamp&file=post-modules.css&environment=prod"
-    />
-
-    <!-- Custom CSS -->
-  </head>
-
-  <body>
-    <main id="os_content" class="container">
-      <!-- Content from the current page of the online service -->
-    </main>
-  </body>
-</html>
-```
+<Source code={SampleFixAppStyles} dark={true} language="html" />
 
 - Likely you'll need the class `container` around your main content to align it properly in the center.
 - For bonus points on semantic markup, use the [`<main>` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main) around the main page content
@@ -135,37 +76,7 @@ Please refer to the [Internet Header installation instructions](/story/getting-s
 
 After installation, you're ready to add the new tags to your markup:
 
-```html
-<html>
-  <head>
-    <link
-      rel="stylesheet"
-      href="https://www.post.ch/api/staticasset?serviceId=webstamp&file=post.css&environment=prod"
-    />
-    <link
-      rel="stylesheet"
-      href="https://www.post.ch/api/staticasset?serviceId=webstamp&file=post-modules.css&environment=prod"
-    />
-
-    <!-- Custom CSS -->
-  </head>
-
-  <body>
-    <!-- The header needs to be directly in the body tag for stickiness functionality to work -->
-    <swisspost-internet-header project="your-service-id"></swisspost-internet-header>
-
-    <aside class="my-huge-r container">
-      <swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>
-    </aside>
-
-    <main id="os_content" class="container">
-      <!-- Content from the current page of the online service  -->
-    </main>
-
-    <swisspost-internet-footer></swisspost-internet-footer>
-  </body>
-</html>
-```
+<Source code={SampleInstall} dark={SourceDarkMode} language="html" />
 
 Place the new elements as described (and needed) as shown above.
 The breadcrumbs need a `container` wrapper to align themselves with the content of your page,
@@ -176,18 +87,6 @@ If you don't have breadcrumbs, you can just delete the `<aside>` and the `<swiss
 
 If you need to change settings during runtime, you can get a reference to the header by querying:
 
-```ts
-const header = document.querySelector<HTMLSwisspostInternetHeaderElement>(
-  'swisspost-internet-header',
-);
+<Source code={SampleReference} dark={SourceDarkMode} language="typescript" />
 
-// Toggle search
-header.search = false;
-
-// Set new custom config
-header.customConfig = {
-  /* ... */
-};
-```
-
-At the [Internet Header configuration page](/story/header-usage--page) you can find a list of possible options.
+At the [Internet Header configuration page](/story/header - usage--page) you can find a list of possible options.

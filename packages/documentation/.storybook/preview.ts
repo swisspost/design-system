@@ -13,6 +13,8 @@ import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
 
+export const SourceDarkMode = true;
+
 const preview: Preview = {
   parameters: {
     options: {
@@ -57,6 +59,7 @@ const preview: Preview = {
       },
       source: {
         excludeDecorators: true,
+        dark: SourceDarkMode,
         transform: (snippet: string) => format(snippet, prettierOptions),
       },
       components: resetComponents,
