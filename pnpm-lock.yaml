@@ -349,8 +349,8 @@ importers:
         specifier: 8.0.0
         version: 8.0.0(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@7.8.1)
       ngx-toastr:
-        specifier: 16.2.0
-        version: 16.2.0(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/platform-browser@15.2.9)
+        specifier: 17.0.2
+        version: 17.0.2(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/platform-browser@15.2.9)
       prettier:
         specifier: 2.8.8
         version: 2.8.8
@@ -17907,12 +17907,12 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /ngx-toastr@16.2.0(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/platform-browser@15.2.9):
-    resolution: {integrity: sha512-7X6UhOKiaUeC2eTOsUqctZH0ZWKG8VlzDxWJhdEF1N3kPod46SU/Vn2l0hbt8EDwTjxHKfKyevU2idkYDoZYog==}
+  /ngx-toastr@17.0.2(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/platform-browser@15.2.9):
+    resolution: {integrity: sha512-KehiPx6bkbiUyJbabf0ZA04+ASumS8r/y4wPsUOMI9OrBvBcfq27UQmWuQKoVR8E+9y4Pq7eZkSg2kvxNvpxTA==}
     peerDependencies:
-      '@angular/common': '>=14.0.0-0'
-      '@angular/core': '>=14.0.0-0'
-      '@angular/platform-browser': '>=14.0.0-0'
+      '@angular/common': '>=16.0.0-0'
+      '@angular/core': '>=16.0.0-0'
+      '@angular/platform-browser': '>=16.0.0-0'
     dependencies:
       '@angular/common': 15.2.9(@angular/core@15.2.9)(rxjs@7.8.1)
       '@angular/core': 15.2.9(rxjs@7.8.1)(zone.js@0.13.1)
