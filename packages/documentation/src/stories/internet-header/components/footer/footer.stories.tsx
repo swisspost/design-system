@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { BADGE } from '../../../../../.storybook/constants';
 import customFooterConfig from './custom-config/custom-footer-config';
 import { getAttributes } from '../../../../utils';
+import { spread } from '@open-wc/lit-helpers';
 
 const meta: Meta = {
   title: 'Internet Header/Footer',
@@ -42,12 +43,9 @@ function hiddenHeader(story: any, { args }: StoryContext) {
 
 // RENDERER
 function renderInternetFooter(args: Args) {
-  const props = getAttributes(args);
+  const props = args.customConfig ? { 'custom-config': JSON.stringify(args.customConfig) } : {};
   return html`
-    <swisspost-internet-header
-      custom-config=${JSON.stringify(args.customConfig)}
-      project="test"
-    ></swisspost-internet-header>
+    <swisspost-internet-header ${spread(props)} project="test"></swisspost-internet-header>
     <swisspost-internet-footer></swisspost-internet-footer>
   `;
 }

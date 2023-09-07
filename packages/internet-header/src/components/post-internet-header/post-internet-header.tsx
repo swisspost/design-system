@@ -24,7 +24,7 @@ import { SvgIcon } from '../../utils/svg-icon.component';
 import { StickynessOptions } from '../../models/implementor.model';
 import { ActiveRouteProp, Environment, ICustomConfig } from '../../models/general.model';
 import { IAvailableLanguage } from '../../models/language.model';
-import { translate } from '../../services/language.service';
+import { getUserLang, translate } from '../../services/language.service';
 import { If } from '../../utils/if.component';
 import packageJson from '../../../package.json';
 import { registerLogoAnimationObserver } from './logo-animation/logo-animation';
@@ -186,10 +186,12 @@ export class PostInternetHeader {
           ? JSON.parse(this.osFlyoutOverrides)
           : this.osFlyoutOverrides;
 
-      if (this.customConfig !== undefined && state.currentLanguage !== null) {
+      if (this.customConfig !== undefined) {
+        const langs = Object.keys(typeof this.customConfig === 'string' ? JSON.parse(this.customConfig) : this.customConfig);
+        const lang = state.currentLanguage || getUserLang(langs, this.language);
         state.localizedCustomConfig = getLocalizedCustomConfig(
           this.customConfig,
-          state.currentLanguage,
+          lang,
         );
       }
 

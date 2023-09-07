@@ -1,7 +1,7 @@
-const footerBlock = {
+const footerBlock = (lang: string) => ({
   footer: {
     block: {
-      title: 'Eigene Footer-Konfiguration',
+      title: `Eigene Footer-Konfiguration (${lang})`,
       links: [
         { url: 'https://fireship.io', text: 'Fireship.io', target: '_blank' },
         { url: 'https://css-tricks.com', text: 'CSS-Tricks', target: '_blank' },
@@ -13,11 +13,11 @@ const footerBlock = {
       ],
     },
   },
-};
+});
 
 export default {
-  de: footerBlock,
-  fr: footerBlock,
-  it: footerBlock,
-  en: footerBlock,
+  de: footerBlock('de'),
+  fr: footerBlock('fr'),
+  it: footerBlock('it'),
+  en: footerBlock('en'),
 };
