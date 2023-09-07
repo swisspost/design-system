@@ -135,8 +135,8 @@ importers:
         specifier: 15.2.9
         version: 15.2.9(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/platform-browser@15.2.9)(rxjs@7.8.1)
       '@ng-bootstrap/ng-bootstrap':
-        specifier: 14.2.0
-        version: 14.2.0(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/forms@15.2.9)(@angular/localize@15.2.9)(@popperjs/core@2.11.8)(rxjs@7.8.1)
+        specifier: 15.1.1
+        version: 15.1.1(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/forms@15.2.9)(@angular/localize@15.2.9)(@popperjs/core@2.11.8)(rxjs@7.8.1)
       '@popperjs/core':
         specifier: 2.11.8
         version: 2.11.8
@@ -322,8 +322,8 @@ importers:
         specifier: 15.2.9
         version: 15.2.9(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/platform-browser@15.2.9)(rxjs@7.8.1)
       '@ng-bootstrap/ng-bootstrap':
-        specifier: 14.2.0
-        version: 14.2.0(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/forms@15.2.9)(@angular/localize@15.2.9)(@popperjs/core@2.11.8)(rxjs@7.8.1)
+        specifier: 15.1.1
+        version: 15.1.1(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/forms@15.2.9)(@angular/localize@15.2.9)(@popperjs/core@2.11.8)(rxjs@7.8.1)
       '@popperjs/core':
         specifier: 2.11.8
         version: 2.11.8
@@ -5852,13 +5852,13 @@ packages:
       tar-fs: 2.1.1
     dev: true
 
-  /@ng-bootstrap/ng-bootstrap@14.2.0(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/forms@15.2.9)(@angular/localize@15.2.9)(@popperjs/core@2.11.8)(rxjs@7.8.1):
-    resolution: {integrity: sha512-nqEKVXauSontGKqC5WSKpch5TiAGDZB3hluvxkINS0r9LUE6sBQRP3qeYOe7Uwu+UbQcj28NG3qFHhpfnG8KHw==}
+  /@ng-bootstrap/ng-bootstrap@15.1.1(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/forms@15.2.9)(@angular/localize@15.2.9)(@popperjs/core@2.11.8)(rxjs@7.8.1):
+    resolution: {integrity: sha512-nZlIMMggtI3IHkGs0XPrUIUdpeEzQvfGV9M4I9IvCqiS2n4RwWoUvWK1ICo4csZqFNBDlCQx956gO6ZZUSL2mw==}
     peerDependencies:
-      '@angular/common': ^15.0.0
-      '@angular/core': ^15.0.0
-      '@angular/forms': ^15.0.0
-      '@angular/localize': ^15.0.0
+      '@angular/common': ^16.0.0
+      '@angular/core': ^16.0.0
+      '@angular/forms': ^16.0.0
+      '@angular/localize': ^16.0.0
       '@popperjs/core': ^2.11.6
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
