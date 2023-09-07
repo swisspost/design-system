@@ -346,8 +346,8 @@ importers:
         specifier: 11.8.0
         version: 11.8.0
       ngx-highlightjs:
-        specifier: 8.0.0
-        version: 8.0.0(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@7.8.1)
+        specifier: 10.0.0
+        version: 10.0.0(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@7.8.1)
       ngx-toastr:
         specifier: 16.2.0
         version: 16.2.0(@angular/common@15.2.9)(@angular/core@15.2.9)(@angular/platform-browser@15.2.9)
@@ -14025,10 +14025,6 @@ packages:
     engines: {node: '>=12.0.0'}
     dev: false
 
-  /highlightjs-line-numbers.js@2.8.0:
-    resolution: {integrity: sha512-TEf1gw0c8mb8nan0QwliqS7obT4cpUd9hzsGzsZLweteNnWea/VIqy5/aQqsa5wnz9lnvmtAkS1ZtDTjB/goYQ==}
-    dev: false
-
   /homedir-polyfill@1.0.3:
     resolution: {integrity: sha512-eSmmWE5bZTK2Nou4g0AI3zZ9rswp7GRKoKXS1BLUkvPviOqs4YTN1djQIqrXy9k5gEtdLPy86JjRwsNM9tnDcA==}
     engines: {node: '>=0.10.0'}
@@ -17892,17 +17888,16 @@ packages:
       - supports-color
     dev: true
 
-  /ngx-highlightjs@8.0.0(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@7.8.1):
-    resolution: {integrity: sha512-joRqwYnliH+Qv5ceM/YmUWaryO+7hhBp8KVs91GSmTf8mZdD0OL6iYsQgg0p64YAjoStmO6MR11BP9W847NYEg==}
+  /ngx-highlightjs@10.0.0(@angular/common@15.2.9)(@angular/core@15.2.9)(rxjs@7.8.1):
+    resolution: {integrity: sha512-F5VXB6vnpiTPMADUoCEkyc2wnqpKUNvfeAP4tO//NrwdQP2sQK6MfPg+jHL2adoJE5LIchsJlpq6C0r+KmlOSA==}
     peerDependencies:
-      '@angular/common': '>=14.0.0'
-      '@angular/core': '>=14.0.0'
-      rxjs: '>=6.0.0'
+      '@angular/common': '>=16.0.0'
+      '@angular/core': '>=16.0.0'
+      rxjs: '>=7.0.0'
     dependencies:
       '@angular/common': 15.2.9(@angular/core@15.2.9)(rxjs@7.8.1)
       '@angular/core': 15.2.9(rxjs@7.8.1)(zone.js@0.13.1)
       highlight.js: 11.8.0
-      highlightjs-line-numbers.js: 2.8.0
       rxjs: 7.8.1
       tslib: 2.6.2
     dev: false
