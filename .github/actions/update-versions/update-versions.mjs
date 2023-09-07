@@ -31,7 +31,7 @@ const interestingDependencies = Object.entries({
   .reduce((acc, [key, value]) => {
     acc[key] = value.replace('workspace:', '');
     return acc;
-  });
+  }, {});
 const hasVersionEntry = versionsJSON.find(v => getMajorVersion(v.version) === currentMajorVersion);
 const allMajors = versionsJSON
   .map(v => getMajorVersion(v.version))
