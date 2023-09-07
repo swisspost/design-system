@@ -7,11 +7,9 @@ describe('language-switch', () => {
   const languageSwitcherDesktop = '#post-language-switch-desktop';
   const languageSwitchDropdown = 'nav.language-switch-dropdown';
 
-  before(() => {});
-
   beforeEach(() => {
     cy.viewport(1024, 800);
-    prepare('Internet Header/Header Component', 'Default');
+    prepare('Internet Header/Header', 'Default');
   });
 
   describe('meta menu', () => {
@@ -144,7 +142,7 @@ describe('language-switch', () => {
         url: '',
       };
       config.en!.header.navLang = [navLangEntry];
-      prepare('Internet Header/Header Component', 'Default', config);
+      prepare('Internet Header/Header', 'Default', config);
       cy.get('#post-language-switch-desktop').should('not.exist');
     });
 
