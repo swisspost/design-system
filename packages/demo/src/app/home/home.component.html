@@ -120,9 +120,9 @@
         </div>
       </div>
     </section>
-    
-    <section id="v6-to-7" class="mb-huge">
-      <h3 class="bold mb-4">Migration from v6 to v7<span class="change-badge bg-info">beta</span></h3>
+
+    <section id="v5-to-6" class="mb-huge">
+      <h3 class="bold mb-4">Migration from v5 to v6</h3>
 
       <div class="alert alert-info" role="alert">
         <h4 class="alert-heading">Be sure to update your application one major Design System version at a time.</h4>
@@ -130,60 +130,6 @@
                                                                                                    fragment="v4-to-5">migrating
           to version 5</a>.</p>
       </div>
-
-      <ol class="bubble-tea">
-        <li>
-          <h4 class="h5 bold">Package Update 🩺</h4>
-          <ol>
-            <li *ngIf="isMigratingAngular">
-              <p>
-                Use
-                <a href="https://update.angular.io/" target="_blank" rel="noopener">
-                  https://update.angular.io/
-                </a>
-                to update Angular to version 16
-              </p>
-            </li>
-            <li>
-              <p>
-                Update Bootstrap to version
-                <a href="https://getbootstrap.com/docs/5.3/migration/#v530" target="_blank" rel="noopener">
-                  5.3.x
-                </a>
-                <ng-container *ngIf="isMigratingAngular">
-                  and ng-bootstrap to version
-                  <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
-                     target="_blank" rel="noopener">
-                    15.x.x
-                  </a>
-                </ng-container>
-                :
-                <code
-                  appCopyToClipboard
-                  class="d-block mt-1 p-3"
-                  [languages]="['bash']"
-                  [highlight]="'npm install bootstrap@5.3' + (isMigratingAngular ? ' @ng-bootstrap/ng-bootstrap@15' : '')"
-                ></code>
-              </p>
-            </li>
-            <li>
-              <p>
-                Update Design System style package to version 7:
-                <code
-                  appCopyToClipboard
-                  class="d-block mt-1 p-3"
-                  [languages]="['bash']"
-                  highlight="npm install @swisspost/design-system-styles@7"
-                ></code>
-              </p>
-            </li>
-          </ol>
-        </li>
-      </ol>
-    </section>
-
-    <section id="v5-to-6" class="mb-huge">
-      <h3 class="bold mb-4">Migration from v5 to v6</h3>
 
       <ol class="bubble-tea">
         <li>
