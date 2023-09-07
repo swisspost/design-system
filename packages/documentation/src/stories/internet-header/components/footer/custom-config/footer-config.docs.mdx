@@ -1,0 +1,14 @@
+import { Meta, Canvas, Controls } from '@storybook/blocks';
+import * as FooterConfig from './footer-config.stories';
+
+<Meta of={FooterConfig} />
+
+# Footer with custom config
+
+<div className="lead">When you need to add your own footer links.</div>
+
+<Canvas of={FooterConfig.Default} />
+
+<div className="container">
+  <Controls of={FooterConfig.Default} />
+</div>
