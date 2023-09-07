@@ -1,5 +1,7 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/blocks';
 import * as GettingStartedStories from './components.stories';
+import SampleUseAll from './components-use-all.sample?raw';
+import SampleUseSpecific from './components-use-specific.sample?raw';
 
 <Meta of={GettingStartedStories} />
 
@@ -18,30 +20,30 @@ A set of standard web components for easy integration with every framework or no
 
 {/* https://stenciljs.com/docs/custom-elements#consuming-custom-elements */}
 
-```bash dark
-npm install @swisspost/design-system-components
-```
+<Source
+  code={`npm install @swisspost/design-system-components`}
+  language="bash"
+/>
 
 ## Usage
 
 Import all the available components into your project (for example into your `/src/main.ts` or `/src/index.js` file) and make them work:
 
-```js dark
-import { defineCustomElements } from '@swisspost/design-system-components/loader';
-
-defineCustomElements();
-```
+<Source
+  code={SampleUseAll}
+  language="javascript"
+/>
 
 Import specific components:
 
-```ts dark
-import { defineCustomElement as definePostIcon } from '@swisspost/design-system-components/dist/components/post-icon';
-
-definePostIcon();
-```
+<Source
+  code={SampleUseSpecific}
+  language="javascript"
+/>
 
 Use the imported components in your html:
 
-```html dark
-<post-icon name="1000"></post-icon>
-```
+<Source
+  code={`<post-icon name="1000"></post-icon>`}
+  language="html"
+/>

@@ -12,9 +12,8 @@ const meta: Meta = {
     badges: [BADGE.NEEDS_REVISION],
   },
   args: {
-    labelPosition: 'both',
-    labelBefore: 'Off',
-    labelAfter: 'On',
+    labelPosition: 'before',
+    label: 'Notifications',
     hiddenLabel: false,
     checked: false,
     disabled: false,
@@ -27,37 +26,18 @@ const meta: Meta = {
       control: {
         type: 'radio',
         label: {
-          both: 'Both',
           before: 'Before',
           after: 'After',
         },
       },
-      options: ['both', 'before', 'after'],
+      options: ['before', 'after'],
       table: {
         category: 'General',
       },
     },
-    labelBefore: {
-      name: 'Label (before)',
+    label: {
+      name: 'Label',
       description: 'Describes the content/topic of the component.',
-      if: {
-        arg: 'labelPosition',
-        neq: 'after',
-      },
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'General',
-      },
-    },
-    labelAfter: {
-      name: 'Label (after)',
-      description: 'Describes the content/topic of the component.',
-      if: {
-        arg: 'labelPosition',
-        neq: 'before',
-      },
       control: {
         type: 'text',
       },
@@ -139,19 +119,19 @@ function renderSwitch(args: Args, context: StoryContext) {
   });
 
   const useAriaLabel = args.hiddenLabel;
-  const ariaLabel = args.checked ? args.labelAfter : args.labelBefore;
-  const useLabelBefore = !useAriaLabel && ['before', 'both'].includes(args.labelPosition);
-  const useLabelAfter = !useAriaLabel && ['after', 'both'].includes(args.labelPosition);
+  const ariaLabel = args.checked ? args.label + ' Off' : args.label + ' On';
+  const useLabelBefore = !useAriaLabel && 'before' === args.labelPosition;
+  const useLabelAfter = !useAriaLabel && 'after' === args.labelPosition;
 
   const labelBefore = useLabelBefore
     ? html`
-        <label for=${context.id} class="form-check-label order-first">${args.labelBefore}</label>
+        <label for=${context.id} class="form-check-label order-first">${args.label}</label>
       `
     : null;
 
   const labelAfter = useLabelAfter
     ? html`
-        <label for=${context.id} class="form-check-label">${args.labelAfter}</label>
+        <label for=${context.id} class="form-check-label">${args.label}</label>
       `
     : null;
 
@@ -193,7 +173,6 @@ export const MultilineLabels: Story = {
     controls: {
       exclude: [
         'Label Position',
-        'Label (before)',
         'Hidden Label',
         'Checked',
         'Disabled',
@@ -203,7 +182,7 @@ export const MultilineLabels: Story = {
   },
   args: {
     labelPosition: 'after',
-    labelAfter:
+    label:
       'Longa etikedo kiu plej versajne ne taugas sur unu linio kaj tial devas esti envolvita. Kaj nur por esti sur la sekura flanko, ni simple aldonu unu plian tre sencelan frazon ci tie. Vi neniam scias...',
   },
 };
@@ -213,8 +192,7 @@ export const Validation: Story = {
     controls: {
       exclude: [
         'Label Position',
-        'Label (before)',
-        'Label (after)',
+        'Label',
         'Hidden Label',
         'Checked',
         'Disabled',

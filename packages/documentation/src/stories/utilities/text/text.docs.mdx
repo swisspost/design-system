@@ -1,7 +1,12 @@
-import { Meta, Canvas, Story } from '@storybook/blocks';
+import { Canvas, Meta, Source } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
 import { SCSS_VARIABLES, TextUtilityAPI } from './text.blocks';
 import * as TextStories from './text.stories';
+import SampleFontFamily from './text-font-family.sample.scss?raw';
+import SampleFontSize from './text-font-size.sample.scss?raw';
+import SampleFontWeight from './text-font-weight.sample.scss?raw';
+import SampleLineHeight from './text-line-height.sample.scss?raw';
+import SampleColor from './text-color.sample.scss?raw';
 
 <Meta of={TextStories} />
 
@@ -19,13 +24,10 @@ import * as TextStories from './text.stories';
 
 #### Set Font Family in SCSS
 
-```scss dark
-@use '@swisspost/design-system-styles/core' as post;
-
-.my-element {
-  font-family: post.$font-family-sans-serif;
-}
-```
+<Source
+  code={SampleFontFamily}
+  language="scss"
+/>
 
 #### Possible Values
 
@@ -37,13 +39,10 @@ import * as TextStories from './text.stories';
 
 #### Set Font Size in SCSS
 
-```scss dark
-@use '@swisspost/design-system-styles/core' as post;
-
-.my-element {
-  font-size: post.$font-size-tiny;
-}
-```
+<Source
+  code={SampleFontSize}
+  language="scss"
+/>
 
 #### Possible Values
 
@@ -59,13 +58,10 @@ import * as TextStories from './text.stories';
 
 #### Set Font Weight in SCSS
 
-```scss dark
-@use '@swisspost/design-system-styles/core' as post;
-
-.my-element {
-  font-weight: post.$font-weight-bold;
-}
-```
+<Source
+  code={SampleFontWeight}
+  language="scss"
+/>
 
 #### Possible Values
 
@@ -93,13 +89,10 @@ import * as TextStories from './text.stories';
 
 #### Set Line Height in SCSS
 
-```scss dark
-@use '@swisspost/design-system-styles/core' as post;
-
-.my-element {
-  line-height: post.$line-height-tiny;
-}
-```
+<Source
+  code={SampleLineHeight}
+  language="scss"
+/>
 
 #### Possible Values
 
@@ -133,13 +126,10 @@ To colorize links, use the `.link-*` classes instead as they also provide stylin
 
 #### Set the Color in SCSS
 
-```scss dark
-@use '@swisspost/design-system-styles/core' as post;
-
-.my-element {
-  color: post.$success;
-}
-```
+<Source
+  code={SampleColor}
+  language="scss"
+/>
 
 #### Possible Values
 

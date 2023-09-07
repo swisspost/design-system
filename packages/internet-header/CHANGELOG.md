@@ -1,5 +1,15 @@
 # @swisspost/internet-header
 
+## 1.9.1
+
+### Patch Changes
+
+- Clarified and fixed which internet-header versions are available and how to use them. (by [@imagoiq](https://github.com/imagoiq) with [#1792](https://github.com/swisspost/design-system/pull/1792))
+
+- Fixed a line of code that was not compliant with quality rules (by [@b1aserlu](https://github.com/b1aserlu) with [#1872](https://github.com/swisspost/design-system/pull/1872))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.0
+
 ## 1.9.0
 
 ### Minor Changes

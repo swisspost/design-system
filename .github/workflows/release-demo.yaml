@@ -45,6 +45,10 @@ jobs:
         if: steps.check.outputs.changed == 'true'
         run: pnpm --filter "design-system-demo..." build
 
+      - name: Install netlify cli
+        if: steps.check.outputs.changed == 'true'
+        run: pnpm -g i netlify-cli@15
+
       # Publish demo only if changesets published any packages
       - name: Publish demo app to netlify
         id: netlify
