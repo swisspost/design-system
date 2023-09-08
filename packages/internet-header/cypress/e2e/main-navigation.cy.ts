@@ -4,6 +4,7 @@ import { prepare } from '../support/prepare-story';
 describe('main-navigation', () => {
   beforeEach(() => {
     prepare('Internet Header/Header', 'Default');
+    cy.changeArg('language', 'de');
   });
 
   it('should not have any highlight when active route is false', async () => {
@@ -28,6 +29,7 @@ describe('main-navigation', () => {
     const activeConfig = JSON.parse(JSON.stringify(testConfiguration));
     activeConfig.de.header.navMain[0].isActive = true;
     prepare('Internet Header/Header', 'Default', activeConfig);
+    cy.changeArg('language', 'de');
     cy.get('swisspost-internet-header')
       .shadow()
       .find('.flyout-link.active, .main-link.active')

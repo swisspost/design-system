@@ -154,6 +154,8 @@ const meta: Meta = {
             <p class="fake-content my-big"></p>
             <p class="fake-content my-big"></p>
             <p class="fake-content my-big"></p>
+            <p class="fake-content my-big"></p>
+            <p class="fake-content my-big"></p>
           </div>
         </div>
       `,

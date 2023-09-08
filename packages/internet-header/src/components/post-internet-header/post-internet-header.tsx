@@ -315,7 +315,7 @@ export class PostInternetHeader {
   @Watch('stickyness')
   handleStickynessChange(newValue: StickynessOptions) {
     state.stickyness = newValue;
-    this.updateLogoAnimation();
+    if (typeof this.updateLogoAnimation === 'function') this.updateLogoAnimation();
   }
 
   private handleClickOutsideBound = this.handleClickOutside.bind(this);

@@ -32,6 +32,7 @@ describe('login', () => {
 
         // Intercept the request to the config API and return a static response
         prepare('Internet Header/Header', 'Default', config);
+        cy.changeArg('language', 'de');
 
         // Assert the header is hydrated
         cy.get('swisspost-internet-header').should('have.class', 'hydrated');
@@ -49,6 +50,7 @@ describe('login', () => {
         config.de!.header.showJobsLoginWidget = true;
         config.de!.header.isLoginWidgetHidden = false;
         prepare('Internet Header/Header', 'Default', config);
+        cy.changeArg('language', 'de');
         console.warn(config.de?.header.loginWidgetOptions);
         cy.get('swisspost-internet-header').should('have.class', 'hydrated');
         cy.get('a.login-button').should('exist').and('be.visible');
@@ -62,6 +64,7 @@ describe('login', () => {
         config.de!.header.showJobsLoginWidget = false;
         config.de!.header.isLoginWidgetHidden = false;
         prepare('Internet Header/Header', 'Default', config);
+        cy.changeArg('language', 'de');
         cy.get('swisspost-internet-header').should('have.class', 'hydrated');
         cy.get('.klp-widget-anonymous').should('exist');
       });

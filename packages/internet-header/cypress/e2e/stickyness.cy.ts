@@ -17,7 +17,7 @@ describe('stickyness', () => {
     cy.changeArg('stickyness', 'minimal');
     cy.get('post-meta-navigation').should('be.inViewport');
     cy.scrollTo('bottom');
-    cy.get('swisspost-internet-footer').should('be.inViewport');
+    cy.get('.fake-content:last-of-type').should('be.inViewport');
     cy.get('swisspost-internet-header').should('not.be.inViewport');
     cy.get('post-meta-navigation').should('not.be.inViewport');
     cy.scrollTo('center');
