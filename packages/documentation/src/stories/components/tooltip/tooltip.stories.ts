@@ -43,14 +43,14 @@ const meta: Meta = {
       name: 'Slot',
       control: false,
       description:
-        'The tooltip default slot accepts any <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a> like `<span>` or `<post-icon>`, but no interactive content like `<a>` or `<button>` and no block level content like `<div>` or `p`.',
+        'The tooltip default slot accepts any <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a> like `<span>` or `<post-icon>`, but no interactive content like `<a>` or `<button>`.',
     },
   },
 };
 
 function render(args: Args) {
   // Just for fun
-  const message = args.background === 'bg-yellow' ? args.message.replace('👋', '👋🏿') : args.message;
+  const message = args.background === 'bg-yellow' ? args.message.replace('👋', '🤘🏾') : args.message;
 
   return html`
     <button
