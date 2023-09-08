@@ -1,6 +1,7 @@
 import { Meta, Canvas, Controls, Source } from '@storybook/blocks';
 import * as RadiobuttonCardStories from './radiobutton-card.stories';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import firefoxFallbackSnippet from './firefox-fallback.ts?raw';
 
 <Meta of={RadiobuttonCardStories} />
 
@@ -11,12 +12,20 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
   selecting services.
 </div>
 
+<Canvas of={RadiobuttonCardStories.Default} />
+<div className="hide-col-default">
+  <Controls of={RadiobuttonCardStories.Default} />
+</div>
+
+## Firefox fallback
+
 <div className="alert alert-info">
-  <h2 class="h5">Firefox fallback classes</h2>
-  Firefox currently does not support <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">
+  Firefox currently does not support{' '}
+  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">
     the new <abbr title="Cascading Style Sheets">CSS</abbr> :has pseudo-selector
-  </a>. As a fallback, the following states have to be mirrored on the top level element in the form
-  of classes (see below for a snippet):
+  </a>
+  . As a fallback, the following states have to be mirrored on the top level element in the form of
+  classes:
   <ul>
     <li>
       <code>checked</code>
@@ -31,39 +40,13 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
       <code>is-invalid</code>
     </li>
   </ul>
-  Check <a href="https://caniuse.com/css-has">caniuse :has()</a> to check if you still need the fallback.
+  Check <a href="https://caniuse.com/css-has">caniuse :has()</a> to check if you still need the
+  fallback.
 </div>
-
-<Canvas of={RadiobuttonCardStories.Default} />
-<div className="hide-col-default">
-  <Controls of={RadiobuttonCardStories.Default} />
-</div>
-
-## Firefox fallback snippet
 
 This snippet adds a global event listener to mirror the `focused` and `checked` states to the parent of the input. This fallback has to be applied as long as Firefox does not support the `:has` selector.
 
-<Source
-  code={`
-['focusin', 'focusout', 'input'].forEach(t => document.addEventListener(t, e => {
-  if (!(e.target instanceof Element) || e.target.nodeName !== 'input') return; 
-  const parent = e.target.parentElement;
-  if (!parent?.classList.contains('radio-button-card')) return;
-  switch (e.type) {
-    case 'focusin':
-      parent.classList.add('focused');
-      break;
-    case 'focusout':
-      parent.classList.remove('focused');
-      break;
-    case 'input':
-      parent.classList.toggle('checked', (e.target as HTMLInputElement).checked);
-      break;
-  }
-}));
-`}
-  language="typescript"
-/>
+<Source code={firefoxFallbackSnippet} dark={true} language="typescript" />
 
 ## Grouping
 
