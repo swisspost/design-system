@@ -19,6 +19,7 @@
 
 div {
   position: absolute;
+  z-index: commons.$zindex-tooltip;
 
   width: max-content;
   max-width: 30ch;
