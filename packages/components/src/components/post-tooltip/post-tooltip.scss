@@ -17,13 +17,13 @@
   @include color-mx.colored-background(color.$gray-80);
 }
 
-p {
+div {
   position: absolute;
 
   width: max-content;
   max-width: 30ch;
-  padding: spacing.$size-micro spacing.$size-mini;
   margin: 0;
+  padding: spacing.$size-micro spacing.$size-mini;
 
   color: inherit;
   background-color: inherit;

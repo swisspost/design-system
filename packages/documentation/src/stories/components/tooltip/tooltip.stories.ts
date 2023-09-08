@@ -46,13 +46,6 @@ const meta: Meta = {
         'The tooltip default slot accepts any <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a> like `<span>` or `<post-icon>`, but no interactive content like `<a>` or `<button>` and no block level content like `<div>` or `p`.',
     },
   },
-  // Provide some margin for the tooltip to fit comfortably inside the iFrame with overflow: hidden
-  decorators: [
-    story =>
-      html`
-        <div style="margin-block: 5rem;">${story()}</div>
-      `,
-  ],
 };
 
 function render(args: Args) {
@@ -75,3 +68,50 @@ function render(args: Args) {
 
 export default meta;
 export const Default: StoryObj = {};
+
+export const Paragraph: StoryObj = {
+  render: (args: Args) => {
+    return html`
+      <p>
+        This is a paragraph element with a
+        <a href="#" data-tooltip-target="tooltip-two">tooltipped link</a>
+        inside.
+      </p>
+      <post-tooltip
+        class="hydrated ${args.background}"
+        id="tooltip-two"
+        placement=${args.placement}
+      >
+        This is not the link you are looking for
+      </post-tooltip>
+    `;
+  },
+};
+
+export const Multiple: StoryObj = {
+  render: (args: Args) => {
+    return html`
+      <button
+        class="btn btn-secondary btn-large"
+        data-tooltip-target="tooltip-three"
+        aria-describedby="tooltip-three"
+      >
+        Tooltip button
+      </button>
+      <button
+        class="btn btn-secondary btn-large"
+        data-tooltip-target="tooltip-three"
+        aria-describedby="tooltip-three"
+      >
+        Same tooltip, different button
+      </button>
+      <post-tooltip
+        class="hydrated ${args.background}"
+        id="tooltip-three"
+        placement=${args.placement}
+      >
+        I'm the same, no matter what
+      </post-tooltip>
+    `;
+  },
+};

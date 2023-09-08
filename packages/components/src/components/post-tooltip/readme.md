@@ -17,7 +17,7 @@
 
 ### `hideTooltip() => Promise<void>`
 
-Hide this tooltip
+Programmatically hide this tooltip
 
 #### Returns
 
@@ -25,9 +25,9 @@ Type: `Promise<void>`
 
 
 
-### `showTooltip() => Promise<void>`
+### `showTooltip(target: HTMLElement) => Promise<void>`
 
-Show this tooltip
+Programmatically display the tooltip
 
 #### Returns
 
@@ -35,7 +35,7 @@ Type: `Promise<void>`
 
 
 
-### `toggleTooltip(force?: boolean) => Promise<void>`
+### `toggleTooltip(target: HTMLElement, force?: boolean) => Promise<void>`
 
 Toggle tooltip display
 

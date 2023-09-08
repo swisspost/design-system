@@ -52,10 +52,31 @@ export class PostTooltip {
    */
   @Prop() readonly class: string;
 
-  private tooltipRef: HTMLElement & IPopoverElement;
+  private tooltipRef: HTMLDivElement & IPopoverElement;
   private arrowRef: HTMLElement;
-  private trigger: HTMLElement;
   private clearAutoupdate: () => void;
+  private localShowTooltip: (e: Event) => Promise<void>;
+  private localHideTooltip: () => Promise<void>;
+  private localToggleTooltip: () => Promise<void>;
+  private eventTarget: Element;
+
+  constructor() {
+    // Create local versions of event handlers for de-registration
+    // https://stackoverflow.com/questions/33859113/javascript-removeeventlistener-not-working-inside-a-class
+    this.localShowTooltip = e => this.showTooltip(e.target as HTMLElement);
+    this.localHideTooltip = this.hideTooltip.bind(this);
+    this.localToggleTooltip = this.toggleTooltip.bind(this);
+  }
+
+  private get triggers() {
+    return document.querySelectorAll(`[data-tooltip-target="${this.host.id}"]`);
+  }
+
+  componentWillLoad() {
+    // Append tooltip host to the end of the body to get around overflow: hidden restrictions
+    // for browsers that don't support popover yet
+    document.body.appendChild(this.host);
+  }
 
   connectedCallback() {
     if (!this.host.id) {
@@ -63,35 +84,39 @@ export class PostTooltip {
         'No id set: <post-tooltip> must have an id, linking it to it\'s target element using the data-tooltip-target attribute.',
       );
     }
-
-    this.trigger = document.querySelector(`[data-tooltip-target="${this.host.id}"]`);
-
-    if (!this.trigger) {
+    
+    const triggers = this.triggers;
+    
+    if (!triggers) {
       throw new Error(
         `No target found for <post-tooltip id="${this.host.id}">, please add the 'data-tooltip-target="${this.host.id}" attribute to the target element.`,
-      );
+        );
     }
 
     // Patch popovertargetaction="interest" until it's implemented
     // https://github.com/openui/open-ui/issues/767#issuecomment-1654177227
-    this.trigger.addEventListener('mouseenter', this.showTooltip.bind(this));
-    this.trigger.addEventListener('mouseleave', this.hideTooltip.bind(this));
-    this.trigger.addEventListener('focus', this.showTooltip.bind(this));
-    this.trigger.addEventListener('blur', this.hideTooltip.bind(this));
-    this.trigger.addEventListener('long-press', this.showTooltip.bind(this));
+    triggers.forEach(trigger => this.patchPopoverTargetActionInterest(trigger));
+  }
+
+  private patchPopoverTargetActionInterest(trigger: Element) {
+    trigger.addEventListener('mouseenter', this.localShowTooltip);
+    trigger.addEventListener('mouseleave', this.localHideTooltip);
+    trigger.addEventListener('focus', this.localShowTooltip);
+    trigger.addEventListener('blur', this.localHideTooltip);
+    trigger.addEventListener('long-press', this.localShowTooltip);
 
     // Patch missing aria-describedby attribute on the trigger without overriding existing values
-    const describedBy = this.trigger.getAttribute('aria-describedby');
+    const describedBy = trigger.getAttribute('aria-describedby');
     if (!describedBy?.includes(this.host.id)) {
       const newDescribedBy = describedBy
         ? [...describedBy.split(' '), this.host.id].join(' ')
         : this.host.id;
-      this.trigger.setAttribute('aria-describedby', newDescribedBy);
+      trigger.setAttribute('aria-describedby', newDescribedBy);
     }
 
     // Patch missing focus ability on the trigger element
-    if (!isFocusable(this.trigger)) {
-      this.trigger.setAttribute('tabindex', '0');
+    if (!isFocusable(trigger)) {
+      trigger.setAttribute('tabindex', '0');
     }
   }
 
@@ -99,12 +124,14 @@ export class PostTooltip {
    * Remove a bunch of event listeners if the tooltip gets removed from the DOM
    */
   disconnectedCallback() {
-    this.trigger.removeEventListener('mouseenter', this.showTooltip);
-    this.trigger.removeEventListener('mouseleave', this.hideTooltip);
-    this.trigger.removeEventListener('focus', this.showTooltip);
-    this.trigger.removeEventListener('blur', this.hideTooltip);
-    this.trigger.removeEventListener('long-press', this.showTooltip);
-    this.tooltipRef.removeEventListener('toggle', this.handleToggle);
+    this.triggers.forEach(trigger => {
+      trigger.removeEventListener('mouseenter', this.localShowTooltip);
+      trigger.removeEventListener('mouseleave', this.localHideTooltip);
+      trigger.removeEventListener('focus', this.localShowTooltip);
+      trigger.removeEventListener('blur', this.localHideTooltip);
+      trigger.removeEventListener('long-press', this.localShowTooltip);
+    });
+    if (this.tooltipRef) this.tooltipRef.removeEventListener('beforetoggle', this.localToggleTooltip);
     if (typeof this.clearAutoupdate === 'function') this.clearAutoupdate();
   }
 
@@ -112,38 +139,39 @@ export class PostTooltip {
     // Has the benefit of rendering the tooltip without the popover attribute which
     // causes the tooltip to show up on the page if it's not linked to a target. This makes
     // the error obvious.
-    if (!this.host.id || !this.trigger) return false;
+    if (!this.host.id || !this.triggers) return false;
 
-    // Can't figure out how to extend HTMLAttributes<HTMLParagraphElement> to support the popover attribute
     this.tooltipRef.setAttribute('popover', '');
     this.tooltipRef.addEventListener('beforetoggle', this.handleToggle.bind(this));
-
-    // Initially position tooltip to prevent a flash of unpositioned tooltip
-    this.positionTooltip();
   }
 
   /**
-   * Show this tooltip
+   * Programmatically display the tooltip
+   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
    */
   @Method()
-  async showTooltip() {
+  async showTooltip(target: HTMLElement) {
+    this.eventTarget = target;
     this.tooltipRef.showPopover();
   }
 
   /**
-   * Hide this tooltip
+   * Programmatically hide this tooltip
    */
   @Method()
   async hideTooltip() {
+    this.eventTarget = null;
     this.tooltipRef.hidePopover();
   }
 
   /**
    * Toggle tooltip display
+   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
    * @param force Pass true to always show or false to always hide
    */
   @Method()
-  async toggleTooltip(force?: boolean) {
+  async toggleTooltip(target: HTMLElement, force?: boolean) {
+    this.eventTarget = target;
     this.tooltipRef.togglePopover(force);
   }
 
@@ -168,7 +196,7 @@ export class PostTooltip {
    */
   private startAutoupdates() {
     this.clearAutoupdate = autoUpdate(
-      this.trigger,
+      this.eventTarget,
       this.tooltipRef,
       this.positionTooltip.bind(this),
     );
@@ -182,7 +210,7 @@ export class PostTooltip {
       y,
       middlewareData,
       placement: currentPlacement,
-    } = await computePosition(this.trigger, this.tooltipRef, {
+    } = await computePosition(this.eventTarget, this.tooltipRef, {
       placement: this.placement || 'top',
       middleware: [
         flip(),
@@ -213,9 +241,10 @@ export class PostTooltip {
   render() {
     return (
       <Host data-version={version}>
-        <p
+        <div
           role="tooltip"
-          ref={(el: HTMLParagraphElement & IPopoverElement) => (this.tooltipRef = el)}
+          tabindex="-1"
+          ref={(el: HTMLDivElement & IPopoverElement) => (this.tooltipRef = el)}
         >
           <span
             class="arrow"
@@ -224,7 +253,7 @@ export class PostTooltip {
             }}
           ></span>
           <slot>Hi there 👋</slot>
-        </p>
+        </div>
       </Host>
     );
   }

@@ -83,7 +83,7 @@ export namespace Components {
          */
         "class": string;
         /**
-          * Hide this tooltip
+          * Programmatically hide this tooltip
          */
         "hideTooltip": () => Promise<void>;
         /**
@@ -91,14 +91,16 @@ export namespace Components {
          */
         "placement"?: Placement;
         /**
-          * Show this tooltip
+          * Programmatically display the tooltip
+          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
          */
-        "showTooltip": () => Promise<void>;
+        "showTooltip": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle tooltip display
+          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
           * @param force Pass true to always show or false to always hide
          */
-        "toggleTooltip": (force?: boolean) => Promise<void>;
+        "toggleTooltip": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
