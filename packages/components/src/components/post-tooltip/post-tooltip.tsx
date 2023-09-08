@@ -90,7 +90,7 @@ export class PostTooltip {
     if (!triggers) {
       throw new Error(
         `No target found for <post-tooltip id="${this.host.id}">, please add the 'data-tooltip-target="${this.host.id}" attribute to the target element.`,
-        );
+      );
     }
 
     // Patch popovertargetaction="interest" until it's implemented
