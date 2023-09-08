@@ -1,6 +1,7 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
-import LinkTo from '@storybook/addon-links/react';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as CardStories from './card.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import LinkTo from '@storybook/addon-links/react';
 
 <Meta of={CardStories} />
 
@@ -14,27 +15,15 @@ Built with flexbox, they offer easy alignment and mix well with other components
 
 They have no fixed width to start, so they’ll naturally fill the full width of its parent element.
 This is easily customizable using the grid for example,
-for more details read our <LinkTo kind="foundations-layout" story="docs">layout docs</LinkTo>.
+for more details read our
+<LinkTo kind="foundations-layout" story="docs">layout docs</LinkTo>.
 
-<Canvas of={CardStories.Default}/>
+<Canvas of={CardStories.Default} />
 <div className="hide-col-default">
   <Controls of={CardStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/card.scss';
-```
+<StylesPackageImport components={["card"]} />
 
 ## Examples
 
@@ -60,7 +49,8 @@ Use card groups to render cards as a single, attached element with equal width a
 ### Bad example
 
 <div className="alert alert-danger mb-3">
-  Never use text with a background image because you can't ensure it is readable by everyone for all languages and browser sizes.
+  Never use text with a background image because you can't ensure it is readable by everyone for all languages and
+  browser sizes.
 </div>
 
 <Canvas of={CardStories.BackgroundImage} />

@@ -1,5 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as InputStories from './input.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={InputStories} />
 
@@ -17,26 +18,7 @@ Custom input elements need only the class `.form-control` to trigger the custom 
   <Controls of={InputStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/forms.scss';
-
-// required if you use floating-labels
-@use '@swisspost/design-system-styles/components/floating-label.scss';
-
-// required if you use validation feedbacks
-@use '@swisspost/design-system-styles/components/form-feedback.scss';
-```
+<StylesPackageImport components={["forms"]} required={{ 'floating-label': true, 'form-feedback': true }} />
 
 ## Concrete Examples of Application
 
@@ -47,7 +29,7 @@ The following examples show the different characteristics of the component. Thes
 Wrap a pair of `<input>` and `<label>` elements in a `.form-floating` container to enable floating labels.<br/>
 But note that the `<input>` element must come first, so we can ensure the correct styles.
 
-<Canvas of={InputStories.FloatingLabel} />
+    <Canvas of={InputStories.FloatingLabel} />
 
 ### Sizing
 

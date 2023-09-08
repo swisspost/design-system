@@ -1,9 +1,11 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
 import { forEach } from '../../../utils/react';
 import * as ColorStories from './color.stories';
 import { ColorSwatch, SCSS_VARIABLES } from './color.blocks';
 import './color.styles.scss';
+import SampleCss from './color-use-css.sample.css?raw';
+import SampleScss from './color-use-scss.sample.scss?raw';
 
 <Meta of={ColorStories} />
 
@@ -13,16 +15,18 @@ In the following, you can see the Swiss Post specific colors.<br/>
 They theme our elements and components.
 
 <div className="alert alert-info alert-md mt-regular">
-  For accessibility reasons, you should always make sure that your individually created color combinations are sufficiently contrasting. There may be a better solution than coloring elements individually.
+  For accessibility reasons, you should always make sure that your individually created color combinations are
+  sufficiently contrasting. There may be a better solution than coloring elements individually.
 
-For example, use the <LinkTo kind="utilities-background" story="docs">background utilities</LinkTo> to get elements with a specific background color and the best possible contrast color for its content.
+  For example, use the <LinkTo kind="utilities-background" story="docs">background utilities</LinkTo> to get elements
+  with a specific background color and the best possible contrast color for its content.
 
 </div>
 
 ## Brand colors
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.brand, function (data) {
+  {forEach(SCSS_VARIABLES.brand, function(data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
@@ -30,7 +34,7 @@ For example, use the <LinkTo kind="utilities-background" story="docs">background
 ## Shades of gray
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.gray, function (data) {
+  {forEach(SCSS_VARIABLES.gray, function(data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
@@ -38,7 +42,7 @@ For example, use the <LinkTo kind="utilities-background" story="docs">background
 ## Page Backgrounds
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.pagebackgrounds, function (data) {
+  {forEach(SCSS_VARIABLES.pagebackgrounds, function(data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} noCSS />;
   })}
 </section>
@@ -46,7 +50,7 @@ For example, use the <LinkTo kind="utilities-background" story="docs">background
 ## Signal colors
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.contextual, function (data) {
+  {forEach(SCSS_VARIABLES.contextual, function(data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
@@ -54,7 +58,7 @@ For example, use the <LinkTo kind="utilities-background" story="docs">background
 ## Dark accent colors
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.accent.dark, function (data) {
+  {forEach(SCSS_VARIABLES.accent.dark, function(data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
@@ -62,7 +66,7 @@ For example, use the <LinkTo kind="utilities-background" story="docs">background
 ## Bright accent colors
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.accent.bright, function (data) {
+  {forEach(SCSS_VARIABLES.accent.bright, function(data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
@@ -73,20 +77,17 @@ For example, use the <LinkTo kind="utilities-background" story="docs">background
 
 CSS variables are globally available on your page.
 
-```css dark
-.my-element {
-  property: var(--post-dark);
-}
-```
+<Source
+  code={SampleCss}
+  language="css"
+/>
 
 ## Sass
 
 Import the color variables from the `core` file with `@use`. This way, the color variables are scoped and don't mix with your own variables.
 
-```scss dark
-@use '@swisspost/design-system-styles/core' as post;
+<Source
+  code={SampleScss}
+  language="scss"
+/>
 
-.my-element {
-  property: post.$dark;
-}
-```

@@ -1,5 +1,11 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/blocks';
 import { BADGE } from '../../../.storybook/constants';
+import SampleFrameworks from './internet-header-frameworks.sample.html?raw';
+import SampleLazyLoaded from './internet-header-lazy-loaded.sample.js?raw';
+import SampleBareComponent from './internet-header-bare-component.sample.js?raw';
+import SampleCDNLazyLoaded from './internet-header-cdn-lazy-loaded.sample.html?raw';
+import SampleCDNBareComponent from './internet-header-cdn-bare-component.sample.html?raw';
+import { SourceDarkMode } from '../../../.storybook/preview';
 
 <Meta
   title="Internet Header/Getting Started"
@@ -12,11 +18,11 @@ import { BADGE } from '../../../.storybook/constants';
 
 The header for client-facing applications.
 
-<ul>
-  <li><a href="#installation" target="_self">Installation</a></li>
-  <li><a href="#configuration" target="_self">Configuration</a></li>
-  <li><a href="#help" target="_self">Help</a></li>
-</ul>
+    <ul>
+    <li><a href="#installation" target="_self">Installation</a></li>
+    <li><a href="#configuration" target="_self">Configuration</a></li>
+    <li><a href="#help" target="_self">Help</a></li>
+    </ul>
 
 ## Installation
 
@@ -24,8 +30,8 @@ The header for client-facing applications.
 
 Internet-header package provide two versions:
 
-* Lazy-loaded (default): it allows better performance by dynamically load the component when used, so it reduces bundle size, startup time and first paint.
-* Bare component: if you already manage the lazy-loading or don't need it for any reason, you can use the component without any overhead.
+  * Lazy-loaded (default): it allows better performance by dynamically load the component when used, so it reduces bundle size, startup time and first paint.
+  * Bare component: if you already manage the lazy-loading or don't need it for any reason, you can use the component without any overhead.
 
 ### Angular, Vue.js, React (or any other bundler setup)
 
@@ -35,33 +41,33 @@ bundle and deliver the header with your own code.
 
 When working with Angular or any other framework, the easiest installation method is via npm.
 
-```shell
-npm install @swisspost/internet-header
-```
+<Source
+  code={`npm install @swisspost/internet-header`}
+  dark={SourceDarkMode}
+  language="bash"
+/>
 
-```html
-<!-- index.html -->
-<body>
-  <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
-  ...
-</body>
-```
+<Source
+  code={SampleFrameworks}
+  dark={SourceDarkMode}
+  language="html"
+/>
 
 #### Lazy-loaded
 
-```javascript
-// main.ts / index.js / ...
-import { defineCustomElements } from '@swisspost/internet-header/loader';
-
-defineCustomElements();
-```
+<Source
+  code={SampleLazyLoaded}
+  dark={SourceDarkMode}
+  language="javascript"
+/>
 
 #### Bare component
 
-```javascript
-// main.ts / index.js / ...
-import '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.esm';
-```
+<Source
+  code={SampleBareComponent}
+  dark={SourceDarkMode}
+  language="javascript"
+/>
 
 ### Include from a CDN
 
@@ -75,33 +81,19 @@ Available CDNs:
 
 #### Lazy-loaded
 
-```html
-<!DOCTYPE html>
-<html>
-  <body>
-    <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
-  </body>
-  <script type="module">
-    import { defineCustomElements } from '{cdnUrl}@{version}/loader/index.es2017.js';
-    defineCustomElements();
-  </script>
-</html>
-```
+<Source
+  code={SampleCDNLazyLoaded}
+  dark={SourceDarkMode}
+  language="html"
+/>
+
 #### Bare component
 
-```html
-<!-- index.html -->
-<head>
-  <script
-    async
-    type="module"
-    src="{cdnUrl}@{version}/dist/swisspost-internet-header/swisspost-internet-header.esm.js"
-  ></script>
-</head>
-<body>
-  <swisspost-internet-header project="your-project-id"></swisspost-internet-header>
-</body>
-```
+<Source
+  code={SampleCDNBareComponent}
+  dark={SourceDarkMode}
+  language="html"
+/>
 
 ## Configuration
 
