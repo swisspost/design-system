@@ -1,5 +1,6 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as SelectStories from './select.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={SelectStories} />
 
@@ -17,27 +18,8 @@ Custom `<select>` menus need only the class `.form-select` to trigger the custom
   <Controls of={SelectStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/forms.scss';
-@use '@swisspost/design-system-styles/components/form-select.scss';
-
-// required if you use floating-labels
-@use '@swisspost/design-system-styles/components/floating-label.scss';
-
-// required if you use validation feedbacks
-@use '@swisspost/design-system-styles/components/form-feedback.scss';
-```
+<StylesPackageImport components={["forms", "form-select"]}
+                     required={{ 'floating-label': true, 'form-feedback': true }} />
 
 ## Concrete Examples of Application
 

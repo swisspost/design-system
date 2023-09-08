@@ -1,5 +1,22 @@
 # @swisspost/design-system-demo
 
+## 6.1.2
+
+### Patch Changes
+
+- Patched the documentation release workflow (by [@gfellerph](https://github.com/gfellerph) with [#1896](https://github.com/swisspost/design-system/pull/1896))
+
+## 6.1.1
+
+### Patch Changes
+
+- Added the attribute type="button" to the datepicker to prevent submitting a form on click when the datepicker is directly integrated as shown on the demo page. (by [@b1aserlu](https://github.com/b1aserlu) with [#1856](https://github.com/swisspost/design-system/pull/1856))
+
+- Deprecated the `.pi-calendar` class in favor of the `.pi-3203` class to display the calendar icon in the datepicker. (by [@alizedebray](https://github.com/alizedebray) with [#1806](https://github.com/swisspost/design-system/pull/1806))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.0
+  - @swisspost/design-system-intranet-header@4.0.10
+
 ## 6.1.0
 
 ### Minor Changes

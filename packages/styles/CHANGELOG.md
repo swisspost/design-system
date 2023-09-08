@@ -1,5 +1,25 @@
 # @swisspost/design-system-styles
 
+## 6.4.0
+
+### Minor Changes
+
+- Added the checkbox and radio-button card pattern. These two components are now available in the styles package (by [@gfellerph](https://github.com/gfellerph) with [#1607](https://github.com/swisspost/design-system/pull/1607))
+
+### Patch Changes
+
+- Deprecated sizes "regular" and "medium" for text inputs, textareas and select boxes. Future major versions of the Design System will only support the sizes "small" and "large". This change will make it easier to decide what variant to use where: small for internal applications, large for customer facing external applications. (by [@gfellerph](https://github.com/gfellerph) with [#1837](https://github.com/swisspost/design-system/pull/1837))
+
+- Fixed a bug with the ngb-dropdown where the chevron was not shown on primary buttons. This use case is now documented and white chevrons are shown. (by [@gfellerph](https://github.com/gfellerph) with [#1890](https://github.com/swisspost/design-system/pull/1890))
+
+- Fixed the `.pi-calendar` class not showing an icon in the datepicker. (by [@alizedebray](https://github.com/alizedebray) with [#1806](https://github.com/swisspost/design-system/pull/1806))
+
+- Fixed datepicker input value that was overlapping with the calendar button on very narrow datepickers. (by [@gfellerph](https://github.com/gfellerph) with [#1886](https://github.com/swisspost/design-system/pull/1886))
+
+- Fixed a problem where textarea and multiselect had an unexpected height when regular size (form-control-rg / form-select-rg) was used. (by [@b1aserlu](https://github.com/b1aserlu) with [#1830](https://github.com/swisspost/design-system/pull/1830))
+
+- Added a new post-tabs component. (by [@alizedebray](https://github.com/alizedebray) with [#1181](https://github.com/swisspost/design-system/pull/1181))
+
 ## 6.3.0
 
 ### Minor Changes

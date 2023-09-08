@@ -43,20 +43,41 @@
   }
 }
 
+$gray-arrow-down: icons.get-colored-svg-url('2052', color.$gray-80);
+$white-arrow-down: icons.get-colored-svg-url('2052', color.$white);
+$gray-arrow-up: icons.get-colored-svg-url('2051', color.$gray-80);
+$white-arrow-up: icons.get-colored-svg-url('2051', color.$white);
+$hcm-arrow-down: icons.get-colored-svg-url('2052', buttonText);
+$hcm-arrow-up: icons.get-colored-svg-url('2052', buttonText);
+
 .dropdown-toggle {
   &::after {
     @extend %toggler-icon;
-    background-image: url(icons.get-colored-svg-url('2052', color.$gray-80));
+    background-image: url($gray-arrow-down);
     @include utilities.high-contrast-mode() {
-      background-image: url(icons.get-colored-svg-url('2052', color.$white));
+      background-image: url($hcm-arrow-down);
+    }
+  }
+
+  &.btn-primary::after {
+    background-image: url($white-arrow-down);
+    @include utilities.high-contrast-mode() {
+      background-image: url($hcm-arrow-down);
     }
   }
 
   &[aria-expanded='true'] {
     &::after {
-      background-image: url(icons.get-colored-svg-url('2051', color.$gray-80));
+      background-image: url($gray-arrow-up);
       @include utilities.high-contrast-mode() {
-        background-image: url(icons.get-colored-svg-url('2051', color.$white));
+        background-image: url($hcm-arrow-up);
+      }
+    }
+
+    &.btn-primary::after {
+      background-image: url($white-arrow-up);
+      @include utilities.high-contrast-mode() {
+        background-image: url($hcm-arrow-up);
       }
     }
   }
@@ -64,17 +85,31 @@
   .dropup & {
     &::after {
       @extend %toggler-icon;
-      background-image: url(icons.get-colored-svg-url('2051', color.$gray-80));
+      background-image: url($gray-arrow-up);
       @include utilities.high-contrast-mode() {
-        background-image: url(icons.get-colored-svg-url('2051', color.$white));
+        background-image: url($hcm-arrow-up);
+      }
+    }
+
+    &.btn-primary::after {
+      background-image: url($white-arrow-up);
+      @include utilities.high-contrast-mode() {
+        background-image: url($hcm-arrow-up);
       }
     }
 
     &[aria-expanded='true'] {
       &::after {
-        background-image: url(icons.get-colored-svg-url('2052', color.$gray-80));
+        background-image: url($gray-arrow-down);
         @include utilities.high-contrast-mode() {
-          background-image: url(icons.get-colored-svg-url('2052', color.$white));
+          background-image: url($hcm-arrow-down);
+        }
+      }
+
+      &.btn-primary::after {
+        background-image: url($white-arrow-down);
+        @include utilities.high-contrast-mode() {
+          background-image: url($hcm-arrow-down);
         }
       }
     }

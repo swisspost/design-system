@@ -100,14 +100,15 @@ const meta: Meta = {
     },
     validation: {
       name: 'Validation',
-      description: 'Defines the validation state of the checkbox and controls the display of the corresponding return' +
+      description:
+        'Defines the validation state of the checkbox and controls the display of the corresponding return' +
         ' message.',
       control: {
         type: 'radio',
         labels: {
-          'null': 'Default',
-          'valid': 'Valid',
-          'invalid': 'Invalid',
+          null: 'Default',
+          valid: 'Valid',
+          invalid: 'Invalid',
         },
       },
       options: ['null', 'valid', 'invalid'],
@@ -136,9 +137,9 @@ const CHECKED_STATE_TOGGLE_MAP: Record<string, string> = {
 };
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
-  'null': undefined,
-  'valid': false,
-  'invalid': true,
+  null: undefined,
+  valid: false,
+  invalid: true,
 };
 
 function getLabel({ label }: Args, { id }: StoryContext) {
@@ -170,13 +171,6 @@ function renderCheckbox(args: Args, context: StoryContext) {
 
   const handleChange = (e: Event) => {
     updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
-
-    if (document.activeElement === e.target) {
-      setTimeout(() => {
-        const element: HTMLInputElement | null = document.querySelector(`#${context.id}`);
-        if (element) element.focus();
-      }, 25);
-    }
   };
 
   setTimeout(function () {
@@ -193,7 +187,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
         aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
         aria-label=${ifDefined(args.hiddenLabel ? args.label : undefined)}
         ?disabled=${args.disabled}
-        ?checked=${CHECKED_STATE_MAP[args.checked]}
+        .checked=${CHECKED_STATE_MAP[args.checked]}
         @change=${handleChange}
       />
       ${args.hiddenLabel ? nothing : getLabel(args, context)}
@@ -229,16 +223,19 @@ export const Inline: Story = {
     <fieldset>
       <legend class=${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}>Legendo</legend>
       ${['Unua Etikedo', 'Dua Etikedo', 'Tria Etikedo', 'Kvara  Etikedo'].map((label, index) =>
-        renderCheckbox({ ...args, label, checked: false }, { ...context, id: `${context.id}-${index}` })
+        renderCheckbox(
+          { ...args, label, checked: false },
+          { ...context, id: `${context.id}-${index}` },
+        ),
       )}
     </fieldset>
   `,
   parameters: {
     controls: {
-      include: ['Hidden Legend']
+      include: ['Hidden Legend'],
     },
   },
   args: {
     inline: true,
-  }
+  },
 };
