@@ -19,7 +19,7 @@ import 'long-press-event';
 
 import { version } from '../../../package.json';
 
-const sidemap = {
+const SIDE_MAP = {
   top: 'bottom',
   right: 'left',
   bottom: 'top',
@@ -201,7 +201,7 @@ export class PostTooltip {
     // Tutorial: https://codesandbox.io/s/mystifying-kare-ee3hmh?file=/src/index.js
     const side = currentPlacement.split('-')[0];
     const { x: arrowX, y: arrowY } = middlewareData.arrow;
-    const staticSide = sidemap[side];
+    const staticSide = SIDE_MAP[side];
 
     Object.assign(this.arrowRef.style, {
       top: arrowY ? `${arrowY}px` : '',
