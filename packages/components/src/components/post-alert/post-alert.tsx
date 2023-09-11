@@ -1,4 +1,5 @@
-import { Component, Element, h, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
+import { version } from '../../../package.json';
 import { checkNonEmpty, checkOneOf, checkPattern, checkType, onTransitionEnd } from '../../utils';
 
 @Component({
@@ -135,24 +136,26 @@ export class PostAlert {
 
   render() {
     return (
-      <div class={this.alertClasses.join(' ')} role="alert">
-        {this.dismissible && (
-          <button
-            aria-label={this.dismissLabel}
-            class="btn-close"
-            onClick={() => this.close()}
-            type="button"
-          />
-        )}
+      <Host data-version={version}>
+        <div class={this.alertClasses.join(' ')} role="alert">
+          {this.dismissible && (
+            <button
+              aria-label={this.dismissLabel}
+              class="btn-close"
+              onClick={() => this.close()}
+              type="button"
+            />
+          )}
 
-        {this.hasHeading && (
-          <h4 class="alert-heading">
-            <slot name="heading"/>
-          </h4>
-        )}
+          {this.hasHeading && (
+            <h4 class="alert-heading">
+              <slot name="heading"/>
+            </h4>
+          )}
 
-        <slot/>
-      </div>
+          <slot/>
+        </div>
+      </Host>
     );
   }
 
