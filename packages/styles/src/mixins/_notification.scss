@@ -17,6 +17,7 @@
   $hr-margin-block: map.get(notification.$notification-hr-margin-block-map, $size);
 
   position: relative;
+  box-sizing: border-box;
   min-height: 2 * $padding-y + $icon-size;
   box-shadow: notification.$notification-box-shadow;
   border-radius: notification.$notification-border-radius;
