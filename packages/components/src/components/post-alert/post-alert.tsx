@@ -77,7 +77,7 @@ export class PostAlert {
 
   @Watch('icon')
   validateIcon(newValue = this.icon) {
-    const alertIcon = JSON.parse(newValue);
+    const alertIcon = newValue === 'null' ? null : newValue;
 
     this.toggleAlertClass('no-icon', alertIcon === null);
     this.removeAlertClass(/^pi-/);
