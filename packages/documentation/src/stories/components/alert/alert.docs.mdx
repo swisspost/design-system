@@ -1,34 +1,23 @@
-import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as AlertStories from './alert.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
-<Meta title="Components/Alert" />
+<Meta of={AlertStories} />
 
 # Alert
 
-Provide contextual feedback messages for typical user actions with the handful of available and flexible alert messages.<br/>
+<div className="lead">
+  Provide contextual feedback messages for typical user actions with the handful of available and flexible alert
+  messages.
+</div>
+
 Alerts are available for any length of text, as well as an optional close button.
 By default, alerts are rendered with a contextually appropriate icon.
 
-<Canvas>
-  <Story id="components-alert--default" />
-</Canvas>
-<div className="hide-col-default">
-  <ArgsTable story="^" />
-</div>
+<Canvas of={AlertStories.Default} />
+<Controls of={AlertStories.Default} />
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```css dark
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```css dark
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/alert.scss';
-```
+<StylesPackageImport components={["alert"]} />
 
 ## Specific examples of application
 
@@ -38,9 +27,7 @@ The following examples show some of the different characteristics of the compone
 
 Alerts can also contain additional HTML elements like headings, paragraphs, lists, dividers, and more.
 
-<Canvas>
-  <Story id="components-alert--additional-content" />
-</Canvas>
+<Canvas of={AlertStories.AdditionalContent} />
 
 ### Dismissible
 
@@ -50,9 +37,13 @@ In the end, it's just a button with an `onClick()` event. As this is a CSS-only 
 
 Dismiss buttons without text should always provide a `dismiss-label` prop, which defines the hidden text associated with the button.
 
-<Canvas withSource>
-  <Story id="components-alert--dismissible" />
-</Canvas>
+<Canvas of={AlertStories.Dismissible} />
+
+### Action Buttons
+
+To render an action alert with buttons, the alert element requires an additional class as well as additional HTML content. Thus, everything will be rendered as it should be.
+
+<Canvas of={AlertStories.ActionButtons} />
 
 ### Fixed
 
@@ -60,14 +51,4 @@ A fixed alert (at the bottom of the viewport) is obtained by adding the class `.
 As this is a CSS-only component, you have to define the logic to show/hide/toggle the alert yourself.
 Such an alert is normally also dismissible, so please notice the information for a dismissible alert as well.
 
-<Canvas>
-  <Story id="components-alert--fixed" />
-</Canvas>
-
-### Action Buttons
-
-To render an action alert with buttons, the alert element requires an additional class as well as additional HTML content. Thus, everything will be rendered as it should be.
-
-<Canvas>
-  <Story id="components-alert--action-buttons" />
-</Canvas>
+<Canvas of={AlertStories.Fixed} />

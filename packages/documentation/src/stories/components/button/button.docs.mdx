@@ -1,39 +1,23 @@
-import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
+import * as ButtonStories from './button.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
-<Meta title="Components/Button" />
+<Meta of={ButtonStories} />
 
 # Button
 
-<p className="lead">
+<div className="lead">
   Use our custom button styles for actions in forms, dialogs, and more with support for multiple
   sizes, states, and more.
-</p>
-
-<Canvas>
-  <Story id="components-button--default" />
-</Canvas>
-<div className="hide-col-default">
-  <ArgsTable story="^" />
 </div>
 
-## SCSS Imports
+<Canvas of={ButtonStories.Default} />
+<div className="hide-col-default">
+  <Controls of={ButtonStories.Default} />
+</div>
 
-To import all styles from the design-system-styles package:
-
-```css dark
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```css dark
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/button.scss';
-
-// required if you use icons
-@use '@swisspost/design-system-styles/components/icons.scss';
-```
+<StylesPackageImport components={["button"]} required={{ icons: true }} />
 
 ## Concrete Examples of Application
 
@@ -41,26 +25,22 @@ The following examples show the different characteristics of the component. Thes
 
 ### Inverted
 
-Inverted buttons don't need special classes anymore, just use any of the <LinkTo kind="foundations-color">background classes</LinkTo> to set the background and you're done for the day.
+Inverted buttons don't need special classes anymore, just use any of the
+<LinkTo kind="utilities-background" story="docs">background
+  classes</LinkTo> to set the background and you're done for the day.
 
-<Canvas>
-  <Story id="components-button--inverted" />
-</Canvas>
+<Canvas of={ButtonStories.Inverted} />
 
 ### Accent colors
 
 There are a number of accent colors that you can apply to buttons instead of the usual colors.
 
-<Canvas>
-  <Story id="components-button--accent-colors" />
-</Canvas>
+<Canvas of={ButtonStories.AccentColors} />
 
 ### Contextual colors
 
 Besides the usual and the accent button variations, there are also contextual button colors.
 
-<p className="alert alert-danger">These are only allowed for intranet applications!</p>
+<p className="alert alert-warning">These are only allowed for intranet applications!</p>
 
-<Canvas>
-  <Story id="components-button--contextual-colors" />
-</Canvas>
+<Canvas of={ButtonStories.ContextualColors} />

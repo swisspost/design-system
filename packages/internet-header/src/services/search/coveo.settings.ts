@@ -24,6 +24,10 @@ export const coveo: CoveoOptions = {
       organisation: 'postchagnonprods5sq57qt',
       token: 'xx7c0e52ab-3de2-4fbd-b9a7-6ca6abd532b4',
     },
+    devs1: {
+      organisation: 'postchagnonprods5sq57qt',
+      token: 'xx7c0e52ab-3de2-4fbd-b9a7-6ca6abd532b4',
+    },
     test: {
       organisation: 'postchagnonprods5sq57qt',
       token: 'xx7c0e52ab-3de2-4fbd-b9a7-6ca6abd532b4',

@@ -1,9 +1,11 @@
 @use 'sass:map';
 
-@use './../../themes/bootstrap/overrides' as *;
+@use './../../themes/bootstrap/core' as *;
 
 @use './../../variables/spacing';
 @use './../../variables/type';
+@use './../../variables/components/paragraph';
+@use './../../mixins/type' as type-mx;
 @use './../../placeholders/text';
 
 @mixin styles {
@@ -77,7 +79,7 @@
   }
 
   .lead {
-    @extend %font-curve-bigger-regular;
-    @extend %text-bottom-spacer;
+    @include type-mx.font-curve('bigger-regular');
+    margin-bottom: paragraph.$text-bottom-space;
   }
 }

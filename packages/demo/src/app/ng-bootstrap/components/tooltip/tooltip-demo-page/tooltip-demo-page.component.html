@@ -1,11 +1,19 @@
 <div class="heading py-5">
   <h1 class="bold font-curve-large">Tooltip</h1>
-  <h2 class="font-curve-medium">Using bootstrap 4.5</h2>
-  <a href="https://ng-bootstrap.github.io/#/components/tooltip/examples" target="_blank" rel="noopener"
-    class="btn btn-primary btn-sm btn-animated"><span>ngBootstrap Documentation</span></a>
+  <app-dependency-link></app-dependency-link>
 </div>
 
 <section>
   <app-ngb-tooltip-demo></app-ngb-tooltip-demo>
+  <p class="mt-3">
+    Using
+    <code>placement="[position] auto"</code>
+    allows the tooltip to be displayed in another location if there is no room for the initial
+    placement location.
+  </p>
 </section>
-<code class="block" [highlight]="codeTemplate" [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"></code>
+<code
+  class="block"
+  [highlight]="codeTemplate"
+  [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"
+></code>

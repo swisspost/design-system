@@ -1,7 +1,7 @@
 @use 'sass:map';
 @use 'sass:string';
 
-@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/core' as *;
 
 @use './../variables/spacing';
 @use './../functions/utilities';

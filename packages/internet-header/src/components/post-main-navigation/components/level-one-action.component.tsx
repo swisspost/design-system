@@ -1,5 +1,6 @@
 import { h } from '@stencil/core';
 import { NavMainEntity } from '../../../models/header.model';
+import { translate } from '../../../services/language.service';
 
 export const LevelOneAction = (props: {
   level: NavMainEntity;
@@ -31,6 +32,9 @@ export const LevelOneAction = (props: {
       onClick={e => props.onClick(e)}
     >
       <span>{props.level.text}</span>
+      {props.level.isActiveOverride ? (
+        <span class="visually-hidden">{translate('Active navigation element')}</span>
+      ) : null}
       <svg aria-hidden="true">
         <use href="#pi-pointy-arrow-right" />
       </svg>

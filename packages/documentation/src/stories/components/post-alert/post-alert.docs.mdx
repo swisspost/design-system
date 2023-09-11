@@ -1,11 +1,9 @@
-import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as PostAlertStories from './post-alert.stories';
 
-<Meta title="Components/post-alert" />
+<Meta of={PostAlertStories} />
 
 # Alert
 
-<Canvas>
-  <Story id="components-post-alert--default" />
-</Canvas>
-
-<ArgsTable story="^" />
+<Canvas of={PostAlertStories.Default} />
+<Controls of={PostAlertStories.Default} />

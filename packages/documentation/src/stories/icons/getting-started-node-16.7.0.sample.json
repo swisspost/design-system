@@ -1,0 +1,6 @@
+// package.json
+{
+  "scripts": {
+    "postinstall": "node -e \"const fs = require('fs'); fs.cpSync('node_modules/@swisspost/design-system-icons/public/post-icons', 'assets/post-icons', { recursive: true }, (err) => { if (err) throw err; });\""
+  }
+}

@@ -1,0 +1,7 @@
+@use '../variables/elevation';
+
+@each $key, $value in elevation.$elevation-map {
+  .#{$key} {
+    box-shadow: #{$value};
+  }
+}

@@ -8,8 +8,8 @@ import { AccordionDemoPageComponent } from "./bootstrap/components/accordion/acc
 import { AlertDemoPageComponent } from "./bootstrap/components/alert/alert-demo-page/alert-demo-page.component";
 import { BadgeDemoPageComponent } from "./bootstrap/components/badge/badge-demo-page/badge-demo-page.component";
 import { ButtonsDemoPageComponent } from "./bootstrap/components/buttons/buttons-demo-page/buttons-demo-page.component";
+import { ButtonGroupDemoPageComponent } from './bootstrap/components/button-group/button-group-demo-page/button-group-demo-page.component';
 import { BlockquotesDemoPageComponent } from "./bootstrap/components/blockquotes/blockquotes-demo-page/blockquotes-demo-page.component";
-import { ParagraphDemoPageComponent } from "./bootstrap/components/paragraph/paragraph-demo-page/paragraph-demo-page.component";
 import { TablesDemoPageComponent } from "./bootstrap/components/tables/tables-demo-page/tables-demo-page.component";
 import { TypographyDemoPageComponent } from "./bootstrap/components/typography/typography-demo-page/typography-demo-page.component";
 import { FormsDemoPageComponent as BootstrapFormDemoPageComponent } from "./bootstrap/components/forms/forms-demo-page/forms-demo-page.component";
@@ -26,7 +26,6 @@ import { NgbPaginationDemoPageComponent } from "./ng-bootstrap/components/pagina
 import { NgbCollapseDemoPageComponent } from "./ng-bootstrap/components/collapse/collapse-demo-page/collapse-demo-page.component";
 import { NgbProgressbarDemoPageComponent } from "./ng-bootstrap/components/progressbar/progressbar-demo-page/progressbar-demo-page.component";
 import { NgbTabsDemoPageComponent } from "./ng-bootstrap/components/tabs/tabs-demo-page/tabs-demo-page.component";
-import { NgbButtonsDemoPageComponent } from "./ng-bootstrap/components/buttons/buttons-demo-page/buttons-demo-page.component";
 import { NgbTooltipDemoPageComponent } from "./ng-bootstrap/components/tooltip/tooltip-demo-page/tooltip-demo-page.component";
 import { NgbTypeaheadDemoPageComponent } from "./ng-bootstrap/components/typeahead/typeahead-demo-page/typeahead-demo-page.component";
 import { FormRangeDemoPageComponent } from "./bootstrap/components/form-range/form-range-demo-page/form-range-demo-page.component";
@@ -61,12 +60,12 @@ const routes: Routes = [
     path: "bootstrap-samples",
     children: [
       { path: "accordion", component: AccordionDemoPageComponent },
-      { path: "alert", component: AlertDemoPageComponent },
+      { path: "alerts", component: AlertDemoPageComponent },
       { path: "background", component: BackgroundDemoPageComponent },
       { path: "badge", component: BadgeDemoPageComponent },
       { path: "blockquotes", component: BlockquotesDemoPageComponent },
       { path: "buttons", component: ButtonsDemoPageComponent },
-      { path: "paragraph", component: ParagraphDemoPageComponent },
+      { path: "button-group", component: ButtonGroupDemoPageComponent },
       { path: "tables", component: TablesDemoPageComponent },
       { path: "typography", component: TypographyDemoPageComponent },
       { path: "forms", component: BootstrapFormDemoPageComponent },
@@ -95,7 +94,6 @@ const routes: Routes = [
       { path: "accordion", component: NgbAccordionDemoPageComponent },
       { path: "rating", component: NgbRatingDemoPageComponent },
       { path: "modal", component: NgbModalDemoPageComponent },
-      { path: "buttons", component: NgbButtonsDemoPageComponent },
       { path: "progressbar", component: NgbProgressbarDemoPageComponent },
       { path: "alert", component: NgbAlertDemoPageComponent },
       { path: "carousel", component: NgbCarouselDemoPageComponent },
@@ -111,7 +109,7 @@ const routes: Routes = [
       },
       { path: "timepicker", component: NgbTimepickerDemoPageComponent },
       { path: "tooltip", component: NgbTooltipDemoPageComponent },
-      { path: "typehead", component: NgbTypeaheadDemoPageComponent },
+      { path: "typeahead", component: NgbTypeaheadDemoPageComponent },
     ],
   },
   {
@@ -123,7 +121,7 @@ const routes: Routes = [
       { path: "feedback", component: FeedbackDemoPageComponent },
       { path: "spinner", component: SpinnerDemoPageComponent },
       { path: "sizing", component: SizingDemoPageComponent },
-      { path: "post-cards", component: PostCardsDemoPageComponent },
+      { path: "card", component: PostCardsDemoPageComponent },
       {
         path: "notification-overlay",
         component: NotificationOverlayPageComponent,
@@ -150,7 +148,9 @@ const routes: Routes = [
   imports: [
     RouterModule.forRoot(routes, {
       useHash: true,
-      relativeLinkResolution: "legacy",
+      scrollPositionRestoration: 'enabled',
+      anchorScrolling: 'enabled',
+      scrollOffset: [0, 150]
     }),
   ],
   exports: [RouterModule],

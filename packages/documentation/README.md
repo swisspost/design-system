@@ -5,8 +5,11 @@
 A Storybook Documentation for the Swiss Post Design System.
 
 Includes stories for the following packages:
+
 - [@swisspost/design-system-styles](https://www.npmjs.com/package/@swisspost/design-system-styles)
+- [@swisspost/internet-header](https://www.npmjs.com/package/@swisspost/internet-header)
 - [@swisspost/design-system-components](https://www.npmjs.com/package/@swisspost/design-system-components)
+- [@swisspost/design-system-icons](https://www.npmjs.com/package/@swisspost/design-system-icons)
 
 ## Documentation
 

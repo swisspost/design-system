@@ -88,6 +88,26 @@ The Web Content Accessibility Guidelines are a recommendation for designing acce
 
 You can find more information about accessibility at the Swiss Post in our [accessibility statement](https://www.post.ch/en/pages/footer/accessibility-at-swiss-post).
 
+## Development philosophy
+
+[![Build, Test, Deploy, Measure, Optimize Workflow Diagram](https://user-images.githubusercontent.com/12294151/257140843-d93ac889-fef1-4b05-96f8-b3dff249daef.png)](https://www.figma.com/file/Do4pwfl2EVvbZDDWnB0QNx/Design-System-Architecture-Diagrams?type=whiteboard&node-id=913-383&t=Q0qqK9EUF89UmzJM-4)
+
+### Build
+A component is only useful when it’s available, even if it’s not perfect from the start.
+
+### Test
+By writing solid tests, you enable future optimizations with great confidence.
+
+### Deploy
+It works and it’s tested, it can be used. Now your feature becomes useful for others.
+
+### Measure
+Measure performance, gather feedback, analyse usage and identify the biggest potentials for improvement.
+
+### Optimize
+Optimize where you have the biggest impact. Are your tests still green? Great job.
+
+
 ## Submitting issues and requests
 
 We are happy to receive your input. You can submit your issues to our [GitHub repository](https://github.com/swisspost/design-system/issues). If you're rather looking for help, don't hesitate to open a discussion on [GitHub discussions](https://github.com/swisspost/design-system/discussions).
@@ -136,6 +156,20 @@ When a new package is added to the repo, a few things need to be taken care of.
   The `linkDirectory` is necessary for pnpm to correctly link the dist folder in the node_modules. Make sure you biuld the package before using it in GitHub Actions or local scripts.
 
   > ⚠ On publish, the `package.json` gets copied into the `./dist` folder. This leads to an incorrect publish path because npm now tries to publish from `./dist/dist`. You'll need a pre-publish script that removes the `directory` key from the `publishConfig` (see the [styles package pre-publish workflow](./packages/styles/gulpfile.js) for an example).
+
+
+## Authoring web-components
+
+### CSS Custom Properties
+As per resolution of the [discussion about sass variables vs. CSS custom properties](https://github.com/swisspost/design-system/discussions/1380), CSS custom properties should be used if they provide meaningful ways to interact with the component. Per default, not every possible value should be a custom property.
+
+#### Do
+- Use custom properties to define themable colors, for example `color` or `border-color` for dark-mode support
+- Use custom properties when updating the value with JavaScript is necessary
+
+#### Don't
+- Use custom properties to declare every possible value on the component. Use sass variables instead
+- Use custom properties when the value is only being used once and never updated
 
 ## Dev Server Ports
 
@@ -241,7 +275,9 @@ We're using the [squash and merge](https://docs.github.com/en/pull-requests/coll
 
 ## Versioning
 
-**tldr;** Add a changeset when you want to inform package users about a change you made.
+**tldr;** Add a changeset when you want to inform developers about a change you made.
+
+![Simplified release process with changesets](https://user-images.githubusercontent.com/1659006/224299210-e785aec5-e7c0-48ac-b3b3-8652a97b78ca.png)
 
 To automate versioning, [changesets](https://github.com/changesets/changesets) are used as one of the officially supported versioning mechanics with pnpm ([workflow documentation](https://pnpm.io/using-changesets)).
 
@@ -252,6 +288,22 @@ Create a changeset with `pnpm changeset` and follow the CLI instructions and pus
 Changesets indicate a change relevant to users of a package. The changeset also indicates the impact of the change in the form of [semantic versioning](https://semver.org/) (breaking change, new feature or bugfix). This information will show up in the changelog, as well as the description text in the changeset.
 
 Using changesets enables us to automatically generate a changelog for every package while also maintaining control over what content ends up in the changelog. Changes like updates to the build system might be irrelevant to package users and therefore do not need a changeset.
+
+### How to write a good changeset
+
+There are some general rules you can follow to improve the usefulness of the changelog. The ["keep a changelog"](https://keepachangelog.com/en/1.0.0/) site is a good resource to start. Changesets already ticks a few boxes for us.
+
+- Changelogs are for humans - developers that use the Design System
+- Tell developers what the change means for their project
+- Tell developers what they should know before upgrading to this new version
+- Provide enough context for someone not familiar with the internals of the Design System
+- Focus on the context that is relevant for the user of the package, not the package author
+
+#### DO
+- "Updated the algorithm for calculating color contrast and optimal text color based on a given background color. Texts on colored buttons now comply with the WCAG 2.1 AA guidelines"
+
+#### DON'T
+- "Contrast algorithm is now better"
 
 ## Releases
 
@@ -271,8 +323,27 @@ The changeset release action supports custom commands for both versioning and pu
 
 The custom commands can be found in the [root pacakge.json](./package.json) as `cahngeset:publish` and `changeset:version` and are used in the [release workflow](./.github/workflows/release.yaml).
 
-## License
+## Technology radar
 
-By contributing your code, you agree to license your contribution under the [Apache 2.0 License](./LICENSE).
+[![Technology radar for the Swiss Post Design System](https://user-images.githubusercontent.com/12294151/257137380-1ab24557-291d-425b-a76e-a60365804c71.png)](https://www.figma.com/file/Do4pwfl2EVvbZDDWnB0QNx/Design-System-Architecture-Diagrams?type=whiteboard&node-id=1220-2994&t=Q0qqK9EUF89UmzJM-4)
+
+### Invest
+Our core deliverables in the future will be CSS Styles for HTML only components and web-components for more interactive patterns. For the web-components, wrappers for all major frameworks (React, Angular and Vue) will be provided. We invest in technologies directly related to delivering these features.
+
+### Keep
+To support our delivery goals, these technologies have proven useful and we keep relying on them but they are not critical to our delivery goals.
+
+### Assess
+These are technologies that seem interesting because they could support our core deliverables. A proof of concept needs to be made and they need to provide major benefits over keeper-technologies before they can be adopted.
+
+### Drop
+For good reasons, these are technologies that we're no longer planning to use in the future.
+- Angular (Demo App): Our demo app is custom built on Angular and would need serious investment to provide similar functionality compared to Storybook, an industry standard, which is cheaper to adopt and maintain than a custom solution.
+- ngBootstrap: not every product team is using Angular. In order to provide a future proof solution, we're implementing web standard components as direct replacement for ngBootstrap components. Wrappers for Angular will be provided for those in order to increase interoperability.
+- Bootstrap: Frequent, disruptive updates make it hard to adapt our heavily customized styles to the new versions. Also, the Bootstrap component variants don't match with components in the Design. This gap makes it hard for us to follow the Design Guidelines while still supporting all features of Bootstrap so devs who are familiar with it can use their knowledge. For large, custom Design Systems, it's cheaper to document what's possible with the Design Guidelines instead of trying to merge these two worlds. On the technical side, our components can be imported individually. Making this work with Bootstrap brings a lot of complexity to the codebase.
+
+## License and code of conduct
+
+By contributing your code, you agree follow our [code of conduct](https://github.com/swisspost/design-system/blob/main/CODE_OF_CONDUCT.md) and agree to license your contribution under the [Apache 2.0 License](./LICENSE).
 
 Licenses of third party packages that are bundled with any output (e.g. Bootstrap) need to be included in the output and delivered with the output code.

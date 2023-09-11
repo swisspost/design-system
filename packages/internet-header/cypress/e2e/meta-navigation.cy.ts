@@ -4,7 +4,7 @@ import { prepare } from '../support/prepare-story';
 
 describe('meta-navigation', () => {
   beforeEach(() => {
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare('Internet Header/Header Component', 'Default');
     cy.viewport(1024, Cypress.config('viewportHeight'));
   });
 
@@ -95,7 +95,7 @@ describe('meta-navigation', () => {
         // Clear meta navigation config
         config.de!.header.navMeta = undefined;
 
-        prepare('Components/Internet Header/Header', 'Default', config);
+        prepare('Internet Header/Header Component', 'Default', config);
 
         // Assert the header is hydrated
         cy.get('swisspost-internet-header').should('have.class', 'hydrated');
@@ -120,7 +120,7 @@ describe('meta-navigation', () => {
           },
         ];
 
-        prepare('Components/Internet Header/Header', 'Default', config);
+        prepare('Internet Header/Header Component', 'Default', config);
 
         // Assert the header is hydrated
         cy.get('swisspost-internet-header').should('have.class', 'hydrated');

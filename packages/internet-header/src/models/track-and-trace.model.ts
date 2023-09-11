@@ -1,5 +1,5 @@
 export interface TrackAndTraceInfo {
-  ok: boolean;
+  ok: boolean | string;
   timestamp: string;
   sending?: {
     'id': string;

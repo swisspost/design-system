@@ -17,15 +17,19 @@
     "test": "pnpm -r test",
     "unit": "pnpm -r unit",
     "e2e": "start-server-and-test docs:headless 9300 'pnpm -r --parallel e2e'",
+    "snapshots": "start-server-and-test 'pnpm docs:headless' 9300 'pnpm --filter design-system-documentation snapshots'",
     "demo:start": "pnpm --filter design-system-demo... --parallel --stream start",
     "docs:start": "pnpm --filter design-system-documentation... --parallel --stream start",
+    "docs:build": "pnpm --filter design-system-documentation build",
     "docs:headless": "pnpm --filter design-system-documentation start:headless",
     "docs:test": "pnpm --filter design-system-documentation test",
     "docs:e2e": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-documentation e2e'",
     "docs:e2e:watch": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-documentation e2e:watch'",
     "styles:start": "pnpm --filter design-system-styles start",
+    "styles:build": "pnpm --filter design-system-styles build",
     "styles:test": "pnpm --filter design-system-styles test",
-    "components:start": "pnpm --filter design-system-components start",
+    "components:start": "pnpm --filter design-system-components dev",
+    "components:build": "pnpm --filter design-system-components build",
     "components:test": "pnpm --filter design-system-components test",
     "components:unit": "pnpm --filter design-system-components unit",
     "components:unit:watch": "pnpm --filter design-system-components unit:watch",
@@ -34,6 +38,7 @@
     "components:snapshots": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-components snapshots'",
     "intranet-header:start": "pnpm --filter design-system-components-angular start",
     "header:start": "pnpm --filter internet-header dev",
+    "header:build": "pnpm --filter internet-header build",
     "header:test": "pnpm --filter internet-header test",
     "header:unit": "pnpm --filter internet-header unit",
     "header:unit:watch": "pnpm --filter internet-header unit:watch",
@@ -48,12 +53,28 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
-    "@changesets/changelog-github": "0.4.8",
-    "@changesets/cli": "2.26.0",
-    "start-server-and-test": "1.15.3"
+    "@changesets/cli": "2.26.2",
+    "start-server-and-test": "2.0.0"
+  },
+  "optionalDependencies": {
+    "@web-types/lit": "2.0.0-3"
   },
   "engines": {
-    "node": ">=16",
-    "pnpm": ">=7.13"
+    "node": "16",
+    "pnpm": "8"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "eslint",
+        "@typescript-eslint/eslint-plugin",
+        "@typescript-eslint/parser"
+      ],
+      "allowedVersions": {
+        "react": ">=18",
+        "react-dom": ">=18",
+        "stylelint": ">=15"
+      }
+    }
   }
 }

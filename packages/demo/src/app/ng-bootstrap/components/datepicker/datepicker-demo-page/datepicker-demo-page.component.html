@@ -1,29 +1,60 @@
 <div class="heading py-5">
   <h1 class="bold font-curve-large">Datepicker</h1>
-  <h2 class="font-curve-medium">Using bootstrap 4.5</h2>
-  <a href="https://ng-bootstrap.github.io/#/components/datepicker/examples"
-    target="_blank" rel="noopener"
-    class="btn btn-primary btn-sm btn-animated"><span>ngBootstrap
-      Documentation</span></a>
+  <app-dependency-link></app-dependency-link>
+</div>
+
+<div class="alert alert-warning mb-bigger-big">
+  <p>The <code>.pi-calendar</code> class previously used to display the calendar icon in the datepicker button
+    has been deprecated in favor of the <code>.pi-3203</code> class which shows the same icon.</p>
 </div>
 
 <section>
   <p id="languageSelectorTitle" class="light font-curve-regular">Choose a language:</p>
 
-  <div [(ngModel)]="language" aria-labelledby="languageSelectorTitle" class="btn-group mb-3" name="language"
-       ngbRadioGroup role="group">
-    <label class="btn btn-secondary" ngbButtonLabel>
-      <input autocomplete="off" class="btn-check" ngbButton type="radio" value="en"> English
-    </label>
-    <label class="btn btn-secondary" ngbButtonLabel>
-      <input autocomplete="off" class="btn-check" ngbButton type="radio" value="de"> German
-    </label>
-    <label class="btn btn-secondary" ngbButtonLabel>
-      <input autocomplete="off" class="btn-check" ngbButton type="radio" value="fr"> Francais
-    </label>
-    <label class="btn btn-secondary" ngbButtonLabel>
-      <input autocomplete="off" class="btn-check" ngbButton type="radio" value="it"> Italiano
-    </label>
+  <div
+    aria-labelledby="languageSelectorTitle"
+    class="btn-group mb-3"
+    role="group"
+  >
+    <input
+      [(ngModel)]="language"
+      autocomplete="off"
+      class="btn-check"
+      id="btn-check-en"
+      type="radio"
+      value="en"
+    />
+    <label class="btn btn-secondary" for="btn-check-en">English</label>
+
+    <input
+      [(ngModel)]="language"
+      autocomplete="off"
+      class="btn-check"
+      id="btn-check-de"
+      type="radio"
+      value="de"
+    />
+    <label class="btn btn-secondary" for="btn-check-de">German</label>
+
+    <input
+      [(ngModel)]="language"
+      autocomplete="off"
+      class="btn-check"
+      id="btn-check-fr"
+      type="radio"
+      value="fr"
+    />
+    <label class="btn btn-secondary" for="btn-check-fr">Francais</label>
+
+    <input
+      [(ngModel)]="language"
+      autocomplete="off"
+      class="btn-check"
+      id="btn-check-it"
+      type="radio"
+      value="it"
+    />
+    <label class="btn btn-secondary" for="btn-check-it">Italiano</label>
   </div>
 
   <div class="alert alert-info" role="alert">

@@ -52,10 +52,6 @@ body {
   @include post.pi(2104, 'white');
 }
 
-.pi-calendar {
-  @include post.pi(3203);
-}
-
 .code-sample {
   margin-top: 35px;
   text-align: center;
@@ -118,7 +114,7 @@ code {
       position: absolute;
       left: 100%;
       top: 50%;
-      transform: scale(0.50) translateY(-50%);
+      transform: scale(0.5) translateY(-50%);
       background-color: rgba(var(--post-bg-rgb), 0.95);
       padding: 0 post.$size-small-regular;
       transform-origin: top left;

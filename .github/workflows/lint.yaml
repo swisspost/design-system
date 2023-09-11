@@ -5,7 +5,10 @@
 ###
 
 name: Lint files
-on: [pull_request]
+on:
+  pull_request:
+    paths:
+      - 'packages/**'
 
 jobs:
   build:
@@ -21,7 +24,7 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install dependencies of changed packages
-        run: pnpm --filter "...[origin/main]" install
+        run: pnpm install
 
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since

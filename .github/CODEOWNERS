@@ -5,4 +5,8 @@
 #
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
-* @gfellerph @oliverschuerch @alizedebray
+# Maintainers have to sign off PRs to main as required in branch protection rules
+* @swisspost/design-system-maintainers
+
+# For the duration of the practical year
+/packages/documentation @swisspost/design-system-maintainers @b1aserlu @davidritter-dotcom

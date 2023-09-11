@@ -6,37 +6,26 @@
 @use './../variables/type';
 @use './../functions/sizing';
 @use './../functions/utilities';
-@use './../themes/bootstrap/overrides' as bootstrap;
+@use './../themes/bootstrap/core' as *;
 
-@mixin font-curve($curve-size: 'regular') {
-  $curve: map.get(type.$font-curves, $curve-size);
+@mixin font-curve($curve-size: 'regular', $curve-map: type.$font-curves) {
+  $curve: map.get($curve-map, $curve-size);
 
   @if ($curve) {
     $font-cache: 0;
-    $line-height-cache: 0;
 
     @each $key, $value in $curve {
-      // Get line height corresponding to font size
-      $i: list.index(map.values(type.$font-sizes), $value);
-      $lh: list.nth(map.values(type.$line-heights), $i);
-
       @if ($key == 'xs') {
         font-size: $value;
-        line-height: $lh;
       } @else {
         @if ($font-cache != $value) {
-          @include bootstrap.media-breakpoint-up($key) {
+          @include media-breakpoint-up($key) {
             font-size: $value;
-
-            @if ($line-height-cache != $lh) {
-              line-height: $lh;
-            }
           }
         }
       }
 
       $font-cache: $value;
-      $line-height-cache: $lh;
     }
   } @else {
     @error 'Font curve #{$curve-size} is not defined.';

@@ -1,34 +1,21 @@
-import { Meta, Canvas, Story, ArgsTable } from '@storybook/addon-docs';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as TopicTeaserStories from './topic-teaser.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
-<Meta title="Components/Topic Teaser" />
+<Meta of={TopicTeaserStories} />
 
 # Topic Teaser
 
-<p className="lead">
+<div className="lead">
   Topic Teaser provides a flexible and responsive content container with options to align the image,
   adding topic content and links as well as contextual background colors.
-</p>
+</div>
 
 If you use multiple topic teasers on one page, each topic teaser must have a different background.
 
-<Canvas>
-  <Story id="components-topic-teaser--default" />
-</Canvas>
+<Canvas of={TopicTeaserStories.Default} />
 <div className="hide-col-default">
-  <ArgsTable story="^" />
+  <Controls of={TopicTeaserStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```css dark
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```css dark
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/topic-teaser.scss';
-```
+<StylesPackageImport components={["topic-teaser"]} />

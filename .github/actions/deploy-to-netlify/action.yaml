@@ -53,7 +53,7 @@ runs:
         body-includes: Preview environment ready
 
     - name: Create Initial Preview Comment
-      uses: peter-evans/create-or-update-comment@v2
+      uses: peter-evans/create-or-update-comment@v3
       if: ${{ steps.preview_comment.outputs.comment-id == 0 }}
       with:
         token: ${{ inputs.comment_token }}
@@ -73,7 +73,7 @@ runs:
 
     - name: Install netlify-cli
       shell: bash
-      run: pnpm i -g netlify-cli
+      run: pnpm i -g netlify-cli@15
 
     - name: Deploy preview environment to netlify
       id: netlify_deploy
@@ -83,8 +83,7 @@ runs:
       # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
       run: |
         url_alias=`echo "preview-${{ inputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
-        netlify link --id ${{ inputs.netlify_site_id }}
-        netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }}
+        netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }} --site ${{ inputs.netlify_site_id }}
         echo "url_alias=$url_alias" >> $GITHUB_OUTPUT
 
     - name: Prepare Comment Message
@@ -94,7 +93,7 @@ runs:
         echo "message=Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}" >> $GITHUB_OUTPUT
 
     - name: Replace Preview Comment
-      uses: peter-evans/create-or-update-comment@v2
+      uses: peter-evans/create-or-update-comment@v3
       if: ${{ steps.initial_preview_comment.outputs.comment-id != 0 }}
       with:
         token: ${{ inputs.comment_token }}
@@ -105,7 +104,7 @@ runs:
         reactions: rocket
 
     - name: Append Preview Comment
-      uses: peter-evans/create-or-update-comment@v2
+      uses: peter-evans/create-or-update-comment@v3
       if: ${{ steps.initial_preview_comment.outputs.comment-id == 0 && (steps.preview_comment.outputs.comment-id == 0 || !contains(steps.preview_comment.outputs.comment-body, steps.comment.outputs.message)) }}
       with:
         token: ${{ inputs.comment_token }}

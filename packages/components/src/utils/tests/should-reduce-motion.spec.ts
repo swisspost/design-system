@@ -1,7 +1,3 @@
-/*
- * Copyright 2022 by Swiss Post, Information Technology
- */
-
 import { shouldReduceMotion } from '../should-reduce-motion';
 
 describe('shouldReduceMotion', () => {

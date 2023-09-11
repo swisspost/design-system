@@ -15,6 +15,11 @@ import {BadgeDemoPageComponent} from './badge/badge-demo-page/badge-demo-page.co
 import {BadgeDemoComponent} from './badge/badge-demo/badge-demo.component';
 import {BadgeNestedDemoComponent} from './badge/badge-nested-demo/badge-nested-demo.component';
 import {BadgeInteractiveDemoComponent} from './badge/badge-interactive-demo/badge-interactive-demo.component';
+import {ButtonGroupCheckboxDemoComponent} from './button-group/button-group-checkbox-demo/button-group-checkbox-demo.component';
+import {ButtonGroupDemoPageComponent} from './button-group/button-group-demo-page/button-group-demo-page.component';
+import {ButtonGroupRadioDemoComponent} from './button-group/button-group-radio-demo/button-group-radio-demo.component';
+import {ButtonGroupReactiveCheckboxDemoComponent} from './button-group/button-group-reactive-checkbox-demo/button-group-reactive-checkbox-demo.component';
+import {ButtonGroupReactiveRadioDemoComponent} from './button-group/button-group-reactive-radio-demo/button-group-reactive-radio-demo.component';
 import {ButtonsDemoComponent} from './buttons/buttons-demo/buttons-demo.component';
 import {ButtonsDemoPageComponent} from './buttons/buttons-demo-page/buttons-demo-page.component';
 import {BlockquotesDemoComponent} from './blockquotes/blockquotes-demo/blockquotes-demo.component';
@@ -22,8 +27,6 @@ import {NestedBlockquotesDemoComponent} from './blockquotes/nested-blockquotes-d
 import {BlockquotesDemoPageComponent} from './blockquotes/blockquotes-demo-page/blockquotes-demo-page.component';
 import {FormSwitchDemoPageComponent} from "./form-switch/form-switch-demo-page/form-switch-demo-page.component";
 import {FormSwitchDemoComponent} from "./form-switch/form-switch-demo/form-switch-demo.component";
-import {ParagraphDemoComponent} from './paragraph/paragraph-demo/paragraph-demo.component';
-import {ParagraphDemoPageComponent} from './paragraph/paragraph-demo-page/paragraph-demo-page.component';
 import {TablesDemoComponent} from './tables/tables-demo/tables-demo.component';
 import {TablesDemoPageComponent} from './tables/tables-demo-page/tables-demo-page.component';
 import {TypographyDemoComponent} from './typography/typography-demo/typography-demo.component';
@@ -96,11 +99,14 @@ import { ButtonDisabledComponent } from './buttons/buttons-demo/button-disabled/
     BadgeInteractiveDemoComponent,
     ButtonsDemoComponent,
     ButtonsDemoPageComponent,
+    ButtonGroupCheckboxDemoComponent,
+    ButtonGroupReactiveCheckboxDemoComponent,
+    ButtonGroupRadioDemoComponent,
+    ButtonGroupReactiveRadioDemoComponent,
+    ButtonGroupDemoPageComponent,
     BlockquotesDemoComponent,
     NestedBlockquotesDemoComponent,
     BlockquotesDemoPageComponent,
-    ParagraphDemoComponent,
-    ParagraphDemoPageComponent,
     TablesDemoComponent,
     TablesDemoPageComponent,
     TypographyDemoComponent,
@@ -155,10 +161,9 @@ import { ButtonDisabledComponent } from './buttons/buttons-demo/button-disabled/
     BadgeDemoComponent,
     ButtonsDemoComponent,
     ButtonsDemoPageComponent,
+    ButtonGroupDemoPageComponent,
     BlockquotesDemoComponent,
     BlockquotesDemoPageComponent,
-    ParagraphDemoComponent,
-    ParagraphDemoPageComponent,
     TablesDemoComponent,
     TablesDemoPageComponent,
     TypographyDemoComponent,

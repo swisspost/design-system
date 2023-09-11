@@ -1,0 +1,5 @@
+@use '@swisspost/design-system-styles/core.scss' as post;
+
+.my-component {
+  background-color: post.$yellow; // #FFCC00
+}

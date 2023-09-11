@@ -1,0 +1,39 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as ButtonGroupStories from './button-group.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+
+<Meta of={ButtonGroupStories} />
+
+# Button Group
+
+<div className="lead">
+  Group a series of buttons together on a single line.
+</div>
+
+<Canvas of={ButtonGroupStories.Default} />
+<div className="hide-col-default">
+  <Controls of={ButtonGroupStories.Default} />
+</div>
+
+<StylesPackageImport components={["button-group"]} />
+
+## Concrete Examples of Application
+
+The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
+
+### Sizing
+
+You can change the size of buttons belonging to a group using button-sizing classes: `.btn-sm`, `.btn-rg` and `.btn-lg`.
+Just be sure to apply the same class to all buttons contained in the group.
+
+<Canvas of={ButtonGroupStories.Sizing} />
+
+### Checkbox & Radio
+
+Any HTML element that can be styled as a button can potentially be used in a button group.
+It is also possible to use checkable inputs:
+
+- Checkboxes: this allows all buttons in the group to be selected or deselected individually,
+- Radio buttons: in this case all the buttons are linked and only one of them can be selected at a time.
+
+<Canvas of={ButtonGroupStories.Checks} />

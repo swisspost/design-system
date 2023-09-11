@@ -1,15 +1,38 @@
 # Security Policy
 
+## Reporting a Vulnerability
+Please contact [security@post.ch](mailto:security@post.ch).
+
+
 ## Supported Versions
 
-⚠️ The Swiss Post Design System is currently in beta phase.
+### Styles
+@swisspost/design-system-styles
 
-| Package                       | Version | Supported          | Supported Dependencies                     |
-| ----------------------------- | ------- | ------------------ | ------------------------------------------ |
-| design-system-styles          | 5.0     | :white_check_mark: | Bootstrap 5.1, Angular 14, ng-bootstrap 12 |
-| design-system-intranet-header | 3.0     | :white_check_mark: | Bootstrap 5.1, Angular 14, ng-bootstrap 12 |
-| design-system-components      | 1.0     | :white_check_mark: | Angular, Vue JS, React, Vanilla JS, ...    |
+| Version | Supported          | Supported Dependencies                     |
+| ------- | ------------------ | ------------------------------------------ |
+| 6       | :white_check_mark: | Bootstrap 5.2, Angular 15, ng-bootstrap 14 |
+| 5       | until end of 2023  | Bootstrap 5.1, Angular 14, ng-bootstrap 12 |
 
-## Reporting a Vulnerability
+### Components
+@swisspost/design-system-components
 
-Please contact [security@post.ch](mailto:security@post.ch).
+| Version | Supported          | Supported Dependencies                     |
+| ------- | ------------------ | ------------------------------------------ |
+| 1       | :white_check_mark: | Angular, Vue JS, React, Vanilla JS, ...    |
+
+### Internet Header
+@swisspost/internet-header
+
+| Version | Supported          | Supported Dependencies                     |
+| ------- | ------------------ | ------------------------------------------ |
+| 1       | :white_check_mark: | Angular, Vue JS, React, Vanilla JS, ...    |
+
+### Intranet Header
+@swisspost/design-system-intranet-header
+
+| Version | Supported          | Supported Dependencies                     |
+| ------- | ------------------ | ------------------------------------------ |
+| 4     | :white_check_mark: | Bootstrap 5.2, Angular 15, ng-bootstrap 14 |
+| 3     | until end of 2023  | Bootstrap 5.1, Angular 14, ng-bootstrap 12 |
+

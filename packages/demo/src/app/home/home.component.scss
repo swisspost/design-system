@@ -62,6 +62,15 @@
   }
 }
 
+.change-badge {
+  display: inline-block;
+  padding: 0.05rem 0.3rem;
+  border-radius: 3px;
+  font-family: post.$font-family-monospace;
+  font-size: 12px;
+  vertical-align: text-bottom;
+}
+
 .bubble-tea {
   margin-top: 2rem;
   padding: 1rem 0 2rem 0;
@@ -127,14 +136,8 @@
   }
 
   .form-check-label {
-    code:not(.block, .d-block),
-    .change-badge {
-      display: inline-block;
-      padding: 0.05rem 0.3rem;
-      border-radius: 3px;
-      font-family: post.$font-family-monospace;
-      font-size: 12px;
-      vertical-align: text-bottom;
+    code:not(.block, .d-block) {
+      @extend .change-badge;
     }
 
     ul {
@@ -148,7 +151,7 @@
 }
 
 .accordion-button {
-  @include post.font-curve(post.$accordion-font-curve);
+  @include post.font-curve(post.$accordion-heading-font-curve);
 
   small {
     @include post.font-curve('tiny');
@@ -170,7 +173,6 @@
   margin-bottom: 0.75rem;
   font-size: post.$font-size-tiny;
   color: post.$gray-40;
-  line-height: 1.5;
 
   + .info {
     margin-top: -1rem;

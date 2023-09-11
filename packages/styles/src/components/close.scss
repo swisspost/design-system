@@ -1,33 +1,22 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
-@use './../themes/bootstrap/overrides' as *;
-@use './../themes/bootstrap/close' as bc;
-
-@use './../variables/components/close';
-@use './../mixins/utilities';
+@use './../mixins/utilities' as utilities-mx;
+@use './../placeholders/close' as close-ph;
+@use './../variables/color';
 
 .btn-close {
-  height: unset;
-  min-height: close.$btn-close-height;
-
-  @include utilities.high-contrast-mode() {
-    opacity: 1;
-    background: transparent escape-svg($btn-close-hcm-bg) center/1.5rem auto no-repeat;
-  }
-
-  &:focus {
-    outline: 2px solid var(--post-contrast-color);
-    box-shadow: none;
-
-    &:not(:focus-visible) {
-      outline: 0;
-    }
-  }
+  @extend %btn-close;
 }
 
+// DEPRECATED
 .btn-close-white {
-  @include utilities.high-contrast-mode() {
-    filter: none;
+  color: color.$gray-10;
+
+  @include utilities-mx.not-disabled-focus-hover() {
+    color: color.$white;
+  }
+
+  &:disabled {
+    color: color.$gray-40;
   }
 }

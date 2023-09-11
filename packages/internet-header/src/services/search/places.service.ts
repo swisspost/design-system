@@ -1,39 +1,9 @@
 import { state } from '../../data/store';
-import { GeocodeLocation, GeocodeResponse, ServiceTypesResponse } from '../../models/geocode.model';
-import { gisAPIUrl, pois, placesUrl } from './places.settings';
+import { GeocodeLocation, GeocodeResponse } from '../../models/geocode.model';
+import { gisAPIUrl, placesUrl } from './places.settings';
 import { hardNormalize } from './search-utilities';
 
-// Never load types twice
-let typesCache: string | null = null;
-
-/**
- * Convert Post POI ids to stao cache ids
- * @returns
- */
-const convertTypes = async () => {
-  if (typesCache === null) {
-    try {
-      const typesResponse = await fetch(`${gisAPIUrl}/Types?lang=${state.currentLanguage}`);
-      const typesJSON = (await typesResponse.json()) as ServiceTypesResponse;
-      typesCache = encodeURIComponent(
-        pois
-          .map(poi => {
-            const foundType = typesJSON.types.find(type => type.id === poi);
-            return foundType?.tag;
-          })
-          .filter(poi => poi !== undefined)
-          .join(','),
-      );
-    } catch (error) {
-      console.error(
-        'Fetching places failed. Did you add "places.post.ch" to your connect-src content security policy?',
-      );
-      throw error;
-    }
-  }
-
-  return typesCache;
-};
+let placesController: AbortController;
 
 /**
  * Query the Gis API for locations and localities (pois)
@@ -46,28 +16,33 @@ export const queryPlaces = async (query: string): Promise<GeocodeLocation[]> => 
     return [];
   }
 
-  const limit = 8;
-  const excludeTypes = ['address', 'locality', 'region'];
-  const types = await convertTypes();
-  const geocoderUrl = `${gisAPIUrl}/Geocode?query=${encodeURIComponent(query)}&lang=${
-    state.currentLanguage
-  }&pois=${types}&limit=33`;
+  const searchParameters = Object.entries({
+    query: encodeURIComponent(query),
+    lang: state.currentLanguage,
+    limit: 7,
+  }).reduce((s, [k, v], i) => `${s}${i === 0 ? '?' : '&'}${k}=${v}`, '');
 
-  try {
-    const geocodeResponse = await fetch(geocoderUrl);
-    const geocodeJSON = (await geocodeResponse.json()) as GeocodeResponse;
-    if (!geocodeJSON.ok) {
-      throw new Error(geocodeJSON.info);
-    }
-    return geocodeJSON.locations
-      .filter(location => !excludeTypes.includes(location.type))
-      .slice(0, limit);
-  } catch (error) {
-    console.error(
-      'Fetching places failed. Did you add "places.post.ch" to your connect-src content security policy?',
-    );
-    throw error;
-  }
+  const url = `${gisAPIUrl}/Geocode${searchParameters}`;
+
+  if (placesController) placesController.abort();
+  placesController = new AbortController();
+
+  return new Promise((resolve, reject) => {
+    fetch(url, { signal: placesController.signal })
+      .then(response => response.json())
+      .then((geocodeJSON: GeocodeResponse) => {
+        if (!geocodeJSON.ok) throw new Error(geocodeJSON.info);
+        resolve(geocodeJSON.locations);
+      })
+      .catch(error => {
+        if (error.name !== 'AbortError') {
+          console.error(
+            `Fetching places failed, ${error}\nDid you add "places.post.ch" to your connect-src content security policy?`,
+          );
+          reject(error);
+        }
+      });
+  });
 };
 
 /**

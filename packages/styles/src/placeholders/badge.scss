@@ -1,4 +1,4 @@
-@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/core' as *;
 
 @use './../variables/components/badge';
 
@@ -13,7 +13,6 @@
   height: badge.$badge-height;
   font-size: badge.$badge-font-size;
   font-weight: $badge-font-weight;
-  line-height: 1;
   color: $badge-color;
   text-align: center;
   white-space: nowrap;
@@ -28,14 +27,10 @@
     padding: $size-micro;
     height: badge.$badge-nested-height;
     min-width: badge.$badge-nested-height;
+    color: badge.$badge-nested-color;
     background-color: badge.$badge-nested-bg-color;
     border-color: badge.$badge-nested-border-color;
     font-size: badge.$badge-nested-font-size;
-    line-height: 1;
-  }
-
-  > .btn-close {
-    padding: 0;
   }
 
   > .badge,

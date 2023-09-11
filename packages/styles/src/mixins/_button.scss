@@ -4,7 +4,7 @@
 @use './../variables/type';
 @use './../variables/color';
 @use './../placeholders/color' as color-ph;
-@use './../functions/color' as color-fn;
+@use './../functions/contrast' as contrast-fn;
 @use 'utilities';
 
 @mixin reset-button {
@@ -14,16 +14,18 @@
   background: none;
   color: inherit;
   font: inherit;
-  line-height: normal;
   user-select: none;
   appearance: button; // for input
 }
 
 @mixin button-size($size: md) {
   min-height: map.get(button.$btn-height-map, $size);
-  padding: 0 map.get(button.$btn-padding-x-map, $size);
   font-size: map.get(button.$btn-font-size-map, $size);
-  gap: map.get(button.$btn-padding-x-map, $size) * 0.5;
+  gap: map.get(button.$btn-gap-x-map, $size);
+
+  &:where(:not(.btn-link, .btn-tertiary)) {
+    padding: 0 map.get(button.$btn-padding-x-map, $size);
+  }
 
   > .pi {
     width: map.get(button.$btn-icon-size-map, $size);
@@ -46,12 +48,21 @@
     border-color: transparent;
     background-color: $color;
 
-    @if (color-fn.get-contrast-color($color) == #fff) {
+    @if (contrast-fn.light-or-dark($color) == 'dark') {
       color: color.$white;
+    } @else {
+      color: color.$black;
     }
 
     @include utilities.not-disabled-focus-hover() {
-      background-color: darken($color, 10%);
+      $darkened-color: darken($color, 10%);
+      background-color: $darkened-color;
+
+      @if (contrast-fn.light-or-dark($darkened-color) == 'dark') {
+        color: color.$white;
+      } @else {
+        color: color.$black;
+      }
     }
   }
 }

@@ -1,0 +1,12 @@
+@import 'bootstrap/scss/functions';
+
+// Optional variable overrides here
+@import './overrides-variables';
+
+@import 'bootstrap/scss/variables';
+@import 'bootstrap/scss/variables-dark';
+
+// Optional Sass map overrides here
+
+@import 'bootstrap/scss/maps';
+@import 'bootstrap/scss/mixins';

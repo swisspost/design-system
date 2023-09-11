@@ -126,7 +126,9 @@ export class PostLanguageSwitch implements HasDropdown {
               aria-haspopup="listbox"
               onClick={() => this.toggleDropdown()}
             >
-              <span class="visually-hidden">{config.translations.navLangAriaLabel}</span>
+              <span class="visually-hidden">
+                {config.translations.navLangAriaLabel}, {translate('Current language is English')}
+              </span>
               <span aria-hidden="true">{state.currentLanguage}</span>
               <SvgIcon name="pi-arrow-down" classNames={this.langSwitchOpen ? 'rotated' : ''} />
             </button>

@@ -1,13 +1,12 @@
-![Swiss Post Design System splash screen](https://user-images.githubusercontent.com/1659006/187683368-d3aa2534-84be-4580-846e-2cad3796b573.png)
+![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e84f1fea-e666-4853-8c85-726a6bf22e6c)
 
 # Demo App
 
 Pattern documentation, code snippets and implementation guidelines for the Design System Styles.
 
-
 ## Setup
-These contribution guidelines extend the [general contribution guidelines](../../CONTRIBUTING.md).
 
+These contribution guidelines extend the [general contribution guidelines](../../CONTRIBUTING.md).
 
 ## Starting the development server
 

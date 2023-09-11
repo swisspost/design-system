@@ -2,13 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "noEmit": true,
-    "types": [
-      "cypress",
-      "cypress-each",
-      "@percy/cypress",
-      "@swisspost/internet-header",
-      "cypress-storybook/cypress"
-    ]
+    "types": ["cypress", "@percy/cypress", "@swisspost/internet-header"]
   },
   "include": ["./**/*.ts", "./**/*.tsx"],
   "exclude": []

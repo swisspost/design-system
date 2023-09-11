@@ -1,0 +1,43 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import * as TabStories from './tabs.stories';
+import SampleTabChange from './tabs-tab-change.sample?raw';
+import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
+
+<Meta of={TabStories} />
+
+# Tabs
+<div className="lead">
+  Organize content across different sections that are shown one at a time.
+</div>
+
+<Canvas of={TabStories.Default} />
+
+<Controls of={TabStories.Default} />
+
+## Examples
+
+### Initially Active Tab
+
+The initial selection is set to the first tab by default, displaying its associated panel.
+To have a different panel displayed initially,
+use the `active-panel` property and assign it the name of the desired panel.
+
+<Canvas of={TabStories.ActivePanel} />
+
+### Tab Changes
+
+Use the `tabChange` event to run a function anytime a new tab gets activate.
+
+<Source
+  code={SampleTabChange}
+  language="typescript"
+/>
+
+### Custom Trigger
+
+To trigger a tab change, use the `show()` method specifying the name of the panel that you want to show.
+
+<Source
+  code={SampleCustomTrigger}
+  language="typescript"
+/>

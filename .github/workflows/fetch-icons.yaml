@@ -12,13 +12,13 @@ name: Fetch Icons
 on:
   workflow_dispatch:
   schedule:
-#            ┌───────────── minute (0 - 59)
-#            │ ┌───────────── hour (0 - 23)
-#            │ │ ┌───────────── day of the month (1 - 31)
-#            │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
-#            │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
-#            │ │ │ │ │
-    - cron: '0 0 * * 0'  # the job will run every Sunday at 0:00
+    #            ┌───────────── minute (0 - 59)
+    #            │ ┌───────────── hour (0 - 23)
+    #            │ │ ┌───────────── day of the month (1 - 31)
+    #            │ │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+    #            │ │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #            │ │ │ │ │
+    - cron: '0 0 * * 0' # the job will run every Sunday at 0:00
 
 jobs:
   fetch:
@@ -47,7 +47,7 @@ jobs:
           BRANCH_NAME: ${{ steps.current-date.outputs.date }}-update-icons
 
       - name: Install icons & dependencies
-        run: pnpm --filter design-system-icons... install
+        run: pnpm --filter design-system-icons... --filter design-system-styles... install
 
       - name: Fetch Icons
         run: pnpm --filter design-system-icons fetchSVGs
@@ -56,28 +56,20 @@ jobs:
           CEN_PASSWORD: ${{ secrets.CEN_PASSWORD }}
           CEN_URL: ${{ secrets.CEN_URL }}
 
-      - name: Create Changeset
-        run: |
-          echo ---                                       > $CHANGESET
-          echo "'@swisspost/design-system-icons': patch" >> $CHANGESET
-          echo ---                                       >> $CHANGESET
-          echo                                           >> $CHANGESET
-          echo Updated icon SVGs.                        >> $CHANGESET
-          echo                                           >> $CHANGESET
-        env:
-          CHANGESET: ./.changeset/${{ steps.current-branch.outputs.branch }}.md
+      - name: Build styles
+        run: pnpm styles:build
 
       - name: Commit Changes
         run: |
-          git config --global user.name github-actions[bot]
-          git config --global user.email github-actions@github.com
+          git config --global user.name "swisspost-bot"
+          git config --global user.email "oss@post.ch"
           git add .
-          git commit -am "chore(icons): :point_up: update icon SVGs"
+          git commit -am "chore(icons): update icon SVGs"
           git push -u origin ${{ steps.current-branch.outputs.branch }}
 
       - name: Get Changes
         id: changed-files
-        uses: tj-actions/changed-files@v35
+        uses: tj-actions/changed-files@v38
         with:
           files: ./packages/icons/public/post-icons/**
 
@@ -87,50 +79,87 @@ jobs:
           git checkout main
           git push origin --delete ${{ steps.current-branch.outputs.branch }}
 
+      - name: Get Changed Icons
+        id: changed-icons
+        if: steps.changed-files.outputs.any_modified != 'false'
+        run: |
+          get_icons() {
+            # takes the list of icon file paths
+            # replaces paths to keep the icon numbers only
+            # separates with commas and replace the last one with "and"
+            echo $@ | sed 's/[^ ]*\/\([[:digit:]]*\)\.svg/\1/g' | sed 's/ /, /g' | sed 's/\(.*\),/\1 and/g'
+          }
+
+          echo "added_icons=$(get_icons $ADDES_FILES)"                                    >> $GITHUB_OUTPUT
+          echo "updated_icons=$(get_icons $MODIFIED_FILES $RENAMED_FILES $COPIED_FILES)"  >> $GITHUB_OUTPUT
+          echo "deleted_icons=$(get_icons $DELETED_FILES)"                                >> $GITHUB_OUTPUT
+        env:
+          ADDES_FILES: ${{ steps.changed-files.outputs.added_files }}
+          MODIFIED_FILES: ${{ steps.changed-files.outputs.modified_files }}
+          RENAMED_FILES: ${{ steps.changed-files.outputs.renamed_files }}
+          COPIED_FILES: ${{ steps.changed-files.outputs.copied_files }}
+          DELETED_FILES: ${{ steps.changed-files.outputs.deleted_files }}
+
+      - name: Create Changeset
+        if: steps.changed-files.outputs.any_modified != 'false'
+        run: |
+          declare -a description
+          if [[ -n $ADDED_ICONS ]]; then
+            description+="Added icons number ${ADDED_ICONS}."
+          fi
+          if [[ -n $UPDATED_ICONS ]]; then
+            description+="Updated icons number ${UPDATED_ICONS}."
+          fi
+          if [[ -n $DELETED_ICONS ]]; then
+            description+="Deleted icons number ${DELETED_ICONS}."
+          fi
+
+          echo ---                                         > $CHANGESET
+          echo "'@swisspost/design-system-icons': patch"  >> $CHANGESET
+          echo ---                                        >> $CHANGESET
+          echo                                            >> $CHANGESET
+          echo "${description[@]}"                        >> $CHANGESET
+          echo                                            >> $CHANGESET
+        env:
+          CHANGESET: ./.changeset/${{ steps.current-branch.outputs.branch }}.md
+          ADDED_ICONS: ${{ steps.changed-icons.outputs.added_icons }}
+          UPDATED_ICONS: ${{ steps.changed-icons.outputs.updated_icons }}
+          DELETED_ICONS: ${{ steps.changed-icons.outputs.deleted_icons }}
+
+      - name: Commit Changeset
+        if: steps.changed-files.outputs.any_modified != 'false'
+        run: |
+          git add .
+          git commit -am "chore(icons): add changeset"
+          git push -u origin ${{ steps.current-branch.outputs.branch }}
+
       - name: Write PR Body
         id: pr-body
         if: steps.changed-files.outputs.any_modified != 'false'
         run: |
-          # create the PR body file with a title and set its path as the job output
-          # writing the PR body as a Markdown file allows it to be multi-lined and properly formatted
-          # the file is then only used when creating the PR but is never committed
-          echo "# Design system icons are now up to date!"                                              > $PR_BODY_FILE
           echo "file=$PR_BODY_FILE" >> $GITHUB_OUTPUT
-
-          # group all modified, renamed and copied files into a single list counting as updated files
-          UPDATED_ICONS=($MODIFIED_ICONS $RENAMED_ICONS $COPIED_ICONS)
-
-          # declare all PR body sections in an indexed array (-a) to control their order
-          # declare the list of files corresponding to each section in an associative array (-A)
-          declare -a sections;            declare -A changes
-          sections+=( "Added icons" );    changes["Added icons"]=$ADDED_ICONS
-          sections+=( "Updated icons" );  changes["Updated icons"]=$UPDATED_ICONS
-          sections+=( "Deleted icons" );  changes["Deleted icons"]=$DELETED_ICONS
-
-          for section in "${sections[@]}"; do
-            if [[ ${changes[$section]} != '' ]]; then
-              # for each section with changes, add its title to the PR body file
-              echo "## $section"                                                                       >> $PR_BODY_FILE
-              for file in ${changes[$section]}; do
-                # for each file in the section, get the icon name from its path
-                icon=$(echo $file | sed 's/^packages\/icons\/public\/post-icons\///' | sed 's/\.svg$//')
-                # then add the icon name to the PR body file as a list item
-                if [[ $icon != '' ]]; then
-                  echo "- $icon"                                                                       >> $PR_BODY_FILE
-                fi
-              done
-            fi
-          done
+          echo "# Design system icons are now up to date!"  > $PR_BODY_FILE
+          if [[ -n $ADDED_ICONS ]]; then
+            echo "## Added icons"                          >> $PR_BODY_FILE
+            echo $ADDED_ICONS                              >> $PR_BODY_FILE
+          fi
+          if [[ -n $UPDATED_ICONS ]]; then
+            echo "## Updated icons"                        >> $PR_BODY_FILE
+            echo $UPDATED_ICONS                            >> $PR_BODY_FILE
+          fi
+          if [[ -n $DELETED_ICONS ]]; then
+            echo "## Deleted icons"                        >> $PR_BODY_FILE
+            echo $DELETED_ICONS                            >> $PR_BODY_FILE
+          fi
         env:
           PR_BODY_FILE: pr-body.md
-          ADDED_ICONS: ${{ steps.changed-files.outputs.added_files }}
-          MODIFIED_ICONS: ${{ steps.changed-files.outputs.modified_files }}
-          RENAMED_ICONS: ${{ steps.changed-files.outputs.renamed_files }}
-          COPIED_ICONS: ${{ steps.changed-files.outputs.copied_files }}
-          DELETED_ICONS: ${{ steps.changed-files.outputs.deleted_files }}
+          ADDED_ICONS: ${{ steps.changed-icons.outputs.added_icons }}
+          UPDATED_ICONS: ${{ steps.changed-icons.outputs.updated_icons }}
+          DELETED_ICONS: ${{ steps.changed-icons.outputs.deleted_icons }}
 
       - name: Create PR
         if: steps.changed-files.outputs.any_modified != 'false'
-        run: gh pr create --fill --body-file ${{ steps.pr-body.outputs.file }}
+        run: |
+          gh pr create --title "chore(icons): :point_up: update icons" --body-file ${{ steps.pr-body.outputs.file }}
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.ICON_WORKFLOW_PAT }}

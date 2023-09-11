@@ -1,4 +1,9 @@
 export const translations = {
+  'Active navigation element': {
+    de: 'Aktives Navigationselement',
+    fr: 'Élément de navigation actif',
+    it: 'Elemento di navigazione attivo',
+  },
   'Close overlay': {
     de: 'Overlay Schliessen',
     fr: 'Fermer la superposition',
@@ -38,5 +43,20 @@ export const translations = {
     de: 'Navigieren auf post.ch',
     fr: 'Naviguer sur post.ch',
     it: 'Navigate su post.ch',
+  },
+  'Skip Links': {
+    de: 'Sprung Links',
+    fr: 'Sauter les liens',
+    it: 'Salta i link',
+  },
+  'Intermediary links': {
+    de: 'Intermediäre Links',
+    fr: 'Liens intermédiaires',
+    it: 'Collegamenti intermedi',
+  },
+  'Cookie Settings': {
+    de: 'Cookie-Einstellungen',
+    fr: 'Configurations des cookies',
+    it: 'Impostazioni dei cookie',
   },
 };

@@ -23,16 +23,31 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
 
+      - name: Check if version has changed
+        id: check # This will be the reference for getting the outputs.
+        uses: EndBug/version-check@v2 # You can choose the version/branch you prefer.
+        with:
+          file-name: ./packages/documentation/package.json
+          diff-search: true
+          token: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Setup
+        if: steps.check.outputs.changed == 'true'
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Install documentation & dependencies
+        if: steps.check.outputs.changed == 'true'
         run: pnpm --filter "design-system-documentation..." install
 
       - name: Build documentation & dependencies
+        if: steps.check.outputs.changed == 'true'
         run: pnpm --filter "design-system-documentation..." build
 
+      - name: Install netlify cli
+        run: pnpm -g i netlify-cli@15
+
       - name: Publish documentation to netlify
+        if: steps.check.outputs.changed == 'true'
         env:
           NETLIFY_SITE_ID: ${{ secrets.NEXT_NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}

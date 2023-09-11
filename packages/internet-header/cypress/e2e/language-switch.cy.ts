@@ -11,7 +11,7 @@ describe('language-switch', () => {
 
   beforeEach(() => {
     cy.viewport(1024, 800);
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare('Internet Header/Header Component', 'Default');
   });
 
   describe('meta menu', () => {
@@ -144,7 +144,7 @@ describe('language-switch', () => {
         url: '',
       };
       config.en!.header.navLang = [navLangEntry];
-      prepare('Components/Internet Header/Header', 'Default', config);
+      prepare('Internet Header/Header Component', 'Default', config);
       cy.get('#post-language-switch-desktop').should('not.exist');
     });
 

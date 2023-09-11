@@ -1,0 +1,9 @@
+import { Markdown, Meta } from '@storybook/blocks';
+import changelog from '../../../../../styles/CHANGELOG.md?raw';
+import { CodeOrSourceMdx } from '../../utilities/markdown/CodeOrSourceMdx';
+
+<Meta
+  title="Misc/Changelog"
+/>
+
+<Markdown options={{ overrides: { code: CodeOrSourceMdx } }}>{changelog}</Markdown>

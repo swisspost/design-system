@@ -1,5 +1,111 @@
 # @swisspost/design-system-components-angular
 
+## 2.0.10
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.0
+
+## 2.0.9
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.3.0
+
+## 2.0.8
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.6
+
+## 2.0.7
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.5
+
+## 2.0.6
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.4
+
+## 2.0.5
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.3
+
+## 2.0.4
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.2
+
+## 2.0.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.1
+
+## 2.0.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.0
+
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.1.0
+
+## 2.0.0
+
+### Major Changes
+
+- Major dependency update. The following versions are now supported:
+  - Angular 15
+  - Bootstrap 5.2.3
+  - ng-bootstrap 14 (by [@gfellerph](https://github.com/gfellerph) with [#1210](https://github.com/swisspost/design-system/pull/1210))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.0.0
+
+## 1.1.1
+
+### Patch Changes
+
+- Reverted the update to Bootstrap 5.2 and Angular 15. This update should have been a major release and will be re-released as such as soon as possible. (by [@gfellerph](https://github.com/gfellerph) with [#1207](https://github.com/swisspost/design-system/pull/1207))
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.4.1
+
+## 1.1.0
+
+### Minor Changes
+
+- Major dependency update. The following versions are now supported:
+  - Angular 15
+  - Bootstrap 5.2.3
+  - ng-bootstrap 14 (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1146](https://github.com/swisspost/design-system/pull/1146))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@5.4.0
+
 ## 1.0.8
 
 ### Patch Changes

@@ -1,24 +1,22 @@
 import { Rule } from '@angular-devkit/schematics';
-import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
-import type { Cheerio, AnyNode, CheerioAPI } from 'cheerio';
-
+import type { AnyNode, Cheerio, CheerioAPI } from 'cheerio';
 import { themeColors } from '../../../utils/constants';
+import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 
 export default function (): Rule {
-  return new DomMigration(
+  return getDomMigrationRule(
     new ButtonOutlineClassUpdate,
     new ButtonInvertedClassUpdate,
-    new ButtonIconClassesUpdate
-  ).rule;
+    new ButtonIconClassesUpdate,
+  );
 }
 
-class ButtonOutlineClassUpdate implements IDomUpdate {
+class ButtonOutlineClassUpdate implements DomUpdate {
   cssClassRegex: RegExp = new RegExp(`^btn-outline-(${themeColors.join('|')})$`);
 
   selector = themeColors.map(colorname => `.btn-outline-${colorname}`).join(', ');
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
@@ -28,8 +26,8 @@ class ButtonOutlineClassUpdate implements IDomUpdate {
           ?.split(' ')
           .forEach(cssClass => {
             const match = cssClass.match(this.cssClassRegex);
-            
-            if (match) {            
+
+            if (match) {
               $element
                 .removeClass(cssClass)
                 .addClass('btn-secondary');
@@ -39,23 +37,24 @@ class ButtonOutlineClassUpdate implements IDomUpdate {
   }
 }
 
-class ButtonInvertedClassUpdate implements IDomUpdate {
+class ButtonInvertedClassUpdate implements DomUpdate {
   selector = '.btn.btn-inverted';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements.removeClass('btn-inverted');
   }
 }
 
-class ButtonIconClassesUpdate implements IDomUpdate {
+class ButtonIconClassesUpdate implements DomUpdate {
   selector = '.btn-icon';
 
-  update ($elements: Cheerio<AnyNode>, $: CheerioAPI) {
+  update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements
       .each((_i, element) => {
         const $element = $(element);
         const $icon = $element.find('.pi');
-        const $text = $element.find(':not(.pi, .sr-only, .sr-only-focusable, .visually-hidden, .visually-hidden-focusable)');
+        const $text = $element.find(
+          ':not(.pi, .sr-only, .sr-only-focusable, .visually-hidden, .visually-hidden-focusable)');
 
         const isButtonWithIconAndText = $icon.length > 0 && $text.length > 0 && $text.text().length > 0;
 

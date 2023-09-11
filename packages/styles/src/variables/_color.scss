@@ -1,6 +1,6 @@
 @use 'sass:map';
 @use 'sass:list';
-@use './../functions/color' as color-fn;
+@use './../functions/contrast' as contrast-fn;
 
 /**
  * Colors used by the post style guide
@@ -44,6 +44,7 @@ $success-text: #255e1c;
 $error: #a51728;
 $error-text: #8f0d1c;
 $warning: #f49e00;
+$info: #cce4ee;
 
 /**
  * Maps. Allow maps to have custom colors from the project
@@ -67,7 +68,7 @@ $contextual-colors: map.merge(
   $contextual-colors,
   (
     'success': $success,
-    'info': $yellow,
+    'info': $info,
     'warning': $warning,
     'danger': $error,
   )
@@ -114,7 +115,7 @@ $background-colors: map.merge($background-colors, $accent-colors);
 // Compile a list of dark backgrounds, used in the :is selector mixin at mixins/color
 $dark-backgrounds: () !default;
 @each $colorname, $color in $background-colors {
-  @if (color-fn.get-contrast-color($color) != #000) {
+  @if (contrast-fn.light-or-dark($color) == 'dark') {
     $dark-backgrounds: list.append($dark-backgrounds, '.bg-#{$colorname}', $separator: comma);
   }
 }

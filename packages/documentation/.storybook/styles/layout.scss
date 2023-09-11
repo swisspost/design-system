@@ -1,0 +1,56 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.docs-header {
+  margin-top: -4rem;
+  background-image: url('/images/header.png');
+  background-repeat: no-repeat;
+  background-position: center left 60vw;
+  background-size: auto 100%;
+
+  .container {
+    padding-right: 20vw;
+  }
+
+  @include post.media-breakpoint-up(sm) {
+    .container {
+      padding-right: 30vw;
+    }
+  }
+
+  @include post.media-breakpoint-up(rg) {
+    .container {
+      padding-right: 35vw;
+    }
+  }
+
+  @include post.media-breakpoint-up(xl) {
+    background-position: center right;
+  }
+
+  @include post.media-breakpoint-up(xxl) {
+    .container {
+      padding-right: 30%;
+    }
+  }
+}
+
+.docs-footer {
+  .avatar {
+    display: flex;
+    align-items: flex-start;
+
+    p {
+      margin-bottom: 0.25rem;
+    }
+  }
+
+  .profile-picture {
+    width: 5rem;
+    border-radius: 50%;
+    margin-right: 1rem;
+  }
+
+  .profile-list {
+    gap: 2rem 4rem;
+  }
+}

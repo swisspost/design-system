@@ -3,7 +3,7 @@ import { prepare } from '../support/prepare-story';
 
 describe('main-navigation', () => {
   beforeEach(() => {
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare('Internet Header/Header Component', 'Default');
   });
 
   it('should not have any highlight when active route is false', async () => {
@@ -27,7 +27,7 @@ describe('main-navigation', () => {
   it('should have an active route when config defines an active route', () => {
     const activeConfig = JSON.parse(JSON.stringify(testConfiguration));
     activeConfig.de.header.navMain[0].isActive = true;
-    prepare('Components/Internet Header/Header', 'Default', activeConfig);
+    prepare('Internet Header/Header Component', 'Default', activeConfig);
     cy.get('swisspost-internet-header')
       .shadow()
       .find('.flyout-link.active, .main-link.active')
@@ -40,17 +40,22 @@ describe('main-navigation', () => {
       .shadow()
       .find('.flyout-link.active')
       .should('exist')
-      .should('have.text', 'Verfolgen');
+      .should($element => {
+        expect($element.clone().children().remove().end().text().trim()).to.eq('Verfolgen');
+      });
   });
 
   it('Changes active link also in custom config nav links', () => {
-    prepare('Components/Internet Header/Header', 'Custom Navigation');
+    prepare('Internet Header/Header Component', 'Custom Navigation');
+    cy.changeArg('language', 'en');
     cy.changeArg('active-route', 'https://maps.google.com');
     cy.get('swisspost-internet-header')
       .shadow()
       .find('.flyout-link.active')
       .should('exist')
-      .should('have.text', 'Google Maps');
+      .should($element => {
+        expect($element.clone().children().remove().end().text().trim()).to.eq('Google Maps');
+      });
     cy.get('swisspost-internet-header').shadow().find('.main-link.active').should('have.length', 1);
   });
 
@@ -85,7 +90,9 @@ describe('main-navigation', () => {
         .shadow()
         .find('.flyout-link.active')
         .should('exist')
-        .should('have.text', expectedText);
+        .should($element => {
+          expect($element.clone().children().remove().end().text().trim()).to.eq(expectedText);
+        });
     });
   });
 
@@ -116,7 +123,9 @@ describe('main-navigation', () => {
         .shadow()
         .find('.flyout-link.active')
         .should('exist')
-        .should('have.text', expectedText);
+        .should($element => {
+          expect($element.clone().children().remove().end().text().trim()).to.eq(expectedText);
+        });
     });
   });
 });

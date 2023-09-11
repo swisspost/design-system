@@ -2,9 +2,10 @@
 @use './../mixins/utilities';
 
 @use './../variables/spacing';
+@use './../variables/color';
 @use './../variables/components/stepper';
 
-@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/core' as *;
 
 .stepper-container {
   @include size-mx.responsive-size('big', 'margin-bottom');
@@ -15,6 +16,10 @@
   height: stepper.$stepper-bar-height;
   margin-top: stepper.$stepper-indicator-height * 0.5;
   margin-bottom: -1 * (stepper.$stepper-bar-height + stepper.$stepper-indicator-height) * 0.5;
+
+  .progress-bar {
+    background-color: color.$yellow;
+  }
 }
 
 .stepper {
@@ -42,7 +47,8 @@
   &:last-child {
     justify-self: end;
     align-items: end;
-    transform: translateX(#{0.5 * stepper.$stepper-indicator-height});
+    text-align: right;
+    margin-right: -0.5 * stepper.$stepper-indicator-height;
   }
 
   &:not(:first-child):not(:last-child) {
@@ -82,15 +88,15 @@
     content: counter(step-index);
   }
 
-  &[aria-current] ~ &:not(:hover)::before {
-    color: stepper.$stepper-indicator-future-color;
-    background-color: stepper.$stepper-indicator-future-bg;
-  }
-
   &:hover::before {
     color: stepper.$stepper-indicator-hover-color;
     background-color: stepper.$stepper-indicator-hover-bg;
     background-image: stepper.$stepper-indicator-hover-check-icon;
+  }
+
+  &[aria-current] ~ ::before {
+    color: stepper.$stepper-indicator-future-color;
+    background-color: stepper.$stepper-indicator-future-bg;
   }
 
   &:is(:focus-visible, :focus-within)::before {
@@ -103,6 +109,7 @@
   text-decoration: none;
   color: stepper.$stepper-link-color;
   transition: color 250ms;
+  text-align: center;
 
   .stepper-item[aria-current] > & {
     color: stepper.$stepper-link-current-color;
@@ -110,7 +117,8 @@
     font-weight: stepper.$stepper-link-current-font-weight;
   }
 
-  &:hover {
+  @at-root a:hover#{&},
+    :focus-visible#{&} {
     color: stepper.$stepper-link-hover-color;
   }
 
@@ -121,12 +129,6 @@
 
 @include media-breakpoint-down(rg) {
   .stepper-item {
-    &[aria-current] .stepper-link {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-    }
-
     &:not([aria-current]) .stepper-link {
       overflow: hidden;
       white-space: nowrap;

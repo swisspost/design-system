@@ -36,7 +36,7 @@ export interface ILocalizedCustomConfig {
   footer?: ICustomFooterConfig;
 }
 
-export type Environment = 'dev01' | 'dev02' | 'test' | 'int01' | 'int02' | 'prod';
+export type Environment = 'dev01' | 'dev02' | 'devs1' | 'test' | 'int01' | 'int02' | 'prod';
 
 export type ActiveRouteProp = 'auto' | 'exact' | false | string;
 
@@ -51,3 +51,13 @@ export type LocalizedConfigParameters = {
   localizedCustomConfig?: ILocalizedCustomConfig;
   osFlyoutOverrides?: NavMainEntity;
 };
+
+export interface TagManagerDataLayer {
+  push: (payload: {
+    event: string | undefined;
+    text: string | undefined;
+    link_url: string | undefined;
+    label: string | undefined;
+    type: string | undefined;
+  }) => void;
+}

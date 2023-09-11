@@ -2,7 +2,7 @@
 
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/carousel' as bc;
-@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/core' as *;
 
 @use './../functions/icons';
 @use './../variables/color';

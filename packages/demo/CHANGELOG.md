@@ -1,5 +1,165 @@
 # @swisspost/design-system-demo
 
+## 6.1.2
+
+### Patch Changes
+
+- Patched the documentation release workflow (by [@gfellerph](https://github.com/gfellerph) with [#1896](https://github.com/swisspost/design-system/pull/1896))
+
+## 6.1.1
+
+### Patch Changes
+
+- Added the attribute type="button" to the datepicker to prevent submitting a form on click when the datepicker is directly integrated as shown on the demo page. (by [@b1aserlu](https://github.com/b1aserlu) with [#1856](https://github.com/swisspost/design-system/pull/1856))
+
+- Deprecated the `.pi-calendar` class in favor of the `.pi-3203` class to display the calendar icon in the datepicker. (by [@alizedebray](https://github.com/alizedebray) with [#1806](https://github.com/swisspost/design-system/pull/1806))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.0
+  - @swisspost/design-system-intranet-header@4.0.10
+
+## 6.1.0
+
+### Minor Changes
+
+- Added a gray notification variant for cookie banners. (by [@alizedebray](https://github.com/alizedebray) with [#1350](https://github.com/swisspost/design-system/pull/1350))
+
+### Patch Changes
+
+- Stepper: Remove interactivity on inactive next steps. (by [@imagoiq](https://github.com/imagoiq) with [#1646](https://github.com/swisspost/design-system/pull/1646))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.3.0
+  - @swisspost/design-system-intranet-header@4.0.9
+
+## 6.0.8
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.6
+  - @swisspost/design-system-intranet-header@4.0.8
+
+## 6.0.7
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.5
+  - @swisspost/design-system-intranet-header@4.0.7
+
+## 6.0.6
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.4
+  - @swisspost/design-system-intranet-header@4.0.6
+
+## 6.0.5
+
+### Patch Changes
+
+- Fixed broken links to the storybook documentation. (by [@alizedebray](https://github.com/alizedebray) with [#1514](https://github.com/swisspost/design-system/pull/1514))
+
+- Updated the link in the demo app, to the internet-header documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1528](https://github.com/swisspost/design-system/pull/1528))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.3
+  - @swisspost/design-system-intranet-header@4.0.5
+
+## 6.0.4
+
+### Patch Changes
+
+- Update migration guide with installation instructions for precise major versions. (by [@gfellerph](https://github.com/gfellerph) with [#1473](https://github.com/swisspost/design-system/pull/1473))
+
+- Updated the version selector to correctly display the current demo version. (by [@alizedebray](https://github.com/alizedebray) with [#1502](https://github.com/swisspost/design-system/pull/1502))
+
+- Fixed a regression for the stepper component. Completed items should be links with a href attribute (or a routerLink in Angular) so users can navigate back to previous steps. (by [@gfellerph](https://github.com/gfellerph) with [#1497](https://github.com/swisspost/design-system/pull/1497))
+
+- Added a simple click listener for the stepper. It's now possible to click through the steps for testing purposes. (by [@gfellerph](https://github.com/gfellerph) with [#1317](https://github.com/swisspost/design-system/pull/1317))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.2
+  - @swisspost/design-system-intranet-header@4.0.4
+
+## 6.0.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.1
+  - @swisspost/design-system-intranet-header@4.0.3
+
+## 6.0.2
+
+### Patch Changes
+
+- Updated the favicon and app-icons in the demo-app and the storybook documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1351](https://github.com/swisspost/design-system/pull/1351))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.2.0
+  - @swisspost/design-system-intranet-header@4.0.2
+
+## 6.0.1
+
+### Patch Changes
+
+- Updated the documentation for tooltips regarding the "auto" placement option which can be used to place the tooltip where it fits if there is not enough space for the initial placement. (by [@gfellerph](https://github.com/gfellerph) with [#1288](https://github.com/swisspost/design-system/pull/1288))
+
+- Added examples of button groups using reactive forms and having an option disabled. (by [@alizedebray](https://github.com/alizedebray) with [#1307](https://github.com/swisspost/design-system/pull/1307))
+
+- Fixed the favicon and app-icon setup. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1296](https://github.com/swisspost/design-system/pull/1296))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.1.0
+  - @swisspost/design-system-intranet-header@4.0.1
+
+## 6.0.0
+
+### Major Changes
+
+- Removed documentation entry for the paragraph as duplicate, it's already documented under Typography (by [@gfellerph](https://github.com/gfellerph) with [#1238](https://github.com/swisspost/design-system/pull/1238))
+
+- Updated the markup for the stepper component in order to improve accessibility. Completed items now require the prefix "Complete" and incomplete steps are no longer links. (by [@gfellerph](https://github.com/gfellerph) with [#1232](https://github.com/swisspost/design-system/pull/1232))
+
+- Major dependency update. The following versions are now supported:
+  - Angular 15
+  - Bootstrap 5.2.3
+  - ng-bootstrap 14 (by [@gfellerph](https://github.com/gfellerph) with [#1210](https://github.com/swisspost/design-system/pull/1210))
+
+### Minor Changes
+
+- Removed deprecated ng-bootstrap Checkbox and Radio buttons and replaced them with Bootstrap button groups. (by [@alizedebray](https://github.com/alizedebray) with [#1199](https://github.com/swisspost/design-system/pull/1199))
+
+- Added a version switch to the header to keep documentation for older versions available. (by [@gfellerph](https://github.com/gfellerph) with [#1241](https://github.com/swisspost/design-system/pull/1241))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.0.0
+  - @swisspost/design-system-intranet-header@4.0.0
+
+## 5.3.1
+
+### Patch Changes
+
+- Reverted the update to Bootstrap 5.2 and Angular 15. This update should have been a major release and will be re-released as such as soon as possible. (by [@gfellerph](https://github.com/gfellerph) with [#1207](https://github.com/swisspost/design-system/pull/1207))
+- Updated dependencies:
+  - @swisspost/design-system-intranet-header@3.1.1
+  - @swisspost/design-system-styles@5.4.1
+
+## 5.3.0
+
+### Minor Changes
+
+- Major dependency update. The following versions are now supported:
+  - Angular 15
+  - Bootstrap 5.2.3
+  - ng-bootstrap 14 (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1146](https://github.com/swisspost/design-system/pull/1146))
+
+### Patch Changes
+
+- Updated the angular version in the migration guide. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1189](https://github.com/swisspost/design-system/pull/1189))
+- Updated dependencies:
+  - @swisspost/design-system-intranet-header@3.1.0
+  - @swisspost/design-system-styles@5.4.0
+
 ## 5.2.3
 
 ### Patch Changes

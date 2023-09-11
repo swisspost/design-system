@@ -1,0 +1,70 @@
+@use 'sass:math';
+
+// From https://codetuts.dev/text-contrast-sass/
+// with updated math.pow and math.div
+
+@function luminance($color) {
+  $rgb: (
+    'red': red($color),
+    'green': green($color),
+    'blue': blue($color),
+  );
+
+  @each $color, $value in $rgb {
+    $value: math.div($value, 255);
+
+    @if ($value <= 0.03928) {
+      $value: math.div($value, 12.92);
+    } @else {
+      $value: math.div($value + 0.055, 1.055);
+      $value: math.pow($value, 2.4);
+    }
+
+    $rgb: map-merge(
+      $rgb,
+      (
+        $color: $value,
+      )
+    );
+  }
+
+  $result-luminance: (map-get($rgb, 'red') * 0.2126) + (map-get($rgb, 'green') * 0.7152) +
+    (map-get($rgb, 'blue') * 0.0722);
+
+  @return $result-luminance;
+}
+
+@function contrast-ratio($background-color, $text-color) {
+  $l-background: luminance($background-color);
+  $l-text: luminance($text-color);
+
+  @if ($l-background > $l-text) {
+    @return math.div($l-background + 0.05, $l-text + 0.05);
+  }
+
+  @return math.div($l-text + 0.05, $l-background + 0.05);
+}
+
+@function light-or-dark($background, $light-color: #fff, $dark-color: #000) {
+  // Contrast ratio with a light color
+  $contrast-light: contrast-ratio($background, $light-color);
+
+  // Contrast ratio with a dark color
+  $contrast-dark: contrast-ratio($background, $dark-color);
+
+  @if $contrast-light < $contrast-dark {
+    // Dark color has better contrast on light backgrounds, so background is light
+    @return 'light';
+  } @else {
+    // Light color has better contrast on dark backgrounds, so background is dark
+    @return 'dark';
+  }
+}
+
+@function get-best-contrast-text($background, $light-text: #fff, $dark-text: #000) {
+  @if light-or-dark($background, $light-text, $dark-text) == 'light' {
+    @return $dark-text;
+  } @else {
+    @return $light-text;
+  }
+}

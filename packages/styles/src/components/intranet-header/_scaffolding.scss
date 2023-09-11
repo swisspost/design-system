@@ -3,7 +3,7 @@
 @use './../../variables/commons';
 @use './../../variables/components/intranet-header';
 
-@use './../../themes/bootstrap/overrides' as *;
+@use './../../themes/bootstrap/core' as *;
 
 // based from http://getbootstrap.com/docs/4.1/examples/dashboard/
 .navbar-brand {
@@ -47,7 +47,6 @@
   h2 {
     overflow: hidden;
     font-size: 1.6rem; // Same as PostWeb
-    line-height: 1.2;
     text-overflow: ellipsis;
   }
 }

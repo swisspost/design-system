@@ -1,27 +1,59 @@
 <div class="heading py-5">
   <h1 class="bold font-curve-large">Sizing</h1>
-  <h2 class="font-curve-medium">Using bootstrap 4.5</h2>
-  <a
-    class="btn btn-primary btn-sm btn-animated"
-    href="https://getbootstrap.com/docs/4.1/utilities/sizing/"
-    target="_blank"
-    rel="noopener"
-  >
-    <span>Bootstrap Sizing</span>
-  </a>
-  &nbsp;
-  <a
-    class="btn btn-primary btn-sm btn-animated"
-    href="https://getbootstrap.com/docs/4.1/utilities/spacing/"
-    target="_blank"
-    rel="noopener"
-  >
-    <span>Bootstrap Spacing</span>
-  </a>
+  <app-dependency-link
+    [documentationPaths]="{ sizing: 'utilities/sizing', spacing: 'utilities/spacing' }"
+  ></app-dependency-link>
+</div>
+
+<div class="alert alert-info">
+  <h3 class="h5">Sizing variables are deprecated</h3>
+  <!-- prettier-ignore -->
+  <p>
+    The current set of the post-specific sizing variables is deprecated in favour of a new naming system that is
+    consistent with the Design. For further information, please read the
+    <a href="https://github.com/swisspost/design-system/discussions/588">discussion on sizing variables on GitHub</a>
+    and have a look at the
+    <a href="https://www.figma.com/file/ojCcgC5Zd12eUSzq6V5m24/Foundations?node-id=3%3A2&t=l8qimsXlxeMLOzs6-0">implementation in Figma</a>.
+  </p>
+  <h4 class="h6 mt-regular">Affected properties:</h4>
+  <ul>
+    <li>
+      <strong>margin</strong>
+      and
+      <strong>padding</strong>
+      (new solution with updated naming system up coming)
+    </li>
+    <li>
+      <strong>width</strong>
+      ,
+      <strong>height</strong>
+      ,
+      <strong>max-width</strong>
+      and
+      <strong>max-height</strong>
+      (bootstrap utility remains)
+    </li>
+    <li>
+      <strong>line-height</strong>
+      (bootstrap utility remains)
+    </li>
+    <li>
+      <strong>gap</strong>
+      (new solution with updated naming system up coming)
+    </li>
+  </ul>
+  <h4 class="h6 mt-regular">NOT affected properties:</h4>
+  <ul>
+    <li>
+      Responsive behaviour (e.g.
+      <strong>.p-large-r</strong>
+      , etc.)
+    </li>
+  </ul>
 </div>
 
 <section>
-  <h3 id="post-sizes-reference-table">Post-Sizes Reference Table</h3>
+  <h3 id="post-sizes-reference-table" class="mt-5">Post-Sizes Reference Table</h3>
   <table class="table table-striped table-sm" aria-describedby="post-sizes-reference-table">
     <thead class="thead-dark">
       <tr>

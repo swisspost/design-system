@@ -1,9 +1,11 @@
 @forward './../variables/options';
 
 @use './../variables/color';
+@use './../variables/type';
 @use './../variables/components/datepicker';
 @use './../variables/components/forms';
 @use './../variables/commons';
+@use './../mixins/icons' as icons-mx;
 
 ngb-datepicker {
   // Conversion for compatibility
@@ -73,7 +75,7 @@ span.ngb-dp-navigation-chevron {
   color: rgba(var(--post-contrast-color-rgb), 0.6) !important;
   font-size: 1rem;
   font-style: normal !important;
-  line-height: 1.47 !important;
+  line-height: type.$line-height-copy !important;
   width: 40px !important;
   height: auto !important;
   font-weight: normal;
@@ -130,7 +132,9 @@ span.ngb-dp-navigation-chevron {
   width: forms.$input-height-inner;
   background: transparent;
 
+  .pi-3203,
   .pi-calendar {
+    @include icons-mx.pi(3203);
     width: datepicker.$ngb-dp-icon-size;
     height: datepicker.$ngb-dp-icon-size;
     transform: none;
@@ -141,6 +145,7 @@ span.ngb-dp-navigation-chevron {
   height: forms.$input-height-inner-sm;
   width: forms.$input-height-inner-sm;
 
+  .pi-3203,
   .pi-calendar {
     width: datepicker.$ngb-dp-icon-size-sm;
     height: datepicker.$ngb-dp-icon-size-sm;
@@ -157,6 +162,7 @@ span.ngb-dp-navigation-chevron {
   height: forms.$input-height-inner-lg;
   width: forms.$input-height-inner-lg;
 
+  .pi-3203,
   .pi-calendar {
     width: datepicker.$ngb-dp-icon-size-lg;
     height: datepicker.$ngb-dp-icon-size-lg;
@@ -199,40 +205,63 @@ input[ngbDatepicker] {
   }
 }
 
-.form-control[ngbDatepicker] {
+.form-control[ngbdatepicker] {
+  padding-right: 3rem;
+
   &.is-invalid,
   &.is-valid,
   &.show-ng-validation.ng-touched.ng-invalid,
   &.show-ng-validation.ng-touched.ng-valid {
-    padding-right: 1rem;
     background-position: calc(100% - #{forms.$input-height-inner}) center;
+  }
+
+  &.is-invalid {
+    padding-right: 5rem;
   }
 
   .form-floating > &,
   &.form-control-lg {
+    padding-right: 4rem;
+
     &.is-invalid,
     &.is-valid,
     &.show-ng-validation.ng-touched.ng-invalid,
     &.show-ng-validation.ng-touched.ng-valid {
       background-position: calc(100% - #{forms.$input-height-inner-lg}) center !important;
     }
+
+    &.is-invalid {
+      padding-right: 6rem;
+    }
   }
 
   &.form-control-rg {
+    padding-right: 2.5rem;
+
     &.is-invalid,
     &.is-valid,
     &.show-ng-validation.ng-touched.ng-invalid,
     &.show-ng-validation.ng-touched.ng-valid {
       background-position: calc(100% - #{forms.$input-height-inner-rg}) center;
     }
+
+    &.is-invalid {
+      padding-right: 4.5rem;
+    }
   }
 
   &.form-control-sm {
+    padding-right: 2rem;
+
     &.is-invalid,
     &.is-valid,
     &.show-ng-validation.ng-touched.ng-invalid,
     &.show-ng-validation.ng-touched.ng-valid {
       background-position: calc(100% - #{forms.$input-height-inner-sm}) center;
+    }
+
+    &.is-invalid {
+      padding-right: 3.5rem;
     }
   }
 }

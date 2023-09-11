@@ -1,12 +1,11 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "1.2.0",
+  "version": "1.4.0",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "es2015": "dist/esm/index.mjs",
-  "es2017": "dist/esm/index.mjs",
+  "main": "loader/index.cjs.js",
+  "module": "loader/index.js",
+  "es2017": "loader/index.2017.js",
   "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
@@ -25,35 +24,41 @@
     "linkDirectory": true
   },
   "scripts": {
+    "dev": "stencil build --serve --watch --docs-readme",
     "start": "stencil build --watch --docs-readme",
     "build": "stencil build --docs-readme",
+    "clean": "rimraf www dist loader",
     "test": "npm run unit",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
     "e2e": "cypress run",
     "e2e:watch": "cypress open",
-    "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js",
-    "generate": "stencil generate"
+    "generate": "stencil generate",
+    "lint": "eslint src/**/*{.ts,.tsx}"
   },
   "dependencies": {
-    "@popperjs/core": "2.11.6",
-    "@stencil/core": "3.0.1",
-    "@stencil/react-output-target": "0.4.0",
-    "@stencil/sass": "2.0.3",
-    "@swisspost/design-system-styles": "workspace:5.3.2",
-    "bootstrap": "5.1.3",
-    "puppeteer": "19.7.1",
-    "sass": "1.58.3"
+    "@stencil/core": "3.4.2",
+    "@swisspost/design-system-styles": "workspace:6.4.0"
   },
   "devDependencies": {
-    "@percy/cli": "1.18.0",
+    "@percy/cli": "1.27.1",
     "@percy/cypress": "3.1.2",
+    "@stencil-community/eslint-plugin": "^0.5.0",
+    "@stencil/react-output-target": "0.5.3",
+    "@stencil/sass": "3.0.5",
     "@types/jest": "27.5.2",
-    "cypress": "12.5.1",
+    "@typescript-eslint/eslint-plugin": "5.62.0",
+    "@typescript-eslint/parser": "5.62.0",
+    "bootstrap": "5.3.1",
+    "cypress": "13.1.0",
     "cypress-storybook": "0.5.1",
+    "eslint": "8.48.0",
+    "eslint-plugin-react": "7.33.2",
     "jest": "27.5.1",
     "jest-cli": "27.5.1",
     "npm-run-all": "4.1.5",
-    "typescript": "4.8.4"
+    "rimraf": "5.0.1",
+    "sass": "1.66.1",
+    "typescript": "4.9.5"
   }
 }

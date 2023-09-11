@@ -24,8 +24,10 @@ import { SvgIcon } from '../../utils/svg-icon.component';
 import { StickynessOptions } from '../../models/implementor.model';
 import { ActiveRouteProp, Environment, ICustomConfig } from '../../models/general.model';
 import { IAvailableLanguage } from '../../models/language.model';
+import { translate } from '../../services/language.service';
 import { If } from '../../utils/if.component';
 import packageJson from '../../../package.json';
+import { registerLogoAnimationObserver } from './logo-animation/logo-animation';
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -122,7 +124,7 @@ export class PostInternetHeader {
 
   @State() activeFlyout: string | null = null;
   @State() activeDropdownElement: DropdownElement | null = null;
-  @Element() host: HTMLElement;
+  @Element() host: HTMLSwisspostInternetHeaderElement;
 
   /**
    * Get the currently set language as a two letter string ("de", "fr" "it" or "en")
@@ -134,10 +136,12 @@ export class PostInternetHeader {
   }
 
   private mainNav?: HTMLPostMainNavigationElement;
+  private metaNav?: HTMLPostMetaNavigationElement;
   private lastScrollTop = window.scrollY || document.documentElement.scrollTop;
   private throttledScroll: throttle<() => void>;
   private debouncedResize: debounce<() => void>;
   private lastWindowWidth: number = window.innerWidth;
+  private updateLogoAnimation: () => void;
 
   constructor() {
     if (this.project === undefined || this.project === '' || !isValidProjectId(this.project)) {
@@ -166,7 +170,8 @@ export class PostInternetHeader {
     // Wait for the config to arrive, then render the header
     try {
       state.projectId = this.project;
-      state.environment = this.environment;
+      state.stickyness = this.stickyness;
+      state.environment = this.environment.toLocaleLowerCase() as Environment;
       if (this.language !== undefined) state.currentLanguage = this.language;
       state.languageSwitchOverrides =
         typeof this.languageSwitchOverrides === 'string'
@@ -186,7 +191,7 @@ export class PostInternetHeader {
 
       state.localizedConfig = await getLocalizedConfig({
         projectId: this.project,
-        environment: this.environment,
+        environment: state.environment,
         language: this.language,
         cookieKey: this.languageCookieKey,
         localStorageKey: this.languageLocalStorageKey,
@@ -204,7 +209,13 @@ export class PostInternetHeader {
       this.handleResize();
       this.headerLoaded.emit();
       this.host.classList.add('header-loaded');
+      if (this.meta && this.metaNav) {
+        this.updateLogoAnimation = registerLogoAnimationObserver(this.metaNav, this.host);
+      }
     });
+
+    if (this.stickyness === 'full')
+      console.warn('Internet Header: The stickyness="full" option is deprecated.');
   }
 
   @Watch('language')
@@ -293,6 +304,12 @@ export class PostInternetHeader {
   @Listen('languageChanged')
   handleLanguageChangeEvent(event: CustomEvent<string>) {
     this.handleLanguageChange(event.detail);
+  }
+
+  @Watch('stickyness')
+  handleStickynessChange(newValue: StickynessOptions) {
+    state.stickyness = newValue;
+    this.updateLogoAnimation();
   }
 
   private handleClickOutsideBound = this.handleClickOutside.bind(this);
@@ -426,6 +443,7 @@ export class PostInternetHeader {
       >
         <header class={`post-internet-header${this.fullWidth ? ' full-width' : ''}`}>
           <SvgSprite />
+          <h1 class="visually-hidden">{translate('Navigate on post.ch')}</h1>
           <If condition={this.skiplinks === true}>
             <post-skiplinks></post-skiplinks>
           </If>
@@ -434,6 +452,7 @@ export class PostInternetHeader {
               orientation="horizontal"
               class="hidden-lg"
               full-width={this.fullWidth}
+              ref={el => (this.metaNav = el)}
             >
               <If condition={renderLanguageSwitch === true}>
                 <post-language-switch
@@ -446,7 +465,13 @@ export class PostInternetHeader {
           </If>
           <div class="main-navigation-container wide-container">
             <post-logo></post-logo>
-            <button class="menu-button nav-link" onClick={() => this.toggleMobileDropdown()}>
+            <button
+              class="menu-button nav-link"
+              onClick={() => this.toggleMobileDropdown()}
+              aria-haspopup="menu"
+              aria-controls="post-internet-header-main-navigation"
+              aria-expanded={this.activeDropdownElement ? 'true' : 'false'}
+            >
               <span class="menu-button-text visually-hidden">{config.header.mobileMenu.text}</span>
               <SvgIcon name={this.isMainNavOpen() ? 'pi-close' : 'pi-menu'}></SvgIcon>
             </button>

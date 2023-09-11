@@ -1,18 +1,17 @@
 import { Rule } from '@angular-devkit/schematics';
-import DomMigration from '../../../utils/dom/migration';
-import IDomUpdate from '../../../utils/dom/update';
-import type { Cheerio, AnyNode } from 'cheerio';
+import type { AnyNode, Cheerio } from 'cheerio';
+import { DomUpdate, getDomMigrationRule } from '../../../utils/dom-migration';
 
 export default function (): Rule {
-  return new DomMigration(
-    new TextAutoClassUpdate
-  ).rule;
+  return getDomMigrationRule(
+    new TextAutoClassUpdate,
+  );
 }
 
-class TextAutoClassUpdate implements IDomUpdate {
+class TextAutoClassUpdate implements DomUpdate {
   selector = '.text-auto';
 
-  update ($elements: Cheerio<AnyNode>) {
+  update($elements: Cheerio<AnyNode>) {
     $elements.removeClass('text-auto');
   }
 }

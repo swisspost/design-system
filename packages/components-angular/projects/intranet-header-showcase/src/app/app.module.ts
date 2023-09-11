@@ -6,15 +6,9 @@ import { SwissPostIntranetHeaderModule } from '../../../intranet-header/src/lib/
 import { AppComponent } from './app.component';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    RouterModule.forRoot([]),
-    SwissPostIntranetHeaderModule
-  ],
+  declarations: [AppComponent],
+  imports: [BrowserModule, RouterModule.forRoot([]), SwissPostIntranetHeaderModule],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

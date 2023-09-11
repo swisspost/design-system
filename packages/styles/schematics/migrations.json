@@ -1,6 +1,5 @@
 {
   "$schema": "../node_modules/@angular-devkit/schematics/collection-schema.json",
-
   "schematics": {
     "migration-general-classes-bg-opacity": {
       "version": "5.0.0",
@@ -79,7 +78,7 @@
     },
     "migration-ng-buttons": {
       "version": "5.0.0",
-      "description": "Migrates ng-bootstrap button component.",
+      "description": "Deprecates ng-bootstrap button component.",
       "factory": "./migrations/ngbootstrap/buttons"
     },
     "migration-post-custom-select": {
@@ -96,6 +95,11 @@
       "version": "5.0.0",
       "description": "Migrates post topic-teaser component.",
       "factory": "./migrations/post/topic-teaser"
+    },
+    "migration-post-stepper": {
+      "version": "6.0.0",
+      "description": "Improves the post stepper accessibility.",
+      "factory": "./migrations/post/stepper"
     }
   }
 }

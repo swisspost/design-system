@@ -18,15 +18,15 @@ export namespace Components {
         /**
           * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
          */
-        "dismissible": boolean;
+        "dismissible": false;
         /**
           * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
          */
-        "fixed": boolean;
+        "fixed": false;
         /**
           * The icon to display in the alert.  If `null`, no icon will be displayed. By default, the icon depends on the alert type.
          */
-        "icon": string;
+        "icon": string | null;
         /**
           * The type of the alert.  We provide styles for the following types: `'primary'`, `'success'`, `'danger'`, `'warning'`, `'info'`.
          */
@@ -51,13 +51,13 @@ export namespace Components {
      */
     interface PostIcon {
         /**
-          * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+          * The name of the animation.
          */
-        "animation"?: string;
+        "animation"?: Animation | null;
         /**
-          * The base path, where the icons are located (must be a public url).
+          * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
-        "base"?: string;
+        "base"?: string | null;
         /**
           * When set to `true`, the icon will be flipped horizontally.
          */
@@ -71,14 +71,40 @@ export namespace Components {
          */
         "name": string;
         /**
-          * The `number` of degree for the css `rotate` transformation.
+          * The number of degree for the css rotate transformation.
          */
-        "rotate"?: number;
+        "rotate"?: number | null;
         /**
-          * The `number` for the css `scale` transformation.
+          * The number for the css scale transformation.
          */
-        "scale"?: number;
+        "scale"?: number | null;
     }
+    interface PostTabHeader {
+        /**
+          * The name of the panel controlled by the tab header.
+         */
+        "panel": HTMLPostTabPanelElement['name'];
+    }
+    interface PostTabPanel {
+        /**
+          * The name of the panel, used to associate it with a tab header.
+         */
+        "name": string;
+    }
+    interface PostTabs {
+        /**
+          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
+         */
+        "activePanel": HTMLPostTabPanelElement['name'];
+        /**
+          * Shows the panel with the given name and selects its associated tab. Any other panel that was previously shown becomes hidden and its associated tab is unselected.
+         */
+        "show": (panelName: string) => Promise<void>;
+    }
+}
+export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostTabsElement;
 }
 declare global {
     interface HTMLPostAlertElement extends Components.PostAlert, HTMLStencilElement {
@@ -102,10 +128,31 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
+    }
+    var HTMLPostTabHeaderElement: {
+        prototype: HTMLPostTabHeaderElement;
+        new (): HTMLPostTabHeaderElement;
+    };
+    interface HTMLPostTabPanelElement extends Components.PostTabPanel, HTMLStencilElement {
+    }
+    var HTMLPostTabPanelElement: {
+        prototype: HTMLPostTabPanelElement;
+        new (): HTMLPostTabPanelElement;
+    };
+    interface HTMLPostTabsElement extends Components.PostTabs, HTMLStencilElement {
+    }
+    var HTMLPostTabsElement: {
+        prototype: HTMLPostTabsElement;
+        new (): HTMLPostTabsElement;
+    };
     interface HTMLElementTagNameMap {
         "post-alert": HTMLPostAlertElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
+        "post-tab-header": HTMLPostTabHeaderElement;
+        "post-tab-panel": HTMLPostTabPanelElement;
+        "post-tabs": HTMLPostTabsElement;
     }
 }
 declare namespace LocalJSX {
@@ -117,15 +164,15 @@ declare namespace LocalJSX {
         /**
           * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
          */
-        "dismissible"?: boolean;
+        "dismissible"?: false;
         /**
           * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
          */
-        "fixed"?: boolean;
+        "fixed"?: false;
         /**
           * The icon to display in the alert.  If `null`, no icon will be displayed. By default, the icon depends on the alert type.
          */
-        "icon"?: string;
+        "icon"?: string | null;
         /**
           * The type of the alert.  We provide styles for the following types: `'primary'`, `'success'`, `'danger'`, `'warning'`, `'info'`.
          */
@@ -146,13 +193,13 @@ declare namespace LocalJSX {
      */
     interface PostIcon {
         /**
-          * The name of the animation (`cylon`, `cylon-vertical`, `spin`, `spin-reverse`, `fade`, `throb`).
+          * The name of the animation.
          */
-        "animation"?: string;
+        "animation"?: Animation | null;
         /**
-          * The base path, where the icons are located (must be a public url).
+          * The base path, where the icons are located (must be a public url).<br/>Leave this field empty to use the default cdn url.
          */
-        "base"?: string;
+        "base"?: string | null;
         /**
           * When set to `true`, the icon will be flipped horizontally.
          */
@@ -164,20 +211,45 @@ declare namespace LocalJSX {
         /**
           * The name/id of the icon (e.g. 1000, 1001, ...).
          */
+        "name": string;
+        /**
+          * The number of degree for the css rotate transformation.
+         */
+        "rotate"?: number | null;
+        /**
+          * The number for the css scale transformation.
+         */
+        "scale"?: number | null;
+    }
+    interface PostTabHeader {
+        /**
+          * The name of the panel controlled by the tab header.
+         */
+        "panel"?: HTMLPostTabPanelElement['name'];
+    }
+    interface PostTabPanel {
+        /**
+          * The name of the panel, used to associate it with a tab header.
+         */
         "name"?: string;
+    }
+    interface PostTabs {
         /**
-          * The `number` of degree for the css `rotate` transformation.
+          * The name of the panel that is initially shown. If not specified, it defaults to the panel associated with the first tab.  **Changing this value after initialization has no effect.**
          */
-        "rotate"?: number;
+        "activePanel"?: HTMLPostTabPanelElement['name'];
         /**
-          * The `number` for the css `scale` transformation.
+          * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
          */
-        "scale"?: number;
+        "onTabChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
     }
     interface IntrinsicElements {
         "post-alert": PostAlert;
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
+        "post-tab-header": PostTabHeader;
+        "post-tab-panel": PostTabPanel;
+        "post-tabs": PostTabs;
     }
 }
 export { LocalJSX as JSX };
@@ -190,6 +262,9 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
+            "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
+            "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
         }
     }
 }

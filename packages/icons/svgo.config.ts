@@ -1,4 +1,4 @@
-import { OptimizeOptions } from 'svgo';
+import { Config } from 'svgo';
 
 export default {
   js2svg: {
@@ -21,5 +21,11 @@ export default {
         attrs: '(width|height|style)',
       },
     },
+    {
+      name: 'sortAttrs',
+      params: {
+        xmlnsOrder: 'alphabetical',
+      },
+    },
   ],
-} as OptimizeOptions;
+} as Config;

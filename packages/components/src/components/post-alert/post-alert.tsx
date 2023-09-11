@@ -1,9 +1,5 @@
-/*
- * Copyright 2023 by Swiss Post, Information Technology
- */
-
 import { Component, Element, h, Method, Prop, State, Watch } from '@stencil/core';
-import { checkBoolean, checkNonEmptyString, checkOneOf, checkPattern, onTransitionEnd } from '../../utils';
+import { checkNonEmpty, checkOneOf, checkPattern, checkType, onTransitionEnd } from '../../utils';
 
 @Component({
   tag: 'post-alert',
@@ -11,27 +7,64 @@ import { checkBoolean, checkNonEmptyString, checkOneOf, checkPattern, onTransiti
   shadow: true,
 })
 export class PostAlert {
+  private alertElement: HTMLElement;
+
+  @Element() host: HTMLPostAlertElement;
+
+  @State() alertClasses: string[] = [ 'alert' ];
+  @State() hasHeading: boolean;
+
+  /**
+   * The label to use for the close button of a dismissible alert.
+   */
+  @Prop() readonly dismissLabel: string;
+
   /**
    * The type of the alert.
    *
    * We provide styles for the following types: `'primary'`, `'success'`, `'danger'`, `'warning'`, `'info'`.
    */
-  @Prop() type = 'primary';
+  @Prop() readonly type: string = 'primary';
+
+  @Watch('type')
+  validateType(alertType = this.type) {
+    const alertTypes = [ 'primary', 'success', 'danger', 'warning', 'info' ];
+    checkOneOf(alertType, alertTypes, `The post-alert requires a type form: ${alertTypes.join(', ')}`);
+
+    alertTypes.forEach(type => {
+      this.toggleAlertClass(`alert-${type}`, type === alertType);
+    });
+  }
 
   /**
    * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
    */
-  @Prop() fixed = false;
+  @Prop() readonly fixed = false;
+
+  @Watch('fixed')
+  validateFixed(isFixed = this.fixed) {
+    checkType(isFixed, 'boolean', 'The post-alert "fixed" prop should be a boolean.');
+
+    if (isFixed) {
+      this.toggleAlertClass('alert-fixed-bottom', isFixed);
+    }
+  }
 
   /**
    * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
    */
-  @Prop() dismissible = false;
+  @Prop() readonly dismissible = false;
 
-  /**
-   * The label to use for the close button of a dismissible alert.
-   */
-  @Prop() dismissLabel: string;
+  @Watch('dismissible')
+  validateDismissible(isDismissible = this.dismissible) {
+    checkType(isDismissible, 'boolean', 'The post-alert "dismissible" prop should be a boolean.');
+
+    this.toggleAlertClass('alert-dismissible', isDismissible);
+
+    if (isDismissible) {
+      checkNonEmpty(this.dismissLabel, 'Dismissible post-alert\'s require a "dismiss-label" prop.');
+    }
+  }
 
   /**
    * The icon to display in the alert.
@@ -39,43 +72,7 @@ export class PostAlert {
    * If `null`, no icon will be displayed.
    * By default, the icon depends on the alert type.
    */
-  @Prop() icon: string;
-
-  @State() alertClasses: string[] = [ 'alert' ];
-  @State() hasHeading: boolean;
-
-  @Element() host: HTMLElement;
-
-  alertElement: HTMLElement;
-
-  @Watch('type')
-  validateType(alertType = this.type) {
-    const alertTypes = [ 'primary', 'success', 'danger', 'warning', 'info' ];
-    checkOneOf(alertType, alertTypes, 'The post-alert requires a type.');
-
-    alertTypes.forEach(type => this.toggleAlertClass(`alert-${type}`, type === alertType));
-  }
-
-  @Watch('fixed')
-  validateFixed(isFixed = this.fixed) {
-    checkBoolean(isFixed, 'The post-alert "fixed" prop should be a boolean.');
-
-    if (isFixed) {
-      this.toggleAlertClass('alert-fixed-bottom', isFixed);
-    }
-  }
-
-  @Watch('dismissible')
-  validateDismissible(isDismissible = this.dismissible) {
-    checkBoolean(isDismissible, 'The post-alert "dismissible" prop should be a boolean.');
-
-    const dismissibleClasses = 'alert-dismissible fade show';
-    dismissibleClasses.split(' ').forEach(dismissibleClass => this.toggleAlertClass(dismissibleClass, isDismissible));
-
-    if (isDismissible) {
-      checkNonEmptyString(this.dismissLabel, 'Dismissible post-alert\'s require a "dismiss-label" prop.');
-    }
-  }
+  @Prop() readonly icon: string | null;
 
   @Watch('icon')
   validateIcon(newValue = this.icon) {

@@ -1,52 +1,35 @@
-import { Meta, Canvas, Story, Source, ArgsTable } from '@storybook/addon-docs';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as badgeStories from './badge.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
-<Meta title="Components/Badge" />
+<Meta of={badgeStories} />
 
 # Badge
 
-<p className="lead">
+<div className="lead">
   Documentation and examples for badges, our small count and labeling component.
-</p>
-
-<Canvas>
-  <Story id="components-badge--default" />
-</Canvas>
-<div className="hide-col-default">
-  <ArgsTable story="^" />
 </div>
 
-## SCSS Imports
+<Canvas of={badgeStories.Default} />
+<div className="hide-col-default">
+  <Controls of={badgeStories.Default} />
+</div>
 
-To import all styles from the design-system-styles package:
+<StylesPackageImport components={["badge"]} />
 
-```css dark
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```css dark
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/badge.scss';
-```
-
-## Concrete Examples of Application
-
-The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
+## Examples
 
 ### Checkable
 
-A checkable `.badge` is nothing else than a custom-checkbox. Therefore you can manipulate it like every default `checkbox` element.
+Checkable badges are nothing more than personalized checkboxes.
+Therefore, you can handle then like standard checkboxes.
 
-<Canvas>
-  <Story id="components-badge--checkable" />
-</Canvas>
+<Canvas of={badgeStories.Checkable} />
 
 ### Dismissible
 
-A dismissible `.badge` can be removed from the UI by the user, by clicking on the close button.
-Close buttons without text should always provide a `dismiss-label` prop, which defines the hidden text associated with the button.
+Dismissible badges include a close button, allowing users to easily clear them from the page.
+Because the close button does not have a visible text,
+it should always include a visually hidden label to ensure accessibility for assistive technology users.
 
-<Canvas>
-  <Story id="components-badge--dismissible" />
-</Canvas>
+<Canvas of={badgeStories.Dismissible} />

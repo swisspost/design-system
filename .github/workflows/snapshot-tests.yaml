@@ -19,6 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
+      # Use cache is set to false because the cypress binary could not be cached correctly
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
         with:
@@ -27,10 +28,9 @@ jobs:
       - name: Bootstrap
         run: pnpm bootstrap
 
-      - name: Install http-server
-        run: pnpm -g add http-server
-
+      # Takes full snapshots on the main and partial snapshots (using the filter) on every other branch
       - name: Take snapshots
         env:
           PERCY_TOKEN: ${{ secrets.PERCY_TOKEN }}
-        run: pnpm exec start-server-and-test 'http-server packages/documentation/storybook-static --silent --port 9300' 9300 'pnpm --no-bail --filter "...[origin/main]" --workspace-concurrency=1 snapshots'
+        run: |
+          pnpm snapshots

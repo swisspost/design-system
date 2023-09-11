@@ -32,6 +32,7 @@
     font-size: form-feedback.$form-feedback-font-size;
   }
 
+  // Deprecated
   .#{$state}-tooltip {
     display: none;
     position: absolute;
@@ -43,7 +44,7 @@
     border-radius: tooltips.$tooltip-border-radius;
     color: color-contrast($color);
     font-size: tooltips.$tooltip-font-size;
-    line-height: type.$line-height-base;
+    line-height: type.$line-height-copy;
 
     /* Keeping borders gray while maintaining a green background on tooltips */
     @if ($state == 'valid') {
@@ -93,7 +94,6 @@
 }
 
 @mixin form-control-rg {
-  height: forms.$input-height-rg;
   padding: forms.$input-padding-y-rg forms.$input-padding-x-rg;
   font-size: type.$font-size-regular;
   line-height: forms.$input-line-height-rg;
@@ -106,5 +106,6 @@
   /* Compatibility with button-group */
   &:is(:focus-visible, :focus-within, .pretend-focus) {
     outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
+    @content;
   }
 }

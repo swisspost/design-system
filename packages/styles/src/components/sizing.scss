@@ -1,7 +1,7 @@
 @forward './../variables/options';
 
 @use 'sass:map';
-@use './../themes/bootstrap/overrides' as *;
+@use './../themes/bootstrap/core' as *;
 @use './../variables/spacing';
 @use './../variables/breakpoints';
 @use './../mixins/utilities';
@@ -16,7 +16,7 @@
         in (
           margin: m,
           padding: p,
-          line-height: lh,
+          /* Deprecated */ line-height: lh,
           height: h,
           max-height: mh,
           width: w,

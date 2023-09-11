@@ -1,0 +1,40 @@
+import { Canvas, Meta, Source } from '@storybook/blocks';
+import { forEach } from '../../../utils/react';
+import { ElevationTile, SCSS_VARIABLES } from './elevation.blocks';
+import * as ElevationStories from './elevation.stories';
+import './elevation.styles.scss';
+import SampleUse from './elevation-use.sample.scss?raw';
+
+<Meta of={ElevationStories} />
+
+# Elevation
+
+<div className="lead">
+  Elevation uses box shadows to give the impression of a distance between two elements along the
+  z-axis.
+</div>
+
+The higher the elevation, the larger and softer the shadow, expressing a greater distance between an element and the one behind it.
+
+<div className="elevation-container">
+  {forEach(SCSS_VARIABLES.elevation, function(data) {
+    return <ElevationTile key={data.key} level={data.key} />;
+  })}
+</div>
+
+## Usage
+
+### CSS class
+
+The easiest way to add an elevation to an element is to apply an elevation class to it.
+
+<Canvas of={ElevationStories.Default} sourceState="shown" />
+
+### Sass
+
+Import the elevation variables from the Design System Styles package from the `core` sass file with `@use`. This way, the elevation variables are scoped and don't mix with your own variables.
+
+<Source
+  code={SampleUse}
+  language="scss"
+/>

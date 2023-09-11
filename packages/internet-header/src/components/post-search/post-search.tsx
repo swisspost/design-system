@@ -4,10 +4,12 @@ import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'bo
 import { state } from '../../data/store';
 import { CoveoCompletion } from '../../models/coveo.model';
 import { GeocodeLocation } from '../../models/geocode.model';
+import { TagManagerDataLayer } from '../../models/general.model';
 import {
   DropdownElement,
   DropdownEvent,
   HasDropdown,
+  ISearchRecommendation,
   IsFocusable,
 } from '../../models/header.model';
 import { getSearchRedirectUrl, equalizeArrays } from '../../services/search/search.service';
@@ -107,7 +109,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
       this.coveoSuggestions = [];
       this.placeSuggestions = [];
       if (this.searchBox) this.searchBox.value = '';
-      this.setFocus();
+      void this.setFocus();
     } else {
       // Get basic suggestions when dropdown opens
       try {
@@ -168,16 +170,17 @@ export class PostSearch implements HasDropdown, IsFocusable {
       getParcelSuggestion(query, state.localizedConfig.header.search),
     ]);
 
+    this.parcelSuggestion = trackAndTraceInfo;
+
     // Parcel suggestion is more important than any other
     if (trackAndTraceInfo) {
-      this.parcelSuggestion = trackAndTraceInfo;
       this.placeSuggestions = [];
       this.coveoSuggestions = [];
     } else {
       [this.coveoSuggestions, this.placeSuggestions] = equalizeArrays(
         coveoSuggestions,
         placeSuggestions,
-        8,
+        7,
       );
     }
 
@@ -193,63 +196,52 @@ export class PostSearch implements HasDropdown, IsFocusable {
       return;
     }
 
-    let selectedSuggestion = this.searchFlyout.querySelector<HTMLElement>(
+    const selectedSuggestion = this.searchFlyout.querySelector<HTMLElement>(
       '.suggestions > li > a.selected',
     );
+    const selectedHref = selectedSuggestion?.getAttribute('href') ?? null;
+    const suggestions = this.searchFlyout.querySelectorAll('.suggestions > li > a');
 
     switch (event.key.toLowerCase()) {
       case 'enter':
-        if (selectedSuggestion) {
-          const selectedHref = selectedSuggestion.getAttribute('href');
-          if (selectedHref !== null) {
-            window.location.href = selectedHref;
-          }
+        if (selectedHref !== null) {
+          window.location.href = selectedHref;
         } else {
-          this.startSearch();
+          void this.startSearch();
         }
 
         break;
       case 'arrowdown':
-      case 'arrowup':
-        const suggestions = this.searchFlyout.querySelectorAll('.suggestions > li > a');
-
         this.deselectSuggestion();
 
-        if (event.key.toLowerCase() === 'arrowdown') {
-          if (selectedSuggestion?.parentElement?.nextElementSibling?.firstElementChild) {
-            // Select next suggestion if there's any, otherwise none will be selected
-            selectedSuggestion.parentElement.nextElementSibling.firstElementChild.classList.add(
-              'selected',
-            );
-          } else {
-            // If there are any suggestions, select first suggestion in list
-            if (suggestions.length > 0) {
-              suggestions[0].classList.add('selected');
-            }
-          }
-        } else if (event.key.toLowerCase() === 'arrowup') {
-          if (selectedSuggestion?.parentElement?.previousElementSibling?.firstElementChild) {
-            // Select previous suggestion if there's any, otherwise none will be selected
-
-            selectedSuggestion.parentElement.previousElementSibling.firstElementChild.classList.add(
-              'selected',
-            );
-          } else {
-            // If there are any suggestions, select last suggestion in list
-            if (suggestions.length > 0) {
-              suggestions[suggestions.length - 1].classList.add('selected');
-            }
-          }
+        if (selectedSuggestion?.parentElement?.nextElementSibling?.firstElementChild) {
+          // Select next suggestion if there's any, otherwise none will be selected
+          selectedSuggestion.parentElement.nextElementSibling.firstElementChild.classList.add(
+            'selected',
+          );
+          // If there are any suggestions, select first suggestion in list
+        } else if (suggestions.length > 0) {
+          suggestions[0].classList.add('selected');
         }
 
-        // Get the newly selected suggestion
-        selectedSuggestion = this.searchFlyout.querySelector('.suggestions > li > a.selected');
-        const suggestedText = selectedSuggestion?.dataset.suggestionText;
+        this.updateSearchBoxWithSuggestion();
 
-        // Update search box value with selected suggestion text
-        if (suggestedText !== undefined && this.searchBox) {
-          this.searchBox.value = suggestedText;
+        break;
+      case 'arrowup':
+        this.deselectSuggestion();
+
+        if (selectedSuggestion?.parentElement?.previousElementSibling?.firstElementChild) {
+          // Select previous suggestion if there's any, otherwise none will be selected
+
+          selectedSuggestion.parentElement.previousElementSibling.firstElementChild.classList.add(
+            'selected',
+          );
+          // If there are any suggestions, select last suggestion in list
+        } else if (suggestions.length > 0) {
+          suggestions[suggestions.length - 1].classList.add('selected');
         }
+
+        this.updateSearchBoxWithSuggestion();
 
         break;
     }
@@ -288,6 +280,24 @@ export class PostSearch implements HasDropdown, IsFocusable {
   }
 
   /**
+   * Update search box with selected suggestion
+   */
+  private updateSearchBoxWithSuggestion() {
+    if (this.searchFlyout === undefined) return;
+
+    // Get the newly selected suggestion
+    const selectedSuggestion = this.searchFlyout.querySelector<HTMLElement>(
+      '.suggestions > li > a.selected',
+    );
+    const suggestedText = selectedSuggestion?.dataset.suggestionText;
+
+    // Update search box value with selected suggestion text
+    if (suggestedText !== undefined && this.searchBox) {
+      this.searchBox.value = suggestedText;
+    }
+  }
+
+  /**
    * Redirect to the post search page
    */
   private async startSearch() {
@@ -301,16 +311,34 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
   }
 
+  private trackRecommendationClick(recommendation: ISearchRecommendation) {
+    if (!('dataLayer' in window)) return;
+
+    const trackingAttributes = recommendation.additionalAttributes.reduce((acc, curr) => {
+      acc[curr.name] = curr.value;
+      return acc;
+    }, {});
+
+    (window.dataLayer as TagManagerDataLayer).push({
+      event: trackingAttributes['data-event'],
+      text: trackingAttributes['data-text'],
+      link_url: trackingAttributes['data-linkurl'],
+      label: trackingAttributes['data-label'],
+      type: trackingAttributes['data-type'],
+    });
+  }
+
   render() {
     if (state.localizedConfig?.header === undefined) {
       return;
     }
     const { translations, search } = state.localizedConfig.header;
+    const isParcelTrackingNr = this.parcelSuggestion && 'sending' in this.parcelSuggestion;
     const showPortalRecommendations =
       this.searchBox?.value === '' && search.searchRecommendations?.links.length > 0;
 
     return (
-      <Host>
+      <Host role="search">
         <SvgSprite />
         <div class="search">
           <button
@@ -318,7 +346,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
             class="search-button"
             type="button"
             aria-expanded={`${this.searchDropdownOpen}`}
-            onClick={e => this.toggleDropdown(e)}
+            onClick={e => void this.toggleDropdown(e)}
           >
             <span class="visually-hidden">
               {this.searchDropdownOpen
@@ -335,29 +363,34 @@ export class PostSearch implements HasDropdown, IsFocusable {
                     <div class="form-group form-floating">
                       <input
                         type="text"
+                        role="searchbox"
                         id="searchBox"
                         class="form-control form-control-lg"
                         placeholder={translations.flyoutSearchBoxFloatingLabel}
                         autocomplete="off"
                         ref={el => (this.searchBox = el)}
-                        onInput={() => this.handleSearchInput()}
+                        onInput={() => void this.handleSearchInput()}
                         onKeyDown={e => this.handleKeyDown(e)}
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
-                      <button
-                        onClick={() => this.startSearch()}
-                        class="nav-link start-search-button"
-                      >
+                      <button onClick={() => void this.startSearch()} class="start-search-button">
                         <span class="visually-hidden">{translations.searchSubmit}</span>
                         <SvgIcon name="pi-search" />
                       </button>
                     </div>
                     {showPortalRecommendations && (
-                      <h2 class="bold">{search.searchRecommendations.title}</h2>
+                      <h2 id="post-internet-header-search-recommendations-title" class="bold">
+                        {search.searchRecommendations.title}
+                      </h2>
                     )}
                     <ul
                       class="suggestions no-list"
                       onMouseLeave={() => this.handleMouseLeaveSuggestions()}
+                      aria-labelledby={
+                        showPortalRecommendations
+                          ? 'post-internet-header-search-recommendations-title'
+                          : undefined
+                      }
                     >
                       {showPortalRecommendations &&
                         search.searchRecommendations.links.map(recommendation => (
@@ -367,6 +400,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                               href={new URL(recommendation.href, 'https://post.ch').href}
                               data-suggestion-text={recommendation.label}
                               onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
+                              onClick={() => this.trackRecommendationClick(recommendation)}
                             >
                               <span
                                 class="search-recommendation__icon"
@@ -376,21 +410,25 @@ export class PostSearch implements HasDropdown, IsFocusable {
                             </a>
                           </li>
                         ))}
-                      {this.parcelSuggestion && this.parcelSuggestion.ok && (
+                      {isParcelTrackingNr && (
                         <li>
                           <a
                             class="nav-link parcel-suggestion"
-                            href={this.parcelSuggestion.url}
+                            href={this.parcelSuggestion!.url}
                             data-suggestion-text={this.searchBox?.value}
                             onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
                           >
                             <SvgIcon name="pi-letter-parcel" />
                             <span class="bold">{this.parcelSuggestion?.sending?.id}:&nbsp;</span>
                             <span>
-                              {this.parcelSuggestion?.sending?.product},{' '}
-                              {this.parcelSuggestion?.sending?.recipient.zipcode}{' '}
-                              {this.parcelSuggestion?.sending?.recipient.city},{' '}
-                              {this.parcelSuggestion?.sending?.state}
+                              {[
+                                this.parcelSuggestion?.sending?.product,
+                                ' ' + this.parcelSuggestion?.sending?.recipient.zipcode,
+                                ' ' + this.parcelSuggestion?.sending?.recipient.city,
+                                ', ' + this.parcelSuggestion?.sending?.state,
+                              ]
+                                .filter(s => s !== '' && s !== ' ')
+                                .join('')}
                             </span>
                           </a>
                         </li>
