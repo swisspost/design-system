@@ -24,9 +24,9 @@ export namespace Components {
          */
         "fixed": false;
         /**
-          * The icon to display in the alert.  If `null`, no icon will be displayed. By default, the icon depends on the alert type.
+          * The icon to display in the alert.  If `true`, the icon depends on the alert type. If `false`, no icon is displayed.
          */
-        "icon": string | null;
+        "icon": boolean | string;
         /**
           * The type of the alert.  We provide styles for the following types: `'primary'`, `'success'`, `'danger'`, `'warning'`, `'info'`.
          */
@@ -170,9 +170,9 @@ declare namespace LocalJSX {
          */
         "fixed"?: false;
         /**
-          * The icon to display in the alert.  If `null`, no icon will be displayed. By default, the icon depends on the alert type.
+          * The icon to display in the alert.  If `true`, the icon depends on the alert type. If `false`, no icon is displayed.
          */
-        "icon"?: string | null;
+        "icon"?: boolean | string;
         /**
           * The type of the alert.  We provide styles for the following types: `'primary'`, `'success'`, `'danger'`, `'warning'`, `'info'`.
          */

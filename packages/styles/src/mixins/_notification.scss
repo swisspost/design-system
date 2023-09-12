@@ -27,16 +27,6 @@
   font-size: $font-size;
   font-weight: notification.$notification-font-weight;
 
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    height: $icon-size;
-    width: $icon-size;
-    left: $padding-x;
-    top: $padding-y;
-  }
-
   &.no-icon {
     min-height: 2 * $padding-y + close.$close-size;
     padding-inline-start: $padding-x;
@@ -54,13 +44,31 @@
     }
   }
 
-  // for notifications with mask-image icons
+  // for notifications with mask-image icons and post-icon override
+  &::before {
+    content: '';
+    display: block;
+  }
+
+  &::before,
+  & > .alert-icon {
+    position: absolute;
+    height: $icon-size;
+    width: $icon-size;
+    left: $padding-x;
+    top: $padding-y;
+  }
+
   &.no-icon,
   &[class^='pi-'],
   &[class*=' pi-'] {
     &::before {
       content: unset;
     }
+  }
+
+  &.no-icon > .alert-icon {
+    display: none;
   }
 
   a {
@@ -83,10 +91,16 @@
 }
 
 @mixin notification-variant($color, $icon) {
-  @include color-mx.colored-background($color);
+  @include color-mx.colored-background($color, $allow-alpha: false);
 
+  // default icon (mask-image)
   &:not(.no-icon, [class^='pi-'], [class*=' pi-'])::before {
     @include icons-mx.icon($icon);
+  }
+
+  // icon override (post-icon)
+  & > .alert-icon {
+    background-color: $color;
   }
 }
 

@@ -14,6 +14,7 @@ export class PostAlert {
 
   @State() alertClasses: string[] = [ 'alert' ];
   @State() hasHeading: boolean;
+  @State() iconName: string | null;
 
   /**
    * The label to use for the close button of a dismissible alert.
@@ -70,23 +71,18 @@ export class PostAlert {
   /**
    * The icon to display in the alert.
    *
-   * If `null`, no icon will be displayed.
-   * By default, the icon depends on the alert type.
+   * If `true`, the icon depends on the alert type.
+   * If `false`, no icon is displayed.
    */
-  @Prop() readonly icon: string | null;
+  @Prop() readonly icon: boolean | string = true;
 
   @Watch('icon')
-  validateIcon(newValue = this.icon) {
-    const alertIcon = newValue === 'null' ? null : newValue;
+  validateIcon(alertIcon = this.icon) {
+    this.toggleAlertClass('no-icon', alertIcon === 'false');
 
-    this.toggleAlertClass('no-icon', alertIcon === null);
-    this.removeAlertClass(/^pi-/);
-
-    if (alertIcon) {
-      const iconNamePattern = /success|warn|info|error-(black|red)|\d{4}/;
-      checkPattern(alertIcon, iconNamePattern, 'The post-alert "icon" prop should be a 4-digits string.');
-
-      this.addAlertClass(`pi-${alertIcon}`);
+    this.iconName = typeof alertIcon === 'string' && !['true', 'false'].includes(alertIcon) ? alertIcon : null;
+    if (this.iconName) {
+      checkPattern(alertIcon, /true|false|\d{4}/, 'The post-alert "icon" prop should be a 4-digits string.');
     }
   }
 
@@ -138,6 +134,7 @@ export class PostAlert {
     return (
       <Host data-version={version}>
         <div class={this.alertClasses.join(' ')} role="alert">
+          {this.iconName && <post-icon name={this.iconName} class="alert-icon"></post-icon>}
           {this.dismissible && (
             <button
               aria-label={this.dismissLabel}

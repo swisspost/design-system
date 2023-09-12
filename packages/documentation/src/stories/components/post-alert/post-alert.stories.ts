@@ -24,7 +24,7 @@ const meta: Meta<HTMLPostAlertElement> = {
       control: {
         type: 'select',
         labels: {
-          'null': 'No Icon',
+          'false': 'No Icon',
           '1001': 'Envelope (1001)',
           '2023': 'Cog (2023)',
           '2025': 'Send (2025)',
@@ -32,7 +32,7 @@ const meta: Meta<HTMLPostAlertElement> = {
           '2101': 'Bubble (2101)',
         },
       },
-      options: ['null', '1001', '2023', '2025', '2035', '2101'],
+      options: ['false', '1001', '2023', '2025', '2035', '2101'],
     },
     type: {
       control: {
