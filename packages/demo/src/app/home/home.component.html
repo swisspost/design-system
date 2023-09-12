@@ -51,6 +51,15 @@
 
 <div class="bg-light py-5">
   <div class="container">
+    <div class="alert alert-primary" role="alert">
+      <h4 class="alert-heading">The Swiss Post Design System is now compatible with Angular 16!</h4>
+      <p>If you have any inquiries about this change, feel free to contact us via our
+        <a
+          target="_blank"
+          href="https://teams.microsoft.com/l/channel/19%3ae7fa68fb13eb40b4bf4604edea5f4b3e%40thread.tacv2/%25F0%259F%259A%2591%2520Support?groupId=123c7c9e-052a-40e6-98d3-6cc6d46bad0a&tenantId=3ae7c479-0cf1-47f4-8f84-929f364eff67"
+        >Support chanel</a>
+        in Teams.</p>
+    </div>
 
     <section class="migration-options mb-huge">
       <div class="row">
@@ -141,20 +150,20 @@
                 <a href="https://update.angular.io/" target="_blank" rel="noopener">
                   https://update.angular.io/
                 </a>
-                to update Angular to version 15
+                to update Angular to version 16
               </p>
             </li>
             <li>
               <p>
                 Update Bootstrap to version
-                <a href="https://getbootstrap.com/docs/5.2/migration/#v520" target="_blank" rel="noopener">
-                  5.2.x
+                <a href="https://getbootstrap.com/docs/5.3/migration" target="_blank" rel="noopener">
+                  5.3.x
                 </a>
                 <ng-container *ngIf="isMigratingAngular">
                   and ng-bootstrap to version
-                  <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07"
+                  <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
                      target="_blank" rel="noopener">
-                    14.x.x
+                    15.x.x
                   </a>
                 </ng-container>
                 :
@@ -162,7 +171,7 @@
                   appCopyToClipboard
                   class="d-block mt-1 p-3"
                   [languages]="['bash']"
-                  [highlight]="'npm install bootstrap@5.2' + (isMigratingAngular ? ' @ng-bootstrap/ng-bootstrap@14' : '')"
+                  [highlight]="'npm install bootstrap@5.3' + (isMigratingAngular ? ' @ng-bootstrap/ng-bootstrap@15' : '')"
                 ></code>
               </p>
             </li>
@@ -331,7 +340,7 @@
 
           <ng-template #bootstrapInstructions>
             Update Bootstrap to version
-            <a href="https://getbootstrap.com/docs/5.2/migration/#v520" target="_blank" rel="noopener">
+            <a href="https://getbootstrap.com/docs/5.1/migration" target="_blank" rel="noopener">
               5.1.x
             </a>
             <ng-container *ngIf="isMigratingAngular">
