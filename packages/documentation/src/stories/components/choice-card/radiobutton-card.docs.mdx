@@ -1,5 +1,6 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as RadiobuttonCardStories from './radiobutton-card.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={RadiobuttonCardStories} />
 
@@ -13,8 +14,8 @@ import * as RadiobuttonCardStories from './radiobutton-card.stories';
 <div className="alert alert-info">
   <h2 class="h5">Firefox fallback classes</h2>
   Firefox currently does not support <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">
-    the new <abbr title="Cascading Style Sheets">CSS</abbr> :has pseudo-selector
-  </a>. As a fallback, the following states have to be mirrored on the top level element in the form
+  the new <abbr title="Cascading Style Sheets">CSS</abbr> :has pseudo-selector
+</a>. As a fallback, the following states have to be mirrored on the top level element in the form
   of classes:
   <ul>
     <li>
@@ -47,17 +48,4 @@ Radiobutton cards can be grouped together. Use a `fieldset`/`legend` combination
   <Controls of={RadiobuttonCardStories.Group} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/choice-control-card.scss';
-```
+<StylesPackageImport components={["choice-control-card"]} />
