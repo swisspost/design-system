@@ -1,5 +1,14 @@
 # @swisspost/design-system-documentation
 
+## 2.0.2
+
+### Patch Changes
+
+- Added a code snippet for patching missing `:has` selector support in Firefox in the Checkbox- and Radiobutton-Card stories. (by [@gfellerph](https://github.com/gfellerph) with [#1917](https://github.com/swisspost/design-system/pull/1917))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.12
+  - @swisspost/design-system-styles@6.4.0
+
 ## 2.0.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @swisspost/design-system-icons
 
+## 1.0.12
+
+### Patch Changes
+
+- Updated icons number 2387. (by [@swisspost-bot](https://github.com/swisspost-bot) with [#1907](https://github.com/swisspost/design-system/pull/1907))
+
 ## 1.0.11
 
 ### Patch Changes
