@@ -1,5 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as ButtonGroupStories from './button-group.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={ButtonGroupStories} />
 
@@ -14,20 +15,7 @@ import * as ButtonGroupStories from './button-group.stories';
   <Controls of={ButtonGroupStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/badge.scss';
-```
+<StylesPackageImport components={["button-group"]} />
 
 ## Concrete Examples of Application
 

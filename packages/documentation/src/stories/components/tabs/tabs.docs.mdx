@@ -1,5 +1,7 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as TabStories from './tabs.stories';
+import SampleTabChange from './tabs-tab-change.sample?raw';
+import SampleCustomTrigger from './tabs-custom-trigger.sample?raw';
 
 <Meta of={TabStories} />
 
@@ -26,18 +28,16 @@ use the `active-panel` property and assign it the name of the desired panel.
 
 Use the `tabChange` event to run a function anytime a new tab gets activate.
 
-```typescript
-const tabs = document.querySelector('post-tabs') as HTMLPostTabsElement;
-tabs.addEventListener('tabChange', (panelName: string) => {
-  alert(`The panel named ${panelName} is now displayed.`);
-});
-```
+<Source
+  code={SampleTabChange}
+  language="typescript"
+/>
 
 ### Custom Trigger
 
 To trigger a tab change, use the `show()` method specifying the name of the panel that you want to show.
 
-```typescript
-const tabs = document.querySelector('post-tabs') as HTMLPostTabsElement;
-tabs.show('myPanel');
-```
+<Source
+  code={SampleCustomTrigger}
+  language="typescript"
+/>
