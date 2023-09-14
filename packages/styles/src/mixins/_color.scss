@@ -5,9 +5,14 @@
 @use './../variables/color';
 
 // mixin to correctly set CSS variables for any colored background
-@mixin colored-background($color) {
+@mixin colored-background($color, $allow-alpha: true) {
   --post-bg-rgb: #{color-fn.rgb-values($color)};
-  @extend %color-background-rgba;
+
+  @if ($allow-alpha) {
+    @extend %color-background-rgba;
+  } @else {
+    @extend %color-background-rgb;
+  }
 
   @if (contrast-fn.light-or-dark($color) == 'dark') {
     @extend %color-background-dark-variables;

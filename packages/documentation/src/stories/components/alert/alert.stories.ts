@@ -69,7 +69,11 @@ const meta: Meta = {
     },
     icon: {
       name: 'Icon',
-      description: 'Defines a custom icon.',
+      description: 'Defines a custom icon.' +
+        '<span className="mt-mini alert alert-info alert-sm">' +
+        'To use a custom icon, you must first ' +
+        '<a href="/?path=/docs/icons-getting-started--page">set up the icons in your project</a>' +
+        '.</span>',
       if: {
         arg: 'noIcon',
         truthy: false,
@@ -171,6 +175,14 @@ function renderAlert(args: Args) {
                 <span class="visually-hidden">Close</span>
               </button>
             `
+          : null
+      }
+      ${
+        /* Alert Icon */
+        !args.noIcon && args.icon !== 'null'
+          ? html`
+            <post-icon aria-hidden="true" name=${args.icon}/>
+          `
           : null
       }
       ${

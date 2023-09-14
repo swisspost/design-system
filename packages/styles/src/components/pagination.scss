@@ -5,9 +5,9 @@
 @use './../variables/components/pagination';
 @use './../variables/spacing';
 @use './../variables/commons';
+@use './../variables/icons';
 @use './../mixins/icons' as icon-mixin;
 @use './../mixins/utilities';
-@use './icons.scss';
 
 .pagination {
   .page-item {
@@ -34,32 +34,35 @@
         }
       }
 
+      &[aria-label='First'],
       &[aria-label='Previous'],
-      &[aria-label='Next'] {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 0;
-      }
-
-      &[aria-label='Previous'] span,
-      &[aria-label='Next'] span {
-        display: none;
-      }
-
-      &[aria-label='Previous'] {
-        &::before {
-          @extend %pi;
-          @include icon-mixin.pi(2110, pagination.$pagination-color);
-          content: '';
+      &[aria-label='Next'],
+      &[aria-label='Last'] {
+        > span {
+          display: inline-block;
+          width: icons.$icon-size-default;
+          height: icons.$icon-size-default;
         }
       }
 
+      &[aria-label='Previous'],
       &[aria-label='Next'] {
-        &::before {
-          @extend %pi;
-          @include icon-mixin.pi(2111, pagination.$pagination-color);
-          content: '';
+        > span {
+          @include icon-mixin.icon(2110);
+        }
+      }
+
+      &[aria-label='First'],
+      &[aria-label='Last'] {
+        > span {
+          @include icon-mixin.icon(2396);
+        }
+      }
+
+      &[aria-label='Next'],
+      &[aria-label='Last'] {
+        > span {
+          transform: rotate(180deg);
         }
       }
 

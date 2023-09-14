@@ -142,14 +142,14 @@ const meta: Meta = {
         type: 'select',
         labels: {
           'null': 'None',
-          'pi-2069': 'Search (2069)',
-          'pi-3193': 'Edit (3193)',
-          'pi-2059': 'Save (2059)',
-          'pi-2015': 'Remove (2015)',
-          'pi-2286': 'Like (2286)',
+          '2069': 'Search (2069)',
+          '3193': 'Edit (3193)',
+          '2059': 'Save (2059)',
+          '2015': 'Remove (2015)',
+          '2286': 'Like (2286)',
         },
       },
-      options: ['null', 'pi-2069', 'pi-3193', 'pi-2059', 'pi-2015', 'pi-2286'],
+      options: ['null', '2069', '3193', '2059', '2015', '2286'],
       table: {
         category: 'Icon',
       },
@@ -217,7 +217,7 @@ const Template = {
       `;
     } else {
       const icon = html`
-        <span aria-hidden="true" class="pi ${args.icon}"></span>
+        <post-icon aria-hidden="true" name=${args.icon}/>
       `;
       const iconOnlyContent = html`
         <span class="visually-hidden">${args.text}</span>

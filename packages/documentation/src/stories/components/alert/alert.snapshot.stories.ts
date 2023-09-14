@@ -36,6 +36,11 @@ export const Alert: Story = {
                           </button>
                         `
           : null}
+                    ${args.icon !== 'null'
+                      ? html`
+                        <post-icon aria-hidden="true" class="alert-icon" name=${args.icon}/>
+                      `
+                      : null}
                     ${args.action
           ? html`
                           <div class="alert-content">

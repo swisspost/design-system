@@ -29,6 +29,10 @@
   &::before {
     content: '';
     display: block;
+  }
+
+  &::before,
+  & > post-icon {
     position: absolute;
     height: $icon-size;
     width: $icon-size;
@@ -60,6 +64,10 @@
     &::before {
       content: unset;
     }
+
+    > post-icon {
+      display: none;
+    }
   }
 
   a {
@@ -82,10 +90,14 @@
 }
 
 @mixin notification-variant($color, $icon) {
-  @include color-mx.colored-background($color);
+  @include color-mx.colored-background($color, $allow-alpha: false);
 
   &:not(.no-icon, [class^='pi-'], [class*=' pi-'])::before {
     @include icons-mx.icon($icon);
+  }
+
+  > post-icon {
+    background-color: $color;
   }
 }
 
