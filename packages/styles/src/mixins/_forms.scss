@@ -21,8 +21,8 @@
 }
 
 @mixin icon-placement {
-  padding-right: form-validation.$form-feedback-icon-offset
-    + form-validation.$form-feedback-icon-size;
+  padding-right: form-validation.$form-feedback-icon-offset +
+    form-validation.$form-feedback-icon-size;
   background-repeat: no-repeat;
   background-position: calc(100% - #{form-validation.$form-feedback-icon-offset}) center;
 }
