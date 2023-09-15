@@ -30,14 +30,6 @@
     padding-right: 24px/16px + badge.$badge-padding-x;
   }
 
-  &:has(> .badge) {
-    padding-right: 24px/16px + badge.$badge-padding-x;
-  }
-
-  &:has(> .badge + .btn-close) {
-    padding-right: 48px/16px + badge.$badge-padding-x;
-  }
-
   > .badge {
     padding: $size-micro;
     height: badge.$badge-nested-height;
@@ -46,9 +38,6 @@
     background-color: badge.$badge-nested-bg-color;
     border-color: badge.$badge-nested-border-color;
     font-size: badge.$badge-nested-font-size;
-    &:has(+ .btn-close) {
-      right: badge.$badge-padding-x + 24px/16px;
-    }
   }
 
   > .badge,
