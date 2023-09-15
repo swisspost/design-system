@@ -548,6 +548,9 @@ importers:
       '@storybook/web-components-vite':
         specifier: 7.4.0
         version: 7.4.0(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.4.7)
+      '@types/css-modules':
+        specifier: ^1.0.3
+        version: 1.0.3
       '@types/mdx':
         specifier: 2.0.7
         version: 2.0.7
@@ -8070,6 +8073,10 @@ packages:
     resolution: {integrity: sha512-KuwNhp3eza+Rhu8IFI5HUXRP0LIhqH5cAjubUvGXXthh4YYBuP2ntwEX+Cz8GJoZUHlKo247wPWOfA9LYEq4cw==}
     dependencies:
       '@types/node': 18.17.14
+    dev: true
+
+  /@types/css-modules@1.0.3:
+    resolution: {integrity: sha512-dFJKRbgpu3sMsiDYX7dSL7ZMD/9q1UxbU/dZfIuVsIyRsST/agUNfR24biGeLOmh3YcdUmj71TadJ0mssFVNfA==}
     dev: true
 
   /@types/detect-port@1.3.3:
