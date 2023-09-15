@@ -492,8 +492,8 @@ importers:
         version: 5.3.1(@popperjs/core@2.11.8)
     devDependencies:
       '@geometricpanda/storybook-addon-badges':
-        specifier: 1.1.1
-        version: 1.1.1(@storybook/addons@7.4.0)(@storybook/api@6.5.16)(@storybook/components@7.4.0)(@storybook/core-events@7.4.0)(@storybook/theming@7.4.0)(react-dom@18.2.0)(react@18.2.0)
+        specifier: 2.0.0
+        version: 2.0.0(@storybook/blocks@7.4.0)(@storybook/components@7.4.0)(@storybook/core-events@7.4.0)(@storybook/manager-api@7.4.0)(@storybook/preview-api@7.4.0)(@storybook/theming@7.4.0)(@storybook/types@7.4.0)(react-dom@18.2.0)(react@18.2.0)
       '@open-wc/lit-helpers':
         specifier: 0.6.0
         version: 0.6.0(lit@2.8.0)
@@ -4908,15 +4908,17 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
 
-  /@geometricpanda/storybook-addon-badges@1.1.1(@storybook/addons@7.4.0)(@storybook/api@6.5.16)(@storybook/components@7.4.0)(@storybook/core-events@7.4.0)(@storybook/theming@7.4.0)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-oruMaqUTq8kceJCQhoCHg4SJcCx/34j9t0g9P0krLH7cTgZQJVtmFyvtO9tMtOIU+FQUvizL+cDUt54TU5pIyQ==}
+  /@geometricpanda/storybook-addon-badges@2.0.0(@storybook/blocks@7.4.0)(@storybook/components@7.4.0)(@storybook/core-events@7.4.0)(@storybook/manager-api@7.4.0)(@storybook/preview-api@7.4.0)(@storybook/theming@7.4.0)(@storybook/types@7.4.0)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-M1CQabr1/IDG6ku0/+n6kZBvWTCSun7LndkGsaB89nTNaCcflWxflgY2HdcbjblLL8W0iT7QiW9TgWP4kcpn5Q==}
     peerDependencies:
-      '@storybook/addons': ^6.5.8
-      '@storybook/api': ^6.5.8
-      '@storybook/components': ^6.5.8
-      '@storybook/core-events': ^6.5.8
-      '@storybook/theming': ^6.5.8
-      react: ^16.8.0 || ^17.0.0 || >=18
+      '@storybook/blocks': ^7.0.0
+      '@storybook/components': ^7.0.0
+      '@storybook/core-events': ^7.0.0
+      '@storybook/manager-api': ^7.0.0
+      '@storybook/preview-api': ^7.0.0
+      '@storybook/theming': ^7.0.0
+      '@storybook/types': ^7.0.0
+      react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=18
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=18
     peerDependenciesMeta:
       react:
@@ -4924,11 +4926,13 @@ packages:
       react-dom:
         optional: true
     dependencies:
-      '@storybook/addons': 7.4.0(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/api': 6.5.16(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/blocks': 7.4.0(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/components': 7.4.0(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/core-events': 7.4.0
+      '@storybook/manager-api': 7.4.0(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/preview-api': 7.4.0
       '@storybook/theming': 7.4.0(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/types': 7.4.0
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: true
