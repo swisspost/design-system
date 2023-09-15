@@ -18,7 +18,5 @@ export function parse(scss: object) {
 }
 
 export function formatAsMap(obj: object) {
-  return JSON.stringify(obj, null, 2)
-    .replace(/({|\[)/g, '(')
-    .replace(/(}|\])/g, ')');
+  return JSON.stringify(obj, null, 2).replace(/[{\[]/g, '(').replace(/[}\]]/g, ')');
 }
