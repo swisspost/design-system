@@ -1,0 +1,12 @@
+// Creates a wrapper for a series of columns
+@include make-row();
+
+// Make the column element grid-ready (applying everything but the width)
+@include make-col-ready();
+
+// Without optional size values, the mixin will create equal columns (similar to using .col)
+@include make-col();
+@include make-col($size, $columns: $grid-columns);
+
+// Offset with margins
+@include make-col-offset($size, $columns: $grid-columns);

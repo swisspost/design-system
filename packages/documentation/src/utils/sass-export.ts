@@ -16,3 +16,9 @@ export function parse(scss: object) {
     return object;
   }, output);
 }
+
+export function formatAsMap(obj: object) {
+  return JSON.stringify(obj, null, 2)
+    .replace(/({|\[)/g, '(')
+    .replace(/(}|\])/g, ')');
+}

@@ -24,7 +24,14 @@ const preview: Preview = {
           'Getting Started',
           ['Styles', 'Components'],
           'Foundations',
-          ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
+          [
+            'Typography',
+            'Color',
+            'Layout',
+            ['Breakpoints', 'Grid', 'TODOS'],
+            'Elevation',
+            'Accessibility',
+          ],
           'Components',
           'Internet Header',
           [
