@@ -15,7 +15,6 @@
   font-weight: $badge-font-weight;
   color: $badge-color;
   text-align: center;
-  white-space: nowrap;
   vertical-align: baseline;
   max-width: 100%;
 
@@ -23,11 +22,6 @@
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
-  }
-
-  // Empty badges collapse automatically
-  &:empty {
-    display: none;
   }
 
   > .badge {
