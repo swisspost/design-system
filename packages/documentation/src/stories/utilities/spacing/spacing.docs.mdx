@@ -1,11 +1,30 @@
-import { Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as SpacingStories from './spacing.stories';
 
 <Meta of={SpacingStories} />
 
 # Spacing
 
-<div className="alert alert-info">
-  <h2 className="alert-heading">TODO:</h2>
-  <p>Document differences to bootstrap and link over for the rest.</p>
+<div className="lead">
+  Spacing values bring a uniform and consistent distance between elements.
+
+  By adhering to standardized to standardized spacing guidelines, we maintain visual alignment and
+  improve the overall user interface.
+</div>
+
+## Padding & Margin
+
+Padding and margin can be set using `p*` and `m*` prefixes.
+
+You can apply the desired margin / padding all around an element using the prefix alone ( `m-*` / `p-*` ), or you can specify a position (ex: `pt-` , `pb-` , `pe-` , `ps-` respectively for a padding at top, bottom, right and left). You can also set a margin/padding along the horizontal axis (i.e. right and left) using `px-` / `mx-` or along the vertical axis (i.e. top and bottom) using `py`- / `my-` .
+
+Bootstrap offers spacing classes with suffixes going from 0 to 5 ( `*-0` , `*-1` , `*-2` , ...) (see [Bootstrap Spacing](https://getbootstrap.com/docs/5.2/utilities/spacing/) for reference).
+
+Post sizes can be used in the same way: by adding the name of the desired size to a prefix (to find out which size name to use, see the "Size name in classes" column in the reference table on the [Sizing page](/?path=/docs/utilities-sizing--docs) or use the demo below).
+
+### Example
+
+<Canvas of={SpacingStories.Default} />
+<div className="hide-col-default">
+  <Controls of={SpacingStories.Default} />
 </div>
