@@ -111,7 +111,7 @@ export const Default: Story = {
             <div
               class="bg-petrol-bright border border-dark h-bigger-giant m${args.marginPosition}-${args.marginSize} p${args.paddingPosition}-${args.paddingSize} w-bigger-giant"
             >
-            <div class="bg-light h-100"></div>
+              <div class="bg-light h-100"></div>
             </div>
           </div>
         </div>
@@ -131,6 +131,46 @@ export const Default: Story = {
             <span>content</span>
           </li>
         </ul>
+      </div>
+    `;
+  },
+};
+
+export const responsiveExample: Story = {
+  render: (args: Args) => {
+    return html`
+      <div class="bg-primary p-regular">
+        <div
+          class="border border-dark bg-petrol-bright h-bigger-giant w-bigger-giant p-regular p-lg-big">
+          <div class="bg-light h-100"></div>
+        </div>
+        <p class="text-white"><smaFl>Resize the browser window to see changes.</small></p>
+      </div>
+    `;
+  },
+};
+
+export const automaticResponsiveExample: Story = {
+  render: (args: Args) => {
+    return html`
+      <div class="bg-primary p-regular">
+        <div class="border border-dark bg-petrol-bright h-bigger-giant w-bigger-giant p-large-r">
+          <div class="bg-light h-100"></div>
+        </div>
+        <p class="text-white"><small>Resize the browser window to see changes.</small></p>
+      </div>
+    `;
+  },
+};
+
+export const gridGap: Story = {
+  render: (args: Args) => {
+    return html`
+      <div class="row p-regular">
+        <div class="p-2 bg-light border col-6">Grid item 1</div>
+        <div class="p-2 bg-light border col-6">Grid item 2</div>
+        <div class="p-2 bg-light border col-6">Grid item 3</div>
+        <div class="p-2 bg-light border col-6">Grid item 1</div>
       </div>
     `;
   },
