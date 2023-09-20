@@ -6,7 +6,7 @@ import * as InputStories from './input.stories';
 # Text input
 
 <div className="lead">
-  Customize the native `&lt;input&gt;` with CSS that changes the element’s initial appearance.
+  Customize the native `<input>` with CSS that changes the element’s initial appearance.
 </div>
 
 Custom input elements need only the class `.form-control` to trigger the custom styles.
@@ -50,17 +50,11 @@ But note that the `<input>` element must come first, so we can ensure the correc
 
 ### Sizing
 
+{/* prettier-ignore */}
 <div className="alert alert-warning">
-  <h4 className="alert-heading">
-    We're deprecating the regular and medium sizes for text input, textarea and select.
-  </h4>
-  <div className="mt-0">
-    This will make it easier to select the appropriate size variant: small for internal
-    applications, large for external applications.
-    <br />
-    `.form-control-rg` and `.form-control-md` are deprecated and will be removed in the next major
-    version.
-  </div>
+  <h4 className="alert-heading">We're deprecating the regular and medium sizes for text input, textarea and select.</h4>
+  <p className="mt-0">This will make it easier to select the appropriate size variant: small for internal applications, large for external applications.<br />
+    `.form-control-rg` and `.form-control-md` are deprecated and will be removed in the next major version.</p>
 </div>
 
 The size can be changed by simply adding one of four classes:
