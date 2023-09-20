@@ -16,6 +16,10 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
       label: `Label - no Placeholder`,
       placeholder: null,
     },
+    {
+      label: `Label - with Value`,
+      value: 'Lorem Ipsum',
+    },
   ];
   return html`
     <div class="d-flex flex-wrap align-items-start gap-regular">
@@ -23,26 +27,40 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
         bg => html`
           <div class="${bg} d-flex gap-3 flex-column p-3">
             <h3>Sizes</h3>
-            ${getCombinations('size', context.argTypes.size.options, combinations).map(
-              (args: Args) =>
-                html`
-                  <div>
-                    ${args.title !== undefined && args.title
-                      ? html`
-                          <h4>${args.size}</h4>
-                        `
-                      : ''}
-                    <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
-                  </div>
-                `,
-            )}
+            ${getCombinations('size', context.argTypes.size.options, combinations)
+              .filter(
+                (args: Args) =>
+                  !args.value ||
+                  (args.value &&
+                    (context.args.type === 'text' || context.args.type === 'password')),
+              )
+              .map(
+                (args: Args) =>
+                  html`
+                    <div>
+                      ${args.title !== undefined && args.title
+                        ? html`
+                            <h4>${args.size}</h4>
+                          `
+                        : ''}
+                      <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
+                    </div>
+                  `,
+              )}
             <h3>Floating Label</h3>
-            ${getCombinations('floatingLabel', [true], combinations).map(
-              (args: Args) =>
-                html`
-                  <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
-                `,
-            )}
+            ${getCombinations('floatingLabel', [true], combinations)
+              .filter(
+                (args: Args) =>
+                  !args.value ||
+                  (args.value &&
+                    (context.args.type === 'text' || context.args.type === 'password')),
+              )
+              .map(
+                (args: Args) =>
+                  html`
+                    <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
+                  `,
+              )}
           </div>
         `,
       )}
@@ -57,7 +75,7 @@ export const Inputtext: Story = {
     type: 'text',
   },
 };
-export const InputPassword: Story = {
+export const Inputpassword: Story = {
   args: {
     type: 'password',
   },
@@ -69,7 +87,7 @@ export const Inputdate: Story = {
 };
 export const Inputdatetimelocal: Story = {
   args: {
-    type: 'local',
+    type: 'datetime-local',
   },
 };
 export const Inputmonth: Story = {

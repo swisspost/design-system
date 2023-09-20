@@ -210,6 +210,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
+      value=${args.value ? args.value : nothing}
     />
   `;
   if (args.floatingLabel) {
