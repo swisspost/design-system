@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 2.0.1
+
+### Patch Changes
+
+- Patched the documentation release workflow (by [@gfellerph](https://github.com/gfellerph) with [#1896](https://github.com/swisspost/design-system/pull/1896))
+
 ## 2.0.0
 
 ### Major Changes
