@@ -8,20 +8,27 @@ import * as SpacingStories from './spacing.stories';
 <div className="lead">
   Spacing values bring a uniform and consistent distance between elements.
 
-  By adhering to standardized spacing guidelines, we maintain visual alignment and
-  improve the overall user interface.
+By adhering to standardized spacing guidelines, we maintain visual alignment and
+improve the overall user interface.
+
 </div>
 
 <div class="alert alert-warning mb-bigger-big">
   <h2 class="alert-heading">Sizing variables are deprecated</h2>
   <p>
-    The current set of the post-specific sizing variables is deprecated in favour of a new naming system that is
-    consistent with the Design. For further information, please read the
-    <a href="https://github.com/swisspost/design-system/discussions/588">discussion on sizing variables on GitHub</a>
+    The current set of the post-specific sizing variables is deprecated in favour of a new naming
+    system that is consistent with the Design. For further information, please read the
+    <a href="https://github.com/swisspost/design-system/discussions/588">
+      discussion on sizing variables on GitHub
+    </a>
     and have a look at the
-    <a href="https://www.figma.com/file/ojCcgC5Zd12eUSzq6V5m24/Foundations?node-id=3%3A2&t=l8qimsXlxeMLOzs6-0">implementation in Figma</a>.
+    <a href="https://www.figma.com/file/ojCcgC5Zd12eUSzq6V5m24/Foundations?node-id=3%3A2&t=l8qimsXlxeMLOzs6-0">
+      implementation in Figma.
+    </a>
   </p>
-  <p><b>There is a new solution with updated naming system up coming for spacing sizes.</b></p>
+  <p>
+    <b>There is a new solution with updated naming system up coming for spacing sizes.</b>
+  </p>
 </div>
 
 ## Padding & Margin
@@ -40,6 +47,12 @@ Post sizes can be used in the same way: by adding the name of the desired size t
 <div className="hide-col-default">
   <Controls of={SpacingStories.Default} />
 </div>
+
+### Negative margin
+
+In CSS, margin properties can utilize negative values (padding cannot).
+
+The syntax is nearly the same as the default, positive margin utilities, but with the addition of n before the requested size. For example `mt-n3` would be the opposite of `mt-3`.
 
 ## Responsive behavior
 
@@ -67,4 +80,3 @@ The square below has a "large" responsive padding, which means the padding size
 automatically changes based on the breakpoint but remains visually consistent.
 
 <Canvas of={SpacingStories.automaticResponsiveExample} />
-<Canvas of={SpacingStories.gridGap} />

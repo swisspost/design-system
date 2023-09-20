@@ -141,10 +141,11 @@ export const responsiveExample: Story = {
     return html`
       <div class="bg-primary p-regular">
         <div
-          class="border border-dark bg-petrol-bright h-bigger-giant w-bigger-giant p-regular p-lg-big">
+          class="border border-dark bg-petrol-bright h-bigger-giant w-bigger-giant p-regular p-lg-big"
+        >
           <div class="bg-light h-100"></div>
         </div>
-        <p class="text-white"><smaFl>Resize the browser window to see changes.</small></p>
+        <p class="text-white"><small>Resize the browser window to see changes.</small></p>
       </div>
     `;
   },
@@ -158,19 +159,6 @@ export const automaticResponsiveExample: Story = {
           <div class="bg-light h-100"></div>
         </div>
         <p class="text-white"><small>Resize the browser window to see changes.</small></p>
-      </div>
-    `;
-  },
-};
-
-export const gridGap: Story = {
-  render: (args: Args) => {
-    return html`
-      <div class="row p-regular">
-        <div class="p-2 bg-light border col-6">Grid item 1</div>
-        <div class="p-2 bg-light border col-6">Grid item 2</div>
-        <div class="p-2 bg-light border col-6">Grid item 3</div>
-        <div class="p-2 bg-light border col-6">Grid item 1</div>
       </div>
     `;
   },
