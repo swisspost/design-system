@@ -1,5 +1,6 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as TopicTeaserStories from './topic-teaser.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={TopicTeaserStories} />
 
@@ -12,22 +13,9 @@ import * as TopicTeaserStories from './topic-teaser.stories';
 
 If you use multiple topic teasers on one page, each topic teaser must have a different background.
 
-<Canvas of={TopicTeaserStories.Default}/>
+<Canvas of={TopicTeaserStories.Default} />
 <div className="hide-col-default">
   <Controls of={TopicTeaserStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/topic-teaser.scss';
-```
+<StylesPackageImport components={["topic-teaser"]} />

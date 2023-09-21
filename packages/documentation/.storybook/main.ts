@@ -18,7 +18,6 @@ const config: StorybookConfig = {
         backgrounds: false,
         highlight: false,
         outline: false,
-        toolbars: false,
       },
     },
     '@storybook/addon-links',

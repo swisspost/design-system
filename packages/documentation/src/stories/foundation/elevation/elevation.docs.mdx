@@ -1,8 +1,9 @@
-import { Meta, Canvas } from '@storybook/blocks';
+import { Canvas, Meta, Source } from '@storybook/blocks';
 import { forEach } from '../../../utils/react';
 import { ElevationTile, SCSS_VARIABLES } from './elevation.blocks';
 import * as ElevationStories from './elevation.stories';
 import './elevation.styles.scss';
+import SampleUse from './elevation-use.sample.scss?raw';
 
 <Meta of={ElevationStories} />
 
@@ -16,7 +17,7 @@ import './elevation.styles.scss';
 The higher the elevation, the larger and softer the shadow, expressing a greater distance between an element and the one behind it.
 
 <div className="elevation-container">
-  {forEach(SCSS_VARIABLES.elevation, function (data) {
+  {forEach(SCSS_VARIABLES.elevation, function(data) {
     return <ElevationTile key={data.key} level={data.key} />;
   })}
 </div>
@@ -33,10 +34,7 @@ The easiest way to add an elevation to an element is to apply an elevation class
 
 Import the elevation variables from the Design System Styles package from the `core` sass file with `@use`. This way, the elevation variables are scoped and don't mix with your own variables.
 
-```scss dark
-@use '@swisspost/design-system-styles/core' as post;
-
-.elevated-element {
-  box-shadow: post.$elevation-5;
-}
-```
+<Source
+  code={SampleUse}
+  language="scss"
+/>

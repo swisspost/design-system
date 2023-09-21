@@ -1,6 +1,7 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
 import * as ButtonStories from './button.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={ButtonStories} />
 
@@ -16,23 +17,7 @@ import * as ButtonStories from './button.stories';
   <Controls of={ButtonStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/button.scss';
-
-// required if you use icons
-@use '@swisspost/design-system-styles/components/icons.scss';
-```
+<StylesPackageImport components={["button"]} required={{ icons: true }} />
 
 ## Concrete Examples of Application
 
@@ -40,7 +25,9 @@ The following examples show the different characteristics of the component. Thes
 
 ### Inverted
 
-Inverted buttons don't need special classes anymore, just use any of the <LinkTo kind="utilities-background" story="docs">background classes</LinkTo> to set the background and you're done for the day.
+Inverted buttons don't need special classes anymore, just use any of the
+<LinkTo kind="utilities-background" story="docs">background
+  classes</LinkTo> to set the background and you're done for the day.
 
 <Canvas of={ButtonStories.Inverted} />
 

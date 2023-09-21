@@ -1,0 +1,20 @@
+import { Source } from '@storybook/blocks';
+import { getStylesPackageImportIndividual } from './styles-package-import-individual.sample';
+
+## SCSS Imports
+
+To import all styles from the design-system-styles package:
+
+<Source
+  code={`
+@use '@swisspost/design-system-styles/index.scss';
+  `}
+  language="scss"
+/>
+
+To import only the styles required for this component:
+
+<Source
+  code={getStylesPackageImportIndividual(props)}
+  language="scss"
+/>

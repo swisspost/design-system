@@ -46,7 +46,7 @@ export function FontFace(props: { face: string; family: string; weight: string; 
 export function FontSizesAndLineheights() {
   return (
     <div className="sb-fontsizes table-responsive">
-      <table className="table table-striped table-bordered">
+      <table className="table">
         <thead>
           <tr>
             <th className="w-25">Name</th>
@@ -90,7 +90,7 @@ export function FontSizesAndLineheights() {
 export function FontCurves() {
   return (
     <div className="sb-fontcurves table-responsive">
-      <table className="table table-striped table-bordered">
+      <table className="table">
         <thead>
           <tr>
             <th>Name</th>
@@ -121,7 +121,7 @@ export function FontCurves() {
 export function Headings() {
   return (
     <div className="sb-headings table-responsive">
-      <table className="table table-striped table-bordered">
+      <table className="table">
         <thead>
           <tr>
             <th className="w-25">Tag</th>
@@ -186,7 +186,7 @@ export function Headings() {
 export function Paragraphs() {
   return (
     <div className="sb-paragraphs table-responsive">
-      <table className="table table-striped table-bordered">
+      <table className="table">
         <thead>
           <tr>
             <th className="w-25">Tag</th>
@@ -230,7 +230,7 @@ export function Paragraphs() {
 export function Links() {
   return (
     <div className="sb-links table-responsive">
-      <table className="table table-striped table-bordered">
+      <table className="table">
         <thead>
           <tr>
             <th className="w-25">Tag</th>
@@ -280,7 +280,7 @@ export function Links() {
 export function Inlines() {
   return (
     <div className="sb-inlines table-responsive">
-      <table className="table table-striped table-bordered">
+      <table className="table">
         <thead>
           <tr>
             <th className="w-25">Tag</th>
@@ -398,7 +398,7 @@ export function Inlines() {
 export function Lists() {
   return (
     <div className="sb-inlines table-responsive">
-      <table className="table table-striped table-bordered">
+      <table className="table">
         <thead>
           <tr>
             <th className="w-25">Tag</th>
@@ -498,14 +498,18 @@ export function Lists() {
               </code>
             </td>
             <td>
-              <dl className="row">
-                <dt className="col-3">Title</dt>
-                <dd className="col-9">Nullam quis risus eget urna mollis.</dd>
-                <dt className="col-3">Second Title</dt>
-                <dd className="col-9">At vero eos et justo accusam et duo dolores et ea rebum.</dd>
-                <dt className="col-3">Third Title</dt>
-                <dd className="col-9">Invidunt ut labore et dolore magna aliquyam erat.</dd>
-              </dl>
+              <div className="overflow-hidden">
+                <dl className="row">
+                  <dt className="col-3">Title</dt>
+                  <dd className="col-9">Nullam quis risus eget urna mollis.</dd>
+                  <dt className="col-3">Second Title</dt>
+                  <dd className="col-9">
+                    At vero eos et justo accusam et duo dolores et ea rebum.
+                  </dd>
+                  <dt className="col-3">Third Title</dt>
+                  <dd className="col-9">Invidunt ut labore et dolore magna aliquyam erat.</dd>
+                </dl>
+              </div>
             </td>
           </tr>
         </tbody>

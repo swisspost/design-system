@@ -23,6 +23,7 @@ export const choiceCardMeta: Meta = {
     description: 'A small description',
     icon: 1000,
     showIcon: false,
+    groupValidation: 'null',
   },
   argTypes: {
     label: {
@@ -124,6 +125,18 @@ export const choiceCardMeta: Meta = {
         category: 'Icon',
       },
     },
+    groupValidation: {
+      name: 'Group Validation',
+      description: 'Set validation status for the whole group of choice cards',
+      control: {
+        type: 'radio',
+        labels: {
+          'null': 'Default',
+          'is-invalid': 'Invalid',
+        },
+      },
+      options: ['null', 'is-invalid'],
+    },
   },
 };
 
@@ -208,7 +221,10 @@ export const choiceCardGroup = (args: Args) => {
 
   const col = (label: string) => html`
     <div class="col-sm-6">
-      ${choiceCardDefault({ ...args, label, checked: false, focused: false }, 'group')}
+      ${choiceCardDefault(
+        { ...args, label, checked: false, focused: false, validation: args.groupValidation },
+        'group',
+      )}
     </div>
   `;
 
@@ -218,11 +234,13 @@ export const choiceCardGroup = (args: Args) => {
 
   return html`
     <fieldset class="container-fluid">
-      <legend aria-describedby="${args.validation === 'is-invalid' ? 'invalid-checkbox' : nothing}">
+      <legend
+        aria-describedby="${args.groupValidation === 'is-invalid' ? 'invalid-checkbox' : nothing}"
+      >
         Legend
       </legend>
       <div class="row g-3">${loop.map(n => col(n))}</div>
-      ${args.validation === 'is-invalid' ? error : null}
+      ${args.groupValidation === 'is-invalid' ? error : null}
     </fieldset>
   `;
 };
