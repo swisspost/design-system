@@ -39,8 +39,6 @@ export function getCombinations(
   argumentValues: Array<unknown>,
   combinations: Array<{ label: string; [propName: string]: any }>,
 ) {
-  console.log(combinations);
-
   let result: Array<Object> = [];
   for (const argumentValue of argumentValues) {
     const labelExtension: string = `[ ${argumentName} : ${argumentValue} ] `;

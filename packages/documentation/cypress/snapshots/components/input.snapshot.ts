@@ -1,4 +1,4 @@
-const BASEURL = '/iframe.html?id=snapshots--input';
+const INPUTBASEURL = '/iframe.html?id=snapshots--input';
 const types = [
   'text',
   'number',
@@ -18,7 +18,7 @@ describe('Input', () => {
   describe('types', () => {
     types.forEach(type => {
       it(type, () => {
-        cy.visit(`${BASEURL}${type}`);
+        cy.visit(`${INPUTBASEURL}${type}`);
         cy.percySnapshot(`Inputs-${type}`, { widths: [320, 1024] });
       });
     });
