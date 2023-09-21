@@ -1,13 +1,13 @@
-import { Component, h, Element, Prop, Host, Method } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import {
-  computePosition,
-  Placement,
-  flip,
-  shift,
-  autoUpdate,
-  offset,
-  inline,
   arrow,
+  autoUpdate,
+  computePosition,
+  flip,
+  inline,
+  offset,
+  Placement,
+  shift,
 } from '@floating-ui/dom';
 import isFocusable from 'ally.js/esm/is/focusable';
 
@@ -84,9 +84,9 @@ export class PostTooltip {
         'No id set: <post-tooltip> must have an id, linking it to it\'s target element using the data-tooltip-target attribute.',
       );
     }
-    
+
     const triggers = this.triggers;
-    
+
     if (!triggers) {
       throw new Error(
         `No target found for <post-tooltip id="${this.host.id}">, please add the 'data-tooltip-target="${this.host.id}" attribute to the target element.`,
@@ -131,7 +131,8 @@ export class PostTooltip {
       trigger.removeEventListener('blur', this.localHideTooltip);
       trigger.removeEventListener('long-press', this.localShowTooltip);
     });
-    if (this.tooltipRef) this.tooltipRef.removeEventListener('beforetoggle', this.localToggleTooltip);
+    if (this.tooltipRef)
+      this.tooltipRef.removeEventListener('beforetoggle', this.localToggleTooltip);
     if (typeof this.clearAutoupdate === 'function') this.clearAutoupdate();
   }
 
@@ -252,7 +253,7 @@ export class PostTooltip {
               this.arrowRef = el;
             }}
           ></span>
-          <slot>Hi there 👋</slot>
+          <slot></slot>
         </div>
       </Host>
     );
