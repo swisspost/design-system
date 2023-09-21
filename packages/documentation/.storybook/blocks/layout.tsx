@@ -18,7 +18,6 @@ export default (props: PropsWithChildren<DocsContainerProps>) => {
     context.channel.data.docsPrepared[0].parameters.layout === 'fullscreen'
       ? 'container-fluid'
       : 'container';
-  context.channel;
   return (
     <DocsContainer context={context}>
       <Unstyled>
