@@ -77,7 +77,7 @@ export namespace Components {
         /**
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
          */
-        "activeRoute"?: 'auto' | false | 'auto' | string;
+        "activeRoute"?: 'auto' | false | string;
         /**
           * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
          */
@@ -267,7 +267,7 @@ declare namespace LocalJSX {
         /**
           * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted. Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
          */
-        "activeRoute"?: 'auto' | false | 'auto' | string;
+        "activeRoute"?: 'auto' | false | string;
         /**
           * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
          */
