@@ -1,3 +1,15 @@
+<script src="/assets/scripts/analytics-helper.js"></script>
+
+<script data-id="GtmConstants">
+  window.gtm.setConstant('ENVIRONMENTS', {
+    dev: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_DEV%',
+    int: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT%',
+    prod: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD%',
+  });
+
+  window.gtm.setConstant('ENVIRONMENT_FALLBACK', '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK%');
+</script>
+
 <script data-id="GoogleTagManager">
   // Base
   (function (w, d, s, l, i) {
@@ -13,67 +25,40 @@
     f.parentNode.insertBefore(j, f);
   })(window, document, 'script', 'dataLayer', '%STORYBOOK_GTM_KEY%');
 
-  (function () {
-    window.dataLayer = window.dataLayer || [];
+  window.dataLayer = window.dataLayer || [];
 
-    window.onload = function () {
-      new MutationObserver(function () {
-        const storyAnker = document.querySelector('#storybook-preview-wrapper > a');
+  // Page Context
+  window.addEventListener('storybook:ready', function () {
+    window.dataLayer.push({
+      event: 'page_context', // constant, required
+      spa: 'true', // constant, required
+      content_language: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE%', // required
+      content_geo_region: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION%', // required
+      source_code_version: '%STORYBOOK_GTM_PAGE_CONTEXT_SOURCE_CODE_VERSION%', // recommended
+      page_name_language_neutral: window.gtm.getPageTitle(), // required
+      page_url_language_neutral: window.location.href, // required
+      environment: window.gtm.getEnvironment(), // required
+      login_status: 'false', // required
+      platform_name: 'ms_design_system', // required
+      department_name: 'IT16.12', // required
+      business_unit: 'IT', // required
+      primary_segment: 'allgemein', // required
+    });
+  });
 
-        if (storyAnker) {
-          this.disconnect();
-
-          // execute on next cycle to ensure the doc-title has been updated by storybook
-          setTimeout(pushPageContext);
-          setupPageChange(storyAnker);
-        }
-      }).observe(document.querySelector('#storybook-preview-wrapper'), { childList: true });
-    };
-
-    // Page Context
-    function pushPageContext() {
-      window.dataLayer.push({
-        event: 'page_context', // constant, required
-        spa: 'true', // constant, required
-        content_language: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE%', // required
-        content_geo_region: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION%', // required
-        source_code_version: '%STORYBOOK_GTM_PAGE_CONTEXT_SOURCE_CODE_VERSION%', // recommended
-        page_name_language_neutral: document.head.querySelector('title')?.text ?? '', // required
-        page_url_language_neutral: window.location.href, // required
-        environment: (function () {
-          return (Object.entries({
-            dev: ('%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_DEV%' ?? '').split(','),
-            int: ('%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT%' ?? '').split(','),
-            prod: ('%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD%' ?? '').split(',')
-          }).find(([_env, hosts]) => hosts.some(host => window.location.host.indexOf(host) === 0)) ?? ['%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK%'])[0];
-        })(), // required
-        login_status: 'false', // required
-        platform_name: 'ms_design_system', // required
-        department_name: 'IT16.12', // required
-        business_unit: 'IT', // required
-        primary_segment: 'allgemein', // required
-      });
-    };
-
-    // Page Change
-    function setupPageChange(target) {
-      new MutationObserver(() => {
-        // execute on next cycle to ensure the doc-title has been updated by storybook
-        setTimeout(() => {
-          window.dataLayer.push({
-            event: 'page_change', // constant, required
-            content_language: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE%', // required
-            content_geo_region: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION%', // required
-            page_name_language_neutral: document.head.querySelector('title').text, // required
-            page_url_language_neutral: window.location.href, // required
-            virtual_pageview: 'true', // SPA route change indicator, boolean true/false
-            virtual_page_name: document.head.querySelector('title')?.text ?? '', // SPA route change/transition new page name/page title
-            virtual_url: window.location.href, // SPA route change new URL
-          });
-        });
-      }).observe(target, { attributes: true });
-    }
-  })();
+  // Page Change
+  window.addEventListener('storybook:routeChange', function () {
+    window.dataLayer.push({
+      event: 'page_change', // constant, required
+      content_language: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE%', // required
+      content_geo_region: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION%', // required
+      page_name_language_neutral: window.gtm.getPageTitle(), // required
+      page_url_language_neutral: window.location.href, // required
+      virtual_pageview: 'true', // SPA route change indicator, boolean true/false
+      virtual_page_name: window.gtm.getPageTitle(), // SPA route change/transition new page name/page title
+      virtual_url: window.location.href, // SPA route change new URL
+    });
+  });
 </script>
 
 <!-- Documentation: https://dev.to/masakudamatsu/favicon-nightmare-how-to-maintain-sanity-3al7 -->
