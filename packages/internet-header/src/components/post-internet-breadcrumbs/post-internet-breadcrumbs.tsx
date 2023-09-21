@@ -1,11 +1,11 @@
-import { Component, Host, h, Prop, State, Element, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { debounce } from 'throttle-debounce';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { clearAllBodyScrollLocks, disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { state } from '../../data/store';
 import { OverlayComponent } from './components/overlay.component';
-import iframeResizer from 'iframe-resizer';
-import { IBreadcrumbOverlay, IBreadcrumbItem } from '../../models/breadcrumbs.model';
+import { iframeResizer } from 'iframe-resizer';
+import { IBreadcrumbItem, IBreadcrumbOverlay } from '../../models/breadcrumbs.model';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { BreadcrumbList } from './components/breadcrumb-list.component';
 import { prefersReducedMotion } from '../../utils/utils';
