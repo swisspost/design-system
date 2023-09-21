@@ -1,4 +1,4 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as BreadcrumbStories from './breadcrumbs-config.stories';
 
 <Meta of={BreadcrumbStories} />
@@ -9,6 +9,4 @@ import * as BreadcrumbStories from './breadcrumbs-config.stories';
 
 <Canvas of={BreadcrumbStories.Default} />
 
-<div className="container">
-  <Controls of={BreadcrumbStories.Default} />
-</div>
+<Controls of={BreadcrumbStories.Default} />
