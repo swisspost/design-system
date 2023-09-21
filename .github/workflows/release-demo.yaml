@@ -21,7 +21,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Check if version has changed
         id: check # This will be the reference for getting the outputs.
@@ -44,6 +44,10 @@ jobs:
       - name: Build demo app & dependencies
         if: steps.check.outputs.changed == 'true'
         run: pnpm --filter "design-system-demo..." build
+
+      - name: Install netlify cli
+        if: steps.check.outputs.changed == 'true'
+        run: pnpm -g i netlify-cli@15
 
       # Publish demo only if changesets published any packages
       - name: Publish demo app to netlify

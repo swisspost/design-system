@@ -1,10 +1,10 @@
 import type { Preview } from '@storybook/web-components';
-
-import { extractArgTypes, extractComponentDescription } from '@pxtrn/storybook-addon-docs-stencil';
+import { extractArgTypes } from '@pxtrn/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout';
-import { badgesConfig, prettierOptions, resetComponents } from './helpers';
+import { badgesConfig, openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
+import './cypress-storybook/client';
 
 import './styles/preview.scss';
 
@@ -12,6 +12,8 @@ import { SyntaxHighlighter } from '@storybook/components';
 import scss from 'react-syntax-highlighter/dist/esm/languages/prism/scss';
 
 SyntaxHighlighter.registerLanguage('scss', scss);
+
+export const SourceDarkMode = true;
 
 const preview: Preview = {
   parameters: {
@@ -25,11 +27,11 @@ const preview: Preview = {
           ['Typography', 'Color', 'Layout', 'Elevation', 'Accessibility'],
           'Components',
           'Internet Header',
-          ['Getting started', 'Migration Guide', 'Header Component', 'Breadcrumbs Component', 'Footer Component'],
+          ['Getting Started', 'Migration Guide', 'Header', 'Breadcrumbs', 'Footer'],
           'Intranet Header',
-          ['Getting started'],
+          ['Getting Started'],
           'Icons',
-          ['Getting started', 'Search Icons', 'Icon Component'],
+          ['Getting Started', 'Search for Icons', 'Icon Component'],
           'Templates',
           'Utilities',
           'Misc',
@@ -40,8 +42,17 @@ const preview: Preview = {
     },
     docs: {
       container: DocsLayout,
+      canvas: {
+        additionalActions: [
+          {
+            title: 'View full screen',
+            onClick: openFullScreenDemo,
+          },
+        ],
+      },
       source: {
         excludeDecorators: true,
+        dark: SourceDarkMode,
         transform: (snippet: string) => format(snippet, prettierOptions),
       },
       components: resetComponents,

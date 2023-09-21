@@ -1,18 +1,19 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
 import * as TypographyStories from './typography.stories';
 import {
-  FontFaceWrapper,
-  FontFace,
-  FontSizesAndLineheights,
   FontCurves,
+  FontFace,
+  FontFaceWrapper,
+  FontSizesAndLineheights,
   Headings,
-  Paragraphs,
-  Links,
   Inlines,
+  Links,
   Lists,
+  Paragraphs,
 } from './typography.blocks';
 import './typography.styles.scss';
+import SampleStandalone from './typography-standalone.sample.css?raw';
 
 <Meta of={TypographyStories} />
 
@@ -20,7 +21,8 @@ import './typography.styles.scss';
 
 This page describes the typography basics of the design system.<br/>
 If you want to know how to adjust font-families, font-sizes, etc. in your code,
-please visit our <LinkTo kind="utilities-text" story="docs">text utilities docs</LinkTo>.
+please visit our
+<LinkTo kind="utilities-text" story="docs">text utilities docs</LinkTo>.
 
 ## Font Families
 
@@ -39,32 +41,10 @@ One is the main font family "Frutiger Neue" and the other is a monospace font fa
 
 If you cannot use the design system but need the fonts, you can integrate them into your project as follows:
 
-{/* prettier-ignore */}
-```css dark
-@font-face {
-  font-display: swap;
-  font-family: 'Frutiger Neue For Post';
-  font-weight: 700;
-  src: url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Bold.woff2') format('woff2'),
-       url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Bold.woff') format('woff');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Frutiger Neue For Post';
-  font-weight: 400;
-  src: url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Rg.woff2') format('woff2'),
-       url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Rg.woff') format('woff');
-}
-
-@font-face {
-  font-display: swap;
-  font-family: 'Frutiger Neue For Post';
-  font-weight: 300;
-  src: url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Lt.woff2') format('woff2'),
-       url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Lt.woff') format('woff');
-}
-```
+<Source
+  code={SampleStandalone}
+  language="css"
+/>
 
 ## Font Sizes & Line Heights
 

@@ -1,15 +1,15 @@
 import {
   Component,
-  Host,
   Element,
-  h,
-  State,
-  Prop,
-  Watch,
-  Listen,
-  EventEmitter,
   Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
   Method,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import { debounce, throttle } from 'throttle-debounce';
 import {
@@ -17,17 +17,18 @@ import {
   getLocalizedCustomConfig,
   isValidProjectId,
 } from '../../services/config.service';
-import { state, dispose } from '../../data/store';
+import { dispose, state } from '../../data/store';
 import { DropdownElement, DropdownEvent, NavMainEntity } from '../../models/header.model';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { StickynessOptions } from '../../models/implementor.model';
 import { ActiveRouteProp, Environment, ICustomConfig } from '../../models/general.model';
 import { IAvailableLanguage } from '../../models/language.model';
-import { translate } from '../../services/language.service';
+import { getUserLang, translate } from '../../services/language.service';
 import { If } from '../../utils/if.component';
 import packageJson from '../../../package.json';
 import { registerLogoAnimationObserver } from './logo-animation/logo-animation';
+import { getScrollParent } from '../../utils/scrollparent';
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -48,7 +49,7 @@ export class PostInternetHeader {
   /**
    * Initial language to be used. Overrides automatic language detection.
    */
-  @Prop() language?: string;
+  @Prop() language?: 'de' | 'fr' | 'it' | 'en';
 
   /**
    * Toggle the meta navigation.
@@ -142,6 +143,7 @@ export class PostInternetHeader {
   private debouncedResize: debounce<() => void>;
   private lastWindowWidth: number = window.innerWidth;
   private updateLogoAnimation: () => void;
+  private scrollParent: Element | Document;
 
   constructor() {
     if (this.project === undefined || this.project === '' || !isValidProjectId(this.project)) {
@@ -154,19 +156,21 @@ export class PostInternetHeader {
   connectedCallback() {
     this.throttledScroll = throttle(300, () => this.handleScrollEvent());
     this.debouncedResize = debounce(200, () => this.handleResize());
-    window.addEventListener('scroll', this.throttledScroll, { passive: true });
-    window.addEventListener('resize', this.debouncedResize, { passive: true });
   }
 
   disconnectedCallback() {
-    window.removeEventListener('scroll', this.throttledScroll);
-    window.removeEventListener('resize', this.debouncedResize);
+    this.scrollParent.removeEventListener('scroll', this.throttledScroll);
+    this.scrollParent.removeEventListener('resize', this.debouncedResize);
 
     // Reset the store to its original state
     dispose();
   }
 
   async componentWillLoad() {
+    this.scrollParent = getScrollParent(this.host);
+    this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
+    this.scrollParent.addEventListener('resize', this.debouncedResize, { passive: true });
+
     // Wait for the config to arrive, then render the header
     try {
       state.projectId = this.project;
@@ -182,11 +186,12 @@ export class PostInternetHeader {
           ? JSON.parse(this.osFlyoutOverrides)
           : this.osFlyoutOverrides;
 
-      if (this.customConfig !== undefined && state.currentLanguage !== null) {
-        state.localizedCustomConfig = getLocalizedCustomConfig(
-          this.customConfig,
-          state.currentLanguage,
+      if (this.customConfig !== undefined) {
+        const langs = Object.keys(
+          typeof this.customConfig === 'string' ? JSON.parse(this.customConfig) : this.customConfig,
         );
+        const lang = state.currentLanguage || getUserLang(langs, this.language);
+        state.localizedCustomConfig = getLocalizedCustomConfig(this.customConfig, lang);
       }
 
       state.localizedConfig = await getLocalizedConfig({
@@ -309,7 +314,7 @@ export class PostInternetHeader {
   @Watch('stickyness')
   handleStickynessChange(newValue: StickynessOptions) {
     state.stickyness = newValue;
-    this.updateLogoAnimation();
+    if (typeof this.updateLogoAnimation === 'function') this.updateLogoAnimation();
   }
 
   private handleClickOutsideBound = this.handleClickOutside.bind(this);
@@ -334,7 +339,10 @@ export class PostInternetHeader {
 
   private handleScrollEvent() {
     // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-    const st = window.scrollY || document.documentElement.scrollTop;
+    const st =
+      this.scrollParent instanceof Document
+        ? this.scrollParent.documentElement.scrollTop
+        : this.scrollParent.scrollTop;
 
     // Toggle class without re-rendering the component if stickyness is minimal
     // the other stickyness modes do not need the class

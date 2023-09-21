@@ -1,5 +1,5 @@
 import { BADGE } from '../../../../.storybook/constants';
-import { choiceCardMeta, choiceCardDefault, choiceCardGroup } from './choice-control';
+import { choiceCardMeta, choiceCardDefault, choiceCardGroup } from './choice-card';
 
 export default {
   ...choiceCardMeta,
@@ -12,9 +12,15 @@ export default {
 export const Default = {
   render: choiceCardDefault,
   args: { ...choiceCardMeta.args, type: 'radio' },
+  parameters: {
+    controls: {
+      exclude: ['Group Validation'],
+    },
+  },
 };
 
 export const Group = {
   render: choiceCardGroup,
   args: { ...choiceCardMeta.args, type: 'radio' },
+  parameters: { controls: { include: ['Group Validation'] } },
 };

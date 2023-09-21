@@ -2,16 +2,13 @@ import { prepare } from '../support/prepare-story';
 
 describe('header', () => {
   beforeEach(() => {
-    prepare('Internet Header/Components/Header', 'Default');
+    prepare('Internet Header/Header', 'Default');
+    cy.changeArg('language', 'de');
   });
 
   context('initial state', () => {
     it('renders', () => {
       cy.get('swisspost-internet-header').should('have.class', 'hydrated');
-    });
-
-    it(`has title 'Design System Internet Header'`, () => {
-      cy.get('h1').should('contain.text', 'Design System Internet Header');
     });
 
     it(`has nav item 'Briefe versenden' selected`, () => {

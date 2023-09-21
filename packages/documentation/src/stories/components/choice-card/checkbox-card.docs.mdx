@@ -1,5 +1,7 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Meta, Canvas, Controls, Source } from '@storybook/blocks';
 import * as CheckboxCardStories from './checkbox-card.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import firefoxFallbackSnippet from './firefox-fallback.ts?raw';
 
 <Meta of={CheckboxCardStories} />
 
@@ -10,12 +12,20 @@ import * as CheckboxCardStories from './checkbox-card.stories';
   services.
 </div>
 
+<Canvas of={CheckboxCardStories.Default} />
+<div className="hide-col-default">
+  <Controls of={CheckboxCardStories.Default} />
+</div>
+
+## Firefox fallback
+
 <div className="alert alert-info">
-  <h2 class="h5">Firefox fallback classes</h2>
-  Firefox currently does not support <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">
+  Firefox currently does not support{' '}
+  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">
     the new <abbr title="Cascading Style Sheets">CSS</abbr> :has pseudo-selector
-  </a>. As a fallback, the following states have to be mirrored on the top level element in the form
-  of classes:
+  </a>
+  . As a fallback, the following states have to be mirrored on the top level element in the form of
+  classes (see below for a snippet):
   <ul>
     <li>
       <code>checked</code>
@@ -30,31 +40,21 @@ import * as CheckboxCardStories from './checkbox-card.stories';
       <code>is-invalid</code>
     </li>
   </ul>
-  Check <a href="https://caniuse.com/css-has">caniuse :has()</a> to check if you still need the fallback.
+  Check <a href="https://caniuse.com/css-has">caniuse :has()</a> to check if you still need the
+  fallback.
 </div>
 
-<Canvas of={CheckboxCardStories.Default} />
-<div className="hide-col-default">
-  <Controls of={CheckboxCardStories.Default} />
-</div>
+This snippet adds a global event listener to mirror the `focused` and `checked` states to the parent of the input. This fallback has to be applied as long as Firefox does not support the `:has` selector.
+
+<Source code={firefoxFallbackSnippet} dark={true} language="typescript" />
 
 ## Grouping
 
 Checkbox cards can be grouped together. Use a `fieldset`/`legend` combination to label the group. If there is an error, link the legend with the error message through the `aria-describedby` attribute on the `legend`, pointing to the `id` of the error message.
 
 <Canvas of={CheckboxCardStories.Group} />
+<div className="hide-col-default">
+  <Controls of={CheckboxCardStories.Group} />
+</div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/choice-control-card.scss';
-```
+<StylesPackageImport components={['choice-control-card']} />

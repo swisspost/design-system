@@ -1,0 +1,29 @@
+<html>
+<head>
+  <link
+    rel="stylesheet"
+    href="https://www.post.ch/api/staticasset?serviceId=webstamp&file=post.css&environment=prod"
+  />
+  <link
+    rel="stylesheet"
+    href="https://www.post.ch/api/staticasset?serviceId=webstamp&file=post-modules.css&environment=prod"
+  />
+
+  <!-- Eigene CSS Verknüpfungen -->
+</head>
+
+<body>
+<!-- The header needs to be directly in the body tag for stickiness functionality to work -->
+<swisspost-internet-header project="your-service-id"></swisspost-internet-header>
+
+<aside class="my-huge-r container">
+  <swisspost-internet-breadcrumbs></swisspost-internet-breadcrumbs>
+</aside>
+
+<main id="os_content" class="container">
+  <!-- Content from the current page of the online service  -->
+</main>
+
+<swisspost-internet-footer></swisspost-internet-footer>
+</body>
+</html>

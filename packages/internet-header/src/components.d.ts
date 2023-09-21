@@ -102,7 +102,7 @@ export namespace Components {
         /**
           * Initial language to be used. Overrides automatic language detection.
          */
-        "language"?: string;
+        "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
           * The header uses this cookie to set the language. Disables automatic language detection.
          */
@@ -287,7 +287,7 @@ declare namespace LocalJSX {
         /**
           * Initial language to be used. Overrides automatic language detection.
          */
-        "language"?: string;
+        "language"?: 'de' | 'fr' | 'it' | 'en';
         /**
           * The header uses this cookie to set the language. Disables automatic language detection.
          */
