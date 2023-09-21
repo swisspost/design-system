@@ -25,6 +25,7 @@
 
           // execute on next cycle to ensure the doc-title has been updated by storybook
           setTimeout(pushPageContext);
+          setupPageChange(storyAnker);
         }
       }).observe(document.querySelector('#storybook-preview-wrapper'), { childList: true });
     };
@@ -53,6 +54,25 @@
         primary_segment: 'allgemein', // required
       });
     };
+
+    // Page Change
+    function setupPageChange(target) {
+      new MutationObserver(() => {
+        // execute on next cycle to ensure the doc-title has been updated by storybook
+        setTimeout(() => {
+          window.dataLayer.push({
+            event: 'page_change', // constant, required
+            content_language: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE%', // required
+            content_geo_region: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION%', // required
+            page_name_language_neutral: document.head.querySelector('title').text, // required
+            page_url_language_neutral: window.location.href, // required
+            virtual_pageview: 'true', // SPA route change indicator, boolean true/false
+            virtual_page_name: document.head.querySelector('title')?.text ?? '', // SPA route change/transition new page name/page title
+            virtual_url: window.location.href, // SPA route change new URL
+          });
+        });
+      }).observe(target, { attributes: true });
+    }
   })();
 </script>
 
