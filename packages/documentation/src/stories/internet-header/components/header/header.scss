@@ -1,10 +1,12 @@
-.docs-story {
-  > div:first-child {
-    overflow: hidden;
+.container {
+  div {
+    overflow: visible;
   }
+}
 
-  > div:nth-child(2) {
-    z-index: 1000;
+#storybook-docs {
+  .header-story-wrapper {
+    max-height: 20rem !important;
   }
 }
 
@@ -13,10 +15,10 @@
   position: relative;
   min-height: calc(1.6rem * 8);
   background: repeating-linear-gradient(
-      rgb(230, 230, 230),
-      rgb(230, 230, 230) 1rem,
-      transparent 1rem,
-      transparent 1.6rem
+    rgb(230, 230, 230),
+    rgb(230, 230, 230) 1rem,
+    transparent 1rem,
+    transparent 1.6rem
   );
 
   &::after {
