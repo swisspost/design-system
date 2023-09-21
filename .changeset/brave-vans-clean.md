@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Adds the `post-tooltip` component
+Added the `post-tooltip` component.
