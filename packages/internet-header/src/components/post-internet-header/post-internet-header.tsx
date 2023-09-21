@@ -1,15 +1,15 @@
 import {
   Component,
-  Host,
   Element,
-  h,
-  State,
-  Prop,
-  Watch,
-  Listen,
-  EventEmitter,
   Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
   Method,
+  Prop,
+  State,
+  Watch,
 } from '@stencil/core';
 import { debounce, throttle } from 'throttle-debounce';
 import {
@@ -17,7 +17,7 @@ import {
   getLocalizedCustomConfig,
   isValidProjectId,
 } from '../../services/config.service';
-import { state, dispose } from '../../data/store';
+import { dispose, state } from '../../data/store';
 import { DropdownElement, DropdownEvent, NavMainEntity } from '../../models/header.model';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { SvgIcon } from '../../utils/svg-icon.component';
@@ -106,7 +106,7 @@ export class PostInternetHeader {
    * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
    * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
    */
-  @Prop() activeRoute?: 'auto' | false | 'auto' | string = 'auto';
+  @Prop() activeRoute?: 'auto' | false | string = 'auto';
 
   /**
    * Online Services only: Add custom links to the special online service navigation entry
@@ -157,20 +157,20 @@ export class PostInternetHeader {
     this.throttledScroll = throttle(300, () => this.handleScrollEvent());
     this.debouncedResize = debounce(200, () => this.handleResize());
   }
-  
+
   disconnectedCallback() {
     this.scrollParent.removeEventListener('scroll', this.throttledScroll);
     this.scrollParent.removeEventListener('resize', this.debouncedResize);
-    
+
     // Reset the store to its original state
     dispose();
   }
-  
+
   async componentWillLoad() {
     this.scrollParent = getScrollParent(this.host);
     this.scrollParent.addEventListener('scroll', this.throttledScroll, { passive: true });
     this.scrollParent.addEventListener('resize', this.debouncedResize, { passive: true });
-    
+
     // Wait for the config to arrive, then render the header
     try {
       state.projectId = this.project;
@@ -187,12 +187,11 @@ export class PostInternetHeader {
           : this.osFlyoutOverrides;
 
       if (this.customConfig !== undefined) {
-        const langs = Object.keys(typeof this.customConfig === 'string' ? JSON.parse(this.customConfig) : this.customConfig);
-        const lang = state.currentLanguage || getUserLang(langs, this.language);
-        state.localizedCustomConfig = getLocalizedCustomConfig(
-          this.customConfig,
-          lang,
+        const langs = Object.keys(
+          typeof this.customConfig === 'string' ? JSON.parse(this.customConfig) : this.customConfig,
         );
+        const lang = state.currentLanguage || getUserLang(langs, this.language);
+        state.localizedCustomConfig = getLocalizedCustomConfig(this.customConfig, lang);
       }
 
       state.localizedConfig = await getLocalizedConfig({
@@ -339,9 +338,11 @@ export class PostInternetHeader {
   }
 
   private handleScrollEvent() {
-    
     // Credits: "https://github.com/qeremy/so/blob/master/so.dom.js#L426"
-    const st = this.scrollParent instanceof Document ? this.scrollParent.documentElement.scrollTop : this.scrollParent.scrollTop;
+    const st =
+      this.scrollParent instanceof Document
+        ? this.scrollParent.documentElement.scrollTop
+        : this.scrollParent.scrollTop;
 
     // Toggle class without re-rendering the component if stickyness is minimal
     // the other stickyness modes do not need the class
