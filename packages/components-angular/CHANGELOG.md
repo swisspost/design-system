@@ -1,5 +1,16 @@
 # @swisspost/design-system-components-angular
 
+## 3.0.0
+
+### Major Changes
+
+- Upgraded major version of Angular from v15 to v16. (by [@imagoiq](https://github.com/imagoiq) with [#1920](https://github.com/swisspost/design-system/pull/1920))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.0
+
 ## 2.0.10
 
 ### Patch Changes

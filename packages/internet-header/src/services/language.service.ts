@@ -9,7 +9,7 @@ export const getUserLang = (
 ) => {
   // If there are no supported languages, well...
   if (supportedLanguages.length === 0) {
-    return undefined;
+    return 'de';
   }
 
   // If there is only one language in the config, use this
