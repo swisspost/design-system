@@ -15,6 +15,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [".storybook/**/*", "src/**/*"],
+  "include": [".storybook/**/*", "src/**/*", "types"],
   "exclude": ["node_modules/**/*", "src/**/*.sample.*"]
 }
