@@ -42,6 +42,13 @@ const config: StorybookConfig = {
   env: config => ({
     ...config,
     STORYBOOK_GTM_KEY: 'GTM-WKSKHGJ',
+    STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE: 'en',
+    STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION: 'national',
+    STORYBOOK_GTM_PAGE_CONTEXT_SOURCE_CODE_VERSION: pkg.version,
+    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_DEV: 'localhost',
+    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT: 'preview-',
+    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD: 'design-system.post.ch,next.design-system.post.ch',
+    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK: 'dev',
   }),
 };
 

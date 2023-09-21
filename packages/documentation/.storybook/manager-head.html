@@ -13,6 +13,47 @@
     f.parentNode.insertBefore(j, f);
   })(window, document, 'script', 'dataLayer', '%STORYBOOK_GTM_KEY%');
 
+  (function () {
+    window.dataLayer = window.dataLayer || [];
+
+    window.onload = function () {
+      new MutationObserver(function () {
+        const storyAnker = document.querySelector('#storybook-preview-wrapper > a');
+
+        if (storyAnker) {
+          this.disconnect();
+
+          // execute on next cycle to ensure the doc-title has been updated by storybook
+          setTimeout(pushPageContext);
+        }
+      }).observe(document.querySelector('#storybook-preview-wrapper'), { childList: true });
+    };
+
+    // Page Context
+    function pushPageContext() {
+      window.dataLayer.push({
+        event: 'page_context', // constant, required
+        spa: 'true', // constant, required
+        content_language: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE%', // required
+        content_geo_region: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION%', // required
+        source_code_version: '%STORYBOOK_GTM_PAGE_CONTEXT_SOURCE_CODE_VERSION%', // recommended
+        page_name_language_neutral: document.head.querySelector('title')?.text ?? '', // required
+        page_url_language_neutral: window.location.href, // required
+        environment: (function () {
+          return (Object.entries({
+            dev: ('%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_DEV%' ?? '').split(','),
+            int: ('%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT%' ?? '').split(','),
+            prod: ('%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD%' ?? '').split(',')
+          }).find(([_env, hosts]) => hosts.some(host => window.location.host.indexOf(host) === 0)) ?? ['%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK%'])[0];
+        })(), // required
+        login_status: 'false', // required
+        platform_name: 'ms_design_system', // required
+        department_name: 'IT16.12', // required
+        business_unit: 'IT', // required
+        primary_segment: 'allgemein', // required
+      });
+    };
+  })();
 </script>
 
 <!-- Documentation: https://dev.to/masakudamatsu/favicon-nightmare-how-to-maintain-sanity-3al7 -->
