@@ -1,4 +1,4 @@
-import { Meta, StoryObj, Args } from '@storybook/web-components';
+import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../../.storybook/constants';
 import { html } from 'lit';
 import { spread } from '@open-wc/lit-helpers';
@@ -26,6 +26,10 @@ const meta: Meta = {
       control: false,
       table: {
         category: 'Required props',
+      },
+      type: {
+        name: 'string',
+        required: true,
       },
     },
     environment: {
