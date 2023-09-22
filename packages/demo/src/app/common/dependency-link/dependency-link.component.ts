@@ -59,7 +59,7 @@ export class DependencyLinkComponent implements OnDestroy {
 
     const cachedResponse = caches
       .match(url)
-      .catch(() => fetch(url))
+      .then(response => (response !== undefined ? response : fetch(url)))
       .then(response => {
         caches.open('npm').then(cache => {
           void cache.put(url, response);
