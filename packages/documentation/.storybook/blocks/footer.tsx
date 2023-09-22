@@ -70,9 +70,18 @@ export default () => (
 
     <div className="container d-flex justify-content-between py-regular">
       <strong>&copy; 2022 Swiss Post Ltd.</strong>
-      <a href="https://github.com/swisspost/design-system" target="_blank" rel="noopener">
-        Improve this page
-      </a>
+      <div className="d-flex gap-3">
+        <a
+          href="https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
+          target="_blank"
+          rel="noopener"
+        >
+          Data protection and disclaimer
+        </a>
+        <a href="https://github.com/swisspost/design-system" target="_blank" rel="noopener">
+          Improve this page
+        </a>
+      </div>
     </div>
   </footer>
 );
