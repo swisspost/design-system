@@ -5,12 +5,14 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { AlertType } from "./components/post-alert/alert-types";
+export { AlertType } from "./components/post-alert/alert-types";
 export namespace Components {
     interface PostAlert {
         /**
-          * Triggers alert closing programmatically (same as clicking on the close button (×)).
+          * Triggers alert dismissal programmatically (same as clicking on the close button (×)).
          */
-        "close": () => Promise<void>;
+        "dismiss": () => Promise<void>;
         /**
           * The label to use for the close button of a dismissible alert.
          */
@@ -24,13 +26,13 @@ export namespace Components {
          */
         "fixed": false;
         /**
-          * The icon to display in the alert.  If `true`, the icon depends on the alert type. If `false`, no icon is displayed.
+          * The icon to display in the alert. By default, the icon depends on the alert type.  If `none`, no icon is displayed.
          */
-        "icon": boolean | string;
+        "icon": string;
         /**
-          * The type of the alert.  We provide styles for the following types: `'primary'`, `'success'`, `'danger'`, `'warning'`, `'info'`.
+          * The type of the alert.
          */
-        "type": string;
+        "type": AlertType;
     }
     interface PostCollapsible {
         /**
@@ -170,13 +172,13 @@ declare namespace LocalJSX {
          */
         "fixed"?: false;
         /**
-          * The icon to display in the alert.  If `true`, the icon depends on the alert type. If `false`, no icon is displayed.
+          * The icon to display in the alert. By default, the icon depends on the alert type.  If `none`, no icon is displayed.
          */
-        "icon"?: boolean | string;
+        "icon"?: string;
         /**
-          * The type of the alert.  We provide styles for the following types: `'primary'`, `'success'`, `'danger'`, `'warning'`, `'info'`.
+          * The type of the alert.
          */
-        "type"?: string;
+        "type"?: AlertType;
     }
     interface PostCollapsible {
         /**

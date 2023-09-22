@@ -1,13 +1,13 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { BADGE } from '../../../../.storybook/constants';
-import { spread } from '@open-wc/lit-helpers';
-import { definedProperties, getAttributes } from '../../../utils';
 
 const meta: Meta<HTMLPostAlertElement> = {
   title: 'Components/Post Alert',
   component: 'post-alert',
   render: renderAlert,
+  decorators: [externalControl],
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },
@@ -24,33 +24,76 @@ const meta: Meta<HTMLPostAlertElement> = {
       control: {
         type: 'select',
         labels: {
-          'false': 'No Icon',
-          '1001': 'Envelope (1001)',
-          '2023': 'Cog (2023)',
-          '2025': 'Send (2025)',
-          '2035': 'Home (2035)',
-          '2101': 'Bubble (2101)',
+          '1001': '1001 (Envelope)',
+          '2023': '2023 (Cog)',
+          '2025': '2025 (Send)',
+          '2035': '2035 (Home)',
+          '2101': '2101 (Bubble)',
         },
       },
-      options: ['false', '1001', '2023', '2025', '2035', '2101'],
+      options: ['none', '1001', '2023', '2025', '2035', '2101'],
     },
-    type: {
-      control: {
-        type: 'select',
-      },
-      options: [ 'primary', 'success', 'danger', 'warning', 'info' ],
-    }
   }
 };
 
 export default meta;
 
+// DECORATORS
+function externalControl(story: StoryFn, { args, context }: StoryContext) {
+  let alert: HTMLPostAlertElement;
+
+  const toggleButton = html`
+    <a href="#" @click='${(e: Event) => showAlert(e)}'>
+      ${args.fixed ? 'Toggle Alert' : 'Show Alert'}
+    </a>
+  `;
+
+  const showAlert = (e: Event) => {
+    e.preventDefault();
+    if (alert.parentNode) {
+      void alert.dismiss();
+    } else {
+      document.getElementById('alert-container')?.appendChild(alert);
+    }
+  }
+
+  setTimeout(() => {
+    alert = document.querySelector('post-alert') as HTMLPostAlertElement;
+  });
+
+  return args.fixed
+    ? html`
+      ${toggleButton}
+      ${story(args, context)}
+    `
+    : html`
+      <div class='position-relative' style="height: 7rem">
+        ${toggleButton}
+        <div id='alert-container' class='position-absolute top-0 start-0 end-0'>
+          ${story(args, context)}
+        </div>
+      </div>
+    `;
+}
+
 // RENDERER
 function renderAlert(args: Partial<HTMLPostAlertElement>) {
   return html`
-    <post-alert ${spread(getAttributes(args))}>
+    <post-alert
+      dismissible='${ifDefined(args.dismissible)}'
+      dismiss-label='${ifDefined(args.dismissLabel)}'
+      fixed='${ifDefined(args.fixed)}'
+      icon='${ifDefined(args.icon)}'
+      type='${ifDefined(args.type)}'
+    >
       <h4 slot="heading">Titulum</h4>
       Contentus momentus vero siteos et accusam iretea et justo.
+      <button slot="actions" class="btn btn-primary btn-animated">
+        <span>Akcepti</span>
+      </button>
+      <button slot="actions" class="btn btn-secondary btn-animated">
+        <span>Aborti</span>
+      </button>
     </post-alert>
   `;
 }

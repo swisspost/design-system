@@ -1,7 +1,19 @@
 @use '@swisspost/design-system-styles/components/alert';
-@use '@swisspost/design-system-styles/components/icons';
-@use '@swisspost/design-system-styles/components/transitions';
+@use '@swisspost/design-system-styles/components/close';
+@use '@swisspost/design-system-styles/core' as post;
 
 :host {
   display: block;
+}
+
+.btn-close > .visually-hidden {
+  @include post.visually-hidden();
+}
+
+@for $i from 1 through 6 {
+  .alert-heading > ::slotted(h#{$i}) {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+    margin: 0 !important;
+  }
 }

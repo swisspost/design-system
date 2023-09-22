@@ -1,6 +1,8 @@
 import { Component, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import { version } from '../../../package.json';
-import { checkNonEmpty, checkOneOf, checkPattern, checkType, onTransitionEnd } from '../../utils';
+import { fadeOut } from '../../animations';
+import { checkEmptyOrOneOf, checkEmptyOrPattern, checkNonEmpty, checkType } from '../../utils';
+import { ALERT_TYPES, AlertType } from './alert-types';
 
 @Component({
   tag: 'post-alert',
@@ -8,149 +10,131 @@ import { checkNonEmpty, checkOneOf, checkPattern, checkType, onTransitionEnd } f
   shadow: true,
 })
 export class PostAlert {
-  private alertElement: HTMLElement;
-
   @Element() host: HTMLPostAlertElement;
 
-  @State() alertClasses: string[] = [ 'alert' ];
+  @State() classes: string;
+  @State() hasActions: boolean;
   @State() hasHeading: boolean;
-  @State() iconName: string | null;
+  @State() onDismissButtonClick = () => this.dismiss();
+
+  /**
+   * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
+   */
+  @Prop() readonly dismissible: boolean = false;
+
+  @Watch('dismissible')
+  validateDismissible(isDismissible = this.dismissible) {
+    checkType(isDismissible, 'boolean', 'The post-alert "dismissible" prop should be a boolean.');
+    setTimeout(() => this.validateDismissLabel());
+  }
 
   /**
    * The label to use for the close button of a dismissible alert.
    */
   @Prop() readonly dismissLabel: string;
 
-  /**
-   * The type of the alert.
-   *
-   * We provide styles for the following types: `'primary'`, `'success'`, `'danger'`, `'warning'`, `'info'`.
-   */
-  @Prop() readonly type: string = 'primary';
-
-  @Watch('type')
-  validateType(alertType = this.type) {
-    const alertTypes = [ 'primary', 'success', 'danger', 'warning', 'info' ];
-    checkOneOf(alertType, alertTypes, `The post-alert requires a type form: ${alertTypes.join(', ')}`);
-
-    alertTypes.forEach(type => {
-      this.toggleAlertClass(`alert-${type}`, type === alertType);
-    });
+  @Watch('dismissLabel')
+  validateDismissLabel(dismissLabel = this.dismissLabel) {
+    if (this.dismissible) {
+      checkNonEmpty(dismissLabel, 'Dismissible post-alert\'s require a "dismiss-label" prop.');
+    }
   }
 
   /**
    * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
    */
-  @Prop() readonly fixed = false;
+  @Prop() readonly fixed: boolean = false;
 
   @Watch('fixed')
   validateFixed(isFixed = this.fixed) {
     checkType(isFixed, 'boolean', 'The post-alert "fixed" prop should be a boolean.');
-
-    if (isFixed) {
-      this.toggleAlertClass('alert-fixed-bottom', isFixed);
-    }
   }
 
   /**
-   * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
-   */
-  @Prop() readonly dismissible = false;
-
-  @Watch('dismissible')
-  validateDismissible(isDismissible = this.dismissible) {
-    checkType(isDismissible, 'boolean', 'The post-alert "dismissible" prop should be a boolean.');
-
-    this.toggleAlertClass('alert-dismissible', isDismissible);
-
-    if (isDismissible) {
-      checkNonEmpty(this.dismissLabel, 'Dismissible post-alert\'s require a "dismiss-label" prop.');
-    }
-  }
-
-  /**
-   * The icon to display in the alert.
+   * The icon to display in the alert. By default, the icon depends on the alert type.
    *
-   * If `true`, the icon depends on the alert type.
-   * If `false`, no icon is displayed.
+   * If `none`, no icon is displayed.
    */
-  @Prop() readonly icon: boolean | string = true;
+  @Prop() readonly icon: string;
 
   @Watch('icon')
-  validateIcon(alertIcon = this.icon) {
-    this.toggleAlertClass('no-icon', alertIcon === 'false');
-
-    this.iconName = typeof alertIcon === 'string' && !['true', 'false'].includes(alertIcon) ? alertIcon : null;
-    if (this.iconName) {
-      checkPattern(alertIcon, /true|false|\d{4}/, 'The post-alert "icon" prop should be a 4-digits string.');
-    }
-  }
-
-  componentWillLoad() {
-    this.validateType();
-    this.validateFixed();
-    this.validateDismissible();
-    this.validateIcon();
-
-    this.hasHeading = this.host.querySelectorAll('[slot="heading"]').length > 0;
-  }
-
-  componentDidLoad() {
-    this.alertElement = this.host.shadowRoot.querySelector('.alert');
+  validateIcon(icon = this.icon) {
+    checkEmptyOrPattern(icon, /\d{4}|none/, 'The post-alert "icon" prop should be a 4-digits string.');
   }
 
   /**
-   * Triggers alert closing programmatically (same as clicking on the close button (×)).
+   * The type of the alert.
+   */
+  @Prop() readonly type: AlertType = 'primary';
+
+  @Watch('type')
+  validateType(type = this.type) {
+    checkEmptyOrOneOf(type, ALERT_TYPES, `The post-alert requires a type form: ${ALERT_TYPES.join(', ')}`);
+  }
+
+  connectedCallback() {
+    this.validateDismissible();
+    this.validateFixed();
+    this.validateIcon();
+    this.validateType();
+  }
+
+  componentWillRender() {
+    this.hasHeading = this.host.querySelectorAll('[slot=heading]').length > 0;
+    this.hasActions = this.host.querySelectorAll('[slot=actions]').length > 0;
+
+    this.classes = `alert alert-${this.type ?? 'primary'}`;
+    if (this.dismissible) this.classes += ' alert-dismissible';
+    if (this.hasActions) this.classes += ' alert-action';
+    if (this.fixed) this.classes += ' alert-fixed-bottom';
+    if (this.icon === 'none') this.classes += ' no-icon';
+  }
+
+  /**
+   * Triggers alert dismissal programmatically (same as clicking on the close button (×)).
    */
   @Method()
-  async close() {
-    this.removeAlertClass('show');
-    await onTransitionEnd(this.alertElement).then(() => {
-      this.host.remove();
-    });
-  }
-
-  private toggleAlertClass(className: string, force: boolean) {
-    const classInList = this.alertClasses.includes(className);
-
-    if (classInList && !force) {
-      this.removeAlertClass(className);
-    } else if (!classInList && force) {
-      this.addAlertClass(className);
-    }
-  }
-
-  private removeAlertClass(className: string | RegExp) {
-    this.alertClasses = this.alertClasses.filter(c => {
-      return (typeof className === 'string') ? c !== className : !className.test(c);
-    });
-  }
-
-  private addAlertClass(className: string) {
-    this.alertClasses = [ ...this.alertClasses, className ];
+  async dismiss() {
+    const dismissal = fadeOut(this.host);
+    dismissal.onfinish = () => this.host.remove();
+    await dismissal.finished;
   }
 
   render() {
+    const defaultAlertContent = [
+      this.icon && this.icon !== 'none' && (
+        <post-icon name={this.icon} />
+      ),
+      this.hasHeading && (
+        <div class="alert-heading">
+          <slot name="heading"/>
+        </div>
+      ),
+      <slot/>
+    ];
+
+    const actionAlertContent = [
+      <div class="alert-content">
+        {defaultAlertContent}
+      </div>,
+      <div class="alert-buttons">
+        <slot name="actions"/>
+      </div>,
+    ];
+
     return (
       <Host data-version={version}>
-        <div class={this.alertClasses.join(' ')} role="alert">
-          {this.iconName && <post-icon name={this.iconName} class="alert-icon"></post-icon>}
+        <div role="alert" class={this.classes}>
           {this.dismissible && (
-            <button
-              aria-label={this.dismissLabel}
-              class="btn-close"
-              onClick={() => this.close()}
-              type="button"
-            />
+            <button class="btn-close" onClick={this.onDismissButtonClick}>
+              <span class="visually-hidden">{this.dismissLabel}</span>
+            </button>
           )}
 
-          {this.hasHeading && (
-            <h4 class="alert-heading">
-              <slot name="heading"/>
-            </h4>
-          )}
-
-          <slot/>
+          {this.hasActions
+            ? actionAlertContent
+            : defaultAlertContent
+          }
         </div>
       </Host>
     );
