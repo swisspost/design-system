@@ -54,7 +54,7 @@
   },
   "devDependencies": {
     "@changesets/cli": "2.26.2",
-    "start-server-and-test": "2.0.0"
+    "start-server-and-test": "2.0.1"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
