@@ -60,9 +60,11 @@ export const Default: StoryObj = {};
 export const NonFocusable: StoryObj = {
   render: (args: Args) => {
     return html`
-      <cite data-tooltip-target="tooltip-two">This is a cite element with a tooltip on it.</cite>
+      <cite data-tooltip-target="tooltip-non-focusable">
+        This is a cite element with a tooltip on it.
+      </cite>
       <post-tooltip
-        id="tooltip-two"
+        id="tooltip-non-focusable"
         background-color="${ifDefined(args.backgroundColor)}"
         placement="${ifDefined(args.placement)}"
       >
@@ -75,14 +77,14 @@ export const NonFocusable: StoryObj = {
 export const Multiple: StoryObj = {
   render: (args: Args) => {
     return html`
-      <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-three">
+      <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-multiple">
         Tooltip button
       </button>
-      <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-three">
+      <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-multiple">
         Same tooltip, different button
       </button>
       <post-tooltip
-        id="tooltip-three"
+        id="tooltip-multiple"
         background-color="${ifDefined(args.backgroundColor)}"
         placement="${ifDefined(args.placement)}"
       >
