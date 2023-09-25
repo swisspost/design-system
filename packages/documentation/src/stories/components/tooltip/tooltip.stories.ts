@@ -1,6 +1,7 @@
 import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: Meta = {
   title: 'Components/Tooltip',
@@ -14,16 +15,9 @@ const meta: Meta = {
   render,
   args: {
     background: 'bg-primary',
-    message: 'Hi there 👋',
+    innerHTML: 'Hi there 👋',
   },
   argTypes: {
-    message: {
-      name: 'Message',
-      description: 'Tooltip content',
-      control: {
-        type: 'text',
-      },
-    },
     background: {
       name: 'Background',
       defaultValue: 'bg-primary',
@@ -38,18 +32,23 @@ const meta: Meta = {
       },
       options: ['bg-primary', 'bg-yellow'],
     },
-    slot: {
-      name: 'Slot',
-      control: false,
+    innerHTML: {
       description:
-        'The tooltip default slot accepts any <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a> like `<span>` or `<post-icon>`, but no interactive content like `<a>` or `<button>`.',
+        'Defines the HTML markup contained in the tooltip. Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a> like `<span>` or `<post-icon>`, but no interactive content like `<a>` or `<button>`.',
+      table: {
+        category: 'content',
+        type: {
+          summary: 'string',
+        },
+      },
     },
   },
 };
 
 function render(args: Args) {
   // Just for fun
-  const message = args.background === 'bg-yellow' ? args.message.replace('👋', '🤘🏾') : args.message;
+  const innerHTML =
+    args.background === 'bg-yellow' ? args.innerHTML.replace('👋', '🤘🏾') : args.innerHTML;
 
   return html`
     <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-one">Button</button>
@@ -58,7 +57,7 @@ function render(args: Args) {
       id="tooltip-one"
       placement="${args.placement}"
     >
-      ${message}
+      ${unsafeHTML(args.innerHTML)}
     </post-tooltip>
   `;
 }
