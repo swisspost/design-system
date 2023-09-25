@@ -133,7 +133,11 @@ const meta: Meta = {
     },
     icon: {
       name: 'Icon',
-      description: 'Defines a custom icon.',
+      description: 'Defines a custom icon.' +
+        '<span className="mt-mini alert alert-info alert-sm">' +
+        'To use a custom icon, you must first ' +
+        '<a href="/?path=/docs/icons-getting-started--docs">set up the icons in your project</a>' +
+        '.</span>',
       if: {
         arg: 'tag',
         neq: 'input',
