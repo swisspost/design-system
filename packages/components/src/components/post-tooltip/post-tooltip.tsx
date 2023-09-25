@@ -38,6 +38,14 @@ interface PopoverElement {
   shadow: true,
 })
 export class PostTooltip {
+  private tooltipRef: HTMLDivElement & PopoverElement;
+  private arrowRef: HTMLElement;
+  private clearAutoUpdate: () => void;
+  private localShowTooltip: (e: Event) => Promise<void>;
+  private localHideTooltip: () => Promise<void>;
+  private localToggleTooltip: () => Promise<void>;
+  private eventTarget: Element;
+
   @Element() host: HTMLPostTooltipElement;
 
   /**
@@ -52,24 +60,12 @@ export class PostTooltip {
    */
   @Prop() readonly class: string;
 
-  private tooltipRef: HTMLDivElement & PopoverElement;
-  private arrowRef: HTMLElement;
-  private clearAutoUpdate: () => void;
-  private localShowTooltip: (e: Event) => Promise<void>;
-  private localHideTooltip: () => Promise<void>;
-  private localToggleTooltip: () => Promise<void>;
-  private eventTarget: Element;
-
   constructor() {
     // Create local versions of event handlers for de-registration
     // https://stackoverflow.com/questions/33859113/javascript-removeeventlistener-not-working-inside-a-class
     this.localShowTooltip = e => this.showTooltip(e.target as HTMLElement);
     this.localHideTooltip = this.hideTooltip.bind(this);
     this.localToggleTooltip = this.toggleTooltip.bind(this);
-  }
-
-  private get triggers() {
-    return document.querySelectorAll(`[data-tooltip-target="${this.host.id}"]`);
   }
 
   componentWillLoad() {
@@ -94,26 +90,6 @@ export class PostTooltip {
     // Patch popovertargetaction="interest" until it's implemented
     // https://github.com/openui/open-ui/issues/767#issuecomment-1654177227
     this.triggers.forEach(trigger => this.patchPopoverTargetActionInterest(trigger));
-  }
-
-  private patchPopoverTargetActionInterest(trigger: Element) {
-    trigger.addEventListener('mouseenter', this.localShowTooltip);
-    trigger.addEventListener('mouseleave', this.localHideTooltip);
-    trigger.addEventListener('focus', this.localShowTooltip);
-    trigger.addEventListener('blur', this.localHideTooltip);
-    trigger.addEventListener('long-press', this.localShowTooltip);
-
-    // Patch missing aria-describedby attribute on the trigger without overriding existing values
-    const describedBy = trigger.getAttribute('aria-describedby');
-    if (!describedBy?.includes(this.host.id)) {
-      const newDescribedBy = describedBy ? `${describedBy} ${this.host.id}` : this.host.id;
-      trigger.setAttribute('aria-describedby', newDescribedBy);
-    }
-
-    // Patch missing focus ability on the trigger element
-    if (!isFocusable(trigger)) {
-      trigger.setAttribute('tabindex', '0');
-    }
   }
 
   /**
@@ -170,6 +146,30 @@ export class PostTooltip {
   async toggleTooltip(target: HTMLElement, force?: boolean) {
     this.eventTarget = target;
     this.tooltipRef.togglePopover(force);
+  }
+
+  private get triggers() {
+    return document.querySelectorAll(`[data-tooltip-target="${this.host.id}"]`);
+  }
+
+  private patchPopoverTargetActionInterest(trigger: Element) {
+    trigger.addEventListener('mouseenter', this.localShowTooltip);
+    trigger.addEventListener('mouseleave', this.localHideTooltip);
+    trigger.addEventListener('focus', this.localShowTooltip);
+    trigger.addEventListener('blur', this.localHideTooltip);
+    trigger.addEventListener('long-press', this.localShowTooltip);
+
+    // Patch missing aria-describedby attribute on the trigger without overriding existing values
+    const describedBy = trigger.getAttribute('aria-describedby');
+    if (!describedBy?.includes(this.host.id)) {
+      const newDescribedBy = describedBy ? `${describedBy} ${this.host.id}` : this.host.id;
+      trigger.setAttribute('aria-describedby', newDescribedBy);
+    }
+
+    // Patch missing focus ability on the trigger element
+    if (!isFocusable(trigger)) {
+      trigger.setAttribute('tabindex', '0');
+    }
   }
 
   /**
