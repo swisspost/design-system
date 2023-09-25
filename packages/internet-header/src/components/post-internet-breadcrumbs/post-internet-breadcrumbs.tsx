@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import { Component, Host, h, Prop, State, Element, Watch, Method } from '@stencil/core';
 import { debounce } from 'throttle-debounce';
 import { clearAllBodyScrollLocks, disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { SvgIcon } from '../../utils/svg-icon.component';
@@ -23,6 +23,26 @@ export class PostInternetBreadcrumbs {
   @State() dropdownOpen: boolean = false;
   @State() refsReady: boolean = false;
   @Element() host: Element;
+
+
+  /**
+   * Toggle an overlay associated with a button.
+   * @param {IBreadcrumbOverlay['id']} overlayId
+   */
+  @Method()
+  async toggleOverlayById(overlayId: IBreadcrumbOverlay['id']): Promise<void> {
+    const buttons = state.localizedConfig?.breadcrumb.buttons;
+    const overlay = buttons?.find(button => button.overlay.id === overlayId)?.overlay;
+
+    if(!overlay){
+      console.warn(
+        `Internet Header: Failed to toggle overlay with id #${overlayId} as it was not found in the breadcrumb buttons config.`,
+      );
+      return;
+    }
+
+    this.toggleOverlay(overlay)
+  }
 
   private controlNavRef?: HTMLElement;
   private visibleNavRef?: HTMLElement;
