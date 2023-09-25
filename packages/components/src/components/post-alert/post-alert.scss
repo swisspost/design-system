@@ -4,6 +4,10 @@
 
 :host {
   display: block;
+
+  ::slotted(*) {
+    margin: 0 !important;
+  }
 }
 
 .btn-close > .visually-hidden {
@@ -14,6 +18,5 @@
   .alert-heading > ::slotted(h#{$i}) {
     font-size: inherit !important;
     font-weight: inherit !important;
-    margin: 0 !important;
   }
 }

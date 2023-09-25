@@ -1,8 +1,8 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { bombArgs } from '../../utilities/bombArgs';
-import alertMeta from './alert.stories';
-import { getAlertClasses } from './getAlertClasses';
+import alertMeta from './standard-html/alert.stories';
+import { getAlertClasses } from './standard-html/getAlertClasses';
 
 export default {
   ...alertMeta,

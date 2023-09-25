@@ -1,6 +1,10 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
-import * as AlertStories from './alert.stories';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import { PostAlert, PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import * as AlertStories from './standard-html/alert.stories';
+import * as PostAlertStories from './web-component/post-alert.stories';
+import AlertDismissSample from './web-component/alert-dismiss.sample?raw';
 
 <Meta of={AlertStories} />
 
@@ -14,41 +18,107 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 Alerts are available for any length of text, as well as an optional close button.
 By default, alerts are rendered with a contextually appropriate icon.
 
-<Canvas of={AlertStories.Default} />
-<Controls of={AlertStories.Default} />
+<PostAlert type="info">
+    <p slot="heading">There are various methods to integrate this component into your project.</p>
+    <p>We advise opting for the "Standard HTML" approach for alerts that remain static on the page and using the "Web Component" method for dismissible alerts.</p>
+</PostAlert>
 
-<StylesPackageImport components={["alert"]} />
+<PostTabs active-panel="webComponent">
+    <PostTabHeader slot="tabs" panel="standardHTML">Standard HTML</PostTabHeader>
+    <PostTabPanel name="standardHTML">
+      <Canvas of={AlertStories.Default} />
+      <Controls of={AlertStories.Default} />
 
-## Specific examples of application
+      <StylesPackageImport components={["alert"]} />
 
-The following examples show some of the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+      ## Specific examples of application
 
-### Additional Content
+      The following examples show some of the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
 
-Alerts can also contain additional HTML elements like headings, paragraphs, lists, dividers, and more.
+      ### Additional Content
 
-<Canvas of={AlertStories.AdditionalContent} />
+      Alerts can also contain additional HTML elements like headings, paragraphs, lists, dividers, and more.
 
-### Dismissible
+      <Canvas of={AlertStories.AdditionalContent} />
 
-Such an alert can be removed from the UI by the user, by clicking on a dismiss button.
-This button should normally be inside the alert (as the first child), but you can also use a button which is not included in the alert's HTML.
-In the end, it's just a button with an `onClick()` event. As this is a CSS-only component, you have to define the logic yourself.
+      ### Dismissible
 
-Dismiss buttons without text should always provide a `dismiss-label` prop, which defines the hidden text associated with the button.
+      Such an alert can be removed from the UI by the user, by clicking on a dismiss button.
+      This button should normally be inside the alert (as the first child), but you can also use a button which is not included in the alert's HTML.
+      In the end, it's just a button with an `onClick()` event. As this is a CSS-only component, you have to define the logic yourself.
 
-<Canvas of={AlertStories.Dismissible} />
+      Dismiss buttons without text should always provide a `dismiss-label` prop, which defines the hidden text associated with the button.
 
-### Action Buttons
+      <Canvas of={AlertStories.Dismissible} />
 
-To render an action alert with buttons, the alert element requires an additional class as well as additional HTML content. Thus, everything will be rendered as it should be.
+      ### Action Buttons
 
-<Canvas of={AlertStories.ActionButtons} />
+      To render an action alert with buttons, the alert element requires an additional class as well as additional HTML content. Thus, everything will be rendered as it should be.
 
-### Fixed
+      <Canvas of={AlertStories.ActionButtons} />
 
-A fixed alert (at the bottom of the viewport) is obtained by adding the class `.alert-fixed-bottom` to the alert element.
-As this is a CSS-only component, you have to define the logic to show/hide/toggle the alert yourself.
-Such an alert is normally also dismissible, so please notice the information for a dismissible alert as well.
+      ### Fixed
 
-<Canvas of={AlertStories.Fixed} />
+      A fixed alert (at the bottom of the viewport) is obtained by adding the class `.alert-fixed-bottom` to the alert element.
+      As this is a CSS-only component, you have to define the logic to show/hide/toggle the alert yourself.
+      Such an alert is normally also dismissible, so please notice the information for a dismissible alert as well.
+
+      <Canvas of={AlertStories.Fixed} />
+    </PostTabPanel>
+
+    <PostTabHeader slot="tabs" panel="webComponent">Web Component</PostTabHeader>
+    <PostTabPanel name="webComponent">
+      <Canvas of={PostAlertStories.Default} />
+      <Controls of={PostAlertStories.Default} />
+
+      ## Installation
+
+      The `<post-alert>` element is part of the `@swisspost/design-system-components` package.
+      For more information, read the <LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
+
+      ## Examples
+
+      ### Contents
+
+      Alerts can contain various HTML elements like paragraphs, lists, icons and dividers.
+
+      By default all children of the `<post-alert>` are placed in the body.
+      Use the `heading` slot to place a child in the heading, and the `actions` slot for action buttons.
+      Learn more in <a rel="noopener" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots#adding_flexibility_with_slots">Mozilla's slots documentation</a>.
+
+      <Canvas of={PostAlertStories.Contents} />
+
+      ### Custom Icon
+
+      Alerts come with a preassigned icon based on their type.
+      You have the option to customize this icon by assigning the desired icon's name to the `icon` property of the alert.
+      Find the icon you need with the <LinkTo kind="icons-search-for-icons" story="docs">icon search page</LinkTo>.
+
+      <Canvas of={PostAlertStories.CustomIcon} />
+
+      If you prefer not to display any icon, you can set the `icon` property to `none`.
+
+      <Canvas of={PostAlertStories.NoIcon} />
+
+      ### Dismissal
+
+      The `dismissible` property can be set to enable users to dismiss the alert.
+      When present, it specifies that the alert should contain a dismiss button,
+      and you must provide a label for this button using the `dismiss-label` property.
+      Although the label remains hidden from view, it is essential for ensuring accessibility for users of assistive technologies.
+
+      <Canvas of={PostAlertStories.Dismissible} />
+
+      Alternatively, you can use any button, including action buttons within the alert, as a trigger for dismissing the alert using the `.dismiss()` method.
+      This method operates asynchronously and returns a promise that resolves once the fade-out animation has finished.
+
+      <Source code={AlertDismissSample} language="typescript"/>
+
+      ### Banner
+
+      To present an alert as a banner anchored at the bottom of the page, simply add the `fixed` property.
+      Such alerts are typically intended to be dismissible.
+
+      <Canvas of={PostAlertStories.Fixed} />
+    </PostTabPanel>
+</PostTabs>

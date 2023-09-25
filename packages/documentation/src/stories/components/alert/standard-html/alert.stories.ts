@@ -4,7 +4,7 @@ import { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-comp
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getAlertClasses } from './getAlertClasses';
-import { BADGE } from '../../../../.storybook/constants';
+import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
   title: 'Components/Alert',

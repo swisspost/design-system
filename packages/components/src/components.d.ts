@@ -20,11 +20,11 @@ export namespace Components {
         /**
           * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
          */
-        "dismissible": false;
+        "dismissible": boolean;
         /**
           * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
          */
-        "fixed": false;
+        "fixed": boolean;
         /**
           * The icon to display in the alert. By default, the icon depends on the alert type.  If `none`, no icon is displayed.
          */
@@ -166,11 +166,11 @@ declare namespace LocalJSX {
         /**
           * If `true`, a close button (×) is displayed and the alert can be dismissed by the user.
          */
-        "dismissible"?: false;
+        "dismissible"?: boolean;
         /**
           * If `true`, the alert is positioned at the bottom of the window, from edge to edge.
          */
-        "fixed"?: false;
+        "fixed"?: boolean;
         /**
           * The icon to display in the alert. By default, the icon depends on the alert type.  If `none`, no icon is displayed.
          */
