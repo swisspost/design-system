@@ -106,9 +106,7 @@ export class PostTooltip {
     // Patch missing aria-describedby attribute on the trigger without overriding existing values
     const describedBy = trigger.getAttribute('aria-describedby');
     if (!describedBy?.includes(this.host.id)) {
-      const newDescribedBy = describedBy
-        ? [...describedBy.split(' '), this.host.id].join(' ')
-        : this.host.id;
+      const newDescribedBy = describedBy ? `${describedBy} ${this.host.id}` : this.host.id;
       trigger.setAttribute('aria-describedby', newDescribedBy);
     }
 

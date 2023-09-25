@@ -53,14 +53,12 @@ function render(args: Args) {
   const message = args.background === 'bg-yellow' ? args.message.replace('👋', '🤘🏾') : args.message;
 
   return html`
-    <button
-      class="btn btn-secondary btn-large"
-      data-tooltip-target="tooltip-one"
-      aria-describedby="tooltip-one"
+    <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-one">Button</button>
+    <post-tooltip
+      class="hydrated ${args.background}"
+      id="tooltip-one"
+      placement="${args.placement}"
     >
-      Button
-    </button>
-    <post-tooltip class="hydrated ${args.background}" id="tooltip-one" placement=${args.placement}>
       ${message}
     </post-tooltip>
   `;
@@ -80,7 +78,7 @@ export const Paragraph: StoryObj = {
       <post-tooltip
         class="hydrated ${args.background}"
         id="tooltip-two"
-        placement=${args.placement}
+        placement="${args.placement}"
       >
         This is not the link you are looking for
       </post-tooltip>
@@ -91,24 +89,16 @@ export const Paragraph: StoryObj = {
 export const Multiple: StoryObj = {
   render: (args: Args) => {
     return html`
-      <button
-        class="btn btn-secondary btn-large"
-        data-tooltip-target="tooltip-three"
-        aria-describedby="tooltip-three"
-      >
+      <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-three">
         Tooltip button
       </button>
-      <button
-        class="btn btn-secondary btn-large"
-        data-tooltip-target="tooltip-three"
-        aria-describedby="tooltip-three"
-      >
+      <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-three">
         Same tooltip, different button
       </button>
       <post-tooltip
         class="hydrated ${args.background}"
         id="tooltip-three"
-        placement=${args.placement}
+        placement="${args.placement}"
       >
         I'm the same, no matter what
       </post-tooltip>
