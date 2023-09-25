@@ -59,6 +59,7 @@
     "@percy/cypress": "3.1.2",
     "@stencil/eslint-plugin": "0.4.0",
     "@stencil/sass": "3.0.5",
+    "@types/body-scroll-lock": "3.1.0",
     "@types/iframe-resizer": "3.5.9",
     "@types/jest": "27.5.2",
     "@types/jquery": "3.5.19",

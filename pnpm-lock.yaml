@@ -684,6 +684,9 @@ importers:
       '@stencil/sass':
         specifier: 3.0.5
         version: 3.0.5(@stencil/core@3.4.2)
+      '@types/body-scroll-lock':
+        specifier: 3.1.0
+        version: 3.1.0
       '@types/iframe-resizer':
         specifier: 3.5.9
         version: 3.5.9
@@ -7981,6 +7984,10 @@ packages:
     dependencies:
       '@types/connect': 3.4.35
       '@types/node': 18.17.18
+    dev: true
+
+  /@types/body-scroll-lock@3.1.0:
+    resolution: {integrity: sha512-3owAC4iJub5WPqRhxd8INarF2bWeQq1yQHBgYhN0XLBJMpd5ED10RrJ3aKiAwlTyL5wK7RkBD4SZUQz2AAAMdA==}
     dev: true
 
   /@types/bonjour@3.5.10:
