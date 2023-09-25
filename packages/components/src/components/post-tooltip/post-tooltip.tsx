@@ -87,7 +87,7 @@ export class PostTooltip {
 
     if (!this.triggers) {
       throw new Error(
-        `No target found for <post-tooltip id="${this.host.id}">, please add the 'data-tooltip-target="${this.host.id}" attribute to the target element.`,
+        `No trigger found for <post-tooltip id="${this.host.id}">, please add the 'data-tooltip-target="${this.host.id}" attribute to the trigger element.`,
       );
     }
 
