@@ -16,6 +16,7 @@ const meta: Meta = {
   },
   render,
   args: {
+    id: 'tooltip-one',
     innerHTML: 'Hi there 👋',
   },
   argTypes: {
@@ -43,9 +44,9 @@ function render(args: Args) {
   if (currentArgs.innerHTML !== innerHTML) updateArgs({ innerHTML });
 
   return html`
-    <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-one">Button</button>
+    <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">Button</button>
     <post-tooltip
-      id="tooltip-one"
+      id="${args.id}"
       background-color="${ifDefined(args.backgroundColor)}"
       placement="${ifDefined(args.placement)}"
     >
@@ -58,33 +59,39 @@ export default meta;
 export const Default: StoryObj = {};
 
 export const NonFocusable: StoryObj = {
+  args: {
+    id: 'tooltip-non-focusable',
+  },
   render: (args: Args) => {
     return html`
-      <cite data-tooltip-target="tooltip-non-focusable">
+      <cite data-tooltip-target="${args.id}">
         This is a cite element with a tooltip on it.
       </cite>
       <post-tooltip
-        id="tooltip-non-focusable"
-        background-color="${ifDefined(args.backgroundColor)}"
-        placement="${ifDefined(args.placement)}"
+        id="${args.id}
+        background-color=" ${ifDefined(args.backgroundColor)}"
+      placement="${ifDefined(args.placement)}"
       >
-        This is not the link you are looking for
+      This is not the link you are looking for
       </post-tooltip>
     `;
   },
 };
 
 export const Multiple: StoryObj = {
+  args: {
+    id: 'tooltip-multiple',
+  },
   render: (args: Args) => {
     return html`
-      <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-multiple">
+      <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">
         Tooltip button
       </button>
-      <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-multiple">
+      <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">
         Same tooltip, different button
       </button>
       <post-tooltip
-        id="tooltip-multiple"
+        id="${args.id}"
         background-color="${ifDefined(args.backgroundColor)}"
         placement="${ifDefined(args.placement)}"
       >
