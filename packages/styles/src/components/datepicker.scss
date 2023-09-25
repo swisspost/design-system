@@ -135,10 +135,14 @@ span.ngb-dp-navigation-chevron {
   width: forms.$input-height-inner;
   background: transparent;
 
-  .pi-3203,
+  // DEPRECATED
+  .pi-calendar {
+    @include icons-mx.icon(3203);
+  }
+
   .pi-calendar,
+  .pi-3203,
   post-icon {
-    @include icons-mx.pi(3203);
     width: datepicker.$ngb-dp-icon-size;
     height: datepicker.$ngb-dp-icon-size;
     transform: none;
