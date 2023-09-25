@@ -9,13 +9,13 @@
 
 | Property          | Attribute          | Description                                                                                                                                                                                                                                                                                                               | Type                                                                                                                                                                 | Default     |
 | ----------------- | ------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------- |
-| `backgroundColor` | `background-color` | Defines the Background color of the tooltip. Choose the one that provides the best contrast in your scenario.                                                                                                                                                                                                             | `"brand-yellow" \| "primary"`                                                                                                                                        | `'primary'` |
+| `backgroundColor` | `background-color` | Defines the background color of the tooltip. Choose the one that provides the best contrast in your scenario.                                                                                                                                                                                                             | `"brand-yellow" \| "primary"`                                                                                                                                        | `'primary'` |
 | `placement`       | `placement`        | Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'`     |
 
 
 ## Methods
 
-### `hideTooltip() => Promise<void>`
+### `hide() => Promise<void>`
 
 Programmatically hide this tooltip
 
@@ -25,7 +25,7 @@ Type: `Promise<void>`
 
 
 
-### `showTooltip(target: HTMLElement) => Promise<void>`
+### `show(target: HTMLElement) => Promise<void>`
 
 Programmatically display the tooltip
 
@@ -35,7 +35,7 @@ Type: `Promise<void>`
 
 
 
-### `toggleTooltip(target: HTMLElement, force?: boolean) => Promise<void>`
+### `toggle(target: HTMLElement, force?: boolean) => Promise<void>`
 
 Toggle tooltip display
 

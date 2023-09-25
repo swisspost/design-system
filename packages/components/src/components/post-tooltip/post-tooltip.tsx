@@ -82,9 +82,9 @@ export class PostTooltip {
   constructor() {
     // Create local versions of event handlers for de-registration
     // https://stackoverflow.com/questions/33859113/javascript-removeeventlistener-not-working-inside-a-class
-    this.localShowTooltip = e => this.showTooltip(e.target as HTMLElement);
-    this.localHideTooltip = this.hideTooltip.bind(this);
-    this.localToggleTooltip = this.toggleTooltip.bind(this);
+    this.localShowTooltip = e => this.show(e.target as HTMLElement);
+    this.localHideTooltip = this.hide.bind(this);
+    this.localToggleTooltip = this.toggle.bind(this);
   }
 
   componentWillLoad() {
@@ -144,7 +144,7 @@ export class PostTooltip {
    * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
    */
   @Method()
-  async showTooltip(target: HTMLElement) {
+  async show(target: HTMLElement) {
     this.eventTarget = target;
     this.tooltipRef.showPopover();
   }
@@ -153,7 +153,7 @@ export class PostTooltip {
    * Programmatically hide this tooltip
    */
   @Method()
-  async hideTooltip() {
+  async hide() {
     this.eventTarget = null;
     this.tooltipRef.hidePopover();
   }
@@ -164,7 +164,7 @@ export class PostTooltip {
    * @param force Pass true to always show or false to always hide
    */
   @Method()
-  async toggleTooltip(target: HTMLElement, force?: boolean) {
+  async toggle(target: HTMLElement, force?: boolean) {
     this.eventTarget = target;
     this.tooltipRef.togglePopover(force);
   }

@@ -81,13 +81,13 @@ export namespace Components {
     }
     interface PostTooltip {
         /**
-          * Defines the Background color of the tooltip. Choose the one that provides the best contrast in your scenario.
+          * Defines the background color of the tooltip. Choose the one that provides the best contrast in your scenario.
          */
         "backgroundColor"?: BackgroundColor;
         /**
           * Programmatically hide this tooltip
          */
-        "hideTooltip": () => Promise<void>;
+        "hide": () => Promise<void>;
         /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
@@ -96,13 +96,13 @@ export namespace Components {
           * Programmatically display the tooltip
           * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
          */
-        "showTooltip": (target: HTMLElement) => Promise<void>;
+        "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle tooltip display
           * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
           * @param force Pass true to always show or false to always hide
          */
-        "toggleTooltip": (target: HTMLElement, force?: boolean) => Promise<void>;
+        "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
@@ -226,7 +226,7 @@ declare namespace LocalJSX {
     }
     interface PostTooltip {
         /**
-          * Defines the Background color of the tooltip. Choose the one that provides the best contrast in your scenario.
+          * Defines the background color of the tooltip. Choose the one that provides the best contrast in your scenario.
          */
         "backgroundColor"?: BackgroundColor;
         /**
