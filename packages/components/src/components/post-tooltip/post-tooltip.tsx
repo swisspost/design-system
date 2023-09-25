@@ -55,11 +55,6 @@ export class PostTooltip {
    */
   @Prop() readonly placement?: Placement = 'top';
 
-  /**
-   * Internally used to track changes to the class attribute on the host element
-   */
-  @Prop() readonly class: string;
-
   constructor() {
     // Create local versions of event handlers for de-registration
     // https://stackoverflow.com/questions/33859113/javascript-removeeventlistener-not-working-inside-a-class
