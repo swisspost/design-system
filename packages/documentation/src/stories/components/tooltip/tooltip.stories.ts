@@ -57,14 +57,10 @@ function render(args: Args) {
 export default meta;
 export const Default: StoryObj = {};
 
-export const Paragraph: StoryObj = {
+export const NonFocusable: StoryObj = {
   render: (args: Args) => {
     return html`
-      <p>
-        This is a paragraph element with a
-        <a href="#" data-tooltip-target="tooltip-two">tooltipped link</a>
-        inside.
-      </p>
+      <cite data-tooltip-target="tooltip-two">This is a cite element with a tooltip on it.</cite>
       <post-tooltip
         id="tooltip-two"
         background-color="${ifDefined(args.backgroundColor)}"
