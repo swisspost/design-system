@@ -36,7 +36,7 @@ export class PostInternetBreadcrumbs {
 
     if(!overlay){
       console.warn(
-        `Internet Header: The id provided to toggle the overlay is not found in the breadcrumb buttons config.`,
+        `Internet Header: Failed to toggle overlay with id #${overlayId} as it was not found in the breadcrumb buttons config.`,
       );
       return;
     }
