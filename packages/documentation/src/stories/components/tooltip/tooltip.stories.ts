@@ -13,7 +13,6 @@ const meta: Meta = {
   },
   render,
   args: {
-    placement: 'top',
     background: 'bg-primary',
     message: 'Hi there 👋',
   },
