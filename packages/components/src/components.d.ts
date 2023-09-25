@@ -79,10 +79,6 @@ export namespace Components {
     }
     interface PostTooltip {
         /**
-          * Internally used to track changes to the class attribute on the host element
-         */
-        "class": string;
-        /**
           * Programmatically hide this tooltip
          */
         "hideTooltip": () => Promise<void>;
@@ -223,10 +219,6 @@ declare namespace LocalJSX {
         "onTabChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
     }
     interface PostTooltip {
-        /**
-          * Internally used to track changes to the class attribute on the host element
-         */
-        "class"?: string;
         /**
           * Define the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
