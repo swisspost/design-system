@@ -70,12 +70,10 @@ export class PostTooltip {
   validateBackgroundColor(newValue = this.backgroundColor) {
     checkType(newValue, 'string', 'The post-tooltip "background-color" prop should be a string.');
 
-    switch (newValue) {
-      case 'brand-yellow':
-        this.tooltipClasses = 'bg-yellow';
-        break;
-      default:
-        this.tooltipClasses = 'bg-primary';
+    if (newValue === 'brand-yellow') {
+      this.tooltipClasses = 'bg-yellow';
+    } else {
+      this.tooltipClasses = 'bg-primary';
     }
   }
 
