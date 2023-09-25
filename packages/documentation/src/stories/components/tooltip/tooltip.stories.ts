@@ -3,6 +3,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { useArgs } from '@storybook/preview-api';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 const meta: Meta = {
   title: 'Components/Tooltip',
@@ -15,24 +16,9 @@ const meta: Meta = {
   },
   render,
   args: {
-    background: 'bg-primary',
     innerHTML: 'Hi there 👋',
   },
   argTypes: {
-    background: {
-      name: 'Background',
-      defaultValue: 'bg-primary',
-      description:
-        'Background color of the tooltip. Choose the one that provides the best contrast in your scenario.',
-      control: {
-        type: 'radio',
-        labels: {
-          'bg-primary': 'Primary',
-          'bg-yellow': 'Post yellow',
-        },
-      },
-      options: ['bg-primary', 'bg-yellow'],
-    },
     innerHTML: {
       description:
         'Defines the HTML markup contained in the tooltip. Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a> like `<span>` or `<post-icon>`, but no interactive content like `<a>` or `<button>`.',
@@ -50,7 +36,7 @@ function render(args: Args) {
   const [currentArgs, updateArgs] = useArgs();
   // Just for fun
   const innerHTML =
-    args.background === 'bg-yellow'
+    args.backgroundColor === 'brand-yellow'
       ? args.innerHTML.replace('👋', '🤘🏾')
       : args.innerHTML.replace('🤘🏾', '👋');
 
@@ -58,7 +44,11 @@ function render(args: Args) {
 
   return html`
     <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-one">Button</button>
-    <post-tooltip class="${args.background}" id="tooltip-one" placement="${args.placement}">
+    <post-tooltip
+      id="tooltip-one"
+      background-color="${ifDefined(args.backgroundColor)}"
+      placement="${ifDefined(args.placement)}"
+    >
       ${unsafeHTML(innerHTML)}
     </post-tooltip>
   `;
@@ -75,7 +65,11 @@ export const Paragraph: StoryObj = {
         <a href="#" data-tooltip-target="tooltip-two">tooltipped link</a>
         inside.
       </p>
-      <post-tooltip class="${args.background}" id="tooltip-two" placement="${args.placement}">
+      <post-tooltip
+        id="tooltip-two"
+        background-color="${ifDefined(args.backgroundColor)}"
+        placement="${ifDefined(args.placement)}"
+      >
         This is not the link you are looking for
       </post-tooltip>
     `;
@@ -91,7 +85,11 @@ export const Multiple: StoryObj = {
       <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-three">
         Same tooltip, different button
       </button>
-      <post-tooltip class="${args.background}" id="tooltip-three" placement="${args.placement}">
+      <post-tooltip
+        id="tooltip-three"
+        background-color="${ifDefined(args.backgroundColor)}"
+        placement="${ifDefined(args.placement)}"
+      >
         I'm the same, no matter what
       </post-tooltip>
     `;

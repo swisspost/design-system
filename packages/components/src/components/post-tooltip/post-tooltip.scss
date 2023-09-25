@@ -53,3 +53,7 @@ div {
   border-right: 2px solid transparent;
   border-bottom: 2px solid transparent;
 }
+
+.bg-yellow {
+  @include color-mx.colored-background(color.$yellow);
+}

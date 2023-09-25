@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import {
   arrow,
   autoUpdate,
@@ -18,6 +18,7 @@ import '@oddbird/popover-polyfill';
 import 'long-press-event';
 
 import { version } from '../../../package.json';
+import { checkType } from '../../utils';
 
 const SIDE_MAP = {
   top: 'bottom',
@@ -25,6 +26,8 @@ const SIDE_MAP = {
   bottom: 'top',
   left: 'right',
 };
+
+export type BackgroundColor = 'primary' | 'brand-yellow';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -48,12 +51,33 @@ export class PostTooltip {
 
   @Element() host: HTMLPostTooltipElement;
 
+  @State() tooltipClasses: string;
+
+  /**
+   * Defines the background color of the tooltip.
+   * Choose the one that provides the best contrast in your scenario.
+   */
+  @Prop() readonly backgroundColor?: BackgroundColor = 'primary';
+
   /**
    * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
    * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
   @Prop() readonly placement?: Placement = 'top';
+
+  @Watch('backgroundColor')
+  validateBackgroundColor(newValue = this.backgroundColor) {
+    checkType(newValue, 'string', 'The post-tooltip "background-color" prop should be a string.');
+
+    switch (newValue) {
+      case 'brand-yellow':
+        this.tooltipClasses = 'bg-yellow';
+        break;
+      default:
+        this.tooltipClasses = 'bg-primary';
+    }
+  }
 
   constructor() {
     // Create local versions of event handlers for de-registration
@@ -64,6 +88,8 @@ export class PostTooltip {
   }
 
   componentWillLoad() {
+    this.validateBackgroundColor();
+
     // Append tooltip host to the end of the body to get around overflow: hidden restrictions
     // for browsers that don't support popover yet
     document.body.appendChild(this.host);
@@ -236,6 +262,7 @@ export class PostTooltip {
         <div
           role="tooltip"
           tabindex="-1"
+          class={this.tooltipClasses}
           ref={(el: HTMLDivElement & PopoverElement) => (this.tooltipRef = el)}
         >
           <span
