@@ -2,6 +2,7 @@ import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { useArgs } from '@storybook/preview-api';
 
 const meta: Meta = {
   title: 'Components/Tooltip',
@@ -46,9 +47,14 @@ const meta: Meta = {
 };
 
 function render(args: Args) {
+  const [currentArgs, updateArgs] = useArgs();
   // Just for fun
   const innerHTML =
-    args.background === 'bg-yellow' ? args.innerHTML.replace('👋', '🤘🏾') : args.innerHTML;
+    args.background === 'bg-yellow'
+      ? args.innerHTML.replace('👋', '🤘🏾')
+      : args.innerHTML.replace('🤘🏾', '👋');
+
+  if (currentArgs.innerHTML !== innerHTML) updateArgs({ innerHTML });
 
   return html`
     <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-one">Button</button>
@@ -57,7 +63,7 @@ function render(args: Args) {
       id="tooltip-one"
       placement="${args.placement}"
     >
-      ${unsafeHTML(args.innerHTML)}
+      ${unsafeHTML(innerHTML)}
     </post-tooltip>
   `;
 }
