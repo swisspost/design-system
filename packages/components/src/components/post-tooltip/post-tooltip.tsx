@@ -85,9 +85,7 @@ export class PostTooltip {
       );
     }
 
-    const triggers = this.triggers;
-
-    if (!triggers) {
+    if (!this.triggers) {
       throw new Error(
         `No target found for <post-tooltip id="${this.host.id}">, please add the 'data-tooltip-target="${this.host.id}" attribute to the target element.`,
       );
@@ -95,7 +93,7 @@ export class PostTooltip {
 
     // Patch popovertargetaction="interest" until it's implemented
     // https://github.com/openui/open-ui/issues/767#issuecomment-1654177227
-    triggers.forEach(trigger => this.patchPopoverTargetActionInterest(trigger));
+    this.triggers.forEach(trigger => this.patchPopoverTargetActionInterest(trigger));
   }
 
   private patchPopoverTargetActionInterest(trigger: Element) {
