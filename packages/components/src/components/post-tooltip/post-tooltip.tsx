@@ -26,7 +26,7 @@ const SIDE_MAP = {
   left: 'right',
 };
 
-interface IPopoverElement {
+interface PopoverElement {
   showPopover: () => void;
   hidePopover: () => void;
   togglePopover: (force?: boolean) => boolean;
@@ -52,7 +52,7 @@ export class PostTooltip {
    */
   @Prop() readonly class: string;
 
-  private tooltipRef: HTMLDivElement & IPopoverElement;
+  private tooltipRef: HTMLDivElement & PopoverElement;
   private arrowRef: HTMLElement;
   private clearAutoUpdate: () => void;
   private localShowTooltip: (e: Event) => Promise<void>;
@@ -245,7 +245,7 @@ export class PostTooltip {
         <div
           role="tooltip"
           tabindex="-1"
-          ref={(el: HTMLDivElement & IPopoverElement) => (this.tooltipRef = el)}
+          ref={(el: HTMLDivElement & PopoverElement) => (this.tooltipRef = el)}
         >
           <span
             class="arrow"
