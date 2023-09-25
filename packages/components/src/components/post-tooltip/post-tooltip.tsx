@@ -54,7 +54,7 @@ export class PostTooltip {
 
   private tooltipRef: HTMLDivElement & IPopoverElement;
   private arrowRef: HTMLElement;
-  private clearAutoupdate: () => void;
+  private clearAutoUpdate: () => void;
   private localShowTooltip: (e: Event) => Promise<void>;
   private localHideTooltip: () => Promise<void>;
   private localToggleTooltip: () => Promise<void>;
@@ -133,7 +133,7 @@ export class PostTooltip {
     });
     if (this.tooltipRef)
       this.tooltipRef.removeEventListener('beforetoggle', this.localToggleTooltip);
-    if (typeof this.clearAutoupdate === 'function') this.clearAutoupdate();
+    if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
   }
 
   componentDidLoad() {
@@ -187,7 +187,7 @@ export class PostTooltip {
     if (isOpen) {
       this.startAutoupdates();
     } else {
-      if (typeof this.clearAutoupdate === 'function') this.clearAutoupdate();
+      if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
     }
   }
 
@@ -196,7 +196,7 @@ export class PostTooltip {
    * an influence on tooltip positioning
    */
   private startAutoupdates() {
-    this.clearAutoupdate = autoUpdate(
+    this.clearAutoUpdate = autoUpdate(
       this.eventTarget,
       this.tooltipRef,
       this.positionTooltip.bind(this),
