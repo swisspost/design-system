@@ -47,6 +47,7 @@ function render(args: Args) {
     <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">Button</button>
     <post-tooltip
       id="${args.id}"
+      class="hydrated"
       background-color="${ifDefined(args.backgroundColor)}"
       placement="${ifDefined(args.placement)}"
     >
@@ -64,15 +65,14 @@ export const NonFocusable: StoryObj = {
   },
   render: (args: Args) => {
     return html`
-      <cite data-tooltip-target="${args.id}">
-        This is a cite element with a tooltip on it.
-      </cite>
+      <cite data-tooltip-target="${args.id}">This is a cite element with a tooltip on it.</cite>
       <post-tooltip
-        id="${args.id}
+        id="${args.id}"
+        class="hydrated"
         background-color=" ${ifDefined(args.backgroundColor)}"
-      placement="${ifDefined(args.placement)}"
+        placement="${ifDefined(args.placement)}"
       >
-      This is not the link you are looking for
+        This is not the link you are looking for
       </post-tooltip>
     `;
   },
@@ -92,6 +92,7 @@ export const Multiple: StoryObj = {
       </button>
       <post-tooltip
         id="${args.id}"
+        class="hydrated"
         background-color="${ifDefined(args.backgroundColor)}"
         placement="${ifDefined(args.placement)}"
       >
