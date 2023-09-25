@@ -58,11 +58,7 @@ function render(args: Args) {
 
   return html`
     <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-one">Button</button>
-    <post-tooltip
-      class="hydrated ${args.background}"
-      id="tooltip-one"
-      placement="${args.placement}"
-    >
+    <post-tooltip class="${args.background}" id="tooltip-one" placement="${args.placement}">
       ${unsafeHTML(innerHTML)}
     </post-tooltip>
   `;
@@ -79,11 +75,7 @@ export const Paragraph: StoryObj = {
         <a href="#" data-tooltip-target="tooltip-two">tooltipped link</a>
         inside.
       </p>
-      <post-tooltip
-        class="hydrated ${args.background}"
-        id="tooltip-two"
-        placement="${args.placement}"
-      >
+      <post-tooltip class="${args.background}" id="tooltip-two" placement="${args.placement}">
         This is not the link you are looking for
       </post-tooltip>
     `;
@@ -99,11 +91,7 @@ export const Multiple: StoryObj = {
       <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-three">
         Same tooltip, different button
       </button>
-      <post-tooltip
-        class="hydrated ${args.background}"
-        id="tooltip-three"
-        placement="${args.placement}"
-      >
+      <post-tooltip class="${args.background}" id="tooltip-three" placement="${args.placement}">
         I'm the same, no matter what
       </post-tooltip>
     `;

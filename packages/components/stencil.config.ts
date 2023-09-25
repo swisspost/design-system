@@ -37,4 +37,7 @@ export const config: Config = {
   testing: {
     testPathIgnorePatterns: ['cypress'],
   },
+  hydratedFlag: {
+    selector: 'attribute',
+  },
 };

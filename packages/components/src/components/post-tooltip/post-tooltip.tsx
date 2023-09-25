@@ -41,9 +41,9 @@ export class PostTooltip {
   private tooltipRef: HTMLDivElement & PopoverElement;
   private arrowRef: HTMLElement;
   private clearAutoUpdate: () => void;
-  private localShowTooltip: (e: Event) => Promise<void>;
-  private localHideTooltip: () => Promise<void>;
-  private localToggleTooltip: () => Promise<void>;
+  private readonly localShowTooltip: (e: Event) => Promise<void>;
+  private readonly localHideTooltip: () => Promise<void>;
+  private readonly localToggleTooltip: () => Promise<void>;
   private eventTarget: Element;
 
   @Element() host: HTMLPostTooltipElement;
