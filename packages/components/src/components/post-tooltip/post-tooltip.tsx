@@ -19,7 +19,7 @@ import 'long-press-event';
 
 import { version } from '../../../package.json';
 import { checkOneOf } from '../../utils';
-import { TOOLTIP_BACKGROUND_COLOR, TooltipBackgroundColor } from './types';
+import { BACKGROUND_COLOR, BackgroundColor } from './types';
 
 const SIDE_MAP = {
   top: 'bottom',
@@ -56,7 +56,7 @@ export class PostTooltip {
    * Defines the background color of the tooltip.
    * Choose the one that provides the best contrast in your scenario.
    */
-  @Prop() readonly backgroundColor?: TooltipBackgroundColor = 'primary';
+  @Prop() readonly backgroundColor?: BackgroundColor = 'primary';
 
   /**
    * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -69,8 +69,8 @@ export class PostTooltip {
   validateBackgroundColor(newValue = this.backgroundColor) {
     checkOneOf(
       newValue,
-      TOOLTIP_BACKGROUND_COLOR,
-      `The post-tooltip "background-color" prop should contain one of those values: ${TOOLTIP_BACKGROUND_COLOR.join(
+      BACKGROUND_COLOR,
+      `The post-tooltip "background-color" prop should contain one of those values: ${BACKGROUND_COLOR.join(
         ', ',
       )}`,
     );
