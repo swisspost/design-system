@@ -16,6 +16,13 @@
 | `type`         | `type`          | The type of the alert.                                                                                              | `"danger" \| "gray" \| "info" \| "primary" \| "success" \| "warning"` | `'primary'` |
 
 
+## Events
+
+| Event       | Description                                                                                                                             | Type                |
+| ----------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| `dismissed` | An event emitted when the alert element is dismissed, after the transition. It has no payload and only relevant for dismissible alerts. | `CustomEvent<void>` |
+
+
 ## Methods
 
 ### `dismiss() => Promise<void>`

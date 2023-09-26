@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import { version } from '../../../package.json';
 import { fadeOut } from '../../animations';
 import { checkEmptyOrOneOf, checkEmptyOrPattern, checkNonEmpty, checkType } from '../../utils';
@@ -72,6 +72,12 @@ export class PostAlert {
     checkEmptyOrOneOf(type, ALERT_TYPES, `The post-alert requires a type form: ${ALERT_TYPES.join(', ')}`);
   }
 
+  /**
+   * An event emitted when the alert element is dismissed, after the transition.
+   * It has no payload and only relevant for dismissible alerts.
+   */
+  @Event() dismissed: EventEmitter<void>;
+
   connectedCallback() {
     this.validateDismissible();
     this.validateFixed();
@@ -96,8 +102,11 @@ export class PostAlert {
   @Method()
   async dismiss() {
     const dismissal = fadeOut(this.host);
-    dismissal.onfinish = () => this.host.remove();
+
     await dismissal.finished;
+
+    this.host.remove();
+    this.dismissed.emit();
   }
 
   render() {

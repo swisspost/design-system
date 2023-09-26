@@ -104,6 +104,10 @@ export namespace Components {
         "show": (panelName: string) => Promise<void>;
     }
 }
+export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostAlertElement;
+}
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostTabsElement;
@@ -175,6 +179,10 @@ declare namespace LocalJSX {
           * The icon to display in the alert. By default, the icon depends on the alert type.  If `none`, no icon is displayed.
          */
         "icon"?: string;
+        /**
+          * An event emitted when the alert element is dismissed, after the transition. It has no payload and only relevant for dismissible alerts.
+         */
+        "onDismissed"?: (event: PostAlertCustomEvent<void>) => void;
         /**
           * The type of the alert.
          */

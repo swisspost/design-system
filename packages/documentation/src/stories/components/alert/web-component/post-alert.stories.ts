@@ -2,6 +2,7 @@ import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components
 import { html } from 'lit';
 import { BADGE } from '../../../../../.storybook/constants';
 import { spreadArgs } from '../../../../utils';
+import './post-alert.styles.scss';
 
 const meta: Meta<HTMLPostAlertElement> = {
   title: 'Components/Post Alert',
@@ -43,39 +44,46 @@ export default meta;
 
 // DECORATORS
 function externalControl(story: StoryFn, context: StoryContext) {
-  const {args, canvasElement} = context;
   let alert: HTMLPostAlertElement;
+  let button: HTMLButtonElement;
+  const {args, canvasElement} = context;
 
-  const toggleButton = html`
-    <a id="alert-button" href="#" @click='${(e: Event) => toggleAlert(e)}'>Show Alert</a>
-  `;
+  const toggleAlert = async (e: Event) => {
+    e.preventDefault();
 
-  const toggleAlert = (e?: Event) => {
-    if (e) e.preventDefault();
-
-    const alertButton = canvasElement.querySelector('#alert-button') as HTMLElement;
-    const alertContainer = canvasElement.querySelector('#alert-container') as HTMLElement;
-
+    const alertContainer = canvasElement.querySelector('.alert-container') as HTMLElement;
     if (alert.parentNode) {
-      void alert.dismiss();
-      alertButton.textContent = 'Show Alert';
+      await alert.dismiss();
     } else {
+      if (!args.fixed) button.hidden = true;
       alertContainer.appendChild(alert);
-      alertButton.textContent = 'Hide Alert';
+      alert.shadowRoot?.querySelector('button')?.focus();
     }
   }
 
   setTimeout(() => {
     alert = canvasElement.querySelector('post-alert') as HTMLPostAlertElement;
-    if (args.fixed) void alert.remove();
+    button = canvasElement.querySelector('.alert-button') as HTMLButtonElement;
+
+    if (args.fixed) {
+      alert.remove();
+    } else {
+      button.hidden = true;
+      alert.addEventListener('dismissed', () => {
+        button.hidden = false;
+        button.focus();
+      });
+    }
   });
 
   return html`
-    <div class=${args.fixed ? '' : 'position-relative'} style=${args.fixed ? '' : 'height: 7rem'}>
-      ${toggleButton}
-      <div id='alert-container' class=${args.fixed ? '' : 'position-absolute top-0 start-0 end-0'}>
-        ${story(args, context)}
-      </div>
+    <a
+      class="btn btn-default btn-animated alert-button"
+      href="#"
+      @click='${(e: Event) => toggleAlert(e)}'
+    ><span>${args.fixed ? 'Toggle Fixed Alert' : 'Reset Alert'}</span></a>
+    <div class="alert-container">
+      ${story(args, context)}
     </div>
   `;
 }
@@ -129,7 +137,6 @@ export const Dismissible: Story = {
 
 export const Fixed: Story = {
   args: {
-    dismissible: true,
     fixed: true,
   }
 };
