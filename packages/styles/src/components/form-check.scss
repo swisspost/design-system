@@ -128,9 +128,17 @@
         transform: translateX(2rem);
       }
     }
+
+    &[disabled] {
+      background: form-check.$form-switch-disabled-bg;
+
+      &::after {
+        border-color: form-check.$form-switch-disabled-border-color;
+      }
+    }
   }
 
-  &:hover > .form-check-input {
+  &:hover > .form-check-input:not([disabled]) {
     background-color: rgba(var(--post-contrast-color-rgb), 0.1);
   }
 
