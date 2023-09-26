@@ -5,9 +5,9 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { BackgroundColor } from "./components/post-tooltip/post-tooltip";
+import { TooltipBackgroundColor } from "./components/post-tooltip/types";
 import { Placement } from "@floating-ui/dom";
-export { BackgroundColor } from "./components/post-tooltip/post-tooltip";
+export { TooltipBackgroundColor } from "./components/post-tooltip/types";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostCollapsible {
@@ -83,7 +83,7 @@ export namespace Components {
         /**
           * Defines the background color of the tooltip. Choose the one that provides the best contrast in your scenario.
          */
-        "backgroundColor"?: BackgroundColor;
+        "backgroundColor"?: TooltipBackgroundColor;
         /**
           * Programmatically hide this tooltip
          */
@@ -228,7 +228,7 @@ declare namespace LocalJSX {
         /**
           * Defines the background color of the tooltip. Choose the one that provides the best contrast in your scenario.
          */
-        "backgroundColor"?: BackgroundColor;
+        "backgroundColor"?: TooltipBackgroundColor;
         /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */

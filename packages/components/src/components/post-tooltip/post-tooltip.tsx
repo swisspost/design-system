@@ -18,7 +18,8 @@ import '@oddbird/popover-polyfill';
 import 'long-press-event';
 
 import { version } from '../../../package.json';
-import { checkType } from '../../utils';
+import { checkOneOf } from '../../utils';
+import { TOOLTIP_BACKGROUND_COLOR, TooltipBackgroundColor } from './types';
 
 const SIDE_MAP = {
   top: 'bottom',
@@ -26,8 +27,6 @@ const SIDE_MAP = {
   bottom: 'top',
   left: 'right',
 };
-
-export type BackgroundColor = 'primary' | 'yellow';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -57,7 +56,7 @@ export class PostTooltip {
    * Defines the background color of the tooltip.
    * Choose the one that provides the best contrast in your scenario.
    */
-  @Prop() readonly backgroundColor?: BackgroundColor = 'primary';
+  @Prop() readonly backgroundColor?: TooltipBackgroundColor = 'primary';
 
   /**
    * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -68,7 +67,13 @@ export class PostTooltip {
 
   @Watch('backgroundColor')
   validateBackgroundColor(newValue = this.backgroundColor) {
-    checkType(newValue, 'string', 'The post-tooltip "background-color" prop should be a string.');
+    checkOneOf(
+      newValue,
+      TOOLTIP_BACKGROUND_COLOR,
+      `The post-tooltip "background-color" prop should contain one of those values: ${TOOLTIP_BACKGROUND_COLOR.join(
+        ', ',
+      )}`,
+    );
 
     if (newValue === 'yellow') {
       this.tooltipClasses = 'bg-yellow';
