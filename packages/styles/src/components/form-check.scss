@@ -11,25 +11,23 @@
   flex-wrap: wrap;
   row-gap: form-check.$form-check-row-gap;
   column-gap: form-check.$form-check-column-gap;
-  cursor: pointer;
   margin-bottom: form-check.$form-check-margin-bottom;
 
   &-inline {
     display: inline-flex;
-
-    & + & {
-      margin-left: form-check.$form-check-inline-margin-left;
-    }
   }
 
   &-input,
   &-label {
-    cursor: pointer;
     color: rgba(var(--post-contrast-color-rgb), 0.8);
     transition: color animation.$transition-base-timing;
 
-    &:hover,
-    .form-check:hover > & {
+    &:not([disabled]) {
+      cursor: pointer;
+    }
+
+    &:hover:not([disabled]),
+    &:hover:not([disabled]) ~ &-label {
       color: var(--post-contrast-color);
     }
   }
@@ -42,15 +40,11 @@
     height: form-check.$form-check-input-size;
     width: form-check.$form-check-input-size;
     border: form-check.$form-check-input-border-width solid
-      rgba(var(--post-contrast-color-rgb), 0.6);
-
-    &:hover,
-    .form-check:hover > & {
-      border-color: var(--post-contrast-color);
-    }
+      rgba(var(--post-contrast-color-rgb), 0.8);
 
     &:focus {
       outline: none;
+      border-color: currentColor;
       box-shadow: form-check.$form-check-input-focus-box-shadow;
     }
 
@@ -61,7 +55,8 @@
     }
 
     &:checked,
-    &:indeterminate {
+    &[type]:indeterminate {
+      // [type] add specificity against bootstrap rule
       color: var(--post-contrast-color);
       border-color: var(--post-contrast-color);
 
@@ -88,6 +83,13 @@
         background-color: currentColor;
         border-radius: inherit;
       }
+    }
+
+    &[disabled],
+    &[disabled] ~ .form-check-label {
+      opacity: 1; // Bootstrap reset
+      border-color: rgba(var(--post-contrast-color-rgb), 0.4);
+      color: rgba(var(--post-contrast-color-rgb), 0.4);
     }
   }
 
