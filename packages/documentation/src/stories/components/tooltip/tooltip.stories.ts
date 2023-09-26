@@ -37,7 +37,7 @@ function render(args: Args) {
   const [currentArgs, updateArgs] = useArgs();
   // Just for fun
   const innerHTML =
-    args.backgroundColor === 'brand-yellow'
+    args.backgroundColor === 'yellow'
       ? args.innerHTML.replace('👋', '🤘🏾')
       : args.innerHTML.replace('🤘🏾', '👋');
 

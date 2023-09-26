@@ -27,7 +27,7 @@ const SIDE_MAP = {
   left: 'right',
 };
 
-export type BackgroundColor = 'primary' | 'brand-yellow';
+export type BackgroundColor = 'primary' | 'yellow';
 
 interface PopoverElement {
   showPopover: () => void;
@@ -70,7 +70,7 @@ export class PostTooltip {
   validateBackgroundColor(newValue = this.backgroundColor) {
     checkType(newValue, 'string', 'The post-tooltip "background-color" prop should be a string.');
 
-    if (newValue === 'brand-yellow') {
+    if (newValue === 'yellow') {
       this.tooltipClasses = 'bg-yellow';
     } else {
       this.tooltipClasses = 'bg-primary';
