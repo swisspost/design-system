@@ -1,4 +1,4 @@
-import type { Args, Meta, StoryObj, StoryContext } from '@storybook/web-components';
+import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit/static-html.js';
 
@@ -32,8 +32,8 @@ const positionOptions = {
   'y': 'Along the vertical axis',
   't': 'At the top',
   'b': 'At the bottom',
-  'r': 'To the right',
-  'l': 'To the left',
+  'e': 'To the right',
+  's': 'To the left',
 };
 
 const meta: Meta = {
@@ -83,7 +83,7 @@ const meta: Meta = {
       },
     },
     paddingPosition: {
-      name: 'Pading Position',
+      name: 'Padding Position',
       description: 'Sets the position of the Padding.',
       control: {
         type: 'select',
