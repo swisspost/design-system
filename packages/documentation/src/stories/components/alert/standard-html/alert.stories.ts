@@ -19,108 +19,60 @@ const meta: Meta = {
   args: {
     title: 'Titulum',
     content: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
-    variant: 'alert-primary',
-    noIcon: false,
-    icon: 'null',
-    dismissible: false,
-    fixed: false,
-    action: false,
     show: true,
+    action: false,
+    fixed: false,
+    icon: undefined,
+    type: 'alert-primary',
   },
   argTypes: {
     title: {
       name: 'Title',
       control: { type: 'text' },
-      table: { category: 'Content' },
     },
     content: {
       name: 'Content',
       control: { type: 'text' },
-      table: { category: 'Content' },
-    },
-    variant: {
-      name: 'Variant',
-      description: 'Defines a style variant.',
-      control: {
-        type: 'radio',
-        labels: {
-          'alert-primary': 'Primary',
-          'alert-success': 'Success',
-          'alert-danger': 'Danger',
-          'alert-warning': 'Warning',
-          'alert-info': 'Info',
-          'alert-gray': 'Gray',
-        },
-      },
-      options: ['alert-primary', 'alert-success', 'alert-danger', 'alert-warning', 'alert-info', 'alert-gray'],
-      table: {
-        category: 'General',
-      },
-    },
-    noIcon: {
-      name: 'No Icon',
-      description: 'Removes the predefined icon completely.',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'General',
-      },
-    },
-    icon: {
-      name: 'Icon',
-      description: 'Defines a custom icon.',
-      if: {
-        arg: 'noIcon',
-        truthy: false,
-      },
-      control: {
-        type: 'select',
-        labels: {
-          'null': 'Default',
-          '1001': 'Envelope (1001)',
-          '2023': 'Cog (2023)',
-          '2025': 'Send (2025)',
-          '2035': 'Home (2035)',
-          '2101': 'Bubble (2101)',
-        },
-      },
-      options: ['null', '1001', '2023', '2025', '2035', '2101'],
-      table: {
-        category: 'General',
-      },
-    },
-    dismissible: {
-      name: 'Dismissible',
-      description:
-        'Adds the dismissible styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
-      control: { type: 'boolean' },
-      table: {
-        category: 'Variations',
-      },
-    },
-    action: {
-      name: 'Action Buttons',
-      description:
-        'Adds the action button styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
-      control: { type: 'boolean' },
-      table: {
-        category: 'Variations',
-      },
-    },
-    fixed: {
-      name: 'Fixed',
-      description:
-        'Adds the fixed styles.<span className="mt-mini alert alert-info alert-sm">Do not forget to add the structural adjustments!</span>',
-      control: { type: 'boolean' },
-      table: {
-        category: 'Variations',
-      },
     },
     show: {
       name: 'Show',
       control: { type: 'boolean' },
       table: { disable: true },
+    },
+    action: {
+      name: 'Action Buttons',
+      description:
+        'If `true`, the alert contains action buttons on its right side.<span className="mt-mini alert alert-info alert-sm">Alert content must then be wrapped in a `.alert-content` container.</span>',
+      control: { type: 'boolean' },
+    },
+    fixed: {
+      name: 'Fixed',
+      description:
+        'If `true`, the alert anchored at the bottom of the page, from edge to edge.',
+      control: { type: 'boolean' },
+    },
+    icon: {
+      name: 'Icon',
+      description: 'The icon to display in the alert. By default, the icon depends on the alert type.',
+      control: {
+        type: 'select',
+        labels: {
+          'pi-1001': 'pi-1001 (Envelope)',
+          'pi-2023': 'pi-2023 (Cog)',
+          'pi-2025': 'pi-2025 (Send)',
+          'pi-2035': 'pi-2035 (Home)',
+          'pi-2101': 'pi-2101 (Bubble)',
+        },
+      },
+      options: ['no-icon', 'pi-1001', 'pi-2023', 'pi-2025', 'pi-2035', 'pi-2101'],
+    },
+    type: {
+      name: 'Type',
+      description: 'The type of the alert.',
+      control: {
+        type: 'select',
+      },
+      options: ['alert-primary', 'alert-success', 'alert-danger', 'alert-warning', 'alert-info', 'alert-gray'],
     },
   },
 };
@@ -131,26 +83,31 @@ export default meta;
 function externalControl(story: StoryFn, { args, context }: StoryContext) {
   const [_, updateArgs] = useArgs();
 
+  const toggleAlert = (e: MouseEvent, args: Args, updateArgs: Function) => {
+    e.preventDefault();
+    updateArgs({ show: !args.show });
+  }
+
+  if (!args.fixed && !args.show) updateArgs({ show: true });
+
   const button = html`
-    <a href="#" @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}">
-      ${args.fixed ? 'Toggle Alert' : 'Show Alert'}
-    </a>
+    <a
+      class="btn btn-default btn-animated"
+      href="#"
+      @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
+    ><span>Toggle Fixed Alert</span></a>
   `;
 
   return html`
-    ${args.fixed || !args.show ? button : nothing} ${story(args, context)}
+    ${args.fixed ? button : nothing}
+    ${story(args, context)}
   `;
 }
 
 // RENDERER
-function toggleAlert(e: MouseEvent, args: Args, updateArgs: Function) {
-  e.preventDefault();
-  updateArgs({ show: !args.show });
-}
+
 
 function renderAlert(args: Args) {
-  const [_, updateArgs] = useArgs();
-
   const classes = getAlertClasses(args);
 
   const content = html`
@@ -160,19 +117,6 @@ function renderAlert(args: Args) {
 
   return html`
     <div class="${classes}" role="alert">
-      ${
-        /* Dismissible Button */
-        args.dismissible
-          ? html`
-              <button
-                class="btn-close"
-                @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
-              >
-                <span class="visually-hidden">Close</span>
-              </button>
-            `
-          : null
-      }
       ${
         /* Alert Content */
         args.action
@@ -186,16 +130,10 @@ function renderAlert(args: Args) {
         args.action
           ? html`
               <div class="alert-buttons">
-                <button
-                  class="btn btn-primary btn-animated"
-                  @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
-                >
+                <button class="btn btn-primary btn-animated">
                   <span>Akcepti</span>
                 </button>
-                <button
-                  class="btn btn-secondary btn-animated"
-                  @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
-                >
+                <button class="btn btn-secondary btn-animated">
                   <span>Aborti</span>
                 </button>
               </div>
@@ -212,11 +150,6 @@ type Story = StoryObj;
 export const Default: Story = {};
 
 export const AdditionalContent: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Variant', 'Icon', 'No Icon', 'Dismissible', 'Fixed', 'Action Buttons', 'Show'],
-    },
-  },
   args: {
     content: `<p>Contentum momentum ipsum tipsum sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
   <ul>
@@ -226,42 +159,18 @@ export const AdditionalContent: Story = {
   </ul>
 <hr />
 <p>An deven morecon tentum no sea takimata sanctus est magna aliquyam erat.</p>`,
-    variant: 'alert-success',
-  },
-};
-
-export const Dismissible: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Variant', 'Icon', 'No Icon', 'Fixed', 'Action Buttons', 'Show'],
-    },
-  },
-  args: {
-    dismissible: true,
   },
 };
 
 export const ActionButtons: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Variant', 'Icon', 'No Icon', 'Dismissible', 'Fixed', 'Show'],
-    },
-  },
   args: {
-    variant: 'alert-info',
     action: true,
   },
 };
 
 export const Fixed: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Variant', 'Icon', 'No Icon', 'Dismissible', 'Action Buttons', 'Show'],
-    },
-  },
   args: {
     fixed: true,
-    dismissible: true,
     show: false,
   },
 };
