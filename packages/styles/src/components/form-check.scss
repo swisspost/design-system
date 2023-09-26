@@ -55,13 +55,14 @@
     }
 
     &:checked,
-    &[type]:indeterminate {
-      // [type] add specificity against bootstrap rule
-      color: var(--post-contrast-color);
-      border-color: var(--post-contrast-color);
-
-      ~ .form-check-label {
+    &:indeterminate {
+      &:not(.is-invalid) {
         color: var(--post-contrast-color);
+        border-color: var(--post-contrast-color);
+
+        ~ .form-check-label {
+          color: var(--post-contrast-color);
+        }
       }
     }
 
@@ -85,8 +86,8 @@
       }
     }
 
-    &[disabled],
-    &[disabled] ~ .form-check-label {
+    &[disabled]:not(.is-invalid),
+    &[disabled]:not(.is-invalid) ~ .form-check-label {
       opacity: 1; // Bootstrap reset
       border-color: rgba(var(--post-contrast-color-rgb), 0.4);
       color: rgba(var(--post-contrast-color-rgb), 0.4);
