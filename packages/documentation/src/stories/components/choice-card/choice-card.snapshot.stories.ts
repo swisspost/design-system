@@ -5,7 +5,7 @@ import { html } from 'lit';
 
 export default {
   ...choiceCardMeta,
-  title: 'Hidden/snapshots/components',
+  title: 'Snapshots',
 };
 
 const bombedArgs = bombArgs({
@@ -21,7 +21,7 @@ const bombedArgs = bombArgs({
   // Filter out disabled and invalid combinations
   .filter(args => !(args.disabled && args.validation === 'is-invalid'));
 
-export const CheckboxCard: StoryObj = {
+export const ChoiceCard: StoryObj = {
   render: () => {
     return html`
       <div class="d-flex gap-3 flex-wrap">

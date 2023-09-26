@@ -15,10 +15,9 @@ export const prepare = (
 ) => {
   installInterceptors(config);
   cy.visitStorybook();
-  cy.get('[class=sb-nopreview_main]', { timeout: 30000 }).should('be.visible'); // Wait until vite is ready (initial loading is longer)
+  cy.get('.sb-nopreview_main', { timeout: 30000 }).should('be.visible'); // Wait until vite is ready (initial loading is longer)
   cy.loadStory(storyTitle, storyName);
-  cy.get('[id=storybook-root]', { timeout: 30000 }).should('be.visible'); // Ensure that we have a storybook component loaded, before going further
-  cy.changeArg('language', 'de');
+  cy.get('#root-inner', { timeout: 30000 }).should('exist'); // Ensure that we have a storybook component loaded, before going further
 };
 
 export const copyConfig = (): IPortalConfig => {

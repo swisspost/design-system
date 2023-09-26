@@ -148,6 +148,10 @@ export class PostSearch implements HasDropdown, IsFocusable {
    * Disable or re-enable body scrolling, depending on whether search dropdown is open or closed in mobile view (width < 1024px)
    */
   private setBodyScroll() {
+    if(!this.searchFlyout) {
+      return;
+    }
+
     if (this.searchDropdownOpen && window.innerWidth < 1024) {
       disableBodyScroll(this.searchFlyout);
     } else {
