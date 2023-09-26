@@ -51,7 +51,7 @@
   }
 
   &::before,
-  & > .alert-icon {
+  > .alert-icon {
     position: absolute;
     height: $icon-size;
     width: $icon-size;
@@ -99,7 +99,7 @@
   }
 
   // icon override (post-icon)
-  & > .alert-icon {
+  > .alert-icon {
     background-color: $color;
   }
 }
