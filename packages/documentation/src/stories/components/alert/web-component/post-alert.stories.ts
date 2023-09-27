@@ -36,6 +36,16 @@ const meta: Meta<HTMLPostAlertElement> = {
       },
       options: ['none', '1001', '2023', '2025', '2035', '2101'],
     },
+    innerHTML: {
+      description:
+        'Defines the HTML markup contained in the alert.',
+      table: {
+        category: 'content',
+        type: {
+          summary: 'string',
+        },
+      },
+    },
   }
 };
 
