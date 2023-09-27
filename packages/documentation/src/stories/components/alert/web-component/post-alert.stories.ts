@@ -2,7 +2,6 @@ import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components
 import { html } from 'lit';
 import { BADGE } from '../../../../../.storybook/constants';
 import { spreadArgs } from '../../../../utils';
-import './post-alert.styles.scss';
 
 const meta: Meta<HTMLPostAlertElement> = {
   title: 'Components/Post Alert',
