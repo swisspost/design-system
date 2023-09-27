@@ -1,19 +1,22 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as SpacingStories from './spacing.stories';
+import scss from './spacing.module.scss';
+
+{console.log(scss)}
 
 <Meta of={SpacingStories} />
 
 # Spacing
 
 <div className="lead">
-  Spacing values bring a uniform and consistent distance between elements.
+Spacing values bring a uniform and consistent distance between elements.
 
 By adhering to standardized spacing guidelines, we maintain visual alignment and
 improve the overall user interface.
 
 </div>
 
-{* prettier-ignore *}
+{/* prettier-ignore */}
 <div class="alert alert-warning mb-bigger-big">
   <h2 class="alert-heading">Sizing variables are deprecated</h2>
   <p>The current set of the post-specific sizing variables is deprecated in favour of a new naming system that is consistent with the Design. For further information, please read the <a href="https://github.com/swisspost/design-system/discussions/588">discussion on sizing variables on GitHub</a> and have a look at the <a href="https://www.figma.com/file/ojCcgC5Zd12eUSzq6V5m24/Foundations?node-id=3%3A2&t=l8qimsXlxeMLOzs6-0">implementation in Figma</a>.</p>
@@ -27,7 +30,8 @@ You can apply the desired margin/padding all around an element using the classes
 Our base spacing classes with suffixes going from 0 to 5 ( `*-0` , `*-1` , `*-2` , ...).
 
 Our custom sizes can be used in the same way: by adding the name of the desired size to a prefix. See our [sizing docs](/?path=/docs/utilities-sizing--docs) to find out which size names are available.
-{* prettier-ignore *}
+
+{/* prettier-ignore */}
 <div className="alert alert-warning">
   <h4 className="alert-heading">Do not use margin/padding classes on grid elements (i.e. `.row`, `.col`, `.col-*`).</h4>
   <p>Our grid is built with negative margins and positive paddings on the x-axis. Therefore, use this spacing classes only if you know exactly what you are doing!</p>
@@ -42,16 +46,12 @@ Our custom sizes can be used in the same way: by adding the name of the desired 
 
 By default, the above classes apply to all breakpoints.
 
+##### Manually specifying breakpoints
+
 If you need to change the size or spacing of an element based on the breakpoint, you should
-mention it in the class name using one of the following infixes: `-sm-`, `-rg-`, `-md-`, `-lg-`, `-xl-`, `-xxl-`.
+mention it in the class name using one of the following infixes: {Object.values(scss).map((s, index, array) => (<span><code>{'-' + s + '-'}</code>{index !== array.length - 1 && ', '}</span>))}.
 When a breakpoint is specified, the size applies to that breakpoint and to all those that are
 larger.
-
-Another way to define a responsive size is to use the `-r` suffix. It allows to obtain a size which updates automatically and consistently depending on the breakpoint, without having to specify anything manually.
-
-### Example
-
-##### Manually specifying breakpoints
 
 The square below has a big padding from the large breakpoint (i.e. `.p-lg-big`) and a regular
 padding below (i.e. `.p-regular`).
@@ -59,6 +59,8 @@ padding below (i.e. `.p-regular`).
 <Canvas of={SpacingStories.responsiveExample} />
 
 ##### Using automatic responsive behavior
+
+Another way to define a responsive size is to use the `-r` suffix. It allows to obtain a size which updates automatically and consistently depending on the breakpoint, without having to specify anything manually.
 
 The square below has a "large" responsive padding, which means the padding size
 automatically changes based on the breakpoint but remains visually consistent.

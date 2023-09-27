@@ -1,6 +1,7 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, Meta, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit/static-html.js';
+import './spacing.styles.scss';
 
 const sizingOptions = [
   '0',
@@ -27,13 +28,13 @@ const sizingOptions = [
 ];
 
 const positionOptions = {
-  '': 'All around',
-  'x': 'Along the horizontal axis',
-  'y': 'Along the vertical axis',
-  't': 'At the top',
-  'b': 'At the bottom',
-  'e': 'To the right',
-  's': 'To the left',
+  null: 'All around',
+  x: 'Along the horizontal axis',
+  y: 'Along the vertical axis',
+  t: 'At the top',
+  b: 'At the bottom',
+  e: 'To the right',
+  s: 'To the left',
 };
 
 const meta: Meta = {
@@ -103,63 +104,96 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: (args: Args) => {
+    // this will be the only code visible in the code preview
     return html`
-      <!-- Demo -->
-      <div class="bg-primary p-regular d-flex align-items-start">
-        <div class="flex-fill d-flex">
-          <div class="bg-petrol">
+      <div
+        class="w-bigger-giant h-bigger-giant m${args.marginPosition === 'null'
+          ? ''
+          : args.marginPosition}-${args.marginSize} p${args.paddingPosition === 'null'
+          ? ''
+          : args.paddingPosition}-${args.paddingSize}"
+      ></div>
+    `;
+  },
+  decorators: [
+    // everything in here will be visible in the example, but only the content coming from the `story` function will be shown in the code preview
+    (story: StoryFn, { args, context }: StoryContext) => html`
+      <div class="spacing-example d-flex gap-3">
+        <div class="d-none">${story(args, context)}</div>
+
+        <div class="d-flex flex-fill">
+          <div
+            class="margin ${['null', 'x', 's', 'e'].includes(args.marginPosition as string) &&
+            args.marginSize === 'auto'
+              ? 'w-100'
+              : ''}"
+          >
             <div
-              class="bg-petrol-bright border border-dark h-bigger-giant m${args.marginPosition}-${args.marginSize} p${args.paddingPosition}-${args.paddingSize} w-bigger-giant"
+              class="w-bigger-giant h-bigger-giant padding m${args.marginPosition === 'null'
+                ? ''
+                : args.marginPosition}-${args.marginSize} p${args.paddingPosition === 'null'
+                ? ''
+                : args.paddingPosition}-${args.paddingSize}"
             >
-              <div class="bg-light h-100"></div>
+              <div class="h-100 content"></div>
             </div>
           </div>
         </div>
 
-        <!-- Legend -->
-        <ul class="ps-regular text-white">
-          <li class="d-flex align-items-center mb-regular">
-            <div class="bg-petrol h-regular w-regular me-mini"></div>
+        <ul class="legend list-unstyled">
+          <li class="d-flex align-items-center">
+            <div class="h-regular w-regular me-mini margin"></div>
             <span>margin</span>
           </li>
-          <li class="d-flex align-items-center mb-regular">
-            <div class="bg-petrol-bright h-regular w-regular me-mini"></div>
+          <li class="d-flex align-items-center">
+            <div class="h-regular w-regular me-mini padding"></div>
             <span>padding</span>
           </li>
-          <li class="d-flex align-items-center mb-regular">
-            <div class="bg-light h-regular w-regular me-mini"></div>
+          <li class="d-flex align-items-center">
+            <div class="h-regular w-regular me-mini content"></div>
             <span>content</span>
           </li>
         </ul>
       </div>
-    `;
-  },
+    `,
+  ],
 };
 
 export const responsiveExample: Story = {
   render: (args: Args) => {
     return html`
+      <div class="bg-petrol-bright h-bigger-giant w-bigger-giant p-regular p-lg-big"></div>
+    `;
+  },
+  decorators: [
+    // everything in here will be visible in the example, but only the content coming from the `story` function will be shown in the code preview
+    (story: StoryFn, { args, context }: StoryContext) => html`
       <div class="bg-primary p-regular">
-        <div
-          class="border border-dark bg-petrol-bright h-bigger-giant w-bigger-giant p-regular p-lg-big"
-        >
+        <div class="d-none">${story(args, context)}</div>
+        <div class="bg-petrol-bright h-bigger-giant w-bigger-giant p-regular p-lg-big">
           <div class="bg-light h-100"></div>
         </div>
         <p class="text-white"><small>Resize the browser window to see changes.</small></p>
       </div>
-    `;
-  },
+    `,
+  ],
 };
 
 export const automaticResponsiveExample: Story = {
   render: (args: Args) => {
     return html`
+      <div class="bg-petrol-bright h-bigger-giant w-bigger-giant p-large-r"></div>
+    `;
+  },
+  decorators: [
+    (story: StoryFn, { args, context }: StoryContext) => html`
       <div class="bg-primary p-regular">
-        <div class="border border-dark bg-petrol-bright h-bigger-giant w-bigger-giant p-large-r">
+        <div class="d-none">${story(args, context)}</div>
+        <div class="bg-petrol-bright h-bigger-giant w-bigger-giant p-large-r">
           <div class="bg-light h-100"></div>
         </div>
         <p class="text-white"><small>Resize the browser window to see changes.</small></p>
       </div>
-    `;
-  },
+    `,
+  ],
 };
