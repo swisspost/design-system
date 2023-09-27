@@ -22,6 +22,10 @@ const meta: Meta<HTMLPostAlertElement> = {
       if: {
         arg: 'dismissible',
       },
+      type: {
+        name: 'string',
+        required: true,
+      }
     },
     icon: {
       control: {
