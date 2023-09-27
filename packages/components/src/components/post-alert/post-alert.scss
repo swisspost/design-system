@@ -10,7 +10,7 @@
   }
 }
 
-.btn-close > .visually-hidden {
+.visually-hidden {
   @include post.visually-hidden();
 }
 

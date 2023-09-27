@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Created an alert component.
+Created the web component variant for the alert component.
