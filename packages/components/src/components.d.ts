@@ -5,6 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { BackgroundColor } from "./components/post-tooltip/types";
+import { Placement } from "@floating-ui/dom";
+export { BackgroundColor } from "./components/post-tooltip/types";
+export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostCollapsible {
         /**
@@ -75,6 +79,31 @@ export namespace Components {
          */
         "show": (panelName: string) => Promise<void>;
     }
+    interface PostTooltip {
+        /**
+          * Defines the background color of the tooltip. Choose the one that provides the best contrast in your scenario.
+         */
+        "backgroundColor"?: BackgroundColor;
+        /**
+          * Programmatically hide this tooltip
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
+        "placement"?: Placement;
+        /**
+          * Programmatically display the tooltip
+          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Toggle tooltip display
+          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * @param force Pass true to always show or false to always hide
+         */
+        "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+    }
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -114,12 +143,19 @@ declare global {
         prototype: HTMLPostTabsElement;
         new (): HTMLPostTabsElement;
     };
+    interface HTMLPostTooltipElement extends Components.PostTooltip, HTMLStencilElement {
+    }
+    var HTMLPostTooltipElement: {
+        prototype: HTMLPostTooltipElement;
+        new (): HTMLPostTooltipElement;
+    };
     interface HTMLElementTagNameMap {
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
         "post-tab-header": HTMLPostTabHeaderElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
+        "post-tooltip": HTMLPostTooltipElement;
     }
 }
 declare namespace LocalJSX {
@@ -188,12 +224,23 @@ declare namespace LocalJSX {
          */
         "onTabChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
     }
+    interface PostTooltip {
+        /**
+          * Defines the background color of the tooltip. Choose the one that provides the best contrast in your scenario.
+         */
+        "backgroundColor"?: BackgroundColor;
+        /**
+          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
+        "placement"?: Placement;
+    }
     interface IntrinsicElements {
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
         "post-tab-header": PostTabHeader;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
+        "post-tooltip": PostTooltip;
     }
 }
 export { LocalJSX as JSX };
@@ -208,6 +255,7 @@ declare module "@stencil/core" {
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
+            "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
         }
     }
 }

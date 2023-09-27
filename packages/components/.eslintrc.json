@@ -64,6 +64,7 @@
     "@stencil-community/required-jsdoc": "error",
     "@stencil-community/reserved-member-names": "error",
     "@stencil-community/single-export": "error",
-    "@stencil-community/strict-mutable": "error"
+    "@stencil-community/strict-mutable": "error",
+    "react/jsx-no-bind": "off"
   }
 }
