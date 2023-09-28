@@ -6,7 +6,7 @@ export const getAlertClasses = (args: Args): string =>
     args.type,
     args.fixed ? 'alert-fixed-bottom' : '',
     args.action ? 'alert-action' : '',
-    args.icon,
+    args.noIcon ? 'no-icon' : '',
     args.show ? '' : 'd-none',
   ]
     .filter(c => c)

@@ -22,6 +22,7 @@ const meta: Meta = {
     show: true,
     action: false,
     fixed: false,
+    noIcon: false,
     icon: undefined,
     type: 'alert-primary',
   },
@@ -51,20 +52,31 @@ const meta: Meta = {
         'If `true`, the alert anchored at the bottom of the page, from edge to edge.',
       control: { type: 'boolean' },
     },
+    noIcon: {
+      name: 'No Icon',
+      description: 'If `true`, no icon is displayed on the left side of the alert.',
+      control: {
+        type: 'boolean',
+      }
+    },
     icon: {
       name: 'Icon',
       description: 'The icon to display in the alert. By default, the icon depends on the alert type.',
+      if: {
+        arg: 'noIcon',
+        truthy: false,
+      },
       control: {
         type: 'select',
         labels: {
-          'pi-1001': 'pi-1001 (Envelope)',
-          'pi-2023': 'pi-2023 (Cog)',
-          'pi-2025': 'pi-2025 (Send)',
-          'pi-2035': 'pi-2035 (Home)',
-          'pi-2101': 'pi-2101 (Bubble)',
+          '1001': '1001 (Envelope)',
+          '2023': '2023 (Cog)',
+          '2025': '2025 (Send)',
+          '2035': '2035 (Home)',
+          '2101': '2101 (Bubble)',
         },
       },
-      options: ['no-icon', 'pi-1001', 'pi-2023', 'pi-2025', 'pi-2035', 'pi-2101'],
+      options: ['1001', '2023', '2025', '2035', '2101'],
     },
     type: {
       name: 'Type',
@@ -117,6 +129,14 @@ function renderAlert(args: Args) {
 
   return html`
     <div class="${classes}" role="alert">
+      ${
+        /* Alert Icon */
+        args.icon
+          ? html`
+            <post-icon name=${args.icon}></post-icon>
+          `
+          : nothing
+      }
       ${
         /* Alert Content */
         args.action

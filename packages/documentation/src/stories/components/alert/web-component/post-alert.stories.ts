@@ -12,10 +12,10 @@ const meta: Meta<HTMLPostAlertElement> = {
     badges: [BADGE.NEEDS_REVISION],
   },
   args: {
+    innerHTML: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
     dismissible: false,
     dismissLabel: 'Dismiss',
     fixed: false,
-    innerHTML: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
   },
   argTypes: {
     dismissLabel: {
@@ -70,7 +70,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
     } else {
       if (!args.fixed) button.hidden = true;
       alertContainer.appendChild(alert);
-      alert.shadowRoot?.querySelector('button')?.focus();
+      if (!args.fixed) alert.shadowRoot?.querySelector('button')?.focus();
     }
   }
 
@@ -151,5 +151,6 @@ export const Dismissible: Story = {
 export const Fixed: Story = {
   args: {
     fixed: true,
+    dismissible: true,
   }
 };

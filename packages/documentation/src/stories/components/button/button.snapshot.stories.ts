@@ -25,7 +25,7 @@ export const Button: Story = {
                 tag: context.argTypes.tag.options,
                 disabled: [false, true],
                 iconOnly: [false, true],
-                icon: ['null', 'pi-2069'],
+                icon: ['null', '2069'],
                 iconPosition: context.argTypes.iconPosition.options,
               })
                 .filter(

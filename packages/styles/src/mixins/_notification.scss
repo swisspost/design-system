@@ -51,7 +51,7 @@
   }
 
   &::before,
-  > .alert-icon {
+  > post-icon {
     position: absolute;
     height: $icon-size;
     width: $icon-size;
@@ -65,10 +65,10 @@
     &::before {
       content: unset;
     }
-  }
 
-  &.no-icon > .alert-icon {
-    display: none;
+    > post-icon {
+      display: none;
+    }
   }
 
   a {
@@ -99,7 +99,7 @@
   }
 
   // icon override (post-icon)
-  > .alert-icon {
+  > post-icon {
     background-color: $color;
   }
 }
