@@ -17,7 +17,6 @@ const meta: Meta = {
     },
   },
   args: {
-    title: 'Titulum',
     content: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
     show: true,
     action: false,
@@ -127,7 +126,7 @@ function renderAlert(args: Args) {
   const classes = getAlertClasses(args);
 
   const content = html`
-    <h4 class="alert-heading">${args.title}</h4>
+    ${args.title ? html`<h4 class="alert-heading">${args.title}</h4>` : nothing}
     ${unsafeHTML(args.content)}
   `;
 
@@ -175,6 +174,7 @@ export const Default: Story = {};
 
 export const AdditionalContent: Story = {
   args: {
+    title: 'Titulum',
     content: `<p>Contentum momentum ipsum tipsum sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.</p>
   <ul>
     <li>Un orde redlis titem</li>

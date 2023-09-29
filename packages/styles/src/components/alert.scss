@@ -6,7 +6,6 @@
 @use './../themes/bootstrap/core' as *;
 
 @use './../mixins/notification' as notification-mx;
-@use './../placeholders/notification' as notification-ph;
 
 @use './../variables/breakpoints';
 @use './../variables/commons';
@@ -18,7 +17,7 @@
   @include notification-mx.notification-size(alert);
 
   &:not(.alert-action) {
-    @extend %notification-body;
+    @include notification-mx.notification-body(alert);
   }
 }
 
@@ -38,7 +37,7 @@
 
   > .alert-content {
     flex: 1 1 auto;
-    @extend %notification-body;
+    @include notification-mx.notification-body(alert);
   }
 
   > .alert-buttons {

@@ -14,7 +14,6 @@
   $font-size: map.get(notification.$notification-font-size-map, $size);
   $padding-x: map.get(notification.$notification-padding-x-map, $size);
   $padding-y: map.get(notification.$notification-padding-y-map, $size);
-  $hr-margin-block: map.get(notification.$notification-hr-margin-block-map, $size);
 
   position: relative;
   box-sizing: border-box;
@@ -71,6 +70,21 @@
     }
   }
 
+  @include utilities-mx.high-contrast-mode {
+    filter: none !important;
+    background-color: transparent !important;
+    border: 2px solid WindowText;
+  }
+}
+
+@mixin notification-body($size) {
+  $hr-margin-block: map.get(notification.$notification-hr-margin-block-map, $size);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: notification.$notification-body-gap;
+
   a {
     font-weight: notification.$notification-link-font-weight;
   }
@@ -79,14 +93,13 @@
     margin-block: $hr-margin-block !important;
   }
 
-  > *:only-child {
+  > :only-child,
+  > post-icon:first-child + :last-child {
     @include notification-heading($size);
   }
 
-  @include utilities-mx.high-contrast-mode {
-    filter: none !important;
-    background-color: transparent !important;
-    border: 2px solid WindowText;
+  > * {
+    margin: 0;
   }
 }
 
@@ -116,7 +129,7 @@
     inset-inline-end: $padding-x;
   }
 
-  > .#{$close}:first-child + *:last-child {
+  > .#{$close}:first-child + :last-child {
     @include notification-heading($size);
   }
 }
