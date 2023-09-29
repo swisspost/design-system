@@ -12,6 +12,7 @@ import { ALERT_TYPES, AlertType } from './alert-types';
 export class PostAlert {
   @Element() host: HTMLPostAlertElement;
 
+  @State() alertId = crypto.randomUUID();
   @State() classes: string;
   @State() hasActions: boolean;
   @State() hasHeading: boolean;
@@ -112,21 +113,21 @@ export class PostAlert {
   render() {
     const defaultAlertContent = [
       this.icon && this.icon !== 'none' && (
-        <post-icon name={this.icon} />
+        <post-icon key={`${this.alertId}-icon`} name={this.icon} />
       ),
       this.hasHeading && (
-        <div class="alert-heading">
+        <div key={`${this.alertId}-heading`} class="alert-heading">
           <slot name="heading"/>
         </div>
       ),
-      <slot/>
+      <slot key={`${this.alertId}-message`}/>
     ];
 
     const actionAlertContent = [
-      <div class="alert-content">
+      <div key={`${this.alertId}-content`} class="alert-content">
         {defaultAlertContent}
       </div>,
-      <div class="alert-buttons">
+      <div key={`${this.alertId}-buttons`} class="alert-buttons">
         <slot name="actions"/>
       </div>,
     ];
