@@ -40,6 +40,18 @@ Alerts are intended to attract the user's attention without interrupting their o
 
       <Canvas of={AlertStories.AdditionalContent} />
 
+      ### Custom Icon
+
+      Alerts come with a preassigned icon based on their type.
+      You have the option to customize this icon by using a `post-icon` element inside the alert.
+      For more information, read the <LinkTo kind="icons-getting-started" story="docs">getting started with icons guide</LinkTo>.
+
+      <Canvas of={AlertStories.CustomIcon} />
+
+      If you prefer not to display any icon, you can add the `.no-icon` class to the alert.
+
+      <Canvas of={AlertStories.NoIcon} />
+
       ### Action Buttons
 
       To include action buttons within an alert, apply the `.alert-action` class to the alert element,

@@ -61,7 +61,11 @@ const meta: Meta = {
     },
     icon: {
       name: 'Icon',
-      description: 'The icon to display in the alert. By default, the icon depends on the alert type.',
+      description: 'The icon to display in the alert. By default, the icon depends on the alert type.' +
+        '<span className="mt-mini alert alert-info alert-sm">' +
+        'To use a custom icon, you must first ' +
+        '<a href="/?path=/docs/icons-getting-started--docs">set up the icons in your project</a>' +
+        '.</span>',
       if: {
         arg: 'noIcon',
         truthy: false,
@@ -179,6 +183,18 @@ export const AdditionalContent: Story = {
   </ul>
 <hr />
 <p>An deven morecon tentum no sea takimata sanctus est magna aliquyam erat.</p>`,
+  },
+};
+
+export const CustomIcon: Story = {
+  args: {
+    icon: '1001',
+  },
+};
+
+export const NoIcon: Story = {
+  args: {
+    noIcon: true,
   },
 };
 
