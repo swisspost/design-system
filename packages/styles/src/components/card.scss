@@ -172,40 +172,25 @@
   padding-left: 0.5rem;
 
   a {
-    display: inline-flexbox;
     display: inline-flex;
     align-items: center;
-    padding-right: 0.5rem;
-    padding-left: 0.5rem;
+    padding-inline: spacing.$size-mini;
+    gap: spacing.$size-mini;
     color: color.$gray-60;
     text-decoration: none;
     -ms-flex-align: center;
 
     &::before {
-      @include icons-mixins.pi(3020, color.$gray-80);
+      @include icons-mixins.icon(3020);
       content: '';
       display: inline-block;
-      position: relative;
       width: icons.$icon-size-default;
       height: icons.$icon-size-default;
-      margin-right: spacing.$spacer * 0.5;
-
-      transition: animation.$transition-fade;
-      opacity: 0.8;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
-
-      vertical-align: middle;
     }
 
     &:hover,
     &:focus {
       color: color.$black;
-
-      &::before {
-        opacity: 1;
-      }
     }
   }
 }
