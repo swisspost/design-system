@@ -14,9 +14,9 @@
   $font-size: map.get(notification.$notification-font-size-map, $size);
   $padding-x: map.get(notification.$notification-padding-x-map, $size);
   $padding-y: map.get(notification.$notification-padding-y-map, $size);
-  $hr-margin-block: map.get(notification.$notification-hr-margin-block-map, $size);
 
   position: relative;
+  box-sizing: border-box;
   min-height: 2 * $padding-y + $icon-size;
   box-shadow: notification.$notification-box-shadow;
   border-radius: notification.$notification-border-radius;
@@ -25,16 +25,6 @@
   margin-block-end: notification.$notification-margin-bottom;
   font-size: $font-size;
   font-weight: notification.$notification-font-weight;
-
-  &::before {
-    content: '';
-    display: block;
-    position: absolute;
-    height: $icon-size;
-    width: $icon-size;
-    left: $padding-x;
-    top: $padding-y;
-  }
 
   &.no-icon {
     min-height: 2 * $padding-y + close.$close-size;
@@ -53,25 +43,31 @@
     }
   }
 
-  // for notifications with mask-image icons
+  // for notifications with mask-image icons and post-icon override
+  &::before {
+    content: '';
+    display: block;
+  }
+
+  &::before,
+  > post-icon {
+    position: absolute;
+    height: $icon-size;
+    width: $icon-size;
+    left: $padding-x;
+    top: $padding-y;
+  }
+
   &.no-icon,
   &[class^='pi-'],
   &[class*=' pi-'] {
     &::before {
       content: unset;
     }
-  }
 
-  a {
-    font-weight: notification.$notification-link-font-weight;
-  }
-
-  hr {
-    margin-block: $hr-margin-block !important;
-  }
-
-  > *:only-child {
-    @include notification-heading($size);
+    > post-icon {
+      display: none;
+    }
   }
 
   @include utilities-mx.high-contrast-mode {
@@ -81,11 +77,43 @@
   }
 }
 
-@mixin notification-variant($color, $icon) {
-  @include color-mx.colored-background($color);
+@mixin notification-body($size) {
+  $hr-margin-block: map.get(notification.$notification-hr-margin-block-map, $size);
 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: notification.$notification-body-gap;
+
+  a {
+    font-weight: notification.$notification-link-font-weight;
+  }
+
+  hr {
+    margin-block: $hr-margin-block !important;
+  }
+
+  > :only-child,
+  > post-icon:first-child + :last-child {
+    @include notification-heading($size);
+  }
+
+  > * {
+    margin: 0;
+  }
+}
+
+@mixin notification-variant($color, $icon) {
+  @include color-mx.colored-background($color, $allow-alpha: false);
+
+  // default icon (mask-image)
   &:not(.no-icon, [class^='pi-'], [class*=' pi-'])::before {
     @include icons-mx.icon($icon);
+  }
+
+  // icon override (post-icon)
+  > post-icon {
+    background-color: $color;
   }
 }
 
@@ -102,7 +130,7 @@
     inset-inline-end: $padding-x;
   }
 
-  > .#{$close}:first-child + *:last-child {
+  > .#{$close}:first-child + :last-child {
     @include notification-heading($size);
   }
 }

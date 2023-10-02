@@ -5,7 +5,6 @@
 
 @use './../mixins/notification' as notification-mx;
 @use './../placeholders/close' as close-ph;
-@use './../placeholders/notification' as notification-ph;
 
 @use './../variables/commons';
 @use './../variables/spacing';
@@ -13,8 +12,8 @@
 
 .toast {
   @include notification-mx.notification-size(toast);
+  @include notification-mx.notification-body(toast);
   @include notification-mx.notification-dismissible(toast, 'toast-close-button');
-  @extend %notification-body;
 }
 
 .toast-close-button {

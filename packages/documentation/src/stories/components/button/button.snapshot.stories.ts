@@ -25,7 +25,7 @@ export const Button: Story = {
                 tag: context.argTypes.tag.options,
                 disabled: [false, true],
                 iconOnly: [false, true],
-                icon: ['null', 'pi-2069'],
+                icon: ['null', '2069'],
                 iconPosition: context.argTypes.iconPosition.options,
               })
                 .filter(
@@ -37,6 +37,7 @@ export const Button: Story = {
                 )
                 .filter(args => !(args.icon === 'null' && args.iconPosition === 'end'))
                 .filter(args => !(args.icon !== 'null' && args.tag === 'input'))
+                .map((args: Args) => args.tag === 'input' ? { ...args, type: 'button' } : args)
                 .map((args: Args) =>
                   Default.render?.({ ...context.args, ...args, animated: false }, context),
                 )}
