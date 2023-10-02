@@ -94,11 +94,7 @@
 
 .form-check-input {
   @include form-validation-state-selector(invalid) {
-    border-color: form-validation.$form-feedback-invalid-color !important;
-
-    &:checked {
-      color: form-validation.$form-feedback-invalid-color;
-    }
+    border-color: form-validation.$form-feedback-invalid-color;
 
     &:focus {
       box-shadow: form-validation.$form-feedback-invalid-box-shadow;
@@ -109,7 +105,7 @@
     }
 
     @include color-mx.on-dark-background {
-      background-color: color.$white;
+      border-color: inherit;
 
       ~ .form-check-label {
         color: color.$white;
