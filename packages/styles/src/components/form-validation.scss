@@ -105,13 +105,7 @@
     }
 
     @include color-mx.on-dark-background {
-      &:checked {
-        border-color: color.$white;
-      }
-
-      &:not(:checked) {
-        background-color: color.$white;
-      }
+      border-color: inherit;
 
       ~ .form-check-label {
         color: color.$white;
