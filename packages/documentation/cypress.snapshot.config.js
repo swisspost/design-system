@@ -4,7 +4,7 @@ module.exports = defineConfig({
   projectId: 'f9aegu',
   e2e: {
     baseUrl: 'http://localhost:9300',
-    specPattern: ['cypress/**/radio.snapshot.{ts,tsx}', 'cypress/**/checkbox.snapshot.{ts,tsx}'],
+    specPattern: ['cypress/**/*.snapshot.{ts,tsx}'],
     includeShadowDom: true,
     viewportWidth: 1024,
     viewportHeight: 576,
