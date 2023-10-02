@@ -37,6 +37,7 @@ export const Button: Story = {
                 )
                 .filter(args => !(args.icon === 'null' && args.iconPosition === 'end'))
                 .filter(args => !(args.icon !== 'null' && args.tag === 'input'))
+                .map((args: Args) => args.tag === 'input' ? { ...args, type: 'button' } : args)
                 .map((args: Args) =>
                   Default.render?.({ ...context.args, ...args, animated: false }, context),
                 )}
