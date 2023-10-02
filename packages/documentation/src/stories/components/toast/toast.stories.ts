@@ -370,7 +370,7 @@ function render(args: Args, context: StoryContext) {
   const toastIcon =
     !args.noIcon && args.icon !== 'null'
       ? html`
-        <post-icon aria-hidden="true" name=${args.icon}/>
+        <post-icon aria-hidden="true" name=${args.icon}></post-icon>
       `
       : null;
 

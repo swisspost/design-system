@@ -354,10 +354,10 @@ export const CustomContent: Story = {
     showHeader: true,
     showFooter: true,
     customHeader: `<div class="card-header d-flex">
-  <post-icon aria-hidden="true" class="fs-small-huge" name="3217"/>
+  <post-icon aria-hidden="true" class="fs-small-huge" name="3217"></post-icon>
   <h3 class="fw-bold mb-0 me-auto">Detaloj de la Uzanto</h3>
   <a href="#" aria-labelledby="detaloj-title">
-    <post-icon aria-hidden="true" class="fs-large" name="3020"/>
+    <post-icon aria-hidden="true" class="fs-large" name="3020"></post-icon>
     <span class="visually-hidden">Administrado de kontoj</span>
   </a>
 </div>`,
@@ -367,14 +367,14 @@ export const CustomContent: Story = {
       Mr<br>Pronomo Familinomo<br>Strato 1<br>1234 Urbo
     </address>
     <a href="#">
-      <post-icon aria-label="Redaktu adreson" class="fs-large" name="3193"/>
+      <post-icon aria-label="Redaktu adreson" class="fs-large" name="3193"></post-icon>
       <span class="visually-hidden">Redaktu adreson</span>
     </a>
   </li>
   <li class="list-group-item d-flex align-items-center justify-content-between">
     <p class="mb-0">Lingvo: <span class="fw-bold">Germana</span></p>
     <a href="#">
-      <post-icon aria-label="Redakti lingvon" class="fs-large" name="3193"/>
+      <post-icon aria-label="Redakti lingvon" class="fs-large" name="3193"></post-icon>
       <span class="visually-hidden">Redakti lingvon</span>
     </a>
   </li>
