@@ -60,7 +60,7 @@
     "@web-types/lit": "2.0.0-3"
   },
   "engines": {
-    "node": "16",
+    "node": "18",
     "pnpm": "8"
   },
   "pnpm": {
