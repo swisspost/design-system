@@ -18,6 +18,11 @@
 
 .toast-close-button {
   @extend %btn-close;
+
+  // Hide ngx-toastr close-button and keep our. Only useful when toast is used programmatically with ngx-toastr.
+  > span {
+    display: none;
+  }
 }
 
 .toast-title {
