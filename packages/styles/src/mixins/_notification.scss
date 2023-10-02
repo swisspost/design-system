@@ -120,6 +120,7 @@
 @mixin notification-dismissible($size, $close: 'btn-close') {
   $padding-x: map.get(notification.$notification-padding-x-map, $size);
 
+  pointer-events: auto;
   position: relative;
   padding-inline-end: $padding-x + notification.$notification-gap + close.$close-size;
 
