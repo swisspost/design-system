@@ -1,6 +1,6 @@
 @use './../../variables/color';
 @use './../../variables/commons';
-@use './../../functions/icons';
+@use './../../mixins/icons' as icons-mx;
 
 @use './../../themes/bootstrap/core' as *;
 @use './../../placeholders/dropdown';
@@ -14,13 +14,18 @@
     }
 
     > .nav-link::after {
-      @extend %toggler-icon;
-      background-image: url(icons.get-colored-svg-url('2051', color.$gray-80));
+      display: inline-flex;
+      align-items: center;
+
+      &::after {
+        @extend %toggler-icon;
+        @include icons-mx.icon(2051);
+      }
     }
 
     &.hidden {
       > .nav-link::after {
-        background-image: url(icons.get-colored-svg-url('2052', color.$gray-80)); // Angle downwards
+        transform: rotate(180deg);
       }
     }
   }
