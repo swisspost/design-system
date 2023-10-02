@@ -18,7 +18,7 @@
     display: none;
     max-width: 100%; // Contain to parent when possible
     padding: tooltips.$tooltip-padding-y tooltips.$tooltip-padding-x;
-    margin-top: .1rem;
+    margin-top: 0.1rem;
     @include font-size(tooltips.$tooltip-font-size);
     color: $tooltip-color;
     background-color: $tooltip-bg-color;
@@ -31,4 +31,3 @@
     }
   }
 }
-

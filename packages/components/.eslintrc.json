@@ -35,9 +35,8 @@
       }
     ],
     "@stencil-community/strict-boolean-conditions": "off",
-    "@stencil-community/required-prefix": ["error", ["post"]],
+    "@stencil-community/required-prefix": ["error", ["post-"]],
     "@stencil-community/async-methods": "error",
-    "@stencil-community/ban-prefix": ["error", ["stencil", "stnl", "st"]],
     "@stencil-community/decorators-context": "error",
     "@stencil-community/decorators-style": [
       "error",
@@ -49,6 +48,12 @@
         "method": "multiline",
         "watch": "multiline",
         "listen": "multiline"
+      }
+    ],
+    "@stencil-community/class-pattern": [
+      "error",
+      {
+        "pattern": "^Post.*(?!Component)$"
       }
     ],
     "@stencil-community/element-type": "error",
