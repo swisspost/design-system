@@ -221,7 +221,7 @@ const Template = {
       `;
     } else {
       const icon = html`
-        <post-icon aria-hidden="true" name=${args.icon}/>
+        <post-icon aria-hidden="true" name=${args.icon}></post-icon>
       `;
       const iconOnlyContent = html`
         <span class="visually-hidden">${args.text}</span>

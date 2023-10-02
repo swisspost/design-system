@@ -36,7 +36,7 @@ export const Alert: Story = {
           : null}
                     ${args.icon !== 'null'
                       ? html`
-                        <post-icon aria-hidden="true" class="alert-icon" name=${args.icon}/>
+                        <post-icon aria-hidden="true" class="alert-icon" name=${args.icon}></post-icon>
                       `
                       : null}
                     ${args.action
