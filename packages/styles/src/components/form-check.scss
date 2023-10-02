@@ -56,13 +56,11 @@
 
     &:checked,
     &:indeterminate {
-      &:not(.is-invalid) {
-        color: var(--post-contrast-color);
-        border-color: var(--post-contrast-color);
+      color: var(--post-contrast-color);
+      border-color: var(--post-contrast-color);
 
-        ~ .form-check-label {
-          color: var(--post-contrast-color);
-        }
+      ~ .form-check-label {
+        color: var(--post-contrast-color);
       }
     }
 
@@ -86,11 +84,11 @@
       }
     }
 
-    &[disabled]:not(.is-invalid),
-    &[disabled]:not(.is-invalid) ~ .form-check-label {
+    &[disabled],
+    &[disabled] ~ .form-check-label {
       opacity: 1; // Bootstrap reset
-      border-color: rgba(var(--post-contrast-color-rgb), 0.4);
-      color: rgba(var(--post-contrast-color-rgb), 0.4);
+      border-color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
+      color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
     }
   }
 
