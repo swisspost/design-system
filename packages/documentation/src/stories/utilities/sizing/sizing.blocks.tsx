@@ -1,5 +1,4 @@
 import { forEach } from '../../../utils/react';
-import { parse } from '../../../utils/sass-export';
 
 const enum PostSizeImplementation {
   Pixel,

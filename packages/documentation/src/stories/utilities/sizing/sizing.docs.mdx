@@ -1,11 +1,40 @@
-import { Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { SizesTable } from './sizing.blocks.tsx';
 import * as SizingStories from './sizing.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={SizingStories} />
 
 # Sizing
 
-<div className="alert alert-info">
-  <h2 className="alert-heading">TODO:</h2>
-  <p>Document differences to bootstrap and link over for the rest.</p>
+### Post-Sizes Reference Table
+
+{/* prettier-ignore */}
+<div class="alert alert-warning mb-bigger-big">
+  <h2 class="alert-heading">Sizing variables are deprecated</h2>
+  <p>The current set of the post-specific sizing variables is deprecated in favour of a new naming system that is consistent with the Design. For further information, please read the <a href="https://github.com/swisspost/design-system/discussions/588">discussion on sizing variables on GitHub</a> and have a look at the <a href="https://www.figma.com/file/ojCcgC5Zd12eUSzq6V5m24/Foundations?node-id=3%3A2&t=l8qimsXlxeMLOzs6-0">implementation in Figma</a>.</p>
+  <p>There is a new solution with updated naming system up coming for spacing sizes.</p>
+</div>
+<SizesTable />
+
+## Height & Width
+
+Height and width can be set using `h-*` and `w-*` prefixes, max-height and max-width can be set using prefixes mh-_ and mw-_ .
+
+Bootstrap offers sizing classes with the following number suffixes: `*-25` , `*-50?` , `*-75` , `*-100` . They allow you to set a height / width as a percentage (see [Bootstrap Sizing](https://getbootstrap.com/docs/5.3/utilities/sizing/) for reference).
+
+Post sizes can be used in the same way: by adding the name of the desired size to a prefix (to find out which size name to use, see the "Size name in classes" column in the reference table above or use the demo below).
+
+#### Example Parent based
+
+<Canvas of={SizingStories.SizesPercent} />
+<div className="hide-col-default">
+  <Controls of={SizingStories.SizesPercent} />
+</div>
+
+#### Example Post-Sizes
+
+<Canvas of={SizingStories.Sizes} />
+<div className="hide-col-default">
+  <Controls of={SizingStories.Sizes} />
 </div>
