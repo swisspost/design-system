@@ -4,6 +4,7 @@
 @use '@swisspost/design-system-styles/components/spinner';
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/functions';
+@use '@swisspost/design-system-styles/variables/spacing';
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
 
@@ -18,6 +19,7 @@
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+  min-height: spacing.$size-small-huge; // Avoid visual shift when buttons are hidden.
 
   @include mixins.max(rg) {
     font-size: functions.px-to-rem(14px);
