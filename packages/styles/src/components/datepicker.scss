@@ -98,6 +98,9 @@ span.ngb-dp-navigation-chevron {
   width: 40px !important;
   height: 40px !important;
   line-height: 40px;
+  &:focus-visible{
+    outline: color.$warning solid 2px;
+  }
 }
 
 .ngb-dp-day > .text-white {
@@ -138,6 +141,9 @@ span.ngb-dp-navigation-chevron {
     width: datepicker.$ngb-dp-icon-size;
     height: datepicker.$ngb-dp-icon-size;
     transform: none;
+  }
+  &:focus-visible{
+    outline: color.$warning solid 2px;
   }
 }
 
