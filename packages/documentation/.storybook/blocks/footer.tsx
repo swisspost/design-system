@@ -30,7 +30,7 @@ const DEVELOPERS: Developer[] = [
 ];
 
 export default () => (
-  <footer className="docs-footer mt-huge">
+  <footer className="docs-footer mt-huge bg-light">
     <div className="container">
       <div className="pt-big-r pb-big-r">
         <h2 className="mt-0">Support</h2>
