@@ -43,9 +43,9 @@ export class PostTooltip {
   private tooltipRef: HTMLDivElement & PopoverElement;
   private arrowRef: HTMLElement;
   private clearAutoUpdate: () => void;
-  private readonly localShowTooltip: (e: Event) => Promise<void>;
-  private readonly localHideTooltip: () => Promise<void>;
-  private readonly localToggleTooltip: () => Promise<void>;
+  private readonly localShowTooltip: (e: Event) => void;
+  private readonly localHideTooltip: () => void;
+  private readonly localToggleTooltip: () => void;
   private eventTarget: Element;
 
   @Element() host: HTMLPostTooltipElement;
@@ -85,7 +85,9 @@ export class PostTooltip {
   constructor() {
     // Create local versions of event handlers for de-registration
     // https://stackoverflow.com/questions/33859113/javascript-removeeventlistener-not-working-inside-a-class
-    this.localShowTooltip = e => this.show(e.target as HTMLElement);
+    this.localShowTooltip = e => {
+      this.show(e.target as HTMLElement);
+    };
     this.localHideTooltip = this.hide.bind(this);
     this.localToggleTooltip = this.toggle.bind(this);
   }
@@ -101,7 +103,7 @@ export class PostTooltip {
   connectedCallback() {
     if (!this.host.id) {
       throw new Error(
-        'No id set: <post-tooltip> must have an id, linking it to it\'s target element using the data-tooltip-target attribute.',
+        "No id set: <post-tooltip> must have an id, linking it to it's target element using the data-tooltip-target attribute.",
       );
     }
 
@@ -206,9 +208,7 @@ export class PostTooltip {
     const isOpen = e.newState === 'open';
     if (isOpen) {
       this.startAutoupdates();
-    } else {
-      if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
-    }
+    } else if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
   }
 
   /**
