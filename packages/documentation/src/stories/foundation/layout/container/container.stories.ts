@@ -17,14 +17,14 @@ export const Default: Story = {
   render: () => {
     function genericContent(classNames: string, withReset: boolean) {
       return html`
-        <div class=${classNames} style="background-color:grey">
+        <div class="border border-primary bg-primary ${classNames}">
           <h2>${classNames}</h2>
-          <div style="background-color:orange">
+          <div class="bg-light">
             <h3>Generic Content</h3>
           </div>
           ${withReset
             ? html`
-                <div class="container-reset" style="background-color:orange">
+                <div class="bg-light container-reset">
                   <h3>Reset Content</h3>
                 </div>
               `
