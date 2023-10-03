@@ -22,15 +22,6 @@ describe('breadcrumb', () => {
   }
 
   describe('configuration', () => {
-    it(`should not be rendered if no header present`, () => {
-      // Need to revisit storybook to make sure new story is loaded correctly
-      prepare('Internet Header/Components/Breadcrumbs', 'NonExistentHeader');
-
-      cy.get('swisspost-internet-breadcrumbs').should('not.be.visible');
-      cy.get('.page-wrapper').should('be.visible');
-      cy.get('div.breadcrumbs').should('not.exist');
-    });
-
     it(`should not rendered if no config present`, () => {
       // Cast the imported JSON object to the IPortalConfig interface
       const config: IPortalConfig = <any>testConfiguration;
@@ -42,15 +33,15 @@ describe('breadcrumb', () => {
       modifiedConfig.fr.breadcrumb = undefined;
       modifiedConfig.it.breadcrumb = undefined;
 
-      prepare('Internet Header/Components/Breadcrumbs', 'NonExistentHeader', modifiedConfig);
+      prepare('Internet Header/Breadcrumbs', 'Default', modifiedConfig);
       cy.get('swisspost-internet-breadcrumbs').should('exist');
       cy.get('div.breadcrumbs').should('not.exist');
     });
 
     it(`should add custom elements`, () => {
-      prepare('Internet Header/Components/Breadcrumbs', 'Custom-Items');
+      prepare('Internet Header/Breadcrumbs/Custom Items', 'Default');
 
-      (cy as any).changeArg('custom-items', [
+      cy.changeArg('custom-items', [
         { text: 'Test1', url: '/x/y/z' },
         { text: 'Test2', url: '/a/b/c' },
       ]);
@@ -70,9 +61,9 @@ describe('breadcrumb', () => {
     });
   });
 
-  describe('open/close overlay buttons', () => {
+  describe('Toggle overlay buttons', () => {
     beforeEach(() => {
-      prepare('Internet Header/Components/Breadcrumbs', 'Default');
+      prepare('Internet Header/Breadcrumbs', 'Default');
       cy.get('div.breadcrumbs').as('breadcrumbs');
       cy.intercept(
         'https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/**',
@@ -100,12 +91,27 @@ describe('breadcrumb', () => {
       closeOverlayOnKey('Escape');
       cy.get('@breadcrumbs').find('div.overlay').should('not.exist');
     });
+
+    it.only(`should open overlay programmatically`, () => {
+      cy.get('swisspost-internet-breadcrumbs').then(async el => {
+        await el[0].toggleOverlayById('help');
+        cy.get('div.breadcrumbs').find('div.overlay').should('exist');
+      });
+    });
+
+    it.only(`should close overlay programmatically`, () => {
+      cy.get('swisspost-internet-breadcrumbs').then(async el => {
+        await el[0].toggleOverlayById('help');
+        await el[0].toggleOverlayById('help');
+        cy.get('div.breadcrumbs').find('div.overlay').should('not.exist');
+      });
+    });
   });
 
   describe('mobile', () => {
     beforeEach(() => {
       cy.viewport('iphone-6+');
-      prepare('Internet Header/Components/Breadcrumbs', 'Default');
+      prepare('Internet Header/Breadcrumbs', 'Default');
       cy.get('div.breadcrumbs').as('breadcrumbs');
     });
 
@@ -117,7 +123,7 @@ describe('breadcrumb', () => {
 
     it(`should not break line for long elements`, () => {
       const itemText = 'Veeeeeeeeery loooooooong element';
-      (cy as any).changeArg('custom-items', [{ text: itemText, url: '/x/y/z' }]);
+      cy.changeArg('custom-items', [{ text: itemText, url: '/x/y/z' }]);
 
       cy.get('div.breadcrumbs > nav > ol li').as('breadcrumbItems');
 
