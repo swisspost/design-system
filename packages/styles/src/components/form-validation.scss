@@ -81,7 +81,8 @@
   }
 }
 
-.form-control {
+.form-control,
+.form-select {
   @include form-validation-state-selector(invalid) {
     border-color: form-validation.$form-feedback-invalid-color;
 
