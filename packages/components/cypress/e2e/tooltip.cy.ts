@@ -5,24 +5,27 @@ describe('tooltips', () => {
       cy.get('button[data-tooltip-target="tooltip-multiple"]:first-of-type').as('target1');
       cy.get('button[data-tooltip-target="tooltip-multiple"]:last-of-type').as('target2');
       cy.get('#tooltip-multiple').shadow().find('div[popover]').as('tooltip');
+      cy.get('@target1', { timeout: 30000 }).should('be.visible');
+      cy.get('@tooltip').should('not.be.visible');
     });
 
     it('should display a tooltip', () => {
       cy.get('@tooltip').should('not.be.visible');
-      cy.get('@target2').focus();
+      cy.get('@target2').trigger('focus');
       cy.get('@tooltip').should('be.visible');
-      cy.get('@target2').blur();
+      cy.get('@target2').trigger('blur');
       cy.get('@tooltip').should('not.be.visible');
     });
 
     it('tooltip placement right', () => {
       cy.get('#tooltip-multiple').invoke('attr', 'placement', 'right');
-      cy.get('@target2').focus();
-      cy.wait(10);
+      cy.get('@target2').trigger('focus');
       cy.get('@tooltip')
+        .should('be.visible')
+        .wait(1)
         .should('have.css', 'left')
         .then((v: any) => {
-          expect(parseInt(v)).to.be.greaterThan(150);
+          expect(parseInt(v)).to.be.greaterThan(400);
         });
     });
   });
