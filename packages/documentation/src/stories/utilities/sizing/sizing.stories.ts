@@ -29,7 +29,7 @@ const sizingOptions = [
   'bigger-giant',
 ];
 
-const sizeOptionsPercent = ['25', '50', '75', '100'];
+const sizeOptionsPercent = ['auto', '25', '50', '75', '100'];
 
 const meta: Meta = {
   render: renderSizing,

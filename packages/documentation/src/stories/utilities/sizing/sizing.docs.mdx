@@ -21,18 +21,22 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 Height and width can be set using `h-*` and `w-*` prefixes, max-height and max-width can be set using prefixes mh-_ and mw-_ .
 
-Bootstrap offers sizing classes with the following number suffixes: `*-25` , `*-50?` , `*-75` , `*-100` . They allow you to set a height / width as a percentage (see [Bootstrap Sizing](https://getbootstrap.com/docs/5.3/utilities/sizing/) for reference).
+#### Parent Based
 
-Post sizes can be used in the same way: by adding the name of the desired size to a prefix (to find out which size name to use, see the "Size name in classes" column in the reference table above or use the demo below).
+Bootstrap offers sizing classes with the following number suffixes: `*-25` , `*-50?` , `*-75` , `*-100` . They allow you to set a height / width as a percentage of the parent element (see [Bootstrap Sizing](https://getbootstrap.com/docs/5.3/utilities/sizing/) for reference).
 
-#### Example Parent based
+###### Example
 
 <Canvas of={SizingStories.SizesPercent} />
 <div className="hide-col-default">
   <Controls of={SizingStories.SizesPercent} />
 </div>
 
-#### Example Post-Sizes
+#### Post-Sizes
+
+Post sizes can be used as suffixes in the same way. To find out which size name to use, see the "Size name in classes" column in the reference table above or use the "Example Post-Sizes" below.
+
+###### Example
 
 <Canvas of={SizingStories.Sizes} />
 <div className="hide-col-default">
