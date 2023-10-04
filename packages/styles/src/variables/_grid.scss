@@ -17,7 +17,20 @@ $container-max-widths: (
 // Set the number of columns and specify the width of the gutters.
 
 $grid-columns: 12 !default;
+
+/* Deprecated: $grid-gutter-width */
 $grid-gutter-width: 30px !default;
+
+/* Deprecated: "rg" breakpoint */
+$grid-gutter-x: (
+  xs: 16px,
+  sm: 16px,
+  rg: 16px,
+  md: 16px,
+  lg: 24px,
+  xl: 24px,
+  xxl: 24px,
+) !default;
 
 /* Deprecated: "rg" breakpoint */
 $grid-container-padding: (

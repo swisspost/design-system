@@ -13,6 +13,7 @@
 
 $container-padding-x-cache: 0;
 $container-fluid-padding-x-cache: 0;
+$gutter-x-cache: 0;
 
 .container {
   padding-inline: var(--post-container-padding-x);
@@ -25,6 +26,8 @@ $container-fluid-padding-x-cache: 0;
 @each $breakpoint in grid.$grid-breakpoints-list {
   $container-padding-x: map.get(grid.$grid-container-padding, $breakpoint);
   $container-fluid-padding-x: map.get(grid.$grid-container-fluid-padding, $breakpoint);
+  $gutter-x: map.get(grid.$grid-gutter-x, $breakpoint);
+
   @if ($container-padding-x-cache != $container-padding-x) {
     .container {
       @if $breakpoint == 'xs' {
@@ -48,8 +51,51 @@ $container-fluid-padding-x-cache: 0;
       }
     }
   }
+
+  @if ($gutter-x-cache != $gutter-x) {
+    .row {
+      @if $breakpoint == 'xs' {
+        --bs-gutter-x: #{$gutter-x};
+      } @else {
+        @include media-breakpoint-up($breakpoint) {
+          --bs-gutter-x: #{$gutter-x};
+        }
+      }
+    }
+  }
+
   $container-padding-x-cache: $container-padding-x;
   $container-fluid-padding-x-cache: $container-fluid-padding-x;
+  $gutter-x-cache: $gutter-x;
+}
+
+// redefine gutter-utilities, to override the custom gutter-width above
+@each $infix in grid.$grid-breakpoints-list {
+  @each $postfix, $gutter in $gutters {
+    @if $infix == 'xs' {
+      .g-#{$postfix},
+      .gx-#{$postfix} {
+        --bs-gutter-x: #{$gutter};
+      }
+
+      // .g-#{$postfix},
+      // .gy-#{$postfix} {
+      //   --bs-gutter-y: #{$gutter};
+      // }
+    } @else {
+      @include media-breakpoint-up($infix) {
+        .g-#{$infix}-#{$postfix},
+        .gx-#{$infix}-#{$postfix} {
+          --bs-gutter-x: #{$gutter};
+        }
+
+        // .g-#{$infix}-#{$postfix},
+        // .gy-#{$infix}-#{$postfix} {
+        //   --bs-gutter-y: #{$gutter};
+        // }
+      }
+    }
+  }
 }
 
 // legacy code
