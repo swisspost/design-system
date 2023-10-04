@@ -103,7 +103,7 @@ export class PostTooltip {
   connectedCallback() {
     if (!this.host.id) {
       throw new Error(
-        "No id set: <post-tooltip> must have an id, linking it to it's target element using the data-tooltip-target attribute.",
+        'No id set: <post-tooltip> must have an id, linking it to it\'s target element using the data-tooltip-target attribute.',
       );
     }
 
