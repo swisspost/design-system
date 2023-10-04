@@ -42,6 +42,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
   private searchBox?: HTMLInputElement;
   private searchFlyout: HTMLElement | undefined;
   private throttledResize: throttle<() => void>;
+  private clearButton?: HTMLButtonElement;
 
   connectedCallback() {
     this.throttledResize = throttle(300, () => this.handleResize());
@@ -148,7 +149,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
    * Disable or re-enable body scrolling, depending on whether search dropdown is open or closed in mobile view (width < 1024px)
    */
   private setBodyScroll() {
-    if(!this.searchFlyout) {
+    if (!this.searchFlyout) {
       return;
     }
 
@@ -167,6 +168,12 @@ export class PostSearch implements HasDropdown, IsFocusable {
       return;
     }
     const query = this.searchBox.value.trim();
+
+    if (query !== '') {
+      this.clearButton?.classList.remove('visually-hidden');
+    } else {
+      this.clearButton?.classList.add('visually-hidden');
+    }
 
     const [placeSuggestions, coveoSuggestions, trackAndTraceInfo] = await Promise.all([
       queryPlaces(query),
@@ -377,6 +384,20 @@ export class PostSearch implements HasDropdown, IsFocusable {
                         onKeyDown={e => this.handleKeyDown(e)}
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
+                      <button
+                        onClick={() => {
+                          this.searchBox ? (this.searchBox.value = '') : '';
+                          this.handleSearchInput();
+                        }}
+                        class="visually-hidden clear-search-button"
+                        type="reset"
+                        aria-label="Clear input"
+                        id="clearButton"
+                        ref={el => (this.clearButton = el)}
+                        title="Clear input"
+                      >
+                        <SvgIcon name="pi-close" />
+                      </button>
                       <button onClick={() => void this.startSearch()} class="start-search-button">
                         <span class="visually-hidden">{translations.searchSubmit}</span>
                         <SvgIcon name="pi-search" />
