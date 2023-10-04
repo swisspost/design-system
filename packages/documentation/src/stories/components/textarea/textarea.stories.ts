@@ -83,8 +83,8 @@ const meta: Meta = {
         type: 'select',
         labels: {
           'form-control-sm': 'Small',
-          'form-control-rg': 'Regular',
-          'null': 'Middle',
+          'form-control-rg': 'Regular (deprecated)',
+          'null': 'Middle (deprecated)',
           'form-control-lg': 'Large',
         },
       },
