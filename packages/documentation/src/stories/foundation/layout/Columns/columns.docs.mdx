@@ -1,0 +1,61 @@
+import { Meta, Canvas, Source, Controls } from '@storybook/blocks';
+import * as ColumnStories from './columns.stories';
+import './columns.styles.scss';
+
+<Meta of={ColumnStories} />
+
+# Columns
+
+Learn how to modify columns with a handful of options for alignment, ordering, and offsetting thanks to our flexbox grid system. Plus, see how to use column classes to manage widths of non-grid elements.
+
+### How they work
+
+<ul>
+<li><b>Columns build on the grid’s flexbox architecture.</b> Flexbox means we have options for changing individual columns and modifying groups of columns at the row level. You choose how columns grow, shrink, or otherwise change.</li>
+<br/>
+<li><b>When building grid layouts, all content goes in columns.</b> The hierarchy of our grid goes from container to row to column to your content.</li>
+<br/>
+<li><b>The Swiss Post Design System includes predefined classes for creating fast, responsive layouts.</b> With [seven breakpoints](/?path=/docs/foundations-layout-breakpoints--docs) and a dozen columns at each grid tier, we have dozens of classes already built for you to create your desired layouts.</li>
+</ul>
+
+### Alignment
+Use flexbox alignment utilities to vertically and horizontally align columns.
+
+#### Vertical alignment
+
+Change the vertical alignment with any of the responsive <code>align-items-*</code> classes.
+
+Or, change the alignment of each column individually with any of the responsive <code>align-self-*</code> classes.
+
+<Canvas of={ColumnStories.VerticalExample} />
+<div className="hide-col-default">
+  <Controls of={ColumnStories.VerticalExample} />
+</div>
+
+#### Vertical alignment
+
+Change the horizontal alignment with any of the responsive <code>justify-content-*</code> classes.
+
+<Canvas of={ColumnStories.HorizontalExample} />
+<div className="hide-col-default">
+  <Controls of={ColumnStories.HorizontalExample} />
+</div>
+
+### Column wrapping
+
+<Canvas of={ColumnStories.OrderExample} />
+
+<Canvas of={ColumnStories.OrderMaxExample} />
+
+<Canvas of={ColumnStories.OffsetExample} />
+<div className="hide-col-default">
+  <Controls of={ColumnStories.OffsetExample} />
+</div>
+
+<Canvas of={ColumnStories.ColumnBreakExample} />
+
+<Canvas of={ColumnStories.ResetOffsetExample} />
+
+<Canvas of={ColumnStories.MarginUtilitiesExample} />
+
+<Canvas of={ColumnStories.StandaloneColumnExample} />
