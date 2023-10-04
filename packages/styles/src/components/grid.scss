@@ -11,6 +11,49 @@
 @use './../variables/spacing';
 @use './../variables/grid';
 
+$container-padding-x-cache: 0;
+$container-fluid-padding-x-cache: 0;
+
+.container {
+  padding-inline: var(--post-container-padding-x);
+}
+
+.container-fluid {
+  padding-inline: var(--post-container-fluid-padding-x);
+}
+
+@each $breakpoint in grid.$grid-breakpoints-list {
+  $container-padding-x: map.get(grid.$grid-container-padding, $breakpoint);
+  $container-fluid-padding-x: map.get(grid.$grid-container-fluid-padding, $breakpoint);
+  @if ($container-padding-x-cache != $container-padding-x) {
+    .container {
+      @if $breakpoint == 'xs' {
+        --post-container-padding-x: #{$container-padding-x};
+      } @else {
+        @include media-breakpoint-up($breakpoint) {
+          --post-container-padding-x: #{$container-padding-x};
+        }
+      }
+    }
+  }
+
+  @if ($container-fluid-padding-x-cache != $container-fluid-padding-x) {
+    .container-fluid {
+      @if $breakpoint == 'xs' {
+        --post-container-fluid-padding-x: #{$container-fluid-padding-x};
+      } @else {
+        @include media-breakpoint-up($breakpoint) {
+          --post-container-fluid-padding-x: #{$container-fluid-padding-x};
+        }
+      }
+    }
+  }
+  $container-padding-x-cache: $container-padding-x;
+  $container-fluid-padding-x-cache: $container-fluid-padding-x;
+}
+
+// legacy code
+
 .vertical-gutters {
   margin-bottom: grid.$grid-gutter-width * -1;
 
@@ -41,20 +84,6 @@ $container-cache: 0;
 
   // Ensure this breakpoint is only overwritten when the padding differs from the last breakpoint
   @if ($container-cache != $container-padding) {
-    // Loop over breakpoints and set custom-paddings to .container for each breakpoint
-    .container {
-      // If xs, don't add media-query
-      @if $breakpoint == 'xs' {
-        padding-right: $container-padding;
-        padding-left: $container-padding;
-      } @else {
-        @include media-breakpoint-up($breakpoint) {
-          padding-right: $container-padding;
-          padding-left: $container-padding;
-        }
-      }
-    }
-
     .container-reset {
       @if $breakpoint == 'xs' {
         margin-right: -($container-padding);
