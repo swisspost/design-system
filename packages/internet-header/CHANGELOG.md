@@ -1,5 +1,19 @@
 # @swisspost/internet-header
 
+## 1.10.0
+
+### Minor Changes
+
+- Enabled nesting the header in a different scroll container than the `<body>` element. The header stickyness and logo animation logic will automatically attach to the nearest scrolling container instead of the document when nested in a container that has `overflow: auto | scroll` set. (by [@alizedebray](https://github.com/alizedebray) with [#1855](https://github.com/swisspost/design-system/pull/1855))
+
+- Added ability to toggle programmatically an overlay associated with a button using the `toggleOverlayById` method. (by [@imagoiq](https://github.com/imagoiq) with [#1838](https://github.com/swisspost/design-system/pull/1838))
+
+### Patch Changes
+
+- Fixed an issue with custom configuration that was not applied when the prop "language" was not set on the internet header. (by [@alizedebray](https://github.com/alizedebray) with [#1855](https://github.com/swisspost/design-system/pull/1855))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.1
+
 ## 1.9.1
 
 ### Patch Changes
