@@ -12,7 +12,6 @@ import { HEADING_LEVELS, HeadingLevel } from './heading-levels';
 export class PostCollapsible {
   private isLoaded = false;
   private collapsible: HTMLElement;
-  private animation: Animation;
 
   @Element() host: HTMLPostCollapsibleElement;
 
@@ -64,21 +63,17 @@ export class PostCollapsible {
    */
   @Method()
   async toggle(open = !this.isOpen): Promise<boolean> {
-    if (open !== this.isOpen) {
-      this.isOpen = !this.isOpen;
+    if (open === this.isOpen) return Promise.reject(`The post-collapsible is already ${open ? 'open' : 'closed'}.`);
 
-      if (open) {
-        this.animation = expand(this.collapsible);
-      } else {
-        this.animation = collapse(this.collapsible);
-      }
+    this.isOpen = !this.isOpen;
 
-      if (!this.isLoaded || isMotionReduced()) this.animation.finish();
+    const animation = open ? expand(this.collapsible): collapse(this.collapsible);
 
-      await this.animation.finished;
+    if (!this.isLoaded || isMotionReduced()) animation.finish();
 
-      this.animation.commitStyles();
-    }
+    await animation.finished;
+
+    animation.commitStyles();
 
     return this.isOpen;
   }

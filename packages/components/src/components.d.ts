@@ -12,6 +12,24 @@ export { AlertType } from "./components/post-alert/alert-types";
 export { BackgroundColor } from "./components/post-tooltip/types";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
+    interface PostAccordion {
+        /**
+          * If `true`, only one `post-collapsible` can be open at a time.
+         */
+        "closeOthers": boolean;
+        /**
+          * Collapses all `post-collapsible` children.
+         */
+        "collapseAll": () => Promise<void>;
+        /**
+          * Expands all `post-collapsible` children.
+         */
+        "expandAll": () => Promise<void>;
+        /**
+          * Toggles the `post-collapsible` children with the given id.
+         */
+        "toggle": (id: string) => Promise<boolean>;
+    }
     interface PostAlert {
         /**
           * Triggers alert dismissal programmatically (same as clicking on the close button (×)).
@@ -46,9 +64,9 @@ export namespace Components {
         /**
           * Defines the hierarchical level of the collapsible header within the headings structure.
          */
-        "headingLevel"?: number;
+        "headingLevel"?: HeadingLevel;
         /**
-          * Triggers the collapse programmatically.
+          * Triggers the collapse programmatically.  If there is a collapsing transition running already, it will be reversed.
          */
         "toggle": (open?: boolean) => Promise<boolean>;
     }
@@ -142,6 +160,12 @@ export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLPostTabsElement;
 }
 declare global {
+    interface HTMLPostAccordionElement extends Components.PostAccordion, HTMLStencilElement {
+    }
+    var HTMLPostAccordionElement: {
+        prototype: HTMLPostAccordionElement;
+        new (): HTMLPostAccordionElement;
+    };
     interface HTMLPostAlertElement extends Components.PostAlert, HTMLStencilElement {
     }
     var HTMLPostAlertElement: {
@@ -188,6 +212,7 @@ declare global {
         new (): HTMLPostTooltipElement;
     };
     interface HTMLElementTagNameMap {
+        "post-accordion": HTMLPostAccordionElement;
         "post-alert": HTMLPostAlertElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
@@ -198,6 +223,12 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface PostAccordion {
+        /**
+          * If `true`, only one `post-collapsible` can be open at a time.
+         */
+        "closeOthers"?: boolean;
+    }
     interface PostAlert {
         /**
           * The label to use for the close button of a dismissible alert.
@@ -232,7 +263,7 @@ declare namespace LocalJSX {
         /**
           * Defines the hierarchical level of the collapsible header within the headings structure.
          */
-        "headingLevel"?: number;
+        "headingLevel"?: HeadingLevel;
     }
     /**
      * @class PostIcon - representing a stencil component
