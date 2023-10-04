@@ -397,7 +397,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
                       <button
-                        onClick={() => void this.handleClearSearchbar()}
+                        onClick={() => this.handleClearSearchbar()}
                         class="visually-hidden clear-search-button"
                         type="reset"
                         aria-label="Clear input"
