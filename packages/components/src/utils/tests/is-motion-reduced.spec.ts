@@ -1,6 +1,6 @@
-import { shouldReduceMotion } from '../should-reduce-motion';
+import { isMotionReduced } from '../is-motion-reduced';
 
-describe('shouldReduceMotion', () => {
+describe('isMotionReduced', () => {
   let matchMedia;
 
   beforeEach(() => {
@@ -9,11 +9,11 @@ describe('shouldReduceMotion', () => {
 
   it('should return true if reduced motion is requested', () => {
     matchMedia.mockReturnValue({ matches: true });
-    expect(shouldReduceMotion()).toBe(true);
+    expect(isMotionReduced()).toBe(true);
   });
 
   it('should return false if reduced motion is not requested', () => {
     matchMedia.mockReturnValue({ matches: false });
-    expect(shouldReduceMotion()).toBe(false);
+    expect(isMotionReduced()).toBe(false);
   });
 });
