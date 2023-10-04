@@ -169,6 +169,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
     const query = this.searchBox.value.trim();
 
+    // shows or hides clearButton depending on the content of the searchbar
     if (query !== '') {
       this.clearButton?.classList.remove('visually-hidden');
     } else {
@@ -196,6 +197,17 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
 
     this.deselectSuggestion();
+  }
+
+  /**
+   * clear Searchbar
+   * calls handleSearchInput to update/remove suggestions
+   */
+  private handleClearSearchbar() {
+    if (this.searchBox !== undefined) {
+      this.searchBox.value = '';
+      this.handleSearchInput();
+    }
   }
 
   /**
@@ -385,10 +397,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
                       <button
-                        onClick={() => {
-                          this.searchBox ? (this.searchBox.value = '') : '';
-                          this.handleSearchInput();
-                        }}
+                        onClick={() => void this.handleClearSearchbar()}
                         class="visually-hidden clear-search-button"
                         type="reset"
                         aria-label="Clear input"
