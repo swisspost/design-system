@@ -59,4 +59,9 @@ export const translations = {
     fr: 'Configurations des cookies',
     it: 'Impostazioni dei cookie',
   },
+  'Delete search term': {
+    de: 'Suchbegriff löschen',
+    fr: 'Supprimer le terme de recherche',
+    it: 'Elimina termine di ricerca',
+  },
 };

@@ -112,9 +112,11 @@
     height: 1.5rem;
   }
 }
+
 .clear-search-button {
   right: 3rem;
   padding-right: 0.5rem;
+  visibility: hidden;
 }
 
 .suggestions {

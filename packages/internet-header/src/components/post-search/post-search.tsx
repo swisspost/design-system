@@ -26,6 +26,7 @@ import { SvgIcon } from '../../utils/svg-icon.component';
 import { TrackAndTraceInfo } from '../../models/track-and-trace.model';
 import { getParcelSuggestion } from '../../services/search/parcel.service';
 import { If } from '../../utils/if.component';
+import { translate } from '../../services/language.service';
 
 @Component({
   tag: 'post-search',
@@ -170,10 +171,12 @@ export class PostSearch implements HasDropdown, IsFocusable {
     const query = this.searchBox.value.trim();
 
     // shows or hides clearButton depending on the content of the searchbar
-    if (query !== '') {
-      this.clearButton?.classList.remove('visually-hidden');
-    } else {
-      this.clearButton?.classList.add('visually-hidden');
+    if (this.clearButton) {
+      if (query !== '') {
+        this.clearButton.style.visibility = 'visible';
+      } else {
+        this.clearButton.style.visibility = 'hidden';
+      }
     }
 
     const [placeSuggestions, coveoSuggestions, trackAndTraceInfo] = await Promise.all([
@@ -200,10 +203,10 @@ export class PostSearch implements HasDropdown, IsFocusable {
   }
 
   /**
-   * clear Searchbar
+   * clear Search box
    * calls handleSearchInput to update/remove suggestions
    */
-  private handleClearSearchbar() {
+  private handleClearSearchBox() {
     if (this.searchBox !== undefined) {
       this.searchBox.value = '';
       this.handleSearchInput();
@@ -397,14 +400,14 @@ export class PostSearch implements HasDropdown, IsFocusable {
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
                       <button
-                        onClick={() => this.handleClearSearchbar()}
-                        class="visually-hidden clear-search-button"
+                        onClick={() => this.handleClearSearchBox()}
+                        class="clear-search-button"
                         type="reset"
                         aria-label="Clear input"
                         id="clearButton"
                         ref={el => (this.clearButton = el)}
-                        title="Clear input"
                       >
+                        <span class="visually-hidden">{translate('Delete search term')}</span>
                         <SvgIcon name="pi-close" />
                       </button>
                       <button onClick={() => void this.startSearch()} class="start-search-button">
