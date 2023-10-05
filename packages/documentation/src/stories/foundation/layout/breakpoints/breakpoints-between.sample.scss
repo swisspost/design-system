@@ -1,0 +1,5 @@
+@include post.media-breakpoint-between(sm, lg) {
+  .custom-class {
+    display: block;
+  }
+}

@@ -1,6 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
-
 import * as RangeStories from './range.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={RangeStories} />
 
@@ -18,23 +18,7 @@ Create custom `range` controls with `.form-range`. The track (the background) an
   <Controls of={RangeStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/form-range.scss';
-
-// required if you use validation feedbacks
-@use '@swisspost/design-system-styles/components/form-feedback.scss';
-```
+<StylesPackageImport components={["form-range"]} required={{ 'form-feedback': true }} />
 
 ## Concrete Examples of Application
 

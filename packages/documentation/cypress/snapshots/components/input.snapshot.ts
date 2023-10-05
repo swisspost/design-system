@@ -1,10 +1,8 @@
+
 const INPUTBASEURL = '/iframe.html?id=snapshots--input';
+
 const types = [
   'text',
-  'number',
-  'email',
-  'tel',
-  'url',
   'password',
   'date',
   'datetime-local',

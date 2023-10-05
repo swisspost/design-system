@@ -18,6 +18,19 @@ some content
 | `scale`             | `scale`     | The number for the css scale transformation.                                                                              | `number`                                                                       | `null`      |
 
 
+## Dependencies
+
+### Used by
+
+ - [post-alert](../post-alert)
+
+### Graph
+```mermaid
+graph TD;
+  post-alert --> post-icon
+  style post-icon fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

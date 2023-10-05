@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/blocks';
 import { linkTo } from '@storybook/addon-links';
 import { getVersion } from '../utils/version';
+import * as HomeStories from './home.stories';
 import { Tile, Feature } from './home.blocks';
 import './home.styles.scss';
 
-<Meta title="Home" />
+<Meta of={HomeStories} />
 
 <div className="mt-huge text-center">
   <h2 className="h3">Packages &amp; Resources</h2>

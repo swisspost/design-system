@@ -1,4 +1,5 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 import * as RadioStories from './radio.stories';
 
@@ -18,23 +19,7 @@ Our radios use custom icons to indicate checked states.
   <Controls of={RadioStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/form-check.scss';
-
-// required if you use validation feedbacks
-@use '@swisspost/design-system-styles/components/form-feedback.scss';
-```
+<StylesPackageImport components={["form-check"]} required={{ 'form-feedback': true }} />
 
 ## Concrete Examples of Application
 

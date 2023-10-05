@@ -43,22 +43,24 @@ export const DocumentationVersion = () => (
 export const PackageVersions = (props: { dependencies?: [string, string][] }) => {
   const deps = props.dependencies ?? getInterestingDependencies(documentationVersions);
   return (
-    <table className="table table-sm table-striped table-bordered">
-      <thead>
-        <tr>
-          <th style={{ width: '50%' }}>Package</th>
-          <th style={{ width: '50%' }}>Version</th>
-        </tr>
-      </thead>
-      <tbody>
-        {deps.map(([key, value]) => (
-          <tr key={key}>
-            <td>{key}</td>
-            <td>{value.replace('workspace:', '')}</td>
+    <div className="table-responsive">
+      <table className="table">
+        <thead>
+          <tr>
+            <th style={{ width: '50%' }}>Package</th>
+            <th style={{ width: '50%' }}>Version</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {deps.map(([key, value]) => (
+            <tr key={key}>
+              <td>{key}</td>
+              <td>{value.replace('workspace:', '')}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 };
 

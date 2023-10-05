@@ -36,14 +36,10 @@
 
   .ngb-tp-chevron {
     &::before {
-      @include icon-mixins.pi('2051');
+      @include icon-mixins.icon('2051');
       width: map.get(button.$btn-icon-size-map, 'md');
       height: map.get(button.$btn-icon-size-map, 'md');
       transform: none;
-      border: 0;
-      background-repeat: no-repeat;
-      background-position: center center;
-      background-size: contain;
     }
 
     &.bottom::before {

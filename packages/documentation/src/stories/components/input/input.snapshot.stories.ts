@@ -40,7 +40,13 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
                     <div>
                       ${args.title !== undefined && args.title
                         ? html`
-                            <h4>${args.size}</h4>
+
+                            <h4>
+                              ${Object.entries(context.argTypes.size.control.labels)
+                                .filter(([key, value]) => key === args.size)
+                                .map(s => s[1])}
+                            </h4>
+
                           `
                         : ''}
                       <div>${meta.render?.({ ...context.args, ...args }, context)}</div>

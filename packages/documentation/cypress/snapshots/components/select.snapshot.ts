@@ -9,5 +9,6 @@ describe('Select', () => {
         cy.percySnapshot(`Selects-${multiple}`, { widths: [400] });
       });
     });
+
   });
 });

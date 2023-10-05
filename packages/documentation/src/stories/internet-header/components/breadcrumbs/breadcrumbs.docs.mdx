@@ -1,0 +1,14 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as BreadcrumbsStories from './breadcrumbs.stories';
+
+<Meta of={BreadcrumbsStories} />
+
+# Breadcrumbs
+
+<div className="lead">Indicate the current page’s location within the navigational hierarchy.</div>
+
+The breadcrumbs element usually needs to be placed in a container so it only spans the width of the content.
+
+<Canvas of={BreadcrumbsStories.Default} />
+
+<Controls of={BreadcrumbsStories.Default} />
