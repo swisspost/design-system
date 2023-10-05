@@ -17,12 +17,23 @@ export const BreakpointTable = () => (
       <tbody>
         {forEach(
           SCSS_VARIABLES.breakpoint,
-          (data: { key: number; value: { name: string; infix: any; dimensions: string } }) => {
+          (data: {
+            key: number;
+            value: { name: string; infix: any; dimensions: string; deprecated: boolean };
+          }) => {
             return (
               <tr>
-                <th>{data.value.name}</th>
+                <th>
+                  {data.value.name}
+                  {data.value.deprecated ? (
+                    <span>
+                      {' '}
+                      <code className="fw-normal bg-danger text-white">deprecated</code>
+                    </span>
+                  ) : null}
+                </th>
                 <td dangerouslySetInnerHTML={{ __html: data.value.infix }}></td>
-                <td>{data.value.dimensions}</td>
+                <td>{data.value.deprecated ? '-' : data.value.dimensions}</td>
               </tr>
             );
           },

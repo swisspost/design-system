@@ -29,5 +29,9 @@ $breakpointNames: (
       breakpoint_#{$breakpoint}_infix: #{'<code>' + $breakpoint + '</code>'};
       breakpoint_#{$breakpoint}_dimensions: #{'≥' + $value};
     }
+
+    @if $breakpoint == 'rg' {
+      breakpoint_#{$breakpoint}_deprecated: true;
+    }
   }
 }
