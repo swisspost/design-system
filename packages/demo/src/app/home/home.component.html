@@ -51,15 +51,29 @@
 
 <div class="bg-light py-5">
   <div class="container">
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">
+        The Swiss Post Design System documentation is migrating towards a new and revised version
+        based on storybook.
+      </h4>
+      <a href="https://next.design-system.post.ch" rel="noopener" target="_blank">
+        Checkout it out!
+      </a>
+      <p>Since it is still a beta version it is not yet complete, but in general the new storybook version gives you a much better overview of a component and his possible states.</p>
+    </div>
     <div class="alert alert-primary" role="alert">
       <h4 class="alert-heading">The Swiss Post Design System is now compatible with Angular 16!</h4>
-      <p>If you have any inquiries about this change, feel free to contact us via our
+      <p>
+        If you have any inquiries about this change, feel free to contact us via our
         <a
           href="https://teams.microsoft.com/l/channel/19%3ae7fa68fb13eb40b4bf4604edea5f4b3e%40thread.tacv2/%25F0%259F%259A%2591%2520Support?groupId=123c7c9e-052a-40e6-98d3-6cc6d46bad0a&tenantId=3ae7c479-0cf1-47f4-8f84-929f364eff67"
           rel="noopener"
           target="_blank"
-        >Support chanel</a>
-        in Teams.</p>
+        >
+          Support chanel
+        </a>
+        in Teams.
+      </p>
     </div>
 
     <section class="migration-options mb-huge">
@@ -135,10 +149,14 @@
       <h3 class="bold mb-4">Migration from v5 to v6</h3>
 
       <div class="alert alert-info" role="alert">
-        <h4 class="alert-heading">Be sure to update your application one major Design System version at a time.</h4>
-        <p>If your project is currently using the @******/common-web-frontend package, start by <a routerLink="."
-                                                                                                   fragment="v4-to-5">migrating
-          to version 5</a>.</p>
+        <h4 class="alert-heading">
+          Be sure to update your application one major Design System version at a time.
+        </h4>
+        <p>
+          If your project is currently using the @******/common-web-frontend package, start by
+          <a routerLink="." fragment="v4-to-5">migrating to version 5</a>
+          .
+        </p>
       </div>
 
       <ol class="bubble-tea">
@@ -157,13 +175,20 @@
             <li>
               <p>
                 Update Bootstrap to version
-                <a href="https://getbootstrap.com/docs/5.3/migration" target="_blank" rel="noopener">
+                <a
+                  href="https://getbootstrap.com/docs/5.3/migration"
+                  target="_blank"
+                  rel="noopener"
+                >
                   5.3.x
                 </a>
                 <ng-container *ngIf="isMigratingAngular">
                   and ng-bootstrap to version
-                  <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
-                     target="_blank" rel="noopener">
+                  <a
+                    href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
+                    target="_blank"
+                    rel="noopener"
+                  >
                     15.x.x
                   </a>
                 </ng-container>
@@ -172,7 +197,10 @@
                   appCopyToClipboard
                   class="d-block mt-1 p-3"
                   [languages]="['bash']"
-                  [highlight]="'npm install bootstrap@5.3' + (isMigratingAngular ? ' @ng-bootstrap/ng-bootstrap@15' : '')"
+                  [highlight]="
+                    'npm install bootstrap@5.3' +
+                    (isMigratingAngular ? ' @ng-bootstrap/ng-bootstrap@15' : '')
+                  "
                 ></code>
               </p>
             </li>
@@ -192,7 +220,8 @@
         <li *ngIf="isMigratingAngular">
           <h4 class="h5 bold">Automatic Migration ⚙️</h4>
           <p>
-            If you are migrating an Angular application, you can take advantage of our migration schematics.
+            If you are migrating an Angular application, you can take advantage of our migration
+            schematics.
           </p>
           <ol>
             <li>Commit all the changes you have made so far</li>
@@ -223,20 +252,22 @@
                 <span class="change-badge bg-danger">breaking</span>
               </h6>
               <p>
-                The markup of the <a href="/#/post-samples/stepper">stepper</a> component has been changed in order to
-                be more accessible.
+                The markup of the
+                <a href="/#/post-samples/stepper">stepper</a>
+                component has been changed in order to be more accessible.
               </p>
               <ul>
                 <li>
-                  <span *ngIf="isMigratingAngular">⚙️ </span>
-                  The stepper container no longer has an aria-label attribute but contains a hidden header instead
+                  <span *ngIf="isMigratingAngular">⚙️</span>
+                  The stepper container no longer has an aria-label attribute but contains a hidden
+                  header instead
                 </li>
                 <li>
-                  <span *ngIf="isMigratingAngular">⚙️ </span>
+                  <span *ngIf="isMigratingAngular">⚙️</span>
                   The progress bar is hidden and no longer requires a type attribute
                 </li>
                 <li>
-                  <span *ngIf="isMigratingAngular">⚙️ </span>
+                  <span *ngIf="isMigratingAngular">⚙️</span>
                   The stepper has a list role
                 </li>
                 <li>Completed steps require an additional hidden "Completed: " text</li>
@@ -256,8 +287,10 @@
                 <span class="highlight">ngbButton</span>
                 and
                 <span class="highlight">ngbButtonLabel</span>
-                directives are no longer a part of ng-bootstrap.<br>
-                The markup and styles have changed and everything now works with CSS Bootstrap classes only.
+                directives are no longer a part of ng-bootstrap.
+                <br />
+                The markup and styles have changed and everything now works with CSS Bootstrap
+                classes only.
               </p>
               <p class="info">
                 See the
@@ -266,8 +299,14 @@
               </p>
             </li>
             <li>
-              <h6>Removed variables <span class="change-badge bg-danger">breaking</span></h6>
-              <p>The following Sass variables have been removed because they are not being used anymore.</p>
+              <h6>
+                Removed variables
+                <span class="change-badge bg-danger">breaking</span>
+              </h6>
+              <p>
+                The following Sass variables have been removed because they are not being used
+                anymore.
+              </p>
               <ul>
                 <li><code>$table-head-bg</code></li>
               </ul>
@@ -284,9 +323,9 @@
         <li>
           <h4 class="h5 bold">Clean Start 🧹</h4>
           <p>
-            Create a branch and commit all changes to have a clean, reversible starting point. If you
-            like to upgrade from a Design System version lower than 4.0.0, it might be necessary to
-            upgrade to v4 first.
+            Create a branch and commit all changes to have a clean, reversible starting point. If
+            you like to upgrade from a Design System version lower than 4.0.0, it might be necessary
+            to upgrade to v4 first.
           </p>
         </li>
         <li>
@@ -346,8 +385,11 @@
             </a>
             <ng-container *ngIf="isMigratingAngular">
               and ng-bootstrap to version
-              <a href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07"
-                 target="_blank" rel="noopener">
+              <a
+                href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07"
+                target="_blank"
+                rel="noopener"
+              >
                 12.x.x
               </a>
             </ng-container>
@@ -356,14 +398,18 @@
               appCopyToClipboard
               class="d-block mt-1 p-3"
               [languages]="['bash']"
-              [highlight]="'npm install bootstrap@5.1' + (isMigratingAngular ? ' @ng-bootstrap/ng-bootstrap@12' : '')"
+              [highlight]="
+                'npm install bootstrap@5.1' +
+                (isMigratingAngular ? ' @ng-bootstrap/ng-bootstrap@12' : '')
+              "
             ></code>
           </ng-template>
         </li>
         <li *ngIf="isMigratingAngular">
           <h4 class="h5 bold">Automatic Migration ⚙️</h4>
           <p>
-            If you are migrating an Angular application, you can take advantage of our migration schematics.
+            If you are migrating an Angular application, you can take advantage of our migration
+            schematics.
           </p>
           <ol>
             <li>Commit all the changes you have made so far</li>
@@ -417,8 +463,8 @@
           <p>
             Some changes cannot be migrated automatically.
             <br />
-            Check the list of changes below and apply the transformations manually if your application
-            is affected.
+            Check the list of changes below and apply the transformations manually if your
+            application is affected.
           </p>
 
           <!-- Post migration table -->
@@ -475,7 +521,9 @@
                           id="generalnaming_entryfiles"
                           class="form-check-input"
                           type="checkbox"
-                          [(ngModel)]="migrationAccordionGroupedCheckboxes.general.naming_entryfiles"
+                          [(ngModel)]="
+                            migrationAccordionGroupedCheckboxes.general.naming_entryfiles
+                          "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <label for="generalnaming_entryfiles" class="form-check-label">
@@ -492,7 +540,9 @@
                                 @use "@*****/common-web-frontend/post.scss";
                               </code>
                               to
-                              <code appCopyToClipboard>@use "@swisspost/design-system-styles";</code>
+                              <code appCopyToClipboard>
+                                @use "@swisspost/design-system-styles";
+                              </code>
                             </li>
                             <li class="mb-2">
                               <strong>Intranet</strong>
@@ -572,7 +622,9 @@
                           id="generalnaming_cwflicense"
                           class="form-check-input"
                           type="checkbox"
-                          [(ngModel)]="migrationAccordionGroupedCheckboxes.general.naming_cwflicense"
+                          [(ngModel)]="
+                            migrationAccordionGroupedCheckboxes.general.naming_cwflicense
+                          "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
@@ -872,7 +924,9 @@
                           id="generalclasses_bgopacity"
                           class="form-check-input"
                           type="checkbox"
-                          [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_bgopacity"
+                          [(ngModel)]="
+                            migrationAccordionGroupedCheckboxes.general.classes_bgopacity
+                          "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
@@ -893,7 +947,9 @@
                           id="generalclasses_secondary"
                           class="form-check-input"
                           type="checkbox"
-                          [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_secondary"
+                          [(ngModel)]="
+                            migrationAccordionGroupedCheckboxes.general.classes_secondary
+                          "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
@@ -1145,7 +1201,8 @@
                           class="form-check-input"
                           type="checkbox"
                           [(ngModel)]="
-                            migrationAccordionGroupedCheckboxes.bootstrap.blockquotes_footerstructure
+                            migrationAccordionGroupedCheckboxes.bootstrap
+                              .blockquotes_footerstructure
                           "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
@@ -1197,7 +1254,9 @@
                           id="bootstrapbuttons_outline"
                           class="form-check-input"
                           type="checkbox"
-                          [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.buttons_outline"
+                          [(ngModel)]="
+                            migrationAccordionGroupedCheckboxes.bootstrap.buttons_outline
+                          "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
@@ -1433,7 +1492,9 @@
                           id="bootstrapforms_formgroup"
                           class="form-check-input"
                           type="checkbox"
-                          [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.forms_formgroup"
+                          [(ngModel)]="
+                            migrationAccordionGroupedCheckboxes.bootstrap.forms_formgroup
+                          "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
@@ -1800,7 +1861,8 @@
                           class="form-check-input"
                           type="checkbox"
                           [(ngModel)]="
-                            migrationAccordionGroupedCheckboxes.bootstrap.formradios_validationclasses
+                            migrationAccordionGroupedCheckboxes.bootstrap
+                              .formradios_validationclasses
                           "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
@@ -1855,7 +1917,8 @@
                     <strong>Bootstrap</strong>
                     section since Bootstrap version 5.x now provides such a component.
                     <span class="info">
-                      If you import this component manually, you need to update to the new file path.
+                      If you import this component manually, you need to update to the new file
+                      path.
                     </span>
                   </p>
 
@@ -2091,7 +2154,8 @@
                           class="form-check-input"
                           type="checkbox"
                           [(ngModel)]="
-                            migrationAccordionGroupedCheckboxes.ngbootstrap.modals_closebuttoncontent
+                            migrationAccordionGroupedCheckboxes.ngbootstrap
+                              .modals_closebuttoncontent
                           "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
@@ -2156,7 +2220,9 @@
                           id="jqueryaccordions_removed"
                           class="form-check-input"
                           type="checkbox"
-                          [(ngModel)]="migrationAccordionGroupedCheckboxes.jquery.accordions_removed"
+                          [(ngModel)]="
+                            migrationAccordionGroupedCheckboxes.jquery.accordions_removed
+                          "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
@@ -2232,7 +2298,8 @@
                           class="form-check-input"
                           type="checkbox"
                           [(ngModel)]="
-                            migrationAccordionGroupedCheckboxes.post.customselects_formfloatingwrapper
+                            migrationAccordionGroupedCheckboxes.post
+                              .customselects_formfloatingwrapper
                           "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
@@ -2251,7 +2318,9 @@
                           id="postcustomselects_classes"
                           class="form-check-input"
                           type="checkbox"
-                          [(ngModel)]="migrationAccordionGroupedCheckboxes.post.customselects_classes"
+                          [(ngModel)]="
+                            migrationAccordionGroupedCheckboxes.post.customselects_classes
+                          "
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
