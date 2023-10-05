@@ -74,9 +74,6 @@ const meta: Meta = {
         'offset-md-6',
         'offset-md-7',
         'offset-md-8',
-        'offset-md-9',
-        'offset-md-10',
-        'offset-md-11',
       ],
       table: {
         category: 'General',
@@ -108,7 +105,7 @@ export const VerticalExample: Story = {
 
 export const HorizontalExample: Story = {
   parameters: {
-    controls: { exclude: ['Align Items', 'Align Item 1'] },
+    controls: { exclude: ['Align Items', 'Align Item 1', 'Offset classes'] },
   },
   render: (args: Args) => html`
     <div class="container">
@@ -148,6 +145,12 @@ export const OffsetExample: Story = {
   parameters: {
     controls: { exclude: ['Align Items', 'Align Item 1', 'Horizontal Alignement'] },
   },
+  decorators: [
+    (story: StoryFn, { args, context }: StoryContext) => html`
+      ${story(args, context)}
+      <p class="mt-regular"><small>Resize the browser window to see changes.</small></p>
+    `,
+  ],
   render: (args: Args) => html`
     <div class="row">
       <div class="col-md-4 ${args.offsetItem}">.col-md-4 .${args.offsetItem}</div>
@@ -229,5 +232,24 @@ export const StandaloneColumnExample: Story = {
     <div class="col-3 p-3 mb-2">.col-3: width of 25%</div>
 
     <div class="col-md-9 p-3">.col-md-9: width of 75% above md breakpoint</div>
+  `,
+};
+
+export const ColumnWrapping: Story = {
+  render: () => html`
+    <div class="row">
+      <div class="col-9">.col-9</div>
+      <div class="col-4">
+        .col-4
+        <br />
+        Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one
+        contiguous unit.
+      </div>
+      <div class="col-6">
+        .col-6
+        <br />
+        Subsequent columns continue along the new line.
+      </div>
+    </div>
   `,
 };
