@@ -81,7 +81,11 @@ const meta: Meta = {
     },
     icon: {
       name: 'Icon',
-      description: 'Defines a custom icon.',
+      description: 'Defines a custom icon.' +
+        '<span className="mt-mini alert alert-info alert-sm">' +
+        'To use a custom icon, you must first ' +
+        '<a href="/?path=/docs/icons-getting-started--docs">set up the icons in your project</a>' +
+        '.</span>',
       if: {
         arg: 'noIcon',
         truthy: false,
@@ -90,14 +94,14 @@ const meta: Meta = {
         type: 'select',
         labels: {
           'null': 'Default',
-          'pi-1001': 'Envelope (1001)',
-          'pi-2023': 'Cog (2023)',
-          'pi-2025': 'Send (2025)',
-          'pi-2035': 'Home (2035)',
-          'pi-2101': 'Bubble (2101)',
+          '1001': 'Envelope (1001)',
+          '2023': 'Cog (2023)',
+          '2025': 'Send (2025)',
+          '2035': 'Home (2035)',
+          '2101': 'Bubble (2101)',
         },
       },
-      options: ['null', 'pi-1001', 'pi-2023', 'pi-2025', 'pi-2035', 'pi-2101'],
+      options: ['null', '1001', '2023', '2025', '2035', '2101'],
       table: {
         category: 'General',
       },
@@ -346,7 +350,7 @@ function render(args: Args, context: StoryContext) {
 
   const timeoutStore = timeoutStores[context.name as keyof ITimeoutStores];
 
-  const classes = ['toast', args.variant, args.noIcon && 'no-icon', args.icon]
+  const classes = ['toast', args.variant, args.noIcon && 'no-icon']
     .filter(c => c && c !== 'null')
     .join(' ');
 
@@ -363,7 +367,14 @@ function render(args: Args, context: StoryContext) {
     ariaLive = 'polite';
   }
 
-  const dismissibleButton =
+  const toastIcon =
+    !args.noIcon && args.icon !== 'null'
+      ? html`
+        <post-icon aria-hidden="true" name=${args.icon}></post-icon>
+      `
+      : null;
+
+  const dismissButton =
     args.dismissible || isFixed
       ? html`
           <button class="toast-close-button" aria-label="close"></button>
@@ -380,7 +391,8 @@ function render(args: Args, context: StoryContext) {
       @mouseenter="${() => killAutoHideTimeout(timeoutStore, args)}"
       @mouseleave="${() => createAutoHideTimeout(timeoutStore, args, updateArgs)}"
     >
-      ${dismissibleButton}
+      ${toastIcon}
+      ${dismissButton}
       <div class="toast-title">${args.title}</div>
       ${args.content
         ? html`

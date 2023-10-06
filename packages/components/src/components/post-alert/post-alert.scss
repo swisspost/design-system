@@ -1,0 +1,22 @@
+@use '@swisspost/design-system-styles/components/alert';
+@use '@swisspost/design-system-styles/components/close';
+@use '@swisspost/design-system-styles/core' as post;
+
+:host {
+  display: block;
+
+  ::slotted(*) {
+    margin: 0 !important;
+  }
+}
+
+.visually-hidden {
+  @include post.visually-hidden();
+}
+
+@for $i from 1 through 6 {
+  .alert-heading > ::slotted(h#{$i}) {
+    font-size: inherit !important;
+    font-weight: inherit !important;
+  }
+}

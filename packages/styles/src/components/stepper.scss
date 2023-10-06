@@ -1,4 +1,5 @@
 @use './../mixins/size' as size-mx;
+@use './../mixins/icons' as icons-mx;
 @use './../mixins/utilities';
 
 @use './../variables/spacing';
@@ -35,63 +36,28 @@
 
 .stepper-item {
   counter-increment: step-index;
+  position: relative;
   display: flex;
   flex-direction: column;
-
-  &:first-child {
-    justify-self: start;
-    align-items: start;
-    transform: translateX(#{-0.5 * stepper.$stepper-indicator-height});
-  }
-
-  &:last-child {
-    justify-self: end;
-    align-items: end;
-    text-align: right;
-    margin-right: -0.5 * stepper.$stepper-indicator-height;
-  }
-
-  &:not(:first-child):not(:last-child) {
-    grid-column-end: span 2;
-    align-items: center;
-  }
-
-  &[aria-current] {
-    pointer-events: none;
-  }
+  transition: color 250ms;
 
   // Stepper indicator styles
   &::before {
     content: '';
     pointer-events: none;
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     height: stepper.$stepper-indicator-height;
     width: stepper.$stepper-indicator-height;
-    line-height: stepper.$stepper-indicator-height - 2 * stepper.$stepper-indicator-border-width;
     margin-bottom: -1 * stepper.$stepper-indicator-height;
     color: stepper.$stepper-indicator-color;
     background-color: stepper.$stepper-indicator-bg;
-    background-image: stepper.$stepper-indicator-check-icon;
-    background-size: spacing.$size-large;
-    background-position: center;
-    background-repeat: no-repeat;
     border: stepper.$stepper-indicator-border-width solid stepper.$stepper-indicator-border-color;
     border-radius: 50%;
     font-size: stepper.$stepper-indicator-font-size;
     font-weight: stepper.$stepper-indicator-font-weight;
-    transition: background 250ms, color 250ms;
-  }
-
-  &[aria-current]::before,
-  &[aria-current] ~ &::before {
-    background-image: none;
-    content: counter(step-index);
-  }
-
-  &:hover::before {
-    color: stepper.$stepper-indicator-hover-color;
-    background-color: stepper.$stepper-indicator-hover-bg;
-    background-image: stepper.$stepper-indicator-hover-check-icon;
+    transition: background 250ms;
   }
 
   &[aria-current] ~ ::before {
@@ -102,9 +68,75 @@
   &:is(:focus-visible, :focus-within)::before {
     outline: stepper.$stepper-indicator-hover-outline;
   }
+
+  // Check icon (for completed steps only)
+  &::after {
+    @include icons-mx.icon(2105);
+    content: '';
+    position: absolute;
+    display: block;
+    top: 0.5 * (stepper.$stepper-indicator-height - stepper.$stepper-indicator-check-icon-size);
+    height: stepper.$stepper-indicator-check-icon-size;
+    width: stepper.$stepper-indicator-check-icon-size;
+  }
+
+  &[aria-current],
+  &[aria-current] ~ & {
+    pointer-events: none;
+
+    &::before {
+      content: counter(step-index);
+    }
+
+    &::after {
+      content: unset;
+    }
+  }
+
+  // First stepper item - left aligned
+  &:first-child {
+    justify-self: start;
+    align-items: start;
+    transform: translateX(#{-0.5 * stepper.$stepper-indicator-height});
+
+    &::after {
+      left: 0.5 * (stepper.$stepper-indicator-height - stepper.$stepper-indicator-check-icon-size);
+    }
+  }
+
+  // Last stepper item - right aligned
+  &:last-child {
+    justify-self: end;
+    align-items: end;
+    text-align: right;
+    margin-right: -0.5 * stepper.$stepper-indicator-height;
+
+    &::after {
+      right: 0.5 * (stepper.$stepper-indicator-height - stepper.$stepper-indicator-check-icon-size);
+    }
+  }
+
+  // Other stepper items - centered
+  &:not(:first-child):not(:last-child) {
+    grid-column-end: span 2;
+    align-items: center;
+
+    &::after {
+      left: calc(50% - #{0.5 * stepper.$stepper-indicator-check-icon-size});
+    }
+  }
+
+  &:hover {
+    color: stepper.$stepper-indicator-hover-color;
+
+    &::before {
+      background-color: stepper.$stepper-indicator-hover-bg;
+    }
+  }
 }
 
 .stepper-link {
+  z-index: 1;
   padding-top: stepper.$stepper-indicator-height + stepper.$stepper-link-gap;
   text-decoration: none;
   color: stepper.$stepper-link-color;
@@ -155,7 +187,6 @@
       line-height: calc(#{stepper.$stepper-indicator-height} + 2 * #{spacing.$size-line});
       color: ButtonText;
       background-color: ButtonFace;
-      background-image: stepper.$stepper-indicator-hover-check-icon;
       border: 0;
       outline: spacing.$size-line solid VisitedText;
       outline-offset: -3 * spacing.$size-line;
