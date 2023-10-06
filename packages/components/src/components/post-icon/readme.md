@@ -23,11 +23,13 @@ some content
 ### Used by
 
  - [post-alert](../post-alert)
+ - [post-card-control](../post-card-control)
 
 ### Graph
 ```mermaid
 graph TD;
   post-alert --> post-icon
+  post-card-control --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 

@@ -38,6 +38,19 @@ export namespace Components {
          */
         "type": AlertType;
     }
+    /**
+     * @class PostCardControl - representing a stencil component
+     */
+    interface PostCardControl {
+        /**
+          * Defines the `id` of the input inside the card.
+         */
+        "inputid": string;
+        /**
+          * Defines the `type` of the input inside the card.
+         */
+        "type": string;
+    }
     interface PostCollapsible {
         /**
           * If `true`, the element is initially collapsed otherwise it is displayed.
@@ -148,6 +161,15 @@ declare global {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
     };
+    /**
+     * @class PostCardControl - representing a stencil component
+     */
+    interface HTMLPostCardControlElement extends Components.PostCardControl, HTMLStencilElement {
+    }
+    var HTMLPostCardControlElement: {
+        prototype: HTMLPostCardControlElement;
+        new (): HTMLPostCardControlElement;
+    };
     interface HTMLPostCollapsibleElement extends Components.PostCollapsible, HTMLStencilElement {
     }
     var HTMLPostCollapsibleElement: {
@@ -189,6 +211,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "post-alert": HTMLPostAlertElement;
+        "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
         "post-tab-header": HTMLPostTabHeaderElement;
@@ -223,6 +246,19 @@ declare namespace LocalJSX {
           * The type of the alert.
          */
         "type"?: AlertType;
+    }
+    /**
+     * @class PostCardControl - representing a stencil component
+     */
+    interface PostCardControl {
+        /**
+          * Defines the `id` of the input inside the card.
+         */
+        "inputid"?: string;
+        /**
+          * Defines the `type` of the input inside the card.
+         */
+        "type"?: string;
     }
     interface PostCollapsible {
         /**
@@ -301,6 +337,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "post-alert": PostAlert;
+        "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
         "post-tab-header": PostTabHeader;
@@ -314,6 +351,10 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
+            /**
+             * @class PostCardControl - representing a stencil component
+             */
+            "post-card-control": LocalJSX.PostCardControl & JSXBase.HTMLAttributes<HTMLPostCardControlElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             /**
              * @class PostIcon - representing a stencil component

@@ -1,0 +1,59 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/components/form-check';
+
+:host {
+  --post-card-control-bg: #{post.$white};
+  --post-card-control-border-color: #{post.$gray-60};
+  --post-card-control-color: #{post.$gray-80};
+
+  display: block;
+  padding: post.$size-regular;
+  background-color: var(--post-card-control-bg);
+  border: post.$size-line solid var(--post-card-control-border-color);
+  border-radius: post.$border-radius;
+  color: var(--post-card-control-color);
+  cursor: pointer;
+  transition: color 100ms ease-in-out, background-color 100ms ease-in-out,
+    border-color 100ms ease-in-out;
+}
+
+.card-control--header {
+  display: flex;
+  gap: 0 post.$size-mini;
+}
+
+.header--input {
+  margin: post.$size-micro 0;
+  background-color: post.$white;
+  border-color: var(--post-card-control-border-color);
+  transition: border-color 100ms ease-in-out;
+}
+
+.header--label {
+  flex-grow: 2;
+  margin: post.$size-micro 0;
+}
+
+.header--description {
+  font-size: 0.75rem;
+}
+
+.header--icon {
+  width: post.$size-big;
+  height: post.$size-big;
+  pointer-events: none;
+}
+
+.card-control--content {
+  margin-left: post.$form-check-input-size + post.$size-mini;
+}
+
+:host(:hover:not(.checked, .disabled)) {
+  --post-card-control-bg: #{post.$gray-10};
+  --post-card-control-border-color: #{post.$black};
+  --post-card-control-color: #{post.$black};
+}
+
+:host(.checked) {
+  --post-card-control-bg: #{post.$yellow};
+}
