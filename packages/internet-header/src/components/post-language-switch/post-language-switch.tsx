@@ -31,8 +31,7 @@ import { IAvailableLanguage } from '../../models/language.model';
 export class PostLanguageSwitch implements HasDropdown {
   @Prop() mode: 'dropdown' | 'list';
   @State() langSwitchOpen = false;
-  // eslint-ignore @stencil-community/element-type
-  @Element() host: HTMLPostLanguageSwitchElement;
+  @Element() host: DropdownElement;
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
   @Event({ bubbles: true }) languageChanged: EventEmitter<string>;
   private languageSwitchDropdown: HTMLElement | undefined;

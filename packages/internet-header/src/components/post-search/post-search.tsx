@@ -6,6 +6,7 @@ import { CoveoCompletion } from '../../models/coveo.model';
 import { GeocodeLocation } from '../../models/geocode.model';
 import { TagManagerDataLayer } from '../../models/general.model';
 import {
+  DropdownElement,
   DropdownEvent,
   HasDropdown,
   ISearchRecommendation,
@@ -37,8 +38,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
   @State() placeSuggestions: GeocodeLocation[] = [];
   @State() parcelSuggestion: (TrackAndTraceInfo & { url: string }) | null = null;
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
-  // eslint-ignore @stencil-community/element-type
-  @Element() host: HTMLPostSearchElement;
+  @Element() host: DropdownElement;
   private searchBox?: HTMLInputElement;
   private searchFlyout: HTMLElement | undefined;
   private throttledResize: throttle<() => void>;
