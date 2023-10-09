@@ -37,6 +37,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
   @State() placeSuggestions: GeocodeLocation[] = [];
   @State() parcelSuggestion: (TrackAndTraceInfo & { url: string }) | null = null;
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
+  // eslint-ignore @stencil-community/element-type
   @Element() host: HTMLPostSearchElement;
   private searchBox?: HTMLInputElement;
   private searchFlyout: HTMLElement | undefined;

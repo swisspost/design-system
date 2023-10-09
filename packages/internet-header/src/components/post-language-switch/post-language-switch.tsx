@@ -12,7 +12,12 @@ import {
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { state } from '../../data/store';
-import { DropdownEvent, HasDropdown, NavLangEntity } from '../../models/header.model';
+import {
+  DropdownElement,
+  DropdownEvent,
+  HasDropdown,
+  NavLangEntity,
+} from '../../models/header.model';
 import { elementHasTransition, userPrefersReducedMotion } from '../../services/ui.service';
 import { translate } from '../../services/language.service';
 import { PostLanguageSwitchList } from './components/post-language-switch-list';
@@ -26,6 +31,7 @@ import { IAvailableLanguage } from '../../models/language.model';
 export class PostLanguageSwitch implements HasDropdown {
   @Prop() mode: 'dropdown' | 'list';
   @State() langSwitchOpen = false;
+  // eslint-ignore @stencil-community/element-type
   @Element() host: HTMLPostLanguageSwitchElement;
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
   @Event({ bubbles: true }) languageChanged: EventEmitter<string>;
