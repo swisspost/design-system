@@ -1,13 +1,7 @@
-import { Component, Host, h, State, Method, Event, Element, EventEmitter } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { state } from '../../data/store';
-import {
-  DropdownElement,
-  DropdownEvent,
-  HasDropdown,
-  IsFocusable,
-  NavMainEntity,
-} from '../../models/header.model';
+import { DropdownEvent, HasDropdown, IsFocusable, NavMainEntity } from '../../models/header.model';
 import { userPrefersReducedMotion } from '../../services/ui.service';
 import { translate } from '../../services/language.service';
 import { SvgSprite } from '../../utils/svg-sprite.component';
@@ -24,7 +18,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
   @State() mobileMenuOpen: boolean;
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
   @Event() flyoutToggled: EventEmitter<string | null>;
-  @Element() host: DropdownElement;
+  @Element() host: HTMLPostMainNavigationElement;
   private throttledResize: throttle<() => void>;
   private resizeTimer: number | null = null;
   private mouseLeaveTimer: number | null = null;

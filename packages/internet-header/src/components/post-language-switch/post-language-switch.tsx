@@ -1,24 +1,19 @@
 import {
   Component,
-  Event,
-  Host,
-  h,
-  Method,
-  EventEmitter,
-  State,
-  Prop,
   Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
 } from '@stencil/core';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { state } from '../../data/store';
-import {
-  DropdownElement,
-  DropdownEvent,
-  HasDropdown,
-  NavLangEntity,
-} from '../../models/header.model';
-import { userPrefersReducedMotion, elementHasTransition } from '../../services/ui.service';
+import { DropdownEvent, HasDropdown, NavLangEntity } from '../../models/header.model';
+import { elementHasTransition, userPrefersReducedMotion } from '../../services/ui.service';
 import { translate } from '../../services/language.service';
 import { PostLanguageSwitchList } from './components/post-language-switch-list';
 import { IAvailableLanguage } from '../../models/language.model';
@@ -31,7 +26,7 @@ import { IAvailableLanguage } from '../../models/language.model';
 export class PostLanguageSwitch implements HasDropdown {
   @Prop() mode: 'dropdown' | 'list';
   @State() langSwitchOpen = false;
-  @Element() host: DropdownElement;
+  @Element() host: HTMLPostLanguageSwitchElement;
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
   @Event({ bubbles: true }) languageChanged: EventEmitter<string>;
   private languageSwitchDropdown: HTMLElement | undefined;
