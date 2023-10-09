@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Method, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
 import { version } from '../../../package.json';
 import { fadeIn, fadeOut } from '../../animations';
 
@@ -55,7 +55,9 @@ export class PostTabs {
     }
 
     const previousTab = this.activeTab;
-    const newTab : HTMLPostTabHeaderElement = this.host.querySelector(`post-tab-header[panel=${panelName}]`);
+    const newTab: HTMLPostTabHeaderElement = this.host.querySelector(
+      `post-tab-header[panel=${panelName}]`,
+    );
     this.activateTab(newTab);
 
     // if a panel is currently being displayed, remove it from the view and complete the associated animation
@@ -83,6 +85,7 @@ export class PostTabs {
 
     this.tabChange.emit(this.activeTab.panel);
   }
+
   private moveMisplacedTabs() {
     if (!this.tabs) return;
 
@@ -159,18 +162,16 @@ export class PostTabs {
   }
 
   private getPanel(name: string): HTMLPostTabPanelElement {
-    return this.host.querySelector(
-      `post-tab-panel[name=${name}]`
-    );
+    return this.host.querySelector(`post-tab-panel[name=${name}]`);
   }
 
   render() {
     return (
       <Host data-version={version}>
         <div class="tabs-wrapper">
-          <ul class="tabs nav" role="tablist">
+          <div class="tabs nav" role="tablist">
             <slot name="tabs" onSlotchange={() => this.enableTabs()} />
-          </ul>
+          </div>
         </div>
         <div class="tab-content">
           <slot onSlotchange={() => this.moveMisplacedTabs()} />
