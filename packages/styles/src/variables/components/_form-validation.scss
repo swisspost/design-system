@@ -27,3 +27,15 @@ $form-feedback-invalid-box-shadow: 0 0 0 forms.$input-focus-width
   rgba($form-feedback-invalid-color, 0.25) !default;
 $form-feedback-custom-text: color.$white !default;
 $form-feedback-custom-box-shadow: 0 0 0 0.2rem rgba($form-feedback-custom-color, 0.25) !default;
+$form-validation-states: (
+  'valid': (
+    'color': $form-feedback-valid-bg,
+    'icon': $form-feedback-icon-valid,
+    'border-color': $form-feedback-valid-bg,
+  ),
+  'invalid': (
+    'color': $form-feedback-invalid-bg,
+    'icon': $form-feedback-icon-invalid,
+    'border-color': $form-feedback-invalid-bg,
+  ),
+) !default;

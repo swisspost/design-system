@@ -1,13 +1,10 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
-@use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/forms/validation' as bfv;
-
 @use './../mixins/color' as color-mx;
 @use './../mixins/utilities' as utilities-mx;
 @use './../variables/color';
 @use './../variables/components/form-validation';
+@use './../variables/components/forms';
 
 .invalid-feedback,
 .valid-feedback {
@@ -39,7 +36,19 @@
   color: form-validation.$form-feedback-custom-text;
 }
 
-@each $state, $data in $form-validation-states {
+@mixin form-validation-state-selector($state) {
+  @if ($state == 'valid' or $state == 'invalid') {
+    #{if(&, "&", "")}.is-#{$state} {
+      @content;
+    }
+  } @else {
+    #{if(&, "&", "")}.is-#{$state} {
+      @content;
+    }
+  }
+}
+
+@each $state, $data in form-validation.$form-validation-states {
   $icon: map-get($data, 'icon');
 
   @include form-validation-state-selector($state) {
@@ -51,18 +60,19 @@
 
   .form-control {
     @include form-validation-state-selector($state) {
-      padding-right: $input-height-inner;
+      padding-right: forms.$input-height-inner;
       background-image: escape-svg($icon);
       background-repeat: no-repeat;
-      background-position: right $input-height-inner-quarter center;
+      background-position: right forms.$input-height-inner-quarter center;
       background-size: form-validation.$form-feedback-icon-size;
     }
   }
 
   textarea.form-control {
     @include form-validation-state-selector($state) {
-      padding-right: $input-height-inner;
-      background-position: top $input-height-inner-quarter right $input-height-inner-quarter;
+      padding-right: forms.$input-height-inner;
+      background-position: top forms.$input-height-inner-quarter right
+        forms.$input-height-inner-quarter;
     }
   }
 
