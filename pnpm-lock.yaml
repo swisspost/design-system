@@ -502,10 +502,13 @@ importers:
       bootstrap:
         specifier: 5.3.2
         version: 5.3.2(@popperjs/core@2.11.8)
+      vite:
+        specifier: ^4.4.11
+        version: 4.4.11(sass@1.68.0)
     devDependencies:
       '@geometricpanda/storybook-addon-badges':
         specifier: 2.0.0
-        version: 2.0.0(@storybook/blocks@7.4.5)(@storybook/components@7.4.5)(@storybook/core-events@7.4.5)(@storybook/manager-api@7.4.5)(@storybook/preview-api@7.4.5)(@storybook/theming@7.4.5)(@storybook/types@7.4.5)(react-dom@18.2.0)(react@18.2.0)
+        version: 2.0.0(@storybook/blocks@7.4.5)(@storybook/components@7.4.5)(@storybook/core-events@7.4.5)(@storybook/manager-api@7.4.5)(@storybook/preview-api@7.4.5)(@storybook/theming@7.4.5)(@storybook/types@7.4.6)(react-dom@18.2.0)(react@18.2.0)
       '@open-wc/lit-helpers':
         specifier: 0.6.0
         version: 0.6.0(lit@2.8.0)
@@ -559,7 +562,7 @@ importers:
         version: 7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/web-components-vite':
         specifier: 7.4.5
-        version: 7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.4.7)
+        version: 7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.4.11)
       '@types/mdx':
         specifier: 2.0.7
         version: 2.0.7
@@ -4333,7 +4336,6 @@ packages:
     cpu: [arm64]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/android-arm64@0.19.2:
@@ -4351,7 +4353,6 @@ packages:
     cpu: [arm]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/android-arm@0.19.2:
@@ -4369,7 +4370,6 @@ packages:
     cpu: [x64]
     os: [android]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/android-x64@0.19.2:
@@ -4387,7 +4387,6 @@ packages:
     cpu: [arm64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/darwin-arm64@0.19.2:
@@ -4405,7 +4404,6 @@ packages:
     cpu: [x64]
     os: [darwin]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/darwin-x64@0.19.2:
@@ -4423,7 +4421,6 @@ packages:
     cpu: [arm64]
     os: [freebsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/freebsd-arm64@0.19.2:
@@ -4441,7 +4438,6 @@ packages:
     cpu: [x64]
     os: [freebsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/freebsd-x64@0.19.2:
@@ -4459,7 +4455,6 @@ packages:
     cpu: [arm64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-arm64@0.19.2:
@@ -4477,7 +4472,6 @@ packages:
     cpu: [arm]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-arm@0.19.2:
@@ -4495,7 +4489,6 @@ packages:
     cpu: [ia32]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-ia32@0.19.2:
@@ -4513,7 +4506,6 @@ packages:
     cpu: [loong64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-loong64@0.19.2:
@@ -4531,7 +4523,6 @@ packages:
     cpu: [mips64el]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-mips64el@0.19.2:
@@ -4549,7 +4540,6 @@ packages:
     cpu: [ppc64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-ppc64@0.19.2:
@@ -4567,7 +4557,6 @@ packages:
     cpu: [riscv64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-riscv64@0.19.2:
@@ -4585,7 +4574,6 @@ packages:
     cpu: [s390x]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-s390x@0.19.2:
@@ -4603,7 +4591,6 @@ packages:
     cpu: [x64]
     os: [linux]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/linux-x64@0.19.2:
@@ -4621,7 +4608,6 @@ packages:
     cpu: [x64]
     os: [netbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/netbsd-x64@0.19.2:
@@ -4639,7 +4625,6 @@ packages:
     cpu: [x64]
     os: [openbsd]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/openbsd-x64@0.19.2:
@@ -4657,7 +4642,6 @@ packages:
     cpu: [x64]
     os: [sunos]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/sunos-x64@0.19.2:
@@ -4675,7 +4659,6 @@ packages:
     cpu: [arm64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-arm64@0.19.2:
@@ -4693,7 +4676,6 @@ packages:
     cpu: [ia32]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-ia32@0.19.2:
@@ -4711,7 +4693,6 @@ packages:
     cpu: [x64]
     os: [win32]
     requiresBuild: true
-    dev: true
     optional: true
 
   /@esbuild/win32-x64@0.19.2:
@@ -4817,7 +4798,7 @@ packages:
     resolution: {integrity: sha512-k2Ty1JcVojjJFwrg/ThKi2ujJ7XNLYaFGNB/bWT9wGR+oSMJHMa5w+CUq6p/pVrKeNNgA7pCqEcjSnHVoqJQFw==}
     dev: true
 
-  /@geometricpanda/storybook-addon-badges@2.0.0(@storybook/blocks@7.4.5)(@storybook/components@7.4.5)(@storybook/core-events@7.4.5)(@storybook/manager-api@7.4.5)(@storybook/preview-api@7.4.5)(@storybook/theming@7.4.5)(@storybook/types@7.4.5)(react-dom@18.2.0)(react@18.2.0):
+  /@geometricpanda/storybook-addon-badges@2.0.0(@storybook/blocks@7.4.5)(@storybook/components@7.4.5)(@storybook/core-events@7.4.5)(@storybook/manager-api@7.4.5)(@storybook/preview-api@7.4.5)(@storybook/theming@7.4.5)(@storybook/types@7.4.6)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-M1CQabr1/IDG6ku0/+n6kZBvWTCSun7LndkGsaB89nTNaCcflWxflgY2HdcbjblLL8W0iT7QiW9TgWP4kcpn5Q==}
     peerDependencies:
       '@storybook/blocks': ^7.0.0
@@ -4841,7 +4822,7 @@ packages:
       '@storybook/manager-api': 7.4.5(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.4.5
       '@storybook/theming': 7.4.5(react-dom@18.2.0)(react@18.2.0)
-      '@storybook/types': 7.4.5
+      '@storybook/types': 7.4.6
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: true
@@ -7287,7 +7268,7 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/builder-vite@7.4.5(typescript@5.1.6)(vite@4.4.7):
+  /@storybook/builder-vite@7.4.5(typescript@5.1.6)(vite@4.4.11):
     resolution: {integrity: sha512-0aIMvBIx2U/DhDjdjWCW/KIG3HAJpus8NIUIvkVAUCaA7Vn8XvnSsdaRSTTxaaJReFZcIxDf7MebHSCJ0UEKqQ==}
     peerDependencies:
       '@preact/preset-vite': '*'
@@ -7322,7 +7303,7 @@ packages:
       remark-slug: 6.1.0
       rollup: 3.26.2
       typescript: 5.1.6
-      vite: 4.4.7(@types/node@18.17.19)(less@4.1.3)(sass@1.68.0)
+      vite: 4.4.11(sass@1.68.0)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -7341,6 +7322,17 @@ packages:
     dependencies:
       '@storybook/client-logger': 7.4.5
       '@storybook/core-events': 7.4.5
+      '@storybook/global': 5.0.0
+      qs: 6.11.2
+      telejson: 7.2.0
+      tiny-invariant: 1.3.1
+    dev: true
+
+  /@storybook/channels@7.4.6:
+    resolution: {integrity: sha512-yPv/sfo2c18fM3fvG0i1xse63vG8l33Al/OU0k/dtovltPu001/HVa1QgBgsb/QrEfZtvGjGhmtdVeYb39fv3A==}
+    dependencies:
+      '@storybook/client-logger': 7.4.6
+      '@storybook/core-events': 7.4.6
       '@storybook/global': 5.0.0
       qs: 6.11.2
       telejson: 7.2.0
@@ -7408,6 +7400,12 @@ packages:
 
   /@storybook/client-logger@7.4.5:
     resolution: {integrity: sha512-Bn6eTAjhPDUfLpvuxhKkpDpOtkadfkSmkBNBZRu3r0Dzk2J1nNyKV5K6D8dOU4PFVof4z/gXYj5bktT29jKsmw==}
+    dependencies:
+      '@storybook/global': 5.0.0
+    dev: true
+
+  /@storybook/client-logger@7.4.6:
+    resolution: {integrity: sha512-XDw31ZziU//86PKuMRnmc+L/G0VopaGKENQOGEpvAXCU9IZASwGKlKAtcyosjrpi+ZiUXlMgUXCpXM7x3b1Ehw==}
     dependencies:
       '@storybook/global': 5.0.0
     dev: true
@@ -7502,6 +7500,12 @@ packages:
 
   /@storybook/core-events@7.4.5:
     resolution: {integrity: sha512-Jzy/adSC95saYCZlgXE5j7jmiMLAXYpnBFBxEtBdXwSWEBb0zt21n1nyWBEAv9s/k2gqDXlPHKHeL5Mn6y40zA==}
+    dependencies:
+      ts-dedent: 2.2.0
+    dev: true
+
+  /@storybook/core-events@7.4.6:
+    resolution: {integrity: sha512-r5vrE+32lwrJh1NGFr1a0mWjvxo7q8FXYShylcwRWpacmL5NTtLkrXOoJSeGvJ4yKNYkvxQFtOPId4lzDxa32w==}
     dependencies:
       ts-dedent: 2.2.0
     dev: true
@@ -7789,14 +7793,23 @@ packages:
       file-system-cache: 2.3.0
     dev: true
 
-  /@storybook/web-components-vite@7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.4.7):
+  /@storybook/types@7.4.6:
+    resolution: {integrity: sha512-6QLXtMVsFZFpzPkdGWsu/iuc8na9dnS67AMOBKm5qCLPwtUJOYkwhMdFRSSeJthLRpzV7JLAL8Kwvl7MFP3QSw==}
+    dependencies:
+      '@storybook/channels': 7.4.6
+      '@types/babel__core': 7.20.0
+      '@types/express': 4.17.17
+      file-system-cache: 2.3.0
+    dev: true
+
+  /@storybook/web-components-vite@7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.4.11):
     resolution: {integrity: sha512-J90WA/CKNUvDu962W1SnzsXmttIS8im0i9Op8zjMPAHq+nVzfXB0Qb/LUR3RbQHFU01V7BFaWgrA0CdINeN04g==}
     engines: {node: ^14.18 || >=16}
     peerDependencies:
       react: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=18
       react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0 || >=18
     dependencies:
-      '@storybook/builder-vite': 7.4.5(typescript@5.1.6)(vite@4.4.7)
+      '@storybook/builder-vite': 7.4.5(typescript@5.1.6)(vite@4.4.11)
       '@storybook/core-server': 7.4.5
       '@storybook/node-logger': 7.4.5
       '@storybook/web-components': 7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)
@@ -11958,7 +11971,6 @@ packages:
       '@esbuild/win32-arm64': 0.18.17
       '@esbuild/win32-ia32': 0.18.17
       '@esbuild/win32-x64': 0.18.17
-    dev: true
 
   /esbuild@0.19.2:
     resolution: {integrity: sha512-G6hPax8UbFakEj3hWO0Vs52LQ8k3lnBhxZWomUJDxfz3rZTLqF5k/FCzuNdLx2RbpBiQQF9H9onlDDH1lZsnjg==}
@@ -13158,7 +13170,6 @@ packages:
   /fsevents@2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
-    os: [darwin]
     requiresBuild: true
     optional: true
 
@@ -14142,7 +14153,6 @@ packages:
 
   /immutable@4.3.0:
     resolution: {integrity: sha512-0AOCmOip+xgJwEVTQj1EfiDDOkPmuyllDuTuEX+DDXUgapLAsBIfkg3sxCYyCEA8mQqZrrxPUGjcOQ2JS3WLkg==}
-    dev: true
 
   /import-fresh@3.3.0:
     resolution: {integrity: sha512-veYYhQa+D1QBKznvhUHxb8faxlrwUnxseDAbAp457E0wLNio2bOSKnjYDhMj+YiAq61xrMGhQk9iXVk5FzgQMw==}
@@ -17598,7 +17608,6 @@ packages:
     resolution: {integrity: sha512-BGcqMMJuToF7i1rt+2PWSNVnWIkGCU78jBG3RxO/bZlnZPK2Cmi2QaffxGO/2RvWi9sL+FAiRiXMgsyxQ1DIDA==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
-    dev: true
 
   /nanomatch@1.2.13:
     resolution: {integrity: sha512-fpoe2T0RbHwBTBUOftAfBPaDEi06ufaUai0mE6Yn1kacc3SnTErfb/h+X94VXzI64rKFHYImXSvdwGGCmwOqCA==}
@@ -18964,7 +18973,6 @@ packages:
       nanoid: 3.3.6
       picocolors: 1.0.0
       source-map-js: 1.0.2
-    dev: true
 
   /preferred-pm@3.0.3:
     resolution: {integrity: sha512-+wZgbxNES/KlJs9q40F/1sfOd/j7f1O9JaHcW5Dsn3aUUOZg3L2bjpVUcKV2jvtElYfoTuQiNeMfQJ4kwUAhCQ==}
@@ -20027,6 +20035,13 @@ packages:
       fsevents: 2.3.2
     dev: true
 
+  /rollup@3.29.4:
+    resolution: {integrity: sha512-oWzmBZwvYrU0iJHtDmhsm662rC15FRXmcjCk1xD771dFDx5jJ02ufAQQTn0etB2emNk4J9EZg/yWKpsn9BWGRw==}
+    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+
   /rsvp@4.8.5:
     resolution: {integrity: sha512-nfMOlASu9OnRJo1mbEk2cz0D56a1MBNrJ7orjRZQG10XDyuvwksKbuXNp6qa+kbn839HwjwhBzhFmdsaEAfauA==}
     engines: {node: 6.* || >= 7.*}
@@ -20154,7 +20169,6 @@ packages:
       chokidar: 3.5.3
       immutable: 4.3.0
       source-map-js: 1.0.2
-    dev: true
 
   /saucelabs@1.5.0:
     resolution: {integrity: sha512-jlX3FGdWvYf4Q3LFfFWS1QvPg3IGCGWxIc8QBFdPTbpTJnt/v17FHXYVAn7C8sHf1yUXo2c7yIM0isDryfYtHQ==}
@@ -20587,7 +20601,6 @@ packages:
   /source-map-js@1.0.2:
     resolution: {integrity: sha512-R0XvVJ9WusLiqTCEiGCmICCMplcCkIwwR11mOSD9CR5u+IXYdiseeEuXCVAjS54zqwkLcPNnmU4OeJ6tUrWhDw==}
     engines: {node: '>=0.10.0'}
-    dev: true
 
   /source-map-loader@4.0.1(webpack@5.88.2):
     resolution: {integrity: sha512-oqXpzDIByKONVY8g1NUPOTQhe0UTU5bWUl32GSkqK2LjJj0HmwTMVKxcUip0RgAYhY1mqgOxjbQM48a0mmeNfA==}
@@ -22387,6 +22400,41 @@ packages:
       remove-trailing-separator: 1.1.0
       replace-ext: 1.0.1
     dev: true
+
+  /vite@4.4.11(sass@1.68.0):
+    resolution: {integrity: sha512-ksNZJlkcU9b0lBwAGZGGaZHCMqHsc8OpgtoYhsQ4/I2v5cnpmmmqe5pM4nv/4Hn6G/2GhTdj0DhZh2e+Er1q5A==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: 0.18.17
+      postcss: 8.4.31
+      rollup: 3.29.4
+      sass: 1.68.0
+    optionalDependencies:
+      fsevents: 2.3.2
 
   /vite@4.4.7(@types/node@18.17.19)(less@4.1.3)(sass@1.64.1)(terser@5.19.2):
     resolution: {integrity: sha512-6pYf9QJ1mHylfVh39HpuSfMPojPSKVxZvnclX1K1FyZ1PXDOcLBibdq5t1qxJSnL63ca8Wf4zts6mD8u8oc9Fw==}

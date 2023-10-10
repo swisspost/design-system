@@ -30,7 +30,8 @@
     "@swisspost/design-system-icons": "workspace:1.0.12",
     "@swisspost/design-system-styles": "workspace:6.4.1",
     "@swisspost/internet-header": "workspace:1.10.0",
-    "bootstrap": "5.3.2"
+    "bootstrap": "5.3.2",
+    "vite": "^4.4.11"
   },
   "devDependencies": {
     "@geometricpanda/storybook-addon-badges": "2.0.0",
