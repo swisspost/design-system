@@ -22,40 +22,50 @@ export const Textarea: Story = {
         label: `Label - large rows`,
         rows: 8,
       },
+      {
+        label: `Label - Text inside the Textarea`,
+        textInside:
+          'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
+      },{
+        label: `Label - Not resizable`,
+        resize: 'resize: none'
+      }
     ];
-  
+
     return html`
       <div class="d-flex flex-wrap align-items-start gap-regular">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
             <div class="${bg} d-flex gap-3 flex-column p-3">
               <h3>Sizes</h3>
-              ${getCombinations('size', context.argTypes.size.options, combinations)
-                .map(
-                  (args: Args) =>
-                    html`
-                      <div>
-                        ${args.title !== undefined && args.title
-                          ? html`
-                              <h4>${args.size}</h4>
-                            `
-                          : ''}
-                        <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
-                      </div>
-                    `,
-                )}
-              <h3>Floating Label</h3>
-              ${getCombinations('floatingLabel', [true], combinations)
-                .map(
-                  (args: Args) =>
-                    html`
+              ${getCombinations('size', context.argTypes.size.options, combinations).map(
+                (args: Args) =>
+                  html`
+                    <div>
+                      ${args.title !== undefined && args.title
+                        ? html`
+                            <h4>
+                              ${Object.entries(context.argTypes.size.control.labels)
+                                .filter(([key, value]) => key === args.size)
+                                .map(s => s[1])}
+                            </h4>
+                          `
+                        : ''}
                       <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
-                    `,
-                )}
+                    </div>
+                  `,
+              )}
+              <h3>Floating Label</h3>
+              ${getCombinations('floatingLabel', [true], combinations).map(
+                (args: Args) =>
+                  html`
+                    <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
+                  `,
+              )}
             </div>
           `,
         )}
       </div>
     `;
-  }
+  },
 };

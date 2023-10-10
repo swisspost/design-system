@@ -20,6 +20,11 @@ function renderSelectSnapshot(_args: Args, context: StoryContext) {
       label: `Label - large multipleSize`,
       multipleSize: 6,
     },
+    {
+      label: `Label - With option selected`,
+      selected: 2,
+      value: `valoro_2`,
+    }
   ];
   return html`
     <div class="d-flex flex-wrap align-items-start gap-regular">
@@ -30,8 +35,7 @@ function renderSelectSnapshot(_args: Args, context: StoryContext) {
             ${getCombinations('size', context.argTypes.size.options, combinations)
               .filter(
                 (args: Args) =>
-                  !args.multipleSize ||
-                  (args.multipleSize && context.args.multiple === true),
+                  !args.multipleSize || (args.multipleSize && context.args.multiple === true),
               )
               .map(
                 (args: Args) =>
@@ -39,7 +43,11 @@ function renderSelectSnapshot(_args: Args, context: StoryContext) {
                     <div>
                       ${args.title !== undefined && args.title
                         ? html`
-                            <h4>${args.size}</h4>
+                            <h4>
+                              ${Object.entries(context.argTypes.size.control.labels)
+                                .filter(([key, value]) => key === args.size)
+                                .map(s => s[1])}
+                            </h4>
                           `
                         : ''}
                       <div>${Default.render?.({ ...context.args, ...args }, context)}</div>
@@ -48,11 +56,10 @@ function renderSelectSnapshot(_args: Args, context: StoryContext) {
               )}
             <h3>Floating Label</h3>
             ${getCombinations('floatingLabel', [true], combinations)
-            .filter(
-              (args: Args) =>
-                !args.multipleSize ||
-                (args.multipleSize && context.args.multiple === true),
-            )
+              .filter(
+                (args: Args) =>
+                  !args.multipleSize || (args.multipleSize && context.args.multiple === true),
+              )
               .map(
                 (args: Args) =>
                   html`

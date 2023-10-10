@@ -192,7 +192,7 @@ const Template: Story = {
       : null;
     const optionElements = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
       (key: number) => html`
-        <option value="valoro_${key}">Opcion ${key}</option>
+        <option value="valoro_${key}" selected=${args.selected == key ? true : false}>Opcion ${key}</option>
       `,
     );
     const options = [
