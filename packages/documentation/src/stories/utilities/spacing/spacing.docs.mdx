@@ -2,8 +2,6 @@ import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as SpacingStories from './spacing.stories';
 import scss from './spacing.module.scss';
 
-{console.log(scss)}
-
 <Meta of={SpacingStories} />
 
 # Spacing
@@ -37,7 +35,7 @@ Our custom sizes can be used in the same way: by adding the name of the desired 
   <p>Our grid is built with negative margins and positive paddings on the x-axis. Therefore, use this spacing classes only if you know exactly what you are doing!</p>
 </div>
 
-<Canvas of={SpacingStories.Default} />
+<Canvas sourceState="shown"  of={SpacingStories.Default} />
 <div className="hide-col-default">
   <Controls of={SpacingStories.Default} />
 </div>
@@ -49,7 +47,7 @@ By default, the above classes apply to all breakpoints.
 ##### Manually specifying breakpoints
 
 If you need to change the size or spacing of an element based on the breakpoint, you should
-mention it in the class name using one of the following infixes: {Object.values(scss).map((s, index, array) => (<span><code>{'-' + s + '-'}</code>{index !== array.length - 1 && ', '}</span>))}.
+mention it in the class name using one of the following infixes: {Object.values(scss).map((s, index, array) => (<span><code>{`-${s}-`}</code>{index !== array.length - 1 && ', '}</span>))}.
 When a breakpoint is specified, the size applies to that breakpoint and to all those that are
 larger.
 

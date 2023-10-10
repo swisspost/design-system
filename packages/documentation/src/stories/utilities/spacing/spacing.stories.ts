@@ -44,9 +44,9 @@ const meta: Meta = {
   },
   args: {
     marginSize: 'regular',
-    marginPosition: '',
+    marginPosition: 'null',
     paddingSize: 'regular',
-    paddingPosition: '',
+    paddingPosition: 'null',
   },
   argTypes: {
     marginSize: {
@@ -78,7 +78,7 @@ const meta: Meta = {
       control: {
         type: 'select',
       },
-      options: sizingOptions,
+      options: sizingOptions.filter(option => option !== 'auto'),
       table: {
         category: 'General',
       },
@@ -162,18 +162,18 @@ export const Default: Story = {
 export const responsiveExample: Story = {
   render: (args: Args) => {
     return html`
-      <div class="bg-petrol-bright h-bigger-giant w-bigger-giant p-regular p-lg-big"></div>
+      <div class="padding h-bigger-giant w-bigger-giant p-regular p-lg-big"></div>
     `;
   },
   decorators: [
     // everything in here will be visible in the example, but only the content coming from the `story` function will be shown in the code preview
     (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="bg-primary p-regular">
+      <div class="spacing-example p-regular">
         <div class="d-none">${story(args, context)}</div>
-        <div class="bg-petrol-bright h-bigger-giant w-bigger-giant p-regular p-lg-big">
-          <div class="bg-light h-100"></div>
+        <div class="padding h-bigger-giant w-bigger-giant p-regular p-lg-big">
+          <div class="content h-100"></div>
         </div>
-        <p class="text-white"><small>Resize the browser window to see changes.</small></p>
+        <p><small>Resize the browser window to see changes.</small></p>
       </div>
     `,
   ],
@@ -182,17 +182,17 @@ export const responsiveExample: Story = {
 export const automaticResponsiveExample: Story = {
   render: (args: Args) => {
     return html`
-      <div class="bg-petrol-bright h-bigger-giant w-bigger-giant p-large-r"></div>
+      <div class="padding h-bigger-giant w-bigger-giant p-large-r"></div>
     `;
   },
   decorators: [
     (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="bg-primary p-regular">
+      <div class="spacing-example p-regular">
         <div class="d-none">${story(args, context)}</div>
-        <div class="bg-petrol-bright h-bigger-giant w-bigger-giant p-large-r">
-          <div class="bg-light h-100"></div>
+        <div class="padding h-bigger-giant w-bigger-giant p-large-r">
+          <div class="content h-100"></div>
         </div>
-        <p class="text-white"><small>Resize the browser window to see changes.</small></p>
+        <p><small>Resize the browser window to see changes.</small></p>
       </div>
     `,
   ],
