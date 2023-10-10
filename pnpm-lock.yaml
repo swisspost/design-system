@@ -193,8 +193,8 @@ importers:
         specifier: 16.2.6
         version: 16.2.6(@angular/compiler@16.2.6)(typescript@4.9.5)
       '@types/jasmine':
-        specifier: 4.3.6
-        version: 4.3.6
+        specifier: 5.1.0
+        version: 5.1.0
       '@types/node':
         specifier: 18.17.19
         version: 18.17.19
@@ -413,8 +413,8 @@ importers:
         specifier: 9.12.4
         version: 9.12.4
       '@types/jasmine':
-        specifier: 4.3.6
-        version: 4.3.6
+        specifier: 5.1.0
+        version: 5.1.0
       '@types/jasminewd2':
         specifier: 2.0.11
         version: 2.0.11
@@ -8087,14 +8087,14 @@ packages:
       '@types/istanbul-lib-report': 3.0.0
     dev: true
 
-  /@types/jasmine@4.3.6:
-    resolution: {integrity: sha512-3N0FpQTeiWjm+Oo1WUYWguUS7E6JLceiGTriFrG8k5PU7zRLJCzLcWURU3wjMbZGS//a2/LgjsnO3QxIlwxt9g==}
+  /@types/jasmine@5.1.0:
+    resolution: {integrity: sha512-XOV0KsqXNX2gUSqk05RWeolIMgaAQ7+l/ozOBoQ8NGwLg+E7J9vgagODtNgfim4jCzEUP0oJ3gnXeC+Zv+Xi1A==}
     dev: true
 
   /@types/jasminewd2@2.0.11:
     resolution: {integrity: sha512-J3ggNCbxnHPsd15lzNZtOdPovtErcIl2vD11VSRq2s+ktQr43ZfqO4ws6YDFNRvUoXWCxD5uXTWuwyXPyT5eqg==}
     dependencies:
-      '@types/jasmine': 4.3.6
+      '@types/jasmine': 5.1.0
     dev: true
 
   /@types/jest@26.0.24:
