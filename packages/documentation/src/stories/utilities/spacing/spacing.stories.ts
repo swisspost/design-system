@@ -162,7 +162,7 @@ export const Default: Story = {
 export const responsiveExample: Story = {
   render: (args: Args) => {
     return html`
-      <div class="padding h-bigger-giant w-bigger-giant p-regular p-lg-big"></div>
+      <div class="h-bigger-giant w-bigger-giant p-regular p-lg-big"></div>
     `;
   },
   decorators: [
@@ -182,7 +182,7 @@ export const responsiveExample: Story = {
 export const automaticResponsiveExample: Story = {
   render: (args: Args) => {
     return html`
-      <div class="padding h-bigger-giant w-bigger-giant p-large-r"></div>
+      <div class="h-bigger-giant w-bigger-giant p-large-r"></div>
     `;
   },
   decorators: [
