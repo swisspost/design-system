@@ -99,7 +99,7 @@ span.ngb-dp-navigation-chevron {
   height: 40px !important;
   line-height: 40px;
   &:focus-visible{
-    outline: color.$warning solid 2px;
+    outline: forms.$input-focus-color solid forms.$input-focus-outline-thickness;
   }
 }
 
@@ -143,7 +143,7 @@ span.ngb-dp-navigation-chevron {
     transform: none;
   }
   &:focus-visible{
-    outline: color.$warning solid 2px;
+    outline: forms.$input-focus-color solid forms.$input-focus-outline-thickness;
   }
 }
 
