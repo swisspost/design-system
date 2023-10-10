@@ -93,7 +93,7 @@ export const VerticalExample: Story = {
   render: (args: Args) => html`
     <div class="container">
       <div class="row-height row ${args.alignItems}">
-        <div class="col ${args.alignSelf === 'no self alignment' ? '' : args.alignSelf}">
+        <div class="col${args.alignSelf === 'no self alignment' ? '' : ` ${args.alignSelf`}">
           Item 1
         </div>
         <div class="col">Item 2</div>
