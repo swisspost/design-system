@@ -153,7 +153,7 @@ export const OffsetExample: Story = {
   ],
   render: (args: Args) => html`
     <div class="row">
-      <div class="col-md-4 ${args.offsetItem}">.col-md-4 .${args.offsetItem}</div>
+      <div class="col-1 ${args.offsetItem}">.col-1 .${args.offsetItem}</div>
     </div>
   `,
 };
