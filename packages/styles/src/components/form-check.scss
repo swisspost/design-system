@@ -1,6 +1,7 @@
 @forward './../variables/options';
 
 @use '../variables/color';
+@use '../variables/type';
 @use '../variables/spacing';
 @use '../variables/animation';
 @use '../variables/components/form-check';
@@ -82,7 +83,7 @@
       border-radius: 50%;
 
       &:checked::after {
-        margin: spacing.$size-micro;
+        border: spacing.$size-micro solid color.$white;
         background-color: currentColor;
         border-radius: inherit;
       }
@@ -93,10 +94,25 @@
       border-color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
       color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
     }
+
+    .form-check-sm & {
+      height: form-check.$form-check-input-size-sm;
+      width: form-check.$form-check-input-size-sm;
+
+      &[type='radio'] {
+        &:checked::after {
+          border-width: spacing.$size-line;
+        }
+      }
+    }
   }
 
   &-label {
     flex: 1;
+
+    .form-check-sm & {
+      font-size: type.$font-size-12;
+    }
   }
 }
 

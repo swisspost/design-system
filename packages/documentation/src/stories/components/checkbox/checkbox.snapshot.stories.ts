@@ -32,6 +32,7 @@ export const Checkbox: Story = {
                   label: ['Label', longText],
                   validation: context.argTypes.validation.options,
                   checked: ['unchecked', 'checked'],
+                  size: ['null', 'form-check-sm'],
                   hiddenLabel: [false, true],
                   disabled: [false, true],
                 })
@@ -49,7 +50,7 @@ export const Checkbox: Story = {
               ].map(
                 (args: Args) =>
                   html`
-                    <span class=${args.checked === 'indeterminate' ? 'indeterminate' : ''}>
+                    <span class="${args.checked === 'indeterminate' ? 'indeterminate' : ''}">
                       ${meta.render?.({ ...context.args, ...args }, context)}
                     </span>
                   `,
