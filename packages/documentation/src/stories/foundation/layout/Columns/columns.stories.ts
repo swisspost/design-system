@@ -16,7 +16,7 @@ const meta: Meta = {
     alignItems: 'align-items-start',
     alignSelf: 'no self alignment',
     justifyContent: 'justify-content-start',
-    offsetItem: 'offset-md-1',
+    offsetItem: 'offset-1',
   },
   argTypes: {
     alignItems: {
@@ -66,14 +66,17 @@ const meta: Meta = {
         type: 'select',
       },
       options: [
-        'offset-md-1',
-        'offset-md-2',
-        'offset-md-3',
-        'offset-md-4',
-        'offset-md-5',
-        'offset-md-6',
-        'offset-md-7',
-        'offset-md-8',
+        'offset-1',
+        'offset-2',
+        'offset-3',
+        'offset-4',
+        'offset-5',
+        'offset-6',
+        'offset-7',
+        'offset-8',
+        'offset-9',
+        'offset-10',
+        'offset-11',
       ],
       table: {
         category: 'General',
@@ -93,7 +96,7 @@ export const VerticalExample: Story = {
   render: (args: Args) => html`
     <div class="container">
       <div class="row-height row ${args.alignItems}">
-        <div class="col${args.alignSelf === 'no self alignment' ? '' : ` ${args.alignSelf`}">
+        <div class="col${args.alignSelf === 'no self alignment' ? '' : ` ${args.alignSelf}`}">
           Item 1
         </div>
         <div class="col">Item 2</div>
@@ -145,12 +148,6 @@ export const OffsetExample: Story = {
   parameters: {
     controls: { exclude: ['Align Items', 'Align Item 1', 'Horizontal Alignement'] },
   },
-  decorators: [
-    (story: StoryFn, { args, context }: StoryContext) => html`
-      ${story(args, context)}
-      <p class="mt-regular"><small>Resize the browser window to see changes.</small></p>
-    `,
-  ],
   render: (args: Args) => html`
     <div class="row">
       <div class="col-1 ${args.offsetItem}">.col-1 .${args.offsetItem}</div>
@@ -161,14 +158,14 @@ export const OffsetExample: Story = {
 export const ColumnBreakExample: Story = {
   render: () => html`
     <div class="row">
-      <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
-      <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+      <div class="col-3">.col-3</div>
+      <div class="col-3">.col-3</div>
 
       <!-- Force next columns to break to new line -->
       <div class="w-100"></div>
 
-      <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
-      <div class="col-6 col-sm-3">.col-6 .col-sm-3</div>
+      <div class="col-3">.col-3</div>
+      <div class="col-3">.col-3</div>
     </div>
   `,
 };
