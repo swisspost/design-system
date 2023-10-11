@@ -4,6 +4,8 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={TopicTeaserStories} />
 
+<div className="hide-col-default container">
+  
 # Topic Teaser
 
 <div className="lead">
@@ -13,9 +15,13 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 If you use multiple topic teasers on one page, each topic teaser must have a different background.
 
+</div>
+
 <Canvas of={TopicTeaserStories.Default} />
-<div className="hide-col-default">
+<div className="hide-col-default container">
   <Controls of={TopicTeaserStories.Default} />
 </div>
 
-<StylesPackageImport components={["topic-teaser"]} />
+<div className="hide-col-default container">
+  <StylesPackageImport components={['topic-teaser']} />
+</div>
