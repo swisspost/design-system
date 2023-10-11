@@ -92,14 +92,18 @@ span.ngb-dp-navigation-chevron {
   &.hidden {
     flex-grow: 1;
   }
-}
 
-.ngb-dp-day > .btn-light {
-  width: 40px !important;
-  height: 40px !important;
-  line-height: 40px;
-  &:focus-visible{
-    outline: forms.$input-focus-color solid forms.$input-focus-outline-thickness;
+  &:focus-visible {
+    outline: none;
+  }
+
+  > [ngbDatepickerDayView] {
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px;
+    &.active:not(.bg-primary) {
+      outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
+    }
   }
 }
 
@@ -142,8 +146,8 @@ span.ngb-dp-navigation-chevron {
     height: datepicker.$ngb-dp-icon-size;
     transform: none;
   }
-  &:focus-visible{
-    outline: forms.$input-focus-color solid forms.$input-focus-outline-thickness;
+  &:focus-visible {
+    outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
   }
 }
 
