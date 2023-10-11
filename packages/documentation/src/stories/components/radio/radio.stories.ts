@@ -164,13 +164,7 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  decorators: [
-    story => html`
-      <div class="pt-3">${story()}</div>
-    `,
-  ],
-};
+export const Default: Story = {};
 
 function renderInline(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
@@ -245,36 +239,14 @@ function renderInline(args: Args, context: StoryContext) {
 
 export const Size: Story = {
   render,
-  decorators: [
-    story => html`
-      <div class="pt-3">${story()}</div>
-    `,
-  ],
-  parameters: {
-    controls: {
-      exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
-    },
-  },
   args: {
     size: 'form-check-sm',
     checkedRadio: null,
-  },
-  argTypes: {
-    checkedRadio: {
-      table: {
-        disable: true,
-      },
-    },
   },
 };
 
 export const Inline: Story = {
   render: renderInline,
-  decorators: [
-    story => html`
-      <div class="pt-3">${story()}</div>
-    `,
-  ],
   parameters: {
     controls: {
       exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
