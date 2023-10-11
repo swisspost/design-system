@@ -134,7 +134,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      @change=${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}
+      @change="${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}"
     />
   `;
 
@@ -155,7 +155,7 @@ export const Default: Story = {
   ],
 };
 
-function renderInline(args: Args, context: StoryContext) {
+export function renderInline(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
   const baseId = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
   const id1 = baseId + '1';
