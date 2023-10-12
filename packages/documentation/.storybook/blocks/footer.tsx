@@ -29,6 +29,17 @@ const DEVELOPERS: Developer[] = [
   },
 ];
 
+const BASEURL =
+  'https://github.com/swisspost/design-system/tree/main/packages/documentation/src/stories';
+const FALLBACKBASEURL = 'https://github.com/swisspost/design-system';
+const SUBPAGE = window.location.href;
+
+function getGitHubUrl(subpage: Location) {
+  console.log(SUBPAGE.split('/')[3].split('id=')[1]);
+  console.log(subpage);
+  return BASEURL;
+}
+
 export default () => (
   <footer className="docs-footer mt-huge bg-light">
     <div className="container">
@@ -78,7 +89,7 @@ export default () => (
         >
           Data protection and disclaimer
         </a>
-        <a href="https://github.com/swisspost/design-system" target="_blank" rel="noopener">
+        <a href={getGitHubUrl(window.location)} target="_blank" rel="noopener">
           Improve this page
         </a>
       </div>
