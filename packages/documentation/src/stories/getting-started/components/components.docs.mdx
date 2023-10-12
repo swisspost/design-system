@@ -12,38 +12,34 @@ import SampleUseSpecific from './components-use-specific.sample?raw';
 A set of standard web components for easy integration with every framework or no framework at all.
 
 <ul>
-  <li><a href="#installation" target="_self">Installation</a></li>
-  <li><a href="#usage" target="_self">Usage</a></li>
+  <li>
+    <a href="#installation" target="_self">
+      Installation
+    </a>
+  </li>
+  <li>
+    <a href="#usage" target="_self">
+      Usage
+    </a>
+  </li>
 </ul>
 
 ## Installation
 
 {/* https://stenciljs.com/docs/custom-elements#consuming-custom-elements */}
 
-<Source
-  code={`npm install @swisspost/design-system-components`}
-  language="bash"
-/>
+<Source code={`npm install @swisspost/design-system-components`} language="bash" />
 
 ## Usage
 
-Import all the available components into your project (for example into your `/src/main.ts` or `/src/index.js` file) and make them work:
+Import all the available components lazy-loaded into your project (for example into your `/src/main.ts` or `/src/index.js` file) and make them work:
 
-<Source
-  code={SampleUseAll}
-  language="javascript"
-/>
+<Source code={SampleUseAll} language="javascript" />
 
-Import specific components:
+Import only a few specific components and handle bundling and lazy-loading by yourself:
 
-<Source
-  code={SampleUseSpecific}
-  language="javascript"
-/>
+<Source code={SampleUseSpecific} language="javascript" />
 
 Use the imported components in your html:
 
-<Source
-  code={`<post-icon name="1000"></post-icon>`}
-  language="html"
-/>
+<Source code={`<post-icon name="1000"></post-icon>`} language="html" />

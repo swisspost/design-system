@@ -1,3 +1,3 @@
-import { defineCustomElements } from '@swisspost/design-system-components/loader';
+import { defineCustomElements } from '@swisspost/design-system-components';
 
 defineCustomElements();

@@ -1,3 +1,13 @@
-import { defineCustomElement as definePostIcon } from '@swisspost/design-system-components/dist/components/post-icon';
+import {
+  defineCustomElementPostIcon,
+  defineCustomElementPostTooltip,
+} from '@swisspost/design-system-components/dist/components';
 
-definePostIcon();
+defineCustomElementPostIcon();
+defineCustomElementPostTooltip();
+
+// or
+
+import { defineCustomElement as defineCustomElementPostAlert } from '@swisspost/design-system-components/dist/components/post-alert';
+
+defineCustomElementPostAlert();
