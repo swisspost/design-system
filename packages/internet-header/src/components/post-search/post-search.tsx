@@ -1,6 +1,6 @@
-import { Component, Host, h, State, Event, EventEmitter, Method, Element } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { clearAllBodyScrollLocks, disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { state } from '../../data/store';
 import { CoveoCompletion } from '../../models/coveo.model';
 import { GeocodeLocation } from '../../models/geocode.model';
@@ -12,14 +12,14 @@ import {
   ISearchRecommendation,
   IsFocusable,
 } from '../../models/header.model';
-import { getSearchRedirectUrl, equalizeArrays } from '../../services/search/search.service';
+import { equalizeArrays, getSearchRedirectUrl } from '../../services/search/search.service';
 import { getCoveoSuggestions } from '../../services/search/coveo.service';
 import {
   getPlacesUrl,
   highlightPlacesString,
   queryPlaces,
 } from '../../services/search/places.service';
-import { userPrefersReducedMotion, elementHasTransition } from '../../services/ui.service';
+import { elementHasTransition, userPrefersReducedMotion } from '../../services/ui.service';
 import { HighlightedText } from '../../utils/highlighted.component';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { SvgIcon } from '../../utils/svg-icon.component';
@@ -148,6 +148,10 @@ export class PostSearch implements HasDropdown, IsFocusable {
    * Disable or re-enable body scrolling, depending on whether search dropdown is open or closed in mobile view (width < 1024px)
    */
   private setBodyScroll() {
+    if (!this.searchFlyout) {
+      return;
+    }
+
     if (this.searchDropdownOpen && window.innerWidth < 1024) {
       disableBodyScroll(this.searchFlyout);
     } else {

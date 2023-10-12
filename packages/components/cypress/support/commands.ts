@@ -50,7 +50,9 @@ chai.use(isInViewport);
 
 Cypress.Commands.add('getComponent', (component: string, story = 'default') => {
   cy.visit(`/iframe.html?id=components-${component}--${story}`);
-  cy.get(`post-${component}`).as(component);
+
+  const alias = component.replace(/^post-/, '');
+  cy.get(`post-${alias}`).as(alias);
 });
 
 Cypress.Commands.add('checkVisibility', (visibility: 'visible' | 'hidden') => {

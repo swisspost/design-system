@@ -3,12 +3,22 @@
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/dropdown' as bd;
 
-@use './../functions/icons';
+@use './../placeholders/close';
 @use './../variables/color';
 @use './../variables/commons';
+@use './../variables/icons';
 @use './../variables/spacing';
-@use './../placeholders/dropdown';
+@use './../mixins/icons' as icons-mx;
 @use './../mixins/utilities';
+
+%toggler-icon {
+  content: '';
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  margin-left: 0.5rem;
+  border: 0;
+}
 
 .dropdown,
 .dropup {
@@ -43,76 +53,19 @@
   }
 }
 
-$gray-arrow-down: icons.get-colored-svg-url('2052', color.$gray-80);
-$white-arrow-down: icons.get-colored-svg-url('2052', color.$white);
-$gray-arrow-up: icons.get-colored-svg-url('2051', color.$gray-80);
-$white-arrow-up: icons.get-colored-svg-url('2051', color.$white);
-$hcm-arrow-down: icons.get-colored-svg-url('2052', buttonText);
-$hcm-arrow-up: icons.get-colored-svg-url('2052', buttonText);
-
 .dropdown-toggle {
   &::after {
     @extend %toggler-icon;
-    background-image: url($gray-arrow-down);
-    @include utilities.high-contrast-mode() {
-      background-image: url($hcm-arrow-down);
-    }
+    @include icons-mx.icon(2052);
   }
 
-  &.btn-primary::after {
-    background-image: url($white-arrow-down);
-    @include utilities.high-contrast-mode() {
-      background-image: url($hcm-arrow-down);
-    }
+  &[aria-expanded='true']::after,
+  .dropup &::after {
+    transform: rotate(180deg);
   }
 
-  &[aria-expanded='true'] {
-    &::after {
-      background-image: url($gray-arrow-up);
-      @include utilities.high-contrast-mode() {
-        background-image: url($hcm-arrow-up);
-      }
-    }
-
-    &.btn-primary::after {
-      background-image: url($white-arrow-up);
-      @include utilities.high-contrast-mode() {
-        background-image: url($hcm-arrow-up);
-      }
-    }
-  }
-
-  .dropup & {
-    &::after {
-      @extend %toggler-icon;
-      background-image: url($gray-arrow-up);
-      @include utilities.high-contrast-mode() {
-        background-image: url($hcm-arrow-up);
-      }
-    }
-
-    &.btn-primary::after {
-      background-image: url($white-arrow-up);
-      @include utilities.high-contrast-mode() {
-        background-image: url($hcm-arrow-up);
-      }
-    }
-
-    &[aria-expanded='true'] {
-      &::after {
-        background-image: url($gray-arrow-down);
-        @include utilities.high-contrast-mode() {
-          background-image: url($hcm-arrow-down);
-        }
-      }
-
-      &.btn-primary::after {
-        background-image: url($white-arrow-down);
-        @include utilities.high-contrast-mode() {
-          background-image: url($hcm-arrow-down);
-        }
-      }
-    }
+  .dropup &[aria-expanded='true']::after {
+    transform: rotate(0deg);
   }
 }
 

@@ -28,14 +28,14 @@
     "test:updatesnapshots": "jest -u"
   },
   "devDependencies": {
-    "@tsconfig/node16": "16.1.1",
+    "@tsconfig/node18": "18.2.2",
     "@types/jest": "26.0.24",
     "@types/mock-fs": "4.13.1",
-    "@types/node": "18.17.14",
-    "@types/node-fetch": "2.6.4",
+    "@types/node": "18.18.0",
+    "@types/node-fetch": "2.6.6",
     "dotenv": "16.3.1",
     "http-server": "14.1.1",
-    "https-proxy-agent": "7.0.1",
+    "https-proxy-agent": "7.0.2",
     "jest": "26.6.3",
     "mock-fs": "5.2.0",
     "node-fetch": "2.7.0",

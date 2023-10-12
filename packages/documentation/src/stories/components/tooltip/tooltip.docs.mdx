@@ -1,0 +1,32 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as TooltipStories from './tooltip.stories';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta of={TooltipStories} />
+
+# Tooltip
+
+<div className="lead">For short, informative messages or explanations.</div>
+
+<Canvas of={TooltipStories.Default} />
+<Controls of={TooltipStories.Default} />
+
+## Installation
+
+The `<post-tooltip>` element is part of the `@swisspost/design-system-components` package. For more information, read the
+<LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
+
+## Examples
+
+### Tooltip on non-focusable elements
+
+If you assign a tooltip to a non-focusable element, the component will add `tabindex="0"` automatically. With that, the tooltip is also visible for keyboard users. Also, if you forget to link the tooltip and the trigger with `aria-describedby="tooltip-id"`, we've got you covered.
+
+<Canvas of={TooltipStories.NonFocusable} />
+
+### One tooltip on multiple elements
+
+The same tooltip can be displayed on multiple elements. This reduces the amount of markup necessary.
+
+<Canvas of={TooltipStories.Multiple} />
+
