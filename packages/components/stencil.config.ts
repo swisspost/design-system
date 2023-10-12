@@ -4,12 +4,13 @@ import { reactOutputTarget } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'post-components',
-  outputTargets: [
-    reactOutputTarget({
-      componentCorePackage: '@swisspost/design-system-components',
-      proxiesFile: '../components-react/src/components/stencil-generated/index.ts',
-      includeDefineCustomElements: true,
+  plugins: [
+    sass({
+      outputStyle: 'compressed',
+      includePaths: ['node_modules'],
     }),
+  ],
+  outputTargets: [
     {
       type: 'dist',
       esmLoaderPath: '../loader',
@@ -18,20 +19,16 @@ export const config: Config = {
       type: 'dist-custom-elements',
     },
     {
-      type: 'docs-readme',
-    },
-    {
-      type: 'www',
-      serviceWorker: null, // disable service workers
-    },
-    {
       type: 'docs-json',
       file: 'dist/docs.json',
     },
-  ],
-  plugins: [
-    sass({
-      includePaths: ['node_modules'],
+    {
+      type: 'docs-readme',
+    },
+    reactOutputTarget({
+      componentCorePackage: '@swisspost/design-system-components',
+      proxiesFile: '../components-react/src/components/stencil-generated/index.ts',
+      includeDefineCustomElements: true,
     }),
   ],
   testing: {
