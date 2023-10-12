@@ -17,6 +17,7 @@ export const config: Config = {
     },
     {
       type: 'dist-custom-elements',
+      customElementsExportBehavior: 'single-export-module',
     },
     {
       type: 'docs-json',
