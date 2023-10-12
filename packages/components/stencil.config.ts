@@ -4,6 +4,7 @@ import { reactOutputTarget } from '@stencil/react-output-target';
 
 export const config: Config = {
   namespace: 'post-components',
+  sourceMap: false,
   plugins: [
     sass({
       outputStyle: 'compressed',
