@@ -36,10 +36,11 @@ export const SingleColumnOnly: Story = {
       <div class="row">
         <div class="col">Don't do this!</div>
       </div>
+      <br/>
       <div class="row">
         <div class="col-12">Nor this!</div>
       </div>
-      <br />
+      <br/>
       <p>Instead, your content should go here!</p>
     </div>
   `,
