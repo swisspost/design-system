@@ -690,9 +690,9 @@ importers:
       '@percy/cypress':
         specifier: 3.1.2
         version: 3.1.2(cypress@13.2.0)
-      '@stencil/eslint-plugin':
-        specifier: 0.4.0
-        version: 0.4.0(eslint-plugin-react@7.33.2)(typescript@4.9.5)
+      '@stencil-community/eslint-plugin':
+        specifier: 0.5.0
+        version: 0.5.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.33.2)(eslint@8.50.0)(typescript@4.9.5)
       '@stencil/sass':
         specifier: 3.0.5
         version: 3.0.5(@stencil/core@3.4.2)
@@ -6759,30 +6759,6 @@ packages:
     resolution: {integrity: sha512-FAUhUVaakCy29nU2GwO/HQBRV1ihPRvncz3PUc8oR+UJLAxGabTmP8PLY7wvHfbw+Cvi4VXfJFTBvdfDu6iKPQ==}
     engines: {node: '>=14.10.0', npm: '>=6.0.0'}
     hasBin: true
-
-  /@stencil/eslint-plugin@0.4.0(eslint-plugin-react@7.33.2)(typescript@4.9.5):
-    resolution: {integrity: sha512-2tjDOjyh0DLt1NITII4s+rU1UwcomrbR/yei3fIU83l7PLNdZvBCSCopsXYyxaY/C37aYJQ0LR8edlLVEk6EUw==}
-    engines: {node: '>=12.0.0'}
-    deprecated: '@stencil/eslint-plugin has been deprecated. Please see the community-driven package, ''@stencil-community/eslint-plugin'''
-    peerDependencies:
-      '@typescript-eslint/eslint-plugin': <5 && ^4.0.0
-      '@typescript-eslint/parser': <5 && ^4.0.0
-      eslint: <8 && ^7.0.0
-      eslint-plugin-react: ^7.0.0
-      typescript: ^4.0.8
-    peerDependenciesMeta:
-      '@typescript-eslint/eslint-plugin':
-        optional: true
-      '@typescript-eslint/parser':
-        optional: true
-      eslint:
-        optional: true
-    dependencies:
-      eslint-plugin-react: 7.33.2(eslint@8.50.0)
-      eslint-utils: 3.0.0(eslint@8.50.0)
-      tsutils: 3.0.0(typescript@4.9.5)
-      typescript: 4.9.5
-    dev: true
 
   /@stencil/react-output-target@0.5.3(@stencil/core@3.4.2):
     resolution: {integrity: sha512-68jwRp35CjAcwhTJ9yFD/3n+jrHOqvEH2jreVuPVvZK+4tkhPlYlwz0d1E1RlF3jyifUSfdkWUGgXIEy8Fo3yw==}
