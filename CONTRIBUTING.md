@@ -4,7 +4,7 @@ These contribution guidelines apply to this repository in general and describe h
 
 - [Angular Demo](./packages/demo/README.md)
 - [Design System Styles](./packages/styles/CONTRIBUTING.md)
-- [Angular Components (Intranet Header)](./packages/angular-components/projects/intranet-header/CONTRIBUTING.md)
+- [Angular Components (Intranet Header)](./packages/intranet-header-workspace/projects/intranet-header/CONTRIBUTING.md)
 
 ## Prerequisites
 
