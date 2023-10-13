@@ -1,6 +1,8 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
 import { reactOutputTarget } from '@stencil/react-output-target';
+import { angularOutputTarget } from '@stencil/angular-output-target';
+import { angularValueAccessorBindings } from './.config/bindings.angular';
 
 export const config: Config = {
   namespace: 'post-components',
@@ -31,6 +33,13 @@ export const config: Config = {
       componentCorePackage: '@swisspost/design-system-components',
       proxiesFile: '../components-react/src/components/stencil-generated/index.ts',
       includeDefineCustomElements: true,
+    }),
+    angularOutputTarget({
+      componentCorePackage: '@swisspost/design-system-components',
+      outputType: 'component',
+      directivesProxyFile: '../components-angular/projects/components/src/lib/stencil-generated/components.ts',
+      directivesArrayFile: '../components-angular/projects/components/src/lib/stencil-generated/index.ts',
+      valueAccessorConfigs: angularValueAccessorBindings,
     }),
   ],
   testing: {
