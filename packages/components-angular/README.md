@@ -1,13 +1,12 @@
 # Angular Components
 
-This is the wrapper package for any Angular related components in the Design System. This package itself is not published anywhere.
+This is the wrapper package for any Angular related component in the Design System. This package itself is not published anywhere.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.6.
 
 ## Setup
 
 These guidelines extend the [general contribution guidelines](../../CONTRIBUTING.md).
-
 
 ## Development server
 
