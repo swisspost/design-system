@@ -1,4 +1,4 @@
-# @swisspost/design-system-components-angular
+# @swisspost/design-system-intranet-header-workspace
 
 ## 3.0.1
 

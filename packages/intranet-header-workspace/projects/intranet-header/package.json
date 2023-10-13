@@ -22,6 +22,6 @@
     "tslib": "2.6.2"
   },
   "devDependencies": {
-    "@swisspost/design-system-components-angular": "workspace:3.0.1"
+    "@swisspost/design-system-intranet-header-workspace": "workspace:3.0.1"
   }
 }
