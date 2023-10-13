@@ -78,10 +78,6 @@ $gutter-x-cache: 0;
         --bs-gutter-x: #{$gutter};
       }
 
-      // .g-#{$postfix},
-      // .gy-#{$postfix} {
-      //   --bs-gutter-y: #{$gutter};
-      // }
     } @else {
       @include media-breakpoint-up($infix) {
         .g-#{$infix}-#{$postfix},
