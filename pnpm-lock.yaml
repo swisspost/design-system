@@ -149,6 +149,9 @@ importers:
       '@swisspost/design-system-components':
         specifier: workspace:1.5.0
         version: link:../components
+      '@swisspost/design-system-styles':
+        specifier: workspace:6.4.1
+        version: link:../styles/dist
       rxjs:
         specifier: 7.8.0
         version: 7.8.0
