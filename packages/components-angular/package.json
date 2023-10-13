@@ -1,14 +1,13 @@
 {
   "name": "@swisspost/design-system-components-angular-workspace",
   "version": "1.0.0",
-  "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
-  },
+  "license": "Apache-2.0",
   "private": true,
+  "scripts": {
+    "clean": "rimraf dist",
+    "start": "ng serve --port 9002",
+    "build": "ng build components"
+  },
   "dependencies": {
     "@angular/animations": "16.2.0",
     "@angular/common": "16.2.0",
@@ -34,6 +33,7 @@
     "karma-jasmine": "5.1.0",
     "karma-jasmine-html-reporter": "2.1.0",
     "ng-packagr": "16.2.0",
+    "rimraf": "5.0.1",
     "typescript": "5.1.3"
   }
 }

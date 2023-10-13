@@ -36,6 +36,8 @@
     "components:e2e": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-components e2e'",
     "components:e2e:watch": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-components e2e:watch'",
     "components:snapshots": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-components snapshots'",
+    "components-angular:start": "pnpm --filter design-system-components-angular-workspace start",
+    "components-angular:build": "pnpm --filter design-system-components-angular-workspace build",
     "intranet-header:start": "pnpm --filter design-system-intranet-header-workspace start",
     "header:start": "pnpm --filter internet-header dev",
     "header:build": "pnpm --filter internet-header build",

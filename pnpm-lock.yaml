@@ -189,6 +189,9 @@ importers:
       ng-packagr:
         specifier: 16.2.0
         version: 16.2.0(@angular/compiler-cli@16.2.0)(tslib@2.3.0)(typescript@5.1.3)
+      rimraf:
+        specifier: 5.0.1
+        version: 5.0.1
       typescript:
         specifier: 5.1.3
         version: 5.1.3
@@ -204,6 +207,7 @@ importers:
       tslib:
         specifier: 2.3.0
         version: 2.3.0
+    publishDirectory: ../../dist/components
 
   packages/components-react:
     dependencies:
@@ -13624,18 +13628,6 @@ packages:
       - supports-color
     dev: true
 
-  /glob@10.3.3:
-    resolution: {integrity: sha512-92vPiMb/iqpmEgsOoIDvTjc50wf9CCCvMzsi6W0JLPeUKE8TWP1a73PgqSrqy7iAZxaSD1YdzU7QZR5LF51MJw==}
-    engines: {node: '>=16 || 14 >=14.17'}
-    hasBin: true
-    dependencies:
-      foreground-child: 3.1.1
-      jackspeak: 2.2.0
-      minimatch: 9.0.1
-      minipass: 5.0.0
-      path-scurry: 1.10.1
-    dev: true
-
   /glob@10.3.7:
     resolution: {integrity: sha512-wCMbE1m9Nx5yD9LYtgsVWq5VhHlk5WzJirw594qZR6AIvQYuHrdDtIktUVjQItalD53y7dqoedu9xP0u0WaxIQ==}
     engines: {node: '>=16 || 14 >=14.17'}
@@ -20376,7 +20368,7 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
     dependencies:
-      glob: 10.3.3
+      glob: 10.3.7
     dev: true
 
   /rollup-plugin-inject@3.0.2:
