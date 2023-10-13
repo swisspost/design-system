@@ -579,8 +579,8 @@ importers:
         specifier: 2.8.0
         version: 2.8.0
       lit-html:
-        specifier: 2.8.0
-        version: 2.8.0
+        specifier: 3.0.0
+        version: 3.0.0
       prettier:
         specifier: 2.8.8
         version: 2.8.8
@@ -13110,6 +13110,7 @@ packages:
   /fsevents@1.2.13:
     resolution: {integrity: sha512-oWb1Z6mkHIskLzEJ/XWX0srkpkTQ7vaopMQkyaEIoq0fmtFVxOthb8cCxeT+p3ynTdkk/RZwbgG4brR5BeWECw==}
     engines: {node: '>= 4.0'}
+    os: [darwin]
     deprecated: The v1 package contains DANGEROUS / INSECURE binaries. Upgrade to safe fsevents v2
     requiresBuild: true
     dependencies:
@@ -13121,6 +13122,7 @@ packages:
   /fsevents@2.3.2:
     resolution: {integrity: sha512-xiqMQR4xAeHTuB9uWm+fFRcIOgKBMiOBP+eXiyT7jsgVCq1bkVygt00oASowB7EdtpOHaaPgKt812P9ab+DDKA==}
     engines: {node: ^8.16.0 || ^10.6.0 || >=11.0.0}
+    os: [darwin]
     requiresBuild: true
     optional: true
 
@@ -16802,6 +16804,12 @@ packages:
 
   /lit-html@2.8.0:
     resolution: {integrity: sha512-o9t+MQM3P4y7M7yNzqAyjp7z+mQGa4NS4CxiyLqFPyFWyc4O+nodLrkrxSaCTrla6M5YOLaT3RpbbqjszB5g3Q==}
+    dependencies:
+      '@types/trusted-types': 2.0.3
+    dev: true
+
+  /lit-html@3.0.0:
+    resolution: {integrity: sha512-DNJIE8dNY0dQF2Gs0sdMNUppMQT2/CvV4OVnSdg7BXAsGqkVwsE5bqQ04POfkYH5dBIuGnJYdFz5fYYyNnOxiA==}
     dependencies:
       '@types/trusted-types': 2.0.3
     dev: true
