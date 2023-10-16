@@ -42,9 +42,9 @@ export const Radio: Story = {
 
         <!-- Inline radio buttons (sharing the same name) -->
         ${renderInline({ checkedRadio: 2, label: 'Not a unique label' }, {
-          viewMode: 'snapshot',
+          viewMode: 'snapshot' as StoryContext['ViewMode'],
           name: 'Inline',
-        } as any)}
+        } as Partial<StoryContext>)}
       </div>
     `;
   },
