@@ -3,6 +3,7 @@ import { html, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 import { repeat } from 'lit/directives/repeat.js';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
+import { serializeSimulatedPseudoClass } from '../../../utils/pseudo-class';
 
 const meta: Meta = {
   title: 'Components/Button',
@@ -133,7 +134,8 @@ const meta: Meta = {
     },
     icon: {
       name: 'Icon',
-      description: 'Defines a custom icon.' +
+      description:
+        'Defines a custom icon.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
         '<a href="/?path=/docs/icons-getting-started--docs">set up the icons in your project</a>' +
@@ -221,7 +223,7 @@ const Template = {
       `;
     } else {
       const icon = html`
-        <post-icon aria-hidden="true" name=${args.icon}></post-icon>
+        <post-icon aria-hidden="true" name="${args.icon}"></post-icon>
       `;
       const iconOnlyContent = html`
         <span class="visually-hidden">${args.text}</span>
@@ -251,6 +253,7 @@ function createProps(args: Args, isAnimated: boolean) {
       args.variant,
       args.size,
       isAnimated && 'btn-animated',
+      serializeSimulatedPseudoClass(args.pseudoClass),
       args.iconOnly && 'btn-icon',
     ]
       .filter(c => c && c !== 'null')

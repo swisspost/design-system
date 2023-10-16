@@ -21,6 +21,7 @@ export const Switch: Story = {
       checked: [false, true],
       disabled: [false, true],
       validation: ['null', 'is-valid', 'is-invalid'],
+      pseudoClass: ['null', 'focus'],
     })
       .filter((args: Args) => !(args.labelPosition == 'before' && args.label === longerText))
       .map((args: Args) => {
@@ -33,7 +34,7 @@ export const Switch: Story = {
       <div>
         ${['white', 'dark'].map(
           bg => html`
-            <div class=${'row bg-' + bg}>${templateVariants}</div>
+            <div class="${'row bg-' + bg}">${templateVariants}</div>
           `,
         )}
       </div>

@@ -25,11 +25,13 @@ export const Radio: Story = {
                   ],
                   checked: [false, true],
                   disabled: [false, true],
+                  pseudoClass: ['null', 'focus'],
                   validation: context.argTypes.validation.options,
                 }),
                 ...bombArgs({
                   hiddenLabel: [true],
                   disabled: [false, true],
+                  pseudoClass: ['null', 'focus'],
                   validation: context.argTypes.validation.options,
                 }),
               ]

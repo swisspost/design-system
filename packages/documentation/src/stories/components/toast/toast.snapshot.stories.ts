@@ -27,6 +27,7 @@ export const Toast: Story = {
                 variant: context.argTypes.variant.options,
                 noIcon: [false, true],
                 dismissible: [false, true],
+                pseudoClass: ['null', 'focus-visible'],
               })
                 .filter(
                   (args: Args) =>

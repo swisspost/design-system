@@ -1,6 +1,7 @@
 import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 import { html, nothing, TemplateResult } from 'lit';
+import { serializeSimulatedPseudoClass } from '../../../utils/pseudo-class';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -166,6 +167,7 @@ function render(args: Args, context: StoryContext) {
   const classes = [
     'form-control',
     args.type === 'color' && 'form-control-color',
+    serializeSimulatedPseudoClass(args.pseudoClass),
     args.size,
     args.validation,
   ]
@@ -210,7 +212,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      value=${args.value ? args.value : nothing}
+      value="${args.value ? args.value : nothing}"
     />
   `;
   if (args.floatingLabel) {

@@ -1,7 +1,8 @@
 import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html, TemplateResult } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
-import { mapClasses } from '../../../utils';
+import { appendClass, mapClasses } from '../../../utils';
+import { serializeSimulatedPseudoClass } from '../../../utils/pseudo-class';
 
 const meta: Meta = {
   title: 'Components/Topic Teaser',
@@ -134,9 +135,11 @@ export const Default: Story = {
       [args.alignment]: args.alignment !== 'null',
     });
 
+    const pseudoClassClass = serializeSimulatedPseudoClass(args.pseudoClass);
+
     const links: TemplateResult[] = linkTexts.slice(0, args.linkCount).map(
       text => html`
-        <li class="link-list-item">
+        <li class="link-list-item${appendClass(pseudoClassClass)}">
           <a href="#">
             <span>${text}</span>
           </a>

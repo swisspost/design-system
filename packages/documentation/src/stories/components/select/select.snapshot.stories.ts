@@ -20,15 +20,18 @@ export const Select: Story = {
           'Label - Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor',
         ],
         hint: [''],
+        pseudoClass: ['null', 'focus-visible'],
       }),
       ...bombArgs({
         hiddenLabel: [true],
         hint: ['Hintus textus', context.args.hint],
+        pseudoClass: ['null', 'focus-visible'],
       }),
       ...bombArgs({
         size: context.argTypes.size.options,
         disabled: [false, true],
         validation: context.argTypes.validation.options,
+        pseudoClass: ['null', 'focus-visible'],
       }),
     ]
       // remove disabled & validated examples
@@ -43,17 +46,20 @@ export const Select: Story = {
           'Label - Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor',
         ],
         hint: [''],
+        pseudoClass: ['null', 'focus-visible'],
       }),
       ...bombArgs({
         multiple: [true],
         hiddenLabel: [true],
         hint: ['', 'Hintus textus', context.args.hint],
+        pseudoClass: ['null', 'focus-visible'],
       }),
       ...bombArgs({
         multiple: [true],
         size: context.argTypes.size.options,
         disabled: [false, true],
         validation: context.argTypes.validation.options,
+        pseudoClass: ['null', 'focus-visible'],
       }),
     ]
       // remove disabled & validated examples

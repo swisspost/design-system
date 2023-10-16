@@ -4,6 +4,7 @@ import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
+import { serializeSimulatedPseudoClass } from '../../../utils/pseudo-class';
 
 const meta: Meta = {
   title: 'Components/Switch',
@@ -112,9 +113,11 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 
 function renderSwitch(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
+  const pseudoClassClass = serializeSimulatedPseudoClass(args.pseudoClass);
 
   const switchClasses = mapClasses({
     'form-check-input': true,
+    [pseudoClassClass]: Boolean(pseudoClassClass) && pseudoClassClass !== 'null',
     [args.validation]: args.validation !== 'null',
   });
 
@@ -125,13 +128,13 @@ function renderSwitch(args: Args, context: StoryContext) {
 
   const labelBefore = useLabelBefore
     ? html`
-        <label for=${context.id} class="form-check-label order-first">${args.label}</label>
+        <label for="${context.id}" class="form-check-label order-first">${args.label}</label>
       `
     : null;
 
   const labelAfter = useLabelAfter
     ? html`
-        <label for=${context.id} class="form-check-label">${args.label}</label>
+        <label for="${context.id}" class="form-check-label">${args.label}</label>
       `
     : null;
 
@@ -139,25 +142,23 @@ function renderSwitch(args: Args, context: StoryContext) {
   const validationFeedback =
     args.validation !== 'null'
       ? html`
-          <p class=${args.validation.split('-')[1] + '-feedback'}>
-            ${validationText}
-          </p>
+          <p class="${args.validation.split('-')[1] + '-feedback'}">${validationText}</p>
         `
       : null;
 
   return html`
     <div class="form-check form-switch">
       <input
-        id=${context.id}
-        class=${switchClasses}
+        id="${context.id}"
+        class="${switchClasses}"
         type="checkbox"
         role="switch"
-        ?checked=${args.checked}
-        .checked=${args.checked}
-        ?disabled=${args.disabled}
-        aria-label=${useAriaLabel ? ariaLabel : nothing}
-        aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
-        @change=${(e: Event) => updateArgs({ checked: !args.checked })}
+        ?checked="${args.checked}"
+        .checked="${args.checked}"
+        ?disabled="${args.disabled}"
+        aria-label="${useAriaLabel ? ariaLabel : nothing}"
+        aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
+        @change="${(e: Event) => updateArgs({ checked: !args.checked })}"
       />
       ${labelBefore} ${labelAfter} ${args.validation !== 'null' ? validationFeedback : nothing}
     </div>
@@ -171,13 +172,7 @@ export const Default: Story = {};
 export const MultilineLabels: Story = {
   parameters: {
     controls: {
-      exclude: [
-        'Label Position',
-        'Hidden Label',
-        'Checked',
-        'Disabled',
-        'Validation',
-      ],
+      exclude: ['Label Position', 'Hidden Label', 'Checked', 'Disabled', 'Validation'],
     },
   },
   args: {
@@ -190,13 +185,7 @@ export const MultilineLabels: Story = {
 export const Validation: Story = {
   parameters: {
     controls: {
-      exclude: [
-        'Label Position',
-        'Label',
-        'Hidden Label',
-        'Checked',
-        'Disabled',
-      ],
+      exclude: ['Label Position', 'Label', 'Hidden Label', 'Checked', 'Disabled'],
     },
   },
   args: {

@@ -26,6 +26,7 @@ export const Badge: Story = {
                 interactionType: context.argTypes.interactionType.options,
                 nestedBadge: [false, true],
                 checked: [false, true],
+                pseudoClass: ['null', 'hover', 'focus-visible', ['focus-visible', 'hover']],
                 dismissed: [false],
               })
                 .filter(args => !(args.interactionType !== 'checkable' && args.checked === true))

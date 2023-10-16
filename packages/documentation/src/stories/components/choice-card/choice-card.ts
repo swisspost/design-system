@@ -4,6 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { BADGE } from '../../../../.storybook/constants';
 import { nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
+import { serializeSimulatedPseudoClass } from '../../../utils/pseudo-class';
 
 export const choiceCardMeta: Meta = {
   parameters: {
@@ -145,14 +146,18 @@ let id_ct = 1;
 export const choiceCardDefault = (args: Args, name = 'control') => {
   const [_, updateArgs] = useArgs();
 
+  const pseudoClassClass = serializeSimulatedPseudoClass(args.pseudoClass);
+
   // Conditional classes
   const inputClasses = classMap({
     'form-check-input': true,
+    [pseudoClassClass]: Boolean(pseudoClassClass) && pseudoClassClass !== 'null',
     'is-invalid': args.validation === 'is-invalid',
   });
   const cardClassMap = classMap({
     'checked': args.checked,
     'disabled': args.disabled,
+    [pseudoClassClass]: Boolean(pseudoClassClass) && pseudoClassClass !== 'null',
     'is-invalid': args.validation === 'is-invalid',
     'checkbox-button-card': args.type === 'checkbox',
     'radio-button-card': args.type === 'radio',
@@ -194,18 +199,18 @@ export const choiceCardDefault = (args: Args, name = 'control') => {
   };
 
   return html`
-    <div class=${cardClassMap}>
+    <div class="${cardClassMap}">
       <input
-        id=${id}
+        id="${id}"
         name="${args.type}-button-card-${name}"
-        class=${inputClasses}
-        type=${args.type}
-        ?disabled=${args.disabled}
-        .checked=${args.checked}
-        ?checked=${args.checked}
-        @input=${_handleInput}
-        @focus=${_handleFocus}
-        @blur=${_handleBlur}
+        class="${inputClasses}"
+        type="${args.type}"
+        ?disabled="${args.disabled}"
+        .checked="${args.checked}"
+        ?checked="${args.checked}"
+        @input="${_handleInput}"
+        @focus="${_handleFocus}"
+        @blur="${_handleBlur}"
       />
       <label id="label-${id}" class="form-check-label" for="${id}">
         <span>${args.label}</span>

@@ -10,6 +10,8 @@ export default {
 
 type Story = StoryObj;
 
+const pseudoClass = ['null', 'hover', 'focus', ['focus', 'hover']];
+
 export const Checkbox: Story = {
   render: (_args: Args, context: StoryContext) => {
     const longText =
@@ -34,6 +36,7 @@ export const Checkbox: Story = {
                   checked: ['unchecked', 'checked'],
                   hiddenLabel: [false, true],
                   disabled: [false, true],
+                  pseudoClass,
                 })
                   .filter(
                     (args: Args) =>
@@ -49,7 +52,7 @@ export const Checkbox: Story = {
               ].map(
                 (args: Args) =>
                   html`
-                    <span class=${args.checked === 'indeterminate' ? 'indeterminate' : ''}>
+                    <span class="${args.checked === 'indeterminate' ? 'indeterminate' : ''}">
                       ${meta.render?.({ ...context.args, ...args }, context)}
                     </span>
                   `,

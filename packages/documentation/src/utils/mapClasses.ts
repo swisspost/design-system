@@ -4,3 +4,7 @@ export function mapClasses(classObject: Record<string, boolean>): string {
     .map(([newClass]) => newClass)
     .join(' ');
 }
+
+export function appendClass(className: string | undefined) {
+  return `${className ? ` ${className}` : ''}`;
+}

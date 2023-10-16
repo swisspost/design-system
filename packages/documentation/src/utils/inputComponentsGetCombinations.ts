@@ -8,7 +8,6 @@ const LONG_TEXT =
 
 export const COMBINATIONS = [
   {
-    title: true, // This property is true when a heading should be rendered above the story
     label: `${SHORT_LABEL} - no Hint`,
     hint: null,
   },
@@ -32,22 +31,12 @@ export const COMBINATIONS = [
     label: `${SHORT_LABEL} - Invalid`,
     validation: 'is-invalid',
   },
+  {
+    label: `${SHORT_LABEL} - no Placeholder`,
+    placeholder: null,
+  },
+  {
+    label: `${SHORT_LABEL} - with Value`,
+    value: 'Lorem Ipsum',
+  },
 ];
-
-export function getCombinations(
-  argumentName: string,
-  argumentValues: Array<unknown>,
-  combinations: Array<{ label: string; [propName: string]: any }>,
-) {
-  let result: Array<Object> = [];
-  for (const argumentValue of argumentValues) {
-    result = [
-      ...result,
-      ...combinations.map(c => ({
-        ...c,
-        [argumentName]: argumentValue,
-      })),
-    ];
-  }
-  return result;
-}

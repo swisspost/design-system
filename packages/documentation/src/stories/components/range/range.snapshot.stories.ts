@@ -26,6 +26,7 @@ export const Range: Story = {
                     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero mollitia magnam quo quam saepe. Aliquam tempore non deleniti culpa reprehenderit.',
                   ],
                   disabled: [false, true],
+                  pseudoClass: ['null', 'focus'],
                   validation: context.argTypes.validation.options,
                   showValue: context.argTypes.showValue.options,
                 })

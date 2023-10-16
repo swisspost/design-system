@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, AccentColors, ContextualColors } from './button.stories';
+import meta, { AccentColors, ContextualColors, Default } from './button.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils/bombArgs';
 
@@ -10,15 +10,15 @@ export default {
 
 type Story = StoryObj;
 
+const pseudoClass = ['null', 'hover', 'focus-visible', ['focus-visible', 'hover']];
+
 export const Button: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
       <div class="d-flex flex-wrap gap-1 align-items-start">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div
-              class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular"
-            >
+            <div class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular">
               ${bombArgs({
                 variant: context.argTypes.variant.options,
                 size: context.argTypes.size.options,
@@ -26,6 +26,7 @@ export const Button: Story = {
                 disabled: [false, true],
                 iconOnly: [false, true],
                 icon: ['null', '2069'],
+                pseudoClass,
                 iconPosition: context.argTypes.iconPosition.options,
               })
                 .filter(
@@ -37,14 +38,21 @@ export const Button: Story = {
                 )
                 .filter(args => !(args.icon === 'null' && args.iconPosition === 'end'))
                 .filter(args => !(args.icon !== 'null' && args.tag === 'input'))
-                .map((args: Args) => args.tag === 'input' ? { ...args, type: 'button' } : args)
+                .map((args: Args) => (args.tag === 'input' ? { ...args, type: 'button' } : args))
                 .map((args: Args) =>
                   Default.render?.({ ...context.args, ...args, animated: false }, context),
                 )}
               <div class="mt-big w-100"></div>
-              ${AccentColors.render?.({ ...context.args, ...AccentColors.args }, context)}
+              ${bombArgs({ pseudoClass }).map((args: Args) =>
+                AccentColors.render?.({ ...context.args, ...AccentColors.args, ...args }, context),
+              )}
               <div class="mt-big w-100"></div>
-              ${ContextualColors.render?.({ ...context.args, ...ContextualColors.args }, context)}
+              ${bombArgs({ pseudoClass }).map((args: Args) =>
+                ContextualColors.render?.(
+                  { ...context.args, ...ContextualColors.args, ...args },
+                  context,
+                ),
+              )}
             </div>
           `,
         )}

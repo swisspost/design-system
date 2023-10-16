@@ -2,6 +2,7 @@ import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-componen
 import { html, nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
+import { serializeSimulatedPseudoClass } from '../../../utils/pseudo-class';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -181,7 +182,12 @@ const Template: Story = {
   render: (args: Args, context: StoryContext) => {
     const [_, updateArgs] = useArgs();
     const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleSelect`;
-    const classes = ['form-select', args.size, args.validation]
+    const classes = [
+      'form-select',
+      args.size,
+      args.validation,
+      serializeSimulatedPseudoClass(args.pseudoClass),
+    ]
       .filter(c => c && c !== 'null')
       .join(' ');
     const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
@@ -220,17 +226,17 @@ const Template: Story = {
     ];
     const control = html`
       <select
-        id=${id}
-        class=${classes}
-        defaultValue=${args.value ?? nothing}
-        ?multiple=${args.multiple}
-        size=${args.multipleSize ?? nothing}
-        ?disabled=${args.disabled}
-        aria-label=${useAriaLabel ? args.label : undefined}
-        aria-invalid=${VALIDATION_STATE_MAP[args.validation]}
-        @change=${(e: Event) => {
+        id="${id}"
+        class="${classes}"
+        defaultValue="${args.value ?? nothing}"
+        ?multiple="${args.multiple}"
+        size="${args.multipleSize ?? nothing}"
+        ?disabled="${args.disabled}"
+        aria-label="${useAriaLabel ? args.label : undefined}"
+        aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
+        @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
-        }}
+        }}"
       >
         ${options}
       </select>

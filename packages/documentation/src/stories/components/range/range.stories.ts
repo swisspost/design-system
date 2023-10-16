@@ -2,6 +2,7 @@ import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
 import { html, nothing, TemplateResult } from 'lit';
+import { serializeSimulatedPseudoClass } from '../../../utils/pseudo-class';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -166,7 +167,9 @@ function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const id = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRange`;
-  const classes = ['form-range', args.validation].filter(c => c && c !== 'null').join(' ');
+  const classes = ['form-range', args.validation, serializeSimulatedPseudoClass(args.pseudoClass)]
+    .filter(c => c && c !== 'null')
+    .join(' ');
 
   const useAriaLabel = args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel

@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, CustomContent, CardGroup } from './card.stories';
+import meta, { CardGroup, CustomContent, Default } from './card.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils/bombArgs';
 
@@ -30,6 +30,7 @@ export const Card: Story = {
         showSubtitle: [false, true],
         action: ['none', 'button', 'links'],
         showListGroup: [false, true],
+        pseudoClass: ['null', 'hover', 'focus-visible', ['focus-visible', 'hover']],
       }),
     ]
       // Has to show anything
@@ -56,11 +57,13 @@ export const Card: Story = {
           ),
       )
       // Map default template variants
-      .map(args => html`
-        <div class="col-6 p-3">
-          ${Default.render && Default.render({ ...meta.args, ...args }, context)}
-        </div>
-      `);
+      .map(
+        args => html`
+          <div class="col-6 p-3">
+            ${Default.render && Default.render({ ...meta.args, ...args }, context)}
+          </div>
+        `,
+      );
 
     // Define custom template variants
     const customTemplateVariants = [
@@ -68,21 +71,22 @@ export const Card: Story = {
       { story: CardGroup, colWidth: 12 },
     ]
       // Map custom template variants
-      .map(({ story, colWidth }) => html`
-        <div class=${'p-3 col-' + colWidth}>
-          ${story.render && story.render({ ...meta.args, ...story.args }, context)}
-        </div>
-      `);
+      .map(
+        ({ story, colWidth }) => html`
+          <div class="${'p-3 col-' + colWidth}">
+            ${story.render && story.render({ ...meta.args, ...story.args }, context)}
+          </div>
+        `,
+      );
 
     // Render all variants on white and dark background
     return html`
       <div>
-        ${['white', 'dark'].map(bg => html`
-          <div class=${'row bg-' + bg}>
-            ${defaultTemplateVariants}
-            ${customTemplateVariants}
-          </div>
-        `)}
+        ${['white', 'dark'].map(
+          bg => html`
+            <div class=${'row bg-' + bg}>${defaultTemplateVariants} ${customTemplateVariants}</div>
+          `,
+        )}
       </div>
     `;
   },

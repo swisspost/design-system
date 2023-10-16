@@ -66,6 +66,7 @@
     "rimraf": "5.0.1",
     "sass": "1.68.0",
     "storybook": "7.4.5",
+    "storybook-addon-pseudo-states": "^2.1.2",
     "typescript": "5.1.6"
   }
 }

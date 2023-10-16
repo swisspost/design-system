@@ -1,5 +1,5 @@
 import { bombArgs } from '../../../utils/bombArgs';
-import { choiceCardMeta, choiceCardDefault } from './choice-card';
+import { choiceCardDefault, choiceCardMeta } from './choice-card';
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 
@@ -17,6 +17,7 @@ const bombedArgs = bombArgs({
   showDescription: [false, true],
   description: ['A very long running description that is wrapping to two lines'],
   showIcon: [false, true],
+  pseudoClass: ['null', 'hover', 'focus-visible', ['focus-visible', 'hover']],
 })
   // Filter out disabled and invalid combinations
   .filter(args => !(args.disabled && args.validation === 'is-invalid'));

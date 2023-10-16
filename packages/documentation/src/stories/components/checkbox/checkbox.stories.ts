@@ -3,7 +3,8 @@ import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-componen
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { BADGE } from '../../../../.storybook/constants';
-import { mapClasses } from '../../../utils';
+import { appendClass, mapClasses } from '../../../utils';
+import { serializeSimulatedPseudoClass } from '../../../utils/pseudo-class';
 
 const meta: Meta = {
   title: 'Components/Checkbox',
@@ -142,15 +143,15 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   invalid: true,
 };
 
-function getLabel({ label }: Args, { id }: StoryContext) {
+function getLabel({ label }: Args, { id }: StoryContext, className: string) {
   return html`
-    <label for=${id} class="form-check-label">${label}</label>
+    <label for="${id}" class="form-check-label${appendClass(className)}">${label}</label>
   `;
 }
 
 function getValidationFeedback({ validation }: Args) {
   return html`
-    <p class=${validation + '-feedback'}>
+    <p class="${validation + '-feedback'}">
       ${validation === 'valid' ? 'Ggranda sukceso!' : 'Eraro okazis!'}
     </p>
   `;
@@ -159,6 +160,8 @@ function getValidationFeedback({ validation }: Args) {
 function renderCheckbox(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
+  const pseudoClassClass = serializeSimulatedPseudoClass(args.pseudoClass);
+
   const containerClasses = mapClasses({
     'form-check': true,
     'form-check-inline': args.inline,
@@ -166,6 +169,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
 
   const checkboxClasses = mapClasses({
     'form-check-input': true,
+    [pseudoClassClass]: Boolean(pseudoClassClass) && pseudoClassClass !== 'null',
     ['is-' + args.validation]: args.validation !== 'null',
   });
 
@@ -179,18 +183,18 @@ function renderCheckbox(args: Args, context: StoryContext) {
   });
 
   return html`
-    <div class=${containerClasses}>
+    <div class="${containerClasses}">
       <input
-        id=${context.id}
-        class=${checkboxClasses}
+        id="${context.id}"
+        class="${checkboxClasses}"
         type="checkbox"
-        aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
-        aria-label=${ifDefined(args.hiddenLabel ? args.label : undefined)}
-        ?disabled=${args.disabled}
-        .checked=${CHECKED_STATE_MAP[args.checked]}
-        @change=${handleChange}
+        aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
+        aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"
+        ?disabled="${args.disabled}"
+        .checked="${CHECKED_STATE_MAP[args.checked]}"
+        @change="${handleChange}"
       />
-      ${args.hiddenLabel ? nothing : getLabel(args, context)}
+      ${args.hiddenLabel ? nothing : getLabel(args, context, pseudoClassClass)}
       ${args.validation !== 'null' ? getValidationFeedback(args) : nothing}
     </div>
   `;
@@ -221,7 +225,9 @@ export const Validation: Story = {
 export const Inline: Story = {
   render: (args: Args, context: StoryContext) => html`
     <fieldset>
-      <legend class=${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}>Legendo</legend>
+      <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
+        Legendo
+      </legend>
       ${['Unua Etikedo', 'Dua Etikedo', 'Tria Etikedo', 'Kvara  Etikedo'].map((label, index) =>
         renderCheckbox(
           { ...args, label, checked: false },

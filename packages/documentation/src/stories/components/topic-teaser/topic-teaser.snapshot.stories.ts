@@ -18,13 +18,14 @@ export const TopicTeaser: Story = {
       <div>
         ${['white', 'dark'].map(
           bg => html`
-            <div class=${'row bg-' + bg}>
+            <div class="${'row bg-' + bg}">
               ${bombArgs({
                 subtitle: [short, long],
                 title: [short, long],
                 alignment: context.argTypes.alignment.options,
                 backgroundColor: ['bg-nightblue', 'bg-coral-bright'],
                 linkCount: [1, 5, 10],
+                pseudoClass: ['null', 'focus-visible'],
               })
                 .filter((args: Args) => args.title !== args.subtitle || args.linkCount == 5)
                 .map((args: Args) => {

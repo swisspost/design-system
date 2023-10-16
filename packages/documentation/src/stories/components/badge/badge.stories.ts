@@ -3,6 +3,7 @@ import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-componen
 import { html, nothing } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
+import { serializeSimulatedPseudoClass } from '../../../utils/pseudo-class';
 
 const meta: Meta = {
   title: 'Components/Badge',
@@ -61,9 +62,9 @@ const meta: Meta = {
       control: {
         type: 'inline-radio',
         labels: {
-          'none': 'None',
-          'checkable': 'Checkable',
-          'dismissible': 'Dismissible',
+          none: 'None',
+          checkable: 'Checkable',
+          dismissible: 'Dismissible',
         },
       },
       options: ['none', 'checkable', 'dismissible'],
@@ -76,7 +77,7 @@ const meta: Meta = {
       description: 'If `true`, the badge is checked otherwise it is unchecked.',
       if: {
         arg: 'interactionType',
-        eq: 'checkable'
+        eq: 'checkable',
       },
       control: {
         type: 'boolean',
@@ -111,34 +112,44 @@ function externalControl(story: any, { args }: StoryContext) {
   const button = html`
     <a
       href="#"
-      @click=${(e: Event) => {
+      @click="${(e: Event) => {
         e.preventDefault();
         updateArgs({ dismissed: false });
-      }}
-    >Show badge</a>
+      }}"
+    >
+      Show badge
+    </a>
   `;
 
   return html`
-    ${args.dismissed ? button : nothing}
-    ${story()}
+    ${args.dismissed ? button : nothing} ${story()}
   `;
 }
 
 // RENDERER
 function getDefaultContent(args: Args) {
-  if (!args.nestedBadge) return html`${args.text}`;
+  if (!args.nestedBadge)
+    return html`
+      ${args.text}
+    `;
 
   return html`
-    <span>${html`${args.text}`}</span>
+    <span>
+      ${html`
+        ${args.text}
+      `}
+    </span>
     <span class="badge">10</span>
   `;
 }
 
 function getCheckableContent(args: Args, updateArgs: (args: Args) => void, context: StoryContext) {
-  const checkboxId = `badge-example--${context.name.replace(/ /g, '-').toLowerCase()}`
+  const checkboxId = `badge-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
+  const pseudoClassClass = serializeSimulatedPseudoClass(args.pseudoClass);
   const labelClasses = mapClasses({
     'badge-check-label': true,
-    [args.size]: args.size !== 'default'
+    [pseudoClassClass]: Boolean(pseudoClassClass) && pseudoClassClass !== 'null',
+    [args.size]: args.size !== 'default',
   });
 
   const handleChange = (e: Event) => {
@@ -154,24 +165,19 @@ function getCheckableContent(args: Args, updateArgs: (args: Args) => void, conte
 
   return html`
     <input
-      id=${checkboxId}
+      id="${checkboxId}"
       class="badge-check-input"
       type="checkbox"
-      ?checked=${args.checked}
-      @change=${handleChange}
+      ?checked="${args.checked}"
+      @change="${handleChange}"
     />
-    <label class=${labelClasses} for=${checkboxId}>
-      ${getDefaultContent(args)}
-    </label>
+    <label class="${labelClasses}" for="${checkboxId}">${getDefaultContent(args)}</label>
   `;
 }
 
 function getDismissButton(updateArgs: (args: Args) => void) {
   return html`
-    <button
-      class="btn-close"
-      @click=${() => updateArgs({ dismissed: true })}
-    >
+    <button class="btn-close" @click="${() => updateArgs({ dismissed: true })}">
       <span class="visually-hidden">Forigi insignon</span>
     </button>
   `;
@@ -180,19 +186,25 @@ function getDismissButton(updateArgs: (args: Args) => void) {
 function renderBadge(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  if (args.dismissed) return html`${nothing}`;
+  if (args.dismissed)
+    return html`
+      ${nothing}
+    `;
 
   const isCheckable = args.interactionType === 'checkable';
   const isDismissible = args.interactionType === 'dismissible';
 
+  const pseudoClassClass = serializeSimulatedPseudoClass(args.pseudoClass);
+
   const badgeClasses = mapClasses({
     'badge': !isCheckable,
     'badge-check': isCheckable,
-    [args.size]: args.size !== 'default'
+    [pseudoClassClass]: Boolean(pseudoClassClass) && pseudoClassClass !== 'null',
+    [args.size]: args.size !== 'default',
   });
 
   return html`
-    <div class=${badgeClasses}>
+    <div class="${badgeClasses}">
       ${isCheckable ? getCheckableContent(args, updateArgs, context) : getDefaultContent(args)}
       ${isDismissible ? getDismissButton(updateArgs) : nothing}
     </div>
