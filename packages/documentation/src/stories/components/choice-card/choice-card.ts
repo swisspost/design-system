@@ -142,7 +142,7 @@ export const choiceCardMeta: Meta = {
 
 let id_ct = 1;
 
-export const choiceCardDefault = (args: Args, name = 'control') => {
+export const choiceCardDefault = (args: Args) => {
   const [_, updateArgs] = useArgs();
 
   // Conditional classes
@@ -194,18 +194,18 @@ export const choiceCardDefault = (args: Args, name = 'control') => {
   };
 
   return html`
-    <div class=${cardClassMap}>
+    <div class="${cardClassMap}">
       <input
-        id=${id}
-        name="${args.type}-button-card-${name}"
-        class=${inputClasses}
-        type=${args.type}
-        ?disabled=${args.disabled}
-        .checked=${args.checked}
-        ?checked=${args.checked}
-        @input=${_handleInput}
-        @focus=${_handleFocus}
-        @blur=${_handleBlur}
+        id="${id}"
+        name="${args.type}-button-card-${args.inputName ?? 'control'}"
+        class="${inputClasses}"
+        type="${args.type}"
+        ?disabled="${args.disabled}"
+        .checked="${args.checked}"
+        ?checked="${args.checked}"
+        @input="${_handleInput}"
+        @focus="${_handleFocus}"
+        @blur="${_handleBlur}"
       />
       <label id="label-${id}" class="form-check-label" for="${id}">
         <span>${args.label}</span>
@@ -221,10 +221,14 @@ export const choiceCardGroup = (args: Args) => {
 
   const col = (label: string) => html`
     <div class="col-sm-6">
-      ${choiceCardDefault(
-        { ...args, label, checked: false, focused: false, validation: args.groupValidation },
-        'group',
-      )}
+      ${choiceCardDefault({
+        ...args,
+        label,
+        checked: false,
+        focused: false,
+        validation: args.groupValidation,
+        inputName: 'group',
+      })}
     </div>
   `;
 
