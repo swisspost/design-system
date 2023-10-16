@@ -1,4 +1,4 @@
-import { Component, Host, h, Element } from '@stencil/core';
+import { Component, Element, h, Host } from '@stencil/core';
 import { state } from '../../data/store';
 import { FocusableElement } from '../../models/header.model';
 import { translate } from '../../services/language.service';
@@ -10,7 +10,7 @@ import { SvgIcon } from '../../utils/svg-icon.component';
   shadow: false,
 })
 export class PostSkiplinks {
-  @Element() host: HTMLElement;
+  @Element() host: HTMLPostSkiplinksElement;
 
   private getMainId() {
     return document.querySelector('main[id]')?.getAttribute('id');
@@ -59,7 +59,11 @@ export class PostSkiplinks {
               </a>
             </li>
             <li>
-              <a class="nav-link" href="#post-internet-header-main-navigation" onClick={() => this.focusMain()}>
+              <a
+                class="nav-link"
+                href="#post-internet-header-main-navigation"
+                onClick={() => this.focusMain()}
+              >
                 <span>{config.translations.navMainAriaLabel}</span>
                 <SvgIcon name="pi-pointy-arrow-right" />
               </a>
@@ -74,7 +78,11 @@ export class PostSkiplinks {
             ) : null}
             {state.search ? (
               <li>
-                <a class="nav-link" href="#post-internet-header-search-button" onClick={() => this.focusSearch()}>
+                <a
+                  class="nav-link"
+                  href="#post-internet-header-search-button"
+                  onClick={() => this.focusSearch()}
+                >
                   <span>{translate('Go to search')}</span>
                   <SvgIcon name="pi-pointy-arrow-right" />
                 </a>
