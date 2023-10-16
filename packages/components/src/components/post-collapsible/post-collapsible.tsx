@@ -46,7 +46,7 @@ export class PostCollapsible {
   }
 
   componentWillRender() {
-    this.id = this.host.id || `a${crypto.randomUUID()}`;
+    this.id = this.host.id || `c${crypto.randomUUID()}`;
     this.hasHeader = this.host.querySelectorAll('[slot="header"]').length > 0;
     this.headingTag = `h${this.headingLevel ?? 2}`;
   }
@@ -63,7 +63,7 @@ export class PostCollapsible {
    */
   @Method()
   async toggle(open = !this.isOpen): Promise<boolean> {
-    if (open === this.isOpen) return Promise.reject(`The post-collapsible is already ${open ? 'open' : 'closed'}.`);
+    if (open === this.isOpen) return open;
 
     this.isOpen = !this.isOpen;
 
@@ -97,7 +97,7 @@ export class PostCollapsible {
     );
 
     return (
-      <Host data-version={version}>
+      <Host id={this.id} data-version={version}>
         {this.hasHeader ? (
           <div class="accordion-item">
             <this.headingTag class="accordion-header" id={`${this.id}--header`}>
