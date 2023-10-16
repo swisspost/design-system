@@ -2,11 +2,7 @@
   "compilerOptions": {
     "target": "ESNext",
     "useDefineForClassFields": true,
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ESNext"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
     "allowJs": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
@@ -19,12 +15,6 @@
     "noEmit": true,
     "jsx": "react-jsx"
   },
-  "include": [
-    ".storybook/**/*",
-    "src/**/*"
-  ],
-  "exclude": [
-    "node_modules/**/*",
-    "src/**/*.sample.*"
-  ]
+  "include": [".storybook/**/*", "src/**/*", "types"],
+  "exclude": ["node_modules/**/*", "src/**/*.sample.*"]
 }

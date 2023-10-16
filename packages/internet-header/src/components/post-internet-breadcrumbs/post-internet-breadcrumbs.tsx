@@ -28,7 +28,7 @@ export class PostInternetBreadcrumbs {
   @State() isConcatenated: boolean; // Don't set an initial value, this has to be calculated first, otherwise reactivity problems ensue
   @State() dropdownOpen: boolean = false;
   @State() refsReady: boolean = false;
-  @Element() host: Element;
+  @Element() host: HTMLSwisspostInternetBreadcrumbsElement;
 
   /**
    * Toggle an overlay associated with a button.
@@ -242,7 +242,7 @@ export class PostInternetBreadcrumbs {
 
   render() {
     // There is something wrong entirely
-    // eslint-disable-next-line @stencil/strict-boolean-conditions
+    // eslint-disable-next-line @stencil-community/strict-boolean-conditions
     if (!state) {
       console.warn(
         `Internet Breadcrumbs: Could not load config. Please make sure that you included the <swisspost-internet-header></swisspost-internet-header> component.`,
@@ -256,7 +256,7 @@ export class PostInternetBreadcrumbs {
     }
 
     // Config has loaded but there is no breadcrumbs config
-    // eslint-disable-next-line @stencil/strict-boolean-conditions
+    // eslint-disable-next-line @stencil-community/strict-boolean-conditions
     if (!state.localizedConfig.breadcrumb) {
       console.warn(
         `Internet Header: Current project "${state.projectId}" does not include a breadcrumb config. The breadcrumbs will not be rendered. Remove `,
