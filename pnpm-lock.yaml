@@ -511,7 +511,7 @@ importers:
         version: 2.0.0(@storybook/blocks@7.4.5)(@storybook/components@7.4.5)(@storybook/core-events@7.4.5)(@storybook/manager-api@7.4.5)(@storybook/preview-api@7.4.5)(@storybook/theming@7.4.5)(@storybook/types@7.4.6)(react-dom@18.2.0)(react@18.2.0)
       '@open-wc/lit-helpers':
         specifier: 0.6.0
-        version: 0.6.0(lit@2.8.0)
+        version: 0.6.0(lit@3.0.0)
       '@percy/cli':
         specifier: 1.27.2
         version: 1.27.2
@@ -559,10 +559,10 @@ importers:
         version: 7.4.5(react-dom@18.2.0)(react@18.2.0)
       '@storybook/web-components':
         specifier: 7.4.5
-        version: 7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)
+        version: 7.4.5(lit@3.0.0)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/web-components-vite':
         specifier: 7.4.5
-        version: 7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.4.11)
+        version: 7.4.5(lit@3.0.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.4.11)
       '@types/mdx':
         specifier: 2.0.7
         version: 2.0.7
@@ -576,8 +576,8 @@ importers:
         specifier: 13.3.0
         version: 13.3.0
       lit:
-        specifier: 2.8.0
-        version: 2.8.0
+        specifier: 3.0.0
+        version: 3.0.0
       lit-html:
         specifier: 3.0.0
         version: 3.0.0
@@ -5516,10 +5516,20 @@ packages:
     resolution: {integrity: sha512-kXOeFbfCm4fFf2A3WwVEeQj55tMZa8c8/f9AKHMobQMkzNUfUj+antR3fRPaZJawsa1aZiP/Da3ndpZrwEe4rQ==}
     dev: true
 
+  /@lit-labs/ssr-dom-shim@1.1.2:
+    resolution: {integrity: sha512-jnOD+/+dSrfTWYfSXBXlo5l5f0q1UuJo3tkbMDCYA2lKUYq79jaxqtGEvnRoh049nt1vdo1+45RinipU6FGY2g==}
+    dev: true
+
   /@lit/reactive-element@1.6.2:
     resolution: {integrity: sha512-rDfl+QnCYjuIGf5xI2sVJWdYIi56CTCwWa+nidKYX6oIuBYwUbT/vX4qbUDlHiZKJ/3FRNQ/tWJui44p6/stSA==}
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.1.1
+    dev: true
+
+  /@lit/reactive-element@2.0.0:
+    resolution: {integrity: sha512-wn+2+uDcs62ROBmVAwssO4x5xue/uKD3MGGZOXL2sMxReTRIT0JXKyMXeu7gh0aJ4IJNEIG/3aOnUaQvM7BMzQ==}
+    dependencies:
+      '@lit-labs/ssr-dom-shim': 1.1.2
     dev: true
 
   /@manypkg/find-root@1.1.0:
@@ -5812,12 +5822,12 @@ packages:
     resolution: {integrity: sha512-ko7x+PDZA9bHwA6hSfxjL1IhBP91JukfZq/NAe85u9rT0akFn9RKvSXymX/mS7S2mfNjE+Zw9JdLUPGvPabQAA==}
     dev: false
 
-  /@open-wc/lit-helpers@0.6.0(lit@2.8.0):
+  /@open-wc/lit-helpers@0.6.0(lit@3.0.0):
     resolution: {integrity: sha512-9F0Rw18Lupp8hehF299yYozN4cFMTnHeCVNtz0k18/eUkcUUb6DCWerL/ASJ9lZ4bLA/YUPmrkdgZz/xe9cKeg==}
     peerDependencies:
       lit: ^2.0.0
     dependencies:
-      lit: 2.8.0
+      lit: 3.0.0
     dev: true
 
   /@parcel/watcher@2.0.4:
@@ -7754,7 +7764,7 @@ packages:
       file-system-cache: 2.3.0
     dev: true
 
-  /@storybook/web-components-vite@7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.4.11):
+  /@storybook/web-components-vite@7.4.5(lit@3.0.0)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.4.11):
     resolution: {integrity: sha512-J90WA/CKNUvDu962W1SnzsXmttIS8im0i9Op8zjMPAHq+nVzfXB0Qb/LUR3RbQHFU01V7BFaWgrA0CdINeN04g==}
     engines: {node: ^14.18 || >=16}
     peerDependencies:
@@ -7764,7 +7774,7 @@ packages:
       '@storybook/builder-vite': 7.4.5(typescript@5.1.6)(vite@4.4.11)
       '@storybook/core-server': 7.4.5
       '@storybook/node-logger': 7.4.5
-      '@storybook/web-components': 7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0)
+      '@storybook/web-components': 7.4.5(lit@3.0.0)(react-dom@18.2.0)(react@18.2.0)
       magic-string: 0.30.1
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
@@ -7780,7 +7790,7 @@ packages:
       - vite-plugin-glimmerx
     dev: true
 
-  /@storybook/web-components@7.4.5(lit@2.8.0)(react-dom@18.2.0)(react@18.2.0):
+  /@storybook/web-components@7.4.5(lit@3.0.0)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-bLmrxnM4LKm8DfawUd89/EgUpPLIu0iRnxGKSzuUO6Rc1NW0WsCb/OLDAMzC6Eu1Ga7qLKMdzDgBoHZxRv8MrA==}
     engines: {node: '>=16.0.0'}
     peerDependencies:
@@ -7793,7 +7803,7 @@ packages:
       '@storybook/manager-api': 7.4.5(react-dom@18.2.0)(react@18.2.0)
       '@storybook/preview-api': 7.4.5
       '@storybook/types': 7.4.5
-      lit: 2.8.0
+      lit: 3.0.0
       tiny-invariant: 1.3.1
       ts-dedent: 2.2.0
     transitivePeerDependencies:
@@ -16802,6 +16812,14 @@ packages:
       lit-html: 2.8.0
     dev: true
 
+  /lit-element@4.0.0:
+    resolution: {integrity: sha512-N6+f7XgusURHl69DUZU6sTBGlIN+9Ixfs3ykkNDfgfTkDYGGOWwHAYBhDqVswnFGyWgQYR2KiSpu4J76Kccs/A==}
+    dependencies:
+      '@lit-labs/ssr-dom-shim': 1.1.2
+      '@lit/reactive-element': 2.0.0
+      lit-html: 3.0.0
+    dev: true
+
   /lit-html@2.8.0:
     resolution: {integrity: sha512-o9t+MQM3P4y7M7yNzqAyjp7z+mQGa4NS4CxiyLqFPyFWyc4O+nodLrkrxSaCTrla6M5YOLaT3RpbbqjszB5g3Q==}
     dependencies:
@@ -16820,6 +16838,14 @@ packages:
       '@lit/reactive-element': 1.6.2
       lit-element: 3.3.2
       lit-html: 2.8.0
+    dev: true
+
+  /lit@3.0.0:
+    resolution: {integrity: sha512-nQ0teRzU1Kdj++VdmttS2WvIen8M79wChJ6guRKIIym2M3Ansg3Adj9O6yuQh2IpjxiUXlNuS81WKlQ4iL3BmA==}
+    dependencies:
+      '@lit/reactive-element': 2.0.0
+      lit-element: 4.0.0
+      lit-html: 3.0.0
     dev: true
 
   /load-json-file@1.1.0:
