@@ -18,7 +18,6 @@ export const choiceCardMeta: Meta = {
     type: 'radio',
     checked: false,
     disabled: false,
-    focused: false,
     validation: 'null',
     showDescription: false,
     description: 'A small description',
@@ -65,14 +64,6 @@ export const choiceCardMeta: Meta = {
       control: {
         type: 'boolean',
       },
-      table: {
-        category: 'States',
-      },
-    },
-    focused: {
-      name: 'Focused',
-      description: 'Render the component in a focused state',
-      control: { type: 'boolean' },
       table: {
         category: 'States',
       },
