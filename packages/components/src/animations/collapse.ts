@@ -1,10 +1,10 @@
-const collapseDuration = 350;
+const collapseDuration = 3500;
 const collapseEasing = 'ease';
 const collapsedKeyframe: Keyframe = { height: '0', overflow: 'hidden' };
 
 export const collapse = (el: HTMLElement): Animation => {
   const { height } = window.getComputedStyle(el);
-  const expandedKeyframe: Keyframe = { height, overflow: 'visible' };
+  const expandedKeyframe: Keyframe = { height };
 
   return el.animate(
     [expandedKeyframe, collapsedKeyframe],
@@ -13,7 +13,7 @@ export const collapse = (el: HTMLElement): Animation => {
 };
 
 export const expand = (el: HTMLElement): Animation => {
-  const expandedKeyframe: Keyframe = { height: `${el.scrollHeight}px`, overflow: 'visible' };
+  const expandedKeyframe: Keyframe = { height: `${el.scrollHeight}px` };
 
   return el.animate(
     [collapsedKeyframe, expandedKeyframe],
