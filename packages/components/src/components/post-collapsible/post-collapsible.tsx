@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import { version } from '../../../package.json';
 import { collapse, expand } from '../../animations/collapse';
 import { checkEmptyOrOneOf, checkEmptyOrType, isMotionReduced } from '../../utils';
@@ -40,6 +40,11 @@ export class PostCollapsible {
     checkEmptyOrOneOf(newValue, HEADING_LEVELS, 'The `headingLevel` property of the `post-collapsible` must be a number between 1 and 6.');
   }
 
+  /**
+   * An event emitted when the collapse element is shown or hidden, before the transition. It has no payload.
+   */
+  @Event() collapseChange: EventEmitter<void>;
+
   connectedCallback() {
     this.validateCollapsed();
     this.validateHeadingLevel();
@@ -66,6 +71,7 @@ export class PostCollapsible {
     if (open === this.isOpen) return open;
 
     this.isOpen = !this.isOpen;
+    if (this.isLoaded) this.collapseChange.emit();
 
     const animation = open ? expand(this.collapsible): collapse(this.collapsible);
 
