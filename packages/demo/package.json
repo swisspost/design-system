@@ -50,7 +50,7 @@
     "@angular/elements": "16.2.6",
     "@angular/language-service": "16.2.6",
     "@types/highlight.js": "9.12.4",
-    "@types/jasmine": "4.3.6",
+    "@types/jasmine": "5.1.0",
     "@types/jasminewd2": "2.0.11",
     "@types/node": "18.17.19",
     "@typescript-eslint/eslint-plugin": "5.62.0",
