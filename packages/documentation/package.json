@@ -53,6 +53,7 @@
     "@storybook/theming": "7.4.5",
     "@storybook/web-components": "7.4.5",
     "@storybook/web-components-vite": "7.4.5",
+    "@types/css-modules": "1.0.3",
     "@types/mdx": "2.0.7",
     "@types/react": "18.2.22",
     "@types/react-syntax-highlighter": "15.5.7",
