@@ -30,14 +30,59 @@ const DEVELOPERS: Developer[] = [
 ];
 
 const BASEURL =
-  'https://github.com/swisspost/design-system/tree/main/packages/documentation/src/stories';
-const FALLBACKBASEURL = 'https://github.com/swisspost/design-system';
-const SUBPAGE = window.location.href;
+  'https://github.com/swisspost/design-system/tree/main/packages/documentation/src/stories/';
+const TWOPIECEFOLDERNAMES = ['getting-started', 'internet-header', 'intranet-header'];
+const SUBFOLDERS = ['foundations-layout'];
+const DOCSFILEENDING = '.docs.mdx';
+const ICONS: Record<string, string> = {
+  'getting-started': 'getting-started.docs.mdx',
+  'search-for-icons': 'search-icons/search-icons.docs.mdx',
+  'icon-component': 'components/icon.docs.mdx',
+};
+const INTERNETHEADER: Record<string, string> = {
+  'getting-started': 'getting-started.docs.mdx',
+  'migration-guide': 'migration-guide.docs.mdx',
+  'header': 'components/header/header.docs.mdx',
+  'header-custom-config': 'components/header/overrides-stories/header-custom-config.docs.mdx',
+  'header-language-switch-overrides':
+    'components/header/overrides-stories/header-language-switch-overrides.docs.mdx',
+  'header-os-flyout-overrides':
+    'components/header/overrides-stories/header-os-flyout-overrides.docs.mdx',
+  'breadcrumbs': 'components/breadcrumbs/breadcrumbs.docs.mdx',
+  'breadcrumbs-custom-items': 'components/breadcrumbs/overrides/breadcrumbs-config.docs.mdx',
+  'footer': 'components/footer/footer.docs.mdx',
+  'footer-custom-config': 'components/footer/custom-config/footer-config.docs.mdx',
+};
 
 function getGitHubUrl(subpage: Location) {
-  console.log(SUBPAGE.split('/')[3].split('id=')[1]);
+  //console.log(subpage.href.split('/')[3].split('id=')[1].split('--')[0].split('-'));
+  const id = subpage.href.split('/')[3].split('id=')[1].split('--')[0].split('-');
+  var UrlBuild = [];
   console.log(subpage);
-  return BASEURL;
+  if (TWOPIECEFOLDERNAMES.includes(id[0] + '-' + id[1])) {
+    UrlBuild.push(id.shift() + '-' + id.shift());
+  } else {
+    UrlBuild.push(id.shift() + '');
+  }
+  if (SUBFOLDERS.includes(UrlBuild + '-' + id[0])) {
+    UrlBuild.push(id.shift() + '');
+    UrlBuild.push(id.join('-'));
+  } else if (id.length === 0) {
+    //console.log(BASEURL + UrlBuild.join('/') + DOCSFILEENDING);
+    return BASEURL + UrlBuild.join('/') + DOCSFILEENDING; //edge case for the home page
+  } else if (UrlBuild.includes('icons')) {
+    UrlBuild.push(id.join('-'));
+    return BASEURL + UrlBuild.map(key => ICONS[key] || key).join('/'); //edge case for the icons folder
+  } else if (UrlBuild.includes('internet-header')) {
+    UrlBuild.push(id.join('-'));
+    return BASEURL + UrlBuild.map(key => INTERNETHEADER[key] || key).join('/'); //edge cases for the internet-header pages
+  } else {
+    UrlBuild.push(id.join('-'));
+  }
+  console.log(id);
+  //console.log(BASEURL + UrlBuild.join('/') + '/' + UrlBuild.pop() + DOCSFILEENDING);
+  UrlBuild = UrlBuild.map(key => (key === 'foundations' ? 'foundation' : key)); // foundation folder is named differently on github
+  return BASEURL + UrlBuild.join('/') + '/' + UrlBuild.pop() + DOCSFILEENDING;
 }
 
 export default () => (
