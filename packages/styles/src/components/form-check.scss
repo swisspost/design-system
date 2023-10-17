@@ -123,7 +123,7 @@
       background-position-x: form-check.$form-switch-width;
 
       &::after {
-        @include icons-mx.remove-icon;
+        mask: none;
         background-color: form-check.$form-switch-color;
         border-color: form-check.$form-switch-checked-border-color;
         transform: translateX(2rem);

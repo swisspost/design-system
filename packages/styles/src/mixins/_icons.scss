@@ -14,12 +14,6 @@
   background-color: currentColor;
 }
 
-@mixin remove-icon() {
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: none;
-  mask-image: none;
-}
-
 // DEPRECATED
 @mixin pi($name, $color: color.$black) {
   $type: meta.type-of($color);
