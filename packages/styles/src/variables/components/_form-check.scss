@@ -33,6 +33,7 @@ $form-switch-disabled-border-color: color.$gray-40 !default;
 $form-switch-label-padding-top: ($form-switch-height - type.$line-height-copy) * 0.5 !default;
 
 // DEPRECATED
+$form-check-inline-margin-left: spacing.$size-large !default;
 $form-check-input-width: spacing.$size-large !default;
 $form-check-min-height: $form-check-input-width !default;
 $form-check-padding-start: 0 !default;
