@@ -169,7 +169,7 @@ export class PostTabs {
     return (
       <Host data-version={version}>
         <div class="tabs-wrapper">
-          <div class="tabs nav" role="tablist">
+          <div class="tabs" role="tablist">
             <slot name="tabs" onSlotchange={() => this.enableTabs()} />
           </div>
         </div>
