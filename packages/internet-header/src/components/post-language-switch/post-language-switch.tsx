@@ -1,13 +1,13 @@
 import {
   Component,
-  Event,
-  Host,
-  h,
-  Method,
-  EventEmitter,
-  State,
-  Prop,
   Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
 } from '@stencil/core';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { SvgIcon } from '../../utils/svg-icon.component';
@@ -18,7 +18,7 @@ import {
   HasDropdown,
   NavLangEntity,
 } from '../../models/header.model';
-import { userPrefersReducedMotion, elementHasTransition } from '../../services/ui.service';
+import { elementHasTransition, userPrefersReducedMotion } from '../../services/ui.service';
 import { translate } from '../../services/language.service';
 import { PostLanguageSwitchList } from './components/post-language-switch-list';
 import { IAvailableLanguage } from '../../models/language.model';
