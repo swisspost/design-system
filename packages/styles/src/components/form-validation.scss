@@ -1,5 +1,9 @@
 @forward './../variables/options';
 
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/core' as *;
+@use './../themes/bootstrap/forms/validation' as bfv;
+
 @use './../mixins/color' as color-mx;
 @use './../mixins/utilities' as utilities-mx;
 @use './../mixins/form-validation' as form-validation-mx;
@@ -35,6 +39,48 @@
 .valid-feedback.custom-feedback {
   background: form-validation.$form-feedback-custom-bg;
   color: form-validation.$form-feedback-custom-text;
+}
+
+@each $state, $data in $form-validation-states {
+  $icon: map-get($data, 'icon');
+
+  @include form-validation-state-selector($state) {
+    ~ .#{$state}-feedback,
+    ~ .#{$state}-tooltip {
+      display: block;
+    }
+  }
+
+  .form-control {
+    @include form-validation-state-selector($state) {
+      padding-right: $input-height-inner;
+      background-image: escape-svg($icon);
+      background-repeat: no-repeat;
+      background-position: right $input-height-inner-quarter center;
+      background-size: form-validation.$form-feedback-icon-size;
+    }
+  }
+
+  textarea.form-control {
+    @include form-validation-state-selector($state) {
+      padding-right: $input-height-inner;
+      background-position: top $input-height-inner-quarter right $input-height-inner-quarter;
+    }
+  }
+
+  .input-group {
+    > .form-control:not(:focus),
+    > .form-select:not(:focus),
+    > .form-floating:not(:focus-within) {
+      @include form-validation-state-selector($state) {
+        @if $state == 'valid' {
+          z-index: 3;
+        } @else if $state == 'invalid' {
+          z-index: 4;
+        }
+      }
+    }
+  }
 }
 
 .is-invalid ~ .invalid-feedback,
