@@ -2,7 +2,7 @@
 
 @use './../mixins/color' as color-mx;
 @use './../mixins/utilities' as utilities-mx;
-@use './../mixins/form-checks' as form-checks-mx;
+@use './../mixins/form-validation' as form-validation-mx;
 @use './../variables/color';
 @use './../variables/components/form-validation';
 @use './../variables/components/forms';
@@ -44,7 +44,7 @@
 
 .form-control,
 .form-select {
-  @include form-checks-mx.form-validation-state-selector(invalid) {
+  @include form-validation-mx.form-validation-state-selector(invalid) {
     border-color: form-validation.$form-feedback-invalid-color;
 
     &:focus {
@@ -55,7 +55,7 @@
 }
 
 .form-check-input {
-  @include form-checks-mx.form-validation-state-selector(invalid) {
+  @include form-validation-mx.form-validation-state-selector(invalid) {
     border-color: form-validation.$form-feedback-invalid-color;
 
     &:focus {
