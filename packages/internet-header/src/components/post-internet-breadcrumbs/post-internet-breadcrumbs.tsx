@@ -17,6 +17,12 @@ import { prefersReducedMotion } from '../../utils/utils';
 })
 export class PostInternetBreadcrumbs {
   @Prop() customItems?: string | IBreadcrumbItem[];
+
+  /**
+   * Hide all buttons.
+   */
+  @Prop() hideButtons: boolean = false;
+
   @State() customBreadcrumbItems?: IBreadcrumbItem[];
   @State() overlayVisible: boolean;
   @State() isConcatenated: boolean; // Don't set an initial value, this has to be calculated first, otherwise reactivity problems ensue
@@ -294,19 +300,23 @@ export class PostInternetBreadcrumbs {
               clickHandler={() => this.handleToggleDropdown()}
             ></BreadcrumbList>
           </nav>
-          <div class="breadcrumb-buttons">
-            {breadcrumbConfig.buttons.map(button => (
-              <button
-                class="btn btn-secondary btn-icon"
-                key={button.text}
-                aria-expanded={`${this.overlayVisible && this.currentOverlay === button.overlay}`}
-                onClick={() => this.toggleOverlay(button.overlay, true)}
-              >
-                <SvgIcon name={button.svgIcon.name}></SvgIcon>
-                <span class="visually-hidden">{button.text}</span>
-              </button>
-            ))}
-          </div>
+          {!this.hideButtons && (
+            <div class="breadcrumb-buttons">
+              {breadcrumbConfig.buttons.map(button => (
+                <button
+                  class="btn btn-secondary btn-icon"
+                  key={button.text}
+                  aria-expanded={`${Boolean(
+                    this.overlayVisible && this.currentOverlay === button.overlay,
+                  )}`}
+                  onClick={() => this.toggleOverlay(button.overlay, true)}
+                >
+                  <SvgIcon name={button.svgIcon.name}></SvgIcon>
+                  <span class="visually-hidden">{button.text}</span>
+                </button>
+              ))}
+            </div>
+          )}
           {this.overlayVisible && (
             <OverlayComponent
               overlayRef={e => e !== undefined && this.overlayRef(e)}
