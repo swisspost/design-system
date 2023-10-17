@@ -23,7 +23,6 @@ const meta: Meta = {
     hiddenLabel: false,
     checked: false,
     disabled: false,
-    size: 'null',
     validation: 'null',
   },
   argTypes: {
@@ -68,21 +67,6 @@ const meta: Meta = {
         category: 'States',
       },
     },
-    size: {
-      name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      control: {
-        type: 'select',
-        labels: {
-          'form-check-sm': 'Small',
-          'null': 'Large',
-        },
-      },
-      options: ['form-check-sm', 'null'],
-      table: {
-        category: 'General',
-      },
-    },
     disabled: {
       name: 'Disabled',
       description:
@@ -119,7 +103,6 @@ function render(args: Args, context: StoryContext) {
 
   const id = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
   const classes = ['form-check-input', args.validation].filter(c => c && c !== 'null').join(' ');
-  const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel
@@ -151,12 +134,12 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      @change="${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}"
+      @change=${(e: Event) => updateArgs({ checked: (e.target as HTMLInputElement).checked })}
     />
   `;
 
   return html`
-    <div class="${groupClasses}">${[control, label, ...contextual].filter(el => el !== null)}</div>
+    <div class="form-check">${[control, label, ...contextual].filter(el => el !== null)}</div>
   `;
 }
 
@@ -164,7 +147,13 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {};
+export const Default: Story = {
+  decorators: [
+    story => html`
+      <div class="pt-3">${story()}</div>
+    `,
+  ],
+};
 
 function renderInline(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
@@ -237,16 +226,13 @@ function renderInline(args: Args, context: StoryContext) {
   `;
 }
 
-export const Size: Story = {
-  render,
-  args: {
-    size: 'form-check-sm',
-    checkedRadio: null,
-  },
-};
-
 export const Inline: Story = {
   render: renderInline,
+  decorators: [
+    story => html`
+      <div class="pt-3">${story()}</div>
+    `,
+  ],
   parameters: {
     controls: {
       exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],
