@@ -29,17 +29,9 @@ export class PostTabHeader {
   render() {
     return (
       <Host data-version={version}>
-        <li class="nav-item">
-          <a
-            aria-selected="false"
-            class="tab-title nav-link"
-            href="#"
-            id={this.tabId}
-            role="tab"
-          >
-            <slot/>
-          </a>
-        </li>
+        <a aria-selected="false" role="tab" class="tab-title" href="#" id={this.tabId}>
+          <slot />
+        </a>
       </Host>
     );
   }

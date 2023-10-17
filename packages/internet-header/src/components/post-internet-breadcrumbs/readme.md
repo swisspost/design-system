@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property      | Attribute      | Description | Type                                       | Default     |
-| ------------- | -------------- | ----------- | ------------------------------------------ | ----------- |
-| `customItems` | `custom-items` |             | `IBreadcrumbItem[] \| string \| undefined` | `undefined` |
+| Property      | Attribute      | Description       | Type                                       | Default     |
+| ------------- | -------------- | ----------------- | ------------------------------------------ | ----------- |
+| `customItems` | `custom-items` |                   | `IBreadcrumbItem[] \| string \| undefined` | `undefined` |
+| `hideButtons` | `hide-buttons` | Hide all buttons. | `boolean`                                  | `false`     |
 
 
 ## Methods
