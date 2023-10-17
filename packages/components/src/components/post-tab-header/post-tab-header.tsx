@@ -29,7 +29,7 @@ export class PostTabHeader {
   render() {
     return (
       <Host data-version={version}>
-        <a aria-selected="false" role="tab" class="tab-title nav-link" href="#" id={this.tabId}>
+        <a aria-selected="false" role="tab" class="tab-title" href="#" id={this.tabId}>
           <slot />
         </a>
       </Host>
