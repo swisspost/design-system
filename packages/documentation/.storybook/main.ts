@@ -27,7 +27,6 @@ const config: StorybookConfig = {
     '@storybook/addon-a11y',
     '@geometricpanda/storybook-addon-badges',
     '@pxtrn/storybook-addon-docs-stencil',
-    'storybook-addon-pseudo-states',
   ],
   staticDirs: [
     {

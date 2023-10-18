@@ -1,4 +1,5 @@
 const pseudoClassList = ['hover', 'active', 'focus', 'focus-visible', 'focus-within'];
+const prefix = ':';
 
 /**
  * Serialize snapshot Pseudo-class arguments into class provided by storybook-addon-pseudo-states to simulate the behavior
@@ -15,7 +16,7 @@ export function serializeSimulatedPseudoClass(name: string | string[] | undefine
     const classes = [accumulator];
 
     if (currentValue && pseudoClassList.includes(currentValue)) {
-      classes.push(`pseudo-${currentValue}`);
+      classes.push(`${prefix}${currentValue}`);
     }
 
     // Useful for some components that trigger focus programmatically
