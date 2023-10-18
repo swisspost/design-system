@@ -5,11 +5,9 @@ import SampleInstall from './internet-header-install.sample.html?raw';
 import SampleFixAppStyles from './internet-header-fix-app-styles.sample.html?raw';
 import SampleOld from './internet-header-old.sample.html?raw';
 import { SourceDarkMode } from '../../../.storybook/preview';
+import * as MigrationGuideStories from './migration-guide.stories';
 
-<Meta
-  title="Internet Header/Migration Guide"
-  parameters={{ badges: [BADGE.STABLE] }}
-/>
+<Meta of={MigrationGuideStories} />
 
 # Migration from the old header
 
@@ -45,11 +43,7 @@ One to load static assets, one to configure it and one to load it.
 - You can remove the configuration and the loader scripts, but remember your `serviceid`.
 - Try to remove the `staticassets` script to check if you still need it
 
-<Source
-  code={SampleOld}
-  dark={true}
-  language="html"
-/>
+<Source code={SampleOld} dark={true} language="html" />
 
 ## 2. Fix your app styles
 
@@ -58,11 +52,7 @@ The new header does not provide those wrappers.
 Instead, every page has control over the main markup structure.
 A possible replacement of the above code could be:
 
-<Source
-  code={SampleFixAppStyles}
-  dark={true}
-  language="html"
-/>
+<Source code={SampleFixAppStyles} dark={true} language="html" />
 
 - Likely you'll need the class `container` around your main content to align it properly in the center.
 - For bonus points on semantic markup, use the [`<main>` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main) around the main page content
@@ -86,11 +76,7 @@ Please refer to the [Internet Header installation instructions](/story/getting-s
 
 After installation, you're ready to add the new tags to your markup:
 
-<Source
-  code={SampleInstall}
-  dark={SourceDarkMode}
-  language="html"
-/>
+<Source code={SampleInstall} dark={SourceDarkMode} language="html" />
 
 Place the new elements as described (and needed) as shown above.
 The breadcrumbs need a `container` wrapper to align themselves with the content of your page,
@@ -101,11 +87,6 @@ If you don't have breadcrumbs, you can just delete the `<aside>` and the `<swiss
 
 If you need to change settings during runtime, you can get a reference to the header by querying:
 
-<Source
-  code={SampleReference}
-  dark={SourceDarkMode}
-  language="typescript"
-/>
-
+<Source code={SampleReference} dark={SourceDarkMode} language="typescript" />
 
 At the [Internet Header configuration page](/story/header - usage--page) you can find a list of possible options.

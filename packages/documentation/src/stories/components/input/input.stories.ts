@@ -107,8 +107,8 @@ const meta: Meta = {
         type: 'select',
         labels: {
           'form-control-sm': 'Small',
-          'form-control-rg': 'Regular',
-          'null': 'Middle',
+          'form-control-rg': 'Regular (deprecated)',
+          'null': 'Middle (deprecated)',
           'form-control-lg': 'Large',
         },
       },
@@ -210,6 +210,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
+      value=${args.value ? args.value : nothing}
     />
   `;
   if (args.floatingLabel) {

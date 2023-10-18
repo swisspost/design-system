@@ -1,4 +1,6 @@
 import type { StorybookConfig } from '@storybook/web-components-vite';
+import pkg from '../package.json';
+import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
   logLevel: 'info',
@@ -18,7 +20,6 @@ const config: StorybookConfig = {
         backgrounds: false,
         highlight: false,
         outline: false,
-        toolbars: false,
       },
     },
     '@storybook/addon-links',
@@ -37,6 +38,24 @@ const config: StorybookConfig = {
   ],
   docs: {
     autodocs: 'tag',
+  },
+  env: config => ({
+    ...config,
+    STORYBOOK_GTM_KEY: 'GTM-WKSKHGJ',
+    STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE: 'en',
+    STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION: 'national',
+    STORYBOOK_GTM_PAGE_CONTEXT_SOURCE_CODE_VERSION: pkg.version,
+    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_DEV: 'localhost',
+    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT: 'preview-',
+    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD: 'design-system.post.ch,next.design-system.post.ch',
+    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK: 'dev',
+  }),
+  async viteFinal(config, options) {
+    return mergeConfig(config, {
+      css: {
+        devSourcemap: true,
+      },
+    });
   },
 };
 

@@ -11,7 +11,7 @@ $notification-body-gap: spacing.$size-micro !default;
 $notification-font-weight: type.$font-weight-light !default;
 $notification-link-font-weight: type.$font-weight-normal !default;
 $notification-heading-font-weight: type.$headings-font-weight !default;
-$notification-buttons-margin-start: spacing.$size-mini !default;
+$notification-buttons-gap: spacing.$size-mini !default;
 
 $notification-padding-x-map: () !default;
 $notification-padding-x-map: map-merge(
@@ -82,3 +82,6 @@ $notification-variants: join(
     'error' color.$error 2104
   )
 );
+
+// deprecated
+$notification-buttons-margin-start: $notification-buttons-gap !default;
