@@ -46,11 +46,12 @@ export const config: Config = {
   rollupPlugins: {
     before: [
       scss({
+        outputStyle: 'compressed',
         output: false,
       }),
     ],
   },
   extras: {
     enableImportInjection: true,
-  }
+  },
 };
