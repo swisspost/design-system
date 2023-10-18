@@ -8,7 +8,9 @@
       <div class="intranet-header">
         <div class="d-flex align-items-center flex-nowrap">
           <div class="bg-logo d-sm-block">
-            <a [href]="this.logoUrl" class="navbar-brand header-logo"></a>
+            <a [href]="this.logoUrl" class="navbar-brand header-logo">
+              <span class="visually-hidden">{{getPostlogoText()}}</span>
+            </a>
           </div>
           <div class="title flex-shrink-1 px-4">
             <h2 class="m-0 font-weight-bold">{{ siteTitle }}</h2>
