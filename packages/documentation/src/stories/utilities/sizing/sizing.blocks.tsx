@@ -114,7 +114,15 @@ const sizes = [
     equivalent: 0,
   },
   {
-    key: 13,
+    key: 14,
+    name: 'small-giant',
+    size_pixel: 72,
+    size_rem: 4.5,
+    implemented: PostSizeImplementation.Rem,
+    equivalent: 0,
+  },
+  {
+    key: 14,
     name: 'giant',
     size_pixel: 80,
     size_rem: 5,
@@ -122,7 +130,7 @@ const sizes = [
     equivalent: 0,
   },
   {
-    key: 14,
+    key: 15,
     name: 'bigger-giant',
     size_pixel: 112,
     size_rem: 7,

@@ -1,0 +1,14 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.sizing-example {
+  .content {
+    background-color: post.$white;
+    border: 1px solid post.$gray-40;
+  }
+
+  .legend {
+    .padding {
+      border: 0 none;
+    }
+  }
+}
