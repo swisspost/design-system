@@ -502,9 +502,6 @@ importers:
       bootstrap:
         specifier: 5.3.2
         version: 5.3.2(@popperjs/core@2.11.8)
-      postcss-pseudo-classes:
-        specifier: ^0.2.1
-        version: 0.2.1
     devDependencies:
       '@geometricpanda/storybook-addon-badges':
         specifier: 2.0.0
@@ -584,9 +581,6 @@ importers:
       lit-html:
         specifier: 3.0.0
         version: 3.0.0
-      postcss-pseudo-companion-classes:
-        specifier: ^0.1.1
-        version: 0.1.1(postcss@8.4.31)
       prettier:
         specifier: 2.8.8
         version: 2.8.8
@@ -7119,7 +7113,7 @@ packages:
       remark-slug: 6.1.0
       rollup: 3.26.2
       typescript: 5.1.6
-      vite: 4.4.7(@types/node@18.17.19)(less@4.1.3)(sass@1.68.0)
+      vite: 4.4.7(sass@1.68.0)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -18477,10 +18471,6 @@ packages:
     resolution: {integrity: sha512-7EAHlyLHI56VEIdK57uwHdHKIaAGbnXPiw0yWbarQZOKaKpvUIgW0jWRVLiatnM+XXlSwsanIBH/hzGMJulMow==}
     dev: true
 
-  /picocolors@0.2.1:
-    resolution: {integrity: sha512-cMlDqaLEqfSaW8Z7N5Jw+lyIW869EzT73/F5lhtY9cLGoVxSXznfgfXMO0Z5K0o0Q2TkTXq+0KFsdnSe3jDViA==}
-    dev: false
-
   /picocolors@1.0.0:
     resolution: {integrity: sha512-1fygroTLlHu66zi26VoTDv8yRgm0Fccecssto+MhsZ0D/DGW2sm8E8AjW7NU5VVTRt5GxbeZ5qBuJr+HyLYkjQ==}
 
@@ -18699,21 +18689,6 @@ packages:
       postcss: 8.4.31
     dev: true
 
-  /postcss-pseudo-classes@0.2.1:
-    resolution: {integrity: sha512-qEuco5PmPo9AaXfYgnIflVTxUXNnhOIpv3/ptaVz7NRN09oy7Eqa2Smc+htoz0d91AE9JkR8Mebtf/ofamlWWQ==}
-    dependencies:
-      postcss: 7.0.39
-    dev: false
-
-  /postcss-pseudo-companion-classes@0.1.1(postcss@8.4.31):
-    resolution: {integrity: sha512-CJqiANNTMXqKKzaQHANdYGdpqoRbUvsXGWHEbzJ4hsTf2TF/Jj2fONWdsaXANIXIPjlfoIn/++W7FnKKrnZkNg==}
-    engines: {node: '>=12.0.0'}
-    peerDependencies:
-      postcss: ^8.3.0
-    dependencies:
-      postcss: 8.4.31
-    dev: true
-
   /postcss-resolve-nested-selector@0.1.1:
     resolution: {integrity: sha512-HvExULSwLqHLgUy1rl3ANIqCsvMS0WHss2UOsXhXnQaZ9VCc2oBvIpXrl00IUFT5ZDITME0o6oiXeiHr2SAIfw==}
     dev: true
@@ -18768,14 +18743,6 @@ packages:
   /postcss-value-parser@4.2.0:
     resolution: {integrity: sha512-1NNCs6uurfkVbeXG4S8JFT9t19m45ICnif8zWLd5oPSZ50QnwMfK+H3jv408d4jw/7Bttv5axS5IiHoLaVNHeQ==}
     dev: true
-
-  /postcss@7.0.39:
-    resolution: {integrity: sha512-yioayjNbHn6z1/Bywyb2Y4s3yvDAeXGOyxqD+LnVOinq6Mdmd++SW2wUNVzavyyHxd6+DxzWGIuosg6P1Rj8uA==}
-    engines: {node: '>=6.0.0'}
-    dependencies:
-      picocolors: 0.2.1
-      source-map: 0.6.1
-    dev: false
 
   /postcss@8.4.27:
     resolution: {integrity: sha512-gY/ACJtJPSmUFPDCHtX78+01fHa64FaU4zaaWfuh1MhGJISufJAH4cun6k/8fwsHYeK4UQmENQK+tRLCFJE8JQ==}
@@ -20482,6 +20449,7 @@ packages:
   /source-map@0.6.1:
     resolution: {integrity: sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==}
     engines: {node: '>=0.10.0'}
+    dev: true
 
   /source-map@0.7.3:
     resolution: {integrity: sha512-CkCj6giN3S+n9qrYiBTX5gystlENnRW5jZeNLHpe6aue+SrHcG5VYwujhW9s4dY31mEGsxBDrHR6oI69fTXsaQ==}
@@ -22294,6 +22262,42 @@ packages:
       '@types/node': 18.17.19
       esbuild: 0.18.17
       less: 4.1.3
+      postcss: 8.4.31
+      rollup: 3.29.4
+      sass: 1.68.0
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
+  /vite@4.4.7(sass@1.68.0):
+    resolution: {integrity: sha512-6pYf9QJ1mHylfVh39HpuSfMPojPSKVxZvnclX1K1FyZ1PXDOcLBibdq5t1qxJSnL63ca8Wf4zts6mD8u8oc9Fw==}
+    engines: {node: ^14.18.0 || >=16.0.0}
+    hasBin: true
+    peerDependencies:
+      '@types/node': '>= 14'
+      less: '*'
+      lightningcss: ^1.21.0
+      sass: '*'
+      stylus: '*'
+      sugarss: '*'
+      terser: ^5.4.0
+    peerDependenciesMeta:
+      '@types/node':
+        optional: true
+      less:
+        optional: true
+      lightningcss:
+        optional: true
+      sass:
+        optional: true
+      stylus:
+        optional: true
+      sugarss:
+        optional: true
+      terser:
+        optional: true
+    dependencies:
+      esbuild: 0.18.17
       postcss: 8.4.31
       rollup: 3.29.4
       sass: 1.68.0
