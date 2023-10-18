@@ -45,12 +45,6 @@ export const Basis: Story = {
                 <div class="col-2"><div class="bg-container">4</div></div>
                 <div class="col-2"><div class="bg-container">5</div></div>
                 <div class="col-2"><div class="bg-container">6</div></div>
-                <div class="col-2"><div class="bg-container">7</div></div>
-                <div class="col-2"><div class="bg-container">8</div></div>
-                <div class="col-2"><div class="bg-container">9</div></div>
-                <div class="col-2"><div class="bg-container">10</div></div>
-                <div class="col-2"><div class="bg-container">11</div></div>
-                <div class="col-2"><div class="bg-container">12</div></div>
               </div>
             </div>
           </div>
@@ -70,12 +64,6 @@ export const Basis: Story = {
                 <div class="col-2"><div class="bg-container">4</div></div>
                 <div class="col-2"><div class="bg-container">5</div></div>
                 <div class="col-2"><div class="bg-container">6</div></div>
-                <div class="col-2"><div class="bg-container">7</div></div>
-                <div class="col-2"><div class="bg-container">8</div></div>
-                <div class="col-2"><div class="bg-container">9</div></div>
-                <div class="col-2"><div class="bg-container">10</div></div>
-                <div class="col-2"><div class="bg-container">11</div></div>
-                <div class="col-2"><div class="bg-container">12</div></div>
               </div>
             </div>
           </div>
