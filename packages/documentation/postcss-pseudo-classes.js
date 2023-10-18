@@ -23,6 +23,21 @@ const plugin = (options = {}) => {
     ':not': true,
     ':is': true,
     ':where': true,
+    ':has': true,
+    ':nth-child': true,
+    ':nth-last-child': true,
+    ':nth-last-of-type': true,
+    ':first-child': true,
+    ':last-child': true,
+    ':first': true,
+    ':last': true,
+    ':required': true,
+    ':scope': true,
+    ':target': true,
+    ':valid': true,
+    ':user-valid': true,
+    ':user-invalid': true,
+    ':placeholder-shown': true,
   };
 
   const prefix = options?.prefix || '\\:';
