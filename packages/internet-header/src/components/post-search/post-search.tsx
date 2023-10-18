@@ -26,6 +26,7 @@ import { SvgIcon } from '../../utils/svg-icon.component';
 import { TrackAndTraceInfo } from '../../models/track-and-trace.model';
 import { getParcelSuggestion } from '../../services/search/parcel.service';
 import { If } from '../../utils/if.component';
+import { translate } from '../../services/language.service';
 
 @Component({
   tag: 'post-search',
@@ -42,6 +43,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
   private searchBox?: HTMLInputElement;
   private searchFlyout: HTMLElement | undefined;
   private throttledResize: throttle<() => void>;
+  private clearButton?: HTMLButtonElement;
 
   connectedCallback() {
     this.throttledResize = throttle(300, () => this.handleResize());
@@ -168,6 +170,15 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
     const query = this.searchBox.value.trim();
 
+    // shows or hides clearButton depending on the content of the searchbar
+    if (this.clearButton) {
+      if (query !== '') {
+        this.clearButton.style.visibility = 'visible';
+      } else {
+        this.clearButton.style.visibility = 'hidden';
+      }
+    }
+
     const [placeSuggestions, coveoSuggestions, trackAndTraceInfo] = await Promise.all([
       queryPlaces(query),
       getCoveoSuggestions(query),
@@ -189,6 +200,17 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
 
     this.deselectSuggestion();
+  }
+
+  /**
+   * clear Search box
+   * calls handleSearchInput to update/remove suggestions
+   */
+  private handleClearSearchBox() {
+    if (this.searchBox !== undefined) {
+      this.searchBox.value = '';
+      this.handleSearchInput();
+    }
   }
 
   /**
@@ -377,6 +399,16 @@ export class PostSearch implements HasDropdown, IsFocusable {
                         onKeyDown={e => this.handleKeyDown(e)}
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
+                      <button
+                        onClick={() => this.handleClearSearchBox()}
+                        class="clear-search-button"
+                        type="reset"
+                        id="clearButton"
+                        ref={el => (this.clearButton = el)}
+                      >
+                        <span class="visually-hidden">{translate('Delete search term')}</span>
+                        <SvgIcon name="pi-close" />
+                      </button>
                       <button onClick={() => void this.startSearch()} class="start-search-button">
                         <span class="visually-hidden">{translations.searchSubmit}</span>
                         <SvgIcon name="pi-search" />
