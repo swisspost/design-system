@@ -176,7 +176,7 @@ export class PostPopover {
   render() {
     return (
       <Host data-version={version}>
-        <div part="popover">
+        <div part="popover" ref={(el: any) => (this.popoverRef = el)}>
           {this.arrow && (
             <span
               class="arrow"
