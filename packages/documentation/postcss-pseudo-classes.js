@@ -37,7 +37,7 @@ const plugin = (options = {}) => {
     restrictTo = options.restrictTo.reduce(function (target, pseudoClass) {
       const finalClass =
         (pseudoClass.charAt(0) === ':' ? '' : ':') + pseudoClass.replace(/\(.*/g, '');
-      if (!Object.prototype.hasOwnProperty.call(target, finalClass)) {
+      if (!Object.hasOwn(target, finalClass)) {
         target[finalClass] = true;
       }
       return target;
