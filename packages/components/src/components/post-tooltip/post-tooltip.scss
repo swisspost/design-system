@@ -1,11 +1,15 @@
 @use 'sass:meta';
 @use 'sass:math';
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/functions/color' as color-fn;
 @use '@swisspost/design-system-styles/variables/spacing';
 
-post-popover {
-  // Prevents instantly closing tooltips because the opening tooltip opens under the cursor and the trigger gets a mouseleave
-  pointer-events: none;
+:host {
+  --post-contrast-color: #{color.$white};
+  --post-bg-rgb: #{color-fn.rgb-values(color.$gray-80)};
+}
 
+post-popover {
   &::part(popover) {
     padding: spacing.$size-micro spacing.$size-mini;
   }
