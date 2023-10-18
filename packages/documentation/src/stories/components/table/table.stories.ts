@@ -110,15 +110,15 @@ function renderTable(args: Args) {
   const variants = args.variant.join(' ');
   return html`
     <table
-      class=${mapClasses({
+      class="${mapClasses({
         table: true,
         [args.borderStyle]: args.borderStyle && args.borderStyle !== 'null',
         [variants]: variants && variants !== '',
         [cationTop]: cationTop !== 'null',
         [args.alignment]: args.alignment && args.alignment !== 'null',
-      })}
+      })}"
     >
-      <caption class=${args.captionPlacement === 'hidden' ? 'visually-hidden' : ''}>
+      <caption class="${args.captionPlacement === 'hidden' ? 'visually-hidden' : ''}">
         ${args.caption}
       </caption>
       <thead>

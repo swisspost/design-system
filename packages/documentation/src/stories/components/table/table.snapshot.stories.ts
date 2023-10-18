@@ -19,7 +19,7 @@ export const Table: Story = {
         ${['bg-white', 'bg-dark'].map(
           bg => html`
             <div
-              class=${bg}
+              class="${bg}"
               style="padding: '1rem'; display: 'flex'; flexWrap: 'wrap'; alignItems: 'start; justify-conent:'space-between'"
             >
               ${[
@@ -104,6 +104,85 @@ export const Table: Story = {
                       </tr>
                     `,
                     html`
+                      <tr class=":hover">
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>
+                          <button class="btn btn-secondary btn-icon btn-md">
+                            <span class="visually-hidden">Edit</span>
+                            <i class="pi pi-2012"></i>
+                          </button>
+                          <button class="btn btn-primary btn-icon btn-md ms-2">
+                            <span class="visually-hidden">Edit</span>
+                            <i class="pi pi-3193"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class=":hover">
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>
+                          <button class="btn btn-secondary btn-icon btn-md">
+                            <span class="visually-hidden">Edit</span>
+                            <i class="pi pi-2012"></i>
+                          </button>
+                          <button class="btn btn-primary btn-icon btn-md ms-2">
+                            <span class="visually-hidden">Edit</span>
+                            <i class="pi pi-3193"></i>
+                          </button>
+                        </td>
+                      </tr>
+                      <tr class=":hover">
+                        <th scope="row">3</th>
+                        <td>Larry</td>
+                        <td>the Bird</td>
+                        <td>
+                          <button class="btn btn-secondary btn-icon btn-md">
+                            <span class="visually-hidden">Edit</span>
+                            <i class="pi pi-2012"></i>
+                          </button>
+                          <button class="btn btn-primary btn-icon btn-md ms-2">
+                            <span class="visually-hidden">Edit</span>
+                            <i class="pi pi-3193"></i>
+                          </button>
+                        </td>
+                      </tr>
+                    `,
+                  ],
+                  borderStyle: ['null'],
+                  alignment: ['align-top'],
+                  pseudoClass: ['hover'],
+                  variant: [['table-hover']],
+                }),
+                ...bombArgs({
+                  content: [
+                    html`
+                      <tr>
+                        <th scope="row">1</th>
+                        <td>Mark</td>
+                        <td>Otto</td>
+                        <td>@mdo</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">2</th>
+                        <td>Jacob</td>
+                        <td>Thornton</td>
+                        <td>@fat</td>
+                      </tr>
+                      <tr>
+                        <th scope="row">4</th>
+                        <td>Someone</td>
+                        <td>
+                          else
+                          <br />
+                          entirely
+                        </td>
+                        <td>@twitter</td>
+                      </tr>
+                    `,
+                    html`
                       <tr>
                         <th scope="row">1</th>
                         <td>Mark</td>
@@ -151,7 +230,7 @@ export const Table: Story = {
                       </tr>
                     `,
                   ],
-                  boderStyle: ['null'],
+                  borderStyle: ['null'],
                   alignment: ['align-top'],
                   variant: [
                     ['table-hover'],
