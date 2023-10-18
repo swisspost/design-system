@@ -8,6 +8,7 @@
 @use './../variables/components/forms';
 
 @use './../mixins/button' as button-mixins;
+@use './../mixins/icons' as icons-mx;
 @use './../mixins/utilities';
 
 @use './../placeholders/text';
@@ -67,22 +68,18 @@
   width: spacing.$size-regular;
   height: spacing.$size-regular;
   margin-left: spacing.$size-mini;
-  background-repeat: no-repeat;
-  background-size: contain;
 
   &.datatable-icon-sort-unset {
-    background-image: datatable.$datatable-sort-unset-icon;
-    background-position: center top, center bottom;
+    @include icons-mx.icon(2127);
   }
 
-  &.datatable-icon-up {
-    background-image: datatable.$datatable-sort-asc-icon;
-    background-position: center center;
+  &.datatable-icon-up,
+  &.datatable-icon-down {
+    @include icons-mx.icon(2112);
   }
 
   &.datatable-icon-down {
-    background-image: datatable.$datatable-sort-desc-icon;
-    background-position: center center;
+    transform: rotate(180deg);
   }
 }
 

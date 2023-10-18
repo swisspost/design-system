@@ -3,7 +3,8 @@ import { prepare } from '../support/prepare-story';
 
 describe('main-navigation', () => {
   beforeEach(() => {
-    prepare('Internet Header/Header Component', 'Default');
+    prepare('Internet Header/Header', 'Default');
+    cy.changeArg('language', 'de');
   });
 
   it('should not have any highlight when active route is false', async () => {
@@ -27,7 +28,8 @@ describe('main-navigation', () => {
   it('should have an active route when config defines an active route', () => {
     const activeConfig = JSON.parse(JSON.stringify(testConfiguration));
     activeConfig.de.header.navMain[0].isActive = true;
-    prepare('Internet Header/Header Component', 'Default', activeConfig);
+    prepare('Internet Header/Header', 'Default', activeConfig);
+    cy.changeArg('language', 'de');
     cy.get('swisspost-internet-header')
       .shadow()
       .find('.flyout-link.active, .main-link.active')
@@ -46,7 +48,7 @@ describe('main-navigation', () => {
   });
 
   it('Changes active link also in custom config nav links', () => {
-    prepare('Internet Header/Header Component', 'Custom Navigation');
+    prepare('Internet Header/Header/Custom Config', 'Default');
     cy.changeArg('language', 'en');
     cy.changeArg('active-route', 'https://maps.google.com');
     cy.get('swisspost-internet-header')

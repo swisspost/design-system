@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
 import * as ToastStories from './toast.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={ToastStories} />
 
@@ -19,20 +20,7 @@ They are intended to be small interruptions to your visitors or users, and there
   <Controls of={ToastStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/toast.scss';
-```
+<StylesPackageImport components={["toast"]} />
 
 ## Concrete Examples of Application
 

@@ -1,5 +1,18 @@
 # @swisspost/design-system-components
 
+## 1.5.0
+
+### Minor Changes
+
+- Added the `post-tooltip` component. (by [@gfellerph](https://github.com/gfellerph) with [#1879](https://github.com/swisspost/design-system/pull/1879))
+
+- Created the web component variant for the alert component. (by [@alizedebray](https://github.com/alizedebray) with [#1085](https://github.com/swisspost/design-system/pull/1085))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.1
+
 ## 1.4.0
 
 ### Minor Changes

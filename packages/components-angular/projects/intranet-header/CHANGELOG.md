@@ -1,5 +1,24 @@
 # @swisspost/design-system-intranet-header
 
+## 5.0.1
+
+### Patch Changes
+
+- Removed bound between logo and language to allow any language to display the logo. (by [@imagoiq](https://github.com/imagoiq) with [#2009](https://github.com/swisspost/design-system/pull/2009))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.1
+
+## 5.0.0
+
+### Major Changes
+
+- Upgraded major version of Angular from v15 to v16. (by [@imagoiq](https://github.com/imagoiq) with [#1920](https://github.com/swisspost/design-system/pull/1920))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.0
+
 ## 4.0.10
 
 ### Patch Changes
