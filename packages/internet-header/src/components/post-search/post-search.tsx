@@ -403,7 +403,6 @@ export class PostSearch implements HasDropdown, IsFocusable {
                         onClick={() => this.handleClearSearchBox()}
                         class="clear-search-button"
                         type="reset"
-                        aria-label="Clear input"
                         id="clearButton"
                         ref={el => (this.clearButton = el)}
                       >
