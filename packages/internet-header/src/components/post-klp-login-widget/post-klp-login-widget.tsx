@@ -1,4 +1,4 @@
-import { Component, Host, h, Method, Element } from '@stencil/core';
+import { Component, Element, h, Host, Method } from '@stencil/core';
 import { state } from '../../data/store';
 import { IsFocusable } from '../../models/header.model';
 import { SvgSprite } from '../../utils/svg-sprite.component';
@@ -11,7 +11,7 @@ import { SvgIcon } from '../../utils/svg-icon.component';
   shadow: true,
 })
 export class PostKlpLoginWidget implements IsFocusable {
-  @Element() host: HTMLElement;
+  @Element() host: HTMLPostKlpLoginWidgetElement;
 
   async componentDidLoad() {
     if (
