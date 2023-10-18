@@ -1,4 +1,4 @@
-# post-tooltip
+# post-popover
 
 
 
@@ -9,7 +9,15 @@
 
 | Property    | Attribute   | Description                                                                                                                                                                                                                                                                                                               | Type                                                                                                                                                                 | Default |
 | ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `arrow`     | `arrow`     | Wheter or not to display a little pointer arrow                                                                                                                                                                                                                                                                           | `boolean`                                                                                                                                                            | `false` |
 | `placement` | `placement` | Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'` |
+
+
+## Events
+
+| Event                | Description | Type                   |
+| -------------------- | ----------- | ---------------------- |
+| `postPopoverToggled` |             | `CustomEvent<boolean>` |
 
 
 ## Methods
@@ -45,17 +53,26 @@ Type: `Promise<void>`
 
 
 
+## Shadow Parts
+
+| Part        | Description |
+| ----------- | ----------- |
+| `"popover"` |             |
+
+
 ## Dependencies
 
-### Depends on
+### Used by
 
-- [post-popover](../post-popover)
+ - [post-popup](../post-popup)
+ - [post-tooltip](../post-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
+  post-popup --> post-popover
   post-tooltip --> post-popover
-  style post-tooltip fill:#f9f,stroke:#333,stroke-width:4px
+  style post-popover fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

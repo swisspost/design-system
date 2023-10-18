@@ -1,0 +1,22 @@
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/variables/spacing';
+@use '@swisspost/design-system-styles/functions/color' as color-fn;
+@use '@swisspost/design-system-styles/mixins/utilities' as utilities;
+
+@use '@swisspost/design-system-styles/components/close';
+
+:host {
+  --post-contrast-color: #{color.$white};
+  --post-bg-rgb: #{color-fn.rgb-values(color.$gray-80)};
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden();
+}
+
+div {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: self-start;
+  padding: spacing.$size-micro spacing.$size-mini;
+}

@@ -1,59 +1,12 @@
 @use 'sass:meta';
 @use 'sass:math';
-@use '@swisspost/design-system-styles/variables/color';
-@use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/spacing';
-@use '@swisspost/design-system-styles/mixins/color' as color-mx;
 
-// Puts polyfilled styles in a separate layer so they are easy to override
-// Can be removed as soon as popover is supported by all major browsers
-// https://caniuse.com/?search=popover
-@layer polyfill {
-  @include meta.load-css('@oddbird/popover-polyfill/dist/popover.css');
-}
-
-:host {
-  // Sets default background color
-  @include color-mx.colored-background(color.$gray-80);
-}
-
-div {
-  position: absolute;
-  z-index: commons.$zindex-tooltip;
-
-  width: max-content;
-  max-width: 30ch;
-  margin: 0;
-  padding: spacing.$size-micro spacing.$size-mini;
-
-  color: inherit;
-  background-color: inherit;
-  border-color: transparent; // Keeping the default border for HCM
-  border-radius: commons.$border-radius;
-
-  // Keeps the little arrow visible
-  overflow: visible;
-
+post-popover {
   // Prevents instantly closing tooltips because the opening tooltip opens under the cursor and the trigger gets a mouseleave
   pointer-events: none;
-}
 
-.arrow {
-  position: absolute;
-  // Diagonale of 16px -> 1rem -> 1/1.41 = ~0.7
-  // https://www.omnicalculator.com/math/square-diagonal?c=CHF&v=hide:0,diagonal:16!cm
-  width: math.div(spacing.$spacer, math.sqrt(2));
-  aspect-ratio: 1/1;
-  background-color: inherit;
-  rotate: 45deg;
-  pointer-events: none;
-  z-index: -1;
-
-  // High contrast mode borders
-  border-right: 2px solid transparent;
-  border-bottom: 2px solid transparent;
-}
-
-.bg-yellow {
-  @include color-mx.colored-background(color.$yellow);
+  &::part(popover) {
+    padding: spacing.$size-micro spacing.$size-mini;
+  }
 }

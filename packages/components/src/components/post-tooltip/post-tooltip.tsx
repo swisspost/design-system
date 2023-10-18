@@ -1,62 +1,22 @@
-import { Component, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
-import {
-  arrow,
-  autoUpdate,
-  computePosition,
-  flip,
-  inline,
-  offset,
-  Placement,
-  shift,
-} from '@floating-ui/dom';
+import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
+import { Placement } from '@floating-ui/dom';
 import isFocusable from 'ally.js/esm/is/focusable';
-
-// Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import '@oddbird/popover-polyfill';
 
 // Patch for long press on touch devices
 import 'long-press-event';
 
 import { version } from '../../../package.json';
-import { checkOneOf } from '../../utils';
-import { BACKGROUND_COLOR, BackgroundColor } from './types';
-
-const SIDE_MAP = {
-  top: 'bottom',
-  right: 'left',
-  bottom: 'top',
-  left: 'right',
-};
-
-interface PopoverElement {
-  showPopover: () => void;
-  hidePopover: () => void;
-  togglePopover: (force?: boolean) => boolean;
-}
-
 @Component({
   tag: 'post-tooltip',
   styleUrl: 'post-tooltip.scss',
   shadow: true,
 })
 export class PostTooltip {
-  private tooltipRef: HTMLDivElement & PopoverElement;
-  private arrowRef: HTMLElement;
-  private clearAutoUpdate: () => void;
+  private popoverRef: HTMLPostPopoverElement;
   private readonly localShowTooltip: (e: Event) => Promise<void>;
   private readonly localHideTooltip: () => Promise<void>;
-  private readonly localToggleTooltip: () => Promise<void>;
-  private eventTarget: Element;
 
   @Element() host: HTMLPostTooltipElement;
-
-  @State() tooltipClasses: string;
-
-  /**
-   * Defines the background color of the tooltip.
-   * Choose the one that provides the best contrast in your scenario.
-   */
-  @Prop() readonly backgroundColor?: BackgroundColor = 'primary';
 
   /**
    * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -65,43 +25,17 @@ export class PostTooltip {
    */
   @Prop() readonly placement?: Placement = 'top';
 
-  @Watch('backgroundColor')
-  validateBackgroundColor(newValue = this.backgroundColor) {
-    checkOneOf(
-      newValue,
-      BACKGROUND_COLOR,
-      `The post-tooltip "background-color" prop should contain one of those values: ${BACKGROUND_COLOR.join(
-        ', ',
-      )}`,
-    );
-
-    if (newValue === 'yellow') {
-      this.tooltipClasses = 'bg-yellow';
-    } else {
-      this.tooltipClasses = 'bg-primary';
-    }
-  }
-
   constructor() {
     // Create local versions of event handlers for de-registration
     // https://stackoverflow.com/questions/33859113/javascript-removeeventlistener-not-working-inside-a-class
     this.localShowTooltip = e => this.show(e.target as HTMLElement);
     this.localHideTooltip = this.hide.bind(this);
-    this.localToggleTooltip = this.toggle.bind(this);
-  }
-
-  componentWillLoad() {
-    this.validateBackgroundColor();
-
-    // Append tooltip host to the end of the body to get around overflow: hidden restrictions
-    // for browsers that don't support popover yet
-    document.body.appendChild(this.host);
   }
 
   connectedCallback() {
     if (!this.host.id) {
       throw new Error(
-        'No id set: <post-tooltip> must have an id, linking it to it\'s target element using the data-tooltip-target attribute.',
+        "No id set: <post-tooltip> must have an id, linking it to it's target element using the data-tooltip-target attribute.",
       );
     }
 
@@ -127,19 +61,12 @@ export class PostTooltip {
       trigger.removeEventListener('blur', this.localHideTooltip);
       trigger.removeEventListener('long-press', this.localShowTooltip);
     });
-    if (this.tooltipRef)
-      this.tooltipRef.removeEventListener('beforetoggle', this.localToggleTooltip);
-    if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
   }
 
-  componentDidLoad() {
-    // Has the benefit of rendering the tooltip without the popover attribute which
-    // causes the tooltip to show up on the page if it's not linked to a target. This makes
-    // the error obvious.
-    if (!this.host.id || !this.triggers) return false;
-
-    this.tooltipRef.setAttribute('popover', '');
-    this.tooltipRef.addEventListener('beforetoggle', this.handleToggle.bind(this));
+  componentWillLoad() {
+    // Append tooltip host to the end of the body to get around overflow: hidden restrictions
+    // for browsers that don't support popover yet
+    document.body.appendChild(this.host);
   }
 
   /**
@@ -148,8 +75,7 @@ export class PostTooltip {
    */
   @Method()
   async show(target: HTMLElement) {
-    this.eventTarget = target;
-    this.tooltipRef.showPopover();
+    this.popoverRef.show(target);
   }
 
   /**
@@ -157,8 +83,7 @@ export class PostTooltip {
    */
   @Method()
   async hide() {
-    this.eventTarget = null;
-    this.tooltipRef.hidePopover();
+    this.popoverRef.hide();
   }
 
   /**
@@ -168,8 +93,7 @@ export class PostTooltip {
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
-    this.eventTarget = target;
-    this.tooltipRef.togglePopover(force);
+    this.popoverRef.toggle(target, force);
   }
 
   private get triggers() {
@@ -196,86 +120,18 @@ export class PostTooltip {
     }
   }
 
-  /**
-   * Start or stop auto updates based on tooltip events.
-   * Tooltips can be closed or opened with other methods than class members,
-   * therefore listening to the toggle event is safer for cleaning up.
-   * @param e ToggleEvent
-   */
-  private handleToggle(e: ToggleEvent) {
-    const isOpen = e.newState === 'open';
-    if (isOpen) {
-      this.startAutoupdates();
-    } else {
-      if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
-    }
-  }
-
-  /**
-   * Start listening for DOM updates, scroll events etc. that have
-   * an influence on tooltip positioning
-   */
-  private startAutoupdates() {
-    this.clearAutoUpdate = autoUpdate(
-      this.eventTarget,
-      this.tooltipRef,
-      this.positionTooltip.bind(this),
-    );
-  }
-
-  // Tooltip and arrow positioning with floating-ui
-  // Docs: https://floating-ui.com/docs/computePosition
-  private async positionTooltip() {
-    const {
-      x,
-      y,
-      middlewareData,
-      placement: currentPlacement,
-    } = await computePosition(this.eventTarget, this.tooltipRef, {
-      placement: this.placement || 'top',
-      middleware: [
-        flip(),
-        inline(),
-        shift({ padding: 8 }),
-        offset(12), // 4px outside of element to account for focus outline + ~arrow size
-        arrow({ element: this.arrowRef, padding: 8 }),
-      ],
-    });
-
-    // Tooltip
-    this.tooltipRef.style.left = `${x}px`;
-    this.tooltipRef.style.top = `${y}px`;
-
-    // Arrow
-    // Tutorial: https://codesandbox.io/s/mystifying-kare-ee3hmh?file=/src/index.js
-    const side = currentPlacement.split('-')[0];
-    const { x: arrowX, y: arrowY } = middlewareData.arrow;
-    const staticSide = SIDE_MAP[side];
-
-    Object.assign(this.arrowRef.style, {
-      top: arrowY ? `${arrowY}px` : '',
-      left: arrowX ? `${arrowX}px` : '',
-      [staticSide]: `${-this.arrowRef.offsetWidth / 2}px`,
-    });
-  }
-
   render() {
     return (
       <Host data-version={version}>
-        <div
+        <post-popover
           role="tooltip"
           tabindex="-1"
-          class={this.tooltipClasses}
-          ref={(el: HTMLDivElement & PopoverElement) => (this.tooltipRef = el)}
+          arrow
+          placement={this.placement}
+          ref={(el: HTMLPostPopoverElement) => (this.popoverRef = el)}
         >
-          <span
-            class="arrow"
-            ref={el => {
-              this.arrowRef = el;
-            }}
-          ></span>
           <slot></slot>
-        </div>
+        </post-popover>
       </Host>
     );
   }
