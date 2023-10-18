@@ -23,18 +23,18 @@ $grid-gutter-width: 30px !default;
 
 /* Deprecated: "rg" breakpoint */
 $grid-gutter-x: (
-  xs: 16px,
+  xs: 12px,
   sm: 16px,
   rg: 16px,
   md: 16px,
-  lg: 24px,
-  xl: 24px,
-  xxl: 24px,
+  lg: 16px,
+  xl: 16px,
+  xxl: 16px,
 ) !default;
 
 /* Deprecated: "rg" breakpoint */
 $grid-container-padding: (
-  xs: 16px,
+  xs: 12px,
   sm: 16px,
   rg: 16px,
   md: 32px,
