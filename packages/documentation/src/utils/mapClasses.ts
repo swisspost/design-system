@@ -6,5 +6,5 @@ export function mapClasses(classObject: Record<string, boolean>): string {
 }
 
 export function appendClass(className: string | undefined) {
-  return `${className ? ` ${className}` : ''}`;
+  return className ? ` ${className}` : '';
 }
