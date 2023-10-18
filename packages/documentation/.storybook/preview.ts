@@ -74,16 +74,6 @@ const preview: Preview = {
       },
     },
     badgesConfig,
-    pseudo: {
-      hover: '.pseudo-hover',
-      active: '.pseudo-active',
-      focusVisible: '.pseudo-focus-visible',
-      focusWithin: '.pseudo-focus-within',
-      focus: ['.pseudo-focus', '.focused'],
-      visited: '.pseudo-visited',
-      link: '.pseudo-link',
-      target: '.pseudo-target',
-    },
   },
 };
 
