@@ -4,13 +4,13 @@
 
 @use './../themes/bootstrap/core' as *;
 
-@use './../functions/icons';
 @use './../variables/color';
 @use './../variables/grid';
 @use './../variables/spacing';
 @use './../variables/type';
 @use './../variables/components/topic-teaser';
 @use './../mixins/size';
+@use './../mixins/icons' as icons-mx;
 
 .topic-teaser {
   &[class*='bg-'] {
@@ -119,10 +119,14 @@
       @include make-col($size);
     }
   }
+  @each $breakpoint, $gap in topic-teaser.$content-gap {
+    @include media-breakpoint-up($breakpoint) {
+      gap: $gap;
+    }
+  }
 
   @include media-breakpoint-up(rg) {
     flex-direction: row;
-    gap: var(--post-gutter-x);
   }
 }
 
@@ -160,27 +164,33 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.75rem 2rem 0.75rem 1rem;
-  transition: opacity 200ms, background-position 200ms;
+  padding: spacing.$size-small-regular spacing.$size-regular;
+  transition: opacity 200ms;
   border: 0;
   border-top: 1px solid rgba(var(--post-contrast-color-rgb), 0.2);
-  background-image: url(icons.get-colored-svg-url('2050', color.$white));
-  background-repeat: no-repeat;
-  background-position: right 0.75rem center;
-  background-size: 1rem;
   text-decoration: none;
 
-  &[href]:hover {
-    background-position: right 0.5rem center;
+  &::after {
+    @include icons-mx.icon(2050);
+    content: '';
+    display: inline-block;
+    height: spacing.$size-regular;
+    width: spacing.$size-regular;
+    flex: 0 0 auto;
+    transform: translateX(#{spacing.$size-micro});
+    transition: transform 200ms;
+  }
+
+  &[href]:hover::after {
+    transform: translateX(#{spacing.$size-mini});
   }
 
   @include media-breakpoint-up(lg) {
-    padding-top: 1.25rem;
-    padding-bottom: 1.25rem;
+    padding-top: spacing.$size-small-large;
+    padding-bottom: spacing.$size-small-large;
   }
 }
 
 .topic-teaser.bg-light .link-list-item > a {
-  border-top: 1px solid color.$gray-10;
-  background-image: url(icons.get-colored-svg-url('2050', color.$gray-60));
+  border-top-color: color.$gray-10;
 }

@@ -8,10 +8,7 @@
   flex: 0 1 intranet-header.$header-content-size;
 }
 
-.header-logo-de,
-.header-logo-en,
-.header-logo-fr,
-.header-logo-it {
+.header-logo {
   display: block;
   padding: 0;
   width: intranet-header.$header-content-size;

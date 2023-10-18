@@ -1,13 +1,13 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as InputStories from './input.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={InputStories} />
 
 # Text input
 
 <div className="lead">
-  Customize the native <code>&lt;input&gt;</code> with CSS that changes the element’s initial
-  appearance.
+  Customize the native `<input>` with CSS that changes the element’s initial appearance.
 </div>
 
 Custom input elements need only the class `.form-control` to trigger the custom styles.
@@ -17,26 +17,7 @@ Custom input elements need only the class `.form-control` to trigger the custom 
   <Controls of={InputStories.Default} />
 </div>
 
-## SCSS Imports
-
-To import all styles from the design-system-styles package:
-
-```scss
-@use '@swisspost/design-system-styles/index.scss';
-```
-
-To import only the styles required for this component:
-
-```scss
-@use '@swisspost/design-system-styles/basics.scss';
-@use '@swisspost/design-system-styles/components/forms.scss';
-
-// required if you use floating-labels
-@use '@swisspost/design-system-styles/components/floating-label.scss';
-
-// required if you use validation feedbacks
-@use '@swisspost/design-system-styles/components/form-feedback.scss';
-```
+<StylesPackageImport components={["forms"]} required={{ 'floating-label': true, 'form-feedback': true }} />
 
 ## Concrete Examples of Application
 
@@ -47,9 +28,16 @@ The following examples show the different characteristics of the component. Thes
 Wrap a pair of `<input>` and `<label>` elements in a `.form-floating` container to enable floating labels.<br/>
 But note that the `<input>` element must come first, so we can ensure the correct styles.
 
-<Canvas of={InputStories.FloatingLabel} />
+    <Canvas of={InputStories.FloatingLabel} />
 
 ### Sizing
+
+{/* prettier-ignore */}
+<div className="alert alert-warning">
+  <h4 className="alert-heading">We're deprecating the regular and medium sizes for text input, textarea and select.</h4>
+  <p className="mt-0">This will make it easier to select the appropriate size variant: small for internal applications, large for external applications.<br />
+    `.form-control-rg` and `.form-control-md` are deprecated and will be removed in the next major version.</p>
+</div>
 
 The size can be changed by simply adding one of four classes:
 
@@ -61,8 +49,8 @@ The size can be changed by simply adding one of four classes:
 <div className="alert alert-info">
   <h4 className="alert-heading">Do not apply size classes on floating-label elements</h4>
   <div className="mt-0">
-    It is not intended to apply the size classes to <code>input</code> elements that are nested in a{' '}
-    <code>.form-floating</code> container.
+    It is not intended to apply the size classes to `input` elements that are nested in a
+    `.form-floating` container.
   </div>
 </div>
 

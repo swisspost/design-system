@@ -1,5 +1,6 @@
-import { Meta } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/blocks';
 import * as GettingStartedStories from './styles.stories';
+import SampleVariable from './styles-variable.sample.scss?raw';
 
 <Meta of={GettingStartedStories} />
 
@@ -10,63 +11,69 @@ import * as GettingStartedStories from './styles.stories';
 The styling package, including theming for [Bootstrap](https://getbootstrap.com/) and [ng-bootstrap](https://ng-bootstrap.github.io/#/home) components.
 
 <ul>
-  <li><a href="#installation" target="_self">Installation</a></li>
-  <li><a href="#usage" target="_self">Usage</a></li>
+  <li>
+    <a href="#installation" target="_self">
+      Installation
+    </a>
+  </li>
+  <li>
+    <a href="#usage" target="_self">
+      Usage
+    </a>
+  </li>
 </ul>
 
 ## Installation
 
-```bash dark
-  npm install @swisspost/design-system-styles
-```
+<Source code={`npm install @swisspost/design-system-styles`} language="bash" />
 
 ## Usage
 
 Import one of our stylesheets into your project (for example into your `/src/styles.scss` file).
 
-```scss dark
-@use '@swisspost/design-system-styles/<bundle-name>.<extension>';
-```
+<Source
+  code={`@use '@swisspost/design-system-styles/<bundle-name>.<extension>';`}
+  language="scss"
+/>
 
 ### Available bundles
 
-<table className="table table-sm table-bordered table-striped ">
-  <thead>
-  <tr>
-    <td>Bundle name</td>
-    <td>Bundle extensions</td>
-    <td>Description</td>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td>`index`</td>
-    <td>`css`, `scss`</td>
-    <td>everything for internet facing applications</td>
-  </tr>
-  <tr>
-    <td>`intranet`</td>
-    <td>`css`, `scss`</td>
-    <td>everything for internal applications</td>
-  </tr>
-  <tr>
-    <td>`basics`</td>
-    <td>`css`, `scss`</td>
-    <td>atomic styles for font, buttons, lists, etc. (no component styles)</td>
-  </tr>
-  </tbody>
-</table>
+<div className="table-responsive">
+  <table className="table">
+    <thead>
+      <tr>
+        <th>&lt;bundle-name&gt;</th>
+        <th>&lt;extension&gt;</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`index`</td>
+        <td>`css`, `scss`</td>
+        <td>everything for internet facing applications</td>
+      </tr>
+      <tr>
+        <td>`intranet`</td>
+        <td>`css`, `scss`</td>
+        <td>everything for internal applications</td>
+      </tr>
+      <tr>
+        <td>`basics`</td>
+        <td>`css`, `scss`</td>
+        <td>atomic styles for font, buttons, lists, etc. (no component styles)</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
 ### Variables, mixins, functions and placeholders
 
 Use the SCSS core for your custom styles and make sure you're always using the most up to date definitions:
 
-<p className="alert alert-info alert-md">NOTE: The core file itself, does not produce any CSS output. It only contains variables, functions and mixins.</p>
+<p className="alert alert-info alert-md">
+  NOTE: The core file itself, does not produce any CSS output. It only contains variables, functions
+  and mixins.
+</p>
 
-```scss dark
-@use '@swisspost/design-system-styles/core.scss' as post;
-
-.my-component {
-  background-color: post.$yellow; // #FFCC00
-}
-```
+<Source code={SampleVariable} language="scss" />
