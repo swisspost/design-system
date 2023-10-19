@@ -29,7 +29,7 @@ export class PostTabHeader {
   render() {
     return (
       <Host data-version={version}>
-        <button aria-selected="false" class="tab-title" id={this.tabId} role="tab" tabindex="-1">
+        <button aria-selected="false" class="tab-title" id={this.tabId} role="tab" tabindex="-1" type="button">
           <slot />
         </button>
       </Host>
