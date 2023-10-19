@@ -1,5 +1,10 @@
 @use '@swisspost/design-system-styles/components/tabs/tab-title';
+@use '@swisspost/design-system-styles/core' as post;
 
 :host {
   display: block;
+}
+
+.tab-title {
+  @include post.reset-button;
 }
