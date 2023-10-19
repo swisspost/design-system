@@ -9,6 +9,8 @@
     $name: map.get(shared.$breakpointNames, $breakpoint) or $breakpoint;
 
     breakpoint_#{$breakpoint}_name: $name;
+    breakpoint_#{$breakpoint}_maxWidth: map.get(post.$container-max-widths, $breakpoint);
+    breakpoint_#{$breakpoint}_containerPadding: map.get(post.$grid-container-padding, $breakpoint);
 
     @if $i == 1 {
       $keys: map.keys(post.$grid-breakpoints);
@@ -20,5 +22,21 @@
       breakpoint_#{$breakpoint}_infix: #{'<code>' + $breakpoint + '</code>'};
       breakpoint_#{$breakpoint}_dimensions: #{'≥' + $value};
     }
+  }
+
+  variables_grid-columns: post.$grid-columns;
+  variables_grid-gutter-width: post.$grid-gutter-width;
+  variables_grid-row-columns: post.$grid-row-columns;
+
+  @each $breakpoint, $value in post.$grid-breakpoints {
+    variables_grid-breakpoints_#{$breakpoint}: $value;
+    variables_grid-container-max-width_#{$breakpoint}: map.get(
+      post.$container-max-widths,
+      $breakpoint
+    );
+    variables_grid-container-padding_#{$breakpoint}: map.get(
+      post.$grid-container-padding,
+      $breakpoint
+    );
   }
 }

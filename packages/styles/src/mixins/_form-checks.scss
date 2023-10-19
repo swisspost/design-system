@@ -2,18 +2,6 @@
 @use './../variables/color';
 @use './../variables/components/form-check';
 
-@mixin form-validation-state-selector($state) {
-  @if ($state == 'valid' or $state == 'invalid') {
-    #{if(&, "&", "")}.is-#{$state} {
-      @content;
-    }
-  } @else {
-    #{if(&, "&", "")}.is-#{$state} {
-      @content;
-    }
-  }
-}
-
 @mixin form-check-color($color, $color-label: $color) {
   border-color: $color;
 
