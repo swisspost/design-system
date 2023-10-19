@@ -44,6 +44,7 @@ jobs:
         run: pnpm --filter "design-system-documentation..." build
 
       - name: Install netlify cli
+        if: steps.check.outputs.changed == 'true'
         run: pnpm -g i netlify-cli@15
 
       - name: Publish documentation to netlify
