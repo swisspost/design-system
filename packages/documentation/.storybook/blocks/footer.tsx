@@ -1,4 +1,5 @@
 import React from 'react';
+const mdxPaths = require('../../utilities/collect-mdx.js');
 
 interface Developer {
   name: string;
@@ -55,6 +56,7 @@ const INTERNETHEADER: Record<string, string> = {
 };
 
 function getGitHubUrl(subpage: Location) {
+  console.log(mdxPaths);
   //console.log(subpage.href.split('/')[3].split('id=')[1].split('--')[0].split('-'));
   const id = subpage.href.split('/')[3].split('id=')[1].split('--')[0].split('-');
   var UrlBuild = [];
@@ -73,7 +75,7 @@ function getGitHubUrl(subpage: Location) {
   } else if (UrlBuild.includes('icons')) {
     UrlBuild.push(id.join('-'));
     return BASEURL + UrlBuild.map(key => ICONS[key] || key).join('/'); //edge case for the icons folder
-  } else if (UrlBuild.includes('internet-header')) {
+  } else if (UrlBuild.includes('internet-header') || UrlBuild.includes('intranet-header')) {
     UrlBuild.push(id.join('-'));
     return BASEURL + UrlBuild.map(key => INTERNETHEADER[key] || key).join('/'); //edge cases for the internet-header pages
   } else {
@@ -82,7 +84,9 @@ function getGitHubUrl(subpage: Location) {
   console.log(id);
   //console.log(BASEURL + UrlBuild.join('/') + '/' + UrlBuild.pop() + DOCSFILEENDING);
   UrlBuild = UrlBuild.map(key => (key === 'foundations' ? 'foundation' : key)); // foundation folder is named differently on github
-  return BASEURL + UrlBuild.join('/') + '/' + UrlBuild.pop() + DOCSFILEENDING;
+  var test = BASEURL + UrlBuild.join('/') + '/' + UrlBuild.pop() + DOCSFILEENDING;
+  console.log(test);
+  return test;
 }
 
 export default () => (
