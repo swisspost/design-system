@@ -40,13 +40,13 @@ export const config: Config = {
   ],
   plugins: [
     sass({
+      outputStyle: 'compressed',
       includePaths: ['node_modules'],
     }),
   ],
   rollupPlugins: {
     before: [
       scss({
-        outputStyle: 'compressed',
         output: false,
       }),
     ],
