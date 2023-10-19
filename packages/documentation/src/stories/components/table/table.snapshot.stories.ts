@@ -19,7 +19,7 @@ export const Table: Story = {
         ${['bg-white', 'bg-dark'].map(
           bg => html`
             <div
-              class=${bg}
+              class="${bg}"
               style="padding: '1rem'; display: 'flex'; flexWrap: 'wrap'; alignItems: 'start; justify-conent:'space-between'"
             >
               ${[
@@ -151,12 +151,13 @@ export const Table: Story = {
                       </tr>
                     `,
                   ],
-                  boderStyle: ['null'],
+                  borderStyle: ['null', 'table-bordered', 'table-borderless'],
                   alignment: ['align-top'],
                   variant: [
                     ['table-hover'],
                     ['table-sm'],
                     ['table-striped'],
+                    ['table-mono'],
                     ['table-sm', 'table-striped'],
                   ],
                 }),
