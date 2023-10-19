@@ -17,6 +17,10 @@
     display: inline-flex;
   }
 
+  &-inline:not(:last-of-type) {
+    margin-right: form-check.$form-check-inline-margin-right;
+  }
+
   &-input,
   &-label {
     color: rgba(var(--post-contrast-color-rgb), 0.8);
@@ -86,7 +90,6 @@
 
     &[disabled],
     &[disabled] ~ .form-check-label {
-      opacity: 1; // Bootstrap reset
       border-color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
       color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
     }
