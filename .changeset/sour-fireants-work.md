@@ -3,4 +3,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Changed the main title of the intranet-header from <h2> to <h1>.
+Changed the main title of the intranet-header from `<h2>` to `<h1>`.
