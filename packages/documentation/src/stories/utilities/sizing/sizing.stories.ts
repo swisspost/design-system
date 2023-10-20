@@ -92,13 +92,6 @@ function renderSizing(args: Args) {
         <div class="flex-fill">
           <div class="${classes}"></div>
         </div>
-
-        <ul class="legend list-unstyled">
-          <li class="d-flex align-items-center">
-            <div class="h-regular w-regular me-mini content"></div>
-            <span>content</span>
-          </li>
-        </ul>
       </div>
     </div>
   `;

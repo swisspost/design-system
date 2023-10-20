@@ -7,7 +7,6 @@ const enum PostSizeImplementation {
 const sizes = [
   {
     key: 1,
-
     name: 'hair',
     size_pixel: 1,
     size_rem: 0.0625,
@@ -16,7 +15,6 @@ const sizes = [
   },
   {
     key: 2,
-
     name: 'line',
     size_pixel: 2,
     size_rem: 0.125,
@@ -25,7 +23,6 @@ const sizes = [
   },
   {
     key: 3,
-
     name: 'micro',
     size_pixel: 4,
     size_rem: 0.25,
@@ -34,7 +31,6 @@ const sizes = [
   },
   {
     key: 4,
-
     name: 'mini',
     size_pixel: 8,
     size_rem: 0.5,
@@ -43,7 +39,6 @@ const sizes = [
   },
   {
     key: 5,
-
     name: 'small-regular',
     size_pixel: 12,
     size_rem: 0.75,
@@ -52,7 +47,6 @@ const sizes = [
   },
   {
     key: 6,
-
     name: 'regular',
     size_pixel: 16,
     size_rem: 1,
@@ -61,7 +55,6 @@ const sizes = [
   },
   {
     key: 7,
-
     name: 'small-large',
     size_pixel: 20,
     size_rem: 1.25,
@@ -70,7 +63,6 @@ const sizes = [
   },
   {
     key: 8,
-
     name: 'large',
     size_pixel: 24,
     size_rem: 1.5,
@@ -79,7 +71,6 @@ const sizes = [
   },
   {
     key: 9,
-
     name: 'big',
     size_pixel: 32,
     size_rem: 2,
@@ -88,7 +79,6 @@ const sizes = [
   },
   {
     key: 10,
-
     name: 'bigger-big',
     size_pixel: 40,
     size_rem: 2.5,
@@ -97,7 +87,6 @@ const sizes = [
   },
   {
     key: 11,
-
     name: 'small-huge',
     size_pixel: 48,
     size_rem: 3,
@@ -106,7 +95,6 @@ const sizes = [
   },
   {
     key: 12,
-
     name: 'huge',
     size_pixel: 56,
     size_rem: 3.5,
