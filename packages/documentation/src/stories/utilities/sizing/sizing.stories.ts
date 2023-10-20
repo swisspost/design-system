@@ -1,5 +1,5 @@
 import type { Args, Meta, StoryObj, StoryContext } from '@storybook/web-components';
-import { html } from 'lit/static-html.js';
+import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 import './sizing.styles.scss';
 
