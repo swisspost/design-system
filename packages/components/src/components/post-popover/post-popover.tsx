@@ -9,6 +9,7 @@ import {
   Placement,
   shift,
   limitShift,
+  size,
 } from '@floating-ui/dom';
 
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
@@ -124,21 +125,23 @@ export class PostPopover {
     this.clearAutoUpdate = autoUpdate(
       this.eventTarget,
       this.popoverRef,
-      this.positionTooltip.bind(this),
+      this.calculatePosition.bind(this),
     );
   }
 
-  private async positionTooltip() {
+  private async calculatePosition() {
     const {
       x,
       y,
       middlewareData,
-
       placement: currentPlacement,
     } = await computePosition(this.eventTarget, this.popoverRef, {
       placement: this.placement || 'top',
+      strategy: 'fixed',
       middleware: [
-        flip(),
+        flip({
+          fallbackAxisSideDirection: 'start',
+        }),
         inline(),
         shift({
           padding: 8,
@@ -148,6 +151,15 @@ export class PostPopover {
           limiter: limitShift({
             offset: 32,
           }),
+        }),
+        size({
+          padding: 8,
+          apply({ availableWidth, elements }) {
+            // Do things with the data, e.g.
+            Object.assign(elements.floating.style, {
+              maxWidth: `${Math.min(availableWidth - 16, 320)}px`,
+            });
+          },
         }),
         offset(12), // 4px outside of element to account for focus outline + ~arrow size
         arrow({ element: this.arrowRef, padding: 8 }),

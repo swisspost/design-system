@@ -4,6 +4,7 @@
 @use '@swisspost/design-system-styles/variables/commons';
 @use '@swisspost/design-system-styles/variables/spacing';
 @use '@swisspost/design-system-styles/mixins/color' as color-mx;
+@use '@swisspost/design-system-styles/mixins/elevation' as elevation-mx;
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
 
 // Puts polyfilled styles in a separate layer so they are easy to override
@@ -14,7 +15,9 @@
 }
 
 div {
-  position: absolute;
+  @include elevation-mx.elevation('elevation-3');
+
+  position: fixed;
   z-index: commons.$zindex-popover;
 
   width: max-content;
@@ -32,11 +35,12 @@ div {
 }
 
 .arrow {
+  $arrow-size: math.div(spacing.$spacer, math.sqrt(2));
   position: absolute;
   // Diagonale of 16px -> 1rem -> 1/1.41 = ~0.7
   // https://www.omnicalculator.com/math/square-diagonal?c=CHF&v=hide:0,diagonal:16!cm
-  width: math.div(spacing.$spacer, math.sqrt(2));
-  aspect-ratio: 1/1;
+  width: $arrow-size;
+  height: $arrow-size;
   background-color: inherit;
   rotate: 45deg;
   pointer-events: none;
