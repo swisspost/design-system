@@ -9,7 +9,10 @@ import { version } from '../../../package.json';
 })
 export class PostPopup {
   private popoverRef: HTMLPostPopoverElement;
-  private readonly localTogglePopup: (e: Event) => Promise<void>;
+  private localTogglePopup: (e: Event) => Promise<void>;
+  private localEnterTogglePopup: (e: KeyboardEvent) => void;
+  private localTouchTogglePopup: (e: TouchEvent) => void;
+  private currentTarget: HTMLElement;
 
   @Element() host: HTMLPostPopupElement;
 
@@ -22,12 +25,13 @@ export class PostPopup {
 
   constructor() {
     this.localTogglePopup = e => this.toggle(e.target as HTMLElement);
-  }
-
-  componentWillLoad() {
-    // Append popup host to the end of the body to get around overflow: hidden restrictions
-    // for browsers that don't support popover yet
-    document.body.appendChild(this.host);
+    this.localEnterTogglePopup = e => {
+      if (e.key === 'Enter') this.toggle(e.target as HTMLElement);
+    };
+    this.localTouchTogglePopup = e => {
+      e.preventDefault();
+      this.toggle(e.target as HTMLElement);
+    };
   }
 
   connectedCallback() {
@@ -36,25 +40,26 @@ export class PostPopup {
     }
 
     // As long as cross-shadow-boundary [popovertarget] and button.popoverTargetElement are not working
-    // we're left with listening to trigger events ourselfes
+    // we're left with listening to trigger events ourselves
     // https://developer.mozilla.org/en-US/docs/Web/API/HTMLButtonElement/popoverTargetElement
     // https://github.com/whatwg/html/issues/9109#issuecomment-1494030465 (does not seem to work for now)
-    this.attachEventListeners();
+    // https://stackoverflow.com/questions/77324143/popovertargetelement-does-not-cross-shadow-boundaries?noredirect=1#comment136318281_77324143
+    this.triggers.forEach(trigger => {
+      // See this.onToggle for one time mouse event listener
+      trigger.addEventListener('mouseup', this.localTogglePopup, { once: true });
+      trigger.addEventListener('keypress', this.localEnterTogglePopup);
+      trigger.addEventListener('touch', this.localTouchTogglePopup, { once: true });
+      trigger.setAttribute('aria-expanded', 'false');
+    });
   }
 
   disconnectedCallback() {
     this.triggers.forEach(trigger => {
-      trigger.removeEventListener('click', this.localTogglePopup);
+      trigger.removeEventListener('mouseup', this.localTogglePopup);
+      trigger.removeEventListener('keypress', this.localEnterTogglePopup);
+      trigger.removeEventListener('touch', this.localTouchTogglePopup);
+      trigger.removeAttribute('aria-expanded');
     });
-  }
-
-  /**
-   * Attach a one time event listener (see this.onToggle)
-   */
-  private attachEventListeners() {
-    this.triggers.forEach(trigger =>
-      trigger.addEventListener('click', this.localTogglePopup, { once: true }),
-    );
   }
 
   /**
@@ -63,7 +68,9 @@ export class PostPopup {
    */
   @Method()
   async show(target: HTMLElement) {
+    this.currentTarget = target;
     this.popoverRef.show(target);
+    target.setAttribute('aria-expanded', 'true');
   }
 
   /**
@@ -72,6 +79,7 @@ export class PostPopup {
   @Method()
   async hide() {
     this.popoverRef.hide();
+    this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
   }
 
   /**
@@ -81,6 +89,7 @@ export class PostPopup {
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
+    this.currentTarget = target;
     this.popoverRef.toggle(target, force);
   }
 
@@ -93,14 +102,26 @@ export class PostPopup {
    * A permanent event listener would prevent a toggle button from working properly:
    * A click opens the popover, a second click first closes it (due to light dismiss), then directly
    * opens it again because of the click listener on the button. Registering a new
-   * one time listener after a small timeout solves this issue (see this.onToggle).
+   * one time listener after a small timeout solves this issue.
    * @param e toggle event from post-popover
    */
   private onToggle(e: CustomEvent<boolean>) {
+    if (this.currentTarget) {
+      this.currentTarget.setAttribute('aria-expanded', `${e.detail}`);
+    }
     if (!e.detail) {
       window.requestAnimationFrame(() => {
-        this.attachEventListeners();
+        this.triggers.forEach(trigger => {
+          trigger.addEventListener('mouseup', this.localTogglePopup, { once: true });
+          trigger.addEventListener('touch', this.localTouchTogglePopup, { once: true });
+        });
       });
+
+      // Handle missing re-focusing logic after close. Can be removed as soon as popovertarget works correctly
+      if (this.currentTarget) {
+        this.currentTarget.focus();
+        this.currentTarget = null;
+      }
     }
   }
 
@@ -113,11 +134,13 @@ export class PostPopup {
           ref={e => (this.popoverRef = e)}
           onPostPopoverToggled={e => this.onToggle(e)}
         >
-          <div>
+          <div class="popup-container">
+            <div>
+              <slot></slot>
+            </div>
             <button class="btn-close" onClick={() => this.hide()}>
-              <span class="visually-hidden">Close</span>
+              <span class="visually-hidden">Collapse popup</span>
             </button>
-            <slot></slot>
           </div>
         </post-popover>
       </Host>
