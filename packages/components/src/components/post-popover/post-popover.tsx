@@ -139,9 +139,7 @@ export class PostPopover {
       placement: this.placement || 'top',
       strategy: 'fixed',
       middleware: [
-        flip({
-          fallbackAxisSideDirection: 'start',
-        }),
+        flip(),
         inline(),
         shift({
           padding: 8,
