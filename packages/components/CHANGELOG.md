@@ -1,5 +1,19 @@
 # @swisspost/design-system-components
 
+## 1.5.1
+
+### Patch Changes
+
+- Fixed misplaced custom icons in “post-alert” elements with actions. (by [@alizedebray](https://github.com/alizedebray) with [#2094](https://github.com/swisspost/design-system/pull/2094))
+
+- Updated the keyboard navigation on the `post-tabs` component. (by [@alizedebray](https://github.com/alizedebray) with [#2093](https://github.com/swisspost/design-system/pull/2093))
+
+- Fixed tabs count announcement with VoiceOver. (by [@imagoiq](https://github.com/imagoiq) with [#2047](https://github.com/swisspost/design-system/pull/2047))
+
+- Compressed styles output. (by [@imagoiq](https://github.com/imagoiq) with [#2098](https://github.com/swisspost/design-system/pull/2098))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.2
+
 ## 1.5.0
 
 ### Minor Changes
