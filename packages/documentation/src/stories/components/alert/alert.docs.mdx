@@ -1,10 +1,18 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { Canvas, Story, Controls, Meta, Source } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
-import { PostAlert, PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
+import {
+  PostAlert,
+  PostTabs,
+  PostTabHeader,
+  PostTabPanel,
+} from '@swisspost/design-system-components-react';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 import * as AlertStories from './standard-html/alert.stories';
 import * as PostAlertStories from './web-component/post-alert.stories';
 import AlertDismissSample from './web-component/alert-dismiss.sample?raw';
+import { Figma, Design } from '@storybook/addon-designs/blocks';
+
+';
 
 <Meta of={AlertStories} />
 
@@ -17,8 +25,11 @@ import AlertDismissSample from './web-component/alert-dismiss.sample?raw';
 Alerts are intended to attract the user's attention without interrupting their ongoing task.
 
 <PostAlert type="info">
-    <p slot="heading">There are various methods to integrate this component into your project.</p>
-    <p>We advise opting for the "Standard HTML" approach for alerts that remain static on the page and using the "Web Component" method for dismissible alerts.</p>
+  <p slot="heading">There are various methods to integrate this component into your project.</p>
+  <p>
+    We advise opting for the "Standard HTML" approach for alerts that remain static on the page and
+    using the "Web Component" method for dismissible alerts.
+  </p>
 </PostAlert>
 
 <PostTabs>
@@ -124,4 +135,44 @@ Alerts are intended to attract the user's attention without interrupting their o
 
       <Canvas of={PostAlertStories.Fixed} />
     </PostTabPanel>
+    <PostTabHeader slot="tabs" panel="design">Desing</PostTabHeader>
+    <PostTabPanel name="design">
+
+    #### General
+
+    ##### Import
+    `import { Figma, Design } from '@storybook/addon-designs/blocks';`
+
+    The Design Addon was already installed and there are 2 tags that can be used to inegrate Figma into storybook.
+    Both Tags are using the same iframe underneath and as it is an iframe that is comming from figma there is not
+    a lot we can do to customize what exactly and especially how exactly the contents are displayed.
+
+    ##### Problems
+    - The displayed content is always centered on the component that was linked but the very top is always cut off a bit. The effect
+    is different when a part of a sheet is selected see examples bellow.
+    - The only variable option is the height wich can be specified in percent of the width wich is always 100% of the available space.
+    - The component will always be scaled to fit the height or the width of the iframe wichever is smaller. The only way this can be
+     avoided is when a specific part of a sheet is linked. In that case that part of the sheet is centered and only the size of this part
+     is considered when setting the scale. The whole sheet can still be seen by manually zooming out or moving arround.
+
+    #### Figma tag
+    This is a Figma tag that is using the link to the Notification Banner Component Sheet. (heigth 100%)
+    <Figma url="https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=16901-42965&mode=dev"
+    height="100%" embede_Host="Test"></Figma>
+    This time the Headline Master Component was linked. (heigth 100%)
+    <Figma url="https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=16901-42976&mode=dev"
+    height="100%" embede_Host="Test"></Figma>
+
+    #### Design Tag
+
+    Figma tags need a set url inside the Tag. An alternative to the Figma tags are the Design tags. You can define the url as a paramater in the story. Each story can thus have its own figma url.
+    As you could see in the previous example Figma sheets work relatively ok. But as you can see in the case of the Bade in Figma there is no single root that contains both the grid with the Labels and the badges themselves.
+
+    This is a Design tag where the badge was linked as you can see the grid is missing (height 300%)
+    <Design of={AlertStories.figma} height="300%"></Design>
+    And here is the Grid that was missing (height default)
+    <Design of={AlertStories.General}></Design>
+
+    </PostTabPanel>
+
 </PostTabs>

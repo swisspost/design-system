@@ -47,8 +47,7 @@ const meta: Meta = {
     },
     fixed: {
       name: 'Fixed',
-      description:
-        'If `true`, the alert anchored at the bottom of the page, from edge to edge.',
+      description: 'If `true`, the alert anchored at the bottom of the page, from edge to edge.',
       control: { type: 'boolean' },
     },
     noIcon: {
@@ -56,11 +55,12 @@ const meta: Meta = {
       description: 'If `true`, no icon is displayed on the left side of the alert.',
       control: {
         type: 'boolean',
-      }
+      },
     },
     icon: {
       name: 'Icon',
-      description: 'The icon to display in the alert. By default, the icon depends on the alert type.' +
+      description:
+        'The icon to display in the alert. By default, the icon depends on the alert type.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
         '<a href="/?path=/docs/icons-getting-started--docs">set up the icons in your project</a>' +
@@ -87,7 +87,14 @@ const meta: Meta = {
       control: {
         type: 'select',
       },
-      options: ['alert-primary', 'alert-success', 'alert-danger', 'alert-warning', 'alert-info', 'alert-gray'],
+      options: [
+        'alert-primary',
+        'alert-success',
+        'alert-danger',
+        'alert-warning',
+        'alert-info',
+        'alert-gray',
+      ],
     },
   },
 };
@@ -101,7 +108,7 @@ function externalControl(story: StoryFn, { args, context }: StoryContext) {
   const toggleAlert = (e: MouseEvent, args: Args, updateArgs: Function) => {
     e.preventDefault();
     updateArgs({ show: !args.show });
-  }
+  };
 
   if (!args.fixed && !args.show) updateArgs({ show: true });
 
@@ -110,23 +117,27 @@ function externalControl(story: StoryFn, { args, context }: StoryContext) {
       class="btn btn-default btn-animated"
       href="#"
       @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
-    ><span>Toggle Fixed Alert</span></a>
+    >
+      <span>Toggle Fixed Alert</span>
+    </a>
   `;
 
   return html`
-    ${args.fixed ? button : nothing}
-    ${story(args, context)}
+    ${args.fixed ? button : nothing} ${story(args, context)}
   `;
 }
 
 // RENDERER
 
-
 function renderAlert(args: Args) {
   const classes = getAlertClasses(args);
 
   const content = html`
-    ${args.title ? html`<h4 class="alert-heading">${args.title}</h4>` : nothing}
+    ${args.title
+      ? html`
+          <h4 class="alert-heading">${args.title}</h4>
+        `
+      : nothing}
     ${unsafeHTML(args.content)}
   `;
 
@@ -136,8 +147,8 @@ function renderAlert(args: Args) {
         /* Alert Icon */
         args.icon
           ? html`
-            <post-icon name=${args.icon}></post-icon>
-          `
+              <post-icon name=${args.icon}></post-icon>
+            `
           : nothing
       }
       ${
@@ -208,5 +219,22 @@ export const Fixed: Story = {
   args: {
     fixed: true,
     show: false,
+  },
+};
+
+export const figma: Story = {
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?node-id=10378%3A49414&mode=dev',
+    },
+  },
+};
+export const General: Story = {
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?node-id=17459%3A13355&mode=dev',
+    },
   },
 };
