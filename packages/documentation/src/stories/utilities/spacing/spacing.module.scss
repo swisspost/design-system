@@ -1,0 +1,9 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core' as post;
+
+:export {
+  @each $breakpoint in post.$grid-breakpoints-list {
+    #{$breakpoint} : $breakpoint
+  }
+}
