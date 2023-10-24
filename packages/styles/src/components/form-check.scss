@@ -1,236 +1,172 @@
 @forward './../variables/options';
 
-@use 'sass:math';
-@use './../lic/bootstrap-license';
-@use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/forms/form-check' as bfc;
-
-@use './../variables/color';
-@use './../variables/spacing';
-@use './../variables/components/form-check';
-@use './../variables/components/form-switch';
-@use './../variables/components/button';
-@use './../mixins/form-checks' as form-checks-mixins;
-@use './../mixins/utilities';
-@use './../functions/icons' as fi;
-@use './../functions/icons';
+@use '../variables/color';
+@use '../variables/type';
+@use '../variables/spacing';
+@use '../variables/animation';
+@use '../variables/components/form-check';
+@use '../mixins/icons' as icons-mx;
 
 .form-check {
   display: flex;
   flex-wrap: wrap;
-  align-items: flex-start;
+  row-gap: form-check.$form-check-row-gap;
+  column-gap: form-check.$form-check-column-gap;
+  margin-bottom: form-check.$form-check-margin-bottom;
 
-  &-reverse {
-    flex-direction: row-reverse;
-    justify-content: flex-end;
-  }
-
-  &.form-check-inline {
+  &-inline {
     display: inline-flex;
   }
 
-  &-label {
-    flex: 1;
-    padding: form-check.$form-check-label-padding-start;
+  &-inline:not(:last-of-type) {
+    margin-right: form-check.$form-check-inline-margin-right;
+  }
 
-    &.order-first {
-      flex: 0 0 auto;
-      padding: form-check.$form-check-label-padding-end;
+  &-input,
+  &-label {
+    color: rgba(var(--post-contrast-color-rgb), 0.8);
+    transition: color animation.$transition-base-timing;
+
+    &:not([disabled]) {
+      cursor: pointer;
     }
 
-    .form-check-input:disabled ~ & {
-      cursor: default;
+    &:hover:not([disabled]),
+    &:hover:not([disabled]) ~ &-label {
+      color: var(--post-contrast-color);
     }
   }
 
   &-input {
-    flex: 0 0 auto;
-    margin-top: 0;
+    display: inline-flex;
+    flex: 0 auto;
+    appearance: none;
+    background: none;
+    height: form-check.$form-check-input-size;
+    width: form-check.$form-check-input-size;
+    border: form-check.$form-check-input-border-width solid
+      rgba(var(--post-contrast-color-rgb), 0.8);
 
-    &:not(:disabled) {
-      cursor: form-check.$form-check-label-cursor;
+    &:focus {
+      outline: none;
+      border-color: currentColor;
+      box-shadow: form-check.$form-check-input-focus-box-shadow;
     }
 
-    &[type='radio']:checked:not(.is-invalid),
-    &[type='checkbox']:checked:not(.is-invalid),
-    &[type='checkbox']:indeterminate:not(.is-invalid) {
-      @include form-checks-mixins.form-check-color(form-check.$form-check-input-checked-color);
+    &::after {
+      content: '';
+      display: block;
+      flex: 1;
     }
 
-    .was-validated &:valid ~ .form-check-label,
-    &.is-valid ~ .form-check-label {
-      color: form-check.$form-check-label-color;
-    }
+    &:checked,
+    &:indeterminate {
+      color: var(--post-contrast-color);
+      border-color: var(--post-contrast-color);
 
-    &.is-valid,
-    &.is-invalid {
-      &[type='radio']:checked,
-      &[type='checkbox']:checked,
-      &[type='checkbox']:indeterminate {
-        background-color: transparent;
+      ~ .form-check-label {
+        color: var(--post-contrast-color);
       }
     }
 
-    &[type='radio']:hover:not(:disabled):not(.is-invalid),
-    &[type='checkbox']:hover:not(:disabled):not(.is-invalid) {
-      @include form-checks-mixins.form-check-color(form-check.$form-check-input-hover-color);
+    &[type='checkbox'] {
+      &:checked::after {
+        @include icons-mx.icon(3035);
+      }
+
+      &:indeterminate::after {
+        @include icons-mx.icon(2039);
+      }
     }
-  }
 
-  .valid-feedback,
-  .invalid-feedback {
-    flex: 1 0 100%;
-    margin-top: form-check.$form-check-feedback-margin-top;
-    margin-left: -1 * form-check.$form-check-padding-start;
-  }
+    &[type='radio'] {
+      border-radius: 50%;
 
-  // Styles  to improve accessibility in high contrast mode
-  @include utilities.high-contrast-mode() {
-    &-input {
-      &[type='checkbox']:checked {
-        background-image: url(fi.get-colored-svg-url(2105, color.$white));
+      &:checked::after {
+        border: spacing.$size-micro solid color.$white;
+        background-color: currentColor;
+        border-radius: inherit;
       }
+    }
 
-      &[type='radio']:checked {
-        background-image: url(icons.add-fill-color(
-          form-check.$form-check-radio-checked-bg-icon,
-          color.$white
-        ));
-      }
+    &[disabled],
+    &[disabled] ~ .form-check-label {
+      border-color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
+      color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
+    }
 
-      // use color: graytext to highlight the text in the disabled color
-      &:disabled,
-      &[disabled] {
-        border-color: graytext !important;
-        opacity: 1;
+    .form-check-sm & {
+      height: form-check.$form-check-input-size-sm;
+      width: form-check.$form-check-input-size-sm;
 
-        ~ .form-check-label {
-          opacity: 1;
-          color: graytext !important;
+      &[type='radio'] {
+        &:checked::after {
+          border-width: spacing.$size-line;
         }
       }
-
-      &:focus {
-        outline: 2px solid transparent;
-      }
     }
   }
-}
 
-@each $colorname, $color in color.$background-colors {
-  .bg-#{$colorname} {
-    $color-contrast: color-contrast($color, form-check.$form-check-input-color);
+  &-label {
+    flex: 1;
 
-    @if ($color-contrast == color.$white) {
-      @include form-checks-mixins.form-check-variant(
-        color.$white,
-        rgba(color.$white, 0.6),
-        rgba(color.$white, 0.8)
-      );
-    } @else if($color-contrast == color.$black) {
-      @include form-checks-mixins.form-check-variant(
-        color.$black,
-        rgba(color.$black, 0.6),
-        rgba(color.$black, 0.8)
-      );
+    .form-check-sm & {
+      font-size: type.$font-size-12;
     }
   }
 }
 
 .form-switch {
-  .form-check-label {
-    padding: form-switch.$form-switch-label-padding-start;
-
-    &.order-first {
-      padding: form-switch.$form-switch-label-padding-end;
-    }
-  }
+  column-gap: form-check.$form-switch-column-gap;
 
   .form-check-input {
-    height: form-switch.$form-switch-height;
+    height: form-check.$form-switch-height;
+    width: form-check.$form-switch-width;
     border: 0;
-    outline-offset: button.$input-btn-focus-width * 1.5;
-    background-image: escape-svg(form-switch.$form-switch-bg-image),
-      form-switch.$form-switch-linear-gradient;
-    background-position: left center, right center;
-    background-size: form-switch.$form-switch-checked-bg-image-size,
-      form-switch.$form-switch-linear-gradient-size;
+    border-radius: form-check.$form-switch-width;
+    background-image: form-check.$form-switch-background-image;
+    background-size: 2 * form-check.$form-switch-width;
+    background-position-x: 0;
+    transition: background-color animation.$transition-base-timing,
+      background-position animation.$transition-base-timing;
 
-    &:focus {
-      background-image: escape-svg(form-switch.$form-switch-bg-image),
-        form-switch.$form-switch-linear-gradient;
-      box-shadow: none;
-      outline: button.$input-btn-focus-width solid var(--post-contrast-color, color.$black);
-    }
-
-    @supports selector(:focus-visible) {
-      &:focus {
-        outline-color: transparent;
-      }
-
-      &:focus-visible {
-        outline: button.$input-btn-focus-width solid var(--post-contrast-color, color.$black);
-      }
+    &::after {
+      max-width: form-check.$form-switch-height;
+      background-color: form-check.$form-switch-color;
+      border: form-check.$form-check-input-border-width solid form-check.$form-switch-border-color;
+      border-radius: 50%;
+      transition: transform animation.$transition-base-timing;
     }
 
     &:checked {
-      background-image: escape-svg(form-switch.$form-switch-checked-bg-image),
-        form-switch.$form-switch-linear-gradient;
-      background-position: right center, left center;
+      background-position-x: form-check.$form-switch-width;
+
+      &::after {
+        @include icons-mx.remove-icon;
+        background-color: form-check.$form-switch-color;
+        border-color: form-check.$form-switch-checked-border-color;
+        transform: translateX(2rem);
+      }
     }
 
-    &:checked:focus {
-      background-image: escape-svg(form-switch.$form-switch-checked-bg-image),
-        form-switch.$form-switch-linear-gradient;
-    }
+    &[disabled] {
+      background: form-check.$form-switch-disabled-bg;
 
-    &:hover:not(:disabled) {
-      background-color: form-switch.$form-switch-hover-bg;
-    }
-
-    @include utilities.high-contrast-mode() {
-      --post-success: ActiveText;
-
-      // linear-gradients or statements which contains linear-gradients are disabled in firefox
-      // so we have to repeat background-image statements here without linear-gradients
-
-      background-image: escape-svg(form-switch.$form-switch-checked-bg-image);
-      background-color: Field;
-      border: button.$input-btn-focus-width solid FieldText;
-
-      &:focus {
-        background-image: escape-svg(form-switch.$form-switch-checked-bg-image);
-        border-color: FieldText;
-        outline: none;
-      }
-
-      &:hover:not(:disabled) {
-        border-color: Highlight;
-      }
-
-      &:focus-visible {
-        outline: button.$input-btn-focus-width solid Highlight;
-      }
-
-      &:checked {
-        background-color: var(--post-success);
-        background-image: escape-svg(form-switch.$form-switch-checked-bg-image);
-
-        &:focus {
-          background-color: var(--post-success);
-          background-image: escape-svg(form-switch.$form-switch-checked-bg-image);
-        }
-
-        &:hover:not(:disabled) {
-          background-color: var(--post-success);
-          border-color: Highlight;
-        }
+      &::after {
+        border-color: form-check.$form-switch-disabled-border-color;
       }
     }
   }
 
-  .valid-feedback,
-  .invalid-feedback {
-    margin-left: -1 * form-switch.$form-switch-padding-start;
+  &:hover > .form-check-input:not([disabled]) {
+    background-color: rgba(var(--post-contrast-color-rgb), 0.1);
+  }
+
+  .form-check-label {
+    padding-top: form-check.$form-switch-label-padding-top;
+
+    &.order-first {
+      flex: 0 auto;
+    }
   }
 }

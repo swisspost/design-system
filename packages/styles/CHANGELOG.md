@@ -1,5 +1,33 @@
 # @swisspost/design-system-styles
 
+## 6.4.2
+
+### Patch Changes
+
+- Refactored the grid-system: adjusted container paddings, added responsive gutter-widths. Updated grid docs. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2045](https://github.com/swisspost/design-system/pull/2045))
+
+- Added small variants for checkbox and radio buttons. Lowered font-size of validation blocks for form elements. (by [@imagoiq](https://github.com/imagoiq) with [#2086](https://github.com/swisspost/design-system/pull/2086))
+
+- Fixed missing active tab border on HTML component. (by [@imagoiq](https://github.com/imagoiq) with [#2037](https://github.com/swisspost/design-system/pull/2037))
+
+- Fixed active switch control showing a check icon in Chrome. (by [@alizedebray](https://github.com/alizedebray) with [#2090](https://github.com/swisspost/design-system/pull/2090))
+
+## 6.4.1
+
+### Patch Changes
+
+- Removed bound between logo and language to allow any language to display the logo. (by [@imagoiq](https://github.com/imagoiq) with [#2009](https://github.com/swisspost/design-system/pull/2009))
+
+- Reduced the gap between the alert body and action buttons. (by [@alizedebray](https://github.com/alizedebray) with [#1085](https://github.com/swisspost/design-system/pull/1085))
+
+- Removed duplicated close button on toast when using ngx-toastr programatically. (by [@imagoiq](https://github.com/imagoiq) with [#2011](https://github.com/swisspost/design-system/pull/2011))
+
+- Updated and added the gaps between the title and the link-list in the `.topic-teaser-content` class to comply with the figma design. (by [@b1aserlu](https://github.com/b1aserlu) with [#1927](https://github.com/swisspost/design-system/pull/1927))
+
+- Added missing pointer-events to allow a dismissible toast to be closed interactively. (by [@imagoiq](https://github.com/imagoiq) with [#2008](https://github.com/swisspost/design-system/pull/2008))
+
+- Updated icons to display as mask images, this way their color can be set by adjusting the CSS `background-color` property. (by [@alizedebray](https://github.com/alizedebray) with [#1945](https://github.com/swisspost/design-system/pull/1945))
+
 ## 6.4.0
 
 ### Minor Changes

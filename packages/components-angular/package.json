@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-angular",
-  "version": "3.0.0",
+  "version": "3.0.2",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
     "@angular/router": "16.2.6",
     "@ng-bootstrap/ng-bootstrap": "15.1.1",
     "@popperjs/core": "2.11.8",
-    "@swisspost/design-system-styles": "workspace:6.4.0",
+    "@swisspost/design-system-styles": "workspace:6.4.2",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
     "watch": "1.0.2",
@@ -36,7 +36,7 @@
     "@angular-eslint/template-parser": "16.2.0",
     "@angular/cli": "16.2.3",
     "@angular/compiler-cli": "16.2.6",
-    "@types/jasmine": "4.3.6",
+    "@types/jasmine": "5.1.0",
     "@types/node": "18.17.19",
     "@typescript-eslint/eslint-plugin": "5.62.0",
     "@typescript-eslint/parser": "5.62.0",

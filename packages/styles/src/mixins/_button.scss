@@ -27,7 +27,8 @@
     padding: 0 map.get(button.$btn-padding-x-map, $size);
   }
 
-  > .pi {
+  > .pi,
+  > post-icon {
     width: map.get(button.$btn-icon-size-map, $size);
     height: map.get(button.$btn-icon-size-map, $size);
   }

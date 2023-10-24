@@ -8,10 +8,10 @@
       <div class="intranet-header">
         <div class="d-flex align-items-center flex-nowrap">
           <div class="bg-logo d-sm-block">
-            <a [href]="this.logoUrl" class="navbar-brand header-logo-{{ lang.toLowerCase() }}"></a>
+            <a [href]="this.logoUrl" class="navbar-brand header-logo"></a>
           </div>
           <div class="title flex-shrink-1 px-4">
-            <h2 class="m-0 font-weight-bold">{{ siteTitle }}</h2>
+            <h1 class="m-0 font-weight-bold">{{ siteTitle }}</h1>
           </div>
           <div *ngIf="showIntranetSearch" class="col search-textbox d-none d-md-block">
             <form [action]="searchUrl">
