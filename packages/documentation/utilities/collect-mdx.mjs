@@ -1,22 +1,24 @@
-const fs = require('fs');
-const path = require('path');
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
+import fs from 'fs/promises';
+import path from 'path';
 
-const repoPath = path.resolve(__dirname, '../src/stories');
+const currentFileURL = import.meta.url;
+const currentDir = dirname(fileURLToPath(currentFileURL));
+const repoPath = path.resolve(currentDir, '../src/stories');
 const mdxPaths = {};
 
-console.log(repoPath);
-
-function findMDXFiles(directory) {
+async function findMDXFiles(directory) {
   const mdxFiles = [];
-  const files = fs.readdirSync(directory);
+  const files = await fs.readdir(directory);
 
   for (const file of files) {
     const filePath = path.join(directory, file);
-    const stats = fs.statSync(filePath);
+    const stats = await fs.stat(filePath);
 
     if (stats.isDirectory()) {
       // Recursively search subdirectories
-      const subdirectoryFiles = findMDXFiles(filePath);
+      const subdirectoryFiles = await findMDXFiles(filePath);
       mdxFiles.push(...subdirectoryFiles);
     } else if (stats.isFile() && file.endsWith('.mdx')) {
       mdxFiles.push(filePath);
@@ -29,7 +31,7 @@ function findMDXFiles(directory) {
 async function extractMetaTitle(mdxFilePath) {
   const tsFilePath = mdxFilePath.replace('docs.mdx', 'stories.ts');
   try {
-    const tsFileContent = fs.readFileSync(tsFilePath, 'utf-8');
+    const tsFileContent = await fs.readFile(tsFilePath, 'utf-8');
 
     // Use a regular expression to capture the title property
     const titleMatch = tsFileContent.match(/title:\s*'([^']+)'/);
@@ -58,6 +60,10 @@ async function processMDXFiles() {
   }
 }
 
-processMDXFiles();
+// Process the MDX files
+await processMDXFiles();
 
-module.exports = mdxPaths;
+// Save the data to a JSON file
+const jsonData = JSON.stringify(mdxPaths, null, 2);
+const jsonFilePath = path.join(currentDir, 'mdxPaths.json');
+await fs.writeFile(jsonFilePath, jsonData);

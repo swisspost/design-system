@@ -1,5 +1,4 @@
 import React from 'react';
-const mdxPaths = require('../../utilities/collect-mdx.js');
 
 interface Developer {
   name: string;
@@ -56,7 +55,6 @@ const INTERNETHEADER: Record<string, string> = {
 };
 
 function getGitHubUrl(subpage: Location) {
-  console.log(mdxPaths);
   //console.log(subpage.href.split('/')[3].split('id=')[1].split('--')[0].split('-'));
   const id = subpage.href.split('/')[3].split('id=')[1].split('--')[0].split('-');
   var UrlBuild = [];
