@@ -103,6 +103,11 @@ export class PostInternetHeader {
   @Prop() languageLocalStorageKey?: string = 'swisspost-internet-header-language';
 
   /**
+   * Override the logout-url provided by the portal config.
+   */
+  @Prop() logoutUrl?: string;
+
+  /**
    * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
    * Will also highlight partly matching URLs. When set to auto, will use current location.href for comparison.
    */
@@ -504,7 +509,7 @@ export class PostInternetHeader {
                 <post-search onDropdownToggled={e => this.handleDropdownToggled(e)}></post-search>
               </If>
               <If condition={!!renderLogin}>
-                <post-klp-login-widget>
+                <post-klp-login-widget logout-url={this.logoutUrl}>
                   <slot name="login-widget"></slot>
                 </post-klp-login-widget>
               </If>
