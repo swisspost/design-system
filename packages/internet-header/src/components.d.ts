@@ -71,6 +71,10 @@ export namespace Components {
     interface SwisspostInternetBreadcrumbs {
         "customItems"?: string | IBreadcrumbItem[];
         /**
+          * Hide all buttons.
+         */
+        "hideButtons": boolean;
+        /**
           * Toggle an overlay associated with a button.
           * @param overlayId
          */
@@ -265,6 +269,10 @@ declare namespace LocalJSX {
     }
     interface SwisspostInternetBreadcrumbs {
         "customItems"?: string | IBreadcrumbItem[];
+        /**
+          * Hide all buttons.
+         */
+        "hideButtons"?: boolean;
     }
     interface SwisspostInternetFooter {
     }
