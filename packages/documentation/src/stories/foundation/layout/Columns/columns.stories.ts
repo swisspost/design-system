@@ -1,6 +1,6 @@
 import type { Args, Meta, StoryFn, StoryObj, StoryContext } from '@storybook/web-components';
 import { BADGE } from '../../../../../.storybook/constants';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 
 const meta: Meta = {
   title: 'Foundations/Layout/Columns',
@@ -17,6 +17,11 @@ const meta: Meta = {
     alignSelf: 'no self alignment',
     justifyContent: 'justify-content-start',
     offsetItem: 'offset-1',
+    renderBreakingElement: true,
+    ColumnOneOrder: 'no order',
+    ColumnTwoOrder: 'order-5',
+    ColumnThreeOrder: 'order-1',
+    ColumnWidth: 'col-4',
   },
   argTypes: {
     alignItems: {
@@ -26,9 +31,6 @@ const meta: Meta = {
         type: 'select',
       },
       options: ['align-items-start', 'align-items-center', 'align-items-end'],
-      table: {
-        category: 'General',
-      },
     },
     alignSelf: {
       name: 'Align Item 1',
@@ -37,9 +39,6 @@ const meta: Meta = {
         type: 'select',
       },
       options: ['no self alignment', 'align-self-start', 'align-self-center', 'align-self-end'],
-      table: {
-        category: 'General',
-      },
     },
     justifyContent: {
       name: 'Horizontal Alignement',
@@ -55,9 +54,6 @@ const meta: Meta = {
         'justify-content-between',
         'justify-content-evenly',
       ],
-      table: {
-        category: 'General',
-      },
     },
     offsetItem: {
       name: 'Offset classes',
@@ -78,9 +74,58 @@ const meta: Meta = {
         'offset-10',
         'offset-11',
       ],
-      table: {
-        category: 'General',
+    },
+    renderBreakingElement: {
+      name: 'Render breaking element',
+      description: 'Toggle rendering of breaking element',
+      control: {
+        type: 'boolean',
       },
+    },
+    ColumnOneOrder: {
+      name: 'Order first column',
+      description: 'Set order-class for first element',
+      control: {
+        type: 'select',
+      },
+      options: ['no order class', 'order-0', 'order-1', 'order-2', 'order-3', 'order-4', 'order-5'],
+    },
+    ColumnTwoOrder: {
+      name: 'Order second column',
+      description: 'Set order-class for second element',
+      control: {
+        type: 'select',
+      },
+      options: ['no order class', 'order-0', 'order-1', 'order-2', 'order-3', 'order-4', 'order-5'],
+    },
+    ColumnThreeOrder: {
+      name: 'Order third column',
+      description: 'Set order-class for third element',
+      control: {
+        type: 'select',
+      },
+      options: ['no order class', 'order-0', 'order-1', 'order-2', 'order-3', 'order-4', 'order-5'],
+    },
+    ColumnWidth: {
+      name: 'Width of second Column',
+      description: 'Set width for second column to see line breaking',
+      control: {
+        type: 'select',
+      },
+      options: [
+        'col-1',
+        'col-2',
+        'col-3',
+        'col-4',
+        'col-5',
+        'col-6',
+        'col-7',
+        'col-8',
+        'col-9',
+        'col-10',
+        'col-11',
+        'col-12',
+      ],
     },
   },
 };
@@ -91,7 +136,9 @@ type Story = StoryObj;
 
 export const VerticalExample: Story = {
   parameters: {
-    controls: { exclude: ['Horizontal Alignement', 'Offset classes'] },
+    controls: {
+      include: ['Align Items', 'Align Item 1'],
+    },
   },
   render: (args: Args) => html`
     <div class="container">
@@ -108,7 +155,9 @@ export const VerticalExample: Story = {
 
 export const HorizontalExample: Story = {
   parameters: {
-    controls: { exclude: ['Align Items', 'Align Item 1', 'Offset classes'] },
+    controls: {
+      include: ['Horizontal Alignement'],
+    },
   },
   render: (args: Args) => html`
     <div class="container">
@@ -121,12 +170,31 @@ export const HorizontalExample: Story = {
 };
 
 export const OrderExample: Story = {
-  render: () => html`
+  parameters: {
+    controls: {
+      include: ['Order first column', 'Order second column', 'Order third column'],
+    },
+  },
+  render: (args: Args) => html`
     <div class="container">
       <div class="row">
-        <div class="col">First in DOM, no order applied</div>
-        <div class="col order-5">Second in DOM, with a larger order</div>
-        <div class="col order-1">Third in DOM, with an order of 1</div>
+        <div
+          class="col${args.ColumnOneOrder === 'no order class' ? '' : ` ${args.ColumnOneOrder}`}"
+        >
+          First in DOM
+        </div>
+        <div
+          class="col${args.ColumnTwoOrder === 'no order class' ? '' : ` ${args.ColumnTwoOrder}`}"
+        >
+          Second in DOM
+        </div>
+        <div
+          class="col${args.ColumnThreeOrder === 'no order class'
+            ? ''
+            : ` ${args.ColumnThreeOrder}`}"
+        >
+          Third in DOM
+        </div>
       </div>
     </div>
   `,
@@ -146,23 +214,34 @@ export const OrderMaxExample: Story = {
 
 export const OffsetExample: Story = {
   parameters: {
-    controls: { exclude: ['Align Items', 'Align Item 1', 'Horizontal Alignement'] },
+    controls: {
+      include: ['Offset classes'],
+    },
   },
   render: (args: Args) => html`
     <div class="row">
-      <div class="col-1 ${args.offsetItem}">.col-1 .${args.offsetItem}</div>
+      <div class="col-1 ${args.offsetItem}">.${args.offsetItem}</div>
     </div>
   `,
 };
 
 export const ColumnBreakExample: Story = {
-  render: () => html`
+  parameters: {
+    controls: {
+      include: ['Render breaking element'],
+    },
+  },
+  render: (args: Args) => html`
     <div class="row">
       <div class="col-3">.col-3</div>
       <div class="col-3">.col-3</div>
 
       <!-- Force next columns to break to new line -->
-      <div class="w-100"></div>
+      ${args.renderBreakingElement
+        ? html`
+            <div class="w-100"></div>
+          `
+        : nothing}
 
       <div class="col-3">.col-3</div>
       <div class="col-3">.col-3</div>
@@ -184,64 +263,19 @@ export const ResetOffsetExample: Story = {
         .col-sm-5 .offset-sm-2 .col-md-6 .offset-md-0
       </div>
     </div>
-    <div class="row">
-      <div class="col-sm-6 col-md-5 col-lg-6">.col-sm-6 .col-md-5 .col-lg-6</div>
-      <div class="col-sm-6 col-md-5 offset-md-2 col-lg-6 offset-lg-0">
-        .col-sm-6 .col-md-5 .offset-md-2 .col-lg-6 .offset-lg-0
-      </div>
-    </div>
-  `,
-};
-
-export const MarginUtilitiesExample: Story = {
-  decorators: [
-    (story: StoryFn, { args, context }: StoryContext) => html`
-      ${story(args, context)}
-      <p class="mt-regular"><small>Resize the browser window to see changes.</small></p>
-    `,
-  ],
-  render: () => html`
-    <div class="row">
-      <div class="col-md-4">.col-md-4</div>
-      <div class="col-md-4 ms-auto">.col-md-4 .ms-auto</div>
-    </div>
-    <div class="row">
-      <div class="col-md-3 ms-md-auto">.col-md-3 .ms-md-auto</div>
-      <div class="col-md-3 ms-md-auto">.col-md-3 .ms-md-auto</div>
-    </div>
-    <div class="row">
-      <div class="col-auto me-auto">.col-auto .me-auto</div>
-      <div class="col-auto">.col-auto</div>
-    </div>
-  `,
-};
-
-export const StandaloneColumnExample: Story = {
-  decorators: [
-    (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="standalone-columns">
-        ${story(args, context)}
-        <p class="mt-regular"><small>Resize the browser window to see changes.</small></p>
-      </div>
-    `,
-  ],
-  render: () => html`
-    <div class="col-3 p-3 mb-2">.col-3: width of 25%</div>
-
-    <div class="col-md-9 p-3">.col-md-9: width of 75% above md breakpoint</div>
   `,
 };
 
 export const ColumnWrapping: Story = {
-  render: () => html`
+  parameters: {
+    controls: {
+      include: ['Width of second Column'],
+    },
+  },
+  render: (args: Args) => html`
     <div class="row">
       <div class="col-9">.col-9</div>
-      <div class="col-4">
-        .col-4
-        <br />
-        Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one
-        contiguous unit.
-      </div>
+      <div class="${args.ColumnWidth}">${args.ColumnWidth}</div>
       <div class="col-6">
         .col-6
         <br />
