@@ -2,25 +2,11 @@ import type { Args, Meta, StoryObj, StoryContext } from '@storybook/web-componen
 import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 import './sizing.styles.scss';
+import scss from './sizing.module.scss';
 
-const sizingOptions = [
-  'auto',
-  'hair',
-  'line',
-  'micro',
-  'mini',
-  'small-regular',
-  'regular',
-  'small-large',
-  'large',
-  'big',
-  'bigger-big',
-  'small-huge',
-  'huge',
-  'small-giant',
-  'giant',
-  'bigger-giant',
-];
+export const SCSS_VARIABLES = scss;
+
+const sizingOptions = ['auto', ...Object.keys(SCSS_VARIABLES)];
 
 const sizeOptionsPercent = ['auto', '25', '50', '75', '100'];
 
