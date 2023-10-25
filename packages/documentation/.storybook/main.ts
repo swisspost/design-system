@@ -24,7 +24,6 @@ const config: StorybookConfig = {
     },
     '@storybook/addon-links',
     '@storybook/addon-designs',
-    '@storybook/addon-a11y',
     '@geometricpanda/storybook-addon-badges',
     '@pxtrn/storybook-addon-docs-stencil',
   ],
