@@ -1,4 +1,11 @@
-# @swisspost/design-system-components-angular
+# @swisspost/design-system-intranet-header-workspace
+
+## 3.0.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.2
 
 ## 3.0.2
 
