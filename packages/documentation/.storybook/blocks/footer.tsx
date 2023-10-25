@@ -63,7 +63,7 @@ function getGitHubUrl(subpage: Location) {
   //console.log(mdxPaths);
   const id = subpage.href.split('/')[3].split('id=')[1].split('--')[0];
   //console.log(id);
-  //console.log((mdxPaths as MdxPaths)[id]);
+  console.log((mdxPaths as MdxPaths)[id]);
 
   return (mdxPaths as MdxPaths)[id];
 }
