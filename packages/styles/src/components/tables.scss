@@ -30,14 +30,14 @@
   // Hide border between cells on tbody when hovered, but not bordered
   &.table-hover:not(.table-bordered) {
     > tbody > tr > :is(td, th) {
-      @extend %no-border;
+      border: 0;
     }
   }
 
   // Underline by default (Hide cells border)
   &:not(.table-bordered) {
     > :is(thead, tbody, tfoot) > tr > :is(td, th) {
-      @extend %no-border;
+      border: 0;
     }
   }
 
@@ -48,15 +48,11 @@
     > tfoot,
     > :is(thead, tbody, tfoot) > tr,
     > :is(thead, tbody, tfoot) > tr > :is(td, th) {
-      @extend %no-border;
+      border: 0;
     }
   }
 
   > tbody > tr {
     background-color: color.$gray-background;
   }
-}
-
-%no-border {
-  border: 0;
 }
