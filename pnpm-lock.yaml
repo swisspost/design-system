@@ -654,8 +654,8 @@ importers:
         specifier: 4.6.0
         version: 4.6.0
       '@stencil/store':
-        specifier: 2.0.9
-        version: 2.0.9(@stencil/core@4.6.0)
+        specifier: 2.0.11
+        version: 2.0.11(@stencil/core@4.6.0)
       '@swisspost/design-system-styles':
         specifier: workspace:6.4.2
         version: link:../styles/dist
@@ -6717,8 +6717,8 @@ packages:
       '@stencil/core': 4.6.0
     dev: true
 
-  /@stencil/store@2.0.9(@stencil/core@4.6.0):
-    resolution: {integrity: sha512-wPVkgOEeOVZ6OGuUy7lV/qYyhj7Ra3vZkebqT58HdkaaAAmaUCtinUG02e05iTQIoOWpN7oNhq/MWvhY7H/Wyw==}
+  /@stencil/store@2.0.11(@stencil/core@4.6.0):
+    resolution: {integrity: sha512-iU803qQl8DXR1S6X4xJz6VVNgPnbhktbfLxAGe+Kx0PLJ92lBuiLKpYtPkrZNWwPOOJd3z3uSDz9UGajU4krHg==}
     engines: {node: '>=12.0.0', npm: '>=6.0.0'}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0 || >= 4.0.0-beta.0 || >= 4.0.0'
