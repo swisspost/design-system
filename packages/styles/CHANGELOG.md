@@ -1,5 +1,17 @@
 # @swisspost/design-system-styles
 
+## 6.4.2
+
+### Patch Changes
+
+- Refactored the grid-system: adjusted container paddings, added responsive gutter-widths. Updated grid docs. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2045](https://github.com/swisspost/design-system/pull/2045))
+
+- Added small variants for checkbox and radio buttons. Lowered font-size of validation blocks for form elements. (by [@imagoiq](https://github.com/imagoiq) with [#2086](https://github.com/swisspost/design-system/pull/2086))
+
+- Fixed missing active tab border on HTML component. (by [@imagoiq](https://github.com/imagoiq) with [#2037](https://github.com/swisspost/design-system/pull/2037))
+
+- Fixed active switch control showing a check icon in Chrome. (by [@alizedebray](https://github.com/alizedebray) with [#2090](https://github.com/swisspost/design-system/pull/2090))
+
 ## 6.4.1
 
 ### Patch Changes
