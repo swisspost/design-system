@@ -30,6 +30,7 @@ async function findMDXFiles(directory) {
 
 async function extractMetaTitle(mdxFilePath) {
   const tsFilePath = mdxFilePath.replace('docs.mdx', 'stories.ts');
+  console.log(tsFilePath);
   try {
     const tsFileContent = await fs.readFile(tsFilePath, 'utf-8');
 

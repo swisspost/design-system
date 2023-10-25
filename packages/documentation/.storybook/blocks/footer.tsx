@@ -30,45 +30,14 @@ const DEVELOPERS: Developer[] = [
   },
 ];
 
-const BASEURL =
-  'https://github.com/swisspost/design-system/tree/main/packages/documentation/src/stories/';
-const TWOPIECEFOLDERNAMES = ['getting-started', 'internet-header', 'intranet-header'];
-const SUBFOLDERS = ['foundations-layout'];
-const DOCSFILEENDING = '.docs.mdx';
-const ICONS: Record<string, string> = {
-  'getting-started': 'getting-started.docs.mdx',
-  'search-for-icons': 'search-icons/search-icons.docs.mdx',
-  'icon-component': 'components/icon.docs.mdx',
-};
-const INTERNETHEADER: Record<string, string> = {
-  'getting-started': 'getting-started.docs.mdx',
-  'migration-guide': 'migration-guide.docs.mdx',
-  'header': 'components/header/header.docs.mdx',
-  'header-custom-config': 'components/header/overrides-stories/header-custom-config.docs.mdx',
-  'header-language-switch-overrides':
-    'components/header/overrides-stories/header-language-switch-overrides.docs.mdx',
-  'header-os-flyout-overrides':
-    'components/header/overrides-stories/header-os-flyout-overrides.docs.mdx',
-  'breadcrumbs': 'components/breadcrumbs/breadcrumbs.docs.mdx',
-  'breadcrumbs-custom-items': 'components/breadcrumbs/overrides/breadcrumbs-config.docs.mdx',
-  'footer': 'components/footer/footer.docs.mdx',
-  'footer-custom-config': 'components/footer/custom-config/footer-config.docs.mdx',
-};
+const BASEURL = 'https://github.com/swisspost/design-system/tree/main/packages/documentation';
 
-interface MdxPaths {
-  [key: string]: string;
+function getGitHubUrl(path: String) {
+  console.log(`${BASEURL}${path.replace(/^\./, '').replace(/\.stories\.ts$/, '.docs.mdx')}`);
+  return `${BASEURL}${path.replace(/^\./, '').replace(/\.stories\.ts$/, '.docs.mdx')}`;
 }
 
-function getGitHubUrl(subpage: Location) {
-  //console.log(mdxPaths);
-  const id = subpage.href.split('/')[3].split('id=')[1].split('--')[0];
-  //console.log(id);
-  //console.log((mdxPaths as MdxPaths)[id]);
-
-  return (mdxPaths as MdxPaths)[id];
-}
-
-export default () => (
+export default (params: { pathToStoryFile: String }) => (
   <footer className="docs-footer mt-huge bg-light">
     <div className="container">
       <div className="pt-big-r pb-big-r">
@@ -117,7 +86,7 @@ export default () => (
         >
           Data protection and disclaimer
         </a>
-        <a href={getGitHubUrl(window.location)} target="_blank" rel="noopener">
+        <a href={getGitHubUrl(params.pathToStoryFile)} target="_blank" rel="noopener">
           Improve this page
         </a>
       </div>
