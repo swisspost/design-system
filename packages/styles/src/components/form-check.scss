@@ -78,7 +78,7 @@
       border-radius: 50%;
 
       &:checked::after {
-        border: spacing.$size-micro solid color.$white;
+        border: spacing.$size-micro solid rgb(var(--post-bg-rgb));
         background-color: currentColor;
         border-radius: inherit;
       }
