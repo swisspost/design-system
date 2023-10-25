@@ -96,7 +96,7 @@ describe('meta-navigation', () => {
         // Clear meta navigation config
         config.de!.header.navMeta = undefined;
 
-        prepare('Internet Header/Header', 'Default', config);
+        prepare('Internet Header/Header', 'Default', { config });
         cy.changeArg('language', 'de');
 
         // Assert the header is hydrated
@@ -122,7 +122,7 @@ describe('meta-navigation', () => {
           },
         ];
 
-        prepare('Internet Header/Header', 'Default', config);
+        prepare('Internet Header/Header', 'Default', { config });
         cy.changeArg('language', 'de');
 
         // Assert the header is hydrated

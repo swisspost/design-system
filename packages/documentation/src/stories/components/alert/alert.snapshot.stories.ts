@@ -20,7 +20,7 @@ export const Alert: Story = {
           <div class=${bg + ' d-flex flex-column gap-3 flex-wrap p-3'}>
             ${bombArgs({
       type: alertMeta?.argTypes?.type?.options,
-      icon: ['no-icon', undefined, 'pi-1001'],
+      icon: ['no-icon', undefined, '1001'],
       action: [true, false],
     })
       .map(args => ({ ...args, show: true } as Args))
@@ -34,7 +34,7 @@ export const Alert: Story = {
                           </button>
                         `
           : null}
-                    ${args.icon !== 'null'
+                    ${args.icon && args.icon !== 'no-icon'
                       ? html`
                         <post-icon aria-hidden="true" class="alert-icon" name=${args.icon}></post-icon>
                       `
