@@ -4,26 +4,32 @@
 @use '../layout.shared' as shared;
 
 :export {
+  // Variables to build the grid options table
+  breakpoint-count: length(post.$grid-breakpoints);
+  grid-columns: post.$grid-columns;
+
   @each $breakpoint, $value in post.$grid-breakpoints {
     $i: list.index(post.$grid-breakpoints, $breakpoint $value);
-    $name: map.get(shared.$breakpointNames, $breakpoint) or $breakpoint;
 
-    breakpoint_#{$breakpoint}_name: $name;
-    breakpoint_#{$breakpoint}_maxWidth: map.get(post.$container-max-widths, $breakpoint);
-    breakpoint_#{$breakpoint}_containerPadding: map.get(post.$grid-container-padding, $breakpoint);
+    breakpoint_#{$breakpoint}_name: map.get(shared.$breakpointNames, $breakpoint) or $breakpoint;
+    breakpoint_#{$breakpoint}_dimensions: if(
+      $i == 1,
+      #{'<' + map.get(post.$grid-breakpoints, list.nth(map.keys(post.$grid-breakpoints), $i + 1))},
+      #{'≥' + $value}
+    );
+    breakpoint_#{$breakpoint}_infix: if($i == 1, none, $breakpoint);
 
-    @if $i == 1 {
-      $keys: map.keys(post.$grid-breakpoints);
-      $nextValue: map.get(post.$grid-breakpoints, list.nth($keys, $i + 1));
+    container_#{$breakpoint}_max-width: map.get(post.$container-max-widths, $breakpoint) or none;
+    container_#{$breakpoint}_padding: map.get(post.$grid-container-padding, $breakpoint);
+    container_#{$breakpoint}_fluid_padding: map.get(
+      post.$grid-container-fluid-padding,
+      $breakpoint
+    );
 
-      breakpoint_#{$breakpoint}_infix: none;
-      breakpoint_#{$breakpoint}_dimensions: #{'<' + $nextValue};
-    } @else {
-      breakpoint_#{$breakpoint}_infix: #{'<code>' + $breakpoint + '</code>'};
-      breakpoint_#{$breakpoint}_dimensions: #{'≥' + $value};
-    }
+    grid_#{$breakpoint}_gutter-width: map.get(post.$grid-gutter-x, $breakpoint);
   }
 
+  // Variables to expose under sass variables section
   variables_grid-columns: post.$grid-columns;
   variables_grid-gutter-width: post.$grid-gutter-width;
   variables_grid-row-columns: post.$grid-row-columns;

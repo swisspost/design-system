@@ -1,6 +1,7 @@
 @forward './../variables/options';
 
 @use '../variables/color';
+@use '../variables/type';
 @use '../variables/spacing';
 @use '../variables/animation';
 @use '../variables/components/form-check';
@@ -15,6 +16,10 @@
 
   &-inline {
     display: inline-flex;
+  }
+
+  &-inline:not(:last-of-type) {
+    margin-right: form-check.$form-check-inline-margin-right;
   }
 
   &-input,
@@ -86,14 +91,28 @@
 
     &[disabled],
     &[disabled] ~ .form-check-label {
-      opacity: 1; // Bootstrap reset
       border-color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
       color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
+    }
+
+    .form-check-sm & {
+      height: form-check.$form-check-input-size-sm;
+      width: form-check.$form-check-input-size-sm;
+
+      &[type='radio'] {
+        &:checked::after {
+          border-width: spacing.$size-line;
+        }
+      }
     }
   }
 
   &-label {
     flex: 1;
+
+    .form-check-sm & {
+      font-size: type.$font-size-12;
+    }
   }
 }
 
@@ -123,7 +142,7 @@
       background-position-x: form-check.$form-switch-width;
 
       &::after {
-        mask: none;
+        @include icons-mx.remove-icon;
         background-color: form-check.$form-switch-color;
         border-color: form-check.$form-switch-checked-border-color;
         transform: translateX(2rem);

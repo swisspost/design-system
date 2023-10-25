@@ -87,11 +87,8 @@ describe('language-switch', () => {
         const langugeChangedHandlerMock = cy.spy();
         Cypress.$(win).on('languageChanged', langugeChangedHandlerMock);
 
-        cy.get(languageSwitcherDesktop)
-          .shadow()
-          .find('button.lang-btn')
-          .click();
-          cy.get('button[lang="en"]')
+        cy.get(languageSwitcherDesktop).shadow().find('button.lang-btn').click();
+        cy.get('button[lang="en"]')
           .first()
           .click()
           .then(() => {
@@ -143,7 +140,7 @@ describe('language-switch', () => {
         url: '',
       };
       config.en!.header.navLang = [navLangEntry];
-      prepare('Internet Header/Header', 'Default', config);
+      prepare('Internet Header/Header', 'Default', { config });
       cy.get('#post-language-switch-desktop').should('not.exist');
     });
 
