@@ -51,11 +51,8 @@ async function processMDXFiles() {
 
   for (const mdxFile of mdxFiles) {
     const metaTitle = await extractMetaTitle(mdxFile);
-    console.log(`MDX File: ${mdxFile}`);
-    console.log(`meta.title: ${metaTitle}`);
     if (metaTitle) {
-      // Store the meta.title value with the MDX file path as the key
-      mdxPaths[mdxFile] = metaTitle;
+      mdxPaths[metaTitle.replace(/[/\s]/g, '-').toLowerCase()] = mdxFile;
     }
   }
 }
