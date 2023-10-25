@@ -2,4 +2,4 @@
 '@swisspost/design-system-intranet-header': patch
 ---
 
-Added text to the postlogo for accessibility
+Added a descriptive text to the Post logo home link
