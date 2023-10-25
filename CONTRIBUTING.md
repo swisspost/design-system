@@ -4,7 +4,7 @@ These contribution guidelines apply to this repository in general and describe h
 
 - [Angular Demo](./packages/demo/README.md)
 - [Design System Styles](./packages/styles/CONTRIBUTING.md)
-- [Angular Components (Intranet Header)](./packages/intranet-header-workspace/projects/intranet-header/CONTRIBUTING.md)
+- [Intranet Header Component](./packages/intranet-header-workspace/projects/intranet-header/CONTRIBUTING.md)
 
 ## Prerequisites
 
@@ -34,7 +34,7 @@ Other root scripts are available for convenience:
 Use these commands whenever you want to work on one of these packages. Ideally, these commands start a watcher for file changes and a GUI where you can see what changed for all relevant packages. The start scripts always assume that you previously ran `pnpm bootstrap` and therefore have all packages built on disk.
 
 | Command                           | Description                                                                                  |
-|-----------------------------------|----------------------------------------------------------------------------------------------|
+| --------------------------------- | -------------------------------------------------------------------------------------------- |
 | `pnpm start` or `pnpm docs:start` | starts the design-system-documentation storybook and the `start` scripts of all dependencies |
 | `pnpm demo:start`                 | starts the demo Angular application and the `start` scripts of all dependencies              |
 | `pnpm intranet-header:start`      | starts the intranet header demo application                                                  |
@@ -48,7 +48,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 For easy test runs, the following commands are available (not all packages might have all commands available).
 
 | Command                               | Description                                                                               |
-|---------------------------------------|-------------------------------------------------------------------------------------------|
+| ------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `pnpm test`                           | runs the `test` command for all packages recursively                                      |
 | `pnpm [package shortname]:test`       | runs unit and end-to-end tests for the package in headless mode                           |
 | `pnpm [package shortname]:unit`       | runs unit tests for the package                                                           |
@@ -184,14 +184,14 @@ For some packages it's necessary to run multiple dev servers at the same time. T
 ### Default DevServer: 9000-9099
 
 | Package        | Port |
-|:---------------|-----:|
+| :------------- | ---: |
 | Demo           | 9000 |
 | IntranetHeader | 9001 |
 
 ### Storybook DevServers: 9200-9299
 
 | Package       | Port |
-|:--------------|-----:|
+| :------------ | ---: |
 | Documentation | 9200 |
 | Styles        | 9201 |
 | Components    | 9203 |
@@ -199,7 +199,7 @@ For some packages it's necessary to run multiple dev servers at the same time. T
 ### Storybook TestServers: 9300-9399
 
 | Package       | Port |
-|:--------------|-----:|
+| :------------ | ---: |
 | Documentation | 9300 |
 | Styles        | 9301 |
 | Components    | 9303 |

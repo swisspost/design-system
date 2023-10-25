@@ -1,6 +1,11 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
-import { PostAlert, PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
+import {
+  PostAlert,
+  PostTabs,
+  PostTabHeader,
+  PostTabPanel,
+} from '@swisspost/design-system-components-react';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 import * as AlertStories from './standard-html/alert.stories';
 import * as PostAlertStories from './web-component/post-alert.stories';
@@ -17,14 +22,17 @@ import AlertDismissSample from './web-component/alert-dismiss.sample?raw';
 Alerts are intended to attract the user's attention without interrupting their ongoing task.
 
 <PostAlert type="info">
-    <p slot="heading">There are various methods to integrate this component into your project.</p>
-    <p>We advise opting for the "Standard HTML" approach for alerts that remain static on the page and using the "Web Component" method for dismissible alerts.</p>
+  <p slot="heading">There are various methods to integrate this component into your project.</p>
+  <p>
+    We advise opting for the "Standard HTML" approach for alerts that remain static on the page and
+    using the "Web Component" method for dismissible alerts.
+  </p>
 </PostAlert>
 
 <PostTabs>
     <PostTabHeader slot="tabs" panel="standardHTML">Standard HTML</PostTabHeader>
     <PostTabPanel name="standardHTML">
-      <Canvas of={AlertStories.Default} />
+      <Canvas sourceState="shown" of={AlertStories.Default} />
 
       <div className="hide-col-default">
         <Controls of={AlertStories.Default} />
@@ -124,4 +132,5 @@ Alerts are intended to attract the user's attention without interrupting their o
 
       <Canvas of={PostAlertStories.Fixed} />
     </PostTabPanel>
+
 </PostTabs>

@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
   "main": "loader/index.cjs.js",
@@ -40,7 +40,7 @@
     "@floating-ui/dom": "1.5.1",
     "@oddbird/popover-polyfill": "0.2.2",
     "@stencil/core": "3.4.2",
-    "@swisspost/design-system-styles": "workspace:6.4.1",
+    "@swisspost/design-system-styles": "workspace:6.4.2",
     "ally.js": "1.4.1",
     "long-press-event": "2.4.6"
   },

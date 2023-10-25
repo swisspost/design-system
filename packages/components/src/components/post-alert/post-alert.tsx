@@ -112,9 +112,6 @@ export class PostAlert {
 
   render() {
     const defaultAlertContent = [
-      this.icon && this.icon !== 'none' && (
-        <post-icon key={`${this.alertId}-icon`} name={this.icon} />
-      ),
       this.hasHeading && (
         <div key={`${this.alertId}-heading`} class="alert-heading">
           <slot name="heading"/>
@@ -139,6 +136,10 @@ export class PostAlert {
             <button class="btn-close" onClick={this.onDismissButtonClick}>
               <span class="visually-hidden">{this.dismissLabel}</span>
             </button>
+          )}
+
+          {this.icon && this.icon !== 'none' && (
+            <post-icon key={`${this.alertId}-icon`} name={this.icon} />
           )}
 
           {this.hasActions

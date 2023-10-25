@@ -1,5 +1,13 @@
 # @swisspost/design-system-intranet-header
 
+## 5.0.2
+
+### Patch Changes
+
+- Changed the main title of the intranet-header from `<h2>` to `<h1>`. (by [@b1aserlu](https://github.com/b1aserlu) with [#2104](https://github.com/swisspost/design-system/pull/2104))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.2
+
 ## 5.0.1
 
 ### Patch Changes

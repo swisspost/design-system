@@ -37,8 +37,10 @@ export const config: Config = {
     angularOutputTarget({
       componentCorePackage: '@swisspost/design-system-components',
       outputType: 'component',
-      directivesProxyFile: '../components-angular/projects/components/src/lib/stencil-generated/components.ts',
-      directivesArrayFile: '../components-angular/projects/components/src/lib/stencil-generated/index.ts',
+      directivesProxyFile:
+        '../components-angular/projects/components/src/lib/stencil-generated/components.ts',
+      directivesArrayFile:
+        '../components-angular/projects/components/src/lib/stencil-generated/index.ts',
       valueAccessorConfigs: angularValueAccessorBindings,
     }),
   ],
