@@ -1,0 +1,8 @@
+.stencil
+loader
+www
+dist
+node_modules
+cypress.config.js
+jest.config.js
+src/assets
