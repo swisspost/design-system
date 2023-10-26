@@ -33,15 +33,6 @@ describe('popover', () => {
       cy.get('@popover').should('not.be.visible');
     });
 
-    // Light dismiss with esc does not work in cypress apparently
-    /* it('should close on esc', () => {
-      cy.get('@popover').should('not.be.visible');
-      cy.get('@trigger').click();
-      cy.get('@popover').should('be.visible');
-      cy.get('@trigger').focus().type('{esc}');
-      cy.get('@popover').should('not.be.visible');
-    }); */
-
     it('should open and close with the API', () => {
       Promise.all([cy.get('@trigger'), cy.get('@popover')])
         .then(
