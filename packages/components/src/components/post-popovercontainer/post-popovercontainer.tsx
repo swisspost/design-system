@@ -38,12 +38,16 @@ export type PostPopoverElement = HTMLElement & PopoverElement;
   shadow: true,
 })
 export class PostPopovercontainer {
-  @Element() host: HTMLPostTooltipElement;
-  @Event() postPopoverToggled: EventEmitter<boolean>;
+  @Element() host: HTMLPostPopovercontainerElement;
   private popoverRef: PostPopoverElement;
   private arrowRef: HTMLElement;
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
+
+  /**
+   * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
+   */
+  @Event() postPopoverToggled: EventEmitter<boolean>;
 
   /**
    * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -186,7 +190,10 @@ export class PostPopovercontainer {
   render() {
     return (
       <Host data-version={version}>
-        <div part="popover" ref={(el: any) => (this.popoverRef = el)}>
+        <div
+          part="popover"
+          ref={(el: HTMLDivElement & PostPopoverElement) => (this.popoverRef = el)}
+        >
           {this.arrow && (
             <span
               class="arrow"
