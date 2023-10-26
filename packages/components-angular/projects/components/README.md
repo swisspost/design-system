@@ -1,12 +1,12 @@
-# Components-Angular
+# Swiss Post Design System Components-Angular
 
 ![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e84f1fea-e666-4853-8c85-726a6bf22e6c)
 
-The Angular wrapper-components for the components package.
+A collection of angular-components built with Stencil JS for the Swiss Post Design System.
 
 ## Documentation
 
-Technical docs: [Swiss Post Design System](https://next.design-system.post.ch)
+- Technical docs: [Swiss Post Design System](https://next.design-system.post.ch)
 
 ## Usage
 
@@ -16,13 +16,29 @@ Install the package in your Angular project:
 npm install @swisspost/design-system-components-angular
 ```
 
-TODO: Add import and usage instructions here
+In your `app.module.ts`, add the header to your imports:
+
+```typescript
+// Other imports ....
+import { ComponentsModule } from '@swisspost/design-system-components-angular';
+
+@NgModule({
+  imports: [ComponentsModule],
+})
+export class AppModule {}
+```
+
+In your templates, the componets are available as:
+
+```html
+<post-icon></post-icon>
+```
 
 ## Contribute
 
-[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](CODE_OF_CONDUCT.md)
+[![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](../../../../CODE_OF_CONDUCT.md)
 
-Considering supporting the Swiss Post Design System with your contribution? Whether you like to contribute new patterns, fix a bug, spotted a typo or have ideas for improvement - we'd love to hear from you. Learn how you can contribute to this project in the [intranet header contribution guidelines](./CONTRIBUTING.md) and also take a look at the [general contribution guidelines](../../../../CONTRIBUTING.md).
+Considering supporting the Swiss Post Design System with your contribution? Whether you like to contribute new patterns, fix a bug, spotted a typo or have ideas for improvement - we'd love to hear from you. Learn how you can contribute to this project in the [components-angular contribution guidelines](./CONTRIBUTING.md) and also take a look at the [general contribution guidelines](../../../../CONTRIBUTING.md).
 
 For any questions regarding the pattern library, you can reach out on the [discussions page](https://github.com/swisspost/design-system/discussions).
 

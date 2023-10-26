@@ -1,0 +1,41 @@
+{
+  "name": "design-system-components-angular-workspace",
+  "version": "1.0.0",
+  "scripts": {
+    "clean": "rimraf dist",
+    "start": "pnpm build && ng serve --port 9210",
+    "build": "pnpm clean && ng build components",
+    "lint": "ng lint"
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/animations": "16.2.0",
+    "@angular/common": "16.2.0",
+    "@angular/compiler": "16.2.0",
+    "@angular/core": "16.2.0",
+    "@angular/forms": "16.2.0",
+    "@angular/platform-browser": "16.2.0",
+    "@angular/platform-browser-dynamic": "16.2.0",
+    "@angular/router": "16.2.0",
+    "@swisspost/design-system-styles": "workspace:6.4.2",
+    "rxjs": "~7.8.0",
+    "tslib": "2.3.0",
+    "zone.js": "~0.13.0"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "16.2.7",
+    "@angular/cli": "16.2.6",
+    "@angular/compiler-cli": "16.2.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "ng-packagr": "16.2.0",
+    "rimraf": "5.0.1",
+    "typescript": "~5.1.3"
+  },
+  "peerDependencies": {
+    "@swisspost/design-system-components": "workspace:1.5.1"
+  }
+}
