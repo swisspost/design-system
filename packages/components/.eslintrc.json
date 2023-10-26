@@ -1,6 +1,7 @@
 {
   "env": {
     "browser": true,
+    "node": true,
     "es2021": true
   },
   "extends": [
@@ -15,7 +16,9 @@
     "sourceType": "module",
     "project": "./tsconfig.eslint.json"
   },
-  "plugins": ["@typescript-eslint"],
+  "plugins": [
+    "@typescript-eslint"
+  ],
   "rules": {
     "indent": [
       "error",
@@ -24,8 +27,14 @@
         "SwitchCase": 1
       }
     ],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "error",
+      "always"
+    ],
     "@typescript-eslint/no-unused-vars": [
       "error",
       {
@@ -35,7 +44,12 @@
       }
     ],
     "@stencil-community/strict-boolean-conditions": "off",
-    "@stencil-community/required-prefix": ["error", ["post-"]],
+    "@stencil-community/required-prefix": [
+      "error",
+      [
+        "post-"
+      ]
+    ],
     "@stencil-community/async-methods": "error",
     "@stencil-community/decorators-context": "error",
     "@stencil-community/decorators-style": [

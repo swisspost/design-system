@@ -2,6 +2,8 @@
   "extends": "./tsconfig.json",
   "include": [
     "src",
+    "cypress",
+    "stencil.config.ts",
     "**/tests"
   ],
   "exclude": [

@@ -2,3 +2,5 @@
 dist
 loader
 www
+.stencil
+cypress.config.js
