@@ -83,7 +83,7 @@ export namespace Components {
          */
         "scale"?: number | null;
     }
-    interface PostPopover {
+    interface PostPopovercontainer {
         /**
           * Wheter or not to display a little pointer arrow
          */
@@ -177,9 +177,9 @@ export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostAlertElement;
 }
-export interface PostPopoverCustomEvent<T> extends CustomEvent<T> {
+export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
-    target: HTMLPostPopoverElement;
+    target: HTMLPostPopovercontainerElement;
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -207,11 +207,11 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
-    interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
+    interface HTMLPostPopovercontainerElement extends Components.PostPopovercontainer, HTMLStencilElement {
     }
-    var HTMLPostPopoverElement: {
-        prototype: HTMLPostPopoverElement;
-        new (): HTMLPostPopoverElement;
+    var HTMLPostPopovercontainerElement: {
+        prototype: HTMLPostPopovercontainerElement;
+        new (): HTMLPostPopovercontainerElement;
     };
     interface HTMLPostPopupElement extends Components.PostPopup, HTMLStencilElement {
     }
@@ -247,7 +247,7 @@ declare global {
         "post-alert": HTMLPostAlertElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
-        "post-popover": HTMLPostPopoverElement;
+        "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-popup": HTMLPostPopupElement;
         "post-tab-header": HTMLPostTabHeaderElement;
         "post-tab-panel": HTMLPostTabPanelElement;
@@ -325,12 +325,12 @@ declare namespace LocalJSX {
          */
         "scale"?: number | null;
     }
-    interface PostPopover {
+    interface PostPopovercontainer {
         /**
           * Wheter or not to display a little pointer arrow
          */
         "arrow"?: boolean;
-        "onPostPopoverToggled"?: (event: PostPopoverCustomEvent<boolean>) => void;
+        "onPostPopoverToggled"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
         /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
@@ -374,7 +374,7 @@ declare namespace LocalJSX {
         "post-alert": PostAlert;
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
-        "post-popover": PostPopover;
+        "post-popovercontainer": PostPopovercontainer;
         "post-popup": PostPopup;
         "post-tab-header": PostTabHeader;
         "post-tab-panel": PostTabPanel;
@@ -392,7 +392,7 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
-            "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
+            "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-popup": LocalJSX.PostPopup & JSXBase.HTMLAttributes<HTMLPostPopupElement>;
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;

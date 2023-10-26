@@ -33,8 +33,8 @@ interface PopoverElement {
 export type PostPopoverElement = HTMLElement & PopoverElement;
 
 @Component({
-  tag: 'post-popover',
-  styleUrl: 'post-popover.scss',
+  tag: 'post-popovercontainer',
+  styleUrl: 'post-popovercontainer.scss',
   shadow: true,
 })
 export class PostPopover {
