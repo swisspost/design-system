@@ -20,7 +20,7 @@ let osFlyoutCache: NavMainEntity | null = null;
 const getPPMConfig = (): ILocalizedConfig | null => {
   const ppmConfigScript = document.querySelector('#PPM_HEADER_DATA');
 
-  if (ppmConfigScript?.textContent) {
+  if (ppmConfigScript?.textContent != null) {
     return JSON.parse(ppmConfigScript.textContent);
   }
 
@@ -53,7 +53,7 @@ export const getLocalizedConfig = async ({
     localizedConfig = ppmConfig;
     lang = document.documentElement.lang;
   } else {
-    if (!request) {
+    if (request == null) {
       request = fetchConfig(projectId, environment);
     }
 
@@ -87,7 +87,7 @@ export const getLocalizedConfig = async ({
     localizedConfig.header.navMain = mergeOsFlyoutOverrides(localizedConfig, osFlyoutOverrides);
 
   // Mark active route
-  if (activeRouteProp)
+  if (activeRouteProp != null)
     localizedConfig.header.navMain = markActiveRoute(
       localizedConfig.header.navMain,
       activeRouteProp,
@@ -111,7 +111,7 @@ export const mergeOsFlyoutOverrides = (
   config: ILocalizedConfig,
   osFlyoutOverrides: NavMainEntity,
 ): NavMainEntity[] => {
-  if (!osFlyoutOverrides) return config.header.navMain;
+  if (osFlyoutOverrides == null) return config.header.navMain;
 
   return config.header.navMain.map(mainNav => {
     if (mainNav.id !== 'flyout_os') return mainNav;
@@ -124,9 +124,9 @@ export const mergeOsFlyoutOverrides = (
     const mainNavTitle = osFlyoutOverrides.title ?? osFlyoutCache.title;
 
     if (
-      !osFlyoutCache.flyout ||
+      osFlyoutCache.flyout == null ||
       osFlyoutCache.flyout.length === 0 ||
-      !osFlyoutOverrides.flyout ||
+      osFlyoutOverrides.flyout == null ||
       osFlyoutOverrides.flyout.length === 0
     )
       return {
@@ -141,7 +141,7 @@ export const mergeOsFlyoutOverrides = (
         const overrides = osFlyoutOverrides.flyout[index];
         const title = overrides.title ?? col.title;
 
-        const linkList = overrides.linkList ? osFlyoutOverrides.flyout[index].linkList : [];
+        const linkList = overrides.linkList != null ? osFlyoutOverrides.flyout[index].linkList : [];
 
         return {
           title,
