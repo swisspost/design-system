@@ -64,13 +64,13 @@ Type: `Promise<void>`
 
 ### Used by
 
- - [post-popup](../post-popup)
+ - [post-popover](../post-popover)
  - [post-tooltip](../post-tooltip)
 
 ### Graph
 ```mermaid
 graph TD;
-  post-popup --> post-popovercontainer
+  post-popover --> post-popovercontainer
   post-tooltip --> post-popovercontainer
   style post-popovercontainer fill:#f9f,stroke:#333,stroke-width:4px
 ```

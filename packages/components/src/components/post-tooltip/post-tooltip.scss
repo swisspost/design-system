@@ -9,7 +9,7 @@
   --post-bg-rgb: #{color-fn.rgb-values(color.$gray-80)};
 }
 
-post-popover {
+post-popovercontainer {
   &::part(popover) {
     padding: spacing.$size-micro spacing.$size-mini;
   }

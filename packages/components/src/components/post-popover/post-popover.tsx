@@ -3,32 +3,37 @@ import { Placement } from '@floating-ui/dom';
 
 import { version } from '../../../package.json';
 @Component({
-  tag: 'post-popup',
-  styleUrl: 'post-popup.scss',
+  tag: 'post-popover',
+  styleUrl: 'post-popover.scss',
   shadow: true,
 })
-export class PostPopup {
+export class PostPopover {
   private popoverRef: HTMLPostPopovercontainerElement;
-  private localTogglePopup: (e: Event) => Promise<void>;
-  private localEnterTogglePopup: (e: KeyboardEvent) => void;
-  private localTouchTogglePopup: (e: TouchEvent) => void;
+  private localTogglePopover: (e: Event) => Promise<void>;
+  private localEnterTogglePopover: (e: KeyboardEvent) => void;
+  private localTouchTogglePopover: (e: TouchEvent) => void;
   private currentTarget: HTMLElement;
 
-  @Element() host: HTMLPostPopupElement;
+  @Element() host: HTMLPostPopoverElement;
 
   /**
-   * Defines the placement of the popup according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
-   * Popups are automatically flipped to the opposite side if there is not enough available space and are shifted
+   * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
+   * Popoverss are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
   @Prop() readonly placement?: Placement = 'right-end';
 
+  /**
+   * Define the caption of the close button for assistive technology
+   */
+  @Prop() readonly closeButtonCaption: string;
+
   constructor() {
-    this.localTogglePopup = e => this.toggle(e.target as HTMLElement);
-    this.localEnterTogglePopup = e => {
+    this.localTogglePopover = e => this.toggle(e.target as HTMLElement);
+    this.localEnterTogglePopover = e => {
       if (e.key === 'Enter') this.toggle(e.target as HTMLElement);
     };
-    this.localTouchTogglePopup = e => {
+    this.localTouchTogglePopover = e => {
       e.preventDefault();
       this.toggle(e.target as HTMLElement);
     };
@@ -36,7 +41,7 @@ export class PostPopup {
 
   connectedCallback() {
     if (!this.triggers) {
-      throw new Error(`No trigger found for <post-popup popup-id="${this.host.id}`);
+      throw new Error(`No trigger found for <post-popover popover-id="${this.host.id}`);
     }
 
     // As long as cross-shadow-boundary [popovertarget] and button.popoverTargetElement are not working
@@ -46,25 +51,25 @@ export class PostPopup {
     // https://stackoverflow.com/questions/77324143/popovertargetelement-does-not-cross-shadow-boundaries?noredirect=1#comment136318281_77324143
     this.triggers.forEach(trigger => {
       // See this.onToggle for one time mouse event listener
-      trigger.addEventListener('mouseup', this.localTogglePopup, { once: true });
-      trigger.addEventListener('keypress', this.localEnterTogglePopup);
-      trigger.addEventListener('touch', this.localTouchTogglePopup, { once: true });
+      trigger.addEventListener('mouseup', this.localTogglePopover, { once: true });
+      trigger.addEventListener('keypress', this.localEnterTogglePopover);
+      trigger.addEventListener('touch', this.localTouchTogglePopover, { once: true });
       trigger.setAttribute('aria-expanded', 'false');
     });
   }
 
   disconnectedCallback() {
     this.triggers.forEach(trigger => {
-      trigger.removeEventListener('mouseup', this.localTogglePopup);
-      trigger.removeEventListener('keypress', this.localEnterTogglePopup);
-      trigger.removeEventListener('touch', this.localTouchTogglePopup);
+      trigger.removeEventListener('mouseup', this.localTogglePopover);
+      trigger.removeEventListener('keypress', this.localEnterTogglePopover);
+      trigger.removeEventListener('touch', this.localTouchTogglePopover);
       trigger.removeAttribute('aria-expanded');
     });
   }
 
   /**
-   * Programmatically display the popup
-   * @param target An element with [data-popup-target="id"] where the popup should be shown
+   * Programmatically display the popover
+   * @param target An element with [data-popover-target="id"] where the popover should be shown
    */
   @Method()
   async show(target: HTMLElement) {
@@ -74,7 +79,7 @@ export class PostPopup {
   }
 
   /**
-   * Programmatically hide this popup
+   * Programmatically hide this popover
    */
   @Method()
   async hide() {
@@ -83,8 +88,8 @@ export class PostPopup {
   }
 
   /**
-   * Toggle popup display
-   * @param target An element with [data-popup-target="id"] where the popup should be anchored to
+   * Toggle popover display
+   * @param target An element with [data-popover-target="id"] where the popover should be anchored to
    * @param force Pass true to always show or false to always hide
    */
   @Method()
@@ -94,7 +99,7 @@ export class PostPopup {
   }
 
   private get triggers() {
-    return document.querySelectorAll(`[data-popup-target="${this.host.id}"]`);
+    return document.querySelectorAll(`[data-popover-target="${this.host.id}"]`);
   }
 
   /**
@@ -112,8 +117,8 @@ export class PostPopup {
     if (!e.detail) {
       window.requestAnimationFrame(() => {
         this.triggers.forEach(trigger => {
-          trigger.addEventListener('mouseup', this.localTogglePopup, { once: true });
-          trigger.addEventListener('touch', this.localTouchTogglePopup, { once: true });
+          trigger.addEventListener('mouseup', this.localTogglePopover, { once: true });
+          trigger.addEventListener('touch', this.localTouchTogglePopover, { once: true });
         });
       });
 
@@ -134,12 +139,12 @@ export class PostPopup {
           ref={e => (this.popoverRef = e)}
           onPostPopoverToggled={e => this.onToggle(e)}
         >
-          <div class="popup-container">
+          <div class="popover-container">
             <div>
               <slot></slot>
             </div>
             <button class="btn-close" onClick={() => this.hide()}>
-              <span class="visually-hidden">Collapse popup</span>
+              <span class="visually-hidden">{this.closeButtonCaption}</span>
             </button>
           </div>
         </post-popovercontainer>

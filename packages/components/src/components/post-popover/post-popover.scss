@@ -14,7 +14,7 @@
   @include utilities.visuallyhidden();
 }
 
-.popup-container {
+.popover-container {
   display: flex;
   align-items: self-start;
   padding: spacing.$size-micro spacing.$size-mini;

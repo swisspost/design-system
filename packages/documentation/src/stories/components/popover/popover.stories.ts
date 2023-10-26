@@ -4,14 +4,14 @@ import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: Meta = {
-  title: 'Components/Popup',
-  component: 'post-popup',
+  title: 'Components/Popover',
+  component: 'post-popover',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },
   render,
   args: {
-    id: 'popup-one',
+    id: 'popover-one',
     innerHtml:
       'A longer message that needs more time to read. <a href="#">Links</a> are also possible.',
     backgroundColor: 'primary',
@@ -21,7 +21,7 @@ const meta: Meta = {
     id: {
       name: 'Id',
       description:
-        'The id is used to connect a trigger element with the popup. <div className="mt-mini alert alert-info alert-sm">`<button data-popup-target="...">` is the only valid trigger element for `post-popup`.</div>',
+        'The id is used to connect a trigger element with the popover. <div className="mt-mini alert alert-info alert-sm">`<button data-popover-target="...">` is the only valid trigger element for `post-popover`.</div>',
       table: {
         category: 'General',
       },
@@ -58,16 +58,16 @@ const meta: Meta = {
 
 function render(args: Args) {
   return html`
-    <button class="btn btn-secondary btn-large" data-popup-target="${args.id}">
-      Click here for popup
+    <button class="btn btn-secondary btn-large" data-popover-target="${args.id}">
+      Click here to see a popover
     </button>
-    <post-popup
+    <post-popover
       class="hydrated bg-${args.backgroundColor}"
       id="${args.id}"
       placement="${args.placement}"
     >
       ${unsafeHTML(args.innerHtml)}
-    </post-popup>
+    </post-popover>
   `;
 }
 

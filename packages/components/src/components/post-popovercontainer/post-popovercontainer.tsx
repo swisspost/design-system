@@ -37,7 +37,7 @@ export type PostPopoverElement = HTMLElement & PopoverElement;
   styleUrl: 'post-popovercontainer.scss',
   shadow: true,
 })
-export class PostPopover {
+export class PostPopovercontainer {
   @Element() host: HTMLPostTooltipElement;
   @Event() postPopoverToggled: EventEmitter<boolean>;
   private popoverRef: PostPopoverElement;
