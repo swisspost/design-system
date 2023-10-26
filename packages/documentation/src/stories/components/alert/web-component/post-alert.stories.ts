@@ -79,9 +79,14 @@ function externalControl(story: StoryFn, context: StoryContext) {
     button = canvasElement.querySelector('.alert-button') as HTMLButtonElement;
 
     if (args.fixed) {
-      alert.remove();
+      button.hidden = false;
+
+      if (context.story !== 'Default') {
+        alert.remove();
+      }
     } else {
       button.hidden = true;
+
       alert.addEventListener('dismissed', () => {
         button.hidden = false;
         button.focus();
