@@ -1,5 +1,45 @@
 # @swisspost/design-system-documentation
 
+## 2.2.0
+
+### Minor Changes
+
+- Added a docs page for our spacing utilities (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#1988](https://github.com/swisspost/design-system/pull/1988))
+
+- Added a docs page for our grid-system. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1947](https://github.com/swisspost/design-system/pull/1947))
+
+### Patch Changes
+
+- Refactored the grid-system: adjusted container paddings, added responsive gutter-widths. Updated grid docs. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2045](https://github.com/swisspost/design-system/pull/2045))
+
+- Fixed the "fixed" control in the `post-alert` documentation. (by [@alizedebray](https://github.com/alizedebray) with [#2094](https://github.com/swisspost/design-system/pull/2094))
+- Updated dependencies:
+  - @swisspost/internet-header@1.11.0
+  - @swisspost/design-system-components@1.5.1
+  - @swisspost/design-system-styles@6.4.2
+  - @swisspost/design-system-components-react@1.0.19
+
+## 2.1.0
+
+### Minor Changes
+
+- Added the `post-tooltip` component. (by [@gfellerph](https://github.com/gfellerph) with [#1879](https://github.com/swisspost/design-system/pull/1879))
+
+- Integrated the google tag manager and the basic events (page_context, page_change) to the documentation. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1951](https://github.com/swisspost/design-system/pull/1951))
+
+- Created the web component variant for the alert component. (by [@alizedebray](https://github.com/alizedebray) with [#1085](https://github.com/swisspost/design-system/pull/1085))
+
+### Patch Changes
+
+- Used the post-icon component instead of `.pi` classes to display icons in stories. (by [@alizedebray](https://github.com/alizedebray) with [#1945](https://github.com/swisspost/design-system/pull/1945))
+
+- Added deprecation alerts for `.form-control-rg`, `.form-control-md`, `.form-select-rg` and `.form-select-md` form-control variants. (by [@b1aserlu](https://github.com/b1aserlu) with [#1882](https://github.com/swisspost/design-system/pull/1882))
+- Updated dependencies:
+  - @swisspost/design-system-components@1.5.0
+  - @swisspost/design-system-styles@6.4.1
+  - @swisspost/internet-header@1.10.0
+  - @swisspost/design-system-components-react@1.0.18
+
 ## 2.0.2
 
 ### Patch Changes

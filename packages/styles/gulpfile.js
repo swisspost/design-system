@@ -5,6 +5,7 @@ const sass = require('sass');
 const newer = require('gulp-newer');
 const gulpSass = require('gulp-sass')(sass);
 const gulpPostCss = require('gulp-postcss');
+const postcssScss = require('postcss-scss');
 const autoprefixer = require('autoprefixer');
 const { globSync } = require('glob');
 const options = require('./package.json').sass;
@@ -16,6 +17,20 @@ gulp.task('copy', () => {
   return gulp
     .src(['./LICENSE', './README.md', './package.json', './src/**/*.scss'])
     .pipe(newer(options.outputDir))
+    .pipe(gulp.dest(options.outputDir));
+});
+
+/**
+ * Autoprefix SCSS files
+ */
+gulp.task('autoprefixer', function () {
+  return gulp
+    .src(`${options.outputDir}/**/*.scss`)
+    .pipe(
+      gulpPostCss([autoprefixer()], {
+        syntax: postcssScss,
+      }),
+    )
     .pipe(gulp.dest(options.outputDir));
 });
 
@@ -142,5 +157,8 @@ gulp.task('watch', () => {
  */
 exports.default = gulp.task(
   'build',
-  gulp.parallel(gulp.series('map-icons', 'copy', 'transform-package-json'), gulp.series('sass')),
+  gulp.parallel(
+    gulp.series('map-icons', 'copy', 'autoprefixer', 'transform-package-json'),
+    gulp.series('sass'),
+  ),
 );

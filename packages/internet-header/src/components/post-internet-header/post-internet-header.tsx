@@ -82,7 +82,7 @@ export class PostInternetHeader {
   @Prop() environment: Environment = 'prod';
 
   /**
-   * Override the language switch links with custom URLs. Helpful when your application contains sub-pages and you
+   * Override the language switch links with custom URLs. Helpful when your application contains sub-pages, and you
    * would like to stay on subpages when the user changes language.
    */
   @Prop() languageSwitchOverrides?: string | IAvailableLanguage[];
@@ -101,6 +101,11 @@ export class PostInternetHeader {
    * The header uses this local storage key to set the language. Disables automatic language selection.
    */
   @Prop() languageLocalStorageKey?: string = 'swisspost-internet-header-language';
+
+  /**
+   * Override the logout-url provided by the portal config.
+   */
+  @Prop() logoutUrl?: string;
 
   /**
    * Set the currently activated route. If there is a link matching this URL in the header, it will be highlighted.
@@ -241,7 +246,7 @@ export class PostInternetHeader {
   }
 
   @Watch('languageSwitchOverrides')
-  handleAvailableLanguagesChage(newValue: string | IAvailableLanguage[]) {
+  handleAvailableLanguagesChange(newValue: string | IAvailableLanguage[]) {
     state.languageSwitchOverrides = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
   }
 
@@ -308,7 +313,7 @@ export class PostInternetHeader {
 
   @Listen('languageChanged')
   handleLanguageChangeEvent(event: CustomEvent<string>) {
-    this.handleLanguageChange(event.detail);
+    void this.handleLanguageChange(event.detail);
   }
 
   @Watch('stickyness')
@@ -322,17 +327,17 @@ export class PostInternetHeader {
   private handleClickOutside(event: Event) {
     // Close active dropdown element on click outside of it
     if (this.activeDropdownElement && !event.composedPath().includes(this.activeDropdownElement)) {
-      this.activeDropdownElement.toggleDropdown(false);
+      void this.activeDropdownElement.toggleDropdown(false);
     }
   }
 
   private handleKeyUp(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       if (this.activeDropdownElement) {
-        this.activeDropdownElement.toggleDropdown(false);
+        void this.activeDropdownElement.toggleDropdown(false);
       }
       if (this.activeFlyout !== null && this.mainNav) {
-        this.mainNav.toggleDropdown(false);
+        void this.mainNav.toggleDropdown(false);
       }
     }
   }
@@ -376,15 +381,15 @@ export class PostInternetHeader {
       return;
     }
 
-    if (event.detail.open === true) {
+    if (event.detail.open) {
       if (this.activeDropdownElement) {
-        this.activeDropdownElement.toggleDropdown(false);
+        void this.activeDropdownElement.toggleDropdown(false);
       }
 
       this.activeDropdownElement = event.detail.element;
 
       if (window.innerWidth >= 1024) {
-        // Add event listener to close active dropdown element on click outsite of it
+        // Add event listener to close active dropdown element on click outside of it
         // Also adds 10ms delay in case of an external interaction:
         //    Some button on the page calls toggleDropdown() -> dropdown opens
         //    Click event bubbles to the window, this.handleClickOutsideBound closes dropdown again
@@ -394,7 +399,7 @@ export class PostInternetHeader {
       }
 
       if (this.activeFlyout !== null && this.mainNav) {
-        this.mainNav.setActiveFlyout(null);
+        void this.mainNav.setActiveFlyout(null);
       }
     } else {
       this.activeDropdownElement = null;
@@ -412,7 +417,7 @@ export class PostInternetHeader {
     this.activeFlyout = event.detail;
 
     if (this.activeDropdownElement && event.detail && !this.isMainNavOpen()) {
-      this.activeDropdownElement.toggleDropdown(false);
+      void this.activeDropdownElement.toggleDropdown(false);
     }
   }
 
@@ -444,7 +449,7 @@ export class PostInternetHeader {
     return (
       <Host
         class={`stickyness-${this.stickyness} ${
-          this.activeDropdownElement || this.activeFlyout ? 'dropdown-open' : ''
+          Boolean(this.activeDropdownElement) || Boolean(this.activeFlyout) ? 'dropdown-open' : ''
         }`}
         data-version={packageJson.version}
         onKeyup={(e: KeyboardEvent) => this.handleKeyUp(e)}
@@ -452,17 +457,17 @@ export class PostInternetHeader {
         <header class={`post-internet-header${this.fullWidth ? ' full-width' : ''}`}>
           <SvgSprite />
           <h1 class="visually-hidden">{translate('Navigate on post.ch')}</h1>
-          <If condition={this.skiplinks === true}>
+          <If condition={this.skiplinks}>
             <post-skiplinks></post-skiplinks>
           </If>
-          <If condition={renderMetaNavigation === true}>
+          <If condition={renderMetaNavigation}>
             <post-meta-navigation
               orientation="horizontal"
               class="hidden-lg"
               full-width={this.fullWidth}
               ref={el => (this.metaNav = el)}
             >
-              <If condition={renderLanguageSwitch === true}>
+              <If condition={renderLanguageSwitch}>
                 <post-language-switch
                   id="post-language-switch-desktop"
                   mode="dropdown"
@@ -488,9 +493,9 @@ export class PostInternetHeader {
               onFlyoutToggled={e => this.handleFlyoutToggled(e)}
               ref={el => (this.mainNav = el)}
             >
-              <If condition={renderMetaNavigation === true}>
+              <If condition={renderMetaNavigation}>
                 <post-meta-navigation orientation="vertical">
-                  <If condition={renderLanguageSwitch === true}>
+                  <If condition={renderLanguageSwitch}>
                     <post-language-switch
                       id="post-language-switch-mobile"
                       mode="list"
@@ -500,15 +505,15 @@ export class PostInternetHeader {
               </If>
             </post-main-navigation>
             <div class="main-navigation-controls">
-              <If condition={this.search !== false}>
+              <If condition={this.search}>
                 <post-search onDropdownToggled={e => this.handleDropdownToggled(e)}></post-search>
               </If>
               <If condition={!!renderLogin}>
-                <post-klp-login-widget>
+                <post-klp-login-widget logout-url={this.logoutUrl}>
                   <slot name="login-widget"></slot>
                 </post-klp-login-widget>
               </If>
-              <If condition={renderMetaNavigation === false && renderLanguageSwitch === true}>
+              <If condition={!renderMetaNavigation && renderLanguageSwitch}>
                 <post-language-switch
                   id="post-language-switch-no-meta"
                   onDropdownToggled={e => this.handleDropdownToggled(e)}

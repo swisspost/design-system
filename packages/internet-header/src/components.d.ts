@@ -6,17 +6,21 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DropdownEvent, NavMainEntity } from "./models/header.model";
-import { IBreadcrumbItem } from "./models/breadcrumbs.model";
+import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 import { StickynessOptions } from "./models/implementor.model";
 import { Environment, ICustomConfig } from "./models/general.model";
 import { IAvailableLanguage } from "./models/language.model";
 export { DropdownEvent, NavMainEntity } from "./models/header.model";
-export { IBreadcrumbItem } from "./models/breadcrumbs.model";
+export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 export { StickynessOptions } from "./models/implementor.model";
 export { Environment, ICustomConfig } from "./models/general.model";
 export { IAvailableLanguage } from "./models/language.model";
 export namespace Components {
     interface PostKlpLoginWidget {
+        /**
+          * Override the logout-url provided by the portal config.
+         */
+        "logoutUrl"?: string;
         /**
           * Sets the focus on the login button
          */
@@ -70,6 +74,15 @@ export namespace Components {
     }
     interface SwisspostInternetBreadcrumbs {
         "customItems"?: string | IBreadcrumbItem[];
+        /**
+          * Hide all buttons.
+         */
+        "hideButtons": boolean;
+        /**
+          * Toggle an overlay associated with a button.
+          * @param overlayId
+         */
+        "toggleOverlayById": (overlayId: IBreadcrumbOverlay['id']) => Promise<void>;
     }
     interface SwisspostInternetFooter {
     }
@@ -112,13 +125,17 @@ export namespace Components {
          */
         "languageLocalStorageKey"?: string;
         /**
-          * Override the language switch links with custom URLs. Helpful when your application contains sub-pages and you would like to stay on subpages when the user changes language.
+          * Override the language switch links with custom URLs. Helpful when your application contains sub-pages, and you would like to stay on subpages when the user changes language.
          */
         "languageSwitchOverrides"?: string | IAvailableLanguage[];
         /**
           * Toggle the login link (when logged out) or the user widget (when logged in).
          */
         "login": boolean;
+        /**
+          * Override the logout-url provided by the portal config.
+         */
+        "logoutUrl"?: string;
         /**
           * Toggle the meta navigation.
          */
@@ -237,6 +254,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface PostKlpLoginWidget {
+        /**
+          * Override the logout-url provided by the portal config.
+         */
+        "logoutUrl"?: string;
     }
     interface PostLanguageSwitch {
         "mode"?: 'dropdown' | 'list';
@@ -260,6 +281,10 @@ declare namespace LocalJSX {
     }
     interface SwisspostInternetBreadcrumbs {
         "customItems"?: string | IBreadcrumbItem[];
+        /**
+          * Hide all buttons.
+         */
+        "hideButtons"?: boolean;
     }
     interface SwisspostInternetFooter {
     }
@@ -297,13 +322,17 @@ declare namespace LocalJSX {
          */
         "languageLocalStorageKey"?: string;
         /**
-          * Override the language switch links with custom URLs. Helpful when your application contains sub-pages and you would like to stay on subpages when the user changes language.
+          * Override the language switch links with custom URLs. Helpful when your application contains sub-pages, and you would like to stay on subpages when the user changes language.
          */
         "languageSwitchOverrides"?: string | IAvailableLanguage[];
         /**
           * Toggle the login link (when logged out) or the user widget (when logged in).
          */
         "login"?: boolean;
+        /**
+          * Override the logout-url provided by the portal config.
+         */
+        "logoutUrl"?: string;
         /**
           * Toggle the meta navigation.
          */

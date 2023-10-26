@@ -1,4 +1,4 @@
-import { Component, Host, h, Element, Method, Event, EventEmitter, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
 import { version } from '../../../package.json';
 import { fadeIn, fadeOut } from '../../animations';
 
@@ -38,7 +38,7 @@ export class PostTabs {
     this.enableTabs();
 
     const initiallyActivePanel = this.activePanel || this.tabs.item(0).panel;
-    this.show(initiallyActivePanel);
+    void this.show(initiallyActivePanel);
 
     this.isLoaded = true;
   }
@@ -55,7 +55,9 @@ export class PostTabs {
     }
 
     const previousTab = this.activeTab;
-    const newTab : HTMLPostTabHeaderElement = this.host.querySelector(`post-tab-header[panel=${panelName}]`);
+    const newTab: HTMLPostTabHeaderElement = this.host.querySelector(
+      `post-tab-header[panel=${panelName}]`,
+    );
     this.activateTab(newTab);
 
     // if a panel is currently being displayed, remove it from the view and complete the associated animation
@@ -83,6 +85,7 @@ export class PostTabs {
 
     this.tabChange.emit(this.activeTab.panel);
   }
+
   private moveMisplacedTabs() {
     if (!this.tabs) return;
 
@@ -107,15 +110,18 @@ export class PostTabs {
       tabTitle.setAttribute('aria-controls', tabPanel.id);
       tabPanel.setAttribute('aria-labelledby', tabTitle.id);
 
-      tab.addEventListener('click', e => {
-        e.preventDefault();
-        this.show(tab.panel);
+      tab.addEventListener('click', () => {
+        void this.show(tab.panel);
+      });
+
+      tab.addEventListener('keydown', ({ key }) => {
+        if (key === 'ArrowRight' || key === 'ArrowLeft') this.navigateTabs(tab, key);
       });
     });
 
     // if the currently active tab was removed from the DOM then select the first one
     if (this.activeTab && !this.activeTab.isConnected) {
-      this.show(this.tabs.item(0).panel);
+      void this.show(this.tabs.item(0).panel);
     }
   }
 
@@ -123,11 +129,13 @@ export class PostTabs {
     if (this.activeTab) {
       const tabTitle = this.activeTab.shadowRoot.querySelector('.tab-title');
       tabTitle.setAttribute('aria-selected', 'false');
+      tabTitle.setAttribute('tabindex', '-1');
       tabTitle.classList.remove('active');
     }
 
     const tabTitle = tab.shadowRoot.querySelector('.tab-title');
     tabTitle.setAttribute('aria-selected', 'true');
+    tabTitle.removeAttribute('tabindex');
     tabTitle.classList.add('active');
 
     this.activeTab = tab;
@@ -159,18 +167,32 @@ export class PostTabs {
   }
 
   private getPanel(name: string): HTMLPostTabPanelElement {
-    return this.host.querySelector(
-      `post-tab-panel[name=${name}]`
-    );
+    return this.host.querySelector(`post-tab-panel[name=${name}]`);
+  }
+
+  private navigateTabs(tab: HTMLPostTabHeaderElement, key: 'ArrowRight' | 'ArrowLeft') {
+    const activeTabIndex = Array.from(this.tabs).indexOf(tab);
+
+    let nextTab: HTMLPostTabHeaderElement;
+    if (key === 'ArrowRight') {
+      nextTab = this.tabs[activeTabIndex + 1] || this.tabs[0];
+    } else {
+      nextTab = this.tabs[activeTabIndex - 1] || this.tabs[this.tabs.length - 1];
+    }
+
+    if (!nextTab) return;
+
+    const nextTabTitle = nextTab.shadowRoot.querySelector('.tab-title') as HTMLAnchorElement;
+    nextTabTitle.focus();
   }
 
   render() {
     return (
       <Host data-version={version}>
         <div class="tabs-wrapper">
-          <ul class="tabs nav" role="tablist">
+          <div class="tabs" role="tablist">
             <slot name="tabs" onSlotchange={() => this.enableTabs()} />
-          </ul>
+          </div>
         </div>
         <div class="tab-content">
           <slot onSlotchange={() => this.moveMisplacedTabs()} />

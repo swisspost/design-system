@@ -6,7 +6,7 @@
 @use './../../variables/spacing';
 @use './../../variables/components/nav';
 
-.tab-title {
+.tab-title[role=tab]{
   display: inline-block;
   position: relative;
   box-sizing: border-box;

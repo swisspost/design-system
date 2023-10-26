@@ -1,11 +1,11 @@
-import { Component, Host, h, Prop, State, Element, Watch } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
 import { debounce } from 'throttle-debounce';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { clearAllBodyScrollLocks, disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { state } from '../../data/store';
 import { OverlayComponent } from './components/overlay.component';
-import iframeResizer from 'iframe-resizer/js/iframeResizer';
-import { IBreadcrumbOverlay, IBreadcrumbItem } from '../../models/breadcrumbs.model';
+import { iframeResizer } from 'iframe-resizer';
+import { IBreadcrumbItem, IBreadcrumbOverlay } from '../../models/breadcrumbs.model';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { BreadcrumbList } from './components/breadcrumb-list.component';
 import { prefersReducedMotion } from '../../utils/utils';
@@ -17,12 +17,37 @@ import { prefersReducedMotion } from '../../utils/utils';
 })
 export class PostInternetBreadcrumbs {
   @Prop() customItems?: string | IBreadcrumbItem[];
+
+  /**
+   * Hide all buttons.
+   */
+  @Prop() hideButtons: boolean = false;
+
   @State() customBreadcrumbItems?: IBreadcrumbItem[];
   @State() overlayVisible: boolean;
   @State() isConcatenated: boolean; // Don't set an initial value, this has to be calculated first, otherwise reactivity problems ensue
   @State() dropdownOpen: boolean = false;
   @State() refsReady: boolean = false;
-  @Element() host: Element;
+  @Element() host: HTMLSwisspostInternetBreadcrumbsElement;
+
+  /**
+   * Toggle an overlay associated with a button.
+   * @param {IBreadcrumbOverlay['id']} overlayId
+   */
+  @Method()
+  async toggleOverlayById(overlayId: IBreadcrumbOverlay['id']): Promise<void> {
+    const buttons = state.localizedConfig?.breadcrumb.buttons;
+    const overlay = buttons?.find(button => button.overlay.id === overlayId)?.overlay;
+
+    if (!overlay) {
+      console.warn(
+        `Internet Header: Failed to toggle overlay with id #${overlayId} as it was not found in the breadcrumb buttons config.`,
+      );
+      return;
+    }
+
+    this.toggleOverlay(overlay);
+  }
 
   private controlNavRef?: HTMLElement;
   private visibleNavRef?: HTMLElement;
@@ -61,7 +86,7 @@ export class PostInternetBreadcrumbs {
   }
 
   @Watch('customItems')
-  handleCustomConfigChage(newValue: string | IBreadcrumbItem[]) {
+  handleCustomConfigChange(newValue: string | IBreadcrumbItem[]) {
     try {
       this.customBreadcrumbItems = typeof newValue === 'string' ? JSON.parse(newValue) : newValue;
     } catch (error) {
@@ -95,7 +120,7 @@ export class PostInternetBreadcrumbs {
     const newVisibility = force ?? !this.overlayVisible;
 
     if (newVisibility) {
-      // Will trigger overlayRef() once the HTLM is rendered
+      // Will trigger overlayRef() once the HTML is rendered
       this.overlayVisible = newVisibility;
       this.currentOverlay = overlay;
       this.setBodyScroll(overlay);
@@ -125,8 +150,10 @@ export class PostInternetBreadcrumbs {
    */
   setBodyScroll(overlay: IBreadcrumbOverlay) {
     if (this.overlayVisible) {
+      // @ts-ignore
       disableBodyScroll(overlay, { reserveScrollBarGap: true });
     } else {
+      // @ts-ignore
       enableBodyScroll(overlay);
     }
   }
@@ -145,7 +172,7 @@ export class PostInternetBreadcrumbs {
     this.toggleDropdown(false);
   }
 
-  registerIFrameResizer(iFrame: HTMLIFrameElement) {
+  registerIFrameResizer(iFrame: HTMLIFrameElement | undefined) {
     if (!iFrame) {
       return;
     }
@@ -215,6 +242,7 @@ export class PostInternetBreadcrumbs {
 
   render() {
     // There is something wrong entirely
+    // eslint-disable-next-line @stencil-community/strict-boolean-conditions
     if (!state) {
       console.warn(
         `Internet Breadcrumbs: Could not load config. Please make sure that you included the <swisspost-internet-header></swisspost-internet-header> component.`,
@@ -228,6 +256,7 @@ export class PostInternetBreadcrumbs {
     }
 
     // Config has loaded but there is no breadcrumbs config
+    // eslint-disable-next-line @stencil-community/strict-boolean-conditions
     if (!state.localizedConfig.breadcrumb) {
       console.warn(
         `Internet Header: Current project "${state.projectId}" does not include a breadcrumb config. The breadcrumbs will not be rendered. Remove `,
@@ -271,19 +300,23 @@ export class PostInternetBreadcrumbs {
               clickHandler={() => this.handleToggleDropdown()}
             ></BreadcrumbList>
           </nav>
-          <div class="breadcrumb-buttons">
-            {breadcrumbConfig.buttons.map(button => (
-              <button
-                class="btn btn-secondary btn-icon"
-                key={button.text}
-                aria-expanded={`${!!this.overlayVisible && this.currentOverlay === button.overlay}`}
-                onClick={() => this.toggleOverlay(button.overlay, true)}
-              >
-                <SvgIcon name={button.svgIcon.name}></SvgIcon>
-                <span class="visually-hidden">{button.text}</span>
-              </button>
-            ))}
-          </div>
+          {!this.hideButtons && (
+            <div class="breadcrumb-buttons">
+              {breadcrumbConfig.buttons.map(button => (
+                <button
+                  class="btn btn-secondary btn-icon"
+                  key={button.text}
+                  aria-expanded={`${Boolean(
+                    this.overlayVisible && this.currentOverlay === button.overlay,
+                  )}`}
+                  onClick={() => this.toggleOverlay(button.overlay, true)}
+                >
+                  <SvgIcon name={button.svgIcon.name}></SvgIcon>
+                  <span class="visually-hidden">{button.text}</span>
+                </button>
+              ))}
+            </div>
+          )}
           {this.overlayVisible && (
             <OverlayComponent
               overlayRef={e => e !== undefined && this.overlayRef(e)}

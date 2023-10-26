@@ -36,7 +36,7 @@
     "components:e2e": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-components e2e'",
     "components:e2e:watch": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-components e2e:watch'",
     "components:snapshots": "start-server-and-test docs:headless 9300 'pnpm --filter design-system-components snapshots'",
-    "intranet-header:start": "pnpm --filter design-system-components-angular start",
+    "intranet-header:start": "pnpm --filter design-system-intranet-header-workspace start",
     "header:start": "pnpm --filter internet-header dev",
     "header:build": "pnpm --filter internet-header build",
     "header:test": "pnpm --filter internet-header test",
@@ -54,13 +54,13 @@
   },
   "devDependencies": {
     "@changesets/cli": "2.26.2",
-    "start-server-and-test": "2.0.0"
+    "start-server-and-test": "2.0.1"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
   "engines": {
-    "node": "16",
+    "node": "18",
     "pnpm": "8"
   },
   "pnpm": {

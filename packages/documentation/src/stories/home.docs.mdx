@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/blocks';
 import { linkTo } from '@storybook/addon-links';
 import { getVersion } from '../utils/version';
+import * as HomeStories from './home.stories';
 import { Tile, Feature } from './home.blocks';
 import './home.styles.scss';
 
-<Meta title="Home" />
+<Meta of={HomeStories} />
 
 <div className="mt-huge text-center">
   <h2 className="h3">Packages &amp; Resources</h2>
@@ -32,7 +33,7 @@ import './home.styles.scss';
     </Tile>
     <Tile
       title="Intranet-Header"
-      href="https://github.com/swisspost/design-system/tree/main/packages/components-angular/projects/intranet-header"
+      href="https://github.com/swisspost/design-system/tree/main/packages/intranet-header-workspace/projects/intranet-header"
     >
       <img
         src="/images/packages/intranet-header.svg"
