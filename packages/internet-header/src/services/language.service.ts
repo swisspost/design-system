@@ -49,7 +49,7 @@ export const getUserLang = (
 
     // Check the state
     state.currentLanguage,
-  ].filter((lang): lang is string => !!lang);
+  ].filter((lang): lang is string => lang != null);
 
   // Check the set of languages to see if it matches
   // any of the supported languages. Return the first
@@ -57,7 +57,7 @@ export const getUserLang = (
   const lang =
     languagesSet.find(language => supportedLanguages.includes(language)) || supportedLanguages[0];
 
-  if (!lang || lang.length !== 2) {
+  if (lang == null || lang.length !== 2) {
     throw new Error(
       `Current language could not be determined from settings or the language provided (${lang}) is not supported by the Header API.`,
     );
@@ -108,7 +108,7 @@ export const setCookie = (key: string, value: string) => {
 
 const getPreferredLanguageFromBrowser = (supportedLanguages: string[]): string | null => {
   // IE & Chrome
-  if (navigator.language) {
+  if (navigator.language != null) {
     const lang = extractLanguage(navigator.language);
     if (supportedLanguages.indexOf(lang) !== -1) {
       return lang;
@@ -116,7 +116,7 @@ const getPreferredLanguageFromBrowser = (supportedLanguages: string[]): string |
   }
 
   // Chrome supports a list of preferred languages: if the preferred is not supported, we go down the list.
-  if (navigator.languages) {
+  if (navigator.languages != null) {
     for (const l of navigator.languages) {
       const lang = extractLanguage(l);
       if (supportedLanguages.indexOf(lang) !== -1) {
