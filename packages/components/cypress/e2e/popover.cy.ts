@@ -1,10 +1,12 @@
 describe('popover', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('popup');
+      cy.getComponent('popover');
       // Aria-expanded is set by the web component, therefor it's a good measure to indicate the component is ready
-      cy.get('[data-popup-target="popup-one"][aria-expanded]', { timeout: 30000 }).as('trigger');
-      cy.get('#popup-one.hydrated').as('popup');
+      cy.get('[data-popover-target="popover-one"][aria-expanded]', { timeout: 30000 }).as(
+        'trigger',
+      );
+      cy.get('#popover-one.hydrated').as('popover');
     });
 
     it('should show up on click', () => {
@@ -42,19 +44,21 @@ describe('popover', () => {
 
     it('should open and close with the API', () => {
       Promise.all([cy.get('@trigger'), cy.get('@popover')])
-        .then(([$trigger, $popup]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
-          $trigger.get(0),
-          $popup.get(0),
-        ])
-        .then(([trigger, popup]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
+        .then(
+          ([$trigger, $popover]: [JQuery<HTMLButtonElement>, JQuery<HTMLPostPopoverElement>]) => [
+            $trigger.get(0),
+            $popover.get(0),
+          ],
+        )
+        .then(([trigger, popover]: [HTMLButtonElement, HTMLPostPopoverElement]) => {
           cy.get('@popover').should('not.be.visible');
-          popup.show(trigger);
+          popover.show(trigger);
           cy.get('@popover').should('be.visible');
-          popup.hide();
+          popover.hide();
           cy.get('@popover').should('not.be.visible');
-          popup.toggle(trigger);
+          popover.toggle(trigger);
           cy.get('@popover').should('be.visible');
-          popup.toggle(trigger);
+          popover.toggle(trigger);
           cy.get('@popover').should('not.be.visible');
         });
     });
