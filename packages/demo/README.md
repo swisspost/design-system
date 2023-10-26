@@ -14,7 +14,7 @@ These contribution guidelines extend the [general contribution guidelines](../..
 npm start
 ```
 
-The default URL is [`http://localhost:9000/`](http://localhost:9000/). The app will automatically reload if you change any of the source files.
+The default URL is [`http://localhost:9010/`](http://localhost:9010/). The app will automatically reload if you change any of the source files.
 
 ## Code scaffolding
 

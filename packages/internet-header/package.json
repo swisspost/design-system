@@ -29,7 +29,7 @@
     "loader/"
   ],
   "scripts": {
-    "dev": "stencil build --serve --watch --docs-readme",
+    "dev": "stencil build --serve --port 9310 --watch --docs-readme",
     "start": "stencil build --watch --docs-readme",
     "build": "stencil build --docs-readme",
     "clean": "rimraf www dist loader",
