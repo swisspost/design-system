@@ -1,5 +1,21 @@
 # @swisspost/internet-header
 
+## 1.11.0
+
+### Minor Changes
+
+- Added a new button to clear the text in the search box. (by [@b1aserlu](https://github.com/b1aserlu) with [#2036](https://github.com/swisspost/design-system/pull/2036))
+
+### Patch Changes
+
+- Added hide-buttons prop to hide all breadcrumbs buttons. (by [@imagoiq](https://github.com/imagoiq) with [#2027](https://github.com/swisspost/design-system/pull/2027))
+
+- Fixed internet-header search focus truncated on focus-within. (by [@imagoiq](https://github.com/imagoiq) with [#2043](https://github.com/swisspost/design-system/pull/2043))
+
+- Compressed styles output. (by [@imagoiq](https://github.com/imagoiq) with [#2098](https://github.com/swisspost/design-system/pull/2098))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.2
+
 ## 1.10.0
 
 ### Minor Changes

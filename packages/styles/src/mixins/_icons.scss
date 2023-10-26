@@ -8,10 +8,12 @@
 @use './../mixins/utilities';
 
 @mixin icon($name) {
-  /* stylelint-disable-next-line property-no-vendor-prefix */
-  -webkit-mask-image: url('#{icon-fn.get-svg-url($name)}');
   mask-image: url('#{icon-fn.get-svg-url($name)}');
   background-color: currentColor;
+}
+
+@mixin remove-icon() {
+  mask-image: none;
 }
 
 // DEPRECATED

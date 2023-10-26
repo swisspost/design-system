@@ -1,5 +1,24 @@
 # @swisspost/design-system-documentation
 
+## 2.2.0
+
+### Minor Changes
+
+- Added a docs page for our spacing utilities (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#1988](https://github.com/swisspost/design-system/pull/1988))
+
+- Added a docs page for our grid-system. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#1947](https://github.com/swisspost/design-system/pull/1947))
+
+### Patch Changes
+
+- Refactored the grid-system: adjusted container paddings, added responsive gutter-widths. Updated grid docs. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2045](https://github.com/swisspost/design-system/pull/2045))
+
+- Fixed the "fixed" control in the `post-alert` documentation. (by [@alizedebray](https://github.com/alizedebray) with [#2094](https://github.com/swisspost/design-system/pull/2094))
+- Updated dependencies:
+  - @swisspost/internet-header@1.11.0
+  - @swisspost/design-system-components@1.5.1
+  - @swisspost/design-system-styles@6.4.2
+  - @swisspost/design-system-components-react@1.0.19
+
 ## 2.1.0
 
 ### Minor Changes
