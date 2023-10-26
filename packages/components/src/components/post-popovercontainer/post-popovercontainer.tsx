@@ -65,7 +65,7 @@ export class PostPopover {
   disconnectedCallback() {
     if (this.popoverRef)
       this.popoverRef.removeEventListener('beforetoggle', e =>
-        this.toggle(e.target as HTMLPostPopoverElement),
+        this.toggle(e.target as HTMLPostPopovercontainerElement),
       );
 
     if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();

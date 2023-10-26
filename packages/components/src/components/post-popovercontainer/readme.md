@@ -70,9 +70,9 @@ Type: `Promise<void>`
 ### Graph
 ```mermaid
 graph TD;
-  post-popup --> post-popover
-  post-tooltip --> post-popover
-  style post-popover fill:#f9f,stroke:#333,stroke-width:4px
+  post-popup --> post-popovercontainer
+  post-tooltip --> post-popovercontainer
+  style post-popovercontainer fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
 ----------------------------------------------

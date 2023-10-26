@@ -12,7 +12,7 @@ import { version } from '../../../package.json';
   shadow: true,
 })
 export class PostTooltip {
-  private popoverRef: HTMLPostPopoverElement;
+  private popoverRef: HTMLPostPopovercontainerElement;
   private readonly localShowTooltip: (e: Event) => Promise<void>;
   private readonly localHideTooltip: () => Promise<void>;
 
@@ -123,15 +123,15 @@ export class PostTooltip {
   render() {
     return (
       <Host data-version={version}>
-        <post-popover
+        <post-popovercontainer
           role="tooltip"
           tabindex="-1"
           arrow
           placement={this.placement}
-          ref={(el: HTMLPostPopoverElement) => (this.popoverRef = el)}
+          ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
           <slot></slot>
-        </post-popover>
+        </post-popovercontainer>
       </Host>
     );
   }

@@ -8,7 +8,7 @@ import { version } from '../../../package.json';
   shadow: true,
 })
 export class PostPopup {
-  private popoverRef: HTMLPostPopoverElement;
+  private popoverRef: HTMLPostPopovercontainerElement;
   private localTogglePopup: (e: Event) => Promise<void>;
   private localEnterTogglePopup: (e: KeyboardEvent) => void;
   private localTouchTogglePopup: (e: TouchEvent) => void;
@@ -103,7 +103,7 @@ export class PostPopup {
    * A click opens the popover, a second click first closes it (due to light dismiss), then directly
    * opens it again because of the click listener on the button. Registering a new
    * one time listener after a small timeout solves this issue.
-   * @param e toggle event from post-popover
+   * @param e toggle event from post-popovercontainer
    */
   private onToggle(e: CustomEvent<boolean>) {
     if (this.currentTarget) {
@@ -128,7 +128,7 @@ export class PostPopup {
   render() {
     return (
       <Host data-version={version}>
-        <post-popover
+        <post-popovercontainer
           arrow
           placement={this.placement}
           ref={e => (this.popoverRef = e)}
@@ -142,7 +142,7 @@ export class PostPopup {
               <span class="visually-hidden">Collapse popup</span>
             </button>
           </div>
-        </post-popover>
+        </post-popovercontainer>
       </Host>
     );
   }

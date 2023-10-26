@@ -49,12 +49,12 @@ Type: `Promise<void>`
 
 ### Depends on
 
-- [post-popover](../post-popover)
+- [post-popovercontainer](../post-popovercontainer)
 
 ### Graph
 ```mermaid
 graph TD;
-  post-tooltip --> post-popover
+  post-tooltip --> post-popovercontainer
   style post-tooltip fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
