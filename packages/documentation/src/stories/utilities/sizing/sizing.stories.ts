@@ -52,7 +52,7 @@ const meta: Meta = {
       control: {
         type: 'select',
       },
-      options: sizingOptions,
+      options: ['none', ...sizingOptions],
     },
     maxWidth: {
       name: 'max-width',
@@ -60,7 +60,7 @@ const meta: Meta = {
       control: {
         type: 'select',
       },
-      options: sizingOptions,
+      options: ['none', ...sizingOptions],
     },
   },
 };
@@ -70,7 +70,9 @@ export default meta;
 type Story = StoryObj;
 
 function renderSizing(args: Args) {
-  const classes = `content h-${args.height} w-${args.width} mh-${args.maxHeight} mw-${args.maxWidth}`;
+  const classes = `content h-${args.height} w-${args.width} ${
+    args.maxHeight ? `mh-${args.maxHeight}` : ''
+  } ${args.maxWidth ? `mw-${args.maxWidth}` : ''}`;
 
   return html`
     <div class="sizing-example">
