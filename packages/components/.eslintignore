@@ -6,3 +6,4 @@ www
 cypress
 stencil.config.ts
 cypress.config.js
+.eslintrc.js
