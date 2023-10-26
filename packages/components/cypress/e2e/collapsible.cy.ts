@@ -45,7 +45,7 @@ describe('collapsible', () => {
       cy.checkVisibility('hidden');
     });
 
-    it("should adapt the header's aria-expanded attribute after collapsing", () => {
+    it('should adapt the header\'s aria-expanded attribute after collapsing', () => {
       cy.get('@header').click();
       cy.checkAriaExpanded('false');
     });
@@ -55,7 +55,7 @@ describe('collapsible', () => {
       cy.checkVisibility('visible');
     });
 
-    it("should adapt the header's aria-expanded attribute after expanding", () => {
+    it('should adapt the header\'s aria-expanded attribute after expanding', () => {
       cy.get('@header').dblclick();
       cy.checkAriaExpanded('true');
     });
