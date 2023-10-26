@@ -1,4 +1,12 @@
 {
-  // Fixes tsconfig not found error in nested .eslintrc.json files with relative paths
-  "eslint.workingDirectories": ["packages/intranet-header-workspace"]
+  "eslint.workingDirectories": [
+    "packages/intranet-header-workspace"
+  ],
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "[mdx]": {
+    "editor.defaultFormatter": null,
+    "editor.formatOnSave": false
+  },
+  "files.eol": "\n"
 }
