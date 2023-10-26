@@ -15,7 +15,7 @@ name: Build Demo App
 on:
   pull_request:
     paths:
-      - 'packages/components-angular/**'
+      - 'packages/intranet-header-workspace/**'
       - 'packages/demo/**'
       - 'packages/styles/src/**'
       - 'packages/styles/*'
