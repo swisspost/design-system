@@ -18,6 +18,7 @@ const meta: Meta = {
     hiddenLabel: false,
     checked: 'unchecked',
     disabled: false,
+    size: 'null',
     validation: 'null',
   },
   argTypes: {
@@ -83,6 +84,21 @@ const meta: Meta = {
         category: 'States',
       },
     },
+    size: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      control: {
+        type: 'select',
+        labels: {
+          'form-check-sm': 'Small',
+          'null': 'Large',
+        },
+      },
+      options: ['form-check-sm', 'null'],
+      table: {
+        category: 'General',
+      },
+    },
     disabled: {
       name: 'Disabled',
       description:
@@ -144,13 +160,13 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 
 function getLabel({ label }: Args, { id }: StoryContext) {
   return html`
-    <label for=${id} class="form-check-label">${label}</label>
+    <label for="${id}" class="form-check-label">${label}</label>
   `;
 }
 
 function getValidationFeedback({ validation }: Args) {
   return html`
-    <p class=${validation + '-feedback'}>
+    <p class="${validation + '-feedback'}">
       ${validation === 'valid' ? 'Ggranda sukceso!' : 'Eraro okazis!'}
     </p>
   `;
@@ -161,6 +177,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
 
   const containerClasses = mapClasses({
     'form-check': true,
+    [args.size]: args.size && args.size !== 'null',
     'form-check-inline': args.inline,
   });
 
@@ -179,16 +196,16 @@ function renderCheckbox(args: Args, context: StoryContext) {
   });
 
   return html`
-    <div class=${containerClasses}>
+    <div class="${containerClasses}">
       <input
-        id=${context.id}
-        class=${checkboxClasses}
+        id="${context.id}"
+        class="${checkboxClasses}"
         type="checkbox"
-        aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
-        aria-label=${ifDefined(args.hiddenLabel ? args.label : undefined)}
-        ?disabled=${args.disabled}
-        .checked=${CHECKED_STATE_MAP[args.checked]}
-        @change=${handleChange}
+        aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
+        aria-label="${ifDefined(args.hiddenLabel ? args.label : undefined)}"
+        ?disabled="${args.disabled}"
+        .checked="${CHECKED_STATE_MAP[args.checked]}"
+        @change="${handleChange}"
       />
       ${args.hiddenLabel ? nothing : getLabel(args, context)}
       ${args.validation !== 'null' ? getValidationFeedback(args) : nothing}
@@ -218,10 +235,23 @@ export const Validation: Story = {
   },
 };
 
+export const Size: Story = {
+  args: {
+    size: 'form-check-sm',
+  },
+  parameters: {
+    controls: {
+      exclude: ['Hidden Legend', 'Inline Layout'],
+    },
+  },
+};
+
 export const Inline: Story = {
   render: (args: Args, context: StoryContext) => html`
     <fieldset>
-      <legend class=${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}>Legendo</legend>
+      <legend class="${ifDefined(args.hiddenLegend ? 'visually-hidden' : undefined)}">
+        Legendo
+      </legend>
       ${['Unua Etikedo', 'Dua Etikedo', 'Tria Etikedo', 'Kvara  Etikedo'].map((label, index) =>
         renderCheckbox(
           { ...args, label, checked: false },

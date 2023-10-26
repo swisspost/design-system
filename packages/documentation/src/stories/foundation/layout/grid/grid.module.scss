@@ -1,0 +1,48 @@
+@use 'sass:list';
+@use 'sass:map';
+@use '@swisspost/design-system-styles/core' as post;
+@use '../layout.shared' as shared;
+
+:export {
+  // Variables to build the grid options table
+  breakpoint-count: length(post.$grid-breakpoints);
+  grid-columns: post.$grid-columns;
+
+  @each $breakpoint, $value in post.$grid-breakpoints {
+    $i: list.index(post.$grid-breakpoints, $breakpoint $value);
+
+    breakpoint_#{$breakpoint}_name: map.get(shared.$breakpointNames, $breakpoint) or $breakpoint;
+    breakpoint_#{$breakpoint}_dimensions: if(
+      $i == 1,
+      #{'<' + map.get(post.$grid-breakpoints, list.nth(map.keys(post.$grid-breakpoints), $i + 1))},
+      #{'≥' + $value}
+    );
+    breakpoint_#{$breakpoint}_infix: if($i == 1, none, $breakpoint);
+
+    container_#{$breakpoint}_max-width: map.get(post.$container-max-widths, $breakpoint) or none;
+    container_#{$breakpoint}_padding: map.get(post.$grid-container-padding, $breakpoint);
+    container_#{$breakpoint}_fluid_padding: map.get(
+      post.$grid-container-fluid-padding,
+      $breakpoint
+    );
+
+    grid_#{$breakpoint}_gutter-width: map.get(post.$grid-gutter-x, $breakpoint);
+  }
+
+  // Variables to expose under sass variables section
+  variables_grid-columns: post.$grid-columns;
+  variables_grid-gutter-width: post.$grid-gutter-width;
+  variables_grid-row-columns: post.$grid-row-columns;
+
+  @each $breakpoint, $value in post.$grid-breakpoints {
+    variables_grid-breakpoints_#{$breakpoint}: $value;
+    variables_grid-container-max-width_#{$breakpoint}: map.get(
+      post.$container-max-widths,
+      $breakpoint
+    );
+    variables_grid-container-padding_#{$breakpoint}: map.get(
+      post.$grid-container-padding,
+      $breakpoint
+    );
+  }
+}
