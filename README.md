@@ -35,7 +35,7 @@ npm install @swisspost/internet-header
 
 [![npm](https://img.shields.io/npm/v/@swisspost/design-system-intranet-header)](https://www.npmjs.com/package/@swisspost/design-system-intranet-header)
 
-[Documentation](https://design-system.post.ch/#/post-samples/intranet-layout) · [Changelog](/packages/components-angular/CHANGELOG.md)
+[Documentation](https://design-system.post.ch/#/post-samples/intranet-layout) · [Changelog](/packages/intranet-header-workspace/CHANGELOG.md)
 
 The Header Angular component for internal usage.
 
