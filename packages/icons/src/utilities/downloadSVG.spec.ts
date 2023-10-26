@@ -28,11 +28,8 @@ describe('downloadSVG', () => {
         meta: {
           downloadLink: '/test',
           businessfield: Businessfield.Kommunikation,
-          keywords: [
-            'Test',
-            'Test2',
-          ],
-          year: ''
+          keywords: ['Test', 'Test2'],
+          year: '',
         },
         file: {
           mime: VariantMIME.ImageSVGXML,
@@ -42,11 +39,11 @@ describe('downloadSVG', () => {
           size: {
             width: 32,
             dpi: 72,
-            height: 32
-          }
+            height: 32,
+          },
         },
         createdAt: new Date(),
-        modifiedAt: new Date()
+        modifiedAt: new Date(),
       },
       outputPath,
     );

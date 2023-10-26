@@ -4,6 +4,6 @@
 
 :export {
   @each $breakpoint in post.$grid-breakpoints-list {
-    #{$breakpoint} : $breakpoint
+    #{$breakpoint}: $breakpoint;
   }
 }

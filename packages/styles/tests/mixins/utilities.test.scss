@@ -1,4 +1,4 @@
-@use "src/mixins/utilities";
+@use 'src/mixins/utilities';
 
 ul {
   @include utilities.reset-list();

@@ -81,7 +81,8 @@ const meta: Meta = {
     },
     icon: {
       name: 'Icon',
-      description: 'Defines a custom icon.' +
+      description:
+        'Defines a custom icon.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
         '<a href="/?path=/docs/icons-getting-started--docs">set up the icons in your project</a>' +
@@ -370,8 +371,8 @@ function render(args: Args, context: StoryContext) {
   const toastIcon =
     !args.noIcon && args.icon !== 'null'
       ? html`
-        <post-icon aria-hidden="true" name=${args.icon}></post-icon>
-      `
+          <post-icon aria-hidden="true" name=${args.icon}></post-icon>
+        `
       : null;
 
   const dismissButton =
@@ -391,8 +392,7 @@ function render(args: Args, context: StoryContext) {
       @mouseenter="${() => killAutoHideTimeout(timeoutStore, args)}"
       @mouseleave="${() => createAutoHideTimeout(timeoutStore, args, updateArgs)}"
     >
-      ${toastIcon}
-      ${dismissButton}
+      ${toastIcon} ${dismissButton}
       <div class="toast-title">${args.title}</div>
       ${args.content
         ? html`

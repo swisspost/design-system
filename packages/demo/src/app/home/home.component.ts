@@ -3,23 +3,24 @@ import { environment } from './../../environments/environment';
 import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 interface MigrationAccordionGroupedCheckboxes {
-  general: Object,
-  bootstrap: Object,
-  ngbootstrap: Object,
-  jquery: Object,
-  post: Object
-};
+  general: Object;
+  bootstrap: Object;
+  ngbootstrap: Object;
+  jquery: Object;
+  post: Object;
+}
 
 @Component({
   selector: 'app-demo-home',
   templateUrl: 'home.component.html',
-  styleUrls: ['home.component.scss']
+  styleUrls: ['home.component.scss'],
 })
 export class HomeComponent {
   public static MIGRATION_TYPE_INTRANET_KEY: string = 'post:migration_type_intranet';
   public static MIGRATION_TYPE_ANGULAR_KEY: string = 'post:migration_type_angular';
-  public static MIGRATION_ACCORDION_KEY: string = 'post:migration_accordion'
-  public static MIGRATION_ACCORDION_GROUPED_CHECKBOXES_KEY: string = 'post:migration_accordion_grouped_checkboxes'
+  public static MIGRATION_ACCORDION_KEY: string = 'post:migration_accordion';
+  public static MIGRATION_ACCORDION_GROUPED_CHECKBOXES_KEY: string =
+    'post:migration_accordion_grouped_checkboxes';
   public version: string = environment.VERSION;
   public stylesVersion: string = environment.STYLES_VERSION;
   public angularVersion: string = environment.ANGULAR_VERSION;
@@ -29,7 +30,8 @@ export class HomeComponent {
   public isIE11 = false;
   public isMigratingIntranet = this.getLocaleStorage(this.migrationTypeIntranetKey) ?? false;
   public isMigratingAngular = this.getLocaleStorage(this.migrationTypeAngularKey) ?? true;
-  public migrationAccordionActiveIds: Array<string> = this.getLocaleStorage(this.migrationAccordionKey) ?? [];
+  public migrationAccordionActiveIds: Array<string> =
+    this.getLocaleStorage(this.migrationAccordionKey) ?? [];
   public migrationAccordionGroupedCheckboxes: MigrationAccordionGroupedCheckboxes = {
     general: {
       naming_cwfpackagename: false,
@@ -50,7 +52,7 @@ export class HomeComponent {
       classes_bgopacity: false,
       classes_secondary: false,
       classes_rtlmode: false,
-      classes_sronly: false
+      classes_sronly: false,
     },
     bootstrap: {
       alerts_closebuttoncontent: false,
@@ -89,7 +91,7 @@ export class HomeComponent {
       formswitches_classes: false,
       formswitches_labelclasses: false,
       formswitches_validationclasses: false,
-      formswitches_validationfeedbackclasses: false
+      formswitches_validationfeedbackclasses: false,
     },
     ngbootstrap: {
       buttons_labelclass: false,
@@ -97,7 +99,7 @@ export class HomeComponent {
       buttons_grouptoggleclass: false,
       datepickers_variables: false,
       modals_closebuttoncontent: false,
-      modals_closebuttonclass: false
+      modals_closebuttonclass: false,
     },
     jquery: {
       accordions_removed: false,
@@ -111,39 +113,41 @@ export class HomeComponent {
       topicteasers_imageattributes: false,
       topicteasers_imagecontainergridclasses: false,
       topicteasers_contentcontainergridclasses: false,
-      topicteasers_linklistfontcurve: false
-    }
+      topicteasers_linklistfontcurve: false,
+    },
   };
 
   constructor() {
     // Show deprecation warning if anybody still uses IE11
     this.isIE11 = window.navigator.userAgent.includes('Trident/7.0');
 
-    const localStorageCheckboxes: Object = this.getLocaleStorage(this.migrationAccordionGroupedCheckboxesKey) ?? {};
+    const localStorageCheckboxes: Object =
+      this.getLocaleStorage(this.migrationAccordionGroupedCheckboxesKey) ?? {};
 
     for (const groupKey in this.migrationAccordionGroupedCheckboxes) {
       const checkboxGroup = this.migrationAccordionGroupedCheckboxes[groupKey];
       const storageGroup = localStorageCheckboxes[groupKey] ?? {};
 
       for (const checkboxKey in checkboxGroup) {
-        if (storageGroup[checkboxKey] !== undefined) checkboxGroup[checkboxKey] = storageGroup[checkboxKey];
+        if (storageGroup[checkboxKey] !== undefined)
+          checkboxGroup[checkboxKey] = storageGroup[checkboxKey];
       }
     }
   }
 
-  get migrationTypeIntranetKey () {
+  get migrationTypeIntranetKey() {
     return HomeComponent.MIGRATION_TYPE_INTRANET_KEY;
   }
 
-  get migrationTypeAngularKey () {
+  get migrationTypeAngularKey() {
     return HomeComponent.MIGRATION_TYPE_ANGULAR_KEY;
   }
 
-  get migrationAccordionKey () {
+  get migrationAccordionKey() {
     return HomeComponent.MIGRATION_ACCORDION_KEY;
   }
 
-  get migrationAccordionGroupedCheckboxesKey () {
+  get migrationAccordionGroupedCheckboxesKey() {
     return HomeComponent.MIGRATION_ACCORDION_GROUPED_CHECKBOXES_KEY;
   }
 
@@ -153,8 +157,8 @@ export class HomeComponent {
     patch: /^(?:\d+\.\d+\.(\d+))/,
     pre: /^(?:\d+\.\d+\.\d+[ .:,;!?_~`'"^*+\-=<>#&$%@|\/()[\]{}]?(.*))/,
     majorminor: /^(?:(\d+\.\d+)\.\d+)/,
-    majorminorpatch: /^(\d+\.\d+\.\d+)/
-  }
+    majorminorpatch: /^(\d+\.\d+\.\d+)/,
+  };
 
   private versionFilterMap = {
     major: 'major',
@@ -165,15 +169,14 @@ export class HomeComponent {
     majorminor: 'majorminor',
     Mm: 'majorminor',
     majorminorpatch: 'majorminorpatch',
-    Mmp: 'majorminorpatch'
+    Mmp: 'majorminorpatch',
+  };
+
+  private getCleanVersion(version: string) {
+    return version.replace(/^[^\d]+/, '');
   }
 
-  private getCleanVersion (version: string) {
-    return version
-      .replace(/^[^\d]+/, '');
-  }
-
-  public getVersion (version: string, filter: string = '') {
+  public getVersion(version: string, filter: string = '') {
     const cleanVersion: string = this.getCleanVersion(version);
 
     if (filter) {
@@ -190,32 +193,39 @@ export class HomeComponent {
 
   // test
 
-  private getLocaleStorage (key: string) {
+  private getLocaleStorage(key: string) {
     return JSON.parse(window.localStorage.getItem(key));
   }
 
-  public setLocaleStorage (key: string, value: any) {
+  public setLocaleStorage(key: string, value: any) {
     window.localStorage.setItem(key, JSON.stringify(value));
   }
 
-  public getMigrationAccordionGroupedCheckboxesChecked (group = '') {
+  public getMigrationAccordionGroupedCheckboxesChecked(group = '') {
     const checkboxValues = Object.values(this.migrationAccordionGroupedCheckboxes[group] ?? {});
     const checkedValues = checkboxValues.filter(v => v === true);
 
     return `${checkedValues.length} of ${checkboxValues.length} done`;
   }
 
-  public migrationAccordionChange ($event: NgbPanelChangeEvent) {
+  public migrationAccordionChange($event: NgbPanelChangeEvent) {
     if ($event.nextState) {
-      this.migrationAccordionActiveIds = Array.from(new Set(this.migrationAccordionActiveIds.concat($event.panelId)));
+      this.migrationAccordionActiveIds = Array.from(
+        new Set(this.migrationAccordionActiveIds.concat($event.panelId)),
+      );
     } else {
-      this.migrationAccordionActiveIds = this.migrationAccordionActiveIds.filter(id => id !== $event.panelId);
+      this.migrationAccordionActiveIds = this.migrationAccordionActiveIds.filter(
+        id => id !== $event.panelId,
+      );
     }
 
     this.setLocaleStorage(this.migrationAccordionKey, this.migrationAccordionActiveIds);
   }
 
-  public migrationAccordionGroupedCheckboxesChange () {
-    this.setLocaleStorage(this.migrationAccordionGroupedCheckboxesKey, this.migrationAccordionGroupedCheckboxes);
+  public migrationAccordionGroupedCheckboxesChange() {
+    this.setLocaleStorage(
+      this.migrationAccordionGroupedCheckboxesKey,
+      this.migrationAccordionGroupedCheckboxes,
+    );
   }
 }

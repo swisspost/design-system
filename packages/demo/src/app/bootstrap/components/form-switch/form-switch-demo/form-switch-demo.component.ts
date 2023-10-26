@@ -2,12 +2,10 @@
  * Copyright 2022 by Swiss Post, Information Technology
  */
 
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-switch-demo',
-  templateUrl: './form-switch-demo.component.html'
+  templateUrl: './form-switch-demo.component.html',
 })
-export class FormSwitchDemoComponent {
-
-}
+export class FormSwitchDemoComponent {}

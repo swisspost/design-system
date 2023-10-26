@@ -8,9 +8,8 @@ describe('DotNotificationDemoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ DotNotificationDemoComponent ]
-    })
-    .compileComponents();
+      declarations: [DotNotificationDemoComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

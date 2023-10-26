@@ -46,10 +46,8 @@ export const LineHeight: Story = {
 export const TextColor: Story = {
   decorators: [
     story => html`
-      <div @click=${(e: Event) => e.preventDefault()}>
-        ${story()}
-      </div>
-    `
+      <div @click=${(e: Event) => e.preventDefault()}>${story()}</div>
+    `,
   ],
   render: () => html`
     <p class="text-success">This is colored text.</p>
@@ -60,14 +58,14 @@ export const TextColor: Story = {
 export const TextColorReset: Story = {
   decorators: [
     story => html`
-      <div @click=${(e: Event) => e.preventDefault()}>
-        ${story()}
-      </div>
-    `
+      <div @click=${(e: Event) => e.preventDefault()}>${story()}</div>
+    `,
   ],
   render: () => html`
     <p class="text-danger">
-      This is colored text with a <a href="#" class="text-reset">link</a> of the same color.
+      This is colored text with a
+      <a href="#" class="text-reset">link</a>
+      of the same color.
     </p>
   `,
 };
