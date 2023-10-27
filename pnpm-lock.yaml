@@ -175,8 +175,8 @@ importers:
         specifier: 16.2.11
         version: 16.2.11(@angular/core@16.2.11)
       '@angular/cdk':
-        specifier: 16.2.5
-        version: 16.2.5(@angular/common@16.2.11)(@angular/core@16.2.11)(rxjs@7.8.1)
+        specifier: 16.2.10
+        version: 16.2.10(@angular/common@16.2.11)(@angular/core@16.2.11)(rxjs@7.8.1)
       '@angular/common':
         specifier: 16.2.11
         version: 16.2.11(@angular/core@16.2.11)(rxjs@7.8.1)
@@ -202,8 +202,8 @@ importers:
         specifier: 16.2.11
         version: 16.2.11(@angular/common@16.2.11)(@angular/core@16.2.11)(@angular/platform-browser@16.2.11)(rxjs@7.8.1)
       '@ng-bootstrap/ng-bootstrap':
-        specifier: 15.1.1
-        version: 15.1.1(@angular/common@16.2.11)(@angular/core@16.2.11)(@angular/forms@16.2.11)(@angular/localize@16.2.11)(@popperjs/core@2.11.8)(rxjs@7.8.1)
+        specifier: 15.1.2
+        version: 15.1.2(@angular/common@16.2.11)(@angular/core@16.2.11)(@angular/forms@16.2.11)(@angular/localize@16.2.11)(@popperjs/core@2.11.8)(rxjs@7.8.1)
       '@popperjs/core':
         specifier: 2.11.8
         version: 2.11.8
@@ -281,11 +281,11 @@ importers:
         specifier: 9.12.4
         version: 9.12.4
       '@types/jasmine':
-        specifier: 5.1.0
-        version: 5.1.0
+        specifier: 5.1.1
+        version: 5.1.1
       '@types/jasminewd2':
-        specifier: 2.0.11
-        version: 2.0.11
+        specifier: 2.0.12
+        version: 2.0.12
       '@types/node':
         specifier: 18.17.19
         version: 18.17.19
@@ -329,8 +329,8 @@ importers:
         specifier: 4.0.2
         version: 4.0.2(webpack@5.88.2)
       rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
+        specifier: 5.0.5
+        version: 5.0.5
       sass:
         specifier: 1.68.0
         version: 1.68.0
@@ -1441,8 +1441,8 @@ packages:
       tslib: 2.6.2
     dev: false
 
-  /@angular/cdk@16.2.5(@angular/common@16.2.11)(@angular/core@16.2.11)(rxjs@7.8.1):
-    resolution: {integrity: sha512-9VbdWSYVFQq9y7Dl8KMooE+Sa5nx0l4Neue1IMmSS2v8b602VykiYA5aqz0BsLjfoiboXlUz6LCBXxukJtogcQ==}
+  /@angular/cdk@16.2.10(@angular/common@16.2.11)(@angular/core@16.2.11)(rxjs@7.8.1):
+    resolution: {integrity: sha512-kOQrPxSMPi66aM9XfwZIjQXhH+q0PkhK4BNMHB9RkvaaQ34ovOrKaGsT7t0+sjlVhiwTiy2mB1Qgz6NlIB0ZZw==}
     peerDependencies:
       '@angular/common': ^16.0.0 || ^17.0.0
       '@angular/core': ^16.0.0 || ^17.0.0
@@ -5918,25 +5918,6 @@ packages:
       tar-fs: 2.1.1
     dev: true
 
-  /@ng-bootstrap/ng-bootstrap@15.1.1(@angular/common@16.2.11)(@angular/core@16.2.11)(@angular/forms@16.2.11)(@angular/localize@16.2.11)(@popperjs/core@2.11.8)(rxjs@7.8.1):
-    resolution: {integrity: sha512-nZlIMMggtI3IHkGs0XPrUIUdpeEzQvfGV9M4I9IvCqiS2n4RwWoUvWK1ICo4csZqFNBDlCQx956gO6ZZUSL2mw==}
-    peerDependencies:
-      '@angular/common': ^16.0.0
-      '@angular/core': ^16.0.0
-      '@angular/forms': ^16.0.0
-      '@angular/localize': ^16.0.0
-      '@popperjs/core': ^2.11.6
-      rxjs: ^6.5.3 || ^7.4.0
-    dependencies:
-      '@angular/common': 16.2.11(@angular/core@16.2.11)(rxjs@7.8.1)
-      '@angular/core': 16.2.11(rxjs@7.8.1)(zone.js@0.14.1)
-      '@angular/forms': 16.2.11(@angular/common@16.2.11)(@angular/core@16.2.11)(@angular/platform-browser@16.2.11)(rxjs@7.8.1)
-      '@angular/localize': 16.2.11(@angular/compiler-cli@16.2.11)(@angular/compiler@16.2.11)
-      '@popperjs/core': 2.11.8
-      rxjs: 7.8.1
-      tslib: 2.6.2
-    dev: false
-
   /@ng-bootstrap/ng-bootstrap@15.1.1(@angular/common@16.2.6)(@angular/core@16.2.6)(@angular/forms@16.2.6)(@angular/localize@16.2.6)(@popperjs/core@2.11.8)(rxjs@7.8.1):
     resolution: {integrity: sha512-nZlIMMggtI3IHkGs0XPrUIUdpeEzQvfGV9M4I9IvCqiS2n4RwWoUvWK1ICo4csZqFNBDlCQx956gO6ZZUSL2mw==}
     peerDependencies:
@@ -5951,6 +5932,25 @@ packages:
       '@angular/core': 16.2.6(rxjs@7.8.1)(zone.js@0.14.0)
       '@angular/forms': 16.2.6(@angular/common@16.2.6)(@angular/core@16.2.6)(@angular/platform-browser@16.2.6)(rxjs@7.8.1)
       '@angular/localize': 16.2.6(@angular/compiler-cli@16.2.6)(@angular/compiler@16.2.6)
+      '@popperjs/core': 2.11.8
+      rxjs: 7.8.1
+      tslib: 2.6.2
+    dev: false
+
+  /@ng-bootstrap/ng-bootstrap@15.1.2(@angular/common@16.2.11)(@angular/core@16.2.11)(@angular/forms@16.2.11)(@angular/localize@16.2.11)(@popperjs/core@2.11.8)(rxjs@7.8.1):
+    resolution: {integrity: sha512-mM2yiGnt9o7KZLIFp8K1vjfmVfu7HR3d8dhH5SszfArbgn9DvvQ4P5D5TDGygzyBSzeyZe18p7I8rX8vgA6DKw==}
+    peerDependencies:
+      '@angular/common': ^16.0.0
+      '@angular/core': ^16.0.0
+      '@angular/forms': ^16.0.0
+      '@angular/localize': ^16.0.0
+      '@popperjs/core': ^2.11.6
+      rxjs: ^6.5.3 || ^7.4.0
+    dependencies:
+      '@angular/common': 16.2.11(@angular/core@16.2.11)(rxjs@7.8.1)
+      '@angular/core': 16.2.11(rxjs@7.8.1)(zone.js@0.14.1)
+      '@angular/forms': 16.2.11(@angular/common@16.2.11)(@angular/core@16.2.11)(@angular/platform-browser@16.2.11)(rxjs@7.8.1)
+      '@angular/localize': 16.2.11(@angular/compiler-cli@16.2.11)(@angular/compiler@16.2.11)
       '@popperjs/core': 2.11.8
       rxjs: 7.8.1
       tslib: 2.6.2
@@ -8454,10 +8454,14 @@ packages:
     resolution: {integrity: sha512-XOV0KsqXNX2gUSqk05RWeolIMgaAQ7+l/ozOBoQ8NGwLg+E7J9vgagODtNgfim4jCzEUP0oJ3gnXeC+Zv+Xi1A==}
     dev: true
 
-  /@types/jasminewd2@2.0.11:
-    resolution: {integrity: sha512-J3ggNCbxnHPsd15lzNZtOdPovtErcIl2vD11VSRq2s+ktQr43ZfqO4ws6YDFNRvUoXWCxD5uXTWuwyXPyT5eqg==}
+  /@types/jasmine@5.1.1:
+    resolution: {integrity: sha512-qL4GoZHHJl1JQ0vK31OtXMfkfGxYJnysmYz9kk0E8j5W96ThKykBF90uD3PcVmQUAzulbsaus2eFiBhCH5itfw==}
+    dev: true
+
+  /@types/jasminewd2@2.0.12:
+    resolution: {integrity: sha512-C4rXKMnGqLqTw4mgfiT0fL91g5oFAUhreR8jeeYk4xYcgh1/CImqgn5pWcErnpJJS43XFUfHGit0sSPQ39G1Pg==}
     dependencies:
-      '@types/jasmine': 5.1.0
+      '@types/jasmine': 5.1.1
     dev: true
 
   /@types/jest@26.0.24:
@@ -20044,6 +20048,14 @@ packages:
     hasBin: true
     dependencies:
       glob: 10.3.3
+    dev: true
+
+  /rimraf@5.0.5:
+    resolution: {integrity: sha512-CqDakW+hMe/Bz202FPEymy68P+G50RfMQK+Qo5YUqc9SPipvbGjCGKd0RSKEelbsfQuw3g5NZDSrlZZAJurH1A==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      glob: 10.3.7
     dev: true
 
   /rollup-plugin-inject@3.0.2:
