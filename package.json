@@ -16,7 +16,7 @@
     "start": "pnpm docs:start",
     "test": "pnpm -r test",
     "unit": "pnpm -r unit",
-    "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --parallel e2e'",
+    "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --stream e2e'",
     "snapshots": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm --filter design-system-documentation snapshots'",
     "demo:start": "pnpm --filter design-system-demo... --parallel --stream start",
     "docs:start": "pnpm --filter design-system-documentation... --parallel --stream start",
