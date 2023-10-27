@@ -33,6 +33,5 @@ $transition-distance-large-md: map.get(spacing.$post-sizes, 'giant') !default;
 $transition-base-timing: $transition-time-default $transition-easing-default !default;
 $transition-base: all $transition-base-timing !default;
 $transition-fade: opacity $transition-time-fade-in linear !default;
-$transition-collapse:
-  height $transition-base-timing,
+$transition-collapse: height $transition-base-timing,
   padding $transition-base-timing !default;
