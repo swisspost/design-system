@@ -9083,7 +9083,8 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/536768/storage/NTM2NzcwLzAvbWFzdGVy",
         "keywords": [
-          "API"
+          "API",
+          "RestAPI"
         ],
         "year": "2020"
       },
@@ -9099,7 +9100,7 @@
         }
       },
       "createdAt": "2020-12-08T13:55:26.000Z",
-      "modifiedAt": "2021-10-18T11:17:35.000Z"
+      "modifiedAt": "2023-10-11T06:43:25.000Z"
     },
     {
       "uuid": "fa4e69c0-3bbe-11eb-9f99-005056873709",
@@ -9291,36 +9292,6 @@
       "modifiedAt": "2021-10-18T11:17:32.000Z"
     },
     {
-      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
-      "id": 539487,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "Mobile Shopping",
-          "Bestellung",
-          "Ordre",
-          "Ordine",
-          "Order"
-        ],
-        "year": "2021"
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:55:20.000Z",
-      "modifiedAt": "2021-10-18T11:24:06.000Z"
-    },
-    {
       "uuid": "88307300-5bef-11eb-9f99-005056873709",
       "id": 539481,
       "type": "picture.pictogram.",
@@ -9348,6 +9319,36 @@
         }
       },
       "createdAt": "2021-01-21T13:49:50.000Z",
+      "modifiedAt": "2021-10-18T11:24:06.000Z"
+    },
+    {
+      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
+      "id": 539487,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "Mobile Shopping",
+          "Bestellung",
+          "Ordre",
+          "Ordine",
+          "Order"
+        ],
+        "year": "2021"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:55:20.000Z",
       "modifiedAt": "2021-10-18T11:24:06.000Z"
     },
     {
@@ -30088,9 +30089,11 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352542/storage/NTM5MjA2LzAvbWFzdGVy",
         "businessfield": "kommunikation",
         "keywords": [
-          "Twitter",
-          "Twitter",
-          "Twitter"
+          "X",
+          "früher Twitter",
+          "avant Twitter",
+          "in passato Twitter",
+          "previously Twitter"
         ],
         "year": "2017"
       },
@@ -30106,7 +30109,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2022-01-21T07:49:56.000Z"
+      "modifiedAt": "2023-10-20T06:15:39.000Z"
     },
     {
       "uuid": "9fed4ca0-c603-11e7-a943-005056a94f4a",
@@ -30600,11 +30603,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-09-03T01:08:25.855Z",
+  "created": "2023-10-27T13:26:39.487Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
     "success": 887
   },
-  "version": "1.0.11"
+  "version": "1.0.12"
 }
