@@ -21,6 +21,7 @@
     "demo": "pnpm demo:start",
     "demo:start": "pnpm --filter design-system-demo... --parallel --stream start",
     "demo:build": "pnpm --filter design-system-demo build",
+    "demo:lint": "pnpm --filter design-system-demo lint",
     "docs:start": "pnpm --filter design-system-documentation... --parallel --stream start",
     "docs:build": "pnpm --filter design-system-documentation build",
     "docs:headless": "pnpm --filter design-system-documentation start:headless",
