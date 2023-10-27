@@ -1,3 +1,5 @@
+@use 'sass:map';
+
 // Spacing
 //
 // Control the default styling of most Bootstrap elements by modifying these
@@ -32,7 +34,7 @@ $size-giant: 5rem !default; //  ~80px
 $size-bigger-giant: 7rem !default; // ~112px
 
 $post-sizes: () !default;
-$post-sizes: map-merge(
+$post-sizes: map.merge(
   (
     'hair': $size-hair,
     'line': $size-line,
@@ -55,7 +57,7 @@ $post-sizes: map-merge(
 
 // This variable affects the `.h-*` and `.w-*` classes.
 $sizes: () !default;
-$sizes: map-merge(
+$sizes: map.merge(
   (
     25: 25%,
     50: 50%,

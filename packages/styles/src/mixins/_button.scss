@@ -1,4 +1,5 @@
 @use 'sass:map';
+@use 'sass:color';
 
 @use './../variables/components/button';
 @use './../variables/type';
@@ -56,7 +57,7 @@
     }
 
     @include utilities.not-disabled-focus-hover() {
-      $darkened-color: darken($color, 10%);
+      $darkened-color: color.adjust($color, $lightness: -10%);
       background-color: $darkened-color;
 
       @if (contrast-fn.light-or-dark($darkened-color) == 'dark') {
