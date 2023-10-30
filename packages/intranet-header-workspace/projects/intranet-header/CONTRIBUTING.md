@@ -8,9 +8,9 @@ These contribution guidelines extend the [general contribution guidelines](../..
 
 **Attention**: When running commands from the design-system root folder, you'd need to prefix your `ng` commands with
 
-`pnpm --filter design-system-components-angular exec ng ...`
+`pnpm --filter design-system-intranet-header-workspace exec ng ...`
 
-Alternatively, you can `cd packages/components-angular` and run commands from this location without prefix.
+Alternatively, you can `cd packages/intranet-header-workspace` and run commands from this location without prefix.
 
 Run `ng generate component component-name --project intranet-header` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project intranet-header`.
 
