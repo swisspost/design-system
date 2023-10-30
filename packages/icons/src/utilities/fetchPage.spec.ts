@@ -1,4 +1,3 @@
-import { mocked } from 'ts-jest/utils';
 import fetch, { Response } from 'node-fetch';
 import testResult from '../../tests/fixtures/test-result.json';
 import { fetchPage } from './fetchPage';
@@ -7,9 +6,11 @@ jest.mock('node-fetch');
 
 describe('fetchPage', () => {
   it('Should fetch a page of data', async () => {
-    mocked(fetch).mockImplementationOnce(() =>
-      Promise.resolve({ status: 200, json: () => Promise.resolve(testResult) } as Response),
-    );
+    jest
+      .mocked(fetch)
+      .mockImplementationOnce(() =>
+        Promise.resolve({ status: 200, json: () => Promise.resolve(testResult) } as Response),
+      );
     const json = await fetchPage('test');
 
     if (json && !('error' in json)) {
@@ -21,13 +22,13 @@ describe('fetchPage', () => {
   });
 
   it('Should error if the call fails', async () => {
-    mocked(fetch).mockImplementationOnce(() => Promise.reject('NOK'));
+    jest.mocked(fetch).mockImplementationOnce(() => Promise.reject('NOK'));
     const t = async () => fetchPage('test');
     expect(t).rejects.toEqual('NOK');
   });
 
   it('Should error if the response is not 200', async () => {
-    mocked(fetch).mockImplementationOnce(() =>
+    jest.mocked(fetch).mockImplementationOnce(() =>
       Promise.resolve({
         status: 401,
         statusText: 'unauthorized',
