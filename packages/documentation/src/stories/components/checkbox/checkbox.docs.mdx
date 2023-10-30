@@ -13,7 +13,7 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 Our checkboxes use custom icons to indicate checked or indeterminate states.
 
-<Canvas of={checkboxStories.Default} />
+<Canvas sourceState="shown" of={checkboxStories.Default} />
 <div className="hide-col-default">
   <Controls of={checkboxStories.Default} />
 </div>
@@ -42,6 +42,15 @@ The indeterminate state can only be set via JavaScript and is styled using the `
   code={`document.querySelector('input[type="checkbox"]').indeterminate = true;`}
   language="javascript"
 />
+
+### Sizing
+
+The size can be changed by simply adding a class:
+
+- Small: `.form-check-sm`
+- Large: default
+
+<Canvas of={checkboxStories.Size} />
 
 ### Inline
 
