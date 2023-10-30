@@ -73,10 +73,11 @@ const meta: Meta = {
         labels: {
           'table-sm': 'Small',
           'table-striped': 'Striped',
+          'table-mono': 'Mono',
           'table-hover': 'Hover enabled',
         },
       },
-      options: ['table-sm', 'table-striped', 'table-hover'],
+      options: ['table-sm', 'table-striped', 'table-mono', 'table-hover'],
       table: {
         category: 'General',
       },

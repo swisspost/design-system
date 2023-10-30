@@ -24,6 +24,7 @@ const meta: Meta = {
     hiddenLabel: false,
     checked: false,
     disabled: false,
+    size: 'null',
     validation: 'null',
   },
   argTypes: {
@@ -68,6 +69,21 @@ const meta: Meta = {
         category: 'States',
       },
     },
+    size: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      control: {
+        type: 'select',
+        labels: {
+          'form-check-sm': 'Small',
+          'null': 'Large',
+        },
+      },
+      options: ['form-check-sm', 'null'],
+      table: {
+        category: 'General',
+      },
+    },
     disabled: {
       name: 'Disabled',
       description:
@@ -110,6 +126,7 @@ function render(args: Args, context: StoryContext) {
   ]
     .filter(c => c && c !== 'null')
     .join(' ');
+  const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel
@@ -146,7 +163,7 @@ function render(args: Args, context: StoryContext) {
   `;
 
   return html`
-    <div class="form-check">${[control, label, ...contextual].filter(el => el !== null)}</div>
+    <div class="${groupClasses}">${[control, label, ...contextual].filter(el => el !== null)}</div>
   `;
 }
 
@@ -154,13 +171,7 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  decorators: [
-    story => html`
-      <div class="pt-3">${story()}</div>
-    `,
-  ],
-};
+export const Default: Story = {};
 
 function renderInline(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
@@ -233,13 +244,16 @@ function renderInline(args: Args, context: StoryContext) {
   `;
 }
 
+export const Size: Story = {
+  render,
+  args: {
+    size: 'form-check-sm',
+    checkedRadio: null,
+  },
+};
+
 export const Inline: Story = {
   render: renderInline,
-  decorators: [
-    story => html`
-      <div class="pt-3">${story()}</div>
-    `,
-  ],
   parameters: {
     controls: {
       exclude: ['Hidden Label', 'Checked', 'Disabled', 'Validation'],

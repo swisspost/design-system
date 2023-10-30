@@ -230,12 +230,13 @@ export const Table: Story = {
                       </tr>
                     `,
                   ],
-                  borderStyle: ['null'],
+                  borderStyle: ['null', 'table-bordered', 'table-borderless'],
                   alignment: ['align-top'],
                   variant: [
                     ['table-hover'],
                     ['table-sm'],
                     ['table-striped'],
+                    ['table-mono'],
                     ['table-sm', 'table-striped'],
                   ],
                 }),

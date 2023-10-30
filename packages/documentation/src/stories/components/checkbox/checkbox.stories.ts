@@ -19,6 +19,7 @@ const meta: Meta = {
     hiddenLabel: false,
     checked: 'unchecked',
     disabled: false,
+    size: 'null',
     validation: 'null',
   },
   argTypes: {
@@ -82,6 +83,21 @@ const meta: Meta = {
       options: ['unchecked', 'checked', 'indeterminate'],
       table: {
         category: 'States',
+      },
+    },
+    size: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      control: {
+        type: 'select',
+        labels: {
+          'form-check-sm': 'Small',
+          'null': 'Large',
+        },
+      },
+      options: ['form-check-sm', 'null'],
+      table: {
+        category: 'General',
       },
     },
     disabled: {
@@ -164,6 +180,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
 
   const containerClasses = mapClasses({
     'form-check': true,
+    [args.size]: args.size && args.size !== 'null',
     'form-check-inline': args.inline,
   });
 
@@ -219,6 +236,17 @@ export const Validation: Story = {
   },
   args: {
     validation: 'invalid',
+  },
+};
+
+export const Size: Story = {
+  args: {
+    size: 'form-check-sm',
+  },
+  parameters: {
+    controls: {
+      exclude: ['Hidden Legend', 'Inline Layout'],
+    },
   },
 };
 
