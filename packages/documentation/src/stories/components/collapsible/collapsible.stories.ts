@@ -1,8 +1,7 @@
-import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
-import { definedProperties, spreadArgs } from '../../../utils';
+import { spreadArgs } from '../../../utils';
 
 const meta: Meta<HTMLPostCollapsibleElement> = {
   title: 'Components/Collapsible',

@@ -1,4 +1,4 @@
-import { Component, Element, h, Host, Method } from '@stencil/core';
+import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { state } from '../../data/store';
 import { IsFocusable } from '../../models/header.model';
 import { SvgSprite } from '../../utils/svg-sprite.component';
@@ -13,6 +13,11 @@ import { SvgIcon } from '../../utils/svg-icon.component';
 export class PostKlpLoginWidget implements IsFocusable {
   @Element() host: HTMLPostKlpLoginWidgetElement;
 
+  /**
+   * Override the logout-url provided by the portal config.
+   */
+  @Prop() logoutUrl?: string;
+
   async componentDidLoad() {
     if (
       state.localizedConfig?.header?.showJobsLoginWidget ||
@@ -20,9 +25,13 @@ export class PostKlpLoginWidget implements IsFocusable {
     )
       return;
     const { initializeKLPLoginWidget } = await import('./klp-widget.controller.js');
+    const { platform, ...widgetOptions } = state.localizedConfig.header.loginWidgetOptions;
     initializeKLPLoginWidget('post-klp-login-widget', {
-      ...state.localizedConfig.header.loginWidgetOptions,
+      ...widgetOptions,
       environment: state.environment,
+      ...(this.logoutUrl !== undefined
+        ? { platform: { ...platform, logoutURL: this.logoutUrl } }
+        : { platform }),
     });
   }
 

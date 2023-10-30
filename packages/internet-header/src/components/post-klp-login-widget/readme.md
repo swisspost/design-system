@@ -5,6 +5,13 @@
 <!-- Auto Generated Below -->
 
 
+## Properties
+
+| Property    | Attribute    | Description                                            | Type                  | Default     |
+| ----------- | ------------ | ------------------------------------------------------ | --------------------- | ----------- |
+| `logoutUrl` | `logout-url` | Override the logout-url provided by the portal config. | `string \| undefined` | `undefined` |
+
+
 ## Methods
 
 ### `setFocus() => Promise<void>`
