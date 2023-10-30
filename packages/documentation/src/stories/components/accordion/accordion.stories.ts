@@ -38,7 +38,7 @@ export const Default: Story = {
 
 export const CloseOthers: Story = {
   render: () => html`
-    <post-accordion close-others>
+    <post-accordion close-others="true">
       <post-collapsible>
         <span slot="header">Titulum 1</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
