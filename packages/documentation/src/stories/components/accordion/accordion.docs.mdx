@@ -18,12 +18,12 @@ It is used to manage how content is shown and hidden within across a set of coll
 
 ## Examples
 
-### Single Open Panel
+### Multiple Open Panels
 
-To allow only one panel to be open at a time, simply use the `close-others="true"` property.
-In this case, any open panel will be closed every time another panel is opened manually or programmatically.
+By default, whenever a panel is opened manually or programmatically, any other open panel is closed.
+To allow multiple panels to be open at the same time, simply use the `multiple="true"` property.
 
-<Canvas of={accordionStories.CloseOthers} />
+<Canvas of={accordionStories.MultipleOpenPanels} />
 
 ### Custom Trigger
 

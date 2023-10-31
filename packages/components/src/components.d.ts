@@ -16,10 +16,6 @@ export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
         /**
-          * If `true`, only one `post-collapsible` can be open at a time.
-         */
-        "closeOthers": boolean;
-        /**
           * Collapses all `post-collapsible` children.
          */
         "collapseAll": () => Promise<void>;
@@ -27,6 +23,10 @@ export namespace Components {
           * Expands all `post-collapsible` children.  If `close-others` is `true` and all items are closed, it will open the first one. Otherwise, it will keep the opened one.
          */
         "expandAll": () => Promise<void>;
+        /**
+          * If `true`, multiple `post-collapsible` can be open at the same time.
+         */
+        "multiple": boolean;
         /**
           * Toggles the `post-collapsible` children with the given id.
          */
@@ -231,9 +231,9 @@ declare global {
 declare namespace LocalJSX {
     interface PostAccordion {
         /**
-          * If `true`, only one `post-collapsible` can be open at a time.
+          * If `true`, multiple `post-collapsible` can be open at the same time.
          */
-        "closeOthers"?: boolean;
+        "multiple"?: boolean;
     }
     interface PostAlert {
         /**

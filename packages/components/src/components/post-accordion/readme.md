@@ -7,9 +7,9 @@
 
 ## Properties
 
-| Property      | Attribute      | Description                                                   | Type      | Default |
-| ------------- | -------------- | ------------------------------------------------------------- | --------- | ------- |
-| `closeOthers` | `close-others` | If `true`, only one `post-collapsible` can be open at a time. | `boolean` | `false` |
+| Property   | Attribute  | Description                                                          | Type      | Default |
+| ---------- | ---------- | -------------------------------------------------------------------- | --------- | ------- |
+| `multiple` | `multiple` | If `true`, multiple `post-collapsible` can be open at the same time. | `boolean` | `false` |
 
 
 ## Methods

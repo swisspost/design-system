@@ -13,9 +13,9 @@ export class PostAccordion {
   @Element() host: HTMLPostAccordionElement;
 
   /**
-   * If `true`, only one `post-collapsible` can be open at a time.
+   * If `true`, multiple `post-collapsible` can be open at the same time.
    */
-  @Prop() readonly closeOthers: boolean = false;
+  @Prop() readonly multiple: boolean = false;
 
   componentWillLoad() {
     this.registerCollapsibles();
@@ -45,7 +45,7 @@ export class PostAccordion {
       this.expandedCollapsibles.add(toggledCollapsible);
     }
 
-    if (!this.closeOthers || isClosing) return;
+    if (this.multiple || isClosing) return;
 
     // close other open collapsible elements to have only one opened at a time
     Array.from(this.expandedCollapsibles.values())
@@ -63,7 +63,7 @@ export class PostAccordion {
    */
   @Method()
   async expandAll() {
-    if (!this.closeOthers) {
+    if (this.multiple) {
       await Promise.all(
         this.collapsibles.map(collapsible => collapsible.toggle(true))
       );
@@ -91,7 +91,7 @@ export class PostAccordion {
       .filter(collapsible => {
         return !collapsible.collapsed || this.expandedCollapsibles.has(collapsible);
       }).forEach((collapsible, index) => {
-        if (this.closeOthers && index !== 0) {
+        if (!this.multiple && index !== 0) {
           collapsible.setAttribute('collapsed', '');
           return;
         }

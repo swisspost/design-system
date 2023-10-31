@@ -23,12 +23,12 @@ export const Default: Story = {
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </post-collapsible>
 
-      <post-collapsible collapsed>
+      <post-collapsible>
         <span slot="header">Titulum 2</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </post-collapsible>
 
-      <post-collapsible collapsed>
+      <post-collapsible>
         <span slot="header">Titulum 3</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </post-collapsible>
@@ -36,20 +36,20 @@ export const Default: Story = {
   `
 };
 
-export const CloseOthers: Story = {
+export const MultipleOpenPanels: Story = {
   render: () => html`
-    <post-accordion close-others="true">
+    <post-accordion multiple="true">
       <post-collapsible>
         <span slot="header">Titulum 1</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </post-collapsible>
 
-      <post-collapsible>
+      <post-collapsible collapsed>
         <span slot="header">Titulum 2</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </post-collapsible>
 
-      <post-collapsible>
+      <post-collapsible collapsed>
         <span slot="header">Titulum 3</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </post-collapsible>
