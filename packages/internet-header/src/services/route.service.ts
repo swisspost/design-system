@@ -181,7 +181,7 @@ export const compareRoutes = (
   matchMode?: 'auto' | 'exact',
 ): number => {
   // One url is not defined or they don't share the same orign
-  if (!baseUrl || !compareUrl || baseUrl.origin !== compareUrl.origin) {
+  if (baseUrl === null || compareUrl === null || baseUrl.origin !== compareUrl.origin) {
     return 0;
   }
 
@@ -201,11 +201,11 @@ export const compareRoutes = (
   if (matchMode === 'auto') {
     const baseSegments = [
       baseUrl.origin.toLocaleLowerCase(),
-      ...baseUrlPath.split('/').filter(x => !!x),
+      ...baseUrlPath.split('/').filter(x => x !== null && x !== ''),
     ];
     const compareSegments = [
       compareUrl.origin.toLocaleLowerCase(),
-      ...compareUrlPath.split('/').filter(x => !!x),
+      ...compareUrlPath.split('/').filter(x => x !== null && x !== ''),
     ];
 
     const score = getSimilarityScore(baseSegments, compareSegments);
@@ -224,7 +224,7 @@ export const compareRoutes = (
  * @returns Score
  */
 export const getSimilarityScore = (a: string[], b: string[]): number => {
-  if (!a?.length || !b?.length) {
+  if (a == null || b == null || a.length === 0 || b.length === 0) {
     return 0;
   }
 
