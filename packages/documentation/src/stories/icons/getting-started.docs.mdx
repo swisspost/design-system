@@ -1,5 +1,6 @@
 import { Meta, Source } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
+import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
 import * as GettingStartedStories from './getting-started.stories';
 import SampleAngularConfig from './getting-started-angular-config.sample.json?raw';
 import SampleNode16 from './getting-started-node-16.7.0.sample.json?raw';
@@ -16,18 +17,27 @@ import SampleIconMeta from './getting-started-icon-meta.sample.html?raw';
 The comprehensive collection of Swiss Post icons.
 
 <ul>
-  <li><a href="#installation" target="_self">Installation</a></li>
-  <li><a href="#configuration" target="_self">Configuration</a></li>
-  <li><a href="#cdn-approach" target="_self">CDN approach</a></li>
+  <li>
+    <a href="#installation" target="_self">
+      Installation
+    </a>
+  </li>
+  <li>
+    <a href="#configuration" target="_self">
+      Configuration
+    </a>
+  </li>
+  <li>
+    <a href="#cdn-approach" target="_self">
+      CDN approach
+    </a>
+  </li>
 </ul>
 
 ## Installation
 
-<Source
-  code={`npm install @swisspost/design-system-icons`}
-  language="bash"
-/>
-
+<Source code={`npm install @swisspost/design-system-icons`} language="bash" />
+{/* prettier-ignore */}
 <div className="alert alert-info alert-md">
   If you want to use our <LinkTo kind="icons-components-icon" story="docs">icon component</LinkTo> to
   render the icons (which we strongly recommend), you must also install the{' '}
@@ -49,36 +59,25 @@ Read on to find out what the possible solutions look like...
 It is very easy to serve the icons from the `node_modules` folder directly into your angular application.
 Just open your `angular.json` file and add the following to the `build.options.assets`:
 
-<Source
-  code={SampleAngularConfig}
-  language="json"
-/>
+<Source code={SampleAngularConfig} language="json" />
 
 ### Copy & paste the icons with a postinstall script
 
 Add a `postinstall` script to your `package.json`, to copy & paste the icons to a public folder within your web project.<br/>
 If you want to know more about pre & post scripts and how they are handled, please read the <a href="https://docs.npmjs.com/cli/v7/using-npm/scripts#description" target="_blank">npm documentation</a>.
 
-#### NodeJS version 16.7.0 or newer
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="nodeNew">NodeJS version 16.7.0 or newer</PostTabHeader>
+  <PostTabPanel name="nodeNew">
+    <Source  code={SampleNode16} language="json"/>
+  </PostTabPanel>
 
-package.json
-<Source
-  code={SampleNode16}
-  language="json"
-/>
-
-
-#### Older NodeJS versions
-
-<Source
-  code={SampleNodeOlder}
-  language="json"
-/>
-
-<Source
-  code={SampleNodeOlderJs}
-  language="javascript"
-/>
+  <PostTabHeader slot="tabs" panel="nodeOld">Older NodeJS versions</PostTabHeader>
+  <PostTabPanel name="nodeOld">
+    <Source code={SampleNodeOlder} language="json"/>
+    <Source code={SampleNodeOlderJs} language="javascript" />
+  </PostTabPanel>
+</PostTabs>
 
 ### Configure the icons base-path
 
@@ -88,19 +87,17 @@ You can do this with two different solutions:
 1. Use the **meta-tag** solution to configure the `base-path` globally for all icons on the page.
 2. Use the **base-attribute** solution, to configure the `base-path` on every `icon` component. This can also be used to overwrite the global `base-path` for a single icon.
 
-#### Meta-tag solution (recommended)
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="metaTag">Meta-tag solution (recommended)</PostTabHeader>
+  <PostTabPanel name="metaTag">
+    <Source code={SampleIconMeta} language="html" />
+  </PostTabPanel>
 
-<Source
-  code={SampleIconMeta}
-  language="html"
-/>
-
-#### Base-attribute solution
-
-<Source
-  code={`<post-icon name="1000" base="/base-path/to/your/own/icon-folder"></post-icon>`}
-  language="html"
-/>
+  <PostTabHeader slot="tabs" panel="baseAttribute">Base-attribute solution</PostTabHeader>
+  <PostTabPanel name="baseAttribute">
+    <Source  code={`<post-icon name="1000" base="/base-path/to/your/own/icon-folder"></post-icon>`} language="html"/>
+  </PostTabPanel>
+</PostTabs>
 
 ## CDN approach
 

@@ -34,7 +34,7 @@ Other root scripts are available for convenience:
 Use these commands whenever you want to work on one of these packages. Ideally, these commands start a watcher for file changes and a GUI where you can see what changed for all relevant packages. The start scripts always assume that you previously ran `pnpm bootstrap` and therefore have all packages built on disk.
 
 | Command                           | Description                                                                                  |
-|-----------------------------------|----------------------------------------------------------------------------------------------|
+| --------------------------------- | -------------------------------------------------------------------------------------------- |
 | `pnpm start` or `pnpm docs:start` | starts the design-system-documentation storybook and the `start` scripts of all dependencies |
 | `pnpm demo:start`                 | starts the demo Angular application and the `start` scripts of all dependencies              |
 | `pnpm intranet-header:start`      | starts the intranet header demo application                                                  |
@@ -48,7 +48,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 For easy test runs, the following commands are available (not all packages might have all commands available).
 
 | Command                               | Description                                                                               |
-|---------------------------------------|-------------------------------------------------------------------------------------------|
+| ------------------------------------- | ----------------------------------------------------------------------------------------- |
 | `pnpm test`                           | runs the `test` command for all packages recursively                                      |
 | `pnpm [package shortname]:test`       | runs unit and end-to-end tests for the package in headless mode                           |
 | `pnpm [package shortname]:unit`       | runs unit tests for the package                                                           |
@@ -181,28 +181,30 @@ As per resolution of the [discussion about sass variables vs. CSS custom propert
 
 For some packages it's necessary to run multiple dev servers at the same time. To prevent port conflicts, the following ranges are given to each package. The ranges 9000 - 9400 are chosen for compatibility with [port ranges used by Browserstack](https://www.browserstack.com/question/39572).
 
-### Default DevServer: 9000-9099
+### Documentation DevServer: 9000-9099
 
-| Package        | Port |
-|:---------------|-----:|
-| Demo           | 9000 |
-| IntranetHeader | 9001 |
+| Package            | Port |
+| :----------------- | ---: |
+| Storybook          | 9000 |
+| Storybook Headless | 9001 |
+| Demo               | 9010 |
 
-### Storybook DevServers: 9200-9299
+### Components DevServer: 9200-9299
 
-| Package       | Port |
-|:--------------|-----:|
-| Documentation | 9200 |
-| Styles        | 9201 |
-| Components    | 9203 |
+| Package                   | Port |
+| :------------------------ | ---: |
+| Components                | 9200 |
+| Components-Angular        | 9210 |
+| Components-React (unused) | 9220 |
 
-### Storybook TestServers: 9300-9399
+### Other Packages DevServers: 9300-9399
 
-| Package       | Port |
-|:--------------|-----:|
-| Documentation | 9300 |
-| Styles        | 9301 |
-| Components    | 9303 |
+| Package         | Port |
+| :-------------- | ---: |
+| Styles (unused) | 9300 |
+| Internet-Header | 9310 |
+| Intranet-Header | 9320 |
+| Icons           | 9330 |
 
 ## Branching
 
