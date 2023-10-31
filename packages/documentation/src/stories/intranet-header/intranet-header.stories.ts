@@ -30,7 +30,7 @@ const meta: Meta = {
       control: 'text',
       table: {
         defaultValue: {
-          summary: 'user',
+          summary: '',
         },
         type: {
           summary: 'string',
