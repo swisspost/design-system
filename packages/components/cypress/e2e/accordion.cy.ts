@@ -24,13 +24,13 @@ describe('accordion', () => {
 
     it('should still show the first element as expanded after clicking the last element', () => {
       cy.get('@collapsibles').last().click();
-      cy.get('@collapsibles').first().find('.collapse').should('be.visible');
+      cy.get('@collapsibles').first().find('.collapse').should('be.hidden');
     });
   });
 
-  describe('close others', () => {
+  describe('multiple open panels', () => {
     beforeEach(() => {
-      cy.getComponent('accordion', 'close-others');
+      cy.getComponent('accordion', 'multiple-open-panels');
       cy.get('@accordion').find('post-collapsible').as('collapsibles');
     });
 
@@ -41,7 +41,7 @@ describe('accordion', () => {
 
     it('should still show the first element as expanded after clicking the last element', () => {
       cy.get('@collapsibles').last().click();
-      cy.get('@collapsibles').first().find('.collapse').should('be.hidden');
+      cy.get('@collapsibles').first().find('.collapse').should('be.visible');
     });
   });
 });
