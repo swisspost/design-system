@@ -344,6 +344,9 @@ declare namespace LocalJSX {
           * Wheter or not to display a little pointer arrow
          */
         "arrow"?: boolean;
+        /**
+          * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
+         */
         "onPostPopoverToggled"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
         /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
