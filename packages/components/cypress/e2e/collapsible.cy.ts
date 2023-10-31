@@ -20,7 +20,7 @@ describe('collapsible', () => {
     });
 
     it('should be expanded', () => {
-      cy.checkVisibility('visible');
+      cy.get('@collapse').should(`be.visible`);
     });
 
     it('should show the whole body', () => {
@@ -37,27 +37,27 @@ describe('collapsible', () => {
         .then(id => {
           cy.get('@header').find('button').should('have.attr', 'aria-controls', id);
         });
-      cy.checkAriaExpanded('true');
+      cy.checkAriaExpanded('@collapse', 'true');
     });
 
     it('should be collapsed after clicking on the header once', () => {
       cy.get('@header').click();
-      cy.checkVisibility('hidden');
+      cy.get('@collapse').should(`be.hidden`);
     });
 
     it('should adapt the header\'s aria-expanded attribute after collapsing', () => {
       cy.get('@header').click();
-      cy.checkAriaExpanded('false');
+      cy.checkAriaExpanded('@collapse', 'false');
     });
 
     it('should be expanded after clicking on the header twice', () => {
       cy.get('@header').dblclick();
-      cy.checkVisibility('visible');
+      cy.get('@collapse').should(`be.visible`);
     });
 
     it('should adapt the header\'s aria-expanded attribute after expanding', () => {
       cy.get('@header').dblclick();
-      cy.checkAriaExpanded('true');
+      cy.checkAriaExpanded('@collapse', 'true');
     });
   });
 
@@ -69,21 +69,21 @@ describe('collapsible', () => {
     });
 
     it('should be collapsed', () => {
-      cy.checkVisibility('hidden');
+      cy.get('@collapse').should(`be.hidden`);
     });
 
     it('should have a correct aria-expanded attribute', () => {
-      cy.checkAriaExpanded('false');
+      cy.checkAriaExpanded('@collapse', 'false');
     });
 
     it('should be expanded after clicking on the header once', () => {
       cy.get('@header').click();
-      cy.checkVisibility('visible');
+      cy.get('@collapse').should(`be.visible`);
     });
 
     it('should be collapsed after clicking on the header twice', () => {
       cy.get('@header').dblclick();
-      cy.checkVisibility('hidden');
+      cy.get('@collapse').should(`be.hidden`);
     });
   });
 
@@ -102,37 +102,37 @@ describe('collapsible', () => {
     });
 
     it('should be expanded', () => {
-      cy.checkVisibility('visible');
+      cy.get('@collapse').should(`be.visible`);
     });
 
     it('should be collapsed after clicking "Toggle" once', () => {
       cy.get('@toggle').click();
-      cy.checkVisibility('hidden');
+      cy.get('@collapse').should(`be.hidden`);
     });
 
     it('should be expanded after clicking "Toggle" twice', () => {
       cy.get('@toggle').dblclick();
-      cy.checkVisibility('visible');
+      cy.get('@collapse').should(`be.visible`);
     });
 
     it('should be collapsed after clicking "Hide" once', () => {
       cy.get('@hide').click();
-      cy.checkVisibility('hidden');
+      cy.get('@collapse').should(`be.hidden`);
     });
 
     it('should be collapsed after clicking "Hide" twice', () => {
       cy.get('@hide').dblclick();
-      cy.checkVisibility('hidden');
+      cy.get('@collapse').should(`be.hidden`);
     });
 
     it('should be expanded after clicking "Show" once', () => {
       cy.get('@show').click();
-      cy.checkVisibility('visible');
+      cy.get('@collapse').should(`be.visible`);
     });
 
     it('should be expanded after clicking "Show" twice', () => {
       cy.get('@show').dblclick();
-      cy.checkVisibility('visible');
+      cy.get('@collapse').should(`be.visible`);
     });
   });
 });
