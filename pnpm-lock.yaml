@@ -64,8 +64,8 @@ importers:
         specifier: 0.2.2
         version: 0.2.2
       '@stencil/core':
-        specifier: 3.4.2
-        version: 3.4.2
+        specifier: 4.6.0
+        version: 4.6.0
       '@swisspost/design-system-styles':
         specifier: workspace:6.4.2
         version: link:../styles/dist
@@ -87,10 +87,10 @@ importers:
         version: 0.5.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.33.2)(eslint@8.50.0)(typescript@4.9.5)
       '@stencil/react-output-target':
         specifier: 0.5.3
-        version: 0.5.3(@stencil/core@3.4.2)
+        version: 0.5.3(@stencil/core@4.6.0)
       '@stencil/sass':
-        specifier: 3.0.5
-        version: 3.0.5(@stencil/core@3.4.2)
+        specifier: 3.0.7
+        version: 3.0.7(@stencil/core@4.6.0)
       '@types/jest':
         specifier: 27.5.2
         version: 27.5.2
@@ -536,11 +536,11 @@ importers:
   packages/internet-header:
     dependencies:
       '@stencil/core':
-        specifier: 3.4.2
-        version: 3.4.2
+        specifier: 4.6.0
+        version: 4.6.0
       '@stencil/store':
-        specifier: 2.0.9
-        version: 2.0.9(@stencil/core@3.4.2)
+        specifier: 2.0.11
+        version: 2.0.11(@stencil/core@4.6.0)
       '@swisspost/design-system-styles':
         specifier: workspace:6.4.2
         version: link:../styles/dist
@@ -576,8 +576,8 @@ importers:
         specifier: 0.5.0
         version: 0.5.0(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.33.2)(eslint@8.50.0)(typescript@4.9.5)
       '@stencil/sass':
-        specifier: 3.0.5
-        version: 3.0.5(@stencil/core@3.4.2)
+        specifier: 3.0.7
+        version: 3.0.7(@stencil/core@4.6.0)
       '@types/body-scroll-lock':
         specifier: 3.1.0
         version: 3.1.0
@@ -6578,35 +6578,35 @@ packages:
       typescript: 4.9.5
     dev: true
 
-  /@stencil/core@3.4.2:
-    resolution: {integrity: sha512-FAUhUVaakCy29nU2GwO/HQBRV1ihPRvncz3PUc8oR+UJLAxGabTmP8PLY7wvHfbw+Cvi4VXfJFTBvdfDu6iKPQ==}
-    engines: {node: '>=14.10.0', npm: '>=6.0.0'}
+  /@stencil/core@4.6.0:
+    resolution: {integrity: sha512-5Y6/fP28aspPDRB+Tz5GuB1jRVGuUEk5/rnyE8ACGcuzEOG+zR0A/IHRJSU3XmCxUlVDKfKoO6St5W84oUCVMA==}
+    engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
-  /@stencil/react-output-target@0.5.3(@stencil/core@3.4.2):
+  /@stencil/react-output-target@0.5.3(@stencil/core@4.6.0):
     resolution: {integrity: sha512-68jwRp35CjAcwhTJ9yFD/3n+jrHOqvEH2jreVuPVvZK+4tkhPlYlwz0d1E1RlF3jyifUSfdkWUGgXIEy8Fo3yw==}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 3.4.2
+      '@stencil/core': 4.6.0
     dev: true
 
-  /@stencil/sass@3.0.5(@stencil/core@3.4.2):
-    resolution: {integrity: sha512-9nyllMXOEvHywo6fP2iwXgnq32A+OOUE36Aq7iUjzwT3wdr04qsvupO1JNIyRvmvCDF15hOKXztrZH1/wDu2Zg==}
+  /@stencil/sass@3.0.7(@stencil/core@4.6.0):
+    resolution: {integrity: sha512-HcBjrh2CJ6aJnkOrBNSVyf1+x3FnUneYFk44rcx/jDK6Lx7R4w0dXMEsIR5MXqtROYWonZt7WtR8wsM1vcD+6w==}
     engines: {node: '>=12.0.0', npm: '>=6.0.0'}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0-beta.0 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 3.4.2
+      '@stencil/core': 4.6.0
     dev: true
 
-  /@stencil/store@2.0.9(@stencil/core@3.4.2):
-    resolution: {integrity: sha512-wPVkgOEeOVZ6OGuUy7lV/qYyhj7Ra3vZkebqT58HdkaaAAmaUCtinUG02e05iTQIoOWpN7oNhq/MWvhY7H/Wyw==}
+  /@stencil/store@2.0.11(@stencil/core@4.6.0):
+    resolution: {integrity: sha512-iU803qQl8DXR1S6X4xJz6VVNgPnbhktbfLxAGe+Kx0PLJ92lBuiLKpYtPkrZNWwPOOJd3z3uSDz9UGajU4krHg==}
     engines: {node: '>=12.0.0', npm: '>=6.0.0'}
     peerDependencies:
       '@stencil/core': '>=2.0.0 || >=3.0.0 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
-      '@stencil/core': 3.4.2
+      '@stencil/core': 4.6.0
     dev: false
 
   /@storybook/addon-actions@7.4.5(@types/react@18.2.22)(react-dom@18.2.0)(react@18.2.0):

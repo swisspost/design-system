@@ -144,7 +144,18 @@ export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLPostTabsElement;
 }
 declare global {
+    interface HTMLPostAlertElementEventMap {
+        "dismissed": void;
+    }
     interface HTMLPostAlertElement extends Components.PostAlert, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostAlertElementEventMap>(type: K, listener: (this: HTMLPostAlertElement, ev: PostAlertCustomEvent<HTMLPostAlertElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostAlertElementEventMap>(type: K, listener: (this: HTMLPostAlertElement, ev: PostAlertCustomEvent<HTMLPostAlertElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostAlertElement: {
         prototype: HTMLPostAlertElement;
@@ -177,7 +188,18 @@ declare global {
         prototype: HTMLPostTabPanelElement;
         new (): HTMLPostTabPanelElement;
     };
+    interface HTMLPostTabsElementEventMap {
+        "tabChange": HTMLPostTabPanelElement['name'];
+    }
     interface HTMLPostTabsElement extends Components.PostTabs, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostTabsElementEventMap>(type: K, listener: (this: HTMLPostTabsElement, ev: PostTabsCustomEvent<HTMLPostTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostTabsElementEventMap>(type: K, listener: (this: HTMLPostTabsElement, ev: PostTabsCustomEvent<HTMLPostTabsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostTabsElement: {
         prototype: HTMLPostTabsElement;
