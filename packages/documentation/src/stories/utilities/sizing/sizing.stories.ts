@@ -1,4 +1,4 @@
-import type { Args, Meta, StoryObj, StoryContext } from '@storybook/web-components';
+import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 import './sizing.styles.scss';
@@ -63,9 +63,9 @@ export default meta;
 type Story = StoryObj;
 
 function renderSizing(args: Args) {
-  const classes = `content h-${args.height} w-${args.width} ${
-    args.maxHeight && args.maxHeight !== 'null' ? `mh-${args.maxHeight}` : ''
-  } ${args.maxWidth && args.maxWidth !== 'null' ? `mw-${args.maxWidth}` : ''}`;
+  const maximumHeight = args.maxHeight && args.maxHeight !== 'null' ? `mh-${args.maxHeight}` : '';
+  const maximumWidth = args.maxWidth && args.maxWidth !== 'null' ? `mw-${args.maxWidth}` : '';
+  const classes = `content h-${args.height} w-${args.width} ${maximumHeight} ${maximumWidth}`;
 
   return html`
     <div class="sizing-example">
