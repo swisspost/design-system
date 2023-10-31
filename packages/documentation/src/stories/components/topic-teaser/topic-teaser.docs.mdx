@@ -1,6 +1,7 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as TopicTeaserStories from './topic-teaser.stories';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import './topic-teaser.styles.scss';
 
 <Meta of={TopicTeaserStories} />
 
@@ -17,7 +18,8 @@ If you use multiple topic teasers on one page, each topic teaser must have a dif
 
 </div>
 
-<Canvas of={TopicTeaserStories.Default} />
+<Canvas className="topic-teaser-full-width-storybook" of={TopicTeaserStories.Default} />
+
 <div className="hide-col-default container">
   <Controls of={TopicTeaserStories.Default} />
 </div>
