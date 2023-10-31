@@ -3,9 +3,10 @@
   "version": "1.5.1",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
-  "main": "loader/index.cjs.js",
-  "module": "loader/index.js",
-  "es2017": "loader/index.es2017.js",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "es2017": "dist/esm/index.js",
+  "types": "dist/types/components.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "types": "loader/index.d.ts",
@@ -24,7 +25,7 @@
     "linkDirectory": true
   },
   "scripts": {
-    "dev": "stencil build --serve --watch --docs-readme",
+    "dev": "stencil build --serve --port 9200 --watch --docs-readme",
     "start": "stencil build --watch --docs-readme",
     "build": "stencil build --docs-readme",
     "clean": "rimraf www dist loader",

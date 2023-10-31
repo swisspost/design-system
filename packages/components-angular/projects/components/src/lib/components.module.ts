@@ -1,20 +1,16 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { DIRECTIVES } from './stencil-generated';
-import { defineCustomElements } from '@swisspost/design-system-components';
+import { defineCustomElements } from '@swisspost/design-system-components/loader';
 
 @NgModule({
-  declarations: [
-    ...DIRECTIVES
-  ],
+  declarations: [...DIRECTIVES],
   providers: [
     {
       provide: APP_INITIALIZER,
       useFactory: () => defineCustomElements,
       multi: true,
-    }
+    },
   ],
-  exports: [
-    ...DIRECTIVES
-  ]
+  exports: [...DIRECTIVES],
 })
-export class ComponentsModule { }
+export class ComponentsModule {}

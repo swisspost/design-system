@@ -181,28 +181,30 @@ As per resolution of the [discussion about sass variables vs. CSS custom propert
 
 For some packages it's necessary to run multiple dev servers at the same time. To prevent port conflicts, the following ranges are given to each package. The ranges 9000 - 9400 are chosen for compatibility with [port ranges used by Browserstack](https://www.browserstack.com/question/39572).
 
-### Default DevServer: 9000-9099
+### Documentation DevServer: 9000-9099
 
-| Package        | Port |
-| :------------- | ---: |
-| Demo           | 9000 |
-| IntranetHeader | 9001 |
+| Package            | Port |
+| :----------------- | ---: |
+| Storybook          | 9000 |
+| Storybook Headless | 9001 |
+| Demo               | 9010 |
 
-### Storybook DevServers: 9200-9299
+### Components DevServer: 9200-9299
 
-| Package       | Port |
-| :------------ | ---: |
-| Documentation | 9200 |
-| Styles        | 9201 |
-| Components    | 9203 |
+| Package                   | Port |
+| :------------------------ | ---: |
+| Components                | 9200 |
+| Components-Angular        | 9210 |
+| Components-React (unused) | 9220 |
 
-### Storybook TestServers: 9300-9399
+### Other Packages DevServers: 9300-9399
 
-| Package       | Port |
-| :------------ | ---: |
-| Documentation | 9300 |
-| Styles        | 9301 |
-| Components    | 9303 |
+| Package         | Port |
+| :-------------- | ---: |
+| Styles (unused) | 9300 |
+| Internet-Header | 9310 |
+| Intranet-Header | 9320 |
+| Icons           | 9330 |
 
 ## Branching
 
