@@ -1,25 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`mapResponse Should map the result object to a meaningful data structure 1`] = `
-Array [
-  Object {
+[
+  {
     "createdAt": 2017-11-10T09:43:19.000Z,
-    "file": Object {
+    "file": {
       "basename": "1000",
       "ext": ".svg",
       "mime": "image/svg+xml",
       "name": "1000.svg",
-      "size": Object {
+      "size": {
         "dpi": 72,
         "height": 0,
         "width": 0,
       },
     },
     "id": 352084,
-    "meta": Object {
+    "meta": {
       "businessfield": "kommunikation",
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352084/storage/MzU0NzA1LzAvbWFzdGVy",
-      "keywords": Array [
+      "keywords": [
         "Briefeinwurf",
         "Brief",
         "Kuvert",
@@ -62,24 +62,24 @@ Array [
     "typeFilter": "pictograms",
     "uuid": "95965510-c5fb-11e7-a943-005056a94f4a",
   },
-  Object {
+  {
     "createdAt": 2017-11-10T09:50:05.000Z,
-    "file": Object {
+    "file": {
       "basename": "1001",
       "ext": ".svg",
       "mime": "image/svg+xml",
       "name": "1001.svg",
-      "size": Object {
+      "size": {
         "dpi": 72,
         "height": 0,
         "width": 0,
       },
     },
     "id": 352086,
-    "meta": Object {
+    "meta": {
       "businessfield": "kommunikation",
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352086/storage/MzU0NzA2LzAvbWFzdGVy",
-      "keywords": Array [
+      "keywords": [
         "Brief",
         "Briefaufgabe",
         "Kuvert",
@@ -110,24 +110,24 @@ Array [
     "typeFilter": "pictograms",
     "uuid": "8676c2d0-c5fc-11e7-a943-005056a94f4a",
   },
-  Object {
+  {
     "createdAt": 2017-11-10T09:50:05.000Z,
-    "file": Object {
+    "file": {
       "basename": "1002",
       "ext": ".svg",
       "mime": "image/svg+xml",
       "name": "1002.svg",
-      "size": Object {
+      "size": {
         "dpi": 72,
         "height": 32,
         "width": 32,
       },
     },
     "id": 352087,
-    "meta": Object {
+    "meta": {
       "businessfield": "kommunikation",
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352087/storage/MzU0NzA3LzAvbWFzdGVy",
-      "keywords": Array [
+      "keywords": [
         "PostCard Creator",
         "Postkarte",
         "Karte",
@@ -154,24 +154,24 @@ Array [
     "typeFilter": "pictograms",
     "uuid": "867c1a00-c5fc-11e7-a943-005056a94f4a",
   },
-  Object {
+  {
     "createdAt": 2017-11-10T09:50:05.000Z,
-    "file": Object {
+    "file": {
       "basename": "1003",
       "ext": ".svg",
       "mime": "image/svg+xml",
       "name": "1003.svg",
-      "size": Object {
+      "size": {
         "dpi": 72,
         "height": 32,
         "width": 32,
       },
     },
     "id": 352088,
-    "meta": Object {
+    "meta": {
       "businessfield": "kommunikation",
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352088/storage/MzU0NzA4LzAvbWFzdGVy",
-      "keywords": Array [
+      "keywords": [
         "Gratis Poskarte",
         "Geschenkskarte",
         "Postkarte",
@@ -216,24 +216,24 @@ Array [
     "typeFilter": "pictograms",
     "uuid": "86819840-c5fc-11e7-a943-005056a94f4a",
   },
-  Object {
+  {
     "createdAt": 2017-11-10T09:50:05.000Z,
-    "file": Object {
+    "file": {
       "basename": "1004",
       "ext": ".svg",
       "mime": "image/svg+xml",
       "name": "1004.svg",
-      "size": Object {
+      "size": {
         "dpi": 72,
         "height": 32,
         "width": 32,
       },
     },
     "id": 352089,
-    "meta": Object {
+    "meta": {
       "businessfield": "kommunikation",
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352089/storage/MzU0NzA5LzAvbWFzdGVy",
-      "keywords": Array [
+      "keywords": [
         "Brief/Paket",
         "Brief",
         "Paket",
@@ -298,24 +298,24 @@ Array [
     "typeFilter": "pictograms",
     "uuid": "86862c20-c5fc-11e7-a943-005056a94f4a",
   },
-  Object {
+  {
     "createdAt": 2017-11-10T09:50:05.000Z,
-    "file": Object {
+    "file": {
       "basename": "1005",
       "ext": ".svg",
       "mime": "image/svg+xml",
       "name": "1005.svg",
-      "size": Object {
+      "size": {
         "dpi": 72,
         "height": 32,
         "width": 32,
       },
     },
     "id": 352090,
-    "meta": Object {
+    "meta": {
       "businessfield": "kommunikation",
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352090/storage/MzU0NzEwLzAvbWFzdGVy",
-      "keywords": Array [
+      "keywords": [
         "Paket",
         "Paketaufgabe",
         "Geschenk",
@@ -360,24 +360,24 @@ Array [
     "typeFilter": "pictograms",
     "uuid": "868b3530-c5fc-11e7-a943-005056a94f4a",
   },
-  Object {
+  {
     "createdAt": 2017-11-10T09:50:05.000Z,
-    "file": Object {
+    "file": {
       "basename": "1006",
       "ext": ".svg",
       "mime": "image/svg+xml",
       "name": "1006.svg",
-      "size": Object {
+      "size": {
         "dpi": 72,
         "height": 32,
         "width": 32,
       },
     },
     "id": 352091,
-    "meta": Object {
+    "meta": {
       "businessfield": "kommunikation",
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352091/storage/MzU0NzExLzAvbWFzdGVy",
-      "keywords": Array [
+      "keywords": [
         "My Post 24",
         "Paket",
         "24h",
@@ -422,24 +422,24 @@ Array [
     "typeFilter": "pictograms",
     "uuid": "868fc910-c5fc-11e7-a943-005056a94f4a",
   },
-  Object {
+  {
     "createdAt": 2017-11-10T09:50:05.000Z,
-    "file": Object {
+    "file": {
       "basename": "1007",
       "ext": ".svg",
       "mime": "image/svg+xml",
       "name": "1007.svg",
-      "size": Object {
+      "size": {
         "dpi": 72,
         "height": 32,
         "width": 32,
       },
     },
     "id": 352092,
-    "meta": Object {
+    "meta": {
       "businessfield": "kommunikation",
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352092/storage/MzU0NzEyLzAvbWFzdGVy",
-      "keywords": Array [
+      "keywords": [
         "Zustellservice",
         "Zusteller",
         "Paket",
@@ -502,24 +502,24 @@ Array [
     "typeFilter": "pictograms",
     "uuid": "869435e0-c5fc-11e7-a943-005056a94f4a",
   },
-  Object {
+  {
     "createdAt": 2017-11-10T09:50:05.000Z,
-    "file": Object {
+    "file": {
       "basename": "1008",
       "ext": ".svg",
       "mime": "image/svg+xml",
       "name": "1008.svg",
-      "size": Object {
+      "size": {
         "dpi": 72,
         "height": 32,
         "width": 32,
       },
     },
     "id": 352093,
-    "meta": Object {
+    "meta": {
       "businessfield": "kommunikation",
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352093/storage/MzU0NzEzLzAvbWFzdGVy",
-      "keywords": Array [
+      "keywords": [
         "Briefzentrum",
         "Zustellung",
         "Zuhause",
@@ -549,24 +549,24 @@ Array [
     "typeFilter": "pictograms",
     "uuid": "869917e0-c5fc-11e7-a943-005056a94f4a",
   },
-  Object {
+  {
     "createdAt": 2017-11-10T09:50:05.000Z,
-    "file": Object {
+    "file": {
       "basename": "1009",
       "ext": ".svg",
       "mime": "image/svg+xml",
       "name": "1009.svg",
-      "size": Object {
+      "size": {
         "dpi": 72,
         "height": 32,
         "width": 32,
       },
     },
     "id": 352094,
-    "meta": Object {
+    "meta": {
       "businessfield": "kommunikation",
       "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352094/storage/MzU0NzE0LzAvbWFzdGVy",
-      "keywords": Array [
+      "keywords": [
         "Paketzentrum",
         "Zustellung",
         "Zuhause",
