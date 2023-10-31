@@ -9167,7 +9167,7 @@ packages:
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.10
       caniuse-lite: 1.0.30001538
@@ -9183,7 +9183,7 @@ packages:
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.1.0
     dependencies:
       browserslist: 4.21.10
       caniuse-lite: 1.0.30001538
@@ -10483,7 +10483,7 @@ packages:
     dependencies:
       nice-try: 1.0.5
       path-key: 2.0.1
-      semver: 7.5.4
+      semver: 5.7.2
       shebang-command: 1.2.0
       which: 1.3.1
     dev: true
@@ -13134,7 +13134,7 @@ packages:
     resolution: {integrity: sha512-9QUHam5JyXwGUxaaMvoFQVT44tohpEFpM8xBdPfdwTYGM0AItS1iTQz0MpsF8Jroh7GF5Jt2GVPaYgvy8qD2Fw==}
     engines: {node: ^10 || ^12 || >=14}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.0.0
     dependencies:
       fancy-log: 1.3.3
       plugin-error: 1.0.1
@@ -13582,7 +13582,7 @@ packages:
     resolution: {integrity: sha512-soFhflCVWLfRNOPU3iv5Z9VUdT44xFRbzjLsEzSr5AQmgqPMTHdU3PMT1Cf1ssx8fLNJDA1juftYl+PUcv3MqA==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.1.0
     dependencies:
       postcss: 8.4.31
     dev: true
@@ -16056,7 +16056,7 @@ packages:
     engines: {node: '>=6'}
     dependencies:
       pify: 4.0.1
-      semver: 7.5.4
+      semver: 5.7.2
     dev: true
 
   /make-dir@3.1.0:
@@ -16824,7 +16824,7 @@ packages:
     dependencies:
       hosted-git-info: 2.8.9
       resolve: 1.22.3
-      semver: 7.5.4
+      semver: 5.7.2
       validate-npm-package-license: 3.0.4
     dev: true
 
@@ -17755,7 +17755,7 @@ packages:
     resolution: {integrity: sha512-6DiM4E7v4coTE4uzA8U//WhtPwyhiim3eyjEMFCnUpzbrkK9wJHgKDT2mR+HbtSrd/NubVaYTOpSpjUl8NQeRg==}
     engines: {node: '>= 10'}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: '>=8.0.9'
       ts-node: '>=9.0.0'
     peerDependenciesMeta:
       postcss:
@@ -17772,7 +17772,7 @@ packages:
     resolution: {integrity: sha512-YgO/yhtevGO/vJePCQmTxiaEwER94LABZN0ZMT4A0vsak9TpO+RvKRs7EmJ8peIlB9xfXCsS7M8LjqncsUZ5HA==}
     engines: {node: '>= 14.15.0'}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^7.0.0 || ^8.0.1
       webpack: ^5.0.0
     dependencies:
       cosmiconfig: 8.2.0
@@ -17790,7 +17790,7 @@ packages:
     resolution: {integrity: sha512-bdHleFnP3kZ4NYDhuGlVK+CMrQ/pqUm8bx/oGL93K6gVwiclvX5x0n76fYMKuIGKzlABOy13zsvqjb0f92TEXw==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.1.0
     dependencies:
       postcss: 8.4.31
     dev: true
@@ -17799,7 +17799,7 @@ packages:
     resolution: {integrity: sha512-2/u2zraspoACtrbFRnTijMiQtb4GW4BvatjaG/bCjYQo8kLTdevCUlwuBHx2sCnSyrI3x3qj4ZK1j5LQBgzmwA==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.1.0
     dependencies:
       icss-utils: 5.1.0(postcss@8.4.31)
       postcss: 8.4.31
@@ -17811,7 +17811,7 @@ packages:
     resolution: {integrity: sha512-hncihwFA2yPath8oZ15PZqvWGkWf+XUfQgUGamS4LqoP1anQLOsOJw0vr7J7IwLpoY9fatA2qiGUGmuZL0Iqlg==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.1.0
     dependencies:
       postcss: 8.4.31
       postcss-selector-parser: 6.0.13
@@ -17821,7 +17821,7 @@ packages:
     resolution: {integrity: sha512-RDxHkAiEGI78gS2ofyvCsu7iycRv7oqw5xMWn9iMoR0N/7mf9D50ecQqUo5BZ9Zh2vH4bCUR/ktCqbB9m8vJjQ==}
     engines: {node: ^10 || ^12 || >= 14}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.1.0
     dependencies:
       icss-utils: 5.1.0(postcss@8.4.31)
       postcss: 8.4.31
@@ -17835,7 +17835,7 @@ packages:
     resolution: {integrity: sha512-FARHN8pwH+WiS2OPCxJI8FuRJpTVnn6ZNFiqAM2aeW2LwTHWWmWgIyKC6cUo0L8aeKiF/14MNvnpls6R2PBeMQ==}
     engines: {node: '>=12.0'}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.3.3
     dependencies:
       postcss: 8.4.31
     dev: true
@@ -17844,7 +17844,7 @@ packages:
     resolution: {integrity: sha512-Cr0X8Eu7xMhE96PJck6ses/uVVXDtE5ghUTKNUYgm8ozgP2TkgV3LWs3WgLV1xaSSLq8ZFiXaUrj0LVgG1fGEA==}
     engines: {node: '>=12.0'}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.4.29
     dependencies:
       postcss: 8.4.31
     dev: true
@@ -17860,7 +17860,7 @@ packages:
   /postcss-sorting@7.0.1(postcss@8.4.31):
     resolution: {integrity: sha512-iLBFYz6VRYyLJEJsBJ8M3TCqNcckVzz4wFounSc5Oez35ogE/X+aoC5fFu103Ot7NyvjU3/xqIXn93Gp3kJk4g==}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.3.9
     dependencies:
       postcss: 8.4.31
     dev: true
@@ -17869,7 +17869,7 @@ packages:
     resolution: {integrity: sha512-FUzyxfI5l2tKmXdYc6VTu3TWZsInayEKPbiyW+P6vmmIrrb4I6CGX0BFoewgYHLK+oIL5FECEK02REYRpBvUCw==}
     engines: {node: '>=10'}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.0.0
     dependencies:
       make-dir: 3.1.0
       mime: 2.5.2
@@ -19043,6 +19043,11 @@ packages:
       sver-compat: 1.5.0
     dev: true
 
+  /semver@5.7.2:
+    resolution: {integrity: sha512-cBznnQ9KjJqU67B52RMC65CMarK2600WFnbkcaiwWq3xy/5haFJlshgnpjovMVJ+Hff49d8GEn0b87C5pDQ10g==}
+    hasBin: true
+    dev: true
+
   /semver@6.3.1:
     resolution: {integrity: sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA==}
     hasBin: true
@@ -19830,7 +19835,7 @@ packages:
     resolution: {integrity: sha512-N06PsVsrgKijQ3YT5hqKA7x3NUkgELTRI1cbWMqcYiCGG6MjzvNk6Cb5YYA1PrvrksBV76BvY9P9bAswojVMqA==}
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     peerDependencies:
-      postcss: '>=8.4.31'
+      postcss: ^8.3.3
       stylelint: ^14.0.1 || >=15
     dependencies:
       postcss: 8.4.31
