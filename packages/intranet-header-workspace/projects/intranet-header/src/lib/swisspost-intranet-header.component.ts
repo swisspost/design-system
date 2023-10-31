@@ -66,7 +66,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       it: 'Cercare in intranet',
       en: 'Browse the intranet',
     },
-    postlogo: {
+    postLogo: {
       de: 'Die Post - zur Startseite',
       fr: 'La Poste - Accéder à la page d’accueil',
       it: 'La Posta - Vai alla pagina iniziale',
@@ -324,8 +324,8 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
     }
   }
 
-  public getPostlogoText() {
-    return this.localization['postlogo'][this.lang.toLocaleLowerCase()];
+  public getPostLogoText() {
+    return this.localization['postLogo'][this.lang.toLocaleLowerCase()];
   }
 
   public getPlaceholderSearchIntranet() {
