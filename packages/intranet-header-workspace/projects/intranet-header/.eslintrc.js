@@ -1,24 +1,20 @@
 module.exports = {
-  root: true,
-  ignorePatterns: ['projects/**/*'],
+  extends: '../../.eslintrc.json',
+  ignorePatterns: ['!**/*', 'node_modules'],
   overrides: [
     {
       files: ['*.ts'],
       parserOptions: {
-        project: ['tsconfig.json'],
         tsconfigRootDir: __dirname,
+        project: ['tsconfig.lib.json', 'tsconfig.spec.json'],
         createDefaultProgram: true,
       },
-      extends: [
-        'plugin:@angular-eslint/recommended',
-        'plugin:@angular-eslint/template/process-inline-templates',
-      ],
       rules: {
         '@angular-eslint/directive-selector': [
           'error',
           {
             type: 'attribute',
-            prefix: 'app',
+            prefix: 'sp',
             style: 'camelCase',
           },
         ],
@@ -26,7 +22,7 @@ module.exports = {
           'error',
           {
             type: 'element',
-            prefix: 'app',
+            prefix: 'sp',
             style: 'kebab-case',
           },
         ],
@@ -34,7 +30,6 @@ module.exports = {
     },
     {
       files: ['*.html'],
-      extends: ['plugin:@angular-eslint/template/recommended'],
       rules: {},
     },
   ],
