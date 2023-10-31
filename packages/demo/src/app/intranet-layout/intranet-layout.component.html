@@ -1,41 +1,41 @@
-<div class="container">
-  <div class="heading py-5">
-    <h1 class="bold font-curve-large">Intranet Header</h1>
+<div class='container'>
+  <div class='heading py-5'>
+    <h1 class='bold font-curve-large'>Intranet Header</h1>
   </div>
 
-  <h2 class="bold">Installation</h2>
-  <p class="light font-curve-regular">
+  <h2 class='bold'>Installation</h2>
+  <p class='light font-curve-regular'>
     The Intranet Header is an
-    <a href="https://angular.io/">Angular</a>
+    <a href='https://angular.io/'>Angular</a>
     component and as such, only works with Angular projects.
   </p>
 
-  <table class="table caption-top table-sm w-50 mb-regular-r">
+  <table class='table caption-top table-responsive mb-regular-r'>
     <caption>List of compatible version numbers with external dependencies.</caption>
     <thead>
       <tr>
-        <th scope="col">Intranet-header</th>
-        <th scope="col">Bootstrap</th>
-        <th scope="col">Angular</th>
-        <th scope="col">Ng-Bootstrap</th>
+        <th scope='col'>Intranet-header</th>
+        <th scope='col'>Bootstrap</th>
+        <th scope='col'>Angular</th>
+        <th scope='col'>Ng-Bootstrap</th>
       </tr>
     </thead>
 
     <tbody>
       <tr>
-        <th scope="row">3.x</th>
+        <th scope='row'>3.x</th>
         <td>4.x</td>
         <td>14.x</td>
         <td>13.x</td>
       </tr>
       <tr>
-        <th scope="row">4.x</th>
+        <th scope='row'>4.x</th>
         <td>5.2</td>
         <td>15.x</td>
         <td>14.x</td>
       </tr>
       <tr>
-        <th scope="row">5.x</th>
+        <th scope='row'>5.x</th>
         <td>5.2</td>
         <td>16.x</td>
         <td>15.x</td>
@@ -44,25 +44,25 @@
   </table>
   <p>Install the latest version of the Intranet Header with:</p>
   <code
-    class="block mb-regular-r bash"
+    class='block mb-regular-r bash'
     [highlight]="'npm install @swisspost/design-system-intranet-header' | formatCode"
     [languages]="['shell']"
   ></code>
   <p>Or specify the version you need:</p>
   <code
-    class="block mb-regular-r bash"
+    class='block mb-regular-r bash'
     [highlight]="'npm install @swisspost/design-system-intranet-header@4' | formatCode"
     [languages]="['shell']"
   ></code>
 
-  <h2 class="bold mt-5">Usage</h2>
-  <section class="light font-curve-regular">
+  <h2 class='bold mt-5'>Usage</h2>
+  <section class='light font-curve-regular'>
     <p>
       In your
       <code>app.module.ts</code>
       , add the header to your imports:
     </p>
-    <code class="block" [highlight]="codeModule" [languages]="['typescript']"></code>
+    <code class='block' [highlight]='codeModule' [languages]="['typescript']"></code>
     <p>
       On your layout page; create a container (e.g.
       <code>&lt;div&gt;</code>
@@ -107,18 +107,18 @@
     </p>
   </section>
 
-  <h3 class="bold mt-5" id="intranet-layout-options">Options</h3>
-  <div class="table-responsive-sm mt-3">
+  <h3 class='bold mt-5' id='intranet-layout-options'>Options</h3>
+  <div class='table-responsive-sm mt-3'>
     <table
-      class="table table-striped table-bordered table-sm"
-      aria-describedby="intranet-layout-options"
+      class='table table-striped table-bordered table-sm'
+      aria-describedby='intranet-layout-options'
     >
-      <thead class="thead-dark">
+      <thead class='thead-dark'>
         <tr>
-          <th scope="col">Property</th>
-          <th scope="col">Type</th>
-          <th scope="col">Default</th>
-          <th scope="col">Description</th>
+          <th scope='col'>Property</th>
+          <th scope='col'>Type</th>
+          <th scope='col'>Default</th>
+          <th scope='col'>Description</th>
         </tr>
       </thead>
       <tbody>
@@ -186,7 +186,7 @@
           </td>
           <td>Whether the navigation is rendered or not.</td>
         </tr>
-        <tr class="table-danger">
+        <tr class='table-danger'>
           <td>
             <code>isPreview</code>
           </td>
@@ -313,92 +313,92 @@
       </tbody>
     </table>
   </div>
-  <h3 class="bold mt-5">Examples</h3>
-  <div class="alert-container mt-3">
-    <div class="alert alert-warning" _ngcontent-c2="">
+  <h3 class='bold mt-5'>Examples</h3>
+  <div class='alert-container mt-3'>
+    <div class='alert alert-warning' _ngcontent-c2=''>
       <p>
         You will need to remove the class "preview" from the outermost section and property
         "isPreview" from post-intranet-header to use the layout in your application!
       </p>
     </div>
   </div>
-  <h4 class="bold mt-5">With top navigation, without sidenav</h4>
-  <p class="light font-curve-regular">
+  <h4 class='bold mt-5'>With top navigation, without sidenav</h4>
+  <p class='light font-curve-regular'>
     Add
-    <code class="bg-light">
+    <code class='bg-light'>
       &lt;main role="main"&gt; &lt;!-- Site Content / Router-Outlet --&gt; &lt;/main&gt;
     </code>
     beneath.
   </p>
 </div>
 
-<div class="header-showcase-container p-huge-r">
-  <div class="header-showcase-page">
-    <sp-intranet-header siteTitle="SiteTitle" [isPreview]="true" languages="de,fr,it">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Testlink</a>
+<div class='header-showcase-container p-huge-r'>
+  <div class='header-showcase-page'>
+    <sp-intranet-header siteTitle='SiteTitle' [isPreview]='true' languages='de,fr,it'>
+      <li class='nav-item'>
+        <a class='nav-link' href='#'>Testlink</a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Testlink</a>
+      <li class='nav-item'>
+        <a class='nav-link' href='#'>Testlink</a>
       </li>
-      <li class="nav-item" ngbDropdown>
-        <button class="nav-link" id="testid01" ngbDropdownToggle type="button">Dropdown</button>
-        <div aria-labelledby="testid01" ngbDropdownMenu>
-          <a ngbDropdownItem href="#" ngbDropdownItem>Link 1</a>
-          <a ngbDropdownItem href="#" ngbDropdownItem>Link 2</a>
-          <a ngbDropdownItem href="#" ngbDropdownItem>Link 3</a>
+      <li class='nav-item' ngbDropdown>
+        <button class='nav-link' id='testid01' ngbDropdownToggle type='button'>Dropdown</button>
+        <div aria-labelledby='testid01' ngbDropdownMenu>
+          <a ngbDropdownItem href='#' ngbDropdownItem>Link 1</a>
+          <a ngbDropdownItem href='#' ngbDropdownItem>Link 2</a>
+          <a ngbDropdownItem href='#' ngbDropdownItem>Link 3</a>
         </div>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Testlink</a>
+      <li class='nav-item'>
+        <a class='nav-link' href='#'>Testlink</a>
       </li>
     </sp-intranet-header>
   </div>
 </div>
 
-<div class="container">
+<div class='container'>
   <code
-    class="block mt-3"
-    [highlight]="codeTemplateReg"
+    class='block mt-3'
+    [highlight]='codeTemplateReg'
     [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"
   ></code>
 
-  <h4 class="bold mt-5">Without top navigation, with sidenav</h4>
+  <h4 class='bold mt-5'>Without top navigation, with sidenav</h4>
 </div>
 
-<div class="header-showcase-container p-huge-r">
-  <div class="header-showcase-page">
+<div class='header-showcase-container p-huge-r'>
+  <div class='header-showcase-page'>
     <app-intranet-header-small></app-intranet-header-small>
   </div>
 </div>
 
-<div class="container">
-  <span class="spacer"></span>
+<div class='container'>
+  <span class='spacer'></span>
   <code
-    class="block"
-    [highlight]="codeTemplateSmall"
+    class='block'
+    [highlight]='codeTemplateSmall'
     [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"
   ></code>
 
-  <h4 class="bold mt-5">Intranet-Header "postweb"</h4>
-  <div class="alert-container">
-    <div class="alert alert-danger">
+  <h4 class='bold mt-5'>Intranet-Header "postweb"</h4>
+  <div class='alert-container'>
+    <div class='alert alert-danger'>
       <p>Top navigation links must be maintained by the application!</p>
     </div>
   </div>
 </div>
 
-<div class="header-showcase-container p-huge-r">
-  <div class="header-showcase-page">
+<div class='header-showcase-container p-huge-r'>
+  <div class='header-showcase-page'>
     <app-intranet-header-big></app-intranet-header-big>
   </div>
 </div>
 
-<div class="container">
-  <span class="spacer"></span>
+<div class='container'>
+  <span class='spacer'></span>
   <code
-    class="block"
-    [highlight]="codeTemplateBig"
+    class='block'
+    [highlight]='codeTemplateBig'
     [languages]="['html', 'scss', 'css', 'typescript', 'javascript']"
   ></code>
 </div>
