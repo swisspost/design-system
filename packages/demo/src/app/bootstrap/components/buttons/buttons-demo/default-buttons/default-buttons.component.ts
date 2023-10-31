@@ -14,5 +14,4 @@ export class DefaultButtonsComponent {
   get templateString() {
     return this.elementRef.nativeElement.innerHTML;
   }
-
 }

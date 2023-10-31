@@ -4,18 +4,20 @@
 </div>
 
 <div class="alert alert-warning mb-bigger-big">
-  <p>The <code>.pi-calendar</code> class previously used to display the calendar icon in the datepicker button
-    has been deprecated in favor of the <code>.pi-3203</code> class which shows the same icon.</p>
+  <p>
+    The
+    <code>.pi-calendar</code>
+    class previously used to display the calendar icon in the datepicker button has been deprecated
+    in favor of the
+    <code>.pi-3203</code>
+    class which shows the same icon.
+  </p>
 </div>
 
 <section>
   <p id="languageSelectorTitle" class="light font-curve-regular">Choose a language:</p>
 
-  <div
-    aria-labelledby="languageSelectorTitle"
-    class="btn-group mb-3"
-    role="group"
-  >
+  <div aria-labelledby="languageSelectorTitle" class="btn-group mb-3" role="group">
     <input
       [(ngModel)]="language"
       autocomplete="off"
@@ -58,7 +60,11 @@
   </div>
 
   <div class="alert alert-info" role="alert">
-    <p>If you use internationalization, check out the custom <a href="#internationalization">datepicker internationalization service</a> below</p>
+    <p>
+      If you use internationalization, check out the custom
+      <a href="#internationalization">datepicker internationalization service</a>
+      below
+    </p>
   </div>
 </section>
 
@@ -68,14 +74,34 @@
   <div class="row row-cols-md-2 row-cols-lg-3 mb-3 align-items-end">
     <div class="col">
       <div class="mb-4">
-        <app-datepicker-simple *ngIf="dpSimpleSize !== 'lg'" [inputSize]="dpSimpleSize" [language]="language"
-                                [navigation]="dpNavigation.value"></app-datepicker-simple>
-        <app-datepicker-simple-lg *ngIf="dpSimpleSize === 'lg'" [inputSize]="dpSimpleSize" [language]="language"
-                                   [navigation]="dpNavigation.value"></app-datepicker-simple-lg>
+        <app-datepicker-simple
+          *ngIf="dpSimpleSize !== 'lg'"
+          [inputSize]="dpSimpleSize"
+          [language]="language"
+          [navigation]="dpNavigation.value"
+        ></app-datepicker-simple>
+        <app-datepicker-simple-lg
+          *ngIf="dpSimpleSize === 'lg'"
+          [inputSize]="dpSimpleSize"
+          [language]="language"
+          [navigation]="dpNavigation.value"
+        ></app-datepicker-simple-lg>
       </div>
 
-      <label for="size" class="form-label">Datepicker Size: <span class="bold">{{ dpSimpleSize }}</span></label>
-      <input type="range" class="form-range" appFormRange min="0" max="3" id="size" [formControl]="sizeRangeSimple" name="sizerangesimple">
+      <label for="size" class="form-label">
+        Datepicker Size:
+        <span class="bold">{{ dpSimpleSize }}</span>
+      </label>
+      <input
+        type="range"
+        class="form-range"
+        appFormRange
+        min="0"
+        max="3"
+        id="size"
+        [formControl]="sizeRangeSimple"
+        name="sizerangesimple"
+      />
     </div>
     <div class="col">
       <label for="navigation" class="form-label">Choose datepicker navigation style</label>
@@ -87,8 +113,18 @@
   </div>
 
   <h4 class="h5 bold mt-4">datepicker.component.html</h4>
-  <code *ngIf="dpSimpleSize !== 'lg'" [highlight]="dpSimpleHtml" [languages]="['html']" class="block"></code>
-  <code *ngIf="dpSimpleSize === 'lg'" [highlight]="dpSimpleHtmlLg" [languages]="['html']" class="block"></code>
+  <code
+    *ngIf="dpSimpleSize !== 'lg'"
+    [highlight]="dpSimpleHtml"
+    [languages]="['html']"
+    class="block"
+  ></code>
+  <code
+    *ngIf="dpSimpleSize === 'lg'"
+    [highlight]="dpSimpleHtmlLg"
+    [languages]="['html']"
+    class="block"
+  ></code>
   <h4 class="h5 bold mt-4">datepicker-simple.component.ts</h4>
   <code class="block" [highlight]="dpSimpleTs" [languages]="['typescript', 'javascript']"></code>
 </section>
@@ -98,27 +134,64 @@
   <div class="row row-cols-md-2 row-cols-lg-3">
     <div class="col">
       <div class="mb-4">
-        <app-datepicker-validation *ngIf="dpValidationSize !== 'lg'" [inputSize]="dpValidationSize"
-                                    [language]="language"></app-datepicker-validation>
-        <app-datepicker-validation-lg *ngIf="dpValidationSize === 'lg'" [inputSize]="dpValidationSize"
-                                       [language]="language"></app-datepicker-validation-lg>
+        <app-datepicker-validation
+          *ngIf="dpValidationSize !== 'lg'"
+          [inputSize]="dpValidationSize"
+          [language]="language"
+        ></app-datepicker-validation>
+        <app-datepicker-validation-lg
+          *ngIf="dpValidationSize === 'lg'"
+          [inputSize]="dpValidationSize"
+          [language]="language"
+        ></app-datepicker-validation-lg>
       </div>
 
-
-      <label for="size-validation" class="form-label">Datepicker Size: <span class="bold">{{ dpValidationSize }}</span></label>
-      <input type="range" class="form-range" appFormRange min="0" max="3" id="size-validation" [formControl]="sizeRange" name="sizerange">
+      <label for="size-validation" class="form-label">
+        Datepicker Size:
+        <span class="bold">{{ dpValidationSize }}</span>
+      </label>
+      <input
+        type="range"
+        class="form-range"
+        appFormRange
+        min="0"
+        max="3"
+        id="size-validation"
+        [formControl]="sizeRange"
+        name="sizerange"
+      />
     </div>
   </div>
 
   <h4 class="h5 bold mt-4">datepicker.component.html</h4>
-  <code *ngIf="dpValidationSize !== 'lg'" [highlight]="dpValidationHtml" [languages]="['html']" class="block"></code>
-  <code *ngIf="dpValidationSize === 'lg'" [highlight]="dpValidationHtmlLg" [languages]="['html']" class="block"></code>
+  <code
+    *ngIf="dpValidationSize !== 'lg'"
+    [highlight]="dpValidationHtml"
+    [languages]="['html']"
+    class="block"
+  ></code>
+  <code
+    *ngIf="dpValidationSize === 'lg'"
+    [highlight]="dpValidationHtmlLg"
+    [languages]="['html']"
+    class="block"
+  ></code>
   <h4 class="h5 bold mt-4">datepicker-simple.component.ts</h4>
-  <code class="block" [highlight]="dpValidationTs" [languages]="['typescript', 'javascript']"></code>
+  <code
+    class="block"
+    [highlight]="dpValidationTs"
+    [languages]="['typescript', 'javascript']"
+  ></code>
 </section>
 
 <section id="internationalization">
-  <p class="light font-curve-regular mt-4">If you are using internationalization, add this service to your application for custom date translations.</p>
-  <code class="block" [highlight]="localizationService"
-    [languages]="['typescript', 'javascript']"></code>
+  <p class="light font-curve-regular mt-4">
+    If you are using internationalization, add this service to your application for custom date
+    translations.
+  </p>
+  <code
+    class="block"
+    [highlight]="localizationService"
+    [languages]="['typescript', 'javascript']"
+  ></code>
 </section>

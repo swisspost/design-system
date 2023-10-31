@@ -2,7 +2,7 @@ import { Component, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-button-disabled',
-  templateUrl: './button-disabled.component.html'
+  templateUrl: './button-disabled.component.html',
 })
 export class ButtonDisabledComponent {
   elementRef: ElementRef;

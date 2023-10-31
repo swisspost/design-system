@@ -9,26 +9,10 @@ import { HighlightModule } from 'ngx-highlightjs';
 import { HighlightProvider } from '../common/highlight.provider';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    RouterModule,
-    NgbModule,
-    SwissPostIntranetHeaderModule,
-    HighlightModule
-  ],
+  imports: [CommonModule, RouterModule, NgbModule, SwissPostIntranetHeaderModule, HighlightModule],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
-  declarations: [
-    IntranetHeaderBigComponent,
-    IntranetHeaderSmallComponent
-  ],
-  exports: [
-    IntranetHeaderBigComponent,
-    IntranetHeaderSmallComponent
-  ],
-  providers: [
-    HighlightProvider.Config
-  ]
+  declarations: [IntranetHeaderBigComponent, IntranetHeaderSmallComponent],
+  exports: [IntranetHeaderBigComponent, IntranetHeaderSmallComponent],
+  providers: [HighlightProvider.Config],
 })
-export class IntranetComponentsModule {
-}
-
+export class IntranetComponentsModule {}

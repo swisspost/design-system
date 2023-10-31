@@ -8,9 +8,8 @@ describe('InvertedButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ InvertedButtonsComponent ]
-    })
-    .compileComponents();
+      declarations: [InvertedButtonsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
