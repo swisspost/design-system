@@ -326,7 +326,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   }
 
   private createSafeAvatarUrl(): SafeUrl {
-    return this.currentUserId === null
+    return this.currentUserId === ''
       ? userImage
       : `https://web.post.ch/UserProfileImage/${encodeURIComponent(this.currentUserId)}.png`;
   }
