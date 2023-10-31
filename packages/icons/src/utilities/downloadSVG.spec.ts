@@ -1,4 +1,3 @@
-import { mocked } from 'ts-jest/utils';
 import fetch, { Response } from 'node-fetch';
 import { Businessfield, Type, TypeFilter, VariantMIME } from '../models/censhare-result-page.model';
 import mockFs from 'mock-fs';
@@ -13,7 +12,7 @@ describe('downloadSVG', () => {
       [outputPath]: {},
     });
 
-    mocked(fetch).mockImplementationOnce(() =>
+    jest.mocked(fetch).mockImplementationOnce(() =>
       Promise.resolve({
         text: () => Promise.resolve('<svg><path d="M16 8.4l-12.533 12.4z"></path></svg>'),
       } as Response),
