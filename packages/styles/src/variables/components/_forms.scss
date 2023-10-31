@@ -127,3 +127,4 @@ $form-floating-transition: animation.$transition-base;
 $form-floating-transition-in: $form-floating-transition,
   width 0ms list.nth(animation.$transition-base, 2);
 $form-floating-transition-out: $form-floating-transition, width 0ms linear;
+$form-floating-select-bg-size: 32px 32px;
