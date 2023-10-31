@@ -129,7 +129,11 @@ function externalControl(story: any, { args }: StoryContext) {
 function getDefaultContent(args: Args) {
   return html`
     <span>${args.text}</span>
-    ${args.nestedBadge ? html`<span class="badge">10</span>` : nothing}
+    ${args.nestedBadge
+      ? html`
+          <span class="badge">10</span>
+        `
+      : nothing}
   `;
 }
 
