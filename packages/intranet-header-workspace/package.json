@@ -1,11 +1,11 @@
 {
-  "name": "@swisspost/design-system-components-angular",
+  "name": "@swisspost/design-system-intranet-header-workspace",
   "version": "3.0.2",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
     "clean": "rimraf dist",
-    "start": "ng serve --port 9001",
+    "start": "ng serve --port 9320",
     "build": "ng build intranet-header",
     "lint": "ng lint"
   },
