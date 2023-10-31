@@ -24,7 +24,7 @@ export const ButtonGroup: Story = {
               }).map((args: Args) => {
                 // Substitue checked with selected when element is checkbox
                 if (args.element === 'checkbox') {
-                  args.selected = args.checked;
+                  args.selected = [args.checked];
                   delete args.checked;
                 }
 

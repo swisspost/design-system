@@ -150,7 +150,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
 
   switch (args.element) {
     case 'checkbox': {
-      const isSelected = position === args.selected;
+      const isSelected = args.selected?.includes(position) ?? false;
       return html`
         <input
           type="checkbox"
