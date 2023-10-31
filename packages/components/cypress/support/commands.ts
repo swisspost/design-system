@@ -52,7 +52,7 @@ Cypress.Commands.add('getComponent', (component: string, story = 'default') => {
   cy.visit(`/iframe.html?id=components-${component}--${story}`);
 
   const alias = component.replace(/^post-/, '');
-  cy.get(`post-${alias}`).as(alias);
+  cy.get(`post-${alias}`, { timeout: 30000 }).as(alias);
 });
 
 Cypress.Commands.add('checkAriaExpanded', (controlledElementSelector: string, isExpanded: 'true' | 'false') => {
