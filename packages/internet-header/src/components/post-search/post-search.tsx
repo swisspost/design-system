@@ -1,6 +1,6 @@
-import { Component, Host, h, State, Event, EventEmitter, Method, Element } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
-import { disableBodyScroll, enableBodyScroll, clearAllBodyScrollLocks } from 'body-scroll-lock';
+import { clearAllBodyScrollLocks, disableBodyScroll, enableBodyScroll } from 'body-scroll-lock';
 import { state } from '../../data/store';
 import { CoveoCompletion } from '../../models/coveo.model';
 import { GeocodeLocation } from '../../models/geocode.model';
@@ -12,20 +12,21 @@ import {
   ISearchRecommendation,
   IsFocusable,
 } from '../../models/header.model';
-import { getSearchRedirectUrl, equalizeArrays } from '../../services/search/search.service';
+import { equalizeArrays, getSearchRedirectUrl } from '../../services/search/search.service';
 import { getCoveoSuggestions } from '../../services/search/coveo.service';
 import {
   getPlacesUrl,
   highlightPlacesString,
   queryPlaces,
 } from '../../services/search/places.service';
-import { userPrefersReducedMotion, elementHasTransition } from '../../services/ui.service';
+import { elementHasTransition, userPrefersReducedMotion } from '../../services/ui.service';
 import { HighlightedText } from '../../utils/highlighted.component';
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { TrackAndTraceInfo } from '../../models/track-and-trace.model';
 import { getParcelSuggestion } from '../../services/search/parcel.service';
 import { If } from '../../utils/if.component';
+import { translate } from '../../services/language.service';
 
 @Component({
   tag: 'post-search',
@@ -42,6 +43,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
   private searchBox?: HTMLInputElement;
   private searchFlyout: HTMLElement | undefined;
   private throttledResize: throttle<() => void>;
+  private clearButton?: HTMLButtonElement;
 
   connectedCallback() {
     this.throttledResize = throttle(300, () => this.handleResize());
@@ -148,7 +150,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
    * Disable or re-enable body scrolling, depending on whether search dropdown is open or closed in mobile view (width < 1024px)
    */
   private setBodyScroll() {
-    if(!this.searchFlyout) {
+    if (!this.searchFlyout) {
       return;
     }
 
@@ -167,6 +169,15 @@ export class PostSearch implements HasDropdown, IsFocusable {
       return;
     }
     const query = this.searchBox.value.trim();
+
+    // shows or hides clearButton depending on the content of the searchbar
+    if (this.clearButton) {
+      if (query !== '') {
+        this.clearButton.style.visibility = 'visible';
+      } else {
+        this.clearButton.style.visibility = 'hidden';
+      }
+    }
 
     const [placeSuggestions, coveoSuggestions, trackAndTraceInfo] = await Promise.all([
       queryPlaces(query),
@@ -189,6 +200,17 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
 
     this.deselectSuggestion();
+  }
+
+  /**
+   * clear Search box
+   * calls handleSearchInput to update/remove suggestions
+   */
+  private handleClearSearchBox() {
+    if (this.searchBox !== undefined) {
+      this.searchBox.value = '';
+      this.handleSearchInput();
+    }
   }
 
   /**
@@ -377,6 +399,16 @@ export class PostSearch implements HasDropdown, IsFocusable {
                         onKeyDown={e => this.handleKeyDown(e)}
                       />
                       <label htmlFor="searchBox">{translations.flyoutSearchBoxFloatingLabel}</label>
+                      <button
+                        onClick={() => this.handleClearSearchBox()}
+                        class="clear-search-button"
+                        type="reset"
+                        id="clearButton"
+                        ref={el => (this.clearButton = el)}
+                      >
+                        <span class="visually-hidden">{translate('Delete search term')}</span>
+                        <SvgIcon name="pi-close" />
+                      </button>
                       <button onClick={() => void this.startSearch()} class="start-search-button">
                         <span class="visually-hidden">{translations.searchSubmit}</span>
                         <SvgIcon name="pi-search" />

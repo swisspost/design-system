@@ -2,52 +2,6 @@
 @use './../variables/color';
 @use './../variables/components/form-check';
 
-@mixin form-check-variant($color, $color-hover, $color-label-hover: $color-hover) {
-  .form-check-input {
-    border-color: $color;
-  }
-
-  .form-check-input[type='radio']:checked,
-  .form-check-input[type='checkbox']:checked,
-  .form-check-input[type='checkbox']:indeterminate {
-    @include form-check-color($color);
-  }
-
-  .form-check-input:not(:hover),
-  .form-check-input:disabled {
-    @include form-check-icons($color);
-  }
-
-  .form-check-input[type='radio']:hover:not(:disabled),
-  .form-check-input[type='checkbox']:hover:not(:disabled) {
-    @include form-check-color($color-hover, $color-label-hover);
-    @include form-check-icons($color-hover);
-  }
-
-  .form-check-input[type='radio']:focus,
-  .form-check-input[type='checkbox']:focus {
-    border-color: $color;
-    box-shadow: 0 0 0 form-check.$form-check-input-focus-width rgba($color, 0.25);
-  }
-
-  .was-validated .form-check-input:valid ~ .form-check-label,
-  .form-check-input.is-valid ~ .form-check-label,
-  .was-validated .form-check-input:invalid ~ .form-check-label,
-  .form-check-input.is-invalid ~ .form-check-label {
-    color: $color;
-  }
-
-  .was-validated .form-check-input:invalid,
-  .form-check-input.is-invalid,
-  .was-validated .form-check-input:invalid:hover,
-  .form-check-input.is-invalid:hover {
-    &:not(:checked) {
-      border-color: color.$error;
-      background-color: color.$white;
-    }
-  }
-}
-
 @mixin form-check-color($color, $color-label: $color) {
   border-color: $color;
 

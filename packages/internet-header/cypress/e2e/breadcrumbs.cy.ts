@@ -33,7 +33,7 @@ describe('breadcrumb', () => {
       modifiedConfig.fr.breadcrumb = undefined;
       modifiedConfig.it.breadcrumb = undefined;
 
-      prepare('Internet Header/Breadcrumbs', 'Default', modifiedConfig);
+      prepare('Internet Header/Breadcrumbs', 'Default', { config: modifiedConfig });
       cy.get('swisspost-internet-breadcrumbs').should('exist');
       cy.get('div.breadcrumbs').should('not.exist');
     });

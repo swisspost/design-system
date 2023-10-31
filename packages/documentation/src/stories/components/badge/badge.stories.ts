@@ -126,11 +126,9 @@ function externalControl(story: any, { args }: StoryContext) {
 
 // RENDERER
 function getDefaultContent(args: Args) {
-  if (!args.nestedBadge) return html`${args.text}`;
-
   return html`
-    <span>${html`${args.text}`}</span>
-    <span class="badge">10</span>
+    <span>${args.text}</span>
+    ${args.nestedBadge ? html`<span class="badge">10</span>` : nothing}
   `;
 }
 
