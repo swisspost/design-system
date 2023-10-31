@@ -114,8 +114,8 @@ $form-floating-input-padding-b: 0;
 $form-floating-label-opacity: 1;
 $form-floating-label-height: $input-height-inner-lg;
 $form-floating-label-color: $input-placeholder-color;
-$form-floating-label-font-size: type.$font-size-16;
-$form-floating-label-font-size-small: type.$font-size-12;
+$form-floating-label-font-size: type.$font-size-bigger-regular;
+$form-floating-label-font-size-small: type.$font-size-tiny;
 $form-floating-label-scale: math.div(
   $form-floating-label-font-size-small,
   $form-floating-label-font-size
@@ -127,4 +127,3 @@ $form-floating-transition: animation.$transition-base;
 $form-floating-transition-in: $form-floating-transition,
   width 0ms list.nth(animation.$transition-base, 2);
 $form-floating-transition-out: $form-floating-transition, width 0ms linear;
-$form-floating-select-bg-size: 32px 32px;
