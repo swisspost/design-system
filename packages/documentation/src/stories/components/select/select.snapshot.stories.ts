@@ -22,9 +22,8 @@ function renderSelectSnapshot(_args: Args, context: StoryContext) {
     },
     {
       label: `Label - With option selected`,
-      selected: 2,
-      value: `valoro_2`,
-    }
+      selectedOption: 2,
+    },
   ];
   return html`
     <div class="d-flex flex-wrap align-items-start gap-regular">

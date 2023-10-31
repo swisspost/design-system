@@ -192,7 +192,7 @@ const Template: Story = {
       : null;
     const optionElements = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
       (key: number) => html`
-        <option value="valoro_${key}" selected=${args.selected == key ? true : false}>Opcion ${key}</option>
+        <option value="valoro_${key}">Opcion ${key}</option>
       `,
     );
     const options = [
@@ -232,7 +232,16 @@ const Template: Story = {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
         }}
       >
-        ${options}
+        ${[
+          options[0],
+          options.slice(1).map(
+            (option, index) => html`
+              <option value="valoro_${index + 1}" ?selected=${index === args.selectedOption - 2}>
+                Opcion ${index + 2}
+              </option>
+            `,
+          ),
+        ]}
       </select>
     `;
 
