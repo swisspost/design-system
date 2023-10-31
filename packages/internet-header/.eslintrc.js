@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   extends: ['plugin:@stencil-community/recommended'],
   parserOptions: {
     sourceType: 'module',
