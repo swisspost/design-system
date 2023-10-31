@@ -52,7 +52,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   localization: {
     moreLabel: { [key: string]: string };
     searchPlaceholder: { [key: string]: string };
-    postlogo: { [key: string]: string };
+    postLogo: { [key: string]: string };
   } = {
     moreLabel: {
       de: 'Mehr',
