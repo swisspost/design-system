@@ -185,7 +185,19 @@ declare global {
         prototype: HTMLPostKlpLoginWidgetElement;
         new (): HTMLPostKlpLoginWidgetElement;
     };
+    interface HTMLPostLanguageSwitchElementEventMap {
+        "dropdownToggled": DropdownEvent;
+        "languageChanged": string;
+    }
     interface HTMLPostLanguageSwitchElement extends Components.PostLanguageSwitch, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostLanguageSwitchElementEventMap>(type: K, listener: (this: HTMLPostLanguageSwitchElement, ev: PostLanguageSwitchCustomEvent<HTMLPostLanguageSwitchElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostLanguageSwitchElementEventMap>(type: K, listener: (this: HTMLPostLanguageSwitchElement, ev: PostLanguageSwitchCustomEvent<HTMLPostLanguageSwitchElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostLanguageSwitchElement: {
         prototype: HTMLPostLanguageSwitchElement;
@@ -197,7 +209,19 @@ declare global {
         prototype: HTMLPostLogoElement;
         new (): HTMLPostLogoElement;
     };
+    interface HTMLPostMainNavigationElementEventMap {
+        "dropdownToggled": DropdownEvent;
+        "flyoutToggled": string | null;
+    }
     interface HTMLPostMainNavigationElement extends Components.PostMainNavigation, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostMainNavigationElementEventMap>(type: K, listener: (this: HTMLPostMainNavigationElement, ev: PostMainNavigationCustomEvent<HTMLPostMainNavigationElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostMainNavigationElementEventMap>(type: K, listener: (this: HTMLPostMainNavigationElement, ev: PostMainNavigationCustomEvent<HTMLPostMainNavigationElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostMainNavigationElement: {
         prototype: HTMLPostMainNavigationElement;
@@ -209,7 +233,18 @@ declare global {
         prototype: HTMLPostMetaNavigationElement;
         new (): HTMLPostMetaNavigationElement;
     };
+    interface HTMLPostSearchElementEventMap {
+        "dropdownToggled": DropdownEvent;
+    }
     interface HTMLPostSearchElement extends Components.PostSearch, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostSearchElementEventMap>(type: K, listener: (this: HTMLPostSearchElement, ev: PostSearchCustomEvent<HTMLPostSearchElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostSearchElementEventMap>(type: K, listener: (this: HTMLPostSearchElement, ev: PostSearchCustomEvent<HTMLPostSearchElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostSearchElement: {
         prototype: HTMLPostSearchElement;
@@ -233,7 +268,18 @@ declare global {
         prototype: HTMLSwisspostInternetFooterElement;
         new (): HTMLSwisspostInternetFooterElement;
     };
+    interface HTMLSwisspostInternetHeaderElementEventMap {
+        "headerLoaded": void;
+    }
     interface HTMLSwisspostInternetHeaderElement extends Components.SwisspostInternetHeader, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLSwisspostInternetHeaderElementEventMap>(type: K, listener: (this: HTMLSwisspostInternetHeaderElement, ev: SwisspostInternetHeaderCustomEvent<HTMLSwisspostInternetHeaderElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLSwisspostInternetHeaderElementEventMap>(type: K, listener: (this: HTMLSwisspostInternetHeaderElement, ev: SwisspostInternetHeaderCustomEvent<HTMLSwisspostInternetHeaderElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLSwisspostInternetHeaderElement: {
         prototype: HTMLSwisspostInternetHeaderElement;

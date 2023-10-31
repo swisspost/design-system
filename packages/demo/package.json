@@ -7,7 +7,7 @@
   "private": true,
   "scripts": {
     "clean": "rimraf dist",
-    "start": "ng serve --port 9000",
+    "start": "ng serve --port 9010",
     "build": "ng build",
     "lint": "ng lint"
   },
