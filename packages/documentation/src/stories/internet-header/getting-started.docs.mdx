@@ -1,4 +1,5 @@
 import { Meta, Source } from '@storybook/blocks';
+import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
 import SampleFrameworks from './internet-header-frameworks.sample.html?raw';
 import SampleLazyLoaded from './internet-header-lazy-loaded.sample.js?raw';
 import SampleBareComponent from './internet-header-bare-component.sample.js?raw';
@@ -42,13 +43,17 @@ When working with Angular or any other framework, the easiest installation metho
 
 <Source code={SampleFrameworks} dark={SourceDarkMode} language="html" />
 
-#### Lazy-loaded
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="lazy-loaded">Lazy-Loaded</PostTabHeader>
+  <PostTabPanel name="lazy-loaded">
+    <Source code={SampleLazyLoaded} dark={SourceDarkMode} language="javascript" />
+  </PostTabPanel>
 
-<Source code={SampleLazyLoaded} dark={SourceDarkMode} language="javascript" />
-
-#### Bare component
-
-<Source code={SampleBareComponent} dark={SourceDarkMode} language="javascript" />
+  <PostTabHeader slot="tabs" panel="bareComponent">Bare Component</PostTabHeader>
+  <PostTabPanel name="bareComponent">
+    <Source code={SampleBareComponent} dark={SourceDarkMode} language="javascript" />
+  </PostTabPanel>
+</PostTabs>
 
 ### Include from a CDN
 
@@ -60,14 +65,17 @@ Available CDNs:
 - [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/internet-header](https://cdn.jsdelivr.net/npm/@swisspost/internet-header).
 - [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/internet-header](https://unpkg.com/@swisspost/internet-header).
 
-#### Lazy-loaded
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="lazy-loaded">Lazy-Loaded</PostTabHeader>
+  <PostTabPanel name="lazy-loaded">
+    <Source code={SampleCDNLazyLoaded} dark={SourceDarkMode} language="html" />
+  </PostTabPanel>
 
-<Source code={SampleCDNLazyLoaded} dark={SourceDarkMode} language="html" />
-
-#### Bare component
-
-<Source code={SampleCDNBareComponent} dark={SourceDarkMode} language="html" />
-
+  <PostTabHeader slot="tabs" panel="bareComponent">Bare Component</PostTabHeader>
+  <PostTabPanel name="bareComponent">
+    <Source code={SampleCDNBareComponent} dark={SourceDarkMode} language="html" />
+  </PostTabPanel>
+</PostTabs>
 ## Configuration
 
 The Internet Header is built to support the already existing Portal Configuration used for the old Internet Header.
@@ -79,7 +87,9 @@ If you're working on a new project, you probably need a new configuration. Pleas
   href="mailto:digitalconsulting@post.ch"
   target="_blank"
   rel="noopener"
->Contact Post Portal Team <post-icon name="1001" className="fs-large" /></a>
+>
+  Contact Post Portal Team <post-icon name="1001" className="fs-large" />
+</a>
 
 Not every Online Service has configurations for all environments.
 For example, "TOPOS" only has `int02` configured and cannot use `int01` as value for environment.
