@@ -18,6 +18,10 @@ export { IAvailableLanguage } from "./models/language.model";
 export namespace Components {
     interface PostKlpLoginWidget {
         /**
+          * Override the logout-url provided by the portal config.
+         */
+        "logoutUrl"?: string;
+        /**
           * Sets the focus on the login button
          */
         "setFocus": () => Promise<void>;
@@ -70,6 +74,10 @@ export namespace Components {
     }
     interface SwisspostInternetBreadcrumbs {
         "customItems"?: string | IBreadcrumbItem[];
+        /**
+          * Hide all buttons.
+         */
+        "hideButtons": boolean;
         /**
           * Toggle an overlay associated with a button.
           * @param overlayId
@@ -124,6 +132,10 @@ export namespace Components {
           * Toggle the login link (when logged out) or the user widget (when logged in).
          */
         "login": boolean;
+        /**
+          * Override the logout-url provided by the portal config.
+         */
+        "logoutUrl"?: string;
         /**
           * Toggle the meta navigation.
          */
@@ -242,6 +254,10 @@ declare global {
 }
 declare namespace LocalJSX {
     interface PostKlpLoginWidget {
+        /**
+          * Override the logout-url provided by the portal config.
+         */
+        "logoutUrl"?: string;
     }
     interface PostLanguageSwitch {
         "mode"?: 'dropdown' | 'list';
@@ -265,6 +281,10 @@ declare namespace LocalJSX {
     }
     interface SwisspostInternetBreadcrumbs {
         "customItems"?: string | IBreadcrumbItem[];
+        /**
+          * Hide all buttons.
+         */
+        "hideButtons"?: boolean;
     }
     interface SwisspostInternetFooter {
     }
@@ -309,6 +329,10 @@ declare namespace LocalJSX {
           * Toggle the login link (when logged out) or the user widget (when logged in).
          */
         "login"?: boolean;
+        /**
+          * Override the logout-url provided by the portal config.
+         */
+        "logoutUrl"?: string;
         /**
           * Toggle the meta navigation.
          */
