@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { ifDefined } from 'lit/directives/if-defined.js';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta<HTMLPostAccordionElement> = {
@@ -8,6 +9,9 @@ const meta: Meta<HTMLPostAccordionElement> = {
   parameters: {
     badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
   },
+  args: {
+    multiple: false,
+  }
 };
 
 export default meta;
@@ -16,8 +20,8 @@ export default meta;
 type Story = StoryObj<HTMLPostAccordionElement>;
 
 export const Default: Story = {
-  render: () => html`
-    <post-accordion>
+  render: (args: Partial<HTMLPostAccordionElement>) => html`
+    <post-accordion multiple=${ifDefined(args.multiple || undefined)}>
       <post-collapsible>
         <span slot="header">Titulum 1</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
