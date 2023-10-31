@@ -10,7 +10,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
-  title: 'Components/Radio button',
+  title: 'Forms/Radio button',
   parameters: {
     controls: {
       exclude: ['Hidden Legend'],

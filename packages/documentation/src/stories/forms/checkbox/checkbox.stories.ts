@@ -6,7 +6,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
 
 const meta: Meta = {
-  title: 'Components/Checkbox',
+  title: 'Forms/Checkbox',
   render: renderCheckbox,
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

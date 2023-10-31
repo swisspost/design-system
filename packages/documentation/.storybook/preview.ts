@@ -33,6 +33,7 @@ const preview: Preview = {
             'Accessibility',
           ],
           'Components',
+          'Forms',
           'Internet Header',
           ['Getting Started', 'Migration Guide', 'Header', 'Breadcrumbs', 'Footer'],
           'Intranet Header',

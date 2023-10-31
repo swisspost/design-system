@@ -12,7 +12,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const ARROW_KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
 const meta: Meta = {
-  title: 'Components/Range',
+  title: 'Forms/Range',
   render: render,
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

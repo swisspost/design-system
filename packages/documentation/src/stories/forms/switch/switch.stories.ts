@@ -6,7 +6,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
 
 const meta: Meta = {
-  title: 'Components/Switch',
+  title: 'Forms/Switch',
   render: renderSwitch,
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
@@ -139,9 +139,7 @@ function renderSwitch(args: Args, context: StoryContext) {
   const validationFeedback =
     args.validation !== 'null'
       ? html`
-          <p class=${args.validation.split('-')[1] + '-feedback'}>
-            ${validationText}
-          </p>
+          <p class=${args.validation.split('-')[1] + '-feedback'}>${validationText}</p>
         `
       : null;
 
@@ -171,13 +169,7 @@ export const Default: Story = {};
 export const MultilineLabels: Story = {
   parameters: {
     controls: {
-      exclude: [
-        'Label Position',
-        'Hidden Label',
-        'Checked',
-        'Disabled',
-        'Validation',
-      ],
+      exclude: ['Label Position', 'Hidden Label', 'Checked', 'Disabled', 'Validation'],
     },
   },
   args: {
@@ -190,13 +182,7 @@ export const MultilineLabels: Story = {
 export const Validation: Story = {
   parameters: {
     controls: {
-      exclude: [
-        'Label Position',
-        'Label',
-        'Hidden Label',
-        'Checked',
-        'Disabled',
-      ],
+      exclude: ['Label Position', 'Label', 'Hidden Label', 'Checked', 'Disabled'],
     },
   },
   args: {

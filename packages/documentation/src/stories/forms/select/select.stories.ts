@@ -11,7 +11,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
-  title: 'Components/Select',
+  title: 'Forms/Select',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },
