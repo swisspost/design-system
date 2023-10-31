@@ -235,14 +235,12 @@ export const ColumnBreakExample: Story = {
     <div class="row">
       <div class="col-3">.col-3</div>
       <div class="col-3">.col-3</div>
-
-      <!-- Force next columns to break to new line -->
       ${args.renderBreakingElement
         ? html`
+            <!-- Force next columns to break to new line -->
             <div class="w-100"></div>
           `
         : nothing}
-
       <div class="col-3">.col-3</div>
       <div class="col-3">.col-3</div>
     </div>
