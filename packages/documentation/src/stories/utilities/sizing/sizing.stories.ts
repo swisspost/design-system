@@ -19,17 +19,10 @@ const meta: Meta = {
   args: {
     height: 'bigger-giant',
     width: 'bigger-giant',
-    border: false,
+    maxHeight: 'null',
+    maxWidth: 'null',
   },
   argTypes: {
-    border: {
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        disable: true,
-      },
-    },
     height: {
       name: 'height',
       description: 'Set the height of the cube',
@@ -71,8 +64,8 @@ type Story = StoryObj;
 
 function renderSizing(args: Args) {
   const classes = `content h-${args.height} w-${args.width} ${
-    args.maxHeight ? `mh-${args.maxHeight}` : ''
-  } ${args.maxWidth ? `mw-${args.maxWidth}` : ''}`;
+    args.maxHeight && args.maxHeight !== 'null' ? `mh-${args.maxHeight}` : ''
+  } ${args.maxWidth && args.maxWidth !== 'null' ? `mw-${args.maxWidth}` : ''}`;
 
   return html`
     <div class="sizing-example">
@@ -90,7 +83,6 @@ export const SizesPercent: Story = {
   args: {
     width: '25',
     height: '100',
-    border: true,
   },
   argTypes: {
     height: {
