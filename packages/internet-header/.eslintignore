@@ -3,7 +3,6 @@ loader
 www
 dist
 node_modules
-cypress
 stencil.config.ts
 cypress.config.js
 jest.config.js
