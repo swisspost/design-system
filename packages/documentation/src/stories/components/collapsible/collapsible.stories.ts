@@ -1,10 +1,7 @@
-import { spread } from '@open-wc/lit-helpers';
-import { useArgs } from '@storybook/preview-api';
 import { Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BADGE } from '../../../../.storybook/constants';
-import { definedProperties } from '../../../utils';
+import { spreadArgs } from '../../../utils';
 
 const meta: Meta<HTMLPostCollapsibleElement> = {
   title: 'Components/Collapsible',
@@ -18,6 +15,7 @@ const meta: Meta<HTMLPostCollapsibleElement> = {
   },
   args: {
     innerHTML: `<span slot="header">Titulum</span><p>Contentus momentus vero siteos et accusam iretea et justo.</p>`,
+    collapsed: false,
   },
   argTypes: {
     innerHTML: {
@@ -46,25 +44,15 @@ function defaultRender(
   const hasHeader = args.innerHTML.indexOf('slot="header"') > -1;
   const collapsibleId = `collapsible-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
 
-  const collapsibleProperties = definedProperties({
-    'collapsed': args.collapsed,
-    'heading-level': args.headingLevel,
-    'id': hasHeader ? undefined : collapsibleId,
-  });
+  if (!hasHeader) args.id = collapsibleId;
 
   const collapsibleComponent = html`
-    <post-collapsible ${spread(collapsibleProperties)}>
-      ${unsafeHTML(args.innerHTML)}
-    </post-collapsible>
+    <post-collapsible ${spreadArgs(args)}></post-collapsible>
   `;
-
-  const [currentArgs, updateArgs] = useArgs();
 
   const toggleCollapse = (open?: boolean) => {
     const collapsible = document.querySelector(`#${collapsibleId}`) as HTMLPostCollapsibleElement;
-    collapsible.toggle(open).then((isOpen: boolean) => {
-      if (typeof currentArgs.collapsed !== 'undefined') updateArgs({ collapsed: !isOpen });
-    });
+    collapsible.toggle(open).catch(() => {/* ignore errors */});
   };
 
   const togglers = [

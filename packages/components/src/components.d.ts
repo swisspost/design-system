@@ -6,9 +6,11 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { AlertType } from "./components/post-alert/alert-types";
+import { HeadingLevel } from "./components/post-collapsible/heading-levels";
 import { BackgroundColor } from "./components/post-tooltip/types";
 import { Placement } from "@floating-ui/dom";
 export { AlertType } from "./components/post-alert/alert-types";
+export { HeadingLevel } from "./components/post-collapsible/heading-levels";
 export { BackgroundColor } from "./components/post-tooltip/types";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
@@ -46,9 +48,9 @@ export namespace Components {
         /**
           * Defines the hierarchical level of the collapsible header within the headings structure.
          */
-        "headingLevel"?: number;
+        "headingLevel"?: HeadingLevel;
         /**
-          * Triggers the collapse programmatically.
+          * Triggers the collapse programmatically.  If there is a collapsing transition running already, it will be reversed.
          */
         "toggle": (open?: boolean) => Promise<boolean>;
     }
@@ -232,7 +234,7 @@ declare namespace LocalJSX {
         /**
           * Defines the hierarchical level of the collapsible header within the headings structure.
          */
-        "headingLevel"?: number;
+        "headingLevel"?: HeadingLevel;
     }
     /**
      * @class PostIcon - representing a stencil component
