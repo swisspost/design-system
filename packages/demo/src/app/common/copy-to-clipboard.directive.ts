@@ -3,15 +3,15 @@ import { Clipboard } from '@angular/cdk/clipboard';
 import { forkJoin, fromEvent, take, timer } from 'rxjs';
 
 @Directive({
-  selector: 'code[appCopyToClipboard]'
+  selector: 'code[appCopyToClipboard]',
 })
 export class CopyToClipboardDirective {
   constructor(
     private readonly el: ElementRef<HTMLElement>,
-    private readonly clipboard: Clipboard
+    private readonly clipboard: Clipboard,
   ) {}
 
-  @HostListener('click', [ '$event' ])
+  @HostListener('click', ['$event'])
   private copyToClipboard(event: MouseEvent) {
     event.preventDefault();
 
@@ -20,10 +20,7 @@ export class CopyToClipboardDirective {
 
     nativeElement.classList.add('copied');
 
-    forkJoin([
-      timer(1000),
-      fromEvent(nativeElement, 'mouseleave').pipe(take(1))
-    ]).subscribe(() => {
+    forkJoin([timer(1000), fromEvent(nativeElement, 'mouseleave').pipe(take(1))]).subscribe(() => {
       nativeElement.classList.remove('copied');
     });
   }

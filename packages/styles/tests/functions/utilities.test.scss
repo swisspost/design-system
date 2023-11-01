@@ -1,8 +1,8 @@
-@use "src/functions/utilities";
-@use "tests/jest";
+@use 'src/functions/utilities';
+@use 'tests/jest';
 
-$text: "Surprise, motherfucker";
-$match: "Surprise";
+$text: 'Surprise, motherfucker';
+$match: 'Surprise';
 
 @include jest.equal(utilities.average(1, 2, 3), 2);
 @include jest.equal(utilities.starts-with-any($text, $match), true);

@@ -2,30 +2,12 @@ import type { Args, Meta, StoryObj, StoryFn, StoryContext } from '@storybook/web
 import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit/static-html.js';
 import './spacing.styles.scss';
+import { parse } from '../../../utils/sass-export';
+import scss from './spacing.module.scss';
 
-const sizingOptions = [
-  '0',
-  '1',
-  '2',
-  '3',
-  '4',
-  '5',
-  'auto',
-  'hair',
-  'line',
-  'micro',
-  'mini',
-  'small-regular',
-  'regular',
-  'small-large',
-  'large',
-  'big',
-  'bigger-big',
-  'small-huge',
-  'huge',
-  'giant',
-  'bigger-giant',
-];
+export const SCSS_VARIABLES = parse(scss);
+
+const sizingOptions = ['0', '1', '2', '3', '4', '5', 'auto', ...Object.keys(SCSS_VARIABLES.sizes)];
 
 const positionOptions = {
   null: 'All around',

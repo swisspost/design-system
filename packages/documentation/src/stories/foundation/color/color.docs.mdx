@@ -1,5 +1,6 @@
 import { Meta, Source } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
+import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
 import { forEach } from '../../../utils/react';
 import * as ColorStories from './color.stories';
 import { ColorSwatch, SCSS_VARIABLES } from './color.blocks';
@@ -18,15 +19,15 @@ They theme our elements and components.
   For accessibility reasons, you should always make sure that your individually created color combinations are
   sufficiently contrasting. There may be a better solution than coloring elements individually.
 
-  For example, use the <LinkTo kind="utilities-background" story="docs">background utilities</LinkTo> to get elements
-  with a specific background color and the best possible contrast color for its content.
+For example, use the <LinkTo kind="utilities-background" story="docs">background utilities</LinkTo> to get elements
+with a specific background color and the best possible contrast color for its content.
 
 </div>
 
 ## Brand colors
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.brand, function(data) {
+  {forEach(SCSS_VARIABLES.brand, function (data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
@@ -34,7 +35,7 @@ They theme our elements and components.
 ## Shades of gray
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.gray, function(data) {
+  {forEach(SCSS_VARIABLES.gray, function (data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
@@ -42,7 +43,7 @@ They theme our elements and components.
 ## Page Backgrounds
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.pagebackgrounds, function(data) {
+  {forEach(SCSS_VARIABLES.pagebackgrounds, function (data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} noCSS />;
   })}
 </section>
@@ -50,7 +51,7 @@ They theme our elements and components.
 ## Signal colors
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.contextual, function(data) {
+  {forEach(SCSS_VARIABLES.contextual, function (data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
@@ -58,7 +59,7 @@ They theme our elements and components.
 ## Dark accent colors
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.accent.dark, function(data) {
+  {forEach(SCSS_VARIABLES.accent.dark, function (data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
@@ -66,28 +67,27 @@ They theme our elements and components.
 ## Bright accent colors
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.accent.bright, function(data) {
+  {forEach(SCSS_VARIABLES.accent.bright, function (data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
 
 # Usage
 
-## CSS
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="css">CSS</PostTabHeader>
+  <PostTabPanel name="css">
+    CSS variables are globally available on your page.
 
-CSS variables are globally available on your page.
+    <Source  code={SampleCss}  language="css"/>
 
-<Source
-  code={SampleCss}
-  language="css"
-/>
+  </PostTabPanel>
 
-## Sass
+  <PostTabHeader slot="tabs" panel="sass">Sass</PostTabHeader>
+  <PostTabPanel name="sass">
+    Import the color variables from the `core` file with `@use`. This way, the color variables are scoped and don't mix with your own variables.
 
-Import the color variables from the `core` file with `@use`. This way, the color variables are scoped and don't mix with your own variables.
+    <Source  code={SampleScss}  language="scss"/>
 
-<Source
-  code={SampleScss}
-  language="scss"
-/>
-
+  </PostTabPanel>
+</PostTabs>

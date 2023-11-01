@@ -8,9 +8,8 @@ describe('AccentButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AccentButtonsComponent ]
-    })
-    .compileComponents();
+      declarations: [AccentButtonsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

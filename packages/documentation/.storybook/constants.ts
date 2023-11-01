@@ -3,4 +3,4 @@ export const BADGE = {
   STABLE: 'stable',
   NEEDS_REVISION: 'needs-revision',
   TODO: 'to-do',
-}
+};

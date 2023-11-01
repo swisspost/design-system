@@ -6,9 +6,6 @@ bower_components/
 package-lock.json
 yarn.lock
 
-# IDEs and editors
-.idea/
-
 # Log files
 .pnpm-debug.log
 lerna-debug.log
