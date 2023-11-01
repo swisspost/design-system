@@ -12,15 +12,13 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
-  "main": "loader/index.cjs.js",
-  "module": "loader/index.js",
-  "es2015": "loader/index.es2017.js",
-  "es2017": "loader/index.es2017.js",
-  "jsnext:main": "loader/index.es2017.js",
-  "types": "loader/index.d.ts",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.js",
+  "es2017": "dist/esm/index.js",
+  "types": "dist/types/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "loader/cdn.js",
+  "unpkg": "dist/swisspost-internet-header/swisspost-internet-header.esm.js",
   "publishConfig": {
     "access": "public"
   },
@@ -29,7 +27,7 @@
     "loader/"
   ],
   "scripts": {
-    "dev": "stencil build --serve --watch --docs-readme",
+    "dev": "stencil build --serve --port 9310 --watch --docs-readme",
     "start": "stencil build --watch --docs-readme",
     "build": "stencil build --docs-readme",
     "clean": "rimraf www dist loader",
@@ -43,8 +41,8 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "3.4.2",
-    "@stencil/store": "2.0.9",
+    "@stencil/core": "4.6.0",
+    "@stencil/store": "2.0.11",
     "@swisspost/design-system-styles": "workspace:6.4.2",
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.3.7",
@@ -58,7 +56,7 @@
     "@percy/cli": "1.27.2",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.5.0",
-    "@stencil/sass": "3.0.5",
+    "@stencil/sass": "3.0.7",
     "@types/body-scroll-lock": "3.1.0",
     "@types/iframe-resizer": "3.5.9",
     "@types/jest": "27.5.2",

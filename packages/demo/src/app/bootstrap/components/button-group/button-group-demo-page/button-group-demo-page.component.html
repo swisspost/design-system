@@ -8,8 +8,12 @@
 
   <div class="row align-items-center">
     <div class="col-auto">
-      <app-button-group-checkbox-demo *ngIf="checkboxType === FormType.TemplateDriven"></app-button-group-checkbox-demo>
-      <app-button-group-reactive-checkbox-demo *ngIf="checkboxType === FormType.Reactive"></app-button-group-reactive-checkbox-demo>
+      <app-button-group-checkbox-demo
+        *ngIf="checkboxType === FormType.TemplateDriven"
+      ></app-button-group-checkbox-demo>
+      <app-button-group-reactive-checkbox-demo
+        *ngIf="checkboxType === FormType.Reactive"
+      ></app-button-group-reactive-checkbox-demo>
     </div>
     <div class="col">
       <div class="form-check form-check-inline mb-0">
@@ -43,8 +47,16 @@
   </ng-container>
 
   <ng-container *ngIf="checkboxType === FormType.Reactive">
-    <code class="block mt-large" [highlight]="reactiveCheckboxTemplate" [languages]="['html']"></code>
-    <code class="block mt-regular" [highlight]="reactiveCheckboxController" [languages]="['ts']"></code>
+    <code
+      class="block mt-large"
+      [highlight]="reactiveCheckboxTemplate"
+      [languages]="['html']"
+    ></code>
+    <code
+      class="block mt-regular"
+      [highlight]="reactiveCheckboxController"
+      [languages]="['ts']"
+    ></code>
   </ng-container>
 </section>
 
@@ -53,8 +65,12 @@
 
   <div class="row align-items-center">
     <div class="col-auto">
-      <app-button-group-radio-demo *ngIf="radioType === FormType.TemplateDriven"></app-button-group-radio-demo>
-      <app-button-group-reactive-radio-demo *ngIf="radioType === FormType.Reactive"></app-button-group-reactive-radio-demo>
+      <app-button-group-radio-demo
+        *ngIf="radioType === FormType.TemplateDriven"
+      ></app-button-group-radio-demo>
+      <app-button-group-reactive-radio-demo
+        *ngIf="radioType === FormType.Reactive"
+      ></app-button-group-reactive-radio-demo>
     </div>
     <div class="col">
       <div class="form-check form-check-inline mb-0">
@@ -89,13 +105,21 @@
 
   <ng-container *ngIf="radioType === FormType.Reactive">
     <code class="block mt-large" [highlight]="reactiveRadioTemplate" [languages]="['html']"></code>
-    <code class="block mt-regular" [highlight]="reactiveRadioController" [languages]="['ts']"></code>
+    <code
+      class="block mt-regular"
+      [highlight]="reactiveRadioController"
+      [languages]="['ts']"
+    ></code>
   </ng-container>
 </section>
 
 <section>
   <h4 class="bold">Bad example</h4>
-  <p>The only supported button variant for button groups is <code>.btn-secondary</code>.</p>
+  <p>
+    The only supported button variant for button groups is
+    <code>.btn-secondary</code>
+    .
+  </p>
   <div class="btn-group" role="group" aria-label="Basic mixed styles example">
     <button type="button" class="btn btn-nightblue">Left</button>
     <button type="button" class="btn btn-danger">Middle</button>
