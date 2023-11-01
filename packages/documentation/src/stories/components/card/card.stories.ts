@@ -7,9 +7,9 @@ import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
   title: 'Components/Card',
-  decorators: [ clickBlocker, paddedContainer ],
+  decorators: [clickBlocker, paddedContainer],
   parameters: {
-    badges: [ BADGE.NEEDS_REVISION ],
+    badges: [BADGE.NEEDS_REVISION],
     controls: {
       exclude: ['Custom Header', 'Custom Body', 'Custom Footer'],
     },
@@ -49,8 +49,8 @@ const meta: Meta = {
       control: {
         type: 'inline-radio',
         labels: {
-          'top': 'Top',
-          'bottom': 'Bottom',
+          top: 'Top',
+          bottom: 'Bottom',
         },
       },
       options: ['top', 'bottom'],
@@ -152,9 +152,9 @@ const meta: Meta = {
       control: {
         type: 'inline-radio',
         labels: {
-          'button': 'Button',
-          'links': 'Links',
-          'none': 'None',
+          button: 'Button',
+          links: 'Links',
+          none: 'None',
         },
       },
       options: ['button', 'links', 'none'],
@@ -203,26 +203,20 @@ export default meta;
 // DECORATORS
 function clickBlocker(story: any) {
   return html`
-    <div @click=${(e: Event) => e.preventDefault()}>
-      ${story()}
-    </div>
+    <div @click=${(e: Event) => e.preventDefault()}>${story()}</div>
   `;
 }
 
 function paddedContainer(story: any) {
   return html`
-    <div class="p-mini">
-      ${story()}
-    </div>
+    <div class="p-mini">${story()}</div>
   `;
 }
 
 function gridContainer(story: any) {
   return html`
     <div class="row">
-      <div class="col-lg-4 col-rg-6 col-12">
-        ${story()}
-      </div>
+      <div class="col-lg-4 col-rg-6 col-12">${story()}</div>
     </div>
   `;
 }
@@ -230,9 +224,11 @@ function gridContainer(story: any) {
 // RENDERER
 function getCardLinks() {
   return html`
-    ${[ 'Ligilo teksto', 'Pli da ligo' ].map(label => html`
-      <a class="card-link" href="#">${label}</a>
-    `)}
+    ${['Ligilo teksto', 'Pli da ligo'].map(
+      label => html`
+        <a class="card-link" href="#">${label}</a>
+      `,
+    )}
   `;
 }
 
@@ -249,13 +245,28 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
 
   return html`
     <div class="card-body">
-      ${showTitle ? html`<h5 class="card-title">Titulum</h5>` : nothing}
-      ${showSubtitle ? html`<h6 class="card-subtitle mb-2 text-muted">Sub Titulum</h6>` : nothing}
+      ${showTitle
+        ? html`
+            <h5 class="card-title">Titulum</h5>
+          `
+        : nothing}
+      ${showSubtitle
+        ? html`
+            <h6 class="card-subtitle mb-2 text-muted">Sub Titulum</h6>
+          `
+        : nothing}
       <p class="card-text">${content}</p>
-      ${choose(action, [
-        ['button', getCardButton],
-        ['links', getCardLinks],
-      ], () => html`${nothing}`)}
+      ${choose(
+        action,
+        [
+          ['button', getCardButton],
+          ['links', getCardLinks],
+        ],
+        () =>
+          html`
+            ${nothing}
+          `,
+      )}
     </div>
   `;
 }
@@ -263,9 +274,11 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
 function getCardListGroup() {
   return html`
     <ul class="list-group">
-      ${[ 'Ero', 'Dua ero', 'Alio ero' ].map(label => html`
-        <li class="list-group-item">${label}</li>
-      `)}
+      ${['Ero', 'Dua ero', 'Alio ero'].map(
+        label => html`
+          <li class="list-group-item">${label}</li>
+        `,
+      )}
     </ul>
   `;
 }
@@ -302,10 +315,8 @@ function renderCard(args: Args) {
   return html`
     <div class="card">
       ${showImage && imagePosition === 'top' ? getCardImage(args) : nothing}
-      ${showHeader ? getCardHeader(args) : nothing}
-      ${showBody ? getCardBody(args) : nothing}
-      ${showListGroup ? getCardListGroup() : nothing}
-      ${showFooter ? getCardFooter(args) : nothing}
+      ${showHeader ? getCardHeader(args) : nothing} ${showBody ? getCardBody(args) : nothing}
+      ${showListGroup ? getCardListGroup() : nothing} ${showFooter ? getCardFooter(args) : nothing}
       ${showImage && imagePosition === 'bottom' ? getCardImage(args) : nothing}
     </div>
   `;
@@ -315,17 +326,17 @@ function renderCard(args: Args) {
 type Story = StoryObj;
 
 const singleCardStory: Story = {
-  decorators: [ gridContainer ],
+  decorators: [gridContainer],
   render: renderCard,
-}
+};
 
 export const Default: Story = {
   ...singleCardStory,
   parameters: {
     controls: {
       exclude: ['Custom Header', 'Custom Body', 'Custom Footer', 'Show Body', 'Show List Group'],
-    }
-  }
+    },
+  },
 };
 
 export const ListGroup: Story = {
@@ -333,7 +344,7 @@ export const ListGroup: Story = {
   parameters: {
     controls: {
       include: ['Show Image', 'Image Position', 'Show Header', 'Show Body', 'Show Footer'],
-    }
+    },
   },
   args: {
     showImage: false,
@@ -347,7 +358,7 @@ export const CustomContent: Story = {
   parameters: {
     controls: {
       include: ['Show Header', 'Show Footer'],
-    }
+    },
   },
   args: {
     showImage: false,
@@ -389,12 +400,12 @@ export const CardGroup: Story = {
   parameters: {
     controls: {
       include: ['Show Image', 'Image Position', 'Show Header', 'Show Footer'],
-    }
+    },
   },
   args: {
     action: 'none',
   },
-  render: (args) => {
+  render: args => {
     const cardTexts = [
       'Enhavo de la maldekstra karto, ĉi tiu teksto estas tie nur kiel ekzemplo.',
       'Enhavo de la meza karto, ĉi tiu teksto estas tie nur kiel ekzemplo.',
@@ -402,12 +413,17 @@ export const CardGroup: Story = {
     ];
 
     return html`
-    <div class="card-group">
-      ${cardTexts.map(text => html`${renderCard({ ...args, text })}`)}
-    </div>
-  `;
+      <div class="card-group">
+        ${cardTexts.map(
+          text =>
+            html`
+              ${renderCard({ ...args, text })}
+            `,
+        )}
+      </div>
+    `;
   },
-}
+};
 
 export const BackgroundImage: Story = {
   ...singleCardStory,
@@ -429,6 +445,6 @@ export const BackgroundImage: Story = {
         <span>Butonon teksto</span>
       </button>
     </div>
-  </div>`
-  }
-}
+  </div>`,
+  },
+};

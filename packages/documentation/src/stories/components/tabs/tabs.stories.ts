@@ -81,8 +81,6 @@ export const Async: Story = {
           `post-tab-panel[name=${activeHeader?.panel}]`,
         );
         activePanel?.remove();
-
-        console.log(headers, activeHeader, activePanel);
       };
 
       return html`

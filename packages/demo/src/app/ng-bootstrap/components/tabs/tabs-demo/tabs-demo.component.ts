@@ -2,7 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-ngb-tabs-demo',
-  templateUrl: './tabs-demo.component.html'
+  templateUrl: './tabs-demo.component.html',
 })
 export class NgbTabsDemoComponent {
   @Input() tabsBg: string;
