@@ -20,7 +20,7 @@ const meta: Meta = {
     floatingLabel: false,
     hiddenLabel: false,
     value: undefined,
-    size: 'null',
+    size: 'form-select-lg',
     options: 5,
     multiple: false,
     multipleSize: 4,
