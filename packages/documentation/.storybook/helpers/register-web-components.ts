@@ -1,12 +1,15 @@
 import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header/loader';
-import { defineCustomElements as definePostComponent } from '@swisspost/design-system-components';
+import { defineCustomElements as definePostComponents } from '@swisspost/design-system-components/loader';
 import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
-import { StencilJsonDocs, StencilJsonDocsComponent } from '@pxtrn/storybook-addon-docs-stencil/dist/types';
+import {
+  StencilJsonDocs,
+  StencilJsonDocsComponent,
+} from '@pxtrn/storybook-addon-docs-stencil/dist/types';
 import postComponentsDocJson from '@swisspost/design-system-components/dist/docs.json';
 import internetHeaderDocJson from '@swisspost/internet-header/dist/docs.json';
 
 defineInternetHeader(window);
-definePostComponent(window);
+definePostComponents(window);
 
 if (postComponentsDocJson && internetHeaderDocJson) {
   const jsonDocs: StencilJsonDocs = {
@@ -14,7 +17,7 @@ if (postComponentsDocJson && internetHeaderDocJson) {
     compiler: postComponentsDocJson.compiler,
     components: [
       ...postComponentsDocJson.components,
-      ...internetHeaderDocJson.components
+      ...internetHeaderDocJson.components,
     ] as StencilJsonDocsComponent[],
   };
 
