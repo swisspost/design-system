@@ -371,10 +371,10 @@
         </li>
         <li>
           <!-- prettier-ignore -->
-          <h4 class='h5 bold'>Old Package Uninstallation 🗑️</h4>
+          <h4 class="h5 bold">Old Package Uninstallation 🗑️</h4>
           <!-- prettier-ignore -->
-          <p>Uninstall the old styles <span *ngIf='isMigratingIntranet'>and the old intranet header</span> package<span
-            *ngIf='isMigratingIntranet'>s</span>.</p>
+          <p>Uninstall the old styles <span *ngIf="isMigratingIntranet">and the old intranet header</span> package<span
+            *ngIf="isMigratingIntranet">s</span>.</p>
           <code
             appCopyToClipboard
             class="d-block p-3"
@@ -387,7 +387,7 @@
         </li>
         <li>
           <!-- prettier-ignore -->
-          <h4 class='h5 bold'>
+          <h4 class="h5 bold">
             New Package Installation 📦
           </h4>
           <code
@@ -542,10 +542,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalnaming_cwfpackagename'>
-                          <span class='change-badge bg-danger'>breaking</span> Renamed <span
-                          class='highlight'>packages</span>.
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="generalnaming_cwfpackagename">
+                          <span class="change-badge bg-danger">breaking</span> Renamed <span
+                          class="highlight">packages</span>.
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>@******/common-web-frontend</code> became <code
                               appCopyToClipboard>@swisspost/design-system-styles</code></li>
                             <li><code appCopyToClipboard>@******/common-web-frontend-demo</code> became <code
@@ -644,16 +644,16 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalnaming_cwfname'>
-                          <span class='change-badge bg-danger'>breaking</span> Renamed <span class='highlight'>src/cwf.scss</span>
-                          file to <span class='highlight'>src/core.scss</span>.<br>
+                        <label class="form-check-label" for="generalnaming_cwfname">
+                          <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">src/cwf.scss</span>
+                          file to <span class="highlight">src/core.scss</span>.<br>
                           <span>We recommend to import the <span
-                            class='highlight'>core.scss</span> file as follows: <code appCopyToClipboard>@use '@swisspost/design-system-styles/core.scss' as post;</code></span><br>
+                            class="highlight">core.scss</span> file as follows: <code appCopyToClipboard>@use '@swisspost/design-system-styles/core.scss' as post;</code></span><br>
                           <span>In any case, do not forget to switch the namespace in your files from <span
-                            class='highlight'>cwf.</span> to either <span class='highlight'>core.</span> or <span
-                            class='highlight'>post.</span> depending on the import.</span>
-                          <span class='info'>Read more about namespaces in the <a
-                            href='https://sass-lang.com/blog/the-module-system-is-launched'>Sass module system intro</a>.</span>
+                            class="highlight">cwf.</span> to either <span class="highlight">core.</span> or <span
+                            class="highlight">post.</span> depending on the import.</span>
+                          <span class="info">Read more about namespaces in the <a
+                            href="https://sass-lang.com/blog/the-module-system-is-launched">Sass module system intro</a>.</span>
                         </label>
                       </div>
                     </li>
@@ -669,8 +669,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalnaming_cwflicense'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed <span class='highlight'>src/lic/cwf-license.scss</span>
+                        <label class="form-check-label" for="generalnaming_cwflicense">
+                          <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">src/lic/cwf-license.scss</span>
                           file.
                         </label>
                       </div>
@@ -685,9 +685,9 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalnaming_options'>
-                          <span class='change-badge bg-danger'>breaking</span> Renamed <span class='highlight'>src/themes/bootstrap/options.scss</span>
-                          file to <span class='highlight'>src/variables/features.scss</span>.
+                        <label class="form-check-label" for="generalnaming_options">
+                          <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">src/themes/bootstrap/options.scss</span>
+                          file to <span class="highlight">src/variables/features.scss</span>.
                         </label>
                       </div>
                     </li>
@@ -710,8 +710,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalvariables_isolatecomponents'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed <code appCopyToClipboard>$isolate-components</code>
+                        <label class="form-check-label" for="generalvariables_isolatecomponents">
+                          <span class="change-badge bg-danger">breaking</span> Removed <code appCopyToClipboard>$isolate-components</code>
                           variable.
                         </label>
                       </div>
@@ -728,8 +728,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalvariables_fontsizemap'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed <code appCopyToClipboard>$font-size-map</code>
+                        <label class="form-check-label" for="generalvariables_fontsizemap">
+                          <span class="change-badge bg-danger">breaking</span> Removed <code appCopyToClipboard>$font-size-map</code>
                           variable.
                         </label>
                       </div>
@@ -746,10 +746,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalvariables_lineheightrg'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed <code appCopyToClipboard>$line-height-rg</code>
+                        <label class="form-check-label" for="generalvariables_lineheightrg">
+                          <span class="change-badge bg-danger">breaking</span> Removed <code appCopyToClipboard>$line-height-rg</code>
                           variable.<br>
-                          <span class='highlight'>Line-heights</span> are now relative to the font-size.
+                          <span class="highlight">Line-heights</span> are now relative to the font-size.
                         </label>
                       </div>
                     </li>
@@ -765,10 +765,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalvariables_floatinglabel'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed <span class='highlight'>floating-label</span>
+                        <label class="form-check-label" for="generalvariables_floatinglabel">
+                          <span class="change-badge bg-danger">breaking</span> Removed <span class="highlight">floating-label</span>
                           variables.<br>
-                          <ul class='mt-2'>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>$form-floating-label-padding-t</code></li>
                             <li><code appCopyToClipboard>$form-floating-label-padding-b</code></li>
                             <li><code appCopyToClipboard>$form-floating-textarea-line-height</code></li>
@@ -790,10 +790,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalvariables_colorsremoved'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed <span
-                          class='highlight'>color</span> variables.<br>
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="generalvariables_colorsremoved">
+                          <span class="change-badge bg-danger">breaking</span> Removed <span
+                          class="highlight">color</span> variables.<br>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>$white-alpha-10</code>, <code appCopyToClipboard>$white-alpha-20</code>,
                               <code appCopyToClipboard>$white-alpha-40</code>, <code
                                 appCopyToClipboard>$white-alpha-60</code>, <code
@@ -832,10 +832,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalvariables_colorsrenamed'>
-                          <span class='change-badge bg-danger'>breaking</span> Renamed <span
-                          class='highlight'>color</span> variables.
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="generalvariables_colorsrenamed">
+                          <span class="change-badge bg-danger">breaking</span> Renamed <span
+                          class="highlight">color</span> variables.
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>$gray-pampas</code> became <code appCopyToClipboard>$gray-background-light</code>
                             </li>
                             <li><code appCopyToClipboard>$gray-cararra</code> became <code appCopyToClipboard>$gray-background</code>
@@ -866,13 +866,13 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalvariables_lineheigts'>
-                          Dropped usage of <span class='highlight'>line-height</span> variables.<br>
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="generalvariables_lineheigts">
+                          Dropped usage of <span class="highlight">line-height</span> variables.<br>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>$line-height-sm</code></li>
                             <li><code appCopyToClipboard>$line-height-lg</code></li>
                           </ul>
-                          <p class='info'>The variables remain available because of Bootstrap.</p>
+                          <p class="info">The variables remain available because of Bootstrap.</p>
                         </label>
                       </div>
                     </li>
@@ -888,10 +888,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalvariables_lineheightlighter'>
+                        <label class="form-check-label" for="generalvariables_lineheightlighter">
                           Dropped usage of <code appCopyToClipboard>$font-weight-lighter</code> variable.<br>
                           Also removed corresponding <code appCopyToClipboard>@font-face</code> rule.<br>
-                          <p class='info'>The variable remains available because of Bootstrap.</p>
+                          <p class="info">The variable remains available because of Bootstrap.</p>
                         </label>
                       </div>
                     </li>
@@ -907,10 +907,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalvariables_headingfontsizes'>
-                          Dropped usage of <span class='highlight'>font-size</span> variables.<br>
+                        <label class="form-check-label" for="generalvariables_headingfontsizes">
+                          Dropped usage of <span class="highlight">font-size</span> variables.<br>
                           Headings now have responsive font-sizes.<br>
-                          <ul class='mt-2'>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>$h1-font-size</code></li>
                             <li><code appCopyToClipboard>$h2-font-size</code></li>
                             <li><code appCopyToClipboard>$h3-font-size</code></li>
@@ -918,7 +918,7 @@
                             <li><code appCopyToClipboard>$h5-font-size</code></li>
                             <li><code appCopyToClipboard>$h6-font-size</code></li>
                           </ul>
-                          <p class='info'>The variables remain available because of Bootstrap.</p>
+                          <p class="info">The variables remain available because of Bootstrap.</p>
                         </label>
                       </div>
                     </li>
@@ -941,10 +941,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalmixins_fontsizelineheight'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed <span
-                          class='highlight'>font-size</span> and <span class='highlight'>line-height</span> mixins:<br>
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="generalmixins_fontsizelineheight">
+                          <span class="change-badge bg-danger">breaking</span> Removed <span
+                          class="highlight">font-size</span> and <span class="highlight">line-height</span> mixins:<br>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>font-size-calc()</code></li>
                             <li><code appCopyToClipboard>font-size-and-lineheight()</code></li>
                             <li><code appCopyToClipboard>font-line-height()</code></li>
@@ -971,14 +971,14 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalclasses_bgopacity'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Removed <code appCopyToClipboard>.bg-[colorname]-opacity-[opacityvalue]</code>
+                        <label class="form-check-label" for="generalclasses_bgopacity">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Removed <code appCopyToClipboard>.bg-[colorname]-opacity-[opacityvalue]</code>
                           classes.<br>
                           Use <code appCopyToClipboard>.bg-[colorname]</code> together with <code appCopyToClipboard>var(--post-bg-opacity)</code>
                           instead.<br>
-                          <p class='info'>Replace [colorname] for example with "primary", "warning", etc.</p>
-                          <p class='info'>Replace [opacityvalue] for example with "0", "0.5" or "1".</p>
+                          <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
+                          <p class="info">Replace [opacityvalue] for example with "0", "0.5" or "1".</p>
                         </label>
                       </div>
                     </li>
@@ -994,11 +994,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalclasses_secondary'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Removed <span
-                          class='highlight'>secondary</span> classes.<br>
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="generalclasses_secondary">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Removed <span
+                          class="highlight">secondary</span> classes.<br>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>.bg-secondary</code></li>
                             <li><code appCopyToClipboard>.border-secondary</code></li>
                             <li><code appCopyToClipboard>.text-secondary</code></li>
@@ -1016,11 +1016,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalclasses_rtlmode'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Updated spacing and alignment helper classes,
-                          for better support of <span class='highlight'>rtl-mode</span>.
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="generalclasses_rtlmode">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Updated spacing and alignment helper classes,
+                          for better support of <span class="highlight">rtl-mode</span>.
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>.ml-[size]</code> became <code
                               appCopyToClipboard>.ms-[size]</code></li>
                             <li><code appCopyToClipboard>.ml-[breakpoint]-[size]</code> became <code appCopyToClipboard>.ms-[breakpoint]-[size]</code>
@@ -1057,9 +1057,9 @@
                             <li><code appCopyToClipboard>.text-[breakpoint]-right</code> became <code
                               appCopyToClipboard>.text-[breakpoint]-end</code></li>
                           </ul>
-                          <p class='info'>Replace [size] for example with "hair", "line", ... "bigger-giant" or "0",
+                          <p class="info">Replace [size] for example with "hair", "line", ... "bigger-giant" or "0",
                             "1", ... "5".</p>
-                          <p class='info'>Replace [breakpoint] for example with "xs", "sm", ... "xxl".</p>
+                          <p class="info">Replace [breakpoint] for example with "xs", "sm", ... "xxl".</p>
                         </label>
                       </div>
                     </li>
@@ -1073,11 +1073,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='generalclasses_sronly'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Updated <span class='highlight'>sr-only</span>
+                        <label class="form-check-label" for="generalclasses_sronly">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Updated <span class="highlight">sr-only</span>
                           classes.
-                          <ul class='mt-2'>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>.sr-only</code> became <code appCopyToClipboard>.visually-hidden</code>
                             </li>
                             <li><code appCopyToClipboard>.sr-only-focusable</code> became <code appCopyToClipboard>.visually-hidden-focusable</code>
@@ -1119,12 +1119,12 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapalerts_closebuttoncontent'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Removed the <code appCopyToClipboard>&lt;span
-                          aria-hidden="true"&gt;&lt;/span&gt;</code> element contained in the <span class='highlight'>close-button</span>
+                        <label class="form-check-label" for="bootstrapalerts_closebuttoncontent">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Removed the <code appCopyToClipboard>&lt;span
+                          aria-hidden="true"&gt;&lt;/span&gt;</code> element contained in the <span class="highlight">close-button</span>
                           elements.
-                          <span class='info'>The close icon will be rendered anyway.</span>
+                          <span class="info">The close icon will be rendered anyway.</span>
                         </label>
                       </div>
                     </li>
@@ -1140,9 +1140,9 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapalerts_closebuttonclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Renamed class <code
+                        <label class="form-check-label" for="bootstrapalerts_closebuttonclass">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Renamed class <code
                           appCopyToClipboard>.close</code> to <code appCopyToClipboard>.btn-close</code>.
                         </label>
                       </div>
@@ -1169,11 +1169,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapbadges_classes'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Renamed <span class='highlight'>badge</span>
+                        <label class="form-check-label" for="bootstrapbadges_classes">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">badge</span>
                           classes.<br>
-                          <ul class='mt-2'>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>.badge-pill</code> became <code appCopyToClipboard>.rounded-pill</code>
                             </li>
                             <li><code appCopyToClipboard>.badge-[colorname]</code> became <code appCopyToClipboard>.bg-[colorname]</code>
@@ -1185,7 +1185,7 @@
                             <li><code appCopyToClipboard>.badge-outline-gray-carrara-thick</code> became <code
                               appCopyToClipboard>.border-light.border-2</code></li>
                           </ul>
-                          <p class='info'>Replace [colorname] for example with "primary", "warning", etc.</p>
+                          <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
                         </label>
                       </div>
                     </li>
@@ -1213,11 +1213,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapbackgrounds_textcolor'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped usage of <code appCopyToClipboard>.text-auto</code>
+                        <label class="form-check-label" for="bootstrapbackgrounds_textcolor">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.text-auto</code>
                           class on elements with background classes such as <code
                           appCopyToClipboard>.bg-[colorname]</code>.
-                          The <span class='highlight'>text-color</span> is now automatically defined with <code
+                          The <span class="highlight">text-color</span> is now automatically defined with <code
                           appCopyToClipboard>var(--post-contrast-color)</code>, therefore an explicit color style is no
                           longer needed.
                         </label>
@@ -1248,10 +1248,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapblockquotes_footerstructure'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Refactored <span
-                          class='highlight'>blockquote</span> with footer.<br>
+                        <label class="form-check-label" for="bootstrapblockquotes_footerstructure">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Refactored <span
+                          class="highlight">blockquote</span> with footer.<br>
                           Such blockquotes should now be nested in a <code appCopyToClipboard>figure</code> tag.
                           In addition, the tag <code appCopyToClipboard>footer.blockquote-footer</code> became <code
                           appCopyToClipboard>figcaption.blockquote-footer</code>.
@@ -1270,10 +1270,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapblockquotes_qclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span>Dropped usage of <code
-                          appCopyToClipboard>.mb-0</code> class, on <span class='highlight'>p</span> tags within <span
-                          class='highlight'>blockquote</span> elements.
+                        <label class="form-check-label" for="bootstrapblockquotes_qclass">
+                          <span *ngIf="isMigratingAngular">⚙️ </span>Dropped usage of <code
+                          appCopyToClipboard>.mb-0</code> class, on <span class="highlight">p</span> tags within <span
+                          class="highlight">blockquote</span> elements.
                         </label>
                       </div>
                     </li>
@@ -1301,13 +1301,13 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapbuttons_outline'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Removed <span class='highlight'>button</span>
+                        <label class="form-check-label" for="bootstrapbuttons_outline">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Removed <span class="highlight">button</span>
                           classes <code appCopyToClipboard>.btn-outline-[colorname]</code>.<br>
                           All the <code appCopyToClipboard>.btn-outline-[colorname]</code> classes will be replaced by
                           <code appCopyToClipboard>.btn-secondary</code>.
-                          <p class='info'>Replace [colorname] for example with "primary", "warning", etc.</p>
+                          <p class="info">Replace [colorname] for example with "primary", "warning", etc.</p>
                         </label>
                       </div>
                     </li>
@@ -1323,10 +1323,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapbuttons_borderradius'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed <span
-                          class='highlight'>button</span> variables.<br>
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="bootstrapbuttons_borderradius">
+                          <span class="change-badge bg-danger">breaking</span> Removed <span
+                          class="highlight">button</span> variables.<br>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>$btn-border-radius-rg</code></li>
                             <li><code appCopyToClipboard>$btn-border-radius-map</code></li>
                           </ul>
@@ -1345,13 +1345,13 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapbuttons_borderradius2'>
-                          Dropped the usage of <span class='highlight'>button</span> variables.
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="bootstrapbuttons_borderradius2">
+                          Dropped the usage of <span class="highlight">button</span> variables.
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>$btn-border-radius-sm</code></li>
                             <li><code appCopyToClipboard>$btn-border-radius-lg</code></li>
                           </ul>
-                          <p class='info'>The variables remain available because of Bootstrap.</p>
+                          <p class="info">The variables remain available because of Bootstrap.</p>
                         </label>
                       </div>
                     </li>
@@ -1367,10 +1367,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapbuttons_invertedclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped the usage of <code appCopyToClipboard>.btn-inverted</code>
+                        <label class="form-check-label" for="bootstrapbuttons_invertedclass">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code appCopyToClipboard>.btn-inverted</code>
                           class.<br>
-                          <span class='highlight'>Text-colors</span> are now automatically handled.
+                          <span class="highlight">Text-colors</span> are now automatically handled.
                         </label>
                       </div>
                     </li>
@@ -1386,11 +1386,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapbuttons_iconclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped the usage of <code appCopyToClipboard>.btn-icon</code>
-                          class for buttons with <span class='highlight'>icon</span> and visible <span
-                          class='highlight'>text</span>.<br>
-                          <span class='highlight'>Icon-only</span> buttons still need this class!
+                        <label class="form-check-label" for="bootstrapbuttons_iconclass">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code appCopyToClipboard>.btn-icon</code>
+                          class for buttons with <span class="highlight">icon</span> and visible <span
+                          class="highlight">text</span>.<br>
+                          <span class="highlight">Icon-only</span> buttons still need this class!
                         </label>
                       </div>
                     </li>
@@ -1418,12 +1418,12 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapbuttonclose_content'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Removed the <code appCopyToClipboard>&lt;span
-                          aria-hidden="true"&gt;&lt;/span&gt;</code> element contained in the <span class='highlight'>close-button</span>
+                        <label class="form-check-label" for="bootstrapbuttonclose_content">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Removed the <code appCopyToClipboard>&lt;span
+                          aria-hidden="true"&gt;&lt;/span&gt;</code> element contained in the <span class="highlight">close-button</span>
                           elements.
-                          <span class='info'>The close icon will be rendered anyway.</span>
+                          <span class="info">The close icon will be rendered anyway.</span>
                         </label>
                       </div>
                     </li>
@@ -1439,9 +1439,9 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapbuttonclose_class'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Renamed class <code
+                        <label class="form-check-label" for="bootstrapbuttonclose_class">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Renamed class <code
                           appCopyToClipboard>.close</code> to <code appCopyToClipboard>.btn-close</code>.
                         </label>
                       </div>
@@ -1458,11 +1458,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapbuttonclose_buttonclasses'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped the usage of <code
+                        <label class="form-check-label" for="bootstrapbuttonclose_buttonclasses">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped the usage of <code
                           appCopyToClipboard>.btn</code> and <code appCopyToClipboard>.btn-icon</code> classes.<br>
-                          <span class='info'>Unless you want to have a button-like appearance, you should not use these classes on a <span
-                            class='highlight'>close-button</span> element.</span>
+                          <span class="info">Unless you want to have a button-like appearance, you should not use these classes on a <span
+                            class="highlight">close-button</span> element.</span>
                         </label>
                       </div>
                     </li>
@@ -1488,11 +1488,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapcards_classes'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed <span
-                          class='highlight'>card</span> classes <code appCopyToClipboard>.card-deck</code> and <code
+                        <label class="form-check-label" for="bootstrapcards_classes">
+                          <span class="change-badge bg-danger">breaking</span> Removed <span
+                          class="highlight">card</span> classes <code appCopyToClipboard>.card-deck</code> and <code
                           appCopyToClipboard>.card-columns</code>.<br>
-                          Use the <span class='highlight'>grid-system</span> instead.
+                          Use the <span class="highlight">grid-system</span> instead.
                         </label>
                       </div>
                     </li>
@@ -1520,10 +1520,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='boostrapforms_formlabelclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Required class <code appCopyToClipboard>.form-label</code>
-                          on <span class='highlight'>form-label</span> elements.
+                        <label class="form-check-label" for="boostrapforms_formlabelclass">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Required class <code appCopyToClipboard>.form-label</code>
+                          on <span class="highlight">form-label</span> elements.
                         </label>
                       </div>
                     </li>
@@ -1539,10 +1539,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapforms_formgroup'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped usage of <code appCopyToClipboard>.form-group</code>
+                        <label class="form-check-label" for="bootstrapforms_formgroup">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.form-group</code>
                           class.<br>
-                          Use <span class='highlight'>utility-class</span>&nbsp;<code
+                          Use <span class="highlight">utility-class</span>&nbsp;<code
                           appCopyToClipboard>.mb-regular</code> instead.<br>
                         </label>
                       </div>
@@ -1557,8 +1557,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapforms_formtext'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped usage of <code
+                        <label class="form-check-label" for="bootstrapforms_formtext">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code
                           appCopyToClipboard>.small</code> and <code appCopyToClipboard>.text-muted</code> classes on
                           <code appCopyToClipboard>.form-text</code> elements.
                         </label>
@@ -1589,10 +1589,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='boostrapformcontrols_formfloatingwrapper'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Required a <code appCopyToClipboard>&lt;div
-                          class="form-floating"&gt;...&lt;/div&gt;</code> wrapper around <span class='highlight'>floating-label</span>
+                        <label class="form-check-label" for="boostrapformcontrols_formfloatingwrapper">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Required a <code appCopyToClipboard>&lt;div
+                          class="form-floating"&gt;...&lt;/div&gt;</code> wrapper around <span class="highlight">floating-label</span>
                           elements.
                         </label>
                       </div>
@@ -1610,9 +1610,9 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='boostrapformcontrols_formfloatingcontrollgclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped usage of <code appCopyToClipboard>.form-control-lg</code>
-                          class on <span class='highlight'>floating-label</span> elements.
+                        <label class="form-check-label" for="boostrapformcontrols_formfloatingcontrollgclass">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.form-control-lg</code>
+                          class on <span class="highlight">floating-label</span> elements.
                         </label>
                       </div>
                     </li>
@@ -1641,10 +1641,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='boostrapformselects_formfloatingwrapper'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Required a <code appCopyToClipboard>&lt;div
-                          class="form-floating"&gt;...&lt;/div&gt;</code> wrapper around <span class='highlight'>floating-label</span>
+                        <label class="form-check-label" for="boostrapformselects_formfloatingwrapper">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Required a <code appCopyToClipboard>&lt;div
+                          class="form-floating"&gt;...&lt;/div&gt;</code> wrapper around <span class="highlight">floating-label</span>
                           elements.
                         </label>
                       </div>
@@ -1661,12 +1661,12 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformselects_classes'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Renamed <span class='highlight'>select</span>,
-                          <span class='highlight'>multi-select</span> and <span class='highlight'>custom-select</span>
+                        <label class="form-check-label" for="bootstrapformselects_classes">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">select</span>,
+                          <span class="highlight">multi-select</span> and <span class="highlight">custom-select</span>
                           classes.
-                          <ul class='mt-2'>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>.form-control</code> became <code appCopyToClipboard>.form-select</code>
                             </li>
                             <li><code appCopyToClipboard>.form-control-lg</code> became <code appCopyToClipboard>.form-select-lg</code>
@@ -1700,9 +1700,9 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformselects_formfloatingselectlgclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped usage of <code appCopyToClipboard>.form-control-lg</code>
-                          class on <span class='highlight'>floating-label</span> elements.
+                        <label class="form-check-label" for="bootstrapformselects_formfloatingselectlgclass">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.form-control-lg</code>
+                          class on <span class="highlight">floating-label</span> elements.
                         </label>
                       </div>
                     </li>
@@ -1731,10 +1731,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='boostrapformtextareas_formfloatingwrapper'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Required a <code appCopyToClipboard>&lt;div
-                          class="form-floating"&gt;...&lt;/div&gt;</code> wrapper around <span class='highlight'>floating-label</span>
+                        <label class="form-check-label" for="boostrapformtextareas_formfloatingwrapper">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Required a <code appCopyToClipboard>&lt;div
+                          class="form-floating"&gt;...&lt;/div&gt;</code> wrapper around <span class="highlight">floating-label</span>
                           elements.
                         </label>
                       </div>
@@ -1763,9 +1763,9 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='boostrapformfiles_formlabelclass'>
-                          <span class='change-badge bg-danger'>breaking</span> Required class <code appCopyToClipboard>.form-label</code>
-                          on <span class='highlight'>form-label</span> elements.
+                        <label class="form-check-label" for="boostrapformfiles_formlabelclass">
+                          <span class="change-badge bg-danger">breaking</span> Required class <code appCopyToClipboard>.form-label</code>
+                          on <span class="highlight">form-label</span> elements.
                         </label>
                       </div>
                     </li>
@@ -1793,11 +1793,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformcheckboxes_classes'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Renamed <span class='highlight'>control</span>
+                        <label class="form-check-label" for="bootstrapformcheckboxes_classes">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">control</span>
                           classes.
-                          <ul class='mt-2'>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>.custom-control.custom-checkbox</code> became <code
                               appCopyToClipboard>.form-check</code></li>
                             <li><code appCopyToClipboard>.custom-control-input</code> became <code appCopyToClipboard>.form-check-input</code>
@@ -1823,13 +1823,13 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformcheckboxes_validationclasses'>
-                          <span class='change-badge bg-danger'>breaking</span> Shifted <span class='highlight'>validation</span>
+                        <label class="form-check-label" for="bootstrapformcheckboxes_validationclasses">
+                          <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span>
                           classes.<br>
                           The classes <code appCopyToClipboard>.is-valid</code> and <code
                           appCopyToClipboard>.is-invalid</code> now belong on the <code appCopyToClipboard>.form-check-input</code>
                           element. The <code appCopyToClipboard>.form-check</code> element does no longer require the
-                          <span class='highlight'>validation</span> classes.
+                          <span class="highlight">validation</span> classes.
                         </label>
                       </div>
                     </li>
@@ -1846,8 +1846,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformcheckboxes_validationfeedbackclasses'>
-                          <span class='change-badge bg-danger'>breaking</span> Shifted <span class='highlight'>validation-feedback</span>
+                        <label class="form-check-label" for="bootstrapformcheckboxes_validationfeedbackclasses">
+                          <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span>
                           elements.<br>
                           The elements <code appCopyToClipboard>.valid-feedback</code> and <code appCopyToClipboard>.invalid-feedback</code>
                           now belong inside of the <code appCopyToClipboard>.form-check</code> element.
@@ -1878,11 +1878,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformradios_classes'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Renamed <span class='highlight'>control</span>
+                        <label class="form-check-label" for="bootstrapformradios_classes">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">control</span>
                           classes.
-                          <ul class='mt-2'>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>.custom-control.custom-radio</code> became <code
                               appCopyToClipboard>.form-check</code></li>
                             <li><code appCopyToClipboard>.custom-control-input</code> became <code appCopyToClipboard>.form-check-input</code>
@@ -1908,13 +1908,13 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformradios_validationclasses'>
-                          <span class='change-badge bg-danger'>breaking</span> Shifted <span class='highlight'>validation</span>
+                        <label class="form-check-label" for="bootstrapformradios_validationclasses">
+                          <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span>
                           classes.<br>
                           The classes <code appCopyToClipboard>.is-valid</code> and <code
                           appCopyToClipboard>.is-invalid</code> now belong on the <code appCopyToClipboard>.form-check-input</code>
                           element. The <code appCopyToClipboard>.form-check</code> element does no longer require the
-                          <span class='highlight'>validation</span> classes.
+                          <span class="highlight">validation</span> classes.
                         </label>
                       </div>
                     </li>
@@ -1931,8 +1931,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformradios_validationfeedbackclasses'>
-                          <span class='change-badge bg-danger'>breaking</span> Shifted <span class='highlight'>validation-feedback</span>
+                        <label class="form-check-label" for="bootstrapformradios_validationfeedbackclasses">
+                          <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span>
                           elements.<br>
                           The elements <code appCopyToClipboard>.valid-feedback</code> and <code appCopyToClipboard>.invalid-feedback</code>
                           now belong inside of the <code appCopyToClipboard>.form-check</code> element.
@@ -1976,11 +1976,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformswitches_classes'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Refactored <span
-                          class='highlight'>switch</span> classes.<br>
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="bootstrapformswitches_classes">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Refactored <span
+                          class="highlight">switch</span> classes.<br>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>.switch</code> became <code appCopyToClipboard>.form-check.form-switch</code>
                             </li>
                             <li><code appCopyToClipboard>.switch input.switch</code> became <code appCopyToClipboard>input.form-check-input</code>
@@ -2001,11 +2001,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformswitches_labelclasses'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Refactored <span
-                          class='highlight'>switch-label</span>.<br>
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="bootstrapformswitches_labelclasses">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Refactored <span
+                          class="highlight">switch-label</span>.<br>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>div.switch label</code> (before <code appCopyToClipboard>label.switch-toggler</code>)
                               became <code appCopyToClipboard>label.form-check-label.order-first</code></li>
                             <li><code appCopyToClipboard>div.switch label.switch-toggler</code> has been removed</li>
@@ -2028,8 +2028,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformswitches_validationclasses'>
-                          <span class='change-badge bg-danger'>breaking</span> Shifted <span class='highlight'>validation</span>
+                        <label class="form-check-label" for="bootstrapformswitches_validationclasses">
+                          <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation</span>
                           classes.<br>
                           The classes <code appCopyToClipboard>.is-valid</code> and <code
                           appCopyToClipboard>.is-invalid</code> now belong on the <code appCopyToClipboard>.form-check-input</code>
@@ -2050,8 +2050,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='bootstrapformswitches_validationfeedbackclasses'>
-                          <span class='change-badge bg-danger'>breaking</span> Shifted <span class='highlight'>validation-feedback</span>
+                        <label class="form-check-label" for="bootstrapformswitches_validationfeedbackclasses">
+                          <span class="change-badge bg-danger">breaking</span> Shifted <span class="highlight">validation-feedback</span>
                           elements.<br>
                           The elements <code appCopyToClipboard>.valid-feedback</code> and <code appCopyToClipboard>.invalid-feedback</code>
                           now belong inside of the <code appCopyToClipboard>.form-check</code> element.
@@ -2096,9 +2096,9 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='ngbootstrapbuttons_labelclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Refactored <code appCopyToClipboard>label.btn-primary</code>
+                        <label class="form-check-label" for="ngbootstrapbuttons_labelclass">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Refactored <code appCopyToClipboard>label.btn-primary</code>
                           to <code appCopyToClipboard>label.btn.btn-secondary</code>.
                         </label>
                       </div>
@@ -2115,9 +2115,9 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='ngbootstrapbuttons_inputclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Required class <code appCopyToClipboard>.btn-check</code>
+                        <label class="form-check-label" for="ngbootstrapbuttons_inputclass">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Required class <code appCopyToClipboard>.btn-check</code>
                           on the <code appCopyToClipboard>input</code> element.
                         </label>
                       </div>
@@ -2134,8 +2134,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='ngbootstrapbuttons_grouptoggleclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped usage of <code appCopyToClipboard>.btn-group-toggle</code>
+                        <label class="form-check-label" for="ngbootstrapbuttons_grouptoggleclass">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.btn-group-toggle</code>
                           class.
                         </label>
                       </div>
@@ -2164,10 +2164,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='ngbootstrapdatepickers_variables'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed <span
-                          class='highlight'>padding</span> variables.
-                          <ul class='mt-2'>
+                        <label class="form-check-label" for="ngbootstrapdatepickers_variables">
+                          <span class="change-badge bg-danger">breaking</span> Removed <span
+                          class="highlight">padding</span> variables.
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>$ngb-dp-icon-padding</code></li>
                             <li><code appCopyToClipboard>$ngb-dp-icon-padding-sm</code></li>
                             <li><code appCopyToClipboard>$ngb-dp-icon-padding-rg</code></li>
@@ -2201,12 +2201,12 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='ngbootstrapmodals_closebuttoncontent'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Removed the <code appCopyToClipboard>&lt;span
-                          aria-hidden="true"&gt;&lt;/span&gt;</code> element contained in the <span class='highlight'>close-button</span>
+                        <label class="form-check-label" for="ngbootstrapmodals_closebuttoncontent">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Removed the <code appCopyToClipboard>&lt;span
+                          aria-hidden="true"&gt;&lt;/span&gt;</code> element contained in the <span class="highlight">close-button</span>
                           elements.
-                          <span class='info'>The close icon will be rendered anyway.</span>
+                          <span class="info">The close icon will be rendered anyway.</span>
                         </label>
                       </div>
                     </li>
@@ -2222,9 +2222,9 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='ngbootstrapmodals_closebuttonclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Renamed class <code
+                        <label class="form-check-label" for="ngbootstrapmodals_closebuttonclass">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Renamed class <code
                           appCopyToClipboard>.close</code> to <code appCopyToClipboard>.btn-close</code>.
                         </label>
                       </div>
@@ -2267,13 +2267,13 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='jqueryaccordions_removed'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed the entire jQuery <span
-                          class='highlight'>accordion</span> component.
-                          <p class='info'>This can be migrated easily to the new <a
-                            routerLink='/bootstrap-samples/accordion'>Bootstrap accordion</a> component.</p>
+                        <label class="form-check-label" for="jqueryaccordions_removed">
+                          <span class="change-badge bg-danger">breaking</span> Removed the entire jQuery <span
+                          class="highlight">accordion</span> component.
+                          <p class="info">This can be migrated easily to the new <a
+                            routerLink="/bootstrap-samples/accordion">Bootstrap accordion</a> component.</p>
 
-                          <p *ngIf='isMigratingAngular' class='alert alert-info'>
+                          <p *ngIf="isMigratingAngular" class="alert alert-info">
                             One might think: "When it is so easy to migrate, why don't you offer an automatic
                             migration?"<br>
                             The short answer: because it is no longer the same component!
@@ -2312,15 +2312,15 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='postaccordions_removed'>
-                          <span class='change-badge bg-danger'>breaking</span> Removed the entire Post <span
-                          class='highlight'>accordion</span> component and the associated <span class='highlight'>detail-summary</span>
+                        <label class="form-check-label" for="postaccordions_removed">
+                          <span class="change-badge bg-danger">breaking</span> Removed the entire Post <span
+                          class="highlight">accordion</span> component and the associated <span class="highlight">detail-summary</span>
                           stylesheet.<br>
                           The component has been removed due to <a
-                          href='https://adrianroselli.com/2019/04/details-summary-are-not-insert-control-here.html'>accessibility
+                          href="https://adrianroselli.com/2019/04/details-summary-are-not-insert-control-here.html">accessibility
                           issues with the &lt;summary&gt; element</a>.
-                          <p class='info'>We recommend to use the new <a routerLink='/bootstrap-samples/accordion'>Bootstrap
-                            accordion</a> or the existing <a routerLink='/ng-bootstrap-samples/accordion'>Angular
+                          <p class="info">We recommend to use the new <a routerLink="/bootstrap-samples/accordion">Bootstrap
+                            accordion</a> or the existing <a routerLink="/ng-bootstrap-samples/accordion">Angular
                             accordion</a> component instead.</p>
                         </label>
                       </div>
@@ -2345,10 +2345,10 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='postcustomselects_formfloatingwrapper'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Required a <code appCopyToClipboard>&lt;div
-                          class="form-floating"&gt;...&lt;/div&gt;</code> wrapper around <span class='highlight'>floating-label</span>
+                        <label class="form-check-label" for="postcustomselects_formfloatingwrapper">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Required a <code appCopyToClipboard>&lt;div
+                          class="form-floating"&gt;...&lt;/div&gt;</code> wrapper around <span class="highlight">floating-label</span>
                           elements.
                         </label>
                       </div>
@@ -2365,9 +2365,9 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='postcustomselects_classes'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Refactored <code appCopyToClipboard>.form-control.custom-select</code>
+                        <label class="form-check-label" for="postcustomselects_classes">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Refactored <code appCopyToClipboard>.form-control.custom-select</code>
                           and <code appCopyToClipboard>.form-control.form-control-lg.custom-select</code> to <code
                           appCopyToClipboard>.form-select</code>.
                         </label>
@@ -2385,11 +2385,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='postcustomselects_menuclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Removed <code appCopyToClipboard>.custom-select-menu</code>
+                        <label class="form-check-label" for="postcustomselects_menuclass">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Removed <code appCopyToClipboard>.custom-select-menu</code>
                           class.<br>
-                          Use <span class='highlight'>utility-classes</span>&nbsp;<code
+                          Use <span class="highlight">utility-classes</span>&nbsp;<code
                           appCopyToClipboard>.w-100.mw-100</code> instead.
                         </label>
                       </div>
@@ -2418,8 +2418,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='postsubnavigations_invertedclass'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped usage of <code appCopyToClipboard>.subnavigation-inverted</code>
+                        <label class="form-check-label" for="postsubnavigations_invertedclass">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.subnavigation-inverted</code>
                           class.
                         </label>
                       </div>
@@ -2448,11 +2448,11 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='posttopicteasers_imageattributes'>
-                          <span *ngIf='isMigratingAngular'>⚙️ </span><span
-                          class='change-badge bg-danger'>breaking</span> Required <span class='highlight'>image</span>
+                        <label class="form-check-label" for="posttopicteasers_imageattributes">
+                          <span *ngIf="isMigratingAngular">⚙️ </span><span
+                          class="change-badge bg-danger">breaking</span> Required <span class="highlight">image</span>
                           attributes.
-                          <ul class='mt-2'>
+                          <ul class="mt-2">
                             <li><code appCopyToClipboard>width="100%"</code></li>
                             <li><code appCopyToClipboard>height="100%"</code></li>
                           </ul>
@@ -2472,8 +2472,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='posttopicteasers_imagecontainergridclasses'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped usage of <code appCopyToClipboard>.col-10.col-rg-8.col-lg-4</code>
+                        <label class="form-check-label" for="posttopicteasers_imagecontainergridclasses">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.col-10.col-rg-8.col-lg-4</code>
                           on <code appCopyToClipboard>.topic-teaser-image-container</code> elements.
                         </label>
                       </div>
@@ -2491,8 +2491,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='posttopicteasers_contentcontainergridclasses'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped usage of <code appCopyToClipboard>.col-12.col-lg-8</code>
+                        <label class="form-check-label" for="posttopicteasers_contentcontainergridclasses">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.col-12.col-lg-8</code>
                           on <code appCopyToClipboard>.topic-teaser-content</code> elements.
                         </label>
                       </div>
@@ -2509,8 +2509,8 @@
                           (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
-                        <label class='form-check-label' for='posttopicteasers_linklistfontcurve'>
-                          <span *ngIf='isMigratingAngular'>⚙️</span> Dropped usage of <code appCopyToClipboard>.font-curve-regular</code>
+                        <label class="form-check-label" for="posttopicteasers_linklistfontcurve">
+                          <span *ngIf="isMigratingAngular">⚙️</span> Dropped usage of <code appCopyToClipboard>.font-curve-regular</code>
                           on <code appCopyToClipboard>ul.link-list</code> elements.
                         </label>
                       </div>
