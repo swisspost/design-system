@@ -14,7 +14,7 @@ module.exports = {
           'error',
           {
             type: 'attribute',
-            prefix: 'sp',
+            prefix: 'post',
             style: 'camelCase',
           },
         ],
@@ -22,10 +22,11 @@ module.exports = {
           'error',
           {
             type: 'element',
-            prefix: 'sp',
+            prefix: 'post',
             style: 'kebab-case',
           },
         ],
+        '@angular-eslint/component-class-suffix': ['off'],
       },
     },
     {
