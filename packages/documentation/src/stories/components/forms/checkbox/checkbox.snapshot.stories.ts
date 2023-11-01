@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Inline } from './checkbox.stories';
 import { html } from 'lit';
-import { bombArgs } from '../../../utils/bombArgs';
+import { bombArgs } from '../../../../utils/bombArgs';
 
 export default {
   ...meta,

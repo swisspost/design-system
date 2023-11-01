@@ -1,7 +1,7 @@
 import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
-import { BADGE } from '../../../../.storybook/constants';
+import { BADGE } from '../../../../../.storybook/constants';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
@@ -11,7 +11,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
-  title: 'Components/Select',
+  title: 'Components/Forms/Select',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },

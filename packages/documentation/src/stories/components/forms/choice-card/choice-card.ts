@@ -1,7 +1,7 @@
 import type { Args, Meta } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { BADGE } from '../../../../.storybook/constants';
+import { BADGE } from '../../../../../.storybook/constants';
 import { nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 

@@ -1,6 +1,7 @@
-import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
-import { html, nothing, TemplateResult } from 'lit';
+import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import { html, nothing } from 'lit';
+import { BADGE } from '../../../../../.storybook/constants';
+import { mapClasses } from '../../../../utils';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -9,8 +10,8 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
-  title: 'Components/Text Input',
-  render: render,
+  title: 'Components/Forms/Textarea',
+  render: renderTextarea,
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },
@@ -18,9 +19,9 @@ const meta: Meta = {
     label: 'Label',
     floatingLabel: false,
     hiddenLabel: false,
-    placeholder: 'Placeholder',
-    type: 'text',
+    value: undefined,
     size: 'null',
+    rows: 4,
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
@@ -61,39 +62,14 @@ const meta: Meta = {
         category: 'General',
       },
     },
-    placeholder: {
-      name: 'Placeholder',
-      description: 'Defines the text displayed in the input when it is empty.',
+    value: {
+      name: 'Value',
+      description: 'The value of the component.',
       control: {
         type: 'text',
       },
       table: {
-        category: 'General',
-      },
-    },
-    type: {
-      name: 'Type',
-      description: 'The components `type` attribute.',
-      control: {
-        type: 'select',
-        labels: {},
-      },
-      options: [
-        'text',
-        'number',
-        'email',
-        'tel',
-        'url',
-        'password',
-        'date',
-        'datetime-local',
-        'month',
-        'week',
-        'time',
-        'color',
-      ],
-      table: {
-        category: 'General',
+        disable: true,
       },
     },
     size: {
@@ -113,6 +89,20 @@ const meta: Meta = {
         },
       },
       options: ['form-control-sm', 'form-control-rg', 'null', 'form-control-lg'],
+      table: {
+        category: 'General',
+      },
+    },
+    rows: {
+      name: 'Rows',
+      description:
+        'Attribute to set the initial height, in lines of text, of the `textarea` element.',
+      control: {
+        type: 'number',
+        min: 3,
+        max: 10,
+        step: 1,
+      },
       table: {
         category: 'General',
       },
@@ -161,67 +151,64 @@ export default meta;
 
 type Story = StoryObj;
 
-function render(args: Args, context: StoryContext) {
-  const id = `ExampleTextarea_${context.name}`;
-  const classes = [
-    'form-control',
-    args.type === 'color' && 'form-control-color',
-    args.size,
-    args.validation,
-  ]
-    .filter(c => c && c !== 'null')
-    .join(' ');
-
+function renderTextarea(args: Args, context: StoryContext) {
+  const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
+  const classes = mapClasses({
+    'form-control': true,
+    [args.size]: args.size && args.size !== 'null',
+    [args.validation]: args.validation && args.validation !== 'null',
+  });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
-  const label: TemplateResult | null = !useAriaLabel
+  const label = !useAriaLabel
     ? html`
-        <label for="${id}" class="form-label">${args.label}</label>
+        <label for=${id} class="form-label">
+          ${html`
+            ${args.label}
+          `}
+        </label>
       `
     : null;
-
-  if (args.floatingLabel && !args.placeholder) {
-    args.placeholder = ' '; // a placeholder must always be defined for the floating label to work properly
-  }
-
-  const contextual: (TemplateResult | null)[] = [
+  const contextuals = [
     args.validation === 'is-valid'
       ? html`
-          <p class="valid-feedback">Ggranda sukceso!</p>
+          <div class="valid-feedback">Ggranda sukceso!</div>
         `
       : null,
     args.validation === 'is-invalid'
       ? html`
-          <p class="invalid-feedback">Eraro okazis!</p>
+          <div class="invalid-feedback">Eraro okazis!</div>
         `
       : null,
     args.hint !== ''
       ? html`
-          <div class="form-text">${args.hint}</div>
+          <div class="form-text">
+            ${html`
+              ${args.hint}
+            `}
+          </div>
         `
       : null,
   ];
-
-  const control: TemplateResult = html`
-    <input
-      id="${id}"
-      class="${classes}"
-      type="${args.type}"
-      placeholder="${args.placeholder || nothing}"
-      ?disabled="${args.disabled}"
-      aria-label="${useAriaLabel ? args.label : nothing}"
-      ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      value=${args.value ? args.value : nothing}
-    />
+  const control = html`
+    <textarea
+      id=${id}
+      class=${classes}
+      defaultValue=${args.value ?? nothing}
+      placeholder=${useAriaLabel ? args.label : ' '}
+      rows=${args.rows}
+      ?disabled=${args.disabled}
+      aria-label=${useAriaLabel ? args.label : nothing}
+      aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
+    ></textarea>
   `;
   if (args.floatingLabel) {
     return html`
-      <div class="form-floating">${[control, label, ...contextual].filter(el => el !== null)}</div>
+      <div class="form-floating">${[control, label, ...contextuals].filter(el => el !== null)}</div>
     `;
-  } else {
+  } else
     return html`
-      ${[label, control, ...contextual].filter(el => el !== null)}
+      ${[label, control, ...contextuals].filter(el => el !== null)}
     `;
-  }
 }
 
 export const Default: Story = {};
@@ -229,7 +216,7 @@ export const Default: Story = {};
 export const FloatingLabel: Story = {
   parameters: {
     controls: {
-      exclude: ['Hidden Label', 'Size', 'Helper Text', 'Disabled', 'Validation'],
+      exclude: ['Hidden Label', 'Size', 'Rows', 'Helper Text', 'Disabled', 'Validation'],
     },
   },
   args: {
@@ -241,7 +228,15 @@ export const FloatingLabel: Story = {
 export const Size: Story = {
   parameters: {
     controls: {
-      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Helper Text', 'Disabled', 'Validation'],
+      exclude: [
+        'Label',
+        'Floating Label',
+        'Hidden Label',
+        'Rows',
+        'Helper Text',
+        'Disabled',
+        'Validation',
+      ],
     },
   },
   args: {
@@ -253,7 +248,15 @@ export const Size: Story = {
 export const Validation: Story = {
   parameters: {
     controls: {
-      exclude: ['Label', 'Floating Label', 'Hidden Label', 'Size', 'Helper Text', 'Disabled'],
+      exclude: [
+        'Label',
+        'Floating Label',
+        'Hidden Label',
+        'Size',
+        'Rows',
+        'Helper Text',
+        'Disabled',
+      ],
     },
   },
   args: {

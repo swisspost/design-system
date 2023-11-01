@@ -1,9 +1,9 @@
-import { BADGE } from '../../../../.storybook/constants';
+import { BADGE } from '../../../../../.storybook/constants';
 import { choiceCardMeta, choiceCardDefault, choiceCardGroup } from './choice-card';
 
 export default {
   ...choiceCardMeta,
-  title: 'Components/Checkbox Card',
+  title: 'Components/Forms/Radio Button Card',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },
@@ -11,7 +11,7 @@ export default {
 
 export const Default = {
   render: choiceCardDefault,
-  args: { ...choiceCardMeta.args, type: 'checkbox' },
+  args: { ...choiceCardMeta.args, type: 'radio' },
   parameters: {
     controls: {
       exclude: ['Group Validation'],
@@ -21,10 +21,6 @@ export const Default = {
 
 export const Group = {
   render: choiceCardGroup,
-  args: { ...choiceCardMeta.args, type: 'checkbox' },
-  parameters: {
-    controls: {
-      include: ['Group Validation'],
-    },
-  },
+  args: { ...choiceCardMeta.args, type: 'radio' },
+  parameters: { controls: { include: ['Group Validation'] } },
 };

@@ -1,6 +1,6 @@
 import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
-import { BADGE } from '../../../../.storybook/constants';
+import { BADGE } from '../../../../../.storybook/constants';
 import { html, nothing, TemplateResult } from 'lit';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
@@ -10,7 +10,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
-  title: 'Components/Radio button',
+  title: 'Components/Forms/Radio button',
   parameters: {
     controls: {
       exclude: ['Hidden Legend'],
