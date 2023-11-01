@@ -182,7 +182,12 @@ const Template: Story = {
   render: (args: Args, context: StoryContext) => {
     const [_, updateArgs] = useArgs();
     const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleSelect`;
-    const classes = ['form-select', args.size, args.validation]
+    const classes = [
+      'form-select',
+      args.size,
+      args.validation,
+      args.floatingLabelNoSelectedOption && !args.value ? 'form-select-empty' : null,
+    ]
       .filter(c => c && c !== 'null')
       .join(' ');
     const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
@@ -197,9 +202,15 @@ const Template: Story = {
       `,
     );
     const options = [
-      html`
-        <option>Elektu opcion...</option>
-      `,
+      ...[
+        args.floatingLabelNoSelectedOption
+          ? html`
+              <option></option>
+            `
+          : html`
+              <option>Elektu opcion...</option>
+            `,
+      ],
       ...optionElements,
     ];
     const contextuals = [
@@ -221,16 +232,16 @@ const Template: Story = {
     ];
     const control = html`
       <select
-        id=${id}
-        class=${classes}
-        ?multiple=${args.multiple}
-        size=${args.multipleSize ?? nothing}
-        ?disabled=${args.disabled}
-        aria-label=${useAriaLabel ? args.label : nothing}
-        aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
-        @change=${(e: Event) => {
+        id="${id}"
+        class="${classes}"
+        ?multiple="${args.multiple}"
+        size="${args.multipleSize ?? nothing}"
+        ?disabled="${args.disabled}"
+        aria-label="${useAriaLabel ? args.label : nothing}"
+        aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
+        @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
-        }}
+        }}"
       >
         ${options}
       </select>
@@ -271,6 +282,28 @@ export const FloatingLabel: Story = {
   },
   args: {
     floatingLabel: true,
+    hint: '',
+  },
+};
+
+export const FloatingLabelNoSelectedOption: Story = {
+  ...Template,
+  parameters: {
+    controls: {
+      exclude: [
+        'Hidden Label',
+        'Options',
+        'Multiple',
+        'Size',
+        'Helper Text',
+        'Disabled',
+        'Validation',
+      ],
+    },
+  },
+  args: {
+    floatingLabel: true,
+    floatingLabelNoSelectedOption: true,
     hint: '',
   },
 };

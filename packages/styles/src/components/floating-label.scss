@@ -81,6 +81,7 @@
     background-size: forms.$form-floating-select-bg-size;
 
     ~ label {
+      color: forms.$form-floating-label-color;
       padding-top: 0.7rem;
       max-width: calc(
         (100% * forms.$form-floating-label-upscale) -
@@ -90,7 +91,8 @@
       transition: forms.$form-floating-transition-in;
     }
 
-    &:empty {
+    // TODO: replace with :has
+    &:empty, &.form-select-empty {
       padding-top: forms.$form-floating-input-padding-t;
       padding-bottom: forms.$form-floating-input-padding-b;
 
@@ -119,7 +121,8 @@
         background: forms.$input-bg;
       }
 
-      &:empty {
+      // TODO: replace with :has
+      &:empty, &.form-select-empty {
         ~ label {
           padding-top: forms.$form-floating-padding-y;
           padding-bottom: forms.$form-floating-padding-y;
