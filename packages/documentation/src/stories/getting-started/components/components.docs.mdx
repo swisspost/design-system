@@ -27,16 +27,14 @@ If you're using a simple HTML page, you can add our components via a script tag.
     <Source code={SampleCdnAll} language="html" />
   </PostTabPanel>
 
-<PostTabHeader slot="tabs" panel="cdn-esm-all">
-  cdn (esm)
-</PostTabHeader>
-<PostTabPanel name="cdn-esm-all">
-  If you want to take advantage of ES Modules, you can include our components using an import
-  statement.
-  <Source code={SampleCdnEsmAll} language="html" />
-  This way, you can also include only specific components...
-  <Source code={SampleCdnEsmSpecific} language="html" />
-</PostTabPanel>
+  <PostTabHeader slot="tabs" panel="cdn-esm-all">cdn (esm)</PostTabHeader>
+  <PostTabPanel name="cdn-esm-all">
+    If you want to take advantage of ES Modules, you can include our components using an import
+    statement.
+    <Source code={SampleCdnEsmAll} language="html" />
+    This way, you can also include only specific components...
+    <Source code={SampleCdnEsmSpecific} language="html" />
+  </PostTabPanel>
 
 </PostTabs>
 
