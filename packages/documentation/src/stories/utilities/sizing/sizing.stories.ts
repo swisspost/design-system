@@ -25,7 +25,7 @@ const meta: Meta = {
   argTypes: {
     height: {
       name: 'height',
-      description: 'Set the height of the cube',
+      description: 'Set the height of the rectangle',
       control: {
         type: 'select',
       },
@@ -33,7 +33,7 @@ const meta: Meta = {
     },
     width: {
       name: 'width',
-      description: 'Set the width of the cube',
+      description: 'Set the width of the rectangle',
       control: {
         type: 'select',
       },
@@ -41,7 +41,7 @@ const meta: Meta = {
     },
     maxHeight: {
       name: 'max-height',
-      description: 'Set the maximum height of the cube',
+      description: 'Set the maximum height of the rectangle',
       control: {
         type: 'select',
       },
@@ -49,7 +49,7 @@ const meta: Meta = {
     },
     maxWidth: {
       name: 'max-width',
-      description: 'Set the maximum width of the cube',
+      description: 'Set the maximum width of the rectangle',
       control: {
         type: 'select',
       },
