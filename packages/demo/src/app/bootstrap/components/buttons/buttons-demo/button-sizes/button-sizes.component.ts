@@ -5,7 +5,6 @@ import { Component, ElementRef } from '@angular/core';
   templateUrl: './button-sizes.component.html',
 })
 export class ButtonSizesComponent {
-
   elementRef: ElementRef;
 
   constructor(elementRef: ElementRef) {

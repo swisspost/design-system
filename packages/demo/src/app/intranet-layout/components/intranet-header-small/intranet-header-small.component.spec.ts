@@ -1,7 +1,7 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { IntranetHeaderSmallComponent } from './intranet-header-small.component';
-import {ErrorService} from '../../services/error.service';
+import { ErrorService } from '../../services/error.service';
 
 describe('IntranetHeaderSmallComponent', () => {
   let component: IntranetHeaderSmallComponent;
@@ -9,10 +9,9 @@ describe('IntranetHeaderSmallComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ IntranetHeaderSmallComponent ],
-      providers: [ErrorService]
-    })
-    .compileComponents();
+      declarations: [IntranetHeaderSmallComponent],
+      providers: [ErrorService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

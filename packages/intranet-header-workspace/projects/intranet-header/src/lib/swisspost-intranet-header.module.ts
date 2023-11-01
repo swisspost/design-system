@@ -7,12 +7,7 @@ import { SwissPostIntranetHeaderComponent } from './swisspost-intranet-header.co
 
 @NgModule({
   declarations: [SwissPostIntranetHeaderComponent],
-  imports: [
-    RouterModule,
-    CommonModule,
-    NgbModule
-  ],
-  exports: [SwissPostIntranetHeaderComponent]
+  imports: [RouterModule, CommonModule, NgbModule],
+  exports: [SwissPostIntranetHeaderComponent],
 })
-export class SwissPostIntranetHeaderModule {
-}
+export class SwissPostIntranetHeaderModule {}
