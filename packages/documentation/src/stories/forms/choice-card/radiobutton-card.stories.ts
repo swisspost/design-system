@@ -3,7 +3,7 @@ import { choiceCardMeta, choiceCardDefault, choiceCardGroup } from './choice-car
 
 export default {
   ...choiceCardMeta,
-  title: 'Components/Radio Button Card',
+  title: 'Forms/Radio Button Card',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },

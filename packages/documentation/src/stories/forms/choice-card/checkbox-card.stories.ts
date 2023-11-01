@@ -3,7 +3,7 @@ import { choiceCardMeta, choiceCardDefault, choiceCardGroup } from './choice-car
 
 export default {
   ...choiceCardMeta,
-  title: 'Components/Checkbox Card',
+  title: 'Forms/Checkbox Card',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },
