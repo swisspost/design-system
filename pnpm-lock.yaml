@@ -792,18 +792,18 @@ importers:
         specifier: 1.0.0-rc.12
         version: 1.0.0-rc.12
       prettier:
-        specifier: 2.8.8
-        version: 2.8.8
+        specifier: 3.0.3
+        version: 3.0.3
     devDependencies:
       '@angular/compiler':
         specifier: '=15.0.4'
         version: 15.0.4(@angular/core@15.0.4)
       '@percy/cli':
-        specifier: 1.27.2
-        version: 1.27.2
+        specifier: 1.27.3
+        version: 1.27.3
       '@percy/cypress':
         specifier: 3.1.2
-        version: 3.1.2(cypress@13.2.0)
+        version: 3.1.2(cypress@13.3.3)
       '@swisspost/design-system-icons':
         specifier: workspace:1.0.12
         version: link:../icons
@@ -817,14 +817,14 @@ importers:
         specifier: 2.4.1
         version: 2.4.1
       cypress:
-        specifier: 13.2.0
-        version: 13.2.0
+        specifier: 13.3.3
+        version: 13.3.3
       cypress-storybook:
         specifier: 0.5.1
-        version: 0.5.1(cypress@13.2.0)
+        version: 0.5.1(cypress@13.3.3)
       glob:
-        specifier: 10.3.7
-        version: 10.3.7
+        specifier: 10.3.10
+        version: 10.3.10
       gulp:
         specifier: 4.0.2
         version: 4.0.2
@@ -847,29 +847,29 @@ importers:
         specifier: 8.4.31
         version: 8.4.31
       postcss-scss:
-        specifier: 4.0.8
-        version: 4.0.8(postcss@8.4.31)
+        specifier: 4.0.9
+        version: 4.0.9(postcss@8.4.31)
       rimraf:
-        specifier: 5.0.1
-        version: 5.0.1
+        specifier: 5.0.5
+        version: 5.0.5
       sass:
-        specifier: 1.68.0
-        version: 1.68.0
+        specifier: 1.69.5
+        version: 1.69.5
       stylelint:
-        specifier: 15.10.3
-        version: 15.10.3
+        specifier: 15.11.0
+        version: 15.11.0
       stylelint-config-prettier:
         specifier: 9.0.5
-        version: 9.0.5(stylelint@15.10.3)
+        version: 9.0.5(stylelint@15.11.0)
       stylelint-config-sass-guidelines:
-        specifier: 9.0.1
-        version: 9.0.1(postcss@8.4.31)(stylelint@15.10.3)
+        specifier: 10.0.0
+        version: 10.0.0(postcss@8.4.31)(stylelint@15.11.0)
       stylelint-prettier:
-        specifier: 2.0.0
-        version: 2.0.0(prettier@2.8.8)(stylelint@15.10.3)
+        specifier: 4.0.2
+        version: 4.0.2(prettier@3.0.3)(stylelint@15.11.0)
       stylelint-scss:
         specifier: 5.2.1
-        version: 5.2.1(stylelint@15.10.3)
+        version: 5.2.1(stylelint@15.11.0)
       typescript:
         specifier: 4.9.5
         version: 4.9.5
@@ -6119,11 +6119,34 @@ packages:
       - utf-8-validate
     dev: true
 
+  /@percy/cli-app@1.27.3:
+    resolution: {integrity: sha512-RUSzWTRkG4hjUy7dzu+zlKVlbXEcj3yoiFTpjrmUxoK5QMVQtZfDdkHfJNSI51w1ZRzuxmO5x5uqFRpgUKh8QQ==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@percy/cli-command': 1.27.3
+      '@percy/cli-exec': 1.27.3
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: true
+
   /@percy/cli-build@1.27.2:
     resolution: {integrity: sha512-tYh5oVGZN2HEGHpL7RvQeFxirjKCax2p0W+gDWAU5qaaZMltYsuTxqHXYdiBxS/w2nOYLxz0ew8pj5XY9SiNWA==}
     engines: {node: '>=14'}
     dependencies:
       '@percy/cli-command': 1.27.2
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: true
+
+  /@percy/cli-build@1.27.3:
+    resolution: {integrity: sha512-F7vWMmXipINDO9kvDyaPaIeUZlZLfIbg74oRaAJUOVH2nkf0FNSPy7Dy/MEsFWAiKNeW7/UwHjuYl+I/yMBZPw==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@percy/cli-command': 1.27.3
     transitivePeerDependencies:
       - bufferutil
       - supports-color
@@ -6144,6 +6167,20 @@ packages:
       - utf-8-validate
     dev: true
 
+  /@percy/cli-command@1.27.3:
+    resolution: {integrity: sha512-aU76lu2a2/N/BUSsXpLXRzeJeXzmAcA3s9EFDeMNDMZY/7dV6wlLX9r7n931UD3bIhdlkl1o7COXIIATtPymJQ==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      '@percy/config': 1.27.3
+      '@percy/core': 1.27.3
+      '@percy/logger': 1.27.3
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: true
+
   /@percy/cli-config@1.27.2:
     resolution: {integrity: sha512-TnCfwO6+iYE6NTbgPzAyTTbc12eP2wkep/g6CQAymg3kGdAqXg/WORUJnZ3sATqQT2Vg9lmwuGziIXG1zHdcew==}
     engines: {node: '>=14'}
@@ -6155,11 +6192,35 @@ packages:
       - utf-8-validate
     dev: true
 
+  /@percy/cli-config@1.27.3:
+    resolution: {integrity: sha512-+gUZUlbpgllux0yJnCFYMuNn1kItfIP9F1AIYqdqFM9KLixodMCWAXDUQ4V4EVLDjOR7fD3NKmyoFUFJgwcIww==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@percy/cli-command': 1.27.3
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: true
+
   /@percy/cli-exec@1.27.2:
     resolution: {integrity: sha512-tPlxSwO4/ezub6YGfiREuwgHC02oRUBk9fi9ja9PSsLKZMtRt6o+YUt1YVFXMzuoz6tZZen+hrC3++yDO8VNQQ==}
     engines: {node: '>=14'}
     dependencies:
       '@percy/cli-command': 1.27.2
+      cross-spawn: 7.0.3
+      which: 2.0.2
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: true
+
+  /@percy/cli-exec@1.27.3:
+    resolution: {integrity: sha512-PuSxfZKWx9BoeCbt5U1Edc+fv5kb/mYr+9sgoBsoHmwe5iNIgYKx6D+wmNK7FHgc82mycNLaEguew2JwJXlPew==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@percy/cli-command': 1.27.3
       cross-spawn: 7.0.3
       which: 2.0.2
     transitivePeerDependencies:
@@ -6180,11 +6241,36 @@ packages:
       - utf-8-validate
     dev: true
 
+  /@percy/cli-snapshot@1.27.3:
+    resolution: {integrity: sha512-HU7p5FLJ1W+QM3mbq8MFyqukthFnxPXrBAC7O0Dh4GfxXfdThV1HOdXqCEZ1pj1b3XkEM5SvvLKc7mClnc4D1Q==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@percy/cli-command': 1.27.3
+      yaml: 2.2.2
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: true
+
   /@percy/cli-upload@1.27.2:
     resolution: {integrity: sha512-6PK1YmX7sIu985o9yEVeEdyz7ApF7En421by7G0h4iIY4ybo+BTghX164LgWZ87+wFSVptclAB5g/a4X1jdzLQ==}
     engines: {node: '>=14'}
     dependencies:
       '@percy/cli-command': 1.27.2
+      fast-glob: 3.3.1
+      image-size: 1.0.2
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: true
+
+  /@percy/cli-upload@1.27.3:
+    resolution: {integrity: sha512-sqzOAMqFKXhpuXDGAK5zUf5Aw/xgBbAP4o4y43dRBi6gIgf8DiiLuc+avyfcKm+2lW5cUTG9SPETVCpu03WozQ==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@percy/cli-command': 1.27.3
       fast-glob: 3.3.1
       image-size: 1.0.2
     transitivePeerDependencies:
@@ -6213,6 +6299,26 @@ packages:
       - utf-8-validate
     dev: true
 
+  /@percy/cli@1.27.3:
+    resolution: {integrity: sha512-GyAIk9wm32cheYAeVyY6nOkDcGgSeG7wgLhZJWzi0gVhFE9W04sudWa++7akEqpGLMnTM2Q4OZv5P3cy1F9iPA==}
+    engines: {node: '>=14'}
+    hasBin: true
+    dependencies:
+      '@percy/cli-app': 1.27.3
+      '@percy/cli-build': 1.27.3
+      '@percy/cli-command': 1.27.3
+      '@percy/cli-config': 1.27.3
+      '@percy/cli-exec': 1.27.3
+      '@percy/cli-snapshot': 1.27.3
+      '@percy/cli-upload': 1.27.3
+      '@percy/client': 1.27.3
+      '@percy/logger': 1.27.3
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: true
+
   /@percy/client@1.27.2:
     resolution: {integrity: sha512-Kzx7nh4y2Su9cU7h+SNUx2tLZUFuVoRI5fhYntsgeqjUIGx3db5/gS7sUMQehxuGEL9CkB9rI3coRTevhAjXDg==}
     engines: {node: '>=14'}
@@ -6221,11 +6327,29 @@ packages:
       '@percy/logger': 1.27.2
     dev: true
 
+  /@percy/client@1.27.3:
+    resolution: {integrity: sha512-AuVpiuknK8OiDIN7BpkDRTYx6yAQVI4TjLFy/QmfZDK0PQMH+2dNIBi/pXooC5Ac64I7BYVqdaUk2IbdxEXbqQ==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@percy/env': 1.27.3
+      '@percy/logger': 1.27.3
+    dev: true
+
   /@percy/config@1.27.2:
     resolution: {integrity: sha512-jotM+GVBKLKedKyxja/Xxmnq7d1xdbihV/OkvNMvxZZty7g/fjYFNEElgRNot4whJTrnVXWDvZm2qa6rHYNzZw==}
     engines: {node: '>=14'}
     dependencies:
       '@percy/logger': 1.27.2
+      ajv: 8.12.0
+      cosmiconfig: 8.2.0
+      yaml: 2.2.2
+    dev: true
+
+  /@percy/config@1.27.3:
+    resolution: {integrity: sha512-hxp/zQz/3IQcyBbMkmvvnlkwMn9tgYFAOAFtZqECruqQ1M9XE10uYtWjvVwt9s4rlJEB4PWFvAV4c04/CT6ugQ==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@percy/logger': 1.27.3
       ajv: 8.12.0
       cosmiconfig: 8.2.0
       yaml: 2.2.2
@@ -6241,6 +6365,31 @@ packages:
       '@percy/dom': 1.27.2
       '@percy/logger': 1.27.2
       '@percy/webdriver-utils': 1.27.2
+      content-disposition: 0.5.4
+      cross-spawn: 7.0.3
+      extract-zip: 2.0.1(supports-color@8.1.1)
+      fast-glob: 3.3.1
+      micromatch: 4.0.5
+      mime-types: 2.1.35
+      path-to-regexp: 6.2.1
+      rimraf: 3.0.2
+      ws: 8.13.0
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+    dev: true
+
+  /@percy/core@1.27.3:
+    resolution: {integrity: sha512-LK+7dVLRQdVEQUG6Qn61awLbdYmazLwXWYg2UHqEWrbRIygkhoe+n3pPTwzxjiJxJsYYlelx/gDzGwjYzvV4aA==}
+    engines: {node: '>=14'}
+    requiresBuild: true
+    dependencies:
+      '@percy/client': 1.27.3
+      '@percy/config': 1.27.3
+      '@percy/dom': 1.27.3
+      '@percy/logger': 1.27.3
+      '@percy/webdriver-utils': 1.27.3
       content-disposition: 0.5.4
       cross-spawn: 7.0.3
       extract-zip: 2.0.1(supports-color@8.1.1)
@@ -6274,8 +6423,21 @@ packages:
       cypress: 13.3.0
     dev: true
 
+  /@percy/cypress@3.1.2(cypress@13.3.3):
+    resolution: {integrity: sha512-JXrGDZbqwkzQd2h5T5D7PvqoucNaiMh4ChPp8cLQiEtRuLHta9nf1lEuXH+jnatGL2j+3jJFIHJ0L7XrgVnvQA==}
+    peerDependencies:
+      cypress: '>=3'
+    dependencies:
+      '@percy/sdk-utils': 1.24.0
+      cypress: 13.3.3
+    dev: true
+
   /@percy/dom@1.27.2:
     resolution: {integrity: sha512-JEbGOzH2mn6dg3stOEhWrb85ujb/d8txzAwQfrOt7r/VoPD/Le2vfH2IM9VXWbT2ubFv6ctEPNiI2kiZRpkjaw==}
+    dev: true
+
+  /@percy/dom@1.27.3:
+    resolution: {integrity: sha512-QVSmogZhlVjy5mzqSesWbS5hjV8+1gMtAXSLtfRjdkZGQ/h2rnDbRZUW4PoJQ9ZpxBZegU5/W9LFvEO3FMVelA==}
     dev: true
 
   /@percy/env@1.27.2:
@@ -6285,8 +6447,20 @@ packages:
       '@percy/logger': 1.27.2
     dev: true
 
+  /@percy/env@1.27.3:
+    resolution: {integrity: sha512-f9NwjAmcN6HEfJ2/32fmBwUJ3xjn/JXmGUKqmSvw0L3WZuvKaYRpYtaI+n0B6NsujZ4R+KUEGr0jczEoQ62UEg==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@percy/logger': 1.27.3
+    dev: true
+
   /@percy/logger@1.27.2:
     resolution: {integrity: sha512-L8Srlgut6E9VSW3XlkJUoHYdAuHpjEJr5/l8DbNFMvmvftMQv/8YPxWsde3JGg/Zv9/QvnJYFZXLYlf+8A8+ZQ==}
+    engines: {node: '>=14'}
+    dev: true
+
+  /@percy/logger@1.27.3:
+    resolution: {integrity: sha512-Z/XoEakUHVBivZqmRwFTwiOWT6v5nJgQ6V9aNs2FzjcpyFlJAFZTmHv8+craDKehmnND3tp8FGdPe34Ty0JhEQ==}
     engines: {node: '>=14'}
     dev: true
 
@@ -6300,12 +6474,25 @@ packages:
     engines: {node: '>=14'}
     dev: true
 
+  /@percy/sdk-utils@1.27.3:
+    resolution: {integrity: sha512-IhNx5VaYsKiHaFYFbX6BsVb4bNWojNrKyDa9aRF1afAWAeVWHd1Jq/XeVfMDNCrYcsrA+pYDPSXfb+N5cpAeGQ==}
+    engines: {node: '>=14'}
+    dev: true
+
   /@percy/webdriver-utils@1.27.2:
     resolution: {integrity: sha512-rHdoLGaUU3G0+rQe9JQJUJoxVf+8xRZg1PVQkGsJsYGjmc0dLfcPh6LmHSYyZfe9nVxWXxGkZvianlmVXMwOlA==}
     engines: {node: '>=14'}
     dependencies:
       '@percy/config': 1.27.2
       '@percy/sdk-utils': 1.27.2
+    dev: true
+
+  /@percy/webdriver-utils@1.27.3:
+    resolution: {integrity: sha512-yV+7nc8aUPQHP1KnWwTndVHqvgs4xzCA8ObzRFuAaKSTC/hBgpI5ceCDv3aSM03ZtXk4f06AWtsgpU5BYpoP1A==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@percy/config': 1.27.3
+      '@percy/sdk-utils': 1.27.3
     dev: true
 
   /@pkgjs/parseargs@0.11.0:
@@ -7682,7 +7869,7 @@ packages:
       find-cache-dir: 3.3.2
       find-up: 5.0.0
       fs-extra: 11.1.1
-      glob: 10.3.7
+      glob: 10.3.10
       handlebars: 4.7.7
       lazy-universal-dotenv: 4.0.0
       node-fetch: 2.7.0
@@ -10443,7 +10630,7 @@ packages:
     dependencies:
       '@npmcli/fs': 3.1.0
       fs-minipass: 3.0.2
-      glob: 10.3.7
+      glob: 10.3.10
       lru-cache: 7.18.3
       minipass: 5.0.0
       minipass-collect: 1.0.2
@@ -10461,7 +10648,7 @@ packages:
     dependencies:
       '@npmcli/fs': 3.1.0
       fs-minipass: 3.0.2
-      glob: 10.3.7
+      glob: 10.3.10
       lru-cache: 10.0.1
       minipass: 7.0.3
       minipass-collect: 1.0.2
@@ -11145,9 +11332,9 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /css-functions-list@3.2.0:
-    resolution: {integrity: sha512-d/jBMPyYybkkLVypgtGv12R+pIFw4/f/IHtCTxWpZc8ofTYOPigIgmA6vu5rMHartZC+WuXhBUHfnyNUIQSYrg==}
-    engines: {node: '>=12.22'}
+  /css-functions-list@3.2.1:
+    resolution: {integrity: sha512-Nj5YcaGgBtuUmn1D7oHqPW0c9iui7xsTsj5lIX8ZgevdfhmjFfKB3r8moHJtNJnctnYXJyYX5I1pp90HM4TPgQ==}
+    engines: {node: '>=12 || >=16'}
     dev: true
 
   /css-loader@6.8.1(webpack@5.88.2):
@@ -11274,6 +11461,14 @@ packages:
       cypress: 13.2.0
     dev: true
 
+  /cypress-storybook@0.5.1(cypress@13.3.3):
+    resolution: {integrity: sha512-+CNDdcrFD3QRvHrjwpVclFpLtseyXA0NxeB3PDTheisvg/OJjLkP96t0I9R66IkZRYUUE3mLhqZpmpsv59FIIw==}
+    peerDependencies:
+      cypress: '*'
+    dependencies:
+      cypress: 13.3.3
+    dev: true
+
   /cypress@13.2.0:
     resolution: {integrity: sha512-AvDQxBydE771GTq0TR4ZUBvv9m9ffXuB/ueEtpDF/6gOcvFR96amgwSJP16Yhqw6VhmwqspT5nAGzoxxB+D89g==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
@@ -11327,6 +11522,57 @@ packages:
 
   /cypress@13.3.0:
     resolution: {integrity: sha512-mpI8qcTwLGiA4zEQvTC/U1xGUezVV4V8HQCOYjlEOrVmU1etVvxOjkCXHGwrlYdZU/EPmUiWfsO3yt1o+Q2bgw==}
+    engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
+    hasBin: true
+    requiresBuild: true
+    dependencies:
+      '@cypress/request': 3.0.0
+      '@cypress/xvfb': 1.2.4(supports-color@8.1.1)
+      '@types/node': 18.18.0
+      '@types/sinonjs__fake-timers': 8.1.1
+      '@types/sizzle': 2.3.3
+      arch: 2.2.0
+      blob-util: 2.0.2
+      bluebird: 3.7.2
+      buffer: 5.7.1
+      cachedir: 2.3.0
+      chalk: 4.1.2
+      check-more-types: 2.24.0
+      cli-cursor: 3.1.0
+      cli-table3: 0.6.3
+      commander: 6.2.1
+      common-tags: 1.8.2
+      dayjs: 1.11.7
+      debug: 4.3.4(supports-color@8.1.1)
+      enquirer: 2.3.6
+      eventemitter2: 6.4.7
+      execa: 4.1.0
+      executable: 4.1.1
+      extract-zip: 2.0.1(supports-color@8.1.1)
+      figures: 3.2.0
+      fs-extra: 9.1.0
+      getos: 3.2.1
+      is-ci: 3.0.1
+      is-installed-globally: 0.4.0
+      lazy-ass: 1.6.0
+      listr2: 3.14.0(enquirer@2.3.6)
+      lodash: 4.17.21
+      log-symbols: 4.1.0
+      minimist: 1.2.8
+      ospath: 1.2.2
+      pretty-bytes: 5.6.0
+      process: 0.11.10
+      proxy-from-env: 1.0.0
+      request-progress: 3.0.0
+      semver: 7.5.4
+      supports-color: 8.1.1
+      tmp: 0.2.1
+      untildify: 4.0.0
+      yauzl: 2.10.0
+    dev: true
+
+  /cypress@13.3.3:
+    resolution: {integrity: sha512-mbdkojHhKB1xbrj7CrKWHi22uFx9P9vQFiR0sYDZZoK99OMp9/ZYN55TO5pjbXmV7xvCJ4JwBoADXjOJK8aCJw==}
     engines: {node: ^16.0.0 || ^18.0.0 || >=20.0.0}
     hasBin: true
     requiresBuild: true
@@ -13015,6 +13261,13 @@ packages:
       flat-cache: 3.0.4
     dev: true
 
+  /file-entry-cache@7.0.1:
+    resolution: {integrity: sha512-uLfFktPmRetVCbHe5UPuekWrQ6hENufnA46qEGbfACkK5drjTTdQYUragRgMjHldcbYG+nslUerqMPjbBSHXjQ==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      flat-cache: 3.1.1
+    dev: true
+
   /file-system-cache@2.3.0:
     resolution: {integrity: sha512-l4DMNdsIPsVnKrgEXbJwDJsA5mB8rGwHYERMgqQx/xAUtChPJMre1bXBzDEqqVbWv9AIbFezXMxeEkZDSrXUOQ==}
     dependencies:
@@ -13201,6 +13454,15 @@ packages:
       rimraf: 3.0.2
     dev: true
 
+  /flat-cache@3.1.1:
+    resolution: {integrity: sha512-/qM2b3LUIaIgviBQovTLvijfyOQXPtSRnRK26ksj2J7rzPIecePUIpJsZ4T02Qg+xiAEKIs5K8dsHEd+VaKa/Q==}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      flatted: 3.2.9
+      keyv: 4.5.4
+      rimraf: 3.0.2
+    dev: true
+
   /flat@5.0.2:
     resolution: {integrity: sha512-b6suED+5/3rTpUBdG1gupIl8MPFCAMA0QXwmljLhvCUKcUvdE4gWky9zpuGCcXHOsz4J9wPGNWq6OKpmIzz3hQ==}
     hasBin: true
@@ -13208,6 +13470,10 @@ packages:
 
   /flatted@3.2.7:
     resolution: {integrity: sha512-5nqDSxl8nn5BSNxyR3n4I6eDmbolI6WT+QqR547RwxQapgjQBmtktdP+HTBb/a/zLsbzERTONyUB5pefh5TtjQ==}
+    dev: true
+
+  /flatted@3.2.9:
+    resolution: {integrity: sha512-36yxDn5H7OFZQla0/jFJmbIKTdZAQHngCedGxiMmpNfEZM0sdEeT+WczLQrjK6D7o2aiyLYDnkw0R3JK0Qv1RQ==}
     dev: true
 
   /flow-parser@0.211.0:
@@ -13592,6 +13858,18 @@ packages:
       object.defaults: 1.1.0
     transitivePeerDependencies:
       - supports-color
+    dev: true
+
+  /glob@10.3.10:
+    resolution: {integrity: sha512-fa46+tv1Ak0UPK1TOy/pZrIybNNt4HCv7SDzwyfiOZkvZLEbjsZkJBPtDHVshZjbecAoAGSC20MjLDG/qr679g==}
+    engines: {node: '>=16 || 14 >=14.17'}
+    hasBin: true
+    dependencies:
+      foreground-child: 3.1.1
+      jackspeak: 2.3.6
+      minimatch: 9.0.1
+      minipass: 7.0.3
+      path-scurry: 1.10.1
     dev: true
 
   /glob@10.3.3:
@@ -15069,6 +15347,15 @@ packages:
       '@pkgjs/parseargs': 0.11.0
     dev: true
 
+  /jackspeak@2.3.6:
+    resolution: {integrity: sha512-N3yCS/NegsOBokc8GAdM8UcmfsKiSS8cipheD/nivzr700H+nsMOxJjQnvwOcRYVuFkdH0wGUvW2WbXGmrZGbQ==}
+    engines: {node: '>=14'}
+    dependencies:
+      '@isaacs/cliui': 8.0.2
+    optionalDependencies:
+      '@pkgjs/parseargs': 0.11.0
+    dev: true
+
   /jake@10.8.7:
     resolution: {integrity: sha512-ZDi3aP+fG/LchyBzUM804VjddnwfSfsdeYkwt8NcbKRvo4rFkjhs456iLFn3k2ZUWvNe4i48WACDbza8fhq2+w==}
     engines: {node: '>=10'}
@@ -16103,6 +16390,10 @@ packages:
     engines: {node: '>=4'}
     hasBin: true
 
+  /json-buffer@3.0.1:
+    resolution: {integrity: sha512-4bV5BfR2mqfQTJm+V5tPPdf+ZpuhiIvTuAB5g8kcrXOZpTT/QwwVRWBywX1ozr6lEuPdbHxwaJlm9G6mI2sfSQ==}
+    dev: true
+
   /json-parse-better-errors@1.0.2:
     resolution: {integrity: sha512-mrqyZKfX5EhL7hvqcV6WG1yYjnjeuYDzDhhcAAUrq8Po85NBQBJP+ZDUT75qZQ98IkUoBqdkExkukOU7Ts2wrw==}
     dev: true
@@ -16291,6 +16582,12 @@ packages:
     resolution: {integrity: sha512-IG6nm0+QtAMdXt9KvbgbGdvY50RSrw+U4sGZg+KlrSKPJEwVE5JVoI3d7RWfSMdBQneRheeAOj3lIjX5VL/9RQ==}
     dev: true
 
+  /keyv@4.5.4:
+    resolution: {integrity: sha512-oxVHkHR/EJf2CNXnWxRLW6mg7JyCCUcG0DtEGmL2ctUo1PNTin1PUil+r/+4r5MpVgC/fn1kjsx7mjSujKqIpw==}
+    dependencies:
+      json-buffer: 3.0.1
+    dev: true
+
   /kind-of@1.1.0:
     resolution: {integrity: sha512-aUH6ElPnMGon2/YkxRIigV32MOpTVcoXQ1Oo8aYn40s+sJ3j+0gFZsT8HKDcxNy7Fi9zuquWtGaGAahOdv5p/g==}
     engines: {node: '>=0.10.0'}
@@ -16337,6 +16634,10 @@ packages:
 
   /known-css-properties@0.28.0:
     resolution: {integrity: sha512-9pSL5XB4J+ifHP0e0jmmC98OGC1nL8/JjS+fi6mnTlIf//yt/MfVLtKg7S6nCtj/8KTcWX7nRlY0XywoYY1ISQ==}
+    dev: true
+
+  /known-css-properties@0.29.0:
+    resolution: {integrity: sha512-Ne7wqW7/9Cz54PDt4I3tcV+hAyat8ypyOGzYRJQfdxnnjeWsTxt1cy8pjvvKeI5kfXuyvULyeeAvwvvtAX3ayQ==}
     dev: true
 
   /last-run@1.1.1:
@@ -18544,8 +18845,8 @@ packages:
       postcss: 8.4.31
     dev: true
 
-  /postcss-scss@4.0.8(postcss@8.4.31):
-    resolution: {integrity: sha512-Cr0X8Eu7xMhE96PJck6ses/uVVXDtE5ghUTKNUYgm8ozgP2TkgV3LWs3WgLV1xaSSLq8ZFiXaUrj0LVgG1fGEA==}
+  /postcss-scss@4.0.9(postcss@8.4.31):
+    resolution: {integrity: sha512-AjKOeiwAitL/MXxQW2DliT28EKukvvbEWx3LBmJIRN8KfBGZbRTxNYW0kSqi1COiTZ57nZ9NW06S6ux//N1c9A==}
     engines: {node: '>=12.0'}
     peerDependencies:
       postcss: '>=8.4.31'
@@ -18559,14 +18860,6 @@ packages:
     dependencies:
       cssesc: 3.0.0
       util-deprecate: 1.0.2
-    dev: true
-
-  /postcss-sorting@7.0.1(postcss@8.4.31):
-    resolution: {integrity: sha512-iLBFYz6VRYyLJEJsBJ8M3TCqNcckVzz4wFounSc5Oez35ogE/X+aoC5fFu103Ot7NyvjU3/xqIXn93Gp3kJk4g==}
-    peerDependencies:
-      postcss: '>=8.4.31'
-    dependencies:
-      postcss: 8.4.31
     dev: true
 
   /postcss-url@10.1.3(postcss@8.4.31):
@@ -18620,6 +18913,11 @@ packages:
   /prettier@2.8.8:
     resolution: {integrity: sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==}
     engines: {node: '>=10.13.0'}
+    hasBin: true
+
+  /prettier@3.0.3:
+    resolution: {integrity: sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==}
+    engines: {node: '>=14'}
     hasBin: true
 
   /pretty-bytes@5.6.0:
@@ -19025,7 +19323,7 @@ packages:
     resolution: {integrity: sha512-4QbpReW4kxFgeBQ0vPAqh2y8sXEB3D4t3jsXbJKIhBiF80KT6XRo45reqwtftju5J6ru1ax06A2Gb/wM1qCOEQ==}
     engines: {node: ^14.17.0 || ^16.13.0 || >=18.0.0}
     dependencies:
-      glob: 10.3.7
+      glob: 10.3.10
       json-parse-even-better-errors: 3.0.0
       normalize-package-data: 5.0.0
       npm-normalize-package-bin: 3.0.1
@@ -20533,53 +20831,42 @@ packages:
     resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
     dev: true
 
-  /stylelint-config-prettier@9.0.5(stylelint@15.10.3):
+  /stylelint-config-prettier@9.0.5(stylelint@15.11.0):
     resolution: {integrity: sha512-U44lELgLZhbAD/xy/vncZ2Pq8sh2TnpiPvo38Ifg9+zeioR+LAkHu0i6YORIOxFafZoVg0xqQwex6e6F25S5XA==}
     engines: {node: '>= 12'}
     hasBin: true
     peerDependencies:
       stylelint: '>= 11.x < 15 || >=15'
     dependencies:
-      stylelint: 15.10.3
+      stylelint: 15.11.0
     dev: true
 
-  /stylelint-config-sass-guidelines@9.0.1(postcss@8.4.31)(stylelint@15.10.3):
-    resolution: {integrity: sha512-N06PsVsrgKijQ3YT5hqKA7x3NUkgELTRI1cbWMqcYiCGG6MjzvNk6Cb5YYA1PrvrksBV76BvY9P9bAswojVMqA==}
-    engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
+  /stylelint-config-sass-guidelines@10.0.0(postcss@8.4.31)(stylelint@15.11.0):
+    resolution: {integrity: sha512-+Rr2Dd4b72CWA4qoj1Kk+y449nP/WJsrD0nzQAWkmPPIuyVcy2GMIcfNr0Z8JJOLjRvtlkKxa49FCNXMePBikQ==}
+    engines: {node: ^14.13.1 || >=16.13.0 || >=18.0.0}
     peerDependencies:
       postcss: '>=8.4.31'
-      stylelint: ^14.0.1 || >=15
+      stylelint: ^15.2.0 || >=15
     dependencies:
       postcss: 8.4.31
-      postcss-scss: 4.0.8(postcss@8.4.31)
-      stylelint: 15.10.3
-      stylelint-order: 5.0.0(stylelint@15.10.3)
-      stylelint-scss: 4.7.0(stylelint@15.10.3)
+      postcss-scss: 4.0.9(postcss@8.4.31)
+      stylelint: 15.11.0
+      stylelint-scss: 4.7.0(stylelint@15.11.0)
     dev: true
 
-  /stylelint-order@5.0.0(stylelint@15.10.3):
-    resolution: {integrity: sha512-OWQ7pmicXufDw5BlRqzdz3fkGKJPgLyDwD1rFY3AIEfIH/LQY38Vu/85v8/up0I+VPiuGRwbc2Hg3zLAsJaiyw==}
+  /stylelint-prettier@4.0.2(prettier@3.0.3)(stylelint@15.11.0):
+    resolution: {integrity: sha512-EoHnR2PiaWgpGtoI4VW7AzneMfwmwQsNwQ+3/E2k/a+ju5yO6rfPfop4vzPQKcJN4ZM1YbspEOPu88D8538sbg==}
+    engines: {node: ^14.17.0 || >=16.0.0}
     peerDependencies:
-      stylelint: ^14.0.0 || >=15
+      prettier: '>=3.0.0'
+      stylelint: '>=15.8.0 || >=15'
     dependencies:
-      postcss: 8.4.31
-      postcss-sorting: 7.0.1(postcss@8.4.31)
-      stylelint: 15.10.3
-    dev: true
-
-  /stylelint-prettier@2.0.0(prettier@2.8.8)(stylelint@15.10.3):
-    resolution: {integrity: sha512-jvT3G+9lopkeB0ARmDPszyfaOnvnIF+30QCjZxyt7E6fynI1T9mOKgYDNb9bXX17M7PXMZaX3j/26wqakjp1tw==}
-    engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0}
-    peerDependencies:
-      prettier: '>=2.0.0'
-      stylelint: '>=14.0.0 || >=15'
-    dependencies:
-      prettier: 2.8.8
+      prettier: 3.0.3
       prettier-linter-helpers: 1.0.0
-      stylelint: 15.10.3
+      stylelint: 15.11.0
     dev: true
 
-  /stylelint-scss@4.7.0(stylelint@15.10.3):
+  /stylelint-scss@4.7.0(stylelint@15.11.0):
     resolution: {integrity: sha512-TSUgIeS0H3jqDZnby1UO1Qv3poi1N8wUYIJY6D1tuUq2MN3lwp/rITVo0wD+1SWTmRm0tNmGO0b7nKInnqF6Hg==}
     peerDependencies:
       stylelint: ^14.5.1 || ^15.0.0 || >=15
@@ -20588,10 +20875,10 @@ packages:
       postcss-resolve-nested-selector: 0.1.1
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
-      stylelint: 15.10.3
+      stylelint: 15.11.0
     dev: true
 
-  /stylelint-scss@5.2.1(stylelint@15.10.3):
+  /stylelint-scss@5.2.1(stylelint@15.11.0):
     resolution: {integrity: sha512-ZoTJUM85/qqpQHfEppjW/St//8s6p9Qsg8deWlYlr56F9iUgC9vXeIDQvH4odkRRJLTLFQzYMALSOFCQ3MDkgw==}
     peerDependencies:
       stylelint: ^14.5.1 || ^15.0.0 || >=15
@@ -20601,11 +20888,11 @@ packages:
       postcss-resolve-nested-selector: 0.1.1
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
-      stylelint: 15.10.3
+      stylelint: 15.11.0
     dev: true
 
-  /stylelint@15.10.3:
-    resolution: {integrity: sha512-aBQMMxYvFzJJwkmg+BUUg3YfPyeuCuKo2f+LOw7yYbU8AZMblibwzp9OV4srHVeQldxvSFdz0/Xu8blq2AesiA==}
+  /stylelint@15.11.0:
+    resolution: {integrity: sha512-78O4c6IswZ9TzpcIiQJIN49K3qNoXTM8zEJzhaTE/xRTCZswaovSEVIa/uwbOltZrk16X4jAxjaOhzz/hTm1Kw==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
     dependencies:
@@ -20616,12 +20903,12 @@ packages:
       balanced-match: 2.0.0
       colord: 2.9.3
       cosmiconfig: 8.2.0
-      css-functions-list: 3.2.0
+      css-functions-list: 3.2.1
       css-tree: 2.3.1
       debug: 4.3.4(supports-color@8.1.1)
       fast-glob: 3.3.1
       fastest-levenshtein: 1.0.16
-      file-entry-cache: 6.0.1
+      file-entry-cache: 7.0.1
       global-modules: 2.0.0
       globby: 11.1.0
       globjoin: 0.1.4
@@ -20630,7 +20917,7 @@ packages:
       import-lazy: 4.0.0
       imurmurhash: 0.1.4
       is-plain-object: 5.0.0
-      known-css-properties: 0.28.0
+      known-css-properties: 0.29.0
       mathml-tag-names: 2.1.3
       meow: 10.1.5
       micromatch: 4.0.5
