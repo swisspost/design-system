@@ -20,7 +20,7 @@ const meta: Meta = {
     floatingLabel: false,
     hiddenLabel: false,
     value: undefined,
-    size: 'null',
+    size: 'form-select-lg',
     options: 5,
     multiple: false,
     multipleSize: 4,
@@ -221,16 +221,16 @@ const Template: Story = {
     ];
     const control = html`
       <select
-        id=${id}
-        class=${classes}
-        ?multiple=${args.multiple}
-        size=${args.multipleSize ?? nothing}
-        ?disabled=${args.disabled}
-        aria-label=${useAriaLabel ? args.label : nothing}
-        aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
-        @change=${(e: Event) => {
+        id="${id}"
+        class="${classes}"
+        ?multiple="${args.multiple}"
+        size="${args.multipleSize ?? nothing}"
+        ?disabled="${args.disabled}"
+        aria-label="${useAriaLabel ? args.label : nothing}"
+        aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
+        @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
-        }}
+        }}"
       >
         ${options}
       </select>
