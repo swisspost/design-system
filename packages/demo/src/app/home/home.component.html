@@ -1,6 +1,6 @@
-<div *ngIf='isIE11' class='container'>
-  <div class='alert alert-warning mt-3'>
-    <h4 class='alert-heading'>IE11 not supported</h4>
+<div *ngIf="isIE11" class="container">
+  <div class="alert alert-warning mt-3">
+    <h4 class="alert-heading">IE11 not supported</h4>
     <p>
       This app uses Angular {{ getVersion(angularVersion, 'M') }} and therefore does not support
       IE11. Please update your browser.
@@ -8,12 +8,12 @@
   </div>
 </div>
 
-<div class='heading'>
-  <div class='container py-5'>
-    <h1 class='bold font-curve-large' id='home'>Swiss Post</h1>
-    <h2 class='font-curve-large'>Design System</h2>
-    <p class='font-monospace small'>
-      <button class='btn btn-tertiary version-button' placement='right' [ngbPopover]='versions'>
+<div class="heading">
+  <div class="container py-5">
+    <h1 class="bold font-curve-large" id="home">Swiss Post</h1>
+    <h2 class="font-curve-large">Design System</h2>
+    <p class="font-monospace small">
+      <button class="btn btn-tertiary version-button" placement="right" [ngbPopover]="versions">
         v{{ getVersion(stylesVersion) }}
       </button>
     </p>
@@ -25,7 +25,7 @@
 </div>
 
 <ng-template #versions>
-  <div class='versions font-monospace'>
+  <div class="versions font-monospace">
     <p>
       <span>@swisspost/design-system-styles:</span>
       <span>{{ getVersion(stylesVersion) }}</span>
@@ -49,41 +49,41 @@
   </div>
 </ng-template>
 
-<div class='bg-light py-5'>
-  <div class='container'>
+<div class="bg-light py-5">
+  <div class="container">
     <section>
       <h3>Compatibility</h3>
 
-      <p id='compatibility-desc'>List of compatible version numbers with external dependencies.</p>
+      <p id="compatibility-desc">List of compatible version numbers with external dependencies.</p>
 
-      <div class='row gx-5 mt-4'>
-        <div class='col-md-6 col-sm-12'>
-          <table aria-describedby='compatibility-desc' class='table caption-top table-responsive'>
+      <div class="row gx-5 mt-4">
+        <div class="col-md-6 col-sm-12">
+          <table aria-describedby="compatibility-desc" class="table caption-top table-responsive">
             <caption>@swisspost/design-system-styles</caption>
             <thead>
               <tr>
-                <th scope='col'>Version</th>
-                <th scope='col'>Bootstrap</th>
-                <th scope='col'>Angular</th>
-                <th scope='col'>Ng-Bootstrap</th>
+                <th scope="col">Version</th>
+                <th scope="col">Bootstrap</th>
+                <th scope="col">Angular</th>
+                <th scope="col">Ng-Bootstrap</th>
               </tr>
             </thead>
 
             <tbody>
               <tr>
-                <th scope='col'>5.x</th>
+                <th scope="col">5.x</th>
                 <td>5.0</td>
                 <td>14.x</td>
                 <td>13.x</td>
               </tr>
               <tr>
-                <th scope='col'>6.2</th>
+                <th scope="col">6.2</th>
                 <td>5.2</td>
                 <td>15.x</td>
                 <td>14.x</td>
               </tr>
               <tr>
-                <th scope='col'>6.4</th>
+                <th scope="col">6.4</th>
                 <td>5.3</td>
                 <td>16.x</td>
                 <td>15.x</td>
@@ -91,21 +91,21 @@
             </tbody>
           </table>
         </div>
-        <div class='col-md-6 col-sm-12'>
-          <table aria-describedby='compatibility-desc' class='table caption-top table-responsive'>
+        <div class="col-md-6 col-sm-12">
+          <table aria-describedby="compatibility-desc" class="table caption-top table-responsive">
             <caption>Common Web Frontend</caption>
             <thead>
               <tr>
-                <th scope='col'>Version</th>
-                <th scope='col'>Bootstrap</th>
-                <th scope='col'>Angular</th>
-                <th scope='col'>Ng-Bootstrap</th>
+                <th scope="col">Version</th>
+                <th scope="col">Bootstrap</th>
+                <th scope="col">Angular</th>
+                <th scope="col">Ng-Bootstrap</th>
               </tr>
             </thead>
 
             <tbody>
               <tr>
-                <th scope='col'>4.x</th>
+                <th scope="col">4.x</th>
                 <td>4.6</td>
                 <td>12.x</td>
                 <td>9.x</td>
@@ -118,66 +118,66 @@
 
     <section>
       <h3>Setup for migration instructions</h3>
-      <div class='row migration-options mb-huge'>
-        <div class='col-md-6'>
+      <div class="row migration-options mb-huge">
+        <div class="col-md-6">
           <fieldset>
-            <legend class='font-curve-small bold'>What environment is your application for?</legend>
-            <div class='form-check'>
+            <legend class="font-curve-small bold">What environment is your application for?</legend>
+            <div class="form-check">
               <input
-                id='migration-intranet'
-                type='radio'
-                class='form-check-input'
-                name='migration-audience'
-                [value]='true'
-                [(ngModel)]='isMigratingIntranet'
-                (ngModelChange)='setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)'
+                id="migration-intranet"
+                type="radio"
+                class="form-check-input"
+                name="migration-audience"
+                [value]="true"
+                [(ngModel)]="isMigratingIntranet"
+                (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
               />
-              <label for='migration-intranet' class='form-check-label'>Intranet application</label>
+              <label for="migration-intranet" class="form-check-label">Intranet application</label>
             </div>
-            <div class='form-check mb-0'>
+            <div class="form-check mb-0">
               <input
-                id='migration-extranet'
-                type='radio'
-                class='form-check-input'
-                name='migration-audience'
-                [value]='false'
-                [(ngModel)]='isMigratingIntranet'
-                (ngModelChange)='setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)'
+                id="migration-extranet"
+                type="radio"
+                class="form-check-input"
+                name="migration-audience"
+                [value]="false"
+                [(ngModel)]="isMigratingIntranet"
+                (ngModelChange)="setLocaleStorage(migrationTypeIntranetKey, isMigratingIntranet)"
               />
-              <label for='migration-extranet' class='form-check-label'>
+              <label for="migration-extranet" class="form-check-label">
                 Extranet/Internet application
               </label>
             </div>
           </fieldset>
         </div>
-        <div class='col-md-6'>
+        <div class="col-md-6">
           <fieldset>
-            <legend class='font-curve-small bold'>
+            <legend class="font-curve-small bold">
               What technology is your application built with?
             </legend>
-            <div class='form-check'>
+            <div class="form-check">
               <input
-                id='migration-angular'
-                type='radio'
-                class='form-check-input'
-                name='migration-technology'
-                [value]='true'
-                [(ngModel)]='isMigratingAngular'
-                (ngModelChange)='setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)'
+                id="migration-angular"
+                type="radio"
+                class="form-check-input"
+                name="migration-technology"
+                [value]="true"
+                [(ngModel)]="isMigratingAngular"
+                (ngModelChange)="setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)"
               />
-              <label for='migration-angular' class='form-check-label'>Angular application</label>
+              <label for="migration-angular" class="form-check-label">Angular application</label>
             </div>
-            <div class='form-check mb-0'>
+            <div class="form-check mb-0">
               <input
-                id='migration-other-technology'
-                type='radio'
-                class='form-check-input'
-                name='migration-technology'
-                [value]='false'
-                [(ngModel)]='isMigratingAngular'
-                (ngModelChange)='setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)'
+                id="migration-other-technology"
+                type="radio"
+                class="form-check-input"
+                name="migration-technology"
+                [value]="false"
+                [(ngModel)]="isMigratingAngular"
+                (ngModelChange)="setLocaleStorage(migrationTypeAngularKey, isMigratingAngular)"
               />
-              <label for='migration-other-technology' class='form-check-label'>
+              <label for="migration-other-technology" class="form-check-label">
                 Non-Angular application
               </label>
             </div>
@@ -186,28 +186,28 @@
       </div>
     </section>
 
-    <section id='v5-to-6' class='mb-huge'>
-      <h3 class='bold mb-4'>Migration from v5 to v6</h3>
+    <section id="v5-to-6" class="mb-huge">
+      <h3 class="bold mb-4">Migration from v5 to v6</h3>
 
-      <div class='alert alert-info' role='alert'>
-        <h4 class='alert-heading'>
+      <div class="alert alert-info" role="alert">
+        <h4 class="alert-heading">
           Be sure to update your application one major Design System version at a time.
         </h4>
         <p>
           If your project is currently using the @******/common-web-frontend package, start by
-          <a routerLink='.' fragment='v4-to-5'>migrating to version 5</a>
+          <a routerLink="." fragment="v4-to-5">migrating to version 5</a>
           .
         </p>
       </div>
 
-      <ol class='bubble-tea'>
+      <ol class="bubble-tea">
         <li>
-          <h4 class='h5 bold'>Package Update 🩺</h4>
+          <h4 class="h5 bold">Package Update 🩺</h4>
           <ol>
-            <li *ngIf='isMigratingAngular'>
+            <li *ngIf="isMigratingAngular">
               <p>
                 Use
-                <a href='https://update.angular.io/' target='_blank' rel='noopener'>
+                <a href="https://update.angular.io/" target="_blank" rel="noopener">
                   https://update.angular.io/
                 </a>
                 to update Angular to version 16
@@ -217,18 +217,18 @@
               <p>
                 Update Bootstrap to version
                 <a
-                  href='https://getbootstrap.com/docs/5.3/migration'
-                  target='_blank'
-                  rel='noopener'
+                  href="https://getbootstrap.com/docs/5.3/migration"
+                  target="_blank"
+                  rel="noopener"
                 >
                   5.3.x
                 </a>
-                <ng-container *ngIf='isMigratingAngular'>
+                <ng-container *ngIf="isMigratingAngular">
                   and ng-bootstrap to version
                   <a
-                    href='https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25'
-                    target='_blank'
-                    rel='noopener'
+                    href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
+                    target="_blank"
+                    rel="noopener"
                   >
                     15.x.x
                   </a>
@@ -236,7 +236,7 @@
                 :
                 <code
                   appCopyToClipboard
-                  class='d-block mt-1 p-3'
+                  class="d-block mt-1 p-3"
                   [languages]="['bash']"
                   [highlight]="
                     'npm install bootstrap@5.3' +
@@ -250,16 +250,16 @@
                 Update Design System style package to version 6:
                 <code
                   appCopyToClipboard
-                  class='d-block mt-1 p-3'
+                  class="d-block mt-1 p-3"
                   [languages]="['bash']"
-                  highlight='npm install @swisspost/design-system-styles@6'
+                  highlight="npm install @swisspost/design-system-styles@6"
                 ></code>
               </p>
             </li>
           </ol>
         </li>
-        <li *ngIf='isMigratingAngular'>
-          <h4 class='h5 bold'>Automatic Migration ⚙️</h4>
+        <li *ngIf="isMigratingAngular">
+          <h4 class="h5 bold">Automatic Migration ⚙️</h4>
           <p>
             If you are migrating an Angular application, you can take advantage of our migration
             schematics.
@@ -272,43 +272,43 @@
               to your application:
               <code
                 appCopyToClipboard
-                class='d-block mt-1 p-3'
+                class="d-block mt-1 p-3"
                 [languages]="['bash']"
-                highlight='npx ng update @swisspost/design-system-styles --from=5 --to=6 --migrate-only'
+                highlight="npx ng update @swisspost/design-system-styles --from=5 --to=6 --migrate-only"
               ></code>
             </li>
           </ol>
         </li>
         <li>
-          <h4 class='h5 bold'>Component Migration 🤓</h4>
-          <p class='info' *ngIf='isMigratingAngular'>
+          <h4 class="h5 bold">Component Migration 🤓</h4>
+          <p class="info" *ngIf="isMigratingAngular">
             Changes flagged with the ⚙️ symbol should be automatically migrated with our migration
             tool.
           </p>
-          <h5 class='h6 bold mt-4'>Accessibility</h5>
+          <h5 class="h6 bold mt-4">Accessibility</h5>
           <ul>
             <li>
               <h6>
                 Stepper
-                <span class='change-badge bg-danger'>breaking</span>
+                <span class="change-badge bg-danger">breaking</span>
               </h6>
               <p>
                 The markup of the
-                <a href='/#/post-samples/stepper'>stepper</a>
+                <a href="/#/post-samples/stepper">stepper</a>
                 component has been changed in order to be more accessible.
               </p>
               <ul>
                 <li>
-                  <span *ngIf='isMigratingAngular'>⚙️</span>
+                  <span *ngIf="isMigratingAngular">⚙️</span>
                   The stepper container no longer has an aria-label attribute but contains a hidden
                   header instead
                 </li>
                 <li>
-                  <span *ngIf='isMigratingAngular'>⚙️</span>
+                  <span *ngIf="isMigratingAngular">⚙️</span>
                   The progress bar is hidden and no longer requires a type attribute
                 </li>
                 <li>
-                  <span *ngIf='isMigratingAngular'>⚙️</span>
+                  <span *ngIf="isMigratingAngular">⚙️</span>
                   The stepper has a list role
                 </li>
                 <li>Completed steps require an additional hidden "Completed: " text</li>
@@ -316,33 +316,33 @@
               </ul>
             </li>
           </ul>
-          <h5 class='h6 bold mt-4'>Deprecations</h5>
+          <h5 class="h6 bold mt-4">Deprecations</h5>
           <ul>
-            <li *ngIf='isMigratingAngular'>
+            <li *ngIf="isMigratingAngular">
               <h6>
                 ngbButton ⚙️
-                <span class='change-badge bg-danger'>breaking</span>
+                <span class="change-badge bg-danger">breaking</span>
               </h6>
               <p>
                 The
-                <span class='highlight'>ngbButton</span>
+                <span class="highlight">ngbButton</span>
                 and
-                <span class='highlight'>ngbButtonLabel</span>
+                <span class="highlight">ngbButtonLabel</span>
                 directives are no longer a part of ng-bootstrap.
                 <br />
                 The markup and styles have changed and everything now works with CSS Bootstrap
                 classes only.
               </p>
-              <p class='info'>
+              <p class="info">
                 See the
-                <a routerLink='/bootstrap-samples/button-group'>documentation</a>
+                <a routerLink="/bootstrap-samples/button-group">documentation</a>
                 for more detailed information.
               </p>
             </li>
             <li>
               <h6>
                 Removed variables
-                <span class='change-badge bg-danger'>breaking</span>
+                <span class="change-badge bg-danger">breaking</span>
               </h6>
               <p>
                 The following Sass variables have been removed because they are not being used
@@ -357,12 +357,12 @@
       </ol>
     </section>
 
-    <section id='v4-to-5' class='mb-huge'>
-      <h3 class='bold mb-4'>Migration from v4 to v5</h3>
+    <section id="v4-to-5" class="mb-huge">
+      <h3 class="bold mb-4">Migration from v4 to v5</h3>
 
-      <ol class='bubble-tea'>
+      <ol class="bubble-tea">
         <li>
-          <h4 class='h5 bold'>Clean Start 🧹</h4>
+          <h4 class="h5 bold">Clean Start 🧹</h4>
           <p>
             Create a branch and commit all changes to have a clean, reversible starting point. If
             you like to upgrade from a Design System version lower than 4.0.0, it might be necessary
@@ -377,7 +377,7 @@
             *ngIf='isMigratingIntranet'>s</span>.</p>
           <code
             appCopyToClipboard
-            class='d-block p-3'
+            class="d-block p-3"
             [languages]="['bash']"
             [highlight]="
               'npm uninstall @******/common-web-frontend' +
@@ -392,7 +392,7 @@
           </h4>
           <code
             appCopyToClipboard
-            class='d-block p-3'
+            class="d-block p-3"
             [languages]="['bash']"
             [highlight]="
               'npm install @swisspost/design-system-styles@5' +
@@ -401,35 +401,35 @@
           ></code>
         </li>
         <li>
-          <h4 class='h5 bold'>Package Update 🩺</h4>
-          <ol *ngIf='isMigratingAngular'>
+          <h4 class="h5 bold">Package Update 🩺</h4>
+          <ol *ngIf="isMigratingAngular">
             <li>
               If your Angular version is lower than 13, use
-              <a href='https://update.angular.io/' target='_blank' rel='noopener'>
+              <a href="https://update.angular.io/" target="_blank" rel="noopener">
                 https://update.angular.io/
               </a>
               to update Angular step by step to version 13.
             </li>
             <li>
-              <ng-container [ngTemplateOutlet]='bootstrapInstructions'></ng-container>
+              <ng-container [ngTemplateOutlet]="bootstrapInstructions"></ng-container>
             </li>
           </ol>
 
-          <p *ngIf='!isMigratingAngular'>
-            <ng-container [ngTemplateOutlet]='bootstrapInstructions'></ng-container>
+          <p *ngIf="!isMigratingAngular">
+            <ng-container [ngTemplateOutlet]="bootstrapInstructions"></ng-container>
           </p>
 
           <ng-template #bootstrapInstructions>
             Update Bootstrap to version
-            <a href='https://getbootstrap.com/docs/5.1/migration' target='_blank' rel='noopener'>
+            <a href="https://getbootstrap.com/docs/5.1/migration" target="_blank" rel="noopener">
               5.1.x
             </a>
-            <ng-container *ngIf='isMigratingAngular'>
+            <ng-container *ngIf="isMigratingAngular">
               and ng-bootstrap to version
               <a
-                href='https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07'
-                target='_blank'
-                rel='noopener'
+                href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07"
+                target="_blank"
+                rel="noopener"
               >
                 12.x.x
               </a>
@@ -437,7 +437,7 @@
             :
             <code
               appCopyToClipboard
-              class='d-block mt-1 p-3'
+              class="d-block mt-1 p-3"
               [languages]="['bash']"
               [highlight]="
                 'npm install bootstrap@5.1' +
@@ -446,8 +446,8 @@
             ></code>
           </ng-template>
         </li>
-        <li *ngIf='isMigratingAngular'>
-          <h4 class='h5 bold'>Automatic Migration ⚙️</h4>
+        <li *ngIf="isMigratingAngular">
+          <h4 class="h5 bold">Automatic Migration ⚙️</h4>
           <p>
             If you are migrating an Angular application, you can take advantage of our migration
             schematics.
@@ -460,27 +460,27 @@
               to your application:
               <code
                 appCopyToClipboard
-                class='d-block mt-1 p-3'
+                class="d-block mt-1 p-3"
                 [languages]="['bash']"
-                highlight='npx ng update @swisspost/design-system-styles --from=4 --to=5 --migrate-only'
+                highlight="npx ng update @swisspost/design-system-styles --from=4 --to=5 --migrate-only"
               ></code>
             </li>
           </ol>
         </li>
         <li>
-          <h4 class='h5 bold'>Component Migration 🤓</h4>
-          <p class='info' *ngIf='isMigratingAngular'>
+          <h4 class="h5 bold">Component Migration 🤓</h4>
+          <p class="info" *ngIf="isMigratingAngular">
             Changes flagged with the ⚙️ symbol should be automatically migrated with our migration
             tool.
           </p>
 
-          <h5 class='h6 bold'>Deprecations</h5>
-          <ul class='mt-2 mb-3'>
+          <h5 class="h6 bold">Deprecations</h5>
+          <ul class="mt-2 mb-3">
             <li>
               <p>
                 <strong>Dropped jQuery dependency</strong>
                 <br />
-                <span class='info'>
+                <span class="info">
                   Replace all jQuery components with the given one or integrate jQuery by your own
                   (not recommended).
                 </span>
@@ -489,18 +489,18 @@
             <li>
               <p>
                 The
-                <span class='highlight'>Custom-Select</span>
+                <span class="highlight">Custom-Select</span>
                 component has been marked as deprecated.
-                <span class='info'>
+                <span class="info">
                   For the moment there is only the alternative to use the
-                  <span class='highlight'>Form-Select</span>
+                  <span class="highlight">Form-Select</span>
                   component instead. An alternative is being implemented.
                 </span>
               </p>
             </li>
           </ul>
 
-          <h5 class='h6 bold'>Migrations list</h5>
+          <h5 class="h6 bold">Migrations list</h5>
           <p>
             Some changes cannot be migrated automatically.
             <br />
@@ -510,14 +510,14 @@
 
           <!-- Post migration table -->
           <ngb-accordion
-            [activeIds]='migrationAccordionActiveIds'
-            [destroyOnHide]='false'
-            (panelChange)='migrationAccordionChange($event)'
+            [activeIds]="migrationAccordionActiveIds"
+            [destroyOnHide]="false"
+            (panelChange)="migrationAccordionChange($event)"
           >
-            <ngb-panel id='general'>
-              <ng-template ngbPanelHeader let-opened='opened'>
-                <div class='custom-header justify-content-between' [class.collapsed]='!opened'>
-                  <button ngbPanelToggle class='accordion-button'>
+            <ngb-panel id="general">
+              <ng-template ngbPanelHeader let-opened="opened">
+                <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                  <button ngbPanelToggle class="accordion-button">
                     General
                     <small>
                       {{ getMigrationAccordionGroupedCheckboxesChecked('general') }}
@@ -528,18 +528,18 @@
               <ng-template ngbPanelContent>
                 <!-- General Files -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Paths &amp; Files</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Paths &amp; Files</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalnaming_cwfpackagename'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalnaming_cwfpackagename"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.naming_cwfpackagename
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalnaming_cwfpackagename'>
@@ -557,23 +557,23 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalnaming_entryfiles'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalnaming_entryfiles"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.naming_entryfiles
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
-                        <label for='generalnaming_entryfiles' class='form-check-label'>
-                          <span class='change-badge bg-danger'>breaking</span>
+                        <label for="generalnaming_entryfiles" class="form-check-label">
+                          <span class="change-badge bg-danger">breaking</span>
                           Renamed entry files.
                           <br />
 
-                          <ul class='mt-2'>
-                            <li class='mb-2'>
+                          <ul class="mt-2">
+                            <li class="mb-2">
                               <strong>Default (index)</strong>
                               for default Post styles:
                               <br />
@@ -585,7 +585,7 @@
                                 @use "@swisspost/design-system-styles";
                               </code>
                             </li>
-                            <li class='mb-2'>
+                            <li class="mb-2">
                               <strong>Intranet</strong>
                               for default Post styles + intranet header styles:
                               <br />
@@ -597,7 +597,7 @@
                                 @use "@swisspost/design-system-styles/intranet.scss";
                               </code>
                             </li>
-                            <li class='mb-2'>
+                            <li class="mb-2">
                               <strong>Basics</strong>
                               for resets, typography, utilities and grid only (use this for small
                               pages with lots of custom styles):
@@ -610,7 +610,7 @@
                                 @use "@swisspost/design-system-styles/basics.scss";
                               </code>
                             </li>
-                            <li class='mb-2'>
+                            <li class="mb-2">
                               <strong>Core</strong>
                               for functions, mixins, variables and placeholders:
                               <br />
@@ -624,9 +624,9 @@
                             </li>
                           </ul>
 
-                          <span class='info'>
+                          <span class="info">
                             Read more about Sass modules and the @use rule in the Sass
-                            <a href='https://sass-lang.com/documentation/at-rules/use'>
+                            <a href="https://sass-lang.com/documentation/at-rules/use">
                               @use documentation
                             </a>
                             .
@@ -635,13 +635,13 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalnaming_cwfname'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='migrationAccordionGroupedCheckboxes.general.naming_cwfname'
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          id="generalnaming_cwfname"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="migrationAccordionGroupedCheckboxes.general.naming_cwfname"
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalnaming_cwfname'>
@@ -658,15 +658,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalnaming_cwflicense'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalnaming_cwflicense"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.naming_cwflicense
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalnaming_cwflicense'>
@@ -676,13 +676,13 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalnaming_options'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='migrationAccordionGroupedCheckboxes.general.naming_options'
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          id="generalnaming_options"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="migrationAccordionGroupedCheckboxes.general.naming_options"
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalnaming_options'>
@@ -696,18 +696,18 @@
 
                 <!-- General Variables -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Variables</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Variables</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalvariables_isolatecomponents'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalvariables_isolatecomponents"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.variables_isolatecomponents
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalvariables_isolatecomponents'>
@@ -717,15 +717,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalvariables_fontsizemap'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalvariables_fontsizemap"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.variables_fontsizemap
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalvariables_fontsizemap'>
@@ -735,15 +735,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalvariables_lineheightrg'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalvariables_lineheightrg"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.variables_lineheightrg
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalvariables_lineheightrg'>
@@ -754,15 +754,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalvariables_floatinglabel'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalvariables_floatinglabel"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.variables_floatinglabel
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalvariables_floatinglabel'>
@@ -779,15 +779,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalvariables_colorsremoved'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalvariables_colorsremoved"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.variables_colorsremoved
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalvariables_colorsremoved'>
@@ -821,15 +821,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalvariables_colorsrenamed'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalvariables_colorsrenamed"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.variables_colorsrenamed
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalvariables_colorsrenamed'>
@@ -855,15 +855,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalvariables_lineheigts'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalvariables_lineheigts"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.variables_lineheigts
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalvariables_lineheigts'>
@@ -877,15 +877,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalvariables_lineheightlighter'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalvariables_lineheightlighter"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.variables_lineheightlighter
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalvariables_lineheightlighter'>
@@ -896,15 +896,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalvariables_headingfontsizes'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalvariables_headingfontsizes"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.variables_headingfontsizes
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalvariables_headingfontsizes'>
@@ -927,18 +927,18 @@
 
                 <!-- General Mixins -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Mixins</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Mixins</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalmixins_fontsizelineheight'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalmixins_fontsizelineheight"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.mixins_fontsizelineheight
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalmixins_fontsizelineheight'>
@@ -957,18 +957,18 @@
 
                 <!-- General Classes -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Classes</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Classes</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalclasses_bgopacity'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalclasses_bgopacity"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.classes_bgopacity
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalclasses_bgopacity'>
@@ -983,15 +983,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalclasses_secondary'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="generalclasses_secondary"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.general.classes_secondary
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalclasses_secondary'>
@@ -1007,13 +1007,13 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalclasses_rtlmode'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='migrationAccordionGroupedCheckboxes.general.classes_rtlmode'
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          id="generalclasses_rtlmode"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_rtlmode"
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalclasses_rtlmode'>
@@ -1064,13 +1064,13 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='generalclasses_sronly'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='migrationAccordionGroupedCheckboxes.general.classes_sronly'
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          id="generalclasses_sronly"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="migrationAccordionGroupedCheckboxes.general.classes_sronly"
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='generalclasses_sronly'>
@@ -1091,10 +1091,10 @@
               </ng-template>
             </ngb-panel>
 
-            <ngb-panel id='bootstrap'>
-              <ng-template ngbPanelHeader let-opened='opened'>
-                <div class='custom-header justify-content-between' [class.collapsed]='!opened'>
-                  <button ngbPanelToggle class='accordion-button'>
+            <ngb-panel id="bootstrap">
+              <ng-template ngbPanelHeader let-opened="opened">
+                <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                  <button ngbPanelToggle class="accordion-button">
                     Bootstrap
                     <small>
                       {{ getMigrationAccordionGroupedCheckboxesChecked('bootstrap') }}
@@ -1105,18 +1105,18 @@
               <ng-template ngbPanelContent>
                 <!-- Bootstrap Alert / Notifications -->
                 <div>
-                  <h5 class='h6 bold'>Alert / Notification</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="h6 bold">Alert / Notification</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapalerts_closebuttoncontent'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapalerts_closebuttoncontent"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.alerts_closebuttoncontent
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapalerts_closebuttoncontent'>
@@ -1129,15 +1129,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapalerts_closebuttonclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapalerts_closebuttonclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.alerts_closebuttonclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapalerts_closebuttonclass'>
@@ -1148,25 +1148,25 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/alert'>documentation</a>
+                    <a routerLink="/bootstrap-samples/alert">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Badge -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Badge</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Badge</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapbadges_classes'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='migrationAccordionGroupedCheckboxes.bootstrap.badges_classes'
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          id="bootstrapbadges_classes"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.badges_classes"
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapbadges_classes'>
@@ -1190,27 +1190,27 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/badge'>documentation</a>
+                    <a routerLink="/bootstrap-samples/badge">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Background -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Background</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Background</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapbackgrounds_textcolor'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapbackgrounds_textcolor"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.backgrounds_textcolor
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapbackgrounds_textcolor'>
@@ -1224,28 +1224,28 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/background'>documentation</a>
+                    <a routerLink="/bootstrap-samples/background">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Blockquote -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Blockquote</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Blockquote</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapblockquotes_footerstructure'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapblockquotes_footerstructure"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .blockquotes_footerstructure
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapblockquotes_footerstructure'>
@@ -1259,15 +1259,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapblockquotes_qclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapblockquotes_qclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.blockquotes_qclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapblockquotes_qclass'>
@@ -1278,27 +1278,27 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/blockquotes'>documentation</a>
+                    <a routerLink="/bootstrap-samples/blockquotes">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Button -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Button</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Button</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapbuttons_outline'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapbuttons_outline"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.buttons_outline
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapbuttons_outline'>
@@ -1312,15 +1312,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapbuttons_borderradius'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapbuttons_borderradius"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.buttons_borderradius
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapbuttons_borderradius'>
@@ -1334,15 +1334,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapbuttons_borderradius2'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapbuttons_borderradius2"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.buttons_borderradius2
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapbuttons_borderradius2'>
@@ -1356,15 +1356,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapbuttons_invertedclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapbuttons_invertedclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.buttons_invertedclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapbuttons_invertedclass'>
@@ -1375,15 +1375,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapbuttons_iconclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapbuttons_iconclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.buttons_iconclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapbuttons_iconclass'>
@@ -1395,27 +1395,27 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/buttons'>documentation</a>
+                    <a routerLink="/bootstrap-samples/buttons">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Button Close -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Button Close</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Button Close</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapbuttonclose_content'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapbuttonclose_content"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.buttonclose_content
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapbuttonclose_content'>
@@ -1428,15 +1428,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapbuttonclose_class'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapbuttonclose_class"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.buttonclose_class
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapbuttonclose_class'>
@@ -1447,15 +1447,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapbuttonclose_buttonclasses'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapbuttonclose_buttonclasses"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.buttonclose_buttonclasses
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapbuttonclose_buttonclasses'>
@@ -1467,25 +1467,25 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/card'>documentation</a>
+                    <a routerLink="/bootstrap-samples/card">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Cards -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Card</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Card</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapcards_classes'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='migrationAccordionGroupedCheckboxes.bootstrap.cards_classes'
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          id="bootstrapcards_classes"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.cards_classes"
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapcards_classes'>
@@ -1497,27 +1497,27 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/card'>documentation</a>
+                    <a routerLink="/bootstrap-samples/card">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Forms -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Forms</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Forms</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='boostrapforms_formlabelclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="boostrapforms_formlabelclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.forms_formlabelclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='boostrapforms_formlabelclass'>
@@ -1528,15 +1528,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapforms_formgroup'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapforms_formgroup"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.forms_formgroup
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapforms_formgroup'>
@@ -1548,13 +1548,13 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapforms_formtext'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='migrationAccordionGroupedCheckboxes.bootstrap.forms_formtext'
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          id="bootstrapforms_formtext"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="migrationAccordionGroupedCheckboxes.bootstrap.forms_formtext"
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapforms_formtext'>
@@ -1565,28 +1565,28 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/forms'>documentation</a>
+                    <a routerLink="/bootstrap-samples/forms">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Form-Controls -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>From Control</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">From Control</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='boostrapformcontrols_formfloatingwrapper'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="boostrapformcontrols_formfloatingwrapper"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .formcontrols_formfloatingwrapper
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='boostrapformcontrols_formfloatingwrapper'>
@@ -1598,16 +1598,16 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='boostrapformcontrols_formfloatingcontrollgclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="boostrapformcontrols_formfloatingcontrollgclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .formcontrols_formfloatingcontrollgclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='boostrapformcontrols_formfloatingcontrollgclass'>
@@ -1617,28 +1617,28 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/form-control'>documentation</a>
+                    <a routerLink="/bootstrap-samples/form-control">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Form-Select -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>From Select</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">From Select</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='boostrapformselects_formfloatingwrapper'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="boostrapformselects_formfloatingwrapper"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .formselects_formfloatingwrapper
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='boostrapformselects_formfloatingwrapper'>
@@ -1650,15 +1650,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformselects_classes'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformselects_classes"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.formselects_classes
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformselects_classes'>
@@ -1688,16 +1688,16 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformselects_formfloatingselectlgclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformselects_formfloatingselectlgclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .formselects_formfloatingselectlgclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformselects_formfloatingselectlgclass'>
@@ -1707,28 +1707,28 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/form-select'>documentation</a>
+                    <a routerLink="/bootstrap-samples/form-select">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Form-Textarea -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>From Textarea</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">From Textarea</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='boostrapformtextareas_formfloatingwrapper'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="boostrapformtextareas_formfloatingwrapper"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .formtextareas_formfloatingwrapper
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='boostrapformtextareas_formfloatingwrapper'>
@@ -1740,27 +1740,27 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/form-textarea'>documentation</a>
+                    <a routerLink="/bootstrap-samples/form-textarea">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Form-File -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Form File</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Form File</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='boostrapformfiles_formlabelclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="boostrapformfiles_formlabelclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.formfiles_formlabelclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='boostrapformfiles_formlabelclass'>
@@ -1770,27 +1770,27 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/form-file'>documentation</a>
+                    <a routerLink="/bootstrap-samples/form-file">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Form-Checkbox -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>From Checkbox</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">From Checkbox</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformcheckboxes_classes'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformcheckboxes_classes"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.formcheckboxes_classes
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformcheckboxes_classes'>
@@ -1811,16 +1811,16 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformcheckboxes_validationclasses'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformcheckboxes_validationclasses"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .formcheckboxes_validationclasses
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformcheckboxes_validationclasses'>
@@ -1834,16 +1834,16 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformcheckboxes_validationfeedbackclasses'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformcheckboxes_validationfeedbackclasses"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .formcheckboxes_validationfeedbackclasses
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformcheckboxes_validationfeedbackclasses'>
@@ -1855,27 +1855,27 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/form-check'>documentation</a>
+                    <a routerLink="/bootstrap-samples/form-check">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Bootstrap Form-Radio -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>From Radio</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">From Radio</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformradios_classes'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformradios_classes"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.formradios_classes
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformradios_classes'>
@@ -1896,16 +1896,16 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformradios_validationclasses'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformradios_validationclasses"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .formradios_validationclasses
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformradios_validationclasses'>
@@ -1919,16 +1919,16 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformradios_validationfeedbackclasses'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformradios_validationfeedbackclasses"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .formradios_validationfeedbackclasses
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformradios_validationfeedbackclasses'>
@@ -1940,40 +1940,40 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/form-radio'>documentation</a>
+                    <a routerLink="/bootstrap-samples/form-radio">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Post Switch -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Form Switch</h5>
+                  <h5 class="mt-4 h6 bold">Form Switch</h5>
 
                   <p>
                     The
-                    <span class='highlight'>switch</span>
+                    <span class="highlight">switch</span>
                     component has been moved to the
                     <strong>Bootstrap</strong>
                     section since Bootstrap version 5.x now provides such a component.
-                    <span class='info'>
+                    <span class="info">
                       If you import this component manually, you need to update to the new file
                       path.
                     </span>
                   </p>
 
-                  <ul class='list-unstyled my-3'>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformswitches_classes'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformswitches_classes"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.formswitches_classes
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformswitches_classes'>
@@ -1990,15 +1990,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformswitches_labelclasses'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformswitches_labelclasses"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap.formswitches_labelclasses
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformswitches_labelclasses'>
@@ -2016,16 +2016,16 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformswitches_validationclasses'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformswitches_validationclasses"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .formswitches_validationclasses
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformswitches_validationclasses'>
@@ -2038,16 +2038,16 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='bootstrapformswitches_validationfeedbackclasses'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="bootstrapformswitches_validationfeedbackclasses"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.bootstrap
                               .formswitches_validationfeedbackclasses
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='bootstrapformswitches_validationfeedbackclasses'>
@@ -2059,19 +2059,19 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/bootstrap-samples/form-switch'>documentation</a>
+                    <a routerLink="/bootstrap-samples/form-switch">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
               </ng-template>
             </ngb-panel>
 
-            <ngb-panel id='ngbootstrap' *ngIf='isMigratingAngular'>
-              <ng-template ngbPanelHeader let-opened='opened'>
-                <div class='custom-header justify-content-between' [class.collapsed]='!opened'>
-                  <button ngbPanelToggle class='accordion-button'>
+            <ngb-panel id="ngbootstrap" *ngIf="isMigratingAngular">
+              <ng-template ngbPanelHeader let-opened="opened">
+                <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                  <button ngbPanelToggle class="accordion-button">
                     NgBootstrap
                     <small>
                       {{ getMigrationAccordionGroupedCheckboxesChecked('ngbootstrap') }}
@@ -2082,18 +2082,18 @@
               <ng-template ngbPanelContent>
                 <!-- ngBootstrap Buttons -->
                 <div>
-                  <h5 class='h6 bold'>Buttons</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="h6 bold">Buttons</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='ngbootstrapbuttons_labelclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="ngbootstrapbuttons_labelclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.ngbootstrap.buttons_labelclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='ngbootstrapbuttons_labelclass'>
@@ -2104,15 +2104,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='ngbootstrapbuttons_inputclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="ngbootstrapbuttons_inputclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.ngbootstrap.buttons_inputclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='ngbootstrapbuttons_inputclass'>
@@ -2123,15 +2123,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='ngbootstrapbuttons_grouptoggleclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="ngbootstrapbuttons_grouptoggleclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.ngbootstrap.buttons_grouptoggleclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='ngbootstrapbuttons_grouptoggleclass'>
@@ -2141,27 +2141,27 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/ng-bootstrap-samples/buttons'>documentation</a>
+                    <a routerLink="/ng-bootstrap-samples/buttons">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- ngBootstrap DatePicker -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>DatePicker</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">DatePicker</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='ngbootstrapdatepickers_variables'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="ngbootstrapdatepickers_variables"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.ngbootstrap.datepickers_variables
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='ngbootstrapdatepickers_variables'>
@@ -2177,28 +2177,28 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/ng-bootstrap-samples/datepicker'>documentation</a>
+                    <a routerLink="/ng-bootstrap-samples/datepicker">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- ngBootstrap Modal -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Modal</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Modal</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='ngbootstrapmodals_closebuttoncontent'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="ngbootstrapmodals_closebuttoncontent"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.ngbootstrap
                               .modals_closebuttoncontent
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='ngbootstrapmodals_closebuttoncontent'>
@@ -2211,15 +2211,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='ngbootstrapmodals_closebuttonclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="ngbootstrapmodals_closebuttonclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.ngbootstrap.modals_closebuttonclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='ngbootstrapmodals_closebuttonclass'>
@@ -2230,19 +2230,19 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/ng-bootstrap-samples/modal'>documentation</a>
+                    <a routerLink="/ng-bootstrap-samples/modal">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
               </ng-template>
             </ngb-panel>
 
-            <ngb-panel id='jquery'>
-              <ng-template ngbPanelHeader let-opened='opened'>
-                <div class='custom-header justify-content-between' [class.collapsed]='!opened'>
-                  <button ngbPanelToggle class='accordion-button'>
+            <ngb-panel id="jquery">
+              <ng-template ngbPanelHeader let-opened="opened">
+                <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                  <button ngbPanelToggle class="accordion-button">
                     jQuery
                     <small>
                       {{ getMigrationAccordionGroupedCheckboxesChecked('jquery') }}
@@ -2253,18 +2253,18 @@
               <ng-template ngbPanelContent>
                 <!-- jQuery Accordion -->
                 <div>
-                  <h5 class='h6 bold'>Accordion</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="h6 bold">Accordion</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='jqueryaccordions_removed'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="jqueryaccordions_removed"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.jquery.accordions_removed
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='jqueryaccordions_removed'>
@@ -2286,10 +2286,10 @@
               </ng-template>
             </ngb-panel>
 
-            <ngb-panel id='post'>
-              <ng-template ngbPanelHeader let-opened='opened'>
-                <div class='custom-header justify-content-between' [class.collapsed]='!opened'>
-                  <button ngbPanelToggle class='accordion-button'>
+            <ngb-panel id="post">
+              <ng-template ngbPanelHeader let-opened="opened">
+                <div class="custom-header justify-content-between" [class.collapsed]="!opened">
+                  <button ngbPanelToggle class="accordion-button">
                     Post
                     <small>
                       {{ getMigrationAccordionGroupedCheckboxesChecked('post') }}
@@ -2300,16 +2300,16 @@
               <ng-template ngbPanelContent>
                 <!-- Post Accordion -->
                 <div>
-                  <h5 class='h6 bold'>Accordion</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="h6 bold">Accordion</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='postaccordions_removed'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='migrationAccordionGroupedCheckboxes.post.accordions_removed'
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          id="postaccordions_removed"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="migrationAccordionGroupedCheckboxes.post.accordions_removed"
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='postaccordions_removed'>
@@ -2330,19 +2330,19 @@
 
                 <!-- Post Custom-Select -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Custom-Select</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Custom-Select</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='postcustomselects_formfloatingwrapper'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="postcustomselects_formfloatingwrapper"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.post
                               .customselects_formfloatingwrapper
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='postcustomselects_formfloatingwrapper'>
@@ -2354,15 +2354,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='postcustomselects_classes'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="postcustomselects_classes"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.post.customselects_classes
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='postcustomselects_classes'>
@@ -2374,15 +2374,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='postcustomselects_menuclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="postcustomselects_menuclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.post.customselects_menuclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='postcustomselects_menuclass'>
@@ -2395,27 +2395,27 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/post-samples/custom-select'>documentation</a>
+                    <a routerLink="/post-samples/custom-select">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Post Subnavigation -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Subnavigation</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Subnavigation</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='postsubnavigations_invertedclass'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="postsubnavigations_invertedclass"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.post.subnavigations_invertedclass
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='postsubnavigations_invertedclass'>
@@ -2425,27 +2425,27 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/post-samples/subnavigation'>documentation</a>
+                    <a routerLink="/post-samples/subnavigation">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
 
                 <!-- Post Topic Teaser -->
                 <div>
-                  <h5 class='mt-4 h6 bold'>Topic Teaser</h5>
-                  <ul class='list-unstyled my-3'>
+                  <h5 class="mt-4 h6 bold">Topic Teaser</h5>
+                  <ul class="list-unstyled my-3">
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='posttopicteasers_imageattributes'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="posttopicteasers_imageattributes"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.post.topicteasers_imageattributes
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='posttopicteasers_imageattributes'>
@@ -2460,16 +2460,16 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='posttopicteasers_imagecontainergridclasses'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="posttopicteasers_imagecontainergridclasses"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.post
                               .topicteasers_imagecontainergridclasses
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='posttopicteasers_imagecontainergridclasses'>
@@ -2479,16 +2479,16 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='posttopicteasers_contentcontainergridclasses'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="posttopicteasers_contentcontainergridclasses"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.post
                               .topicteasers_contentcontainergridclasses
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='posttopicteasers_contentcontainergridclasses'>
@@ -2498,15 +2498,15 @@
                       </div>
                     </li>
                     <li>
-                      <div class='form-check'>
+                      <div class="form-check">
                         <input
-                          id='posttopicteasers_linklistfontcurve'
-                          class='form-check-input'
-                          type='checkbox'
-                          [(ngModel)]='
+                          id="posttopicteasers_linklistfontcurve"
+                          class="form-check-input"
+                          type="checkbox"
+                          [(ngModel)]="
                             migrationAccordionGroupedCheckboxes.post.topicteasers_linklistfontcurve
-                          '
-                          (change)='migrationAccordionGroupedCheckboxesChange()'
+                          "
+                          (change)="migrationAccordionGroupedCheckboxesChange()"
                         />
                         <!-- prettier-ignore -->
                         <label class='form-check-label' for='posttopicteasers_linklistfontcurve'>
@@ -2516,9 +2516,9 @@
                       </div>
                     </li>
                   </ul>
-                  <p class='info'>
+                  <p class="info">
                     See the
-                    <a routerLink='/post-samples/topic-teaser'>documentation</a>
+                    <a routerLink="/post-samples/topic-teaser">documentation</a>
                     for more detailed information.
                   </p>
                 </div>
@@ -2527,62 +2527,62 @@
           </ngb-accordion>
         </li>
         <li>
-          <h4 class='h5 bold'>Treat yourself to a 🍺, you've done a great job! 🚀</h4>
+          <h4 class="h5 bold">Treat yourself to a 🍺, you've done a great job! 🚀</h4>
         </li>
       </ol>
     </section>
   </div>
 </div>
 
-<div class='topic-teaser bg-nightblue mt-huge-r mb-giant-r'>
-  <div class='container'>
-    <div class='topic-teaser-container bg-nightblue'>
-      <div class='row pt-huge-r'>
-        <div class='topic-teaser-content'>
-          <h2 class='topic-teaser-title font-curve-large mb-large'>
-            <span class='bold'>Resources</span>
-            <span class='light'>For a consistent user experience</span>
+<div class="topic-teaser bg-nightblue mt-huge-r mb-giant-r">
+  <div class="container">
+    <div class="topic-teaser-container bg-nightblue">
+      <div class="row pt-huge-r">
+        <div class="topic-teaser-content">
+          <h2 class="topic-teaser-title font-curve-large mb-large">
+            <span class="bold">Resources</span>
+            <span class="light">For a consistent user experience</span>
           </h2>
-          <ul class='link-list mb-large'>
-            <li class='link-list-item'>
+          <ul class="link-list mb-large">
+            <li class="link-list-item">
               <a
-                target='_blank'
-                rel='noopener'
+                target="_blank"
+                rel="noopener"
                 [href]="'//getbootstrap.com/docs/' + getVersion(bootstrapVersion, 'Mm')"
               >
                 <span>Bootstrap Documentation</span>
               </a>
             </li>
-            <li class='link-list-item'>
+            <li class="link-list-item">
               <a
-                target='_blank'
-                rel='noopener'
+                target="_blank"
+                rel="noopener"
                 [href]="'//v' + getVersion(angularVersion, 'M') + '.angular.io/docs'"
               >
                 <span>Angular Docs</span>
               </a>
             </li>
-            <li class='link-list-item'>
+            <li class="link-list-item">
               <!-- exact link is not possible, because the latest url is different from the previews -->
-              <a target='_blank' rel='noopener' href='https://ng-bootstrap.github.io/#/home'>
+              <a target="_blank" rel="noopener" href="https://ng-bootstrap.github.io/#/home">
                 <span>ngBootstrap Docs</span>
               </a>
             </li>
-            <li class='link-list-item'>
+            <li class="link-list-item">
               <!-- exact link is not possible, because no version urls available -->
-              <a target='_blank' rel='noopener' href='https://fonts.post.ch/frutigerneueforpost/#/'>
+              <a target="_blank" rel="noopener" href="https://fonts.post.ch/frutigerneueforpost/#/">
                 <span>Frutiger Neue For Post</span>
               </a>
             </li>
           </ul>
         </div>
-        <div class='topic-teaser-image-container'>
+        <div class="topic-teaser-image-container">
           <img
-            class='topic-teaser-image'
-            src='assets/images/lego.jpg'
-            width='100%'
-            height='100%'
-            alt='Lego'
+            class="topic-teaser-image"
+            src="assets/images/lego.jpg"
+            width="100%"
+            height="100%"
+            alt="Lego"
           />
         </div>
       </div>
