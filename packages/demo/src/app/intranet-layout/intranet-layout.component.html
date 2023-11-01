@@ -13,33 +13,33 @@
   <table class="table caption-top table-responsive mb-regular-r">
     <caption>List of compatible version numbers with external dependencies.</caption>
     <thead>
-      <tr>
-        <th scope="col">Intranet-header</th>
-        <th scope="col">Bootstrap</th>
-        <th scope="col">Angular</th>
-        <th scope="col">Ng-Bootstrap</th>
-      </tr>
+    <tr>
+      <th scope="col">Intranet-header</th>
+      <th scope="col">Bootstrap</th>
+      <th scope="col">Angular</th>
+      <th scope="col">Ng-Bootstrap</th>
+    </tr>
     </thead>
 
     <tbody>
-      <tr>
-        <th scope="row">3.x</th>
-        <td>4.x</td>
-        <td>14.x</td>
-        <td>13.x</td>
-      </tr>
-      <tr>
-        <th scope="row">4.x</th>
-        <td>5.2</td>
-        <td>15.x</td>
-        <td>14.x</td>
-      </tr>
-      <tr>
-        <th scope="row">5.x</th>
-        <td>5.2</td>
-        <td>16.x</td>
-        <td>15.x</td>
-      </tr>
+    <tr>
+      <th scope="row">3.x</th>
+      <td>4.x</td>
+      <td>14.x</td>
+      <td>13.x</td>
+    </tr>
+    <tr>
+      <th scope="row">4.x</th>
+      <td>5.2</td>
+      <td>15.x</td>
+      <td>14.x</td>
+    </tr>
+    <tr>
+      <th scope="row">5.x</th>
+      <td>5.2</td>
+      <td>16.x</td>
+      <td>15.x</td>
+    </tr>
     </tbody>
   </table>
   <p>Install the latest version of the Intranet Header with:</p>
@@ -114,202 +114,202 @@
       aria-describedby="intranet-layout-options"
     >
       <thead class="thead-dark">
-        <tr>
-          <th scope="col">Property</th>
-          <th scope="col">Type</th>
-          <th scope="col">Default</th>
-          <th scope="col">Description</th>
-        </tr>
+      <tr>
+        <th scope="col">Property</th>
+        <th scope="col">Type</th>
+        <th scope="col">Default</th>
+        <th scope="col">Description</th>
+      </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>
-            <code>additionalInfo</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>''</code>
-          </td>
-          <td>
-            Additional information about the user, shown as item in the user-dropdown.
-            <br />
-            By default, the item will not be rendered.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>currentUserId</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>'user'</code>
-          </td>
-          <td>
-            The user ID of the currently logged on user.
-            <br />
-            Used to show the users profile image.
-            <br />
-            The default value of
-            <code>'user'</code>
-            is used to show the fallback-image.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>displayName</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>''</code>
-          </td>
-          <td>
-            The name of the logged on user, shown as item in the user-dropdown.
-            <br />
-            By default, the item will not be rendered.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>hasNavbar</code>
-          </td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>true</code>
-          </td>
-          <td>Whether the navigation is rendered or not.</td>
-        </tr>
-        <tr class="table-danger">
-          <td>
-            <code>isPreview</code>
-          </td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>This is only used for presentational purposes. Do not use it in production!</td>
-        </tr>
-        <tr>
-          <td>
-            <code>languages</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>'de,fr,it,en'</code>
-          </td>
-          <td>
-            A comma-separated string that specifies the languages available to the language-selector
-            shown as items in the user-dropdown.
-            <br />
-            Possible language values are:
-            <code>de</code>
-            ,
-            <code>fr</code>
-            ,
-            <code>it</code>
-            and
-            <code>en</code>
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>logoUrl</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>''</code>
-          </td>
-          <td>
-            The url which is used for the
-            <code>href</code>
-            attribute on the logo.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>optionDropdownContent</code>
-          </td>
-          <td><code>TemplateRef&lt;any&gt;</code></td>
-          <td><code>null</code></td>
-          <td>
-            Represents an embedded angular template that can be used to instantiate embedded views.
-            <br />
-            Shown as item in the user-dropdown.
-            <br />
-            By default, the item will not be rendered.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>optionHeaderContent</code>
-          </td>
-          <td><code>TemplateRef&lt;any&gt;</code></td>
-          <td><code>null</code></td>
-          <td>
-            Represents an embedded angular template that can be used to instantiate embedded views.
-            <br />
-            Shown as custom content before the user-dropdown.
-            <br />
-            By default, the item will not be rendered.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>searchUrl</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>''</code>
-          </td>
-          <td>
-            Used as the form
-            <code>action</code>
-            attribute on the search form.
-            <br />
-            If
-            <code>showIntranetSearch</code>
-            is set to
-            <code>true</code>
-            the
-            <code>searchUrl</code>
-            must be set as well.
-          </td>
-        </tr>
-        <tr>
-          <td>
-            <code>showIntranetSearch</code>
-          </td>
-          <td><code>boolean</code></td>
-          <td><code>false</code></td>
-          <td>Whether the search is rendered or not.</td>
-        </tr>
-        <tr>
-          <td>
-            <code>siteTitle</code>
-          </td>
-          <td>
-            <code>string</code>
-          </td>
-          <td>
-            <code>''</code>
-          </td>
-          <td>The website/application name, shown next to the Logo.</td>
-        </tr>
+      <tr>
+        <td>
+          <code>additionalInfo</code>
+        </td>
+        <td>
+          <code>string</code>
+        </td>
+        <td>
+          <code>''</code>
+        </td>
+        <td>
+          Additional information about the user, shown as item in the user-dropdown.
+          <br />
+          By default, the item will not be rendered.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>currentUserId</code>
+        </td>
+        <td>
+          <code>string</code>
+        </td>
+        <td>
+          <code>''</code>
+        </td>
+        <td>
+          The user ID of the currently logged on user.
+          <br />
+          Used to show the users profile image.
+          <br />
+          The default value of
+          <code>'user'</code>
+          is used to show the fallback-image.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>displayName</code>
+        </td>
+        <td>
+          <code>string</code>
+        </td>
+        <td>
+          <code>''</code>
+        </td>
+        <td>
+          The name of the logged on user, shown as item in the user-dropdown.
+          <br />
+          By default, the item will not be rendered.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>hasNavbar</code>
+        </td>
+        <td>
+          <code>boolean</code>
+        </td>
+        <td>
+          <code>true</code>
+        </td>
+        <td>Whether the navigation is rendered or not.</td>
+      </tr>
+      <tr class="table-danger">
+        <td>
+          <code>isPreview</code>
+        </td>
+        <td>
+          <code>boolean</code>
+        </td>
+        <td>
+          <code>false</code>
+        </td>
+        <td>This is only used for presentational purposes. Do not use it in production!</td>
+      </tr>
+      <tr>
+        <td>
+          <code>languages</code>
+        </td>
+        <td>
+          <code>string</code>
+        </td>
+        <td>
+          <code>'de,fr,it,en'</code>
+        </td>
+        <td>
+          A comma-separated string that specifies the languages available to the language-selector
+          shown as items in the user-dropdown.
+          <br />
+          Possible language values are:
+          <code>de</code>
+          ,
+          <code>fr</code>
+          ,
+          <code>it</code>
+          and
+          <code>en</code>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>logoUrl</code>
+        </td>
+        <td>
+          <code>string</code>
+        </td>
+        <td>
+          <code>''</code>
+        </td>
+        <td>
+          The url which is used for the
+          <code>href</code>
+          attribute on the logo.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>optionDropdownContent</code>
+        </td>
+        <td><code>TemplateRef&lt;any&gt;</code></td>
+        <td><code>null</code></td>
+        <td>
+          Represents an embedded angular template that can be used to instantiate embedded views.
+          <br />
+          Shown as item in the user-dropdown.
+          <br />
+          By default, the item will not be rendered.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>optionHeaderContent</code>
+        </td>
+        <td><code>TemplateRef&lt;any&gt;</code></td>
+        <td><code>null</code></td>
+        <td>
+          Represents an embedded angular template that can be used to instantiate embedded views.
+          <br />
+          Shown as custom content before the user-dropdown.
+          <br />
+          By default, the item will not be rendered.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>searchUrl</code>
+        </td>
+        <td>
+          <code>string</code>
+        </td>
+        <td>
+          <code>''</code>
+        </td>
+        <td>
+          Used as the form
+          <code>action</code>
+          attribute on the search form.
+          <br />
+          If
+          <code>showIntranetSearch</code>
+          is set to
+          <code>true</code>
+          the
+          <code>searchUrl</code>
+          must be set as well.
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <code>showIntranetSearch</code>
+        </td>
+        <td><code>boolean</code></td>
+        <td><code>false</code></td>
+        <td>Whether the search is rendered or not.</td>
+      </tr>
+      <tr>
+        <td>
+          <code>siteTitle</code>
+        </td>
+        <td>
+          <code>string</code>
+        </td>
+        <td>
+          <code>''</code>
+        </td>
+        <td>The website/application name, shown next to the Logo.</td>
+      </tr>
       </tbody>
     </table>
   </div>
