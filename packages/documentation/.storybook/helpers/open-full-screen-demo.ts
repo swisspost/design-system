@@ -5,7 +5,7 @@ export const openFullScreenDemo = (e: Event) => {
   const iframeId = story?.id?.replace('story--', '');
 
   if (iframeId) {
-    window.open(`/iframe.html?id=${iframeId}`,'_blank');
+    window.open(`/iframe.html?id=${iframeId}`, '_blank');
   } else {
     alert('The full screen demo is not available.');
   }

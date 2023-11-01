@@ -1,5 +1,5 @@
-@use "tests/jest";
-@use "src/functions/color";
+@use 'tests/jest';
+@use 'src/functions/color';
 
 @include jest.equal(gray, color.get-solid-color(rgba(black, 0.5)));
 @include jest.equal(maroon, color.get-solid-color(rgba(black, 0.5), red));

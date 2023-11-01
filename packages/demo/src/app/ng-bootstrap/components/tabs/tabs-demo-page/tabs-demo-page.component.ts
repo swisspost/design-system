@@ -8,7 +8,7 @@ const containerSnippet = require('!!raw-loader!../snippets/tabs-inside-container
 @Component({
   selector: 'app-ngb-tabs-demo-page',
   templateUrl: './tabs-demo-page.component.html',
-  styleUrls: ['./tabs-demo-page.component.scss']
+  styleUrls: ['./tabs-demo-page.component.scss'],
 })
 export class NgbTabsDemoPageComponent {
   codeTemplate = codeTemplate;

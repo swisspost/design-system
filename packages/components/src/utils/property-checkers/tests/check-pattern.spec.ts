@@ -10,7 +10,18 @@ describe('checkPattern', () => {
   });
 
   it('should throw the provided error if the value is not a string', () => {
-    [undefined, null, NaN, 1, true, {}, [], () => {/* empty */}].forEach(notString => {
+    [
+      undefined,
+      null,
+      NaN,
+      1,
+      true,
+      {},
+      [],
+      () => {
+        /* empty */
+      },
+    ].forEach(notString => {
       expect(runCheckForValue(notString)).toThrow(error);
     });
   });
