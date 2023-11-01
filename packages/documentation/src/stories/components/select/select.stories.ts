@@ -186,7 +186,7 @@ const Template: Story = {
       'form-select',
       args.size,
       args.validation,
-      args.floatingLabelNoSelectedOption && !args.value ? 'form-select-empty' : null,
+      args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
     ]
       .filter(c => c && c !== 'null')
       .join(' ');
@@ -203,7 +203,7 @@ const Template: Story = {
     );
     const options = [
       ...[
-        args.floatingLabelNoSelectedOption
+        args.floatingLabelPlaceholder
           ? html`
               <option></option>
             `
@@ -286,7 +286,7 @@ export const FloatingLabel: Story = {
   },
 };
 
-export const FloatingLabelNoSelectedOption: Story = {
+export const FloatingLabelPlaceholder: Story = {
   ...Template,
   parameters: {
     controls: {
@@ -303,7 +303,7 @@ export const FloatingLabelNoSelectedOption: Story = {
   },
   args: {
     floatingLabel: true,
-    floatingLabelNoSelectedOption: true,
+    floatingLabelPlaceholder: true,
     hint: '',
   },
 };
