@@ -13,4 +13,4 @@ import { defineCustomElements } from '@swisspost/design-system-components/loader
   ],
   exports: [...DIRECTIVES],
 })
-export class ComponentsModule {}
+export class PostComponentsModule {}
