@@ -92,7 +92,8 @@
     }
 
     // TODO: replace with :has
-    &:empty, &.form-select-empty {
+    &:empty,
+    &.form-select-empty {
       padding-top: forms.$form-floating-input-padding-t;
       padding-bottom: forms.$form-floating-input-padding-b;
 
@@ -121,7 +122,8 @@
       }
 
       // TODO: replace with :has
-      &:empty, &.form-select-empty {
+      &:empty,
+      &.form-select-empty {
         ~ label {
           padding-top: forms.$form-floating-padding-y;
           padding-bottom: forms.$form-floating-padding-y;
