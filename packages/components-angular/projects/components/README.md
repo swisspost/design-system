@@ -28,7 +28,7 @@ import { ComponentsModule } from '@swisspost/design-system-components-angular';
 export class AppModule {}
 ```
 
-In your templates, the componets are available as:
+In your templates, the components are available as:
 
 ```html
 <post-icon></post-icon>
