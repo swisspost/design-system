@@ -6,7 +6,7 @@ import { canMigrateFile, createMigrationProgram } from '@angular/core/schematics
 import * as cheerio from 'cheerio/lib/slim';
 import { relative } from 'path';
 import * as prettier from 'prettier';
-import * as htmlParser from 'prettier/parser-html';
+import * as htmlParser from 'prettier/plugins/html';
 import { SourceFile } from 'typescript';
 import { DomUpdate } from './dom-update';
 
@@ -102,8 +102,8 @@ export function getDomMigrationRule(...updates: DomUpdate[]): Rule {
           // start tree file recorder to update tree file later
           const treeUpdateRecorder = tree.beginUpdate(treeFilePath);
 
-          sourceElements
-            .forEach(source => {
+          const promises = sourceElements
+            .map(async source => {
               // get corresponding outputelement by cheerio-id
               const distElement = $outputElements.filter((_i, element) => $(element).data('cheerio-id') === source.id)
                 .first()
@@ -119,9 +119,11 @@ export function getDomMigrationRule(...updates: DomUpdate[]): Rule {
               // write new "element" into the tree file
               treeUpdateRecorder.insertLeft(
                 source.start,
-                prettier.format(distElement, PRETTIER_OPTIONS).replace(/(\n|\r\n)$/, ''),
+                (await prettier.format(distElement, PRETTIER_OPTIONS)).replace(/(\n|\r\n)$/, ''),
               );
             });
+
+          await Promise.all(promises);
 
           // commit changes in tree file to tree
           tree.commitUpdate(treeUpdateRecorder);
