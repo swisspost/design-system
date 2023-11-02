@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-icons",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -21,7 +21,7 @@
   ],
   "private": false,
   "scripts": {
-    "dev": "http-server ./public -o -a localhost -p 9005",
+    "dev": "http-server ./public -o -a localhost -p 9330",
     "fetchSVGs": "ts-node src/index.ts",
     "test": "jest",
     "test:watch": "jest --watch",

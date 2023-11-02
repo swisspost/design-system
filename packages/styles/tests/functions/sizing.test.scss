@@ -1,6 +1,6 @@
-@use "tests/jest";
-@use "src/functions/sizing";
-@use "src/variables/commons";
+@use 'tests/jest';
+@use 'src/functions/sizing';
+@use 'src/variables/commons';
 
 $value: 10px;
 $em-value: 1em;

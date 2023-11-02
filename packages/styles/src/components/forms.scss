@@ -54,6 +54,7 @@ select.form-control-rg:not([size]):not([multiple]) {
     }
 
     // Fix Safari cutoff when change the initial position of the selector button.
+    /* stylelint-disable-next-line */
     @supports (background: -webkit-named-image(i)) {
       &::file-selector-button {
         display: initial;

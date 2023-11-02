@@ -1,8 +1,9 @@
 @use 'sass:map';
+@use 'sass:color';
 
 @use './../variables/components/button';
 @use './../variables/type';
-@use './../variables/color';
+@use './../variables/color' as color-var;
 @use './../placeholders/color' as color-ph;
 @use './../functions/contrast' as contrast-fn;
 @use 'utilities';
@@ -50,19 +51,19 @@
     background-color: $color;
 
     @if (contrast-fn.light-or-dark($color) == 'dark') {
-      color: color.$white;
+      color: color-var.$white;
     } @else {
-      color: color.$black;
+      color: color-var.$black;
     }
 
     @include utilities.not-disabled-focus-hover() {
-      $darkened-color: darken($color, 10%);
+      $darkened-color: color.adjust($color, $lightness: -10%);
       background-color: $darkened-color;
 
       @if (contrast-fn.light-or-dark($darkened-color) == 'dark') {
-        color: color.$white;
+        color: color-var.$white;
       } @else {
-        color: color.$black;
+        color: color-var.$black;
       }
     }
   }

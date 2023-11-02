@@ -1,7 +1,7 @@
-@use "sass:map";
-@use "sass:meta";
-@use "tests/jest";
-@use "src/components/tooltip";
+@use 'sass:map';
+@use 'sass:meta';
+@use 'tests/jest';
+@use 'src/components/tooltip';
 
 // Check if component forwards options
 @include jest.true(map.has-key(meta.module-variables('tooltip'), 'font-base-path'));

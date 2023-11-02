@@ -3,6 +3,7 @@ import { html, nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
 import { serializeSimulatedPseudoClass } from '../../../utils/pseudo-class';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -20,7 +21,7 @@ const meta: Meta = {
     floatingLabel: false,
     hiddenLabel: false,
     value: undefined,
-    size: 'null',
+    size: 'form-select-lg',
     options: 5,
     multiple: false,
     multipleSize: 4,
@@ -228,12 +229,11 @@ const Template: Story = {
       <select
         id="${id}"
         class="${classes}"
-        defaultValue="${args.value ?? nothing}"
         ?multiple="${args.multiple}"
         size="${args.multipleSize ?? nothing}"
         ?disabled="${args.disabled}"
-        aria-label="${useAriaLabel ? args.label : undefined}"
-        aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
+        aria-label="${useAriaLabel ? args.label : nothing}"
+        aria-invalid="${ifDefined(VALIDATION_STATE_MAP[args.validation])}"
         @change="${(e: Event) => {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
         }}"

@@ -3,8 +3,8 @@ const codeTemplate = require('!!raw-loader!../popover-demo/popover-demo.componen
 
 @Component({
   selector: 'app-ngb-popover-demo-page',
-  templateUrl: './popover-demo-page.component.html'
+  templateUrl: './popover-demo-page.component.html',
 })
-export class NgbPopoverDemoPageComponent{
-codeTemplate = codeTemplate;
+export class NgbPopoverDemoPageComponent {
+  codeTemplate = codeTemplate;
 }
