@@ -137,7 +137,7 @@ importers:
   packages/components-react:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:1.6.0
+        specifier: workspace:1.6.1
         version: link:../components
     devDependencies:
       '@types/node':
@@ -361,19 +361,19 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:1.6.0
+        specifier: workspace:1.6.1
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:1.0.20
+        specifier: workspace:1.0.21
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:1.0.13
+        specifier: workspace:1.0.14
         version: link:../icons
       '@swisspost/design-system-styles':
         specifier: workspace:6.4.3
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.12.0
+        specifier: workspace:1.12.1
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.2
@@ -805,7 +805,7 @@ importers:
         specifier: 3.1.2
         version: 3.1.2(cypress@13.3.3)
       '@swisspost/design-system-icons':
-        specifier: workspace:1.0.13
+        specifier: workspace:1.0.14
         version: link:../icons
       '@types/node':
         specifier: 18.18.0
