@@ -3,7 +3,7 @@
 
 @use './../variables/components/button';
 @use './../variables/type';
-@use './../variables/color';
+@use './../variables/color' as color-var;
 @use './../functions/contrast' as contrast-fn;
 @use 'utilities';
 
