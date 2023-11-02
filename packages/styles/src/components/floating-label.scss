@@ -120,7 +120,6 @@
 
       &:empty {
         ~ label {
-          color: forms.$form-floating-label-color;
           padding-top: forms.$form-floating-padding-y;
           padding-bottom: forms.$form-floating-padding-y;
           width: calc(
