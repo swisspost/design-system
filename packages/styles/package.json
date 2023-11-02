@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "6.4.2",
+  "version": "6.4.3",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -44,7 +44,7 @@
     "@angular/compiler": "=15.0.4",
     "@percy/cli": "1.27.3",
     "@percy/cypress": "3.1.2",
-    "@swisspost/design-system-icons": "workspace:1.0.12",
+    "@swisspost/design-system-icons": "workspace:1.0.13",
     "@types/node": "18.18.0",
     "autoprefixer": "10.4.16",
     "copyfiles": "2.4.1",
