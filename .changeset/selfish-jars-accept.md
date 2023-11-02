@@ -5,4 +5,4 @@
 Refactored the stencil config:
 
 - Removed the outputTarget `www`.
-- Changed the `ucstomElementsExportBehavior` to `single-export-module` to improve the import possibilities.
+- Changed the `customElementsExportBehavior` to `single-export-module` to improve the import possibilities.
