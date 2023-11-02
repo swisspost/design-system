@@ -2,7 +2,7 @@ describe('popover', () => {
   describe('default', () => {
     beforeEach(() => {
       cy.getComponent('popover');
-      // Aria-expanded is set by the web component, therefor it's a good measure to indicate the component is ready
+      // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
       cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
       cy.get('#popover-one.hydrated').as('popover');
     });
