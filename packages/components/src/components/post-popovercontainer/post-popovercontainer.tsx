@@ -157,7 +157,6 @@ export class PostPopovercontainer {
         size({
           padding: 8,
           apply({ availableWidth, elements }) {
-            // Do things with the data, e.g.
             Object.assign(elements.floating.style, {
               maxWidth: `${Math.min(availableWidth - 16, 320)}px`,
             });
