@@ -46,7 +46,7 @@ div {
   pointer-events: none;
   z-index: -1;
 
-  // High contrast mode borders
+  // Create transparent border to be styled by and for the high contrast mode
   border-right: 2px solid transparent;
   border-bottom: 2px solid transparent;
 }
