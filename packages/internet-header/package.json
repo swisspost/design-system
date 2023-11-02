@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "description": "The header for client facing applications.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -12,13 +12,15 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
-  "main": "dist/index.cjs.js",
-  "module": "dist/index.js",
-  "es2017": "dist/esm/index.js",
-  "types": "dist/types/index.d.ts",
+  "main": "loader/index.cjs.js",
+  "module": "loader/index.js",
+  "es2015": "loader/index.es2017.js",
+  "es2017": "loader/index.es2017.js",
+  "jsnext:main": "loader/index.es2017.js",
+  "types": "loader/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "dist/swisspost-internet-header/swisspost-internet-header.esm.js",
+  "unpkg": "loader/cdn.js",
   "publishConfig": {
     "access": "public"
   },

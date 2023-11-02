@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.12.1
+
+### Patch Changes
+
+- Reverted #2152 because of an issue with importing the internet headers `defineCustomElements`. (by [@gfellerph](https://github.com/gfellerph) with [#2208](https://github.com/swisspost/design-system/pull/2208))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.3
+
 ## 1.12.0
 
 ### Minor Changes
