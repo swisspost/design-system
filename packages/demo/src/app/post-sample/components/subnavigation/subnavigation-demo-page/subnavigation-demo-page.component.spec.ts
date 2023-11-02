@@ -8,9 +8,8 @@ describe('SubnavigationDemoPageComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ SubnavigationDemoPageComponent ]
-    })
-    .compileComponents();
+      declarations: [SubnavigationDemoPageComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

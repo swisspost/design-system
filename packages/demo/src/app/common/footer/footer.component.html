@@ -4,13 +4,13 @@
 
     <div class="d-flex flex-wrap mt-huge-r mb-huge-r profile-list">
       <ng-container *ngFor="let dev of shuffledDevs">
-          <article class="avatar">
-            <img [src]="dev.avatar" [alt]="'Profile picture ' + dev.name" class="profile-picture" />
-            <div>
-              <p class="bold">{{ dev.name }}</p>
-              <p>{{ dev.title }}</p>
-            </div>
-          </article>
+        <article class="avatar">
+          <img [src]="dev.avatar" [alt]="'Profile picture ' + dev.name" class="profile-picture" />
+          <div>
+            <p class="bold">{{ dev.name }}</p>
+            <p>{{ dev.title }}</p>
+          </div>
+        </article>
       </ng-container>
     </div>
 

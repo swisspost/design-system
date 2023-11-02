@@ -18,9 +18,7 @@ export const UnorderedList: Story = {
     <ul>
       <li>This is an unordered list.</li>
       <li>It appears in its default style.</li>
-      <li>
-        Therefore it is rendered with a bullet point in front of each list item.
-      </li>
+      <li>Therefore it is rendered with a bullet point in front of each list item.</li>
       <li>
         Nested list:
         <ul>
@@ -107,10 +105,10 @@ export const DescriptionListUsingGrid: Story = {
         <p>This definition is long.</p>
         <p>You can use extra markup whenever you need.</p>
       </dd>
-      <dt class="col-sm-3 text-truncate">Long term that overflows its parent column and is therefore truncated</dt>
-      <dd class="col-sm-9">
-        This can be useful when space is tight. Adds an ellipsis at the end.
-      </dd>
+      <dt class="col-sm-3 text-truncate">
+        Long term that overflows its parent column and is therefore truncated
+      </dt>
+      <dd class="col-sm-9">This can be useful when space is tight. Adds an ellipsis at the end.</dd>
       <dt class="col-sm-3">Nesting</dt>
       <dd class="col-sm-9">
         <dl class="row">

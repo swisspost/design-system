@@ -1,7 +1,7 @@
-@use "sass:map";
-@use "sass:meta";
-@use "tests/jest";
-@use "src/components/pagination";
+@use 'sass:map';
+@use 'sass:meta';
+@use 'tests/jest';
+@use 'src/components/pagination';
 
 // Check if component forwards options
 @include jest.true(map.has-key(meta.module-variables('pagination'), 'font-base-path'));
