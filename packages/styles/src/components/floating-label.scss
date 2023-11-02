@@ -20,10 +20,7 @@
     left: forms.$input-border-width;
     margin: 0;
     padding-inline: forms.$form-floating-padding-x;
-    padding-top: calc(
-      #{forms.$input-border-width} + #{forms.$form-floating-label-height * 0.5} - #{forms.$form-floating-label-font-size *
-        type.$line-height-copy * 0.5}
-    );
+    padding-top: forms.$form-floating-label-padding-t;
     padding-bottom: 0;
     border: 0;
     color: forms.$form-floating-label-color;
@@ -81,7 +78,6 @@
     background-size: forms.$form-floating-select-bg-size;
 
     ~ label {
-      color: forms.$form-floating-label-color;
       padding-top: 0.7rem;
       max-width: calc(
         (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
@@ -98,7 +94,8 @@
       padding-bottom: forms.$form-floating-input-padding-b;
 
       ~ label {
-        padding-top: forms.$form-floating-padding-y;
+        color: forms.$form-floating-label-color;
+        padding-top: forms.$form-floating-label-padding-t;
         max-width: calc(100% - (#{forms.$input-border-width * 2}));
         transform: none;
       }
@@ -121,10 +118,9 @@
         background: forms.$input-bg;
       }
 
-      // TODO: replace with :has
-      &:empty,
-      &.form-select-empty {
+      &:empty {
         ~ label {
+          color: forms.$form-floating-label-color;
           padding-top: forms.$form-floating-padding-y;
           padding-bottom: forms.$form-floating-padding-y;
           width: calc(
