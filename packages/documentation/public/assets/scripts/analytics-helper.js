@@ -26,7 +26,7 @@ class GTM {
     } else if (this.environments.envs) {
       console.warn('GTM Warning: Environments already set. You can set them only once.');
     } else {
-      this.environments.envs = Object.assign({}, envs);
+      this.environments.envs = { ...envs };
       this.environments.fallback = fallback ?? Object.values(envs)[0];
     }
   }
