@@ -1,5 +1,5 @@
 {
-  "name": "design-system-components-angular-workspace",
+  "name": "@swisspost/design-system-components-angular-workspace",
   "version": "1.0.0",
   "scripts": {
     "clean": "rimraf dist",
