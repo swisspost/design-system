@@ -6,7 +6,7 @@ import scss from './grid.module.scss';
 export const SCSS_VARIABLES = parse(scss);
 
 export const GridBreakpoints = () => (
-  <div className="table-responsive">
+  <div className="table-responsive mb-regular">
     <table className="table">
       <thead>
         <tr>
@@ -27,17 +27,29 @@ export const GridBreakpoints = () => (
         <tr>
           <th>Name</th>
           {forEach(SCSS_VARIABLES.breakpoint, (data: { key: string; value: { name: string } }) => (
-            <td key={data.key}>{data.value.name}</td>
+            <td key={data.key}>
+              <small>{data.value.name}</small>
+            </td>
           ))}
         </tr>
+
+        <tr>
+          <th>Class infixes</th>
+          {forEach(SCSS_VARIABLES.breakpoint, (data: { key: string; value: { infix: string } }) => (
+            <td key={data.key}>
+              {data.value.infix === 'none' ? 'none' : <code>{`-${data.key}-`}</code>}
+            </td>
+          ))}
+        </tr>
+
         <tr>
           <th>
             Container <code>max-width</code>
           </th>
           {forEach(
-            SCSS_VARIABLES.breakpoint,
-            (data: { key: string; value: { maxWidth: string } }) => (
-              <td key={data.key}>{data.value.maxWidth}</td>
+            SCSS_VARIABLES.container,
+            (data: { key: string; value: { ['max-width']: string } }) => (
+              <td key={data.key}>{data.value['max-width']}</td>
             ),
           )}
         </tr>
@@ -46,39 +58,43 @@ export const GridBreakpoints = () => (
             Container <code>padding</code>
           </th>
           {forEach(
-            SCSS_VARIABLES.breakpoint,
-            (data: { key: string; value: { containerPadding: string } }) => (
-              <td key={data.key}>{data.value.containerPadding}</td>
+            SCSS_VARIABLES.container,
+            (data: { key: string; value: { padding: string } }) => (
+              <td key={data.key}>{data.value.padding}</td>
             ),
           )}
         </tr>
 
         <tr>
-          <th>Class prefix</th>
-          {forEach(SCSS_VARIABLES.breakpoint, (data: { key: string; value: { infix: string } }) => (
-            <td key={data.key}>
-              <code>.col-{data.value.infix !== 'none' && `${data.key}-`}</code>
-            </td>
-          ))}
-        </tr>
-
-        <tr>
-          <th>Amount of columns</th>
-          <td colSpan={Object.keys(SCSS_VARIABLES.breakpoint).length}>
-            {SCSS_VARIABLES.variables['grid-columns']}
-          </td>
+          <th>
+            Container-Fluid <code>padding</code>
+          </th>
+          {forEach(
+            SCSS_VARIABLES.container,
+            (data: { key: string; value: { fluid: { padding: string } } }) => (
+              <td key={data.key}>{data.value.fluid.padding}</td>
+            ),
+          )}
         </tr>
 
         <tr>
           <th>Gutter width</th>
-          <td colSpan={Object.keys(SCSS_VARIABLES.breakpoint).length}>
-            {SCSS_VARIABLES.variables['grid-gutter-width']}
-          </td>
+          {forEach(
+            SCSS_VARIABLES.grid,
+            (data: { key: string; value: { ['gutter-width']: string } }) => (
+              <td key={data.key}>{data.value['gutter-width']}</td>
+            ),
+          )}
+        </tr>
+
+        <tr>
+          <th>Amount of columns</th>
+          <td colSpan={SCSS_VARIABLES['breakpoint-count']}>{SCSS_VARIABLES['grid-columns']}</td>
         </tr>
 
         <tr>
           <th>Custom gutters</th>
-          <td colSpan={Object.keys(SCSS_VARIABLES.breakpoint).length}>
+          <td colSpan={SCSS_VARIABLES['breakpoint-count']}>
             <LinkTo kind="foundations-layout-gutters" story="docs">
               yes
             </LinkTo>
@@ -86,7 +102,7 @@ export const GridBreakpoints = () => (
         </tr>
         <tr>
           <th>Nestable</th>
-          <td colSpan={Object.keys(SCSS_VARIABLES.breakpoint).length}>
+          <td colSpan={SCSS_VARIABLES['breakpoint-count']}>
             <a href="#nesting" target="_self">
               yes
             </a>
@@ -94,7 +110,7 @@ export const GridBreakpoints = () => (
         </tr>
         <tr>
           <th>Column ordering</th>
-          <td colSpan={Object.keys(SCSS_VARIABLES.breakpoint).length}>
+          <td colSpan={SCSS_VARIABLES['breakpoint-count']}>
             <LinkTo kind="foundations-layout-columns" story="docs">
               yes
             </LinkTo>

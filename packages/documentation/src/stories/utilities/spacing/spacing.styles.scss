@@ -1,0 +1,24 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.spacing-example {
+  .margin {
+    background-color: #f4cea3;
+  }
+  .padding {
+    background-color: #c4dab9;
+    border: 1px solid post.$gray-40;
+  }
+  .content {
+    background-color: post.$white;
+  }
+
+  .legend {
+    .padding {
+      border: 0 none;
+    }
+
+    .content {
+      border: 1px solid post.$gray-40;
+    }
+  }
+}

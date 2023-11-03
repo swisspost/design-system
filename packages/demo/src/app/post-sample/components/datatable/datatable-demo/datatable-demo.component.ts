@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 interface IRecords {
   debtorId: number;
@@ -12,7 +12,7 @@ interface IRecords {
 
 @Component({
   selector: 'app-datatable-demo',
-  templateUrl: './datatable-demo.component.html'
+  templateUrl: './datatable-demo.component.html',
 })
 export class DatatableDemoComponent {
   @Input() public headerColumn: boolean;
@@ -29,7 +29,7 @@ export class DatatableDemoComponent {
         billingMonth: '2021-03-15T12:09:51-01:00',
         keyword: 'Economy',
         amount: 965.82,
-        status: 'inactive'
+        status: 'inactive',
       },
       {
         debtorId: 40103991,
@@ -38,7 +38,7 @@ export class DatatableDemoComponent {
         billingMonth: '2021-03-15T12:09:51-01:00',
         keyword: 'Economy',
         amount: 626.65,
-        status: 'active'
+        status: 'active',
       },
       {
         debtorId: 40103967,
@@ -47,7 +47,7 @@ export class DatatableDemoComponent {
         billingMonth: '2021-03-15T12:09:51-01:00',
         keyword: 'Dispobox',
         amount: 802.18,
-        status: 'active'
+        status: 'active',
       },
       {
         debtorId: 40103986,
@@ -56,7 +56,7 @@ export class DatatableDemoComponent {
         billingMonth: '2021-03-15T12:09:51-01:00',
         keyword: 'Express shipment',
         amount: 397.05,
-        status: 'inactive'
+        status: 'inactive',
       },
       {
         debtorId: 40103967,
@@ -65,8 +65,8 @@ export class DatatableDemoComponent {
         billingMonth: '2021-03-15T12:09:51-01:00',
         keyword: 'Express shipment',
         amount: 742.87,
-        status: 'active'
-      }
+        status: 'active',
+      },
     ];
 
     this.statuses = ['active', 'inactive', 'automatic', 'blocked'];

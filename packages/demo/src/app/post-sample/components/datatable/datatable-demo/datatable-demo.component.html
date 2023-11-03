@@ -26,7 +26,7 @@
   <!-- Column with cell template -->
   <ngx-datatable-column [sortable]="false" prop="billingMonth">
     <ng-template let-value="value" ngx-datatable-cell-template>
-      {{ value | date: 'MMM y':undefined:'en' }}
+      {{ value | date : 'MMM y' : undefined : 'en' }}
     </ng-template>
   </ngx-datatable-column>
 

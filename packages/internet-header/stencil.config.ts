@@ -40,6 +40,7 @@ export const config: Config = {
   ],
   plugins: [
     sass({
+      outputStyle: 'compressed',
       includePaths: ['node_modules'],
     }),
   ],
@@ -52,5 +53,5 @@ export const config: Config = {
   },
   extras: {
     enableImportInjection: true,
-  }
+  },
 };

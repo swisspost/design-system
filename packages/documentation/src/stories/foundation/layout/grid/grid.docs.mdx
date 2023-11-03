@@ -24,7 +24,6 @@ Our grid system uses a series of containers, rows, and columns to layout and ali
 
 The above example creates three equal-width columns across all devices and viewports using our predefined grid classes. Those columns are centered in the page with the parent `.container`.
 
-{/* prettier-ignore */}
 <div className="alert alert-warning">
   <h4 className="alert-heading">Don't put a single column in a grid</h4>
   <p>If you only use one column across all breakpoints, there is no need to wrap your content in a grid.</p>
@@ -49,7 +48,6 @@ Breaking it down, here’s how the grid system comes together:
 
 Our grid system can adapt across all {Object.keys(SCSS_VARIABLES.breakpoint).length} breakpoints.
 Each of these breakpoints have their own specifications, a unique class prefix, and some modifiers.
-
 <GridBreakpoints />
 
 ## Auto-layout columns
@@ -76,7 +74,7 @@ Use `.col-{breakpoint}-auto` classes to size columns based on the natural width 
 
 ## Responsive classes
 
-Our grid includes {Object.keys(SCSS_VARIABLES.breakpoint).length} tiers of predefined classes for building complex responsive layouts.
+Our grid includes {SCSS_VARIABLES['breakpoint-count']} tiers of predefined classes for building complex responsive layouts.
 
 ### All breakpoints
 
