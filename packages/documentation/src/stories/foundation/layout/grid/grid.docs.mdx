@@ -1,6 +1,6 @@
 import { Meta, Canvas, Source } from '@storybook/blocks';
 import { formatAsMap } from '../../../../utils/sass-export';
-import { SpecTable, SCSS_VARIABLES } from './grid.blocks';
+import { GridTable, SCSS_VARIABLES } from './grid.blocks';
 import * as GridStories from './grid.stories';
 import './grid.styles.scss';
 import SampleContainer from './grid-container.sample.html?raw';
@@ -49,7 +49,7 @@ Breaking it down, here’s how the grid system comes together:
 Our grid system can adapt across all {Object.keys(SCSS_VARIABLES.breakpoint).length} breakpoints.
 Each of these breakpoints have their own specifications, a unique class prefix, and some modifiers.
 
-<SpecTable />
+<GridTable />
 
 ## Auto-layout columns
 

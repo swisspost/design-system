@@ -1,6 +1,6 @@
 import { Meta, Source } from '@storybook/blocks';
 import { formatAsMap } from '../../../../utils/sass-export';
-import { GridBreakpoints, SCSS_VARIABLES } from './containers.blocks';
+import { ContainersTable, SCSS_VARIABLES } from './containers.blocks';
 import * as ContainerStories from './containers.stories';
 
 <Meta of={ContainerStories} />
@@ -14,7 +14,7 @@ We can distinguish between two different container types:
 - <code>.container</code>, which defines a <code>max-width</code> on some breakpoints.
 - <code>.container-fluid</code>, which is <code>width: 100%</code> at all breakpoints.
 
-<GridBreakpoints />
+<ContainersTable />
 
 ## Default container
 
