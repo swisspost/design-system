@@ -47,11 +47,28 @@ Afterwards, you can simply import our components into your project.
 
 {/* https://stenciljs.com/docs/custom-elements#consuming-custom-elements */}
 
-<Source code={`npm install @swisspost/design-system-components`} language="bash" />
+<Source
+  code={`npm install @swisspost/design-system-components`}
+  language="bash"
+/>
 
-### Usage
+## Usage
 
 Import all or only specific components into your entry file (e.g. `main.js`, `app.js`, ...).
 
-<Source code={SampleJsAll} language="javascript" />
-<Source code={SampleJsSpecific} language="javascript" />
+<Source
+  code={SampleJsAll}
+  language="javascript"
+/>
+
+<Source
+  code={SampleJsSpecific}
+  language="javascript"
+/>
+
+Use the imported components in your html:
+
+<Source
+  code={`<post-icon name="1000"></post-icon>`}
+  language="html"
+/>
