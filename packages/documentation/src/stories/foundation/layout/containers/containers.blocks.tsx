@@ -1,4 +1,3 @@
-import LinkTo from '@storybook/addon-links/react';
 import { parse } from '../../../../utils/sass-export';
 import { forEach } from '../../../../utils/react';
 import scss from './containers.module.scss';
