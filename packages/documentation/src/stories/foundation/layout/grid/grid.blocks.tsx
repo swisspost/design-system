@@ -5,8 +5,8 @@ import scss from './grid.module.scss';
 
 export const SCSS_VARIABLES = parse(scss);
 
-export const GridBreakpoints = () => (
-  <div className="table-responsive mb-regular">
+export const SpecTable = () => (
+  <div className="table-responsive my-big">
     <table className="table">
       <thead>
         <tr>
@@ -25,56 +25,12 @@ export const GridBreakpoints = () => (
       </thead>
       <tbody>
         <tr>
-          <th>Name</th>
-          {forEach(SCSS_VARIABLES.breakpoint, (data: { key: string; value: { name: string } }) => (
-            <td key={data.key}>
-              <small>{data.value.name}</small>
-            </td>
-          ))}
-        </tr>
-
-        <tr>
-          <th>Class infixes</th>
+          <th>Class prefix</th>
           {forEach(SCSS_VARIABLES.breakpoint, (data: { key: string; value: { infix: string } }) => (
             <td key={data.key}>
-              {data.value.infix === 'none' ? 'none' : <code>{`-${data.key}-`}</code>}
+              <code>.col-{data.value.infix === 'none' ? '' : `${data.value.infix}-`}</code>
             </td>
           ))}
-        </tr>
-
-        <tr>
-          <th>
-            Container <code>max-width</code>
-          </th>
-          {forEach(
-            SCSS_VARIABLES.container,
-            (data: { key: string; value: { ['max-width']: string } }) => (
-              <td key={data.key}>{data.value['max-width']}</td>
-            ),
-          )}
-        </tr>
-        <tr>
-          <th>
-            Container <code>padding</code>
-          </th>
-          {forEach(
-            SCSS_VARIABLES.container,
-            (data: { key: string; value: { padding: string } }) => (
-              <td key={data.key}>{data.value.padding}</td>
-            ),
-          )}
-        </tr>
-
-        <tr>
-          <th>
-            Container-Fluid <code>padding</code>
-          </th>
-          {forEach(
-            SCSS_VARIABLES.container,
-            (data: { key: string; value: { fluid: { padding: string } } }) => (
-              <td key={data.key}>{data.value.fluid.padding}</td>
-            ),
-          )}
         </tr>
 
         <tr>
