@@ -6,7 +6,7 @@
   "main": "loader/index.cjs.js",
   "module": "loader/index.js",
   "es2017": "loader/index.2017.js",
-  "types": "dist/types/components.d.ts",
+  "types": "loader/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
   "unpkg": "dist/post-components/post-components.esm.js",
