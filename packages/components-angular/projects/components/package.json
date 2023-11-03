@@ -12,12 +12,11 @@
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
-  "private": true,
   "files": [
     "dist"
   ],
   "publishConfig": {
-    "access": "restricted",
+    "access": "public",
     "linkDirectory": true,
     "directory": "../../dist/components"
   },
