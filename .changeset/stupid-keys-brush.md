@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': minor
 ---
 
-Added getting-started docs page for components-angular package. Updated the getting-started page of the components package.
+Added a getting-started docs page for the new `@swisspost/components-angular` package.
