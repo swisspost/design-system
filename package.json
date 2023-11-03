@@ -56,6 +56,9 @@
     "icons:test": "pnpm --filter design-system-icons test",
     "icons:unit": "pnpm --filter design-system-icons test",
     "icons:unit:watch": "pnpm --filter design-system-icons test:watch",
+    "nextjs:start": "pnpm --filter design-system-nextjs-integration dev",
+    "nextjs:build": "pnpm --filter design-system-nextjs-integration build",
+    "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
     "changeset:publish": "pnpm bootstrap && pnpm changeset publish",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
