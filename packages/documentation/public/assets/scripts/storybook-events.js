@@ -1,16 +1,16 @@
 window.onload = function () {
   const previewWrapper = document.querySelector('#storybook-preview-wrapper');
-  let storyAnker = document.querySelector('#storybook-preview-wrapper > a');
+  let storyAnchor = document.querySelector('#storybook-preview-wrapper > a');
 
-  if (storyAnker) {
-    // if storyAnker already exists, just emit ready event and listen for route-changes
+  if (storyAnchor) {
+    // if storyAnchor already exists, just emit ready event and listen for route-changes
     ready();
   } else {
-    // if storyAnker does not exist yet, wait until its rendered, then emit ready event and listen for route-changes
+    // if storyAnchor does not exist yet, wait until its rendered, then emit ready event and listen for route-changes
     new MutationObserver(function () {
-      storyAnker = document.querySelector('#storybook-preview-wrapper > a');
+      storyAnchor = document.querySelector('#storybook-preview-wrapper > a');
 
-      if (storyAnker) {
+      if (storyAnchor) {
         this.disconnect();
         ready();
       }
@@ -28,6 +28,6 @@ window.onload = function () {
       setTimeout(() => {
         window.dispatchEvent(new Event('storybook:routeChange'));
       });
-    }).observe(storyAnker, { attributes: true });
+    }).observe(storyAnchor, { attributes: true });
   }
 };
