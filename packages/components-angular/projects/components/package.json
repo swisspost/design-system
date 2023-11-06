@@ -25,7 +25,8 @@
   },
   "peerDependencies": {
     "@angular/common": "16.2.0",
-    "@angular/core": "16.2.0"
+    "@angular/core": "16.2.0",
+    "@swisspost/design-system-components": "workspace:1.6.1"
   },
   "sideEffects": false
 }
