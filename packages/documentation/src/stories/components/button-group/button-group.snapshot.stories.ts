@@ -21,6 +21,7 @@ export const ButtonGroup: Story = {
                 size: context.argTypes.size.options,
                 element: context.argTypes.element.options,
                 checked: context.argTypes.checked.options,
+                pseudoClass: ['null', 'hover', 'focus-visible'],
               }).map((args: Args) => {
                 // Substitue checked with selected when element is checkbox
                 if (args.element === 'checkbox') {

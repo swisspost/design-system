@@ -1,7 +1,9 @@
 import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
+import { serializeSimulatedPseudoClass } from '../../../utils/pseudo-class';
+import { appendClass } from '../../../utils';
 
 const meta: Meta = {
   title: 'Components/Button Group',
@@ -147,6 +149,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
   const id = `btngroup_${context.name}_${position}`;
   const name = `btngroup_${context.name}`;
   const label = args[`label_${position}`];
+  const pseudoClassClass = serializeSimulatedPseudoClass(args.pseudoClass);
 
   switch (args.element) {
     case 'checkbox': {
@@ -154,7 +157,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
       return html`
         <input
           type="checkbox"
-          class="btn-check"
+          class="btn-check${isSelected ? appendClass(pseudoClassClass) : ''}"
           id="${id}"
           autocomplete="off"
           ?checked="${isSelected}"
@@ -181,7 +184,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
       return html`
         <input
           type="radio"
-          class="btn-check"
+          class="btn-check${isChecked ? appendClass(pseudoClassClass) : ''}"
           name="${name}"
           id="${id}"
           autocomplete="off"
@@ -196,12 +199,26 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
     }
     case 'link':
       return html`
-        <a href="#" class="${`btn ${args.size} btn-secondary`}">${label}</a>
+        <a
+          href="#"
+          class="${`btn ${args.size} btn-secondary${
+            index === 0 ? appendClass(pseudoClassClass) : ''
+          }`}"
+        >
+          ${label}
+        </a>
       `;
     case 'button':
     default:
       return html`
-        <button type="button" class="${`btn ${args.size} btn-secondary`}">${label}</button>
+        <button
+          type="button"
+          class="${`btn ${args.size} btn-secondary${
+            index === 0 ? appendClass(pseudoClassClass) : ''
+          }`}"
+        >
+          ${label}
+        </button>
       `;
   }
 }
