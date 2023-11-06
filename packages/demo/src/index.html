@@ -59,6 +59,19 @@
       property="twitter:image"
       content="https://user-images.githubusercontent.com/1659006/187683368-d3aa2534-84be-4580-846e-2cad3796b573.png"
     />
+
+    <!-- please adapt for production and add additional policies! -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none';
+                script-src 'self' 'unsafe-eval';
+                style-src 'self' 'unsafe-inline';
+                img-src 'self' data: *.pnet.ch *.post.ch;
+                connect-src 'self' https://n.accountint1.post.ch https://int.post.ch ws://localhost:4200 *.coveo.com places.post.ch;
+                form-action 'self' https://sharepoint.sp.swisspost.com;
+                base-uri 'self';
+                font-src 'self' https://fonts.post.ch data: 'self'"
+    />
   </head>
   <body>
     <app-root></app-root>
