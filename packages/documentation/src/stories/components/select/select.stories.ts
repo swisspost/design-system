@@ -188,6 +188,7 @@ const Template: Story = {
       args.size,
       args.validation,
       serializeSimulatedPseudoClass(args.pseudoClass),
+      args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
     ]
       .filter(c => c && c !== 'null')
       .join(' ');
@@ -203,9 +204,15 @@ const Template: Story = {
       `,
     );
     const options = [
-      html`
-        <option>Elektu opcion...</option>
-      `,
+      ...[
+        args.floatingLabelPlaceholder
+          ? html`
+              <option></option>
+            `
+          : html`
+              <option>Elektu opcion...</option>
+            `,
+      ],
       ...optionElements,
     ];
     const contextuals = [
@@ -277,6 +284,28 @@ export const FloatingLabel: Story = {
   },
   args: {
     floatingLabel: true,
+    hint: '',
+  },
+};
+
+export const FloatingLabelPlaceholder: Story = {
+  ...Template,
+  parameters: {
+    controls: {
+      exclude: [
+        'Hidden Label',
+        'Options',
+        'Multiple',
+        'Size',
+        'Helper Text',
+        'Disabled',
+        'Validation',
+      ],
+    },
+  },
+  args: {
+    floatingLabel: true,
+    floatingLabelPlaceholder: true,
     hint: '',
   },
 };

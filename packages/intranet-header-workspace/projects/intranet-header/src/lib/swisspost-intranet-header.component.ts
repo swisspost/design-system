@@ -52,6 +52,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   localization: {
     moreLabel: { [key: string]: string };
     searchPlaceholder: { [key: string]: string };
+    postLogo: { [key: string]: string };
   } = {
     moreLabel: {
       de: 'Mehr',
@@ -64,6 +65,12 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       fr: "Parcourir l'Intranet",
       it: 'Cercare in intranet',
       en: 'Browse the intranet',
+    },
+    postLogo: {
+      de: 'Die Post - zur Startseite',
+      fr: 'La Poste - Accéder à la page d’accueil',
+      it: 'La Posta - Vai alla pagina iniziale',
+      en: 'Swiss Post - to the homepage',
     },
   };
 
@@ -315,6 +322,10 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
         el.style.display = 'none';
       });
     }
+  }
+
+  public getPostLogoText() {
+    return this.localization['postLogo'][this.lang.toLocaleLowerCase()];
   }
 
   public getPlaceholderSearchIntranet() {
