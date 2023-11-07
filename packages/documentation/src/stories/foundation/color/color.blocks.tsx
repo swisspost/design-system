@@ -10,7 +10,7 @@ export const ColorSwatch = (props: { name: string; color: string; noCSS?: boolea
         <h3 className="description__title h6">{props.name}</h3>
       </div>
       <div className="color-swatch__color">
-        <div className="color__tile" style={{ backgroundColor: props.color }}/>
+        <div className="color__tile" style={{ backgroundColor: props.color }} />
       </div>
       <div className="color-swatch__props">
         <dl>

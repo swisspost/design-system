@@ -1,5 +1,34 @@
 # @swisspost/design-system-demo
 
+## 7.0.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.3
+  - @swisspost/design-system-intranet-header@5.0.3
+
+## 7.0.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.2
+  - @swisspost/design-system-intranet-header@5.0.2
+
+## 7.0.1
+
+### Patch Changes
+
+- Updated the installation intructions for the Intranet Header. (by [@alizedebray](https://github.com/alizedebray) with [#1942](https://github.com/swisspost/design-system/pull/1942))
+
+- Added deprecation alerts for `.form-control-rg`, `.form-control-md`, `.form-select-rg` and `.form-select-md` form-control variants. (by [@b1aserlu](https://github.com/b1aserlu) with [#1882](https://github.com/swisspost/design-system/pull/1882))
+
+- Fixed ngBootstrap documentation links. (by [@imagoiq](https://github.com/imagoiq) with [#1987](https://github.com/swisspost/design-system/pull/1987))
+- Updated dependencies:
+  - @swisspost/design-system-intranet-header@5.0.1
+  - @swisspost/design-system-styles@6.4.1
+
 ## 7.0.0
 
 ### Major Changes

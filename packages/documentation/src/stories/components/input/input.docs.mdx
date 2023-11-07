@@ -7,13 +7,12 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 # Text input
 
 <div className="lead">
-  Customize the native <code>&lt;input&gt;</code> with CSS that changes the element’s initial
-  appearance.
+  Customize the native `<input>` with CSS that changes the element’s initial appearance.
 </div>
 
 Custom input elements need only the class `.form-control` to trigger the custom styles.
 
-<Canvas of={InputStories.Default} />
+<Canvas sourceState="shown" of={InputStories.Default} />
 <div className="hide-col-default">
   <Controls of={InputStories.Default} />
 </div>
@@ -33,6 +32,12 @@ But note that the `<input>` element must come first, so we can ensure the correc
 
 ### Sizing
 
+<div className="alert alert-warning">
+  <h4 className="alert-heading">We're deprecating the regular and medium sizes for text input, textarea and select.</h4>
+  <p className="mt-0">This will make it easier to select the appropriate size variant: small for internal applications, large for external applications.<br />
+    `.form-control-rg` and `.form-control-md` are deprecated and will be removed in the next major version.</p>
+</div>
+
 The size can be changed by simply adding one of four classes:
 
 - Small: `.form-control-sm`
@@ -43,8 +48,8 @@ The size can be changed by simply adding one of four classes:
 <div className="alert alert-info">
   <h4 className="alert-heading">Do not apply size classes on floating-label elements</h4>
   <div className="mt-0">
-    It is not intended to apply the size classes to <code>input</code> elements that are nested in a{' '}
-    <code>.form-floating</code> container.
+    It is not intended to apply the size classes to `input` elements that are nested in a
+    `.form-floating` container.
   </div>
 </div>
 

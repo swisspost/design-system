@@ -28,7 +28,7 @@ describe('main-navigation', () => {
   it('should have an active route when config defines an active route', () => {
     const activeConfig = JSON.parse(JSON.stringify(testConfiguration));
     activeConfig.de.header.navMain[0].isActive = true;
-    prepare('Internet Header/Header', 'Default', activeConfig);
+    prepare('Internet Header/Header', 'Default', { config: activeConfig });
     cy.changeArg('language', 'de');
     cy.get('swisspost-internet-header')
       .shadow()

@@ -4,11 +4,11 @@ These contribution guidelines apply to this repository in general and describe h
 
 - [Angular Demo](./packages/demo/README.md)
 - [Design System Styles](./packages/styles/CONTRIBUTING.md)
-- [Angular Components (Intranet Header)](./packages/components-angular/projects/intranet-header/CONTRIBUTING.md)
+- [Intranet Header Component](./packages/intranet-header-workspace/projects/intranet-header/CONTRIBUTING.md)
 
 ## Prerequisites
 
-In order to be able to use `npm` commands, [node.js](https://nodejs.org/en/) v16+ needs to be installed on your machine.
+In order to be able to use `npm` commands, [node.js](https://nodejs.org/en/) v18+ needs to be installed on your machine.
 
 We use [pnpm](https://pnpm.io/) to manage dependencies, so make sure you have it installed: `npm i -g pnpm`. To install dependencies for all packages in this repo, run `pnpm install` from the root. Adding a new dependency to a package is just a matter of running `pnpm add <PACKAGE_NAME>` in the current packages sub-folder.
 
@@ -93,20 +93,24 @@ You can find more information about accessibility at the Swiss Post in our [acce
 [![Build, Test, Deploy, Measure, Optimize Workflow Diagram](https://user-images.githubusercontent.com/12294151/257140843-d93ac889-fef1-4b05-96f8-b3dff249daef.png)](https://www.figma.com/file/Do4pwfl2EVvbZDDWnB0QNx/Design-System-Architecture-Diagrams?type=whiteboard&node-id=913-383&t=Q0qqK9EUF89UmzJM-4)
 
 ### Build
+
 A component is only useful when it’s available, even if it’s not perfect from the start.
 
 ### Test
+
 By writing solid tests, you enable future optimizations with great confidence.
 
 ### Deploy
+
 It works and it’s tested, it can be used. Now your feature becomes useful for others.
 
 ### Measure
+
 Measure performance, gather feedback, analyse usage and identify the biggest potentials for improvement.
 
 ### Optimize
-Optimize where you have the biggest impact. Are your tests still green? Great job.
 
+Optimize where you have the biggest impact. Are your tests still green? Great job.
 
 ## Submitting issues and requests
 
@@ -153,21 +157,23 @@ When a new package is added to the repo, a few things need to be taken care of.
   }
   ```
 
-  The `linkDirectory` is necessary for pnpm to correctly link the dist folder in the node_modules. Make sure you biuld the package before using it in GitHub Actions or local scripts.
+  The `linkDirectory` is necessary for pnpm to correctly link the dist folder in the node_modules. Make sure you build the package before using it in GitHub Actions or local scripts.
 
   > ⚠ On publish, the `package.json` gets copied into the `./dist` folder. This leads to an incorrect publish path because npm now tries to publish from `./dist/dist`. You'll need a pre-publish script that removes the `directory` key from the `publishConfig` (see the [styles package pre-publish workflow](./packages/styles/gulpfile.js) for an example).
-
 
 ## Authoring web-components
 
 ### CSS Custom Properties
+
 As per resolution of the [discussion about sass variables vs. CSS custom properties](https://github.com/swisspost/design-system/discussions/1380), CSS custom properties should be used if they provide meaningful ways to interact with the component. Per default, not every possible value should be a custom property.
 
 #### Do
+
 - Use custom properties to define themable colors, for example `color` or `border-color` for dark-mode support
 - Use custom properties when updating the value with JavaScript is necessary
 
 #### Don't
+
 - Use custom properties to declare every possible value on the component. Use sass variables instead
 - Use custom properties when the value is only being used once and never updated
 
@@ -175,28 +181,30 @@ As per resolution of the [discussion about sass variables vs. CSS custom propert
 
 For some packages it's necessary to run multiple dev servers at the same time. To prevent port conflicts, the following ranges are given to each package. The ranges 9000 - 9400 are chosen for compatibility with [port ranges used by Browserstack](https://www.browserstack.com/question/39572).
 
-### Default DevServer: 9000-9099
+### Documentation DevServer: 9000-9099
 
-| Package        | Port |
-| :------------- | ---: |
-| Demo           | 9000 |
-| IntranetHeader | 9001 |
+| Package            | Port |
+| :----------------- | ---: |
+| Storybook          | 9000 |
+| Storybook Headless | 9001 |
+| Demo               | 9010 |
 
-### Storybook DevServers: 9200-9299
+### Components DevServer: 9200-9299
 
-| Package       | Port |
-| :------------ | ---: |
-| Documentation | 9200 |
-| Styles        | 9201 |
-| Components    | 9203 |
+| Package                   | Port |
+| :------------------------ | ---: |
+| Components                | 9200 |
+| Components-Angular        | 9210 |
+| Components-React (unused) | 9220 |
 
-### Storybook TestServers: 9300-9399
+### Other Packages DevServers: 9300-9399
 
-| Package       | Port |
-| :------------ | ---: |
-| Documentation | 9300 |
-| Styles        | 9301 |
-| Components    | 9303 |
+| Package         | Port |
+| :-------------- | ---: |
+| Styles (unused) | 9300 |
+| Internet-Header | 9310 |
+| Intranet-Header | 9320 |
+| Icons           | 9330 |
 
 ## Branching
 
@@ -300,9 +308,11 @@ There are some general rules you can follow to improve the usefulness of the cha
 - Focus on the context that is relevant for the user of the package, not the package author
 
 #### DO
+
 - "Updated the algorithm for calculating color contrast and optimal text color based on a given background color. Texts on colored buttons now comply with the WCAG 2.1 AA guidelines"
 
 #### DON'T
+
 - "Contrast algorithm is now better"
 
 ## Releases
@@ -328,16 +338,21 @@ The custom commands can be found in the [root pacakge.json](./package.json) as `
 [![Technology radar for the Swiss Post Design System](https://user-images.githubusercontent.com/12294151/257137380-1ab24557-291d-425b-a76e-a60365804c71.png)](https://www.figma.com/file/Do4pwfl2EVvbZDDWnB0QNx/Design-System-Architecture-Diagrams?type=whiteboard&node-id=1220-2994&t=Q0qqK9EUF89UmzJM-4)
 
 ### Invest
+
 Our core deliverables in the future will be CSS Styles for HTML only components and web-components for more interactive patterns. For the web-components, wrappers for all major frameworks (React, Angular and Vue) will be provided. We invest in technologies directly related to delivering these features.
 
 ### Keep
+
 To support our delivery goals, these technologies have proven useful and we keep relying on them but they are not critical to our delivery goals.
 
 ### Assess
+
 These are technologies that seem interesting because they could support our core deliverables. A proof of concept needs to be made and they need to provide major benefits over keeper-technologies before they can be adopted.
 
 ### Drop
+
 For good reasons, these are technologies that we're no longer planning to use in the future.
+
 - Angular (Demo App): Our demo app is custom built on Angular and would need serious investment to provide similar functionality compared to Storybook, an industry standard, which is cheaper to adopt and maintain than a custom solution.
 - ngBootstrap: not every product team is using Angular. In order to provide a future proof solution, we're implementing web standard components as direct replacement for ngBootstrap components. Wrappers for Angular will be provided for those in order to increase interoperability.
 - Bootstrap: Frequent, disruptive updates make it hard to adapt our heavily customized styles to the new versions. Also, the Bootstrap component variants don't match with components in the Design. This gap makes it hard for us to follow the Design Guidelines while still supporting all features of Bootstrap so devs who are familiar with it can use their knowledge. For large, custom Design Systems, it's cheaper to document what's possible with the Design Guidelines instead of trying to merge these two worlds. On the technical side, our components can be imported individually. Making this work with Bootstrap brings a lot of complexity to the codebase.

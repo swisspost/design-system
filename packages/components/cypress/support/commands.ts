@@ -50,16 +50,13 @@ chai.use(isInViewport);
 
 Cypress.Commands.add('getComponent', (component: string, story = 'default') => {
   cy.visit(`/iframe.html?id=components-${component}--${story}`);
-  cy.get(`post-${component}`).as(component);
+
+  const alias = component.replace(/^post-/, '');
+  cy.get(`post-${alias}`, { timeout: 30000 }).as(alias);
 });
 
-Cypress.Commands.add('checkVisibility', (visibility: 'visible' | 'hidden') => {
-  cy.get('@collapse').should('not.have.class', 'collapsing').and(`be.${visibility}`);
-});
-
-Cypress.Commands.add('checkAriaExpanded', (isExpanded: 'true' | 'false') => {
-  cy.get('@collapse')
-    .should('not.have.class', 'collapsing')
+Cypress.Commands.add('checkAriaExpanded', (controlledElementSelector: string, isExpanded: 'true' | 'false') => {
+  cy.get(controlledElementSelector)
     .invoke('attr', 'id')
     .then(id => {
       cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);

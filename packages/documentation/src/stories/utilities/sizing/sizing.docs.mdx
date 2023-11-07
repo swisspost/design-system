@@ -1,11 +1,71 @@
-import { Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { formatAsMap } from '../../../utils/sass-export';
 import * as SizingStories from './sizing.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={SizingStories} />
 
 # Sizing
 
-<div className="alert alert-info">
-  <h2 className="alert-heading">TODO:</h2>
-  <p>Document differences to bootstrap and link over for the rest.</p>
+<div className="lead">
+  Sizing utility classes are used to influence the height and width of elements to which they are
+  applied.
 </div>
+
+## Height & Width
+
+Height and width can be set using `h-*` and `w-*` prefixes, max-height and max-width can be set using prefixes `mh-*` and `mw-*` .
+
+### Parent Based
+
+Bootstrap offers sizing classes with the suffixes bellow. They allow you to set a height / width as a percentage of the parent element (see [Bootstrap Sizing](https://getbootstrap.com/docs/5.3/utilities/sizing/) for reference).
+
+> - `*-25`
+> - `*-50`
+> - `*-75`
+> - `*-100`
+
+#### Example
+
+<Canvas of={SizingStories.SizesPercent} />
+<div className="hide-col-default">
+  <Controls of={SizingStories.SizesPercent} />
+</div>
+
+### Post-Sizes
+
+Post sizes can be used as suffixes in the same way. To find out which size name to use, see the "Size name in classes" column in the reference table above or use the "Example Post-Sizes" below.
+
+#### Sass variables
+
+{/* prettier-ignore */}
+<div class="alert alert-warning mb-bigger-big">
+  <h2 class="alert-heading">Sizing variables are deprecated</h2>
+  <p>The current set of the post-specific sizing variables is deprecated in favour of a new naming system that is consistent with the Design. For further information, please read the <a href="https://github.com/swisspost/design-system/discussions/588">discussion on sizing variables on GitHub</a> and have a look at the <a href="https://www.figma.com/file/ojCcgC5Zd12eUSzq6V5m24/Foundations?node-id=3%3A2&t=l8qimsXlxeMLOzs6-0">implementation in Figma</a>.</p>
+  <p>There is a new solution with updated naming system up coming for spacing sizes.</p>
+</div>
+
+<Source
+  language="scss"
+  dark
+  code={Object.entries(SizingStories.SCSS_VARIABLES)
+    .filter(([key, value]) => key !== 'parameters')
+    .map(([key, value]) => `$${key}: ${formatAsMap(value)};`)
+    .join('\n')}
+></Source>
+
+#### Example
+
+<Canvas of={SizingStories.Sizes} />
+<div className="hide-col-default">
+  <Controls of={SizingStories.Sizes} />
+</div>
+
+## Viewport Based
+
+There is the possibility to set the width and height relative to the viewport.
+
+> - `min-vh-100`
+> - `min-vw-100`
+> - `vh-100`
+> - `vw-100`

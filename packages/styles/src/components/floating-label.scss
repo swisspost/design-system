@@ -4,13 +4,14 @@
 @forward './../variables/options';
 
 @use './../lic/bootstrap-license';
-@use './../themes/bootstrap/forms' as bf;
+@use './../themes/bootstrap/forms/floating-labels' as bffl;
+@use './../themes/bootstrap/forms/form-control' as bffc;
 @use './../mixins/forms' as forms-mx;
 @use './../mixins/utilities' as utilities-mx;
 
 @use './../variables/type';
 @use './../variables/components/forms';
-@use './../variables/components/form-feedback';
+@use './../variables/components/form-validation';
 
 .form-floating {
   > label {
@@ -19,17 +20,14 @@
     left: forms.$input-border-width;
     margin: 0;
     padding-inline: forms.$form-floating-padding-x;
-    padding-top: calc(
-      #{forms.$input-border-width} + #{forms.$form-floating-label-height * 0.5} - #{forms.$form-floating-label-font-size *
-        type.$line-height-copy * 0.5}
-    );
+    padding-top: forms.$form-floating-label-padding-t;
     padding-bottom: 0;
     border: 0;
     color: forms.$form-floating-label-color;
     font-size: forms.$form-floating-label-font-size;
     width: auto;
     height: auto;
-    max-width: calc(100% - (forms.$input-border-width * 2));
+    max-width: calc(100% - (#{forms.$input-border-width * 2}));
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -55,9 +53,9 @@
       ~ label {
         padding-top: 0.7rem;
         max-width: calc(
-          (100% * forms.$form-floating-label-upscale) -
-            (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
-            (forms.$input-border-width * forms.$form-floating-label-upscale * 2)
+          (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+            forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
+            2}
         );
         transition: forms.$form-floating-transition-in;
       }
@@ -77,24 +75,28 @@
 
     padding-top: forms.$form-floating-input-padding-t;
     padding-bottom: forms.$form-floating-input-padding-b;
+    background-size: forms.$form-floating-select-bg-size;
 
     ~ label {
       padding-top: 0.7rem;
       max-width: calc(
-        (100% * forms.$form-floating-label-upscale) -
-          (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
-          (forms.$input-border-width * forms.$form-floating-label-upscale * 2)
+        (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+          forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
+          2}
       );
       transition: forms.$form-floating-transition-in;
     }
 
-    &:empty {
+    // TODO: replace with :has
+    &:empty,
+    &.form-select-empty {
       padding-top: forms.$form-floating-input-padding-t;
       padding-bottom: forms.$form-floating-input-padding-b;
 
       ~ label {
-        padding-top: forms.$form-floating-padding-y;
-        max-width: calc(100% - (forms.$input-border-width * 2));
+        color: forms.$form-floating-label-color;
+        padding-top: forms.$form-floating-label-padding-t;
+        max-width: calc(100% - (#{forms.$input-border-width * 2}));
         transform: none;
       }
     }
@@ -108,10 +110,9 @@
         padding-top: forms.$input-padding-y-lg * forms.$form-floating-label-scale;
         padding-bottom: 0;
         width: calc(
-          (100% * forms.$form-floating-label-upscale) -
-            (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
-            (forms.$input-border-width * forms.$form-floating-label-upscale * 2) -
-            (forms.$form-floating-padding-x * forms.$form-floating-label-upscale)
+          (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+            forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
+            2} - #{forms.$form-floating-padding-x * forms.$form-floating-label-upscale}
         );
         height: auto;
         background: forms.$input-bg;
@@ -121,7 +122,9 @@
         ~ label {
           padding-top: forms.$form-floating-padding-y;
           padding-bottom: forms.$form-floating-padding-y;
-          width: calc(100% - (forms.$input-border-width * 2) - forms.$form-floating-padding-x);
+          width: calc(
+            100% - (#{forms.$input-border-width * 2}) - #{forms.$form-floating-padding-x}
+          );
           height: forms.$form-floating-label-height;
         }
       }
@@ -135,7 +138,7 @@
 
     ~ label {
       padding-bottom: 0;
-      width: calc(100% - (forms.$input-border-width * 2));
+      width: calc(100% - (#{forms.$input-border-width * 2}));
       max-width: none;
       height: unset;
     }
@@ -148,10 +151,9 @@
       ~ label {
         padding-top: forms.$input-padding-y-lg * forms.$form-floating-label-scale;
         width: calc(
-          (100% * forms.$form-floating-label-upscale) -
-            (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
-            (forms.$input-border-width * forms.$form-floating-label-upscale * 2) -
-            (forms.$form-floating-padding-x * forms.$form-floating-label-upscale)
+          (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+            forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
+            2} - #{forms.$form-floating-padding-x * forms.$form-floating-label-upscale}
         );
         max-width: none;
         background: forms.$input-bg;
@@ -161,8 +163,8 @@
     &:is(.is-valid, .is-invalid) {
       ~ label {
         width: calc(
-          100% - (forms.$input-border-width * 2) - forms.$form-floating-padding-x -
-            form-feedback.$form-feedback-icon-offset - form-feedback.$form-feedback-icon-size
+          100% - (#{forms.$input-border-width * 2}) - #{forms.$form-floating-padding-x} - #{form-validation.$form-feedback-icon-offset} -
+            #{form-validation.$form-feedback-icon-size}
         );
       }
 
@@ -170,12 +172,11 @@
       &:not(:placeholder-shown) {
         ~ label {
           width: calc(
-            (100% * forms.$form-floating-label-upscale) -
-              (forms.$form-floating-label-translate-x * forms.$form-floating-label-upscale * 2) -
-              (forms.$input-border-width * forms.$form-floating-label-upscale * 2) -
-              (forms.$form-floating-padding-x * forms.$form-floating-label-upscale) -
-              (form-feedback.$form-feedback-icon-offset * forms.$form-floating-label-upscale) -
-              (form-feedback.$form-feedback-icon-size * forms.$form-floating-label-upscale)
+            (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+              forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
+              2} - #{forms.$form-floating-padding-x * forms.$form-floating-label-upscale} - #{form-validation.$form-feedback-icon-offset *
+              forms.$form-floating-label-upscale} - #{form-validation.$form-feedback-icon-size *
+              forms.$form-floating-label-upscale}
           );
         }
       }

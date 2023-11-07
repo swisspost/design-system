@@ -1,5 +1,57 @@
 # @swisspost/internet-header
 
+## 1.12.1
+
+### Patch Changes
+
+- Reverted #2152 because of an issue with importing the internet headers `defineCustomElements`. (by [@gfellerph](https://github.com/gfellerph) with [#2208](https://github.com/swisspost/design-system/pull/2208))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.3
+
+## 1.12.0
+
+### Minor Changes
+
+- Added component exports to the src/index.ts files, to include them in the dist/index.js and dist/index.esm.js output files and therefore fix our stencil setup. (by [@oliverschuerch](https://github.com/oliverschuerch) with [`f74c9662`](https://github.com/swisspost/design-system/commit/f74c96620dc8095c6b2b51b2d3a3ee97c17e5a7d))
+
+### Patch Changes
+
+- Added logout-url property to override the URL provided by the portal config on the internet-header component. (by [@imagoiq](https://github.com/imagoiq) with [#2114](https://github.com/swisspost/design-system/pull/2114))
+
+- Upgraded builder Stenciljs from version 3 to 4. No user visible changes are expected. (by [@imagoiq](https://github.com/imagoiq) with [#2116](https://github.com/swisspost/design-system/pull/2116))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.3
+
+## 1.11.0
+
+### Minor Changes
+
+- Added a new button to clear the text in the search box. (by [@b1aserlu](https://github.com/b1aserlu) with [#2036](https://github.com/swisspost/design-system/pull/2036))
+
+### Patch Changes
+
+- Added hide-buttons prop to hide all breadcrumbs buttons. (by [@imagoiq](https://github.com/imagoiq) with [#2027](https://github.com/swisspost/design-system/pull/2027))
+
+- Fixed internet-header search focus truncated on focus-within. (by [@imagoiq](https://github.com/imagoiq) with [#2043](https://github.com/swisspost/design-system/pull/2043))
+
+- Compressed styles output. (by [@imagoiq](https://github.com/imagoiq) with [#2098](https://github.com/swisspost/design-system/pull/2098))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.2
+
+## 1.10.0
+
+### Minor Changes
+
+- Enabled nesting the header in a different scroll container than the `<body>` element. The header stickyness and logo animation logic will automatically attach to the nearest scrolling container instead of the document when nested in a container that has `overflow: auto | scroll` set. (by [@alizedebray](https://github.com/alizedebray) with [#1855](https://github.com/swisspost/design-system/pull/1855))
+
+- Added ability to toggle programmatically an overlay associated with a button using the `toggleOverlayById` method. (by [@imagoiq](https://github.com/imagoiq) with [#1838](https://github.com/swisspost/design-system/pull/1838))
+
+### Patch Changes
+
+- Fixed an issue with custom configuration that was not applied when the prop "language" was not set on the internet header. (by [@alizedebray](https://github.com/alizedebray) with [#1855](https://github.com/swisspost/design-system/pull/1855))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.1
+
 ## 1.9.1
 
 ### Patch Changes

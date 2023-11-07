@@ -1,6 +1,0 @@
-@use "src/placeholders/notification";
-@use "src/variables/components/notification";
-
-.notification-container {
-  @extend %notification-body;
-}

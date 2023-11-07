@@ -7,8 +7,10 @@
 @use './../mixins/utilities';
 @use './../mixins/forms' as form-mixins;
 
-@use './../themes/bootstrap/forms' as bf;
-@use './../themes/bootstrap/forms/input-group';
+@use './../themes/bootstrap/forms/labels' as bfl;
+@use './../themes/bootstrap/forms/form-text' as bfft;
+@use './../themes/bootstrap/forms/form-control' as bffc;
+@use './../themes/bootstrap/forms/input-group' as bfig;
 
 .form-control-rg {
   @include form-mixins.form-control-rg;
@@ -52,6 +54,7 @@ select.form-control-rg:not([size]):not([multiple]) {
     }
 
     // Fix Safari cutoff when change the initial position of the selector button.
+    /* stylelint-disable-next-line */
     @supports (background: -webkit-named-image(i)) {
       &::file-selector-button {
         display: initial;

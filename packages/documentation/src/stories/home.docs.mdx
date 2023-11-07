@@ -1,10 +1,11 @@
 import { Meta } from '@storybook/blocks';
 import { linkTo } from '@storybook/addon-links';
 import { getVersion } from '../utils/version';
+import * as HomeStories from './home.stories';
 import { Tile, Feature } from './home.blocks';
 import './home.styles.scss';
 
-<Meta title="Home" />
+<Meta of={HomeStories} />
 
 <div className="mt-huge text-center">
   <h2 className="h3">Packages &amp; Resources</h2>
@@ -32,7 +33,7 @@ import './home.styles.scss';
     </Tile>
     <Tile
       title="Intranet-Header"
-      href="https://github.com/swisspost/design-system/tree/main/packages/components-angular/projects/intranet-header"
+      href="https://github.com/swisspost/design-system/tree/main/packages/intranet-header-workspace/projects/intranet-header"
     >
       <img
         src="/images/packages/intranet-header.svg"
@@ -47,7 +48,6 @@ import './home.styles.scss';
   </div>
   <div className="mt-regular mb-regular d-flex gap-mini flex-wrap justify-content-center">
     <div className="mt-big mb-regular w-100">
-      {/* prettier-ignore */}
       <button className="btn btn-primary btn-lg" onClick={linkTo('getting-started-styles--docs')}>Get started</button>
     </div>
     <a
@@ -56,7 +56,6 @@ import './home.styles.scss';
       rel="noopener"
       className="btn btn-secondary"
     >
-      {/* prettier-ignore */}
       <span>Experience Hub<sup>1</sup></span>
     </a>
     <a
@@ -65,7 +64,6 @@ import './home.styles.scss';
       rel="noopener"
       className="btn btn-secondary"
     >
-      {/* prettier-ignore */}
       <span>Figma<sup>2</sup></span>
     </a>
     <a
@@ -85,7 +83,6 @@ import './home.styles.scss';
       <span>GitHub</span>
     </a>
   </div>
-  {/* prettier-ignore */}
   <p className="mb-0 fs-tiny lh-tiny"><sup>1</sup> Login required. Get access with your post account, or use the registration form on the login page.<br />
     <sup>2</sup> Login required. Get access with your post account, or click <a href="mailto:ux@post.ch?subject=I need access to Figma&body=Hello%2C%20I%20need%20access%20to%20Figma%20%0A%E2%80%A2%20%20Project%20name%3A%20%0A%E2%80%A2%20Project%20Owner%20at%20the%20Post%20Office%20%28email%29%3A%20%0A%E2%80%A2%20Project%20Start%20Date%3A%20%0A%E2%80%A2%20Email%20address%20to%20be%20authorized%3A%20">here</a>.</p>
 </div>

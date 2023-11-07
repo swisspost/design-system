@@ -73,10 +73,11 @@ const meta: Meta = {
         labels: {
           'table-sm': 'Small',
           'table-striped': 'Striped',
+          'table-mono': 'Mono',
           'table-hover': 'Hover enabled',
         },
       },
-      options: ['table-sm', 'table-striped', 'table-hover'],
+      options: ['table-sm', 'table-striped', 'table-mono', 'table-hover'],
       table: {
         category: 'General',
       },
@@ -110,15 +111,15 @@ function renderTable(args: Args) {
   const variants = args.variant.join(' ');
   return html`
     <table
-      class=${mapClasses({
+      class="${mapClasses({
         table: true,
         [args.borderStyle]: args.borderStyle && args.borderStyle !== 'null',
         [variants]: variants && variants !== '',
         [cationTop]: cationTop !== 'null',
         [args.alignment]: args.alignment && args.alignment !== 'null',
-      })}
+      })}"
     >
-      <caption class=${args.captionPlacement === 'hidden' ? 'visually-hidden' : ''}>
+      <caption class="${args.captionPlacement === 'hidden' ? 'visually-hidden' : ''}">
         ${args.caption}
       </caption>
       <thead>
@@ -181,11 +182,11 @@ export const TableWithButtons: Story = {
         <td>
           <button class="btn btn-secondary btn-icon btn-md">
             <span class="visually-hidden">Edit</span>
-            <i class="pi pi-2012"></i>
+            <post-icon aria-hidden="true" name="2012"></post-icon>
           </button>
           <button class="btn btn-primary btn-icon btn-md ms-2">
             <span class="visually-hidden">Edit</span>
-            <i class="pi pi-3193"></i>
+            <post-icon aria-hidden="true" name="3193"></post-icon>
           </button>
         </td>
       </tr>
@@ -196,11 +197,11 @@ export const TableWithButtons: Story = {
         <td>
           <button class="btn btn-secondary btn-icon btn-md">
             <span class="visually-hidden">Edit</span>
-            <i class="pi pi-2012"></i>
+            <post-icon aria-hidden="true" name="2012"></post-icon>
           </button>
           <button class="btn btn-primary btn-icon btn-md ms-2">
             <span class="visually-hidden">Edit</span>
-            <i class="pi pi-3193"></i>
+            <post-icon aria-hidden="true" name="3193"></post-icon>
           </button>
         </td>
       </tr>
@@ -211,11 +212,11 @@ export const TableWithButtons: Story = {
         <td>
           <button class="btn btn-secondary btn-icon btn-md">
             <span class="visually-hidden">Edit</span>
-            <i class="pi pi-2012"></i>
+            <post-icon aria-hidden="true" name="2012"></post-icon>
           </button>
           <button class="btn btn-primary btn-icon btn-md ms-2">
             <span class="visually-hidden">Edit</span>
-            <i class="pi pi-3193"></i>
+            <post-icon aria-hidden="true" name="3193"></post-icon>
           </button>
         </td>
       </tr>

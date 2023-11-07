@@ -47,7 +47,7 @@ $tile-rg-size: 100px;
   border-radius: post.$size-regular;
   box-shadow: 0 2px 5px 0 rgba(post.$aubergine-dark, 0.3);
   text-decoration: none;
-  
+
   .tile--title {
     flex: 0 0 auto;
     padding: post.$size-mini post.$size-micro;
@@ -64,7 +64,7 @@ $tile-rg-size: 100px;
       }
     }
   }
-  
+
   .tile--icon {
     flex: 0 1 100%;
     display: flex;
@@ -100,7 +100,7 @@ $tile-rg-size: 100px;
     .tile--title {
       font-size: $tile-rg-size * 0.1;
 
-      ~.tile--icon {
+      ~ .tile--icon {
         img {
           max-height: $tile-rg-size * 0.4;
         }

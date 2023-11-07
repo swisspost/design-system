@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 
-enum Choice { One, Two, Three, Four }
+enum Choice {
+  One,
+  Two,
+  Three,
+  Four,
+}
 
 @Component({
   selector: 'app-button-group-radio-demo',
