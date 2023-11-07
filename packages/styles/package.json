@@ -42,13 +42,13 @@
   },
   "devDependencies": {
     "@angular/compiler": "=15.0.4",
-    "@percy/cli": "1.27.3",
+    "@percy/cli": "1.27.4",
     "@percy/cypress": "3.1.2",
     "@swisspost/design-system-icons": "workspace:1.0.14",
-    "@types/node": "18.18.0",
+    "@types/node": "18.18.8",
     "autoprefixer": "10.4.16",
     "copyfiles": "2.4.1",
-    "cypress": "13.3.3",
+    "cypress": "13.4.0",
     "cypress-storybook": "0.5.1",
     "glob": "10.3.10",
     "gulp": "4.0.2",
@@ -65,7 +65,7 @@
     "stylelint-config-prettier": "9.0.5",
     "stylelint-config-sass-guidelines": "10.0.0",
     "stylelint-prettier": "4.0.2",
-    "stylelint-scss": "5.2.1",
+    "stylelint-scss": "5.3.0",
     "typescript": "4.9.5"
   },
   "sass": {
