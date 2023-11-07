@@ -93,5 +93,5 @@ export default (params: { pathToStoryFile: String }) => (
         </div>
       </div>
     </footer>
-  </div>
+  </>
 );
