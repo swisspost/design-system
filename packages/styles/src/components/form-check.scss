@@ -127,7 +127,8 @@
     background-image: form-check.$form-switch-background-image;
     background-size: 2 * form-check.$form-switch-width;
     background-position-x: 0;
-    transition: background-color animation.$transition-base-timing,
+    transition:
+      background-color animation.$transition-base-timing,
       background-position animation.$transition-base-timing;
 
     &::after {

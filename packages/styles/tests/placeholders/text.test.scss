@@ -1,4 +1,4 @@
-@use "src/placeholders/text";
+@use 'src/placeholders/text';
 
 .list-adjustment {
   @extend %list-adjustment;

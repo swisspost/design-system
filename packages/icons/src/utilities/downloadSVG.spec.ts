@@ -1,4 +1,3 @@
-import { mocked } from 'ts-jest/utils';
 import fetch, { Response } from 'node-fetch';
 import { Businessfield, Type, TypeFilter, VariantMIME } from '../models/censhare-result-page.model';
 import mockFs from 'mock-fs';
@@ -13,7 +12,7 @@ describe('downloadSVG', () => {
       [outputPath]: {},
     });
 
-    mocked(fetch).mockImplementationOnce(() =>
+    jest.mocked(fetch).mockImplementationOnce(() =>
       Promise.resolve({
         text: () => Promise.resolve('<svg><path d="M16 8.4l-12.533 12.4z"></path></svg>'),
       } as Response),
@@ -28,11 +27,8 @@ describe('downloadSVG', () => {
         meta: {
           downloadLink: '/test',
           businessfield: Businessfield.Kommunikation,
-          keywords: [
-            'Test',
-            'Test2',
-          ],
-          year: ''
+          keywords: ['Test', 'Test2'],
+          year: '',
         },
         file: {
           mime: VariantMIME.ImageSVGXML,
@@ -42,11 +38,11 @@ describe('downloadSVG', () => {
           size: {
             width: 32,
             dpi: 72,
-            height: 32
-          }
+            height: 32,
+          },
         },
         createdAt: new Date(),
-        modifiedAt: new Date()
+        modifiedAt: new Date(),
       },
       outputPath,
     );

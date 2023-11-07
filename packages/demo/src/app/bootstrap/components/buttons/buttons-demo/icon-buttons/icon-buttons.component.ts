@@ -5,7 +5,6 @@ import { Component, ElementRef } from '@angular/core';
   templateUrl: './icon-buttons.component.html',
 })
 export class IconButtonsComponent {
-
   elementRef: ElementRef;
 
   constructor(elementRef: ElementRef) {
