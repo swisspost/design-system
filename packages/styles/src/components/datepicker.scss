@@ -18,6 +18,10 @@ ngb-datepicker.dropdown-menu {
 
 ngb-datepicker-navigation {
   justify-content: space-between;
+
+  button.ngb-dp-arrow-btn:focus-visible {
+    outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
+  }
 }
 
 ngb-datepicker-navigation-select.ngb-dp-navigation-select {
