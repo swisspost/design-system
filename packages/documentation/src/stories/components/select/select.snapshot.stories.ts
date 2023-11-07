@@ -24,6 +24,10 @@ function renderSelectSnapshot(_args: Args, context: StoryContext) {
       label: `Label - With option selected`,
       selectedOption: 2,
     },
+    {
+      label: `Label - Floating Label with placeholder`,
+      floatingLabelPlaceholder: true,
+    },
   ];
   return html`
     <div class="d-flex flex-wrap align-items-start gap-regular">
@@ -34,7 +38,8 @@ function renderSelectSnapshot(_args: Args, context: StoryContext) {
             ${getCombinations('size', context.argTypes.size.options, combinations)
               .filter(
                 (args: Args) =>
-                  !args.multipleSize || (args.multipleSize && context.args.multiple === true),
+                  (!args.multipleSize || (args.multipleSize && context.args.multiple === true)) &&
+                  !args.floatingLabelPlaceholder,
               )
               .map(
                 (args: Args) =>
