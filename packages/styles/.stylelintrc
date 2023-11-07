@@ -10,7 +10,6 @@
     "selector-max-id": 1,
     "selector-no-qualifying-type": [true, { "ignore": ["attribute", "class"] }],
     "function-url-quotes": null,
-    "scss/dollar-variable-colon-space-after": "always-single-line",
-    "order/properties-alphabetical-order": false
+    "scss/dollar-variable-colon-space-after": "always-single-line"
   }
 }
