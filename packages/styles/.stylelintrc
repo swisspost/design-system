@@ -5,12 +5,11 @@
     "stylelint-prettier/recommended"
   ],
   "rules": {
-    "order/properties-alphabetical-order": null,
-    "order/order": null,
     "max-nesting-depth": 5,
     "selector-max-compound-selectors": 5,
     "selector-max-id": 1,
     "selector-no-qualifying-type": [true, { "ignore": ["attribute", "class"] }],
-    "function-url-quotes": null
+    "function-url-quotes": null,
+    "scss/dollar-variable-colon-space-after": "always-single-line"
   }
 }

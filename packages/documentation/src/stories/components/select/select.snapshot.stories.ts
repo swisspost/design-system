@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, FloatingLabel } from './select.stories';
+import meta, { Default, FloatingLabel, FloatingLabelPlaceholder } from './select.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils/bombArgs';
 
@@ -81,6 +81,18 @@ export const Select: Story = {
                       <div>
                         ${FloatingLabel.render?.(
                           { ...context.args, ...FloatingLabel.args, ...args },
+                          context,
+                        )}
+                      </div>
+                    `,
+                )}
+                <h2>Floating Label - with placeholder</h2>
+                ${bombArgsGeneratedDefault.map(
+                  (args: Args) =>
+                    html`
+                      <div>
+                        ${FloatingLabelPlaceholder.render?.(
+                          { ...context.args, ...FloatingLabelPlaceholder.args, ...args },
                           context,
                         )}
                       </div>

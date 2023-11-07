@@ -1,4 +1,6 @@
+<script src="/assets/scripts/storybook-events.js"></script>
 <script src="/assets/scripts/analytics-helper.js"></script>
+<script src="/assets/scripts/analytics-events.js"></script>
 
 <!-- Open Graph general (Facebook, Pinterest & Google+) -->
 <meta property="og:type" content="website" />
@@ -31,16 +33,20 @@
 />
 
 <script data-id="GtmConstants">
-  window?.gtm?.setConstant('ENVIRONMENTS', {
-    dev: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_DEV%',
-    int: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT%',
-    prod: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD%',
-  });
+  window.__GTM__.set('GTM_KEY', '%STORYBOOK_GTM_KEY%');
 
-  window?.gtm?.setConstant(
-    'ENVIRONMENT_FALLBACK',
+  window.__GTM__.setEnvironments(
+    {
+      dev: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_DEV%',
+      int: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT%',
+      prod: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD%',
+    },
     '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK%',
   );
+
+  window.__GTM__.set('CONTENT_LANGUAGE', '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE%');
+  window.__GTM__.set('GEO_REGION', '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION%');
+  window.__GTM__.set('SOURCE_CODE_VERSION', '%STORYBOOK_GTM_PAGE_CONTEXT_SOURCE_CODE_VERSION%');
 </script>
 
 <script data-id="GoogleTagManager">
@@ -59,39 +65,6 @@
   })(window, document, 'script', 'dataLayer', '%STORYBOOK_GTM_KEY%');
 
   window.dataLayer = window.dataLayer || [];
-
-  // Page Context
-  window.addEventListener('storybook:ready', function () {
-    window.dataLayer.push({
-      event: 'page_context', // constant, required
-      spa: 'true', // constant, required
-      content_language: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE%', // required
-      content_geo_region: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION%', // required
-      source_code_version: '%STORYBOOK_GTM_PAGE_CONTEXT_SOURCE_CODE_VERSION%', // recommended
-      page_name_language_neutral: window.gtm.getPageTitle(), // required
-      page_url_language_neutral: window.location.href, // required
-      environment: window.gtm.getEnvironment(), // required
-      login_status: 'false', // required
-      platform_name: 'ms_design_system', // required
-      department_name: 'IT16.12', // required
-      business_unit: 'IT', // required
-      primary_segment: 'allgemein', // required
-    });
-  });
-
-  // Page Change
-  window.addEventListener('storybook:routeChange', function () {
-    window.dataLayer.push({
-      event: 'page_change', // constant, required
-      content_language: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE%', // required
-      content_geo_region: '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION%', // required
-      page_name_language_neutral: window.gtm.getPageTitle(), // required
-      page_url_language_neutral: window.location.href, // required
-      virtual_pageview: 'true', // SPA route change indicator, boolean true/false
-      virtual_page_name: window.gtm.getPageTitle(), // SPA route change/transition new page name/page title
-      virtual_url: window.location.href, // SPA route change new URL
-    });
-  });
 </script>
 
 <!-- Documentation: https://dev.to/masakudamatsu/favicon-nightmare-how-to-maintain-sanity-3al7 -->

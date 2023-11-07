@@ -18,7 +18,9 @@
   border: 2px solid color.$gray-60;
   border-radius: commons.$border-radius;
   padding: spacing.$size-regular;
-  transition: color 100ms ease-in-out, background-color 100ms ease-in-out,
+  transition:
+    color 100ms ease-in-out,
+    background-color 100ms ease-in-out,
     border-color 100ms ease-in-out;
 
   // Checked
