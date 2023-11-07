@@ -1,19 +1,23 @@
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:string';
+
 @function remove-nth($list, $index) {
   $result: null;
 
   @if type-of($index) != number {
-    @warn '$index: #{quote($index)} is not a number for `remove-nth`.';
+    @warn '$index: #{string.quote($index)} is not a number for `remove-nth`.';
   } @else if $index == 0 {
     @warn 'List index 0 must be a non-zero integer for `remove-nth`.';
-  } @else if abs($index) > length($list) {
-    @warn 'List index is #{$index} but list is only #{length($list)} item long for `remove-nth`.';
+  } @else if math.abs($index) > list.length($list) {
+    @warn 'List index is #{$index} but list is only #{list.length($list)} item long for `remove-nth`.';
   } @else {
     $result: ();
-    $index: if($index < 0, length($list) + $index + 1, $index);
+    $index: if($index < 0, list.length($list) + $index + 1, $index);
 
-    @for $i from 1 through length($list) {
+    @for $i from 1 through list.length($list) {
       @if $i != $index {
-        $result: append($result, nth($list, $i));
+        $result: list.append($result, list.nth($list, $i));
       }
     }
   }
