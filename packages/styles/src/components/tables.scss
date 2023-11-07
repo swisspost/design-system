@@ -1,10 +1,58 @@
 @forward './../variables/options';
 @use './../variables/color';
+@use './../variables/commons';
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/tables' as bt;
 
 .table {
   > :not(:first-child) {
     border-width: 0;
+  }
+}
+
+.table-mono {
+  // Set all border color
+  > thead,
+  > tbody,
+  > tfoot,
+  > :is(thead, tbody, tfoot) > tr,
+  > :is(thead, tbody, tfoot) > tr > :is(td, th) {
+    border-color: color.$white;
+    border-width: commons.$border-thick;
+  }
+
+  // Remove striped background, but only if not associated with table-hover and hover
+  &.table-striped:not(.table-hover) > tbody > tr > :is(th, td),
+  &.table-striped.table-hover > tbody > tr:not(:hover) > :is(th, td) {
+    box-shadow: none;
+  }
+
+  // Hide border between cells on tbody when hovered, but not bordered
+  &.table-hover:not(.table-bordered) {
+    > tbody > tr > :is(td, th) {
+      border: 0;
+    }
+  }
+
+  // Underline by default (Hide cells border)
+  &:not(.table-bordered) {
+    > :is(thead, tbody, tfoot) > tr > :is(td, th) {
+      border: 0;
+    }
+  }
+
+  // Remove border when borderless
+  &.table-borderless {
+    > thead,
+    > tbody,
+    > tfoot,
+    > :is(thead, tbody, tfoot) > tr,
+    > :is(thead, tbody, tfoot) > tr > :is(td, th) {
+      border: 0;
+    }
+  }
+
+  > tbody > tr {
+    background-color: color.$gray-background;
   }
 }

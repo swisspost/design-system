@@ -61,9 +61,9 @@ const meta: Meta = {
       control: {
         type: 'inline-radio',
         labels: {
-          'none': 'None',
-          'checkable': 'Checkable',
-          'dismissible': 'Dismissible',
+          none: 'None',
+          checkable: 'Checkable',
+          dismissible: 'Dismissible',
         },
       },
       options: ['none', 'checkable', 'dismissible'],
@@ -76,7 +76,7 @@ const meta: Meta = {
       description: 'If `true`, the badge is checked otherwise it is unchecked.',
       if: {
         arg: 'interactionType',
-        eq: 'checkable'
+        eq: 'checkable',
       },
       control: {
         type: 'boolean',
@@ -115,30 +115,33 @@ function externalControl(story: any, { args }: StoryContext) {
         e.preventDefault();
         updateArgs({ dismissed: false });
       }}
-    >Show badge</a>
+    >
+      Show badge
+    </a>
   `;
 
   return html`
-    ${args.dismissed ? button : nothing}
-    ${story()}
+    ${args.dismissed ? button : nothing} ${story()}
   `;
 }
 
 // RENDERER
 function getDefaultContent(args: Args) {
-  if (!args.nestedBadge) return html`${args.text}`;
-
   return html`
-    <span>${html`${args.text}`}</span>
-    <span class="badge">10</span>
+    <span>${args.text}</span>
+    ${args.nestedBadge
+      ? html`
+          <span class="badge">10</span>
+        `
+      : nothing}
   `;
 }
 
 function getCheckableContent(args: Args, updateArgs: (args: Args) => void, context: StoryContext) {
-  const checkboxId = `badge-example--${context.name.replace(/ /g, '-').toLowerCase()}`
+  const checkboxId = `badge-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
   const labelClasses = mapClasses({
     'badge-check-label': true,
-    [args.size]: args.size !== 'default'
+    [args.size]: args.size !== 'default',
   });
 
   const handleChange = (e: Event) => {
@@ -160,18 +163,13 @@ function getCheckableContent(args: Args, updateArgs: (args: Args) => void, conte
       ?checked=${args.checked}
       @change=${handleChange}
     />
-    <label class=${labelClasses} for=${checkboxId}>
-      ${getDefaultContent(args)}
-    </label>
+    <label class=${labelClasses} for=${checkboxId}>${getDefaultContent(args)}</label>
   `;
 }
 
 function getDismissButton(updateArgs: (args: Args) => void) {
   return html`
-    <button
-      class="btn-close"
-      @click=${() => updateArgs({ dismissed: true })}
-    >
+    <button class="btn-close" @click=${() => updateArgs({ dismissed: true })}>
       <span class="visually-hidden">Forigi insignon</span>
     </button>
   `;
@@ -180,7 +178,10 @@ function getDismissButton(updateArgs: (args: Args) => void) {
 function renderBadge(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  if (args.dismissed) return html`${nothing}`;
+  if (args.dismissed)
+    return html`
+      ${nothing}
+    `;
 
   const isCheckable = args.interactionType === 'checkable';
   const isDismissible = args.interactionType === 'dismissible';
@@ -188,7 +189,7 @@ function renderBadge(args: Args, context: StoryContext) {
   const badgeClasses = mapClasses({
     'badge': !isCheckable,
     'badge-check': isCheckable,
-    [args.size]: args.size !== 'default'
+    [args.size]: args.size !== 'default',
   });
 
   return html`

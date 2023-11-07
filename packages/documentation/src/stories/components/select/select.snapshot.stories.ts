@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, FloatingLabel } from './select.stories';
+import meta, { Default, FloatingLabel, FloatingLabelPlaceholder } from './select.stories';
 import { html } from 'lit';
 import { getCombinations, COMBINATIONS } from '../../../utils/inputComponentsGetCombinations';
 

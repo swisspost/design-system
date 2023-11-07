@@ -1,5 +1,13 @@
 # @swisspost/design-system-intranet-header
 
+## 5.0.3
+
+### Patch Changes
+
+- Fixed default user image sometimes blocked by CORS policies. (by [@alizedebray](https://github.com/alizedebray) with [#2165](https://github.com/swisspost/design-system/pull/2165))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.3
+
 ## 5.0.2
 
 ### Patch Changes

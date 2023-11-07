@@ -31,9 +31,15 @@ But note that the `<select>` must come first, so we can ensure the correct style
 
 <Canvas of={SelectStories.FloatingLabel} />
 
+#### With label as a placeholder
+
+If you use an empty option in your select and you want that your label acts as placeholder,
+you can dynamically add the class `.form-select-empty` to the `<select>` when there are no value defined or no option selected.
+
+<Canvas of={SelectStories.FloatingLabelPlaceholder} />
+
 ### Sizing
 
-{/* prettier-ignore */}
 <div className="alert alert-warning">
   <h4 className="alert-heading">We're deprecating the regular and medium sizes for text input, textarea and select.</h4>
   <p className="mt-0">This will make it easier to select the appropriate size variant: small for internal applications, large for external applications.<br />`.form-select-rg` and `.form-select-md` are deprecated and will be removed in the next major version.</p>

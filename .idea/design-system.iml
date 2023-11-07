@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="JAVA_MODULE" version="4">
+  <component name="NewModuleRootManager" inherit-compiler-output="true">
+    <exclude-output />
+    <content url="file://$MODULE_DIR$">
+      <excludeFolder url="file://$MODULE_DIR$/packages/changelog-github/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/components-angular/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/components-react/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/components/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/internet-header/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/styles/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/components-angular/tmp" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/components/.stencil" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/documentation/storybook-static" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/internet-header/.stencil" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/internet-header/www" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/documentation-v6/storybook-static" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

@@ -8,9 +8,8 @@ describe('OverlayNotificationDemoComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ OverlayNotificationDemoComponent ]
-    })
-    .compileComponents();
+      declarations: [OverlayNotificationDemoComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

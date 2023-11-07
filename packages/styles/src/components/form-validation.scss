@@ -1,5 +1,7 @@
 @forward './../variables/options';
 
+@use 'sass:map';
+
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/forms/validation' as bfv;
@@ -42,7 +44,7 @@
 }
 
 @each $state, $data in $form-validation-states {
-  $icon: map-get($data, 'icon');
+  $icon: map.get($data, 'icon');
 
   @include form-validation-state-selector($state) {
     ~ .#{$state}-feedback,

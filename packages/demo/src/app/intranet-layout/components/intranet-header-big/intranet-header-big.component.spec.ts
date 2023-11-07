@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { IntranetHeaderBigComponent } from './intranet-header-big.component';
-import {ErrorService} from '../../services/error.service';
-import {RouterTestingModule} from '@angular/router/testing';
+import { ErrorService } from '../../services/error.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('IntranetHeaderBigComponent', () => {
   let component: IntranetHeaderBigComponent;
@@ -11,10 +11,9 @@ describe('IntranetHeaderBigComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule],
-      declarations: [ IntranetHeaderBigComponent ],
-      providers: [ErrorService]
-    })
-    .compileComponents();
+      declarations: [IntranetHeaderBigComponent],
+      providers: [ErrorService],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
