@@ -1,7 +1,12 @@
 import { Component } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-enum Choice { One, Two, Three, Four}
+enum Choice {
+  One,
+  Two,
+  Three,
+  Four,
+}
 
 @Component({
   selector: 'app-button-group-reactive-radio-demo',

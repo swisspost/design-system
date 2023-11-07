@@ -8,5 +8,5 @@
   fontStyles: [('normal', 'italic')];
   fixedLineHeights: [map.keys(post.$post-sizes)];
   relativeLineHeights: [('1', 'base', 'sm', 'lg')];
-  colors: [map.keys(post.$theme-colors)]
+  colors: [map.keys(post.$theme-colors)];
 }

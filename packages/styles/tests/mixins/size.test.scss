@@ -1,4 +1,4 @@
-@use "src/mixins/size";
+@use 'src/mixins/size';
 
 body {
   @include size.bezel-small();

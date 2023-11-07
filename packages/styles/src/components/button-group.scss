@@ -17,7 +17,9 @@
 
     // added a transition delay on the "z-index" so the button only moves back after all other transitions
     z-index: 0;
-    transition: z-index 0s ease (0.5 * button.$btn-transition-duration), button.$btn-transition;
+    transition:
+      z-index 0s ease (0.5 * button.$btn-transition-duration),
+      button.$btn-transition;
 
     @include utilities.high-contrast-mode() {
       transition: none !important;
@@ -42,4 +44,10 @@
       background-color: Highlight;
     }
   }
+}
+
+.btn-check {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  pointer-events: none;
 }

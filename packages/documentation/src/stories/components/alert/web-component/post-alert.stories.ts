@@ -25,7 +25,7 @@ const meta: Meta<HTMLPostAlertElement> = {
       type: {
         name: 'string',
         required: true,
-      }
+      },
     },
     icon: {
       control: {
@@ -41,8 +41,7 @@ const meta: Meta<HTMLPostAlertElement> = {
       options: ['none', '1001', '2023', '2025', '2035', '2101'],
     },
     innerHTML: {
-      description:
-        'Defines the HTML markup contained in the alert.',
+      description: 'Defines the HTML markup contained in the alert.',
       table: {
         category: 'content',
         type: {
@@ -50,7 +49,7 @@ const meta: Meta<HTMLPostAlertElement> = {
         },
       },
     },
-  }
+  },
 };
 
 export default meta;
@@ -59,7 +58,7 @@ export default meta;
 function externalControl(story: StoryFn, context: StoryContext) {
   let alert: HTMLPostAlertElement;
   let button: HTMLButtonElement;
-  const {args, canvasElement} = context;
+  const { args, canvasElement } = context;
 
   const toggleAlert = async (e: Event) => {
     e.preventDefault();
@@ -72,16 +71,21 @@ function externalControl(story: StoryFn, context: StoryContext) {
       alertContainer.appendChild(alert);
       if (!args.fixed) alert.shadowRoot?.querySelector('button')?.focus();
     }
-  }
+  };
 
   setTimeout(() => {
     alert = canvasElement.querySelector('post-alert') as HTMLPostAlertElement;
     button = canvasElement.querySelector('.alert-button') as HTMLButtonElement;
 
     if (args.fixed) {
-      alert.remove();
+      button.hidden = false;
+
+      if (context.story !== 'Default') {
+        alert.remove();
+      }
     } else {
       button.hidden = true;
+
       alert.addEventListener('dismissed', () => {
         button.hidden = false;
         button.focus();
@@ -93,15 +97,13 @@ function externalControl(story: StoryFn, context: StoryContext) {
     <a
       class="btn btn-default btn-animated alert-button"
       href="#"
-      @click='${(e: Event) => toggleAlert(e)}'
-    ><span>${args.fixed ? 'Toggle Fixed Alert' : 'Reset Alert'}</span></a>
-    <div class="alert-container">
-      ${story(args, context)}
-    </div>
+      @click="${(e: Event) => toggleAlert(e)}"
+    >
+      <span>${args.fixed ? 'Toggle Fixed Alert' : 'Reset Alert'}</span>
+    </a>
+    <div class="alert-container">${story(args, context)}</div>
   `;
 }
-
-
 
 // RENDERER
 function renderAlert(args: Partial<HTMLPostAlertElement>) {
@@ -127,30 +129,30 @@ export const Contents: Story = {
       '<p>Contentum momentum ipsum tipsum sit amet, consetetur sadipscing elitr.</p>' +
       '<button slot="actions" class="btn btn-secondary btn-animated"><span>Aborti</span></button>' +
       '<button slot="actions" class="btn btn-primary btn-animated"><span>Akcepti</span></button>',
-  }
-}
+  },
+};
 
 export const CustomIcon: Story = {
   args: {
     icon: '1001',
-  }
+  },
 };
 
 export const NoIcon: Story = {
   args: {
     icon: 'none',
-  }
+  },
 };
 
 export const Dismissible: Story = {
   args: {
     dismissible: true,
-  }
+  },
 };
 
 export const Fixed: Story = {
   args: {
     fixed: true,
     dismissible: true,
-  }
+  },
 };

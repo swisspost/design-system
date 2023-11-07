@@ -1,5 +1,29 @@
 # @swisspost/design-system-styles
 
+## 6.4.3
+
+### Patch Changes
+
+- Changed dropdown icon for the select component and adjusted the size of the icon. (by [@b1aserlu](https://github.com/b1aserlu) with [#2164](https://github.com/swisspost/design-system/pull/2164))
+
+- Added `table-mono` variant for table component. (by [@imagoiq](https://github.com/imagoiq) with [#2106](https://github.com/swisspost/design-system/pull/2106))
+
+- Set a `max-width` for badges and add ellipsis for overflowing text. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#1892](https://github.com/swisspost/design-system/pull/1892))
+
+- Applied autoprefixer to distributed sass files. Sass files will now contain prefixes for supported browsers according to the browserslist file. (by [@imagoiq](https://github.com/imagoiq) with [#2115](https://github.com/swisspost/design-system/pull/2115))
+
+## 6.4.2
+
+### Patch Changes
+
+- Refactored the grid-system: adjusted container paddings, added responsive gutter-widths. Updated grid docs. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2045](https://github.com/swisspost/design-system/pull/2045))
+
+- Added small variants for checkbox and radio buttons. Lowered font-size of validation blocks for form elements. (by [@imagoiq](https://github.com/imagoiq) with [#2086](https://github.com/swisspost/design-system/pull/2086))
+
+- Fixed missing active tab border on HTML component. (by [@imagoiq](https://github.com/imagoiq) with [#2037](https://github.com/swisspost/design-system/pull/2037))
+
+- Fixed active switch control showing a check icon in Chrome. (by [@alizedebray](https://github.com/alizedebray) with [#2090](https://github.com/swisspost/design-system/pull/2090))
+
 ## 6.4.1
 
 ### Patch Changes

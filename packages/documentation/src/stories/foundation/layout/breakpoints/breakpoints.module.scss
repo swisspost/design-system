@@ -1,21 +1,12 @@
 @use 'sass:list';
 @use 'sass:map';
 @use '@swisspost/design-system-styles/core' as post;
-
-$breakpointNames: (
-  xs: Extra small,
-  sm: Small,
-  rg: Regular,
-  md: Medium,
-  lg: Large,
-  xl: Extra large,
-  xxl: Extra extra large,
-);
+@use '../layout.shared' as shared;
 
 :export {
   @each $breakpoint, $value in post.$grid-breakpoints {
     $i: list.index(post.$grid-breakpoints, $breakpoint $value);
-    $name: map.get($breakpointNames, $breakpoint) or $breakpoint;
+    $name: map.get(shared.$breakpointNames, $breakpoint) or $breakpoint;
 
     breakpoint_#{$breakpoint}_name: $name;
 

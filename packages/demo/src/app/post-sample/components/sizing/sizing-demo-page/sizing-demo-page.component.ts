@@ -10,7 +10,7 @@ interface PostSize {
 
 enum PostSizeImplementation {
   Pixel,
-  Rem
+  Rem,
 }
 
 const heightWidth = `<div class="d-block bg-primary w-bigger-giant h-small-regular"></div>`;
@@ -20,7 +20,7 @@ const paddingMargin = `<div class="bg-primary d-inline-block">
 
 @Component({
   selector: 'app-sizing-demo-page',
-  templateUrl: './sizing-demo-page.component.html'
+  templateUrl: './sizing-demo-page.component.html',
 })
 export class SizingDemoPageComponent {
   heightWidth = heightWidth;
@@ -36,99 +36,99 @@ export class SizingDemoPageComponent {
         size_pixel: 1,
         size_rem: 0.0625,
         implemented: PostSizeImplementation.Pixel,
-        equivalent: 0
+        equivalent: 0,
       },
       {
         name: 'line',
         size_pixel: 2,
         size_rem: 0.125,
         implemented: PostSizeImplementation.Pixel,
-        equivalent: 0
+        equivalent: 0,
       },
       {
         name: 'micro',
         size_pixel: 4,
         size_rem: 0.25,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 1
+        equivalent: 1,
       },
       {
         name: 'mini',
         size_pixel: 8,
         size_rem: 0.5,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 2
+        equivalent: 2,
       },
       {
         name: 'small-regular',
         size_pixel: 12,
         size_rem: 0.75,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 0
+        equivalent: 0,
       },
       {
         name: 'regular',
         size_pixel: 16,
         size_rem: 1,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 3
+        equivalent: 3,
       },
       {
         name: 'small-large',
         size_pixel: 20,
         size_rem: 1.25,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 0
+        equivalent: 0,
       },
       {
         name: 'large',
         size_pixel: 24,
         size_rem: 1.5,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 4
+        equivalent: 4,
       },
       {
         name: 'big',
         size_pixel: 32,
         size_rem: 2,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 0
+        equivalent: 0,
       },
       {
         name: 'bigger-big',
         size_pixel: 40,
         size_rem: 2.5,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 0
+        equivalent: 0,
       },
       {
         name: 'small-huge',
         size_pixel: 48,
         size_rem: 3,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 5
+        equivalent: 5,
       },
       {
         name: 'huge',
         size_pixel: 56,
         size_rem: 3.5,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 0
+        equivalent: 0,
       },
       {
         name: 'giant',
         size_pixel: 80,
         size_rem: 5,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 0
+        equivalent: 0,
       },
       {
         name: 'bigger-giant',
         size_pixel: 112,
         size_rem: 7,
         implemented: PostSizeImplementation.Rem,
-        equivalent: 0
-      }
+        equivalent: 0,
+      },
     ];
   }
 }

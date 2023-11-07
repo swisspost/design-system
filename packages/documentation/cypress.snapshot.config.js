@@ -3,7 +3,7 @@ const { defineConfig } = require('cypress');
 module.exports = defineConfig({
   projectId: 'f9aegu',
   e2e: {
-    baseUrl: 'http://localhost:9300',
+    baseUrl: 'http://localhost:9001',
     specPattern: ['cypress/**/*.snapshot.{ts,tsx}'],
     includeShadowDom: true,
     viewportWidth: 1024,
