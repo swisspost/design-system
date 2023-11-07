@@ -36,7 +36,7 @@ function getGitHubUrl(path: String) {
 }
 
 export default (params: { pathToStoryFile: String }) => (
-  <div>
+  <>
     <div className="container mt-huge font-size-18 text-end">
       <a href={getGitHubUrl(params.pathToStoryFile)} target="_blank" rel="noopener">
         Edit this page on GitHub
