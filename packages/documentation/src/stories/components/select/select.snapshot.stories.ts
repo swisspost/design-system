@@ -1,128 +1,91 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Default, FloatingLabel, FloatingLabelPlaceholder } from './select.stories';
 import { html } from 'lit';
-import { bombArgs } from '../../../utils/bombArgs';
+import { getCombinations, COMBINATIONS } from '../../../utils/inputComponentsGetCombinations';
 
 export default {
   ...meta,
   title: 'Snapshots',
+  render: renderSelectSnapshot,
 };
+
+function renderSelectSnapshot(_args: Args, context: StoryContext) {
+  const combinations = [
+    ...COMBINATIONS,
+    {
+      label: `Label - small multipleSize`,
+      multipleSize: 2,
+    },
+    {
+      label: `Label - large multipleSize`,
+      multipleSize: 6,
+    },
+    {
+      label: `Label - With option selected`,
+      selectedOption: 2,
+    },
+    {
+      label: `Label - Floating Label with placeholder`,
+      floatingLabelPlaceholder: true,
+    },
+  ];
+  return html`
+    <div class="d-flex flex-wrap align-items-start gap-regular">
+      ${['bg-white', 'bg-dark'].map(
+        bg => html`
+          <div class="${bg} d-flex gap-3 flex-column p-3">
+            <h3>Sizes</h3>
+            ${getCombinations('size', context.argTypes.size.options, combinations)
+              .filter(
+                (args: Args) =>
+                  (!args.multipleSize || (args.multipleSize && context.args.multiple === true)) &&
+                  !args.floatingLabelPlaceholder,
+              )
+              .map(
+                (args: Args) =>
+                  html`
+                    <div>
+                      ${args.title !== undefined && args.title
+                        ? html`
+                            <h4>
+                              ${Object.entries(context.argTypes.size.control.labels)
+                                .filter(([key, value]) => key === args.size)
+                                .map(s => s[1])}
+                            </h4>
+                          `
+                        : ''}
+                      <div>${Default.render?.({ ...context.args, ...args }, context)}</div>
+                    </div>
+                  `,
+              )}
+            <h3>Floating Label</h3>
+            ${getCombinations('floatingLabel', [true], combinations)
+              .filter(
+                (args: Args) =>
+                  !args.multipleSize || (args.multipleSize && context.args.multiple === true),
+              )
+              .map(
+                (args: Args) =>
+                  html`
+                    <div>${FloatingLabel.render?.({ ...context.args, ...args }, context)}</div>
+                  `,
+              )}
+          </div>
+        `,
+      )}
+    </div>
+  `;
+}
 
 type Story = StoryObj;
 
-export const Select: Story = {
-  render: (_args: Args, context: StoryContext) => {
-    //Arguments for Default Version
-    const bombArgsGeneratedDefault = [
-      ...bombArgs({
-        label: [
-          context.args.label,
-          'Label - Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor',
-        ],
-        hint: [''],
-      }),
-      ...bombArgs({
-        hiddenLabel: [true],
-        hint: ['Hintus textus', context.args.hint],
-      }),
-      ...bombArgs({
-        size: context.argTypes.size.options,
-        disabled: [false, true],
-        validation: context.argTypes.validation.options,
-      }),
-    ]
-      // remove disabled & validated examples
-      .filter((args: Args) => !(args.disabled && args.validation !== 'null'));
-
-    //Arguments for Multiple Version
-    const bombArgsGeneratedMultiple = [
-      ...bombArgs({
-        multiple: [true],
-        label: [
-          context.args.label,
-          'Label - Lorem ipsum dolor sit amet consetetur sadipscing elitr sed diam nonumy eirmod tempor',
-        ],
-        hint: [''],
-      }),
-      ...bombArgs({
-        multiple: [true],
-        hiddenLabel: [true],
-        hint: ['', 'Hintus textus', context.args.hint],
-      }),
-      ...bombArgs({
-        multiple: [true],
-        size: context.argTypes.size.options,
-        disabled: [false, true],
-        validation: context.argTypes.validation.options,
-      }),
-    ]
-      // remove disabled & validated examples
-      .filter((args: Args) => !(args.disabled && args.validation !== 'null'));
-
-    return html`
-      <div class="d-flex gap-3 flex-column">
-        ${['bg-white', 'bg-dark'].map(
-          bg =>
-            html`
-              <div class="${bg} d-flex gap-3 flex-column p-3">
-                <h2>Default</h2>
-                ${bombArgsGeneratedDefault.map(
-                  (args: Args) =>
-                    html`
-                      <div>
-                        ${Default.render?.({ ...context.args, ...Default.args, ...args }, context)}
-                      </div>
-                    `,
-                )}
-                <h2>Floating Label</h2>
-                ${bombArgsGeneratedDefault.map(
-                  (args: Args) =>
-                    html`
-                      <div>
-                        ${FloatingLabel.render?.(
-                          { ...context.args, ...FloatingLabel.args, ...args },
-                          context,
-                        )}
-                      </div>
-                    `,
-                )}
-                <h2>Floating Label - with placeholder</h2>
-                ${bombArgsGeneratedDefault.map(
-                  (args: Args) =>
-                    html`
-                      <div>
-                        ${FloatingLabelPlaceholder.render?.(
-                          { ...context.args, ...FloatingLabelPlaceholder.args, ...args },
-                          context,
-                        )}
-                      </div>
-                    `,
-                )}
-                <h2>Multiple - Default</h2>
-                ${bombArgsGeneratedMultiple.map(
-                  (args: Args) =>
-                    html`
-                      <div>
-                        ${Default.render?.({ ...context.args, ...Default.args, ...args }, context)}
-                      </div>
-                    `,
-                )}
-                <h2>Multiple - Floating Label</h2>
-                ${bombArgsGeneratedMultiple.map(
-                  (args: Args) =>
-                    html`
-                      <div>
-                        ${FloatingLabel.render?.(
-                          { ...context.args, ...FloatingLabel.args, ...args },
-                          context,
-                        )}
-                      </div>
-                    `,
-                )}
-              </div>
-            `,
-        )}
-      </div>
-    `;
+export const Selectdefault: Story = {
+  args: {
+    multiple: false,
+  },
+};
+export const Selectmultiple: Story = {
+  args: {
+    multiple: true,
   },
 };
