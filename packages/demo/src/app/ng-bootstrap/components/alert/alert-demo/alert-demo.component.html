@@ -1,5 +1,10 @@
 <div class="alert-container">
-  <ngb-alert [type]="alert.type" (closed)="closeAlert(alert)" [ngClass]="alert.class" *ngFor="let alert of alerts">
+  <ngb-alert
+    [type]="alert.type"
+    (closed)="closeAlert(alert)"
+    [ngClass]="alert.class"
+    *ngFor="let alert of alerts"
+  >
     <h4 class="alert-heading" *ngIf="alert.title !== undefined">{{ alert.title }}</h4>
     <p *ngIf="alert.message !== undefined">{{ alert.message }}</p>
   </ngb-alert>

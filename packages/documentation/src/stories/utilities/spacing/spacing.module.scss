@@ -3,7 +3,10 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 :export {
+  @each $key, $value in post.$post-sizes {
+    sizes_#{$key}: #{$value};
+  }
   @each $breakpoint in post.$grid-breakpoints-list {
-    #{$breakpoint} : $breakpoint
+    breakpoints_#{$breakpoint}: $breakpoint;
   }
 }

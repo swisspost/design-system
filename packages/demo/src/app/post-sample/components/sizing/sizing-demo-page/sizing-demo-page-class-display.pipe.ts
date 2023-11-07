@@ -1,14 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-@Pipe({name: 'replaceHyphen'})
+@Pipe({ name: 'replaceHyphen' })
 export class ReplaceHyphenPipe implements PipeTransform {
   transform(value: string): string {
-    return value.replace("-", " ");
+    return value.replace('-', ' ');
   }
 }
-@Pipe({name: 'removeSpaces'})
+@Pipe({ name: 'removeSpaces' })
 export class RemoveSpacesPipe implements PipeTransform {
   transform(value: string): string {
-    return value.replace(" ", "");
+    return value.replace(' ', '');
   }
 }

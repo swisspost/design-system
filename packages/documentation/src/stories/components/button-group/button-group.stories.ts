@@ -126,10 +126,10 @@ const meta: Meta = {
     story =>
       html`
         <div
-          @click=${(e: Event) => {
+          @click="${(e: Event) => {
             const target = e.target as HTMLElement;
             if (target.tagName === 'A' || target.tagName === 'BUTTON') e.preventDefault();
-          }}
+          }}"
         >
           ${story()}
         </div>
@@ -144,7 +144,8 @@ type Story = StoryObj;
 function createButtonTemplate(args: Args, context: StoryContext, index: number) {
   const [_, updateArgs] = useArgs();
   const position = index + 1;
-  const id = `btngroup${context.name}_${position}`;
+  const id = `btngroup_${context.name}_${position}`;
+  const name = `btngroup_${context.name}`;
   const label = args[`label_${position}`];
 
   switch (args.element) {
@@ -154,13 +155,13 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
         <input
           type="checkbox"
           class="btn-check"
-          id=${id}
+          id="${id}"
           autocomplete="off"
           ?checked="${isSelected}"
           .checked="${isSelected}"
-          @change=${(e: Event) => {
+          @change="${(e: Event) => {
             let isChecked = [];
-            if ((e.target as HTMLInputElement).checked === true) {
+            if ((e.target as HTMLInputElement).checked) {
               if (args.selected) {
                 isChecked = Array.from(new Set(args.selected.concat(position)));
               } else {
@@ -170,9 +171,9 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
               isChecked = args.selected.filter((p: number) => p !== position);
             }
             updateArgs({ selected: isChecked });
-          }}
+          }}"
         />
-        <label class=${`btn ${args.size} btn-secondary`} for=${id}>${label}</label>
+        <label class="${`btn ${args.size} btn-secondary`}" for="${id}">${label}</label>
       `;
     }
     case 'radio': {
@@ -181,26 +182,26 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
         <input
           type="radio"
           class="btn-check"
-          name="btnradio"
-          id=${id}
+          name="${name}"
+          id="${id}"
           autocomplete="off"
-          ?checked=${isChecked}
-          .checked=${isChecked}
-          @change=${(e: Event) => {
+          ?checked="${isChecked}"
+          .checked="${isChecked}"
+          @change="${(e: Event) => {
             updateArgs({ checked: position });
-          }}
+          }}"
         />
-        <label class=${`btn ${args.size} btn-secondary`} for=${id}>${label}</label>
+        <label class="${`btn ${args.size} btn-secondary`}" for="${id}">${label}</label>
       `;
     }
     case 'link':
       return html`
-        <a href="#" class=${`btn ${args.size} btn-secondary`}>${label}</a>
+        <a href="#" class="${`btn ${args.size} btn-secondary`}">${label}</a>
       `;
     case 'button':
     default:
       return html`
-        <button type="button" class=${`btn ${args.size} btn-secondary`}>${label}</button>
+        <button type="button" class="${`btn ${args.size} btn-secondary`}">${label}</button>
       `;
   }
 }

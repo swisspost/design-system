@@ -1,5 +1,5 @@
-@use "tests/jest";
-@use "src/functions/index" as functions;
+@use 'tests/jest';
+@use 'src/functions/index' as functions;
 
 @include jest.equal(gray, functions.get-solid-color(rgba(black, 0.5)));
 @include jest.equal(maroon, functions.get-solid-color(rgba(black, 0.5), red));
@@ -20,7 +20,7 @@ $box-shadow: 0 0 5px 0 black;
 @include jest.equal(functions.line-height-calc($rem-value), 1.5);
 @include jest.equal(functions.calculate-inner-height(1rem, 1.5, 0.25rem), 2rem);
 
-$text: "Surprise, motherfucker";
-$match: "Surprise";
+$text: 'Surprise, motherfucker';
+$match: 'Surprise';
 @include jest.equal(functions.average(1, 2, 3), 2);
 @include jest.equal(functions.starts-with-any($text, $match), true);

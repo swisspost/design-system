@@ -13,7 +13,7 @@ export class ButtonGroupReactiveCheckboxDemoComponent {
       one: true,
       two: false,
       three: true,
-      four: {value: false, disabled: true},
+      four: { value: false, disabled: true },
     });
   }
 }

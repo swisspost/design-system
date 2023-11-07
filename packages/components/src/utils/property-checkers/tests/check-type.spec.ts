@@ -18,7 +18,18 @@ describe('checkType', () => {
     });
 
     it('should throw an error if the value is not a boolean', () => {
-      [undefined, null, 42, NaN, 'string', [], {}, () => {/* empty */}].forEach(nonBoolean => {
+      [
+        undefined,
+        null,
+        42,
+        NaN,
+        'string',
+        [],
+        {},
+        () => {
+          /* empty */
+        },
+      ].forEach(nonBoolean => {
         expect(runCheckForValue(nonBoolean)).toThrow(error);
       });
     });
@@ -31,13 +42,23 @@ describe('checkType', () => {
     });
 
     it('should not throw an error if the value is a number', () => {
-      [ 42, 4.2, 4_200, 2.4434634e9, NaN ].forEach(number => {
+      [42, 4.2, 4_200, 2.4434634e9, NaN].forEach(number => {
         expect(runCheckForValue(number)).not.toThrow();
       });
     });
 
     it('should throw an error if the value is not a number', () => {
-      [undefined, null, true, 'string', [], {}, () => {/* empty */}].forEach(nonNumber => {
+      [
+        undefined,
+        null,
+        true,
+        'string',
+        [],
+        {},
+        () => {
+          /* empty */
+        },
+      ].forEach(nonNumber => {
         expect(runCheckForValue(nonNumber)).toThrow(error);
       });
     });
@@ -56,7 +77,18 @@ describe('checkType', () => {
     });
 
     it('should throw an error if the value is not string', () => {
-      [undefined, null, true, 42, NaN, [], {}, () => {/* empty */}].forEach(nonString => {
+      [
+        undefined,
+        null,
+        true,
+        42,
+        NaN,
+        [],
+        {},
+        () => {
+          /* empty */
+        },
+      ].forEach(nonString => {
         expect(runCheckForValue(nonString)).toThrow(error);
       });
     });
@@ -75,7 +107,18 @@ describe('checkType', () => {
     });
 
     it('should throw an error if the value is not an array', () => {
-      [undefined, null, true, 42, NaN, 'string', {}, () => {/* empty */}].forEach(nonArray => {
+      [
+        undefined,
+        null,
+        true,
+        42,
+        NaN,
+        'string',
+        {},
+        () => {
+          /* empty */
+        },
+      ].forEach(nonArray => {
         expect(runCheckForValue(nonArray)).toThrow(error);
       });
     });
@@ -94,7 +137,16 @@ describe('checkType', () => {
     });
 
     it('should throw an error if the value is not an object', () => {
-      [undefined, true, 42, NaN, 'string', () => {/* empty */}].forEach(nonObject => {
+      [
+        undefined,
+        true,
+        42,
+        NaN,
+        'string',
+        () => {
+          /* empty */
+        },
+      ].forEach(nonObject => {
         expect(runCheckForValue(nonObject)).toThrow(error);
       });
     });
@@ -107,7 +159,14 @@ describe('checkType', () => {
     });
 
     it('should not throw an error if the value is a function', () => {
-      [function () {/* empty */}, () => {/* empty */}].forEach(fn => {
+      [
+        function () {
+          /* empty */
+        },
+        () => {
+          /* empty */
+        },
+      ].forEach(fn => {
         expect(runCheckForValue(fn)).not.toThrow();
       });
     });

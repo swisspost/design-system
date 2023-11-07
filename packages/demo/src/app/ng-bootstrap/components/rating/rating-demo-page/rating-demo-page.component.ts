@@ -3,9 +3,8 @@ const codeTemplate = require('!!raw-loader!../rating-demo/rating-demo.component.
 
 @Component({
   selector: 'app-ngb-rating-demo-page',
-  templateUrl: './rating-demo-page.component.html'
+  templateUrl: './rating-demo-page.component.html',
 })
 export class NgbRatingDemoPageComponent {
-
-codeTemplate = codeTemplate;
+  codeTemplate = codeTemplate;
 }

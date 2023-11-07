@@ -4,10 +4,12 @@
 body {
   @include mixins.hover-animation(10px, 500px, 500px);
   @include mixins.hover-animation-svg-icon(red, 2021);
-  @include mixins.form-validation-state('error', red, '');
   @include mixins.placeholder() {
     color: red;
   }
+  @include mixins.icon-placement();
+  @include mixins.form-control-rg();
+  @include mixins.focus-outline();
 
   @include mixins.bezel-small();
   @include mixins.bezel-small-regular();
