@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta from './radio.stories';
+import meta, { renderInline } from './radio.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils/bombArgs';
 
@@ -40,6 +40,12 @@ export const Radio: Story = {
             </div>
           `,
         )}
+
+        <!-- Inline radio buttons (sharing the same name) -->
+        ${renderInline({ checkedRadio: 2, label: 'Not a unique label' }, {
+          viewMode: 'snapshot' as StoryContext['ViewMode'],
+          name: 'Inline',
+        } as Partial<StoryContext>)}
       </div>
     `;
   },
