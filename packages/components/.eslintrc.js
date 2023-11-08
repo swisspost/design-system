@@ -11,6 +11,7 @@ module.exports = {
   ],
   overrides: [],
   parser: '@typescript-eslint/parser',
+  ignorePatterns: ['.eslintrc.js'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
