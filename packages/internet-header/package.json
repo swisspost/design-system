@@ -14,13 +14,11 @@
   },
   "main": "loader/index.cjs.js",
   "module": "loader/index.js",
-  "es2015": "loader/index.es2017.js",
   "es2017": "loader/index.es2017.js",
-  "jsnext:main": "loader/index.es2017.js",
   "types": "loader/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "loader/cdn.js",
+  "unpkg": "dist/swisspost-internet-header/swisspost-internet-header.esm.js",
   "publishConfig": {
     "access": "public"
   },
