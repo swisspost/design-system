@@ -14,13 +14,11 @@
   },
   "main": "loader/index.cjs.js",
   "module": "loader/index.js",
-  "es2015": "loader/index.es2017.js",
   "es2017": "loader/index.es2017.js",
-  "jsnext:main": "loader/index.es2017.js",
   "types": "loader/index.d.ts",
   "collection": "dist/collection/collection-manifest.json",
   "collection:main": "dist/collection/index.js",
-  "unpkg": "loader/cdn.js",
+  "unpkg": "dist/swisspost-internet-header/swisspost-internet-header.esm.js",
   "publishConfig": {
     "access": "public"
   },
@@ -55,9 +53,9 @@
   },
   "devDependencies": {
     "@babel/core": "7.23.2",
-    "@percy/cli": "1.27.3",
+    "@percy/cli": "1.27.4",
     "@percy/cypress": "3.1.2",
-    "@stencil-community/eslint-plugin": "0.5.0",
+    "@stencil-community/eslint-plugin": "0.6.0",
     "@stencil/sass": "3.0.7",
     "@types/body-scroll-lock": "3.1.1",
     "@types/iframe-resizer": "3.5.11",
@@ -78,7 +76,7 @@
     "rollup-plugin-scss": "4.0.0",
     "rollup-plugin-visualizer": "5.9.2",
     "sass": "1.69.5",
-    "start-server-and-test": "2.0.1",
+    "start-server-and-test": "2.0.2",
     "ts-jest": "27.1.5",
     "typescript": "4.9.5"
   }

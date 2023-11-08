@@ -22,11 +22,15 @@ export const config: Config = {
       type: 'dist-custom-elements',
     },
     {
-      type: 'docs-json',
-      file: 'dist/docs.json',
+      type: 'www',
+      serviceWorker: null, // disable service workers,
     },
     {
       type: 'docs-readme',
+    },
+    {
+      type: 'docs-json',
+      file: 'dist/docs.json',
     },
     reactOutputTarget({
       componentCorePackage: '@swisspost/design-system-components',

@@ -28,7 +28,7 @@ const preview: Preview = {
             'Typography',
             'Color',
             'Layout',
-            ['Breakpoints', 'Grid', 'TODOS'],
+            ['Breakpoints', 'Grid', 'Column', 'TODOS'],
             'Elevation',
             'Accessibility',
           ],
