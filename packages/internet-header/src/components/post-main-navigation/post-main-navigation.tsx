@@ -1,4 +1,4 @@
-import { Component, Host, h, State, Method, Event, Element, EventEmitter } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Method, State } from '@stencil/core';
 import { throttle } from 'throttle-debounce';
 import { state } from '../../data/store';
 import {

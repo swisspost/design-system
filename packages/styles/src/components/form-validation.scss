@@ -1,13 +1,17 @@
 @forward './../variables/options';
 
+@use 'sass:map';
+
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
 @use './../themes/bootstrap/forms/validation' as bfv;
 
 @use './../mixins/color' as color-mx;
 @use './../mixins/utilities' as utilities-mx;
+@use './../mixins/form-validation' as form-validation-mx;
 @use './../variables/color';
 @use './../variables/components/form-validation';
+@use './../variables/components/forms';
 
 .invalid-feedback,
 .valid-feedback {
@@ -40,7 +44,7 @@
 }
 
 @each $state, $data in $form-validation-states {
-  $icon: map-get($data, 'icon');
+  $icon: map.get($data, 'icon');
 
   @include form-validation-state-selector($state) {
     ~ .#{$state}-feedback,
@@ -81,9 +85,14 @@
   }
 }
 
+.is-invalid ~ .invalid-feedback,
+.is-valid ~ .valid-feedback {
+  display: block;
+}
+
 .form-control,
 .form-select {
-  @include form-validation-state-selector(invalid) {
+  @include form-validation-mx.form-validation-state-selector(invalid) {
     border-color: form-validation.$form-feedback-invalid-color;
 
     &:focus {
@@ -94,7 +103,7 @@
 }
 
 .form-check-input {
-  @include form-validation-state-selector(invalid) {
+  @include form-validation-mx.form-validation-state-selector(invalid) {
     border-color: form-validation.$form-feedback-invalid-color;
 
     &:focus {

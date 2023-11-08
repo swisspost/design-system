@@ -1,14 +1,13 @@
-
 import { Component, AfterViewInit, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-alert-demo',
   templateUrl: './alert-demo.component.html',
-  styleUrls: ['./alert-demo.component.scss']
+  styleUrls: ['./alert-demo.component.scss'],
 })
 export class AlertDemoComponent implements AfterViewInit {
-  @ViewChild("dismissible", { static: true }) dismissible: ElementRef;
-  @ViewChild("dismissibleBtn", { static: true }) dismissibleBtn: ElementRef;
+  @ViewChild('dismissible', { static: true }) dismissible: ElementRef;
+  @ViewChild('dismissibleBtn', { static: true }) dismissibleBtn: ElementRef;
 
   ngAfterViewInit(): void {
     this.toggleFixedAlert();
@@ -17,12 +16,12 @@ export class AlertDemoComponent implements AfterViewInit {
   toggleFixedAlert() {
     if (this.dismissible != undefined) {
       const displayStyle = this.dismissible.nativeElement.style.display;
-      if (displayStyle != "none") {
-        this.dismissible.nativeElement.style.display = "none";
-        this.setButtonText("Show fixed alert");
+      if (displayStyle != 'none') {
+        this.dismissible.nativeElement.style.display = 'none';
+        this.setButtonText('Show fixed alert');
       } else {
-        this.dismissible.nativeElement.style.display = "";
-        this.setButtonText("Hide fixed alert");
+        this.dismissible.nativeElement.style.display = '';
+        this.setButtonText('Hide fixed alert');
       }
     }
   }

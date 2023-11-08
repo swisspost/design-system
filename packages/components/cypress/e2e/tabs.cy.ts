@@ -15,16 +15,21 @@ describe('tabs', () => {
 
     it('should only show the first tab header as active', () => {
       cy.get('@headers').each(($header, index) => {
-        cy.wrap($header).find('.active').should(index === 0 ? 'exist' : 'not.exist');
+        cy.wrap($header)
+          .find('.active')
+          .should(index === 0 ? 'exist' : 'not.exist');
       });
     });
 
     it('should only show the tab panel associated with the first tab header', () => {
       cy.get('post-tab-panel:visible').as('panel');
       cy.get('@panel').should('have.length', 1);
-      cy.get('@headers').first().invoke('attr', 'panel').then(panel => {
-        cy.get('@panel').invoke('attr', 'name').should('equal', panel);
-      });
+      cy.get('@headers')
+        .first()
+        .invoke('attr', 'panel')
+        .then(panel => {
+          cy.get('@panel').invoke('attr', 'name').should('equal', panel);
+        });
     });
 
     it('should activate a clicked tab header and deactivate the tab header that was previously activated', () => {
@@ -42,9 +47,12 @@ describe('tabs', () => {
 
       cy.get('post-tab-panel:visible').as('panel');
       cy.get('@panel').should('have.length', 1);
-      cy.get('@headers').last().invoke('attr', 'panel').then(panel => {
-        cy.get('@panel').invoke('attr', 'name').should('equal', panel);
-      });
+      cy.get('@headers')
+        .last()
+        .invoke('attr', 'panel')
+        .then(panel => {
+          cy.get('@panel').invoke('attr', 'name').should('equal', panel);
+        });
     });
   });
 
@@ -57,19 +65,27 @@ describe('tabs', () => {
 
     it('should only show the requested active tab panel', () => {
       cy.get('@panel').should('have.length', 1);
-      cy.get('@tabs').invoke('attr', 'active-panel').then(activePanel => {
-        cy.get('@panel').invoke('attr', 'name').should('equal', activePanel);
-      });
+      cy.get('@tabs')
+        .invoke('attr', 'active-panel')
+        .then(activePanel => {
+          cy.get('@panel').invoke('attr', 'name').should('equal', activePanel);
+        });
     });
 
     it('should show as active only the tab header associated with the requested active tab panel', () => {
-      cy.get('@tabs').invoke('attr', 'active-panel').then(activePanel => {
-        cy.get('@headers').each($header => {
-          cy.wrap($header).invoke('attr', 'panel').then(panel => {
-            cy.wrap($header).find('.active').should(panel === activePanel ? 'exist' : 'not.exist');
+      cy.get('@tabs')
+        .invoke('attr', 'active-panel')
+        .then(activePanel => {
+          cy.get('@headers').each($header => {
+            cy.wrap($header)
+              .invoke('attr', 'panel')
+              .then(panel => {
+                cy.wrap($header)
+                  .find('.active')
+                  .should(panel === activePanel ? 'exist' : 'not.exist');
+              });
           });
         });
-      });
     });
   });
 
@@ -89,9 +105,12 @@ describe('tabs', () => {
 
       cy.get('post-tab-panel:visible').as('panel');
       cy.get('@panel').should('have.length', 1);
-      cy.get('@headers').first().invoke('attr', 'panel').then(panel => {
-        cy.get('@panel').invoke('attr', 'name').should('equal', panel);
-      });
+      cy.get('@headers')
+        .first()
+        .invoke('attr', 'panel')
+        .then(panel => {
+          cy.get('@panel').invoke('attr', 'name').should('equal', panel);
+        });
     });
 
     it('should activate the newly added tab header after clicking on it', () => {
@@ -115,9 +134,11 @@ describe('tabs', () => {
 
       cy.get('post-tab-panel:visible').as('panel');
       cy.get('@panel').should('have.length', 1);
-      cy.get('@new-panel').invoke('attr', 'panel').then(panel => {
-        cy.get('@panel').invoke('attr', 'name').should('equal', panel);
-      });
+      cy.get('@new-panel')
+        .invoke('attr', 'panel')
+        .then(panel => {
+          cy.get('@panel').invoke('attr', 'name').should('equal', panel);
+        });
     });
 
     it('should remove a tab header', () => {

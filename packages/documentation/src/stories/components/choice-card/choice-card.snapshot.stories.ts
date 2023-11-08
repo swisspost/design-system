@@ -31,7 +31,7 @@ export const ChoiceCard: StoryObj = {
               ${bombedArgs.map(
                 args =>
                   html`
-                    <div class="col-sm-6">${choiceCardDefault(args)}</div>
+                    <div class="col-sm-6">${choiceCardDefault({ ...args, icon: 1000 })}</div>
                   `,
               )}
             </div>

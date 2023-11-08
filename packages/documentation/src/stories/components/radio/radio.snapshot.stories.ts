@@ -25,6 +25,7 @@ export const Radio: Story = {
                   ],
                   checked: [false, true],
                   disabled: [false, true],
+                  size: ['null', 'form-check-sm'],
                   validation: context.argTypes.validation.options,
                 }),
                 ...bombArgs({

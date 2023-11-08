@@ -1,0 +1,37 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import * as accordionStories from './accordion.stories';
+import SampleCustomTrigger from './accordion-custom-trigger.sample?raw';
+
+<Meta of={accordionStories} />
+
+# Accordion
+
+<p className="lead">Toggle the visibility of a set of related content in your project.</p>
+
+The `<post-accordion>` is a container for `<post-collapsible>` components.
+It is used to manage how content is shown and hidden within across a set of collapsible elements.
+
+<Canvas of={accordionStories.Default} />
+
+<Controls of={accordionStories.Default} />
+
+## Examples
+
+### Multiple Open Panels
+
+By default, whenever a panel is opened manually or programmatically, any other open panel is closed.
+To allow multiple panels to be open at the same time, simply use the `multiple="true"` property.
+
+<Canvas of={accordionStories.MultipleOpenPanels} />
+
+### Custom Trigger
+
+The `<post-accordion>` offers several methods to expand or collapse the `<post-collapsible>` it contains.
+
+Expand or collapse all elements at once using `.expandAll()` and `.collapseAll()` respectively,
+or toggle just one using `.toggle()` specifying the id of the element you want to act on.
+
+<Source
+  code={SampleCustomTrigger}
+  language="typescript"
+/>

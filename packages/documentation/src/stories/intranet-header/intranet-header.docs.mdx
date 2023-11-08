@@ -1,4 +1,5 @@
 import { ArgTypes, Meta, Source } from '@storybook/blocks';
+import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
 import * as IntranetHeaderStories from './intranet-header.stories';
 import SampleUse from './intranet-header-use.sample?raw';
 import SampleNavigationBar from './intranet-header-navigation-bar.sample.html?raw';
@@ -11,7 +12,6 @@ import SamplePostweb from './intranet-header-postweb.sample.html?raw';
 
 [![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header)
 
-{/* prettier-ignore */}
 <div className="alert alert-info alert-md">
   <h2 className="alert-heading">Angular only component</h2>
   <p>The intranet header is an <a href="//Angular.io" target="_blank">Angular</a> component, as such it only works
@@ -22,13 +22,19 @@ The Header Angular component for internal usage.
 
 <ul>
   <li>
-    <a href="#installation" target="_self">Installation</a>
+    <a href="#installation" target="_self">
+      Installation
+    </a>
   </li>
   <li>
-    <a href="#usage" target="_self">Usage</a>
+    <a href="#usage" target="_self">
+      Usage
+    </a>
   </li>
   <li>
-    <a href="#examples" target="_self">Examples</a>
+    <a href="#examples" target="_self">
+      Examples
+    </a>
   </li>
 </ul>
 
@@ -83,14 +89,18 @@ The Header Angular component for internal usage.
 
 ## Examples
 
-### Header with a navigation bar
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="headerNavbar">Header with a navigation bar</PostTabHeader>
+  <PostTabPanel name="headerNavbar">
+    <Source code={SampleNavigationBar} language="html" />
+  </PostTabPanel>
 
-<Source code={SampleNavigationBar} language="html" />
-
-### Header with a side navigation
-
-<Source code={SampleSideNavigation} language="html" />
-
-### "Postweb" intranet header
-
-<Source code={SamplePostweb} language="html" />
+  <PostTabHeader slot="tabs" panel="headerSideNavigation">Header with a side navigation</PostTabHeader>
+  <PostTabPanel name="headerSideNavigation">
+    <Source code={SampleSideNavigation} language="html" />
+  </PostTabPanel>
+  <PostTabHeader slot="tabs" panel="headerPostweb">"Postweb" intranet header</PostTabHeader>
+  <PostTabPanel name="headerPostweb">
+    <Source code={SamplePostweb} language="html" />
+  </PostTabPanel>
+</PostTabs>

@@ -144,7 +144,9 @@
     transform: rotateZ(315deg)
       translate(button.$btn-border-width * -1, button.$btn-border-width * -1);
     transform-origin: center center;
-    transition: opacity 250ms, transform 250ms;
+    transition:
+      opacity 250ms,
+      transform 250ms;
     border-right: button.$btn-border-width solid currentColor;
     border-bottom: button.$btn-border-width solid currentColor;
     opacity: 0;
@@ -152,8 +154,10 @@
 
   @each $size in button.$btn-non-default-sizes {
     &.btn-#{$size}::after {
-      right: map.get(button.$btn-padding-x-map, $size) -
-        map.get(button.$btn-animation-distance-map, $size);
+      right: map.get(button.$btn-padding-x-map, $size) - map.get(
+          button.$btn-animation-distance-map,
+          $size
+        );
     }
   }
 

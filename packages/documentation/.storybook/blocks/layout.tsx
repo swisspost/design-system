@@ -18,12 +18,13 @@ export default (props: PropsWithChildren<DocsContainerProps>) => {
     context.channel.data.docsPrepared[0].parameters.layout === 'fullscreen'
       ? 'container-fluid'
       : 'container';
+  const pathToStoryFile = context.storyIdToCSFFile.values().next().value.meta.parameters.fileName;
   return (
     <DocsContainer context={context}>
       <Unstyled>
         {shouldShowHeader() && <Header />}
         <div className={container}>{children}</div>
-        {shouldShowFooter() && <Footer />}
+        {shouldShowFooter() && <Footer pathToStoryFile={pathToStoryFile} />}
       </Unstyled>
     </DocsContainer>
   );

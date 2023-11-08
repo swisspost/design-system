@@ -1,0 +1,59 @@
+@use './../themes/bootstrap/core' as *;
+
+@use './../variables/components/badge';
+
+%badge {
+  @include border-radius($badge-border-radius);
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: badge.$badge-gap;
+  padding: $badge-padding-y $badge-padding-x;
+  border: badge.$badge-border-width solid badge.$badge-border-color;
+  height: badge.$badge-height;
+  font-size: badge.$badge-font-size;
+  font-weight: $badge-font-weight;
+  line-height: inherit;
+  color: $badge-color;
+  text-align: center;
+  vertical-align: baseline;
+  max-width: 100%;
+
+  > span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  > .badge {
+    padding: $size-micro;
+    height: badge.$badge-nested-height;
+    min-width: badge.$badge-nested-height;
+    color: badge.$badge-nested-color;
+    background-color: badge.$badge-nested-bg-color;
+    border-color: badge.$badge-nested-border-color;
+    font-size: badge.$badge-nested-font-size;
+  }
+
+  > .badge,
+  > .btn-close {
+    margin-right: -1 * (badge.$badge-padding-x - badge.$badge-nested-translate-x);
+  }
+
+  &.badge-sm {
+    height: badge.$badge-height-sm;
+    font-size: badge.$badge-font-size-sm;
+    gap: badge.$badge-gap-sm;
+
+    > .badge,
+    > .btn-close {
+      margin-right: -1 * (badge.$badge-padding-x - badge.$badge-nested-translate-x-sm);
+    }
+  }
+
+  // Quick fix for badges in buttons
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+}

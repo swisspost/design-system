@@ -16,9 +16,7 @@ export const Heading: Story = {
       <div>
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div
-              class="${bg} d-flex flex-column gap-regular p-regular mt-regular"
-            >
+            <div class="${bg} d-flex flex-column gap-regular p-regular mt-regular">
               ${bombArgs({
                 title: [
                   'Lorem ipsum dolor sit',
