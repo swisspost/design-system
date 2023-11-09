@@ -2,7 +2,7 @@
 '@swisspost/design-system-components-angular': major
 ---
 
-We are introducing the new package `@swisspost/design-system-components-angular` 🥳, which provides a corresponding Angular component for all our components.
+We are introducing the new package `@swisspost/design-system-components-angular` 🥳, which provides a corresponding Angular component for all our web-components.
 For those working on an Angular app this means:
 
 - Instead of the package `@swisspost/design-system-components`, which provides native web components, the new package can be used.
