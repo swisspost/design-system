@@ -2,4 +2,4 @@
 '@swisspost/design-system-demo': minor
 ---
 
-Dismissible alerts are deprecated and will be removed next version.
+Deprecated standard HTML alerts with a close button in favor of the `post-alert` component designed to correctly handle the dismissal animation.
