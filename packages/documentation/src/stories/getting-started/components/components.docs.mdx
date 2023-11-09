@@ -1,9 +1,9 @@
 import { Meta, Source } from '@storybook/blocks';
 import * as GettingStartedStories from './components.stories';
 import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
-import SampleCdnAll from './components-cdn-all.sample.html?raw';
-import SampleCdnEsmAll from './components-cdn-esm-all.sample.html?raw';
-import SampleCdnEsmSpecific from './components-cdn-esm-specific.sample.html?raw';
+import SampleCdnBareComponent from './components-cdn-bare-component-all.sample.html?raw';
+import SampleCdnLazyLoadedAll from './components-cdn-lazy-loaded-all.sample.html?raw';
+import SampleCdnLazyLoadedSpecific from './components-cdn-lazy-loaded-specific.sample.html?raw';
 import SampleJsAll from './components-js-all.sample?raw';
 import SampleJsSpecific from './components-js-specific.sample?raw';
 
@@ -16,40 +16,13 @@ import SampleJsSpecific from './components-js-specific.sample?raw';
 A set of standard Web Components for easy integration with every framework or no framework at all.<br/>
 Depending on your project setup, there are different ways available to integrate our components.
 
-## Consume components without a framework
-
-If you're using a simple HTML page, you can add our components via a script tag.
-
-<PostTabs>
-  <PostTabHeader slot="tabs" panel="cdn-all">cdn</PostTabHeader>
-  <PostTabPanel name="cdn-all">
-    You can integrate them all (lazy-loaded and self-defining) by simply adding a script tag with the source set to our cdn file.
-    <Source code={SampleCdnAll} language="html" />
-  </PostTabPanel>
-
-  <PostTabHeader slot="tabs" panel="cdn-esm-all">cdn (esm)</PostTabHeader>
-  <PostTabPanel name="cdn-esm-all">
-    If you want to take advantage of ES Modules, you can include our components using an import
-    statement.
-    <Source code={SampleCdnEsmAll} language="html" />
-    This way, you can also include only specific components...
-    <Source code={SampleCdnEsmSpecific} language="html" />
-  </PostTabPanel>
-
-</PostTabs>
-
-## Components with JavaScript bundler
-
-If you're working with a project setup which handels the bundling for you, you need to install our package first.<br/>
-Afterwards, you can simply import our components into your project.
-
-### Installation
+## Installation
 
 {/* https://stenciljs.com/docs/custom-elements#consuming-custom-elements */}
 
 <Source code={`npm install @swisspost/design-system-components`} language="bash" />
 
-### Usage
+## Usage
 
 Import all or only specific components into your entry file (e.g. `main.js`, `app.js`, ...).
 
@@ -69,3 +42,28 @@ Use the imported components in your html:
   code={`<post-icon name="1000"></post-icon>`}
   language="html"
 />
+
+## Include from a CDN
+
+If you are not using any bundler or don't want to install from npm, you can load our components from your favorite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).
+Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
+
+Available CDNs:
+
+- [jsDelivr](https://www.jsdelivr.com/): replace `{cdnURL}` with [https://cdn.jsdelivr.net/npm/@swisspost/design-system-components](https://cdn.jsdelivr.net/npm/@swisspost/design-system-components).
+- [unpkg](https://unpkg.com/): replace `{cdnURL}` with [https://unpkg.com/@swisspost/design-system-components](https://unpkg.com/@swisspost/design-system-components).
+
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="lazy-loaded">Lazy-Loaded</PostTabHeader>
+  <PostTabPanel name="lazy-loaded">
+    Load all components at once
+    <Source code={SampleCdnLazyLoadedAll} language="html" />
+    Load specific components only
+    <Source code={SampleCdnLazyLoadedSpecific} language="html" />
+  </PostTabPanel>
+
+  <PostTabHeader slot="tabs" panel="bare-component">Bare component</PostTabHeader>
+  <PostTabPanel name="bare-component">
+    <Source code={SampleCdnBareComponent} language="html" />
+  </PostTabPanel>
+</PostTabs>
