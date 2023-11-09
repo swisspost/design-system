@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-components-angular': minor
+'@swisspost/design-system-components-angular': major
 ---
 
 We are introducing the new package `@swisspost/design-system-components-angular` 🥳, which provides a corresponding Angular component for all our components.
