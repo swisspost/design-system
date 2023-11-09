@@ -35,10 +35,10 @@ div {
 }
 
 .arrow {
-  $arrow-size: math.div(spacing.$spacer, math.sqrt(2));
-  position: absolute;
   // Diagonale of 16px -> 1rem -> 1/1.41 = ~0.7
   // https://www.omnicalculator.com/math/square-diagonal?c=CHF&v=hide:0,diagonal:16!cm
+  $arrow-size: math.div(spacing.$spacer, math.sqrt(2));
+  position: absolute;
   width: $arrow-size;
   height: $arrow-size;
   background-color: inherit;
