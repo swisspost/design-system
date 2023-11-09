@@ -10,7 +10,7 @@
   overflow-y: visible;
 
   .dropdown-item {
-    padding: spacing.$size-small-regular spacing.$size-large;
+    padding: spacing.$size-small-regular 0;
   }
 
   .language-menu {
@@ -23,6 +23,7 @@
       border-left: 0;
       border-radius: 0;
       text-align: center;
+      overflow: initial;
 
       &:last-child {
         border-right: 0;

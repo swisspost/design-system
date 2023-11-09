@@ -8,9 +8,8 @@ describe('ContextualButtonsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ContextualButtonsComponent ]
-    })
-    .compileComponents();
+      declarations: [ContextualButtonsComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {

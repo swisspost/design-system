@@ -6,12 +6,32 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { AlertType } from "./components/post-alert/alert-types";
+import { HeadingLevel } from "./components/post-collapsible/heading-levels";
 import { BackgroundColor } from "./components/post-tooltip/types";
 import { Placement } from "@floating-ui/dom";
 export { AlertType } from "./components/post-alert/alert-types";
+export { HeadingLevel } from "./components/post-collapsible/heading-levels";
 export { BackgroundColor } from "./components/post-tooltip/types";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
+    interface PostAccordion {
+        /**
+          * Collapses all `post-collapsible` children.
+         */
+        "collapseAll": () => Promise<void>;
+        /**
+          * Expands all `post-collapsible` children.  If `close-others` is `true` and all items are closed, it will open the first one. Otherwise, it will keep the opened one.
+         */
+        "expandAll": () => Promise<void>;
+        /**
+          * If `true`, multiple `post-collapsible` can be open at the same time.
+         */
+        "multiple": boolean;
+        /**
+          * Toggles the `post-collapsible` children with the given id.
+         */
+        "toggle": (id: string) => Promise<void>;
+    }
     interface PostAlert {
         /**
           * Triggers alert dismissal programmatically (same as clicking on the close button (×)).
@@ -59,9 +79,9 @@ export namespace Components {
         /**
           * Defines the hierarchical level of the collapsible header within the headings structure.
          */
-        "headingLevel"?: number;
+        "headingLevel"?: HeadingLevel;
         /**
-          * Triggers the collapse programmatically.
+          * Triggers the collapse programmatically.  If there is a collapsing transition running already, it will be reversed.
          */
         "toggle": (open?: boolean) => Promise<boolean>;
     }
@@ -150,12 +170,33 @@ export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostAlertElement;
 }
+export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostCollapsibleElement;
+}
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostTabsElement;
 }
 declare global {
+    interface HTMLPostAccordionElement extends Components.PostAccordion, HTMLStencilElement {
+    }
+    var HTMLPostAccordionElement: {
+        prototype: HTMLPostAccordionElement;
+        new (): HTMLPostAccordionElement;
+    };
+    interface HTMLPostAlertElementEventMap {
+        "dismissed": void;
+    }
     interface HTMLPostAlertElement extends Components.PostAlert, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostAlertElementEventMap>(type: K, listener: (this: HTMLPostAlertElement, ev: PostAlertCustomEvent<HTMLPostAlertElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostAlertElementEventMap>(type: K, listener: (this: HTMLPostAlertElement, ev: PostAlertCustomEvent<HTMLPostAlertElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostAlertElement: {
         prototype: HTMLPostAlertElement;
@@ -170,7 +211,18 @@ declare global {
         prototype: HTMLPostCardControlElement;
         new (): HTMLPostCardControlElement;
     };
+    interface HTMLPostCollapsibleElementEventMap {
+        "collapseChange": void;
+    }
     interface HTMLPostCollapsibleElement extends Components.PostCollapsible, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostCollapsibleElementEventMap>(type: K, listener: (this: HTMLPostCollapsibleElement, ev: PostCollapsibleCustomEvent<HTMLPostCollapsibleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostCollapsibleElementEventMap>(type: K, listener: (this: HTMLPostCollapsibleElement, ev: PostCollapsibleCustomEvent<HTMLPostCollapsibleElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostCollapsibleElement: {
         prototype: HTMLPostCollapsibleElement;
@@ -197,7 +249,18 @@ declare global {
         prototype: HTMLPostTabPanelElement;
         new (): HTMLPostTabPanelElement;
     };
+    interface HTMLPostTabsElementEventMap {
+        "tabChange": HTMLPostTabPanelElement['name'];
+    }
     interface HTMLPostTabsElement extends Components.PostTabs, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostTabsElementEventMap>(type: K, listener: (this: HTMLPostTabsElement, ev: PostTabsCustomEvent<HTMLPostTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostTabsElementEventMap>(type: K, listener: (this: HTMLPostTabsElement, ev: PostTabsCustomEvent<HTMLPostTabsElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostTabsElement: {
         prototype: HTMLPostTabsElement;
@@ -210,6 +273,7 @@ declare global {
         new (): HTMLPostTooltipElement;
     };
     interface HTMLElementTagNameMap {
+        "post-accordion": HTMLPostAccordionElement;
         "post-alert": HTMLPostAlertElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
@@ -221,6 +285,12 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    interface PostAccordion {
+        /**
+          * If `true`, multiple `post-collapsible` can be open at the same time.
+         */
+        "multiple"?: boolean;
+    }
     interface PostAlert {
         /**
           * The label to use for the close button of a dismissible alert.
@@ -268,7 +338,11 @@ declare namespace LocalJSX {
         /**
           * Defines the hierarchical level of the collapsible header within the headings structure.
          */
-        "headingLevel"?: number;
+        "headingLevel"?: HeadingLevel;
+        /**
+          * An event emitted when the collapse element is shown or hidden, before the transition. It has no payload.
+         */
+        "onCollapseChange"?: (event: PostCollapsibleCustomEvent<void>) => void;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -336,6 +410,7 @@ declare namespace LocalJSX {
         "placement"?: Placement;
     }
     interface IntrinsicElements {
+        "post-accordion": PostAccordion;
         "post-alert": PostAlert;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
@@ -350,6 +425,7 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
             /**
              * @class PostCardControl - representing a stencil component

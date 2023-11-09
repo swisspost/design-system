@@ -14,7 +14,7 @@ import * as RadioStories from './radio.stories';
 
 Our radios use custom icons to indicate checked states.
 
-<Canvas of={RadioStories.Default} />
+<Canvas sourceState="shown" of={RadioStories.Default} />
 <div className="hide-col-default">
   <Controls of={RadioStories.Default} />
 </div>
@@ -24,6 +24,15 @@ Our radios use custom icons to indicate checked states.
 ## Concrete Examples of Application
 
 The following examples show the different characteristics of the component. These can differ in the type of visualization, the HTML structure, as well as when, how and why they are displayed.
+
+### Sizing
+
+The size can be changed by simply adding a class:
+
+- Small: `.form-check-sm`
+- Large: default
+
+<Canvas of={RadioStories.Size} />
 
 ### Inline
 

@@ -88,17 +88,18 @@
 .form-floating {
   .form-control,
   .form-control + label {
-    padding-right: post.$input-padding-x * 3;
+    padding-right: post.$input-padding-x * 5;
   }
 }
 
-.start-search-button {
+.start-search-button,
+.clear-search-button {
   position: absolute;
   top: 0;
   right: 0;
   height: 100%;
   padding-right: 1rem;
-  padding-left: 1rem;
+  padding-left: 0.5rem;
   display: flex;
   align-items: center;
   cursor: pointer;
@@ -110,6 +111,12 @@
     width: 1.5rem;
     height: 1.5rem;
   }
+}
+
+.clear-search-button {
+  right: 3rem;
+  padding-right: 0.5rem;
+  visibility: hidden;
 }
 
 .suggestions {

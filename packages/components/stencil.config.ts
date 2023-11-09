@@ -18,11 +18,11 @@ export const config: Config = {
       type: 'dist-custom-elements',
     },
     {
-      type: 'docs-readme',
+      type: 'www',
+      serviceWorker: null, // disable service workers,
     },
     {
-      type: 'www',
-      serviceWorker: null, // disable service workers
+      type: 'docs-readme',
     },
     {
       type: 'docs-json',
@@ -31,6 +31,7 @@ export const config: Config = {
   ],
   plugins: [
     sass({
+      outputStyle: 'compressed',
       includePaths: ['node_modules'],
     }),
   ],

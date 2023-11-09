@@ -1,13 +1,13 @@
 const fadeDuration = 200;
-const fadedOutKeyFrame = {opacity: '0'};
-const fadedInKeyFrame = {opacity: '1'};
+const fadedOutKeyframe: Keyframe = {opacity: '0'};
+const fadedInKeyframe: Keyframe = {opacity: '1'};
 
 export const fadeIn = (el: Element): Animation => el.animate(
-  [ fadedOutKeyFrame, fadedInKeyFrame ],
+  [ fadedOutKeyframe, fadedInKeyframe ],
   { duration: fadeDuration }
 );
 
 export const fadeOut = (el: Element): Animation => el.animate(
-  [ fadedInKeyFrame, fadedOutKeyFrame ],
+  [ fadedInKeyframe, fadedOutKeyframe ],
   { duration: fadeDuration }
 );

@@ -66,6 +66,12 @@ const meta: Meta = {
         category: 'Optional props',
       },
     },
+    logoutUrl: {
+      control: false,
+      table: {
+        category: 'Optional props',
+      },
+    },
     languageLocalStorageKey: {
       control: false,
       table: {
