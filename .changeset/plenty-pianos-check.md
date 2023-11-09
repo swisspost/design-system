@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Fixed flash of default icon when using post-icon on alerts.
+Fixed default icon flashing when using a `post-icon` on alerts.
