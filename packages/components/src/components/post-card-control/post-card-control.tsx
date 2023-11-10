@@ -191,6 +191,7 @@ export class PostCardControl {
       if (this.group.members.length > 0) {
         this.group.first = this.group.members[0];
         this.group.last = this.group.members[this.group.members.length - 1];
+        // TODO: fix checked, which is sometimes not set correctly after groupEventHandler, when changing the checked radio group element with keyboard
         this.group.checked = this.group.members.find(m => m.checked) ?? null;
         this.group.focusable = this.group.checked ?? this.group.first;
 
@@ -217,7 +218,7 @@ export class PostCardControl {
     if (!this.disabled) {
       this.checked = this.control == e.detail;
       if (this.checked) this.control.focus();
-      setTimeout(this.groupCollectMembers, 250);
+      this.groupCollectMembers();
     }
   }
 
