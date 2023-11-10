@@ -1,5 +1,17 @@
 # @swisspost/internet-header
 
+## 1.13.0
+
+### Minor Changes
+
+- Added a link to settings in the user drop-down menu for business users. (by [@alizedebray](https://github.com/alizedebray) with [#2234](https://github.com/swisspost/design-system/pull/2234))
+
+### Patch Changes
+
+- Replaced the old twitter logo with the new X logo. (by [@b1aserlu](https://github.com/b1aserlu) with [#2176](https://github.com/swisspost/design-system/pull/2176))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.4
+
 ## 1.12.1
 
 ### Patch Changes

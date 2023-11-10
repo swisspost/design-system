@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "1.0.21",
+  "version": "1.0.22",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -19,7 +19,7 @@
     "tsc": "tsc -p ."
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:1.6.1"
+    "@swisspost/design-system-components": "workspace:1.6.2"
   },
   "devDependencies": {
     "@types/node": "18.18.8",
