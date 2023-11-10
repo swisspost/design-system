@@ -38,13 +38,13 @@ jobs:
         run: pnpm --filter design-system-documentation... build
 
       - name: Upload documentation
-        uses: ./.github/actions/artifact-upload@main
+        uses: ./.github/actions/artifact-upload
         with:
           name: design-system-documentation
           folder: packages/documentation/storybook-static
 
       - name: Upload internet header package
-        uses: ./.github/actions/artifact-upload@main
+        uses: ./.github/actions/artifact-upload
         with:
           name: internet-header
           folder: packages/internet-header/dist
