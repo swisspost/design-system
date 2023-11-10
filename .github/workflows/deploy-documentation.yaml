@@ -25,14 +25,14 @@ jobs:
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
       - name: Download build artifacts
-        uses: swisspost/design-system/.github/actions/artifact-download@main
+        uses: ./.github/actions/artifact-download
         id: build
         with:
           name: design-system-documentation
           folder: build-output
 
       - name: Deploy documentation to netlify
-        uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
+        uses: ./.github/actions/deploy-to-netlify
         id: deploy
         with:
           id: ${{ steps.build.outputs.id }}

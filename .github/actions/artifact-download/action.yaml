@@ -48,6 +48,9 @@ runs:
         run_id: ${{ github.event.workflow_run.id }}
         workflow_conclusion: success
 
+    - name: Unzip artifacts
+      run: unzip artifacts.zip
+
     - name: Create outputs
       id: build
       shell: bash
