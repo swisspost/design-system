@@ -49,6 +49,7 @@ runs:
         workflow_conclusion: success
 
     - name: Unzip artifacts
+      shell: bash
       run: unzip artifacts.zip
 
     - name: Create outputs
