@@ -63,13 +63,53 @@ export namespace Components {
      */
     interface PostCardControl {
         /**
-          * Defines the `id` of the input inside the card.
+          * Defines the `checked` attribute of the control.
          */
-        "inputid": string;
+        "checked"?: boolean;
         /**
-          * Defines the `type` of the input inside the card.
+          * Defines the `id` attribute of the control.
+         */
+        "controlId": string;
+        /**
+          * Defines the description in the control-label.
+         */
+        "description"?: string;
+        /**
+          * Defines the `disabled` attribute of the control.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the `form` attribute of the control.
+         */
+        "form"?: string;
+        /**
+          * Defines the icon `name` inside of the card. If not set the icon will not show up.
+         */
+        "icon"?: string;
+        /**
+          * Defines the text in the control-label.
+         */
+        "label": string;
+        /**
+          * Defines the `name` attribute of the control.
+         */
+        "name"?: string;
+        /**
+          * Defines the `required` attribute of the control.
+         */
+        "required"?: boolean;
+        /**
+          * Defines the validation `state` of the control.
+         */
+        "state": boolean;
+        /**
+          * Defines the `type` attribute of the control.
          */
         "type": string;
+        /**
+          * Defines the `value` attribute of the control.
+         */
+        "value"?: string;
     }
     interface PostCollapsible {
         /**
@@ -322,13 +362,53 @@ declare namespace LocalJSX {
      */
     interface PostCardControl {
         /**
-          * Defines the `id` of the input inside the card.
+          * Defines the `checked` attribute of the control.
          */
-        "inputid"?: string;
+        "checked"?: boolean;
         /**
-          * Defines the `type` of the input inside the card.
+          * Defines the `id` attribute of the control.
+         */
+        "controlId": string;
+        /**
+          * Defines the description in the control-label.
+         */
+        "description"?: string;
+        /**
+          * Defines the `disabled` attribute of the control.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the `form` attribute of the control.
+         */
+        "form"?: string;
+        /**
+          * Defines the icon `name` inside of the card. If not set the icon will not show up.
+         */
+        "icon"?: string;
+        /**
+          * Defines the text in the control-label.
+         */
+        "label": string;
+        /**
+          * Defines the `name` attribute of the control.
+         */
+        "name"?: string;
+        /**
+          * Defines the `required` attribute of the control.
+         */
+        "required"?: boolean;
+        /**
+          * Defines the validation `state` of the control.
+         */
+        "state"?: boolean;
+        /**
+          * Defines the `type` attribute of the control.
          */
         "type"?: string;
+        /**
+          * Defines the `value` attribute of the control.
+         */
+        "value"?: string;
     }
     interface PostCollapsible {
         /**

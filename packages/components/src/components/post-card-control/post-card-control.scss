@@ -2,6 +2,10 @@
 @use '@swisspost/design-system-styles/components/form-check';
 
 :host {
+  display: block;
+}
+
+.card-control {
   --post-card-control-bg: #{post.$white};
   --post-card-control-border-color: #{post.$gray-60};
   --post-card-control-color: #{post.$gray-80};
@@ -11,49 +15,114 @@
   background-color: var(--post-card-control-bg);
   border: post.$size-line solid var(--post-card-control-border-color);
   border-radius: post.$border-radius;
-  color: var(--post-card-control-color);
+
   cursor: pointer;
   transition: color 100ms ease-in-out, background-color 100ms ease-in-out,
     border-color 100ms ease-in-out;
+
+  &:not(.is-disabled) {
+    &:hover {
+      --post-card-control-bg: #{post.$gray-10};
+      --post-card-control-border-color: #{post.$black};
+      --post-card-control-color: #{post.$black};
+    }
+
+    &.is-checked {
+      --post-card-control-bg: #{post.$yellow};
+
+      .card-control--content {
+        display: block;
+      }
+    }
+
+    &.is-invalid {
+      --post-card-control-border-color: #{post.$danger};
+      --post-card-control-color: #{post.$danger};
+
+      &:hover {
+        --post-card-control-border-color: #{post.$danger};
+        --post-card-control-color: #{post.$danger};
+      }
+    }
+  }
+
+  &.is-focused {
+    // needed for Firefox until the :has selector is implemented correctly
+    // downside: outline is drawn also when clicking with the mouse on the checkbox element directly
+    @supports not selector(:has(.header--input:focus-visible)) {
+      --post-card-control-border-color: #{post.$black};
+      --post-card-control-color: #{post.$black};
+
+      outline-offset: post.$input-focus-outline-thickness;
+      outline: post.$input-focus-outline-thickness solid post.$focus;
+    }
+
+    &:where(:has(.header--input:focus-visible)) {
+      --post-card-control-border-color: #{post.$black};
+      --post-card-control-color: #{post.$black};
+
+      outline-offset: post.$input-focus-outline-thickness;
+      outline: post.$input-focus-outline-thickness solid post.$focus;
+    }
+  }
+
+  &.is-disabled {
+    --post-card-control-border-color: #{post.$gray-40};
+    --post-card-control-color: #{post.$gray-40};
+    cursor: default;
+
+    &.is-checked {
+      --post-card-control-bg: #{post.$gray-10};
+      border-color: var(--post-card-control-bg);
+    }
+  }
 }
 
 .card-control--header {
   display: flex;
   gap: 0 post.$size-mini;
-}
+  color: var(--post-card-control-color);
 
-.header--input {
-  margin: post.$size-micro 0;
-  background-color: post.$white;
-  border-color: var(--post-card-control-border-color);
-  transition: border-color 100ms ease-in-out;
-}
+  .header--input {
+    flex: 0 0 auto;
+    margin: post.$size-micro 0;
+    background-color: post.$white;
+    border-color: var(--post-card-control-border-color) !important;
+    color: inherit !important;
+    cursor: inherit;
+    transition: border-color 100ms ease-in-out;
 
-.header--label {
-  flex-grow: 2;
-  margin: post.$size-micro 0;
-}
+    &:focus,
+    &:focus-visible {
+      box-shadow: none;
+    }
 
-.header--description {
-  font-size: 0.75rem;
-}
+    ~ .header--label {
+      flex-grow: 2;
+      margin: post.$size-micro 0;
+      color: inherit !important;
+      pointer-events: none;
+    }
+  }
 
-.header--icon {
-  width: post.$size-big;
-  height: post.$size-big;
-  pointer-events: none;
+  .header--description {
+    font-size: 0.75rem;
+  }
+
+  .header--icon {
+    flex: 0 0 auto;
+    width: post.$size-big;
+    height: post.$size-big;
+    pointer-events: none;
+
+    > slot > * {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
 .card-control--content {
+  display: none;
   margin-left: post.$form-check-input-size + post.$size-mini;
-}
-
-:host(:hover:not(.checked, .disabled)) {
-  --post-card-control-bg: #{post.$gray-10};
-  --post-card-control-border-color: #{post.$black};
-  --post-card-control-color: #{post.$black};
-}
-
-:host(.checked) {
-  --post-card-control-bg: #{post.$yellow};
 }
