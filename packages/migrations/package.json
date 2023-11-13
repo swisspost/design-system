@@ -1,0 +1,40 @@
+{
+  "name": "@swisspost/design-system-migrations",
+  "version": "0.0.0",
+  "description": "Scripts to migrate an Angular application from one Design System version to another.",
+  "author": "Swiss Post <oss@post.ch>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "publishConfig": {
+    "directory": "./dist",
+    "access": "public",
+    "linkDirectory": true
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "test": "npm run build && jasmine src/**/*_spec.js"
+  },
+  "keywords": [
+    "schematics"
+  ],
+  "dependencies": {
+    "@angular-devkit/core": "=15.0.4",
+    "@angular-devkit/schematics": "=15.0.4",
+    "@angular/core": "=15.0.4",
+    "cheerio": "1.0.0-rc.12",
+    "prettier": "^3.1.0",
+    "typescript": "~4.9.3"
+  },
+  "devDependencies": {
+    "@types/jasmine": "~4.3.0",
+    "@types/node": "^14.15.0",
+    "jasmine": "^4.0.0"
+  },
+  "schematics": "./src/migrations.json",
+  "ng-update": {
+    "migrations": "./src/migrations.json"
+  }
+}
