@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Default, AccentColors, ContextualColors } from './button.stories';
 import { html } from 'lit';
-import { bombArgs } from '../../../utils/bombArgs';
+import { bombArgs } from '../../../utils';
 
 export default {
   ...meta,

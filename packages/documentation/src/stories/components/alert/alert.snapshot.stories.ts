@@ -1,7 +1,7 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spreadArgs } from '../../../utils';
-import { bombArgs } from '../../utilities/bombArgs';
+import { bombArgs } from '../../../utils';
 import alertMeta from './standard-html/alert.stories';
 import { getAlertClasses } from './standard-html/getAlertClasses';
 
@@ -17,7 +17,7 @@ export const Alert: Story = {
     <div class="d-flex gap-3 flex-wrap">
       ${['bg-white', 'bg-dark'].map(
         bg => html`
-          <div class=${bg + ' d-flex flex-column gap-3 flex-wrap p-3'}>
+          <div class="${bg + ' d-flex flex-column gap-3 flex-wrap p-3'}">
             ${bombArgs({
               type: alertMeta?.argTypes?.type?.options,
               icon: ['no-icon', undefined, '1001'],
@@ -116,7 +116,7 @@ export const PostAlert: Story = {
                 args => html`
                   <post-alert
                     ${spreadArgs(args)}
-                    dismiss-label=${args.dismissible ? 'Dismiss' : undefined}
+                    dismiss-label="${args.dismissible ? 'Dismiss' : undefined}"
                   ></post-alert>
                 `,
               )}
