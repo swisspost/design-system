@@ -18,22 +18,17 @@
     "linkDirectory": true
   },
   "scripts": {
-    "start": "npm-run-all --parallel styles:start schematics:start",
-    "styles:start": "gulp watch",
+    "start": "gulp watch",
     "prebuild": "pnpm clean",
-    "build": "npm-run-all --parallel styles:build schematics:build",
-    "styles:build": "gulp build",
+    "build": "gulp build",
     "unit": "gulp sass:tests",
     "clean": "rimraf out-tsc dist",
     "format": "prettier src/**/*.scss --write",
     "lint": "stylelint src/**/*.scss",
-    "lint:fix": "stylelint src/**/*.scss --fix",
-    "schematics:start": "copyfiles schematics/migrations.json dist && tsc -p tsconfig.schematics.json --watch",
-    "schematics:build": "copyfiles schematics/migrations.json dist && tsc -p tsconfig.schematics.json"
+    "lint:fix": "stylelint src/**/*.scss --fix"
   },
   "dependencies": {
     "@angular-devkit/core": "=15.0.4",
-    "@angular-devkit/schematics": "=15.0.4",
     "@angular/core": "=15.0.4",
     "@popperjs/core": "2.11.8",
     "bootstrap": "5.3.2",
@@ -74,9 +69,5 @@
     ],
     "outputDir": "./dist",
     "tscOutDir": "./out-tsc/lib"
-  },
-  "schematics": "./schematics/migrations.json",
-  "ng-update": {
-    "migrations": "./schematics/migrations.json"
   }
 }

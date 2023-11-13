@@ -16,6 +16,5 @@
     "strictNullChecks": true,
     "skipLibCheck": true
   },
-  "include": ["schematics"],
   "exclude": ["node_modules"]
 }
