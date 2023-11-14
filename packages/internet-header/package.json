@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "1.12.1",
+  "version": "1.13.0",
   "description": "The header for client facing applications.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -43,7 +43,7 @@
   "dependencies": {
     "@stencil/core": "4.7.0",
     "@stencil/store": "2.0.11",
-    "@swisspost/design-system-styles": "workspace:6.4.3",
+    "@swisspost/design-system-styles": "workspace:6.4.4",
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.3.7",
     "jquery": "3.7.1",
@@ -69,7 +69,7 @@
     "cypress-each": "1.13.3",
     "cypress-storybook": "0.5.1",
     "eslint-plugin-react": "7.33.2",
-    "globby": "13.2.2",
+    "globby": "14.0.0",
     "jest": "27.5.1",
     "rimraf": "5.0.5",
     "rollup-plugin-node-polyfills": "0.2.1",
