@@ -1,3 +1,5 @@
+@use '@swisspost/design-system-styles/core' as post;
+
 // No media query necessary for xs breakpoint as it's effectively @media (min-width: 0) { ... }
 .custom-class {
   display: none;
