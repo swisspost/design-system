@@ -51,7 +51,7 @@
   position: absolute;
   clip: rect(0, 0, 0, 0);
   pointer-events: none;
-  &:focus-visible + .btn {
+  &:is(:focus-visible, :focus-within, .pretend-focus) + .btn {
     outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
   }
 }
