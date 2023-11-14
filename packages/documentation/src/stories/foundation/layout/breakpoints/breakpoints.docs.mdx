@@ -1,7 +1,7 @@
 import { Meta, Source } from '@storybook/blocks';
+import { formatAsMap } from '../../../../utils/sass-export';
 import { BreakpointTable, SCSS_VARIABLES } from './breakpoints.blocks';
 import * as BreakpointStories from './breakpoints.stories';
-import SampleAvailable from './breakpoints-available.sample.scss?raw';
 import SampleMinWidth from './breakpoints-min-width.sample.scss?raw';
 import SampleMaxWidth from './breakpoints-max-width.sample.scss?raw';
 import SampleSingle from './breakpoints-single.sample.scss?raw';
@@ -24,18 +24,25 @@ breakpoints, sometimes referred to as grid tiers, for building responsively. The
 
 <BreakpointTable />
 
-You’ll find these breakpoints in a Sass map in our styles core.
+## CSS
+
+When using our source Sass files, you have the option of using Sass variables to change the breakpoints (not recommended).
+
+### Sass variables
 
 <Source
-  code={SampleAvailable}
   language="scss"
-/>
+  dark
+  code={Object.entries(SCSS_VARIABLES.variables)
+    .map(([key, value]) => `$${key}: ${formatAsMap(value)};`)
+    .join('\n')}
+></Source>
 
-## Mixins
+### Sass mixins
 
 There are several mixins available to use in your own Sass to help with building responsive layouts.
 
-### Min-width
+#### Min-width
 
 We primarily use the following media query ranges—or breakpoints—in our source Sass files for our layout, grid system, and components.
 
@@ -44,7 +51,7 @@ We primarily use the following media query ranges—or breakpoints—in our sour
   language="scss"
 />
 
-### Max-width
+#### Max-width
 
 We occasionally use media queries that go in the other direction.
 
@@ -53,7 +60,7 @@ We occasionally use media queries that go in the other direction.
   language="scss"
 />
 
-### Single breakpoint
+#### Single breakpoint
 
 There are also media queries and mixins for targeting a single segment of screen sizes using the minimum and maximum breakpoint widths.
 
@@ -62,7 +69,7 @@ There are also media queries and mixins for targeting a single segment of screen
   language="scss"
 />
 
-### Between breakpoints
+#### Between breakpoints
 
 Similarly, media queries may span multiple breakpoint widths.
 

@@ -1,5 +1,13 @@
 # @swisspost/design-system-intranet-header
 
+## 5.0.4
+
+### Patch Changes
+
+- Added a descriptive text to the Post logo home link. (by [@b1aserlu](https://github.com/b1aserlu) with [#2101](https://github.com/swisspost/design-system/pull/2101))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.4
+
 ## 5.0.3
 
 ### Patch Changes

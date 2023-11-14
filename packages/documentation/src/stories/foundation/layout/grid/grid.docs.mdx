@@ -1,6 +1,6 @@
 import { Meta, Canvas, Source } from '@storybook/blocks';
 import { formatAsMap } from '../../../../utils/sass-export';
-import { GridBreakpoints, SCSS_VARIABLES } from './grid.blocks';
+import { GridTable, SCSS_VARIABLES } from './grid.blocks';
 import * as GridStories from './grid.stories';
 import './grid.styles.scss';
 import SampleContainer from './grid-container.sample.html?raw';
@@ -8,7 +8,7 @@ import SampleScssMixins from './grid-scss-mixins.sample.scss?raw';
 
 <Meta of={GridStories} />
 
-# Grid
+# Grid system
 
 <div className="lead">
   Use our powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a
@@ -48,7 +48,8 @@ Breaking it down, here’s how the grid system comes together:
 
 Our grid system can adapt across all {Object.keys(SCSS_VARIABLES.breakpoint).length} breakpoints.
 Each of these breakpoints have their own specifications, a unique class prefix, and some modifiers.
-<GridBreakpoints />
+
+<GridTable />
 
 ## Auto-layout columns
 
