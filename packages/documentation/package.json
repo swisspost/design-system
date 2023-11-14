@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-documentation",
-  "version": "2.3.1",
+  "version": "2.4.0",
   "description": "Swiss Post Design System Documentation.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -25,11 +25,11 @@
     "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js --record --key 0995e768-43ec-42bd-a127-ff944a2ad8c9"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:1.6.1",
-    "@swisspost/design-system-components-react": "workspace:1.0.21",
+    "@swisspost/design-system-components": "workspace:1.6.2",
+    "@swisspost/design-system-components-react": "workspace:1.0.22",
     "@swisspost/design-system-icons": "workspace:1.0.14",
-    "@swisspost/design-system-styles": "workspace:6.4.3",
-    "@swisspost/internet-header": "workspace:1.12.1",
+    "@swisspost/design-system-styles": "workspace:6.4.4",
+    "@swisspost/internet-header": "workspace:1.13.0",
     "bootstrap": "5.3.2"
   },
   "devDependencies": {

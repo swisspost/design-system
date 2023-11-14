@@ -1,24 +1,11 @@
-@use 'sass:list';
-@use 'sass:map';
 @use '@swisspost/design-system-styles/core' as post;
-@use '../layout.shared' as shared;
+@use '../shared.module' as shared;
 
 :export {
+  // Variables used in the spec table (some variables used on the page are defined in the shared module)
+
+  // Variables to expose under sass variables section
   @each $breakpoint, $value in post.$grid-breakpoints {
-    $i: list.index(post.$grid-breakpoints, $breakpoint $value);
-    $name: map.get(shared.$breakpointNames, $breakpoint) or $breakpoint;
-
-    breakpoint_#{$breakpoint}_name: $name;
-
-    @if $i == 1 {
-      $keys: map.keys(post.$grid-breakpoints);
-      $nextValue: map.get(post.$grid-breakpoints, list.nth($keys, $i + 1));
-
-      breakpoint_#{$breakpoint}_infix: none;
-      breakpoint_#{$breakpoint}_dimensions: #{'<' + $nextValue};
-    } @else {
-      breakpoint_#{$breakpoint}_infix: #{'<code>' + $breakpoint + '</code>'};
-      breakpoint_#{$breakpoint}_dimensions: #{'≥' + $value};
-    }
+    variables_grid-breakpoints_#{$breakpoint}: $value;
   }
 }

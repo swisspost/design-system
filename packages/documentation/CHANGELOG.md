@@ -1,5 +1,22 @@
 # @swisspost/design-system-documentation
 
+## 2.4.0
+
+### Minor Changes
+
+- Added docs page on how to use columns. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2062](https://github.com/swisspost/design-system/pull/2062))
+
+### Patch Changes
+
+- Added official way to use label in a floating-label select as a placeholder. (by [@imagoiq](https://github.com/imagoiq) with [#2200](https://github.com/swisspost/design-system/pull/2200))
+
+- Extended the `@swisspost/design-system-components` package getting-started docs page to show multiple ways how it can be used/imported in different project setups. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2214](https://github.com/swisspost/design-system/pull/2214))
+- Updated dependencies:
+  - @swisspost/internet-header@1.13.0
+  - @swisspost/design-system-styles@6.4.4
+  - @swisspost/design-system-components@1.6.2
+  - @swisspost/design-system-components-react@1.0.22
+
 ## 2.3.1
 
 ### Patch Changes
