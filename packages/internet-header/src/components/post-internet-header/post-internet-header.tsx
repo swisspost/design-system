@@ -130,6 +130,7 @@ export class PostInternetHeader {
 
   @State() activeFlyout: string | null = null;
   @State() activeDropdownElement: DropdownElement | null = null;
+  @State() isMainSlotEmpty: boolean;
   @Element() host: HTMLSwisspostInternetHeaderElement;
 
   /**
@@ -431,6 +432,11 @@ export class PostInternetHeader {
     );
   }
 
+  private handleMainSlotChange(e: Event) {
+    const mainSlot = e.target as HTMLSlotElement;
+    this.isMainSlotEmpty = mainSlot.assignedElements().length === 0;
+  }
+
   render() {
     if (!state.localizedConfig?.header) {
       console.error(new Error('Internet Header: Config cannot be loaded'));
@@ -505,6 +511,11 @@ export class PostInternetHeader {
               </If>
             </post-main-navigation>
             <div class="main-navigation-controls">
+              <If condition={!this.isMainSlotEmpty}>
+                <div class="main-navigation-custom-content">
+                  <slot name="main" onSlotchange={e => this.handleMainSlotChange(e)}></slot>
+                </div>
+              </If>
               <If condition={this.search}>
                 <post-search onDropdownToggled={e => this.handleDropdownToggled(e)}></post-search>
               </If>
@@ -520,7 +531,6 @@ export class PostInternetHeader {
                   mode="dropdown"
                 ></post-language-switch>
               </If>
-              <slot name="main"></slot>
             </div>
           </div>
         </header>

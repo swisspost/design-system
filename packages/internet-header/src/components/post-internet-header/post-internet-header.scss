@@ -72,7 +72,8 @@
   display: flex;
 
   & > .main-navigation-controls {
-    flex: 0 0 auto;
+    flex: 0 1 auto;
+    overflow: hidden;
   }
 }
 
@@ -108,6 +109,23 @@
 
   & > * {
     border-left: 1px solid color.$gray-10;
+    flex: 0 0 auto;
+  }
+}
+
+.main-navigation-custom-content {
+  max-height: var(--header-height);
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  flex-shrink: 1;
+
+  ::slotted(*) {
+    padding-inline: 1rem;
+
+    @include mixins.min(lg) {
+      padding-inline: 1.125rem;
+    }
   }
 }
 
