@@ -67,7 +67,7 @@ importers:
         specifier: 4.7.0
         version: 4.7.0
       '@swisspost/design-system-styles':
-        specifier: workspace:6.4.3
+        specifier: workspace:6.4.4
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -164,10 +164,10 @@ importers:
         specifier: 16.2.0
         version: 16.2.0(@angular/common@16.2.0)(@angular/core@16.2.0)(@angular/platform-browser@16.2.0)(rxjs@7.8.1)
       '@swisspost/design-system-components':
-        specifier: workspace:1.6.1
+        specifier: workspace:1.6.2
         version: link:../components
       '@swisspost/design-system-styles':
-        specifier: workspace:6.4.3
+        specifier: workspace:6.4.4
         version: link:../styles/dist
       rxjs:
         specifier: ~7.8.0
@@ -246,7 +246,7 @@ importers:
         specifier: 16.2.0
         version: 16.2.0(rxjs@7.8.1)(zone.js@0.13.3)
       '@swisspost/design-system-components':
-        specifier: workspace:1.6.1
+        specifier: workspace:1.6.2
         version: link:../../../components
       tslib:
         specifier: 2.3.0
@@ -256,7 +256,7 @@ importers:
   packages/components-react:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:1.6.1
+        specifier: workspace:1.6.2
         version: link:../components
     devDependencies:
       '@types/node':
@@ -347,10 +347,10 @@ importers:
         specifier: 20.1.0
         version: 20.1.0(@angular/common@16.2.12)(@angular/core@16.2.12)(@angular/platform-browser@16.2.12)(rxjs@7.8.1)
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:5.0.3
+        specifier: workspace:5.0.4
         version: link:../intranet-header-workspace/dist/intranet-header
       '@swisspost/design-system-styles':
-        specifier: workspace:6.4.3
+        specifier: workspace:6.4.4
         version: link:../styles/dist
       bootstrap:
         specifier: 5.3.2
@@ -480,19 +480,19 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:1.6.1
+        specifier: workspace:1.6.2
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:1.0.21
+        specifier: workspace:1.0.22
         version: link:../components-react
       '@swisspost/design-system-icons':
         specifier: workspace:1.0.14
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:6.4.3
+        specifier: workspace:6.4.4
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.12.1
+        specifier: workspace:1.13.0
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.2
@@ -655,7 +655,7 @@ importers:
         specifier: 2.0.11
         version: 2.0.11(@stencil/core@4.7.0)
       '@swisspost/design-system-styles':
-        specifier: workspace:6.4.3
+        specifier: workspace:6.4.4
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -728,8 +728,8 @@ importers:
         specifier: 7.33.2
         version: 7.33.2(eslint@8.53.0)
       globby:
-        specifier: 13.2.2
-        version: 13.2.2
+        specifier: 14.0.0
+        version: 14.0.0
       jest:
         specifier: 27.5.1
         version: 27.5.1
@@ -794,7 +794,7 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@swisspost/design-system-styles':
-        specifier: workspace:6.4.3
+        specifier: workspace:6.4.4
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -879,14 +879,14 @@ importers:
   packages/intranet-header-workspace/projects/intranet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:6.4.3
+        specifier: workspace:6.4.4
         version: link:../../../styles/dist
       tslib:
         specifier: 2.6.2
         version: 2.6.2
     devDependencies:
       '@swisspost/design-system-intranet-header-workspace':
-        specifier: workspace:3.0.3
+        specifier: workspace:3.0.4
         version: link:../..
     publishDirectory: ../../dist/intranet-header
 
@@ -7160,6 +7160,11 @@ packages:
     resolution: {integrity: sha512-+Fj43pSMwJs4KRrH/938Uf+uAELIgVBmQzg/q1YG10djyfA3TnrU8N8XzqCh/okZdszqBQTZf96idMfE5lnwTA==}
     dev: true
 
+  /@sindresorhus/merge-streams@1.0.0:
+    resolution: {integrity: sha512-rUV5WyJrJLoloD4NDN1V1+LDMDWOa4OTsT4yYJwQNpTU6FWxkxHpL7eu4w+DmiH8x/EAM1otkPE1+LaspIbplw==}
+    engines: {node: '>=18'}
+    dev: true
+
   /@sinonjs/commons@1.8.6:
     resolution: {integrity: sha512-Ky+XkAkqPZSm3NLBeUng77EBQl3cmeJhITaGHdYH8kjVB+aun3S4XBRti2zt17mtt0mIUDiNxYeoJm6drVvBJQ==}
     dependencies:
@@ -13104,6 +13109,17 @@ packages:
       micromatch: 4.0.5
     dev: true
 
+  /fast-glob@3.3.2:
+    resolution: {integrity: sha512-oX2ruAFQwf/Orj8m737Y5adxDQO0LAB7/S5MnxCdTNDd4p6BsyIVsv9JQsATbTSq8KHRpLwIHbVlUNatxd+1Ow==}
+    engines: {node: '>=8.6.0'}
+    dependencies:
+      '@nodelib/fs.stat': 2.0.5
+      '@nodelib/fs.walk': 1.2.8
+      glob-parent: 5.1.2
+      merge2: 1.4.1
+      micromatch: 4.0.5
+    dev: true
+
   /fast-json-stable-stringify@2.1.0:
     resolution: {integrity: sha512-lhd/wF+Lk98HZoTCtlVraHtfh5XYijIjalXck7saUtuanSDyLMxnHhSXEDJqHxD7msR8D0uCmqlkwjCV8xvwHw==}
     dev: true
@@ -13914,10 +13930,22 @@ packages:
     engines: {node: ^12.20.0 || ^14.13.1 || >=16.0.0}
     dependencies:
       dir-glob: 3.0.1
-      fast-glob: 3.3.0
+      fast-glob: 3.3.1
       ignore: 5.2.4
       merge2: 1.4.1
       slash: 4.0.0
+    dev: true
+
+  /globby@14.0.0:
+    resolution: {integrity: sha512-/1WM/LNHRAOH9lZta77uGbq0dAEQM+XjNesWwhlERDVenqothRbnzTrL3/LrIoEPPjeUHC3vrS6TwoyxeHs7MQ==}
+    engines: {node: '>=18'}
+    dependencies:
+      '@sindresorhus/merge-streams': 1.0.0
+      fast-glob: 3.3.2
+      ignore: 5.2.4
+      path-type: 5.0.0
+      slash: 5.1.0
+      unicorn-magic: 0.1.0
     dev: true
 
   /globjoin@0.1.4:
@@ -18561,6 +18589,11 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
+  /path-type@5.0.0:
+    resolution: {integrity: sha512-5HviZNaZcfqP95rwpv+1HDgUamezbqdSYTyzjTvwtJSnIH+3vnbmWsItli8OFEndS984VT55M3jduxZbX351gg==}
+    engines: {node: '>=12'}
+    dev: true
+
   /pathe@1.1.1:
     resolution: {integrity: sha512-d+RQGp0MAYTIaDBIMmOfMwz3E+LOZnxx1HZd5R18mmCZY0QBlK0LDZfPc8FW8Ed2DlvsuE6PRjroDY+wg4+j/Q==}
     dev: true
@@ -20210,6 +20243,11 @@ packages:
     engines: {node: '>=12'}
     dev: true
 
+  /slash@5.1.0:
+    resolution: {integrity: sha512-ZA6oR3T/pEyuqwMgAKT0/hAv8oAXckzbkmR0UkUosQ+Mc4RxGoJkRmwHgHufaenlyAgE1Mxgpdcrf75y6XcnDg==}
+    engines: {node: '>=14.16'}
+    dev: true
+
   /slice-ansi@3.0.0:
     resolution: {integrity: sha512-pSyv7bSTC7ig9Dcgbw9AuRNUb5k5V6oDudjZoMBSr13qpLBG7tB+zgCkARjq7xIUgdz5P1Qe8u+rSGdouOOIyQ==}
     engines: {node: '>=8'}
@@ -21758,6 +21796,11 @@ packages:
   /unicode-property-aliases-ecmascript@2.1.0:
     resolution: {integrity: sha512-6t3foTQI9qne+OZoVQB/8x8rk2k1eVy1gRXhV3oFQ5T6R1dqQ1xtin3XqSlx3+ATBkliTaR/hHyJBm+LVPNM8w==}
     engines: {node: '>=4'}
+    dev: true
+
+  /unicorn-magic@0.1.0:
+    resolution: {integrity: sha512-lRfVq8fE8gz6QMBuDM6a+LO3IAzTi05H6gCVaUpir2E1Rwpo4ZUog45KpNXKC/Mn3Yb9UDuHumeFTo9iV/D9FQ==}
+    engines: {node: '>=18'}
     dev: true
 
   /union-value@1.0.1:
