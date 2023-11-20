@@ -38,17 +38,17 @@
     "@popperjs/core": "2.11.8",
     "bootstrap": "5.3.2",
     "cheerio": "1.0.0-rc.12",
-    "prettier": "3.0.3"
+    "prettier": "3.1.0"
   },
   "devDependencies": {
     "@angular/compiler": "=15.0.4",
     "@percy/cli": "1.27.4",
     "@percy/cypress": "3.1.2",
     "@swisspost/design-system-icons": "workspace:1.0.14",
-    "@types/node": "18.18.8",
+    "@types/node": "18.18.9",
     "autoprefixer": "10.4.16",
     "copyfiles": "2.4.1",
-    "cypress": "13.4.0",
+    "cypress": "13.5.1",
     "cypress-storybook": "0.5.1",
     "glob": "10.3.10",
     "gulp": "4.0.2",
@@ -65,7 +65,7 @@
     "stylelint-config-prettier": "9.0.5",
     "stylelint-config-sass-guidelines": "10.0.0",
     "stylelint-prettier": "4.0.2",
-    "stylelint-scss": "5.3.0",
+    "stylelint-scss": "5.3.1",
     "typescript": "4.9.5"
   },
   "sass": {
