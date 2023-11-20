@@ -1,7 +1,6 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { spreadArgs } from '../../../utils';
-import { bombArgs } from '../../../utils';
+import { spreadArgs, bombArgs } from '../../../utils';
 import alertMeta from './standard-html/alert.stories';
 import { getAlertClasses } from './standard-html/getAlertClasses';
 
@@ -26,7 +25,7 @@ export const Alert: Story = {
               .map(args => ({ ...args, show: true } as Args))
               .map(
                 args => html`
-                  <div class=${getAlertClasses(args)} role="alert">
+                  <div class="${getAlertClasses(args)}" role="alert">
                     ${args.dismissible || args.fixed
                       ? html`
                           <button class="btn-close">
@@ -39,7 +38,7 @@ export const Alert: Story = {
                           <post-icon
                             aria-hidden="true"
                             class="alert-icon"
-                            name=${args.icon}
+                            name="${args.icon}"
                           ></post-icon>
                         `
                       : null}
