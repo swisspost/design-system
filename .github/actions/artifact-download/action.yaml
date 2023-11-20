@@ -49,7 +49,7 @@ runs:
 
     - name: Unzip artifacts
       shell: bash
-      run: unzip ${{inputs.name}}/artifacts.zip -d ${{ inputs.folder }}
+      run: unzip artifacts.zip -d ${{ inputs.folder }}
 
     - name: Create outputs
       id: build
