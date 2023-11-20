@@ -51,6 +51,10 @@ runs:
       shell: bash
       run: unzip artifacts.zip -d ${{ inputs.folder }}
 
+    - name: Clean up
+      shell: bash
+      run: rm -r artifacts.zip
+
     - name: Create outputs
       id: build
       shell: bash
