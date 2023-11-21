@@ -44,13 +44,16 @@ runs:
       uses: dawidd6/action-download-artifact@v2
       with:
         name: ${{ inputs.name }}
-        path: ${{ inputs.folder }}
         run_id: ${{ github.event.workflow_run.id }}
         workflow_conclusion: success
 
     - name: Unzip artifacts
       shell: bash
-      run: unzip artifacts.zip
+      run: unzip artifacts.zip -d ${{ inputs.folder }}
+
+    - name: Clean up
+      shell: bash
+      run: rm -r artifacts.zip
 
     - name: Create outputs
       id: build
