@@ -35,12 +35,14 @@ function getGitHubUrl(path: String) {
   return `${BASEURL}${path.replace(/^\./, '').replace(/\.stories\.ts$/, '.docs.mdx')}`;
 }
 
-export default (params: { pathToStoryFile: String }) => (
+export default (params: { pathToStoryFile?: String }) => (
   <>
     <div className="container mt-huge font-size-18 text-end">
-      <a href={getGitHubUrl(params.pathToStoryFile)} target="_blank" rel="noopener">
-        Edit this page on GitHub
-      </a>
+      {params.pathToStoryFile && (
+        <a href={getGitHubUrl(params.pathToStoryFile)} target="_blank" rel="noopener">
+          Edit this page on GitHub
+        </a>
+      )}
     </div>
     <footer className="docs-footer mt-huge bg-light">
       <div className="container">
