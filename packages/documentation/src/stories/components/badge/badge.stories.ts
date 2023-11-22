@@ -111,10 +111,10 @@ function externalControl(story: any, { args }: StoryContext) {
   const button = html`
     <a
       href="#"
-      @click=${(e: Event) => {
+      @click="${(e: Event) => {
         e.preventDefault();
         updateArgs({ dismissed: false });
-      }}
+      }}"
     >
       Show badge
     </a>
@@ -157,19 +157,19 @@ function getCheckableContent(args: Args, updateArgs: (args: Args) => void, conte
 
   return html`
     <input
-      id=${checkboxId}
+      id="${checkboxId}"
       class="badge-check-input"
       type="checkbox"
-      ?checked=${args.checked}
-      @change=${handleChange}
+      ?checked="${args.checked}"
+      @change="${handleChange}"
     />
-    <label class=${labelClasses} for=${checkboxId}>${getDefaultContent(args)}</label>
+    <label class="${labelClasses}" for="${checkboxId}">${getDefaultContent(args)}</label>
   `;
 }
 
 function getDismissButton(updateArgs: (args: Args) => void) {
   return html`
-    <button class="btn-close" @click=${() => updateArgs({ dismissed: true })}>
+    <button class="btn-close" @click="${() => updateArgs({ dismissed: true })}">
       <span class="visually-hidden">Forigi insignon</span>
     </button>
   `;
@@ -189,11 +189,10 @@ function renderBadge(args: Args, context: StoryContext) {
   const badgeClasses = mapClasses({
     'badge': !isCheckable,
     'badge-check': isCheckable,
-    [args.size]: args.size !== 'default',
   });
 
   return html`
-    <div class=${badgeClasses}>
+    <div class="${badgeClasses}">
       ${isCheckable ? getCheckableContent(args, updateArgs, context) : getDefaultContent(args)}
       ${isDismissible ? getDismissButton(updateArgs) : nothing}
     </div>
