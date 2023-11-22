@@ -7,7 +7,6 @@
 name: Release Documentation to Netlify
 
 on:
-  workflow_dispatch:
   push:
     branches:
       - main
