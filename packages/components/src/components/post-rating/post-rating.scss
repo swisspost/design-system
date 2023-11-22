@@ -1,0 +1,44 @@
+.color {
+  background-color: green;
+}
+
+/* editable-rating.css */
+:host {
+  display: inline-block;
+  font-size: 0;
+}
+
+.rating {
+  unicode-bidi: bidi-override;
+  color: #cccccc;
+  font-size: 24px;
+  display: inline-block;
+}
+
+.rating .star {
+  display: inline-block;
+  position: relative;
+  width: 24px;
+  cursor: pointer;
+}
+
+// .rating .star:hover .star {
+//   content: '☆';
+//   position: absolute;
+//   left: 0;
+//   color: #fdd835;
+// }
+
+.hovered:after {
+  content: '☆';
+  position: absolute;
+  left: 0;
+  color: #fdd835;
+}
+
+.rating .star.filled:before {
+  content: '★';
+  position: absolute;
+  left: 0;
+  color: #fdd835;
+}

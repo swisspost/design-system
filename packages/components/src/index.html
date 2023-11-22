@@ -2,13 +2,49 @@
 <html dir="ltr" lang="en">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0"
+    />
     <title>Stencil Component Starter</title>
+    <script type="module" src="/build/post-components.esm.js"></script>
+    <script nomodule src="/build/post-components.js"></script>
+    <style>
+      @font-face {
+        font-display: swap;
+        font-family: 'Frutiger Neue For Post';
+        font-weight: 700;
+        src: url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Bold.woff2')
+            format('woff2'),
+          url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Bold.woff')
+            format('woff');
+      }
 
-    <script type="module" src="/build/swisspost-web-components.esm.js"></script>
-    <script nomodule src="/build/swisspost-web-components.js"></script>
+      @font-face {
+        font-display: swap;
+        font-family: 'Frutiger Neue For Post';
+        font-weight: 400;
+        src: url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Rg.woff2')
+            format('woff2'),
+          url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Rg.woff')
+            format('woff');
+      }
+
+      @font-face {
+        font-display: swap;
+        font-family: 'Frutiger Neue For Post';
+        font-weight: 300;
+        src: url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Lt.woff2')
+            format('woff2'),
+          url('//fonts.post.ch/frutigerneueforpost/v2/FrutigerNeueforPostW05-Lt.woff')
+            format('woff');
+      }
+    </style>
   </head>
-  <body>
-    <my-component first="Stencil" last="'Don't call me a framework' JS">Hello</my-component>
+  <body style="font-family: Frutiger Neue For Post">
+    <post-alert>
+      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+    </post-alert>
+    <post-rating><div slot="my-slot">Hello</div></post-rating>
   </body>
 </html>

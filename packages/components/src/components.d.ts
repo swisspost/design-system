@@ -105,6 +105,16 @@ export namespace Components {
          */
         "scale"?: number | null;
     }
+    interface PostRating {
+        /**
+          * The index of the currently hovered star
+         */
+        "hovered": number;
+        /**
+          * The current rating value
+         */
+        "rating": number;
+    }
     interface PostTabHeader {
         /**
           * The name of the panel controlled by the tab header.
@@ -161,6 +171,10 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
+export interface PostRatingCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostRatingElement;
+}
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostTabsElement;
@@ -215,6 +229,23 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostRatingElementEventMap {
+        "ratingChanged": number;
+    }
+    interface HTMLPostRatingElement extends Components.PostRating, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostRatingElementEventMap>(type: K, listener: (this: HTMLPostRatingElement, ev: PostRatingCustomEvent<HTMLPostRatingElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostRatingElementEventMap>(type: K, listener: (this: HTMLPostRatingElement, ev: PostRatingCustomEvent<HTMLPostRatingElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostRatingElement: {
+        prototype: HTMLPostRatingElement;
+        new (): HTMLPostRatingElement;
+    };
     interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
     }
     var HTMLPostTabHeaderElement: {
@@ -255,6 +286,7 @@ declare global {
         "post-alert": HTMLPostAlertElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
+        "post-rating": HTMLPostRatingElement;
         "post-tab-header": HTMLPostTabHeaderElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
@@ -341,6 +373,20 @@ declare namespace LocalJSX {
          */
         "scale"?: number | null;
     }
+    interface PostRating {
+        /**
+          * The index of the currently hovered star
+         */
+        "hovered"?: number;
+        /**
+          * Event emitted when the rating changes
+         */
+        "onRatingChanged"?: (event: PostRatingCustomEvent<number>) => void;
+        /**
+          * The current rating value
+         */
+        "rating"?: number;
+    }
     interface PostTabHeader {
         /**
           * The name of the panel controlled by the tab header.
@@ -378,6 +424,7 @@ declare namespace LocalJSX {
         "post-alert": PostAlert;
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
+        "post-rating": PostRating;
         "post-tab-header": PostTabHeader;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
@@ -395,6 +442,7 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
