@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-angular",
-  "version": "0.0.1",
+  "version": "0.0.1-beta",
   "description": "Swiss Post Design System - Angular Wrapper Components",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
