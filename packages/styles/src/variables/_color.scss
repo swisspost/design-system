@@ -38,13 +38,21 @@ $olive-bright: #aa9d2e;
 $aubergine-dark: #523178;
 $aubergine-bright: #7566a0;
 
-// Contextual colors
+// Contextual colors (deprecated)
 $success: #2c911c;
 $success-text: #255e1c;
 $error: #a51728;
 $error-text: #8f0d1c;
 $warning: #f49e00;
 $info: #cce4ee;
+
+// Signal Colors
+$success-green: #2c871d;
+$error-red: #a51728;
+$warning-orange: #f49e00;
+$success-background: #c0debb;
+$error-background: #ffdade;
+$warning-background: #fce2b2;
 
 /**
  * Maps. Allow maps to have custom colors from the project
@@ -67,10 +75,23 @@ $contextual-colors: () !default;
 $contextual-colors: map.merge(
   $contextual-colors,
   (
-    'success': $success,
     'info': $info,
+    'success': $success,
     'warning': $warning,
     'danger': $error,
+  )
+);
+
+$signal-colors: () !default;
+$signal-colors: map.merge(
+  $signal-colors,
+  (
+    'success-green': $success-green,
+    'error-red': $error-red,
+    'warning-orange': $warning-orange,
+    'success-background': $success-background,
+    'error-background': $error-background,
+    'warning-background': $warning-background,
   )
 );
 
@@ -111,6 +132,7 @@ $background-colors: map.merge(
 // Merge with the other lists
 $background-colors: map.merge($background-colors, $contextual-colors);
 $background-colors: map.merge($background-colors, $accent-colors);
+$background-colors: map.merge($background-colors, $signal-colors);
 
 // Compile a list of dark backgrounds, used in the :is selector mixin at mixins/color
 $dark-backgrounds: () !default;

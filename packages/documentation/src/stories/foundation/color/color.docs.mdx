@@ -51,8 +51,26 @@ with a specific background color and the best possible contrast color for its co
 ## Signal colors
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.contextual, function (data) {
+  {forEach(SCSS_VARIABLES.signal.solid, function (data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+  })}
+  {forEach(SCSS_VARIABLES.contextual, function (data) {
+    if (data.key === 'info') {
+      return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+    }
+  })}
+  {forEach(SCSS_VARIABLES.signal.background, function (data) {
+    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+  })}
+</section>
+
+### Deprecated signal colors
+
+<section className="color-swatch__section">
+  {forEach(SCSS_VARIABLES.contextual, function (data) {
+    if (data.key !== 'info') {
+      return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+    }
   })}
 </section>
 

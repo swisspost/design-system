@@ -37,10 +37,10 @@ runs:
 
     - name: Zip artifact folder
       shell: bash
-      run: zip artifacts.zip ${{ inputs.folder }} -r
+      run: cd ${{ inputs.folder }} && zip artifacts.zip . -r
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
         name: ${{ inputs.name }}
-        path: artifacts.zip
+        path: ${{ inputs.folder }}/artifacts.zip
