@@ -1,5 +1,20 @@
 # @swisspost/design-system-documentation
 
+## 2.5.0
+
+### Minor Changes
+
+- Added a documentation page for the `.container` and `.container-fluid` classes. (by [@b1aserlu](https://github.com/b1aserlu) with [#2030](https://github.com/swisspost/design-system/pull/2030))
+
+### Patch Changes
+
+- Removed empty p and fix CDN examples for internet-header. (by [@imagoiq](https://github.com/imagoiq) with [#2295](https://github.com/swisspost/design-system/pull/2295))
+
+- Added attached stories to changelog and search-icons pages to fix "Edit this page on Github" feature. (by [@imagoiq](https://github.com/imagoiq) with [#2267](https://github.com/swisspost/design-system/pull/2267))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.15
+  - @swisspost/design-system-styles@6.4.4
+
 ## 2.4.0
 
 ### Minor Changes

@@ -367,7 +367,7 @@ importers:
         specifier: workspace:1.0.22
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:1.0.14
+        specifier: workspace:1.0.15
         version: link:../icons
       '@swisspost/design-system-styles':
         specifier: workspace:6.4.4
@@ -805,7 +805,7 @@ importers:
         specifier: 3.1.2
         version: 3.1.2(cypress@13.5.1)
       '@swisspost/design-system-icons':
-        specifier: workspace:1.0.14
+        specifier: workspace:1.0.15
         version: link:../icons
       '@types/node':
         specifier: 18.18.10
