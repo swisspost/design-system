@@ -44,7 +44,7 @@
     "@angular/compiler": "=15.0.4",
     "@percy/cli": "1.27.4",
     "@percy/cypress": "3.1.2",
-    "@swisspost/design-system-icons": "workspace:1.0.14",
+    "@swisspost/design-system-icons": "workspace:1.0.15",
     "@types/node": "18.18.10",
     "autoprefixer": "10.4.16",
     "copyfiles": "2.4.1",
