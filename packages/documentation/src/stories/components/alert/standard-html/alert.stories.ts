@@ -11,7 +11,7 @@ const meta: Meta = {
   render: renderAlert,
   decorators: [externalControl],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
     controls: {
       exclude: ['Title', 'Content'],
     },
