@@ -189,6 +189,7 @@ function renderBadge(args: Args, context: StoryContext) {
   const badgeClasses = mapClasses({
     'badge': !isCheckable,
     'badge-check': isCheckable,
+    [args.size]: args.size !== 'default' && !isCheckable,
   });
 
   return html`
