@@ -17,3 +17,4 @@ export const Tabs = (args: any) => <PostTabs {...args} />;
 export const TabHeader = (args: any) => <PostTabHeader {...args} />;
 export const TabPanel = (args: any) => <PostTabPanel {...args} />;
 export const Icon = (args: any) => <PostIcon {...args} />;
+export const Popover = (args: any) => <PostPopover {...args} />;

@@ -1,7 +1,9 @@
-import { Icon } from './post-components';
+import { Icon, TabHeader, TabPanel, Tabs, Tooltip } from './post-components';
 export default function Home() {
   return (
-    <main>
+    <>
+      <h1 className="visually-hidden">This is the homepage</h1>
+
       <section>
         <h2 className="h4 mt-huge-r">Sendung Verfolgen</h2>
         <form className="bg-yellow mt-3 p-regular-r d-flex gap-4">
@@ -204,6 +206,33 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </main>
+
+      <section className="mt-huge-r">
+        <h2>Testing a couple web components</h2>
+        <Tabs>
+          <TabHeader panel="one" data-tooltip-target="tooltip-one">
+            Active
+          </TabHeader>
+          <Tooltip id="tooltip-one">This is the first tab header that also has a tooltip</Tooltip>
+          <TabPanel name="one">A content</TabPanel>
+
+          <TabHeader panel="two">Delivered</TabHeader>
+          <TabPanel name="two">
+            <p>Delivered packages</p>
+            <div>
+              <button data-popover-target="popover-one">See details</button>
+              <Popover id="popover-one">
+                <h3 className="h5">Details for this content</h3>
+                <p>Here are some more details for this content.</p>
+                <div className="d-flex flex-row-reverse gap-3">
+                  <button className="btn btn-primary">OK</button>
+                  <button className="btn btn-secondary">Nope</button>
+                </div>
+              </Popover>
+            </div>
+          </TabPanel>
+        </Tabs>
+      </section>
+    </>
   );
 }
