@@ -105,6 +105,10 @@ export namespace Components {
     }
     interface PostPopover {
         /**
+          * Show a little indicator arrow
+         */
+        "arrow"?: boolean;
+        /**
           * Define the caption of the close button for assistive technology
          */
         "closeButtonCaption": string;
@@ -416,9 +420,13 @@ declare namespace LocalJSX {
     }
     interface PostPopover {
         /**
+          * Show a little indicator arrow
+         */
+        "arrow"?: boolean;
+        /**
           * Define the caption of the close button for assistive technology
          */
-        "closeButtonCaption"?: string;
+        "closeButtonCaption": string;
         /**
           * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popoverss are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */

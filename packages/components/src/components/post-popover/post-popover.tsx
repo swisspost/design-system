@@ -21,12 +21,17 @@ export class PostPopover {
    * Popoverss are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
-  @Prop() readonly placement?: Placement = 'right-end';
+  @Prop() readonly placement?: Placement = 'top';
 
   /**
    * Define the caption of the close button for assistive technology
    */
-  @Prop() readonly closeButtonCaption: string;
+  @Prop() readonly closeButtonCaption!: string;
+  /**
+   * Show a little indicator arrow
+   */
+  // eslint-disable-next-line @stencil-community/ban-default-true
+  @Prop() readonly arrow?: boolean = true;
 
   constructor() {
     this.localTogglePopover = e => this.toggle(e.target as HTMLElement);
@@ -134,13 +139,13 @@ export class PostPopover {
     return (
       <Host data-version={version}>
         <post-popovercontainer
-          arrow
+          arrow={this.arrow}
           placement={this.placement}
           ref={e => (this.popoverRef = e)}
           onPostPopoverToggled={e => this.onToggle(e)}
         >
           <div class="popover-container">
-            <div>
+            <div class="popover-content">
               <slot></slot>
             </div>
             <button class="btn-close" onClick={() => this.hide()}>

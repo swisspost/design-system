@@ -134,6 +134,32 @@ export class PostPopovercontainer {
   }
 
   private async calculatePosition() {
+    const middleware = [
+      flip(),
+      inline(),
+      shift({
+        padding: 8,
+
+        // Prevents shifting away from the anchor too far, while shifting as far as possible
+        // https://floating-ui.com/docs/shift#limiter
+        limiter: limitShift({
+          offset: 32,
+        }),
+      }),
+      size({
+        apply({ availableWidth, elements }) {
+          Object.assign(elements.floating.style, {
+            maxWidth: `${availableWidth - 16}px`,
+          });
+        },
+      }),
+      offset(this.arrow ? 12 : 8), // 4px outside of element to account for focus outline + ~arrow size
+    ];
+
+    if (this.arrow) {
+      middleware.push(arrow({ element: this.arrowRef, padding: 8 }));
+    }
+
     const {
       x,
       y,
@@ -142,29 +168,7 @@ export class PostPopovercontainer {
     } = await computePosition(this.eventTarget, this.popoverRef, {
       placement: this.placement || 'top',
       strategy: 'fixed',
-      middleware: [
-        flip(),
-        inline(),
-        shift({
-          padding: 8,
-
-          // Prevents shifting away from the anchor too far, while shifting as far as possible
-          // https://floating-ui.com/docs/shift#limiter
-          limiter: limitShift({
-            offset: 32,
-          }),
-        }),
-        size({
-          padding: 8,
-          apply({ availableWidth, elements }) {
-            Object.assign(elements.floating.style, {
-              maxWidth: `${Math.min(availableWidth - 16, 320)}px`,
-            });
-          },
-        }),
-        offset(12), // 4px outside of element to account for focus outline + ~arrow size
-        arrow({ element: this.arrowRef, padding: 8 }),
-      ],
+      middleware,
     });
 
     // Tooltip

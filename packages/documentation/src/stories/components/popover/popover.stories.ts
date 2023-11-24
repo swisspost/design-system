@@ -8,6 +8,11 @@ const meta: Meta = {
   component: 'post-popover',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
+    docs: {
+      argTypes: {
+        sort: 'requiredFirst',
+      },
+    },
   },
   render,
   args: {
@@ -15,7 +20,9 @@ const meta: Meta = {
     innerHtml:
       'A longer message that needs more time to read. <a href="#">Links</a> are also possible.',
     backgroundColor: 'primary',
-    placement: 'right-end',
+    closeButtonCaption: 'Close',
+    placement: 'top',
+    arrow: true,
   },
   argTypes: {
     id: {
@@ -50,6 +57,17 @@ const meta: Meta = {
         },
       },
     },
+    closeButtonCaption: {
+      name: 'Close button caption',
+      table: {
+        type: {
+          required: true,
+        },
+      },
+    },
+    arrow: {
+      name: 'Arrow',
+    },
     placement: {
       name: 'Placement',
     },
@@ -65,6 +83,7 @@ function render(args: Args) {
       class="hydrated bg-${args.backgroundColor}"
       id="${args.id}"
       placement="${args.placement}"
+      ?arrow="${args.arrow}"
     >
       ${unsafeHTML(args.innerHtml)}
     </post-popover>

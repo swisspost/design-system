@@ -7,13 +7,6 @@
 @use '@swisspost/design-system-styles/mixins/elevation' as elevation-mx;
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
 
-// Puts polyfilled styles in a separate layer so they are easy to override
-// Can be removed as soon as popover is supported by all major browsers
-// https://caniuse.com/?search=popover
-@layer polyfill {
-  @include meta.load-css('@oddbird/popover-polyfill/dist/popover.css');
-}
-
 div {
   @include elevation-mx.elevation('elevation-3');
 
@@ -21,13 +14,13 @@ div {
   z-index: commons.$zindex-popover;
 
   width: max-content;
-  max-width: 30ch;
   margin: 0;
   padding: 0;
 
+  box-sizing: border-box;
   color: var(--post-contrast-color);
   background-color: rgb(var(--post-bg-rgb));
-  border-color: transparent; // Keeping the default border for HCM
+  border: 1px solid transparent; // Keeping the default border for HCM
   border-radius: commons.$border-radius;
 
   // Keeps the little arrow visible
@@ -37,7 +30,7 @@ div {
 .arrow {
   // Diagonale of 16px -> 1rem -> 1/1.41 = ~0.7
   // https://www.omnicalculator.com/math/square-diagonal?c=CHF&v=hide:0,diagonal:16!cm
-  $arrow-size: math.div(spacing.$spacer, math.sqrt(2));
+  $arrow-size: math.div(spacing.$size-regular, math.sqrt(2));
   position: absolute;
   width: $arrow-size;
   height: $arrow-size;
