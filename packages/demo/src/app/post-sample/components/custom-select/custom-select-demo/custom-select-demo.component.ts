@@ -1,4 +1,4 @@
-import {Component, ElementRef, QueryList, ViewChildren} from '@angular/core';
+import { Component, ElementRef, QueryList, ViewChildren } from '@angular/core';
 
 interface IOption {
   label: string;
@@ -8,10 +8,10 @@ interface IOption {
 
 @Component({
   selector: 'app-custom-select-demo',
-  templateUrl: './custom-select-demo.component.html'
+  templateUrl: './custom-select-demo.component.html',
 })
 export class CustomSelectDemoComponent {
-  @ViewChildren('option', {read: ElementRef}) private optionList: QueryList<ElementRef>;
+  @ViewChildren('option', { read: ElementRef }) private optionList: QueryList<ElementRef>;
 
   public options: IOption[];
   public selectedOption: IOption;
@@ -37,7 +37,7 @@ export class CustomSelectDemoComponent {
   }
 
   public setFocus(event: KeyboardEvent) {
-    const activeOptionIndex = Array.from(this.optionList).findIndex((option) => {
+    const activeOptionIndex = Array.from(this.optionList).findIndex(option => {
       return option.nativeElement.classList.contains('active');
     });
 
@@ -57,5 +57,4 @@ export class CustomSelectDemoComponent {
         break;
     }
   }
-
 }

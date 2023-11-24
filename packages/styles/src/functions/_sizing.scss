@@ -1,7 +1,8 @@
 @use 'sass:math';
+@use 'sass:list';
 
 @use './utilities';
-@use './list';
+@use './list' as list-fn;
 
 @function strip-unit($value) {
   @return math.div($value, $value * 0 + 1);
@@ -59,7 +60,7 @@
 }
 
 @function calculate-single-box-shadow-size($box-shadow) {
-  $len: length($box-shadow);
+  $len: list.length($box-shadow);
   $multiplier: 1;
   $box-shadow-size: 0;
 
@@ -67,37 +68,37 @@
     @error "The function 'calculate-single-box-shadow-size($box-shadow)' is not for calculating the combined size of multiple box-shadows. Failed value: '#{$box-shadow}'.";
   }
 
-  @if (nth($box-shadow, 1) == 'inset') {
+  @if (list.nth($box-shadow, 1) == 'inset') {
     $multiplier: -1;
-    $box-shadow: list.remove-nth($box-shadow, 1);
+    $box-shadow: list-fn.remove-nth($box-shadow, 1);
   }
 
   @if (utilities.starts-with-any(nth($box-shadow, -1), 'hsl', 'rgb', '#')) {
-    $box-shadow: list.remove-nth($box-shadow, -1);
+    $box-shadow: list-fn.remove-nth($box-shadow, -1);
   }
 
-  $len: length($box-shadow);
+  $len: list.length($box-shadow);
 
   @if ($len > 4) {
     @error "The function 'calculate-single-box-shadow-size($box-shadow)' is not for calculating the combined size of multiple box-shadows. Failed value: '#{$box-shadow}'.";
   }
 
-  @if (abs(nth($box-shadow, 1)) >= abs(nth($box-shadow, 2))) {
-    $box-shadow-size: $box-shadow-size + abs(nth($box-shadow, 1));
+  @if (math.abs(list.nth($box-shadow, 1)) >= math.abs(list.nth($box-shadow, 2))) {
+    $box-shadow-size: $box-shadow-size + math.abs(list.nth($box-shadow, 1));
   } @else {
-    $box-shadow-size: $box-shadow-size + abs(nth($box-shadow, 2));
+    $box-shadow-size: $box-shadow-size + math.abs(list.nth($box-shadow, 2));
   }
 
   @if ($len >= 3) {
-    $box-shadow-size: $box-shadow-size + (abs(nth($box-shadow, 3)) * 0.7);
+    $box-shadow-size: $box-shadow-size + (math.abs(list.nth($box-shadow, 3)) * 0.7);
   }
 
   @if ($len == 4) {
-    $box-shadow-size: $box-shadow-size + nth($box-shadow, 4);
+    $box-shadow-size: $box-shadow-size + list.nth($box-shadow, 4);
   }
 
   @if (unit($box-shadow-size) == 'px') {
-    $box-shadow-size: ceil($box-shadow-size);
+    $box-shadow-size: math.ceil($box-shadow-size);
   }
 
   @return $box-shadow-size;

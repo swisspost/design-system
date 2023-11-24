@@ -1,5 +1,39 @@
 # @swisspost/internet-header
 
+## 1.13.0
+
+### Minor Changes
+
+- Added a link to settings in the user drop-down menu for business users. (by [@alizedebray](https://github.com/alizedebray) with [#2234](https://github.com/swisspost/design-system/pull/2234))
+
+### Patch Changes
+
+- Replaced the old twitter logo with the new X logo. (by [@b1aserlu](https://github.com/b1aserlu) with [#2176](https://github.com/swisspost/design-system/pull/2176))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.4
+
+## 1.12.1
+
+### Patch Changes
+
+- Reverted #2152 because of an issue with importing the internet headers `defineCustomElements`. (by [@gfellerph](https://github.com/gfellerph) with [#2208](https://github.com/swisspost/design-system/pull/2208))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.3
+
+## 1.12.0
+
+### Minor Changes
+
+- Added component exports to the src/index.ts files, to include them in the dist/index.js and dist/index.esm.js output files and therefore fix our stencil setup. (by [@oliverschuerch](https://github.com/oliverschuerch) with [`f74c9662`](https://github.com/swisspost/design-system/commit/f74c96620dc8095c6b2b51b2d3a3ee97c17e5a7d))
+
+### Patch Changes
+
+- Added logout-url property to override the URL provided by the portal config on the internet-header component. (by [@imagoiq](https://github.com/imagoiq) with [#2114](https://github.com/swisspost/design-system/pull/2114))
+
+- Upgraded builder Stenciljs from version 3 to 4. No user visible changes are expected. (by [@imagoiq](https://github.com/imagoiq) with [#2116](https://github.com/swisspost/design-system/pull/2116))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.3
+
 ## 1.11.0
 
 ### Minor Changes

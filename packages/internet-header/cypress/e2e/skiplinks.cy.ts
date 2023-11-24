@@ -3,7 +3,7 @@ import { prepare } from '../support/prepare-story';
 describe('skiplinks', () => {
   beforeEach(() => {
     prepare('Internet Header/Header', 'Default');
-    cy.changeArg('language', 'de')
+    cy.changeArg('language', 'de');
   });
 
   it(`adds and removes skiplinks control`, () => {

@@ -111,7 +111,12 @@
     @include icons-mx.icon($icon);
   }
 
-  // icon override (post-icon)
+  // Prevent flashing when using post-icon
+  &:has(> post-icon)::before {
+    content: none;
+  }
+
+  // icon override (post-icon), needed when :has is not supported
   > post-icon {
     background-color: $color;
   }

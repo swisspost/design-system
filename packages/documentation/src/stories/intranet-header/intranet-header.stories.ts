@@ -25,7 +25,7 @@ const meta: Meta = {
     currentUserId: {
       name: 'currentUserId',
       description:
-        'The ID of the currently logged-in user, used to display the user\'s profile picture.' +
+        "The ID of the currently logged-in user, used to display the user's profile picture." +
         '<p class="alert alert-info alert-sm">By default, a fallback image is displayed.</p>',
       control: 'text',
       table: {

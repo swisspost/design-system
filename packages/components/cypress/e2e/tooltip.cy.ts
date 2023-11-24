@@ -26,8 +26,8 @@ describe('tooltips', () => {
       cy.wait(10);
       cy.get('@tooltip')
         .should('have.css', 'left')
-        .then((v: any) => {
-          expect(parseInt(v)).to.be.greaterThan(150);
+        .then((v: unknown) => {
+          expect(parseInt(v as string)).to.be.greaterThan(150);
         });
     });
   });

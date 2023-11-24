@@ -5,31 +5,9 @@
 $grid-breakpoints-list: xs sm rg md lg xl xxl;
 
 // Grid containers
-//
-// Define the maximum width of `.container` for different screen sizes.
 $container-max-widths: (
   xl: 1280px,
   xxl: 1440px,
-) !default;
-
-// Grid columns
-//
-// Set the number of columns and specify the width of the gutters.
-
-$grid-columns: 12 !default;
-
-/* Deprecated: $grid-gutter-width */
-$grid-gutter-width: 30px !default;
-
-/* Deprecated: "rg" breakpoint */
-$grid-gutter-x: (
-  xs: 12px,
-  sm: 16px,
-  rg: 16px,
-  md: 16px,
-  lg: 16px,
-  xl: 16px,
-  xxl: 16px,
 ) !default;
 
 /* Deprecated: "rg" breakpoint */
@@ -52,4 +30,21 @@ $grid-container-fluid-padding: (
   lg: map.get($grid-container-padding, lg),
   xl: map.get($grid-container-padding, lg),
   xxl: map.get($grid-container-padding, lg),
+) !default;
+
+// Grid columns
+$grid-columns: 12 !default;
+
+/* Deprecated: $grid-gutter-width */
+$grid-gutter-width: 30px !default;
+
+/* Deprecated: "rg" breakpoint */
+$grid-gutter-x: (
+  xs: 12px,
+  sm: 16px,
+  rg: 16px,
+  md: 16px,
+  lg: 16px,
+  xl: 16px,
+  xxl: 16px,
 ) !default;

@@ -1,10 +1,10 @@
-import { Component} from '@angular/core';
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
-import {NgbModalDemoContentComponent} from "../modal-demo-content/modal-demo-content.component";
+import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModalDemoContentComponent } from '../modal-demo-content/modal-demo-content.component';
 
 @Component({
   selector: 'app-ngb-modal-demo',
-  templateUrl: './modal-demo.component.html'
+  templateUrl: './modal-demo.component.html',
 })
 export class NgbModalDemoComponent {
   constructor(private modalService: NgbModal) {}

@@ -1,5 +1,31 @@
 # @swisspost/design-system-styles
 
+## 6.4.4
+
+### Patch Changes
+
+- Added official way to use label in a floating-label select as a placeholder. (by [@imagoiq](https://github.com/imagoiq) with [#2200](https://github.com/swisspost/design-system/pull/2200))
+
+- Fixed display of button-group input when using checkbox or radio variant. (by [@imagoiq](https://github.com/imagoiq) with [#2133](https://github.com/swisspost/design-system/pull/2133))
+
+- Fixed offset of radio button when checked and in inline layout. (by [@imagoiq](https://github.com/imagoiq) with [#2065](https://github.com/swisspost/design-system/pull/2065))
+
+- The following placeholders from the `\_text.scss` file are depreacted an will be removed in a future version: `%list-adjustment`, `%module-container`, `%default-module-spacer`, `%text-container`. (by [@b1aserlu](https://github.com/b1aserlu) with [#2171](https://github.com/swisspost/design-system/pull/2171))
+
+- Fixed default icon flashing when using a `post-icon` on alerts. (by [@imagoiq](https://github.com/imagoiq) with [#2244](https://github.com/swisspost/design-system/pull/2244))
+
+## 6.4.3
+
+### Patch Changes
+
+- Changed dropdown icon for the select component and adjusted the size of the icon. (by [@b1aserlu](https://github.com/b1aserlu) with [#2164](https://github.com/swisspost/design-system/pull/2164))
+
+- Added `table-mono` variant for table component. (by [@imagoiq](https://github.com/imagoiq) with [#2106](https://github.com/swisspost/design-system/pull/2106))
+
+- Set a `max-width` for badges and add ellipsis for overflowing text. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#1892](https://github.com/swisspost/design-system/pull/1892))
+
+- Applied autoprefixer to distributed sass files. Sass files will now contain prefixes for supported browsers according to the browserslist file. (by [@imagoiq](https://github.com/imagoiq) with [#2115](https://github.com/swisspost/design-system/pull/2115))
+
 ## 6.4.2
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Default } from './heading.stories';
 import { html } from 'lit';
-import { bombArgs } from '../../../utils/bombArgs';
+import { bombArgs } from '../../../utils';
 
 export default {
   ...meta,
@@ -16,9 +16,7 @@ export const Heading: Story = {
       <div>
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div
-              class="${bg} d-flex flex-column gap-regular p-regular mt-regular"
-            >
+            <div class="${bg} d-flex flex-column gap-regular p-regular mt-regular">
               ${bombArgs({
                 title: [
                   'Lorem ipsum dolor sit',

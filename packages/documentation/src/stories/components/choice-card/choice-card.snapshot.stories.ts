@@ -1,4 +1,4 @@
-import { bombArgs } from '../../../utils/bombArgs';
+import { bombArgs } from '../../../utils';
 import { choiceCardMeta, choiceCardDefault } from './choice-card';
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
@@ -31,7 +31,7 @@ export const ChoiceCard: StoryObj = {
               ${bombedArgs.map(
                 args =>
                   html`
-                    <div class="col-sm-6">${choiceCardDefault(args)}</div>
+                    <div class="col-sm-6">${choiceCardDefault({ ...args, icon: 1000 })}</div>
                   `,
               )}
             </div>

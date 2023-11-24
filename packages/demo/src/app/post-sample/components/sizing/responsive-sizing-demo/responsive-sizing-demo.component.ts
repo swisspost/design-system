@@ -2,7 +2,7 @@
  * Copyright 2021 by Swiss Post, Information Technology
  */
 
-import {Component} from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-responsive-sizing-demo',

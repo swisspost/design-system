@@ -52,6 +52,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   localization: {
     moreLabel: { [key: string]: string };
     searchPlaceholder: { [key: string]: string };
+    postLogo: { [key: string]: string };
   } = {
     moreLabel: {
       de: 'Mehr',
@@ -64,6 +65,12 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
       fr: "Parcourir l'Intranet",
       it: 'Cercare in intranet',
       en: 'Browse the intranet',
+    },
+    postLogo: {
+      de: 'Die Post - zur Startseite',
+      fr: 'La Poste - Accéder à la page d’accueil',
+      it: 'La Posta - Vai alla pagina iniziale',
+      en: 'Swiss Post - to the homepage',
     },
   };
 
@@ -193,14 +200,9 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
         return;
       }
 
-      const currentLoc = sanitizedLocationUrl;
-      if (RegExp(/lang=[a-zA-Z]+/).exec(currentLoc)) {
-        // lang paramter is already present in url
-        location.href = currentLoc.replace(/lang=[a-zA-Z]{2}/, `lang=${lang}`);
-      } else {
-        // add lang parameter, handle case when a query string is already present or not
-        location.href = currentLoc + (currentLoc.indexOf('?') < 0 ? '?' : '&') + `lang=${lang}`;
-      }
+      const url = new URL(sanitizedLocationUrl);
+      url.searchParams.set('lang', lang);
+      location.href = url.toString();
     }
   }
 
@@ -315,6 +317,10 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
         el.style.display = 'none';
       });
     }
+  }
+
+  public getPostLogoText() {
+    return this.localization['postLogo'][this.lang.toLocaleLowerCase()];
   }
 
   public getPlaceholderSearchIntranet() {

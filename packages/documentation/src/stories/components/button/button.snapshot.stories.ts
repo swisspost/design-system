@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Default, AccentColors, ContextualColors } from './button.stories';
 import { html } from 'lit';
-import { bombArgs } from '../../../utils/bombArgs';
+import { bombArgs } from '../../../utils';
 
 export default {
   ...meta,
@@ -16,9 +16,7 @@ export const Button: Story = {
       <div class="d-flex flex-wrap gap-1 align-items-start">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div
-              class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular"
-            >
+            <div class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular">
               ${bombArgs({
                 variant: context.argTypes.variant.options,
                 size: context.argTypes.size.options,
@@ -37,7 +35,7 @@ export const Button: Story = {
                 )
                 .filter(args => !(args.icon === 'null' && args.iconPosition === 'end'))
                 .filter(args => !(args.icon !== 'null' && args.tag === 'input'))
-                .map((args: Args) => args.tag === 'input' ? { ...args, type: 'button' } : args)
+                .map((args: Args) => (args.tag === 'input' ? { ...args, type: 'button' } : args))
                 .map((args: Args) =>
                   Default.render?.({ ...context.args, ...args, animated: false }, context),
                 )}

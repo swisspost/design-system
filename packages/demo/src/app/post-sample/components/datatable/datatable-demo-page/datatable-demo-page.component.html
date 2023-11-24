@@ -1,19 +1,31 @@
 <div class="heading py-5">
   <h1 class="bold font-curve-large">Datatable</h1>
   <h2 class="font-curve-medium">Using ngx-datatable 20.0.0</h2>
-  <a href="https://swimlane.gitbook.io/ngx-datatable/" target="_blank" rel="noopener" class="btn btn-primary btn-sm btn-animated">
+  <a
+    href="https://swimlane.gitbook.io/ngx-datatable/"
+    target="_blank"
+    rel="noopener"
+    class="btn btn-primary btn-sm btn-animated"
+  >
     <span>Ngx-datatable documentation</span>
   </a>
   &nbsp;
-  <a href="http://swimlane.github.io/ngx-datatable/" target="_blank" rel="noopener" class="btn btn-primary btn-sm btn-animated">
+  <a
+    href="http://swimlane.github.io/ngx-datatable/"
+    target="_blank"
+    rel="noopener"
+    class="btn btn-primary btn-sm btn-animated"
+  >
     <span>Ngx-datatable demos</span>
   </a>
 </div>
 
 <div class="alert alert-warning mb-bigger-big" role="alert">
   <h4 class="alert-heading">Ngx-datatable is not fully accessible</h4>
-  <p>The datatable offered by the ngx-datatable package does not meet the required accessibility standards, therefore it
-    should be avoided in Internet applications.</p>
+  <p>
+    The datatable offered by the ngx-datatable package does not meet the required accessibility
+    standards, therefore it should be avoided in Internet applications.
+  </p>
 </div>
 
 <section>
@@ -37,12 +49,20 @@
     </div>
     <div class="col offset-1">
       <div class="form-check">
-        <input [(ngModel)]="headerColumn" class="form-check-input" type="checkbox" value="" id="headerColumn">
-        <label class="form-check-label" for="headerColumn">Make the first column a header column</label>
+        <input
+          [(ngModel)]="headerColumn"
+          class="form-check-input"
+          type="checkbox"
+          value=""
+          id="headerColumn"
+        />
+        <label class="form-check-label" for="headerColumn">
+          Make the first column a header column
+        </label>
       </div>
     </div>
   </div>
-  <div [ngClass]="{'bg-light p-regular': tableType === 'inverted-colors'}">
+  <div [ngClass]="{ 'bg-light p-regular': tableType === 'inverted-colors' }">
     <app-datatable-demo [tableType]="tableType" [headerColumn]="headerColumn"></app-datatable-demo>
   </div>
   <p class="h5 bold mt-4">datatable-demo.component.html</p>
@@ -75,7 +95,6 @@
   <p class="h5 bold mt-4">datatable-editable-demo.component.html</p>
   <code class="block" [highlight]="editionTemplate" [languages]="['html']"></code>
 </section>
-
 
 <section>
   <h3>Datatable with loading indicator</h3>

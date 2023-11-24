@@ -27,6 +27,10 @@ export const config: Config = {
       customElementsExportBehavior: 'bundle',
     },
     {
+      type: 'www',
+      serviceWorker: null, // disable service workers,
+    },
+    {
       type: 'docs-readme',
     },
     {
