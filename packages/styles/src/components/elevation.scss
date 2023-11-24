@@ -1,7 +1,8 @@
 @use '../variables/elevation';
+@use '../mixins/elevation' as elevation-mx;
 
 @each $key, $value in elevation.$elevation-map {
   .#{$key} {
-    box-shadow: #{$value};
+    @include elevation-mx.elevation($key);
   }
 }

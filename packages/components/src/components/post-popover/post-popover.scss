@@ -1,0 +1,34 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/components/close';
+
+* {
+  box-sizing: border-box;
+}
+
+:host {
+  --post-contrast-color: #{post.$white};
+  --post-bg-rgb: #{post.rgb-values(post.$gray-80)};
+}
+
+.visually-hidden {
+  @include post.visuallyhidden();
+}
+
+.popover-container {
+  display: flex;
+  align-items: self-start;
+  padding: post.$size-mini;
+  font-size: post.$font-size-14;
+
+  // Max 2/3 of the column width
+  max-width: min(66vw, 60rem);
+
+  // Max available width on mobile, popovercontainer will handle offsets
+  @include post.media-breakpoint-down(rg) {
+    max-width: 100%;
+  }
+}
+
+.popover-content {
+  padding: post.$size-mini;
+}
