@@ -1190,19 +1190,18 @@ const vertx = window.vertx || {};
           '</li>';
       }
 
-      if (sessionData.userType === 'B2C') {
-        const settingEnvLinks = {
-          dev01: 'https://serviceint1.post.ch/kvm/app/ui',
-          dev02: 'https://serviceint1.post.ch/kvm/app/ui',
-          devs1: 'https://serviceint1.post.ch/kvm/app/ui',
-          test: 'https://serviceint1.post.ch/kvm/app/ui',
-          int01: 'https://serviceint1.post.ch/kvm/app/ui',
-          int02: 'https://serviceint2.post.ch/kvm/app/ui',
-          prod: 'https://service.post.ch/kvm/app/ui',
-        };
-        const settingsLink = `${settingEnvLinks[environment]}/settings`;
+      const settingEnvLinks = {
+        dev01: 'https://serviceint1.post.ch/kvm/app/ui',
+        dev02: 'https://serviceint1.post.ch/kvm/app/ui',
+        devs1: 'https://serviceint1.post.ch/kvm/app/ui',
+        test: 'https://serviceint1.post.ch/kvm/app/ui',
+        int01: 'https://serviceint1.post.ch/kvm/app/ui',
+        int02: 'https://serviceint2.post.ch/kvm/app/ui',
+        prod: 'https://service.post.ch/kvm/app/ui',
+      };
+      const settingsLink = `${settingEnvLinks[environment]}/settings?lang=${currentLang}`;
 
-        menuList += `
+      menuList += `
           <li>
             <a class="notification-link" href="${settingsLink}">
               <div class="widget_icon_settings" aria-hidden></div>
@@ -1212,7 +1211,6 @@ const vertx = window.vertx || {};
             </a>
           </li>
         `;
-      }
 
       let changeCompanyEntry = '';
       if (isOldChangeCompany()) {

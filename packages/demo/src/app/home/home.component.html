@@ -51,6 +51,26 @@
 
 <div class="bg-light py-5">
   <div class="container">
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">
+        The Swiss Post Design System documentation is migrating towards a new and revised version
+        based on storybook.
+      </h4>
+      <p>
+        Since it is still a beta version it is not yet complete, but in general the new storybook
+        version gives you a much better overview of the components and their possible states.
+      </p>
+      <div class="mt-3">
+        <a
+          href="https://next.design-system.post.ch"
+          rel="noopener"
+          target="_blank"
+          class="btn btn-primary"
+        >
+          🚀 Take me to the future!
+        </a>
+      </div>
+    </div>
     <div class="alert alert-primary" role="alert">
       <h4 class="alert-heading">The Swiss Post Design System is now compatible with Angular 16!</h4>
       <p>
@@ -60,14 +80,81 @@
           rel="noopener"
           target="_blank"
         >
-          Support chanel
+          Support channel
         </a>
         in Teams.
       </p>
     </div>
+    <section>
+      <h3>Compatibility</h3>
 
-    <section class="migration-options mb-huge">
-      <div class="row">
+      <p id="compatibility-desc">List of compatible version numbers with external dependencies.</p>
+
+      <div class="row gx-5 mt-4">
+        <div class="col-md-6 col-sm-12 table-responsive">
+          <h4>Styles</h4>
+          <table aria-describedby="compatibility-desc" class="table caption-top">
+            <caption>Package @swisspost/design-system-styles</caption>
+            <thead>
+              <tr>
+                <th scope="col">Version</th>
+                <th scope="col">Bootstrap</th>
+                <th scope="col">Angular</th>
+                <th scope="col">Ng-Bootstrap</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th scope="col">5.x</th>
+                <td>5.0</td>
+                <td>14.x</td>
+                <td>13.x</td>
+              </tr>
+              <tr>
+                <th scope="col">6.2</th>
+                <td>5.2</td>
+                <td>15.x</td>
+                <td>14.x</td>
+              </tr>
+              <tr>
+                <th scope="col">6.4</th>
+                <td>5.3</td>
+                <td>16.x</td>
+                <td>15.x</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-md-6 col-sm-12 table-responsive">
+          <h4>Common Web Frontend</h4>
+          <table aria-describedby="compatibility-desc" class="table caption-top">
+            <caption>Package @ch-post-common/common-web-frontend</caption>
+            <thead>
+              <tr>
+                <th scope="col">Version</th>
+                <th scope="col">Bootstrap</th>
+                <th scope="col">Angular</th>
+                <th scope="col">Ng-Bootstrap</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <th scope="col">4.x</th>
+                <td>4.6</td>
+                <td>12.x</td>
+                <td>9.x</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h3>Setup for migration instructions</h3>
+      <div class="row migration-options mb-huge">
         <div class="col-md-6">
           <fieldset>
             <legend class="font-curve-small bold">What environment is your application for?</legend>
