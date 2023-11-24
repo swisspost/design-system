@@ -7,7 +7,7 @@
 @use '@swisspost/design-system-styles/mixins/elevation' as elevation-mx;
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
 
-div {
+.popover {
   @include elevation-mx.elevation('elevation-3');
 
   position: fixed;

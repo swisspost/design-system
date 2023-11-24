@@ -194,6 +194,7 @@ export class PostPopovercontainer {
     return (
       <Host data-version={version}>
         <div
+          class="popover"
           part="popover"
           ref={(el: HTMLDivElement & PostPopoverElement) => (this.popoverRef = el)}
         >
