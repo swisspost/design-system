@@ -21,7 +21,7 @@
     "start": "npm-run-all --parallel styles:start schematics:start",
     "styles:start": "gulp watch",
     "prebuild": "pnpm clean",
-    "build": "npm-run-all --parallel styles:build schematics:build",
+    "build": "npm-run-all clean --parallel styles:build schematics:build",
     "styles:build": "gulp build",
     "unit": "gulp sass:tests",
     "clean": "rimraf out-tsc dist",

@@ -1,4 +1,14 @@
-import { Icon, TabHeader, TabPanel, Tabs, Tooltip } from './post-components';
+import {
+  Icon,
+  TabHeader,
+  TabPanel,
+  Tabs,
+  Tooltip,
+  Popover,
+  Accordion,
+  Collapsible,
+} from './post-components';
+import Image from 'next/image';
 export default function Home() {
   return (
     <>
@@ -135,11 +145,9 @@ export default function Home() {
                 </div>
 
                 <div className="topic-teaser-image-container">
-                  <img
-                    className="topic-teaser-image"
+                  <Image
+                    className="topic-teaser-image w-100 h-100"
                     src="https://www.post.ch/-/media/portal-opp/k/bilder/teaser-post-fuer-sie-1053-1053.jpg?mw=1200&vs=4&hash=7AE0C9728659DCC3B818B2E6B83EFB19"
-                    width="100%"
-                    height="100%"
                     alt="Test teaser image"
                   />
                 </div>
@@ -153,7 +161,7 @@ export default function Home() {
         <div className="row">
           <div className="col-lg-4 col-rg-6 col-12 mb-3">
             <div className="card elevation-0">
-              <img
+              <Image
                 className="card-img-top"
                 src="https://www.post.ch/-/media/portal-opp/teaser/black-week-2023.jpg?mw=800&vs=1&hash=F13452D6C3082CE8D975D3299245BE92"
                 alt="Card image cap"
@@ -171,7 +179,7 @@ export default function Home() {
 
           <div className="col-lg-4 col-rg-6 col-12 mb-3">
             <div className="card elevation-0">
-              <img
+              <Image
                 className="card-img-top"
                 src="https://www.post.ch/-/media/portal-opp/teaser/digitalstamp-1872x1053.jpg?mw=800&vs=1&hash=3DFC9BDB852E0A3057808362C7256029"
                 alt="Card image cap"
@@ -189,7 +197,7 @@ export default function Home() {
 
           <div className="col-lg-4 col-rg-6 col-12 mb-3">
             <div className="card elevation-0">
-              <img
+              <Image
                 className="card-img-top"
                 src="https://www.post.ch/-/media/portal-opp/teaser/big-teaser-briefmarkenausgabe-4-2023.png?mw=800&vs=1&hash=74CD9092923FB3B5BB1F55621C9A25FD"
                 alt="Card image cap"
@@ -213,25 +221,46 @@ export default function Home() {
           <TabHeader panel="one" data-tooltip-target="tooltip-one">
             Active
           </TabHeader>
-          <Tooltip id="tooltip-one">This is the first tab header that also has a tooltip</Tooltip>
+          <Tooltip id="tooltip-one">🚀</Tooltip>
           <TabPanel name="one">A content</TabPanel>
 
-          <TabHeader panel="two">Delivered</TabHeader>
+          <TabHeader panel="two" data-tooltip-target="tooltip-two">
+            Delivered
+          </TabHeader>
+          <Tooltip className="bg-yellow" id="tooltip-two">
+            👻
+          </Tooltip>
           <TabPanel name="two">
             <p>Delivered packages</p>
             <div>
-              <button data-popover-target="popover-one">See details</button>
-              <Popover id="popover-one">
-                <h3 className="h5">Details for this content</h3>
+              <button className="btn btn-secondary" data-popover-target="popover-one">
+                See details
+              </button>
+              <Popover id="popover-one" className="bg-primary">
+                <h3 className="h5 mt-0">Details for this content</h3>
                 <p>Here are some more details for this content.</p>
                 <div className="d-flex flex-row-reverse gap-3">
-                  <button className="btn btn-primary">OK</button>
-                  <button className="btn btn-secondary">Nope</button>
+                  <button className="btn btn-primary btn-rg">OK</button>
+                  <button className="btn btn-secondary btn-rg">Nope</button>
                 </div>
               </Popover>
             </div>
           </TabPanel>
         </Tabs>
+        <h3>Frequently asked questions</h3>
+        <Accordion className="mt-big-r" multiple>
+          <Collapsible>
+            <span slot="header">Is this for real?</span>
+            <p>No, this is just a fantasy.</p>
+          </Collapsible>
+          <Collapsible>
+            <span slot="header">Scaramouche, Scaramouche, will you do the Fandango?</span>
+            <p>
+              Thunderbolt and lightning, very, very frightening me (Galileo) Galileo, (Galileo)
+              Galileo, Galileo Figaro, magnifico
+            </p>
+          </Collapsible>
+        </Accordion>
       </section>
     </>
   );
