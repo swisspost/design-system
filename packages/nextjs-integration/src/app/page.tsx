@@ -1,114 +1,209 @@
-import Image from 'next/image';
-import TooltipButton from './tooltip-button';
+import { Icon } from './post-components';
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-        <TooltipButton></TooltipButton>
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:h-auto lg:w-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
+    <main>
+      <section>
+        <h2 className="h4 mt-huge-r">Sendung Verfolgen</h2>
+        <form className="bg-yellow mt-3 p-regular-r d-flex gap-4">
+          <Icon name="1010" className="fs-small-huge"></Icon>
+          <div className="form-floating" style={{ minWidth: '50%' }}>
+            <input
+              id="ExampleTextarea_Default"
+              className="form-control"
+              type="text"
+              name="text-input"
+              placeholder="Sendungsnummber eingeben"
             />
-          </a>
+
+            <label className="form-label" htmlFor="ExampleTextarea_Default">
+              Sendungsnummer
+            </label>
+          </div>
+          <button className="btn btn-primary align-self-center" style={{ marginLeft: 'auto' }}>
+            Suchen
+          </button>
+        </form>
+      </section>
+
+      <section className="mt-huge-r">
+        <div className="row">
+          <div className="col-xl-2 col-md-6">
+            <a href="#" className="card h-100 product-card">
+              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+                <Icon name="2146" className="fs-bigger-big"></Icon>
+                <p className="mt-2 text-center text-muted fs-regular fw-normal">Umzug melden</p>
+              </div>
+            </a>
+          </div>
+
+          <div className="col-xl-2 col-md-6">
+            <a href="#" className="card h-100 product-card">
+              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+                <Icon name="2026" className="fs-bigger-big"></Icon>
+                <p className="mt-2 text-center text-muted fs-regular fw-normal">Shop</p>
+              </div>
+            </a>
+          </div>
+
+          <div className="col-xl-2 col-md-6">
+            <a href="#" className="card h-100 product-card">
+              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+                <Icon name="3140" className="fs-bigger-big"></Icon>
+                <p className="mt-2 text-center text-muted fs-regular fw-normal">
+                  Preise für Briefe und Pakete
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <div className="col-xl-2 col-md-6">
+            <a href="#" className="card h-100 product-card">
+              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+                <Icon name="2456" className="fs-bigger-big"></Icon>
+                <p className="mt-2 text-center text-muted fs-regular fw-normal">
+                  Paketetiketten erstellen
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <div className="col-xl-2 col-md-6">
+            <a href="#" className="card h-100 product-card">
+              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+                <Icon name="1012" className="fs-bigger-big"></Icon>
+                <p className="mt-2 text-center text-muted fs-regular fw-normal">
+                  Pakete abholen lassen
+                </p>
+              </div>
+            </a>
+          </div>
+
+          <div className="col-xl-2 col-md-6">
+            <a href="#" className="card h-100 product-card">
+              <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
+                <Icon name="1024" className="fs-bigger-big"></Icon>
+                <p className="mt-2 text-center text-muted fs-regular fw-normal">
+                  Personalisierte Briefmarken
+                </p>
+              </div>
+            </a>
+          </div>
         </div>
-      </div>
-
-      <div className="relative flex place-items-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 before:lg:h-[360px] z-[-1]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Docs{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Find in-depth information about Next.js features and API.
-          </p>
+        <a href="" className="text-muted btn btn-tertiary btn-md mt-3">
+          <Icon name="3020"></Icon>
+          Alle Onlinedienste
         </a>
+      </section>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Learn{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
+      <section className="mt-huge-r">
+        <div className="topic-teaser mb-huge-r bg-yellow">
+          <div className="container">
+            <div className="topic-teaser-container bg-yellow">
+              <div className="row pt-huge-r">
+                <div className="topic-teaser-content">
+                  <h2 className="topic-teaser-title font-curve-large mb-large">
+                    <span className="bold">Post für Sie</span>
+                    <span className="light">Einfach versenden, schnell ankommen</span>
+                  </h2>
+                  <ul className="link-list mb-large">
+                    <li className="link-list-item">
+                      <a href="#">
+                        <span>Briefe versenden</span>
+                      </a>
+                    </li>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Templates{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Explore the Next.js 13 playground.
-          </p>
-        </a>
+                    <li className="link-list-item">
+                      <a href="#">
+                        <span>Pakete versenden</span>
+                      </a>
+                    </li>
 
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className={`mb-3 text-2xl font-semibold`}>
-            Deploy{' '}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className={`m-0 max-w-[30ch] text-sm opacity-50`}>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+                    <li className="link-list-item">
+                      <a href="#">
+                        <span>Express und Kurier</span>
+                      </a>
+                    </li>
+
+                    <li className="link-list-item">
+                      <a href="#">
+                        <span>Einschreiben aufgeben</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="topic-teaser-image-container">
+                  <img
+                    className="topic-teaser-image"
+                    src="https://www.post.ch/-/media/portal-opp/k/bilder/teaser-post-fuer-sie-1053-1053.jpg?mw=1200&vs=4&hash=7AE0C9728659DCC3B818B2E6B83EFB19"
+                    width="100%"
+                    height="100%"
+                    alt="Test teaser image"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="pt-huge-r mb-huge-r">
+        <div className="row">
+          <div className="col-lg-4 col-rg-6 col-12 mb-3">
+            <div className="card elevation-0">
+              <img
+                className="card-img-top"
+                src="https://www.post.ch/-/media/portal-opp/teaser/black-week-2023.jpg?mw=800&vs=1&hash=F13452D6C3082CE8D975D3299245BE92"
+                alt="Card image cap"
+              />
+              <div className="card-body bg-gray">
+                <h3 className="card-title">Hier steckt mehr drin</h3>
+                <p className="card-text">Black-Week-Topangebote nicht verpassen</p>
+                <a href="#" className="btn btn-tertiary">
+                  <Icon name="3020"></Icon>
+                  <span>Mehr erfahren</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-4 col-rg-6 col-12 mb-3">
+            <div className="card elevation-0">
+              <img
+                className="card-img-top"
+                src="https://www.post.ch/-/media/portal-opp/teaser/digitalstamp-1872x1053.jpg?mw=800&vs=1&hash=3DFC9BDB852E0A3057808362C7256029"
+                alt="Card image cap"
+              />
+              <div className="card-body bg-gray">
+                <h3 className="card-title">Einfach easy frankieren</h3>
+                <p className="card-text">DigitalStamp: Mit der Post-App frankieren</p>
+                <a href="#" className="btn btn-tertiary">
+                  <Icon name="3020"></Icon>
+                  <span>Mehr erfahren</span>
+                </a>
+              </div>
+            </div>
+          </div>
+
+          <div className="col-lg-4 col-rg-6 col-12 mb-3">
+            <div className="card elevation-0">
+              <img
+                className="card-img-top"
+                src="https://www.post.ch/-/media/portal-opp/teaser/big-teaser-briefmarkenausgabe-4-2023.png?mw=800&vs=1&hash=74CD9092923FB3B5BB1F55621C9A25FD"
+                alt="Card image cap"
+              />
+              <div className="card-body bg-gray">
+                <h3 className="card-title">Neue Briefmarken</h3>
+                <p className="card-text">Entdecken Sie jetzt Ihre liebsten Motive</p>
+                <a href="#" className="btn btn-tertiary">
+                  <Icon name="3020"></Icon>
+                  <span>Mehr erfahren</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

@@ -6,6 +6,7 @@ export const config: Config = {
   namespace: 'swisspost-internet-header',
   globalStyle: 'src/styles.scss',
   buildEs5: 'prod',
+  sourceMap: false,
   bundles: [
     {
       components: ['swisspost-internet-header'],
