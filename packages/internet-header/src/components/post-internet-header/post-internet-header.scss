@@ -119,14 +119,6 @@
   align-items: center;
   overflow: hidden;
   flex-shrink: 1;
-
-  ::slotted(*) {
-    padding-inline: 1rem;
-
-    @include mixins.min(lg) {
-      padding-inline: 1.125rem;
-    }
-  }
 }
 
 .menu-button {

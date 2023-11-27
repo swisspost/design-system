@@ -130,7 +130,7 @@ export class PostInternetHeader {
 
   @State() activeFlyout: string | null = null;
   @State() activeDropdownElement: DropdownElement | null = null;
-  @State() isMainSlotEmpty: boolean;
+  @State() isMainSlotEmpty = true;
   @Element() host: HTMLSwisspostInternetHeaderElement;
 
   /**
@@ -511,11 +511,9 @@ export class PostInternetHeader {
               </If>
             </post-main-navigation>
             <div class="main-navigation-controls">
-              <If condition={!this.isMainSlotEmpty}>
-                <div class="main-navigation-custom-content">
-                  <slot name="main" onSlotchange={e => this.handleMainSlotChange(e)}></slot>
-                </div>
-              </If>
+              <div class="main-navigation-custom-content" hidden={this.isMainSlotEmpty}>
+                <slot name="main" onSlotchange={e => this.handleMainSlotChange(e)}></slot>
+              </div>
               <If condition={this.search}>
                 <post-search onDropdownToggled={e => this.handleDropdownToggled(e)}></post-search>
               </If>

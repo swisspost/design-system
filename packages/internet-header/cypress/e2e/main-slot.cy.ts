@@ -64,24 +64,6 @@ describe('main-navigation', () => {
       cy.get('@custom-content').should('not.have.css', 'border-left-width', '0px');
     });
 
-    it('should add a default padding to the slotted element if it does not have a padding defined', () => {
-      cy.get('@slotted-element').should('not.have.css', 'padding-inline', '0px');
-    });
-
-    it('should not override the padding defined on the slotted element', () => {
-      const expectedPadding = '37px';
-
-      cy.document().then(document => {
-        const htmlStyle = document.createElement('style');
-        htmlStyle.innerHTML = '.padded {padding:' + expectedPadding + ';}';
-        document.querySelector('head')?.appendChild(htmlStyle);
-      });
-
-      cy.get('@slotted-element')
-        .invoke('addClass', 'padded')
-        .should('have.css', 'padding-inline', expectedPadding);
-    });
-
     it('should not stretched the header when the slotted element is high', () => {
       cy.get('@custom-content')
         .invoke('outerHeight')

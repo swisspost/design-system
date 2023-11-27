@@ -218,7 +218,7 @@ export const OSFlyoutOverrides: Story = {
 
 export const CustomContent: Story = {
   args: {
-    innerHTML: `<p class="mb-0" slot="main">Hello, User!</p>`,
+    innerHTML: `<p class="mx-regular mb-0" slot="main">Hello, User!</p>`,
   },
   parameters: {
     controls: {
