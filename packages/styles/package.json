@@ -41,19 +41,13 @@
   },
   "dependencies": {
     "@popperjs/core": "2.11.8",
-    "bootstrap": "5.3.2",
-    "cheerio": "1.0.0-rc.12",
-    "prettier": "3.1.0"
+    "bootstrap": "5.3.2"
   },
   "devDependencies": {
-    "@percy/cli": "1.27.4",
-    "@percy/cypress": "3.1.2",
     "@swisspost/design-system-icons": "workspace:1.0.15",
     "@types/node": "18.18.13",
     "autoprefixer": "10.4.16",
     "copyfiles": "2.4.1",
-    "cypress": "13.6.0",
-    "cypress-storybook": "0.5.1",
     "glob": "10.3.10",
     "gulp": "4.0.2",
     "gulp-newer": "^1.4.0",
@@ -63,6 +57,7 @@
     "npm-run-all": "4.1.5",
     "postcss": "8.4.31",
     "postcss-scss": "4.0.9",
+    "prettier": "3.1.0",
     "rimraf": "5.0.5",
     "sass": "1.69.5",
     "stylelint": "15.11.0",
@@ -76,7 +71,6 @@
     "includePaths": [
       "node_modules"
     ],
-    "outputDir": "./dist",
-    "tscOutDir": "./out-tsc/lib"
+    "outputDir": "./dist"
   }
 }
