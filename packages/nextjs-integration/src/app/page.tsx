@@ -1,14 +1,15 @@
 import {
-  Icon,
-  TabHeader,
-  TabPanel,
-  Tabs,
-  Tooltip,
-  Popover,
-  Accordion,
-  Collapsible,
-} from './post-components';
+  PostAccordion,
+  PostCollapsible,
+  PostIcon,
+  PostPopover,
+  PostTabHeader,
+  PostTabPanel,
+  PostTabs,
+  PostTooltip,
+} from '@swisspost/design-system-components-react';
 import Image from 'next/image';
+
 export default function Home() {
   return (
     <>
@@ -16,8 +17,8 @@ export default function Home() {
 
       <section>
         <h2 className="h4 mt-huge-r">Sendung Verfolgen</h2>
-        <form className="bg-yellow mt-3 p-regular-r d-flex gap-4">
-          <Icon name="1010" className="fs-small-huge"></Icon>
+        <form className="bg-yellow mt-3 py-3 px-big d-flex gap-4">
+          <PostIcon name="1010" className="fs-small-huge"></PostIcon>
           <div className="form-floating" style={{ minWidth: '50%' }}>
             <input
               id="ExampleTextarea_Default"
@@ -42,7 +43,7 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-100 product-card">
               <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <Icon name="2146" className="fs-bigger-big"></Icon>
+                <PostIcon name="2146" className="fs-bigger-big"></PostIcon>
                 <p className="mt-2 text-center text-muted fs-regular fw-normal">Umzug melden</p>
               </div>
             </a>
@@ -51,7 +52,7 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-100 product-card">
               <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <Icon name="2026" className="fs-bigger-big"></Icon>
+                <PostIcon name="2026" className="fs-bigger-big"></PostIcon>
                 <p className="mt-2 text-center text-muted fs-regular fw-normal">Shop</p>
               </div>
             </a>
@@ -60,7 +61,7 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-100 product-card">
               <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <Icon name="3140" className="fs-bigger-big"></Icon>
+                <PostIcon name="3140" className="fs-bigger-big"></PostIcon>
                 <p className="mt-2 text-center text-muted fs-regular fw-normal">
                   Preise für Briefe und Pakete
                 </p>
@@ -71,7 +72,7 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-100 product-card">
               <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <Icon name="2456" className="fs-bigger-big"></Icon>
+                <PostIcon name="2456" className="fs-bigger-big"></PostIcon>
                 <p className="mt-2 text-center text-muted fs-regular fw-normal">
                   Paketetiketten erstellen
                 </p>
@@ -82,7 +83,7 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-100 product-card">
               <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <Icon name="1012" className="fs-bigger-big"></Icon>
+                <PostIcon name="1012" className="fs-bigger-big"></PostIcon>
                 <p className="mt-2 text-center text-muted fs-regular fw-normal">
                   Pakete abholen lassen
                 </p>
@@ -93,7 +94,7 @@ export default function Home() {
           <div className="col-xl-2 col-md-6">
             <a href="#" className="card h-100 product-card">
               <div className="card-body p-3 product-navigation justify-content-start d-flex flex-column align-items-center">
-                <Icon name="1024" className="fs-bigger-big"></Icon>
+                <PostIcon name="1024" className="fs-bigger-big"></PostIcon>
                 <p className="mt-2 text-center text-muted fs-regular fw-normal">
                   Personalisierte Briefmarken
                 </p>
@@ -102,7 +103,7 @@ export default function Home() {
           </div>
         </div>
         <a href="" className="text-muted btn btn-tertiary btn-md mt-3">
-          <Icon name="3020"></Icon>
+          <PostIcon name="3020"></PostIcon>
           Alle Onlinedienste
         </a>
       </section>
@@ -146,6 +147,8 @@ export default function Home() {
 
                 <div className="topic-teaser-image-container">
                   <Image
+                    width={100}
+                    height={100}
                     className="topic-teaser-image w-100 h-100"
                     src="https://www.post.ch/-/media/portal-opp/k/bilder/teaser-post-fuer-sie-1053-1053.jpg?mw=1200&vs=4&hash=7AE0C9728659DCC3B818B2E6B83EFB19"
                     alt="Test teaser image"
@@ -162,6 +165,8 @@ export default function Home() {
           <div className="col-lg-4 col-rg-6 col-12 mb-3">
             <div className="card elevation-0">
               <Image
+                width={400}
+                height={200}
                 className="card-img-top"
                 src="https://www.post.ch/-/media/portal-opp/teaser/black-week-2023.jpg?mw=800&vs=1&hash=F13452D6C3082CE8D975D3299245BE92"
                 alt="Card image cap"
@@ -170,7 +175,7 @@ export default function Home() {
                 <h3 className="card-title">Hier steckt mehr drin</h3>
                 <p className="card-text">Black-Week-Topangebote nicht verpassen</p>
                 <a href="#" className="btn btn-tertiary">
-                  <Icon name="3020"></Icon>
+                  <PostIcon name="3020"></PostIcon>
                   <span>Mehr erfahren</span>
                 </a>
               </div>
@@ -180,6 +185,8 @@ export default function Home() {
           <div className="col-lg-4 col-rg-6 col-12 mb-3">
             <div className="card elevation-0">
               <Image
+                width={400}
+                height={200}
                 className="card-img-top"
                 src="https://www.post.ch/-/media/portal-opp/teaser/digitalstamp-1872x1053.jpg?mw=800&vs=1&hash=3DFC9BDB852E0A3057808362C7256029"
                 alt="Card image cap"
@@ -188,7 +195,7 @@ export default function Home() {
                 <h3 className="card-title">Einfach easy frankieren</h3>
                 <p className="card-text">DigitalStamp: Mit der Post-App frankieren</p>
                 <a href="#" className="btn btn-tertiary">
-                  <Icon name="3020"></Icon>
+                  <PostIcon name="3020"></PostIcon>
                   <span>Mehr erfahren</span>
                 </a>
               </div>
@@ -198,6 +205,8 @@ export default function Home() {
           <div className="col-lg-4 col-rg-6 col-12 mb-3">
             <div className="card elevation-0">
               <Image
+                width={400}
+                height={200}
                 className="card-img-top"
                 src="https://www.post.ch/-/media/portal-opp/teaser/big-teaser-briefmarkenausgabe-4-2023.png?mw=800&vs=1&hash=74CD9092923FB3B5BB1F55621C9A25FD"
                 alt="Card image cap"
@@ -206,7 +215,7 @@ export default function Home() {
                 <h3 className="card-title">Neue Briefmarken</h3>
                 <p className="card-text">Entdecken Sie jetzt Ihre liebsten Motive</p>
                 <a href="#" className="btn btn-tertiary">
-                  <Icon name="3020"></Icon>
+                  <PostIcon name="3020"></PostIcon>
                   <span>Mehr erfahren</span>
                 </a>
               </div>
@@ -217,50 +226,53 @@ export default function Home() {
 
       <section className="mt-huge-r">
         <h2>Testing a couple web components</h2>
-        <Tabs>
-          <TabHeader panel="one" data-tooltip-target="tooltip-one">
+        <PostTabs>
+          <PostTabHeader panel="one" data-tooltip-target="tooltip-one">
             Active
-          </TabHeader>
-          <Tooltip id="tooltip-one">🚀</Tooltip>
-          <TabPanel name="one">A content</TabPanel>
+          </PostTabHeader>
+          <PostTooltip id="tooltip-one">🚀</PostTooltip>
+          <PostTabPanel name="one">A content</PostTabPanel>
 
-          <TabHeader panel="two" data-tooltip-target="tooltip-two">
+          <PostTabHeader panel="two" data-tooltip-target="tooltip-two">
             Delivered
-          </TabHeader>
-          <Tooltip className="bg-yellow" id="tooltip-two">
+          </PostTabHeader>
+          <PostTooltip className="bg-yellow" id="tooltip-two">
             👻
-          </Tooltip>
-          <TabPanel name="two">
+          </PostTooltip>
+          <PostTabPanel name="two">
             <p>Delivered packages</p>
             <div>
               <button className="btn btn-secondary" data-popover-target="popover-one">
                 See details
               </button>
-              <Popover id="popover-one" className="bg-primary">
+              <PostPopover id="popover-one" className="bg-primary" closeButtonCaption="close">
                 <h3 className="h5 mt-0">Details for this content</h3>
                 <p>Here are some more details for this content.</p>
                 <div className="d-flex flex-row-reverse gap-3">
                   <button className="btn btn-primary btn-rg">OK</button>
                   <button className="btn btn-secondary btn-rg">Nope</button>
                 </div>
-              </Popover>
+              </PostPopover>
+              <PostPopover closeButtonCaption="close">
+                <h3>This is a direct import</h3>
+              </PostPopover>
             </div>
-          </TabPanel>
-        </Tabs>
+          </PostTabPanel>
+        </PostTabs>
         <h3>Frequently asked questions</h3>
-        <Accordion className="mt-big-r" multiple>
-          <Collapsible>
+        <PostAccordion className="mt-big-r" multiple>
+          <PostCollapsible>
             <span slot="header">Is this for real?</span>
             <p>No, this is just a fantasy.</p>
-          </Collapsible>
-          <Collapsible>
+          </PostCollapsible>
+          <PostCollapsible>
             <span slot="header">Scaramouche, Scaramouche, will you do the Fandango?</span>
             <p>
               Thunderbolt and lightning, very, very frightening me (Galileo) Galileo, (Galileo)
               Galileo, Galileo Figaro, magnifico
             </p>
-          </Collapsible>
-        </Accordion>
+          </PostCollapsible>
+        </PostAccordion>
       </section>
     </>
   );
