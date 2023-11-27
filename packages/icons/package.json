@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-icons",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -29,9 +29,9 @@
   },
   "devDependencies": {
     "@tsconfig/node18": "18.2.2",
-    "@types/jest": "29.5.8",
+    "@types/jest": "29.5.10",
     "@types/mock-fs": "4.13.4",
-    "@types/node": "18.18.10",
+    "@types/node": "18.18.13",
     "@types/node-fetch": "2.6.9",
     "dotenv": "16.3.1",
     "http-server": "14.1.1",

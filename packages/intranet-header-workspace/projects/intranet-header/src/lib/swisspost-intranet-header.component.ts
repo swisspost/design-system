@@ -200,14 +200,9 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
         return;
       }
 
-      const currentLoc = sanitizedLocationUrl;
-      if (RegExp(/lang=[a-zA-Z]+/).exec(currentLoc)) {
-        // lang paramter is already present in url
-        location.href = currentLoc.replace(/lang=[a-zA-Z]{2}/, `lang=${lang}`);
-      } else {
-        // add lang parameter, handle case when a query string is already present or not
-        location.href = currentLoc + (currentLoc.indexOf('?') < 0 ? '?' : '&') + `lang=${lang}`;
-      }
+      const url = new URL(sanitizedLocationUrl);
+      url.searchParams.set('lang', lang);
+      location.href = url.toString();
     }
   }
 
