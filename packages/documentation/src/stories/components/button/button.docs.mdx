@@ -44,3 +44,12 @@ Besides the usual and the accent button variations, there are also contextual bu
 <p className="alert alert-warning">These are only allowed for intranet applications!</p>
 
 <Canvas of={ButtonStories.ContextualColors} />
+
+### Full-width
+
+In some situation, it is desirable to display a button using the full available space width,
+for example when the button is displayed on mobile and stacked vertically with others.
+
+To achieve that, you can use `.w-breakpoint-sizes`. e.g. `.w-sm-100` to use the full available space from `sm` viewport size.
+
+<Canvas of={ButtonStories.FullWidth} />
