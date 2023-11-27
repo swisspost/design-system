@@ -1,61 +1,80 @@
 @forward './../variables/options';
 
-@use './../mixins/button' as button-mixins;
-@use './../mixins/color' as color-mixins;
-@use './../mixins/icons' as icon-mixins;
-@use './../mixins/type' as type-mixins;
-@use './../mixins/utilities' as utility-mixins;
+@use './../mixins/button' as button-mx;
+@use './../mixins/color' as color-mx;
+@use './../mixins/focus' as focus-mx;
+@use './../mixins/icons' as icon-mx;
+@use './../mixins/type' as type-mx;
+@use './../mixins/utilities' as utility-mx;
 
+@use './../functions/contrast';
+@use './../variables/color';
 @use './../variables/components/accordion';
 
 .accordion-item {
-  border-block-start: accordion.$accordion-border-width solid accordion.$accordion-border-color;
+  border-block: accordion.$accordion-border-width solid accordion.$accordion-border-color;
+
+  & + & {
+    border-block-start: 0;
+  }
+
+  // make the accordion gray
+  @include color-mx.colored-background(color.$gray-background);
+
+  // make the accordion white on background colors close to the gray above
+  @each $name, $color in color.$background-colors {
+    @if (contrast.contrast-ratio($color, color.$gray-background) < 1.1) {
+      .bg-#{$name} & {
+        @include color-mx.colored-background(color.$white);
+      }
+    }
+  }
 }
 
 .accordion-header {
-  @include type-mixins.font-curve(accordion.$accordion-header-font-curve);
+  color: accordion.$accordion-header-color;
+  font-size: accordion.$accordion-header-font-size;
   font-weight: accordion.$accordion-header-font-weight;
   line-height: accordion.$accordion-header-line-height;
   margin: 0;
 }
 
 .accordion-button {
-  @include button-mixins.reset-button;
+  @include button-mx.reset-button;
+  @include focus-mx.focus-ring;
 
   width: 100%;
   position: relative;
   padding-block: accordion.$accordion-button-padding;
   padding-inline-start: accordion.$accordion-button-padding;
-  padding-inline-end: accordion.$accordion-button-padding + accordion.$accordion-icon-size;
+  padding-inline-end: accordion.$accordion-button-padding + accordion.$accordion-icon-size +
+    accordion.$accordion-gap;
   text-align: start;
+  transition: accordion.$accordion-button-transition;
 
-  &:not(:disabled) {
-    cursor: accordion.$accordion-button-cursor;
+  &:hover {
+    color: accordion.$accordion-button-hover-color;
+    background-color: accordion.$accordion-button-hover-bg;
   }
 
   &:disabled {
     opacity: accordion.$accordion-button-disabled-opacity;
-  }
-
-  &:focus {
-    outline: none;
-    box-shadow: accordion.$accordion-button-focus-box-shadow;
+    pointer-events: none;
   }
 
   &::after {
-    @include icon-mixins.icon(accordion.$accordion-icon-name);
+    @include icon-mx.icon(accordion.$accordion-icon-name);
     content: '';
     display: block;
     height: accordion.$accordion-icon-size;
     width: accordion.$accordion-icon-size;
+
+    // use absolute positioning instead of flex to allow easy title truncation
     position: absolute;
     inset-inline-end: accordion.$accordion-button-padding;
     inset-block-start: 50%;
     transform: translateY(-50%);
     transition: accordion.$accordion-icon-transition;
-
-    // add border to fix visual issue during rotation
-    border: 1px solid rgb(var(--post-bg-rgb, 255, 255, 255));
   }
 
   &.collapsed::after {
@@ -66,8 +85,7 @@
     display: block;
   }
 
-  // TODO: find a way to style WHCM within web component
-  @include utility-mixins.high-contrast-mode() {
+  @include utility-mx.high-contrast-mode() {
     &:hover,
     &:focus-visible {
       &:not(:disabled) {
@@ -83,25 +101,15 @@
 
 .accordion-body {
   padding: accordion.$accordion-body-padding;
-  border-block-start: accordion.$accordion-border-width solid accordion.$accordion-border-color;
-
-  @each $heading-size in (1 2 3 4 5 6) {
-    h#{$heading-size},
-    .h#{$heading-size} {
-      @include type-mixins.font-curve(accordion.$accordion-heading-font-curve);
-      margin: accordion.$accordion-heading-margin;
-      font-weight: accordion.$accordion-heading-font-weight;
-    }
-  }
+  font-weight: accordion.$accordion-body-font-weight;
 }
 
-.accordion-button,
-.accordion-body {
-  > :first-child {
-    margin-block-start: 0 !important;
-  }
+.accordion-button > *,
+.accordion-body > :first-child {
+  margin-block-start: 0 !important;
+}
 
-  > :last-child {
-    margin-block-end: 0 !important;
-  }
+.accordion-button > *,
+.accordion-body > :last-child {
+  margin-block-end: 0 !important;
 }
