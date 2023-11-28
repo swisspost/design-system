@@ -1,5 +1,18 @@
 # @swisspost/design-system-demo
 
+## 7.1.0
+
+### Minor Changes
+
+- Added link to new documentation (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2142](https://github.com/swisspost/design-system/pull/2142))
+
+- Deprecated standard HTML alerts with a close button in favor of the `post-alert` component designed to correctly handle the dismissal animation. (by [@b1aserlu](https://github.com/b1aserlu) with [#2239](https://github.com/swisspost/design-system/pull/2239))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.4
+
 ## 7.0.4
 
 ### Patch Changes
