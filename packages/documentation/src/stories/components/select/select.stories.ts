@@ -77,10 +77,6 @@ const meta: Meta = {
     size: {
       name: 'Size',
       description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: false,
-      },
       control: {
         type: 'select',
         labels: {
@@ -166,7 +162,25 @@ const meta: Meta = {
           'is-invalid': 'Invalid',
         },
       },
+      if: {
+        arg: 'disabled',
+        truthy: false,
+      },
       options: ['null', 'is-valid', 'is-invalid'],
+      table: {
+        category: 'States',
+      },
+    },
+    success: {
+      name: 'Success',
+      description: 'Controls the success state appearance of the component.',
+      control: {
+        type: 'boolean',
+      },
+      if: {
+        arg: 'validation',
+        neq: 'is-invalid',
+      },
       table: {
         category: 'States',
       },
@@ -187,6 +201,7 @@ const Template: Story = {
       args.size,
       args.validation,
       args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
+      args.success && 'success',
     ]
       .filter(c => c && c !== 'null')
       .join(' ');
@@ -247,7 +262,7 @@ const Template: Story = {
           options[0],
           options.slice(1).map(
             (option, index) => html`
-              <option value="valoro_${index + 1}" ?selected=${index === args.selectedOption - 2}>
+              <option value="valoro_${index + 1}" ?selected="${index === args.selectedOption - 2}">
                 Opcion ${index + 2}
               </option>
             `,
