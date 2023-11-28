@@ -25,6 +25,7 @@ export class PostRating {
   private handleClick(starValue: number) {
     this.rating = starValue;
     this.ratingChanged.emit(this.rating);
+    this.hovered = 0;
   }
 
   private handleHover(hoverCount: number) {
@@ -37,18 +38,32 @@ export class PostRating {
 
   private renderStars() {
     const stars = [];
-    for (let i = 1; i <= 10; i++) {
-      const filled = i <= this.rating && i != this.hovered ? 'filled' : '';
-      const hovered = i <= this.hovered ? 'hovered' : '';
+    for (let i = 1; i <= 5; i++) {
+      const filled =
+        i <= this.rating && (this.hovered === 0 || this.hovered > this.rating) ? true : false;
+      const hovered = i <= this.hovered ? true : false;
       stars.push(
-        <span
-          class={`star ${filled} ${hovered}`}
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
           onClick={() => this.handleClick(i)}
           onMouseEnter={() => this.handleHover(i)}
           onMouseLeave={() => this.reset()}
+          class="star"
         >
-          ★
-        </span>,
+          <path
+            d="M24 9.12099L15.6574 7.80063L12 0L8.22857 7.92034L0 9.12009L6.05743 15.2404L4.686 24.0004L12.1149 19.9206L19.5437 24.0004L18.1723 15.2404L24 9.12099Z"
+            class={`${filled ? 'active-boarder' : 'default-boarder'}`}
+          />
+          <path
+            d="M12 18.6011L6.05743 21.8412L7.2 14.8812L2.4 9.96073L9.02829 9.00038L12 2.63981L14.9717 9.00038L21.6 9.96073L16.8 14.8812L17.9426 21.8412L12 18.6011Z"
+            class={`${filled ? 'active-fill' : 'default-fill'} ${
+              hovered ? 'hover-fill' : 'default-fill'
+            }`}
+          />
+        </svg>,
       );
     }
     return stars;
@@ -58,19 +73,6 @@ export class PostRating {
     return (
       <Host data-version={version}>
         <div class="rating">{this.renderStars()}</div>
-        <svg
-          class="test"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="#ffcc00"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <path
-            d="M24 9.12099L15.6574 7.80063L12 0L8.22857 7.92034L0 9.12009L6.05743 15.2404L4.686 24.0004L12.1149 19.9206L19.5437 24.0004L18.1723 15.2404L24 9.12099ZM12 18.6011L6.05743 21.8412L7.2 14.8812L2.4 9.96073L9.02829 9.00038L12 2.63981L14.9717 9.00038L21.6 9.96073L16.8 14.8812L17.9426 21.8412L12 18.6011Z"
-            fill="#ffcc00"
-          />
-        </svg>
       </Host>
     );
   }

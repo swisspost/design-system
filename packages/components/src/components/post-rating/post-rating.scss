@@ -1,46 +1,60 @@
-.color {
-  background-color: green;
-}
-
 :host {
   display: inline-block;
   font-size: 0;
 }
 
 .rating {
-  color: #cccccc;
-  font-size: 50px;
-  display: inline-block;
+  margin: 0 -4px 0 -4px;
 }
 
-.rating .star {
-  display: inline-block;
-  position: relative;
-  width: 50px;
-  cursor: pointer;
+.star {
+  padding: 0 4px 0 4px;
 }
 
-// .rating .star:hover .star {
+// .rating .star {
+//   display: inline-block;
+//   position: relative;
+//   width: 50px;
+//   cursor: pointer;
+// }
+
+// // .rating .star:hover .star {
+// //   content: '☆';
+// //   position: absolute;
+// //   left: 0;
+// //   color: #fdd835;
+// // }
+
+// .hovered:after {
 //   content: '☆';
 //   position: absolute;
 //   left: 0;
 //   color: #fdd835;
 // }
 
-.hovered:after {
-  content: '☆';
-  position: absolute;
-  left: 0;
-  color: #fdd835;
+// .rating .star.filled:before {
+//   content: '★';
+//   position: absolute;
+//   left: 0;
+//   color: #fdd835;
+// }
+
+.default-fill {
+  fill: white;
 }
 
-.rating .star.filled:before {
-  content: '★';
-  position: absolute;
-  left: 0;
-  color: #fdd835;
+.default-boarder {
+  fill: #00000099;
 }
 
-.test {
-  background-color: grey;
+.hover-fill {
+  fill: #cccccc;
+}
+
+.active-boarder {
+  fill: black;
+}
+
+.active-fill {
+  fill: #ffcc00;
 }
