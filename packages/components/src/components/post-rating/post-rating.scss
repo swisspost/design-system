@@ -2,23 +2,21 @@
   background-color: green;
 }
 
-/* editable-rating.css */
 :host {
   display: inline-block;
   font-size: 0;
 }
 
 .rating {
-  unicode-bidi: bidi-override;
   color: #cccccc;
-  font-size: 24px;
+  font-size: 50px;
   display: inline-block;
 }
 
 .rating .star {
   display: inline-block;
   position: relative;
-  width: 24px;
+  width: 50px;
   cursor: pointer;
 }
 
@@ -41,4 +39,8 @@
   position: absolute;
   left: 0;
   color: #fdd835;
+}
+
+.test {
+  background-color: grey;
 }
