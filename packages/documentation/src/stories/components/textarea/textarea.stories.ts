@@ -21,6 +21,7 @@ const meta: Meta = {
     hiddenLabel: false,
     value: undefined,
     size: 'null',
+    sizeWithFloatingLabel: 'null',
     rows: 4,
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
@@ -93,13 +94,32 @@ const meta: Meta = {
         category: 'General',
       },
     },
+    sizeWithFloatingLabel: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: true,
+      },
+      control: {
+        type: 'select',
+        labels: {
+          'form-control-sm': 'Small',
+          'form-control-lg': 'Large',
+        },
+      },
+      options: ['form-control-sm', 'form-control-lg'],
+      table: {
+        category: 'General',
+      },
+    },
     rows: {
       name: 'Rows',
       description:
         'Attribute to set the initial height, in lines of text, of the `textarea` element.',
       control: {
-        type: 'number',
-        min: 3,
+        type: 'range',
+        min: 2,
         max: 10,
         step: 1,
       },
@@ -156,6 +176,8 @@ function renderTextarea(args: Args, context: StoryContext) {
   const classes = mapClasses({
     'form-control': true,
     [args.size]: args.size && args.size !== 'null',
+    [args.sizeWithFloatingLabel]:
+      args.sizeWithFloatingLabel && args.sizeWithFloatingLabel !== 'null',
     [args.validation]: args.validation && args.validation !== 'null',
   });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
@@ -200,7 +222,9 @@ function renderTextarea(args: Args, context: StoryContext) {
       aria-label=${useAriaLabel ? args.label : nothing}
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
       style=${args.resize ?? nothing}
-    >${args.textInside ?? nothing}</textarea>
+    >
+${args.textInside ?? nothing}</textarea
+    >
   `;
   if (args.floatingLabel) {
     return html`
