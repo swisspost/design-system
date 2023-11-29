@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/placeholders/text';
 @use '@swisspost/design-system-styles/functions';
+@use '@swisspost/design-system-styles/mixins/utilities';
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
 
@@ -174,6 +175,11 @@
       transform: scale(1);
       transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
         transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+
+
+      @include utilities.high-contrast-mode() {
+        background-color: Highlight;
+      }
     }
   }
 
