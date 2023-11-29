@@ -63,9 +63,6 @@ importers:
       '@oddbird/popover-polyfill':
         specifier: 0.3.2
         version: 0.3.2
-      '@stencil/core':
-        specifier: 4.7.2
-        version: 4.7.2
       '@swisspost/design-system-styles':
         specifier: workspace:6.4.4
         version: link:../styles/dist
@@ -85,6 +82,9 @@ importers:
       '@stencil-community/eslint-plugin':
         specifier: 0.7.1
         version: 0.7.1(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.33.2)(eslint@8.54.0)(typescript@4.9.5)
+      '@stencil/core':
+        specifier: 4.7.2
+        version: 4.7.2
       '@stencil/react-output-target':
         specifier: 0.5.3
         version: 0.5.3(@stencil/core@4.7.2)
@@ -529,12 +529,6 @@ importers:
 
   packages/internet-header:
     dependencies:
-      '@stencil/core':
-        specifier: 4.7.2
-        version: 4.7.2
-      '@stencil/store':
-        specifier: 2.0.11
-        version: 2.0.11(@stencil/core@4.7.2)
       '@swisspost/design-system-styles':
         specifier: workspace:6.4.4
         version: link:../styles/dist
@@ -569,9 +563,15 @@ importers:
       '@stencil-community/eslint-plugin':
         specifier: 0.7.1
         version: 0.7.1(@typescript-eslint/eslint-plugin@5.62.0)(@typescript-eslint/parser@5.62.0)(eslint-plugin-react@7.33.2)(eslint@8.54.0)(typescript@4.9.5)
+      '@stencil/core':
+        specifier: 4.7.2
+        version: 4.7.2
       '@stencil/sass':
         specifier: 3.0.7
         version: 3.0.7(@stencil/core@4.7.2)
+      '@stencil/store':
+        specifier: 2.0.11
+        version: 2.0.11(@stencil/core@4.7.2)
       '@types/body-scroll-lock':
         specifier: 3.1.2
         version: 3.1.2
@@ -6677,6 +6677,7 @@ packages:
     resolution: {integrity: sha512-sPPDYrXiTbfeUF5CCyfqysXK/yfTHC4xYR1+nHzGkS2vhRSBOLp0oPuB+xkJLKA+K2ZqDJUxpOnDxy1CLWwBXA==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
+    dev: true
 
   /@stencil/react-output-target@0.5.3(@stencil/core@4.7.2):
     resolution: {integrity: sha512-68jwRp35CjAcwhTJ9yFD/3n+jrHOqvEH2jreVuPVvZK+4tkhPlYlwz0d1E1RlF3jyifUSfdkWUGgXIEy8Fo3yw==}
@@ -6702,7 +6703,7 @@ packages:
       '@stencil/core': '>=2.0.0 || >=3.0.0 || >= 4.0.0-beta.0 || >= 4.0.0'
     dependencies:
       '@stencil/core': 4.7.2
-    dev: false
+    dev: true
 
   /@storybook/addon-actions@7.5.3(@types/react@18.2.38)(react-dom@18.2.0)(react@18.2.0):
     resolution: {integrity: sha512-v3yL6Eq/jCiXfA24JjRdbEQUuorms6tmrywaKcd1tAy4Ftgof0KHB4tTcTyiajrI5bh6PVJoRBkE8IDqmNAHkA==}
