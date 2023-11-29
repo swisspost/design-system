@@ -166,7 +166,7 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
-function renderInline(args: Args, context: StoryContext) {
+export function renderInline(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
   const baseId = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
   const id1 = baseId + '1';

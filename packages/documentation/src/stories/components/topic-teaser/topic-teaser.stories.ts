@@ -7,6 +7,7 @@ const meta: Meta = {
   title: 'Components/Topic Teaser',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
+    layout: 'fullscreen',
   },
   args: {
     title: 'Loremipsum',

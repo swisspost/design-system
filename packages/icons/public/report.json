@@ -30109,7 +30109,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2023-10-20T06:15:39.000Z"
+      "modifiedAt": "2023-11-01T12:40:42.000Z"
     },
     {
       "uuid": "9fed4ca0-c603-11e7-a943-005056a94f4a",
@@ -30603,11 +30603,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-10-27T13:26:39.487Z",
+  "created": "2023-11-19T01:14:45.690Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
     "success": 887
   },
-  "version": "1.0.12"
+  "version": "1.0.14"
 }

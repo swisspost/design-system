@@ -3,12 +3,12 @@
     <option name="LINE_SEPARATOR" />
     <option name="DO_NOT_FORMAT">
       <list>
-        <fileSet type="globPattern" pattern="**/*.mdx" />
+        <fileSet type="globPattern" pattern="{**/*,*}.{mdx,scss}" />
       </list>
     </option>
     <HTMLCodeStyleSettings>
       <option name="HTML_SPACE_INSIDE_EMPTY_TAG" value="true" />
-      <option name="HTML_QUOTE_STYLE" value="Single" />
+      <option name="HTML_DO_NOT_INDENT_CHILDREN_OF" value="html,body" />
       <option name="HTML_ENFORCE_QUOTES" value="true" />
     </HTMLCodeStyleSettings>
     <JSCodeStyleSettings version="0">

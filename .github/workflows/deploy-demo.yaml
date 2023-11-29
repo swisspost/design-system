@@ -34,6 +34,8 @@ jobs:
           name: design-system-demo
           folder: build-output
 
+      - run: ls -R
+
       - name: Deploy demo app to netlify
         uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
         id: deploy

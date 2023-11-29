@@ -23,13 +23,13 @@ const preview: Preview = {
         order: [
           'Home',
           'Getting Started',
-          ['Styles', 'Components'],
+          ['Styles', 'Components', 'Compatibility'],
           'Foundations',
           [
             'Typography',
             'Color',
             'Layout',
-            ['Breakpoints', 'Grid', 'TODOS'],
+            ['Breakpoints', 'Containers', 'Grid', 'TODOS'],
             'Elevation',
             'Accessibility',
           ],

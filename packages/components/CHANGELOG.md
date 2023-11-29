@@ -1,5 +1,36 @@
 # @swisspost/design-system-components
 
+## 1.6.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.4
+
+## 1.6.1
+
+### Patch Changes
+
+- Reverted #2152 because of an issue with importing the internet headers `defineCustomElements`. (by [@gfellerph](https://github.com/gfellerph) with [#2208](https://github.com/swisspost/design-system/pull/2208))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.3
+
+## 1.6.0
+
+### Minor Changes
+
+- Added component exports to the src/index.ts files, to include them in the dist/index.js and dist/index.esm.js output files and therefore fix our stencil setup. (by [@oliverschuerch](https://github.com/oliverschuerch) with [`f74c9662`](https://github.com/swisspost/design-system/commit/f74c96620dc8095c6b2b51b2d3a3ee97c17e5a7d))
+
+- Added a `post-collapsible` event emitted when the collapse element is shown or hidden. (by [@alizedebray](https://github.com/alizedebray) with [#2079](https://github.com/swisspost/design-system/pull/2079))
+
+- Added the `post-accordion` component. (by [@alizedebray](https://github.com/alizedebray) with [#2079](https://github.com/swisspost/design-system/pull/2079))
+
+### Patch Changes
+
+- Upgraded builder Stenciljs from version 3 to 4. No user visible changes are expected. (by [@imagoiq](https://github.com/imagoiq) with [#2116](https://github.com/swisspost/design-system/pull/2116))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.3
+
 ## 1.5.1
 
 ### Patch Changes

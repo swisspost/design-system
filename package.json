@@ -30,7 +30,9 @@
     "docs:e2e:watch": "start-server-and-test docs:headless 9001 'pnpm --filter design-system-documentation e2e:watch'",
     "styles:start": "pnpm --filter design-system-styles start",
     "styles:build": "pnpm --filter design-system-styles build",
-    "styles:test": "pnpm --filter design-system-styles test",
+    "styles:lint": "pnpm --filter design-system-styles lint",
+    "styles:lint:fix": "pnpm --filter design-system-styles lint:fix",
+    "styles:test": "pnpm --filter design-system-styles unit",
     "components:start": "pnpm --filter design-system-components dev",
     "components:build": "pnpm --filter design-system-components build",
     "components:test": "pnpm --filter design-system-components test",
@@ -54,12 +56,13 @@
     "icons:test": "pnpm --filter design-system-icons test",
     "icons:unit": "pnpm --filter design-system-icons test",
     "icons:unit:watch": "pnpm --filter design-system-icons test:watch",
+    "migrations:build": "pnpm --filter design-system-migrations build",
     "changeset:publish": "pnpm bootstrap && pnpm changeset publish",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
     "@changesets/cli": "2.26.2",
-    "start-server-and-test": "2.0.1"
+    "start-server-and-test": "2.0.3"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"

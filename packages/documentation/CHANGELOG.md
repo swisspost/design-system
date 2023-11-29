@@ -1,5 +1,67 @@
 # @swisspost/design-system-documentation
 
+## 2.5.0
+
+### Minor Changes
+
+- Added a documentation page for the `.container` and `.container-fluid` classes. (by [@b1aserlu](https://github.com/b1aserlu) with [#2030](https://github.com/swisspost/design-system/pull/2030))
+
+### Patch Changes
+
+- Removed empty p and fix CDN examples for internet-header. (by [@imagoiq](https://github.com/imagoiq) with [#2295](https://github.com/swisspost/design-system/pull/2295))
+
+- Added attached stories to changelog and search-icons pages to fix "Edit this page on Github" feature. (by [@imagoiq](https://github.com/imagoiq) with [#2267](https://github.com/swisspost/design-system/pull/2267))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.15
+  - @swisspost/design-system-styles@6.4.4
+
+## 2.4.0
+
+### Minor Changes
+
+- Added docs page on how to use columns. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2062](https://github.com/swisspost/design-system/pull/2062))
+
+### Patch Changes
+
+- Added official way to use label in a floating-label select as a placeholder. (by [@imagoiq](https://github.com/imagoiq) with [#2200](https://github.com/swisspost/design-system/pull/2200))
+
+- Extended the `@swisspost/design-system-components` package getting-started docs page to show multiple ways how it can be used/imported in different project setups. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2214](https://github.com/swisspost/design-system/pull/2214))
+- Updated dependencies:
+  - @swisspost/internet-header@1.13.0
+  - @swisspost/design-system-styles@6.4.4
+  - @swisspost/design-system-components@1.6.2
+  - @swisspost/design-system-components-react@1.0.22
+
+## 2.3.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/internet-header@1.12.1
+  - @swisspost/design-system-components@1.6.1
+  - @swisspost/design-system-icons@1.0.14
+  - @swisspost/design-system-components-react@1.0.21
+  - @swisspost/design-system-styles@6.4.3
+
+## 2.3.0
+
+### Minor Changes
+
+- Used the new tabs to improve the presentation of some code snippets. (by [@b1aserlu](https://github.com/b1aserlu) with [#2130](https://github.com/swisspost/design-system/pull/2130))
+
+- Added the `post-accordion` component. (by [@alizedebray](https://github.com/alizedebray) with [#2079](https://github.com/swisspost/design-system/pull/2079))
+
+- Added a new documentation for sizing. (by [@b1aserlu](https://github.com/b1aserlu) with [#2028](https://github.com/swisspost/design-system/pull/2028))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.13
+  - @swisspost/design-system-styles@6.4.3
+  - @swisspost/internet-header@1.12.0
+  - @swisspost/design-system-components@1.6.0
+  - @swisspost/design-system-components-react@1.0.20
+
 ## 2.2.0
 
 ### Minor Changes

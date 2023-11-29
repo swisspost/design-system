@@ -1,3 +1,5 @@
+@use '@swisspost/design-system-styles/core' as post;
+
 @include post.media-breakpoint-only(xs) {
   .custom-class {
     display: block;
