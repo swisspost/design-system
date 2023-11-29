@@ -3,7 +3,7 @@
 @mixin focus-ring {
   outline: none;
 
-  &:is(:focus-visible, :focus-within) {
+  &:focus-visible {
     outline: commons.$outline-width solid commons.$outline-color;
   }
 }
