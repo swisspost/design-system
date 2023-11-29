@@ -186,12 +186,20 @@
 
 <section id="internationalization">
   <p class="light font-curve-regular mt-4">
-    If you are using internationalization, add this service to your application for custom date
-    translations.
+    If you are using internationalization, add this service and directive to your application for
+    custom date translations.
   </p>
+  <h4 class="h5 bold mt-4">datepicker.localization.service.ts</h4>
   <code
     class="block"
     [highlight]="localizationService"
+    [languages]="['typescript', 'javascript']"
+  ></code>
+
+  <h4 class="h5 bold mt-4">datepicker.title-localization.directive.ts</h4>
+  <code
+    class="block"
+    [highlight]="localizationDirective"
     [languages]="['typescript', 'javascript']"
   ></code>
 </section>
