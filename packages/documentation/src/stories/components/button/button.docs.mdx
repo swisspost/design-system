@@ -50,6 +50,12 @@ Besides the usual and the accent button variations, there are also contextual bu
 In some situation, it is desirable to display a button using the full available width,
 for example when the button is displayed on mobile and stacked vertically with others.
 
-To achieve that, you can use `.w-breakpoint-sizes`. e.g. `.w-sm-100` to use the full available space from `sm` viewport size.
+To achieve that, you can use classes in the format:
+- `.w-{size}` for the xs breakpoint,
+- `.w-{breakpoint}-{size}` for breakpoints from sm to xxl.
+
+For example, a button with classes `w-100 w-lg-auto` will use all available space only when the viewport size is smaller than `lg`.
+
+To learn more about breakpoints, see the <a href="/?path=/docs/foundations-layout-breakpoints--docs">Breakpoints documentation</a>.
 
 <Canvas of={ButtonStories.FullWidth} />
