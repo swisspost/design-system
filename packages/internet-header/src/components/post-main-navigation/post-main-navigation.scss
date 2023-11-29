@@ -175,11 +175,6 @@
       transform: scale(1);
       transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1),
         transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-
-
-      @include utilities.high-contrast-mode() {
-        background-color: Highlight;
-      }
     }
   }
 
@@ -190,6 +185,14 @@
       background-color: color.$yellow;
       opacity: 1;
       transform: scale(1);
+    }
+  }
+
+  &:hover,
+  &.focus,
+  &.active {
+    @include utilities.high-contrast-mode() {
+      background-color: Highlight;
     }
   }
 }
