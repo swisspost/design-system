@@ -41,8 +41,6 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@stencil/core": "4.7.2",
-    "@stencil/store": "2.0.11",
     "@swisspost/design-system-styles": "workspace:6.4.4",
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.3.9",
@@ -55,6 +53,8 @@
     "@babel/core": "7.23.3",
     "@percy/cli": "1.27.4",
     "@percy/cypress": "3.1.2",
+    "@stencil/core": "4.7.2",
+    "@stencil/store": "2.0.11",
     "@stencil-community/eslint-plugin": "0.7.1",
     "@stencil/sass": "3.0.7",
     "@types/body-scroll-lock": "3.1.2",
