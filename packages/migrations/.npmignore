@@ -1,3 +1,4 @@
+
 # Ignores TypeScript files, but keeps definitions.
-schematics/**/*.ts
-!schematics/**/*.d.ts
+*.ts
+!*.d.ts
