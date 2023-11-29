@@ -1,9 +1,0 @@
-{
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "noEmit": true,
-    "types": ["cypress", "@percy/cypress", "cypress-storybook/cypress"]
-  },
-  "include": ["./**/*.ts", "./**/*.tsx"],
-  "exclude": []
-}
