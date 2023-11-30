@@ -25,7 +25,12 @@ function renderSelectSnapshot(_args: Args, context: StoryContext) {
       selectedOption: 2,
     },
     {
+      label: `Label - Floating Label`,
+      floatingLabel: true,
+    },
+    {
       label: `Label - Floating Label with placeholder`,
+      floatingLabel: true,
       floatingLabelPlaceholder: true,
     },
   ];
@@ -38,8 +43,7 @@ function renderSelectSnapshot(_args: Args, context: StoryContext) {
             ${getCombinations('size', context.argTypes.size.options, combinations)
               .filter(
                 (args: Args) =>
-                  (!args.multipleSize || (args.multipleSize && context.args.multiple === true)) &&
-                  !args.floatingLabelPlaceholder,
+                  !args.multipleSize || (args.multipleSize && context.args.multiple === true),
               )
               .map(
                 (args: Args) =>
