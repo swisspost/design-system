@@ -121,6 +121,9 @@ importers:
       jest-cli:
         specifier: 27.5.1
         version: 27.5.1
+      jest-environment-node:
+        specifier: 27.5.1
+        version: 27.5.1
       npm-run-all:
         specifier: 4.1.5
         version: 4.1.5
