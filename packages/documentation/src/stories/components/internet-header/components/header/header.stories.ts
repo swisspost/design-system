@@ -1,8 +1,8 @@
 import { Args, Meta, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../../.storybook/constants';
+import { BADGE } from '../../../../../../.storybook/constants';
 import { html } from 'lit';
 import { spread } from '@open-wc/lit-helpers';
-import { getAttributes } from '../../../../utils';
+import { getAttributes } from '../../../../../utils';
 import customConfig from './config/custom-config';
 import osFlyoutOverrides from './config/os-flyout-overrides';
 import languageSwitchOverrides from './config/language-switch-overrides';

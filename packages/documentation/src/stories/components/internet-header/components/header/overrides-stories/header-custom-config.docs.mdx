@@ -1,13 +1,12 @@
 import { Meta, Canvas, Controls } from '@storybook/blocks';
-import { BADGE } from '../../../../../../.storybook/constants';
-import * as HeaderStories from './header-os-flyout-overrides.stories';
+import * as HeaderStories from './header-custom-config.stories';
 import '../header.scss';
 
 <Meta of={HeaderStories} />
 
 <div className="container">
-  <h1>Internet Header with OS overrides</h1>
-  <p className="lead">Customising the online service flyout.</p>
+  <h1>Internet Header with Custom Config</h1>
+  <p className="lead">When you need to add your own navigation entries.</p>
 </div>
 
 <Canvas of={HeaderStories.Default} />
