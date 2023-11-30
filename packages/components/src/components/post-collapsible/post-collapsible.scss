@@ -2,8 +2,16 @@
 
 :host {
   display: block;
+}
 
-  .accordion-button > ::slotted(.text-truncate) {
+.accordion-button {
+  cursor: pointer;
+
+  > ::slotted(.text-truncate) {
     display: block;
   }
+}
+
+post-collapsible + post-collapsible::part(accordion-item) {
+  border-block-start: 0!important;
 }

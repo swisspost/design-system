@@ -80,7 +80,7 @@
     overflow-x: hidden;
     overflow-y: auto; // Scrollable contents if viewport is shorter than content.
 
-    @include media-breakpoint-down(rg) {
+    @include media-breakpoint-down(md) {
       bottom: auto;
     }
 
