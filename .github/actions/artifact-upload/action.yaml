@@ -35,8 +35,12 @@ runs:
         echo ${{ github.event.number }} > ${{ inputs.folder }}/GHA-EVENT-ID
         echo ${{ github.event.action }} > ${{ inputs.folder }}/GHA-EVENT-ACTION
 
+    - name: Zip artifact folder
+      shell: bash
+      run: cd ${{ inputs.folder }} && zip artifacts.zip . -r
+
     - name: Upload artifacts
       uses: actions/upload-artifact@v3
       with:
         name: ${{ inputs.name }}
-        path: ${{ inputs.folder }}
+        path: ${{ inputs.folder }}/artifacts.zip

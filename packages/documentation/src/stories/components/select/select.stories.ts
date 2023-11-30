@@ -243,7 +243,16 @@ const Template: Story = {
           updateArgs({ value: (e.target as HTMLSelectElement).value });
         }}"
       >
-        ${options}
+        ${[
+          options[0],
+          options.slice(1).map(
+            (option, index) => html`
+              <option value="valoro_${index + 1}" ?selected=${index === args.selectedOption - 2}>
+                Opcion ${index + 2}
+              </option>
+            `,
+          ),
+        ]}
       </select>
     `;
 
