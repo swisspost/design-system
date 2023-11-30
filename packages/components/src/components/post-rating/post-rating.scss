@@ -1,60 +1,42 @@
+@use '@swisspost/design-system-styles/core' as post;
+
 :host {
   display: inline-block;
-  font-size: 0;
 }
 
 .rating {
-  margin: 0 -4px 0 -4px;
+  margin: 0 (-(post.$size-micro)) (-(post.$size-micro));
 }
 
 .star {
-  padding: 0 4px 0 4px;
+  width: post.$lead-font-size;
+  height: post.$lead-font-size;
+  padding: 0 post.$size-micro 0 post.$size-micro;
+
+  & path {
+    fill: none;
+    stroke: post.$gray-60;
+    stroke-width: 1px;
+  }
 }
 
-// .rating .star {
-//   display: inline-block;
-//   position: relative;
-//   width: 50px;
-//   cursor: pointer;
-// }
-
-// // .rating .star:hover .star {
-// //   content: '☆';
-// //   position: absolute;
-// //   left: 0;
-// //   color: #fdd835;
-// // }
-
-// .hovered:after {
-//   content: '☆';
-//   position: absolute;
-//   left: 0;
-//   color: #fdd835;
-// }
-
-// .rating .star.filled:before {
-//   content: '★';
-//   position: absolute;
-//   left: 0;
-//   color: #fdd835;
-// }
-
-.default-fill {
-  fill: white;
+.active-star {
+  & path {
+    fill: post.$yellow;
+    stroke: post.$black;
+  }
 }
 
-.default-boarder {
-  fill: #00000099;
+.hovered-star {
+  & path {
+    fill: post.$yellow;
+    stroke: post.$gray-80;
+  }
 }
 
-.hover-fill {
-  fill: #cccccc;
-}
-
-.active-boarder {
-  fill: black;
-}
-
-.active-fill {
-  fill: #ffcc00;
+.was-active-star {
+  & path {
+    fill: post.$gray-20;
+    stroke: post.$gray-60;
+  }
 }

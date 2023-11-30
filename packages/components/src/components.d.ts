@@ -114,6 +114,10 @@ export namespace Components {
           * The current rating value
          */
         "rating": number;
+        /**
+          * The number of stars in the rating
+         */
+        "ratingSize"?: number;
     }
     interface PostTabHeader {
         /**
@@ -386,6 +390,10 @@ declare namespace LocalJSX {
           * The current rating value
          */
         "rating"?: number;
+        /**
+          * The number of stars in the rating
+         */
+        "ratingSize"?: number;
     }
     interface PostTabHeader {
         /**

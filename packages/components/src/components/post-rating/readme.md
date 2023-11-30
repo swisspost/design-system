@@ -7,10 +7,11 @@
 
 ## Properties
 
-| Property  | Attribute | Description                             | Type     | Default |
-| --------- | --------- | --------------------------------------- | -------- | ------- |
-| `hovered` | `hovered` | The index of the currently hovered star | `number` | `0`     |
-| `rating`  | `rating`  | The current rating value                | `number` | `0`     |
+| Property     | Attribute     | Description                             | Type     | Default     |
+| ------------ | ------------- | --------------------------------------- | -------- | ----------- |
+| `hovered`    | `hovered`     | The index of the currently hovered star | `number` | `undefined` |
+| `rating`     | `rating`      | The current rating value                | `number` | `undefined` |
+| `ratingSize` | `rating-size` | The number of stars in the rating       | `number` | `5`         |
 
 
 ## Events
