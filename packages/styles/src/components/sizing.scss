@@ -58,8 +58,6 @@
 // Post breakpoints width - e.g. w-sm-100
 @each $breakpoint in map-keys(breakpoints.$grid-breakpoints) {
   @include media-breakpoint-up($breakpoint) {
-    $infix: if($breakpoint == 'xs', '', '-#{$breakpoint}');
-
     @each $prop, $abbrev in (width: w) {
       @each $size, $length in spacing.$sizes {
         .#{$abbrev}#{$infix}-#{$size} {
