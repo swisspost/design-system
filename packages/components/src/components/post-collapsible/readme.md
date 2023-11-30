@@ -35,6 +35,13 @@ Type: `Promise<boolean>`
 
 
 
+## Shadow Parts
+
+| Part               | Description |
+| ------------------ | ----------- |
+| `"accordion-item"` |             |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*
