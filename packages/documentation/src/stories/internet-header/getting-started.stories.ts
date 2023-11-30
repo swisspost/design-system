@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'Internet Header/Getting Started',
+  title: 'Components/Internet Header/Getting Started',
   parameters: {
     badges: [BADGE.STABLE],
   },

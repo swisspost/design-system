@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './textarea.stories';
 import { html } from 'lit';
-import { getCombinations, COMBINATIONS } from '../../../utils/inputComponentsGetCombinations';
+import { getCombinations, COMBINATIONS } from '../../../../utils/inputComponentsGetCombinations';
 
 export default {
   ...meta,
@@ -26,10 +26,11 @@ export const Textarea: Story = {
         label: `Label - Text inside the Textarea`,
         textInside:
           'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum.',
-      },{
+      },
+      {
         label: `Label - Not resizable`,
-        resize: 'resize: none'
-      }
+        resize: 'resize: none',
+      },
     ];
 
     return html`

@@ -1,8 +1,8 @@
 import { Meta } from '@storybook/web-components';
-import { BADGE } from '../../../.storybook/constants';
+import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'Intranet Header/Getting Started',
+  title: 'Components/Intranet Header/Getting Started',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },

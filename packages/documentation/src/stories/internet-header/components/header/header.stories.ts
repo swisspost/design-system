@@ -8,7 +8,7 @@ import osFlyoutOverrides from './config/os-flyout-overrides';
 import languageSwitchOverrides from './config/language-switch-overrides';
 
 const meta: Meta = {
-  title: 'Internet Header/Header',
+  title: 'Components/Internet Header/Header',
   component: 'swisspost-internet-header',
   parameters: {
     badges: [BADGE.STABLE],

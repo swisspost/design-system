@@ -6,7 +6,7 @@ import { getAttributes } from '../../../../utils';
 import customItems from './overrides/custom-items';
 
 const meta: Meta<HTMLSwisspostInternetBreadcrumbsElement> = {
-  title: 'Internet Header/Breadcrumbs',
+  title: 'Components/Internet Header/Breadcrumbs',
   component: 'swisspost-internet-breadcrumbs',
   render: renderInternetBreadcrumbs,
   decorators: [hiddenHeader],
