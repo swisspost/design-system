@@ -11,8 +11,7 @@
     "noImplicitThis": true,
     "noUnusedParameters": true,
     "noUnusedLocals": true,
-    "rootDir": "schematics/",
-    "outDir": "dist/schematics",
+    "rootDir": "src/",
     "skipDefaultLibCheck": true,
     "skipLibCheck": true,
     "sourceMap": true,
@@ -20,6 +19,6 @@
     "target": "es6",
     "types": ["node"]
   },
-  "include": ["schematics/**/*"],
-  "exclude": ["schematics/*/files/**/*"]
+  "include": ["src/**/*"],
+  "exclude": ["src/*/files/**/*"]
 }
