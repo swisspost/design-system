@@ -21,9 +21,11 @@
   // make the accordion gray
   @include color-mx.colored-background(color.$gray-background);
 
-  // make the accordion white on background colors close to the gray above
+  // make the accordion white on background colors close to the gray above (making sure it remains gray on a white background)
+  $accordion-contrast-on-white: contrast.contrast-ratio(color.$white, color.$gray-background);
   @each $name, $color in color.$background-colors {
-    @if (contrast.contrast-ratio($color, color.$gray-background) < 1.1) {
+    $accordion-contrast-on-color: contrast.contrast-ratio($color, color.$gray-background);
+    @if ($accordion-contrast-on-color < $accordion-contrast-on-white) {
       .bg-#{$name} & {
         @include color-mx.colored-background(color.$white);
       }
