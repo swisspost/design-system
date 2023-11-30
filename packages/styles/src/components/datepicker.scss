@@ -7,6 +7,8 @@
 @use './../variables/commons';
 @use './../mixins/icons' as icons-mx;
 
+@use './../themes/bootstrap/core' as b;
+
 ngb-datepicker {
   // Conversion for compatibility
   --bs-light: var(--post-light);
@@ -28,7 +30,7 @@ ngb-datepicker-navigation-select.ngb-dp-navigation-select {
   flex: 0 1 auto;
 
   select {
-    padding-right: 1rem;
+    padding-right: b.$form-select-padding-x * 2;
     border: 0;
     background-position: right;
 

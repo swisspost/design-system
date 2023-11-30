@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Default } from './topic-teaser.stories';
 import { html } from 'lit';
-import { bombArgs } from '../../../utils/bombArgs';
+import { bombArgs } from '../../../utils';
 
 export default {
   ...meta,
@@ -18,7 +18,7 @@ export const TopicTeaser: Story = {
       <div>
         ${['white', 'dark'].map(
           bg => html`
-            <div class=${'row bg-' + bg}>
+            <div class="${'row bg-' + bg}">
               ${bombArgs({
                 subtitle: [short, long],
                 title: [short, long],

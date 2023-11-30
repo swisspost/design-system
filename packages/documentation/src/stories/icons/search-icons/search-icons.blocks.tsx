@@ -48,6 +48,7 @@ export class Search extends React.Component {
               id="IconSearchFilter_Freetext"
               type="text"
               className="form-control"
+              placeholder=""
               value={this.state.freetext}
               onChange={this.searchFreetext.bind(this)}
               ref={this.freetextRef}
