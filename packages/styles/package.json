@@ -19,8 +19,7 @@
   },
   "scripts": {
     "start": "gulp watch",
-    "prebuild": "pnpm clean",
-    "build": "gulp build",
+    "build": "pnpm clean && gulp build",
     "unit": "gulp sass:tests",
     "clean": "rimraf out-tsc dist",
     "format": "prettier src/**/*.scss --write",
