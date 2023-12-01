@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import '@swisspost/design-system-styles/index.scss';
 import HeaderSettingScript from './header-settings';
+import './internet-header';
 
 export const metadata: Metadata = {
   title: 'Create Next App',
