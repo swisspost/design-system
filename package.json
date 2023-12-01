@@ -62,6 +62,7 @@
     "icons:test": "pnpm --filter design-system-icons test",
     "icons:unit": "pnpm --filter design-system-icons test",
     "icons:unit:watch": "pnpm --filter design-system-icons test:watch",
+    "migrations:build": "pnpm --filter design-system-migrations build",
     "nextjs": "pnpm nextjs:start",
     "nextjs:start": "pnpm --filter design-system-nextjs-integration dev",
     "nextjs:build": "pnpm --filter design-system-nextjs-integration build",
