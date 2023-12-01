@@ -135,6 +135,12 @@ export class PostPopover {
     }
   }
 
+  // Fix for firefox to prevent the following lines from triggering
+  // https://github.com/oddbird/popover-polyfill/blob/main/src/popover.ts#L338
+  private stopImmediatePropagation(e: PointerEvent) {
+    e.stopImmediatePropagation();
+  }
+
   render() {
     return (
       <Host data-version={version}>
@@ -144,7 +150,11 @@ export class PostPopover {
           ref={e => (this.popoverRef = e)}
           onPostPopoverToggled={e => this.onToggle(e)}
         >
-          <div class="popover-container">
+          <div
+            class="popover-container"
+            onPointerDown={e => this.stopImmediatePropagation(e)}
+            onPointerUp={e => this.stopImmediatePropagation(e)}
+          >
             <div class="popover-content">
               <slot></slot>
             </div>
