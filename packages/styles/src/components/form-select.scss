@@ -31,12 +31,12 @@
   &.success,
   &.is-invalid {
     background-position:
-      right b.$form-select-padding-x * 2 center,
+      right b.$form-select-padding-x * 2.5 center,
       b.$form-select-bg-position;
 
     &.form-select-lg {
       background-position:
-        right b.$form-select-padding-x * 2.7 center,
+        right b.$form-select-padding-x * 3 center,
         b.$form-select-bg-position;
     }
   }

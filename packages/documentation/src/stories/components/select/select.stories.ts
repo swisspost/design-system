@@ -27,6 +27,7 @@ const meta: Meta = {
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
+    success: false,
   },
   argTypes: {
     label: {
