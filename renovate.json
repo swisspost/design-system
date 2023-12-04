@@ -21,9 +21,14 @@
       "groupSlug": "all-minor-patch"
     },
     {
-      "matchFiles": ["packages/styles/package.json"],
+      "matchFiles": ["packages/migrations/package.json"],
       "matchPackagePatterns": ["^@angular"],
       "allowedVersions": "<=15.0.4"
+    },
+    {
+      "matchFiles": ["packages/demo/package.json"],
+      "matchPackagePatterns": ["@types/node"],
+      "allowedVersions": "~18.17"
     }
   ],
   "timezone": "Europe/Zurich",
