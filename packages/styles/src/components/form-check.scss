@@ -110,11 +110,7 @@
   &-label {
     flex: 1;
 
-    &.order-first {
-      padding-inline-end: form-check.$form-switch-column-gap;
-    }
-
-    &:not(.order-first) {
+    :not(.form-switch) & {
       padding-inline-start: form-check.$form-check-column-gap;
     }
 
@@ -174,6 +170,11 @@
 
     &.order-first {
       flex: 0 auto;
+      padding-inline-end: form-check.$form-switch-column-gap;
+    }
+
+    &:not(.order-first) {
+      padding-inline-start: form-check.$form-switch-column-gap;
     }
   }
 }
