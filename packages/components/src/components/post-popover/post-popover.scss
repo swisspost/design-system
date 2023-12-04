@@ -17,8 +17,7 @@
 .popover-container {
   display: flex;
   align-items: self-start;
-  padding: post.$size-mini;
-  font-size: post.$font-size-14;
+  padding: 0.5em;
 
   // Max 2/3 of the column width
   max-width: min(66vw, 60rem);
@@ -30,5 +29,5 @@
 }
 
 .popover-content {
-  padding: post.$size-mini;
+  padding: 0.5em;
 }
