@@ -100,7 +100,8 @@ export class PostPopover {
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
     this.currentTarget = target;
-    this.popoverRef.toggle(target, force);
+    const newState = await this.popoverRef.toggle(target, force);
+    target.setAttribute('aria-expanded', `${newState}`);
   }
 
   private get triggers() {
