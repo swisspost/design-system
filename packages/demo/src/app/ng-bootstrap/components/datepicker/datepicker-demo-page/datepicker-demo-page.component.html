@@ -187,7 +187,9 @@
 <section id="internationalization">
   <p class="light font-curve-regular mt-4">
     If you are using internationalization, add this service and directive to your application for
-    custom date translations.
+    custom date translations. Note that the directive need to be imported every time you use the
+    datepicker. It's advised to wrap the datepicker and the directive inside a module to be able to
+    share more easily.
   </p>
   <h4 class="h5 bold mt-4">datepicker.localization.service.ts</h4>
   <code
