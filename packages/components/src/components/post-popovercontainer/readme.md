@@ -42,13 +42,13 @@ Type: `Promise<void>`
 
 
 
-### `toggle(target: HTMLElement, force?: boolean) => Promise<void>`
+### `toggle(target: HTMLElement, force?: boolean) => Promise<boolean>`
 
 Toggle tooltip display
 
 #### Returns
 
-Type: `Promise<void>`
+Type: `Promise<boolean>`
 
 
 

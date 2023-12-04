@@ -155,7 +155,7 @@ export namespace Components {
           * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
           * @param force Pass true to always show or false to always hide
          */
-        "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+        "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
     }
     interface PostTabHeader {
         /**

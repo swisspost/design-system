@@ -100,9 +100,10 @@ export class PostPopovercontainer {
    * @param force Pass true to always show or false to always hide
    */
   @Method()
-  async toggle(target: HTMLElement, force?: boolean) {
+  async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
     this.eventTarget = target;
     this.popoverRef.togglePopover(force);
+    return this.popoverRef.matches(':popover-open');
   }
 
   /**
