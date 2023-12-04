@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "@changesets/get-github-info": "0.5.2",
-    "@changesets/types": "5.2.1",
+    "@changesets/types": "6.0.0",
     "dotenv": "16.3.1"
   },
   "devDependencies": {
