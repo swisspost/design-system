@@ -1,11 +1,11 @@
 import { Meta, Source } from '@storybook/blocks';
-import { BADGE } from '../../../.storybook/constants';
 import SampleReference from './internet-header-reference.sample.ts?raw';
 import SampleInstall from './internet-header-install.sample.html?raw';
 import SampleFixAppStyles from './internet-header-fix-app-styles.sample.html?raw';
 import SampleOld from './internet-header-old.sample.html?raw';
 import { SourceDarkMode } from '../../../.storybook/preview';
 import * as MigrationGuideStories from './migration-guide.stories';
+import LinkTo from '@storybook/addon-links/react';
 
 <Meta of={MigrationGuideStories} />
 
@@ -89,4 +89,4 @@ If you need to change settings during runtime, you can get a reference to the he
 
 <Source code={SampleReference} dark={SourceDarkMode} language="typescript" />
 
-At the [Internet Header configuration page](/story/header - usage--page) you can find a list of possible options.
+At the <LinkTo kind="internet-header-header" story="docs">Internet Header configuration page</LinkTo> you can find a list of possible options.
