@@ -47,7 +47,7 @@
     "@percy/cli": "1.27.4",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.7.1",
-    "@stencil/core": "4.8.0",
+    "@stencil/core": "4.6.0",
     "@stencil/react-output-target": "0.5.3",
     "@stencil/sass": "3.0.7",
     "@types/jest": "27.5.2",
