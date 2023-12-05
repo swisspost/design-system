@@ -14,7 +14,6 @@
   "scripts": {
     "bootstrap": "pnpm install && pnpm -r build",
     "start": "pnpm docs:start",
-    "start:clean": "pnpm bootstrap && pnpm start",
     "test": "pnpm -r test",
     "unit": "pnpm -r unit",
     "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --stream e2e'",
