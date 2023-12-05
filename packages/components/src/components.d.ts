@@ -107,17 +107,21 @@ export namespace Components {
     }
     interface PostRating {
         /**
-          * The index of the currently hovered star
-         */
-        "hovered": number;
-        /**
           * The current rating value
          */
-        "rating": number;
+        "currentRating": number;
         /**
           * The number of stars in the rating
          */
-        "ratingSize"?: number;
+        "disabled"?: boolean;
+        /**
+          * The number of stars in the rating
+         */
+        "max"?: number;
+        /**
+          * The number of stars in the rating
+         */
+        "readonly"?: boolean;
     }
     interface PostTabHeader {
         /**
@@ -379,21 +383,25 @@ declare namespace LocalJSX {
     }
     interface PostRating {
         /**
-          * The index of the currently hovered star
+          * The current rating value
          */
-        "hovered"?: number;
+        "currentRating"?: number;
+        /**
+          * The number of stars in the rating
+         */
+        "disabled"?: boolean;
+        /**
+          * The number of stars in the rating
+         */
+        "max"?: number;
         /**
           * Event emitted when the rating changes
          */
         "onRatingChanged"?: (event: PostRatingCustomEvent<number>) => void;
         /**
-          * The current rating value
-         */
-        "rating"?: number;
-        /**
           * The number of stars in the rating
          */
-        "ratingSize"?: number;
+        "readonly"?: boolean;
     }
     interface PostTabHeader {
         /**

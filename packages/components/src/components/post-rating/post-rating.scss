@@ -1,16 +1,22 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 :host {
-  display: inline-block;
+  display: block;
 }
 
 .rating {
-  margin: 0 (-(post.$size-micro)) (-(post.$size-micro));
+  margin: 0 (-(post.$size-micro));
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: post.$size-micro;
+  //gap: post.$size-micro;
+  //flex-wrap: wrap;
 }
 
 .star {
   width: post.$lead-font-size;
   height: post.$lead-font-size;
+  display: block;
   padding: 0 post.$size-micro 0 post.$size-micro;
 
   & path {
@@ -38,5 +44,19 @@
   & path {
     fill: post.$gray-20;
     stroke: post.$gray-60;
+  }
+}
+
+.default-disabled {
+  & path {
+    fill: none;
+    stroke: post.$gray-40;
+  }
+}
+
+.active-disabled {
+  & path {
+    fill: post.$gray-10;
+    stroke: post.$gray-40;
   }
 }
