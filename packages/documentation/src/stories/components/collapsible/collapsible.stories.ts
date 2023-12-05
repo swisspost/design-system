@@ -7,7 +7,7 @@ const meta: Meta<HTMLPostCollapsibleElement> = {
   title: 'Components/Collapsible',
   component: 'post-collapsible',
   parameters: {
-    badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
+    badges: [BADGE.BETA, BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=42%3A358&mode=design&t=OK8meBHjpJvBhwZI-1',
@@ -52,7 +52,9 @@ function defaultRender(
 
   const toggleCollapse = (open?: boolean) => {
     const collapsible = document.querySelector(`#${collapsibleId}`) as HTMLPostCollapsibleElement;
-    collapsible.toggle(open).catch(() => {/* ignore errors */});
+    collapsible.toggle(open).catch(() => {
+      /* ignore errors */
+    });
   };
 
   const togglers = [

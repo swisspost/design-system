@@ -39,7 +39,7 @@ const preview: Preview = {
           ['Getting Started'],
           'Icons',
           ['Getting Started', 'Search for Icons', 'Icon Component'],
-          'Templates',
+          'Patterns',
           'Utilities',
           'Misc',
           ['Migration Guide', 'Changelog', 'Versions'],
