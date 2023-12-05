@@ -31,7 +31,4 @@ $stepper-link-current-font-weight: type.$font-weight-bold;
 
 // DEPRECATED
 $stepper-indicator-check-icon: url('#{icon-fn.get-colored-svg-url('2105', $stepper-indicator-color)}');
-$stepper-indicator-hover-check-icon: url('#{icon-fn.get-colored-svg-url(
-    '2105',
-    $stepper-indicator-hover-color
-)}');
+$stepper-indicator-hover-check-icon: url('#{icon-fn.get-colored-svg-url('2105',$stepper-indicator-hover-color)}');

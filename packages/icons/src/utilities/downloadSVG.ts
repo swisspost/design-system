@@ -30,7 +30,12 @@ export const downloadSVG = async (icon: IIcon, output: string) => {
       '$1<g id="icon">$2</g>$3',
     );
 
-    fs.writeFileSync(path.join(output, icon.file.name), optimizedSvgString);
+    const optimizedName = icon.file.name
+      .split('.')
+      .map(token => token.trim())
+      .join('.');
+
+    fs.writeFileSync(path.join(output, optimizedName), optimizedSvgString);
     return optimizedSvgString;
   } catch (err) {
     console.log(`SVG Download error: ${err} @ ${icon.meta.downloadLink}`);

@@ -9,7 +9,7 @@ const meta: Meta = {
   title: 'Components/Icons/Icon Component',
   component: 'post-icon',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
   },
   args: {
     'name': '1022',
