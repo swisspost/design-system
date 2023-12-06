@@ -27,8 +27,8 @@
     "lint:fix": "stylelint src/**/*.scss --fix"
   },
   "peerDependencies": {
-    "@ng-bootstrap/ng-bootstrap": "^15.0.0",
-    "bootstrap": "~5.3.0"
+    "@ng-bootstrap/ng-bootstrap": "^16.0.0",
+    "bootstrap": "~5.3.2"
   },
   "peerDependenciesMeta": {
     "@ng-bootstrap/ng-bootstrap": {
