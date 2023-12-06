@@ -30,9 +30,16 @@ export const Select: Story = {
         disabled: [false, true],
         validation: context.argTypes.validation.options,
       }),
+      ...bombArgs({
+        size: context.argTypes.size.options,
+        success: [false, true],
+        validation: context.argTypes.validation.options.filter((option: string) => option !== 'is-invalid'),
+      }),
     ]
       // remove disabled & validated examples
       .filter((args: Args) => !(args.disabled && args.validation !== 'null'));
+
+    console.log('bombArg', bombArgsGeneratedDefault);
 
     //Arguments for Multiple Version
     const bombArgsGeneratedMultiple = [
