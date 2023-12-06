@@ -46,4 +46,15 @@ export const badgesConfig: BadgesConfig = {
       desc: 'This page needs to be filled with content and serves as a placeholder in the meantime.',
     },
   },
+  [BADGE.SINCE_V1]: {
+    styles: {
+      backgroundColor: 'transparent',
+      color: '#000',
+      borderColor: '#000',
+    },
+    title: 'Since v1',
+    tooltip: {
+      desc: 'This Component was added in Version 1',
+    },
+  },
 };
