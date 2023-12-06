@@ -1,20 +1,64 @@
 @forward './../variables/options';
 
 @use './../lic/bootstrap-license';
-@use './../themes/bootstrap/core' as *;
+@use './../themes/bootstrap/core' as b;
 @use './../themes/bootstrap/forms/form-select' as bffs;
 @use './../mixins/forms' as forms-mixins;
 @use './../mixins/utilities';
 
 @use './../variables/components/forms';
+@use './../variables/components/form-select' as form-select;
 
 .form-select-rg {
   @include forms-mixins.form-control-rg;
 }
 
+.form-select-lg {
+  background-size: form-select.$form-select-bg-size;
+}
+
+.form-select-sm {
+  background-size: form-select.$form-select-bg-size-sm;
+}
+
 .form-select {
+  &:not(:disabled) {
+    &:hover {
+      border-color: var(--post-contrast-color);
+    }
+  }
+
+  &.success,
+  &.is-invalid {
+    background-position:
+      right b.$form-select-padding-x * 2.5 center,
+      b.$form-select-bg-position;
+
+    &.form-select-lg {
+      background-position:
+        right b.$form-select-padding-x * 3 center,
+        b.$form-select-bg-position;
+    }
+  }
+
+  &:disabled {
+    background-image: b.escape-svg(form-select.$form-select-indicator-disabled),
+      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+  }
+
+  &.success {
+    border-color: var(--post-success-green);
+    background-image: b.escape-svg(form-select.$form-select-indicator-success),
+      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+  }
+
+  &.is-invalid {
+    background-image: b.escape-svg(form-select.$form-select-indicator-error),
+      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+  }
+
   @include utilities.high-contrast-mode() {
-    background-image: escape-svg($form-select-indicator-hcm);
+    background-image: b.escape-svg(form-select.$form-select-indicator-hcm);
     background-color: Field;
     border-color: FieldText;
     color: FieldText;

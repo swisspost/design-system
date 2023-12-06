@@ -1,5 +1,18 @@
 # @swisspost/design-system-demo
 
+## 7.1.1
+
+### Patch Changes
+
+- Updated ng-bootstrap component-based accordion example in favor of the directive-based implementation. (by [@gfellerph](https://github.com/gfellerph) with [#2368](https://github.com/swisspost/design-system/pull/2368))
+
+- Deprecated Bootstrap accordions in favor of the post-accordion web component. (by [@alizedebray](https://github.com/alizedebray) with [#2310](https://github.com/swisspost/design-system/pull/2310))
+
+- Update the commands to run the Design System migrations. (by [@alizedebray](https://github.com/alizedebray) with [#2270](https://github.com/swisspost/design-system/pull/2270))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.0
+  - @swisspost/design-system-intranet-header@5.0.5
+
 ## 7.1.0
 
 ### Minor Changes

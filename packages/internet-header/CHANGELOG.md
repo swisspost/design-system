@@ -1,5 +1,17 @@
 # @swisspost/internet-header
 
+## 1.13.1
+
+### Patch Changes
+
+- Defined @stencil/core and @stencil/store as a devDependency to avoid compatibilities issues. (by [@imagoiq](https://github.com/imagoiq) with [#2313](https://github.com/swisspost/design-system/pull/2313))
+
+- Fixed position of close button on click or on focus in the help overlay. (by [@imagoiq](https://github.com/imagoiq) with [#2365](https://github.com/swisspost/design-system/pull/2365))
+
+- Fixed display of active navigation in High Contrast Mode. (by [@imagoiq](https://github.com/imagoiq) with [#2314](https://github.com/swisspost/design-system/pull/2314))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.0
+
 ## 1.13.0
 
 ### Minor Changes

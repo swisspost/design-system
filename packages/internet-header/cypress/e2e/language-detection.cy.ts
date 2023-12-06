@@ -3,7 +3,7 @@ import { prepare } from '../support/prepare-story';
 
 describe('language detection from storybook', () => {
   it('should not render the header without languages in the config', () => {
-    prepare('Internet Header/Header', 'Default');
+    prepare('Components/Internet Header/Header', 'Default');
     cy.get('swisspost-internet-header').should('exist');
     cy.get('.post-internet-header').should('not.exist');
   });
@@ -15,7 +15,7 @@ describe('language detection from storybook', () => {
     delete customConfig.fr;
     delete customConfig.en;
 
-    prepare('Internet Header/Header', 'Default', { config: customConfig });
+    prepare('Components/Internet Header/Header', 'Default', { config: customConfig });
 
     cy.get('swisspost-internet-header')
       .shadow()
