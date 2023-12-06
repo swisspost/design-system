@@ -859,7 +859,7 @@ importers:
         version: 1.69.5
       stylelint:
         specifier: 15.11.0
-        version: 15.11.0(typescript@4.9.5)
+        version: 15.11.0(typescript@5.2.2)
       stylelint-config-prettier:
         specifier: 9.0.5
         version: 9.0.5(stylelint@15.11.0)
@@ -873,8 +873,8 @@ importers:
         specifier: 5.3.1
         version: 5.3.1(stylelint@15.11.0)
       typescript:
-        specifier: 4.9.5
-        version: 4.9.5
+        specifier: 5.2.2
+        version: 5.2.2
     publishDirectory: ./dist
 
 packages:
@@ -20240,7 +20240,7 @@ packages:
     peerDependencies:
       stylelint: '>= 11.x < 15 || >=15'
     dependencies:
-      stylelint: 15.11.0(typescript@4.9.5)
+      stylelint: 15.11.0(typescript@5.2.2)
     dev: true
 
   /stylelint-config-sass-guidelines@10.0.0(postcss@8.4.32)(stylelint@15.11.0):
@@ -20252,7 +20252,7 @@ packages:
     dependencies:
       postcss: 8.4.32
       postcss-scss: 4.0.9(postcss@8.4.32)
-      stylelint: 15.11.0(typescript@4.9.5)
+      stylelint: 15.11.0(typescript@5.2.2)
       stylelint-scss: 4.7.0(stylelint@15.11.0)
     dev: true
 
@@ -20265,7 +20265,7 @@ packages:
     dependencies:
       prettier: 3.1.0
       prettier-linter-helpers: 1.0.0
-      stylelint: 15.11.0(typescript@4.9.5)
+      stylelint: 15.11.0(typescript@5.2.2)
     dev: true
 
   /stylelint-scss@4.7.0(stylelint@15.11.0):
@@ -20277,7 +20277,7 @@ packages:
       postcss-resolve-nested-selector: 0.1.1
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
-      stylelint: 15.11.0(typescript@4.9.5)
+      stylelint: 15.11.0(typescript@5.2.2)
     dev: true
 
   /stylelint-scss@5.3.1(stylelint@15.11.0):
@@ -20290,10 +20290,10 @@ packages:
       postcss-resolve-nested-selector: 0.1.1
       postcss-selector-parser: 6.0.13
       postcss-value-parser: 4.2.0
-      stylelint: 15.11.0(typescript@4.9.5)
+      stylelint: 15.11.0(typescript@5.2.2)
     dev: true
 
-  /stylelint@15.11.0(typescript@4.9.5):
+  /stylelint@15.11.0(typescript@5.2.2):
     resolution: {integrity: sha512-78O4c6IswZ9TzpcIiQJIN49K3qNoXTM8zEJzhaTE/xRTCZswaovSEVIa/uwbOltZrk16X4jAxjaOhzz/hTm1Kw==}
     engines: {node: ^14.13.1 || >=16.0.0}
     hasBin: true
@@ -20304,7 +20304,7 @@ packages:
       '@csstools/selector-specificity': 3.0.0(postcss-selector-parser@6.0.13)
       balanced-match: 2.0.0
       colord: 2.9.3
-      cosmiconfig: 8.3.6(typescript@4.9.5)
+      cosmiconfig: 8.3.6(typescript@5.2.2)
       css-functions-list: 3.2.1
       css-tree: 2.3.1
       debug: 4.3.4(supports-color@8.1.1)
