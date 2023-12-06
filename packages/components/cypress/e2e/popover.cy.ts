@@ -1,7 +1,7 @@
-describe('popover', () => {
+describe('popover', { baseUrl: null }, () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('popover');
+      cy.visit('./cypress/fixtures/post-popover.test.html');
       // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
       cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
       cy.get('#popover-one.hydrated').as('popover');
@@ -55,7 +55,7 @@ describe('popover', () => {
     it('should switch position', () => {
       cy.get('@popover').invoke('attr', 'placement', 'top').should('not.be.visible');
       cy.get('@trigger').click();
-      cy.get('@popover').find('[popover]').should('have.css', 'top', '76px');
+      cy.get('@popover').find('[popover]').should('have.css', 'top', '42px');
     });
   });
 });

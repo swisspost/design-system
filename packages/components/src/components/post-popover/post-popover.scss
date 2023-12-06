@@ -8,6 +8,8 @@
 :host {
   --post-contrast-color: #{post.$white};
   --post-bg-rgb: #{post.rgb-values(post.$gray-80)};
+
+  display: block;
 }
 
 .visually-hidden {

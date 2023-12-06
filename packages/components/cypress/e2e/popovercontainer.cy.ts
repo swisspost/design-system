@@ -1,10 +1,10 @@
-describe('popovercontainer', () => {
+describe('popovercontainer', { baseUrl: null }, () => {
   describe('default', () => {
     let selector = isPopoverSupported() ? ':popover-open' : '.\\:popover-open';
 
     beforeEach(() => {
       // There is no dedicated docs page for the popovercontainer
-      cy.getComponent('popover');
+      cy.visit('./cypress/fixtures/post-popover.test.html');
       cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
       cy.get('post-popovercontainer').as('container');
     });
