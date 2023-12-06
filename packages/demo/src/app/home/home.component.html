@@ -27,11 +27,11 @@
 <ng-template #versions>
   <div class="versions font-monospace">
     <p>
-      <span>@swisspost/design-system-styles:</span>
+      <span>&#64;swisspost/design-system-styles:</span>
       <span>{{ getVersion(stylesVersion) }}</span>
     </p>
     <p>
-      <span>@angular/cli:</span>
+      <span>&#64;angular/cli:</span>
       <span>{{ getVersion(angularVersion) }}</span>
     </p>
     <p>
@@ -39,7 +39,7 @@
       <span>{{ getVersion(bootstrapVersion) }}</span>
     </p>
     <p>
-      <span>@ng-bootstrap/ng-bootstrap:</span>
+      <span>&#64;ng-bootstrap/ng-bootstrap:</span>
       <span>{{ getVersion(ngBootstrapVersion) }}</span>
     </p>
     <p>
@@ -94,7 +94,7 @@
         <div class="col-md-6 col-sm-12 table-responsive">
           <h4>Styles</h4>
           <table aria-describedby="compatibility-desc" class="table caption-top">
-            <caption>Package @swisspost/design-system-styles</caption>
+            <caption>Package &#64;swisspost/design-system-styles</caption>
             <thead>
               <tr>
                 <th scope="col">Version</th>
@@ -129,7 +129,7 @@
         <div class="col-md-6 col-sm-12 table-responsive">
           <h4>Common Web Frontend</h4>
           <table aria-describedby="compatibility-desc" class="table caption-top">
-            <caption>Package @ch-post-common/common-web-frontend</caption>
+            <caption>Package &#64;ch-post-common/common-web-frontend</caption>
             <thead>
               <tr>
                 <th scope="col">Version</th>
@@ -230,7 +230,7 @@
           Be sure to update your application one major Design System version at a time.
         </h4>
         <p>
-          If your project is currently using the @******/common-web-frontend package, start by
+          If your project is currently using the &#64;******/common-web-frontend package, start by
           <a routerLink="." fragment="v4-to-5">migrating to version 5</a>
           .
         </p>
@@ -582,12 +582,12 @@
                           <span class="change-badge bg-danger">breaking</span> Renamed <span
                           class="highlight">packages</span>.
                           <ul class="mt-2">
-                            <li><code appCopyToClipboard>@******/common-web-frontend</code> became <code
-                              appCopyToClipboard>@swisspost/design-system-styles</code></li>
-                            <li><code appCopyToClipboard>@******/common-web-frontend-demo</code> became <code
-                              appCopyToClipboard>@swisspost/design-system-demo</code></li>
-                            <li><code appCopyToClipboard>@******/common-web-frontend-intranet-header</code> became <code
-                              appCopyToClipboard>@swisspost/design-system-intranet-header</code></li>
+                            <li><code appCopyToClipboard>&#64;******/common-web-frontend</code> became <code
+                              appCopyToClipboard>&#64;swisspost/design-system-styles</code></li>
+                            <li><code appCopyToClipboard>&#64;******/common-web-frontend-demo</code> became <code
+                              appCopyToClipboard>&#64;swisspost/design-system-demo</code></li>
+                            <li><code appCopyToClipboard>&#64;******/common-web-frontend-intranet-header</code> became <code
+                              appCopyToClipboard>&#64;swisspost/design-system-intranet-header</code></li>
                           </ul>
                         </label>
                       </div>
@@ -614,11 +614,11 @@
                               for default Post styles:
                               <br />
                               <code appCopyToClipboard>
-                                @use "@*****/common-web-frontend/post.scss";
+                                &#64;use "&#64;*****/common-web-frontend/post.scss";
                               </code>
                               to
                               <code appCopyToClipboard>
-                                @use "@swisspost/design-system-styles";
+                                &#64;use "&#64;swisspost/design-system-styles";
                               </code>
                             </li>
                             <li class="mb-2">
@@ -626,11 +626,11 @@
                               for default Post styles + intranet header styles:
                               <br />
                               <code appCopyToClipboard>
-                                @use "@*****/common-web-frontend/post-intranet";
+                                &#64;use "&#64;*****/common-web-frontend/post-intranet";
                               </code>
                               to
                               <code appCopyToClipboard>
-                                @use "@swisspost/design-system-styles/intranet.scss";
+                                &#64;use "&#64;swisspost/design-system-styles/intranet.scss";
                               </code>
                             </li>
                             <li class="mb-2">
@@ -639,11 +639,11 @@
                               pages with lots of custom styles):
                               <br />
                               <code appCopyToClipboard>
-                                @use "@*****/common-web-frontend/post-basics.scss";
+                                &#64;use "&#64;*****/common-web-frontend/post-basics.scss";
                               </code>
                               to
                               <code appCopyToClipboard>
-                                @use "@swisspost/design-system-styles/basics.scss";
+                                &#64;use "&#64;swisspost/design-system-styles/basics.scss";
                               </code>
                             </li>
                             <li class="mb-2">
@@ -651,19 +651,19 @@
                               for functions, mixins, variables and placeholders:
                               <br />
                               <code appCopyToClipboard>
-                                @use "@*****/common-web-frontend/_cwf.scss";
+                                &#64;use "&#64;*****/common-web-frontend/_cwf.scss";
                               </code>
                               to
                               <code appCopyToClipboard>
-                                @use "@swisspost/design-system-styles/core.scss";
+                                &#64;use "&#64;swisspost/design-system-styles/core.scss";
                               </code>
                             </li>
                           </ul>
 
                           <span class="info">
-                            Read more about Sass modules and the @use rule in the Sass
+                            Read more about Sass modules and the &#64;use rule in the Sass
                             <a href="https://sass-lang.com/documentation/at-rules/use">
-                              @use documentation
+                              &#64;use documentation
                             </a>
                             .
                           </span>
@@ -684,7 +684,7 @@
                           <span class="change-badge bg-danger">breaking</span> Renamed <span class="highlight">src/cwf.scss</span>
                           file to <span class="highlight">src/core.scss</span>.<br>
                           <span>We recommend to import the <span
-                            class="highlight">core.scss</span> file as follows: <code appCopyToClipboard>@use '@swisspost/design-system-styles/core.scss' as post;</code></span><br>
+                            class="highlight">core.scss</span> file as follows: <code appCopyToClipboard>&#64;use '&#64;swisspost/design-system-styles/core.scss' as post;</code></span><br>
                           <span>In any case, do not forget to switch the namespace in your files from <span
                             class="highlight">cwf.</span> to either <span class="highlight">core.</span> or <span
                             class="highlight">post.</span> depending on the import.</span>
@@ -926,7 +926,7 @@
                         <!-- prettier-ignore -->
                         <label class="form-check-label" for="generalvariables_lineheightlighter">
                           Dropped usage of <code appCopyToClipboard>$font-weight-lighter</code> variable.<br>
-                          Also removed corresponding <code appCopyToClipboard>@font-face</code> rule.<br>
+                          Also removed corresponding <code appCopyToClipboard>&#64;font-face</code> rule.<br>
                           <p class="info">The variable remains available because of Bootstrap.</p>
                         </label>
                       </div>
