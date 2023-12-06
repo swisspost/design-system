@@ -25,8 +25,17 @@ export const COMBINATIONS = [
     disabled: true,
   },
   {
+    label: `${SHORT_LABEL} - Success`,
+    success: true,
+  },
+  {
     label: `${SHORT_LABEL} - Valid`,
     validation: 'is-valid',
+  },
+  {
+    label: `${SHORT_LABEL} - Valid with success`,
+    validation: 'is-valid',
+    success: true,
   },
   {
     label: `${SHORT_LABEL} - Invalid`,
@@ -37,7 +46,10 @@ export const COMBINATIONS = [
 export function getCombinations(
   argumentName: string,
   argumentValues: Array<unknown>,
-  combinations: Array<{ label: string; [propName: string]: any }>,
+  combinations: Array<{
+    label: string;
+    [propName: string]: any;
+  }>,
 ) {
   let result: Array<Object> = [];
   for (const argumentValue of argumentValues) {
