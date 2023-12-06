@@ -1,6 +1,6 @@
-import { Component } from '@angular/core';
-import { environment } from './../../environments/environment';
-import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { environment } from '../../environments/environment';
+import { NgbAccordionDirective } from '@ng-bootstrap/ng-bootstrap';
 
 interface MigrationAccordionGroupedCheckboxes {
   general: Object;
@@ -15,7 +15,8 @@ interface MigrationAccordionGroupedCheckboxes {
   templateUrl: 'home.component.html',
   styleUrls: ['home.component.scss'],
 })
-export class HomeComponent {
+export class HomeComponent implements AfterViewInit {
+  @ViewChild(NgbAccordionDirective) migrationAccordion: NgbAccordionDirective;
   public static MIGRATION_TYPE_INTRANET_KEY: string = 'post:migration_type_intranet';
   public static MIGRATION_TYPE_ANGULAR_KEY: string = 'post:migration_type_angular';
   public static MIGRATION_ACCORDION_KEY: string = 'post:migration_accordion';
@@ -135,6 +136,12 @@ export class HomeComponent {
     }
   }
 
+  ngAfterViewInit() {
+    this.migrationAccordionActiveIds.forEach(id => {
+      this.migrationAccordion.expand(id);
+    });
+  }
+
   get migrationTypeIntranetKey() {
     return HomeComponent.MIGRATION_TYPE_INTRANET_KEY;
   }
@@ -208,17 +215,23 @@ export class HomeComponent {
     return `${checkedValues.length} of ${checkboxValues.length} done`;
   }
 
-  public migrationAccordionChange($event: NgbPanelChangeEvent) {
-    if ($event.nextState) {
-      this.migrationAccordionActiveIds = Array.from(
-        new Set(this.migrationAccordionActiveIds.concat($event.panelId)),
-      );
-    } else {
-      this.migrationAccordionActiveIds = this.migrationAccordionActiveIds.filter(
-        id => id !== $event.panelId,
-      );
-    }
+  public onOpen(accordionItemId: string) {
+    this.migrationAccordionActiveIds = Array.from(
+      new Set(this.migrationAccordionActiveIds.concat(accordionItemId)),
+    );
 
+    this.saveOpenPanels();
+  }
+
+  public onClose(accordionItemId: string) {
+    this.migrationAccordionActiveIds = this.migrationAccordionActiveIds.filter(
+      id => id !== accordionItemId,
+    );
+
+    this.saveOpenPanels();
+  }
+
+  private saveOpenPanels() {
     this.setLocaleStorage(this.migrationAccordionKey, this.migrationAccordionActiveIds);
   }
 
