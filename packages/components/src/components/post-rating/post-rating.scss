@@ -8,9 +8,19 @@
   margin: 0 (-(post.$size-micro));
   display: flex;
   flex-wrap: wrap;
+  box-sizing: border-box;
   row-gap: post.$size-micro;
   //gap: post.$size-micro;
   //flex-wrap: wrap;
+  overflow: hidden;
+  & :focus {
+    outline: none;
+  }
+}
+
+.rating:focus-visible {
+  outline-offset: post.$input-focus-outline-thickness;
+  outline: post.$input-focus-outline-thickness solid post.$input-focus-color;
 }
 
 .star {

@@ -54,6 +54,29 @@ export class PostRating {
     }
   }
 
+  private handleKeyDown(ev: KeyboardEvent) {
+    console.log('function works', ev.key);
+    switch (ev.key) {
+      case 'ArrowDown':
+      case 'ArrowLeft':
+        this.currentRating--;
+        console.log('links');
+        break;
+      case 'ArrowUp':
+      case 'ArrowRight':
+        this.currentRating++;
+        break;
+      case 'Home':
+        this.currentRating = 0;
+        break;
+      case 'End':
+        this.currentRating = this.max;
+        break;
+      default:
+        return;
+    }
+  }
+
   private handleHover(hoverCount: number) {
     this.hovered = hoverCount;
   }
@@ -113,7 +136,19 @@ export class PostRating {
   render() {
     return (
       <Host data-version={version}>
-        <div class="rating">{this.renderStars()}</div>
+        <div
+          class="rating"
+          aria-valuemin="0"
+          aria-valuemax={this.max}
+          aria-valuenow={this.currentRating}
+          aria-valuetext={`${this.currentRating} out of ${this.max}`}
+          aria-readonly={this.readonly && !this.disabled ? 'true' : 'null'}
+          aria-disabled={this.disabled ? 'true' : 'null'}
+          tabindex={0}
+          onKeyDown={this.handleKeyDown}
+        >
+          {this.renderStars()}
+        </div>
       </Host>
     );
   }
