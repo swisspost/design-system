@@ -19,6 +19,7 @@ const preview: Preview = {
   parameters: {
     options: {
       storySort: {
+        method: 'alphabetical',
         order: [
           'Home',
           'Getting Started',
@@ -33,12 +34,24 @@ const preview: Preview = {
             'Accessibility',
           ],
           'Components',
-          'Internet Header',
-          ['Getting Started', 'Migration Guide', 'Header', 'Breadcrumbs', 'Footer'],
-          'Intranet Header',
-          ['Getting Started'],
-          'Icons',
-          ['Getting Started', 'Search for Icons', 'Icon Component'],
+          [
+            'Accordion',
+            'Alert',
+            'Badge',
+            'Blockquote',
+            'Button',
+            'Button Group',
+            'Card',
+            'Collapsible',
+            'Forms',
+            'Heading',
+            'Internet Header',
+            ['Getting Started'],
+            'Intranet Header',
+            ['Getting Started'],
+            'Icons',
+            ['Getting Started'],
+          ],
           'Patterns',
           'Utilities',
           'Misc',
