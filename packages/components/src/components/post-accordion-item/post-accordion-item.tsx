@@ -16,7 +16,6 @@ export class PostAccordionItem {
   @State() id: string;
   @State() isOpen: boolean;
   @State() headingTag: string;
-  @State() toto: string;
 
   /**
    * If `true`, the element is initially collapsed otherwise it is displayed.
@@ -75,7 +74,6 @@ export class PostAccordionItem {
               onClick={() => this.toggle()}
               type="button"
             >
-              {this.toto}
               <slot name="header" />
             </button>
           </this.headingTag>
