@@ -61,8 +61,8 @@ importers:
         specifier: 1.5.3
         version: 1.5.3
       '@oddbird/popover-polyfill':
-        specifier: 0.3.6
-        version: 0.3.6
+        specifier: 0.2.3
+        version: 0.2.3
       '@swisspost/design-system-styles':
         specifier: workspace:6.5.0
         version: link:../styles/dist
@@ -5881,8 +5881,8 @@ packages:
     dev: true
     optional: true
 
-  /@oddbird/popover-polyfill@0.3.6:
-    resolution: {integrity: sha512-9y9vWw6svuva+pLahuK1CBScoXhk70yiS9l+Ll7IBsUC3gTmdHDGXBv+H0EwGsJ3iCytvTd98Ds3+fcQQABrPg==}
+  /@oddbird/popover-polyfill@0.2.3:
+    resolution: {integrity: sha512-XDK+V/gUeE4NEsWp79eVzhlK3wuVcRDJuaas63qo0IJLJpyOLHqycJLFYvuq8kebgT1nl87P3sbSb5ZN6Vyf5g==}
     dev: false
 
   /@open-wc/lit-helpers@0.6.0(lit@3.1.0):
