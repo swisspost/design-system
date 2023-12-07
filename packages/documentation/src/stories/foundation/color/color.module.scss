@@ -1,4 +1,24 @@
+@use 'sass:map';
+@use 'sass:list';
 @use '@swisspost/design-system-styles/core' as post;
+
+$all_exported_colors: () !default;
+$all_exported_colors: map-merge(
+  $all_exported_colors,
+  (
+    'yellow': post.$yellow,
+    'white': post.$white,
+    'black': post.$black,
+    'light': post.$light,
+    'dark': post.$dark,
+    'gray-background-light': post.$gray-background-light,
+    'gray-background': post.$gray-background,
+  )
+);
+$all_exported_colors: map-merge($all_exported_colors, post.$post-grays);
+$all_exported_colors: map-merge($all_exported_colors, post.$contextual-colors);
+$all_exported_colors: map-merge($all_exported_colors, post.$accent-colors);
+$all_exported_colors: map-merge($all_exported_colors, post.$signal-colors);
 
 :export {
   brand_yellow: post.$yellow;
@@ -41,5 +61,9 @@
     @if (str-index($colorName, '-background') == null) {
       signal_solid_#{$colorName}: $value;
     }
+  }
+  @each $colorName, $value in $all_exported_colors {
+    contrast_black_#{$colorName}: post.contrast-ratio($value, post.$black);
+    contrast_white_#{$colorName}: post.contrast-ratio($value, post.$white);
   }
 }
