@@ -7,10 +7,9 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                                                                             | Type                         | Default |
-| -------------- | --------------- | --------------------------------------------------------------------------------------- | ---------------------------- | ------- |
-| `collapsed`    | `collapsed`     | If `true`, the element is initially collapsed otherwise it is displayed.                | `boolean`                    | `false` |
-| `headingLevel` | `heading-level` | Defines the hierarchical level of the collapsible header within the headings structure. | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `2`     |
+| Property    | Attribute   | Description                                                              | Type      | Default |
+| ----------- | ----------- | ------------------------------------------------------------------------ | --------- | ------- |
+| `collapsed` | `collapsed` | If `true`, the element is initially collapsed otherwise it is displayed. | `boolean` | `false` |
 
 
 ## Events
@@ -35,12 +34,18 @@ Type: `Promise<boolean>`
 
 
 
-## Shadow Parts
+## Dependencies
 
-| Part               | Description |
-| ------------------ | ----------- |
-| `"accordion-item"` |             |
+### Used by
 
+ - [post-accordion-item](../post-accordion-item)
+
+### Graph
+```mermaid
+graph TD;
+  post-accordion-item --> post-collapsible
+  style post-collapsible fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

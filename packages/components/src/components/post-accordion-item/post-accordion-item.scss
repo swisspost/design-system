@@ -1,0 +1,17 @@
+@use '@swisspost/design-system-styles/components/accordion';
+
+:host {
+  display: block;
+}
+
+.accordion-button {
+  cursor: pointer;
+
+  > ::slotted(.text-truncate) {
+    display: block;
+  }
+}
+
+post-accordion-item + post-accordion-item::part(accordion-item) {
+  border-block-start: 0!important;
+}
