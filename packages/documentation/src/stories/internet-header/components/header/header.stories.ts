@@ -220,9 +220,4 @@ export const CustomContent: Story = {
   args: {
     innerHTML: `<p class="mx-regular mb-0" slot="main">Hello, User!</p>`,
   },
-  parameters: {
-    controls: {
-      include: ['innerHTML'],
-    },
-  },
 };
