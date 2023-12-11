@@ -24,6 +24,7 @@ const meta: Meta = {
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
+    success: false,
   },
   argTypes: {
     label: {
@@ -98,11 +99,7 @@ const meta: Meta = {
     },
     size: {
       name: 'Size',
-      description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: false,
-      },
+      description: 'Sets the size of the component\'s appearance.',
       control: {
         type: 'select',
         labels: {
@@ -154,6 +151,20 @@ const meta: Meta = {
         category: 'States',
       },
     },
+    success: {
+      name: 'Success',
+      description: 'Controls the success state appearance of the component.',
+      control: {
+        type: 'boolean',
+      },
+      if: {
+        arg: 'validation',
+        neq: 'is-invalid',
+      },
+      table: {
+        category: 'States',
+      },
+    },
   },
 };
 
@@ -168,6 +179,7 @@ function render(args: Args, context: StoryContext) {
     args.type === 'color' && 'form-control-color',
     args.size,
     args.validation,
+    args.success && 'success',
   ]
     .filter(c => c && c !== 'null')
     .join(' ');
@@ -175,8 +187,8 @@ function render(args: Args, context: StoryContext) {
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel
     ? html`
-        <label for="${id}" class="form-label">${args.label}</label>
-      `
+      <label for="${id}" class="form-label">${args.label}</label>
+    `
     : null;
 
   if (args.floatingLabel && !args.placeholder) {
@@ -186,18 +198,18 @@ function render(args: Args, context: StoryContext) {
   const contextual: (TemplateResult | null)[] = [
     args.validation === 'is-valid'
       ? html`
-          <p class="valid-feedback">Ggranda sukceso!</p>
-        `
+        <p class="valid-feedback">Ggranda sukceso!</p>
+      `
       : null,
     args.validation === 'is-invalid'
       ? html`
-          <p class="invalid-feedback">Eraro okazis!</p>
-        `
+        <p class="invalid-feedback">Eraro okazis!</p>
+      `
       : null,
     args.hint !== ''
       ? html`
-          <div class="form-text">${args.hint}</div>
-        `
+        <div class="form-text">${args.hint}</div>
+      `
       : null,
   ];
 
@@ -210,7 +222,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      value=${args.value ? args.value : nothing}
+      value="${args.value ? args.value : nothing}"
     />
   `;
   if (args.floatingLabel) {

@@ -47,7 +47,6 @@
   }
 
   &.success {
-    border-color: var(--post-success-green);
     background-image: b.escape-svg(form-select.$form-select-indicator-success),
       var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
   }
