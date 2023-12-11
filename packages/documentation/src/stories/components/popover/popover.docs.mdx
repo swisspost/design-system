@@ -1,0 +1,20 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as PopoverStories from './popover.stories';
+import LinkTo from '@storybook/addon-links/react';
+
+<Meta of={PopoverStories} />
+
+# Popover
+
+<div className="lead">
+  For longer, informative messages or explanations and also simple interactive elements like links.
+</div>
+
+<Canvas of={PopoverStories.Default} />
+<Controls of={PopoverStories.Default} />
+
+## Installation
+
+<div>
+  The `<post-popover>` element is part of the `@swisspost/design-system-components` package. For more information, read the <LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
+</div>

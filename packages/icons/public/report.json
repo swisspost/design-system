@@ -9292,36 +9292,6 @@
       "modifiedAt": "2021-10-18T11:17:32.000Z"
     },
     {
-      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
-      "id": 539487,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "Mobile Shopping",
-          "Bestellung",
-          "Ordre",
-          "Ordine",
-          "Order"
-        ],
-        "year": "2021"
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:55:20.000Z",
-      "modifiedAt": "2021-10-18T11:24:06.000Z"
-    },
-    {
       "uuid": "88307300-5bef-11eb-9f99-005056873709",
       "id": 539481,
       "type": "picture.pictogram.",
@@ -9349,6 +9319,36 @@
         }
       },
       "createdAt": "2021-01-21T13:49:50.000Z",
+      "modifiedAt": "2021-10-18T11:24:06.000Z"
+    },
+    {
+      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
+      "id": 539487,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "Mobile Shopping",
+          "Bestellung",
+          "Ordre",
+          "Ordine",
+          "Order"
+        ],
+        "year": "2021"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:55:20.000Z",
       "modifiedAt": "2021-10-18T11:24:06.000Z"
     },
     {
@@ -20324,6 +20324,63 @@
       "modifiedAt": "2023-11-27T13:06:56.000Z"
     },
     {
+      "uuid": "24e60ea0-92a5-11ee-aba1-005056873709",
+      "id": 774617,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/774617/storage/Nzc0NjE2LzAvbWFzdGVy",
+        "keywords": [
+          "Sim gesperrt",
+          "SIM bloquée",
+          "SIM bloccata",
+          "SIM blocked"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2566.svg",
+        "basename": "2566",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-12-04T13:00:48.000Z",
+      "modifiedAt": "2023-12-04T16:38:11.000Z"
+    },
+    {
+      "uuid": "c4d86840-92a5-11ee-aba1-005056873709",
+      "id": 774621,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/774621/storage/Nzc0NjIwLzAvbWFzdGVy",
+        "businessfield": "kommunikation",
+        "keywords": [
+          "Mobile gestohlen",
+          "Mobile volé",
+          "Cellulare rubato",
+          "Mobile stolen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2567.svg",
+        "basename": "2567",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-12-04T13:05:16.000Z",
+      "modifiedAt": "2023-12-05T07:53:17.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -30903,11 +30960,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-12-03T01:14:02.103Z",
+  "created": "2023-12-10T01:15:06.066Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 896
+    "success": 898
   },
-  "version": "1.0.15"
+  "version": "1.0.16"
 }

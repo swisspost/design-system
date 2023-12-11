@@ -78,5 +78,20 @@
     &.active {
       color: pagination.$pagination-active-color;
     }
+
+    @include utilities.high-contrast-mode() {
+      &.active > .page-link {
+        background-color: Highlight;
+      }
+
+      &:first-child,
+      &:last-child {
+        .page-link > span {
+          background-color: LinkText;
+          color: transparent;
+          forced-color-adjust: none;
+        }
+      }
+    }
   }
 }

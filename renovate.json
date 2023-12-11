@@ -29,6 +29,11 @@
       "matchFiles": ["packages/demo/package.json"],
       "matchPackagePatterns": ["@types/node"],
       "allowedVersions": "~18.17"
+    },
+    {
+      "matchFiles": ["packages/components/package.json"],
+      "matchPackagePatterns": ["@oddbird/popover-polyfill"],
+      "allowedVersions": "0.2.3"
     }
   ],
   "timezone": "Europe/Zurich",
