@@ -14,6 +14,7 @@
   "scripts": {
     "bootstrap": "pnpm install && pnpm -r build",
     "start": "pnpm docs:start",
+    "start:clean": "pnpm bootstrap && pnpm start",
     "test": "pnpm -r test",
     "unit": "pnpm -r unit",
     "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --stream e2e'",
@@ -61,7 +62,7 @@
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
-    "@changesets/cli": "2.26.2",
+    "@changesets/cli": "2.27.1",
     "start-server-and-test": "2.0.3"
   },
   "optionalDependencies": {

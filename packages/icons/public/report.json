@@ -18105,7 +18105,7 @@
       },
       "file": {
         "mime": "image/svg+xml",
-        "name": "2493 .svg",
+        "name": "2493.svg",
         "basename": "2493",
         "ext": ".svg",
         "size": {
@@ -18115,7 +18115,7 @@
         }
       },
       "createdAt": "2022-12-14T06:43:48.000Z",
-      "modifiedAt": "2022-12-14T06:44:50.000Z"
+      "modifiedAt": "2023-12-01T12:59:30.000Z"
     },
     {
       "uuid": "ebf569c0-85d9-11ed-9686-005056873709",
@@ -20022,6 +20022,363 @@
       },
       "createdAt": "2023-08-30T11:09:42.000Z",
       "modifiedAt": "2023-08-30T11:11:45.000Z"
+    },
+    {
+      "uuid": "c7055430-7a58-11ee-9656-005056873709",
+      "id": 710936,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/710936/storage/NzEwOTM1LzAvbWFzdGVy",
+        "keywords": [
+          "Wasserstoff LKW",
+          "Hydrogen Lastwagen",
+          "Hydrogène camion",
+          "Hydrogène camion",
+          "Hydrogen lorry"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2557.svg",
+        "basename": "2557",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-11-03T14:53:40.000Z",
+      "modifiedAt": "2023-11-27T12:21:40.000Z"
+    },
+    {
+      "uuid": "5dc5c6a0-8aaa-11ee-91a9-005056873709",
+      "id": 773977,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/773977/storage/NzczOTc2LzAvbWFzdGVy",
+        "businessfield": "kommunikation",
+        "keywords": [
+          "OneInterface",
+          "Internationaler Versandassistent",
+          "Internationaler Versand",
+          "Export",
+          "Import",
+          "OneInterface",
+          "assistant d’expédition international",
+          "expédition internationale",
+          "exportation",
+          "importation",
+          "OneInterface",
+          "assistente alla spedizione internazionale",
+          "invio internazionale",
+          "esportazione",
+          "importazione",
+          "OneInterface",
+          "International Shipping Assistant",
+          "International Shipping",
+          "Export",
+          "Import"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2558.svg",
+        "basename": "2558",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-11-24T09:18:01.000Z",
+      "modifiedAt": "2023-11-27T13:06:56.000Z"
+    },
+    {
+      "uuid": "6d26bd90-8cec-11ee-aba1-005056873709",
+      "id": 774016,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/774016/storage/Nzc0MDE1LzAvbWFzdGVy",
+        "businessfield": "kommunikation",
+        "keywords": [
+          "Button drücken",
+          "Stelenticket",
+          "Anmeldung Filiale Appuyer sur le bouton",
+          "ticket de station",
+          "inscription filiale",
+          "Premere il pulsante",
+          "ticket del posto",
+          "iscrizione alla filiale",
+          "button",
+          "job ticket",
+          "branch registration"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2559.svg",
+        "basename": "2559",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-11-27T06:15:56.000Z",
+      "modifiedAt": "2023-11-27T13:06:56.000Z"
+    },
+    {
+      "uuid": "be07a060-8cee-11ee-aba1-005056873709",
+      "id": 774021,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/774021/storage/Nzc0MDIwLzAvbWFzdGVy",
+        "keywords": [
+          "ZUBOFIneo",
+          "Zustellorganisation",
+          "Organisation de distribution",
+          "Organizzazione di recapito",
+          "Organizzazione di recapito",
+          "Delivery organization",
+          "DOPLA"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2560.svg",
+        "basename": "2560",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-11-27T06:32:31.000Z",
+      "modifiedAt": "2023-11-27T13:07:39.000Z"
+    },
+    {
+      "uuid": "6b7571d0-8cf1-11ee-aba1-005056873709",
+      "id": 774025,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/774025/storage/Nzc0MDI0LzAvbWFzdGVy",
+        "businessfield": "kommunikation",
+        "keywords": [
+          "Tor",
+          "Zugang",
+          "Eingang",
+          "Zugangspunkt,portail",
+          "accès",
+          "entrée",
+          "point d’accès",
+          "Portone",
+          "accesso",
+          "ingresso",
+          "punto di accesso",
+          "gate",
+          "access",
+          "entrance",
+          "access point"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2561.svg",
+        "basename": "2561",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-11-27T06:51:41.000Z",
+      "modifiedAt": "2023-11-27T13:10:41.000Z"
+    },
+    {
+      "uuid": "0ddbffc0-8cf2-11ee-aba1-005056873709",
+      "id": 774028,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/774028/storage/Nzc0MDI3LzAvbWFzdGVy",
+        "businessfield": "kommunikation",
+        "keywords": [
+          "API",
+          "application programming interface",
+          "Programmierschnittstelle",
+          "interface de programmation d'application",
+          "interfaccia di programmazione delle applicazioni"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2562.svg",
+        "basename": "2562",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-11-27T06:56:13.000Z",
+      "modifiedAt": "2023-11-27T13:12:23.000Z"
+    },
+    {
+      "uuid": "28558960-8cf3-11ee-aba1-005056873709",
+      "id": 774033,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/774033/storage/Nzc0MDMyLzAvbWFzdGVy",
+        "keywords": [
+          "API",
+          "Topic Stream API"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2563.svg",
+        "basename": "2563",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-11-27T07:04:07.000Z",
+      "modifiedAt": "2023-11-27T13:06:56.000Z"
+    },
+    {
+      "uuid": "97652b10-8cf5-11ee-aba1-005056873709",
+      "id": 774041,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/774041/storage/Nzc0MDQwLzAvbWFzdGVy",
+        "keywords": [
+          "API",
+          "Topic Pipe"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2564.svg",
+        "basename": "2564",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-11-27T07:21:32.000Z",
+      "modifiedAt": "2023-11-27T13:06:56.000Z"
+    },
+    {
+      "uuid": "83da9d90-8cf6-11ee-aba1-005056873709",
+      "id": 774046,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/774046/storage/Nzc0MDQ1LzAvbWFzdGVy",
+        "keywords": [
+          "MIT Hilfe",
+          "aide MIT",
+          "Aiuto MIT",
+          "MIT Help"
+        ],
+        "year": "2023"
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2565.svg",
+        "basename": "2565",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-11-27T07:28:09.000Z",
+      "modifiedAt": "2023-11-27T13:06:56.000Z"
+    },
+    {
+      "uuid": "24e60ea0-92a5-11ee-aba1-005056873709",
+      "id": 774617,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/774617/storage/Nzc0NjE2LzAvbWFzdGVy",
+        "keywords": [
+          "Sim gesperrt",
+          "SIM bloquée",
+          "SIM bloccata",
+          "SIM blocked"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2566.svg",
+        "basename": "2566",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-12-04T13:00:48.000Z",
+      "modifiedAt": "2023-12-04T16:38:11.000Z"
+    },
+    {
+      "uuid": "c4d86840-92a5-11ee-aba1-005056873709",
+      "id": 774621,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/774621/storage/Nzc0NjIwLzAvbWFzdGVy",
+        "businessfield": "kommunikation",
+        "keywords": [
+          "Mobile gestohlen",
+          "Mobile volé",
+          "Cellulare rubato",
+          "Mobile stolen"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2567.svg",
+        "basename": "2567",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2023-12-04T13:05:16.000Z",
+      "modifiedAt": "2023-12-05T07:53:17.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -30603,11 +30960,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-11-19T01:14:45.690Z",
+  "created": "2023-12-10T01:15:06.066Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 887
+    "success": 898
   },
-  "version": "1.0.14"
+  "version": "1.0.16"
 }

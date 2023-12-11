@@ -1,5 +1,25 @@
 # @swisspost/design-system-documentation
 
+## 2.6.0
+
+### Minor Changes
+
+- Added a Since v1 label on all the components that got introduced in Version 1 (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2290](https://github.com/swisspost/design-system/pull/2290))
+
+### Patch Changes
+
+- Removed badge size class at wrapper level. It's only used inside the label. (by [@imagoiq](https://github.com/imagoiq) with [#2294](https://github.com/swisspost/design-system/pull/2294))
+
+- Added small variant to floating label select. (by [@gfellerph](https://github.com/gfellerph) with [#2368](https://github.com/swisspost/design-system/pull/2368))
+
+- Updated select styles to match design. (by [@imagoiq](https://github.com/imagoiq) with [#2312](https://github.com/swisspost/design-system/pull/2312))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.16
+  - @swisspost/design-system-styles@6.5.0
+  - @swisspost/internet-header@1.13.1
+  - @swisspost/design-system-components@1.6.3
+  - @swisspost/design-system-components-react@1.0.23
+
 ## 2.5.0
 
 ### Minor Changes

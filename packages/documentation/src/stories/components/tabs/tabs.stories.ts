@@ -8,7 +8,7 @@ const meta: Meta<HTMLPostTabsElement> = {
   component: 'post-tabs',
   render: renderTabs,
   parameters: {
-    badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
+    badges: [BADGE.BETA, BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
   },
   argTypes: {
     activePanel: {

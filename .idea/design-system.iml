@@ -15,6 +15,8 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/internet-header/.stencil" />
       <excludeFolder url="file://$MODULE_DIR$/packages/internet-header/www" />
       <excludeFolder url="file://$MODULE_DIR$/packages/documentation-v6/storybook-static" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/demo/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/demo/tmp" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
