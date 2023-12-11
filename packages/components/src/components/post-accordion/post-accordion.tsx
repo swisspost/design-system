@@ -50,7 +50,7 @@ export class PostAccordion {
     Array.from(this.expandedItems.values())
       .filter(item => item !== toggledItem)
       .forEach(item => {
-        void item.toggle(false);
+        item.toggle(false);
       });
   }
 
