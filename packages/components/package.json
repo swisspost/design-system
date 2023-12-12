@@ -42,7 +42,8 @@
     "@swisspost/design-system-styles": "workspace:6.5.0",
     "ally.js": "1.4.1",
     "jest-environment-jsdom": "^29.7.0",
-    "long-press-event": "2.4.6"
+    "long-press-event": "2.4.6",
+    "ts-jest": "29.1.1"
   },
   "devDependencies": {
     "@percy/cli": "1.27.4",
