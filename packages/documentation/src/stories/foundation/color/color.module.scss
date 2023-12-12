@@ -30,4 +30,16 @@
       accent_bright_#{$colorName}: $value;
     }
   }
+
+  @each $colorName, $value in post.$signal-colors {
+    @if (str-index($colorName, '-background')) {
+      signal_background_#{$colorName}: $value;
+    }
+  }
+
+  @each $colorName, $value in post.$signal-colors {
+    @if (str-index($colorName, '-background') == null) {
+      signal_solid_#{$colorName}: $value;
+    }
+  }
 }

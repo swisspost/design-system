@@ -14,6 +14,7 @@
   "scripts": {
     "bootstrap": "pnpm install && pnpm -r build",
     "start": "pnpm docs:start",
+    "start:clean": "pnpm bootstrap && pnpm start",
     "test": "pnpm -r test",
     "unit": "pnpm -r unit",
     "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --stream e2e'",
@@ -56,12 +57,13 @@
     "icons:test": "pnpm --filter design-system-icons test",
     "icons:unit": "pnpm --filter design-system-icons test",
     "icons:unit:watch": "pnpm --filter design-system-icons test:watch",
+    "migrations:build": "pnpm --filter design-system-migrations build",
     "changeset:publish": "pnpm bootstrap && pnpm changeset publish",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
-    "@changesets/cli": "2.26.2",
-    "start-server-and-test": "2.0.2"
+    "@changesets/cli": "2.27.1",
+    "start-server-and-test": "2.0.3"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"

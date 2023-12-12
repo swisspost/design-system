@@ -9,7 +9,7 @@ const meta: Meta<HTMLPostAlertElement> = {
   render: renderAlert,
   decorators: [externalControl],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
   },
   args: {
     innerHTML: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',

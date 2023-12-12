@@ -51,6 +51,26 @@
 
 <div class="bg-light py-5">
   <div class="container">
+    <div class="alert alert-info" role="alert">
+      <h4 class="alert-heading">
+        The Swiss Post Design System documentation is migrating towards a new and revised version
+        based on storybook.
+      </h4>
+      <p>
+        Since it is still a beta version it is not yet complete, but in general the new storybook
+        version gives you a much better overview of the components and their possible states.
+      </p>
+      <div class="mt-3">
+        <a
+          href="https://next.design-system.post.ch"
+          rel="noopener"
+          target="_blank"
+          class="btn btn-primary"
+        >
+          🚀 Take me to the future!
+        </a>
+      </div>
+    </div>
     <div class="alert alert-primary" role="alert">
       <h4 class="alert-heading">The Swiss Post Design System is now compatible with Angular 16!</h4>
       <p>
@@ -290,7 +310,7 @@
                 appCopyToClipboard
                 class="d-block mt-1 p-3"
                 [languages]="['bash']"
-                highlight="npx ng update @swisspost/design-system-styles --from=5 --to=6 --migrate-only"
+                highlight="npx ng update @swisspost/design-system-migrations --from=5 --to=6 --migrate-only"
               ></code>
             </li>
           </ol>
@@ -478,7 +498,7 @@
                 appCopyToClipboard
                 class="d-block mt-1 p-3"
                 [languages]="['bash']"
-                highlight="npx ng update @swisspost/design-system-styles --from=4 --to=5 --migrate-only"
+                highlight="npx ng update @swisspost/design-system-migrations --from=4 --to=5 --migrate-only"
               ></code>
             </li>
           </ol>
