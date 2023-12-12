@@ -99,7 +99,11 @@ const meta: Meta = {
     },
     size: {
       name: 'Size',
-      description: 'Sets the size of the component\'s appearance.',
+      description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: false,
+      },
       control: {
         type: 'select',
         labels: {
@@ -187,8 +191,8 @@ function render(args: Args, context: StoryContext) {
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel
     ? html`
-      <label for="${id}" class="form-label">${args.label}</label>
-    `
+        <label for="${id}" class="form-label">${args.label}</label>
+      `
     : null;
 
   if (args.floatingLabel && !args.placeholder) {
@@ -198,18 +202,18 @@ function render(args: Args, context: StoryContext) {
   const contextual: (TemplateResult | null)[] = [
     args.validation === 'is-valid'
       ? html`
-        <p class="valid-feedback">Ggranda sukceso!</p>
-      `
+          <p class="valid-feedback">Ggranda sukceso!</p>
+        `
       : null,
     args.validation === 'is-invalid'
       ? html`
-        <p class="invalid-feedback">Eraro okazis!</p>
-      `
+          <p class="invalid-feedback">Eraro okazis!</p>
+        `
       : null,
     args.hint !== ''
       ? html`
-        <div class="form-text">${args.hint}</div>
-      `
+          <div class="form-text">${args.hint}</div>
+        `
       : null,
   ];
 
