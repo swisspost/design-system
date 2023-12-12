@@ -15,7 +15,8 @@ div {
   z-index: commons.$zindex-tooltip;
 
   width: max-content;
-  max-width: 30ch;
+  max-width: 2 * spacing.$size-bigger-giant - spacing.$size-mini;
+  min-height: spacing.$size-regular;
   margin: 0;
   padding: spacing.$size-micro spacing.$size-mini;
 

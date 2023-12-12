@@ -151,6 +151,10 @@ export namespace Components {
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+        /**
+          * Defines wheter an Arrow is rendered or not. true: arrow is rendered false: arrow is not rendered
+         */
+        "withArrow"?: boolean;
     }
 }
 export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
@@ -372,6 +376,10 @@ declare namespace LocalJSX {
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+        /**
+          * Defines wheter an Arrow is rendered or not. true: arrow is rendered false: arrow is not rendered
+         */
+        "withArrow"?: boolean;
     }
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
