@@ -41,6 +41,7 @@
     "@oddbird/popover-polyfill": "0.2.3",
     "@swisspost/design-system-styles": "workspace:6.5.0",
     "ally.js": "1.4.1",
+    "jest-environment-jsdom": "^29.7.0",
     "long-press-event": "2.4.6"
   },
   "devDependencies": {
