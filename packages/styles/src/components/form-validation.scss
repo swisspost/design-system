@@ -92,7 +92,7 @@
 
 .success {
   border-color: var(--post-success-green);
-  background-image: b.escape-svg(form-validation.$form-feedback-icon-success);
+  background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
   background-repeat: no-repeat;
   background-position: right b.$input-height-inner-quarter center;
   background-size: form-validation.$form-feedback-icon-size;
