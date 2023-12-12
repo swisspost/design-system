@@ -42,6 +42,10 @@ export class PostRating {
     bubbles: true,
   }) ratingChanged: EventEmitter<number>;
 
+  constructor() {
+    this.handleKeyDown = this.handleKeyDown.bind(this);
+  }
+
   private handleClick(starIndex: number) {
     if (!this.disabled) {
       if (this.currentRating === starIndex) {
@@ -54,23 +58,43 @@ export class PostRating {
     }
   }
 
+  @State() counter = 0;
+
   private handleKeyDown(ev: KeyboardEvent) {
-    console.log('function works', ev.key);
+    if (ev.key !== 'Enter' && ev.key !== ' ') {
+      if (this.counter === 0) {
+        this.hovered = this.currentRating;
+      }
+      this.counter++;
+    }
     switch (ev.key) {
       case 'ArrowDown':
       case 'ArrowLeft':
-        this.currentRating--;
-        console.log('links');
+        if (this.hovered > 0) {
+          this.hovered--;
+        }
         break;
       case 'ArrowUp':
       case 'ArrowRight':
-        this.currentRating++;
+        if (this.hovered < this.max) {
+          this.hovered++;
+        }
         break;
       case 'Home':
-        this.currentRating = 0;
+        this.hovered = 0;
         break;
       case 'End':
-        this.currentRating = this.max;
+        this.hovered = this.max;
+        break;
+      case 'Enter':
+      case ' ':
+        ev.preventDefault();
+        if (this.counter !== 0) {
+          this.currentRating = this.hovered;
+          this.ratingChanged.emit(this.currentRating);
+          this.counter = 0;
+          this.hovered = undefined;
+        }
         break;
       default:
         return;
@@ -137,13 +161,14 @@ export class PostRating {
     return (
       <Host data-version={version}>
         <div
-          class="rating"
+          role="slider"
           aria-valuemin="0"
           aria-valuemax={this.max}
           aria-valuenow={this.currentRating}
           aria-valuetext={`${this.currentRating} out of ${this.max}`}
-          aria-readonly={this.readonly && !this.disabled ? 'true' : 'null'}
-          aria-disabled={this.disabled ? 'true' : 'null'}
+          aria-readonly={this.readonly && !this.disabled ? 'true' : 'false'}
+          aria-disabled={this.disabled ? 'true' : 'false'}
+          class="rating"
           tabindex={0}
           onKeyDown={this.handleKeyDown}
         >
