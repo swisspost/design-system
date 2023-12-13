@@ -40,6 +40,18 @@
     // disable stylelint here, because the classes are coming from bs5
     @extend .form-control-lg; /* stylelint-disable-line */
 
+    &.form-control-sm {
+      &[type='date']::-webkit-calendar-picker-indicator {
+        margin-top: -(spacing.$size-small-regular);
+      }
+    }
+
+    &.form-control-lg {
+      &[type='date']::-webkit-calendar-picker-indicator {
+        margin-top: -(spacing.$size-small-large);
+      }
+    }
+
     &:focus {
       @include forms-mx.placeholder {
         color: rgba(var(--post-contrast-color-rgb), 0.6);
