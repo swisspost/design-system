@@ -10,15 +10,17 @@
 @use './../variables/components/form-select' as form-select;
 
 .form-select-rg {
-  @include forms-mixins.form-control-rg;
-}
-
-.form-select-lg {
-  background-size: form-select.$form-select-bg-size;
+  @include forms-mixins.form-rg;
 }
 
 .form-select-sm {
+  @include forms-mixins.form-sm;
   background-size: form-select.$form-select-bg-size-sm;
+}
+
+.form-select-lg {
+  @include forms-mixins.form-lg;
+  background-size: form-select.$form-select-bg-size;
 }
 
 .form-select {

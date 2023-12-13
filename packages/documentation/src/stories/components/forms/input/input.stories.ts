@@ -99,10 +99,6 @@ const meta: Meta = {
     size: {
       name: 'Size',
       description: "Sets the size of the component's appearance.",
-      if: {
-        arg: 'floatingLabel',
-        truthy: false,
-      },
       control: {
         type: 'select',
         labels: {

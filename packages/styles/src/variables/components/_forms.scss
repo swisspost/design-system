@@ -30,7 +30,7 @@ $input-padding-y-rg: button.$input-btn-padding-y-rg !default;
 $input-padding-x-rg: button.$input-btn-padding-x-rg !default;
 $input-line-height-rg: type.$line-height-copy !default;
 
-$input-padding-y-lg: spacing.$size-small-large !default;
+$input-padding-y-lg: sizing.px-to-rem(11) !default;
 $input-padding-x-lg: button.$input-btn-padding-x-lg !default;
 $input-line-height-lg: type.$line-height-copy !default;
 
@@ -63,26 +63,25 @@ $input-height-border: $input-border-width * 2 !default;
 
 $input-height-content: type.$font-size-base * $input-line-height !default;
 $input-height-inner: $input-height-content + ($input-padding-y * 2) !default;
-$input-height: calc(#{$input-height-inner} + #{$input-height-border}) !default;
+$input-height: $input-height-inner + sizing.px-to-rem($input-height-border) !default;
 
-$input-height-content-sm: type.$font-size-tiny * $input-line-height-sm !default;
-$input-height-inner-sm: $input-height-content-sm + ($input-padding-y-sm * 2) !default;
-$input-height-sm: calc(#{$input-height-inner-sm} + #{$input-height-border}) !default;
+$input-height-content-sm: type.$font-size-14 * 1 !default;
+$input-height-inner-sm: $input-height-content-sm + ($input-padding-y-sm * 2) + sizing.px-to-rem(2) !default; // + 2px approximation from Figma mockup
+$input-height-sm: $input-height-inner-sm + sizing.px-to-rem($input-height-border) !default;
 
-$form-floating-input-height-content-sm: type.$font-size-12 * $input-line-height-sm * 2 !default;
+$form-floating-input-height-content-sm: type.$font-size-14 * 1 !default;
 $form-floating-input-height-inner-sm: $form-floating-input-height-content-sm +
-  ($input-padding-y-sm * 2) !default;
-$form-floating-input-height-sm: calc(
-  #{$form-floating-input-height-inner-sm} + #{$input-height-border}
-) !default;
+  (spacing.$size-regular * 2) - sizing.px-to-rem(2) !default; // - 2px approximation from Figma mockup
+$form-floating-input-height-sm: $form-floating-input-height-inner-sm +
+  sizing.px-to-rem($input-height-border) !default;
 
 $input-height-content-rg: type.$font-size-regular * $input-line-height-rg !default;
 $input-height-inner-rg: $input-height-content-rg + ($input-padding-y-rg * 2) !default;
 $input-height-rg: calc(#{$input-height-inner-rg} + #{$input-height-border}) !default;
 
-$input-height-content-lg: type.$font-size-medium * $input-line-height-lg !default;
-$input-height-inner-lg: $input-height-content-lg + ($input-padding-y-lg * 2) !default; // Design System
-$input-height-lg: calc(#{$input-height-inner-lg} + #{$input-height-border}) !default;
+$input-height-content-lg: (type.$font-size-16 * $input-line-height-lg) - sizing.px-to-rem(2) !default; // - 2px and remove approximation in Figma
+$input-height-inner-lg: $input-height-content-lg + ($input-padding-y-lg * 2) !default;
+$input-height-lg: $input-height-inner-lg + sizing.px-to-rem($input-height-border) !default;
 
 $input-transition: border-color 0.15s ease-in-out,
 box-shadow 0.15s ease-in-out !default;
@@ -117,14 +116,14 @@ $form-range-input-height-ie: 6rem !default;
 
 $form-file-button-hover-bg: $input-bg;
 
-$form-floating-height: $input-height-lg;
+$form-floating-height: $input-height-lg * $input-line-height-lg;
 $form-floating-padding-x: $input-padding-x-lg;
 $form-floating-padding-y: $input-padding-y-lg;
 $form-floating-line-height: type.$line-height-copy;
 $form-floating-input-padding-t: spacing.$size-large;
 $form-floating-input-padding-b: 0;
 $form-floating-label-opacity: 1;
-$form-floating-label-height: $input-height-inner-lg;
+$form-floating-label-height: $form-floating-height;
 $form-floating-label-color: $input-placeholder-color;
 $form-floating-label-font-size: type.$font-size-bigger-regular;
 $form-floating-label-font-size-small: type.$font-size-tiny;
@@ -133,10 +132,8 @@ $form-floating-label-scale: math.div(
     $form-floating-label-font-size
 );
 $form-floating-label-upscale: math.div(1, $form-floating-label-scale);
-$form-floating-label-padding-t: calc(
-  #{$input-border-width} + #{$form-floating-label-height * 0.5} - #{$form-floating-label-font-size *
-    type.$line-height-copy * 0.5}
-);
+$form-floating-label-padding-t: $form-floating-label-height * 0.5 - $form-floating-label-font-size *
+  type.$line-height-copy * 0.5;
 $form-floating-label-translate-x: $form-floating-padding-x * (1 - $form-floating-label-scale);
 $form-floating-label-transform: scale($form-floating-label-scale);
 $form-floating-transition: animation.$transition-base;
@@ -147,10 +144,9 @@ width 0ms linear;
 $form-floating-select-bg-size: 32px 32px;
 
 $form-floating-label-font-size-sm: type.$font-size-12;
-$form-floating-label-font-size-placeholder-sm: type.$font-size-14; // TODO: replace with input font-size after adjustment
+$form-floating-label-font-size-placeholder-sm: type.$font-size-14;
 $form-floating-padding-x-sm: $input-padding-x-sm;
 $form-floating-padding-y-sm: $input-padding-y-sm;
-$form-floating-label-height-sm: $form-floating-input-height-inner-sm;
-$form-floating-label-padding-t-sm: calc(
-  #{$input-border-width} + #{$form-floating-label-height-sm * 0.5} - #{$form-floating-label-font-size-sm}
-);
+$form-floating-label-height-sm: $form-floating-input-height-sm;
+$form-floating-label-padding-t-sm: $form-floating-label-height-sm * 0.5 -
+  $form-floating-label-font-size-sm;

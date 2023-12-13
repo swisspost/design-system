@@ -13,7 +13,15 @@
 @use './../themes/bootstrap/forms/input-group' as bfig;
 
 .form-control-rg {
-  @include form-mixins.form-control-rg;
+  @include form-mixins.form-rg;
+}
+
+.form-control-sm {
+  @include form-mixins.form-sm;
+}
+
+.form-control-lg {
+  @include form-mixins.form-lg;
 }
 
 select.form-control-rg:not([size]):not([multiple]) {
@@ -34,11 +42,6 @@ select.form-control-rg:not([size]):not([multiple]) {
 
   &[type='file'] {
     position: relative;
-
-    min-height: calc(
-      (1rem * forms.$input-line-height) + (forms.$input-padding-y * 2) +
-        (forms.$input-border-width * 2)
-    );
 
     &::file-selector-button {
       display: block;
@@ -108,11 +111,6 @@ select.form-control-rg:not([size]):not([multiple]) {
     }
 
     &.form-control-sm {
-      min-height: calc(
-        (1rem * forms.$input-line-height-sm) + (forms.$input-padding-y-sm * 2) +
-          (forms.$input-border-width * 2)
-      );
-
       &::after {
         padding-inline: forms.$input-padding-y-sm;
       }
@@ -130,11 +128,6 @@ select.form-control-rg:not([size]):not([multiple]) {
     }
 
     &.form-control-lg {
-      min-height: calc(
-        (1rem * forms.$input-line-height-lg) + (forms.$input-padding-y-lg * 2) +
-          (forms.$input-border-width * 2)
-      );
-
       &::after {
         padding-inline: forms.$input-padding-y-lg;
       }

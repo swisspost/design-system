@@ -52,6 +52,7 @@
       padding-bottom: forms.$form-floating-input-padding-b;
 
       ~ label {
+        color: forms.$form-floating-label-color;
         padding-top: 0.7rem;
         max-width: calc(
           (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
@@ -66,6 +67,29 @@
       &:focus,
       &:not(:placeholder-shown) {
         padding-top: forms.$form-floating-input-padding-t * 1.33;
+      }
+    }
+
+    &.form-control-sm {
+      font-size: forms.$form-floating-label-font-size-placeholder-sm;
+      height: forms.$form-floating-label-height-sm;
+      min-height: forms.$form-floating-label-height-sm;
+      padding-inline: forms.$form-floating-padding-x-sm;
+
+      ~ label {
+        font-size: forms.$form-floating-label-font-size-placeholder-sm;
+        padding-top: forms.$form-floating-label-padding-t-sm;
+        padding-inline: calc(#{forms.$form-floating-padding-x-sm} - #{forms.$input-border-width});
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        padding-top: forms.$form-floating-padding-y-sm * 2;
+
+        ~ label {
+          padding-top: forms.$form-floating-padding-y-sm;
+          font-size: forms.$form-floating-label-font-size-sm;
+        }
       }
     }
   }
@@ -161,7 +185,7 @@
   }
 
   > textarea.form-control {
-    padding-top: forms.$input-padding-y-lg * 1.5;
+    padding-top: forms.$input-padding-y-lg * 2;
     padding-bottom: forms.$input-padding-y-lg;
     height: auto;
 
@@ -174,7 +198,7 @@
 
     &:focus,
     &:not(:placeholder-shown) {
-      padding-top: forms.$input-padding-y-lg * 1.5;
+      padding-top: forms.$input-padding-y-lg * 2;
       padding-bottom: forms.$input-padding-y-lg;
 
       ~ label {
