@@ -229,7 +229,7 @@
       ~ label {
         width: calc(
           100% - (#{forms.$input-border-width * 2}) - #{forms.$form-floating-padding-x} - #{form-validation.$form-feedback-icon-offset} -
-            #{form-validation.$form-feedback-icon-size}
+          #{form-validation.$form-feedback-icon-size}
         );
       }
 
