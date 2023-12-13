@@ -88,6 +88,10 @@
       min-height: forms.$form-floating-label-height-sm;
       padding-inline: forms.$form-floating-padding-x-sm;
 
+      &[type='date']::-webkit-calendar-picker-indicator {
+        margin-top: -(spacing.$size-small-regular);
+      }
+
       ~ label {
         font-size: forms.$form-floating-label-font-size-placeholder-sm;
         padding-top: forms.$form-floating-label-padding-t-sm;
@@ -102,6 +106,12 @@
           padding-top: forms.$form-floating-padding-y-sm;
           font-size: forms.$form-floating-label-font-size-sm;
         }
+      }
+    }
+
+    &.form-control-lg {
+      &[type='date']::-webkit-calendar-picker-indicator {
+        margin-top: -(spacing.$size-small-large);
       }
     }
   }
