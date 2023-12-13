@@ -12,6 +12,7 @@
 @use './../variables/color';
 @use './../variables/components/form-validation';
 @use './../variables/components/forms';
+@use './../variables/spacing';
 
 .invalid-feedback,
 .valid-feedback {
@@ -91,11 +92,21 @@
 }
 
 .success {
+  padding-right: spacing.$size-small-huge; // For deprecated form-control-rg
   border-color: var(--post-success-green);
   background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
   background-repeat: no-repeat;
   background-position: right b.$input-height-inner-quarter center;
-  background-size: form-validation.$form-feedback-icon-size;
+
+  &.form-control-sm {
+    padding-right: spacing.$size-bigger-big; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
+    background-size: forms.$form-bg-size-sm; // Add space between background icons (ours and the one from bootstrap)
+  }
+
+  &.form-control-lg {
+    padding-right: spacing.$size-small-huge; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
+    background-size: forms.$form-bg-size; // Add space between background icons (ours and the one from bootstrap)
+  }
 }
 
 .form-control,
