@@ -61,6 +61,14 @@
       background-repeat: no-repeat;
       background-position: right b.$input-height-inner-quarter center;
       background-size: form-validation.$form-feedback-icon-size;
+
+      &.form-control-sm {
+        background-size: forms.$form-bg-size-sm;
+      }
+
+      &.form-control-lg {
+        background-size: forms.$form-bg-size;
+      }
     }
   }
 
