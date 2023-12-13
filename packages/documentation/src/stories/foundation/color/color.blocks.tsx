@@ -4,8 +4,8 @@ import scss from './color.module.scss';
 export const SCSS_VARIABLES = parse(scss);
 
 export const ColorSwatch = (props: { name: string; color: string; noCSS?: boolean }) => {
-  let contrastWhite: Number = SCSS_VARIABLES.contrast.white[props.name];
-  let contrastBlack: Number = SCSS_VARIABLES.contrast.black[props.name];
+  let contrastWhite: number = SCSS_VARIABLES.contrast.white[props.name];
+  let contrastBlack: number = SCSS_VARIABLES.contrast.black[props.name];
   return (
     <article className="color-swatch">
       <div className="color-swatch__description">
