@@ -75,6 +75,7 @@ function render(args: Args) {
       id="${args.id}"
       class="hydrated bg-${args.backgroundColor}"
       placement="${ifDefined(args.placement)}"
+      arrow="${ifDefined(args.arrow)}"
     >
       ${unsafeHTML(innerHTML)}
     </post-tooltip>
