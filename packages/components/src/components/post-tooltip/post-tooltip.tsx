@@ -59,13 +59,6 @@ export class PostTooltip {
   @Prop() readonly backgroundColor?: BackgroundColor = 'primary';
 
   /**
-   * Defines wheter an Arrow is rendered or not.
-   * true: arrow is rendered
-   * false: arrow is not rendered
-   */
-  @Prop() readonly withArrow?: boolean = false;
-
-  /**
    * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
    * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
@@ -108,7 +101,7 @@ export class PostTooltip {
   connectedCallback() {
     if (!this.host.id) {
       throw new Error(
-        "No id set: <post-tooltip> must have an id, linking it to it's target element using the data-tooltip-target attribute.",
+        'No id set: <post-tooltip> must have an id, linking it to it\'s target element using the data-tooltip-target attribute.',
       );
     }
 
@@ -244,7 +237,7 @@ export class PostTooltip {
         flip(),
         inline(),
         shift({ padding: 8 }),
-        offset(this.withArrow ? 12 : 4), // 4px outside of element to account for focus outline + ~arrow size
+        offset(12), // 4px outside of element to account for focus outline + ~arrow size
         arrow({ element: this.arrowRef, padding: 8 }),
       ],
     });
@@ -275,16 +268,12 @@ export class PostTooltip {
           class={this.tooltipClasses}
           ref={(el: HTMLDivElement & PopoverElement) => (this.tooltipRef = el)}
         >
-          {this.withArrow ? (
-            <span
-              class="arrow"
-              ref={el => {
-                this.arrowRef = el;
-              }}
-            ></span>
-          ) : (
-            ''
-          )}
+          <span
+            class="arrow"
+            ref={el => {
+              this.arrowRef = el;
+            }}
+          ></span>
           <slot></slot>
         </div>
       </Host>

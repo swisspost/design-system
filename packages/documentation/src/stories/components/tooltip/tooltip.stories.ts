@@ -50,7 +50,6 @@ function render(args: Args) {
       class="hydrated"
       background-color="${ifDefined(args.backgroundColor)}"
       placement="${ifDefined(args.placement)}"
-      with-arrow=${ifDefined(args.withArrow)}
     >
       ${unsafeHTML(innerHTML)}
     </post-tooltip>
