@@ -10,8 +10,6 @@
   flex-wrap: wrap;
   box-sizing: border-box;
   row-gap: post.$size-micro;
-  //gap: post.$size-micro;
-  //flex-wrap: wrap;
   overflow: hidden;
   & :focus {
     outline: none;
@@ -36,37 +34,27 @@
   }
 }
 
-.active-star {
-  & path {
-    fill: post.$yellow;
-    stroke: post.$black;
-  }
+.active-star path {
+  fill: post.$yellow;
+  stroke: post.$black;
 }
 
-.hovered-star {
-  & path {
-    fill: post.$yellow;
-    stroke: post.$gray-80;
-  }
+.hovered-star path {
+  fill: post.$yellow;
+  stroke: post.$gray-80;
 }
 
-.was-active-star {
-  & path {
-    fill: post.$gray-20;
-    stroke: post.$gray-60;
-  }
+.was-active-star path {
+  fill: post.$gray-20;
+  stroke: post.$gray-60;
 }
 
-.default-disabled {
-  & path {
-    fill: none;
-    stroke: post.$gray-40;
-  }
+.default-disabled path {
+  fill: none;
+  stroke: post.$gray-40;
 }
 
-.active-disabled {
-  & path {
-    fill: post.$gray-10;
-    stroke: post.$gray-40;
-  }
+.active-disabled path {
+  fill: post.$gray-10;
+  stroke: post.$gray-40;
 }
