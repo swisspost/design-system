@@ -53,6 +53,9 @@
   h5,
   .h5 {
     margin-top: map.get(spacing.$post-sizes, 'bigger-big');
+    &:first-of-type {
+      margin-top: 0;
+    }
   }
 
   h5,
