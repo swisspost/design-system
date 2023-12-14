@@ -23,12 +23,12 @@ export class PostRating {
   @Prop() readonly max?: number = 10;
 
   /**
-   * The number of stars in the rating
+   * Boolean for the disabled state of the component
    */
   @Prop() readonly disabled?: boolean = false;
 
   /**
-   * The number of stars in the rating
+   * If readonly is true, the component only displays a rating and is not interactive.
    */
   @Prop() readonly readonly?: boolean = false;
 
