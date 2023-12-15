@@ -1,5 +1,20 @@
 # @swisspost/design-system-components
 
+## 1.6.3
+
+### Patch Changes
+
+- Defined @stencil/core and @stencil/store as a devDependency to avoid compatibilities issues. (by [@imagoiq](https://github.com/imagoiq) with [#2313](https://github.com/swisspost/design-system/pull/2313))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.0
+
+## 1.6.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.4
+
 ## 1.6.1
 
 ### Patch Changes

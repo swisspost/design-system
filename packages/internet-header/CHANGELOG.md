@@ -1,5 +1,29 @@
 # @swisspost/internet-header
 
+## 1.13.1
+
+### Patch Changes
+
+- Defined @stencil/core and @stencil/store as a devDependency to avoid compatibilities issues. (by [@imagoiq](https://github.com/imagoiq) with [#2313](https://github.com/swisspost/design-system/pull/2313))
+
+- Fixed position of close button on click or on focus in the help overlay. (by [@imagoiq](https://github.com/imagoiq) with [#2365](https://github.com/swisspost/design-system/pull/2365))
+
+- Fixed display of active navigation in High Contrast Mode. (by [@imagoiq](https://github.com/imagoiq) with [#2314](https://github.com/swisspost/design-system/pull/2314))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.0
+
+## 1.13.0
+
+### Minor Changes
+
+- Added a link to settings in the user drop-down menu for business users. (by [@alizedebray](https://github.com/alizedebray) with [#2234](https://github.com/swisspost/design-system/pull/2234))
+
+### Patch Changes
+
+- Replaced the old twitter logo with the new X logo. (by [@b1aserlu](https://github.com/b1aserlu) with [#2176](https://github.com/swisspost/design-system/pull/2176))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.4.4
+
 ## 1.12.1
 
 ### Patch Changes

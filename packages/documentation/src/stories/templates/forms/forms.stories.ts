@@ -2,7 +2,7 @@ import { Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'Templates/Forms',
+  title: 'Patterns/Forms',
   parameters: {
     badges: [BADGE.TODO],
   },

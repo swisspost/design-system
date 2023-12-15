@@ -1,0 +1,60 @@
+import { Meta, Canvas, Controls, Source } from '@storybook/blocks';
+import * as CheckboxCardStories from './checkbox-card.stories';
+import StylesPackageImport from '../../../../shared/styles-package-import.mdx';
+import firefoxFallbackSnippet from './firefox-fallback.ts?raw';
+
+<Meta of={CheckboxCardStories} />
+
+# Checkbox card
+
+<div className="lead">
+  A larger, more consumer oriented, touch friendly variant of the checkbox used for e.g. selecting
+  services.
+</div>
+
+<Canvas sourceState="shown" of={CheckboxCardStories.Default} />
+<div className="hide-col-default">
+  <Controls of={CheckboxCardStories.Default} />
+</div>
+
+## Firefox fallback
+
+<div className="alert alert-info">
+  Firefox currently does not support{' '}
+  <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/:has">
+    the new <abbr title="Cascading Style Sheets">CSS</abbr> :has pseudo-selector
+  </a>
+  . As a fallback, the following states have to be mirrored on the top level element in the form of
+  classes (see below for a snippet):
+  <ul>
+    <li>
+      <code>checked</code>
+    </li>
+    <li>
+      <code>focused</code>
+    </li>
+    <li>
+      <code>disabled</code>
+    </li>
+    <li>
+      <code>is-invalid</code>
+    </li>
+  </ul>
+  Check <a href="https://caniuse.com/css-has">caniuse :has()</a> to check if you still need the
+  fallback.
+</div>
+
+This snippet adds a global event listener to mirror the `focused` and `checked` states to the parent of the input. This fallback has to be applied as long as Firefox does not support the `:has` selector.
+
+<Source code={firefoxFallbackSnippet} dark={true} language="typescript" />
+
+## Grouping
+
+Checkbox cards can be grouped together. Use a `fieldset`/`legend` combination to label the group. If there is an error, link the legend with the error message through the `aria-describedby` attribute on the `legend`, pointing to the `id` of the error message.
+
+<Canvas of={CheckboxCardStories.Group} />
+<div className="hide-col-default">
+  <Controls of={CheckboxCardStories.Group} />
+</div>
+
+<StylesPackageImport components={['choice-control-card']} />

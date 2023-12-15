@@ -1,6 +1,7 @@
 @use '@swisspost/design-system-styles/variables/color';
 @use '@swisspost/design-system-styles/placeholders/text';
 @use '@swisspost/design-system-styles/functions';
+@use '@swisspost/design-system-styles/mixins/utilities';
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
 
@@ -184,6 +185,14 @@
       background-color: color.$yellow;
       opacity: 1;
       transform: scale(1);
+    }
+  }
+
+  &:hover,
+  &.focus,
+  &.active {
+    @include utilities.high-contrast-mode() {
+      background-color: Highlight;
     }
   }
 }
