@@ -43,6 +43,49 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 | `pnpm header:start`               | starts the stencil compiler for the header                                                   |
 | `pnpm icons:start`                | starts the http server for debugging downloaded icons                                        |
 
+#### Definition of Done for a Story
+
+- Component docs
+  - Short introduction
+  - Canvas for showcasing
+  - Controls for the showcase
+  - Variants if applicable (e.g. group of component or small example in context)
+  - Instructions for installation
+- Controls
+  - Possibility to re-create all variants (good for debugging because they can be set via query params and a reproduction can be linked)
+  - Accessibility hints for relevant controls like disabled state or hidden labels
+- Testing
+
+  - Cross browser testing of the docs
+  - Testing in High Contrast mode
+    - Try emulating the high contrast mode in chrome by yourself:
+      - Open the Command Menu: `ctrl` + `shift` + `P` (or `cmd` + `shift` + `P` on mac).
+      - Type `rendering` and press `Enter` .
+      - In the Rendering panel, scroll down to the Emulate CSS media feature forced-colors and activate it from the drop-down.
+      - You can switch also prefers-color-scheme to test light/dark mode.
+  - Approval by UX for the story
+  - For more complex widgets: screen reader testing (at least nvda)
+
+- Accessibility
+  - `aria-hidden="true"` or span.visually-hidden labels for all icons
+- Docs
+  - No `react related attributes in code snippets (e.g. className, htmlFor, key, etc.)
+  - No nested p's (beware of .lead and .alert)
+  - When using LinkTo use both kind and story attributes
+  - `div.hide-col-default` wrapper for Controls component on CSS only docs
+  - Add the `sourceState="shown"` attribute to the first canvas if the code is not too long.
+- Naming convention
+  - Docs file: `[component].docs.mdx`
+  - Story file: `[component].stories.ts`
+  - Demo story file: `[component].demo.stories.tsx`
+  - Snapshot story file: `[component].snapshot.stories.ts`
+  - style file `[component].styles.scss`
+  - SCSS export file `[component].module.scss`
+  - Custom mdx helper `blocks [component].blocks.tsx`
+- General Coding Rules
+  - Use already existing utilities instead of custom solutions.
+    For example use mapClasses utility function instead of `[*].filter(c => c && c !== 'null').join(' ')`
+
 ### Testing
 
 For easy test runs, the following commands are available (not all packages might have all commands available).
