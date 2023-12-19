@@ -11,8 +11,6 @@ on:
   workflow_run:
     workflows: ['Build Documentation']
     types: [completed]
-    branches:
-      - '1796-update-netlify-cli-to-v16'
 
 jobs:
   deploy:
@@ -22,10 +20,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 2
-      - name: Chechout Head
-        run: git checkout HEAD^
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
@@ -48,3 +42,4 @@ jobs:
           folder: ${{ steps.build.outputs.folder }}
           comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           comment_author: swisspost-bot
+          package_name: documentation

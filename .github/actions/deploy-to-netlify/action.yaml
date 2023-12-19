@@ -39,6 +39,9 @@ inputs:
   folder:
     description: Path to the folder to deploy
     required: true
+  package_name:
+    description: The package that will be deployed
+    required: true
 
 runs:
   using: composite
@@ -84,7 +87,7 @@ runs:
       # edited for netifly v16
       run: |
         url_alias=`echo "preview-${{ inputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
-        netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }} --site ${{ inputs.netlify_site_id }}
+        netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }} --site ${{ inputs.netlify_site_id }} --filter ${{inputs.package_name}}
         echo "url_alias=$url_alias" >> $GITHUB_OUTPUT
 
     - name: Prepare Comment Message
