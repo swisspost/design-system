@@ -142,9 +142,9 @@ export class PostIcon {
     const svgStyles = Object.entries({
       '-webkit-mask-image': `url('${this.path}')`,
       'mask-image': `url('${this.path}')`,
-      'transform': `${this.scale && !isNaN(Number(this.scale)) ? `scale(${this.scale})` : ''} ${
-        this.rotate && !isNaN(Number(this.rotate)) ? `rotate(${this.rotate}deg)` : ''
-      }`,
+      'transform':
+        (this.scale && !isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
+        (this.rotate && !isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
     })
       .filter(([_key, value]) => value !== null)
       .reduce((styles, [key, value]) => Object.assign(styles, { [key]: value }), {});
