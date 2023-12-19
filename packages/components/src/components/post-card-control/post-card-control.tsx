@@ -137,7 +137,7 @@ export class PostCardControl {
       this.checked = this.control.checked;
       this.internals.setFormValue(this.control.value);
 
-      if (this.group.members.length > 0 && this.control.checked) {
+      if (this.group.members.length > 1 && this.control.checked) {
         this.groupSetCheckedMember(this.control);
       }
     }
@@ -158,18 +158,18 @@ export class PostCardControl {
         case this.KEYCODES.UP:
         case this.KEYCODES.LEFT:
           e.preventDefault();
-          this.groupSetCheckedMember(this.groupGetPrevMember());
+          this.groupSetCheckedMember(this.groupGetPrevMember(), true);
           break;
 
         case this.KEYCODES.DOWN:
         case this.KEYCODES.RIGHT:
           e.preventDefault();
-          this.groupSetCheckedMember(this.groupGetNextMember());
+          this.groupSetCheckedMember(this.groupGetNextMember(), true);
           break;
 
         case this.KEYCODES.SPACE:
           e.preventDefault();
-          this.groupSetCheckedMember(this.control);
+          this.groupSetCheckedMember(this.control, true);
           break;
 
         default:
@@ -191,7 +191,6 @@ export class PostCardControl {
       if (this.group.members.length > 0) {
         this.group.first = this.group.members[0];
         this.group.last = this.group.members[this.group.members.length - 1];
-        // TODO: fix checked, which is sometimes not set correctly after groupEventHandler, when changing the checked radio group element with keyboard
         this.group.checked = this.group.members.find(m => m.checked) ?? null;
         this.group.focusable = this.group.checked ?? this.group.first;
 
@@ -210,14 +209,19 @@ export class PostCardControl {
     return this.group.members.find((_m, i) => i === focusableIndex + 1) ?? this.group.first;
   }
 
-  private groupSetCheckedMember(newCheckedMember: HTMLInputElement) {
-    window.dispatchEvent(new CustomEvent(this.GROUPEVENT, { detail: newCheckedMember }));
+  private groupSetCheckedMember(newCheckedMember: HTMLInputElement, triggeredByKeyboard?: boolean) {
+    window.dispatchEvent(
+      new CustomEvent(this.GROUPEVENT, {
+        detail: { control: newCheckedMember, triggeredByKeyboard },
+      }),
+    );
   }
 
   private groupEventHandler(e: CustomEvent) {
     if (!this.disabled) {
-      this.checked = this.control == e.detail;
-      if (this.checked) this.control.focus();
+      this.control.checked = this.checked = this.control == e.detail.control;
+
+      if (this.checked && e.detail.triggeredByKeyboard) this.control.focus();
       this.groupCollectMembers();
     }
   }
