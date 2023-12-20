@@ -7,11 +7,11 @@ const meta: Meta<HTMLPostAccordionElement> = {
   title: 'Components/Accordion',
   component: 'post-accordion',
   parameters: {
-    badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
+    badges: [BADGE.BETA, BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
   },
   args: {
     multiple: false,
-  }
+  },
 };
 
 export default meta;
@@ -37,7 +37,7 @@ export const Default: Story = {
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </post-collapsible>
     </post-accordion>
-  `
+  `,
 };
 
 export const MultipleOpenPanels: Story = {
@@ -58,5 +58,5 @@ export const MultipleOpenPanels: Story = {
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </post-collapsible>
     </post-accordion>
-  `
+  `,
 };

@@ -3,7 +3,7 @@
     <option name="LINE_SEPARATOR" />
     <option name="DO_NOT_FORMAT">
       <list>
-        <fileSet type="globPattern" pattern="**/*.mdx" />
+        <fileSet type="globPattern" pattern="{**/,}(*.mdx|*.scss|pnpm-lock.yaml)" />
       </list>
     </option>
     <HTMLCodeStyleSettings>

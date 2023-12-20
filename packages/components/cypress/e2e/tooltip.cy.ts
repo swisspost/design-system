@@ -4,13 +4,18 @@ describe('tooltips', () => {
       cy.getComponent('tooltip', 'multiple');
       cy.get('button[data-tooltip-target="tooltip-multiple"]:first-of-type').as('target1');
       cy.get('button[data-tooltip-target="tooltip-multiple"]:last-of-type').as('target2');
-      cy.get('#tooltip-multiple').shadow().find('div[popover]').as('tooltip');
+      cy.get('#tooltip-multiple').find('div[popover]').as('tooltip');
+      cy.get('#storybook-root').invoke('attr', 'style', 'overflow: visible', { force: true });
     });
 
     it('should display a tooltip', () => {
       cy.get('@tooltip').should('not.be.visible');
       cy.get('@target2').focus();
-      cy.get('@tooltip').should('be.visible');
+      // Checking if a popover is open is a bit tricky, but it either matches the pseudo selector :popover-open
+      // or the polyfill sets the class :popover-open (a bit tricky to escape)
+      // https://github.com/oddbird/popover-polyfill#caveats
+      // prettier-ignore
+      cy.get('.\\:popover-open, :popover-open').should('exist');
       cy.get('@target2').blur();
       cy.get('@tooltip').should('not.be.visible');
     });

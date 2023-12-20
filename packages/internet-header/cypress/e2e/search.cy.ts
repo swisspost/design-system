@@ -18,7 +18,7 @@ describe('search', () => {
       'StaoCacheTypes',
     );
 
-    prepare('Internet Header/Header', 'Default');
+    prepare('Components/Internet Header/Header', 'Default');
     cy.changeArg('language', 'de');
   });
 
@@ -75,7 +75,7 @@ describe('search', () => {
       it('Coveo suggestions should be turned off with isCustomSuggestionHidden', () => {
         const config = copyConfig();
         config.de!.header.search.isCustomSuggestionHidden = true;
-        prepare('Internet Header/Header', 'Default', { config });
+        prepare('Components/Internet Header/Header', 'Default', { config });
         cy.changeArg('language', 'de');
         cy.get(searchButton).click();
         cy.get('#searchBox').type('s', { force: true });

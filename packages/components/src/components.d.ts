@@ -7,11 +7,9 @@
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { AlertType } from "./components/post-alert/alert-types";
 import { HeadingLevel } from "./components/post-collapsible/heading-levels";
-import { BackgroundColor } from "./components/post-tooltip/types";
 import { Placement } from "@floating-ui/dom";
 export { AlertType } from "./components/post-alert/alert-types";
 export { HeadingLevel } from "./components/post-collapsible/heading-levels";
-export { BackgroundColor } from "./components/post-tooltip/types";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
@@ -105,6 +103,60 @@ export namespace Components {
          */
         "scale"?: number | null;
     }
+    interface PostPopover {
+        /**
+          * Show a little indicator arrow
+         */
+        "arrow"?: boolean;
+        /**
+          * Define the caption of the close button for assistive technology
+         */
+        "closeButtonCaption": string;
+        /**
+          * Programmatically hide this popover
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popoverss are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
+        "placement"?: Placement;
+        /**
+          * Programmatically display the popover
+          * @param target An element with [data-popover-target="id"] where the popover should be shown
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Toggle popover display
+          * @param target An element with [data-popover-target="id"] where the popover should be anchored to
+          * @param force Pass true to always show or false to always hide
+         */
+        "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+    }
+    interface PostPopovercontainer {
+        /**
+          * Wheter or not to display a little pointer arrow
+         */
+        "arrow"?: boolean;
+        /**
+          * Programmatically hide this tooltip
+         */
+        "hide": () => Promise<void>;
+        /**
+          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
+        "placement"?: Placement;
+        /**
+          * Programmatically display the tooltip
+          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+         */
+        "show": (target: HTMLElement) => Promise<void>;
+        /**
+          * Toggle tooltip display
+          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * @param force Pass true to always show or false to always hide
+         */
+        "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
+    }
     interface PostTabHeader {
         /**
           * The name of the panel controlled by the tab header.
@@ -128,10 +180,6 @@ export namespace Components {
         "show": (panelName: string) => Promise<void>;
     }
     interface PostTooltip {
-        /**
-          * Defines the background color of the tooltip. Choose the one that provides the best contrast in your scenario.
-         */
-        "backgroundColor"?: BackgroundColor;
         /**
           * Programmatically hide this tooltip
          */
@@ -160,6 +208,10 @@ export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
+}
+export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostPopovercontainerElement;
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -215,6 +267,29 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
+    interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
+    }
+    var HTMLPostPopoverElement: {
+        prototype: HTMLPostPopoverElement;
+        new (): HTMLPostPopoverElement;
+    };
+    interface HTMLPostPopovercontainerElementEventMap {
+        "postPopoverToggled": boolean;
+    }
+    interface HTMLPostPopovercontainerElement extends Components.PostPopovercontainer, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostPopovercontainerElement: {
+        prototype: HTMLPostPopovercontainerElement;
+        new (): HTMLPostPopovercontainerElement;
+    };
     interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
     }
     var HTMLPostTabHeaderElement: {
@@ -255,6 +330,8 @@ declare global {
         "post-alert": HTMLPostAlertElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
+        "post-popover": HTMLPostPopoverElement;
+        "post-popovercontainer": HTMLPostPopovercontainerElement;
         "post-tab-header": HTMLPostTabHeaderElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
@@ -341,6 +418,34 @@ declare namespace LocalJSX {
          */
         "scale"?: number | null;
     }
+    interface PostPopover {
+        /**
+          * Show a little indicator arrow
+         */
+        "arrow"?: boolean;
+        /**
+          * Define the caption of the close button for assistive technology
+         */
+        "closeButtonCaption": string;
+        /**
+          * Defines the placement of the popover according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Popoverss are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
+        "placement"?: Placement;
+    }
+    interface PostPopovercontainer {
+        /**
+          * Wheter or not to display a little pointer arrow
+         */
+        "arrow"?: boolean;
+        /**
+          * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
+         */
+        "onPostPopoverToggled"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
+        /**
+          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+         */
+        "placement"?: Placement;
+    }
     interface PostTabHeader {
         /**
           * The name of the panel controlled by the tab header.
@@ -365,10 +470,6 @@ declare namespace LocalJSX {
     }
     interface PostTooltip {
         /**
-          * Defines the background color of the tooltip. Choose the one that provides the best contrast in your scenario.
-         */
-        "backgroundColor"?: BackgroundColor;
-        /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
@@ -378,6 +479,8 @@ declare namespace LocalJSX {
         "post-alert": PostAlert;
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
+        "post-popover": PostPopover;
+        "post-popovercontainer": PostPopovercontainer;
         "post-tab-header": PostTabHeader;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
@@ -395,6 +498,8 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
+            "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
+            "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;

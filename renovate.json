@@ -21,9 +21,19 @@
       "groupSlug": "all-minor-patch"
     },
     {
-      "matchFiles": ["packages/styles/package.json"],
+      "matchFiles": ["packages/migrations/package.json"],
       "matchPackagePatterns": ["^@angular"],
       "allowedVersions": "<=15.0.4"
+    },
+    {
+      "matchFiles": ["packages/demo/package.json"],
+      "matchPackagePatterns": ["@types/node"],
+      "allowedVersions": "~18.17"
+    },
+    {
+      "matchFiles": ["packages/components/package.json"],
+      "matchPackagePatterns": ["@oddbird/popover-polyfill"],
+      "allowedVersions": "0.2.3"
     }
   ],
   "timezone": "Europe/Zurich",

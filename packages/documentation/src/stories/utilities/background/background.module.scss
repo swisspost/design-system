@@ -7,6 +7,8 @@
       map.has-key(post.$contextual-colors, $color) ==
         false and
         map.has-key(post.$accent-colors, $color) ==
+        false and
+        map.has-key(post.$signal-colors, $color) ==
         false
     ) {
       base_#{$color}: $value;
@@ -19,5 +21,9 @@
 
   @each $color, $value in post.$accent-colors {
     accent_#{$color}: $value;
+  }
+
+  @each $color, $value in post.$signal-colors {
+    signal_#{$color}: $value;
   }
 }
