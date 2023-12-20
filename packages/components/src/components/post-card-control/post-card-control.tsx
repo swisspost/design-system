@@ -1,4 +1,15 @@
-import { AttachInternals, Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import {
+  AttachInternals,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { checkOneOf } from '../../utils';
 import { version } from '../../../package.json';
 
@@ -34,6 +45,10 @@ export class PostCardControl {
 
   @Element() host: HTMLPostCardControlElement;
 
+  @State() focused = false;
+
+  @AttachInternals() private internals: ElementInternals;
+
   /**
    * Defines the text in the control-label.
    */
@@ -42,32 +57,33 @@ export class PostCardControl {
   /**
    * Defines the description in the control-label.
    */
-  @Prop() readonly description?: string;
+  @Prop() readonly description: string = null;
 
   /**
    * Defines the `id` attribute of the control.
+   * <span className="alert alert-sm alert-warning">Make sure, the `id` is unique in the entire document.</span>
    */
   @Prop() readonly controlId!: string;
 
   /**
    * Defines the `type` attribute of the control.
    */
-  @Prop() readonly type: string = 'checkbox';
+  @Prop() readonly type!: 'checkbox' | 'radio';
 
   /**
    * Defines the `form` attribute of the control.
    */
-  @Prop() readonly form?: string;
+  @Prop() readonly form: string = null;
 
   /**
    * Defines the `name` attribute of the control.
    */
-  @Prop() readonly name?: string;
+  @Prop() readonly name: string = null;
 
   /**
    * Defines the `value` attribute of the control.
    */
-  @Prop() readonly value?: string;
+  @Prop() readonly value: string = null;
 
   /**
    * Defines the `checked` attribute of the control.
@@ -75,14 +91,9 @@ export class PostCardControl {
   @Prop({ reflect: true, mutable: true }) checked?: boolean = false;
 
   /**
-   * Defines the `required` attribute of the control.
-   */
-  @Prop() readonly required?: boolean = false;
-
-  /**
    * Defines the `disabled` attribute of the control.
    */
-  @Prop() readonly disabled?: boolean = false;
+  @Prop() readonly disabled: boolean = false;
 
   /**
    * Defines the validation `state` of the control.
@@ -91,13 +102,15 @@ export class PostCardControl {
 
   /**
    * Defines the icon `name` inside of the card.
-   * If not set the icon will not show up.
+   * <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
    */
-  @Prop() readonly icon?: string;
+  @Prop() readonly icon: string = null;
 
-  @State() focused = false;
-
-  @AttachInternals() private internals: ElementInternals;
+  /**
+   * An event emitted whenever the control value changes.
+   * The payload contains the current checked state under `event.details`.
+   */
+  @Event() controlChange: EventEmitter<boolean>;
 
   constructor() {
     this.GROUPEVENT = `PostCardControlGroup:${this.name}:change`;
@@ -140,6 +153,8 @@ export class PostCardControl {
       if (this.group.members.length > 1 && this.control.checked) {
         this.groupSetCheckedMember(this.control);
       }
+
+      this.controlChange.emit(this.checked);
     }
   }
 
@@ -220,9 +235,12 @@ export class PostCardControl {
   private groupEventHandler(e: CustomEvent) {
     if (!this.disabled) {
       this.control.checked = this.checked = this.control == e.detail.control;
+      this.internals.setFormValue(this.control.value);
 
       if (this.checked && e.detail.triggeredByKeyboard) this.control.focus();
       this.groupCollectMembers();
+
+      this.controlChange.emit(this.checked);
     }
   }
 
@@ -237,7 +255,6 @@ export class PostCardControl {
           class={{
             'card-control': true,
             'is-checked': this.checked,
-            'is-required': this.required,
             'is-disabled': this.disabled,
             'is-focused': this.focused,
             'is-valid': this.state === true,
@@ -248,14 +265,13 @@ export class PostCardControl {
           <div class="card-control--header">
             <input
               ref={el => (this.control = el as HTMLInputElement)}
-              id={this.controlId}
+              id={this.name}
               class="header--input form-check-input"
               type={this.type}
               form={this.form}
               name={this.name}
               value={this.value}
               checked={this.checked}
-              required={this.required}
               aria-disabled={this.disabled}
               onClick={this.controlClickHandler}
               onChange={this.controlChangeHandler}
@@ -264,7 +280,7 @@ export class PostCardControl {
               onKeyDown={this.controlKeyDownHandler}
             />
 
-            <label htmlFor={this.controlId} class="header--label form-check-label">
+            <label htmlFor={this.name} class="header--label form-check-label">
               {this.label}
               {this.description ? <div class="header--description">{this.description}</div> : null}
             </label>

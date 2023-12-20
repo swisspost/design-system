@@ -65,25 +65,25 @@ export namespace Components {
          */
         "checked"?: boolean;
         /**
-          * Defines the `id` attribute of the control.
+          * Defines the `id` attribute of the control. <span className="alert alert-sm alert-warning">Make sure, the `id` is unique in the entire document.</span>
          */
         "controlId": string;
         /**
           * Defines the description in the control-label.
          */
-        "description"?: string;
+        "description": string;
         /**
           * Defines the `disabled` attribute of the control.
          */
-        "disabled"?: boolean;
+        "disabled": boolean;
         /**
           * Defines the `form` attribute of the control.
          */
-        "form"?: string;
+        "form": string;
         /**
-          * Defines the icon `name` inside of the card. If not set the icon will not show up.
+          * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
          */
-        "icon"?: string;
+        "icon": string;
         /**
           * Defines the text in the control-label.
          */
@@ -91,11 +91,7 @@ export namespace Components {
         /**
           * Defines the `name` attribute of the control.
          */
-        "name"?: string;
-        /**
-          * Defines the `required` attribute of the control.
-         */
-        "required"?: boolean;
+        "name": string;
         /**
           * Defines the validation `state` of the control.
          */
@@ -103,11 +99,11 @@ export namespace Components {
         /**
           * Defines the `type` attribute of the control.
          */
-        "type": string;
+        "type": 'checkbox' | 'radio';
         /**
           * Defines the `value` attribute of the control.
          */
-        "value"?: string;
+        "value": string;
     }
     interface PostCollapsible {
         /**
@@ -258,6 +254,10 @@ export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostAlertElement;
 }
+export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostCardControlElement;
+}
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
@@ -294,10 +294,21 @@ declare global {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
     };
+    interface HTMLPostCardControlElementEventMap {
+        "controlChange": boolean;
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
     interface HTMLPostCardControlElement extends Components.PostCardControl, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostCardControlElement: {
         prototype: HTMLPostCardControlElement;
@@ -443,7 +454,7 @@ declare namespace LocalJSX {
          */
         "checked"?: boolean;
         /**
-          * Defines the `id` attribute of the control.
+          * Defines the `id` attribute of the control. <span className="alert alert-sm alert-warning">Make sure, the `id` is unique in the entire document.</span>
          */
         "controlId": string;
         /**
@@ -459,7 +470,7 @@ declare namespace LocalJSX {
          */
         "form"?: string;
         /**
-          * Defines the icon `name` inside of the card. If not set the icon will not show up.
+          * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
          */
         "icon"?: string;
         /**
@@ -471,9 +482,9 @@ declare namespace LocalJSX {
          */
         "name"?: string;
         /**
-          * Defines the `required` attribute of the control.
+          * An event emitted whenever the control value changes. The payload contains the current checked state under `event.details`.
          */
-        "required"?: boolean;
+        "onControlChange"?: (event: PostCardControlCustomEvent<boolean>) => void;
         /**
           * Defines the validation `state` of the control.
          */
@@ -481,7 +492,7 @@ declare namespace LocalJSX {
         /**
           * Defines the `type` attribute of the control.
          */
-        "type"?: string;
+        "type": 'checkbox' | 'radio';
         /**
           * Defines the `value` attribute of the control.
          */
