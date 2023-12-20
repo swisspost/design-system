@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/components/accordion';
+@use '@swisspost/design-system-styles/mixins/accordion' as accordion-mx;
 
 :host {
   display: block;
@@ -12,6 +13,10 @@
   }
 }
 
-post-accordion-item + post-accordion-item::part(accordion-item) {
-  border-block-start: 0!important;
+post-accordion-item::part(accordion-item) {
+  @include accordion-mx.background-color;
+
+  post-accordion-item + & {
+    border-block-start: 0!important;
+  }
 }
