@@ -1,12 +1,63 @@
+import { useArgs } from '@storybook/preview-api';
 import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { PostCardControlCustomEvent } from '@swisspost/design-system-components';
 
 const meta: Meta = {
-  title: 'Components/Card-Control',
+  title: 'Components/Forms/Card-Control',
   component: 'post-card-control',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
+  },
+  args: {
+    innerHTML: '',
+    label: 'Label',
+    description: '',
+    controlId: 'ExampleCardControl',
+    type: 'checkbox',
+    form: '',
+    name: '',
+    value: '',
+    checked: '',
+    disabled: '',
+    state: 'null',
+    icon: '',
+  },
+  argTypes: {
+    innerHTML: {
+      name: 'Content',
+      description:
+        'Defines the HTML markup contained in the card. <div className="alert alert-sm alert-info">Content only shows up if the control is checked.</div><p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content" target="_blank">block content</a>.<br>This means, you can put everything in it, as long as there is enough space to render it.</p>',
+      table: {
+        category: 'General',
+        type: {
+          summary: 'string',
+        },
+      },
+    },
+    type: {
+      control: {
+        type: 'radio',
+        labels: {
+          checkbox: 'Checkbox',
+          radio: 'Radio',
+        },
+      },
+      options: ['checkbox', 'radio'],
+    },
+    state: {
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          true: 'Valid',
+          false: 'Invalid',
+        },
+      },
+      options: ['null', 'true', 'false'],
+    },
   },
 };
 
@@ -15,300 +66,27 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: (args: Args) => html`
-    <!-- Default -->
-    <!--
-    <div class="row row-cols-2 mb-3">
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_1_1"
-          label="Default"
-          description="Description"
-          icon="1000"
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_1_2"
-          label="Default selected"
-          description="Description"
-          checked
-          icon="1000"
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-    </div>
+  render: (args: Args) => {
+    const [, updateArgs] = useArgs();
 
-    <!-- Error --
-
-    <div class="row row-cols-2 mb-3">
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_2_1"
-          label="Error"
-          description="Description"
-          state="false"
-          icon="1000"
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_2_2"
-          label="Error selected"
-          description="Description"
-          checked
-          state="false"
-          icon="1000"
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-    </div>
-
-    <!-- Disabled --
-
-    <div class="row row-cols-2 mb-3">
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_3_1"
-          label="Disabled"
-          description="Description"
-          disabled
-          icon="1000"
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_3_2"
-          label="Disabled selected"
-          description="Description"
-          checked
-          disabled
-          icon="1000"
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-    </div>
-
-    -->
-
-    <!-- Default radio -->
-
-    <div class="row row-cols-2 mb-3" role="radiogroup">
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_4_1"
-          label="Default"
-          description="Description"
-          type="radio"
-          name="CardControl_4"
-          icon="1000"
-          checked
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_4_2"
-          label="Default selected"
-          description="Description"
-          type="radio"
-          name="CardControl_4"
-          icon="1000"
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-    </div>
-
-    <!-- Error radio -->
-
-    <div class="row row-cols-2 mb-3" role="radiogroup">
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_5_1"
-          label="Error"
-          description="Description"
-          type="radio"
-          name="CardControl_5"
-          state="false"
-          icon="1000"
-          checked
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_5_2"
-          label="Error selected"
-          description="Description"
-          type="radio"
-          name="CardControl_5"
-          state="false"
-          icon="1000"
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-    </div>
-
-    <!-- Disabled radio -->
-
-    <div class="row row-cols-2 mb-3" role="radiogroup">
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_6_1"
-          label="Disabled"
-          description="Description"
-          type="radio"
-          name="CardControl_6"
-          disabled
-          icon="1000"
-          checked
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_6_2"
-          label="Disabled selected"
-          description="Description"
-          type="radio"
-          name="CardControl_6"
-          disabled
-          icon="1000"
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-    </div>
-
-    <!-- Radio Group -->
-
-    <div class="row row-cols-3 mb-3" role="radiogroup">
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_7_1"
-          label="Group 7"
-          description="Description"
-          type="radio"
-          name="CardControl_7"
-          icon="1000"
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_7_2"
-          label="Group 7"
-          description="Description"
-          type="radio"
-          name="CardControl_7"
-          icon="1000"
-          disabled
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-      <div class="col">
-        <post-card-control
-          control-id="CardControl_7_3"
-          label="Group 7"
-          description="Description"
-          type="radio"
-          name="CardControl_7"
-          icon="1000"
-        >
-          <div>
-            <select class="form-select">
-              <option>Elektu opcion...</option>
-              <option value="valoro_2">Opcion 2</option>
-            </select>
-          </div>
-        </post-card-control>
-      </div>
-    </div>
-  `,
+    return html`
+      <post-card-control
+        label="${args.label}"
+        description="${args.description || nothing}"
+        control-id="${args.controlId}"
+        type="${args.type || nothing}"
+        form="${args.form || nothing}"
+        name="${args.name || nothing}"
+        value="${args.value || nothing}"
+        checked="${args.checked || nothing}"
+        disabled="${args.disabled || nothing}"
+        state="${args.state !== 'null' ? args.state : nothing}"
+        icon="${args.icon || nothing}"
+        @controlChange="${(e: PostCardControlCustomEvent<boolean>) =>
+          updateArgs({ checked: e.detail })}"
+      >
+        ${unsafeHTML(args.innerHTML)}
+      </post-card-control>
+    `;
+  },
 };
