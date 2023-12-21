@@ -111,7 +111,7 @@ export namespace Components {
          */
         "currentRating": number;
         /**
-          * The number of stars in the rating
+          * Boolean for the disabled state of the component
          */
         "disabled"?: boolean;
         /**
@@ -119,7 +119,7 @@ export namespace Components {
          */
         "max"?: number;
         /**
-          * The number of stars in the rating
+          * If readonly is true, the component only displays a rating and is not interactive.
          */
         "readonly"?: boolean;
     }
@@ -387,7 +387,7 @@ declare namespace LocalJSX {
          */
         "currentRating"?: number;
         /**
-          * The number of stars in the rating
+          * Boolean for the disabled state of the component
          */
         "disabled"?: boolean;
         /**
@@ -399,7 +399,7 @@ declare namespace LocalJSX {
          */
         "onRatingChanged"?: (event: PostRatingCustomEvent<number>) => void;
         /**
-          * The number of stars in the rating
+          * If readonly is true, the component only displays a rating and is not interactive.
          */
         "readonly"?: boolean;
     }

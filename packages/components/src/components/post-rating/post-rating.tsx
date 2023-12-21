@@ -148,7 +148,7 @@ export class PostRating {
           onClick={this.isInteractive() && (() => this.handleClick(i))}
           onMouseEnter={this.isInteractive() && (() => this.handleHover(i))}
           onMouseLeave={this.isInteractive() && (() => this.reset())}
-          cursor={this.isInteractive() && 'pointer'}
+          cursor={this.isInteractive() ? 'pointer' : 'default'}
         >
           <path d="M15.2047 8.01289L15.3173 8.25303L15.5793 8.29449L22.981 9.46594L17.8102 14.8955L17.6402 15.0741L17.6783 15.3177L18.8923 23.0722L12.3555 19.4823L12.1149 19.3501L11.8742 19.4823L5.3374 23.0722L6.55141 15.3177L6.59048 15.0681L6.4128 14.8886L1.0518 9.47202L8.30071 8.41511L8.56513 8.37655L8.68001 8.1353L11.9965 1.17035L15.2047 8.01289Z" />
         </svg>,

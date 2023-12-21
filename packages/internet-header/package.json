@@ -31,7 +31,7 @@
     "start": "stencil build --watch --docs-readme",
     "build": "stencil build --docs-readme",
     "clean": "rimraf www dist loader",
-    "test": "npm run unit",
+    "test": "pnpm run unit",
     "unit": "jest",
     "unit:watch": "jest --watch",
     "e2e": "cypress run",
