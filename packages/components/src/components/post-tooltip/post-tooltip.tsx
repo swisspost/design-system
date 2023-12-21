@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
-import isFocusable from 'ally.js/esm/is/focusable';
+import isFocusable from 'ally.js/is/focusable';
 
 // Patch for long press on touch devices
 import 'long-press-event';
