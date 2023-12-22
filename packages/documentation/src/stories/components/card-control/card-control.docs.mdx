@@ -17,10 +17,33 @@ The `<post-card-control>` element is part of the `@swisspost/design-system-compo
 
 ## Examples
 
-### Grouped checkbox-cards
+### Custom icon
 
-TOTO: add example
+You can use our built in icons by just adding the `icon` property with the name of the desired icon.<br/>
+If this is not enough, you can also use the `icon` slot and add your very own custom icon.
 
-### Grouped radio-cards
+<div className="alert alert-md alert-info">If you use the `icon` slot, make sure you remove all the `width` and `height` attributes from the `img` or `svg` tag. Otherwise we can not ensure, our styles will work properly.</div>
 
-TOTO: add example
+<Canvas of={CardControlStories.CustomIcon} />
+
+### With content
+
+The component accepts other HTML-elements as its content, this includes also other form elements.
+
+<Canvas of={CardControlStories.Content} />
+
+### Lined up
+
+Change the width of a `<card-control>` component, by putting it (for example) in a grid.
+
+<Canvas of={CardControlStories.LinedUp} />
+<div className="hide-col-default">
+  <Controls of={CardControlStories.LinedUp} />
+</div>
+
+### Radio button group
+
+As you can create radio button groups with native `<radio>` elements, you can do the same with our `<post-card-control>` component as well.<br/>
+Just add the same `name` attribute value to multiple `<post-card-control type="radio">` components.
+
+<Canvas of={CardControlStories.RadioGroup} />

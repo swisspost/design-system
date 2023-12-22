@@ -2,7 +2,8 @@
 @use '@swisspost/design-system-styles/components/form-check';
 
 :host {
-  display: block;
+  display: flex;
+  height: 100%;
 }
 
 .card-control {
@@ -12,6 +13,7 @@
 
   display: block;
   padding: post.$size-regular;
+  width: 100%;
   background-color: var(--post-card-control-bg);
   border: post.$size-line solid var(--post-card-control-border-color);
   border-radius: post.$border-radius;
@@ -115,9 +117,11 @@
     height: post.$size-big;
     pointer-events: none;
 
-    > slot > * {
-      width: 100%;
-      height: 100%;
+    > slot {
+      > * {
+        width: 100%;
+        height: 100%;
+      }
     }
   }
 }

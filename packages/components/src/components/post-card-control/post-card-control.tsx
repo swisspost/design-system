@@ -34,11 +34,12 @@ export class PostCardControl {
   };
 
   private group = {
+    hosts: [],
     members: [],
     first: null,
     last: null,
     checked: null,
-    focusable: null,
+    focused: null,
   };
 
   private control: HTMLInputElement;
@@ -71,32 +72,27 @@ export class PostCardControl {
   @Prop() readonly type!: 'checkbox' | 'radio';
 
   /**
-   * Defines the `form` attribute of the control.
-   */
-  @Prop() readonly form: string = null;
-
-  /**
-   * Defines the `name` attribute of the control.
+   * Defines the `name` attribute of the control, which is submitted with the form data.
    */
   @Prop() readonly name: string = null;
 
   /**
-   * Defines the `value` attribute of the control.
+   * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
    */
-  @Prop() readonly value: string = null;
+  @Prop() readonly value: string = 'on';
 
   /**
-   * Defines the `checked` attribute of the control.
+   * Defines the `checked` attribute of the control. If `true`, the control is selected.
    */
   @Prop({ reflect: true, mutable: true }) checked?: boolean = false;
 
   /**
-   * Defines the `disabled` attribute of the control.
+   * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control.
    */
   @Prop() readonly disabled: boolean = false;
 
   /**
-   * Defines the validation `state` of the control.
+   * Defines the validation `state` of the control.<div className="alert alert-sm alert-info">Only styles for the invalid state have been defined so far.</div>
    */
   @Prop() readonly state: boolean = null;
 
@@ -151,7 +147,7 @@ export class PostCardControl {
       this.internals.setFormValue(this.control.value);
 
       if (this.group.members.length > 1 && this.control.checked) {
-        this.groupSetCheckedMember(this.control);
+        this.groupSetSelectedMember(this.control);
       }
 
       this.controlChange.emit(this.checked);
@@ -168,23 +164,23 @@ export class PostCardControl {
 
   // https://googlechromelabs.github.io/howto-components/howto-radio-group/
   private controlKeyDownHandler(e: KeyboardEvent) {
-    if (this.group.members.length > 0) {
+    if (this.group.members.length > 1) {
       switch (e.code) {
         case this.KEYCODES.UP:
         case this.KEYCODES.LEFT:
           e.preventDefault();
-          this.groupSetCheckedMember(this.groupGetPrevMember(), true);
+          this.groupSetSelectedMember(this.groupGetPrevMember(), true);
           break;
 
         case this.KEYCODES.DOWN:
         case this.KEYCODES.RIGHT:
           e.preventDefault();
-          this.groupSetCheckedMember(this.groupGetNextMember(), true);
+          this.groupSetSelectedMember(this.groupGetNextMember(), true);
           break;
 
         case this.KEYCODES.SPACE:
           e.preventDefault();
-          this.groupSetCheckedMember(this.control, true);
+          this.groupSetSelectedMember(this.control, true);
           break;
 
         default:
@@ -195,36 +191,49 @@ export class PostCardControl {
 
   private groupCollectMembers() {
     if (this.type === 'radio' && this.name) {
-      const groupHosts = document.querySelectorAll(
-        `post-card-control[type="radio"][name="${this.name}"]`,
+      this.group.hosts = Array.from(
+        document.querySelectorAll(`post-card-control[type="radio"][name="${this.name}"]`),
       );
 
-      this.group.members = Array.from(groupHosts)
-        .map(m => m.shadowRoot.querySelector('input[type="radio"]:not([aria-disabled])'))
+      this.group.members = this.group.hosts
+        .map(m => m.shadowRoot.querySelector('input[type="radio"]'))
         .filter(m => m !== null);
 
-      if (this.group.members.length > 0) {
+      if (this.group.members.length > 1) {
         this.group.first = this.group.members[0];
         this.group.last = this.group.members[this.group.members.length - 1];
         this.group.checked = this.group.members.find(m => m.checked) ?? null;
-        this.group.focusable = this.group.checked ?? this.group.first;
+        this.group.focused =
+          this.group.members.find(m => m.getRootNode().host === document.activeElement) ??
+          this.group.first;
 
-        if (!this.disabled) this.control.tabIndex = this.control === this.group.focusable ? 0 : -1;
+        this.groupUpdateTabIndexes();
       }
     }
   }
 
+  private groupUpdateTabIndexes() {
+    const focusableMember = this.group.checked || this.group.focused || this.group.first;
+
+    this.group.members.forEach(m => {
+      m.tabIndex = m === focusableMember ? 0 : -1;
+    });
+  }
+
   private groupGetPrevMember() {
-    const focusableIndex = this.group.members.findIndex(m => m.id === this.group.focusable.id);
-    return this.group.members.find((_m, i) => i === focusableIndex - 1) ?? this.group.last;
+    const focusedIndex = this.group.members.findIndex(m => m.id === this.group.focused.id);
+    return this.group.members.find((_m, i) => i === focusedIndex - 1) ?? this.group.last;
   }
 
   private groupGetNextMember() {
-    const focusableIndex = this.group.members.findIndex(m => m.id === this.group.focusable.id);
-    return this.group.members.find((_m, i) => i === focusableIndex + 1) ?? this.group.first;
+    const focusedIndex = this.group.members.findIndex(m => m.id === this.group.focused.id);
+    return this.group.members.find((_m, i) => i === focusedIndex + 1) ?? this.group.first;
   }
 
-  private groupSetCheckedMember(newCheckedMember: HTMLInputElement, triggeredByKeyboard?: boolean) {
+  private groupSetSelectedMember(
+    newCheckedMember: HTMLInputElement,
+    triggeredByKeyboard?: boolean,
+  ) {
     window.dispatchEvent(
       new CustomEvent(this.GROUPEVENT, {
         detail: { control: newCheckedMember, triggeredByKeyboard },
@@ -233,15 +242,15 @@ export class PostCardControl {
   }
 
   private groupEventHandler(e: CustomEvent) {
+    if (e.detail.triggeredByKeyboard) e.detail.control.focus();
+
     if (!this.disabled) {
-      this.control.checked = this.checked = this.control == e.detail.control;
+      this.control.checked = this.checked = this.control === e.detail.control;
       this.internals.setFormValue(this.control.value);
-
-      if (this.checked && e.detail.triggeredByKeyboard) this.control.focus();
-      this.groupCollectMembers();
-
       this.controlChange.emit(this.checked);
     }
+
+    this.groupCollectMembers();
   }
 
   componentWillLoad() {
@@ -265,14 +274,15 @@ export class PostCardControl {
           <div class="card-control--header">
             <input
               ref={el => (this.control = el as HTMLInputElement)}
-              id={this.name}
+              id={this.controlId}
               class="header--input form-check-input"
               type={this.type}
-              form={this.form}
               name={this.name}
               value={this.value}
               checked={this.checked}
               aria-disabled={this.disabled}
+              aria-controls={`${this.controlId}_Content`}
+              aria-expanded={(this.checked && !this.disabled).toString()}
               onClick={this.controlClickHandler}
               onChange={this.controlChangeHandler}
               onFocus={this.controlFocusHandler}
@@ -280,7 +290,7 @@ export class PostCardControl {
               onKeyDown={this.controlKeyDownHandler}
             />
 
-            <label htmlFor={this.name} class="header--label form-check-label">
+            <label htmlFor={this.controlId} class="header--label form-check-label">
               {this.label}
               {this.description ? <div class="header--description">{this.description}</div> : null}
             </label>
@@ -290,7 +300,11 @@ export class PostCardControl {
             </div>
           </div>
 
-          <div class="card-control--content" onClick={this.contentClickHandler}>
+          <div
+            id={`${this.controlId}_Content`}
+            class="card-control--content"
+            onClick={this.contentClickHandler}
+          >
             <slot></slot>
           </div>
         </div>

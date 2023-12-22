@@ -61,7 +61,7 @@ export namespace Components {
      */
     interface PostCardControl {
         /**
-          * Defines the `checked` attribute of the control.
+          * Defines the `checked` attribute of the control. If `true`, the control is selected.
          */
         "checked"?: boolean;
         /**
@@ -73,13 +73,9 @@ export namespace Components {
          */
         "description": string;
         /**
-          * Defines the `disabled` attribute of the control.
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control.
          */
         "disabled": boolean;
-        /**
-          * Defines the `form` attribute of the control.
-         */
-        "form": string;
         /**
           * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
          */
@@ -89,11 +85,11 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control.
+          * Defines the `name` attribute of the control, which is submitted with the form data.
          */
         "name": string;
         /**
-          * Defines the validation `state` of the control.
+          * Defines the validation `state` of the control.<div className="alert alert-sm alert-info">Only styles for the invalid state have been defined so far.</div>
          */
         "state": boolean;
         /**
@@ -101,7 +97,7 @@ export namespace Components {
          */
         "type": 'checkbox' | 'radio';
         /**
-          * Defines the `value` attribute of the control.
+          * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
          */
         "value": string;
     }
@@ -450,7 +446,7 @@ declare namespace LocalJSX {
      */
     interface PostCardControl {
         /**
-          * Defines the `checked` attribute of the control.
+          * Defines the `checked` attribute of the control. If `true`, the control is selected.
          */
         "checked"?: boolean;
         /**
@@ -462,13 +458,9 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
-          * Defines the `disabled` attribute of the control.
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control.
          */
         "disabled"?: boolean;
-        /**
-          * Defines the `form` attribute of the control.
-         */
-        "form"?: string;
         /**
           * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
          */
@@ -478,7 +470,7 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control.
+          * Defines the `name` attribute of the control, which is submitted with the form data.
          */
         "name"?: string;
         /**
@@ -486,7 +478,7 @@ declare namespace LocalJSX {
          */
         "onControlChange"?: (event: PostCardControlCustomEvent<boolean>) => void;
         /**
-          * Defines the validation `state` of the control.
+          * Defines the validation `state` of the control.<div className="alert alert-sm alert-info">Only styles for the invalid state have been defined so far.</div>
          */
         "state"?: boolean;
         /**
@@ -494,7 +486,7 @@ declare namespace LocalJSX {
          */
         "type": 'checkbox' | 'radio';
         /**
-          * Defines the `value` attribute of the control.
+          * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
          */
         "value"?: string;
     }

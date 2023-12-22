@@ -7,19 +7,18 @@
 
 ## Properties
 
-| Property                 | Attribute     | Description                                                                                                                                            | Type                    | Default     |
-| ------------------------ | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------- | ----------- |
-| `checked`                | `checked`     | Defines the `checked` attribute of the control.                                                                                                        | `boolean`               | `false`     |
-| `controlId` _(required)_ | `control-id`  | Defines the `id` attribute of the control. <span className="alert alert-sm alert-warning">Make sure, the `id` is unique in the entire document.</span> | `string`                | `undefined` |
-| `description`            | `description` | Defines the description in the control-label.                                                                                                          | `string`                | `null`      |
-| `disabled`               | `disabled`    | Defines the `disabled` attribute of the control.                                                                                                       | `boolean`               | `false`     |
-| `form`                   | `form`        | Defines the `form` attribute of the control.                                                                                                           | `string`                | `null`      |
-| `icon`                   | `icon`        | Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>                   | `string`                | `null`      |
-| `label` _(required)_     | `label`       | Defines the text in the control-label.                                                                                                                 | `string`                | `undefined` |
-| `name`                   | `name`        | Defines the `name` attribute of the control.                                                                                                           | `string`                | `null`      |
-| `state`                  | `state`       | Defines the validation `state` of the control.                                                                                                         | `boolean`               | `null`      |
-| `type` _(required)_      | `type`        | Defines the `type` attribute of the control.                                                                                                           | `"checkbox" \| "radio"` | `undefined` |
-| `value`                  | `value`       | Defines the `value` attribute of the control.                                                                                                          | `string`                | `null`      |
+| Property                 | Attribute     | Description                                                                                                                                                | Type                    | Default     |
+| ------------------------ | ------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------- | ----------- |
+| `checked`                | `checked`     | Defines the `checked` attribute of the control. If `true`, the control is selected.                                                                        | `boolean`               | `false`     |
+| `controlId` _(required)_ | `control-id`  | Defines the `id` attribute of the control. <span className="alert alert-sm alert-warning">Make sure, the `id` is unique in the entire document.</span>     | `string`                | `undefined` |
+| `description`            | `description` | Defines the description in the control-label.                                                                                                              | `string`                | `null`      |
+| `disabled`               | `disabled`    | Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control.                                                    | `boolean`               | `false`     |
+| `icon`                   | `icon`        | Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>                       | `string`                | `null`      |
+| `label` _(required)_     | `label`       | Defines the text in the control-label.                                                                                                                     | `string`                | `undefined` |
+| `name`                   | `name`        | Defines the `name` attribute of the control, which is submitted with the form data.                                                                        | `string`                | `null`      |
+| `state`                  | `state`       | Defines the validation `state` of the control.<div className="alert alert-sm alert-info">Only styles for the invalid state have been defined so far.</div> | `boolean`               | `null`      |
+| `type` _(required)_      | `type`        | Defines the `type` attribute of the control.                                                                                                               | `"checkbox" \| "radio"` | `undefined` |
+| `value`                  | `value`       | Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.                                       | `string`                | `'on'`      |
 
 
 ## Events
