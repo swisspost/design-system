@@ -20,6 +20,60 @@ To run the unit tests for the components, run:
 ```bash
 pnpm --filter design-system-components test
 ```
+## Writing Components
+
+### Generate a New Component
+To generate a new component, run:
+```bash
+pnpm --filter design-system-components generate my-new-component
+```
+
+All components should be named with the prefix `post-`.
+
+### Use slots
+You can use [the `<slot>` HTML element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) as a placeholder for any user-defined markup.
+
+If the component has only one slot, it should not have a `name` attribute.
+Also, don't use named slots for primary content, but instead reserve them for secondary content.
+
+When you need to access elements assigned to a given slot, always prefer to use the `onSlotChange` event to ensure that all asynchronous changes to the content are taken into account.
+Indeed, the component is not re-rendered if only its content changes.
+
+### Validate Properties
+Properties, defined with the `@Prop` decorator, are custom attributes publicly exposed on the HTML element.
+To ensure that the value passed by the user matches what is expected, it is necessary to implement validation.
+
+All property validators are available in the `src/utils/property-checkers` folder.
+
+You can use these validators in a function decorated with the `@Watch` decorator to validate the value given to a prop every time it changes, as shown in the [Stencil documentation](https://stenciljs.com/docs/properties#prop-validation).
+Also make sure to call this function in the `connectedCallback` lifecycle hook so that the value is also validated when the component is initially rendered.
+
+### Write Component Styles
+Web components mainly use styles from the `@swisspost/design-system-styles` package. 
+They are included in the component stylesheet using the [Sass `@use` rule](https://sass-lang.com/documentation/at-rules/use/).
+Make sure to only include styles related to the component to ensure it remains lightweight.
+
+It is also possible to add specific styles for slotted elements using the [CSS `::slotted()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::slotted),
+or to style parts of the component based on a parent using the [CSS `::part()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part).
+
+### Handle animations
+
+All CSS animations can be found in the `src/animations` folder.
+They are built with the [Web Animations API](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API).
+
+Calling these functions will start the animation, you can then wait for them to complete as well as pause them, reverse them or force their completion.
+More information can be found in the [Web Animations documentation](https://developer.mozilla.org/en-US/docs/Web/API/Web_Animations_API/Using_the_Web_Animations_API).
+
+### Write stories
+
+Components are documented in the `@swisspost/design-system-documentation` package, a [Storybook](https://storybook.js.org) documentation.
+
+By setting a component's name as a `component` property in your stories' metadata, all controls are inferred from the component's `@Prop`.
+
+### Write tests
+
+All components should have automated tests.
+These tests are available in the `cypress/e2e` folder.
 
 ## Stencil
 
