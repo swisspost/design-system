@@ -40,7 +40,7 @@
     display: inline-flex;
     flex: 0 auto;
     appearance: none;
-    background: none;
+    background: color.$white;
     height: form-check.$form-check-input-size;
     width: form-check.$form-check-input-size;
     border: form-check.$form-check-input-border-width solid
