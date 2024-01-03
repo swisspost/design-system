@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@swisspost/design-system-icons": "workspace:1.0.16",
-    "@types/node": "18.19.3",
+    "@types/node": "18.19.4",
     "autoprefixer": "10.4.16",
     "copyfiles": "2.4.1",
     "glob": "10.3.10",
@@ -58,7 +58,7 @@
     "postcss-scss": "4.0.9",
     "prettier": "3.1.1",
     "rimraf": "5.0.5",
-    "sass": "1.69.5",
+    "sass": "1.69.7",
     "stylelint": "15.11.0",
     "stylelint-config-prettier": "9.0.5",
     "stylelint-config-sass-guidelines": "10.0.0",
