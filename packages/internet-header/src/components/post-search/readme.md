@@ -28,6 +28,12 @@ Type: `Promise<void>`
 
 Toggle the dropdown and optionally force an open/closed state
 
+#### Parameters
+
+| Name    | Type      | Description                        |
+| ------- | --------- | ---------------------------------- |
+| `force` | `unknown` | Boolean to force open/closed state |
+
 #### Returns
 
 Type: `Promise<boolean>`

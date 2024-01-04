@@ -30,6 +30,12 @@ Type: `Promise<void>`
 
 Programmatically display the popover
 
+#### Parameters
+
+| Name     | Type          | Description                                                                  |
+| -------- | ------------- | ---------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | An element with [data-popover-target="id"] where the popover should be shown |
+
 #### Returns
 
 Type: `Promise<void>`
@@ -39,6 +45,13 @@ Type: `Promise<void>`
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<void>`
 
 Toggle popover display
+
+#### Parameters
+
+| Name     | Type          | Description                                                                        |
+| -------- | ------------- | ---------------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | An element with [data-popover-target="id"] where the popover should be anchored to |
+| `force`  | `boolean`     | Pass true to always show or false to always hide                                   |
 
 #### Returns
 

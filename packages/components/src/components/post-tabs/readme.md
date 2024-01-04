@@ -26,6 +26,12 @@
 Shows the panel with the given name and selects its associated tab.
 Any other panel that was previously shown becomes hidden and its associated tab is unselected.
 
+#### Parameters
+
+| Name        | Type     | Description |
+| ----------- | -------- | ----------- |
+| `panelName` | `string` |             |
+
 #### Returns
 
 Type: `Promise<void>`
