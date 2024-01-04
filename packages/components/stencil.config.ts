@@ -38,4 +38,7 @@ export const config: Config = {
   testing: {
     testPathIgnorePatterns: ['cypress'],
   },
+  extras: {
+    enableImportInjection: true,
+  },
 };
