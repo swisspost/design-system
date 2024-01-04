@@ -26,7 +26,7 @@ jobs:
         run: pnpm bootstrap
 
       - name: Cypress info
-        run: pnpm --filter design-system-documentation exec cypress info
+        run: pnpm --filter "design-system-documentation" exec cypress info
 
       - name: Run tests
         run: pnpm --filter "...[origin/main]" e2e
