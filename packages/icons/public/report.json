@@ -10124,38 +10124,6 @@
       "modifiedAt": "2021-10-18T11:17:32.000Z"
     },
     {
-      "uuid": "88307300-5bef-11eb-9f99-005056873709",
-      "id": 539481,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "LAD",
-          "Leistung am Domizil",
-          "Service au domicile",
-          "Servizio a domicilio",
-          "Service at the domicile"
-        ],
-        "year": [
-          "2021"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:49:50.000Z",
-      "modifiedAt": "2021-10-18T11:24:06.000Z"
-    },
-    {
       "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
       "id": 539487,
       "type": "picture.pictogram.",
@@ -10185,6 +10153,38 @@
         }
       },
       "createdAt": "2021-01-21T13:55:20.000Z",
+      "modifiedAt": "2021-10-18T11:24:06.000Z"
+    },
+    {
+      "uuid": "88307300-5bef-11eb-9f99-005056873709",
+      "id": 539481,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "LAD",
+          "Leistung am Domizil",
+          "Service au domicile",
+          "Servizio a domicilio",
+          "Service at the domicile"
+        ],
+        "year": [
+          "2021"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:49:50.000Z",
       "modifiedAt": "2021-10-18T11:24:06.000Z"
     },
     {
@@ -33439,7 +33439,7 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2023-12-17T01:15:01.889Z",
+  "created": "2024-01-07T01:16:14.168Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
