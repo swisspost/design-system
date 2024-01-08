@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 1.7.0
+
+### Minor Changes
+
+- Added the `post-popover` component. This component can display text and interactive elements in a popover in front of the page content. (by [@gfellerph](https://github.com/gfellerph) with [#2109](https://github.com/swisspost/design-system/pull/2109))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.1
+
 ## 1.6.3
 
 ### Patch Changes
