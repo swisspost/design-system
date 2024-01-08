@@ -41,6 +41,12 @@ Type: `Promise<void>`
 
 Toggles the `post-accordion-item` with the given id.
 
+#### Parameters
+
+| Name | Type     | Description |
+| ---- | -------- | ----------- |
+| `id` | `string` |             |
+
 #### Returns
 
 Type: `Promise<void>`
