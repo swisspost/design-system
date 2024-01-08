@@ -20,7 +20,7 @@ const meta: Meta = {
     hiddenLabel: false,
     placeholder: 'Placeholder',
     type: 'text',
-    size: 'null',
+    size: 'form-control-lg',
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
