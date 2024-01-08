@@ -64,7 +64,7 @@ importers:
         specifier: 0.2.3
         version: 0.2.3
       '@swisspost/design-system-styles':
-        specifier: workspace:6.5.0
+        specifier: workspace:6.5.1
         version: link:../styles/dist
       ally.js:
         specifier: 1.4.1
@@ -143,7 +143,7 @@ importers:
   packages/components-react:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:1.6.3
+        specifier: workspace:1.7.0
         version: link:../components
     devDependencies:
       '@types/node':
@@ -234,10 +234,10 @@ importers:
         specifier: 20.1.0
         version: 20.1.0(@angular/common@16.2.12)(@angular/core@16.2.12)(@angular/platform-browser@16.2.12)(rxjs@7.8.1)
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:5.0.5
+        specifier: workspace:5.0.6
         version: link:../intranet-header-workspace/dist/intranet-header
       '@swisspost/design-system-styles':
-        specifier: workspace:6.5.0
+        specifier: workspace:6.5.1
         version: link:../styles/dist
       bootstrap:
         specifier: 5.3.2
@@ -367,19 +367,19 @@ importers:
   packages/documentation:
     dependencies:
       '@swisspost/design-system-components':
-        specifier: workspace:1.6.3
+        specifier: workspace:1.7.0
         version: link:../components
       '@swisspost/design-system-components-react':
-        specifier: workspace:1.0.23
+        specifier: workspace:1.0.24
         version: link:../components-react
       '@swisspost/design-system-icons':
-        specifier: workspace:1.0.16
+        specifier: workspace:1.0.17
         version: link:../icons
       '@swisspost/design-system-styles':
-        specifier: workspace:6.5.0
+        specifier: workspace:6.5.1
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.13.1
+        specifier: workspace:1.13.2
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.2
@@ -536,7 +536,7 @@ importers:
   packages/internet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:6.5.0
+        specifier: workspace:6.5.1
         version: link:../styles/dist
       body-scroll-lock:
         specifier: 4.0.0-beta.0
@@ -684,7 +684,7 @@ importers:
         specifier: 2.11.8
         version: 2.11.8
       '@swisspost/design-system-styles':
-        specifier: workspace:6.5.0
+        specifier: workspace:6.5.1
         version: link:../styles/dist
       rxjs:
         specifier: 7.8.1
@@ -769,14 +769,14 @@ importers:
   packages/intranet-header-workspace/projects/intranet-header:
     dependencies:
       '@swisspost/design-system-styles':
-        specifier: workspace:6.5.0
+        specifier: workspace:6.5.1
         version: link:../../../styles/dist
       tslib:
         specifier: 2.6.2
         version: 2.6.2
     devDependencies:
       '@swisspost/design-system-intranet-header-workspace':
-        specifier: workspace:3.0.5
+        specifier: workspace:3.0.6
         version: link:../..
     publishDirectory: ../../dist/intranet-header
 
@@ -825,7 +825,7 @@ importers:
         version: 5.3.2(@popperjs/core@2.11.8)
     devDependencies:
       '@swisspost/design-system-icons':
-        specifier: workspace:1.0.16
+        specifier: workspace:1.0.17
         version: link:../icons
       '@types/node':
         specifier: 18.19.5

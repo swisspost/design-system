@@ -1,5 +1,14 @@
 # @swisspost/design-system-demo
 
+## 7.1.2
+
+### Patch Changes
+
+- Documented how to translate specific labels on the ng-bootstrap datepicker. (by [@imagoiq](https://github.com/imagoiq) with [#2315](https://github.com/swisspost/design-system/pull/2315))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.1
+  - @swisspost/design-system-intranet-header@5.0.6
+
 ## 7.1.1
 
 ### Patch Changes
