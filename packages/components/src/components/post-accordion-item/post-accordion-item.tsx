@@ -15,7 +15,6 @@ export class PostAccordionItem {
 
   @State() id: string;
   @State() isOpen: boolean;
-  @State() headingTag: string;
 
   /**
    * If `true`, the element is initially collapsed otherwise it is displayed.
@@ -42,11 +41,7 @@ export class PostAccordionItem {
 
   componentWillLoad() {
     this.isOpen = !this.collapsed;
-  }
-
-  componentWillRender() {
     this.id = this.host.id || `a${crypto.randomUUID()}`;
-    this.headingTag = `h${this.headingLevel ?? 2}`;
   }
 
   @Listen('collapseChange')
@@ -63,10 +58,12 @@ export class PostAccordionItem {
   }
 
   render() {
+    const HeadingTag = `h${this.headingLevel ?? 2}`;
+
     return (
       <Host id={this.id} data-version={version}>
         <div part="accordion-item" class="accordion-item">
-          <this.headingTag class="accordion-header" id={`${this.id}--header`}>
+          <HeadingTag class="accordion-header" id={`${this.id}--header`}>
             <button
               aria-controls={`${this.id}--collapse`}
               aria-expanded={`${this.isOpen}`}
@@ -76,7 +73,7 @@ export class PostAccordionItem {
             >
               <slot name="header" />
             </button>
-          </this.headingTag>
+          </HeadingTag>
 
           <post-collapsible collapsed={this.collapsed} ref={el => (this.collapsible = el)}>
             <div class="accordion-body">

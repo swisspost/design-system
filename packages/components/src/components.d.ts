@@ -42,7 +42,7 @@ export namespace Components {
         /**
           * Triggers the collapse programmatically.
          */
-        "toggle": (open?: boolean) => Promise<boolean>;
+        "toggle": (force?: boolean) => Promise<boolean>;
     }
     interface PostAlert {
         /**
