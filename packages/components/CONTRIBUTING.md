@@ -30,7 +30,7 @@ pnpm components:generate my-new-component
 
 All components should be named with the prefix `post-`.
 
-### Components Style Guide
+### Observe Coding Style
 
 This project uses ESLint [@stencil-community/eslint-plugin](https://www.npmjs.com/package/@stencil-community/eslint-plugin) rules
 to enforce standardization of the components and their compliance with [Stencil Style Guide](https://stenciljs.com/docs/style-guide).
@@ -59,12 +59,26 @@ You can use these validators in a function decorated with the `@Watch` decorator
 Also make sure to call this function in the `connectedCallback` lifecycle hook so that the value is also validated when the component is initially rendered.
 
 ### Write Component Styles
-Web components mainly use styles from the `@swisspost/design-system-styles` package. 
-They are included in the component stylesheet using the [Sass `@use` rule](https://sass-lang.com/documentation/at-rules/use/).
-Make sure to only include styles related to the component to ensure it remains lightweight.
+Components that have a standard HTML variant have their styles defined in the `@swisspost/design-system-styles` package.
+It is sometimes possible to reuse these styles as-is but in many cases, the shadow DOM structure needs specific selectors.
+In these cases write custom CSS inside the component styles, using variables, mixins and functions from the styles package.
 
-It is also possible to add specific styles for slotted elements using the [CSS `::slotted()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::slotted),
-or to style parts of the component based on a parent using the [CSS `::part()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part). Document parts in Storybook as they are also exposed to the host document and people can customize these elements.
+
+Make sure to only include styles related to the component to ensure it remains lightweight,
+and include them using the [Sass `@use` rule](https://sass-lang.com/documentation/at-rules/use/).
+
+To add specific styles for slotted elements use the [CSS `::slotted()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::slotted),
+or to style parts of the component based on a parent use the [CSS `::part()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part).
+Document parts in Storybook as they are also exposed to the host document and people can customize these elements.
+
+Do not assume that any CSS from the styles package is actually present on the page.
+It should be possible to use the component package standalone.
+Therefore, if you're using CSS Custom Properties (CSS variables), which is highly encouraged, define fallback values for them:
+```css
+:host {
+  --post-accordion-background-color: var(--post-accordion-background-color, #{accordion.$background-color});
+}
+```
 
 ### Handle animations
 
