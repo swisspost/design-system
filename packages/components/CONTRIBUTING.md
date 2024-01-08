@@ -25,7 +25,7 @@ pnpm components:test
 ### Generate a New Component
 To generate a new component, run:
 ```bash
-pnpm components:generate my-new-component
+pnpm components:generate post-my-new-component
 ```
 
 All components should be named with the prefix `post-`.
@@ -62,8 +62,6 @@ Also make sure to call this function in the `connectedCallback` lifecycle hook s
 Components that have a standard HTML variant have their styles defined in the `@swisspost/design-system-styles` package.
 It is sometimes possible to reuse these styles as-is but in many cases, the shadow DOM structure needs specific selectors.
 In these cases write custom CSS inside the component styles, using variables, mixins and functions from the styles package.
-
-
 Make sure to only include styles related to the component to ensure it remains lightweight,
 and include them using the [Sass `@use` rule](https://sass-lang.com/documentation/at-rules/use/).
 
