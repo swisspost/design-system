@@ -258,7 +258,7 @@ declare global {
         new (): HTMLPostAlertElement;
     };
     interface HTMLPostCollapsibleElementEventMap {
-        "collapseChange": void;
+        "collapseChange": boolean;
     }
     interface HTMLPostCollapsibleElement extends Components.PostCollapsible, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostCollapsibleElementEventMap>(type: K, listener: (this: HTMLPostCollapsibleElement, ev: PostCollapsibleCustomEvent<HTMLPostCollapsibleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -404,9 +404,9 @@ declare namespace LocalJSX {
          */
         "collapsed"?: boolean;
         /**
-          * An event emitted when the collapse element is shown or hidden, before the transition. It has no payload.
+          * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
          */
-        "onCollapseChange"?: (event: PostCollapsibleCustomEvent<void>) => void;
+        "onCollapseChange"?: (event: PostCollapsibleCustomEvent<boolean>) => void;
     }
     /**
      * @class PostIcon - representing a stencil component

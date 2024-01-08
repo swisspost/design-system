@@ -34,7 +34,9 @@ export class PostAccordion {
   }
 
   @Listen('collapseChange')
-  collapseChangeHandler(event: CustomEvent) {
+  collapseChangeHandler(event: CustomEvent<boolean>) {
+    event.stopPropagation();
+
     const toggledItem = event.target as HTMLPostAccordionItemElement;
     const isClosing = this.expandedItems.has(toggledItem);
 
