@@ -37,14 +37,14 @@
     "lint": "eslint src/**/*{.ts,.tsx}"
   },
   "dependencies": {
-    "@floating-ui/dom": "1.5.3",
+    "@floating-ui/dom": "1.5.4",
     "@oddbird/popover-polyfill": "0.2.3",
     "@swisspost/design-system-styles": "workspace:6.5.0",
     "ally.js": "1.4.1",
     "long-press-event": "2.4.6"
   },
   "devDependencies": {
-    "@percy/cli": "1.27.6",
+    "@percy/cli": "1.27.7",
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.7.1",
     "@stencil/core": "4.9.0",
