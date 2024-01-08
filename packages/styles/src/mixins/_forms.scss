@@ -38,6 +38,8 @@
   line-height: forms.$input-line-height-sm;
   height: forms.$input-height-sm;
   min-height: forms.$input-height-sm;
+  padding-block: forms.$input-padding-y-sm;
+  padding-inline: forms.$input-padding-x-sm;
 }
 
 @mixin form-lg {
