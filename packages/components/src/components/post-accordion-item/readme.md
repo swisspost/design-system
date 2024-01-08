@@ -15,7 +15,7 @@
 
 ## Methods
 
-### `toggle(open?: boolean) => Promise<boolean>`
+### `toggle(force?: boolean) => Promise<boolean>`
 
 Triggers the collapse programmatically.
 
