@@ -6,12 +6,13 @@ The Swiss Post Design System pattern library for a unified and accessible user e
 
 ## Documentation
 
-| Name                                                                                                                                                      | Description                                                                                   |
-| :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
-| [Current documentation](https://design-system.post.ch/#/home)                                                                                             | Contains `ng-bootstrap` components                                                            |
-| [Next documentation](https://next.design-system.post.ch/?path=/docs/home--docs)                                                                           | Storybook with web components                                                                 |
-| [Figma design files](https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=3209%3A72270&mode=design&t=jhmGcSqeWq2SgQXT-1) | Figma component library                                                                       |
-| 🔒 [Experience Hub](https://www.experience-hub.ch/document/2803)                                                                                          | Pattern usage documentation ([request access](https://www.experience-hub.ch/request-access/)) |
+[Current documentation](https://design-system.post.ch/#/home) - Contains `ng-bootstrap` components
+
+[Next documentation](https://next.design-system.post.ch/?path=/docs/home--docs) - Storybook with web components
+
+[Figma design files](https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=3209%3A72270&mode=design&t=jhmGcSqeWq2SgQXT-1) - Figma component library
+
+🔒 [Experience Hub](https://www.experience-hub.ch/document/2803) - Pattern usage documentation ([request access](https://www.experience-hub.ch/request-access/))
 
 ## Packages
 
