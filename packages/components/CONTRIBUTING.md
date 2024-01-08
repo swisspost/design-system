@@ -25,7 +25,7 @@ pnpm components:test
 ### Generate a New Component
 To generate a new component, run:
 ```bash
-pnpm components:generate my-new-component
+pnpm components:generate post-my-new-component
 ```
 
 All components should be named with the prefix `post-`.
