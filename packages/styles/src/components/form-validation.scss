@@ -91,7 +91,7 @@
   display: block;
 }
 
-.success {
+.is-valid {
   padding-right: spacing.$size-small-huge; // For deprecated form-control-rg
   border-color: var(--post-success-green);
   background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);

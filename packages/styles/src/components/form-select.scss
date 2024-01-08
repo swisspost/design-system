@@ -28,7 +28,7 @@
     }
   }
 
-  &.success,
+  &.is-valid,
   &.is-invalid {
     background-position:
       right b.$form-select-padding-x * 2.5 center,
@@ -46,7 +46,7 @@
       var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
   }
 
-  &.success {
+  &.is-valid {
     background-image: b.escape-svg(form-select.$form-select-indicator-success),
       var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
   }

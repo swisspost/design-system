@@ -24,7 +24,6 @@ const meta: Meta = {
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
-    success: false,
   },
   argTypes: {
     label: {
@@ -155,20 +154,6 @@ const meta: Meta = {
         category: 'States',
       },
     },
-    success: {
-      name: 'Success',
-      description: 'Controls the success state appearance of the component.',
-      control: {
-        type: 'boolean',
-      },
-      if: {
-        arg: 'validation',
-        neq: 'is-invalid',
-      },
-      table: {
-        category: 'States',
-      },
-    },
   },
 };
 
@@ -183,7 +168,6 @@ function render(args: Args, context: StoryContext) {
     args.type === 'color' && 'form-control-color',
     args.size,
     args.validation,
-    args.success && 'success',
   ]
     .filter(c => c && c !== 'null')
     .join(' ');
