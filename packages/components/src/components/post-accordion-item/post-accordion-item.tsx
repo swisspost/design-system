@@ -58,8 +58,8 @@ export class PostAccordionItem {
    * Triggers the collapse programmatically.
    */
   @Method()
-  async toggle(open?: boolean): Promise<boolean> {
-    return this.collapsible.toggle(open);
+  async toggle(force?: boolean): Promise<boolean> {
+    return this.collapsible.toggle(force);
   }
 
   render() {
