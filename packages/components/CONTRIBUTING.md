@@ -54,7 +54,7 @@ They are included in the component stylesheet using the [Sass `@use` rule](https
 Make sure to only include styles related to the component to ensure it remains lightweight.
 
 It is also possible to add specific styles for slotted elements using the [CSS `::slotted()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::slotted),
-or to style parts of the component based on a parent using the [CSS `::part()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part).
+or to style parts of the component based on a parent using the [CSS `::part()` selector](https://developer.mozilla.org/en-US/docs/Web/CSS/::part). Document parts in Storybook as they are also exposed to the host document and people can customize these elements.
 
 ### Handle animations
 
