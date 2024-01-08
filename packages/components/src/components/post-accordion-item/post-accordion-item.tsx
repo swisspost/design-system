@@ -45,8 +45,9 @@ export class PostAccordionItem {
   }
 
   @Listen('collapseChange')
-  onCollapseChange(): void {
+  onCollapseChange(e: Event): void {
     this.isOpen = !this.isOpen;
+    e.stopPropagation();
   }
 
   /**
