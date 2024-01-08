@@ -1,59 +1,18 @@
 # Swiss Post Design System
 
-![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/c11afbac-8a71-4416-ae3c-ec87f4e10412)
+![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e84f1fea-e666-4853-8c85-726a6bf22e6c)
 
 The Swiss Post Design System pattern library for a unified and accessible user experience across the web platform.
 
-
 ## Packages
 
-### Styles
-
-[![npm](https://img.shields.io/npm/v/@swisspost/design-system-styles)](https://www.npmjs.com/package/@swisspost/design-system-styles)
-
-[Documentation](https://design-system.post.ch) · [Changelog](/packages/styles/CHANGELOG.md)
-
-The styling package, including theming for [Bootstrap](https://getbootstrap.com/) and [ng-bootstrap](https://ng-bootstrap.github.io/#/home) components.
-
-```bash
-npm install @swisspost/design-system-styles
-```
-
-### Internet Header
-
-[![npm](https://img.shields.io/npm/v/@swisspost/internet-header)](https://www.npmjs.com/package/@swisspost/internet-header)
-
-[Documentation](https://next.design-system.post.ch/?path=/docs/internet-header-getting-started--docs) · [Changelog](/packages/internet-header/CHANGELOG.md)
-
-The header for client facing applications.
-
-```bash
-npm install @swisspost/internet-header
-```
-
-### Intranet Header
-
-[![npm](https://img.shields.io/npm/v/@swisspost/design-system-intranet-header)](https://www.npmjs.com/package/@swisspost/design-system-intranet-header)
-
-[Documentation](https://design-system.post.ch/#/post-samples/intranet-layout) · [Changelog](/packages/intranet-header-workspace/CHANGELOG.md)
-
-The Header Angular component for internal usage.
-
-```bash
-npm install @swisspost/design-system-intranet-header
-```
-
-### Components
-
-[![npm](https://img.shields.io/npm/v/@swisspost/design-system-components)](https://www.npmjs.com/package/@swisspost/design-system-components)
-
-[Documentation](https://next.design-system.post.ch) · [Changelog](/packages/components/CHANGELOG.md)
-
-A set of standard web components for easy integration with every framework or no framework at all.
-
-```bash
-npm install @swisspost/design-system-components
-```
+| Name                                                                                                               | Description                                                                                                                                             | Version                                                                                                                                                 | Changelog                                                                     |
+| :----------------------------------------------------------------------------------------------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :---------------------------------------------------------------------------- |
+| [Styles](https://next.design-system.post.ch/?path=/docs/getting-started-styles--docs)                              | The styling package, including theming for [Bootstrap](https://getbootstrap.com/) and [ng-bootstrap](https://ng-bootstrap.github.io/#/home) components. | [![npm](https://img.shields.io/npm/v/@swisspost/design-system-styles)](https://www.npmjs.com/package/@swisspost/design-system-styles)                   | [Styles changelog](/packages/styles/CHANGELOG.md)                             |
+| [Components](https://next.design-system.post.ch/?path=/docs/getting-started-components--docs)                      | A set of standard web components for easy integration with every framework or no framework at all.                                                      | [![npm](https://img.shields.io/npm/v/@swisspost/design-system-components)](https://www.npmjs.com/package/@swisspost/design-system-components)           | [Components changelog](/packages/components/CHANGELOG.md)                     |
+| [Internet Header](https://next.design-system.post.ch/?path=/docs/components-internet-header-getting-started--docs) | The header for client facing applications.                                                                                                              | [![npm](https://img.shields.io/npm/v/@swisspost/internet-header)](https://www.npmjs.com/package/@swisspost/internet-header)                             | [Interet Header changelog](/packages/internet-header/CHANGELOG.md)            |
+| [Intranet Header](https://next.design-system.post.ch/?path=/docs/components-intranet-header-getting-started--docs) | The Angular component for internal usage.                                                                                                               | [![npm](https://img.shields.io/npm/v/@swisspost/design-system-intranet-header)](https://www.npmjs.com/package/@swisspost/design-system-intranet-header) | [Intranet Header changelog](/packages/intranet-header-workspace/CHANGELOG.md) |
+| [Icons](https://next.design-system.post.ch/?path=/docs/components-icons-getting-started--docs)                     | A collection of Post icons in svg format.                                                                                                               | [![npm](https://img.shields.io/npm/v/@swisspost/design-system-icons)](https://www.npmjs.com/package/@swisspost/design-system-icons)                     | [Icons changelog](/packages/icons/CHANGELOG.md)                               |
 
 ## Design Documentation
 
