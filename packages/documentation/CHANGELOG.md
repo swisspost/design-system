@@ -1,5 +1,14 @@
 # @swisspost/design-system-documentation
 
+## 2.7.1
+
+### Patch Changes
+
+- Enabled import injection for components. This fixes an issue with importing dynamically loaded web components with the vite compiler for storybook. (by [@gfellerph](https://github.com/gfellerph) with [#2448](https://github.com/swisspost/design-system/pull/2448))
+- Updated dependencies:
+  - @swisspost/design-system-components@1.7.1
+  - @swisspost/design-system-components-react@1.0.25
+
 ## 2.7.0
 
 ### Minor Changes
