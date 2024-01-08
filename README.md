@@ -4,6 +4,15 @@
 
 The Swiss Post Design System pattern library for a unified and accessible user experience across the web platform.
 
+## Documentation
+
+| Name                                                                                                                                                      | Description                                                                                   |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------- |
+| [Current documentation](https://design-system.post.ch/#/home)                                                                                             | Contains `ng-bootstrap` components                                                            |
+| [Next documentation](https://next.design-system.post.ch/?path=/docs/home--docs)                                                                           | Storybook with web components                                                                 |
+| [Figma design files](https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=3209%3A72270&mode=design&t=jhmGcSqeWq2SgQXT-1) | Figma component library                                                                       |
+| 🔒 [Experience Hub](https://www.experience-hub.ch/document/2803)                                                                                          | Pattern usage documentation ([request access](https://www.experience-hub.ch/request-access/)) |
+
 ## Packages
 
 | Name                                                                                                               | Description                                                                                                                                             | Version                                                                                                                                                                                                                                                  | Changelog URL                                                                 |
@@ -13,10 +22,6 @@ The Swiss Post Design System pattern library for a unified and accessible user e
 | [Internet Header](https://next.design-system.post.ch/?path=/docs/components-internet-header-getting-started--docs) | The header for client facing applications.                                                                                                              | [![Internet Header package version shield for npm](https://img.shields.io/npm/v/%40swisspost%2Finternet-header?style=flat-square&logo=npm&label=%20&color=%23fc0)](https://www.npmjs.com/package/@swisspost/internet-header)                             | [Interet Header changelog](/packages/internet-header/CHANGELOG.md)            |
 | [Intranet Header](https://next.design-system.post.ch/?path=/docs/components-intranet-header-getting-started--docs) | The Angular component for internal usage.                                                                                                               | [![Intranet Header package version shield for npm](https://img.shields.io/npm/v/%40swisspost%2Fdesign-system-intranet-header?style=flat-square&logo=npm&label=%20&color=%23fc0)](https://www.npmjs.com/package/@swisspost/design-system-intranet-header) | [Intranet Header changelog](/packages/intranet-header-workspace/CHANGELOG.md) |
 | [Icons](https://next.design-system.post.ch/?path=/docs/components-icons-getting-started--docs)                     | A collection of Post icons in svg format.                                                                                                               | [![Icons package version shield for npm](https://img.shields.io/npm/v/%40swisspost%2Fdesign-system-icons?style=flat-square&logo=npm&label=%20&color=%23fc0)](https://www.npmjs.com/package/@swisspost/design-system-icons)                               | [Icons changelog](/packages/icons/CHANGELOG.md)                               |
-
-## Design Documentation
-
-🔒 **[Experience Hub](https://www.experience-hub.ch/document/2803)** - pattern usage documentation ([request access](https://www.experience-hub.ch/request-access/))
 
 ## Contribute
 
