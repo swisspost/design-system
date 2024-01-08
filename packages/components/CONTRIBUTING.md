@@ -30,6 +30,16 @@ pnpm components:generate my-new-component
 
 All components should be named with the prefix `post-`.
 
+### Components Style Guide
+
+This project uses ESLint [@stencil-community/eslint-plugin](https://www.npmjs.com/package/@stencil-community/eslint-plugin) rules
+to enforce standardization of the components and their compliance with [Stencil Style Guide](https://stenciljs.com/docs/style-guide).
+
+To analyse your code and find problems, run:
+```bash
+pnpm components:lint
+```
+
 ### Use slots
 You can use [the `<slot>` HTML element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) as a placeholder for any user-defined markup.
 
