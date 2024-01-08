@@ -36,7 +36,7 @@ You can use [the `<slot>` HTML element](https://developer.mozilla.org/en-US/docs
 If the component has only one slot, it should not have a `name` attribute.
 Also, don't use named slots for primary content, but instead reserve them for secondary content.
 
-When you need to access elements assigned to a given slot, always prefer to use the `onSlotChange` event to ensure that all asynchronous changes to the content are taken into account.
+When you need to access elements assigned to a given slot, use the `onSlotChange` event to ensure that all asynchronous changes to the content are taken into account.
 Indeed, the component is not re-rendered if only its content changes.
 
 ### Validate Properties
