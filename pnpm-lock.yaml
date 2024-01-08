@@ -879,8 +879,8 @@ importers:
         specifier: 9.0.5
         version: 9.0.5(stylelint@15.11.0)
       stylelint-config-sass-guidelines:
-        specifier: 10.0.0
-        version: 10.0.0(postcss@8.4.33)(stylelint@15.11.0)
+        specifier: 11.0.0
+        version: 11.0.0(postcss@8.4.33)(stylelint@15.11.0)
       stylelint-prettier:
         specifier: 4.1.0
         version: 4.1.0(prettier@3.1.1)(stylelint@15.11.0)
@@ -19365,17 +19365,17 @@ packages:
       stylelint: 15.11.0
     dev: true
 
-  /stylelint-config-sass-guidelines@10.0.0(postcss@8.4.33)(stylelint@15.11.0):
-    resolution: {integrity: sha512-+Rr2Dd4b72CWA4qoj1Kk+y449nP/WJsrD0nzQAWkmPPIuyVcy2GMIcfNr0Z8JJOLjRvtlkKxa49FCNXMePBikQ==}
-    engines: {node: ^14.13.1 || >=16.13.0 || >=18.0.0}
+  /stylelint-config-sass-guidelines@11.0.0(postcss@8.4.33)(stylelint@15.11.0):
+    resolution: {integrity: sha512-ZFaIDq8Qd6SO1p7Cmg+TM7E2B8t3vDZgEIX+dribR2y+H3bJJ8Oh0poFJGSOIAVdbg6FiI7xQf//8riBZVhIhg==}
+    engines: {node: '>=18.12.0'}
     peerDependencies:
       postcss: '>=8.4.31'
-      stylelint: ^15.2.0 || >=15
+      stylelint: ^16.1.0 || >=15
     dependencies:
       postcss: 8.4.33
       postcss-scss: 4.0.9(postcss@8.4.33)
       stylelint: 15.11.0
-      stylelint-scss: 4.7.0(stylelint@15.11.0)
+      stylelint-scss: 6.0.0(stylelint@15.11.0)
     dev: true
 
   /stylelint-prettier@4.1.0(prettier@3.1.1)(stylelint@15.11.0):
@@ -19390,11 +19390,12 @@ packages:
       stylelint: 15.11.0
     dev: true
 
-  /stylelint-scss@4.7.0(stylelint@15.11.0):
-    resolution: {integrity: sha512-TSUgIeS0H3jqDZnby1UO1Qv3poi1N8wUYIJY6D1tuUq2MN3lwp/rITVo0wD+1SWTmRm0tNmGO0b7nKInnqF6Hg==}
+  /stylelint-scss@5.3.2(stylelint@15.11.0):
+    resolution: {integrity: sha512-4LzLaayFhFyneJwLo0IUa8knuIvj+zF0vBFueQs4e3tEaAMIQX8q5th8ziKkgOavr6y/y9yoBe+RXN/edwLzsQ==}
     peerDependencies:
       stylelint: ^14.5.1 || ^15.0.0 || >=15
     dependencies:
+      known-css-properties: 0.29.0
       postcss-media-query-parser: 0.2.3
       postcss-resolve-nested-selector: 0.1.1
       postcss-selector-parser: 6.0.13
@@ -19402,10 +19403,11 @@ packages:
       stylelint: 15.11.0
     dev: true
 
-  /stylelint-scss@5.3.2(stylelint@15.11.0):
-    resolution: {integrity: sha512-4LzLaayFhFyneJwLo0IUa8knuIvj+zF0vBFueQs4e3tEaAMIQX8q5th8ziKkgOavr6y/y9yoBe+RXN/edwLzsQ==}
+  /stylelint-scss@6.0.0(stylelint@15.11.0):
+    resolution: {integrity: sha512-N1xV/Ef5PNRQQt9E45unzGvBUN1KZxCI8B4FgN/pMfmyRYbZGVN4y9qWlvOMdScU17c8VVCnjIHTVn38Bb6qSA==}
+    engines: {node: '>=18.12.0'}
     peerDependencies:
-      stylelint: ^14.5.1 || ^15.0.0 || >=15
+      stylelint: ^16.0.2 || >=15
     dependencies:
       known-css-properties: 0.29.0
       postcss-media-query-parser: 0.2.3
