@@ -40,14 +40,6 @@
     // disable stylelint here, because the classes are coming from bs5
     @extend .form-control-lg; /* stylelint-disable-line */
 
-    &.success {
-      padding-right: spacing.$size-small-huge; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
-
-      &.form-control-sm {
-        padding-right: spacing.$size-bigger-big;
-      }
-    }
-
     &:focus {
       @include forms-mx.placeholder {
         color: rgba(var(--post-contrast-color-rgb), 0.6);
