@@ -1,5 +1,12 @@
 # @swisspost/design-system-components-react
 
+## 1.0.24
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@1.7.0
+
 ## 1.0.23
 
 ### Patch Changes

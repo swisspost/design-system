@@ -9,7 +9,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
-  title: 'Components/Forms/Text Input',
+  title: 'Components/Forms/Input',
   render: render,
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
