@@ -37,7 +37,7 @@ If the component has only one slot, it should not have a `name` attribute.
 Also, don't use named slots for primary content, but instead reserve them for secondary content.
 
 When you need to access elements assigned to a given slot, use the `onSlotChange` event to ensure that all asynchronous changes to the content are taken into account.
-Indeed, the component is not re-rendered if only its content changes.
+Parent components are not re-rendered if only their content changes.
 
 ### Validate Properties
 Properties, defined with the `@Prop` decorator, are custom attributes publicly exposed on the HTML element.
