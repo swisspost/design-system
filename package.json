@@ -36,6 +36,7 @@
     "styles:test": "pnpm --filter design-system-styles unit",
     "components:start": "pnpm --filter design-system-components dev",
     "components:build": "pnpm --filter design-system-components build",
+    "components:generate": "pnpm --filter design-system-components generate",
     "components:test": "pnpm --filter design-system-components test",
     "components:unit": "pnpm --filter design-system-components unit",
     "components:unit:watch": "pnpm --filter design-system-components unit:watch",

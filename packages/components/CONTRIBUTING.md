@@ -12,20 +12,20 @@ pnpm components:start
 To build the component for production, run:
 
 ```bash
-pnpm --filter design-system-components build
+pnpm components:build
 ```
 
 To run the unit tests for the components, run:
 
 ```bash
-pnpm --filter design-system-components test
+pnpm components:test
 ```
 ## Writing Components
 
 ### Generate a New Component
 To generate a new component, run:
 ```bash
-pnpm --filter design-system-components generate my-new-component
+pnpm components:generate my-new-component
 ```
 
 All components should be named with the prefix `post-`.
