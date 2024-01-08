@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Added new success state to text input.
+Update valid state style for input text.
