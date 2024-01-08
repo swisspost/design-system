@@ -58,7 +58,7 @@
     "icons:unit": "pnpm --filter design-system-icons test",
     "icons:unit:watch": "pnpm --filter design-system-icons test:watch",
     "migrations:build": "pnpm --filter design-system-migrations build",
-    "changeset:publish": "pnpm bootstrap && pnpm changeset publish",
+    "changeset:publish": "pnpm changeset publish",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
   },
   "devDependencies": {
