@@ -19,6 +19,12 @@
 
 Triggers the collapse programmatically.
 
+#### Parameters
+
+| Name    | Type      | Description |
+| ------- | --------- | ----------- |
+| `force` | `boolean` |             |
+
 #### Returns
 
 Type: `Promise<boolean>`
