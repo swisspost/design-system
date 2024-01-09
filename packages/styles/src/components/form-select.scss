@@ -43,23 +43,25 @@
 
     &.is-valid,
     &.is-invalid {
-      background-position: right b.$form-select-padding-x * 2.5 center,
-      b.$form-select-bg-position;
+      background-position:
+        right b.$form-select-padding-x * 2.5 center,
+        b.$form-select-bg-position;
 
       &.form-select-lg {
-        background-position: right b.$form-select-padding-x * 3 center,
-        b.$form-select-bg-position;
+        background-position:
+          right b.$form-select-padding-x * 3 center,
+          b.$form-select-bg-position;
       }
     }
 
     &.is-valid {
       background-image: b.escape-svg(form-select.$form-select-indicator-success),
-      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+        var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
     }
 
     &.is-invalid {
       background-image: b.escape-svg(form-select.$form-select-indicator-error),
-      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+        var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
     }
   }
 
@@ -70,11 +72,13 @@
     }
 
     &.is-valid {
-      background-image: b.escape-svg(form-select.$form-select-indicator-success), var(--bs-form-select-bg-icon, none);
+      background-image: b.escape-svg(form-select.$form-select-indicator-success),
+        var(--bs-form-select-bg-icon, none);
     }
 
     &.is-invalid {
-      background-image: b.escape-svg(form-select.$form-select-indicator-error), var(--bs-form-select-bg-icon, none);
+      background-image: b.escape-svg(form-select.$form-select-indicator-error),
+        var(--bs-form-select-bg-icon, none);
     }
   }
 
