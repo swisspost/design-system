@@ -90,8 +90,8 @@ jobs:
             echo $@ | sed 's/[^ ]*\/\([[:digit:]]*\)\.svg/\1/g' | sed 's/ /, /g' | sed 's/\(.*\),/\1 and/g'
           }
 
-          echo "added_icons=$(get_icons $ADDED_FILES)"                                    >> $GITHUB_OUTPUT
           echo "updated_icons=$(get_icons $MODIFIED_FILES $RENAMED_FILES $COPIED_FILES)"  >> $GITHUB_OUTPUT
+          echo "added_icons=$(get_icons $ADDED_FILES)"                                    >> $GITHUB_OUTPUT
           echo "deleted_icons=$(get_icons $DELETED_FILES)"                                >> $GITHUB_OUTPUT
         env:
           ADDED_FILES: ${{ steps.changed-files.outputs.added_files }}
@@ -108,27 +108,31 @@ jobs:
             echo $([ $# = 1 ] && echo "" || echo "s")
           }
 
+          declare -a bump
           declare -a description
-          if [[ -n $ADDED_ICONS ]]; then
-            description+="Added icon$(pluralize_if_needed $ADDED_ICONS) number ${ADDED_ICONS}. "
-          fi
           if [[ -n $UPDATED_ICONS ]]; then
+            bump="patch"
             description+="Updated icon$(pluralize_if_needed $UPDATED_ICONS) number ${UPDATED_ICONS}. "
           fi
+          if [[ -n $ADDED_ICONS ]]; then
+            bump="minor"
+            description+="Added icon$(pluralize_if_needed $ADDED_ICONS) number ${ADDED_ICONS}. "
+          fi
           if [[ -n $DELETED_ICONS ]]; then
+            bump="major"
             description+="Deleted icon$(pluralize_if_needed $DELETED_ICONS) number ${DELETED_ICONS}. "
           fi
 
-          echo ---                                         > $CHANGESET
-          echo "'@swisspost/design-system-icons': patch"  >> $CHANGESET
-          echo ---                                        >> $CHANGESET
-          echo                                            >> $CHANGESET
-          echo "${description[@]}" | xargs                >> $CHANGESET
-          echo                                            >> $CHANGESET
+          echo ---                                          > $CHANGESET
+          echo "'@swisspost/design-system-icons': ${bump}"  >> $CHANGESET
+          echo ---                                          >> $CHANGESET
+          echo                                              >> $CHANGESET
+          echo "${description[@]}" | xargs                  >> $CHANGESET
+          echo                                              >> $CHANGESET
         env:
           CHANGESET: ./.changeset/${{ steps.current-branch.outputs.branch }}.md
-          ADDED_ICONS: ${{ steps.changed-icons.outputs.added_icons }}
           UPDATED_ICONS: ${{ steps.changed-icons.outputs.updated_icons }}
+          ADDED_ICONS: ${{ steps.changed-icons.outputs.added_icons }}
           DELETED_ICONS: ${{ steps.changed-icons.outputs.deleted_icons }}
 
       - name: Commit Changeset
@@ -144,13 +148,13 @@ jobs:
         run: |
           echo "file=$PR_BODY_FILE" >> $GITHUB_OUTPUT
           echo "# Design system icons are now up to date!"  > $PR_BODY_FILE
-          if [[ -n $ADDED_ICONS ]]; then
-            echo "## Added icons"                          >> $PR_BODY_FILE
-            echo $ADDED_ICONS                              >> $PR_BODY_FILE
-          fi
           if [[ -n $UPDATED_ICONS ]]; then
             echo "## Updated icons"                        >> $PR_BODY_FILE
             echo $UPDATED_ICONS                            >> $PR_BODY_FILE
+          fi
+          if [[ -n $ADDED_ICONS ]]; then
+            echo "## Added icons"                          >> $PR_BODY_FILE
+            echo $ADDED_ICONS                              >> $PR_BODY_FILE
           fi
           if [[ -n $DELETED_ICONS ]]; then
             echo "## Deleted icons"                        >> $PR_BODY_FILE
@@ -158,8 +162,8 @@ jobs:
           fi
         env:
           PR_BODY_FILE: pr-body.md
-          ADDED_ICONS: ${{ steps.changed-icons.outputs.added_icons }}
           UPDATED_ICONS: ${{ steps.changed-icons.outputs.updated_icons }}
+          ADDED_ICONS: ${{ steps.changed-icons.outputs.added_icons }}
           DELETED_ICONS: ${{ steps.changed-icons.outputs.deleted_icons }}
 
       - name: Create PR
