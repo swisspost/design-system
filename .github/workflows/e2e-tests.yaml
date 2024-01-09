@@ -21,12 +21,27 @@ jobs:
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        with:
+          use_cache: false
+
+      - name: Cache cypress
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-cypress-
 
       - name: Install dependencies
-        run: pnpm bootstrap
+        run: pnpm install
+
+      - name: Install server
+        run: pnpm -g add http-server
+
+      - name: Build documentation & dependencies
+        run: pnpm --filter design-system-documentation... build
 
       - name: Cypress info
         run: pnpm --filter design-system-documentation exec cypress info
 
       - name: Run tests
-        run: pnpm --filter "...[origin/main]" e2e
+        run: pnpm exec start-server-and-test 'http-server packages/documentation/storybook-static --silent --port 9001' 9001 'pnpm --filter "...[origin/main]" --workspace-concurrency=1 e2e'
