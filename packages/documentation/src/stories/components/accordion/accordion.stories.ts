@@ -22,20 +22,20 @@ type Story = StoryObj<HTMLPostAccordionElement>;
 export const Default: Story = {
   render: (args: Partial<HTMLPostAccordionElement>) => html`
     <post-accordion multiple=${ifDefined(args.multiple || undefined)}>
-      <post-collapsible>
+      <post-accordion-item>
         <span slot="header">Titulum 1</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
 
-      <post-collapsible>
+      <post-accordion-item>
         <span slot="header">Titulum 2</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
 
-      <post-collapsible>
+      <post-accordion-item>
         <span slot="header">Titulum 3</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
     </post-accordion>
   `,
 };
@@ -43,20 +43,20 @@ export const Default: Story = {
 export const MultipleOpenPanels: Story = {
   render: () => html`
     <post-accordion multiple="true">
-      <post-collapsible>
+      <post-accordion-item>
         <span slot="header">Titulum 1</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
 
-      <post-collapsible collapsed>
+      <post-accordion-item collapsed>
         <span slot="header">Titulum 2</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
 
-      <post-collapsible collapsed>
+      <post-accordion-item collapsed>
         <span slot="header">Titulum 3</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
     </post-accordion>
   `,
 };
