@@ -7,12 +7,6 @@ import { angularValueAccessorBindings } from './.config/bindings.angular';
 export const config: Config = {
   namespace: 'post-components',
   sourceMap: false,
-  plugins: [
-    sass({
-      outputStyle: 'compressed',
-      includePaths: ['node_modules'],
-    }),
-  ],
   outputTargets: [
     {
       type: 'dist',
@@ -45,6 +39,15 @@ export const config: Config = {
       directivesArrayFile:
         '../components-angular/projects/components/src/lib/stencil-generated/index.ts',
       valueAccessorConfigs: angularValueAccessorBindings,
+    }),
+  ],
+  extras: {
+    enableImportInjection: true,
+  },
+  plugins: [
+    sass({
+      outputStyle: 'compressed',
+      includePaths: ['node_modules'],
     }),
   ],
   testing: {

@@ -12,6 +12,7 @@
   display: block;
   min-width: 0;
   height: var(--header-height);
+  flex-shrink: 0;
 }
 
 :host(.no-animation) {

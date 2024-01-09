@@ -28,6 +28,12 @@ Triggers the collapse programmatically.
 
 If there is a collapsing transition running already, it will be reversed.
 
+#### Parameters
+
+| Name   | Type      | Description |
+| ------ | --------- | ----------- |
+| `open` | `boolean` |             |
+
 #### Returns
 
 Type: `Promise<boolean>`

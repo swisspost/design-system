@@ -1,5 +1,15 @@
 # @swisspost/internet-header
 
+## 1.13.2
+
+### Patch Changes
+
+- Improve the main navigation slot placement and styling. (by [@alizedebray](https://github.com/alizedebray) with [#2280](https://github.com/swisspost/design-system/pull/2280))
+
+- Fixed an issue with stickyness scrolling where the logo would not react to scroll events and the header did not appear when scrolling back up. (by [@gfellerph](https://github.com/gfellerph) with [#2377](https://github.com/swisspost/design-system/pull/2377))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.1
+
 ## 1.13.1
 
 ### Patch Changes
