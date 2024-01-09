@@ -29,6 +29,9 @@ export const config: Config = {
       file: 'dist/docs.json',
     },
   ],
+  extras: {
+    enableImportInjection: true,
+  },
   plugins: [
     sass({
       outputStyle: 'compressed',
