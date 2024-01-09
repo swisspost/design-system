@@ -80,5 +80,14 @@
     "start-server-and-test": "2.0.3",
     "ts-jest": "29.1.1",
     "typescript": "4.9.5"
-  }
+  },
+  "keywords": [
+    "components",
+    "web-components",
+    "header",
+    "stencil",
+    "design-system",
+    "ui",
+    "frontend"
+  ]
 }
