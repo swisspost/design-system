@@ -1,9 +1,12 @@
 export { Components, JSX } from './components';
 
 // Export every single component so it gets included in the dist output
+export { PostAccordion } from './components/post-accordion/post-accordion';
 export { PostAlert } from './components/post-alert/post-alert';
 export { PostCollapsible } from './components/post-collapsible/post-collapsible';
 export { PostIcon } from './components/post-icon/post-icon';
+export { PostPopover } from './components/post-popover/post-popover';
+export { PostPopovercontainer } from './components/post-popovercontainer/post-popovercontainer';
 export { PostTabs } from './components/post-tabs/post-tabs';
 export { PostTabHeader } from './components/post-tab-header/post-tab-header';
 export { PostTabPanel } from './components/post-tab-panel/post-tab-panel';

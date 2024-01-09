@@ -19,6 +19,12 @@
 
 Open a specific flyout
 
+#### Parameters
+
+| Name | Type             | Description |
+| ---- | ---------------- | ----------- |
+| `id` | `string \| null` | Flyout ID   |
+
 #### Returns
 
 Type: `Promise<void>`
@@ -38,6 +44,12 @@ Type: `Promise<void>`
 ### `toggleDropdown(force?: boolean) => Promise<boolean>`
 
 Toggle the main navigation (only visible on mobile)
+
+#### Parameters
+
+| Name    | Type                   | Description   |
+| ------- | ---------------------- | ------------- |
+| `force` | `boolean \| undefined` | Force a state |
 
 #### Returns
 
