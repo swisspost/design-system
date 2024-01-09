@@ -23,16 +23,16 @@ describe('rating', () => {
     });
 
     it('should set correct rating by clicking on a star', () => {
-      for (let i = 0; i < 10; i++) {
-        cy.get('@stars').eq(i).click();
-        cy.get('@stars').each(($star, index) => {
-          if (index <= i) {
-            cy.wrap($star).should('have.class', 'active-star');
+      cy.get('@stars').each(($star, index) => {
+        cy.wrap($star).click();
+        cy.get('@stars').each(($innerStar, innerIndex) => {
+          if (innerIndex <= index) {
+            cy.wrap($innerStar).should('have.class', 'active-star');
           } else {
-            cy.wrap($star).should('not.have.class', 'active-star');
+            cy.wrap($innerStar).should('not.have.class', 'active-star');
           }
         });
-      }
+      });
     });
 
     // The hover test does not yet work, need to find a way to make assertions while hovering
@@ -49,9 +49,8 @@ describe('rating', () => {
     // });
 
     it('should check if stars reflect current-rating attribute correctly', () => {
-      for (let rating = 1; rating <= 10; rating++) {
+      const setRatingAndVerifyStars = rating => {
         cy.get('@rating').invoke('attr', 'current-rating', `${rating}`);
-
         cy.get('@stars').each(($star, index) => {
           if (index < rating) {
             cy.wrap($star).should('have.class', 'active-star');
@@ -59,6 +58,10 @@ describe('rating', () => {
             cy.wrap($star).should('not.have.class', 'active-star');
           }
         });
+      };
+
+      for (let rating = 1; rating <= 10; rating++) {
+        setRatingAndVerifyStars(rating);
       }
     });
 
@@ -93,9 +96,11 @@ describe('rating', () => {
             if (index === 0) {
               cy.wrap($star).should('not.have.class', 'active-star');
             } else {
-              for (let i = 0; i <= index; i++) {
-                cy.get('@stars').eq(i).should('not.have.class', 'active-star');
-              }
+              cy.get('@stars').each(($innerStar, i) => {
+                if (i <= index) {
+                  cy.wrap($innerStar).should('not.have.class', 'active-star');
+                }
+              });
             }
           });
       });
@@ -104,27 +109,26 @@ describe('rating', () => {
     it('should maintain default active stars in disabled state', () => {
       const defaultRating = 3;
       cy.get('@rating').invoke('attr', 'current-rating', defaultRating);
-
       cy.get('@rating').invoke('attr', 'disabled', true);
 
-      cy.get('@stars').each(($star, index) => {
-        if (index < defaultRating) {
+      const verifyActiveState = ($star, shouldBeActive) => {
+        if (shouldBeActive) {
           cy.wrap($star).should('have.class', 'active-disabled');
+          cy.wrap($star).should('not.have.class', 'active-star');
         } else {
           cy.wrap($star).should('have.class', 'default-disabled');
           cy.wrap($star).should('not.have.class', 'active-disabled');
         }
+      };
+
+      cy.get('@stars').each(($star, index) => {
+        const isActive = index < defaultRating;
+        verifyActiveState($star, isActive);
 
         cy.wrap($star)
           .click()
           .then(() => {
-            if (index < defaultRating) {
-              cy.wrap($star).should('have.class', 'active-disabled');
-              cy.wrap($star).should('not.have.class', 'active-star');
-            } else {
-              cy.wrap($star).should('have.class', 'default-disabled');
-              cy.wrap($star).should('not.have.class', 'active-disabled');
-            }
+            verifyActiveState($star, isActive);
           });
       });
     });
@@ -142,9 +146,11 @@ describe('rating', () => {
             if (index === 0) {
               cy.wrap($star).should('not.have.class', 'active-star');
             } else {
-              for (let i = 0; i <= index; i++) {
-                cy.get('@stars').eq(i).should('not.have.class', 'active-star');
-              }
+              cy.get('@stars').each(($innerStar, i) => {
+                if (i <= index) {
+                  cy.wrap($innerStar).should('not.have.class', 'active-star');
+                }
+              });
             }
           });
       });
@@ -153,24 +159,24 @@ describe('rating', () => {
     it('should maintain default active stars in readonly state', () => {
       const defaultRating = 3;
       cy.get('@rating').invoke('attr', 'current-rating', defaultRating);
-
       cy.get('@rating').invoke('attr', 'readonly', true);
 
-      cy.get('@stars').each(($star, index) => {
-        if (index < defaultRating) {
+      const verifyActiveState = ($star, shouldBeActive) => {
+        if (shouldBeActive) {
           cy.wrap($star).should('have.class', 'active-star');
         } else {
           cy.wrap($star).should('not.have.class', 'active-star');
         }
+      };
+
+      cy.get('@stars').each(($star, index) => {
+        const isActive = index < defaultRating;
+        verifyActiveState($star, isActive);
 
         cy.wrap($star)
           .click()
           .then(() => {
-            if (index < defaultRating) {
-              cy.wrap($star).should('have.class', 'active-star');
-            } else {
-              cy.wrap($star).should('not.have.class', 'active-star');
-            }
+            verifyActiveState($star, isActive);
           });
       });
     });
