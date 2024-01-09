@@ -1,4 +1,6 @@
-@use './../color';
+@use 'sass:color';
+
+@use './../color' as postcolor;
 @use './../commons';
 @use './../spacing';
 @use './../type';
@@ -17,20 +19,20 @@ $table-cell-padding-sm: $table-cell-padding-y-sm $table-cell-padding-x-sm !defau
 
 $table-bg: transparent !default;
 $table-accent-bg: transparent !default;
-$table-hover-bg: rgba(color.$black, 0.075) !default;
+$table-hover-bg: rgba(postcolor.$black, 0.075) !default;
 $table-active-bg: $table-hover-bg !default;
 
 $table-border-width: commons.$border-width !default;
 $table-border-color: rgba(var(--post-contrast-color-rgb), 0.4) !default;
 $table-group-separator-color: rgba(var(--post-contrast-color-rgb), 0.4) !default;
 
-$table-head-color: color.$gray-40 !default;
+$table-head-color: postcolor.$gray-40 !default;
 
-$table-dark-bg: color.$gray-80 !default;
-$table-dark-accent-bg: rgba(color.$white, 0.05) !default;
-$table-dark-hover-bg: rgba(color.$white, 0.075) !default;
-$table-dark-border-color: lighten(color.$gray-80, 7.5%) !default;
-$table-dark-color: color.$black !default;
+$table-dark-bg: postcolor.$gray-80 !default;
+$table-dark-accent-bg: rgba(postcolor.$white, 0.05) !default;
+$table-dark-hover-bg: rgba(postcolor.$white, 0.075) !default;
+$table-dark-border-color: color.adjust(postcolor.$gray-80, $lightness: 7.5%) !default;
+$table-dark-color: postcolor.$black !default;
 
 $table-striped-order: odd !default;
 

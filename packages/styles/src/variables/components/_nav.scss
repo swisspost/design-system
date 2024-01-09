@@ -1,4 +1,6 @@
-@use './../color';
+@use 'sass:color';
+
+@use './../color' as postcolor;
 @use './../commons';
 @use './../type';
 @use './../spacing';
@@ -8,45 +10,49 @@ $nav-link-padding-y: spacing.$spacer !default;
 $nav-link-padding-x: 1rem !default;
 $nav-link-font-size: null !default;
 $nav-link-font-weight: null !default;
-$nav-link-color: color.$gray-60 !default;
-$nav-link-hover-color: color.$black !default;
-$nav-link-transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+$nav-link-color: postcolor.$gray-60 !default;
+$nav-link-hover-color: postcolor.$black !default;
+$nav-link-transition:
+  color 0.15s ease-in-out,
+  background-color 0.15s ease-in-out,
   border-color 0.15s ease-in-out !default;
-$nav-link-disabled-color: color.$gray-20 !default;
+$nav-link-disabled-color: postcolor.$gray-20 !default;
 
-$nav-tabs-border-color: color.$gray-20 !default;
+$nav-tabs-border-color: postcolor.$gray-20 !default;
 $nav-tabs-border-width: 4px !default;
 $nav-tabs-border-radius: 0 !default;
-$nav-tabs-link-hover-border-color: color.$gray-40 !default;
-$nav-tabs-link-active-color: color.$black !default;
-$nav-tabs-link-active-bg: color.$white !default;
-$nav-tabs-link-active-border-color: color.$yellow !default;
+$nav-tabs-link-hover-border-color: postcolor.$gray-40 !default;
+$nav-tabs-link-active-color: postcolor.$black !default;
+$nav-tabs-link-active-bg: postcolor.$white !default;
+$nav-tabs-link-active-border-color: postcolor.$yellow !default;
 
 $nav-pills-border-radius: commons.$border-radius !default;
-$nav-pills-link-active-color: color.$white !default;
-$nav-pills-link-active-bg: color.$gray-80 !default;
+$nav-pills-link-active-color: postcolor.$white !default;
+$nav-pills-link-active-bg: postcolor.$gray-80 !default;
 
 // Design System custom variables
 $nav-link-padding: spacing.$spacer !default;
 
-$nav-tabs-link-hover-bg: lighten(color.$gray-10, 5%) !default;
-$nav-tabs-link-text-color: color.$gray-60 !default;
+$nav-tabs-link-hover-bg: color.adjust(postcolor.$gray-10, $lightness: 5%) !default;
+$nav-tabs-link-text-color: postcolor.$gray-60 !default;
 $nav-tabs-link-active-font-weight: bold !default;
 
-$nav-tabs-focus-box-shadow: 0 0 0 1px color.$white, 0 0 0 2px color.$gray-80 !default;
+$nav-tabs-focus-box-shadow:
+  0 0 0 1px postcolor.$white,
+  0 0 0 2px postcolor.$gray-80 !default;
 $nav-tabs-focus-box-shadow-width: 2px !default;
 
 $nav-tabs-i-border-color: rgba(var(--post-contrast-color-inverted-rgb), 0.4) !default;
 $nav-tabs-i-link-hover-bg: rgba(var(--post-contrast-color-rgb), 0.1) !default;
 $nav-tabs-i-link-hover-border-color: rgba(var(--post-contrast-color-inverted-rgb), 0.8) !default;
-$nav-tabs-i-link-text-color: color.$white !default;
-$nav-tabs-i-link-active-color: color.$white !default;
+$nav-tabs-i-link-text-color: postcolor.$white !default;
+$nav-tabs-i-link-active-color: postcolor.$white !default;
 
-$nav-tabs-alternate-link-hover-bg: color.$white !default;
+$nav-tabs-alternate-link-hover-bg: postcolor.$white !default;
 
 $nav-pills-outline-border-width: commons.$border-width !default;
 
-$nav-divider-color: color.$gray-20 !default;
+$nav-divider-color: postcolor.$gray-20 !default;
 $nav-divider-margin-y: (spacing.$spacer * 0.5) !default;
 
 // Compute the navbar-brand padding-y so the navbar-brand will have the same height as navbar-text and nav-link
