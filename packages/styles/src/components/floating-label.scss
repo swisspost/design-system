@@ -154,7 +154,12 @@
             2} - #{forms.$form-floating-padding-x * forms.$form-floating-label-upscale}
         );
         height: auto;
-        background: forms.$input-bg;
+      }
+
+      &:not(:disabled) {
+        ~ label {
+          background: forms.$input-bg;
+        }
       }
 
       &:empty {

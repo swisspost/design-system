@@ -9,8 +9,13 @@
 @use './../variables/components/forms';
 @use './../variables/components/form-select' as form-select;
 
+.form-select {
+  background-size: forms.$form-bg-size; // Support deprecated medium size
+}
+
 .form-select-rg {
   @include forms-mixins.form-rg;
+  background-size: forms.$form-bg-size;
 }
 
 .form-select-sm {
@@ -30,32 +35,47 @@
     }
   }
 
-  &.is-valid,
-  &.is-invalid {
-    background-position:
-      right b.$form-select-padding-x * 2.5 center,
+  &:not([multiple]) {
+    &:disabled {
+      background-image: b.escape-svg(form-select.$form-select-indicator-disabled),
+        var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+    }
+
+    &.is-valid,
+    &.is-invalid {
+      background-position: right b.$form-select-padding-x * 2.5 center,
       b.$form-select-bg-position;
 
-    &.form-select-lg {
-      background-position:
-        right b.$form-select-padding-x * 3 center,
+      &.form-select-lg {
+        background-position: right b.$form-select-padding-x * 3 center,
         b.$form-select-bg-position;
+      }
+    }
+
+    &.is-valid {
+      background-image: b.escape-svg(form-select.$form-select-indicator-success),
+      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+    }
+
+    &.is-invalid {
+      background-image: b.escape-svg(form-select.$form-select-indicator-error),
+      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
     }
   }
 
-  &:disabled {
-    background-image: b.escape-svg(form-select.$form-select-indicator-disabled),
-      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
-  }
+  &[multiple] {
+    &.is-valid,
+    &.is-invalid {
+      background-position: right b.$form-select-padding-x * 1.5 center;
+    }
 
-  &.is-valid {
-    background-image: b.escape-svg(form-select.$form-select-indicator-success),
-      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
-  }
+    &.is-valid {
+      background-image: b.escape-svg(form-select.$form-select-indicator-success), var(--bs-form-select-bg-icon, none);
+    }
 
-  &.is-invalid {
-    background-image: b.escape-svg(form-select.$form-select-indicator-error),
-      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+    &.is-invalid {
+      background-image: b.escape-svg(form-select.$form-select-indicator-error), var(--bs-form-select-bg-icon, none);
+    }
   }
 
   @include utilities.high-contrast-mode() {
