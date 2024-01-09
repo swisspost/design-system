@@ -7,56 +7,57 @@ import { version } from '../../../package.json';
   shadow: true,
 })
 export class PostAccordion {
-  private collapsibles: HTMLPostCollapsibleElement[];
-  private expandedCollapsibles = new Set<HTMLPostCollapsibleElement>();
+  private accordionItems: HTMLPostAccordionItemElement[];
+  private expandedItems = new Set<HTMLPostAccordionItemElement>();
 
   @Element() host: HTMLPostAccordionElement;
 
   /**
-   * If `true`, multiple `post-collapsible` can be open at the same time.
+   * If `true`, multiple `post-accordion-item` can be open at the same time.
    */
   @Prop() readonly multiple: boolean = false;
 
   componentWillLoad() {
-    this.registerCollapsibles();
+    this.registerAccordionItems();
   }
 
   /**
-   * Toggles the `post-collapsible` children with the given id.
+   * Toggles the `post-accordion-item` with the given id.
    */
   @Method()
   async toggle(id: string) {
-    const collapsibleToToggle = this.collapsibles
-      .find(collapsible => collapsible.id === id);
+    const itemToToggle = this.accordionItems.find(item => item.id === id);
 
-    if (!collapsibleToToggle) throw new Error(`No post-collapsible found with id #${id}.`);
+    if (!itemToToggle) throw new Error(`No post-accordion-item found with id #${id}.`);
 
-    await collapsibleToToggle.toggle();
+    await itemToToggle.toggle();
   }
 
   @Listen('collapseChange')
-  collapseChangeHandler(event: CustomEvent) {
-    const toggledCollapsible = event.target as HTMLPostCollapsibleElement;
-    const isClosing = this.expandedCollapsibles.has(toggledCollapsible);
+  collapseChangeHandler(event: CustomEvent<boolean>) {
+    event.stopPropagation();
+
+    const toggledItem = event.target as HTMLPostAccordionItemElement;
+    const isClosing = this.expandedItems.has(toggledItem);
 
     if (isClosing) {
-      this.expandedCollapsibles.delete(toggledCollapsible);
+      this.expandedItems.delete(toggledItem);
     } else {
-      this.expandedCollapsibles.add(toggledCollapsible);
+      this.expandedItems.add(toggledItem);
     }
 
     if (this.multiple || isClosing) return;
 
-    // close other open collapsible elements to have only one opened at a time
-    Array.from(this.expandedCollapsibles.values())
-      .filter(collapsible => collapsible !== toggledCollapsible)
-      .forEach(collapsible => {
-        void collapsible.toggle(false);
+    // close other open accordion items to have only one opened at a time
+    Array.from(this.expandedItems.values())
+      .filter(item => item !== toggledItem)
+      .forEach(item => {
+        item.toggle(false);
       });
   }
 
   /**
-   * Expands all `post-collapsible` children.
+   * Expands all `post-accordion-item`.
    *
    * If `close-others` is `true` and all items are closed, it will open the first one.
    * Otherwise, it will keep the opened one.
@@ -64,39 +65,34 @@ export class PostAccordion {
   @Method()
   async expandAll() {
     if (this.multiple) {
-      await Promise.all(
-        this.collapsibles.map(collapsible => collapsible.toggle(true))
-      );
-    } else if (!this.expandedCollapsibles.size) {
-      await this.collapsibles[0].toggle(true);
+      await Promise.all(this.accordionItems.map(item => item.toggle(true)));
+    } else if (!this.expandedItems.size) {
+      await this.accordionItems[0].toggle(true);
     }
   }
 
   /**
-   * Collapses all `post-collapsible` children.
+   * Collapses all `post-accordion-item`.
    */
   @Method()
   async collapseAll() {
-    await Promise.all(
-      this.collapsibles.map(collapsible => collapsible.toggle(false))
-    );
+    await Promise.all(this.accordionItems.map(item => item.toggle(false)));
   }
 
-  private registerCollapsibles() {
-    this.collapsibles = Array.from(
-      this.host.querySelectorAll('post-collapsible')
-    );
+  private registerAccordionItems() {
+    this.accordionItems = Array.from(this.host.querySelectorAll('post-accordion-item'));
 
-    this.collapsibles
-      .filter(collapsible => {
-        return !collapsible.collapsed || this.expandedCollapsibles.has(collapsible);
-      }).forEach((collapsible, index) => {
+    this.accordionItems
+      .filter(item => {
+        return !item.collapsed || this.expandedItems.has(item);
+      })
+      .forEach((item, index) => {
         if (!this.multiple && index !== 0) {
-          collapsible.setAttribute('collapsed', '');
+          item.setAttribute('collapsed', '');
           return;
         }
 
-        this.expandedCollapsibles.add(collapsible);
+        this.expandedItems.add(item);
       });
   }
 
@@ -104,7 +100,7 @@ export class PostAccordion {
     return (
       <Host data-version={version}>
         <div class="accordion">
-          <slot onSlotchange={() => this.registerCollapsibles()}/>
+          <slot onSlotchange={() => this.registerAccordionItems()} />
         </div>
       </Host>
     );
