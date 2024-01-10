@@ -336,3 +336,12 @@ export const FullWidth: Story = {
     additionalClasses: ['w-sm-100', 'w-md-auto'],
   },
 };
+
+export const Align: Story = {
+  render: () => html`
+    <div class="d-flex flex-row-reverse gap-mini justify-content-end">
+      <button class="btn btn-primary">Send</button>
+      <button class="btn btn-secondary">Cancel</button>
+    </div>
+  `,
+};
