@@ -23,11 +23,7 @@
     baseEl.setAttribute('href', window.parent.location.href);
   };
 
-  // set onChangeState() listener:
   ['pushState', 'replaceState'].forEach(changeState => {
-    // store original values under underscored keys (`window.history._pushState()` and `window.history._replaceState()`):
-    window.history['_' + changeState] = window.history[changeState];
-
     window.history[changeState] = new Proxy(window.history[changeState], {
       apply(target, thisArg, argList) {
         onChangeState();
