@@ -51,6 +51,11 @@ export const config: Config = {
     }),
   ],
   testing: {
-    testPathIgnorePatterns: ['cypress'],
+    testPathIgnorePatterns: [
+      '<rootDir>/dist/',
+      '<rootDir>/loader/',
+      '<rootDir>/www/',
+      '<rootDir>/cypress',
+    ],
   },
 };
