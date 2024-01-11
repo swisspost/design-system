@@ -15,3 +15,25 @@
 <script>
   window.global = window;
 </script>
+
+<!-- Change base location of iframe to get relative parent anchor link and not relative to iframe url. Source: https://stackoverflow.com/a/68418536  -->
+<script>
+  const onChangeState = () => {
+    const baseEl = document.querySelector('base');
+    baseEl.setAttribute('href', window.parent.location.href);
+  };
+
+  // set onChangeState() listener:
+  ['pushState', 'replaceState'].forEach(changeState => {
+    // store original values under underscored keys (`window.history._pushState()` and `window.history._replaceState()`):
+    window.history['_' + changeState] = window.history[changeState];
+
+    window.history[changeState] = new Proxy(window.history[changeState], {
+      apply(target, thisArg, argList) {
+        onChangeState();
+
+        return target.apply(thisArg, argList);
+      },
+    });
+  });
+</script>

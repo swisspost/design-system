@@ -36,6 +36,30 @@
     > h6 {
       margin-block: 1rem;
     }
+
+    // Support for autolink-headings
+    :is(h1,h2,h3,h4,h5,h6) {
+      position: relative;
+
+      @media (hover: hover) {
+        > a {
+          display: none;
+        }
+      }
+
+      > a {
+        position: absolute;
+        top: 52%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        padding: 0.625rem;
+        line-height: 1;
+      }
+
+      &:hover > a{
+        display:inline-block;
+      }
+    }
   }
 
   pre {
