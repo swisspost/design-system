@@ -1,14 +1,14 @@
 # Swiss Post Design System
 
-![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e84f1fea-e666-4853-8c85-726a6bf22e6c)
+![Swiss Post Design System splash screen](https://github.com/swisspost/design-system/assets/1659006/e58acc52-3e6a-47b3-84b5-0726250ec225)
 
 The Swiss Post Design System pattern library for a unified and accessible user experience across the web platform.
 
 ## Documentation
 
-[Current documentation](https://design-system.post.ch/#/home) - Contains `ng-bootstrap` components
+[Current documentation](https://design-system.post.ch/#/home) - Migration guides, `bootstrap` & `ng-bootstrap` documentation
 
-[Next documentation](https://next.design-system.post.ch/?path=/docs/home--docs) - Storybook with web components
+[Next documentation](https://next.design-system.post.ch/?path=/docs/home--docs) - styles, internet header and web components documentation
 
 [Figma design files](https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=3209%3A72270&mode=design&t=jhmGcSqeWq2SgQXT-1) - Figma component library
 
