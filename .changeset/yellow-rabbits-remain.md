@@ -2,4 +2,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Migrate carousel documentation to new documentation.
+Migrated carousel documentation to new documentation.
