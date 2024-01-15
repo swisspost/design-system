@@ -46,3 +46,4 @@ jobs:
         with:
           name: cypress-snapshots
           path: packages/documentation/cypress/screenshots
+          retention-days: 14
