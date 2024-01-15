@@ -3,4 +3,4 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Update copyright year to 2024 in the footer of all documentation.
+Updated copyright year to 2024 in the footer of all documentation.
