@@ -13,5 +13,3 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {};
-
-// Fake trigger e2e tests. Will be removed
