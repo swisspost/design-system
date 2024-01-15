@@ -45,4 +45,4 @@ jobs:
         if: failure()
         with:
           name: cypress-snapshots
-          path: packages/documentation/cypress/snapshots
+          path: packages/documentation/cypress/screenshots
