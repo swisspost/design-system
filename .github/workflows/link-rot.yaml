@@ -1,0 +1,18 @@
+###
+#
+# Check if links in documentation are still alive
+#
+###
+
+name: Link rot
+on:
+  pull_request:
+
+jobs:
+  unit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check links with linkcheck
+        uses: filiph/linkcheck@3.0.0
+        with:
+          arguments: https://next.design-system.post.ch
