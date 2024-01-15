@@ -71,5 +71,16 @@
       "node_modules"
     ],
     "outputDir": "./dist"
-  }
+  },
+  "keywords": [
+    "scss",
+    "components",
+    "web-components",
+    "collections",
+    "patterns",
+    "library",
+    "design-system",
+    "ui",
+    "frontend"
+  ]
 }
