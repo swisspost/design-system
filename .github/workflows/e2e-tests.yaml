@@ -39,3 +39,10 @@ jobs:
 
       - name: Run tests
         run: pnpm e2e:ci
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@latest
+        if: failure()
+        with:
+          name: cypress-snapshots
+          path: packages/documentation/cypress/snapshots
