@@ -47,3 +47,15 @@ jobs:
           folder: ${{ steps.build.outputs.folder }}
           comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           comment_author: swisspost-bot
+
+      - name: Deploy demo app to netlify for archive
+        uses: swisspost/design-system/.github/actions/deploy-to-netlify@main
+        id: deploy
+        with:
+          id: ${{ steps.build.outputs.id }}
+          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify_site_id: ${{ secrets.ARCHIVE_NETLIFY_SITE_ID }}
+          netlify_site_url: swisspost-web-archive.netlify.app
+          folder: ${{ steps.build.outputs.folder }}
+          comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          comment_author: swisspost-bot
