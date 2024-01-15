@@ -39,6 +39,10 @@ const meta: Meta = {
     floatingLabel: {
       name: 'Floating Label',
       description: 'Defines how the components label is rendered.',
+      if: {
+        arg: 'type',
+        neq: 'color',
+      },
       control: {
         type: 'boolean',
       },
