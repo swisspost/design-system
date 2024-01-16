@@ -19,6 +19,7 @@
 .rating:focus-visible {
   outline-offset: post.$input-focus-outline-thickness;
   outline: post.$input-focus-outline-thickness solid post.$input-focus-color;
+  background-color: red;
 }
 
 .star {

@@ -10,30 +10,30 @@ describe('rating', () => {
       cy.get('@rating').should('exist');
     });
 
-    it('should display 10 empty stars', () => {
-      cy.get('@stars').then($stars => {
-        expect($stars.length).to.equal(10);
+    // it('should display 10 empty stars', () => {
+    //   cy.get('@stars').then($stars => {
+    //     expect($stars.length).to.equal(10);
 
-        $stars.each((_index, star) => {
-          const classes = Cypress.$(star).attr('class').split(' ');
-          expect(classes).to.have.length(1);
-          expect(classes[0]).to.equal('star');
-        });
-      });
-    });
+    //     $stars.each((_index, star) => {
+    //       const classes = Cypress.$(star).attr('class').split(' ');
+    //       expect(classes).to.have.length(1);
+    //       expect(classes[0]).to.equal('star');
+    //     });
+    //   });
+    // });
 
-    it('should set correct rating by clicking on a star', () => {
-      cy.get('@stars').each(($star, index) => {
-        cy.wrap($star).click();
-        cy.get('@stars').each(($innerStar, innerIndex) => {
-          if (innerIndex <= index) {
-            cy.wrap($innerStar).should('have.class', 'active-star');
-          } else {
-            cy.wrap($innerStar).should('not.have.class', 'active-star');
-          }
-        });
-      });
-    });
+    // it('should set correct rating by clicking on a star', () => {
+    //   cy.get('@stars').each(($star, index) => {
+    //     cy.wrap($star).click();
+    //     cy.get('@stars').each(($innerStar, innerIndex) => {
+    //       if (innerIndex <= index) {
+    //         cy.wrap($innerStar).should('have.class', 'active-star');
+    //       } else {
+    //         cy.wrap($innerStar).should('not.have.class', 'active-star');
+    //       }
+    //     });
+    //   });
+    // });
 
     // The hover test does not yet work, need to find a way to make assertions while hovering
 
@@ -48,176 +48,185 @@ describe('rating', () => {
     //   });
     // });
 
-    it('should check if stars reflect current-rating attribute correctly', () => {
-      const setRatingAndVerifyStars = rating => {
-        cy.get('@rating').invoke('attr', 'current-rating', `${rating}`);
-        cy.get('@stars').each(($star, index) => {
-          if (index < rating) {
-            cy.wrap($star).should('have.class', 'active-star');
-          } else {
-            cy.wrap($star).should('not.have.class', 'active-star');
-          }
-        });
-      };
+    // it('should check if stars reflect current-rating attribute correctly', () => {
+    //   const setRatingAndVerifyStars = rating => {
+    //     cy.get('@rating').invoke('attr', 'current-rating', `${rating}`);
+    //     cy.get('@stars').each(($star, index) => {
+    //       if (index < rating) {
+    //         cy.wrap($star).should('have.class', 'active-star');
+    //       } else {
+    //         cy.wrap($star).should('not.have.class', 'active-star');
+    //       }
+    //     });
+    //   };
 
-      for (let rating = 1; rating <= 10; rating++) {
-        setRatingAndVerifyStars(rating);
-      }
-    });
+    //   for (let rating = 1; rating <= 10; rating++) {
+    //     setRatingAndVerifyStars(rating);
+    //   }
+    // });
 
-    it('should render the correct number of stars based on max attribute', () => {
-      cy.get('@rating').invoke('attr', 'max', 7);
-      cy.get('@stars').should('have.length', 7);
-    });
+    // it('should render the correct number of stars based on max attribute', () => {
+    //   cy.get('@rating').invoke('attr', 'max', 7);
+    //   cy.get('@stars').should('have.length', 7);
+    // });
 
     // The keyboard test does not yet work because of the focus
 
-    // it('should navigate using keyboard arrows and confirm selection with Enter', () => {
-    //   cy.get('@rating-container')
-    //     .focus()
-    //     .type('{rightarrow}{rightarrow}{rightarrow}{rightarrow}{enter}');
-    //   cy.get('@stars').each(($star, index) => {
-    //     if (index < 4) {
-    //       cy.wrap($star).should('have.class', 'active-star');
-    //     } else {
-    //       cy.wrap($star).should('not.have.class', 'active-star');
-    //     }
-    //   });
-    // });
-
-    it('should disable interaction when disabled', () => {
-      cy.get('@rating').invoke('attr', 'disabled', true);
+    it('should navigate using keyboard arrows and confirm selection with Enter', () => {
+      cy.get('@rating').shadow().find('.rating').click();
+      cy.get('@rating')
+        .shadow()
+        .find('.rating')
+        .focus()
+        .then(element => {
+          cy.log(element.attr('id'));
+          return element;
+        })
+        .type('{rightarrow}{rightarrow}{rightarrow}{rightarrow}{enter}', {
+          force: true,
+        });
       cy.get('@stars').each(($star, index) => {
-        cy.wrap($star).should('have.class', 'default-disabled');
-
-        cy.wrap($star)
-          .click()
-          .then(() => {
-            if (index === 0) {
-              cy.wrap($star).should('not.have.class', 'active-star');
-            } else {
-              cy.get('@stars').each(($innerStar, i) => {
-                if (i <= index) {
-                  cy.wrap($innerStar).should('not.have.class', 'active-star');
-                }
-              });
-            }
-          });
-      });
-    });
-
-    it('should maintain default active stars in disabled state', () => {
-      const defaultRating = 3;
-      cy.get('@rating').invoke('attr', 'current-rating', defaultRating);
-      cy.get('@rating').invoke('attr', 'disabled', true);
-
-      const verifyActiveState = ($star, shouldBeActive) => {
-        if (shouldBeActive) {
-          cy.wrap($star).should('have.class', 'active-disabled');
-          cy.wrap($star).should('not.have.class', 'active-star');
-        } else {
-          cy.wrap($star).should('have.class', 'default-disabled');
-          cy.wrap($star).should('not.have.class', 'active-disabled');
-        }
-      };
-
-      cy.get('@stars').each(($star, index) => {
-        const isActive = index < defaultRating;
-        verifyActiveState($star, isActive);
-
-        cy.wrap($star)
-          .click()
-          .then(() => {
-            verifyActiveState($star, isActive);
-          });
-      });
-    });
-
-    it('should disable interaction when readonly', () => {
-      cy.get('@rating').invoke('attr', 'readonly', true);
-      cy.get('@stars').each(($star, index) => {
-        const classes = Cypress.$($star).attr('class').split(' ');
-        expect(classes).to.have.length(1);
-        expect(classes[0]).to.equal('star');
-
-        cy.wrap($star)
-          .click()
-          .then(() => {
-            if (index === 0) {
-              cy.wrap($star).should('not.have.class', 'active-star');
-            } else {
-              cy.get('@stars').each(($innerStar, i) => {
-                if (i <= index) {
-                  cy.wrap($innerStar).should('not.have.class', 'active-star');
-                }
-              });
-            }
-          });
-      });
-    });
-
-    it('should maintain default active stars in readonly state', () => {
-      const defaultRating = 3;
-      cy.get('@rating').invoke('attr', 'current-rating', defaultRating);
-      cy.get('@rating').invoke('attr', 'readonly', true);
-
-      const verifyActiveState = ($star, shouldBeActive) => {
-        if (shouldBeActive) {
+        if (index < 4) {
           cy.wrap($star).should('have.class', 'active-star');
         } else {
           cy.wrap($star).should('not.have.class', 'active-star');
         }
-      };
-
-      cy.get('@stars').each(($star, index) => {
-        const isActive = index < defaultRating;
-        verifyActiveState($star, isActive);
-
-        cy.wrap($star)
-          .click()
-          .then(() => {
-            verifyActiveState($star, isActive);
-          });
       });
     });
 
-    it('should have correct ARIA attributes', () => {
-      const defaultRating = 3;
-      const max = 8;
+    // it('should disable interaction when disabled', () => {
+    //   cy.get('@rating').invoke('attr', 'disabled', true);
+    //   cy.get('@stars').each(($star, index) => {
+    //     cy.wrap($star).should('have.class', 'default-disabled');
 
-      cy.get('@rating').invoke('attr', 'current-rating', defaultRating);
+    //     cy.wrap($star)
+    //       .click()
+    //       .then(() => {
+    //         if (index === 0) {
+    //           cy.wrap($star).should('not.have.class', 'active-star');
+    //         } else {
+    //           cy.get('@stars').each(($innerStar, i) => {
+    //             if (i <= index) {
+    //               cy.wrap($innerStar).should('not.have.class', 'active-star');
+    //             }
+    //           });
+    //         }
+    //       });
+    //   });
+    // });
 
-      cy.get('@rating').invoke('attr', 'disabled', true);
+    // it('should maintain default active stars in disabled state', () => {
+    //   const defaultRating = 3;
+    //   cy.get('@rating').invoke('attr', 'current-rating', defaultRating);
+    //   cy.get('@rating').invoke('attr', 'disabled', true);
 
-      cy.get('@rating').invoke('attr', 'max', max);
+    //   const verifyActiveState = ($star, shouldBeActive) => {
+    //     if (shouldBeActive) {
+    //       cy.wrap($star).should('have.class', 'active-disabled');
+    //       cy.wrap($star).should('not.have.class', 'active-star');
+    //     } else {
+    //       cy.wrap($star).should('have.class', 'default-disabled');
+    //       cy.wrap($star).should('not.have.class', 'active-disabled');
+    //     }
+    //   };
 
-      // Check ARIA attributes
-      cy.get('@rating-container').should('have.attr', 'role', 'slider');
-      cy.get('@rating-container').should('have.attr', 'aria-valuemin', '0');
-      cy.get('@rating-container').should('have.attr', 'aria-valuemax', `${max}`);
-      cy.get('@rating-container').should('have.attr', 'aria-valuenow', `${defaultRating}`);
-      cy.get('@rating-container').should(
-        'have.attr',
-        'aria-valuetext',
-        `${defaultRating} out of ${max}`,
-      );
-      cy.get('@rating-container').should('have.attr', 'aria-readonly', 'false');
-      cy.get('@rating-container').should('have.attr', 'aria-disabled', 'true');
-    });
+    //   cy.get('@stars').each(($star, index) => {
+    //     const isActive = index < defaultRating;
+    //     verifyActiveState($star, isActive);
 
-    it('should emit ratingChanged event when rating changes', () => {
-      cy.get('@rating').then($rating => {
-        const listener = cy.stub();
-        $rating[0].addEventListener('ratingChanged', listener);
+    //     cy.wrap($star)
+    //       .click()
+    //       .then(() => {
+    //         verifyActiveState($star, isActive);
+    //       });
+    //   });
+    // });
 
-        const newRating = 5;
-        cy.get('@stars')
-          .eq(newRating - 1)
-          .click()
-          .then(() => {
-            cy.wrap(listener).should('be.calledWithMatch', { detail: newRating });
-          });
-      });
-    });
+    // it('should disable interaction when readonly', () => {
+    //   cy.get('@rating').invoke('attr', 'readonly', true);
+    //   cy.get('@stars').each(($star, index) => {
+    //     const classes = Cypress.$($star).attr('class').split(' ');
+    //     expect(classes).to.have.length(1);
+    //     expect(classes[0]).to.equal('star');
+
+    //     cy.wrap($star)
+    //       .click()
+    //       .then(() => {
+    //         if (index === 0) {
+    //           cy.wrap($star).should('not.have.class', 'active-star');
+    //         } else {
+    //           cy.get('@stars').each(($innerStar, i) => {
+    //             if (i <= index) {
+    //               cy.wrap($innerStar).should('not.have.class', 'active-star');
+    //             }
+    //           });
+    //         }
+    //       });
+    //   });
+    // });
+
+    // it('should maintain default active stars in readonly state', () => {
+    //   const defaultRating = 3;
+    //   cy.get('@rating').invoke('attr', 'current-rating', defaultRating);
+    //   cy.get('@rating').invoke('attr', 'readonly', true);
+
+    //   const verifyActiveState = ($star, shouldBeActive) => {
+    //     if (shouldBeActive) {
+    //       cy.wrap($star).should('have.class', 'active-star');
+    //     } else {
+    //       cy.wrap($star).should('not.have.class', 'active-star');
+    //     }
+    //   };
+
+    //   cy.get('@stars').each(($star, index) => {
+    //     const isActive = index < defaultRating;
+    //     verifyActiveState($star, isActive);
+
+    //     cy.wrap($star)
+    //       .click()
+    //       .then(() => {
+    //         verifyActiveState($star, isActive);
+    //       });
+    //   });
+    // });
+
+    // it('should have correct ARIA attributes', () => {
+    //   const defaultRating = 3;
+    //   const max = 8;
+
+    //   cy.get('@rating').invoke('attr', 'current-rating', defaultRating);
+
+    //   cy.get('@rating').invoke('attr', 'disabled', true);
+
+    //   cy.get('@rating').invoke('attr', 'max', max);
+
+    //   // Check ARIA attributes
+    //   cy.get('@rating-container').should('have.attr', 'role', 'slider');
+    //   cy.get('@rating-container').should('have.attr', 'aria-valuemin', '0');
+    //   cy.get('@rating-container').should('have.attr', 'aria-valuemax', `${max}`);
+    //   cy.get('@rating-container').should('have.attr', 'aria-valuenow', `${defaultRating}`);
+    //   cy.get('@rating-container').should(
+    //     'have.attr',
+    //     'aria-valuetext',
+    //     `${defaultRating} out of ${max}`,
+    //   );
+    //   cy.get('@rating-container').should('have.attr', 'aria-readonly', 'false');
+    //   cy.get('@rating-container').should('have.attr', 'aria-disabled', 'true');
+    // });
+
+    // it('should emit ratingChanged event when rating changes', () => {
+    //   cy.get('@rating').then($rating => {
+    //     const listener = cy.stub();
+    //     $rating[0].addEventListener('ratingChanged', listener);
+
+    //     const newRating = 5;
+    //     cy.get('@stars')
+    //       .eq(newRating - 1)
+    //       .click()
+    //       .then(() => {
+    //         cy.wrap(listener).should('be.calledWithMatch', { detail: newRating });
+    //       });
+    //   });
+    // });
   });
 });

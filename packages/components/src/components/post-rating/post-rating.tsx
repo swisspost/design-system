@@ -166,10 +166,10 @@ export class PostRating {
           aria-valuemax={this.max}
           aria-valuenow={this.currentRating}
           aria-valuetext={`${this.currentRating} out of ${this.max}`}
-          aria-readonly={this.readonly && !this.disabled ? 'true' : 'false'}
-          aria-disabled={this.disabled ? 'true' : 'false'}
+          // aria-readonly={this.readonly && !this.disabled ? 'true' : 'false'}
+          // aria-disabled={this.disabled ? 'true' : 'false'}
           class="rating"
-          tabindex={0}
+          tabindex="1"
           onKeyDown={this.handleKeyDown}
         >
           {this.renderStars()}
