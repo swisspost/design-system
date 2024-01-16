@@ -5,30 +5,44 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
+import { HeadingLevel } from "./components/post-accordion-item/heading-levels";
 import { AlertType } from "./components/post-alert/alert-types";
-import { HeadingLevel } from "./components/post-collapsible/heading-levels";
 import { Placement } from "@floating-ui/dom";
+export { HeadingLevel } from "./components/post-accordion-item/heading-levels";
 export { AlertType } from "./components/post-alert/alert-types";
-export { HeadingLevel } from "./components/post-collapsible/heading-levels";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
     interface PostAccordion {
         /**
-          * Collapses all `post-collapsible` children.
+          * Collapses all `post-accordion-item`.
          */
         "collapseAll": () => Promise<void>;
         /**
-          * Expands all `post-collapsible` children.  If `close-others` is `true` and all items are closed, it will open the first one. Otherwise, it will keep the opened one.
+          * Expands all `post-accordion-item`.  If `close-others` is `true` and all items are closed, it will open the first one. Otherwise, it will keep the opened one.
          */
         "expandAll": () => Promise<void>;
         /**
-          * If `true`, multiple `post-collapsible` can be open at the same time.
+          * If `true`, multiple `post-accordion-item` can be open at the same time.
          */
         "multiple": boolean;
         /**
-          * Toggles the `post-collapsible` children with the given id.
+          * Toggles the `post-accordion-item` with the given id.
          */
         "toggle": (id: string) => Promise<void>;
+    }
+    interface PostAccordionItem {
+        /**
+          * If `true`, the element is initially collapsed otherwise it is displayed.
+         */
+        "collapsed"?: boolean;
+        /**
+          * Defines the hierarchical level of the accordion item header within the headings structure.
+         */
+        "headingLevel"?: HeadingLevel;
+        /**
+          * Triggers the collapse programmatically.
+         */
+        "toggle": (force?: boolean) => Promise<boolean>;
     }
     interface PostAlert {
         /**
@@ -61,10 +75,6 @@ export namespace Components {
           * If `true`, the element is initially collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
-        /**
-          * Defines the hierarchical level of the collapsible header within the headings structure.
-         */
-        "headingLevel"?: HeadingLevel;
         /**
           * Triggers the collapse programmatically.  If there is a collapsing transition running already, it will be reversed.
          */
@@ -224,6 +234,12 @@ declare global {
         prototype: HTMLPostAccordionElement;
         new (): HTMLPostAccordionElement;
     };
+    interface HTMLPostAccordionItemElement extends Components.PostAccordionItem, HTMLStencilElement {
+    }
+    var HTMLPostAccordionItemElement: {
+        prototype: HTMLPostAccordionItemElement;
+        new (): HTMLPostAccordionItemElement;
+    };
     interface HTMLPostAlertElementEventMap {
         "dismissed": void;
     }
@@ -242,7 +258,7 @@ declare global {
         new (): HTMLPostAlertElement;
     };
     interface HTMLPostCollapsibleElementEventMap {
-        "collapseChange": void;
+        "collapseChange": boolean;
     }
     interface HTMLPostCollapsibleElement extends Components.PostCollapsible, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostCollapsibleElementEventMap>(type: K, listener: (this: HTMLPostCollapsibleElement, ev: PostCollapsibleCustomEvent<HTMLPostCollapsibleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -327,6 +343,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "post-accordion": HTMLPostAccordionElement;
+        "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
@@ -341,9 +358,19 @@ declare global {
 declare namespace LocalJSX {
     interface PostAccordion {
         /**
-          * If `true`, multiple `post-collapsible` can be open at the same time.
+          * If `true`, multiple `post-accordion-item` can be open at the same time.
          */
         "multiple"?: boolean;
+    }
+    interface PostAccordionItem {
+        /**
+          * If `true`, the element is initially collapsed otherwise it is displayed.
+         */
+        "collapsed"?: boolean;
+        /**
+          * Defines the hierarchical level of the accordion item header within the headings structure.
+         */
+        "headingLevel"?: HeadingLevel;
     }
     interface PostAlert {
         /**
@@ -377,13 +404,9 @@ declare namespace LocalJSX {
          */
         "collapsed"?: boolean;
         /**
-          * Defines the hierarchical level of the collapsible header within the headings structure.
+          * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
          */
-        "headingLevel"?: HeadingLevel;
-        /**
-          * An event emitted when the collapse element is shown or hidden, before the transition. It has no payload.
-         */
-        "onCollapseChange"?: (event: PostCollapsibleCustomEvent<void>) => void;
+        "onCollapseChange"?: (event: PostCollapsibleCustomEvent<boolean>) => void;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -476,6 +499,7 @@ declare namespace LocalJSX {
     }
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
+        "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
@@ -492,6 +516,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
+            "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             /**
