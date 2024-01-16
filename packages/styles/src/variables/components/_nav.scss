@@ -32,7 +32,7 @@ $nav-pills-link-active-bg: color.$gray-80 !default;
 // Design System custom variables
 $nav-link-padding: spacing.$spacer !default;
 
-$nav-tabs-link-hover-bg: sass-color.adjust(color.$gray-10, 5%) !default;
+$nav-tabs-link-hover-bg: sass-color.adjust(color.$gray-10, $lightness: 5%) !default;
 $nav-tabs-link-text-color: color.$gray-60 !default;
 $nav-tabs-link-active-font-weight: bold !default;
 
