@@ -9,10 +9,6 @@
 @use './../variables/components/forms';
 @use './../variables/components/form-select' as form-select;
 
-.form-select {
-  background-size: forms.$form-bg-size; // Support deprecated medium size
-}
-
 .form-select-rg {
   @include forms-mixins.form-rg;
   background-size: forms.$form-bg-size;
@@ -29,6 +25,8 @@
 }
 
 .form-select {
+  background-size: forms.$form-bg-size; // Support deprecated medium size
+
   &:not(:disabled) {
     &:hover {
       border-color: var(--post-contrast-color);
