@@ -21,9 +21,6 @@
     "build": "tsc -p tsconfig.json && pnpm copy-files",
     "clean": "rimraf dist"
   },
-  "keywords": [
-    "schematics"
-  ],
   "dependencies": {
     "@angular-devkit/core": "=15.0.4",
     "@angular-devkit/schematics": "=15.0.4",
@@ -40,5 +37,8 @@
   "schematics": "./src/migrations.json",
   "ng-update": {
     "migrations": "./src/migrations.json"
-  }
+  },
+  "keywords": [
+    "schematics"
+  ]
 }
