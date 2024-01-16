@@ -10,7 +10,7 @@ export class PostRating {
   /**
    * The current rating value
    */
-  @Prop({ mutable: true }) currentRating: number;
+  @Prop({ mutable: true }) currentRating = 0;
 
   /**
    * The index of the currently hovered star
@@ -44,12 +44,13 @@ export class PostRating {
 
   constructor() {
     this.handleKeyDown = this.handleKeyDown.bind(this);
+    this.handleBlur = this.handleBlur.bind(this);
   }
 
   private handleClick(starIndex: number) {
     if (!this.disabled) {
       if (this.currentRating === starIndex) {
-        this.currentRating = undefined;
+        this.currentRating = 0;
       } else {
         this.currentRating = starIndex;
       }
@@ -58,24 +59,21 @@ export class PostRating {
     }
   }
 
-  @State() counter = 0;
-
   private handleKeyDown(ev: KeyboardEvent) {
-    if (ev.key !== 'Enter' && ev.key !== ' ') {
-      if (this.counter === 0) {
-        this.hovered = this.currentRating;
-      }
-      this.counter++;
+    if (this.hovered === undefined) {
+      this.hovered = this.currentRating ?? 0;
     }
     switch (ev.key) {
       case 'ArrowDown':
       case 'ArrowLeft':
+        ev.preventDefault();
         if (this.hovered > 0) {
           this.hovered--;
         }
         break;
       case 'ArrowUp':
       case 'ArrowRight':
+        ev.preventDefault();
         if (this.hovered < this.max) {
           this.hovered++;
         }
@@ -84,21 +82,30 @@ export class PostRating {
         this.hovered = 0;
         break;
       case 'End':
+        ev.preventDefault();
         this.hovered = this.max;
         break;
       case 'Enter':
       case ' ':
         ev.preventDefault();
-        if (this.counter !== 0) {
+        if (this.hovered !== this.currentRating) {
           this.currentRating = this.hovered;
           this.ratingChanged.emit(this.currentRating);
-          this.counter = 0;
-          this.hovered = undefined;
+        } else {
+          this.currentRating = this.hovered;
         }
+        this.hovered = undefined;
         break;
       default:
         return;
     }
+  }
+
+  //This function is needed to handle the lose of focus during a keyboard interaction.
+  private handleBlur() {
+    this.currentRating = this.hovered;
+    this.ratingChanged.emit(this.currentRating);
+    this.hovered = undefined;
   }
 
   private handleHover(hoverCount: number) {
@@ -166,11 +173,12 @@ export class PostRating {
           aria-valuemax={this.max}
           aria-valuenow={this.currentRating}
           aria-valuetext={`${this.currentRating} out of ${this.max}`}
-          // aria-readonly={this.readonly && !this.disabled ? 'true' : 'false'}
-          // aria-disabled={this.disabled ? 'true' : 'false'}
+          aria-readonly={this.readonly && !this.disabled ? 'true' : 'false'}
+          aria-disabled={this.disabled ? 'true' : 'false'}
           class="rating"
           tabindex="1"
           onKeyDown={this.handleKeyDown}
+          onBlur={this.handleBlur}
         >
           {this.renderStars()}
         </div>
