@@ -111,7 +111,7 @@ export const FloatingLabels: Story = {
 
 export const Validation: Story = {
   render: () => html`
-    <form action="/" class="was-validated">
+    <form action="/">
       <!-- Form Control -->
       <div class="row mb-regular">
         <div class="col">
