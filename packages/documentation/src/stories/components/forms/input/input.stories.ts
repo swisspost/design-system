@@ -9,7 +9,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
-  title: 'Components/Forms/Text Input',
+  title: 'Components/Forms/Input',
   render: render,
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
@@ -39,6 +39,10 @@ const meta: Meta = {
     floatingLabel: {
       name: 'Floating Label',
       description: 'Defines how the components label is rendered.',
+      if: {
+        arg: 'type',
+        neq: 'color',
+      },
       control: {
         type: 'boolean',
       },
@@ -210,7 +214,7 @@ function render(args: Args, context: StoryContext) {
       ?disabled="${args.disabled}"
       aria-label="${useAriaLabel ? args.label : nothing}"
       ?aria-invalid="${VALIDATION_STATE_MAP[args.validation]}"
-      value=${args.value ? args.value : nothing}
+      value="${args.value ? args.value : nothing}"
     />
   `;
   if (args.floatingLabel) {

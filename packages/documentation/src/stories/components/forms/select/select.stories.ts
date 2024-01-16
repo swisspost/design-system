@@ -27,7 +27,6 @@ const meta: Meta = {
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
-    success: false,
   },
   argTypes: {
     label: {
@@ -172,20 +171,6 @@ const meta: Meta = {
         category: 'States',
       },
     },
-    success: {
-      name: 'Success',
-      description: 'Controls the success state appearance of the component.',
-      control: {
-        type: 'boolean',
-      },
-      if: {
-        arg: 'validation',
-        neq: 'is-invalid',
-      },
-      table: {
-        category: 'States',
-      },
-    },
   },
 };
 
@@ -202,7 +187,6 @@ const Template: Story = {
       args.size,
       args.validation,
       args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
-      args.success && 'success',
     ]
       .filter(c => c && c !== 'null')
       .join(' ');
