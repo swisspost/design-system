@@ -48,14 +48,14 @@ export class PostRating {
   }
 
   private handleClick(starIndex: number) {
-    if (!this.disabled) {
+    if (this.isInteractive()) {
       if (this.currentRating === starIndex) {
         this.currentRating = 0;
       } else {
         this.currentRating = starIndex;
       }
       this.ratingChanged.emit(this.currentRating);
-      this.hovered = undefined;
+      this.reset();
     }
   }
 
@@ -94,7 +94,7 @@ export class PostRating {
         } else {
           this.currentRating = this.hovered;
         }
-        this.hovered = undefined;
+        this.reset();
         break;
       default:
         return;
@@ -103,9 +103,11 @@ export class PostRating {
 
   //This function is needed to handle the lose of focus during a keyboard interaction.
   private handleBlur() {
-    this.currentRating = this.hovered;
-    this.ratingChanged.emit(this.currentRating);
-    this.hovered = undefined;
+    if (this.isInteractive() && this.hovered != undefined) {
+      this.currentRating = this.hovered;
+      this.ratingChanged.emit(this.currentRating);
+      this.reset();
+    }
   }
 
   private handleHover(hoverCount: number) {

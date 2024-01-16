@@ -6,6 +6,42 @@ import * as PostRatingStories from './post-rating.stories';
 
 # Rating
 
+Our Rating Web Component allows you to easily integrate 
+a customizable star rating system, providing an 
+interactive and visually appealing way to gather and display user feedback.
+
 <Canvas of={PostRatingStories.Default} />
+<div className="hide-col-default">
+  <Controls of={PostRatingStories.Default} />
+</div>
+
+## Examples
+
+### Disabled
+
+Is the disabled property set, the component is not interactive 
+but the current rating is still visible.  
+
+<Canvas of={PostRatingStories.Disabled} />
+<div className="hide-col-default">
+  <Controls of={PostRatingStories.Disabled} />
+</div>
+
+### Readonly
+
+Is the readonly property set, is the component not interactive
+but the current rating is still visible as in the default state.
+
+<Canvas of={PostRatingStories.Readonly} />
+<div className="hide-col-default">
+  <Controls of={PostRatingStories.Readonly} />
+</div>
+
+## Installation
+
+The `<post-rating/>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the <LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
+
+
 
   
