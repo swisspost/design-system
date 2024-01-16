@@ -19,6 +19,12 @@
 
 Toggle an overlay associated with a button.
 
+#### Parameters
+
+| Name        | Type     | Description |
+| ----------- | -------- | ----------- |
+| `overlayId` | `string` |             |
+
 #### Returns
 
 Type: `Promise<void>`

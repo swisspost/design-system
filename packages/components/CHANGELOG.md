@@ -1,5 +1,22 @@
 # @swisspost/design-system-components
 
+## 1.7.1
+
+### Patch Changes
+
+- Enabled import injection for components. This fixes an issue with importing dynamically loaded web components with the vite compiler for storybook. (by [@gfellerph](https://github.com/gfellerph) with [#2448](https://github.com/swisspost/design-system/pull/2448))
+
+## 1.7.0
+
+### Minor Changes
+
+- Added the `post-popover` component. This component can display text and interactive elements in a popover in front of the page content. (by [@gfellerph](https://github.com/gfellerph) with [#2109](https://github.com/swisspost/design-system/pull/2109))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.1
+
 ## 1.6.3
 
 ### Patch Changes

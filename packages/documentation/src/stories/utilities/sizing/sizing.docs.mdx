@@ -32,6 +32,12 @@ Bootstrap offers sizing classes with the suffixes bellow. They allow you to set 
   <Controls of={SizingStories.SizesPercent} />
 </div>
 
+### Relative to breakpoints
+
+For width, we offer additionally `.w-{breakpoint}-{size}` classes (e.g. `w-md-100`) so that you can size only for some specific breakpoints.
+
+See <a href="/?path=/docs/components-button--docs#full-width">Full-width button</a> for a practical example.
+
 ### Post-Sizes
 
 Post sizes can be used as suffixes in the same way. To find out which size name to use, see the "Size name in classes" column in the reference table above or use the "Example Post-Sizes" below.
@@ -53,8 +59,6 @@ Post sizes can be used as suffixes in the same way. To find out which size name 
     .map(([key, value]) => `$${key}: ${formatAsMap(value)};`)
     .join('\n')}
 ></Source>
-
-#### Example
 
 <Canvas of={SizingStories.Sizes} />
 <div className="hide-col-default">

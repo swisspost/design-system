@@ -40,7 +40,7 @@ runs:
       run: cd ${{ inputs.folder }} && zip artifacts.zip . -r
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: ${{ inputs.name }}
         path: ${{ inputs.folder }}/artifacts.zip

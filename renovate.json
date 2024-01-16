@@ -37,5 +37,5 @@
     }
   ],
   "timezone": "Europe/Zurich",
-  "schedule": ["every weekend"]
+  "schedule": ["before 4am on the first day of the month"]
 }
