@@ -1,11 +1,10 @@
 import { Meta, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
 
 const meta: Meta = {
   title: 'Patterns/Forms',
   parameters: {
-    badges: [BADGE.SINCE_V1],
+    badges: [],
   },
 };
 
