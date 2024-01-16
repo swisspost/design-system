@@ -36,6 +36,12 @@ Type: `Promise<void>`
 
 Programmatically display the tooltip
 
+#### Parameters
+
+| Name     | Type          | Description                                                                  |
+| -------- | ------------- | ---------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | An element with [data-tooltip-target="id"] where the tooltip should be shown |
+
 #### Returns
 
 Type: `Promise<void>`
@@ -45,6 +51,13 @@ Type: `Promise<void>`
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<boolean>`
 
 Toggle tooltip display
+
+#### Parameters
+
+| Name     | Type          | Description                                                                  |
+| -------- | ------------- | ---------------------------------------------------------------------------- |
+| `target` | `HTMLElement` | An element with [data-tooltip-target="id"] where the tooltip should be shown |
+| `force`  | `boolean`     | Pass true to always show or false to always hide                             |
 
 #### Returns
 

@@ -222,7 +222,7 @@ const Template = {
       `;
     } else {
       const icon = html`
-        <post-icon aria-hidden="true" name=${args.icon}></post-icon>
+        <post-icon aria-hidden="true" name="${args.icon}"></post-icon>
       `;
       const iconOnlyContent = html`
         <span class="visually-hidden">${args.text}</span>
@@ -246,6 +246,7 @@ const Template = {
 };
 
 function createProps(args: Args, isAnimated: boolean) {
+  const additionalClasses = args.additionalClasses ?? [];
   return {
     class: [
       'btn',
@@ -253,6 +254,7 @@ function createProps(args: Args, isAnimated: boolean) {
       args.size,
       isAnimated && 'btn-animated',
       args.iconOnly && 'btn-icon',
+      ...additionalClasses,
     ]
       .filter(c => c && c !== 'null')
       .join(' '),
@@ -324,5 +326,13 @@ export const ContextualColors: Story = {
   ...VariantsTemplate,
   args: {
     variants: ['btn-success', 'btn-info', 'btn-warning', 'btn-danger'],
+  },
+};
+
+export const FullWidth: Story = {
+  ...VariantsTemplate,
+  args: {
+    variants: ['btn-primary'],
+    additionalClasses: ['w-sm-100', 'w-md-auto'],
   },
 };
