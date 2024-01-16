@@ -47,13 +47,13 @@ describe('meta-navigation', () => {
         cy.get('post-meta-navigation').should('not.exist');
       });
 
-      it(`sets css variable --meta-header-height to 0`, () => {
+      it(`sets css variable --meta-header-height to 3rem`, () => {
         cy.changeArg('meta', false);
         cy.get('swisspost-internet-header').within(() => {
           cy.get('header').then($el => {
             const style = getComputedStyle($el[0]);
             const metaHeaderHight = style.getPropertyValue('--meta-header-height');
-            expect(metaHeaderHight).to.eq('0px');
+            expect(metaHeaderHight).to.eq('3rem');
           });
         });
       });
