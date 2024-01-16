@@ -17,6 +17,7 @@ const meta: Meta = {
     innerHTML: 'Hi there 👋',
     backgroundColor: 'primary',
     placement: 'top',
+    arrow: false,
   },
   argTypes: {
     id: {
@@ -55,6 +56,12 @@ const meta: Meta = {
     },
     placement: {
       name: 'Placement',
+    },
+    arrow: {
+      name: 'Arrow',
+      control: {
+        type: 'boolean',
+      },
     },
   },
 };
