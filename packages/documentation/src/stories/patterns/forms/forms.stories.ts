@@ -118,7 +118,7 @@ export const Validation: Story = {
         <div class="col">
           <div class="form-floating">
             <input
-              id="FormControlInvalid"
+              id="formControlInvalid"
               type="text"
               class="form-control is-invalid"
               placeholder=" "
