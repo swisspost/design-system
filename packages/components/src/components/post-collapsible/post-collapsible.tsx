@@ -12,8 +12,7 @@ import {
 } from '@stencil/core';
 import { version } from '../../../package.json';
 import { collapse, expand } from '../../animations/collapse';
-import { checkEmptyOrOneOf, checkEmptyOrType, isMotionReduced } from '../../utils';
-import { HEADING_LEVELS, HeadingLevel } from './heading-levels';
+import { checkEmptyOrType, isMotionReduced } from '../../utils';
 
 @Component({
   tag: 'post-collapsible',
@@ -28,8 +27,6 @@ export class PostCollapsible {
 
   @State() id: string;
   @State() isOpen = true;
-  @State() hasHeader: boolean;
-  @State() headingTag: string;
 
   /**
    * If `true`, the element is initially collapsed otherwise it is displayed.
@@ -46,33 +43,18 @@ export class PostCollapsible {
   }
 
   /**
-   * Defines the hierarchical level of the collapsible header within the headings structure.
+   * An event emitted when the collapse element is shown or hidden, before the transition.
+   *
+   * The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
    */
-  @Prop() readonly headingLevel?: HeadingLevel = 2;
-
-  @Watch('headingLevel')
-  validateHeadingLevel(newValue = this.headingLevel) {
-    checkEmptyOrOneOf(
-      newValue,
-      HEADING_LEVELS,
-      'The `headingLevel` property of the `post-collapsible` must be a number between 1 and 6.',
-    );
-  }
-
-  /**
-   * An event emitted when the collapse element is shown or hidden, before the transition. It has no payload.
-   */
-  @Event() collapseChange: EventEmitter<void>;
+  @Event() collapseChange: EventEmitter<boolean>;
 
   connectedCallback() {
     this.validateCollapsed();
-    this.validateHeadingLevel();
   }
 
   componentWillRender() {
     this.id = this.host.id || `c${crypto.randomUUID()}`;
-    this.hasHeader = this.host.querySelectorAll('[slot="header"]').length > 0;
-    this.headingTag = `h${this.headingLevel ?? 2}`;
   }
 
   componentDidLoad() {
@@ -90,7 +72,7 @@ export class PostCollapsible {
     if (open === this.isOpen) return open;
 
     this.isOpen = !this.isOpen;
-    if (this.isLoaded) this.collapseChange.emit();
+    if (this.isLoaded) this.collapseChange.emit(this.isOpen);
 
     const animation = open ? expand(this.collapsible) : collapse(this.collapsible);
 
@@ -104,44 +86,11 @@ export class PostCollapsible {
   }
 
   render() {
-    const collapse = (
-      <div
-        aria-labelledby={this.hasHeader ? `${this.id}--header` : undefined}
-        class={`collapse${this.hasHeader ? ' accordion-collapse' : ''}`}
-        id={`${this.id}--collapse`}
-        ref={el => (this.collapsible = el)}
-      >
-        {this.hasHeader ? (
-          <div class="accordion-body">
-            <slot />
-          </div>
-        ) : (
-          <slot />
-        )}
-      </div>
-    );
-
     return (
       <Host id={this.id} data-version={version}>
-        {this.hasHeader ? (
-          <div part="accordion-item" class="accordion-item">
-            <this.headingTag class="accordion-header" id={`${this.id}--header`}>
-              <button
-                aria-controls={`${this.id}--collapse`}
-                aria-expanded={`${this.isOpen}`}
-                class={`accordion-button${this.isOpen ? '' : ' collapsed'}`}
-                onClick={() => this.toggle()}
-                type="button"
-              >
-                <slot name="header" />
-              </button>
-            </this.headingTag>
-
-            {collapse}
-          </div>
-        ) : (
-          collapse
-        )}
+        <div class="collapse" id={`${this.id}--collapse`} ref={el => (this.collapsible = el)}>
+          <slot />
+        </div>
       </Host>
     );
   }

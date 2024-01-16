@@ -1,35 +1,20 @@
 @forward './../variables/options';
 
+@use './../mixins/accordion' as accordion-mx;
 @use './../mixins/button' as button-mx;
-@use './../mixins/color' as color-mx;
 @use './../mixins/focus' as focus-mx;
 @use './../mixins/icons' as icon-mx;
 @use './../mixins/type' as type-mx;
 @use './../mixins/utilities' as utility-mx;
 
-@use './../functions/contrast';
-@use './../variables/color';
 @use './../variables/components/accordion';
 
 .accordion-item {
+  @include accordion-mx.background-color;
   border-block: accordion.$accordion-border-width solid accordion.$accordion-border-color;
 
   & + & {
     border-block-start: 0;
-  }
-
-  // make the accordion gray
-  @include color-mx.colored-background(color.$gray-background);
-
-  // make the accordion white on background colors close to the gray above (making sure it remains gray on a white background)
-  $accordion-contrast-on-white: contrast.contrast-ratio(color.$white, color.$gray-background);
-  @each $name, $color in color.$background-colors {
-    $accordion-contrast-on-color: contrast.contrast-ratio($color, color.$gray-background);
-    @if ($accordion-contrast-on-color < $accordion-contrast-on-white) {
-      .bg-#{$name} & {
-        @include color-mx.colored-background(color.$white);
-      }
-    }
   }
 }
 

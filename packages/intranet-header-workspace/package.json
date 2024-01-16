@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-intranet-header-workspace",
-  "version": "3.0.5",
+  "version": "3.0.6",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {
@@ -21,7 +21,7 @@
     "@angular/router": "16.2.12",
     "@ng-bootstrap/ng-bootstrap": "15.1.2",
     "@popperjs/core": "2.11.8",
-    "@swisspost/design-system-styles": "workspace:6.5.0",
+    "@swisspost/design-system-styles": "workspace:6.5.1",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
     "watch": "1.0.2",
@@ -50,5 +50,14 @@
     "ng-packagr": "16.2.3",
     "rimraf": "5.0.5",
     "typescript": "4.9.5"
-  }
+  },
+  "keywords": [
+    "components",
+    "intranet",
+    "header",
+    "angular",
+    "design-system",
+    "ui",
+    "frontend"
+  ]
 }

@@ -2,7 +2,7 @@ describe('accordion', () => {
   describe('default', () => {
     beforeEach(() => {
       cy.getComponent('accordion');
-      cy.get('@accordion').find('post-collapsible').as('collapsibles');
+      cy.get('@accordion').find('post-accordion-item').as('collapsibles');
     });
 
     it('should render', () => {
@@ -10,7 +10,7 @@ describe('accordion', () => {
     });
 
     it('should show three post-collapsible elements', () => {
-      cy.get('@collapsibles').should('have.length', 3)
+      cy.get('@collapsibles').should('have.length', 3);
     });
 
     it('should only show the first element as expanded', () => {
@@ -31,7 +31,7 @@ describe('accordion', () => {
   describe('multiple open panels', () => {
     beforeEach(() => {
       cy.getComponent('accordion', 'multiple-open-panels');
-      cy.get('@accordion').find('post-collapsible').as('collapsibles');
+      cy.get('@accordion').find('post-accordion-item').as('collapsibles');
     });
 
     it('should show the last element as expanded after clicking it', () => {
