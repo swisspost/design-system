@@ -335,7 +335,7 @@ export const Hints: Story = {
       <input
         type="text"
         id="firstname"
-        aria-labelledby="firstname-hint"
+        aria-describedby="firstname-hint"
         class="form-control"
         placeholder=" "
       />
