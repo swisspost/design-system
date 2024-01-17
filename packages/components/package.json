@@ -48,7 +48,7 @@
     "@percy/cypress": "3.1.2",
     "@stencil-community/eslint-plugin": "0.7.1",
     "@stencil/angular-output-target": "0.8.2",
-    "@stencil/core": "4.9.0",
+    "@stencil/core": "4.10.0",
     "@stencil/react-output-target": "0.5.3",
     "@stencil/sass": "3.0.8",
     "@types/jest": "29.5.11",
@@ -64,5 +64,13 @@
     "rimraf": "5.0.5",
     "sass": "1.69.7",
     "typescript": "4.9.5"
-  }
+  },
+  "keywords": [
+    "components",
+    "web-components",
+    "stencil",
+    "design-system",
+    "ui",
+    "frontend"
+  ]
 }

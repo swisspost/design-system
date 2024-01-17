@@ -12,6 +12,9 @@
 
 // Forms
 
+$form-bg-size: 32px !default;
+$form-bg-size-sm: 24px !default;
+
 $form-label-margin-bottom: 0.5rem !default;
 $form-label-color: var(--post-contrast-color) !default;
 
@@ -81,9 +84,8 @@ $input-height-content-lg: type.$font-size-medium * $input-line-height-lg !defaul
 $input-height-inner-lg: $input-height-content-lg + ($input-padding-y-lg * 2) !default; // Design System
 $input-height-lg: calc(#{$input-height-inner-lg} + #{$input-height-border}) !default;
 
-$input-transition:
-  border-color 0.15s ease-in-out,
-  box-shadow 0.15s ease-in-out !default;
+$input-transition: border-color 0.15s ease-in-out,
+box-shadow 0.15s ease-in-out !default;
 
 $form-text-color: var(--post-contrast-color);
 $form-text-font-size: type.$font-size-tiny;
@@ -103,9 +105,8 @@ $form-range-thumb-width: 2rem !default;
 $form-range-thumb-height: $form-range-thumb-width !default;
 $form-range-thumb-bg: color.$white !default;
 $form-range-thumb-border: 2px solid color.$black !default;
-$form-range-thumb-focus-box-shadow:
-  0 0 0 1px color.$black,
-  0 0 0 0.2rem rgba(color.$gray-80, 0.25) !default;
+$form-range-thumb-focus-box-shadow: 0 0 0 1px color.$black,
+0 0 0 0.2rem rgba(color.$gray-80, 0.25) !default;
 $form-range-thumb-focus-box-shadow-width: 0.2rem; // For focus box shadow issue in Edge
 $form-range-thumb-active-bg: color.$white !default;
 $form-range-thumb-disabled-bg: $form-range-thumb-bg !default;
@@ -128,8 +129,8 @@ $form-floating-label-color: $input-placeholder-color;
 $form-floating-label-font-size: type.$font-size-bigger-regular;
 $form-floating-label-font-size-small: type.$font-size-tiny;
 $form-floating-label-scale: math.div(
-  $form-floating-label-font-size-small,
-  $form-floating-label-font-size
+    $form-floating-label-font-size-small,
+    $form-floating-label-font-size
 );
 $form-floating-label-upscale: math.div(1, $form-floating-label-scale);
 $form-floating-label-padding-t: calc(
@@ -139,12 +140,10 @@ $form-floating-label-padding-t: calc(
 $form-floating-label-translate-x: $form-floating-padding-x * (1 - $form-floating-label-scale);
 $form-floating-label-transform: scale($form-floating-label-scale);
 $form-floating-transition: animation.$transition-base;
-$form-floating-transition-in:
-  $form-floating-transition,
-  width 0ms list.nth(animation.$transition-base, 2);
-$form-floating-transition-out:
-  $form-floating-transition,
-  width 0ms linear;
+$form-floating-transition-in: $form-floating-transition,
+width 0ms list.nth(animation.$transition-base, 2);
+$form-floating-transition-out: $form-floating-transition,
+width 0ms linear;
 $form-floating-select-bg-size: 32px 32px;
 
 $form-floating-label-font-size-sm: type.$font-size-12;
