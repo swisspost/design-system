@@ -20,7 +20,7 @@ In your `app.module.ts`, add the header to your imports:
 
 ```typescript
 // Other imports ....
-import { ComponentsModule } from '@swisspost/design-system-components-angular';
+import { PostComponentsModule } from '@swisspost/design-system-components-angular';
 
 @NgModule({
   imports: [ComponentsModule],
