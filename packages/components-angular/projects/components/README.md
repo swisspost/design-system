@@ -23,7 +23,7 @@ In your `app.module.ts`, add the header to your imports:
 import { PostComponentsModule } from '@swisspost/design-system-components-angular';
 
 @NgModule({
-  imports: [ComponentsModule],
+  imports: [PostComponentsModule],
 })
 export class AppModule {}
 ```
