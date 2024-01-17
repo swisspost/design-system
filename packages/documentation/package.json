@@ -39,6 +39,7 @@
     "@percy/cypress": "3.1.2",
     "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
     "@storybook/addon-designs": "7.0.9",
+    "@storybook/addon-docs": "^7.6.9",
     "@storybook/addon-essentials": "7.6.8",
     "@storybook/addon-links": "7.6.8",
     "@storybook/addons": "7.6.8",
