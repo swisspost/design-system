@@ -1,0 +1,58 @@
+import { Meta, Source } from '@storybook/blocks';
+import MetadataExample from './metadata-example.html?raw';
+import MetadataStories from './metadata.stories';
+import { SourceDarkMode } from '../../../../.storybook/preview';
+
+<Meta of={MetadataStories} />
+
+# Metadata
+
+Metadata is used to communicate additional information about your website to webbrowser, accessible devices or other applications.
+
+The meta-tag is used for some general page settings using attributes but can also be used to define other metadata using specific names.
+On this page you will find links to oter pages that explain some of those names and what they can be used for.
+
+    - [general attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta#attributes)
+    - [standart names](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/meta/name)
+
+## Viewport
+
+This meta-tag can be used to manipulate the size and shape of the viewport. [more information](https://developer.mozilla.org/en-US/docs/Web/HTML/Viewport_meta_tag)
+
+## Google and other search engines
+
+There are some meta-tags that change the way search engines or google in particular treat the website. [more information](https://developers.google.com/search/docs/crawling-indexing/special-tags?hl=en)
+
+## Open Graph Tags
+
+Open Graph Tags are used to display a more detailed description as well as an image when a link is shared on X (twitter), facebook or in Microsoft Teams.
+For X twitter there are also different tags for twitter cards although there is also some support for open graph tags.
+
+- explained by [facebook](https://developers.facebook.com/docs/sharing/webmasters?locale=en_Us)
+- explained by [open graph](https://ogp.me/)
+- twitter cards and open graph explained by [X used to be Twitter](https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started)
+
+## Favicon
+
+The favicion is the little icon that is displayed on tabs in the webbowsers and it appears in google search.
+[more information](https://dev.to/masakudamatsu/favicon-nightmare-how-to-maintain-sanity-3al7)
+
+## Language
+
+There is a possibility to provide different versions of a webpage in different languages using metadata.
+Please note that all alternatives and the current page must be listed on each page. [more information](https://developers.google.com/search/docs/specialty/international/localized-versions)
+
+## Content Security Policy
+
+Instead of using the HTTP header the Content Security Policy can also be definend in a meta-tag in HTML.
+In that case it must be the first meta-tag in the header.
+
+- [general Information](https://developer.mozilla.org/en-US/docs/Web/HTTP/CSP)
+- [more in depth Information](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy)
+- [Impementation Notes and Examples](https://infosec.mozilla.org/guidelines/web_security#content-security-policy)
+
+## Example
+
+This is how metadata of a webpage called "Metadata Example" could look like.
+
+<Source code={MetadataExample} dark={SourceDarkMode} language="html" />
