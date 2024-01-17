@@ -17,7 +17,7 @@ const meta: Meta = {
     innerHTML: 'Hi there 👋',
     backgroundColor: 'primary',
     placement: 'top',
-    arrow: false,
+    arrow: null,
   },
   argTypes: {
     id: {

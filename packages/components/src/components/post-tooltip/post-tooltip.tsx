@@ -28,7 +28,7 @@ export class PostTooltip {
   /**
    * Wheter or not to display a little pointer arrow
    */
-  @Prop() readonly arrow?: boolean = false;
+  @Prop() readonly arrow?: boolean = true;
 
   constructor() {
     // Create local versions of event handlers for de-registration
