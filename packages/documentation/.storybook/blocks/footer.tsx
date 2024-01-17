@@ -83,7 +83,7 @@ export default (params: { pathToStoryFile?: String }) => (
       </div>
 
       <div className="container d-flex justify-content-between py-regular">
-        <strong>&copy; 2022 Swiss Post Ltd.</strong>
+        <strong>&copy; {new Date().getFullYear()} Swiss Post Ltd.</strong>
         <div className="d-flex gap-3">
           <a
             href="https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
