@@ -7,7 +7,8 @@
 #storybook-docs {
   overflow: hidden;
 
-  .sbdocs-content .container {
+  .sbdocs-content .container,
+  .sbdocs-content .container > post-tabs > post-tab-panel {
     // Target content headings only
     > h1 {
       margin-block: 5rem 1rem;
