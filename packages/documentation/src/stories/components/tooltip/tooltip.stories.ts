@@ -1,6 +1,6 @@
 import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { useArgs } from '@storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
@@ -17,7 +17,6 @@ const meta: Meta = {
     innerHTML: 'Hi there 👋',
     backgroundColor: 'primary',
     placement: 'top',
-    arrow: null,
   },
   argTypes: {
     id: {
@@ -82,7 +81,7 @@ function render(args: Args) {
       id="${args.id}"
       class="hydrated bg-${args.backgroundColor}"
       placement="${ifDefined(args.placement)}"
-      arrow="${ifDefined(args.arrow) ? args.arrow : nothing}"
+      arrow="${ifDefined(args.arrow)}"
     >
       ${unsafeHTML(innerHTML)}
     </post-tooltip>
