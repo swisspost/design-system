@@ -1,5 +1,6 @@
 import type { StorybookConfig } from '@storybook/web-components-vite';
 import pkg from '../package.json';
+import remarkAutolinkHeadings from 'remark-autolink-headings';
 import { mergeConfig } from 'vite';
 
 const config: StorybookConfig = {
@@ -20,6 +21,29 @@ const config: StorybookConfig = {
         backgrounds: false,
         highlight: false,
         outline: false,
+        docs: false,
+      },
+    },
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            remarkPlugins: [
+              [
+                remarkAutolinkHeadings,
+                {
+                  content: {
+                    type: 'element',
+                    tagName: 'post-icon',
+                    properties: { name: 2037 },
+                  },
+                  behavior: 'append',
+                },
+              ],
+            ],
+          },
+        },
       },
     },
     '@storybook/addon-links',
