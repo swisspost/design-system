@@ -25,6 +25,11 @@ export class PostTooltip {
    */
   @Prop() readonly placement?: Placement = 'top';
 
+  /**
+   * Wheter or not to display a little pointer arrow
+   */
+  @Prop() readonly arrow?: boolean = true;
+
   constructor() {
     // Create local versions of event handlers for de-registration
     // https://stackoverflow.com/questions/33859113/javascript-removeeventlistener-not-working-inside-a-class
@@ -35,6 +40,7 @@ export class PostTooltip {
   connectedCallback() {
     if (!this.host.id) {
       throw new Error(
+        /*prettier-ignore*/
         'No id set: <post-tooltip> must have an id, linking it to it\'s target element using the data-tooltip-target attribute.',
       );
     }
@@ -126,7 +132,7 @@ export class PostTooltip {
         <post-popovercontainer
           role="tooltip"
           tabindex="-1"
-          arrow
+          arrow={this.arrow}
           placement={this.placement}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
