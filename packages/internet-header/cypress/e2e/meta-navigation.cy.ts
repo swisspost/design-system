@@ -11,14 +11,15 @@ describe('meta-navigation', () => {
 
   describe('args', () => {
     describe('meta: true', () => {
-      it(`adds meta navigation`, () => {
-        cy.changeArg('meta', true);
+      it.only(`adds meta navigation`, () => {
+        cy.changeArg('meta', 'true');
+        cy.pause();
         cy.get('post-meta-navigation').should('exist').and('be.visible');
       });
 
       it(`sets css variable --meta-header-height to 0 in mobile view`, () => {
         cy.viewport(1023, Cypress.config('viewportHeight'));
-        cy.changeArg('meta', true);
+        cy.changeArg('meta', 'true');
         cy.get('swisspost-internet-header').within(() => {
           cy.get('header').then($el => {
             const style = getComputedStyle($el[0]);
@@ -30,7 +31,7 @@ describe('meta-navigation', () => {
 
       it(`sets css variable --meta-header-height to 3rem in desktop view`, () => {
         cy.viewport(1024, Cypress.config('viewportHeight'));
-        cy.changeArg('meta', true);
+        cy.changeArg('meta', 'true');
         cy.get('swisspost-internet-header').within(() => {
           cy.get('header').then($el => {
             const style = getComputedStyle($el[0]);
@@ -47,7 +48,7 @@ describe('meta-navigation', () => {
         cy.get('post-meta-navigation').should('not.exist');
       });
 
-      it.only(`sets css variable --meta-header-height to 0`, () => {
+      it(`sets css variable --meta-header-height to 0`, () => {
         cy.changeArg('meta', 'false');
         cy.get('swisspost-internet-header').within(() => {
           cy.get('header').then($el => {
@@ -64,7 +65,7 @@ describe('meta-navigation', () => {
         cy.changeArg('meta', 'false');
         cy.get('post-meta-navigation').should('not.exist');
 
-        cy.changeArg('meta', true);
+        cy.changeArg('meta', 'true');
         cy.get('post-meta-navigation').should('exist').and('be.visible');
 
         cy.changeArg('meta', 'false');
