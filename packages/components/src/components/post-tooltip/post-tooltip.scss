@@ -12,5 +12,7 @@
 post-popovercontainer {
   &::part(popover) {
     padding: spacing.$size-micro spacing.$size-mini;
+    max-width: 2 * spacing.$size-bigger-giant - spacing.$size-mini;
+    min-height: spacing.$size-regular;
   }
 }

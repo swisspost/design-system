@@ -1,5 +1,17 @@
 # @swisspost/design-system-styles
 
+## 6.5.1
+
+### Patch Changes
+
+- Added breakpoint specific utility classes to set width to `25%`, `50%`, `75%`, `100%`, or `auto`. (by [@imagoiq](https://github.com/imagoiq) with [#2308](https://github.com/swisspost/design-system/pull/2308))
+
+- Changed color of text on the success background (#2c911c) to white from black for better contrast according to WCAG 3.0 (by [@b1aserlu](https://github.com/b1aserlu) with [#2358](https://github.com/swisspost/design-system/pull/2358))
+
+- Converted padding-bottom to margin after tabs-content so it doesn't impact vertical rhythm. (by [@imagoiq](https://github.com/imagoiq) with [#2349](https://github.com/swisspost/design-system/pull/2349))
+
+- Fixed close button color in high contrast mode. The button is now visible when forced colors are active. (by [@gfellerph](https://github.com/gfellerph) with [#2109](https://github.com/swisspost/design-system/pull/2109))
+
 ## 6.5.0
 
 ### Minor Changes
