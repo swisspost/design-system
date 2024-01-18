@@ -2,21 +2,21 @@ const collapseDuration = 350;
 const collapseEasing = 'ease';
 const collapsedKeyframe: Keyframe = { height: '0', overflow: 'hidden' };
 
-export const collapse = (el: HTMLElement): Animation => {
-  const { height } = window.getComputedStyle(el);
-  const expandedKeyframe: Keyframe = { height };
+const animationOptions: KeyframeAnimationOptions = {
+  duration: collapseDuration,
+  easing: collapseEasing,
+  fill: 'forwards',
+};
 
-  return el.animate(
-    [expandedKeyframe, collapsedKeyframe],
-    { duration: collapseDuration, easing: collapseEasing, fill: 'forwards' },
-  );
+export const collapse = (el: HTMLElement): Animation => {
+  const expandedKeyframe: Keyframe = { height: window.getComputedStyle(el).height };
+
+  return el.animate([expandedKeyframe, collapsedKeyframe], animationOptions);
 };
 
 export const expand = (el: HTMLElement): Animation => {
-  const expandedKeyframe: Keyframe = { height: `${el.scrollHeight}px` };
+  const expandedKeyframe: Keyframe = { height: `${el.scrollHeight}px`, offset: 1 };
+  const finalKeyframe: Keyframe = { height: 'auto' };
 
-  return el.animate(
-    [collapsedKeyframe, expandedKeyframe],
-    { duration: collapseDuration, easing: collapseEasing, fill: 'forwards' },
-  );
+  return el.animate([collapsedKeyframe, expandedKeyframe, finalKeyframe], animationOptions);
 };

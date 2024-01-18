@@ -26,6 +26,12 @@
 
 Open or close the language switch programatically
 
+#### Parameters
+
+| Name    | Type                   | Description              |
+| ------- | ---------------------- | ------------------------ |
+| `force` | `boolean \| undefined` | Boolean to force a state |
+
 #### Returns
 
 Type: `Promise<boolean>`
