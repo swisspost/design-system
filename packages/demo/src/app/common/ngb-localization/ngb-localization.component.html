@@ -1,0 +1,21 @@
+<section id="internationalization">
+  <h3 class="bold">Internationalization</h3>
+
+  <p class="light font-curve-regular mt-4">
+    Some ng-bootstrap components contain static English text or symbols that you might want to
+    internationalize. Some of them appear on the screen, like for example the placeholders used in
+    the timepicker input fields. Others appear in aria attributes used for accessibility.
+  </p>
+
+  <p class="light font-curve-regular mt-4">
+    Component internationalization is done using the
+    <code>@angular/localize</code>
+    package. To enable it at runtime, first make sure to run the following command:
+    <code>npx ng add @angular/localize --use-at-runtime</code>
+    and then use the implementation below:
+  </p>
+
+  <code [highlight]="ngbLocalizationSample" [languages]="['ts']" class="block"></code>
+
+  <ng-content></ng-content>
+</section>

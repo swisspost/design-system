@@ -62,7 +62,7 @@
   <div class="alert alert-info" role="alert">
     <p>
       If you use internationalization, check out the custom
-      <a href="#internationalization">datepicker internationalization service and directive</a>
+      <a href="#internationalization">datepicker internationalization service</a>
       below
     </p>
   </div>
@@ -184,24 +184,15 @@
   ></code>
 </section>
 
-<section id="internationalization">
+<app-ngb-localization>
   <p class="light font-curve-regular mt-4">
-    If you are using internationalization, add this service and directive to your application for
-    custom date translations. Note that the directive need to be imported every time you use the
-    datepicker. It's advised to wrap the datepicker and the directive inside a module to be able to
-    share more easily.
+    Internationalization of the datepicker requires additional translations for months and days of
+    the week. These can be configured using the service below:
   </p>
-  <h4 class="h5 bold mt-4">datepicker.localization.service.ts</h4>
+
   <code
     class="block"
     [highlight]="localizationService"
     [languages]="['typescript', 'javascript']"
   ></code>
-
-  <h4 class="h5 bold mt-4">datepicker.title-localization.directive.ts</h4>
-  <code
-    class="block"
-    [highlight]="localizationDirective"
-    [languages]="['typescript', 'javascript']"
-  ></code>
-</section>
+</app-ngb-localization>

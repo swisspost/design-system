@@ -14,7 +14,6 @@ import { DatepickerSimpleComponent } from './datepicker-simple/datepicker-simple
 import { DatepickerValidationLgComponent } from './datepicker-validation/datepicker-validation-lg.component';
 import { DatepickerValidationComponent } from './datepicker-validation/datepicker-validation.component';
 import { DatepickerValidationDemoComponent } from './datepicker-validation/datepicker-validation-demo.component';
-import { DatepickerTitleLocalizationDirective } from './datepicker-demo-page/datepicker-title-localization.directive';
 
 @NgModule({
   imports: [
@@ -30,7 +29,6 @@ import { DatepickerTitleLocalizationDirective } from './datepicker-demo-page/dat
     DatepickerSimpleDemoComponent,
     DatepickerSimpleComponent,
     DatepickerSimpleLgComponent,
-    DatepickerTitleLocalizationDirective,
     DatepickerValidationDemoComponent,
     DatepickerValidationComponent,
     DatepickerValidationLgComponent,
