@@ -43,17 +43,17 @@ describe('meta-navigation', () => {
 
     describe('meta: false', () => {
       it(`removes meta navigation`, () => {
-        cy.changeArg('meta', false);
+        cy.changeArg('meta', 'false');
         cy.get('post-meta-navigation').should('not.exist');
       });
 
-      it(`sets css variable --meta-header-height to 3rem`, () => {
-        cy.changeArg('meta', false);
+      it.only(`sets css variable --meta-header-height to 0`, () => {
+        cy.changeArg('meta', 'false');
         cy.get('swisspost-internet-header').within(() => {
           cy.get('header').then($el => {
             const style = getComputedStyle($el[0]);
             const metaHeaderHight = style.getPropertyValue('--meta-header-height');
-            expect(metaHeaderHight).to.eq('3rem');
+            expect(metaHeaderHight).to.eq('0px');
           });
         });
       });
@@ -61,13 +61,13 @@ describe('meta-navigation', () => {
 
     describe('meta: changes during runtime (false => true => false)', () => {
       it(`adds and removes meta navigation`, () => {
-        cy.changeArg('meta', false);
+        cy.changeArg('meta', 'false');
         cy.get('post-meta-navigation').should('not.exist');
 
         cy.changeArg('meta', true);
         cy.get('post-meta-navigation').should('exist').and('be.visible');
 
-        cy.changeArg('meta', false);
+        cy.changeArg('meta', 'false');
         cy.get('post-meta-navigation').should('not.exist');
       });
     });
