@@ -105,4 +105,5 @@ All icons are also available from a CDN, which is the default if you don't confi
 ### Check the Content Security Policy
 
 If your project includes the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank">Content-Security-Policy</a> response header (usually in `index.html`),
-make sure that `default-src` is set to `'self'`.
+make sure that `default-src` is set to `'self'`. In case you are using the `<post-icon>` component you need to add [`https://unpkg.com/`](https://unpkg.com/) to the `connect-src` in index.html. This is becasue the icons are retrived from there.
+
