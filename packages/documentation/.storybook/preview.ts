@@ -43,6 +43,7 @@ const preview: Preview = {
             'Button Group',
             'Card',
             'Collapsible',
+            'Datepicker',
             'Forms',
             'Heading',
             'Internet Header',

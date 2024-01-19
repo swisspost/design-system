@@ -154,6 +154,10 @@
       }
     }
   }
+
+  .limit-source-height [data-radix-scroll-area-viewport] {
+    max-height: 15rem;
+  }
 }
 
 .fake-content {
