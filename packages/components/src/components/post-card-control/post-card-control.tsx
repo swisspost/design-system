@@ -44,6 +44,24 @@ export class PostCardControl {
     focused: null,
   };
 
+  private INTERACTIVE_ELEMENT_SELECTORS = [
+    'a',
+    'audio[controls]',
+    'button',
+    'details',
+    'embed',
+    'iframe',
+    'img[usemap]',
+    'input:not([type="hidden"])',
+    'keygen',
+    'label',
+    'menu[type="toolbar"]',
+    'object[usemap]',
+    'select',
+    'textarea',
+    'video[controls]',
+  ];
+
   private control: HTMLInputElement;
   private controlId = `PostCardControl_${cardControlIds++}`;
 
@@ -156,7 +174,14 @@ export class PostCardControl {
   }
 
   private contentClickHandler(e: Event) {
-    e.stopPropagation();
+    const testWrapper = document.createElement('div');
+    testWrapper.append((e.target as HTMLElement).cloneNode());
+
+    const isInteractive = this.INTERACTIVE_ELEMENT_SELECTORS.some(selector =>
+      testWrapper.querySelector(selector),
+    );
+
+    if (isInteractive) e.stopPropagation();
   }
 
   // https://googlechromelabs.github.io/howto-components/howto-radio-group/
