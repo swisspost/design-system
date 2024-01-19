@@ -250,6 +250,9 @@ export class PostCardControl {
   }
 
   componentWillLoad() {
+    if (!this.label) throw new Error('No label set: <post-card-control> must have a "label".');
+    if (!this.type) throw new Error('No type set: <post-card-control> must have a "type".');
+
     this.validateControlType();
   }
 
