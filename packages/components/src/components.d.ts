@@ -79,10 +79,6 @@ export namespace Components {
          */
         "checked"?: boolean;
         /**
-          * Defines the `id` attribute of the control. <span className="alert alert-sm alert-warning">Make sure, the `id` is unique in the entire document.</span>
-         */
-        "controlId": string;
-        /**
           * Defines the description in the control-label.
          */
         "description": string;
@@ -105,7 +101,7 @@ export namespace Components {
         /**
           * Defines the validation `state` of the control.<div className="alert alert-sm alert-info">Only styles for the invalid state have been defined so far.</div>
          */
-        "state": boolean;
+        "state": null | 'true' | 'false';
         /**
           * Defines the `type` attribute of the control.
          */
@@ -481,10 +477,6 @@ declare namespace LocalJSX {
          */
         "checked"?: boolean;
         /**
-          * Defines the `id` attribute of the control. <span className="alert alert-sm alert-warning">Make sure, the `id` is unique in the entire document.</span>
-         */
-        "controlId": string;
-        /**
           * Defines the description in the control-label.
          */
         "description"?: string;
@@ -511,7 +503,7 @@ declare namespace LocalJSX {
         /**
           * Defines the validation `state` of the control.<div className="alert alert-sm alert-info">Only styles for the invalid state have been defined so far.</div>
          */
-        "state"?: boolean;
+        "state"?: null | 'true' | 'false';
         /**
           * Defines the `type` attribute of the control.
          */
