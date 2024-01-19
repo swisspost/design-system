@@ -259,7 +259,7 @@ export class PostCardControl {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={version} onClick={this.cardClickHandler}>
         <div
           class={{
             'card-control': true,
@@ -269,7 +269,6 @@ export class PostCardControl {
             'is-valid': this.state !== null && this.state !== 'false',
             'is-invalid': this.state === 'false',
           }}
-          onClick={this.cardClickHandler}
         >
           <div class="card-control--header">
             <input
