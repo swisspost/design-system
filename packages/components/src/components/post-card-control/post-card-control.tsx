@@ -14,6 +14,7 @@ import { checkOneOf } from '../../utils';
 import { version } from '../../../package.json';
 
 let cardControlIds = 0;
+
 /**
  * @class PostCardControl - representing a stencil component
  */
@@ -75,7 +76,7 @@ export class PostCardControl {
   /**
    * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
    */
-  @Prop() readonly value: string = 'on';
+  @Prop() readonly value: string = null;
 
   /**
    * Defines the `checked` attribute of the control. If `true`, the control is selected.
