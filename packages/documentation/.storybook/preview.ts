@@ -49,7 +49,6 @@ const preview: Preview = {
             'Internet Header',
             ['Getting Started'],
             'Intranet Header',
-            ['Getting Started'],
             'Icons',
             ['Getting Started'],
           ],
