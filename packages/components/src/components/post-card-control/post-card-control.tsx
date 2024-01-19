@@ -13,6 +13,7 @@ import {
 import { checkOneOf } from '../../utils';
 import { version } from '../../../package.json';
 
+let cardControlIds = 0;
 /**
  * @class PostCardControl - representing a stencil component
  */
@@ -43,6 +44,7 @@ export class PostCardControl {
   };
 
   private control: HTMLInputElement;
+  private controlId = `PostCardControl_${cardControlIds++}`;
 
   @Element() host: HTMLPostCardControlElement;
 
@@ -59,12 +61,6 @@ export class PostCardControl {
    * Defines the description in the control-label.
    */
   @Prop() readonly description: string = null;
-
-  /**
-   * Defines the `id` attribute of the control.
-   * <span className="alert alert-sm alert-warning">Make sure, the `id` is unique in the entire document.</span>
-   */
-  @Prop() readonly controlId!: string;
 
   /**
    * Defines the `type` attribute of the control.
