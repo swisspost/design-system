@@ -48,17 +48,24 @@ export const isInViewport = function (_chai: Chai.ChaiStatic) {
 
 chai.use(isInViewport);
 
-Cypress.Commands.add('getComponent', (component: string, story = 'default') => {
-  cy.visit(`/iframe.html?id=components-${component}--${story}`);
+Cypress.Commands.add('getComponent', (component: string, options = {}) => {
+  const componentPath = []
+    .concat(options.group, component)
+    .filter(p => p)
+    .join('-');
+  cy.visit(`/iframe.html?id=components-${componentPath}--${options.story ?? 'default'}`);
 
   const alias = component.replace(/^post-/, '');
   cy.get(`post-${alias}`, { timeout: 30000 }).as(alias);
 });
 
-Cypress.Commands.add('checkAriaExpanded', (controlledElementSelector: string, isExpanded: 'true' | 'false') => {
-  cy.get(controlledElementSelector)
-    .invoke('attr', 'id')
-    .then(id => {
-      cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);
-    });
-});
+Cypress.Commands.add(
+  'checkAriaExpanded',
+  (controlledElementSelector: string, isExpanded: 'true' | 'false') => {
+    cy.get(controlledElementSelector)
+      .invoke('attr', 'id')
+      .then(id => {
+        cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);
+      });
+  },
+);

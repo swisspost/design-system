@@ -15,7 +15,7 @@ describe('alert', () => {
 
   describe('dismissible', () => {
     beforeEach(() => {
-      cy.getComponent('post-alert', 'dismissible');
+      cy.getComponent('post-alert', { story: 'dismissible' });
     });
 
     it('should have a close button', () => {

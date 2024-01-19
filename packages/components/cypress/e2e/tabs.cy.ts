@@ -58,7 +58,7 @@ describe('tabs', () => {
 
   describe('active panel', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', 'active-panel');
+      cy.getComponent('tabs', { story: 'active-panel' });
       cy.get('post-tab-header').as('headers');
       cy.get('post-tab-panel:visible').as('panel');
     });
@@ -91,7 +91,7 @@ describe('tabs', () => {
 
   describe('async', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', 'async');
+      cy.getComponent('tabs', { story: 'async' });
       cy.get('post-tab-header').as('headers');
     });
 

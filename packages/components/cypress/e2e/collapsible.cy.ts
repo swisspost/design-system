@@ -35,7 +35,7 @@ describe('collapsible', () => {
 
   describe('initially collapsed', () => {
     beforeEach(() => {
-      cy.getComponent('collapsible', 'initially-collapsed');
+      cy.getComponent('collapsible', { story: 'initially-collapsed' });
       cy.get('@collapsible').find('.collapse').as('collapse');
       cy.get('#components-collapsible--initially-collapsed--button').as('toggler');
     });

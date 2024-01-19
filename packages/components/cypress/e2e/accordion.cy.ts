@@ -30,7 +30,7 @@ describe('accordion', () => {
 
   describe('multiple open panels', () => {
     beforeEach(() => {
-      cy.getComponent('accordion', 'multiple-open-panels');
+      cy.getComponent('accordion', { story: 'multiple-open-panels' });
       cy.get('@accordion').find('post-accordion-item').as('collapsibles');
     });
 
