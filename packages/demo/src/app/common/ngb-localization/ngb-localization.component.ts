@@ -1,6 +1,4 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Highlight } from 'ngx-highlightjs';
 
 const ngbLocalizationSample = require('!!raw-loader!./ngb-localization.sample.ts').default;
 
