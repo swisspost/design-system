@@ -91,7 +91,7 @@ export class PostCardControl {
   /**
    * Defines the validation `state` of the control.<div className="alert alert-sm alert-info">Only styles for the invalid state have been defined so far.</div>
    */
-  @Prop() readonly state: boolean = null;
+  @Prop() readonly state: null | 'true' | 'false' = null;
 
   /**
    * Defines the icon `name` inside of the card.
@@ -266,8 +266,8 @@ export class PostCardControl {
             'is-checked': this.checked,
             'is-disabled': this.disabled,
             'is-focused': this.focused,
-            'is-valid': this.state === true,
-            'is-invalid': this.state === false,
+            'is-valid': this.state !== null && this.state !== 'false',
+            'is-invalid': this.state === 'false',
           }}
           onClick={this.cardClickHandler}
         >
