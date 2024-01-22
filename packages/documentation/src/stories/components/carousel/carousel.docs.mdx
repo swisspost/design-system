@@ -1,22 +1,48 @@
 import { Meta, Source } from '@storybook/blocks';
 import * as carouselStories from './carousel.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import NgbComponentDemoLink from '../../../shared/nb-bootstrap/ngb-component-demo-link.mdx';
+import NgbComponentAlert from '../../../shared/nb-bootstrap/ngb-component-alert.mdx';
+import NgbComponentImport from '../../../shared/nb-bootstrap/ngb-component-import.mdx';
+import NgbComponentInternationalization from '../../../shared/nb-bootstrap/ngb-component-internationalization.mdx';
 import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import SampleBasic from './carousel-basic.sample.html?raw';
 import SampleLight from './carousel-light.sample.html?raw';
 
 <Meta of={carouselStories} />
 
-# Carousel
+<div className="d-flex align-items-center justify-content-between">
+  # Carousel
 
-<div className="alert alert-info alert-md">
-  <h2 className="alert-heading">Angular only component</h2>
-  <p>The intranet header is an <a href="//Angular.io" target="_blank">Angular</a> component, as such it only works
-    within Angular projects.</p>
+  <NgbComponentDemoLink component="carousel" />
 </div>
 
-## Examples
+<p className="lead">A slideshow component for cycling through elements—images or slides of text—like a carousel.</p>
 
-<a href="https://archive.design-system.post.ch/#/ng-bootstrap-samples/carousel" rel="noopener" target="_blank" >Demo on the archived documentation</a>
+<NgbComponentAlert component="carousel" src="https://ng-bootstrap.github.io/#/components/carousel/overview" />
+
+<ul>
+  <li>
+    <a href="#component-import" target="_self">Component Import</a>
+  </li>
+  <li>
+    <a href="#style-imports" target="_self">Style Imports</a>
+  </li>
+  <li>
+    <a href="#internationalization" target="_self">Internationalization</a>
+  </li>
+  <li>
+    <a href="#examples" target="_self">Examples</a>
+  </li>
+</ul>
+
+<NgbComponentImport module="NgbCarouselModule" />
+
+<StylesPackageImport components={["carousel"]} />
+
+<NgbComponentInternationalization />
+
+## Examples
 
 <PostTabs>
   <PostTabHeader slot="tabs" panel="headerNavbar">Basic example</PostTabHeader>
