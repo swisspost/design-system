@@ -94,6 +94,8 @@
   }
 
   .datatable-button {
+    display: flex;
+    align-items: center;
     @include button-mixins.reset-button;
     width: datatable.$datatable-button-width;
     height: datatable.$datatable-button-height;
