@@ -19,6 +19,7 @@
   text-align: center;
   vertical-align: baseline;
   max-width: 296px;
+
   &.bg-white {
     border-color: col.$black;
   }
@@ -27,7 +28,7 @@
 .tag {
   height: spacing.$size-big;
 
-  .tagIcon {
+  .tag-icon {
     height: spacing.$size-small-large;
     width: spacing.$size-small-large;
   }
