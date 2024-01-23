@@ -10,7 +10,9 @@ const meta: Meta = {
   },
   args: {
     icon: 1001,
-    content: 'letter',
+    content: 'Tag',
+    size: 'tag',
+    color: 'gray',
   },
   argTypes: {
     icon: {
@@ -33,6 +35,41 @@ const meta: Meta = {
         category: 'Content',
       },
     },
+    size: {
+      name: 'Size',
+      description: 'Number of the icon that is diplayed alongside the text',
+      control: {
+        type: 'select',
+        labels: {
+          'post-tag': 'Large',
+          'post-tag-sm': 'Small',
+        },
+      },
+      options: ['post-tag', 'post-tag-sm'],
+      table: {
+        category: 'Content',
+      },
+    },
+    color: {
+      name: 'Color',
+      description: 'The background color of the tag',
+      control: {
+        type: 'select',
+        labels: {
+          gray: 'Default',
+          white: 'White',
+          info: 'Info',
+          success: 'Success',
+          warning: 'Warning',
+          danger: 'Danger',
+          yellow: 'Yellow',
+        },
+      },
+      options: ['gray', 'white', 'info', 'success', 'warning', 'danger', 'yellow'],
+      table: {
+        category: 'Content',
+      },
+    },
   },
 };
 
@@ -41,8 +78,14 @@ export default meta;
 type Story = StoryObj;
 
 function renderTag(args: Args) {
+  /*   return html`
+    <post-tag icon=${args.icon} color=${args.color} size=${args.size}>${args.content}</post-tag>
+  `; */
   return html`
-    <post-tag icon=${args.icon}>${args.content}</post-tag>
+    <div class="${args.size} bg-${args.color}">
+      <post-icon name="${args.icon}" class="tag-icon"></post-icon>
+      <span>${args.content}</span>
+    </div>
   `;
 }
 

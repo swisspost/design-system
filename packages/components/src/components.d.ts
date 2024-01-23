@@ -189,12 +189,9 @@ export namespace Components {
          */
         "show": (panelName: string) => Promise<void>;
     }
-    /**
-     * @class PostTag - representing a stencil component
-     */
     interface PostTag {
         "color"?: string;
-        "icon": number;
+        "icon"?: number;
         "showIcon"?: boolean;
         "size"?: string;
     }
@@ -348,9 +345,6 @@ declare global {
         prototype: HTMLPostTabsElement;
         new (): HTMLPostTabsElement;
     };
-    /**
-     * @class PostTag - representing a stencil component
-     */
     interface HTMLPostTagElement extends Components.PostTag, HTMLStencilElement {
     }
     var HTMLPostTagElement: {
@@ -514,9 +508,6 @@ declare namespace LocalJSX {
          */
         "onTabChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
     }
-    /**
-     * @class PostTag - representing a stencil component
-     */
     interface PostTag {
         "color"?: string;
         "icon"?: number;
@@ -565,9 +556,6 @@ declare module "@stencil/core" {
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
-            /**
-             * @class PostTag - representing a stencil component
-             */
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
         }

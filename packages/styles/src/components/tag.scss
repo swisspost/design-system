@@ -1,19 +1,43 @@
 @forward './../variables/options';
+@forward './utilities';
 
-@use './../variables/icons' as vars;
-@use './../variables/color';
+@use './../variables/color' as col;
 @use './../variables/spacing' as spacing;
 
-.tag {
+.tag,
+.tag-sm {
   display: inline-flex;
   justify-content: flex-start;
+  justify-items: center;
   align-items: center;
   gap: spacing.$size-micro;
   padding: 0 spacing.$size-mini;
-  border: 4px solid black;
-  font-size: spacing.$size-mini;
+  font-size: spacing.$size-regular;
+  border: spacing.$size-hair solid transparent;
+  border-radius: spacing.$size-micro;
   line-height: inherit;
   text-align: center;
   vertical-align: baseline;
   max-width: 296px;
+  &.bg-white {
+    border-color: col.$black;
+  }
+}
+
+.tag {
+  height: spacing.$size-big;
+
+  .tagIcon {
+    height: spacing.$size-small-large;
+    width: spacing.$size-small-large;
+  }
+}
+
+.tag-sm {
+  height: spacing.$size-large;
+
+  .tag-icon {
+    height: spacing.$size-regular;
+    width: spacing.$size-regular;
+  }
 }

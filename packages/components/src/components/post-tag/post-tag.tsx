@@ -1,9 +1,6 @@
-import { Component, Element, h, Host, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { version } from '../../../package.json';
 
-/**
- * @class PostTag - representing a stencil component
- */
 @Component({
   tag: 'post-tag',
   styleUrl: 'post-tag.scss',
@@ -12,19 +9,25 @@ import { version } from '../../../package.json';
 export class PostTag {
   @Element() host: HTMLPostTagElement;
 
-  @Prop() readonly color?: string = 'color';
-  @Prop() readonly size?: string = 'size';
+  @State() classes: string;
+
+  @Prop() readonly color?: string = 'gray';
+  @Prop() readonly size?: string = 'post-tag';
   @Prop() readonly showIcon?: boolean = true;
-  @Prop() readonly icon: number;
+  @Prop() readonly icon?: number = 1001;
+
+  componentWillRender() {
+    this.classes = `${this.size} bg-${this.color}`;
+  }
 
   render() {
     const icon = `${this.icon}`;
 
     return (
       <Host data-version={version}>
-        <div class="tag">
-          {this.showIcon ? <post-icon name={icon}></post-icon> : ''}
-          <div class="tag-content">
+        <div class={this.classes}>
+          {this.showIcon ? <post-icon name={icon} class="post-tag-icon"></post-icon> : ''}
+          <div>
             <slot></slot>
           </div>
         </div>
