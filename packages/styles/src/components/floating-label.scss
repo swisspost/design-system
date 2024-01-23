@@ -10,6 +10,7 @@
 @use './../mixins/utilities' as utilities-mx;
 
 @use './../variables/type';
+@use './../variables/spacing';
 @use './../variables/components/forms';
 @use './../variables/components/form-validation';
 
@@ -75,9 +76,9 @@
 
     padding-top: forms.$form-floating-input-padding-t;
     padding-bottom: forms.$form-floating-input-padding-b;
-    background-size: forms.$form-floating-select-bg-size;
 
     ~ label {
+      color: forms.$form-floating-label-color;
       padding-top: 0.7rem;
       max-width: calc(
         (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
@@ -87,6 +88,12 @@
       transition: forms.$form-floating-transition-in;
     }
 
+    &:disabled {
+      ~ label {
+        color: forms.$input-disabled-color;
+      }
+    }
+
     // TODO: replace with :has
     &:empty,
     &.form-select-empty {
@@ -94,7 +101,6 @@
       padding-bottom: forms.$form-floating-input-padding-b;
 
       ~ label {
-        color: forms.$form-floating-label-color;
         padding-top: forms.$form-floating-label-padding-t;
         max-width: calc(100% - (#{forms.$input-border-width * 2}));
         transform: none;
@@ -126,6 +132,29 @@
             100% - (#{forms.$input-border-width * 2}) - #{forms.$form-floating-padding-x}
           );
           height: forms.$form-floating-label-height;
+        }
+      }
+    }
+
+    &.form-select-sm {
+      padding-inline: forms.$form-floating-padding-x-sm;
+      padding-top: forms.$form-floating-padding-y-sm * 2;
+      font-size: forms.$form-floating-label-font-size-placeholder-sm;
+      height: forms.$form-floating-label-height-sm;
+      min-height: forms.$form-floating-label-height-sm;
+
+      ~ label {
+        padding-top: forms.$form-floating-padding-y-sm;
+        font-size: forms.$form-floating-label-font-size-sm;
+        padding-inline: calc(#{forms.$form-floating-padding-x-sm} - #{forms.$input-border-width});
+      }
+
+      // TODO: replace with :has
+      &:empty,
+      &.form-select-empty {
+        ~ label {
+          padding-top: forms.$form-floating-label-padding-t-sm;
+          font-size: forms.$form-floating-label-font-size-placeholder-sm;
         }
       }
     }

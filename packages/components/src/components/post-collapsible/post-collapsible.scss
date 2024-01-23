@@ -1,9 +1,3 @@
-@use '@swisspost/design-system-styles/components/accordion';
-
 :host {
   display: block;
-
-  .accordion-button > ::slotted(.text-truncate) {
-    display: block;
-  }
 }

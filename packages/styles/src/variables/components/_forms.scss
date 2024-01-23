@@ -12,8 +12,11 @@
 
 // Forms
 
+$form-bg-size: 32px !default;
+$form-bg-size-sm: 24px !default;
+
 $form-label-margin-bottom: 0.5rem !default;
-$form-label-color: rgba(var(--post-contrast-color-rgb), 0.8) !default;
+$form-label-color: var(--post-contrast-color) !default;
 
 $input-padding-y: button.$input-btn-padding-y !default;
 $input-padding-x: button.$input-btn-padding-x !default;
@@ -33,8 +36,8 @@ $input-line-height-lg: type.$line-height-copy !default;
 
 $input-bg: color.$white !default;
 $input-disabled-bg: rgba(var(--post-contrast-color-inverted-rgb), 0.6) !default;
-$input-disabled-color: color.$gray-60; // Design System only
-$input-disabled-border-color: color.$gray-20; // Design System only
+$input-disabled-color: color.$gray-40; // Design System only
+$input-disabled-border-color: color.$gray-40; // Design System only
 
 $input-color: color.$black !default;
 $input-border-color: color.$gray-60 !default;
@@ -66,6 +69,13 @@ $input-height-content-sm: type.$font-size-tiny * $input-line-height-sm !default;
 $input-height-inner-sm: $input-height-content-sm + ($input-padding-y-sm * 2) !default;
 $input-height-sm: calc(#{$input-height-inner-sm} + #{$input-height-border}) !default;
 
+$form-floating-input-height-content-sm: type.$font-size-12 * $input-line-height-sm * 2 !default;
+$form-floating-input-height-inner-sm: $form-floating-input-height-content-sm +
+  ($input-padding-y-sm * 2) !default;
+$form-floating-input-height-sm: calc(
+  #{$form-floating-input-height-inner-sm} + #{$input-height-border}
+) !default;
+
 $input-height-content-rg: type.$font-size-regular * $input-line-height-rg !default;
 $input-height-inner-rg: $input-height-content-rg + ($input-padding-y-rg * 2) !default;
 $input-height-rg: calc(#{$input-height-inner-rg} + #{$input-height-border}) !default;
@@ -74,7 +84,8 @@ $input-height-content-lg: type.$font-size-medium * $input-line-height-lg !defaul
 $input-height-inner-lg: $input-height-content-lg + ($input-padding-y-lg * 2) !default; // Design System
 $input-height-lg: calc(#{$input-height-inner-lg} + #{$input-height-border}) !default;
 
-$input-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out !default;
+$input-transition: border-color 0.15s ease-in-out,
+box-shadow 0.15s ease-in-out !default;
 
 $form-text-color: var(--post-contrast-color);
 $form-text-font-size: type.$font-size-tiny;
@@ -94,7 +105,8 @@ $form-range-thumb-width: 2rem !default;
 $form-range-thumb-height: $form-range-thumb-width !default;
 $form-range-thumb-bg: color.$white !default;
 $form-range-thumb-border: 2px solid color.$black !default;
-$form-range-thumb-focus-box-shadow: 0 0 0 1px color.$black, 0 0 0 0.2rem rgba(color.$gray-80, 0.25) !default;
+$form-range-thumb-focus-box-shadow: 0 0 0 1px color.$black,
+0 0 0 0.2rem rgba(color.$gray-80, 0.25) !default;
 $form-range-thumb-focus-box-shadow-width: 0.2rem; // For focus box shadow issue in Edge
 $form-range-thumb-active-bg: color.$white !default;
 $form-range-thumb-disabled-bg: $form-range-thumb-bg !default;
@@ -117,8 +129,8 @@ $form-floating-label-color: $input-placeholder-color;
 $form-floating-label-font-size: type.$font-size-bigger-regular;
 $form-floating-label-font-size-small: type.$font-size-tiny;
 $form-floating-label-scale: math.div(
-  $form-floating-label-font-size-small,
-  $form-floating-label-font-size
+    $form-floating-label-font-size-small,
+    $form-floating-label-font-size
 );
 $form-floating-label-upscale: math.div(1, $form-floating-label-scale);
 $form-floating-label-padding-t: calc(
@@ -129,6 +141,16 @@ $form-floating-label-translate-x: $form-floating-padding-x * (1 - $form-floating
 $form-floating-label-transform: scale($form-floating-label-scale);
 $form-floating-transition: animation.$transition-base;
 $form-floating-transition-in: $form-floating-transition,
-  width 0ms list.nth(animation.$transition-base, 2);
-$form-floating-transition-out: $form-floating-transition, width 0ms linear;
+width 0ms list.nth(animation.$transition-base, 2);
+$form-floating-transition-out: $form-floating-transition,
+width 0ms linear;
 $form-floating-select-bg-size: 32px 32px;
+
+$form-floating-label-font-size-sm: type.$font-size-12;
+$form-floating-label-font-size-placeholder-sm: type.$font-size-14; // TODO: replace with input font-size after adjustment
+$form-floating-padding-x-sm: $input-padding-x-sm;
+$form-floating-padding-y-sm: $input-padding-y-sm;
+$form-floating-label-height-sm: $form-floating-input-height-inner-sm;
+$form-floating-label-padding-t-sm: calc(
+  #{$input-border-width} + #{$form-floating-label-height-sm * 0.5} - #{$form-floating-label-font-size-sm}
+);

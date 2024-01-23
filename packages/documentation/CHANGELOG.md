@@ -1,5 +1,69 @@
 # @swisspost/design-system-documentation
 
+## 2.7.1
+
+### Patch Changes
+
+- Enabled import injection for components. This fixes an issue with importing dynamically loaded web components with the vite compiler for storybook. (by [@gfellerph](https://github.com/gfellerph) with [#2448](https://github.com/swisspost/design-system/pull/2448))
+- Updated dependencies:
+  - @swisspost/design-system-components@1.7.1
+  - @swisspost/design-system-components-react@1.0.25
+
+## 2.7.0
+
+### Minor Changes
+
+- Add a page on how to add custom content to the internet header main navigation. (by [@alizedebray](https://github.com/alizedebray) with [#2280](https://github.com/swisspost/design-system/pull/2280))
+
+### Patch Changes
+
+- Added breakpoint specific utility classes to set width to `25%`, `50%`, `75%`, `100%`, or `auto`. (by [@imagoiq](https://github.com/imagoiq) with [#2308](https://github.com/swisspost/design-system/pull/2308))
+
+- Renamed "Text input" component to "Input". (by [@imagoiq](https://github.com/imagoiq) with [#2401](https://github.com/swisspost/design-system/pull/2401))
+
+- Fixed vertical rhythm that didn't apply anymore since migration to Storybook v7. (by [@imagoiq](https://github.com/imagoiq) with [#2349](https://github.com/swisspost/design-system/pull/2349))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.17
+  - @swisspost/internet-header@1.13.2
+  - @swisspost/design-system-styles@6.5.1
+  - @swisspost/design-system-components@1.7.0
+  - @swisspost/design-system-components-react@1.0.24
+
+## 2.6.0
+
+### Minor Changes
+
+- Added a Since v1 label on all the components that got introduced in Version 1 (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2290](https://github.com/swisspost/design-system/pull/2290))
+
+### Patch Changes
+
+- Removed badge size class at wrapper level. It's only used inside the label. (by [@imagoiq](https://github.com/imagoiq) with [#2294](https://github.com/swisspost/design-system/pull/2294))
+
+- Added small variant to floating label select. (by [@gfellerph](https://github.com/gfellerph) with [#2368](https://github.com/swisspost/design-system/pull/2368))
+
+- Updated select styles to match design. (by [@imagoiq](https://github.com/imagoiq) with [#2312](https://github.com/swisspost/design-system/pull/2312))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.16
+  - @swisspost/design-system-styles@6.5.0
+  - @swisspost/internet-header@1.13.1
+  - @swisspost/design-system-components@1.6.3
+  - @swisspost/design-system-components-react@1.0.23
+
+## 2.5.0
+
+### Minor Changes
+
+- Added a documentation page for the `.container` and `.container-fluid` classes. (by [@b1aserlu](https://github.com/b1aserlu) with [#2030](https://github.com/swisspost/design-system/pull/2030))
+
+### Patch Changes
+
+- Removed empty p and fix CDN examples for internet-header. (by [@imagoiq](https://github.com/imagoiq) with [#2295](https://github.com/swisspost/design-system/pull/2295))
+
+- Added attached stories to changelog and search-icons pages to fix "Edit this page on Github" feature. (by [@imagoiq](https://github.com/imagoiq) with [#2267](https://github.com/swisspost/design-system/pull/2267))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.0.15
+  - @swisspost/design-system-styles@6.4.4
+
 ## 2.4.0
 
 ### Minor Changes

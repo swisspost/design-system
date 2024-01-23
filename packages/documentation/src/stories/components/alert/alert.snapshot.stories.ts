@@ -1,13 +1,16 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { spreadArgs } from '../../../utils';
-import { bombArgs } from '../../utilities/bombArgs';
+import { spreadArgs, bombArgs } from '../../../utils';
 import alertMeta from './standard-html/alert.stories';
 import { getAlertClasses } from './standard-html/getAlertClasses';
+import { BADGE } from '../../../../.storybook/constants';
 
 export default {
   ...alertMeta,
   title: 'Snapshots',
+  parameters: {
+    badges: [BADGE.SINCE_V1],
+  },
 };
 
 type Story = StoryObj;
@@ -17,7 +20,7 @@ export const Alert: Story = {
     <div class="d-flex gap-3 flex-wrap">
       ${['bg-white', 'bg-dark'].map(
         bg => html`
-          <div class=${bg + ' d-flex flex-column gap-3 flex-wrap p-3'}>
+          <div class="${bg + ' d-flex flex-column gap-3 flex-wrap p-3'}">
             ${bombArgs({
               type: alertMeta?.argTypes?.type?.options,
               icon: ['no-icon', undefined, '1001'],
@@ -26,7 +29,7 @@ export const Alert: Story = {
               .map(args => ({ ...args, show: true } as Args))
               .map(
                 args => html`
-                  <div class=${getAlertClasses(args)} role="alert">
+                  <div class="${getAlertClasses(args)}" role="alert">
                     ${args.dismissible || args.fixed
                       ? html`
                           <button class="btn-close">
@@ -39,7 +42,7 @@ export const Alert: Story = {
                           <post-icon
                             aria-hidden="true"
                             class="alert-icon"
-                            name=${args.icon}
+                            name="${args.icon}"
                           ></post-icon>
                         `
                       : null}
@@ -116,7 +119,7 @@ export const PostAlert: Story = {
                 args => html`
                   <post-alert
                     ${spreadArgs(args)}
-                    dismiss-label=${args.dismissible ? 'Dismiss' : undefined}
+                    dismiss-label="${args.dismissible ? 'Dismiss' : undefined}"
                   ></post-alert>
                 `,
               )}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-const I18N_VALUES = {
+export const I18N_VALUES = {
   fr: {
     weekdays: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
     months: [
@@ -32,6 +32,10 @@ const I18N_VALUES = {
       'Nov.',
       'Déc.',
     ],
+    selectMonth: 'Sélectionner le mois',
+    selectYear: "Sélectionner l'année",
+    previousMonth: 'Mois précédent',
+    nextMonth: 'Mois suivant',
   },
   it: {
     weekdays: ['Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa', 'Do'],
@@ -63,6 +67,10 @@ const I18N_VALUES = {
       'Nov.',
       'Dic.',
     ],
+    selectMonth: 'Selezionare il mese',
+    selectYear: "Selezionare l'anno",
+    previousMonth: 'Mese precedente',
+    nextMonth: 'Il prossimo mese',
   },
   en: {
     weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
@@ -94,6 +102,10 @@ const I18N_VALUES = {
       'Nov.',
       'Dec.',
     ],
+    selectMonth: 'Select Month',
+    selectYear: 'Select Year',
+    previousMonth: 'Previous Month',
+    nextMonth: 'Next Month',
   },
 
   de: {
@@ -126,6 +138,10 @@ const I18N_VALUES = {
       'Nov.',
       'Dez.',
     ],
+    selectMonth: 'Monat wählen',
+    selectYear: 'Jahr wählen',
+    previousMonth: 'Vorheriger Monat',
+    nextMonth: 'Nächsten Monat',
   },
 };
 
