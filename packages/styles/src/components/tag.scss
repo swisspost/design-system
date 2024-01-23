@@ -1,0 +1,19 @@
+@forward './../variables/options';
+
+@use './../variables/icons' as vars;
+@use './../variables/color';
+@use './../variables/spacing' as spacing;
+
+.tag {
+  display: inline-flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: spacing.$size-micro;
+  padding: 0 spacing.$size-mini;
+  border: 4px solid black;
+  font-size: spacing.$size-mini;
+  line-height: inherit;
+  text-align: center;
+  vertical-align: baseline;
+  max-width: 296px;
+}
