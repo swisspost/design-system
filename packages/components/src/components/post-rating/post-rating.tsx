@@ -1,4 +1,4 @@
-import { Component, h, Event, EventEmitter, Prop, Host, State } from '@stencil/core';
+import { Component, h, Event, EventEmitter, Prop, Host, State, Element } from '@stencil/core';
 import { version } from '../../../package.json';
 
 @Component({
@@ -7,6 +7,7 @@ import { version } from '../../../package.json';
   shadow: true,
 })
 export class PostRating {
+  @Element() host: HTMLPostRatingElement;
   /**
    * The current rating value
    */

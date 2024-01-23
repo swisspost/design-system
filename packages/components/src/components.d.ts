@@ -113,25 +113,6 @@ export namespace Components {
          */
         "scale"?: number | null;
     }
-
-    interface PostRating {
-        /**
-          * The current rating value
-         */
-        "currentRating": number;
-        /**
-          * Boolean for the disabled state of the component
-         */
-        "disabled"?: boolean;
-        /**
-          * The number of stars in the rating
-         */
-        "max"?: number;
-        /**
-          * If readonly is true, the component only displays a rating and is not interactive.
-         */
-        "readonly"?: boolean;
-
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -185,7 +166,24 @@ export namespace Components {
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
-
+    }
+    interface PostRating {
+        /**
+          * The current rating value
+         */
+        "currentRating": number;
+        /**
+          * Boolean for the disabled state of the component
+         */
+        "disabled"?: boolean;
+        /**
+          * The number of stars in the rating
+         */
+        "max"?: number;
+        /**
+          * If readonly is true, the component only displays a rating and is not interactive.
+         */
+        "readonly"?: boolean;
     }
     interface PostTabHeader {
         /**
@@ -243,15 +241,13 @@ export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
 }
-
-export interface PostRatingCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostRatingElement;
-
 export interface PostPopovercontainerCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostPopovercontainerElement;
-
+}
+export interface PostRatingCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostRatingElement;
 }
 export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -313,17 +309,6 @@ declare global {
         prototype: HTMLPostIconElement;
         new (): HTMLPostIconElement;
     };
-
-    interface HTMLPostRatingElementEventMap {
-        "ratingChanged": number;
-    }
-    interface HTMLPostRatingElement extends Components.PostRating, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostRatingElementEventMap>(type: K, listener: (this: HTMLPostRatingElement, ev: PostRatingCustomEvent<HTMLPostRatingElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostRatingElementEventMap>(type: K, listener: (this: HTMLPostRatingElement, ev: PostRatingCustomEvent<HTMLPostRatingElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-
     interface HTMLPostPopoverElement extends Components.PostPopover, HTMLStencilElement {
     }
     var HTMLPostPopoverElement: {
@@ -339,20 +324,30 @@ declare global {
         addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
         addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
         removeEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-
         removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
         removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
-
-    var HTMLPostRatingElement: {
-        prototype: HTMLPostRatingElement;
-        new (): HTMLPostRatingElement;
-
     var HTMLPostPopovercontainerElement: {
         prototype: HTMLPostPopovercontainerElement;
         new (): HTMLPostPopovercontainerElement;
-
+    };
+    interface HTMLPostRatingElementEventMap {
+        "ratingChanged": number;
+    }
+    interface HTMLPostRatingElement extends Components.PostRating, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostRatingElementEventMap>(type: K, listener: (this: HTMLPostRatingElement, ev: PostRatingCustomEvent<HTMLPostRatingElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostRatingElementEventMap>(type: K, listener: (this: HTMLPostRatingElement, ev: PostRatingCustomEvent<HTMLPostRatingElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostRatingElement: {
+        prototype: HTMLPostRatingElement;
+        new (): HTMLPostRatingElement;
     };
     interface HTMLPostTabHeaderElement extends Components.PostTabHeader, HTMLStencilElement {
     }
@@ -395,12 +390,9 @@ declare global {
         "post-alert": HTMLPostAlertElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
-
-        "post-rating": HTMLPostRatingElement;
-
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
-
+        "post-rating": HTMLPostRatingElement;
         "post-tab-header": HTMLPostTabHeaderElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
@@ -493,29 +485,6 @@ declare namespace LocalJSX {
          */
         "scale"?: number | null;
     }
-
-    interface PostRating {
-        /**
-          * The current rating value
-         */
-        "currentRating"?: number;
-        /**
-          * Boolean for the disabled state of the component
-         */
-        "disabled"?: boolean;
-        /**
-          * The number of stars in the rating
-         */
-        "max"?: number;
-        /**
-          * Event emitted when the rating changes
-         */
-        "onRatingChanged"?: (event: PostRatingCustomEvent<number>) => void;
-        /**
-          * If readonly is true, the component only displays a rating and is not interactive.
-         */
-        "readonly"?: boolean;
-
     interface PostPopover {
         /**
           * Show a little indicator arrow
@@ -543,7 +512,28 @@ declare namespace LocalJSX {
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
-
+    }
+    interface PostRating {
+        /**
+          * The current rating value
+         */
+        "currentRating"?: number;
+        /**
+          * Boolean for the disabled state of the component
+         */
+        "disabled"?: boolean;
+        /**
+          * The number of stars in the rating
+         */
+        "max"?: number;
+        /**
+          * Event emitted when the rating changes
+         */
+        "onRatingChanged"?: (event: PostRatingCustomEvent<number>) => void;
+        /**
+          * If readonly is true, the component only displays a rating and is not interactive.
+         */
+        "readonly"?: boolean;
     }
     interface PostTabHeader {
         /**
@@ -583,12 +573,9 @@ declare namespace LocalJSX {
         "post-alert": PostAlert;
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
-
-        "post-rating": PostRating;
-
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
-
+        "post-rating": PostRating;
         "post-tab-header": PostTabHeader;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
@@ -607,12 +594,9 @@ declare module "@stencil/core" {
              * @class PostIcon - representing a stencil component
              */
             "post-icon": LocalJSX.PostIcon & JSXBase.HTMLAttributes<HTMLPostIconElement>;
-
-            "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
-
             "post-popover": LocalJSX.PostPopover & JSXBase.HTMLAttributes<HTMLPostPopoverElement>;
             "post-popovercontainer": LocalJSX.PostPopovercontainer & JSXBase.HTMLAttributes<HTMLPostPopovercontainerElement>;
-
+            "post-rating": LocalJSX.PostRating & JSXBase.HTMLAttributes<HTMLPostRatingElement>;
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
