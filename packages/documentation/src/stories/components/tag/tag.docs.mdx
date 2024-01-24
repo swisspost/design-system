@@ -1,15 +1,36 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, OptionsControl } from '@storybook/blocks';
+import {
+  PostTabs,
+  PostTabHeader,
+  PostTabPanel,
+} from '@swisspost/design-system-components-react';
 import * as TagStories from './tag.stories';
+import * as PostTagStories from './web-component/post-tag.stories';
+
 
 <Meta of={TagStories}/>
 
 # Tag
 
 <div className="lead">
-  Work in Progress
+  A small label, generally appearing inside or in close proximity to another larger interface component, representing a status, property, or some other metadata.
 </div>
-
+<PostTabs>
+<PostTabHeader slot="tabs" panel="standardHTML">Standard HTML</PostTabHeader>
+<PostTabPanel name="standardHTML">
 <Canvas sourceState="shown" of={TagStories.Default}/>
 <Controls of={TagStories.Default}/>
 
-Placeholder
+## SCSS Imports
+
+## Options
+
+<Canvas of={TagStories.Variants}/>
+
+</PostTabPanel>
+<PostTabHeader slot="tabs" panel="webcomponent">Webcomponent</PostTabHeader>
+<PostTabPanel name="webcomponent">
+<Canvas sourceState="shown" of={PostTagStories.PostTag}/>
+<Controls of={PostTagStories.PostTag}/>
+</PostTabPanel>
+</PostTabs>

@@ -1,20 +1,31 @@
 import type { Args, Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit/static-html.js';
+import { html, nothing } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
+import { ifDefined } from 'lit/directives/if-defined.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: Meta = {
   title: 'Components/Tag',
-  render: renderTag,
+  render: tagRender,
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },
   args: {
-    icon: 1001,
     content: 'Tag',
-    size: 'tag',
-    color: 'gray',
+    showIcon: true,
+    disableIcon: false,
   },
   argTypes: {
+    showIcon: {
+      name: 'Display icon',
+      description: 'Wheter or not to show icon',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
     icon: {
       name: 'Icon',
       description: 'Number of the icon that is diplayed alongside the text',
@@ -33,6 +44,18 @@ const meta: Meta = {
       },
       table: {
         category: 'Content',
+      },
+    },
+    disableIcon: {
+      name: 'disableIcon',
+      description:
+        'Disables icon for wecomponent. Removes set property icon while active. To not have an icon display for the webcomponent simply do not set the icon property.',
+      control: {
+        type: 'boolean',
+        if: { disableIcon: false },
+      },
+      table: {
+        category: 'Storybook only',
       },
     },
     size: {
@@ -60,8 +83,8 @@ const meta: Meta = {
           white: 'White',
           info: 'Info',
           success: 'Success',
+          danger: 'Danger (Error)',
           warning: 'Warning',
-          danger: 'Danger',
           yellow: 'Yellow',
         },
       },
@@ -77,16 +100,88 @@ export default meta;
 
 type Story = StoryObj;
 
-function renderTag(args: Args) {
-  /*   return html`
-    <post-tag icon=${args.icon} color=${args.color} size=${args.size}>${args.content}</post-tag>
-  `; */
+function tagRender(args: Args) {
   return html`
     <div class="${args.size} bg-${args.color}">
-      <post-icon name="${args.icon}" class="tag-icon"></post-icon>
-      <span>${args.content}</span>
+      ${args.showIcon
+        ? unsafeHTML(`<post-icon name="${args.icon}" class="post-tag-icon"></post-icon>`)
+        : nothing}
+      <div>${args.content}</div>
     </div>
   `;
 }
 
-export const Default: Story = {};
+export const Default: Story = {
+  args: {
+    icon: 1001,
+    content: 'Tag',
+    size: 'post-tag',
+    color: 'gray',
+  },
+};
+
+export const Variants: Story = {
+  render: (args: Args) => {
+    return html`
+      ${VARIANTS_ARGS.forEach(args => tagRender(args))}
+    `;
+  },
+};
+
+const VARIANTS_ARGS: {
+  args: {
+    icon: number;
+    content: string;
+    size: string;
+    color: string;
+  };
+}[] = [
+  {
+    args: {
+      icon: 1001,
+      content: 'Tag',
+      size: 'post-tag',
+      color: 'white',
+    },
+  },
+  {
+    args: {
+      icon: 1001,
+      content: 'Tag',
+      size: 'post-tag',
+      color: 'info',
+    },
+  },
+  {
+    args: {
+      icon: 1001,
+      content: 'Tag',
+      size: 'post-tag',
+      color: 'success',
+    },
+  },
+  {
+    args: {
+      icon: 1001,
+      content: 'Tag',
+      size: 'post-tag',
+      color: 'danger',
+    },
+  },
+  {
+    args: {
+      icon: 1001,
+      content: 'Tag',
+      size: 'post-tag',
+      color: 'warning',
+    },
+  },
+  {
+    args: {
+      icon: 1001,
+      content: 'Tag',
+      size: 'post-tag',
+      color: 'yellow',
+    },
+  },
+];

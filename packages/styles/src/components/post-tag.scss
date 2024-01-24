@@ -4,8 +4,8 @@
 @use './../variables/color' as col;
 @use './../variables/spacing' as spacing;
 
-.tag,
-.tag-sm {
+.post-tag,
+.post-tag-sm {
   display: inline-flex;
   justify-content: flex-start;
   justify-items: center;
@@ -19,24 +19,25 @@
   text-align: center;
   vertical-align: baseline;
   max-width: 296px;
+
   &.bg-white {
     border-color: col.$black;
   }
 }
 
-.tag {
+.post-tag {
   height: spacing.$size-big;
 
-  .tagIcon {
+  .post-tag-icon {
     height: spacing.$size-small-large;
     width: spacing.$size-small-large;
   }
 }
 
-.tag-sm {
+.post-tag-sm {
   height: spacing.$size-large;
 
-  .tag-icon {
+  .post-tag-icon {
     height: spacing.$size-regular;
     width: spacing.$size-regular;
   }

@@ -189,10 +189,21 @@ export namespace Components {
          */
         "show": (panelName: string) => Promise<void>;
     }
+    /**
+     * @Slot default slot used for the Text contained by the post-tag
+     */
     interface PostTag {
+        /**
+          * Sets the background color of the tag as well as the matching text color. Expected values: ['gray', 'white', info, 'success', 'error', 'warning', 'yellow'] default vaue: 'gray'
+         */
         "color"?: string;
+        /**
+          * Defines which icon from the swisspost icon library is used. Excpects a number. If there is no value asigned to it no icon will be rendered. Check the desing-system.post documentation to see all available icons.  PS: Values 0 and null are ignored
+         */
         "icon"?: number;
-        "showIcon"?: boolean;
+        /**
+          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values: post-tag -> large (default) post-tag-sm -> small
+         */
         "size"?: string;
     }
     interface PostTooltip {
@@ -345,6 +356,9 @@ declare global {
         prototype: HTMLPostTabsElement;
         new (): HTMLPostTabsElement;
     };
+    /**
+     * @Slot default slot used for the Text contained by the post-tag
+     */
     interface HTMLPostTagElement extends Components.PostTag, HTMLStencilElement {
     }
     var HTMLPostTagElement: {
@@ -508,10 +522,21 @@ declare namespace LocalJSX {
          */
         "onTabChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
     }
+    /**
+     * @Slot default slot used for the Text contained by the post-tag
+     */
     interface PostTag {
+        /**
+          * Sets the background color of the tag as well as the matching text color. Expected values: ['gray', 'white', info, 'success', 'error', 'warning', 'yellow'] default vaue: 'gray'
+         */
         "color"?: string;
+        /**
+          * Defines which icon from the swisspost icon library is used. Excpects a number. If there is no value asigned to it no icon will be rendered. Check the desing-system.post documentation to see all available icons.  PS: Values 0 and null are ignored
+         */
         "icon"?: number;
-        "showIcon"?: boolean;
+        /**
+          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values: post-tag -> large (default) post-tag-sm -> small
+         */
         "size"?: string;
     }
     interface PostTooltip {
@@ -556,6 +581,9 @@ declare module "@stencil/core" {
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
+            /**
+             * @Slot default slot used for the Text contained by the post-tag
+             */
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
         }
