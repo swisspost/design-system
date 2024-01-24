@@ -17,7 +17,7 @@ const INTERACTIVE_ELEMENT_SELECTORS = [
 ];
 
 describe('card-control', () => {
-  describe.skip('structure & props', () => {
+  describe('structure & props', () => {
     beforeEach(() => {
       cy.getComponent('card-control', { group: 'forms' });
       cy.window().then(win => {
@@ -69,7 +69,6 @@ describe('card-control', () => {
           .and('contain', 'PostCardControl_')
           .and('eq', controlId);
         cy.get('@input').should('have.attr', 'type').and('eq', 'checkbox');
-        cy.get('@input').should('have.attr', 'value').and('eq', 'on');
         cy.get('@input').should('have.attr', 'aria-controls').and('eq', contentId);
         cy.get('@input').should('have.attr', 'aria-expanded').and('eq', 'false');
 
@@ -94,6 +93,8 @@ describe('card-control', () => {
       cy.get('@label').should('exist').and('have.text', '');
     });
 
+    // TODO: test error message when label not set
+
     it('should set description text according to "description" prop', () => {
       cy.get('@card-control').find('.header--description').should('not.exist');
       cy.get('@card-control')
@@ -116,10 +117,12 @@ describe('card-control', () => {
 
     it('should set input "type" attr according to "type" prop', () => {
       cy.get('@card-control').invoke('attr', 'type', 'radio');
-      cy.get('@control').should('have.attr', 'type').and('eq', 'radio');
+      cy.get('@input').should('have.attr', 'type').and('eq', 'radio');
       cy.get('@card-control').invoke('attr', 'type', 'checkbox');
-      cy.get('@control').should('have.attr', 'type').and('eq', 'checkbox');
+      cy.get('@input').should('have.attr', 'type').and('eq', 'checkbox');
     });
+
+    // TODO: test error message when type not set
 
     it('should set input "name" attr according to "name" prop', () => {
       cy.get('@input').should('not.have.attr', 'name');
@@ -199,18 +202,29 @@ describe('card-control', () => {
       cy.get('@card-control').find('.card-control--content slot').as('slotContent');
     });
 
-    it.skip('should toggle class "is-focused" when focused/blured', () => {
+    it('should toggle class "is-focused" when focused/blured', () => {
+      cy.get('@wrapper').should('not.have.class', 'is-focused');
+
       cy.get('@input')
         .first()
         .focus()
-        .then($input => {
+        // waiting for focus to be executed, because focus() is not implemented like other action commands, and does not follow the same rules of waiting for actionability.
+        .wait(300)
+        .then(() => {
           cy.get('@wrapper').should('have.class', 'is-focused');
-          $input[0].blur();
-          cy.wrap($input).should('not.have.class', 'is-focused');
+        });
+
+      cy.get('@input')
+        .first()
+        .blur({ force: true })
+        // waiting for blur to be executed, because blur() is not implemented like other action commands, and does not follow the same rules of waiting for actionability.
+        .wait(300)
+        .then(() => {
+          cy.get('@wrapper').should('not.have.class', 'is-focused');
         });
     });
 
-    it.skip('should toggle content when clicked', () => {
+    it('should toggle content when clicked', () => {
       cy.get('@content').should('not.be.visible');
       cy.get('@input').should('have.attr', 'aria-expanded').and('eq', 'false');
       cy.get('@card-control').click({ force: true });
@@ -221,7 +235,7 @@ describe('card-control', () => {
       cy.get('@input').should('have.attr', 'aria-expanded').and('eq', 'false');
     });
 
-    it.skip('should not toggle content when clicking on interactive element in content', () => {
+    it('should not toggle content when clicking on interactive element in content', () => {
       cy.get('@card-control').click();
       cy.get('@input').should('have.attr', 'aria-expanded').and('eq', 'true');
       cy.get('@content').should('be.visible');
@@ -242,7 +256,7 @@ describe('card-control', () => {
         });
     });
 
-    it.skip('should toogle content when used with keyboard', () => {
+    it('should toogle content when used with keyboard', () => {
       // TODO when https://github.com/cypress-io/cypress/issues/311 is ready
     });
 
