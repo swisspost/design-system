@@ -1,6 +1,7 @@
 import { Meta, Source } from '@storybook/blocks';
 import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import NgbComponentDemoLink from '../../../shared/nb-bootstrap/ngb-component-demo-link.mdx';
 import NgbComponentAlert from '../../../shared/nb-bootstrap/ngb-component-alert.mdx';
 import NgbComponentImport from '../../../shared/nb-bootstrap/ngb-component-import.mdx';
 import * as modalStories from './modal.stories';
@@ -10,7 +11,11 @@ import modalBlocking from './modal-blocking.sample?raw';
 
 <Meta of={modalStories} />
 
-# Modal
+<div className="d-flex align-items-center justify-content-between">
+  # Modal
+
+  <NgbComponentDemoLink component="modal" />
+</div>
 
 <p className="lead">Display information that requires the user’s immediate attention.</p>
 
