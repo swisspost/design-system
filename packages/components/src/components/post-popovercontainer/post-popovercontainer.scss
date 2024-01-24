@@ -7,6 +7,13 @@
 @use '@swisspost/design-system-styles/mixins/elevation' as elevation-mx;
 @use '@swisspost/design-system-styles/functions/color' as color-fn;
 
+// Puts polyfilled styles in a separate layer so they are easy to override
+// Can be removed as soon as popover is supported by all major browsers
+// https://caniuse.com/?search=popover
+@layer polyfill {
+  @include meta.load-css('@oddbird/popover-polyfill/dist/popover.css');
+}
+
 .popover {
   @include elevation-mx.elevation('elevation-3');
 

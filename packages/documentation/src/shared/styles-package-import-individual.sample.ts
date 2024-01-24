@@ -9,7 +9,7 @@ const requiredLabels: { [key: string]: string } = {
   'form-feedback': 'required if you use validation feedbacks',
 };
 
-export function getStylesPackageImportIndividual(props: Props) {
+export function getComponentStyleImports(props: Props) {
   const basics = `@use '@swisspost/design-system-styles/basics.scss';`;
   const generateComponentLine = (name: string) =>
     `@use '@swisspost/design-system-styles/components/${name}.scss';`;

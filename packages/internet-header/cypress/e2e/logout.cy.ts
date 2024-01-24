@@ -4,7 +4,7 @@ describe('logout', () => {
   describe('args', () => {
     describe('logoutUrl', () => {
       it('logout with url from config', () => {
-        prepare('Internet Header/Header', 'Default', { loggedIn: true });
+        prepare('Components/Internet Header/Header', 'Default', { loggedIn: true });
         logoutFromMenu();
 
         const origin = 'https://www.post.ch';
@@ -15,7 +15,7 @@ describe('logout', () => {
       });
 
       it(`overrides logout url from config`, () => {
-        prepare('Internet Header/Header', 'Default', { loggedIn: true });
+        prepare('Components/Internet Header/Header', 'Default', { loggedIn: true });
         cy.changeArg('logoutUrl', 'about:blank');
         logoutFromMenu();
         cy.location('pathname').should('eq', 'blank');

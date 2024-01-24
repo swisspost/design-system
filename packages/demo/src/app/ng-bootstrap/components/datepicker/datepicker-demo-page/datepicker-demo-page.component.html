@@ -184,14 +184,15 @@
   ></code>
 </section>
 
-<section id="internationalization">
+<app-ngb-localization>
   <p class="light font-curve-regular mt-4">
-    If you are using internationalization, add this service to your application for custom date
-    translations.
+    The datepicker requires additional translations for months and days of the week. These can be
+    configured using the service below:
   </p>
+
   <code
     class="block"
     [highlight]="localizationService"
     [languages]="['typescript', 'javascript']"
   ></code>
-</section>
+</app-ngb-localization>

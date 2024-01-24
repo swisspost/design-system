@@ -34,7 +34,7 @@ export const light = create({
 
   brandTitle: 'Swiss Post Design System',
   brandUrl: 'https://design-system.post.ch',
-  brandImage: '/images/logo-swisspost.svg',
+  brandImage: '/assets/images/logo-swisspost.svg',
   brandTarget: '_self',
 });
 
@@ -72,7 +72,7 @@ export const dark = create({
 
   brandTitle: 'Swiss Post Design System',
   brandUrl: 'https://design-system.post.ch',
-  brandImage: '/images/logo-swisspost.svg',
+  brandImage: '/assets/images/logo-swisspost.svg',
   brandTarget: '_self',
 });
 

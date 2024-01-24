@@ -7,7 +7,10 @@ import { HighlightModule } from 'ngx-highlightjs';
 import { PostCommonModule } from '../../../common/post-common.module';
 import { HighlightProvider } from '../../../common/highlight.provider';
 import { NgbDatepickerDemoPageComponent } from './datepicker-demo-page/datepicker-demo-page.component';
-import { CustomDatepickerI18n, I18n } from './datepicker-demo-page/datepicker-localization.service';
+import {
+  SwissPostDatepickerI18n,
+  I18n,
+} from './datepicker-demo-page/datepicker-localization.service';
 import { DatepickerSimpleDemoComponent } from './datepicker-simple/datepicker-simple-demo.component';
 import { DatepickerSimpleLgComponent } from './datepicker-simple/datepicker-simple-lg.component';
 import { DatepickerSimpleComponent } from './datepicker-simple/datepicker-simple.component';
@@ -39,7 +42,7 @@ import { DatepickerValidationDemoComponent } from './datepicker-validation/datep
     { provide: LOCALE_ID, useValue: 'de' },
     HighlightProvider.Config,
     I18n,
-    { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n },
+    { provide: NgbDatepickerI18n, useClass: SwissPostDatepickerI18n },
   ],
 })
 export class DatepickerModule {}

@@ -9,7 +9,7 @@ const meta: Meta = {
   title: 'Components/Tooltip',
   component: 'post-tooltip',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
   },
   render,
   args: {
@@ -56,6 +56,12 @@ const meta: Meta = {
     placement: {
       name: 'Placement',
     },
+    arrow: {
+      name: 'Arrow',
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 };
 
@@ -75,6 +81,7 @@ function render(args: Args) {
       id="${args.id}"
       class="hydrated bg-${args.backgroundColor}"
       placement="${ifDefined(args.placement)}"
+      arrow="${ifDefined(args.arrow)}"
     >
       ${unsafeHTML(innerHTML)}
     </post-tooltip>

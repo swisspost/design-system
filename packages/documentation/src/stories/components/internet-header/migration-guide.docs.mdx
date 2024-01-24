@@ -1,0 +1,91 @@
+import { Meta, Source } from '@storybook/blocks';
+import SampleReference from './internet-header-reference.sample.ts?raw';
+import SampleInstall from './internet-header-install.sample.html?raw';
+import SampleFixAppStyles from './internet-header-fix-app-styles.sample.html?raw';
+import SampleOld from './internet-header-old.sample.html?raw';
+import { SourceDarkMode } from '../../../../.storybook/preview';
+import * as MigrationGuideStories from './migration-guide.stories';
+
+<Meta of={MigrationGuideStories} />
+
+# Migration from the old header
+
+This guide aims to give a broad overview of how a migration can be performed.
+Different projects have different levels of integration with the header,
+and therefore require more steps to migrate.
+
+## Architecture
+
+The "new"
+Internet Header Web Component aims
+to encapsulate as much as possible whereas the old header had a big influence on the page —
+limiting design decisions and flexibility of the markup structure.
+The Web Component Header consists of one script and three standard Web Components that can be freely placed on the page.
+It's even possible to render those elements with Angular
+(or any other framework) to easier pass settings into the component.
+
+The new header is built
+to work with the existing Sitecore configuration
+already existing for your project to make the migration as smooth as possible.
+
+## Support
+
+If you need support during your migration,
+don't hesitate
+to contact the [Design System Team](https://github.com/swisspost/design-system/discussions/categories/general) on GitHub.
+
+## 1. Remove the old header
+
+In your index.html, you should find three scripts associated with the old header.
+One to load static assets, one to configure it and one to load it.
+
+- You can remove the configuration and the loader scripts, but remember your `serviceid`.
+- Try to remove the `staticassets` script to check if you still need it
+
+<Source code={SampleOld} dark={true} language="html" />
+
+## 2. Fix your app styles
+
+The old header was responsible for wrapping your main code (here `#os_content`) with custom `<div>`s.
+The new header does not provide those wrappers.
+Instead, every page has control over the main markup structure.
+A possible replacement of the above code could be:
+
+<Source code={SampleFixAppStyles} dark={true} language="html" />
+
+- Likely you'll need the class `container` around your main content to align it properly in the center.
+- For bonus points on semantic markup, use the [`<main>` tag](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/main) around the main page content
+- Check if you need the `staticasset` stylesheets linked in the header
+
+If you need to do any other changes,
+please make a post to the [Design System Teams Channel](https://teams.microsoft.com/l/channel/19%3ae7fa68fb13eb40b4bf4604edea5f4b3e%40thread.tacv2/%25F0%259F%259A%2591%2520Support?groupId=123c7c9e-052a-40e6-98d3-6cc6d46bad0a&tenantId=3ae7c479-0cf1-47f4-8f84-929f364eff67)
+in order to inform the devs to update this guide and provide useful information for other developers.
+
+## 3. jQuery
+
+The new Header does not ship jQuery anymore.
+While jQuery v3.6 is an internal dependency for the Login Widget,
+every project is now responsible for loading and updating jQuery individually.
+If you are depending on an older (&lt;3.5) version of jQuery, please update.
+There is a long list of [known jQuery vulnerabilities](https://security.snyk.io/package/npm/jquery).
+
+## 4. Install the new header
+
+Please refer to the [Internet Header installation instructions](/?path=/docs/components-internet-header-getting-started--docs) for an installation guide.
+
+After installation, you're ready to add the new tags to your markup:
+
+<Source code={SampleInstall} dark={SourceDarkMode} language="html" />
+
+Place the new elements as described (and needed) as shown above.
+The breadcrumbs need a `container` wrapper to align themselves with the content of your page,
+the header and the footer already provide a container.
+If you don't have breadcrumbs, you can just delete the `<aside>` and the `<swisspost-internet-breadcrumbs>`.
+
+## 5. Working with the new header
+
+If you need to change settings during runtime, you can get a reference to the header by querying:
+
+<Source code={SampleReference} dark={SourceDarkMode} language="typescript" />
+
+At the [Internet Header configuration page](/?path=/docs/components-internet-header-header--docs) you can find a list of possible options.

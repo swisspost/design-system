@@ -3,10 +3,14 @@ import { html } from 'lit';
 import { spreadArgs, bombArgs } from '../../../utils';
 import alertMeta from './standard-html/alert.stories';
 import { getAlertClasses } from './standard-html/getAlertClasses';
+import { BADGE } from '../../../../.storybook/constants';
 
 export default {
   ...alertMeta,
   title: 'Snapshots',
+  parameters: {
+    badges: [BADGE.SINCE_V1],
+  },
 };
 
 type Story = StoryObj;

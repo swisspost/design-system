@@ -31,4 +31,9 @@
   &:disabled {
     color: close.$close-disabled-color;
   }
+
+  @include utilities-mx.high-contrast-mode() {
+    color: CanvasText;
+    forced-color-adjust: none;
+  }
 }

@@ -23,6 +23,7 @@ const meta: Meta = {
     closeButtonCaption: 'Close',
     placement: 'top',
     arrow: true,
+    title: true,
   },
   argTypes: {
     id: {
@@ -59,14 +60,20 @@ const meta: Meta = {
     },
     closeButtonCaption: {
       name: 'Close button caption',
-      table: {
-        type: {
-          required: true,
-        },
-      },
     },
     arrow: {
       name: 'Arrow',
+    },
+    title: {
+      name: 'Show title',
+      description:
+        'Show an optional title, the heading level can be chosen to match the document structure, use the <code>.h6</code> class for appropriate styling.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'General',
+      },
     },
     placement: {
       name: 'Placement',
@@ -85,7 +92,12 @@ function render(args: Args) {
       placement="${args.placement}"
       ?arrow="${args.arrow}"
     >
-      ${unsafeHTML(args.innerHtml)}
+      ${args.title
+        ? html`
+            <h2 class="h6">Optional title</h2>
+          `
+        : null}
+      <p class="mb-0">${unsafeHTML(args.innerHtml)}</p>
     </post-popover>
   `;
 }

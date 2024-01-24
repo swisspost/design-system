@@ -11,7 +11,7 @@ const meta: Meta = {
   render: renderAlert,
   decorators: [externalControl],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
     controls: {
       exclude: ['Title', 'Content'],
     },
@@ -63,7 +63,7 @@ const meta: Meta = {
         'The icon to display in the alert. By default, the icon depends on the alert type.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
-        '<a href="/?path=/docs/icons-getting-started--docs">set up the icons in your project</a>' +
+        '<a href="?path=/docs/components-icons-getting-started--docs">set up the icons in your project</a>' +
         '.</span>',
       if: {
         arg: 'noIcon',
