@@ -1,5 +1,0 @@
----
-'@swisspost/design-system-documentation': patch
----
-
-Created a `post-accordion-item` to use as children for the `post-accordion` component. It replaces the `post-collapsible` component.
