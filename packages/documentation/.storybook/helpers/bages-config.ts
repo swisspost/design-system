@@ -65,7 +65,7 @@ export const badgesConfig: BadgesConfig = {
     },
     title: 'Web Component Candidate',
     tooltip: {
-      desc: 'This component may be replaced by a web component in a future release.',
+      desc: 'This component may be replaced by a web component in the future.',
     },
   },
 };
