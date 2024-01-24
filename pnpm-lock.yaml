@@ -404,7 +404,7 @@ importers:
         specifier: 7.0.9
         version: 7.0.9(@storybook/addon-docs@7.6.10)(@storybook/addons@7.6.10)(@storybook/components@7.6.10)(@storybook/manager-api@7.6.10)(@storybook/preview-api@7.6.10)(@storybook/theming@7.6.10)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/addon-docs':
-        specifier: ^7.6.10
+        specifier: 7.6.10
         version: 7.6.10(@types/react@18.2.48)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/addon-essentials':
         specifier: 7.6.10
