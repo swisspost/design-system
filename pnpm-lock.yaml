@@ -441,7 +441,7 @@ importers:
         version: 7.6.10(lit@3.1.1)(react-dom@18.2.0)(react@18.2.0)
       '@storybook/web-components-vite':
         specifier: 7.6.10
-        version: 7.6.10(lit@3.1.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.5.1)
+        version: 7.6.10(lit@3.1.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.5.2)
       '@types/css-modules':
         specifier: 1.0.5
         version: 1.0.5
@@ -6710,7 +6710,7 @@ packages:
       - supports-color
     dev: true
 
-  /@storybook/builder-vite@7.6.10(typescript@5.1.6)(vite@4.5.1):
+  /@storybook/builder-vite@7.6.10(typescript@5.1.6)(vite@4.5.2):
     resolution: {integrity: sha512-qxe19axiNJVdIKj943e1ucAmADwU42fTGgMSdBzzrvfH3pSOmx2057aIxRzd8YtBRnj327eeqpgCHYIDTunMYQ==}
     peerDependencies:
       '@preact/preset-vite': '*'
@@ -6742,7 +6742,7 @@ packages:
       magic-string: 0.30.1
       rollup: 3.29.4
       typescript: 5.1.6
-      vite: 4.5.1(sass@1.70.0)
+      vite: 4.5.2(@types/node@18.17.19)(less@4.1.3)(sass@1.70.0)
     transitivePeerDependencies:
       - encoding
       - supports-color
@@ -7200,11 +7200,11 @@ packages:
       file-system-cache: 2.3.0
     dev: true
 
-  /@storybook/web-components-vite@7.6.10(lit@3.1.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.5.1):
+  /@storybook/web-components-vite@7.6.10(lit@3.1.1)(react-dom@18.2.0)(react@18.2.0)(typescript@5.1.6)(vite@4.5.2):
     resolution: {integrity: sha512-COaUlqKX/MD1uCTOCngG2/zubS5YUdNycFtwB5OGhr37T6YRTyTjtFBZyGm8m6JUqL8ktLG44P32v0cMyu2sBw==}
     engines: {node: ^14.18 || >=16}
     dependencies:
-      '@storybook/builder-vite': 7.6.10(typescript@5.1.6)(vite@4.5.1)
+      '@storybook/builder-vite': 7.6.10(typescript@5.1.6)(vite@4.5.2)
       '@storybook/core-server': 7.6.10
       '@storybook/node-logger': 7.6.10
       '@storybook/web-components': 7.6.10(lit@3.1.1)(react-dom@18.2.0)(react@18.2.0)
@@ -20610,42 +20610,6 @@ packages:
       cloneable-readable: 1.1.3
       remove-trailing-separator: 1.1.0
       replace-ext: 1.0.1
-    dev: true
-
-  /vite@4.5.1(sass@1.70.0):
-    resolution: {integrity: sha512-AXXFaAJ8yebyqzoNB9fu2pHoo/nWX+xZlaRwoeYUxEqBO+Zj4msE5G+BhGBll9lYEKv9Hfks52PAF2X7qDYXQA==}
-    engines: {node: ^14.18.0 || >=16.0.0}
-    hasBin: true
-    peerDependencies:
-      '@types/node': '>= 14'
-      less: '*'
-      lightningcss: ^1.21.0
-      sass: '*'
-      stylus: '*'
-      sugarss: '*'
-      terser: ^5.4.0
-    peerDependenciesMeta:
-      '@types/node':
-        optional: true
-      less:
-        optional: true
-      lightningcss:
-        optional: true
-      sass:
-        optional: true
-      stylus:
-        optional: true
-      sugarss:
-        optional: true
-      terser:
-        optional: true
-    dependencies:
-      esbuild: 0.18.17
-      postcss: 8.4.33
-      rollup: 3.29.4
-      sass: 1.70.0
-    optionalDependencies:
-      fsevents: 2.3.2
     dev: true
 
   /vite@4.5.2(@types/node@18.17.19)(less@4.1.3)(sass@1.70.0):
