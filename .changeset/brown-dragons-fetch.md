@@ -1,5 +1,4 @@
 ---
-'@swisspost/design-system-components': minor
 '@swisspost/design-system-documentation': patch
 ---
 

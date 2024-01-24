@@ -1,3 +1,5 @@
+@use 'sass:map';
+@use 'sass:list';
 @use './../color';
 @use './../commons';
 @use './../spacing';
@@ -14,7 +16,7 @@ $notification-heading-font-weight: type.$headings-font-weight !default;
 $notification-buttons-gap: spacing.$size-mini !default;
 
 $notification-padding-x-map: () !default;
-$notification-padding-x-map: map-merge(
+$notification-padding-x-map: map.merge(
   $notification-padding-x-map,
   (
     'alert': spacing.$size-small-large,
@@ -23,7 +25,7 @@ $notification-padding-x-map: map-merge(
 );
 
 $notification-padding-y-map: () !default;
-$notification-padding-y-map: map-merge(
+$notification-padding-y-map: map.merge(
   $notification-padding-y-map,
   (
     'alert': spacing.$size-regular,
@@ -32,7 +34,7 @@ $notification-padding-y-map: map-merge(
 );
 
 $notification-font-size-map: () !default;
-$notification-font-size-map: map-merge(
+$notification-font-size-map: map.merge(
   $notification-font-size-map,
   (
     'alert': type.$font-size-base,
@@ -41,7 +43,7 @@ $notification-font-size-map: map-merge(
 );
 
 $notification-heading-font-size-map: () !default;
-$notification-heading-font-size-map: map-merge(
+$notification-heading-font-size-map: map.merge(
   $notification-heading-font-size-map,
   (
     'alert': type.$font-size-bigger-regular,
@@ -50,7 +52,7 @@ $notification-heading-font-size-map: map-merge(
 );
 
 $notification-hr-margin-block-map: () !default;
-$notification-hr-margin-block-map: map-merge(
+$notification-hr-margin-block-map: map.merge(
   $notification-hr-margin-block-map,
   (
     'alert': spacing.$size-mini spacing.$size-small-regular,
@@ -59,7 +61,7 @@ $notification-hr-margin-block-map: map-merge(
 );
 
 $notification-icon-size-map: () !default;
-$notification-icon-size-map: map-merge(
+$notification-icon-size-map: map.merge(
   $notification-icon-size-map,
   (
     'alert': spacing.$size-small-huge,
@@ -68,7 +70,7 @@ $notification-icon-size-map: map-merge(
 );
 
 $notification-variants: () !default;
-$notification-variants: join(
+$notification-variants: list.join(
   $notification-variants,
   (
     'primary' color.$gray-80 3134,
