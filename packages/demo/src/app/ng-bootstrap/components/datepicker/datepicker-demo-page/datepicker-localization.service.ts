@@ -1,80 +1,12 @@
 import { Injectable } from '@angular/core';
+import { formatDate, TranslationWidth } from '@angular/common';
 import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
-export const I18N_VALUES = {
-  fr: {
-    weekdays: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
-    months: [
-      'Janvier',
-      'Février',
-      'Mars',
-      'Avril',
-      'Mai',
-      'Juin',
-      'Juillet',
-      'Août',
-      'Septembre',
-      'Octobre',
-      'Novembre',
-      'Décembre',
-    ],
-    monthsShortName: [
-      'Janv.',
-      'Févr.',
-      'Mars',
-      'Avril',
-      'Mai',
-      'Juin',
-      'Juil.',
-      'Août',
-      'Sept.',
-      'Oct.',
-      'Nov.',
-      'Déc.',
-    ],
-    selectMonth: 'Sélectionner le mois',
-    selectYear: "Sélectionner l'année",
-    previousMonth: 'Mois précédent',
-    nextMonth: 'Mois suivant',
-  },
-  it: {
-    weekdays: ['Lu', 'Ma', 'Me', 'Gi', 'Ve', 'Sa', 'Do'],
-    months: [
-      'Gennaio',
-      'Febbraio',
-      'Marzo',
-      'Aprile',
-      'Maggio',
-      'Giugno',
-      'Luglio',
-      'Agosto',
-      'Settembre',
-      'Ottobre',
-      'Novembre',
-      'Dicembre',
-    ],
-    monthsShortName: [
-      'Genn.',
-      'Febbr.',
-      'Mar.',
-      'Aprr',
-      'Magg.',
-      'Giugno',
-      'Luglio',
-      'Ag.',
-      'Sett.',
-      'Ott.',
-      'Nov.',
-      'Dic.',
-    ],
-    selectMonth: 'Selezionare il mese',
-    selectYear: "Selezionare l'anno",
-    previousMonth: 'Mese precedente',
-    nextMonth: 'Il prossimo mese',
-  },
+const I18N_VALUES = {
   en: {
-    weekdays: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-    months: [
+    weekdays: ['Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa', 'Su'],
+    months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+    monthsFull: [
       'January',
       'February',
       'March',
@@ -88,29 +20,47 @@ export const I18N_VALUES = {
       'November',
       'December',
     ],
-    monthsShortName: [
-      'Jan.',
-      'Feb.',
-      'Mar.',
-      'Apr.',
-      'May',
-      'June',
-      'July',
-      'Aug.',
-      'Sept.',
-      'Oct.',
-      'Nov.',
-      'Dec.',
-    ],
-    selectMonth: 'Select Month',
-    selectYear: 'Select Year',
-    previousMonth: 'Previous Month',
-    nextMonth: 'Next Month',
   },
-
+  fr: {
+    weekdays: ['Lu', 'Ma', 'Me', 'Je', 'Ve', 'Sa', 'Di'],
+    months: ['Jan', 'Fév', 'Mar', 'Avr', 'Mai', 'Juin', 'Juil', 'Aou', 'Sep', 'Oct', 'Nov', 'Déc'],
+    monthsFull: [
+      'Janvier',
+      'Février',
+      'Mars',
+      'Avril',
+      'Mai',
+      'Juin',
+      'Juillet',
+      'Août',
+      'Septembre',
+      'Octobre',
+      'Novembre',
+      'Décembre',
+    ],
+  },
+  it: {
+    weekdays: ['Lun', 'Mar', 'Mer', 'Gio', 'Ven', 'Sab', 'Dom'],
+    months: ['Gen', 'Feb', 'Mar', 'Apr', 'Mag', 'Giu', 'Lug', 'Ago', 'Set', 'Ott', 'Nov', 'Dic'],
+    monthsFull: [
+      'Gennaio',
+      'Febbraio',
+      'Marzo',
+      'Aprile',
+      'Maggio',
+      'Giugno',
+      'Luglio',
+      'Agosto',
+      'Settembre',
+      'Ottobre',
+      'Novembre',
+      'Dicembre',
+    ],
+  },
   de: {
     weekdays: ['Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa', 'So'],
-    months: [
+    months: ['Jan', 'Feb', 'Mär', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
+    monthsFull: [
       'Januar',
       'Februar',
       'März',
@@ -124,24 +74,6 @@ export const I18N_VALUES = {
       'November',
       'Dezember',
     ],
-    monthsShortName: [
-      'Jan.',
-      'Feb.',
-      'März',
-      'Apr.',
-      'Mai',
-      'Juni',
-      'Juli',
-      'Aug.',
-      'Sept.',
-      'Okt.',
-      'Nov.',
-      'Dez.',
-    ],
-    selectMonth: 'Monat wählen',
-    selectYear: 'Jahr wählen',
-    previousMonth: 'Vorheriger Monat',
-    nextMonth: 'Nächsten Monat',
   },
 };
 
@@ -156,24 +88,25 @@ export class I18n {
 @Injectable({
   providedIn: 'root',
 })
-export class CustomDatepickerI18n extends NgbDatepickerI18n {
+export class SwissPostDatepickerI18n extends NgbDatepickerI18n {
   constructor(private _i18n: I18n) {
     super();
   }
 
-  getWeekdayLabel(weekday: number): string {
+  getWeekdayLabel(weekday: number, _width?: TranslationWidth): string {
     return I18N_VALUES[this._i18n.language].weekdays[weekday - 1];
   }
 
   getMonthShortName(month: number): string {
-    return I18N_VALUES[this._i18n.language].monthsShortName[month - 1];
-  }
-
-  getMonthFullName(month: number): string {
     return I18N_VALUES[this._i18n.language].months[month - 1];
   }
 
-  getDayAriaLabel(date: NgbDateStruct): string {
-    return `${date.day}-${date.month}-${date.year}`;
+  getMonthFullName(month: number): string {
+    return I18N_VALUES[this._i18n.language].monthsFull[month - 1];
+  }
+
+  getDayAriaLabel(dateStruct: NgbDateStruct): string {
+    const date = new Date(dateStruct.year, dateStruct.month - 1, dateStruct.day);
+    return formatDate(date, 'fullDate', this._i18n.language);
   }
 }
