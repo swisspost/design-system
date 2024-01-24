@@ -1,3 +1,4 @@
+@use 'sass:string';
 @use './../color';
 @use './../commons';
 
@@ -16,6 +17,6 @@ $breadcrumb-divider-color: color.$gray-60 !default;
 $breadcrumb-link-color: color.$gray-60 !default;
 $breadcrumb-hover-color: color.$black !default;
 $breadcrumb-active-color: color.$gray-60 !default;
-$breadcrumb-divider: quote('/') !default;
+$breadcrumb-divider: string.quote('/') !default;
 
 $breadcrumb-border-radius: commons.$border-radius !default;

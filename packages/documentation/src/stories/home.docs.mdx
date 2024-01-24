@@ -1,8 +1,7 @@
 import { Meta } from '@storybook/blocks';
-import { linkTo } from '@storybook/addon-links';
 import { getVersion } from '../utils/version';
 import * as HomeStories from './home.stories';
-import { Tile, Feature } from './home.blocks';
+import { Feature, Tile } from './home.blocks';
 import './home.styles.scss';
 
 <Meta of={HomeStories} />
@@ -48,7 +47,7 @@ import './home.styles.scss';
   </div>
   <div className="mt-regular mb-regular d-flex gap-mini flex-wrap justify-content-center">
     <div className="mt-big mb-regular w-100">
-      <button className="btn btn-primary btn-lg" onClick={linkTo('getting-started-styles--docs')}>Get started</button>
+      <a className="btn btn-primary btn-lg" href="/?path=/docs/getting-started-styles--docs">Get started</a>
     </div>
     <a
       href="https://www.experience-hub.ch/document/2803"
