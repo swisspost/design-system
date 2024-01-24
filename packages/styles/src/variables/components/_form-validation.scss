@@ -23,6 +23,7 @@ $form-feedback-invalid-bg: color.$error !default;
 $form-feedback-invalid-text: color.$white !default;
 $form-feedback-custom-color: color.$success !default;
 $form-feedback-custom-bg: color.$success !default;
-$form-feedback-invalid-box-shadow: 0 0 0 forms.$input-focus-width rgba($form-feedback-invalid-color, 0.25) !default;
+$form-feedback-invalid-box-shadow: 0 0 0 forms.$input-focus-width
+  rgba($form-feedback-invalid-color, 0.25) !default;
 $form-feedback-custom-text: color.$white !default;
 $form-feedback-custom-box-shadow: 0 0 0 0.2rem rgba($form-feedback-custom-color, 0.25) !default;
