@@ -1,7 +1,10 @@
-import { ArgTypes, Meta, Source } from '@storybook/blocks';
+import { Meta, Source } from '@storybook/blocks';
 import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
 import * as DropdownStories from './dropdown.stories';
-import StylesPackageImport from '../../../shared/styles-package-import.mdx'
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import NgbComponentDemoLink from '../../../shared/nb-bootstrap/ngb-component-demo-link.mdx';
+import NgbComponentAlert from '../../../shared/nb-bootstrap/ngb-component-alert.mdx';
+import NgbComponentImport from '../../../shared/nb-bootstrap/ngb-component-import.mdx';
 import SampleBasic from './dropdown-basic.sample.html?raw';
 import SampleDropup from './dropdown-dropup.sample.html?raw';
 import SampleDropupScroll from './dropdown-dropup-scroll.sample.html?raw';
@@ -9,76 +12,31 @@ import SampleIcons from './dropdown-icons.sample.html?raw';
 
 <Meta of={DropdownStories} />
 
-# Dropdown
+<div className="d-flex align-items-center justify-content-between">
+  # Dropdown
 
-<div className="alert alert-info alert-md">
-  <h2 className="alert-heading">Angular only component</h2>
-  <p>The Dropdown is an <a href="//Angular.io" target="_blank">Angular</a> component, as such it only works
-    within Angular projects.</p>
+  <NgbComponentDemoLink component="dropdown" />
 </div>
 
-{/* The Header Angular component for internal usage.
+<p className="lead">The Dropdown component provides an interactive menu interface, allowing users to select a single option from a list of choices that expands when activated.</p>
+
+<NgbComponentAlert component="dropdown" />
 
 <ul>
   <li>
-    <a href="#installation" target="_self">Installation</a>
+    <a href="#component-import" target="_self">Component Import</a>
   </li>
   <li>
-    <a href="#usage" target="_self">Usage</a>
+    <a href="#style-imports" target="_self">Style Imports</a>
   </li>
   <li>
     <a href="#examples" target="_self">Examples</a>
   </li>
-</ul> */}
-{/* 
-## Installation
+</ul>
 
-<Source code={`npm install @swisspost/design-system-intranet-header`} language="bash" /> */}
+<NgbComponentImport module="NgbPaginationModule" />
 
-{/* ## Usage
-
-1. In `app.module.ts`, import `SwissPostIntranetHeaderModule` and add it to the `imports` array property.
-
-<Source code={SampleUse} language="typescript" />
-
-2. In `app.component.html`, create a `section` container and assign it the CSS classes that best suit your desired layout:
-
-<div className="table-responsive">
-  <table className="table">
-    <thead>
-      <tr>
-        <th>Class</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>`layout-container`</td>
-        <td>Always</td>
-      </tr>
-      <tr>
-        <td>`header-big`</td>
-        <td>To use the header with a navigation bar</td>
-      </tr>
-      <tr>
-        <td>`header-small`</td>
-        <td>To use the header without a navigation bar</td>
-      </tr>
-      <tr>
-        <td>`with-searchbar`</td>
-        <td>To use the header with a search bar</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-3. In the layout container, add the `post-intranet-header` component and configure it as needed using the properties described below.
-
-4. Add any other content in the container below the header, wrapped in an element with class `header-margin`.
-
-### Props
-
-<ArgTypes of={IntranetHeaderStories} /> */}
+<StylesPackageImport components={['dropdown']} />
 
 ## Examples
 
@@ -100,5 +58,3 @@ import SampleIcons from './dropdown-icons.sample.html?raw';
     <Source code={SampleIcons} language="html" />
   </PostTabPanel>
 </PostTabs>
-
-<StylesPackageImport components={['dropdown']} />
