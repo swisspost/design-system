@@ -52,6 +52,7 @@ const preview: Preview = {
             'Intranet Header',
             'Icons',
             ['Getting Started'],
+            'Pagination',
           ],
           'Patterns',
           'Utilities',
