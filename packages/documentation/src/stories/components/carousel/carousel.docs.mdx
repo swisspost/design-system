@@ -19,7 +19,7 @@ import SampleLight from './carousel-light.sample.html?raw';
 
 <p className="lead">A slideshow component for cycling through elements—images or slides of text—like a carousel.</p>
 
-<NgbComponentAlert component="carousel" src="https://ng-bootstrap.github.io/#/components/carousel/overview" />
+<NgbComponentAlert component="carousel" />
 
 <ul>
   <li>
@@ -45,13 +45,13 @@ import SampleLight from './carousel-light.sample.html?raw';
 ## Examples
 
 <PostTabs>
-  <PostTabHeader slot="tabs" panel="headerNavbar">Basic example</PostTabHeader>
-  <PostTabPanel name="headerNavbar">
+  <PostTabHeader slot="tabs" panel="sampleBasic">Basic example</PostTabHeader>
+  <PostTabPanel name="sampleBasic">
     <Source code={SampleBasic} language="html" />
   </PostTabPanel>
 
-  <PostTabHeader slot="tabs" panel="headerSideNavigation">Light caption</PostTabHeader>
-  <PostTabPanel name="headerSideNavigation">
+  <PostTabHeader slot="tabs" panel="sampleLight">Light caption</PostTabHeader>
+  <PostTabPanel name="sampleLight">
     <Source code={SampleLight} language="html" />
   </PostTabPanel>
 </PostTabs>
