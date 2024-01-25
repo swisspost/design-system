@@ -1,0 +1,33 @@
+import { Meta, Source } from '@storybook/blocks';
+import NgbComponentDemoLink from '../../../shared/nb-bootstrap/ngb-component-demo-link.mdx';
+import NgbComponentAlert from '../../../shared/nb-bootstrap/ngb-component-alert.mdx';
+import NgbComponentImport from '../../../shared/nb-bootstrap/ngb-component-import.mdx';
+import * as typeaheadStories from './typeahead.stories.ts';
+import typeaheadSample from './typeahead.sample.html?raw';
+
+<Meta of={typeaheadStories} />
+
+<div className="d-flex align-items-center justify-content-between">
+  # Typeahead
+
+  <NgbComponentDemoLink component="typeahead" />
+</div>
+
+<p className="lead">A component to display a list of suggestions following what the user is typing.</p>
+
+<NgbComponentAlert component="typeahead" />
+
+<ul>
+  <li>
+    <a href="#component-import" target="_self">Component Import</a>
+  </li>
+  <li>
+    <a href="#examples" target="_self">Examples</a>
+  </li>
+</ul>
+
+<NgbComponentImport module="NgbTypeaheadModule" />
+
+## Examples
+
+<Source code={typeaheadSample} language="html"/>
