@@ -42,6 +42,7 @@ const preview: Preview = {
             'Button',
             'Button Group',
             'Card',
+            'Carousel',
             'Collapsible',
             'Datepicker',
             'Forms',
