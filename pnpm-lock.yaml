@@ -379,7 +379,7 @@ importers:
         specifier: workspace:6.6.0
         version: link:../styles/dist
       '@swisspost/internet-header':
-        specifier: workspace:1.13.3
+        specifier: workspace:1.13.4
         version: link:../internet-header
       bootstrap:
         specifier: 5.3.2
