@@ -53,6 +53,8 @@ const preview: Preview = {
             'Icons',
             ['Getting Started'],
             'Pagination',
+            'Popover',
+            'Progressbar',
           ],
           'Patterns',
           'Utilities',
