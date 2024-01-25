@@ -4,8 +4,8 @@
 @use './../variables/color' as col;
 @use './../variables/spacing' as spacing;
 
-.post-tag,
-.post-tag-sm {
+.tag:not(.token), // is only a temporary fix till I know how to do it wihtout causing future issues. wihtout this the Code sample would break currently.
+.tag-sm {
   display: inline-flex;
   justify-content: flex-start;
   justify-items: center;
@@ -23,22 +23,32 @@
   &.bg-white {
     border-color: col.$black;
   }
-}
 
-.post-tag {
-  height: spacing.$size-big;
-
-  .post-tag-icon {
-    height: spacing.$size-small-large;
-    width: spacing.$size-small-large;
+  .tag-content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
 
-.post-tag-sm {
+.tag {
+  height: spacing.$size-big;
+
+  .tag-icon {
+    height: spacing.$size-small-large;
+    min-height: spacing.$size-small-large;
+    width: spacing.$size-small-large;
+    min-width: spacing.$size-small-large;
+  }
+}
+
+.tag-sm {
   height: spacing.$size-large;
 
-  .post-tag-icon {
+  .tag-icon {
     height: spacing.$size-regular;
+    min-height: spacing.$size-regular;
     width: spacing.$size-regular;
+    min-width: spacing.$size-regular;
   }
 }

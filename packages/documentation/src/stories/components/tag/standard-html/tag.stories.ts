@@ -1,31 +1,50 @@
 import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, nothing } from 'lit';
 import { BADGE } from '../../../../../.storybook/constants';
-import { ifDefined } from 'lit/directives/if-defined.js';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
-const meta: Meta<HTMLPostTagElement> = {
+const meta: Meta = {
   title: 'Components/Tag',
-  component: 'post-tag',
-  render: postTagRender,
+  render: tagRender,
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },
   args: {
-    innerHTML: 'Tag',
+    showIcon: true,
+    icon: 1001,
+    content: 'Tag',
+    size: 'tag',
+    color: 'gray',
   },
   argTypes: {
-    innerHTML: {
-      name: 'Content',
-      description:
-        'This sets the innerHTML of the component, as you can see in the code above, and is where you place the text for the `post-tag`',
+    showIcon: {
+      name: 'Display icon',
+      description: 'Wheter or not to show icon',
       control: {
-        type: 'text',
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
       },
     },
     icon: {
       name: 'Icon',
+      description: `Any number of an Icon in the Swiss Post Icon Library. Example '1001' -> Letter`,
       control: {
         type: 'number',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    content: {
+      name: 'Content',
+      description: 'Content of Tag',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'Content',
       },
     },
     size: {
@@ -39,6 +58,9 @@ const meta: Meta<HTMLPostTagElement> = {
         },
       },
       options: ['tag', 'tag-sm'],
+      table: {
+        category: 'Content',
+      },
     },
     color: {
       name: 'Color',
@@ -50,12 +72,15 @@ const meta: Meta<HTMLPostTagElement> = {
           white: 'White',
           info: 'Info',
           success: 'Success',
-          warning: 'Warning',
           danger: 'Danger (Error)',
+          warning: 'Warning',
           yellow: 'Yellow',
         },
       },
       options: ['gray', 'white', 'info', 'success', 'warning', 'danger', 'yellow'],
+      table: {
+        category: 'Content',
+      },
     },
   },
 };
@@ -64,34 +89,25 @@ export default meta;
 
 type Story = StoryObj;
 
-function postTagRender(args: Args) {
-  args.innerHTML = args.content ? args.content : args.innerHTML;
+function tagRender(args: Args) {
   return html`
-    <post-tag
-      icon=${ifDefined(args.icon)}
-      color=${ifDefined(args.color)}
-      size=${ifDefined(args.size)}
-    >
-      ${args.innerHTML}
-    </post-tag>
+    <div class="${args.size} bg-${args.color}">
+      ${args.showIcon
+        ? unsafeHTML(`<post-icon name="${args.icon}" class="tag-icon"></post-icon>`)
+        : nothing}
+      <div class="tag-content">${args.content}</div>
+    </div>
   `;
 }
 
-export const PostTag: Story = {};
+export const Default: Story = {};
 
-export const PostTagVariants: Story = {
-  args: {
-    icon: 1001,
-  },
+export const Variants: Story = {
   render: (args: Args, context: StoryContext) => {
     return html`
       <div class="d-flex justify-content-evenly">
         ${context.argTypes.color.options.map((color: string) =>
-          postTagRender({
-            ...args,
-            color,
-            innerHTML: context.argTypes.color.control.labels[color],
-          }),
+          tagRender({ ...args, color, content: context.argTypes.color.control.labels[color] }),
         )}
       </div>
     `;

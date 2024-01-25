@@ -24,16 +24,18 @@ export class PostTag {
   /**
    * Sets the size (height) of the tag. Also affects the size of the icon.
    * Expected values:
-   * post-tag -> large (default)
-   * post-tag-sm -> small
+   * tag -> large (default)
+   * tag-sm -> small
    *
    */
-  @Prop() readonly size?: string = 'post-tag';
+  @Prop() readonly size?: string = 'tag';
 
   /**
-   * Defines which icon from the swisspost icon library is used. Excpects a number.
+   * Defines which icon from the Swiss Post Icon Library is used. Excpects a number.
    * If there is no value asigned to it no icon will be rendered.
    * Check the desing-system.post documentation to see all available icons.
+   *
+   * Example `1001` -> Letter
    *
    * PS: Values 0 and null are ignored
    */
@@ -49,8 +51,8 @@ export class PostTag {
     return (
       <Host data-version={version}>
         <div class={this.classes}>
-          {!!this.icon && <post-icon name={icon} class="post-tag-icon"></post-icon>}
-          <div>
+          {!!this.icon && <post-icon name={icon} class="tag-icon"></post-icon>}
+          <div class="tag-content">
             <slot></slot>
           </div>
         </div>

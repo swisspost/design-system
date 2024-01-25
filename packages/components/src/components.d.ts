@@ -198,11 +198,11 @@ export namespace Components {
          */
         "color"?: string;
         /**
-          * Defines which icon from the swisspost icon library is used. Excpects a number. If there is no value asigned to it no icon will be rendered. Check the desing-system.post documentation to see all available icons.  PS: Values 0 and null are ignored
+          * Defines which icon from the Swiss Post Icon Library is used. Excpects a number. If there is no value asigned to it no icon will be rendered. Check the desing-system.post documentation to see all available icons.  Example `1001` -> Letter  PS: Values 0 and null are ignored
          */
         "icon"?: number;
         /**
-          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values: post-tag -> large (default) post-tag-sm -> small
+          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values: tag -> large (default) tag-sm -> small
          */
         "size"?: string;
     }
@@ -531,11 +531,11 @@ declare namespace LocalJSX {
          */
         "color"?: string;
         /**
-          * Defines which icon from the swisspost icon library is used. Excpects a number. If there is no value asigned to it no icon will be rendered. Check the desing-system.post documentation to see all available icons.  PS: Values 0 and null are ignored
+          * Defines which icon from the Swiss Post Icon Library is used. Excpects a number. If there is no value asigned to it no icon will be rendered. Check the desing-system.post documentation to see all available icons.  Example `1001` -> Letter  PS: Values 0 and null are ignored
          */
         "icon"?: number;
         /**
-          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values: post-tag -> large (default) post-tag-sm -> small
+          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values: tag -> large (default) tag-sm -> small
          */
         "size"?: string;
     }
