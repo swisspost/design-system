@@ -1,5 +1,19 @@
 # @swisspost/design-system-documentation
 
+## 2.8.1
+
+### Patch Changes
+
+- Added a documentation page for the ng-bootstrap progressbar component. (by [@imagoiq](https://github.com/imagoiq) with [#2545](https://github.com/swisspost/design-system/pull/2545))
+
+- Added a documentation page for the ng-bootstrap pagination component. (by [@imagoiq](https://github.com/imagoiq) with [#2540](https://github.com/swisspost/design-system/pull/2540))
+
+- Updated home page technologies table. (by [@imagoiq](https://github.com/imagoiq) with [#2546](https://github.com/swisspost/design-system/pull/2546))
+
+- Migrated carousel documentation to new documentation. (by [@imagoiq](https://github.com/imagoiq) with [#2490](https://github.com/swisspost/design-system/pull/2490))
+- Updated dependencies:
+  - @swisspost/internet-header@1.13.4
+
 ## 2.8.0
 
 ### Minor Changes
