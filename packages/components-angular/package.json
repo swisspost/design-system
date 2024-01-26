@@ -5,9 +5,8 @@
     "start": "ng serve --port 9210",
     "build": "ng build components",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "e2e": "ng e2e --watch=false",
+    "e2e:watch": "ng e2e"
   },
   "private": true,
   "dependencies": {
