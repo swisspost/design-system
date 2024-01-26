@@ -62,18 +62,11 @@
             "outputPath": "dist/consumer-app",
             "index": "projects/consumer-app/src/index.html",
             "main": "projects/consumer-app/src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": ["zone.js"],
             "tsConfig": "projects/consumer-app/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/consumer-app/src/favicon.ico",
-              "projects/consumer-app/src/assets"
-            ],
-            "styles": [
-              "projects/consumer-app/src/styles.scss"
-            ],
+            "assets": ["projects/consumer-app/src/favicon.ico", "projects/consumer-app/src/assets"],
+            "styles": ["projects/consumer-app/src/styles.scss"],
             "scripts": []
           },
           "configurations": {
@@ -124,23 +117,66 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "polyfills": ["zone.js", "zone.js/testing"],
             "tsConfig": "projects/consumer-app/tsconfig.spec.json",
             "inlineStyleLanguage": "scss",
-            "assets": [
-              "projects/consumer-app/src/favicon.ico",
-              "projects/consumer-app/src/assets"
-            ],
-            "styles": [
-              "projects/consumer-app/src/styles.scss"
-            ],
+            "assets": ["projects/consumer-app/src/favicon.ico", "projects/consumer-app/src/assets"],
+            "styles": ["projects/consumer-app/src/styles.scss"],
             "scripts": []
+          }
+        },
+        "cypress-run": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "consumer-app:serve",
+            "configFile": "projects/consumer-app/cypress.config.js"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "consumer-app:serve:production"
+            }
+          }
+        },
+        "cypress-open": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "watch": true,
+            "headless": false,
+            "configFile": "projects/consumer-app/cypress.config.js"
+          }
+        },
+        "ct": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "consumer-app:serve",
+            "watch": true,
+            "headless": false,
+            "testingType": "component"
+          },
+          "configurations": {
+            "development": {
+              "devServerTarget": "consumer-app:serve:development"
+            }
+          }
+        },
+        "e2e": {
+          "builder": "@cypress/schematic:cypress",
+          "options": {
+            "devServerTarget": "consumer-app:serve",
+            "watch": true,
+            "headless": false,
+            "project": "projects/consumer-app"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "consumer-app:serve:production"
+            }
           }
         }
       }
     }
+  },
+  "cli": {
+    "schematicCollections": ["@cypress/schematic", "@schematics/angular"]
   }
 }
