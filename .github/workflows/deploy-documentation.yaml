@@ -42,4 +42,4 @@ jobs:
           folder: ${{ steps.build.outputs.folder }}
           comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           comment_author: swisspost-bot
-          package_name:  @swisspost/design-system-documentation
+          package_name: '@swisspost/design-system-documentation'
