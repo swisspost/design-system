@@ -1,0 +1,68 @@
+import { Meta, Source } from '@storybook/blocks';
+import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import NgbComponentDemoLink from '../../../shared/nb-bootstrap/ngb-component-demo-link.mdx';
+import NgbComponentAlert from '../../../shared/nb-bootstrap/ngb-component-alert.mdx';
+import NgbComponentImport from '../../../shared/nb-bootstrap/ngb-component-import.mdx';
+import * as modalStories from './modal.stories';
+import modalVaryingContent from './modal-varying-content.sample?raw';
+import modalFocusedContent from './modal-focused-content.sample?raw';
+import modalBlocking from './modal-blocking.sample?raw';
+
+<Meta of={modalStories} />
+
+<div className="d-flex align-items-center justify-content-between">
+  # Modal
+
+  <NgbComponentDemoLink component="modal" />
+</div>
+
+<p className="lead">Display information that requires the user’s immediate attention.</p>
+
+<NgbComponentAlert component="modal" />
+
+<ul>
+  <li>
+    <a href="#component-import" target="_self">Component Import</a>
+  </li>
+  <li>
+    <a href="#style-imports" target="_self">Style Imports</a>
+  </li>
+  <li>
+    <a href="#focus-management" target="_self">Focus Management</a>
+  </li>
+  <li>
+    <a href="#examples" target="_self">Examples</a>
+  </li>
+</ul>
+
+<NgbComponentImport module="NgbModalModule" />
+
+<StylesPackageImport components={["modal"]} />
+
+## Focus Management
+Since the modal appears above the page, generally blocking interaction with the content below,
+it is important that the focus is move to an element within it.
+
+By default, it is the first focusable element within the modal that receives focus upon opening.
+However, You can decide to focus any other element by adding an `ngbAutofocus` attribute to it.
+
+## Examples
+
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="varying-content">Varying Content</PostTabHeader>
+  <PostTabPanel name="varying-content">
+    <Source code={modalVaryingContent} language="typescript"/>
+  </PostTabPanel>
+
+  <PostTabHeader slot="tabs" panel="focused-content">Focused Content</PostTabHeader>
+  <PostTabPanel name="focused-content">
+    <Source code={modalFocusedContent} language="typescript"/>
+  </PostTabPanel>
+
+  <PostTabHeader slot="tabs" panel="blocking">Mandatory Confirmation</PostTabHeader>
+  <PostTabPanel name="blocking">
+    <Source code={modalBlocking} language="typescript"/>
+  </PostTabPanel>
+</PostTabs>
+
