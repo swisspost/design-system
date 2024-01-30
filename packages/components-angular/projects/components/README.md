@@ -16,7 +16,7 @@ Install the package in your Angular project:
 npm install @swisspost/design-system-components-angular
 ```
 
-In your `app.module.ts`, add the header to your imports:
+In your `app.module.ts`, add the components to your imports:
 
 ```typescript
 // Other imports ....
@@ -48,4 +48,4 @@ In order to keep our community open and inclusive, we expect you to read and fol
 
 Software contained in this repository is published by the Swiss Post Ltd. under the [Apache 2.0 License](./LICENSE).
 
-© 2022 Swiss Post, Ltd.
+© 2024 Swiss Post, Ltd.
