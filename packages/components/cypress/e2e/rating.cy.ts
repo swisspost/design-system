@@ -1,6 +1,6 @@
-describe('post-rating', () => {
+describe('rating', () => {
   beforeEach(() => {
-    cy.getComponent('post-rating');
+    cy.getComponent('rating');
     cy.get('@rating').get('div.rating').as('rating-container');
     cy.get('@rating-container').get('svg').as('stars');
   });
