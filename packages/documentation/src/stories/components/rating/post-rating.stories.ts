@@ -4,11 +4,11 @@ import { BADGE } from '../../../../.storybook/constants';
 import { spreadArgs } from '../../../utils';
 
 const meta: Meta<HTMLPostRatingElement> = {
-  title: 'Components/Post Rating',
+  title: 'Components/Rating',
   component: 'post-rating',
   render: render,
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
   },
   argTypes: {
     currentRating: {
