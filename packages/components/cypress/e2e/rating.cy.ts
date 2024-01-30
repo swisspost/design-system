@@ -22,6 +22,17 @@ describe('post-rating', () => {
       });
     });
 
+    it('should change appearance on hover', () => {
+      cy.get('@stars').eq(3).trigger('mouseenter');
+      cy.get('@stars').each(($star, index) => {
+        if (index <= 3) {
+          cy.wrap($star).should('have.class', 'hovered-star');
+        } else {
+          cy.wrap($star).should('not.have.class', 'hovered-star');
+        }
+      });
+    });
+
     it('should set correct rating by clicking on a star', () => {
       for (let i = 0; i < 10; i++) {
         cy.get('@stars').eq(i).click();
@@ -52,19 +63,6 @@ describe('post-rating', () => {
       });
     });
   });
-
-  // The hover test does not yet work, need to find a way to make assertions while hovering
-
-  // it('should change appearance on hover', () => {
-  //   cy.get('@stars').eq(3).trigger('mouseover');
-  //   cy.get('@stars').each(($star, index) => {
-  //     if (index <= 3) {
-  //       cy.wrap($star).should('have.class', 'hovered-star');
-  //     } else {
-  //       cy.wrap($star).should('not.have.class', 'hovered-star');
-  //     }
-  //   });
-  // });
 
   describe('attributes', () => {
     it('should check if stars reflect current-rating attribute correctly', () => {
