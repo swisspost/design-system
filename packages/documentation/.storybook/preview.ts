@@ -57,6 +57,7 @@ const preview: Preview = {
             'Progressbar',
             'Table',
             'Tabs',
+            'Timepicker',
             'Toast',
             'Tooltip',
             'Topic Teaser',
