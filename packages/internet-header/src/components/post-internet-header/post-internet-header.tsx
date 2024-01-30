@@ -29,6 +29,7 @@ import { If } from '../../utils/if.component';
 import packageJson from '../../../package.json';
 import { registerLogoAnimationObserver } from './logo-animation/logo-animation';
 import { getScrollParent } from '../../utils/scrollparent';
+import { getLogoScale } from './logo-animation/logo-scale';
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -446,6 +447,8 @@ export class PostInternetHeader {
       (this.login ?? !config.header.isLoginWidgetHidden) && config.header.loginWidgetOptions;
     const renderLanguageSwitch = config.header.navLang.length > 1;
 
+    const initialLogoScale = getLogoScale(this.host);
+
     return (
       <Host
         class={`stickyness-${this.stickyness} ${
@@ -453,6 +456,7 @@ export class PostInternetHeader {
         }`}
         data-version={packageJson.version}
         onKeyup={(e: KeyboardEvent) => this.handleKeyUp(e)}
+        style={{ '--logo-scale': initialLogoScale }}
       >
         <header class={`post-internet-header${this.fullWidth ? ' full-width' : ''}`}>
           <SvgSprite />
