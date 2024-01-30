@@ -71,6 +71,8 @@
       }
     }
 
+    &[type='week'],
+    &[type='month'],
     &[type='date'],
     &[type='time'] {
       background-position: right b.$input-height-inner-quarter bottom 0.5rem;
