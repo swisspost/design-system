@@ -32,7 +32,6 @@ export const Select: Story = {
       }),
       ...bombArgs({
         size: context.argTypes.size.options,
-        success: [false, true],
         validation: context.argTypes.validation.options.filter(
           (option: string) => option !== 'is-invalid',
         ),
