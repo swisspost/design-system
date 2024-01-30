@@ -1,5 +1,18 @@
 # @swisspost/internet-header
 
+## 1.13.4
+
+### Patch Changes
+
+- Fixed size of post logo on browser which does not support aspect-ratio property. (by [@imagoiq](https://github.com/imagoiq) with [#2543](https://github.com/swisspost/design-system/pull/2543))
+
+## 1.13.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.0
+
 ## 1.13.2
 
 ### Patch Changes

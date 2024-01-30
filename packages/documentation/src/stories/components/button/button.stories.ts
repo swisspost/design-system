@@ -137,7 +137,7 @@ const meta: Meta = {
         'Defines a custom icon.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
-        '<a href="/?path=/docs/icons-getting-started--docs">set up the icons in your project</a>' +
+        '<a href="?path=/docs/components-icons-getting-started--docs">set up the icons in your project</a>' +
         '.</span>',
       if: {
         arg: 'tag',
@@ -335,4 +335,13 @@ export const FullWidth: Story = {
     variants: ['btn-primary'],
     additionalClasses: ['w-sm-100', 'w-md-auto'],
   },
+};
+
+export const Align: Story = {
+  render: () => html`
+    <div class="d-flex flex-row-reverse gap-mini justify-content-end">
+      <button class="btn btn-primary">Send</button>
+      <button class="btn btn-secondary">Cancel</button>
+    </div>
+  `,
 };
