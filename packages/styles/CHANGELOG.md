@@ -1,5 +1,26 @@
 # @swisspost/design-system-styles
 
+## 6.6.0
+
+### Minor Changes
+
+- Deprecation of legacy grid classes:
+  - `.vertical-gutters` (use gutter classes instead, e.g. `.g-*`, `.gy-*` or `.gx-*`)
+  - `.row.border-gutters`
+  - `.container-reset`
+  - `.container-reset-left` and `.container-reset-right`
+  - `.container-fluid-#{$breakpoint}` (by [@b1aserlu](https://github.com/b1aserlu) with [#2400](https://github.com/swisspost/design-system/pull/2400))
+
+### Patch Changes
+
+- Fixed the alignment of icons on datatable buttons. (by [@imagoiq](https://github.com/imagoiq) with [#2500](https://github.com/swisspost/design-system/pull/2500))
+
+- Updated styles for the `.is-valid` class. (by [@imagoiq](https://github.com/imagoiq) with [#2391](https://github.com/swisspost/design-system/pull/2391))
+
+- Update the background color of accordion to be white on any background color other than white. The accordion background remains gray on white backgrounds. (by [@alizedebray](https://github.com/alizedebray) with [#2379](https://github.com/swisspost/design-system/pull/2379))
+
+- Fixed a visual regression on the intranet-header with a sidenav. (by [@imagoiq](https://github.com/imagoiq) with [#2521](https://github.com/swisspost/design-system/pull/2521))
+
 ## 6.5.1
 
 ### Patch Changes

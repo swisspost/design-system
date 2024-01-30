@@ -1,0 +1,17 @@
+<div class="position-relative">
+  <input
+    #d="ngbDatepicker"
+    aria-label="Datepicker"
+    class="form-control is-invalid"
+    maxlength="10"
+    ngbDatepicker
+    placeholder="yyyy-mm-dd"
+    type="text"
+  />
+
+  <button class="ngb-dp-open" (click)="d.toggle()" aria-label="Open calendar" type="button">
+    <i class="pi pi-3203" aria-hidden="true"></i>
+  </button>
+
+  <p class="invalid-feedback">Selected date is invalid.</p>
+</div>

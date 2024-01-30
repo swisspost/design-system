@@ -1,11 +1,5 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import LinkTo from '@storybook/addon-links/react';
-import {
-  PostAlert,
-  PostTabs,
-  PostTabHeader,
-  PostTabPanel,
-} from '@swisspost/design-system-components-react';
+import { PostAlert, PostTabHeader, PostTabPanel, PostTabs, } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 import * as AlertStories from './standard-html/alert.stories';
 import * as PostAlertStories from './web-component/post-alert.stories';
@@ -52,7 +46,7 @@ Alerts are intended to attract the user's attention without interrupting their o
 
       Alerts come with a preassigned icon based on their type.
       You have the option to customize this icon by using a `post-icon` element inside the alert.
-      For more information, read the <LinkTo kind="icons-getting-started" story="docs">getting started with icons guide</LinkTo>.
+      For more information, read the [getting started with icons guide](/?path=/docs/components-icons-getting-started--docs).
 
       <Canvas of={AlertStories.CustomIcon} />
 
@@ -85,7 +79,7 @@ Alerts are intended to attract the user's attention without interrupting their o
       ## Installation
 
       The `<post-alert/>` element is part of the `@swisspost/design-system-components` package.
-      For more information, read the <LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
+      For more information, read the [getting started with components guide](/?path=/docs/getting-started-components--docs).
 
       ## Examples
 
@@ -103,7 +97,7 @@ Alerts are intended to attract the user's attention without interrupting their o
 
       Alerts come with a preassigned icon based on their type.
       You have the option to customize this icon by assigning the desired icon's name to the `icon` property of the alert.
-      Find the icon you need with the <LinkTo kind="icons-search-for-icons" story="docs">icon search page</LinkTo>.
+      Find the icon you need with the [icon search page](/?path=/docs/components-icons-search-for-icons--docs).
 
       <Canvas of={PostAlertStories.CustomIcon} />
 
