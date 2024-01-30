@@ -30,7 +30,6 @@ const meta: Meta<HTMLPostTagElement> = {
     },
     size: {
       name: 'Size',
-      description: 'Number of the icon that is diplayed alongside the text',
       control: {
         type: 'select',
         labels: {
@@ -40,9 +39,8 @@ const meta: Meta<HTMLPostTagElement> = {
       },
       options: ['tag', 'tag-sm'],
     },
-    color: {
-      name: 'Color',
-      description: 'The background color of the tag',
+    bgColor: {
+      name: 'bgColor',
       control: {
         type: 'select',
         labels: {
@@ -69,7 +67,7 @@ function postTagRender(args: Args) {
   return html`
     <post-tag
       icon=${ifDefined(args.icon)}
-      color=${ifDefined(args.color)}
+      bg-color=${ifDefined(args.bgColor)}
       size=${ifDefined(args.size)}
     >
       ${args.innerHTML}
@@ -86,11 +84,11 @@ export const PostTagVariants: Story = {
   render: (args: Args, context: StoryContext) => {
     return html`
       <div class="d-flex justify-content-evenly">
-        ${context.argTypes.color.options.map((color: string) =>
+        ${context.argTypes.bgColor.options.map((bgColor: string) =>
           postTagRender({
             ...args,
-            color,
-            innerHTML: context.argTypes.color.control.labels[color],
+            bgColor,
+            innerHTML: context.argTypes.bgColor.control.labels[bgColor],
           }),
         )}
       </div>

@@ -30,20 +30,20 @@ export const Tag: Story = {
 };
 
 export const PostTag: Story = {
-  render: (_args: Args, context: StoryContext) => {
+  render: (_args: Args) => {
     return html`
       <div class="d-flex gap-3 flex-wrap">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
             <div class="${bg + ' d-flex gap-3 flex-wrap p-3'}">
               ${bombArgs({
-                color: meta.argTypes?.color?.options,
+                bgColor: meta.argTypes?.color?.options,
                 icon: [undefined, 1001],
                 size: ['tag', 'tag-sm'],
                 innerHTML: ['Tag', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'],
               }).map((args: Args) => {
                 return html`
-                  <post-tag icon=${args.icon} color=${args.color} size=${args.size}>
+                  <post-tag icon=${args.icon} bg-color=${args.bgColor} size=${args.size}>
                     ${args.innerHTML}
                   </post-tag>
                 `;

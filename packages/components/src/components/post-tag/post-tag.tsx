@@ -16,15 +16,20 @@ export class PostTag {
 
   /**
    * Sets the background color of the tag as well as the matching text color.
+   * The name of this prop is `bg-color` in HTML, in TSX you can use `bgColor`.
+   *
    * Expected values: ['gray', 'white', info, 'success', 'error', 'warning', 'yellow']
+   *
    * default vaue: 'gray'
    */
-  @Prop() readonly color?: string = 'gray';
+  @Prop() readonly bgColor?: string = 'gray';
 
   /**
    * Sets the size (height) of the tag. Also affects the size of the icon.
    * Expected values:
+   *
    * tag -> large (default)
+   *
    * tag-sm -> small
    *
    */
@@ -42,7 +47,7 @@ export class PostTag {
   @Prop() readonly icon?: number;
 
   componentWillRender() {
-    this.classes = `${this.size} bg-${this.color}`;
+    this.classes = `${this.size} bg-${this.bgColor}`;
   }
 
   render() {

@@ -194,15 +194,15 @@ export namespace Components {
      */
     interface PostTag {
         /**
-          * Sets the background color of the tag as well as the matching text color. Expected values: ['gray', 'white', info, 'success', 'error', 'warning', 'yellow'] default vaue: 'gray'
+          * Sets the background color of the tag as well as the matching text color. The name of this prop is `bg-color` in HTML, in TSX you can use `bgColor`.  Expected values: ['gray', 'white', info, 'success', 'error', 'warning', 'yellow']  default vaue: 'gray'
          */
-        "color"?: string;
+        "bgColor"?: string;
         /**
           * Defines which icon from the Swiss Post Icon Library is used. Excpects a number. If there is no value asigned to it no icon will be rendered. Check the desing-system.post documentation to see all available icons.  Example `1001` -> Letter  PS: Values 0 and null are ignored
          */
         "icon"?: number;
         /**
-          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values: tag -> large (default) tag-sm -> small
+          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values:  tag -> large (default)  tag-sm -> small
          */
         "size"?: string;
     }
@@ -527,15 +527,15 @@ declare namespace LocalJSX {
      */
     interface PostTag {
         /**
-          * Sets the background color of the tag as well as the matching text color. Expected values: ['gray', 'white', info, 'success', 'error', 'warning', 'yellow'] default vaue: 'gray'
+          * Sets the background color of the tag as well as the matching text color. The name of this prop is `bg-color` in HTML, in TSX you can use `bgColor`.  Expected values: ['gray', 'white', info, 'success', 'error', 'warning', 'yellow']  default vaue: 'gray'
          */
-        "color"?: string;
+        "bgColor"?: string;
         /**
           * Defines which icon from the Swiss Post Icon Library is used. Excpects a number. If there is no value asigned to it no icon will be rendered. Check the desing-system.post documentation to see all available icons.  Example `1001` -> Letter  PS: Values 0 and null are ignored
          */
         "icon"?: number;
         /**
-          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values: tag -> large (default) tag-sm -> small
+          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values:  tag -> large (default)  tag-sm -> small
          */
         "size"?: string;
     }
