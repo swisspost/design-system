@@ -149,7 +149,7 @@ $form-floating-select-bg-size: 32px 32px;
 
 $form-floating-label-font-size-sm: type.$font-size-12;
 $form-floating-label-font-size-placeholder-sm: type.$font-size-14;
-$form-floating-padding-x-sm: $input-padding-x-sm;
+$form-floating-padding-x-sm: spacing.$size-regular;
 $form-floating-padding-y-sm: $input-padding-y-sm;
 $form-floating-label-height-sm: $form-floating-input-height-sm;
 $form-floating-label-padding-t-sm: $form-floating-label-height-sm * 0.5 -

@@ -150,7 +150,7 @@
       ~ label {
         padding-top: forms.$form-floating-padding-y-sm;
         font-size: forms.$form-floating-label-font-size-sm;
-        padding-inline: calc(#{forms.$form-floating-padding-x-sm} - #{forms.$input-border-width});
+        padding-inline: forms.$form-floating-padding-x-sm;
       }
 
       // TODO: replace with :has
@@ -164,13 +164,9 @@
     }
 
     &[multiple] {
-      padding-top: forms.$form-floating-input-padding-t * 1.5;
+      padding-top: spacing.$size-big;
       padding-bottom: 0;
       height: auto;
-
-      &.form-select-sm {
-        padding-top: forms.$form-floating-input-padding-t;
-      }
 
       ~ label {
         padding-top: forms.$input-padding-y-lg * forms.$form-floating-label-scale;
@@ -181,6 +177,15 @@
             2} - #{forms.$form-floating-padding-x * forms.$form-floating-label-upscale}
         );
         height: auto;
+        left: forms.$input-border-width * 3;
+      }
+
+      &.form-select-sm {
+        padding-top: forms.$form-floating-input-padding-t;
+
+        ~ label {
+          left: forms.$input-border-width * 2;
+        }
       }
 
       &:not(:disabled) {
