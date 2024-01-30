@@ -8,30 +8,37 @@
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
   },
+  "files": [
+    "dist"
+  ],
   "publishConfig": {
     "directory": "./dist",
     "access": "public",
     "linkDirectory": true
   },
   "scripts": {
-    "build": "tsc -p tsconfig.json"
+    "copy-files": "copyfiles -f LICENSE README.md package.json CONTRIBUTING.md CHANGELOG.md src/migrations.json dist",
+    "build": "tsc -p tsconfig.json && pnpm copy-files",
+    "clean": "rimraf dist"
   },
-  "keywords": [
-    "schematics"
-  ],
   "dependencies": {
     "@angular-devkit/core": "=15.0.4",
     "@angular-devkit/schematics": "=15.0.4",
     "@angular/core": "=15.0.4",
     "cheerio": "1.0.0-rc.12",
-    "prettier": "^3.1.0",
-    "typescript": "~4.9.3"
+    "prettier": "3.2.4",
+    "typescript": "4.9.5"
   },
   "devDependencies": {
-    "@types/node": "^14.15.0"
+    "@types/node": "16.18.75",
+    "copyfiles": "2.4.1",
+    "rimraf": "5.0.5"
   },
   "schematics": "./src/migrations.json",
   "ng-update": {
     "migrations": "./src/migrations.json"
-  }
+  },
+  "keywords": [
+    "schematics"
+  ]
 }

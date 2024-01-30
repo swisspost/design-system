@@ -1,6 +1,7 @@
 import type { StorybookConfig } from '@storybook/web-components-vite';
 import pkg from '../package.json';
 import { mergeConfig } from 'vite';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const config: StorybookConfig = {
   logLevel: 'info',
@@ -20,6 +21,30 @@ const config: StorybookConfig = {
         backgrounds: false,
         highlight: false,
         outline: false,
+        docs: false,
+      },
+    },
+    {
+      name: '@storybook/addon-docs',
+      options: {
+        mdxPluginOptions: {
+          mdxCompileOptions: {
+            rehypePlugins: [
+              [
+                rehypeAutolinkHeadings,
+                {
+                  content: {
+                    type: 'element',
+                    tagName: 'post-icon',
+                    properties: { name: 2037 },
+                  },
+                  headingProperties: { className: 'docs-autolink' },
+                  behavior: 'append',
+                },
+              ],
+            ],
+          },
+        },
       },
     },
     '@storybook/addon-links',

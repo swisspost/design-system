@@ -14,7 +14,10 @@ $badge-height: button.$btn-height-rg;
 $badge-gap: spacing.$size-mini;
 $badge-border-color: var(--post-gray-60);
 $badge-border-width: commons.$border-thick;
-$badge-transition: color 250ms, background-color 250ms, border-color 250ms;
+$badge-transition:
+  color 250ms,
+  background-color 250ms,
+  border-color 250ms;
 $badge-hover-color: color.$black;
 $badge-hover-bg-color: color.$gray-10;
 $badge-active-color: color.$black;

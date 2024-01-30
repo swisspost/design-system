@@ -1,22 +1,25 @@
-<script src="/assets/scripts/storybook-events.js"></script>
+<script src="/assets/scripts/storybook-manager-events.js"></script>
+<script src="/assets/scripts/autolink.js"></script>
 <script src="/assets/scripts/analytics-helper.js"></script>
 <script src="/assets/scripts/analytics-events.js"></script>
 
 <script data-id="GtmConstants">
-  window.__GTM__.set('GTM_KEY', '%STORYBOOK_GTM_KEY%');
+  if (window.__GTM__) {
+    window.__GTM__.set('GTM_KEY', '%STORYBOOK_GTM_KEY%');
 
-  window.__GTM__.setEnvironments(
-    {
-      dev: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_DEV%',
-      int: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT%',
-      prod: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD%',
-    },
-    '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK%',
-  );
+    window.__GTM__.setEnvironments(
+      {
+        dev: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_DEV%',
+        int: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT%',
+        prod: '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD%',
+      },
+      '%STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK%',
+    );
 
-  window.__GTM__.set('CONTENT_LANGUAGE', '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE%');
-  window.__GTM__.set('GEO_REGION', '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION%');
-  window.__GTM__.set('SOURCE_CODE_VERSION', '%STORYBOOK_GTM_PAGE_CONTEXT_SOURCE_CODE_VERSION%');
+    window.__GTM__.set('CONTENT_LANGUAGE', '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_LANGUAGE%');
+    window.__GTM__.set('GEO_REGION', '%STORYBOOK_GTM_PAGE_CONTEXT_CONTENT_GEO_REGION%');
+    window.__GTM__.set('SOURCE_CODE_VERSION', '%STORYBOOK_GTM_PAGE_CONTEXT_SOURCE_CODE_VERSION%');
+  }
 </script>
 
 <script data-id="GoogleTagManager">

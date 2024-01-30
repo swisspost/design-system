@@ -27,7 +27,6 @@ const meta: Meta = {
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
-    success: false,
   },
   argTypes: {
     label: {
@@ -53,7 +52,7 @@ const meta: Meta = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#labels">label accessibility guide</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -144,7 +143,7 @@ const meta: Meta = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -172,20 +171,6 @@ const meta: Meta = {
         category: 'States',
       },
     },
-    success: {
-      name: 'Success',
-      description: 'Controls the success state appearance of the component.',
-      control: {
-        type: 'boolean',
-      },
-      if: {
-        arg: 'validation',
-        neq: 'is-invalid',
-      },
-      table: {
-        category: 'States',
-      },
-    },
   },
 };
 
@@ -202,7 +187,6 @@ const Template: Story = {
       args.size,
       args.validation,
       args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
-      args.success && 'success',
     ]
       .filter(c => c && c !== 'null')
       .join(' ');

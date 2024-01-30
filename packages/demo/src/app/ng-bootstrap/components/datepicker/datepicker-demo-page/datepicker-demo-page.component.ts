@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder } from '@angular/forms';
 import { I18n } from './datepicker-localization.service';
+
 const dpSimpleHtml =
   require('!!raw-loader!../datepicker-simple/datepicker-simple.component.html').default;
 const dpSimpleHtmlLg =
@@ -44,15 +45,19 @@ export class NgbDatepickerDemoPageComponent implements OnInit {
   get sizeRangeSimple() {
     return this.form.get('sizeRangeSimple');
   }
+
   get dpNavigation() {
     return this.form.get('dpNavigation');
   }
+
   get sizeRange() {
     return this.form.get('sizeRange');
   }
+
   get dpValidationSize() {
     return this.sizes[this.form.get('sizeRange').value];
   }
+
   get dpSimpleSize() {
     return this.sizes[this.form.get('sizeRangeSimple').value];
   }
