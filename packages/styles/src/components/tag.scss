@@ -1,27 +1,26 @@
 @forward './../variables/options';
 @forward './utilities';
 
-@use './../variables/color' as col;
-@use './../variables/spacing' as spacing;
+@use './../variables/components/tag' as tag;
 
-.tag:not(.token), // is only a temporary fix till I know how to do it wihtout causing future issues. wihtout this the Code sample would break currently.
+.tag:has(:not(pre)), // is only a temporary fix till I know how to do it wihtout causing future issues. wihtout this the Code sample would break currently.
 .tag-sm {
   display: inline-flex;
   justify-content: flex-start;
   justify-items: center;
   align-items: center;
-  gap: spacing.$size-micro;
-  padding: 0 spacing.$size-mini;
-  font-size: spacing.$size-regular;
-  border: spacing.$size-hair solid transparent;
-  border-radius: spacing.$size-micro;
+  gap: tag.$tag-gap;
+  padding: tag.$tag-vertical-padding tag.$tag-horizontal-padding;
+  font-size: tag.$tag-font-size;
+  border: tag.$tag-border-width solid transparent;
+  border-radius: tag.$tag-border-radius;
   line-height: inherit;
   text-align: center;
   vertical-align: baseline;
-  max-width: 296px;
+  max-width: tag.$tag-max-width;
 
   &.bg-white {
-    border-color: col.$black;
+    border-color: tag.$tag-white-border-color;
   }
 
   .tag-content {
@@ -31,24 +30,24 @@
   }
 }
 
-.tag {
-  height: spacing.$size-big;
+.tag:has(:not(pre)) {
+  height: tag.$tag-height;
 
   .tag-icon {
-    height: spacing.$size-small-large;
-    min-height: spacing.$size-small-large;
-    width: spacing.$size-small-large;
-    min-width: spacing.$size-small-large;
+    height: tag.$tag-icon-size;
+    min-height: tag.$tag-icon-size;
+    width: tag.$tag-icon-size;
+    min-width: tag.$tag-icon-size;
   }
 }
 
 .tag-sm {
-  height: spacing.$size-large;
+  height: tag.$tag-sm-height;
 
   .tag-icon {
-    height: spacing.$size-regular;
-    min-height: spacing.$size-regular;
-    width: spacing.$size-regular;
-    min-width: spacing.$size-regular;
+    height: tag.$tag-sm-icon-size;
+    min-height: tag.$tag-sm-icon-size;
+    width: tag.$tag-sm-icon-size;
+    min-width: tag.$tag-sm-icon-size;
   }
 }

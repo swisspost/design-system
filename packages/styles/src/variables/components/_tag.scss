@@ -1,0 +1,20 @@
+@use './../color' as col;
+@use './../commons' as commons;
+@use './../spacing' as spacing;
+@use './../type' as type;
+
+$tag-max-width: 296px;
+$tag-border-radius: spacing.$size-micro;
+$tag-border-width: commons.$border-width;
+$tag-gap: spacing.$size-micro;
+$tag-font-size: type.$font-size-16;
+$tag-horizontal-padding: spacing.$size-mini;
+$tag-vertical-padding: 0;
+
+$tag-white-border-color: col.$black;
+
+$tag-height: spacing.$size-big;
+$tag-icon-size: spacing.$size-small-large;
+
+$tag-sm-height: spacing.$size-large;
+$tag-sm-icon-size: spacing.$size-regular;
