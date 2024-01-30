@@ -21,6 +21,7 @@ const meta: Meta = {
     placeholder: 'Placeholder',
     type: 'text',
     size: 'form-control-lg',
+    sizeFloatingLabel: 'form-control-lg',
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
@@ -103,6 +104,10 @@ const meta: Meta = {
     size: {
       name: 'Size',
       description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: false,
+      },
       control: {
         type: 'select',
         labels: {
@@ -113,6 +118,25 @@ const meta: Meta = {
         },
       },
       options: ['form-control-sm', 'form-control-rg', 'null', 'form-control-lg'],
+      table: {
+        category: 'General',
+      },
+    },
+    sizeFloatingLabel: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: true,
+      },
+      control: {
+        type: 'select',
+        labels: {
+          'form-control-sm': 'Small',
+          'form-control-lg': 'Large',
+        },
+      },
+      options: ['form-control-sm', 'form-control-lg'],
       table: {
         category: 'General',
       },
@@ -167,6 +191,7 @@ function render(args: Args, context: StoryContext) {
     'form-control',
     args.type === 'color' && 'form-control-color',
     args.size,
+    args.sizeFloatingLabel,
     args.validation,
   ]
     .filter(c => c && c !== 'null')

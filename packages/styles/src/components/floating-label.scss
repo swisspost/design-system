@@ -140,10 +140,37 @@
       }
     }
 
+    &.form-select-sm {
+      padding-inline: forms.$form-floating-padding-x-sm;
+      padding-top: forms.$form-floating-padding-y-sm * 2;
+      font-size: forms.$form-floating-label-font-size-placeholder-sm;
+      height: forms.$form-floating-label-height-sm;
+      min-height: forms.$form-floating-label-height-sm;
+
+      ~ label {
+        padding-top: forms.$form-floating-padding-y-sm;
+        font-size: forms.$form-floating-label-font-size-sm;
+        padding-inline: calc(#{forms.$form-floating-padding-x-sm} - #{forms.$input-border-width});
+      }
+
+      // TODO: replace with :has
+      &:empty,
+      &.form-select-empty {
+        ~ label {
+          padding-top: forms.$form-floating-label-padding-t-sm;
+          font-size: forms.$form-floating-label-font-size-placeholder-sm;
+        }
+      }
+    }
+
     &[multiple] {
       padding-top: forms.$form-floating-input-padding-t * 1.5;
       padding-bottom: 0;
       height: auto;
+
+      &.form-select-sm {
+        padding-top: forms.$form-floating-input-padding-t;
+      }
 
       ~ label {
         padding-top: forms.$input-padding-y-lg * forms.$form-floating-label-scale;
@@ -170,29 +197,6 @@
             100% - (#{forms.$input-border-width * 2}) - #{forms.$form-floating-padding-x}
           );
           height: forms.$form-floating-label-height;
-        }
-      }
-    }
-
-    &.form-select-sm {
-      padding-inline: forms.$form-floating-padding-x-sm;
-      padding-top: forms.$form-floating-padding-y-sm * 2;
-      font-size: forms.$form-floating-label-font-size-placeholder-sm;
-      height: forms.$form-floating-label-height-sm;
-      min-height: forms.$form-floating-label-height-sm;
-
-      ~ label {
-        padding-top: forms.$form-floating-padding-y-sm;
-        font-size: forms.$form-floating-label-font-size-sm;
-        padding-inline: calc(#{forms.$form-floating-padding-x-sm} - #{forms.$input-border-width});
-      }
-
-      // TODO: replace with :has
-      &:empty,
-      &.form-select-empty {
-        ~ label {
-          padding-top: forms.$form-floating-label-padding-t-sm;
-          font-size: forms.$form-floating-label-font-size-placeholder-sm;
         }
       }
     }
