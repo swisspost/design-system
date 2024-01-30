@@ -4,6 +4,7 @@
 @forward './../variables/options';
 
 @use './../lic/bootstrap-license';
+@use './../themes/bootstrap/core' as b;
 @use './../themes/bootstrap/forms/floating-labels' as bffl;
 @use './../themes/bootstrap/forms/form-control' as bffc;
 @use './../mixins/forms' as forms-mx;
@@ -70,6 +71,11 @@
       }
     }
 
+    &[type='date'],
+    &[type='time'] {
+      background-position: right b.$input-height-inner-quarter bottom 0.5rem;
+    }
+
     &.form-control-sm {
       &[type='date']::-webkit-calendar-picker-indicator {
         margin-top: -(spacing.$size-small-regular);
@@ -93,12 +99,6 @@
           padding-top: forms.$form-floating-padding-y-sm;
           font-size: forms.$form-floating-label-font-size-sm;
         }
-      }
-    }
-
-    &.form-control-lg {
-      &[type='date']::-webkit-calendar-picker-indicator {
-        margin-top: -(spacing.$size-small-large);
       }
     }
   }
