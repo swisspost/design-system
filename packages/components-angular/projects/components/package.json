@@ -1,0 +1,29 @@
+{
+  "name": "@swisspost/design-system-components-angular",
+  "version": "0.0.12",
+  "description": "Swiss Post Design System - Angular Wrapper Components",
+  "author": "Swiss Post <oss@post.ch>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://swisspost-web-frontend.netlify.app",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/components",
+    "access": "public",
+    "linkDirectory": true
+  },
+  "dependencies": {
+    "tslib": "2.3.0"
+  },
+  "peerDependencies": {
+    "@angular/common": "^16.0.0",
+    "@angular/core": "^16.0.0",
+    "@swisspost/design-system-components": "workspace:2.0.0"
+  },
+  "sideEffects": false
+}
