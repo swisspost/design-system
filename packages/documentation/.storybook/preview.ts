@@ -41,7 +41,7 @@ const preview: Preview = {
             'Blockquote',
             'Button',
             'Button Group',
-            'Card',
+            'Cards',
             'Carousel',
             'Collapsible',
             'Datepicker',

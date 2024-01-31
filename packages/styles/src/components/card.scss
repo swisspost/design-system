@@ -60,8 +60,13 @@
     text-decoration: none;
   }
 
-  .link-icon .pi {
-    margin-right: 0.5rem;
+  .link-icon {
+    .pi,
+    post-icon {
+      width: 1.5rem;
+      height: 1.5rem;
+      margin-right: 0.5rem;
+    }
   }
 
   > .list-group + .card-footer,

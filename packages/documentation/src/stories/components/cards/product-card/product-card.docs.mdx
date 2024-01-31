@@ -1,0 +1,51 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { PostAlert, PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
+import * as ProductCardStories from './product-card.stories';
+import StylesPackageImport from '../../../../shared/styles-package-import.mdx';
+import ProductCardSyncHeights from './product-card.sample.js?raw';
+import ProductCardAngularSyncHeights from './product-card.sample.ts?raw';
+
+<Meta of={ProductCardStories} />
+
+# Product Card
+
+
+<div className="lead">
+  Highlight essential product details and provide an entry point to access in-depth information.
+</div>
+
+<Canvas sourceState="shown" of={ProductCardStories.Default} />
+<div className="hide-col-default">
+  <Controls of={ProductCardStories.Default} />
+</div>
+
+<StylesPackageImport components={["card", "product-card"]} />
+
+## Examples
+
+### Product Card Group
+
+For organizing multiple product cards in a group, utilize the [grid system](/?path=/docs/foundations-layout-grid--docs).
+Ensure consistent height by applying the `.h-100` class to all product cards.
+
+<Canvas of={ProductCardStories.Groupped} />
+
+### Multi-part Product Cards
+
+For presenting a collection of products with comparable features, use cards with multiple sections, as illustrated in the example below.
+
+<PostAlert type="info">Note that this layout necessitates JavaScript implementation to ensure consistent section heights across all cards.</PostAlert>
+
+<Canvas of={ProductCardStories.Multipart} />
+
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="javascript">Pure JavaScript</PostTabHeader>
+  <PostTabPanel name="javascript">
+    <Source code={ProductCardSyncHeights} language="js"/>
+  </PostTabPanel>
+
+  <PostTabHeader slot="tabs" panel="angular">Angular Implementation</PostTabHeader>
+  <PostTabPanel name="angular">
+    <Source code={ProductCardAngularSyncHeights} language="typescript"/>
+  </PostTabPanel>
+</PostTabs>
