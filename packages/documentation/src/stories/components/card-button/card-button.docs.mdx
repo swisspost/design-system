@@ -1,0 +1,39 @@
+import { Meta, Source } from '@storybook/blocks';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import NgbComponentDemoLink from '../../../shared/nb-bootstrap/ngb-component-demo-link.mdx';
+import NgbComponentAlert from '../../../shared/nb-bootstrap/ngb-component-alert.mdx';
+import * as CardButtonStories from './card-button.stories';
+import CardButtonDefault from './card-button-default.sample.html?raw';
+
+<Meta of={CardButtonStories} />
+
+<div className="d-flex align-items-center justify-content-between">
+  # Card Button
+
+  <NgbComponentDemoLink component="card" post="true"/>
+</div>
+
+<p className="lead">A component to display a navigation with page numbers.</p>
+
+<NgbComponentAlert component="card" />
+
+<ul>
+  <li>
+    <a href="#component-import" target="_self">Component Import</a>
+  </li>
+  <li>
+    <a href="#style-imports" target="_self">Style Imports</a>
+  </li>
+  <li>
+    <a href="#examples" target="_self">Examples</a>
+  </li>
+</ul>
+
+## Component Import
+
+<StylesPackageImport components={["card", "product-card"]} />
+
+
+## Examples
+
+<Source code={CardButtonDefault} language="html"/>
