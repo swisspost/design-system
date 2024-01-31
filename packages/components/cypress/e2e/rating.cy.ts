@@ -34,16 +34,22 @@ describe('rating', () => {
     });
 
     it('should set correct rating by clicking on a star', () => {
-      for (let i = 0; i < 10; i++) {
-        cy.get('@stars').eq(i).click();
-        cy.get('@stars').each(($star, index) => {
-          if (index <= i) {
-            cy.wrap($star).should('have.class', 'active-star');
-          } else {
-            cy.wrap($star).should('not.have.class', 'active-star');
-          }
+      cy.get('@stars').should('not.have.class', 'active-star');
+
+      cy.get('@stars')
+        .its('length')
+        .then(length => {
+          cy.get('@stars').each(($star, index) => {
+            cy.wrap($star).click();
+
+            cy.get('@stars')
+              .filter(`:lt(${index}), :eq(${index})`)
+              .should('have.class', 'active-star');
+
+            if (index < length - 1)
+              cy.get('@stars').filter(`:gt(${index})`).should('not.have.class', 'active-star');
+          });
         });
-      }
     });
 
     it('should navigate using keyboard arrows and confirm selection with Enter', () => {
