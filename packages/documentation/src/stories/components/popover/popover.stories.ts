@@ -83,9 +83,11 @@ const meta: Meta = {
 
 function render(args: Args) {
   return html`
-    <button class="btn btn-secondary btn-large" data-popover-target="${args.id}">
-      Click here to see a popover
-    </button>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-secondary btn-large" data-popover-target="${args.id}">
+        Click here to see a popover
+      </button>
+    </div>
     <post-popover
       class="hydrated bg-${args.backgroundColor}"
       id="${args.id}"

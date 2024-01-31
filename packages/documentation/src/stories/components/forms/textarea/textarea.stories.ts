@@ -50,7 +50,7 @@ const meta: Meta = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#labels">label accessibility guide</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -120,7 +120,7 @@ const meta: Meta = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</div>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -200,7 +200,9 @@ function renderTextarea(args: Args, context: StoryContext) {
       aria-label=${useAriaLabel ? args.label : nothing}
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
       style=${args.resize ?? nothing}
-    >${args.textInside ?? nothing}</textarea>
+    >
+${args.textInside ?? nothing}</textarea
+    >
   `;
   if (args.floatingLabel) {
     return html`
