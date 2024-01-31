@@ -23,13 +23,13 @@ const preview: Preview = {
         order: [
           'Home',
           'Getting Started',
-          ['Styles', 'Components', 'Compatibility'],
+          ['Styles', 'Components', 'Components-Angular', 'Compatibility'],
           'Foundations',
           [
             'Typography',
             'Color',
             'Layout',
-            ['Breakpoints', 'Containers', 'Grid', 'TODOS'],
+            ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
             'Elevation',
             'Accessibility',
           ],
@@ -45,6 +45,7 @@ const preview: Preview = {
             'Carousel',
             'Collapsible',
             'Datepicker',
+            'Dropdown',
             'Forms',
             'Heading',
             'Icons',

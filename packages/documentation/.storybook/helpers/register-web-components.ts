@@ -1,5 +1,5 @@
 import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header/loader';
-import { defineCustomElements as definePostComponent } from '@swisspost/design-system-components/loader';
+import { defineCustomElements as definePostComponents } from '@swisspost/design-system-components/loader';
 import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
 import {
   StencilJsonDocs,
@@ -9,7 +9,7 @@ import postComponentsDocJson from '@swisspost/design-system-components/dist/docs
 import internetHeaderDocJson from '@swisspost/internet-header/dist/docs.json';
 
 defineInternetHeader(window);
-definePostComponent(window);
+definePostComponents(window);
 
 if (postComponentsDocJson && internetHeaderDocJson) {
   const jsonDocs: StencilJsonDocs = {
