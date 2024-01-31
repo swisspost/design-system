@@ -11,7 +11,11 @@
 // Can be removed as soon as popover is supported by all major browsers
 // https://caniuse.com/?search=popover
 @layer polyfill {
-  @include meta.load-css('@oddbird/popover-polyfill/dist/popover.css');
+  @supports not selector(:popover-open) {
+    [popover]:not(.\:popover-open) {
+      display: none;
+    }
+  }
 }
 
 .popover {

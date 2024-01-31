@@ -19,7 +19,7 @@ $input-btn-padding-x: spacing.$size-small-large - $input-btn-border-width-rem !d
 $input-btn-line-height: type.$line-height-copy !default;
 
 $input-btn-padding-y-sm: spacing.$size-mini - $input-btn-border-width-rem !default;
-$input-btn-padding-x-sm: spacing.$size-regular - $input-btn-border-width-rem !default;
+$input-btn-padding-x-sm: spacing.$size-small-regular !default;
 $input-btn-line-height-sm: type.$line-height-copy !default;
 
 $input-btn-padding-y-rg: spacing.$size-small-regular - $input-btn-border-width-rem !default;
