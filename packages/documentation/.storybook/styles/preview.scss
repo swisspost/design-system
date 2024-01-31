@@ -7,10 +7,11 @@
 #storybook-docs {
   overflow: hidden;
 
-  .sbdocs-content .container,
-  .sbdocs-content .container > post-tabs > post-tab-panel {
+  .sbdocs-content .container >,
+  .sbdocs-content .container > post-tabs > post-tab-panel >,
+  .sbdocs-content .container > migration-global-state{
     // Target content headings only
-    > h1 {
+    h1 {
       margin-block: 5rem 1rem;
 
       &:first-of-type {
@@ -18,26 +19,28 @@
       }
     }
 
-    > h2 {
+    h2 {
       margin-block: 3rem 1rem;
     }
 
-    > h3 {
+    h3 {
       margin-block: 2.5rem 1rem;
     }
 
-    > h4 {
+    h4 {
       margin-block: 2rem 1rem;
     }
 
-    > h5 {
+    h5 {
       margin-block: 1.5rem 1rem;
     }
 
-    > h6 {
+    h6 {
       margin-block: 1rem;
     }
+  }
 
+  .sbdocs-content .container {
     // Support for autolink-headings
     :is(h1,h2,h3,h4,h5,h6) {
       position: relative;
@@ -81,6 +84,14 @@
     color: var(--post-contrast-color);
     white-space: nowrap;
     line-height: 1;
+
+    &[languages] {
+      display:block;
+      margin-top: 0.25rem;
+      padding: 1rem;
+      background-color: var(--post-contrast-color);
+      color: var(--post-contrast-color-inverted);
+    }
   }
 
   .sbdocs-wrapper {
