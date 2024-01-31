@@ -1,0 +1,33 @@
+import { Meta, Source, Canvas } from '@storybook/blocks';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import * as subnavigationStories from './subnavigation.stories';
+
+<Meta of={subnavigationStories} />
+
+# Subnavigation
+
+<p className="lead">This component elegantly organizes content into intuitive horizontal tabs, 
+offering users a seamless and visually appealing navigation experience.</p>
+
+<ul>
+  <li>
+    <a href="#style-imports" target="_self">Style Imports</a>
+  </li>
+  <li>
+    <a href="#examples" target="_self">Examples</a>
+  </li>
+</ul>
+
+<Canvas sourceState="shown" of={subnavigationStories.Default} />
+
+<StylesPackageImport components={["subnavigation"]} />
+
+## Examples
+
+### Colored Background
+
+<Canvas of={subnavigationStories.ColoredBackground} />
+
+### Badges
+
+<Canvas of={subnavigationStories.Badges} />
