@@ -1,12 +1,11 @@
-import {
-  version as styles,
-  dependencies as stylesDeps,
-} from '@swisspost/design-system-styles/package.json';
-import { version as components } from '@swisspost/design-system-components/package.json';
-import { version as internetheader } from '@swisspost/internet-header/package.json';
-import { version as intranetheader } from './../../../intranet-header-workspace/projects/intranet-header/package.json';
-import { version as icons } from '@swisspost/design-system-icons/package.json';
-import { version as documentation } from './../../package.json';
+import * as packageJson from '../../package.json';
+
+const DEPENCENCIES: any = {
+  [packageJson.name]: packageJson.version,
+  ...packageJson.dependencies,
+  ...packageJson.devDependencies,
+  ...packageJson.optionalDependencies,
+};
 
 const versionFilterRegexes: any = {
   major: /^(?:(\d+)\.\d+\.\d+)/,
@@ -29,18 +28,8 @@ const versionFilterMap: any = {
   Mmp: 'majorminorpatch',
 };
 
-const versions: any = {
-  styles,
-  components,
-  internetheader,
-  intranetheader,
-  icons,
-  documentation,
-  bootstrap: stylesDeps.bootstrap,
-};
-
 export function getVersion(version: string, filter: string = '') {
-  const cleanVersion = versions[version].replace(/^[^\d]+/, '');
+  const cleanVersion = DEPENCENCIES[version].replace(/^[^\d]+/, '');
 
   if (filter) {
     const filterRegex = versionFilterRegexes[versionFilterMap[filter]];
@@ -50,6 +39,6 @@ export function getVersion(version: string, filter: string = '') {
 
     return matchArray !== null && matchArray[1] ? matchArray[1] : null;
   } else {
-    return cleanVersion.length > 0 ? cleanVersion : versions[version] ?? null;
+    return cleanVersion.length > 0 ? cleanVersion : DEPENCENCIES[version] ?? null;
   }
 }
