@@ -23,7 +23,7 @@ const preview: Preview = {
         order: [
           'Home',
           'Getting Started',
-          ['Styles', 'Components', 'Compatibility'],
+          ['Styles', 'Components', 'Components-Angular', 'Compatibility'],
           'Foundations',
           [
             'Typography',
