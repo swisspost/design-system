@@ -61,12 +61,7 @@
         version gives you a much better overview of the components and their possible states.
       </p>
       <div class="mt-3">
-        <a
-          href="https://next.design-system.post.ch"
-          rel="noopener"
-          target="_blank"
-          class="btn btn-primary"
-        >
+        <a href="https://next.design-system.post.ch" target="_blank" class="btn btn-primary">
           🚀 Take me to the future!
         </a>
       </div>
@@ -77,7 +72,6 @@
         If you have any inquiries about this change, feel free to contact us via our
         <a
           href="https://teams.microsoft.com/l/channel/19%3ae7fa68fb13eb40b4bf4604edea5f4b3e%40thread.tacv2/%25F0%259F%259A%2591%2520Support?groupId=123c7c9e-052a-40e6-98d3-6cc6d46bad0a&tenantId=3ae7c479-0cf1-47f4-8f84-929f364eff67"
-          rel="noopener"
           target="_blank"
         >
           Support channel
@@ -243,28 +237,19 @@
             <li *ngIf="isMigratingAngular">
               <p>
                 Use
-                <a href="https://update.angular.io/" target="_blank" rel="noopener">
-                  https://update.angular.io/
-                </a>
+                <a href="https://update.angular.io/" target="_blank">https://update.angular.io/</a>
                 to update Angular to version 16
               </p>
             </li>
             <li>
               <p>
                 Update Bootstrap to version
-                <a
-                  href="https://getbootstrap.com/docs/5.3/migration"
-                  target="_blank"
-                  rel="noopener"
-                >
-                  5.3.x
-                </a>
+                <a href="https://getbootstrap.com/docs/5.3/migration" target="_blank">5.3.x</a>
                 <ng-container *ngIf="isMigratingAngular">
                   and ng-bootstrap to version
                   <a
                     href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1500-2023-05-25"
                     target="_blank"
-                    rel="noopener"
                   >
                     15.x.x
                   </a>
@@ -441,9 +426,7 @@
           <ol *ngIf="isMigratingAngular">
             <li>
               If your Angular version is lower than 13, use
-              <a href="https://update.angular.io/" target="_blank" rel="noopener">
-                https://update.angular.io/
-              </a>
+              <a href="https://update.angular.io/" target="_blank">https://update.angular.io/</a>
               to update Angular step by step to version 13.
             </li>
             <li>
@@ -457,15 +440,12 @@
 
           <ng-template #bootstrapInstructions>
             Update Bootstrap to version
-            <a href="https://getbootstrap.com/docs/5.1/migration" target="_blank" rel="noopener">
-              5.1.x
-            </a>
+            <a href="https://getbootstrap.com/docs/5.1/migration" target="_blank">5.1.x</a>
             <ng-container *ngIf="isMigratingAngular">
               and ng-bootstrap to version
               <a
                 href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07"
                 target="_blank"
-                rel="noopener"
               >
                 12.x.x
               </a>
@@ -2583,7 +2563,6 @@
             <li class="link-list-item">
               <a
                 target="_blank"
-                rel="noopener"
                 [href]="'//getbootstrap.com/docs/' + getVersion(bootstrapVersion, 'Mm')"
               >
                 <span>Bootstrap Documentation</span>
@@ -2592,7 +2571,6 @@
             <li class="link-list-item">
               <a
                 target="_blank"
-                rel="noopener"
                 [href]="'//v' + getVersion(angularVersion, 'M') + '.angular.io/docs'"
               >
                 <span>Angular Docs</span>
@@ -2600,13 +2578,13 @@
             </li>
             <li class="link-list-item">
               <!-- exact link is not possible, because the latest url is different from the previews -->
-              <a target="_blank" rel="noopener" href="https://ng-bootstrap.github.io/#/home">
+              <a target="_blank" href="https://ng-bootstrap.github.io/#/home">
                 <span>ngBootstrap Docs</span>
               </a>
             </li>
             <li class="link-list-item">
               <!-- exact link is not possible, because no version urls available -->
-              <a target="_blank" rel="noopener" href="https://fonts.post.ch/frutigerneueforpost/#/">
+              <a target="_blank" href="https://fonts.post.ch/frutigerneueforpost/#/">
                 <span>Frutiger Neue For Post</span>
               </a>
             </li>

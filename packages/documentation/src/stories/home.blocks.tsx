@@ -15,7 +15,7 @@ interface IFeatureProps {
 export function Tile(props: ITileProps) {
   const isLink = props.href !== undefined;
   const Tag = isLink ? 'a' : 'div';
-  const attributes = isLink ? { href: props.href, target: '_blank', rel: 'noopener' } : null;
+  const attributes = isLink ? { href: props.href, target: '_blank' } : null;
 
   return (
     <Tag className="tile" {...attributes}>
