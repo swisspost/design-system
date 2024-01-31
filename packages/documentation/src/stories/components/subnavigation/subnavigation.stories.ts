@@ -42,7 +42,7 @@ function render(args: Args, context: StoryContext) {
       <div class="container container-fluid-xs container-fluid-sm">
         <ul class="subnavigation-list">
           <li class="subnavigation-item">
-            <a href="#" class="subnavigation-link active">
+            <a href="/?path=/docs/components-subnavigation--docs" class="subnavigation-link active">
               Navitem active
               ${args.badge
                 ? html`
@@ -52,7 +52,7 @@ function render(args: Args, context: StoryContext) {
             </a>
           </li>
           <li class="subnavigation-item">
-            <a href="#" class="subnavigation-link">
+            <a href="/?path=/docs/components-subnavigation--docs" class="subnavigation-link">
               Navitem default
               ${args.badge
                 ? html`
@@ -62,7 +62,7 @@ function render(args: Args, context: StoryContext) {
             </a>
           </li>
           <li class="subnavigation-item">
-            <a href="#" class="subnavigation-link">
+            <a href="/?path=/docs/components-subnavigation--docs" class="subnavigation-link">
               Navitem default
               ${args.badge
                 ? html`
