@@ -4,7 +4,7 @@ const DEPENCENCIES: any = {
   [packageJson.name]: packageJson.version,
   ...packageJson.dependencies,
   ...packageJson.devDependencies,
-  ...packageJson.optionalDependencies,
+  ...packageJson.peerDependencies,
 };
 
 const versionFilterRegexes: any = {

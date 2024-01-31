@@ -70,8 +70,16 @@
     "storybook": "7.6.10",
     "typescript": "5.1.6"
   },
-  "optionalDependencies": {
+  "peerDependencies": {
     "@swisspost/design-system-components-angular": "workspace:0.0.12",
     "@swisspost/design-system-intranet-header": "workspace:5.0.7"
+  },
+  "peerDependenciesMeta": {
+    "@swisspost/design-system-components-angular": {
+      "optional": true
+    },
+    "@swisspost/design-system-intranet-header": {
+      "optional": true
+    }
   }
 }
