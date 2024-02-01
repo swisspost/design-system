@@ -2,10 +2,11 @@ import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { nothing } from 'lit';
 import { BADGE } from '../../../../../.storybook/constants';
+import ProductCardSyncHeights from './product-card.sample.js?raw';
 
 const meta: Meta = {
   title: 'Components/Cards/Product Card',
-  decorators: [clickBlocker],
+  decorators: [paddedContainer, clickBlocker],
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
   },
@@ -59,6 +60,12 @@ function clickBlocker(story: any) {
   `;
 }
 
+function paddedContainer(story: any) {
+  return html`
+    <div class="p-mini">${story()}</div>
+  `;
+}
+
 function gridContainer(story: any) {
   return html`
     <div class="row row-cols-md-2 row-cols-xl-3 border-gutters">
@@ -108,13 +115,13 @@ export const Default: Story = {
 export const Groupped: Story = {
   render: (args: Args) => html`
     <div class="row row-cols-md-2 row-cols-xl-3 border-gutters">
-      <div class="col">
+      <div class="col-12">
         ${renderProductCard({ ...args, title: `${args.title} 1`, text: 'Tre mallonga priskribo.' })}
       </div>
-      <div class="col">${renderProductCard({ ...args, title: `${args.title} 2` })}</div>
-      <div class="col">${renderProductCard({ ...args, title: `${args.title} 3`, text: '' })}</div>
-      <div class="col">${renderProductCard({ ...args, title: `${args.title} 4` })}</div>
-      <div class="col">
+      <div class="col-12">${renderProductCard({ ...args, title: `${args.title} 2` })}</div>
+      <div class="col-12">${renderProductCard({ ...args, title: `${args.title} 3`, text: '' })}</div>
+      <div class="col-12">${renderProductCard({ ...args, title: `${args.title} 4` })}</div>
+      <div class="col-12">
         ${renderProductCard({
           ...args,
           title: `${args.title} 5`,
@@ -131,7 +138,7 @@ export const Groupped: Story = {
 export const Multipart: Story = {
   render: () => html`
     <div class="row row-cols-md-2 border-gutters">
-      <div class="col">
+      <div class="col-12">
         <div class="card product-card">
           <div class="card-body" data-sync-height-with="product-header">
             <div class="product-navigation">
@@ -225,7 +232,7 @@ export const Multipart: Story = {
         </div>
       </div>
 
-      <div class="col">
+      <div class="col-12">
         <div class="card product-card">
           <div class="card-body" data-sync-height-with="product-header">
             <div class="product-navigation">
@@ -327,6 +334,8 @@ export const Multipart: Story = {
             nodes.forEach(node => {
               const group = node.getAttribute('data-sync-height-with');
               const groupHeight = heightByGroup.get(group);
+              
+              node.style.height = 'auto';
               const nodeHeight = node.offsetHeight;
 
               if (!groupHeight || nodeHeight > groupHeight) {

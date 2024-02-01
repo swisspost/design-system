@@ -5,6 +5,8 @@ function syncHeights() {
   nodes.forEach(node => {
     const group = node.getAttribute('data-sync-height-with');
     const groupHeight = heightByGroup.get(group);
+    
+    node.style.height = 'auto';
     const nodeHeight = node.offsetHeight;
 
     if (!groupHeight || nodeHeight > groupHeight) {
