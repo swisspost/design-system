@@ -3,6 +3,7 @@ import { PropsWithChildren } from 'react';
 import '../styles/layout.scss';
 import Footer from './footer';
 import Header from './header';
+import BetaAlert from './beta-alert';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 function shouldShowHeader() {
@@ -25,7 +26,10 @@ export default (props: PropsWithChildren<DocsContainerProps>) => {
     <DocsContainer context={context}>
       <Unstyled>
         {shouldShowHeader() && <Header />}
-        <div className={container}>{children}</div>
+        <div className={container}>
+          <BetaAlert />
+          {children}
+        </div>
         {shouldShowFooter() && <Footer pathToStoryFile={ifDefined(pathToStoryFile)} />}
       </Unstyled>
     </DocsContainer>
