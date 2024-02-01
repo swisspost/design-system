@@ -44,7 +44,6 @@ const preview: Preview = {
             'Card',
             'Carousel',
             'Collapsible',
-            'Custom-Select',
             'Datepicker',
             'Dropdown',
             'Forms',
