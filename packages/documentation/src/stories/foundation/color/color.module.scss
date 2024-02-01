@@ -63,6 +63,7 @@ $all_exported_colors: map.merge($all_exported_colors, post.$signal-colors);
     }
   }
   @each $colorName, $value in $all_exported_colors {
+    text_color_#{$colorName}: post.get-best-contrast-text($value);
     contrast_black_#{$colorName}: post.contrast-ratio($value, post.$black);
     contrast_white_#{$colorName}: post.contrast-ratio($value, post.$white);
   }

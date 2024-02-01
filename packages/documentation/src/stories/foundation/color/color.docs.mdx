@@ -1,5 +1,5 @@
 import { Meta, Source } from '@storybook/blocks';
-import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
+import { PostTabHeader, PostTabPanel, PostTabs, PostAlert } from '@swisspost/design-system-components-react';
 import { forEach } from '../../../utils/react';
 import * as ColorStories from './color.stories';
 import { ColorSwatch, SCSS_VARIABLES } from './color.blocks';
@@ -14,14 +14,18 @@ import SampleScss from './color-use-scss.sample.scss?raw';
 In the following, you can see the Swiss Post specific colors.<br/>
 They theme our elements and components.
 
-<div className="alert alert-info alert-md mt-regular">
+<PostAlert type="info">
+<p slot="heading">Notes for Accessibility</p>
+  <p>
   For accessibility reasons, you should always make sure that your individually created color combinations are
   sufficiently contrasting. In the color tiles below, we have inserted the corresponding contrast ratios against white and black according to WCAG 2.0.
-
+  </p>
+<p>
 You can also use the [background utilities](/?path=/docs/utilities-background--docs) to get elements
 with a specific background color and the best possible contrast color for its content.
+</p>
 
-</div>
+</PostAlert>
 
 ## Brand colors
 
@@ -48,6 +52,13 @@ with a specific background color and the best possible contrast color for its co
 </section>
 
 ## Signal colors
+
+<PostAlert type="info">
+<p slot="heading">Why does `Success-green` have white text</p>
+<p>
+  The text of “Success-green” is white despite the displayed contrast ratios because with WGAC 3.0, the contrast with white is significantly greater, while it hardly differs in WCAG 2.0.
+  </p>
+</PostAlert>
 
 <section className="color-swatch__section">
   {forEach(SCSS_VARIABLES.signal.solid, function (data) {

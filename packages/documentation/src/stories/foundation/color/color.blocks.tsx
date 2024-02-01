@@ -16,10 +16,7 @@ export const ColorSwatch = (props: { name: string; color: string; noCSS?: boolea
           className="color__tile"
           style={{
             backgroundColor: props.color,
-            color:
-              contrastBlack >= contrastWhite
-                ? SCSS_VARIABLES.brand.black
-                : SCSS_VARIABLES.brand.white,
+            color: SCSS_VARIABLES.text.color[props.name],
           }}
         >
           <div className="h-100 px-2 d-flex flex-column align-items-end justify-content-center">
