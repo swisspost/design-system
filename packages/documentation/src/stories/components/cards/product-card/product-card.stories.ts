@@ -2,7 +2,6 @@ import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { nothing } from 'lit';
 import { BADGE } from '../../../../../.storybook/constants';
-import ProductCardSyncHeights from './product-card.sample.js?raw';
 
 const meta: Meta = {
   title: 'Components/Cards/Product Card',
@@ -69,7 +68,7 @@ function paddedContainer(story: any) {
 function gridContainer(story: any) {
   return html`
     <div class="row row-cols-md-2 row-cols-xl-3 border-gutters">
-      <div class="col">${story()}</div>
+      <div class="col-12">${story()}</div>
     </div>
   `;
 }
