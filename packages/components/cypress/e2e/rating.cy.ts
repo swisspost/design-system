@@ -39,22 +39,19 @@ describe('rating', () => {
       cy.get('@stars')
         .its('length')
         .then(length => {
-          cy.get('@stars').each(($star, index) => {
+          cy.get('@stars').each(($star, i) => {
             cy.wrap($star).click();
-
             cy.get('@stars')
-              .filter(`:lt(${index}), :eq(${index})`)
+              .filter(`:lt(${i + 1})`)
               .should('have.class', 'active-star');
-
-            if (index < length - 1)
-              cy.get('@stars').filter(`:gt(${index})`).should('not.have.class', 'active-star');
+            if (i < length - 1)
+              cy.get('@stars').filter(`:gt(${i})`).should('not.have.class', 'active-star');
           });
         });
     });
 
     it('should navigate using keyboard arrows and confirm selection with Enter', () => {
       cy.get('@rating')
-        .shadow()
         .find('.rating')
         .focus()
         .type('{rightarrow}{rightarrow}{rightarrow}{rightarrow}{enter}', {
