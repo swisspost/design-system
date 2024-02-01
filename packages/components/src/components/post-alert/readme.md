@@ -40,8 +40,8 @@ Type: `Promise<void>`
 
 | Slot        | Description                                                              |
 | ----------- | ------------------------------------------------------------------------ |
-|             | Default slot for placing the main content/message of the alert.          |
 | `"actions"` | Slot for placing custom actions (buttons, links, etc.) within the alert. |
+| `"default"` | Slot for placing the main content/message of the alert.                  |
 | `"heading"` | Slot for placing custom content within the alert's heading.              |
 
 

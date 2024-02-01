@@ -3,10 +3,8 @@ import { version } from '../../../package.json';
 import { fadeIn, fadeOut } from '../../animations';
 
 /**
- * @slot tabs - Slot for placing tab headers.
- *               Each tab header should be a <post-tab-header> element.
- * @slot - Default slot for placing tab panels.
- *         Each tab panel should be a <post-tab-panel> element.
+ * @slot tabs - Slot for placing tab headers. Each tab header should be a <post-tab-header> element.
+ * @slot default - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
  */
 
 @Component({

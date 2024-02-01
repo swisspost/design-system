@@ -56,9 +56,9 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot | Description                                              |
-| ---- | -------------------------------------------------------- |
-|      | Default slot for placing post-accordion-item components. |
+| Slot        | Description                                      |
+| ----------- | ------------------------------------------------ |
+| `"default"` | Slot for placing post-accordion-item components. |
 
 
 ----------------------------------------------

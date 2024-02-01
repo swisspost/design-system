@@ -62,9 +62,9 @@ Type: `Promise<void>`
 
 ## Slots
 
-| Slot | Description                                          |
-| ---- | ---------------------------------------------------- |
-|      | Default slot for placing content inside the popover. |
+| Slot        | Description                                  |
+| ----------- | -------------------------------------------- |
+| `"default"` | Slot for placing content inside the popover. |
 
 
 ## Dependencies

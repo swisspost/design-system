@@ -3,7 +3,7 @@ import { Placement } from '@floating-ui/dom';
 import { version } from '../../../package.json';
 
 /**
- * @slot - Default slot for placing content inside the popover.
+ * @slot default - Slot for placing content inside the popover.
  */
 
 @Component({

@@ -3,7 +3,7 @@ import { version } from '../../../package.json';
 import { checkNonEmpty } from '../../utils';
 
 /**
- * @slot - This slot accepts any content for the tab header.
+ * @slot default - Slot for the content of the tab header.
  */
 
 @Component({

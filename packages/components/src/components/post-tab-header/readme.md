@@ -14,9 +14,9 @@
 
 ## Slots
 
-| Slot | Description                                       |
-| ---- | ------------------------------------------------- |
-|      | This slot accepts any content for the tab header. |
+| Slot        | Description                             |
+| ----------- | --------------------------------------- |
+| `"default"` | Slot for the content of the tab header. |
 
 
 ----------------------------------------------

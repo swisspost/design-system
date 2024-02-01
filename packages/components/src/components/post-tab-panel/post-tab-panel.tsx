@@ -2,7 +2,7 @@ import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { version } from '../../../package.json';
 
 /**
- * @slot - Default slot for placing the content of the tab panel.
+ * @slot default - Slot for placing the content of the tab panel.
  */
 
 @Component({

@@ -5,7 +5,7 @@ import { HEADING_LEVELS, HeadingLevel } from './heading-levels';
 
 /**
  * @slot header - Slot for placing custom content within the accordion item's header.
- * @slot - Default slot for placing content within the accordion item's body.
+ * @slot default - Slot for placing content within the accordion item's body.
  */
 
 @Component({

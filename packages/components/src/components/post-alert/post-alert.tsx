@@ -18,7 +18,7 @@ import { ALERT_TYPES, AlertType } from './alert-types';
 /**
  * @slot heading - Slot for placing custom content within the alert's heading.
  * @slot actions - Slot for placing custom actions (buttons, links, etc.) within the alert.
- * @slot - Default slot for placing the main content/message of the alert.
+ * @slot default - Slot for placing the main content/message of the alert.
  */
 
 @Component({

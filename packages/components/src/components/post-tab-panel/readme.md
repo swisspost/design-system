@@ -14,9 +14,9 @@
 
 ## Slots
 
-| Slot | Description                                            |
-| ---- | ------------------------------------------------------ |
-|      | Default slot for placing the content of the tab panel. |
+| Slot        | Description                                    |
+| ----------- | ---------------------------------------------- |
+| `"default"` | Slot for placing the content of the tab panel. |
 
 
 ----------------------------------------------

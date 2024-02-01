@@ -8,7 +8,7 @@ import 'long-press-event';
 import { version } from '../../../package.json';
 
 /**
- * @slot - Default slot for the content of the tooltip. Place the content you want to display inside the tooltip here.
+ * @slot default - Slot for the content of the tooltip.
  */
 
 @Component({

@@ -15,7 +15,7 @@ import { collapse, expand } from '../../animations/collapse';
 import { checkEmptyOrType, isMotionReduced } from '../../utils';
 
 /**
- * @slot - Default slot for placing content within the collapsible element.
+ * @slot default - Slot for placing content within the collapsible element.
  */
 
 @Component({
