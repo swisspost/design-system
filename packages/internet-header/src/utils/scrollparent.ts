@@ -12,6 +12,9 @@ const isScrollable = (node: Element) => {
 export const getScrollParent = (node: Element): Element | Document => {
   let currentParent = node.parentElement;
   while (currentParent) {
+    if (currentParent.nodeName === 'BODY') {
+      return document;
+    }
     if (isScrollable(currentParent)) {
       return currentParent;
     }

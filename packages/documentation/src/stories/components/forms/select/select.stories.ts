@@ -21,6 +21,7 @@ const meta: Meta = {
     hiddenLabel: false,
     value: undefined,
     size: 'form-select-lg',
+    sizeFloatingLabel: 'form-select-lg',
     options: 5,
     multiple: false,
     multipleSize: 4,
@@ -52,7 +53,7 @@ const meta: Meta = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#labels">label accessibility guide</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -91,6 +92,25 @@ const meta: Meta = {
         },
       },
       options: ['form-select-sm', 'form-select-rg', 'null', 'form-select-lg'],
+      table: {
+        category: 'General',
+      },
+    },
+    sizeFloatingLabel: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: true,
+      },
+      control: {
+        type: 'select',
+        labels: {
+          'form-select-sm': 'Small',
+          'form-select-lg': 'Large',
+        },
+      },
+      options: ['form-select-sm', 'form-select-lg'],
       table: {
         category: 'General',
       },
@@ -147,7 +167,7 @@ const meta: Meta = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -165,6 +185,10 @@ const meta: Meta = {
           'is-valid': 'Valid',
           'is-invalid': 'Invalid',
         },
+      },
+      if: {
+        arg: 'disabled',
+        truthy: false,
       },
       options: ['null', 'is-valid', 'is-invalid'],
       table: {
@@ -185,6 +209,7 @@ const Template: Story = {
     const classes = [
       'form-select',
       args.size,
+      args.sizeFloatingLabel,
       args.validation,
       args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
     ]
@@ -247,7 +272,7 @@ const Template: Story = {
           options[0],
           options.slice(1).map(
             (option, index) => html`
-              <option value="valoro_${index + 1}" ?selected=${index === args.selectedOption - 2}>
+              <option value="valoro_${index + 1}" ?selected="${index === args.selectedOption - 2}">
                 Opcion ${index + 2}
               </option>
             `,

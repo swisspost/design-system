@@ -48,6 +48,15 @@
 }
 
 @function light-or-dark($background, $light-color: #fff, $dark-color: #000) {
+  /*
+  exception for Success-color issue #2227
+  the color is statically defined because the reference to the variable from here
+  would create a loop
+  */
+  @if ($background == #2c911c) {
+    @return 'dark';
+  }
+
   // Contrast ratio with a light color
   $contrast-light: contrast-ratio($background, $light-color);
 

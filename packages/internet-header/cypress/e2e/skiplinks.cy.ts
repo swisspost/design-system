@@ -2,7 +2,7 @@ import { prepare } from '../support/prepare-story';
 
 describe('skiplinks', () => {
   beforeEach(() => {
-    prepare('Internet Header/Header', 'Default');
+    prepare('Components/Internet Header/Header', 'Default');
     cy.changeArg('language', 'de');
   });
 

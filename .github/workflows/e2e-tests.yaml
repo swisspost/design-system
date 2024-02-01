@@ -31,17 +31,19 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-cypress-
 
-      - name: Install dependencies
-        run: pnpm install
-
-      - name: Install server
-        run: pnpm -g add http-server
-
-      - name: Build documentation & dependencies
-        run: pnpm --filter design-system-documentation... build
+      - name: Install & build dependencies
+        run: pnpm bootstrap
 
       - name: Cypress info
         run: pnpm --filter design-system-documentation exec cypress info
 
       - name: Run tests
-        run: pnpm exec start-server-and-test 'http-server packages/documentation/storybook-static --silent --port 9001' 9001 'pnpm --filter "...[origin/main]" --workspace-concurrency=1 e2e'
+        run: pnpm e2e:ci
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4.3.0
+        if: failure()
+        with:
+          name: cypress-snapshots
+          path: packages/documentation/cypress/screenshots
+          retention-days: 14

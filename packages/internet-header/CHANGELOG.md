@@ -1,5 +1,40 @@
 # @swisspost/internet-header
 
+## 1.13.4
+
+### Patch Changes
+
+- Fixed size of post logo on browser which does not support aspect-ratio property. (by [@imagoiq](https://github.com/imagoiq) with [#2543](https://github.com/swisspost/design-system/pull/2543))
+
+## 1.13.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.0
+
+## 1.13.2
+
+### Patch Changes
+
+- Improve the main navigation slot placement and styling. (by [@alizedebray](https://github.com/alizedebray) with [#2280](https://github.com/swisspost/design-system/pull/2280))
+
+- Fixed an issue with stickyness scrolling where the logo would not react to scroll events and the header did not appear when scrolling back up. (by [@gfellerph](https://github.com/gfellerph) with [#2377](https://github.com/swisspost/design-system/pull/2377))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.1
+
+## 1.13.1
+
+### Patch Changes
+
+- Defined @stencil/core and @stencil/store as a devDependency to avoid compatibilities issues. (by [@imagoiq](https://github.com/imagoiq) with [#2313](https://github.com/swisspost/design-system/pull/2313))
+
+- Fixed position of close button on click or on focus in the help overlay. (by [@imagoiq](https://github.com/imagoiq) with [#2365](https://github.com/swisspost/design-system/pull/2365))
+
+- Fixed display of active navigation in High Contrast Mode. (by [@imagoiq](https://github.com/imagoiq) with [#2314](https://github.com/swisspost/design-system/pull/2314))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.0
+
 ## 1.13.0
 
 ### Minor Changes

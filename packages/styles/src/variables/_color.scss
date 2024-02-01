@@ -47,7 +47,7 @@ $warning: #f49e00;
 $info: #cce4ee;
 
 // Signal Colors
-$success-green: #2c871d;
+$success-green: #2c871d; /* When value is changed, please changed as well the copied value in ../functions/_contrast.scss, @function light-or-dark()*/
 $error-red: #a51728;
 $warning-orange: #f49e00;
 $success-background: #c0debb;
