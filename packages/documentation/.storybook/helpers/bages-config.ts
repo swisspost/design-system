@@ -76,7 +76,7 @@ export const badgesConfig: BadgesConfig = {
     },
     title: 'Deprecated',
     tooltip: {
-      desc: 'The contents of this page are deprecated and will be removed in the future',
+      desc: 'The content of this page is deprecated and will be removed in the future',
     },
   },
 };
