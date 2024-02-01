@@ -7,18 +7,38 @@ const meta: Meta = {
   parameters: {
     badges: [BADGE.WEB_COMPONENT_CANDIDATE],
   },
+  args: {
+    itemCount: 3,
+  },
   render: render,
   argTypes: {
-    coloredBackground: {
-      name: 'Colored Background',
-      control: {
-        type: 'boolean',
+    background: {
+      name: 'Background',
+      description: 'Sets the background of the component',
+      controls: {
+        type: 'select',
+        labels: {
+          'default': 'default',
+          'subnavigation-alternate': 'alternate',
+          'bg-petrol': 'bg-petrol',
+        },
+      },
+      options: ['default', 'subnavigation-alternate', 'bg-petrol'],
+      table: {
+        category: 'General',
       },
     },
-    alternate: {
-      name: 'Alternate',
+    itemCount: {
+      name: 'Items',
+      description: 'Number of Items in the subnavigation',
       control: {
-        type: 'boolean',
+        type: 'number',
+        min: 1,
+        max: 5,
+        step: 1,
+      },
+      table: {
+        category: 'General',
       },
     },
     badges: {
@@ -34,43 +54,23 @@ export default meta;
 
 function render(args: Args, context: StoryContext) {
   return html`
-    <div
-      class="subnavigation${args.alternate
-        ? ' subnavigation-alternate'
-        : ''}${args.coloredBackground ? ' bg-petrol' : ''}"
-    >
+    <div class="subnavigation${args.background !== 'default' ? ' ' + args.background : ''}">
       <div class="container container-fluid-xs container-fluid-sm">
         <ul class="subnavigation-list">
-          <li class="subnavigation-item">
-            <a href="/?path=/docs/components-subnavigation--docs" class="subnavigation-link active">
-              Navitem active
-              ${args.badge
-                ? html`
-                    <span class="badge bg-active rounded-pill">19</span>
-                  `
-                : ''}
-            </a>
-          </li>
-          <li class="subnavigation-item">
-            <a href="/?path=/docs/components-subnavigation--docs" class="subnavigation-link">
-              Navitem default
-              ${args.badge
-                ? html`
-                    <span class="badge bg-active rounded-pill">10</span>
-                  `
-                : ''}
-            </a>
-          </li>
-          <li class="subnavigation-item">
-            <a href="/?path=/docs/components-subnavigation--docs" class="subnavigation-link">
-              Navitem default
-              ${args.badge
-                ? html`
-                    <span class="badge bg-active rounded-pill">3</span>
-                  `
-                : ''}
-            </a>
-          </li>
+          ${Array.from(
+            { length: args.itemCount },
+            (_, index) => html`
+              <li class="subnavigation-item">
+                <a
+                  href="/?path=/docs/components-subnavigation--docs"
+                  class="subnavigation-link${index == 0 ? ' active' : ''}"
+                >
+                  Navitem ${index === 0 ? 'active' : 'default'}
+                  ${args.badge ? html` <span class="badge bg-active rounded-pill">19</span> ` : ''}
+                </a>
+              </li>
+            `,
+          )}
         </ul>
       </div>
     </div>
@@ -83,7 +83,8 @@ export const Default: Story = {};
 
 export const ColoredBackground: Story = {
   args: {
-    coloredBackground: true,
+    background: 'bg-petrol',
+    itemCount: 3,
   },
 };
 
