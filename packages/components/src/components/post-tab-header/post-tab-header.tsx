@@ -2,6 +2,10 @@ import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '../../../package.json';
 import { checkNonEmpty } from '../../utils';
 
+/**
+ * @slot - This slot accepts any content for the tab header.
+ */
+
 @Component({
   tag: 'post-tab-header',
   styleUrl: 'post-tab-header.scss',
@@ -29,7 +33,14 @@ export class PostTabHeader {
   render() {
     return (
       <Host data-version={version}>
-        <button aria-selected="false" class="tab-title" id={this.tabId} role="tab" tabindex="-1" type="button">
+        <button
+          aria-selected="false"
+          class="tab-title"
+          id={this.tabId}
+          role="tab"
+          tabindex="-1"
+          type="button"
+        >
           <slot />
         </button>
       </Host>

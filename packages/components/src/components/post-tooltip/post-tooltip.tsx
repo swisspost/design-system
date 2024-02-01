@@ -6,6 +6,11 @@ import isFocusable from 'ally.js/is/focusable';
 import 'long-press-event';
 
 import { version } from '../../../package.json';
+
+/**
+ * @slot - Default slot for the content of the tooltip. Place the content you want to display inside the tooltip here.
+ */
+
 @Component({
   tag: 'post-tooltip',
   styleUrl: 'post-tooltip.scss',

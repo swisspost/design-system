@@ -3,6 +3,11 @@ import { version } from '../../../package.json';
 import { checkEmptyOrOneOf } from '../../utils';
 import { HEADING_LEVELS, HeadingLevel } from './heading-levels';
 
+/**
+ * @slot header - Slot for placing custom content within the accordion item's header.
+ * @slot - Default slot for placing content within the accordion item's body.
+ */
+
 @Component({
   tag: 'post-accordion-item',
   styleUrl: 'post-accordion-item.scss',

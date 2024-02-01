@@ -14,6 +14,10 @@ import { version } from '../../../package.json';
 import { collapse, expand } from '../../animations/collapse';
 import { checkEmptyOrType, isMotionReduced } from '../../utils';
 
+/**
+ * @slot - Default slot for placing content within the collapsible element.
+ */
+
 @Component({
   tag: 'post-collapsible',
   styleUrl: 'post-collapsible.scss',

@@ -2,6 +2,13 @@ import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '
 import { version } from '../../../package.json';
 import { fadeIn, fadeOut } from '../../animations';
 
+/**
+ * @slot tabs - Slot for placing tab headers.
+ *               Each tab header should be a <post-tab-header> element.
+ * @slot - Default slot for placing tab panels.
+ *         Each tab panel should be a <post-tab-panel> element.
+ */
+
 @Component({
   tag: 'post-tabs',
   styleUrl: 'post-tabs.scss',

@@ -54,6 +54,13 @@ Type: `Promise<void>`
 
 
 
+## Slots
+
+| Slot | Description                                              |
+| ---- | -------------------------------------------------------- |
+|      | Default slot for placing post-accordion-item components. |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

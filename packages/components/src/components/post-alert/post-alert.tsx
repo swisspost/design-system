@@ -1,8 +1,25 @@
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop, State, Watch } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Method,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { version } from '../../../package.json';
 import { fadeOut } from '../../animations';
 import { checkEmptyOrOneOf, checkEmptyOrPattern, checkNonEmpty, checkType } from '../../utils';
 import { ALERT_TYPES, AlertType } from './alert-types';
+
+/**
+ * @slot heading - Slot for placing custom content within the alert's heading.
+ * @slot actions - Slot for placing custom actions (buttons, links, etc.) within the alert.
+ * @slot - Default slot for placing the main content/message of the alert.
+ */
 
 @Component({
   tag: 'post-alert',
@@ -60,7 +77,11 @@ export class PostAlert {
 
   @Watch('icon')
   validateIcon(icon = this.icon) {
-    checkEmptyOrPattern(icon, /\d{4}|none/, 'The post-alert "icon" prop should be a 4-digits string.');
+    checkEmptyOrPattern(
+      icon,
+      /\d{4}|none/,
+      'The post-alert "icon" prop should be a 4-digits string.',
+    );
   }
 
   /**
@@ -70,7 +91,11 @@ export class PostAlert {
 
   @Watch('type')
   validateType(type = this.type) {
-    checkEmptyOrOneOf(type, ALERT_TYPES, `The post-alert requires a type form: ${ALERT_TYPES.join(', ')}`);
+    checkEmptyOrOneOf(
+      type,
+      ALERT_TYPES,
+      `The post-alert requires a type form: ${ALERT_TYPES.join(', ')}`,
+    );
   }
 
   /**
@@ -114,10 +139,10 @@ export class PostAlert {
     const defaultAlertContent = [
       this.hasHeading && (
         <div key={`${this.alertId}-heading`} class="alert-heading">
-          <slot name="heading"/>
+          <slot name="heading" />
         </div>
       ),
-      <slot key={`${this.alertId}-message`}/>
+      <slot key={`${this.alertId}-message`} />,
     ];
 
     const actionAlertContent = [
@@ -125,7 +150,7 @@ export class PostAlert {
         {defaultAlertContent}
       </div>,
       <div key={`${this.alertId}-buttons`} class="alert-buttons">
-        <slot name="actions"/>
+        <slot name="actions" />
       </div>,
     ];
 
@@ -142,13 +167,9 @@ export class PostAlert {
             <post-icon key={`${this.alertId}-icon`} name={this.icon} />
           )}
 
-          {this.hasActions
-            ? actionAlertContent
-            : defaultAlertContent
-          }
+          {this.hasActions ? actionAlertContent : defaultAlertContent}
         </div>
       </Host>
     );
   }
-
 }

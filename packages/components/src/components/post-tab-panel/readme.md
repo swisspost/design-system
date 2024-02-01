@@ -12,6 +12,13 @@
 | `name`   | `name`    | The name of the panel, used to associate it with a tab header. | `string` | `undefined` |
 
 
+## Slots
+
+| Slot | Description                                            |
+| ---- | ------------------------------------------------------ |
+|      | Default slot for placing the content of the tab panel. |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

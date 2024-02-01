@@ -59,6 +59,13 @@ Type: `Promise<void>`
 
 
 
+## Slots
+
+| Slot | Description                                                                                                 |
+| ---- | ----------------------------------------------------------------------------------------------------------- |
+|      | Default slot for the content of the tooltip. Place the content you want to display inside the tooltip here. |
+
+
 ## Dependencies
 
 ### Depends on
