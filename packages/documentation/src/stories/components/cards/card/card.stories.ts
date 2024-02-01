@@ -2,11 +2,10 @@ import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { choose } from 'lit/directives/choose.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import React from 'react';
-import { BADGE } from '../../../../.storybook/constants';
+import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
-  title: 'Components/Card',
+  title: 'Components/Cards/Card',
   decorators: [clickBlocker, paddedContainer],
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
