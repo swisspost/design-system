@@ -3,7 +3,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 $all_exported_colors: () !default;
-$all_exported_colors: map-merge(
+$all_exported_colors: map.merge(
   $all_exported_colors,
   (
     'yellow': post.$yellow,
@@ -15,10 +15,10 @@ $all_exported_colors: map-merge(
     'gray-background': post.$gray-background,
   )
 );
-$all_exported_colors: map-merge($all_exported_colors, post.$post-grays);
-$all_exported_colors: map-merge($all_exported_colors, post.$contextual-colors);
-$all_exported_colors: map-merge($all_exported_colors, post.$accent-colors);
-$all_exported_colors: map-merge($all_exported_colors, post.$signal-colors);
+$all_exported_colors: map.merge($all_exported_colors, post.$post-grays);
+$all_exported_colors: map.merge($all_exported_colors, post.$contextual-colors);
+$all_exported_colors: map.merge($all_exported_colors, post.$accent-colors);
+$all_exported_colors: map.merge($all_exported_colors, post.$signal-colors);
 
 :export {
   brand_yellow: post.$yellow;
