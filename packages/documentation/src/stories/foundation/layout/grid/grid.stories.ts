@@ -343,17 +343,11 @@ export const Nested: Story = {
   render: () => html`
     <div class="container">
       <div class="row g-0">
-        <div class="col-md-3">
-          <div class="my-col-content-style">Level 1: .col-md-3</div>
-        </div>
+        <div class="col-md-3">Level 1: .col-md-3</div>
         <div class="col-md-9">
           <div class="row g-0">
-            <div class="col-8 col-md-6">
-              <div class="my-col-content-style">Level 2: .col-8 .col-md-6</div>
-            </div>
-            <div class="col-4 col-md-6">
-              <div class="my-col-content-style">Level 2: .col-4 .col-md-6</div>
-            </div>
+            <div class="col-8 col-md-6">Level 2: .col-8 .col-md-6</div>
+            <div class="col-4 col-md-6">Level 2: .col-4 .col-md-6</div>
           </div>
         </div>
       </div>
