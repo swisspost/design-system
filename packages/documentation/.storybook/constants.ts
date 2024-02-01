@@ -5,4 +5,5 @@ export const BADGE = {
   TODO: 'to-do',
   SINCE_V1: 'Since v1',
   WEB_COMPONENT_CANDIDATE: 'Web Component Candidate',
+  DEPRECATED: 'Deprecated',
 };
