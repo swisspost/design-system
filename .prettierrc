@@ -12,7 +12,7 @@
   "arrowParens": "avoid",
   "insertPragma": false,
   "proseWrap": "preserve",
-  "htmlWhitespaceSensitivity": "ignore",
+  "htmlWhitespaceSensitivity": "css",
   "endOfLine": "auto",
   "embeddedLanguageFormatting": "auto",
   "singleAttributePerLine": false
