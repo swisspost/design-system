@@ -1,0 +1,38 @@
+import { Source } from '@storybook/blocks';
+
+## Component Import
+
+<p>
+  <small>*Make sure the `@ng-bootstrap/ng-bootstrap` package is already present in your project
+    or follow [ng-bootstrap installation guidelines](https://ng-bootstrap.github.io/#/getting-started#installation).*</small>
+</p>
+
+To import all ng-bootstrap components:
+
+<Source
+  code={`
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+
+@NgModule({
+  imports: [NgbModule],
+})
+export class YourAppModule {
+}
+  `}
+  language="typescript"
+/>
+
+To import only this component:
+
+<Source
+  code={`
+import {${props.module}} from '@ng-bootstrap/ng-bootstrap';
+
+@NgModule({
+  imports: [${props.module}],
+})
+export class YourAppModule {
+}
+  `}
+  language="typescript"
+/>

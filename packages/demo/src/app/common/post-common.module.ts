@@ -6,10 +6,17 @@ import { DependencyLinkComponent } from './dependency-link/dependency-link.compo
 
 import { FooterComponent } from './footer/footer.component';
 import { FormatCodePipe } from './format-code.pipe';
+import { NgbLocalizationComponent } from './ngb-localization/ngb-localization.component';
+import { Highlight } from 'ngx-highlightjs';
 
 @NgModule({
-  imports: [CommonModule, RouterModule, FormsModule],
-  declarations: [FooterComponent, FormatCodePipe, DependencyLinkComponent],
-  exports: [FooterComponent, FormatCodePipe, DependencyLinkComponent],
+  imports: [CommonModule, RouterModule, FormsModule, Highlight],
+  declarations: [
+    FooterComponent,
+    FormatCodePipe,
+    DependencyLinkComponent,
+    NgbLocalizationComponent,
+  ],
+  exports: [FooterComponent, FormatCodePipe, DependencyLinkComponent, NgbLocalizationComponent],
 })
 export class PostCommonModule {}

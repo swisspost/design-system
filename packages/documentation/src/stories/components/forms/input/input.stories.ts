@@ -20,7 +20,8 @@ const meta: Meta = {
     hiddenLabel: false,
     placeholder: 'Placeholder',
     type: 'text',
-    size: 'null',
+    size: 'form-control-lg',
+    sizeFloatingLabel: 'form-control-lg',
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
@@ -53,7 +54,7 @@ const meta: Meta = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#labels">label accessibility guide</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -121,6 +122,25 @@ const meta: Meta = {
         category: 'General',
       },
     },
+    sizeFloatingLabel: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: true,
+      },
+      control: {
+        type: 'select',
+        labels: {
+          'form-control-sm': 'Small',
+          'form-control-lg': 'Large',
+        },
+      },
+      options: ['form-control-sm', 'form-control-lg'],
+      table: {
+        category: 'General',
+      },
+    },
     hint: {
       name: 'Helper Text',
       description: 'Text to place in the help text area of the component.',
@@ -134,7 +154,7 @@ const meta: Meta = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</div>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -171,6 +191,7 @@ function render(args: Args, context: StoryContext) {
     'form-control',
     args.type === 'color' && 'form-control-color',
     args.size,
+    args.sizeFloatingLabel,
     args.validation,
   ]
     .filter(c => c && c !== 'null')
