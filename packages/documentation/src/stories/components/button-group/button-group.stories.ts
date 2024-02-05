@@ -173,7 +173,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
             updateArgs({ selected: isChecked });
           }}"
         />
-        <label class="${`btn ${args.size} btn-secondary`}" for="${id}">${label}</label>
+        <label class="btn ${args.size} btn-secondary" for="${id}">${label}</label>
       `;
     }
     case 'radio': {
@@ -195,9 +195,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
       `;
     }
     case 'link':
-      return html`
-        <a href="#" class="${`btn ${args.size} btn-secondary`}">${label}</a>
-      `;
+      return html` <a href="#" class="${`btn ${args.size} btn-secondary`}">${label}</a> `;
     case 'button':
     default:
       return html`
