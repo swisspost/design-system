@@ -123,22 +123,12 @@ function render(args: Args, context: StoryContext) {
 
   const useAriaLabel = args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel
-    ? html`
-        <label for="${id}" class="form-check-label">${args.label}</label>
-      `
+    ? html` <label for="${id}" class="form-check-label">${args.label}</label> `
     : null;
 
   const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid'
-      ? html`
-          <p class="valid-feedback">Ggranda sukceso!</p>
-        `
-      : null,
-    args.validation === 'is-invalid'
-      ? html`
-          <p class="invalid-feedback">Eraro okazis!</p>
-        `
-      : null,
+    args.validation === 'is-valid' ? html` <p class="valid-feedback">Ggranda sukceso!</p> ` : null,
+    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">Eraro okazis!</p> ` : null,
   ];
 
   const control = html`
@@ -168,7 +158,7 @@ export const Default: Story = {};
 
 export function renderInline(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
-  const baseId = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
+  const baseId = `${context.viewMode}_${context.name?.replace(/\s/g, '-')}_ExampleRadio`;
   const id1 = baseId + '1';
   const id2 = baseId + '2';
   const id3 = baseId + '3';
