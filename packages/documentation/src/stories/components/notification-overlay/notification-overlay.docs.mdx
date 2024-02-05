@@ -1,0 +1,61 @@
+import { Meta, Source } from '@storybook/blocks';
+import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import PostComponentDemoLink from '../../../shared/post-component-demo-link.mdx';
+import NgbComponentImport from '../../../shared/nb-bootstrap/ngb-component-import.mdx';
+import * as notificationOverlayStories from './notification-overlay.stories';
+import basicExampleHTML from './notification-overlay.sample.html?raw';
+import basicExampleAngular from './notification-overlay.sample.ts?raw';
+
+<Meta of={notificationOverlayStories} />
+
+<div className="d-flex align-items-center justify-content-between">
+  # Notification overlay
+
+  <PostComponentDemoLink component="notification-overlay" />
+</div>
+
+<p className="lead">Tells the user an important information before going on with a further action and allows to interrupt the current action.</p>
+
+<ul>
+  <li>
+    <a href="#component-import" target="_self">Component Import</a>
+  </li>
+  <li>
+    <a href="#style-imports" target="_self">Style Imports</a>
+  </li>
+  <li>
+    <a href="#focus-management" target="_self">Focus Management</a>
+  </li>
+  <li>
+    <a href="#examples" target="_self">Examples</a>
+  </li>
+</ul>
+
+<NgbComponentImport module="NgbModalModule" />
+
+<StylesPackageImport components={["modal"]} />
+
+## Focus Management
+Since the notification overlay appears above the page, generally blocking interaction with the content below,
+it is important that the focus is move to an element within it.
+
+By default, it is the first focusable element within the modal that receives focus upon opening.
+However, You can decide to focus any other element by adding an `ngbAutofocus` attribute to it.
+
+## Examples
+
+### Notify the user of an incomplete field before continuing
+
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="basicExampleHTML">template.html</PostTabHeader>
+  <PostTabPanel name="basicExampleHTML">
+    <Source code={basicExampleHTML} language="html"/>
+  </PostTabPanel>
+
+  <PostTabHeader slot="tabs" panel="basicExampleAngular">component.ts</PostTabHeader>
+  <PostTabPanel name="basicExampleAngular">
+    <Source code={basicExampleAngular} language="ts"/>
+  </PostTabPanel>
+</PostTabs>
+
