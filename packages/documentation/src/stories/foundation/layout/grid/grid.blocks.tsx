@@ -34,7 +34,9 @@ export const GridTable = () => (
     <tr>
       <th>Custom gutters</th>
       <td colSpan={SCSS_VARIABLES['breakpoint-count']}>
-        <a href="/?path=/docs/foundations-layout-gutters--docs">yes</a>
+        <a href="#gutters" target="_self">
+          yes
+        </a>
       </td>
     </tr>
     <tr>

@@ -161,16 +161,16 @@ function renderTextarea(args: Args, context: StoryContext) {
   });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label = !useAriaLabel
-    ? html` <label for=${id} class="form-label"> ${html` ${args.label} `} </label> `
+    ? html` <label for=${id} class="form-label">${args.label}</label> `
     : null;
-  const contextuals = [
+  const contextual = [
     args.validation === 'is-valid'
       ? html` <div class="valid-feedback">Ggranda sukceso!</div> `
       : null,
     args.validation === 'is-invalid'
       ? html` <div class="invalid-feedback">Eraro okazis!</div> `
       : null,
-    args.hint !== '' ? html` <div class="form-text">${html` ${args.hint} `}</div> ` : null,
+    args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
   ];
   const control = html`
     <textarea
@@ -189,9 +189,9 @@ ${args.textInside ?? nothing}</textarea
   `;
   if (args.floatingLabel) {
     return html`
-      <div class="form-floating">${[control, label, ...contextuals].filter(el => el !== null)}</div>
+      <div class="form-floating">${[control, label, ...contextual].filter(el => el !== null)}</div>
     `;
-  } else return html` ${[label, control, ...contextuals].filter(el => el !== null)} `;
+  } else return html` ${[label, control, ...contextual].filter(el => el !== null)} `;
 }
 
 export const Default: Story = {};
