@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'Utilities/List',
   title: 'Utilities/List',
   parameters: {
     badges: [BADGE.TODO],

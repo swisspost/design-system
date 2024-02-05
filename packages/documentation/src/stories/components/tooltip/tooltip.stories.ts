@@ -6,6 +6,7 @@ import { useArgs } from '@storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 const meta: Meta = {
+  id: 'Components/Tooltip',
   title: 'Components/Tooltip',
   component: 'post-tooltip',
   parameters: {

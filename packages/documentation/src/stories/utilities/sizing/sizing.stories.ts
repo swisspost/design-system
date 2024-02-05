@@ -12,6 +12,7 @@ const sizeOptionsPercent = ['auto', '25', '50', '75', '100'];
 
 const meta: Meta = {
   render: renderSizing,
+  id: 'Utilities/Sizing',
   title: 'Utilities/Sizing',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

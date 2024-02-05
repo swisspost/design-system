@@ -4,6 +4,7 @@ import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: Meta = {
+  id: 'Components/Popover',
   title: 'Components/Popover',
   component: 'post-popover',
   parameters: {
@@ -94,11 +95,7 @@ function render(args: Args) {
       placement="${args.placement}"
       ?arrow="${args.arrow}"
     >
-      ${args.title
-        ? html`
-            <h2 class="h6">Optional title</h2>
-          `
-        : null}
+      ${args.title ? html` <h2 class="h6">Optional title</h2> ` : null}
       <p class="mb-0">${unsafeHTML(args.innerHtml)}</p>
     </post-popover>
   `;

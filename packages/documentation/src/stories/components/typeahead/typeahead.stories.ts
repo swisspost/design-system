@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'Components/Typeahead',
   title: 'Components/Typeahead',
   parameters: {
     badges: [BADGE.WEB_COMPONENT_CANDIDATE],

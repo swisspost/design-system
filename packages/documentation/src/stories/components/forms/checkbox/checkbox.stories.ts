@@ -6,6 +6,7 @@ import { BADGE } from '../../../../../.storybook/constants';
 import { mapClasses } from '../../../../utils';
 
 const meta: Meta = {
+  id: 'Components/Forms/Checkbox',
   title: 'Components/Forms/Checkbox',
   render: renderCheckbox,
   parameters: {
@@ -159,9 +160,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 function getLabel({ label }: Args, { id }: StoryContext) {
-  return html`
-    <label for="${id}" class="form-check-label">${label}</label>
-  `;
+  return html` <label for="${id}" class="form-check-label">${label}</label> `;
 }
 
 function getValidationFeedback({ validation }: Args) {

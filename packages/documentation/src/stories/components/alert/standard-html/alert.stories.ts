@@ -7,6 +7,7 @@ import { getAlertClasses } from './getAlertClasses';
 import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'Components/Alert',
   title: 'Components/Alert',
   render: renderAlert,
   decorators: [externalControl],
@@ -122,9 +123,7 @@ function externalControl(story: StoryFn, { args, context }: StoryContext) {
     </a>
   `;
 
-  return html`
-    ${args.fixed ? button : nothing} ${story(args, context)}
-  `;
+  return html` ${args.fixed ? button : nothing} ${story(args, context)} `;
 }
 
 // RENDERER
@@ -133,11 +132,7 @@ function renderAlert(args: Args) {
   const classes = getAlertClasses(args);
 
   const content = html`
-    ${args.title
-      ? html`
-          <h4 class="alert-heading">${args.title}</h4>
-        `
-      : nothing}
+    ${args.title ? html` <h4 class="alert-heading">${args.title}</h4> ` : nothing}
     ${unsafeHTML(args.content)}
   `;
 
@@ -145,19 +140,11 @@ function renderAlert(args: Args) {
     <div class="${classes}" role="alert">
       ${
         /* Alert Icon */
-        args.icon
-          ? html`
-              <post-icon name=${args.icon}></post-icon>
-            `
-          : nothing
+        args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing
       }
       ${
         /* Alert Content */
-        args.action
-          ? html`
-              <div class="alert-content">${content}</div>
-            `
-          : content
+        args.action ? html` <div class="alert-content">${content}</div> ` : content
       }
       ${
         /* Alert Action Buttons */

@@ -1,8 +1,9 @@
-import { Meta, StoryFn, StoryObj, StoryContext } from '@storybook/web-components';
+import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../../.storybook/constants';
 import { html } from 'lit';
 
 const meta: Meta = {
+  id: 'Layout/Grid',
   title: 'Foundations/Layout/Grid',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

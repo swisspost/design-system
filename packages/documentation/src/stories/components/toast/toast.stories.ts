@@ -4,6 +4,7 @@ import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'Components/Toast',
   title: 'Components/Toast',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
@@ -283,9 +284,7 @@ const meta: Meta = {
           </div>
         `;
       } else {
-        return html`
-          ${story()}
-        `;
+        return html` ${story()} `;
       }
     },
   ],
@@ -346,17 +345,13 @@ function killAutoHideTimeout(timeoutStore: ReturnType<typeof setTimeout>[], args
 
 function getToastIcon(args: Args) {
   return !args.noIcon && args.icon !== 'null'
-    ? html`
-        <post-icon aria-hidden="true" name="${args.icon}"></post-icon>
-      `
+    ? html` <post-icon aria-hidden="true" name="${args.icon}"></post-icon> `
     : null;
 }
 
 function getDismissButton(args: Args, isFixed: boolean) {
   return args.dismissible || isFixed
-    ? html`
-        <button class="toast-close-button" aria-label="close"></button>
-      `
+    ? html` <button class="toast-close-button" aria-label="close"></button> `
     : null;
 }
 
@@ -400,19 +395,13 @@ function render(args: Args, context: StoryContext) {
     >
       ${toastIcon} ${dismissButton}
       <div class="toast-title">${args.title}</div>
-      ${args.content
-        ? html`
-            <div class="toast-message">${args.content}</div>
-          `
-        : null}
+      ${args.content ? html` <div class="toast-message">${args.content}</div> ` : null}
     </div>
   `;
 
   let wrappedContent;
   if (args.stacked) {
-    wrappedContent = html`
-      ${component} ${component}
-    `;
+    wrappedContent = html` ${component} ${component} `;
   } else if (isFixed) {
     if (args.show) {
       createAutoHideTimeout(timeoutStore, args, updateArgs);

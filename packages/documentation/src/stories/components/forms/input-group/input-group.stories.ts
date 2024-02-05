@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'Components/Forms/Input Group',
   title: 'Components/Forms/Input Group',
   parameters: {
     badges: [BADGE.TODO],

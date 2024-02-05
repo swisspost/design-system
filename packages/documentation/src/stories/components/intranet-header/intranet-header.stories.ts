@@ -2,6 +2,7 @@ import { Meta } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'Components/Intranet Header',
   title: 'Components/Intranet Header',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

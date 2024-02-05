@@ -5,6 +5,7 @@ import { repeat } from 'lit/directives/repeat.js';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 const meta: Meta = {
+  id: 'Components/Button',
   title: 'Components/Button',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
@@ -217,22 +218,12 @@ const Template = {
     const props = createProps(args, isAnimated);
 
     if (args.tag === 'input') {
-      return html`
-        <${tagName} ${spread(props)} />
-      `;
+      return html` <${tagName} ${spread(props)} /> `;
     } else {
-      const icon = html`
-        <post-icon aria-hidden="true" name="${args.icon}"></post-icon>
-      `;
-      const iconOnlyContent = html`
-        <span class="visually-hidden">${args.text}</span>
-      `;
-      const animatedContent = html`
-        <span>${args.text}</span>
-      `;
-      const text = html`
-        ${args.text}
-      `;
+      const icon = html` <post-icon aria-hidden="true" name="${args.icon}"></post-icon> `;
+      const iconOnlyContent = html` <span class="visually-hidden">${args.text}</span> `;
+      const animatedContent = html` <span>${args.text}</span> `;
+      const text = html` ${args.text} `;
 
       return html`
         <${tagName} ${spread(props)}>
@@ -271,11 +262,7 @@ export const Default: Story = {
 
 export const Inverted: Story = {
   ...Template,
-  decorators: [
-    (story: Function) => html`
-      <div class="p-3 bg-dark">${story()}</div>
-    `,
-  ],
+  decorators: [(story: Function) => html` <div class="p-3 bg-dark">${story()}</div> `],
 };
 
 const VariantsTemplate = {
@@ -285,10 +272,7 @@ const VariantsTemplate = {
     },
   },
   decorators: [
-    (story: Function) =>
-      html`
-        <div class="d-flex gap-small-r flex-wrap">${story()}</div>
-      `,
+    (story: Function) => html` <div class="d-flex gap-small-r flex-wrap">${story()}</div> `,
   ],
   render: (args: Args) =>
     html`

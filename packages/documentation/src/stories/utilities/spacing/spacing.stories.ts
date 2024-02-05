@@ -1,4 +1,4 @@
-import type { Args, Meta, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
+import type { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit/static-html.js';
 import './spacing.styles.scss';
@@ -20,6 +20,7 @@ const positionOptions = {
 };
 
 const meta: Meta = {
+  id: 'Utilities/Spacing',
   title: 'Utilities/Spacing',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
@@ -143,9 +144,7 @@ export const Default: Story = {
 
 export const responsiveExample: Story = {
   render: (args: Args) => {
-    return html`
-      <div class="h-bigger-giant w-bigger-giant p-regular p-lg-big"></div>
-    `;
+    return html` <div class="h-bigger-giant w-bigger-giant p-regular p-lg-big"></div> `;
   },
   decorators: [
     // everything in here will be visible in the example, but only the content coming from the `story` function will be shown in the code preview
@@ -163,9 +162,7 @@ export const responsiveExample: Story = {
 
 export const automaticResponsiveExample: Story = {
   render: (args: Args) => {
-    return html`
-      <div class="h-bigger-giant w-bigger-giant p-large-r"></div>
-    `;
+    return html` <div class="h-bigger-giant w-bigger-giant p-large-r"></div> `;
   },
   decorators: [
     (story: StoryFn, { args, context }: StoryContext) => html`

@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'Utilities/Background',
   title: 'Utilities/Background',
   parameters: {
     badges: [BADGE.TODO],
@@ -14,9 +15,7 @@ export default meta;
 type Story = StoryObj;
 
 export const ColoredBackground: Story = {
-  render: () => html`
-    <div class="bg-yellow p-3">Content</div>
-  `,
+  render: () => html` <div class="bg-yellow p-3">Content</div> `,
 };
 
 export const NestedBackgrounds: Story = {

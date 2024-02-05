@@ -1,8 +1,9 @@
 import { BADGE } from '../../../../../.storybook/constants';
-import { choiceCardMeta, choiceCardDefault, choiceCardGroup } from './choice-card';
+import { choiceCardDefault, choiceCardGroup, choiceCardMeta } from './choice-card';
 
 export default {
   ...choiceCardMeta,
+  id: 'Components/Forms/Checkbox Card',
   title: 'Components/Forms/Checkbox Card',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

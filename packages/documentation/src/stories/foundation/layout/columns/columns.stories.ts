@@ -1,8 +1,9 @@
-import type { Args, Meta, StoryFn, StoryObj, StoryContext } from '@storybook/web-components';
+import type { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../../.storybook/constants';
 import { html, nothing } from 'lit';
 
 const meta: Meta = {
+  id: 'Layout/Columns',
   title: 'Foundations/Layout/Columns',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

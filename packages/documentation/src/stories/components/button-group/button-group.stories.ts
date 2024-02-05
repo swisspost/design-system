@@ -4,6 +4,7 @@ import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'Components/Button Group',
   title: 'Components/Button Group',
   render: renderButtonGroup,
   parameters: {
@@ -195,9 +196,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
       `;
     }
     case 'link':
-      return html`
-        <a href="#" class="${`btn ${args.size} btn-secondary`}">${label}</a>
-      `;
+      return html` <a href="#" class="${`btn ${args.size} btn-secondary`}">${label}</a> `;
     case 'button':
     default:
       return html`

@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { mapClasses } from '../../../utils';
 
 const meta: Meta = {
+  id: 'Components/Table',
   title: 'Components/Table',
   render: renderTable,
   parameters: {},
@@ -131,7 +132,9 @@ function renderTable(args: Args) {
         </tr>
       </thead>
 
-      <tbody>${args.content}</tbody>
+      <tbody>
+        ${args.content}
+      </tbody>
     </table>
   `;
 }

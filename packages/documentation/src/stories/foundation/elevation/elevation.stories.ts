@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'Elevation',
   title: 'Foundations/Elevation',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
@@ -15,7 +16,5 @@ type Story = StoryObj;
 
 export const Default: Story = {
   render: () =>
-    html`
-      <div class="w-50 rounded p-regular bg-aubergine elevation-5">I'm elevated!</div>
-    `,
+    html` <div class="w-50 rounded p-regular bg-aubergine elevation-5">I'm elevated!</div> `,
 };

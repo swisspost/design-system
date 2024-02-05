@@ -11,6 +11,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
+  id: 'Components/Forms/Select',
   title: 'Components/Forms/Select',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
@@ -217,43 +218,27 @@ const Template: Story = {
       .join(' ');
     const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
     const label = !useAriaLabel
-      ? html`
-          <label for="${id}" class="form-label">${args.label}</label>
-        `
+      ? html` <label for="${id}" class="form-label">${args.label}</label> `
       : null;
     const optionElements = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
-      (key: number) => html`
-        <option value="valoro_${key}">Opcion ${key}</option>
-      `,
+      (key: number) => html` <option value="valoro_${key}">Opcion ${key}</option> `,
     );
     const options = [
       ...[
         args.floatingLabelPlaceholder
-          ? html`
-              <option></option>
-            `
-          : html`
-              <option>Elektu opcion...</option>
-            `,
+          ? html` <option></option> `
+          : html` <option>Elektu opcion...</option> `,
       ],
       ...optionElements,
     ];
     const contextuals = [
       args.validation === 'is-valid'
-        ? html`
-            <p class="valid-feedback">Ggranda sukceso!</p>
-          `
+        ? html` <p class="valid-feedback">Ggranda sukceso!</p> `
         : null,
       args.validation === 'is-invalid'
-        ? html`
-            <p class="invalid-feedback">Eraro okazis!</p>
-          `
+        ? html` <p class="invalid-feedback">Eraro okazis!</p> `
         : null,
-      args.hint !== ''
-        ? html`
-            <div class="form-text">${args.hint}</div>
-          `
-        : null,
+      args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
     ];
     const control = html`
       <select
@@ -270,13 +255,18 @@ const Template: Story = {
       >
         ${[
           options[0],
-          options.slice(1).map(
-            (option, index) => html`
-              <option value="valoro_${index + 1}" ?selected="${index === args.selectedOption - 2}">
-                Opcion ${index + 2}
-              </option>
-            `,
-          ),
+          options
+            .slice(1)
+            .map(
+              (option, index) => html`
+                <option
+                  value="valoro_${index + 1}"
+                  ?selected="${index === args.selectedOption - 2}"
+                >
+                  Opcion ${index + 2}
+                </option>
+              `,
+            ),
         ]}
       </select>
     `;
@@ -288,9 +278,7 @@ const Template: Story = {
         </div>
       `;
     } else {
-      return html`
-        ${[label, control, ...contextuals].filter(el => el !== null)}
-      `;
+      return html` ${[label, control, ...contextuals].filter(el => el !== null)} `;
     }
   },
 };

@@ -4,6 +4,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
 
 const meta: Meta = {
+  id: 'Components/Topic Teaser',
   title: 'Components/Topic Teaser',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
@@ -174,13 +175,7 @@ export const Default: Story = {
         <div class="container">
           <div class="topic-teaser-container ${args.backgroundColor}">
             <div class="row pt-huge-r">
-              ${args.alignment === 'null'
-                ? html`
-                    ${content}${image}
-                  `
-                : html`
-                    ${image}${content}
-                  `}
+              ${args.alignment === 'null' ? html` ${content}${image} ` : html` ${image}${content} `}
             </div>
           </div>
         </div>

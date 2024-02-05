@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'Components/Datepicker',
   title: 'Components/Datepicker',
   parameters: {
     badges: [BADGE.WEB_COMPONENT_CANDIDATE],

@@ -12,6 +12,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const ARROW_KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
 const meta: Meta = {
+  id: 'Components/Forms/Range',
   title: 'Components/Forms/Range',
   render: render,
   parameters: {
@@ -170,22 +171,12 @@ function render(args: Args, context: StoryContext) {
 
   const useAriaLabel = args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel
-    ? html`
-        <label class="form-label" for="${id}">${args.label}</label>
-      `
+    ? html` <label class="form-label" for="${id}">${args.label}</label> `
     : null;
 
   const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid'
-      ? html`
-          <p class="valid-feedback">Ggranda sukceso!</p>
-        `
-      : null,
-    args.validation === 'is-invalid'
-      ? html`
-          <p class="invalid-feedback">Eraro okazis!</p>
-        `
-      : null,
+    args.validation === 'is-valid' ? html` <p class="valid-feedback">Ggranda sukceso!</p> ` : null,
+    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">Eraro okazis!</p> ` : null,
   ];
 
   const control: TemplateResult = html`
@@ -208,16 +199,12 @@ function render(args: Args, context: StoryContext) {
   let valueElement: TemplateResult | TemplateResult[] | null = null;
 
   if (args.showValue === 'text') {
-    valueElement = html`
-      <p class="form-text">${args.value}</p>
-    `;
+    valueElement = html` <p class="form-text">${args.value}</p> `;
   } else if (args.showValue === 'input') {
     const inputId = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRangeInput`;
 
     valueElement = [
-      html`
-        <label class="form-label visually-hidden" for="${inputId}">Range controller</label>
-      `,
+      html` <label class="form-label visually-hidden" for="${inputId}">Range controller</label> `,
       html`
         <input
           id="${inputId}"
@@ -241,9 +228,7 @@ function render(args: Args, context: StoryContext) {
       </div>
     `;
   } else {
-    return html`
-      ${[label, control, valueElement, ...contextual].filter(el => el !== null)}
-    `;
+    return html` ${[label, control, valueElement, ...contextual].filter(el => el !== null)} `;
   }
 }
 

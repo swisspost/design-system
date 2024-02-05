@@ -4,6 +4,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { spreadArgs } from '../../../utils';
 
 const meta: Meta<HTMLPostCollapsibleElement> = {
+  id: 'Components/Collapsible',
   title: 'Components/Collapsible',
   component: 'post-collapsible',
   render: renderCollapsible,
@@ -64,9 +65,7 @@ function externalControls(story: StoryFn, context: StoryContext) {
 
 //RENDERER
 function renderCollapsible(args: Partial<HTMLPostCollapsibleElement>) {
-  return html`
-    <post-collapsible ${spreadArgs(args)}></post-collapsible>
-  `;
+  return html` <post-collapsible ${spreadArgs(args)}></post-collapsible> `;
 }
 
 // STORIES
