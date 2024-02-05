@@ -23,13 +23,13 @@ const meta: Meta = {
       control: {
         type: 'select',
         labels: {
-          ' btn-sm': 'Small',
-          ' btn-rg': 'Regular',
-          ' btn-md': 'Medium',
-          ' btn-lg': 'Large',
+          'btn-sm': 'Small',
+          'btn-rg': 'Regular',
+          'btn-md': 'Medium',
+          'btn-lg': 'Large',
         },
       },
-      options: [' btn-sm', ' btn-rg', ' btn-md', ' btn-lg'],
+      options: ['btn-sm', 'btn-rg', 'btn-md', 'btn-lg'],
       table: {
         category: 'General',
       },
@@ -226,7 +226,7 @@ export const Sizing: Story = {
     },
   },
   args: {
-    size: ' btn-sm',
+    size: 'btn-sm',
   },
 };
 
