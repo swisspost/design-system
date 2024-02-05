@@ -191,16 +191,14 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
             updateArgs({ checked: position });
           }}"
         />
-        <label class="${`btn ${args.size} btn-secondary`}" for="${id}">${label}</label>
+        <label class="btn ${args.size} btn-secondary" for="${id}">${label}</label>
       `;
     }
     case 'link':
-      return html` <a href="#" class="${`btn ${args.size} btn-secondary`}">${label}</a> `;
+      return html` <a href="#" class="btn ${args.size} btn-secondary">${label}</a> `;
     case 'button':
     default:
-      return html`
-        <button type="button" class="${`btn ${args.size} btn-secondary`}">${label}</button>
-      `;
+      return html` <button type="button" class="btn ${args.size} btn-secondary">${label}</button> `;
   }
 }
 
