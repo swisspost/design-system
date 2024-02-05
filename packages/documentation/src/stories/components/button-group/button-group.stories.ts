@@ -23,13 +23,13 @@ const meta: Meta = {
       control: {
         type: 'select',
         labels: {
-          ' btn-sm': 'Small',
-          ' btn-rg': 'Regular',
-          ' btn-md': 'Medium',
-          ' btn-lg': 'Large',
+          'btn-sm': 'Small',
+          'btn-rg': 'Regular',
+          'btn-md': 'Medium',
+          'btn-lg': 'Large',
         },
       },
-      options: [' btn-sm', ' btn-rg', ' btn-md', ' btn-lg'],
+      options: ['btn-sm', 'btn-rg', 'btn-md', 'btn-lg'],
       table: {
         category: 'General',
       },
@@ -173,7 +173,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
             updateArgs({ selected: isChecked });
           }}"
         />
-        <label class="${`btn ${args.size} btn-secondary`}" for="${id}">${label}</label>
+        <label class="btn ${args.size} btn-secondary" for="${id}">${label}</label>
       `;
     }
     case 'radio': {
@@ -191,18 +191,14 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
             updateArgs({ checked: position });
           }}"
         />
-        <label class="${`btn ${args.size} btn-secondary`}" for="${id}">${label}</label>
+        <label class="btn ${args.size} btn-secondary" for="${id}">${label}</label>
       `;
     }
     case 'link':
-      return html`
-        <a href="#" class="${`btn ${args.size} btn-secondary`}">${label}</a>
-      `;
+      return html` <a href="#" class="btn ${args.size} btn-secondary">${label}</a> `;
     case 'button':
     default:
-      return html`
-        <button type="button" class="${`btn ${args.size} btn-secondary`}">${label}</button>
-      `;
+      return html` <button type="button" class="btn ${args.size} btn-secondary">${label}</button> `;
   }
 }
 
@@ -230,7 +226,7 @@ export const Sizing: Story = {
     },
   },
   args: {
-    size: ' btn-sm',
+    size: 'btn-sm',
   },
 };
 

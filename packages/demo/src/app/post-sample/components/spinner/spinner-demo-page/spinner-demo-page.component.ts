@@ -2,19 +2,17 @@ import { Component } from '@angular/core';
 
 const codeTemplate =
   require('!!raw-loader!../spinner-mini-demo/spinner-mini-demo.component.html').default;
-const spinner = `<div class="position-relative">
-    <div class="spinner-bg">
-        <div class="loading-modal">
-            <div class="loader m-auto"></div>
-        </div>
+const spinner = `<!-- my-parent-element class="position-relative" -->
+<div class="spinner-bg">
+    <div class="loading-modal">
+        <div class="loader m-auto"></div>
     </div>
 </div>`;
-const spinnerSmall = `<div class="position-relative">
-  <div class="spinner-bg">
-      <div class="loading-modal">
-          <div class="loader loader-sm m-auto"></div>
-      </div>
-  </div>
+const spinnerSmall = `<!-- my-parent-element class="position-relative" -->
+<div class="spinner-bg">
+    <div class="loading-modal">
+        <div class="loader loader-sm m-auto"></div>
+    </div>
 </div>`;
 
 @Component({
