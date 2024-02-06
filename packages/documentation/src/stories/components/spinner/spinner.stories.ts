@@ -1,0 +1,98 @@
+import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import { html } from 'lit/static-html.js';
+import { BADGE } from '../../../../.storybook/constants';
+
+const meta: Meta = {
+  title: 'Components/Spinner',
+  render,
+  decorators: [story => generateDecorators(story)],
+  parameters: {
+    badges: [BADGE.BETA],
+  },
+  args: {
+    size: 'null',
+  },
+  argTypes: {
+    size: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      control: {
+        type: 'select',
+        labels: {
+          'loader-12': '12',
+          'loader-16': '16',
+          'loader-24': '24',
+          'loader-32': '32',
+          'loader-40': '40',
+          'loader-48': '48',
+          'null': 'Default (56)',
+          'loader-80': '80',
+        },
+      },
+      options: [
+        'loader-12',
+        'loader-16',
+        'loader-24',
+        'loader-32',
+        'loader-40',
+        'loader-48',
+        'null',
+        'loader-80',
+      ],
+    },
+  },
+};
+
+export default meta;
+
+type Story = StoryObj;
+
+function generateDecorators(story: any) {
+  return html` <div class="m-5 overflow-hidden">${story()}</div> `;
+}
+
+function render(args: Args) {
+  const classes = ['loader', 'm-auto', args.size].filter(c => c && c !== 'null').join(' ');
+
+  console.log('classes', classes);
+
+  return html` <div class="spinner-bg">
+    <div class="loading-modal">
+      <div class="${classes}" role="status">
+        <span class="visually-hidden">Loading…</span>
+      </div>
+    </div>
+  </div>`;
+}
+
+export const Default: Story = {};
+
+export const BlockSection: Story = {
+  render: () =>
+    html`<div class="position-relative">
+      <div class="spinner-bg">
+        <div class="loading-modal">
+          <div class="loader m-auto" role="status">
+            <span class="visually-hidden">Loading…</span>
+          </div>
+        </div>
+      </div>
+      <p>
+        There is some continous text here as an example. Lorem ipsum dolor sit amet, consetetur
+        sadipscing elitr, <a href="#">sed diam nonumy eirmod tempor invidunt</a> ut labore et dolore
+        magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+        rebum.
+      </p>
+    </div>`,
+};
+
+export const Inline: Story = {
+  render: () => html`<button class="btn btn-secondary btn-animated">
+      <div class="loader loader-16 d-inline-block me-1" role="status" aria-hidden="true"></div>
+      <span>Data is loading…</span>
+    </button>
+    <button class="btn btn-secondary btn-animated ms-3" disabled="disabled">
+      <div class="loader loader-16 d-inline-block me-1" role="status" aria-hidden="true"></div>
+      <span>Data is loading…</span>
+    </button>`,
+};

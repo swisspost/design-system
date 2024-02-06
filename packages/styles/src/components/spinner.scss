@@ -1,4 +1,6 @@
+@use 'sass:math';
 @forward './../variables/options';
+@use './../variables/type';
 
 @use './../lic/bootstrap-license';
 @use './../themes/bootstrap/core' as *;
@@ -7,16 +9,6 @@
 @use './../mixins/utilities';
 @use './../variables/commons';
 @use './../variables/components/spinners';
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-
-  100% {
-    transform: rotate(360deg);
-  }
-}
 
 .spinner-bg {
   position: absolute;
@@ -38,34 +30,140 @@
 }
 
 .loader {
-  width: spinners.$spinner-size;
-  height: spinners.$spinner-size;
-  animation: spin 2s linear infinite;
-  border: spinners.$spinner-border-width solid spinners.$spinner-color-primary;
-  border-radius: 50%;
-  border-right-color: transparent;
-  border-bottom-color: spinners.$spinner-color-secondary;
+  width: 1em;
+  height: 1em;
+  animation: spin spinners.$spinner-duration linear infinite;
+  position: relative;
+  font-size: spinners.$spinner-size;
 
+  // Sizes
+  @each $key, $font-size in spinners.$spinner-size-map {
+    &.loader-#{$key} {
+      font-size: $font-size;
+    }
+  }
+
+  // Deprecated sizes
   &.loader-sm {
-    width: spinners.$spinner-size-sm;
-    height: spinners.$spinner-size-sm;
-    border-width: spinners.$spinner-border-width-sm;
+    font-size: spinners.$spinner-size-sm;
   }
 
   &.loader-xs {
-    width: spinners.$spinner-size-xs;
-    height: spinners.$spinner-size-xs;
-    border-width: spinners.$spinner-border-width-xs;
+    font-size: spinners.$spinner-size-xs;
+  }
+
+  &::before,
+  &::after {
+    content: '';
+    box-sizing: border-box;
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    border: max(2px, 0.12em) solid spinners.$spinner-color-secondary; // Size is proportional, but 1px is too thin on browser compared to design
+    transform: rotate(130deg);
+    animation-direction: alternate;
+    animation-duration: math.div(spinners.$spinner-duration, 2);
+    animation-iteration-count: infinite;
+  }
+
+  // Background bar
+  &::before {
+    animation-name: progressLoaderInverted; // Mask part of the bar where the progress bar is active against antialiasing issue
+  }
+
+  // Progress bar
+  &::after {
+    border-color: spinners.$spinner-color-primary;
+    animation-name: progressLoader;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    animation-duration: math.div(
+      spinners.$spinner-duration,
+      spinners.$spinner-speed-reduced-motion
+    );
+
+    &::before,
+    &::after {
+      animation-duration: math.div(
+        spinners.$spinner-duration,
+        2 * spinners.$spinner-speed-reduced-motion
+      );
+    }
   }
 
   @include utilities.high-contrast-mode() {
-    border-color: Highlight;
-    border-bottom-color: CanvasText;
-    border-right-color: Canvas;
-
-    @supports (forced-color-adjust: none) {
-      forced-color-adjust: none;
-      border-right-color: transparent;
+    &::before {
+      border-color: CanvasText;
     }
+
+    &::after {
+      border-color: Highlight;
+    }
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(180deg);
+  }
+
+  100% {
+    transform: rotate(720deg);
+  }
+}
+
+$progress-step-1-inner:
+  50% 50%,
+  0 0,
+  42% 0,
+  42% 0,
+  42% 0,
+  42% 0;
+$progress-step-2-inner:
+  50% 50%,
+  0 0,
+  100% 0,
+  100% 0,
+  100% 0,
+  100% 0;
+$progress-step-3-inner:
+  50% 50%,
+  0 0,
+  100% 0,
+  100% 100%,
+  100% 100%,
+  100% 100%;
+
+@keyframes progressLoader {
+  0% {
+    clip-path: polygon($progress-step-1-inner);
+  }
+
+  50% {
+    clip-path: polygon($progress-step-2-inner);
+  }
+
+  100% {
+    clip-path: polygon($progress-step-3-inner);
+  }
+}
+
+/* This animation works as kind of inverted mask based on the progressLoader animation */
+@keyframes progressLoaderInverted {
+  0% {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, $progress-step-1-inner, 50% 50%, 100% 100%, 100% 0);
+  }
+
+  50% {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, $progress-step-2-inner, 50% 50%, 100% 100%, 100% 0);
+  }
+
+  100% {
+    clip-path: polygon(0 0, 0 100%, 100% 100%, $progress-step-3-inner, 50% 50%, 100% 100%, 100% 0);
   }
 }
