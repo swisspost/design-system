@@ -1,6 +1,10 @@
 import { Component, Element, h, Host, Listen, Method, Prop } from '@stencil/core';
 import { version } from '../../../package.json';
 
+/**
+ * @slot default - Slot for placing post-accordion-item components.
+ */
+
 @Component({
   tag: 'post-accordion',
   styleUrl: 'post-accordion.scss',

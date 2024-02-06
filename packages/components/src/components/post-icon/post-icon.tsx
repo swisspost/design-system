@@ -18,6 +18,7 @@ type Animation = (typeof ANIMATION_NAMES)[number];
 /**
  * @class PostIcon - representing a stencil component
  */
+
 @Component({
   tag: 'post-icon',
   styleUrl: 'post-icon.scss',

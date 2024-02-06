@@ -14,9 +14,7 @@ export default meta;
 type Story = StoryObj;
 
 export const ColoredBackground: Story = {
-  render: () => html`
-    <div class="bg-yellow p-3">Content</div>
-  `,
+  render: () => html` <div class="bg-yellow p-3">Content</div> `,
 };
 
 export const NestedBackgrounds: Story = {
