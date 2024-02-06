@@ -54,8 +54,6 @@ function generateDecorators(story: any) {
 function render(args: Args) {
   const classes = ['loader', 'm-auto', args.size].filter(c => c && c !== 'null').join(' ');
 
-  console.log('classes', classes);
-
   return html` <div class="spinner-bg">
     <div class="loading-modal">
       <div class="${classes}" role="status">
