@@ -653,3 +653,7 @@ li.name-and-surname span.infoHidden {
   color: black;
   font-weight: bold;
 }
+
+a:is(:focus-visible, :focus-within, .pretend-focus) {
+  z-index: 2;
+}
