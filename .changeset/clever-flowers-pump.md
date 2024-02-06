@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-documentation': patch
+'@swisspost/design-system-documentation': minor
 ---
 
 Added a documentation page for the ng-bootstrap progressbar component.

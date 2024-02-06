@@ -66,6 +66,13 @@ Type: `Promise<boolean>`
 
 
 
+## Slots
+
+| Slot | Description                                                   |
+| ---- | ------------------------------------------------------------- |
+|      | Default slot for placing content inside the popovercontainer. |
+
+
 ## Shadow Parts
 
 | Part        | Description |

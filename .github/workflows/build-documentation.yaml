@@ -14,11 +14,7 @@ name: Build Documentation
 on:
   pull_request:
     paths:
-      - 'packages/documentation/**'
-      - 'packages/styles/**'
-      - 'packages/components/**'
-      - 'packages/internet-header/**'
-      - 'packages/icons/**'
+      - 'packages/**'
 
 jobs:
   build:
