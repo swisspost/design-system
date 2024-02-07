@@ -119,15 +119,70 @@
       border-style: dashed;
     }
   }
-}
 
+  :host-context(:is(#{post.$dark-backgrounds})) & {
+    --post-card-control-border-color: #{post.$white};
+    --post-card-control-bg: transparent;
+    --post-card-control-color: #{post.$white};
+    --post-card-control-input-border-color: #{post.$white};
+    --post-card-control-input-bg: transparent;
 
+    &:not(.is-disabled) {
+      // order matters!
 
+      &.is-checked {
+        --post-card-control-border-color: #{post.$yellow};
+        --post-card-control-bg: #{post.$yellow};
+        --post-card-control-color: #{post.$gray-80};
+        --post-card-control-input-border-color: #{post.$gray-80};
+        --post-card-control-input-bg: #{post.$white};
 
-
-
-
+        &:hover {
+          --post-card-control-border-color: #{post.$black};
+          --post-card-control-bg: #{post.$gray-20};
+        }
       }
+
+      &.is-invalid {
+        --post-card-control-border-color: #{post.$danger};
+        --post-card-control-bg: #{post.$error-background};
+        --post-card-control-color: #{post.$danger};
+        --post-card-control-input-border-color: #{post.$danger};
+        --post-card-control-input-bg: #{post.$white};
+      }
+
+      &.is-focused {
+        &:where(:has(.card-control--input:focus-visible)) {
+          --post-card-control-border-color: #{post.$white};
+          --post-card-control-bg: transparent;
+          --post-card-control-color: #{post.$white};
+          --post-card-control-input-border-color: #{post.$white};
+          --post-card-control-input-bg: transparent;
+        }
+      }
+
+      &:hover {
+        --post-card-control-border-color: #{post.$white};
+        --post-card-control-bg: #{post.$yellow};
+        --post-card-control-color: #{post.$black};
+        --post-card-control-input-border-color: #{post.$black};
+        --post-card-control-input-bg: #{post.$white};
+      }
+    }
+
+    // show focus even if is-disabled, because aria-disabled allows focus at any moment
+    &.is-focused {
+      &:where(:has(.card-control--input:focus-visible)) {
+        outline-color: post.$white;
+      }
+    }
+
+    &.is-disabled {
+      --post-card-control-border-color: #{post.$gray-20};
+      --post-card-control-bg: transparent;
+      --post-card-control-color: #{post.$gray-20};
+      --post-card-control-input-border-color: #{post.$gray-20};
+      --post-card-control-input-bg: transparent;
     }
   }
 }
