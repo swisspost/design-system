@@ -74,11 +74,7 @@ export class PostTooltip {
     });
   }
 
-  componentWillLoad() {
-    // Append tooltip host to the end of the body to get around overflow: hidden restrictions
-    // for browsers that don't support popover yet
-    document.body.appendChild(this.host);
-  }
+  componentWillLoad() {}
 
   /**
    * Programmatically display the tooltip
