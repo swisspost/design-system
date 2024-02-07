@@ -1,5 +1,6 @@
 @use '@swisspost/design-system-styles/components/root';
 @use '@swisspost/design-system-styles/components/fonts';
+@use './version-switcher.scss';
 
 .sidebar-header {
   :nth-of-type(1) {
