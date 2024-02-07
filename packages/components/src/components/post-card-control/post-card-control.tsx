@@ -44,24 +44,6 @@ export class PostCardControl {
     focused: null,
   };
 
-  private INTERACTIVE_ELEMENT_SELECTORS = [
-    'a',
-    'audio[controls]',
-    'button',
-    'details',
-    'embed',
-    'iframe',
-    'img[usemap]',
-    'input:not([type="hidden"])',
-    'keygen',
-    'label',
-    'menu[type="toolbar"]',
-    'object[usemap]',
-    'select',
-    'textarea',
-    'video[controls]',
-  ];
-
   private control: HTMLInputElement;
   private controlId = `PostCardControl_${cardControlIds++}`;
 
@@ -133,8 +115,6 @@ export class PostCardControl {
     this.controlFocusHandler = this.controlFocusHandler.bind(this);
     this.controlKeyDownHandler = this.controlKeyDownHandler.bind(this);
 
-    this.contentClickHandler = this.contentClickHandler.bind(this);
-
     this.groupEventHandler = this.groupEventHandler.bind(this);
 
     window.addEventListener(this.GROUPEVENT, this.groupEventHandler);
@@ -180,17 +160,6 @@ export class PostCardControl {
 
   private controlFocusHandler() {
     this.focused = this.host === document.activeElement;
-  }
-
-  private contentClickHandler(e: Event) {
-    const testWrapper = document.createElement('div');
-    testWrapper.append((e.target as HTMLElement).cloneNode());
-
-    const isInteractive = this.INTERACTIVE_ELEMENT_SELECTORS.some(selector =>
-      testWrapper.querySelector(selector),
-    );
-
-    if (isInteractive) e.stopPropagation();
   }
 
   // https://googlechromelabs.github.io/howto-components/howto-radio-group/
@@ -306,41 +275,33 @@ export class PostCardControl {
             'is-invalid': this.state === 'false',
           }}
         >
-          <div class="card-control--header">
-            <input
-              ref={el => (this.control = el as HTMLInputElement)}
-              id={this.controlId}
-              class="header--input form-check-input"
-              type={this.type}
-              name={this.name}
-              value={this.value}
-              checked={this.checked}
-              aria-disabled={this.disabled}
-              aria-controls={`${this.controlId}_Content`}
-              aria-expanded={(this.checked && !this.disabled).toString()}
-              onClick={this.controlClickHandler}
-              onChange={this.controlChangeHandler}
-              onFocus={this.controlFocusHandler}
-              onBlur={this.controlFocusHandler}
-              onKeyDown={this.controlKeyDownHandler}
-            />
+          <input
+            ref={el => (this.control = el as HTMLInputElement)}
+            id={this.controlId}
+            class="card-control--input form-check-input"
+            type={this.type}
+            name={this.name}
+            value={this.value}
+            checked={this.checked}
+            aria-readonly={this.readonly}
+            aria-disabled={this.disabled}
+            aria-invalid={this.validity === 'false'}
+            onClick={this.controlClickHandler}
+            onChange={this.controlChangeHandler}
+            onFocus={this.controlFocusHandler}
+            onBlur={this.controlFocusHandler}
+            onKeyDown={this.controlKeyDownHandler}
+          />
 
-            <label htmlFor={this.controlId} class="header--label form-check-label">
-              {this.label}
-              {this.description ? <div class="header--description">{this.description}</div> : null}
-            </label>
+          <label htmlFor={this.controlId} class="card-control--label form-check-label">
+            {this.label}
+            {this.description ? (
+              <div class="card-control--description">{this.description}</div>
+            ) : null}
+          </label>
 
-            <div class="header--icon">
-              <slot name="icon">{this.icon ? <post-icon name={this.icon}></post-icon> : null}</slot>
-            </div>
-          </div>
-
-          <div
-            id={`${this.controlId}_Content`}
-            class="card-control--content"
-            onClick={this.contentClickHandler}
-          >
-            <slot></slot>
+          <div class="card-control--icon">
+            <slot name="icon">{this.icon ? <post-icon name={this.icon}></post-icon> : null}</slot>
           </div>
         </div>
       </Host>

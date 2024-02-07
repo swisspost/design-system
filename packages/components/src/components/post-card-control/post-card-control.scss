@@ -7,90 +7,29 @@
 }
 
 .card-control {
-  --post-card-control-bg: #{post.$white};
   --post-card-control-border-color: #{post.$gray-60};
+  --post-card-control-bg: #{post.$white};
   --post-card-control-color: #{post.$gray-80};
+  --post-card-control-input-border-color: #{post.$gray-80};
+  --post-card-control-input-bg: #{post.$white};
 
-  display: block;
+  display: flex;
+  gap: 0 post.$size-mini;
   padding: post.$size-regular;
-  width: 100%;
   background-color: var(--post-card-control-bg);
   border: post.$size-line solid var(--post-card-control-border-color);
   border-radius: post.$border-radius;
-
-  cursor: pointer;
-  transition: color 100ms ease-in-out, background-color 100ms ease-in-out,
-    border-color 100ms ease-in-out;
-
-  &:not(.is-disabled) {
-    &:hover {
-      --post-card-control-bg: #{post.$gray-10};
-      --post-card-control-border-color: #{post.$black};
-      --post-card-control-color: #{post.$black};
-    }
-
-    &.is-checked {
-      --post-card-control-bg: #{post.$yellow};
-
-      .card-control--content {
-        display: block;
-      }
-    }
-
-    &.is-invalid {
-      --post-card-control-border-color: #{post.$danger};
-      --post-card-control-color: #{post.$danger};
-
-      &:hover {
-        --post-card-control-border-color: #{post.$danger};
-        --post-card-control-color: #{post.$danger};
-      }
-    }
-  }
-
-  &.is-focused {
-    // needed for Firefox until the :has selector is implemented correctly
-    // downside: outline is drawn also when clicking with the mouse on the checkbox element directly
-    @supports not selector(:has(.header--input:focus-visible)) {
-      --post-card-control-border-color: #{post.$black};
-      --post-card-control-color: #{post.$black};
-
-      outline-offset: post.$input-focus-outline-thickness;
-      outline: post.$input-focus-outline-thickness solid post.$focus;
-    }
-
-    &:where(:has(.header--input:focus-visible)) {
-      --post-card-control-border-color: #{post.$black};
-      --post-card-control-color: #{post.$black};
-
-      outline-offset: post.$input-focus-outline-thickness;
-      outline: post.$input-focus-outline-thickness solid post.$focus;
-    }
-  }
-
-  &.is-disabled {
-    --post-card-control-border-color: #{post.$gray-40};
-    --post-card-control-color: #{post.$gray-40};
-    cursor: default;
-
-    &.is-checked {
-      --post-card-control-bg: #{post.$gray-10};
-      border-color: var(--post-card-control-bg);
-    }
-  }
-}
-
-.card-control--header {
-  display: flex;
-  gap: 0 post.$size-mini;
   color: var(--post-card-control-color);
 
-  .header--input {
+  cursor: pointer;
+  transition: background-color 100ms linear, border-color 100ms linear;
+
+  .card-control--input {
     flex: 0 0 auto;
     margin: post.$size-micro 0;
-    background-color: post.$white;
-    border-color: var(--post-card-control-border-color) !important;
-    color: inherit !important;
+    background-color: var(--post-card-control-input-bg);
+    border-color: var(--post-card-control-input-border-color) !important;
+    color: var(--post-card-control-input-border-color) !important;
     cursor: inherit;
     transition: border-color 100ms ease-in-out;
 
@@ -99,7 +38,7 @@
       box-shadow: none;
     }
 
-    ~ .header--label {
+    ~ .card-control--label {
       flex-grow: 2;
       margin: post.$size-micro 0;
       color: inherit !important;
@@ -107,11 +46,11 @@
     }
   }
 
-  .header--description {
+  .card-control--description {
     font-size: 0.75rem;
   }
 
-  .header--icon {
+  .card-control--icon {
     flex: 0 0 auto;
     width: post.$size-big;
     height: post.$size-big;
@@ -124,9 +63,73 @@
       }
     }
   }
+
+  &:not(.is-disabled) {
+    // order matters!
+
+    &.is-checked {
+      --post-card-control-border-color: #{post.$black};
+      --post-card-control-bg: #{post.$yellow};
+    }
+
+    &.is-invalid {
+      --post-card-control-border-color: #{post.$danger};
+      --post-card-control-bg: #{post.$white};
+      --post-card-control-color: #{post.$danger};
+      --post-card-control-input-border-color: #{post.$danger};
+    }
+
+    &.is-focused {
+      &:where(:has(.card-control--input:focus-visible)) {
+        --post-card-control-border-color: #{post.$gray-60};
+        --post-card-control-bg: #{post.$white};
+        --post-card-control-color: #{post.$gray-80};
+        --post-card-control-input-border-color: #{post.$gray-80};
+      }
+    }
+
+    &:hover {
+      --post-card-control-border-color: #{post.$gray-80};
+      --post-card-control-bg: #{post.$gray-60};
+      --post-card-control-color: #{post.$white};
+      --post-card-control-input-border-color: #{post.$black};
+    }
+  }
+
+  // show focus even if is-disabled, because aria-disabled allows focus at any moment
+  &.is-focused {
+    &:where(:has(.card-control--input:focus-visible)) {
+      outline-offset: post.$input-focus-outline-thickness;
+      outline: post.$input-focus-outline-thickness solid post.$outline-color;
+    }
+  }
+
+  &.is-disabled {
+    --post-card-control-border-color: #{post.$gray-40};
+    --post-card-control-bg: transparent;
+    --post-card-control-color: #{post.$gray-40};
+    --post-card-control-input-border-color: #{post.$gray-40};
+    --post-card-control-input-bg: transparent;
+
+    border-style: dashed;
+    text-decoration: line-through;
+    cursor: default;
+
+    .card-control--input {
+      border-style: dashed;
+    }
+  }
 }
 
-.card-control--content {
-  display: none;
-  margin-left: post.$form-check-input-size + post.$size-mini;
+
+
+
+
+
+
+      }
+    }
+  }
+}
+
 }
