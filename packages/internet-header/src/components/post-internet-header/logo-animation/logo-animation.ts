@@ -1,6 +1,6 @@
 import { debounce } from 'throttle-debounce';
-import { state } from '../../../data/store';
 import { getScrollParent } from '../../../utils/scrollparent';
+import { getLogoScale } from './logo-scale';
 
 export const registerLogoAnimationObserver = (
   target: HTMLElement,
@@ -12,22 +12,7 @@ export const registerLogoAnimationObserver = (
    * Set intersection ratio as CSS custom property
    */
   const handleScroll = () => {
-    const fullStickyness = state.stickyness === 'full';
-    let scale = 1;
-    // Minus 1px border at the bottom that the logo is not covering
-    const adjustedHeaderHeight = headerRef.clientHeight - 1;
-    const scrollDistance = scrollParent instanceof Element  ? scrollParent.scrollTop : scrollParent.documentElement.scrollTop;
-    const scrollY = fullStickyness ? 0 : scrollDistance;
-
-    // If meta navigation is not visible (mobile, not configured), scale should just be 1
-    if (target.clientHeight > 0) {
-      scale = Math.max(
-        (adjustedHeaderHeight - Math.max(scrollY, 0)) /
-          (adjustedHeaderHeight - target.clientHeight),
-        1,
-      );
-    }
-    headerRef.style.setProperty('--logo-scale', scale.toString());
+    headerRef.style.setProperty('--logo-scale', getLogoScale(headerRef, target));
   };
 
   const debounced = debounce(150, handleScroll);
