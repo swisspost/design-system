@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.13.5
+
+### Patch Changes
+
+- Set the size of the logo before it is displayed to avoid a layout jump right after the initial rendering of the header. (by [@alizedebray](https://github.com/alizedebray) with [#2557](https://github.com/swisspost/design-system/pull/2557))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.1
+
 ## 1.13.4
 
 ### Patch Changes

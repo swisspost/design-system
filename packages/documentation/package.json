@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-documentation",
-  "version": "2.8.1",
+  "version": "3.0.0",
   "description": "Swiss Post Design System Documentation.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -25,11 +25,11 @@
     "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js --record --key 0995e768-43ec-42bd-a127-ff944a2ad8c9"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:2.0.0",
-    "@swisspost/design-system-components-react": "workspace:1.0.26",
-    "@swisspost/design-system-icons": "workspace:1.1.0",
-    "@swisspost/design-system-styles": "workspace:6.6.0",
-    "@swisspost/internet-header": "workspace:1.13.4",
+    "@swisspost/design-system-components": "workspace:2.0.1",
+    "@swisspost/design-system-components-react": "workspace:1.0.27",
+    "@swisspost/design-system-icons": "workspace:1.2.0",
+    "@swisspost/design-system-styles": "workspace:6.6.1",
+    "@swisspost/internet-header": "workspace:1.13.5",
     "bootstrap": "5.3.2"
   },
   "devDependencies": {
@@ -71,8 +71,8 @@
     "typescript": "5.1.6"
   },
   "peerDependencies": {
-    "@swisspost/design-system-components-angular": "workspace:0.0.12",
-    "@swisspost/design-system-intranet-header": "workspace:5.0.7"
+    "@swisspost/design-system-components-angular": "workspace:1.0.0",
+    "@swisspost/design-system-intranet-header": "workspace:5.0.8"
   },
   "peerDependenciesMeta": {
     "@swisspost/design-system-components-angular": {
