@@ -40,6 +40,13 @@ Type: `Promise<boolean>`
 
 
 
+## Slots
+
+| Slot        | Description                                              |
+| ----------- | -------------------------------------------------------- |
+| `"default"` | Slot for placing content within the collapsible element. |
+
+
 ## Dependencies
 
 ### Used by
