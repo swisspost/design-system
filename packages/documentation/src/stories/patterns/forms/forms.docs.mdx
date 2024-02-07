@@ -1,6 +1,5 @@
 import { Canvas, Meta, Source } from '@storybook/blocks';
 import * as FormPatternsStories from './forms.stories';
-import LinkTo from '@storybook/addon-links/react';
 
 <Meta of={FormPatternsStories} />
 
@@ -35,11 +34,11 @@ If you want a form field to span the whole available width, you don't need a row
 only need those, if you want to place two things next to each other.
 
 Simply use `.row` and `.col` to have the width distributed evenly between all inputs.
-To make it responsive, you can add `.row-cols-*` classes to the row (see [Grid page](/?path=/docs/foundations-layout-grid--docs#row-columns)).
+To make it responsive, you can add `.row-cols-*` classes to the row (see [Grid page](/?path=/docs/layout-grid--docs#row-columns)).
 
 <Canvas of={FormPatternsStories.RowSimple} sourceState="shown" />
 
-For finer adjustment, you can also use the `.col-*` classes (see [Columns page](/?path=/docs/foundations-layout-columns--docs)) on your columns. For example for a 2/1 ratio, given that a row has twelve columns in total,
+For finer adjustment, you can also use the `.col-*` classes (see [Columns page](/?path=/docs/layout-columns--docs)) on your columns. For example for a 2/1 ratio, given that a row has twelve columns in total,
 just add `.col-8` and `.col-4` to you two columns respectively.
 
 <Canvas of={FormPatternsStories.ColSimple} sourceState="shown" />
@@ -78,9 +77,9 @@ adding and removing validation classes on the input:
 * The message needs the class `.invalid-feedback/.valid-feedback`
 * The form needs the class `.was-validated`. With this class you can manage when to display errors. Usually, errors should not be
 shown on untouched fields.
- 
+
  Or
- 
+
  The input field needs the class `.is-invalid/.is-valid`
 
 <Canvas of={FormPatternsStories.Validation} sourceState="shown" />

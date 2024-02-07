@@ -50,7 +50,7 @@ export const GridTable = () => (
     <tr>
       <th>Column ordering</th>
       <td colSpan={SCSS_VARIABLES['breakpoint-count']}>
-        <a href="/?path=/docs/foundations-layout-columns--docs">yes</a>
+        <a href="/?path=/docs/layout-columns--docs">yes</a>
       </td>
     </tr>
   </SpecTable>

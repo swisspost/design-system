@@ -60,7 +60,7 @@ const meta: Meta = {
         'If `true`, the checkbox label is set via an `aria-label` attribute and is therefore not visible.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'Shown or hidden, a label must always be defined.<br/>' +
-        'More details in our <a href="/?path=/docs/foundations-accessibility--docs">accessibility docs</a>.' +
+        'More details in our <a href="/?path=/docs/accessibility--docs">accessibility docs</a>.' +
         '</span>',
       control: {
         type: 'boolean',
@@ -106,7 +106,7 @@ const meta: Meta = {
         'If `true`, makes the checkbox appear inactive and disables its functionality.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'There are accessibility concerns with the disabled state.<br/>' +
-        'More details in our <a href="/?path=/docs/foundations-accessibility--docs">accessibility docs</a>.' +
+        'More details in our <a href="/?path=/docs/accessibility--docs">accessibility docs</a>.' +
         '</span>',
       control: {
         type: 'boolean',
