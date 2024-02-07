@@ -41,7 +41,7 @@ export class PostCardControl {
 
   @Element() host: HTMLPostCardControlElement;
 
-  @State() initialState: boolean;
+  @State() initialChecked: boolean;
   @State() focused = false;
 
   @AttachInternals() private internals: ElementInternals;
@@ -62,7 +62,7 @@ export class PostCardControl {
   @Prop() readonly type!: 'checkbox' | 'radio';
 
   /**
-   * Defines the `name` attribute of the control, which is submitted with the form data.
+   * Defines the `name` attribute of the control. This name is used in a forms data to store the given value of the control. If no name is specified a form will never contain this controls value.
    */
   @Prop() readonly name: string = null;
 
@@ -74,16 +74,12 @@ export class PostCardControl {
   /**
    * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
    */
-  @Prop({ reflect: true, mutable: true }) checked?: boolean = false;
+  @Prop({ mutable: true }) checked?: boolean = false;
 
-  /**
-   * Defines the `readonly` attribute of the control. If `true`, the user can not interact with the control, but the controls value will be included in the forms data.
-   */
-  @Prop() readonly readonly: boolean = false;
   /**
    * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
    */
-  @Prop({ mutable: true }) disabled: boolean = false;
+  @Prop({ mutable: true }) disabled = false;
 
   /**
    * Defines the validation `validity` of the control.
@@ -128,12 +124,22 @@ export class PostCardControl {
     );
   }
 
+  @Watch('checked')
+  updateControlChecked(checked = this.checked) {
+    this.controlSetChecked(checked);
+  }
+
+  @Watch('disabled')
+  updateControlDisbled() {
+    this.controlSetChecked(this.checked);
+  }
+
   private cardClickHandler(e: Event) {
     if (e.target !== this.control) this.control.click();
   }
 
   private controlClickHandler(e: Event) {
-    if (this.readonly || this.disabled) e.preventDefault();
+    if (this.disabled) e.preventDefault();
     e.stopPropagation();
   }
 
@@ -174,11 +180,39 @@ export class PostCardControl {
   }
 
   private controlSetChecked(checked: boolean, e?: Event) {
-    if (this.readonly || this.disabled) return;
+    if (e && e.type === 'input') e.stopImmediatePropagation();
 
-    this.checked = this.control.checked = checked;
-    this.internals.setFormValue(this.checked ? this.control.value : null);
+    if (this.disabled) {
+      this.internals.setFormValue(null);
+      return;
+    } else {
+      this.checked = this.control.checked = checked;
+      this.internals.setFormValue(this.checked ? this.control.value : null);
+      this.controlEmitEvent(e);
+    }
   }
+
+  // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/checkbox
+  private controlEmitEvent(e?: Event) {
+    if (!e) return;
+
+    const event = new CustomEvent(e.type, {
+      detail: {
+        sourceEvent: e,
+        target: this.control,
+        state: this.checked,
+      },
+      bubbles: e.bubbles,
+      cancelable: e.cancelable,
+      composed: true,
+    });
+
+    const isCheckbox = this.type === 'checkbox';
+    const isRadioAndChecked = this.type === 'radio' && this.checked;
+
+    if (isCheckbox || isRadioAndChecked) this.host.dispatchEvent(event);
+  }
+
   private groupCollectMembers() {
     if (this.type === 'radio' && this.name) {
       this.group.hosts = Array.from(
@@ -239,7 +273,7 @@ export class PostCardControl {
   }
 
   connectedCallback() {
-    this.initialState = this.checked;
+    this.initialChecked = this.checked;
   }
 
   componentWillLoad() {
@@ -254,7 +288,6 @@ export class PostCardControl {
           class={{
             'card-control': true,
             'is-checked': this.checked,
-            'is-readonly': this.readonly,
             'is-disabled': this.disabled,
             'is-focused': this.focused,
             'is-valid': this.validity !== null && this.validity !== 'false',
@@ -269,10 +302,10 @@ export class PostCardControl {
             name={this.name}
             value={this.value}
             checked={this.checked}
-            aria-readonly={this.readonly}
             aria-disabled={this.disabled}
             aria-invalid={this.validity === 'false'}
             onClick={this.controlClickHandler}
+            onInput={this.controlChangeHandler}
             onChange={this.controlChangeHandler}
             onFocus={this.controlFocusHandler}
             onBlur={this.controlFocusHandler}
@@ -296,6 +329,24 @@ export class PostCardControl {
 
   componentDidRender() {
     this.groupCollectMembers();
+  }
+
+  // https://stenciljs.com/docs/form-associated
+  formAssociatedCallback() {
+    this.controlSetChecked(this.checked);
+  }
+
+  formDisabledCallback(disabled: boolean) {
+    this.disabled = disabled;
+  }
+
+  formStateRestoreCallback(checked, _reason: 'restore' | 'autocomplete') {
+    this.controlSetChecked(checked);
+  }
+
+  formResetCallback() {
+    this.validity = null;
+    this.controlSetChecked(this.initialChecked);
   }
 
   disconnectedCallback() {
