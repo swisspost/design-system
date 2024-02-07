@@ -1,29 +1,29 @@
 import { Meta, StoryObj, Args, StoryContext } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
+import scss from './background.module.scss';
+
+const backgroundColors = scss.bgClasses.split('"').filter((_, index) => index % 2 === 1);
 
 const meta: Meta = {
   title: 'Components/Subnavigation',
+  decorators: [clickBlocker],
+  render: renderTest,
   parameters: {
     badges: [BADGE.WEB_COMPONENT_CANDIDATE],
   },
   args: {
     itemCount: 3,
+    backgroundColor: 'default',
   },
-  render: render,
   argTypes: {
-    background: {
-      name: 'Background',
+    backgroundColor: {
+      name: 'Background Color',
       description: 'Sets the background of the component',
-      controls: {
+      control: {
         type: 'select',
-        labels: {
-          'default': 'default',
-          'subnavigation-alternate': 'alternate',
-          'bg-petrol': 'bg-petrol',
-        },
       },
-      options: ['default', 'subnavigation-alternate', 'bg-petrol'],
+      options: ['default', ...backgroundColors],
       table: {
         category: 'General',
       },
@@ -52,21 +52,25 @@ const meta: Meta = {
 
 export default meta;
 
-function render(args: Args, context: StoryContext) {
+// DECORATOR
+function clickBlocker(story: any) {
+  return html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `;
+}
+
+function renderTest(args: Args, context: StoryContext) {
   return html`
-    <div class="subnavigation${args.background !== 'default' ? ' ' + args.background : ''}">
+    <div
+      class="subnavigation${args.backgroundColor !== 'default' ? ' ' + args.backgroundColor : ''}"
+    >
       <div class="container container-fluid-xs container-fluid-sm">
         <ul class="subnavigation-list">
           ${Array.from(
             { length: args.itemCount },
             (_, index) => html`
               <li class="subnavigation-item">
-                <a
-                  href="/?path=/docs/components-subnavigation--docs"
-                  class="subnavigation-link${index == 0 ? ' active' : ''}"
-                >
+                <a href="#" class="subnavigation-link${index == 0 ? ' active' : ''}">
                   Navitem ${index === 0 ? 'active' : 'default'}
-                  ${args.badge ? html` <span class="badge bg-active rounded-pill">19</span> ` : ''}
+                  ${args.badges ? html` <span class="badge">19</span> ` : ''}
                 </a>
               </li>
             `,
@@ -79,17 +83,24 @@ function render(args: Args, context: StoryContext) {
 
 type Story = StoryObj;
 
-export const Default: Story = {};
+export const Default: Story = {
+  parameters: {
+    controls: {
+      include: ['Items', 'Background Color'],
+    },
+  },
+};
 
 export const ColoredBackground: Story = {
-  args: {
-    background: 'bg-petrol',
-    itemCount: 3,
+  parameters: {
+    controls: {
+      include: ['Background Color'],
+    },
   },
 };
 
 export const Badges: Story = {
   args: {
-    badge: true,
+    badges: true,
   },
 };

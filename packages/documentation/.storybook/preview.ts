@@ -58,6 +58,7 @@ const preview: Preview = {
             'Popover',
             'Progressbar',
             'Stepper',
+            'Subnavigation',
             'Table',
             'Tabs',
             'Timepicker',

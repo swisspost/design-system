@@ -1,4 +1,4 @@
-import { Meta, Source, Canvas } from '@storybook/blocks';
+import { Meta, Source, Canvas, Controls } from '@storybook/blocks';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 import * as subnavigationStories from './subnavigation.stories.ts';
 
@@ -6,8 +6,8 @@ import * as subnavigationStories from './subnavigation.stories.ts';
 
 # Subnavigation
 
-<p className="lead">This component elegantly organizes navigation links into intuitive horizontal tabs, 
-offering users a seamless and visually appealing navigation experience.</p>
+<p className="lead">Supplement the header navigation with a secondary entry-point, 
+providing access to additional features in your application.</p>
 
 <ul>
   <li>
@@ -19,6 +19,9 @@ offering users a seamless and visually appealing navigation experience.</p>
 </ul>
 
 <Canvas sourceState="shown" of={subnavigationStories.Default} />
+<div className="hide-col-default">
+  <Controls of={subnavigationStories.Default} />
+</div>
 
 <StylesPackageImport components={["subnavigation"]} />
 
@@ -26,8 +29,15 @@ offering users a seamless and visually appealing navigation experience.</p>
 
 ### Colored Background
 
+To set the background of the component, simply use one of our [background utility](/?path=/docs/utilities-background--docs) classes.
+
 <Canvas of={subnavigationStories.ColoredBackground} />
+<div className="hide-col-default">
+  <Controls of={subnavigationStories.ColoredBackground} />
+</div>
 
 ### Badges
+
+Inside a navigation item, there is the possibilty to add another element like a badge.
 
 <Canvas of={subnavigationStories.Badges} />
