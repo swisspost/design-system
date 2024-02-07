@@ -3,13 +3,16 @@ import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../.storybook/constants';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { PostCardControlCustomEvent } from '@swisspost/design-system-components';
+import { parse } from '../../../utils/sass-export';
+import scss from './card-control.module.scss';
+
+const SCSS_VARIABLES = parse(scss);
 
 const meta: Meta = {
   title: 'Components/Forms/Card-Control',
   component: 'post-card-control',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
   },
   args: {
     label: 'Label',
@@ -19,10 +22,10 @@ const meta: Meta = {
     value: '',
     checked: '',
     disabled: '',
-    state: 'null',
-    icon: '',
-    slotDefault: '',
+    validity: 'null',
+    icon: '1001',
     slotIcon: '',
+    slotInvalidFeedback: '',
   },
   argTypes: {
     type: {
@@ -35,7 +38,7 @@ const meta: Meta = {
       },
       options: ['checkbox', 'radio'],
     },
-    state: {
+    validity: {
       control: {
         type: 'radio',
         labels: {
@@ -51,26 +54,14 @@ const meta: Meta = {
         },
       },
     },
-    slotDefault: {
-      name: 'default',
-      description:
-        'Content to place in the default slot. <div className="alert alert-sm alert-info">Content only gets rendered if the control is checked and is not disabled.</div><p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Block-level_content" target="_blank">block content</a>.<br>This means, you can put everything in it, as long as there is enough space to render it.</p>',
+    slotIcon: {
       table: {
-        category: 'Slots',
-        type: {
-          summary: null,
-        },
+        disable: true,
       },
     },
-    slotIcon: {
-      name: 'icon',
-      description:
-        'Content to place in the named `icon` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.<br>It is only meant for <code>img</code> or <code>svg</code> elements and overrides the `icon` property.</p>',
+    slotInvalidFeedback: {
       table: {
-        category: 'Slots',
-        type: {
-          summary: 'html',
-        },
+        disable: true,
       },
     },
   },
@@ -84,29 +75,57 @@ export const Default: Story = {
   render: (args: Args) => {
     const [, updateArgs] = useArgs();
 
-    const icon = html`
-      <div slot="icon">${unsafeHTML(args.slotIcon)}</div>
-    `;
+    const icon = html`<span slot="icon">${unsafeHTML(args.slotIcon)}</span> `;
+    const invalidFeedback = html`<span slot="invalid-feedback">
+      ${unsafeHTML(args.slotInvalidFeedback)}
+    </span>`;
 
     return html`
       <post-card-control
         label="${args.label}"
         description="${args.description || nothing}"
         type="${args.type || nothing}"
-        form="${args.form || nothing}"
         name="${args.name || nothing}"
         value="${args.value || nothing}"
         checked="${args.checked || nothing}"
         disabled="${args.disabled || nothing}"
-        state="${args.state !== 'null' ? args.state : nothing}"
+        validity="${args.validity !== 'null' ? args.validity : nothing}"
         icon="${args.icon || nothing}"
-        @controlChange="${(e: PostCardControlCustomEvent<boolean>) =>
-          updateArgs({ checked: e.detail })}"
+        @input="${(e: any) => updateArgs({ checked: e.detail.state })}"
+        @change="${(e: any) => updateArgs({ checked: e.detail.state })}"
       >
-        ${args.slotIcon ? icon : null} ${unsafeHTML(args.slotDefault)}
+        ${args.slotIcon ? icon : null} ${args.slotInvalidFeedback ? invalidFeedback : null}
       </post-card-control>
     `;
   },
+};
+
+export const DarkBackground: Story = {
+  parameters: {
+    docs: {
+      controls: {
+        include: ['Background-Color', 'checked', 'disabled', 'validity'],
+      },
+    },
+  },
+  decorators: [
+    (story, context) => html`<div class="p-3 bg-${context.args.background}">${story()}</div>`,
+  ],
+  args: {
+    background: 'dark',
+    icon: '1001',
+  },
+  argTypes: {
+    background: {
+      name: 'Background-Color',
+      description: 'The background color of a surrounding wrapper element.',
+      control: {
+        type: 'select',
+      },
+      options: [...Object.keys(SCSS_VARIABLES.dark)],
+    },
+  },
+  render: Default.render,
 };
 
 export const CustomIcon: Story = {
@@ -117,39 +136,72 @@ export const CustomIcon: Story = {
   render: Default.render,
 };
 
-export const Content: Story = {
+export const InvalidFeedback: Story = {
   args: {
-    slotDefault: `<p>Textus additione velit esse molestie consequat, vel
-      illum dolore eu feugiat nulla.</p>
-      <ul>
-        <li>Listus mixtus volare pagare la mare.</li>
-        <li>Elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
-        illum dolore eu feugiat.</li>
-      </ul>
-
-      <div class="form-floating">
-        <select id="Content_Select" class="form-select">
-          <option>Elektu opcion...</option>
-          <option value="valoro_1">Opcion 2</option>
-          <option value="valoro_2">Opcion 3</option>
-        </select>
-
-        <label class="form-label" for="Content_Select">Label</label>
-
-        <div class="form-text">
-          Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel
-          illum dolore eu feugiat nulla facilisis.
-        </div>
-      </div>
-
-      <div class="form-check mt-3">
-        <input id="Content_Radio" type="checkbox" class="form-check-input" />
-        <label class="form-check-label" for="Content_Radio">Logas ce la sama adreso</label>
-      </div>`,
-    checked: true,
+    validity: 'false',
+    slotInvalidFeedback: 'Error Message',
   },
   render: Default.render,
 };
+
+export const FormIntegration: Story = {
+  parameters: {
+    docs: {
+      controls: {
+        include: ['Fieldset disabled', 'checked', 'disabled'],
+      },
+    },
+  },
+  args: {
+    fieldsetDisabled: false,
+    name: 'card-control',
+  },
+  argTypes: {
+    fieldsetDisabled: {
+      name: 'Fieldset disabled',
+      description:
+        'If a wrapping `fieldset` element is disabled, the `<card-control>` will behave like disabled as well.',
+      control: {
+        type: 'boolean',
+      },
+    },
+  },
+  decorators: [
+    story => html`
+      ${story()}
+      <div class="mt-3">
+        <h4>FormData</h4>
+        <pre id="AssociatedFormOutput" class="p-2 bg-dark rounded fs-tiny">{}</pre>
+      </div>
+    `,
+  ],
+  render: (args: Args, context: StoryContext) => {
+    return html` <form id="AssociatedForm" @reset="${formHandler}" @submit="${formHandler}">
+      <fieldset .disabled=${args.fieldsetDisabled}>
+        <legend>Legend</legend>
+        ${Default.render?.(args, context)}
+      </fieldset>
+      <div class="mt-3 d-flex gap-3 justify-content-end">
+        <button type="reset" class="btn btn-link"><post-icon name="2042"></post-icon>Reset</button>
+        <button type="submit" class="btn btn-primary btn-animated"><span>Submit</span></button>
+      </div>
+    </form>`;
+  },
+};
+
+function formHandler(e: any) {
+  if (e.type === 'submit') e.preventDefault();
+
+  setTimeout(() => {
+    const formOutput = document.querySelector('#AssociatedFormOutput');
+    const formData = Array.from(new FormData(e.target).entries()).reduce(
+      (acc, [k, v]) => Object.assign(acc, { [k]: v }),
+      {},
+    );
+
+    if (formOutput) formOutput.innerHTML = JSON.stringify(formData, null, 2);
+  });
+}
 
 export const LinedUp: Story = {
   parameters: {
@@ -184,7 +236,7 @@ export const LinedUp: Story = {
                 description: i === 6 ? '20.- per year' : null,
                 type: args.type,
                 disabled: i === 3,
-                state: args.state,
+                validity: args.validity,
               },
               context,
             )}
@@ -207,7 +259,7 @@ export const RadioGroup: Story = {
                 type: 'radio',
                 name: 'RadioGroup_Name',
                 disabled: i > 3 && i < 6 ? true : null,
-                state: args.state,
+                validity: args.validity,
               },
               context,
             )}
