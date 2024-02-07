@@ -10,9 +10,9 @@ describe('rating', () => {
       cy.get('@rating').should('exist');
     });
 
-    it('should display 10 empty stars', () => {
+    it('should display 5 empty stars', () => {
       cy.get('@stars').then($stars => {
-        expect($stars.length).to.equal(10);
+        expect($stars.length).to.equal(5);
 
         $stars.each((_index, star) => {
           const classes = Cypress.$(star).attr('class').split(' ');
@@ -50,11 +50,11 @@ describe('rating', () => {
         });
     });
 
-    it('should navigate using keyboard arrows and confirm selection with Enter', () => {
+    it('should navigate using keyboard arrows', () => {
       cy.get('@rating')
         .find('.rating')
         .focus()
-        .type('{rightarrow}{rightarrow}{rightarrow}{rightarrow}{enter}', {
+        .type('{rightarrow}{rightarrow}{rightarrow}{rightarrow}', {
           force: true,
         });
       cy.get('@stars').each(($star, index) => {
@@ -216,15 +216,34 @@ describe('rating', () => {
   });
 
   describe('events', () => {
-    it('should emit ratingChanged event when rating changes', () => {
+    it('should emit input event when rating changes', () => {
       cy.get('@rating').then($rating => {
         const listener = cy.stub();
-        $rating[0].addEventListener('ratingChanged', listener);
+        $rating[0].addEventListener('input', listener);
 
         const newRating = 5;
         cy.get('@stars')
           .eq(newRating - 1)
           .click()
+          .then(() => {
+            cy.wrap(listener).should('be.calledWithMatch', { detail: newRating });
+          });
+      });
+    });
+    it('should emit ratingChange event when rating is commited', () => {
+      cy.get('@rating').then($rating => {
+        const listener = cy.stub();
+        $rating[0].addEventListener('ratingChange', listener);
+
+        const newRating = 5;
+        cy.get('@stars')
+          .eq(newRating - 1)
+          .click();
+
+        cy.get('@rating').find('.rating').focus().type('{enter}');
+
+        cy.get('@rating')
+          .find('.rating')
           .then(() => {
             cy.wrap(listener).should('be.calledWithMatch', { detail: newRating });
           });

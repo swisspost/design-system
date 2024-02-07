@@ -16,12 +16,12 @@ export class PostRating {
   /**
    * The index of the currently hovered star
    */
-  @State() hovered: number;
+  @State() hoveredIndex: number;
 
   /**
    * The number of stars in the rating
    */
-  @Prop() readonly max?: number = 10;
+  @Prop() readonly max?: number = 5;
 
   /**
    * Boolean for the disabled state of the component
@@ -35,129 +35,120 @@ export class PostRating {
 
   // prettier-ignore
   /**
-   * Event emitted when the rating changes
+   * Event emitted when the rating gets commited
    */
   @Event({
-    eventName: 'ratingChanged',
+    eventName: 'ratingChange',
     composed: true,
     bubbles: true,
-  }) ratingChanged: EventEmitter<number>;
+  }) ratingChange: EventEmitter<number>;
+
+  // prettier-ignore
+  /**
+   * Event emitted whenever the rating changes
+   */
+  @Event({
+    eventName: 'input',
+    composed: true,
+    bubbles: true,
+  }) input: EventEmitter<number>;
 
   constructor() {
     this.handleKeyDown = this.handleKeyDown.bind(this);
     this.handleBlur = this.handleBlur.bind(this);
   }
 
-  private handleClick(starIndex: number) {
-    if (this.isInteractive()) {
-      if (this.currentRating === starIndex) {
-        this.currentRating = 0;
-      } else {
-        this.currentRating = starIndex;
-      }
-      this.ratingChanged.emit(this.currentRating);
-      this.reset();
-    }
-  }
-
   private handleKeyDown(ev: KeyboardEvent) {
-    if (this.hovered === undefined) {
-      this.hovered = this.currentRating ?? 0;
-    }
     switch (ev.key) {
       case 'ArrowDown':
       case 'ArrowLeft':
         ev.preventDefault();
-        if (this.hovered > 0) {
-          this.hovered--;
-        }
+        this.update(this.currentRating - 1);
         break;
       case 'ArrowUp':
       case 'ArrowRight':
         ev.preventDefault();
-        if (this.hovered < this.max) {
-          this.hovered++;
-        }
+        this.update(this.currentRating + 1);
         break;
       case 'Home':
-        this.hovered = 0;
+        ev.preventDefault();
+        this.update(0);
         break;
       case 'End':
         ev.preventDefault();
-        this.hovered = this.max;
+        this.update(this.max);
         break;
       case 'Enter':
       case ' ':
-        ev.preventDefault();
-        if (this.hovered !== this.currentRating) {
-          this.currentRating = this.hovered;
-          this.ratingChanged.emit(this.currentRating);
-        } else {
-          this.currentRating = this.hovered;
-        }
-        this.reset();
+        this.handleBlur();
         break;
       default:
         return;
     }
   }
 
-  //This function is needed to handle the lose of focus during a keyboard interaction.
+  private hasChanged = false;
+
   private handleBlur() {
-    if (this.isInteractive() && this.hovered != undefined) {
-      this.currentRating = this.hovered;
-      this.ratingChanged.emit(this.currentRating);
-      this.reset();
+    if (this.hasChanged === true) {
+      this.ratingChange.emit(this.currentRating);
+      console.log('test');
+      this.hasChanged = false;
     }
   }
 
-  private handleHover(hoverCount: number) {
-    this.hovered = hoverCount;
-  }
-
-  private reset() {
-    this.hovered = undefined;
+  private handleHover(index: number, e: MouseEvent) {
+    if (!this.isInteractive()) return;
+    if (e.type === 'mouseenter') {
+      this.hoveredIndex = index;
+    } else if (e.type === 'mouseleave') {
+      this.hoveredIndex = undefined;
+    }
   }
 
   private isInteractive(): boolean {
     return !this.readonly && !this.disabled;
   }
 
-  private getClasses(i: number) {
-    const classes = ['star'];
+  private update(value: number): void {
+    if (!this.isInteractive()) return;
+    if (value > this.max || value < 0) return;
+    this.currentRating = this.currentRating !== value ? value : 0;
+    this.input.emit(this.currentRating);
+    this.hasChanged = true;
+  }
+
+  private getClasses(starIndex: number) {
     if (!this.disabled) {
-      if (i <= this.currentRating) {
-        classes.push('active-star');
-      }
-      if (
-        this.hovered === i ||
-        (this.hovered >= i && i > this.currentRating) ||
-        (i <= this.hovered && this.currentRating === undefined)
-      ) {
-        classes.push('hovered-star');
-      }
-      if (i > this.hovered && i <= this.currentRating && this.hovered !== undefined) {
-        classes.push('was-active-star');
-      }
-    } else if (i <= this.currentRating) {
-      classes.push('active-disabled');
+      return {
+        'star': true,
+        'active-star': starIndex < this.currentRating,
+        'hovered-star':
+          (this.hoveredIndex < this.currentRating && starIndex <= this.hoveredIndex) ||
+          (starIndex <= this.hoveredIndex && this.currentRating === 0) ||
+          (this.hoveredIndex >= starIndex && starIndex >= this.currentRating),
+        'was-active-star': starIndex > this.hoveredIndex && starIndex < this.currentRating,
+      };
     } else {
-      classes.push('default-disabled');
+      return {
+        'star': true,
+        'active-disabled': starIndex < this.currentRating,
+        'default-disabled': starIndex >= this.currentRating,
+      };
     }
-    return classes;
   }
 
   private renderStars() {
     const stars = [];
-    for (let i = 1; i <= this.max; i++) {
+    for (let index = 0; index < this.max; index++) {
       stars.push(
         <svg
           viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg"
-          class={`${this.getClasses(i).join(' ')}`}
-          onClick={this.isInteractive() && (() => this.handleClick(i))}
-          onMouseEnter={this.isInteractive() && (() => this.handleHover(i))}
-          onMouseLeave={this.isInteractive() && (() => this.reset())}
+          class={this.getClasses(index)}
+          onClick={() => this.update(index + 1)}
+          onMouseEnter={e => this.handleHover(index, e)}
+          onMouseLeave={e => this.handleHover(index, e)}
           cursor={this.isInteractive() ? 'pointer' : 'default'}
         >
           <path d="M15.2047 8.01289L15.3173 8.25303L15.5793 8.29449L22.981 9.46594L17.8102 14.8955L17.6402 15.0741L17.6783 15.3177L18.8923 23.0722L12.3555 19.4823L12.1149 19.3501L11.8742 19.4823L5.3374 23.0722L6.55141 15.3177L6.59048 15.0681L6.4128 14.8886L1.0518 9.47202L8.30071 8.41511L8.56513 8.37655L8.68001 8.1353L11.9965 1.17035L15.2047 8.01289Z" />
@@ -179,9 +170,9 @@ export class PostRating {
           aria-readonly={this.readonly && !this.disabled ? 'true' : 'false'}
           aria-disabled={this.disabled ? 'true' : 'false'}
           class="rating"
-          tabindex="1"
-          onKeyDown={this.handleKeyDown}
+          tabindex="0"
           onBlur={this.handleBlur}
+          onKeyDown={this.handleKeyDown}
         >
           {this.renderStars()}
         </div>

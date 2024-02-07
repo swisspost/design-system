@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { Canvas, Controls, Meta} from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
 import * as RatingStories from './post-rating.stories';
 
@@ -24,8 +24,9 @@ For more information, read the <LinkTo kind="getting-started-components" story="
 
 ### Disabled
 
-Is the disabled property set, the component is not interactive 
-but the current rating is still visible.  
+Is the disabled property set, the component has a clear disabled style, 
+so the user can still see the current rating but is not able to interact with the component.
+  
 
 <Canvas of={RatingStories.Disabled} />
 <div className="hide-col-default">

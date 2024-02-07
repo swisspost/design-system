@@ -333,7 +333,8 @@ declare global {
         new (): HTMLPostPopovercontainerElement;
     };
     interface HTMLPostRatingElementEventMap {
-        "ratingChanged": number;
+        "ratingChange": number;
+        "input": number;
     }
     interface HTMLPostRatingElement extends Components.PostRating, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostRatingElementEventMap>(type: K, listener: (this: HTMLPostRatingElement, ev: PostRatingCustomEvent<HTMLPostRatingElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -527,9 +528,13 @@ declare namespace LocalJSX {
          */
         "max"?: number;
         /**
-          * Event emitted when the rating changes
+          * Event emitted whenever the rating changes
          */
-        "onRatingChanged"?: (event: PostRatingCustomEvent<number>) => void;
+        "onInput"?: (event: PostRatingCustomEvent<number>) => void;
+        /**
+          * Event emitted when the rating gets commited
+         */
+        "onRatingChange"?: (event: PostRatingCustomEvent<number>) => void;
         /**
           * If readonly is true, the component only displays a rating and is not interactive.
          */

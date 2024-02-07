@@ -58,6 +58,7 @@ const preview: Preview = {
             'Pagination',
             'Popover',
             'Progressbar',
+            'Rating',
             'Stepper',
             'Table',
             'Tabs',
