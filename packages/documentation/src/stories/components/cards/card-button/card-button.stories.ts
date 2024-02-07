@@ -1,6 +1,6 @@
-import { Meta, StoryObj, Args, StoryContext } from '@storybook/web-components';
+import { Meta, StoryObj, Args } from '@storybook/web-components';
 import { BADGE } from '../../../../../.storybook/constants';
-import { html, nothing } from 'lit';
+import { html } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import scss from './card-button.module.scss';
 
