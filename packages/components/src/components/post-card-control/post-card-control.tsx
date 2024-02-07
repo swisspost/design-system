@@ -72,19 +72,23 @@ export class PostCardControl {
   @Prop() readonly value: string = null;
 
   /**
-   * Defines the `checked` attribute of the control. If `true`, the control is selected.
+   * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
    */
   @Prop({ reflect: true, mutable: true }) checked?: boolean = false;
 
   /**
-   * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control.
+   * Defines the `readonly` attribute of the control. If `true`, the user can not interact with the control, but the controls value will be included in the forms data.
    */
-  @Prop() readonly disabled: boolean = false;
+  @Prop() readonly readonly: boolean = false;
+  /**
+   * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
+   */
+  @Prop({ mutable: true }) disabled: boolean = false;
 
   /**
-   * Defines the validation `state` of the control.<div className="alert alert-sm alert-info">Only styles for the invalid state have been defined so far.</div>
+   * Defines the validation `validity` of the control.
    */
-  @Prop() readonly state: null | 'true' | 'false' = null;
+  @Prop({ mutable: true }) validity: null | 'true' | 'false' = null;
 
   /**
    * Defines the icon `name` inside of the card.
@@ -129,7 +133,7 @@ export class PostCardControl {
   }
 
   private controlClickHandler(e: Event) {
-    if (this.disabled) e.preventDefault();
+    if (this.readonly || this.disabled) e.preventDefault();
     e.stopPropagation();
   }
 
@@ -170,7 +174,7 @@ export class PostCardControl {
   }
 
   private controlSetChecked(checked: boolean, e?: Event) {
-    if (this.disabled) return;
+    if (this.readonly || this.disabled) return;
 
     this.checked = this.control.checked = checked;
     this.internals.setFormValue(this.checked ? this.control.value : null);
@@ -250,10 +254,11 @@ export class PostCardControl {
           class={{
             'card-control': true,
             'is-checked': this.checked,
+            'is-readonly': this.readonly,
             'is-disabled': this.disabled,
             'is-focused': this.focused,
-            'is-valid': this.state !== null && this.state !== 'false',
-            'is-invalid': this.state === 'false',
+            'is-valid': this.validity !== null && this.validity !== 'false',
+            'is-invalid': this.validity === 'false',
           }}
         >
           <input
