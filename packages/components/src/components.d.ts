@@ -105,7 +105,7 @@ export namespace Components {
         /**
           * Defines the validation `validity` of the control.
          */
-        "validity": null | 'true' | 'false';
+        "validity": null | true | false;
         /**
           * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
          */
@@ -488,7 +488,7 @@ declare namespace LocalJSX {
         /**
           * Defines the validation `validity` of the control.
          */
-        "validity"?: null | 'true' | 'false';
+        "validity"?: null | true | false;
         /**
           * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
          */

@@ -84,7 +84,7 @@ export class PostCardControl {
   /**
    * Defines the validation `validity` of the control.
    */
-  @Prop({ mutable: true }) validity: null | 'true' | 'false' = null;
+  @Prop({ mutable: true }) validity: null | true | false = null;
 
   /**
    * Defines the icon `name` inside of the card.
@@ -289,8 +289,8 @@ export class PostCardControl {
             'is-checked': this.checked,
             'is-disabled': this.disabled,
             'is-focused': this.focused,
-            'is-valid': this.validity !== null && this.validity !== 'false',
-            'is-invalid': this.validity === 'false',
+            'is-valid': this.validity !== null && this.validity !== false,
+            'is-invalid': this.validity === false,
           }}
         >
           <input
@@ -302,7 +302,7 @@ export class PostCardControl {
             value={this.value}
             checked={this.checked}
             aria-disabled={this.disabled}
-            aria-invalid={this.validity === 'false'}
+            aria-invalid={this.validity === false}
             onClick={this.controlClickHandler}
             onInput={this.controlChangeHandler}
             onChange={this.controlChangeHandler}
