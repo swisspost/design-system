@@ -146,19 +146,12 @@ export class PostCardControl {
 
   private controlClickHandler(e: Event) {
     if (this.disabled) e.preventDefault();
+    e.stopPropagation();
   }
 
-  private controlChangeHandler() {
-    if (!this.disabled) {
-      this.checked = this.control.checked;
-      this.internals.setFormValue(this.control.value);
-
-      if (this.group.members.length > 1 && this.control.checked) {
-        this.groupSetSelectedMember(this.control);
-      }
-
-      this.controlChange.emit(this.checked);
-    }
+  private controlChangeHandler(e: Event) {
+    this.controlSetChecked(this.control.checked, e);
+    if (this.group.members.length > 1) this.groupSetSelectedMember(this.control);
   }
 
   private controlFocusHandler() {
@@ -192,6 +185,12 @@ export class PostCardControl {
     }
   }
 
+  private controlSetChecked(checked: boolean, e?: Event) {
+    if (this.disabled) return;
+
+    this.checked = this.control.checked = checked;
+    this.internals.setFormValue(this.checked ? this.control.value : null);
+  }
   private groupCollectMembers() {
     if (this.type === 'radio' && this.name) {
       this.group.hosts = Array.from(
@@ -247,12 +246,7 @@ export class PostCardControl {
   private groupEventHandler(e: CustomEvent) {
     if (e.detail.triggeredByKeyboard) e.detail.control.focus();
 
-    if (!this.disabled) {
-      this.control.checked = this.checked = this.control === e.detail.control;
-      this.internals.setFormValue(this.control.value);
-      this.controlChange.emit(this.checked);
-    }
-
+    this.controlSetChecked(this.control === e.detail.control);
     this.groupCollectMembers();
   }
 
