@@ -10,7 +10,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { checkOneOf } from '../../utils';
+import { checkNonEmpty, checkOneOf } from '../../utils';
 import { version } from '../../../package.json';
 
 let cardControlIds = 0;
@@ -140,12 +140,20 @@ export class PostCardControl {
     window.addEventListener(this.GROUPEVENT, this.groupEventHandler);
   }
 
+  @Watch('label')
+  validateControlLabel(label = this.label) {
+    checkNonEmpty(
+      label,
+      'The "post-card-control" element requires its "label" property to be set.',
+    );
+  }
+
   @Watch('type')
   validateControlType(type = this.type) {
     checkOneOf(
       type,
       ['checkbox', 'radio'],
-      'The "post-card-control" element requires an "controlType"" of either "checkbox" (default) or "radio".',
+      'The "post-card-control" element requires its "type" prop to be one of either "checkbox" or "radio".',
     );
   }
 
@@ -276,13 +284,12 @@ export class PostCardControl {
     this.groupCollectMembers();
   }
 
-  componentWillLoad() {
-    if (!this.label) throw new Error('No label set: <post-card-control> must have a "label".');
-    if (!this.type) throw new Error('No type set: <post-card-control> must have a "type".');
   connectedCallback() {
     this.initialState = this.checked;
   }
 
+  componentWillLoad() {
+    this.validateControlLabel();
     this.validateControlType();
   }
 
