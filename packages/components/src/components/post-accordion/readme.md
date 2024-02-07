@@ -12,6 +12,13 @@
 | `multiple` | `multiple` | If `true`, multiple `post-accordion-item` can be open at the same time. | `boolean` | `false` |
 
 
+## Events
+
+| Event                 | Description                                                                           | Type                   |
+| --------------------- | ------------------------------------------------------------------------------------- | ---------------------- |
+| `itemsCollapseChange` | An event emitted when an accordion element is shown or hidden, before the transition. | `CustomEvent<boolean>` |
+
+
 ## Methods
 
 ### `collapseAll() => Promise<void>`

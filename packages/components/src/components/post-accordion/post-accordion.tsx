@@ -1,4 +1,14 @@
-import { Component, Element, h, Host, Listen, Method, Prop } from '@stencil/core';
+import {
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Listen,
+  Method,
+  Prop,
+} from '@stencil/core';
 import { version } from '../../../package.json';
 
 /**
@@ -15,6 +25,12 @@ export class PostAccordion {
   private expandedItems = new Set<HTMLPostAccordionItemElement>();
 
   @Element() host: HTMLPostAccordionElement;
+
+  /**
+   * An event emitted when an accordion element is shown or hidden, before the transition.
+   * @param {{detail: boolean}} payload `true` if the collapsible was opened, `false` if it was closed.
+   */
+  @Event() itemsCollapseChange: EventEmitter<boolean>;
 
   /**
    * If `true`, multiple `post-accordion-item` can be open at the same time.
@@ -40,14 +56,17 @@ export class PostAccordion {
   @Listen('collapseChange')
   collapseChangeHandler(event: CustomEvent<boolean>) {
     event.stopPropagation();
+    event.stopImmediatePropagation();
 
     const toggledItem = event.target as HTMLPostAccordionItemElement;
     const isClosing = this.expandedItems.has(toggledItem);
 
     if (isClosing) {
       this.expandedItems.delete(toggledItem);
+      this.itemsCollapseChange.emit(false);
     } else {
       this.expandedItems.add(toggledItem);
+      this.itemsCollapseChange.emit(true);
     }
 
     if (this.multiple || isClosing) return;

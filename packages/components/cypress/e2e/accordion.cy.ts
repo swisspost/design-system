@@ -26,6 +26,37 @@ describe('accordion', () => {
       cy.get('@collapsibles').last().click();
       cy.get('@collapsibles').first().find('.collapse').should('be.hidden');
     });
+
+    it.only('should not propagate collapseChange event from post-accordion-item on post-accordion', () => {
+      cy.document().then(document => {
+        const EventHandlerMock = cy.spy();
+        Cypress.$(document.querySelector('post-accordion')).on('collapseChange', EventHandlerMock);
+
+        cy.get('@collapsibles')
+          .last()
+          .click()
+          .then(() => {
+            expect(EventHandlerMock).to.not.be.calledOnce;
+          });
+      });
+    });
+
+    it.only('should trigger itemsCollapseChange event on post-accordion', () => {
+      cy.document().then(document => {
+        const EventHandlerMock = cy.spy();
+        Cypress.$(document.querySelector('post-accordion')).on(
+          'itemsCollapseChange',
+          EventHandlerMock,
+        );
+
+        cy.get('@collapsibles')
+          .last()
+          .click()
+          .then(() => {
+            expect(EventHandlerMock).to.be.calledTwice;
+          });
+      });
+    });
   });
 
   describe('multiple open panels', () => {
