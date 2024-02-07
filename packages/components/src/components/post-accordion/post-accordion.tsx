@@ -30,7 +30,7 @@ export class PostAccordion {
    * An event emitted when an accordion element is shown or hidden, before the transition.
    * @param {{detail: boolean}} payload `true` if the collapsible was opened, `false` if it was closed.
    */
-  @Event() itemsCollapseChange: EventEmitter<boolean>;
+  @Event({ bubbles: false }) itemsCollapseChange: EventEmitter<boolean>;
 
   /**
    * If `true`, multiple `post-accordion-item` can be open at the same time.
