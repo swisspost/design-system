@@ -136,14 +136,6 @@ export const CustomIcon: Story = {
   render: Default.render,
 };
 
-export const InvalidFeedback: Story = {
-  args: {
-    validity: 'false',
-    slotInvalidFeedback: 'Error Message',
-  },
-  render: Default.render,
-};
-
 export const FormIntegration: Story = {
   parameters: {
     docs: {

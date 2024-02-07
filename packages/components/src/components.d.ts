@@ -75,7 +75,7 @@ export namespace Components {
      */
     interface PostCardControl {
         /**
-          * Defines the `checked` attribute of the control. If `true`, the control is selected.
+          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
          */
         "checked"?: boolean;
         /**
@@ -83,7 +83,7 @@ export namespace Components {
          */
         "description": string;
         /**
-          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control.
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
          */
         "disabled": boolean;
         /**
@@ -95,17 +95,17 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control, which is submitted with the form data.
+          * Defines the `name` attribute of the control. This name is used in a forms data to store the given value of the control. If no name is specified a form will never contain this controls value.
          */
         "name": string;
-        /**
-          * Defines the validation `state` of the control.<div className="alert alert-sm alert-info">Only styles for the invalid state have been defined so far.</div>
-         */
-        "state": null | 'true' | 'false';
         /**
           * Defines the `type` attribute of the control.
          */
         "type": 'checkbox' | 'radio';
+        /**
+          * Defines the validation `validity` of the control.
+         */
+        "validity": null | 'true' | 'false';
         /**
           * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
          */
@@ -260,10 +260,6 @@ export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostAlertElement;
 }
-export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostCardControlElement;
-}
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
@@ -306,21 +302,10 @@ declare global {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
     };
-    interface HTMLPostCardControlElementEventMap {
-        "controlChange": boolean;
-    }
     /**
      * @class PostCardControl - representing a stencil component
      */
     interface HTMLPostCardControlElement extends Components.PostCardControl, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostCardControlElement: {
         prototype: HTMLPostCardControlElement;
@@ -473,7 +458,7 @@ declare namespace LocalJSX {
      */
     interface PostCardControl {
         /**
-          * Defines the `checked` attribute of the control. If `true`, the control is selected.
+          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
          */
         "checked"?: boolean;
         /**
@@ -481,7 +466,7 @@ declare namespace LocalJSX {
          */
         "description"?: string;
         /**
-          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control.
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
          */
         "disabled"?: boolean;
         /**
@@ -493,21 +478,17 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control, which is submitted with the form data.
+          * Defines the `name` attribute of the control. This name is used in a forms data to store the given value of the control. If no name is specified a form will never contain this controls value.
          */
         "name"?: string;
-        /**
-          * An event emitted whenever the control value changes. The payload contains the current checked state under `event.details`.
-         */
-        "onControlChange"?: (event: PostCardControlCustomEvent<boolean>) => void;
-        /**
-          * Defines the validation `state` of the control.<div className="alert alert-sm alert-info">Only styles for the invalid state have been defined so far.</div>
-         */
-        "state"?: null | 'true' | 'false';
         /**
           * Defines the `type` attribute of the control.
          */
         "type": 'checkbox' | 'radio';
+        /**
+          * Defines the validation `validity` of the control.
+         */
+        "validity"?: null | 'true' | 'false';
         /**
           * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
          */

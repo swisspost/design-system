@@ -2,8 +2,8 @@
 @use '@swisspost/design-system-styles/components/form-check';
 
 :host {
-  display: flex;
-  height: 100%;
+  display: block;
+  width: 100%;
 }
 
 .card-control {
@@ -185,6 +185,4 @@
       --post-card-control-input-bg: transparent;
     }
   }
-}
-
 }

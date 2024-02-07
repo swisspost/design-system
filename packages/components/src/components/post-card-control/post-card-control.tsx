@@ -92,7 +92,6 @@ export class PostCardControl {
    */
   @Prop() readonly icon: string = null;
 
-
   constructor() {
     this.GROUPEVENT = `PostCardControlGroup:${this.name}:change`;
 
