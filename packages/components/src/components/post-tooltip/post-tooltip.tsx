@@ -66,10 +66,10 @@ export class PostTooltip {
    */
   disconnectedCallback() {
     this.triggers.forEach(trigger => {
-      trigger.removeEventListener('mouseenter', this.localShowTooltip);
-      trigger.removeEventListener('mouseleave', this.localHideTooltip);
-      trigger.removeEventListener('focus', this.localShowTooltip);
-      trigger.removeEventListener('blur', this.localHideTooltip);
+      trigger.removeEventListener('pointerin', this.localShowTooltip);
+      trigger.removeEventListener('pointerout', this.localHideTooltip);
+      trigger.removeEventListener('focusin', this.localShowTooltip);
+      trigger.removeEventListener('focusout', this.localHideTooltip);
       trigger.removeEventListener('long-press', this.localShowTooltip);
     });
   }
