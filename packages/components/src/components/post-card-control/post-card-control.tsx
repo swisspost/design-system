@@ -1,15 +1,4 @@
-import {
-  AttachInternals,
-  Component,
-  Element,
-  Event,
-  EventEmitter,
-  h,
-  Host,
-  Prop,
-  State,
-  Watch,
-} from '@stencil/core';
+import { AttachInternals, Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { checkNonEmpty, checkOneOf } from '../../utils';
 import { version } from '../../../package.json';
 
@@ -103,11 +92,6 @@ export class PostCardControl {
    */
   @Prop() readonly icon: string = null;
 
-  /**
-   * An event emitted whenever the control value changes.
-   * The payload contains the current checked state under `event.details`.
-   */
-  @Event() controlChange: EventEmitter<boolean>;
 
   constructor() {
     this.GROUPEVENT = `PostCardControlGroup:${this.name}:change`;
