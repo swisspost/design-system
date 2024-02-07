@@ -17,6 +17,9 @@ let cardControlIds = 0;
 
 /**
  * @class PostCardControl - representing a stencil component
+ *
+ * @slot icon - Content to place in the named `icon` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.<br>It is only meant for <code>img</code> or <code>svg</code> elements and overrides the `icon` property.</p>
+ * @slot invalid-feedback - Content to place in the named `invalid-feedback` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.</p>
  */
 @Component({
   tag: 'post-card-control',
