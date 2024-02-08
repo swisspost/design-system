@@ -23,7 +23,7 @@ const meta: Meta = {
     checked: '',
     disabled: '',
     validity: 'null',
-    icon: '1001',
+    icon: '',
     slotIcon: '',
     slotInvalidFeedback: '',
   },

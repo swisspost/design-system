@@ -1,4 +1,15 @@
-import { AttachInternals, Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
+import {
+  AttachInternals,
+  Component,
+  Element,
+  Event,
+  EventEmitter,
+  h,
+  Host,
+  Prop,
+  State,
+  Watch,
+} from '@stencil/core';
 import { checkNonEmpty, checkOneOf } from '../../utils';
 import { version } from '../../../package.json';
 
@@ -91,6 +102,19 @@ export class PostCardControl {
    * <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
    */
   @Prop() readonly icon: string = null;
+
+  /**
+   * An event emitted whenever the components checked state is toggled.
+   * The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
+   */
+  @Event() input: EventEmitter<boolean>;
+
+  /**
+   * An event emitted whenever the components checked state is toggled.
+   * The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
+   * <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
+   */
+  @Event() change: EventEmitter<boolean>;
 
   constructor() {
     this.GROUPEVENT = `PostCardControlGroup:${this.name}:change`;
@@ -195,21 +219,10 @@ export class PostCardControl {
   private controlEmitEvent(e?: Event) {
     if (!e) return;
 
-    const event = new CustomEvent(e.type, {
-      detail: {
-        sourceEvent: e,
-        target: this.control,
-        state: this.checked,
-      },
-      bubbles: e.bubbles,
-      cancelable: e.cancelable,
-      composed: true,
-    });
-
     const isCheckbox = this.type === 'checkbox';
     const isRadioAndChecked = this.type === 'radio' && this.checked;
 
-    if (isCheckbox || isRadioAndChecked) this.host.dispatchEvent(event);
+    if (isCheckbox || isRadioAndChecked) this[e.type].emit({ state: this.checked });
   }
 
   private groupCollectMembers() {

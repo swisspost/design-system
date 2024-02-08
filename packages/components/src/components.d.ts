@@ -260,6 +260,10 @@ export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostAlertElement;
 }
+export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostCardControlElement;
+}
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
@@ -302,10 +306,22 @@ declare global {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
     };
+    interface HTMLPostCardControlElementEventMap {
+        "input": boolean;
+        "change": boolean;
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
     interface HTMLPostCardControlElement extends Components.PostCardControl, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostCardControlElement: {
         prototype: HTMLPostCardControlElement;
@@ -481,6 +497,14 @@ declare namespace LocalJSX {
           * Defines the `name` attribute of the control. This name is used in a forms data to store the given value of the control. If no name is specified a form will never contain this controls value.
          */
         "name"?: string;
+        /**
+          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
+         */
+        "onChange"?: (event: PostCardControlCustomEvent<boolean>) => void;
+        /**
+          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
+         */
+        "onInput"?: (event: PostCardControlCustomEvent<boolean>) => void;
         /**
           * Defines the `type` attribute of the control.
          */
