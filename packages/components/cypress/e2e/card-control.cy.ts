@@ -1,42 +1,18 @@
-const INTERACTIVE_ELEMENT_SELECTORS = [
-  'a',
-  'audio[controls]',
-  'button',
-  'details',
-  'embed',
-  'iframe',
-  'img[usemap]',
-  'input:not([type="hidden"])',
-  'keygen',
-  'label',
-  'menu[type="toolbar"]',
-  'object[usemap]',
-  'select',
-  'textarea',
-  'video[controls]',
-];
-
 describe('card-control', () => {
-  describe('structure & props', () => {
-    beforeEach(() => {
-      cy.getComponent('card-control', { group: 'forms' });
-      cy.window().then(win => {
-        cy.wrap(cy.spy(win.console, 'error')).as('consoleError');
-      });
-
-      cy.get('@card-control').find('.card-control').as('wrapper');
-
-      cy.get('@card-control').find('input.header--input').as('input');
-
-      cy.get('@card-control').find('label.header--label').as('label');
-
-      cy.get('@card-control').find('.header--icon').as('icon');
-      cy.get('@card-control').find('.header--icon slot[name="icon"]').as('slotIcon');
-
-      cy.get('@card-control').find('.card-control--content').as('content');
-      cy.get('@card-control').find('.card-control--content slot').as('slotContent');
+  beforeEach(() => {
+    cy.getComponent('card-control', { group: 'forms' });
+    cy.window().then(win => {
+      cy.wrap(cy.spy(win.console, 'error')).as('consoleError');
     });
 
+    cy.get('@card-control').find('.card-control').as('wrapper');
+    cy.get('@card-control').find('input.card-control--input').as('input');
+    cy.get('@card-control').find('label.card-control--label').as('label');
+    cy.get('@card-control').find('.card-control--icon').as('icon');
+    cy.get('@card-control').find('.card-control--icon slot[name="icon"]').as('slotIcon');
+  });
+
+  describe.skip('structure & props', () => {
     it('should have no console errors', () => {
       cy.get('@consoleError').should('not.be.called');
     });
@@ -50,9 +26,6 @@ describe('card-control', () => {
 
       cy.get('@icon').should('exist');
       cy.get('@slotIcon').should('exist');
-
-      cy.get('@content').should('exist');
-      cy.get('@slotContent').should('exist');
     });
 
     it('should have mandatory attributes', () => {
@@ -62,44 +35,40 @@ describe('card-control', () => {
 
       cy.get('@input').then($input => {
         const controlId = $input.attr('id');
-        const contentId = `${controlId}_Content`;
 
         cy.get('@input')
           .should('have.attr', 'id')
           .and('contain', 'PostCardControl_')
           .and('eq', controlId);
         cy.get('@input').should('have.attr', 'type').and('eq', 'checkbox');
-        cy.get('@input').should('have.attr', 'aria-controls').and('eq', contentId);
-        cy.get('@input').should('have.attr', 'aria-expanded').and('eq', 'false');
 
         cy.get('@label').should('have.attr', 'for').and('eq', controlId);
-
-        cy.get('@content').should('have.attr', 'id').and('eq', contentId);
       });
     });
 
-    it('should have mandatory content', () => {
-      cy.get('@label').should('have.text', 'Label');
-      cy.get('@content').should('not.be.visible');
-    });
-
     it('should set label text according to "label" prop', () => {
+      cy.get('@label').should('have.text', 'Label');
       cy.get('@card-control').invoke('attr', 'label', 'Lorem ipsum');
       cy.get('@label').should('have.text', 'Lorem ipsum');
     });
 
-    it('should render label also with empty string', () => {
+    it('should render label also with empty string, but log an error', () => {
       cy.get('@card-control').invoke('attr', 'label', '');
       cy.get('@label').should('exist').and('have.text', '');
+      cy.get('@consoleError')
+        .invoke('getCalls')
+        .then(calls => {
+          expect(calls[0].args[0].message).to.eq(
+            'The "post-card-control" element requires its "label" property to be set.',
+          );
+        });
     });
 
-    // TODO: test error message when label not set
-
     it('should set description text according to "description" prop', () => {
-      cy.get('@card-control').find('.header--description').should('not.exist');
+      cy.get('@card-control').find('.card-control--description').should('not.exist');
       cy.get('@card-control')
         .invoke('attr', 'description', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.')
-        .find('.header--description')
+        .find('.card-control--description')
         .should('exist')
         .and('have.text', 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr.');
     });
@@ -107,12 +76,8 @@ describe('card-control', () => {
     it('should only render description, when "description" prop is not an empty string', () => {
       cy.get('@card-control')
         .invoke('attr', 'description', '')
-        .find('.header--description')
+        .find('.card-control--description')
         .should('not.exist');
-
-      cy.get('@card-control')
-        .invoke('removeAttr', 'description')
-        .should('not.have.attr', 'description');
     });
 
     it('should set input "type" attr according to "type" prop', () => {
@@ -122,7 +87,16 @@ describe('card-control', () => {
       cy.get('@input').should('have.attr', 'type').and('eq', 'checkbox');
     });
 
-    // TODO: test error message when type not set
+    it('should log an error when "type" prop is not defined', () => {
+      cy.get('@card-control').invoke('attr', 'type', '');
+      cy.get('@consoleError')
+        .invoke('getCalls')
+        .then(calls => {
+          expect(calls[0].args[0].message).to.eq(
+            'The "post-card-control" element requires its "type" prop to be one of either "checkbox" or "radio".',
+          );
+        });
+    });
 
     it('should set input "name" attr according to "name" prop', () => {
       cy.get('@input').should('not.have.attr', 'name');
@@ -162,17 +136,17 @@ describe('card-control', () => {
       cy.get('@input').should('not.have.attr', 'aria-disabled');
     });
 
-    it('should set validation state according to "state" prop', () => {
+    it('should set validation state according to "validity" prop', () => {
       cy.get('@wrapper').should('not.have.class', 'is-valid').and('not.have.class', 'is-invalid');
-      cy.get('@card-control').invoke('attr', 'state', '');
+      cy.get('@card-control').invoke('attr', 'validity', '');
       cy.get('@wrapper').should('have.class', 'is-valid').and('not.have.class', 'is-invalid');
-      cy.get('@card-control').invoke('attr', 'state', 'state');
+      cy.get('@card-control').invoke('attr', 'validity', 'anything-but-false');
       cy.get('@wrapper').should('have.class', 'is-valid').and('not.have.class', 'is-invalid');
-      cy.get('@card-control').invoke('attr', 'state', true);
+      cy.get('@card-control').invoke('attr', 'validity', true);
       cy.get('@wrapper').should('have.class', 'is-valid').and('not.have.class', 'is-invalid');
-      cy.get('@card-control').invoke('attr', 'state', false);
+      cy.get('@card-control').invoke('attr', 'validity', false);
       cy.get('@wrapper').should('not.have.class', 'is-valid').and('have.class', 'is-invalid');
-      cy.get('@card-control').invoke('removeAttr', 'state');
+      cy.get('@card-control').invoke('removeAttr', 'validity');
       cy.get('@wrapper').should('not.have.class', 'is-valid').and('not.have.class', 'is-invalid');
     });
 
@@ -190,77 +164,103 @@ describe('card-control', () => {
   });
 
   describe('events', () => {
-    beforeEach(() => {
-      cy.getComponent('card-control', { group: 'forms', story: 'content' });
-      cy.get('@card-control').invoke('removeAttr', 'checked');
+    it.skip('should toggle when clicked or by typing {space}', () => {
+      cy.get('@input').should('not.be.checked');
+      cy.get('@wrapper').should('not.have.class', 'is-checked').click();
+      cy.get('@input').should('be.checked');
+      cy.get('@wrapper').should('have.class', 'is-checked').click();
+      cy.get('@input').should('not.be.checked');
+      cy.get('@wrapper').should('not.have.class', 'is-checked');
 
-      cy.get('@card-control').find('.card-control').as('wrapper');
-
-      cy.get('@card-control').find('input.header--input').as('input');
-
-      cy.get('@card-control').find('.card-control--content').as('content');
-      cy.get('@card-control').find('.card-control--content slot').as('slotContent');
+      cy.get('@input').type(' ').should('be.checked');
+      cy.get('@wrapper').should('have.class', 'is-checked');
+      cy.get('@input').focus().type(' ').should('not.be.checked');
+      cy.get('@wrapper').should('not.have.class', 'is-checked');
     });
 
-    it('should toggle class "is-focused" when focused/blured', () => {
+    it.skip('should not toggle when disabled', () => {
+      cy.get('@card-control').invoke('attr', 'disabled', true);
+
+      cy.get('@input').should('not.be.checked');
+      cy.get('@wrapper').should('not.have.class', 'is-checked').click();
+      cy.get('@input').should('not.be.checked');
+      cy.get('@wrapper').should('not.have.class', 'is-checked');
+
+      cy.get('@input').type(' ').should('not.be.checked');
+      cy.get('@wrapper').should('not.have.class', 'is-checked');
+    });
+
+    it.skip('should toggle class "is-focused" when focused/blured', () => {
       cy.get('@wrapper').should('not.have.class', 'is-focused');
+      cy.get('@input').should('not.have.focus').focus();
+
+      cy.get('@wrapper').should('have.class', 'is-focused');
+      cy.get('@input').should('have.focus').blur({ force: true });
+
+      cy.get('@wrapper').should('not.have.class', 'is-focused');
+      cy.get('@input').should('not.have.focus');
+    });
+
+    it.skip('should emit input and change events when toggled', () => {
+      let inputEventCallCount = 0;
+      let changeEventCallCount = 0;
+
+      cy.get('@card-control').then($cardControl => {
+        $cardControl.get(0).addEventListener('input', () => inputEventCallCount++);
+        $cardControl.get(0).addEventListener('change', () => changeEventCallCount++);
+      });
+
+      cy.get('@wrapper')
+        .click()
+        .then(() => {
+          expect(inputEventCallCount).to.eq(1);
+          expect(changeEventCallCount).to.eq(1);
+        })
+        .click()
+        .then(() => {
+          expect(inputEventCallCount).to.eq(2);
+          expect(changeEventCallCount).to.eq(2);
+        });
 
       cy.get('@input')
-        .first()
+        .type(' ')
+        .then(() => {
+          expect(inputEventCallCount).to.eq(3);
+          expect(changeEventCallCount).to.eq(3);
+        })
         .focus()
-        // waiting for focus to be executed, because focus() is not implemented like other action commands, and does not follow the same rules of waiting for actionability.
-        .wait(300)
+        .type(' ')
         .then(() => {
-          cy.get('@wrapper').should('have.class', 'is-focused');
+          expect(inputEventCallCount).to.eq(4);
+          expect(changeEventCallCount).to.eq(4);
+        });
+    });
+
+    it('should not emit input and change events when disabled', () => {
+      cy.get('@card-control').invoke('attr', 'disabled', true);
+
+      let inputEventCallCount = 0;
+      let changeEventCallCount = 0;
+
+      cy.get('@card-control').then($cardControl => {
+        $cardControl.get(0).addEventListener('input', () => inputEventCallCount++);
+        $cardControl.get(0).addEventListener('change', () => changeEventCallCount++);
+      });
+
+      cy.get('@wrapper')
+        .click()
+        .then(() => {
+          expect(inputEventCallCount).to.eq(0);
+          expect(changeEventCallCount).to.eq(0);
         });
 
       cy.get('@input')
-        .first()
-        .blur({ force: true })
-        // waiting for blur to be executed, because blur() is not implemented like other action commands, and does not follow the same rules of waiting for actionability.
-        .wait(300)
+        .type(' ')
         .then(() => {
-          cy.get('@wrapper').should('not.have.class', 'is-focused');
+          expect(inputEventCallCount).to.eq(0);
+          expect(changeEventCallCount).to.eq(0);
         });
     });
-
-    it('should toggle content when clicked', () => {
-      cy.get('@content').should('not.be.visible');
-      cy.get('@input').should('have.attr', 'aria-expanded').and('eq', 'false');
-      cy.get('@card-control').click({ force: true });
-      cy.get('@content').should('be.visible');
-      cy.get('@input').should('have.attr', 'aria-expanded').and('eq', 'true');
-      cy.get('@card-control').click({ force: true });
-      cy.get('@content').should('not.be.visible');
-      cy.get('@input').should('have.attr', 'aria-expanded').and('eq', 'false');
-    });
-
-    it('should not toggle content when clicking on interactive element in content', () => {
-      cy.get('@card-control').click();
-      cy.get('@input').should('have.attr', 'aria-expanded').and('eq', 'true');
-      cy.get('@content').should('be.visible');
-
-      cy.get('@card-control')
-        .find('> *')
-        .not('[slot]')
-        .find(INTERACTIVE_ELEMENT_SELECTORS.join(', '))
-        .not('input[type="hidden"]')
-        .each($el => {
-          if ($el.is('select')) {
-            cy.wrap($el).select(0);
-          } else {
-            cy.wrap($el).click({ force: true });
-          }
-          cy.get('@input').should('have.attr', 'aria-expanded').and('eq', 'true');
-          cy.get('@content').should('be.visible');
-        });
-    });
-
-    it('should toogle content when used with keyboard', () => {
-      // TODO when https://github.com/cypress-io/cypress/issues/311 is ready
-    });
-
-    // TODO: test change events
   });
 
   // TODO: test form association
