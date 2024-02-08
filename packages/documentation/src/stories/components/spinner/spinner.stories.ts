@@ -56,7 +56,7 @@ function render(args: Args) {
 
   return html` <div class="spinner-bg">
     <div class="loading-modal">
-      <div class="${classes}" role="status">
+      <div class="${classes}" role="status" aria-live="polite">
         <span class="visually-hidden">Loading…</span>
       </div>
     </div>
@@ -70,7 +70,7 @@ export const BlockSection: Story = {
     html`<div class="position-relative">
       <div class="spinner-bg">
         <div class="loading-modal">
-          <div class="loader m-auto" role="status">
+          <div class="loader m-auto" role="status" aria-live="polite">
             <span class="visually-hidden">Loading…</span>
           </div>
         </div>
@@ -86,11 +86,21 @@ export const BlockSection: Story = {
 
 export const Inline: Story = {
   render: () => html`<button class="btn btn-secondary btn-animated">
-      <div class="loader loader-16 d-inline-block me-1" role="status" aria-hidden="true"></div>
+      <div
+        class="loader loader-16 d-inline-block me-1"
+        role="status"
+        aria-live="polite"
+        aria-hidden="true"
+      ></div>
       <span>Data is loading…</span>
     </button>
     <button class="btn btn-secondary btn-animated ms-3" disabled="disabled">
-      <div class="loader loader-16 d-inline-block me-1" role="status" aria-hidden="true"></div>
+      <div
+        class="loader loader-16 d-inline-block me-1"
+        role="status"
+        aria-live="polite"
+        aria-hidden="true"
+      ></div>
       <span>Data is loading…</span>
     </button>`,
 };
