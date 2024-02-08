@@ -3,7 +3,7 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { BADGE } from '../../../../.storybook/constants';
 
-const meta: Meta<HTMLPostAccordionElement> = {
+const meta: Meta<HTMLPostAccordionElement & HTMLPostCollapsibleElementEventMap> = {
   title: 'Components/Accordion',
   component: 'post-accordion',
   parameters: {
@@ -11,6 +11,18 @@ const meta: Meta<HTMLPostAccordionElement> = {
   },
   args: {
     multiple: false,
+  },
+  argTypes: {
+    collapseChange: {
+      name: 'collapseChange',
+      description: `<p>An event emitted when the collapse element is shown or hidden, before the transition.</p>
+<p>The event payload is a boolean: true if the collapsible was opened, false if it was closed.</p>`,
+      control: null,
+      table: {
+        category: 'Events',
+        type: { summary: 'boolean' },
+      },
+    },
   },
 };
 
@@ -46,6 +58,45 @@ export const MultipleOpenPanels: Story = {
       <post-accordion-item>
         <span slot="header">Titulum 1</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+
+      <post-accordion-item collapsed>
+        <span slot="header">Titulum 2</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+
+      <post-accordion-item collapsed>
+        <span slot="header">Titulum 3</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+    </post-accordion>
+  `,
+};
+
+// Used only in testing for now.
+export const Nested: Story = {
+  render: () => html`
+    <post-accordion>
+      <post-accordion-item>
+        <span slot="header">Titulum 1</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+
+        <post-accordion>
+          <post-accordion-item>
+            <span slot="header">Titulum 1</span>
+            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+          </post-accordion-item>
+
+          <post-accordion-item collapsed>
+            <span slot="header">Titulum 2</span>
+            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+          </post-accordion-item>
+
+          <post-accordion-item collapsed>
+            <span slot="header">Titulum 3</span>
+            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+          </post-accordion-item>
+        </post-accordion>
       </post-accordion-item>
 
       <post-accordion-item collapsed>

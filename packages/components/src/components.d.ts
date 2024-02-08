@@ -215,10 +215,6 @@ export namespace Components {
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
     }
 }
-export interface PostAccordionCustomEvent<T> extends CustomEvent<T> {
-    detail: T;
-    target: HTMLPostAccordionElement;
-}
 export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostAlertElement;
@@ -236,18 +232,7 @@ export interface PostTabsCustomEvent<T> extends CustomEvent<T> {
     target: HTMLPostTabsElement;
 }
 declare global {
-    interface HTMLPostAccordionElementEventMap {
-        "itemsCollapseChange": boolean;
-    }
     interface HTMLPostAccordionElement extends Components.PostAccordion, HTMLStencilElement {
-        addEventListener<K extends keyof HTMLPostAccordionElementEventMap>(type: K, listener: (this: HTMLPostAccordionElement, ev: PostAccordionCustomEvent<HTMLPostAccordionElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
-        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLPostAccordionElementEventMap>(type: K, listener: (this: HTMLPostAccordionElement, ev: PostAccordionCustomEvent<HTMLPostAccordionElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
-        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
     }
     var HTMLPostAccordionElement: {
         prototype: HTMLPostAccordionElement;
@@ -380,11 +365,6 @@ declare namespace LocalJSX {
           * If `true`, multiple `post-accordion-item` can be open at the same time.
          */
         "multiple"?: boolean;
-        /**
-          * An event emitted when an accordion element is shown or hidden, before the transition.
-          * @param payload `true` if the collapsible was opened, `false` if it was closed.
-         */
-        "onItemsCollapseChange"?: (event: PostAccordionCustomEvent<boolean>) => void;
     }
     interface PostAccordionItem {
         /**
