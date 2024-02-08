@@ -14,9 +14,6 @@
   font-size: tag.$tag-font-size;
   border: tag.$tag-border-width solid transparent;
   border-radius: tag.$tag-border-radius;
-  line-height: inherit;
-  text-align: center;
-  vertical-align: baseline;
   max-width: tag.$tag-max-width;
 
   &.bg-white {
@@ -33,7 +30,7 @@
 .tag:has(:not(pre)) {
   height: tag.$tag-height;
 
-  .tag-icon {
+  post-icon {
     height: tag.$tag-icon-size;
     min-height: tag.$tag-icon-size;
     width: tag.$tag-icon-size;

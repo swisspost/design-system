@@ -1,5 +1,5 @@
 @use './../color' as col;
-@use './../commons' as commons;
+@use './../commons';
 @use './../spacing' as spacing;
 @use './../type' as type;
 
@@ -8,7 +8,7 @@ $tag-border-radius: spacing.$size-micro;
 $tag-border-width: commons.$border-width;
 $tag-gap: spacing.$size-micro;
 $tag-font-size: type.$font-size-16;
-$tag-horizontal-padding: spacing.$size-mini;
+$tag-padding-x: spacing.$size-mini;
 $tag-vertical-padding: 0;
 
 $tag-white-border-color: col.$black;
