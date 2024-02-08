@@ -2,9 +2,12 @@ import { bombArgs } from '../../../../utils';
 import { choiceCardMeta, choiceCardDefault } from './choice-card';
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import meta from '../../accordion/accordion.stories';
+
+const { id, ...metaWithoutId } = choiceCardMeta;
 
 export default {
-  ...choiceCardMeta,
+  ...metaWithoutId,
   title: 'Snapshots',
 };
 
@@ -29,10 +32,7 @@ export const ChoiceCard: StoryObj = {
           bg => html`
             <div class="${bg + ' row g-3'}">
               ${bombedArgs.map(
-                args =>
-                  html`
-                    <div class="col-sm-6">${choiceCardDefault(args)}</div>
-                  `,
+                args => html` <div class="col-sm-6">${choiceCardDefault(args)}</div> `,
               )}
             </div>
           `,

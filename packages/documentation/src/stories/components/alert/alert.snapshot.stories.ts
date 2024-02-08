@@ -4,9 +4,12 @@ import { spreadArgs, bombArgs } from '../../../utils';
 import alertMeta from './standard-html/alert.stories';
 import { getAlertClasses } from './standard-html/getAlertClasses';
 import { BADGE } from '../../../../.storybook/constants';
+import { choiceCardMeta } from '../forms/choice-card/choice-card';
+
+const { id, ...metaWithoutId } = alertMeta;
 
 export default {
-  ...alertMeta,
+  ...metaWithoutId,
   title: 'Snapshots',
   parameters: {
     badges: [BADGE.SINCE_V1],

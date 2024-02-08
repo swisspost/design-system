@@ -3,8 +3,10 @@ import meta from './textarea.stories';
 import { html } from 'lit';
 import { getCombinations, COMBINATIONS } from '../../../../utils/inputComponentsGetCombinations';
 
+const { id, ...metaWithoutId } = meta;
+
 export default {
-  ...meta,
+  ...metaWithoutId,
   title: 'Snapshots',
 };
 
@@ -59,9 +61,7 @@ export const Textarea: Story = {
               <h3>Floating Label</h3>
               ${getCombinations('floatingLabel', [true], combinations).map(
                 (args: Args) =>
-                  html`
-                    <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
-                  `,
+                  html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `,
               )}
             </div>
           `,

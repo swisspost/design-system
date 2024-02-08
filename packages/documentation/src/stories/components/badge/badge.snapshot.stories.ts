@@ -2,9 +2,12 @@ import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './badge.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils';
+import alertMeta from '../alert/standard-html/alert.stories';
+
+const { id, ...metaWithoutId } = meta;
 
 export default {
-  ...meta,
+  ...metaWithoutId,
   title: 'Snapshots',
 };
 
