@@ -30,7 +30,7 @@ export default meta;
 // DECORATORS
 function externalControls(story: StoryFn, context: StoryContext) {
   const { args, canvasElement } = context;
-  const togglerId = `${context.id}--button`;
+  const togglerId = `button--${context.id}`;
 
   let collapsible!: HTMLPostCollapsibleElement;
   let toggler!: HTMLButtonElement;
