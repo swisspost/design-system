@@ -1,10 +1,9 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { spreadArgs, bombArgs } from '../../../utils';
+import { bombArgs, spreadArgs } from '../../../utils';
 import alertMeta from './standard-html/alert.stories';
 import { getAlertClasses } from './standard-html/getAlertClasses';
 import { BADGE } from '../../../../.storybook/constants';
-import { choiceCardMeta } from '../forms/choice-card/choice-card';
 
 const { id, ...metaWithoutId } = alertMeta;
 

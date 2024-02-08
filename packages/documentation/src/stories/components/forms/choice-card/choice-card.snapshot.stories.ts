@@ -1,8 +1,7 @@
 import { bombArgs } from '../../../../utils';
-import { choiceCardMeta, choiceCardDefault } from './choice-card';
+import { choiceCardDefault, choiceCardMeta } from './choice-card';
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import meta from '../../accordion/accordion.stories';
 
 const { id, ...metaWithoutId } = choiceCardMeta;
 
