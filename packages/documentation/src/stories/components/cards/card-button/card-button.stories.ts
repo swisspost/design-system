@@ -145,20 +145,14 @@ const multipleArgs = [
       background: 'bg-nightblue',
     },
     {
-      focus: 'Schwerpunkt',
-      title: 'Post zurückbehalten',
+      title: 'E-Finance: Demoversion',
       background: 'bg-nightblue',
     },
-
     {
       title: 'Adressänderung mit Nachsendung',
     },
   ],
   [
-    {
-      title: 'E-Finance: Demoversion',
-      background: 'bg-nightblue',
-    },
     {
       title: 'Filiale mit Partner',
     },
