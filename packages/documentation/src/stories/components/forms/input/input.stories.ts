@@ -9,7 +9,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
-  id: 'Components/Forms/Input',
+  id: '2df77c32-5e33-402e-bd2e-54d54271ce19',
   title: 'Components/Forms/Input',
   render: render,
   parameters: {

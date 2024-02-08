@@ -4,7 +4,7 @@ import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
-  id: 'Components/Toast',
+  id: '825b65c9-7eaf-4e0a-9e20-5f5ed406726d',
   title: 'Components/Toast',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

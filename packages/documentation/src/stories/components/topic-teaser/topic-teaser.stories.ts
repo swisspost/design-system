@@ -4,7 +4,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
 
 const meta: Meta = {
-  id: 'Components/Topic Teaser',
+  id: '2ffc7a53-c1aa-4ff5-b1e4-fa638591399c',
   title: 'Components/Topic Teaser',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

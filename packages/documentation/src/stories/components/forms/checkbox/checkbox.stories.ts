@@ -6,7 +6,7 @@ import { BADGE } from '../../../../../.storybook/constants';
 import { mapClasses } from '../../../../utils';
 
 const meta: Meta = {
-  id: 'Components/Forms/Checkbox',
+  id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Forms/Checkbox',
   render: renderCheckbox,
   parameters: {

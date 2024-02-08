@@ -4,7 +4,7 @@ import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: Meta = {
-  id: 'Components/Popover',
+  id: '9a636763-de2d-4f72-bc81-98daf10871f7',
   title: 'Components/Popover',
   component: 'post-popover',
   parameters: {

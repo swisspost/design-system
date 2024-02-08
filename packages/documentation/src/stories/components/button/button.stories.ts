@@ -5,7 +5,7 @@ import { repeat } from 'lit/directives/repeat.js';
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 const meta: Meta = {
-  id: 'Components/Button',
+  id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
   title: 'Components/Button',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

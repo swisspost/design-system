@@ -7,7 +7,7 @@ import { BADGE } from '../../../../../.storybook/constants';
 import { spreadArgs } from '../../../../utils';
 
 const meta: Meta = {
-  id: 'Components/Icons',
+  id: '0dcfe3c0-bfc0-4107-b43b-7e9d825b805f',
   title: 'Components/Icons/Icon Component',
   component: 'post-icon',
   parameters: {

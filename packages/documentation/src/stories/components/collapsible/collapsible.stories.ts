@@ -4,7 +4,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { spreadArgs } from '../../../utils';
 
 const meta: Meta<HTMLPostCollapsibleElement> = {
-  id: 'Components/Collapsible',
+  id: '6a91848c-16ec-4a23-bc45-51c797b5b2c3',
   title: 'Components/Collapsible',
   component: 'post-collapsible',
   render: renderCollapsible,

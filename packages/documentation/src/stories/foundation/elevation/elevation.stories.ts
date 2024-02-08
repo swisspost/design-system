@@ -3,7 +3,7 @@ import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
-  id: 'Elevation',
+  id: 'cfdf83ff-efa7-4b3c-ac91-6898c4f88701',
   title: 'Foundations/Elevation',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

@@ -6,7 +6,7 @@ import { BADGE } from '../../../../../.storybook/constants';
 import { mapClasses } from '../../../../utils';
 
 const meta: Meta = {
-  id: 'Components/Forms/Switch',
+  id: '7fb639f8-86f6-4937-999c-4ee15f81643b',
   title: 'Components/Forms/Switch',
   render: renderSwitch,
   parameters: {

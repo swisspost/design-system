@@ -5,7 +5,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
 
 const meta: Meta = {
-  id: 'Components/Badge',
+  id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',
   title: 'Components/Badge',
   render: renderBadge,
   decorators: [externalControl],

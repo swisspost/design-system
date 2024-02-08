@@ -5,7 +5,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
-  id: 'Components/Cards/Card',
+  id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Cards/Card',
   decorators: [clickBlocker, paddedContainer],
   parameters: {

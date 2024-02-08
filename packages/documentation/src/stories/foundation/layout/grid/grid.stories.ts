@@ -3,7 +3,7 @@ import { BADGE } from '../../../../../.storybook/constants';
 import { html } from 'lit';
 
 const meta: Meta = {
-  id: 'Layout/Grid',
+  id: '7240f2ef-216a-490e-9bd8-c0cef19f7b31',
   title: 'Foundations/Layout/Grid',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],

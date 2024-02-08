@@ -4,7 +4,7 @@ import { nothing } from 'lit';
 import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
-  id: 'Components/Cards/Product Card',
+  id: 'b4800d9e-4837-4476-a327-bb4586eb7e97',
   title: 'Components/Cards/Product Card',
   decorators: [paddedContainer, clickBlocker],
   parameters: {

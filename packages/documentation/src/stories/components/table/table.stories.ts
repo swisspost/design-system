@@ -3,7 +3,7 @@ import { html } from 'lit';
 import { mapClasses } from '../../../utils';
 
 const meta: Meta = {
-  id: 'Components/Table',
+  id: '81799516-470c-446b-a049-54946b6ccfca',
   title: 'Components/Table',
   render: renderTable,
   parameters: {},

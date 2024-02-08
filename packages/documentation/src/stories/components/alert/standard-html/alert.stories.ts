@@ -7,7 +7,7 @@ import { getAlertClasses } from './getAlertClasses';
 import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
-  id: 'Components/Alert',
+  id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Alert',
   render: renderAlert,
   decorators: [externalControl],
