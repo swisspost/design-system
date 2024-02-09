@@ -16,6 +16,8 @@ import { version } from '../../../package.json';
 
 let cardControlIds = 0;
 
+// TODO: add integration for error message as soon as #2625 is implemented
+
 /**
  * @class PostCardControl - representing a stencil component
  *
@@ -74,12 +76,13 @@ export class PostCardControl {
 
   /**
    * Defines the `name` attribute of the control.
-   * <span className="alert alert-sm alert-info">The name is used in a forms `data` to store the given value of the control. If no name is specified, a form will never contain this controls value.</span>
+   * <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span>
+   * <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
    */
   @Prop() readonly name: string = null;
 
   /**
-   * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
+   * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
    */
   @Prop() readonly value: string = null;
 

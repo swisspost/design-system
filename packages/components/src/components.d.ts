@@ -95,7 +95,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">The name is used in a forms `data` to store the given value of the control. If no name is specified, a form will never contain this controls value.</span>
+          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "name": string;
         /**
@@ -111,7 +111,7 @@ export namespace Components {
          */
         "validity": null | 'true' | 'false';
         /**
-          * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
+          * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "value": string;
     }
@@ -498,7 +498,7 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">The name is used in a forms `data` to store the given value of the control. If no name is specified, a form will never contain this controls value.</span>
+          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "name"?: string;
         /**
@@ -518,7 +518,7 @@ declare namespace LocalJSX {
          */
         "validity"?: null | 'true' | 'false';
         /**
-          * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
+          * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "value"?: string;
     }
