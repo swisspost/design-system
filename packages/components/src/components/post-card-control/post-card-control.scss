@@ -74,18 +74,8 @@
 
     &.is-invalid {
       --post-card-control-border-color: #{post.$danger};
-      --post-card-control-bg: #{post.$white};
       --post-card-control-color: #{post.$danger};
       --post-card-control-input-border-color: #{post.$danger};
-    }
-
-    &.is-focused {
-      &:where(:has(.card-control--input:focus-visible)) {
-        --post-card-control-border-color: #{post.$gray-60};
-        --post-card-control-bg: #{post.$white};
-        --post-card-control-color: #{post.$gray-80};
-        --post-card-control-input-border-color: #{post.$gray-80};
-      }
     }
 
     &:hover {
@@ -105,10 +95,10 @@
   }
 
   &.is-disabled {
-    --post-card-control-border-color: #{post.$gray-40};
+    --post-card-control-border-color: #{post.$gray-60};
     --post-card-control-bg: transparent;
-    --post-card-control-color: #{post.$gray-40};
-    --post-card-control-input-border-color: #{post.$gray-40};
+    --post-card-control-color: #{post.$gray-60};
+    --post-card-control-input-border-color: #{post.$gray-60};
     --post-card-control-input-bg: transparent;
 
     border-style: dashed;
@@ -137,9 +127,8 @@
         --post-card-control-input-border-color: #{post.$gray-80};
         --post-card-control-input-bg: #{post.$white};
 
-        &:hover {
-          --post-card-control-border-color: #{post.$black};
-          --post-card-control-bg: #{post.$gray-20};
+        &.is-invalid {
+          --post-card-control-bg: #{post.$yellow};
         }
       }
 
@@ -151,19 +140,9 @@
         --post-card-control-input-bg: #{post.$white};
       }
 
-      &.is-focused {
-        &:where(:has(.card-control--input:focus-visible)) {
-          --post-card-control-border-color: #{post.$white};
-          --post-card-control-bg: transparent;
-          --post-card-control-color: #{post.$white};
-          --post-card-control-input-border-color: #{post.$white};
-          --post-card-control-input-bg: transparent;
-        }
-      }
-
       &:hover {
-        --post-card-control-border-color: #{post.$white};
-        --post-card-control-bg: #{post.$yellow};
+        --post-card-control-border-color: #{post.$black};
+        --post-card-control-bg: #{post.$gray-20};
         --post-card-control-color: #{post.$black};
         --post-card-control-input-border-color: #{post.$black};
         --post-card-control-input-bg: #{post.$white};
@@ -177,11 +156,12 @@
       }
     }
 
+    // TODO: update white alpha colors with design-system alpha colors, once they are defined
     &.is-disabled {
-      --post-card-control-border-color: #{post.$gray-20};
+      --post-card-control-border-color: #{#{rgba(post.$white, 0.8)}};
       --post-card-control-bg: transparent;
-      --post-card-control-color: #{post.$gray-20};
-      --post-card-control-input-border-color: #{post.$gray-20};
+      --post-card-control-color: #{#{rgba(post.$white, 0.8)}};
+      --post-card-control-input-border-color: #{#{rgba(post.$white, 0.8)}};
       --post-card-control-input-bg: transparent;
     }
   }
