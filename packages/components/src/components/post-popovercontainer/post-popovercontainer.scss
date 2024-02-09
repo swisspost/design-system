@@ -36,6 +36,15 @@
 
   // Keeps the little arrow visible
   overflow: visible;
+
+  &:has(.arrow) {
+    &::after {
+      position: absolute;
+      content: '';
+      inset: -13px;
+      z-index: -1;
+    }
+  }
 }
 
 .arrow {
