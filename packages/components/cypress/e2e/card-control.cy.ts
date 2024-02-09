@@ -294,7 +294,7 @@ describe('card-control', () => {
 
   describe('form association', { baseUrl: null, includeShadowDom: true }, () => {
     beforeEach(() => {
-      cy.visit('./cypress/fixtures/post-card-control.test.html');
+      cy.visit('./cypress/fixtures/post-card-control.form-association.test.html');
 
       cy.get('form#AssociatedForm').as('form');
       cy.get('@form').find('fieldset').as('fieldset');
@@ -308,7 +308,7 @@ describe('card-control', () => {
       cy.get('@card-control').find('.card-control--icon slot[name="icon"]').as('slotIcon');
     });
 
-    it('should update surrounding formdata when control is toggled', () => {
+    it('should update surrounding form when toggled', () => {
       cy.get('@form').then($form => {
         cy.get('@wrapper').click();
         cy.checkFormDataPropValue($form, 'CardControl', 'on');
@@ -322,7 +322,7 @@ describe('card-control', () => {
       });
     });
 
-    it('should reset surrounding formdata and control itself when form is resetted', () => {
+    it('should reset surrounding form and itself when form is resetted', () => {
       cy.get('@form').then($form => {
         cy.get('@wrapper').click();
         cy.checkFormDataPropValue($form, 'CardControl', 'on');
@@ -334,7 +334,7 @@ describe('card-control', () => {
       });
     });
 
-    it('should not update surrounding formdata when control is disabled', () => {
+    it('should not update surrounding form when disabled', () => {
       cy.get('@form').then($form => {
         cy.get('@card-control').invoke('attr', 'checked', true).invoke('attr', 'disabled', true);
 
@@ -344,7 +344,7 @@ describe('card-control', () => {
       });
     });
 
-    it('should disable control when surrounding fieldset element is disabled', () => {
+    it('should be disable when surrounding fieldset element is disabled', () => {
       cy.get('@form').then($form => {
         cy.get('@fieldset').invoke('attr', 'disabled', true).should('have.attr', 'disabled');
         cy.get('@card-control').invoke('attr', 'checked', true);
@@ -355,7 +355,7 @@ describe('card-control', () => {
       });
     });
 
-    it('should not update surrounding formdata when control name is not set', () => {
+    it('should not update surrounding form when name is not set', () => {
       cy.get('@form').then($form => {
         cy.get('@card-control')
           .invoke('attr', 'checked', true)
@@ -365,6 +365,134 @@ describe('card-control', () => {
         cy.get('@wrapper').should('have.class', 'is-checked');
         cy.get('@input').should('be.checked');
         cy.checkFormDataPropValue($form, 'CardControl', null);
+      });
+    });
+  });
+
+  describe('form association', { baseUrl: null, includeShadowDom: true }, () => {
+    beforeEach(() => {
+      cy.visit('./cypress/fixtures/post-card-control.radio-group.test.html');
+
+      cy.get('form#AssociatedForm').as('form');
+      cy.get('@form').find('post-card-control[name="CardControlGroup"]').as('card-control');
+      cy.get('@card-control').find('.card-control').as('wrapper');
+      cy.get('@wrapper').find('input.card-control--input').as('input');
+    });
+
+    it('should only have its first group member focussable, when none is checked', () => {
+      cy.get('@wrapper').should('not.have.class', 'is-checked');
+      cy.get('@input').should('not.be.checked');
+
+      cy.get('@input').each(($input, i) => {
+        cy.wrap($input)
+          .should('have.attr', 'tabindex')
+          .and('eq', i === 0 ? '0' : '-1');
+      });
+    });
+
+    it('should only have one checked group member', () => {
+      cy.get('@wrapper').should('not.have.class', 'is-checked');
+      cy.get('@input').should('not.be.checked');
+
+      cy.get('@wrapper').each($wrapper => {
+        cy.wrap($wrapper).click();
+        cy.get('@input').filter(':checked').its('length').should('eq', 1);
+      });
+    });
+
+    it('should only have its checked group member focussable, when one is checked', () => {
+      cy.get('@wrapper').should('not.have.class', 'is-checked');
+      cy.get('@input').should('not.be.checked').eq(1).type(' ');
+
+      cy.get('@input').each(($input, i) => {
+        cy.wrap($input)
+          .should('have.attr', 'tabindex')
+          .and('eq', i === 1 ? '0' : '-1');
+      });
+    });
+
+    it('should be checked when focused + keydown {space}', () => {
+      cy.get('@wrapper').should('not.have.class', 'is-checked');
+      cy.get('@input').should('not.be.checked');
+
+      cy.get('@input').each($input => {
+        cy.wrap($input).type(' ').should('be.checked');
+      });
+    });
+
+    it('should be checked when focused + keydown {space} the same control multiple times', () => {
+      cy.get('@input').each($input => {
+        cy.wrap($input).type(' ').should('be.checked');
+        cy.wrap($input).type(' ').should('be.checked');
+        cy.wrap($input).type(' ').should('be.checked');
+      });
+    });
+
+    it('should check next group member, when focused + keydown {downArrow | rightArrow}', () => {
+      cy.get('@input')
+        .its('length')
+        .then(length => {
+          cy.get('@input').each(($input, i) => {
+            cy.wrap($input).type('{downArrow}');
+            cy.get('@input')
+              .eq(i + 1 < length ? i + 1 : 0)
+              .should('be.checked');
+          });
+
+          cy.get('@input').each(($input, i) => {
+            cy.wrap($input).type('{rightArrow}');
+            cy.get('@input')
+              .eq(i + 1 < length ? i + 1 : 0)
+              .should('be.checked');
+          });
+        });
+    });
+
+    it('should check previous group member, when focused + keydown {upArrow | leftArrow}', () => {
+      cy.get('@input')
+        .its('length')
+        .then(length => {
+          let $input = cy.get('@input').eq(0);
+
+          while (length > 0) {
+            $input.type('{upArrow}');
+            $input = cy.get('@input').eq(--length).should('be.checked');
+          }
+        })
+        .then(length => {
+          let $input = cy.get('@input').eq(0);
+
+          while (length > 0) {
+            $input.type('{leftArrow}');
+            $input = cy.get('@input').eq(--length).should('be.checked');
+          }
+        });
+    });
+
+    it('should update surrounding form when selected', () => {
+      cy.get('@form').then($form => {
+        cy.get('@wrapper').each(($wrapper, i) => {
+          cy.wrap($wrapper).click();
+          cy.checkFormDataPropValue($form, 'CardControlGroup', i.toString());
+        });
+
+        cy.get('@input').each(($input, i) => {
+          cy.wrap($input).type(' ');
+          cy.checkFormDataPropValue($form, 'CardControlGroup', i.toString());
+        });
+      });
+    });
+
+    it('should update surrounding form to not contain its value, when a disabled group member has been selected by keyboard', () => {
+      cy.get('@card-control').eq(1).invoke('attr', 'disabled', true);
+      cy.get('@wrapper').eq(1).should('have.class', 'is-disabled');
+      cy.get('@input').eq(1).should('have.attr', 'aria-disabled');
+
+      cy.get('@form').then($form => {
+        cy.get('@input').each(($input, i) => {
+          cy.wrap($input).type(' ');
+          cy.checkFormDataPropValue($form, 'CardControlGroup', i !== 1 ? i.toString() : null);
+        });
       });
     });
   });

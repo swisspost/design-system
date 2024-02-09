@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+    <script>
+      function formHandler(e) {
+        if (e.type === 'submit') e.preventDefault();
+
+        setTimeout(() => {
+          const formOutput = document.querySelector('#AssociatedFormOutput');
+          const formData = Array.from(new FormData(e.target).entries()).reduce(
+            (acc, [k, v]) => Object.assign(acc, { [k]: v }),
+            {},
+          );
+
+          if (formOutput) formOutput.innerHTML = JSON.stringify(formData, null, 2);
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <form id="AssociatedForm" @reset="${formHandler}" @submit="${formHandler}">
+      <fieldset>
+        <legend>Legend</legend>
+        <post-card-control label="Group Member 1" type="radio" name="CardControlGroup" value="0">
+        </post-card-control>
+        <post-card-control label="Non Group Member 1" type="radio" name="OhterGroup" value="none">
+        </post-card-control>
+        <post-card-control label="Group Member 2" type="radio" name="CardControlGroup" value="1">
+        </post-card-control>
+        <post-card-control label="Non Group Member 2" type="radio" name="OhterGroup" value="all">
+        </post-card-control>
+        <post-card-control label="Group Member 3" type="radio" name="CardControlGroup" value="2">
+        </post-card-control>
+      </fieldset>
+      <div class="mt-3 d-flex gap-3 justify-content-end">
+        <button type="reset" class="btn btn-link"><post-icon name="2042"></post-icon>Reset</button>
+        <button type="submit" class="btn btn-primary btn-animated"><span>Submit</span></button>
+      </div>
+    </form>
+  </body>
+</html>
