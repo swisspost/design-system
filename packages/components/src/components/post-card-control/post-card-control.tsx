@@ -95,8 +95,9 @@ export class PostCardControl {
 
   /**
    * Defines the validation `validity` of the control.
+   * To reset validity to an undefiend state, simply remove the attribute from the control.
    */
-  @Prop({ mutable: true }) validity: null | true | false = null;
+  @Prop({ mutable: true }) validity: null | 'true' | 'false' = null;
 
   /**
    * Defines the icon `name` inside of the card.
@@ -116,15 +117,6 @@ export class PostCardControl {
    * <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
    */
   @Event() change: EventEmitter<boolean>;
-
-  /**
-   * A public method to clear the controls `validity` state.
-   * The state is set to `null`, so it's neither valid nor invalid.
-   */
-  @Method()
-  async clearValidity() {
-    this.validity = null;
-  }
 
   /**
    * A public method to reset the controls `checked` and `validity` state.
@@ -322,8 +314,8 @@ export class PostCardControl {
             'is-checked': this.checked,
             'is-disabled': this.disabled,
             'is-focused': this.focused,
-            'is-valid': this.validity !== null && this.validity !== false,
-            'is-invalid': this.validity === false,
+            'is-valid': this.validity !== null && this.validity !== 'false',
+            'is-invalid': this.validity === 'false',
           }}
         >
           <input
@@ -335,7 +327,7 @@ export class PostCardControl {
             value={this.value}
             checked={this.checked}
             aria-disabled={this.disabled}
-            aria-invalid={this.validity === false}
+            aria-invalid={this.validity === 'false'}
             onClick={this.controlClickHandler}
             onInput={this.controlChangeHandler}
             onChange={this.controlChangeHandler}

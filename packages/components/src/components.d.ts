@@ -79,10 +79,6 @@ export namespace Components {
          */
         "checked": boolean;
         /**
-          * A public method to clear the controls `validity` state. The state is set to `null`, so it's neither valid nor invalid.
-         */
-        "clearValidity": () => Promise<void>;
-        /**
           * Defines the description in the control-label.
          */
         "description": string;
@@ -111,9 +107,9 @@ export namespace Components {
          */
         "type": 'checkbox' | 'radio';
         /**
-          * Defines the validation `validity` of the control.
+          * Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.
          */
-        "validity": null | true | false;
+        "validity": null | 'true' | 'false';
         /**
           * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
          */
@@ -518,9 +514,9 @@ declare namespace LocalJSX {
          */
         "type": 'checkbox' | 'radio';
         /**
-          * Defines the validation `validity` of the control.
+          * Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.
          */
-        "validity"?: null | true | false;
+        "validity"?: null | 'true' | 'false';
         /**
           * Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.
          */

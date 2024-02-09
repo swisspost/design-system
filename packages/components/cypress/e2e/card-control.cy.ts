@@ -290,15 +290,6 @@ describe('card-control', () => {
           .and('not.have.class', 'is-invalid');
       });
     });
-
-    it('should reset the validity state to its initial value, when calling public "clearValidity" method', () => {
-      cy.get('@card-control').invoke('attr', 'validity', true);
-      cy.get('@wrapper').and('have.class', 'is-valid').and('not.have.class', 'is-invalid');
-      cy.get('@card-control').then($cardControl => {
-        ($cardControl.get(0) as HTMLPostCardControlElement).clearValidity();
-        cy.get('@wrapper').and('not.have.class', 'is-valid').and('not.have.class', 'is-invalid');
-      });
-    });
   });
 
   describe('form association', { baseUrl: null, includeShadowDom: true }, () => {

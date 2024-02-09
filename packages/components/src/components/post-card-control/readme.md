@@ -16,7 +16,7 @@
 | `label` _(required)_ | `label`       | Defines the text in the control-label.                                                                                                                                                                                                              | `string`                | `undefined` |
 | `name`               | `name`        | Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">The name is used in a forms `data` to store the given value of the control. If no name is specified, a form will never contain this controls value.</span> | `string`                | `null`      |
 | `type` _(required)_  | `type`        | Defines the `type` attribute of the control.                                                                                                                                                                                                        | `"checkbox" \| "radio"` | `undefined` |
-| `validity`           | `validity`    | Defines the validation `validity` of the control.                                                                                                                                                                                                   | `boolean`               | `null`      |
+| `validity`           | `validity`    | Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.                                                                                                            | `"false" \| "true"`     | `null`      |
 | `value`              | `value`       | Defines the `value` attribute of the control. This is only used, when the control participates in the native `form`.                                                                                                                                | `string`                | `null`      |
 
 
@@ -29,17 +29,6 @@
 
 
 ## Methods
-
-### `clearValidity() => Promise<void>`
-
-A public method to clear the controls `validity` state.
-The state is set to `null`, so it's neither valid nor invalid.
-
-#### Returns
-
-Type: `Promise<void>`
-
-
 
 ### `reset() => Promise<void>`
 
