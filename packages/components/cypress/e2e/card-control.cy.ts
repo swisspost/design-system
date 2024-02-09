@@ -1,18 +1,18 @@
 describe('card-control', () => {
-  beforeEach(() => {
-    cy.getComponent('card-control', { group: 'forms' });
-    cy.window().then(win => {
-      cy.wrap(cy.spy(win.console, 'error')).as('consoleError');
+  describe('structure & props', () => {
+    beforeEach(() => {
+      cy.getComponent('card-control', { group: 'forms' });
+      cy.window().then(win => {
+        cy.wrap(cy.spy(win.console, 'error')).as('consoleError');
+      });
+
+      cy.get('@card-control').find('.card-control').as('wrapper');
+      cy.get('@card-control').find('input.card-control--input').as('input');
+      cy.get('@card-control').find('label.card-control--label').as('label');
+      cy.get('@card-control').find('.card-control--icon').as('icon');
+      cy.get('@card-control').find('.card-control--icon slot[name="icon"]').as('slotIcon');
     });
 
-    cy.get('@card-control').find('.card-control').as('wrapper');
-    cy.get('@card-control').find('input.card-control--input').as('input');
-    cy.get('@card-control').find('label.card-control--label').as('label');
-    cy.get('@card-control').find('.card-control--icon').as('icon');
-    cy.get('@card-control').find('.card-control--icon slot[name="icon"]').as('slotIcon');
-  });
-
-  describe.skip('structure & props', () => {
     it('should have no console errors', () => {
       cy.get('@consoleError').should('not.be.called');
     });
@@ -146,8 +146,6 @@ describe('card-control', () => {
       cy.get('@wrapper').should('have.class', 'is-valid').and('not.have.class', 'is-invalid');
       cy.get('@card-control').invoke('attr', 'validity', false);
       cy.get('@wrapper').should('not.have.class', 'is-valid').and('have.class', 'is-invalid');
-      cy.get('@card-control').invoke('removeAttr', 'validity');
-      cy.get('@wrapper').should('not.have.class', 'is-valid').and('not.have.class', 'is-invalid');
     });
 
     it('should set icon "name" attr according to "icon" prop', () => {
@@ -164,7 +162,14 @@ describe('card-control', () => {
   });
 
   describe('events', () => {
-    it.skip('should toggle when clicked or by typing {space}', () => {
+    beforeEach(() => {
+      cy.getComponent('card-control', { group: 'forms' });
+
+      cy.get('@card-control').find('.card-control').as('wrapper');
+      cy.get('@card-control').find('input.card-control--input').as('input');
+    });
+
+    it('should toggle when clicked or by typing {space}', () => {
       cy.get('@input').should('not.be.checked');
       cy.get('@wrapper').should('not.have.class', 'is-checked').click();
       cy.get('@input').should('be.checked');
@@ -178,7 +183,7 @@ describe('card-control', () => {
       cy.get('@wrapper').should('not.have.class', 'is-checked');
     });
 
-    it.skip('should not toggle when disabled', () => {
+    it('should not toggle when disabled', () => {
       cy.get('@card-control').invoke('attr', 'disabled', true);
 
       cy.get('@input').should('not.be.checked');
@@ -190,7 +195,7 @@ describe('card-control', () => {
       cy.get('@wrapper').should('not.have.class', 'is-checked');
     });
 
-    it.skip('should toggle class "is-focused" when focused/blured', () => {
+    it('should toggle class "is-focused" when focused/blured', () => {
       cy.get('@wrapper').should('not.have.class', 'is-focused');
       cy.get('@input').should('not.have.focus').focus();
 
@@ -201,7 +206,7 @@ describe('card-control', () => {
       cy.get('@input').should('not.have.focus');
     });
 
-    it.skip('should emit input and change events when toggled', () => {
+    it('should emit input and change events when toggled', () => {
       let inputEventCallCount = 0;
       let changeEventCallCount = 0;
 
@@ -263,5 +268,113 @@ describe('card-control', () => {
     });
   });
 
-  // TODO: test form association
+  describe('methods', () => {
+    beforeEach(() => {
+      cy.getComponent('card-control', { group: 'forms' });
+
+      cy.get('@card-control').find('.card-control').as('wrapper');
+      cy.get('@card-control').find('input.card-control--input').as('input');
+    });
+
+    it('should reset the checked and validity state to its initial values, when calling public "reset" method', () => {
+      cy.get('@card-control').invoke('attr', 'checked', true).invoke('attr', 'validity', true);
+      cy.get('@wrapper')
+        .should('have.class', 'is-checked')
+        .and('have.class', 'is-valid')
+        .and('not.have.class', 'is-invalid');
+      cy.get('@card-control').then($cardControl => {
+        ($cardControl.get(0) as HTMLPostCardControlElement).reset();
+        cy.get('@wrapper')
+          .should('not.have.class', 'is-checked')
+          .and('not.have.class', 'is-valid')
+          .and('not.have.class', 'is-invalid');
+      });
+    });
+
+    it('should reset the validity state to its initial value, when calling public "clearValidity" method', () => {
+      cy.get('@card-control').invoke('attr', 'validity', true);
+      cy.get('@wrapper').and('have.class', 'is-valid').and('not.have.class', 'is-invalid');
+      cy.get('@card-control').then($cardControl => {
+        ($cardControl.get(0) as HTMLPostCardControlElement).clearValidity();
+        cy.get('@wrapper').and('not.have.class', 'is-valid').and('not.have.class', 'is-invalid');
+      });
+    });
+  });
+
+  describe('form association', { baseUrl: null, includeShadowDom: true }, () => {
+    beforeEach(() => {
+      cy.visit('./cypress/fixtures/post-card-control.test.html');
+
+      cy.get('form#AssociatedForm').as('form');
+      cy.get('@form').find('fieldset').as('fieldset');
+      cy.get('@form').find('button[type="reset"]').as('reset');
+      cy.get('@form').find('button[type="submit"]').as('submit');
+      cy.get('@form').find('post-card-control').as('card-control');
+      cy.get('@card-control').find('.card-control').as('wrapper');
+      cy.get('@card-control').find('input.card-control--input').as('input');
+      cy.get('@card-control').find('label.card-control--label').as('label');
+      cy.get('@card-control').find('.card-control--icon').as('icon');
+      cy.get('@card-control').find('.card-control--icon slot[name="icon"]').as('slotIcon');
+    });
+
+    it('should update surrounding formdata when control is toggled', () => {
+      cy.get('@form').then($form => {
+        cy.get('@wrapper').click();
+        cy.checkFormDataPropValue($form, 'CardControl', 'on');
+        cy.get('@wrapper').click();
+        cy.checkFormDataPropValue($form, 'CardControl', null);
+
+        cy.get('@input').type(' ');
+        cy.checkFormDataPropValue($form, 'CardControl', 'on');
+        cy.get('@input').focus().type(' ');
+        cy.checkFormDataPropValue($form, 'CardControl', null);
+      });
+    });
+
+    it('should reset surrounding formdata and control itself when form is resetted', () => {
+      cy.get('@form').then($form => {
+        cy.get('@wrapper').click();
+        cy.checkFormDataPropValue($form, 'CardControl', 'on');
+
+        cy.get('@reset').click();
+        cy.get('@wrapper').should('not.have.class', 'is-checked');
+        cy.get('@input').should('not.be.checked');
+        cy.checkFormDataPropValue($form, 'CardControl', null);
+      });
+    });
+
+    it('should not update surrounding formdata when control is disabled', () => {
+      cy.get('@form').then($form => {
+        cy.get('@card-control').invoke('attr', 'checked', true).invoke('attr', 'disabled', true);
+
+        cy.get('@wrapper').should('have.class', 'is-checked').and('have.class', 'is-disabled');
+        cy.get('@input').should('be.checked').and('have.attr', 'aria-disabled');
+        cy.checkFormDataPropValue($form, 'CardControl', null);
+      });
+    });
+
+    it('should disable control when surrounding fieldset element is disabled', () => {
+      cy.get('@form').then($form => {
+        cy.get('@fieldset').invoke('attr', 'disabled', true).should('have.attr', 'disabled');
+        cy.get('@card-control').invoke('attr', 'checked', true);
+
+        cy.get('@wrapper').should('have.class', 'is-checked').and('have.class', 'is-disabled');
+        cy.get('@input').should('be.checked').and('have.attr', 'aria-disabled');
+        cy.checkFormDataPropValue($form, 'CardControl', null);
+      });
+    });
+
+    it('should not update surrounding formdata when control name is not set', () => {
+      cy.get('@form').then($form => {
+        cy.get('@card-control')
+          .invoke('attr', 'checked', true)
+          .invoke('removeAttr', 'name')
+          .should('not.have.attr', 'name');
+
+        cy.get('@wrapper').should('have.class', 'is-checked');
+        cy.get('@input').should('be.checked');
+        cy.checkFormDataPropValue($form, 'CardControl', null);
+      });
+    });
+  });
 });
