@@ -104,12 +104,18 @@ export const DarkBackground: Story = {
   parameters: {
     docs: {
       controls: {
-        include: ['Background-Color', 'checked', 'disabled', 'validity'],
+        include: ['Background-Color', 'type', 'checked', 'disabled', 'validity'],
       },
     },
   },
   decorators: [
-    (story, context) => html`<div class="p-3 bg-${context.args.background}">${story()}</div>`,
+    (story, context) =>
+      html`<div
+        class="bg-${context.args.background}"
+        style="margin: -40px -30px; padding: 40px 30px;"
+      >
+        ${story()}
+      </div>`,
   ],
   args: {
     background: 'dark',
