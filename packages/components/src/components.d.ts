@@ -77,7 +77,11 @@ export namespace Components {
         /**
           * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
          */
-        "checked"?: boolean;
+        "checked": boolean;
+        /**
+          * A public method to clear the controls `validity` state. The state is set to `null`, so it's neither valid nor invalid.
+         */
+        "clearValidity": () => Promise<void>;
         /**
           * Defines the description in the control-label.
          */
@@ -95,9 +99,13 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. This name is used in a forms data to store the given value of the control. If no name is specified a form will never contain this controls value.
+          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">The name is used in a forms `data` to store the given value of the control. If no name is specified, a form will never contain this controls value.</span>
          */
         "name": string;
+        /**
+          * A public method to reset the controls `checked` and `validity` state. The state is set to `null`, so it's neither valid nor invalid.
+         */
+        "reset": () => Promise<void>;
         /**
           * Defines the `type` attribute of the control.
          */
@@ -494,7 +502,7 @@ declare namespace LocalJSX {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. This name is used in a forms data to store the given value of the control. If no name is specified a form will never contain this controls value.
+          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">The name is used in a forms `data` to store the given value of the control. If no name is specified, a form will never contain this controls value.</span>
          */
         "name"?: string;
         /**

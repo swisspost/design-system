@@ -6,6 +6,7 @@ import {
   EventEmitter,
   h,
   Host,
+  Method,
   Prop,
   State,
   Watch,
@@ -19,7 +20,6 @@ let cardControlIds = 0;
  * @class PostCardControl - representing a stencil component
  *
  * @slot icon - Content to place in the named `icon` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.<br>It is only meant for <code>img</code> or <code>svg</code> elements and overrides the `icon` property.</p>
- * @slot invalid-feedback - Content to place in the named `invalid-feedback` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.</p>
  */
 @Component({
   tag: 'post-card-control',
@@ -73,7 +73,8 @@ export class PostCardControl {
   @Prop() readonly type!: 'checkbox' | 'radio';
 
   /**
-   * Defines the `name` attribute of the control. This name is used in a forms data to store the given value of the control. If no name is specified a form will never contain this controls value.
+   * Defines the `name` attribute of the control.
+   * <span className="alert alert-sm alert-info">The name is used in a forms `data` to store the given value of the control. If no name is specified, a form will never contain this controls value.</span>
    */
   @Prop() readonly name: string = null;
 
@@ -85,7 +86,7 @@ export class PostCardControl {
   /**
    * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
    */
-  @Prop({ mutable: true }) checked?: boolean = false;
+  @Prop({ mutable: true }) checked = false;
 
   /**
    * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
@@ -115,6 +116,25 @@ export class PostCardControl {
    * <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
    */
   @Event() change: EventEmitter<boolean>;
+
+  /**
+   * A public method to clear the controls `validity` state.
+   * The state is set to `null`, so it's neither valid nor invalid.
+   */
+  @Method()
+  async clearValidity() {
+    this.validity = null;
+  }
+
+  /**
+   * A public method to reset the controls `checked` and `validity` state.
+   * The state is set to `null`, so it's neither valid nor invalid.
+   */
+  @Method()
+  async reset() {
+    this.validity = null;
+    this.controlSetChecked(this.initialChecked);
+  }
 
   constructor() {
     this.GROUPEVENT = `PostCardControlGroup:${this.name}:change`;
@@ -357,8 +377,7 @@ export class PostCardControl {
   }
 
   formResetCallback() {
-    this.validity = null;
-    this.controlSetChecked(this.initialChecked);
+    this.reset();
   }
 
   disconnectedCallback() {

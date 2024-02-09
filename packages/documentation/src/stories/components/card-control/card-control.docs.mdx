@@ -1,6 +1,7 @@
-import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as CardControlStories from './card-control.stories';
 import LinkTo from '@storybook/addon-links/react';
+import SampleCardControlMethods from './card-control-methods.sample?raw';
 
 <Meta of={CardControlStories} />
 
@@ -58,3 +59,12 @@ As you can create radio button groups with native `<radio>` elements, you can do
 Just add the same `name` attribute value to multiple `<post-card-control type="radio">` components.
 
 <Canvas of={CardControlStories.RadioGroup} />
+
+### Custom Trigger
+The `<post-card-control>` offers several methods to manipulate its states.
+They can be called directly on the element itself.
+
+<Source
+  code={SampleCardControlMethods}
+  language="typescript"
+/>
