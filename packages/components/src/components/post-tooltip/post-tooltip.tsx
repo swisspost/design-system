@@ -20,7 +20,7 @@ let hideTooltipTimeout: number = null;
  * @param e Event
  * @returns
  */
-const globalInterestHandler = async (e: PointerEvent | FocusEvent) => {
+const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
   const target = e.target as HTMLElement;
   if (!e?.target || !('getAttribute' in e.target)) return;
   const tooltipTarget = target.getAttribute('data-tooltip-target');
@@ -47,12 +47,52 @@ const globalInterestLostHandler = (e: PointerEvent | FocusEvent) => {
   globalHideTooltip(tooltip);
 };
 
+/**
+ * Start the hiding process through a timeout to give other interest events a chance to
+ * intervene and cancel the hide event.
+ * @param {HTMLPostTooltipElement} tooltip
+ */
 const globalHideTooltip = (tooltip: HTMLPostTooltipElement | PostTooltip) => {
   hideTooltipTimeout = window.setTimeout(() => {
     tooltip.hide();
     hideTooltipTimeout = null;
   }, 42);
 };
+
+/**
+ * Patch some hard to remember or understand accessibility features
+ * @param {HTMLElement} trigger
+ */
+const patchAccessibilityFeatures = trigger => {
+  const describedBy = trigger.getAttribute('aria-describedby');
+  const id = trigger.getAttribute('data-tooltip-target');
+
+  // Add tooltip to aria-describedby
+  if (!describedBy?.includes(id)) {
+    const newDescribedBy = describedBy ? `${describedBy} ${id}` : id;
+    trigger.setAttribute('aria-describedby', newDescribedBy);
+  }
+
+  // Make element focusable
+  if (!isFocusable(trigger)) {
+    trigger.setAttribute('tabindex', '0');
+  }
+};
+
+/**
+ * Handle attribute changes from the observer
+ * @param {MutationRecord[]} mutationList
+ */
+const triggerObserverHandler: MutationCallback = mutationList => {
+  mutationList.forEach(mutation => {
+    if (mutation.type === 'attributes' && mutation.attributeName === 'data-tooltip-target') {
+      patchAccessibilityFeatures(mutation.target);
+    }
+  });
+};
+
+// Initialize a mutation observer for patching accessibility features
+const triggerObserver = new MutationObserver(triggerObserverHandler);
 
 @Component({
   tag: 'post-tooltip',
@@ -83,12 +123,36 @@ export class PostTooltip {
         'No id set: <post-tooltip> must have an id, linking it to it\'s target element using the data-tooltip-target attribute.',
       );
     }
+  }
 
-    this.patchAccessibilityFeatures();
+  /**
+   * Add interest event listeners, but only once, and start
+   * the accessibility patcher
+   */
+  componentWillLoad() {
+    if (tooltipInstances === 0) {
+      // This is the first tooltip on the page, add event listeners
+      document.addEventListener('pointerover', globalInterestHandler);
+      document.addEventListener('pointerout', globalInterestLostHandler);
+      document.addEventListener('focusin', globalInterestHandler);
+      document.addEventListener('focusout', globalInterestLostHandler);
+      document.addEventListener('long-press', globalInterestHandler);
+
+      // Initially run the accessibility patcher on all triggers
+      document.querySelectorAll('[data-tooltip-target]').forEach(patchAccessibilityFeatures);
+
+      // Start watching for future triggers
+      triggerObserver.observe(document.body, {
+        subtree: true,
+        attributeFilter: ['data-tooltip-target'],
+      });
+    }
+    tooltipInstances++;
   }
 
   /**
    * Remove a bunch of event listeners if the tooltip gets removed from the DOM
+   * and disconnect the accessibility patcher
    */
   disconnectedCallback() {
     tooltipInstances--;
@@ -99,19 +163,8 @@ export class PostTooltip {
       document.removeEventListener('focusin', globalInterestHandler);
       document.removeEventListener('focusout', globalInterestLostHandler);
       document.removeEventListener('long-press', globalInterestHandler);
+      triggerObserver.disconnect();
     }
-  }
-
-  componentWillLoad() {
-    if (tooltipInstances === 0) {
-      // This is the first tooltip on the page, add event listeners
-      document.addEventListener('pointerover', globalInterestHandler);
-      document.addEventListener('pointerout', globalInterestLostHandler);
-      document.addEventListener('focusin', globalInterestHandler);
-      document.addEventListener('focusout', globalInterestLostHandler);
-      document.addEventListener('long-press', globalInterestHandler);
-    }
-    tooltipInstances++;
   }
 
   /**
@@ -142,34 +195,8 @@ export class PostTooltip {
   }
 
   /**
-   * Patch tooltip accessibility feature for any given trigger element. Features include linking the
-   * trigger with `aria-describedby` to the tooltip and ensuring the trigger is focusable.
-   *
-   * Call this function anytime you update the DOM with new trigger elements. This happens on route changes or when new data
-   * arrives for your table or other UI components.
-   * @param {Element} trigger The trigger to be patched
+   * Pointer or focus is on the tooltip, stop the tooltip from disappearing
    */
-  @Method()
-  async patchAccessibilityFeatures() {
-    const triggers = document.querySelectorAll('[data-tooltip-target]');
-
-    // TODO: use mutation observer to identify new triggers on the page
-
-    triggers.forEach(trigger => {
-      // Patch missing aria-describedby attribute on the trigger without overriding existing values
-      const describedBy = trigger.getAttribute('aria-describedby');
-      const id = trigger.getAttribute('data-tooltip-target');
-      if (!describedBy?.includes(id)) {
-        const newDescribedBy = describedBy ? `${describedBy} ${id}` : id;
-        trigger.setAttribute('aria-describedby', newDescribedBy);
-      }
-
-      if (!isFocusable(trigger)) {
-        trigger.setAttribute('tabindex', '0');
-      }
-    });
-  }
-
   private handleInterest() {
     if (hideTooltipTimeout) {
       window.clearTimeout(hideTooltipTimeout);
@@ -177,6 +204,9 @@ export class PostTooltip {
     }
   }
 
+  /**
+   * Pointer or focus left the tooltip, initiate the hiding process
+   */
   private handleInterestLost() {
     globalHideTooltip(this);
   }

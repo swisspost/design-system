@@ -199,11 +199,6 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
-          * Patch tooltip accessibility feature for any given trigger element. Features include linking the trigger with `aria-describedby` to the tooltip and ensuring the trigger is focusable.  Call this function anytime you update the DOM with new trigger elements. This happens on route changes or when new data arrives for your table or other UI components.
-          * @param trigger The trigger to be patched
-         */
-        "patchAccessibilityFeatures": () => Promise<void>;
-        /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
