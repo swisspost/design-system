@@ -53,12 +53,26 @@ Cypress.Commands.add('getComponent', (component: string, story = 'default') => {
 
   const alias = component.replace(/^post-/, '');
   cy.get(`post-${alias}`, { timeout: 30000 }).as(alias);
+
+  cy.injectAxe();
 });
 
-Cypress.Commands.add('checkAriaExpanded', (controlledElementSelector: string, isExpanded: 'true' | 'false') => {
-  cy.get(controlledElementSelector)
-    .invoke('attr', 'id')
-    .then(id => {
-      cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);
-    });
+Cypress.Commands.add('getSnapshots', (story: string) => {
+  cy.visit(`/iframe.html?id=snapshots--${story}`);
+
+  const alias = story.replace(/^post-/, '');
+  cy.get(`post-${alias}.hydrated`, { timeout: 30000 }).as(alias);
+
+  cy.injectAxe();
 });
+
+Cypress.Commands.add(
+  'checkAriaExpanded',
+  (controlledElementSelector: string, isExpanded: 'true' | 'false') => {
+    cy.get(controlledElementSelector)
+      .invoke('attr', 'id')
+      .then(id => {
+        cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);
+      });
+  },
+);
