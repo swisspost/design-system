@@ -68,4 +68,15 @@ export const badgesConfig: BadgesConfig = {
       desc: 'This component may be replaced by a web component in the future.',
     },
   },
+  [BADGE.DEPRECATED]: {
+    styles: {
+      backgroundColor: 'var(--post-warning)',
+      color: '#000',
+      borderColor: 'transparent',
+    },
+    title: 'Deprecated',
+    tooltip: {
+      desc: 'The content of this page is deprecated and will be removed in the future',
+    },
+  },
 };

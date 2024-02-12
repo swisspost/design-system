@@ -1,4 +1,4 @@
-import { Meta, Canvas, Source } from '@storybook/blocks';
+import { Canvas, Meta, Source } from '@storybook/blocks';
 import { formatAsMap } from '../../../../utils/sass-export';
 import { GridTable, SCSS_VARIABLES } from './grid.blocks';
 import * as GridStories from './grid.stories';
@@ -41,7 +41,7 @@ Breaking it down, here’s how the grid system comes together:
   <Source language="html" dark code={SampleContainer}></Source>
 - **Rows are wrappers for columns.** Each column has horizontal `padding` (called a gutter) for controlling the space between them. This `padding` is then counteracted on the rows with negative margins to ensure the content in your columns is visually aligned down the left side. Rows also support modifier classes to uniformly apply column sizing and gutter classes to change the spacing of your content.
 - **Columns are incredibly flexible.** There are 12 template columns available per row, allowing you to create different combinations of elements that span any number of columns. Column classes indicate the number of template columns to span (e.g., `.col-4` spans four). Widths are set in percentages so you always have the same relative sizing.
-- **Gutters are also responsive and customizable.** Gutter classes are available across all breakpoints, with all the same sizes as our `margin` and `padding` spacing. Change horizontal gutters with `.gx-*` classes, vertical gutters with `.gy-*`, or all gutters with `.g-\*` classes. `.g-0` is also available to remove gutters.
+- **Gutters are also responsive and customizable.** Gutter classes are available across all breakpoints, with all the same sizes as our `margin` and `padding` spacing. Change horizontal gutters with `.gx-*` classes, vertical gutters with `.gy-*`, or all gutters with `.g-*` classes. `.g-0` is also available to remove gutters.
 - **Sass variables, maps, and mixins power the grid.** If you don’t want to use the predefined grid classes, you can use the grid’s source Sass to create your own with more semantic markup. We also include some CSS custom properties to consume these Sass variables for even greater flexibility for you.
 
 ## Grid options
@@ -103,9 +103,17 @@ Use these row columns classes to quickly create basic grid layouts or to control
 
 <Canvas of={GridStories.RowColumns} />
 
+## Gutters
+
+To control the space between your columns, add either `.g-*` (horizontal and vertical) `.gx-*` (horizontal) or `.gy-*` (vertical) classes on the element containing the `.row` class.
+
+<Canvas of={GridStories.Gutters} />
+
 ## Nesting
 
 To nest your content with the default grid, add a new `.row` and set of `.col-*` columns within an existing `.col-*` column. Nested rows should include a set of columns that add up to 12 or fewer.
+
+Note: the style in this example is applied to the column to visually better understand nesting. However, it's recommended to apply the style on a child element of the column.
 
 <Canvas of={GridStories.Nested} />
 
