@@ -800,7 +800,8 @@ const vertx = window.vertx || {};
             getControlCookieVal('keepalive') +
             '; Path=/; domain=' +
             controlCookieDomain +
-            sameSiteNoneSecure;
+            sameSiteNoneSecure +
+            '; Secure';
           break;
         case 'keepalive':
           document.cookie =
@@ -811,7 +812,8 @@ const vertx = window.vertx || {};
             val +
             '; Path=/; domain=' +
             controlCookieDomain +
-            sameSiteNoneSecure;
+            sameSiteNoneSecure +
+            '; Secure';
           break;
         default:
           document.cookie =
@@ -820,7 +822,8 @@ const vertx = window.vertx || {};
             val +
             '; Path=/; domain=' +
             controlCookieDomain +
-            sameSiteNoneSecure;
+            sameSiteNoneSecure +
+            '; Secure';
           break;
       }
     }
@@ -836,7 +839,8 @@ const vertx = window.vertx || {};
           '=' +
           '' +
           '; Path=/; Expires=Wed, 01 Apr 2014 01:00:00 GMT; domain=' +
-          controlCookieDomain;
+          controlCookieDomain +
+          '; Secure';
         log('Control cookie removed');
       }
     }
