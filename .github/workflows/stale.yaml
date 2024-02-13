@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/stale@v9
         with:
-          days-before-stale: 180
+          days-before-stale: 90
           days-before-close: -1
           stale-issue-label: 'stale'
           exempt-milestones: 'next'
