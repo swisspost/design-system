@@ -26,6 +26,11 @@
 }
 
 .star-container {
+  position: relative;
+  display: block;
+  width: post.$lead-font-size;
+  height: post.$lead-font-size;
+  padding: 0 post.$size-micro 0 post.$size-micro;
   cursor: pointer;
 
   &.active-star {
@@ -56,36 +61,26 @@
   }
 
   &.default-disabled {
+    cursor: default;
+
     .fill {
       color: post.$white;
     }
     .border {
       color: post.$gray-40;
     }
-    & {
-      cursor: default;
-    }
   }
 
   &.active-disabled {
+    cursor: default;
+
     .fill {
       color: post.$gray-10;
     }
     .border {
       color: post.$gray-40;
     }
-    & {
-      cursor: default;
-    }
   }
-}
-
-.star-container {
-  position: relative;
-  width: post.$lead-font-size;
-  height: post.$lead-font-size;
-  padding: 0 post.$size-micro 0 post.$size-micro;
-  display: block;
 }
 
 .fill {
