@@ -1,8 +1,7 @@
 import { Meta } from '@storybook/blocks';
-import { linkTo } from '@storybook/addon-links';
-import { getVersion } from '../utils/version';
 import * as HomeStories from './home.stories';
-import { Tile, Feature } from './home.blocks';
+import { Feature, Tile } from './home.blocks';
+import { packages, technologies } from './home.data';
 import './home.styles.scss';
 
 <Meta of={HomeStories} />
@@ -10,45 +9,16 @@ import './home.styles.scss';
 <div className="mt-huge text-center">
   <h2 className="h3">Packages &amp; Resources</h2>
   <div className="mt-big tile-wrapper">
-    <Tile
-      title="Styles"
-      href="https://github.com/swisspost/design-system/tree/main/packages/styles"
-    >
-      <img src="/images/packages/styles.svg" alt="design-system-styles package logo" />
-      <span>v{getVersion('styles')}</span>
-    </Tile>
-    <Tile
-      title="Components"
-      href="https://github.com/swisspost/design-system/tree/main/packages/components"
-    >
-      <img src="/images/packages/components.svg" alt="design-system-components package Logo" />
-      <span>v{getVersion('components')}</span>
-    </Tile>
-    <Tile
-      title="Internet-Header"
-      href="https://github.com/swisspost/design-system/tree/main/packages/internet-header"
-    >
-      <img src="/images/packages/internet-header.svg" alt="internet-header package Logo" />
-      <span>v{getVersion('internetheader')}</span>
-    </Tile>
-    <Tile
-      title="Intranet-Header"
-      href="https://github.com/swisspost/design-system/tree/main/packages/intranet-header-workspace/projects/intranet-header"
-    >
-      <img
-        src="/images/packages/intranet-header.svg"
-        alt="design-system-intranet-header package Logo"
-      />
-      <span>v{getVersion('intranetheader')}</span>
-    </Tile>
-    <Tile title="Icons" href="https://github.com/swisspost/design-system/tree/main/packages/icons">
-      <img src="/images/packages/icons.svg" alt="design-system-icons package Logo" />
-      <span>v{getVersion('icons')}</span>
-    </Tile>
+    {packages.map(p => (
+      <Tile title={p.name} href={p.href}>
+        <img src={p.img.src} alt={p.img.alt}/>
+        <span>{p.version}</span>
+      </Tile>
+    ))}
   </div>
   <div className="mt-regular mb-regular d-flex gap-mini flex-wrap justify-content-center">
     <div className="mt-big mb-regular w-100">
-      <button className="btn btn-primary btn-lg" onClick={linkTo('getting-started-styles--docs')}>Get started</button>
+      <a className="btn btn-primary btn-lg" href="/?path=/docs/getting-started-styles--docs">Get started</a>
     </div>
     <a
       href="https://www.experience-hub.ch/document/2803"
@@ -128,73 +98,11 @@ import './home.styles.scss';
   <h2 className="h3 mb-big">Technologies</h2>
 
   <div className="tile-wrapper">
-    <Tile href="https://www.figma.com/">
-        <img src="/images/technologies/logo-figma.svg" alt="Figma Logo" />
-        <span>Figma</span>
-    </Tile>
-    <Tile href="https://pnpm.io/">
-        <img src="/images/technologies/logo-pnpm.svg" alt="Pnpm Logo" />
-        <span>pnpm</span>
-    </Tile>
-    <Tile href="https://github.com/changesets/changesets">
-        <img src="/images/technologies/logo-changesets.png" alt="Changesets Logo" />
-        <span>Changesets</span>
-    </Tile>
-    <Tile href="https://webpack.js.org/">
-        <img src="/images/technologies/logo-webpack.svg" alt="Webpack Logo" />
-        <span>Webpack</span>
-    </Tile>
-    <Tile href="https://gulpjs.com/">
-        <img src="/images/technologies/logo-gulp.svg" alt="Gulp Logo" />
-        <span>Gulp</span>
-    </Tile>
-    <Tile href={ `https://getbootstrap.com/docs/${getVersion('bootstrap', 'Mm')}` }>
-        <img src="/images/technologies/logo-bootstrap.svg" alt="Bootstrap Logo" />
-        <span>Bootstrap</span>
-    </Tile>
-    <Tile href="https://sass-lang.com/">
-        <img src="/images/technologies/logo-sass.svg" alt="Sass Logo" />
-        <span>Sass</span>
-    </Tile>
-    <Tile href="https://stenciljs.com/">
-        <img src="/images/technologies/logo-stencil.png" alt="Stencil JS Logo" />
-        <span>Stencil JS</span>
-    </Tile>
-    <Tile href="https://angular.io/">
-        <img src="/images/technologies/logo-angular.svg" alt="Angular Logo" />
-        <span>Angular</span>
-    </Tile>
-    <Tile href="https://reactjs.org/">
-        <img src="/images/technologies/logo-react.svg" alt="React JS Logo" />
-        <span>React JS</span>
-    </Tile>
-    <Tile href="https://vuejs.org/">
-        <img src="/images/technologies/logo-vue.svg" alt="Vue JS Logo" />
-        <span>Vue JS</span>
-    </Tile>
-    <Tile href="https://github.com/svg/svgo">
-        <img src="/images/technologies/logo-svgo.svg" alt="SVGO Logo" />
-        <span>SVGO</span>
-    </Tile>
-    <Tile href="https://jestjs.io/">
-        <img src="/images/technologies/logo-jest.svg" alt="Jest Logo" />
-        <span>Jest</span>
-    </Tile>
-    <Tile href="https://www.cypress.io/">
-        <img src="/images/technologies/logo-cypress.svg" alt="Cypress Logo" />
-        <span>Cypress</span>
-    </Tile>
-    <Tile href="https://percy.io/">
-        <img src="/images/technologies/logo-percy.svg" alt="Percy Logo" />
-        <span>Percy</span>
-    </Tile>
-    <Tile href="https://storybook.js.org/">
-        <img src="/images/technologies/logo-storybook.svg" alt="Storybook Logo" />
-        <span>Storybook</span>
-    </Tile>
-    <Tile href="https://github.com/">
-        <img src="/images/technologies/logo-github.svg" alt="github Logo" />
-        <span>github</span>
-    </Tile>
+    {technologies.map(t => (
+      <Tile href={t.href}>
+        <img src={t.img.src} alt={t.img.alt}/>
+        <span>{t.name}</span>
+      </Tile>
+    ))}
   </div>
 </div>

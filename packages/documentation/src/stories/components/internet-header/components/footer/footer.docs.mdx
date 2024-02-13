@@ -1,0 +1,18 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as FooterStories from './footer.stories';
+
+<Meta of={FooterStories} />
+
+<div className="container">
+  <h1>Footer</h1>
+  <div className="lead">
+    Provides key app-wide information such as contact details and legal links.
+  </div>
+  <p>The footer comes with its own container and can be placed at the end of your content.</p>
+</div>
+
+<Canvas sourceState="shown" of={FooterStories.Default} />
+
+<div className="container">
+  <Controls of={FooterStories.Default} />
+</div>

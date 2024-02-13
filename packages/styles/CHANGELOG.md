@@ -1,5 +1,68 @@
 # @swisspost/design-system-styles
 
+## 6.6.1
+
+### Patch Changes
+
+- Updated `form-control` and `form-select` sizes and added support for floating label small size variant. (by [@imagoiq](https://github.com/imagoiq) with [#2396](https://github.com/swisspost/design-system/pull/2396))
+
+## 6.6.0
+
+### Minor Changes
+
+- Deprecation of legacy grid classes:
+  - `.vertical-gutters` (use gutter classes instead, e.g. `.g-*`, `.gy-*` or `.gx-*`)
+  - `.row.border-gutters`
+  - `.container-reset`
+  - `.container-reset-left` and `.container-reset-right`
+  - `.container-fluid-#{$breakpoint}` (by [@b1aserlu](https://github.com/b1aserlu) with [#2400](https://github.com/swisspost/design-system/pull/2400))
+
+### Patch Changes
+
+- Fixed the alignment of icons on datatable buttons. (by [@imagoiq](https://github.com/imagoiq) with [#2500](https://github.com/swisspost/design-system/pull/2500))
+
+- Updated styles for the `.is-valid` class. (by [@imagoiq](https://github.com/imagoiq) with [#2391](https://github.com/swisspost/design-system/pull/2391))
+
+- Update the background color of accordion to be white on any background color other than white. The accordion background remains gray on white backgrounds. (by [@alizedebray](https://github.com/alizedebray) with [#2379](https://github.com/swisspost/design-system/pull/2379))
+
+- Fixed a visual regression on the intranet-header with a sidenav. (by [@imagoiq](https://github.com/imagoiq) with [#2521](https://github.com/swisspost/design-system/pull/2521))
+
+## 6.5.1
+
+### Patch Changes
+
+- Added breakpoint specific utility classes to set width to `25%`, `50%`, `75%`, `100%`, or `auto`. (by [@imagoiq](https://github.com/imagoiq) with [#2308](https://github.com/swisspost/design-system/pull/2308))
+
+- Changed color of text on the success background (#2c911c) to white from black for better contrast according to WCAG 3.0 (by [@b1aserlu](https://github.com/b1aserlu) with [#2358](https://github.com/swisspost/design-system/pull/2358))
+
+- Converted padding-bottom to margin after tabs-content so it doesn't impact vertical rhythm. (by [@imagoiq](https://github.com/imagoiq) with [#2349](https://github.com/swisspost/design-system/pull/2349))
+
+- Fixed close button color in high contrast mode. The button is now visible when forced colors are active. (by [@gfellerph](https://github.com/gfellerph) with [#2109](https://github.com/swisspost/design-system/pull/2109))
+
+## 6.5.0
+
+### Minor Changes
+
+- Separated the migration schematics from the styles to their own package `@swisspost/design-system-migrations`. (by [@alizedebray](https://github.com/alizedebray) with [#2270](https://github.com/swisspost/design-system/pull/2270))
+
+### Patch Changes
+
+- Updated the accordion styles. (by [@alizedebray](https://github.com/alizedebray) with [#2310](https://github.com/swisspost/design-system/pull/2310))
+
+- Fixed overflow on datepicker select variant. (by [@imagoiq](https://github.com/imagoiq) with [#2319](https://github.com/swisspost/design-system/pull/2319))
+
+- Added small variant to floating label select. (by [@gfellerph](https://github.com/gfellerph) with [#2368](https://github.com/swisspost/design-system/pull/2368))
+
+- Updated select styles to match design. (by [@imagoiq](https://github.com/imagoiq) with [#2312](https://github.com/swisspost/design-system/pull/2312))
+
+- Fixed intranet-header sticky navigation on mobile which prevent interactivity on the page within a certain viewport width. (by [@imagoiq](https://github.com/imagoiq) with [#2320](https://github.com/swisspost/design-system/pull/2320))
+
+- Fixed spacing regression on form switch label. (by [@imagoiq](https://github.com/imagoiq) with [#2356](https://github.com/swisspost/design-system/pull/2356))
+
+- Fixed active color and chevron display of the ngb-pagination component in High Contrast Mode. (by [@imagoiq](https://github.com/imagoiq) with [#2366](https://github.com/swisspost/design-system/pull/2366))
+
+- Transformed the gap between the label and the radio/checkbox/switch into a clickable area. (by [@imagoiq](https://github.com/imagoiq) with [#2333](https://github.com/swisspost/design-system/pull/2333))
+
 ## 6.4.4
 
 ### Patch Changes

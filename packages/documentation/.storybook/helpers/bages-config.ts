@@ -46,4 +46,37 @@ export const badgesConfig: BadgesConfig = {
       desc: 'This page needs to be filled with content and serves as a placeholder in the meantime.',
     },
   },
+  [BADGE.SINCE_V1]: {
+    styles: {
+      backgroundColor: '#FFF',
+      color: '#333',
+      borderColor: '#666',
+    },
+    title: 'Since v1',
+    tooltip: {
+      desc: 'This Component was added in Version 1',
+    },
+  },
+  [BADGE.WEB_COMPONENT_CANDIDATE]: {
+    styles: {
+      backgroundColor: '#FFF',
+      color: '#333',
+      borderColor: '#666',
+    },
+    title: 'Web Component Candidate',
+    tooltip: {
+      desc: 'This component may be replaced by a web component in the future.',
+    },
+  },
+  [BADGE.DEPRECATED]: {
+    styles: {
+      backgroundColor: 'var(--post-warning)',
+      color: '#000',
+      borderColor: 'transparent',
+    },
+    title: 'Deprecated',
+    tooltip: {
+      desc: 'The content of this page is deprecated and will be removed in the future',
+    },
+  },
 };

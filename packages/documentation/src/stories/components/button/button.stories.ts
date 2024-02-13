@@ -137,7 +137,7 @@ const meta: Meta = {
         'Defines a custom icon.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
-        '<a href="/?path=/docs/icons-getting-started--docs">set up the icons in your project</a>' +
+        '<a href="?path=/docs/components-icons-getting-started--docs">set up the icons in your project</a>' +
         '.</span>',
       if: {
         arg: 'tag',
@@ -222,7 +222,7 @@ const Template = {
       `;
     } else {
       const icon = html`
-        <post-icon aria-hidden="true" name=${args.icon}></post-icon>
+        <post-icon aria-hidden="true" name="${args.icon}"></post-icon>
       `;
       const iconOnlyContent = html`
         <span class="visually-hidden">${args.text}</span>
@@ -246,6 +246,7 @@ const Template = {
 };
 
 function createProps(args: Args, isAnimated: boolean) {
+  const additionalClasses = args.additionalClasses ?? [];
   return {
     class: [
       'btn',
@@ -253,6 +254,7 @@ function createProps(args: Args, isAnimated: boolean) {
       args.size,
       isAnimated && 'btn-animated',
       args.iconOnly && 'btn-icon',
+      ...additionalClasses,
     ]
       .filter(c => c && c !== 'null')
       .join(' '),
@@ -325,4 +327,21 @@ export const ContextualColors: Story = {
   args: {
     variants: ['btn-success', 'btn-info', 'btn-warning', 'btn-danger'],
   },
+};
+
+export const FullWidth: Story = {
+  ...VariantsTemplate,
+  args: {
+    variants: ['btn-primary'],
+    additionalClasses: ['w-sm-100', 'w-md-auto'],
+  },
+};
+
+export const Align: Story = {
+  render: () => html`
+    <div class="d-flex flex-row-reverse gap-mini justify-content-end">
+      <button class="btn btn-primary">Send</button>
+      <button class="btn btn-secondary">Cancel</button>
+    </div>
+  `,
 };

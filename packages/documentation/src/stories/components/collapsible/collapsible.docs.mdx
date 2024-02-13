@@ -24,24 +24,9 @@ To make the collapsible content hidden by default, just use the `collapsible="tr
 
 <Canvas of={CollapsibleStories.InitiallyCollapsed} />
 
-### Heading Level
-
-Use the `heading-level` property to define the hierarchical level of the collapsible header within the structure of a document.
-
-<Canvas of={CollapsibleStories.HeadingLevel} />
-
-### Intricate Content
-
-The collapsible component uses [HTML slot elements](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot)
-to allow any HTML content to be used as part of its header and body.<br/>
-By default, all children are appended to the component's body.
-For a specific child to be displayed in the header, a `slot="header"` attribute must be added.
-
-<Canvas of={CollapsibleStories.IntricateContent} />
-
 ### Custom Trigger
 
-The `<post-collapsible>` component exposes a `.toggle()` method that allows to trigger the collapse programmatically.
+The `<post-collapsible>` component offers a `.toggle()` method that allows to trigger the collapse programmatically.
 This method is asynchronous and returns a promise that resolves with the current open state.
 It optionally takes a boolean parameter that forces open when `true` or close when `false`.
 
@@ -50,13 +35,8 @@ It optionally takes a boolean parameter that forces open when `true` or close wh
   language="typescript"
 />
 
-
-A header is then not mandatory and can be replaced by an external control.
-
-In this case, to ensure good accessibility, identify the collapsible with an `id`,
+To ensure good accessibility, identify the collapsible with an `id`,
 then add an `aria-controls` attribute to your control element referencing this `id`.
 Also make sure to add an `aria-expanded` attribute to the control element:
 if the collapsible element is closed, the attribute on the control element must have a value of `aria-expanded="false"`
 and `aria-expanded="true"` otherwise.
-
-<Canvas of={CollapsibleStories.CustomTrigger} />

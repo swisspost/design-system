@@ -1,0 +1,53 @@
+import { Meta, Source } from '@storybook/blocks';
+import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import PostComponentDemoLink from '../../../shared/post-component-demo-link.mdx';
+import NgbComponentImport from '../../../shared/nb-bootstrap/ngb-component-import.mdx';
+import * as stepperStories from './stepper.stories';
+import stepperTemplate from './stepper-template.sample.html?raw';
+import stepperComponent from './stepper-component.sample?raw';
+
+<Meta of={stepperStories} />
+
+<div className="d-flex align-items-center justify-content-between">
+  # Stepper
+
+  <PostComponentDemoLink component="stepper" />
+</div>
+
+<p className="lead">Conveys progress through numbered steps.</p>
+
+<div className="alert alert-info mb-bigger-big">
+  <p className="alert-heading">The stepper uses ng-bootstrap's progressbar component.</p>
+</div>
+
+<ul>
+  <li>
+    <a href="#component-import" target="_self">Component Import</a>
+  </li>
+  <li>
+    <a href="#style-imports" target="_self">Style Imports</a>
+  </li>
+  <li>
+    <a href="#example" target="_self">Example</a>
+  </li>
+</ul>
+
+<NgbComponentImport module="NgbProgressbarModule" />
+
+<StylesPackageImport components={["progress", "stepper"]} />
+
+## Example
+
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="template">template.html</PostTabHeader>
+  <PostTabPanel name="template">
+    <Source code={stepperTemplate} language="html"/>
+  </PostTabPanel>
+
+  <PostTabHeader slot="tabs" panel="component">component.ts</PostTabHeader>
+  <PostTabPanel name="component">
+    <Source code={stepperComponent} language="typescript"/>
+  </PostTabPanel>
+</PostTabs>
+

@@ -85,7 +85,7 @@ const meta: Meta = {
         'Defines a custom icon.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
-        '<a href="/?path=/docs/icons-getting-started--docs">set up the icons in your project</a>' +
+        '<a href="?path=/docs/components-icons-getting-started--docs">set up the icons in your project</a>' +
         '.</span>',
       if: {
         arg: 'noIcon',
@@ -344,6 +344,22 @@ function killAutoHideTimeout(timeoutStore: ReturnType<typeof setTimeout>[], args
   }
 }
 
+function getToastIcon(args: Args) {
+  return !args.noIcon && args.icon !== 'null'
+    ? html`
+        <post-icon aria-hidden="true" name="${args.icon}"></post-icon>
+      `
+    : null;
+}
+
+function getDismissButton(args: Args, isFixed: boolean) {
+  return args.dismissible || isFixed
+    ? html`
+        <button class="toast-close-button" aria-label="close"></button>
+      `
+    : null;
+}
+
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
@@ -368,19 +384,9 @@ function render(args: Args, context: StoryContext) {
     ariaLive = 'polite';
   }
 
-  const toastIcon =
-    !args.noIcon && args.icon !== 'null'
-      ? html`
-          <post-icon aria-hidden="true" name=${args.icon}></post-icon>
-        `
-      : null;
+  const toastIcon = getToastIcon(args);
 
-  const dismissButton =
-    args.dismissible || isFixed
-      ? html`
-          <button class="toast-close-button" aria-label="close"></button>
-        `
-      : null;
+  const dismissButton = getDismissButton(args, isFixed);
 
   const component = html`
     <div

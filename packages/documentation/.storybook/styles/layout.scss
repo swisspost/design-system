@@ -2,7 +2,7 @@
 
 .docs-header {
   margin-top: -4rem;
-  background-image: url('/images/header.png');
+  background-image: url('/assets/images/header.png');
   background-repeat: no-repeat;
   background-position: center left 60vw;
   background-size: auto 100%;
@@ -32,6 +32,11 @@
       padding-right: 30%;
     }
   }
+}
+
+.docs-alert {
+  margin-top: -2rem;
+  margin-bottom: 3rem;
 }
 
 .docs-footer {
