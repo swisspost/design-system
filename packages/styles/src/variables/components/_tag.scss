@@ -2,14 +2,15 @@
 @use './../commons';
 @use './../spacing' as spacing;
 @use './../type' as type;
+@use '../../functions/sizing' as sizing;
 
-$tag-max-width: 296px;
+$tag-max-width: sizing.px-to-rem(296);
 $tag-border-radius: spacing.$size-micro;
 $tag-border-width: commons.$border-width;
 $tag-gap: spacing.$size-micro;
 $tag-font-size: type.$font-size-16;
 $tag-padding-x: spacing.$size-mini;
-$tag-vertical-padding: 0;
+$tag-padding-y: 0;
 
 $tag-white-border-color: col.$black;
 

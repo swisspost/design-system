@@ -13,7 +13,7 @@ const meta: Meta = {
     showIcon: true,
     icon: 1001,
     content: 'Tag',
-    size: 'tag',
+    size: '',
     color: 'gray',
   },
   argTypes: {
@@ -53,11 +53,11 @@ const meta: Meta = {
       control: {
         type: 'select',
         labels: {
-          'tag': 'Large',
+          '': 'Large',
           'tag-sm': 'Small',
         },
       },
-      options: ['tag', 'tag-sm'],
+      options: [undefined, 'tag-sm'],
       table: {
         category: 'Content',
       },
@@ -91,7 +91,7 @@ type Story = StoryObj;
 
 function tagRender(args: Args) {
   return html`
-    <div class="${args.size} bg-${args.color}">
+    <div class="tag ${args.size} bg-${args.color}">
       ${args.showIcon
         ? unsafeHTML(`<post-icon name="${args.icon}" class="tag-icon"></post-icon>`)
         : nothing}

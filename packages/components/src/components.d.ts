@@ -202,7 +202,7 @@ export namespace Components {
          */
         "icon"?: number;
         /**
-          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values:  tag -> large (default)  tag-sm -> small
+          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values:  no-value -> large (default)  tag-sm -> small
          */
         "size"?: string;
     }
@@ -535,7 +535,7 @@ declare namespace LocalJSX {
          */
         "icon"?: number;
         /**
-          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values:  tag -> large (default)  tag-sm -> small
+          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values:  no-value -> large (default)  tag-sm -> small
          */
         "size"?: string;
     }

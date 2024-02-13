@@ -33,11 +33,11 @@ const meta: Meta<HTMLPostTagElement> = {
       control: {
         type: 'select',
         labels: {
-          'tag': 'Large',
+          '': 'Large',
           'tag-sm': 'Small',
         },
       },
-      options: ['tag', 'tag-sm'],
+      options: [undefined, 'tag-sm'],
     },
     bgColor: {
       name: 'bgColor',

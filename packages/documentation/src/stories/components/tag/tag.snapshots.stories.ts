@@ -19,7 +19,7 @@ export const Tag: Story = {
             ${bombArgs({
               color: meta.argTypes?.color?.options,
               showIcon: [true, false],
-              size: ['tag', 'tag-sm'],
+              size: ['', 'tag-sm'],
               content: ['Tag', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'],
             }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
           </div>
@@ -39,7 +39,7 @@ export const PostTag: Story = {
               ${bombArgs({
                 bgColor: meta.argTypes?.color?.options,
                 icon: [undefined, 1001],
-                size: ['tag', 'tag-sm'],
+                size: ['', 'tag-sm'],
                 innerHTML: ['Tag', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'],
               }).map((args: Args) => {
                 return html`

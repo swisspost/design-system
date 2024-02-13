@@ -28,12 +28,12 @@ export class PostTag {
    * Sets the size (height) of the tag. Also affects the size of the icon.
    * Expected values:
    *
-   * tag -> large (default)
+   * no-value -> large (default)
    *
    * tag-sm -> small
    *
    */
-  @Prop() readonly size?: string = 'tag';
+  @Prop() readonly size?: string = '';
 
   /**
    * Defines which icon from the Swiss Post Icon Library is used. Excpects a number.
@@ -47,7 +47,7 @@ export class PostTag {
   @Prop() readonly icon?: number;
 
   componentWillRender() {
-    this.classes = `${this.size} bg-${this.bgColor}`;
+    this.classes = `tag ${this.size} bg-${this.bgColor}`;
   }
 
   render() {
