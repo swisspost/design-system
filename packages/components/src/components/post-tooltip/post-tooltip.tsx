@@ -60,7 +60,7 @@ const globalHideTooltip = (tooltip: HTMLPostTooltipElement | PostTooltip) => {
 };
 
 /**
- * Patch some hard to remember or understand accessibility features
+ * Patch some accessibility features that are hard to remember or understand
  * @param {HTMLElement} trigger
  */
 const patchAccessibilityFeatures = trigger => {
