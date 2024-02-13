@@ -23,6 +23,19 @@
 | `ratingChange` | Event emitted when the rating gets commited | `CustomEvent<number>` |
 
 
+## Dependencies
+
+### Depends on
+
+- [post-icon](../post-icon)
+
+### Graph
+```mermaid
+graph TD;
+  post-rating --> post-icon
+  style post-rating fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

@@ -1,7 +1,7 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 :host {
-  display: block;
+  display: inline-block;
 }
 
 .rating {
@@ -9,52 +9,95 @@
   display: flex;
   flex-wrap: wrap;
   box-sizing: border-box;
-  row-gap: post.$size-micro;
   overflow: hidden;
   & :focus {
     outline: none;
+  }
+  &[aria-readonly='true'] .star-container {
+    cursor: default;
   }
 }
 
 .rating:focus-visible {
   outline-offset: post.$input-focus-outline-thickness;
   outline: post.$input-focus-outline-thickness solid post.$input-focus-color;
+  position: relative;
+  z-index: 1;
 }
 
-.star {
-  width: post.$lead-font-size;
-  height: post.$lead-font-size;
-  display: block;
-  padding: 0 post.$size-micro 0 post.$size-micro;
+.star-container {
+  cursor: pointer;
 
-  & path {
-    fill: none;
-    stroke: post.$gray-60;
-    stroke-width: 1px;
+  &.active-star {
+    .fill {
+      color: post.$yellow;
+    }
+    .border {
+      color: post.$black;
+    }
+  }
+
+  &.hovered-star {
+    .fill {
+      color: post.$yellow;
+    }
+    .border {
+      color: post.$gray-80;
+    }
+  }
+
+  &.was-active-star {
+    .fill {
+      color: post.$gray-20;
+    }
+    .border {
+      color: post.$gray-60;
+    }
+  }
+
+  &.default-disabled {
+    .fill {
+      color: post.$white;
+    }
+    .border {
+      color: post.$gray-40;
+    }
+    & {
+      cursor: default;
+    }
+  }
+
+  &.active-disabled {
+    .fill {
+      color: post.$gray-10;
+    }
+    .border {
+      color: post.$gray-40;
+    }
+    & {
+      cursor: default;
+    }
   }
 }
 
-.active-star path {
-  fill: post.$yellow;
-  stroke: post.$black;
+.star-container {
+  position: relative;
+  width: post.$lead-font-size;
+  height: post.$lead-font-size;
+  padding: 0 post.$size-micro 0 post.$size-micro;
+  display: block;
 }
 
-.hovered-star path {
-  fill: post.$yellow;
-  stroke: post.$gray-80;
+.fill {
+  position: absolute;
+  color: post.$white;
 }
 
-.was-active-star path {
-  fill: post.$gray-20;
-  stroke: post.$gray-60;
-}
-
-.default-disabled path {
-  fill: none;
-  stroke: post.$gray-40;
-}
-
-.active-disabled path {
-  fill: post.$gray-10;
-  stroke: post.$gray-40;
+.border {
+  width: post.$lead-font-size + 0.125em;
+  height: post.$lead-font-size + 0.125em;
+  position: absolute;
+  top: -0.0625rem;
+  left: post.$size-micro - 0.0625rem;
+  color: post.$black;
 }
