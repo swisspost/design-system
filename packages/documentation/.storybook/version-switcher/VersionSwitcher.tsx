@@ -23,8 +23,6 @@ function VersionSwitcher() {
   const [loading, setLoading] = useState(true);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.stopPropagation();
-    e.preventDefault();
     const target: HTMLElement = e.target as HTMLElement;
     (document.getElementById('Version-Switcher-Popover') as HTMLPostPopovercontainerElement).toggle(
       target,
