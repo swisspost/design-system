@@ -61,18 +61,18 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 #### Testing
 
 - Cross browser testing of the docs (official Post supported browsers -> https://github.com/swisspost/design-system/blob/main/packages/styles/.browserslistrc)
-- Testing in High Contrast mode
+- Testing the High Contrast mode
   - Emulating the high contrast mode in chrome:
     - Open the Command Menu: `ctrl` + `shift` + `P` (or `cmd` + `shift` + `P` on mac).
     - Type `rendering` and press `Enter` .
     - In the Rendering panel, scroll down to the Emulate CSS media feature forced-colors and activate it from the drop-down.
     - You can switch also prefers-color-scheme to test light/dark mode.
 - Approval by UX for the story
-- Screen reader testing (at least nvda)
+- Screen reader testing (at least nvda+win)
 
 #### Accessibility
 
-- `aria-hidden="true"` or span.visually-hidden labels for all icons
+- `aria-hidden="true"` or `span.visually-hidden` labels for all icons
 
 #### Docs
 
