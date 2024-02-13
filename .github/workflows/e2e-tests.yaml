@@ -34,6 +34,12 @@ jobs:
       - name: Install & build dependencies
         run: pnpm bootstrap
 
+      - name: Prepare Cypress – Spawn Xvfb server
+        run: Xvfb :99 &
+
+      - name: Prepare Cypress – Share Xvfb server as environment variable
+        run: export DISPLAY=:99
+
       - name: Cypress info
         run: pnpm --filter design-system-documentation exec cypress info
 
