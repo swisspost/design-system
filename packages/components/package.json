@@ -31,7 +31,7 @@
     "test": "npm run unit",
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
-    "e2e": "cypress run --browser chrome",
+    "e2e": "cypress run",
     "e2e:watch": "cypress open",
     "generate": "stencil generate",
     "lint": "eslint src/**/*{.ts,.tsx}"

@@ -31,11 +31,14 @@ jobs:
           key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
           restore-keys: ${{ runner.os }}-cypress-
 
-      - name: install Cypress dependencies
-        run: sudo apt-get install libgtk2.0-0 libgtk-3-0 libgbm-dev libnotify-dev libnss3 libxss1 libasound2 libxtst6 xauth xvfb
-
       - name: Install & build dependencies
         run: pnpm bootstrap
+
+      - name: Prepare Cypress – Spawn Xvfb server
+        run: Xvfb :99 &
+
+      - name: Prepare Cypress – Share Xvfb server as environment variable
+        run: export DISPLAY=:99
 
       - name: Cypress info
         run: pnpm --filter design-system-documentation exec cypress info

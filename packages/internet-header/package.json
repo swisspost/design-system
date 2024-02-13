@@ -34,7 +34,7 @@
     "test": "npm run unit",
     "unit": "jest",
     "unit:watch": "jest --watch",
-    "e2e": "cypress run --browser chrome",
+    "e2e": "cypress run",
     "e2e:watch": "cypress open",
     "lint": "eslint src/**/*{.ts,.tsx}",
     "lint:fix": "eslint src/**/*{.ts,.tsx} --fix",
