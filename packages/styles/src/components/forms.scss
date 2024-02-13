@@ -3,7 +3,7 @@
 @use './../lic/bootstrap-license';
 
 @use './../variables/components/forms';
-@use './../variables/spacing';
+@use './../spacing';
 
 @use './../mixins/utilities';
 @use './../mixins/forms' as form-mixins;
@@ -18,7 +18,7 @@
 }
 
 .form-control-lg {
-  padding: spacing.$size-regular spacing.$size-large spacing.$size-mini spacing.$size-regular;
+  padding: spacing.$size-regular 0 spacing.$size-mini spacing.$size-regular;
 }
 
 select.form-control-rg:not([size]):not([multiple]) {
