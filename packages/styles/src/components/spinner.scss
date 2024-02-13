@@ -61,6 +61,7 @@
     border-radius: 50%;
     border: max(2px, 0.12em) solid spinners.$spinner-color-secondary; // Size is proportional, but 1px is too thin on browser compared to design
     transform: rotate(130deg);
+    animation-timing-function: linear;
     animation-direction: alternate;
     animation-duration: math.div(spinners.$spinner-duration, 2);
     animation-iteration-count: infinite;
