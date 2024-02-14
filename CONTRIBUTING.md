@@ -62,11 +62,6 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 
 - Cross browser testing of the docs (official Post supported browsers -> https://github.com/swisspost/design-system/blob/main/packages/styles/.browserslistrc)
 - Testing the High Contrast mode
-  - Emulating the high contrast mode in chrome:
-    - Open the Command Menu: `ctrl` + `shift` + `P` (or `cmd` + `shift` + `P` on mac).
-    - Type `rendering` and press `Enter` .
-    - In the Rendering panel, scroll down to the Emulate CSS media feature forced-colors and activate it from the drop-down.
-    - You can switch also prefers-color-scheme to test light/dark mode.
 - Approval by UX for the story
 - Screen reader testing (at least nvda+win)
 
@@ -91,6 +86,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 - Style file `[component].styles.scss`
 - SCSS export file `[component].module.scss`
 - Custom mdx helper `blocks [component].blocks.tsx`
+- Sample file: `[component]-[samplename].sample.`
 
 #### General Coding Rules
 
