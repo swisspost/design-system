@@ -53,13 +53,6 @@ with a specific background color and the best possible contrast color for its co
 
 ## Signal colors
 
-<PostAlert type="info">
-<p slot="heading">Why does `Success-green` have white text?</p>
-<p>
-  The text of “Success-green” is white, despite the displayed contrast ratios, because with WGAC 3.0, the contrast with white is significantly greater, while it hardly differs in WCAG 2.0.
-  </p>
-</PostAlert>
-
 <section className="color-swatch__section">
   {forEach(SCSS_VARIABLES.signal.solid, function (data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
