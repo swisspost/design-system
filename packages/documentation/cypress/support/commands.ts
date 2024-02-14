@@ -66,3 +66,45 @@ Cypress.Commands.add('checkAriaExpanded', (isExpanded: 'true' | 'false') => {
       cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);
     });
 });
+
+Cypress.Commands.add('enableForceColors', (theme: 'light' | 'dark') => {
+  const cdpCommand = 'Emulation.setEmulatedMedia';
+  const media = 'forced-colors';
+
+  cy.then(() => {
+    return Cypress.automation('remote:debugger:protocol', {
+      command: cdpCommand,
+      params: {
+        media,
+        features: [
+          { name: media, value: 'active' },
+          { name: 'prefers-color-scheme', value: theme },
+        ],
+      },
+    });
+  }).then(() => {
+    Cypress.log({
+      name: 'Enable forced colors',
+      message: `${theme} theme`,
+    });
+  });
+});
+
+Cypress.Commands.add('disableForceColors', () => {
+  const cdpCommand = 'Emulation.setEmulatedMedia';
+  const media = 'forced-colors';
+
+  cy.then(() => {
+    return Cypress.automation('remote:debugger:protocol', {
+      command: cdpCommand,
+      params: {
+        media,
+        features: [{ name: media, value: 'none' }],
+      },
+    });
+  }).then(() => {
+    Cypress.log({
+      name: 'Disable forced colors',
+    });
+  });
+});
