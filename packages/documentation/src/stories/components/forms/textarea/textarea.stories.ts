@@ -20,7 +20,8 @@ const meta: Meta = {
     floatingLabel: false,
     hiddenLabel: false,
     value: undefined,
-    size: 'null',
+    size: 'form-control-lg',
+    sizeFloatingLabel: 'form-control-lg',
     rows: 4,
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
@@ -93,13 +94,32 @@ const meta: Meta = {
         category: 'General',
       },
     },
+    sizeFloatingLabel: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: true,
+      },
+      control: {
+        type: 'select',
+        labels: {
+          'form-control-sm': 'Small',
+          'form-control-lg': 'Large',
+        },
+      },
+      options: ['form-control-sm', 'form-control-lg'],
+      table: {
+        category: 'General',
+      },
+    },
     rows: {
       name: 'Rows',
       description:
         'Attribute to set the initial height, in lines of text, of the `textarea` element.',
       control: {
         type: 'number',
-        min: 3,
+        min: 2,
         max: 10,
         step: 1,
       },
@@ -153,11 +173,14 @@ type Story = StoryObj;
 
 function renderTextarea(args: Args, context: StoryContext) {
   const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
-  const classes = mapClasses({
-    'form-control': true,
-    [args.size]: args.size && args.size !== 'null',
-    [args.validation]: args.validation && args.validation !== 'null',
-  });
+  const classes = [
+    'form-control',
+    args.floatingLabel ? args.sizeFloatingLabel : args.size,
+    args.validation,
+  ]
+    .filter(c => c && c !== 'null')
+    .join(' ');
+
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label = !useAriaLabel
     ? html` <label for=${id} class="form-label">${args.label}</label> `
