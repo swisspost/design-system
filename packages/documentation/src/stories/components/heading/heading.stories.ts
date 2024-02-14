@@ -66,7 +66,7 @@ const meta: Meta = {
     override: {
       name: 'Override',
       description:
-        'Sometimes the document heading structure requires you to use a heading tag that should look like another in order to maintain a consistency. In those cases you can use the heading helper classes `.h1`  through `.h6`. [more information](/?path=/docs/utilities-heading--docs)',
+        'Sometimes the document heading structure requires you to use a heading tag that should look like another in order to maintain a consistency. In those cases you can use the heading helper classes `.h1`  through `.h6`.',
       control: {
         type: 'select',
       },
