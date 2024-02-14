@@ -1,5 +1,47 @@
 # @swisspost/design-system-documentation
 
+## 3.0.0
+
+### Minor Changes
+
+- Added a documentation page for the ng-bootstrap modal component. (by [@alizedebray](https://github.com/alizedebray) with [#2531](https://github.com/swisspost/design-system/pull/2531))
+
+- Added a documentation page for the ng-bootstrap progressbar component. (by [@imagoiq](https://github.com/imagoiq) with [#2549](https://github.com/swisspost/design-system/pull/2549))
+
+- Added a documentation page for the ng-bootstrap/post notification-overlay component. (by [@imagoiq](https://github.com/imagoiq) with [#2608](https://github.com/swisspost/design-system/pull/2608))
+
+- Added a documentation page for the angular `custom-select` component based on the ng-bootstrap `dropdown` component. (by [@b1aserlu](https://github.com/b1aserlu) with [#2573](https://github.com/swisspost/design-system/pull/2573))
+
+- Added a documentation page for the ng-bootstrap dropdown component. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2551](https://github.com/swisspost/design-system/pull/2551))
+
+- Added a documentation page for the post stepper component. (by [@alizedebray](https://github.com/alizedebray) with [#2556](https://github.com/swisspost/design-system/pull/2556))
+
+- Added a documentation page for the design-system migration process. (by [@imagoiq](https://github.com/imagoiq) with [#2577](https://github.com/swisspost/design-system/pull/2577))
+
+- Added a documentation page for the ng-bootstrap typeahead component. (by [@imagoiq](https://github.com/imagoiq) with [#2547](https://github.com/swisspost/design-system/pull/2547))
+
+- Added a documentation page for the ng-bootstrap pagination component. (by [@imagoiq](https://github.com/imagoiq) with [#2549](https://github.com/swisspost/design-system/pull/2549))
+
+- Added a documentation page for the ng-bootstrap timepicker component. (by [@imagoiq](https://github.com/imagoiq) with [#2549](https://github.com/swisspost/design-system/pull/2549))
+
+- Added a documentation page for the post product card component. (by [@alizedebray](https://github.com/alizedebray) with [#2580](https://github.com/swisspost/design-system/pull/2580))
+
+- Added a getting-started docs page for the new `@swisspost/components-angular` package. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2071](https://github.com/swisspost/design-system/pull/2071))
+
+- Added an alert warning that the documentation is in beta, it will remain until all Design System components are documented. (by [@alizedebray](https://github.com/alizedebray) with [#2563](https://github.com/swisspost/design-system/pull/2563))
+
+### Patch Changes
+
+- Fixed conflict between autolink anchor links and normal anchor links. (by [@imagoiq](https://github.com/imagoiq) with [#2529](https://github.com/swisspost/design-system/pull/2529))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.2.0
+  - @swisspost/design-system-styles@6.6.1
+  - @swisspost/design-system-components-angular@1.0.0
+  - @swisspost/internet-header@1.13.5
+  - @swisspost/design-system-components@2.0.1
+  - @swisspost/design-system-intranet-header@5.0.8
+  - @swisspost/design-system-components-react@1.0.27
+
 ## 2.8.1
 
 ### Patch Changes

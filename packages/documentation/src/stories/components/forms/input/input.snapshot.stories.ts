@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './input.stories';
 import { html } from 'lit';
-import { getCombinations, COMBINATIONS } from '../../../../utils/inputComponentsGetCombinations';
+import { COMBINATIONS, getCombinations } from '../../../../utils/inputComponentsGetCombinations';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -111,10 +111,5 @@ export const Inputweek: Story = {
 export const Inputtime: Story = {
   args: {
     type: 'time',
-  },
-};
-export const Inputcolor: Story = {
-  args: {
-    type: 'color',
   },
 };

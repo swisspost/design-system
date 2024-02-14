@@ -41,10 +41,6 @@ const meta: Meta = {
     floatingLabel: {
       name: 'Floating Label',
       description: 'Defines how the components label is rendered.',
-      if: {
-        arg: 'type',
-        neq: 'color',
-      },
       control: {
         type: 'boolean',
       },
@@ -96,7 +92,6 @@ const meta: Meta = {
         'month',
         'week',
         'time',
-        'color',
       ],
       table: {
         category: 'General',
@@ -188,13 +183,7 @@ type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
   const id = `ExampleTextarea_${context.name}`;
-  const classes = [
-    'form-control',
-    args.type === 'color' && 'form-control-color',
-    args.size,
-    args.sizeFloatingLabel,
-    args.validation,
-  ]
+  const classes = ['form-control', args.size, args.sizeFloatingLabel, args.validation]
     .filter(c => c && c !== 'null')
     .join(' ');
 

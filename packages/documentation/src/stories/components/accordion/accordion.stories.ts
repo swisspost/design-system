@@ -61,3 +61,45 @@ export const MultipleOpenPanels: Story = {
     </post-accordion>
   `,
 };
+
+export const DefaultCollapsedPanels: Story = {
+  render: () => html`
+    <post-accordion>
+      <post-accordion-item collapsed>
+        <span slot="header">Titulum 1</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+
+      <post-accordion-item>
+        <span slot="header">Titulum 2</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+
+      <post-accordion-item>
+        <span slot="header">Titulum 3</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+    </post-accordion>
+  `,
+};
+
+export const DefaultCollapsedMultiplePanels: Story = {
+  render: () => html`
+    <post-accordion multiple="true">
+      <post-accordion-item collapsed>
+        <span slot="header">Titulum 1</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+
+      <post-accordion-item>
+        <span slot="header">Titulum 2</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+
+      <post-accordion-item>
+        <span slot="header">Titulum 3</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+    </post-accordion>
+  `,
+};
