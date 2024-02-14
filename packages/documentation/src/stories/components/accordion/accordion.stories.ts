@@ -4,6 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta<HTMLPostAccordionElement> = {
+  id: '4d1b4185-e04d-494a-ab38-2b56c1778b0b',
   title: 'Components/Accordion',
   component: 'post-accordion',
   parameters: {

@@ -4,6 +4,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { spreadArgs } from '../../../utils';
 
 const meta: Meta<HTMLPostCollapsibleElement> = {
+  id: '6a91848c-16ec-4a23-bc45-51c797b5b2c3',
   title: 'Components/Collapsible',
   component: 'post-collapsible',
   render: renderCollapsible,
@@ -29,7 +30,7 @@ export default meta;
 // DECORATORS
 function externalControls(story: StoryFn, context: StoryContext) {
   const { args, canvasElement } = context;
-  const togglerId = `${context.id}--button`;
+  const togglerId = `button--${context.id}`;
 
   let collapsible!: HTMLPostCollapsibleElement;
   let toggler!: HTMLButtonElement;
@@ -64,9 +65,7 @@ function externalControls(story: StoryFn, context: StoryContext) {
 
 //RENDERER
 function renderCollapsible(args: Partial<HTMLPostCollapsibleElement>) {
-  return html`
-    <post-collapsible ${spreadArgs(args)}></post-collapsible>
-  `;
+  return html` <post-collapsible ${spreadArgs(args)}></post-collapsible> `;
 }
 
 // STORIES
