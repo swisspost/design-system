@@ -35,7 +35,7 @@ describe('Alert', () => {
     cy.disableForceColors();
   });
 
-  it('post-alert', () => {
+  it('post-alert-dark', () => {
     cy.enableForceColors('dark');
     cy.visit('/iframe.html?id=snapshots--post-alert');
     cy.get('post-alert post-icon', { timeout: 30000 }).should('be.visible');
