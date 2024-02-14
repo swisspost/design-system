@@ -9,7 +9,7 @@ describe('Alert', () => {
     cy.enableForceColors('light');
     cy.visit('/iframe.html?id=snapshots--alert');
     cy.get('.alert post-icon', { timeout: 30000 }).should('be.visible');
-    cy.percySnapshot('Alerts (Standard HTML)', { widths: [320, 1440] });
+    cy.percySnapshot('Alerts (Standard HTML) – HCM Light', { widths: [320, 1440] });
     cy.disableForceColors();
   });
 
@@ -17,7 +17,7 @@ describe('Alert', () => {
     cy.enableForceColors('dark');
     cy.visit('/iframe.html?id=snapshots--alert');
     cy.get('.alert post-icon', { timeout: 30000 }).should('be.visible');
-    cy.percySnapshot('Alerts (Standard HTML)', { widths: [320, 1440] });
+    cy.percySnapshot('Alerts (Standard HTML) – HCM Dark', { widths: [320, 1440] });
     cy.disableForceColors();
   });
 
@@ -31,7 +31,7 @@ describe('Alert', () => {
     cy.enableForceColors('light');
     cy.visit('/iframe.html?id=snapshots--post-alert');
     cy.get('post-alert post-icon', { timeout: 30000 }).should('be.visible');
-    cy.percySnapshot('Alerts (Web Component)', { widths: [320, 1440] });
+    cy.percySnapshot('Alerts (Web Component) – HCM Light', { widths: [320, 1440] });
     cy.disableForceColors();
   });
 
@@ -39,7 +39,7 @@ describe('Alert', () => {
     cy.enableForceColors('dark');
     cy.visit('/iframe.html?id=snapshots--post-alert');
     cy.get('post-alert post-icon', { timeout: 30000 }).should('be.visible');
-    cy.percySnapshot('Alerts (Web Component)', { widths: [320, 1440] });
+    cy.percySnapshot('Alerts (Web Component) – HCM Dark', { widths: [320, 1440] });
     cy.disableForceColors();
   });
 });
