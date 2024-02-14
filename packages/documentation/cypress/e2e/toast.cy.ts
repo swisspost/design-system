@@ -1,7 +1,7 @@
 describe('toast', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.visit(`/iframe.html?id=components-toast--auto-close`);
+      cy.visit(`/iframe.html?id=825b65c9-7eaf-4e0a-9e20-5f5ed406726d-close`);
       cy.get('button.btn').as('triggerCreateToast');
     });
 
