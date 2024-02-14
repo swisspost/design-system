@@ -6,19 +6,19 @@ describe('Alert', () => {
   });
 
   it('default-HCM-light', () => {
-    cy.enableForceColors('light');
+    cy.enableForcedColors('light');
     cy.visit('/iframe.html?id=snapshots--alert');
     cy.get('.alert post-icon', { timeout: 30000 }).should('be.visible');
     cy.percySnapshot('Alerts (Standard HTML) – HCM Light', { widths: [320, 1440] });
-    cy.disableForceColors();
+    cy.disableForcedColors();
   });
 
   it('default-HCM-dark', () => {
-    cy.enableForceColors('dark');
+    cy.enableForcedColors('dark');
     cy.visit('/iframe.html?id=snapshots--alert');
     cy.get('.alert post-icon', { timeout: 30000 }).should('be.visible');
     cy.percySnapshot('Alerts (Standard HTML) – HCM Dark', { widths: [320, 1440] });
-    cy.disableForceColors();
+    cy.disableForcedColors();
   });
 
   it('post-alert', () => {
@@ -28,18 +28,18 @@ describe('Alert', () => {
   });
 
   it('post-alert-light', () => {
-    cy.enableForceColors('light');
+    cy.enableForcedColors('light');
     cy.visit('/iframe.html?id=snapshots--post-alert');
     cy.get('post-alert post-icon', { timeout: 30000 }).should('be.visible');
     cy.percySnapshot('Alerts (Web Component) – HCM Light', { widths: [320, 1440] });
-    cy.disableForceColors();
+    cy.disableForcedColors();
   });
 
   it('post-alert-dark', () => {
-    cy.enableForceColors('dark');
+    cy.enableForcedColors('dark');
     cy.visit('/iframe.html?id=snapshots--post-alert');
     cy.get('post-alert post-icon', { timeout: 30000 }).should('be.visible');
     cy.percySnapshot('Alerts (Web Component) – HCM Dark', { widths: [320, 1440] });
-    cy.disableForceColors();
+    cy.disableForcedColors();
   });
 });

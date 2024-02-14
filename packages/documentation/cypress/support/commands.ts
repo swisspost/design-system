@@ -67,44 +67,50 @@ Cypress.Commands.add('checkAriaExpanded', (isExpanded: 'true' | 'false') => {
     });
 });
 
-Cypress.Commands.add('enableForceColors', (theme: 'light' | 'dark') => {
+Cypress.Commands.add('enableForcedColors', (theme: 'light' | 'dark') => {
   const cdpCommand = 'Emulation.setEmulatedMedia';
   const media = 'forced-colors';
 
-  cy.then(() => {
-    return Cypress.automation('remote:debugger:protocol', {
-      command: cdpCommand,
-      params: {
-        media,
-        features: [
-          { name: media, value: 'active' },
-          { name: 'prefers-color-scheme', value: theme },
-        ],
-      },
-    });
-  }).then(() => {
-    Cypress.log({
-      name: 'Enable forced colors',
-      message: `${theme} theme`,
-    });
-  });
+  return cy
+    .then(() => {
+      return Cypress.automation('remote:debugger:protocol', {
+        command: cdpCommand,
+        params: {
+          media,
+          features: [
+            { name: media, value: 'active' },
+            { name: 'prefers-color-scheme', value: theme },
+          ],
+        },
+      });
+    })
+    .then(() => {
+      Cypress.log({
+        name: 'Enable forced colors',
+        message: `${theme} theme`,
+      });
+    })
+    .window();
 });
 
-Cypress.Commands.add('disableForceColors', () => {
+Cypress.Commands.add('disableForcedColors', () => {
   const cdpCommand = 'Emulation.setEmulatedMedia';
   const media = 'forced-colors';
 
-  cy.then(() => {
-    return Cypress.automation('remote:debugger:protocol', {
-      command: cdpCommand,
-      params: {
-        media,
-        features: [{ name: media, value: 'none' }],
-      },
-    });
-  }).then(() => {
-    Cypress.log({
-      name: 'Disable forced colors',
-    });
-  });
+  return cy
+    .then(() => {
+      return Cypress.automation('remote:debugger:protocol', {
+        command: cdpCommand,
+        params: {
+          media,
+          features: [{ name: media, value: 'none' }],
+        },
+      });
+    })
+    .then(() => {
+      Cypress.log({
+        name: 'Disable forced colors',
+      });
+    })
+    .window();
 });
