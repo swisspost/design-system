@@ -6,6 +6,7 @@
 @use '../variables/animation';
 @use '../variables/components/form-check';
 @use '../mixins/icons' as icons-mx;
+@use '../mixins/utilities' as utility-mx;
 
 .form-check {
   display: flex;
@@ -152,6 +153,22 @@
       }
     }
 
+    @include utility-mx.high-contrast-mode {
+      transition: none;
+      border: form-check.$form-check-input-border-width solid CanvasText;
+
+      &:checked {
+        background-color: CanvasText;
+      }
+
+      &::after,
+      &:checked::after {
+        max-width: calc(#{ form-check.$form-switch-height} - #{2 * form-check.$form-check-input-border-width});
+        border-color: Canvas;
+        background-color: CanvasText;
+      }
+    }
+
     &[disabled] {
       background: form-check.$form-switch-disabled-bg;
 
@@ -163,6 +180,16 @@
 
   &:hover > .form-check-input:not([disabled]) {
     background-color: rgba(var(--post-contrast-color-rgb), 0.1);
+
+    @include utility-mx.high-contrast-mode {
+      border-color: Highlight;
+
+      &:checked,
+      &::after,
+      &:checked::after {
+        background-color: Highlight;
+      }
+    }
   }
 
   .form-check-label {
