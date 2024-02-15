@@ -210,8 +210,10 @@
   }
 
   > textarea.form-control {
-    padding-top: forms.$input-padding-y-lg * 2;
-    padding-bottom: forms.$input-padding-y-lg;
+    // padding-top: forms.$input-padding-y-lg * 2;
+    padding-top: spacing.$size-regular;
+    padding-bottom: spacing.$size-mini;
+    // padding-bottom: forms.$input-padding-y-lg;
     height: auto;
 
     ~ label {
@@ -219,6 +221,9 @@
       width: calc(100% - (#{forms.$input-border-width * 2}));
       max-width: none;
       height: unset;
+      padding-left: spacing.$size-regular;
+      padding-top: spacing.$size-regular;
+      transform-origin: spacing.$size-regular 0;
     }
 
     &:focus,
@@ -235,6 +240,20 @@
         );
         max-width: none;
         background: forms.$input-bg;
+      }
+    }
+
+    &.form-control-sm {
+      padding-left: spacing.$size-regular;
+      padding-top: spacing.$size-regular;
+      padding-right: forms.$input-padding-y-lg * 2;
+      font-size: forms.$form-floating-label-font-size-placeholder-sm;
+
+      ~ label {
+        font-size: forms.$form-floating-label-font-size-sm;
+        padding-left: spacing.$size-regular;
+        padding-top: spacing.$size-regular;
+        padding-right: forms.$input-padding-y-lg * 2;
       }
     }
 
