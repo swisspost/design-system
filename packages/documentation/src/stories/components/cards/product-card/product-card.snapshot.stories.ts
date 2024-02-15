@@ -4,8 +4,10 @@ import { html } from 'lit';
 import { bombArgs } from '../../../../utils';
 import ProductCardSyncHeights from './product-card.sample.js?raw';
 
+const { id, ...metaWithoutId } = meta;
+
 export default {
-  ...meta,
+  ...metaWithoutId,
   title: 'Snapshots',
 };
 
@@ -21,24 +23,19 @@ export const ProductCard: Story = {
     ]
       // Map default template variants
       .map(argOverrides => {
-        const args: Partial<{[key: string]: string}> = { ...meta.args, ...argOverrides };
+        const args: Partial<{ [key: string]: string }> = { ...meta.args, ...argOverrides };
         args.title = `${args.title} (${args.level})`;
 
         return html`
-          <div class="col-12 mb-large">
-            ${Default.render && Default.render(args, context)}
-          </div>
+          <div class="col-12 mb-large">${Default.render && Default.render(args, context)}</div>
         `;
       });
 
     // Define custom template variants
-    const customTemplateVariants = [
-      Groupped,
-      Multipart
-    ]
+    const customTemplateVariants = [Groupped, Multipart]
       // Map custom template variants
       .map(
-        (story) => html`
+        story => html`
           <div class="mb-large">
             ${story.render && story.render({ ...meta.args, ...story.args }, context)}
           </div>
@@ -51,15 +48,13 @@ export const ProductCard: Story = {
         ${['white', 'dark'].map(
           bg => html`
             <div class=${'p-regular bg-' + bg}>
-              <div class="row row-cols-md-2 row-cols-xl-3">
-                ${defaultTemplateVariants}
-              </div>
+              <div class="row row-cols-md-2 row-cols-xl-3">${defaultTemplateVariants}</div>
               ${customTemplateVariants}
             </div>
           `,
         )}
         <script>
-          ${ProductCardSyncHeights}
+          ${ProductCardSyncHeights};
         </script>
       </div>
     `;
