@@ -54,8 +54,8 @@ jobs:
         id: netlify
         if: steps.check.outputs.changed == 'true'
         env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_ARCHIVE_SITE_ID: ${{ secrets.NETLIFY_ARCHIVE_SITE_ID }}
+          NETLIFY_ARCHIVE_AUTH_TOKEN: ${{ secrets.NETLIFY_ARCHIVE_AUTH_TOKEN }}
         run: |
-          netlify link --id $NETLIFY_SITE_ID
+          netlify link --id $NETLIFY_ARCHIVE_SITE_ID
           netlify deploy --build false --dir packages/demo/dist/demo --prod
