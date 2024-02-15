@@ -1,6 +1,8 @@
+const RATING_ID = '956e063b-b40c-4fe4-bc27-53b8c4ab1e81';
+
 describe('rating', () => {
   beforeEach(() => {
-    cy.getComponent('rating');
+    cy.getComponent('rating', RATING_ID);
     cy.get('@rating').get('div.rating').as('rating-container');
     cy.get('@rating-container').get('.star-container').as('stars');
   });
