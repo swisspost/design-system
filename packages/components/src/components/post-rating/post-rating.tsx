@@ -92,7 +92,6 @@ export class PostRating {
   private handleBlur() {
     if (this.hasChanged === true) {
       this.ratingChange.emit(this.currentRating);
-      console.log('test');
       this.hasChanged = false;
     }
   }
