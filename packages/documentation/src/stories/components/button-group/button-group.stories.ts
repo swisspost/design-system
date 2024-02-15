@@ -4,6 +4,7 @@ import { useArgs } from '@storybook/preview-api';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: '021d61aa-e039-4858-b4b9-b86a3e772811',
   title: 'Components/Button Group',
   render: renderButtonGroup,
   parameters: {

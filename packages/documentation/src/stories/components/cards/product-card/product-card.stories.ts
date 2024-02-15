@@ -4,6 +4,7 @@ import { nothing } from 'lit';
 import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'b4800d9e-4837-4476-a327-bb4586eb7e97',
   title: 'Components/Cards/Product Card',
   decorators: [paddedContainer, clickBlocker],
   parameters: {
@@ -54,15 +55,11 @@ export default meta;
 
 // DECORATORS
 function clickBlocker(story: any) {
-  return html`
-    <div @click=${(e: Event) => e.preventDefault()}>${story()}</div>
-  `;
+  return html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `;
 }
 
 function paddedContainer(story: any) {
-  return html`
-    <div class="p-mini">${story()}</div>
-  `;
+  return html` <div class="p-mini">${story()}</div> `;
 }
 
 function gridContainer(story: any) {
@@ -85,9 +82,7 @@ function getTitle(args: Args) {
 function getText(args: Args) {
   if (!args.text) return nothing;
 
-  return html`
-    <p class="lead">${args.text}</p>
-  `;
+  return html` <p class="lead">${args.text}</p> `;
 }
 function renderProductCard(args: Args) {
   return html`
@@ -118,7 +113,9 @@ export const Groupped: Story = {
         ${renderProductCard({ ...args, title: `${args.title} 1`, text: 'Tre mallonga priskribo.' })}
       </div>
       <div class="col-12">${renderProductCard({ ...args, title: `${args.title} 2` })}</div>
-      <div class="col-12">${renderProductCard({ ...args, title: `${args.title} 3`, text: '' })}</div>
+      <div class="col-12">
+        ${renderProductCard({ ...args, title: `${args.title} 3`, text: '' })}
+      </div>
       <div class="col-12">${renderProductCard({ ...args, title: `${args.title} 4` })}</div>
       <div class="col-12">
         ${renderProductCard({
@@ -333,7 +330,7 @@ export const Multipart: Story = {
             nodes.forEach(node => {
               const group = node.getAttribute('data-sync-height-with');
               const groupHeight = heightByGroup.get(group);
-              
+
               node.style.height = 'auto';
               const nodeHeight = node.offsetHeight;
 
