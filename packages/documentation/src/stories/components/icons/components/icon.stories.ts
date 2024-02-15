@@ -7,6 +7,7 @@ import { BADGE } from '../../../../../.storybook/constants';
 import { spreadArgs } from '../../../../utils';
 
 const meta: Meta = {
+  id: '0dcfe3c0-bfc0-4107-b43b-7e9d825b805f',
   title: 'Components/Icons/Icon Component',
   component: 'post-icon',
   parameters: {
@@ -52,10 +53,7 @@ const meta: Meta = {
       options: [null, 'cylon', 'cylon-vertical', 'spin', 'spin-reverse', 'fade', 'throb'],
     },
   },
-  render: args =>
-    html`
-      <post-icon ${spreadArgs(normalizeArgs(args))}></post-icon>
-    `,
+  render: args => html` <post-icon ${spreadArgs(normalizeArgs(args))}></post-icon> `,
 };
 
 function normalizeArgs(args: Args) {
@@ -70,17 +68,13 @@ const renderVariants = (
   return html`
     ${customAttrs.map(
       variantArgs =>
-        html`
-          <post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon>
-        `,
+        html` <post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon> `,
     )}
   `;
 };
 
 const generateDecorators = (story: any, className?: string) => {
-  return html`
-    <div class="${ifDefined(className)}" style="font-size: 32px">${story()}</div>
-  `;
+  return html` <div class="${ifDefined(className)}" style="font-size: 32px">${story()}</div> `;
 };
 
 export default meta;

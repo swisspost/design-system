@@ -1,0 +1,3 @@
+<component name="DependencyValidationManager">
+  <scope name="Internet-header" pattern="file[design-system]:packages/internet-header//*" />
+</component>

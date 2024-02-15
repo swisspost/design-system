@@ -1,6 +1,10 @@
 import { Component, Element, h, Host, Prop, State } from '@stencil/core';
 import { version } from '../../../package.json';
 
+/**
+ * @slot default - Slot for placing the content of the tab panel.
+ */
+
 @Component({
   tag: 'post-tab-panel',
   styleUrl: 'post-tab-panel.scss',
@@ -24,12 +28,8 @@ export class PostTabPanel {
   render() {
     return (
       <Host data-version={version}>
-        <div
-          class="tab-pane"
-          id={this.panelId}
-          role="tabpanel"
-        >
-          <slot/>
+        <div class="tab-pane" id={this.panelId} role="tabpanel">
+          <slot />
         </div>
       </Host>
     );

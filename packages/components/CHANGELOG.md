@@ -1,5 +1,50 @@
 # @swisspost/design-system-components
 
+## 2.0.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.1
+
+## 2.0.0
+
+### Major Changes
+
+- Restricted `post-collapsible` to collapse behaviour only. The component remains unchanged when used with external controls, however, it no longer has a `header` slot.
+
+  Before:
+
+  ```html
+  <post-collapsible collapsed="" headingLevel="6">
+    <span slot="header">Titulum</span>
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </post-collapsible>
+  ```
+
+  After:
+
+  ```html
+  <post-accordion-item collapsed="" headingLevel="6">
+    <span slot="header">Titulum</span>
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </post-accordion-item>
+  ```
+
+  To get the same look and feel as in the previous version, use the `post-accordion-item` component instead. (by [@alizedebray](https://github.com/alizedebray) with [#2379](https://github.com/swisspost/design-system/pull/2379))
+
+### Minor Changes
+
+- Updated the tooltip `min-height` and `max-width` and added a new property arrow to the tooltip, that defines wheter or not the pointer arrow is displayed. (by [@b1aserlu](https://github.com/b1aserlu) with [#2394](https://github.com/swisspost/design-system/pull/2394))
+
+### Patch Changes
+
+- Update the background color of accordion to be white on any background color other than white. The accordion background remains gray on white backgrounds. (by [@alizedebray](https://github.com/alizedebray) with [#2379](https://github.com/swisspost/design-system/pull/2379))
+
+- Added a payload to the `collapseChange` event of the `post-collapsible` component. This payload is a boolean: `true` if the collapsible was opened, `false` if it was closed. (by [@alizedebray](https://github.com/alizedebray) with [#2379](https://github.com/swisspost/design-system/pull/2379))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.0
+
 ## 1.7.1
 
 ### Patch Changes

@@ -1,7 +1,7 @@
 import type { StorybookConfig } from '@storybook/web-components-vite';
 import pkg from '../package.json';
-import remarkAutolinkHeadings from 'remark-autolink-headings';
 import { mergeConfig } from 'vite';
+import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const config: StorybookConfig = {
   logLevel: 'info',
@@ -29,15 +29,16 @@ const config: StorybookConfig = {
       options: {
         mdxPluginOptions: {
           mdxCompileOptions: {
-            remarkPlugins: [
+            rehypePlugins: [
               [
-                remarkAutolinkHeadings,
+                rehypeAutolinkHeadings,
                 {
                   content: {
                     type: 'element',
                     tagName: 'post-icon',
                     properties: { name: 2037 },
                   },
+                  headingProperties: { className: 'docs-autolink' },
                   behavior: 'append',
                 },
               ],
@@ -72,6 +73,7 @@ const config: StorybookConfig = {
     STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT: 'preview-',
     STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD: 'design-system.post.ch,next.design-system.post.ch',
     STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK: 'dev',
+    STORYBOOK_BASE_URL: 'https://next.design-system-post.ch',
   }),
   async viteFinal(config, options) {
     return mergeConfig(config, {

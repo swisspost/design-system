@@ -34,14 +34,23 @@ jobs:
       - name: Install & build dependencies
         run: pnpm bootstrap
 
+      - name: Prepare Cypress – Spawn Xvfb server
+        run: Xvfb :99 &
+
+      - name: Prepare Cypress – Share Xvfb server as environment variable
+        run: export DISPLAY=:99
+
       - name: Cypress info
         run: pnpm --filter design-system-documentation exec cypress info
 
       - name: Run tests
         run: pnpm e2e:ci
 
+      - name: Post Cypress – Stop Xvfb server
+        run: pkill Xvfb
+
       - name: Upload screenshots
-        uses: actions/upload-artifact@v4.1.0
+        uses: actions/upload-artifact@v4.3.0
         if: failure()
         with:
           name: cypress-snapshots

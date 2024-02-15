@@ -34,7 +34,7 @@ import { NotificationOverlayContentComponent } from './components/notification-o
 import { SubnavigationDemoComponent } from './components/subnavigation/subnavigation-demo/subnavigation-demo.component';
 import { SubnavigationDemoPageComponent } from './components/subnavigation/subnavigation-demo-page/subnavigation-demo-page.component';
 import {
-  CustomDatepickerI18n,
+  SwissPostDatepickerI18n,
   I18n,
 } from '../ng-bootstrap/components/datepicker/datepicker-demo-page/datepicker-localization.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -108,7 +108,7 @@ import { DatatableLoadingDemoComponent } from './components/datatable/datatable-
   ],
   providers: [
     I18n,
-    { provide: NgbDatepickerI18n, useClass: CustomDatepickerI18n },
+    { provide: NgbDatepickerI18n, useClass: SwissPostDatepickerI18n },
     HighlightProvider.Config,
   ],
   exports: [

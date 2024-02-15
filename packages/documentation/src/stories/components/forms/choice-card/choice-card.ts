@@ -60,7 +60,7 @@ export const choiceCardMeta: Meta = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -164,9 +164,7 @@ export const choiceCardDefault = (args: Args) => {
     <br />
     <span class="font-size-12">${args.description}</span>
   `;
-  const icon = html`
-    <post-icon name="${args.icon}" aria-hidden="true"></post-icon>
-  `;
+  const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
 
   // Firefox fallback for the :has selector
   const _handleInput = (e: InputEvent) => {

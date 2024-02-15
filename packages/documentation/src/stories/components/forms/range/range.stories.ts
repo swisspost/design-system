@@ -12,6 +12,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 const ARROW_KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
 const meta: Meta = {
+  id: '4c5a4537-d663-4d2b-9c49-17af95443696',
   title: 'Components/Forms/Range',
   render: render,
   parameters: {
@@ -43,7 +44,7 @@ const meta: Meta = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -131,7 +132,7 @@ const meta: Meta = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -170,22 +171,12 @@ function render(args: Args, context: StoryContext) {
 
   const useAriaLabel = args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel
-    ? html`
-        <label class="form-label" for="${id}">${args.label}</label>
-      `
+    ? html` <label class="form-label" for="${id}">${args.label}</label> `
     : null;
 
   const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid'
-      ? html`
-          <p class="valid-feedback">Ggranda sukceso!</p>
-        `
-      : null,
-    args.validation === 'is-invalid'
-      ? html`
-          <p class="invalid-feedback">Eraro okazis!</p>
-        `
-      : null,
+    args.validation === 'is-valid' ? html` <p class="valid-feedback">Ggranda sukceso!</p> ` : null,
+    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">Eraro okazis!</p> ` : null,
   ];
 
   const control: TemplateResult = html`
@@ -208,16 +199,12 @@ function render(args: Args, context: StoryContext) {
   let valueElement: TemplateResult | TemplateResult[] | null = null;
 
   if (args.showValue === 'text') {
-    valueElement = html`
-      <p class="form-text">${args.value}</p>
-    `;
+    valueElement = html` <p class="form-text">${args.value}</p> `;
   } else if (args.showValue === 'input') {
     const inputId = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRangeInput`;
 
     valueElement = [
-      html`
-        <label class="form-label visually-hidden" for="${inputId}">Range controller</label>
-      `,
+      html` <label class="form-label visually-hidden" for="${inputId}">Range controller</label> `,
       html`
         <input
           id="${inputId}"
@@ -241,9 +228,7 @@ function render(args: Args, context: StoryContext) {
       </div>
     `;
   } else {
-    return html`
-      ${[label, control, valueElement, ...contextual].filter(el => el !== null)}
-    `;
+    return html` ${[label, control, valueElement, ...contextual].filter(el => el !== null)} `;
   }
 }
 
