@@ -3,6 +3,7 @@ import { html, unsafeStatic } from 'lit/static-html.js';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: '7ecd87f1-de96-4e39-a057-ba1798eb6959',
   title: 'Components/Heading',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
@@ -16,6 +17,7 @@ const meta: Meta = {
     level: 'h1',
     showSubtitle: false,
     subtitle: 'Subheading',
+    override: 'none',
   },
   argTypes: {
     title: {
@@ -62,6 +64,18 @@ const meta: Meta = {
         category: 'General',
       },
     },
+    override: {
+      name: 'Override',
+      description:
+        'Sometimes the document heading structure requires you to use a heading tag that should look like another in order to maintain a consistency. In those cases you can use the heading helper classes `.h1`  through `.h6`.',
+      control: {
+        type: 'select',
+      },
+      options: ['none', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+      table: {
+        category: 'Override',
+      },
+    },
   },
 };
 
@@ -81,7 +95,9 @@ export const Default: Story = {
       : args.title;
 
     return html`
-      <${tagName}>${content}</${tagName}>
+      <${tagName} ${
+      args.override !== 'none' && args.override ? unsafeStatic(`class=${args.override}`) : ''
+    }>${content}</${tagName}>
     `;
   },
 };

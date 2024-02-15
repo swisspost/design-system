@@ -3,8 +3,10 @@ import meta, { Default, FloatingLabel } from './select.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../../utils';
 
+const { id, ...metaWithoutId } = meta;
+
 export default {
-  ...meta,
+  ...metaWithoutId,
   title: 'Snapshots',
 };
 
