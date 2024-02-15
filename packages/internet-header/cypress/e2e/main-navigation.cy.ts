@@ -1,9 +1,10 @@
 import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
+import { HEADER, HEADER_CUSTOM_CONFIG } from './shared/variables';
 
 describe('main-navigation', () => {
   beforeEach(() => {
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare(HEADER, 'Default');
     cy.changeArg('language', 'de');
   });
 
@@ -28,7 +29,7 @@ describe('main-navigation', () => {
   it('should have an active route when config defines an active route', () => {
     const activeConfig = JSON.parse(JSON.stringify(testConfiguration));
     activeConfig.de.header.navMain[0].isActive = true;
-    prepare('Components/Internet Header/Header', 'Default', { config: activeConfig });
+    prepare(HEADER, 'Default', { config: activeConfig });
     cy.changeArg('language', 'de');
     cy.get('swisspost-internet-header')
       .shadow()
@@ -48,7 +49,7 @@ describe('main-navigation', () => {
   });
 
   it('Changes active link also in custom config nav links', () => {
-    prepare('Components/Internet Header/Header/Custom Config', 'Default');
+    prepare(HEADER_CUSTOM_CONFIG, 'Default');
     cy.changeArg('language', 'en');
     cy.changeArg('active-route', 'https://maps.google.com');
     cy.get('swisspost-internet-header')
