@@ -3,8 +3,10 @@ import meta from './post-rating.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils/bomb-args';
 
+const { id, ...metaWithoutId } = meta;
+
 export default {
-  ...meta,
+  ...metaWithoutId,
   title: 'Snapshots',
 };
 

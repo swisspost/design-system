@@ -4,6 +4,7 @@ import { BADGE } from '../../../../.storybook/constants';
 import { spreadArgs } from '../../../utils';
 
 const meta: Meta<HTMLPostRatingElement> = {
+  id: '956e063b-b40c-4fe4-bc27-53b8c4ab1e81',
   title: 'Components/Rating',
   component: 'post-rating',
   render: render,
@@ -43,9 +44,7 @@ export default meta;
 
 // RENDERER
 function render(args: Partial<HTMLPostRatingElement>) {
-  return html`
-    <post-rating ${spreadArgs(args)}></post-rating>
-  `;
+  return html` <post-rating ${spreadArgs(args)}></post-rating> `;
 }
 
 // STORIES
