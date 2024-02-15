@@ -212,6 +212,7 @@ export class PostTooltip {
   }
 
   render() {
+    const popoverClass = `${this.arrow ? ' has-arrow' : ''}`;
     return (
       <Host
         data-version={version}
@@ -222,6 +223,7 @@ export class PostTooltip {
         onFocusOut={this.handleInterestLost}
       >
         <post-popovercontainer
+          class={popoverClass}
           arrow={this.arrow}
           placement={this.placement}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
