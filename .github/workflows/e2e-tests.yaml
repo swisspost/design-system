@@ -34,6 +34,9 @@ jobs:
       - name: Install & build dependencies
         run: pnpm bootstrap
 
+      - name: Post Cypress – Stop old Xvfb server
+        run: pkill Xvfb
+
       - name: Prepare Cypress – Spawn Xvfb server
         run: Xvfb :99 &
 
