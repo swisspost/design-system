@@ -1,8 +1,9 @@
 import { prepare } from '../support/prepare-story';
+import { HEADER } from './shared/variables';
 
 describe('header', () => {
   beforeEach(() => {
-    prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default');
+    prepare(HEADER, 'Default');
     cy.changeArg('language', 'de');
   });
 

@@ -2,6 +2,7 @@ import { IPortalConfig } from '../../src/models/general.model';
 import testConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { NavLangEntity } from '../../src/models/header.model';
 import { prepare } from '../support/prepare-story';
+import { HEADER } from './shared/variables';
 
 describe('language-switch', () => {
   const languageSwitcherDesktop = '#post-language-switch-desktop';
@@ -9,7 +10,7 @@ describe('language-switch', () => {
 
   beforeEach(() => {
     cy.viewport(1024, 800);
-    prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default');
+    prepare(HEADER, 'Default');
     cy.changeArg('language', 'de');
   });
 
@@ -140,7 +141,7 @@ describe('language-switch', () => {
         url: '',
       };
       config.en!.header.navLang = [navLangEntry];
-      prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default', { config });
+      prepare(HEADER, 'Default', { config });
       cy.get('#post-language-switch-desktop').should('not.exist');
     });
 

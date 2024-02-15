@@ -1,7 +1,9 @@
+const ALERT_ID = '8fd36823-966e-46a8-8432-a4439f6e208f';
+
 describe('alert', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('post-alert', '8fd36823-966e-46a8-8432-a4439f6e208f');
+      cy.getComponent('post-alert', ALERT_ID);
     });
 
     it('should render', () => {
@@ -15,7 +17,7 @@ describe('alert', () => {
 
   describe('dismissible', () => {
     beforeEach(() => {
-      cy.getComponent('post-alert', '8fd36823-966e-46a8-8432-a4439f6e208f', 'dismissible');
+      cy.getComponent('post-alert', ALERT_ID, 'dismissible');
     });
 
     it('should have a close button', () => {

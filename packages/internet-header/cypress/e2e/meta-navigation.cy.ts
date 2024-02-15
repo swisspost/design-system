@@ -1,10 +1,11 @@
 import { IPortalConfig } from '../../src/models/general.model';
 import testConfiguration from '../../src/assets/config/test-configuration.json';
 import { prepare } from '../support/prepare-story';
+import { HEADER } from './shared/variables';
 
 describe('meta-navigation', () => {
   beforeEach(() => {
-    prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default');
+    prepare(HEADER, 'Default');
     cy.changeArg('language', 'de');
     cy.viewport(1024, Cypress.config('viewportHeight'));
   });
@@ -97,7 +98,7 @@ describe('meta-navigation', () => {
         // Clear meta navigation config
         config.de!.header.navMeta = undefined;
 
-        prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default', { config });
+        prepare(HEADER, 'Default', { config });
         cy.changeArg('language', 'de');
 
         // Assert the header is hydrated
@@ -123,7 +124,7 @@ describe('meta-navigation', () => {
           },
         ];
 
-        prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default', { config });
+        prepare(HEADER, 'Default', { config });
         cy.changeArg('language', 'de');
 
         // Assert the header is hydrated

@@ -1,9 +1,10 @@
 import { prepare } from '../support/prepare-story';
+import { HEADER, HEADER_CUSTOM_CONTENT } from './shared/variables';
 
 describe('main-navigation', () => {
   describe('slotted element: false', () => {
     beforeEach(() => {
-      prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default');
+      prepare(HEADER, 'Default');
     });
 
     it('should not have any custom content', () => {
@@ -17,7 +18,7 @@ describe('main-navigation', () => {
 
   describe('slotted element: true', () => {
     beforeEach(() => {
-      prepare('f09859db-8270-482b-a884-5b5584f86a45', 'Default');
+      prepare(HEADER_CUSTOM_CONTENT, 'Default');
 
       cy.get('swisspost-internet-header').find('[slot=main]').as('slotted-element');
       cy.get('swisspost-internet-header')
