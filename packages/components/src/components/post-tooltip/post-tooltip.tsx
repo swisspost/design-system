@@ -63,7 +63,7 @@ const globalHideTooltip = (tooltip: HTMLPostTooltipElement | PostTooltip) => {
  * Patch some accessibility features that are hard to remember or understand
  * @param {HTMLElement} trigger
  */
-const patchAccessibilityFeatures = trigger => {
+const patchAccessibilityFeatures = (trigger: HTMLElement) => {
   const describedBy = trigger.getAttribute('aria-describedby');
   const id = trigger.getAttribute('data-tooltip-target');
 
@@ -80,13 +80,24 @@ const patchAccessibilityFeatures = trigger => {
 };
 
 /**
- * Handle attribute changes from the observer
+ * Handle attribute changes and childList changes from the observer
  * @param {MutationRecord[]} mutationList
  */
 const triggerObserverHandler: MutationCallback = mutationList => {
   mutationList.forEach(mutation => {
     if (mutation.type === 'attributes' && mutation.attributeName === 'data-tooltip-target') {
-      patchAccessibilityFeatures(mutation.target);
+      patchAccessibilityFeatures(mutation.target as HTMLElement);
+    }
+
+    if (mutation.type === 'childList') {
+      mutation.addedNodes.forEach(node => {
+        if (
+          node.nodeType === Node.ELEMENT_NODE &&
+          (node as HTMLElement).hasAttribute('data-tooltip-target')
+        ) {
+          patchAccessibilityFeatures(node as HTMLElement);
+        }
+      });
     }
   });
 };
@@ -144,6 +155,7 @@ export class PostTooltip {
       // Start watching for future triggers
       triggerObserver.observe(document.body, {
         subtree: true,
+        childList: true,
         attributeFilter: ['data-tooltip-target'],
       });
     }
