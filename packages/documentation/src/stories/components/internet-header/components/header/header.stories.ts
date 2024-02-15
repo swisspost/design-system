@@ -7,6 +7,7 @@ import osFlyoutOverrides from './config/os-flyout-overrides';
 import languageSwitchOverrides from './config/language-switch-overrides';
 
 const meta: Meta = {
+  id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',
   title: 'Components/Internet Header/Header',
   component: 'swisspost-internet-header',
   parameters: {
@@ -172,9 +173,7 @@ const meta: Meta = {
 };
 
 function render({ innerHMTL, ...args }: Args) {
-  return html`
-    <swisspost-internet-header ${spreadArgs(args)}></swisspost-internet-header>
-  `;
+  return html` <swisspost-internet-header ${spreadArgs(args)}></swisspost-internet-header> `;
 }
 
 export default meta;

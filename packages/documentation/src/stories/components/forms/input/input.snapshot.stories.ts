@@ -3,8 +3,10 @@ import meta from './input.stories';
 import { html } from 'lit';
 import { COMBINATIONS, getCombinations } from '../../../../utils/inputComponentsGetCombinations';
 
+const { id, ...metaWithoutId } = meta;
+
 export default {
-  ...meta,
+  ...metaWithoutId,
   title: 'Snapshots',
   render: renderInputSnapshot,
 };

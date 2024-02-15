@@ -1,15 +1,16 @@
 import { prepare } from '../support/prepare-story';
+import { HEADER } from './shared/variables';
 
 describe('logout', () => {
   describe('args', () => {
     describe('logoutUrl', () => {
       it('logout with url from config', () => {
-        prepare('Components/Internet Header/Header', 'Default', { loggedIn: true });
+        prepare(HEADER, 'Default', { loggedIn: true });
         logoutFromMenu();
       });
 
       it(`overrides logout url from config`, () => {
-        prepare('Components/Internet Header/Header', 'Default', { loggedIn: true });
+        prepare(HEADER, 'Default', { loggedIn: true });
         cy.changeArg('logoutUrl', 'about:blank');
         logoutFromMenu();
       });

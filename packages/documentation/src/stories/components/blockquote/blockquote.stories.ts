@@ -3,6 +3,7 @@ import { html, unsafeStatic } from 'lit/static-html.js';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'a4c7d5fa-9f8d-4a95-820b-ae4ce9ab4f03',
   title: 'Components/Blockquote',
   render: renderBlockquote,
   parameters: {
