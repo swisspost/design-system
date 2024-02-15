@@ -3,7 +3,7 @@ import { prepare } from '../support/prepare-story';
 
 describe('main-navigation', () => {
   beforeEach(() => {
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default');
     cy.changeArg('language', 'de');
   });
 
@@ -28,7 +28,7 @@ describe('main-navigation', () => {
   it('should have an active route when config defines an active route', () => {
     const activeConfig = JSON.parse(JSON.stringify(testConfiguration));
     activeConfig.de.header.navMain[0].isActive = true;
-    prepare('Components/Internet Header/Header', 'Default', { config: activeConfig });
+    prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default', { config: activeConfig });
     cy.changeArg('language', 'de');
     cy.get('swisspost-internet-header')
       .shadow()
@@ -48,7 +48,7 @@ describe('main-navigation', () => {
   });
 
   it('Changes active link also in custom config nav links', () => {
-    prepare('Components/Internet Header/Header/Custom Config', 'Default');
+    prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865/Custom Config', 'Default');
     cy.changeArg('language', 'en');
     cy.changeArg('active-route', 'https://maps.google.com');
     cy.get('swisspost-internet-header')

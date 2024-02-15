@@ -1,7 +1,7 @@
 describe('collapsible', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('collapsible');
+      cy.getComponent('collapsible', '6a91848c-16ec-4a23-bc45-51c797b5b2c3');
       cy.get('@collapsible').find('.collapse').as('collapse');
       cy.get('#components-collapsible--default--button').as('toggler');
     });
@@ -35,7 +35,7 @@ describe('collapsible', () => {
 
   describe('initially collapsed', () => {
     beforeEach(() => {
-      cy.getComponent('collapsible', 'initially-collapsed');
+      cy.getComponent('collapsible', '6a91848c-16ec-4a23-bc45-51c797b5b2c3', 'initially-collapsed');
       cy.get('@collapsible').find('.collapse').as('collapse');
       cy.get('#components-collapsible--initially-collapsed--button').as('toggler');
     });

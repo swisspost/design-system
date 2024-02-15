@@ -4,7 +4,7 @@ import { prepare } from '../support/prepare-story';
 
 describe('meta-navigation', () => {
   beforeEach(() => {
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default');
     cy.changeArg('language', 'de');
     cy.viewport(1024, Cypress.config('viewportHeight'));
   });
@@ -97,7 +97,7 @@ describe('meta-navigation', () => {
         // Clear meta navigation config
         config.de!.header.navMeta = undefined;
 
-        prepare('Components/Internet Header/Header', 'Default', { config });
+        prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default', { config });
         cy.changeArg('language', 'de');
 
         // Assert the header is hydrated
@@ -123,7 +123,7 @@ describe('meta-navigation', () => {
           },
         ];
 
-        prepare('Components/Internet Header/Header', 'Default', { config });
+        prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default', { config });
         cy.changeArg('language', 'de');
 
         // Assert the header is hydrated

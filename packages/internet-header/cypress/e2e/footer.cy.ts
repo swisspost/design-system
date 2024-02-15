@@ -4,7 +4,7 @@ describe('footer', () => {
   describe('config', () => {
     describe('custom footer config set', () => {
       it(`shows custom footer links`, async () => {
-        prepare('Components/Internet Header/Footer', 'Default');
+        prepare('27fc009d-3eec-43a9-b3a2-55531e721817', 'Default');
 
         const customFooterConfig = {
           de: {
@@ -41,12 +41,12 @@ describe('footer', () => {
 
     describe('external functions test', () => {
       it('should not show cookie settings link when UC_UI is not defined', () => {
-        prepare('Components/Internet Header/Footer', 'Default');
+        prepare('27fc009d-3eec-43a9-b3a2-55531e721817', 'Default');
         cy.get('.footer-meta-links').should('exist').get('.cookie-settings').should('not.exist');
       });
 
       it('should show cookie settings when UC_UI is defined', () => {
-        prepare('Components/Internet Header/Footer', 'Default');
+        prepare('27fc009d-3eec-43a9-b3a2-55531e721817', 'Default');
         cy.window().then(win => {
           win['UC_UI'] = { showSecondLayer: () => 'second layer mock' };
           cy.get('.footer-meta-links').should('exist').get('.cookie-settings').should('exist');

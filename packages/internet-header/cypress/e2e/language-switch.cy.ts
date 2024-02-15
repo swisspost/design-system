@@ -9,7 +9,7 @@ describe('language-switch', () => {
 
   beforeEach(() => {
     cy.viewport(1024, 800);
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default');
     cy.changeArg('language', 'de');
   });
 
@@ -140,7 +140,7 @@ describe('language-switch', () => {
         url: '',
       };
       config.en!.header.navLang = [navLangEntry];
-      prepare('Components/Internet Header/Header', 'Default', { config });
+      prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default', { config });
       cy.get('#post-language-switch-desktop').should('not.exist');
     });
 

@@ -2,7 +2,7 @@ import { prepare } from '../support/prepare-story';
 
 describe('os-flyout', () => {
   beforeEach(() => {
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default');
   });
   it('should customize the os flyout title', () => {
     const title = 'Test OS Flyout';

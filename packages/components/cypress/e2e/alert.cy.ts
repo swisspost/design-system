@@ -1,7 +1,7 @@
 describe('alert', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('post-alert');
+      cy.getComponent('post-alert', '8fd36823-966e-46a8-8432-a4439f6e208f');
     });
 
     it('should render', () => {
@@ -15,7 +15,7 @@ describe('alert', () => {
 
   describe('dismissible', () => {
     beforeEach(() => {
-      cy.getComponent('post-alert', 'dismissible');
+      cy.getComponent('post-alert', '8fd36823-966e-46a8-8432-a4439f6e208f', 'dismissible');
     });
 
     it('should have a close button', () => {

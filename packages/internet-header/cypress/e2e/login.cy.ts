@@ -6,7 +6,7 @@ describe('login', () => {
   describe('args', () => {
     describe('login: true', () => {
       it(`adds login control`, () => {
-        prepare('Components/Internet Header/Header', 'Default');
+        prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default');
         cy.changeArg('login', true);
         cy.get('post-klp-login-widget').should('exist').and('be.visible');
       });
@@ -14,7 +14,7 @@ describe('login', () => {
 
     describe('login: false', () => {
       it(`removes login control`, () => {
-        prepare('Components/Internet Header/Header', 'Default');
+        prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default');
         cy.changeArg('login', false);
         cy.get('post-klp-login-widget').should('not.exist');
       });
@@ -31,7 +31,7 @@ describe('login', () => {
         config.de!.header.loginWidgetOptions = undefined;
 
         // Intercept the request to the config API and return a static response
-        prepare('Components/Internet Header/Header', 'Default', { config });
+        prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default', { config });
         cy.changeArg('language', 'de');
 
         // Assert the header is hydrated
@@ -49,7 +49,7 @@ describe('login', () => {
         let config: IPortalConfig = JSON.parse(JSON.stringify(testConfiguration));
         config.de!.header.showJobsLoginWidget = true;
         config.de!.header.isLoginWidgetHidden = false;
-        prepare('Components/Internet Header/Header', 'Default', { config });
+        prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default', { config });
         cy.changeArg('language', 'de');
         console.warn(config.de?.header.loginWidgetOptions);
         cy.get('swisspost-internet-header').should('have.class', 'hydrated');
@@ -63,7 +63,7 @@ describe('login', () => {
         let config: IPortalConfig = JSON.parse(JSON.stringify(testConfiguration));
         config.de!.header.showJobsLoginWidget = false;
         config.de!.header.isLoginWidgetHidden = false;
-        prepare('Components/Internet Header/Header', 'Default', { config });
+        prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default', { config });
         cy.changeArg('language', 'de');
         cy.get('swisspost-internet-header').should('have.class', 'hydrated');
         cy.get('.klp-widget-anonymous').should('exist');

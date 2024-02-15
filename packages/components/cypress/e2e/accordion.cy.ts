@@ -1,7 +1,7 @@
 describe('accordion', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('accordion');
+      cy.getComponent('accordion', '4d1b4185-e04d-494a-ab38-2b56c1778b0b');
       cy.get('@accordion').find('post-accordion-item').as('collapsibles');
     });
 
@@ -30,7 +30,7 @@ describe('accordion', () => {
 
   describe('multiple open panels', () => {
     beforeEach(() => {
-      cy.getComponent('accordion', 'multiple-open-panels');
+      cy.getComponent('accordion', '4d1b4185-e04d-494a-ab38-2b56c1778b0b', 'multiple-open-panels');
       cy.get('@accordion').find('post-accordion-item').as('collapsibles');
     });
 

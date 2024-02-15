@@ -3,7 +3,7 @@ import { prepare } from '../support/prepare-story';
 describe('main-navigation', () => {
   describe('slotted element: false', () => {
     beforeEach(() => {
-      prepare('Components/Internet Header/Header', 'Default');
+      prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865', 'Default');
     });
 
     it('should not have any custom content', () => {
@@ -17,7 +17,7 @@ describe('main-navigation', () => {
 
   describe('slotted element: true', () => {
     beforeEach(() => {
-      prepare('Components/Internet Header/Header/Custom Content', 'Default');
+      prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865/Custom Content', 'Default');
 
       cy.get('swisspost-internet-header').find('[slot=main]').as('slotted-element');
       cy.get('swisspost-internet-header')

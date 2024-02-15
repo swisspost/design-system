@@ -1,7 +1,7 @@
 describe('tooltips', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('tooltip', 'multiple');
+      cy.getComponent('tooltip', 'cd684d90-e7a7-41a9-8923-b1b72ad9b384', 'multiple');
       cy.get('button[data-tooltip-target="tooltip-multiple"]:first-of-type').as('target1');
       cy.get('button[data-tooltip-target="tooltip-multiple"]:last-of-type').as('target2');
       cy.get('#tooltip-multiple').find('div[popover]').as('tooltip');
@@ -34,7 +34,7 @@ describe('tooltips', () => {
 
   describe('non-focusable element', () => {
     beforeEach(() => {
-      cy.getComponent('tooltip', 'non-focusable');
+      cy.getComponent('tooltip', 'cd684d90-e7a7-41a9-8923-b1b72ad9b384', 'non-focusable');
       cy.get('cite[data-tooltip-target="tooltip-non-focusable"]').as('target');
     });
 
@@ -45,7 +45,7 @@ describe('tooltips', () => {
 
   describe('aria', () => {
     beforeEach(() => {
-      cy.getComponent('tooltip', 'multiple');
+      cy.getComponent('tooltip', 'cd684d90-e7a7-41a9-8923-b1b72ad9b384', 'multiple');
       cy.get('button[data-tooltip-target="tooltip-multiple"]:first-of-type').as('target1');
       cy.get('@target1').invoke('attr', 'aria-describedby', 'existing-value');
     });

@@ -1,7 +1,7 @@
 describe('tabs', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('tabs');
+      cy.getComponent('tabs', 'bb1291ca-4dbb-450c-a15f-596836d9f39e');
       cy.get('post-tab-header').as('headers');
     });
 
@@ -58,7 +58,7 @@ describe('tabs', () => {
 
   describe('active panel', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', 'active-panel');
+      cy.getComponent('tabs', 'bb1291ca-4dbb-450c-a15f-596836d9f39e', 'active-panel');
       cy.get('post-tab-header').as('headers');
       cy.get('post-tab-panel:visible').as('panel');
     });
@@ -91,7 +91,7 @@ describe('tabs', () => {
 
   describe('async', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', 'async');
+      cy.getComponent('tabs', 'bb1291ca-4dbb-450c-a15f-596836d9f39e', 'async');
       cy.get('post-tab-header').as('headers');
     });
 
