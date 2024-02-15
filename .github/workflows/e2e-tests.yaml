@@ -37,6 +37,9 @@ jobs:
       - name: Prepare Cypress – Clean Xvfb lock file
         run: rm -rf /tmp/.X99-lock
 
+      - name: Prepare Cypress – Clean Xvfb lock file
+        run: rm -rf /tmp/.X100-lock
+
       - name: Prepare Cypress – Spawn Xvfb server
         run: Xvfb -screen 0 1024x768x24 :99 &
 
