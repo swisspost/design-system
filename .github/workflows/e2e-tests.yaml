@@ -35,7 +35,7 @@ jobs:
         run: pnpm bootstrap
 
       - name: Prepare Cypress – Spawn Xvfb server
-        run: Xvfb :99 &
+        run: Xvfb -screen 0 1024x768x24 :99 &
 
       - name: Prepare Cypress – Share Xvfb server as environment variable
         run: export DISPLAY=:99
