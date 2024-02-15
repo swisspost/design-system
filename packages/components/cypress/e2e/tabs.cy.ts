@@ -1,7 +1,9 @@
+const TABS_ID = 'bb1291ca-4dbb-450c-a15f-596836d9f39e';
+
 describe('tabs', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('tabs');
+      cy.getComponent('tabs', TABS_ID);
       cy.get('post-tab-header').as('headers');
     });
 
@@ -58,7 +60,7 @@ describe('tabs', () => {
 
   describe('active panel', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', 'active-panel');
+      cy.getComponent('tabs', TABS_ID, 'active-panel');
       cy.get('post-tab-header').as('headers');
       cy.get('post-tab-panel:visible').as('panel');
     });
@@ -91,7 +93,7 @@ describe('tabs', () => {
 
   describe('async', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', 'async');
+      cy.getComponent('tabs', TABS_ID, 'async');
       cy.get('post-tab-header').as('headers');
     });
 
