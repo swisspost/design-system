@@ -5,6 +5,7 @@ import meta from './standard-html/tag.stories';
 
 export default {
   ...meta,
+  id: 'eedae2a5-f1e3-4a4b-a332-7ed7c84134c3',
   title: 'Snapshots',
 };
 
