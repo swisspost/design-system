@@ -3,7 +3,7 @@ describe('collapsible', () => {
     beforeEach(() => {
       cy.getComponent('collapsible', '6a91848c-16ec-4a23-bc45-51c797b5b2c3');
       cy.get('@collapsible').find('.collapse').as('collapse');
-      cy.get('#components-collapsible--default--button').as('toggler');
+      cy.get('#button--6a91848c-16ec-4a23-bc45-51c797b5b2c3--default').as('toggler');
     });
 
     it('should render', () => {
@@ -37,7 +37,7 @@ describe('collapsible', () => {
     beforeEach(() => {
       cy.getComponent('collapsible', '6a91848c-16ec-4a23-bc45-51c797b5b2c3', 'initially-collapsed');
       cy.get('@collapsible').find('.collapse').as('collapse');
-      cy.get('#components-collapsible--initially-collapsed--button').as('toggler');
+      cy.get('#button--6a91848c-16ec-4a23-bc45-51c797b5b2c3--initially-collapsed').as('toggler');
     });
 
     it('should be collapsed', () => {

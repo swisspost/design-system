@@ -48,7 +48,7 @@ describe('main-navigation', () => {
   });
 
   it('Changes active link also in custom config nav links', () => {
-    prepare('ebb11274-091b-4cb7-9a3f-3e0451c9a865/Custom Config', 'Default');
+    prepare('bfdf4e7c-37d3-40f8-a5d0-734f3e6612b4', 'Default');
     cy.changeArg('language', 'en');
     cy.changeArg('active-route', 'https://maps.google.com');
     cy.get('swisspost-internet-header')
