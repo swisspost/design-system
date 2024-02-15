@@ -34,9 +34,6 @@ jobs:
       - name: Install & build dependencies
         run: pnpm bootstrap
 
-      - name: Prepare Cypress – Stop Xvfb server
-        run: pkill Xvfb
-
       - name: Prepare Cypress – Clean Xvfb lock file
         run: rm -rf /tmp/.X99-lock
 
