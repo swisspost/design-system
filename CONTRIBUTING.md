@@ -61,7 +61,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 #### Testing
 
 - Cross browser testing of the docs (official Post supported browsers -> https://github.com/swisspost/design-system/blob/main/packages/styles/.browserslistrc)
-- Testing the High Contrast mode with light and dark theme
+- Testing the High Contrast mode with light and dark theme (and cross browser)
 - Approval by UX for the story
 - Screen reader testing (at least nvda+win)
 
