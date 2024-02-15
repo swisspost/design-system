@@ -47,6 +47,7 @@ jobs:
         run: pnpm e2e:ci
 
       - name: Post Cypress – Stop Xvfb server
+        if: always()
         run: pkill Xvfb
 
       - name: Upload screenshots
