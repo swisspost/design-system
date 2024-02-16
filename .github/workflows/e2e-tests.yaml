@@ -21,12 +21,29 @@ jobs:
 
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        with:
+          use_cache: false
 
-      - name: Install dependencies
+      - name: Cache cypress
+        uses: actions/cache@v3
+        with:
+          path: /home/runner/.cache/Cypress
+          key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-cypress-
+
+      - name: Install & build dependencies
         run: pnpm bootstrap
 
       - name: Cypress info
         run: pnpm --filter design-system-documentation exec cypress info
 
       - name: Run tests
-        run: pnpm --filter "...[origin/main]" e2e
+        run: pnpm e2e:ci
+
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v4.3.0
+        if: failure()
+        with:
+          name: cypress-snapshots
+          path: packages/documentation/cypress/screenshots
+          retention-days: 14

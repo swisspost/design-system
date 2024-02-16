@@ -16,6 +16,7 @@
   }
 }
 
+//deprecated
 // px-gutters class is used to manipulate border collapse in product-cards
 .row.px-gutters {
   margin-right: -(commons.$border-width);
@@ -48,6 +49,7 @@
     }
   }
 
+  //deprecated
   .vertical-gutters {
     margin-bottom: -(portal-variables.$grid-gutter-width-rg);
 
@@ -58,6 +60,7 @@
   }
 }
 
+//deprecated
 @each $breakpoint in grid.$grid-breakpoints-list {
   .container-fluid-#{$breakpoint} {
     @include media-breakpoint-only($breakpoint) {
@@ -67,12 +70,14 @@
   }
 }
 
+//deprecated
 .container-reset-right-rg-up {
   @include media-breakpoint-up(rg) {
     margin-left: 0;
   }
 }
 
+//deprecated
 .container-reset-left-rg-up {
   @include media-breakpoint-up(rg) {
     margin-right: 0;

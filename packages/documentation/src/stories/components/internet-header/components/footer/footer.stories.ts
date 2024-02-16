@@ -5,6 +5,7 @@ import customFooterConfig from './custom-config/custom-footer-config';
 import { spread } from '@open-wc/lit-helpers';
 
 const meta: Meta = {
+  id: '27fc009d-3eec-43a9-b3a2-55531e721817',
   title: 'Components/Internet Header/Footer',
   component: 'swisspost-internet-footer',
   render: renderInternetFooter,

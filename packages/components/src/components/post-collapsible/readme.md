@@ -7,17 +7,16 @@
 
 ## Properties
 
-| Property       | Attribute       | Description                                                                             | Type                         | Default |
-| -------------- | --------------- | --------------------------------------------------------------------------------------- | ---------------------------- | ------- |
-| `collapsed`    | `collapsed`     | If `true`, the element is initially collapsed otherwise it is displayed.                | `boolean`                    | `false` |
-| `headingLevel` | `heading-level` | Defines the hierarchical level of the collapsible header within the headings structure. | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `2`     |
+| Property    | Attribute   | Description                                                              | Type      | Default |
+| ----------- | ----------- | ------------------------------------------------------------------------ | --------- | ------- |
+| `collapsed` | `collapsed` | If `true`, the element is initially collapsed otherwise it is displayed. | `boolean` | `false` |
 
 
 ## Events
 
-| Event            | Description                                                                                              | Type                |
-| ---------------- | -------------------------------------------------------------------------------------------------------- | ------------------- |
-| `collapseChange` | An event emitted when the collapse element is shown or hidden, before the transition. It has no payload. | `CustomEvent<void>` |
+| Event            | Description                                                                                                                                                                            | Type                   |
+| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `collapseChange` | An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed. | `CustomEvent<boolean>` |
 
 
 ## Methods
@@ -41,12 +40,25 @@ Type: `Promise<boolean>`
 
 
 
-## Shadow Parts
+## Slots
 
-| Part               | Description |
-| ------------------ | ----------- |
-| `"accordion-item"` |             |
+| Slot        | Description                                              |
+| ----------- | -------------------------------------------------------- |
+| `"default"` | Slot for placing content within the collapsible element. |
 
+
+## Dependencies
+
+### Used by
+
+ - [post-accordion-item](../post-accordion-item)
+
+### Graph
+```mermaid
+graph TD;
+  post-accordion-item --> post-collapsible
+  style post-collapsible fill:#f9f,stroke:#333,stroke-width:4px
+```
 
 ----------------------------------------------
 

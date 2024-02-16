@@ -1,5 +1,130 @@
 # @swisspost/design-system-documentation
 
+## 3.0.0
+
+### Minor Changes
+
+- Added a documentation page for the ng-bootstrap modal component. (by [@alizedebray](https://github.com/alizedebray) with [#2531](https://github.com/swisspost/design-system/pull/2531))
+
+- Added a documentation page for the ng-bootstrap progressbar component. (by [@imagoiq](https://github.com/imagoiq) with [#2549](https://github.com/swisspost/design-system/pull/2549))
+
+- Added a documentation page for the ng-bootstrap/post notification-overlay component. (by [@imagoiq](https://github.com/imagoiq) with [#2608](https://github.com/swisspost/design-system/pull/2608))
+
+- Added a documentation page for the angular `custom-select` component based on the ng-bootstrap `dropdown` component. (by [@b1aserlu](https://github.com/b1aserlu) with [#2573](https://github.com/swisspost/design-system/pull/2573))
+
+- Added a documentation page for the ng-bootstrap dropdown component. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2551](https://github.com/swisspost/design-system/pull/2551))
+
+- Added a documentation page for the post stepper component. (by [@alizedebray](https://github.com/alizedebray) with [#2556](https://github.com/swisspost/design-system/pull/2556))
+
+- Added a documentation page for the design-system migration process. (by [@imagoiq](https://github.com/imagoiq) with [#2577](https://github.com/swisspost/design-system/pull/2577))
+
+- Added a documentation page for the ng-bootstrap typeahead component. (by [@imagoiq](https://github.com/imagoiq) with [#2547](https://github.com/swisspost/design-system/pull/2547))
+
+- Added a documentation page for the ng-bootstrap pagination component. (by [@imagoiq](https://github.com/imagoiq) with [#2549](https://github.com/swisspost/design-system/pull/2549))
+
+- Added a documentation page for the ng-bootstrap timepicker component. (by [@imagoiq](https://github.com/imagoiq) with [#2549](https://github.com/swisspost/design-system/pull/2549))
+
+- Added a documentation page for the post product card component. (by [@alizedebray](https://github.com/alizedebray) with [#2580](https://github.com/swisspost/design-system/pull/2580))
+
+- Added a getting-started docs page for the new `@swisspost/components-angular` package. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2071](https://github.com/swisspost/design-system/pull/2071))
+
+- Added an alert warning that the documentation is in beta, it will remain until all Design System components are documented. (by [@alizedebray](https://github.com/alizedebray) with [#2563](https://github.com/swisspost/design-system/pull/2563))
+
+### Patch Changes
+
+- Fixed conflict between autolink anchor links and normal anchor links. (by [@imagoiq](https://github.com/imagoiq) with [#2529](https://github.com/swisspost/design-system/pull/2529))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.2.0
+  - @swisspost/design-system-styles@6.6.1
+  - @swisspost/design-system-components-angular@1.0.0
+  - @swisspost/internet-header@1.13.5
+  - @swisspost/design-system-components@2.0.1
+  - @swisspost/design-system-intranet-header@5.0.8
+  - @swisspost/design-system-components-react@1.0.27
+
+## 2.8.1
+
+### Patch Changes
+
+- Added a documentation page for the ng-bootstrap progressbar component. (by [@imagoiq](https://github.com/imagoiq) with [#2545](https://github.com/swisspost/design-system/pull/2545))
+
+- Added a documentation page for the ng-bootstrap pagination component. (by [@imagoiq](https://github.com/imagoiq) with [#2540](https://github.com/swisspost/design-system/pull/2540))
+
+- Updated home page technologies table. (by [@imagoiq](https://github.com/imagoiq) with [#2546](https://github.com/swisspost/design-system/pull/2546))
+
+- Migrated carousel documentation to new documentation. (by [@imagoiq](https://github.com/imagoiq) with [#2490](https://github.com/swisspost/design-system/pull/2490))
+- Updated dependencies:
+  - @swisspost/internet-header@1.13.4
+
+## 2.8.0
+
+### Minor Changes
+
+- Added a documentation page for the ng-bootstrap datepicker component. (by [@alizedebray](https://github.com/alizedebray) with [#2518](https://github.com/swisspost/design-system/pull/2518))
+
+- Added a deprecation message to the badge documentation. (by [@b1aserlu](https://github.com/b1aserlu) with [#2410](https://github.com/swisspost/design-system/pull/2410))
+
+- Updated the tooltip `min-height` and `max-width` and added a new property arrow to the tooltip, that defines wheter or not the pointer arrow is displayed. (by [@b1aserlu](https://github.com/b1aserlu) with [#2394](https://github.com/swisspost/design-system/pull/2394))
+
+### Patch Changes
+
+- Cleaned icon component controls from duplicate and null values. (by [@imagoiq](https://github.com/imagoiq) with [#2501](https://github.com/swisspost/design-system/pull/2501))
+
+- Documented the form patterns and added a usage sample to align buttons together in the button component page. (by [@imagoiq](https://github.com/imagoiq) with [#2463](https://github.com/swisspost/design-system/pull/2463))
+
+- Created a `post-accordion-item` to use as children for the `post-accordion` component. It replaces the `post-collapsible` component. (by [@alizedebray](https://github.com/alizedebray) with [#2466](https://github.com/swisspost/design-system/pull/2466))
+
+- Added autolink to headings to be able to copy anchor link more easily from the documentation. (by [@imagoiq](https://github.com/imagoiq) with [#2467](https://github.com/swisspost/design-system/pull/2467))
+
+- Updated copyright year to 2024 in the footer of all documentation. (by [@imagoiq](https://github.com/imagoiq) with [#2491](https://github.com/swisspost/design-system/pull/2491))
+
+- Convert LinkTo element to regular links to fix location issue. (by [@imagoiq](https://github.com/imagoiq) with [#2496](https://github.com/swisspost/design-system/pull/2496))
+
+- Removed intranet-header nesting in sidebar. (by [@imagoiq](https://github.com/imagoiq) with [#2492](https://github.com/swisspost/design-system/pull/2492))
+
+- Added additional information for setting up projects with content security policies that are using the `<post-icon>` component. (by [@b1aserlu](https://github.com/b1aserlu) with [#2406](https://github.com/swisspost/design-system/pull/2406))
+
+- Restricted `post-collapsible` to collapse behaviour only. The component remains unchanged when used with external controls, however, it no longer has a `header` slot.
+
+  Before:
+
+  ```html
+  <post-collapsible collapsed="" headingLevel="6">
+    <span slot="header">Titulum</span>
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </post-collapsible>
+  ```
+
+  After:
+
+  ```html
+  <post-accordion-item collapsed="" headingLevel="6">
+    <span slot="header">Titulum</span>
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  </post-accordion-item>
+  ```
+
+  To get the same look and feel as in the previous version, use the `post-accordion-item` component instead. (by [@alizedebray](https://github.com/alizedebray) with [#2379](https://github.com/swisspost/design-system/pull/2379))
+
+- Fixed vertical rythmn which was not applied to content inside tab like Alert component. (by [@imagoiq](https://github.com/imagoiq) with [#2497](https://github.com/swisspost/design-system/pull/2497))
+
+- Disable floating label when input is type color. (by [@imagoiq](https://github.com/imagoiq) with [#2457](https://github.com/swisspost/design-system/pull/2457))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.1.0
+  - @swisspost/design-system-styles@6.6.0
+  - @swisspost/design-system-components@2.0.0
+  - @swisspost/internet-header@1.13.3
+  - @swisspost/design-system-components-react@1.0.26
+
+## 2.7.1
+
+### Patch Changes
+
+- Enabled import injection for components. This fixes an issue with importing dynamically loaded web components with the vite compiler for storybook. (by [@gfellerph](https://github.com/gfellerph) with [#2448](https://github.com/swisspost/design-system/pull/2448))
+- Updated dependencies:
+  - @swisspost/design-system-components@1.7.1
+  - @swisspost/design-system-components-react@1.0.25
+
 ## 2.7.0
 
 ### Minor Changes

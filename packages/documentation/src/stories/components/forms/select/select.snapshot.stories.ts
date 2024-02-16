@@ -3,8 +3,10 @@ import meta, { Default, FloatingLabel } from './select.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../../utils';
 
+const { id, ...metaWithoutId } = meta;
+
 export default {
-  ...meta,
+  ...metaWithoutId,
   title: 'Snapshots',
 };
 
@@ -32,14 +34,13 @@ export const Select: Story = {
       }),
       ...bombArgs({
         size: context.argTypes.size.options,
-        success: [false, true],
-        validation: context.argTypes.validation.options.filter((option: string) => option !== 'is-invalid'),
+        validation: context.argTypes.validation.options.filter(
+          (option: string) => option !== 'is-invalid',
+        ),
       }),
     ]
       // remove disabled & validated examples
       .filter((args: Args) => !(args.disabled && args.validation !== 'null'));
-
-    console.log('bombArg', bombArgsGeneratedDefault);
 
     //Arguments for Multiple Version
     const bombArgsGeneratedMultiple = [

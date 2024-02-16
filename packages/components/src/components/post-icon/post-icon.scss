@@ -21,6 +21,7 @@ span {
   width: 100%;
   height: 100%;
   fill: currentColor;
+  forced-color-adjust: preserve-parent-color;
   background-color: currentColor;
   -webkit-mask-position: center center;
   mask-position: center center;

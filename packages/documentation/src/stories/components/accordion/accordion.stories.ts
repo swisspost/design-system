@@ -4,6 +4,7 @@ import { ifDefined } from 'lit/directives/if-defined.js';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta<HTMLPostAccordionElement> = {
+  id: '4d1b4185-e04d-494a-ab38-2b56c1778b0b',
   title: 'Components/Accordion',
   component: 'post-accordion',
   parameters: {
@@ -22,20 +23,20 @@ type Story = StoryObj<HTMLPostAccordionElement>;
 export const Default: Story = {
   render: (args: Partial<HTMLPostAccordionElement>) => html`
     <post-accordion multiple=${ifDefined(args.multiple || undefined)}>
-      <post-collapsible>
+      <post-accordion-item>
         <span slot="header">Titulum 1</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
 
-      <post-collapsible>
+      <post-accordion-item>
         <span slot="header">Titulum 2</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
 
-      <post-collapsible>
+      <post-accordion-item>
         <span slot="header">Titulum 3</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
     </post-accordion>
   `,
 };
@@ -43,20 +44,62 @@ export const Default: Story = {
 export const MultipleOpenPanels: Story = {
   render: () => html`
     <post-accordion multiple="true">
-      <post-collapsible>
+      <post-accordion-item>
         <span slot="header">Titulum 1</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
 
-      <post-collapsible collapsed>
+      <post-accordion-item collapsed>
         <span slot="header">Titulum 2</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
 
-      <post-collapsible collapsed>
+      <post-accordion-item collapsed>
         <span slot="header">Titulum 3</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-collapsible>
+      </post-accordion-item>
+    </post-accordion>
+  `,
+};
+
+export const DefaultCollapsedPanels: Story = {
+  render: () => html`
+    <post-accordion>
+      <post-accordion-item collapsed>
+        <span slot="header">Titulum 1</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+
+      <post-accordion-item>
+        <span slot="header">Titulum 2</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+
+      <post-accordion-item>
+        <span slot="header">Titulum 3</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+    </post-accordion>
+  `,
+};
+
+export const DefaultCollapsedMultiplePanels: Story = {
+  render: () => html`
+    <post-accordion multiple="true">
+      <post-accordion-item collapsed>
+        <span slot="header">Titulum 1</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+
+      <post-accordion-item>
+        <span slot="header">Titulum 2</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
+
+      <post-accordion-item>
+        <span slot="header">Titulum 3</span>
+        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+      </post-accordion-item>
     </post-accordion>
   `,
 };

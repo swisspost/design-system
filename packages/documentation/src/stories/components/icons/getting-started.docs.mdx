@@ -1,6 +1,5 @@
 import { Meta, Source } from '@storybook/blocks';
-import LinkTo from '@storybook/addon-links/react';
-import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
+import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import * as GettingStartedStories from './getting-started.stories';
 import SampleAngularConfig from './getting-started-angular-config.sample.json?raw';
 import SampleNode16 from './getting-started-node-16.7.0.sample.json?raw';
@@ -21,24 +20,23 @@ The comprehensive collection of Swiss Post icons.
     <a href="#installation" target="_self">Installation</a>
   </li>
   <li>
-    <a href="#configuration" target="_self">Configuration</a>
+    <a href="#usage" target="_self">Usage</a>
   </li>
   <li>
-    <a href="#cdn-approach" target="_self">CDN approach</a>
+    <a href="#usage-with-cdn" target="_self">Usage with CDN</a>
   </li>
 </ul>
 
 ## Installation
 
 <Source code={`npm install @swisspost/design-system-icons`} language="bash" />
-{/* prettier-ignore */}
+
 <div className="alert alert-info alert-md">
-  If you want to use our <LinkTo kind="icons-components-icon" story="docs">icon component</LinkTo> to
-  render the icons (which we strongly recommend), you must also install the{' '}
+  If you want to use our [icon component](/?path=/docs/0dcfe3c0-bfc0-4107-b43b-7e9d825b805f--docs) to
+  render the icons (which we strongly recommend), you must also install the
   <strong>components</strong> package.
   <br />
-  To learn how to set up this package please read our{' '}
-  <LinkTo kind="getting-started-components" story="docs">Components - Getting Started</LinkTo> page.
+  To learn how to set up this package please read our [Components - Getting Started](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs) page.
 </div>
 
 ## Usage
@@ -107,4 +105,5 @@ All icons are also available from a CDN, which is the default if you don't confi
 ### Check the Content Security Policy
 
 If your project includes the <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Security-Policy" target="_blank">Content-Security-Policy</a> response header (usually in `index.html`),
-make sure that `default-src` is set to `'self'`.
+make sure that `default-src` is set to `'self'`. In case you are using the `<post-icon>` component you need to add [`https://unpkg.com/`](https://unpkg.com/) to the `connect-src` in index.html. This is becasue the icons are retrived from there.
+

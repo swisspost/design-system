@@ -4,6 +4,7 @@ import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: Meta = {
+  id: '9a636763-de2d-4f72-bc81-98daf10871f7',
   title: 'Components/Popover',
   component: 'post-popover',
   parameters: {
@@ -83,20 +84,18 @@ const meta: Meta = {
 
 function render(args: Args) {
   return html`
-    <button class="btn btn-secondary btn-large" data-popover-target="${args.id}">
-      Click here to see a popover
-    </button>
+    <div class="d-flex justify-content-center">
+      <button class="btn btn-secondary btn-large" data-popover-target="${args.id}">
+        Click here to see a popover
+      </button>
+    </div>
     <post-popover
       class="hydrated bg-${args.backgroundColor}"
       id="${args.id}"
       placement="${args.placement}"
       ?arrow="${args.arrow}"
     >
-      ${args.title
-        ? html`
-            <h2 class="h6">Optional title</h2>
-          `
-        : null}
+      ${args.title ? html` <h2 class="h6">Optional title</h2> ` : null}
       <p class="mb-0">${unsafeHTML(args.innerHtml)}</p>
     </post-popover>
   `;

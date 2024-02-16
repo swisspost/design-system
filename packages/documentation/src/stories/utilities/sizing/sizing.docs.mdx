@@ -1,7 +1,6 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import { formatAsMap } from '../../../utils/sass-export';
 import * as SizingStories from './sizing.stories';
-import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 <Meta of={SizingStories} />
 
@@ -25,7 +24,9 @@ Bootstrap offers sizing classes with the suffixes bellow. They allow you to set 
 > - `*-75`
 > - `*-100`
 
-<Canvas of={SizingStories.SizesPercent} />
+#### Example
+
+<Canvas sourceState="shown" of={SizingStories.SizesPercent} />
 <div className="hide-col-default">
   <Controls of={SizingStories.SizesPercent} />
 </div>
@@ -34,7 +35,7 @@ Bootstrap offers sizing classes with the suffixes bellow. They allow you to set 
 
 For width, we offer additionally `.w-{breakpoint}-{size}` classes (e.g. `w-md-100`) so that you can size only for some specific breakpoints.
 
-See <a href="/?path=/docs/components-button--docs#full-width">Full-width button</a> for a practical example.
+See <a href="/?path=/docs/eb78afcb-ce92-4990-94b6-6536d5ec6af4--docs#full-width">Full-width button</a> for a practical example.
 
 ### Post-Sizes
 

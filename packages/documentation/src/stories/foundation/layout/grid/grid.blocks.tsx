@@ -1,4 +1,3 @@
-import LinkTo from '@storybook/addon-links/react';
 import { parse } from '../../../../utils/sass-export';
 import { forEach } from '../../../../utils/react';
 import { SpecTable } from '../shared.blocks';
@@ -35,9 +34,9 @@ export const GridTable = () => (
     <tr>
       <th>Custom gutters</th>
       <td colSpan={SCSS_VARIABLES['breakpoint-count']}>
-        <LinkTo kind="foundations-layout-gutters" story="docs">
+        <a href="#gutters" target="_self">
           yes
-        </LinkTo>
+        </a>
       </td>
     </tr>
     <tr>
@@ -51,9 +50,7 @@ export const GridTable = () => (
     <tr>
       <th>Column ordering</th>
       <td colSpan={SCSS_VARIABLES['breakpoint-count']}>
-        <LinkTo kind="foundations-layout-columns" story="docs">
-          yes
-        </LinkTo>
+        <a href="/?path=/docs/cd70f48f-6308-4ec8-a8c6-982bd72c855c--docs">yes</a>
       </td>
     </tr>
   </SpecTable>

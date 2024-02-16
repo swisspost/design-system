@@ -4,86 +4,61 @@ import { Components } from '@swisspost/design-system-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { BADGE } from '../../../../../.storybook/constants';
+import { spreadArgs } from '../../../../utils';
 
 const meta: Meta = {
+  id: '0dcfe3c0-bfc0-4107-b43b-7e9d825b805f',
   title: 'Components/Icons/Icon Component',
   component: 'post-icon',
   parameters: {
     badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
   },
   args: {
-    'name': '1022',
-    'base': '',
-    'flip-h': false,
-    'flip-v': false,
-    'scale': 1,
-    'rotate': 0,
-    'animation': null,
+    name: '1022',
+    base: '',
+    flipH: false,
+    flipV: false,
+    scale: null,
+    rotate: null,
+    animation: null,
   },
   argTypes: {
-    'name': {
+    name: {
       table: {
         category: 'General',
       },
     },
-    'base': {
+    base: {
       table: {
         category: 'General',
       },
     },
-    'flip-h': {
-      table: {
-        category: 'Transformation',
-      },
-    },
-    'flip-v': {
-      table: {
-        category: 'Transformation',
-      },
-    },
-    'scale': {
+    scale: {
       control: {
         type: 'number',
         min: 0.5,
         max: 3,
         step: 0.1,
       },
-      table: {
-        category: 'Transformation',
-      },
     },
-    'rotate': {
+    rotate: {
       control: {
         type: 'number',
         min: -360,
         max: 360,
         step: 1,
       },
-      table: {
-        category: 'Transformation',
-      },
     },
-    'animation': {
+    animation: {
       options: [null, 'cylon', 'cylon-vertical', 'spin', 'spin-reverse', 'fade', 'throb'],
-      table: {
-        category: 'Transformation',
-      },
     },
   },
-  render: args =>
-    html`
-      <post-icon ${spread(normalizeArgs(args))}></post-icon>
-    `,
+  render: args => html` <post-icon ${spreadArgs(normalizeArgs(args))}></post-icon> `,
 };
 
 function normalizeArgs(args: Args) {
-  return Object.assign({}, args, {
-    'base': args.base || null,
-    'scale': args.scale !== 1 ? args.scale : null,
-    'rotate': args.rotate !== 0 ? args.rotate : null,
-    'flip-h': args['flip-h'] !== false ? args['flip-h'] : null,
-    'flip-v': args['flip-v'] !== false ? args['flip-v'] : null,
-  });
+  // remove attribute with falsy values
+  return Object.fromEntries(Object.entries(args).filter(([_, v]) => v));
 }
 
 const renderVariants = (
@@ -93,17 +68,13 @@ const renderVariants = (
   return html`
     ${customAttrs.map(
       variantArgs =>
-        html`
-          <post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon>
-        `,
+        html` <post-icon ${spread(normalizeArgs(args))} ${spread(variantArgs)}></post-icon> `,
     )}
   `;
 };
 
 const generateDecorators = (story: any, className?: string) => {
-  return html`
-    <div class="${ifDefined(className)}" style="font-size: 32px">${story()}</div>
-  `;
+  return html` <div class="${ifDefined(className)}" style="font-size: 32px">${story()}</div> `;
 };
 
 export default meta;
