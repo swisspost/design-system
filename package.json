@@ -18,7 +18,7 @@
     "test": "pnpm -r test",
     "unit": "pnpm -r unit",
     "e2e": "start-server-and-test docs:headless 9001 'pnpm -r --stream e2e'",
-    "e2e:ci": "start-server-and-test docs:headless 9001 'pnpm --filter \"...[origin/main]\" --stream e2e'",
+    "e2e:ci": "start-server-and-test docs:headless 9001 'pnpm --filter \"...[origin/main]\" --stream e2e:ci'",
     "snapshots": "start-server-and-test 'pnpm docs:headless' 9001 'pnpm --filter design-system-documentation snapshots'",
     "demo": "pnpm demo:start",
     "demo:start": "pnpm --filter design-system-demo... --parallel --stream start",

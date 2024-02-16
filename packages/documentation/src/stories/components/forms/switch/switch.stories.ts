@@ -6,6 +6,7 @@ import { BADGE } from '../../../../../.storybook/constants';
 import { mapClasses } from '../../../../utils';
 
 const meta: Meta = {
+  id: '7fb639f8-86f6-4937-999c-4ee15f81643b',
   title: 'Components/Forms/Switch',
   render: renderSwitch,
   parameters: {
@@ -48,7 +49,7 @@ const meta: Meta = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -69,7 +70,7 @@ const meta: Meta = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -94,12 +95,7 @@ const meta: Meta = {
       },
     },
   },
-  decorators: [
-    story =>
-      html`
-        <div class="pt-3">${story()}</div>
-      `,
-  ],
+  decorators: [story => html` <div class="pt-3">${story()}</div> `],
 };
 
 export default meta;
@@ -124,23 +120,17 @@ function renderSwitch(args: Args, context: StoryContext) {
   const useLabelAfter = !useAriaLabel && 'after' === args.labelPosition;
 
   const labelBefore = useLabelBefore
-    ? html`
-        <label for=${context.id} class="form-check-label order-first">${args.label}</label>
-      `
+    ? html` <label for=${context.id} class="form-check-label order-first">${args.label}</label> `
     : null;
 
   const labelAfter = useLabelAfter
-    ? html`
-        <label for=${context.id} class="form-check-label">${args.label}</label>
-      `
+    ? html` <label for=${context.id} class="form-check-label">${args.label}</label> `
     : null;
 
   const validationText = args.validation === 'is-valid' ? 'Ggranda sukceso!' : 'Eraro okazis!';
   const validationFeedback =
     args.validation !== 'null'
-      ? html`
-          <p class=${args.validation.split('-')[1] + '-feedback'}>${validationText}</p>
-        `
+      ? html` <p class=${args.validation.split('-')[1] + '-feedback'}>${validationText}</p> `
       : null;
 
   return html`

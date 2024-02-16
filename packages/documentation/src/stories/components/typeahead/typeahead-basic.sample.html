@@ -1,0 +1,13 @@
+<div class="form-floating mb-3">
+  <input
+    id="typeahead-basic"
+    placeholder=" "
+    type="text"
+    class="form-control form-control-lg"
+    [(ngModel)]="model"
+    [ngbTypeahead]="search"
+  />
+  <label for="typeahead-basic" class="form-label">Search for a US state</label>
+</div>
+<hr />
+<pre>Model: {{ model | json }}</pre>

@@ -32,6 +32,10 @@ interface PopoverElement {
 
 export type PostPopoverElement = HTMLElement & PopoverElement;
 
+/**
+ * @slot - Default slot for placing content inside the popovercontainer.
+ */
+
 @Component({
   tag: 'post-popovercontainer',
   styleUrl: 'post-popovercontainer.scss',

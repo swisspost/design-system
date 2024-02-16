@@ -25,17 +25,8 @@ export const COMBINATIONS = [
     disabled: true,
   },
   {
-    label: `${SHORT_LABEL} - Success`,
-    success: true,
-  },
-  {
     label: `${SHORT_LABEL} - Valid`,
     validation: 'is-valid',
-  },
-  {
-    label: `${SHORT_LABEL} - Valid with success`,
-    validation: 'is-valid',
-    success: true,
   },
   {
     label: `${SHORT_LABEL} - Invalid`,

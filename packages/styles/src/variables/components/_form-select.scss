@@ -7,8 +7,6 @@ $form-select-disabled-color: forms.$input-disabled-color;
 $form-select-disabled-bg: forms.$input-disabled-bg;
 $form-select-disabled-border-color: forms.$input-disabled-border-color;
 $form-select-indicator-color: color.$black;
-$form-select-bg-size: 32px 32px !default;
-$form-select-bg-size-sm: 24px 24px !default;
 $_form-select-indicator-icon: icons.get-colored-svg-url('2113', $form-select-indicator-color);
 $form-select-indicator: url($_form-select-indicator-icon) !default;
 $form-select-indicator-disabled: url(icons.get-colored-svg-url(
