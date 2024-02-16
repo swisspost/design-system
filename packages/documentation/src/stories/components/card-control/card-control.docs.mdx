@@ -39,7 +39,7 @@ If this is not enough, you can also use the named `icon` slot and add your very 
 
 You can use the component directly in your forms, the control value will be available in the `FormData` of the surrounding `<form>` element, just as you are used to from native input elements.
 
-<p class="alert alert-info">Update the control and submit or reset the form to see how its FormData value changes.</p>
+<p className="alert alert-info">Update the control and submit or reset the form to see how its FormData value changes.</p>
 <Canvas of={CardControlStories.FormIntegration} />
 <div className="hide-col-default">
   <Controls of={CardControlStories.FormIntegration} />
@@ -47,7 +47,8 @@ You can use the component directly in your forms, the control value will be avai
 
 ### Lined up
 
-Change the width of a `<card-control>` component, by putting it (for example) in a grid.
+Change the `width` of a `<card-control>` component, by putting it (for example) in a grid.
+If you like to stretch all `<card-control>` components within a row to the same `height`, simply add the class `.h-100` to them.
 
 <Canvas of={CardControlStories.LinedUp} />
 <div className="hide-col-default">

@@ -4,9 +4,8 @@ import { BADGE } from '../../../../.storybook/constants';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { parse } from '../../../utils/sass-export';
+import './card-control.styles.scss';
 import scss from './card-control.module.scss';
-
-// TODO: fieldset and legend example
 
 const SCSS_VARIABLES = parse(scss);
 
@@ -85,6 +84,7 @@ export const Default: Story = {
 
     return html`
       <post-card-control
+        class="${args.class || nothing}"
         label="${args.label}"
         description="${args.description || nothing}"
         type="${args.type || nothing}"
@@ -207,11 +207,12 @@ function formHandler(e: any) {
 export const LinedUp: Story = {
   parameters: {
     controls: {
-      include: ['Columns'],
+      include: ['Columns', 'Full Height'],
     },
   },
   args: {
     colCount: 2,
+    fullHeight: false,
   },
   argTypes: {
     colCount: {
@@ -220,7 +221,17 @@ export const LinedUp: Story = {
       control: {
         type: 'inline-radio',
       },
-      options: [1, 2, 4],
+      options: [1, 2, 3, 4],
+      table: {
+        category: 'General',
+      },
+    },
+    fullHeight: {
+      name: 'Full Height',
+      description: 'Stretch elements in one row to the maximum height.',
+      control: {
+        type: 'boolean',
+      },
       table: {
         category: 'General',
       },
@@ -233,6 +244,7 @@ export const LinedUp: Story = {
           <div class="col-${12 / args.colCount}">
             ${Default.render?.(
               {
+                class: args.fullHeight ? 'h-100' : null,
                 label: `Checkbox${i}`,
                 description: i === 6 ? '20.- per year' : null,
                 type: args.type,
