@@ -43,7 +43,7 @@ function VersionSwitcher() {
   }, []);
 
   if (loading) {
-    return <div>Loadinf...</div>;
+    return <div>Loading...</div>;
   }
 
   return (
