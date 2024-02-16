@@ -26,7 +26,7 @@ function render(args: Args) {
     <div class="bg-light error-container">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 py-huge">
+          <div class="col-rg-8 py-huge">
             <h2>
               This page could not be found.
               <br />
@@ -47,7 +47,7 @@ function render(args: Args) {
               </a>
             </div>
           </div>
-          <div class="col-8 col-lg-4 align-self-end">
+          <div class="col-6 offset-3 offset-rg-0 col-rg-4 align-self-end">
             <img class="error-container__image" src="/images/content/404.png" alt="" />
           </div>
         </div>
