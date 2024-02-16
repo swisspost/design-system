@@ -3,7 +3,7 @@ import React from 'react';
 import { addons, types } from '@storybook/addons';
 import VersionSwitcher from './VersionSwitcher';
 
-const ADDON_ID = 'myAddonId';
+const ADDON_ID = 'postVersionSwitcher';
 
 addons.register(ADDON_ID, () => {
   addons.add(ADDON_ID, {
