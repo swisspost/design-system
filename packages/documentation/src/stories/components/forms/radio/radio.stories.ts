@@ -10,6 +10,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
+  id: '151242aa-a074-4a55-a81c-db597c83cdad',
   title: 'Components/Forms/Radio button',
   parameters: {
     controls: {
@@ -50,7 +51,7 @@ const meta: Meta = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -86,7 +87,7 @@ const meta: Meta = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -123,22 +124,12 @@ function render(args: Args, context: StoryContext) {
 
   const useAriaLabel = args.hiddenLabel;
   const label: TemplateResult | null = !useAriaLabel
-    ? html`
-        <label for="${id}" class="form-check-label">${args.label}</label>
-      `
+    ? html` <label for="${id}" class="form-check-label">${args.label}</label> `
     : null;
 
   const contextual: (TemplateResult | null)[] = [
-    args.validation === 'is-valid'
-      ? html`
-          <p class="valid-feedback">Ggranda sukceso!</p>
-        `
-      : null,
-    args.validation === 'is-invalid'
-      ? html`
-          <p class="invalid-feedback">Eraro okazis!</p>
-        `
-      : null,
+    args.validation === 'is-valid' ? html` <p class="valid-feedback">Ggranda sukceso!</p> ` : null,
+    args.validation === 'is-invalid' ? html` <p class="invalid-feedback">Eraro okazis!</p> ` : null,
   ];
 
   const control = html`
@@ -168,7 +159,7 @@ export const Default: Story = {};
 
 export function renderInline(args: Args, context: Partial<StoryContext>) {
   const [_, updateArgs] = useArgs();
-  const baseId = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
+  const baseId = `${context.viewMode}_${context.name?.replace(/\s/g, '-')}_ExampleRadio`;
   const id1 = baseId + '1';
   const id2 = baseId + '2';
   const id3 = baseId + '3';

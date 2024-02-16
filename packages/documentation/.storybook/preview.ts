@@ -65,6 +65,7 @@ const preview: Preview = {
             ['Getting Started', 'Header'],
             'Intranet Header',
             'Modal',
+            'Notification overlay',
             'Pagination',
             'Popover',
             'Progressbar',

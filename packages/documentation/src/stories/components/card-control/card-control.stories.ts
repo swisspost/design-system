@@ -6,7 +6,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { parse } from '../../../utils/sass-export';
 import scss from './card-control.module.scss';
 
-// TODO: fieldset and legend example as soon as #2626 is implemented
+// TODO: fieldset and legend example
 
 const SCSS_VARIABLES = parse(scss);
 

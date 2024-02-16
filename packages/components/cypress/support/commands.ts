@@ -48,12 +48,8 @@ export const isInViewport = function (_chai: Chai.ChaiStatic) {
 
 chai.use(isInViewport);
 
-Cypress.Commands.add('getComponent', (component: string, options = {}) => {
-  const componentPath = []
-    .concat(options.group, component)
-    .filter(p => p)
-    .join('-');
-  cy.visit(`/iframe.html?id=components-${componentPath}--${options.story ?? 'default'}`);
+Cypress.Commands.add('getComponent', (component: string, id: string, story = 'default') => {
+  cy.visit(`/iframe.html?id=${id}--${story}`);
 
   const alias = component.replace(/^post-/, '');
   cy.get(`post-${alias}`, { timeout: 30000 }).as(alias);

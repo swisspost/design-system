@@ -3,8 +3,10 @@ import meta from './switch.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../../utils';
 
+const { id, ...metaWithoutId } = meta;
+
 export default {
-  ...meta,
+  ...metaWithoutId,
   title: 'Snapshots',
 };
 
@@ -32,9 +34,7 @@ export const Switch: Story = {
     return html`
       <div>
         ${['white', 'dark'].map(
-          bg => html`
-            <div class=${'row bg-' + bg}>${templateVariants}</div>
-          `,
+          bg => html` <div class=${'row bg-' + bg}>${templateVariants}</div> `,
         )}
       </div>
     `;

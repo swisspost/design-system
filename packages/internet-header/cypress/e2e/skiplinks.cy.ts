@@ -1,8 +1,9 @@
 import { prepare } from '../support/prepare-story';
+import { HEADER } from './shared/variables';
 
 describe('skiplinks', () => {
   beforeEach(() => {
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare(HEADER, 'Default');
     cy.changeArg('language', 'de');
   });
 

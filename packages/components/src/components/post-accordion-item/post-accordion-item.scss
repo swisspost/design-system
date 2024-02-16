@@ -15,8 +15,8 @@
 
 post-accordion-item::part(accordion-item) {
   @include accordion-mx.background-color;
+}
 
-  post-accordion-item + & {
-    border-block-start: 0!important;
-  }
+:host(:not(:first-of-type)) .accordion-item {
+  border-block-start: 0;
 }

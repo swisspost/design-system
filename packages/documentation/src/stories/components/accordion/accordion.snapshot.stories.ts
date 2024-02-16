@@ -2,8 +2,10 @@ import type { StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Default } from './accordion.stories';
 import { html } from 'lit';
 
+const { id, ...metaWithoutId } = meta;
+
 export default {
-  ...meta,
+  ...metaWithoutId,
   title: 'Snapshots',
 };
 

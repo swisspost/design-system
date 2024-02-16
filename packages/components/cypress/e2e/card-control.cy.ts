@@ -1,7 +1,9 @@
+const CARDCONTROL_ID = '886fabcf-148b-4054-a2ec-4869668294fb';
+
 describe('card-control', () => {
   describe('structure & props', () => {
     beforeEach(() => {
-      cy.getComponent('card-control', { group: 'forms' });
+      cy.getComponent('card-control', CARDCONTROL_ID);
       cy.window().then(win => {
         cy.wrap(cy.spy(win.console, 'error')).as('consoleError');
       });
@@ -163,7 +165,7 @@ describe('card-control', () => {
 
   describe('events', () => {
     beforeEach(() => {
-      cy.getComponent('card-control', { group: 'forms' });
+      cy.getComponent('card-control', CARDCONTROL_ID);
 
       cy.get('@card-control').find('.card-control').as('wrapper');
       cy.get('@card-control').find('input.card-control--input').as('input');
@@ -270,7 +272,7 @@ describe('card-control', () => {
 
   describe('methods', () => {
     beforeEach(() => {
-      cy.getComponent('card-control', { group: 'forms' });
+      cy.getComponent('card-control', CARDCONTROL_ID);
 
       cy.get('@card-control').find('.card-control').as('wrapper');
       cy.get('@card-control').find('input.card-control--input').as('input');
@@ -369,7 +371,7 @@ describe('card-control', () => {
     });
   });
 
-  describe('form association', { baseUrl: null, includeShadowDom: true }, () => {
+  describe('radio group', { baseUrl: null, includeShadowDom: true }, () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-card-control.radio-group.test.html');
 
@@ -420,7 +422,7 @@ describe('card-control', () => {
       });
     });
 
-    it('should be checked when focused + keydown {space} the same control multiple times', () => {
+    it('should be checked when focused + keydown {space} on the same control multiple times', () => {
       cy.get('@input').each($input => {
         cy.wrap($input).type(' ').should('be.checked');
         cy.wrap($input).type(' ').should('be.checked');
@@ -469,7 +471,7 @@ describe('card-control', () => {
         });
     });
 
-    it('should update surrounding form when selected', () => {
+    it('should update surrounding form when checked', () => {
       cy.get('@form').then($form => {
         cy.get('@wrapper').each(($wrapper, i) => {
           cy.wrap($wrapper).click();
@@ -483,7 +485,7 @@ describe('card-control', () => {
       });
     });
 
-    it('should update surrounding form to not contain its value, when a disabled group member has been selected by keyboard', () => {
+    it('should update surrounding form to not contain its value, when a disabled group member has been checked by keyboard', () => {
       cy.get('@card-control').eq(1).invoke('attr', 'disabled', true);
       cy.get('@wrapper').eq(1).should('have.class', 'is-disabled');
       cy.get('@input').eq(1).should('have.attr', 'aria-disabled');

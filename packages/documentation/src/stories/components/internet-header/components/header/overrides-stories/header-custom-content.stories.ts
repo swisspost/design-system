@@ -2,6 +2,7 @@ import * as HeaderStories from '../header.stories';
 
 export default {
   ...HeaderStories.default,
+  id: 'f09859db-8270-482b-a884-5b5584f86a45',
   title: 'Components/Internet Header/Header/Custom Content',
 };
 

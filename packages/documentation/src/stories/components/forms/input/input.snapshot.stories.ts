@@ -1,10 +1,12 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './input.stories';
 import { html } from 'lit';
-import { getCombinations, COMBINATIONS } from '../../../../utils/inputComponentsGetCombinations';
+import { COMBINATIONS, getCombinations } from '../../../../utils/inputComponentsGetCombinations';
+
+const { id, ...metaWithoutId } = meta;
 
 export default {
-  ...meta,
+  ...metaWithoutId,
   title: 'Snapshots',
   render: renderInputSnapshot,
 };
@@ -65,9 +67,7 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
               )
               .map(
                 (args: Args) =>
-                  html`
-                    <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
-                  `,
+                  html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `,
               )}
           </div>
         `,
@@ -111,10 +111,5 @@ export const Inputweek: Story = {
 export const Inputtime: Story = {
   args: {
     type: 'time',
-  },
-};
-export const Inputcolor: Story = {
-  args: {
-    type: 'color',
   },
 };
