@@ -250,23 +250,22 @@ export const LinedUp: Story = {
 
 export const RadioGroup: Story = {
   render: (args: Args, context: StoryContext) => html`
-    <div class="row gy-3">
+    <fieldset>
+      <legend>Legend</legend>
       ${[1, 2, 3, 4, 5, 6].map(
         i => html`
-          <div class="col-12">
-            ${Default.render?.(
-              {
-                label: `Radio${i}`,
-                type: 'radio',
-                name: 'RadioGroup_Name',
-                disabled: i > 3 && i < 6 ? true : null,
-                validity: args.validity,
-              },
-              context,
-            )}
-          </div>
+          ${Default.render?.(
+            {
+              label: `Radio${i}`,
+              type: 'radio',
+              name: 'RadioGroup_Name',
+              disabled: i > 3 && i < 6 ? true : null,
+              validity: args.validity,
+            },
+            context,
+          )}
         `,
       )}
-    </div>
+    </fieldset>
   `,
 };

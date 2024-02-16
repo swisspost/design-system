@@ -6,6 +6,14 @@
   width: 100%;
 }
 
+:host-context(fieldset) {
+  &:host(:not(:last-child)) {
+    .card-control {
+      margin-bottom: post.$size-regular;
+    }
+  }
+}
+
 .card-control {
   --post-card-control-border-color: #{post.$gray-60};
   --post-card-control-bg: #{post.$white};
