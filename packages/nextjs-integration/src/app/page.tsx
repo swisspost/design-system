@@ -1,5 +1,6 @@
 import {
   PostAccordion,
+  PostAccordionItem,
   PostCollapsible,
   PostIcon,
   PostPopover,
@@ -261,17 +262,17 @@ export default function Home() {
         </PostTabs>
         <h3>Frequently asked questions</h3>
         <PostAccordion className="mt-big-r" multiple>
-          <PostCollapsible>
+          <PostAccordionItem>
             <span slot="header">Is this for real?</span>
             <p>No, this is just a fantasy.</p>
-          </PostCollapsible>
-          <PostCollapsible>
+          </PostAccordionItem>
+          <PostAccordionItem>
             <span slot="header">Scaramouche, Scaramouche, will you do the Fandango?</span>
             <p>
               Thunderbolt and lightning, very, very frightening me (Galileo) Galileo, (Galileo)
               Galileo, Galileo Figaro, magnifico
             </p>
-          </PostCollapsible>
+          </PostAccordionItem>
         </PostAccordion>
       </section>
     </>
