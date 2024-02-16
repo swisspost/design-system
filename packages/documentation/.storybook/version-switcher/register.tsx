@@ -7,7 +7,7 @@ const ADDON_ID = 'myAddonId';
 
 addons.register(ADDON_ID, () => {
   addons.add(ADDON_ID, {
-    title: 'My button title',
+    title: 'Switch to another version',
     type: types.TOOL,
     match: ({ viewMode }) => !!(viewMode && viewMode.match(/^(story|docs)$/)),
     render: () => {
