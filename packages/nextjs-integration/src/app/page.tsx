@@ -1,7 +1,6 @@
 import {
   PostAccordion,
   PostAccordionItem,
-  PostCollapsible,
   PostIcon,
   PostPopover,
   PostTabHeader,
@@ -148,10 +147,10 @@ export default function Home() {
 
                 <div className="topic-teaser-image-container">
                   <Image
-                    width={100}
-                    height={100}
+                    width={1000}
+                    height={1000}
                     className="topic-teaser-image w-100 h-100"
-                    src="https://www.post.ch/-/media/portal-opp/k/bilder/teaser-post-fuer-sie-1053-1053.jpg?mw=1200&vs=4&hash=7AE0C9728659DCC3B818B2E6B83EFB19"
+                    src="/street.jpg"
                     alt="Test teaser image"
                   />
                 </div>
@@ -169,7 +168,7 @@ export default function Home() {
                 width={400}
                 height={200}
                 className="card-img-top"
-                src="https://www.post.ch/-/media/portal-opp/teaser/black-week-2023.jpg?mw=800&vs=1&hash=F13452D6C3082CE8D975D3299245BE92"
+                src="/street.jpg"
                 alt="Card image cap"
               />
               <div className="card-body bg-gray">
@@ -189,7 +188,7 @@ export default function Home() {
                 width={400}
                 height={200}
                 className="card-img-top"
-                src="https://www.post.ch/-/media/portal-opp/teaser/digitalstamp-1872x1053.jpg?mw=800&vs=1&hash=3DFC9BDB852E0A3057808362C7256029"
+                src="/street.jpg"
                 alt="Card image cap"
               />
               <div className="card-body bg-gray">
@@ -209,7 +208,7 @@ export default function Home() {
                 width={400}
                 height={200}
                 className="card-img-top"
-                src="https://www.post.ch/-/media/portal-opp/teaser/big-teaser-briefmarkenausgabe-4-2023.png?mw=800&vs=1&hash=74CD9092923FB3B5BB1F55621C9A25FD"
+                src="/street.jpg"
                 alt="Card image cap"
               />
               <div className="card-body bg-gray">
