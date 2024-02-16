@@ -11,6 +11,7 @@ import scss from './card-control.module.scss';
 const SCSS_VARIABLES = parse(scss);
 
 const meta: Meta = {
+  id: '886fabcf-148b-4054-a2ec-4869668294fb',
   title: 'Components/Forms/Card-Control',
   component: 'post-card-control',
   parameters: {
