@@ -2,7 +2,7 @@
 @use '@swisspost/design-system-styles/components/form-check';
 
 :host {
-  display: block;
+  display: flex;
   width: 100%;
 }
 
@@ -21,6 +21,7 @@
   --post-card-control-input-border-color: #{post.$gray-80};
   --post-card-control-input-bg: #{post.$white};
 
+  flex-basis: 100%;
   display: flex;
   gap: 0 post.$size-mini;
   padding: post.$size-regular;
