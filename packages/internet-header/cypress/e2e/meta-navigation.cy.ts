@@ -12,7 +12,7 @@ describe('meta-navigation', () => {
 
   describe('args', () => {
     describe('meta: true', () => {
-      it.only(`adds meta navigation`, () => {
+      it(`adds meta navigation`, () => {
         cy.changeArg('meta', 'true');
         cy.pause();
         cy.get('post-meta-navigation').should('exist').and('be.visible');
