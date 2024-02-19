@@ -57,3 +57,10 @@ describe('collapsible', () => {
     });
   });
 });
+
+describe('Accessibility', () => {
+  it('Has no detectable a11y violations on load for all variants', () => {
+    cy.getSnapshots('collapsible');
+    cy.checkA11y('#root-inner');
+  });
+});

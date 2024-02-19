@@ -59,4 +59,17 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
       cy.get('@target').should('have.attr', 'tabindex').should('eq', '0');
     });
   });
+
+  describe('Accessibility', () => {
+    beforeEach(() => {
+      cy.visit('./cypress/fixtures/post-tooltip.test.html');
+      cy.get('#target1').as('target1');
+
+      cy.injectAxe();
+    });
+
+    it('Has no detectable a11y violations on load', () => {
+      cy.checkA11y('post-tooltip');
+    });
+  });
 });
