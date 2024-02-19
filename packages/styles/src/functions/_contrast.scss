@@ -53,7 +53,7 @@
   the color is statically defined because the reference to the variable from here
   would create a loop
   */
-  @if ($background == #2c911c) {
+  @if ($background == #2c871d) {
     @return 'dark';
   }
 

@@ -3,6 +3,7 @@ import { html } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'c55681df-4d21-469d-a5b3-c67686e7c104',
   title: 'Utilities/Text',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
@@ -14,41 +15,27 @@ export default meta;
 type Story = StoryObj;
 
 export const FontFamily: Story = {
-  render: () => html`
-    <p class="font-sans-serif">This is sans serif text.</p>
-  `,
+  render: () => html` <p class="font-sans-serif">This is sans serif text.</p> `,
 };
 
 export const FontSize: Story = {
-  render: () => html`
-    <p class="fs-tiny">This is tiny text.</p>
-  `,
+  render: () => html` <p class="fs-tiny">This is tiny text.</p> `,
 };
 
 export const FontWeight: Story = {
-  render: () => html`
-    <p class="fw-bold">This is bold text.</p>
-  `,
+  render: () => html` <p class="fw-bold">This is bold text.</p> `,
 };
 
 export const FontStyle: Story = {
-  render: () => html`
-    <p class="fst-italic">This is italic text.</p>
-  `,
+  render: () => html` <p class="fst-italic">This is italic text.</p> `,
 };
 
 export const LineHeight: Story = {
-  render: () => html`
-    <p class="lh-1">This text has a line height equal to the font size.</p>
-  `,
+  render: () => html` <p class="lh-1">This text has a line height equal to the font size.</p> `,
 };
 
 export const TextColor: Story = {
-  decorators: [
-    story => html`
-      <div @click=${(e: Event) => e.preventDefault()}>${story()}</div>
-    `,
-  ],
+  decorators: [story => html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `],
   render: () => html`
     <p class="text-success">This is colored text.</p>
     <a href="#" class="link-warning">This is a colored link, it lightens on hover.</a>
@@ -56,11 +43,7 @@ export const TextColor: Story = {
 };
 
 export const TextColorReset: Story = {
-  decorators: [
-    story => html`
-      <div @click=${(e: Event) => e.preventDefault()}>${story()}</div>
-    `,
-  ],
+  decorators: [story => html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `],
   render: () => html`
     <p class="text-danger">
       This is colored text with a
