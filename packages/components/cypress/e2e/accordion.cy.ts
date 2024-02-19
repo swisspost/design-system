@@ -49,7 +49,7 @@ describe('accordion', () => {
 });
 
 describe('Accessibility', () => {
-  it.only('Has no detectable a11y violations on load for all variants', () => {
+  it('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('accordion');
     cy.checkA11y('#root-inner');
   });

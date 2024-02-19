@@ -78,7 +78,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.injectAxe();
     });
 
-    it.only('Has no detectable a11y violations on load', () => {
+    it('Has no detectable a11y violations on load', () => {
       cy.checkA11y('post-popover');
     });
   });
