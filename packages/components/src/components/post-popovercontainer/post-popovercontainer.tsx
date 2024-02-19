@@ -86,6 +86,7 @@ export class PostPopovercontainer {
   @Method()
   async show(target: HTMLElement) {
     this.eventTarget = target;
+    this.calculatePosition();
     this.popoverRef.showPopover();
   }
 
@@ -106,6 +107,7 @@ export class PostPopovercontainer {
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
     this.eventTarget = target;
+    this.calculatePosition();
     this.popoverRef.togglePopover(force);
     return this.popoverRef.matches(':popover-open');
   }

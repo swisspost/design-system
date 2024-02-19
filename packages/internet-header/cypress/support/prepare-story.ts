@@ -18,14 +18,14 @@ interface PrepareOptions {
 }
 
 export const prepare = (
-  storyTitle: string = 'Header',
+  storyId: string = 'Header',
   storyName: string = 'Default',
   { loggedIn, config = testConfiguration }: PrepareOptions = {},
 ) => {
   installInterceptors(config, loggedIn);
   cy.visitStorybook();
   cy.get('.sb-nopreview_main', { timeout: 30000 }).should('be.visible'); // Wait until vite is ready (initial loading is longer)
-  cy.loadStory(storyTitle, storyName);
+  cy.loadStory(storyId, storyName);
   cy.get('#root-inner', { timeout: 30000 }).should('exist'); // Ensure that we have a storybook component loaded, before going further
 };
 

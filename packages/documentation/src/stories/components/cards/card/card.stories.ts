@@ -5,6 +5,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Cards/Card',
   decorators: [clickBlocker, paddedContainer],
   parameters: {
@@ -201,15 +202,11 @@ export default meta;
 
 // DECORATORS
 function clickBlocker(story: any) {
-  return html`
-    <div @click=${(e: Event) => e.preventDefault()}>${story()}</div>
-  `;
+  return html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `;
 }
 
 function paddedContainer(story: any) {
-  return html`
-    <div class="p-mini">${story()}</div>
-  `;
+  return html` <div class="p-mini">${story()}</div> `;
 }
 
 function gridContainer(story: any) {
@@ -224,9 +221,7 @@ function gridContainer(story: any) {
 function getCardLinks() {
   return html`
     ${['Ligilo teksto', 'Pli da ligo'].map(
-      label => html`
-        <a class="card-link" href="#">${label}</a>
-      `,
+      label => html` <a class="card-link" href="#">${label}</a> `,
     )}
   `;
 }
@@ -244,16 +239,8 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
 
   return html`
     <div class="card-body">
-      ${showTitle
-        ? html`
-            <h5 class="card-title">Titulum</h5>
-          `
-        : nothing}
-      ${showSubtitle
-        ? html`
-            <h6 class="card-subtitle mb-2 text-muted">Sub Titulum</h6>
-          `
-        : nothing}
+      ${showTitle ? html` <h5 class="card-title">Titulum</h5> ` : nothing}
+      ${showSubtitle ? html` <h6 class="card-subtitle mb-2 text-muted">Sub Titulum</h6> ` : nothing}
       <p class="card-text">${content}</p>
       ${choose(
         action,
@@ -261,10 +248,7 @@ function getCardBody({ customBody, content, action, showTitle, showSubtitle }: A
           ['button', getCardButton],
           ['links', getCardLinks],
         ],
-        () =>
-          html`
-            ${nothing}
-          `,
+        () => html` ${nothing} `,
       )}
     </div>
   `;
@@ -274,9 +258,7 @@ function getCardListGroup() {
   return html`
     <ul class="list-group">
       ${['Ero', 'Dua ero', 'Alio ero'].map(
-        label => html`
-          <li class="list-group-item">${label}</li>
-        `,
+        label => html` <li class="list-group-item">${label}</li> `,
       )}
     </ul>
   `;
@@ -285,17 +267,13 @@ function getCardListGroup() {
 function getCardHeader({ customHeader }: Args) {
   if (customHeader) return unsafeHTML(customHeader);
 
-  return html`
-    <div class="card-header">Kapo Titulum</div>
-  `;
+  return html` <div class="card-header">Kapo Titulum</div> `;
 }
 
 function getCardFooter({ customFooter }: Args) {
   if (customFooter) return unsafeHTML(customFooter);
 
-  return html`
-    <div class="card-footer">Piedo Contentus momentus</div>
-  `;
+  return html` <div class="card-footer">Piedo Contentus momentus</div> `;
 }
 
 function getCardImage({ imagePosition }: Args) {
@@ -413,12 +391,7 @@ export const CardGroup: Story = {
 
     return html`
       <div class="card-group">
-        ${cardTexts.map(
-          text =>
-            html`
-              ${renderCard({ ...args, text })}
-            `,
-        )}
+        ${cardTexts.map(text => html` ${renderCard({ ...args, text })} `)}
       </div>
     `;
   },

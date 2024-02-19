@@ -32,6 +32,7 @@
     "unit": "stencil test --spec",
     "unit:watch": "stencil test --spec --watchAll --silent",
     "e2e": "cypress run",
+    "e2e:ci": "xvfb-run -a cypress run",
     "e2e:watch": "cypress open",
     "generate": "stencil generate",
     "lint": "eslint src/**/*{.ts,.tsx}"
@@ -61,7 +62,6 @@
     "cypress-storybook": "0.5.1",
     "eslint": "8.56.0",
     "eslint-plugin-react": "7.33.2",
-    "npm-run-all2": "5.0.2",
     "rimraf": "5.0.5",
     "sass": "1.70.0",
     "ts-jest": "29.1.2",

@@ -213,7 +213,6 @@
           "dépôt de colis",
           "dépôt de lettres",
           "envoyer",
-          "delete",
           "Letter/parcel",
           "letter",
           "parcel",
@@ -225,7 +224,16 @@
           "Enveloppe",
           "dispatch",
           "send",
-          "receive"
+          "receive",
+          "Pforte",
+          "Gate",
+          "Cancello",
+          "Portail",
+          "Kuverts",
+          "Versand",
+          "Mail",
+          "Posta",
+          "Courrier"
         ]
       },
       "file": {
@@ -1209,6 +1217,9 @@
           "Brief/Wert",
           "Frankatur",
           "Briefmarke",
+          "Stamp",
+          "Francobollo",
+          "Timbre",
           "Brief",
           "Letter",
           "Lettera",
@@ -1224,7 +1235,31 @@
           "Postage Stamp",
           "Timbro postale",
           "letter",
-          "A Mail"
+          "A Mail",
+          "Briefumschlag",
+          "Envelope",
+          "Busta",
+          "Enveloppe",
+          "Kuverts",
+          "Versand",
+          "Mail",
+          "Posta",
+          "Courrier",
+          "Gaspumpe",
+          "Gas Pump",
+          "Pompa del gas",
+          "Pompe À Gaz",
+          "Maschine",
+          "Machine",
+          "Macchina",
+          "Pumpe",
+          "Pump",
+          "Pompa",
+          "Pompe",
+          "Text",
+          "Testo",
+          "Texte",
+          "120"
         ],
         "year": [
           "2017"
@@ -2311,9 +2346,18 @@
           "Persona",
           "Personne",
           "Pöstler",
+          "Snap",
+          "Affrettato",
+          "Instantané",
           "Pöstlerin",
           "Postbote",
+          "post man",
+          "post uomo",
+          "post-homme",
           "Bote",
+          "delivery boy",
+          "ragazzo delle consegne",
+          "livreur",
           "Facteur",
           "factrice",
           "homme",
@@ -2332,7 +2376,20 @@
           "Capuchon",
           "mail carrier",
           "postman/woman",
-          "letter carrier"
+          "letter carrier",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Strassenschild",
+          "Road Sign",
+          "Segnale stradale",
+          "Panneau De Signalisation",
+          "Ф"
         ],
         "year": [
           "2017"
@@ -6611,7 +6668,31 @@
           "Cable",
           "Cavo",
           "Câble",
-          "Connection"
+          "Connection",
+          "Zwischensockel",
+          "Adapter",
+          "Adattatore",
+          "Adaptateur",
+          "Elektronik",
+          "Electronics",
+          "Elettronica",
+          "Électronique",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "sich verneigen",
+          "Bow",
+          "Arcuatura",
+          "S'Incliner",
+          "Waffe",
+          "Weapon",
+          "Arma",
+          "Arme"
         ],
         "year": [
           "2020"
@@ -6905,10 +6986,54 @@
         "keywords": [
           "Hilfe/FAQ (2 px Linienstärke)",
           "Fragezeichen",
-          "Aide/FAQ (épaisseur des lignes 2 px)",
           "Point d’interrogation",
           "Help/FAQs (2 px line thickness)",
-          "question mark"
+          "question mark",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Anzahl",
+          "Number",
+          "Numero",
+          "Nombre",
+          "Text",
+          "Testo",
+          "Texte",
+          "X",
+          "Twitter",
+          "R",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "E",
+          "P",
+          "H",
+          "F",
+          "L",
+          "O",
+          "€",
+          "$",
+          "+",
+          "ل",
+          ":",
+          "W",
+          "A",
+          "-",
+          "M",
+          "N",
+          "S",
+          "G",
+          "В",
+          "!",
+          "I",
+          "Ф"
         ],
         "year": [
           "2017"
@@ -6941,7 +7066,7 @@
         "keywords": [
           "Achtung (2 px Linienstärke)",
           "Ausrufezeichen",
-          "Attention (épaisseur des lignes 2 px)",
+          "Attention (épaisseur des lignes 2 px)",
           "Point d’exclamation",
           "Important (2 px line thickness)",
           "exclamation mark"
@@ -7020,7 +7145,7 @@
           "Information Online (2 px Linienstärke)",
           "Information",
           "informieren",
-          "Information en ligne (épaisseur des lignes 2 px)",
+          "Information en ligne (épaisseur des lignes 2 px)",
           "informer",
           "Information online (2 px line thickness)",
           "inform"
@@ -7056,7 +7181,7 @@
         "keywords": [
           "Reserviert (2 px Linienstärke)",
           "Reservation",
-          "Réservé (épaisseur des lignes 2 px)",
+          "Réservé (épaisseur des lignes 2 px)",
           "Réservation",
           "Reserved (2 px line thickness)"
         ],
@@ -10051,38 +10176,6 @@
       "modifiedAt": "2021-10-18T11:17:32.000Z"
     },
     {
-      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
-      "id": 539487,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "Mobile Shopping",
-          "Bestellung",
-          "Ordre",
-          "Ordine",
-          "order"
-        ],
-        "year": [
-          "2021"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:55:20.000Z",
-      "modifiedAt": "2021-10-18T11:24:06.000Z"
-    },
-    {
       "uuid": "88307300-5bef-11eb-9f99-005056873709",
       "id": 539481,
       "type": "picture.pictogram.",
@@ -10112,6 +10205,38 @@
         }
       },
       "createdAt": "2021-01-21T13:49:50.000Z",
+      "modifiedAt": "2021-10-18T11:24:06.000Z"
+    },
+    {
+      "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
+      "id": 539487,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539487/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "Mobile Shopping",
+          "Bestellung",
+          "Ordre",
+          "Ordine",
+          "order"
+        ],
+        "year": [
+          "2021"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:55:20.000Z",
       "modifiedAt": "2021-10-18T11:24:06.000Z"
     },
     {
@@ -12086,7 +12211,26 @@
           "Patientin",
           "Patient",
           "Paziente",
-          "Patiente"
+          "Patiente",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Gaspumpe",
+          "Gas Pump",
+          "Pompa del gas",
+          "Pompe À Gaz",
+          "Maschine",
+          "Machine",
+          "Macchina",
+          "Pumpe",
+          "Pump",
+          "Pompa",
+          "Pompe"
         ],
         "year": [
           "2021"
@@ -19639,10 +19783,25 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/669431/storage/NjY5NDMwLzAvbWFzdGVy",
         "keywords": [
-          "IMG; Ladestation",
+          " Station de charge",
           "Station de charge",
           "Stazione di carica",
-          "Charging station"
+          "Charging station",
+          "Schablone",
+          "Stencil",
+          "Pochoir",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Besteck",
+          "Cutlery",
+          "Posate",
+          "Couverts",
+          "Gabel",
+          "Fork",
+          "Forchetta",
+          "Fourchette"
         ],
         "year": [
           "2023"
@@ -21338,8 +21497,8 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689764/storage/Njg5NzYzLzAvbWFzdGVy",
         "keywords": [
           "Gewicht Plus 30kg",
-          "Poids plus 30 kg",
-          "Peso più 30 kg",
+          "Poids plus 30 kg",
+          "Peso più 30 kg",
           "Weight Plus 30 kg"
         ],
         "year": [
@@ -21369,8 +21528,8 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689768/storage/Njg5NzY3LzAvbWFzdGVy",
         "keywords": [
           "Gewicht > 30kg",
-          "Poids > 30 kg",
-          "Peso > 30 kg",
+          "Poids > 30 kg",
+          "Peso > 30 kg",
           "Weight > 30 kg"
         ],
         "year": [
@@ -21400,8 +21559,8 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/689772/storage/Njg5NzcxLzAvbWFzdGVy",
         "keywords": [
           "Gewicht > 2kg",
-          "Poids > 2 kg",
-          "Peso > 2 kg",
+          "Poids > 2 kg",
+          "Peso > 2 kg",
           "Weight > 2 kg"
         ],
         "year": [
@@ -22062,7 +22221,13 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/775370/storage/Nzc1MzY5LzAvbWFzdGVy",
         "keywords": [
           "Powerbank",
-          "IMG"
+          "IMG",
+          "Elektronik",
+          "Electronics",
+          "Elettronica",
+          "Électronique",
+          "Hardware",
+          "Matériel"
         ]
       },
       "file": {
@@ -22087,7 +22252,25 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/785382/storage/Nzg1MzgxLzAvbWFzdGVy",
         "keywords": [
-          ""
+          "Transportmittel",
+          "Transportation",
+          "Trasporti",
+          "Transport",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
+          "Gaspumpe",
+          "Gas Pump",
+          "Pompa del gas",
+          "Pompe À Gaz",
+          "Maschine",
+          "Machine",
+          "Macchina",
+          "Pumpe",
+          "Pump",
+          "Pompa",
+          "Pompe"
         ]
       },
       "file": {
@@ -22120,7 +22303,17 @@
           "Fachwortschatz",
           "specialist vocabulary",
           "Vocabulaire spécialisé",
-          "Vocabolario specialistico"
+          "Vocabolario specialistico",
+          "Granate",
+          "Grenade",
+          "Granata",
+          "Waffe",
+          "Weapon",
+          "Arma",
+          "Arme",
+          "Schablone",
+          "Stencil",
+          "Pochoir"
         ]
       },
       "file": {
@@ -22153,7 +22346,25 @@
           "Firma verlassen",
           "Leave company",
           "Quitter l’entreprise",
-          "Uscire dall’azienda"
+          "Uscire dall’azienda",
+          "Person",
+          "Persona",
+          "Personne",
+          "zu Fuss",
+          "Walking",
+          "a piedi",
+          "à pied",
+          "Schablone",
+          "Stencil",
+          "Pochoir",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole"
         ]
       },
       "file": {
@@ -22180,7 +22391,30 @@
         "keywords": [
           " Favorit Stern",
           "Favorit Stern",
-          "Stern"
+          "Stern",
+          "Sternsymbol",
+          "Star Symbol",
+          "Simbolo della stella",
+          "Symbole étoile",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Tierisch",
+          "Animal",
+          "Animale",
+          "Fisch",
+          "Fish",
+          "Pesce",
+          "Poisson",
+          "Meereslebewesen",
+          "Sea Life",
+          "Vita marina",
+          "Vie marine",
+          "Hai",
+          "Shark",
+          "Squalo",
+          "Requin"
         ]
       },
       "file": {
@@ -22196,6 +22430,47 @@
       },
       "createdAt": "2024-01-31T09:04:24.000Z",
       "modifiedAt": "2024-02-01T09:24:16.000Z"
+    },
+    {
+      "uuid": "36a92cc0-ca82-11ee-b263-005056873709",
+      "id": 788284,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/788284/storage/Nzg4MjgzLzAvbWFzdGVy",
+        "keywords": [
+          "Kontakt",
+          "Contatto",
+          "Contact",
+          "Fahrausweis",
+          "Ticket",
+          "Biglietto",
+          "Billet",
+          "Inkasso",
+          "Collection",
+          "Incasso",
+          "Encaissement",
+          "Schablone",
+          "Stencil",
+          "Pochoir",
+          "Maschine",
+          "Machine",
+          "Macchina"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2575.svg",
+        "basename": "2575",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-02-13T15:11:50.000Z",
+      "modifiedAt": "2024-02-14T07:59:09.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -23501,7 +23776,55 @@
           "Aide/FAQ",
           "Point d’interrogation",
           "Help/FAQs",
-          "question mark"
+          "question mark",
+          "Elektronik",
+          "Electronics",
+          "Elettronica",
+          "Électronique",
+          "Hardware",
+          "Matériel",
+          "Schornstein",
+          "Smoke Pipe",
+          "Tubo Fumo",
+          "Tuyau De Fumée",
+          "Stock",
+          "Stick",
+          "Bastone",
+          "Bâton",
+          "X",
+          "Twitter",
+          "R",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "E",
+          "P",
+          "H",
+          "F",
+          "L",
+          "O",
+          "€",
+          "$",
+          "+",
+          "ل",
+          ":",
+          "W",
+          "A",
+          "-",
+          "M",
+          "N",
+          "S",
+          "G",
+          "В",
+          "!",
+          "I",
+          "Ф"
         ],
         "year": [
           "2017"
@@ -24137,7 +24460,19 @@
           "individus",
           "Toilet",
           "Servizi igienici",
-          "Toilettes"
+          "Toilettes",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Strassenschild",
+          "Road Sign",
+          "Segnale stradale",
+          "Panneau De Signalisation"
         ],
         "year": [
           "2017"
@@ -25291,7 +25626,22 @@
           "parcel",
           "letter",
           "scales",
-          "weigh"
+          "weigh",
+          "Pforte",
+          "Gate",
+          "Cancello",
+          "Portail",
+          "Computerhardware",
+          "Computer Hardware",
+          "Hardware del computer",
+          "Matériel informatique",
+          "Elektronik",
+          "Electronics",
+          "Elettronica",
+          "Électronique",
+          "Hardware",
+          "Matériel",
+          "kg"
         ],
         "year": [
           "2017"
@@ -27433,7 +27783,19 @@
           "forklift driver",
           "Forklift",
           "Carrello elevatore",
-          "Chariot élévateur"
+          "Chariot élévateur",
+          "Schornstein",
+          "Smoke Pipe",
+          "Tubo Fumo",
+          "Tuyau De Fumée",
+          "Transportmittel",
+          "Transportation",
+          "Trasporti",
+          "Transport",
+          "Güterwagen",
+          "Chariot",
+          "Carro",
+          "Wagon"
         ]
       },
       "file": {
@@ -29071,14 +29433,30 @@
           "Paiement",
           "Payer",
           "finances",
-          "delete",
           "Deposit/withdrawal",
           "Money",
           "Denaro",
           "cash flow",
           "Payment",
           "pay",
-          "paying"
+          "paying",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Anzahl",
+          "Number",
+          "Numero",
+          "Nombre",
+          "Text",
+          "Testo",
+          "Texte",
+          "Anzeiger",
+          "Scoreboard",
+          "Quadro di valutazione",
+          "Tableau d'affichage",
+          "20",
+          "50"
         ]
       },
       "file": {
@@ -29507,35 +29885,28 @@
           "Speis & Trank",
           "Restaurant",
           "Ristorante",
-          "Verpflegung",
-          "Besteck",
-          "Messer",
-          "Gabel",
-          "Löffel",
           "Essen",
-          "Küche",
           "Café/restaurant",
           "restauration",
           "Couverts",
-          "couteau",
-          "fourchette",
-          "cuillère",
-          "manger",
-          "cuisine",
           "Food & drink",
           "Catering",
+          "Besteck",
           "Cutlery",
           "Posate",
+          "Messer",
           "Knife",
           "Coltello",
           "Couteau",
+          "Gabel",
           "Fork",
           "Forchetta",
           "Fourchette",
+          "Löffel",
           "Spoon",
           "Cucchiaio",
           "Cuillère",
-          "eat",
+          "Küche",
           "Kitchen",
           "Cucina",
           "Cuisine"
@@ -29553,7 +29924,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-01-20T12:38:55.000Z"
+      "modifiedAt": "2024-02-16T05:59:37.000Z"
     },
     {
       "uuid": "7613a220-c5ff-11e7-a943-005056a94f4a",
@@ -30154,8 +30525,8 @@
         "keywords": [
           "Auflage über hunderttausend",
           "mehr als 100'000",
-          "Tirage supérieur à 100 000",
-          "plus de 100 000",
+          "Tirage supérieur à 100 000",
+          "plus de 100 000",
           "Issue over a hundred thousand",
           "Business to Customer"
         ]
@@ -30187,8 +30558,8 @@
         "keywords": [
           "Auflage unter hunderttausend",
           "weniger als 100'000",
-          "Tirage inférieur à 100 000",
-          "moins de 100 000",
+          "Tirage inférieur à 100 000",
+          "moins de 100 000",
           "Issue below a hundred thousand",
           "less than 100",
           "000"
@@ -30221,8 +30592,8 @@
         "keywords": [
           "Auflage unter zehntausend",
           "weniger als 10'000",
-          "Tirage inférieur à 10 000",
-          "moins de 10 000",
+          "Tirage inférieur à 10 000",
+          "moins de 10 000",
           "Issue below ten thousand",
           "less than 10",
           "000"
@@ -30804,7 +31175,10 @@
           "Wine Glass",
           "Vetro per vino",
           "Verre À Vin",
-          "dishes"
+          "dishes",
+          "Device",
+          "Dispositivo",
+          "Appareil"
         ]
       },
       "file": {
@@ -30843,16 +31217,38 @@
           "Pacco",
           "Colis",
           "mehr als 20kg",
-          ">20 kg",
+          ">20 kg",
           "sécurité générale/interdictions",
           "homme",
           "personne",
           "colis",
-          "plus de 20 kg",
+          "plus de 20 kg",
           "general safety/bans",
           "human",
           "parcel",
-          "more than 20 kg"
+          "more than 20 kg",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Strassenschild",
+          "Road Sign",
+          "Segnale stradale",
+          "Panneau De Signalisation",
+          "Anzahl",
+          "Number",
+          "Numero",
+          "Nombre",
+          "Text",
+          "Testo",
+          "Texte",
+          "&gt;",
+          "20",
+          "kg"
         ]
       },
       "file": {
@@ -33133,7 +33529,18 @@
         ],
         "keywords": [
           "Fossile Energieträger Öl/Gas",
-          "delete"
+          "Vignette",
+          "Sticker",
+          "Adesivo",
+          "Autocollant",
+          "Schornstein",
+          "Smoke Pipe",
+          "Tubo Fumo",
+          "Tuyau De Fumée",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole"
         ],
         "year": [
           "2020"
@@ -33893,11 +34300,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2024-02-01T15:40:23.820Z",
+  "created": "2024-02-18T01:09:58.596Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 905
+    "success": 906
   },
-  "version": "1.1.0"
+  "version": "1.2.0"
 }
