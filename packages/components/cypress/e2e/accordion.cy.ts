@@ -46,7 +46,7 @@ describe('accordion', () => {
 
   describe('nested', () => {
     beforeEach(() => {
-      cy.getComponent('accordion', 'nested');
+      cy.getComponent('accordion', ACCORDION_ID, 'nested');
       cy.get('@accordion').find('post-accordion post-accordion-item').as('nestedCollapsibles');
     });
 
