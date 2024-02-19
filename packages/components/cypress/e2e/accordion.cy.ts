@@ -28,6 +28,41 @@ describe('accordion', () => {
       cy.get('@collapsibles').last().click();
       cy.get('@collapsibles').first().find('.collapse').should('be.hidden');
     });
+
+    it('should propagate collapseChange event from post-accordion-item on post-accordion', () => {
+      cy.document().then(document => {
+        const EventHandlerMock = cy.spy();
+        Cypress.$(document.querySelector('post-accordion')).on('collapseChange', EventHandlerMock);
+
+        cy.get('@collapsibles')
+          .last()
+          .click()
+          .then(() => {
+            expect(EventHandlerMock).to.be.calledTwice;
+          });
+      });
+    });
+  });
+
+  describe('nested', () => {
+    beforeEach(() => {
+      cy.getComponent('accordion', ACCORDION_ID, 'nested');
+      cy.get('@accordion').find('post-accordion post-accordion-item').as('nestedCollapsibles');
+    });
+
+    it('should not propagate collapseChange event from nested post-accordion', () => {
+      cy.document().then(document => {
+        const EventHandlerMock = cy.spy();
+        Cypress.$(document.querySelector('post-accordion')).on('collapseChange', EventHandlerMock);
+
+        cy.get('@nestedCollapsibles')
+          .last()
+          .click()
+          .then(() => {
+            expect(EventHandlerMock).to.not.be.called;
+          });
+      });
+    });
   });
 
   describe('multiple open panels', () => {
