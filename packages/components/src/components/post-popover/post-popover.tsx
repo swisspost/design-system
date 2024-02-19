@@ -16,7 +16,6 @@ const globalToggleHandler = (e: PointerEvent | KeyboardEvent) => {
   const popoverTarget = target.getAttribute(popoverTargetAttribute);
   if (!popoverTarget || popoverTarget === '') return;
   if ('key' in e && e.key !== 'Enter') return;
-  // TODO: Check for enter key
   const popover = document.getElementById(popoverTarget) as HTMLPostPopoverElement;
   popover?.toggle(target);
 };
