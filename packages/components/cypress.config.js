@@ -9,6 +9,7 @@ module.exports = defineConfig({
     viewportHeight: 576,
   },
   includeShadowDom: true,
+  chromeWebSecurity: false,
   retries: {
     runMode: 1,
   },

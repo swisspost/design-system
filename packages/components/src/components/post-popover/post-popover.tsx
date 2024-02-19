@@ -33,6 +33,7 @@ const triggerObserver = getAttributeObserver(popoverTargetAttribute, trigger => 
 })
 export class PostPopover {
   private popoverRef: HTMLPostPopovercontainerElement;
+  private localBeforeToggleHandler;
 
   @Element() host: HTMLPostPopoverElement;
 
@@ -53,6 +54,10 @@ export class PostPopover {
   // eslint-disable-next-line @stencil-community/ban-default-true
   @Prop() readonly arrow?: boolean = true;
 
+  constructor() {
+    this.localBeforeToggleHandler = this.beforeToggleHandler.bind(this);
+  }
+
   connectedCallback() {
     // Set up accessibility patcher and event listeners for the first component
     if (popoverInstances === 0) {
@@ -66,6 +71,12 @@ export class PostPopover {
     }
 
     popoverInstances++;
+
+    this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
+  }
+
+  componentDidLoad() {
+    this.popoverRef.addEventListener('beforetoggle', this.localBeforeToggleHandler);
   }
 
   disconnectedCallback() {
@@ -77,6 +88,9 @@ export class PostPopover {
       window.removeEventListener('keydown', globalToggleHandler);
       triggerObserver.disconnect();
     }
+
+    this.popoverRef.removeEventListener('beforetoggle', this.localBeforeToggleHandler);
+    this.triggers.forEach(trigger => trigger.removeAttribute('aria-expanded'));
   }
 
   /**
@@ -112,6 +126,10 @@ export class PostPopover {
 
   private get triggers() {
     return document.querySelectorAll(`[${popoverTargetAttribute}="${this.host.id}"]`);
+  }
+
+  private beforeToggleHandler() {
+    this.triggers.forEach(trigger => trigger.setAttribute('aria-expanded', 'false'));
   }
 
   render() {
