@@ -49,7 +49,7 @@ function render(args: Args) {
             </div>
           </div>
           <div class="col-6 offset-3 offset-rg-0 col-rg-4 align-self-end">
-            <img class="error-container__image" src="/images/content/404.png" alt="" />
+            <img class="error-container--image" src="/images/content/404.png" alt="" />
           </div>
         </div>
       </div>
