@@ -1,5 +1,17 @@
 # @swisspost/internet-header
 
+## 1.13.6
+
+### Patch Changes
+
+- Added secure flag for cookies. (by [@imagoiq](https://github.com/imagoiq) with [#2629](https://github.com/swisspost/design-system/pull/2629))
+
+- Fixed display of internet-header icons on high-contrast mode with light theme. (by [@imagoiq](https://github.com/imagoiq) with [#2669](https://github.com/swisspost/design-system/pull/2669))
+
+- Fixed missing accessible labels on post-meta navigation links. (by [@gfellerph](https://github.com/gfellerph) with [#2700](https://github.com/swisspost/design-system/pull/2700))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.2
+
 ## 1.13.5
 
 ### Patch Changes
