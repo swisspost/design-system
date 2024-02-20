@@ -366,7 +366,7 @@ export class PostCardControl {
     this.disabled = disabled;
   }
 
-  formStateRestoreCallback(checked, _reason: 'restore' | 'autocomplete') {
+  formStateRestoreCallback(checked) {
     this.controlSetChecked(checked);
   }
 
