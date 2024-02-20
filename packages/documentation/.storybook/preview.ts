@@ -60,6 +60,7 @@ const preview: Preview = {
             'Progressbar',
             'Spinner',
             'Stepper',
+            'Subnavigation',
             'Table',
             'Tabs',
             'Timepicker',
