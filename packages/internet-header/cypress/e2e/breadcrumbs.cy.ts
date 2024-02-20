@@ -1,6 +1,7 @@
 import { IPortalConfig } from '../../src/models/general.model';
 import rawTestConfiguration from '../fixtures/internet-header/test-configuration.json';
 import { prepare } from '../support/prepare-story';
+import { BREADCRUMBS, BREADCRUMBS_CUSTOM_ITEMS } from './shared/variables';
 
 const testConfiguration: IPortalConfig = rawTestConfiguration as any;
 
@@ -33,13 +34,13 @@ describe('breadcrumb', () => {
       modifiedConfig.fr.breadcrumb = undefined;
       modifiedConfig.it.breadcrumb = undefined;
 
-      prepare('Components/Internet Header/Breadcrumbs', 'Default', { config: modifiedConfig });
+      prepare(BREADCRUMBS, 'Default', { config: modifiedConfig });
       cy.get('swisspost-internet-breadcrumbs').should('exist');
       cy.get('div.breadcrumbs').should('not.exist');
     });
 
     it(`should add custom elements`, () => {
-      prepare('Components/Internet Header/Breadcrumbs/Custom Items', 'Default');
+      prepare(BREADCRUMBS_CUSTOM_ITEMS, 'Default');
 
       cy.changeArg('custom-items', [
         { text: 'Test1', url: '/x/y/z' },
@@ -63,7 +64,7 @@ describe('breadcrumb', () => {
 
   describe('Toggle overlay buttons', () => {
     beforeEach(() => {
-      prepare('Components/Internet Header/Breadcrumbs', 'Default');
+      prepare(BREADCRUMBS, 'Default');
       cy.get('div.breadcrumbs').as('breadcrumbs');
       cy.intercept(
         'https://post.ch/de/kundencenter/onlinedienste/standorte-und-oeffnungszeiten/**',
@@ -92,14 +93,14 @@ describe('breadcrumb', () => {
       cy.get('@breadcrumbs').find('div.overlay').should('not.exist');
     });
 
-    it.only(`should open overlay programmatically`, () => {
+    it(`should open overlay programmatically`, () => {
       cy.get('swisspost-internet-breadcrumbs').then(async el => {
         await el[0].toggleOverlayById('help');
         cy.get('div.breadcrumbs').find('div.overlay').should('exist');
       });
     });
 
-    it.only(`should close overlay programmatically`, () => {
+    it(`should close overlay programmatically`, () => {
       cy.get('swisspost-internet-breadcrumbs').then(async el => {
         await el[0].toggleOverlayById('help');
         await el[0].toggleOverlayById('help');
@@ -111,7 +112,7 @@ describe('breadcrumb', () => {
   describe('mobile', () => {
     beforeEach(() => {
       cy.viewport('iphone-6+');
-      prepare('Components/Internet Header/Breadcrumbs', 'Default');
+      prepare(BREADCRUMBS, 'Default');
       cy.get('div.breadcrumbs').as('breadcrumbs');
     });
 

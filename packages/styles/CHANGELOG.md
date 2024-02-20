@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 6.6.1
+
+### Patch Changes
+
+- Updated `form-control` and `form-select` sizes and added support for floating label small size variant. (by [@imagoiq](https://github.com/imagoiq) with [#2396](https://github.com/swisspost/design-system/pull/2396))
+
 ## 6.6.0
 
 ### Minor Changes

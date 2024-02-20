@@ -1,0 +1,40 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import * as SpinnerStories from './spinner.stories.ts';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+
+<Meta of={SpinnerStories} />
+
+# Spinner
+
+<p className="lead">Indicate a loading state and prevent interactivity behind it</p>
+
+<div className="alert alert-warning">
+  `.loader-xs` and `loader-sm` classes for sizes are deprecated and will be replace with respectively `.loader-16` and `.loader-40`.
+</div>
+
+<Canvas sourceState="shown" of={SpinnerStories.Default} />
+
+<div className="hide-col-default">
+  <Controls of={SpinnerStories.Default} />
+</div>
+
+<StylesPackageImport components={["spinner"]} />
+
+## How to use a live region
+
+Live region should be added at page load and the content should change dynamically.\
+See what it means in practice on the [live region section of the accessibility page](/?path=/docs/foundations-accessibility--docs#live-region).
+
+## Examples
+
+### Block interactivity on a section
+
+When a spinner is placed inside an element with a `position-relative` class, it'll block interactivity on all the child elements and will be centered on the content.
+
+<Canvas of={SpinnerStories.BlockSection} />
+
+### Inline on a button
+
+Adding a spinner inside a button allows you to show that an action is processing. Combined with a `disabled` attribute, it indicates to the user to wait for an action to finish and prevents the user to trigger multiple time the action.
+
+<Canvas of={SpinnerStories.Inline} />

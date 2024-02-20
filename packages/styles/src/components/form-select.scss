@@ -64,7 +64,12 @@
   }
 
   @include utilities.high-contrast-mode() {
-    background-image: b.escape-svg(form-select.$form-select-indicator-hcm);
+    background-image: b.escape-svg(form-select.$form-select-indicator-hcm-dark);
+
+    @media (prefers-color-scheme: light) {
+      background-image: b.escape-svg(form-select.$form-select-indicator-hcm-light);
+    }
+
     background-color: Field;
     border-color: FieldText;
     color: FieldText;

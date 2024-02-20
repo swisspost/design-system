@@ -32,6 +32,10 @@ interface PopoverElement {
 
 export type PostPopoverElement = HTMLElement & PopoverElement;
 
+/**
+ * @slot - Default slot for placing content inside the popovercontainer.
+ */
+
 @Component({
   tag: 'post-popovercontainer',
   styleUrl: 'post-popovercontainer.scss',
@@ -82,6 +86,7 @@ export class PostPopovercontainer {
   @Method()
   async show(target: HTMLElement) {
     this.eventTarget = target;
+    this.calculatePosition();
     this.popoverRef.showPopover();
   }
 
@@ -102,6 +107,7 @@ export class PostPopovercontainer {
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
     this.eventTarget = target;
+    this.calculatePosition();
     this.popoverRef.togglePopover(force);
     return this.popoverRef.matches(':popover-open');
   }
