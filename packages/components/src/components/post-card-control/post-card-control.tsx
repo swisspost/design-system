@@ -16,8 +16,6 @@ import { version } from '../../../package.json';
 
 let cardControlIds = 0;
 
-// TODO: add integration for error message as soon as #2625 is implemented
-
 /**
  * @class PostCardControl - representing a stencil component
  *
