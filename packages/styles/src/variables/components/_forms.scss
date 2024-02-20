@@ -119,6 +119,14 @@ $form-range-input-height-ie: 6rem !default;
 
 $form-file-button-hover-bg: $input-bg;
 
+$form-textarea-padding-r: sizing.px-to-rem(22) !default;
+$form-textarea-padding-l: spacing.$size-regular;
+$form-textarea-padding-t: spacing.$size-regular;
+$form-textarea-padding-b: spacing.$size-mini;
+
+$form-textarea-padding-t-sm: sizing.px-to-rem(7);
+$form-textarea-padding-b-sm: 0;
+
 $form-floating-height: $input-height-lg * $input-line-height-lg;
 $form-floating-padding-x: $input-padding-x-lg;
 $form-floating-padding-y: $input-padding-y-lg;
@@ -128,8 +136,8 @@ $form-floating-input-padding-b: 0;
 $form-floating-label-opacity: 1;
 $form-floating-label-height: $form-floating-height;
 $form-floating-label-color: $input-placeholder-color;
-$form-floating-label-font-size: type.$font-size-bigger-regular;
-$form-floating-label-font-size-small: type.$font-size-tiny;
+$form-floating-label-font-size: type.$font-size-16;
+$form-floating-label-font-size-small: type.$font-size-12;
 $form-floating-label-scale: math.div(
   $form-floating-label-font-size-small,
   $form-floating-label-font-size
@@ -150,8 +158,15 @@ $form-floating-select-bg-size: 32px 32px;
 
 $form-floating-label-font-size-sm: type.$font-size-12;
 $form-floating-label-font-size-placeholder-sm: type.$font-size-14;
+$form-floating-label-scale-sm: math.div(
+  $form-floating-label-font-size-sm,
+  $form-floating-label-font-size-placeholder-sm
+);
+$form-floating-label-upscale-sm: math.div(1, $form-floating-label-scale-sm);
 $form-floating-padding-x-sm: spacing.$size-regular;
 $form-floating-padding-y-sm: $input-padding-y-sm;
+$form-floating-label-translate-x-sm: $form-floating-padding-x-sm *
+  (1 - $form-floating-label-scale-sm);
 $form-floating-label-height-sm: $form-floating-input-height-sm;
 $form-floating-label-padding-t-sm: $form-floating-label-height-sm * 0.5 -
   $form-floating-label-font-size-sm;

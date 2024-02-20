@@ -22,7 +22,6 @@ const meta: Meta = {
     value: undefined,
     size: 'form-control-lg',
     sizeFloatingLabel: 'form-control-lg',
-    rows: 4,
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',

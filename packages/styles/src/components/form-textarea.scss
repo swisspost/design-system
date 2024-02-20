@@ -5,16 +5,16 @@
 textarea {
   &.form-control {
     &.form-control-lg {
-      padding-top: spacing.$size-regular;
-      padding-bottom: spacing.$size-mini;
-      padding-left: spacing.$size-regular;
+      padding-top: forms.$form-textarea-padding-t;
+      padding-bottom: forms.$form-textarea-padding-b;
+      padding-left: forms.$form-textarea-padding-l;
     }
 
     &.form-control-sm {
-      padding-top: sizing.px-to-rem(7);
-      padding-left: spacing.$size-regular;
-      padding-right: sizing.px-to-rem(22);
-      padding-bottom: 0;
+      padding-top: forms.$form-textarea-padding-t-sm;
+      padding-right: forms.$form-textarea-padding-r;
+      padding-left: forms.$form-textarea-padding-l;
+      padding-bottom: forms.$form-textarea-padding-b-sm;
     }
 
     &::-webkit-resizer {
