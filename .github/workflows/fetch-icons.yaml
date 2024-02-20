@@ -123,7 +123,7 @@ jobs:
             description+="Deleted icon$(pluralize_if_needed $DELETED_ICONS) number ${DELETED_ICONS}. "
           fi
 
-          echo ---                                          > $CHANGESET
+          echo ---                                          >  $CHANGESET
           echo "'@swisspost/design-system-icons': ${bump}"  >> $CHANGESET
           echo ---                                          >> $CHANGESET
           echo                                              >> $CHANGESET
@@ -147,7 +147,7 @@ jobs:
         if: steps.changed-files.outputs.any_modified != 'false'
         run: |
           echo "file=$PR_BODY_FILE" >> $GITHUB_OUTPUT
-          echo "# Design system icons are now up to date!"  > $PR_BODY_FILE
+          echo "# Design system icons are now up to date!" >  $PR_BODY_FILE
           if [[ -n $UPDATED_ICONS ]]; then
             echo "## Updated icons"                        >> $PR_BODY_FILE
             echo $UPDATED_ICONS                            >> $PR_BODY_FILE
