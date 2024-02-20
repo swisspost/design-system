@@ -39,6 +39,6 @@ export function getVersion(version: string, filter: string = '') {
 
     return matchArray !== null && matchArray[1] ? matchArray[1] : null;
   } else {
-    return cleanVersion.length > 0 ? cleanVersion : DEPENDENCIES[version] ?? null;
+    return cleanVersion.length > 0 ? cleanVersion : version ?? null;
   }
 }
