@@ -1,4 +1,4 @@
-import { Component, Host, h, Prop } from '@stencil/core';
+import { Component, h, Host, Prop } from '@stencil/core';
 import { state } from '../../data/store';
 
 @Component({
@@ -28,7 +28,7 @@ export class PostMetaNavigation {
                       target={meta.target}
                       href={meta.url}
                     >
-                      <span aria-hidden="true">{meta.text}</span>
+                      {meta.text}
                     </a>
                   </li>
                 ))}
