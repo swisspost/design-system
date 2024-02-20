@@ -8,7 +8,7 @@ const ADDON_ID = 'postVersionSwitcher';
 addons.register(ADDON_ID, () => {
   addons.add(ADDON_ID, {
     title: 'Switch to another version',
-    type: types.TOOL,
+    type: types.TOOLEXTRA,
     match: ({ viewMode }) => !!(viewMode && viewMode.match(/^(story|docs)$/)),
     render: () => {
       return <VersionSwitcher />;
