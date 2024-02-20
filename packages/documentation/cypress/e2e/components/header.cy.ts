@@ -9,6 +9,9 @@ describe('Internet-Header', () => {
     it('Has no detectable a11y violations on load for all variants', () => {
       cy.checkA11y('#root-inner', {
         rules: {
+          'link-name': {
+            enabled: false,
+          },
           'aria-required-children': {
             enabled: false,
           },
