@@ -15,8 +15,6 @@ const dpSimpleTs =
 const dpValidationTs =
   require('!!raw-loader!../datepicker-validation/datepicker-validation-demo.component.ts').default;
 const localizationService = require('!!raw-loader!./datepicker-localization.service.ts').default;
-const localizationDirective =
-  require('!!raw-loader!./datepicker-title-localization.directive.ts').default;
 
 @Component({
   selector: 'app-datepicker-demo-page',
@@ -30,7 +28,6 @@ export class NgbDatepickerDemoPageComponent implements OnInit {
   dpSimpleTs = dpSimpleTs;
   dpValidationTs = dpValidationTs;
   localizationService = localizationService;
-  localizationDirective = localizationDirective;
 
   form: UntypedFormGroup;
   sizes = ['sm', 'rg', 'md', 'lg'];

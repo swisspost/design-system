@@ -1,9 +1,11 @@
+const COLLAPSIBLE_ID = '6a91848c-16ec-4a23-bc45-51c797b5b2c3';
+
 describe('collapsible', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('collapsible');
+      cy.getComponent('collapsible', COLLAPSIBLE_ID);
       cy.get('@collapsible').find('.collapse').as('collapse');
-      cy.get('#components-collapsible--default--button').as('toggler');
+      cy.get(`#button--${COLLAPSIBLE_ID}--default`).as('toggler');
     });
 
     it('should render', () => {
@@ -35,9 +37,9 @@ describe('collapsible', () => {
 
   describe('initially collapsed', () => {
     beforeEach(() => {
-      cy.getComponent('collapsible', 'initially-collapsed');
+      cy.getComponent('collapsible', COLLAPSIBLE_ID, 'initially-collapsed');
       cy.get('@collapsible').find('.collapse').as('collapse');
-      cy.get('#components-collapsible--initially-collapsed--button').as('toggler');
+      cy.get(`#button--${COLLAPSIBLE_ID}--initially-collapsed`).as('toggler');
     });
 
     it('should be collapsed', () => {
@@ -53,5 +55,12 @@ describe('collapsible', () => {
       cy.get('@toggler').dblclick();
       cy.get('@collapse').should(`be.hidden`);
     });
+  });
+});
+
+describe('Accessibility', () => {
+  it('Has no detectable a11y violations on load for all variants', () => {
+    cy.getSnapshots('collapsible');
+    cy.checkA11y('#root-inner');
   });
 });

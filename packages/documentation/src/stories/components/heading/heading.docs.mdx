@@ -1,7 +1,6 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as HeadingStories from './heading.stories';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
-import LinkTo from '@storybook/addon-links/react';
 
 <Meta of={HeadingStories} />
 
@@ -13,8 +12,7 @@ import LinkTo from '@storybook/addon-links/react';
 
 All HTML headings are available, from `h1` the highest section level to `h6` the lowest.<br/>
 If you need to match the font styling of a heading but cannot use the associated HTML element,
-check out
-<LinkTo kind="utilities-heading" story="docs">heading utilities</LinkTo>.
+use the override classes.
 
 <Canvas sourceState="shown" of={HeadingStories.Default} />
 <div className="hide-col-default">

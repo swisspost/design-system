@@ -9,18 +9,6 @@
 @use './../variables/components/forms';
 @use './../variables/components/form-select' as form-select;
 
-.form-select-rg {
-  @include forms-mixins.form-control-rg;
-}
-
-.form-select-lg {
-  background-size: form-select.$form-select-bg-size;
-}
-
-.form-select-sm {
-  background-size: form-select.$form-select-bg-size-sm;
-}
-
 .form-select {
   &:not(:disabled) {
     &:hover {
@@ -28,36 +16,60 @@
     }
   }
 
-  &.is-valid,
-  &.is-invalid {
-    background-position:
-      right b.$form-select-padding-x * 2.5 center,
-      b.$form-select-bg-position;
+  &:not([multiple]) {
+    &:disabled {
+      background-image: b.escape-svg(form-select.$form-select-indicator-disabled),
+        var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+    }
 
-    &.form-select-lg {
+    &.is-valid,
+    &.is-invalid {
       background-position:
-        right b.$form-select-padding-x * 3 center,
+        right b.$form-select-padding-x * 2.5 center,
         b.$form-select-bg-position;
+
+      &.form-select-lg {
+        background-position:
+          right b.$form-select-padding-x * 3 center,
+          b.$form-select-bg-position;
+      }
+    }
+
+    &.is-valid {
+      background-image: b.escape-svg(form-select.$form-select-indicator-success),
+        var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+    }
+
+    &.is-invalid {
+      background-image: b.escape-svg(form-select.$form-select-indicator-error),
+        var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
     }
   }
 
-  &:disabled {
-    background-image: b.escape-svg(form-select.$form-select-indicator-disabled),
-      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
-  }
+  &[multiple] {
+    &.is-valid,
+    &.is-invalid {
+      background-position: right b.$form-select-padding-x * 1.5 center;
+    }
 
-  &.is-valid {
-    background-image: b.escape-svg(form-select.$form-select-indicator-success),
-      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
-  }
+    &.is-valid {
+      background-image: b.escape-svg(form-select.$form-select-indicator-success),
+        var(--bs-form-select-bg-icon, none);
+    }
 
-  &.is-invalid {
-    background-image: b.escape-svg(form-select.$form-select-indicator-error),
-      var(--bs-form-select-bg-img), var(--bs-form-select-bg-icon, none);
+    &.is-invalid {
+      background-image: b.escape-svg(form-select.$form-select-indicator-error),
+        var(--bs-form-select-bg-icon, none);
+    }
   }
 
   @include utilities.high-contrast-mode() {
-    background-image: b.escape-svg(form-select.$form-select-indicator-hcm);
+    background-image: b.escape-svg(form-select.$form-select-indicator-hcm-dark);
+
+    @media (prefers-color-scheme: light) {
+      background-image: b.escape-svg(form-select.$form-select-indicator-hcm-light);
+    }
+
     background-color: Field;
     border-color: FieldText;
     color: FieldText;
@@ -71,4 +83,19 @@
       border-color: Highlight;
     }
   }
+}
+
+.form-select-rg {
+  @include forms-mixins.form-rg;
+  background-size: forms.$form-bg-size; // Set arrow size. Duplicated rule in form-validation for is-valid/is-invalid icon.
+}
+
+.form-select-sm {
+  @include forms-mixins.form-sm;
+  background-size: forms.$form-bg-size-sm; // Set arrow size. Duplicated rule in form-validation for is-valid/is-invalid icon.
+}
+
+.form-select-lg {
+  @include forms-mixins.form-lg;
+  background-size: forms.$form-bg-size; // Set arrow size. Duplicated rule in form-validation for is-valid/is-invalid icon.
 }

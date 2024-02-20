@@ -4,8 +4,10 @@ import { bombArgs } from '../../../utils';
 
 import meta, { Default } from './collapsible.stories';
 
+const { id, ...metaWithoutId } = meta;
+
 export default {
-  ...meta,
+  ...metaWithoutId,
   decorators: [],
   title: 'Snapshots',
 };
@@ -28,9 +30,7 @@ export const collapsible: Story = {
     return html`
       <div>
         ${['white', 'dark'].map(
-          bg => html`
-            <div class=${'row bg-' + bg}>${templateVariants}</div>
-          `,
+          bg => html` <div class=${'row bg-' + bg}>${templateVariants}</div> `,
         )}
       </div>
     `;

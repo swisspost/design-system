@@ -6,6 +6,7 @@ import { useArgs } from '@storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 const meta: Meta = {
+  id: 'cd684d90-e7a7-41a9-8923-b1b72ad9b384',
   title: 'Components/Tooltip',
   component: 'post-tooltip',
   parameters: {
@@ -56,6 +57,12 @@ const meta: Meta = {
     placement: {
       name: 'Placement',
     },
+    arrow: {
+      name: 'Arrow',
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 };
 
@@ -75,6 +82,7 @@ function render(args: Args) {
       id="${args.id}"
       class="hydrated bg-${args.backgroundColor}"
       placement="${ifDefined(args.placement)}"
+      arrow="${ifDefined(args.arrow)}"
     >
       ${unsafeHTML(innerHTML)}
     </post-tooltip>

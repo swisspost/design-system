@@ -26,11 +26,11 @@
     "@angular-devkit/schematics": "=15.0.4",
     "@angular/core": "=15.0.4",
     "cheerio": "1.0.0-rc.12",
-    "prettier": "3.2.2",
+    "prettier": "3.2.5",
     "typescript": "4.9.5"
   },
   "devDependencies": {
-    "@types/node": "16.18.71",
+    "@types/node": "16.18.79",
     "copyfiles": "2.4.1",
     "rimraf": "5.0.5"
   },

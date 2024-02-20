@@ -1,5 +1,4 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
-import LinkTo from '@storybook/addon-links/react';
 import * as ButtonStories from './button.stories';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
@@ -25,9 +24,7 @@ The following examples show the different characteristics of the component. Thes
 
 ### Inverted
 
-Inverted buttons don't need special classes anymore, just use any of the
-<LinkTo kind="utilities-background" story="docs">background
-  classes</LinkTo> to set the background and you're done for the day.
+Inverted buttons don't need special classes anymore, just use any of the [background classes](/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs) to set the background and you're done for the day.
 
 <Canvas of={ButtonStories.Inverted} />
 
@@ -56,6 +53,15 @@ To achieve that, you can use classes in the format:
 
 For example, a button with classes `w-100 w-lg-auto` will use all available space only when the viewport size is smaller than `lg`.
 
-To learn more about breakpoints, see the <a href="/?path=/docs/foundations-layout-breakpoints--docs">Breakpoints documentation</a>.
+To learn more about breakpoints, see the <a href="/?path=/docs/20af6e2b-32b1-42ef-a187-b026aea7fe13--docs">Breakpoints documentation</a>.
 
 <Canvas of={ButtonStories.FullWidth} />
+
+### Align buttons
+
+Use flexbox to group and align buttons. As a best practice for keyboard navigation, order the most important button as the first occurrence in a group in the HTML
+and use the `.flex-row-reverse`, `.flex-column-reverse`, or `.order-*` classes to change the visual order.
+
+In the following example, the send button appears first on tab navigation.
+
+<Canvas of={ButtonStories.Align} />

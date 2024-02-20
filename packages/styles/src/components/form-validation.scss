@@ -61,6 +61,14 @@
       background-repeat: no-repeat;
       background-position: right b.$input-height-inner-quarter center;
       background-size: form-validation.$form-feedback-icon-size;
+
+      &.form-control-sm {
+        background-size: forms.$form-bg-size-sm;
+      }
+
+      &.form-control-lg {
+        background-size: forms.$form-bg-size;
+      }
     }
   }
 
@@ -91,32 +99,45 @@
   display: block;
 }
 
-.is-valid {
-  padding-right: spacing.$size-small-huge; // For deprecated form-control-rg
-  border-color: var(--post-success-green);
-  background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
-  background-repeat: no-repeat;
-  background-position: right b.$input-height-inner-quarter center;
-
-  &.form-control-sm {
-    padding-right: spacing.$size-bigger-big; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
-    background-size: forms.$form-bg-size-sm; // Add space between background icons (ours and the one from bootstrap)
-  }
-
-  &.form-control-lg {
-    padding-right: spacing.$size-small-huge; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
-    background-size: forms.$form-bg-size; // Add space between background icons (ours and the one from bootstrap)
-  }
-}
-
 .form-control,
 .form-select {
-  @include form-validation-mx.form-validation-state-selector(invalid) {
+  &.is-invalid {
     border-color: form-validation.$form-feedback-invalid-color;
+    background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid);
 
     &:focus {
       border-color: form-validation.$form-feedback-invalid-color;
       box-shadow: form-validation.$form-feedback-invalid-box-shadow;
+    }
+  }
+
+  &.is-valid {
+    border-color: var(--post-success-green);
+    background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
+
+    &:focus {
+      border-color: form-validation.$form-feedback-valid-color;
+      box-shadow: form-validation.$form-feedback-valid-box-shadow;
+    }
+  }
+
+  &.is-invalid,
+  &.is-valid {
+    padding-right: spacing.$size-small-huge; // For deprecated form-control-rg
+    background-repeat: no-repeat;
+    background-size: forms.$form-bg-size; // Duplicated rule in form-select for arrow size.
+    background-position: right b.$input-height-inner-quarter center;
+
+    &.form-select-sm,
+    &.form-control-sm {
+      padding-right: spacing.$size-bigger-big; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
+      background-size: forms.$form-bg-size-sm; // Add space between background icons (ours and the one from bootstrap). Duplicated rule in form-select for arrow size.
+    }
+
+    &.form-select-lg,
+    &.form-control-lg {
+      padding-right: spacing.$size-small-huge; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
+      background-size: forms.$form-bg-size; // Add space between background icons (ours and the one from bootstrap). Duplicated rule in form-select for arrow size.
     }
   }
 }

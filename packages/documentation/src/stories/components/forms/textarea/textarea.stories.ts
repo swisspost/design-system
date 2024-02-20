@@ -10,6 +10,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
+  id: '152b7268-cce0-43d7-b931-41a57370f9a0',
   title: 'Components/Forms/Textarea',
   render: renderTextarea,
   parameters: {
@@ -50,7 +51,7 @@ const meta: Meta = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -120,7 +121,7 @@ const meta: Meta = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</div>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -160,34 +161,16 @@ function renderTextarea(args: Args, context: StoryContext) {
   });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label = !useAriaLabel
-    ? html`
-        <label for=${id} class="form-label">
-          ${html`
-            ${args.label}
-          `}
-        </label>
-      `
+    ? html` <label for=${id} class="form-label">${args.label}</label> `
     : null;
-  const contextuals = [
+  const contextual = [
     args.validation === 'is-valid'
-      ? html`
-          <div class="valid-feedback">Ggranda sukceso!</div>
-        `
+      ? html` <div class="valid-feedback">Ggranda sukceso!</div> `
       : null,
     args.validation === 'is-invalid'
-      ? html`
-          <div class="invalid-feedback">Eraro okazis!</div>
-        `
+      ? html` <div class="invalid-feedback">Eraro okazis!</div> `
       : null,
-    args.hint !== ''
-      ? html`
-          <div class="form-text">
-            ${html`
-              ${args.hint}
-            `}
-          </div>
-        `
-      : null,
+    args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
   ];
   const control = html`
     <textarea
@@ -200,16 +183,15 @@ function renderTextarea(args: Args, context: StoryContext) {
       aria-label=${useAriaLabel ? args.label : nothing}
       aria-invalid=${VALIDATION_STATE_MAP[args.validation] ?? nothing}
       style=${args.resize ?? nothing}
-    >${args.textInside ?? nothing}</textarea>
+    >
+${args.textInside ?? nothing}</textarea
+    >
   `;
   if (args.floatingLabel) {
     return html`
-      <div class="form-floating">${[control, label, ...contextuals].filter(el => el !== null)}</div>
+      <div class="form-floating">${[control, label, ...contextual].filter(el => el !== null)}</div>
     `;
-  } else
-    return html`
-      ${[label, control, ...contextuals].filter(el => el !== null)}
-    `;
+  } else return html` ${[label, control, ...contextual].filter(el => el !== null)} `;
 }
 
 export const Default: Story = {};

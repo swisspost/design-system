@@ -12,5 +12,17 @@
 post-popovercontainer {
   &::part(popover) {
     padding: spacing.$size-micro spacing.$size-mini;
+    max-width: 2 * spacing.$size-bigger-giant - spacing.$size-mini;
+    min-height: spacing.$size-regular;
+  }
+
+  // Creates a safe space around the popovercontainer for save pointer crossing between trigger and tooltip
+  &.has-arrow::part(popover) {
+    &::after {
+      position: absolute;
+      content: '';
+      inset: -13px;
+      z-index: -1;
+    }
   }
 }

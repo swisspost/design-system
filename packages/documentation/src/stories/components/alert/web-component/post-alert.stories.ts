@@ -4,6 +4,7 @@ import { BADGE } from '../../../../../.storybook/constants';
 import { spreadArgs } from '../../../../utils';
 
 const meta: Meta<HTMLPostAlertElement> = {
+  id: '8fd36823-966e-46a8-8432-a4439f6e208f',
   title: 'Components/Post Alert',
   component: 'post-alert',
   render: renderAlert,
@@ -107,9 +108,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
 
 // RENDERER
 function renderAlert(args: Partial<HTMLPostAlertElement>) {
-  return html`
-    <post-alert ${spreadArgs(args)}></post-alert>
-  `;
+  return html` <post-alert ${spreadArgs(args)}></post-alert> `;
 }
 
 // STORIES
