@@ -2,4 +2,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Added a new rating component.
+Added a new rating web-component.
