@@ -1,5 +1,15 @@
 # @swisspost/design-system-components
 
+## 2.0.2
+
+### Patch Changes
+
+- Fixed double lines between accordion items on chrome/safari. (by [@imagoiq](https://github.com/imagoiq) with [#2615](https://github.com/swisspost/design-system/pull/2615))
+
+- Fixed two issues with tooltips and Angular integration. Tooltips are now being displayed on buttons that are added to the DOM asynchronously and tooltip elements are no longer duplicated on route change. (by [@gfellerph](https://github.com/gfellerph) with [#2621](https://github.com/swisspost/design-system/pull/2621))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.2
+
 ## 2.0.1
 
 ### Patch Changes

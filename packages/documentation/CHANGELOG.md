@@ -1,5 +1,39 @@
 # @swisspost/design-system-documentation
 
+## 3.1.0
+
+### Minor Changes
+
+- Added contrast ratios agains black & white to color documentation. (by [@b1aserlu](https://github.com/b1aserlu) with [#2376](https://github.com/swisspost/design-system/pull/2376))
+
+- Added override classes to the heading documentation and removed the utitlites/headings, which was previouvly used to document the override classes. (by [@b1aserlu](https://github.com/b1aserlu) with [#2640](https://github.com/swisspost/design-system/pull/2640))
+
+- Added a documentation page for the post spinner component. (by [@imagoiq](https://github.com/imagoiq) with [#2612](https://github.com/swisspost/design-system/pull/2612))
+
+- Migrated documentation for card-button to storybook. (by [@b1aserlu](https://github.com/b1aserlu) with [#2619](https://github.com/swisspost/design-system/pull/2619))
+
+### Patch Changes
+
+- Fixed missing archive links in migrated page. (by [@imagoiq](https://github.com/imagoiq) with [#2663](https://github.com/swisspost/design-system/pull/2663))
+
+- Removed empty pages. (by [@imagoiq](https://github.com/imagoiq) with [#2666](https://github.com/swisspost/design-system/pull/2666))
+
+- Documented `post-accordion-item` properties on Accordion page. (by [@imagoiq](https://github.com/imagoiq) with [#2630](https://github.com/swisspost/design-system/pull/2630))
+
+- Removed input type color variant as it is not compatible with the current input styles. (by [@imagoiq](https://github.com/imagoiq) with [#2628](https://github.com/swisspost/design-system/pull/2628))
+
+- Documented collapseChange event from post-accordion-item on post-accordion. (by [@imagoiq](https://github.com/imagoiq) with [#2620](https://github.com/swisspost/design-system/pull/2620))
+
+- Improved rendering of the home page for high-contrast mode. (by [@imagoiq](https://github.com/imagoiq) with [#2653](https://github.com/swisspost/design-system/pull/2653))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.3.0
+  - @swisspost/design-system-styles@6.6.2
+  - @swisspost/internet-header@1.13.6
+  - @swisspost/design-system-components@2.0.2
+  - @swisspost/design-system-intranet-header@5.0.9
+  - @swisspost/design-system-components-angular@1.0.1
+  - @swisspost/design-system-components-react@1.0.28
+
 ## 3.0.0
 
 ### Minor Changes
