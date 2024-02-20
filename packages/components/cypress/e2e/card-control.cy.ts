@@ -299,10 +299,10 @@ describe('card-control', () => {
       cy.visit('./cypress/fixtures/post-card-control.form-association.test.html');
 
       cy.get('form#AssociatedForm').as('form');
-      cy.get('@form').find('fieldset').as('fieldset');
       cy.get('@form').find('button[type="reset"]').as('reset');
       cy.get('@form').find('button[type="submit"]').as('submit');
-      cy.get('@form').find('post-card-control').as('card-control');
+      cy.get('@form').find('fieldset#FieldsetCheckbox').as('fieldset');
+      cy.get('@fieldset').find('post-card-control').as('card-control');
       cy.get('@card-control').find('.card-control').as('wrapper');
       cy.get('@card-control').find('input.card-control--input').as('input');
       cy.get('@card-control').find('label.card-control--label').as('label');
@@ -373,10 +373,11 @@ describe('card-control', () => {
 
   describe('radio group', { baseUrl: null, includeShadowDom: true }, () => {
     beforeEach(() => {
-      cy.visit('./cypress/fixtures/post-card-control.radio-group.test.html');
+      cy.visit('./cypress/fixtures/post-card-control.form-association.test.html');
 
       cy.get('form#AssociatedForm').as('form');
-      cy.get('@form').find('post-card-control[name="CardControlGroup"]').as('card-control');
+      cy.get('@form').find('fieldset#FieldsetRadioGroup').as('fieldset');
+      cy.get('@fieldset').find('post-card-control[name="CardControlGroup"]').as('card-control');
       cy.get('@card-control').find('.card-control').as('wrapper');
       cy.get('@wrapper').find('input.card-control--input').as('input');
     });

@@ -222,7 +222,6 @@ export class PostCardControl {
 
     if (this.disabled) {
       this.internals.setFormValue(null);
-      return;
     } else {
       this.checked = this.control.checked = checked;
       this.internals.setFormValue(this.checked ? this.control.value : null);
