@@ -9,7 +9,7 @@
 name: Run snapshot tests
 on:
   workflow_dispatch:
-  pull_request:
+  push:
     branches:
       - 'changeset-release/main'
 

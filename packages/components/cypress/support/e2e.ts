@@ -17,6 +17,7 @@
 import '@percy/cypress';
 import 'cypress-storybook/cypress';
 import './commands';
+import 'cypress-axe';
 
 // https://docs.cypress.io/api/events/catalog-of-events#Uncaught-Exceptions
 Cypress.on('uncaught:exception', err => {

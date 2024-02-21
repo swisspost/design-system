@@ -4,7 +4,7 @@ import { format } from 'prettier';
 import DocsLayout from './blocks/layout';
 import { badgesConfig, openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
-import './cypress-storybook/client';
+import './addons/cypress-storybook/client';
 
 import './styles/preview.scss';
 
@@ -22,8 +22,12 @@ const preview: Preview = {
         method: 'alphabetical',
         order: [
           'Home',
+
+          // Category - Getting Started
           'Getting Started',
           ['Styles', 'Components', 'Components-Angular', 'Compatibility'],
+
+          // Category - Foundations
           'Foundations',
           [
             'Typography',
@@ -33,6 +37,8 @@ const preview: Preview = {
             'Elevation',
             'Accessibility',
           ],
+
+          // Category - Components
           'Components',
           [
             'Accordion',
@@ -59,7 +65,9 @@ const preview: Preview = {
             'Popover',
             'Progressbar',
             'Rating',
+            'Spinner',
             'Stepper',
+            'Subnavigation',
             'Table',
             'Tabs',
             'Timepicker',
@@ -68,10 +76,19 @@ const preview: Preview = {
             'Topic Teaser',
             'Typeahead',
           ],
+
+          // Category - Patterns
           'Patterns',
+          ['Metadata', 'Forms'],
+
+          // Category - Utilities
           'Utilities',
+
+          // Category - Misc
           'Misc',
           ['Migration Guide', 'Changelog', 'Versions'],
+
+          // Category - Snapshots (hidden)
           'Snapshots',
         ],
       },
