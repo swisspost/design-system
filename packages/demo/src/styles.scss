@@ -1,7 +1,7 @@
 @use 'sass:map';
 
 // Switch imported File to check the different versions
-@use '@swisspost/design-system-styles/index';
+@use '@swisspost/design-system-styles/intranet';
 @use '@swisspost/design-system-styles/core' as post;
 
 html {
