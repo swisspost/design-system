@@ -1,6 +1,7 @@
-import { Canvas, Controls, Meta} from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
 import * as RatingStories from './post-rating.stories';
+import SampleEventListeners from './eventListener.sample.html?raw';
 
 <Meta of={RatingStories} />
 
@@ -22,28 +23,9 @@ For more information, read the <LinkTo kind="getting-started-components" story="
 
 ## Examples
 
-### Disabled
+### Events
 
-Is the disabled property set, the component has a clear disabled style, 
-so the user can still see the current rating but is not able to interact with the component.
-  
-
-<Canvas of={RatingStories.Disabled} />
-<div className="hide-col-default">
-  <Controls of={RatingStories.Disabled} />
-</div>
-
-### Readonly
-
-Is the readonly property set, is the component not interactive
-but the current rating is still visible as in the default state.
-
-<Canvas of={RatingStories.Readonly} />
-<div className="hide-col-default">
-  <Controls of={RatingStories.Readonly} />
-</div>
-
-
+<Source code={SampleEventListeners} language="html" />
 
 
   

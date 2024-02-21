@@ -177,13 +177,13 @@ export namespace Components {
          */
         "disabled"?: boolean;
         /**
-          * The number of stars in the rating
-         */
-        "max"?: number;
-        /**
-          * If readonly is true, the component only displays a rating and is not interactive.
+          * If readonly is `true`, the component only displays a rating and is not interactive.
          */
         "readonly"?: boolean;
+        /**
+          * The number of stars in the rating
+         */
+        "stars"?: number;
     }
     interface PostTabHeader {
         /**
@@ -333,7 +333,7 @@ declare global {
         new (): HTMLPostPopovercontainerElement;
     };
     interface HTMLPostRatingElementEventMap {
-        "ratingChange": number;
+        "change": number;
         "input": number;
     }
     interface HTMLPostRatingElement extends Components.PostRating, HTMLStencilElement {
@@ -524,21 +524,21 @@ declare namespace LocalJSX {
          */
         "disabled"?: boolean;
         /**
-          * The number of stars in the rating
+          * Event emitted when the rating gets commited
          */
-        "max"?: number;
+        "onChange"?: (event: PostRatingCustomEvent<number>) => void;
         /**
           * Event emitted whenever the rating changes
          */
         "onInput"?: (event: PostRatingCustomEvent<number>) => void;
         /**
-          * Event emitted when the rating gets commited
-         */
-        "onRatingChange"?: (event: PostRatingCustomEvent<number>) => void;
-        /**
-          * If readonly is true, the component only displays a rating and is not interactive.
+          * If readonly is `true`, the component only displays a rating and is not interactive.
          */
         "readonly"?: boolean;
+        /**
+          * The number of stars in the rating
+         */
+        "stars"?: number;
     }
     interface PostTabHeader {
         /**

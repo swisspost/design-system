@@ -4,7 +4,7 @@ describe('rating', () => {
   beforeEach(() => {
     cy.getComponent('rating', RATING_ID);
     cy.get('@rating').get('div.rating').as('rating-container');
-    cy.get('@rating-container').get('.star-container').as('stars');
+    cy.get('@rating-container').get('.star').as('stars');
   });
 
   describe('default', () => {
@@ -19,13 +19,13 @@ describe('rating', () => {
         $stars.each((_index, star) => {
           const classes = Cypress.$(star).attr('class').split(' ');
           expect(classes).to.have.length(1);
-          expect(classes[0]).to.equal('star-container');
+          expect(classes[0]).to.equal('star');
         });
       });
     });
 
     // Unfortunately the test for the hovered state does not always work.
-    //
+
     // it('should change appearance on hover', () => {
     //   cy.get('@stars')
     //     .its('length')
@@ -94,7 +94,7 @@ describe('rating', () => {
     });
 
     it('should render the correct number of stars based on max attribute', () => {
-      cy.get('@rating').invoke('attr', 'max', 7);
+      cy.get('@rating').invoke('attr', 'stars', 7);
       cy.get('@stars').should('have.length', 7);
     });
 
@@ -106,7 +106,7 @@ describe('rating', () => {
 
       cy.get('@rating').invoke('attr', 'disabled', true);
 
-      cy.get('@rating').invoke('attr', 'max', max);
+      cy.get('@rating').invoke('attr', 'stars', max);
 
       // Check ARIA attributes
       cy.get('@rating-container').should('have.attr', 'role', 'slider');
@@ -179,7 +179,7 @@ describe('rating', () => {
       cy.get('@stars').each(($star, index) => {
         const classes = Cypress.$($star).attr('class').split(' ');
         expect(classes).to.have.length(1);
-        expect(classes[0]).to.equal('star-container');
+        expect(classes[0]).to.equal('star');
 
         cy.wrap($star)
           .click()
@@ -241,7 +241,7 @@ describe('rating', () => {
     it('should emit ratingChange event when rating is commited', () => {
       cy.get('@rating').then($rating => {
         const listener = cy.stub();
-        $rating[0].addEventListener('ratingChange', listener);
+        $rating[0].addEventListener('change', listener);
 
         const newRating = 5;
         cy.get('@stars')

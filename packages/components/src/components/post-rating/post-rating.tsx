@@ -9,6 +9,11 @@ import { version } from '../../../package.json';
 export class PostRating {
   @Element() host: HTMLPostRatingElement;
   /**
+   * The number of stars in the rating
+   */
+  @Prop() readonly stars?: number = 5;
+
+  /**
    * The current rating value
    */
   @Prop({ mutable: true }) currentRating = 0;
@@ -19,17 +24,12 @@ export class PostRating {
   @State() hoveredIndex: number;
 
   /**
-   * The number of stars in the rating
-   */
-  @Prop() readonly max?: number = 5;
-
-  /**
    * Boolean for the disabled state of the component
    */
   @Prop() readonly disabled?: boolean = false;
 
   /**
-   * If readonly is true, the component only displays a rating and is not interactive.
+   * If readonly is `true`, the component only displays a rating and is not interactive.
    */
   @Prop() readonly readonly?: boolean = false;
 
@@ -38,7 +38,7 @@ export class PostRating {
    * Event emitted when the rating gets commited
    */
   @Event({
-    eventName: 'ratingChange',
+    eventName: 'change',
     composed: true,
     bubbles: true,
   }) ratingChange: EventEmitter<number>;
@@ -76,7 +76,7 @@ export class PostRating {
         break;
       case 'End':
         ev.preventDefault();
-        this.update(this.max);
+        this.update(this.stars);
         break;
       case 'Enter':
       case ' ':
@@ -111,8 +111,8 @@ export class PostRating {
 
   private update(value: number): void {
     if (!this.isInteractive()) return;
-    if (value > this.max || value < 0) return;
-    this.currentRating = this.currentRating !== value ? value : 0;
+    if (value > this.stars || value < 0) return;
+    this.currentRating = this.currentRating !== value ? value : 0; // If a star is clicked the second time, the rating gets set to 0.
     this.input.emit(this.currentRating);
     this.hasChanged = true;
   }
@@ -120,7 +120,7 @@ export class PostRating {
   private getClasses(starIndex: number) {
     if (!this.disabled) {
       return {
-        'star-container': true,
+        'star': true,
         'active-star': starIndex < this.currentRating,
         'hovered-star':
           (this.hoveredIndex < this.currentRating && starIndex <= this.hoveredIndex) ||
@@ -130,7 +130,7 @@ export class PostRating {
       };
     } else {
       return {
-        'star-container': true,
+        'star': true,
         'active-disabled': starIndex < this.currentRating,
         'default-disabled': starIndex >= this.currentRating,
       };
@@ -139,7 +139,7 @@ export class PostRating {
 
   private renderStars() {
     const stars = [];
-    for (let index = 0; index < this.max; index++) {
+    for (let index = 0; index < this.stars; index++) {
       stars.push(
         <div
           class={this.getClasses(index)}
@@ -161,9 +161,9 @@ export class PostRating {
         <div
           role="slider"
           aria-valuemin="0"
-          aria-valuemax={this.max}
+          aria-valuemax={this.stars}
           aria-valuenow={this.currentRating}
-          aria-valuetext={`${this.currentRating} out of ${this.max}`}
+          aria-valuetext={`${this.currentRating} out of ${this.stars}`}
           aria-readonly={this.readonly && !this.disabled ? 'true' : 'false'}
           aria-disabled={this.disabled ? 'true' : 'false'}
           class="rating"

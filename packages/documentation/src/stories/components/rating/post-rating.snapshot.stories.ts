@@ -18,13 +18,11 @@ export const PostRating: Story = {
       <div class="d-flex flex-wrap align-items-start gap-regular">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div
-              class="${bg} d-flex  flex-wrap align-items-start flex-column gap-regular p-regular"
-            >
+            <div class="${bg} d-flex  flex-wrap align-items-start gap-large p-regular">
               ${[
                 //variants for max 3
                 ...bombArgs({
-                  max: [3, 5, 10, 25],
+                  stars: [3, 5, 10, 25],
                   disabled: [false, true],
                   readonly: [false, true],
                   currentRating: [0, 1, 3, 5, 10, 25],
@@ -33,25 +31,25 @@ export const PostRating: Story = {
                   .filter(
                     (args: Args) =>
                       !(
-                        args.max === 3 &&
+                        args.stars === 3 &&
                         (args.currentRating === 5 ||
                           args.currentRating === 10 ||
                           args.currentRating === 25)
                       ) &&
                       !(
-                        args.max === 5 &&
+                        args.stars === 5 &&
                         (args.currentRating === 1 ||
                           args.currentRating === 10 ||
                           args.currentRating === 25)
                       ) &&
                       !(
-                        args.max === 10 &&
+                        args.stars === 10 &&
                         (args.currentRating === 1 ||
                           args.currentRating === 3 ||
                           args.currentRating === 25)
                       ) &&
                       !(
-                        args.max === 25 &&
+                        args.stars === 25 &&
                         (args.currentRating === 1 ||
                           args.currentRating === 3 ||
                           args.currentRating === 5)

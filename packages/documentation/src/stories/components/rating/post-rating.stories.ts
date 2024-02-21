@@ -18,11 +18,11 @@ const meta: Meta<HTMLPostRatingElement> = {
       description: 'The current rating value',
       defaultValue: 0,
     },
-    max: {
-      name: 'max',
-      control: { type: 'number' },
+    stars: {
+      name: 'stars',
+      control: { type: 'number', min: 3, max: 10, step: 1 },
       description: 'The number of stars in the rating',
-      defaultValue: 10,
+      defaultValue: 5,
     },
     disabled: {
       name: 'disabled',
@@ -59,7 +59,7 @@ export const Disabled: Story = {
     },
   },
   args: {
-    currentRating: 5,
+    currentRating: 3,
     disabled: true,
   },
 };
@@ -71,18 +71,7 @@ export const Readonly: Story = {
     },
   },
   args: {
-    currentRating: 5,
-    readonly: true,
-  },
-};
-
-export const CurrentRating: Story = {
-  parameters: {
-    controls: {
-      include: ['currentRating'],
-    },
-  },
-  args: {
     currentRating: 3,
+    readonly: true,
   },
 };
