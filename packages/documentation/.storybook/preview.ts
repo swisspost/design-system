@@ -22,8 +22,12 @@ const preview: Preview = {
         method: 'alphabetical',
         order: [
           'Home',
+
+          // Category - Getting Started
           'Getting Started',
           ['Styles', 'Components', 'Components-Angular', 'Compatibility'],
+
+          // Category - Foundations
           'Foundations',
           [
             'Typography',
@@ -33,6 +37,8 @@ const preview: Preview = {
             'Elevation',
             'Accessibility',
           ],
+
+          // Category - Components
           'Components',
           [
             'Accordion',
@@ -67,10 +73,19 @@ const preview: Preview = {
             'Topic Teaser',
             'Typeahead',
           ],
+
+          // Category - Patterns
           'Patterns',
+          ['Metadata', 'Forms'],
+
+          // Category - Utilities
           'Utilities',
+
+          // Category - Misc
           'Misc',
           ['Migration Guide', 'Changelog', 'Versions'],
+
+          // Category - Snapshots (hidden)
           'Snapshots',
         ],
       },
