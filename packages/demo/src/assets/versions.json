@@ -1,14 +1,9 @@
 [
   {
-    "title": "Version 6 — Current docs",
-    "description": "Developer documentation for the Swiss Post Design System.",
-    "url": "https://next.design-system.post.ch"
-  },
-  {
-    "title": "Version 6 — Old docs",
+    "title": "Version 6",
     "version": "6.6.1",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
-    "url": "https://archive.design-system.post.ch",
+    "url": "https://design-system.post.ch",
     "dependencies": {
       "@angular/core": "16.2.3",
       "@ng-bootstrap/ng-bootstrap": "15.1.1",
