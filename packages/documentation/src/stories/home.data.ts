@@ -1,4 +1,4 @@
-import { getVersion } from '../utils/version';
+import { DEPENDENCIES, getVersion } from '../utils/version';
 
 interface IPackage {
   name: string;
@@ -27,7 +27,7 @@ export const packages: IPackage[] = [
       src: '/assets/images/packages/styles.svg',
       alt: 'design-system-styles package logo',
     },
-    version: `v${getVersion('@swisspost/design-system-styles')}`,
+    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-styles'])}`,
   },
   {
     name: 'Components',
@@ -36,7 +36,7 @@ export const packages: IPackage[] = [
       src: '/assets/images/packages/components.svg',
       alt: 'design-system-components package Logo',
     },
-    version: `v${getVersion('@swisspost/design-system-components')}`,
+    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-components'])}`,
   },
   {
     name: 'Components Angular',
@@ -45,7 +45,7 @@ export const packages: IPackage[] = [
       src: '/assets/images/packages/components-angular.svg',
       alt: 'design-system-components-angular package Logo',
     },
-    version: `v${getVersion('@swisspost/design-system-components-angular')}`,
+    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-components-angular'])}`,
   },
   {
     name: 'Internet-Header',
@@ -54,7 +54,7 @@ export const packages: IPackage[] = [
       src: '/assets/images/packages/internet-header.svg',
       alt: 'internet-header package Logo',
     },
-    version: `v${getVersion('@swisspost/internet-header')}`,
+    version: `v${getVersion(DEPENDENCIES['@swisspost/internet-header'])}`,
   },
   {
     name: 'Intranet-Header',
@@ -63,7 +63,7 @@ export const packages: IPackage[] = [
       src: '/assets/images/packages/intranet-header.svg',
       alt: 'design-system-intranet-header package Logo',
     },
-    version: `v${getVersion('@swisspost/design-system-intranet-header')}`,
+    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-intranet-header'])}`,
   },
   {
     name: 'Icons',
@@ -72,7 +72,7 @@ export const packages: IPackage[] = [
       src: '/assets/images/packages/icons.svg',
       alt: 'design-system-icons package Logo',
     },
-    version: `v${getVersion('@swisspost/design-system-icons')}`,
+    version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-icons'])}`,
   },
 ];
 

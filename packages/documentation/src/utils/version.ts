@@ -1,6 +1,6 @@
 import * as packageJson from '../../package.json';
 
-const DEPENDENCIES: any = {
+export const DEPENDENCIES: any = {
   [packageJson.name]: packageJson.version,
   ...packageJson.dependencies,
   ...packageJson.devDependencies,
