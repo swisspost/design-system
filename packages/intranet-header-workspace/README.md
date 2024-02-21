@@ -1,6 +1,6 @@
 # Intranet-Header-Workspace
 
-This is the wrapper package for any Angular related components in the Design System. This package itself is not published anywhere.
+This is the workspace package which holds the `@swisspost/design-system-intranet-header` package. This package itself is not published anywhere.
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli).
 

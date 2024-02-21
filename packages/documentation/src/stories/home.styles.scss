@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '@swisspost/design-system-styles/core.scss' as post;
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 .bg-fullwidth {
   position: relative;
@@ -48,19 +49,28 @@ $tile-rg-size: 100px;
   box-shadow: 0 2px 5px 0 rgba(post.$aubergine-dark, 0.3);
   text-decoration: none;
 
+  @include utilities.high-contrast-mode() {
+    border: 2px solid transparent;
+  }
+
   .tile--title {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     flex: 0 0 auto;
-    padding: post.$size-mini post.$size-micro;
+    padding: 0 post.$size-micro;
+    height: calc(#{post.$size-mini * 2} + 2.2em);
     background-color: post.$yellow;
     border-top-left-radius: inherit;
     border-top-right-radius: inherit;
     font-size: $tile-size * 0.1;
     font-weight: post.$font-weight-bold;
+    line-height: 1.1;
     box-shadow: 0 2px 0 1px rgba(post.$yellow, 0.5);
 
     ~ .tile--icon {
       img {
-        max-height: $tile-size * 0.4;
+        max-height: 50px;
       }
     }
   }
@@ -76,7 +86,7 @@ $tile-rg-size: 100px;
     border-bottom-right-radius: inherit;
 
     img {
-      max-height: $tile-size * 0.5;
+      max-height: 50px;
     }
 
     span {
@@ -98,6 +108,7 @@ $tile-rg-size: 100px;
     height: $tile-rg-size;
 
     .tile--title {
+      height: calc(#{post.$size-mini * 1.5} + 2.2em);
       font-size: $tile-rg-size * 0.1;
 
       ~ .tile--icon {

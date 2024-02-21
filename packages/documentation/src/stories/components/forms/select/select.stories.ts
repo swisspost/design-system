@@ -11,6 +11,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 const meta: Meta = {
+  id: 'bc251cd0-5173-463b-8729-586bb1bf1e1a',
   title: 'Components/Forms/Select',
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
@@ -21,13 +22,13 @@ const meta: Meta = {
     hiddenLabel: false,
     value: undefined,
     size: 'form-select-lg',
+    sizeFloatingLabel: 'form-select-lg',
     options: 5,
     multiple: false,
     multipleSize: 4,
     hint: 'Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.',
     disabled: false,
     validation: 'null',
-    success: false,
   },
   argTypes: {
     label: {
@@ -53,7 +54,7 @@ const meta: Meta = {
     hiddenLabel: {
       name: 'Hidden Label',
       description:
-        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/story/foundations-accessibility--page#labels">label accessibility guide</a>.</span>',
+        'Renders the component with or without a visible label.<span className="mt-mini alert alert-info alert-sm">There are accessibility concerns with hidden labels.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#labels">label accessibility guide</a>.</span>',
       if: {
         arg: 'floatingLabel',
         truthy: false,
@@ -78,6 +79,10 @@ const meta: Meta = {
     size: {
       name: 'Size',
       description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: false,
+      },
       control: {
         type: 'select',
         labels: {
@@ -88,6 +93,25 @@ const meta: Meta = {
         },
       },
       options: ['form-select-sm', 'form-select-rg', 'null', 'form-select-lg'],
+      table: {
+        category: 'General',
+      },
+    },
+    sizeFloatingLabel: {
+      name: 'Size',
+      description: "Sets the size of the component's appearance.",
+      if: {
+        arg: 'floatingLabel',
+        truthy: true,
+      },
+      control: {
+        type: 'select',
+        labels: {
+          'form-select-sm': 'Small',
+          'form-select-lg': 'Large',
+        },
+      },
+      options: ['form-select-sm', 'form-select-lg'],
       table: {
         category: 'General',
       },
@@ -144,7 +168,7 @@ const meta: Meta = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--page#disabled-state">disabled state accessibility guide</a>.</span>',
+        'When set to `true`, disables the component\'s functionality and places it in a disabled state.<span className="mt-mini alert alert-info alert-sm">There are accessibility issues with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</span>',
       control: {
         type: 'boolean',
       },
@@ -172,20 +196,6 @@ const meta: Meta = {
         category: 'States',
       },
     },
-    success: {
-      name: 'Success',
-      description: 'Controls the success state appearance of the component.',
-      control: {
-        type: 'boolean',
-      },
-      if: {
-        arg: 'validation',
-        neq: 'is-invalid',
-      },
-      table: {
-        category: 'States',
-      },
-    },
   },
 };
 
@@ -200,51 +210,35 @@ const Template: Story = {
     const classes = [
       'form-select',
       args.size,
+      args.sizeFloatingLabel,
       args.validation,
       args.floatingLabelPlaceholder && !args.value ? 'form-select-empty' : null,
-      args.success && 'success',
     ]
       .filter(c => c && c !== 'null')
       .join(' ');
     const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
     const label = !useAriaLabel
-      ? html`
-          <label for="${id}" class="form-label">${args.label}</label>
-        `
+      ? html` <label for="${id}" class="form-label">${args.label}</label> `
       : null;
     const optionElements = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
-      (key: number) => html`
-        <option value="valoro_${key}">Opcion ${key}</option>
-      `,
+      (key: number) => html` <option value="valoro_${key}">Opcion ${key}</option> `,
     );
     const options = [
       ...[
         args.floatingLabelPlaceholder
-          ? html`
-              <option></option>
-            `
-          : html`
-              <option>Elektu opcion...</option>
-            `,
+          ? html` <option></option> `
+          : html` <option>Elektu opcion...</option> `,
       ],
       ...optionElements,
     ];
     const contextuals = [
       args.validation === 'is-valid'
-        ? html`
-            <p class="valid-feedback">Ggranda sukceso!</p>
-          `
+        ? html` <p class="valid-feedback">Ggranda sukceso!</p> `
         : null,
       args.validation === 'is-invalid'
-        ? html`
-            <p class="invalid-feedback">Eraro okazis!</p>
-          `
+        ? html` <p class="invalid-feedback">Eraro okazis!</p> `
         : null,
-      args.hint !== ''
-        ? html`
-            <div class="form-text">${args.hint}</div>
-          `
-        : null,
+      args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
     ];
     const control = html`
       <select
@@ -261,13 +255,18 @@ const Template: Story = {
       >
         ${[
           options[0],
-          options.slice(1).map(
-            (option, index) => html`
-              <option value="valoro_${index + 1}" ?selected="${index === args.selectedOption - 2}">
-                Opcion ${index + 2}
-              </option>
-            `,
-          ),
+          options
+            .slice(1)
+            .map(
+              (option, index) => html`
+                <option
+                  value="valoro_${index + 1}"
+                  ?selected="${index === args.selectedOption - 2}"
+                >
+                  Opcion ${index + 2}
+                </option>
+              `,
+            ),
         ]}
       </select>
     `;
@@ -279,9 +278,7 @@ const Template: Story = {
         </div>
       `;
     } else {
-      return html`
-        ${[label, control, ...contextuals].filter(el => el !== null)}
-      `;
+      return html` ${[label, control, ...contextuals].filter(el => el !== null)} `;
     }
   },
 };

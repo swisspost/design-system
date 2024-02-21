@@ -29,6 +29,7 @@ import { If } from '../../utils/if.component';
 import packageJson from '../../../package.json';
 import { registerLogoAnimationObserver } from './logo-animation/logo-animation';
 import { getScrollParent } from '../../utils/scrollparent';
+import { getLogoScale } from './logo-animation/logo-scale';
 
 @Component({
   tag: 'swisspost-internet-header',
@@ -130,6 +131,7 @@ export class PostInternetHeader {
 
   @State() activeFlyout: string | null = null;
   @State() activeDropdownElement: DropdownElement | null = null;
+  @State() isMainSlotEmpty = true;
   @Element() host: HTMLSwisspostInternetHeaderElement;
 
   /**
@@ -431,6 +433,11 @@ export class PostInternetHeader {
     );
   }
 
+  private handleMainSlotChange(e: Event) {
+    const mainSlot = e.target as HTMLSlotElement;
+    this.isMainSlotEmpty = mainSlot.assignedElements().length === 0;
+  }
+
   render() {
     if (!state.localizedConfig?.header) {
       console.error(new Error('Internet Header: Config cannot be loaded'));
@@ -446,6 +453,8 @@ export class PostInternetHeader {
       (this.login ?? !config.header.isLoginWidgetHidden) && config.header.loginWidgetOptions;
     const renderLanguageSwitch = config.header.navLang.length > 1;
 
+    const initialLogoScale = getLogoScale(this.host);
+
     return (
       <Host
         class={`stickyness-${this.stickyness} ${
@@ -453,6 +462,7 @@ export class PostInternetHeader {
         }`}
         data-version={packageJson.version}
         onKeyup={(e: KeyboardEvent) => this.handleKeyUp(e)}
+        style={{ '--logo-scale': initialLogoScale }}
       >
         <header class={`post-internet-header${this.fullWidth ? ' full-width' : ''}`}>
           <SvgSprite />
@@ -505,6 +515,9 @@ export class PostInternetHeader {
               </If>
             </post-main-navigation>
             <div class="main-navigation-controls">
+              <div class="main-navigation-custom-content" hidden={this.isMainSlotEmpty}>
+                <slot name="main" onSlotchange={e => this.handleMainSlotChange(e)}></slot>
+              </div>
               <If condition={this.search}>
                 <post-search onDropdownToggled={e => this.handleDropdownToggled(e)}></post-search>
               </If>
@@ -520,7 +533,6 @@ export class PostInternetHeader {
                   mode="dropdown"
                 ></post-language-switch>
               </If>
-              <slot name="main"></slot>
             </div>
           </div>
         </header>

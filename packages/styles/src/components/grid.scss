@@ -88,8 +88,9 @@ $gutter-x-cache: 0;
   }
 }
 
-// legacy code
+//the following classes are all deprecated and wil be removed in next major version
 
+//deprecated
 .vertical-gutters {
   margin-bottom: grid.$grid-gutter-width * -1;
 
@@ -99,6 +100,7 @@ $gutter-x-cache: 0;
   }
 }
 
+//deprecated
 // border-gutters class is used to manipulate border collapse
 .row.border-gutters {
   margin-right: -(commons.$border-width);
@@ -113,8 +115,10 @@ $gutter-x-cache: 0;
   }
 }
 
+//deprecated
 $container-cache: 0;
 
+//deprecated
 @each $breakpoint in grid.$grid-breakpoints-list {
   $container-padding: map.get(grid.$grid-container-padding, $breakpoint);
 
@@ -153,6 +157,7 @@ $container-cache: 0;
     }
   }
 
+  //deprecated
   // Container fluid responsive needs to be written every time
   .container-fluid-#{$breakpoint} {
     @include media-breakpoint-only($breakpoint) {
@@ -161,5 +166,6 @@ $container-cache: 0;
     }
   }
 
+  //deprecated
   $container-cache: $container-padding;
 }

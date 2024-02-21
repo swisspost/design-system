@@ -20,13 +20,9 @@ jobs:
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
-      # Install changesets locally
+      # Install dependencies and build packages
       - name: Install dependencies
-        run: pnpm install
-
-      # Build custom changelog formatter
-      - name: Build changelog formatter
-        run: pnpm --filter design-system-changelog-github build
+        run: pnpm bootstrap
 
       # This will fail the build if something in the publish setup is not correct
       # before changeset magic is starting to run
@@ -42,7 +38,7 @@ jobs:
         id: changesets
         uses: changesets/action@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
           title: 'chore(changesets): 🦋📦 publish packages'

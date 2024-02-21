@@ -103,7 +103,7 @@ export const getCookie = (name: string) => {
  * @param value
  */
 export const setCookie = (key: string, value: string) => {
-  document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}`;
+  document.cookie = `${encodeURIComponent(key)}=${encodeURIComponent(value)}; Secure`;
 };
 
 const getPreferredLanguageFromBrowser = (supportedLanguages: string[]): string | null => {

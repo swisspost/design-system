@@ -4,6 +4,7 @@
 @use '@swisspost/design-system-styles/variables/components/button';
 @use '@swisspost/design-system-styles/variables/type';
 @use '@swisspost/design-system-styles/mixins/forms' as forms-mx;
+@use '@swisspost/design-system-styles/mixins/utilities';
 @use './placeholders.scss';
 @use './mixins.scss';
 
@@ -39,8 +40,9 @@ svg {
 }
 
 svg {
-  @media (forced-colors: active) {
-    color: white;
+  @include utilities.high-contrast-mode {
+    color: currentColor;
+    forced-color-adjust: preserve-parent-color;
   }
 }
 

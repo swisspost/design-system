@@ -1,13 +1,13 @@
 import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { BADGE } from '../../../../../../.storybook/constants';
 import { html } from 'lit';
-import { spread } from '@open-wc/lit-helpers';
-import { getAttributes } from '../../../../../utils';
+import { spreadArgs } from '../../../../../utils';
 import customConfig from './config/custom-config';
 import osFlyoutOverrides from './config/os-flyout-overrides';
 import languageSwitchOverrides from './config/language-switch-overrides';
 
 const meta: Meta = {
+  id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',
   title: 'Components/Internet Header/Header',
   component: 'swisspost-internet-header',
   parameters: {
@@ -172,11 +172,8 @@ const meta: Meta = {
   ],
 };
 
-function render(args: Args) {
-  const attributes = getAttributes(args, arg => arg !== null && arg !== undefined);
-  return html`
-    <swisspost-internet-header ${spread(attributes)}></swisspost-internet-header>
-  `;
+function render({ innerHMTL, ...args }: Args) {
+  return html` <swisspost-internet-header ${spreadArgs(args)}></swisspost-internet-header> `;
 }
 
 export default meta;
@@ -215,5 +212,11 @@ export const OSFlyoutOverrides: Story = {
     controls: {
       include: ['osFlyoutOverrides'],
     },
+  },
+};
+
+export const CustomContent: Story = {
+  args: {
+    innerHTML: `<p class="mx-regular mb-0" slot="main">Hello, User!</p>`,
   },
 };

@@ -18,6 +18,7 @@ type Animation = (typeof ANIMATION_NAMES)[number];
 /**
  * @class PostIcon - representing a stencil component
  */
+
 @Component({
   tag: 'post-icon',
   styleUrl: 'post-icon.scss',
@@ -142,16 +143,15 @@ export class PostIcon {
     const svgStyles = Object.entries({
       '-webkit-mask-image': `url('${this.path}')`,
       'mask-image': `url('${this.path}')`,
-      'scale': this.scale && !isNaN(Number(this.scale)) ? `${this.scale}` : null,
-      'rotate': this.rotate && !isNaN(Number(this.rotate)) ? `${this.rotate}deg` : null,
+      'transform':
+        (this.scale && !isNaN(Number(this.scale)) ? 'scale(' + this.scale + ')' : '') +
+        (this.rotate && !isNaN(Number(this.rotate)) ? ' rotate(' + this.rotate + 'deg)' : ''),
     })
       .filter(([_key, value]) => value !== null)
       .reduce((styles, [key, value]) => Object.assign(styles, { [key]: value }), {});
-
     return (
       <Host data-version={version}>
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style={svgStyles}>
-        </svg>
+        <span style={svgStyles}></span>
       </Host>
     );
   }
