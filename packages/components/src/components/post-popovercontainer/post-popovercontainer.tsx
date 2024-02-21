@@ -47,7 +47,7 @@ export class PostPopovercontainer {
   private arrowRef: HTMLElement;
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
-  private toggleTimeout: number;
+  private toggleTimeoutId: number;
 
   /**
    * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
@@ -86,7 +86,7 @@ export class PostPopovercontainer {
    */
   @Method()
   async show(target: HTMLElement) {
-    if (!this.toggleTimeout) {
+    if (!this.toggleTimeoutId) {
       this.eventTarget = target;
       this.calculatePosition();
       this.popoverRef.showPopover();
@@ -98,7 +98,7 @@ export class PostPopovercontainer {
    */
   @Method()
   async hide() {
-    if (!this.toggleTimeout) {
+    if (!this.toggleTimeoutId) {
       this.eventTarget = null;
       this.popoverRef.hidePopover();
     }
@@ -112,11 +112,11 @@ export class PostPopovercontainer {
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
     // Prevent instant double toggle
-    if (!this.toggleTimeout) {
+    if (!this.toggleTimeoutId) {
       this.eventTarget = target;
       this.calculatePosition();
       this.popoverRef.togglePopover(force);
-      this.toggleTimeout = null;
+      this.toggleTimeoutId = null;
     }
     return this.popoverRef.matches(':popover-open');
   }
@@ -128,7 +128,7 @@ export class PostPopovercontainer {
    * @param e ToggleEvent
    */
   private handleToggle(e: ToggleEvent) {
-    this.toggleTimeout = window.setTimeout(() => (this.toggleTimeout = null), 10);
+    this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
     if (isOpen) {
       this.startAutoupdates();
