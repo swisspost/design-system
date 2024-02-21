@@ -24,7 +24,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
   @State() mobileMenuOpen: boolean;
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
   @Event() flyoutToggled: EventEmitter<string | null>;
-  @Element() host: DropdownElement;
+  @Element() host: HTMLPostMainNavigationElement;
   private throttledResize: throttle<() => void>;
   private resizeTimer: number | null = null;
   private mouseLeaveTimer: number | null = null;
@@ -247,7 +247,6 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
           aria-label={headerConfig.translations.navMainAriaLabel}
           id="post-internet-header-main-navigation"
           class={{ 'main-navigation': true, 'open': this.mobileMenuOpen }}
-          role="menu"
         >
           <ul class="main-container container">
             {headerConfig.navMain.map(levelOne => (
