@@ -4,7 +4,7 @@ import { format } from 'prettier';
 import DocsLayout from './blocks/layout';
 import { badgesConfig, openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
-import './cypress-storybook/client';
+import './addons/cypress-storybook/client';
 
 import './styles/preview.scss';
 
