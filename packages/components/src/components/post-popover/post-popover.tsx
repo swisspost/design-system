@@ -14,8 +14,7 @@ const globalToggleHandler = (e: PointerEvent | KeyboardEvent) => {
   const target = e.target as HTMLElement;
   if (!target || !('getAttribute' in target)) return;
   const popoverTarget = target.getAttribute(popoverTargetAttribute);
-  if (!popoverTarget || popoverTarget === '') return;
-  if ('key' in e && e.key !== 'Enter') return;
+  if (!popoverTarget || ('key' in e && e.key !== 'Enter')) return;
   const popover = document.getElementById(popoverTarget) as HTMLPostPopoverElement;
   popover?.toggle(target);
 };
