@@ -53,7 +53,9 @@
   h5,
   .h5 {
     margin-top: map.get(spacing.$post-sizes, 'bigger-big');
-    &:first-child {
+
+    // Temporary resolution to avoid margin-top spreading inside Notification Overlay
+    .modal-dialog & {
       margin-top: 0;
     }
   }
