@@ -24,7 +24,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
   @State() mobileMenuOpen: boolean;
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
   @Event() flyoutToggled: EventEmitter<string | null>;
-  @Element() host: HTMLPostMainNavigationElement;
+  @Element() host: DropdownElement;
   private throttledResize: throttle<() => void>;
   private resizeTimer: number | null = null;
   private mouseLeaveTimer: number | null = null;
