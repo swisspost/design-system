@@ -14,7 +14,7 @@ const meta: Meta = {
   title: 'Components/Forms/Card-Control',
   component: 'post-card-control',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
+    badges: [BADGE.BETA],
   },
   args: {
     label: 'Label',
