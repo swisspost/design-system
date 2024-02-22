@@ -1,7 +1,7 @@
 const CARDCONTROL_ID = '886fabcf-148b-4054-a2ec-4869668294fb';
 
-describe('card-control', () => {
-  describe('structure & props', () => {
+describe('Card-Control', () => {
+  describe('Structure & Props', () => {
     beforeEach(() => {
       cy.getComponent('card-control', CARDCONTROL_ID);
       cy.window().then(win => {
@@ -163,7 +163,7 @@ describe('card-control', () => {
     });
   });
 
-  describe('events', () => {
+  describe('Events', () => {
     beforeEach(() => {
       cy.getComponent('card-control', CARDCONTROL_ID);
 
@@ -270,7 +270,7 @@ describe('card-control', () => {
     });
   });
 
-  describe('methods', () => {
+  describe('Methods', () => {
     beforeEach(() => {
       cy.getComponent('card-control', CARDCONTROL_ID);
 
@@ -294,7 +294,7 @@ describe('card-control', () => {
     });
   });
 
-  describe('form association', { baseUrl: null, includeShadowDom: true }, () => {
+  describe('Form Association', { baseUrl: null, includeShadowDom: true }, () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-card-control.form-association.test.html');
 
@@ -371,7 +371,7 @@ describe('card-control', () => {
     });
   });
 
-  describe('radio group', { baseUrl: null, includeShadowDom: true }, () => {
+  describe('Radio Group', { baseUrl: null, includeShadowDom: true }, () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-card-control.form-association.test.html');
 
@@ -497,6 +497,13 @@ describe('card-control', () => {
           cy.checkFormDataPropValue($form, 'CardControlGroup', i !== 1 ? i.toString() : null);
         });
       });
+    });
+  });
+
+  describe('Accessibility', () => {
+    it('Has no detectable a11y violations on load for all variants', () => {
+      cy.getSnapshots('card-control');
+      cy.checkA11y('#root-inner');
     });
   });
 });
