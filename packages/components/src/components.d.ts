@@ -95,7 +95,7 @@ export namespace Components {
          */
         "label": string;
         /**
-          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
          */
         "name": string;
         /**
