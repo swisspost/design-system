@@ -7,7 +7,10 @@
   border-color: transparent;
 
   @include utilities.high-contrast-mode() {
+    background-color: Highlight;
     border-color: Highlight;
+    color: HighlightText;
+    forced-color-adjust: none; // Disable "readability backplate" on blink browser that interferes with the colors on this case
   }
 }
 
@@ -18,5 +21,11 @@
 
   > .badge {
     background-color: badge.$badge-nested-active-bg-color;
+  }
+
+  @include utilities.high-contrast-mode() {
+    background-color: SelectedItem;
+    color: SelectedItemText;
+    forced-color-adjust: none; // Disable "readability backplate" on blink browser that interferes with the colors on this case
   }
 }
