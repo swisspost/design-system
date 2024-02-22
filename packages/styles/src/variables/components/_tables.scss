@@ -4,35 +4,42 @@
 @use './../spacing';
 @use './../type';
 
+// Bootstrap variables
 $table-cell-padding-y: spacing.$size-small-regular !default;
-$table-cell-padding-x: $table-cell-padding-y !default;
-$table-cell-padding: $table-cell-padding-y $table-cell-padding-x !default;
-
-$table-cell-padding-y-sm: spacing.$size-micro !default;
-$table-cell-padding-x-sm: $table-cell-padding-y-sm !default;
-$table-cell-padding-sm: $table-cell-padding-y-sm $table-cell-padding-x-sm !default;
-
-// Tables
-//
-// Customizes the `.table` component with basic values, each used across all table variations.
-
+$table-cell-padding-x: spacing.$size-mini !default;
+$table-cell-padding-y-sm: spacing.$size-mini !default;
+$table-cell-padding-x-sm: spacing.$size-micro !default;
+$table-cell-vertical-align: top !default;
+$table-color: var(--post-contrast-color) !default;
 $table-bg: transparent !default;
 $table-accent-bg: transparent !default;
-$table-hover-bg: rgba(color.$black, 0.075) !default;
-$table-active-bg: $table-hover-bg !default;
-
+$table-th-font-weight: type.$font-weight-bold !default;
+$table-striped-color: $table-color !default;
+$table-striped-bg-factor: 1 !default;
+$table-striped-bg: var(--post-light) !default;
+$table-active-color: $table-color !default;
+$table-active-bg-factor: 1 !default;
+$table-active-bg: var(--post-yellow) !default;
+$table-hover-color: $table-color !default;
+$table-hover-bg-factor: 1 !default;
+$table-hover-bg: var(--post-gray-10) !default;
+$table-border-factor: 1 !default;
 $table-border-width: commons.$border-width !default;
-$table-border-color: rgba(var(--post-contrast-color-rgb), 0.4) !default;
-$table-group-separator-color: rgba(var(--post-contrast-color-rgb), 0.4) !default;
+$table-border-color: var(--post-gray-10) !default;
+$table-striped-order: odd !default;
+$table-striped-columns-order: even !default;
+$table-group-separator-color: var(--post-gray-10) !default;
+$table-caption-color: var(--post-gray-60) !default;
+$table-bg-scale: -80% !default;
 
-$table-head-color: color.$gray-40 !default;
+// Custom variables
+$table-cell-padding: $table-cell-padding-y $table-cell-padding-x !default;
+$table-cell-padding-sm: $table-cell-padding-y-sm $table-cell-padding-x-sm !default;
 
+// DEPRECATED
+$table-head-color: red !default;
 $table-dark-bg: color.$gray-80 !default;
 $table-dark-accent-bg: rgba(color.$white, 0.05) !default;
 $table-dark-hover-bg: rgba(color.$white, 0.075) !default;
 $table-dark-border-color: sass-color.adjust(color.$gray-80, $lightness: 7.5%) !default;
 $table-dark-color: color.$black !default;
-
-$table-striped-order: odd !default;
-
-$table-caption-color: type.$text-muted !default;
