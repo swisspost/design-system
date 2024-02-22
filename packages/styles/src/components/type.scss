@@ -91,6 +91,8 @@ fieldset {
   }
 
   &-footer {
+    color: var(--post-contrast-color);
+
     cite {
       @extend %font-curve-small;
       font-weight: type.$blockquote-cite-font-weight;
