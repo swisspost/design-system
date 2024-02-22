@@ -80,7 +80,11 @@ export class PostAccordionItem {
             </button>
           </HeadingTag>
 
-          <post-collapsible collapsed={this.collapsed} ref={el => (this.collapsible = el)}>
+          <post-collapsible
+            id={`${this.id}--collapse`}
+            collapsed={this.collapsed}
+            ref={el => (this.collapsible = el)}
+          >
             <div class="accordion-body">
               <slot />
             </div>

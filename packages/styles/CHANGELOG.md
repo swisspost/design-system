@@ -1,5 +1,21 @@
 # @swisspost/design-system-styles
 
+## 6.6.2
+
+### Patch Changes
+
+- Updated high contrast styles for the form switch component. (by [@alizedebray](https://github.com/alizedebray) with [#2667](https://github.com/swisspost/design-system/pull/2667))
+
+- Fixed display of icons in high-contrast mode in webkit. (by [@imagoiq](https://github.com/imagoiq) with [#2638](https://github.com/swisspost/design-system/pull/2638))
+
+- Deprecated sizes `loader-sm` and `loader-xs` for the spinner. They are replace respectively with `loader-40` and `loader-16`. (by [@imagoiq](https://github.com/imagoiq) with [#2612](https://github.com/swisspost/design-system/pull/2612))
+
+- Removed transparent background for notification in high-contrast mode. (by [@imagoiq](https://github.com/imagoiq) with [#2653](https://github.com/swisspost/design-system/pull/2653))
+
+- Fixed visibility of select arrow in icon in high-contrast mode with light theme. (by [@imagoiq](https://github.com/imagoiq) with [#2696](https://github.com/swisspost/design-system/pull/2696))
+
+- Sets the font-size of h5 on small mobile devices to 16px as defined in Figma. (by [@gfellerph](https://github.com/gfellerph) with [#2610](https://github.com/swisspost/design-system/pull/2610))
+
 ## 6.6.1
 
 ### Patch Changes

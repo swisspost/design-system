@@ -59,13 +59,6 @@ Type: `Promise<void>`
 
 
 
-## Slots
-
-| Slot        | Description                          |
-| ----------- | ------------------------------------ |
-| `"default"` | Slot for the content of the tooltip. |
-
-
 ## Dependencies
 
 ### Depends on

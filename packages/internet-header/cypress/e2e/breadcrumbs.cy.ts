@@ -93,14 +93,14 @@ describe('breadcrumb', () => {
       cy.get('@breadcrumbs').find('div.overlay').should('not.exist');
     });
 
-    it.only(`should open overlay programmatically`, () => {
+    it(`should open overlay programmatically`, () => {
       cy.get('swisspost-internet-breadcrumbs').then(async el => {
         await el[0].toggleOverlayById('help');
         cy.get('div.breadcrumbs').find('div.overlay').should('exist');
       });
     });
 
-    it.only(`should close overlay programmatically`, () => {
+    it(`should close overlay programmatically`, () => {
       cy.get('swisspost-internet-breadcrumbs').then(async el => {
         await el[0].toggleOverlayById('help');
         await el[0].toggleOverlayById('help');
