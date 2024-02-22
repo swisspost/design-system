@@ -75,6 +75,7 @@
 
   &:not(.is-disabled) {
     // order matters!
+    // because we only overwrite the props, which need to be different from one selector to the other.
 
     &.is-checked {
       --post-card-control-border-color: #{post.$black};
@@ -128,6 +129,7 @@
 
     &:not(.is-disabled) {
       // order matters!
+      // because we only overwrite the props, which need to be different from one selector to the other.
 
       &.is-checked {
         --post-card-control-border-color: #{post.$yellow};
