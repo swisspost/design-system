@@ -1,5 +1,6 @@
 @use 'sass:map';
 @use '@swisspost/design-system-styles/core.scss' as post;
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 .bg-fullwidth {
   position: relative;
@@ -47,6 +48,10 @@ $tile-rg-size: 100px;
   border-radius: post.$size-regular;
   box-shadow: 0 2px 5px 0 rgba(post.$aubergine-dark, 0.3);
   text-decoration: none;
+
+  @include utilities.high-contrast-mode() {
+    border: 2px solid transparent;
+  }
 
   .tile--title {
     display: flex;

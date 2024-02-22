@@ -74,7 +74,7 @@ $notification-variants: list.join(
   $notification-variants,
   (
     'primary' color.$gray-80 3134,
-    'success' color.$success 2105,
+    'success' color.$success-green 2105,
     'danger' color.$error 2104,
     'warning' color.$warning 2104,
     'info' color.$info 2106,

@@ -1,10 +1,16 @@
 @use '@swisspost/design-system-styles/components/root';
 @use '@swisspost/design-system-styles/components/fonts';
+@use '@swisspost/design-system-styles/mixins/utilities';
+@use '../addons/version-switcher/version-switcher';
 
 .sidebar-header {
   :nth-of-type(1) {
     flex: 0 0 48px;
   }
+}
+
+.visually-hidden {
+  @include utilities.visuallyhidden();
 }
 
 #storybook-explorer-tree {
