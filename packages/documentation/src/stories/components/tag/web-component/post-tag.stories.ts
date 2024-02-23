@@ -1,59 +1,59 @@
-import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import type { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { html, nothing } from 'lit';
+import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BADGE } from '../../../../../.storybook/constants';
-import { ifDefined } from 'lit/directives/if-defined.js';
 
-const meta: Meta<HTMLPostTagElement> = {
+const meta: Meta = {
   title: 'Components/Tag',
   component: 'post-tag',
-  render: postTagRender,
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [BADGE.BETA],
   },
   args: {
-    innerHTML: 'Tag',
+    'variant': 'null',
+    'size': 'null',
+    'icon': '',
+    'text': 'Tag',
+    'slots-default': '',
   },
   argTypes: {
-    innerHTML: {
-      name: 'Content',
-      description:
-        'This sets the innerHTML of the component, as you can see in the code above, and is where you place the text for the `post-tag`',
-      control: {
-        type: 'text',
-      },
-    },
-    icon: {
-      name: 'Icon',
-      control: {
-        type: 'number',
-      },
-    },
-    size: {
-      name: 'Size',
+    'variant': {
       control: {
         type: 'select',
         labels: {
-          '': 'Large',
-          'tag-sm': 'Small',
-        },
-      },
-      options: [undefined, 'tag-sm'],
-    },
-    bgColor: {
-      name: 'bgColor',
-      control: {
-        type: 'select',
-        labels: {
-          gray: 'Default',
+          null: 'Default',
+          gray: 'Gray',
           white: 'White',
           info: 'Info',
           success: 'Success',
+          danger: 'Danger',
           warning: 'Warning',
-          danger: 'Danger (Error)',
           yellow: 'Yellow',
         },
       },
-      options: ['gray', 'white', 'info', 'success', 'warning', 'danger', 'yellow'],
+      options: ['null', 'gray', 'white', 'info', 'success', 'warning', 'danger', 'yellow'],
+    },
+    'size': {
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          sm: 'Small',
+        },
+      },
+      options: ['null', 'sm'],
+    },
+    'text': {
+      if: {
+        arg: 'slots-default',
+        eq: '',
+      },
+    },
+    'slots-default': {
+      name: 'default',
+      control: {
+        type: 'text',
+      },
     },
   },
 };
@@ -62,36 +62,41 @@ export default meta;
 
 type Story = StoryObj;
 
-function postTagRender(args: Args) {
-  args.innerHTML = args.content ? args.content : args.innerHTML;
-  return html`
-    <post-tag
-      icon=${ifDefined(args.icon)}
-      bg-color=${ifDefined(args.bgColor)}
-      size=${ifDefined(args.size)}
-    >
-      ${args.innerHTML}
-    </post-tag>
-  `;
-}
-
-export const PostTag: Story = {};
-
-export const PostTagVariants: Story = {
-  args: {
-    icon: 1001,
-  },
-  render: (args: Args, context: StoryContext) => {
+export const WC_Default: Story = {
+  render: (args: Args) => {
     return html`
-      <div class="d-flex justify-content-evenly">
-        ${context.argTypes.bgColor.options.map((bgColor: string) =>
-          postTagRender({
+      <post-tag
+        variant="${args.variant === 'null' ? nothing : args.variant}"
+        size="${args.size === 'null' ? nothing : args.size}"
+        icon="${args.icon || nothing}"
+        text="${args['slots-default'] ? nothing : args.text}"
+        >${unsafeHTML(args['slots-default'])}</post-tag
+      >
+    `;
+  },
+};
+
+export const WC_Variants: Story = {
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      html`<div class="d-flex flex-wrap gap-3">${story(context.args, context)}</div>`,
+  ],
+  render: (args: Args, context: StoryContext) => {
+    const variants = Object.entries(context.argTypes.variant.control.labels).slice(1);
+    let icon = 1000;
+
+    return html`
+      ${variants.map(([variant, text]) =>
+        WC_Default.render?.(
+          {
             ...args,
-            bgColor,
-            innerHTML: context.argTypes.bgColor.control.labels[bgColor],
-          }),
-        )}
-      </div>
+            variant,
+            icon: (icon++).toString(),
+            text,
+          },
+          context,
+        ),
+      )}
     `;
   },
 };

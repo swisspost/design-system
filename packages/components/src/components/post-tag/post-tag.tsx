@@ -1,8 +1,8 @@
-import { Component, Element, h, Host, Prop, State } from '@stencil/core';
+import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '../../../package.json';
 
 /**
- * @Slot default slot used for the Text contained by the post-tag
+ * @slot default - Content to place in the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.</p><p class="alert alert-info alert-sm">If set, it overrides the components `text` property.</p>
  */
 @Component({
   tag: 'post-tag',
@@ -15,50 +15,60 @@ export class PostTag {
   @State() classes: string;
 
   /**
-   * Sets the background color of the tag as well as the matching text color.
-   * The name of this prop is `bg-color` in HTML, in TSX you can use `bgColor`.
-   *
-   * Expected values: ['gray', 'white', info, 'success', 'error', 'warning', 'yellow']
-   *
-   * default vaue: 'gray'
+   * Defines the color variant of the component.
    */
-  @Prop() readonly bgColor?: string = 'gray';
+  @Prop() readonly variant: 'gray' | 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow' =
+    'gray';
 
   /**
-   * Sets the size (height) of the tag. Also affects the size of the icon.
-   * Expected values:
-   *
-   * no-value -> large (default)
-   *
-   * tag-sm -> small
-   *
+   * Defines the size of the component.
    */
-  @Prop() readonly size?: string = '';
+  @Prop() readonly size: null | 'sm' = null;
 
   /**
-   * Defines which icon from the Swiss Post Icon Library is used. Excpects a number.
-   * If there is no value asigned to it no icon will be rendered.
-   * Check the desing-system.post documentation to see all available icons.
-   *
-   * Example `1001` -> Letter
-   *
-   * PS: Values 0 and null are ignored
+   * Defines the icon `name` inside of the component.
+   * <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+   * To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs" target="_blank">icon library</a>.
    */
-  @Prop() readonly icon?: number;
+  @Prop() readonly icon: null | string = null;
 
-  componentWillRender() {
-    this.classes = `tag ${this.size} bg-${this.bgColor}`;
+  /**
+   * Defines the text of the component.
+   * Most of the time this will fit your needs, if you need to add custom content, use the default slot instead.
+   */
+  @Prop() readonly text: string;
+
+  constructor() {
+    this.setClasses = this.setClasses.bind(this);
+  }
+
+  @Watch('variant')
+  variantChanged() {
+    this.setClasses();
+  }
+
+  @Watch('size')
+  sizeChanged() {
+    this.setClasses();
+  }
+
+  private setClasses() {
+    this.classes = ['tag', this.size ? `tag-${this.size}` : null, `bg-${this.variant}`]
+      .filter(c => c !== null)
+      .join(' ');
+  }
+
+  connectedCallback() {
+    this.setClasses();
   }
 
   render() {
-    const icon = `${this.icon}`;
-
     return (
       <Host data-version={version}>
         <div class={this.classes}>
-          {!!this.icon && <post-icon name={icon} class="tag-icon"></post-icon>}
-          <div class="tag-content">
-            <slot></slot>
+          {this.icon ? <post-icon name={this.icon} class="tag-icon"></post-icon> : null}
+          <div class="tag-text">
+            <slot>{this.text}</slot>
           </div>
         </div>
       </Host>

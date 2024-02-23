@@ -189,22 +189,23 @@ export namespace Components {
          */
         "show": (panelName: string) => Promise<void>;
     }
-    /**
-     * @Slot default slot used for the Text contained by the post-tag
-     */
     interface PostTag {
         /**
-          * Sets the background color of the tag as well as the matching text color. The name of this prop is `bg-color` in HTML, in TSX you can use `bgColor`.  Expected values: ['gray', 'white', info, 'success', 'error', 'warning', 'yellow']  default vaue: 'gray'
+          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs" target="_blank">icon library</a>.
          */
-        "bgColor"?: string;
+        "icon": null | string;
         /**
-          * Defines which icon from the Swiss Post Icon Library is used. Excpects a number. If there is no value asigned to it no icon will be rendered. Check the desing-system.post documentation to see all available icons.  Example `1001` -> Letter  PS: Values 0 and null are ignored
+          * Defines the size of the component.
          */
-        "icon"?: number;
+        "size": null | 'sm';
         /**
-          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values:  no-value -> large (default)  tag-sm -> small
+          * Defines the text of the component. Most of the time this will fit your needs, if you need to add custom content, use the default slot instead.
          */
-        "size"?: string;
+        "text": string;
+        /**
+          * Defines the color variant of the component.
+         */
+        "variant": 'gray' | 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTooltip {
         /**
@@ -356,9 +357,6 @@ declare global {
         prototype: HTMLPostTabsElement;
         new (): HTMLPostTabsElement;
     };
-    /**
-     * @Slot default slot used for the Text contained by the post-tag
-     */
     interface HTMLPostTagElement extends Components.PostTag, HTMLStencilElement {
     }
     var HTMLPostTagElement: {
@@ -522,22 +520,23 @@ declare namespace LocalJSX {
          */
         "onTabChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
     }
-    /**
-     * @Slot default slot used for the Text contained by the post-tag
-     */
     interface PostTag {
         /**
-          * Sets the background color of the tag as well as the matching text color. The name of this prop is `bg-color` in HTML, in TSX you can use `bgColor`.  Expected values: ['gray', 'white', info, 'success', 'error', 'warning', 'yellow']  default vaue: 'gray'
+          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs" target="_blank">icon library</a>.
          */
-        "bgColor"?: string;
+        "icon"?: null | string;
         /**
-          * Defines which icon from the Swiss Post Icon Library is used. Excpects a number. If there is no value asigned to it no icon will be rendered. Check the desing-system.post documentation to see all available icons.  Example `1001` -> Letter  PS: Values 0 and null are ignored
+          * Defines the size of the component.
          */
-        "icon"?: number;
+        "size"?: null | 'sm';
         /**
-          * Sets the size (height) of the tag. Also affects the size of the icon. Expected values:  no-value -> large (default)  tag-sm -> small
+          * Defines the text of the component. Most of the time this will fit your needs, if you need to add custom content, use the default slot instead.
          */
-        "size"?: string;
+        "text"?: string;
+        /**
+          * Defines the color variant of the component.
+         */
+        "variant"?: 'gray' | 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTooltip {
         /**
@@ -581,9 +580,6 @@ declare module "@stencil/core" {
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
-            /**
-             * @Slot default slot used for the Text contained by the post-tag
-             */
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
         }

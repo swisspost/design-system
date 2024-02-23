@@ -1,5 +1,7 @@
 @use '@swisspost/design-system-styles/components/tag';
 
-* {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
 }

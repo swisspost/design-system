@@ -1,46 +1,62 @@
 @forward './../variables/options';
-@forward './utilities';
+@use './../variables/components/tag';
 
-@use './../variables/components/tag' as tag;
+// style `.tag` only if is not descendant of a `<pre>` element
+// as `<pre><div class="tag">...</div><pre>` is usually used by code highlight tools
 
-.tag // is only a temporary fix till I know how to do it wihtout causing future issues. wihtout this the Code sample would break currently.
-{
+// `.tag` selector can be removed (leave only `.tag:where(:has(:not(pre)))`)as soon as Firefox ESR v128 is released and rolled out
+// https://whattrainisitnow.com/calendar/
+.tag,
+.tag:where(:has(:not(pre))) {
   display: inline-flex;
-  justify-content: flex-start;
   align-items: center;
   gap: tag.$tag-gap;
   padding: tag.$tag-padding-y tag.$tag-padding-x;
-  font-size: tag.$tag-font-size;
+  max-width: tag.$tag-max-width;
+  background-color: var(--post-gray);
   border: tag.$tag-border-width solid transparent;
   border-radius: tag.$tag-border-radius;
-  max-width: tag.$tag-max-width;
-  height: tag.$tag-height;
+  font-size: tag.$tag-font-size;
+  line-height: tag.$tag-line-height;
+  white-space: nowrap;
+  color: var(--contrast-color);
 
-  post-icon {
-    height: tag.$tag-icon-size;
-    min-height: tag.$tag-icon-size;
+  .tag-icon {
+    flex: 0 0 auto;
     width: tag.$tag-icon-size;
-    min-width: tag.$tag-icon-size;
+    height: tag.$tag-icon-size;
+  }
+
+  .tag-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &.tag-sm {
+    line-height: tag.$tag-sm-line-height;
+
+    .tag-icon {
+      width: tag.$tag-sm-icon-size;
+      height: tag.$tag-sm-icon-size;
+    }
   }
 
   &.bg-white {
-    border-color: tag.$tag-white-border-color;
+    border-color: var(--post-contrast-color);
   }
 
-  .tag-content {
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-  }
-}
-
-.tag.tag-sm {
-  height: tag.$tag-sm-height;
-
-  post-icon {
-    height: tag.$tag-sm-icon-size;
-    min-height: tag.$tag-sm-icon-size;
-    width: tag.$tag-sm-icon-size;
-    min-width: tag.$tag-sm-icon-size;
+  // Can be removed completely as soon as Firefox ESR v128 is released and rolled out
+  // https://whattrainisitnow.com/calendar/
+  pre & {
+    display: inline;
+    padding: initial;
+    max-width: initial;
+    background: initial;
+    border: initial;
+    border-radius: initial;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: unset;
   }
 }

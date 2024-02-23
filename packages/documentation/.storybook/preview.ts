@@ -69,6 +69,7 @@ const preview: Preview = {
             'Subnavigation',
             'Table',
             'Tabs',
+            'Tag',
             'Timepicker',
             'Toast',
             'Tooltip',

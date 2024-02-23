@@ -1,85 +1,91 @@
-import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { BADGE } from '../../../../../.storybook/constants';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: Meta = {
   title: 'Components/Tag',
-  render: tagRender,
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [BADGE.BETA],
   },
   args: {
-    showIcon: true,
+    variant: 'null',
+    size: 'null',
+    showIcon: false,
     icon: 1001,
-    content: 'Tag',
-    size: '',
-    color: 'gray',
+    markup: 'Tag',
   },
   argTypes: {
-    showIcon: {
-      name: 'Display icon',
-      description: 'Wheter or not to show icon',
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Content',
-      },
-    },
-    icon: {
-      name: 'Icon',
-      description: `Any number of an Icon in the Swiss Post Icon Library. Example '1001' -> Letter`,
-      control: {
-        type: 'number',
-      },
-      table: {
-        category: 'Content',
-      },
-    },
-    content: {
-      name: 'Content',
-      description: 'Content of Tag',
-      control: {
-        type: 'text',
-      },
-      table: {
-        category: 'Content',
-      },
-    },
-    size: {
-      name: 'Size',
-      description: 'Number of the icon that is diplayed alongside the text',
+    variant: {
+      name: 'Variant',
+      description: 'Defines the color variant of the component.',
       control: {
         type: 'select',
         labels: {
-          '': 'Large',
-          'tag-sm': 'Small',
-        },
-      },
-      options: [undefined, 'tag-sm'],
-      table: {
-        category: 'Content',
-      },
-    },
-    color: {
-      name: 'Color',
-      description: 'The background color of the tag',
-      control: {
-        type: 'select',
-        labels: {
-          gray: 'Default',
+          null: 'Default',
+          gray: 'Gray',
           white: 'White',
           info: 'Info',
           success: 'Success',
-          danger: 'Danger (Error)',
+          danger: 'Danger',
           warning: 'Warning',
           yellow: 'Yellow',
         },
       },
-      options: ['gray', 'white', 'info', 'success', 'warning', 'danger', 'yellow'],
+      options: ['null', 'gray', 'white', 'info', 'success', 'warning', 'danger', 'yellow'],
       table: {
-        category: 'Content',
+        category: 'General',
+      },
+    },
+    size: {
+      name: 'Size',
+      description: 'Defines the size of the component.',
+      control: {
+        type: 'radio',
+        labels: {
+          'null': 'Default',
+          'tag-sm': 'Small',
+        },
+      },
+      options: ['null', 'tag-sm'],
+      table: {
+        category: 'General',
+      },
+    },
+    showIcon: {
+      name: 'Show Icon',
+      description: 'Whether to renderd the component with an icon or not.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'General',
+      },
+    },
+    icon: {
+      name: 'Icon',
+      description:
+        'Defines the icon `name` inside of the component.<br/>To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs" target="_blank">icon library</a>.',
+      control: {
+        type: 'number',
+      },
+      if: {
+        arg: 'showIcon',
+        truthy: true,
+      },
+      table: {
+        category: 'General',
+      },
+    },
+    markup: {
+      name: 'Markup',
+      description:
+        'The markup to put in the component.<br>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'General',
       },
     },
   },
@@ -89,27 +95,41 @@ export default meta;
 
 type Story = StoryObj;
 
-function tagRender(args: Args) {
-  return html`
-    <div class="tag ${args.size} bg-${args.color}">
-      ${args.showIcon
-        ? unsafeHTML(`<post-icon name="${args.icon}" class="tag-icon"></post-icon>`)
-        : nothing}
-      <div class="tag-content">${args.content}</div>
-    </div>
-  `;
-}
+export const Default: Story = {
+  render: (args: Args) => {
+    const classes = [
+      'tag',
+      args.variant === 'null' ? args.variant : `bg-${args.variant}`,
+      args.size,
+    ]
+      .filter(c => c !== 'null')
+      .join(' ');
 
-export const Default: Story = {};
-
-export const Variants: Story = {
-  render: (args: Args, context: StoryContext) => {
     return html`
-      <div class="d-flex justify-content-evenly">
-        ${context.argTypes.color.options.map((color: string) =>
-          tagRender({ ...args, color, content: context.argTypes.color.control.labels[color] }),
-        )}
+      <div class="${classes}">
+        ${args.showIcon
+          ? unsafeHTML(`<post-icon class="tag-icon" name="${args.icon}"></post-icon>`)
+          : nothing}
+        <div class="tag-text">${unsafeHTML(args.markup)}</div>
       </div>
     `;
+  },
+};
+
+export const Variants: Story = {
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      html`<div class="d-flex flex-wrap gap-3">${story(context.args, context)}</div>`,
+  ],
+  render: (args: Args, context: StoryContext) => {
+    const variants = Object.entries(context.argTypes.variant.control.labels).slice(1);
+    let icon = 1000;
+
+    return html`${variants.map(([variant, markup]) =>
+      Default.render?.(
+        { ...args, variant, markup, showIcon: true, icon: (icon++).toString() },
+        context,
+      ),
+    )}`;
   },
 };

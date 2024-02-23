@@ -18,46 +18,44 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
   A small label, generally appearing inside or in close proximity to another larger interface component, representing a status, property, or some other metadata.
 </div>
 <PostTabs>
-<PostTabHeader slot="tabs" panel="standardHTML">Standard HTML</PostTabHeader>
-<PostTabPanel name="standardHTML">
+  <PostTabHeader slot="tabs" panel="standardHTML">Standard HTML</PostTabHeader>
+  <PostTabPanel name="standardHTML">
+    <Canvas of={TagStories.Default} sourceState="shown"/>
+    <div className="hide-col-default">
+      <Controls of={TagStories.Default}/>
+    </div>
 
-<Canvas sourceState="shown" of={TagStories.Default}/>
-<Controls of={TagStories.Default}/>
+    <StylesPackageImport components={["tag"]} />
 
+    ## Icon
+    
+    An Icon is an optional part of the tag component. You can choose any Icon that is available in Swiss Post Icon Library.
+    Find the icon you need with the <LinkTo kind="icons-search-for-icons" story="docs">icon search page</LinkTo>.
 
-<StylesPackageImport components={["tag"]} />
+    ## Color options
+    Here is a quick overview of all the background colors available for this component.
 
-## Icon
- 
-An Icon is an optional part of the tag component. You can choose any Icon that is available in Swiss Post Icon Library.
-Find the icon you need with the <LinkTo kind="icons-search-for-icons" story="docs">icon search page</LinkTo>.
+    <Canvas of={TagStories.Variants}/>
+  </PostTabPanel>
 
-## Color options
-Here is a quick overview of all the background colors available for this component.
+  <PostTabHeader slot="tabs" panel="webcomponent">Webcomponent</PostTabHeader>
+  <PostTabPanel name="webcomponent">
+    <Canvas sourceState="shown" of={PostTagStories.WC_Default}/>
+    <Controls of={PostTagStories.WC_Default}/>
 
-<Canvas of={TagStories.Variants}/>
+    ## Installation
 
-</PostTabPanel>
-<PostTabHeader slot="tabs" panel="webcomponent">Webcomponent</PostTabHeader>
-<PostTabPanel name="webcomponent">
+    The `<post-tag/>` element is part of the `@swisspost/design-system-components` package.
+    For more information, read the <LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
 
-<Canvas sourceState="shown" of={PostTagStories.PostTag}/>
-<Controls of={PostTagStories.PostTag}/>
+    ## Icon
+    
+    An Icon is an optional part of the tag component. You can choose any Icon that is available in Swiss Post Icon Library.
+    Find the icon you need with the <LinkTo kind="icons-search-for-icons" story="docs">icon search page</LinkTo>.
 
-## Installation
+    ## Color options
+    Here is a quick overview of all the background colors available for this component.
 
-The `<post-tag/>` element is part of the `@swisspost/design-system-components` package.
-For more information, read the <LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
-
-## Icon
- 
-An Icon is an optional part of the tag component. You can choose any Icon that is available in Swiss Post Icon Library.
-Find the icon you need with the <LinkTo kind="icons-search-for-icons" story="docs">icon search page</LinkTo>.
-
-## Color options
-Here is a quick overview of all the background colors available for this component.
-
-<Canvas of={PostTagStories.PostTagVariants}/>
-
-</PostTabPanel>
+    <Canvas of={PostTagStories.WC_Variants}/>
+  </PostTabPanel>
 </PostTabs>
