@@ -5,10 +5,10 @@ import {
   computePosition,
   flip,
   inline,
+  limitShift,
   offset,
   Placement,
   shift,
-  limitShift,
   size,
 } from '@floating-ui/dom';
 
@@ -188,12 +188,17 @@ export class PostPopovercontainer {
       const side = currentPlacement.split('-')[0];
       const { x: arrowX, y: arrowY } = middlewareData.arrow;
       const staticSide = SIDE_MAP[side];
+      const offsetBorderLineJoin = 2;
 
       Object.assign(this.arrowRef.style, {
         top: arrowY ? `${arrowY}px` : '',
         left: arrowX ? `${arrowX}px` : '',
-        [staticSide]: `${-this.arrowRef.offsetWidth / 2}px`,
+        [staticSide]: `${-this.arrowRef.offsetWidth / 2 - offsetBorderLineJoin}px`,
       });
+
+      // Add position as a class to be able to style arrow for HCM
+      this.arrowRef.classList.remove(...Object.values(SIDE_MAP));
+      this.arrowRef.classList.add(staticSide);
     }
   }
 
