@@ -1,0 +1,155 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.p-datatable {
+  .p-datatable-thead > tr > th {
+    gap: post.$size-mini;
+  }
+
+  .p-sortable-column {
+    &.p-highlight:hover {
+      color: post.$black;
+    }
+
+    p-sorticon {
+      display: inline-flex;
+      align-items: center;
+      height: 1.5rem;
+      transform: translateY(25%);
+    }
+
+    sortalticon,
+    sortamountupalticon,
+    sortamountdownicon {
+      height: 1.5rem;
+      width: 1.5rem;
+    }
+  }
+
+  p-columnfilter {
+    margin-inline: post.$size-mini;
+    height: 1.5rem;
+
+    filtericon {
+      height: 1.25rem;
+      width: 1.25rem;
+    }
+  }
+
+  &.p-datatable-striped .p-datatable-tbody > tr {
+    > td {
+      border-width: 0;
+    }
+
+    &:nth-child(2n + 1) {
+      background: post.$light;
+      color: post.$black;
+    }
+  }
+}
+
+.p-dropdown,
+.p-inputtext,
+.p-checkbox-box {
+  border-radius: 0;
+}
+
+.p-checkbox-box {
+  color: post.$black;
+}
+
+.p-dropdown-trigger chevrondownicon {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.p-paginator {
+  justify-content: flex-end;
+
+  .p-paginator-current {
+    border: 0;
+  }
+
+  .p-dropdown .p-dropdown-label {
+    padding-block: 0.35rem;
+  }
+}
+
+.p-button {
+  gap: post.$size-mini;
+
+  &.p-button-text {
+    color: post.$dark;
+
+    &:hover {
+      color: post.$black;
+    }
+  }
+}
+
+.p-checkbox-box {
+  checkicon,
+  timesicon {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+//icons
+@mixin custom-icon($icon) {
+  @include post.icon($icon);
+  display: inline-block;
+  height: 1rem;
+  width: 1rem;
+
+  > * {
+    display: none;
+  }
+}
+
+plusicon {
+  @include custom-icon(2040);
+}
+
+trashicon {
+  @include custom-icon(2015);
+}
+
+chevrondownicon {
+  @include custom-icon(2113);
+}
+
+filtericon {
+  @include custom-icon(2060);
+}
+
+sortalticon {
+  @include custom-icon(2127);
+}
+
+sortamountupalticon {
+  @include custom-icon(2112);
+}
+
+sortamountdownicon {
+  @include custom-icon(2113);
+}
+
+arrowupicon {
+  @include custom-icon(3026);
+}
+
+arrowdownicon {
+  @include custom-icon(3022);
+}
+
+checkicon {
+  @include custom-icon(3035);
+}
+
+timesicon {
+  @include custom-icon(2043);
+}
+
+.p-datatable-reorderablerow-handle {
+  @include custom-icon(2070);
+}

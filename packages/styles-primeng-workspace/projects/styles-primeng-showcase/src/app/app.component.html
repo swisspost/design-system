@@ -1,0 +1,269 @@
+<h1 class="visually-hidden">PrimeNg data table showcase</h1>
+
+<div
+  class="sticky-top border-bottom d-flex align-items-center justify-content-between py-regular mb-huge"
+  [class.bg-white]="!hasDarkBackground"
+  [class.bg-nightblue]="hasDarkBackground"
+>
+  <div class="form-check form-switch">
+    <input
+      class="form-check-input"
+      type="checkbox"
+      role="switch"
+      id="bakgroundSwitch"
+      [(ngModel)]="hasDarkBackground"
+    />
+    <label class="form-check-label" for="bakgroundSwitch">Dark background</label>
+  </div>
+
+  <div class="btn-group" role="group" aria-label="Basic datatable style">
+    <input
+      type="radio"
+      class="btn-check"
+      name="basicDatatableStyle"
+      [(ngModel)]="datatableStyleClass"
+      value=""
+      id="default"
+    />
+    <label class="btn btn-md btn-secondary" for="default">Default</label>
+
+    <input
+      type="radio"
+      class="btn-check"
+      name="basicDatatableStyle"
+      [(ngModel)]="datatableStyleClass"
+      value="p-datatable-striped"
+      id="striped"
+    />
+    <label class="btn btn-md btn-secondary" for="striped">Striped</label>
+
+    <input
+      type="radio"
+      class="btn-check"
+      name="basicDatatableStyle"
+      [(ngModel)]="datatableStyleClass"
+      value="p-datatable-gridlines"
+      id="gridlines"
+    />
+    <label class="btn btn-md btn-secondary" for="gridlines">Gridelines</label>
+  </div>
+</div>
+
+<h2 class="h4">Sortable</h2>
+<p-table
+  [value]="products"
+  [styleClass]="datatableStyleClass"
+  [tableStyle]="{ 'min-width': '60rem' }"
+  sortMode="multiple"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th pSortableColumn="code" style="width: 20%">Code <p-sortIcon field="code"></p-sortIcon></th>
+      <th pSortableColumn="name" style="width: 20%">Name <p-sortIcon field="name"></p-sortIcon></th>
+      <th pSortableColumn="category" style="width: 20%">
+        Category <p-sortIcon field="category"></p-sortIcon>
+      </th>
+      <th pSortableColumn="quantity" style="width: 20%">
+        Quantity <p-sortIcon field="quantity"></p-sortIcon>
+      </th>
+      <th pSortableColumn="price" style="width: 20%">
+        Price <p-sortIcon field="price"></p-sortIcon>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.price | currency : 'USD' }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<hr class="my-huge" />
+
+<h2 class="h4">Filterable</h2>
+<p-table
+  [value]="products"
+  dataKey="id"
+  [styleClass]="datatableStyleClass"
+  [rows]="5"
+  [showCurrentPageReport]="true"
+  [rowsPerPageOptions]="[5, 10, 25, 50]"
+  [paginator]="true"
+  currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+  [globalFilterFields]="['code', 'name', 'category']"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="min-width: 15rem">
+        <div class="d-flex align-items-center">
+          Code
+          <p-columnFilter type="text" field="code" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width: 15rem">
+        <div class="d-flex align-items-center">
+          Name
+          <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width: 15rem">
+        <div class="d-flex align-items-center">
+          Category
+          <p-columnFilter type="text" field="category" display="menu"></p-columnFilter>
+        </div>
+      </th>
+      <th style="min-width: 15rem">
+        <div class="flex align-items-center">Quantity</div>
+      </th>
+      <th style="min-width: 10rem">
+        <div class="flex align-items-center">Price</div>
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+      <td>{{ product.price | currency : 'USD' }}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="5">No products found.</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<hr class="my-huge" />
+
+<h2 class="h4">Orderable</h2>
+<p-table
+  [value]="products"
+  [columns]="cols"
+  [reorderableColumns]="true"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [styleClass]="datatableStyleClass"
+>
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width: 3rem"></th>
+      <th *ngFor="let col of columns" pReorderableColumn>
+        {{ col.header }}
+      </th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-rowData let-columns="columns" let-index="rowIndex">
+    <tr [pReorderableRow]="index">
+      <td>
+        <span class="pi pi-bars" pReorderableRowHandle></span>
+      </td>
+      <td *ngFor="let col of columns">
+        {{ rowData[col.field] }}
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<hr class="my-huge" />
+
+<h2 class="h4">Selectable</h2>
+<p-table
+  [value]="products"
+  selectionMode="multiple"
+  dataKey="code"
+  [styleClass]="datatableStyleClass"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [metaKeySelection]="true"
+  (selectionChange)="selectedProducts = $event"
+>
+  <ng-template pTemplate="caption"> Multiple Selection with MetaKey </ng-template>
+  <ng-template pTemplate="header">
+    <tr>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Quantity</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+    <tr [pSelectableRow]="product" [pSelectableRowIndex]="rowIndex">
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="summary"> Selected: {{ selectedProductNames | lowercase }}. </ng-template>
+</p-table>
+
+<hr class="my-huge" />
+
+<h2 class="h4">With Checkboxes</h2>
+<p-table
+  [value]="products"
+  [(selection)]="selectedProducts"
+  dataKey="code"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [styleClass]="datatableStyleClass"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 4rem">
+        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+      </th>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Quantity</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>
+        <p-tableCheckbox [value]="product"></p-tableCheckbox>
+      </td>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+    </tr>
+  </ng-template>
+</p-table>
+
+<hr class="my-huge" />
+
+<h2 class="h4">With Radio buttons</h2>
+<p-table
+  [value]="products"
+  [(selection)]="selectedProduct"
+  dataKey="code"
+  [tableStyle]="{ 'min-width': '50rem' }"
+  [styleClass]="datatableStyleClass"
+>
+  <ng-template pTemplate="header">
+    <tr>
+      <th style="width: 4rem"></th>
+      <th>Code</th>
+      <th>Name</th>
+      <th>Category</th>
+      <th>Quantity</th>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="body" let-product>
+    <tr>
+      <td>
+        <p-tableRadioButton [value]="product"></p-tableRadioButton>
+      </td>
+      <td>{{ product.code }}</td>
+      <td>{{ product.name }}</td>
+      <td>{{ product.category }}</td>
+      <td>{{ product.quantity }}</td>
+    </tr>
+  </ng-template>
+</p-table>
