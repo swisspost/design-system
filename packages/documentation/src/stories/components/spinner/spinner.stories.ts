@@ -3,6 +3,7 @@ import { html } from 'lit/static-html.js';
 import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: 'd0e645d0-3bf2-4b00-967a-5a1343107f60',
   title: 'Components/Spinner',
   render,
   decorators: [story => generateDecorators(story)],
