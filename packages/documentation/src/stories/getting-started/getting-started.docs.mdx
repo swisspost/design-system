@@ -1,0 +1,109 @@
+import { Meta, Source } from '@storybook/blocks';
+import * as GettingStartedStories from './getting-started.stories';
+
+<Meta of={GettingStartedStories} />
+
+# Getting started
+
+Welcome to the Swiss post design system world! The design-system is formed with several packages and different compatibilities with your favorite framework.
+
+## Which package do I need?
+
+<div className="table-responsive">
+  <table className="table">
+    <caption>Compatibilities between components and frameworks and which package is needed</caption>
+    <colgroup>
+      <col style={{width: '25%'}}/>
+      <col style={{width: '25%'}}/>
+      <col style={{width: '25%'}}/>
+      <col style={{width: '25%'}} />
+    </colgroup>
+    <thead>
+      <tr>
+        <th scope="col">Component</th>
+        <th scope="col">Vanilla JS</th>
+        <th scope="col">Angular</th>
+        <th scope="col">React</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Internet-header</td>
+        <td>
+          <a href="/?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs"><span aria-label="Package:">📦 </span>Internet-header</a>
+        </td>
+        <td>
+          <a href="/?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs"><span aria-label="Package:">📦 </span>Internet-header</a> with <a href="/?path=/docs/8426deb2-3d6d-4fcc-90e6-1ca9737b2ed0--docs">CUSTOM_ELEMENTS_SCHEMA</a>
+        </td>
+        <td >TBD</td>
+      </tr>
+      <tr>
+        <td>
+          Web Components:
+            <ul>
+              <li><a href="/?path=/docs/4d1b4185-e04d-494a-ab38-2b56c1778b0b--docs">Accordion</a></li>
+              <li><a href="/?path=/docs/105e67d8-31e9-4d0b-87ff-685aba31fd4c--docs">Alert</a></li>
+              <li><a href="/?path=/docs/6a91848c-16ec-4a23-bc45-51c797b5b2c3--docs">Collapsible</a></li>
+              <li><a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">Icons</a></li>
+              <li><a href="/?path=/docs/9a636763-de2d-4f72-bc81-98daf10871f7--docs">Popover</a></li>
+              <li><a href="/?path=/docs/bb1291ca-4dbb-450c-a15f-596836d9f39e--docs">Tabs</a></li>
+              <li><a href="/?path=/docs/cd684d90-e7a7-41a9-8923-b1b72ad9b384--docs">Tooltip</a></li>
+          </ul>
+        </td>
+        <td>
+          <a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs"><span aria-label="Package:">📦 </span>Components</a>
+        </td>
+        <td >
+          <a href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"><span aria-label="Package:">📦 </span>Components-Angular</a>
+        </td>
+        <td>TBD</td>
+      </tr>
+      <tr>
+        <td>Intranet-header</td>
+        <td>N/A</td>
+        <td>
+          <a href="/?path=/docs/7068be42-1a20-4a34-9e79-7fb7f9f2940f--docs"><span aria-label="Package:">📦 </span>Intranet-header</a>
+        </td>
+        <td >N/A</td>
+      </tr>
+      <tr>
+        <td>
+          Angular components:
+          <ul>
+            <li><a href="/?path=/docs/cb3ba4a2-1265-4a20-b184-b85443146efa--docs">Carousel</a></li>
+            <li><a href="/?path=/docs/e5a39d4f-4448-4398-9380-7c9fcae4a514--docs">Custom-Select</a></li>
+            <li><a href="/?path=/docs/6561b345-9d64-4f95-8ea6-2389586410bd--docs">Datepicker</a></li>
+            <li><a href="/?path=/docs/63113d0a-6ceb-472c-ac6a-729404e862ca--docs">Dropdown</a></li>
+            <li><a href="/?path=/docs/9a512414-84c5-473c-a7c8-a434eda9578d--docs">Modal</a></li>
+            <li><a href="/?path=/docs/aab3f0df-08ca-4e33-90eb-77ffda6528db--docs">Notification-overlay</a></li>
+            <li><a href="/?path=/docs/caa89695-5c39-4cb5-8e62-579d918cbd2f--docs">Pagination</a></li>
+            <li><a href="/?path=/docs/446648d9-0360-4dec-a6f4-87f2f28b5f33--docs">Progressbar</a></li>
+            <li><a href="/?path=/docs/7dc546d9-e248-4d06-befe-3ad62fcd310f--docs">Stepper</a></li>
+            <li><a href="/?path=/docs/a4d9f996-6e77-4fad-bb19-40fad1bb7a1d--docs">Timepicker</a></li>
+            <li><a href="/?path=/docs/0456901c-3713-4f1f-b592-1f4dbd65a500--docs">Typeahead</a></li>
+          </ul>
+        </td>
+        <td>N/A</td>
+        <td>
+          <a href="/?path=/docs/e53e2de8-0bbf-4f70-babc-074c5466f700--docs"><span aria-label="Package:">📦 </span>Styles</a> and Ng-Bootstrap module
+        </td>
+        <td >N/A</td>
+      </tr>
+      <tr>
+        <td>Toast</td>
+        <td colspan="3" >
+          <a href="/?path=/docs/e53e2de8-0bbf-4f70-babc-074c5466f700--docs"><span aria-label="Package:">📦 </span>Styles</a> with your own additional JavaScript for interaction
+        </td>
+      </tr>
+      <tr>
+        <td>All other components</td>
+        <td colspan="3" >
+          <a href="/?path=/docs/e53e2de8-0bbf-4f70-babc-074c5466f700--docs"><span aria-label="Package:">📦 </span>Styles</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+
