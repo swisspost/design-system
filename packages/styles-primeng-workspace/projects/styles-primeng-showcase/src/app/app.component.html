@@ -58,15 +58,19 @@
 >
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="code" style="width: 20%">Code <p-sortIcon field="code"></p-sortIcon></th>
-      <th pSortableColumn="name" style="width: 20%">Name <p-sortIcon field="name"></p-sortIcon></th>
-      <th pSortableColumn="category" style="width: 20%">
+      <th scope="col" pSortableColumn="code" style="width: 20%">
+        Code <p-sortIcon field="code"></p-sortIcon>
+      </th>
+      <th scope="col" pSortableColumn="name" style="width: 20%">
+        Name <p-sortIcon field="name"></p-sortIcon>
+      </th>
+      <th scope="col" pSortableColumn="category" style="width: 20%">
         Category <p-sortIcon field="category"></p-sortIcon>
       </th>
-      <th pSortableColumn="quantity" style="width: 20%">
+      <th scope="col" pSortableColumn="quantity" style="width: 20%">
         Quantity <p-sortIcon field="quantity"></p-sortIcon>
       </th>
-      <th pSortableColumn="price" style="width: 20%">
+      <th scope="col" pSortableColumn="price" style="width: 20%">
         Price <p-sortIcon field="price"></p-sortIcon>
       </th>
     </tr>
@@ -98,28 +102,28 @@
 >
   <ng-template pTemplate="header">
     <tr>
-      <th style="min-width: 15rem">
+      <th scope="col" style="min-width: 15rem">
         <div class="d-flex align-items-center">
           Code
           <p-columnFilter type="text" field="code" display="menu"></p-columnFilter>
         </div>
       </th>
-      <th style="min-width: 15rem">
+      <th scope="col" style="min-width: 15rem">
         <div class="d-flex align-items-center">
           Name
           <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
         </div>
       </th>
-      <th style="min-width: 15rem">
+      <th scope="col" style="min-width: 15rem">
         <div class="d-flex align-items-center">
           Category
           <p-columnFilter type="text" field="category" display="menu"></p-columnFilter>
         </div>
       </th>
-      <th style="min-width: 15rem">
+      <th scope="col" style="min-width: 15rem">
         <div class="flex align-items-center">Quantity</div>
       </th>
-      <th style="min-width: 10rem">
+      <th scope="col" style="min-width: 10rem">
         <div class="flex align-items-center">Price</div>
       </th>
     </tr>
@@ -152,8 +156,8 @@
 >
   <ng-template pTemplate="header" let-columns>
     <tr>
-      <th style="width: 3rem"></th>
-      <th *ngFor="let col of columns" pReorderableColumn>
+      <th scope="col" style="width: 3rem"></th>
+      <th scope="col" *ngFor="let col of columns" pReorderableColumn>
         {{ col.header }}
       </th>
     </tr>
@@ -185,10 +189,10 @@
   <ng-template pTemplate="caption"> Multiple Selection with MetaKey </ng-template>
   <ng-template pTemplate="header">
     <tr>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Quantity</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Quantity</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
@@ -214,13 +218,13 @@
 >
   <ng-template pTemplate="header">
     <tr>
-      <th style="width: 4rem">
+      <th scope="col" style="width: 4rem">
         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
       </th>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Quantity</th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Quantity</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>
@@ -248,11 +252,11 @@
 >
   <ng-template pTemplate="header">
     <tr>
-      <th style="width: 4rem"></th>
-      <th>Code</th>
-      <th>Name</th>
-      <th>Category</th>
-      <th>Quantity</th>
+      <th scope="col" style="width: 4rem"></th>
+      <th scope="col">Code</th>
+      <th scope="col">Name</th>
+      <th scope="col">Category</th>
+      <th scope="col">Quantity</th>
     </tr>
   </ng-template>
   <ng-template pTemplate="body" let-product>

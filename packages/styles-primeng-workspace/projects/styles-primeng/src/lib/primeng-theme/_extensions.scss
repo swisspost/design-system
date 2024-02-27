@@ -48,13 +48,8 @@
 }
 
 .p-dropdown,
-.p-inputtext,
-.p-checkbox-box {
+.p-inputtext {
   border-radius: 0;
-}
-
-.p-checkbox-box {
-  color: post.$black;
 }
 
 .p-dropdown-trigger chevrondownicon {
@@ -87,6 +82,9 @@
 }
 
 .p-checkbox-box {
+  border-radius: 0;
+  color: post.$black;
+
   checkicon,
   timesicon {
     height: 100%;
