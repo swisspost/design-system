@@ -1,4 +1,4 @@
 // main.ts / index.js / ...
-import { defineCustomElements } from 'packages/internet-header';
+import { defineCustomElements } from '@swisspost/internet-header/loader';
 
 defineCustomElements();
