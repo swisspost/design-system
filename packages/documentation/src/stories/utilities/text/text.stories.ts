@@ -1,12 +1,11 @@
 import type { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
   id: 'c55681df-4d21-469d-a5b3-c67686e7c104',
   title: 'Utilities/Text',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
 };
 

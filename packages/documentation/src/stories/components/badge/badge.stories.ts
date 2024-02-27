@@ -1,7 +1,6 @@
 import { useArgs } from '@storybook/preview-api';
 import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
 
 const meta: Meta = {
@@ -10,7 +9,7 @@ const meta: Meta = {
   render: renderBadge,
   decorators: [externalControl],
   parameters: {
-    badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     text: 'Insigno',

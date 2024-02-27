@@ -2,13 +2,12 @@ import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 import { repeat } from 'lit/directives/repeat.js';
-import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 const meta: Meta = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
   title: 'Components/Button',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=10576-49992&mode=design&t=OK8meBHjpJvBhwZI-4',

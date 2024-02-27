@@ -1,6 +1,5 @@
 import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
-import { BADGE } from '../../../../../.storybook/constants';
 import { html, nothing, TemplateResult } from 'lit';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
@@ -16,7 +15,7 @@ const meta: Meta = {
     controls: {
       exclude: ['Hidden Legend'],
     },
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     hiddenLegend: false,
