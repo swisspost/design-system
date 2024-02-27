@@ -220,7 +220,11 @@ const meta: Meta = {
     autoClose: {
       name: 'Closing Delay (in sec.)',
       description:
-        'When position set to `fixed`, defines how long the component remains visible before it is automatically closed (in seconds). Set to `0` to disable the auto close.',
+        'Defines how long the component remains visible before it is automatically closed (in seconds). Set to `0` to disable the auto close.',
+      if: {
+        arg: 'position',
+        eq: 'fixed',
+      },
       control: {
         type: 'number',
       },
