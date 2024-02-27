@@ -3,6 +3,7 @@ import { Placement } from '@floating-ui/dom';
 import { version } from '../../../package.json';
 import isFocusable from 'ally.js/is/focusable';
 import 'long-press-event';
+import { getAttributeObserver } from '../../utils/attribute-observer';
 
 /**
  * @slot default - Slot for the content of the tooltip.
@@ -13,6 +14,7 @@ import 'long-press-event';
  */
 let tooltipInstances = 0;
 let hideTooltipTimeout: number = null;
+const tooltipTargetAttribute = 'data-tooltip-target';
 
 /**
  * Global event listener to show tooltips. This is globalized so that triggers that are rendered
@@ -22,8 +24,8 @@ let hideTooltipTimeout: number = null;
  */
 const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
   const target = e.target as HTMLElement;
-  if (!e?.target || !('getAttribute' in e.target)) return;
-  const tooltipTarget = target.getAttribute('data-tooltip-target');
+  if (!target || !('getAttribute' in target)) return;
+  const tooltipTarget = target.getAttribute(tooltipTargetAttribute);
   if (!tooltipTarget || tooltipTarget === '') return;
   const tooltip = document.getElementById(tooltipTarget) as HTMLPostTooltipElement;
   tooltip?.show(target);
@@ -41,7 +43,7 @@ const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
  */
 const globalInterestLostHandler = (e: PointerEvent | FocusEvent) => {
   const target = e.target as HTMLElement;
-  const tooltipTarget = target.getAttribute('data-tooltip-target');
+  const tooltipTarget = target.getAttribute(tooltipTargetAttribute);
   if (!tooltipTarget || tooltipTarget === '') return;
   const tooltip = document.getElementById(tooltipTarget) as HTMLPostTooltipElement;
   globalHideTooltip(tooltip);
@@ -65,7 +67,7 @@ const globalHideTooltip = (tooltip: HTMLPostTooltipElement | PostTooltip) => {
  */
 const patchAccessibilityFeatures = (trigger: HTMLElement) => {
   const describedBy = trigger.getAttribute('aria-describedby');
-  const id = trigger.getAttribute('data-tooltip-target');
+  const id = trigger.getAttribute(tooltipTargetAttribute);
 
   // Add tooltip to aria-describedby
   if (!describedBy?.includes(id)) {
@@ -79,31 +81,8 @@ const patchAccessibilityFeatures = (trigger: HTMLElement) => {
   }
 };
 
-/**
- * Handle attribute changes and childList changes from the observer
- * @param {MutationRecord[]} mutationList
- */
-const triggerObserverHandler: MutationCallback = mutationList => {
-  mutationList.forEach(mutation => {
-    if (mutation.type === 'attributes' && mutation.attributeName === 'data-tooltip-target') {
-      patchAccessibilityFeatures(mutation.target as HTMLElement);
-    }
-
-    if (mutation.type === 'childList') {
-      mutation.addedNodes.forEach(node => {
-        if (
-          node.nodeType === Node.ELEMENT_NODE &&
-          (node as HTMLElement).hasAttribute('data-tooltip-target')
-        ) {
-          patchAccessibilityFeatures(node as HTMLElement);
-        }
-      });
-    }
-  });
-};
-
 // Initialize a mutation observer for patching accessibility features
-const triggerObserver = new MutationObserver(triggerObserverHandler);
+const triggerObserver = getAttributeObserver(tooltipTargetAttribute, patchAccessibilityFeatures);
 
 @Component({
   tag: 'post-tooltip',
@@ -156,7 +135,7 @@ export class PostTooltip {
       triggerObserver.observe(document.body, {
         subtree: true,
         childList: true,
-        attributeFilter: ['data-tooltip-target'],
+        attributeFilter: [tooltipTargetAttribute],
       });
     }
     tooltipInstances++;

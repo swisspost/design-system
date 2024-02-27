@@ -5,10 +5,10 @@ import {
   computePosition,
   flip,
   inline,
+  limitShift,
   offset,
   Placement,
   shift,
-  limitShift,
   size,
 } from '@floating-ui/dom';
 
@@ -47,6 +47,7 @@ export class PostPopovercontainer {
   private arrowRef: HTMLElement;
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
+  private toggleTimeoutId: number;
 
   /**
    * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
@@ -85,9 +86,11 @@ export class PostPopovercontainer {
    */
   @Method()
   async show(target: HTMLElement) {
-    this.eventTarget = target;
-    this.calculatePosition();
-    this.popoverRef.showPopover();
+    if (!this.toggleTimeoutId) {
+      this.eventTarget = target;
+      this.calculatePosition();
+      this.popoverRef.showPopover();
+    }
   }
 
   /**
@@ -95,8 +98,10 @@ export class PostPopovercontainer {
    */
   @Method()
   async hide() {
-    this.eventTarget = null;
-    this.popoverRef.hidePopover();
+    if (!this.toggleTimeoutId) {
+      this.eventTarget = null;
+      this.popoverRef.hidePopover();
+    }
   }
 
   /**
@@ -106,9 +111,13 @@ export class PostPopovercontainer {
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
-    this.eventTarget = target;
-    this.calculatePosition();
-    this.popoverRef.togglePopover(force);
+    // Prevent instant double toggle
+    if (!this.toggleTimeoutId) {
+      this.eventTarget = target;
+      this.calculatePosition();
+      this.popoverRef.togglePopover(force);
+      this.toggleTimeoutId = null;
+    }
     return this.popoverRef.matches(':popover-open');
   }
 
@@ -119,6 +128,7 @@ export class PostPopovercontainer {
    * @param e ToggleEvent
    */
   private handleToggle(e: ToggleEvent) {
+    this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
     if (isOpen) {
       this.startAutoupdates();
@@ -188,12 +198,17 @@ export class PostPopovercontainer {
       const side = currentPlacement.split('-')[0];
       const { x: arrowX, y: arrowY } = middlewareData.arrow;
       const staticSide = SIDE_MAP[side];
+      const offsetBorderLineJoin = 2;
 
       Object.assign(this.arrowRef.style, {
         top: arrowY ? `${arrowY}px` : '',
         left: arrowX ? `${arrowX}px` : '',
-        [staticSide]: `${-this.arrowRef.offsetWidth / 2}px`,
+        [staticSide]: `${-this.arrowRef.offsetWidth / 2 - offsetBorderLineJoin}px`,
       });
+
+      // Add position as a class to be able to style arrow for HCM
+      this.arrowRef.classList.remove(...Object.values(SIDE_MAP));
+      this.arrowRef.classList.add(staticSide);
     }
   }
 
