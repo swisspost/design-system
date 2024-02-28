@@ -4,6 +4,7 @@ import * as IntranetHeaderStories from './intranet-header.stories';
 import SampleUse from './intranet-header-use.sample?raw';
 import SampleNavigationBar from './intranet-header-navigation-bar.sample.html?raw';
 import SampleSideNavigation from './intranet-header-side-navigation.sample.html?raw';
+import SampleSideUserMenuDropdown from './intranet-header-user-menu-dropdown.sample.html?raw';
 import SamplePostweb from './intranet-header-postweb.sample.html?raw';
 
 <Meta of={IntranetHeaderStories} />
@@ -89,10 +90,16 @@ The Header Angular component for internal usage.
     <Source code={SampleNavigationBar} language="html" />
   </PostTabPanel>
 
+  <PostTabHeader slot="tabs" panel="headerWithCustomUserMenu">Header with a custom user menu</PostTabHeader>
+  <PostTabPanel name="headerWithCustomUserMenu">
+    <Source code={SampleSideUserMenuDropdown} language="html" />
+  </PostTabPanel>
+
   <PostTabHeader slot="tabs" panel="headerSideNavigation">Header with a side navigation</PostTabHeader>
   <PostTabPanel name="headerSideNavigation">
     <Source code={SampleSideNavigation} language="html" />
   </PostTabPanel>
+
   <PostTabHeader slot="tabs" panel="headerPostweb">"Postweb" intranet header</PostTabHeader>
   <PostTabPanel name="headerPostweb">
     <Source code={SamplePostweb} language="html" />

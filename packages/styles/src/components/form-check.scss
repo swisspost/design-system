@@ -158,7 +158,7 @@
       border: form-check.$form-check-input-border-width solid CanvasText;
 
       &:checked {
-        background-color: CanvasText;
+        background-color: SelectedItem;
       }
 
       &::after,
