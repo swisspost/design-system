@@ -5,7 +5,7 @@ import { useArgs } from '@storybook/preview-api';
 import scss from './card-button.module.scss';
 
 const meta: Meta = {
-  title: 'Components/Cards/Card-Button',
+  title: 'Components/Cards/Card Button',
   parameters: {
     badges: [BADGE.WEB_COMPONENT_CANDIDATE],
   },
