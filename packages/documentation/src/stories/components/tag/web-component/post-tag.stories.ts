@@ -4,6 +4,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
+  id: '516917c9-ad12-484c-8bbd-e270e412f713',
   title: 'Components/Tag',
   component: 'post-tag',
   parameters: {
@@ -62,7 +63,7 @@ export default meta;
 
 type Story = StoryObj;
 
-export const WC_Default: Story = {
+export const Default: Story = {
   render: (args: Args) => {
     return html`
       <post-tag
@@ -76,7 +77,7 @@ export const WC_Default: Story = {
   },
 };
 
-export const WC_Variants: Story = {
+export const Variants: Story = {
   decorators: [
     (story: StoryFn, context: StoryContext) =>
       html`<div class="d-flex flex-wrap gap-3">${story(context.args, context)}</div>`,
@@ -87,7 +88,7 @@ export const WC_Variants: Story = {
 
     return html`
       ${variants.map(([variant, text]) =>
-        WC_Default.render?.(
+        Default.render?.(
           {
             ...args,
             variant,

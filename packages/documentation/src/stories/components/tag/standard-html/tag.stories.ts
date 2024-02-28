@@ -4,6 +4,7 @@ import { BADGE } from '../../../../../.storybook/constants';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: Meta = {
+  id: '1b1ea384-7421-4064-ad34-e3f48a36b39f',
   title: 'Components/Tag',
   parameters: {
     badges: [BADGE.BETA],
@@ -99,7 +100,7 @@ export const Default: Story = {
   render: (args: Args) => {
     const classes = [
       'tag',
-      args.variant === 'null' ? args.variant : `bg-${args.variant}`,
+      args.variant === 'null' ? args.variant : `tag-${args.variant}`,
       args.size,
     ]
       .filter(c => c !== 'null')
@@ -107,9 +108,7 @@ export const Default: Story = {
 
     return html`
       <div class="${classes}">
-        ${args.showIcon
-          ? unsafeHTML(`<post-icon class="tag-icon" name="${args.icon}"></post-icon>`)
-          : nothing}
+        ${args.showIcon ? unsafeHTML(`<post-icon name="${args.icon}"></post-icon>`) : nothing}
         <div class="tag-text">${unsafeHTML(args.markup)}</div>
       </div>
     `;

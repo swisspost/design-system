@@ -1,4 +1,4 @@
-import { Canvas, Controls, Meta, OptionsControl } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import LinkTo from '@storybook/addon-links/react';
 import {
   PostTabs,
@@ -8,7 +8,6 @@ import {
 import * as TagStories from './standard-html/tag.stories';
 import * as PostTagStories from './web-component/post-tag.stories';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
-
 
 <Meta of={TagStories}/>
 
@@ -40,8 +39,8 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
   <PostTabHeader slot="tabs" panel="webcomponent">Webcomponent</PostTabHeader>
   <PostTabPanel name="webcomponent">
-    <Canvas sourceState="shown" of={PostTagStories.WC_Default}/>
-    <Controls of={PostTagStories.WC_Default}/>
+    <Canvas sourceState="shown" of={PostTagStories.Default}/>
+    <Controls of={PostTagStories.Default}/>
 
     ## Installation
 
@@ -56,6 +55,6 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
     ## Color options
     Here is a quick overview of all the background colors available for this component.
 
-    <Canvas of={PostTagStories.WC_Variants}/>
+    <Canvas of={PostTagStories.Variants}/>
   </PostTabPanel>
 </PostTabs>

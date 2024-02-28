@@ -53,7 +53,7 @@ export class PostTag {
   }
 
   private setClasses() {
-    this.classes = ['tag', this.size ? `tag-${this.size}` : null, `bg-${this.variant}`]
+    this.classes = ['tag', this.size ? `tag-${this.size}` : null, `tag-${this.variant}`]
       .filter(c => c !== null)
       .join(' ');
   }
@@ -66,7 +66,7 @@ export class PostTag {
     return (
       <Host data-version={version}>
         <div class={this.classes}>
-          {this.icon ? <post-icon name={this.icon} class="tag-icon"></post-icon> : null}
+          {this.icon ? <post-icon name={this.icon}></post-icon> : null}
           <div class="tag-text">
             <slot>{this.text}</slot>
           </div>

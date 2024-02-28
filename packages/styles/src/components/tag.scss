@@ -1,5 +1,8 @@
+@use 'sass:map';
 @forward './../variables/options';
+@use './../variables/color';
 @use './../variables/components/tag';
+@use './../functions/contrast' as contrastFn;
 
 // style `.tag` only if is not descendant of a `<pre>` element
 // as `<pre><div class="tag">...</div><pre>` is usually used by code highlight tools
@@ -8,20 +11,26 @@
 // https://whattrainisitnow.com/calendar/
 .tag,
 .tag:where(:has(:not(pre))) {
+  $bg: map.get(tag.$tag-backgrounds, 'gray');
+  $fg: if(contrastFn.light-or-dark($bg) == 'light', color.$black, color.$white);
+
+  --post-tag-bg: #{$bg};
+  --post-tag-fg: #{$fg};
+
   display: inline-flex;
   align-items: center;
   gap: tag.$tag-gap;
   padding: tag.$tag-padding-y tag.$tag-padding-x;
   max-width: tag.$tag-max-width;
-  background-color: var(--post-gray);
+  background-color: var(--post-tag-bg);
   border: tag.$tag-border-width solid transparent;
   border-radius: tag.$tag-border-radius;
   font-size: tag.$tag-font-size;
   line-height: tag.$tag-line-height;
   white-space: nowrap;
-  color: var(--contrast-color);
+  color: var(--post-tag-fg);
 
-  .tag-icon {
+  post-icon {
     flex: 0 0 auto;
     width: tag.$tag-icon-size;
     height: tag.$tag-icon-size;
@@ -31,6 +40,13 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+
+    svg,
+    img {
+      display: inline-block;
+      height: tag.$tag-icon-size !important;
+      vertical-align: text-top;
+    }
   }
 
   &.tag-sm {
@@ -42,7 +58,16 @@
     }
   }
 
-  &.bg-white {
+  @each $key, $bg in tag.$tag-backgrounds {
+    $fg: if(contrastFn.light-or-dark($bg) == 'light', color.$black, color.$white);
+
+    &.tag-#{$key} {
+      --post-tag-bg: #{$bg};
+      --post-tag-fg: #{$fg};
+    }
+  }
+
+  &.tag-white {
     border-color: var(--post-contrast-color);
   }
 

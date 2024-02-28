@@ -1,7 +1,17 @@
+@use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/components/tag';
 
 *,
 *:before,
 *:after {
   box-sizing: border-box;
+}
+
+.tag-text {
+  ::slotted(svg),
+  ::slotted(img) {
+    display: inline-block !important;
+    height: post.$tag-icon-size !important;
+    vertical-align: text-top !important;
+  }
 }
