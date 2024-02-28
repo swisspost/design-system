@@ -9,12 +9,10 @@
     "url": "https://github.com/swisspost/design-system.git"
   },
   "files": [
-    "dist"
+    "dist/"
   ],
   "publishConfig": {
-    "directory": "./dist",
-    "access": "public",
-    "linkDirectory": true
+    "access": "public"
   },
   "scripts": {
     "copy-files": "copyfiles -f LICENSE README.md package.json CONTRIBUTING.md CHANGELOG.md src/migrations.json dist",
