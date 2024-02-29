@@ -46,9 +46,9 @@ describe('Tag', () => {
 
     it('should set the tags icon according to the prop `icon`', () => {
       cy.get('@tag').should('not.have.attr', 'icon');
-      cy.get('@tag').find('post-icon.tag-icon').should('not.exist');
+      cy.get('@tag').find('post-icon').should('not.exist');
       cy.get('@tag').invoke('attr', 'icon', '1000');
-      cy.get('@tag').find('post-icon.tag-icon').as('icon');
+      cy.get('@tag').find('post-icon').as('icon');
       cy.get('@icon').should('exist');
     });
 
