@@ -5,74 +5,92 @@
 }
 
 .rating {
-  margin: 0 (-(post.$size-micro));
   display: flex;
   flex-wrap: wrap;
-  box-sizing: border-box;
   overflow: hidden;
+  margin: 0 -(post.$size-micro);
+  border-radius: post.$border-radius;
+
+  .star {
+    --post-rating-star-stroke: #{post.$gray-60};
+    --post-rating-star-fill: #{post.$white};
+
+    position: relative;
+    width: 2em;
+    height: 2em;
+    cursor: pointer;
+
+    .stroke,
+    .fill {
+      display: block;
+      width: 100%;
+      height: 100%;
+      transition: all ease 100ms;
+    }
+
+    .stroke {
+      position: absolute;
+      inset: auto;
+      z-index: 1;
+      color: var(--post-rating-star-stroke);
+    }
+
+    .fill {
+      margin: 1px;
+      width: calc(100% - 2px);
+      height: calc(100% - 2px);
+      color: var(--post-rating-star-fill);
+    }
+
+    // be careful, order matters!
+
+    &.before-hover {
+      --post-rating-star-stroke: #{post.$gray-60};
+      --post-rating-star-fill: #{post.$yellow};
+    }
+
+    &.active {
+      --post-rating-star-stroke: #{post.$gray-80};
+      --post-rating-star-fill: #{post.$yellow};
+    }
+
+    &.hover {
+      --post-rating-star-stroke: #{post.$gray-60};
+      --post-rating-star-fill: #{post.$yellow};
+    }
+
+    &.after-active {
+      --post-rating-star-stroke: #{post.$gray-60};
+      --post-rating-star-fill: #{post.$gray-20};
+    }
+  }
+
   & :focus {
     outline: none;
   }
-  &[aria-readonly='true'] .star-container {
-    cursor: default;
-  }
-}
 
-.rating:focus-visible {
-  outline-offset: post.$input-focus-outline-thickness;
-  outline: post.$input-focus-outline-thickness solid post.$outline-color;
-  position: relative;
-  z-index: 1;
-}
-
-.star {
-  position: relative;
-  display: block;
-  width: post.$lead-font-size;
-  height: post.$lead-font-size;
-  padding: 0 post.$size-micro 0 post.$size-micro;
-  cursor: pointer;
-  --post-rating-star-fill-color: #{post.$white};
-  --post-rating-star-border-color: #{post.$black};
-
-  .fill {
-    position: absolute;
-    color: var(--post-rating-star-fill-color);
+  &:focus-visible {
+    outline-offset: post.$input-focus-outline-thickness;
+    outline: post.$input-focus-outline-thickness solid post.$outline-color;
   }
 
-  .border {
-    width: post.$lead-font-size + 0.125em;
-    height: post.$lead-font-size + 0.125em;
-    position: absolute;
-    top: -0.0625em;
-    left: post.$size-micro - post.to-rem(0.0625em);
-    color: var(--post-rating-star-border-color);
+  &[aria-readonly='true'],
+  &[aria-disabled='true'] {
+    .star {
+      cursor: default;
+    }
   }
 
-  &.active-star {
-    --post-rating-star-fill-color: #{post.$yellow};
-    --post-rating-star-border-color: #{post.$black};
-  }
+  &[aria-disabled='true'] {
+    .star {
+      --post-rating-star-stroke: #{post.$gray-40};
+      --post-rating-star-fill: #{post.$white};
 
-  &.hovered-star {
-    --post-rating-star-fill-color: #{post.$yellow};
-    --post-rating-star-border-color: #{post.$gray-80};
-  }
-
-  &.was-active-star {
-    --post-rating-star-fill-color: #{post.$gray-20};
-    --post-rating-star-border-color: #{post.$gray-80};
-  }
-
-  &.default-disabled {
-    cursor: default;
-    --post-rating-star-fill-color: #{post.$white};
-    --post-rating-star-border-color: #{post.$gray-40};
-  }
-
-  &.active-disabled {
-    cursor: default;
-    --post-rating-star-fill-color: #{post.$gray-10};
-    --post-rating-star-border-color: #{post.$gray-40};
+      &.active {
+        cursor: default;
+        --post-rating-star-stroke: #{post.$gray-40};
+        --post-rating-star-fill: #{post.$gray-10};
+      }
+    }
   }
 }

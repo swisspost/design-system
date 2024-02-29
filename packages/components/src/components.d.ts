@@ -169,21 +169,21 @@ export namespace Components {
     }
     interface PostRating {
         /**
-          * The current rating value
+          * Defines the visualized overall rating, the component should show.
          */
         "currentRating": number;
         /**
-          * Boolean for the disabled state of the component
+          * Defined the invisible label on the component.
          */
-        "disabled"?: boolean;
+        "label": string;
         /**
-          * If readonly is `true`, the component only displays a rating and is not interactive.
+          * Defines if the component is readonly or not. This usually should be used together with the `currentRating` property.
          */
-        "readonly"?: boolean;
+        "readonly": boolean;
         /**
-          * The number of stars in the rating
+          * Defined the amount of stars rendered in the component.
          */
-        "stars"?: number;
+        "stars": number;
     }
     interface PostTabHeader {
         /**
@@ -333,8 +333,8 @@ declare global {
         new (): HTMLPostPopovercontainerElement;
     };
     interface HTMLPostRatingElementEventMap {
-        "change": number;
-        "input": number;
+        "input": {value: number};
+        "change": {value: number};
     }
     interface HTMLPostRatingElement extends Components.PostRating, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostRatingElementEventMap>(type: K, listener: (this: HTMLPostRatingElement, ev: PostRatingCustomEvent<HTMLPostRatingElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -516,27 +516,27 @@ declare namespace LocalJSX {
     }
     interface PostRating {
         /**
-          * The current rating value
+          * Defines the visualized overall rating, the component should show.
          */
         "currentRating"?: number;
         /**
-          * Boolean for the disabled state of the component
+          * Defined the invisible label on the component.
          */
-        "disabled"?: boolean;
+        "label"?: string;
         /**
-          * Event emitted when the rating gets commited
+          * An event emitted whenever the components value has changed (on blur). The event payload can be used like so: `event.detail.value`.
          */
-        "onChange"?: (event: PostRatingCustomEvent<number>) => void;
+        "onChange"?: (event: PostRatingCustomEvent<{value: number}>) => void;
         /**
-          * Event emitted whenever the rating changes
+          * An event emitted whenever the components value has changed (on input). The event payload can be used like so: `event.detail.value`.
          */
-        "onInput"?: (event: PostRatingCustomEvent<number>) => void;
+        "onInput"?: (event: PostRatingCustomEvent<{value: number}>) => void;
         /**
-          * If readonly is `true`, the component only displays a rating and is not interactive.
+          * Defines if the component is readonly or not. This usually should be used together with the `currentRating` property.
          */
         "readonly"?: boolean;
         /**
-          * The number of stars in the rating
+          * Defined the amount of stars rendered in the component.
          */
         "stars"?: number;
     }

@@ -1,4 +1,4 @@
-import { Component, h, Event, EventEmitter, Prop, Host, State, Element } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
 import { version } from '../../../package.json';
 
 @Component({
@@ -7,97 +7,100 @@ import { version } from '../../../package.json';
   shadow: true,
 })
 export class PostRating {
+  private hasChanged = false;
+
   @Element() host: HTMLPostRatingElement;
-  /**
-   * The number of stars in the rating
-   */
-  @Prop() readonly stars?: number = 5;
+
+  @State() hoveredIndex: number;
 
   /**
-   * The current rating value
+   * Defined the invisible label on the component.
+   */
+  @Prop() readonly label: string = 'Rating';
+
+  /**
+   * Defined the amount of stars rendered in the component.
+   */
+  @Prop() readonly stars: number = 5;
+
+  /**
+   * Defines the visualized overall rating, the component should show.
    */
   @Prop({ mutable: true }) currentRating = 0;
 
   /**
-   * The index of the currently hovered star
+   * Defines if the component is readonly or not.
+   * This usually should be used together with the `currentRating` property.
    */
-  @State() hoveredIndex: number;
-
-  /**
-   * Boolean for the disabled state of the component
-   */
-  @Prop() readonly disabled?: boolean = false;
-
-  /**
-   * If readonly is `true`, the component only displays a rating and is not interactive.
-   */
-  @Prop() readonly readonly?: boolean = false;
+  @Prop() readonly readonly: boolean = false;
 
   // prettier-ignore
   /**
-   * Event emitted when the rating gets commited
+   * An event emitted whenever the components value has changed (on input).
+   * The event payload can be used like so: `event.detail.value`.
    */
-  @Event({
-    eventName: 'change',
-    composed: true,
-    bubbles: true,
-  }) ratingChange: EventEmitter<number>;
+  @Event() input: EventEmitter<{value: number}>;
 
   // prettier-ignore
   /**
-   * Event emitted whenever the rating changes
+   * An event emitted whenever the components value has changed (on blur).
+   * The event payload can be used like so: `event.detail.value`.
    */
-  @Event({
-    eventName: 'input',
-    composed: true,
-    bubbles: true,
-  }) input: EventEmitter<number>;
+  @Event() change: EventEmitter<{value: number}>;
 
   constructor() {
-    this.handleKeyDown = this.handleKeyDown.bind(this);
-    this.handleBlur = this.handleBlur.bind(this);
+    this.keydownHandler = this.keydownHandler.bind(this);
+    this.blurHandler = this.blurHandler.bind(this);
+    this.hoverHandler = this.hoverHandler.bind(this);
   }
 
-  private handleKeyDown(ev: KeyboardEvent) {
-    switch (ev.key) {
+  private update(value: number): void {
+    if (this.readonly || value < 0 || value > this.stars) return;
+
+    this.currentRating = this.currentRating !== value ? value : 0; // If a star is clicked the second time, the rating gets set to 0.
+    this.input.emit({ value: this.currentRating });
+    this.hasChanged = true;
+  }
+
+  private keydownHandler(e: KeyboardEvent) {
+    switch (e.key) {
       case 'ArrowDown':
       case 'ArrowLeft':
-        ev.preventDefault();
+        e.preventDefault();
         this.update(this.currentRating - 1);
         break;
       case 'ArrowUp':
       case 'ArrowRight':
-        ev.preventDefault();
+        e.preventDefault();
         this.update(this.currentRating + 1);
         break;
       case 'Home':
-        ev.preventDefault();
+        e.preventDefault();
         this.update(0);
         break;
       case 'End':
-        ev.preventDefault();
+        e.preventDefault();
         this.update(this.stars);
         break;
       case 'Enter':
       case ' ':
-        this.handleBlur();
+        this.blurHandler();
         break;
       default:
         return;
     }
   }
 
-  private hasChanged = false;
-
-  private handleBlur() {
-    if (this.hasChanged === true) {
-      this.ratingChange.emit(this.currentRating);
+  private blurHandler() {
+    if (this.hasChanged) {
+      this.change.emit({ value: this.currentRating });
       this.hasChanged = false;
     }
   }
 
-  private handleHover(index: number, e: MouseEvent) {
-    if (!this.isInteractive()) return;
+  private hoverHandler(index: number, e: MouseEvent) {
+    if (this.readonly) return;
+
     if (e.type === 'mouseenter') {
       this.hoveredIndex = index;
     } else if (e.type === 'mouseleave') {
@@ -105,73 +108,41 @@ export class PostRating {
     }
   }
 
-  private isInteractive(): boolean {
-    return !this.readonly && !this.disabled;
-  }
-
-  private update(value: number): void {
-    if (!this.isInteractive()) return;
-    if (value > this.stars || value < 0) return;
-    this.currentRating = this.currentRating !== value ? value : 0; // If a star is clicked the second time, the rating gets set to 0.
-    this.input.emit(this.currentRating);
-    this.hasChanged = true;
-  }
-
-  private getClasses(starIndex: number) {
-    if (!this.disabled) {
-      return {
-        'star': true,
-        'active-star': starIndex < this.currentRating,
-        'hovered-star':
-          (this.hoveredIndex < this.currentRating && starIndex <= this.hoveredIndex) ||
-          (starIndex <= this.hoveredIndex && this.currentRating === 0) ||
-          (this.hoveredIndex >= starIndex && starIndex >= this.currentRating),
-        'was-active-star': starIndex > this.hoveredIndex && starIndex < this.currentRating,
-      };
-    } else {
-      return {
-        'star': true,
-        'active-disabled': starIndex < this.currentRating,
-        'default-disabled': starIndex >= this.currentRating,
-      };
-    }
-  }
-
-  private renderStars() {
-    const stars = [];
-    for (let index = 0; index < this.stars; index++) {
-      stars.push(
-        <div
-          class={this.getClasses(index)}
-          onClick={() => this.update(index + 1)}
-          onMouseEnter={e => this.handleHover(index, e)}
-          onMouseLeave={e => this.handleHover(index, e)}
-        >
-          <post-icon name="2574" class="border"></post-icon>
-          <post-icon name="2574" class="fill"></post-icon>
-        </div>,
-      );
-    }
-    return stars;
-  }
-
   render() {
     return (
       <Host data-version={version}>
         <div
           role="slider"
+          class="rating"
+          tabindex="0"
+          aria-label={this.label}
           aria-valuemin="0"
           aria-valuemax={this.stars}
           aria-valuenow={this.currentRating}
           aria-valuetext={`${this.currentRating} out of ${this.stars}`}
-          aria-readonly={this.readonly && !this.disabled ? 'true' : 'false'}
-          aria-disabled={this.disabled ? 'true' : 'false'}
-          class="rating"
-          tabindex="0"
-          onBlur={this.handleBlur}
-          onKeyDown={this.handleKeyDown}
+          aria-readonly={this.readonly ? 'true' : 'false'}
+          onKeyDown={this.keydownHandler}
+          onBlur={this.blurHandler}
         >
-          {this.renderStars()}
+          {Array.from({ length: this.stars }).map((v, i: number) => (
+            <div
+              key={`star-${v}`}
+              aria-hidden="true"
+              class={{
+                'star': true,
+                'before-hover': i < this.hoveredIndex,
+                'active': i < Math.round(this.currentRating),
+                'hover': i === this.hoveredIndex,
+                'after-active': i > this.hoveredIndex && i < this.currentRating,
+              }}
+              onClick={() => this.update(i + 1)}
+              onMouseEnter={e => this.hoverHandler(i, e)}
+              onMouseLeave={e => this.hoverHandler(i, e)}
+            >
+              <post-icon name="2062" class="stroke"></post-icon>
+              <post-icon name="2574" class="fill"></post-icon>
+            </div>
+          ))}
         </div>
       </Host>
     );

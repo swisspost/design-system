@@ -1,9 +1,8 @@
-import { Meta, StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { Args, Meta, StoryObj } from '@storybook/web-components';
+import { html, nothing } from 'lit';
 import { BADGE } from '../../../../.storybook/constants';
-import { spreadArgs } from '../../../utils';
 
-const meta: Meta<HTMLPostRatingElement> = {
+const meta: Meta = {
   id: '956e063b-b40c-4fe4-bc27-53b8c4ab1e81',
   title: 'Components/Rating',
   component: 'post-rating',
@@ -11,31 +10,23 @@ const meta: Meta<HTMLPostRatingElement> = {
   parameters: {
     badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
   },
+  args: {
+    label: undefined,
+    stars: undefined,
+    currentRating: undefined,
+    readonly: false,
+  },
   argTypes: {
-    currentRating: {
-      name: 'currentRating',
-      control: { type: 'number' },
-      description: 'The current rating value',
-      defaultValue: 0,
-    },
     stars: {
-      name: 'stars',
       control: { type: 'number', min: 3, max: 10, step: 1 },
-      description: 'The number of stars in the rating',
-      defaultValue: 5,
     },
-    disabled: {
-      name: 'disabled',
-      control: { type: 'boolean' },
-      description: 'Boolean for the disabled state of the component',
-      defaultValue: false,
-    },
-    readonly: {
-      name: 'readonly',
-      control: { type: 'boolean' },
-      description:
-        'If readonly is true, the component only displays a rating and is not interactive.',
-      defaultValue: false,
+    currentRating: {
+      control: {
+        type: 'number',
+        min: 0,
+        max: 10,
+        step: 0.1,
+      },
     },
   },
 };
@@ -43,26 +34,20 @@ const meta: Meta<HTMLPostRatingElement> = {
 export default meta;
 
 // RENDERER
-function render(args: Partial<HTMLPostRatingElement>) {
-  return html` <post-rating ${spreadArgs(args)}></post-rating> `;
+function render(args: Args) {
+  return html`
+    <post-rating
+      stars="${args.stars || nothing}"
+      current-rating="${args.currentRating || nothing}"
+      readonly="${args.readonly || nothing}"
+    ></post-rating>
+  `;
 }
 
 // STORIES
 type Story = StoryObj<HTMLPostRatingElement>;
 
 export const Default: Story = {};
-
-export const Disabled: Story = {
-  parameters: {
-    controls: {
-      include: ['disabled'],
-    },
-  },
-  args: {
-    currentRating: 3,
-    disabled: true,
-  },
-};
 
 export const Readonly: Story = {
   parameters: {

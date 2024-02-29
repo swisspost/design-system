@@ -12,52 +12,41 @@ export default {
 
 type Story = StoryObj;
 
-export const PostRating: Story = {
+export const Rating: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
-      <div class="d-flex flex-wrap align-items-start gap-regular">
+      <div class="p-5">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
-            <div class="${bg} d-flex  flex-wrap align-items-start gap-large p-regular">
-              ${[
-                //variants for max 3
-                ...bombArgs({
-                  stars: [3, 5, 10, 25],
-                  disabled: [false, true],
-                  readonly: [false, true],
-                  currentRating: [0, 1, 3, 5, 10, 25],
-                })
-                  //make sure currentRating is not set higher than the max
-                  .filter(
-                    (args: Args) =>
-                      !(
-                        args.stars === 3 &&
-                        (args.currentRating === 5 ||
-                          args.currentRating === 10 ||
-                          args.currentRating === 25)
-                      ) &&
-                      !(
-                        args.stars === 5 &&
-                        (args.currentRating === 1 ||
-                          args.currentRating === 10 ||
-                          args.currentRating === 25)
-                      ) &&
-                      !(
-                        args.stars === 10 &&
-                        (args.currentRating === 1 ||
-                          args.currentRating === 3 ||
-                          args.currentRating === 25)
-                      ) &&
-                      !(
-                        args.stars === 25 &&
-                        (args.currentRating === 1 ||
-                          args.currentRating === 3 ||
-                          args.currentRating === 5)
-                      ),
-                  )
-                  //make sure if disabled is true, readonly is only false
-                  .filter((args: Args) => !(args.disabled === true && args.readonly === true)),
-              ].map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
+            <div class="${bg} p-3">
+              <div class="d-flex gap-3 mb-3">
+                <div class="w-50 d-flex gap-1">
+                  readonly:
+                  <pre>false</pre>
+                </div>
+                <div class="w-50 d-flex gap-1">
+                  readonly:
+                  <pre>true</pre>
+                </div>
+              </div>
+              ${bombArgs({
+                stars: [3, 5, 10],
+                currentRating: [0, 1, 3, 5, 7, 10],
+              })
+                .filter((args: Args) => args.currentRating <= args.stars)
+                .map(
+                  (args: Args) =>
+                    html`
+                      <div class="d-flex gap-3">
+                        <div class="w-50">
+                          ${meta.render?.({ ...context.args, ...args, readonly: false }, context)}
+                        </div>
+                        <div class="w-50">
+                          ${meta.render?.({ ...context.args, ...args, readonly: true }, context)}
+                        </div>
+                      </div>
+                    `,
+                )}
             </div>
           `,
         )}
