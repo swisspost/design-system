@@ -32,7 +32,7 @@ const preview: Preview = {
           [
             'Typography',
             'Color',
-            'Icons',
+            'Search for Icons',
             'Layout',
             ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
             'Elevation',
