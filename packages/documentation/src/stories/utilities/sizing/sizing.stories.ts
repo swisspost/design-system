@@ -1,6 +1,5 @@
 import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { BADGE } from '../../../../.storybook/constants';
 import './sizing.styles.scss';
 import scss from './sizing.module.scss';
 
@@ -15,7 +14,7 @@ const meta: Meta = {
   id: 'e728de1f-0d71-4317-8bb8-cbef0bf8d5db',
   title: 'Utilities/Sizing',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     height: 'bigger-giant',

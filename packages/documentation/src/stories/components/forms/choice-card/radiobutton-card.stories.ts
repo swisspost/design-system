@@ -1,11 +1,10 @@
-import { BADGE } from '../../../../../.storybook/constants';
 import { choiceCardMeta, choiceCardDefault, choiceCardGroup } from './choice-card';
 
 export default {
   ...choiceCardMeta,
   title: 'Components/Forms/Radio Button Card',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
 };
 

@@ -2,14 +2,13 @@ import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { choose } from 'lit/directives/choose.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Cards/Card',
   decorators: [clickBlocker, paddedContainer],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
     controls: {
       exclude: ['Custom Header', 'Custom Body', 'Custom Footer'],
     },

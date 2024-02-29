@@ -1,13 +1,12 @@
 import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
-import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
   title: 'Components/Spinner',
   render,
   decorators: [story => generateDecorators(story)],
   parameters: {
-    badges: [BADGE.BETA],
+    badges: [],
   },
   args: {
     size: 'null',

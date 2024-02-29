@@ -1,5 +1,4 @@
 import type { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit/static-html.js';
 import './spacing.styles.scss';
 import { parse } from '../../../utils/sass-export';
@@ -23,7 +22,7 @@ const meta: Meta = {
   id: 'facaacfd-18f1-49b4-80f1-a96680730fa0',
   title: 'Utilities/Spacing',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     marginSize: 'regular',

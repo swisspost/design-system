@@ -1,12 +1,11 @@
 import type { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../../.storybook/constants';
 import { html, nothing } from 'lit';
 
 const meta: Meta = {
   id: 'cd70f48f-6308-4ec8-a8c6-982bd72c855c',
   title: 'Foundations/Layout/Columns',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   decorators: [
     (story: StoryFn, { args, context }: StoryContext) => html`

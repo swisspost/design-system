@@ -1,6 +1,5 @@
 import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { BADGE } from '../../../../../../.storybook/constants';
 import customFooterConfig from './custom-config/custom-footer-config';
 import { spread } from '@open-wc/lit-helpers';
 
@@ -12,7 +11,7 @@ const meta: Meta = {
   decorators: [hiddenHeader],
   parameters: {
     layout: 'fullscreen',
-    badges: [BADGE.STABLE],
+    badges: [],
   },
   argTypes: {
     customConfig: {
