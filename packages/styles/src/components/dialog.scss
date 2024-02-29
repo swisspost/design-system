@@ -1,0 +1,175 @@
+@use '../mixins/elevation';
+@use '../variables/spacing';
+@use '../variables/color';
+
+@use './../themes/bootstrap/core' as *;
+
+dialog {
+  @include elevation.elevation('elevation-3');
+
+  padding: spacing.$size-regular spacing.$size-regular 0;
+  max-height: 90vh;
+  overflow: auto;
+  overscroll-behavior: contain;
+
+  // [size="medium"] is the standard case
+  min-width: min(389px, 90vw);
+  max-width: 590px;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  > form {
+    display: grid;
+    column-gap: spacing.$size-regular;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'header close-button'
+      'body close-button'
+      'controls controls';
+
+    // Propagate bg color to the controls
+    background-color: inherit;
+  }
+
+  &[size='small'] {
+    min-width: 296px;
+    max-width: 388px;
+  }
+
+  &[size='large'] {
+    min-width: min(600px, 90vw);
+    max-width: 792px;
+  }
+
+  &[variant='notification'] {
+    padding: 0;
+
+    > form {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'close-button'
+        'icon'
+        'header'
+        'body'
+        'controls';
+    }
+
+    &[type='general'] {
+      --post-dialog-background-color: #{color.$info};
+    }
+    &[type='warning'] {
+      --post-dialog-background-color: #{color.$warning};
+    }
+    &[type='error'] {
+      --post-dialog-background-color: #{color.$error};
+    }
+    &[type='success'] {
+      --post-dialog-background-color: #{color.$success};
+    }
+
+    > form::before {
+      content: '';
+      grid-area: close-button / close-button / header / header;
+      background-color: var(--post-dialog-background-color);
+    }
+
+    .dialog--header,
+    .dialog--icon {
+      justify-self: center;
+    }
+
+    .dialog--header,
+    .dialog--body,
+    .dialog--controls {
+      padding-inline: spacing.$size-regular;
+    }
+
+    .dialog--close {
+      margin-right: spacing.$size-regular;
+    }
+
+    .dialog--header,
+    .dialog--controls {
+      padding-bottom: spacing.$size-regular;
+    }
+  }
+
+  &[variant='cookie'] {
+    top: auto;
+    bottom: 2rem;
+
+    > form {
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas:
+        'icon header close-button'
+        'icon body close-button'
+        'controls controls controls';
+    }
+
+    .dialog--icon {
+      align-self: flex-start;
+    }
+  }
+}
+
+.dialog--icon {
+  grid-area: icon;
+  display: block;
+  width: spacing.$size-big;
+  height: spacing.$size-big;
+
+  // Larger icon for bigger notification dialogs
+  dialog:not([size='small']) & {
+    @include media-breakpoint-up(rg) {
+      width: spacing.$size-small-huge;
+      height: spacing.$size-small-huge;
+    }
+  }
+}
+
+.dialog--header {
+  grid-area: header;
+
+  & > *:first-child {
+    margin-top: 0;
+  }
+}
+
+.dialog--body {
+  grid-area: body;
+  margin-bottom: 0;
+
+  & > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.dialog--controls {
+  grid-area: controls;
+  position: sticky;
+  bottom: 0;
+  padding-block: spacing.$size-regular;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  gap: spacing.$size-regular;
+  background-color: inherit;
+
+  button {
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+  }
+}
+
+.dialog--close {
+  position: sticky;
+  top: 0;
+  grid-area: close-button;
+  width: spacing.$size-large;
+  height: spacing.$size-large;
+  min-height: 0;
+  margin-left: auto;
+}
