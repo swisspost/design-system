@@ -17,12 +17,12 @@ $form-feedback-padding-x: button.$input-btn-padding-x !default;
 $form-feedback-padding-y: 0.5 * button.$input-btn-padding-x !default;
 $form-feedback-icon-size: 2rem !default; // Equals 24pt [svg-size]
 $form-feedback-icon-offset: spacing.$size-mini !default;
-$form-feedback-valid-bg: color.$success !default;
+$form-feedback-valid-bg: color.$success-green !default;
 $form-feedback-valid-text: color.$white !default;
 $form-feedback-invalid-bg: color.$error !default;
 $form-feedback-invalid-text: color.$white !default;
-$form-feedback-custom-color: color.$success !default;
-$form-feedback-custom-bg: color.$success !default;
+$form-feedback-custom-color: color.$success-green !default;
+$form-feedback-custom-bg: color.$success-green !default;
 $form-feedback-invalid-box-shadow: 0 0 0 forms.$input-focus-width
   rgba($form-feedback-invalid-color, 0.25) !default;
 $form-feedback-valid-box-shadow: 0 0 0 forms.$input-focus-width
