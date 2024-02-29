@@ -1,5 +1,15 @@
 # @swisspost/design-system-components
 
+## 2.0.3
+
+### Patch Changes
+
+- Improved display of tooltip arrow in high contrast mode. (by [@imagoiq](https://github.com/imagoiq) with [#2697](https://github.com/swisspost/design-system/pull/2697))
+
+- Fixes an issue with the post-popover component that stopped working once trigger buttons were removed from the page or new trigger buttons were added to the page asynchronously. (by [@gfellerph](https://github.com/gfellerph) with [#2695](https://github.com/swisspost/design-system/pull/2695))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.3
+
 ## 2.0.2
 
 ### Patch Changes
