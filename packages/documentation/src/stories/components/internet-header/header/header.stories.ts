@@ -1,5 +1,4 @@
 import { Args, Meta, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../../.storybook/constants';
 import { html } from 'lit';
 import { spreadArgs } from '../../../../utils';
 import customConfig from './config/custom-config';
@@ -11,7 +10,7 @@ const meta: Meta = {
   title: 'Components/Internet Header/Header',
   component: 'swisspost-internet-header',
   parameters: {
-    badges: [BADGE.STABLE],
+    badges: [],
     layout: 'fullscreen',
     controls: { sort: 'alpha' },
   },

@@ -35,5 +35,9 @@
   @include utilities-mx.high-contrast-mode() {
     color: CanvasText;
     forced-color-adjust: none;
+
+    @include utilities-mx.not-disabled-focus-hover() {
+      color: Highlight;
+    }
   }
 }

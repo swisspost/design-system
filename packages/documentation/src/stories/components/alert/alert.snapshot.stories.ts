@@ -3,7 +3,6 @@ import { html } from 'lit';
 import { bombArgs, spreadArgs } from '../../../utils';
 import alertMeta from './standard-html/alert.stories';
 import { getAlertClasses } from './standard-html/getAlertClasses';
-import { BADGE } from '../../../../.storybook/constants';
 
 const { id, ...metaWithoutId } = alertMeta;
 
@@ -11,7 +10,7 @@ export default {
   ...metaWithoutId,
   title: 'Snapshots',
   parameters: {
-    badges: [BADGE.SINCE_V1],
+    badges: [],
   },
 };
 

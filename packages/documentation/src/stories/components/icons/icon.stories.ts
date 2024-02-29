@@ -2,7 +2,6 @@ import { spread } from '@open-wc/lit-helpers';
 import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { BADGE } from '../../../../.storybook/constants';
 import { spreadArgs } from '../../../utils';
 import { Components } from '@swisspost/design-system-components/src';
 
@@ -11,7 +10,7 @@ const meta: Meta = {
   title: 'Components/Icon',
   component: 'post-icon',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
+    badges: [],
   },
   args: {
     name: '1022',

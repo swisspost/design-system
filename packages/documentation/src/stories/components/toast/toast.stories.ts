@@ -1,13 +1,12 @@
 import { useArgs } from '@storybook/preview-api';
 import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
   id: '825b65c9-7eaf-4e0a-9e20-5f5ed406726d',
   title: 'Components/Toast',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     title: 'Titulum',
@@ -220,7 +219,11 @@ const meta: Meta = {
     autoClose: {
       name: 'Closing Delay (in sec.)',
       description:
-        'When position set to `fixed`, defines how long the component remains visible before it is automatically closed (in seconds). Set to `0` to disable the auto close.',
+        'Defines how long the component remains visible before it is automatically closed (in seconds). Set to `0` to disable the auto close.',
+      if: {
+        arg: 'position',
+        eq: 'fixed',
+      },
       control: {
         type: 'number',
       },
