@@ -1,6 +1,5 @@
 import { useArgs } from '@storybook/preview-api';
 import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { parse } from '../../../utils/sass-export';
@@ -13,9 +12,6 @@ const meta: Meta = {
   id: '886fabcf-148b-4054-a2ec-4869668294fb',
   title: 'Components/Forms/Card-Control',
   component: 'post-card-control',
-  parameters: {
-    badges: [BADGE.BETA],
-  },
   args: {
     label: 'Label',
     description: '',
