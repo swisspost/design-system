@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "1.0.28",
+  "version": "1.0.29",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,13 +13,13 @@
     "linkDirectory": true
   },
   "scripts": {
-    "build": "npm run clean && npm run compile",
+    "build": "pnpm run clean && pnpm run compile",
     "clean": "rimraf dist",
-    "compile": "npm run tsc",
+    "compile": "pnpm run tsc",
     "tsc": "tsc -p ."
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:2.0.2"
+    "@swisspost/design-system-components": "workspace:2.0.3"
   },
   "devDependencies": {
     "@types/node": "18.19.14",
