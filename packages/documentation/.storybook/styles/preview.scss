@@ -7,35 +7,61 @@
 #storybook-docs {
   overflow: hidden;
 
-  .sbdocs-content {
+  .sbdocs-content .container >,
+  .sbdocs-content .container > post-tabs > post-tab-panel >,
+  .sbdocs-content .container > migration-global-state {
     // Target content headings only
-    > * {
-      > h1 {
-        margin-block: 5rem 1rem;
+    h1 {
+      margin-block: 5rem 1rem;
 
-        &:first-of-type {
-          margin-block-start: 0;
+      &:first-of-type {
+        margin-block-start: 0;
+      }
+    }
+
+    h2 {
+      margin-block: 3rem 1rem;
+    }
+
+    h3 {
+      margin-block: 2.5rem 1rem;
+    }
+
+    h4 {
+      margin-block: 2rem 1rem;
+    }
+
+    h5 {
+      margin-block: 1.5rem 1rem;
+    }
+
+    h6 {
+      margin-block: 1rem;
+    }
+  }
+
+  .sbdocs-content .container {
+    // Support for autolink-headings
+    :is(h1, h2, h3, h4, h5, h6) {
+      position: relative;
+
+      @media (hover: hover) {
+        > a {
+          display: none;
         }
       }
 
-      > h2 {
-        margin-block: 3rem 1rem;
+      > a {
+        position: absolute;
+        top: 52%;
+        transform: translateY(-50%);
+        font-size: 1.5rem;
+        padding: 0.625rem;
+        line-height: 1;
       }
 
-      > h3 {
-        margin-block: 2.5rem 1rem;
-      }
-
-      > h4 {
-        margin-block: 2rem 1rem;
-      }
-
-      > h5 {
-        margin-block: 1.5rem 1rem;
-      }
-
-      > h6 {
-        margin-block: 1rem;
+      &:hover > a {
+        display: inline-block;
       }
     }
   }
@@ -58,11 +84,20 @@
     color: var(--post-contrast-color);
     white-space: nowrap;
     line-height: 1;
+
+    &[languages] {
+      display: block;
+      margin-top: 0.25rem;
+      padding: 1rem;
+      background-color: var(--post-contrast-color);
+      color: var(--post-contrast-color-inverted);
+    }
   }
 
   .sbdocs-wrapper {
-    padding-left: 0;
     padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
     background-color: transparent;
 
     .sbdocs-content {
@@ -155,6 +190,11 @@
         border-color: Canvas !important;
       }
     }
+  }
+
+  // Used around a large <Source> block, it limits its height
+  .limit-source-height [data-radix-scroll-area-viewport] {
+    max-height: 15rem;
   }
 }
 

@@ -6,12 +6,12 @@
 @use '../variables/animation';
 @use '../variables/components/form-check';
 @use '../mixins/icons' as icons-mx;
+@use '../mixins/utilities' as utility-mx;
 
 .form-check {
   display: flex;
   flex-wrap: wrap;
   row-gap: form-check.$form-check-row-gap;
-  column-gap: form-check.$form-check-column-gap;
   margin-bottom: form-check.$form-check-margin-bottom;
 
   &-inline {
@@ -111,6 +111,10 @@
   &-label {
     flex: 1;
 
+    :not(.form-switch, .radio-button-card, .checkbox-button-card) > & {
+      padding-inline-start: form-check.$form-check-column-gap;
+    }
+
     .form-check-sm & {
       font-size: type.$font-size-12;
     }
@@ -118,8 +122,6 @@
 }
 
 .form-switch {
-  column-gap: form-check.$form-switch-column-gap;
-
   .form-check-input {
     height: form-check.$form-switch-height;
     width: form-check.$form-switch-width;
@@ -151,6 +153,24 @@
       }
     }
 
+    @include utility-mx.high-contrast-mode {
+      transition: none;
+      border: form-check.$form-check-input-border-width solid CanvasText;
+
+      &:checked {
+        background-color: SelectedItem;
+      }
+
+      &::after,
+      &:checked::after {
+        max-width: calc(
+          #{form-check.$form-switch-height} - #{2 * form-check.$form-check-input-border-width}
+        );
+        border-color: Canvas;
+        background-color: CanvasText;
+      }
+    }
+
     &[disabled] {
       background: form-check.$form-switch-disabled-bg;
 
@@ -162,6 +182,16 @@
 
   &:hover > .form-check-input:not([disabled]) {
     background-color: rgba(var(--post-contrast-color-rgb), 0.1);
+
+    @include utility-mx.high-contrast-mode {
+      border-color: Highlight;
+
+      &:checked,
+      &::after,
+      &:checked::after {
+        background-color: Highlight;
+      }
+    }
   }
 
   .form-check-label {
@@ -169,6 +199,11 @@
 
     &.order-first {
       flex: 0 auto;
+      padding-inline-end: form-check.$form-switch-column-gap;
+    }
+
+    &:not(.order-first) {
+      padding-inline-start: form-check.$form-switch-column-gap;
     }
   }
 }

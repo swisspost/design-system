@@ -32,10 +32,14 @@ export const formatResponse = (response: CenshareResultPage): Array<IIcon> => {
         const fileExt = path.extname(svgVariant.name);
         const fileBasename = path.basename(fileName, fileExt).replace(/\s/g, ''); // Some of the icons seem to have a whitespace in the name but not in the filepath itself
 
-        const keywords = (item.contentInfo?.freeKeywords ?? '')
-          .replace(/(\n|\r\n)/g, '')
-          .split(', ')
-          .filter(keyword => keyword !== 'Piktogramme "Die Post" ab 2017');
+        const keywords = [
+          ...new Set(
+            (item.contentInfo?.freeKeywords ?? '')
+              .replace(/(\n|\r\n)/g, '')
+              .split(/, ?/)
+              .filter(keyword => keyword !== 'Piktogramme "Die Post" ab 2017')
+          )
+        ];
   
         acc.push({
           uuid: item.uuid,

@@ -8,12 +8,17 @@ import SampleCustomTrigger from './accordion-custom-trigger.sample?raw';
 
 <p className="lead">Toggle the visibility of a set of related content in your project.</p>
 
-The `<post-accordion>` is a container for `<post-collapsible>` components.
-It is used to manage how content is shown and hidden within across a set of collapsible elements.
+The `<post-accordion>` is a container for `<post-accordion-item>` components.
+It is used to manage how content is shown and hidden across a set of collapsible elements.
 
-<Canvas of={accordionStories.Default} />
+<Canvas sourceState="shown" of={accordionStories.Default} />
 
 <Controls of={accordionStories.Default} />
+
+## Installation
+
+The `<post-accordion>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
 
 ## Examples
 
@@ -24,9 +29,20 @@ To allow multiple panels to be open at the same time, simply use the `multiple="
 
 <Canvas of={accordionStories.MultipleOpenPanels} />
 
+### Define default opened panel
+
+By default, the first panel is opened. You can control this behavior by adding the prop `collapsed` to one or multiple `post-accordion-item`.
+When adding `collapsed` to the first item, the next item will be opened.
+
+<Canvas of={accordionStories.DefaultCollapsedPanels} />
+
+Multiple items can be opened by default when adding `multiple="true"` property to the `post-accordion` element.
+
+<Canvas of={accordionStories.DefaultCollapsedMultiplePanels} />
+
 ### Custom Trigger
 
-The `<post-accordion>` offers several methods to expand or collapse the `<post-collapsible>` it contains.
+The `<post-accordion>` offers several methods to expand or collapse the `<post-accordion-item>` it contains.
 
 Expand or collapse all elements at once using `.expandAll()` and `.collapseAll()` respectively,
 or toggle just one using `.toggle()` specifying the id of the element you want to act on.

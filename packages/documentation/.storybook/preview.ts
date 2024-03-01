@@ -4,7 +4,7 @@ import { format } from 'prettier';
 import DocsLayout from './blocks/layout';
 import { badgesConfig, openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
-import './cypress-storybook/client';
+import './addons/cypress-storybook/client';
 
 import './styles/preview.scss';
 
@@ -19,30 +19,76 @@ const preview: Preview = {
   parameters: {
     options: {
       storySort: {
+        method: 'alphabetical',
         order: [
           'Home',
+
+          // Category - Getting Started
           'Getting Started',
-          ['Styles', 'Components', 'Compatibility'],
+          ['Styles', 'Components', 'Components-Angular', 'Compatibility'],
+
+          // Category - Foundations
           'Foundations',
           [
             'Typography',
             'Color',
             'Layout',
-            ['Breakpoints', 'Containers', 'Grid', 'TODOS'],
+            ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
             'Elevation',
             'Accessibility',
           ],
+
+          // Category - Components
           'Components',
-          'Internet Header',
-          ['Getting Started', 'Migration Guide', 'Header', 'Breadcrumbs', 'Footer'],
-          'Intranet Header',
-          ['Getting Started'],
-          'Icons',
-          ['Getting Started', 'Search for Icons', 'Icon Component'],
-          'Templates',
+          [
+            'Accordion',
+            'Alert',
+            'Badge',
+            'Blockquote',
+            'Button',
+            'Button Group',
+            'Cards',
+            'Carousel',
+            'Collapsible',
+            'Datepicker',
+            'Dropdown',
+            'Forms',
+            'Heading',
+            'Icons',
+            ['Getting Started'],
+            'Internet Header',
+            ['Getting Started', 'Header'],
+            'Intranet Header',
+            'Modal',
+            'Notification overlay',
+            'Pagination',
+            'Popover',
+            'Progressbar',
+            'Rating',
+            'Spinner',
+            'Stepper',
+            'Subnavigation',
+            'Table',
+            'Tabs',
+            'Timepicker',
+            'Toast',
+            'Tooltip',
+            'Topic Teaser',
+            'Typeahead',
+          ],
+
+          // Category - Patterns
+          'Patterns',
+          ['Metadata', 'Forms'],
+
+          // Category - Utilities
           'Utilities',
+
+          // Category - Misc
           'Misc',
           ['Migration Guide', 'Changelog', 'Versions'],
+
+          // Category - Snapshots (hidden)
           'Snapshots',
         ],
       },

@@ -1,0 +1,21 @@
+<div class="modal-header p-5 mb-3 rounded-top bg-danger">
+  <div class="text-center">
+    <span aria-hidden="true" class="pi pi-3x pi-2104-white mt-4 mb-3"></span>
+    <p class="h4 bold">Please check your details</p>
+    <p class="h4">Some information on the previous page is missing or incomplete.</p>
+  </div>
+</div>
+<div class="modal-body">
+  <p class="h5">If you confirm, the WebStamp may be incomplete.</p>
+</div>
+<div class="modal-footer justify-content-start flex-row-reverse">
+  <button
+    type="button"
+    class="btn btn-primary btn-animated"
+    (click)="activeModal.close()"
+    ngbAutofocus
+  >
+    <span>Agree</span>
+  </button>
+  <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Back</button>
+</div>

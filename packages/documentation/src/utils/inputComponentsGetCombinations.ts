@@ -37,7 +37,10 @@ export const COMBINATIONS = [
 export function getCombinations(
   argumentName: string,
   argumentValues: Array<unknown>,
-  combinations: Array<{ label: string; [propName: string]: any }>,
+  combinations: Array<{
+    label: string;
+    [propName: string]: any;
+  }>,
 ) {
   let result: Array<Object> = [];
   for (const argumentValue of argumentValues) {

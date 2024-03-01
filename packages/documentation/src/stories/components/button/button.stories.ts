@@ -2,12 +2,12 @@ import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 import { repeat } from 'lit/directives/repeat.js';
-import { BADGE } from '@geometricpanda/storybook-addon-badges';
 
 const meta: Meta = {
+  id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
   title: 'Components/Button',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=10576-49992&mode=design&t=OK8meBHjpJvBhwZI-4',
@@ -137,7 +137,7 @@ const meta: Meta = {
         'Defines a custom icon.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
-        '<a href="/?path=/docs/icons-getting-started--docs">set up the icons in your project</a>' +
+        '<a href="?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
         '.</span>',
       if: {
         arg: 'tag',
@@ -195,7 +195,7 @@ const meta: Meta = {
     disabled: {
       name: 'Disabled',
       description:
-        'When set to `true`, makes the component appear inactive and disables its functionality.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/foundations-accessibility--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'When set to `true`, makes the component appear inactive and disables its functionality.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       control: {
         type: 'boolean',
       },
@@ -217,22 +217,12 @@ const Template = {
     const props = createProps(args, isAnimated);
 
     if (args.tag === 'input') {
-      return html`
-        <${tagName} ${spread(props)} />
-      `;
+      return html` <${tagName} ${spread(props)} /> `;
     } else {
-      const icon = html`
-        <post-icon aria-hidden="true" name=${args.icon}></post-icon>
-      `;
-      const iconOnlyContent = html`
-        <span class="visually-hidden">${args.text}</span>
-      `;
-      const animatedContent = html`
-        <span>${args.text}</span>
-      `;
-      const text = html`
-        ${args.text}
-      `;
+      const icon = html` <post-icon aria-hidden="true" name="${args.icon}"></post-icon> `;
+      const iconOnlyContent = html` <span class="visually-hidden">${args.text}</span> `;
+      const animatedContent = html` <span>${args.text}</span> `;
+      const text = html` ${args.text} `;
 
       return html`
         <${tagName} ${spread(props)}>
@@ -246,6 +236,7 @@ const Template = {
 };
 
 function createProps(args: Args, isAnimated: boolean) {
+  const additionalClasses = args.additionalClasses ?? [];
   return {
     class: [
       'btn',
@@ -253,6 +244,7 @@ function createProps(args: Args, isAnimated: boolean) {
       args.size,
       isAnimated && 'btn-animated',
       args.iconOnly && 'btn-icon',
+      ...additionalClasses,
     ]
       .filter(c => c && c !== 'null')
       .join(' '),
@@ -269,11 +261,7 @@ export const Default: Story = {
 
 export const Inverted: Story = {
   ...Template,
-  decorators: [
-    (story: Function) => html`
-      <div class="p-3 bg-dark">${story()}</div>
-    `,
-  ],
+  decorators: [(story: Function) => html` <div class="p-3 bg-dark">${story()}</div> `],
 };
 
 const VariantsTemplate = {
@@ -283,10 +271,7 @@ const VariantsTemplate = {
     },
   },
   decorators: [
-    (story: Function) =>
-      html`
-        <div class="d-flex gap-small-r flex-wrap">${story()}</div>
-      `,
+    (story: Function) => html` <div class="d-flex gap-small-r flex-wrap">${story()}</div> `,
   ],
   render: (args: Args) =>
     html`
@@ -325,4 +310,21 @@ export const ContextualColors: Story = {
   args: {
     variants: ['btn-success', 'btn-info', 'btn-warning', 'btn-danger'],
   },
+};
+
+export const FullWidth: Story = {
+  ...VariantsTemplate,
+  args: {
+    variants: ['btn-primary'],
+    additionalClasses: ['w-sm-100', 'w-md-auto'],
+  },
+};
+
+export const Align: Story = {
+  render: () => html`
+    <div class="d-flex flex-row-reverse gap-mini justify-content-end">
+      <button class="btn btn-primary">Send</button>
+      <button class="btn btn-secondary">Cancel</button>
+    </div>
+  `,
 };

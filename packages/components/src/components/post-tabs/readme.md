@@ -26,11 +26,25 @@
 Shows the panel with the given name and selects its associated tab.
 Any other panel that was previously shown becomes hidden and its associated tab is unselected.
 
+#### Parameters
+
+| Name        | Type     | Description |
+| ----------- | -------- | ----------- |
+| `panelName` | `string` |             |
+
 #### Returns
 
 Type: `Promise<void>`
 
 
+
+
+## Slots
+
+| Slot        | Description                                                                          |
+| ----------- | ------------------------------------------------------------------------------------ |
+| `"default"` | Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.    |
+| `"tabs"`    | Slot for placing tab headers. Each tab header should be a <post-tab-header> element. |
 
 
 ----------------------------------------------

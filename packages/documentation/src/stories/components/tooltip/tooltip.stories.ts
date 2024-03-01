@@ -1,33 +1,65 @@
 import { Args, Meta, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { useArgs } from '@storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 const meta: Meta = {
+  id: 'cd684d90-e7a7-41a9-8923-b1b72ad9b384',
   title: 'Components/Tooltip',
   component: 'post-tooltip',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
-    controls: {
-      exclude: ['class'],
-    },
+    badges: [],
   },
   render,
   args: {
     id: 'tooltip-one',
     innerHTML: 'Hi there 👋',
+    backgroundColor: 'primary',
+    placement: 'top',
   },
   argTypes: {
+    id: {
+      table: {
+        disable: true,
+      },
+    },
     innerHTML: {
+      name: 'Content',
       description:
         'Defines the HTML markup contained in the tooltip. Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a> like `<span>` or `<post-icon>`, but no interactive content like `<a>` or `<button>`.',
       table: {
-        category: 'content',
+        category: 'General',
         type: {
           summary: 'string',
         },
+      },
+    },
+    backgroundColor: {
+      name: 'Background color',
+      description: 'Define a background color, either `bg-primary` or `bg-yellow`.',
+      control: {
+        type: 'radio',
+        labels: {
+          yellow: 'Yellow',
+          primary: 'Primary',
+        },
+      },
+      options: ['primary', 'yellow'],
+      table: {
+        category: 'General',
+        type: {
+          summary: 'HTML class attribute',
+        },
+      },
+    },
+    placement: {
+      name: 'Placement',
+    },
+    arrow: {
+      name: 'Arrow',
+      control: {
+        type: 'boolean',
       },
     },
   },
@@ -47,9 +79,9 @@ function render(args: Args) {
     <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">Button</button>
     <post-tooltip
       id="${args.id}"
-      class="hydrated"
-      background-color="${ifDefined(args.backgroundColor)}"
+      class="hydrated bg-${args.backgroundColor}"
       placement="${ifDefined(args.placement)}"
+      arrow="${ifDefined(args.arrow)}"
     >
       ${unsafeHTML(innerHTML)}
     </post-tooltip>
@@ -92,8 +124,7 @@ export const Multiple: StoryObj = {
       </button>
       <post-tooltip
         id="${args.id}"
-        class="hydrated"
-        background-color="${ifDefined(args.backgroundColor)}"
+        class="hydrated bg-${args.background}"
         placement="${ifDefined(args.placement)}"
       >
         I'm the same, no matter what

@@ -578,7 +578,6 @@ li.name-and-surname span.infoHidden {
   min-height: 20em;
   margin: auto;
   background-color: white;
-  //    padding: 20px;
   border: 1px solid #888;
 }
 
@@ -653,4 +652,8 @@ li.name-and-surname span.infoHidden {
 .modal-text {
   color: black;
   font-weight: bold;
+}
+
+a:is(:focus-visible, :focus-within, .pretend-focus) {
+  z-index: 2;
 }

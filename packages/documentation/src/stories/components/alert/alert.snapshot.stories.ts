@@ -1,12 +1,17 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { spreadArgs, bombArgs } from '../../../utils';
+import { bombArgs, spreadArgs } from '../../../utils';
 import alertMeta from './standard-html/alert.stories';
 import { getAlertClasses } from './standard-html/getAlertClasses';
 
+const { id, ...metaWithoutId } = alertMeta;
+
 export default {
-  ...alertMeta,
+  ...metaWithoutId,
   title: 'Snapshots',
+  parameters: {
+    badges: [],
+  },
 };
 
 type Story = StoryObj;

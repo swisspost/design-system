@@ -14,6 +14,7 @@
   border-radius: close.$close-border-radius;
   color: close.$close-color;
   transition: close.$close-transition;
+  cursor: pointer;
 
   &::before {
     @include icons-mx.icon(2043);
@@ -29,5 +30,14 @@
 
   &:disabled {
     color: close.$close-disabled-color;
+  }
+
+  @include utilities-mx.high-contrast-mode() {
+    color: CanvasText;
+    forced-color-adjust: none;
+
+    @include utilities-mx.not-disabled-focus-hover() {
+      color: Highlight;
+    }
   }
 }

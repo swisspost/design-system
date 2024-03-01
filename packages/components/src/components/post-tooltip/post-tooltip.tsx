@@ -1,38 +1,88 @@
-import { Component, Element, h, Host, Method, Prop, State, Watch } from '@stencil/core';
-import {
-  arrow,
-  autoUpdate,
-  computePosition,
-  flip,
-  inline,
-  offset,
-  Placement,
-  shift,
-} from '@floating-ui/dom';
-import isFocusable from 'ally.js/esm/is/focusable';
-
-// Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
-import '@oddbird/popover-polyfill';
-
-// Patch for long press on touch devices
-import 'long-press-event';
-
+import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
+import { Placement } from '@floating-ui/dom';
 import { version } from '../../../package.json';
-import { checkOneOf } from '../../utils';
-import { BACKGROUND_COLOR, BackgroundColor } from './types';
+import isFocusable from 'ally.js/is/focusable';
+import 'long-press-event';
+import { getAttributeObserver } from '../../utils/attribute-observer';
 
-const SIDE_MAP = {
-  top: 'bottom',
-  right: 'left',
-  bottom: 'top',
-  left: 'right',
+/**
+ * @slot default - Slot for the content of the tooltip.
+ */
+
+/**
+ * Track how many instances remain on the page. Used for removing global event listeners
+ */
+let tooltipInstances = 0;
+let hideTooltipTimeout: number = null;
+const tooltipTargetAttribute = 'data-tooltip-target';
+
+/**
+ * Global event listener to show tooltips. This is globalized so that triggers that are rendered
+ * async will still work without the need to set listeners on the element itself
+ * @param e Event
+ * @returns
+ */
+const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
+  const target = e.target as HTMLElement;
+  if (!target || !('getAttribute' in target)) return;
+  const tooltipTarget = target.getAttribute(tooltipTargetAttribute);
+  if (!tooltipTarget || tooltipTarget === '') return;
+  const tooltip = document.getElementById(tooltipTarget) as HTMLPostTooltipElement;
+  tooltip?.show(target);
+  if (hideTooltipTimeout) {
+    window.clearTimeout(hideTooltipTimeout);
+    hideTooltipTimeout = null;
+  }
 };
 
-interface PopoverElement {
-  showPopover: () => void;
-  hidePopover: () => void;
-  togglePopover: (force?: boolean) => boolean;
-}
+/**
+ * Global event listener to hide tooltips. This is globalized so that triggers that are rendered
+ * async will still work without the need to set listeners on the element itself
+ * @param e Event
+ * @returns
+ */
+const globalInterestLostHandler = (e: PointerEvent | FocusEvent) => {
+  const target = e.target as HTMLElement;
+  const tooltipTarget = target.getAttribute(tooltipTargetAttribute);
+  if (!tooltipTarget || tooltipTarget === '') return;
+  const tooltip = document.getElementById(tooltipTarget) as HTMLPostTooltipElement;
+  globalHideTooltip(tooltip);
+};
+
+/**
+ * Start the hiding process through a timeout to give other interest events a chance to
+ * intervene and cancel the hide event.
+ * @param {HTMLPostTooltipElement} tooltip
+ */
+const globalHideTooltip = (tooltip: HTMLPostTooltipElement | PostTooltip) => {
+  hideTooltipTimeout = window.setTimeout(() => {
+    tooltip.hide();
+    hideTooltipTimeout = null;
+  }, 42);
+};
+
+/**
+ * Patch some accessibility features that are hard to remember or understand
+ * @param {HTMLElement} trigger
+ */
+const patchAccessibilityFeatures = (trigger: HTMLElement) => {
+  const describedBy = trigger.getAttribute('aria-describedby');
+  const id = trigger.getAttribute(tooltipTargetAttribute);
+
+  // Add tooltip to aria-describedby
+  if (!describedBy?.includes(id)) {
+    const newDescribedBy = describedBy ? `${describedBy} ${id}` : id;
+    trigger.setAttribute('aria-describedby', newDescribedBy);
+  }
+
+  // Make element focusable
+  if (!isFocusable(trigger)) {
+    trigger.setAttribute('tabindex', '0');
+  }
+};
+
+// Initialize a mutation observer for patching accessibility features
+const triggerObserver = getAttributeObserver(tooltipTargetAttribute, patchAccessibilityFeatures);
 
 @Component({
   tag: 'post-tooltip',
@@ -40,23 +90,9 @@ interface PopoverElement {
   shadow: true,
 })
 export class PostTooltip {
-  private tooltipRef: HTMLDivElement & PopoverElement;
-  private arrowRef: HTMLElement;
-  private clearAutoUpdate: () => void;
-  private readonly localShowTooltip: (e: Event) => Promise<void>;
-  private readonly localHideTooltip: () => Promise<void>;
-  private readonly localToggleTooltip: () => Promise<void>;
-  private eventTarget: Element;
+  private popoverRef: HTMLPostPopovercontainerElement;
 
   @Element() host: HTMLPostTooltipElement;
-
-  @State() tooltipClasses: string;
-
-  /**
-   * Defines the background color of the tooltip.
-   * Choose the one that provides the best contrast in your scenario.
-   */
-  @Prop() readonly backgroundColor?: BackgroundColor = 'primary';
 
   /**
    * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -65,81 +101,61 @@ export class PostTooltip {
    */
   @Prop() readonly placement?: Placement = 'top';
 
-  @Watch('backgroundColor')
-  validateBackgroundColor(newValue = this.backgroundColor) {
-    checkOneOf(
-      newValue,
-      BACKGROUND_COLOR,
-      `The post-tooltip "background-color" prop should contain one of those values: ${BACKGROUND_COLOR.join(
-        ', ',
-      )}`,
-    );
-
-    if (newValue === 'yellow') {
-      this.tooltipClasses = 'bg-yellow';
-    } else {
-      this.tooltipClasses = 'bg-primary';
-    }
-  }
-
-  constructor() {
-    // Create local versions of event handlers for de-registration
-    // https://stackoverflow.com/questions/33859113/javascript-removeeventlistener-not-working-inside-a-class
-    this.localShowTooltip = e => this.show(e.target as HTMLElement);
-    this.localHideTooltip = this.hide.bind(this);
-    this.localToggleTooltip = this.toggle.bind(this);
-  }
-
-  componentWillLoad() {
-    this.validateBackgroundColor();
-
-    // Append tooltip host to the end of the body to get around overflow: hidden restrictions
-    // for browsers that don't support popover yet
-    document.body.appendChild(this.host);
-  }
+  /**
+   * Wheter or not to display a little pointer arrow
+   */
+  @Prop() readonly arrow?: boolean = true;
 
   connectedCallback() {
     if (!this.host.id) {
       throw new Error(
+        /*prettier-ignore*/
         'No id set: <post-tooltip> must have an id, linking it to it\'s target element using the data-tooltip-target attribute.',
       );
     }
+  }
 
-    if (!this.triggers) {
-      throw new Error(
-        `No trigger found for <post-tooltip id="${this.host.id}">, please add the 'data-tooltip-target="${this.host.id}" attribute to the trigger element.`,
-      );
+  /**
+   * Add interest event listeners, but only once, and start
+   * the accessibility patcher
+   */
+  componentWillLoad() {
+    if (tooltipInstances === 0) {
+      // This is the first tooltip on the page, add event listeners
+      document.addEventListener('pointerover', globalInterestHandler);
+      document.addEventListener('pointerout', globalInterestLostHandler);
+      document.addEventListener('focusin', globalInterestHandler);
+      document.addEventListener('focusout', globalInterestLostHandler);
+      document.addEventListener('long-press', globalInterestHandler);
+
+      // Initially run the accessibility patcher on all triggers
+      document.querySelectorAll('[data-tooltip-target]').forEach(patchAccessibilityFeatures);
+
+      // Start watching for future triggers
+      triggerObserver.observe(document.body, {
+        subtree: true,
+        childList: true,
+        attributeFilter: [tooltipTargetAttribute],
+      });
     }
-
-    // Patch popovertargetaction="interest" until it's implemented
-    // https://github.com/openui/open-ui/issues/767#issuecomment-1654177227
-    this.triggers.forEach(trigger => this.patchPopoverTargetActionInterest(trigger));
+    tooltipInstances++;
   }
 
   /**
    * Remove a bunch of event listeners if the tooltip gets removed from the DOM
+   * and disconnect the accessibility patcher
    */
   disconnectedCallback() {
-    this.triggers.forEach(trigger => {
-      trigger.removeEventListener('mouseenter', this.localShowTooltip);
-      trigger.removeEventListener('mouseleave', this.localHideTooltip);
-      trigger.removeEventListener('focus', this.localShowTooltip);
-      trigger.removeEventListener('blur', this.localHideTooltip);
-      trigger.removeEventListener('long-press', this.localShowTooltip);
-    });
-    if (this.tooltipRef)
-      this.tooltipRef.removeEventListener('beforetoggle', this.localToggleTooltip);
-    if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
-  }
-
-  componentDidLoad() {
-    // Has the benefit of rendering the tooltip without the popover attribute which
-    // causes the tooltip to show up on the page if it's not linked to a target. This makes
-    // the error obvious.
-    if (!this.host.id || !this.triggers) return false;
-
-    this.tooltipRef.setAttribute('popover', '');
-    this.tooltipRef.addEventListener('beforetoggle', this.handleToggle.bind(this));
+    tooltipInstances--;
+    if (tooltipInstances <= 0) {
+      // The last tooltip has been removed, stop listening for these kind of events
+      document.removeEventListener('pointerover', globalInterestHandler);
+      document.removeEventListener('pointerout', globalInterestLostHandler);
+      document.removeEventListener('focusin', globalInterestHandler);
+      document.removeEventListener('focusout', globalInterestLostHandler);
+      document.removeEventListener('long-press', globalInterestHandler);
+      triggerObserver.disconnect();
+    }
   }
 
   /**
@@ -148,8 +164,7 @@ export class PostTooltip {
    */
   @Method()
   async show(target: HTMLElement) {
-    this.eventTarget = target;
-    this.tooltipRef.showPopover();
+    this.popoverRef.show(target);
   }
 
   /**
@@ -157,8 +172,7 @@ export class PostTooltip {
    */
   @Method()
   async hide() {
-    this.eventTarget = null;
-    this.tooltipRef.hidePopover();
+    this.popoverRef.hide();
   }
 
   /**
@@ -168,114 +182,45 @@ export class PostTooltip {
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean) {
-    this.eventTarget = target;
-    this.tooltipRef.togglePopover(force);
+    this.popoverRef.toggle(target, force);
   }
 
-  private get triggers() {
-    return document.querySelectorAll(`[data-tooltip-target="${this.host.id}"]`);
-  }
-
-  private patchPopoverTargetActionInterest(trigger: Element) {
-    trigger.addEventListener('mouseenter', this.localShowTooltip);
-    trigger.addEventListener('mouseleave', this.localHideTooltip);
-    trigger.addEventListener('focus', this.localShowTooltip);
-    trigger.addEventListener('blur', this.localHideTooltip);
-    trigger.addEventListener('long-press', this.localShowTooltip);
-
-    // Patch missing aria-describedby attribute on the trigger without overriding existing values
-    const describedBy = trigger.getAttribute('aria-describedby');
-    if (!describedBy?.includes(this.host.id)) {
-      const newDescribedBy = describedBy ? `${describedBy} ${this.host.id}` : this.host.id;
-      trigger.setAttribute('aria-describedby', newDescribedBy);
-    }
-
-    // Patch missing focus ability on the trigger element
-    if (!isFocusable(trigger)) {
-      trigger.setAttribute('tabindex', '0');
+  /**
+   * Pointer or focus is on the tooltip, stop the tooltip from disappearing
+   */
+  private handleInterest() {
+    if (hideTooltipTimeout) {
+      window.clearTimeout(hideTooltipTimeout);
+      hideTooltipTimeout = null;
     }
   }
 
   /**
-   * Start or stop auto updates based on tooltip events.
-   * Tooltips can be closed or opened with other methods than class members,
-   * therefore listening to the toggle event is safer for cleaning up.
-   * @param e ToggleEvent
+   * Pointer or focus left the tooltip, initiate the hiding process
    */
-  private handleToggle(e: ToggleEvent) {
-    const isOpen = e.newState === 'open';
-    if (isOpen) {
-      this.startAutoupdates();
-    } else {
-      if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
-    }
-  }
-
-  /**
-   * Start listening for DOM updates, scroll events etc. that have
-   * an influence on tooltip positioning
-   */
-  private startAutoupdates() {
-    this.clearAutoUpdate = autoUpdate(
-      this.eventTarget,
-      this.tooltipRef,
-      this.positionTooltip.bind(this),
-    );
-  }
-
-  // Tooltip and arrow positioning with floating-ui
-  // Docs: https://floating-ui.com/docs/computePosition
-  private async positionTooltip() {
-    const {
-      x,
-      y,
-      middlewareData,
-      placement: currentPlacement,
-    } = await computePosition(this.eventTarget, this.tooltipRef, {
-      placement: this.placement || 'top',
-      middleware: [
-        flip(),
-        inline(),
-        shift({ padding: 8 }),
-        offset(12), // 4px outside of element to account for focus outline + ~arrow size
-        arrow({ element: this.arrowRef, padding: 8 }),
-      ],
-    });
-
-    // Tooltip
-    this.tooltipRef.style.left = `${x}px`;
-    this.tooltipRef.style.top = `${y}px`;
-
-    // Arrow
-    // Tutorial: https://codesandbox.io/s/mystifying-kare-ee3hmh?file=/src/index.js
-    const side = currentPlacement.split('-')[0];
-    const { x: arrowX, y: arrowY } = middlewareData.arrow;
-    const staticSide = SIDE_MAP[side];
-
-    Object.assign(this.arrowRef.style, {
-      top: arrowY ? `${arrowY}px` : '',
-      left: arrowX ? `${arrowX}px` : '',
-      [staticSide]: `${-this.arrowRef.offsetWidth / 2}px`,
-    });
+  private handleInterestLost() {
+    globalHideTooltip(this);
   }
 
   render() {
+    const popoverClass = `${this.arrow ? ' has-arrow' : ''}`;
     return (
-      <Host data-version={version}>
-        <div
-          role="tooltip"
-          tabindex="-1"
-          class={this.tooltipClasses}
-          ref={(el: HTMLDivElement & PopoverElement) => (this.tooltipRef = el)}
+      <Host
+        data-version={version}
+        role="tooltip"
+        onPointerOver={this.handleInterest}
+        onPointerOut={this.handleInterestLost}
+        onFocusIn={this.handleInterest}
+        onFocusOut={this.handleInterestLost}
+      >
+        <post-popovercontainer
+          class={popoverClass}
+          arrow={this.arrow}
+          placement={this.placement}
+          ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
-          <span
-            class="arrow"
-            ref={el => {
-              this.arrowRef = el;
-            }}
-          ></span>
           <slot></slot>
-        </div>
+        </post-popovercontainer>
       </Host>
     );
   }

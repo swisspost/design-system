@@ -1,5 +1,66 @@
 # @swisspost/design-system-demo
 
+## 7.2.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.3
+  - @swisspost/design-system-intranet-header@5.0.10
+
+## 7.2.2
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.2
+  - @swisspost/design-system-intranet-header@5.0.9
+
+## 7.2.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.1
+  - @swisspost/design-system-intranet-header@5.0.8
+
+## 7.2.0
+
+### Minor Changes
+
+- Added internationalization guidelines for the following ng-bootstrap components: alert, carousel, datepicker, pagination, and timepicker. (by [@alizedebray](https://github.com/alizedebray) with [#2517](https://github.com/swisspost/design-system/pull/2517))
+
+### Patch Changes
+
+- Updated copyright year to 2024 in the footer of all documentation. (by [@imagoiq](https://github.com/imagoiq) with [#2491](https://github.com/swisspost/design-system/pull/2491))
+
+- Fixed links to new icons documentation. (by [@imagoiq](https://github.com/imagoiq) with [#2402](https://github.com/swisspost/design-system/pull/2402))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.0
+  - @swisspost/design-system-intranet-header@5.0.7
+
+## 7.1.2
+
+### Patch Changes
+
+- Documented how to translate specific labels on the ng-bootstrap datepicker. (by [@imagoiq](https://github.com/imagoiq) with [#2315](https://github.com/swisspost/design-system/pull/2315))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.1
+  - @swisspost/design-system-intranet-header@5.0.6
+
+## 7.1.1
+
+### Patch Changes
+
+- Updated ng-bootstrap component-based accordion example in favor of the directive-based implementation. (by [@gfellerph](https://github.com/gfellerph) with [#2368](https://github.com/swisspost/design-system/pull/2368))
+
+- Deprecated Bootstrap accordions in favor of the post-accordion web component. (by [@alizedebray](https://github.com/alizedebray) with [#2310](https://github.com/swisspost/design-system/pull/2310))
+
+- Update the commands to run the Design System migrations. (by [@alizedebray](https://github.com/alizedebray) with [#2270](https://github.com/swisspost/design-system/pull/2270))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.5.0
+  - @swisspost/design-system-intranet-header@5.0.5
+
 ## 7.1.0
 
 ### Minor Changes

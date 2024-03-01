@@ -2,6 +2,7 @@ import mockCoveoSuggestions from '../fixtures/internet-header/coveo-suggestions.
 import mockStaoCache from '../fixtures/internet-header/places-suggestions.json';
 import mockStaoCacheTypes from '../fixtures/internet-header/staocache-types.json';
 import { copyConfig, prepare } from '../support/prepare-story';
+import { HEADER } from './shared/variables';
 
 describe('search', () => {
   const searchButton = '#post-internet-header-search-button[aria-expanded=false]';
@@ -18,7 +19,7 @@ describe('search', () => {
       'StaoCacheTypes',
     );
 
-    prepare('Internet Header/Header', 'Default');
+    prepare(HEADER, 'Default');
     cy.changeArg('language', 'de');
   });
 
@@ -75,7 +76,7 @@ describe('search', () => {
       it('Coveo suggestions should be turned off with isCustomSuggestionHidden', () => {
         const config = copyConfig();
         config.de!.header.search.isCustomSuggestionHidden = true;
-        prepare('Internet Header/Header', 'Default', { config });
+        prepare(HEADER, 'Default', { config });
         cy.changeArg('language', 'de');
         cy.get(searchButton).click();
         cy.get('#searchBox').type('s', { force: true });

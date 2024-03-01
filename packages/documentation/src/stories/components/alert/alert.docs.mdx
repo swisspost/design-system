@@ -1,11 +1,5 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import LinkTo from '@storybook/addon-links/react';
-import {
-  PostAlert,
-  PostTabs,
-  PostTabHeader,
-  PostTabPanel,
-} from '@swisspost/design-system-components-react';
+import { PostAlert, PostTabHeader, PostTabPanel, PostTabs, } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 import * as AlertStories from './standard-html/alert.stories';
 import * as PostAlertStories from './web-component/post-alert.stories';
@@ -52,7 +46,7 @@ Alerts are intended to attract the user's attention without interrupting their o
 
       Alerts come with a preassigned icon based on their type.
       You have the option to customize this icon by using a `post-icon` element inside the alert.
-      For more information, read the <LinkTo kind="icons-getting-started" story="docs">getting started with icons guide</LinkTo>.
+      For more information, read the [getting started with icons guide](/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs).
 
       <Canvas of={AlertStories.CustomIcon} />
 
@@ -78,14 +72,14 @@ Alerts are intended to attract the user's attention without interrupting their o
 
     <PostTabHeader slot="tabs" panel="webComponent">Web Component</PostTabHeader>
     <PostTabPanel name="webComponent">
-      <Canvas of={PostAlertStories.Default} />
+      <Canvas sourceState="shown" of={PostAlertStories.Default} />
 
       <Controls of={PostAlertStories.Default} />
 
       ## Installation
 
-      The `<post-alert/>` element is part of the `@swisspost/design-system-components` package.
-      For more information, read the <LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
+      The `<post-alert>` element is part of the `@swisspost/design-system-components` package.
+      For more information, read the [getting started with components guide](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs).
 
       ## Examples
 
@@ -93,7 +87,7 @@ Alerts are intended to attract the user's attention without interrupting their o
 
       Alerts can contain various HTML elements like paragraphs, lists, icons and dividers.
 
-      By default all children of the `<post-alert/>` are placed in the body.
+      By default all children of the `<post-alert>` are placed in the body.
       Use the `heading` slot to place a child in the heading, and the `actions` slot for action buttons.
       Learn more about <a rel="noopener" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots#adding_flexibility_with_slots">slots in the mdn web docs</a>.
 
@@ -103,7 +97,7 @@ Alerts are intended to attract the user's attention without interrupting their o
 
       Alerts come with a preassigned icon based on their type.
       You have the option to customize this icon by assigning the desired icon's name to the `icon` property of the alert.
-      Find the icon you need with the <LinkTo kind="icons-search-for-icons" story="docs">icon search page</LinkTo>.
+      Find the icon you need with the [icon search page](/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs).
 
       <Canvas of={PostAlertStories.CustomIcon} />
 

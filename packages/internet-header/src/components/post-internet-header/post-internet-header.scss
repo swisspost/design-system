@@ -72,7 +72,7 @@
   display: flex;
 
   & > .main-navigation-controls {
-    flex: 0 0 auto;
+    flex: 0 1 auto;
   }
 }
 
@@ -108,7 +108,15 @@
 
   & > * {
     border-left: 1px solid color.$gray-10;
+    flex: 0 0 auto;
   }
+}
+
+.main-navigation-custom-content {
+  max-height: var(--header-height);
+  display: flex;
+  align-items: center;
+  flex-shrink: 1;
 }
 
 .menu-button {

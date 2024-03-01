@@ -26,6 +26,10 @@
         text-transform: uppercase;
       }
     }
+    .description__value {
+      font-weight: post.$font-weight-light;
+      font-size: post.$font-size-14;
+    }
   }
 
   .color-swatch__color {
@@ -49,5 +53,11 @@
         margin: 0;
       }
     }
+  }
+  .black {
+    background-color: post.$black;
+  }
+  .white {
+    background-color: post.$white;
   }
 }

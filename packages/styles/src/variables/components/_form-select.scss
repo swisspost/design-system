@@ -7,7 +7,16 @@ $form-select-disabled-color: forms.$input-disabled-color;
 $form-select-disabled-bg: forms.$input-disabled-bg;
 $form-select-disabled-border-color: forms.$input-disabled-border-color;
 $form-select-indicator-color: color.$black;
-$form-select-bg-size: 24px 24px !default;
 $_form-select-indicator-icon: icons.get-colored-svg-url('2113', $form-select-indicator-color);
 $form-select-indicator: url($_form-select-indicator-icon) !default;
-$form-select-indicator-hcm: url(icons.get-colored-svg-url('2113', color.$white)) !default;
+$form-select-indicator-disabled: url(icons.get-colored-svg-url(
+  '2113',
+  $form-select-disabled-color
+)) !default;
+$form-select-indicator-success: url(icons.get-colored-svg-url(
+  '2105',
+  color.$success-green
+)) !default;
+$form-select-indicator-error: url(icons.get-colored-svg-url('2104', color.$error-red)) !default;
+$form-select-indicator-hcm-dark: url(icons.get-colored-svg-url('2113', color.$white)) !default;
+$form-select-indicator-hcm-light: url(icons.get-colored-svg-url('2113', color.$black)) !default;
