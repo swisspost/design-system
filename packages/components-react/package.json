@@ -13,9 +13,9 @@
     "linkDirectory": true
   },
   "scripts": {
-    "build": "npm run clean && npm run compile",
+    "build": "pnpm run clean && pnpm run compile",
     "clean": "rimraf dist",
-    "compile": "npm run tsc",
+    "compile": "pnpm run tsc",
     "tsc": "tsc -p ."
   },
   "dependencies": {
