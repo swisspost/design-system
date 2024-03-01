@@ -14,6 +14,13 @@ import {
 import { checkNonEmpty, checkOneOf } from '../../utils';
 import { version } from '../../../package.json';
 
+// remove as soon as all browser support :host-context()
+// https://caniuse.com/?search=%3Ahost-context()
+import scss from './post-card-control.module.scss';
+import { parse } from '../../utils/sass-export';
+
+const SCSS_VARIABLES = parse(scss);
+
 let cardControlIds = 0;
 
 /**
@@ -49,10 +56,10 @@ export class PostCardControl {
 
   private control: HTMLInputElement;
   private controlId = `PostCardControl_${cardControlIds++}`;
+  private initialChecked: boolean;
 
   @Element() host: HTMLPostCardControlElement;
 
-  @State() initialChecked: boolean;
   @State() focused = false;
 
   @AttachInternals() private internals: ElementInternals;
@@ -296,11 +303,34 @@ export class PostCardControl {
     this.groupCollectMembers();
   }
 
-  connectedCallback() {
-    this.initialChecked = this.checked;
+  // remove as soon as all browser support the :host-context() selector
+  private readonly HOST_CONTEXT_FILTERS = ['fieldset', ...SCSS_VARIABLES['dark-bg-selectors']];
+  private hostContext: string[];
+
+  private setHostContext() {
+    this.hostContext = [];
+    let element = this.host as HTMLElement;
+
+    while (element) {
+      const localName = element.localName;
+      const id = element.id ? `#${element.id}` : '';
+      const classes =
+        element.classList.length > 0 ? `.${Array.from(element.classList).join('.')}` : '';
+
+      this.hostContext.push(`${localName}${id}${classes}`);
+      element = element.parentElement;
+    }
+
+    this.hostContext = this.hostContext.filter(ctx =>
+      this.HOST_CONTEXT_FILTERS.find(f => ctx.includes(f)),
+    );
   }
 
-  componentWillLoad() {
+  connectedCallback() {
+    // remove as soon as all browser support :host-context()
+    this.setHostContext();
+
+    this.initialChecked = this.checked;
     this.validateControlLabel();
     this.validateControlType();
   }
@@ -317,6 +347,8 @@ export class PostCardControl {
             'is-valid': this.validity !== null && this.validity !== 'false',
             'is-invalid': this.validity === 'false',
           }}
+          // remove as soon as all browser support :host-context()
+          data-host-context={this.hostContext.join(' ')}
         >
           <input
             ref={el => (this.control = el as HTMLInputElement)}
