@@ -169,11 +169,11 @@ export namespace Components {
     }
     interface PostRating {
         /**
-          * Defines the visualized overall rating, the component should show.
+          * Defines the rating that the component should show.
          */
         "currentRating": number;
         /**
-          * Defined the invisible label on the component.
+          * Defines a hidden label for the component.
          */
         "label": string;
         /**
@@ -181,7 +181,7 @@ export namespace Components {
          */
         "readonly": boolean;
         /**
-          * Defined the amount of stars rendered in the component.
+          * Defines the total amount of stars rendered in the component.
          */
         "stars": number;
     }
@@ -333,8 +333,8 @@ declare global {
         new (): HTMLPostPopovercontainerElement;
     };
     interface HTMLPostRatingElementEventMap {
-        "input": {value: number};
-        "change": {value: number};
+        "input": { value: number };
+        "change": { value: number };
     }
     interface HTMLPostRatingElement extends Components.PostRating, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostRatingElementEventMap>(type: K, listener: (this: HTMLPostRatingElement, ev: PostRatingCustomEvent<HTMLPostRatingElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -516,27 +516,27 @@ declare namespace LocalJSX {
     }
     interface PostRating {
         /**
-          * Defines the visualized overall rating, the component should show.
+          * Defines the rating that the component should show.
          */
         "currentRating"?: number;
         /**
-          * Defined the invisible label on the component.
+          * Defines a hidden label for the component.
          */
         "label"?: string;
         /**
-          * An event emitted whenever the components value has changed (on blur). The event payload can be used like so: `event.detail.value`.
+          * An event emitted whenever the component's value has changed (on blur). The event payload can be used like so: `event.detail.value`.
          */
-        "onChange"?: (event: PostRatingCustomEvent<{value: number}>) => void;
+        "onChange"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
         /**
-          * An event emitted whenever the components value has changed (on input). The event payload can be used like so: `event.detail.value`.
+          * An event emitted whenever the component's value has changed (on input). The event payload can be used like so: `event.detail.value`.
          */
-        "onInput"?: (event: PostRatingCustomEvent<{value: number}>) => void;
+        "onInput"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
         /**
           * Defines if the component is readonly or not. This usually should be used together with the `currentRating` property.
          */
         "readonly"?: boolean;
         /**
-          * Defined the amount of stars rendered in the component.
+          * Defines the total amount of stars rendered in the component.
          */
         "stars"?: number;
     }
