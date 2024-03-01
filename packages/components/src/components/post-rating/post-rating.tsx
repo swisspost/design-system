@@ -34,19 +34,17 @@ export class PostRating {
    */
   @Prop() readonly readonly: boolean = false;
 
-  // prettier-ignore
   /**
    * An event emitted whenever the component's value has changed (on input).
    * The event payload can be used like so: `event.detail.value`.
    */
-  @Event() input: EventEmitter<{value: number}>;
+  @Event() input: EventEmitter<{ value: number }>;
 
-  // prettier-ignore
   /**
    * An event emitted whenever the component's value has changed (on blur).
    * The event payload can be used like so: `event.detail.value`.
    */
-  @Event() change: EventEmitter<{value: number}>;
+  @Event() change: EventEmitter<{ value: number }>;
 
   constructor() {
     this.keydownHandler = this.keydownHandler.bind(this);
