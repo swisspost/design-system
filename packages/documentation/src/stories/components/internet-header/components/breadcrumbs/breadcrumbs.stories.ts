@@ -1,7 +1,6 @@
 import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spread } from '@open-wc/lit-helpers';
-import { BADGE } from '../../../../../../.storybook/constants';
 import { getAttributes } from '../../../../../utils';
 import customItems from './overrides/custom-items';
 
@@ -12,7 +11,7 @@ const meta: Meta<HTMLSwisspostInternetBreadcrumbsElement> = {
   render: renderInternetBreadcrumbs,
   decorators: [hiddenHeader],
   parameters: {
-    badges: [BADGE.STABLE],
+    badges: [],
   },
   argTypes: {
     customItems: {

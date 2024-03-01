@@ -1,5 +1,4 @@
 import { Args, Meta, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
@@ -8,7 +7,7 @@ const meta: Meta = {
   title: 'Components/Popover',
   component: 'post-popover',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
     docs: {
       argTypes: {
         sort: 'requiredFirst',

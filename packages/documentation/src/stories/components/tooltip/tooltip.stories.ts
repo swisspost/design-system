@@ -1,5 +1,4 @@
 import { Args, Meta, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { useArgs } from '@storybook/preview-api';
@@ -10,7 +9,7 @@ const meta: Meta = {
   title: 'Components/Tooltip',
   component: 'post-tooltip',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
+    badges: [],
   },
   render,
   args: {

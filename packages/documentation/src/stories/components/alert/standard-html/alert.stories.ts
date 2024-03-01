@@ -4,7 +4,6 @@ import { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-comp
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getAlertClasses } from './getAlertClasses';
-import { BADGE } from '../../../../../.storybook/constants';
 
 const meta: Meta = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
@@ -12,7 +11,7 @@ const meta: Meta = {
   render: renderAlert,
   decorators: [externalControl],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
+    badges: [],
     controls: {
       exclude: ['Title', 'Content'],
     },
