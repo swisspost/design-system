@@ -247,7 +247,6 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
           aria-label={headerConfig.translations.navMainAriaLabel}
           id="post-internet-header-main-navigation"
           class={{ 'main-navigation': true, 'open': this.mobileMenuOpen }}
-          role="menu"
         >
           <ul class="main-container container">
             {headerConfig.navMain.map(levelOne => (

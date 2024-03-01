@@ -64,6 +64,12 @@
       }
     }
 
+    &:disabled {
+      ~ label {
+        color: forms.$input-disabled-color;
+      }
+    }
+
     &[type='file'] {
       &:focus,
       &:not(:placeholder-shown) {

@@ -1,6 +1,5 @@
 import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { BADGE } from '../../../../../.storybook/constants';
 import { mapClasses } from '../../../../utils';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
@@ -14,7 +13,7 @@ const meta: Meta = {
   title: 'Components/Forms/Textarea',
   render: renderTextarea,
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     label: 'Label',

@@ -31,7 +31,7 @@
   box-sizing: border-box;
   color: var(--post-contrast-color);
   background-color: rgb(var(--post-bg-rgb));
-  border: 1px solid transparent; // Keeping the default border for HCM
+  border: 2px solid transparent; // Keeping the default border for HCM
   border-radius: commons.$border-radius;
 
   // Keeps the little arrow visible
@@ -39,7 +39,7 @@
 }
 
 .arrow {
-  // Diagonale of 16px -> 1rem -> 1/1.41 = ~0.7
+  // Diagonal of 16px -> 1rem -> 1/1.41 = ~0.7
   // https://www.omnicalculator.com/math/square-diagonal?c=CHF&v=hide:0,diagonal:16!cm
   $arrow-size: math.div(spacing.$size-regular, math.sqrt(2));
   position: absolute;
@@ -51,6 +51,23 @@
   z-index: -1;
 
   // Create transparent border to be styled by and for the high contrast mode
-  border-right: 2px solid transparent;
-  border-bottom: 2px solid transparent;
+  &.top {
+    border-left: 2px solid transparent;
+    border-top: 2px solid transparent;
+  }
+
+  &.right {
+    border-right: 2px solid transparent;
+    border-top: 2px solid transparent;
+  }
+
+  &.left {
+    border-left: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+  }
+
+  &.bottom {
+    border-right: 2px solid transparent;
+    border-bottom: 2px solid transparent;
+  }
 }
