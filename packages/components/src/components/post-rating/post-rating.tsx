@@ -14,17 +14,17 @@ export class PostRating {
   @State() hoveredIndex: number;
 
   /**
-   * Defined the invisible label on the component.
+   * Defines a hidden label for the component.
    */
   @Prop() readonly label: string = 'Rating';
 
   /**
-   * Defined the amount of stars rendered in the component.
+   * Defines the total amount of stars rendered in the component.
    */
   @Prop() readonly stars: number = 5;
 
   /**
-   * Defines the visualized overall rating, the component should show.
+   * Defines the rating that the component should show.
    */
   @Prop({ mutable: true }) currentRating = 0;
 
@@ -36,14 +36,14 @@ export class PostRating {
 
   // prettier-ignore
   /**
-   * An event emitted whenever the components value has changed (on input).
+   * An event emitted whenever the component's value has changed (on input).
    * The event payload can be used like so: `event.detail.value`.
    */
   @Event() input: EventEmitter<{value: number}>;
 
   // prettier-ignore
   /**
-   * An event emitted whenever the components value has changed (on blur).
+   * An event emitted whenever the component's value has changed (on blur).
    * The event payload can be used like so: `event.detail.value`.
    */
   @Event() change: EventEmitter<{value: number}>;

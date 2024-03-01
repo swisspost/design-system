@@ -194,39 +194,6 @@ describe('Rating', () => {
       });
     });
   });
-  //   it('should emit input and event when rating changes', () => {
-  //     cy.get('@rating').then($rating => {
-  //       const listener = cy.stub();
-  //       $rating[0].addEventListener('input', listener);
-
-  //       const newRating = 5;
-  //       cy.get('@stars')
-  //         .eq(newRating - 1)
-  //         .click()
-  //         .then(() => {
-  //           cy.wrap(listener).should('be.calledWithMatch', { detail: newRating });
-  //         });
-  //     });
-  //   });
-
-  //   it('should emit ratingChange event when rating is commited', () => {
-  //     cy.get('@rating').then($rating => {
-  //       const listener = cy.stub();
-  //       $rating[0].addEventListener('change', listener);
-
-  //       const newRating = 5;
-  //       cy.get('@stars')
-  //         .eq(newRating - 1)
-  //         .click()
-  //         .then(() => {
-  //           cy.get('@rating-container').focus().type('{enter}', {
-  //             force: true,
-  //           });
-  //           cy.wrap(listener).should('be.calledWithMatch', { detail: newRating });
-  //         });
-  //     });
-  //   });
-  // });
 });
 
 describe('Accessibility', () => {
