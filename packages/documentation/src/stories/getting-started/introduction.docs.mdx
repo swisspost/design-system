@@ -1,5 +1,7 @@
-import { Meta, Source } from '@storybook/blocks';
+import { Meta } from '@storybook/blocks';
 import * as IntroductionStories from './introduction.stories';
+import { packages } from '../home.data';
+import '../../shared/tile/tile.component';
 
 <Meta of={IntroductionStories} />
 
@@ -11,21 +13,19 @@ Welcome to the Swiss post design system world!
 
 The design-system is formed with several packages and different compatibilities with your favorite framework.
 
-<div role="alert" className="alert alert-info">
-  All components require at least the <a href="/?path=/docs/e53e2de8-0bbf-4f70-babc-074c5466f700--docs"><span className="d-inline-block text-decoration-none" aria-hidden="true">📦 </span>Styles package</a>.
-</div>
-
-<div className="table-responsive">
-  <table className="table">
+<div className="table-responsive" style={{'--post-docs-tile-size': '100px', '--post-docs-tile-rg-size': '100px'}}>
+  <table className="table table-bordered">
     <caption className="visually-hidden">Compatibilities between components and frameworks and which package is needed</caption>
     <colgroup>
+      <col style={{width: '15%'}}/>
       <col style={{width: '25%'}}/>
-      <col style={{width: '25%'}}/>
-      <col style={{width: '25%'}}/>
-      <col style={{width: '25%'}} />
+      <col style={{width: '20%'}}/>
+      <col style={{width: '20%'}}/>
+      <col style={{width: '20%'}} />
     </colgroup>
     <thead>
       <tr>
+        <th scope="col">Base + …</th>
         <th scope="col">Component</th>
         <th scope="col">JavaScript</th>
         <th scope="col">Angular</th>
@@ -34,12 +34,24 @@ The design-system is formed with several packages and different compatibilities 
     </thead>
     <tbody>
       <tr>
-        <td>Internet-header</td>
-        <td>
-          <a href="/?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs"><span className="d-inline-block text-decoration-none" aria-label="Package:">📦 </span>Internet-header</a>
+        <td rowSpan="0">
+          {[packages.find(pkg => pkg.name === 'Styles')].map((p => (
+            <ti-le title={p.name} href={"/?path=/docs/" + p.docsStoryId + "--docs"} ariaLabel={"Getting started with Styles package"} key={p.name}>
+              <img src={p.img.src} alt={p.img.alt}/>
+              <span>{p.version}</span>
+            </ti-le>
+          )))}
         </td>
-        <td>
-          <a href="/?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs"><span className="d-inline-block text-decoration-none" aria-label="Package:">📦 </span>Internet-header</a> with <a href="/?path=/docs/8426deb2-3d6d-4fcc-90e6-1ca9737b2ed0--docs">CUSTOM_ELEMENTS_SCHEMA</a>
+        <td>Internet-header</td>
+        <td colSpan="2">
+          <div style={{ display:'flex', justifyContent: 'center' }}>
+          {[packages.find(pkg => pkg.name === 'Internet-Header')].map((p => (
+            <ti-le title={p.name} href={"/?path=/docs/" + p.docsStoryId + "--docs"} ariaLabel={"Getting started with Internet-Header package"} key={p.name}>
+              <img src={p.img.src} alt={p.img.alt}/>
+              <span>{p.version}</span>
+            </ti-le>
+          )))}
+          </div>
         </td>
         <td >TBD</td>
       </tr>
@@ -47,7 +59,12 @@ The design-system is formed with several packages and different compatibilities 
         <td>Intranet-header</td>
         <td>N/A</td>
         <td>
-          <a href="/?path=/docs/7068be42-1a20-4a34-9e79-7fb7f9f2940f--docs"><span className="d-inline-block text-decoration-none" aria-label="Package:">📦 </span>Intranet-header</a>
+          {[packages.find(pkg => pkg.name === 'Intranet-Header')].map((p => (
+            <ti-le title={p.name} href={"/?path=/docs/" + p.docsStoryId + "--docs"} ariaLabel={"Getting started with Intranet-Header package"} key={p.name}>
+              <img src={p.img.src} alt={p.img.alt}/>
+              <span>{p.version}</span>
+            </ti-le>
+            )))}
         </td>
         <td >N/A</td>
       </tr>
@@ -65,10 +82,20 @@ The design-system is formed with several packages and different compatibilities 
           </ul>
         </td>
         <td>
-          <a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs"><span className="d-inline-block text-decoration-none" aria-label="Package:">📦 </span>Components</a>
+          {[packages.find(pkg => pkg.name === 'Components')].map((p => (
+            <ti-le title={p.name} href={"/?path=/docs/" + p.docsStoryId + "--docs"} ariaLabel={"Getting started with Components package"} key={p.name}>
+              <img src={p.img.src} alt={p.img.alt}/>
+              <span>{p.version}</span>
+            </ti-le>
+          )))}
         </td>
-        <td >
-          <a href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"><span className="d-inline-block text-decoration-none" aria-label="Package:">📦 </span>Components-Angular</a>
+        <td>
+          {[packages.find(pkg => pkg.name === 'Components Angular')].map((p => (
+            <ti-le title={p.name} href={"/?path=/docs/" + p.docsStoryId + "--docs"} ariaLabel={"Getting started with Components for Angular package"} key={p.name}>
+              <img src={p.img.src} alt={p.img.alt}/>
+              <span>{p.version}</span>
+            </ti-le>
+          )))}
         </td>
         <td>TBD</td>
       </tr>
@@ -124,7 +151,7 @@ The design-system is formed with several packages and different compatibilities 
           </ul>
         </td>
         <td colSpan="3" >
-          No other package is required
+          No additional package is required
         </td>
       </tr>
     </tbody>

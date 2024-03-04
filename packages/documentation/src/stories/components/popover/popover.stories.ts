@@ -1,8 +1,9 @@
-import { Args, Meta, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { MetaExtended } from '../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '9a636763-de2d-4f72-bc81-98daf10871f7',
   title: 'Components/Popover',
   component: 'post-popover',

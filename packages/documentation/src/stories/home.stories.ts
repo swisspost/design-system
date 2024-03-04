@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components';
+import { MetaExtended } from '../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: 'Home',
   title: 'Home',
   parameters: {

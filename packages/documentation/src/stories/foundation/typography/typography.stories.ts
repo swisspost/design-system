@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components';
+import { MetaExtended } from '../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '677cfabf-dbf0-4de2-ad07-6d5bfb9e2375',
   title: 'Foundations/Typography',
   parameters: {

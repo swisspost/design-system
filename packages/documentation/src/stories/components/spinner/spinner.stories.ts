@@ -1,7 +1,8 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
+import { MetaExtended } from '../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: 'd0e645d0-3bf2-4b00-967a-5a1343107f60',
   title: 'Components/Spinner',
   render,

@@ -1,8 +1,9 @@
-import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spreadArgs } from '../../../utils';
+import { MetaExtended } from '../../../../types/storybook';
 
-const meta: Meta<HTMLPostCollapsibleElement> = {
+const meta: MetaExtended<HTMLPostCollapsibleElement> = {
   id: '6a91848c-16ec-4a23-bc45-51c797b5b2c3',
   title: 'Components/Collapsible',
   component: 'post-collapsible',

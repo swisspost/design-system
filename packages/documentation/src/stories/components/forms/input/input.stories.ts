@@ -1,5 +1,6 @@
-import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing, TemplateResult } from 'lit';
+import { MetaExtended } from '../../../../../types/storybook';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -7,7 +8,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'is-invalid': true,
 };
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '2df77c32-5e33-402e-bd2e-54d54271ce19',
   title: 'Components/Forms/Input',
   render: render,

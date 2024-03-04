@@ -1,10 +1,11 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spread } from '@open-wc/lit-helpers';
 import { getAttributes } from '../../../../utils';
 import customItems from './overrides/custom-items';
+import { MetaExtended } from '../../../../../types/storybook';
 
-const meta: Meta<HTMLSwisspostInternetBreadcrumbsElement> = {
+const meta: MetaExtended<HTMLSwisspostInternetBreadcrumbsElement> = {
   id: '4347e5bf-8bf2-4f44-9075-9faaa53591ed',
   title: 'Components/Internet Header/Breadcrumbs',
   component: 'swisspost-internet-breadcrumbs',

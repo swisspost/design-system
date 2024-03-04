@@ -1,8 +1,9 @@
-import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { useArgs } from '@storybook/preview-api';
+import { MetaExtended } from '../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '021d61aa-e039-4858-b4b9-b86a3e772811',
   title: 'Components/Button Group',
   render: renderButtonGroup,

@@ -1,8 +1,9 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { MetaExtended } from '../../../../types/storybook';
 
-const meta: Meta<HTMLPostTabsElement> = {
+const meta: MetaExtended<HTMLPostTabsElement> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
   title: 'Components/Tabs',
   component: 'post-tabs',

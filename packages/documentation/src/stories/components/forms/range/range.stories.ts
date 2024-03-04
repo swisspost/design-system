@@ -1,6 +1,7 @@
-import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 import { html, nothing, TemplateResult } from 'lit';
+import { MetaExtended } from '../../../../../types/storybook';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -10,7 +11,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 
 const ARROW_KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '4c5a4537-d663-4d2b-9c49-17af95443696',
   title: 'Components/Forms/Range',
   render: render,

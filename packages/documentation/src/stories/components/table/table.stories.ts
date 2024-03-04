@@ -1,8 +1,9 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { mapClasses } from '../../../utils';
+import { MetaExtended } from '../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '81799516-470c-446b-a049-54946b6ccfca',
   title: 'Components/Table',
   render: renderTable,

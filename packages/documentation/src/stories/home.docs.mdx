@@ -1,8 +1,9 @@
 import { Meta } from '@storybook/blocks';
 import * as HomeStories from './home.stories';
-import { Feature, Tile } from './home.blocks';
+import { Feature } from './home.blocks';
 import { packages, technologies } from './home.data';
 import './home.styles.scss';
+import '../shared/tile/tile.component';
 
 <Meta of={HomeStories} />
 
@@ -10,10 +11,10 @@ import './home.styles.scss';
   <h2 className="h3">Packages &amp; Resources</h2>
   <div className="mt-big tile-wrapper">
     {packages.map(p => (
-      <Tile title={p.name} href={p.href}>
+      <ti-le title={p.name} href={p.link.github.href} ariaLabel={p.link.github.ariaLabel} key={p.name}>
         <img src={p.img.src} alt={p.img.alt}/>
         <span>{p.version}</span>
-      </Tile>
+      </ti-le>
     ))}
   </div>
   <div className="mt-regular mb-regular d-flex gap-mini flex-wrap justify-content-center">
@@ -99,10 +100,10 @@ import './home.styles.scss';
 
   <div className="tile-wrapper">
     {technologies.map(t => (
-      <Tile href={t.href}>
+      <ti-le href={t.href}>
         <img src={t.img.src} alt={t.img.alt}/>
         <span>{t.name}</span>
-      </Tile>
+      </ti-le>
     ))}
   </div>
 </div>

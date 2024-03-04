@@ -1,11 +1,12 @@
 // @ts-ignore
 import { useArgs } from '@storybook/preview-api';
-import { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getAlertClasses } from './getAlertClasses';
+import { MetaExtended } from '../../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Alert',
   render: renderAlert,

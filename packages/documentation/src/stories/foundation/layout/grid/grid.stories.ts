@@ -1,7 +1,8 @@
-import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { MetaExtended } from '../../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '7240f2ef-216a-490e-9bd8-c0cef19f7b31',
   title: 'Foundations/Layout/Grid',
   parameters: {

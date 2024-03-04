@@ -1,9 +1,10 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 import { repeat } from 'lit/directives/repeat.js';
+import { MetaExtended } from '../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
   title: 'Components/Button',
   parameters: {

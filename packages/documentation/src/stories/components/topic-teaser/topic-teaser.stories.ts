@@ -1,8 +1,9 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html, TemplateResult } from 'lit';
 import { mapClasses } from '../../../utils';
+import { MetaExtended } from '../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '2ffc7a53-c1aa-4ff5-b1e4-fa638591399c',
   title: 'Components/Topic Teaser',
   parameters: {

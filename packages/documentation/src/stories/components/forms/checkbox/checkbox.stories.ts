@@ -1,10 +1,11 @@
 import { useArgs } from '@storybook/preview-api';
-import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '../../../../utils';
+import { MetaExtended } from '../../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Forms/Checkbox',
   render: renderCheckbox,

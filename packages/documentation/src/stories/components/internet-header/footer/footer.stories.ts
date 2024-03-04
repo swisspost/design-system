@@ -1,9 +1,10 @@
-import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import customFooterConfig from './custom-config/custom-footer-config';
 import { spread } from '@open-wc/lit-helpers';
+import { MetaExtended } from '../../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: '27fc009d-3eec-43a9-b3a2-55531e721817',
   title: 'Components/Internet Header/Footer',
   component: 'swisspost-internet-footer',

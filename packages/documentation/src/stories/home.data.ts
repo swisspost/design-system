@@ -1,8 +1,20 @@
 import { DEPENDENCIES, getVersion } from '../utils/version';
+import metaStyles from './getting-started/packages/styles/styles.stories';
+import metaComponents from './getting-started/packages/components/components.stories';
+import metaComponentsAngular from './getting-started/packages/components-angular/angular.stories';
+import metaInternetHeader from './getting-started/packages/internet-header/internet-header.stories';
+import metaIntranetHeader from './getting-started/packages/intranet-header/intranet-header.stories';
+import metaIcons from './getting-started/packages/icons/package-icons.stories';
 
 interface IPackage {
   name: string;
-  href: string;
+  docsStoryId: string;
+  link: {
+    [key: string]: {
+      href: string;
+      ariaLabel: string;
+    };
+  };
   img: {
     src: string;
     alt: string;
@@ -22,55 +34,91 @@ interface ITechnology {
 export const packages: IPackage[] = [
   {
     name: 'Styles',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/styles',
+    docsStoryId: metaStyles.id,
+    link: {
+      github: {
+        href: 'https://github.com/swisspost/design-system/tree/main/packages/styles',
+        ariaLabel: 'Source of Styles package',
+      },
+    },
     img: {
       src: '/assets/images/packages/styles.svg',
-      alt: 'design-system-styles package logo',
+      alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-styles'])}`,
   },
   {
     name: 'Components',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/components',
+    docsStoryId: metaComponents.id,
+    link: {
+      github: {
+        href: 'https://github.com/swisspost/design-system/tree/main/packages/components',
+        ariaLabel: 'Source of Components package',
+      },
+    },
     img: {
       src: '/assets/images/packages/components.svg',
-      alt: 'design-system-components package Logo',
+      alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-components'])}`,
   },
   {
     name: 'Components Angular',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/components-angular',
+    docsStoryId: metaComponentsAngular.id,
+    link: {
+      github: {
+        href: 'https://github.com/swisspost/design-system/tree/main/packages/components-angular',
+        ariaLabel: 'Source of Components for Angular package',
+      },
+    },
     img: {
       src: '/assets/images/packages/components-angular.svg',
-      alt: 'design-system-components-angular package Logo',
+      alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-components-angular'])}`,
   },
   {
     name: 'Internet-Header',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/internet-header',
+    docsStoryId: metaInternetHeader.id,
+    link: {
+      github: {
+        href: 'https://github.com/swisspost/design-system/tree/main/packages/internet-header',
+        ariaLabel: 'Source of Internet-Header package',
+      },
+    },
     img: {
       src: '/assets/images/packages/internet-header.svg',
-      alt: 'internet-header package Logo',
+      alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/internet-header'])}`,
   },
   {
     name: 'Intranet-Header',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/intranet-header-workspace/projects/intranet-header',
+    docsStoryId: metaIntranetHeader.id,
+    link: {
+      github: {
+        href: 'https://github.com/swisspost/design-system/tree/main/packages/intranet-header-workspace/projects/intranet-header',
+        ariaLabel: 'Source of Intranet-Header package',
+      },
+    },
     img: {
       src: '/assets/images/packages/intranet-header.svg',
-      alt: 'design-system-intranet-header package Logo',
+      alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-intranet-header'])}`,
   },
   {
     name: 'Icons',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/icons',
+    docsStoryId: metaIcons.id,
+    link: {
+      github: {
+        href: 'https://github.com/swisspost/design-system/tree/main/packages/icons',
+        ariaLabel: 'Source of Icons package',
+      },
+    },
     img: {
       src: '/assets/images/packages/icons.svg',
-      alt: 'design-system-icons package Logo',
+      alt: '',
     },
     version: `v${getVersion(DEPENDENCIES['@swisspost/design-system-icons'])}`,
   },

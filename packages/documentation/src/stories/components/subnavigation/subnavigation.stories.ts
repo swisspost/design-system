@@ -1,10 +1,11 @@
-import { Meta, StoryObj, Args, StoryContext } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import scss from './background.module.scss';
+import { MetaExtended } from '../../../../types/storybook';
 
 const backgroundColors = scss.bgClasses.split('"').filter((_, index) => index % 2 === 1);
 
-const meta: Meta = {
+const meta: MetaExtended = {
   title: 'Components/Subnavigation',
   decorators: [clickBlocker],
   render: renderTest,

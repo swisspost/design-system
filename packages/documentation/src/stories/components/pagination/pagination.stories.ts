@@ -1,6 +1,7 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components';
+import { MetaExtended } from '../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: 'caa89695-5c39-4cb5-8e62-579d918cbd2f',
   title: 'Components/Pagination',
   parameters: {

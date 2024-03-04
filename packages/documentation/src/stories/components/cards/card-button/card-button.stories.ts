@@ -1,9 +1,10 @@
-import { Meta, StoryObj, Args } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import scss from './card-button.module.scss';
+import { MetaExtended } from '../../../../../types/storybook';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   title: 'Components/Cards/Card Button',
   parameters: {
     badges: [],
