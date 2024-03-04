@@ -21,27 +21,24 @@
   margin-block: form-validation.$form-feedback-margin-top 0;
   padding: form-validation.$form-feedback-padding-y form-validation.$form-feedback-padding-x;
   font-size: form-validation.$form-feedback-font-size;
-
-  @include utilities-mx.high-contrast-mode() {
-    color: HighlightText !important;
-    background-color: Highlight !important;
-    forced-color-adjust: none;
-  }
 }
 
 .invalid-feedback {
   background: form-validation.$form-feedback-invalid-bg;
   color: form-validation.$form-feedback-invalid-text;
+  forced-color-adjust: none;
 }
 
 .valid-feedback {
   background: form-validation.$form-feedback-valid-bg;
   color: form-validation.$form-feedback-valid-text;
+  forced-color-adjust: none;
 }
 
 .valid-feedback.custom-feedback {
   background: form-validation.$form-feedback-custom-bg;
   color: form-validation.$form-feedback-custom-text;
+  forced-color-adjust: none;
 }
 
 @each $state, $data in b.$form-validation-states {
