@@ -46,7 +46,7 @@
 
   .sbdocs-content .container {
     // Support for autolink-headings
-    :is(h1,h2,h3,h4,h5,h6) {
+    :is(h1, h2, h3, h4, h5, h6) {
       position: relative;
 
       @media (hover: hover) {
@@ -64,8 +64,8 @@
         line-height: 1;
       }
 
-      &:hover > a{
-        display:inline-block;
+      &:hover > a {
+        display: inline-block;
       }
     }
   }
@@ -90,7 +90,7 @@
     line-height: 1;
 
     &[languages] {
-      display:block;
+      display: block;
       margin-top: 0.25rem;
       padding: 1rem;
       background-color: var(--post-contrast-color);
@@ -99,8 +99,9 @@
   }
 
   .sbdocs-wrapper {
-    padding-left: 0;
     padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
     background-color: transparent;
 
     .sbdocs-content {
