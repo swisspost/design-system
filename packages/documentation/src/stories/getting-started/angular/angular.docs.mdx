@@ -2,6 +2,9 @@ import { Meta, Source } from '@storybook/blocks';
 import * as AngularStories from './angular.stories';
 import SampleIconsConfig from './sample-icons-config.sample.json?raw';
 import SampleWcAngularManually from './sample-web-components-angular-manually.component.ts?raw';
+import { packages, PackageType } from '../packages/packages.data';
+import '../../../shared/tile/tile.component';
+import './angular.styles.scss';
 
 <Meta of={AngularStories} />
 
@@ -14,8 +17,16 @@ The Swiss Post Design System is compatible with Angular. Here are some tips, bes
 In the design-system team, we believe that the [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_Components) technologies should be the source for almost all, if not all, future components.
 
 Currently, we are providing some of our packages with those technologies:
-* [Internet-header](?path=/docs/cfa21cbc-5f8d-4a42-8165-7f6ed20bf133--docs)
-* [Components](/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs)
+<ul className="tile-wrapper" role="list">
+  {packages.filter(pkg => pkg.type === PackageType.Wc).map((p => (
+    <li>
+      <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
+        <img src={p.img.src} alt={p.img.alt}/>
+        <span>{p.version}</span>
+      </ti-le>
+    </li>
+  )))}
+</ul>
 
 Even though, Angular support Web components technologies natively, they are less convenient to use than regular Angular components.
 To mitigate the problem, we are providing packages that add Angular wrapper around Custom Elements.

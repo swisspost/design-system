@@ -1,22 +1,25 @@
 import { Meta } from '@storybook/blocks';
 import * as HomeStories from './home.stories';
 import { Feature } from './home.blocks';
-import { packages, technologies } from './home.data';
+import { packages } from './getting-started/packages/packages.data';
 import './home.styles.scss';
 import '../shared/tile/tile.component';
+import { technologies } from './home.data';
 
 <Meta of={HomeStories} />
 
 <div className="mt-huge text-center">
   <h2 className="h3">Packages &amp; Resources</h2>
-  <div className="mt-big tile-wrapper">
+  <ul className="mt-big tile-wrapper" role="list">
     {packages.map(p => (
-      <ti-le title={p.name} href={p.link.github.href} ariaLabel={p.link.github.ariaLabel} key={p.name}>
-        <img src={p.img.src} alt={p.img.alt}/>
-        <span>{p.version}</span>
-      </ti-le>
+      <li>
+        <ti-le title={p.name} href={p.link.github.href} ariaLabel={p.link.github.ariaLabel} key={p.name}>
+          <img src={p.img.src} alt={p.img.alt}/>
+          <span>{p.version}</span>
+        </ti-le>
+      </li>
     ))}
-  </div>
+  </ul>
   <div className="mt-regular mb-regular d-flex gap-mini flex-wrap justify-content-center">
     <div className="mt-big mb-regular w-100">
       <a className="btn btn-primary btn-lg" href="/?path=/docs/dfc70c3b-4726-406b-8a41-af5738c89d05--docs">Get started</a>

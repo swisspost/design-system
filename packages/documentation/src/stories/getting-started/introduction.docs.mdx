@@ -1,6 +1,6 @@
 import { Meta } from '@storybook/blocks';
 import * as IntroductionStories from './introduction.stories';
-import { packages } from '../home.data';
+import { packages } from './packages/packages.data';
 import '../../shared/tile/tile.component';
 
 <Meta of={IntroductionStories} />
@@ -36,7 +36,7 @@ The design-system is formed with several packages and different compatibilities 
       <tr>
         <td rowSpan="0">
           {[packages.find(pkg => pkg.name === 'Styles')].map((p => (
-            <ti-le title={p.name} href={"/?path=/docs/" + p.docsStoryId + "--docs"} ariaLabel={"Getting started with Styles package"} key={p.name}>
+            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
               <img src={p.img.src} alt={p.img.alt}/>
               <span>{p.version}</span>
             </ti-le>
@@ -46,7 +46,7 @@ The design-system is formed with several packages and different compatibilities 
         <td colSpan="2">
           <div style={{ display:'flex', justifyContent: 'center' }}>
           {[packages.find(pkg => pkg.name === 'Internet-Header')].map((p => (
-            <ti-le title={p.name} href={"/?path=/docs/" + p.docsStoryId + "--docs"} ariaLabel={"Getting started with Internet-Header package"} key={p.name}>
+            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
               <img src={p.img.src} alt={p.img.alt}/>
               <span>{p.version}</span>
             </ti-le>
@@ -60,7 +60,7 @@ The design-system is formed with several packages and different compatibilities 
         <td>N/A</td>
         <td>
           {[packages.find(pkg => pkg.name === 'Intranet-Header')].map((p => (
-            <ti-le title={p.name} href={"/?path=/docs/" + p.docsStoryId + "--docs"} ariaLabel={"Getting started with Intranet-Header package"} key={p.name}>
+            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
               <img src={p.img.src} alt={p.img.alt}/>
               <span>{p.version}</span>
             </ti-le>
@@ -83,15 +83,15 @@ The design-system is formed with several packages and different compatibilities 
         </td>
         <td>
           {[packages.find(pkg => pkg.name === 'Components')].map((p => (
-            <ti-le title={p.name} href={"/?path=/docs/" + p.docsStoryId + "--docs"} ariaLabel={"Getting started with Components package"} key={p.name}>
+            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
               <img src={p.img.src} alt={p.img.alt}/>
               <span>{p.version}</span>
             </ti-le>
           )))}
         </td>
         <td>
-          {[packages.find(pkg => pkg.name === 'Components Angular')].map((p => (
-            <ti-le title={p.name} href={"/?path=/docs/" + p.docsStoryId + "--docs"} ariaLabel={"Getting started with Components for Angular package"} key={p.name}>
+          {[packages.find(pkg => pkg.name === 'Components for Angular')].map((p => (
+            <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
               <img src={p.img.src} alt={p.img.alt}/>
               <span>{p.version}</span>
             </ti-le>
