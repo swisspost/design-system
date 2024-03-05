@@ -32,9 +32,9 @@
     "copyfiles": "2.4.1",
     "rimraf": "5.0.5"
   },
-  "schematics": "./src/migrations.json",
+  "schematics": "./dist/migrations.json",
   "ng-update": {
-    "migrations": "./src/migrations.json"
+    "migrations": "./dist/migrations.json"
   },
   "keywords": [
     "schematics"
