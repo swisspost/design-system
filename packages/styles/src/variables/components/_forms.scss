@@ -36,7 +36,7 @@ $input-line-height-lg: type.$line-height-copy !default;
 
 $input-bg: color.$white !default;
 $input-disabled-bg: rgba(var(--post-contrast-color-inverted-rgb), 0.6) !default;
-$input-disabled-color: color.$gray-40; // Design System only
+$input-disabled-color: rgba(var(--post-contrast-color-rgb), 0.6); // Design System only
 $input-disabled-border-color: color.$gray-40; // Design System only
 
 $input-color: color.$black !default;

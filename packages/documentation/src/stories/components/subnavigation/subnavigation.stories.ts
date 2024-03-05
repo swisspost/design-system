@@ -1,5 +1,4 @@
 import { Meta, StoryObj, Args, StoryContext } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
 import scss from './background.module.scss';
 
@@ -10,7 +9,7 @@ const meta: Meta = {
   decorators: [clickBlocker],
   render: renderTest,
   parameters: {
-    badges: [BADGE.WEB_COMPONENT_CANDIDATE],
+    badges: [],
   },
   args: {
     itemCount: 3,

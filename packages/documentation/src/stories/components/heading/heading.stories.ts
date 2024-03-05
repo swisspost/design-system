@@ -1,12 +1,11 @@
 import type { Args, Meta, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
-import { BADGE } from '../../../../.storybook/constants';
 
 const meta: Meta = {
   id: '7ecd87f1-de96-4e39-a057-ba1798eb6959',
   title: 'Components/Heading',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=6424-29869&mode=design&t=OK8meBHjpJvBhwZI-4',

@@ -7,13 +7,7 @@ describe('Internet-Header', () => {
     });
 
     it('Has no detectable a11y violations on load for all variants', () => {
-      cy.checkA11y('#root-inner', {
-        rules: {
-          'aria-required-children': {
-            enabled: false,
-          },
-        },
-      });
+      cy.checkA11y('#root-inner');
     });
   });
 });

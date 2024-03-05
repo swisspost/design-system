@@ -2,7 +2,6 @@ import { useArgs } from '@storybook/preview-api';
 import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { BADGE } from '../../../../../.storybook/constants';
 import { mapClasses } from '../../../../utils';
 
 const meta: Meta = {
@@ -10,7 +9,7 @@ const meta: Meta = {
   title: 'Components/Forms/Checkbox',
   render: renderCheckbox,
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     hiddenLegend: false,

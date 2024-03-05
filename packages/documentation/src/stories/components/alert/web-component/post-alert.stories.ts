@@ -1,6 +1,5 @@
 import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { BADGE } from '../../../../../.storybook/constants';
 import { spreadArgs } from '../../../../utils';
 
 const meta: Meta<HTMLPostAlertElement> = {
@@ -10,7 +9,7 @@ const meta: Meta<HTMLPostAlertElement> = {
   render: renderAlert,
   decorators: [externalControl],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
+    badges: [],
   },
   args: {
     innerHTML: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
