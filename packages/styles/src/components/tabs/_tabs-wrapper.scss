@@ -9,7 +9,10 @@
   position: relative;
   padding-top: spacing.$spacer;
   border: 0;
-  background-color: color.$gray-background-light;
+  background-color: rgba(
+    var(--post-contrast-color-rgb),
+    0.02
+  ); // 0.02 gets as close as possible to color.$gray-background-light on white background
 
   // Create a line that lies below the active but above the passive elements
   // This way hover works smoothly with the background color
@@ -55,7 +58,7 @@
 }
 
 .tab-content {
-  margin-block: spacing.$spacer;
+  padding-top: spacing.$spacer;
 }
 
 // Careful, this generates a lot of code
