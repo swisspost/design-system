@@ -123,11 +123,6 @@
         }
       }
 
-      .p-menuitem {
-        width: 100%;
-        position: static;
-      }
-
       @include nested-submenu-indents(list.nth($menuitemPadding, 1), 2, 10);
     }
 

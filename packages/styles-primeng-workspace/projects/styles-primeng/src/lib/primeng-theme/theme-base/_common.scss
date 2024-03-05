@@ -12,6 +12,26 @@
 .p-component-overlay {
   background-color: $maskBg;
   transition-duration: $transitionDuration;
+
+  @keyframes p-component-overlay-enter-animation {
+    from {
+      background-color: transparent;
+    }
+
+    to {
+      background-color: var(--maskbg);
+    }
+  }
+
+  @keyframes p-component-overlay-leave-animation {
+    from {
+      background-color: var(--maskbg);
+    }
+
+    to {
+      background-color: transparent;
+    }
+  }
 }
 
 .p-disabled,
@@ -53,26 +73,4 @@
 
 .p-component-overlay-leave {
   animation: p-component-overlay-leave-animation 150ms forwards;
-}
-
-.p-component-overlay {
-  @keyframes p-component-overlay-enter-animation {
-    from {
-      background-color: transparent;
-    }
-
-    to {
-      background-color: var(--maskbg);
-    }
-  }
-
-  @keyframes p-component-overlay-leave-animation {
-    from {
-      background-color: var(--maskbg);
-    }
-
-    to {
-      background-color: transparent;
-    }
-  }
 }

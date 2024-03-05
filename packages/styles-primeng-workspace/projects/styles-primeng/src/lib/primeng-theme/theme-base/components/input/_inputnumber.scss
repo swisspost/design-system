@@ -13,9 +13,7 @@ p-inputnumber.p-inputnumber-clearable {
     color: $inputIconColor;
     right: list.nth($inputPadding, 2);
   }
-}
 
-p-inputnumber.p-inputnumber-clearable {
   .p-inputnumber-buttons-stacked {
     .p-inputnumber-clear-icon {
       right: $buttonIconOnlyWidth + list.nth($inputPadding, 2);

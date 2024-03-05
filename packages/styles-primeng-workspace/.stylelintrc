@@ -11,6 +11,7 @@
     "selector-max-id": 1,
     "selector-no-qualifying-type": [true, { "ignore": ["attribute", "class"] }],
     "function-url-quotes": null,
-    "scss/dollar-variable-colon-space-after": "always-single-line"
+    "scss/dollar-variable-colon-space-after": "always-single-line",
+    "selector-type-no-unknown": [true, { "ignoreTypes": ["/icon$/"] }]
   }
 }

@@ -20,12 +20,6 @@
     }
   }
 
-  &.p-inputswitch-checked {
-    .p-inputswitch-slider::before {
-      transform: translateX($inputSwitchHandleWidth);
-    }
-  }
-
   &.p-focus {
     .p-inputswitch-slider {
       @include focused();
@@ -44,6 +38,7 @@
 
       &::before {
         background: $inputSwitchHandleOnBg;
+        transform: translateX($inputSwitchHandleWidth);
       }
     }
 
