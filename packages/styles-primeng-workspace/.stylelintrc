@@ -12,6 +12,6 @@
     "selector-no-qualifying-type": [true, { "ignore": ["attribute", "class"] }],
     "function-url-quotes": null,
     "scss/dollar-variable-colon-space-after": "always-single-line",
-    "selector-type-no-unknown": [true, { "ignoreTypes": ["/icon$/"] }]
+    "selector-type-no-unknown": [true, { "ignoreTypes": ["/^p-/", "/icon$/"] }]
   }
 }
