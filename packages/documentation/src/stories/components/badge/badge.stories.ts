@@ -2,7 +2,7 @@ import { useArgs } from '@storybook/preview-api';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { mapClasses } from '../../../utils';
-import { MetaExtended } from '../../../../types/storybook';
+import { MetaExtended } from '../../../../types';
 
 const meta: MetaExtended = {
   id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',

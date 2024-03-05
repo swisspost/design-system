@@ -2,7 +2,7 @@ import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import './sizing.styles.scss';
 import scss from './sizing.module.scss';
-import { MetaExtended } from '../../../../types/storybook';
+import { MetaExtended } from '../../../../types';
 
 export const SCSS_VARIABLES = scss;
 

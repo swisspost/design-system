@@ -3,7 +3,7 @@ import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { useArgs } from '@storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { MetaExtended } from '../../../../types/storybook';
+import { MetaExtended } from '../../../../types';
 
 const meta: MetaExtended = {
   id: 'cd684d90-e7a7-41a9-8923-b1b72ad9b384',

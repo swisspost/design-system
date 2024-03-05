@@ -4,7 +4,7 @@ import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { spreadArgs } from '../../../utils';
 import { Components } from '@swisspost/design-system-components/src';
-import { MetaExtended } from '../../../../types/storybook';
+import { MetaExtended } from '../../../../types';
 
 const meta: MetaExtended = {
   id: '0dcfe3c0-bfc0-4107-b43b-7e9d825b805f',

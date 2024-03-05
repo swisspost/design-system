@@ -2,7 +2,7 @@ import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import scss from './card-button.module.scss';
-import { MetaExtended } from '../../../../../types/storybook';
+import { MetaExtended } from '../../../../../types';
 
 const meta: MetaExtended = {
   title: 'Components/Cards/Card Button',

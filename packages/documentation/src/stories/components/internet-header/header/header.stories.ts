@@ -4,7 +4,7 @@ import { spreadArgs } from '../../../../utils';
 import customConfig from './config/custom-config';
 import osFlyoutOverrides from './config/os-flyout-overrides';
 import languageSwitchOverrides from './config/language-switch-overrides';
-import { MetaExtended } from '../../../../../types/storybook';
+import { MetaExtended } from '../../../../../types';
 
 const meta: MetaExtended = {
   id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',

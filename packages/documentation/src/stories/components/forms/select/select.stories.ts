@@ -2,7 +2,7 @@ import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { MetaExtended } from '../../../../../types/storybook';
+import { MetaExtended } from '../../../../../types';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,

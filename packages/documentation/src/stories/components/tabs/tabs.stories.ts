@@ -1,7 +1,7 @@
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { MetaExtended } from '../../../../types/storybook';
+import { MetaExtended } from '../../../../types';
 
 const meta: MetaExtended<HTMLPostTabsElement> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',

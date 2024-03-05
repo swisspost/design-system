@@ -1,4 +1,4 @@
-import { MetaExtended } from '../../../../types/storybook';
+import { MetaExtended } from '../../../../types';
 
 const meta: MetaExtended = {
   id: 'd59a459b-6f14-47c6-9f98-a36a3f79a6e3',

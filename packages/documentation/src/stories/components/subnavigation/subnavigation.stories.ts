@@ -1,7 +1,7 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import scss from './background.module.scss';
-import { MetaExtended } from '../../../../types/storybook';
+import { MetaExtended } from '../../../../types';
 
 const backgroundColors = scss.bgClasses.split('"').filter((_, index) => index % 2 === 1);
 

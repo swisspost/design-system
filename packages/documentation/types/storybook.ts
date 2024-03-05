@@ -7,5 +7,5 @@ export interface MetaExtended<T = Args> extends Meta<T> {
 }
 
 export interface MetaComponent<T = Args> extends MetaExtended<T> {
-  packageType: PackageType;
+  tags: [PackageType, ...string[]];
 }

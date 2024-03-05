@@ -1,7 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { mapClasses } from '../../../utils';
-import { MetaExtended } from '../../../../types/storybook';
+import { MetaExtended } from '../../../../types';
 
 const meta: MetaExtended = {
   id: '81799516-470c-446b-a049-54946b6ccfca',

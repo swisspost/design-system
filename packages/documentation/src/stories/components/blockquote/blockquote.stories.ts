@@ -1,6 +1,6 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
-import { MetaExtended } from '../../../../types/storybook';
+import { MetaExtended } from '../../../../types';
 
 const meta: MetaExtended = {
   id: 'a4c7d5fa-9f8d-4a95-820b-ae4ce9ab4f03',

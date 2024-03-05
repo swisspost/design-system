@@ -4,7 +4,7 @@ import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getAlertClasses } from './getAlertClasses';
-import { MetaExtended } from '../../../../../types/storybook';
+import { MetaExtended } from '../../../../../types';
 
 const meta: MetaExtended = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',

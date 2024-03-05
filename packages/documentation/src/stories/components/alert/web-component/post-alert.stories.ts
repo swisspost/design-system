@@ -1,7 +1,7 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spreadArgs } from '../../../../utils';
-import { MetaExtended } from '../../../../../types/storybook';
+import { MetaExtended } from '../../../../../types';
 
 const meta: MetaExtended<HTMLPostAlertElement> = {
   id: '8fd36823-966e-46a8-8432-a4439f6e208f',

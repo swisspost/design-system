@@ -4,7 +4,7 @@ import { classMap } from 'lit/directives/class-map.js';
 import { BADGE } from '../../../../../.storybook/constants';
 import { nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
-import { MetaExtended } from '../../../../../types/storybook';
+import { MetaExtended } from '../../../../../types';
 
 export const choiceCardMeta: MetaExtended = {
   parameters: {

@@ -5,7 +5,7 @@ import metaComponentsAngular from '../stories/getting-started/packages/component
 import metaInternetHeader from '../stories/getting-started/packages/internet-header/internet-header.stories';
 import metaIntranetHeader from '../stories/getting-started/packages/intranet-header/intranet-header.stories';
 import metaIcons from '../stories/getting-started/packages/icons/package-icons.stories';
-import { PackageType } from '../../types/package';
+import { PackageType } from '../../types';
 
 interface IPackage {
   name: string;
