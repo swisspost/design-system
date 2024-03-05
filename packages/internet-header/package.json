@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/internet-header",
-  "version": "1.13.6",
+  "version": "1.13.8",
   "description": "The header for client facing applications.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -31,7 +31,7 @@
     "start": "stencil build --watch --docs-readme",
     "build": "stencil build --docs-readme",
     "clean": "rimraf www dist loader",
-    "test": "npm run unit",
+    "test": "pnpm run unit",
     "unit": "jest",
     "unit:watch": "jest --watch",
     "e2e": "cypress run",
@@ -42,7 +42,7 @@
     "generate": "stencil generate"
   },
   "dependencies": {
-    "@swisspost/design-system-styles": "workspace:6.6.2",
+    "@swisspost/design-system-styles": "workspace:6.6.4",
     "body-scroll-lock": "4.0.0-beta.0",
     "iframe-resizer": "4.3.9",
     "jquery": "3.7.1",

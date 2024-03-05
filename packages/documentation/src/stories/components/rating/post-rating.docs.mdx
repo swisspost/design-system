@@ -1,0 +1,29 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import * as RatingStories from './post-rating.stories';
+import SampleEvents from './post-rating.events.sample?raw';
+
+<Meta of={RatingStories} />
+
+# Rating
+
+<p className="lead">Our Rating Web Component allows you to easily integrate 
+a customizable star rating system, providing an 
+interactive and visually appealing way to gather and display user feedback.</p>
+
+<Canvas of={RatingStories.Default} sourceState='shown'/>
+<Controls of={RatingStories.Default} />
+
+## Installation
+
+The `<post-rating/>` element is part of the `@swisspost/design-system-components` package.
+For more information, read the <LinkTo kind="edfb619b-fda1-4570-bf25-20830303d483" story="docs">getting started with components guide</LinkTo>.
+
+## Examples
+
+### Events
+
+<Source code={SampleEvents} language="ts" />
+
+
+  

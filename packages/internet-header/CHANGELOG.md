@@ -1,5 +1,20 @@
 # @swisspost/internet-header
 
+## 1.13.8
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.4
+
+## 1.13.7
+
+### Patch Changes
+
+- Reinstated original navigation role for post-main-navigation. (by [@imagoiq](https://github.com/imagoiq) with [#2709](https://github.com/swisspost/design-system/pull/2709))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.3
+
 ## 1.13.6
 
 ### Patch Changes

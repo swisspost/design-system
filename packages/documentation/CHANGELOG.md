@@ -1,5 +1,48 @@
 # @swisspost/design-system-documentation
 
+## 4.0.0
+
+### Patch Changes
+
+- Moved versions.json (used for version switcher) from archive to current documentation. (by [@imagoiq](https://github.com/imagoiq) with [#2748](https://github.com/swisspost/design-system/pull/2748))
+
+- Fixed broken links. (by [@alizedebray](https://github.com/alizedebray) with [#2756](https://github.com/swisspost/design-system/pull/2756))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.4.0
+  - @swisspost/design-system-components@2.1.0
+  - @swisspost/design-system-styles@6.6.4
+  - @swisspost/design-system-components-angular@2.0.0
+  - @swisspost/design-system-components-react@1.0.30
+  - @swisspost/internet-header@1.13.8
+  - @swisspost/design-system-intranet-header@5.0.11
+
+## 3.2.0
+
+### Minor Changes
+
+- Added a new documentation page about metadata. It has links to documentations about most common metadata of a webpage as well as an example of an HTML header. (by [@b1aserlu](https://github.com/b1aserlu) with [#2511](https://github.com/swisspost/design-system/pull/2511))
+
+- Added a Button to the toolbar of Storybook to visit older versions of the documentation. (by [@b1aserlu](https://github.com/b1aserlu) with [#2635](https://github.com/swisspost/design-system/pull/2635))
+
+- Added a documentation page for the Subnavigation Component. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2574](https://github.com/swisspost/design-system/pull/2574))
+
+### Patch Changes
+
+- Deprecated `rg` breakpoint. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2238](https://github.com/swisspost/design-system/pull/2238))
+
+- Removed the info banner telling everyone that the storybook docs are in beta. They've grown up now. (by [@gfellerph](https://github.com/gfellerph) with [#2739](https://github.com/swisspost/design-system/pull/2739))
+
+- Added example for intranet-header component with optionDropdownContent. (by [@imagoiq](https://github.com/imagoiq) with [#2719](https://github.com/swisspost/design-system/pull/2719))
+
+- Added color value after color title to help for comparison. (by [@imagoiq](https://github.com/imagoiq) with [#2730](https://github.com/swisspost/design-system/pull/2730))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.3
+  - @swisspost/design-system-components@2.0.3
+  - @swisspost/internet-header@1.13.7
+  - @swisspost/design-system-intranet-header@5.0.10
+  - @swisspost/design-system-components-angular@1.0.2
+  - @swisspost/design-system-components-react@1.0.29
+
 ## 3.1.0
 
 ### Minor Changes

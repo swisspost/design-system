@@ -1,5 +1,22 @@
 # @swisspost/design-system-demo
 
+## 7.2.4
+
+### Patch Changes
+
+- Fixed broken links. (by [@alizedebray](https://github.com/alizedebray) with [#2756](https://github.com/swisspost/design-system/pull/2756))
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.4
+  - @swisspost/design-system-intranet-header@5.0.11
+
+## 7.2.3
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.3
+  - @swisspost/design-system-intranet-header@5.0.10
+
 ## 7.2.2
 
 ### Patch Changes

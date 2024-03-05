@@ -11,9 +11,6 @@ describe('Input', () => {
 
         cy.checkA11y('#root-inner', {
           rules: {
-            'color-contrast': {
-              enabled: false,
-            },
             'duplicate-id-aria': {
               enabled: false,
             },
