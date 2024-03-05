@@ -1,5 +1,16 @@
 # @swisspost/design-system-components
 
+## 2.1.0
+
+### Minor Changes
+
+- Added a new rating web-component. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2411](https://github.com/swisspost/design-system/pull/2411))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@6.6.4
+
 ## 2.0.3
 
 ### Patch Changes

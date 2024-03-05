@@ -1,5 +1,21 @@
 # @swisspost/design-system-documentation
 
+## 4.0.0
+
+### Patch Changes
+
+- Moved versions.json (used for version switcher) from archive to current documentation. (by [@imagoiq](https://github.com/imagoiq) with [#2748](https://github.com/swisspost/design-system/pull/2748))
+
+- Fixed broken links. (by [@alizedebray](https://github.com/alizedebray) with [#2756](https://github.com/swisspost/design-system/pull/2756))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.4.0
+  - @swisspost/design-system-components@2.1.0
+  - @swisspost/design-system-styles@6.6.4
+  - @swisspost/design-system-components-angular@2.0.0
+  - @swisspost/design-system-components-react@1.0.30
+  - @swisspost/internet-header@1.13.8
+  - @swisspost/design-system-intranet-header@5.0.11
+
 ## 3.2.0
 
 ### Minor Changes
