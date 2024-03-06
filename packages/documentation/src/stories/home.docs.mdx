@@ -12,8 +12,8 @@ import { technologies } from './home.data';
   <h2 className="h3">Packages &amp; Resources</h2>
   <ul className="mt-big tile-wrapper" role="list">
     {packages.map(p => (
-      <li>
-        <ti-le title={p.name} href={p.link.github.href} ariaLabel={p.link.github.ariaLabel} key={p.name}>
+      <li key={p.name}>
+        <ti-le title={p.name} href={p.link.github.href} ariaLabel={p.link.github.ariaLabel}>
           <img src={p.img.src} alt={p.img.alt}/>
           <span>{p.version}</span>
         </ti-le>
@@ -103,7 +103,7 @@ import { technologies } from './home.data';
 
   <div className="tile-wrapper">
     {technologies.map(t => (
-      <ti-le href={t.href}>
+      <ti-le href={t.href} key={t.name}>
         <img src={t.img.src} alt={t.img.alt}/>
         <span>{t.name}</span>
       </ti-le>

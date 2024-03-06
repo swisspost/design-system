@@ -20,8 +20,8 @@ In the design-system team, we believe that the [Web Components](https://develope
 Currently, we are providing some of our packages with those technologies:
 <ul className="tile-wrapper" role="list">
   {packages.filter(pkg => pkg.type === PackageType.Wc).map((p => (
-    <li>
-      <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
+    <li key={p.name}>
+      <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel}>
         <img src={p.img.src} alt={p.img.alt}/>
         <span>{p.version}</span>
       </ti-le>
