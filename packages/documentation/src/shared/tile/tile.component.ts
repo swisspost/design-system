@@ -2,7 +2,7 @@ import { css, LitElement, nothing, unsafeCSS } from 'lit';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
 import { spread } from '@open-wc/lit-helpers';
-import Styles from './tile.component.scss';
+import Styles from './tile.component.scss?inline';
 
 @customElement('ti-le')
 export class TileComponent extends LitElement {
