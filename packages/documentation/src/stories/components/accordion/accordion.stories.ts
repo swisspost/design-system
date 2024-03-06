@@ -1,11 +1,12 @@
 import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { MetaExtended } from '../../../../types';
+import { MetaComponent } from '../../../../types';
 
-const meta: MetaExtended<HTMLPostAccordionElement & HTMLPostCollapsibleElementEventMap> = {
+const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementEventMap> = {
   id: '4d1b4185-e04d-494a-ab38-2b56c1778b0b',
   title: 'Components/Accordion',
+  tags: ['package:WebComponents'],
   component: 'post-accordion',
   parameters: {
     badges: [],

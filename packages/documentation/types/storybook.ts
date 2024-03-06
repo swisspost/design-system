@@ -6,6 +6,8 @@ export interface MetaExtended<T = Args> extends Meta<T> {
   title: string; // Make title required
 }
 
+export type TagPackagePrefix<K> = K extends string ? `package:${K}` : K;
+
 export interface MetaComponent<T = Args> extends MetaExtended<T> {
-  tags: [PackageType, ...string[]];
+  tags: [TagPackagePrefix<PackageType>, ...string[]];
 }

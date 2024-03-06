@@ -2,10 +2,12 @@ import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { useArgs } from '@storybook/preview-api';
 import scss from './card-button.module.scss';
-import { MetaExtended } from '../../../../../types';
+import { MetaComponent } from '../../../../../types';
 
-const meta: MetaExtended = {
+const meta: MetaComponent = {
+  id: '6f8f76ec-a2b5-4eb0-87f7-4021e1a5b8d0',
   title: 'Components/Cards/Card Button',
+  tags: ['package:HTML'],
   parameters: {
     badges: [],
   },

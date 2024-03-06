@@ -1,9 +1,10 @@
 import { StoryObj } from '@storybook/web-components';
-import { MetaExtended } from '../../../../types';
+import { MetaComponent } from '../../../../types';
 
-const meta: MetaExtended = {
+const meta: MetaComponent = {
   id: '446648d9-0360-4dec-a6f4-87f2f28b5f33',
   title: 'Components/Progressbar',
+  tags: ['package:Angular'],
   parameters: {
     badges: [],
   },

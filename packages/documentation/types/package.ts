@@ -3,5 +3,7 @@ export enum PackageType {
   Wc = 'WebComponents',
   Angular = 'Angular',
   React = 'React',
+  InternetHeader = 'InternetHeader',
+  IntranetHeader = 'IntranetHeader',
   Assets = 'Assets',
 }

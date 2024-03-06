@@ -3,11 +3,12 @@ import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '../../../../utils';
-import { MetaExtended } from '../../../../../types';
+import { MetaComponent } from '../../../../../types';
 
-const meta: MetaExtended = {
+const meta: MetaComponent = {
   id: '7fb639f8-86f6-4937-999c-4ee15f81643b',
   title: 'Components/Forms/Switch',
+  tags: ['package:HTML'],
   render: renderSwitch,
   parameters: {
     badges: [],

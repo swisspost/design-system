@@ -1,9 +1,10 @@
 import type { StoryObj } from '@storybook/web-components';
-import { MetaExtended } from '../../../../types';
+import { MetaComponent } from '../../../../types';
 
-const meta: MetaExtended = {
+const meta: MetaComponent = {
   id: 'aab3f0df-08ca-4e33-90eb-77ffda6528db',
   title: 'Components/Notification Overlay',
+  tags: ['package:Angular'],
   parameters: {
     badges: [],
   },

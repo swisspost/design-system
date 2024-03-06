@@ -1,11 +1,12 @@
 import { useArgs } from '@storybook/preview-api';
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { MetaExtended } from '../../../../types';
+import { MetaComponent } from '../../../../types';
 
-const meta: MetaExtended = {
+const meta: MetaComponent = {
   id: '825b65c9-7eaf-4e0a-9e20-5f5ed406726d',
   title: 'Components/Toast',
+  tags: ['package:HTML'],
   parameters: {
     badges: [],
   },

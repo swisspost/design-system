@@ -1,11 +1,12 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { useArgs } from '@storybook/preview-api';
-import { MetaExtended } from '../../../../types';
+import { MetaComponent } from '../../../../types';
 
-const meta: MetaExtended = {
+const meta: MetaComponent = {
   id: '021d61aa-e039-4858-b4b9-b86a3e772811',
   title: 'Components/Button Group',
+  tags: ['package:HTML'],
   render: renderButtonGroup,
   parameters: {
     badges: [],
