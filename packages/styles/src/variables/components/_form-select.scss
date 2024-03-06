@@ -30,5 +30,11 @@ $form-select-indicator-success-hcm-light: url(icons.get-colored-svg-url(
 )) !default;
 
 $form-select-indicator-error: url(icons.get-colored-svg-url('2104', color.$error-red)) !default;
-$form-select-indicator-error-hcm-dark: url(icons.get-colored-svg-url('2104', color.$white)) !default;
-$form-select-indicator-error-hcm-light: url(icons.get-colored-svg-url('2104', color.$black)) !default;
+$form-select-indicator-error-hcm-dark: url(icons.get-colored-svg-url(
+  '2104',
+  color.$white
+)) !default;
+$form-select-indicator-error-hcm-light: url(icons.get-colored-svg-url(
+  '2104',
+  color.$black
+)) !default;

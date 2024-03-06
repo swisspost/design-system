@@ -40,7 +40,8 @@
     }
 
     &.is-valid {
-      background-image: var(--form-select-indicator-success), var(--form-select-indicator), var(--bs-form-select-bg-icon, none);
+      background-image: var(--form-select-indicator-success), var(--form-select-indicator),
+        var(--bs-form-select-bg-icon, none);
     }
 
     &.is-invalid {
@@ -66,14 +67,20 @@
 
   @include utilities.high-contrast-mode() {
     --form-select-indicator: #{b.escape-svg(form-select.$form-select-indicator-hcm-dark)};
-    --form-select-indicator-success: #{b.escape-svg(form-select.$form-select-indicator-success-hcm-dark)};
+    --form-select-indicator-success: #{b.escape-svg(
+        form-select.$form-select-indicator-success-hcm-dark
+      )};
     --form-select-indicator-error: #{b.escape-svg(form-select.$form-select-indicator-error-hcm-dark)};
     background-image: b.escape-svg(form-select.$form-select-indicator-hcm-dark);
 
     @media (prefers-color-scheme: light) {
       --form-select-indicator: #{b.escape-svg(form-select.$form-select-indicator-hcm-light)};
-      --form-select-indicator-success: #{b.escape-svg(form-select.$form-select-indicator-success-hcm-light)};
-      --form-select-indicator-error: #{b.escape-svg(form-select.$form-select-indicator-error-hcm-light)};
+      --form-select-indicator-success: #{b.escape-svg(
+          form-select.$form-select-indicator-success-hcm-light
+        )};
+      --form-select-indicator-error: #{b.escape-svg(
+          form-select.$form-select-indicator-error-hcm-light
+        )};
       background-image: b.escape-svg(form-select.$form-select-indicator-hcm-light);
     }
 

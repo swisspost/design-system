@@ -15,7 +15,10 @@ $form-feedback-icon-valid-hcm-dark: url(icons.get-colored-svg-url('2105', color.
 $form-feedback-icon-valid-hcm-light: url(icons.get-colored-svg-url('2105', color.$black)) !default;
 $form-feedback-icon-invalid: url(icons.get-colored-svg-url('2104', color.$error-red)) !default;
 $form-feedback-icon-invalid-hcm-dark: url(icons.get-colored-svg-url('2104', color.$white)) !default;
-$form-feedback-icon-invalid-hcm-light: url(icons.get-colored-svg-url('2104', color.$black)) !default;
+$form-feedback-icon-invalid-hcm-light: url(icons.get-colored-svg-url(
+  '2104',
+  color.$black
+)) !default;
 
 // Design System custom variables
 $form-feedback-padding-x: button.$input-btn-padding-x !default;
