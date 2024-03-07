@@ -4,6 +4,12 @@
 
 @use './../themes/bootstrap/core' as *;
 
+// Prevent page from scrolling while a dialog is open
+// Missing support for has is negligible, it's progressive enhancement. It will magically work some day
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
 dialog {
   @include elevation.elevation('elevation-3');
 
@@ -11,13 +17,35 @@ dialog {
   max-height: 90vh;
   overflow: auto;
   overscroll-behavior: contain;
+  border-width: 0;
 
-  // [size="medium"] is the standard case
+  @media (forced-colors: active) {
+    border-width: 2px;
+  }
+
   min-width: min(389px, 90vw);
   max-width: 590px;
 
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(0);
+
+    @media (forced-colors: active) {
+      background-image: linear-gradient(
+        135deg,
+        CanvasText 4.55%,
+        transparent 4.55%,
+        transparent 50%,
+        CanvasText 50%,
+        CanvasText 54.55%,
+        transparent 54.55%,
+        transparent 100%
+      );
+      background-size: 22px 22px;
+      backdrop-filter: none;
+      background-color: transparent;
+      forced-color-adjust: none;
+    }
   }
 
   > form {
@@ -33,17 +61,19 @@ dialog {
     background-color: inherit;
   }
 
-  &[size='small'] {
+  &[data-size='small'] {
     min-width: 296px;
     max-width: 388px;
   }
 
-  &[size='large'] {
+  // [size="medium"] is the standard case
+
+  &[data-size='large'] {
     min-width: min(600px, 90vw);
     max-width: 792px;
   }
 
-  &[variant='notification'] {
+  &[data-variant='notification'] {
     padding: 0;
 
     > form {
@@ -56,16 +86,16 @@ dialog {
         'controls';
     }
 
-    &[type='general'] {
+    &[data-type='general'] {
       --post-dialog-background-color: #{color.$info};
     }
-    &[type='warning'] {
+    &[data-type='warning'] {
       --post-dialog-background-color: #{color.$warning};
     }
-    &[type='error'] {
+    &[data-type='error'] {
       --post-dialog-background-color: #{color.$error};
     }
-    &[type='success'] {
+    &[data-type='success'] {
       --post-dialog-background-color: #{color.$success};
     }
 
@@ -75,61 +105,81 @@ dialog {
       background-color: var(--post-dialog-background-color);
     }
 
-    .dialog--header,
-    .dialog--icon {
+    post-dialog-close,
+    post-dialog-icon,
+    post-dialog-header,
+    post-dialog-body {
+      margin-top: spacing.$size-regular;
+    }
+
+    post-dialog-header,
+    post-dialog-icon {
       justify-self: center;
     }
 
-    .dialog--header,
-    .dialog--body,
-    .dialog--controls {
+    post-dialog-header,
+    post-dialog-body,
+    post-dialog-controls {
       padding-inline: spacing.$size-regular;
     }
 
-    .dialog--close {
+    post-dialog-close {
       margin-right: spacing.$size-regular;
     }
 
-    .dialog--header,
-    .dialog--controls {
+    post-dialog-header,
+    post-dialog-controls {
       padding-bottom: spacing.$size-regular;
     }
   }
 
-  &[variant='cookie'] {
+  &[data-variant='cookie'] {
     top: auto;
     bottom: 2rem;
 
     > form {
       grid-template-columns: auto 1fr auto;
       grid-template-areas:
-        'icon header close-button'
-        'icon body close-button'
+        'icon     header   close-button'
+        'icon     body     close-button'
         'controls controls controls';
     }
 
-    .dialog--icon {
+    post-dialog-icon {
       align-self: flex-start;
     }
   }
 }
 
-.dialog--icon {
+post-dialog-icon,
+post-dialog-header,
+post-dialog-body,
+post-dialog-controls,
+post-dialog-close {
+  &:empty {
+    display: none;
+  }
+}
+
+post-dialog-icon {
   grid-area: icon;
   display: block;
-  width: spacing.$size-big;
-  height: spacing.$size-big;
 
-  // Larger icon for bigger notification dialogs
-  dialog:not([size='small']) & {
-    @include media-breakpoint-up(rg) {
-      width: spacing.$size-small-huge;
-      height: spacing.$size-small-huge;
+  > post-icon {
+    width: spacing.$size-big;
+    height: spacing.$size-big;
+
+    // Larger icon for bigger notification dialogs
+    dialog:not([size='small']) & {
+      @include media-breakpoint-up(rg) {
+        width: spacing.$size-small-huge;
+        height: spacing.$size-small-huge;
+      }
     }
   }
 }
 
-.dialog--header {
+post-dialog-header {
   grid-area: header;
 
   & > *:first-child {
@@ -137,7 +187,7 @@ dialog {
   }
 }
 
-.dialog--body {
+post-dialog-body {
   grid-area: body;
   margin-bottom: 0;
 
@@ -146,7 +196,7 @@ dialog {
   }
 }
 
-.dialog--controls {
+post-dialog-controls {
   grid-area: controls;
   position: sticky;
   bottom: 0;
@@ -164,7 +214,7 @@ dialog {
   }
 }
 
-.dialog--close {
+post-dialog-close {
   position: sticky;
   top: 0;
   grid-area: close-button;
@@ -172,4 +222,80 @@ dialog {
   height: spacing.$size-large;
   min-height: 0;
   margin-left: auto;
+}
+
+// Animations
+dialog:not([data-animation='none']) {
+  --_dialog-transition-duration: var(--dialog-transition-duration, 0.5s);
+
+  transform: scale(0.8);
+  opacity: 0;
+  transition-property: transform, opacity, overlay, display;
+  transition-behavior: allow-discrete;
+  transition-duration: var(--_dialog-transition-duration);
+  transition-timing-function: linear(
+    0,
+    0.007,
+    0.029 2.2%,
+    0.118 4.7%,
+    0.625 14.4%,
+    0.826 19%,
+    0.902,
+    0.962,
+    1.008 26.1%,
+    1.041 28.7%,
+    1.064 32.1%,
+    1.07 36%,
+    1.061 40.5%,
+    1.015 53.4%,
+    0.999 61.6%,
+    0.995 71.2%,
+    1
+  );
+
+  &::backdrop {
+    opacity: 0;
+    transition:
+      backdrop-filter var(--_dialog-transition-duration),
+      opacity var(--_dialog-transition-duration),
+      overlay var(--_dialog-transition-duration) allow-discrete,
+      display var(--_dialog-transition-duration) allow-discrete;
+  }
+
+  &[open] {
+    transform: scale(1);
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    &::backdrop {
+      opacity: 1;
+      backdrop-filter: blur(10px);
+
+      @starting-style {
+        opacity: 0;
+        backdrop-filter: blur(0);
+      }
+
+      @media (forced-colors: active) {
+        backdrop-filter: none;
+      }
+    }
+  }
+
+  &[data-variant='cookie'] {
+    opacity: 1; // Reset default
+    transform: translateY(calc(100% + 3rem));
+
+    &[open] {
+      transform: translateY(0);
+
+      @starting-style {
+        transform: translateY(calc(100% + 3rem));
+      }
+    }
+  }
 }

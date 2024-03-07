@@ -18,6 +18,7 @@ const meta: Meta = {
     title: 'Dialog',
     content: 'This is a dialog',
     size: 'medium',
+    open: true,
     closeButton: true,
   },
   argTypes: {
@@ -92,20 +93,18 @@ const notificationTypeIconMap: { [key: string]: { icon: number; color: string } 
 };
 
 const getHeader = (text: string) => {
-  return html`<h2 class="dialog--header">${text}</h2>`;
+  return html`<h2>${text}</h2>`;
 };
 
 const getCloseButton = () => {
-  return html`<button class="btn btn-close dialog--close">
+  return html`<button class="btn btn-close">
     <span class="visually-hidden">Close</span>
   </button>`;
 };
 
 const getControls = () => {
-  return html`<div class="dialog--controls">
-    <button class="btn btn-primary">OK</button>
-    <button class="btn btn-secondary">Cancel</button>
-  </div>`;
+  return html`<button class="btn btn-primary">OK</button>
+    <button class="btn btn-secondary">Cancel</button>`;
 };
 
 const Template = {
@@ -122,27 +121,31 @@ const Template = {
 
     if (args.variant === 'notification') {
       variant = args.variant;
-      const { icon: iconNr, color } = notificationTypeIconMap[args.notificationType];
+      const { icon: iconNr } = notificationTypeIconMap[args.notificationType];
       notificationType = args.notificationType as string;
-      icon = html`<post-icon class="dialog--icon" name="${iconNr}"></post-icon>`;
-      header = getHeader(args.title, color);
+      icon = html`<post-icon name="${iconNr}"></post-icon>`;
+      header = getHeader(args.title);
     }
     if (args.variant === 'cookie') {
       backgroundColor = 'bg-light';
-      icon = html`<post-icon class="dialog--icon" name="2201"></post-icon>`;
+      icon = html`<post-icon name="2201"></post-icon>`;
       variant = args.variant;
     }
     return html`
       <dialog
-        size="${args.size}"
-        variant="${variant}"
-        type="${notificationType}"
+        data-size="${args.size}"
+        data-variant="${variant}"
+        data-type="${notificationType}"
         class="${backgroundColor}"
       >
         <form method="dialog">
-          ${icon} ${header}
-          <div class="dialog--body">${body}</div>
-          ${controls} ${closeButton}
+          <post-dialog-icon>${icon}</post-dialog-icon>
+          <post-dialog-header>${header}</post-dialog-header>
+          <post-dialog-body>${body}</post-dialog-body>
+          <post-dialog-controls>${controls}</post-dialog-controls>
+          ${args.closeButton
+            ? html`<post-dialog-close>${closeButton}</post-dialog-close>`
+            : nothing}
         </form>
       </dialog>
     `;
