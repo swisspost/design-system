@@ -156,7 +156,9 @@ export class MigrationV56Component extends LitElement {
                       </p>
                       <p class="info">
                         See the
-                        <a href="/?path=/docs/components-button-group--docs">documentation</a>
+                        <a href="/?path=/docs/021d61aa-e039-4858-b4b9-b86a3e772811--docs"
+                          >documentation</a
+                        >
                         for more detailed information.
                       </p>
                     </li>
