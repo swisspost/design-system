@@ -8,7 +8,7 @@ Swiss Post styles for PrimeNg datatable.
 
 The PrimeNg styles are documented in the Design System storybook.
 
-[Styles for PrimeNg Documentation](https://next.design-system.post.ch/?path=/docs/d2112bed-c611-4098-a1ad-e654f7d622e7--docs)
+[Styles for PrimeNg Documentation](https://design-system.post.ch/?path=/docs/d2112bed-c611-4098-a1ad-e654f7d622e7--docs)
 
 ## Installation
 
