@@ -81,6 +81,15 @@ const config: StorybookConfig = {
       css: {
         devSourcemap: true,
       },
+      build: {
+        rollupOptions: {
+          output: {
+            entryFileNames: `assets/[name]-H-[hash].js`,
+            chunkFileNames: `assets/[name]-H-[hash].js`,
+            assetFileNames: `assets/[name]-H-[hash].[ext]`,
+          },
+        },
+      },
     });
   },
 };

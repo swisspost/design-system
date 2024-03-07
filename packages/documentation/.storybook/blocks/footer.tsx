@@ -10,22 +10,22 @@ const DEVELOPERS: Developer[] = [
   {
     name: 'Philipp Gfeller',
     title: 'Lead UI Developer',
-    avatar: 'https://avatars.githubusercontent.com/u/1659006?v=4',
+    avatar: 'https://avatars.githubusercontent.com/u/1659006?v=4&size=80',
   },
   {
     name: 'Alizé Debray',
     title: 'UI Developer',
-    avatar: 'https://avatars.githubusercontent.com/u/33580481?v=4',
+    avatar: 'https://avatars.githubusercontent.com/u/33580481?v=4&size=80',
   },
   {
     name: 'Oliver Schürch',
     title: 'UI Developer',
-    avatar: 'https://avatars.githubusercontent.com/u/9716662?v=4',
+    avatar: 'https://avatars.githubusercontent.com/u/9716662?v=4&size=80',
   },
   {
     name: 'Loïc Fürhoff',
     title: 'UI Developer',
-    avatar: 'https://avatars.githubusercontent.com/u/12294151?v=4',
+    avatar: 'https://avatars.githubusercontent.com/u/12294151?v=4&size=80',
   },
 ];
 
