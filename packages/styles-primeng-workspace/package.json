@@ -1,5 +1,6 @@
 {
   "name": "@swisspost/design-system-styles-primeng-workspace",
+  "description": "Showcase for a Post like custom prime-ng theme",
   "version": "0.0.0",
   "license": "Apache-2.0",
   "private": true,
