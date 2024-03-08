@@ -3,6 +3,7 @@
 @use './../lic/bootstrap-license';
 
 @use './../variables/components/forms';
+@use './../variables/type';
 
 @use './../mixins/utilities';
 @use './../mixins/forms' as form-mixins;
@@ -146,4 +147,8 @@ select.form-control-rg:not([size]):not([multiple]) {
       }
     }
   }
+}
+
+.form-label:has(+ .form-control-sm, + .form-select-sm) {
+  font-size: type.$font-size-14;
 }
