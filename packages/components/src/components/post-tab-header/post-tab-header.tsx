@@ -9,7 +9,8 @@ import { checkNonEmpty } from '../../utils';
 @Component({
   tag: 'post-tab-header',
   styleUrl: 'post-tab-header.scss',
-  shadow: true,
+  shadow: false,
+  scoped: true,
 })
 export class PostTabHeader {
   @Element() host: HTMLPostTabHeaderElement;

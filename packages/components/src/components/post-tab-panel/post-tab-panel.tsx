@@ -8,7 +8,8 @@ import { version } from '../../../package.json';
 @Component({
   tag: 'post-tab-panel',
   styleUrl: 'post-tab-panel.scss',
-  shadow: true,
+  shadow: false,
+  scoped: true,
 })
 export class PostTabPanel {
   @Element() host: HTMLPostTabPanelElement;

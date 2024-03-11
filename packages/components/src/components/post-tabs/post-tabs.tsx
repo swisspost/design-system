@@ -10,7 +10,8 @@ import { fadeIn, fadeOut } from '../../animations';
 @Component({
   tag: 'post-tabs',
   styleUrl: 'post-tabs.scss',
-  shadow: true,
+  shadow: false,
+  scoped: true,
 })
 export class PostTabs {
   private activeTab: HTMLPostTabHeaderElement;
@@ -91,6 +92,24 @@ export class PostTabs {
     this.tabChange.emit(this.activeTab.panel);
   }
 
+  connectedCallback() {
+    const callback: MutationCallback = (mutationList: MutationRecord[]) => {
+      for (const mutation of mutationList) {
+        if (mutation.type === 'childList') {
+          if (mutation.addedNodes.length > 0 || mutation.removedNodes.length > 0) {
+            this.enableTabs();
+            // TODO: Handle moveMisplacedTabs
+          }
+        }
+      }
+    };
+
+    const slot = this.host;
+    const observer = new MutationObserver(callback);
+    console.log('stlot', slot, this.host);
+    observer.observe(slot, { childList: true, subtree: true });
+  }
+
   private moveMisplacedTabs() {
     if (!this.tabs) return;
 
@@ -106,12 +125,12 @@ export class PostTabs {
     this.tabs.forEach(async tab => {
       await tab.componentOnReady();
 
-      const tabTitle = tab.shadowRoot.querySelector('.tab-title');
+      const tabTitle = tab.querySelector('.tab-title');
 
       // if the tab has an "aria-controls" attribute it was already linked to its panel: do nothing
       if (tabTitle.getAttribute('aria-controls')) return;
 
-      const tabPanel = this.getPanel(tab.panel).shadowRoot.querySelector('.tab-pane');
+      const tabPanel = this.getPanel(tab.panel).querySelector('.tab-pane');
       tabTitle.setAttribute('aria-controls', tabPanel.id);
       tabPanel.setAttribute('aria-labelledby', tabTitle.id);
 
@@ -132,13 +151,13 @@ export class PostTabs {
 
   private activateTab(tab: HTMLPostTabHeaderElement) {
     if (this.activeTab) {
-      const tabTitle = this.activeTab.shadowRoot.querySelector('.tab-title');
+      const tabTitle = this.activeTab.querySelector('.tab-title');
       tabTitle.setAttribute('aria-selected', 'false');
       tabTitle.setAttribute('tabindex', '-1');
       tabTitle.classList.remove('active');
     }
 
-    const tabTitle = tab.shadowRoot.querySelector('.tab-title');
+    const tabTitle = tab.querySelector('.tab-title');
     tabTitle.setAttribute('aria-selected', 'true');
     tabTitle.removeAttribute('tabindex');
     tabTitle.classList.add('active');
@@ -187,7 +206,7 @@ export class PostTabs {
 
     if (!nextTab) return;
 
-    const nextTabTitle = nextTab.shadowRoot.querySelector('.tab-title') as HTMLAnchorElement;
+    const nextTabTitle = nextTab.querySelector('.tab-title') as HTMLAnchorElement;
     nextTabTitle.focus();
   }
 
@@ -196,11 +215,11 @@ export class PostTabs {
       <Host data-version={version}>
         <div class="tabs-wrapper">
           <div class="tabs" role="tablist">
-            <slot name="tabs" onSlotchange={() => this.enableTabs()} />
+            <slot name="tabs" />
           </div>
         </div>
         <div class="tab-content">
-          <slot onSlotchange={() => this.moveMisplacedTabs()} />
+          <slot />
         </div>
       </Host>
     );

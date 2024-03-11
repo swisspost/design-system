@@ -43,6 +43,8 @@ export const config: Config = {
   ],
   extras: {
     enableImportInjection: true,
+    experimentalSlotFixes: true,
+    experimentalScopedSlotChanges: true,
   },
   plugins: [
     sass({

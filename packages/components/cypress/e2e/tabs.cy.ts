@@ -169,12 +169,6 @@ describe('tabs', () => {
 describe('Accessibility', () => {
   it('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('tabs');
-    cy.checkA11y('#root-inner', {
-      rules: {
-        'aria-valid-attr-value': {
-          enabled: false,
-        },
-      },
-    });
+    cy.checkA11y('#root-inner');
   });
 });
