@@ -77,6 +77,13 @@
       &:indeterminate::after {
         @include icons-mx.icon(2039);
       }
+
+      &:checked,
+      &:indeterminate {
+        @include utility-mx.high-contrast-mode {
+          background-color: SelectedItem;
+        }
+      }
     }
 
     &[type='radio'] {
@@ -87,6 +94,21 @@
         background-color: currentColor;
         border-radius: inherit;
         background-clip: padding-box;
+
+        @include utility-mx.high-contrast-mode {
+          background-color: SelectedItem;
+          border-color: Canvas;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        &:checked::after {
+          @include utility-mx.high-contrast-mode {
+            background-color: Highlight;
+            border-color: Highlight;
+          }
+        }
       }
     }
 
@@ -103,6 +125,17 @@
       &[type='radio'] {
         &:checked::after {
           border-width: spacing.$size-line;
+        }
+      }
+    }
+
+    &[type='checkbox'],
+    &[type='radio'] {
+      @include utility-mx.high-contrast-mode {
+        &:hover,
+        &:focus {
+          background-color: Highlight;
+          border-color: Highlight;
         }
       }
     }
