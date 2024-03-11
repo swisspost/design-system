@@ -9981,7 +9981,7 @@
         }
       },
       "createdAt": "2020-12-11T14:41:39.000Z",
-      "modifiedAt": "2024-03-01T06:53:07.000Z"
+      "modifiedAt": "2024-03-08T19:43:23.000Z"
     },
     {
       "uuid": "7d075670-3bbe-11eb-9f99-005056873709",
@@ -10168,38 +10168,6 @@
       "modifiedAt": "2021-10-18T11:17:32.000Z"
     },
     {
-      "uuid": "88307300-5bef-11eb-9f99-005056873709",
-      "id": 539481,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "LAD",
-          "Leistung am Domizil",
-          "Service au domicile",
-          "Servizio a domicilio",
-          "Service at the domicile"
-        ],
-        "year": [
-          "2021"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:49:50.000Z",
-      "modifiedAt": "2021-10-18T11:24:06.000Z"
-    },
-    {
       "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
       "id": 539487,
       "type": "picture.pictogram.",
@@ -10229,6 +10197,38 @@
         }
       },
       "createdAt": "2021-01-21T13:55:20.000Z",
+      "modifiedAt": "2021-10-18T11:24:06.000Z"
+    },
+    {
+      "uuid": "88307300-5bef-11eb-9f99-005056873709",
+      "id": 539481,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "LAD",
+          "Leistung am Domizil",
+          "Service au domicile",
+          "Servizio a domicilio",
+          "Service at the domicile"
+        ],
+        "year": [
+          "2021"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:49:50.000Z",
       "modifiedAt": "2021-10-18T11:24:06.000Z"
     },
     {
@@ -22476,7 +22476,11 @@
           "Mikrophon",
           "Microphone",
           "Microfono",
-          "Mikrofon"
+          "Mikrofon",
+          "Schornstein",
+          "Smoke Pipe",
+          "Tubo Fumo",
+          "Tuyau De Fumée"
         ]
       },
       "file": {
@@ -22501,7 +22505,22 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793350/storage/NzkzMzQ5LzAvbWFzdGVy",
         "keywords": [
-          ""
+          "Sanduhr",
+          "Hourglass",
+          "Clessidra",
+          "Sablier",
+          "Gaspumpe",
+          "Gas Pump",
+          "Pompa del gas",
+          "Pompe À Gaz",
+          "Maschine",
+          "Machine",
+          "Macchina",
+          "aircraft",
+          "Pumpe",
+          "Pump",
+          "Pompa",
+          "Pompe"
         ]
       },
       "file": {
@@ -22530,7 +22549,18 @@
           "Cryptocurrency",
           "Kryptowährung",
           "Cryptomonnaie",
-          "Criptovaluta"
+          "Criptovaluta",
+          "Schablone",
+          "Stencil",
+          "Pochoir",
+          "durchqueren",
+          "Cross",
+          "Incrocio",
+          "Traverser",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole"
         ]
       },
       "file": {
@@ -22546,6 +22576,206 @@
       },
       "createdAt": "2024-03-01T09:26:37.000Z",
       "modifiedAt": "2024-03-01T21:52:51.000Z"
+    },
+    {
+      "uuid": "62d8be00-da04-11ee-9708-005056873709",
+      "id": 793437,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793437/storage/NzkzNDM2LzAvbWFzdGVy",
+        "keywords": [
+          " Mond",
+          "Mond",
+          "Nacht",
+          "Night",
+          "Notte",
+          "Nuit",
+          "Wesen",
+          "Nature",
+          "Natura",
+          "Natur",
+          "nature",
+          "night",
+          "Im Freien",
+          "Outdoors",
+          "All'aperto",
+          "À L'Extérieur",
+          "Astronomie",
+          "Astronomy",
+          "Astronomia",
+          "Moon",
+          "Luna",
+          "Lune"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2579.svg",
+        "basename": "2579",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-03-04T08:51:26.000Z",
+      "modifiedAt": "2024-03-04T08:59:26.000Z"
+    },
+    {
+      "uuid": "56f99440-da06-11ee-9708-005056873709",
+      "id": 793441,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793441/storage/NzkzNDQwLzAvbWFzdGVy",
+        "keywords": [
+          " Qualitätsmanagement",
+          "Qualitätsmanagement",
+          "E-Commerce",
+          "E-commerce"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2580.svg",
+        "basename": "2580",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-03-04T09:05:25.000Z",
+      "modifiedAt": "2024-03-07T19:58:07.000Z"
+    },
+    {
+      "uuid": "c1adce40-da0c-11ee-9708-005056873709",
+      "id": 793449,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793449/storage/NzkzNDQ4LzAvbWFzdGVy",
+        "keywords": [
+          " Zeit",
+          "Zeit",
+          "Working hours",
+          "Arbeitszeit",
+          "Temps de travail",
+          "Tempo di lavoro",
+          "Maximum working week",
+          "Höchstarbeitszeit Woche",
+          "Durée maximale du travail par semaine",
+          "Tempo di lavoro massimo settimana"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2581.svg",
+        "basename": "2581",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-03-04T09:51:21.000Z",
+      "modifiedAt": "2024-03-07T19:59:29.000Z"
+    },
+    {
+      "uuid": "23e9cbb1-da1f-11ee-9708-005056873709",
+      "id": 793494,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793494/storage/NzkzNDkzLzAvbWFzdGVy",
+        "keywords": [
+          "Maximum working hours per day",
+          "Höchstarbeitszeit Tag",
+          "Durée maximale du travail ö jour",
+          "Hötempo di lavoro massimo giornaliero"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2582.svg",
+        "basename": "2582",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-03-04T12:02:57.000Z",
+      "modifiedAt": "2024-03-07T20:00:15.000Z"
+    },
+    {
+      "uuid": "7efba120-da21-11ee-9708-005056873709",
+      "id": 793507,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793507/storage/NzkzNTA2LzAvbWFzdGVy",
+        "keywords": [
+          "rest layer",
+          "Ruheschicht",
+          "Tour de repos",
+          "Turno di riposo",
+          "Analoguhr",
+          "Analog Clock",
+          "Orologio analogico",
+          "Horloge analogique"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2583.svg",
+        "basename": "2583",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-03-04T12:19:49.000Z",
+      "modifiedAt": "2024-03-07T20:00:59.000Z"
+    },
+    {
+      "uuid": "4f77b5e0-da23-11ee-9708-005056873709",
+      "id": 793517,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793517/storage/NzkzNTE2LzAvbWFzdGVy",
+        "keywords": [
+          "Sunday work",
+          "Sonntagsarbeit",
+          "Travail le dimanche",
+          "Lavoro domenicale",
+          "Anzahl",
+          "Number",
+          "Numero",
+          "Nombre"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2584.svg",
+        "basename": "2584",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-03-04T12:32:48.000Z",
+      "modifiedAt": "2024-03-07T20:01:41.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -34375,11 +34605,11 @@
   "wrongViewBox": [],
   "noSVG": [],
   "errored": [],
-  "created": "2024-03-03T01:09:12.410Z",
+  "created": "2024-03-10T01:09:58.943Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 909
+    "success": 915
   },
-  "version": "1.3.0"
+  "version": "1.4.0"
 }
