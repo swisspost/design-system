@@ -31,11 +31,9 @@ function render(args: Args) {
             <h2>
               This page could not be found.
               <br />
-              <span class="fw-light">
-                Possible reasons for this could be a misspelled or old URL.
-              </span>
+              <span class="fw-light">A reasons for this could be a misspelled URL.</span>
             </h2>
-            <p class="fw-light mt-3">
+            <p class="mt-3">
               We kindly ask you to review this once again. It is also possible that we have moved,
               archived, or renamed the relevant page. Perhaps you can find the content you're
               looking for on our homepage. Or use the search on our portal to locate the desired
