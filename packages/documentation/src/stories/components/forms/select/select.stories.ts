@@ -1,8 +1,8 @@
-import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
-import { BADGE } from '../../../../../.storybook/constants';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { MetaComponent } from '../../../../../types';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -10,11 +10,12 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'is-invalid': true,
 };
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: 'bc251cd0-5173-463b-8729-586bb1bf1e1a',
   title: 'Components/Forms/Select',
+  tags: ['package:HTML'],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     label: 'Label',

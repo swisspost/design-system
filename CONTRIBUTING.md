@@ -61,7 +61,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 #### Testing
 
 - Cross browser testing of the docs (official Post supported browsers -> https://github.com/swisspost/design-system/blob/main/packages/styles/.browserslistrc)
-- Testing the High Contrast mode
+- Testing the High Contrast mode with light and dark theme (and cross browser)
 - Approval by UX for the story
 - Screen reader testing (at least nvda+win)
 
@@ -71,6 +71,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 
 #### Docs
 
+- Add the `id` property in the meta of each story file. The property should contain an UUID (feel free to use your favorite tool)
 - No react related attributes in code snippets (e.g. className, htmlFor, key, etc.)
 - No nested `<p>` tags (beware of .lead and .alert)
 - When using LinkTo use both the `kind` and `story` attributes

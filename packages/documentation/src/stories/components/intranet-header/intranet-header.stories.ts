@@ -1,11 +1,11 @@
-import { Meta } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: 'd59a459b-6f14-47c6-9f98-a36a3f79a6e3',
   title: 'Components/Intranet Header',
+  tags: ['package:IntranetHeader'],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   argTypes: {
     additionalInfo: {

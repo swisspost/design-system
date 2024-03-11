@@ -1,5 +1,45 @@
 # @swisspost/design-system-styles
 
+## 6.6.4
+
+### Patch Changes
+
+- Fixed color-contrast on post-tabs with dark background. (by [@imagoiq](https://github.com/imagoiq) with [#2753](https://github.com/swisspost/design-system/pull/2753))
+
+## 6.6.3
+
+### Patch Changes
+
+- Updated the color of success alerts from black to white for a better contrast. (by [@alizedebray](https://github.com/alizedebray) with [#2740](https://github.com/swisspost/design-system/pull/2740))
+
+- Fixed color-contrast on blockquote footer with dark background. (by [@imagoiq](https://github.com/imagoiq) with [#2714](https://github.com/swisspost/design-system/pull/2714))
+
+- Fixed close icon button which is not visible on hover with light theme and high contrast mode enabled. (by [@imagoiq](https://github.com/imagoiq) with [#2705](https://github.com/swisspost/design-system/pull/2705))
+
+- Improved display of badge and switch checked state with high contrast mode. (by [@imagoiq](https://github.com/imagoiq) with [#2706](https://github.com/swisspost/design-system/pull/2706))
+
+- Reduced the `xxl` breakpoint size form 1441px to 1440ppx. (by [@alizedebray](https://github.com/alizedebray) with [#2741](https://github.com/swisspost/design-system/pull/2741))
+
+- Fixed color-contrast issue on valid form-feedback. (by [@imagoiq](https://github.com/imagoiq) with [#2717](https://github.com/swisspost/design-system/pull/2717))
+
+- Removes unwanted margin from heading within the notification overlay component. (by [@b1aserlu](https://github.com/b1aserlu) with [#2407](https://github.com/swisspost/design-system/pull/2407))
+
+## 6.6.2
+
+### Patch Changes
+
+- Updated high contrast styles for the form switch component. (by [@alizedebray](https://github.com/alizedebray) with [#2667](https://github.com/swisspost/design-system/pull/2667))
+
+- Fixed display of icons in high-contrast mode in webkit. (by [@imagoiq](https://github.com/imagoiq) with [#2638](https://github.com/swisspost/design-system/pull/2638))
+
+- Deprecated sizes `loader-sm` and `loader-xs` for the spinner. They are replace respectively with `loader-40` and `loader-16`. (by [@imagoiq](https://github.com/imagoiq) with [#2612](https://github.com/swisspost/design-system/pull/2612))
+
+- Removed transparent background for notification in high-contrast mode. (by [@imagoiq](https://github.com/imagoiq) with [#2653](https://github.com/swisspost/design-system/pull/2653))
+
+- Fixed visibility of select arrow in icon in high-contrast mode with light theme. (by [@imagoiq](https://github.com/imagoiq) with [#2696](https://github.com/swisspost/design-system/pull/2696))
+
+- Sets the font-size of h5 on small mobile devices to 16px as defined in Figma. (by [@gfellerph](https://github.com/gfellerph) with [#2610](https://github.com/swisspost/design-system/pull/2610))
+
 ## 6.6.1
 
 ### Patch Changes

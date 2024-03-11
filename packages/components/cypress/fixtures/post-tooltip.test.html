@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script src="../../dist/post-components/post-components.esm.js" type="module"></script>
+  </head>
+  <body>
+    <button aria-describedby="existing-value" data-tooltip-target="tooltip-one" id="target1">
+      toggle
+    </button>
+    <button data-tooltip-target="tooltip-one" id="target2">toggle 2</button>
+    <post-tooltip id="tooltip-one">
+      <p>This is a test</p>
+    </post-tooltip>
+    <span id="non-focusable-span" data-tooltip-target="tooltip-one">non-focusable</span>
+  </body>
+</html>

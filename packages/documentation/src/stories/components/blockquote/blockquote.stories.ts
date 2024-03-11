@@ -1,13 +1,14 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
-import { BADGE } from '../../../../.storybook/constants';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: 'a4c7d5fa-9f8d-4a95-820b-ae4ce9ab4f03',
   title: 'Components/Blockquote',
+  tags: ['package:HTML'],
   render: renderBlockquote,
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.',

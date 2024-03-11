@@ -61,8 +61,8 @@ jobs:
 
       - name: Commit Changes
         run: |
-          git config --global user.name "swisspost-bot"
-          git config --global user.email "oss@post.ch"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add .
           git commit -am "chore(icons): update icon SVGs"
           git push -u origin ${{ steps.current-branch.outputs.branch }}
@@ -123,7 +123,7 @@ jobs:
             description+="Deleted icon$(pluralize_if_needed $DELETED_ICONS) number ${DELETED_ICONS}. "
           fi
 
-          echo ---                                          > $CHANGESET
+          echo ---                                          >  $CHANGESET
           echo "'@swisspost/design-system-icons': ${bump}"  >> $CHANGESET
           echo ---                                          >> $CHANGESET
           echo                                              >> $CHANGESET
@@ -147,7 +147,7 @@ jobs:
         if: steps.changed-files.outputs.any_modified != 'false'
         run: |
           echo "file=$PR_BODY_FILE" >> $GITHUB_OUTPUT
-          echo "# Design system icons are now up to date!"  > $PR_BODY_FILE
+          echo "# Design system icons are now up to date!" >  $PR_BODY_FILE
           if [[ -n $UPDATED_ICONS ]]; then
             echo "## Updated icons"                        >> $PR_BODY_FILE
             echo $UPDATED_ICONS                            >> $PR_BODY_FILE
@@ -171,4 +171,4 @@ jobs:
         run: |
           gh pr create --title "chore(icons): :point_up: update icons" --body-file ${{ steps.pr-body.outputs.file }}
         env:
-          GITHUB_TOKEN: ${{ secrets.ICON_WORKFLOW_PAT }}
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}

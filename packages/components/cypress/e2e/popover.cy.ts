@@ -68,4 +68,18 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
         });
     });
   });
+
+  describe('Accessibility', () => {
+    beforeEach(() => {
+      cy.visit('./cypress/fixtures/post-popover.test.html');
+      // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
+      cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
+
+      cy.injectAxe();
+    });
+
+    it('Has no detectable a11y violations on load', () => {
+      cy.checkA11y('post-popover');
+    });
+  });
 });

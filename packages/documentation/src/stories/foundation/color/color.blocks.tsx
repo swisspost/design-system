@@ -10,6 +10,10 @@ export const ColorSwatch = (props: { name: string; color: string; noCSS?: boolea
     <article className="color-swatch">
       <div className="color-swatch__description">
         <h3 className="description__title h6">{props.name}</h3>
+        <p className="description__value">
+          <span className="visually-hidden">CSS value: </span>
+          {props.color}
+        </p>
       </div>
       <div className="color-swatch__color">
         <div

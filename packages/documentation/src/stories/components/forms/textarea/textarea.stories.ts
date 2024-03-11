@@ -1,7 +1,7 @@
-import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { BADGE } from '../../../../../.storybook/constants';
 import { mapClasses } from '../../../../utils';
+import { MetaComponent } from '../../../../../types';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -9,12 +9,13 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'is-invalid': true,
 };
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: '152b7268-cce0-43d7-b931-41a57370f9a0',
   title: 'Components/Forms/Textarea',
+  tags: ['package:HTML'],
   render: renderTextarea,
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     label: 'Label',

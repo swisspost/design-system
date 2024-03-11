@@ -1,8 +1,8 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { BADGE } from '../../../../.storybook/constants';
 import './sizing.styles.scss';
 import scss from './sizing.module.scss';
+import { MetaExtended } from '../../../../types';
 
 export const SCSS_VARIABLES = scss;
 
@@ -10,12 +10,12 @@ const sizingOptions = ['auto', ...Object.keys(SCSS_VARIABLES)];
 
 const sizeOptionsPercent = ['auto', '25', '50', '75', '100'];
 
-const meta: Meta = {
+const meta: MetaExtended = {
   render: renderSizing,
   id: 'e728de1f-0d71-4317-8bb8-cbef0bf8d5db',
   title: 'Utilities/Sizing',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     height: 'bigger-giant',

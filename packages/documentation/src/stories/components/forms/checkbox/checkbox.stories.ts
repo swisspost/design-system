@@ -1,16 +1,17 @@
 import { useArgs } from '@storybook/preview-api';
-import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { BADGE } from '../../../../../.storybook/constants';
 import { mapClasses } from '../../../../utils';
+import { MetaComponent } from '../../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Forms/Checkbox',
+  tags: ['package:HTML'],
   render: renderCheckbox,
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     hiddenLegend: false,

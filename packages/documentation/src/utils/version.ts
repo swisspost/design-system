@@ -1,6 +1,6 @@
 import * as packageJson from '../../package.json';
 
-const DEPENCENCIES: any = {
+export const DEPENDENCIES: any = {
   [packageJson.name]: packageJson.version,
   ...packageJson.dependencies,
   ...packageJson.devDependencies,
@@ -29,7 +29,7 @@ const versionFilterMap: any = {
 };
 
 export function getVersion(version: string, filter: string = '') {
-  const cleanVersion = DEPENCENCIES[version].replace(/^[^\d]+/, '');
+  const cleanVersion = version.replace(/^[^\d]+/, '');
 
   if (filter) {
     const filterRegex = versionFilterRegexes[versionFilterMap[filter]];
@@ -39,6 +39,6 @@ export function getVersion(version: string, filter: string = '') {
 
     return matchArray !== null && matchArray[1] ? matchArray[1] : null;
   } else {
-    return cleanVersion.length > 0 ? cleanVersion : DEPENCENCIES[version] ?? null;
+    return cleanVersion.length > 0 ? cleanVersion : version ?? null;
   }
 }

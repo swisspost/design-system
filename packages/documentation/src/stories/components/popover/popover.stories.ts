@@ -1,14 +1,15 @@
-import { Args, Meta, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
+import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: '9a636763-de2d-4f72-bc81-98daf10871f7',
   title: 'Components/Popover',
+  tags: ['package:WebComponents'],
   component: 'post-popover',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
     docs: {
       argTypes: {
         sort: 'requiredFirst',

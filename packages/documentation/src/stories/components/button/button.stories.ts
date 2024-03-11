@@ -1,14 +1,15 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 import { repeat } from 'lit/directives/repeat.js';
-import { BADGE } from '@geometricpanda/storybook-addon-badges';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
   title: 'Components/Button',
+  tags: ['package:HTML'],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=10576-49992&mode=design&t=OK8meBHjpJvBhwZI-4',
@@ -138,7 +139,7 @@ const meta: Meta = {
         'Defines a custom icon.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
-        '<a href="?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
+        '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
         '.</span>',
       if: {
         arg: 'tag',

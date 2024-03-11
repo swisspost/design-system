@@ -1,16 +1,17 @@
-import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { BADGE } from '../../../../.storybook/constants';
 import { spreadArgs } from '../../../utils';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta<HTMLPostCollapsibleElement> = {
+const meta: MetaComponent<HTMLPostCollapsibleElement> = {
   id: '6a91848c-16ec-4a23-bc45-51c797b5b2c3',
   title: 'Components/Collapsible',
+  tags: ['package:WebComponents'],
   component: 'post-collapsible',
   render: renderCollapsible,
   decorators: [externalControls],
   parameters: {
-    badges: [BADGE.BETA, BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
+    badges: [],
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=42%3A358&mode=design&t=OK8meBHjpJvBhwZI-1',
