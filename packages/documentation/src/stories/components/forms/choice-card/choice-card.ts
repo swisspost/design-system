@@ -1,11 +1,12 @@
-import type { Args, Meta } from '@storybook/web-components';
+import type { Args } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { BADGE } from '../../../../../.storybook/constants';
 import { nothing } from 'lit';
 import { useArgs } from '@storybook/preview-api';
+import { MetaExtended } from '../../../../../types';
 
-export const choiceCardMeta: Meta = {
+export const choiceCardMeta: MetaExtended = {
   parameters: {
     badges: [BADGE.NEEDS_REVISION],
     controls: {

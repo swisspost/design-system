@@ -5,8 +5,6 @@
 
 #storybook-root,
 #storybook-docs {
-  overflow: hidden;
-
   .sbdocs-content .container >,
   .sbdocs-content .container > post-tabs > post-tab-panel >,
   .sbdocs-content .container > migration-global-state {
@@ -37,6 +35,10 @@
 
     h6 {
       margin-block: 1rem;
+    }
+    .table,
+    .table-responsive {
+      margin-block: 1.5rem 1rem;
     }
   }
 

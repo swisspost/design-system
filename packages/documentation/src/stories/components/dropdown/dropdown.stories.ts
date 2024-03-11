@@ -1,8 +1,9 @@
-import { Meta } from '@storybook/web-components';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: '63113d0a-6ceb-472c-ac6a-729404e862ca',
   title: 'Components/Dropdown',
+  tags: ['package:Angular'],
   parameters: {
     badges: [],
   },
