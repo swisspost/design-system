@@ -7,7 +7,7 @@ import './list-component';
 
 <Meta of={IntroductionStories} />
 
-# Getting started
+# Introduction
 
 Welcome to the Swiss post design system world!
 
@@ -19,23 +19,27 @@ The design-system is formed with several packages and different compatibilities 
   <table className="table table-bordered">
     <caption className="visually-hidden">Compatibilities between components and frameworks and which package is needed</caption>
     <colgroup>
-      <col style={{width: '15%'}}/>
       <col style={{width: '25%'}}/>
+      <col style={{width: '15%'}}/>
       <col style={{width: '20%'}}/>
       <col style={{width: '20%'}}/>
       <col style={{width: '20%'}} />
     </colgroup>
     <thead>
       <tr>
-        <th scope="col">Base + …</th>
         <th scope="col">Component</th>
-        <th scope="col">JavaScript</th>
+        <th scope="col">Base + …</th>
+        <th scope="col">JavaScript (Vanilla)</th>
         <th scope="col">Angular</th>
         <th scope="col">React</th>
       </tr>
     </thead>
     <tbody>
       <tr>
+        <td scope="row">
+          Internet-header:
+          <list-component packageType={PackageType.InternetHeader}></list-component>
+        </td>
         <td rowSpan="0">
           {[packages.find(pkg => pkg.name === 'Styles')].map((p => (
             <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
@@ -43,10 +47,6 @@ The design-system is formed with several packages and different compatibilities 
               <span>{p.version}</span>
             </ti-le>
           )))}
-        </td>
-        <td>
-          Internet-header:
-          <list-component packageType={PackageType.InternetHeader}></list-component>
         </td>
         <td colSpan="2">
           <div style={{ display:'flex', justifyContent: 'center' }}>
@@ -61,7 +61,7 @@ The design-system is formed with several packages and different compatibilities 
         <td>TBD</td>
       </tr>
       <tr>
-        <td>Intranet-header</td>
+        <td scope="row">Intranet-header</td>
         <td>N/A</td>
         <td>
           {[packages.find(pkg => pkg.name === 'Intranet-Header')].map((p => (
@@ -74,7 +74,7 @@ The design-system is formed with several packages and different compatibilities 
         <td >N/A</td>
       </tr>
       <tr>
-        <td>
+        <td scope="row">
           Web Components:
           <list-component packageType={PackageType.Wc}></list-component>
         </td>
@@ -97,7 +97,7 @@ The design-system is formed with several packages and different compatibilities 
         <td>TBD</td>
       </tr>
       <tr>
-        <td>
+        <td scope="row">
           Angular components:
           <list-component packageType={PackageType.Angular}></list-component>
         </td>
@@ -108,7 +108,7 @@ The design-system is formed with several packages and different compatibilities 
         <td >N/A</td>
       </tr>
       <tr>
-        <td>
+        <td scope="row">
           HTML components:
           <list-component packageType={PackageType.Html}></list-component>
         </td>
