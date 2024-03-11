@@ -5,6 +5,8 @@
   display: block;
 }
 
-.tab-title {
-  @include post.reset-button;
+@layer reset {
+  .tab-title {
+    @include post.reset-button;
+  }
 }
