@@ -65,10 +65,15 @@
       padding-inline-end: notification.$notification-gap + close.$close-size;
     }
 
+    &.no-icon > .alert-content {
+      padding-inline-start: 0;
+    }
+
     > .alert-buttons {
       display: flex;
 
-      > .btn {
+      > .btn,
+      > ::slotted(.btn) {
         flex: 1 0 0;
         width: 100%;
 
