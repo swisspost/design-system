@@ -3,10 +3,12 @@ import * as ErrorPageStories from './error-page.stories';
 
 <Meta of={ErrorPageStories} />
 
-# Error page template
+<div class="container">
+  # Error page template
 
-A generic error page pattern with an image. The image can be exchanged based on the type of error.
+  A generic error page pattern with an image. The image can be exchanged based on the type of error.
 
-- 404 not found: <a download="/images/content/404.png" href="/images/content/404.png">Download "404 not found" image</a>
+  - 404 not found: <a download href="/images/content/404.png">Download "404 not found" image</a>
+</div>
 
 <Canvas of={ErrorPageStories.Default} />
