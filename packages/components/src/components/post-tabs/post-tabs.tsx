@@ -18,6 +18,7 @@ export class PostTabs {
   private showing: Animation;
   private hiding: Animation;
   private isLoaded = false;
+  private slotObserver: MutationObserver;
 
   private get tabs(): NodeListOf<HTMLPostTabHeaderElement> {
     return this.host.querySelectorAll('post-tab-header');
@@ -105,9 +106,12 @@ export class PostTabs {
     };
 
     const slot = this.host;
-    const observer = new MutationObserver(callback);
-    console.log('stlot', slot, this.host);
-    observer.observe(slot, { childList: true, subtree: true });
+    this.slotObserver = new MutationObserver(callback);
+    this.slotObserver.observe(slot, { childList: true, subtree: true }); // Slot attribution happen before the mutation observer callback so we need "subtree"
+  }
+
+  disconnectedCallback() {
+    this.slotObserver.disconnect();
   }
 
   private moveMisplacedTabs() {
