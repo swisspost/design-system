@@ -1,10 +1,12 @@
 import { useArgs } from '@storybook/preview-api';
-import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: '825b65c9-7eaf-4e0a-9e20-5f5ed406726d',
   title: 'Components/Toast',
+  tags: ['package:HTML'],
   parameters: {
     badges: [],
   },
@@ -85,7 +87,7 @@ const meta: Meta = {
         'Defines a custom icon.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
-        '<a href="?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
+        '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
         '.</span>',
       if: {
         arg: 'noIcon',

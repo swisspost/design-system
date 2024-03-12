@@ -35,6 +35,7 @@
   },
   "devDependencies": {
     "@geometricpanda/storybook-addon-badges": "2.0.1",
+    "@lit/task": "1.0.0",
     "@open-wc/lit-helpers": "0.6.0",
     "@percy/cli": "1.27.7",
     "@percy/cypress": "3.1.2",

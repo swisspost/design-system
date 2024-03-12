@@ -1,8 +1,11 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
+  id: 'd0e645d0-3bf2-4b00-967a-5a1343107f60',
   title: 'Components/Spinner',
+  tags: ['package:HTML'],
   render,
   decorators: [story => generateDecorators(story)],
   parameters: {
