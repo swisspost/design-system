@@ -87,6 +87,10 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
+          * A public method to reset the group controls `checked` state to `false`.
+         */
+        "groupReset": () => Promise<void>;
+        /**
           * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
          */
         "icon": string;
@@ -99,7 +103,7 @@ export namespace Components {
          */
         "name": string;
         /**
-          * A public method to reset the controls `checked` and `validity` state. The state is set to `null`, so it's neither valid nor invalid.
+          * A public method to reset the controls `checked` and `validity` state. The validity state is set to `null`, so it's neither valid nor invalid.
          */
         "reset": () => Promise<void>;
         /**
@@ -311,8 +315,8 @@ declare global {
         new (): HTMLPostAlertElement;
     };
     interface HTMLPostCardControlElementEventMap {
-        "input": boolean;
-        "change": boolean;
+        "input": { state: boolean; value: string };
+        "change": { state: boolean; value: string };
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -504,11 +508,11 @@ declare namespace LocalJSX {
         /**
           * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
          */
-        "onChange"?: (event: PostCardControlCustomEvent<boolean>) => void;
+        "onChange"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
         /**
           * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
          */
-        "onInput"?: (event: PostCardControlCustomEvent<boolean>) => void;
+        "onInput"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
         /**
           * Defines the `type` attribute of the control.
          */

@@ -22,18 +22,28 @@
 
 ## Events
 
-| Event    | Description                                                                                                                                                                                                                                                                                                                                                                        | Type                   |
-| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `change` | An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span> | `CustomEvent<boolean>` |
-| `input`  | An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.                                                                                                                                                                            | `CustomEvent<boolean>` |
+| Event    | Description                                                                                                                                                                                                                                                                                                                                                                        | Type                                              |
+| -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| `change` | An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span> | `CustomEvent<{ state: boolean; value: string; }>` |
+| `input`  | An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.                                                                                                                                                                            | `CustomEvent<{ state: boolean; value: string; }>` |
 
 
 ## Methods
 
+### `groupReset() => Promise<void>`
+
+A public method to reset the group controls `checked` state to `false`.
+
+#### Returns
+
+Type: `Promise<void>`
+
+
+
 ### `reset() => Promise<void>`
 
 A public method to reset the controls `checked` and `validity` state.
-The state is set to `null`, so it's neither valid nor invalid.
+The validity state is set to `null`, so it's neither valid nor invalid.
 
 #### Returns
 
