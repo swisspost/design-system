@@ -1,3 +1,5 @@
+@use '../variables/spacing';
+
 @mixin reset-list() {
   margin: 0;
   padding: 0;
@@ -76,6 +78,27 @@
   &:focus,
   &:not(:disabled):hover,
   &.pretend-hover {
+    @content;
+  }
+}
+
+@mixin focus-style-none {
+  outline: none;
+}
+
+@mixin focus-style {
+  outline: none;
+  outline-offset: spacing.$size-line;
+
+  &:is(:focus-visible, :focus-within, .pretend-focus) {
+    outline: spacing.$size-line solid var(--post-focus-color);
+    border-radius: 4px;
+
+    @include high-contrast-mode() {
+      outline-color: Highlight;
+    }
+
+    // In case rules need to be slightly adjusted
     @content;
   }
 }
