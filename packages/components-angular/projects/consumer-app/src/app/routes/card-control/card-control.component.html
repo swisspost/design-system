@@ -1,0 +1,77 @@
+<h2>CardControl Forms</h2>
+
+<h3>Form Builder Form</h3>
+<form [formGroup]="formBuilderForm" (ngSubmit)="formBuilderFormOnSubmit($event)">
+  <fieldset class="mb-3">
+    <div class="row">
+      <div class="col-8">
+        <legend>Post Card Control Checkbox</legend>
+        <post-card-control
+          label="checked"
+          type="checkbox"
+          value="checked"
+          formControlName="checkbox"
+        ></post-card-control>
+      </div>
+
+      <div class="col-4">
+        <legend>Native Checkbox</legend>
+        <div class="form-check">
+          <input
+            id="checkbox"
+            class="form-check-input"
+            type="checkbox"
+            value="checked"
+            formControlName="nativeCheckbox"
+          />
+          <label for="checkbox" class="form-check-label">checkbox</label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <fieldset class="mb-3">
+    <div class="row">
+      <div class="col-8">
+        <legend>Post Card Control Radio Group</legend>
+        <ng-container *ngFor="let option of radioOptions; index as i">
+          <post-card-control
+            [label]="option"
+            type="radio"
+            name="radio"
+            [value]="option"
+            [attr.disabled]="i === 1 || i === 2 ? true : null"
+            formControlName="radio"
+          ></post-card-control>
+        </ng-container>
+      </div>
+
+      <div class="col-4">
+        <legend>Native Checkbox</legend>
+        <div *ngFor="let option of radioOptions; index as i" class="form-check">
+          <input
+            [id]="option"
+            class="form-check-input"
+            type="radio"
+            [value]="option"
+            [attr.disabled]="i === 1 || i === 2 ? true : null"
+            formControlName="nativeRadio"
+          />
+          <label [for]="option" class="form-check-label">{{ option }}</label>
+        </div>
+      </div>
+    </div>
+  </fieldset>
+
+  <p class="mb-3">Form Status: {{ formBuilderForm.status }}</p>
+
+  <div class="d-flex gap-3">
+    <button class="btn btn-secondary" type="reset">Reset</button>
+    <button class="btn btn-primary">Submit</button>
+  </div>
+</form>
+
+<div>
+  <h4>Output</h4>
+  <pre>{{ formBuilderFormValue }}</pre>
+</div>
