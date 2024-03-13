@@ -1,0 +1,89 @@
+import { Meta, Source } from '@storybook/blocks';
+import * as AngularStories from './angular.stories';
+import SampleIconsConfig from './sample-icons-config.sample.json?raw';
+import SampleWcAngularManually from './sample-web-components-angular-manually.component.ts?raw';
+import { packages } from '../../../shared/packages.data';
+import '../../../shared/tile/tile.component';
+import './angular.styles.scss';
+import { PackageType } from '../../../../types';
+
+<Meta of={AngularStories} />
+
+# Angular
+
+The Swiss Post Design System is compatible with Angular. Here are some tips, best practices and information to include components the easiest way.
+
+## Usage of Web Components
+
+In the design-system team, we believe that the [Web Components](https://developer.mozilla.org/en-US/docs/Web/API/Web_Components) technologies should be the source for almost all, if not all, future components.
+
+Currently, we are providing some of our packages with those technologies:
+<ul className="tile-wrapper" role="list">
+  {packages.filter(pkg => pkg.type === PackageType.Wc).map((p => (
+    <li key={p.name}>
+      <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel}>
+        <img src={p.img.src} alt={p.img.alt}/>
+        <span>{p.version}</span>
+      </ti-le>
+    </li>
+  )))}
+</ul>
+
+Even though, Angular support Web components technologies natively, they are less convenient to use than regular Angular components.
+To mitigate the problem, we are providing packages that add Angular wrapper around Custom Elements.
+
+<table className="table caption-top">
+  <caption>Why you should use or not use Angular wrapper package</caption>
+  <colgroup>
+    <col style={{width: '25%'}} />
+    <col style={{width: '25%'}} />
+  </colgroup>
+  <thead>
+    <tr>
+      <th>Advantages</th>
+      <th>Disadvantages</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <ul>
+          <li>Type-checking</li>
+          <li>Angular component wrappers will be detached from change detection, preventing unnecessary repaints of your web component</li>
+          <li>Web component events will be converted to RxJS observables to align with Angular's `@Output()` and will not emit across component boundaries.</li>
+          <li>Optionally, form control web components can be used as control value accessors with Angular's reactive forms or `[ngModel]`.</li>
+          <li>It is not necessary to include the Angular `CUSTOM_ELEMENTS_SCHEMA` in all modules consuming your Stencil components.</li>
+        </ul>
+      </td>
+      <td>
+        <ul>
+          <li>Package is linked to a (minimal) angular version</li>
+          <li>As the packages are generated automatically, the design-system team has less control</li>
+        </ul>
+      </td>
+    </tr>
+  </tbody>
+</table>
+Source: [Stencil Documentation](https://stenciljs.com/docs/angular)
+
+### Angular wrapper package
+
+For the components package, we provide the equivalent package called [components-angular](/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs) which contains a wrapper for Angular generated (almost) automatically.
+
+Note: at the moment, we do not provide any equivalent for internet-header package, so you'll need to add them manually.
+
+### Declare manually Web components
+
+In addition to define all or a specific components in `main.ts` (see Usage section of the package), you need to declare to Angular that you'll add Custom Elements to your application with the `schema` property in every module where you need to use the components.
+
+<Source code={SampleWcAngularManually} language="typescript" />
+
+## Serve the icons within your application
+
+Icons from the design-system are stored in the icons package. To used them, you need to serve the image files from your application.
+Angular allows you to copy assets into the build by changing the `angular.json` configuration like this:
+
+<Source code={SampleIconsConfig} language="json" />
+
+
+

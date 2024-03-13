@@ -25,13 +25,14 @@ const preview: Preview = {
 
           // Category - Getting Started
           'Getting Started',
-          ['Styles', 'Components', 'Components-Angular', 'Compatibility'],
+          ['Introduction', 'Angular', 'Compatibility', 'Packages'],
 
           // Category - Foundations
           'Foundations',
           [
             'Typography',
             'Color',
+            'Search for Icons',
             'Layout',
             ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
             'Elevation',
@@ -40,52 +41,6 @@ const preview: Preview = {
 
           // Category - Components
           'Components',
-          [
-            'Accordion',
-            'Alert',
-            'Badge',
-            'Blockquote',
-            'Button',
-            'Button Group',
-            'Cards',
-            'Carousel',
-            'Collapsible',
-            'Datepicker',
-            'Dropdown',
-            'Forms',
-            [
-              'Input',
-              'Select',
-              'Textarea',
-              'Checkbox',
-              'Radio button',
-              'Switch',
-              'Card-Control',
-              'Range',
-              'Input Group',
-            ],
-            'Heading',
-            'Icons',
-            ['Getting Started'],
-            'Internet Header',
-            ['Getting Started', 'Header'],
-            'Intranet Header',
-            'Modal',
-            'Notification overlay',
-            'Pagination',
-            'Popover',
-            'Progressbar',
-            'Spinner',
-            'Stepper',
-            'Subnavigation',
-            'Table',
-            'Tabs',
-            'Timepicker',
-            'Toast',
-            'Tooltip',
-            'Topic Teaser',
-            'Typeahead',
-          ],
 
           // Category - Patterns
           'Patterns',

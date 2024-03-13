@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-migrations",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Scripts to migrate an Angular application from one Design System version to another.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
@@ -32,9 +32,9 @@
     "copyfiles": "2.4.1",
     "rimraf": "5.0.5"
   },
-  "schematics": "./src/migrations.json",
+  "schematics": "./dist/migrations.json",
   "ng-update": {
-    "migrations": "./src/migrations.json"
+    "migrations": "./dist/migrations.json"
   },
   "keywords": [
     "schematics"
