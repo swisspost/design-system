@@ -1,4 +1,5 @@
 @use '../variables/spacing';
+@use '../variables/commons';
 
 @mixin reset-list() {
   margin: 0;
@@ -86,19 +87,23 @@
   outline: none;
 }
 
-@mixin focus-style {
-  outline: none;
-  outline-offset: spacing.$size-line;
-
-  &:is(:focus-visible, :focus-within, .pretend-focus) {
+@mixin focus-style($border-radius: commons.$border-radius, $vendor-prefix: '') {
+  &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
+    outline-offset: spacing.$size-line;
     outline: spacing.$size-line solid var(--post-focus-color);
-    border-radius: 4px;
+    border-radius: $border-radius;
 
     @include high-contrast-mode() {
       outline-color: Highlight;
     }
 
     // In case rules need to be slightly adjusted
+    @content;
+  }
+}
+
+@mixin focus-style-custom($vendor-prefix: '') {
+  &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
     @content;
   }
 }
