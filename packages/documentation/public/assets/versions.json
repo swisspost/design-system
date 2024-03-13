@@ -1,5 +1,18 @@
 [
   {
+    "title": "Version 7",
+    "version": "7.0.0",
+    "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
+    "url": "https://design-system.post.ch",
+    "dependencies": {
+      "@angular/core": "17.2.3",
+      "@ng-bootstrap/ng-bootstrap": "16.0.0",
+      "@swisspost/design-system-intranet-header": "5.0.9",
+      "@swisspost/design-system-styles": "6.6.2",
+      "bootstrap": "5.3.2"
+    }
+  },
+  {
     "title": "Version 6",
     "version": "6.6.1",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
