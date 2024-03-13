@@ -412,8 +412,4 @@ export class PostCardControl {
   formResetCallback() {
     this.reset();
   }
-
-  disconnectedCallback() {
-    // window.removeEventListener(this.GROUPEVENT, this.groupEventHandler);
-  }
 }
