@@ -1,13 +1,12 @@
 import { Component } from '@angular/core';
 import { environment } from './../../environments/environment';
-import { NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 interface MigrationAccordionGroupedCheckboxes {
-  general: Object;
-  bootstrap: Object;
-  ngbootstrap: Object;
-  jquery: Object;
-  post: Object;
+  general: { [key: string]: boolean };
+  bootstrap: { [key: string]: boolean };
+  ngbootstrap: { [key: string]: boolean };
+  jquery: { [key: string]: boolean };
+  post: { [key: string]: boolean };
 }
 
 @Component({
@@ -208,16 +207,18 @@ export class HomeComponent {
     return `${checkedValues.length} of ${checkboxValues.length} done`;
   }
 
-  public migrationAccordionChange($event: NgbPanelChangeEvent) {
-    if ($event.nextState) {
-      this.migrationAccordionActiveIds = Array.from(
-        new Set(this.migrationAccordionActiveIds.concat($event.panelId)),
-      );
-    } else {
-      this.migrationAccordionActiveIds = this.migrationAccordionActiveIds.filter(
-        id => id !== $event.panelId,
-      );
-    }
+  public migrationAccordionShown(panelId: string) {
+    this.migrationAccordionActiveIds = Array.from(
+      new Set(this.migrationAccordionActiveIds.concat(panelId)),
+    );
+
+    this.setLocaleStorage(this.migrationAccordionKey, this.migrationAccordionActiveIds);
+  }
+
+  public migrationAccordionHidden(panelId: string) {
+    this.migrationAccordionActiveIds = this.migrationAccordionActiveIds.filter(
+      id => id !== panelId,
+    );
 
     this.setLocaleStorage(this.migrationAccordionKey, this.migrationAccordionActiveIds);
   }
