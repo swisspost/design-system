@@ -40,7 +40,6 @@
             type="radio"
             name="radio"
             [value]="option"
-            [attr.disabled]="i === 1 || i === 2 ? true : null"
             formControlName="radio"
           ></post-card-control>
         </ng-container>
@@ -54,7 +53,6 @@
             class="form-check-input"
             type="radio"
             [value]="option"
-            [attr.disabled]="i === 1 || i === 2 ? true : null"
             formControlName="nativeRadio"
           />
           <label [for]="option" class="form-check-label">{{ option }}</label>
@@ -63,8 +61,6 @@
     </div>
   </fieldset>
 
-  <p class="mb-3">Form Status: {{ formBuilderForm.status }}</p>
-
   <div class="d-flex gap-3">
     <button class="btn btn-secondary" type="reset">Reset</button>
     <button class="btn btn-primary">Submit</button>
@@ -72,6 +68,11 @@
 </form>
 
 <div>
+  <h4>Form Status:</h4>
+  <p id="validity">{{ formBuilderForm.status }}</p>
+</div>
+
+<div>
   <h4>Output</h4>
-  <pre>{{ formBuilderFormValue }}</pre>
+  <pre id="output">{{ formBuilderFormValue }}</pre>
 </div>

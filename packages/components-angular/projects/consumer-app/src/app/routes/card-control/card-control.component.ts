@@ -10,7 +10,7 @@ import { PostComponentsModule } from 'components';
   imports: [CommonModule, ReactiveFormsModule, PostComponentsModule],
 })
 export class CardControlComponent {
-  public radioOptions = ['option_1', 'option_2', 'option_3', 'option_4'];
+  public radioOptions = ['option_1', 'option_2', 'option_3', 'option_4', 'option_5'];
 
   formBuilderForm = this.formBuilder.group({
     checkbox: [null, Validators.requiredTrue],
