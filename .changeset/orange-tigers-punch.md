@@ -1,5 +1,5 @@
 ---
-'@swisspost/design-system-components-angular': patch
+'@swisspost/design-system-components-angular': major
 ---
 
 Added support for Angular 17.
