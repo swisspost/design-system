@@ -174,9 +174,6 @@ describe('Accessibility', () => {
         'aria-valid-attr-value': {
           enabled: false,
         },
-        'color-contrast': {
-          enabled: false,
-        },
       },
     });
   });

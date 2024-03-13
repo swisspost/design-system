@@ -1,11 +1,13 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { choose } from 'lit/directives/choose.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { MetaComponent } from '../../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: '605c788d-3f75-4e6c-8498-be3d546843c2',
   title: 'Components/Cards/Card',
+  tags: ['package:HTML'],
   decorators: [clickBlocker, paddedContainer],
   parameters: {
     badges: [],

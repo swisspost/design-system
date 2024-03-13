@@ -1,11 +1,13 @@
 import { useArgs } from '@storybook/preview-api';
-import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { mapClasses } from '../../../utils';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',
   title: 'Components/Badge',
+  tags: ['package:HTML'],
   render: renderBadge,
   decorators: [externalControl],
   parameters: {
