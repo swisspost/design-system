@@ -515,7 +515,7 @@ export class PostInternetHeader {
               </If>
             </post-main-navigation>
             <div class="main-navigation-controls">
-              <div class="main-navigation-custom-content" hidden={this.isMainSlotEmpty}>
+              <div class={`main-navigation-custom-content${this.isMainSlotEmpty ? ' d-none' : ''}`}>
                 <slot name="main" onSlotchange={e => this.handleMainSlotChange(e)}></slot>
               </div>
               <If condition={this.search}>
