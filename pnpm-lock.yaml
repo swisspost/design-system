@@ -1101,7 +1101,7 @@ importers:
         specifier: 16.2.0
         version: 16.2.0(@angular/common@16.2.0)(@angular/core@16.2.0)(@angular/platform-browser@16.2.0)(rxjs@7.8.0)
       '@swisspost/design-system-styles':
-        specifier: workspace:6.6.2
+        specifier: workspace:6.6.4
         version: link:../styles/dist
       primeng:
         specifier: 17.8.0
@@ -2042,7 +2042,7 @@ packages:
       '@angular/core': 16.2.12
       rxjs: ^6.5.3 || ^7.4.0
     dependencies:
-      '@angular/core': 16.2.12(rxjs@7.8.1)(zone.js@0.13.0)
+      '@angular/core': 16.2.12(rxjs@7.8.1)(zone.js@0.14.3)
       rxjs: 7.8.1
       tslib: 2.6.2
     dev: false
