@@ -87,7 +87,7 @@ export namespace Components {
          */
         "disabled": boolean;
         /**
-          * A public method to reset the group controls `checked` state to `false`.
+          * A hidden public method to reset the group controls `checked` state to `false`.
          */
         "groupReset": () => Promise<void>;
         /**

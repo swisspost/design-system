@@ -135,7 +135,7 @@ export class PostCardControl {
   }
 
   /**
-   * A public method to reset the group controls `checked` state to `false`.
+   * A hidden public method to reset the group controls `checked` state to `false`.
    */
   @Method()
   async groupReset() {
@@ -207,25 +207,27 @@ export class PostCardControl {
 
   // https://googlechromelabs.github.io/howto-components/howto-radio-group/
   private controlKeyDownHandler(e: KeyboardEvent) {
-    e.stopPropagation();
-    if (Object.values(this.KEYCODES).includes(e.code)) e.preventDefault();
+    if (this.type === 'radio') {
+      e.stopPropagation();
+      if (Object.values(this.KEYCODES).includes(e.code)) e.preventDefault();
 
-    this.groupCollectMembers();
+      this.groupCollectMembers();
 
-    switch (e.code) {
-      case this.KEYCODES.UP:
-      case this.KEYCODES.LEFT:
-        this.groupSetChecked(this.groupGetPrev(), e);
-        break;
-      case this.KEYCODES.DOWN:
-      case this.KEYCODES.RIGHT:
-        this.groupSetChecked(this.groupGetNext(), e);
-        break;
-      case this.KEYCODES.SPACE:
-        this.groupSetChecked(this.control, e);
-        break;
-      default:
-        break;
+      switch (e.code) {
+        case this.KEYCODES.UP:
+        case this.KEYCODES.LEFT:
+          this.groupSetChecked(this.groupGetPrev(), e);
+          break;
+        case this.KEYCODES.DOWN:
+        case this.KEYCODES.RIGHT:
+          this.groupSetChecked(this.groupGetNext(), e);
+          break;
+        case this.KEYCODES.SPACE:
+          this.groupSetChecked(this.control, e);
+          break;
+        default:
+          break;
+      }
     }
   }
 

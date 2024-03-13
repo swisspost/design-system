@@ -26,7 +26,7 @@ const meta: Meta = {
     slotInvalidFeedback: '',
   },
   argTypes: {
-    type: {
+    'type': {
       control: {
         type: 'radio',
         labels: {
@@ -36,7 +36,7 @@ const meta: Meta = {
       },
       options: ['checkbox', 'radio'],
     },
-    validity: {
+    'validity': {
       control: {
         type: 'radio',
         labels: {
@@ -52,12 +52,17 @@ const meta: Meta = {
         },
       },
     },
-    slotIcon: {
+    'method-groupReset': {
       table: {
         disable: true,
       },
     },
-    slotInvalidFeedback: {
+    'slotIcon': {
+      table: {
+        disable: true,
+      },
+    },
+    'slotInvalidFeedback': {
       table: {
         disable: true,
       },
@@ -145,21 +150,68 @@ export const FormIntegration: Story = {
   parameters: {
     docs: {
       controls: {
-        include: ['Fieldset disabled', 'checked', 'disabled'],
+        include: ['disabled fieldset', 'value', 'disabled'],
       },
     },
   },
   args: {
-    fieldsetDisabled: false,
-    name: 'card-control',
+    name: 'checkbox',
+    checkboxFieldset: false,
+    radioValue: '',
+    radioDisabled: '',
+    radioFieldset: false,
   },
   argTypes: {
-    fieldsetDisabled: {
-      name: 'Fieldset disabled',
-      description:
-        'If a wrapping `fieldset` element is disabled, the `<card-control>` will behave like disabled as well.',
+    value: {
+      description: 'Set the value of the `checkbox` card.',
+      table: {
+        category: 'Checkbox',
+      },
+    },
+    disabled: {
+      description: 'Set the disabled state of the `checkbox` card.',
+      table: {
+        category: 'Checkbox',
+      },
+    },
+    checkboxFieldset: {
+      name: 'disabled fieldset',
+      description: 'Set the `disabled` attribute of the `fieldset` around the `checkbox` card.',
       control: {
         type: 'boolean',
+      },
+      table: {
+        category: 'Checkbox',
+      },
+    },
+    radioValue: {
+      name: 'value',
+      description: 'Set the value **prefix** of the `radio` cards.',
+      control: {
+        type: 'text',
+      },
+      table: {
+        category: 'Radio',
+      },
+    },
+    radioDisabled: {
+      name: 'disabled',
+      description: 'Set the disabled state of the **second** `radio` card.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Radio',
+      },
+    },
+    radioFieldset: {
+      name: 'disabled fieldset',
+      description: 'Set the `disabled` attribute of the `fieldset` around the `radio` cards.',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Radio',
       },
     },
   },
@@ -168,15 +220,29 @@ export const FormIntegration: Story = {
       ${story()}
       <div class="mt-3">
         <h4>FormData</h4>
+        <p class="fs-small">Submit or reset the form to see how the FormData will look like.</p>
         <pre id="AssociatedFormOutput" class="p-2 bg-dark rounded fs-tiny">{}</pre>
       </div>
     `,
   ],
   render: (args: Args, context: StoryContext) => {
     return html` <form id="AssociatedForm" @reset="${formHandler}" @submit="${formHandler}">
-      <fieldset .disabled=${args.fieldsetDisabled}>
+      <fieldset .disabled=${args.checkboxFieldset}>
         <legend>Legend</legend>
         ${Default.render?.(args, context)}
+      </fieldset>
+      <fieldset class="mt-3" .disabled=${args.radioFieldset}>
+        <legend>Legend</legend>
+        ${[1, 2, 3].map(
+          n =>
+            html`<post-card-control
+              label="Option ${n}"
+              type="radio"
+              name="radio"
+              value="${[args.radioValue, args.radioValue ? '_' : '', n.toString()].join('')}"
+              .disabled="${(n === 2 && args.radioDisabled) || nothing}"
+            ></post-card-control>`,
+        )}
       </fieldset>
       <div class="mt-3 d-flex gap-3 justify-content-end">
         <button type="reset" class="btn btn-link"><post-icon name="2042"></post-icon>Reset</button>
