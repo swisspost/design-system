@@ -1,12 +1,16 @@
-import { choiceCardMeta, choiceCardDefault, choiceCardGroup } from './choice-card';
+import { choiceCardDefault, choiceCardGroup, choiceCardMeta } from './choice-card';
+import { MetaComponent } from '../../../../../types';
 
-export default {
+const meta: MetaComponent = {
   ...choiceCardMeta,
   title: 'Components/Forms/Radio Button Card',
+  tags: ['package:HTML'],
   parameters: {
     badges: [],
   },
 };
+
+export default meta;
 
 export const Default = {
   render: choiceCardDefault,

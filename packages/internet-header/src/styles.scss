@@ -1,4 +1,5 @@
 @use '@swisspost/design-system-styles/basics';
+@use '@swisspost/design-system-styles/variables/type';
 
 body,
 h1,
@@ -7,7 +8,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Frutiger Neue for Post', system-ui, sans-serif !important;
+  font-family: type.$font-family-sans-serif !important;
 }
 
 // For imported auto-generated readme files into .mdx documentations
