@@ -10,11 +10,11 @@
 @use './../variables/components/forms';
 @use './../mixins/utilities';
 
+$webkit-track-height: 1px;
+$webkit-thumb-width: 33px;
+
 .form-range {
-  // https://codepen.io/thebabydino/pen/goYYrN
-  --post-range: calc(var(--post-max) - var(--post-min));
-  --post-ratio: calc((var(--post-val) - var(--post-min)) / var(--post-range));
-  --post-sx: calc(0.5 * 1.5em + var(--post-ratio) * (100% - 1.5em));
+  overflow-x: hidden;
 
   &::-moz-range-thumb {
     border-radius: 50%;
@@ -24,13 +24,26 @@
 
   &:not(:disabled, .disabled) {
     &::-webkit-slider-runnable-track {
-      background: linear-gradient(color.$black, color.$black) 0 / var(--post-sx) 100%;
-      background-repeat: no-repeat;
       background-color: color.$gray-20;
     }
 
     &::-moz-range-progress {
       background-color: color.$black;
+    }
+
+    &::-webkit-slider-thumb {
+      // Source: https://antvil.github.io/css-sos/sos/progress/
+      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw color.$black;
+      clip-path: polygon(
+        0 0,
+        100% 0,
+        100% 100%,
+        0 100%,
+        0 calc(50% + $webkit-track-height),
+        -100vw calc(50% + $webkit-track-height),
+        -100vw calc(50% - $webkit-track-height),
+        0 calc(50% - $webkit-track-height)
+      );
     }
   }
 
@@ -59,12 +72,11 @@
 
     &:not(:disabled, .disabled) {
       &::-webkit-slider-runnable-track {
-        background: linear-gradient(Highlight, Highlight) 0 / var(--post-sx) 100%;
-        background-repeat: no-repeat;
         background-color: ButtonBorder;
       }
 
       &::-webkit-slider-thumb {
+        box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw Highlight;
         background-color: ButtonFace;
         border-color: ButtonBorder;
       }
