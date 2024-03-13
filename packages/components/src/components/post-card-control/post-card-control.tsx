@@ -179,30 +179,25 @@ export class PostCardControl {
   }
 
   private cardClickHandler(e: Event) {
-    // trigger click on control to change it, if this was not the clicked element anyway
-    if (e.target !== this.control) {
-      e.stopPropagation();
-      this.control.click();
-    }
+    e.stopPropagation();
+
+    // if this was not the clicked element anyway, trigger click on control to change it
+    if (e.target !== this.control) this.control.click();
   }
 
   private controlClickHandler(e: Event) {
+    e.stopPropagation();
+
     // if control is disabled do nothing
     // else control value will fire a change event, which is handled in the controlChangeHandler method
-    if (this.disabled) {
-      e.preventDefault();
-      // this.change.emit({ state: this.checked, value: null });
-    }
+    if (this.disabled) e.preventDefault();
   }
 
   private controlChangeHandler(e: Event) {
-    // stop event from bubbling, because we will emit it manually
     e.stopPropagation();
-    // update group members
+
     this.groupCollectMembers();
-    // update checked state
     this.controlSetChecked(this.control.checked, e);
-    // update selected group member
     this.groupSetChecked(this.control, e);
   }
 
@@ -212,7 +207,9 @@ export class PostCardControl {
 
   // https://googlechromelabs.github.io/howto-components/howto-radio-group/
   private controlKeyDownHandler(e: KeyboardEvent) {
-    // update group members
+    e.stopPropagation();
+    if (Object.values(this.KEYCODES).includes(e.code)) e.preventDefault();
+
     this.groupCollectMembers();
 
     switch (e.code) {
@@ -295,10 +292,7 @@ export class PostCardControl {
       const newIsAriaDisabled = newChecked.hasAttribute('aria-disabled');
       const newIndex = this.group.members.findIndex(m => m === newChecked);
 
-      if (isKeyboardEvent) {
-        e.preventDefault();
-        newChecked.focus();
-      }
+      if (isKeyboardEvent) newChecked.focus();
 
       // if new is disabled, do not reset/set anything
       if (!newIsAriaDisabled) {

@@ -486,15 +486,18 @@ describe('Card-Control', () => {
       });
     });
 
-    it('should update surrounding form to not contain its value, when a disabled group member has been checked by keyboard', () => {
+    it('should not update the surrounding form value, when a disabled group member has been checked by keyboard', () => {
       cy.get('@card-control').eq(1).invoke('attr', 'disabled', true);
       cy.get('@wrapper').eq(1).should('have.class', 'is-disabled');
       cy.get('@input').eq(1).should('have.attr', 'aria-disabled');
 
+      let formValue = null;
+
       cy.get('@form').then($form => {
         cy.get('@input').each(($input, i) => {
+          if (i !== 1) formValue = i.toString();
           cy.wrap($input).type(' ');
-          cy.checkFormDataPropValue($form, 'CardControlGroup', i !== 1 ? i.toString() : null);
+          cy.checkFormDataPropValue($form, 'CardControlGroup', formValue);
         });
       });
     });
