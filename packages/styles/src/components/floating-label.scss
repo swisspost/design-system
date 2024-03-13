@@ -209,7 +209,6 @@
           width: calc(
             100% - (#{forms.$input-border-width * 2}) - #{forms.$form-floating-padding-x}
           );
-          height: forms.$form-floating-label-height;
         }
       }
     }

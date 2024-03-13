@@ -36,7 +36,7 @@
         <br />
         .pi-1000-warning &#123;
         <br />
-        &nbsp;&nbsp;@include post.pi(1000, "warning");
+        &nbsp;&nbsp;&#64;include post.pi(1000, "warning");
         <br />
         &#125;
       </code>
@@ -54,7 +54,7 @@
         <br />
         .pi-heart &#123;
         <br />
-        &nbsp;&nbsp;@include post.pi("2063", #FF0080);
+        &nbsp;&nbsp;&#64;include post.pi("2063", #FF0080);
         <br />
         &#125;
       </code>
@@ -68,13 +68,13 @@
     </div>
     <div class="col-4">
       <code class="sass">
-        @use "sass:map";
+        &#64;use "sass:map";
         <br />
         {{ cwfImport }}
         <br />
         .pi-heart-coral &#123;
         <br />
-        &nbsp;&nbsp;@include post.pi(2063, map.get(post.$background-colors, "coral"));
+        &nbsp;&nbsp;&#64;include post.pi(2063, map.get(post.$background-colors, "coral"));
         <br />
         &#125;
       </code>
@@ -101,7 +101,7 @@
         <code class="col-5 sass">
           {{ cwfImport }}
           <br />
-          .pi-1000-{{ color }} &#123; @include post.pi(1000, "{{ color }}"); &#125;
+          .pi-1000-{{ color }} &#123; &#64;include post.pi(1000, "{{ color }}"); &#125;
         </code>
       </div>
     </div>
@@ -111,11 +111,11 @@
       <code class="sass">
         {{ cwfImport }}
         <br />
-        @each $color, $value in post.$contextual-colors &#123;
+        &#64;each $color, $value in post.$contextual-colors &#123;
         <br />
         &nbsp;&nbsp;.pi-1000-#&#123;$color&#125; &#123;
         <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;@include post.pi(1000, $color);
+        &nbsp;&nbsp;&nbsp;&nbsp;&#64;include post.pi(1000, $color);
         <br />
         &nbsp;&nbsp;&#125;
         <br />
@@ -126,14 +126,14 @@
       Include the entire icon set in a specific color (Example for Post-Color "Nightblue"):
       <br />
       <code class="sass">
-        @use "sass:map";
+        &#64;use "sass:map";
         {{ cwfImport }}
         <br />
-        @each $name, $path in post.$svg-icon-map &#123;
+        &#64;each $name, $path in post.$svg-icon-map &#123;
         <br />
         &nbsp;&nbsp;.pi-#&#123;$name&#125; &#123;
         <br />
-        &nbsp;&nbsp;&nbsp;&nbsp;@include post.pi($name, map.get(post.$accent-colors, "nightblue"));
+        &nbsp;&nbsp;&nbsp;&nbsp;&#64;include post.pi($name, map.get(post.$accent-colors, "nightblue"));
         <br />
         &nbsp;&nbsp;&#125;
         <br />
