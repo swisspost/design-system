@@ -1,0 +1,12 @@
+@use '@swisspost/design-system-styles/components/button';
+
+.btn.figma-link {
+  align-self: center;
+  min-height: 1.6rem;
+
+   img{
+     width: 0.8rem;
+     height: 0.8rem;
+   }
+}
+

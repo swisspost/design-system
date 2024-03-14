@@ -52,6 +52,7 @@ const config: StorybookConfig = {
     '@geometricpanda/storybook-addon-badges',
     '@pxtrn/storybook-addon-docs-stencil',
     './addons/version-switcher/register',
+    './addons/figma-link/register',
   ],
   staticDirs: [
     {
