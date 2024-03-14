@@ -397,6 +397,7 @@ export class PostCardControl {
   }
 
   // https://stenciljs.com/docs/form-associated
+  /* eslint-disable @stencil-community/own-methods-must-be-private */
   formAssociatedCallback() {
     this.controlSetChecked(this.checked);
   }
@@ -412,4 +413,5 @@ export class PostCardControl {
   formResetCallback() {
     this.reset();
   }
+  /* eslint-enable @stencil-community/own-methods-must-be-private */
 }

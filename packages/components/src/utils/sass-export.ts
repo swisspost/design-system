@@ -1,22 +1,20 @@
 export function parse(scss: object) {
-  const output: { [key: string]: any } = {};
-
   return Object.entries(scss).reduce((object, [path, value]) => {
-    let temp: any = object;
+    let output = object;
 
-    path.split('_').forEach((key: string, index: number, values: string[]) => {
-      const isJsonArray = typeof value === 'string' && /^\[.*\]$/.test(value);
-      const parsedValue = isJsonArray ? JSON.parse(value) : value;
-      const v = index === values.length - 1 ? parsedValue : temp[key] || {};
+    path.split('_').forEach((key, i, values) => {
+      const pathKey = key as keyof typeof output;
+      const normalized = /^\[.*\]$/.test(value) ? JSON.parse(value) : value;
+      const pathValue = i >= values.length - 1 ? normalized : output[pathKey] || {};
 
-      temp[key] = v;
-      temp = temp[key];
+      output[pathKey] = pathValue as never;
+      output = output[pathKey];
     });
 
     return object;
-  }, output);
+  }, {});
 }
 
 export function formatAsMap(obj: object) {
-  return JSON.stringify(obj, null, 2).replace(/[{\[]/g, '(').replace(/[}\]]/g, ')');
+  return JSON.stringify(obj, null, 2).replace(/[{[]/g, '(').replace(/[}\]]/g, ')');
 }
