@@ -5,8 +5,8 @@ import { CardControlComponent } from './routes/card-control/card-control.compone
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'card-control', component: CardControlComponent },
+  { title: 'Home', path: 'home', component: HomeComponent },
+  { title: 'Card-Control', path: 'card-control', component: CardControlComponent },
 ];
 
 @NgModule({

@@ -1,11 +1,8 @@
 <header class="bg-dark">
   <nav class="container py-2">
     <ul class="d-flex flex-wrap row-gap-1 column-gap-3 m-0 list-unstyled">
-      <li>
-        <a routerLink="/home">Home</a>
-      </li>
-      <li>
-        <a routerLink="/card-control">Post Card-Control</a>
+      <li *ngFor="let route of navigationRoutes">
+        <a [routerLink]="route.path">{{ route.title }}</a>
       </li>
     </ul>
   </nav>
