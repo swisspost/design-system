@@ -9,11 +9,9 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'is-invalid': true,
 };
 
-const ARROW_KEYS = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'];
-
 const meta: MetaComponent = {
   id: '4c5a4537-d663-4d2b-9c49-17af95443696',
-  title: 'Components/Forms/Range',
+  title: 'Components/Forms/Slider',
   tags: ['package:HTML'],
   render: render,
   parameters: {
