@@ -10,7 +10,7 @@
 @use './../variables/components/forms';
 @use './../mixins/utilities';
 
-$webkit-track-height: 1px;
+$track-height: 4px;
 $webkit-progress-height-adjustment: 2px;
 $webkit-thumb-width: 33px;
 $webkit-thumb-focus-offset: 4px;
@@ -28,6 +28,29 @@ $webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
     cursor: pointer;
   }
 
+  &::-webkit-slider-thumb {
+    // Source: https://antvil.github.io/css-sos/sos/progress/
+    clip-path: polygon(
+        0 (-($webkit-thumb-focus-offset)),
+        $webkit-thumb-focus-width (-($webkit-thumb-focus-offset)),
+        $webkit-thumb-focus-width $webkit-thumb-focus-width,
+        0 $webkit-thumb-focus-width,
+        -($webkit-thumb-focus-offset) calc(50% + $webkit-progress-height-adjustment),
+        -100vw calc(50% + $webkit-progress-height-adjustment),
+        -100vw calc(50% - $webkit-progress-height-adjustment),
+        -($webkit-thumb-focus-offset) calc(50% - $webkit-progress-height-adjustment)
+    );
+  }
+
+  &::-webkit-slider-runnable-track {
+    height: $track-height;
+  }
+
+  &::-moz-range-track,
+  &::-moz-range-progress {
+    height: $track-height;
+  }
+
   &:not(:disabled, .disabled) {
     &::-webkit-slider-runnable-track {
       background-color: color.$gray-20;
@@ -38,20 +61,18 @@ $webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
     }
 
     &::-webkit-slider-thumb {
-      // Source: https://antvil.github.io/css-sos/sos/progress/
       box-shadow: calc(-100vw - $webkit-thumb-focus-width) 0 0 100vw color.$black;
-      clip-path: polygon(
-        0 (-($webkit-thumb-focus-offset)),
-        $webkit-thumb-focus-width (-($webkit-thumb-focus-offset)),
-        $webkit-thumb-focus-width $webkit-thumb-focus-width,
-        0 $webkit-thumb-focus-width,
-        -($webkit-thumb-focus-offset) calc(50% + $webkit-progress-height-adjustment),
-        -100vw calc(50% + $webkit-progress-height-adjustment),
-        -100vw calc(50% - $webkit-progress-height-adjustment),
-        -($webkit-thumb-focus-offset) calc(50% - $webkit-progress-height-adjustment)
-      );
     }
 
+    &:hover {
+      &::-webkit-slider-thumb {
+        border-width: 3px;
+      }
+
+      &::-moz-range-thumb {
+        border-width: 3px;
+      }
+    }
 
     @include utilities.focus-style(50%, '::-moz-range-thumb') {
       box-shadow: none; // Remove default style
@@ -64,10 +85,17 @@ $webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
   &.disabled {
     &::-webkit-slider-thumb {
       border-color: forms.$form-range-thumb-disabled-border-color;
+      border-style: dashed;
+      box-shadow: calc(-100vw - $webkit-thumb-focus-width) 0 0 100vw color.$gray-40;
     }
 
     &::-moz-range-thumb {
       border-color: forms.$form-range-thumb-disabled-border-color;
+      border-style: dashed;
+    }
+
+    &::-moz-range-progress {
+      background-color: color.$gray-40;
     }
   }
 
