@@ -232,11 +232,13 @@ export class PostCardControl {
   }
 
   private controlSetChecked(checked: boolean, e?: Event) {
+    if (!this.control) return;
+
     if (this.disabled) {
       this.internals.setFormValue(null);
     } else {
       this.control.checked = this.checked = checked;
-      this.internals.setFormValue(this.control.checked ? this.control.value : null);
+      this.internals.setFormValue(this.checked ? this.control.value : null);
 
       if (e) {
         const isCheckbox = this.type === 'checkbox';
@@ -340,8 +342,6 @@ export class PostCardControl {
     this.setHostContext();
 
     this.initialChecked = this.checked;
-    this.validateControlLabel();
-    this.validateControlType();
   }
 
   render() {
@@ -394,6 +394,11 @@ export class PostCardControl {
 
   componentDidRender() {
     this.groupCollectMembers();
+  }
+
+  componentDidLoad() {
+    this.validateControlLabel();
+    this.validateControlType();
   }
 
   // https://stenciljs.com/docs/form-associated
