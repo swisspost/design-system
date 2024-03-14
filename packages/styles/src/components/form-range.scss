@@ -11,10 +11,16 @@
 @use './../mixins/utilities';
 
 $webkit-track-height: 1px;
+$webkit-progress-height-adjustment: 2px;
 $webkit-thumb-width: 33px;
+$webkit-thumb-focus-offset: 4px;
+$webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
 
 .form-range {
-  overflow-x: hidden;
+  &::-webkit-slider-container {
+    overflow-x: clip;
+    padding-inline: 4px;
+  }
 
   &::-moz-range-thumb {
     border-radius: 50%;
@@ -33,18 +39,25 @@ $webkit-thumb-width: 33px;
 
     &::-webkit-slider-thumb {
       // Source: https://antvil.github.io/css-sos/sos/progress/
-      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw color.$black;
+      box-shadow: calc(-100vw - $webkit-thumb-focus-width) 0 0 100vw color.$black;
       clip-path: polygon(
-        0 0,
-        100% 0,
-        100% 100%,
-        0 100%,
-        0 calc(50% + $webkit-track-height),
-        -100vw calc(50% + $webkit-track-height),
-        -100vw calc(50% - $webkit-track-height),
-        0 calc(50% - $webkit-track-height)
+        0 (-($webkit-thumb-focus-offset)),
+        $webkit-thumb-focus-width (-($webkit-thumb-focus-offset)),
+        $webkit-thumb-focus-width $webkit-thumb-focus-width,
+        0 $webkit-thumb-focus-width,
+        -($webkit-thumb-focus-offset) calc(50% + $webkit-progress-height-adjustment),
+        -100vw calc(50% + $webkit-progress-height-adjustment),
+        -100vw calc(50% - $webkit-progress-height-adjustment),
+        -($webkit-thumb-focus-offset) calc(50% - $webkit-progress-height-adjustment)
       );
     }
+
+
+    @include utilities.focus-style(50%, '::-moz-range-thumb') {
+      box-shadow: none; // Remove default style
+    }
+
+    @include utilities.focus-style(50%, '::-webkit-slider-thumb');
   }
 
   &:disabled,
@@ -76,7 +89,7 @@ $webkit-thumb-width: 33px;
       }
 
       &::-webkit-slider-thumb {
-        box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw Highlight;
+        box-shadow: calc(-100vw - $webkit-thumb-focus-width) 0 0 100vw Highlight !important;
         background-color: ButtonFace;
         border-color: ButtonBorder;
       }
