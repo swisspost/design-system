@@ -4,9 +4,6 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 @Directive({
   /* eslint-disable-next-line @angular-eslint/directive-selector */
   selector: 'post-card-control[type="radio"]',
-  host: {
-    '(change)': 'handleChangeEvent($event.detail.value)',
-  },
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -31,6 +28,7 @@ export class PostCardControlValueAccessorDirective implements ControlValueAccess
       this.el.nativeElement.value != value ? false : value;
   }
 
+  @HostListener('change', ['$event.detail.value'])
   handleChangeEvent(value: any) {
     this.onChange(value);
   }
