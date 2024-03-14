@@ -31,14 +31,14 @@ $webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
   &::-webkit-slider-thumb {
     // Source: https://antvil.github.io/css-sos/sos/progress/
     clip-path: polygon(
-        0 (-($webkit-thumb-focus-offset)),
-        $webkit-thumb-focus-width (-($webkit-thumb-focus-offset)),
-        $webkit-thumb-focus-width $webkit-thumb-focus-width,
-        0 $webkit-thumb-focus-width,
-        -($webkit-thumb-focus-offset) calc(50% + $webkit-progress-height-adjustment),
-        -100vw calc(50% + $webkit-progress-height-adjustment),
-        -100vw calc(50% - $webkit-progress-height-adjustment),
-        -($webkit-thumb-focus-offset) calc(50% - $webkit-progress-height-adjustment)
+      0 (-($webkit-thumb-focus-offset)),
+      $webkit-thumb-focus-width (-($webkit-thumb-focus-offset)),
+      $webkit-thumb-focus-width $webkit-thumb-focus-width,
+      0 $webkit-thumb-focus-width,
+      -($webkit-thumb-focus-offset) calc(50% + $webkit-progress-height-adjustment),
+      -100vw calc(50% + $webkit-progress-height-adjustment),
+      -100vw calc(50% - $webkit-progress-height-adjustment),
+      -($webkit-thumb-focus-offset) calc(50% - $webkit-progress-height-adjustment)
     );
   }
 
