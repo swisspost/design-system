@@ -101,15 +101,6 @@
           border-color: Canvas;
         }
       }
-
-      &:hover,
-      &:focus {
-        &:checked::after {
-          @include utility-mx.high-contrast-mode {
-            // border-color: Highlight;
-          }
-        }
-      }
     }
 
     &[disabled],
