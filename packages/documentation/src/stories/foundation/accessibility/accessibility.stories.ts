@@ -1,6 +1,8 @@
 import { StoryObj } from '@storybook/web-components';
 import { MetaExtended } from '../../../../types';
 import { html } from 'lit';
+import { validateBadForm, addInputChangeListener } from './form-bad.example';
+import { validateForm } from './form-good.example';
 
 const meta: MetaExtended = {
   id: '46da78e8-e83b-4ca1-aaf6-bbc662efef14',
@@ -12,69 +14,7 @@ const meta: MetaExtended = {
 
 export default meta;
 
-function validateForm() {
-  const form = document.getElementById('myForm');
-  const requiredFields = form.querySelectorAll(
-    'input[required], select[required], textarea[required]',
-  );
-
-  let firstInvalidField = null;
-
-  requiredFields.forEach(field => {
-    if (field.type === 'checkbox' && !field.checked) {
-      field.classList.add('is-invalid');
-      if (firstInvalidField === null) {
-        firstInvalidField = field;
-      }
-    } else if (!field.value.trim()) {
-      field.classList.add('is-invalid');
-      if (firstInvalidField === null) {
-        firstInvalidField = field;
-      }
-    } else {
-      field.classList.remove('is-invalid');
-    }
-  });
-
-  if (firstInvalidField) {
-    firstInvalidField.scrollIntoView({ behavior: 'smooth' });
-  }
-}
-
-function validateBadForm() {
-  const form = document.getElementById('myBadForm');
-  const requiredFields = form.querySelectorAll(
-    'input[required], select[required], textarea[required]',
-  );
-  const submitButton = form.querySelector('button[type="submit"]');
-
-  let allFieldsFilled = true;
-
-  requiredFields.forEach(field => {
-    if (field.type === 'checkbox') {
-      if (!field.checked) {
-        allFieldsFilled = false;
-      }
-    } else if (!field.value.trim()) {
-      allFieldsFilled = false;
-    }
-  });
-
-  if (allFieldsFilled) {
-    submitButton.removeAttribute('disabled');
-  } else {
-    submitButton.setAttribute('disabled', 'disabled');
-  }
-}
-
-document.addEventListener('DOMContentLoaded', function () {
-  // Add event listeners to call validateForm() on input change
-  const form = document.getElementById('myBadForm');
-  const formInputs = form.querySelectorAll('input, select, textarea');
-  formInputs.forEach(input => {
-    input.addEventListener('input', validateBadForm);
-  });
-});
+addInputChangeListener();
 
 type Story = StoryObj;
 

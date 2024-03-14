@@ -3,6 +3,8 @@ import * as AccessibilityStories from './accessibility.stories';
 import liveRegionAtomicSample from './liveregion-atomic.sample.html?raw';
 import liveRegionGoodAngularSample from './liveregion-good-angular.sample.html?raw';
 import liveRegionBadAngularSample from './liveregion-bad-angular.sample.html?raw';
+import formBadSample from './form-bad.example.ts?raw';
+import formGoodSample from './form-good.example.ts?raw';
 
 <Meta of={AccessibilityStories} />
 
@@ -43,7 +45,7 @@ Disabled states of input fields or buttons pose many accessibility issues.
   </colgroup>
   <tbody>
     <tr>
-      <td colspan="2" class="fw-bold">Disabled button on forms with required fields</td>
+      <td colSpan="2" class="fw-bold">Disabled button on forms with required fields</td>
     </tr>
     <tr>
       <td>
@@ -60,11 +62,7 @@ Disabled states of input fields or buttons pose many accessibility issues.
       </td>
     </tr>
     <tr>
-      <td><Canvas of={AccessibilityStories.FormBadExample}/></td>
-      <td><Canvas of={AccessibilityStories.FormGoodExample}/></td>
-    </tr>
-    <tr>
-      <td colspan="2" class="fw-bold">Disabled button on form submit</td>
+      <td colSpan="2" class="fw-bold">Disabled button on form submit</td>
     </tr>
     <tr>
       <td>
@@ -79,7 +77,7 @@ Disabled states of input fields or buttons pose many accessibility issues.
       </td>
     </tr>
     <tr>
-      <td colspan="2" class="fw-bold">Disabled select options</td>
+      <td colSpan="2" class="fw-bold">Disabled select options</td>
     </tr>
     <tr>
       <td>
@@ -101,11 +99,22 @@ Disabled states of input fields or buttons pose many accessibility issues.
         </ul>
       </td>
     </tr>
+    <tr>
+      <td colSpan="2" class="fw-bold">Form bad example</td>
+    </tr>
+    <tr>
+      <td><Canvas of={AccessibilityStories.FormBadExample}/></td>
+      <td><div class="mt-4"><Source code={formBadSample} language="ts" /></div></td>
+    </tr>
+     <tr>
+      <td colSpan="2" class="fw-bold">Form good example</td>
+    </tr>
+    <tr>
+      <td><Canvas of={AccessibilityStories.FormGoodExample}/></td>
+      <td><div class="mt-4"><Source code={formGoodSample} language="ts" /></div></td>
+    </tr>
   </tbody>
 </table>
-
-TODO: write accessibility guide about disabled states on input, textarea, select, select-options,
-...
 
 ## Live region
 
