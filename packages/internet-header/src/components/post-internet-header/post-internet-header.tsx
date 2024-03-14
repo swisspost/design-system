@@ -453,7 +453,7 @@ export class PostInternetHeader {
       (this.login ?? !config.header.isLoginWidgetHidden) && config.header.loginWidgetOptions;
     const renderLanguageSwitch = config.header.navLang.length > 1;
 
-    const initialLogoScale = getLogoScale(this.host);
+    const initialLogoScale = renderMetaNavigation ? getLogoScale(this.host) : '1';
 
     return (
       <Host
