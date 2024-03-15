@@ -1,28 +1,16 @@
 import { Args, Meta, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
 import { html } from 'lit';
 
 const meta: Meta = {
   id: 'a536a61d-cac2-4f39-adbf-092bdd445ce5',
   title: 'Patterns/Error page',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
     layout: 'fullscreen',
   },
   render,
-  decorators: [
-    story => html`
-      <swisspost-internet-header project="test"></swisspost-internet-header>
-      <div class="container my-4">
-        <swisspost-internet-breadcrumbs hide-buttons></swisspost-internet-breadcrumbs>
-      </div>
-      ${story()}
-      <swisspost-internet-footer></swisspost-internet-footer>
-    `,
-  ],
 };
 
-function render(args: Args) {
+function render(_args: Args) {
   return html`
     <div class="bg-light error-container">
       <div class="container">
@@ -40,8 +28,14 @@ function render(args: Args) {
               page.
             </p>
             <div class="d-flex gap-3 mt-4">
-              <a class="btn btn-primary" href="/">Home page</a>
-              <a class="btn btn-secondary" href="https://www.post.ch/de/pages/suche#t=AllTab">
+              <a class="btn btn-primary" href="/" @click="${(e: Event) => e.preventDefault()}"
+                >Home page</a
+              >
+              <a
+                class="btn btn-secondary"
+                href="https://www.post.ch/de/pages/suche#t=AllTab"
+                @click="${(e: Event) => e.preventDefault()}"
+              >
                 Search
               </a>
             </div>
