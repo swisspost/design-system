@@ -1,7 +1,8 @@
-import type { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
+import { MetaExtended } from '../../../../../types';
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: 'cd70f48f-6308-4ec8-a8c6-982bd72c855c',
   title: 'Foundations/Layout/Columns',
   parameters: {

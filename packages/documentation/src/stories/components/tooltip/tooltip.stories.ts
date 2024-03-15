@@ -1,12 +1,14 @@
-import { Args, Meta, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { useArgs } from '@storybook/preview-api';
 import { ifDefined } from 'lit/directives/if-defined.js';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: 'cd684d90-e7a7-41a9-8923-b1b72ad9b384',
   title: 'Components/Tooltip',
+  tags: ['package:WebComponents'],
   component: 'post-tooltip',
   parameters: {
     badges: [],

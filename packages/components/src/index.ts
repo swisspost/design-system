@@ -8,6 +8,7 @@ export { PostCollapsible } from './components/post-collapsible/post-collapsible'
 export { PostIcon } from './components/post-icon/post-icon';
 export { PostPopover } from './components/post-popover/post-popover';
 export { PostPopovercontainer } from './components/post-popovercontainer/post-popovercontainer';
+export { PostRating } from './components/post-rating/post-rating';
 export { PostTabs } from './components/post-tabs/post-tabs';
 export { PostTabHeader } from './components/post-tab-header/post-tab-header';
 export { PostTabPanel } from './components/post-tab-panel/post-tab-panel';

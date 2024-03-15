@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 6.6.4
+
+### Patch Changes
+
+- Fixed color-contrast on post-tabs with dark background. (by [@imagoiq](https://github.com/imagoiq) with [#2753](https://github.com/swisspost/design-system/pull/2753))
+
 ## 6.6.3
 
 ### Patch Changes

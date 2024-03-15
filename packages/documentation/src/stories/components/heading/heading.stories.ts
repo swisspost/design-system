@@ -1,9 +1,11 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: '7ecd87f1-de96-4e39-a057-ba1798eb6959',
   title: 'Components/Heading',
+  tags: ['package:HTML'],
   parameters: {
     badges: [],
     design: {
