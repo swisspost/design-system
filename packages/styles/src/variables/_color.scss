@@ -40,14 +40,6 @@ $olive-bright: #aa9d2e;
 $aubergine-dark: #523178;
 $aubergine-bright: #7566a0;
 
-// Contextual colors (deprecated)
-$success: #2c911c;
-$success-text: #255e1c;
-$error: #a51728;
-$error-text: #8f0d1c;
-$warning: #f49e00;
-$info: #cce4ee;
-
 // Signal Colors
 $success-green: #2c871d; /* When value is changed, please changed as well the copied value in ../functions/_contrast.scss, @function light-or-dark()*/
 $error-red: #a51728;
@@ -55,6 +47,14 @@ $warning-orange: #f49e00;
 $success-background: #c0debb;
 $error-background: #ffdade;
 $warning-background: #fce2b2;
+
+// Contextual colors (deprecated)
+$success: $success-green;
+$success-text: #255e1c;
+$error: #a51728;
+$error-text: #8f0d1c;
+$warning: #f49e00;
+$info: #cce4ee;
 
 /**
  * Maps. Allow maps to have custom colors from the project
@@ -78,7 +78,7 @@ $contextual-colors: map.merge(
   $contextual-colors,
   (
     'info': $info,
-    'success': $success,
+    'success': $success-green,
     'warning': $warning,
     'danger': $error,
   )
