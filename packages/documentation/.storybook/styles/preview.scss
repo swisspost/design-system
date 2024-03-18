@@ -69,7 +69,7 @@
     }
 
     // General styles for content
-    a{
+    a {
       @include utilities.focus-style();
     }
   }
