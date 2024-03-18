@@ -16,9 +16,13 @@ const callUnblu = () => {
 };
 
 const LiveSupport = (props: { hours: string }) => (
-  <button class="hours btn btn-link" id="liveSupport" type="button" onClick={callUnblu}>
-    {stripHtml(props.hours)}
-  </button>
+  <button
+    class="hours btn btn-link"
+    id="liveSupport"
+    type="button"
+    onClick={callUnblu}
+    innerHTML={stripHtml(props.hours)}
+  ></button>
 );
 
 export const PostFooterBlockContact = (props: {
@@ -43,7 +47,7 @@ export const PostFooterBlockContact = (props: {
               {content.hours && isLiveSupport && <LiveSupport hours={content.hours} />}
               {content.hours && !isLiveSupport && (
                 // Some values arrive in the form of <p>8&mdash;12</p> and without replace and innerHTML, tags get rendered as text (project="klp" language="en" environment="int02")
-                <p class="hours">{stripHtml(content.hours)}</p>
+                <p class="hours" innerHTML={stripHtml(content.hours)}></p>
               )}
               {content.describe ? <p class="describe">{content.describe}</p> : null}
             </div>
