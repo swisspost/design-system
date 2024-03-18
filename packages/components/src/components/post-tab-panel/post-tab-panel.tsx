@@ -27,10 +27,8 @@ export class PostTabPanel {
 
   render() {
     return (
-      <Host data-version={version}>
-        <div class="tab-pane" id={this.panelId} role="tabpanel">
-          <slot />
-        </div>
+      <Host data-version={version} id={this.panelId} role="tabpanel">
+        <slot />
       </Host>
     );
   }

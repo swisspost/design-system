@@ -62,7 +62,7 @@
       </p>
       <div class="mt-3">
         <a
-          href="https://next.design-system.post.ch"
+          href="https://design-system.post.ch"
           rel="noopener"
           target="_blank"
           class="btn btn-primary"
@@ -314,7 +314,9 @@
                 appCopyToClipboard
                 class="d-block mt-1 p-3"
                 [languages]="['bash']"
-                highlight="npx ng update @swisspost/design-system-migrations --from=5 --to=6 --migrate-only"
+                highlight="npm install @swisspost/design-system-migrations
+npx ng update @swisspost/design-system-migrations --from=5 --to=6 --migrate-only --allow-dirty
+npm uninstall @swisspost/design-system-migrations"
               ></code>
             </li>
           </ol>
@@ -502,7 +504,9 @@
                 appCopyToClipboard
                 class="d-block mt-1 p-3"
                 [languages]="['bash']"
-                highlight="npx ng update @swisspost/design-system-migrations --from=4 --to=5 --migrate-only"
+                highlight="npm install @swisspost/design-system-migrations
+npx ng update @swisspost/design-system-migrations --from=4 --to=5 --migrate-only --allow-dirty
+npm uninstall @swisspost/design-system-migrations"
               ></code>
             </li>
           </ol>
