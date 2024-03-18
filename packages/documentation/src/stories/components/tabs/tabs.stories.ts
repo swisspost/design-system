@@ -75,7 +75,7 @@ export const Async: Story = {
           document.querySelectorAll('post-tab-header');
 
         const activeHeader: HTMLPostTabHeaderElement | undefined = Array.from(headers).find(
-          header => header.shadowRoot?.querySelector('.active'),
+          header => document.querySelectorAll('post-tab-header.active'),
         );
         activeHeader?.remove();
 

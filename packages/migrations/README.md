@@ -5,12 +5,12 @@ Scripts to migrate an Angular application from one Design System version to anot
 ## Usage
 
 The migration package is not intended to be installed as a dependency on your project.
-
-Use [NPX](https://docs.npmjs.com/cli/v8/commands/npx) to run the migration scripts,
-this way the package is installed temporarily while your project is being migrated to a new version of Design System:
+You can install it temporarily while migrating your project to a new version of Design System, then uninstall it directly:
 
 ```bash
-  npx ng update @swisspost/design-system-migrations --from=[currentVersion] --to=[targetedVersion] --migrate-only
+  npm install @swisspost/design-system-migrations
+  npx ng update @swisspost/design-system-migrations --from=[currentVersion] --to=[targetedVersion] --migrate-only --allow-dirty
+  npm uninstall @swisspost/design-system-migrations
 ```
 
 Be sure to update your application one major Design System version at a time as explained in our [migration guide](https://design-system.post.ch/).

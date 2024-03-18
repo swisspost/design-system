@@ -90,8 +90,10 @@ export class MigrationV56Component extends LitElement {
                       You should now be able to run the following command to apply all automatic
                       migrations to your application:
                       <code languages="['bash']">
+                        npm install @swisspost/design-system-migrations<br />
                         npx ng update @swisspost/design-system-migrations --from=5 --to=6
-                        --migrate-only
+                        --migrate-only --allow-dirty<br />
+                        npm uninstall @swisspost/design-system-migrations
                       </code>
                     </li>
                   </ol>
