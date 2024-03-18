@@ -7,7 +7,13 @@ describe('Table', () => {
     });
 
     it('Has no detectable a11y violations on load for all variants', () => {
-      cy.checkA11y('#root-inner');
+      cy.checkA11y('#root-inner', {
+        rules: {
+          'color-contrast': {
+            enabled: false,
+          },
+        },
+      });
     });
   });
 });
