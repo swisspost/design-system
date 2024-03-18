@@ -1,85 +1,37 @@
 @forward './../variables/options';
 
-@use './../lic/bootstrap-license';
-@use './../themes/bootstrap/core' as *;
-@use './../themes/bootstrap/badge' as bb;
-
+@use './../mixins/color' as color-mx;
 @use './../variables/components/badge';
-@use './../variables/components/forms';
-@use './../variables/components/form-check';
-@use './../variables/color';
-@use './../mixins/utilities';
-@use './../mixins/forms' as forms-mx;
-@use './../mixins/badge' as badge-mx;
-@use './../placeholders/badge' as badge-ph;
-@use './../functions/icons' as icons-fn;
 
 .badge {
-  @extend %badge;
-}
+  --post-badge-height: #{badge.$badge-height};
+  --post-badge-padding-x: #{badge.$badge-padding-x};
+  --post-badge-border-width: #{badge.$badge-border-width};
+  --post-badge-font-size: #{badge.$badge-font-size};
 
-a,
-button {
-  &.badge {
-    @include forms-mx.focus-outline;
-    background-color: transparent;
-    text-decoration: none;
-    transition: badge.$badge-transition;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: content-box;
+  height: var(--post-badge-height);
+  min-width: calc(var(--post-badge-height) - 2 * var(--post-badge-padding-x));
+  padding-inline: var(--post-badge-padding-x);
+  border: var(--post-badge-border-width) solid badge.$badge-border-color;
+  border-radius: badge.$badge-border-radius;
+  line-height: badge.$badge-line-height;
+  font-size: var(--post-badge-font-size);
+  @include color-mx.colored-background(badge.$badge-bg);
 
-    @include utilities.not-disabled-focus-hover {
-      @include badge-mx.badge-hover-state;
-    }
-
-    &:active,
-    &.active {
-      @include badge-mx.badge-active-state;
-    }
+  &:empty {
+    --post-badge-height: #{badge.$badge-height-empty};
+    --post-badge-padding-x: #{badge.$badge-padding-x-empty};
+    --post-badge-border-width: #{badge.$badge-border-width-empty};
   }
 }
 
-.badge-check {
-  &-label {
-    @extend %badge;
-    @include forms-mx.focus-outline;
-    transition: badge.$badge-transition;
-    cursor: pointer;
-  }
-
-  &-input {
-    @include utilities.visuallyhidden;
-  }
-
-  &-input:focus-visible + &-label {
-    outline-offset: forms.$input-focus-outline-thickness;
-    outline: forms.$input-focus-outline-thickness solid var(--post-contrast-color);
-  }
-
-  &-input:not(:checked) + &-label:hover {
-    @include badge-mx.badge-hover-state;
-  }
-
-  &-input:checked + &-label {
-    @include badge-mx.badge-active-state;
-  }
-}
-
-@include utilities.high-contrast-mode() {
-  .badge-check {
-    &-input:focus-visible + &-label {
-      border-color: Highlight;
-      outline-color: Highlight;
-    }
-
-    &-input:checked + &-label {
-      &:hover {
-        @include badge-mx.badge-hover-state;
-      }
-    }
-  }
-
-  button.badge,
-  a.badge,
-  .badge-check-label {
-    transition: none;
-  }
+.badge-sm {
+  --post-badge-height: #{badge.$badge-height-sm};
+  --post-badge-padding-x: #{badge.$badge-padding-x-sm};
+  --post-badge-border-width: #{badge.$badge-border-width-sm};
+  --post-badge-font-size: #{badge.$badge-font-size-sm};
 }
