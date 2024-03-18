@@ -13,4 +13,6 @@ $enable-hover-media-query: false;
 $enable-grid-classes: true;
 
 // Prefix for :root CSS variables
-$prefix: 'bs-' !default;
+// TODO: this variable will change from "$variable-prefix" to "$prefix" in bootstrap@5.2
+// https://getbootstrap.com/docs/5.2/customize/css-variables/#prefix
+$variable-prefix: 'bs-' !default;
