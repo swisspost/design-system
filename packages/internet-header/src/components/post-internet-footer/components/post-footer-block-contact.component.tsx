@@ -42,7 +42,7 @@ export const PostFooterBlockContact = (props: {
               {content.text ? <p class="text">{content.text}</p> : null}
               {content.hours && isLiveSupport && <LiveSupport hours={content.hours} />}
               {content.hours && !isLiveSupport && (
-                // Some values arrive in the form of <p>8&emdash;12</p> and without replace and innerHTML, tags get rendered as text (project="klp" language="en" environment="int02")
+                // Some values arrive in the form of <p>8&mdash;12</p> and without replace and innerHTML, tags get rendered as text (project="klp" language="en" environment="int02")
                 <p class="hours">{stripHtml(content.hours)}</p>
               )}
               {content.describe ? <p class="describe">{content.describe}</p> : null}

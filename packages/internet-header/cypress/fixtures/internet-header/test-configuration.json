@@ -1240,16 +1240,6 @@
             {
               "address": null,
               "describe": null,
-              "hours": "<p>8&emdash;12</p>",
-              "links": null,
-              "name": "days",
-              "number": null,
-              "text": "Bank holidays",
-              "title": null
-            },
-            {
-              "address": null,
-              "describe": null,
               "hours": "Bildschirm teilen",
               "links": null,
               "name": "days",
