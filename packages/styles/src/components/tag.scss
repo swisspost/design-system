@@ -1,0 +1,87 @@
+@use 'sass:map';
+@forward './../variables/options';
+@use './../variables/color';
+@use './../variables/components/tag';
+@use './../functions/contrast' as contrastFn;
+
+// style `.tag` only if is not descendant of a `<pre>` element
+// as `<pre><div class="tag">...</div><pre>` is usually used by code highlight tools
+
+// `.tag` selector can be removed (leave only `.tag:where(:has(:not(pre)))`)as soon as Firefox ESR v128 is released and rolled out
+// https://whattrainisitnow.com/calendar/
+.tag,
+.tag:where(:has(:not(pre))) {
+  $bg: map.get(tag.$tag-backgrounds, 'gray');
+  $fg: if(contrastFn.light-or-dark($bg) == 'light', color.$black, color.$white);
+
+  --post-tag-bg: #{$bg};
+  --post-tag-fg: #{$fg};
+
+  display: inline-flex;
+  align-items: center;
+  gap: tag.$tag-gap;
+  padding: tag.$tag-padding-y tag.$tag-padding-x;
+  max-width: tag.$tag-max-width;
+  background-color: var(--post-tag-bg);
+  border: tag.$tag-border-width solid transparent;
+  border-radius: tag.$tag-border-radius;
+  font-size: tag.$tag-font-size;
+  line-height: tag.$tag-line-height;
+  white-space: nowrap;
+  color: var(--post-tag-fg);
+
+  post-icon {
+    flex: 0 0 auto;
+    width: tag.$tag-icon-size;
+    height: tag.$tag-icon-size;
+  }
+
+  .tag-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    svg,
+    img {
+      display: inline-block;
+      height: tag.$tag-icon-size !important;
+      vertical-align: text-top;
+    }
+  }
+
+  &.tag-sm {
+    line-height: tag.$tag-sm-line-height;
+
+    .tag-icon {
+      width: tag.$tag-sm-icon-size;
+      height: tag.$tag-sm-icon-size;
+    }
+  }
+
+  @each $key, $bg in tag.$tag-backgrounds {
+    $fg: if(contrastFn.light-or-dark($bg) == 'light', color.$black, color.$white);
+
+    &.tag-#{$key} {
+      --post-tag-bg: #{$bg};
+      --post-tag-fg: #{$fg};
+    }
+  }
+
+  &.tag-white {
+    border-color: var(--post-contrast-color);
+  }
+
+  // Can be removed completely as soon as Firefox ESR v128 is released and rolled out
+  // https://whattrainisitnow.com/calendar/
+  pre & {
+    display: inline;
+    padding: initial;
+    max-width: initial;
+    background: initial;
+    border: initial;
+    border-radius: initial;
+    font-size: inherit;
+    line-height: inherit;
+    white-space: unset;
+  }
+}
