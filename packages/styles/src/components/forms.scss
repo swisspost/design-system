@@ -46,18 +46,18 @@ select.form-control-rg:not([size]):not([multiple]) {
 
 .form-control {
   position: relative;
+  @include utilities.focus-style();
 
-  &:disabled {
+  &[disabled] {
     color: forms.$input-disabled-color;
     border: forms.$input-disabled-boarder-style;
-
-    & + .form-text {
+    & ~ .form-text {
       color: forms.$input-disabled-color;
     }
   }
 
   &[readonly]:not(:disabled) {
-    border-color: forms.$input-border-color;
+    border-color: forms.$input-color;
     background-color: forms.$input-bg;
   }
 
@@ -174,7 +174,7 @@ select.form-control-rg:not([size]):not([multiple]) {
     font-size: type.$font-size-14;
   }
 
-  &:has(+ .form-control:disabled) {
+  &:has(+ .form-control[disabled]) {
     color: forms.$input-disabled-color;
   }
 }
