@@ -44,9 +44,6 @@ You can stack toasts by wrapping them in a `.toast-container`, which will vertic
 
 ## Accessibility
 
-Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an `aria-live` region. Changes to live regions (such as injecting/updating a toast component) are automatically announced by screen readers without the need to move the user’s focus or interrupt in any way. Additionally, include `aria-atomic="true"` to ensure that the entire toast is always announced as a single (atomic) unit, rather than just announcing what changed (which could lead to problems if you only update part of the toast’s content, or if you show the same toast content later in time). If the information is important in the process, e.g. for a list of errors in a form, then use the
-[alert component](/?path=/docs/components-alert--docs) instead of the toast.
+Toasts are intended to be small interruptions to your visitors or users, so to help those with screen readers and similar assistive technologies, you should wrap your toasts in an Live region.
 
-Note that the live region needs to be present in the markup before the toast is generated or updated. If you dynamically generate both at the same time and inject them into the page, they will generally not be announced by assistive technologies.
-
-You also need to adapt the `role` and `aria-live` level depending on the content. If it’s an important message like an error, use `role="alert" aria-live="assertive"`, otherwise use `role="status" aria-live="polite"` attributes.
+See [How to implement a Live region](/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#live-region)

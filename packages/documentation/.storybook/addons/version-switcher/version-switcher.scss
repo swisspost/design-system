@@ -1,0 +1,52 @@
+@use '../../../node_modules/@swisspost/design-system-styles/variables/type';
+@use '../../../node_modules/@swisspost/design-system-styles/variables/spacing';
+
+.version-switcher-loading {
+  display: flex;
+  align-items: center;
+  font-size: type.$font-size-14;
+}
+
+.version-switcher-dropdown {
+  display: flex;
+  flex-flow: column nowrap;
+  background-color: var(--post-light);
+  font-size: type.$font-size-14;
+
+  .version-switcher-dropdown-item {
+    padding: spacing.$size-mini spacing.$size-small-regular;
+    text-decoration: none;
+    color: inherit;
+
+    & + .version-switcher-dropdown-item {
+      border-top: 1px solid var(--post-black);
+    }
+
+    &:hover {
+      background-color: var(--post-gray-10);
+    }
+  }
+}
+
+.version-switcher-dependencies {
+  margin-top: spacing.$size-micro;
+  font-size: type.$font-size-12;
+  border-spacing: 0;
+
+  td {
+    width: 12ch;
+    & + td {
+      padding: spacing.$size-micro;
+    }
+  }
+
+  span {
+    display: flex;
+    align-items: center;
+    gap: spacing.$size-micro;
+
+    img {
+      max-width: 1.5em;
+    }
+  }
+}

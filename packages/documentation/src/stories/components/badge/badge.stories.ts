@@ -1,15 +1,17 @@
 import { useArgs } from '@storybook/preview-api';
-import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
+  id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',
   title: 'Components/Badge',
+  tags: ['package:HTML'],
   render: renderBadge,
   decorators: [externalControl],
   parameters: {
-    badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     text: 'Insigno',
@@ -120,20 +122,14 @@ function externalControl(story: any, { args }: StoryContext) {
     </a>
   `;
 
-  return html`
-    ${args.dismissed ? button : nothing} ${story()}
-  `;
+  return html` ${args.dismissed ? button : nothing} ${story()} `;
 }
 
 // RENDERER
 function getDefaultContent(args: Args) {
   return html`
     <span>${args.text}</span>
-    ${args.nestedBadge
-      ? html`
-          <span class="badge">10</span>
-        `
-      : nothing}
+    ${args.nestedBadge ? html` <span class="badge">10</span> ` : nothing}
   `;
 }
 
@@ -178,10 +174,7 @@ function getDismissButton(updateArgs: (args: Args) => void) {
 function renderBadge(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  if (args.dismissed)
-    return html`
-      ${nothing}
-    `;
+  if (args.dismissed) return html` ${nothing} `;
 
   const isCheckable = args.interactionType === 'checkable';
   const isDismissible = args.interactionType === 'dismissible';

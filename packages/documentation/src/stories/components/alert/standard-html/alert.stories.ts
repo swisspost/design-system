@@ -1,17 +1,19 @@
 // @ts-ignore
 import { useArgs } from '@storybook/preview-api';
-import { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getAlertClasses } from './getAlertClasses';
-import { BADGE } from '../../../../../.storybook/constants';
+import { MetaComponent } from '../../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
+  id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
   title: 'Components/Alert',
+  tags: ['package:HTML'],
   render: renderAlert,
   decorators: [externalControl],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
+    badges: [],
     controls: {
       exclude: ['Title', 'Content'],
     },
@@ -63,7 +65,7 @@ const meta: Meta = {
         'The icon to display in the alert. By default, the icon depends on the alert type.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
-        '<a href="?path=/docs/components-icons-getting-started--docs">set up the icons in your project</a>' +
+        '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
         '.</span>',
       if: {
         arg: 'noIcon',
@@ -122,9 +124,7 @@ function externalControl(story: StoryFn, { args, context }: StoryContext) {
     </a>
   `;
 
-  return html`
-    ${args.fixed ? button : nothing} ${story(args, context)}
-  `;
+  return html` ${args.fixed ? button : nothing} ${story(args, context)} `;
 }
 
 // RENDERER
@@ -133,11 +133,7 @@ function renderAlert(args: Args) {
   const classes = getAlertClasses(args);
 
   const content = html`
-    ${args.title
-      ? html`
-          <h4 class="alert-heading">${args.title}</h4>
-        `
-      : nothing}
+    ${args.title ? html` <h4 class="alert-heading">${args.title}</h4> ` : nothing}
     ${unsafeHTML(args.content)}
   `;
 
@@ -145,19 +141,11 @@ function renderAlert(args: Args) {
     <div class="${classes}" role="alert">
       ${
         /* Alert Icon */
-        args.icon
-          ? html`
-              <post-icon name=${args.icon}></post-icon>
-            `
-          : nothing
+        args.icon ? html` <post-icon name=${args.icon}></post-icon> ` : nothing
       }
       ${
         /* Alert Content */
-        args.action
-          ? html`
-              <div class="alert-content">${content}</div>
-            `
-          : content
+        args.action ? html` <div class="alert-content">${content}</div> ` : content
       }
       ${
         /* Alert Action Buttons */

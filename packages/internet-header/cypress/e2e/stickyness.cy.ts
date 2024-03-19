@@ -1,8 +1,9 @@
 import { prepare } from '../support/prepare-story';
+import { HEADER } from './shared/variables';
 
 describe('stickyness', () => {
   beforeEach(() => {
-    prepare('Components/Internet Header/Header', 'Default');
+    prepare(HEADER, 'Default');
   });
 
   it('should not show header when scrolling when stickyness is none', () => {

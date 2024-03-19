@@ -1,5 +1,17 @@
 # @swisspost/design-system-migrations
 
+## 1.0.2
+
+### Patch Changes
+
+- Fixed paths to the migration entry point. (by [@alizedebray](https://github.com/alizedebray) with [#2757](https://github.com/swisspost/design-system/pull/2757))
+
+## 1.0.1
+
+### Patch Changes
+
+- Fixed missing migration files. (by [@alizedebray](https://github.com/alizedebray) with [#2712](https://github.com/swisspost/design-system/pull/2712))
+
 ## 1.0.0
 
 ### Major Changes

@@ -10,7 +10,7 @@
 
 %btn-close {
   @include button-mx.reset-button;
-  @include forms-mx.focus-outline;
+  @include utilities-mx.focus-style();
   border-radius: close.$close-border-radius;
   color: close.$close-color;
   transition: close.$close-transition;
@@ -35,5 +35,9 @@
   @include utilities-mx.high-contrast-mode() {
     color: CanvasText;
     forced-color-adjust: none;
+
+    @include utilities-mx.not-disabled-focus-hover() {
+      color: Highlight;
+    }
   }
 }

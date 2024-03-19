@@ -1,12 +1,14 @@
 import { useArgs } from '@storybook/preview-api';
-import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { BADGE } from '../../../../.storybook/constants';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
+  id: '825b65c9-7eaf-4e0a-9e20-5f5ed406726d',
   title: 'Components/Toast',
+  tags: ['package:HTML'],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     title: 'Titulum',
@@ -85,7 +87,7 @@ const meta: Meta = {
         'Defines a custom icon.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'To use a custom icon, you must first ' +
-        '<a href="?path=/docs/components-icons-getting-started--docs">set up the icons in your project</a>' +
+        '<a href="/?path=/docs/40ed323b-9c1a-42ab-91ed-15f97f214608--docs">set up the icons in your project</a>' +
         '.</span>',
       if: {
         arg: 'noIcon',
@@ -219,7 +221,11 @@ const meta: Meta = {
     autoClose: {
       name: 'Closing Delay (in sec.)',
       description:
-        'When position set to `fixed`, defines how long the component remains visible before it is automatically closed (in seconds). Set to `0` to disable the auto close.',
+        'Defines how long the component remains visible before it is automatically closed (in seconds). Set to `0` to disable the auto close.',
+      if: {
+        arg: 'position',
+        eq: 'fixed',
+      },
       control: {
         type: 'number',
       },
@@ -283,9 +289,7 @@ const meta: Meta = {
           </div>
         `;
       } else {
-        return html`
-          ${story()}
-        `;
+        return html` ${story()} `;
       }
     },
   ],
@@ -346,17 +350,13 @@ function killAutoHideTimeout(timeoutStore: ReturnType<typeof setTimeout>[], args
 
 function getToastIcon(args: Args) {
   return !args.noIcon && args.icon !== 'null'
-    ? html`
-        <post-icon aria-hidden="true" name="${args.icon}"></post-icon>
-      `
+    ? html` <post-icon aria-hidden="true" name="${args.icon}"></post-icon> `
     : null;
 }
 
 function getDismissButton(args: Args, isFixed: boolean) {
   return args.dismissible || isFixed
-    ? html`
-        <button class="toast-close-button" aria-label="close"></button>
-      `
+    ? html` <button class="toast-close-button" aria-label="close"></button> `
     : null;
 }
 
@@ -400,19 +400,13 @@ function render(args: Args, context: StoryContext) {
     >
       ${toastIcon} ${dismissButton}
       <div class="toast-title">${args.title}</div>
-      ${args.content
-        ? html`
-            <div class="toast-message">${args.content}</div>
-          `
-        : null}
+      ${args.content ? html` <div class="toast-message">${args.content}</div> ` : null}
     </div>
   `;
 
   let wrappedContent;
   if (args.stacked) {
-    wrappedContent = html`
-      ${component} ${component}
-    `;
+    wrappedContent = html` ${component} ${component} `;
   } else if (isFixed) {
     if (args.show) {
       createAutoHideTimeout(timeoutStore, args, updateArgs);

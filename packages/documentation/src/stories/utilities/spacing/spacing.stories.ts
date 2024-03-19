@@ -1,9 +1,9 @@
-import type { Args, Meta, StoryObj, StoryFn, StoryContext } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
 import './spacing.styles.scss';
 import { parse } from '../../../utils/sass-export';
 import scss from './spacing.module.scss';
+import { MetaExtended } from '../../../../types';
 
 export const SCSS_VARIABLES = parse(scss);
 
@@ -19,10 +19,11 @@ const positionOptions = {
   s: 'To the left',
 };
 
-const meta: Meta = {
+const meta: MetaExtended = {
+  id: 'facaacfd-18f1-49b4-80f1-a96680730fa0',
   title: 'Utilities/Spacing',
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     marginSize: 'regular',
@@ -143,9 +144,7 @@ export const Default: Story = {
 
 export const responsiveExample: Story = {
   render: (args: Args) => {
-    return html`
-      <div class="h-bigger-giant w-bigger-giant p-regular p-lg-big"></div>
-    `;
+    return html` <div class="h-bigger-giant w-bigger-giant p-regular p-lg-big"></div> `;
   },
   decorators: [
     // everything in here will be visible in the example, but only the content coming from the `story` function will be shown in the code preview
@@ -163,9 +162,7 @@ export const responsiveExample: Story = {
 
 export const automaticResponsiveExample: Story = {
   render: (args: Args) => {
-    return html`
-      <div class="h-bigger-giant w-bigger-giant p-large-r"></div>
-    `;
+    return html` <div class="h-bigger-giant w-bigger-giant p-large-r"></div> `;
   },
   decorators: [
     (story: StoryFn, { args, context }: StoryContext) => html`

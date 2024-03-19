@@ -1,10 +1,11 @@
-import { Meta, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../../../.storybook/constants';
+import { StoryObj } from '@storybook/web-components';
+import { MetaExtended } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaExtended = {
+  id: 'e869afc1-3c50-4c20-a495-3d846f7a759e',
   title: 'Foundations/Color',
   parameters: {
-    badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
+    badges: [],
   },
 };
 

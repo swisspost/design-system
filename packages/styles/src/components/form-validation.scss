@@ -23,8 +23,8 @@
   font-size: form-validation.$form-feedback-font-size;
 
   @include utilities-mx.high-contrast-mode() {
-    color: HighlightText !important;
-    background-color: Highlight !important;
+    color: MarkText !important;
+    background-color: Mark !important;
     forced-color-adjust: none;
   }
 }
@@ -57,7 +57,6 @@
   .form-control {
     @include b.form-validation-state-selector($state) {
       padding-right: b.$input-height-inner;
-      background-image: b.escape-svg($icon);
       background-repeat: no-repeat;
       background-position: right b.$input-height-inner-quarter center;
       background-size: form-validation.$form-feedback-icon-size;
@@ -105,6 +104,14 @@
     border-color: form-validation.$form-feedback-invalid-color;
     background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid);
 
+    @include utilities-mx.high-contrast-mode() {
+      background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-dark);
+
+      @media (prefers-color-scheme: light) {
+        background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-light);
+      }
+    }
+
     &:focus {
       border-color: form-validation.$form-feedback-invalid-color;
       box-shadow: form-validation.$form-feedback-invalid-box-shadow;
@@ -114,6 +121,14 @@
   &.is-valid {
     border-color: var(--post-success-green);
     background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
+
+    @include utilities-mx.high-contrast-mode() {
+      background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-dark);
+
+      @media (prefers-color-scheme: light) {
+        background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-light);
+      }
+    }
 
     &:focus {
       border-color: form-validation.$form-feedback-valid-color;

@@ -1,13 +1,17 @@
-import { BADGE } from '../../../../../.storybook/constants';
-import { choiceCardMeta, choiceCardDefault, choiceCardGroup } from './choice-card';
+import { choiceCardDefault, choiceCardGroup, choiceCardMeta } from './choice-card';
+import { MetaComponent } from '../../../../../types';
 
-export default {
+const meta: MetaComponent = {
   ...choiceCardMeta,
+  id: '9637bbae-0533-4522-89d4-c2732431c69b',
   title: 'Components/Forms/Checkbox Card',
+  tags: ['package:HTML'],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
 };
+
+export default meta;
 
 export const Default = {
   render: choiceCardDefault,

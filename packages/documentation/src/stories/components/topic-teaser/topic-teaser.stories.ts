@@ -1,12 +1,14 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html, TemplateResult } from 'lit';
-import { BADGE } from '../../../../.storybook/constants';
 import { mapClasses } from '../../../utils';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
+  id: '2ffc7a53-c1aa-4ff5-b1e4-fa638591399c',
   title: 'Components/Topic Teaser',
+  tags: ['package:HTML'],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
     layout: 'fullscreen',
   },
   args: {
@@ -174,13 +176,7 @@ export const Default: Story = {
         <div class="container">
           <div class="topic-teaser-container ${args.backgroundColor}">
             <div class="row pt-huge-r">
-              ${args.alignment === 'null'
-                ? html`
-                    ${content}${image}
-                  `
-                : html`
-                    ${image}${content}
-                  `}
+              ${args.alignment === 'null' ? html` ${content}${image} ` : html` ${image}${content} `}
             </div>
           </div>
         </div>

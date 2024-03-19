@@ -1,14 +1,4 @@
-import { getVersion } from '../utils/version';
-
-interface IPackage {
-  name: string;
-  href: string;
-  img: {
-    src: string;
-    alt: string;
-  };
-  version: string;
-}
+import { DEPENDENCIES, getVersion } from '../utils/version';
 
 interface ITechnology {
   name: string;
@@ -18,63 +8,6 @@ interface ITechnology {
     alt: string;
   };
 }
-
-export const packages: IPackage[] = [
-  {
-    name: 'Styles',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/styles',
-    img: {
-      src: '/assets/images/packages/styles.svg',
-      alt: 'design-system-styles package logo',
-    },
-    version: `v${getVersion('@swisspost/design-system-styles')}`,
-  },
-  {
-    name: 'Components',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/components',
-    img: {
-      src: '/assets/images/packages/components.svg',
-      alt: 'design-system-components package Logo',
-    },
-    version: `v${getVersion('@swisspost/design-system-components')}`,
-  },
-  {
-    name: 'Components Angular',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/components-angular',
-    img: {
-      src: '/assets/images/packages/components-angular.svg',
-      alt: 'design-system-components-angular package Logo',
-    },
-    version: `v${getVersion('@swisspost/design-system-components-angular')}`,
-  },
-  {
-    name: 'Internet-Header',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/internet-header',
-    img: {
-      src: '/assets/images/packages/internet-header.svg',
-      alt: 'internet-header package Logo',
-    },
-    version: `v${getVersion('@swisspost/internet-header')}`,
-  },
-  {
-    name: 'Intranet-Header',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/intranet-header-workspace/projects/intranet-header',
-    img: {
-      src: '/assets/images/packages/intranet-header.svg',
-      alt: 'design-system-intranet-header package Logo',
-    },
-    version: `v${getVersion('@swisspost/design-system-intranet-header')}`,
-  },
-  {
-    name: 'Icons',
-    href: 'https://github.com/swisspost/design-system/tree/main/packages/icons',
-    img: {
-      src: '/assets/images/packages/icons.svg',
-      alt: 'design-system-icons package Logo',
-    },
-    version: `v${getVersion('@swisspost/design-system-icons')}`,
-  },
-];
 
 export const technologies: ITechnology[] = [
   {
@@ -119,7 +52,7 @@ export const technologies: ITechnology[] = [
   },
   {
     name: 'Bootstrap',
-    href: `https://getbootstrap.com/docs/${getVersion('bootstrap', 'Mm')}`,
+    href: `https://getbootstrap.com/docs/${getVersion(DEPENDENCIES['bootstrap'], 'Mm')}`,
     img: {
       src: '/assets/images/technologies/logo-bootstrap.svg',
       alt: 'Bootstrap Logo',

@@ -43,6 +43,57 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 | `pnpm header:start`               | starts the stencil compiler for the header                                                   |
 | `pnpm icons:start`                | starts the http server for debugging downloaded icons                                        |
 
+### Definition of Done for a Story
+
+#### Component docs
+
+- Short introduction
+- Canvas for showcasing
+- Controls for the showcase
+- Variants if applicable (e.g. group of component or small example in context)
+- Instructions for installation
+
+#### Controls
+
+- Possibility to showcase and test all variants of the component. This enables re-usage of the docs programmatically for visual regression testing.
+- Accessibility hints for relevant controls like disabled state or hidden labels
+
+#### Testing
+
+- Cross browser testing of the docs (official Post supported browsers -> https://github.com/swisspost/design-system/blob/main/packages/styles/.browserslistrc)
+- Testing the High Contrast mode with light and dark theme (and cross browser)
+- Approval by UX for the story
+- Screen reader testing (at least nvda+win)
+
+#### Accessibility
+
+- `aria-hidden="true"` or `span.visually-hidden` labels for all icons
+
+#### Docs
+
+- Add the `id` property in the meta of each story file. The property should contain an UUID (feel free to use your favorite tool)
+- No react related attributes in code snippets (e.g. className, htmlFor, key, etc.)
+- No nested `<p>` tags (beware of .lead and .alert)
+- When using LinkTo use both the `kind` and `story` attributes
+- `div.hide-col-default` wrapper for controls on CSS only component docs
+- Add the `sourceState="shown"` attribute to the first canvas if the code is not too long (less than 8 lines)
+
+#### Naming convention
+
+- Docs file: `[component].docs.mdx`
+- Story file: `[component].stories.ts`
+- Demo story file: `[component].demo.stories.tsx`
+- Snapshot story file: `[component].snapshot.stories.ts`
+- Style file `[component].styles.scss`
+- SCSS export file `[component].module.scss`
+- Custom mdx helper `blocks [component].blocks.tsx`
+- Sample file: `[component]-[samplename].sample.`
+
+#### General Coding Rules
+
+- Use already existing utilities instead of custom solutions.
+  For example use the `mapClasses` utility function instead of `[*].filter(c => c && c !== 'null').join(' ')`.
+
 ### Testing
 
 For easy test runs, the following commands are available (not all packages might have all commands available).

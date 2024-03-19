@@ -1,11 +1,13 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
-import { BADGE } from '../../../../.storybook/constants';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
+  id: '7ecd87f1-de96-4e39-a057-ba1798eb6959',
   title: 'Components/Heading',
+  tags: ['package:HTML'],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=6424-29869&mode=design&t=OK8meBHjpJvBhwZI-4',
@@ -16,6 +18,7 @@ const meta: Meta = {
     level: 'h1',
     showSubtitle: false,
     subtitle: 'Subheading',
+    override: 'none',
   },
   argTypes: {
     title: {
@@ -62,6 +65,18 @@ const meta: Meta = {
         category: 'General',
       },
     },
+    override: {
+      name: 'Override',
+      description:
+        'Sometimes the document heading structure requires you to use a heading tag that should look like another in order to maintain a consistency. In those cases you can use the heading helper classes `.h1`  through `.h6`.',
+      control: {
+        type: 'select',
+      },
+      options: ['none', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6'],
+      table: {
+        category: 'Override',
+      },
+    },
   },
 };
 
@@ -81,7 +96,9 @@ export const Default: Story = {
       : args.title;
 
     return html`
-      <${tagName}>${content}</${tagName}>
+      <${tagName} ${
+      args.override !== 'none' && args.override ? unsafeStatic(`class=${args.override}`) : ''
+    }>${content}</${tagName}>
     `;
   },
 };

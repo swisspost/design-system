@@ -1,15 +1,17 @@
-import { Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { BADGE } from '../../../../../.storybook/constants';
 import { spreadArgs } from '../../../../utils';
+import { MetaComponent } from '../../../../../types';
 
-const meta: Meta<HTMLPostAlertElement> = {
-  title: 'Components/Post Alert',
+const meta: MetaComponent<HTMLPostAlertElement> = {
+  id: '8fd36823-966e-46a8-8432-a4439f6e208f',
+  title: 'Components/Alert',
+  tags: ['package:WebComponents', 'redirect:105e67d8-31e9-4d0b-87ff-685aba31fd4c'],
   component: 'post-alert',
   render: renderAlert,
   decorators: [externalControl],
   parameters: {
-    badges: [BADGE.NEEDS_REVISION, BADGE.SINCE_V1],
+    badges: [],
   },
   args: {
     innerHTML: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
@@ -107,9 +109,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
 
 // RENDERER
 function renderAlert(args: Partial<HTMLPostAlertElement>) {
-  return html`
-    <post-alert ${spreadArgs(args)}></post-alert>
-  `;
+  return html` <post-alert ${spreadArgs(args)}></post-alert> `;
 }
 
 // STORIES

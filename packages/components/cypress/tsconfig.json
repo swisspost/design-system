@@ -2,7 +2,13 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "noEmit": true,
-    "types": ["../src/components", "cypress", "cypress-storybook/cypress", "@percy/cypress"]
+    "types": [
+      "../src/components",
+      "cypress",
+      "cypress-storybook/cypress",
+      "@percy/cypress",
+      "cypress-axe"
+    ]
   },
   "include": ["./**/*.ts", "./**/*.tsx"],
   "exclude": []

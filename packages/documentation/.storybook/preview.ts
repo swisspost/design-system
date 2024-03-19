@@ -4,7 +4,7 @@ import { format } from 'prettier';
 import DocsLayout from './blocks/layout';
 import { badgesConfig, openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
-import './cypress-storybook/client';
+import './addons/cypress-storybook/client';
 
 import './styles/preview.scss';
 
@@ -22,55 +22,38 @@ const preview: Preview = {
         method: 'alphabetical',
         order: [
           'Home',
+
+          // Category - Getting Started
           'Getting Started',
-          ['Styles', 'Components', 'Components-Angular', 'Compatibility'],
+          ['Introduction', 'Angular', 'Compatibility', 'Packages'],
+
+          // Category - Foundations
           'Foundations',
           [
             'Typography',
             'Color',
+            'Search for Icons',
             'Layout',
             ['Breakpoints', 'Containers', 'Grid', 'Columns', 'TODOS'],
             'Elevation',
             'Accessibility',
           ],
+
+          // Category - Components
           'Components',
-          [
-            'Accordion',
-            'Alert',
-            'Badge',
-            'Blockquote',
-            'Button',
-            'Button Group',
-            'Cards',
-            'Carousel',
-            'Collapsible',
-            'Datepicker',
-            'Dropdown',
-            'Forms',
-            'Heading',
-            'Icons',
-            ['Getting Started'],
-            'Internet Header',
-            ['Getting Started', 'Header'],
-            'Intranet Header',
-            'Modal',
-            'Notification overlay',
-            'Pagination',
-            'Popover',
-            'Progressbar',
-            'Stepper',
-            'Table',
-            'Tabs',
-            'Timepicker',
-            'Toast',
-            'Tooltip',
-            'Topic Teaser',
-            'Typeahead',
-          ],
+
+          // Category - Patterns
           'Patterns',
+          ['Metadata', 'Forms'],
+
+          // Category - Utilities
           'Utilities',
+
+          // Category - Misc
           'Misc',
           ['Migration Guide', 'Changelog', 'Versions'],
+
+          // Category - Snapshots (hidden)
           'Snapshots',
         ],
       },

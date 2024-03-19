@@ -1,11 +1,12 @@
-import type { Meta, StoryObj } from '@storybook/web-components';
+import type { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { BADGE } from '../../../../.storybook/constants';
+import { MetaExtended } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaExtended = {
+  id: '60852fac-a861-4415-8276-bd38d68653bb',
   title: 'Utilities/Background',
   parameters: {
-    badges: [BADGE.TODO],
+    badges: [],
   },
 };
 

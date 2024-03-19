@@ -4,13 +4,12 @@ import * as IntranetHeaderStories from './intranet-header.stories';
 import SampleUse from './intranet-header-use.sample?raw';
 import SampleNavigationBar from './intranet-header-navigation-bar.sample.html?raw';
 import SampleSideNavigation from './intranet-header-side-navigation.sample.html?raw';
+import SampleSideUserMenuDropdown from './intranet-header-user-menu-dropdown.sample.html?raw';
 import SamplePostweb from './intranet-header-postweb.sample.html?raw';
 
 <Meta of={IntranetHeaderStories} />
 
-# @swisspost/design-system-intranet-header
-
-[![npm version](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header.svg)](https://badge.fury.io/js/@swisspost%2Fdesign-system-intranet-header)
+# Intranet-header
 
 <div className="alert alert-info alert-md">
   <h2 className="alert-heading">Angular only component</h2>
@@ -34,7 +33,7 @@ The Header Angular component for internal usage.
 
 ## Installation
 
-<Source code={`npm install @swisspost/design-system-intranet-header`} language="bash" />
+See <a href="/?path=/docs/7068be42-1a20-4a34-9e79-7fb7f9f2940f--docs">Intranet-header package page</a>
 
 ## Usage
 
@@ -89,10 +88,16 @@ The Header Angular component for internal usage.
     <Source code={SampleNavigationBar} language="html" />
   </PostTabPanel>
 
+  <PostTabHeader slot="tabs" panel="headerWithCustomUserMenu">Header with a custom user menu</PostTabHeader>
+  <PostTabPanel name="headerWithCustomUserMenu">
+    <Source code={SampleSideUserMenuDropdown} language="html" />
+  </PostTabPanel>
+
   <PostTabHeader slot="tabs" panel="headerSideNavigation">Header with a side navigation</PostTabHeader>
   <PostTabPanel name="headerSideNavigation">
     <Source code={SampleSideNavigation} language="html" />
   </PostTabPanel>
+
   <PostTabHeader slot="tabs" panel="headerPostweb">"Postweb" intranet header</PostTabHeader>
   <PostTabPanel name="headerPostweb">
     <Source code={SamplePostweb} language="html" />

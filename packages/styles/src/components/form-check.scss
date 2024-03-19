@@ -6,12 +6,15 @@
 @use '../variables/animation';
 @use '../variables/components/form-check';
 @use '../mixins/icons' as icons-mx;
+@use '../mixins/utilities' as utility-mx;
 
 .form-check {
   display: flex;
   flex-wrap: wrap;
   row-gap: form-check.$form-check-row-gap;
   margin-bottom: form-check.$form-check-margin-bottom;
+
+  @include utility-mx.focus-style();
 
   &-inline {
     display: inline-flex;
@@ -37,6 +40,7 @@
   }
 
   &-input {
+    @include utility-mx.focus-style-none();
     display: inline-flex;
     flex: 0 auto;
     appearance: none;
@@ -45,12 +49,6 @@
     width: form-check.$form-check-input-size;
     border: form-check.$form-check-input-border-width solid
       rgba(var(--post-contrast-color-rgb), 0.8);
-
-    &:focus {
-      outline: none;
-      border-color: currentColor;
-      box-shadow: form-check.$form-check-input-focus-box-shadow;
-    }
 
     &::after {
       content: '';
@@ -152,6 +150,24 @@
       }
     }
 
+    @include utility-mx.high-contrast-mode {
+      transition: none;
+      border: form-check.$form-check-input-border-width solid CanvasText;
+
+      &:checked {
+        background-color: SelectedItem;
+      }
+
+      &::after,
+      &:checked::after {
+        max-width: calc(
+          #{form-check.$form-switch-height} - #{2 * form-check.$form-check-input-border-width}
+        );
+        border-color: Canvas;
+        background-color: CanvasText;
+      }
+    }
+
     &[disabled] {
       background: form-check.$form-switch-disabled-bg;
 
@@ -163,6 +179,16 @@
 
   &:hover > .form-check-input:not([disabled]) {
     background-color: rgba(var(--post-contrast-color-rgb), 0.1);
+
+    @include utility-mx.high-contrast-mode {
+      border-color: Highlight;
+
+      &:checked,
+      &::after,
+      &:checked::after {
+        background-color: Highlight;
+      }
+    }
   }
 
   .form-check-label {

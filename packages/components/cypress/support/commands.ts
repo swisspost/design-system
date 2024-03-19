@@ -48,17 +48,31 @@ export const isInViewport = function (_chai: Chai.ChaiStatic) {
 
 chai.use(isInViewport);
 
-Cypress.Commands.add('getComponent', (component: string, story = 'default') => {
-  cy.visit(`/iframe.html?id=components-${component}--${story}`);
+Cypress.Commands.add('getComponent', (component: string, id: string, story = 'default') => {
+  cy.visit(`/iframe.html?id=${id}--${story}`);
 
   const alias = component.replace(/^post-/, '');
   cy.get(`post-${alias}`, { timeout: 30000 }).as(alias);
+
+  cy.injectAxe();
 });
 
-Cypress.Commands.add('checkAriaExpanded', (controlledElementSelector: string, isExpanded: 'true' | 'false') => {
-  cy.get(controlledElementSelector)
-    .invoke('attr', 'id')
-    .then(id => {
-      cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);
-    });
+Cypress.Commands.add('getSnapshots', (story: string) => {
+  cy.visit(`/iframe.html?id=snapshots--${story}`);
+
+  const alias = story.replace(/^post-/, '');
+  cy.get(`post-${alias}.hydrated`, { timeout: 30000 }).as(alias);
+
+  cy.injectAxe();
 });
+
+Cypress.Commands.add(
+  'checkAriaExpanded',
+  (controlledElementSelector: string, isExpanded: 'true' | 'false') => {
+    cy.get(controlledElementSelector)
+      .invoke('attr', 'id')
+      .then(id => {
+        cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);
+      });
+  },
+);

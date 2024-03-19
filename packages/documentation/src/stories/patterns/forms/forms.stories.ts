@@ -1,7 +1,9 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { MetaExtended } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaExtended = {
+  id: 'd83829b2-7de2-48d2-be64-07a80c9caef3',
   title: 'Patterns/Forms',
   parameters: {
     badges: [],

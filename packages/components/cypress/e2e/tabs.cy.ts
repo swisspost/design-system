@@ -1,7 +1,9 @@
+const TABS_ID = 'bb1291ca-4dbb-450c-a15f-596836d9f39e';
+
 describe('tabs', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('tabs');
+      cy.getComponent('tabs', TABS_ID);
       cy.get('post-tab-header').as('headers');
     });
 
@@ -14,10 +16,8 @@ describe('tabs', () => {
     });
 
     it('should only show the first tab header as active', () => {
-      cy.get('@headers').each(($header, index) => {
-        cy.wrap($header)
-          .find('.active')
-          .should(index === 0 ? 'exist' : 'not.exist');
+      cy.get('post-tab-header.active').each(($header, index) => {
+        cy.wrap($header).should(index === 0 ? 'exist' : 'not.exist');
       });
     });
 
@@ -35,8 +35,8 @@ describe('tabs', () => {
     it('should activate a clicked tab header and deactivate the tab header that was previously activated', () => {
       cy.get('@headers').last().click();
 
-      cy.get('@headers').first().find('.active').should('not.exist');
-      cy.get('@headers').last().find('.active').should('exist');
+      cy.get('@headers').first().should('not.have.class', 'active');
+      cy.get('@headers').last().should('have.class', 'active');
     });
 
     it('should show the panel associated with a clicked tab header and hide the panel that was previously shown', () => {
@@ -58,7 +58,7 @@ describe('tabs', () => {
 
   describe('active panel', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', 'active-panel');
+      cy.getComponent('tabs', TABS_ID, 'active-panel');
       cy.get('post-tab-header').as('headers');
       cy.get('post-tab-panel:visible').as('panel');
     });
@@ -80,9 +80,9 @@ describe('tabs', () => {
             cy.wrap($header)
               .invoke('attr', 'panel')
               .then(panel => {
-                cy.wrap($header)
-                  .find('.active')
-                  .should(panel === activePanel ? 'exist' : 'not.exist');
+                cy.wrap($header.filter('.active')).should(
+                  panel === activePanel ? 'exist' : 'not.exist',
+                );
               });
           });
         });
@@ -91,7 +91,7 @@ describe('tabs', () => {
 
   describe('async', () => {
     beforeEach(() => {
-      cy.getComponent('tabs', 'async');
+      cy.getComponent('tabs', TABS_ID, 'async');
       cy.get('post-tab-header').as('headers');
     });
 
@@ -119,8 +119,8 @@ describe('tabs', () => {
       cy.get('post-tab-header').as('headers');
       cy.get('@headers').last().click();
 
-      cy.get('@headers').first().find('.active').should('not.exist');
-      cy.get('@headers').last().find('.active').should('exist');
+      cy.get('@headers').first().should('not.have.class', 'active');
+      cy.get('@headers').last().should('have.class', 'active');
     });
 
     it('should display the tab panel associated with the newly added tab after clicking on it', () => {
@@ -161,5 +161,12 @@ describe('tabs', () => {
         cy.get('post-tab-panel:visible').should('exist');
       });
     });
+  });
+});
+
+describe('Accessibility', () => {
+  it('Has no detectable a11y violations on load for all variants', () => {
+    cy.getSnapshots('tabs');
+    cy.checkA11y('#root-inner');
   });
 });

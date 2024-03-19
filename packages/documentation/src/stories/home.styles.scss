@@ -1,5 +1,10 @@
 @use 'sass:map';
 @use '@swisspost/design-system-styles/core.scss' as post;
+@use '@swisspost/design-system-styles/mixins/utilities';
+
+#storybook-docs{
+  overflow-x:hidden;
+}
 
 .bg-fullwidth {
   position: relative;
@@ -24,100 +29,16 @@
   }
 }
 
-$tile-size: 120px;
-$tile-rg-size: 100px;
-
 .tile-wrapper {
   display: flex;
   flex-wrap: wrap;
+  padding:0;
+  list-style-type: none;
   justify-content: center;
   gap: post.$size-big;
 
   @include post.media-breakpoint-down(rg) {
     gap: post.$size-regular;
-  }
-}
-
-.tile {
-  display: flex;
-  flex-direction: column;
-  width: $tile-size;
-  height: $tile-size;
-  background-color: post.$white;
-  border-radius: post.$size-regular;
-  box-shadow: 0 2px 5px 0 rgba(post.$aubergine-dark, 0.3);
-  text-decoration: none;
-
-  .tile--title {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex: 0 0 auto;
-    padding: 0 post.$size-micro;
-    height: calc(#{post.$size-mini * 2} + 2.2em);
-    background-color: post.$yellow;
-    border-top-left-radius: inherit;
-    border-top-right-radius: inherit;
-    font-size: $tile-size * 0.1;
-    font-weight: post.$font-weight-bold;
-    line-height: 1.1;
-    box-shadow: 0 2px 0 1px rgba(post.$yellow, 0.5);
-
-    ~ .tile--icon {
-      img {
-        max-height: 50px;
-      }
-    }
-  }
-
-  .tile--icon {
-    flex: 0 1 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: post.$size-micro;
-    border-bottom-left-radius: inherit;
-    border-bottom-right-radius: inherit;
-
-    img {
-      max-height: 50px;
-    }
-
-    span {
-      font-size: 0.6875em;
-      color: post.$gray-600;
-    }
-  }
-
-  &[href] {
-    transition: transform 150ms ease-out;
-
-    &:hover {
-      transform: scale(1.1);
-    }
-  }
-
-  @include post.media-breakpoint-down(rg) {
-    width: $tile-rg-size;
-    height: $tile-rg-size;
-
-    .tile--title {
-      height: calc(#{post.$size-mini * 1.5} + 2.2em);
-      font-size: $tile-rg-size * 0.1;
-
-      ~ .tile--icon {
-        img {
-          max-height: $tile-rg-size * 0.4;
-        }
-      }
-    }
-
-    .tile--icon {
-      img {
-        max-height: $tile-rg-size * 0.5;
-      }
-    }
   }
 }
 

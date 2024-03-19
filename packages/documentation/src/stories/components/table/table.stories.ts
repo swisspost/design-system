@@ -1,9 +1,12 @@
-import type { Args, Meta, StoryObj } from '@storybook/web-components';
+import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { mapClasses } from '../../../utils';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
+  id: '81799516-470c-446b-a049-54946b6ccfca',
   title: 'Components/Table',
+  tags: ['package:HTML'],
   render: renderTable,
   parameters: {},
   args: {
@@ -131,7 +134,9 @@ function renderTable(args: Args) {
         </tr>
       </thead>
 
-      <tbody>${args.content}</tbody>
+      <tbody>
+        ${args.content}
+      </tbody>
     </table>
   `;
 }

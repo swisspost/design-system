@@ -1,15 +1,17 @@
 import { useArgs } from '@storybook/preview-api';
-import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { BADGE } from '../../../../../.storybook/constants';
 import { mapClasses } from '../../../../utils';
+import { MetaComponent } from '../../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
+  id: 'e6ecc86f-d148-413b-b796-614a89da54be',
   title: 'Components/Forms/Checkbox',
+  tags: ['package:HTML'],
   render: renderCheckbox,
   parameters: {
-    badges: [BADGE.NEEDS_REVISION],
+    badges: [],
   },
   args: {
     hiddenLegend: false,
@@ -59,7 +61,7 @@ const meta: Meta = {
         'If `true`, the checkbox label is set via an `aria-label` attribute and is therefore not visible.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'Shown or hidden, a label must always be defined.<br/>' +
-        'More details in our <a href="/?path=/docs/foundations-accessibility--docs">accessibility docs</a>.' +
+        'More details in our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs">accessibility docs</a>.' +
         '</span>',
       control: {
         type: 'boolean',
@@ -105,7 +107,7 @@ const meta: Meta = {
         'If `true`, makes the checkbox appear inactive and disables its functionality.' +
         '<span className="mt-mini alert alert-info alert-sm">' +
         'There are accessibility concerns with the disabled state.<br/>' +
-        'More details in our <a href="/?path=/docs/foundations-accessibility--docs">accessibility docs</a>.' +
+        'More details in our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs">accessibility docs</a>.' +
         '</span>',
       control: {
         type: 'boolean',
@@ -159,9 +161,7 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
 };
 
 function getLabel({ label }: Args, { id }: StoryContext) {
-  return html`
-    <label for="${id}" class="form-check-label">${label}</label>
-  `;
+  return html` <label for="${id}" class="form-check-label">${label}</label> `;
 }
 
 function getValidationFeedback({ validation }: Args) {

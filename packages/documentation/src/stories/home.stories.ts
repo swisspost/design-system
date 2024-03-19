@@ -1,10 +1,11 @@
-import { Meta, StoryObj } from '@storybook/web-components';
-import { BADGE } from '../../.storybook/constants';
+import { StoryObj } from '@storybook/web-components';
+import { MetaExtended } from '../../types';
 
-const meta: Meta = {
+const meta: MetaExtended = {
+  id: 'Home',
   title: 'Home',
   parameters: {
-    badges: [BADGE.BETA, BADGE.NEEDS_REVISION],
+    badges: [],
   },
 };
 

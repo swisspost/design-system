@@ -6,7 +6,7 @@ A collection of angular-components built with Stencil JS for the Swiss Post Desi
 
 ## Documentation
 
-- Technical docs: [Swiss Post Design System](https://next.design-system.post.ch)
+- Technical docs: [Swiss Post Design System](https://design-system.post.ch)
 
 ## Usage
 
