@@ -52,6 +52,7 @@
     "@storybook/preview-api": "7.6.17",
     "@storybook/testing-library": "0.2.2",
     "@storybook/theming": "7.6.17",
+    "@storybook/types": "8.0.1",
     "@storybook/web-components": "7.6.17",
     "@storybook/web-components-vite": "7.6.17",
     "@types/css-modules": "1.0.5",

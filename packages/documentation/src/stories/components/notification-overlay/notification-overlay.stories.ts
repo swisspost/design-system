@@ -1,5 +1,6 @@
 import type { StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '../../../../types';
+import { getComponentFigmaLink } from '../../../utils';
 
 const meta: MetaComponent = {
   id: 'aab3f0df-08ca-4e33-90eb-77ffda6528db',
@@ -7,6 +8,10 @@ const meta: MetaComponent = {
   tags: ['package:Angular'],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: getComponentFigmaLink('24367-60516'),
+    },
   },
 };
 
