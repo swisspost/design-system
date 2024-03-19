@@ -1,3 +1,6 @@
+@use '../variables/spacing';
+@use '../variables/commons';
+
 @mixin reset-list() {
   margin: 0;
   padding: 0;
@@ -76,6 +79,31 @@
   &:focus,
   &:not(:disabled):hover,
   &.pretend-hover {
+    @content;
+  }
+}
+
+@mixin focus-style-none {
+  outline: none;
+}
+
+@mixin focus-style($border-radius: commons.$border-radius, $vendor-prefix: '') {
+  &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
+    outline-offset: spacing.$size-line;
+    outline: spacing.$size-line solid var(--post-focus-color);
+    border-radius: $border-radius;
+
+    @include high-contrast-mode() {
+      outline-color: Highlight;
+    }
+
+    // In case rules need to be slightly adjusted
+    @content;
+  }
+}
+
+@mixin focus-style-custom($vendor-prefix: '') {
+  &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
     @content;
   }
 }

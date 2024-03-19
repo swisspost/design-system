@@ -19,7 +19,7 @@ $form-switch-column-gap: spacing.$size-regular !default;
 $form-switch-height: spacing.$size-big !default;
 $form-switch-width: 2 * spacing.$size-big !default;
 $form-switch-bg: rgba(var(--post-contrast-color-rgb), 0.3) !default;
-$form-switch-checked-bg: var(--post-success) !default;
+$form-switch-checked-bg: var(--post-success-green) !default;
 $form-switch-disabled-bg: color.$gray-20 !default;
 $form-switch-background-image: linear-gradient(
   to right,

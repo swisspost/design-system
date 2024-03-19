@@ -1,0 +1,60 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import LinkTo from '@storybook/addon-links/react';
+import {
+  PostTabs,
+  PostTabHeader,
+  PostTabPanel,
+} from '@swisspost/design-system-components-react';
+import * as TagStories from './standard-html/tag.stories';
+import * as PostTagStories from './web-component/post-tag.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+
+<Meta of={TagStories}/>
+
+# Tag
+
+<div className="lead">
+  A small label, generally appearing inside or in close proximity to another larger interface component, representing a status, property, or some other metadata.
+</div>
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="standardHTML">Standard HTML</PostTabHeader>
+  <PostTabPanel name="standardHTML">
+    <Canvas of={TagStories.Default} sourceState="shown"/>
+    <div className="hide-col-default">
+      <Controls of={TagStories.Default}/>
+    </div>
+
+    <StylesPackageImport components={["tag"]} />
+
+    ## Icon
+    
+    An Icon is an optional part of the tag component. You can choose any Icon that is available in Swiss Post Icon Library.
+    Find the icon you need with the <LinkTo kind="icons-search-for-icons" story="docs">icon search page</LinkTo>.
+
+    ## Color options
+    Here is a quick overview of all the background colors available for this component.
+
+    <Canvas of={TagStories.Variants}/>
+  </PostTabPanel>
+
+  <PostTabHeader slot="tabs" panel="webcomponent">Webcomponent</PostTabHeader>
+  <PostTabPanel name="webcomponent">
+    <Canvas sourceState="shown" of={PostTagStories.Default}/>
+    <Controls of={PostTagStories.Default}/>
+
+    ## Installation
+
+    The `<post-tag/>` element is part of the `@swisspost/design-system-components` package.
+    For more information, read the <LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
+
+    ## Icon
+    
+    An Icon is an optional part of the tag component. You can choose any Icon that is available in Swiss Post Icon Library.
+    Find the icon you need with the <LinkTo kind="icons-search-for-icons" story="docs">icon search page</LinkTo>.
+
+    ## Color options
+    Here is a quick overview of all the background colors available for this component.
+
+    <Canvas of={PostTagStories.Variants}/>
+  </PostTabPanel>
+</PostTabs>

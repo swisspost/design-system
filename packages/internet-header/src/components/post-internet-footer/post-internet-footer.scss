@@ -1,12 +1,15 @@
-@use "@swisspost/design-system-styles/components/grid";
-@use "@swisspost/design-system-styles/variables/color";
-@use "@swisspost/design-system-styles/placeholders/text";
-@use "@swisspost/design-system-styles/functions";
-@use "@swisspost/design-system-styles/components/button";
-@use "../../utils/utils.scss";
-@use "../../utils/mixins.scss";
+@use '@swisspost/design-system-styles/components/grid';
+@use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/placeholders/text';
+@use '@swisspost/design-system-styles/placeholders/color' as color-ph;
+@use '@swisspost/design-system-styles/functions';
+@use '@swisspost/design-system-styles/components/button';
+@use '../../utils/utils.scss';
+@use '../../utils/mixins.scss';
 
 :host {
+  @extend %color-background-light-variables;
+
   display: block;
 }
 

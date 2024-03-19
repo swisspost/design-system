@@ -40,6 +40,7 @@
 @use 'transitions';
 @use 'type';
 @use 'utilities';
+@use 'tag';
 
 // Imports depending on source order to override bootstrap styles
 @use 'datepicker';

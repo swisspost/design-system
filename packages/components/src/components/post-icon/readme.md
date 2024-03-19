@@ -24,12 +24,14 @@ some content
 
  - [post-alert](../post-alert)
  - [post-rating](../post-rating)
+ - [post-tag](../post-tag)
 
 ### Graph
 ```mermaid
 graph TD;
   post-alert --> post-icon
   post-rating --> post-icon
+  post-tag --> post-icon
   style post-icon fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
