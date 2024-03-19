@@ -12,15 +12,6 @@ describe('Tag', () => {
       cy.get('@tag').should('exist');
     });
 
-    it('should have prop `text` set and show its content', () => {
-      cy.get('@tag').should('have.attr', 'text', 'Tag');
-      cy.get('@text').should('contain.text', 'Tag');
-
-      cy.get('@tag').invoke('attr', 'text', 'Test');
-      cy.get('@tag').should('have.attr', 'text', 'Test');
-      cy.get('@text').should('contain.text', 'Test');
-    });
-
     it('should use variant `gray` as default', () => {
       const defaultClasses = ['tag', 'tag-gray'];
 
@@ -52,9 +43,7 @@ describe('Tag', () => {
       cy.get('@icon').should('exist');
     });
 
-    it('should use `default` slot and overwrite`text` prop when slot is used', () => {
-      cy.get('@tag').should('have.attr', 'text', 'Tag');
-      cy.get('@wrapper').should('contain.text', 'Tag');
+    it('should use `default` slot for content', () => {
       cy.get('@tag')
         .invoke('append', '<img src="/favicon.svg" alt="favicon"/>')
         .find('img[src="/favicon.svg"]')

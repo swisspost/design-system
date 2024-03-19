@@ -18,30 +18,11 @@ export const PostTag: Story = {
       bg => html`
         <div class="${bg} p-3">
           ${bombArgs({
-            size: context.argTypes.size.options,
-            icon: ['', '1001'],
-            text: ['Short text', 'Long text - Lorem ipsum dolor sit amet consectetur.'],
-          }).map(
-            (bombArgs: Args) =>
-              html`<div class="d-flex flex-wrap gap-1 mb-4">
-                ${context.argTypes.variant.options
-                  .filter((v: string) => v !== 'null')
-                  .map((variant: string) =>
-                    Default.render?.(
-                      {
-                        ...args,
-                        ...bombArgs,
-                        variant,
-                      },
-                      context,
-                    ),
-                  )}
-              </div>`,
-          )}
-          ${bombArgs({
             'size': context.argTypes.size.options,
             'icon': ['', '1001'],
             'slots-default': [
+              'Short text',
+              'Long text - Lorem ipsum dolor sit amet consectetur.',
               'With markup <span class="fst-italic">italic</span> <span class="fw-bold">bold</span> <img src="/favicon.svg" alt="bla"/>',
             ],
           }).map(

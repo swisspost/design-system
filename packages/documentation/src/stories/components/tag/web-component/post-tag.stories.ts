@@ -14,8 +14,7 @@ const meta: Meta = {
     'variant': 'null',
     'size': 'null',
     'icon': '',
-    'text': 'Tag',
-    'slots-default': '',
+    'slots-default': 'Tag',
   },
   argTypes: {
     'variant': {
@@ -43,12 +42,6 @@ const meta: Meta = {
         },
       },
       options: ['null', 'sm'],
-    },
-    'text': {
-      if: {
-        arg: 'slots-default',
-        eq: '',
-      },
     },
     'slots-default': {
       name: 'default',

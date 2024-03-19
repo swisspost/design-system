@@ -2,7 +2,7 @@ import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
 import { version } from '../../../package.json';
 
 /**
- * @slot default - Content to place in the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.</p><p class="alert alert-info alert-sm">If set, it overrides the components `text` property.</p>
+ * @slot default - Content to place in the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.</p>
  */
 @Component({
   tag: 'post-tag',
@@ -31,12 +31,6 @@ export class PostTag {
    * To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs" target="_blank">icon library</a>.
    */
   @Prop() readonly icon: null | string = null;
-
-  /**
-   * Defines the text of the component.
-   * Most of the time this will fit your needs, if you need to add custom content, use the default slot instead.
-   */
-  @Prop() readonly text: string;
 
   constructor() {
     this.setClasses = this.setClasses.bind(this);
@@ -68,7 +62,7 @@ export class PostTag {
         <div class={this.classes}>
           {this.icon ? <post-icon name={this.icon}></post-icon> : null}
           <div class="tag-text">
-            <slot>{this.text}</slot>
+            <slot></slot>
           </div>
         </div>
       </Host>

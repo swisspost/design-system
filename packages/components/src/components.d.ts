@@ -217,10 +217,6 @@ export namespace Components {
          */
         "size": null | 'sm';
         /**
-          * Defines the text of the component. Most of the time this will fit your needs, if you need to add custom content, use the default slot instead.
-         */
-        "text": string;
-        /**
           * Defines the color variant of the component.
          */
         "variant": 'gray' | 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
@@ -596,10 +592,6 @@ declare namespace LocalJSX {
           * Defines the size of the component.
          */
         "size"?: null | 'sm';
-        /**
-          * Defines the text of the component. Most of the time this will fit your needs, if you need to add custom content, use the default slot instead.
-         */
-        "text"?: string;
         /**
           * Defines the color variant of the component.
          */
