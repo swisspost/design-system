@@ -81,7 +81,7 @@ export const Default: Story = {
         value="${args.value || nothing}"
         checked="${args.checked || nothing}"
         disabled="${args.disabled || nothing}"
-        validity="${args.validity !== undefined ? args.validity : nothing}"
+        validity="${args.validity !== 'null' ? args.validity : nothing}"
         icon="${args.icon || nothing}"
         @input="${(e: any) => updateArgs({ checked: e.detail.state })}"
         @change="${(e: any) => updateArgs({ checked: e.detail.state })}"

@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta from './range.stories';
+import meta from './slider.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../../utils';
 
@@ -12,7 +12,7 @@ export default {
 
 type Story = StoryObj;
 
-export const Range: Story = {
+export const Slider: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
       <div class="d-flex flex-wrap align-items-start gap-regular">
