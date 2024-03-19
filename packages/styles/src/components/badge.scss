@@ -6,32 +6,31 @@
 .badge {
   --post-badge-height: #{badge.$badge-height};
   --post-badge-padding-x: #{badge.$badge-padding-x};
-  --post-badge-border-width: #{badge.$badge-border-width};
-  --post-badge-font-size: #{badge.$badge-font-size};
 
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   box-sizing: content-box;
   height: var(--post-badge-height);
   min-width: calc(var(--post-badge-height) - 2 * var(--post-badge-padding-x));
   padding-inline: var(--post-badge-padding-x);
-  border: var(--post-badge-border-width) solid badge.$badge-border-color;
+  border: badge.$badge-border-width solid badge.$badge-border-color;
   border-radius: badge.$badge-border-radius;
   line-height: badge.$badge-line-height;
-  font-size: var(--post-badge-font-size);
-  @include color-mx.colored-background(badge.$badge-bg);
+  font-size: badge.$badge-font-size;
+  background-color: badge.$badge-bg;
+  color: badge.$badge-color;
 
   &:empty {
     --post-badge-height: #{badge.$badge-height-empty};
     --post-badge-padding-x: #{badge.$badge-padding-x-empty};
-    --post-badge-border-width: #{badge.$badge-border-width-empty};
+    border-width: badge.$badge-border-width-empty;
   }
 }
 
 .badge-sm {
   --post-badge-height: #{badge.$badge-height-sm};
   --post-badge-padding-x: #{badge.$badge-padding-x-sm};
-  --post-badge-border-width: #{badge.$badge-border-width-sm};
-  --post-badge-font-size: #{badge.$badge-font-size-sm};
+  border-width: badge.$badge-border-width-sm;
+  font-size: badge.$badge-font-size-sm;
 }

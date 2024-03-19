@@ -8,8 +8,9 @@
 
 $badge-border-radius: 50rem;
 $badge-line-height: type.$line-height-copy;
-$badge-border-color: color.$white;
+$badge-color: color.$white;
 $badge-bg: color.$error-red;
+$badge-border-color: color.$white;
 
 $badge-height: spacing.$size-large;
 $badge-height-sm: spacing.$size-regular;
@@ -48,5 +49,4 @@ $badge-nested-translate-x-sm: ($badge-height-sm - $badge-nested-height) * 0.5;
 $badge-check-input-height: spacing.$size-small-large;
 $badge-check-input-bg-color: color.$white;
 $badge-font-weight: type.$font-weight-normal;
-$badge-color: var(--post-gray-80);
 $badge-padding-y: 0;
