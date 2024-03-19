@@ -11,12 +11,11 @@ export function validateForm() {
 
   //check all required fields
   requiredFields.forEach(field => {
-    if (field.type === 'checkbox' && !field.checked) {
-      field.classList.add('is-invalid');
-      if (firstInvalidField === null) {
-        firstInvalidField = field;
-      }
-    } else if (!field.value.trim() || !field.validity.valid) {
+    if (
+      (field.type === 'checkbox' && !field.checked) ||
+      !field.value.trim() ||
+      !field.validity.valid
+    ) {
       field.classList.add('is-invalid');
       if (firstInvalidField === null) {
         firstInvalidField = field;
