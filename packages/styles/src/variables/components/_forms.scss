@@ -39,6 +39,7 @@ $input-bg: color.$white !default;
 $input-disabled-bg: rgba(var(--post-contrast-color-inverted-rgb), 0.6) !default;
 $input-disabled-color: color.$gray-40; // Design System only
 $input-disabled-border-color: color.$gray-40; // Design System only
+$input-disabled-boarder-style: dashed;
 
 $input-color: color.$black !default;
 $input-border-color: color.$gray-60 !default;

@@ -25,6 +25,21 @@
   @include form-mixins.form-lg;
 }
 
+textarea {
+  &.form-control-lg {
+    padding-top: forms.$form-textarea-padding-t;
+    padding-bottom: forms.$form-textarea-padding-b;
+    padding-left: forms.$form-textarea-padding-l;
+  }
+
+  &.form-control-sm {
+    padding-top: forms.$form-textarea-padding-t-sm;
+    padding-right: forms.$form-textarea-padding-r;
+    padding-left: forms.$form-textarea-padding-l;
+    padding-bottom: forms.$form-textarea-padding-b-sm;
+  }
+}
+
 select.form-control-rg:not([size]):not([multiple]) {
   height: forms.$input-height-rg;
 }
@@ -34,6 +49,11 @@ select.form-control-rg:not([size]):not([multiple]) {
 
   &:disabled {
     color: forms.$input-disabled-color;
+    border: forms.$input-disabled-boarder-style;
+
+    & + .form-text {
+      color: forms.$input-disabled-color;
+    }
   }
 
   &[readonly]:not(:disabled) {
@@ -149,6 +169,12 @@ select.form-control-rg:not([size]):not([multiple]) {
   }
 }
 
-.form-label:has(+ .form-control-sm, + .form-select-sm) {
-  font-size: type.$font-size-14;
+.form-label {
+  &:has(+ .form-control-sm, + .form-select-sm) {
+    font-size: type.$font-size-14;
+  }
+
+  &:has(+ .form-control:disabled) {
+    color: forms.$input-disabled-color;
+  }
 }
