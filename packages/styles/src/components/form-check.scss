@@ -5,6 +5,7 @@
 @use '../variables/spacing';
 @use '../variables/animation';
 @use '../variables/components/form-check';
+@use '../mixins/color' as color-mx;
 @use '../mixins/icons' as icons-mx;
 @use '../mixins/utilities' as utility-mx;
 
@@ -29,10 +30,6 @@
     color: rgba(var(--post-contrast-color-rgb), 0.8);
     transition: color animation.$transition-base-timing;
 
-    &:not([disabled]) {
-      cursor: pointer;
-    }
-
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ &-label {
       color: var(--post-contrast-color);
@@ -41,6 +38,12 @@
 
   &-input {
     @include utility-mx.focus-style-none();
+
+    &:not([disabled]),
+    &:not([disabled]) ~ .form-check-label {
+      cursor: pointer;
+    }
+
     display: inline-flex;
     flex: 0 auto;
     appearance: none;
@@ -98,12 +101,56 @@
           border-color: Canvas;
         }
       }
+
+      &[disabled] {
+        padding: spacing.$size-line; // Used to mimic border width because it is used in combination with background-clip: padding-box; to size the selected shape
+        background-image: url('#{form-check.$form-check-input-radio-disabled-background-url-light}');
+
+        @include color-mx.on-dark-background {
+          background-image: url('#{form-check.$form-check-input-radio-disabled-background-url-dark}');
+        }
+
+        @include utility-mx.high-contrast-mode {
+          background-image: url('#{form-check.$form-check-input-radio-disabled-background-url-hcm}') !important;
+        }
+      }
+    }
+
+    &[disabled] {
+      border: 0;
+      background-image: url('#{form-check.$form-check-input-disabled-background-url-light}');
+
+      @include color-mx.on-dark-background {
+        background-image: url('#{form-check.$form-check-input-disabled-background-url-dark}');
+      }
+
+      @include utility-mx.high-contrast-mode {
+        background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm}') !important;
+      }
     }
 
     &[disabled],
     &[disabled] ~ .form-check-label {
-      border-color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
-      color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
+      // TODO: Replace rgba(color.$black, 0.6) with new white alpha color https://github.com/swisspost/design-system/issues/2716
+      color: rgba(color.$black, 0.6);
+
+      @include color-mx.on-dark-background() {
+        // TODO: Replace rgba(color.$white, 0.8) with new white alpha color https://github.com/swisspost/design-system/issues/2716
+        color: rgba(color.$white, 0.8);
+      }
+
+      @include utility-mx.high-contrast-mode {
+        color: GrayText;
+
+        &:checked,
+        &:indeterminate {
+          background-color: Canvas;
+        }
+
+        &:checked::after {
+          background-color: GrayText;
+        }
+      }
     }
 
     .form-check-sm & {
