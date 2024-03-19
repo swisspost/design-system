@@ -1,0 +1,7 @@
+
+@use "primeng-theme";
+@use "primeng/resources/primeng.min.css";
+
+@layer design-system-styles, primeng;
+
+@import '@swisspost/design-system-styles/intranet' layer(design-system-styles);
