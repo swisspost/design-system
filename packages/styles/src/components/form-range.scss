@@ -13,13 +13,20 @@
 $track-height: 4px;
 $webkit-progress-height-adjustment: 2px;
 $webkit-thumb-width: 33px;
-$webkit-thumb-focus-offset: 4px;
-$webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
+
+:has(> .form-range) {
+  @include utilities.focus-style();
+}
+
+@supports not selector(:has(> .form-range)) {
+  .form-range {
+    @include utilities.focus-style();
+  }
+}
 
 .form-range {
   &::-webkit-slider-container {
     overflow-x: clip;
-    padding-inline: 4px;
   }
 
   &::-moz-range-thumb {
@@ -28,22 +35,22 @@ $webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
     cursor: pointer;
   }
 
+  &::-webkit-slider-runnable-track {
+    height: $track-height;
+  }
+
   &::-webkit-slider-thumb {
     // Source: https://antvil.github.io/css-sos/sos/progress/
     clip-path: polygon(
-      0 (-($webkit-thumb-focus-offset)),
-      $webkit-thumb-focus-width (-($webkit-thumb-focus-offset)),
-      $webkit-thumb-focus-width $webkit-thumb-focus-width,
-      0 $webkit-thumb-focus-width,
-      -($webkit-thumb-focus-offset) calc(50% + $webkit-progress-height-adjustment),
+      0 (-($webkit-thumb-width)),
+      $webkit-thumb-width 0,
+      $webkit-thumb-width $webkit-thumb-width,
+      0 $webkit-thumb-width,
+      0 calc(50% + $webkit-progress-height-adjustment),
       -100vw calc(50% + $webkit-progress-height-adjustment),
       -100vw calc(50% - $webkit-progress-height-adjustment),
-      -($webkit-thumb-focus-offset) calc(50% - $webkit-progress-height-adjustment)
+      0 calc(50% - $webkit-progress-height-adjustment)
     );
-  }
-
-  &::-webkit-slider-runnable-track {
-    height: $track-height;
   }
 
   &::-moz-range-track,
@@ -61,7 +68,7 @@ $webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
     }
 
     &::-webkit-slider-thumb {
-      box-shadow: calc(-100vw - $webkit-thumb-focus-width) 0 0 100vw color.$black;
+      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw color.$black;
     }
 
     &:hover {
@@ -76,9 +83,8 @@ $webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
 
     @include utilities.focus-style(50%, '::-moz-range-thumb') {
       box-shadow: none; // Remove default style
+      outline: none;
     }
-
-    @include utilities.focus-style(50%, '::-webkit-slider-thumb');
   }
 
   &:disabled,
@@ -86,7 +92,7 @@ $webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
     &::-webkit-slider-thumb {
       border-color: forms.$form-range-thumb-disabled-border-color;
       border-style: dashed;
-      box-shadow: calc(-100vw - $webkit-thumb-focus-width) 0 0 100vw color.$gray-40;
+      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw color.$gray-40;
     }
 
     &::-moz-range-thumb {
@@ -111,13 +117,20 @@ $webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
     // so, the "forced-color-adjust" property is necessary for "linear-gradient" to continue to work
     forced-color-adjust: none;
 
+    &::-webkit-slider-thumb {
+      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw SelectedItem !important;
+    }
+
+    &::-moz-range-progress {
+      background-color: SelectedItem !important;
+    }
+
     &:not(:disabled, .disabled) {
       &::-webkit-slider-runnable-track {
         background-color: ButtonBorder;
       }
 
       &::-webkit-slider-thumb {
-        box-shadow: calc(-100vw - $webkit-thumb-focus-width) 0 0 100vw Highlight !important;
         background-color: ButtonFace;
         border-color: ButtonBorder;
       }
@@ -126,25 +139,9 @@ $webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
         background-color: ButtonText;
       }
 
-      &::-moz-range-progress {
-        background-color: Highlight;
-      }
-
       &::-moz-range-thumb {
         background-color: ButtonFace;
         border-color: ButtonText;
-      }
-
-      &:focus-visible {
-        &::-webkit-slider-thumb {
-          outline-offset: commons.$border-thick;
-          outline: commons.$border-thick solid Highlight;
-        }
-
-        &::-moz-range-thumb {
-          outline-offset: commons.$border-thick;
-          outline: commons.$border-thick solid Highlight;
-        }
       }
     }
 
@@ -152,12 +149,12 @@ $webkit-thumb-focus-width: $webkit-thumb-width + $webkit-thumb-focus-offset;
     &.disabled {
       &::-webkit-slider-thumb {
         background-color: ButtonFace;
-        border-color: ButtonBorder;
+        border-color: GrayText;
       }
 
       &::-moz-range-thumb {
         background-color: ButtonFace;
-        border-color: ButtonBorder;
+        border-color: GrayText;
       }
     }
   }
