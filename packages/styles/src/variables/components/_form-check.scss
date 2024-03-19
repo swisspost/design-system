@@ -10,7 +10,7 @@ $form-check-row-gap: spacing.$size-small-regular !default;
 $form-check-column-gap: spacing.$size-mini !default;
 $form-check-margin-bottom: spacing.$size-regular !default;
 $form-check-inline-margin-right: spacing.$size-large !default;
-$form-check-input-size: spacing.$size-large !default;
+$form-check-input-size: 1.375rem !default;
 $form-check-input-size-sm: spacing.$size-regular !default;
 $form-check-input-border-width: forms.$input-border-width !default;
 $form-check-input-focus-box-shadow: forms.$input-focus-box-shadow !default;
@@ -19,7 +19,7 @@ $form-switch-column-gap: spacing.$size-regular !default;
 $form-switch-height: spacing.$size-big !default;
 $form-switch-width: 2 * spacing.$size-big !default;
 $form-switch-bg: rgba(var(--post-contrast-color-rgb), 0.3) !default;
-$form-switch-checked-bg: var(--post-success) !default;
+$form-switch-checked-bg: var(--post-success-green) !default;
 $form-switch-disabled-bg: color.$gray-20 !default;
 $form-switch-background-image: linear-gradient(
   to right,

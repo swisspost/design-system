@@ -453,7 +453,7 @@ export class PostInternetHeader {
       (this.login ?? !config.header.isLoginWidgetHidden) && config.header.loginWidgetOptions;
     const renderLanguageSwitch = config.header.navLang.length > 1;
 
-    const initialLogoScale = getLogoScale(this.host);
+    const initialLogoScale = renderMetaNavigation ? getLogoScale(this.host) : '1';
 
     return (
       <Host
@@ -515,7 +515,7 @@ export class PostInternetHeader {
               </If>
             </post-main-navigation>
             <div class="main-navigation-controls">
-              <div class="main-navigation-custom-content" hidden={this.isMainSlotEmpty}>
+              <div class={`main-navigation-custom-content${this.isMainSlotEmpty ? ' d-none' : ''}`}>
                 <slot name="main" onSlotchange={e => this.handleMainSlotChange(e)}></slot>
               </div>
               <If condition={this.search}>
