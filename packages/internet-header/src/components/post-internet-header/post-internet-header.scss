@@ -1,9 +1,12 @@
 @use '@swisspost/design-system-styles/variables/color';
+@use '@swisspost/design-system-styles/placeholders/color' as color-ph;
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
 @use './logo-animation/logo-animation.scss';
 
 :host {
+  @extend %color-background-light-variables;
+
   display: block;
   position: relative;
   font-size: 1rem;

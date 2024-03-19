@@ -72,9 +72,9 @@ const config: StorybookConfig = {
     STORYBOOK_GTM_PAGE_CONTEXT_SOURCE_CODE_VERSION: pkg.version,
     STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_DEV: 'localhost',
     STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_INT: 'preview-',
-    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD: 'design-system.post.ch,next.design-system.post.ch',
+    STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_PROD: 'design-system.post.ch',
     STORYBOOK_GTM_PAGE_CONTEXT_ENVIRONMENT_FALLBACK: 'dev',
-    STORYBOOK_BASE_URL: 'https://next.design-system-post.ch',
+    STORYBOOK_BASE_URL: 'https://design-system.post.ch',
   }),
   async viteFinal(config, options) {
     return mergeConfig(config, {
