@@ -66,6 +66,13 @@
         display: inline-block;
       }
     }
+
+    // Style buttons related to the current page next to the tile
+    .docs-title-nav {
+      display:flex;
+      align-items: center;
+      gap: post.$size-mini;
+    }
   }
 
   pre {
