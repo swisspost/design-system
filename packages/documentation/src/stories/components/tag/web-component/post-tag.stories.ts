@@ -1,12 +1,14 @@
-import type { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import { MetaComponent } from '../../../../../types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BADGE } from '../../../../../.storybook/constants';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: '516917c9-ad12-484c-8bbd-e270e412f713',
   title: 'Components/Tag',
   component: 'post-tag',
+  tags: ['package:WebComponents'],
   parameters: {
     badges: [BADGE.BETA],
   },
