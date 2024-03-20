@@ -49,7 +49,7 @@ select.form-control-rg:not([size]):not([multiple]) {
   @include utilities.focus-style();
 
   &[disabled] {
-    color: forms.$input-disabled-color;
+    color: forms.$input-disabled-border-color;
     border: forms.$input-disabled-boarder-style;
     & ~ .form-text {
       color: forms.$input-disabled-color;

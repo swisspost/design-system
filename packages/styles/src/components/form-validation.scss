@@ -112,9 +112,8 @@
       }
     }
 
-    &:focus {
-      border-color: form-validation.$form-feedback-invalid-color;
-      box-shadow: form-validation.$form-feedback-invalid-box-shadow;
+    &.form-control-sm ~ .invalid-feedback {
+      padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
     }
   }
 
@@ -130,9 +129,8 @@
       }
     }
 
-    &:focus {
-      border-color: form-validation.$form-feedback-valid-color;
-      box-shadow: form-validation.$form-feedback-valid-box-shadow;
+    &.form-control-sm ~ .valid-feedback {
+      padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
     }
   }
 
