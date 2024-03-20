@@ -87,12 +87,12 @@
   outline: none;
 }
 
-@mixin focus-style($border-radius: commons.$border-radius, $vendor-prefix: '') {
+@mixin focus-style($vendor-prefix: '') {
   // :has(:focus-visible) mimic a focus-visible-within pseudo-class
   &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$vendor-prefix} {
     outline-offset: spacing.$size-line;
     outline: spacing.$size-line solid var(--post-focus-color);
-    border-radius: $border-radius;
+    border-radius: commons.$border-radius !important;
 
     @include high-contrast-mode() {
       outline-color: Highlight;
@@ -107,7 +107,7 @@
     &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
       outline-offset: spacing.$size-line;
       outline: spacing.$size-line solid var(--post-focus-color);
-      border-radius: $border-radius;
+      border-radius: commons.$border-radius !important;
 
       @include high-contrast-mode() {
         outline-color: Highlight;
