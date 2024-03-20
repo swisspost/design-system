@@ -143,8 +143,8 @@
           "builder": "@angular-eslint/builder:lint",
           "options": {
             "lintFilePatterns": [
-              "projects/intranet-header-showcase/**/*.ts",
-              "projects/intranet-header-showcase**/*.html"
+              "projects/intranet-header-showcase/src/**/*.ts",
+              "projects/intranet-header-showcase/src/**/*.html"
             ]
           }
         }
