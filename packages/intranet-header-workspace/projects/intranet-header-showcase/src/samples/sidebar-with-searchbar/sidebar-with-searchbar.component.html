@@ -18,9 +18,11 @@
         <div class="sidebar-sticky header-margin bg-light">
           <!-- left menu -->
           <ul>
-            <li tabindex="0" class="d-md-none" (click)="openedMenu = !openedMenu">
-              <i class="pi pi-menu"></i>
-              Active Page
+            <li class="d-md-none">
+              <button (click)="openedMenu = !openedMenu">
+                <i class="pi pi-menu"></i>
+                Active Page
+              </button>
             </li>
             <li><a routerLink="/">Home</a></li>
             <li class="separator"></li>
