@@ -88,10 +88,14 @@
 }
 
 @mixin focus-style($vendor-prefix: '') {
+  outline-style: none;
+  outline-offset: spacing.$size-line;
+  outline-width: spacing.$size-line;
+  outline-color: var(--post-focus-color);
+
   // :has(:focus-visible) mimic a focus-visible-within pseudo-class
   &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$vendor-prefix} {
-    outline-offset: spacing.$size-line;
-    outline: spacing.$size-line solid var(--post-focus-color);
+    outline-style: solid;
     border-radius: commons.$border-radius !important;
 
     @include high-contrast-mode() {
@@ -105,8 +109,7 @@
   // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
   @supports not selector(:has(:focus-visible)) {
     &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
-      outline-offset: spacing.$size-line;
-      outline: spacing.$size-line solid var(--post-focus-color);
+      outline-style: solid;
       border-radius: commons.$border-radius !important;
 
       @include high-contrast-mode() {
