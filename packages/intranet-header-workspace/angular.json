@@ -3,46 +3,6 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "intranet-header": {
-      "projectType": "library",
-      "root": "projects/intranet-header",
-      "sourceRoot": "projects/intranet-header/src",
-      "prefix": "lib",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:ng-packagr",
-          "options": {
-            "project": "projects/intranet-header/ng-package.json"
-          },
-          "configurations": {
-            "production": {
-              "tsConfig": "projects/intranet-header/tsconfig.lib.prod.json"
-            },
-            "development": {
-              "tsConfig": "projects/intranet-header/tsconfig.lib.json"
-            }
-          },
-          "defaultConfiguration": "production"
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "main": "projects/intranet-header/src/test.ts",
-            "tsConfig": "projects/intranet-header/tsconfig.spec.json",
-            "karmaConfig": "projects/intranet-header/karma.conf.js"
-          }
-        },
-        "lint": {
-          "builder": "@angular-eslint/builder:lint",
-          "options": {
-            "lintFilePatterns": [
-              "projects/intranet-header/**/*.ts",
-              "projects/intranet-header/**/*.html"
-            ]
-          }
-        }
-      }
-    },
     "intranet-header-showcase": {
       "projectType": "application",
       "schematics": {
@@ -139,9 +99,7 @@
               "projects/intranet-header-showcase/src/favicon.ico",
               "projects/intranet-header-showcase/src/assets"
             ],
-            "styles": [
-              "projects/intranet-header-showcase/src/styles.scss"
-            ],
+            "styles": ["projects/intranet-header-showcase/src/styles.scss"],
             "scripts": []
           }
         }

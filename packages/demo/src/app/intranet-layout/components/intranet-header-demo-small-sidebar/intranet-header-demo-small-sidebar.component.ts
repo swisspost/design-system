@@ -4,10 +4,10 @@ import { ErrorService } from '../../services/error.service';
 
 @Component({
   selector: 'app-intranet-header-small',
-  templateUrl: './intranet-header-small.component.html',
+  templateUrl: './intranet-header-demo-small-sidebar.component.html',
   styleUrls: ['../../intranet-layout.component.css'],
 })
-export class IntranetHeaderSmallComponent {
+export class IntranetHeaderDemoSmallSidebarComponent {
   openedMenu = false;
 
   constructor(@Inject(LOCALE_ID) public language: string, private errorService: ErrorService) {
