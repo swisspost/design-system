@@ -1,4 +1,4 @@
-@use '@swisspost/design-system-styles/placeholders';
+@use '@swisspost/design-system-styles/placeholders/color' as color-ph;
 @use '@swisspost/design-system-styles/components/button';
 @use '@swisspost/design-system-styles/components/grid';
 @use '@swisspost/design-system-styles/components/spinner';
@@ -9,6 +9,8 @@
 @use '../../utils/mixins.scss';
 
 :host {
+  @extend %color-background-light-variables;
+
   display: block;
   position: relative;
 }
