@@ -217,7 +217,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body">
+          <div class="card-body bg-light">
             <button class="btn btn-secondary btn-animated w-100 mb-small-regular">
               <span>Order Sample Product</span>
             </button>
@@ -304,7 +304,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body">
+          <div class="card-body bg-light">
             <button class="btn btn-secondary btn-animated w-100 mb-small-regular">
               <span>Order Sample Product</span>
             </button>
