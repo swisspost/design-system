@@ -41,3 +41,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+Cypress.Commands.add('checkOutputProps', ($output, props) => {
+  const output = JSON.parse($output.text());
+
+  Object.entries(props).forEach(([key, value]) => {
+    expect(output[key]).to.be.eq(value);
+  });
+});
