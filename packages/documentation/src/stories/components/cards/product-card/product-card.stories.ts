@@ -88,7 +88,7 @@ function getText(args: Args) {
 function renderProductCard(args: Args) {
   return html`
     <a href="#" class="card product-card${args.cardClasses}">
-      <div class="card-body product-navigation">
+      <div class="card-body product-navigation bg-white">
         ${getTitle(args)} ${getText(args)}
         <span class="link-icon">
           <post-icon name="3020" aria-hidden="true"></post-icon>
@@ -137,7 +137,7 @@ export const Multipart: Story = {
     <div class="row row-cols-md-2 border-gutters">
       <div class="col-12">
         <div class="card product-card">
-          <div class="card-body" data-sync-height-with="product-header">
+          <div class="card-body bg-white" data-sync-height-with="product-header">
             <div class="product-navigation">
               <div>
                 <h3>Preiswert</h3>
@@ -167,7 +167,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body" data-sync-height-with="product-body-2">
+          <div class="card-body bg-white" data-sync-height-with="product-body-2">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-3 align-items-stretch">
@@ -231,7 +231,7 @@ export const Multipart: Story = {
 
       <div class="col-12">
         <div class="card product-card">
-          <div class="card-body" data-sync-height-with="product-header">
+          <div class="card-body bg-white" data-sync-height-with="product-header">
             <div class="product-navigation">
               <div>
                 <h3>Schneller</h3>
@@ -266,7 +266,7 @@ export const Multipart: Story = {
             </dl>
           </div>
 
-          <div class="card-body" data-sync-height-with="product-body-2">
+          <div class="card-body bg-white" data-sync-height-with="product-body-2">
             <h5 class="h6">Sample Product</h5>
             <p>140 x 90 mm bis B5 (250 x 176 mm)</p>
             <dl class="mt-3 align-items-stretch">
