@@ -151,7 +151,7 @@ export default function Home() {
                     height={1000}
                     className="topic-teaser-image w-100 h-100"
                     src="/street.jpg"
-                    alt="Test teaser image"
+                    alt=""
                   />
                 </div>
               </div>
@@ -164,13 +164,7 @@ export default function Home() {
         <div className="row">
           <div className="col-lg-4 col-rg-6 col-12 mb-3">
             <div className="card elevation-0">
-              <Image
-                width={400}
-                height={200}
-                className="card-img-top"
-                src="/street.jpg"
-                alt="Card image cap"
-              />
+              <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
               <div className="card-body bg-gray">
                 <h3 className="card-title">Hier steckt mehr drin</h3>
                 <p className="card-text">Black-Week-Topangebote nicht verpassen</p>
@@ -184,13 +178,7 @@ export default function Home() {
 
           <div className="col-lg-4 col-rg-6 col-12 mb-3">
             <div className="card elevation-0">
-              <Image
-                width={400}
-                height={200}
-                className="card-img-top"
-                src="/street.jpg"
-                alt="Card image cap"
-              />
+              <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
               <div className="card-body bg-gray">
                 <h3 className="card-title">Einfach easy frankieren</h3>
                 <p className="card-text">DigitalStamp: Mit der Post-App frankieren</p>
@@ -204,13 +192,7 @@ export default function Home() {
 
           <div className="col-lg-4 col-rg-6 col-12 mb-3">
             <div className="card elevation-0">
-              <Image
-                width={400}
-                height={200}
-                className="card-img-top"
-                src="/street.jpg"
-                alt="Card image cap"
-              />
+              <Image width={400} height={200} className="card-img-top" src="/street.jpg" alt="" />
               <div className="card-body bg-gray">
                 <h3 className="card-title">Neue Briefmarken</h3>
                 <p className="card-text">Entdecken Sie jetzt Ihre liebsten Motive</p>
