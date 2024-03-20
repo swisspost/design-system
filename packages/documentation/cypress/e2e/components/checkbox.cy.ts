@@ -12,9 +12,6 @@ describe('Checkbox', () => {
           'color-contrast': {
             enabled: false,
           },
-          'duplicate-id-aria': {
-            enabled: false,
-          },
         },
       });
     });

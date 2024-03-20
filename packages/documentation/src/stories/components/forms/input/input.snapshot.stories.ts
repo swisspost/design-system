@@ -40,23 +40,23 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
                   (args.value &&
                     (context.args.type === 'text' || context.args.type === 'password')),
               )
-              .map(
-                (args: Args) =>
-                  html`
-                    <div>
-                      ${args.title !== undefined && args.title
-                        ? html`
-                            <h4>
-                              ${Object.entries(context.argTypes.size.control.labels)
-                                .filter(([key, value]) => key === args.size)
-                                .map(s => s[1])}
-                            </h4>
-                          `
-                        : ''}
-                      <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
-                    </div>
-                  `,
-              )}
+              .map((args: Args) => {
+                context.id = `a-${crypto.randomUUID()}`;
+                return html`
+                  <div>
+                    ${args.title !== undefined && args.title
+                      ? html`
+                          <h4>
+                            ${Object.entries(context.argTypes.size.control.labels)
+                              .filter(([key, value]) => key === args.size)
+                              .map(s => s[1])}
+                          </h4>
+                        `
+                      : ''}
+                    <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
+                  </div>
+                `;
+              })}
             <h3>Floating Label</h3>
             ${getCombinations('floatingLabel', [true], combinations)
               .filter(
@@ -65,10 +65,10 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
                   (args.value &&
                     (context.args.type === 'text' || context.args.type === 'password')),
               )
-              .map(
-                (args: Args) =>
-                  html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `,
-              )}
+              .map((args: Args) => {
+                context.id = `a-${crypto.randomUUID()}`;
+                return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
+              })}
           </div>
         `,
       )}

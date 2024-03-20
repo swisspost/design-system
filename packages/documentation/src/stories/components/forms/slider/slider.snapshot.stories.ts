@@ -48,7 +48,10 @@ export const Slider: Story = {
                 ...bombArgs({
                   hiddenLabel: [true],
                 }),
-              ].map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
+              ].map((args: Args) => {
+                context.id = `a-${crypto.randomUUID()}`;
+                return meta.render?.({ ...context.args, ...args }, context);
+              })}
             </div>
           `,
         )}
