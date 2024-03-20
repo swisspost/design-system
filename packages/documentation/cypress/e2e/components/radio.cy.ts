@@ -12,9 +12,6 @@ describe('Radio', () => {
           'color-contrast': {
             enabled: false,
           },
-          'duplicate-id-aria': {
-            enabled: false,
-          },
         },
       });
     });

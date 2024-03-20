@@ -50,6 +50,8 @@
     "components:snapshots": "start-server-and-test docs:headless 9001 'pnpm --filter design-system-components snapshots'",
     "components-angular:start": "pnpm --filter design-system-components-angular-workspace start",
     "components-angular:build": "pnpm --filter design-system-components-angular-workspace build",
+    "components-angular:e2e": "pnpm --filter design-system-components-angular-workspace e2e",
+    "components-angular:e2e:watch": "pnpm --filter design-system-components-angular-workspace e2e:watch",
     "header": "pnpm header:start",
     "header:start": "pnpm --filter internet-header dev",
     "header:build": "pnpm --filter internet-header build",

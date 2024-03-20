@@ -52,11 +52,7 @@ export default (params: { pathToStoryFile?: String }) => (
             <div className="d-flex flex-wrap mt-huge-r mb-huge-r profile-list">
               {DEVELOPERS.sort(() => (Math.random() > 0.5 ? 1 : -1)).map((developer, index) => (
                 <article key={index} className="avatar">
-                  <img
-                    className="profile-picture"
-                    src={developer.avatar}
-                    alt={`Profile picture ${developer.name}`}
-                  />
+                  <img className="profile-picture" src={developer.avatar} alt="" />
                   <div>
                     <p>
                       <strong>{developer.name}</strong>

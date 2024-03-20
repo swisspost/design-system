@@ -6,7 +6,7 @@ A collection of web components built with Stencil JS for the Swiss Post Design S
 
 ## Documentation
 
-- Technical docs: [Swiss Post Design System](https://next.design-system.post.ch)
+- Technical docs: [Swiss Post Design System](https://design-system.post.ch)
 - Design docs: [Experience Hub](https://www.experience-hub.ch/document/2803)
 
 ## Installation

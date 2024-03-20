@@ -1,8 +1,10 @@
-import { Meta, StoryObj } from '@storybook/web-components';
+import { StoryObj } from '@storybook/web-components';
+import { MetaComponent } from '../../../../types';
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: 'cb3ba4a2-1265-4a20-b184-b85443146efa',
   title: 'Components/Carousel',
+  tags: ['package:Angular'],
   parameters: {
     badges: [],
   },
