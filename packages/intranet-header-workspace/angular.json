@@ -102,6 +102,12 @@
             "styles": ["projects/intranet-header-showcase/src/styles.scss"],
             "scripts": []
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": ["**/*.ts", "**/*.html"]
+          }
         }
       }
     }
