@@ -47,7 +47,7 @@ runs:
   using: composite
   steps:
     - name: Find Preview Comment
-      uses: peter-evans/find-comment@v2
+      uses: peter-evans/find-comment@v3
       id: preview_comment
       with:
         token: ${{ inputs.comment_token }}
@@ -66,7 +66,7 @@ runs:
         reactions: eyes
 
     - name: Find Initial Preview Comment
-      uses: peter-evans/find-comment@v2
+      uses: peter-evans/find-comment@v3
       id: initial_preview_comment
       with:
         token: ${{ inputs.comment_token }}
