@@ -1,0 +1,333 @@
+@use '../mixins/elevation';
+@use '../variables/spacing';
+@use '../variables/color';
+@use '../variables/animation';
+
+@use './../themes/bootstrap/core' as *;
+
+// Prevent page from scrolling while a dialog is open
+// Missing support for has is negligible, it's progressive enhancement. It will magically work some day
+html:has(dialog[open]) {
+  overflow: hidden;
+}
+
+dialog {
+  @include elevation.elevation('elevation-5');
+
+  padding: spacing.$size-regular spacing.$size-regular 0;
+  max-width: calc(100vw - 2rem);
+  max-height: 90vh;
+  overflow: auto;
+  overscroll-behavior: contain;
+  border-width: 0;
+
+  // Show the border in HCM
+  @media (forced-colors: active) {
+    border-width: 2px;
+  }
+
+  min-width: min(389px, 90vw);
+  max-width: 590px;
+
+  &::backdrop {
+    background-color: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(0);
+
+    @media (forced-colors: active) {
+      background-image: linear-gradient(
+        135deg,
+        CanvasText 4.55%,
+        transparent 4.55%,
+        transparent 50%,
+        CanvasText 50%,
+        CanvasText 54.55%,
+        transparent 54.55%,
+        transparent 100%
+      );
+      background-size: 22px 22px;
+      backdrop-filter: none;
+      background-color: transparent;
+      forced-color-adjust: none;
+    }
+  }
+
+  > .dialog-grid {
+    display: grid;
+    column-gap: spacing.$size-regular;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      'header close-button'
+      'body close-button'
+      'controls controls';
+
+    // Propagate bg color to the controls
+    background-color: inherit;
+  }
+
+  &[data-size='small'] {
+    min-width: 296px;
+    max-width: 388px;
+  }
+
+  // [size="medium"] is the standard case
+
+  &[data-size='large'] {
+    min-width: min(600px, 90vw);
+    max-width: 792px;
+  }
+
+  &[data-variant='notification'] {
+    padding: 0;
+
+    > .dialog-grid {
+      grid-template-columns: 1fr;
+      grid-template-areas:
+        'close-button'
+        'icon'
+        'header'
+        'body'
+        'controls';
+    }
+
+    &[data-type='general'] {
+      --post-dialog-background-color: #{color.$info};
+    }
+
+    &[data-type='warning'] {
+      --post-dialog-background-color: #{color.$warning};
+    }
+
+    &[data-type='error'] {
+      --post-dialog-background-color: #{color.$error};
+    }
+
+    &[data-type='success'] {
+      --post-dialog-background-color: #{color.$success};
+    }
+
+    > .dialog-grid::before {
+      content: '';
+      grid-area: close-button / close-button / header / header;
+      background-color: var(--post-dialog-background-color);
+    }
+
+    post-dialog-close,
+    post-dialog-icon,
+    post-dialog-header,
+    post-dialog-body {
+      margin-top: spacing.$size-regular;
+    }
+
+    post-dialog-header,
+    post-dialog-icon {
+      justify-self: center;
+    }
+
+    post-dialog-header,
+    post-dialog-body,
+    post-dialog-controls {
+      padding-inline: spacing.$size-regular;
+    }
+
+    post-dialog-close {
+      margin-right: spacing.$size-regular;
+    }
+
+    post-dialog-header,
+    post-dialog-controls {
+      padding-bottom: spacing.$size-regular;
+    }
+  }
+
+  &[data-variant='cookie'] {
+    top: auto;
+    bottom: 2rem;
+
+    > .dialog-grid {
+      grid-template-columns: auto 1fr auto;
+      grid-template-areas:
+        'icon     header   close-button'
+        'icon     body     close-button'
+        'controls controls controls';
+    }
+
+    post-dialog-icon {
+      align-self: flex-start;
+    }
+  }
+}
+
+:where(
+    post-dialog-icon,
+    post-dialog-header,
+    post-dialog-body,
+    post-dialog-controls,
+    post-dialog-close
+  ):empty {
+  display: none;
+}
+
+post-dialog-icon {
+  grid-area: icon;
+  display: block;
+
+  > post-icon {
+    width: spacing.$size-big;
+    height: spacing.$size-big;
+
+    // Larger icon for bigger notification dialogs
+    dialog:not([size='small']) & {
+      @include media-breakpoint-up(rg) {
+        width: spacing.$size-small-huge;
+        height: spacing.$size-small-huge;
+      }
+    }
+  }
+}
+
+post-dialog-header {
+  grid-area: header;
+
+  > *:first-child {
+    margin-top: 0;
+  }
+}
+
+post-dialog-body {
+  grid-area: body;
+  margin-bottom: 0;
+
+  > *:last-child {
+    margin-bottom: 0;
+  }
+}
+
+post-dialog-controls {
+  grid-area: controls;
+  position: sticky;
+  bottom: 0;
+  padding-block: spacing.$size-regular;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row-reverse;
+  gap: spacing.$size-regular;
+  background-color: inherit;
+
+  button {
+    @include media-breakpoint-down(sm) {
+      width: 100%;
+    }
+  }
+}
+
+post-dialog-close {
+  position: sticky;
+  top: 0;
+  grid-area: close-button;
+
+  > .btn-close {
+    width: spacing.$size-large;
+    height: spacing.$size-large;
+    min-height: 0;
+  }
+}
+
+// Animations
+// Progressively enhanced with currently experimental @starting-style which allows to animate stuff appearing in the top layer
+dialog:not([data-animation='none']) {
+  --_dialog-transition-duration: var(--dialog-transition-duration, 0.5s);
+
+  transform: scale(0.8);
+  opacity: 0;
+  transition-property: transform, opacity, overlay, display;
+  transition-behavior: allow-discrete;
+  transition-duration: var(--_dialog-transition-duration);
+  transition-timing-function: linear(
+    0,
+    0.007,
+    0.029 2.2%,
+    0.118 4.7%,
+    0.625 14.4%,
+    0.826 19%,
+    0.902,
+    0.962,
+    1.008 26.1%,
+    1.041 28.7%,
+    1.064 32.1%,
+    1.07 36%,
+    1.061 40.5%,
+    1.015 53.4%,
+    0.999 61.6%,
+    0.995 71.2%,
+    1
+  );
+
+  &::backdrop {
+    opacity: 0;
+    transition:
+      backdrop-filter var(--_dialog-transition-duration),
+      opacity var(--_dialog-transition-duration),
+      overlay var(--_dialog-transition-duration) allow-discrete,
+      display var(--_dialog-transition-duration) allow-discrete;
+  }
+
+  &[open] {
+    transform: scale(1);
+    opacity: 1;
+
+    @starting-style {
+      opacity: 0;
+      transform: scale(0.8);
+    }
+
+    &::backdrop {
+      opacity: 1;
+      backdrop-filter: blur(10px);
+
+      @starting-style {
+        opacity: 0;
+        backdrop-filter: blur(0);
+      }
+
+      @media (forced-colors: active) {
+        backdrop-filter: none;
+      }
+    }
+  }
+
+  &[data-variant='cookie'] {
+    opacity: 1; // Reset default
+    transform: translateY(calc(100% + 3rem));
+
+    &[open] {
+      transform: translateY(0);
+
+      @starting-style {
+        transform: translateY(calc(100% + 3rem));
+      }
+    }
+  }
+}
+
+// Animations
+
+dialog {
+  &[effect='bump-in'] {
+    --dialog-effect-closed-transform: translateY(-100%);
+  }
+  &[effect] {
+    transition-behavior: allow-discrete;
+    transition-duration: animation.$transition-time-default;
+    transition-timing-function: animation.$transition-easing-bump-in;
+
+    // Closed state
+    transform: var(--dialog-effect-closed-transform);
+    opacity: var(--dialog-effect-closed-opacity);
+
+    // Open state
+    &[open] {
+      transform: translate(0, 0);
+      opacity: 1;
+    }
+  }
+}
