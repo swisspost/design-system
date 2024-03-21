@@ -66,7 +66,7 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
                     (context.args.type === 'text' || context.args.type === 'password')),
               )
               .map((args: Args) => {
-                context.id = `a-${crypto.randomUUID()}`;
+                context.id = `${bg}-${crypto.randomUUID()}`;
                 return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
               })}
           </div>

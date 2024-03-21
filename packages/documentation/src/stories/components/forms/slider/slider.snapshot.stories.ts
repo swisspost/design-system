@@ -49,7 +49,7 @@ export const Slider: Story = {
                   hiddenLabel: [true],
                 }),
               ].map((args: Args) => {
-                context.id = `a-${crypto.randomUUID()}`;
+                context.id = `${bg}-${crypto.randomUUID()}`;
                 return meta.render?.({ ...context.args, ...args }, context);
               })}
             </div>
