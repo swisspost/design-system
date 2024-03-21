@@ -84,6 +84,7 @@ $webkit-thumb-width: 32px;
     }
 
     @include utilities.focus-style('::-moz-range-thumb') {
+      border-radius: 50% !important;
       box-shadow: none; // Remove default style
       outline: none;
     }
