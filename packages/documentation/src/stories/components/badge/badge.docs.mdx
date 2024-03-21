@@ -11,17 +11,6 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
   Documentation and examples for badges, our small count and labeling component.
 </div>
 
-<PostAlert type="warning">
-  <p slot="heading">Badge is deprecated</p>
-  <p>
-    The current `badge` component is deprecated and will be replaced with the `chip` component which will behave similarly to the current `badge` component.
-    There will also be a new `badge` component, but with a different behavior. Check out the new components in figma:
-    [Chip](https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=11194-50777&mode=design&t=SeiMf2Vt3dmUnpMT-0)
-    /
-    [Badge](https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=11038-51303&mode=design&t=SeiMf2Vt3dmUnpMT-0)
-  </p>
-</PostAlert>
-
 <Canvas sourceState="shown" of={badgeStories.Default} />
 <div className="hide-col-default">
   <Controls of={badgeStories.Default} />
@@ -31,17 +20,23 @@ import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 
 ## Examples
 
-### Checkable
+### Colors
 
-Checkable badges are nothing more than personalized checkboxes.
-Therefore, you can handle then like standard checkboxes.
+You can change the badge color simply by applying a `.bg-*` class to it.
+See all available classes in the [background utilities documentation](/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs).
 
-<Canvas of={badgeStories.Checkable} />
+<Canvas of={badgeStories.Colors} />
 
-### Dismissible
+### Large number
 
-Dismissible badges include a close button, allowing users to easily clear them from the page.
-Because the close button does not have a visible text,
-it should always include a visually hidden label to ensure accessibility for assistive technology users.
+A large number will extend the badge with.
+To prevent the badge from being too large you can simply use the `+` notation as shown hereafter.
 
-<Canvas of={badgeStories.Dismissible} />
+<Canvas of={badgeStories.LargeNumber} />
+
+### Position
+
+As inline elements, the badges can be placed inside other element such as tags.
+They can also be place absolutely to appear above other elements such as icons for example.
+
+<Canvas of={badgeStories.Position} />
