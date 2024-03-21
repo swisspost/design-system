@@ -1,72 +1,89 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import * as CardControlStories from './card-control.stories';
 import LinkTo from '@storybook/addon-links/react';
-import SampleCardControlMethods from './card-control-methods.sample?raw';
+import {
+  PostTabs,
+  PostTabHeader,
+  PostTabPanel,
+} from '@swisspost/design-system-components-react';
+
+import * as CardControlStories from './web-component/card-control.stories';
+import SampleCardControlMethods from './web-component/card-control-methods.sample?raw';
 
 <Meta of={CardControlStories} />
 
 # Card-Controls
 <p className="lead">For a more specialized visualization of checkbox and/or radio elements.</p>
 
-<Canvas of={CardControlStories.Default} />
-<Controls of={CardControlStories.Default} />
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="standardhtml_checkbox">Standard HTML Checkbox</PostTabHeader>
+  <PostTabPanel name="standardhtml_checkbox"></PostTabPanel>
 
-## Installation
+  <PostTabHeader slot="tabs" panel="standardhtml_radio">Standard HTML Radio</PostTabHeader>
+  <PostTabPanel name="standardhtml_radio"></PostTabPanel>
 
-The `<post-card-control>` element is part of the `@swisspost/design-system-components` package. For more information, read the
-<LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
+  <PostTabHeader slot="tabs" panel="webcomponent">Webcomponent</PostTabHeader>
+  <PostTabPanel name="webcomponent">
+    <Canvas of={CardControlStories.Default} />
+    <Controls of={CardControlStories.Default} />
 
-## Examples
+    ## Installation
 
-### On dark background
+    The `<post-card-control>` element is part of the `@swisspost/design-system-components` package. For more information, read the
+    <LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
 
-<Canvas of={CardControlStories.DarkBackground}/>
+    ## Examples
 
-<div className="hide-col-default">
-  <Controls of={CardControlStories.DarkBackground} />
-</div>
+    ### On dark background
 
-### Custom icon
+    <Canvas of={CardControlStories.DarkBackground}/>
 
-You can use our built-in icons by just adding the `icon` property with the name of the desired icon.<br/>
-If this is not enough, you can also use the named `icon` slot and add your very own custom icon.
+    <div className="hide-col-default">
+      <Controls of={CardControlStories.DarkBackground} />
+    </div>
 
-<div className="alert alert-md alert-info">Make sure you remove all the `width` and `height` attributes from the `img` or `svg` tag. Otherwise we can not ensure, our styles will work properly.</div>
+    ### Custom icon
 
-<Canvas of={CardControlStories.CustomIcon} />
+    You can use our built-in icons by just adding the `icon` property with the name of the desired icon.<br/>
+    If this is not enough, you can also use the named `icon` slot and add your very own custom icon.
 
-### Form Integration
+    <div className="alert alert-md alert-info">Make sure you remove all the `width` and `height` attributes from the `img` or `svg` tag. Otherwise we can not ensure, our styles will work properly.</div>
 
-You can use the component directly in your forms, the control value will be available in the `FormData` of the surrounding `<form>` element, just as you are used to from native input elements.
+    <Canvas of={CardControlStories.CustomIcon} />
 
-<p className="alert alert-info">Update the control and submit or reset the form to see how its FormData value changes.</p>
-<Canvas of={CardControlStories.FormIntegration} />
-<div className="hide-col-default">
-  <Controls of={CardControlStories.FormIntegration} />
-</div>
+    ### Form Integration
 
-### Lined up
+    You can use the component directly in your forms, the control value will be available in the `FormData` of the surrounding `<form>` element, just as you are used to from native input elements.
 
-Change the `width` of a `<card-control>` component, by putting it (for example) in a grid.
-If you like to stretch all `<card-control>` components within a row to the same `height`, simply add the class `.h-100` to them.
+    <p className="alert alert-info">Update the control and submit or reset the form to see how its FormData value changes.</p>
+    <Canvas of={CardControlStories.FormIntegration} />
+    <div className="hide-col-default">
+      <Controls of={CardControlStories.FormIntegration} />
+    </div>
 
-<Canvas of={CardControlStories.LinedUp} />
-<div className="hide-col-default">
-  <Controls of={CardControlStories.LinedUp} />
-</div>
+    ### Lined up
 
-### Radio button group
+    Change the `width` of a `<card-control>` component, by putting it (for example) in a grid.
+    If you like to stretch all `<card-control>` components within a row to the same `height`, simply add the class `.h-100` to them.
 
-As you can create radio button groups with native `<radio>` elements, you can do the same with our `<post-card-control>` component as well.<br/>
-Just add the same `name` attribute value to multiple `<post-card-control type="radio">` components.
+    <Canvas of={CardControlStories.LinedUp} />
+    <div className="hide-col-default">
+      <Controls of={CardControlStories.LinedUp} />
+    </div>
 
-<Canvas of={CardControlStories.RadioGroup} />
+    ### Radio button group
 
-### Custom Trigger
-The `<post-card-control>` offers a `reset` method to reset it to the initial state (`validity` and `checked` state).
-The method can be called directly on the element itself.
+    As you can create radio button groups with native `<radio>` elements, you can do the same with our `<post-card-control>` component as well.<br/>
+    Just add the same `name` attribute value to multiple `<post-card-control type="radio">` components.
 
-<Source
-  code={SampleCardControlMethods}
-  language="typescript"
-/>
+    <Canvas of={CardControlStories.RadioGroup} />
+
+    ### Custom Trigger
+    The `<post-card-control>` offers a `reset` method to reset it to the initial state (`validity` and `checked` state).
+    The method can be called directly on the element itself.
+
+    <Source
+      code={SampleCardControlMethods}
+      language="typescript"
+    />
+  </PostTabPanel>
+</PostTabs>
