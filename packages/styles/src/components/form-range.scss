@@ -83,8 +83,7 @@ $webkit-thumb-width: 32px;
       }
     }
 
-    @include utilities.focus-style('::-moz-range-thumb') {
-      border-radius: 50% !important;
+    @include utilities.focus-style-custom('::-moz-range-thumb') {
       box-shadow: none; // Remove default style
       outline: none;
     }
