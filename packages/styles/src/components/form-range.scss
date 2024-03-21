@@ -12,7 +12,7 @@
 
 $track-height: 4px;
 $webkit-progress-height-adjustment: 2px;
-$webkit-thumb-width: 33px;
+$webkit-thumb-width: 32px;
 
 :has(> .form-range) {
   @include utilities.focus-style();
@@ -42,14 +42,16 @@ $webkit-thumb-width: 33px;
   &::-webkit-slider-thumb {
     // Source: https://antvil.github.io/css-sos/sos/progress/
     clip-path: polygon(
-      0 (-($webkit-thumb-width)),
+      0 calc(50% - $track-height * 0.5),
+      1px calc(50% - #{$track-height * 0.5 + 4px}),
+      1px 0,
       $webkit-thumb-width 0,
       $webkit-thumb-width $webkit-thumb-width,
-      0 $webkit-thumb-width,
-      0 calc(50% + $webkit-progress-height-adjustment),
-      -100vw calc(50% + $webkit-progress-height-adjustment),
-      -100vw calc(50% - $webkit-progress-height-adjustment),
-      0 calc(50% - $webkit-progress-height-adjustment)
+      1px $webkit-thumb-width,
+      1px calc(50% + #{$track-height * 0.5 + 4px}),
+      0 calc(50% + #{$track-height * 0.5}),
+      -100vw calc(50% + #{$track-height * 0.5}),
+      -100vw calc(50% - #{$track-height * 0.5})
     );
   }
 
