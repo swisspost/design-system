@@ -15,6 +15,7 @@ import { getAttributeObserver } from '../../utils/attribute-observer';
 let tooltipInstances = 0;
 let hideTooltipTimeout: number = null;
 const tooltipTargetAttribute = 'data-tooltip-target';
+const tooltipTargetAttributeSelector = `[${tooltipTargetAttribute}]`;
 
 /**
  * Global event listener to show tooltips. This is globalized so that triggers that are rendered
@@ -23,12 +24,14 @@ const tooltipTargetAttribute = 'data-tooltip-target';
  * @returns
  */
 const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
-  const target = e.target as HTMLElement;
-  if (!target || !('getAttribute' in target)) return;
-  const tooltipTarget = target.getAttribute(tooltipTargetAttribute);
+  const targetElement = (e.target as HTMLElement).closest(
+    tooltipTargetAttributeSelector,
+  ) as HTMLElement;
+  if (!targetElement || !('getAttribute' in targetElement)) return;
+  const tooltipTarget = targetElement.getAttribute(tooltipTargetAttribute);
   if (!tooltipTarget || tooltipTarget === '') return;
   const tooltip = document.getElementById(tooltipTarget) as HTMLPostTooltipElement;
-  tooltip?.show(target);
+  void tooltip?.show(targetElement);
   if (hideTooltipTimeout) {
     window.clearTimeout(hideTooltipTimeout);
     hideTooltipTimeout = null;
@@ -42,8 +45,11 @@ const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
  * @returns
  */
 const globalInterestLostHandler = (e: PointerEvent | FocusEvent) => {
-  const target = e.target as HTMLElement;
-  const tooltipTarget = target.getAttribute(tooltipTargetAttribute);
+  const targetElement = (e.target as HTMLElement).closest(
+    tooltipTargetAttributeSelector,
+  ) as HTMLElement;
+  if (!targetElement || !('getAttribute' in targetElement)) return;
+  const tooltipTarget = targetElement.getAttribute(tooltipTargetAttribute);
   if (!tooltipTarget || tooltipTarget === '') return;
   const tooltip = document.getElementById(tooltipTarget) as HTMLPostTooltipElement;
   globalHideTooltip(tooltip);
