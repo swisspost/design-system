@@ -61,7 +61,7 @@ class PackageVersion {
 })
 export class VersionService {
   public get currentVersion(): Observable<PackageVersion> {
-    return this.versions.pipe(map(versions => versions.find(v => v.isCurrent)));
+    return this.versions.pipe(map(versions => versions[0]));
   }
 
   public get versions(): Observable<PackageVersion[]> {

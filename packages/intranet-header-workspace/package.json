@@ -21,6 +21,7 @@
     "@angular/router": "17.3.0",
     "@ng-bootstrap/ng-bootstrap": "16.0.0",
     "@popperjs/core": "2.11.8",
+    "@swisspost/design-system-intranet-header": "workspace:5.0.11",
     "@swisspost/design-system-styles": "workspace:6.6.4",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",

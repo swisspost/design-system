@@ -11,7 +11,9 @@
   </p>
   <div class="table-responsive">
     <table class="table caption-top mb-regular-r">
-      <caption>List of compatible version numbers with external dependencies.</caption>
+      <caption>
+        List of compatible version numbers with external dependencies.
+      </caption>
       <thead>
         <tr>
           <th scope="col">Intranet-header</th>
@@ -187,18 +189,6 @@
           </td>
           <td>Whether the navigation is rendered or not.</td>
         </tr>
-        <tr class="table-danger">
-          <td>
-            <code>isPreview</code>
-          </td>
-          <td>
-            <code>boolean</code>
-          </td>
-          <td>
-            <code>false</code>
-          </td>
-          <td>This is only used for presentational purposes. Do not use it in production!</td>
-        </tr>
         <tr>
           <td>
             <code>languages</code>
@@ -315,14 +305,6 @@
     </table>
   </div>
   <h3 class="bold mt-5">Examples</h3>
-  <div class="alert-container mt-3">
-    <div class="alert alert-warning" _ngcontent-c2="">
-      <p>
-        You will need to remove the class "preview" from the outermost section and property
-        "isPreview" from post-intranet-header to use the layout in your application!
-      </p>
-    </div>
-  </div>
   <h4 class="bold mt-5">With top navigation, without sidenav</h4>
   <p class="light font-curve-regular">
     Add
@@ -335,25 +317,12 @@
 
 <div class="header-showcase-container p-huge-r">
   <div class="header-showcase-page">
-    <sp-intranet-header siteTitle="SiteTitle" [isPreview]="true" languages="de,fr,it">
-      <li class="nav-item">
-        <a class="nav-link" href="#">Testlink</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Testlink</a>
-      </li>
-      <li class="nav-item" ngbDropdown>
-        <button class="nav-link" id="testid01" ngbDropdownToggle type="button">Dropdown</button>
-        <div aria-labelledby="testid01" ngbDropdownMenu>
-          <a ngbDropdownItem href="#" ngbDropdownItem>Link 1</a>
-          <a ngbDropdownItem href="#" ngbDropdownItem>Link 2</a>
-          <a ngbDropdownItem href="#" ngbDropdownItem>Link 3</a>
-        </div>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Testlink</a>
-      </li>
-    </sp-intranet-header>
+    <iframe
+      title="Intranet-header example with top navigation and without sidenav"
+      src="/#/samples/intranet-layout-regular"
+      class="w-100"
+      style="min-height: 300px"
+    ></iframe>
   </div>
 </div>
 
@@ -369,7 +338,12 @@
 
 <div class="header-showcase-container p-huge-r">
   <div class="header-showcase-page">
-    <app-intranet-header-small></app-intranet-header-small>
+    <iframe
+      title="Intranet-header example without top navigation and with sidenav"
+      src="/#/samples/intranet-layout-sidebar-small-sidebar"
+      class="w-100"
+      style="min-height: 500px"
+    ></iframe>
   </div>
 </div>
 
@@ -391,7 +365,12 @@
 
 <div class="header-showcase-container p-huge-r">
   <div class="header-showcase-page">
-    <app-intranet-header-big></app-intranet-header-big>
+    <iframe
+      title="Intranet-header 'postweb' example with top navigation and with sidenav"
+      src="/#/samples/intranet-layout-sidebar-big-sidebar"
+      class="w-100"
+      style="min-height: 500px"
+    ></iframe>
   </div>
 </div>
 

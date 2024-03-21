@@ -50,14 +50,24 @@ import { StepperDemoPageComponent } from './post-sample/components/stepper/stepp
 import { DatatableDemoPageComponent } from './post-sample/components/datatable/datatable-demo-page/datatable-demo-page.component';
 import { FormsDemoPageComponent } from './post-sample/components/forms/forms-demo-page/forms-demo-page.component';
 import { PostCardsDemoPageComponent } from './post-sample/components/post-cards/post-cards-demo-page/post-cards-demo-page.component';
+import { LayoutContainerComponent } from './layout-container/layout-container.component';
+import { IntranetHeaderDemoRegularComponent } from './intranet-layout/components/intranet-header-demo-regular/intranet-header-demo-regular.component';
+import { IntranetHeaderDemoBigSidebarComponent } from './intranet-layout/components/intranet-header-demo-big-sidebar/intranet-header-demo-big-sidebar.component';
+import { IntranetHeaderDemoSmallSidebarComponent } from './intranet-layout/components/intranet-header-demo-small-sidebar/intranet-header-demo-small-sidebar.component';
 /* tslint:enable:max-line-length */
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: HomeComponent, data: { fullWidth: true } },
+  {
+    path: 'home',
+    component: LayoutContainerComponent,
+    data: { fullWidth: true },
+    children: [{ path: '', component: HomeComponent, data: { fullWidth: true } }],
+  },
 
   {
     path: 'bootstrap-samples',
+    component: LayoutContainerComponent,
     children: [
       { path: 'accordion', component: AccordionDemoPageComponent },
       { path: 'alerts', component: AlertDemoPageComponent },
@@ -90,6 +100,7 @@ const routes: Routes = [
   },
   {
     path: 'ng-bootstrap-samples',
+    component: LayoutContainerComponent,
     children: [
       { path: 'accordion', component: NgbAccordionDemoPageComponent },
       { path: 'rating', component: NgbRatingDemoPageComponent },
@@ -114,6 +125,7 @@ const routes: Routes = [
   },
   {
     path: 'post-samples',
+    component: LayoutContainerComponent,
     children: [
       { path: 'accordion', component: AccordionDemoPageComponent },
       { path: 'datatable', component: DatatableDemoPageComponent },
@@ -135,10 +147,24 @@ const routes: Routes = [
       { path: 'custom-select', component: CustomSelectDemoPageComponent },
       { path: 'stepper', component: StepperDemoPageComponent },
       { path: 'forms', component: FormsDemoPageComponent },
+      { path: 'intranet-layout', component: IntranetLayoutComponent, data: { fullWidth: true } },
+    ],
+  },
+
+  {
+    path: 'samples',
+    children: [
       {
-        path: 'intranet-layout',
-        component: IntranetLayoutComponent,
-        data: { fullWidth: true },
+        path: 'intranet-layout-regular',
+        component: IntranetHeaderDemoRegularComponent,
+      },
+      {
+        path: 'intranet-layout-sidebar-big-sidebar',
+        component: IntranetHeaderDemoBigSidebarComponent,
+      },
+      {
+        path: 'intranet-layout-sidebar-small-sidebar',
+        component: IntranetHeaderDemoSmallSidebarComponent,
       },
     ],
   },

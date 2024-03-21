@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-intranet-header-big',
-  templateUrl: './intranet-header-big.component.html',
+  templateUrl: './intranet-header-demo-big-sidebar.component.html',
   styleUrls: ['../../intranet-layout.component.css'],
 })
-export class IntranetHeaderBigComponent {
+export class IntranetHeaderDemoBigSidebarComponent {
   openedMenu = false;
   appTitle = 'testwebapp';
   initialLanguage = 'de';
