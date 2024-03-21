@@ -32,7 +32,7 @@ describe('alert', () => {
 });
 
 describe('Accessibility', () => {
-  it.only('Has no detectable a11y violations on load for all variants', () => {
+  it('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('post-alert');
     cy.checkA11y('#root-inner');
   });
