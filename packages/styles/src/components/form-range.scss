@@ -82,6 +82,7 @@
         border-color: ButtonText;
       }
 
+      &:hover,
       &:focus-visible {
         &::-webkit-slider-thumb {
           outline-offset: commons.$border-thick;

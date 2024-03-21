@@ -74,6 +74,14 @@
       &:indeterminate::after {
         @include icons-mx.icon(2039);
       }
+
+      &:checked,
+      &:indeterminate {
+        @include utility-mx.high-contrast-mode {
+          background-color: SelectedItem !important;
+          color: SelectedItemText !important; // Important is needed for card-control
+        }
+      }
     }
 
     &[type='radio'] {
@@ -84,6 +92,11 @@
         background-color: currentColor;
         border-radius: inherit;
         background-clip: padding-box;
+
+        @include utility-mx.high-contrast-mode {
+          background-color: SelectedItem;
+          border-color: Canvas;
+        }
       }
     }
 
@@ -100,6 +113,16 @@
       &[type='radio'] {
         &:checked::after {
           border-width: spacing.$size-line;
+        }
+      }
+    }
+
+    &[type='checkbox'],
+    &[type='radio'] {
+      @include utility-mx.high-contrast-mode {
+        &:hover,
+        &:focus {
+          border-color: Highlight;
         }
       }
     }
@@ -155,7 +178,7 @@
       border: form-check.$form-check-input-border-width solid CanvasText;
 
       &:checked {
-        background-color: SelectedItem;
+        background-color: SelectedItem !important;
       }
 
       &::after,
@@ -182,12 +205,6 @@
 
     @include utility-mx.high-contrast-mode {
       border-color: Highlight;
-
-      &:checked,
-      &::after,
-      &:checked::after {
-        background-color: Highlight;
-      }
     }
   }
 
