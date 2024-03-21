@@ -9,13 +9,7 @@ describe('Input', () => {
         cy.get('.form-control', { timeout: 30000 }).should('be.visible');
         cy.injectAxe();
 
-        cy.checkA11y('#root-inner', {
-          rules: {
-            'duplicate-id-aria': {
-              enabled: false,
-            },
-          },
-        });
+        cy.checkA11y('#root-inner');
       });
     });
   });

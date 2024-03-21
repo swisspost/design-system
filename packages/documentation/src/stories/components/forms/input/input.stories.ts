@@ -184,7 +184,12 @@ type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
   const id = `ExampleTextarea_${context.name}`;
-  const classes = ['form-control', args.size, args.sizeFloatingLabel, args.validation]
+  const classes = [
+    'form-control',
+    args.size,
+    args.floatingLabel ? args.sizeFloatingLabel : '',
+    args.validation,
+  ]
     .filter(c => c && c !== 'null')
     .join(' ');
 

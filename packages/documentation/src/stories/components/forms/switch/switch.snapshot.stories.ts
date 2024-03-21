@@ -25,11 +25,15 @@ export const Switch: Story = {
       validation: ['null', 'is-valid', 'is-invalid'],
     })
       .filter((args: Args) => !(args.labelPosition == 'before' && args.label === longerText))
-      .map((args: Args) => {
-        return html`
-          <div class="col-6 p-3">${meta.render?.({ ...context.args, ...args }, context)}</div>
-        `;
-      });
+      .map(args => ({ ...args, id: `a-${crypto.randomUUID()}` }))
+      .map(
+        (args: Args) =>
+          html`
+            <div class="col-6 p-3">
+              ${meta.render?.({ ...context.args, ...args }, { ...context, id: args.id })}
+            </div>
+          `,
+      );
 
     return html`
       <div>
