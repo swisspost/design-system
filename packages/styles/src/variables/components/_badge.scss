@@ -1,48 +1,19 @@
-@use 'sass:math';
-
-@use './button';
-@use './../animation';
 @use './../color';
 @use './../commons';
-@use './../spacing';
-@use './../type';
+@use './../components/chip';
 
 @use './../../functions/sizing';
 
-// Design System custom variables
-$badge-height: button.$btn-height-rg;
-$badge-gap: spacing.$size-mini;
-$badge-border-color: var(--post-gray-60);
-$badge-border-width: commons.$border-thick;
-$badge-transition:
-  color 250ms,
-  background-color 250ms,
-  border-color 250ms;
-$badge-hover-color: color.$black;
-$badge-hover-bg-color: color.$gray-10;
-$badge-active-color: color.$black;
-$badge-active-bg-color: color.$yellow;
+$badge-height: sizing.px-to-rem(24px);
+$badge-height-sm: sizing.px-to-rem(16px);
+$badge-font-size: sizing.px-to-rem(10px);
 
-$badge-height-sm: button.$btn-height-sm;
-$badge-gap-sm: sizing.px-to-rem(6px);
-$badge-font-size-sm: type.$font-size-tiny;
+$badge-color: color.$gray-60;
+$badge-bg: color.$gray-20;
+$badge-border: commons.$border-thick solid $badge-bg;
 
-$badge-nested-height: sizing.px-to-rem(22px);
-$badge-nested-color: color.$gray-60;
-$badge-nested-bg-color: color.$gray-10;
-$badge-nested-border-color: color.$white;
-$badge-nested-font-size: sizing.px-to-rem(10px);
-$badge-nested-translate-x: ($badge-height - $badge-nested-height) * 0.5;
-$badge-nested-active-bg-color: color.$white;
-$badge-nested-translate-x-sm: ($badge-height-sm - $badge-nested-height) * 0.5;
+$badge-hover-bg-color: $badge-bg;
+$badge-hover-border-color: color.$white;
 
-$badge-check-input-height: spacing.$size-small-large;
-$badge-check-input-bg-color: color.$white;
-
-// Bootstrap variables
-$badge-font-size: type.$font-size-small;
-$badge-font-weight: type.$font-weight-normal;
-$badge-color: var(--post-gray-80);
-$badge-padding-y: 0;
-$badge-padding-x: spacing.$size-regular - sizing.px-to-rem($badge-border-width);
-$badge-border-radius: 50rem;
+$badge-active-bg-color: color.$white;
+$badge-active-border-color: color.$white;

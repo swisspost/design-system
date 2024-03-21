@@ -16,11 +16,17 @@ $webkit-thumb-width: 32px;
 
 :has(> .form-range) {
   @include utilities.focus-style();
+  @include utilities.focus-style-custom() {
+    border-radius: commons.$border-radius !important;
+  };
 }
 
 @supports not selector(:has(> .form-range)) {
   .form-range {
     @include utilities.focus-style();
+    @include utilities.focus-style-custom() {
+      border-radius: commons.$border-radius !important;
+    };
   }
 }
 

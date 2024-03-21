@@ -1,0 +1,94 @@
+@forward './../variables/options';
+
+@use './../variables/components/chip';
+@use './../variables/components/forms';
+@use './../variables/components/form-check';
+@use './../variables/color';
+@use './../mixins/utilities';
+@use './../mixins/chip' as chip-mx;
+@use './../placeholders/chip' as chip-ph;
+@use './../functions/icons' as icons-fn;
+
+.chip {
+  @extend %chip;
+}
+
+a,
+button {
+  &.chip {
+    @include utilities.focus-style;
+    background-color: transparent;
+    text-decoration: none;
+    transition: chip.$chip-transition;
+
+    &:is(:active, .active) {
+      @include chip-mx.chip-active-state;
+      @include utilities.disabled-style-custom {
+        background-color: chip.$chip-disabled-active-bg;
+      }
+    }
+
+    &:not(:active, .active) {
+      @include utilities.not-disabled-focus-hover {
+        @include chip-mx.chip-hover-state;
+      }
+    }
+
+    @include utilities.disabled-style;
+    @include utilities.disabled-style-custom {
+      background-color: chip.$chip-disabled-bg;
+    }
+  }
+}
+
+.chip-check {
+  &-label {
+    @extend %chip;
+    transition: chip.$chip-transition;
+    cursor: pointer;
+  }
+
+  &-input:checked {
+    + .chip-check-label {
+      @include chip-mx.chip-active-state;
+    }
+
+    @include utilities.disabled-style-custom('+ .chip-check-label') {
+      background-color: chip.$chip-disabled-active-bg;
+    }
+  }
+
+  &-input:not(:checked) + &-label:hover {
+    @include chip-mx.chip-hover-state;
+  }
+
+  &-input {
+    @include utilities.visuallyhidden;
+    @include utilities.focus-style('+ .chip-check-label');
+    @include utilities.disabled-style('+ .chip-check-label');
+    @include utilities.disabled-style-custom('+ .chip-check-label') {
+      background-color: chip.$chip-disabled-bg;
+    }
+  }
+}
+
+@include utilities.high-contrast-mode() {
+  .chip-check {
+    &-input:focus-visible + &-label {
+      border-color: Highlight;
+      outline-color: Highlight;
+    }
+
+    &-input:checked + &-label {
+      &:hover {
+        @include chip-mx.chip-hover-state;
+      }
+    }
+  }
+
+  button.chip,
+  a.chip,
+  .chip-check-label {
+    transition: none;
+  }
+}

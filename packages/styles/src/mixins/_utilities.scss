@@ -88,15 +88,16 @@
 }
 
 @mixin focus-style($vendor-prefix: '') {
-  outline-style: none;
-  outline-offset: spacing.$size-line;
-  outline-width: spacing.$size-line;
-  outline-color: var(--post-focus-color);
+  &#{$vendor-prefix} {
+    outline-style: none;
+    outline-offset: spacing.$size-line;
+    outline-width: spacing.$size-line;
+    outline-color: var(--post-focus-color);
+  }
 
   // :has(:focus-visible) mimic a focus-visible-within pseudo-class
   &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$vendor-prefix} {
     outline-style: solid;
-    border-radius: commons.$border-radius !important;
 
     @include high-contrast-mode() {
       outline-color: Highlight;
@@ -110,7 +111,6 @@
   @supports not selector(:has(:focus-visible)) {
     &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
       outline-style: solid;
-      border-radius: commons.$border-radius !important;
 
       @include high-contrast-mode() {
         outline-color: Highlight;
@@ -133,5 +133,21 @@
     &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
       @content;
     }
+  }
+}
+
+@mixin disabled-style($selector: '') {
+  &:is(:disabled, .disabled)#{$selector} {
+    pointer-events: none;
+    text-decoration: line-through;
+    color: var(--post-gray-40);
+    border-color: var(--post-gray-40);
+    border-style: dashed;
+  }
+}
+
+@mixin disabled-style-custom($selector: '') {
+  &:is(:disabled, .disabled)#{$selector} {
+    @content;
   }
 }

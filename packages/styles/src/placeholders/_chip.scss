@@ -1,0 +1,99 @@
+@use './../themes/bootstrap/core' as *;
+
+@use './../variables/commons';
+@use './../variables/spacing';
+@use './../variables/components/badge';
+@use './../variables/components/chip';
+
+%chip {
+  @include border-radius(chip.$chip-border-radius);
+  display: inline-flex;
+  align-items: center;
+  height: chip.$chip-height;
+  max-width: chip.$chip-max-width;
+  padding-inline: chip.$chip-padding-x;
+  border: chip.$chip-border-width solid chip.$chip-border-color;
+  gap: chip.$chip-gap;
+  line-height: chip.$chip-line-height;
+  font-size: chip.$chip-font-size;
+  font-weight: chip.$chip-font-weight;
+  color: chip.$chip-color;
+  background-color: chip.$chip-bg;
+
+  > span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  > .badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: badge.$badge-height;
+    min-width: badge.$badge-height;
+    padding: spacing.$size-micro;
+    color: badge.$badge-color;
+    background-color: badge.$badge-bg;
+    border: badge.$badge-border;
+    font-size: badge.$badge-font-size;
+  }
+
+  > .btn-close {
+    &:hover {
+      background-color: chip.$chip-hover-bg;
+    }
+
+    &::before {
+      height: badge.$badge-height;
+      width: badge.$badge-height;
+    }
+  }
+
+  > .badge,
+  > .btn-close {
+    border-radius: commons.$border-radius-pill;
+
+    &:first-child {
+      margin-left: 0.5 * badge.$badge-height - chip.$chip-padding-x;
+    }
+
+    &:last-child {
+      margin-right: 0.5 * badge.$badge-height - chip.$chip-padding-x;
+    }
+  }
+
+  &.chip-sm {
+    height: chip.$chip-height-sm;
+    font-size: chip.$chip-font-size-sm;
+    gap: chip.$chip-gap-sm;
+    padding-inline: chip.$chip-padding-x-sm;
+
+    > .badge {
+      height: badge.$badge-height-sm;
+      min-width: badge.$badge-height-sm;
+    }
+
+    > .btn-close::before {
+      height: badge.$badge-height-sm;
+      width: badge.$badge-height-sm;
+    }
+
+    > .badge,
+    > .btn-close {
+      &:first-child {
+        margin-left: 0.5 * badge.$badge-height-sm - chip.$chip-padding-x-sm;
+      }
+
+      &:last-child {
+        margin-right: 0.5 * badge.$badge-height-sm - chip.$chip-padding-x-sm;
+      }
+    }
+  }
+
+  // Quick fix for badges in buttons
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+}

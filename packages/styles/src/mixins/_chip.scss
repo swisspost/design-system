@@ -1,10 +1,15 @@
 @use './../variables/components/badge';
+@use './../variables/components/chip';
 @use './../mixins/utilities';
 
-@mixin badge-hover-state {
-  color: badge.$badge-hover-color;
-  background-color: badge.$badge-hover-bg-color;
-  border-color: transparent;
+@mixin chip-hover-state {
+  color: chip.$chip-hover-color;
+  background-color: chip.$chip-hover-bg;
+
+  > .badge {
+    background-color: badge.$badge-hover-bg-color;
+    border-color: badge.$badge-hover-border-color;
+  }
 
   @include utilities.high-contrast-mode() {
     background-color: Highlight;
@@ -14,13 +19,14 @@
   }
 }
 
-@mixin badge-active-state {
-  color: badge.$badge-active-color;
-  background-color: badge.$badge-active-bg-color;
+@mixin chip-active-state {
+  color: chip.$chip-active-color;
+  background-color: chip.$chip-active-bg;
   border-color: transparent;
 
   > .badge {
-    background-color: badge.$badge-nested-active-bg-color;
+    background-color: badge.$badge-active-bg-color;
+    border-color: badge.$badge-active-border-color;
   }
 
   @include utilities.high-contrast-mode() {
