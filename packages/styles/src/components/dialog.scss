@@ -1,6 +1,7 @@
 @use '../mixins/elevation';
 @use '../variables/spacing';
 @use '../variables/color';
+@use '../variables/animation';
 
 @use './../themes/bootstrap/core' as *;
 
@@ -11,14 +12,16 @@ html:has(dialog[open]) {
 }
 
 dialog {
-  @include elevation.elevation('elevation-3');
+  @include elevation.elevation('elevation-5');
 
   padding: spacing.$size-regular spacing.$size-regular 0;
+  max-width: calc(100vw - 2rem);
   max-height: 90vh;
   overflow: auto;
   overscroll-behavior: contain;
   border-width: 0;
 
+  // Show the border in HCM
   @media (forced-colors: active) {
     border-width: 2px;
   }
@@ -48,7 +51,7 @@ dialog {
     }
   }
 
-  > form {
+  > .dialog-grid {
     display: grid;
     column-gap: spacing.$size-regular;
     grid-template-columns: 1fr auto;
@@ -76,7 +79,7 @@ dialog {
   &[data-variant='notification'] {
     padding: 0;
 
-    > form {
+    > .dialog-grid {
       grid-template-columns: 1fr;
       grid-template-areas:
         'close-button'
@@ -89,17 +92,20 @@ dialog {
     &[data-type='general'] {
       --post-dialog-background-color: #{color.$info};
     }
+
     &[data-type='warning'] {
       --post-dialog-background-color: #{color.$warning};
     }
+
     &[data-type='error'] {
       --post-dialog-background-color: #{color.$error};
     }
+
     &[data-type='success'] {
       --post-dialog-background-color: #{color.$success};
     }
 
-    > form::before {
+    > .dialog-grid::before {
       content: '';
       grid-area: close-button / close-button / header / header;
       background-color: var(--post-dialog-background-color);
@@ -137,7 +143,7 @@ dialog {
     top: auto;
     bottom: 2rem;
 
-    > form {
+    > .dialog-grid {
       grid-template-columns: auto 1fr auto;
       grid-template-areas:
         'icon     header   close-button'
@@ -151,14 +157,14 @@ dialog {
   }
 }
 
-post-dialog-icon,
-post-dialog-header,
-post-dialog-body,
-post-dialog-controls,
-post-dialog-close {
-  &:empty {
-    display: none;
-  }
+:where(
+    post-dialog-icon,
+    post-dialog-header,
+    post-dialog-body,
+    post-dialog-controls,
+    post-dialog-close
+  ):empty {
+  display: none;
 }
 
 post-dialog-icon {
@@ -182,7 +188,7 @@ post-dialog-icon {
 post-dialog-header {
   grid-area: header;
 
-  & > *:first-child {
+  > *:first-child {
     margin-top: 0;
   }
 }
@@ -191,7 +197,7 @@ post-dialog-body {
   grid-area: body;
   margin-bottom: 0;
 
-  & > *:last-child {
+  > *:last-child {
     margin-bottom: 0;
   }
 }
@@ -218,13 +224,16 @@ post-dialog-close {
   position: sticky;
   top: 0;
   grid-area: close-button;
-  width: spacing.$size-large;
-  height: spacing.$size-large;
-  min-height: 0;
-  margin-left: auto;
+
+  > .btn-close {
+    width: spacing.$size-large;
+    height: spacing.$size-large;
+    min-height: 0;
+  }
 }
 
 // Animations
+// Progressively enhanced with currently experimental @starting-style which allows to animate stuff appearing in the top layer
 dialog:not([data-animation='none']) {
   --_dialog-transition-duration: var(--dialog-transition-duration, 0.5s);
 
@@ -296,6 +305,29 @@ dialog:not([data-animation='none']) {
       @starting-style {
         transform: translateY(calc(100% + 3rem));
       }
+    }
+  }
+}
+
+// Animations
+
+dialog {
+  &[effect="bump-in"] {
+    --dialog-effect-closed-transform: 
+  }
+  &[effect] {
+    transition-behavior: allow-discrete;
+    transition-duration: animation.$transition-time-default;
+    transition-timing-function: animation.$transition-easing-bump-in;
+
+    // Closed state
+    transform: var(--dialog-effect-closed-transform);
+    opacity: var(--dialog-effect-closed-opacity);
+
+    // Open state
+    &[open] {
+      transform: translate(0, 0);
+      opacity: 1;
     }
   }
 }

@@ -1,5 +1,4 @@
 import { BADGE } from '@geometricpanda/storybook-addon-badges';
-import { background } from '@storybook/theming';
 import { Args, Meta, StoryObj } from '@storybook/web-components';
 import { TemplateResult, html, nothing } from 'lit-html';
 
@@ -18,7 +17,6 @@ const meta: Meta = {
     title: 'Dialog',
     content: 'This is a dialog',
     size: 'medium',
-    open: true,
     closeButton: true,
   },
   argTypes: {
@@ -138,7 +136,7 @@ const Template = {
         data-type="${notificationType}"
         class="${backgroundColor}"
       >
-        <form method="dialog">
+        <form method="dialog" class="dialog-grid">
           <post-dialog-icon>${icon}</post-dialog-icon>
           <post-dialog-header>${header}</post-dialog-header>
           <post-dialog-body>${body}</post-dialog-body>
@@ -153,28 +151,54 @@ const Template = {
 };
 
 const FormTemplate = {
+  ...Template,
   render: (args: Args) => {
     return html`
       <dialog size="${args.size}">
-        <form method="dialog">
-          <h3>Form example</h3>
-          <div class="form-floating mt-3">
-            <input
-              id="ExampleTextarea_Default"
-              class="form-control form-control-lg"
-              type="text"
-              placeholder="Placeholder"
-            />
-            <label class="form-label" for="ExampleTextarea_Default">Label</label>
-            <div class="form-text">
-              Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie
-              consequat, vel illum dolore eu feugiat nulla facilisis.
+        <form
+          id="example-dialog-form"
+          method="dialog"
+          class="dialog-grid"
+          onsubmit="console.log(Object.fromEntries(new FormData(event.target)))"
+        >
+          <post-dialog-header><h3>Form example</h3></post-dialog-header>
+          <post-dialog-body>
+            <div class="form-floating mt-3">
+              <input
+                id="example-dialog-text-field"
+                class="form-control form-control-lg"
+                type="text"
+                placeholder="Placeholder"
+                name="example-text-field"
+                required
+              />
+              <label class="form-label" for="example-dialog-text-field">Label</label>
+              <div class="form-text">
+                Hintus textus elare volare cantare hendrerit in vulputate velit esse molestie
+                consequat, vel illum dolore eu feugiat nulla facilisis.
+              </div>
             </div>
-          </div>
-          <div class="dialog-controls">
+          </post-dialog-body>
+
+          <post-dialog-controls>
             <button class="btn btn-primary">Confirm</button>
             <button class="btn btn-secondary" formnovalidate>Cancel</button>
-          </div>
+          </post-dialog-controls>
+        </form>
+      </dialog>
+    `;
+  },
+};
+
+const CustomContentTemplate = {
+  ...Template,
+  render: (args: Args) => {
+    return html`
+      <dialog>
+        <form method="dialog" onsubmit="console.log(event)">
+          <h2>Custom content</h2>
+          <p>This is some other content, just placed inside the dialog.</p>
+          <button class="btn btn-primary">Ok</button>
         </form>
       </dialog>
     `;
@@ -202,4 +226,8 @@ export const Form: Story = {
 
 export const Cookie: Story = {
   ...CookieTemplate,
+};
+
+export const Custom: Story = {
+  ...CustomContentTemplate,
 };
