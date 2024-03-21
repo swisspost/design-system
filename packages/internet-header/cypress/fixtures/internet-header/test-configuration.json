@@ -3049,6 +3049,16 @@
             {
               "address": null,
               "describe": null,
+              "hours": "<p>8&mdash;12</p>",
+              "links": null,
+              "name": "days",
+              "number": null,
+              "text": "Bank holidays",
+              "title": null
+            },
+            {
+              "address": null,
+              "describe": null,
               "hours": "Share screen",
               "links": null,
               "name": "days",

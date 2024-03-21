@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './textarea.stories';
 import { html } from 'lit';
-import { getCombinations, COMBINATIONS } from '../../../../utils/inputComponentsGetCombinations';
+import { COMBINATIONS, getCombinations } from '../../../../utils/inputComponentsGetCombinations';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -42,8 +42,9 @@ export const Textarea: Story = {
             <div class="${bg} d-flex gap-3 flex-column p-3">
               <h3>Sizes</h3>
               ${getCombinations('size', context.argTypes.size.options, combinations).map(
-                (args: Args) =>
-                  html`
+                (args: Args) => {
+                  context.id = `${bg}-${crypto.randomUUID()}`;
+                  return html`
                     <div>
                       ${args.title !== undefined && args.title
                         ? html`
@@ -56,13 +57,14 @@ export const Textarea: Story = {
                         : ''}
                       <div>${meta.render?.({ ...context.args, ...args }, context)}</div>
                     </div>
-                  `,
+                  `;
+                },
               )}
               <h3>Floating Label</h3>
-              ${getCombinations('floatingLabel', [true], combinations).map(
-                (args: Args) =>
-                  html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `,
-              )}
+              ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
+                context.id = `${bg}-${crypto.randomUUID()}`;
+                return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
+              })}
             </div>
           `,
         )}

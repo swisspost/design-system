@@ -154,7 +154,7 @@ export const Default: Story = {
           src="https://picsum.photos/id/553/800/800"
           width="100%"
           height="100%"
-          alt="Test teaser image"
+          alt=""
         />
       </div>
     `;
