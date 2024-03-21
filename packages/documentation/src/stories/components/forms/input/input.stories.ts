@@ -183,7 +183,7 @@ export default meta;
 type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
-  const id = `ExampleTextarea_${context.name}`;
+  const id = context.id ?? `ExampleTextarea_${context.name}`;
   const classes = [
     'form-control',
     args.size,

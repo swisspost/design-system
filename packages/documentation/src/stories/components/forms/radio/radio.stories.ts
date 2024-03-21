@@ -119,7 +119,7 @@ const meta: MetaComponent = {
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  const id = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
+  const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
   const classes = ['form-check-input', args.validation].filter(c => c && c !== 'null').join(' ');
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
 
