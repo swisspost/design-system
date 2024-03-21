@@ -312,8 +312,8 @@ dialog:not([data-animation='none']) {
 // Animations
 
 dialog {
-  &[effect="bump-in"] {
-    --dialog-effect-closed-transform: 
+  &[effect='bump-in'] {
+    --dialog-effect-closed-transform: translateY(-100%);
   }
   &[effect] {
     transition-behavior: allow-discrete;
