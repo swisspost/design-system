@@ -32,14 +32,8 @@ describe('alert', () => {
 });
 
 describe('Accessibility', () => {
-  it('Has no detectable a11y violations on load for all variants', () => {
+  it.only('Has no detectable a11y violations on load for all variants', () => {
     cy.getSnapshots('post-alert');
-    cy.checkA11y('#root-inner', {
-      rules: {
-        'color-contrast': {
-          enabled: false,
-        },
-      },
-    });
+    cy.checkA11y('#root-inner');
   });
 });

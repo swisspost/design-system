@@ -131,6 +131,22 @@ $background-colors: map.merge(
   )
 );
 
+$notification-colors: () !default;
+$notification-colors: list.join(
+  $notification-colors,
+  (
+    'primary' $gray-80,
+    'success' $success-green,
+    'danger' $error,
+    'warning' $warning,
+    'info' $info,
+    'gray' $gray-background,
+    // deprecated
+    'notification' $gray-80,
+    'error' $error
+  )
+);
+
 // Merge with the other lists
 $background-colors: map.merge($background-colors, $contextual-colors);
 $background-colors: map.merge($background-colors, $accent-colors);
@@ -138,8 +154,18 @@ $background-colors: map.merge($background-colors, $signal-colors);
 
 // Compile a list of dark backgrounds, used in the :is selector mixin at mixins/color
 $dark-backgrounds: () !default;
-@each $colorname, $color in $background-colors {
+@each $color-name, $color in $background-colors {
   @if (contrast-fn.light-or-dark($color) == 'dark') {
-    $dark-backgrounds: list.append($dark-backgrounds, '.bg-#{$colorname}', $separator: comma);
+    $dark-backgrounds: list.append($dark-backgrounds, '.bg-#{$color-name}', $separator: comma);
+  }
+}
+@each $color-name, $color in $notification-colors {
+  @if (contrast-fn.light-or-dark($color) == 'dark') {
+    $dark-backgrounds: list.append($dark-backgrounds, '.alert-#{$color-name}', $separator: comma);
+    $dark-backgrounds: list.append(
+      $dark-backgrounds,
+      'post-alert[type=#{$color-name}]',
+      $separator: comma
+    );
   }
 }
