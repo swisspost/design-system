@@ -16,9 +16,11 @@
         <div class="sidebar-sticky header-margin bg-light">
           <!-- left menu -->
           <ul>
-            <li (click)="toggleMenu()" (keydown)="toggleMenu()" class="d-md-none" tabindex="0">
-              <em class="pi pi-menu"></em>
-              Active Page
+            <li class="d-md-none">
+              <button (click)="toggleMenu()">
+                <em class="pi pi-menu"></em>
+                Active Page
+              </button>
             </li>
             <li><a>Home</a></li>
             <li class="separator"></li>
