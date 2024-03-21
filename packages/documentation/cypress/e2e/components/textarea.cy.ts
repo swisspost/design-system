@@ -12,9 +12,6 @@ describe('Textarea', () => {
           'color-contrast': {
             enabled: false,
           },
-          'duplicate-id-aria': {
-            enabled: false,
-          },
         },
       });
     });

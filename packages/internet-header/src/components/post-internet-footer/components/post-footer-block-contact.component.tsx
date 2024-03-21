@@ -1,8 +1,10 @@
 import { h } from '@stencil/core';
 import { BlockEntity } from '../../../models/footer.model';
 
-const getContentHours = (hours: string) => hours.replace(/<[^>]*>?/gm, '');
-
+function stripHtml(html: string): string {
+  const doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || '';
+}
 const callUnblu = () => {
   if (typeof window['unbluLSLoad'] === 'function') {
     window['unbluLSLoad']();
@@ -19,7 +21,7 @@ const LiveSupport = (props: { hours: string }) => (
     id="liveSupport"
     type="button"
     onClick={callUnblu}
-    innerHTML={getContentHours(props.hours)}
+    innerHTML={stripHtml(props.hours)}
   ></button>
 );
 
@@ -44,8 +46,8 @@ export const PostFooterBlockContact = (props: {
               {content.text ? <p class="text">{content.text}</p> : null}
               {content.hours && isLiveSupport && <LiveSupport hours={content.hours} />}
               {content.hours && !isLiveSupport && (
-                // Some values arrive in the form of <p>8&emdash;12</p> and without replace and innerHTML, tags get rendered as text (project="klp" language="en" environment="int02")
-                <p class="hours" innerHTML={getContentHours(content.hours)}></p>
+                // Some values arrive in the form of <p>8&mdash;12</p> and without replace and innerHTML, tags get rendered as text (project="klp" language="en" environment="int02")
+                <p class="hours" innerHTML={stripHtml(content.hours)}></p>
               )}
               {content.describe ? <p class="describe">{content.describe}</p> : null}
             </div>

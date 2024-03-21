@@ -10,7 +10,12 @@
     <button aria-describedby="existing-value" data-tooltip-target="tooltip-one" id="target1">
       toggle
     </button>
-    <button data-tooltip-target="tooltip-one" id="target2">toggle 2</button>
+    <button data-tooltip-target="tooltip-one" id="target2">
+      toggle 2 <span>child element</span>
+    </button>
+    <button data-tooltip-target="tooltip-one" id="target-child-element">
+      toggle with <span>child element</span>
+    </button>
     <post-tooltip id="tooltip-one">
       <p>This is a test</p>
     </post-tooltip>
