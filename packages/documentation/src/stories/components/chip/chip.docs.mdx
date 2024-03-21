@@ -1,0 +1,36 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { PostAlert } from '@swisspost/design-system-components-react';
+import * as chipStories from './chip.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+
+<Meta of={chipStories} />
+
+# Chip
+
+<div className="lead">
+  Documentation and examples for chips, our small count and labeling component.
+</div>
+
+<Canvas sourceState="shown" of={chipStories.Default} />
+<div className="hide-col-default">
+  <Controls of={chipStories.Default} />
+</div>
+
+<StylesPackageImport components={['chip']} />
+
+## Examples
+
+### Checkable
+
+Checkable chips are nothing more than personalized checkboxes.
+Therefore, you can handle then like standard checkboxes.
+
+<Canvas of={chipStories.Checkable} />
+
+### Dismissible
+
+Dismissible chips include a close button, allowing users to easily clear them from the page.
+Because the close button does not have a visible text,
+it should always include a visually hidden label to ensure accessibility for assistive technology users.
+
+<Canvas of={chipStories.Dismissible} />

@@ -6,25 +6,26 @@ import { MetaComponent } from '../../../../types';
 
 const meta: MetaComponent = {
   id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',
-  title: 'Components/Badge',
+  title: 'Components/Chip',
   tags: ['package:HTML'],
-  render: renderBadge,
+  render: renderChip,
   decorators: [externalControl],
   parameters: {
-    badges: [],
+    chips: [],
   },
   args: {
     text: 'Insigno',
-    size: 'default',
-    nestedBadge: false,
+    size: 'large',
+    badge: false,
     interactionType: 'none',
     checked: false,
+    disabled: false,
     dismissed: false,
   },
   argTypes: {
     text: {
       name: 'Text',
-      description: 'The text contained in the badge.',
+      description: 'The text contained in the chip.',
       control: {
         type: 'text',
       },
@@ -34,22 +35,22 @@ const meta: MetaComponent = {
     },
     size: {
       name: 'Size',
-      description: 'The size of the badge.',
+      description: 'The size of the chip.',
       control: {
         type: 'radio',
         labels: {
-          'default': 'Default',
-          'badge-sm': 'Small',
+          'large': 'Large',
+          'chip-sm': 'Small',
         },
       },
-      options: ['default', 'badge-sm'],
+      options: ['large', 'chip-sm'],
       table: {
         category: 'General',
       },
     },
-    nestedBadge: {
+    badge: {
       name: 'Nested Badge',
-      description: 'If `true`, a nested badge is displayed inside the main badge.',
+      description: 'If `true`, a badge is displayed inside the chip.',
       control: {
         type: 'boolean',
       },
@@ -59,7 +60,7 @@ const meta: MetaComponent = {
     },
     interactionType: {
       name: 'Interaction Type',
-      description: 'Defines how the badge can be interacted with.',
+      description: 'Defines how the chip can be interacted with.',
       control: {
         type: 'inline-radio',
         labels: {
@@ -75,7 +76,22 @@ const meta: MetaComponent = {
     },
     checked: {
       name: 'Checked',
-      description: 'If `true`, the badge is checked otherwise it is unchecked.',
+      description: 'If `true`, the chip is checked otherwise it is unchecked.',
+      if: {
+        arg: 'interactionType',
+        eq: 'checkable',
+      },
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'Interactions',
+      },
+    },
+    disabled: {
+      name: 'Disabled',
+      description:
+        'If `true`, the badge is disabled.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       if: {
         arg: 'interactionType',
         eq: 'checkable',
@@ -89,7 +105,7 @@ const meta: MetaComponent = {
     },
     dismissed: {
       name: 'Dismissed',
-      description: 'If `true`, the badge is removed from the page otherwise it is displayed.',
+      description: 'If `true`, the chip is removed from the page otherwise it is displayed.',
       if: {
         arg: 'interactionType',
         eq: 'dismissible',
@@ -118,7 +134,7 @@ function externalControl(story: any, { args }: StoryContext) {
         updateArgs({ dismissed: false });
       }}"
     >
-      Show badge
+      Show chip
     </a>
   `;
 
@@ -129,15 +145,15 @@ function externalControl(story: any, { args }: StoryContext) {
 function getDefaultContent(args: Args) {
   return html`
     <span>${args.text}</span>
-    ${args.nestedBadge ? html` <span class="badge">10</span> ` : nothing}
+    ${args.badge ? html` <span class="badge">1</span> ` : nothing}
   `;
 }
 
 function getCheckableContent(args: Args, updateArgs: (args: Args) => void, context: StoryContext) {
-  const checkboxId = `badge-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
+  const checkboxId = `chip-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
   const labelClasses = mapClasses({
-    'badge-check-label': true,
-    [args.size]: args.size !== 'default',
+    'chip-check-label': true,
+    [args.size]: args.size !== 'large',
   });
 
   const handleChange = (e: Event) => {
@@ -154,9 +170,10 @@ function getCheckableContent(args: Args, updateArgs: (args: Args) => void, conte
   return html`
     <input
       id="${checkboxId}"
-      class="badge-check-input"
+      class="chip-check-input"
       type="checkbox"
       ?checked="${args.checked}"
+      ?disabled="${args.disabled}"
       @change="${handleChange}"
     />
     <label class="${labelClasses}" for="${checkboxId}">${getDefaultContent(args)}</label>
@@ -171,7 +188,7 @@ function getDismissButton(updateArgs: (args: Args) => void) {
   `;
 }
 
-function renderBadge(args: Args, context: StoryContext) {
+function renderChip(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   if (args.dismissed) return html` ${nothing} `;
@@ -179,16 +196,16 @@ function renderBadge(args: Args, context: StoryContext) {
   const isCheckable = args.interactionType === 'checkable';
   const isDismissible = args.interactionType === 'dismissible';
 
-  const badgeClasses = mapClasses({
-    'badge': !isCheckable,
-    'badge-check': isCheckable,
-    [args.size]: args.size !== 'default' && !isCheckable,
+  const chipClasses = mapClasses({
+    'chip': !isCheckable,
+    'chip-check': isCheckable,
+    [args.size]: args.size !== 'large' && !isCheckable,
   });
 
   return html`
-    <div class="${badgeClasses}">
-      ${isCheckable ? getCheckableContent(args, updateArgs, context) : getDefaultContent(args)}
+    <div class="${chipClasses}">
       ${isDismissible ? getDismissButton(updateArgs) : nothing}
+      ${isCheckable ? getCheckableContent(args, updateArgs, context) : getDefaultContent(args)}
     </div>
   `;
 }

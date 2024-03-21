@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta from './badge.stories';
+import meta from './chip.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils';
 
@@ -12,7 +12,7 @@ export default {
 
 type Story = StoryObj;
 
-export const Badge: Story = {
+export const Chip: Story = {
   render: (_args: Args, context: StoryContext) => {
     return html`
       <div class="d-flex flex-wrap gap-1 align-items-start">
@@ -26,11 +26,13 @@ export const Badge: Story = {
                 ],
                 size: context.argTypes.size.options,
                 interactionType: context.argTypes.interactionType.options,
-                nestedBadge: [false, true],
+                badge: [false, true],
                 checked: [false, true],
+                disabled: [false, true],
                 dismissed: [false],
               })
                 .filter(args => !(args.interactionType !== 'checkable' && args.checked === true))
+                .filter(args => !(args.interactionType !== 'checkable' && args.disabled === true))
                 .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
             </div>
           `,
