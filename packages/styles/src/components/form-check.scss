@@ -78,8 +78,8 @@
       &:checked,
       &:indeterminate {
         @include utility-mx.high-contrast-mode {
-          background-color: SelectedItem;
-          color: SelectedItemText;
+          background-color: SelectedItem !important;
+          color: SelectedItemText !important; // Important is needed for card-control
         }
       }
     }
