@@ -1,7 +1,7 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { MetaComponent } from '../../../../types';
-import scss from '../../../shared/background-colors.module.scss';
+import backgroundColors from '../../../shared/background-colors.module.scss';
 
 const meta: MetaComponent = {
   id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',
@@ -65,7 +65,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: Object.keys(scss),
+      options: Object.keys(backgroundColors),
       table: {
         category: 'General',
       },
