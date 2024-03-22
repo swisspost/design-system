@@ -5,4 +5,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Merged card-control docs and updated choice-card-control stlyes.
+Merged the card-control, checkbox-card and radio button card docs pages and updated the choice-card-control stlyes.
