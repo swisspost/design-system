@@ -26,7 +26,15 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
       <Controls of={CardControlStandardHTMLStories.Default} />
     </div>
 
-    ## Grouping
+    ## Examples
+
+    ### Dark backgrounds
+    <Canvas of={CardControlStandardHTMLStories.DarkBackground} />
+    <div className="hide-col-default">
+      <Controls of={CardControlStandardHTMLStories.DarkBackground} />
+    </div>
+
+    ### Grouping
 
     Checkbox cards can be grouped together. Use a `fieldset`/`legend` combination to label the group. If there is an error, link the legend with the error message through the `aria-describedby` attribute on the `legend`, pointing to the `id` of the error message.
 
@@ -35,7 +43,7 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
       <Controls of={CardControlStandardHTMLStories.Group} />
     </div>
 
-    ## Firefox fallback
+    ### Firefox fallback
 
     <div className="alert alert-info">
       Firefox currently does not support{' '}
@@ -47,9 +55,6 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
       <ul>
         <li>
           <code>checked</code>
-        </li>
-        <li>
-          <code>focused</code>
         </li>
         <li>
           <code>disabled</code>
@@ -71,7 +76,7 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 
   <PostTabHeader slot="tabs" panel="webcomponent">Webcomponent</PostTabHeader>
   <PostTabPanel name="webcomponent">
-    <Canvas of={CardControlStories.Default} />
+    <Canvas of={CardControlStories.Default} sourceState="shown" />
     <Controls of={CardControlStories.Default} />
 
     ## Installation

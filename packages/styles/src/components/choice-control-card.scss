@@ -1,148 +1,216 @@
 @use '../variables/color';
 @use '../variables/commons';
 @use '../variables/spacing';
+@use '../variables/components/forms';
 @use '../mixins/utilities';
+
+fieldset {
+  .radio-button-card,
+  .checkbox-button-card {
+    &:not(:last-child) {
+      margin-bottom: spacing.$size-regular;
+    }
+  }
+}
 
 .radio-button-card,
 .checkbox-button-card {
-  --post-card-select--hover-bg: #{color.$gray-10};
+  --post-card-control-border-color: #{color.$gray-60};
+  --post-card-control-bg: #{color.$white};
+  --post-card-control-color: #{color.$gray-80};
+  --post-card-control-input-border-color: #{color.$gray-80};
+  --post-card-control-input-bg: #{color.$white};
 
-  position: relative;
-  display: flex;
+  display: grid;
+  grid-template: 'input label icon' 'input content icon' / min-content auto min-content;
   gap: 0 spacing.$size-mini;
-
-  width: 100%;
-
-  color: color.$gray-80;
-  background-color: color.$white;
-  border: 2px solid color.$gray-60;
-  border-radius: commons.$border-radius;
+  position: relative;
   padding: spacing.$size-regular;
+  width: 100%;
+  background-color: var(--post-card-control-bg);
+  border: spacing.$size-line solid var(--post-card-control-border-color);
+  border-radius: commons.$border-radius;
+  color: var(--post-card-control-color);
+  cursor: pointer;
   transition:
-    color 100ms ease-in-out,
-    background-color 100ms ease-in-out,
-    border-color 100ms ease-in-out;
+    background-color 100ms linear,
+    border-color 100ms linear;
 
-  // Checked
-  &:where(:has(input:checked), .checked) {
-    --post-card-select--hover-bg: #{color.$yellow};
-    background-color: color.$yellow;
-    border-color: color.$gray-60;
+  input.form-check-input {
+    grid-area: input;
+    position: relative;
+    z-index: 2;
+    margin: spacing.$size-micro 0;
+    background-color: var(--post-card-control-input-bg);
+    border-color: var(--post-card-control-input-border-color) !important;
+    color: var(--post-card-control-input-border-color) !important;
+    cursor: inherit;
+    transition: border-color 100ms ease-in-out;
 
-    input {
-      background-color: color.$white !important;
+    &:focus,
+    &:focus-visible {
+      box-shadow: none;
+    }
+
+    ~ label.form-check-label {
+      color: inherit !important;
     }
   }
 
-  // Focus
-  &:where(:has(input:focus-visible), .focused) {
-    background-color: var(--post-card-select--hover-bg);
-    outline: 2px solid color.$black;
-    outline-offset: 2px;
-    border-color: color.$black;
+  label.form-check-label {
+    grid-area: label;
+    margin: spacing.$size-micro 0;
+    padding: 0;
+    border-radius: inherit;
+    transition-duration: 100ms;
 
-    input {
-      border-color: color.$black;
+    &:before {
+      display: block;
+      content: '';
+      position: absolute;
+      inset: spacing.$size-line * -1;
+      border-radius: inherit;
     }
-  }
-
-  // Hover
-  &:where(:hover:not(:has(input:disabled)), :hover:not(.disabled)) {
-    border-color: color.$black;
-    color: color.$black;
-    background-color: var(--post-card-select--hover-bg);
-
-    input {
-      border-color: color.$black;
-    }
-
-    @include utilities.high-contrast-mode() {
-      border-color: Highlight;
-      transition: none;
-    }
-  }
-
-  // Disabled
-  &:has(input:disabled),
-  &.disabled {
-    border-color: color.$gray-20;
-    color: color.$gray-40 !important;
 
     > * {
-      cursor: default;
-    }
-  }
-
-  &:has(input:disabled:checked),
-  &.disabled.checked {
-    background-color: color.$gray-10;
-  }
-
-  // Error
-  &:has(input[aria-invalid]),
-  &:has(input.is-invalid),
-  &.is-invalid {
-    color: color.$error;
-    border-color: color.$error;
-
-    ~ .invalid-feedback {
       display: block;
+      // Lift content above the :before element to make it selectable
+      position: relative;
+      z-index: 2;
     }
-  }
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
-  > * {
-    cursor: pointer;
   }
 
   post-icon {
-    width: 2em;
-    height: 2em;
-    margin-left: spacing.$size-mini;
+    grid-area: icon;
+    width: spacing.$size-big;
+    height: spacing.$size-big;
     pointer-events: none;
   }
 
-  input {
-    border-color: color.$gray-80;
-    background-color: color.$white;
-    transition: border-color 100ms ease-in-out;
-    grid-column: 1 / 2;
+  .card-control--content {
+    grid-area: content;
+  }
 
-    &:focus {
-      box-shadow: none !important;
+  &:where(:not(:has(input:disabled)), :not(.disabled)) {
+    &:where(:has(input:checked), .checked) {
+      --post-card-control-border-color: #{color.$black};
+      --post-card-control-bg: #{color.$yellow};
+
+      @include utilities.high-contrast-mode() {
+        --post-card-control-bg: SelectedItem;
+      }
+    }
+
+    &:where(:has(input:invalid), :has(input[aria-invalid]), :has(input.is-invalid), .is-invalid) {
+      --post-card-control-border-color: #{color.$error-red};
+      --post-card-control-color: #{color.$error-red};
+      --post-card-control-input-border-color: #{color.$error-red};
+    }
+
+    &:where(:hover) {
+      --post-card-control-border-color: #{color.$gray-80};
+      --post-card-control-bg: #{color.$gray-60};
+      --post-card-control-color: #{color.$white};
+      --post-card-control-input-border-color: #{color.$black};
+
+      @include utilities.high-contrast-mode() {
+        --post-card-control-border-color: Highlight;
+        --post-card-control-input-border-color: Highlight;
+      }
+    }
+
+    input:focus-visible ~ label:before {
+      outline-offset: forms.$input-focus-outline-thickness;
+      outline: forms.$input-focus-outline-thickness solid commons.$outline-color;
     }
   }
 
-  .form-check-label {
-    padding-left: 0;
+  &:where(:has(input:disabled), .disabled) {
+    --post-card-control-border-color: #{color.$gray-60};
+    --post-card-control-bg: transparent;
+    --post-card-control-color: #{color.$gray-60};
+    --post-card-control-input-border-color: #{color.$gray-60};
+    --post-card-control-input-bg: transparent;
 
-    &::before {
-      // This spans up the click area of the label to the whole
-      // card in order to make it clickable natively.
-      content: '';
-      position: absolute;
-      inset: -2px;
-    }
+    border-style: dashed;
+    text-decoration: line-through;
+    cursor: default;
 
-    span {
-      // Lift spans above the before element to make them selectable
-      position: relative;
+    input.form-check-input {
+      border-style: dashed;
     }
   }
+}
 
-  input,
-  .form-check-label {
-    margin-block: 0.25rem;
-  }
+@each $bg in color.$dark-backgrounds {
+  #{$bg} {
+    .radio-button-card,
+    .checkbox-button-card {
+      --post-card-control-border-color: #{color.$white};
+      --post-card-control-bg: transparent;
+      --post-card-control-color: #{color.$white};
+      --post-card-control-input-border-color: #{color.$white};
+      --post-card-control-input-bg: transparent;
 
-  // Align input and label if there is an icon
-  &:has(post-icon) {
-    input,
-    .form-check-label {
-      margin-top: 0.25rem;
+      &:where(:not(:has(input:disabled)), :not(.disabled)) {
+        &:where(:has(input:checked), .checked) {
+          --post-card-control-border-color: #{color.$yellow};
+          --post-card-control-bg: #{color.$yellow};
+          --post-card-control-color: #{color.$gray-80};
+          --post-card-control-input-border-color: #{color.$gray-80};
+          --post-card-control-input-bg: #{color.$white};
+
+          @include utilities.high-contrast-mode() {
+            --post-card-control-bg: SelectedItem;
+          }
+        }
+
+        &:where(
+            :has(input:invalid),
+            :has(input[aria-invalid]),
+            :has(input.is-invalid),
+            .is-invalid
+          ) {
+          --post-card-control-border-color: #{color.$error-red};
+          --post-card-control-bg: #{color.$error-background};
+          --post-card-control-color: #{color.$error-red};
+          --post-card-control-input-border-color: #{color.$error-red};
+          --post-card-control-input-bg: #{color.$white};
+
+          &:where(:has(input:checked), .checked) {
+            --post-card-control-bg: #{color.$yellow};
+
+            @include utilities.high-contrast-mode() {
+              --post-card-control-bg: SelectedItem;
+            }
+          }
+        }
+
+        &:where(:hover) {
+          --post-card-control-border-color: #{color.$black};
+          --post-card-control-bg: #{color.$gray-20};
+          --post-card-control-color: #{color.$black};
+          --post-card-control-input-border-color: #{color.$black};
+          --post-card-control-input-bg: #{color.$white};
+
+          @include utilities.high-contrast-mode() {
+            --post-card-control-border-color: Highlight;
+            --post-card-control-input-border-color: Highlight;
+          }
+        }
+
+        input:focus-visible ~ label:before {
+          outline-color: color.$white;
+        }
+      }
+
+      &:where(:has(input:disabled), .disabled) {
+        --post-card-control-border-color: #{rgba(color.$white, 0.8)};
+        --post-card-control-bg: transparent;
+        --post-card-control-color: #{rgba(color.$white, 0.8)};
+        --post-card-control-input-border-color: #{rgba(color.$white, 0.8)};
+        --post-card-control-input-bg: transparent;
+      }
     }
   }
 }

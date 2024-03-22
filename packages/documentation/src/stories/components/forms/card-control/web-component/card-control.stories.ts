@@ -1,10 +1,10 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import { useArgs } from '@storybook/preview-api';
+import { useArgs, useState } from '@storybook/preview-api';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@/../types';
 import { parse } from '@/utils/sass-export';
-import scss from './card-control.module.scss';
+import scss from '../card-control.module.scss';
 import './card-control.styles.scss';
 
 const SCSS_VARIABLES: { [key: string]: string } = parse(scss);
@@ -42,11 +42,10 @@ const meta: MetaComponent = {
         type: 'radio',
         labels: {
           null: 'Default',
-          true: 'Valid',
           false: 'Invalid',
         },
       },
-      options: ['null', 'true', 'false'],
+      options: ['null', 'false'],
       table: {
         type: {
           summary: 'null | boolean',
@@ -138,16 +137,18 @@ export const FormIntegration: Story = {
   parameters: {
     docs: {
       controls: {
-        include: ['disabled fieldset', 'value', 'disabled'],
+        include: ['disabled fieldset', 'value', 'disabled', 'validity'],
       },
     },
   },
   args: {
     name: 'checkbox',
     checkboxFieldset: false,
+    validity: 'null',
     radioValue: '',
     radioDisabled: '',
     radioFieldset: false,
+    radioValidity: 'null',
   },
   argTypes: {
     value: {
@@ -168,6 +169,11 @@ export const FormIntegration: Story = {
       control: {
         type: 'boolean',
       },
+      table: {
+        category: 'Checkbox',
+      },
+    },
+    validity: {
       table: {
         category: 'Checkbox',
       },
@@ -202,6 +208,25 @@ export const FormIntegration: Story = {
         category: 'Radio',
       },
     },
+    radioValidity: {
+      name: 'validity',
+      description:
+        'Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          false: 'Invalid',
+        },
+      },
+      options: ['null', 'false'],
+      table: {
+        category: 'Radio',
+        type: {
+          summary: 'null | boolean',
+        },
+      },
+    },
   },
   decorators: [
     story => html`
@@ -214,13 +239,27 @@ export const FormIntegration: Story = {
     `,
   ],
   render: (args: Args, context: StoryContext) => {
-    return html` <form id="AssociatedForm" @reset="${formHandler}" @submit="${formHandler}">
+    const [cValidity, cValidityUpdate] = useState(null);
+    const [rValidity, rValidityUpdate] = useState(null);
+
+    const invalidFeedback = html`<p
+      id="radio-group-invalid-feedback"
+      class="d-block invalid-feedback"
+    >
+      Invalid feedback
+    </p>`;
+
+    return html` <form
+      id="AssociatedForm"
+      @reset="${(e: any) => formHandler(e, cValidityUpdate, rValidityUpdate)}"
+      @submit="${(e: any) => formHandler(e, cValidityUpdate, rValidityUpdate)}"
+    >
       <fieldset .disabled=${args.checkboxFieldset}>
         <legend>Legend</legend>
-        ${Default.render?.(args, context)}
+        ${Default.render?.({ ...args, validity: cValidity }, context)}
       </fieldset>
       <fieldset class="mt-3" .disabled=${args.radioFieldset}>
-        <legend>Legend</legend>
+        <legend aria-describedby="radio-group-invalid-feedback">Legend</legend>
         ${[1, 2, 3].map(
           n =>
             html`<post-card-control
@@ -229,8 +268,10 @@ export const FormIntegration: Story = {
               name="radio"
               value="${[args.radioValue, args.radioValue ? '_' : '', n.toString()].join('')}"
               .disabled="${(n === 2 && args.radioDisabled) || nothing}"
+              validity="${rValidity ?? nothing}"
             ></post-card-control>`,
         )}
+        ${rValidity === false ? invalidFeedback : nothing}
       </fieldset>
       <div class="mt-3 d-flex gap-3 justify-content-end">
         <button type="reset" class="btn btn-link"><post-icon name="2042"></post-icon>Reset</button>
@@ -240,17 +281,21 @@ export const FormIntegration: Story = {
   },
 };
 
-function formHandler(e: any) {
+function formHandler(e: any, cValidityUpdate: Function, rValidityUpdate: Function) {
   if (e.type === 'submit') e.preventDefault();
 
   setTimeout(() => {
     const formOutput = document.querySelector('#AssociatedFormOutput');
-    const formData = Array.from(new FormData(e.target).entries()).reduce(
+    const formData: { [key: string]: string } = Array.from(new FormData(e.target).entries()).reduce(
       (acc, [k, v]) => Object.assign(acc, { [k]: v }),
       {},
     );
 
-    if (formOutput) formOutput.innerHTML = JSON.stringify(formData, null, 2);
+    if (formOutput) {
+      cValidityUpdate(e.type === 'reset' ? null : formData.checkbox !== undefined);
+      rValidityUpdate(e.type === 'reset' ? null : formData.radio !== undefined);
+      formOutput.innerHTML = JSON.stringify(formData, null, 2);
+    }
   });
 }
 

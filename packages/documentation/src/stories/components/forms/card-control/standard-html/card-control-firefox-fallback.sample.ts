@@ -1,21 +1,12 @@
-['focusin', 'focusout', 'input'].forEach(t =>
-  document.addEventListener(t, e => {
-    if (!(e.target instanceof Element) || e.target.nodeName !== 'input') return;
+document.addEventListener('input', e => {
+  if (!(e.target instanceof Element) || e.target.nodeName !== 'input') return;
 
-    const parent = e.target.parentElement;
+  const parent = e.target.parentElement;
 
-    if (!parent?.classList.contains('radio-button-card')) return;
-
-    switch (e.type) {
-      case 'focusin':
-        parent.classList.add('focused');
-        break;
-      case 'focusout':
-        parent.classList.remove('focused');
-        break;
-      case 'input':
-        parent.classList.toggle('checked', (e.target as HTMLInputElement).checked);
-        break;
-    }
-  }),
-);
+  if (
+    parent?.classList.contains('checkbox-button-card') ||
+    parent?.classList.contains('radio-button-card')
+  ) {
+    parent.classList.toggle('checked', (e.target as HTMLInputElement).checked);
+  }
+});

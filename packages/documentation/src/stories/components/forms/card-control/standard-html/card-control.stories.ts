@@ -1,9 +1,13 @@
-import type { Args } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn } from '@storybook/web-components';
 import { useArgs, useState } from '@storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { classMap } from 'lit/directives/class-map.js';
 import { MetaComponent } from '@/../types';
+import { parse } from '@/utils/sass-export';
+import scss from '../card-control.module.scss';
+
+const SCSS_VARIABLES: { [key: string]: string } = parse(scss);
 
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
@@ -16,7 +20,6 @@ const meta: MetaComponent = {
     icon: 'none',
     checked: false,
     disabled: false,
-    focused: false,
     validation: 'null',
     groupValidation: 'null',
   },
@@ -80,14 +83,6 @@ const meta: MetaComponent = {
         category: 'States',
       },
     },
-    focused: {
-      name: 'Focused',
-      description: 'Render the component in a focused state',
-      control: { type: 'boolean' },
-      table: {
-        category: 'States',
-      },
-    },
     validation: {
       name: 'Validation',
       description: "Controls the display of the component's validation state.",
@@ -139,18 +134,6 @@ function inputHandler(e: InputEvent, updateArgs: Function) {
   target.parentElement?.classList.toggle('checked', target.checked);
 }
 
-// Firefox fallback for the :has selector
-function focusHandler(e: InputEvent, updateArgs: Function) {
-  updateArgs({ focused: true });
-  (e.target as HTMLInputElement).parentElement?.classList.add('focused');
-}
-
-// Firefox fallback for the :has selector
-function blurhandler(e: InputEvent, updateArgs: Function) {
-  updateArgs({ focused: false });
-  (e.target as HTMLInputElement).parentElement?.classList.remove('focused');
-}
-
 export const Default = {
   parameters: {
     controls: {
@@ -190,8 +173,6 @@ export const Default = {
           .checked="${args.checked}"
           checked="${args.checked || nothing}"
           @input="${(e: InputEvent) => inputHandler(e, updateArgs)}"
-          @focus="${(e: InputEvent) => focusHandler(e, updateArgs)}"
-          @blur="${(e: InputEvent) => blurhandler(e, updateArgs)}"
         />
         <label class="form-check-label" for="${controlId}">
           <span>${args.label}</span>
@@ -201,6 +182,40 @@ export const Default = {
       </div>
     `;
   },
+};
+
+export const DarkBackground = {
+  parameters: {
+    docs: {
+      controls: {
+        include: ['Background-Color', 'Type', 'Checked', 'Disabled', 'Validation'],
+      },
+    },
+  },
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      html`<div
+        class="bg-${context.args.background}"
+        style="margin: -40px -30px; padding: 40px 30px;"
+      >
+        ${story(context.args, context)}
+      </div>`,
+  ],
+  args: {
+    background: 'dark',
+    icon: '1001',
+  },
+  argTypes: {
+    background: {
+      name: 'Background-Color',
+      description: 'The background color of a surrounding wrapper element.',
+      control: {
+        type: 'select',
+      },
+      options: [...Object.keys(SCSS_VARIABLES.dark)],
+    },
+  },
+  render: Default.render,
 };
 
 function col(label: string, args: Args, useState: Function) {
@@ -214,7 +229,6 @@ function col(label: string, args: Args, useState: Function) {
         label,
         inputName: args.type === 'radio' ? 'group' : `control-${id}`,
         checked: false,
-        focused: false,
         validation: args.groupValidation,
       })}
     </div>
@@ -229,16 +243,12 @@ export const Group = {
   },
   render: (args: Args) => {
     const error = html`
-      <p id="invalid-checkbox" class="mt-3 invalid-feedback d-block">Invalid choice</p>
+      <p id="radio-group-invalid-feedback" class="d-block mt-3 invalid-feedback">Invalid choice</p>
     `;
 
     return html`
       <fieldset class="container-fluid">
-        <legend
-          aria-describedby="${args.groupValidation === 'is-invalid' ? 'invalid-checkbox' : nothing}"
-        >
-          Legend
-        </legend>
+        <legend aria-describedby="radio-group-invalid-feedback">Legend</legend>
         <div class="row g-3">${CONTROL_LABELS.map(n => col(n, args, useState))}</div>
         ${args.groupValidation === 'is-invalid' ? error : null}
       </fieldset>
