@@ -3,4 +3,4 @@
 '@swisspost/design-system-components': minor
 ---
 
-Added the new named slot `content`, to allow the integration of custom HTML in the card-control component.
+Added the new default slot, to allow the integration of custom HTML in the card-control component.

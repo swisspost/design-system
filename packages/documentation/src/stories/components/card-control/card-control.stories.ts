@@ -24,8 +24,8 @@ const meta: MetaComponent = {
     'disabled': '',
     'validity': 'null',
     'icon': '',
+    'slots-default': '',
     'slots-icon': '',
-    'slots-content': '',
   },
   argTypes: {
     'type': {
@@ -54,12 +54,14 @@ const meta: MetaComponent = {
         },
       },
     },
-    'slots-icon': {
+    'slots-default': {
+      name: 'default',
       control: {
         type: 'text',
       },
     },
-    'slots-content': {
+    'slots-icon': {
+      name: 'icon',
       control: {
         type: 'text',
       },
@@ -80,7 +82,7 @@ export const Default: Story = {
   render: (args: Args) => {
     const [, updateArgs] = useArgs();
 
-    const content = html`<div slot="content">${unsafeHTML(args['slots-content'])}</div>`;
+    const content = html`${unsafeHTML(args['slots-default'])}`;
     const icon = html`<span slot="icon">${unsafeHTML(args['slots-icon'])}</span>`;
 
     return html`
@@ -98,7 +100,7 @@ export const Default: Story = {
         @input="${(e: any) => updateArgs({ checked: e.detail.state })}"
         @change="${(e: any) => updateArgs({ checked: e.detail.state })}"
       >
-        ${args['slots-content'] ? content : null} ${args['slots-icon'] ? icon : null}
+        ${args['slots-default'] ? content : null} ${args['slots-icon'] ? icon : null}
       </post-card-control>
     `;
   },
@@ -140,7 +142,7 @@ export const DarkBackground: Story = {
 
 export const CustomContent: Story = {
   args: {
-    'slots-content': '<ul class="mb-0"><li>List item</li><li>List item</li><li>List item</li></ul>',
+    'slots-default': '<ul class="mb-0"><li>List item</li><li>List item</li><li>List item</li></ul>',
   },
   render: Default.render,
 };
