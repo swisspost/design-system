@@ -1,9 +1,9 @@
-import { useArgs } from '@storybook/preview-api';
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import { MetaComponent } from '../../../../../types';
+import { useArgs } from '@storybook/preview-api';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { parse } from '../../../../utils/sass-export';
+import { MetaComponent } from '@/../types';
+import { parse } from '@/utils/sass-export';
 import scss from './card-control.module.scss';
 import './card-control.styles.scss';
 
