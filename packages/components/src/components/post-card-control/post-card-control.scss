@@ -23,7 +23,7 @@
 
   flex-basis: 100%;
   display: grid;
-  grid-template: 'checkbox label icon' 'checkbox content icon' / min-content auto min-content;
+  grid-template: 'input label icon' 'input content icon' / min-content auto min-content;
   gap: 0 post.$size-mini;
   padding: post.$size-regular;
   background-color: var(--post-card-control-bg);
@@ -35,7 +35,7 @@
   transition: background-color 100ms linear, border-color 100ms linear;
 
   .card-control--input {
-    grid-area: checkbox;
+    grid-area: input;
     margin: post.$size-micro 0;
     background-color: var(--post-card-control-input-bg);
     border-color: var(--post-card-control-input-border-color) !important;
