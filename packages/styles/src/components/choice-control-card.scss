@@ -64,7 +64,7 @@ fieldset {
     border-radius: inherit;
     transition-duration: 100ms;
 
-    &:before {
+    &::before {
       display: block;
       content: '';
       position: absolute;
@@ -119,7 +119,7 @@ fieldset {
       }
     }
 
-    input:focus-visible ~ label:before {
+    input:focus-visible ~ label::before {
       outline-offset: forms.$input-focus-outline-thickness;
       outline: forms.$input-focus-outline-thickness solid commons.$outline-color;
     }
@@ -199,7 +199,7 @@ fieldset {
           }
         }
 
-        input:focus-visible ~ label:before {
+        input:focus-visible ~ label::before {
           outline-color: color.$white;
         }
       }
