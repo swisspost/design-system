@@ -1,5 +1,5 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import { useArgs, useState } from '@storybook/preview-api';
+import { useArgs } from '@storybook/preview-api';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { MetaComponent } from '@/../types';
@@ -137,7 +137,7 @@ export const FormIntegration: Story = {
   parameters: {
     docs: {
       controls: {
-        include: ['disabled fieldset', 'value', 'disabled', 'validity'],
+        include: ['disabled fieldset', 'value', 'disabled'],
       },
     },
   },
@@ -239,8 +239,7 @@ export const FormIntegration: Story = {
     `,
   ],
   render: (args: Args, context: StoryContext) => {
-    const [cValidity, cValidityUpdate] = useState(null);
-    const [rValidity, rValidityUpdate] = useState(null);
+    const [_, updateArgs] = useArgs();
 
     const invalidFeedback = html`<p
       id="radio-group-invalid-feedback"
@@ -251,12 +250,12 @@ export const FormIntegration: Story = {
 
     return html` <form
       id="AssociatedForm"
-      @reset="${(e: any) => formHandler(e, cValidityUpdate, rValidityUpdate)}"
-      @submit="${(e: any) => formHandler(e, cValidityUpdate, rValidityUpdate)}"
+      @reset="${(e: any) => formHandler(e, updateArgs)}"
+      @submit="${(e: any) => formHandler(e, updateArgs)}"
     >
       <fieldset .disabled=${args.checkboxFieldset}>
         <legend>Legend</legend>
-        ${Default.render?.({ ...args, validity: cValidity }, context)}
+        ${Default.render?.(args, context)}
       </fieldset>
       <fieldset class="mt-3" .disabled=${args.radioFieldset}>
         <legend aria-describedby="radio-group-invalid-feedback">Legend</legend>
@@ -268,10 +267,10 @@ export const FormIntegration: Story = {
               name="radio"
               value="${[args.radioValue, args.radioValue ? '_' : '', n.toString()].join('')}"
               .disabled="${(n === 2 && args.radioDisabled) || nothing}"
-              validity="${rValidity ?? nothing}"
+              validity="${args.radioValidity !== 'null' ? args.radioValidity : nothing}"
             ></post-card-control>`,
         )}
-        ${rValidity === false ? invalidFeedback : nothing}
+        ${args.radioValidity === 'false' ? invalidFeedback : nothing}
       </fieldset>
       <div class="mt-3 d-flex gap-3 justify-content-end">
         <button type="reset" class="btn btn-link"><post-icon name="2042"></post-icon>Reset</button>
@@ -281,7 +280,7 @@ export const FormIntegration: Story = {
   },
 };
 
-function formHandler(e: any, cValidityUpdate: Function, rValidityUpdate: Function) {
+function formHandler(e: any, updateArgs: Function) {
   if (e.type === 'submit') e.preventDefault();
 
   setTimeout(() => {
@@ -292,8 +291,10 @@ function formHandler(e: any, cValidityUpdate: Function, rValidityUpdate: Functio
     );
 
     if (formOutput) {
-      cValidityUpdate(e.type === 'reset' ? null : formData.checkbox !== undefined);
-      rValidityUpdate(e.type === 'reset' ? null : formData.radio !== undefined);
+      updateArgs({
+        validity: e.type === 'reset' ? 'null' : (formData.checkbox !== undefined).toString(),
+        radioValidity: e.type === 'reset' ? 'null' : (formData.radio !== undefined).toString(),
+      });
       formOutput.innerHTML = JSON.stringify(formData, null, 2);
     }
   });
