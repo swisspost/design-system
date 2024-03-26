@@ -1,9 +1,15 @@
 import { APP_INITIALIZER, NgModule } from '@angular/core';
-import { DIRECTIVES } from './stencil-generated';
 import { defineCustomElements } from '@swisspost/design-system-components/loader';
 
+import { DIRECTIVES } from './stencil-generated';
+import { BooleanValueAccessor } from './stencil-generated/boolean-value-accessor';
+import { PostCardControlValueAccessorDirective } from './custom/value-accessors/post-card-control-radio-value-accessor';
+
+const DECLARATIONS = [...DIRECTIVES, BooleanValueAccessor, PostCardControlValueAccessorDirective];
+
 @NgModule({
-  declarations: [...DIRECTIVES],
+  declarations: DECLARATIONS,
+  exports: DECLARATIONS,
   providers: [
     {
       provide: APP_INITIALIZER,
@@ -11,6 +17,5 @@ import { defineCustomElements } from '@swisspost/design-system-components/loader
       multi: true,
     },
   ],
-  exports: [...DIRECTIVES],
 })
 export class PostComponentsModule {}

@@ -1,18 +1,11 @@
 <label class="form-label" for="templateDrivenRange">Template-driven range</label>
-<input
-  [(ngModel)]="templateDrivenValue"
-  class="form-range"
-  appFormRange
-  id="templateDrivenRange"
-  type="range"
-/>
+<input [(ngModel)]="templateDrivenValue" class="form-range" id="templateDrivenRange" type="range" />
 
 <label class="form-label" for="reactiveRange">Reactive range</label>
 <input
   (input)="reactiveValue.setValue($event.target['value'])"
   [formControl]="reactiveValue"
   class="form-range"
-  appFormRange
   id="reactiveRange"
   type="range"
 />
@@ -21,7 +14,6 @@
 <input
   [(ngModel)]="displayedValue"
   class="form-range"
-  appFormRange
   id="rangeWithValue"
   max="100"
   min="0"
@@ -36,7 +28,6 @@
     <input
       [(ngModel)]="controlledValue"
       class="form-range"
-      appFormRange
       id="controlledRange"
       max="100"
       min="0"

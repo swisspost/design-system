@@ -173,7 +173,8 @@ export default meta;
 type Story = StoryObj;
 
 function renderTextarea(args: Args, context: StoryContext) {
-  const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
+  const id =
+    context.id ?? `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
   const classes = [
     'form-control',
     args.floatingLabel ? args.sizeFloatingLabel : args.size,
