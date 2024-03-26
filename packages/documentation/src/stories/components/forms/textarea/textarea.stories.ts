@@ -1,6 +1,7 @@
-import type { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { mapClasses } from '../../../../utils';
+import { MetaComponent } from '../../../../../types';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -8,9 +9,10 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'is-invalid': true,
 };
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: '152b7268-cce0-43d7-b931-41a57370f9a0',
   title: 'Components/Forms/Textarea',
+  tags: ['package:HTML'],
   render: renderTextarea,
   parameters: {
     badges: [],
@@ -152,7 +154,8 @@ export default meta;
 type Story = StoryObj;
 
 function renderTextarea(args: Args, context: StoryContext) {
-  const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
+  const id =
+    context.id ?? `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
   const classes = mapClasses({
     'form-control': true,
     [args.size]: args.size && args.size !== 'null',

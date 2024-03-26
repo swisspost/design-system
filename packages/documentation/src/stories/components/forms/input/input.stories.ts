@@ -1,5 +1,6 @@
-import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing, TemplateResult } from 'lit';
+import { MetaComponent } from '../../../../../types';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -7,9 +8,10 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'is-invalid': true,
 };
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: '2df77c32-5e33-402e-bd2e-54d54271ce19',
   title: 'Components/Forms/Input',
+  tags: ['package:HTML'],
   render: render,
   parameters: {
     badges: [],
@@ -181,8 +183,13 @@ export default meta;
 type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
-  const id = `ExampleTextarea_${context.name}`;
-  const classes = ['form-control', args.size, args.sizeFloatingLabel, args.validation]
+  const id = context.id ?? `ExampleTextarea_${context.name}`;
+  const classes = [
+    'form-control',
+    args.size,
+    args.floatingLabel ? args.sizeFloatingLabel : '',
+    args.validation,
+  ]
     .filter(c => c && c !== 'null')
     .join(' ');
 

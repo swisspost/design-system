@@ -47,6 +47,7 @@
   min-height: forms.$input-height-lg;
 }
 
+/* Deprecated use the one in utilities.scss */
 @mixin focus-outline {
   outline: none;
   outline-offset: forms.$input-focus-outline-thickness;

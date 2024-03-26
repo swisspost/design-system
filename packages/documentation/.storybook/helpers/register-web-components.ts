@@ -1,4 +1,5 @@
-import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header/loader';
+// @ts-ignore
+import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header/loader/index.es2017.js';
 import { defineCustomElements as definePostComponents } from '@swisspost/design-system-components/loader';
 import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
 import {
