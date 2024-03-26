@@ -25,7 +25,7 @@ $input-line-height: type.$line-height-copy !default;
 
 $input-padding-y-sm: button.$input-btn-padding-y-sm !default;
 $input-padding-x-sm: button.$input-btn-padding-x-sm !default;
-$input-line-height-sm: type.$line-height-sm !default;
+$input-line-height-sm: type.$line-height-copy !default;
 
 $input-padding-y-rg: button.$input-btn-padding-y-rg !default;
 $input-padding-x-rg: button.$input-btn-padding-x-rg !default;
@@ -125,7 +125,7 @@ $form-textarea-padding-l: spacing.$size-regular;
 $form-textarea-padding-t: spacing.$size-regular;
 $form-textarea-padding-b: spacing.$size-mini;
 
-$form-textarea-padding-t-sm: sizing.px-to-rem(7);
+$form-textarea-padding-t-sm: spacing.$size-mini;
 $form-textarea-padding-b-sm: 0;
 
 $form-floating-height: $input-height-lg * $input-line-height-lg;

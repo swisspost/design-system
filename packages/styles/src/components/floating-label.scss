@@ -215,8 +215,12 @@
   }
 
   > textarea.form-control {
-    padding-top: forms.$form-textarea-padding-t;
+    padding-top: (
+      forms.$form-textarea-padding-t-sm + forms.$form-floating-label-font-size *
+        forms.$form-floating-line-height * forms.$form-floating-label-scale
+    ) !important;
     padding-bottom: forms.$form-textarea-padding-b;
+    padding-left: forms.$form-textarea-padding-l;
     height: auto;
 
     ~ label {
@@ -227,18 +231,15 @@
       padding-left: forms.$form-textarea-padding-l;
       padding-top: forms.$form-textarea-padding-t;
       transform-origin: forms.$form-textarea-padding-l 0;
+      background-color: green !important;
     }
 
     &:focus,
     &:not(:placeholder-shown) {
-      padding-top: (
-          forms.$form-textarea-padding-t * forms.$form-floating-label-scale +
-            forms.$form-floating-label-font-size * forms.$form-floating-line-height
-        ) * forms.$form-floating-label-scale;
       padding-bottom: forms.$form-textarea-padding-b;
 
       ~ label {
-        padding-top: forms.$form-textarea-padding-t * forms.$form-floating-label-scale;
+        padding-top: forms.$form-textarea-padding-t-sm;
         width: calc(
           (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
             forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
@@ -250,8 +251,10 @@
     }
 
     &.form-control-sm {
-      padding-left: forms.$form-textarea-padding-l;
-      padding-top: forms.$form-textarea-padding-t;
+      padding-top: (
+        forms.$form-textarea-padding-t-sm + forms.$form-floating-label-font-size-placeholder-sm *
+          forms.$input-line-height-sm * forms.$form-floating-label-scale-sm
+      ) !important;
       padding-right: forms.$form-textarea-padding-r;
       font-size: forms.$form-floating-label-font-size-placeholder-sm;
       height: auto;
@@ -265,15 +268,11 @@
 
       &:focus,
       &:not(:placeholder-shown) {
-        padding-top: (
-            forms.$form-textarea-padding-t * forms.$form-floating-label-scale-sm +
-              forms.$form-floating-label-font-size-placeholder-sm * forms.$input-line-height-sm
-          ) * forms.$form-floating-label-scale-sm;
         padding-bottom: forms.$form-textarea-padding-b;
 
         ~ label {
           transform: scale(forms.$form-floating-label-scale-sm);
-          padding-top: forms.$form-textarea-padding-t * forms.$form-floating-label-scale-sm;
+          padding-top: forms.$form-textarea-padding-t-sm;
           width: calc(
             (100% * #{forms.$form-floating-label-upscale-sm}) - #{forms.$form-floating-label-translate-x-sm *
               forms.$form-floating-label-upscale-sm * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale-sm *
@@ -288,8 +287,8 @@
     &:is(.is-valid, .is-invalid) {
       ~ label {
         width: calc(
-          100% - (#{forms.$input-border-width * 2}) - #{forms.$form-floating-padding-x} - #{form-validation.$form-feedback-icon-offset} -
-            #{form-validation.$form-feedback-icon-size}
+          100% - (#{forms.$input-border-width * 2}) - #{form-validation.$form-feedback-icon-offset} -
+            #{forms.$form-bg-size}
         );
       }
 
@@ -299,10 +298,30 @@
           width: calc(
             (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
               forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
-              2} - #{forms.$form-floating-padding-x * forms.$form-floating-label-upscale} - #{form-validation.$form-feedback-icon-offset *
-              forms.$form-floating-label-upscale} - #{form-validation.$form-feedback-icon-size *
-              forms.$form-floating-label-upscale}
+              2} - #{form-validation.$form-feedback-icon-offset * forms.$form-floating-label-upscale} -
+              #{form-validation.$form-feedback-icon-size * forms.$form-floating-label-upscale}
           );
+        }
+      }
+
+      &.form-control-sm {
+        ~ label {
+          width: calc(
+            100% - (#{forms.$input-border-width * 2}) - #{form-validation.$form-feedback-icon-offset} -
+              #{forms.$form-bg-size-sm}
+          );
+        }
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          ~ label {
+            width: calc(
+              (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+                forms.$form-floating-label-upscale-sm * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale-sm *
+                2} - #{form-validation.$form-feedback-icon-offset *
+                forms.$form-floating-label-upscale-sm} - #{forms.$form-bg-size-sm * forms.$form-floating-label-upscale-sm}
+            );
+          }
         }
       }
     }
