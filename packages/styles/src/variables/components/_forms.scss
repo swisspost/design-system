@@ -15,7 +15,7 @@
 $form-bg-size: 32px !default;
 $form-bg-size-sm: 24px !default;
 
-$form-label-margin-bottom: 0.5rem !default;
+$form-label-margin-bottom: spacing.$size-mini !default;
 $form-label-color: var(--post-contrast-color) !default;
 $form-label-font-size-sm: type.$font-size-14;
 
@@ -31,7 +31,7 @@ $input-padding-y-rg: button.$input-btn-padding-y-rg !default;
 $input-padding-x-rg: button.$input-btn-padding-x-rg !default;
 $input-line-height-rg: type.$line-height-copy !default;
 
-$input-padding-y-lg: sizing.px-to-rem(11) !default;
+$input-padding-y-lg: button.$input-btn-padding-y-lg !default;
 $input-padding-x-lg: button.$input-btn-padding-x-lg !default;
 $input-line-height-lg: type.$line-height-copy !default;
 
@@ -119,14 +119,6 @@ $form-range-height: $form-range-thumb-height + $form-range-thumb-focus-box-shado
 $form-range-input-height-ie: 6rem !default;
 
 $form-file-button-hover-bg: $input-bg;
-
-$form-textarea-padding-r: sizing.px-to-rem(22) !default;
-$form-textarea-padding-l: spacing.$size-regular;
-$form-textarea-padding-t: spacing.$size-regular;
-$form-textarea-padding-b: spacing.$size-mini;
-
-$form-textarea-padding-t-sm: spacing.$size-mini;
-$form-textarea-padding-b-sm: 0;
 
 $form-floating-height: $input-height-lg * $input-line-height-lg;
 $form-floating-padding-x: $input-padding-x-lg;

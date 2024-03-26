@@ -7,7 +7,7 @@ describe('Textarea', () => {
     });
 
     it('Has no detectable a11y violations on load for all variants', () => {
-      cy.checkA11y('#root-inner', {});
+      cy.checkA11y('#root-inner');
     });
   });
 });

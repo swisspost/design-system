@@ -160,7 +160,6 @@ textarea.form-control {
   &.is-valid {
     background-position: right spacing.$size-micro top spacing.$size-mini;
 
-    &.form-select-sm,
     &.form-control-sm {
       background-position: right spacing.$size-micro top spacing.$size-mini;
     }

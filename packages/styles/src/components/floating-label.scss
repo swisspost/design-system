@@ -216,11 +216,11 @@
 
   > textarea.form-control {
     padding-top: (
-      forms.$form-textarea-padding-t-sm + forms.$form-floating-label-font-size *
-        forms.$form-floating-line-height * forms.$form-floating-label-scale
-    ) !important;
-    padding-bottom: forms.$form-textarea-padding-b;
-    padding-left: forms.$form-textarea-padding-l;
+      spacing.$size-mini + forms.$form-floating-label-font-size * forms.$form-floating-line-height *
+        forms.$form-floating-label-scale
+    ) !important; // The Space needed for the label on focus
+    padding-bottom: spacing.$size-mini;
+    padding-right: spacing.$size-large;
     height: auto;
 
     ~ label {
@@ -228,18 +228,16 @@
       width: calc(100% - (#{forms.$input-border-width * 2}));
       max-width: none;
       height: unset;
-      padding-left: forms.$form-textarea-padding-l;
-      padding-top: forms.$form-textarea-padding-t;
-      transform-origin: forms.$form-textarea-padding-l 0;
-      background-color: green !important;
+      padding-top: spacing.$size-regular;
+      background-color: purple !important;
     }
 
     &:focus,
     &:not(:placeholder-shown) {
-      padding-bottom: forms.$form-textarea-padding-b;
+      padding-bottom: spacing.$size-mini;
 
       ~ label {
-        padding-top: forms.$form-textarea-padding-t-sm;
+        padding-top: spacing.$size-mini;
         width: calc(
           (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
             forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
@@ -252,27 +250,27 @@
 
     &.form-control-sm {
       padding-top: (
-        forms.$form-textarea-padding-t-sm + forms.$form-floating-label-font-size-placeholder-sm *
+        spacing.$size-mini + forms.$form-floating-label-font-size-placeholder-sm *
           forms.$input-line-height-sm * forms.$form-floating-label-scale-sm
       ) !important;
-      padding-right: forms.$form-textarea-padding-r;
+      padding-right: spacing.$size-large;
       font-size: forms.$form-floating-label-font-size-placeholder-sm;
       height: auto;
 
       ~ label {
         font-size: forms.$form-floating-label-font-size-placeholder-sm;
-        padding-left: forms.$form-textarea-padding-l;
-        padding-top: forms.$form-textarea-padding-t;
-        padding-right: forms.$form-textarea-padding-r;
+        padding-left: spacing.$size-regular;
+        padding-top: spacing.$size-regular;
+        padding-right: spacing.$size-large;
       }
 
       &:focus,
       &:not(:placeholder-shown) {
-        padding-bottom: forms.$form-textarea-padding-b;
+        padding-bottom: spacing.$size-mini;
 
         ~ label {
           transform: scale(forms.$form-floating-label-scale-sm);
-          padding-top: forms.$form-textarea-padding-t-sm;
+          padding-top: spacing.$size-mini;
           width: calc(
             (100% * #{forms.$form-floating-label-upscale-sm}) - #{forms.$form-floating-label-translate-x-sm *
               forms.$form-floating-label-upscale-sm * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale-sm *
@@ -314,9 +312,10 @@
 
         &:focus,
         &:not(:placeholder-shown) {
+          padding-right: spacing.$size-bigger-big;
           ~ label {
             width: calc(
-              (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
+              (100% * #{forms.$form-floating-label-upscale-sm}) - #{forms.$form-floating-label-translate-x *
                 forms.$form-floating-label-upscale-sm * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale-sm *
                 2} - #{form-validation.$form-feedback-icon-offset *
                 forms.$form-floating-label-upscale-sm} - #{forms.$form-bg-size-sm * forms.$form-floating-label-upscale-sm}

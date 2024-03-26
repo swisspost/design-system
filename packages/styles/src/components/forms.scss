@@ -4,6 +4,7 @@
 
 @use './../variables/components/forms';
 @use './../variables/type';
+@use './../variables/spacing';
 
 @use './../mixins/utilities';
 @use './../mixins/forms' as form-mixins;
@@ -27,16 +28,15 @@
 
 textarea {
   &.form-control-lg {
-    padding-top: forms.$form-textarea-padding-t;
-    padding-bottom: forms.$form-textarea-padding-b;
-    padding-left: forms.$form-textarea-padding-l;
+    padding-top: spacing.$size-regular;
+    padding-bottom: spacing.$size-mini;
+    padding-right: spacing.$size-large;
   }
 
   &.form-control-sm {
-    padding-top: forms.$form-textarea-padding-t-sm;
-    padding-right: forms.$form-textarea-padding-r;
-    padding-left: forms.$form-textarea-padding-l;
-    padding-bottom: forms.$form-textarea-padding-b-sm;
+    padding-top: spacing.$size-mini;
+    padding-right: spacing.$size-large;
+    padding-bottom: 0;
   }
 }
 
@@ -171,7 +171,8 @@ select.form-control-rg:not([size]):not([multiple]) {
 
 .form-label {
   &:has(+ .form-control-sm, + .form-select-sm) {
-    font-size: type.$font-size-14;
+    font-size: forms.$form-label-font-size-sm;
+    margin-bottom: spacing.$size-micro;
   }
 
   &:has(+ .form-control[disabled]) {
