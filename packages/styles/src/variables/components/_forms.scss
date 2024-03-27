@@ -39,7 +39,7 @@ $input-bg: color.$white !default;
 $input-disabled-bg: rgba(var(--post-contrast-color-inverted-rgb), 0.4) !default;
 $input-disabled-color: rgba(var(--post-contrast-color-rgb), 0.6); // Design System only
 $input-disabled-border-color: color.$gray-40; // Design System only
-$input-disabled-boarder-style: spacing.$size-line dashed;
+$input-disabled-border-style: spacing.$size-line dashed;
 
 $input-color: color.$black !default;
 $input-border-color: color.$gray-80 !default;
@@ -128,7 +128,7 @@ $form-floating-input-padding-t: spacing.$size-large;
 $form-floating-input-padding-b: 0;
 $form-floating-label-opacity: 1;
 $form-floating-label-height: $form-floating-height;
-$form-floating-label-color: $input-placeholder-color;
+$form-floating-label-color: color.$gray-80;
 $form-floating-label-font-size: type.$font-size-16;
 $form-floating-label-font-size-small: type.$font-size-12;
 $form-floating-label-scale: math.div(
@@ -163,3 +163,9 @@ $form-floating-label-translate-x-sm: $form-floating-padding-x-sm *
 $form-floating-label-height-sm: $form-floating-input-height-sm;
 $form-floating-label-padding-t-sm: $form-floating-label-height-sm * 0.5 -
   $form-floating-label-font-size-sm;
+
+$form-floating-textarea-padding-t: spacing.$size-mini + $form-floating-label-font-size *
+  $form-floating-line-height * $form-floating-label-scale; // The Space needed for the label on focus
+$form-floating-textarea-padding-t-sm: spacing.$size-mini +
+  $form-floating-label-font-size-placeholder-sm * $input-line-height-sm *
+  $form-floating-label-scale-sm;

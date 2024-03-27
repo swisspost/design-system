@@ -10,6 +10,8 @@
 @use './../mixins/forms' as forms-mx;
 @use './../mixins/utilities' as utilities-mx;
 
+@use './../functions/sizing';
+
 @use './../variables/type';
 @use './../variables/spacing';
 @use './../variables/components/forms';
@@ -215,12 +217,12 @@
   }
 
   > textarea.form-control {
-    padding-top: (
-      spacing.$size-mini + forms.$form-floating-label-font-size * forms.$form-floating-line-height *
-        forms.$form-floating-label-scale
-    ) !important; // The Space needed for the label on focus
+    padding-top: forms.$form-floating-textarea-padding-t !important;
     padding-bottom: spacing.$size-mini;
     padding-right: spacing.$size-large;
+    min-height: (forms.$form-floating-label-font-size * forms.$input-line-height-lg) +
+      forms.$form-floating-textarea-padding-t + spacing.$size-mini +
+      sizing.px-to-rem(forms.$input-border-width * 2);
     height: auto;
 
     ~ label {
@@ -229,7 +231,6 @@
       max-width: none;
       height: unset;
       padding-top: spacing.$size-regular;
-      background-color: purple !important;
     }
 
     &:focus,
@@ -249,12 +250,13 @@
     }
 
     &.form-control-sm {
-      padding-top: (
-        spacing.$size-mini + forms.$form-floating-label-font-size-placeholder-sm *
-          forms.$input-line-height-sm * forms.$form-floating-label-scale-sm
-      ) !important;
+      padding-top: forms.$form-floating-textarea-padding-t-sm !important;
       padding-right: spacing.$size-large;
       font-size: forms.$form-floating-label-font-size-placeholder-sm;
+      min-height: (
+          forms.$form-floating-label-font-size-placeholder-sm * forms.$input-line-height-sm
+        ) + forms.$form-floating-textarea-padding-t-sm + spacing.$size-mini +
+        sizing.px-to-rem(forms.$input-border-width * 2);
       height: auto;
 
       ~ label {

@@ -6,6 +6,8 @@
 @use './../variables/type';
 @use './../variables/spacing';
 
+@use './../functions/sizing';
+
 @use './../mixins/utilities';
 @use './../mixins/forms' as form-mixins;
 
@@ -31,12 +33,16 @@ textarea {
     padding-top: spacing.$size-regular;
     padding-bottom: spacing.$size-mini;
     padding-right: spacing.$size-large;
+    min-height: (forms.$form-floating-label-font-size * forms.$input-line-height-lg) +
+      spacing.$size-regular + spacing.$size-mini + sizing.px-to-rem(forms.$input-border-width * 2);
   }
 
   &.form-control-sm {
     padding-top: spacing.$size-mini;
     padding-right: spacing.$size-large;
     padding-bottom: 0;
+    min-height: (forms.$form-floating-label-font-size-placeholder-sm * forms.$input-line-height-sm) +
+      (spacing.$size-mini * 2) + sizing.px-to-rem(forms.$input-border-width * 2);
   }
 }
 
@@ -50,7 +56,7 @@ select.form-control-rg:not([size]):not([multiple]) {
 
   &[disabled] {
     color: forms.$input-disabled-border-color;
-    border: forms.$input-disabled-boarder-style;
+    border: forms.$input-disabled-border-style;
     & ~ .form-text {
       color: forms.$input-disabled-color;
     }
