@@ -9,7 +9,6 @@ const meta: MetaComponent = {
   title: 'Components/Chip',
   tags: ['package:HTML'],
   render: renderChip,
-  decorators: [externalControl],
   parameters: {
     chips: [],
   },
@@ -149,8 +148,11 @@ function getDefaultContent(args: Args) {
   `;
 }
 
+let index = 0;
 function getCheckableContent(args: Args, updateArgs: (args: Args) => void, context: StoryContext) {
-  const checkboxId = `chip-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
+  index++;
+
+  const checkboxId = `chip-example--${context.name.replace(/ /g, '-').toLowerCase()}` + index;
   const labelClasses = mapClasses({
     'chip-check-label': true,
     [args.size]: args.size !== 'large',
@@ -170,6 +172,7 @@ function getCheckableContent(args: Args, updateArgs: (args: Args) => void, conte
   return html`
     <input
       id="${checkboxId}"
+      name="${checkboxId}"
       class="chip-check-input"
       type="checkbox"
       ?checked="${args.checked}"
@@ -213,28 +216,34 @@ function renderChip(args: Args, context: StoryContext) {
 // STORIES
 type Story = StoryObj;
 
-export const Default: Story = {};
+export const Default: Story = {
+  decorators: [externalControl],
+};
 
-export const Checkable: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Interaction Type'],
-    },
-  },
+export const FilterChip: Story = {
+  render: ({ checked, ...args }, context) => html`
+    <div class="d-flex gap-mini">
+      ${renderChip({ ...args, checked: true, text: 'Ĉiuj' }, context)}
+      ${renderChip({ ...args, text: 'Filtru unu' }, context)}
+      ${renderChip({ ...args, text: 'Filtrilo du' }, context)}
+      ${renderChip({ ...args, text: 'Filtrilo tri' }, context)}
+    </div>
+  `,
   args: {
-    text: 'Kontrolebla Insigno',
     interactionType: 'checkable',
   },
 };
 
 export const Dismissible: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Interaction Type'],
-    },
-  },
+  render: ({ dismissed, ...args }, context) => html`
+    <div class="d-flex gap-mini">
+      ${renderChip({ ...args, text: 'Unua uzanta enigo' }, context)}
+      ${renderChip({ ...args, text: 'Dua uzanta enigo' }, context)}
+      ${renderChip({ ...args, text: 'Tria uzanta enigo' }, context)}
+      ${renderChip({ ...args, text: 'Fora uzanta enigo' }, context)}
+    </div>
+  `,
   args: {
-    text: 'Malakceptebla Insigno',
     interactionType: 'dismissible',
   },
 };
