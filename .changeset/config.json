@@ -6,10 +6,12 @@
   ],
   "commit": false,
   "fixed": [
-    "@swisspost/design-system-styles",
-    "@swisspost/design-system-components",
-    "@swisspost/design-system-components-angular",
-    "@swisspost/design-system-components-react"
+    [
+      "@swisspost/design-system-styles",
+      "@swisspost/design-system-components",
+      "@swisspost/design-system-components-angular",
+      "@swisspost/design-system-components-react"
+    ]
   ],
   "linked": [],
   "access": "restricted",
