@@ -18,16 +18,16 @@ $input-btn-padding-y: spacing.$size-regular - $input-btn-border-width-rem !defau
 $input-btn-padding-x: spacing.$size-small-large - $input-btn-border-width-rem !default;
 $input-btn-line-height: type.$line-height-copy !default;
 
-$input-btn-padding-y-sm: spacing.$size-mini - $input-btn-border-width-rem !default;
-$input-btn-padding-x-sm: spacing.$size-small-regular !default;
+$input-btn-padding-y-sm: spacing.$size-micro !default;
+$input-btn-padding-x-sm: spacing.$size-regular !default;
 $input-btn-line-height-sm: type.$line-height-copy !default;
 
 $input-btn-padding-y-rg: spacing.$size-small-regular - $input-btn-border-width-rem !default;
 $input-btn-padding-x-rg: spacing.$size-regular - $input-btn-border-width-rem !default;
 $input-btn-line-height-rg: type.$line-height-copy !default;
 
-$input-btn-padding-y-lg: spacing.$size-small-large - $input-btn-border-width-rem !default;
-$input-btn-padding-x-lg: spacing.$size-large - $input-btn-border-width-rem !default;
+$input-btn-padding-y-lg: spacing.$size-small-regular !default;
+$input-btn-padding-x-lg: spacing.$size-regular !default;
 $input-btn-line-height-lg: type.$line-height-copy !default;
 
 $input-btn-focus-width: 0.125rem !default; // 2px

@@ -4,6 +4,7 @@
 @use './../components/button';
 @use './../components/forms';
 @use './../../functions/icons';
+@use './../../functions/sizing';
 
 // Bootstrap variables
 $form-feedback-margin-top: 0 !default;
@@ -21,8 +22,9 @@ $form-feedback-icon-invalid-hcm-light: url(icons.get-colored-svg-url(
 )) !default;
 
 // Design System custom variables
-$form-feedback-padding-x: button.$input-btn-padding-x !default;
-$form-feedback-padding-y: 0.5 * button.$input-btn-padding-x !default;
+$form-feedback-padding-x: spacing.$size-regular !default;
+$form-feedback-padding-y: sizing.px-to-rem(6);
+$form-feedback-padding-y-sm: spacing.$size-micro;
 $form-feedback-icon-size: 2rem !default; // Equals 24pt [svg-size]
 $form-feedback-icon-offset: spacing.$size-mini !default;
 $form-feedback-valid-bg: color.$success-green !default;
