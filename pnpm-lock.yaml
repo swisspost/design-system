@@ -348,8 +348,8 @@ importers:
         specifier: workspace:1.0.2
         version: link:../migrations
       '@swisspost/design-system-styles':
-        specifier: 6.6.3
-        version: 6.6.3(@ng-bootstrap/ng-bootstrap@16.0.0)(bootstrap@5.3.2)
+        specifier: workspace:6.6.4
+        version: link:../styles/dist
       bootstrap:
         specifier: 5.3.2
         version: 5.3.2(@popperjs/core@2.11.8)
@@ -8097,22 +8097,6 @@ packages:
       '@angular/platform-browser': 17.3.1(@angular/animations@17.3.1)(@angular/common@17.3.1)(@angular/core@17.3.1)
       rxjs: 7.8.1
       tslib: 2.6.2
-    dev: false
-
-  /@swisspost/design-system-styles@6.6.3(@ng-bootstrap/ng-bootstrap@16.0.0)(bootstrap@5.3.2):
-    resolution: {integrity: sha512-9BL3xK45gVeqi7HW94SaO6zSI5+NZ9nK9GZzjDJD3TSPIeJlQ57+8NpgQDVgDU6p/kliX0IsA8APi8INiQ9/dg==}
-    peerDependencies:
-      '@ng-bootstrap/ng-bootstrap': ^15.0.0
-      bootstrap: ~5.3.0
-    peerDependenciesMeta:
-      '@ng-bootstrap/ng-bootstrap':
-        optional: true
-      bootstrap:
-        optional: true
-    dependencies:
-      '@ng-bootstrap/ng-bootstrap': 16.0.0(@angular/common@17.3.0)(@angular/core@17.3.0)(@angular/forms@17.3.0)(@angular/localize@17.3.0)(@popperjs/core@2.11.8)(rxjs@7.8.1)
-      '@popperjs/core': 2.11.8
-      bootstrap: 5.3.2(@popperjs/core@2.11.8)
     dev: false
 
   /@testing-library/dom@9.3.1:
@@ -16867,6 +16851,8 @@ packages:
       webpack: '*'
     peerDependenciesMeta:
       webpack:
+        optional: true
+      webpack-sources:
         optional: true
     dependencies:
       webpack: 5.90.3(esbuild@0.20.1)
