@@ -18,7 +18,7 @@ $webkit-thumb-width: 32px;
   @include utilities.focus-style();
   @include utilities.focus-style-custom() {
     border-radius: commons.$border-radius !important;
-  };
+  }
 }
 
 @supports not selector(:has(> .form-range)) {
@@ -26,7 +26,7 @@ $webkit-thumb-width: 32px;
     @include utilities.focus-style();
     @include utilities.focus-style-custom() {
       border-radius: commons.$border-radius !important;
-    };
+    }
   }
 }
 

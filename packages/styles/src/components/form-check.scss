@@ -18,7 +18,7 @@
   @include utility-mx.focus-style();
   @include utility-mx.focus-style-custom() {
     border-radius: commons.$border-radius !important;
-  };
+  }
 
   &-inline {
     display: inline-flex;
