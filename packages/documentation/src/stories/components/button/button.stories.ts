@@ -307,10 +307,10 @@ export const AccentColors: Story = {
   },
 };
 
-export const ContextualColors: Story = {
+export const SignalColors: Story = {
   ...VariantsTemplate,
   args: {
-    variants: ['btn-success', 'btn-info', 'btn-warning', 'btn-danger'],
+    variants: ['btn-success', 'btn-warning', 'btn-error', 'btn-info'],
   },
 };
 

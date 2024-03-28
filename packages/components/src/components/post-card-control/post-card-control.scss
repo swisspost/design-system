@@ -83,9 +83,9 @@
     }
 
     &.is-invalid {
-      --post-card-control-border-color: #{post.$danger};
-      --post-card-control-color: #{post.$danger};
-      --post-card-control-input-border-color: #{post.$danger};
+      --post-card-control-border-color: #{post.$error};
+      --post-card-control-color: #{post.$error};
+      --post-card-control-input-border-color: #{post.$error};
     }
 
     &:hover {
@@ -144,10 +144,10 @@
       }
 
       &.is-invalid {
-        --post-card-control-border-color: #{post.$danger};
+        --post-card-control-border-color: #{post.$error};
         --post-card-control-bg: #{post.$error-background};
-        --post-card-control-color: #{post.$danger};
-        --post-card-control-input-border-color: #{post.$danger};
+        --post-card-control-color: #{post.$error};
+        --post-card-control-input-border-color: #{post.$error};
         --post-card-control-input-bg: #{post.$white};
       }
 
@@ -211,10 +211,10 @@
       }
 
       &.is-invalid {
-        --post-card-control-border-color: #{post.$danger};
+        --post-card-control-border-color: #{post.$error};
         --post-card-control-bg: #{post.$error-background};
-        --post-card-control-color: #{post.$danger};
-        --post-card-control-input-border-color: #{post.$danger};
+        --post-card-control-color: #{post.$error};
+        --post-card-control-input-border-color: #{post.$error};
         --post-card-control-input-bg: #{post.$white};
       }
 

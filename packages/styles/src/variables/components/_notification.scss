@@ -73,10 +73,10 @@ $notification-variants: () !default;
 $notification-variants: list.join(
   $notification-variants,
   (
-    'success' color.$success-green 2105,
-    'danger' color.$error 2104,
     'primary' color.$primary 3134,
+    'success' color.$success 2105,
     'warning' color.$warning 2104,
+    'danger' color.$error 2104,
     'info' color.$info 2106,
     'gray' color.$gray 2201,
     // deprecated

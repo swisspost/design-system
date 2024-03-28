@@ -35,6 +35,7 @@ with a specific background color and the best possible contrast color for its co
 </section>
 
 ## Shades of gray
+These colors are also available via the **Sass map** `$post-grays`.
 
 <section className="color-swatch__section">
   {forEach(SCSS_VARIABLES.gray, function (data) {
@@ -42,37 +43,21 @@ with a specific background color and the best possible contrast color for its co
   })}
 </section>
 
-## Page Backgrounds
-
-<section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.pagebackgrounds, function (data) {
-    return <ColorSwatch key={data.key} name={data.key} color={data.value} noCSS />;
-  })}
-</section>
-
 ## Signal colors
+These colors are also available via the **Sass map** `$signal-colors`.
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.signal.solid, function (data) {
-    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
-  })}
-  {forEach(SCSS_VARIABLES.contextual, function (data) {
-    if (data.key === 'info') {
-      return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
-    }
-  })}
-  {forEach(SCSS_VARIABLES.signal.background, function (data) {
+  {forEach(SCSS_VARIABLES.signal, function (data) {
     return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
 
-### Deprecated signal colors
+## Signal background colors
+These colors are also available via the **Sass map** `$signal-background-colors`.
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.contextual, function (data) {
-    if (data.key !== 'info') {
-      return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
-    }
+  {forEach(SCSS_VARIABLES['signal-background'], function (data) {
+    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
 

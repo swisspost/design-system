@@ -11,8 +11,6 @@
  * but should not be used.
 */
 
-$danger: color.$error;
-
 // Colors that can be used as a background
 $colors: () !default;
 
@@ -26,7 +24,7 @@ $theme-colors: map.merge(
     'dark': color.$dark,
   )
 );
-$theme-colors: map.merge($theme-colors, color.$contextual-colors);
+$theme-colors: map.merge($theme-colors, color.$signal-colors);
 
 // Contrast colors are ok
 

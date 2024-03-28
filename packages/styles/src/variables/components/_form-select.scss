@@ -16,10 +16,7 @@ $form-select-indicator-disabled: url(icons.get-colored-svg-url(
 $form-select-indicator-hcm-dark: url(icons.get-colored-svg-url('2113', color.$white)) !default;
 $form-select-indicator-hcm-light: url(icons.get-colored-svg-url('2113', color.$black)) !default;
 
-$form-select-indicator-success: url(icons.get-colored-svg-url(
-  '2105',
-  color.$success-green
-)) !default;
+$form-select-indicator-success: url(icons.get-colored-svg-url('2105', color.$success)) !default;
 $form-select-indicator-success-hcm-dark: url(icons.get-colored-svg-url(
   '2105',
   color.$white
@@ -29,7 +26,7 @@ $form-select-indicator-success-hcm-light: url(icons.get-colored-svg-url(
   color.$black
 )) !default;
 
-$form-select-indicator-error: url(icons.get-colored-svg-url('2104', color.$error-red)) !default;
+$form-select-indicator-error: url(icons.get-colored-svg-url('2104', color.$error)) !default;
 $form-select-indicator-error-hcm-dark: url(icons.get-colored-svg-url(
   '2104',
   color.$white

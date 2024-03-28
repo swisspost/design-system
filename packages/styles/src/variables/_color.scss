@@ -27,6 +27,16 @@ $secondary: $gray-60;
 $focus-light: #1976c8;
 $focus-dark: $white;
 
+// Signal Colors
+$success: #2c871d; /* When value is changed, please changed as well the copied value in ../functions/_contrast.scss, @function light-or-dark()*/
+$error: #a51728;
+$warning: #f49e00;
+$info: #cce4ee;
+
+$success-background: #c0debb;
+$error-background: #ffdade;
+$warning-background: #fce2b2;
+
 // Accent colors
 $nightblue-dark: #004976;
 $nightblue-bright: #0076a8;
@@ -40,22 +50,6 @@ $olive-dark: #716135;
 $olive-bright: #aa9d2e;
 $aubergine-dark: #523178;
 $aubergine-bright: #7566a0;
-
-// Signal Colors
-$success-green: #2c871d; /* When value is changed, please changed as well the copied value in ../functions/_contrast.scss, @function light-or-dark()*/
-$error-red: #a51728;
-$warning-orange: #f49e00;
-$success-background: #c0debb;
-$error-background: #ffdade;
-$warning-background: #fce2b2;
-
-// Contextual colors (deprecated)
-$success: $success-green;
-$success-text: #255e1c;
-$error: #a51728;
-$error-text: #8f0d1c;
-$warning: #f49e00;
-$info: #cce4ee;
 
 /**
  * Maps. Allow maps to have custom colors from the project
@@ -74,27 +68,24 @@ $post-grays: map.merge(
   )
 );
 
-$contextual-colors: () !default;
-$contextual-colors: map.merge(
-  $contextual-colors,
-  (
-    'info': $info,
-    'success': $success-green,
-    'warning': $warning,
-    'danger': $error,
-  )
-);
-
 $signal-colors: () !default;
 $signal-colors: map.merge(
   $signal-colors,
   (
-    'success-green': $success-green,
-    'error-red': $error-red,
-    'warning-orange': $warning-orange,
+    'success': $success,
+    'warning': $warning,
+    'error': $error,
+    'info': $info,
+  )
+);
+
+$signal-background-colors: () !default;
+$signal-background-colors: map.merge(
+  $signal-background-colors,
+  (
     'success-background': $success-background,
-    'error-background': $error-background,
     'warning-background': $warning-background,
+    'error-background': $error-background,
   )
 );
 
@@ -133,10 +124,10 @@ $background-colors: map.merge(
   )
 );
 
-// Merge with the other lists
-$background-colors: map.merge($background-colors, $contextual-colors);
-$background-colors: map.merge($background-colors, $accent-colors);
+// Merge with the other color maps
 $background-colors: map.merge($background-colors, $signal-colors);
+$background-colors: map.merge($background-colors, $signal-background-colors);
+$background-colors: map.merge($background-colors, $accent-colors);
 
 // Compile a list of dark backgrounds, used in the :is selector mixin at mixins/color
 $dark-backgrounds: () !default;

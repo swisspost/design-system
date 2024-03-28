@@ -1,15 +1,27 @@
 import { parse } from '../../../utils/sass-export';
 import scss from './color.module.scss';
 
-export const SCSS_VARIABLES = parse(scss);
+export const SCSS_VARIABLES: any = parse(scss);
 
-export const ColorSwatch = (props: { name: string; color: string; noCSS?: boolean }) => {
-  let contrastWhite: number = SCSS_VARIABLES.contrast.white[props.name];
-  let contrastBlack: number = SCSS_VARIABLES.contrast.black[props.name];
+export const ColorSwatch = (props: {
+  name: string;
+  color: string;
+  noCSS?: boolean;
+  deprecated?: boolean;
+}) => {
+  const contrast = {
+    text: SCSS_VARIABLES.contrast.color[props.name],
+    white: Number(SCSS_VARIABLES.contrast.white[props.name]).toFixed(2),
+    black: Number(SCSS_VARIABLES.contrast.black[props.name]).toFixed(2),
+  };
+
   return (
     <article className="color-swatch">
       <div className="color-swatch__description">
-        <h3 className="description__title h6">{props.name}</h3>
+        <h3 className="description__title h6">
+          {props.name}
+          {props.deprecated ? ' (deprecated)' : null}
+        </h3>
         <p className="description__value">
           <span className="visually-hidden">CSS value: </span>
           {props.color}
@@ -20,19 +32,21 @@ export const ColorSwatch = (props: { name: string; color: string; noCSS?: boolea
           className="color__tile"
           style={{
             backgroundColor: props.color,
-            color: SCSS_VARIABLES.text.color[props.name],
+            color: contrast.text,
           }}
         >
-          <div className="h-100 px-2 d-flex flex-column align-items-end justify-content-center">
-            <div className="d-flex align-items-center">
-              <span className="fs-tiny">{Number(contrastWhite).toFixed(2)}</span>
-              <div className="h-mini w-mini ms-mini  white"></div>
-            </div>
-            <div className="d-flex align-items-center">
-              <span className="fs-tiny">{Number(contrastBlack).toFixed(2)}</span>
-              <div className="h-mini w-mini ms-mini black"></div>
-            </div>
-          </div>
+          {contrast.text
+            ? [
+                <div key="contrast-white">
+                  <div>{contrast.white}</div>
+                  <div className="white"></div>
+                </div>,
+                <div key="contrast-black">
+                  <div>{contrast.black}</div>
+                  <div className="black"></div>
+                </div>,
+              ]
+            : null}
         </div>
       </div>
       <div className="color-swatch__props">
