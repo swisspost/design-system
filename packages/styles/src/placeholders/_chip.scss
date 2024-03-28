@@ -1,0 +1,76 @@
+@use './../themes/bootstrap/core' as *;
+
+@use './../variables/commons';
+@use './../variables/spacing';
+@use './../variables/components/badge';
+@use './../variables/components/chip';
+@use './../placeholders/badge' as badge-ph;
+
+%chip {
+  @include border-radius(chip.$chip-border-radius);
+  display: inline-flex;
+  align-items: center;
+  height: chip.$chip-height;
+  max-width: chip.$chip-max-width;
+  padding-inline: chip.$chip-padding-x;
+  border: chip.$chip-border-width solid chip.$chip-border-color;
+  gap: chip.$chip-gap;
+  line-height: chip.$chip-line-height;
+  font-size: chip.$chip-font-size;
+  font-weight: chip.$chip-font-weight;
+  color: chip.$chip-color;
+  background-color: chip.$chip-bg;
+  transition: chip.$chip-transition;
+
+  > span {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+
+  > .badge {
+    color: chip.$chip-hover-color;
+    background-color: chip.$chip-hover-bg;
+    border-color: transparent;
+    transition: chip.$chip-transition;
+  }
+
+  > .btn-close {
+    &:not(:disabled) {
+      color: chip.$chip-color;
+      border-radius: commons.$border-radius-pill;
+
+      &:hover {
+        color: chip.$chip-hover-color;
+        background-color: chip.$chip-hover-bg;
+      }
+    }
+
+    &::before {
+      height: badge.$badge-height;
+      width: badge.$badge-height;
+    }
+  }
+
+  &.chip-sm {
+    height: chip.$chip-height-sm;
+    font-size: chip.$chip-font-size-sm;
+    gap: chip.$chip-gap-sm;
+    padding-inline: chip.$chip-padding-x-sm;
+
+    > .badge {
+      @extend %badge-sm;
+    }
+
+    > .btn-close::before {
+      height: badge.$badge-height-sm;
+      width: badge.$badge-height-sm;
+    }
+  }
+
+  // Quick fix for badges in buttons
+  .btn & {
+    position: relative;
+    top: -1px;
+  }
+}

@@ -1,0 +1,42 @@
+@use './button';
+@use './../animation';
+@use './../color';
+@use './../commons';
+@use './../spacing';
+@use './../type';
+
+@use './../../functions/sizing';
+
+$chip-color: color.$gray-80;
+$chip-bg: color.$white;
+$chip-border-color: color.$gray-60;
+$chip-border-width: commons.$border-thick;
+$chip-border-radius: commons.$border-radius-pill;
+
+$chip-height: button.$btn-height-rg;
+$chip-max-width: sizing.px-to-rem(296px);
+$chip-padding-x: spacing.$size-regular;
+$chip-gap: spacing.$size-mini;
+
+$chip-font-size: type.$font-size-16;
+$chip-font-weight: type.$font-weight-normal;
+$chip-line-height: type.$line-height-copy;
+
+$chip-transition:
+  color animation.$transition-base-timing,
+  background-color animation.$transition-base-timing,
+  border-color animation.$transition-base-timing;
+
+$chip-height-sm: button.$btn-height-sm;
+$chip-gap-sm: sizing.px-to-rem(6px);
+$chip-font-size-sm: type.$font-size-14;
+$chip-padding-x-sm: spacing.$size-small-regular;
+
+$chip-hover-color: color.$black;
+$chip-hover-bg: color.$gray-20;
+
+$chip-active-color: color.$black;
+$chip-active-bg: color.$yellow;
+
+$chip-disabled-bg: color.$white;
+$chip-disabled-active-bg: color.$gray-background;
