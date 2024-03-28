@@ -7,8 +7,7 @@
   background-color: chip.$chip-hover-bg;
 
   > .badge {
-    background-color: badge.$badge-hover-bg-color;
-    border-color: badge.$badge-hover-border-color;
+    background-color: chip.$chip-bg;
   }
 
   @include utilities.high-contrast-mode() {
@@ -25,8 +24,7 @@
   border-color: transparent;
 
   > .badge {
-    background-color: badge.$badge-active-bg-color;
-    border-color: badge.$badge-active-border-color;
+    background-color: chip.$chip-bg;
   }
 
   @include utilities.high-contrast-mode() {

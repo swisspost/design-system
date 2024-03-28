@@ -1,0 +1,7 @@
+@use './../variables/components/badge';
+
+%badge-sm {
+  --post-badge-height: #{badge.$badge-height-sm};
+  --post-badge-padding-x: #{badge.$badge-padding-x-sm};
+  font-size: badge.$badge-font-size-sm;
+}

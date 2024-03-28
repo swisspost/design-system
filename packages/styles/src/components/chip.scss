@@ -19,7 +19,6 @@ button {
     @include utilities.focus-style;
     background-color: transparent;
     text-decoration: none;
-    transition: chip.$chip-transition;
 
     &:is(:active, .active) {
       @include chip-mx.chip-active-state;
@@ -44,7 +43,6 @@ button {
 .chip-check {
   &-label {
     @extend %chip;
-    transition: chip.$chip-transition;
     cursor: pointer;
   }
 

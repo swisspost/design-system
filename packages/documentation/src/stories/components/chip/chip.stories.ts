@@ -5,7 +5,7 @@ import { mapClasses } from '../../../utils';
 import { MetaComponent } from '../../../../types';
 
 const meta: MetaComponent = {
-  id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',
+  id: '12576d97-52c3-49ec-be7b-6d37728b75f5',
   title: 'Components/Chip',
   tags: ['package:HTML'],
   render: renderChip,
