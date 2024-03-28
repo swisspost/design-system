@@ -77,8 +77,8 @@ export default meta;
 
 // DECORATORS
 function adaptiveBackground(story: StoryFn, { args, context }: StoryContext) {
-  const bgClass = args.background === 'bg-white' ? ` bg-dark` : '';
-  return html` <div class=${`p-2${bgClass}`}>${story(args, context)}</div> `;
+  const bgClass = args.background === 'bg-white' ? `p-2 bg-dark` : 'p-2';
+  return html`<div class=${bgClass}>${story(args, context)}</div>`;
 }
 
 // RENDERER
