@@ -118,7 +118,7 @@ export const Position: Story = {
     </div>
 
     <div class="position-relative d-inline">
-      <post-icon name="2026" scale="1.5"></post-icon>
+      <post-icon name="2026" class="fs-large"></post-icon>
       <div class="badge badge-sm position-absolute top-0 start-100 translate-middle">3</div>
     </div>
   `,

@@ -14,7 +14,7 @@
   height: var(--post-badge-height);
   min-width: calc(var(--post-badge-height) - 2 * var(--post-badge-padding-x));
   padding-inline: var(--post-badge-padding-x);
-  border: badge.$badge-border-width solid badge.$badge-border-color;
+  border: badge.$badge-border;
   border-radius: badge.$badge-border-radius;
   line-height: badge.$badge-line-height;
   font-size: badge.$badge-font-size;
@@ -24,21 +24,11 @@
   &:empty {
     --post-badge-height: #{badge.$badge-height-empty};
     --post-badge-padding-x: #{badge.$badge-padding-x-empty};
-    border-width: badge.$badge-border-width-empty;
-
-    // prevent blurry border effect
-    outline: badge.$badge-border-width-empty solid badge.$badge-border-color;
-    outline-offset: -0.75 * badge.$badge-border-width-empty;
   }
 }
 
 .badge-sm {
   --post-badge-height: #{badge.$badge-height-sm};
   --post-badge-padding-x: #{badge.$badge-padding-x-sm};
-  border-width: badge.$badge-border-width-sm;
   font-size: badge.$badge-font-size-sm;
-
-  // prevent blurry border effect
-  outline: badge.$badge-border-width-sm solid badge.$badge-border-color;
-  outline-offset: -0.75 * badge.$badge-border-width-sm;
 }

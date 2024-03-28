@@ -10,7 +10,7 @@ $badge-border-radius: 50rem;
 $badge-line-height: type.$line-height-copy;
 $badge-color: color.$white;
 $badge-bg: color.$error-red;
-$badge-border-color: color.$white;
+$badge-border: color.$white solid commons.$border-thick;
 
 $badge-height: spacing.$size-large;
 $badge-height-sm: spacing.$size-regular;
@@ -19,10 +19,6 @@ $badge-height-empty: spacing.$size-mini;
 $badge-padding-x: spacing.$size-mini;
 $badge-padding-x-sm: spacing.$size-micro;
 $badge-padding-x-empty: 0%; // needs a unit for the calculated min-width
-
-$badge-border-width: commons.$border-thick;
-$badge-border-width-sm: commons.$border-width;
-$badge-border-width-empty: commons.$border-width;
 
 $badge-font-size: type.$font-size-12;
 $badge-font-size-sm: 10px;
