@@ -6,23 +6,22 @@
  * Colors used by the post style guide
  */
 
-// The one and only
-$yellow: #fc0;
-
 // Grayscale
-$gray-background: #f4f3f1;
-$gray-background-light: #faf9f8;
-
-$white: #fff;
 $gray-10: hsl(0, 0%, 90%);
 $gray-20: hsl(0, 0%, 80%);
 $gray-40: hsl(0, 0%, 60%);
 $gray-60: hsl(0, 0%, 40%);
 $gray-80: hsl(0, 0%, 20%);
-$black: #000;
 
+// Brand
+$yellow: #fc0; // The one and only
+$white: #fff;
+$light: #faf9f8;
+$gray: #f4f3f1;
 $dark: $gray-80;
-$light: $gray-background-light;
+$black: #000;
+$primary: $gray-80;
+$secondary: $gray-60;
 
 $focus-light: #1976c8;
 
@@ -122,12 +121,13 @@ $background-colors: map.merge(
   $background-colors,
   (
     'yellow': $yellow,
-    'light': $light,
-    'gray': $gray-background,
-    'dark': $dark,
-    'primary': $gray-80,
     'white': $white,
+    'light': $light,
+    'gray': $gray,
+    'dark': $dark,
     'black': $black,
+    'primary': $primary,
+    'secondary': $secondary,
   )
 );
 

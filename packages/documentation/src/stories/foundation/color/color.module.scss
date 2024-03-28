@@ -8,12 +8,13 @@ $all_exported_colors: map.merge(
   (
     'yellow': post.$yellow,
     'white': post.$white,
-    'black': post.$black,
     'light': post.$light,
+    'gray': post.$gray,
     'dark': post.$dark,
-    'gray-background-light': post.$gray-background-light,
-    'gray-background': post.$gray-background,
-  )
+    'black': post.$black,
+    'primary': post.$primary,
+    'secondary': post.$secondary,
+  ),
 );
 $all_exported_colors: map.merge($all_exported_colors, post.$post-grays);
 $all_exported_colors: map.merge($all_exported_colors, post.$contextual-colors);
@@ -23,17 +24,17 @@ $all_exported_colors: map.merge($all_exported_colors, post.$signal-colors);
 :export {
   brand_yellow: post.$yellow;
   brand_white: post.$white;
+  brand_light: post.$light;
+  brand_gray: post.$gray;
+  brand_dark: post.$dark;
   brand_black: post.$black;
+  brand_primary: post.$primary;
+  brand_secondary: post.$secondary;
 
   @each $color, $value in post.$post-grays {
     gray_#{$color}: $value;
   }
 
-  gray_light: post.$light;
-  gray_dark: post.$dark;
-
-  pagebackgrounds_gray-background-light: post.$gray-background-light;
-  pagebackgrounds_gray-background: post.$gray-background;
 
   @each $color, $value in post.$contextual-colors {
     contextual_#{$color}: $value;
