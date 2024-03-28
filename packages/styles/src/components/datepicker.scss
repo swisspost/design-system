@@ -170,6 +170,7 @@ span.ngb-dp-navigation-chevron {
 
   &:focus-visible {
     outline: none;
+
     .pi {
       @include utilities.focus-style();
       outline-style: solid;
