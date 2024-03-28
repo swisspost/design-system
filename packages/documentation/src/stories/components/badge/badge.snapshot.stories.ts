@@ -20,17 +20,11 @@ export const Badge: Story = {
           bg => html`
             <div class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular">
               ${bombArgs({
-                text: [
-                  'Malakceptebla Insigno',
-                  'Contentus momentus vero siteos et accusam iretea et justo.',
-                ],
+                showNumber: [true, false],
                 size: context.argTypes.size.options,
-                interactionType: context.argTypes.interactionType.options,
-                nestedBadge: [false, true],
-                checked: [false, true],
-                dismissed: [false],
+                background: context.argTypes.background.options,
               })
-                .filter(args => !(args.interactionType !== 'checkable' && args.checked === true))
+                .filter(args => !(!args.showNumber && args.size === 'small'))
                 .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
             </div>
           `,
