@@ -1,5 +1,11 @@
 # @swisspost/design-system-migrations
 
+## 1.0.3
+
+### Patch Changes
+
+- Updated instructions to run the automated migrations from the migration package. (by [@alizedebray](https://github.com/alizedebray) with [#2783](https://github.com/swisspost/design-system/pull/2783))
+
 ## 1.0.2
 
 ### Patch Changes

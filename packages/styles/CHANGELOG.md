@@ -1,5 +1,39 @@
 # @swisspost/design-system-styles
 
+## 7.0.0
+
+### Major Changes
+
+- Added support for Angular 17 and ng-bootstrap 16. (by [@alizedebray](https://github.com/alizedebray) with [#2760](https://github.com/swisspost/design-system/pull/2760))
+
+### Minor Changes
+
+- Added a new `tag` component. This component is available in standard HTML or as webcomponent. (by [@b1aserlu](https://github.com/b1aserlu) with [#2552](https://github.com/swisspost/design-system/pull/2552))
+
+- Added a pattern for error pages with an image. Currently available is a graphic for "404 not found" errors. More error types may be supported in the future. (by [@gfellerph](https://github.com/gfellerph) with [#2676](https://github.com/swisspost/design-system/pull/2676))
+
+### Patch Changes
+
+- Adjusted focus styles with new color for button, checkbox, radio, switch, rating elements. (by [@imagoiq](https://github.com/imagoiq) with [#2780](https://github.com/swisspost/design-system/pull/2780))
+
+- Updated size of radio button to match design. (by [@imagoiq](https://github.com/imagoiq) with [#2737](https://github.com/swisspost/design-system/pull/2737))
+
+- Fixed the `.form-check-input` background-color, by setting it to white on none or light backgrounds. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2260](https://github.com/swisspost/design-system/pull/2260))
+
+- Added a workaround to display progress bar on input range and on webkit browsers without JavaScript. (by [@imagoiq](https://github.com/imagoiq) with [#2781](https://github.com/swisspost/design-system/pull/2781))
+
+- Fixed layout on post-alert with medium (md) breakpoint. (by [@imagoiq](https://github.com/imagoiq) with [#2775](https://github.com/swisspost/design-system/pull/2775))
+
+- Replaced `system-ui` fallback font with a list of fallbacks to avoid rendering issues with specific writing system (chinese, arabic…). (by [@imagoiq](https://github.com/imagoiq) with [#2735](https://github.com/swisspost/design-system/pull/2735))
+
+- Fixed active button color-contrast on dark background (by [@imagoiq](https://github.com/imagoiq) with [#2823](https://github.com/swisspost/design-system/pull/2823))
+
+- Replace all parts that used the old success color with the new success-green color. (by [@imagoiq](https://github.com/imagoiq) with [#2808](https://github.com/swisspost/design-system/pull/2808))
+
+- Refactored the new focus style to only be visible when using keyboard for form elements. (by [@imagoiq](https://github.com/imagoiq) with [#2810](https://github.com/swisspost/design-system/pull/2810))
+
+- Fixed form validation feedback color and indicators in high contrast mode. (by [@imagoiq](https://github.com/imagoiq) with [#2766](https://github.com/swisspost/design-system/pull/2766))
+
 ## 6.6.4
 
 ### Patch Changes

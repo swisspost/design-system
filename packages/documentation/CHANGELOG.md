@@ -1,5 +1,37 @@
 # @swisspost/design-system-documentation
 
+## 5.0.0
+
+### Minor Changes
+
+- Added a new `tag` component. This component is available in standard HTML or as webcomponent. (by [@b1aserlu](https://github.com/b1aserlu) with [#2552](https://github.com/swisspost/design-system/pull/2552))
+
+- Added a new web-component `post-card-control`, which works like a native `input[type="checkbox"]` or `input[type="radio"]` but with a custom visual design. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2260](https://github.com/swisspost/design-system/pull/2260))
+
+- Added a pattern for error pages with an image. Currently available is a graphic for "404 not found" errors. More error types may be supported in the future. (by [@gfellerph](https://github.com/gfellerph) with [#2676](https://github.com/swisspost/design-system/pull/2676))
+
+- Added the new default slot, to allow the integration of custom HTML in the card-control component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2844](https://github.com/swisspost/design-system/pull/2844))
+
+### Patch Changes
+
+- Updated instructions to run the automated migrations from the migration package. (by [@alizedebray](https://github.com/alizedebray) with [#2783](https://github.com/swisspost/design-system/pull/2783))
+
+- Merged toast live region section with accessibility page. (by [@imagoiq](https://github.com/imagoiq) with [#2731](https://github.com/swisspost/design-system/pull/2731))
+
+- Reworked the getting-started section to better understand the different packages and add more info about Angular. (by [@imagoiq](https://github.com/imagoiq) with [#2722](https://github.com/swisspost/design-system/pull/2722))
+
+- Changed references from https://next.design-system.post.ch to https://design-system.post.ch after the migration of Storybook, which is now our main documentation (by [@gfellerph](https://github.com/gfellerph) with [#2802](https://github.com/swisspost/design-system/pull/2802))
+
+- Renamed input range to slider. (by [@imagoiq](https://github.com/imagoiq) with [#2792](https://github.com/swisspost/design-system/pull/2792))
+- Updated dependencies:
+  - @swisspost/design-system-icons@1.5.0
+  - @swisspost/design-system-styles@7.0.0
+  - @swisspost/design-system-components@2.2.0
+  - @swisspost/internet-header@1.13.9
+  - @swisspost/design-system-components-angular@3.0.0
+  - @swisspost/design-system-intranet-header@5.0.12
+  - @swisspost/design-system-components-react@1.0.31
+
 ## 4.0.0
 
 ### Patch Changes

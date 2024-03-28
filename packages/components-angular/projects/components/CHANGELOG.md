@@ -1,5 +1,16 @@
 # @swisspost/design-system-components-angular
 
+## 3.0.0
+
+### Major Changes
+
+- Added support for Angular 17. (by [@alizedebray](https://github.com/alizedebray) with [#2760](https://github.com/swisspost/design-system/pull/2760))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@2.2.0
+
 ## 2.0.0
 
 ### Patch Changes

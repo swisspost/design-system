@@ -1,5 +1,18 @@
 # @swisspost/design-system-demo
 
+## 7.2.5
+
+### Patch Changes
+
+- Updated instructions to run the automated migrations from the migration package. (by [@alizedebray](https://github.com/alizedebray) with [#2783](https://github.com/swisspost/design-system/pull/2783))
+
+- Changed references from https://next.design-system.post.ch to https://design-system.post.ch after the migration of Storybook, which is now our main documentation (by [@gfellerph](https://github.com/gfellerph) with [#2802](https://github.com/swisspost/design-system/pull/2802))
+
+- Updated Angular to version 17. (by [@alizedebray](https://github.com/alizedebray) with [#2760](https://github.com/swisspost/design-system/pull/2760))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.0.0
+  - @swisspost/design-system-intranet-header@5.0.12
+
 ## 7.2.4
 
 ### Patch Changes
