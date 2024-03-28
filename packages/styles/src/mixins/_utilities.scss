@@ -1,3 +1,6 @@
+@use '../variables/spacing';
+@use '../variables/commons';
+
 @mixin reset-list() {
   margin: 0;
   padding: 0;
@@ -77,5 +80,58 @@
   &:not(:disabled):hover,
   &.pretend-hover {
     @content;
+  }
+}
+
+@mixin focus-style-none {
+  outline: none;
+}
+
+@mixin focus-style($vendor-prefix: '') {
+  outline-style: none;
+  outline-offset: spacing.$size-line;
+  outline-width: spacing.$size-line;
+  outline-color: var(--post-focus-color);
+
+  // :has(:focus-visible) mimic a focus-visible-within pseudo-class
+  &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$vendor-prefix} {
+    outline-style: solid;
+    border-radius: commons.$border-radius !important;
+
+    @include high-contrast-mode() {
+      outline-color: Highlight;
+    }
+
+    // In case rules need to be slightly adjusted
+    @content;
+  }
+
+  // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
+  @supports not selector(:has(:focus-visible)) {
+    &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
+      outline-style: solid;
+      border-radius: commons.$border-radius !important;
+
+      @include high-contrast-mode() {
+        outline-color: Highlight;
+      }
+
+      // In case rules need to be slightly adjusted
+      @content;
+    }
+  }
+}
+
+@mixin focus-style-custom($vendor-prefix: '') {
+  // :has(:focus-visible) mimic a focus-visible-within pseudo-class
+  &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$vendor-prefix} {
+    @content;
+  }
+
+  // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
+  @supports not selector(:has(:focus-visible)) {
+    &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
+      @content;
+    }
   }
 }

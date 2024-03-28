@@ -1,6 +1,7 @@
-import { Args, Meta, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
 import { html, nothing, TemplateResult } from 'lit';
+import { MetaComponent } from '../../../../../types';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -8,9 +9,10 @@ const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'is-invalid': true,
 };
 
-const meta: Meta = {
+const meta: MetaComponent = {
   id: '151242aa-a074-4a55-a81c-db597c83cdad',
-  title: 'Components/Forms/Radio button',
+  title: 'Components/Forms/Radio Button',
+  tags: ['package:HTML'],
   parameters: {
     controls: {
       exclude: ['Hidden Legend'],
@@ -117,7 +119,7 @@ const meta: Meta = {
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  const id = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
+  const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
   const classes = ['form-check-input', args.validation].filter(c => c && c !== 'null').join(' ');
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
 

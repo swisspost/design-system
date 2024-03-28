@@ -14,6 +14,8 @@
   row-gap: form-check.$form-check-row-gap;
   margin-bottom: form-check.$form-check-margin-bottom;
 
+  @include utility-mx.focus-style();
+
   &-inline {
     display: inline-flex;
   }
@@ -38,20 +40,15 @@
   }
 
   &-input {
+    @include utility-mx.focus-style-none();
     display: inline-flex;
     flex: 0 auto;
     appearance: none;
-    background: none;
+    background: color.$white;
     height: form-check.$form-check-input-size;
     width: form-check.$form-check-input-size;
     border: form-check.$form-check-input-border-width solid
       rgba(var(--post-contrast-color-rgb), 0.8);
-
-    &:focus {
-      outline: none;
-      border-color: currentColor;
-      box-shadow: form-check.$form-check-input-focus-box-shadow;
-    }
 
     &::after {
       content: '';

@@ -1,8 +1,9 @@
-import type { Args, Meta, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
 import './spacing.styles.scss';
 import { parse } from '../../../utils/sass-export';
 import scss from './spacing.module.scss';
+import { MetaExtended } from '../../../../types';
 
 export const SCSS_VARIABLES = parse(scss);
 
@@ -18,7 +19,7 @@ const positionOptions = {
   s: 'To the left',
 };
 
-const meta: Meta = {
+const meta: MetaExtended = {
   id: 'facaacfd-18f1-49b4-80f1-a96680730fa0',
   title: 'Utilities/Spacing',
   parameters: {

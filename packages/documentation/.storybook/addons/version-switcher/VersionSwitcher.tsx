@@ -37,7 +37,7 @@ function VersionSwitcher() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="version-switcher-loading">Loading...</div>;
   }
 
   const latestVersionMajorMinor = getVersion(
@@ -103,7 +103,7 @@ function VersionSwitcher() {
           );
         }}
       >
-        <IconButton placeholder="Versions">Versions {latestVersionMajorMinor}</IconButton>
+        <IconButton placeholder="Versions">Version {latestVersionMajorMinor}</IconButton>
       </WithTooltip>
     </Fragment>
   );
