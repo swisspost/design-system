@@ -31,6 +31,9 @@ $all_exported_colors: map.merge($all_exported_colors, post.$signal-colors);
   brand_primary: post.$primary;
   brand_secondary: post.$secondary;
 
+  focus_focus-light: post.$focus-light;
+  focus_focus-dark: post.$focus-dark;
+
   @each $color, $value in post.$post-grays {
     gray_#{$color}: $value;
   }
@@ -47,9 +50,7 @@ $all_exported_colors: map.merge($all_exported_colors, post.$signal-colors);
   }
 
   @each $colorName, $value in post.$accent-colors {
-    @if (str-index($colorName, '-bright')) {
-      accent_bright_#{$colorName}: $value;
-    }
+    accent_#{$colorName}: $value;
   }
 
   @each $colorName, $value in post.$signal-colors {
