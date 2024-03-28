@@ -13,6 +13,20 @@ $gray-40: hsl(0, 0%, 60%);
 $gray-60: hsl(0, 0%, 40%);
 $gray-80: hsl(0, 0%, 20%);
 
+// Black alpha
+$black-alpha-10: rgba(0, 0, 0, 0.1);
+$black-alpha-20: rgba(0, 0, 0, 0.2);
+$black-alpha-40: rgba(0, 0, 0, 0.4);
+$black-alpha-60: rgba(0, 0, 0, 0.6);
+$black-alpha-80: rgba(0, 0, 0, 0.8);
+
+// White alpha
+$white-alpha-10: rgba(0, 0, 0, 0.1);
+$white-alpha-20: rgba(0, 0, 0, 0.2);
+$white-alpha-40: rgba(0, 0, 0, 0.4);
+$white-alpha-60: rgba(0, 0, 0, 0.6);
+$white-alpha-80: rgba(0, 0, 0, 0.8);
+
 // Brand
 $yellow: #fc0; // The one and only
 $white: #fff;
@@ -65,6 +79,30 @@ $post-grays: map.merge(
     'gray-40': $gray-40,
     'gray-60': $gray-60,
     'gray-80': $gray-80,
+  )
+);
+
+$post-black-alphas: () !default;
+$post-black-alphas: map.merge(
+  $post-black-alphas,
+  (
+    'alpha-10': $black-alpha-10,
+    'alpha-20': $black-alpha-20,
+    'alpha-40': $black-alpha-40,
+    'alpha-60': $black-alpha-60,
+    'alpha-80': $black-alpha-80,
+  )
+);
+
+$post-white-alphas: () !default;
+$post-white-alphas: map.merge(
+  $post-white-alphas,
+  (
+    'alpha-10': $white-alpha-10,
+    'alpha-20': $white-alpha-20,
+    'alpha-40': $white-alpha-40,
+    'alpha-60': $white-alpha-60,
+    'alpha-80': $white-alpha-80,
   )
 );
 

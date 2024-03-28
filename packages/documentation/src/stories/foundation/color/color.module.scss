@@ -14,9 +14,9 @@ $contrast-color-maps: (
     'secondary': post.$secondary,
   ),
   post.$post-grays,
-  post.$accent-colors,
   post.$signal-colors,
-  post.$signal-background-colors
+  post.$signal-background-colors,
+  post.$accent-colors
 );
 
 :export {
@@ -34,6 +34,14 @@ $contrast-color-maps: (
 
   @each $color, $value in post.$post-grays {
     gray_#{$color}: $value;
+  }
+
+  @each $color, $value in post.$post-black-alphas {
+    black-alpha_#{$color}: $value;
+  }
+
+  @each $color, $value in post.$post-white-alphas {
+    white-alpha_#{$color}: $value;
   }
 
   @each $colorName, $value in post.$signal-colors {
