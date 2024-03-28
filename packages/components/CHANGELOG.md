@@ -1,5 +1,23 @@
 # @swisspost/design-system-components
 
+## 2.2.0
+
+### Minor Changes
+
+- Added a new `tag` component. This component is available in standard HTML or as webcomponent. (by [@b1aserlu](https://github.com/b1aserlu) with [#2552](https://github.com/swisspost/design-system/pull/2552))
+
+- Added a new web-component `post-card-control`, which works like a native `input[type="checkbox"]` or `input[type="radio"]` but with a custom visual design. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2260](https://github.com/swisspost/design-system/pull/2260))
+
+- Added the new default slot, to allow the integration of custom HTML in the card-control component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2844](https://github.com/swisspost/design-system/pull/2844))
+
+### Patch Changes
+
+- Fixed accessibility of aria controls through post-tabs components. (by [@imagoiq](https://github.com/imagoiq) with [#2777](https://github.com/swisspost/design-system/pull/2777))
+
+- Fixed post-tooltip that doesn't show up when the pointer is on a child element (like an icon). (by [@imagoiq](https://github.com/imagoiq) with [#2814](https://github.com/swisspost/design-system/pull/2814))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.0.0
+
 ## 2.1.0
 
 ### Minor Changes

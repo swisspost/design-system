@@ -1,5 +1,13 @@
 # @swisspost/design-system-intranet-header-workspace
 
+## 3.0.12
+
+### Patch Changes
+
+- Updated Angular to version 17. (by [@alizedebray](https://github.com/alizedebray) with [#2760](https://github.com/swisspost/design-system/pull/2760))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.0.0
+
 ## 3.0.11
 
 ### Patch Changes
