@@ -34,10 +34,36 @@
 
   .color-swatch__color {
     .color__tile {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding-inline: post.$size-mini;
       height: 100%;
       border-radius: post.$border-radius;
       box-shadow: post.$elevation-1;
       min-height: 1em * post.$line-height-base * 2;
+      font-size: post.$size-small-regular;
+
+      > div {
+        display: flex;
+        justify-content: end;
+        align-items: center;
+      }
+
+      .white,
+      .black {
+        margin-left: 0.5rem;
+        width: 10px;
+        height: 10px;
+      }
+
+      .white {
+        box-shadow: 0 0 0 1px rgba(post.$black, 0.2);
+      }
+
+      .black {
+        box-shadow: 0 0 0 1px rgba(post.$white, 0.4);
+      }
     }
   }
 
