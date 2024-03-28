@@ -20,7 +20,7 @@
   @each $name, $path in post.$svg-icon-map {
     @include post.pi($name);
 
-    @each $color, $value in post.$contextual-colors {
+    @each $color, $value in post.$signal-colors {
       @include post.pi($name, $color);
       @include post.pi($name, $value);
     }

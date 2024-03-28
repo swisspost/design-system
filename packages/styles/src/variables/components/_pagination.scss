@@ -23,7 +23,7 @@ $pagination-focus-box-shadow: button.$input-btn-focus-box-shadow !default;
 $pagination-focus-outline: 0 !default;
 
 $pagination-hover-color: color.$black !default;
-$pagination-hover-bg: color.$gray-background-light !default;
+$pagination-hover-bg: color.$light !default;
 $pagination-hover-border-color: color.$gray-10 !default;
 
 $pagination-active-color: color.$black !default;
@@ -31,7 +31,7 @@ $pagination-active-bg: color.$yellow !default;
 $pagination-active-border-color: color.$yellow !default;
 
 $pagination-disabled-color: color.$gray-40 !default;
-$pagination-disabled-bg: color.$gray-background-light !default;
+$pagination-disabled-bg: color.$light !default;
 $pagination-disabled-border-color: color.$gray-10 !default;
 
 $pagination-height-border: $pagination-border-width * 2 !default;

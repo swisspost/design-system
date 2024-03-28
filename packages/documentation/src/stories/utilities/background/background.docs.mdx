@@ -6,7 +6,7 @@ import * as BackgroundStories from './background.stories';
 import scss from './background.module.scss';
 import './background.styles.scss';
 
-export const backgroundColors = parse(scss);
+export const SCSS_VARIABLES = parse(scss);
 
 <Meta of={BackgroundStories} />
 
@@ -32,23 +32,23 @@ To set a background on an element, simply add a `.bg-{colorname}` class to it.
 #### Base
 
 <section className="background-container__section">
-  {forEach(backgroundColors.base, function (data) {
+  {forEach(SCSS_VARIABLES.base, function (data) {
     return <BackgroundContainer key={data.key} name={data.key} color={data.value} />;
-  })}
-</section>
-
-#### Contextual
-
-<section className="background-container__section">
-  {forEach(backgroundColors.contextual, function (data) {
-    return <BackgroundContainer key={data.key} name={data.key === 'info' ? data.key : data.key + ' (Deprecated)'} color={data.value} />;
   })}
 </section>
 
 #### Signal
 
 <section className="background-container__section">
-  {forEach(backgroundColors.signal, function (data) {
+  {forEach(SCSS_VARIABLES.signal, function (data) {
+    return <BackgroundContainer key={data.key} name={data.key} color={data.value} />;
+  })}
+</section>
+
+#### Signal backgrounds
+
+<section className="background-container__section">
+  {forEach(SCSS_VARIABLES['signal-background'], function (data) {
     return <BackgroundContainer key={data.key} name={data.key} color={data.value} />;
   })}
 </section>
@@ -56,7 +56,7 @@ To set a background on an element, simply add a `.bg-{colorname}` class to it.
 #### Accent
 
 <section className="background-container__section">
-  {forEach(backgroundColors.accent, function (data) {
+  {forEach(SCSS_VARIABLES.accent, function (data) {
     return <BackgroundContainer key={data.key} name={data.key} color={data.value} />;
   })}
 </section>

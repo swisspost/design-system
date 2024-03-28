@@ -2,69 +2,65 @@
 @use 'sass:list';
 @use '@swisspost/design-system-styles/core' as post;
 
-$all_exported_colors: () !default;
-$all_exported_colors: map.merge(
-  $all_exported_colors,
+$contrast-color-maps: (
   (
     'yellow': post.$yellow,
     'white': post.$white,
-    'black': post.$black,
     'light': post.$light,
+    'gray': post.$gray,
     'dark': post.$dark,
-    'gray-background-light': post.$gray-background-light,
-    'gray-background': post.$gray-background,
-  )
+    'black': post.$black,
+    'primary': post.$primary,
+    'secondary': post.$secondary,
+  ),
+  post.$post-grays,
+  post.$signal-colors,
+  post.$signal-background-colors,
+  post.$accent-colors
 );
-$all_exported_colors: map.merge($all_exported_colors, post.$post-grays);
-$all_exported_colors: map.merge($all_exported_colors, post.$contextual-colors);
-$all_exported_colors: map.merge($all_exported_colors, post.$accent-colors);
-$all_exported_colors: map.merge($all_exported_colors, post.$signal-colors);
 
 :export {
   brand_yellow: post.$yellow;
   brand_white: post.$white;
+  brand_light: post.$light;
+  brand_gray: post.$gray;
+  brand_dark: post.$dark;
   brand_black: post.$black;
+  brand_primary: post.$primary;
+  brand_secondary: post.$secondary;
+
+  focus_focus-light: post.$focus-light;
+  focus_focus-dark: post.$focus-dark;
 
   @each $color, $value in post.$post-grays {
     gray_#{$color}: $value;
   }
 
-  gray_light: post.$light;
-  gray_dark: post.$dark;
-
-  pagebackgrounds_gray-background-light: post.$gray-background-light;
-  pagebackgrounds_gray-background: post.$gray-background;
-
-  @each $color, $value in post.$contextual-colors {
-    contextual_#{$color}: $value;
+  @each $color, $value in post.$post-black-alphas {
+    black-alpha_#{$color}: $value;
   }
 
-  @each $colorName, $value in post.$accent-colors {
-    @if (str-index($colorName, '-bright') == null) {
-      accent_dark_#{$colorName}: $value;
-    }
-  }
-
-  @each $colorName, $value in post.$accent-colors {
-    @if (str-index($colorName, '-bright')) {
-      accent_bright_#{$colorName}: $value;
-    }
+  @each $color, $value in post.$post-white-alphas {
+    white-alpha_#{$color}: $value;
   }
 
   @each $colorName, $value in post.$signal-colors {
-    @if (str-index($colorName, '-background')) {
-      signal_background_#{$colorName}: $value;
-    }
+    signal_#{$colorName}: $value;
   }
 
-  @each $colorName, $value in post.$signal-colors {
-    @if (str-index($colorName, '-background') == null) {
-      signal_solid_#{$colorName}: $value;
-    }
+  @each $colorName, $value in post.$signal-background-colors {
+    signal-background_#{$colorName}: $value;
   }
-  @each $colorName, $value in $all_exported_colors {
-    text_color_#{$colorName}: post.get-best-contrast-text($value);
-    contrast_black_#{$colorName}: post.contrast-ratio($value, post.$black);
-    contrast_white_#{$colorName}: post.contrast-ratio($value, post.$white);
+
+  @each $colorName, $value in post.$accent-colors {
+    accent_#{$colorName}: $value;
+  }
+
+  @each $map in $contrast-color-maps {
+    @each $name, $value in $map {
+      contrast_color_#{$name}: post.get-best-contrast-text($value);
+      contrast_black_#{$name}: post.contrast-ratio($value, post.$black);
+      contrast_white_#{$name}: post.contrast-ratio($value, post.$white);
+    }
   }
 }

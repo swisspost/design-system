@@ -27,9 +27,7 @@
     $final-color: map.get(color.$background-colors, $color);
 
     @if (not $final-color) {
-      $valid-colors: map.keys(color.$background-colors);
-
-      @error "Error in Mixin 'pi(name, color?)'. Color '#{$color}' is not available. Please choose one of the following: #{$valid-colors}.";
+      @error "Error in Mixin 'pi(name, color?)'. Color '#{$color}' is not available. Please choose one of the following: #{map.keys(color.$background-colors)}.";
     }
   }
   border-color: $final-color;

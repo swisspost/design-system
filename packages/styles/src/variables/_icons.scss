@@ -11,8 +11,7 @@ $svg-post-path: "'%3E%3C/path%3E%3C/svg%3E";
 $svg-pre-colored-icon-map: () !default;
 
 $svg-pi-success-name: 'success';
-$svg-pi-success-path: "'%3E%3C/path%3E%3Ccircle fill='" +
-  color-fn.encode-uri-color(color.$success-green) +
+$svg-pi-success-path: "'%3E%3C/path%3E%3Ccircle fill='" + color-fn.encode-uri-color(color.$success) +
   "' cx='15.9' cy='16.2' r='10.9'/%3E%3Cpolygon fill='%23FFFFFF' points='21.2,11.2 22.2,12.3 14.4,20.1 10.2,15.9 11.3,14.9 14.4,18 '/%3E%3Cpath d='";
 $svg-pre-colored-icon-map: map.merge(
   (

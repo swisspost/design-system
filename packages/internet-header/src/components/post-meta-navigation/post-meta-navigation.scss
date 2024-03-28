@@ -14,7 +14,7 @@
   align-items: center;
   min-height: functions.px-to-rem(48px);
 
-  background: color.$gray-background-light;
+  background: color.$light;
 
   @media (min-width: 1441px) {
     &:not(.full-width) {
@@ -48,7 +48,7 @@
       position: absolute;
       top: 0px;
       height: var(--meta-header-height);
-      background-color: color.$gray-background-light;
+      background-color: color.$light;
       left: 50%;
       width: 50%;
     }

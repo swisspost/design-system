@@ -24,8 +24,8 @@ body {
 .pi-1000-success {
   @include post.pi(1000, 'success');
 }
-.pi-1000-danger {
-  @include post.pi(1000, 'danger');
+.pi-1000-error {
+  @include post.pi(1000, 'error');
 }
 
 .pi-1014-white {
