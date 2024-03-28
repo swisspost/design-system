@@ -1,0 +1,42 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { PostAlert } from '@swisspost/design-system-components-react';
+import * as badgeStories from './badge.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+
+<Meta of={badgeStories} />
+
+# Badge
+
+<div className="lead">
+  Highlight a numerical characteristic or mark an item with a status.
+</div>
+
+<Canvas sourceState="shown" of={badgeStories.Default} />
+<div className="hide-col-default">
+  <Controls of={badgeStories.Default} />
+</div>
+
+<StylesPackageImport components={['badge']} />
+
+## Examples
+
+### Colors
+
+You can change the badge color simply by applying a `.bg-*` class to it.
+See all available classes in the [background utilities documentation](/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs).
+
+<Canvas of={badgeStories.Colors} />
+
+### Large number
+
+A large number will extend the badge with.
+To prevent the badge from being too large you can simply use the `+` notation as shown hereafter.
+
+<Canvas of={badgeStories.LargeNumber} />
+
+### Position
+
+As inline elements, the badges can be placed inside other element such as tags.
+They can also be place absolutely to appear above other elements such as icons for example.
+
+<Canvas of={badgeStories.Position} />
