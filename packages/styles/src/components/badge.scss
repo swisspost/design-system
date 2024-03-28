@@ -27,8 +27,8 @@
     border-width: badge.$badge-border-width-empty;
 
     // prevent blurry border effect
-    outline: badge.$badge-border-width solid badge.$badge-border-color;
-    outline-offset: -1 * badge.$badge-border-width;
+    outline: badge.$badge-border-width-empty solid badge.$badge-border-color;
+    outline-offset: -0.75 * badge.$badge-border-width-empty;
   }
 }
 
@@ -40,5 +40,5 @@
 
   // prevent blurry border effect
   outline: badge.$badge-border-width-sm solid badge.$badge-border-color;
-  outline-offset: -1 * badge.$badge-border-width-sm;
+  outline-offset: -0.75 * badge.$badge-border-width-sm;
 }
