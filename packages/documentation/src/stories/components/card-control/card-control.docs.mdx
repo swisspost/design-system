@@ -39,7 +39,10 @@ If this is not enough, you can also use the named `icon` slot and add your very 
 
 If you need to add other content to the component, you can use the default slot to do so.
 
-<div className="alert alert-md alert-warning">Even if it is generally possible, we do not recommend using interactive elements in this slot. <p>Valid markup: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Block-level_contentt" target="_blank">block content</a>.<p className="alert alert-sm alert-warning">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable. This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured. More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p></div>
+<div className="alert alert-md alert-warning">
+  <p className="alert-heading">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.</p>
+  <p>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured. More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
+</div>
 
 <Canvas of={CardControlStories.CustomContent} />
 
