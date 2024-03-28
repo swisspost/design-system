@@ -111,6 +111,7 @@ span.ngb-dp-navigation-chevron {
     width: 40px !important;
     height: 40px !important;
     line-height: 40px;
+
     &.active:not(.bg-primary) {
       @include utilities.focus-style();
       outline-style: solid;
@@ -166,9 +167,10 @@ span.ngb-dp-navigation-chevron {
     height: datepicker.$ngb-dp-icon-size;
     transform: none;
   }
+
   &:focus-visible {
     outline: none;
-    & .pi {
+    .pi {
       @include utilities.focus-style();
       outline-style: solid;
       border-radius: commons.$border-radius !important;
