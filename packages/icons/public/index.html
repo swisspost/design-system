@@ -13,7 +13,7 @@
     />
     <link rel="stylesheet" href="styles.css" />
   </head>
-  <body>
+  <body style="padding: 1rem">
     <!-- This is a very simple icons debug page that can also be accessed via CDN in order to quickly check on a specific package version or to test locally -->
     <div class="container my-5" x-data="icons">
       <section>
@@ -35,12 +35,12 @@
           <span x-text="icons.stats.notFound"></span>
         </code>
 
+        <hr style="margin-block: 1rem" />
+
         <div class="converted-icons icons">
           <template x-for="icon in icons.icons">
             <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
-                <use x-bind:href="`./post-icons/${icon.file.name}#icon`" />
-              </svg>
+              <img x-bind:src="`./post-icons/${icon.file.name}`" alt="icon" />
               <span x-text="icon.file.basename"></span>
             </div>
           </template>
@@ -53,9 +53,28 @@
         <div class="converted-icons icons">
           <template x-for="icon in icons.wrongViewBox">
             <div class="icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="background: #ccc">
-                <use x-bind:href="`./post-icons/${icon.file.name}#icon`" />
-              </svg>
+              <img
+                x-bind:src="`./post-icons/${icon.file.name}`"
+                alt="icon"
+                style="background: #ccc"
+              />
+              <span x-text="icon.file.basename"></span>
+            </div>
+          </template>
+        </div>
+      </section>
+
+      <section x-show="icons.noKeywords.length > 0">
+        <h1 class="mt-huge mb-big">No Keywords</h1>
+        <p>The incoming SVG file has no keywords specified.</p>
+        <div class="converted-icons icons">
+          <template x-for="icon in icons.noKeywords">
+            <div class="icon">
+              <img
+                x-bind:src="`./post-icons/${icon.file.name}`"
+                alt="icon"
+                style="background: #ccc"
+              />
               <span x-text="icon.file.basename"></span>
             </div>
           </template>

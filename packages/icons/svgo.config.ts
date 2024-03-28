@@ -1,30 +1,33 @@
 import { Config } from 'svgo';
 
 export default {
+  multipass: true,
   js2svg: {
     indent: 2,
     pretty: true,
   },
   plugins: [
-    'mergePaths',
     {
       name: 'preset-default',
       params: {
         overrides: {
           removeViewBox: false,
+          mergePaths: {
+            force: true,
+            floatPrecision: 2,
+            noSpaceAfterFlags: true,
+          },
+          sortAttrs: {
+            xmlnsOrder: 'alphabetical',
+          },
         },
       },
     },
     {
       name: 'removeAttrs',
       params: {
-        attrs: '(width|height|style)',
-      },
-    },
-    {
-      name: 'sortAttrs',
-      params: {
-        xmlnsOrder: 'alphabetical',
+        elemSeparator: '::',
+        attrs: ['style', 'svg::(width|height|xml:space)'],
       },
     },
   ],
