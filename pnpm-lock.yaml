@@ -925,8 +925,8 @@ importers:
         version: 4.9.5
     devDependencies:
       '@types/node':
-        specifier: 16.18.79
-        version: 16.18.79
+        specifier: 16.18.93
+        version: 16.18.93
       copyfiles:
         specifier: 2.4.1
         version: 2.4.1
@@ -8439,8 +8439,8 @@ packages:
     resolution: {integrity: sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==}
     dev: true
 
-  /@types/node@16.18.79:
-    resolution: {integrity: sha512-Qd7jdLR5zmnIyMhfDrfPqN5tUCvreVpP3Qrf2oSM+F7SNzlb/MwHISGUkdFHtevfkPJ3iAGyeQI/jsbh9EStgQ==}
+  /@types/node@16.18.93:
+    resolution: {integrity: sha512-epWuohp6c0bQt0j3RYCiP9x52axHVn+CjS1Rx1VjPwF+ySg8lrigH3yXGs88XqnA+jGM2qnSMuFTsBxft+hO1Q==}
     dev: true
 
   /@types/node@18.17.19:
