@@ -40,6 +40,7 @@
   > .btn-secondary.active,
   > .btn-check:checked + .btn-secondary {
     background-color: color.$yellow;
+    color: color.$black;
 
     @include utilities.high-contrast-mode() {
       background-color: Highlight;

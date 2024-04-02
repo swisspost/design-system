@@ -165,7 +165,7 @@ type Story = StoryObj;
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  const id = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRange`;
+  const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRange`;
   const classes = ['form-range', args.validation].filter(c => c && c !== 'null').join(' ');
 
   const useAriaLabel = args.hiddenLabel;
@@ -200,7 +200,9 @@ function render(args: Args, context: StoryContext) {
   if (args.showValue === 'text') {
     valueElement = html` <p class="form-text">${args.value}</p> `;
   } else if (args.showValue === 'input') {
-    const inputId = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRangeInput`;
+    const inputId = context.id
+      ? `${context.id}_input`
+      : `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRangeInput`;
 
     valueElement = [
       html` <label class="form-label visually-hidden" for="${inputId}">Range controller</label> `,
