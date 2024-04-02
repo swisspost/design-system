@@ -31,7 +31,7 @@
     "@tsconfig/node18": "18.2.3",
     "@types/jest": "29.5.12",
     "@types/mock-fs": "4.13.4",
-    "@types/node": "18.19.14",
+    "@types/node": "18.19.28",
     "@types/node-fetch": "2.6.11",
     "dotenv": "16.4.5",
     "http-server": "14.1.1",
