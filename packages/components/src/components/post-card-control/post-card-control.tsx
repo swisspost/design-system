@@ -22,7 +22,7 @@ import { parse } from '../../utils/sass-export';
 const SCSS_VARIABLES = parse(scss);
 const EVENT_MAP = {
   input: 'postInput',
-  change: 'PostChange',
+  change: 'postChange',
 };
 
 let cardControlIds = 0;
