@@ -7,6 +7,7 @@ export const ColorSwatch = (props: {
   name: string;
   color: string;
   noCSS?: boolean;
+  dark?: boolean;
   deprecated?: boolean;
 }) => {
   const contrast = {
@@ -27,7 +28,7 @@ export const ColorSwatch = (props: {
           {props.color}
         </p>
       </div>
-      <div className="color-swatch__color">
+      <div className={['color-swatch__color', props.dark ? 'bg-dark' : ''].join(' ')}>
         <div
           className="color__tile"
           style={{
