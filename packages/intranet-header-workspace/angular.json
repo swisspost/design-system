@@ -70,10 +70,7 @@
               "projects/intranet-header-showcase/src/favicon.ico",
               "projects/intranet-header-showcase/src/assets"
             ],
-            "styles": [
-              "node_modules/@swisspost/design-system-styles/intranet.css",
-              "projects/intranet-header-showcase/src/styles.scss"
-            ],
+            "styles": ["node_modules/@swisspost/design-system-styles/intranet.css"],
             "scripts": []
           },
           "configurations": {
@@ -139,10 +136,16 @@
               "projects/intranet-header-showcase/src/favicon.ico",
               "projects/intranet-header-showcase/src/assets"
             ],
-            "styles": [
-              "projects/intranet-header-showcase/src/styles.scss"
-            ],
             "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/intranet-header-showcase/src/**/*.ts",
+              "projects/intranet-header-showcase/src/**/*.html"
+            ]
           }
         }
       }

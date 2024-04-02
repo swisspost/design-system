@@ -1,5 +1,10 @@
 <div class="form-floating" ngbDropdown>
-  <input [ngModel]="selectedOption?.value" name="meansOfTransport" type="hidden" />
+  <input
+    [ngModel]="selectedOption?.value"
+    name="meansOfTransport"
+    id="meansOfTransport"
+    type="hidden"
+  />
   <button
     #toggle
     aria-haspopup="listbox"
@@ -11,7 +16,7 @@
   >
     <span *ngIf="selectedOption" aria-hidden="true">{{ selectedOption.label }}</span>
   </button>
-  <label class="form-label" id="customSelectLabel">
+  <label class="form-label" id="customSelectLabel" for="meansOfTransport">
     Floatinglabel custom-select {{ infoText }}
   </label>
   <div aria-labelledby="customSelectLabel" class="w-100 mw-100" ngbDropdownMenu role="listbox">

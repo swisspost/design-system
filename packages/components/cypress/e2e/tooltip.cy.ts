@@ -49,6 +49,21 @@ describe('tooltips', { baseUrl: null, includeShadowDom: true }, () => {
     });
   });
 
+  describe('with child element', () => {
+    beforeEach(() => {
+      cy.visit('./cypress/fixtures/post-tooltip.test.html');
+      cy.get('#target-child-element').as('target');
+      cy.get('#target-child-element span').as('target-child');
+      cy.get('#tooltip-one').find('div[popover]').as('tooltip');
+    });
+
+    it('should show tooltip on hovered child element', () => {
+      cy.get('@tooltip').should('not.be.visible');
+      cy.get('@target-child').trigger('pointerover');
+      cy.get('.\\:popover-open, :popover-open').should('exist');
+    });
+  });
+
   describe('non-focusable element', () => {
     beforeEach(() => {
       cy.visit('./cypress/fixtures/post-tooltip.test.html');
