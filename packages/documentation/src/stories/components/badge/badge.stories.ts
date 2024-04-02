@@ -115,7 +115,6 @@ export const Position: Story = {
     <div class="chip">
       Filter
       <div class="badge">1</div>
-      <div class="badge">1</div>
     </div>
 
     <div class="position-relative d-inline">
