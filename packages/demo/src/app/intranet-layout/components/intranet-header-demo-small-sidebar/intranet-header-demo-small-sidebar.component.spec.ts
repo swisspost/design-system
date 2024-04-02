@@ -1,21 +1,21 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { IntranetHeaderSmallComponent } from './intranet-header-small.component';
+import { IntranetHeaderDemoSmallSidebarComponent } from './intranet-header-demo-small-sidebar.component';
 import { ErrorService } from '../../services/error.service';
 
 describe('IntranetHeaderSmallComponent', () => {
-  let component: IntranetHeaderSmallComponent;
-  let fixture: ComponentFixture<IntranetHeaderSmallComponent>;
+  let component: IntranetHeaderDemoSmallSidebarComponent;
+  let fixture: ComponentFixture<IntranetHeaderDemoSmallSidebarComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [IntranetHeaderSmallComponent],
+      declarations: [IntranetHeaderDemoSmallSidebarComponent],
       providers: [ErrorService],
     }).compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IntranetHeaderSmallComponent);
+    fixture = TestBed.createComponent(IntranetHeaderDemoSmallSidebarComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
