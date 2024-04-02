@@ -51,7 +51,7 @@ export class PostAccordionItem {
 
   @Listen('postToggle')
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    if ((event.target as HTMLElement).nodeName === 'post-collapsible') {
+    if ((event.target as HTMLElement).localName === 'post-collapsible') {
       this.isOpen = event.detail;
     }
   }

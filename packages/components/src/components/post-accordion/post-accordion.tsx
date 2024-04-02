@@ -39,7 +39,7 @@ export class PostAccordion {
 
   @Listen('postToggle')
   collapseToggleHandler(event: CustomEvent<boolean>) {
-    if ((event.target as HTMLElement).nodeName === 'post-accordion-item') {
+    if ((event.target as HTMLElement).localName === 'post-accordion-item') {
       event.stopPropagation();
 
       const toggledItem = event.target as HTMLPostAccordionItemElement;
