@@ -70,6 +70,55 @@ export namespace Components {
          */
         "type": AlertType;
     }
+    /**
+     * @class PostCardControl - representing a stencil component
+     */
+    interface PostCardControl {
+        /**
+          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
+         */
+        "checked": boolean;
+        /**
+          * Defines the description in the control-label.
+         */
+        "description": string;
+        /**
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
+         */
+        "disabled": boolean;
+        /**
+          * A hidden public method to reset the group controls `checked` state to `false`.
+         */
+        "groupReset": () => Promise<void>;
+        /**
+          * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+         */
+        "icon": string;
+        /**
+          * Defines the text in the control-label.
+         */
+        "label": string;
+        /**
+          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+         */
+        "name": string;
+        /**
+          * A public method to reset the controls `checked` and `validity` state. The validity state is set to `null`, so it's neither valid nor invalid.
+         */
+        "reset": () => Promise<void>;
+        /**
+          * Defines the `type` attribute of the control.
+         */
+        "type": 'checkbox' | 'radio';
+        /**
+          * Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.
+         */
+        "validity": null | 'true' | 'false';
+        /**
+          * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+         */
+        "value": string;
+    }
     interface PostCollapsible {
         /**
           * If `true`, the element is initially collapsed otherwise it is displayed.
@@ -251,6 +300,10 @@ export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostAlertElement;
 }
+export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostCardControlElement;
+}
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostCollapsibleElement;
@@ -296,6 +349,27 @@ declare global {
     var HTMLPostAlertElement: {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
+    };
+    interface HTMLPostCardControlElementEventMap {
+        "input": { state: boolean; value: string };
+        "change": { state: boolean; value: string };
+    }
+    /**
+     * @class PostCardControl - representing a stencil component
+     */
+    interface HTMLPostCardControlElement extends Components.PostCardControl, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostCardControlElement: {
+        prototype: HTMLPostCardControlElement;
+        new (): HTMLPostCardControlElement;
     };
     interface HTMLPostCollapsibleElementEventMap {
         "collapseChange": boolean;
@@ -409,6 +483,7 @@ declare global {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
+        "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
         "post-popover": HTMLPostPopoverElement;
@@ -463,6 +538,55 @@ declare namespace LocalJSX {
           * The type of the alert.
          */
         "type"?: AlertType;
+    }
+    /**
+     * @class PostCardControl - representing a stencil component
+     */
+    interface PostCardControl {
+        /**
+          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
+         */
+        "checked"?: boolean;
+        /**
+          * Defines the description in the control-label.
+         */
+        "description"?: string;
+        /**
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+         */
+        "icon"?: string;
+        /**
+          * Defines the text in the control-label.
+         */
+        "label": string;
+        /**
+          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+         */
+        "name"?: string;
+        /**
+          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
+         */
+        "onChange"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
+        /**
+          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
+         */
+        "onInput"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
+        /**
+          * Defines the `type` attribute of the control.
+         */
+        "type": 'checkbox' | 'radio';
+        /**
+          * Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.
+         */
+        "validity"?: null | 'true' | 'false';
+        /**
+          * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+         */
+        "value"?: string;
     }
     interface PostCollapsible {
         /**
@@ -611,6 +735,7 @@ declare namespace LocalJSX {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
+        "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
         "post-popover": PostPopover;
@@ -630,6 +755,10 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
+            /**
+             * @class PostCardControl - representing a stencil component
+             */
+            "post-card-control": LocalJSX.PostCardControl & JSXBase.HTMLAttributes<HTMLPostCardControlElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             /**
              * @class PostIcon - representing a stencil component

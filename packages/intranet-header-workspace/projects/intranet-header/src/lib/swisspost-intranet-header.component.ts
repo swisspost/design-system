@@ -16,7 +16,7 @@ import {
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { NavigationStart, Router } from '@angular/router';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
-import { Subject, fromEvent } from 'rxjs';
+import { fromEvent, Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { userImage } from './user';
 
@@ -28,7 +28,6 @@ import { userImage } from './user';
 export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, AfterViewInit {
   @Input() siteTitle: string = '';
   @Input() languages = 'de,fr,it,en';
-  @Input() isPreview = false;
   @Input() currentUserId: string = '';
   @Input() displayName: string = '';
   @Input() additionalInfo: string = '';

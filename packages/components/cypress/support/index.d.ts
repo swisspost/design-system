@@ -7,6 +7,7 @@ declare global {
         controlledElementSelector: string,
         isExpanded: 'true' | 'false',
       ): Chainable<any>;
+      checkFormDataPropValue($form: JQuery<HTMLElement>, key: string, value: any): Chainable<any>;
     }
   }
 }

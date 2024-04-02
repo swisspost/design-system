@@ -1,94 +1,14 @@
-<h1>Hurray, it works!</h1>
+<header class="bg-dark">
+  <nav class="container py-2">
+    <ul class="d-flex flex-wrap row-gap-1 column-gap-3 m-0 list-unstyled">
+      <li *ngFor="let route of navigationRoutes">
+        <a [routerLink]="route.path">{{ route.title }}</a>
+      </li>
+    </ul>
+  </nav>
+</header>
 
-<div class="my-4">
-  <h2>Post Accordion</h2>
-  <post-accordion>
-    <post-accordion-item>
-      <span slot="header">Titulum 1</span>
-      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-    </post-accordion-item>
-
-    <post-accordion-item>
-      <span slot="header">Titulum 2</span>
-      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-    </post-accordion-item>
-
-    <post-accordion-item>
-      <span slot="header">Titulum 3</span>
-      <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-    </post-accordion-item>
-  </post-accordion>
-</div>
-
-<div class="my-4">
-  <h2>Post Alert</h2>
-  <post-alert><p>Contentus momentus vero siteos et accusam iretea et justo.</p></post-alert>
-</div>
-
-<div class="my-4">
-  <h2>Post Collapsible</h2>
-  <post-collapsible>
-    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-  </post-collapsible>
-</div>
-
-<div class="my-4">
-  <h2>Post Popover</h2>
-  <button class="btn btn-secondary btn-large" data-popover-target="popover-one">
-    Click here to see a popover
-  </button>
-  <post-popover id="popover-one" placement="top" arrow="">
-    <h2 class="h6">Optional title</h2>
-
-    <p class="mb-0">
-      A longer message that needs more time to read.
-      <a href="#">Links</a>
-      are also possible.
-    </p>
-  </post-popover>
-</div>
-
-<div class="my-4">
-  <h2>Post Popovercontainer</h2>
-  <post-popovercontainer></post-popovercontainer>
-</div>
-
-<div class="my-4">
-  <h2>Post Icon</h2>
-  <post-icon name="1001"></post-icon>
-</div>
-
-<div class="my-4">
-  <h2>Post Tabs</h2>
-  <post-tabs>
-    <post-tab-header slot="tabs" panel="unua">Unua langeto</post-tab-header>
-    <post-tab-header slot="tabs" panel="dua">Dua langeto</post-tab-header>
-    <post-tab-header slot="tabs" panel="tria">Tria langeto</post-tab-header>
-
-    <post-tab-panel name="unua">
-      Jen la enhavo de la unua langeto. Defaŭlte ĝi montriĝas komence.
-    </post-tab-panel>
-    <post-tab-panel name="dua">
-      Jen la enhavo de la dua langeto. Defaŭlte ĝi estas kaŝita komence.
-    </post-tab-panel>
-    <post-tab-panel name="tria">
-      Jen la enhavo de la tria langeto. Defaŭlte ĝi ankaŭ estas kaŝita komence.
-    </post-tab-panel>
-  </post-tabs>
-</div>
-
-<div class="my-4">
-  <h2>Post Tooltip</h2>
-  <button class="btn btn-secondary btn-large" data-tooltip-target="tooltip-one">Button</button>
-  <post-tooltip id="tooltip-one" placement="top">Hi there 👋</post-tooltip>
-</div>
-
-<div class="my-4">
-  <h2>Post Rating</h2>
-  <post-rating></post-rating>
-</div>
-
-<div class="my-4">
-  <h2>Post Tag</h2>
-  <post-tag>Tag</post-tag>
-</div>
+<main class="container my-3">
+  <h1>Hurray, it works!</h1>
+  <router-outlet></router-outlet>
+</main>
