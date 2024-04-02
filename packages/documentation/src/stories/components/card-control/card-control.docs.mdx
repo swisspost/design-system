@@ -18,7 +18,7 @@ The `<post-card-control>` element is part of the `@swisspost/design-system-compo
 
 ## Examples
 
-### On dark background
+### Dark backgrounds
 
 <Canvas of={CardControlStories.DarkBackground}/>
 
@@ -34,6 +34,17 @@ If this is not enough, you can also use the named `icon` slot and add your very 
 <div className="alert alert-md alert-info">Make sure you remove all the `width` and `height` attributes from the `img` or `svg` tag. Otherwise we can not ensure, our styles will work properly.</div>
 
 <Canvas of={CardControlStories.CustomIcon} />
+
+### Custom content
+
+If you need to add other content to the component, you can use the default slot to do so.
+
+<div className="alert alert-md alert-warning">
+  <p className="alert-heading">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.</p>
+  <p>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured. More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
+</div>
+
+<Canvas of={CardControlStories.CustomContent} />
 
 ### Form Integration
 

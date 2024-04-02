@@ -1,8 +1,8 @@
-describe('Select', () => {
+describe('Button Group', () => {
   describe('Accessibility', () => {
     beforeEach(() => {
-      cy.visit('/iframe.html?id=snapshots--slider');
-      cy.get('.form-range', { timeout: 30000 }).should('be.visible');
+      cy.visit('/iframe.html?id=snapshots--button-group');
+      cy.get('.btn-group', { timeout: 30000 }).should('be.visible');
       cy.injectAxe();
     });
 

@@ -10,11 +10,24 @@
 @use './../variables/components/forms';
 @use './../mixins/utilities';
 
+$track-height: 4px;
+$webkit-progress-height-adjustment: 2px;
+$webkit-thumb-width: 32px;
+
+:has(> .form-range) {
+  @include utilities.focus-style();
+}
+
+@supports not selector(:has(> .form-range)) {
+  .form-range {
+    @include utilities.focus-style();
+  }
+}
+
 .form-range {
-  // https://codepen.io/thebabydino/pen/goYYrN
-  --post-range: calc(var(--post-max) - var(--post-min));
-  --post-ratio: calc((var(--post-val) - var(--post-min)) / var(--post-range));
-  --post-sx: calc(0.5 * 1.5em + var(--post-ratio) * (100% - 1.5em));
+  &::-webkit-slider-container {
+    overflow-x: clip;
+  }
 
   &::-moz-range-thumb {
     border-radius: 50%;
@@ -22,15 +35,57 @@
     cursor: pointer;
   }
 
+  &::-webkit-slider-runnable-track {
+    height: $track-height;
+  }
+
+  &::-webkit-slider-thumb {
+    // Source: https://antvil.github.io/css-sos/sos/progress/
+    clip-path: polygon(
+      0 calc(50% - $track-height * 0.5),
+      1px calc(50% - #{$track-height * 0.5 + 4px}),
+      1px 0,
+      $webkit-thumb-width 0,
+      $webkit-thumb-width $webkit-thumb-width,
+      1px $webkit-thumb-width,
+      1px calc(50% + #{$track-height * 0.5 + 4px}),
+      0 calc(50% + #{$track-height * 0.5}),
+      -100vw calc(50% + #{$track-height * 0.5}),
+      -100vw calc(50% - #{$track-height * 0.5})
+    );
+  }
+
+  &::-moz-range-track,
+  &::-moz-range-progress {
+    height: $track-height;
+  }
+
   &:not(:disabled, .disabled) {
     &::-webkit-slider-runnable-track {
-      background: linear-gradient(color.$black, color.$black) 0 / var(--post-sx) 100%;
-      background-repeat: no-repeat;
       background-color: color.$gray-20;
     }
 
     &::-moz-range-progress {
       background-color: color.$black;
+    }
+
+    &::-webkit-slider-thumb {
+      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw color.$black;
+    }
+
+    &:hover {
+      &::-webkit-slider-thumb {
+        border-width: 3px;
+      }
+
+      &::-moz-range-thumb {
+        border-width: 3px;
+      }
+    }
+
+    @include utilities.focus-style-custom('::-moz-range-thumb') {
+      box-shadow: none; // Remove default style
+      outline: none;
     }
   }
 
@@ -38,10 +93,17 @@
   &.disabled {
     &::-webkit-slider-thumb {
       border-color: forms.$form-range-thumb-disabled-border-color;
+      border-style: dashed;
+      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw color.$gray-40;
     }
 
     &::-moz-range-thumb {
       border-color: forms.$form-range-thumb-disabled-border-color;
+      border-style: dashed;
+    }
+
+    &::-moz-range-progress {
+      background-color: color.$gray-40;
     }
   }
 
@@ -57,10 +119,16 @@
     // so, the "forced-color-adjust" property is necessary for "linear-gradient" to continue to work
     forced-color-adjust: none;
 
+    &::-webkit-slider-thumb {
+      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw SelectedItem !important;
+    }
+
+    &::-moz-range-progress {
+      background-color: SelectedItem !important;
+    }
+
     &:not(:disabled, .disabled) {
       &::-webkit-slider-runnable-track {
-        background: linear-gradient(Highlight, Highlight) 0 / var(--post-sx) 100%;
-        background-repeat: no-repeat;
         background-color: ButtonBorder;
       }
 
@@ -73,25 +141,9 @@
         background-color: ButtonText;
       }
 
-      &::-moz-range-progress {
-        background-color: Highlight;
-      }
-
       &::-moz-range-thumb {
         background-color: ButtonFace;
         border-color: ButtonText;
-      }
-
-      &:focus-visible {
-        &::-webkit-slider-thumb {
-          outline-offset: commons.$border-thick;
-          outline: commons.$border-thick solid Highlight;
-        }
-
-        &::-moz-range-thumb {
-          outline-offset: commons.$border-thick;
-          outline: commons.$border-thick solid Highlight;
-        }
       }
     }
 
@@ -99,12 +151,12 @@
     &.disabled {
       &::-webkit-slider-thumb {
         background-color: ButtonFace;
-        border-color: ButtonBorder;
+        border-color: GrayText;
       }
 
       &::-moz-range-thumb {
         background-color: ButtonFace;
-        border-color: ButtonBorder;
+        border-color: GrayText;
       }
     }
   }
