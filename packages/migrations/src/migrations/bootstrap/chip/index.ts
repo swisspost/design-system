@@ -64,6 +64,12 @@ class BadgeToChipUpdate implements DomUpdate {
       if ($element.hasClass('bg-active')) {
         $element.removeClass('bg-active').addClass('active');
       }
+
+      // move the close button to be the first child
+      const $closeBtn = $element.children('.btn-close');
+      if ($closeBtn && $closeBtn.is(':last-child')) {
+        $element.prepend($closeBtn);
+      }
     });
   }
 }
