@@ -27,6 +27,7 @@ import { SwissPostIntranetHeaderModule } from '@swisspost/design-system-intranet
 import { HomeComponent } from './home/home.component';
 import { PostCommonModule } from './common/post-common.module';
 import { HttpClientModule } from '@angular/common/http';
+import { LayoutContainerComponent } from './layout-container/layout-container.component';
 
 registerLocaleData(localeDe);
 registerLocaleData(localeFr);
@@ -34,7 +35,13 @@ registerLocaleData(localeIt);
 registerLocaleData(localeEn);
 
 @NgModule({
-  declarations: [AppComponent, IntranetLayoutComponent, HomeComponent, CopyToClipboardDirective],
+  declarations: [
+    AppComponent,
+    IntranetLayoutComponent,
+    LayoutContainerComponent,
+    HomeComponent,
+    CopyToClipboardDirective,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
