@@ -70,14 +70,21 @@ $notification-icon-size-map: map.merge(
 );
 
 $notification-variants: () !default;
-$notification-icons: (3134, 2105, 2104, 2104, 2106, 2201, 3134, 2104);
-@each $color-name, $color in color.$notification-colors {
-  $i: list.index(color.$notification-colors, $color-name $color);
-  $notification-variants: list.append(
-    $notification-variants,
-    $color-name $color list.nth($notification-icons, $i)
-  );
-}
+$notification-variants: list.join(
+  $notification-variants,
+  (
+    // When changed, check $notification-variants as well in packages/styles/src/variables/_color.scss
+    'primary' color.$gray-80 3134,
+    'success' color.$success-green 2105,
+    'danger' color.$error 2104,
+    'warning' color.$warning 2104,
+    'info' color.$info 2106,
+    'gray' color.$gray-background 2201,
+    // deprecated
+    'notification' color.$gray-80 3134,
+    'error' color.$error 2104
+  )
+);
 
 // deprecated
 $notification-buttons-margin-start: $notification-buttons-gap !default;

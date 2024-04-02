@@ -135,6 +135,7 @@ $notification-colors: () !default;
 $notification-colors: list.join(
   $notification-colors,
   (
+    // When changed, check $notification-variants as well in packages/styles/src/variables/components/_notification.scss
     'primary' $gray-80,
     'success' $success-green,
     'danger' $error,
