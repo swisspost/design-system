@@ -138,8 +138,8 @@ $notification-colors: list.join(
     // When changed, check $notification-variants as well in packages/styles/src/variables/components/_notification.scss
     'primary' $gray-80,
     'success' $success-green,
-    'danger' $error,
-    'warning' $warning,
+    'danger' $error-red,
+    'warning' $warning-orange,
     'info' $info,
     'gray' $gray-background,
     // deprecated
