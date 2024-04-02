@@ -20,14 +20,15 @@
   line-height: badge.$badge-line-height;
   font-size: badge.$badge-font-size;
   background-color: badge.$badge-bg;
+  background-clip: padding-box;
   color: badge.$badge-color;
 
   &:empty {
     --post-badge-height: #{badge.$badge-height-empty};
     --post-badge-padding-x: #{badge.$badge-padding-x-empty};
   }
-}
 
-.badge-sm {
-  @extend %badge-sm;
+  &.badge-sm {
+    @extend %badge-sm;
+  }
 }
