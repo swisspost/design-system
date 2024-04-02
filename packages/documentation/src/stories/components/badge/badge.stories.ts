@@ -100,7 +100,7 @@ export const Colors: Story = {
     ${renderBadge({ ...args, background: 'bg-success' })}
     ${renderBadge({ ...args, background: 'bg-warning' })}
     ${renderBadge({ ...args, background: 'bg-yellow' })}
-    ${renderBadge({ ...args, background: 'bg-light' })}
+    ${renderBadge({ ...args, background: 'bg-gray' })}
   `,
 };
 
