@@ -7,7 +7,7 @@ import { parse } from '../../../utils/sass-export';
 import './card-control.styles.scss';
 import scss from './card-control.module.scss';
 
-const SCSS_VARIABLES: { [key: string]: string } = parse(scss);
+const SCSS_VARIABLES: any = parse(scss);
 
 const meta: MetaComponent = {
   id: '886fabcf-148b-4054-a2ec-4869668294fb',

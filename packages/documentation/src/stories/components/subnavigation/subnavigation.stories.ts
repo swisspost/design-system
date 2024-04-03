@@ -1,9 +1,10 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import scss from './background.module.scss';
 import { MetaComponent } from '../../../../types';
+import { parse } from '../../../utils/sass-export';
+import scss from './subnavigation.module.scss';
 
-const backgroundColors = scss.bgClasses.split('"').filter((_, index) => index % 2 === 1);
+const SCSS_VARIABLES: any = parse(scss);
 
 const meta: MetaComponent = {
   id: '87ceabbb-f552-46eb-8a47-4d84e7f8cef0',
@@ -25,7 +26,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: ['default', ...backgroundColors],
+      options: ['default', ...SCSS_VARIABLES['bg-classes']],
       table: {
         category: 'General',
       },
