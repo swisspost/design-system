@@ -1,6 +1,6 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { spreadArgs } from '../../../../utils';
+import { getComponentFigmaLink, spreadArgs } from '../../../../utils';
 import { MetaComponent } from '../../../../../types';
 
 const meta: MetaComponent<HTMLPostAlertElement> = {
@@ -12,6 +12,10 @@ const meta: MetaComponent<HTMLPostAlertElement> = {
   decorators: [externalControl],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: getComponentFigmaLink('17001-2244'),
+    },
   },
   args: {
     innerHTML: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',

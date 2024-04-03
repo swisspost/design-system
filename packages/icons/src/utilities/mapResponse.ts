@@ -3,6 +3,7 @@ import { CenshareResultPage, CenshareResult } from '../models/censhare-result-pa
 import { IIcon } from '../models/icon.model';
 
 const excludedRanges = [[4000, 7999]];
+const excludedKeywords = ['Piktogramme "Die Post" ab 2017', 'Piktogramme "Die Post" 2017'];
 
 const isExcluded = (icon: IIcon, filters: number[][]): boolean => {
   const name = Number(icon.file.basename);
@@ -26,7 +27,7 @@ export const formatResponse = (response: CenshareResultPage): Array<IIcon> => {
   return response.result
     .reduce((acc: IIcon[], item: CenshareResult) => {
       const svgVariant = item.variants?.find(variant => variant.mime === 'image/svg+xml');
-      
+
       if (svgVariant) {
         const fileName = path.basename(svgVariant.name);
         const fileExt = path.extname(svgVariant.name);
@@ -37,10 +38,10 @@ export const formatResponse = (response: CenshareResultPage): Array<IIcon> => {
             (item.contentInfo?.freeKeywords ?? '')
               .replace(/(\n|\r\n)/g, '')
               .split(/, ?/)
-              .filter(keyword => keyword !== 'Piktogramme "Die Post" ab 2017')
-          )
+              .filter(keyword => !excludedKeywords.includes(keyword)),
+          ),
         ];
-  
+
         acc.push({
           uuid: item.uuid,
           id: item.id,
@@ -60,7 +61,8 @@ export const formatResponse = (response: CenshareResultPage): Array<IIcon> => {
             size: svgVariant.size,
           },
           createdAt: typeof item.createdAt === 'string' ? new Date(item.createdAt) : item.createdAt,
-          modifiedAt: typeof item.modifiedAt === 'string' ? new Date(item.modifiedAt) : item.modifiedAt,
+          modifiedAt:
+            typeof item.modifiedAt === 'string' ? new Date(item.modifiedAt) : item.modifiedAt,
         });
       }
       return acc;
