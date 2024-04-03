@@ -18,9 +18,9 @@
 
 ## Events
 
-| Event       | Description                                                                                                                             | Type                |
-| ----------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
-| `dismissed` | An event emitted when the alert element is dismissed, after the transition. It has no payload and only relevant for dismissible alerts. | `CustomEvent<void>` |
+| Event           | Description                                                                                                                             | Type                |
+| --------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
+| `postDismissed` | An event emitted when the alert element is dismissed, after the transition. It has no payload and only relevant for dismissible alerts. | `CustomEvent<void>` |
 
 
 ## Methods

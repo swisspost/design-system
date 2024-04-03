@@ -12,10 +12,12 @@ const meta: MetaComponent = {
     badges: [],
   },
   args: {
-    label: undefined,
-    stars: undefined,
-    currentRating: undefined,
-    readonly: false,
+    'label': undefined,
+    'stars': undefined,
+    'currentRating': undefined,
+    'readonly': false,
+    'event-postInput': '',
+    'event-postChange': '',
   },
   argTypes: {
     stars: {
