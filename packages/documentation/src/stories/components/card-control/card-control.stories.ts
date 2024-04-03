@@ -6,6 +6,8 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { parse } from '../../../utils/sass-export';
 import './card-control.styles.scss';
 import scss from './card-control.module.scss';
+import { coloredBackground } from '../../../shared/decorators/dark-background';
+import { color } from '@storybook/theming';
 
 const SCSS_VARIABLES: { [key: string]: string } = parse(scss);
 
@@ -114,15 +116,7 @@ export const DarkBackground: Story = {
       },
     },
   },
-  decorators: [
-    (story, context) =>
-      html`<div
-        class="bg-${context.args.background}"
-        style="margin: -40px -30px; padding: 40px 30px;"
-      >
-        ${story()}
-      </div>`,
-  ],
+  decorators: [(story, context) => coloredBackground(story, context, context.args.background)],
   args: {
     background: 'dark',
     icon: '1001',
