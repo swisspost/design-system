@@ -5,7 +5,7 @@ import { _templateAutoIcon } from './util/template.util';
 
 @customElement('migration-version-4-5-manual-list')
 export class MigrationV45ManualListComponent extends LitElement {
-  @property({ type: Boolean }) angular: boolean = false;
+  @property({ type: Boolean }) angular?: boolean;
 
   @state()
   private state: TodoListChecks = {

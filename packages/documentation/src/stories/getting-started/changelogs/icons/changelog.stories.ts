@@ -1,9 +1,9 @@
 import { StoryObj } from '@storybook/web-components';
-import { MetaExtended } from '../../../../types';
+import { MetaExtended } from '../../../../../types';
 
 const meta: MetaExtended = {
-  id: 'a060be2f-7af4-46ba-b3a1-a14be624b3ee',
-  title: 'Misc/Changelog',
+  id: 'bc32a671-5a51-4047-af30-1ef094c95ac8',
+  title: 'Getting Started/Changelogs/Icons',
 };
 
 export default meta;

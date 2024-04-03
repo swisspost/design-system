@@ -2,11 +2,8 @@ import { StoryObj } from '@storybook/web-components';
 import { MetaExtended } from '../../../../../types';
 
 const meta: MetaExtended = {
-  id: '833ef689-a573-40f5-a6a6-30a999b94733',
-  title: 'Getting Started/Packages/Components-Angular',
-  parameters: {
-    badges: [],
-  },
+  id: '611d1aa1-a721-40bc-b019-06f5fd9d065e',
+  title: 'Getting Started/Changelogs/Internet-Header',
 };
 
 export default meta;

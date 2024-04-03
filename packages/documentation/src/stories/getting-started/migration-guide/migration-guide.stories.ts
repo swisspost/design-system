@@ -1,9 +1,9 @@
 import { StoryObj } from '@storybook/web-components';
-import { MetaExtended } from '../../../../../types';
+import { MetaExtended } from '../../../../types';
 
 const meta: MetaExtended = {
-  id: '833ef689-a573-40f5-a6a6-30a999b94733',
-  title: 'Getting Started/Packages/Components-Angular',
+  id: 'c23b1d0b-76b3-4e38-aa76-b10c29bb873f',
+  title: 'Getting Started/Migration Guide',
   parameters: {
     badges: [],
   },

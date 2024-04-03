@@ -3,8 +3,9 @@ import { customElement, property } from 'lit/decorators.js';
 
 @customElement('migration-setup')
 export class SetupComponent extends LitElement {
-  @property({ type: String }) environment: string = 'intranet';
-  @property({ type: Boolean }) angular: boolean = false;
+  @property({ type: String }) version?: string;
+  @property({ type: String }) environment?: string;
+  @property({ type: Boolean }) angular?: boolean;
 
   createRenderRoot() {
     /**
@@ -16,13 +17,37 @@ export class SetupComponent extends LitElement {
   render() {
     return html`
       <section>
-        <div class="row migration-options mb-huge">
-          <div class="col-md-6">
+        <div class="row gap-large migration-options">
+          <div class="col-auto">
+            <label class="form-label font-curve-small bold" for="docs_Default_ExampleSelect">
+              What version of the Design System is your application currently using?
+            </label>
+            <select
+              @change="${this._onVersionChange}"
+              id="docs_Default_ExampleSelect"
+              class="form-select form-select-lg"
+            >
+              <option value="v6-to-v7" ?selected="${this.version === 'v6-to-v7'}">
+                @swisspost/design-system-styles 6.x.x
+              </option>
+              <option value="v5-to-v6" ?selected="${this.version === 'v5-to-v6'}">
+                @swisspost/design-system-styles 5.x.x
+              </option>
+              <option value="v4-to-v5" ?selected="${this.version === 'v4-to-v5'}">
+                @.../common-web-frontend 4.x.x or lower
+              </option>
+            </select>
+            <div class="form-text">
+              This information can be found in the <code>package.json</code> file in the root of
+              your application.
+            </div>
+          </div>
+          <div class="col-12">
             <fieldset @change="${this._onEnvironmentChange}">
               <legend class="font-curve-small bold">
                 What environment is your application for?
               </legend>
-              <div class="form-check">
+              <div class="form-check form-check-inline mb-0">
                 <input
                   id="migration-intranet"
                   type="radio"
@@ -35,7 +60,7 @@ export class SetupComponent extends LitElement {
                   Intranet application
                 </label>
               </div>
-              <div class="form-check mb-0">
+              <div class="form-check form-check-inline mb-0">
                 <input
                   id="migration-extranet"
                   type="radio"
@@ -50,12 +75,12 @@ export class SetupComponent extends LitElement {
               </div>
             </fieldset>
           </div>
-          <div class="col-md-6">
+          <div class="col-12">
             <fieldset @change="${this._onAngularChange}">
               <legend class="font-curve-small bold">
                 What technology is your application built with?
               </legend>
-              <div class="form-check">
+              <div class="form-check form-check-inline mb-0">
                 <input
                   id="migration-angular"
                   type="radio"
@@ -66,7 +91,7 @@ export class SetupComponent extends LitElement {
                 />
                 <label for="migration-angular" class="form-check-label">Angular application</label>
               </div>
-              <div class="form-check mb-0">
+              <div class="form-check form-check-inline mb-0">
                 <input
                   id="migration-other-technology"
                   type="radio"
@@ -84,6 +109,23 @@ export class SetupComponent extends LitElement {
         </div>
       </section>
     `;
+  }
+
+  private _onVersionChange(
+    event: Event & {
+      target: HTMLInputElement;
+    },
+  ) {
+    this.version = event.target.value;
+    this.dispatchEvent(
+      new CustomEvent('migration-state-version-changed', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          version: this.version,
+        },
+      }),
+    );
   }
 
   private _onEnvironmentChange(
