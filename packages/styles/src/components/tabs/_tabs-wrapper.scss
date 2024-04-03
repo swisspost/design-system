@@ -12,7 +12,7 @@
   background-color: rgba(
     var(--post-contrast-color-rgb),
     0.02
-  ); // 0.02 gets as close as possible to color.$gray-background-light on white background
+  ); // 0.02 gets as close as possible to color.$light on white background
 
   // Create a line that lies below the active but above the passive elements
   // This way hover works smoothly with the background color

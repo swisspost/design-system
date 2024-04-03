@@ -13,7 +13,7 @@ $list-group-border-radius: 0 !default;
 $list-group-item-padding-y: map.get(spacing.$post-sizes, 'small-regular') !default;
 $list-group-item-padding-x: map.get(spacing.$post-sizes, 'large') !default;
 
-$list-group-hover-bg: color.$gray-background-light !default;
+$list-group-hover-bg: color.$light !default;
 $list-group-hover-bg-inverted: color.$white !default;
 $list-group-active-color: color.$white !default;
 $list-group-active-bg: color.$gray-80 !default;

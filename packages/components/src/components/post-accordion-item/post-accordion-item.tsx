@@ -49,9 +49,11 @@ export class PostAccordionItem {
     this.id = this.host.id || `a${crypto.randomUUID()}`;
   }
 
-  @Listen('collapseChange')
-  onCollapseChange(event: CustomEvent<boolean>): void {
-    this.isOpen = event.detail;
+  @Listen('postToggle')
+  onCollapseToggle(event: CustomEvent<boolean>): void {
+    if ((event.target as HTMLElement).localName === 'post-collapsible') {
+      this.isOpen = event.detail;
+    }
   }
 
   /**

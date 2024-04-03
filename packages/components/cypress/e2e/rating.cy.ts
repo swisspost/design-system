@@ -158,12 +158,15 @@ describe('Rating', () => {
         const inputListener = cy.stub();
         const changeListener = cy.stub();
 
-        $rating[0].addEventListener('input', inputListener);
-        $rating[0].addEventListener('input', changeListener);
+        $rating[0].addEventListener('postInput', inputListener);
+        $rating[0].addEventListener('postChange', changeListener);
 
         cy.get('@stars').each(($star, index) => {
           const value = index + 1;
           cy.wrap($star).click();
+          // do this to trigger the blur event and therefore trigger the change event on the rating element
+          cy.get('@rating').parent().click();
+
           cy.wrap(inputListener).should('be.calledWithMatch', { detail: { value } });
           cy.wrap(changeListener).should('be.calledWithMatch', { detail: { value } });
         });
@@ -175,8 +178,8 @@ describe('Rating', () => {
         const inputListener = cy.stub();
         const changeListener = cy.stub();
 
-        $rating[0].addEventListener('input', inputListener);
-        $rating[0].addEventListener('change', changeListener);
+        $rating[0].addEventListener('postInput', inputListener);
+        $rating[0].addEventListener('postChange', changeListener);
 
         cy.wrap([1, 2, 3, 4, 5]).each((value: number) => {
           cy.get('@wrapper').focus().type('{rightarrow}', { force: true });
