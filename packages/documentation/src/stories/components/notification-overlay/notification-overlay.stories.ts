@@ -9,7 +9,7 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=24367-60516&mode=design&t=3lniLiZhl7q9Gqgn-4',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=22748-36043&mode=design&t=HksCTWa2MMccgMl4-0',
     },
   },
 };

@@ -10,6 +10,10 @@ const meta: MetaComponent = {
   tags: ['package:HTML'],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=2452-66025&mode=design&t=jADNra0puVcBoQ9V-0',
+    },
   },
   args: {
     focus: 'Focus',
