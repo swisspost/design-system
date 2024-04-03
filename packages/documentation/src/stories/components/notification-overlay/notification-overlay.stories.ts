@@ -1,6 +1,5 @@
 import type { StoryObj } from '@storybook/web-components';
 import { MetaComponent } from '../../../../types';
-import { getComponentFigmaLink } from '../../../utils';
 
 const meta: MetaComponent = {
   id: 'aab3f0df-08ca-4e33-90eb-77ffda6528db',
@@ -10,7 +9,7 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: getComponentFigmaLink('24367-60516'),
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=24367-60516&mode=design&t=3lniLiZhl7q9Gqgn-4',
     },
   },
 };

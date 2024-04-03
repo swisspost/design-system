@@ -1,5 +1,5 @@
 import { Meta, Source } from '@storybook/blocks';
-import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
+import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 import NgbComponentDemoLink from '../../../shared/nb-bootstrap/ngb-component-demo-link.mdx';
 import NgbComponentAlert from '../../../shared/nb-bootstrap/ngb-component-alert.mdx';
@@ -16,9 +16,10 @@ import datepickerValidation from './datepicker-validation.sample.html?raw';
 
 <Meta of={datepickerStories} />
 
-<div className="d-flex align-items-center justify-content-between">
+<div className="docs-title">
   # Datepicker
 
+  <link-design of={JSON.stringify(datepickerStories)}></link-design>
   <NgbComponentDemoLink component="datepicker" />
 </div>
 

@@ -12,6 +12,10 @@ const meta: MetaComponent = {
   decorators: [externalControl],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18172-73431&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     text: 'Insigno',

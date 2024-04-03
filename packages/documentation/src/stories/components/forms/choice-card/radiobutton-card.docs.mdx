@@ -1,11 +1,15 @@
-import { Meta, Canvas, Controls, Source } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as RadiobuttonCardStories from './radiobutton-card.stories';
 import StylesPackageImport from '../../../../shared/styles-package-import.mdx';
 import firefoxFallbackSnippet from './firefox-fallback.ts?raw';
 
 <Meta of={RadiobuttonCardStories} />
 
-# Radio button card
+<div className="docs-title">
+  # Radio button card
+
+  <link-design of={JSON.stringify(RadiobuttonCardStories)}></link-design>
+</div>
 
 <div className="lead">
   A larger, more consumer oriented, touch friendly variant of the radio-button used for e.g.

@@ -1,11 +1,14 @@
-import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import StylesPackageImport from '../../../../shared/styles-package-import.mdx';
 import * as CardButtonStories from './card-button.stories';
 
 <Meta of={CardButtonStories} />
 
+<div className="docs-title">
+  # Card Button
 
-# Card Button
+  <link-design of={JSON.stringify(CardButtonStories)}></link-design>
+</div>
 
 <p className="lead">A Card that can be used as a clickable link to other content</p>
 

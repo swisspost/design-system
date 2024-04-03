@@ -74,10 +74,14 @@
     }
 
     // Style buttons related to the current page next to the tile
-    .docs-title-nav {
+    .docs-title {
       display:flex;
       align-items: center;
       gap: post.$size-mini;
+
+      :first-child {
+        margin-right:auto;
+      }
     }
   }
 
