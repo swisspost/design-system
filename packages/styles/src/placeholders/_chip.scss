@@ -52,25 +52,25 @@
     }
   }
 
-  &.chip-sm {
-    height: chip.$chip-height-sm;
-    font-size: chip.$chip-font-size-sm;
-    gap: chip.$chip-gap-sm;
-    padding-inline: chip.$chip-padding-x-sm;
-
-    > .badge {
-      @extend %badge-sm;
-    }
-
-    > .btn-close::before {
-      height: badge.$badge-height-sm;
-      width: badge.$badge-height-sm;
-    }
-  }
-
   // Quick fix for badges in buttons
   .btn & {
     position: relative;
     top: -1px;
+  }
+}
+
+%chip-sm {
+  height: chip.$chip-height-sm;
+  font-size: chip.$chip-font-size-sm;
+  gap: chip.$chip-gap-sm;
+  padding-inline: chip.$chip-padding-x-sm;
+
+  > .badge {
+    @extend %badge-sm;
+  }
+
+  > .btn-close::before {
+    height: badge.$badge-height-sm;
+    width: badge.$badge-height-sm;
   }
 }

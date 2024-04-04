@@ -158,9 +158,7 @@ function getFilterContent(args: Args, updateArgs: (args: Args) => void, context:
       ?disabled="${args.disabled}"
       @change="${handleChange}"
     />
-    <label class="chip-filter-label${args.size === 'Large' ? '' : ' chip-sm'}" for="${checkboxId}"
-      >${getDefaultContent(args)}</label
-    >
+    <label class="chip-filter-label" for="${checkboxId}">${getDefaultContent(args)}</label>
   `;
 }
 
@@ -181,7 +179,7 @@ function renderChip(args: Args, context: StoryContext) {
   const isDismissible = args.type === 'dismissible';
 
   return html`
-    <div class="chip chip-${args.type}${args.size === 'Large' ? '' : ' chip-sm'}">
+    <div class="chip${args.size === 'Large' ? '' : ' chip-sm'} chip-${args.type}">
       ${isDismissible ? getDismissButton(updateArgs) : nothing}
       ${isFilter ? getFilterContent(args, updateArgs, context) : getDefaultContent(args)}
     </div>
