@@ -32,7 +32,7 @@ export const Chip: Story = {
                 dismissed: [false],
               })
                 .filter(args => !(args.type !== 'filter' && args.active === true))
-                .filter(args => !(args.type !== 'filter' && args.disabled === true))
+                .filter(args => !(args.type !== 'filter' && args.badge === true))
                 .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
             </div>
           `,

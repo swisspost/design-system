@@ -88,10 +88,6 @@ const meta: MetaComponent = {
       name: 'Disabled',
       description:
         'If `true`, the chip is disabled.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
-      if: {
-        arg: 'type',
-        eq: 'filter',
-      },
       control: {
         type: 'boolean',
       },
@@ -124,15 +120,8 @@ function externalControl(story: any, { args }: StoryContext) {
 }
 
 // RENDERER
-function getDefaultContent(args: Args) {
-  return html`
-    <span class="chip-text">${args.text}</span>
-    ${args.badge ? html` <span class="badge">1</span> ` : nothing}
-  `;
-}
-
 let index = 0;
-function getFilterContent(args: Args, updateArgs: (args: Args) => void, context: StoryContext) {
+function getFilterChip(args: Args, updateArgs: (args: Args) => void, context: StoryContext) {
   index++;
 
   const checkboxId = `chip-example--${context.name.replace(/ /g, '-').toLowerCase()}` + index;
@@ -149,23 +138,32 @@ function getFilterContent(args: Args, updateArgs: (args: Args) => void, context:
   };
 
   return html`
-    <input
-      id="${checkboxId}"
-      name="${checkboxId}"
-      class="chip-filter-input"
-      type="checkbox"
-      ?checked="${args.active}"
-      ?disabled="${args.disabled}"
-      @change="${handleChange}"
-    />
-    <label class="chip-filter-label" for="${checkboxId}">${getDefaultContent(args)}</label>
+    <div class="chip${args.size === 'Large' ? '' : ' chip-sm'} chip-filter">
+      <input
+        id="${checkboxId}"
+        name="${checkboxId}"
+        class="chip-filter-input"
+        type="checkbox"
+        ?checked="${args.active}"
+        ?disabled="${args.disabled}"
+        @change="${handleChange}"
+      />
+      <label class="chip-filter-label" for="${checkboxId}">
+        <span class="chip-text">${args.text}</span>
+        ${args.badge ? html` <span class="badge">1</span> ` : nothing}
+      </label>
+    </div>
   `;
 }
 
-function getDismissButton(updateArgs: (args: Args) => void) {
+function getDismissibleChip(args: Args, updateArgs: (args: Args) => void) {
   return html`
-    <button class="btn-close" @click="${() => updateArgs({ dismissed: true })}">
-      <span class="visually-hidden">Forigi insignon</span>
+    <button
+      class="chip${args.size === 'Large' ? '' : ' chip-sm'} chip-dismissible"
+      @click="${() => updateArgs({ dismissed: true })}"
+      ?disabled="${args.disabled}"
+    >
+      <span class="chip-text">${args.text}</span>
     </button>
   `;
 }
@@ -175,15 +173,9 @@ function renderChip(args: Args, context: StoryContext) {
 
   if (args.dismissed) return html` ${nothing} `;
 
-  const isFilter = args.type === 'filter';
-  const isDismissible = args.type === 'dismissible';
+  if (args.type === 'dismissible') return getDismissibleChip(args, updateArgs);
 
-  return html`
-    <div class="chip${args.size === 'Large' ? '' : ' chip-sm'} chip-${args.type}">
-      ${isDismissible ? getDismissButton(updateArgs) : nothing}
-      ${isFilter ? getFilterContent(args, updateArgs, context) : getDefaultContent(args)}
-    </div>
-  `;
+  return getFilterChip(args, updateArgs, context);
 }
 
 // STORIES

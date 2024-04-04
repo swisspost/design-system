@@ -14,7 +14,6 @@
     @extend %chip;
 
     @include utilities.focus-style();
-    background-color: transparent;
 
     &:is(:active, .active) {
       @include chip-mx.chip-active-state;
