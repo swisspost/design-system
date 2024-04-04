@@ -101,7 +101,10 @@
 .form-control,
 .form-select {
   &.is-invalid {
-    border-color: form-validation.$form-feedback-invalid-color;
+    &:not(:disabled) {
+      border-color: form-validation.$form-feedback-invalid-color;
+    }
+
     background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid);
 
     @include utilities-mx.high-contrast-mode() {
@@ -118,7 +121,10 @@
   }
 
   &.is-valid {
-    border-color: var(--post-success-green);
+    &:not(:disabled) {
+      border-color: var(--post-success-green);
+    }
+
     background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
 
     @include utilities-mx.high-contrast-mode() {
