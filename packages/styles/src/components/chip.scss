@@ -16,13 +16,13 @@
 a,
 button {
   &.chip {
-    @include utilities.focus-style;
+    @include utilities.focus-style();
     background-color: transparent;
-    text-decoration: none;
 
     &:is(:active, .active) {
       @include chip-mx.chip-active-state;
-      @include utilities.disabled-style-custom {
+
+      &:disabled {
         background-color: chip.$chip-disabled-active-bg;
       }
     }
@@ -33,8 +33,7 @@ button {
       }
     }
 
-    @include utilities.disabled-style;
-    @include utilities.disabled-style-custom {
+    @include utilities.disabled-style($text-selector: '> .chip-text') {
       background-color: chip.$chip-disabled-bg;
     }
   }
@@ -51,7 +50,7 @@ button {
       @include chip-mx.chip-active-state;
     }
 
-    @include utilities.disabled-style-custom('+ .chip-filter-label') {
+    &:disabled + .chip-filter-label {
       background-color: chip.$chip-disabled-active-bg;
     }
   }
@@ -63,8 +62,7 @@ button {
   &-input {
     @include utilities.visuallyhidden;
     @include utilities.focus-style('+ .chip-filter-label');
-    @include utilities.disabled-style('+ .chip-filter-label');
-    @include utilities.disabled-style-custom('+ .chip-filter-label') {
+    @include utilities.disabled-style('+ .chip-filter-label', $text-selector: '> .chip-text') {
       background-color: chip.$chip-disabled-bg;
     }
   }
