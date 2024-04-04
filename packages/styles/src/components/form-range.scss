@@ -147,6 +147,16 @@ $webkit-thumb-width: 32px;
       }
     }
 
+    &:hover {
+      &::-webkit-slider-thumb {
+        border-color: Highlight;
+      }
+
+      &::-moz-range-thumb {
+        border-color: Highlight;
+      }
+    }
+
     &:disabled,
     &.disabled {
       &::-webkit-slider-thumb {
