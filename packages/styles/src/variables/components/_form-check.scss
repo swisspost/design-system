@@ -5,6 +5,7 @@
 @use './../animation';
 @use './../../functions/icons';
 @use './../../functions/sizing';
+@use './../../functions/forms' as forms-fn;
 
 $form-check-row-gap: spacing.$size-small-regular !default;
 $form-check-column-gap: spacing.$size-mini !default;
@@ -15,27 +16,46 @@ $form-check-input-size-sm: spacing.$size-regular !default;
 $form-check-input-border-width: forms.$input-border-width !default;
 $form-check-input-focus-box-shadow: forms.$input-focus-box-shadow !default;
 $form-check-input-disabled-svg-border-width: $form-check-input-border-width * 2;
-$form-check-input-disabled-background-url-light: "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='" +
-  color.$gray-60 + "' stroke-width='" + $form-check-input-disabled-svg-border-width
-  "' stroke-dasharray='4 2' stroke-vector-effect='non-scaling-stroke'/%3e%3c/svg%3e"; // Source: https://kovart.github.io/dashed-border-generator/ + added stroke-vector-effect
+$form-check-input-disabled-svg-stroke-square-pattern: '2 1.5 4 1.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 4';
+$form-check-input-disabled-svg-stroke-circle-pattern: '4 2';
+$form-check-input-disabled-background-url-light: forms-fn.get-background-svg-stroke(
+  'square',
+  color.$gray-60,
+  $form-check-input-disabled-svg-stroke-square-pattern,
+  $form-check-input-disabled-svg-border-width
+);
 // TODO: Replace rgba(color.$white, 0.8) with new white alpha color https://github.com/swisspost/design-system/issues/2716
-$form-check-input-disabled-background-url-dark: "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='" +
-  rgba(color.$white, 0.8) + "' stroke-width='" + $form-check-input-disabled-svg-border-width
-  "' stroke-dasharray='4 2' stroke-vector-effect='non-scaling-stroke'/%3e%3c/svg%3e"; // Source: https://kovart.github.io/dashed-border-generator/ + added stroke-vector-effect
-$form-check-input-disabled-background-url-hcm: "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='" +
-  'GrayText' + "' stroke-width='" + $form-check-input-disabled-svg-border-width
-  "' stroke-dasharray='4 2' stroke-vector-effect='non-scaling-stroke'/%3e%3c/svg%3e"; // Source: https://kovart.github.io/dashed-border-generator/ + added stroke-vector-effect
-
-$form-check-input-radio-disabled-background-url-light: "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' rx='100' ry='100' fill='none' stroke='" +
-  color.$gray-60 + "' stroke-width='" + $form-check-input-disabled-svg-border-width
-  "' stroke-dasharray='4 2' stroke-vector-effect='non-scaling-stroke'/%3e%3c/svg%3e"; // Source: https://kovart.github.io/dashed-border-generator/ + added stroke-vector-effect
+$form-check-input-disabled-background-url-dark: forms-fn.get-background-svg-stroke(
+  'square',
+  rgba(color.$white, 0.8),
+  $form-check-input-disabled-svg-stroke-square-pattern,
+  $form-check-input-disabled-svg-border-width
+);
+$form-check-input-disabled-background-url-hcm: forms-fn.get-background-svg-stroke(
+  'square',
+  'GrayText',
+  $form-check-input-disabled-svg-stroke-square-pattern,
+  $form-check-input-disabled-svg-border-width
+);
+$form-check-input-radio-disabled-background-url-light: forms-fn.get-background-svg-stroke(
+  'circle',
+  color.$gray-60,
+  $form-check-input-disabled-svg-stroke-circle-pattern,
+  $form-check-input-disabled-svg-border-width
+);
 // TODO: Replace rgba(color.$white, 0.8) with new white alpha color https://github.com/swisspost/design-system/issues/2716
-$form-check-input-radio-disabled-background-url-dark: "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' rx='100' ry='100' fill='none' stroke='" +
-  rgba(color.$white, 0.8) + "' stroke-width='" + $form-check-input-disabled-svg-border-width
-  "' stroke-dasharray='4 2' stroke-vector-effect='non-scaling-stroke'/%3e%3c/svg%3e"; // Source: https://kovart.github.io/dashed-border-generator/ + added stroke-vector-effect
-$form-check-input-radio-disabled-background-url-hcm: "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' rx='100' ry='100' fill='none' stroke='" +
-  'GrayText' + "' stroke-width='" + $form-check-input-disabled-svg-border-width
-  "' stroke-dasharray='4 2' stroke-vector-effect='non-scaling-stroke'/%3e%3c/svg%3e"; // Source: https://kovart.github.io/dashed-border-generator/ + added stroke-vector-effect
+$form-check-input-radio-disabled-background-url-dark: forms-fn.get-background-svg-stroke(
+  'circle',
+  rgba(color.$white, 0.8),
+  $form-check-input-disabled-svg-stroke-circle-pattern,
+  $form-check-input-disabled-svg-border-width
+);
+$form-check-input-radio-disabled-background-url-hcm: forms-fn.get-background-svg-stroke(
+  'circle',
+  'GrayText',
+  $form-check-input-disabled-svg-stroke-circle-pattern,
+  $form-check-input-disabled-svg-border-width
+);
 $form-switch-column-gap: spacing.$size-regular !default;
 $form-switch-height: spacing.$size-big !default;
 $form-switch-width: 2 * spacing.$size-big !default;
