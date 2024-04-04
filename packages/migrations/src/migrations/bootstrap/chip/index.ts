@@ -13,13 +13,13 @@ class BadgeCheckToChipCheckUpdate implements DomUpdate {
     $elements.each((_i, element) => {
       const $element = $(element);
 
-      $element.removeClass('badge-check').addClass('chip-check');
+      $element.removeClass('badge-check').addClass('chip-filter');
 
       const $label = $element.children('.badge-check-label');
-      if ($label) $label.removeClass('badge-check-label').addClass('chip-check-label');
+      if ($label) $label.removeClass('badge-check-label').addClass('chip-filter-label');
 
       const $input = $element.children('.badge-check-input');
-      if ($input) $input.removeClass('badge-check-input').addClass('chip-check-input');
+      if ($input) $input.removeClass('badge-check-input').addClass('chip-filter-input');
     });
   }
 }
@@ -33,7 +33,7 @@ class BadgeToChipUpdate implements DomUpdate {
 
       // do not update nested badges
       const $parent = $element.parent();
-      if ($parent.hasClass('chip') || $parent.hasClass('chip-check-label')) {
+      if ($parent.hasClass('chip') || $parent.hasClass('chip-filter-label')) {
         return;
       }
 

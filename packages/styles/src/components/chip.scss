@@ -40,18 +40,18 @@ button {
   }
 }
 
-.chip-check {
+.chip-filter {
   &-label {
     @extend %chip;
     cursor: pointer;
   }
 
   &-input:checked {
-    + .chip-check-label {
+    + .chip-filter-label {
       @include chip-mx.chip-active-state;
     }
 
-    @include utilities.disabled-style-custom('+ .chip-check-label') {
+    @include utilities.disabled-style-custom('+ .chip-filter-label') {
       background-color: chip.$chip-disabled-active-bg;
     }
   }
@@ -62,16 +62,16 @@ button {
 
   &-input {
     @include utilities.visuallyhidden;
-    @include utilities.focus-style('+ .chip-check-label');
-    @include utilities.disabled-style('+ .chip-check-label');
-    @include utilities.disabled-style-custom('+ .chip-check-label') {
+    @include utilities.focus-style('+ .chip-filter-label');
+    @include utilities.disabled-style('+ .chip-filter-label');
+    @include utilities.disabled-style-custom('+ .chip-filter-label') {
       background-color: chip.$chip-disabled-bg;
     }
   }
 }
 
 @include utilities.high-contrast-mode() {
-  .chip-check {
+  .chip-filter {
     &-input:focus-visible + &-label {
       border-color: Highlight;
       outline-color: Highlight;
@@ -86,7 +86,7 @@ button {
 
   button.chip,
   a.chip,
-  .chip-check-label {
+  .chip-filter-label {
     transition: none;
   }
 }

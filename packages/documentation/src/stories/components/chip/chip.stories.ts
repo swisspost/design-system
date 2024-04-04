@@ -141,7 +141,7 @@ function getFilterContent(args: Args, updateArgs: (args: Args) => void, context:
 
   const checkboxId = `chip-example--${context.name.replace(/ /g, '-').toLowerCase()}` + index;
   const labelClasses = mapClasses({
-    'chip-check-label': true,
+    'chip-filter-label': true,
     [args.size]: args.size !== 'large',
   });
 
@@ -160,7 +160,7 @@ function getFilterContent(args: Args, updateArgs: (args: Args) => void, context:
     <input
       id="${checkboxId}"
       name="${checkboxId}"
-      class="chip-check-input"
+      class="chip-filter-input"
       type="checkbox"
       ?checked="${args.active}"
       ?disabled="${args.disabled}"
@@ -188,7 +188,7 @@ function renderChip(args: Args, context: StoryContext) {
 
   const chipClasses = mapClasses({
     'chip': !isFilter,
-    'chip-check': isFilter,
+    'chip-filter': isFilter,
     [args.size]: args.size !== 'large' && !isFilter,
   });
 
