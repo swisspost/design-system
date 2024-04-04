@@ -102,9 +102,9 @@ fieldset {
     }
 
     &:where(:has(input:invalid), :has(input[aria-invalid]), :has(input.is-invalid), .is-invalid) {
-      --post-card-control-border-color: #{color.$error-red};
-      --post-card-control-color: #{color.$error-red};
-      --post-card-control-input-border-color: #{color.$error-red};
+      --post-card-control-border-color: #{color.$error};
+      --post-card-control-color: #{color.$error};
+      --post-card-control-input-border-color: #{color.$error};
     }
 
     &:where(:hover) {
@@ -171,10 +171,10 @@ fieldset {
             :has(input.is-invalid),
             .is-invalid
           ) {
-          --post-card-control-border-color: #{color.$error-red};
+          --post-card-control-border-color: #{color.$error};
           --post-card-control-bg: #{color.$error-background};
-          --post-card-control-color: #{color.$error-red};
-          --post-card-control-input-border-color: #{color.$error-red};
+          --post-card-control-color: #{color.$error};
+          --post-card-control-input-border-color: #{color.$error};
           --post-card-control-input-bg: #{color.$white};
 
           &:where(:has(input:checked), .checked) {

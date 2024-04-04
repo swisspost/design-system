@@ -95,9 +95,9 @@
     }
 
     &.is-invalid {
-      --post-card-control-border-color: #{post.$danger};
-      --post-card-control-color: #{post.$danger};
-      --post-card-control-input-border-color: #{post.$danger};
+      --post-card-control-border-color: #{post.$error};
+      --post-card-control-color: #{post.$error};
+      --post-card-control-input-border-color: #{post.$error};
     }
 
     &:hover {
@@ -161,10 +161,10 @@
       }
 
       &.is-invalid {
-        --post-card-control-border-color: #{post.$danger};
+        --post-card-control-border-color: #{post.$error};
         --post-card-control-bg: #{post.$error-background};
-        --post-card-control-color: #{post.$danger};
-        --post-card-control-input-border-color: #{post.$danger};
+        --post-card-control-color: #{post.$error};
+        --post-card-control-input-border-color: #{post.$error};
         --post-card-control-input-bg: #{post.$white};
 
         &.is-checked {
@@ -241,10 +241,10 @@
       }
 
       &.is-invalid {
-        --post-card-control-border-color: #{post.$danger};
+        --post-card-control-border-color: #{post.$error};
         --post-card-control-bg: #{post.$error-background};
-        --post-card-control-color: #{post.$danger};
-        --post-card-control-input-border-color: #{post.$danger};
+        --post-card-control-color: #{post.$error};
+        --post-card-control-input-border-color: #{post.$error};
         --post-card-control-input-bg: #{post.$white};
 
         &.is-checked {
@@ -279,10 +279,10 @@
 
     // TODO: update white alpha colors with design-system alpha colors, once they are defined
     &.is-disabled {
-      --post-card-control-border-color: #{rgba(post.$white, 0.8)};
+      --post-card-control-border-color: post.$white-alpha-80;
       --post-card-control-bg: transparent;
-      --post-card-control-color: #{rgba(post.$white, 0.8)};
-      --post-card-control-input-border-color: #{rgba(post.$white, 0.8)};
+      --post-card-control-color: post.$white-alpha-80;
+      --post-card-control-input-border-color: post.$white-alpha-80;
       --post-card-control-input-bg: transparent;
     }
   }

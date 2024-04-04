@@ -2,8 +2,11 @@ import { StoryObj } from '@storybook/web-components';
 import { MetaExtended } from '../../../../types';
 
 const meta: MetaExtended = {
-  id: 'a060be2f-7af4-46ba-b3a1-a14be624b3ee',
-  title: 'Misc/Changelog',
+  id: 'c23b1d0b-76b3-4e38-aa76-b10c29bb873f',
+  title: 'Getting Started/Migration Guide',
+  parameters: {
+    badges: [],
+  },
 };
 
 export default meta;
