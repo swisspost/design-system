@@ -130,7 +130,7 @@ function externalControl(story: any, { args }: StoryContext) {
 // RENDERER
 function getDefaultContent(args: Args) {
   return html`
-    <span>${args.text}</span>
+    <span class="chip-text">${args.text}</span>
     ${args.badge ? html` <span class="badge">1</span> ` : nothing}
   `;
 }

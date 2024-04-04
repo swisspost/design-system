@@ -22,7 +22,7 @@
   background-color: chip.$chip-bg;
   transition: chip.$chip-transition;
 
-  > span {
+  > .chip-text {
     text-overflow: ellipsis;
     overflow: hidden;
     white-space: nowrap;
