@@ -3,7 +3,7 @@ import { MetaExtended } from '../../../../../types';
 
 const meta: MetaExtended = {
   id: 'f4830acb-1bc7-4e93-a811-64d5956d72fb',
-  title: 'Getting Started/Changelogs/Components-Angular',
+  title: 'Getting Started/Changelogs/Components for Angular',
 };
 
 export default meta;
