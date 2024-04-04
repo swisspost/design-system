@@ -3,6 +3,10 @@ import { MetaComponent } from '../../../../../types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { BADGE } from '../../../../../.storybook/constants';
+import { parse } from '../../../../utils/sass-export';
+import scss from '../tag.module.scss';
+
+const SCSS_VARIABLES: any = parse(scss);
 
 const meta: MetaComponent = {
   id: '516917c9-ad12-484c-8bbd-e270e412f713',
@@ -24,16 +28,9 @@ const meta: MetaComponent = {
         type: 'select',
         labels: {
           null: 'Default',
-          gray: 'Gray',
-          white: 'White',
-          info: 'Info',
-          success: 'Success',
-          danger: 'Danger',
-          warning: 'Warning',
-          yellow: 'Yellow',
         },
       },
-      options: ['null', 'gray', 'white', 'info', 'success', 'warning', 'danger', 'yellow'],
+      options: ['null', ...SCSS_VARIABLES['tag-backgrounds']],
     },
     'size': {
       control: {
