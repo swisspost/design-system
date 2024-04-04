@@ -4,7 +4,7 @@ import { _templateAutoIcon } from './util/template.util';
 
 @customElement('migration-version-5-6')
 export class MigrationV56Component extends LitElement {
-  @property({ type: String }) version?: string;
+  @property({ type: Number }) currentVersion?: number;
   @property({ type: String }) environment?: string;
   @property({ type: Boolean }) angular?: boolean;
 
@@ -16,7 +16,7 @@ export class MigrationV56Component extends LitElement {
   }
 
   render() {
-    if (this.version !== 'v5-to-v6') return nothing;
+    if (!this.currentVersion || this.currentVersion > 5) return nothing;
 
     return html`
       <h2 id="migration-from-v5-to-v6" class="docs-autolink">

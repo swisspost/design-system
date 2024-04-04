@@ -6,7 +6,7 @@ import { getLocaleStorage, MIGRATION_TYPE, setLocaleStorage } from './util/persi
 @customElement('migration-global-state')
 export class GlobalStateComponent extends LitElement {
   @state() private state = {
-    version: 'v6-to-v7',
+    currentVersion: 6,
     environment: 'intranet',
     angular: true,
   };
@@ -20,7 +20,7 @@ export class GlobalStateComponent extends LitElement {
 
   constructor() {
     super();
-    this.addEventListener('migration-state-version-changed', this._updateVersion);
+    this.addEventListener('migration-state-current-version-changed', this._updateVersion);
     this.addEventListener('migration-state-environment-changed', this._updateEnvironment);
     this.addEventListener('migration-state-angular-changed', this._updateAngular);
     this._restorePersistedState();
@@ -47,7 +47,7 @@ export class GlobalStateComponent extends LitElement {
   }
 
   private _updateVersion(e: Event) {
-    this.state.version = (e as CustomEvent).detail.version;
+    this.state.currentVersion = (e as CustomEvent).detail.currentVersion;
 
     this._update();
   }
@@ -79,12 +79,12 @@ export class GlobalStateComponent extends LitElement {
       Array.from(this.children).filter(child => child.tagName.startsWith('MIGRATION-VERSION')) ??
       [];
 
-    this._updateAttribute(setupElement, 'version', this.state.version);
+    this._updateAttribute(setupElement, 'currentVersion', this.state.currentVersion);
     this._updateAttribute(setupElement, 'environment', this.state.environment);
     this._updateAttribute(setupElement, 'angular', this.state.angular);
 
     migrationVersionElements.forEach(versionElement => {
-      this._updateAttribute(versionElement, 'version', this.state.version);
+      this._updateAttribute(versionElement, 'currentVersion', this.state.currentVersion);
       this._updateAttribute(versionElement, 'environment', this.state.environment);
       this._updateAttribute(versionElement, 'angular', this.state.angular);
     });
@@ -93,7 +93,7 @@ export class GlobalStateComponent extends LitElement {
   private _updateAttribute(
     element: Element | null,
     attributeName: string,
-    value: string | boolean,
+    value: string | number | boolean,
   ) {
     if (typeof value === 'boolean') {
       if (value) {
@@ -105,6 +105,6 @@ export class GlobalStateComponent extends LitElement {
       return;
     }
 
-    element?.setAttribute(attributeName, value);
+    element?.setAttribute(attributeName, String(value));
   }
 }

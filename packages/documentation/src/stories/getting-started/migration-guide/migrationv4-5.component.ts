@@ -4,7 +4,7 @@ import './migrationv4-5-manual-list.component';
 
 @customElement('migration-version-4-5')
 export class MigrationV45Component extends LitElement {
-  @property({ type: String }) version?: string;
+  @property({ type: Number }) currentVersion?: number;
   @property({ type: String }) environment?: string;
   @property({ type: Boolean }) angular?: boolean;
 
@@ -16,7 +16,7 @@ export class MigrationV45Component extends LitElement {
   }
 
   render() {
-    if (this.version !== 'v4-to-v5') return nothing;
+    if (!this.currentVersion || this.currentVersion > 4) return nothing;
 
     return html`
       <h2 id="migration-from-v4-to-v5" class="docs-autolink">

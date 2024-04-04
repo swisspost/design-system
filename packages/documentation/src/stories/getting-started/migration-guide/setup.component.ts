@@ -3,7 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 
 @customElement('migration-setup')
 export class SetupComponent extends LitElement {
-  @property({ type: String }) version?: string;
+  @property({ type: Number }) currentVersion?: number;
   @property({ type: String }) environment?: string;
   @property({ type: Boolean }) angular?: boolean;
 
@@ -20,20 +20,20 @@ export class SetupComponent extends LitElement {
         <div class="row gap-large migration-options">
           <div class="col-auto">
             <label class="form-label font-curve-small bold" for="docs_Default_ExampleSelect">
-              What version of the Design System is your application currently using?
+              What currentVersion of the Design System is your application currently using?
             </label>
             <select
-              @change="${this._onVersionChange}"
+              @change="${this._onCurrentVersionChange}"
               id="docs_Default_ExampleSelect"
               class="form-select form-select-lg"
             >
-              <option value="v6-to-v7" ?selected="${this.version === 'v6-to-v7'}">
+              <option value="6" ?selected="${this.currentVersion === 6}">
                 @swisspost/design-system-styles 6.x.x
               </option>
-              <option value="v5-to-v6" ?selected="${this.version === 'v5-to-v6'}">
+              <option value="5" ?selected="${this.currentVersion === 5}">
                 @swisspost/design-system-styles 5.x.x
               </option>
-              <option value="v4-to-v5" ?selected="${this.version === 'v4-to-v5'}">
+              <option value="4" ?selected="${this.currentVersion === 4}">
                 @.../common-web-frontend 4.x.x or lower
               </option>
             </select>
@@ -111,18 +111,18 @@ export class SetupComponent extends LitElement {
     `;
   }
 
-  private _onVersionChange(
+  private _onCurrentVersionChange(
     event: Event & {
       target: HTMLInputElement;
     },
   ) {
-    this.version = event.target.value;
+    this.currentVersion = parseInt(event.target.value);
     this.dispatchEvent(
-      new CustomEvent('migration-state-version-changed', {
+      new CustomEvent('migration-state-current-version-changed', {
         bubbles: true,
         composed: true,
         detail: {
-          version: this.version,
+          currentVersion: this.currentVersion,
         },
       }),
     );
