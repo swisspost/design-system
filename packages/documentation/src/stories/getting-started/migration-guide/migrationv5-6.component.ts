@@ -117,7 +117,7 @@ export class MigrationV56Component extends LitElement {
               <li>
                 <h5>
                   Stepper
-                  <span class="change-badge bg-danger">breaking</span>
+                  <span class="tag tag-sm tag-danger">breaking</span>
                 </h5>
                 <p>
                   The markup of the
@@ -146,7 +146,7 @@ export class MigrationV56Component extends LitElement {
                     <li>
                       <h5>
                         ngbButton ⚙️
-                        <span class="change-badge bg-danger">breaking</span>
+                        <span class="tag tag-sm tag-danger">breaking</span>
                       </h5>
                       <p>
                         The
@@ -171,7 +171,7 @@ export class MigrationV56Component extends LitElement {
               <li>
                 <h5>
                   Removed variables
-                  <span class="change-badge bg-danger">breaking</span>
+                  <span class="tag tag-sm tag-danger">breaking</span>
                 </h5>
                 <p>
                   The following Sass variables have been removed because they are not being used
