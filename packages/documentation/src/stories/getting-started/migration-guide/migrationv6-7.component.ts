@@ -3,7 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { _templateAutoIcon } from './util/template.util';
 
 @customElement('migration-version-6-7')
-export class MigrationV56Component extends LitElement {
+export class MigrationV67Component extends LitElement {
   @property({ type: Number }) currentVersion?: number;
   @property({ type: String }) environment?: string;
   @property({ type: Boolean }) angular?: boolean;
