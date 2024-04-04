@@ -18,7 +18,7 @@ export const Default: Story = {};
 
 export const FormGoodExample: Story = {
   render: () => html`
-    <form id="myForm" action="/">
+    <form id="myForm" onsubmit="validateForm(event)" novalidate>
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="firstname">Firstname</label>
@@ -31,7 +31,6 @@ export const FormGoodExample: Story = {
           <div class="invalid-feedback">Please enter your lastname.</div>
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="phonenumber">Phone Number</label>
@@ -44,7 +43,6 @@ export const FormGoodExample: Story = {
           <div class="invalid-feedback">Please enter a valid email address.</div>
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="address">Address</label>
@@ -56,7 +54,6 @@ export const FormGoodExample: Story = {
           <div class="invalid-feedback">Please enter your city.</div>
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="country">Country</label>
@@ -69,37 +66,28 @@ export const FormGoodExample: Story = {
           <div class="invalid-feedback">Please enter your zip code.</div>
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="question1">Random Question 1</label>
           <input type="text" id="question1" class="form-control" required />
           <div class="invalid-feedback">Please answer this question.</div>
         </div>
-      </div>
-
-      <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="question2">Random Question 2</label>
           <input type="text" id="question2" class="form-control" />
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="question3">Random Question 3</label>
           <input type="text" id="question3" class="form-control" />
         </div>
-      </div>
-
-      <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="question4">Random Question 4</label>
           <input type="text" id="question4" class="form-control" required />
           <div class="invalid-feedback">Please answer this question.</div>
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <div class="form-check">
@@ -111,13 +99,14 @@ export const FormGoodExample: Story = {
           </div>
         </div>
       </div>
-
       <div class="d-flex flex-row-reverse gap-mini">
-        <button class="btn btn-primary" type="submit" onclick="validateForm()">Send</button>
+        <button class="btn btn-primary" type="submit">Send</button>
       </div>
     </form>
     <script>
-      function validateForm() {
+      function validateForm(event) {
+        event.preventDefault();
+
         const form = document.getElementById('myForm');
         if (!form) return;
 
@@ -182,7 +171,7 @@ export const FormGoodExample: Story = {
 };
 
 export const FormBadExample: Story = {
-  render: () => html` <form id="myBadForm" action="/">
+  render: () => html` <form id="myBadForm" onsubmit="submitBadForm(event)" novalidate>
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="firstname">Firstname</label>
@@ -193,7 +182,6 @@ export const FormBadExample: Story = {
           <input type="text" id="lastname" class="form-control" required />
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="phonenumber">Phone Number</label>
@@ -204,7 +192,6 @@ export const FormBadExample: Story = {
           <input type="email" id="email" class="form-control" required />
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="address">Address</label>
@@ -215,7 +202,6 @@ export const FormBadExample: Story = {
           <input type="text" id="city" class="form-control" />
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="country">Country</label>
@@ -226,35 +212,26 @@ export const FormBadExample: Story = {
           <input type="number" id="zip" class="form-control" />
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="question1">Random Question 1</label>
           <input type="text" id="question1" class="form-control" required />
         </div>
-      </div>
-
-      <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="question2">Random Question 2</label>
           <input type="text" id="question2" class="form-control" />
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="question3">Random Question 3</label>
           <input type="text" id="question3" class="form-control" />
         </div>
-      </div>
-
-      <div class="row mb-regular">
         <div class="col">
           <label class="form-label" for="question4">Random Question 4</label>
           <input type="text" id="question4" class="form-control" required />
         </div>
       </div>
-
       <div class="row mb-regular">
         <div class="col">
           <div class="form-check">
@@ -265,7 +242,6 @@ export const FormBadExample: Story = {
           </div>
         </div>
       </div>
-
       <div class="d-flex flex-row-reverse gap-mini">
         <button class="btn btn-primary" type="submit" disabled>Send</button>
       </div>
@@ -303,6 +279,10 @@ export const FormBadExample: Story = {
         } else {
           submitButton.setAttribute('disabled', 'disabled');
         }
+      }
+
+      function submitBadForm(event) {
+        event.preventDefault();
       }
 
       function addInputChangeListener() {
