@@ -6,32 +6,48 @@
 @use './../variables/color';
 @use './../mixins/utilities';
 @use './../mixins/chip' as chip-mx;
+@use './../mixins/icons' as icons-mx;
 @use './../placeholders/chip' as chip-ph;
 @use './../functions/icons' as icons-fn;
 
 .chip {
   &-dismissible {
     @extend %chip;
+    position: relative;
 
-    @include utilities.focus-style();
-
-    &:is(:active, .active) {
-      @include chip-mx.chip-active-state;
-
-      &:disabled {
-        background-color: chip.$chip-disabled-active-bg;
-      }
+    &::before,
+    &::after {
+      content: '';
+      display: inline-block;
+      flex: 0 0 auto;
+      height: chip.$chip-close-button-height;
+      width: chip.$chip-close-button-height;
+      transition: chip.$chip-transition;
     }
 
-    &:not(:active, .active) {
-      @include utilities.not-disabled-focus-hover {
-        @include chip-mx.chip-hover-state;
-      }
+    &::after {
+      @include icons-mx.icon(chip.$chip-close-button-icon);
+      position: absolute;
+      top: 50%;
+      left: chip.$chip-padding-x;
+      transform: translateY(-50%);
     }
 
-    @include utilities.disabled-style($text-selector: '> .chip-text') {
-      background-color: chip.$chip-disabled-bg;
+    &::before {
+      border-radius: chip.$chip-close-button-border-radius;
     }
+
+    &:hover::before {
+      background-color: chip.$chip-hover-bg;
+    }
+
+    // set the focus ring on the close button only
+    @include utilities.focus-style-none();
+    @include utilities.focus-style('::before') {
+      background-color: chip.$chip-hover-bg;
+    }
+
+    @include utilities.disabled-style($text-selector: '> .chip-text');
   }
 
   &-filter {
@@ -67,6 +83,16 @@
 .chip-sm {
   &.chip-dismissible {
     @extend %chip-sm;
+
+    &::before,
+    &::after {
+      height: chip.$chip-close-button-height-sm;
+      width: chip.$chip-close-button-height-sm;
+    }
+
+    &::after {
+      left: chip.$chip-padding-x-sm;
+    }
   }
 
   &.chip-filter > .chip-filter-label {

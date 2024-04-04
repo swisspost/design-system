@@ -35,23 +35,6 @@
     transition: chip.$chip-transition;
   }
 
-  > .btn-close {
-    &:not(:disabled) {
-      color: chip.$chip-color;
-      border-radius: commons.$border-radius-pill;
-
-      &:hover {
-        color: chip.$chip-hover-color;
-        background-color: chip.$chip-hover-bg;
-      }
-    }
-
-    &::before {
-      height: badge.$badge-height;
-      width: badge.$badge-height;
-    }
-  }
-
   // Quick fix for badges in buttons
   .btn & {
     position: relative;
@@ -67,10 +50,5 @@
 
   > .badge {
     @extend %badge-sm;
-  }
-
-  > .btn-close::before {
-    height: badge.$badge-height-sm;
-    width: badge.$badge-height-sm;
   }
 }
