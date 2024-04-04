@@ -15,16 +15,14 @@ $webkit-progress-height-adjustment: 2px;
 $webkit-thumb-width: 32px;
 
 :has(> .form-range) {
-  @include utilities.focus-style();
-  @include utilities.focus-style-custom() {
+  @include utilities.focus-style() {
     border-radius: commons.$border-radius !important;
   }
 }
 
 @supports not selector(:has(> .form-range)) {
   .form-range {
-    @include utilities.focus-style();
-    @include utilities.focus-style-custom() {
+    @include utilities.focus-style() {
       border-radius: commons.$border-radius !important;
     }
   }
