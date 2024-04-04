@@ -16,7 +16,7 @@ const meta: MetaComponent = {
   },
   args: {
     text: 'Insigno',
-    size: 'large',
+    size: 'Large',
     badge: false,
     type: 'filter',
     active: false,
@@ -49,12 +49,8 @@ const meta: MetaComponent = {
       description: 'The size of the chip.',
       control: {
         type: 'radio',
-        labels: {
-          'large': 'Large',
-          'chip-sm': 'Small',
-        },
       },
-      options: ['large', 'chip-sm'],
+      options: ['Large', 'Small'],
       table: {
         category: 'General',
       },
@@ -140,10 +136,6 @@ function getFilterContent(args: Args, updateArgs: (args: Args) => void, context:
   index++;
 
   const checkboxId = `chip-example--${context.name.replace(/ /g, '-').toLowerCase()}` + index;
-  const labelClasses = mapClasses({
-    'chip-filter-label': true,
-    [args.size]: args.size !== 'large',
-  });
 
   const handleChange = (e: Event) => {
     updateArgs({ active: !args.active });
@@ -166,7 +158,9 @@ function getFilterContent(args: Args, updateArgs: (args: Args) => void, context:
       ?disabled="${args.disabled}"
       @change="${handleChange}"
     />
-    <label class="${labelClasses}" for="${checkboxId}">${getDefaultContent(args)}</label>
+    <label class="chip-filter-label${args.size === 'Large' ? '' : ' chip-sm'}" for="${checkboxId}"
+      >${getDefaultContent(args)}</label
+    >
   `;
 }
 
@@ -186,14 +180,8 @@ function renderChip(args: Args, context: StoryContext) {
   const isFilter = args.type === 'filter';
   const isDismissible = args.type === 'dismissible';
 
-  const chipClasses = mapClasses({
-    'chip': !isFilter,
-    'chip-filter': isFilter,
-    [args.size]: args.size !== 'large' && !isFilter,
-  });
-
   return html`
-    <div class="${chipClasses}">
+    <div class="chip chip-${args.type}${args.size === 'Large' ? '' : ' chip-sm'}">
       ${isDismissible ? getDismissButton(updateArgs) : nothing}
       ${isFilter ? getFilterContent(args, updateArgs, context) : getDefaultContent(args)}
     </div>

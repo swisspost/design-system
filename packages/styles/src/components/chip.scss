@@ -10,12 +10,9 @@
 @use './../functions/icons' as icons-fn;
 
 .chip {
-  @extend %chip;
-}
+  &-dismissible {
+    @extend %chip;
 
-a,
-button {
-  &.chip {
     @include utilities.focus-style();
     background-color: transparent;
 
@@ -37,33 +34,33 @@ button {
       background-color: chip.$chip-disabled-bg;
     }
   }
-}
 
-.chip-filter {
-  &-label {
-    @extend %chip;
-    cursor: pointer;
-  }
-
-  &-input:checked {
-    + .chip-filter-label {
-      @include chip-mx.chip-active-state;
+  &-filter {
+    &-label {
+      @extend %chip;
+      cursor: pointer;
     }
 
-    &:disabled + .chip-filter-label {
-      background-color: chip.$chip-disabled-active-bg;
-    }
-  }
+    &-input {
+      &:checked {
+        + .chip-filter-label {
+          @include chip-mx.chip-active-state;
+        }
 
-  &-input:not(:checked) + &-label:hover {
-    @include chip-mx.chip-hover-state;
-  }
+        &:disabled + .chip-filter-label {
+          background-color: chip.$chip-disabled-active-bg;
+        }
+      }
 
-  &-input {
-    @include utilities.visuallyhidden;
-    @include utilities.focus-style('+ .chip-filter-label');
-    @include utilities.disabled-style('+ .chip-filter-label', $text-selector: '> .chip-text') {
-      background-color: chip.$chip-disabled-bg;
+      &:not(:checked) + .chip-filter-label:hover {
+        @include chip-mx.chip-hover-state;
+      }
+
+      @include utilities.visuallyhidden;
+      @include utilities.focus-style('+ .chip-filter-label');
+      @include utilities.disabled-style('+ .chip-filter-label', $text-selector: '> .chip-text') {
+        background-color: chip.$chip-disabled-bg;
+      }
     }
   }
 }
