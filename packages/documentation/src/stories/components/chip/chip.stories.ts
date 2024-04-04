@@ -17,10 +17,10 @@ const meta: MetaComponent = {
   args: {
     text: 'Insigno',
     size: 'Large',
-    badge: false,
     type: 'filter',
-    active: false,
     disabled: false,
+    active: false,
+    badge: false,
     dismissed: false,
   },
   argTypes: {
@@ -29,16 +29,6 @@ const meta: MetaComponent = {
       description: 'The text contained in the chip.',
       control: {
         type: 'text',
-      },
-      table: {
-        category: 'Content',
-      },
-    },
-    badge: {
-      name: 'Nested Badge',
-      description: 'If `true`, a badge is displayed inside the chip.',
-      control: {
-        type: 'boolean',
       },
       table: {
         category: 'Content',
@@ -70,6 +60,17 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
+    disabled: {
+      name: 'Disabled',
+      description:
+        'If `true`, the chip is disabled.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+      control: {
+        type: 'boolean',
+      },
+      table: {
+        category: 'General',
+      },
+    },
     active: {
       name: 'Active',
       description: 'If `true`, the chip is active.',
@@ -84,10 +85,13 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    disabled: {
-      name: 'Disabled',
-      description:
-        'If `true`, the chip is disabled.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+    badge: {
+      name: 'Nested Badge',
+      description: 'If `true`, a badge is displayed inside the chip.',
+      if: {
+        arg: 'type',
+        eq: 'filter',
+      },
       control: {
         type: 'boolean',
       },

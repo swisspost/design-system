@@ -8,6 +8,7 @@
 @use './../mixins/chip' as chip-mx;
 @use './../mixins/icons' as icons-mx;
 @use './../placeholders/chip' as chip-ph;
+@use './../placeholders/badge' as badge-ph;
 @use './../functions/icons' as icons-fn;
 
 .chip {
@@ -54,12 +55,35 @@
     &-label {
       @extend %chip;
       cursor: pointer;
+
+      > .badge {
+        color: chip.$chip-hover-color;
+        background-color: chip.$chip-hover-bg;
+        border-color: transparent;
+        transition: chip.$chip-transition;
+      }
     }
 
     &-input {
+      @include utilities.visuallyhidden;
+
       &:checked {
         + .chip-filter-label {
-          @include chip-mx.chip-active-state;
+          color: chip.$chip-active-color;
+          background-color: chip.$chip-active-bg;
+          border-color: transparent;
+
+          > .badge {
+            background-color: chip.$chip-bg;
+          }
+
+          > .chip-text {
+            text-decoration: underline;
+          }
+
+          &:hover > .chip-text {
+            text-decoration: none;
+          }
         }
 
         &:disabled + .chip-filter-label {
@@ -68,11 +92,20 @@
       }
 
       &:not(:checked) + .chip-filter-label:hover {
-        @include chip-mx.chip-hover-state;
+        color: chip.$chip-hover-color;
+        background-color: chip.$chip-hover-bg;
+
+        > .badge {
+          background-color: chip.$chip-bg;
+        }
       }
 
-      @include utilities.visuallyhidden;
-      @include utilities.focus-style('+ .chip-filter-label');
+      @include utilities.focus-style('+ .chip-filter-label') {
+        > .chip-text {
+          text-decoration: none;
+        }
+      }
+
       @include utilities.disabled-style('+ .chip-filter-label', $text-selector: '> .chip-text') {
         background-color: chip.$chip-disabled-bg;
       }
@@ -97,26 +130,9 @@
 
   &.chip-filter > .chip-filter-label {
     @extend %chip-sm;
-  }
-}
 
-@include utilities.high-contrast-mode() {
-  .chip-filter {
-    &-input:focus-visible + &-label {
-      border-color: Highlight;
-      outline-color: Highlight;
+    > .badge {
+      @extend %badge-sm;
     }
-
-    &-input:checked + &-label {
-      &:hover {
-        @include chip-mx.chip-hover-state;
-      }
-    }
-  }
-
-  button.chip,
-  a.chip,
-  .chip-filter-label {
-    transition: none;
   }
 }

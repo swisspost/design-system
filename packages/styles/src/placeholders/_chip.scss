@@ -28,13 +28,6 @@
     white-space: nowrap;
   }
 
-  > .badge {
-    color: chip.$chip-hover-color;
-    background-color: chip.$chip-hover-bg;
-    border-color: transparent;
-    transition: chip.$chip-transition;
-  }
-
   // Quick fix for badges in buttons
   .btn & {
     position: relative;
@@ -47,8 +40,4 @@
   font-size: chip.$chip-font-size-sm;
   gap: chip.$chip-gap-sm;
   padding-inline: chip.$chip-padding-x-sm;
-
-  > .badge {
-    @extend %badge-sm;
-  }
 }
