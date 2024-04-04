@@ -10,14 +10,16 @@ const meta: MetaComponent = {
   tags: ['package:HTML'],
   render: renderChip,
   parameters: {
-    chips: [],
+    controls: {
+      exclude: ['dismissed'],
+    },
   },
   args: {
     text: 'Insigno',
     size: 'large',
     badge: false,
-    interactionType: 'none',
-    checked: false,
+    type: 'filter',
+    active: false,
     disabled: false,
     dismissed: false,
   },
@@ -27,6 +29,16 @@ const meta: MetaComponent = {
       description: 'The text contained in the chip.',
       control: {
         type: 'text',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    badge: {
+      name: 'Nested Badge',
+      description: 'If `true`, a badge is displayed inside the chip.',
+      control: {
+        type: 'boolean',
       },
       table: {
         category: 'Content',
@@ -47,9 +59,28 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    badge: {
-      name: 'Nested Badge',
-      description: 'If `true`, a badge is displayed inside the chip.',
+    type: {
+      name: 'Type',
+      description: 'Defines how the chip can be interacted with.',
+      control: {
+        type: 'radio',
+        labels: {
+          filter: 'Filter Chip',
+          dismissible: 'Dismissible Chip',
+        },
+      },
+      options: ['filter', 'dismissible'],
+      table: {
+        category: 'General',
+      },
+    },
+    active: {
+      name: 'Active',
+      description: 'If `true`, the chip is active.',
+      if: {
+        arg: 'type',
+        eq: 'filter',
+      },
       control: {
         type: 'boolean',
       },
@@ -57,63 +88,19 @@ const meta: MetaComponent = {
         category: 'General',
       },
     },
-    interactionType: {
-      name: 'Interaction Type',
-      description: 'Defines how the chip can be interacted with.',
-      control: {
-        type: 'inline-radio',
-        labels: {
-          none: 'None',
-          checkable: 'Checkable',
-          dismissible: 'Dismissible',
-        },
-      },
-      options: ['none', 'checkable', 'dismissible'],
-      table: {
-        category: 'Interactions',
-      },
-    },
-    checked: {
-      name: 'Checked',
-      description: 'If `true`, the chip is checked otherwise it is unchecked.',
-      if: {
-        arg: 'interactionType',
-        eq: 'checkable',
-      },
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Interactions',
-      },
-    },
     disabled: {
       name: 'Disabled',
       description:
-        'If `true`, the badge is disabled.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
+        'If `true`, the chip is disabled.<div className="mt-mini alert alert-info alert-sm">There are accessibility concerns with the disabled state.<br/>Please read our <a href="/?path=/docs/46da78e8-e83b-4ca1-aaf6-bbc662efef14--docs#disabled-state">disabled state accessibility guide</a>.</div>',
       if: {
-        arg: 'interactionType',
-        eq: 'checkable',
+        arg: 'type',
+        eq: 'filter',
       },
       control: {
         type: 'boolean',
       },
       table: {
-        category: 'Interactions',
-      },
-    },
-    dismissed: {
-      name: 'Dismissed',
-      description: 'If `true`, the chip is removed from the page otherwise it is displayed.',
-      if: {
-        arg: 'interactionType',
-        eq: 'dismissible',
-      },
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Interactions',
+        category: 'General',
       },
     },
   },
@@ -149,7 +136,7 @@ function getDefaultContent(args: Args) {
 }
 
 let index = 0;
-function getCheckableContent(args: Args, updateArgs: (args: Args) => void, context: StoryContext) {
+function getFilterContent(args: Args, updateArgs: (args: Args) => void, context: StoryContext) {
   index++;
 
   const checkboxId = `chip-example--${context.name.replace(/ /g, '-').toLowerCase()}` + index;
@@ -159,7 +146,7 @@ function getCheckableContent(args: Args, updateArgs: (args: Args) => void, conte
   });
 
   const handleChange = (e: Event) => {
-    updateArgs({ checked: !args.checked });
+    updateArgs({ active: !args.active });
 
     if (document.activeElement === e.target) {
       setTimeout(() => {
@@ -175,7 +162,7 @@ function getCheckableContent(args: Args, updateArgs: (args: Args) => void, conte
       name="${checkboxId}"
       class="chip-check-input"
       type="checkbox"
-      ?checked="${args.checked}"
+      ?checked="${args.active}"
       ?disabled="${args.disabled}"
       @change="${handleChange}"
     />
@@ -196,19 +183,19 @@ function renderChip(args: Args, context: StoryContext) {
 
   if (args.dismissed) return html` ${nothing} `;
 
-  const isCheckable = args.interactionType === 'checkable';
-  const isDismissible = args.interactionType === 'dismissible';
+  const isFilter = args.type === 'filter';
+  const isDismissible = args.type === 'dismissible';
 
   const chipClasses = mapClasses({
-    'chip': !isCheckable,
-    'chip-check': isCheckable,
-    [args.size]: args.size !== 'large' && !isCheckable,
+    'chip': !isFilter,
+    'chip-check': isFilter,
+    [args.size]: args.size !== 'large' && !isFilter,
   });
 
   return html`
     <div class="${chipClasses}">
       ${isDismissible ? getDismissButton(updateArgs) : nothing}
-      ${isCheckable ? getCheckableContent(args, updateArgs, context) : getDefaultContent(args)}
+      ${isFilter ? getFilterContent(args, updateArgs, context) : getDefaultContent(args)}
     </div>
   `;
 }
@@ -221,16 +208,16 @@ export const Default: Story = {
 };
 
 export const FilterChip: Story = {
-  render: ({ checked, ...args }, context) => html`
+  render: ({ active, ...args }, context) => html`
     <div class="d-flex gap-mini">
-      ${renderChip({ ...args, checked: true, text: 'Ĉiuj' }, context)}
+      ${renderChip({ ...args, active: true, text: 'Ĉiuj' }, context)}
       ${renderChip({ ...args, text: 'Filtru unu' }, context)}
       ${renderChip({ ...args, text: 'Filtrilo du' }, context)}
       ${renderChip({ ...args, text: 'Filtrilo tri' }, context)}
     </div>
   `,
   args: {
-    interactionType: 'checkable',
+    type: 'filter',
   },
 };
 
@@ -244,6 +231,6 @@ export const Dismissible: Story = {
     </div>
   `,
   args: {
-    interactionType: 'dismissible',
+    type: 'dismissible',
   },
 };

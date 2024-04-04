@@ -25,14 +25,14 @@ export const Chip: Story = {
                   'Contentus momentus vero siteos et accusam iretea et justo.',
                 ],
                 size: context.argTypes.size.options,
-                interactionType: context.argTypes.interactionType.options,
+                type: context.argTypes.type.options,
                 badge: [false, true],
-                checked: [false, true],
+                active: [false, true],
                 disabled: [false, true],
                 dismissed: [false],
               })
-                .filter(args => !(args.interactionType !== 'checkable' && args.checked === true))
-                .filter(args => !(args.interactionType !== 'checkable' && args.disabled === true))
+                .filter(args => !(args.type !== 'filter' && args.active === true))
+                .filter(args => !(args.type !== 'filter' && args.disabled === true))
                 .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
             </div>
           `,
