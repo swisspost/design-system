@@ -7,7 +7,6 @@ import { parse } from '../../../utils/sass-export';
 import './card-control.styles.scss';
 import scss from './card-control.module.scss';
 import { coloredBackground } from '../../../shared/decorators/dark-background';
-import { color } from '@storybook/theming';
 
 const SCSS_VARIABLES: any = parse(scss);
 
