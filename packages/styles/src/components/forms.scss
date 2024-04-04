@@ -50,14 +50,19 @@ select.form-control-rg:not([size]):not([multiple]) {
   height: forms.$input-height-rg;
 }
 
+.form-control,
+.form-control:focus {
+  @include utilities.focus-style();
+}
+
 .form-control {
   position: relative;
-  @include utilities.focus-style();
 
   &[disabled] {
     color: forms.$input-disabled-border-color;
     border: forms.$input-disabled-border-style;
-    & ~ .form-text {
+
+    ~ .form-text {
       color: forms.$input-disabled-color;
     }
   }

@@ -1,6 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { mapClasses } from '../../../../utils';
 import { MetaComponent } from '../../../../../types';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {

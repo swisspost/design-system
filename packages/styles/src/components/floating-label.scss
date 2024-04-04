@@ -315,6 +315,7 @@
         &:focus,
         &:not(:placeholder-shown) {
           padding-right: spacing.$size-bigger-big;
+
           ~ label {
             width: calc(
               (100% * #{forms.$form-floating-label-upscale-sm}) - #{forms.$form-floating-label-translate-x *
