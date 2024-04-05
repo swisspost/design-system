@@ -2,6 +2,8 @@ import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components
 import { html, nothing } from 'lit';
 import { MetaComponent } from '../../../../types';
 import backgroundColors from '../../../shared/background-colors.module.scss';
+import { coloredBackground } from '../../../shared/decorators/dark-background';
+import chipMeta from '../chip/chip.stories';
 
 const meta: MetaComponent = {
   id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',
@@ -76,9 +78,10 @@ const meta: MetaComponent = {
 export default meta;
 
 // DECORATORS
-function adaptiveBackground(story: StoryFn, { args, context }: StoryContext) {
-  const bgClass = args.background === 'bg-white' ? `p-2 bg-dark` : 'p-2';
-  return html`<div class=${bgClass}>${story(args, context)}</div>`;
+function adaptiveBackground(story: StoryFn, context: StoryContext) {
+  const { args } = context;
+  const isLight = ['bg-white', 'bg-light', 'bg-gray'].includes(args.background as string);
+  return isLight ? coloredBackground(story, context, 'dark') : story(args, context);
 }
 
 // RENDERER
@@ -97,10 +100,10 @@ export const Default: Story = {};
 
 export const Colors: Story = {
   render: args => html`
+    ${renderBadge({ ...args, background: 'bg-info' })}
     ${renderBadge({ ...args, background: 'bg-success' })}
     ${renderBadge({ ...args, background: 'bg-warning' })}
     ${renderBadge({ ...args, background: 'bg-yellow' })}
-    ${renderBadge({ ...args, background: 'bg-gray' })}
   `,
 };
 
@@ -111,11 +114,8 @@ export const LargeNumber: Story = {
 };
 
 export const Position: Story = {
-  render: args => html`
-    <div class="chip">
-      Filter
-      <div class="badge">1</div>
-    </div>
+  render: (_args, context) => html`
+    ${chipMeta.render?.({ ...chipMeta.args, badge: true }, context)}
 
     <div class="position-relative d-inline">
       <post-icon name="2026" class="fs-large"></post-icon>
@@ -124,7 +124,7 @@ export const Position: Story = {
   `,
   decorators: [
     (story: StoryFn, { args, context }: StoryContext) => html`
-      <div class="d-flex gap-large">${story(args, context)}</div>
+      <div class="d-flex gap-large align-items-center">${story(args, context)}</div>
     `,
   ],
 };

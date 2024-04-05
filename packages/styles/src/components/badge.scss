@@ -17,10 +17,8 @@
   padding-inline: var(--post-badge-padding-x);
   border: badge.$badge-border;
   border-radius: badge.$badge-border-radius;
-  line-height: badge.$badge-line-height;
   font-size: badge.$badge-font-size;
   background-color: badge.$badge-bg;
-  background-clip: padding-box;
   color: badge.$badge-color;
 
   &:empty {
