@@ -176,6 +176,33 @@ export class MigrationV67Component extends LitElement {
               <ul>
                 <li class="mb-3">
                   <p>
+                    <span class="tag tag-sm tag-danger">Breaking</span> Updated the package entry
+                    file paths within the <em>package.json</em> to the paths, recommended by
+                    stencil:
+                  </p>
+                  <ul>
+                    <li>
+                      updated the <code>main</code> property from
+                      <code>loader/index.cjs.js</code> to <code>dist/index.cjs.js</code>
+                    </li>
+                    <li>
+                      updated the <code>module</code> property from <code>loader/index.js</code> to
+                      <code>dist/loader.js</code>
+                    </li>
+                    <li>
+                      updated the <code>types</code> property from <code>loader/index.d.ts</code> to
+                      <code>dist/types/index.d.ts</code>
+                    </li>
+                    <li>removed the <code>es2017</code> property</li>
+                  </ul>
+                  <p class="info">
+                    The usage of the <code>@swisspost/design-system-components/loader</code> entry
+                    files are still available and should be used (as documented) to get the
+                    lazy-loaded components.
+                  </p>
+                </li>
+                <li class="mb-3">
+                  <p>
                     <span class="tag tag-sm tag-danger">Breaking</span> Renamed all
                     <em>custom-events</em> in our existing web-components.
                   </p>
