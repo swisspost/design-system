@@ -172,6 +172,7 @@ function getDismissibleChip(args: Args, updateArgs: (args: Args) => void) {
       @click="${() => updateArgs({ dismissed: true })}"
       ?disabled="${args.disabled}"
     >
+      <span class="visually-hidden">Dismiss</span>
       <span class="chip-text">${args.text}</span>
     </button>
   `;
