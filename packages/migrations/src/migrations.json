@@ -101,10 +101,10 @@
       "description": "Improves the post stepper accessibility.",
       "factory": "./migrations/post/stepper"
     },
-    "migration-bootstrap-chip": {
+    "migration-badge-to-chip-or-tag": {
       "version": "7.0.0",
-      "description": "Renames badges to chips.",
-      "factory": "./migrations/bootstrap/chip"
+      "description": "Migrates badges to chip or tag depending on the content.",
+      "factory": "./migrations/v7/badge"
     }
   }
 }
