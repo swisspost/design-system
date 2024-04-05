@@ -30,9 +30,7 @@
   border: post.$size-line solid var(--post-card-control-border-color);
   border-radius: post.$border-radius;
   color: var(--post-card-control-color);
-
   cursor: pointer;
-  transition: background-color 100ms linear, border-color 100ms linear;
 
   .card-control--input {
     grid-area: input;
@@ -41,7 +39,7 @@
     border-color: var(--post-card-control-input-border-color) !important;
     color: var(--post-card-control-input-border-color) !important;
     cursor: inherit;
-    transition: border-color 100ms ease-in-out;
+    transition: none;
 
     &:focus,
     &:focus-visible {
@@ -90,7 +88,19 @@
       --post-card-control-bg: #{post.$yellow};
 
       @include post.high-contrast-mode() {
+        --post-card-control-border-color: FieldText;
         --post-card-control-bg: SelectedItem;
+        --post-card-control-color: SelectedItemText;
+        --post-card-control-input-border-color: SelectedItemText;
+        --post-card-control-input-bg: SelectedItem;
+
+        .card-control--input {
+          &::after {
+            forced-color-adjust: none;
+            border-color: transparent;
+            color: SelectedItemText;
+          }
+        }
       }
     }
 
@@ -108,7 +118,16 @@
 
       @include post.high-contrast-mode() {
         --post-card-control-border-color: Highlight;
+        --post-card-control-bg: Field;
+        --post-card-control-color: FieldText;
         --post-card-control-input-border-color: Highlight;
+        --post-card-control-input-bg: Field;
+
+        .card-control--input {
+          &::after {
+            color: FieldText;
+          }
+        }
       }
     }
   }
