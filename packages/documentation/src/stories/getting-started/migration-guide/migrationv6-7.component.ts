@@ -3,7 +3,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { _templateAutoIcon } from './util/template.util';
 
 @customElement('migration-version-6-7')
-export class MigrationV56Component extends LitElement {
+export class MigrationV67Component extends LitElement {
   @property({ type: Number }) currentVersion?: number;
   @property({ type: String }) environment?: string;
   @property({ type: Boolean }) angular?: boolean;
@@ -109,38 +109,135 @@ export class MigrationV56Component extends LitElement {
                   </p>
                 `
               : nothing}
-            <ul>
-              ${this.angular
-                ? html`
+
+            <section>
+              <h4>Styles</h4>
+
+              <ul>
+                <li class="mb-3">
+                  <p>
+                    <span class="tag tag-sm tag-danger">breaking</span> Removed the following
+                    <em>color</em> variables:
+                  </p>
+                  <ul>
+                    <li><code>$success-green</code></li>
+                    <li><code>$error-red</code> and <code>$danger</code></li>
+                    <li><code>$warning-orange</code></li>
+                    <li><code>$success-text</code></li>
+                    <li><code>$error-text</code></li>
+                  </ul>
+                  <p class="info">
+                    Instead use the variables <code>$success</code>, <code>$error</code> and
+                    <code>$warning</code>.
+                  </p>
+                </li>
+                <li class="mb-3">
+                  <p>
+                    <span class="tag tag-sm tag-danger">breaking</span> Removed the Sass map
+                    <code>$contextual-colors</code>.
+                  </p>
+                  <p class="info">Instead use the map <code>$signal-colors</code>.</p>
+                </li>
+                <li class="mb-3">
+                  <p>
+                    <span class="tag tag-sm tag-danger">breaking</span> Removed the Sass variable
+                    <code>$gray-background-light</code>.
+                  </p>
+                  <p class="info">Instead use the variable <code>$light</code>.</p>
+                </li>
+                <li class="mb-3">
+                  <p>
+                    <span class="tag tag-sm tag-danger">breaking</span> Renamed the Sass variable
+                    <code>$gray-background</code> to <code>$gray</code>.
+                  </p>
+                </li>
+                <li class="mb-3">
+                  <p>
+                    <span class="tag tag-sm tag-danger">breaking</span> Removed the following
+                    classes out of the <em>background-utilities</em>:
+                  </p>
+                  <ul>
+                    <li><code>.bg-success-green</code></li>
+                    <li><code>.bg-error-red</code></li>
+                    <li><code>.bg-warning-orange</code></li>
+                    <li><code>.bg-danger</code></li>
+                  </ul>
+                  <p class="info">
+                    Instead use the classes <code>.bg-success</code>, <code>.bg-error</code> and
+                    <code>.bg-warning</code>.
+                  </p>
+                </li>
+              </ul>
+            </section>
+
+            <section>
+              <h4>WebComponents</h4>
+
+              <ul>
+                <li class="mb-3">
+                  <p>
+                    <span class="tag tag-sm tag-danger">Breaking</span> Renamed all
+                    <em>custom-events</em> in our existing web-components.
+                  </p>
+                  <ul>
                     <li>
-                      <h5>
-                        ngbAccordion
-                        <span class="change-badge bg-danger">breaking</span>
-                      </h5>
-                      <p>
-                        The
-                        <em>ngb-accordion</em>
-                        and
-                        <em>ngb-panel</em>
-                        component have been removed from ng-bootstrap.
-                        <br />
-                        Use the <em>post-accordion</em> component from the
-                        <a href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
-                          >@swisspost/design-system-components-angular</a
-                        >
-                        package as a replacement.
-                      </p>
-                      <p class="info">
-                        See the
-                        <a href="/?path=/docs/4d1b4185-e04d-494a-ab38-2b56c1778b0b--docs"
-                          >accordion component documentation</a
-                        >
-                        for more detailed information.
-                      </p>
+                      <em>post-alert</em> components <code>dismissed</code> event became
+                      <code>postDismissed</code>
                     </li>
-                  `
-                : nothing}
-            </ul>
+                    <li>
+                      <em>post-collapsible</em> components <code>collapseChange</code> event became
+                      <code>postToggle</code>
+                    </li>
+                    <li>
+                      <em>post-rating</em> components <code>input</code> and
+                      <code>change</code> events became <code>postInput</code> and
+                      <code>postChange</code>
+                    </li>
+                    <li>
+                      <em>post-tabs</em> components <code>tabChange</code> event became
+                      <code>postChange</code>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </section>
+
+            <section>
+              <h4>NgBootstrap</h4>
+
+              <ul>
+                ${this.angular
+                  ? html`
+                      <li class="mb-3">
+                        <h5>
+                          ngbAccordion
+                          <span class="tag tag-sm tag-danger">breaking</span>
+                        </h5>
+                        <p>
+                          The
+                          <em>ngb-accordion</em>
+                          and
+                          <em>ngb-panel</em>
+                          component have been removed from ng-bootstrap.
+                          <br />
+                          Use the <em>post-accordion</em> component from the
+                          <a href="/?path=/docs/833ef689-a573-40f5-a6a6-30a999b94733--docs"
+                            >@swisspost/design-system-components-angular</a
+                          >
+                          package as a replacement.
+                        </p>
+                        <p class="info">
+                          See the
+                          <a href="/?path=/docs/4d1b4185-e04d-494a-ab38-2b56c1778b0b--docs"
+                            >accordion component documentation</a
+                          >
+                          for more detailed information.
+                        </p>
+                      </li>
+                    `
+                  : nothing}
+              </ul>
+            </section>
           </li>
         </ol>
       </section>
