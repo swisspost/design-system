@@ -4,8 +4,9 @@ import './migrationv4-5-manual-list.component';
 
 @customElement('migration-version-4-5')
 export class MigrationV45Component extends LitElement {
-  @property({ type: String }) environment: string = 'intranet';
-  @property({ type: Boolean }) angular: boolean = false;
+  @property({ type: Number }) currentVersion?: number;
+  @property({ type: String }) environment?: string;
+  @property({ type: Boolean }) angular?: boolean;
 
   createRenderRoot() {
     /**
@@ -15,7 +16,19 @@ export class MigrationV45Component extends LitElement {
   }
 
   render() {
+    if (!this.currentVersion || this.currentVersion > 4) return nothing;
+
     return html`
+      <h2 id="migration-from-v4-to-v5" class="docs-autolink">
+        Migration from v4 to v5
+        <a
+          aria-hidden="true"
+          tabindex="-1"
+          href="http://localhost:9000/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v5-to-v6#migration-from-v4-to-v5"
+        >
+          <post-icon name="2037"></post-icon>
+        </a>
+      </h2>
       <section>
         <ol class="bubble-tea">
           <li>
