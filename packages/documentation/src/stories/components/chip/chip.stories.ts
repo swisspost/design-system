@@ -11,7 +11,7 @@ const meta: MetaComponent = {
   render: renderChip,
   parameters: {
     controls: {
-      exclude: ['dismissed'],
+      exclude: ['dismissed', 'number', 'radio'],
     },
   },
   args: {
@@ -22,6 +22,8 @@ const meta: MetaComponent = {
     active: false,
     badge: false,
     dismissed: false,
+    number: 1,
+    radio: false,
   },
   argTypes: {
     text: {
@@ -124,18 +126,21 @@ function externalControl(story: any, { args }: StoryContext) {
 }
 
 // RENDERER
-let index = 0;
-function getFilterChip(args: Args, updateArgs: (args: Args) => void, context: StoryContext) {
-  index++;
-
-  const checkboxId = `chip-example--${context.name.replace(/ /g, '-').toLowerCase()}` + index;
+function getFilterChip(
+  args: Args,
+  updateArgs: (args: Args) => void,
+  context: StoryContext,
+  index?: number,
+) {
+  const inputName = `chip-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
+  const inputId = typeof index !== 'undefined' ? `${inputName}-${index}` : inputName;
 
   const handleChange = (e: Event) => {
     updateArgs({ active: !args.active });
 
     if (document.activeElement === e.target) {
       setTimeout(() => {
-        const element: HTMLInputElement | null = document.querySelector(`#${checkboxId}`);
+        const element: HTMLInputElement | null = document.querySelector(`#${inputId}`);
         if (element) element.focus();
       }, 25);
     }
@@ -144,17 +149,17 @@ function getFilterChip(args: Args, updateArgs: (args: Args) => void, context: St
   return html`
     <div class="chip${args.size === 'Large' ? '' : ' chip-sm'} chip-filter">
       <input
-        id="${checkboxId}"
-        name="${checkboxId}"
+        id="${inputId}"
+        name="${args.radio ? inputName : inputId}"
         class="chip-filter-input"
-        type="checkbox"
+        type="${args.radio ? 'radio' : 'checkbox'}"
         ?checked="${args.active}"
         ?disabled="${args.disabled}"
         @change="${handleChange}"
       />
-      <label class="chip-filter-label" for="${checkboxId}">
+      <label class="chip-filter-label" for="${inputId}">
         <span class="chip-text">${args.text}</span>
-        ${args.badge ? html` <span class="badge">1</span> ` : nothing}
+        ${args.badge ? html` <span class="badge">${args.number}</span> ` : nothing}
       </label>
     </div>
   `;
@@ -172,14 +177,14 @@ function getDismissibleChip(args: Args, updateArgs: (args: Args) => void) {
   `;
 }
 
-function renderChip(args: Args, context: StoryContext) {
+function renderChip(args: Args, context: StoryContext, index?: number) {
   const [_, updateArgs] = useArgs();
 
   if (args.dismissed) return html` ${nothing} `;
 
   if (args.type === 'dismissible') return getDismissibleChip(args, updateArgs);
 
-  return getFilterChip(args, updateArgs, context);
+  return getFilterChip(args, updateArgs, context, index);
 }
 
 // STORIES
@@ -189,23 +194,63 @@ export const Default: Story = {
   decorators: [externalControl],
 };
 
-export const FilterChip: Story = {
-  render: ({ active, ...args }, context) => html`
-    <div class="d-flex gap-mini">
-      ${renderChip({ ...args, active: true, text: 'Ĉiuj' }, context)}
-      ${renderChip({ ...args, text: 'Filtru unu' }, context)}
-      ${renderChip({ ...args, text: 'Filtrilo du' }, context)}
-      ${renderChip({ ...args, text: 'Filtrilo tri' }, context)}
-    </div>
-  `,
+export const FilterCheckboxChip: Story = {
+  render: ({ active, ...args }, context) => {
+    const checkboxChips = [
+      { text: 'Aventuro', active: true },
+      { text: 'Familio' },
+      { text: 'Vidoj' },
+    ];
+
+    return html`
+      <fieldset>
+        <legend>Migrandaj Itineroj</legend>
+        <div class="d-flex flex-wrap gap-mini">
+          ${checkboxChips.map(({ text, active }, index) =>
+            renderChip({ ...args, text, active }, context, index),
+          )}
+        </div>
+      </fieldset>
+    `;
+  },
+  decorators: [story => html`<div class="d-flex gap-huge">${story()}</div>`],
   args: {
     type: 'filter',
   },
 };
 
+export const FilterRadioChip: Story = {
+  render: ({ active, ...args }, context) => {
+    const radioChips = [
+      { number: 253, text: 'Ĉiuj' },
+      { number: 12, text: 'Artikoloj', active: true },
+      { number: 5, text: 'Iloj' },
+      { number: 236, text: 'Dokumentoj' },
+    ];
+
+    return html`
+      <fieldset>
+        <legend class="">Serĉrezultoj</legend>
+        <div class="d-flex flex-wrap gap-mini">
+          ${radioChips.map(({ text, number, active }, index) =>
+            renderChip({ ...args, text, number, active }, context, index),
+          )}
+        </div>
+      </fieldset>
+    `;
+  },
+  decorators: [story => html`<div class="d-flex gap-huge">${story()}</div>`],
+  args: {
+    type: 'filter',
+    radio: true,
+    size: 'Small',
+    badge: true,
+  },
+};
+
 export const Dismissible: Story = {
   render: ({ dismissed, ...args }, context) => html`
-    <div class="d-flex gap-mini">
+    <div class="d-flex flex-wrap gap-mini">
       ${renderChip({ ...args, text: 'Unua uzanta enigo' }, context)}
       ${renderChip({ ...args, text: 'Dua uzanta enigo' }, context)}
       ${renderChip({ ...args, text: 'Tria uzanta enigo' }, context)}

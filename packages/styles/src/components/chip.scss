@@ -47,6 +47,8 @@
   }
 
   &-filter {
+    display: inline-block;
+
     &-label {
       @include chip-mx.chip-styles();
       cursor: pointer;
