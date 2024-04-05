@@ -43,7 +43,7 @@
       background-color: chip.$chip-hover-bg;
     }
 
-    @include utilities.disabled-style($text-selector: '> .chip-text');
+    @include utilities.disabled-style();
   }
 
   &-filter {
@@ -72,17 +72,42 @@
             background-color: chip.$chip-bg;
           }
 
-          > .chip-text {
-            text-decoration: underline;
-          }
-
-          &:hover > .chip-text {
-            text-decoration: none;
+          @include utilities.high-contrast-mode() {
+            border-color: Highlight;
           }
         }
 
         &:disabled + .chip-filter-label {
           background-color: chip.$chip-disabled-active-bg;
+
+          @include utilities.high-contrast-mode() {
+            > .chip-text {
+              text-decoration: underline;
+            }
+          }
+        }
+
+        &:not(:disabled) {
+          + .chip-filter-label {
+            > .chip-text {
+              text-decoration: underline;
+              transition: text-decoration 150ms cubic-bezier(0.4, 0, 0.2, 1);
+            }
+
+            &:hover > .chip-text {
+              text-decoration-color: transparent;
+
+              @include utilities.high-contrast-mode() {
+                text-decoration-color: initial;
+              }
+            }
+          }
+
+          @include utilities.focus-style('+ .chip-filter-label') {
+            > .chip-text {
+              text-decoration-color: transparent;
+            }
+          }
         }
       }
 
@@ -95,14 +120,15 @@
         }
       }
 
-      @include utilities.focus-style('+ .chip-filter-label') {
-        > .chip-text {
-          text-decoration: none;
-        }
-      }
-
-      @include utilities.disabled-style('+ .chip-filter-label', $text-selector: '> .chip-text') {
+      @include utilities.disabled-style('+ .chip-filter-label') {
         background-color: chip.$chip-disabled-bg;
+
+        @include utilities.high-contrast-mode() {
+          > .badge {
+            color: GrayText;
+            border-color: GrayText;
+          }
+        }
       }
     }
   }

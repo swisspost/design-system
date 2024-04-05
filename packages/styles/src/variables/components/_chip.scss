@@ -41,6 +41,7 @@ $chip-active-bg: color.$yellow;
 $chip-disabled-bg: color.$white;
 $chip-disabled-active-bg: color.$gray-background;
 
+$chip-text-transition: text-decoration animation.$transition-time-simple animation.$transition-easing-default;
 
 $chip-close-button-icon: 2043;
 $chip-close-button-border-radius: commons.$border-radius-round;
