@@ -1,35 +1,36 @@
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/core' as *;
+
 @use './../variables/components/badge';
 @use './../variables/components/chip';
 @use './../mixins/utilities';
 
-@mixin chip-hover-state {
-  color: chip.$chip-hover-color;
-  background-color: chip.$chip-hover-bg;
+@mixin chip-styles {
+  @include border-radius(chip.$chip-border-radius);
+  display: inline-flex;
+  align-items: center;
+  height: chip.$chip-height;
+  max-width: chip.$chip-max-width;
+  padding-inline: chip.$chip-padding-x;
+  border: chip.$chip-border-width solid chip.$chip-border-color;
+  gap: chip.$chip-gap;
+  line-height: chip.$chip-line-height;
+  font-size: chip.$chip-font-size;
+  font-weight: chip.$chip-font-weight;
+  color: chip.$chip-color;
+  background-color: chip.$chip-bg;
+  transition: chip.$chip-transition;
 
-  > .badge {
-    background-color: chip.$chip-bg;
-  }
-
-  @include utilities.high-contrast-mode() {
-    background-color: Highlight;
-    border-color: Highlight;
-    color: HighlightText;
-    forced-color-adjust: none; // Disable "readability backplate" on blink browser that interferes with the colors on this case
+  > .chip-text {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
 
-@mixin chip-active-state {
-  color: chip.$chip-active-color;
-  background-color: chip.$chip-active-bg;
-  border-color: transparent;
-
-  > .badge {
-    background-color: chip.$chip-bg;
-  }
-
-  @include utilities.high-contrast-mode() {
-    background-color: SelectedItem;
-    color: SelectedItemText;
-    forced-color-adjust: none; // Disable "readability backplate" on blink browser that interferes with the colors on this case
-  }
+@mixin chip-styles-sm {
+  height: chip.$chip-height-sm;
+  font-size: chip.$chip-font-size-sm;
+  gap: chip.$chip-gap-sm;
+  padding-inline: chip.$chip-padding-x-sm;
 }

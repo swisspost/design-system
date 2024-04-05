@@ -1,19 +1,14 @@
 @forward './../variables/options';
 
 @use './../variables/components/chip';
-@use './../variables/components/forms';
-@use './../variables/components/form-check';
-@use './../variables/color';
 @use './../mixins/utilities';
 @use './../mixins/chip' as chip-mx;
 @use './../mixins/icons' as icons-mx;
-@use './../placeholders/chip' as chip-ph;
 @use './../placeholders/badge' as badge-ph;
-@use './../functions/icons' as icons-fn;
 
 .chip {
   &-dismissible {
-    @extend %chip;
+    @include chip-mx.chip-styles();
     position: relative;
 
     &::before,
@@ -53,7 +48,7 @@
 
   &-filter {
     &-label {
-      @extend %chip;
+      @include chip-mx.chip-styles();
       cursor: pointer;
 
       > .badge {
@@ -115,7 +110,7 @@
 
 .chip-sm {
   &.chip-dismissible {
-    @extend %chip-sm;
+    @include chip-mx.chip-styles-sm();
 
     &::before,
     &::after {
@@ -129,7 +124,7 @@
   }
 
   &.chip-filter > .chip-filter-label {
-    @extend %chip-sm;
+    @include chip-mx.chip-styles-sm();
 
     > .badge {
       @extend %badge-sm;
