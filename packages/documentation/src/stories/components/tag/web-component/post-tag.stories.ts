@@ -32,7 +32,7 @@ const meta: MetaComponent = {
       control: {
         type: 'radio',
         labels: {
-          null: 'Default',
+          null: 'Large',
           sm: 'Small',
         },
       },
