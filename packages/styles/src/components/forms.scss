@@ -31,6 +31,8 @@ select.form-control-rg:not([size]):not([multiple]) {
 .form-control {
   position: relative;
 
+  @include utilities.focus-style('', 'true');
+
   &:disabled {
     color: forms.$input-disabled-color;
   }
@@ -130,19 +132,6 @@ select.form-control-rg:not([size]):not([multiple]) {
     &.form-control-lg {
       &::after {
         padding-inline: forms.$input-padding-y-lg;
-      }
-    }
-  }
-
-  @include utilities.high-contrast-mode() {
-    &:hover,
-    &:focus {
-      &:not(:disabled) {
-        border-color: Highlight;
-
-        &::file-selector-button {
-          border-left-color: Highlight;
-        }
       }
     }
   }

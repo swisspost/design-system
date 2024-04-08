@@ -14,6 +14,8 @@
   --form-select-indicator-success: #{b.escape-svg(form-select.$form-select-indicator-success)};
   --form-select-indicator-error: #{b.escape-svg(form-select.$form-select-indicator-error)};
 
+  @include utilities.focus-style('', 'true');
+
   &:not(:disabled) {
     &:hover {
       border-color: var(--post-contrast-color);
@@ -90,11 +92,6 @@
 
     &:focus-visible {
       color: FieldText;
-    }
-
-    &:focus,
-    &:hover:not(:disabled) {
-      border-color: Highlight;
     }
   }
 }
