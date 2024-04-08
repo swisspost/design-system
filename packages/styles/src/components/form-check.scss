@@ -16,6 +16,8 @@
 
   @include utility-mx.focus-style();
 
+
+
   &-inline {
     display: inline-flex;
   }
@@ -54,16 +56,18 @@
       border-color: FieldText; // For blink-browser as otherwise the default color (which is not a full color) will be converted to Highlight
     }
 
+    @include utility-mx.high-contrast-mode() {
+      &:not(:disabled) {
+        &:hover {
+          border-color: Highlight;
+        }
+      }
+    }
+
     &::after {
       content: '';
       display: block;
       flex: 1;
-    }
-
-    &:checked {
-      @include utility-mx.high-contrast-mode {
-        border-color: Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
-      }
     }
 
     &:checked,
@@ -89,7 +93,6 @@
       &:indeterminate {
         @include utility-mx.high-contrast-mode {
           background-color: Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
-          border-color: Highlight !important;
           color: HighlightText !important; // Important is needed for card-control
         }
       }
@@ -203,6 +206,10 @@
 
   &:hover > .form-check-input:not([disabled]) {
     background-color: rgba(var(--post-contrast-color-rgb), 0.1);
+
+    @include utility-mx.high-contrast-mode {
+      border-color: Highlight;
+    }
   }
 
   .form-check-label {

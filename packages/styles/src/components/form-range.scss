@@ -145,6 +145,16 @@ $webkit-thumb-width: 32px;
         background-color: ButtonFace;
         border-color: ButtonText;
       }
+
+      &:hover {
+        &::-webkit-slider-thumb {
+          border-color: Highlight;
+        }
+
+        &::-moz-range-thumb {
+          border-color: Highlight;
+        }
+      }
     }
 
     &:disabled,
