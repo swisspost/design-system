@@ -14,9 +14,9 @@
 
 ## Events
 
-| Event            | Description                                                                                                                                                                            | Type                   |
-| ---------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
-| `collapseChange` | An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed. | `CustomEvent<boolean>` |
+| Event        | Description                                                                                                                                                                            | Type                   |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| `postToggle` | An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed. | `CustomEvent<boolean>` |
 
 
 ## Methods

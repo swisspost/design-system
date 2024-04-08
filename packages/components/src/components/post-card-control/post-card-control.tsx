@@ -20,13 +20,18 @@ import scss from './post-card-control.module.scss';
 import { parse } from '../../utils/sass-export';
 
 const SCSS_VARIABLES = parse(scss);
+const EVENT_MAP = {
+  input: 'postInput',
+  change: 'postChange',
+};
 
 let cardControlIds = 0;
 
 /**
  * @class PostCardControl - representing a stencil component
  *
- * @slot icon - Content to place in the named `icon` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.<br>It is only meant for <code>img</code> or <code>svg</code> elements and overrides the `icon` property.</p>
+ * @slot default - Content to place into the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Block-level_contentt" target="_blank">block content</a>.<p className="alert alert-sm alert-warning">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.<br/>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured.<br/>More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
+ * @slot icon - To insert a custom icon into the named `icon` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.<p className="alert alert-sm alert-info">It is only meant for <code>img</code> or <code>svg</code> elements and overrides the `icon` property.</p>
  */
 @Component({
   tag: 'post-card-control',
@@ -115,14 +120,14 @@ export class PostCardControl {
    * An event emitted whenever the components checked state is toggled.
    * The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
    */
-  @Event() input: EventEmitter<{ state: boolean; value: string }>;
+  @Event() postInput: EventEmitter<{ state: boolean; value: string }>;
 
   /**
    * An event emitted whenever the components checked state is toggled.
    * The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
    * <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
    */
-  @Event() change: EventEmitter<{ state: boolean; value: string }>;
+  @Event() postChange: EventEmitter<{ state: boolean; value: string }>;
 
   /**
    * A public method to reset the controls `checked` and `validity` state.
@@ -248,7 +253,7 @@ export class PostCardControl {
         // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
         // if an event parameter is given and a native control would fire an event, emit the corresponding event to the light dom
         if (isCheckbox || isRadioAndChecked)
-          this[e.type].emit({ state: this.checked, value: this.value });
+          this[EVENT_MAP[e.type]].emit({ state: this.checked, value: this.value });
       }
     }
   }
@@ -367,6 +372,7 @@ export class PostCardControl {
             name={this.name}
             value={this.value}
             checked={this.checked}
+            aria-describedby={`${this.controlId}_label ${this.controlId}_content`}
             aria-disabled={this.disabled}
             aria-invalid={this.validity === 'false'}
             onClick={this.controlClickHandler}
@@ -377,7 +383,11 @@ export class PostCardControl {
             onKeyDown={this.controlKeyDownHandler}
           />
 
-          <label htmlFor={this.controlId} class="card-control--label form-check-label">
+          <label
+            id={`${this.controlId}_label`}
+            htmlFor={this.controlId}
+            class="card-control--label form-check-label"
+          >
             {this.label}
             {this.description ? (
               <div class="card-control--description">{this.description}</div>
@@ -386,6 +396,10 @@ export class PostCardControl {
 
           <div class="card-control--icon">
             <slot name="icon">{this.icon ? <post-icon name={this.icon}></post-icon> : null}</slot>
+          </div>
+
+          <div id={`${this.controlId}_content`} class="card-control--content">
+            <slot></slot>
           </div>
         </div>
       </Host>

@@ -102,7 +102,7 @@ export class PostAlert {
    * An event emitted when the alert element is dismissed, after the transition.
    * It has no payload and only relevant for dismissible alerts.
    */
-  @Event() dismissed: EventEmitter<void>;
+  @Event() postDismissed: EventEmitter<void>;
 
   connectedCallback() {
     this.validateDismissible();
@@ -132,7 +132,7 @@ export class PostAlert {
     await dismissal.finished;
 
     this.host.remove();
-    this.dismissed.emit();
+    this.postDismissed.emit();
   }
 
   render() {
