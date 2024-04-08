@@ -2,7 +2,6 @@ import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-compo
 import { MetaComponent } from '../../../../../types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { BADGE } from '../../../../../.storybook/constants';
 import { parse } from '../../../../utils/sass-export';
 import scss from '../tag.module.scss';
 
@@ -13,9 +12,6 @@ const meta: MetaComponent = {
   title: 'Components/Tag',
   component: 'post-tag',
   tags: ['package:WebComponents'],
-  parameters: {
-    badges: [BADGE.BETA],
-  },
   args: {
     'variant': 'null',
     'size': 'null',
