@@ -31,7 +31,9 @@ select.form-control-rg:not([size]):not([multiple]) {
 .form-control {
   position: relative;
 
-  @include utilities.focus-style('', 'true');
+  @include utilities.focus-style {
+    box-shadow: none;
+  }
 
   &:disabled {
     color: forms.$input-disabled-color;

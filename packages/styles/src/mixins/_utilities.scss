@@ -87,39 +87,29 @@
   outline: none;
 }
 
-@mixin focus-style($vendor-prefix: '', $on-focus: '') {
+@mixin focus-style($vendor-prefix: '') {
   outline-style: none !important; // !important is needed to override bootstrap .form-control:focus
   outline-offset: spacing.$size-line !important;
   outline-width: spacing.$size-line !important;
   outline-color: var(--post-focus-color) !important;
 
-  @if ($on-focus == 'true') {
-    &:is(:focus, .pretend-focus)#{$vendor-prefix} {
-      outline-style: solid !important; // !important is needed to override bootstrap .form-control:focus
-      border-radius: commons.$border-radius !important;
+  // :has(:focus-visible) mimic a focus-visible-within pseudo-class
+  &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$vendor-prefix} {
+    outline-style: solid !important;
+    border-radius: commons.$border-radius !important;
 
-      // In case rules need to be slightly adjusted
-      @content;
-    }
-  } @else {
-    // :has(:focus-visible) mimic a focus-visible-within pseudo-class
-    &:is(:focus-visible, :has(:focus-visible), .pretend-focus)#{$vendor-prefix} {
+    // In case rules need to be slightly adjusted
+    @content;
+  }
+
+  // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
+  @supports not selector(:has(:focus-visible)) {
+    &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
       outline-style: solid !important;
       border-radius: commons.$border-radius !important;
 
       // In case rules need to be slightly adjusted
       @content;
-    }
-
-    // When a browser doesn't support :has, use focus-within as a fallback. This means that focus state is displayed on focus and not on focus-visible only (except some browsers like Safari).
-    @supports not selector(:has(:focus-visible)) {
-      &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
-        outline-style: solid !important;
-        border-radius: commons.$border-radius !important;
-
-        // In case rules need to be slightly adjusted
-        @content;
-      }
     }
   }
 }

@@ -14,7 +14,9 @@
   --form-select-indicator-success: #{b.escape-svg(form-select.$form-select-indicator-success)};
   --form-select-indicator-error: #{b.escape-svg(form-select.$form-select-indicator-error)};
 
-  @include utilities.focus-style('', 'true');
+  @include utilities.focus-style {
+    box-shadow: none;
+  }
 
   &:not(:disabled) {
     &:hover {

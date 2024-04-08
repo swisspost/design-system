@@ -112,7 +112,6 @@
 
     &:focus {
       border-color: form-validation.$form-feedback-invalid-color;
-      box-shadow: form-validation.$form-feedback-invalid-box-shadow;
     }
   }
 
@@ -130,7 +129,6 @@
 
     &:focus {
       border-color: form-validation.$form-feedback-valid-color;
-      box-shadow: form-validation.$form-feedback-valid-box-shadow;
     }
   }
 
@@ -158,10 +156,6 @@
 .form-check-input {
   @include form-validation-mx.form-validation-state-selector(invalid) {
     border-color: form-validation.$form-feedback-invalid-color;
-
-    &:focus {
-      box-shadow: form-validation.$form-feedback-invalid-box-shadow;
-    }
 
     ~ .form-check-label {
       color: form-validation.$form-feedback-invalid-color;

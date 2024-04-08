@@ -120,11 +120,11 @@ $webkit-thumb-width: 32px;
     forced-color-adjust: none;
 
     &::-webkit-slider-thumb {
-      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw SelectedItem !important;
+      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
     }
 
     &::-moz-range-progress {
-      background-color: SelectedItem !important;
+      background-color: Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
     }
 
     &:not(:disabled, .disabled) {

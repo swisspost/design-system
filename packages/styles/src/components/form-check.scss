@@ -62,7 +62,7 @@
 
     &:checked {
       @include utility-mx.high-contrast-mode {
-        border-color: SelectedItem !important;
+        border-color: Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
       }
     }
 
@@ -88,9 +88,9 @@
       &:checked,
       &:indeterminate {
         @include utility-mx.high-contrast-mode {
-          background-color: SelectedItem !important;
-          border-color: SelectedItem !important;
-          color: SelectedItemText !important; // Important is needed for card-control
+          background-color: Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
+          border-color: Highlight !important;
+          color: HighlightText !important; // Important is needed for card-control
         }
       }
     }
@@ -105,7 +105,7 @@
         background-clip: padding-box;
 
         @include utility-mx.high-contrast-mode {
-          background-color: SelectedItem;
+          background-color: Highlight;
           border-color: Canvas;
         }
       }
@@ -179,8 +179,7 @@
       border: form-check.$form-check-input-border-width solid CanvasText;
 
       &:checked {
-        background-color: SelectedItem !important;
-        border-color: SelectedItem !important;
+        background-color: Highlight !important;
       }
 
       &::after,
