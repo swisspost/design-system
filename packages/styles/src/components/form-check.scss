@@ -118,14 +118,26 @@
 
     &[disabled] {
       border: 0;
-      background-image: url('#{form-check.$form-check-input-disabled-background-url-light}');
+      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
 
       @include color-mx.on-dark-background {
-        background-image: url('#{form-check.$form-check-input-disabled-background-url-dark}');
+        background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-lg}');
       }
 
       @include utility-mx.high-contrast-mode {
-        background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm}') !important;
+        background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-lg}') !important;
+      }
+
+      .form-check-sm & {
+        background-image: url('#{form-check.$form-check-input-disabled-background-url-light-sm}');
+
+        @include color-mx.on-dark-background {
+          background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-sm}');
+        }
+
+        @include utility-mx.high-contrast-mode {
+          background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-sm}') !important;
+        }
       }
     }
 
