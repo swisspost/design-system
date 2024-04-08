@@ -11,6 +11,7 @@ const meta: MetaComponent = {
   id: '516917c9-ad12-484c-8bbd-e270e412f713',
   title: 'Components/Tag',
   component: 'post-tag',
+  render: renderPostTag,
   tags: ['package:WebComponents'],
   args: {
     'variant': 'null',
@@ -49,20 +50,27 @@ const meta: MetaComponent = {
 
 export default meta;
 
+// RENDERER
+function renderPostTag(args: Args) {
+  return html`
+    <post-tag
+      variant="${args.variant === 'null' ? nothing : args.variant}"
+      size="${args.size === 'null' ? nothing : args.size}"
+      icon="${args.icon || nothing}"
+      text="${args['slots-default'] ? nothing : args.text}"
+      >${unsafeHTML(args['slots-default'])}</post-tag
+    >
+  `;
+}
+
 type Story = StoryObj;
 
-export const Default: Story = {
-  render: (args: Args) => {
-    return html`
-      <post-tag
-        variant="${args.variant === 'null' ? nothing : args.variant}"
-        size="${args.size === 'null' ? nothing : args.size}"
-        icon="${args.icon || nothing}"
-        text="${args['slots-default'] ? nothing : args.text}"
-        >${unsafeHTML(args['slots-default'])}</post-tag
-      >
-    `;
-  },
+export const Default: Story = {};
+
+export const Icon: Story = {
+  args: {
+    icon: 1001
+  }
 };
 
 export const Variants: Story = {
@@ -75,13 +83,12 @@ export const Variants: Story = {
 
     return html`
       ${variants.map(variant =>
-        Default.render?.(
+        renderPostTag(
           {
             ...args,
             variant,
             "slots-default": variant.charAt(0).toUpperCase() + variant.slice(1),
           },
-          context,
         ),
       )}
     `;

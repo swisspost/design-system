@@ -112,6 +112,12 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
+export const Icon: Story = {
+  args: {
+    showIcon: true
+  }
+};
+
 export const Variants: Story = {
   decorators: [
     (story: StoryFn, context: StoryContext) =>
