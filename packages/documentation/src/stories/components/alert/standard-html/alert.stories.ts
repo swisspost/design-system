@@ -5,6 +5,7 @@ import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getAlertClasses } from './getAlertClasses';
 import { MetaComponent } from '../../../../../types';
+import { getComponentFigmaLink } from '../../../../utils';
 
 const meta: MetaComponent = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
@@ -16,6 +17,10 @@ const meta: MetaComponent = {
     badges: [],
     controls: {
       exclude: ['Title', 'Content'],
+    },
+    design: {
+      type: 'figma',
+      url: getComponentFigmaLink('17001-2244'),
     },
   },
   args: {

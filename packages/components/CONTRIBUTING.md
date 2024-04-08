@@ -20,10 +20,13 @@ To run the unit tests for the components, run:
 ```bash
 pnpm components:test
 ```
+
 ## Writing Components
 
 ### Generate a New Component
+
 To generate a new component, run:
+
 ```bash
 pnpm components:generate post-my-new-component
 ```
@@ -36,11 +39,13 @@ This project uses ESLint [@stencil-community/eslint-plugin](https://www.npmjs.co
 to enforce standardization of the components and their compliance with [Stencil Style Guide](https://stenciljs.com/docs/style-guide).
 
 To analyse your code and find problems, run:
+
 ```bash
 pnpm components:lint
 ```
 
 ### Use slots
+
 You can use [the `<slot>` HTML element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/slot) as a placeholder for any user-defined markup.
 
 If the component has only one slot, it should not have a `name` attribute.
@@ -50,6 +55,7 @@ When you need to access elements assigned to a given slot, use the `onSlotChange
 Parent components are not re-rendered if only their content changes.
 
 ### Validate Properties
+
 Properties, defined with the `@Prop` decorator, are custom attributes publicly exposed on the HTML element.
 To ensure that the value passed by the user matches what is expected, it is necessary to implement validation.
 
@@ -58,7 +64,13 @@ All property validators are available in the `src/utils/property-checkers` folde
 You can use these validators in a function decorated with the `@Watch` decorator to validate the value given to a prop every time it changes, as shown in the [Stencil documentation](https://stenciljs.com/docs/properties#prop-validation).
 Also make sure to call this function in the `connectedCallback` lifecycle hook so that the value is also validated when the component is initially rendered.
 
+### Prefix CustomEvents
+
+Events defined with the `@Event` decorator, are custom events, publicly exposed on the HTML element.
+To ensure that no build warnings or naming conflicts occur, it is necessary to prefix such events with `post` (e.g. `postChange`, `postToggle`, etc.).
+
 ### Write Component Styles
+
 Components that have a standard HTML variant have their styles defined in the `@swisspost/design-system-styles` package.
 It is sometimes possible to reuse these styles as-is but in many cases, the shadow DOM structure needs specific selectors.
 In these cases write custom CSS inside the component styles, using variables, mixins and functions from the styles package.
@@ -72,9 +84,13 @@ Document parts in Storybook as they are also exposed to the host document and pe
 Do not assume that any CSS from the styles package is actually present on the page.
 It should be possible to use the component package standalone.
 Therefore, if you're using CSS Custom Properties (CSS variables), which is highly encouraged, define fallback values for them:
+
 ```css
 :host {
-  --post-accordion-background-color: var(--post-accordion-background-color, #{accordion.$background-color});
+  --post-accordion-background-color: var(
+    --post-accordion-background-color,
+    #{accordion.$background-color}
+  );
 }
 ```
 

@@ -15,9 +15,9 @@
 
 ## Events
 
-| Event                | Description                                                                                          | Type                   |
-| -------------------- | ---------------------------------------------------------------------------------------------------- | ---------------------- |
-| `postPopoverToggled` | Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean | `CustomEvent<boolean>` |
+| Event        | Description                                                                                          | Type                   |
+| ------------ | ---------------------------------------------------------------------------------------------------- | ---------------------- |
+| `postToggle` | Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean | `CustomEvent<boolean>` |
 
 
 ## Methods

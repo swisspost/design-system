@@ -1,32 +1,41 @@
-import { useArgs } from '@storybook/preview-api';
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { mapClasses } from '../../../utils';
 import { MetaComponent } from '../../../../types';
+import backgroundColors from '../../../shared/background-colors.module.scss';
+import { coloredBackground } from '../../../shared/decorators/dark-background';
 
 const meta: MetaComponent = {
   id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',
   title: 'Components/Badge',
   tags: ['package:HTML'],
   render: renderBadge,
-  decorators: [externalControl],
-  parameters: {
-    badges: [],
-  },
+  decorators: [adaptiveBackground],
   args: {
-    text: 'Insigno',
-    size: 'default',
-    nestedBadge: false,
-    interactionType: 'none',
-    checked: false,
-    dismissed: false,
+    showNumber: true,
+    number: 1,
+    size: 'large',
   },
   argTypes: {
-    text: {
-      name: 'Text',
-      description: 'The text contained in the badge.',
+    showNumber: {
+      name: 'Show Number',
+      description: 'If `true`, the badge contains a number otherwise it is empty.',
       control: {
-        type: 'text',
+        type: 'boolean',
+      },
+      table: {
+        category: 'Content',
+      },
+    },
+    number: {
+      name: 'Number',
+      description: 'The number contained in the badge.',
+      if: {
+        arg: 'showNumber',
+        truthy: true,
+      },
+      control: {
+        type: 'number',
+        min: 0,
       },
       table: {
         category: 'Content',
@@ -35,70 +44,31 @@ const meta: MetaComponent = {
     size: {
       name: 'Size',
       description: 'The size of the badge.',
+      if: {
+        arg: 'showNumber',
+        truthy: true,
+      },
       control: {
         type: 'radio',
         labels: {
-          'default': 'Default',
+          'large': 'Large',
           'badge-sm': 'Small',
         },
       },
-      options: ['default', 'badge-sm'],
+      options: ['large', 'badge-sm'],
       table: {
         category: 'General',
       },
     },
-    nestedBadge: {
-      name: 'Nested Badge',
-      description: 'If `true`, a nested badge is displayed inside the main badge.',
+    background: {
+      name: 'Backround',
+      description: 'You can use the Background classes to color the cards',
       control: {
-        type: 'boolean',
+        type: 'select',
       },
+      options: Object.keys(backgroundColors),
       table: {
         category: 'General',
-      },
-    },
-    interactionType: {
-      name: 'Interaction Type',
-      description: 'Defines how the badge can be interacted with.',
-      control: {
-        type: 'inline-radio',
-        labels: {
-          none: 'None',
-          checkable: 'Checkable',
-          dismissible: 'Dismissible',
-        },
-      },
-      options: ['none', 'checkable', 'dismissible'],
-      table: {
-        category: 'Interactions',
-      },
-    },
-    checked: {
-      name: 'Checked',
-      description: 'If `true`, the badge is checked otherwise it is unchecked.',
-      if: {
-        arg: 'interactionType',
-        eq: 'checkable',
-      },
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Interactions',
-      },
-    },
-    dismissed: {
-      name: 'Dismissed',
-      description: 'If `true`, the badge is removed from the page otherwise it is displayed.',
-      if: {
-        arg: 'interactionType',
-        eq: 'dismissible',
-      },
-      control: {
-        type: 'boolean',
-      },
-      table: {
-        category: 'Interactions',
       },
     },
   },
@@ -107,89 +77,18 @@ const meta: MetaComponent = {
 export default meta;
 
 // DECORATORS
-function externalControl(story: any, { args }: StoryContext) {
-  const [_, updateArgs] = useArgs();
-
-  const button = html`
-    <a
-      href="#"
-      @click="${(e: Event) => {
-        e.preventDefault();
-        updateArgs({ dismissed: false });
-      }}"
-    >
-      Show badge
-    </a>
-  `;
-
-  return html` ${args.dismissed ? button : nothing} ${story()} `;
+function adaptiveBackground(story: StoryFn, context: StoryContext) {
+  const { args } = context;
+  const isLight = ['bg-white', 'bg-light', 'bg-gray'].includes(args.background as string);
+  return isLight ? coloredBackground(story, context, 'dark') : story(args, context);
 }
 
 // RENDERER
-function getDefaultContent(args: Args) {
+function renderBadge(args: Args) {
+  const sizingClass = args.showNumber && args.size !== 'large' ? ` ${args.size}` : '';
+  const bgClass = args.background && args.background !== 'bg-danger' ? ` ${args.background}` : '';
   return html`
-    <span>${args.text}</span>
-    ${args.nestedBadge ? html` <span class="badge">10</span> ` : nothing}
-  `;
-}
-
-function getCheckableContent(args: Args, updateArgs: (args: Args) => void, context: StoryContext) {
-  const checkboxId = `badge-example--${context.name.replace(/ /g, '-').toLowerCase()}`;
-  const labelClasses = mapClasses({
-    'badge-check-label': true,
-    [args.size]: args.size !== 'default',
-  });
-
-  const handleChange = (e: Event) => {
-    updateArgs({ checked: !args.checked });
-
-    if (document.activeElement === e.target) {
-      setTimeout(() => {
-        const element: HTMLInputElement | null = document.querySelector(`#${checkboxId}`);
-        if (element) element.focus();
-      }, 25);
-    }
-  };
-
-  return html`
-    <input
-      id="${checkboxId}"
-      class="badge-check-input"
-      type="checkbox"
-      ?checked="${args.checked}"
-      @change="${handleChange}"
-    />
-    <label class="${labelClasses}" for="${checkboxId}">${getDefaultContent(args)}</label>
-  `;
-}
-
-function getDismissButton(updateArgs: (args: Args) => void) {
-  return html`
-    <button class="btn-close" @click="${() => updateArgs({ dismissed: true })}">
-      <span class="visually-hidden">Forigi insignon</span>
-    </button>
-  `;
-}
-
-function renderBadge(args: Args, context: StoryContext) {
-  const [_, updateArgs] = useArgs();
-
-  if (args.dismissed) return html` ${nothing} `;
-
-  const isCheckable = args.interactionType === 'checkable';
-  const isDismissible = args.interactionType === 'dismissible';
-
-  const badgeClasses = mapClasses({
-    'badge': !isCheckable,
-    'badge-check': isCheckable,
-    [args.size]: args.size !== 'default' && !isCheckable,
-  });
-
-  return html`
-    <div class="${badgeClasses}">
-      ${isCheckable ? getCheckableContent(args, updateArgs, context) : getDefaultContent(args)}
-      ${isDismissible ? getDismissButton(updateArgs) : nothing}
-    </div>
+    <div class=${`badge${sizingClass}${bgClass}`}>${args.showNumber ? args.number : nothing}</div>
   `;
 }
 
@@ -198,26 +97,36 @@ type Story = StoryObj;
 
 export const Default: Story = {};
 
-export const Checkable: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Interaction Type'],
-    },
-  },
-  args: {
-    text: 'Kontrolebla Insigno',
-    interactionType: 'checkable',
-  },
+export const Colors: Story = {
+  render: args => html`
+    ${renderBadge({ ...args, background: 'bg-info' })}
+    ${renderBadge({ ...args, background: 'bg-success' })}
+    ${renderBadge({ ...args, background: 'bg-warning' })}
+    ${renderBadge({ ...args, background: 'bg-yellow' })}
+  `,
 };
 
-export const Dismissible: Story = {
-  parameters: {
-    controls: {
-      exclude: ['Interaction Type'],
-    },
-  },
-  args: {
-    text: 'Malakceptebla Insigno',
-    interactionType: 'dismissible',
-  },
+export const LargeNumber: Story = {
+  render: args => html`
+    ${renderBadge({ ...args, number: 256 })} ${renderBadge({ ...args, number: '+99' })}
+  `,
+};
+
+export const Position: Story = {
+  render: args => html`
+    <div class="chip">
+      Filter
+      <div class="badge bg-gray">1</div>
+    </div>
+
+    <div class="position-relative d-inline">
+      <post-icon name="2026" class="fs-large"></post-icon>
+      <div class="badge badge-sm position-absolute top-0 start-100 translate-middle">3</div>
+    </div>
+  `,
+  decorators: [
+    (story: StoryFn, { args, context }: StoryContext) => html`
+      <div class="d-flex gap-large">${story(args, context)}</div>
+    `,
+  ],
 };
