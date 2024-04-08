@@ -188,19 +188,6 @@
         // TODO: Replace rgba(color.$white, 0.8) with new white alpha color https://github.com/swisspost/design-system/issues/2716
         color: rgba(color.$white, 0.8);
       }
-
-      @include utility-mx.high-contrast-mode {
-        color: GrayText;
-
-        &:checked,
-        &:indeterminate {
-          background-color: Canvas;
-        }
-
-        &:checked::after {
-          background-color: GrayText;
-        }
-      }
     }
 
     .form-check-sm & {
