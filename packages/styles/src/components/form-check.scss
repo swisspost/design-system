@@ -115,29 +115,6 @@
       }
 
       &[disabled] {
-        &[type='checkbox'],
-        &[type='radio'] {
-          border-color: GrayText !important;
-        }
-
-        &[type='checkbox'] {
-          &:checked,
-          &:indeterminate {
-            @include utility-mx.high-contrast-mode {
-              background-color: Field !important;
-              color: GrayText !important;
-            }
-          }
-        }
-
-        &[type='radio'] {
-          &:checked::after {
-            @include utility-mx.high-contrast-mode {
-              background-color: GrayText;
-            }
-          }
-        }
-
         padding: spacing.$size-line; // Used to mimic border width because it is used in combination with background-clip: padding-box; to size the selected shape
         background-image: url('#{form-check.$form-check-input-radio-disabled-background-url-light}');
 
@@ -152,6 +129,29 @@
     }
 
     &[disabled] {
+      &[type='checkbox'],
+      &[type='radio'] {
+        border-color: GrayText !important;
+      }
+
+      &[type='checkbox'] {
+        &:checked,
+        &:indeterminate {
+          @include utility-mx.high-contrast-mode {
+            background-color: Field !important;
+            color: GrayText !important;
+          }
+        }
+      }
+
+      &[type='radio'] {
+        &:checked::after {
+          @include utility-mx.high-contrast-mode {
+            background-color: GrayText;
+          }
+        }
+      }
+
       border: 0;
       background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
 
