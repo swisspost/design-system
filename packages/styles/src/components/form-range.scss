@@ -14,11 +14,11 @@ $track-height: 4px;
 $webkit-progress-height-adjustment: 2px;
 $webkit-thumb-width: 32px;
 
-:has(> .form-range) {
+.form-range-wrapper {
   @include utilities.focus-style();
 }
 
-@supports not selector(:has(> .form-range)) {
+:not(.form-range-wrapper) > {
   .form-range {
     @include utilities.focus-style();
   }
@@ -120,11 +120,11 @@ $webkit-thumb-width: 32px;
     forced-color-adjust: none;
 
     &::-webkit-slider-thumb {
-      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw SelectedItem !important;
+      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
     }
 
     &::-moz-range-progress {
-      background-color: SelectedItem !important;
+      background-color: Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
     }
 
     &:not(:disabled, .disabled) {
@@ -145,13 +145,29 @@ $webkit-thumb-width: 32px;
         background-color: ButtonFace;
         border-color: ButtonText;
       }
+
+      &:hover {
+        &::-webkit-slider-thumb {
+          border-color: Highlight;
+        }
+
+        &::-moz-range-thumb {
+          border-color: Highlight;
+        }
+      }
     }
 
     &:disabled,
     &.disabled {
+      &::-moz-range-progress {
+        background-color: GrayText !important;
+      }
+
       &::-webkit-slider-thumb {
         background-color: ButtonFace;
         border-color: GrayText;
+
+        box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw GrayText !important;
       }
 
       &::-moz-range-thumb {

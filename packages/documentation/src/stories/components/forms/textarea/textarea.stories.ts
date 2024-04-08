@@ -191,9 +191,14 @@ ${args.textInside ?? nothing}</textarea
   `;
   if (args.floatingLabel) {
     return html`
-      <div class="form-floating">${[control, label, ...contextual].filter(el => el !== null)}</div>
+      <div class="form-control-wrapper form-floating">
+        ${[control, label, ...contextual].filter(el => el !== null)}
+      </div>
     `;
-  } else return html` ${[label, control, ...contextual].filter(el => el !== null)} `;
+  } else
+    return html`<div class="form-control-wrapper">
+      ${[label, control, ...contextual].filter(el => el !== null)}
+    </div>`;
 }
 
 export const Default: Story = {};

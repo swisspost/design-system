@@ -37,6 +37,11 @@
   }
 
   &-input {
+    &:not([disabled]),
+    &:not([disabled]) ~ .form-check-label {
+      cursor: pointer;
+    }
+
     @include utility-mx.focus-style-none();
 
     &:not([disabled]),
@@ -57,16 +62,18 @@
       border-color: FieldText; // For blink-browser as otherwise the default color (which is not a full color) will be converted to Highlight
     }
 
+    @include utility-mx.high-contrast-mode() {
+      &:not(:disabled) {
+        &:hover {
+          border-color: Highlight;
+        }
+      }
+    }
+
     &::after {
       content: '';
       display: block;
       flex: 1;
-    }
-
-    &:checked {
-      @include utility-mx.high-contrast-mode {
-        border-color: SelectedItem !important;
-      }
     }
 
     &:checked,
@@ -91,9 +98,33 @@
       &:checked,
       &:indeterminate {
         @include utility-mx.high-contrast-mode {
-          background-color: SelectedItem !important;
-          border-color: SelectedItem !important;
-          color: SelectedItemText !important; // Important is needed for card-control
+          background-color: Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
+          color: HighlightText !important; // Important is needed for card-control
+        }
+      }
+    }
+
+    &[disabled] {
+      &[type='checkbox'],
+      &[type='radio'] {
+        border-color: GrayText !important;
+      }
+
+      &[type='checkbox'] {
+        &:checked,
+        &:indeterminate {
+          @include utility-mx.high-contrast-mode {
+            background-color: Field !important;
+            color: GrayText !important;
+          }
+        }
+      }
+
+      &[type='radio'] {
+        &:checked::after {
+          @include utility-mx.high-contrast-mode {
+            background-color: GrayText;
+          }
         }
       }
     }
@@ -108,7 +139,7 @@
         background-clip: padding-box;
 
         @include utility-mx.high-contrast-mode {
-          background-color: SelectedItem;
+          background-color: Highlight;
           border-color: Canvas;
         }
       }
@@ -239,8 +270,7 @@
       border: form-check.$form-check-input-border-width solid CanvasText;
 
       &:checked {
-        background-color: SelectedItem !important;
-        border-color: SelectedItem !important;
+        background-color: Highlight !important;
       }
 
       &::after,
@@ -259,11 +289,25 @@
       &::after {
         border-color: form-check.$form-switch-disabled-border-color;
       }
+
+      @include utility-mx.high-contrast-mode {
+        &::after {
+          border-color: Field;
+        }
+
+        &:checked {
+          background-color: GrayText !important;
+        }
+      }
     }
   }
 
   &:hover > .form-check-input:not([disabled]) {
     background-color: rgba(var(--post-contrast-color-rgb), 0.1);
+
+    @include utility-mx.high-contrast-mode {
+      border-color: Highlight;
+    }
   }
 
   .form-check-label {

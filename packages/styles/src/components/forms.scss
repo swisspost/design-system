@@ -28,13 +28,50 @@ select.form-control-rg:not([size]):not([multiple]) {
   height: forms.$input-height-rg;
 }
 
+.form-control-wrapper {
+  @include utilities.focus-style;
+}
+
+:not(.form-control-wrapper) > {
+  .form-control {
+    @include utilities.focus-style;
+  }
+}
+
 .form-control {
   position: relative;
 
-  @include utilities.focus-style('', 'true');
+  &:focus {
+    box-shadow: none; // Override bootstrap
+
+    @include utilities.high-contrast-mode {
+      border-color: FieldText !important; // On blink browser valid and invalid border colors are converted to Highlight color
+    }
+  }
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      @include utilities.high-contrast-mode {
+        border-color: FieldText;
+      }
+    }
+
+    &:hover {
+      @include utilities.high-contrast-mode {
+        border-color: Highlight;
+      }
+    }
+  }
 
   &:disabled {
     color: forms.$input-disabled-color;
+
+    @include utilities.high-contrast-mode {
+      border-color: GrayText !important;
+      background-color: Field !important;
+      color: GrayText;
+    }
   }
 
   &[readonly]:not(:disabled) {
@@ -44,6 +81,13 @@ select.form-control-rg:not([size]):not([multiple]) {
 
   &[type='file'] {
     position: relative;
+
+    &:disabled {
+      @include utilities.high-contrast-mode {
+        color: GrayText; // Needed for the button on blink browser, even if we define it on .form-control:disabled
+        border-color: GrayText;
+      }
+    }
 
     &::file-selector-button {
       display: block;
