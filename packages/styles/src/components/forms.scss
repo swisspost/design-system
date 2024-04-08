@@ -43,6 +43,27 @@ select.form-control-rg:not([size]):not([multiple]) {
 
   &:focus {
     box-shadow: none; // Override bootstrap
+
+    @include utilities.high-contrast-mode {
+      border-color: FieldText !important; // On blink browser valid and invalid border colors are converted to Highlight color
+    }
+  }
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      border-color: var(--post-contrast-color);
+
+      @include utilities.high-contrast-mode {
+        border-color: FieldText;
+      }
+    }
+
+    &:hover {
+      @include utilities.high-contrast-mode {
+        border-color: Highlight;
+      }
+    }
   }
 
   &:disabled {

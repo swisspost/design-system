@@ -98,6 +98,10 @@
     outline-style: solid !important;
     border-radius: commons.$border-radius !important;
 
+    @include high-contrast-mode() {
+      outline-color: Highlight !important;
+    }
+
     // In case rules need to be slightly adjusted
     @content;
   }
@@ -107,6 +111,10 @@
     &:is(:focus-visible, :focus-within, .pretend-focus)#{$vendor-prefix} {
       outline-style: solid !important;
       border-radius: commons.$border-radius !important;
+
+      @include high-contrast-mode() {
+        outline-color: Highlight !important;
+      }
 
       // In case rules need to be slightly adjusted
       @content;
