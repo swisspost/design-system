@@ -28,11 +28,21 @@ select.form-control-rg:not([size]):not([multiple]) {
   height: forms.$input-height-rg;
 }
 
+.form-control-wrapper {
+  @include utilities.focus-style;
+}
+
+:not(.form-control-wrapper) > {
+  .form-control {
+    @include utilities.focus-style;
+  }
+}
+
 .form-control {
   position: relative;
 
-  @include utilities.focus-style {
-    box-shadow: none;
+  &:focus {
+    box-shadow: none; // Override bootstrap
   }
 
   &:disabled {

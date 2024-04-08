@@ -9,17 +9,28 @@
 @use './../variables/components/forms';
 @use './../variables/components/form-select' as form-select;
 
+.form-select-wrapper {
+  @include utilities.focus-style;
+}
+
+:not(.form-select-wrapper) > {
+  .form-select {
+    @include utilities.focus-style;
+  }
+}
+
 .form-select {
   --form-select-indicator: #{form-select.$form-select-indicator};
   --form-select-indicator-success: #{b.escape-svg(form-select.$form-select-indicator-success)};
   --form-select-indicator-error: #{b.escape-svg(form-select.$form-select-indicator-error)};
 
-  @include utilities.focus-style {
-    box-shadow: none;
+  &:focus {
+    box-shadow: none; // Override bootstrap
   }
 
   &:not(:disabled) {
-    &:hover {
+    &:hover,
+    &:focus {
       border-color: var(--post-contrast-color);
     }
   }

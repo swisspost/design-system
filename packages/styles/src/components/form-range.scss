@@ -14,11 +14,11 @@ $track-height: 4px;
 $webkit-progress-height-adjustment: 2px;
 $webkit-thumb-width: 32px;
 
-:has(> .form-range) {
+.form-range-wrapper {
   @include utilities.focus-style();
 }
 
-@supports not selector(:has(> .form-range)) {
+:not(.form-range-wrapper) > {
   .form-range {
     @include utilities.focus-style();
   }
