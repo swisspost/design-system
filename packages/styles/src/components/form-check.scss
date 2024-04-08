@@ -24,13 +24,6 @@
     margin-right: form-check.$form-check-inline-margin-right;
   }
 
-  &-input {
-    &:not([disabled]),
-    &:not([disabled]) ~ .form-check-label {
-      cursor: pointer;
-    }
-  }
-
   &-input,
   &-label {
     color: rgba(var(--post-contrast-color-rgb), 0.8);
@@ -43,6 +36,11 @@
   }
 
   &-input {
+    &:not([disabled]),
+    &:not([disabled]) ~ .form-check-label {
+      cursor: pointer;
+    }
+
     @include utility-mx.focus-style-none();
     display: inline-flex;
     flex: 0 auto;
