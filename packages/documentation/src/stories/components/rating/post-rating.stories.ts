@@ -16,10 +16,12 @@ const meta: MetaComponent = {
     },
   },
   args: {
-    label: undefined,
-    stars: undefined,
-    currentRating: undefined,
-    readonly: false,
+    'label': undefined,
+    'stars': undefined,
+    'currentRating': undefined,
+    'readonly': false,
+    'event-postInput': '',
+    'event-postChange': '',
   },
   argTypes: {
     stars: {

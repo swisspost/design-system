@@ -4,8 +4,9 @@ import { _templateAutoIcon } from './util/template.util';
 
 @customElement('migration-version-5-6')
 export class MigrationV56Component extends LitElement {
-  @property({ type: String }) environment: string = 'intranet';
-  @property({ type: Boolean }) angular: boolean = false;
+  @property({ type: Number }) currentVersion?: number;
+  @property({ type: String }) environment?: string;
+  @property({ type: Boolean }) angular?: boolean;
 
   createRenderRoot() {
     /**
@@ -15,18 +16,20 @@ export class MigrationV56Component extends LitElement {
   }
 
   render() {
-    return html`
-      <section>
-        <post-alert type="info">
-          <p slot="heading">
-            Be sure to update your application one major Design System version at a time.
-          </p>
-          <p>
-            If your project is currently using the @******/common-web-frontend package, start by
-            <a href="#migration-from-v4-to-v5">migrating to version 5</a>.
-          </p>
-        </post-alert>
+    if (!this.currentVersion || this.currentVersion > 5) return nothing;
 
+    return html`
+      <h2 id="migration-from-v5-to-v6" class="docs-autolink">
+        Migration from v5 to v6
+        <a
+          aria-hidden="true"
+          tabindex="-1"
+          href="http://localhost:9000/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs#migration-from-v5-to-v6"
+        >
+          <post-icon name="2037"></post-icon>
+        </a>
+      </h2>
+      <section>
         <ol class="bubble-tea">
           <li>
             <h3>Package Update 🩺</h3>
@@ -80,8 +83,7 @@ export class MigrationV56Component extends LitElement {
                 <li>
                   <h3>Automatic Migration ⚙️</h3>
                   <p>
-                    If you are migrating an Angular application, you can take advantage of our
-                    migration schematics.
+                    For Angular application, you can take advantage of our migration schematics.
                   </p>
                   <ol>
                     <li>Commit all the changes you have made so far</li>
