@@ -159,9 +159,15 @@ $webkit-thumb-width: 32px;
 
     &:disabled,
     &.disabled {
+      &::-moz-range-progress {
+        background-color: GrayText !important;
+      }
+
       &::-webkit-slider-thumb {
         background-color: ButtonFace;
         border-color: GrayText;
+
+        box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw GrayText !important;
       }
 
       &::-moz-range-thumb {

@@ -52,8 +52,6 @@ select.form-control-rg:not([size]):not([multiple]) {
   &:not(:disabled) {
     &:hover,
     &:focus {
-      border-color: var(--post-contrast-color);
-
       @include utilities.high-contrast-mode {
         border-color: FieldText;
       }
@@ -68,6 +66,12 @@ select.form-control-rg:not([size]):not([multiple]) {
 
   &:disabled {
     color: forms.$input-disabled-color;
+
+    @include utilities.high-contrast-mode {
+      border-color: GrayText !important;
+      background-color: Field !important;
+      color: GrayText;
+    }
   }
 
   &[readonly]:not(:disabled) {
@@ -77,6 +81,13 @@ select.form-control-rg:not([size]):not([multiple]) {
 
   &[type='file'] {
     position: relative;
+
+    &:disabled {
+      @include utilities.high-contrast-mode {
+        color: GrayText; // Needed for the button on blink browser, even if we define it on .form-control:disabled
+        border-color: GrayText;
+      }
+    }
 
     &::file-selector-button {
       display: block;

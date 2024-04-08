@@ -16,8 +16,6 @@
 
   @include utility-mx.focus-style();
 
-
-
   &-inline {
     display: inline-flex;
   }
@@ -26,14 +24,17 @@
     margin-right: form-check.$form-check-inline-margin-right;
   }
 
+  &-input {
+    &:not([disabled]),
+    &:not([disabled]) ~ .form-check-label {
+      cursor: pointer;
+    }
+  }
+
   &-input,
   &-label {
     color: rgba(var(--post-contrast-color-rgb), 0.8);
     transition: color animation.$transition-base-timing;
-
-    &:not([disabled]) {
-      cursor: pointer;
-    }
 
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ &-label {
@@ -94,6 +95,31 @@
         @include utility-mx.high-contrast-mode {
           background-color: Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
           color: HighlightText !important; // Important is needed for card-control
+        }
+      }
+    }
+
+    &[disabled] {
+      &[type='checkbox'],
+      &[type='radio'] {
+        border-color: GrayText !important;
+      }
+
+      &[type='checkbox'] {
+        &:checked,
+        &:indeterminate {
+          @include utility-mx.high-contrast-mode {
+            background-color: Field !important;
+            color: GrayText !important;
+          }
+        }
+      }
+
+      &[type='radio'] {
+        &:checked::after {
+          @include utility-mx.high-contrast-mode {
+            background-color: GrayText;
+          }
         }
       }
     }
@@ -200,6 +226,16 @@
 
       &::after {
         border-color: form-check.$form-switch-disabled-border-color;
+      }
+
+      @include utility-mx.high-contrast-mode {
+        &::after {
+          border-color: Field;
+        }
+
+        &:checked {
+          background-color: GrayText !important;
+        }
       }
     }
   }
