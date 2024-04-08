@@ -71,17 +71,15 @@ export const Variants: Story = {
       html`<div class="d-flex flex-wrap gap-3">${story(context.args, context)}</div>`,
   ],
   render: (args: Args, context: StoryContext) => {
-    const variants = Object.entries(context.argTypes.variant.control.labels).slice(1);
-    let icon = 1000;
+    const variants: string[] = context.argTypes.variant.options.slice(1);
 
     return html`
-      ${variants.map(([variant, text]) =>
+      ${variants.map(variant =>
         Default.render?.(
           {
             ...args,
             variant,
-            icon: (icon++).toString(),
-            text,
+            "slots-default": variant.charAt(0).toUpperCase() + variant.slice(1),
           },
           context,
         ),
