@@ -23,9 +23,9 @@
     "linkDirectory": true
   },
   "scripts": {
-    "dev": "stencil build --port 9200 --serve --watch",
-    "start": "stencil build --watch",
-    "build": "stencil build",
+    "dev": "stencil build --port 9200 --serve --watch --docs-readme",
+    "start": "stencil build --watch --docs-readme",
+    "build": "stencil build --docs-readme",
     "clean": "rimraf www dist loader",
     "test": "pnpm run unit",
     "unit": "stencil test --spec",
