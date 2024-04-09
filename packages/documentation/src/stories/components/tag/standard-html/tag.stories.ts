@@ -92,11 +92,7 @@ export default meta;
 
 // RENDERER
 function renderTag(args: Args) {
-  const classes = [
-    'tag',
-    args.variant === 'null' ? args.variant : `tag-${args.variant}`,
-    args.size,
-  ]
+  const classes = ['tag', args.variant === 'null' ? args.variant : `tag-${args.variant}`, args.size]
     .filter(c => c !== 'null')
     .join(' ');
 
@@ -114,8 +110,8 @@ export const Default: Story = {};
 
 export const Icon: Story = {
   args: {
-    showIcon: true
-  }
+    showIcon: true,
+  },
 };
 
 export const Variants: Story = {
@@ -125,7 +121,6 @@ export const Variants: Story = {
   ],
   render: (args: Args, context: StoryContext) => {
     const variants: string[] = context.argTypes.variant.options.slice(1);
-    let icon = 1000;
 
     return html`${variants.map(variant =>
       renderTag({ ...args, variant, markup: variant.charAt(0).toUpperCase() + variant.slice(1) }),
