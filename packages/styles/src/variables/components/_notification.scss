@@ -73,6 +73,7 @@ $notification-variants: () !default;
 $notification-variants: list.join(
   $notification-variants,
   (
+    // When changed, check $notification-variants as well in packages/styles/src/variables/_color.scss
     'primary' color.$primary 3134,
     'success' color.$success 2105,
     'warning' color.$warning 2104,
