@@ -116,8 +116,8 @@ export class MigrationV67Component extends LitElement {
               <ul>
                 <li class="mb-3">
                   <p>
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed the following
-                    <em>color</em> variables:
+                    Removed the following <em>color</em> variables
+                    <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
                     <li><code>$success-green</code></li>
@@ -133,28 +133,28 @@ export class MigrationV67Component extends LitElement {
                 </li>
                 <li class="mb-3">
                   <p>
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed the Sass map
-                    <code>$contextual-colors</code>.
+                    Removed the Sass map <code>$contextual-colors</code>
+                    <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <p class="info">Instead use the map <code>$signal-colors</code>.</p>
                 </li>
                 <li class="mb-3">
                   <p>
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed the Sass variable
-                    <code>$gray-background-light</code>.
+                    Removed the Sass variable <code>$gray-background-light</code>
+                    <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <p class="info">Instead use the variable <code>$light</code>.</p>
                 </li>
                 <li class="mb-3">
                   <p>
-                    <span class="tag tag-sm tag-danger">breaking</span> Renamed the Sass variable
-                    <code>$gray-background</code> to <code>$gray</code>.
+                    Renamed the Sass variable <code>$gray-background</code> to <code>$gray</code>
+                    <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                 </li>
                 <li class="mb-3">
                   <p>
-                    <span class="tag tag-sm tag-danger">breaking</span> Removed the following
-                    classes out of the <em>background-utilities</em>:
+                    Removed the following classes out of the <em>background-utilities</em>
+                    <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
                     <li><code>.bg-success-green</code></li>
@@ -176,9 +176,9 @@ export class MigrationV67Component extends LitElement {
               <ul>
                 <li class="mb-3">
                   <p>
-                    <span class="tag tag-sm tag-danger">Breaking</span> Updated the package entry
-                    file paths within the <em>package.json</em> to the paths, recommended by
-                    stencil:
+                    Updated the package entry file paths within the <em>package.json</em> to the
+                    paths, recommended by stencil
+                    <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
                     <li>
@@ -203,8 +203,8 @@ export class MigrationV67Component extends LitElement {
                 </li>
                 <li class="mb-3">
                   <p>
-                    <span class="tag tag-sm tag-danger">Breaking</span> Renamed all
-                    <em>custom-events</em> in our existing web-components.
+                    Renamed all <em>custom-events</em> in our existing web-components
+                    <span class="tag tag-sm tag-danger">breaking</span>
                   </p>
                   <ul>
                     <li>
