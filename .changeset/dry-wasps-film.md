@@ -3,4 +3,7 @@
 '@swisspost/design-system-documentation': patch
 ---
 
-Restricted the badge to showing counts only and updated the styles accordingly.
+Restricted badges to showcase counts exclusively and adjusted the styles accordingly.
+
+Use tags to display states, properties, or other metadata.
+Opt for chips when presenting dismissible or selectable information.
