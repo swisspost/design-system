@@ -5,6 +5,7 @@
 '@swisspost/design-system-demo': patch
 ---
 
+Updated Sass color variables:
 - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
   Instead use the variables `$success`, `$error`, `$warning`, `$error` and the Sass map `$signal-colors`.
 - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
