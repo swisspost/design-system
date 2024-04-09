@@ -73,12 +73,13 @@ $notification-variants: () !default;
 $notification-variants: list.join(
   $notification-variants,
   (
-    'primary' color.$gray-80 3134,
-    'success' color.$success-green 2105,
-    'danger' color.$error 2104,
+    // When changed, check $notification-variants as well in packages/styles/src/variables/_color.scss
+    'primary' color.$primary 3134,
+    'success' color.$success 2105,
     'warning' color.$warning 2104,
+    'danger' color.$error 2104,
     'info' color.$info 2106,
-    'gray' color.$gray-background 2201,
+    'gray' color.$gray 2201,
     // deprecated
     'notification' color.$gray-80 3134,
     'error' color.$error 2104

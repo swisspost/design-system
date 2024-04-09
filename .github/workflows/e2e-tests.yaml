@@ -25,7 +25,7 @@ jobs:
           use_cache: false
 
       - name: Cache cypress
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: /home/runner/.cache/Cypress
           key: ${{ runner.os }}-cypress-${{ hashFiles('./pnpm-lock.yaml') }}
@@ -34,6 +34,12 @@ jobs:
       - name: Install & build dependencies
         run: pnpm bootstrap
 
+      - name: Prepare Cypress – Spawn Xvfb server
+        run: Xvfb :99 &
+
+      - name: Prepare Cypress – Share Xvfb server as environment variable
+        run: export DISPLAY=:99
+
       - name: Cypress info
         run: pnpm --filter design-system-documentation exec cypress info
 
@@ -41,7 +47,7 @@ jobs:
         run: pnpm e2e:ci
 
       - name: Upload screenshots
-        uses: actions/upload-artifact@v4.3.0
+        uses: actions/upload-artifact@v4.3.1
         if: failure()
         with:
           name: cypress-snapshots

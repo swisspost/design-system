@@ -9,7 +9,7 @@
   align-items: center;
   gap: badge.$badge-gap;
   padding: $badge-padding-y $badge-padding-x;
-  border: badge.$badge-border-width solid badge.$badge-border-color;
+  border: badge.$badge-border;
   height: badge.$badge-height;
   font-size: badge.$badge-font-size;
   font-weight: $badge-font-weight;

@@ -52,7 +52,7 @@ export class PostPopovercontainer {
   /**
    * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
    */
-  @Event() postPopoverToggled: EventEmitter<boolean>;
+  @Event() postToggle: EventEmitter<boolean>;
 
   /**
    * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
@@ -135,7 +135,7 @@ export class PostPopovercontainer {
     } else {
       if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
     }
-    this.postPopoverToggled.emit(isOpen);
+    this.postToggle.emit(isOpen);
   }
 
   /**

@@ -19,6 +19,7 @@
 // light background variables
 %color-background-light-variables {
   --post-contrast-color: #{color.$black};
+  --post-focus-color: #{color.$focus-light};
   --post-contrast-color-inverted: #{color.$white};
 
   @each $name, $color in color.$post-grays {
@@ -37,6 +38,14 @@
     --post-#{$name}-rgb: #{color-fn.rgb-values($color)};
   }
 
+  @each $name, $color in color.$post-black-alphas {
+    --post-black-#{$name}-rgba: #{$color};
+  }
+
+  @each $name, $color in color.$post-white-alphas {
+    --post-white-#{$name}-rgba: #{$color};
+  }
+
   @each $name, $color in color.$background-colors {
     --post-#{$name}-rgb: #{color-fn.rgb-values($color)};
   }
@@ -45,6 +54,7 @@
 // dark background variables
 %color-background-dark-variables {
   --post-contrast-color: #{color.$white};
+  --post-focus-color: #{color.$white};
   --post-contrast-color-inverted: #{color.$black};
   --post-dark: #{color.$light};
   --post-light: #{color.$dark};

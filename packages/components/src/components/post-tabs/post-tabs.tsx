@@ -36,7 +36,7 @@ export class PostTabs {
    * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished.
    * The payload is the name of the newly shown panel.
    */
-  @Event() tabChange: EventEmitter<HTMLPostTabPanelElement['name']>;
+  @Event() postChange: EventEmitter<HTMLPostTabPanelElement['name']>;
 
   componentDidLoad() {
     this.moveMisplacedTabs();
@@ -88,7 +88,7 @@ export class PostTabs {
       await this.showing.finished;
     }
 
-    this.tabChange.emit(this.activeTab.panel);
+    this.postChange.emit(this.activeTab.panel);
   }
 
   private moveMisplacedTabs() {
@@ -106,17 +106,22 @@ export class PostTabs {
     this.tabs.forEach(async tab => {
       await tab.componentOnReady();
 
-      const tabTitle = tab.shadowRoot.querySelector('.tab-title');
-
       // if the tab has an "aria-controls" attribute it was already linked to its panel: do nothing
-      if (tabTitle.getAttribute('aria-controls')) return;
+      if (tab.getAttribute('aria-controls')) return;
 
-      const tabPanel = this.getPanel(tab.panel).shadowRoot.querySelector('.tab-pane');
-      tabTitle.setAttribute('aria-controls', tabPanel.id);
-      tabPanel.setAttribute('aria-labelledby', tabTitle.id);
+      const tabPanel = this.getPanel(tab.panel);
+      tab.setAttribute('aria-controls', tabPanel.id);
+      tabPanel.setAttribute('aria-labelledby', tab.id);
 
       tab.addEventListener('click', () => {
         void this.show(tab.panel);
+      });
+
+      tab.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          void this.show(tab.panel);
+        }
       });
 
       tab.addEventListener('keydown', ({ key }) => {
@@ -132,16 +137,14 @@ export class PostTabs {
 
   private activateTab(tab: HTMLPostTabHeaderElement) {
     if (this.activeTab) {
-      const tabTitle = this.activeTab.shadowRoot.querySelector('.tab-title');
-      tabTitle.setAttribute('aria-selected', 'false');
-      tabTitle.setAttribute('tabindex', '-1');
-      tabTitle.classList.remove('active');
+      this.activeTab.setAttribute('aria-selected', 'false');
+      this.activeTab.setAttribute('tabindex', '-1');
+      this.activeTab.classList.remove('active');
     }
 
-    const tabTitle = tab.shadowRoot.querySelector('.tab-title');
-    tabTitle.setAttribute('aria-selected', 'true');
-    tabTitle.removeAttribute('tabindex');
-    tabTitle.classList.add('active');
+    tab.setAttribute('aria-selected', 'true');
+    tab.setAttribute('tabindex', '0');
+    tab.classList.add('active');
 
     this.activeTab = tab;
   }
@@ -187,8 +190,7 @@ export class PostTabs {
 
     if (!nextTab) return;
 
-    const nextTabTitle = nextTab.shadowRoot.querySelector('.tab-title') as HTMLAnchorElement;
-    nextTabTitle.focus();
+    nextTab.focus();
   }
 
   render() {

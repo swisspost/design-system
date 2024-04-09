@@ -1,5 +1,6 @@
 import { Config } from '@stencil/core';
 import { sass } from '@stencil/sass';
+import postcss from 'rollup-plugin-postcss';
 import { reactOutputTarget } from '@stencil/react-output-target';
 import { angularOutputTarget } from '@stencil/angular-output-target';
 import { angularValueAccessorBindings } from './.config/bindings.angular';
@@ -10,6 +11,7 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
+      empty: false,
       esmLoaderPath: '../loader',
     },
     {
@@ -50,6 +52,20 @@ export const config: Config = {
       includePaths: ['node_modules'],
     }),
   ],
+  rollupPlugins: {
+    before: [
+      postcss({
+        modules: true,
+        use: {
+          sass: {
+            includePaths: ['node_modules'],
+          },
+          stylus: false,
+          less: false,
+        },
+      }),
+    ],
+  },
   testing: {
     testPathIgnorePatterns: [
       '<rootDir>/dist/',

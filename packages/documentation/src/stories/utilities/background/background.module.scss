@@ -1,22 +1,16 @@
 @use 'sass:map';
 @use '@swisspost/design-system-styles/core' as post;
 
+$non-base-background-colors: ();
+$non-base-background-colors: map.merge($non-base-background-colors, post.$signal-colors);
+$non-base-background-colors: map.merge($non-base-background-colors, post.$signal-background-colors);
+$non-base-background-colors: map.merge($non-base-background-colors, post.$accent-colors);
+
 :export {
   @each $color, $value in post.$background-colors {
-    @if (
-      map.has-key(post.$contextual-colors, $color) ==
-        false and
-        map.has-key(post.$accent-colors, $color) ==
-        false and
-        map.has-key(post.$signal-colors, $color) ==
-        false
-    ) {
+    @if (map.has-key($non-base-background-colors, $color) == false) {
       base_#{$color}: $value;
     }
-  }
-
-  @each $color, $value in post.$contextual-colors {
-    contextual_#{$color}: $value;
   }
 
   @each $color, $value in post.$accent-colors {
@@ -25,5 +19,9 @@
 
   @each $color, $value in post.$signal-colors {
     signal_#{$color}: $value;
+  }
+
+  @each $color, $value in post.$signal-background-colors {
+    signal-background_#{$color}: $value;
   }
 }
