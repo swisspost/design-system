@@ -24,8 +24,8 @@
   }
 
   @include utilities.high-contrast-mode() {
-    background-color: Highlight; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
-    color: HighlightText;
+    background-color: SelectedItem;
+    color: SelectedItemText;
     forced-color-adjust: none; // Disable "readability backplate" on blink browser that interferes with the colors on this case
   }
 }

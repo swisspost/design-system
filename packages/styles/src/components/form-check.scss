@@ -91,8 +91,8 @@
       &:checked,
       &:indeterminate {
         @include utility-mx.high-contrast-mode {
-          background-color: Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
-          color: HighlightText !important; // Important is needed for card-control
+          background-color: SelectedItem !important;
+          color: SelectedItemText !important; // Important is needed for card-control
         }
       }
     }
@@ -132,7 +132,7 @@
         background-clip: padding-box;
 
         @include utility-mx.high-contrast-mode {
-          background-color: Highlight;
+          background-color: SelectedItem;
           border-color: Canvas;
         }
       }
@@ -206,7 +206,7 @@
       border: form-check.$form-check-input-border-width solid CanvasText;
 
       &:checked {
-        background-color: Highlight !important;
+        background-color: SelectedItem !important;
       }
 
       &::after,
