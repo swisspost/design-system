@@ -1,12 +1,12 @@
 import { useArgs } from '@storybook/preview-api';
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '../../../../../types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { parse } from '../../../utils/sass-export';
+import { parse } from '../../../../utils/sass-export';
 import './card-control.styles.scss';
 import scss from './card-control.module.scss';
-import { coloredBackground } from '../../../shared/decorators/dark-background';
+import { coloredBackground } from '../../../../shared/decorators/dark-background';
 
 const SCSS_VARIABLES: any = parse(scss);
 
@@ -15,6 +15,13 @@ const meta: MetaComponent = {
   title: 'Components/Forms/Card-Control',
   component: 'post-card-control',
   tags: ['package:WebComponents'],
+  parameters: {
+    badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=22630-6854&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
+  },
   args: {
     'label': 'Label',
     'description': '',

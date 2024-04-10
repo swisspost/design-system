@@ -14,6 +14,10 @@ const meta: MetaComponent = {
     controls: {
       exclude: ['Custom Header', 'Custom Body', 'Custom Footer'],
     },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21462-3684&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     showImage: true,

@@ -344,6 +344,9 @@ importers:
       '@swisspost/design-system-intranet-header':
         specifier: workspace:5.0.11
         version: link:../intranet-header-workspace/dist/intranet-header
+      '@swisspost/design-system-migrations':
+        specifier: workspace:1.0.2
+        version: link:../migrations
       '@swisspost/design-system-styles':
         specifier: workspace:6.6.4
         version: link:../styles/dist

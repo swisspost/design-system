@@ -10,6 +10,10 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
   component: 'post-accordion',
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=17964-20698&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     multiple: false,

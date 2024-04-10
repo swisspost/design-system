@@ -4,7 +4,7 @@ import { customElement, property } from 'lit/decorators.js';
 import { getTitleFromPath } from '../../utils';
 import { ModuleExport } from '@storybook/types';
 
-interface DesignParameter {
+export interface DesignParameter {
   type: 'figma';
   url: string;
 }

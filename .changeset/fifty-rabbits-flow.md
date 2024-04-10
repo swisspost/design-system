@@ -8,7 +8,7 @@
 '@swisspost/design-system-intranet-header': major
 ---
 
-Syncing versions of the following packages:
+Synchronized the versions of the following packages:
 
 - @swisspost/design-system-styles
 - @swisspost/design-system-components

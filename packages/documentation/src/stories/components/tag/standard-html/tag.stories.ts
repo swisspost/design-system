@@ -12,6 +12,12 @@ const meta: MetaComponent = {
   title: 'Components/Tag',
   tags: ['package:HTML'],
   render: renderTag,
+  parameters: {
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18807-68180&mode=design&t=PR2ZnqAacaK7UiXP-4',
+    },
+  },
   args: {
     variant: 'null',
     size: 'null',
