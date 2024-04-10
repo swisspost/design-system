@@ -4,7 +4,13 @@ import * as FooterStories from './footer.stories';
 <Meta of={FooterStories} />
 
 <div className="container">
-  <h1>Footer</h1>
+  <div className="docs-title">
+    # Footer
+
+    <nav>
+      <link-design of={JSON.stringify(FooterStories)}></link-design>
+    </nav>
+  </div>
   <div className="lead">
     Provides key app-wide information such as contact details and legal links.
   </div>
