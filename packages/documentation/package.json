@@ -73,17 +73,5 @@
     "sass": "1.74.1",
     "storybook": "7.6.17",
     "typescript": "5.3.3"
-  },
-  "peerDependencies": {
-    "@swisspost/design-system-components-angular": "workspace:2.0.0",
-    "@swisspost/design-system-intranet-header": "workspace:5.0.11"
-  },
-  "peerDependenciesMeta": {
-    "@swisspost/design-system-components-angular": {
-      "optional": true
-    },
-    "@swisspost/design-system-intranet-header": {
-      "optional": true
-    }
   }
 }
