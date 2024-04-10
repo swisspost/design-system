@@ -121,7 +121,7 @@ const meta: MetaComponent = {
     },
     animated: {
       name: 'Animated',
-      description: 'Sets an animates on hover.',
+      description: 'Sets an animation on hover.',
       if: {
         arg: 'icon',
         eq: 'null',
