@@ -181,7 +181,7 @@ describe('Card-Control', () => {
 
       cy.get('@input').type(' ').should('be.checked');
       cy.get('@wrapper').should('have.class', 'is-checked');
-      cy.get('@input').blur().type(' ').should('not.be.checked');
+      cy.get('@input').focus().type(' ').should('not.be.checked');
       cy.get('@wrapper').should('not.have.class', 'is-checked');
     });
 
@@ -235,7 +235,7 @@ describe('Card-Control', () => {
           expect(inputEventCallCount).to.eq(3);
           expect(changeEventCallCount).to.eq(3);
         })
-        .blur()
+        .focus()
         .type(' ')
         .then(() => {
           expect(inputEventCallCount).to.eq(4);
@@ -309,6 +309,7 @@ describe('Card-Control', () => {
       cy.get('@card-control').find('.card-control--icon').as('icon');
       cy.get('@card-control').find('.card-control--icon slot[name="icon"]').as('slotIcon');
     });
+
     it('should update surrounding form when toggled', () => {
       cy.get('@form').then($form => {
         cy.get('@wrapper').click();
@@ -318,7 +319,7 @@ describe('Card-Control', () => {
 
         cy.get('@input').type(' ');
         cy.checkFormDataPropValue($form, 'CardControl', 'on');
-        cy.get('@input').blur().type(' ');
+        cy.get('@input').focus().type(' ');
         cy.checkFormDataPropValue($form, 'CardControl', null);
       });
     });
