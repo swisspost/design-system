@@ -29,6 +29,10 @@
     color: rgba(var(--post-contrast-color-rgb), 0.8);
     transition: color animation.$transition-base-timing;
 
+    @include utility-mx.high-contrast-mode {
+      transition: none;
+    }
+
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ &-label {
       color: var(--post-contrast-color);
@@ -73,6 +77,10 @@
     &:indeterminate {
       color: var(--post-contrast-color);
       border-color: var(--post-contrast-color);
+
+      @include utility-mx.high-contrast-mode {
+        border-color: FieldText; // Firefox need explicit declaration here
+      }
 
       ~ .form-check-label {
         color: var(--post-contrast-color);
