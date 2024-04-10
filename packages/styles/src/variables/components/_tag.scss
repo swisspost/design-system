@@ -16,7 +16,7 @@ $tag-icon-size: $tag-font-size * 1.25;
 $tag-sm-line-height: spacing.$size-large;
 $tag-sm-icon-size: $tag-font-size;
 
-$tag-background: color.$gray-10;
+$tag-default-background: color.$gray-10;
 $tag-backgrounds: (
   'white': color.$white,
   'yellow': color.$yellow,
