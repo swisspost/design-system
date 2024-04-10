@@ -1,6 +1,7 @@
 @forward './../variables/options';
 
 @use '../variables/color';
+@use '../variables/commons';
 @use '../variables/type';
 @use '../variables/spacing';
 @use '../variables/animation';
@@ -14,7 +15,9 @@
   row-gap: form-check.$form-check-row-gap;
   margin-bottom: form-check.$form-check-margin-bottom;
 
-  @include utility-mx.focus-style();
+  @include utility-mx.focus-style() {
+    border-radius: commons.$border-radius;
+  }
 
   &-inline {
     display: inline-flex;

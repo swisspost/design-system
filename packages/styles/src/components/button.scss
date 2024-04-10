@@ -5,6 +5,7 @@
 
 @use './../variables/components/button';
 @use './../variables/color';
+@use './../variables/commons';
 @use './../variables/type';
 @use './../variables/spacing';
 @use './../mixins/color' as color-mx;
@@ -18,7 +19,9 @@
 
 .btn {
   @include button-mx.button-size();
-  @include utilities.focus-style();
+  @include utilities.focus-style() {
+    border-radius: commons.$border-radius;
+  }
 
   // Resets
   display: inline-flex;
