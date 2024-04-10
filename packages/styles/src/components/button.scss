@@ -135,7 +135,7 @@
 
 // Animated
 .btn-animated,
-.btn-animated-left {
+.btn-animated-start {
   &:not(.btn-link, .btn-tertiary) {
     &::after {
       content: '';
