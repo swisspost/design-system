@@ -6,8 +6,9 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { parse } from '../../../utils/sass-export';
 import './card-control.styles.scss';
 import scss from './card-control.module.scss';
+import { coloredBackground } from '../../../shared/decorators/dark-background';
 
-const SCSS_VARIABLES: { [key: string]: string } = parse(scss);
+const SCSS_VARIABLES: any = parse(scss);
 
 const meta: MetaComponent = {
   id: '886fabcf-148b-4054-a2ec-4869668294fb',
@@ -26,6 +27,8 @@ const meta: MetaComponent = {
     'icon': '',
     'slots-default': '',
     'slots-icon': '',
+    'event-postInput': '',
+    'event-postChange': '',
   },
   argTypes: {
     'type': {
@@ -97,8 +100,8 @@ export const Default: Story = {
         disabled="${args.disabled || nothing}"
         validity="${args.validity !== 'null' ? args.validity : nothing}"
         icon="${args.icon || nothing}"
-        @input="${(e: any) => updateArgs({ checked: e.detail.state })}"
-        @change="${(e: any) => updateArgs({ checked: e.detail.state })}"
+        @input="${(e: CustomEvent) => updateArgs({ checked: e.detail.state })}"
+        @change="${(e: CustomEvent) => updateArgs({ checked: e.detail.state })}"
       >
         ${args['slots-default'] ? content : null} ${args['slots-icon'] ? icon : null}
       </post-card-control>
@@ -114,15 +117,7 @@ export const DarkBackground: Story = {
       },
     },
   },
-  decorators: [
-    (story, context) =>
-      html`<div
-        class="bg-${context.args.background}"
-        style="margin: -40px -30px; padding: 40px 30px;"
-      >
-        ${story()}
-      </div>`,
-  ],
+  decorators: [(story, context) => coloredBackground(story, context, context.args.background)],
   args: {
     background: 'dark',
     icon: '1001',

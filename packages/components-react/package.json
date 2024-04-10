@@ -22,9 +22,9 @@
     "@swisspost/design-system-components": "workspace:2.1.0"
   },
   "devDependencies": {
-    "@types/node": "18.19.14",
-    "@types/react": "18.2.71",
-    "@types/react-dom": "18.2.22",
+    "@types/node": "18.19.28",
+    "@types/react": "18.2.74",
+    "@types/react-dom": "18.2.24",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
     "eslint": "8.57.0",

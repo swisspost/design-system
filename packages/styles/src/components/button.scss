@@ -248,7 +248,7 @@
   @include button-mx.button-color-variant($name, $color);
 }
 
-// Intranet contextual buttons
-@each $name, $color in color.$contextual-colors {
+// Intranet signal buttons
+@each $name, $color in color.$signal-colors {
   @include button-mx.button-color-variant($name, $color);
 }

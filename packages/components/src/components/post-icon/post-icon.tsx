@@ -132,7 +132,7 @@ export class PostIcon {
         ?.getAttribute('data-post-icon-base') ?? null;
 
     const fileBase = `${this.base ?? metaBase ?? CDN_URL}/`.replace(/\/\/$/, '/');
-    const fileName = `${this.name}.svg#icon`;
+    const fileName = `${this.name}.svg`;
     const filePath = `${fileBase}${fileName}`;
 
     this.path = new URL(filePath, window.location.origin).toString();

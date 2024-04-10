@@ -37,27 +37,29 @@ export class PostAccordion {
     await itemToToggle.toggle();
   }
 
-  @Listen('collapseChange')
-  collapseChangeHandler(event: CustomEvent<boolean>) {
-    event.stopPropagation();
+  @Listen('postToggle')
+  collapseToggleHandler(event: CustomEvent<boolean>) {
+    if ((event.target as HTMLElement).localName === 'post-accordion-item') {
+      event.stopPropagation();
 
-    const toggledItem = event.target as HTMLPostAccordionItemElement;
-    const isClosing = this.expandedItems.has(toggledItem);
+      const toggledItem = event.target as HTMLPostAccordionItemElement;
+      const isClosing = this.expandedItems.has(toggledItem);
 
-    if (isClosing) {
-      this.expandedItems.delete(toggledItem);
-    } else {
-      this.expandedItems.add(toggledItem);
+      if (isClosing) {
+        this.expandedItems.delete(toggledItem);
+      } else {
+        this.expandedItems.add(toggledItem);
+      }
+
+      if (this.multiple || isClosing) return;
+
+      // close other open accordion items to have only one opened at a time
+      Array.from(this.expandedItems.values())
+        .filter(item => item !== toggledItem)
+        .forEach(item => {
+          item.toggle(false);
+        });
     }
-
-    if (this.multiple || isClosing) return;
-
-    // close other open accordion items to have only one opened at a time
-    Array.from(this.expandedItems.values())
-      .filter(item => item !== toggledItem)
-      .forEach(item => {
-        item.toggle(false);
-      });
   }
 
   /**

@@ -3,6 +3,7 @@ import { html, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 import { repeat } from 'lit/directives/repeat.js';
 import { MetaComponent } from '../../../../types';
+import { getComponentFigmaLink } from '../../../utils';
 
 const meta: MetaComponent = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
@@ -12,7 +13,7 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=10576-49992&mode=design&t=OK8meBHjpJvBhwZI-4',
+      url: getComponentFigmaLink('16826-33449'),
     },
   },
   args: {
@@ -313,10 +314,10 @@ export const AccentColors: Story = {
   },
 };
 
-export const ContextualColors: Story = {
+export const SignalColors: Story = {
   ...VariantsTemplate,
   args: {
-    variants: ['btn-success', 'btn-info', 'btn-warning', 'btn-danger'],
+    variants: ['btn-success', 'btn-warning', 'btn-error', 'btn-info'],
   },
 };
 

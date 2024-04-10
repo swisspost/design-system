@@ -213,8 +213,8 @@ describe('Card-Control', () => {
       let changeEventCallCount = 0;
 
       cy.get('@card-control').then($cardControl => {
-        $cardControl.get(0).addEventListener('input', () => inputEventCallCount++);
-        $cardControl.get(0).addEventListener('change', () => changeEventCallCount++);
+        $cardControl.get(0).addEventListener('postInput', () => inputEventCallCount++);
+        $cardControl.get(0).addEventListener('postChange', () => changeEventCallCount++);
       });
 
       cy.get('@wrapper')
@@ -250,8 +250,8 @@ describe('Card-Control', () => {
       let changeEventCallCount = 0;
 
       cy.get('@card-control').then($cardControl => {
-        $cardControl.get(0).addEventListener('input', () => inputEventCallCount++);
-        $cardControl.get(0).addEventListener('change', () => changeEventCallCount++);
+        $cardControl.get(0).addEventListener('postInput', () => inputEventCallCount++);
+        $cardControl.get(0).addEventListener('postChange', () => changeEventCallCount++);
       });
 
       cy.get('@wrapper')
