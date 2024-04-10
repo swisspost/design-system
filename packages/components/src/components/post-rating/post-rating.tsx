@@ -38,13 +38,13 @@ export class PostRating {
    * An event emitted whenever the component's value has changed (on input).
    * The event payload can be used like so: `event.detail.value`.
    */
-  @Event() input: EventEmitter<{ value: number }>;
+  @Event() postInput: EventEmitter<{ value: number }>;
 
   /**
    * An event emitted whenever the component's value has changed (on blur).
    * The event payload can be used like so: `event.detail.value`.
    */
-  @Event() change: EventEmitter<{ value: number }>;
+  @Event() postChange: EventEmitter<{ value: number }>;
 
   constructor() {
     this.keydownHandler = this.keydownHandler.bind(this);
@@ -56,7 +56,7 @@ export class PostRating {
     if (this.readonly || value < 0 || value > this.stars) return;
 
     this.currentRating = this.currentRating !== value ? value : 0; // If a star is clicked the second time, the rating gets set to 0.
-    this.input.emit({ value: this.currentRating });
+    this.postInput.emit({ value: this.currentRating });
     this.hasChanged = true;
   }
 
@@ -91,7 +91,7 @@ export class PostRating {
 
   private blurHandler() {
     if (this.hasChanged) {
-      this.change.emit({ value: this.currentRating });
+      this.postChange.emit({ value: this.currentRating });
       this.hasChanged = false;
     }
   }

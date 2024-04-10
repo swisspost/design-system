@@ -3,6 +3,10 @@ import { MetaComponent } from '../../../../../types';
 import { html, nothing } from 'lit';
 import { BADGE } from '../../../../../.storybook/constants';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
+import { parse } from '../../../../utils/sass-export';
+import scss from '../tag.module.scss';
+
+const SCSS_VARIABLES: any = parse(scss);
 
 const meta: MetaComponent = {
   id: '1b1ea384-7421-4064-ad34-e3f48a36b39f',
@@ -10,6 +14,10 @@ const meta: MetaComponent = {
   tags: ['package:HTML'],
   parameters: {
     badges: [BADGE.BETA],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18807-68180&mode=design&t=PR2ZnqAacaK7UiXP-4',
+    },
   },
   args: {
     variant: 'null',
@@ -26,16 +34,9 @@ const meta: MetaComponent = {
         type: 'select',
         labels: {
           null: 'Default',
-          gray: 'Gray',
-          white: 'White',
-          info: 'Info',
-          success: 'Success',
-          danger: 'Danger',
-          warning: 'Warning',
-          yellow: 'Yellow',
         },
       },
-      options: ['null', 'gray', 'white', 'info', 'success', 'warning', 'danger', 'yellow'],
+      options: ['null', ...SCSS_VARIABLES['tag-backgrounds']],
       table: {
         category: 'General',
       },

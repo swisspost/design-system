@@ -27,6 +27,10 @@
     width: close.$close-size;
   }
 
+  @include color-mx.on-dark-background() {
+    color: var(--post-contrast-color);
+  }
+
   @include utilities-mx.not-disabled-focus-hover() {
     color: close.$close-hover-color;
   }

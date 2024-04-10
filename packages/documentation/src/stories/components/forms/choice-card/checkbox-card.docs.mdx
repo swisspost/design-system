@@ -1,11 +1,17 @@
-import { Meta, Canvas, Controls, Source } from '@storybook/blocks';
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import * as CheckboxCardStories from './checkbox-card.stories';
 import StylesPackageImport from '../../../../shared/styles-package-import.mdx';
 import firefoxFallbackSnippet from './firefox-fallback.ts?raw';
 
 <Meta of={CheckboxCardStories} />
 
-# Checkbox card
+<div className="docs-title">
+  # Checkbox card
+
+  <nav>
+    <link-design of={JSON.stringify(CheckboxCardStories)}></link-design>
+  </nav>
+</div>
 
 <div className="lead">
   A larger, more consumer oriented, touch friendly variant of the checkbox used for e.g. selecting

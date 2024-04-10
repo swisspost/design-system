@@ -100,6 +100,11 @@
       "version": "6.0.0",
       "description": "Improves the post stepper accessibility.",
       "factory": "./migrations/post/stepper"
+    },
+    "migration-badge-to-chip-or-tag": {
+      "version": "7.0.0",
+      "description": "Migrates badges to chip or tag depending on the content.",
+      "factory": "./migrations/v7/badge"
     }
   }
 }

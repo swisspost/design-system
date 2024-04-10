@@ -15,6 +15,10 @@ const meta: MetaComponent = {
   render: render,
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21923-74274&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     label: 'Label',

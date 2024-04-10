@@ -20,6 +20,10 @@ import scss from './post-card-control.module.scss';
 import { parse } from '../../utils/sass-export';
 
 const SCSS_VARIABLES = parse(scss);
+const EVENT_MAP = {
+  input: 'postInput',
+  change: 'postChange',
+};
 
 let cardControlIds = 0;
 
@@ -116,14 +120,14 @@ export class PostCardControl {
    * An event emitted whenever the components checked state is toggled.
    * The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
    */
-  @Event() input: EventEmitter<{ state: boolean; value: string }>;
+  @Event() postInput: EventEmitter<{ state: boolean; value: string }>;
 
   /**
    * An event emitted whenever the components checked state is toggled.
    * The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
    * <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
    */
-  @Event() change: EventEmitter<{ state: boolean; value: string }>;
+  @Event() postChange: EventEmitter<{ state: boolean; value: string }>;
 
   /**
    * A public method to reset the controls `checked` and `validity` state.
@@ -249,7 +253,7 @@ export class PostCardControl {
         // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
         // if an event parameter is given and a native control would fire an event, emit the corresponding event to the light dom
         if (isCheckbox || isRadioAndChecked)
-          this[e.type].emit({ state: this.checked, value: this.value });
+          this[EVENT_MAP[e.type]].emit({ state: this.checked, value: this.value });
       }
     }
   }
