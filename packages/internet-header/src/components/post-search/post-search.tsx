@@ -27,7 +27,7 @@ import { TrackAndTraceInfo } from '../../models/track-and-trace.model';
 import { getParcelSuggestion } from '../../services/search/parcel.service';
 import { If } from '../../utils/if.component';
 import { translate } from '../../services/language.service';
-import { FocusTrap } from '../focus-trap.component';
+import { FocusTrap } from '../shared/focus-trap.component';
 
 @Component({
   tag: 'post-search',
