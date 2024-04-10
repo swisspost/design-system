@@ -1,7 +1,7 @@
 import { h } from '@stencil/core';
 import { SvgIcon } from '../../../utils/svg-icon.component';
 import { IBreadcrumbOverlay } from '../../../models/breadcrumbs.model';
-import { FocusTrap } from './focus-trap.component';
+import { FocusTrap } from '../../focus-trap.component';
 
 /**
  * Overlay implementation with focus trap according to
@@ -25,7 +25,7 @@ export const OverlayComponent = (props: {
     ref={e => e !== undefined && props.overlayRef(e)}
   >
     <div class="container" role="dialog">
-      <FocusTrap>
+      <FocusTrap active={true}>
         <div
           class="overlay-container"
           tabindex="-1" /* For initial focus */

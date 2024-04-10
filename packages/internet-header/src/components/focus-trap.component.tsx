@@ -12,7 +12,6 @@ let key = 0;
  * @returns
  */
 export const FocusTrap: FunctionalComponent<{ active?: boolean }> = (props, children) => {
-  // Default value for active is true
   const active = props.active ?? false;
 
   const handleFocusIn = (event: FocusEvent, mode: 'first' | 'last') => {
@@ -22,7 +21,7 @@ export const FocusTrap: FunctionalComponent<{ active?: boolean }> = (props, chil
 
     // Try to get a list of tabbable elements
     const containerIndex = mode === 'first' ? 0 : children.length - 1;
-    const container = children[containerIndex].$elm$;
+    const container = children[containerIndex].$elm$ ?? (children[containerIndex] as any)?.p; // $elm$ is buggy on some occasion and doesn't return anything
     const focusable = tabbable(container);
 
     if (!focusable.length) {
