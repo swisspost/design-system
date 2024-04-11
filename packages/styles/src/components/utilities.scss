@@ -73,7 +73,6 @@ span.spacer {
   a {
     color: inherit;
 
-    &:focus,
     &:hover {
       opacity: 0.8;
     }
@@ -83,7 +82,6 @@ span.spacer {
 a {
   color: var(--post-contrast-color);
 
-  &:focus,
   &:hover {
     color: rgba(var(--post-contrast-color-rgb), 0.8);
   }
