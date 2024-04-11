@@ -131,11 +131,11 @@ const meta: MetaComponent = {
         type: 'inline-radio',
         labels: {
           'null': 'None',
-          'btn-animated': 'Right',
-          'btn-animated-left': 'Left',
+          'btn-animated': 'End',
+          'btn-animated-start': 'Start',
         },
       },
-      options: ['null', 'btn-animated', 'btn-animated-left'],
+      options: ['null', 'btn-animated', 'btn-animated-start'],
       table: {
         category: 'General',
       },
