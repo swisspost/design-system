@@ -1,6 +1,6 @@
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { bombArgs } from '@/utils';
+import { bombArgs } from '../../../../../utils';
 import meta, { Default } from './card-control.stories';
 
 const { id, ...metaWithoutId } = meta;

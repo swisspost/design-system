@@ -3,8 +3,8 @@ import { useArgs, useState } from '@storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { MetaComponent } from '@/../types';
-import { parse } from '@/utils/sass-export';
+import { MetaComponent } from '../../../../../../types';
+import { parse } from '../../../../../utils/sass-export';
 import scss from '../card-control.module.scss';
 
 const SCSS_VARIABLES: { [key: string]: string } = parse(scss);
@@ -13,6 +13,13 @@ const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
   title: 'Components/Forms/Card-Control',
   tags: ['package:HTML'],
+  parameters: {
+    badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=22630-6854&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
+  },
   args: {
     type: 'checkbox',
     label: 'Label',

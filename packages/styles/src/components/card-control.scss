@@ -52,6 +52,13 @@ fieldset {
     ~ label.form-check-label {
       color: inherit !important;
     }
+
+    @include utilities.high-contrast-mode() {
+      &::after {
+        forced-color-adjust: none;
+        border-color: transparent;
+      }
+    }
   }
 
   label.form-check-label {
@@ -102,9 +109,7 @@ fieldset {
 
         input.form-check-input {
           &::after {
-            forced-color-adjust: none;
-            border-color: transparent;
-            color: SelectedItemText;
+            background-color: var(--post-card-control-color) !important;
           }
         }
       }
@@ -156,6 +161,26 @@ fieldset {
 
     input.form-check-input {
       border-style: dashed;
+    }
+
+    @include utilities.high-contrast-mode() {
+      --post-card-control-border-color: GrayText;
+      --post-card-control-color: GrayText;
+      --post-card-control-input-border-color: GrayText;
+
+      &:where(:has(input:checked), .checked) {
+        --post-card-control-input-bg: Field;
+
+        input.form-check-input {
+          outline: spacing.$size-line solid Field;
+        }
+
+        label.form-check-label::before {
+          inset: spacing.$size-line;
+          border-radius: spacing.$size-line;
+          background-color: SelectedItem;
+        }
+      }
     }
   }
 }
@@ -239,6 +264,16 @@ fieldset {
         --post-card-control-color: #{rgba(color.$white, 0.8)};
         --post-card-control-input-border-color: #{rgba(color.$white, 0.8)};
         --post-card-control-input-bg: transparent;
+
+        @include utilities.high-contrast-mode() {
+          --post-card-control-border-color: GrayText;
+          --post-card-control-color: GrayText;
+          --post-card-control-input-border-color: GrayText;
+
+          &:where(:has(input:checked), .checked) {
+            --post-card-control-input-bg: Field;
+          }
+        }
       }
     }
   }

@@ -45,6 +45,13 @@
     &:focus-visible {
       box-shadow: none;
     }
+
+    @include post.high-contrast-mode() {
+      &::after {
+        forced-color-adjust: none;
+        border-color: transparent;
+      }
+    }
   }
 
   .card-control--label {
@@ -96,9 +103,7 @@
 
         .card-control--input {
           &::after {
-            forced-color-adjust: none;
-            border-color: transparent;
-            color: SelectedItemText;
+            background-color: var(--post-card-control-color) !important;
           }
         }
       }
@@ -154,6 +159,35 @@
     .card-control--input {
       border-style: dashed;
     }
+
+    @include post.high-contrast-mode() {
+      --post-card-control-border-color: GrayText;
+      --post-card-control-color: GrayText;
+      --post-card-control-input-border-color: GrayText;
+
+      &.is-checked {
+        --post-card-control-input-bg: field;
+
+        position: relative;
+
+        &::before {
+          display: block;
+          content: '';
+          position: absolute;
+          inset: post.$size-line;
+          border-radius: post.$size-line * 0.5;
+          background-color: SelectedItem;
+        }
+
+        > * {
+          position: relative;
+        }
+
+        .card-control--input {
+          outline: post.$size-line solid Field;
+        }
+      }
+    }
   }
 
   :host-context(:is(#{post.$dark-backgrounds})) & {
@@ -175,7 +209,11 @@
         --post-card-control-input-bg: #{post.$white};
 
         @include post.high-contrast-mode() {
+          --post-card-control-border-color: FieldText;
           --post-card-control-bg: SelectedItem;
+          --post-card-control-color: SelectedItemText;
+          --post-card-control-input-border-color: SelectedItemText;
+          --post-card-control-input-bg: SelectedItem;
         }
       }
 
@@ -190,7 +228,11 @@
           --post-card-control-bg: #{post.$yellow};
 
           @include post.high-contrast-mode() {
+            --post-card-control-border-color: FieldText;
             --post-card-control-bg: SelectedItem;
+            --post-card-control-color: SelectedItemText;
+            --post-card-control-input-border-color: SelectedItemText;
+            --post-card-control-input-bg: SelectedItem;
           }
         }
       }
@@ -204,7 +246,10 @@
 
         @include post.high-contrast-mode() {
           --post-card-control-border-color: Highlight;
+          --post-card-control-bg: Field;
+          --post-card-control-color: FieldText;
           --post-card-control-input-border-color: Highlight;
+          --post-card-control-input-bg: Field;
         }
       }
     }
@@ -223,6 +268,16 @@
       --post-card-control-color: #{#{rgba(post.$white, 0.8)}};
       --post-card-control-input-border-color: #{#{rgba(post.$white, 0.8)}};
       --post-card-control-input-bg: transparent;
+
+      @include post.high-contrast-mode() {
+        --post-card-control-border-color: GrayText;
+        --post-card-control-color: GrayText;
+        --post-card-control-input-border-color: GrayText;
+
+        &.is-checked {
+          --post-card-control-input-bg: Field;
+        }
+      }
     }
   }
 }
@@ -255,7 +310,11 @@
         --post-card-control-input-bg: #{post.$white};
 
         @include post.high-contrast-mode() {
+          --post-card-control-border-color: FieldText;
           --post-card-control-bg: SelectedItem;
+          --post-card-control-color: SelectedItemText;
+          --post-card-control-input-border-color: SelectedItemText;
+          --post-card-control-input-bg: SelectedItem;
         }
       }
 
@@ -270,7 +329,11 @@
           --post-card-control-bg: #{post.$yellow};
 
           @include post.high-contrast-mode() {
+            --post-card-control-border-color: FieldText;
             --post-card-control-bg: SelectedItem;
+            --post-card-control-color: SelectedItemText;
+            --post-card-control-input-border-color: SelectedItemText;
+            --post-card-control-input-bg: SelectedItem;
           }
         }
       }
@@ -284,7 +347,10 @@
 
         @include post.high-contrast-mode() {
           --post-card-control-border-color: Highlight;
+          --post-card-control-bg: Field;
+          --post-card-control-color: FieldText;
           --post-card-control-input-border-color: Highlight;
+          --post-card-control-input-bg: Field;
         }
       }
     }
@@ -303,6 +369,16 @@
       --post-card-control-color: post.$white-alpha-80;
       --post-card-control-input-border-color: post.$white-alpha-80;
       --post-card-control-input-bg: transparent;
+
+      @include post.high-contrast-mode() {
+        --post-card-control-border-color: GrayText;
+        --post-card-control-color: GrayText;
+        --post-card-control-input-border-color: GrayText;
+
+        &.is-checked {
+          --post-card-control-input-bg: Field;
+        }
+      }
     }
   }
 }

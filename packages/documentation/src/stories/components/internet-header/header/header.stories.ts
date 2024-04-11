@@ -15,6 +15,10 @@ const meta: MetaComponent = {
     badges: [],
     layout: 'fullscreen',
     controls: { sort: 'alpha' },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19536-26512&mode=design&t=HksCTWa2MMccgMl4-0',
+    },
   },
   render,
   args: {

@@ -11,6 +11,10 @@ const meta: MetaComponent<HTMLPostTabsElement> = {
   render: renderTabs,
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=19714-14521&mode=design&t=PR2ZnqAacaK7UiXP-4',
+    },
   },
   argTypes: {
     activePanel: {

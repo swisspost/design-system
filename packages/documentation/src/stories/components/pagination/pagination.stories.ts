@@ -7,6 +7,10 @@ const meta: MetaComponent = {
   tags: ['package:Angular'],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=26981-27576&mode=design&t=38qLaYwWdirTcHdb-4',
+    },
   },
 };
 

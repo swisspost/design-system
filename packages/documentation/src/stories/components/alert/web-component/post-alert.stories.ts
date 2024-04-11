@@ -1,6 +1,6 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { getComponentFigmaLink, spreadArgs } from '../../../../utils';
+import { spreadArgs } from '../../../../utils';
 import { MetaComponent } from '../../../../../types';
 
 const meta: MetaComponent<HTMLPostAlertElement> = {
@@ -14,7 +14,7 @@ const meta: MetaComponent<HTMLPostAlertElement> = {
     badges: [],
     design: {
       type: 'figma',
-      url: getComponentFigmaLink('17001-2244'),
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=17001-2244&mode=design&t=3lniLiZhl7q9Gqgn-4',
     },
   },
   args: {
