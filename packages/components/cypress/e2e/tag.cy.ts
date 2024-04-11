@@ -12,13 +12,20 @@ describe('Tag', () => {
       cy.get('@tag').should('exist');
     });
 
-    it('should use variant `gray` as default', () => {
-      const defaultClasses = ['tag', 'tag-gray'];
+    it('should use the default tag if no variant is set', () => {
+      const variantClasses = [
+        'tag-white',
+        'tag-info',
+        'tag-success',
+        'tag-error',
+        'tag-warning',
+        'tag-yellow',
+      ];
 
       cy.get('@tag').should('not.have.attr', 'variant');
       cy.get('@wrapper').should('satisfy', $el => {
         const classList = Array.from($el[0].classList);
-        return defaultClasses.every(c => classList.includes(c));
+        return variantClasses.every(c => !classList.includes(c));
       });
     });
 

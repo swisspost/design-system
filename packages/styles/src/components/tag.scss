@@ -2,7 +2,7 @@
 @forward './../variables/options';
 @use './../variables/color';
 @use './../variables/components/tag';
-@use './../functions/contrast' as contrastFn;
+@use './../functions/contrast' as contrast-fn;
 
 // style `.tag` only if is not descendant of a `<pre>` element
 // as `<pre><div class="tag">...</div><pre>` is usually used by code highlight tools
@@ -11,11 +11,8 @@
 // https://whattrainisitnow.com/calendar/
 .tag,
 .tag:where(:has(:not(pre))) {
-  $bg: map.get(tag.$tag-backgrounds, 'gray');
-  $fg: if(contrastFn.light-or-dark($bg) == 'light', color.$black, color.$white);
-
-  --post-tag-bg: #{$bg};
-  --post-tag-fg: #{$fg};
+  --post-tag-bg: #{tag.$tag-default-background};
+  --post-tag-fg: #{contrast-fn.get-best-contrast-text(tag.$tag-default-background)};
 
   display: inline-flex;
   align-items: center;
@@ -58,12 +55,10 @@
     }
   }
 
-  @each $key, $bg in tag.$tag-backgrounds {
-    $fg: if(contrastFn.light-or-dark($bg) == 'light', color.$black, color.$white);
-
+  @each $key, $color in tag.$tag-backgrounds {
     &.tag-#{$key} {
-      --post-tag-bg: #{$bg};
-      --post-tag-fg: #{$fg};
+      --post-tag-bg: #{$color};
+      --post-tag-fg: #{contrast-fn.get-best-contrast-text($color)};
     }
   }
 

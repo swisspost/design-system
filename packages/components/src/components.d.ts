@@ -268,7 +268,7 @@ export namespace Components {
         /**
           * Defines the color variant of the component.
          */
-        "variant": 'gray' | 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
+        "variant": 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTooltip {
         /**
@@ -719,7 +719,7 @@ declare namespace LocalJSX {
         /**
           * Defines the color variant of the component.
          */
-        "variant"?: 'gray' | 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
+        "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTooltip {
         /**
