@@ -259,10 +259,10 @@ fieldset {
       }
 
       &:where(:has(input:disabled), .disabled) {
-        --post-card-control-border-color: #{rgba(color.$white, 0.8)};
+        --post-card-control-border-color: post.$white-alpha-80;
         --post-card-control-bg: transparent;
-        --post-card-control-color: #{rgba(color.$white, 0.8)};
-        --post-card-control-input-border-color: #{rgba(color.$white, 0.8)};
+        --post-card-control-color: post.$white-alpha-80;
+        --post-card-control-input-border-color: post.$white-alpha-80;
         --post-card-control-input-bg: transparent;
 
         @include utilities.high-contrast-mode() {
