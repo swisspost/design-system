@@ -12,10 +12,6 @@ const meta: MetaComponent<HTMLPostCollapsibleElement> = {
   decorators: [externalControls],
   parameters: {
     badges: [],
-    design: {
-      type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=42%3A358&mode=design&t=OK8meBHjpJvBhwZI-1',
-    },
     controls: {
       exclude: ['innerHTML'],
     },

@@ -43,7 +43,7 @@ export const Textarea: Story = {
               <h3>Sizes</h3>
               ${getCombinations('size', context.argTypes.size.options, combinations).map(
                 (args: Args) => {
-                  context.id = `a-${crypto.randomUUID()}`;
+                  context.id = `${bg}-${crypto.randomUUID()}`;
                   return html`
                     <div>
                       ${args.title !== undefined && args.title
@@ -62,7 +62,7 @@ export const Textarea: Story = {
               )}
               <h3>Floating Label</h3>
               ${getCombinations('floatingLabel', [true], combinations).map((args: Args) => {
-                context.id = `a-${crypto.randomUUID()}`;
+                context.id = `${bg}-${crypto.randomUUID()}`;
                 return html` <div>${meta.render?.({ ...context.args, ...args }, context)}</div> `;
               })}
             </div>

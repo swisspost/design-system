@@ -1,8 +1,8 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { useArgs } from '@storybook/preview-api';
-import scss from './card-button.module.scss';
 import { MetaComponent } from '../../../../../types';
+import backgroundColors from '../../../../shared/background-colors.module.scss';
 
 const meta: MetaComponent = {
   id: '6f8f76ec-a2b5-4eb0-87f7-4021e1a5b8d0',
@@ -10,6 +10,10 @@ const meta: MetaComponent = {
   tags: ['package:HTML'],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=2452-66025&mode=design&t=jADNra0puVcBoQ9V-0',
+    },
   },
   args: {
     focus: 'Focus',
@@ -64,7 +68,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: Object.keys(scss),
+      options: Object.keys(backgroundColors),
       table: {
         category: 'General',
       },

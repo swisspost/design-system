@@ -1,9 +1,10 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import scss from './background.module.scss';
 import { MetaComponent } from '../../../../types';
+import { parse } from '../../../utils/sass-export';
+import scss from './subnavigation.module.scss';
 
-const backgroundColors = scss.bgClasses.split('"').filter((_, index) => index % 2 === 1);
+const SCSS_VARIABLES: any = parse(scss);
 
 const meta: MetaComponent = {
   id: '87ceabbb-f552-46eb-8a47-4d84e7f8cef0',
@@ -13,6 +14,9 @@ const meta: MetaComponent = {
   render: renderTest,
   parameters: {
     badges: [],
+    controls: {
+      exclude: ['Badges'],
+    },
   },
   args: {
     itemCount: 3,
@@ -25,7 +29,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: ['default', ...backgroundColors],
+      options: ['default', ...SCSS_VARIABLES['bg-classes']],
       table: {
         category: 'General',
       },
@@ -72,7 +76,7 @@ function renderTest(args: Args, context: StoryContext) {
               <li class="subnavigation-item">
                 <a href="#" class="subnavigation-link${index == 0 ? ' active' : ''}">
                   Navitem ${index === 0 ? 'active' : 'default'}
-                  ${args.badges ? html` <span class="badge">19</span> ` : ''}
+                  ${args.badges ? html` <span class="badge bg-gray">19</span> ` : ''}
                 </a>
               </li>
             `,
@@ -85,19 +89,11 @@ function renderTest(args: Args, context: StoryContext) {
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  parameters: {
-    controls: {
-      include: ['Items', 'Background Color'],
-    },
-  },
-};
+export const Default: Story = {};
 
 export const ColoredBackground: Story = {
-  parameters: {
-    controls: {
-      include: ['Background Color'],
-    },
+  args: {
+    backgroundColor: 'bg-gray',
   },
 };
 

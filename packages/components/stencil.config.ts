@@ -11,6 +11,7 @@ export const config: Config = {
   outputTargets: [
     {
       type: 'dist',
+      empty: false,
       esmLoaderPath: '../loader',
     },
     {

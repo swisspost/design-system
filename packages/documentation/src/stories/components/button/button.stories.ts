@@ -12,7 +12,7 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=10576-49992&mode=design&t=OK8meBHjpJvBhwZI-4',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=16826-33449&mode=design&t=3lniLiZhl7q9Gqgn-4',
     },
   },
   args: {
@@ -307,10 +307,10 @@ export const AccentColors: Story = {
   },
 };
 
-export const ContextualColors: Story = {
+export const SignalColors: Story = {
   ...VariantsTemplate,
   args: {
-    variants: ['btn-success', 'btn-info', 'btn-warning', 'btn-danger'],
+    variants: ['btn-success', 'btn-warning', 'btn-error', 'btn-info'],
   },
 };
 

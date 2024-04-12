@@ -22,7 +22,8 @@
   --post-card-control-input-bg: #{post.$white};
 
   flex-basis: 100%;
-  display: flex;
+  display: grid;
+  grid-template: 'input label icon' 'input content icon' / min-content auto min-content;
   gap: 0 post.$size-mini;
   padding: post.$size-regular;
   background-color: var(--post-card-control-bg);
@@ -34,7 +35,7 @@
   transition: background-color 100ms linear, border-color 100ms linear;
 
   .card-control--input {
-    flex: 0 0 auto;
+    grid-area: input;
     margin: post.$size-micro 0;
     background-color: var(--post-card-control-input-bg);
     border-color: var(--post-card-control-input-border-color) !important;
@@ -46,21 +47,28 @@
     &:focus-visible {
       box-shadow: none;
     }
+  }
 
-    ~ .card-control--label {
-      flex-grow: 2;
-      margin: post.$size-micro 0;
-      color: inherit !important;
-      pointer-events: none;
-    }
+  .card-control--label {
+    grid-area: label;
+    margin: post.$size-micro 0;
+    padding: 0;
+    color: inherit !important;
+    pointer-events: none;
+    transition-duration: 100ms;
   }
 
   .card-control--description {
+    grid-area: label;
     font-size: 0.75rem;
   }
 
+  .card-control--content {
+    grid-area: content;
+  }
+
   .card-control--icon {
-    flex: 0 0 auto;
+    grid-area: icon;
     width: post.$size-big;
     height: post.$size-big;
     pointer-events: none;
@@ -83,9 +91,9 @@
     }
 
     &.is-invalid {
-      --post-card-control-border-color: #{post.$danger};
-      --post-card-control-color: #{post.$danger};
-      --post-card-control-input-border-color: #{post.$danger};
+      --post-card-control-border-color: #{post.$error};
+      --post-card-control-color: #{post.$error};
+      --post-card-control-input-border-color: #{post.$error};
     }
 
     &:hover {
@@ -144,10 +152,10 @@
       }
 
       &.is-invalid {
-        --post-card-control-border-color: #{post.$danger};
+        --post-card-control-border-color: #{post.$error};
         --post-card-control-bg: #{post.$error-background};
-        --post-card-control-color: #{post.$danger};
-        --post-card-control-input-border-color: #{post.$danger};
+        --post-card-control-color: #{post.$error};
+        --post-card-control-input-border-color: #{post.$error};
         --post-card-control-input-bg: #{post.$white};
       }
 
@@ -211,10 +219,10 @@
       }
 
       &.is-invalid {
-        --post-card-control-border-color: #{post.$danger};
+        --post-card-control-border-color: #{post.$error};
         --post-card-control-bg: #{post.$error-background};
-        --post-card-control-color: #{post.$danger};
-        --post-card-control-input-border-color: #{post.$danger};
+        --post-card-control-color: #{post.$error};
+        --post-card-control-input-border-color: #{post.$error};
         --post-card-control-input-bg: #{post.$white};
       }
 
@@ -236,10 +244,10 @@
 
     // TODO: update white alpha colors with design-system alpha colors, once they are defined
     &.is-disabled {
-      --post-card-control-border-color: #{#{rgba(post.$white, 0.8)}};
+      --post-card-control-border-color: post.$white-alpha-80;
       --post-card-control-bg: transparent;
-      --post-card-control-color: #{#{rgba(post.$white, 0.8)}};
-      --post-card-control-input-border-color: #{#{rgba(post.$white, 0.8)}};
+      --post-card-control-color: post.$white-alpha-80;
+      --post-card-control-input-border-color: post.$white-alpha-80;
       --post-card-control-input-bg: transparent;
     }
   }

@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import meta, { Default, AccentColors, ContextualColors } from './button.stories';
+import meta, { Default, AccentColors, SignalColors } from './button.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils';
 
@@ -44,7 +44,7 @@ export const Button: Story = {
               <div class="mt-big w-100"></div>
               ${AccentColors.render?.({ ...context.args, ...AccentColors.args }, context)}
               <div class="mt-big w-100"></div>
-              ${ContextualColors.render?.({ ...context.args, ...ContextualColors.args }, context)}
+              ${SignalColors.render?.({ ...context.args, ...SignalColors.args }, context)}
             </div>
           `,
         )}

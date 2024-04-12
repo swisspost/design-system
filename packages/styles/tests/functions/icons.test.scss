@@ -24,7 +24,7 @@ $expected-add-stroke-color-output: "data:image/svg+xml,%3Csvg xml:space='preserv
 // get-colored-svg-url
 .test {
   @each $name, $path in icon-vars.$svg-icon-map {
-    @each $color, $value in color.$contextual-colors {
+    @each $color, $value in color.$signal-colors {
       background-image: url(icons.get-colored-svg-url($name, $value));
     }
   }

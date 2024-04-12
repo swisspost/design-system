@@ -181,7 +181,7 @@ describe('Card-Control', () => {
 
       cy.get('@input').type(' ').should('be.checked');
       cy.get('@wrapper').should('have.class', 'is-checked');
-      cy.get('@input').focus().type(' ').should('not.be.checked');
+      cy.get('@input').blur().type(' ').should('not.be.checked');
       cy.get('@wrapper').should('not.have.class', 'is-checked');
     });
 
@@ -213,8 +213,8 @@ describe('Card-Control', () => {
       let changeEventCallCount = 0;
 
       cy.get('@card-control').then($cardControl => {
-        $cardControl.get(0).addEventListener('input', () => inputEventCallCount++);
-        $cardControl.get(0).addEventListener('change', () => changeEventCallCount++);
+        $cardControl.get(0).addEventListener('postInput', () => inputEventCallCount++);
+        $cardControl.get(0).addEventListener('postChange', () => changeEventCallCount++);
       });
 
       cy.get('@wrapper')
@@ -235,7 +235,7 @@ describe('Card-Control', () => {
           expect(inputEventCallCount).to.eq(3);
           expect(changeEventCallCount).to.eq(3);
         })
-        .focus()
+        .blur()
         .type(' ')
         .then(() => {
           expect(inputEventCallCount).to.eq(4);
@@ -250,8 +250,8 @@ describe('Card-Control', () => {
       let changeEventCallCount = 0;
 
       cy.get('@card-control').then($cardControl => {
-        $cardControl.get(0).addEventListener('input', () => inputEventCallCount++);
-        $cardControl.get(0).addEventListener('change', () => changeEventCallCount++);
+        $cardControl.get(0).addEventListener('postInput', () => inputEventCallCount++);
+        $cardControl.get(0).addEventListener('postChange', () => changeEventCallCount++);
       });
 
       cy.get('@wrapper')
@@ -309,7 +309,6 @@ describe('Card-Control', () => {
       cy.get('@card-control').find('.card-control--icon').as('icon');
       cy.get('@card-control').find('.card-control--icon slot[name="icon"]').as('slotIcon');
     });
-
     it('should update surrounding form when toggled', () => {
       cy.get('@form').then($form => {
         cy.get('@wrapper').click();
@@ -319,7 +318,7 @@ describe('Card-Control', () => {
 
         cy.get('@input').type(' ');
         cy.checkFormDataPropValue($form, 'CardControl', 'on');
-        cy.get('@input').focus().type(' ');
+        cy.get('@input').blur().type(' ');
         cy.checkFormDataPropValue($form, 'CardControl', null);
       });
     });

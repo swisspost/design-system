@@ -14,6 +14,10 @@ const meta: MetaComponent = {
     controls: {
       exclude: ['Custom Header', 'Custom Body', 'Custom Footer'],
     },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21462-3684&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     showImage: true,
@@ -279,11 +283,7 @@ function getCardFooter({ customFooter }: Args) {
 
 function getCardImage({ imagePosition }: Args) {
   return html`
-    <img
-      class=${'card-img-' + imagePosition}
-      src="https://picsum.photos/id/20/300/200"
-      alt="Card image"
-    />
+    <img class=${'card-img-' + imagePosition} src="https://picsum.photos/id/20/300/200" alt="" />
   `;
 }
 
@@ -407,7 +407,7 @@ export const BackgroundImage: Story = {
   },
   args: {
     showImage: false,
-    customBody: `<img class="card-img" src="https://picsum.photos/id/20/300/200" alt="Card image" />
+    customBody: `<img class="card-img" src="https://picsum.photos/id/20/300/200" alt="" />
   <div class="card-img-overlay">
     <div class="card-body">
       <h5 class="card-title">Titulum</h5>

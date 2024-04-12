@@ -22,7 +22,7 @@ $card-border-color: color.$gray-20 !default; // Design System
 $card-inner-border-radius: calc(
   #{$card-border-radius} - #{$card-border-width}
 ) !default; // Design System
-$card-cap-bg: color.$gray-background-light !default;
+$card-cap-bg: color.$light !default;
 $card-bg: color.$white !default;
 
 $card-img-overlay-padding: $card-spacer-x !default;

@@ -1,0 +1,90 @@
+import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
+import * as CardControlStories from './card-control.stories';
+import LinkTo from '@storybook/addon-links/react';
+import SampleCardControlMethods from './card-control-methods.sample?raw';
+
+<Meta of={CardControlStories} />
+
+<div className="docs-title">
+  # Card-Control
+
+  <nav>
+    <link-design of={JSON.stringify(CardControlStories)}></link-design>
+  </nav>
+</div>
+
+<p className="lead">For a more specialized visualization of checkbox and/or radio elements.</p>
+
+<Canvas of={CardControlStories.Default} />
+<Controls of={CardControlStories.Default} />
+
+## Installation
+
+The `<post-card-control>` element is part of the `@swisspost/design-system-components` package. For more information, read the
+<LinkTo kind="getting-started-components" story="docs">getting started with components guide</LinkTo>.
+
+## Examples
+
+### Dark backgrounds
+
+<Canvas of={CardControlStories.DarkBackground}/>
+
+<div className="hide-col-default">
+  <Controls of={CardControlStories.DarkBackground} />
+</div>
+
+### Custom icon
+
+You can use our built-in icons by just adding the `icon` property with the name of the desired icon.<br/>
+If this is not enough, you can also use the named `icon` slot and add your very own custom icon.
+
+<div className="alert alert-md alert-info">Make sure you remove all the `width` and `height` attributes from the `img` or `svg` tag. Otherwise we can not ensure, our styles will work properly.</div>
+
+<Canvas of={CardControlStories.CustomIcon} />
+
+### Custom content
+
+If you need to add other content to the component, you can use the default slot to do so.
+
+<div className="alert alert-md alert-warning">
+  <p className="alert-heading">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.</p>
+  <p>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured. More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
+</div>
+
+<Canvas of={CardControlStories.CustomContent} />
+
+### Form Integration
+
+You can use the component directly in your forms, the control value will be available in the `FormData` of the surrounding `<form>` element, just as you are used to from native input elements.
+
+<p className="alert alert-info">Update the control and submit or reset the form to see how its FormData value changes.</p>
+<Canvas of={CardControlStories.FormIntegration} />
+<div className="hide-col-default">
+  <Controls of={CardControlStories.FormIntegration} />
+</div>
+
+### Lined up
+
+Change the `width` of a `<card-control>` component, by putting it (for example) in a grid.
+If you like to stretch all `<card-control>` components within a row to the same `height`, simply add the class `.h-100` to them.
+
+<Canvas of={CardControlStories.LinedUp} />
+<div className="hide-col-default">
+  <Controls of={CardControlStories.LinedUp} />
+</div>
+
+### Radio button group
+
+As you can create radio button groups with native `<radio>` elements, you can do the same with our `<post-card-control>` component as well.<br/>
+Just add the same `name` attribute value to multiple `<post-card-control type="radio">` components.
+
+<Canvas of={CardControlStories.RadioGroup} />
+
+### Custom Trigger
+The `<post-card-control>` offers a `reset` method to reset it to the initial state (`validity` and `checked` state).
+The method can be called directly on the element itself.
+
+<Source
+  code={SampleCardControlMethods}
+  language="typescript"
+/>

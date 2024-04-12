@@ -16,6 +16,10 @@ const meta: MetaComponent = {
   render: renderTextarea,
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=22194-89755&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     label: 'Label',
@@ -154,7 +158,8 @@ export default meta;
 type Story = StoryObj;
 
 function renderTextarea(args: Args, context: StoryContext) {
-  const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
+  const id =
+    context.id ?? `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
   const classes = mapClasses({
     'form-control': true,
     [args.size]: args.size && args.size !== 'null',

@@ -17,10 +17,10 @@
 
 ## Events
 
-| Event    | Description                                                                                                                          | Type                              |
-| -------- | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
-| `change` | An event emitted whenever the component's value has changed (on blur). The event payload can be used like so: `event.detail.value`.  | `CustomEvent<{ value: number; }>` |
-| `input`  | An event emitted whenever the component's value has changed (on input). The event payload can be used like so: `event.detail.value`. | `CustomEvent<{ value: number; }>` |
+| Event        | Description                                                                                                                          | Type                              |
+| ------------ | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
+| `postChange` | An event emitted whenever the component's value has changed (on blur). The event payload can be used like so: `event.detail.value`.  | `CustomEvent<{ value: number; }>` |
+| `postInput`  | An event emitted whenever the component's value has changed (on input). The event payload can be used like so: `event.detail.value`. | `CustomEvent<{ value: number; }>` |
 
 
 ## Dependencies
