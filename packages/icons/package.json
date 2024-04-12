@@ -2,7 +2,7 @@
   "name": "@swisspost/design-system-icons",
   "version": "1.4.0",
   "description": "A collection of Swiss Post icons intended for use with the Design System.",
-  "author": "Swiss Post <oss@post.ch>",
+  "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
