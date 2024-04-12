@@ -1,42 +1,84 @@
 {
-  "name": "@swisspost/design-system-migrations",
-  "version": "1.0.2",
-  "description": "Scripts to migrate an Angular application from one Design System version to another.",
-  "author": "Swiss Post <oss@post.ch>",
+  "name": "@swisspost/design-system-styles",
+  "version": "6.6.4",
+  "description": "Design System Styles for the Swiss Post web platform.",
+  "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
   },
-  "files": [
-    "dist/"
-  ],
+  "homepage": "https://swisspost-web-frontend.netlify.app",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
   "publishConfig": {
-    "access": "public"
+    "directory": "./dist",
+    "access": "public",
+    "linkDirectory": true
   },
   "scripts": {
-    "copy-files": "copyfiles -f LICENSE README.md package.json CONTRIBUTING.md CHANGELOG.md src/migrations.json dist",
-    "build": "tsc -p tsconfig.json && pnpm copy-files",
-    "clean": "rimraf dist"
+    "start": "gulp watch",
+    "build": "pnpm clean && gulp build",
+    "unit": "gulp sass:tests",
+    "clean": "rimraf out-tsc dist",
+    "format": "prettier src/**/*.scss --write",
+    "lint": "stylelint src/**/*.scss",
+    "lint:fix": "stylelint src/**/*.scss --fix"
+  },
+  "peerDependencies": {
+    "@ng-bootstrap/ng-bootstrap": "^15.0.0 || ^16.0.0",
+    "bootstrap": "~5.3.0"
+  },
+  "peerDependenciesMeta": {
+    "@ng-bootstrap/ng-bootstrap": {
+      "optional": true
+    },
+    "bootstrap": {
+      "optional": true
+    }
   },
   "dependencies": {
-    "@angular-devkit/core": "=15.0.4",
-    "@angular-devkit/schematics": "=15.0.4",
-    "@angular/core": "=15.0.4",
-    "cheerio": "1.0.0-rc.12",
-    "prettier": "3.2.5",
-    "typescript": "4.9.5"
+    "@popperjs/core": "2.11.8",
+    "bootstrap": "5.3.2"
   },
   "devDependencies": {
-    "@types/node": "16.18.93",
+    "@swisspost/design-system-icons": "workspace:1.4.0",
+    "@types/node": "18.19.28",
+    "autoprefixer": "10.4.19",
     "copyfiles": "2.4.1",
-    "rimraf": "5.0.5"
+    "glob": "10.3.12",
+    "gulp": "4.0.2",
+    "gulp-newer": "^1.4.0",
+    "gulp-postcss": "10.0.0",
+    "gulp-sass": "5.1.0",
+    "jest": "29.7.0",
+    "postcss": "8.4.38",
+    "postcss-scss": "4.0.9",
+    "prettier": "3.2.5",
+    "rimraf": "5.0.5",
+    "sass": "1.74.1",
+    "stylelint": "16.3.1",
+    "stylelint-config-sass-guidelines": "11.1.0",
+    "stylelint-prettier": "5.0.0",
+    "stylelint-scss": "6.2.1",
+    "typescript": "5.3.3"
   },
-  "schematics": "./dist/migrations.json",
-  "ng-update": {
-    "migrations": "./dist/migrations.json"
+  "sass": {
+    "includePaths": [
+      "node_modules"
+    ],
+    "outputDir": "./dist"
   },
   "keywords": [
-    "schematics"
+    "scss",
+    "components",
+    "web-components",
+    "collections",
+    "patterns",
+    "library",
+    "design-system",
+    "ui",
+    "frontend"
   ]
 }
