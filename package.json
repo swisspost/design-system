@@ -1,13 +1,13 @@
 {
   "name": "@swisspost/design-system",
   "description": "The Swiss Post Design System pattern library for a consistent and accessible user experience across the web platform.",
-  "author": "Swiss Post <oss@post.ch>",
+  "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
     "url": "https://github.com/swisspost/design-system.git"
   },
-  "homepage": "https://swisspost-web-frontend.netlify.app",
+  "homepage": "https://design-system.post.ch",
   "bugs": {
     "url": "https://github.com/swisspost/design-system/issues"
   },
