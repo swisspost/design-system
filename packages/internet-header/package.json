@@ -2,7 +2,7 @@
   "name": "@swisspost/internet-header",
   "version": "1.13.8",
   "description": "The header for client facing applications.",
-  "author": "Swiss Post <design-system@post.ch>",
+  "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
