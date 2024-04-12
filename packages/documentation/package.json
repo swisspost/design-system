@@ -23,7 +23,8 @@
     "e2e": "cypress run",
     "e2e:ci": "xvfb-run -a cypress run",
     "e2e:watch": "cypress open",
-    "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js --record --key 0995e768-43ec-42bd-a127-ff944a2ad8c9"
+    "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js --record --key 0995e768-43ec-42bd-a127-ff944a2ad8c9",
+    "snapshots:watch": "percy exec -- cypress open --config-file ./cypress.snapshot.config.js"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:2.1.0",
@@ -38,6 +39,7 @@
     "@lit/task": "1.0.0",
     "@open-wc/lit-helpers": "0.7.0",
     "@percy/cli": "1.28.2",
+    "@percy/core": "1.28.3",
     "@percy/cypress": "3.1.2",
     "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
     "@storybook/addon-designs": "7.0.9",

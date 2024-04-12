@@ -1,3 +1,5 @@
+import { SnapshotOptions } from '@percy/core';
+
 /// <reference types="cypress" />
 // ***********************************************
 // This example commands.ts shows you how to
@@ -65,4 +67,31 @@ Cypress.Commands.add('checkAriaExpanded', (isExpanded: 'true' | 'false') => {
     .then(id => {
       cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);
     });
+});
+
+interface ISnapshotOptions {
+  url: {
+    id?: string;
+    story?: string;
+  };
+  page: {
+    selector: string;
+    timeout?: number;
+  };
+  snapshot: {
+    name: string;
+    wait?: number;
+    options?: SnapshotOptions;
+  };
+}
+
+Cypress.Commands.add('snapshot', (options: ISnapshotOptions) => {
+  const urlId = options.url.id ?? `snapshots--${options.url.story}`;
+  const pageTimeout = options.page.timeout ?? 30000;
+  const snapshotWait = options.snapshot.wait ?? 2500;
+  const snapshotOptions = options.snapshot.options ?? { widths: [1440] };
+
+  cy.visit(`/iframe.html?id=${urlId}`);
+  cy.get(options.page.selector, { timeout: pageTimeout }).should('be.visible');
+  cy.wait(snapshotWait).percySnapshot(options.snapshot.name, snapshotOptions);
 });

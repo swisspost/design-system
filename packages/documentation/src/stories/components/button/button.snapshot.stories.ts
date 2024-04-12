@@ -21,12 +21,12 @@ export const Button: Story = {
             <div class="${bg} d-flex flex-wrap align-items-start gap-regular p-regular">
               ${bombArgs({
                 variant: context.argTypes.variant.options,
-                size: context.argTypes.size.options,
-                tag: context.argTypes.tag.options,
-                disabled: [false, true],
-                iconOnly: [false, true],
+                // size: context.argTypes.size.options,
+                // tag: context.argTypes.tag.options,
+                // disabled: [false, true],
+                // iconOnly: [false, true],
                 icon: ['null', '2069'],
-                iconPosition: context.argTypes.iconPosition.options,
+                // iconPosition: context.argTypes.iconPosition.options,
               })
                 .filter(
                   (args: Args) =>
