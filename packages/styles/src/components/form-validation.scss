@@ -119,7 +119,7 @@
   }
 
   &.is-valid {
-    border-color: var(--post-success-green);
+    border-color: var(--post-success);
     background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
 
     @include utilities-mx.high-contrast-mode() {
