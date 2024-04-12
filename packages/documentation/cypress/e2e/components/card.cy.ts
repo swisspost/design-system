@@ -16,9 +16,6 @@ describe('Card', () => {
           'aria-allowed-attr': {
             enabled: false,
           },
-          'aria-prohibited-attr': {
-            enabled: false,
-          },
         },
       });
     });
