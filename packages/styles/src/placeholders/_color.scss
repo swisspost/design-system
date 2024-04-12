@@ -26,15 +26,7 @@
     --post-#{$name}: #{$color};
   }
 
-  @each $name, $color in color.$signal-colors {
-    --post-#{$name}: #{$color};
-  }
-
   @each $name, $color in color.$background-colors {
-    --post-#{$name}: #{$color};
-  }
-
-  @each $name, $color in color.$signal-background-colors {
     --post-#{$name}: #{$color};
   }
 
@@ -54,15 +46,7 @@
     --post-white-#{$name}-rgba: #{$color};
   }
 
-  @each $name, $color in color.$signal-colors {
-    --post-#{$name}-rgb: #{color-fn.rgb-values($color)};
-  }
-
   @each $name, $color in color.$background-colors {
-    --post-#{$name}-rgb: #{color-fn.rgb-values($color)};
-  }
-
-  @each $name, $color in color.$signal-background-colors {
     --post-#{$name}-rgb: #{color-fn.rgb-values($color)};
   }
 }
