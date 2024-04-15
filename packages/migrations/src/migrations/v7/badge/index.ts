@@ -72,7 +72,16 @@ class BadgeToTagUpdate implements DomUpdate {
 
       // do not update nested badges
       const $parent = $element.parent();
-      if ($parent.hasClass('tag')) {
+      if (
+        $parent.hasClass('tag') ||
+        $parent.hasClass('chip') ||
+        $parent.hasClass('chip-filter-label')
+      ) {
+        return;
+      }
+
+      // do not update badges containing only numbers
+      if (!isNaN(parseFloat($element.text()))) {
         return;
       }
 
