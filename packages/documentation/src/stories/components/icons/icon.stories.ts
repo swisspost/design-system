@@ -13,6 +13,10 @@ const meta: MetaComponent = {
   component: 'post-icon',
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/UaB0mWErj7GtdN9holV2IL/Icons-Post?type=design&node-id=0-1&mode=design&t=bBvDI0AyK2xagr22-0',
+    },
   },
   args: {
     name: '1022',

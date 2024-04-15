@@ -28,7 +28,7 @@
     "test:updatesnapshots": "jest -u"
   },
   "devDependencies": {
-    "@tsconfig/node18": "18.2.3",
+    "@tsconfig/node18": "18.2.4",
     "@types/jest": "29.5.12",
     "@types/mock-fs": "4.13.4",
     "@types/node": "18.19.28",

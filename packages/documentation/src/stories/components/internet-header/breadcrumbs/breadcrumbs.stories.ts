@@ -14,6 +14,10 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
   decorators: [hiddenHeader],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21648-20076&mode=design&t=HksCTWa2MMccgMl4-0',
+    },
   },
   argTypes: {
     customItems: {

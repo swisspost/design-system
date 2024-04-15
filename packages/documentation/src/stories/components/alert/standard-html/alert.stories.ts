@@ -5,7 +5,6 @@ import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getAlertClasses } from './getAlertClasses';
 import { MetaComponent } from '../../../../../types';
-import { getComponentFigmaLink } from '../../../../utils';
 
 const meta: MetaComponent = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
@@ -20,7 +19,7 @@ const meta: MetaComponent = {
     },
     design: {
       type: 'figma',
-      url: getComponentFigmaLink('17001-2244'),
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=17001-2244&mode=design&t=3lniLiZhl7q9Gqgn-4',
     },
   },
   args: {

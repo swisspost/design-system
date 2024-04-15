@@ -268,7 +268,7 @@ export namespace Components {
         /**
           * Defines the color variant of the component.
          */
-        "variant": 'gray' | 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
+        "variant": 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTooltip {
         /**
@@ -334,7 +334,7 @@ declare global {
         new (): HTMLPostAccordionItemElement;
     };
     interface HTMLPostAlertElementEventMap {
-        "dismissed": void;
+        "postDismissed": void;
     }
     interface HTMLPostAlertElement extends Components.PostAlert, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostAlertElementEventMap>(type: K, listener: (this: HTMLPostAlertElement, ev: PostAlertCustomEvent<HTMLPostAlertElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -351,8 +351,8 @@ declare global {
         new (): HTMLPostAlertElement;
     };
     interface HTMLPostCardControlElementEventMap {
-        "input": { state: boolean; value: string };
-        "change": { state: boolean; value: string };
+        "postInput": { state: boolean; value: string };
+        "postChange": { state: boolean; value: string };
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -372,7 +372,7 @@ declare global {
         new (): HTMLPostCardControlElement;
     };
     interface HTMLPostCollapsibleElementEventMap {
-        "collapseChange": boolean;
+        "postToggle": boolean;
     }
     interface HTMLPostCollapsibleElement extends Components.PostCollapsible, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostCollapsibleElementEventMap>(type: K, listener: (this: HTMLPostCollapsibleElement, ev: PostCollapsibleCustomEvent<HTMLPostCollapsibleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -404,7 +404,7 @@ declare global {
         new (): HTMLPostPopoverElement;
     };
     interface HTMLPostPopovercontainerElementEventMap {
-        "postPopoverToggled": boolean;
+        "postToggle": boolean;
     }
     interface HTMLPostPopovercontainerElement extends Components.PostPopovercontainer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -421,8 +421,8 @@ declare global {
         new (): HTMLPostPopovercontainerElement;
     };
     interface HTMLPostRatingElementEventMap {
-        "input": { value: number };
-        "change": { value: number };
+        "postInput": { value: number };
+        "postChange": { value: number };
     }
     interface HTMLPostRatingElement extends Components.PostRating, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostRatingElementEventMap>(type: K, listener: (this: HTMLPostRatingElement, ev: PostRatingCustomEvent<HTMLPostRatingElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -451,7 +451,7 @@ declare global {
         new (): HTMLPostTabPanelElement;
     };
     interface HTMLPostTabsElementEventMap {
-        "tabChange": HTMLPostTabPanelElement['name'];
+        "postChange": HTMLPostTabPanelElement['name'];
     }
     interface HTMLPostTabsElement extends Components.PostTabs, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostTabsElementEventMap>(type: K, listener: (this: HTMLPostTabsElement, ev: PostTabsCustomEvent<HTMLPostTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -533,7 +533,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the alert element is dismissed, after the transition. It has no payload and only relevant for dismissible alerts.
          */
-        "onDismissed"?: (event: PostAlertCustomEvent<void>) => void;
+        "onPostDismissed"?: (event: PostAlertCustomEvent<void>) => void;
         /**
           * The type of the alert.
          */
@@ -570,11 +570,11 @@ declare namespace LocalJSX {
         /**
           * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
          */
-        "onChange"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
+        "onPostChange"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
         /**
           * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
          */
-        "onInput"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
+        "onPostInput"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
         /**
           * Defines the `type` attribute of the control.
          */
@@ -596,7 +596,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
          */
-        "onCollapseChange"?: (event: PostCollapsibleCustomEvent<boolean>) => void;
+        "onPostToggle"?: (event: PostCollapsibleCustomEvent<boolean>) => void;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -653,7 +653,7 @@ declare namespace LocalJSX {
         /**
           * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
          */
-        "onPostPopoverToggled"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
+        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
         /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
@@ -671,11 +671,11 @@ declare namespace LocalJSX {
         /**
           * An event emitted whenever the component's value has changed (on blur). The event payload can be used like so: `event.detail.value`.
          */
-        "onChange"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
+        "onPostChange"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
         /**
           * An event emitted whenever the component's value has changed (on input). The event payload can be used like so: `event.detail.value`.
          */
-        "onInput"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
+        "onPostInput"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
         /**
           * Defines if the component is readonly or not. This usually should be used together with the `currentRating` property.
          */
@@ -705,7 +705,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
          */
-        "onTabChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
+        "onPostChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
     }
     interface PostTag {
         /**
@@ -719,7 +719,7 @@ declare namespace LocalJSX {
         /**
           * Defines the color variant of the component.
          */
-        "variant"?: 'gray' | 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
+        "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTooltip {
         /**

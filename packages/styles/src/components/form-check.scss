@@ -1,6 +1,7 @@
 @forward './../variables/options';
 
 @use '../variables/color';
+@use '../variables/commons';
 @use '../variables/type';
 @use '../variables/spacing';
 @use '../variables/animation';
@@ -15,7 +16,9 @@
   row-gap: form-check.$form-check-row-gap;
   margin-bottom: form-check.$form-check-margin-bottom;
 
-  @include utility-mx.focus-style();
+  @include utility-mx.focus-style() {
+    border-radius: commons.$border-radius;
+  }
 
   &-inline {
     display: inline-flex;
@@ -29,6 +32,10 @@
   &-label {
     color: rgba(var(--post-contrast-color-rgb), 0.8);
     transition: color animation.$transition-base-timing;
+
+    @include utility-mx.high-contrast-mode {
+      transition: none;
+    }
 
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ &-label {
@@ -76,6 +83,10 @@
       color: var(--post-contrast-color);
       border-color: var(--post-contrast-color);
 
+      @include utility-mx.high-contrast-mode {
+        border-color: FieldText; // Firefox need explicit declaration here
+      }
+
       ~ .form-check-label {
         color: var(--post-contrast-color);
       }
@@ -93,8 +104,8 @@
       &:checked,
       &:indeterminate {
         @include utility-mx.high-contrast-mode {
-          background-color: Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
-          color: HighlightText !important; // Important is needed for card-control
+          background-color: SelectedItem !important;
+          color: SelectedItemText !important; // Important is needed for card-control
         }
       }
     }
@@ -109,7 +120,7 @@
         background-clip: padding-box;
 
         @include utility-mx.high-contrast-mode {
-          background-color: Highlight;
+          background-color: SelectedItem;
           border-color: Canvas;
         }
       }
@@ -250,7 +261,7 @@
       border: form-check.$form-check-input-border-width solid CanvasText;
 
       &:checked {
-        background-color: Highlight !important;
+        background-color: SelectedItem !important;
       }
 
       &::after,

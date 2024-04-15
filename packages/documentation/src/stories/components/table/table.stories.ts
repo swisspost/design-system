@@ -8,7 +8,13 @@ const meta: MetaComponent = {
   title: 'Components/Table',
   tags: ['package:HTML'],
   render: renderTable,
-  parameters: {},
+  parameters: {
+    badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=25567-49992&mode=design&t=PR2ZnqAacaK7UiXP-4',
+    },
+  },
   args: {
     variant: [],
     borderStyle: 'null',

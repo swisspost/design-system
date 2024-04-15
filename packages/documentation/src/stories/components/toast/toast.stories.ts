@@ -9,6 +9,10 @@ const meta: MetaComponent = {
   tags: ['package:HTML'],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=16825-29996&mode=design&t=rXQXLIbDtUBHn9jE-4',
+    },
   },
   args: {
     title: 'Titulum',

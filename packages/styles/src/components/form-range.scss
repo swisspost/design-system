@@ -15,12 +15,16 @@ $webkit-progress-height-adjustment: 2px;
 $webkit-thumb-width: 32px;
 
 .form-range-wrapper {
-  @include utilities.focus-style();
+  @include utilities.focus-style() {
+    border-radius: commons.$border-radius;
+  }
 }
 
 :not(.form-range-wrapper) > {
   .form-range {
-    @include utilities.focus-style();
+    @include utilities.focus-style() {
+      border-radius: commons.$border-radius;
+    }
   }
 }
 
@@ -120,11 +124,11 @@ $webkit-thumb-width: 32px;
     forced-color-adjust: none;
 
     &::-webkit-slider-thumb {
-      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
+      box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw SelectedItem !important;
     }
 
     &::-moz-range-progress {
-      background-color: Highlight !important; // Highlight can be replaced with SelectedItem when https://issues.chromium.org/issues/40857613 is fixed (see, https://github.com/swisspost/design-system/pull/2774#discussion_r1555220944)
+      background-color: SelectedItem !important;
     }
 
     &:not(:disabled, .disabled) {
