@@ -14,16 +14,16 @@ $track-height: 4px;
 $webkit-progress-height-adjustment: 2px;
 $webkit-thumb-width: 32px;
 
-:has(> .form-range) {
+.form-range-wrapper {
   @include utilities.focus-style() {
-    border-radius: commons.$border-radius !important;
+    border-radius: commons.$border-radius;
   }
 }
 
-@supports not selector(:has(> .form-range)) {
+:not(.form-range-wrapper) > {
   .form-range {
     @include utilities.focus-style() {
-      border-radius: commons.$border-radius !important;
+      border-radius: commons.$border-radius;
     }
   }
 }
@@ -87,8 +87,11 @@ $webkit-thumb-width: 32px;
       }
     }
 
-    @include utilities.focus-style-custom('::-moz-range-thumb') {
+    &:focus::-moz-range-thumb {
       box-shadow: none; // Remove default style
+    }
+
+    @include utilities.focus-style-custom('::-moz-range-thumb') {
       outline: none;
     }
   }
@@ -149,13 +152,29 @@ $webkit-thumb-width: 32px;
         background-color: ButtonFace;
         border-color: ButtonText;
       }
+
+      &:hover {
+        &::-webkit-slider-thumb {
+          border-color: Highlight;
+        }
+
+        &::-moz-range-thumb {
+          border-color: Highlight;
+        }
+      }
     }
 
     &:disabled,
     &.disabled {
+      &::-moz-range-progress {
+        background-color: GrayText !important;
+      }
+
       &::-webkit-slider-thumb {
         background-color: ButtonFace;
         border-color: GrayText;
+
+        box-shadow: calc(-100vw - $webkit-thumb-width) 0 0 100vw GrayText !important;
       }
 
       &::-moz-range-thumb {
