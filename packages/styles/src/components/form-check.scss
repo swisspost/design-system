@@ -215,12 +215,10 @@
     &[disabled],
     &[disabled] ~ .form-check-label {
       text-decoration: line-through;
-      // TODO: Replace rgba(color.$black, 0.6) with new white alpha color https://github.com/swisspost/design-system/issues/2716
-      color: rgba(color.$black, 0.6);
+      color: color.$black-alpha-60;
 
       @include color-mx.on-dark-background() {
-        // TODO: Replace rgba(color.$white, 0.8) with new white alpha color https://github.com/swisspost/design-system/issues/2716
-        color: rgba(color.$white, 0.8);
+        color: color.$white-alpha-80;
       }
     }
 
