@@ -16,7 +16,7 @@
   margin-bottom: form-check.$form-check-margin-bottom;
 
   @include utility-mx.focus-style() {
-    border-radius: commons.$border-radius !important;
+    border-radius: commons.$border-radius;
   }
 
   &-inline {
@@ -32,8 +32,8 @@
     color: rgba(var(--post-contrast-color-rgb), 0.8);
     transition: color animation.$transition-base-timing;
 
-    &:not([disabled]) {
-      cursor: pointer;
+    @include utility-mx.high-contrast-mode {
+      transition: none;
     }
 
     &:hover:not([disabled]),
@@ -43,6 +43,11 @@
   }
 
   &-input {
+    &:not([disabled]),
+    &:not([disabled]) ~ .form-check-label {
+      cursor: pointer;
+    }
+
     @include utility-mx.focus-style-none();
     display: inline-flex;
     flex: 0 auto;
@@ -52,6 +57,18 @@
     width: form-check.$form-check-input-size;
     border: form-check.$form-check-input-border-width solid
       rgba(var(--post-contrast-color-rgb), 0.8);
+
+    @include utility-mx.high-contrast-mode {
+      border-color: FieldText; // For blink-browser as otherwise the default color (which is not a full color) will be converted to Highlight
+    }
+
+    @include utility-mx.high-contrast-mode() {
+      &:not(:disabled) {
+        &:hover {
+          border-color: Highlight;
+        }
+      }
+    }
 
     &::after {
       content: '';
@@ -63,6 +80,10 @@
     &:indeterminate {
       color: var(--post-contrast-color);
       border-color: var(--post-contrast-color);
+
+      @include utility-mx.high-contrast-mode {
+        border-color: FieldText; // Firefox need explicit declaration here
+      }
 
       ~ .form-check-label {
         color: var(--post-contrast-color);
@@ -77,6 +98,39 @@
       &:indeterminate::after {
         @include icons-mx.icon(2039);
       }
+
+      &:checked,
+      &:indeterminate {
+        @include utility-mx.high-contrast-mode {
+          background-color: SelectedItem !important;
+          color: SelectedItemText !important; // Important is needed for card-control
+        }
+      }
+    }
+
+    &[disabled] {
+      &[type='checkbox'],
+      &[type='radio'] {
+        border-color: GrayText !important;
+      }
+
+      &[type='checkbox'] {
+        &:checked,
+        &:indeterminate {
+          @include utility-mx.high-contrast-mode {
+            background-color: Field !important;
+            color: GrayText !important;
+          }
+        }
+      }
+
+      &[type='radio'] {
+        &:checked::after {
+          @include utility-mx.high-contrast-mode {
+            background-color: GrayText;
+          }
+        }
+      }
     }
 
     &[type='radio'] {
@@ -87,6 +141,11 @@
         background-color: currentColor;
         border-radius: inherit;
         background-clip: padding-box;
+
+        @include utility-mx.high-contrast-mode {
+          background-color: SelectedItem;
+          border-color: Canvas;
+        }
       }
     }
 
@@ -159,7 +218,7 @@
       border: form-check.$form-check-input-border-width solid CanvasText;
 
       &:checked {
-        background-color: SelectedItem;
+        background-color: SelectedItem !important;
       }
 
       &::after,
@@ -178,6 +237,16 @@
       &::after {
         border-color: form-check.$form-switch-disabled-border-color;
       }
+
+      @include utility-mx.high-contrast-mode {
+        &::after {
+          border-color: Field;
+        }
+
+        &:checked {
+          background-color: GrayText !important;
+        }
+      }
     }
   }
 
@@ -186,12 +255,6 @@
 
     @include utility-mx.high-contrast-mode {
       border-color: Highlight;
-
-      &:checked,
-      &::after,
-      &:checked::after {
-        background-color: Highlight;
-      }
     }
   }
 
