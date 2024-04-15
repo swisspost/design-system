@@ -14,6 +14,9 @@ const meta: MetaComponent = {
   render: renderTest,
   parameters: {
     badges: [],
+    controls: {
+      exclude: ['Badges'],
+    },
   },
   args: {
     itemCount: 3,
@@ -73,7 +76,7 @@ function renderTest(args: Args, context: StoryContext) {
               <li class="subnavigation-item">
                 <a href="#" class="subnavigation-link${index == 0 ? ' active' : ''}">
                   Navitem ${index === 0 ? 'active' : 'default'}
-                  ${args.badges ? html` <span class="badge">19</span> ` : ''}
+                  ${args.badges ? html` <span class="badge bg-gray">19</span> ` : ''}
                 </a>
               </li>
             `,
@@ -86,19 +89,11 @@ function renderTest(args: Args, context: StoryContext) {
 
 type Story = StoryObj;
 
-export const Default: Story = {
-  parameters: {
-    controls: {
-      include: ['Items', 'Background Color'],
-    },
-  },
-};
+export const Default: Story = {};
 
 export const ColoredBackground: Story = {
-  parameters: {
-    controls: {
-      include: ['Background Color'],
-    },
+  args: {
+    backgroundColor: 'bg-gray',
   },
 };
 

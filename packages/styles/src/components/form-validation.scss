@@ -119,7 +119,7 @@
   }
 
   &.is-valid {
-    border-color: var(--post-success-green);
+    border-color: var(--post-success);
 
     &:focus {
       border-color: form-validation.$form-feedback-valid-color;
