@@ -194,7 +194,7 @@ export class MigrationV67Component extends LitElement {
                   </p>
                   <p class="info">
                     Use the
-                    <a href="/?path=/docs/c23b1d0b-76b3-4e38-aa76-b10c29bb873f--docs">background utility classes</a>
+                    <a href="/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs">background utility classes</a>
                     to change the badge color as needed.
                   </p>
                 </li>
