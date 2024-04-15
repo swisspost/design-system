@@ -12,21 +12,16 @@ const meta: Meta = {
     },
   },
   args: {
-    variant: 'standard',
     notificationType: 'general',
     title: 'Dialog',
     content: 'This is a dialog',
     size: 'medium',
+    position: 'center',
+    backgroundColor: 'bg-white',
+    animation: 'pop-in',
     closeButton: true,
   },
   argTypes: {
-    variant: {
-      name: 'Variant',
-      description: 'Choose which dialog variant to display',
-      control: 'radio',
-      options: ['standard', 'notification', 'cookie'],
-      table: { category: 'Variant' },
-    },
     notificationType: {
       name: 'Notification type',
       description: 'Choose the type of notification to display',
@@ -54,9 +49,49 @@ const meta: Meta = {
       name: 'Size',
       description: 'Max width of the dialog.',
       control: {
-        type: 'select',
+        type: 'radio',
       },
       options: ['small', 'medium', 'large'],
+      table: { category: 'Variant' },
+    },
+    position: {
+      name: 'Position',
+      description: 'Position of the dialog on the screen',
+      control: {
+        type: 'radio',
+      },
+      options: ['top', 'center', 'bottom'],
+      table: { category: 'Variant' },
+    },
+    animation: {
+      name: 'Animation',
+      description: 'Choose an animation effect for showing and hidding the dialog.',
+      control: 'radio',
+      options: ['pop-in', 'slide-in', 'none'],
+      table: { category: 'Variant' },
+    },
+    icon: {
+      name: 'Icon',
+      description: 'Display an icon in the dialog.',
+      control: {
+        type: 'select',
+        labels: {
+          none: 'None',
+          1034: '1034 (Info)',
+          2104: '2104 (Danger)',
+          2106: '2106 (Warning)',
+          2105: '2105 (Success)',
+        },
+      },
+      options: ['none', '1034', '2105', '2104', '2106'],
+    },
+    backgroundColor: {
+      name: 'Background color',
+      description: 'The background color of the dialog field',
+      control: {
+        type: 'select',
+      },
+      options: ['bg-white', 'bg-light', 'bg-primary'],
       table: { category: 'Variant' },
     },
     closeButton: {
@@ -107,43 +142,36 @@ const getControls = () => {
 
 const Template = {
   render: (args: Args) => {
-    let variant = nothing;
-    let notificationType: symbol | string = nothing;
-    let backgroundColor: string | symbol = nothing;
-
-    let icon: symbol | TemplateResult = nothing;
-    let header = getHeader(args.title);
-    let body = html`${args.content}`;
+    const header = getHeader(args.title);
+    const body = html`${args.content}`;
     const controls = getControls();
-    const closeButton = args.closeButton ? getCloseButton() : nothing;
+    const postDialogIcon =
+      args.icon && args.icon !== 'none'
+        ? html`<post-dialog-icon><post-icon name="${args.icon}"></post-icon></post-dialog-icon>`
+        : nothing;
+    const postDialogCloseButton = args.closeButton
+      ? html`<post-dialog-close>${getCloseButton()}</post-dialog-close>`
+      : nothing;
 
-    if (args.variant === 'notification') {
-      variant = args.variant;
-      const { icon: iconNr } = notificationTypeIconMap[args.notificationType];
-      notificationType = args.notificationType as string;
-      icon = html`<post-icon name="${iconNr}"></post-icon>`;
-      header = getHeader(args.title);
-    }
-    if (args.variant === 'cookie') {
-      backgroundColor = 'bg-light';
-      icon = html`<post-icon name="2201"></post-icon>`;
-      variant = args.variant;
-    }
+    // Don't declare default values or show empty containers
+    if (args.backgroundColor === 'bg-white') args.backgroundColor = nothing;
+    if (args.animation === 'pop-in') args.animation = nothing;
+    if (args.position === 'center') args.position = nothing;
+    if (args.size === 'medium') args.size = nothing;
+
     return html`
       <dialog
+        class="${args.backgroundColor}"
         data-size="${args.size}"
-        data-variant="${variant}"
-        data-type="${notificationType}"
-        class="${backgroundColor}"
+        data-position="${args.position}"
+        data-animation="${args.animation}"
       >
         <form method="dialog" class="dialog-grid">
-          <post-dialog-icon>${icon}</post-dialog-icon>
+          ${postDialogIcon}
           <post-dialog-header>${header}</post-dialog-header>
           <post-dialog-body>${body}</post-dialog-body>
           <post-dialog-controls>${controls}</post-dialog-controls>
-          ${args.closeButton
-            ? html`<post-dialog-close>${closeButton}</post-dialog-close>`
-            : nothing}
+          ${postDialogCloseButton}
         </form>
       </dialog>
     `;

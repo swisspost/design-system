@@ -1,4 +1,5 @@
 @use '../mixins/elevation';
+@use '../mixins/utilities';
 @use '../variables/spacing';
 @use '../variables/color';
 @use '../variables/animation';
@@ -6,7 +7,7 @@
 @use './../themes/bootstrap/core' as *;
 
 // Prevent page from scrolling while a dialog is open
-// Missing support for has is negligible, it's progressive enhancement. It will magically work some day
+// Missing support for :has is negligible, it's progressive enhancement. It will magically work some day
 html:has(dialog[open]) {
   overflow: hidden;
 }
@@ -14,26 +15,25 @@ html:has(dialog[open]) {
 dialog {
   @include elevation.elevation('elevation-5');
 
-  padding: spacing.$size-regular spacing.$size-regular 0;
-  max-width: calc(100vw - 2rem);
+  padding: 0;
+  min-width: min(389px, 90vw);
+  max-width: 590px;
   max-height: 90vh;
   overflow: auto;
   overscroll-behavior: contain;
-  border-width: 0;
-
-  // Show the border in HCM
-  @media (forced-colors: active) {
-    border-width: 2px;
-  }
-
-  min-width: min(389px, 90vw);
-  max-width: 590px;
+  border: 2px solid var(--post-contrast-color);
 
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.8);
     backdrop-filter: blur(0);
+  }
 
-    @media (forced-colors: active) {
+  @include utilities.high-contrast-mode {
+    // Show the border in HCM
+    border-width: 2px;
+
+    // Mark the backdrop as inactive in HCM
+    &::backdrop {
       background-image: linear-gradient(
         135deg,
         CanvasText 4.55%,
@@ -51,110 +51,43 @@ dialog {
     }
   }
 
-  > .dialog-grid {
-    display: grid;
-    column-gap: spacing.$size-regular;
-    grid-template-columns: 1fr auto;
-    grid-template-areas:
-      'header close-button'
-      'body close-button'
-      'controls controls';
-
-    // Propagate bg color to the controls
-    background-color: inherit;
-  }
-
+  // Sizes
+  // [small, medium (default), large]
   &[data-size='small'] {
     min-width: 296px;
     max-width: 388px;
   }
-
-  // [size="medium"] is the standard case
 
   &[data-size='large'] {
     min-width: min(600px, 90vw);
     max-width: 792px;
   }
 
-  &[data-variant='notification'] {
-    padding: 0;
-
-    > .dialog-grid {
-      grid-template-columns: 1fr;
-      grid-template-areas:
-        'close-button'
-        'icon'
-        'header'
-        'body'
-        'controls';
-    }
-
-    &[data-type='general'] {
-      --post-dialog-background-color: #{color.$info};
-    }
-
-    &[data-type='warning'] {
-      --post-dialog-background-color: #{color.$warning};
-    }
-
-    &[data-type='error'] {
-      --post-dialog-background-color: #{color.$error};
-    }
-
-    &[data-type='success'] {
-      --post-dialog-background-color: #{color.$success};
-    }
-
-    > .dialog-grid::before {
-      content: '';
-      grid-area: close-button / close-button / header / header;
-      background-color: var(--post-dialog-background-color);
-    }
-
-    post-dialog-close,
-    post-dialog-icon,
-    post-dialog-header,
-    post-dialog-body {
-      margin-top: spacing.$size-regular;
-    }
-
-    post-dialog-header,
-    post-dialog-icon {
-      justify-self: center;
-    }
-
-    post-dialog-header,
-    post-dialog-body,
-    post-dialog-controls {
-      padding-inline: spacing.$size-regular;
-    }
-
-    post-dialog-close {
-      margin-right: spacing.$size-regular;
-    }
-
-    post-dialog-header,
-    post-dialog-controls {
-      padding-bottom: spacing.$size-regular;
-    }
+  // Positioning
+  // [top, center (default), bottom]
+  &[data-position='top'] {
+    top: 2rem;
+    bottom: auto;
   }
 
-  &[data-variant='cookie'] {
+  &[data-position='bottom'] {
     top: auto;
     bottom: 2rem;
-
-    > .dialog-grid {
-      grid-template-columns: auto 1fr auto;
-      grid-template-areas:
-        'icon     header   close-button'
-        'icon     body     close-button'
-        'controls controls controls';
-    }
-
-    post-dialog-icon {
-      align-self: flex-start;
-    }
   }
+}
+
+dialog > .dialog-grid {
+  margin: spacing.$size-regular spacing.$size-regular 0 spacing.$size-regular;
+  display: grid;
+  column-gap: spacing.$size-regular;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    'icon header close-button'
+    'icon body close-button'
+    'controls controls controls';
+
+  // Propagate bg color to the controls
+  background-color: inherit;
 }
 
 :where(
@@ -233,6 +166,7 @@ post-dialog-close {
 }
 
 // Animations
+// [slide-in, pop-in, none]
 // Progressively enhanced with currently experimental @starting-style which allows to animate stuff appearing in the top layer
 dialog:not([data-animation='none']) {
   --_dialog-transition-duration: var(--dialog-transition-duration, 0.5s);
