@@ -110,6 +110,31 @@
       }
     }
 
+    &[disabled] {
+      &[type='checkbox'],
+      &[type='radio'] {
+        border-color: GrayText !important;
+      }
+
+      &[type='checkbox'] {
+        &:checked,
+        &:indeterminate {
+          @include utility-mx.high-contrast-mode {
+            background-color: Field !important;
+            color: GrayText !important;
+          }
+        }
+      }
+
+      &[type='radio'] {
+        &:checked::after {
+          @include utility-mx.high-contrast-mode {
+            background-color: GrayText;
+          }
+        }
+      }
+    }
+
     &[type='radio'] {
       border-radius: 50%;
 
@@ -226,6 +251,7 @@
 
 .form-switch {
   .form-check-input {
+    background-color: transparent;
     height: form-check.$form-switch-height;
     width: form-check.$form-switch-width;
     border: 0;
