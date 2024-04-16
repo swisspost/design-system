@@ -23,9 +23,7 @@
   font-size: form-validation.$form-feedback-font-size;
 
   @include utilities-mx.high-contrast-mode() {
-    color: MarkText !important;
-    background-color: Mark !important;
-    forced-color-adjust: none;
+    padding-inline: 0;
   }
 }
 
@@ -102,37 +100,41 @@
 .form-select {
   &.is-invalid {
     border-color: form-validation.$form-feedback-invalid-color;
-    background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid);
-
-    @include utilities-mx.high-contrast-mode() {
-      background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-dark);
-
-      @media (prefers-color-scheme: light) {
-        background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-light);
-      }
-    }
 
     &:focus {
       border-color: form-validation.$form-feedback-invalid-color;
-      box-shadow: form-validation.$form-feedback-invalid-box-shadow;
+    }
+
+    &:not(&[type='file']) {
+      background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid);
+
+      @include utilities-mx.high-contrast-mode() {
+        background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-dark);
+
+        @media (prefers-color-scheme: light) {
+          background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-light);
+        }
+      }
     }
   }
 
   &.is-valid {
-    border-color: var(--post-success-green);
-    background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
-
-    @include utilities-mx.high-contrast-mode() {
-      background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-dark);
-
-      @media (prefers-color-scheme: light) {
-        background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-light);
-      }
-    }
+    border-color: var(--post-success);
 
     &:focus {
       border-color: form-validation.$form-feedback-valid-color;
-      box-shadow: form-validation.$form-feedback-valid-box-shadow;
+    }
+
+    &:not(&[type='file']) {
+      background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
+
+      @include utilities-mx.high-contrast-mode() {
+        background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-dark);
+
+        @media (prefers-color-scheme: light) {
+          background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-light);
+        }
+      }
     }
   }
 
@@ -161,10 +163,6 @@
   @include form-validation-mx.form-validation-state-selector(invalid) {
     border-color: form-validation.$form-feedback-invalid-color;
 
-    &:focus {
-      box-shadow: form-validation.$form-feedback-invalid-box-shadow;
-    }
-
     ~ .form-check-label {
       color: form-validation.$form-feedback-invalid-color;
     }
@@ -175,6 +173,10 @@
       ~ .form-check-label {
         color: color.$white;
       }
+    }
+
+    @include utilities-mx.high-contrast-mode {
+      border-color: FieldText; // For blink-browser as otherwise the invalid color will be converted to Highlight
     }
   }
 }

@@ -54,7 +54,7 @@
 // dark background variables
 %color-background-dark-variables {
   --post-contrast-color: #{color.$white};
-  --post-focus-color: #{color.$white};
+  --post-focus-color: #{color.$focus-dark};
   --post-contrast-color-inverted: #{color.$black};
   --post-dark: #{color.$light};
   --post-light: #{color.$dark};

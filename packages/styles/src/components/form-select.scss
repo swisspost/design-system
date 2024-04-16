@@ -6,17 +6,59 @@
 @use './../mixins/forms' as forms-mixins;
 @use './../mixins/utilities';
 
+@use './../variables/commons';
 @use './../variables/components/forms';
 @use './../variables/components/form-select' as form-select;
+
+.form-select-wrapper {
+  @include utilities.focus-style() {
+    border-radius: commons.$border-radius;
+  }
+}
+
+:not(.form-select-wrapper) > {
+  .form-select {
+    @include utilities.focus-style() {
+      border-radius: commons.$border-radius;
+    }
+  }
+}
 
 .form-select {
   --form-select-indicator: #{form-select.$form-select-indicator};
   --form-select-indicator-success: #{b.escape-svg(form-select.$form-select-indicator-success)};
   --form-select-indicator-error: #{b.escape-svg(form-select.$form-select-indicator-error)};
 
+  &:focus {
+    box-shadow: none; // Override bootstrap
+
+    @include utilities.high-contrast-mode {
+      border-color: FieldText !important;
+    }
+  }
+
   &:not(:disabled) {
-    &:hover {
+    &:hover,
+    &:focus {
       border-color: var(--post-contrast-color);
+
+      @include utilities.high-contrast-mode {
+        border-color: FieldText;
+      }
+    }
+
+    &:hover {
+      @include utilities.high-contrast-mode {
+        border-color: Highlight;
+      }
+    }
+  }
+
+  &:disabled {
+    @include utilities.high-contrast-mode {
+      border-color: GrayText !important;
+      background-color: Field !important;
+      color: GrayText;
     }
   }
 
@@ -90,11 +132,6 @@
 
     &:focus-visible {
       color: FieldText;
-    }
-
-    &:focus,
-    &:hover:not(:disabled) {
-      border-color: Highlight;
     }
   }
 }
