@@ -43,6 +43,7 @@ export const FocusTrap: FunctionalComponent<{ active?: boolean }> = (props, chil
   return [
     <input
       type="text"
+      aria-label="Next"
       class="visually-hidden"
       key={`focus-trap-before-${key}`}
       onFocusin={e => active && handleFocusIn(e, 'last')}
@@ -50,6 +51,7 @@ export const FocusTrap: FunctionalComponent<{ active?: boolean }> = (props, chil
     children,
     <input
       type="text"
+      aria-label="Previous"
       class="visually-hidden"
       key={`focus-trap-after-${key}`}
       onFocusin={e => active && handleFocusIn(e, 'first')}
