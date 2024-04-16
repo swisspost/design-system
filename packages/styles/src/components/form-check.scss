@@ -54,7 +54,7 @@
     display: inline-flex;
     flex: 0 auto;
     appearance: none;
-    background: color.$white;
+    background: transparent;
     height: form-check.$form-check-input-size;
     width: form-check.$form-check-input-size;
     border: form-check.$form-check-input-border-width solid
@@ -110,31 +110,6 @@
       }
     }
 
-    &[disabled] {
-      &[type='checkbox'],
-      &[type='radio'] {
-        border-color: GrayText !important;
-      }
-
-      &[type='checkbox'] {
-        &:checked,
-        &:indeterminate {
-          @include utility-mx.high-contrast-mode {
-            background-color: Field !important;
-            color: GrayText !important;
-          }
-        }
-      }
-
-      &[type='radio'] {
-        &:checked::after {
-          @include utility-mx.high-contrast-mode {
-            background-color: GrayText;
-          }
-        }
-      }
-    }
-
     &[type='radio'] {
       border-radius: 50%;
 
@@ -167,7 +142,9 @@
     &[disabled] {
       &[type='checkbox'],
       &[type='radio'] {
-        border-color: GrayText !important;
+        @include utility-mx.high-contrast-mode {
+          border-color: GrayText !important;
+        }
       }
 
       &[type='checkbox'] {
@@ -199,7 +176,7 @@
         background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-lg}') !important;
       }
 
-      .form-check-sm & {
+      .form-check-sm &[type='checkbox'] {
         background-image: url('#{form-check.$form-check-input-disabled-background-url-light-sm}');
 
         @include color-mx.on-dark-background {

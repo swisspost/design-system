@@ -29,10 +29,9 @@ $form-check-input-disabled-background-url-light-lg: forms-fn.get-background-svg-
   $form-check-input-disabled-svg-stroke-square-pathlength-lg,
   $form-check-input-disabled-svg-border-width
 );
-// TODO: Replace rgba(color.$white, 0.8) with new white alpha color https://github.com/swisspost/design-system/issues/2716
 $form-check-input-disabled-background-url-dark-lg: forms-fn.get-background-svg-stroke(
   'square',
-  rgba(color.$white, 0.8),
+  color.$white-alpha-80,
   $form-check-input-disabled-svg-stroke-square-pattern-lg,
   $form-check-input-disabled-svg-stroke-square-pathlength-lg,
   $form-check-input-disabled-svg-border-width
@@ -52,10 +51,9 @@ $form-check-input-disabled-background-url-light-sm: forms-fn.get-background-svg-
   $form-check-input-disabled-svg-stroke-square-pathlength-sm,
   $form-check-input-disabled-svg-border-width
 );
-// TODO: Replace rgba(color.$white, 0.8) with new white alpha color https://github.com/swisspost/design-system/issues/2716
 $form-check-input-disabled-background-url-dark-sm: forms-fn.get-background-svg-stroke(
   'square',
-  rgba(color.$white, 0.8),
+  color.$white-alpha-80,
   $form-check-input-disabled-svg-stroke-square-pattern-sm,
   $form-check-input-disabled-svg-stroke-square-pathlength-sm,
   $form-check-input-disabled-svg-border-width
@@ -72,22 +70,21 @@ $form-check-input-radio-disabled-background-url-light: forms-fn.get-background-s
   'circle',
   color.$gray-60,
   $form-check-input-disabled-svg-stroke-circle-pattern,
-  0,
+  initial,
   $form-check-input-disabled-svg-border-width
 );
-// TODO: Replace rgba(color.$white, 0.8) with new white alpha color https://github.com/swisspost/design-system/issues/2716
 $form-check-input-radio-disabled-background-url-dark: forms-fn.get-background-svg-stroke(
   'circle',
-  rgba(color.$white, 0.8),
+  color.$white-alpha-80,
   $form-check-input-disabled-svg-stroke-circle-pattern,
-  0,
+  initial,
   $form-check-input-disabled-svg-border-width
 );
 $form-check-input-radio-disabled-background-url-hcm: forms-fn.get-background-svg-stroke(
   'circle',
   'GrayText',
   $form-check-input-disabled-svg-stroke-circle-pattern,
-  0,
+  initial,
   $form-check-input-disabled-svg-border-width
 );
 $form-switch-column-gap: spacing.$size-regular !default;
