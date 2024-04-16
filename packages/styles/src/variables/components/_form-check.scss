@@ -21,6 +21,7 @@ $form-check-input-disabled-svg-stroke-square-pathlength-lg: 88;
 $form-check-input-disabled-svg-stroke-square-pattern-sm: '2 1.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 2 3.5 4 1.5 4 1.5 4';
 $form-check-input-disabled-svg-stroke-square-pathlength-sm: 66;
 $form-check-input-disabled-svg-stroke-circle-pattern: '4 2';
+
 // Checkbox lg
 $form-check-input-disabled-background-url-light-lg: forms-fn.get-background-svg-stroke(
   'square',
@@ -87,6 +88,7 @@ $form-check-input-radio-disabled-background-url-hcm: forms-fn.get-background-svg
   initial,
   $form-check-input-disabled-svg-border-width
 );
+
 $form-switch-column-gap: spacing.$size-regular !default;
 $form-switch-height: spacing.$size-big !default;
 $form-switch-width: 2 * spacing.$size-big !default;
