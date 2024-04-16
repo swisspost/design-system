@@ -31,9 +31,9 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
   <p>We advise opting for the "Standard HTML" approach for when you need full access to the input field and using the "Web Component" method in every other case.</p>
 </PostAlert>
 
-<PostTabs>
-  <PostTabHeader slot="tabs" panel="standardhtml_checkbox">Standard HTML</PostTabHeader>
-  <PostTabPanel name="standardhtml_checkbox">
+<PostTabs activePanel="webcomponent">
+  <PostTabHeader slot="tabs" panel="standardhtml">Standard HTML</PostTabHeader>
+  <PostTabPanel name="standardhtml">
     <Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
     <div className="hide-col-default">
       <Controls of={CardControlStandardHTMLStories.Default} />
