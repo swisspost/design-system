@@ -134,112 +134,109 @@
 }
 
 // Animated
+
 .btn-animated,
 .btn-animated-start {
   &:not(.btn-link, .btn-tertiary) {
     &::after {
-      @include icon-mx.icon(2110);
+      @include icon-mx.icon(2111);
       content: '';
       display: block;
-      height: 0.625em;
-      width: 0.625em;
-      // content: '';
-      // position: absolute;
-      // width: 0.625em;
-      // height: 0.625em;
-      // transform-origin: center center;
-      // transition:
-      //   opacity 250ms,
-      //   transform 250ms;
-      // opacity: 0;
+      height: 2em;
+      width: 2em;
+      position: absolute;
+      transition:
+        opacity 250ms,
+        transform 250ms;
+      opacity: 0;
     }
 
-    // > span {
-    //   transition: transform 250ms;
-    // }
+    > span {
+      transition: transform 250ms;
+    }
 
-    // @media (prefers-reduced-motion: no-preference) {
-    //   @include utilities.not-disabled-focus-hover() {
-    //     &::after {
-    //       transform: rotateZ(315deg) translate(0, 0);
-    //       opacity: 1;
-    //     }
-    //   }
+    @media (prefers-reduced-motion: no-preference) {
+      @include utilities.not-disabled-focus-hover() {
+        &::after {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
 
-    //   > span {
-    //     // Initially transform to place text in the right rendering context for a smooth animation
-    //     transform: translateX(0);
-    //   }
-    // }
+      > span {
+        // Initially transform to place text in the right rendering context for a smooth animation
+        transform: translateX(0);
+      }
+    }
   }
 }
 
-// .btn-animated:not(.btn-link, .btn-tertiary) {
-//   &::after {
-//     right: button.$btn-padding-x-md - button.$btn-animation-distance-md;
-//     transform: rotateZ(315deg)
-//       translate(button.$btn-border-width * -1, button.$btn-border-width * -1);
-//     border-right: button.$btn-border-width solid currentColor;
-//     border-bottom: button.$btn-border-width solid currentColor;
-//   }
+.btn-animated:not(.btn-link, .btn-tertiary) {
+  &::after {
+    right: button.$btn-padding-x-md - button.$btn-animation-distance-md -
+      (button.$btn-font-size-md * 2 / 3);
+    transform: translateX(button.$btn-border-width * -1);
+  }
 
-//   @each $size in button.$btn-non-default-sizes {
-//     &.btn-#{$size}::after {
-//       right: map.get(button.$btn-padding-x-map, $size) - map.get(
-//           button.$btn-animation-distance-map,
-//           $size
-//         );
-//     }
-//   }
+  @each $size in button.$btn-non-default-sizes {
+    &.btn-#{$size}::after {
+      right: map.get(button.$btn-padding-x-map, $size) - map.get(
+          button.$btn-animation-distance-map,
+          $size
+        ) -
+        (map.get(button.$btn-font-size-map, $size) * 2 / 3);
+    }
+  }
 
-//   // Only animate when user prefers to see animations
-//   @media (prefers-reduced-motion: no-preference) {
-//     @include utilities.not-disabled-focus-hover() {
-//       > span {
-//         transform: translateX(map.get(button.$btn-animation-distance-map, md) * -1);
-//       }
+  // Only animate when user prefers to see animations
+  @media (prefers-reduced-motion: no-preference) {
+    @include utilities.not-disabled-focus-hover() {
+      > span {
+        transform: translateX(map.get(button.$btn-animation-distance-map, md) * -1);
+      }
 
-//       @each $size in button.$btn-non-default-sizes {
-//         &.btn-#{$size} > span {
-//           transform: translateX(map.get(button.$btn-animation-distance-map, $size) * -1);
-//         }
-//       }
-//     }
-//   }
-// }
+      @each $size in button.$btn-non-default-sizes {
+        &.btn-#{$size} > span {
+          transform: translateX(map.get(button.$btn-animation-distance-map, $size) * -1);
+        }
+      }
+    }
+  }
+}
 
-// .btn-animated-start:not(.btn-link, .btn-tertiary) {
-//   &::after {
-//     left: button.$btn-padding-x-md - button.$btn-animation-distance-md;
-//     transform: rotateZ(315deg) translate(button.$btn-border-width, button.$btn-border-width);
-//     border-left: button.$btn-border-width solid currentColor;
-//     border-top: button.$btn-border-width solid currentColor;
-//   }
+.btn-animated-start:not(.btn-link, .btn-tertiary) {
+  &::after {
+    @include icon-mx.icon(2110);
+    left: button.$btn-padding-x-md - button.$btn-animation-distance-md -
+      (button.$btn-font-size-md * 2 / 3);
+    transform: translateX(button.$btn-border-width);
+  }
 
-//   @each $size in button.$btn-non-default-sizes {
-//     &.btn-#{$size}::after {
-//       left: map.get(button.$btn-padding-x-map, $size) - map.get(
-//           button.$btn-animation-distance-map,
-//           $size
-//         );
-//     }
-//   }
+  @each $size in button.$btn-non-default-sizes {
+    &.btn-#{$size}::after {
+      left: map.get(button.$btn-padding-x-map, $size) - map.get(
+          button.$btn-animation-distance-map,
+          $size
+        ) -
+        (map.get(button.$btn-font-size-map, $size) * 2 / 3);
+    }
+  }
 
-//   // Only animate when user prefers to see animations
-//   @media (prefers-reduced-motion: no-preference) {
-//     @include utilities.not-disabled-focus-hover() {
-//       > span {
-//         transform: translateX(map.get(button.$btn-animation-distance-map, md));
-//       }
+  // Only animate when user prefers to see animations
+  @media (prefers-reduced-motion: no-preference) {
+    @include utilities.not-disabled-focus-hover() {
+      > span {
+        transform: translateX(map.get(button.$btn-animation-distance-map, md));
+      }
 
-//       @each $size in button.$btn-non-default-sizes {
-//         &.btn-#{$size} > span {
-//           transform: translateX(map.get(button.$btn-animation-distance-map, $size));
-//         }
-//       }
-//     }
-//   }
-// }
+      @each $size in button.$btn-non-default-sizes {
+        &.btn-#{$size} > span {
+          transform: translateX(map.get(button.$btn-animation-distance-map, $size));
+        }
+      }
+    }
+  }
+}
 
 // Size variants, default is rg
 @each $size in button.$btn-non-default-sizes {
