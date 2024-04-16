@@ -3,7 +3,6 @@ import { html, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 import { repeat } from 'lit/directives/repeat.js';
 import { MetaComponent } from '../../../../types';
-import { getComponentFigmaLink } from '../../../utils';
 
 const meta: MetaComponent = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
@@ -13,7 +12,7 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: getComponentFigmaLink('16826-33449'),
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=16826-33449&mode=design&t=3lniLiZhl7q9Gqgn-4',
     },
   },
   args: {

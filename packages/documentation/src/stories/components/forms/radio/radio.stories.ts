@@ -18,6 +18,10 @@ const meta: MetaComponent = {
       exclude: ['Hidden Legend'],
     },
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21786-25016&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     hiddenLegend: false,

@@ -1,0 +1,22 @@
+// Source: https://kovart.github.io/dashed-border-generator/ + added stroke-vector-effect
+@function get-background-svg-stroke(
+  $type,
+  $color,
+  $stroke-dasharray,
+  $stroke-pathlength,
+  $stroke-width
+) {
+  $svg-additional-attributes: '';
+  $stroke-pathlength-attribute: '';
+
+  @if ($type == 'circle') {
+    $svg-additional-attributes: "rx='100' ry='100'";
+  }
+  @if ($stroke-pathlength != 'initial') {
+    $stroke-pathlength-attribute: " pathLength='" + $stroke-pathlength + "'";
+  }
+  @return "data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' " +
+    $svg-additional-attributes + " fill='none' stroke='" + $color + "' stroke-width='" +
+    $stroke-width "' stroke-dasharray='" + $stroke-dasharray + "'" + $stroke-pathlength-attribute +
+    ' /%3e%3c/svg%3e';
+}

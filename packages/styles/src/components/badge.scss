@@ -1,6 +1,7 @@
 @forward './../variables/options';
 
 @use './../mixins/color' as color-mx;
+@use './../placeholders/badge' as badge-ph;
 @use './../variables/components/badge';
 
 .badge {
@@ -24,10 +25,8 @@
     --post-badge-height: #{badge.$badge-height-empty};
     --post-badge-padding-x: #{badge.$badge-padding-x-empty};
   }
-}
 
-.badge-sm {
-  --post-badge-height: #{badge.$badge-height-sm};
-  --post-badge-padding-x: #{badge.$badge-padding-x-sm};
-  font-size: badge.$badge-font-size-sm;
+  &.badge-sm {
+    @extend %badge-sm;
+  }
 }

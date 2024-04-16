@@ -3,8 +3,10 @@ import meta from './subnavigation.stories';
 import { html } from 'lit';
 import { bombArgs } from '../../../utils';
 
+const { id, ...metaWithoutId } = meta;
+
 export default {
-  ...meta,
+  ...metaWithoutId,
   title: 'Snapshots',
 };
 
@@ -15,10 +17,13 @@ export const Subnavigation: Story = {
     return html`
       <div class=" d-flex gap-3 flex-column">
         ${bombArgs({
-          itemCount: [2, 5],
           backgroundColor: ['default', 'bg-light', 'bg-dark'],
-          badges: [true, false],
-        }).map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
+          badges: [false, true],
+          itemCount: [2, 5],
+        })
+          .filter(args => !(args.backgroundColor !== 'default' && args.badges === true))
+          .filter(args => !(args.itemCount !== 5 && args.badges === true))
+          .map((args: Args) => meta.render?.({ ...context.args, ...args }, context))}
       </div>
     `;
   },

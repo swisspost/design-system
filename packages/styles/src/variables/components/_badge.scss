@@ -7,6 +7,7 @@
 @use './../../functions/sizing';
 
 $badge-border-radius: 50rem;
+$badge-line-height: type.$line-height-copy;
 $badge-color: color.$white;
 $badge-bg: color.$error;
 $badge-border: color.$white solid commons.$border-thick;
@@ -21,27 +22,3 @@ $badge-padding-x-empty: 0%; // needs a unit for the calculated min-width
 
 $badge-font-size: type.$font-size-12;
 $badge-font-size-sm: 10px;
-
-// DEPRECATED
-$badge-gap: spacing.$size-mini;
-$badge-transition:
-  color 250ms,
-  background-color 250ms,
-  border-color 250ms;
-$badge-hover-color: color.$black;
-$badge-hover-bg-color: color.$gray-10;
-$badge-active-color: color.$black;
-$badge-active-bg-color: color.$yellow;
-$badge-gap-sm: sizing.px-to-rem(6px);
-$badge-nested-height: sizing.px-to-rem(22px);
-$badge-nested-color: color.$gray-60;
-$badge-nested-bg-color: color.$gray-10;
-$badge-nested-border-color: color.$white;
-$badge-nested-font-size: sizing.px-to-rem(10px);
-$badge-nested-translate-x: ($badge-height - $badge-nested-height) * 0.5;
-$badge-nested-active-bg-color: color.$white;
-$badge-nested-translate-x-sm: ($badge-height-sm - $badge-nested-height) * 0.5;
-$badge-check-input-height: spacing.$size-small-large;
-$badge-check-input-bg-color: color.$white;
-$badge-font-weight: type.$font-weight-normal;
-$badge-padding-y: 0;
