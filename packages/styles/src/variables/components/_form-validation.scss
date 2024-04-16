@@ -11,10 +11,10 @@ $form-feedback-margin-top: 0 !default;
 $form-feedback-font-size: type.$font-size-12 !default;
 $form-feedback-valid-color: color.$gray-60 !default;
 $form-feedback-invalid-color: color.$error !default;
-$form-feedback-icon-valid: url(icons.get-colored-svg-url('2105', color.$success-green)) !default;
+$form-feedback-icon-valid: url(icons.get-colored-svg-url('2105', color.$success)) !default;
 $form-feedback-icon-valid-hcm-dark: url(icons.get-colored-svg-url('2105', color.$white)) !default;
 $form-feedback-icon-valid-hcm-light: url(icons.get-colored-svg-url('2105', color.$black)) !default;
-$form-feedback-icon-invalid: url(icons.get-colored-svg-url('2104', color.$error-red)) !default;
+$form-feedback-icon-invalid: url(icons.get-colored-svg-url('2104', color.$error)) !default;
 $form-feedback-icon-invalid-hcm-dark: url(icons.get-colored-svg-url('2104', color.$white)) !default;
 $form-feedback-icon-invalid-hcm-light: url(icons.get-colored-svg-url(
   '2104',
@@ -27,12 +27,12 @@ $form-feedback-padding-y: sizing.px-to-rem(6);
 $form-feedback-padding-y-sm: spacing.$size-micro;
 $form-feedback-icon-size: 2rem !default; // Equals 24pt [svg-size]
 $form-feedback-icon-offset: spacing.$size-mini !default;
-$form-feedback-valid-bg: color.$success-green !default;
+$form-feedback-valid-bg: color.$success !default;
 $form-feedback-valid-text: color.$white !default;
 $form-feedback-invalid-bg: color.$error !default;
 $form-feedback-invalid-text: color.$white !default;
-$form-feedback-custom-color: color.$success-green !default;
-$form-feedback-custom-bg: color.$success-green !default;
+$form-feedback-custom-color: color.$success !default;
+$form-feedback-custom-bg: color.$success !default;
 $form-feedback-invalid-box-shadow: 0 0 0 forms.$input-focus-width
   rgba($form-feedback-invalid-color, 0.25) !default;
 $form-feedback-valid-box-shadow: 0 0 0 forms.$input-focus-width

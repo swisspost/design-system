@@ -1,14 +1,19 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
-import LinkTo from '@storybook/addon-links/react';
 import * as RatingStories from './post-rating.stories';
 import SampleEvents from './post-rating.events.sample?raw';
 
 <Meta of={RatingStories} />
 
-# Rating
+<div className="docs-title">
+  # Rating
 
-<p className="lead">Our Rating Web Component allows you to easily integrate 
-a customizable star rating system, providing an 
+  <nav>
+    <link-design of={JSON.stringify(RatingStories)}></link-design>
+  </nav>
+</div>
+
+<p className="lead">Our Rating Web Component allows you to easily integrate
+a customizable star rating system, providing an
 interactive and visually appealing way to gather and display user feedback.</p>
 
 <Canvas of={RatingStories.Default} sourceState='shown'/>
@@ -26,4 +31,3 @@ For more information, read the <LinkTo kind="edfb619b-fda1-4570-bf25-20830303d48
 <Source code={SampleEvents} language="ts" />
 
 
-  

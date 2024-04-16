@@ -2,6 +2,7 @@
 
 @use './../lic/bootstrap-license';
 
+@use './../variables/commons';
 @use './../variables/components/forms';
 @use './../variables/type';
 @use './../variables/spacing';
@@ -50,20 +51,58 @@ select.form-control-rg:not([size]):not([multiple]) {
   height: forms.$input-height-rg;
 }
 
-.form-control,
-.form-control:focus {
-  @include utilities.focus-style();
+.form-control-wrapper {
+  @include utilities.focus-style() {
+    border-radius: commons.$border-radius;
+  }
+}
+
+:not(.form-control-wrapper) > {
+  .form-control {
+    @include utilities.focus-style() {
+      border-radius: commons.$border-radius;
+    }
+  }
 }
 
 .form-control {
   position: relative;
 
-  &[disabled] {
+  &:focus {
+    box-shadow: none; // Override bootstrap
+
+    @include utilities.high-contrast-mode {
+      border-color: FieldText !important; // On blink browser valid and invalid border colors are converted to Highlight color
+    }
+  }
+
+  &:not(:disabled) {
+    &:hover,
+    &:focus {
+      @include utilities.high-contrast-mode {
+        border-color: FieldText;
+      }
+    }
+
+    &:hover {
+      @include utilities.high-contrast-mode {
+        border-color: Highlight;
+      }
+    }
+  }
+
+  &:disabled {
     color: forms.$input-disabled-border-color;
     border: forms.$input-disabled-border-style;
 
     ~ .form-text {
       color: forms.$input-disabled-color;
+    }
+
+    @include utilities.high-contrast-mode {
+      border-color: GrayText !important;
+      background-color: Field !important;
+      color: GrayText;
     }
   }
 
@@ -74,6 +113,13 @@ select.form-control-rg:not([size]):not([multiple]) {
 
   &[type='file'] {
     position: relative;
+
+    &:disabled {
+      @include utilities.high-contrast-mode {
+        color: GrayText; // Needed for the button on blink browser, even if we define it on .form-control:disabled
+        border-color: GrayText;
+      }
+    }
 
     &::file-selector-button {
       display: block;
@@ -162,19 +208,6 @@ select.form-control-rg:not([size]):not([multiple]) {
     &.form-control-lg {
       &::after {
         padding-inline: forms.$input-padding-y-lg;
-      }
-    }
-  }
-
-  @include utilities.high-contrast-mode() {
-    &:hover,
-    &:focus {
-      &:not(:disabled) {
-        border-color: Highlight;
-
-        &::file-selector-button {
-          border-left-color: Highlight;
-        }
       }
     }
   }

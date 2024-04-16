@@ -1,7 +1,7 @@
 import { Args, StoryObj, StoryContext } from '@storybook/web-components';
 import { html } from 'lit';
 import { bombArgs } from '../../../../utils';
-import meta, { Default } from './post-tag.stories';
+import meta from './post-tag.stories';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -31,7 +31,7 @@ export const PostTag: Story = {
                 ${context.argTypes.variant.options
                   .filter((v: string) => v !== 'null')
                   .map((variant: string) =>
-                    Default.render?.(
+                    meta.render?.(
                       {
                         ...args,
                         ...bombArgs,

@@ -5,6 +5,7 @@
 
 @use './../variables/components/button';
 @use './../variables/color';
+@use './../variables/commons';
 @use './../variables/type';
 @use './../variables/spacing';
 @use './../mixins/color' as color-mx;
@@ -18,7 +19,9 @@
 
 .btn {
   @include button-mx.button-size();
-  @include utilities.focus-style();
+  @include utilities.focus-style() {
+    border-radius: commons.$border-radius;
+  }
 
   // Resets
   display: inline-flex;
@@ -60,7 +63,8 @@
     }
 
     &:disabled {
-      color: var(--post-gray-80);
+      color: var(--post-contrast-color);
+      background-color: var(--post-gray-40);
     }
   }
 
@@ -203,7 +207,7 @@
   @include button-mx.button-color-variant($name, $color);
 }
 
-// Intranet contextual buttons
-@each $name, $color in color.$contextual-colors {
+// Intranet signal buttons
+@each $name, $color in color.$signal-colors {
   @include button-mx.button-color-variant($name, $color);
 }

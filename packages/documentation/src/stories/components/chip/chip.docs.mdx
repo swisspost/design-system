@@ -1,0 +1,42 @@
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { PostAlert } from '@swisspost/design-system-components-react';
+import * as ChipStories from './chip.stories';
+import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+
+<Meta of={ChipStories} />
+
+# Chip
+
+<div className="lead">
+  Display small pieces of information with which users can interact.
+</div>
+
+<Canvas sourceState="shown" of={ChipStories.Default} />
+<div className="hide-col-default">
+  <Controls of={ChipStories.Default} />
+</div>
+
+<StylesPackageImport components={['chip']} />
+
+## Examples
+
+### Filter Chip
+
+Filter chips provide a simple means to refine content or search results based on specific attributes.
+They are personalized checkboxes, allowing users to toggle them to filter content effectively.
+
+<Canvas of={ChipStories.FilterCheckboxChip} />
+
+Alternatively, filter chips may be used with radio inputs when a single filter selection is needed.
+
+<Canvas of={ChipStories.FilterRadioChip} />
+
+### Dismissible Chip
+
+Dismissible chips represent pieces of information entered by a user.
+Each chip includes a close button, enabling users to conveniently remove them from view.
+
+It's important to note that the close icon lacks visible text.
+Therefore, it's imperative to include a visually hidden label to ensure accessibility for users relying on assistive technologies.
+
+<Canvas of={ChipStories.Dismissible} />

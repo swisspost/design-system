@@ -14,9 +14,9 @@
 
 ## Events
 
-| Event       | Description                                                                                                                                                       | Type                  |
-| ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
-| `tabChange` | An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel. | `CustomEvent<string>` |
+| Event        | Description                                                                                                                                                       | Type                  |
+| ------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| `postChange` | An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel. | `CustomEvent<string>` |
 
 
 ## Methods

@@ -16,6 +16,10 @@ const meta: MetaComponent = {
   render: render,
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=18201-21381&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     label: 'Label',
@@ -224,12 +228,18 @@ function render(args: Args, context: StoryContext) {
   if (args.showValue === 'input') {
     return html`
       <div class="row align-items-end">
-        <div class="col">${[label, control, ...contextual].filter(el => el !== null)}</div>
+        <div class="col">
+          <div class="form-range-wrapper">
+            ${[label, control, ...contextual].filter(el => el !== null)}
+          </div>
+        </div>
         <div class="col-auto">${valueElement}</div>
       </div>
     `;
   } else {
-    return html` ${[label, control, valueElement, ...contextual].filter(el => el !== null)} `;
+    return html`<div class="form-range-wrapper">
+      ${[label, control, valueElement, ...contextual].filter(el => el !== null)}
+    </div>`;
   }
 }
 

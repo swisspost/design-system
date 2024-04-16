@@ -24,15 +24,15 @@ describe('accordion', () => {
       cy.get('@collapsibles').last().find('.collapse').should('be.visible');
     });
 
-    it('should still show the first element as expanded after clicking the last element', () => {
+    it('should not show the first element as expanded after clicking the last element', () => {
       cy.get('@collapsibles').last().click();
       cy.get('@collapsibles').first().find('.collapse').should('be.hidden');
     });
 
-    it('should propagate collapseChange event from post-accordion-item on post-accordion', () => {
+    it('should propagate "postToggle" event from post-accordion-item on post-accordion', () => {
       cy.document().then(document => {
         const EventHandlerMock = cy.spy();
-        Cypress.$(document.querySelector('post-accordion')).on('collapseChange', EventHandlerMock);
+        Cypress.$(document.querySelector('post-accordion')).on('postToggle', EventHandlerMock);
 
         cy.get('@collapsibles')
           .last()
@@ -50,10 +50,10 @@ describe('accordion', () => {
       cy.get('@accordion').find('post-accordion post-accordion-item').as('nestedCollapsibles');
     });
 
-    it('should not propagate collapseChange event from nested post-accordion', () => {
+    it('should not propagate "postToggle" event from nested post-accordion', () => {
       cy.document().then(document => {
         const EventHandlerMock = cy.spy();
-        Cypress.$(document.querySelector('post-accordion')).on('collapseChange', EventHandlerMock);
+        Cypress.$(document.querySelector('post-accordion')).on('postToggle', EventHandlerMock);
 
         cy.get('@nestedCollapsibles')
           .last()

@@ -1,0 +1,8 @@
+import { Markdown, Meta } from '@storybook/blocks';
+import changelog from '../../../../../../components-angular/CHANGELOG.md?raw';
+import ChangelogStories from './changelog.stories';
+import { CodeOrSourceMdx } from '../../../../utils/codeOrSourceMdx';
+
+<Meta of={ChangelogStories}/>
+
+<Markdown options={{ overrides: { code: CodeOrSourceMdx } }}>{changelog}</Markdown>

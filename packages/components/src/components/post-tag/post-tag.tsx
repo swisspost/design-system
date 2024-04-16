@@ -17,8 +17,7 @@ export class PostTag {
   /**
    * Defines the color variant of the component.
    */
-  @Prop() readonly variant: 'gray' | 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow' =
-    'gray';
+  @Prop() readonly variant: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
 
   /**
    * Defines the size of the component.
@@ -47,7 +46,7 @@ export class PostTag {
   }
 
   private setClasses() {
-    this.classes = ['tag', this.size ? `tag-${this.size}` : null, `tag-${this.variant}`]
+    this.classes = ['tag', this.size ? `tag-${this.size}` : null, this.variant ? `tag-${this.variant}` : null]
       .filter(c => c !== null)
       .join(' ');
   }

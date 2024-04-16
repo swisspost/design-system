@@ -15,6 +15,10 @@ const meta: MetaComponent = {
   render: renderTextarea,
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=22194-89755&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     label: 'Label',
@@ -212,9 +216,14 @@ ${args.textInside ?? nothing}</textarea
   `;
   if (args.floatingLabel) {
     return html`
-      <div class="form-floating">${[control, label, ...contextual].filter(el => el !== null)}</div>
+      <div class="form-control-wrapper form-floating">
+        ${[control, label, ...contextual].filter(el => el !== null)}
+      </div>
     `;
-  } else return html` ${[label, control, ...contextual].filter(el => el !== null)} `;
+  } else
+    return html`<div class="form-control-wrapper">
+      ${[label, control, ...contextual].filter(el => el !== null)}
+    </div>`;
 }
 
 export const Default: Story = {};
