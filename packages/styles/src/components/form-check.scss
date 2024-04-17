@@ -61,8 +61,7 @@
     background: transparent;
     height: form-check.$form-check-input-size;
     width: form-check.$form-check-input-size;
-    border: form-check.$form-check-input-border-width solid
-      currentColor;
+    border: form-check.$form-check-input-border-width solid currentColor;
 
     @include utility-mx.high-contrast-mode {
       border-color: FieldText; // For blink-browser as otherwise the default color (which is not a full color) will be converted to Highlight
