@@ -1,11 +1,17 @@
-import { Meta, Canvas, Controls } from '@storybook/blocks';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
 import * as HeaderStories from './header.stories';
 import './header.scss';
 
 <Meta of={HeaderStories} />
 
 <div className="container">
-  <h1>Internet Header</h1>
+  <div className="docs-title">
+    # Internet Header
+
+    <nav>
+      <link-design of={JSON.stringify(HeaderStories)}></link-design>
+    </nav>
+  </div>
   <p className="lead">For external, client facing applications.</p>
 </div>
 

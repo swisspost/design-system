@@ -16,12 +16,12 @@ $tag-icon-size: $tag-font-size * 1.25;
 $tag-sm-line-height: spacing.$size-large;
 $tag-sm-icon-size: $tag-font-size;
 
+$tag-default-background: color.$gray-10;
 $tag-backgrounds: (
-  'gray': color.$gray-10,
   'white': color.$white,
-  'info': color.$info,
-  'success': color.$success-green,
-  'danger': color.$error,
-  'warning': color.$warning,
   'yellow': color.$yellow,
+  'success': color.$success,
+  'warning': color.$warning,
+  'danger': color.$error,
+  'info': color.$info,
 );

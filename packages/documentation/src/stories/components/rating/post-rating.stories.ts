@@ -10,12 +10,18 @@ const meta: MetaComponent = {
   render: render,
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=25398-6309&mode=design&t=38qLaYwWdirTcHdb-4',
+    },
   },
   args: {
-    label: undefined,
-    stars: undefined,
-    currentRating: undefined,
-    readonly: false,
+    'label': undefined,
+    'stars': undefined,
+    'currentRating': undefined,
+    'readonly': false,
+    'event-postInput': '',
+    'event-postChange': '',
   },
   argTypes: {
     stars: {

@@ -6,6 +6,10 @@ const meta: MetaComponent = {
   tags: ['package:IntranetHeader'],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=28233-57868&mode=design&t=HksCTWa2MMccgMl4-0',
+    },
   },
   argTypes: {
     additionalInfo: {

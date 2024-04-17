@@ -12,6 +12,10 @@ const meta: MetaComponent<HTMLPostAlertElement> = {
   decorators: [externalControl],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=17001-2244&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     innerHTML: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
@@ -58,20 +62,21 @@ export default meta;
 
 // DECORATORS
 function externalControl(story: StoryFn, context: StoryContext) {
+  const { args, canvasElement } = context;
   let alert: HTMLPostAlertElement;
   let button: HTMLButtonElement;
-  const { args, canvasElement } = context;
 
   const toggleAlert = async (e: Event) => {
     e.preventDefault();
 
     const alertContainer = canvasElement.querySelector('.alert-container') as HTMLElement;
+
     if (alert.parentNode) {
       await alert.dismiss();
     } else {
-      if (!args.fixed) button.hidden = true;
       alertContainer.appendChild(alert);
-      if (!args.fixed) alert.shadowRoot?.querySelector('button')?.focus();
+      if (!args.fixed) button.hidden = true;
+      else button.focus();
     }
   };
 
@@ -81,14 +86,10 @@ function externalControl(story: StoryFn, context: StoryContext) {
 
     if (args.fixed) {
       button.hidden = false;
-
-      if (context.story !== 'Default') {
-        alert.remove();
-      }
+      if (context.storyName !== 'Default') alert.remove();
     } else {
       button.hidden = true;
-
-      alert.addEventListener('dismissed', () => {
+      alert.addEventListener('postDismissed', () => {
         button.hidden = false;
         button.focus();
       });

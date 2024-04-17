@@ -51,7 +51,7 @@ export class PostCollapsible {
    *
    * The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
    */
-  @Event() collapseChange: EventEmitter<boolean>;
+  @Event() postToggle: EventEmitter<boolean>;
 
   connectedCallback() {
     this.validateCollapsed();
@@ -76,7 +76,7 @@ export class PostCollapsible {
     if (open === this.isOpen) return open;
 
     this.isOpen = !this.isOpen;
-    if (this.isLoaded) this.collapseChange.emit(this.isOpen);
+    if (this.isLoaded) this.postToggle.emit(this.isOpen);
 
     const animation = open ? expand(this.collapsible) : collapse(this.collapsible);
 

@@ -9,10 +9,13 @@ import paginationDefault from './pagination-default.sample.html?raw';
 
 <Meta of={paginationStories} />
 
-<div className="d-flex align-items-center justify-content-between">
+<div className="docs-title">
   # Pagination
 
-  <NgbComponentDemoLink component="pagination" />
+  <nav>
+    <link-design of={JSON.stringify(paginationStories)}></link-design>
+    <NgbComponentDemoLink component="pagination" />
+  </nav>
 </div>
 
 <p className="lead">A component to display a navigation with page numbers.</p>

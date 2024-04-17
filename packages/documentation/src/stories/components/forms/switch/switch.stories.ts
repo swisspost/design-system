@@ -12,6 +12,10 @@ const meta: MetaComponent = {
   render: renderSwitch,
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=22183-26714&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     labelPosition: 'before',

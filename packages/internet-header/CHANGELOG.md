@@ -1,5 +1,24 @@
 # @swisspost/internet-header
 
+## 1.13.9
+
+### Patch Changes
+
+- Refactored brand colors. Renamed `$gray-background` SCSS variable to `$gray` and removed `$gray-background-light` variable because it is a duplication of the already existing variable `$light`.  
+  Updated the usage of said variables in dependant packages accordingly. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Fixed logo not scaled properly for header with no meta navigation. (by [@alizedebray](https://github.com/alizedebray) with [#2787](https://github.com/swisspost/design-system/pull/2787))
+
+- Sanitized hours fields in footer against XSS "Incomplete multi-character sanitization" issue. (by [@imagoiq](https://github.com/imagoiq) with [#2807](https://github.com/swisspost/design-system/pull/2807))
+
+- Replaced `system-ui` fallback font with a list of fallbacks to avoid rendering issues with specific writing system (chinese, arabic…). (by [@imagoiq](https://github.com/imagoiq) with [#2735](https://github.com/swisspost/design-system/pull/2735))
+
+- Fixed an issue with invisible focus rings when not using the Design System Styles along with the Swisspost Internet Header. Focus rings are now displayed as expected. (by [@gfellerph](https://github.com/gfellerph) with [#2793](https://github.com/swisspost/design-system/pull/2793))
+
+- Hide the main navigation custom content when empty. (by [@alizedebray](https://github.com/alizedebray) with [#2786](https://github.com/swisspost/design-system/pull/2786))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.0.0
+
 ## 1.13.8
 
 ### Patch Changes

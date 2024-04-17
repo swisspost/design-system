@@ -1,8 +1,8 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "6.6.4",
+  "version": "7.0.0",
   "description": "Design System Styles for the Swiss Post web platform.",
-  "author": "Swiss Post <oss@post.ch>",
+  "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
@@ -43,11 +43,11 @@
     "bootstrap": "5.3.2"
   },
   "devDependencies": {
-    "@swisspost/design-system-icons": "workspace:1.4.0",
-    "@types/node": "18.19.14",
+    "@swisspost/design-system-icons": "workspace:7.0.0",
+    "@types/node": "18.19.28",
     "autoprefixer": "10.4.19",
     "copyfiles": "2.4.1",
-    "glob": "10.3.10",
+    "glob": "10.3.12",
     "gulp": "4.0.2",
     "gulp-newer": "^1.4.0",
     "gulp-postcss": "10.0.0",
@@ -57,7 +57,7 @@
     "postcss-scss": "4.0.9",
     "prettier": "3.2.5",
     "rimraf": "5.0.5",
-    "sass": "1.72.0",
+    "sass": "1.74.1",
     "stylelint": "16.3.1",
     "stylelint-config-sass-guidelines": "11.1.0",
     "stylelint-prettier": "5.0.0",

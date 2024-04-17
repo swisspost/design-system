@@ -1,4 +1,4 @@
-import { Meta, Source } from '@storybook/blocks';
+import { Meta, Source, Canvas } from '@storybook/blocks';
 import * as AccessibilityStories from './accessibility.stories';
 import liveRegionAtomicSample from './liveregion-atomic.sample.html?raw';
 import liveRegionGoodAngularSample from './liveregion-good-angular.sample.html?raw';
@@ -8,25 +8,105 @@ import liveRegionBadAngularSample from './liveregion-bad-angular.sample.html?raw
 
 # Accessibility
 
-<div className="alert alert-md alert-danger">
-  TODO: write accessibility page
-</div>
+<figure>
+  <blockquote class="blockquote" lang="de">
+    <p>Die Postdienste müssen so angeboten werden, dass Menschen mit Behinderungen
+sie in qualitativer, quantitativer und wirtschaftlicher Hinsicht unter vergleichbaren
+Bedingungen wie Menschen ohne Behinderungen beanspruchen können.</p>
+  </blockquote>
+  <figcaption class="blockquote-footer">
+    <cite>§14.7 <a href="https://www.fedlex.admin.ch/eli/cc/2012/585/de#art_14">Swiss postal law</a></cite>
+  </figcaption>
+</figure>
 
 ## Forms
 
-### Grouping
-
-TODO: write accessibility guide about grouping form elements
-https://www.accessibility-developer-guide.com/examples/forms/grouping-with-fieldset-legend/
-
-### Labels
-
-TODO: write accessibility guide about form labels (visible and invisible), aria-label, ...
-
 ### Disabled state
 
-TODO: write accessibility guide about disabled states on input, textarea, select, select-options,
-...
+Disabled states of input fields or buttons pose many accessibility issues.
+
+<ul class="list-unstyled ms-regular">
+  <div class="d-flex gap-mini"><div>❌</div><li>Disabled fields cannot be reached by pressing tab</li></div>
+  <div class="d-flex gap-mini"><div>❌</div><li>It's often unclear why something is disabled</li></div>
+  <div class="d-flex gap-mini"><div>❌</div><li>It's often unclear how to enable a disabled field or button</li></div>
+  <div class="d-flex gap-mini"><div>❌</div><li>Disabled fields have low contrast</li></div>
+  <div class="d-flex gap-mini"><div>❌</div><li>The disabled state of a field is not always obvious (hard to discern from an enabled field)</li></div>
+</ul>
+
+<div class="table-responsive">
+  <table className="table caption-top">
+    <caption>Common use cases and how to handle them.</caption>
+    <colgroup>
+      <col style={{width: '50%'}} />
+      <col style={{width: '50%'}} />
+    </colgroup>
+    <tbody>
+      <tr>
+        <td colSpan="2" class="fw-bold">Disabled button on forms with required fields</td>
+      </tr>
+      <tr>
+        <td>
+          <ul class="list-unstyled d-flex gap-mini">
+            <div>❌</div><li>Forms with required fields tend to have the send button disabled until all required fields are correctly filled. The issue here is that with long forms or on small devices it's sometimes hard to spot the one field that was missed.</li>
+          </ul>
+          
+        </td>
+        <td>
+          <ul class="list-unstyled d-flex gap-mini">
+            <div>✔️</div><li>Let the user make mistakes and help them to correct them. Mark the required fields with error messages, scroll to the first invalid field and help the user fill the form correctly.</li>
+          </ul>
+        
+        </td>
+      </tr>
+      <tr>
+        <td colSpan="2" class="fw-bold">Disabled button on form submit</td>
+      </tr>
+      <tr>
+        <td>
+          <ul class="list-unstyled d-flex gap-mini">
+            <div>❌</div><li>The user submits a form. While the client waits for the server response and to prevent double submission, the submit button gets disabled. The reason why this button gets disabled might not be obvious.</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="list-unstyled d-flex gap-mini">
+            <div>✔️</div><li>Provide a loading indicator or display a message that shows current progress when uploading large files. Disable duplicate form submissions internally. Inform users that the form was already submitted if they continue to click submit and offer a remedy if the request timed out or an error occurred on the server (reload the page, retry form submission, ...).</li>
+          </ul>
+        </td>
+      </tr>
+      <tr>
+        <td colSpan="2" class="fw-bold">Disabled select options</td>
+      </tr>
+      <tr>
+        <td>
+          <ul class="list-unstyled d-flex gap-mini">
+            <div>❌</div><li>Some options in a radio button group or select field are disabled because they are not available at this time or with the current configuration. This can be confusing because it's often unclear why these options are not available or how to enable them.</li>
+          </ul>
+        </td>
+        <td>
+          <ul class="list-unstyled d-flex gap-mini">
+            <div>✔️</div>
+            <li>
+            There are multiple possible solutions, depending on the situation:
+              <ul>
+                <li>Don't display options that cannot be selected and reduce clutter in your UI.</li>
+                <li>If you need to inform the user that there are potentially more possible options, show instructions on how to enable these options.</li>
+                <li>Display read-only data as text and not in disabled form fields.</li>
+              </ul>
+            </li>
+          </ul>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+### Form bad example
+
+<Canvas of={AccessibilityStories.FormBadExample}/>
+
+### Form good example
+
+<Canvas of={AccessibilityStories.FormGoodExample}/>
 
 ## Live region
 

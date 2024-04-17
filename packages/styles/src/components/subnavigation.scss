@@ -46,11 +46,6 @@ $module-name: 'subnavigation';
     @include media-breakpoint-up(xl) {
       min-height: subnavigation.$subnavigation-height-xl;
     }
-
-    .badge {
-      margin-left: subnavigation.$subnavigation-result-margin-left;
-      color: inherit;
-    }
   }
 
   &-link {
@@ -59,12 +54,14 @@ $module-name: 'subnavigation';
     @include transition(
       color animation.$transition-time-default animation.$transition-easing-default
     );
+
     display: flex;
     position: relative;
     align-items: center;
     justify-content: space-between;
     width: 100%;
     height: 100%;
+    gap: subnavigation.$subnavigation-result-margin-left;
     padding: subnavigation.$subnavigation-link-padding-xs;
     color: subnavigation.$subnavigation-link-color;
     text-decoration: none;

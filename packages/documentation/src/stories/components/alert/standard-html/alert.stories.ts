@@ -17,6 +17,10 @@ const meta: MetaComponent = {
     controls: {
       exclude: ['Title', 'Content'],
     },
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=17001-2244&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     content: '<p>Contentus momentus vero siteos et accusam iretea et justo.</p>',
