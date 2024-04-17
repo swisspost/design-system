@@ -14,8 +14,6 @@
 @use './../variables/components/forms';
 @use './../variables/spacing';
 
-// Hello David
-
 .invalid-feedback,
 .valid-feedback {
   display: none;
@@ -131,7 +129,7 @@
       border-color: var(--post-success);
 
       &:focus {
-        border-color: form-validation.$form-feedback-valid-color;
+        border-color: var(--post-success);
       }
     }
 
