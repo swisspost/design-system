@@ -1,5 +1,83 @@
 # @swisspost/design-system-documentation
 
+## 5.0.0
+
+### Major Changes
+
+- Renamed badge into "chip" and improved related examples. (by [@alizedebray](https://github.com/alizedebray) with [#2855](https://github.com/swisspost/design-system/pull/2855))
+
+### Minor Changes
+
+- Added changelogs for all packages. (by [@alizedebray](https://github.com/alizedebray) with [#2877](https://github.com/swisspost/design-system/pull/2877))
+
+- Added new black and white alpha colors. Replaced hardcoded alpha colors with the new color definitions in `card-control` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Changed mobile navigation trigger to make it more accessible by default using a button element. (by [@imagoiq](https://github.com/imagoiq) with [#2834](https://github.com/swisspost/design-system/pull/2834))
+
+- Added a new `tag` component. This component is available in standard HTML or as webcomponent. (by [@b1aserlu](https://github.com/b1aserlu) with [#2552](https://github.com/swisspost/design-system/pull/2552))
+
+- Added a new web-component `post-card-control`, which works like a native `input[type="checkbox"]` or `input[type="radio"]` but with a custom visual design. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2260](https://github.com/swisspost/design-system/pull/2260))
+
+- Added new focus color variables. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Added a pattern for error pages with an image. Currently available is a graphic for "404 not found" errors. More error types may be supported in the future. (by [@gfellerph](https://github.com/gfellerph) with [#2676](https://github.com/swisspost/design-system/pull/2676))
+
+- Added migration guide for updating the @swisspost/design-system-styles from v.6 to v7. (by [@alizedebray](https://github.com/alizedebray) with [#2877](https://github.com/swisspost/design-system/pull/2877))
+
+- Added the new default slot, to allow the integration of custom HTML in the card-control component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2844](https://github.com/swisspost/design-system/pull/2844))
+
+### Patch Changes
+
+- Updated instructions to run the automated migrations from the migration package. (by [@alizedebray](https://github.com/alizedebray) with [#2783](https://github.com/swisspost/design-system/pull/2783))
+
+- Moved the style package changelog and migration guide to the "Getting Started" section of the documentation. (by [@alizedebray](https://github.com/alizedebray) with [#2877](https://github.com/swisspost/design-system/pull/2877))
+
+- Restricted badges to showcase counts exclusively and set their color to red by default.  
+  Use tags to display states, properties, or other metadata. Opt for chips when presenting dismissible or selectable information.
+
+  Use the background utility classes to change the badge color as needed. (by [@alizedebray](https://github.com/alizedebray) with [#2860](https://github.com/swisspost/design-system/pull/2860))
+
+- Refactored brand colors. Renamed `$gray-background` SCSS variable to `$gray` and removed `$gray-background-light` variable because it is a duplication of the already existing variable `$light`.  
+  Updated the usage of said variables in dependant packages accordingly. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Fixed missing LinkTo element on post-rating docs page and removed all remaining LinkTo elements. (by [@imagoiq](https://github.com/imagoiq) with [#2962](https://github.com/swisspost/design-system/pull/2962))
+
+- Merged toast live region section with accessibility page. (by [@imagoiq](https://github.com/imagoiq) with [#2731](https://github.com/swisspost/design-system/pull/2731))
+
+- Prefixed all web-component custom-events with the keyword `post`.
+
+  - Changed `post-alert` component `dismissed` event to `postDismissed`.
+  - Changed `post-card-control` component `input` and `change` events to `postInput` and `postChange`.
+  - Changed `post-collapsible` component `collapseChange` event to `postToggle`.
+  - Changed `post-rating` component `input` and `change` events to `postInput` and `postChange`.
+  - Changed `post-tabs` component `tabChange` event to `postChange`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2874](https://github.com/swisspost/design-system/pull/2874))
+
+- Added link to figma for all components. (by [@imagoiq](https://github.com/imagoiq) with [#2875](https://github.com/swisspost/design-system/pull/2875))
+
+- Reworked the getting-started section to better understand the different packages and add more info about Angular. (by [@imagoiq](https://github.com/imagoiq) with [#2722](https://github.com/swisspost/design-system/pull/2722))
+
+- Changed references from https://next.design-system.post.ch to https://design-system.post.ch after the migration of Storybook, which is now our main documentation (by [@gfellerph](https://github.com/gfellerph) with [#2802](https://github.com/swisspost/design-system/pull/2802))
+
+- Updated Sass color variables: - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
+  Instead use the variables `$success`, `$error`, `$warning` and the Sass map `$signal-colors`.
+
+  - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
+  - Updated the Sass map `$background-colors` and all the dependant packages accordingly.
+
+  With the exception of the components `notification`, `toast` and `tag`, there is no component providing a `danger` variant anymore. Instead use the `error` variant. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Renamed input range to slider. (by [@imagoiq](https://github.com/imagoiq) with [#2792](https://github.com/swisspost/design-system/pull/2792))
+
+- Fixed table span on Safari for the Introduction page. (by [@imagoiq](https://github.com/imagoiq) with [#2964](https://github.com/swisspost/design-system/pull/2964))
+- Updated dependencies:
+  - @swisspost/design-system-icons@7.0.0
+  - @swisspost/design-system-styles@7.0.0
+  - @swisspost/design-system-components@7.0.0
+  - @swisspost/internet-header@1.13.9
+  - @swisspost/design-system-components-angular@7.0.0
+  - @swisspost/design-system-components-react@7.0.0
+  - @swisspost/design-system-intranet-header@7.0.0
+
 ## 4.0.0
 
 ### Patch Changes
