@@ -25,7 +25,6 @@ ngb-datepicker-navigation {
 
   button.ngb-dp-arrow-btn {
     @include utilities.focus-style();
-    outline-width: spacing.$size-line !important;
   }
 }
 
@@ -36,13 +35,6 @@ ngb-datepicker-navigation-select.ngb-dp-navigation-select {
     padding-right: b.$form-select-padding-x * 2;
     border: 0;
     background-position: right;
-
-    &:focus {
-      outline-style: solid;
-      box-shadow: none;
-      border-radius: commons.$border-radius;
-      @include utilities.focus-style();
-    }
 
     + select {
       margin-left: 0.5rem;
@@ -103,8 +95,8 @@ span.ngb-dp-navigation-chevron {
     flex-grow: 1;
   }
 
-  &:focus-visible {
-    outline: none;
+  @include utilities.focus-style() {
+    border-radius: commons.$border-radius;
   }
 
   > [ngbDatepickerDayView] {
@@ -113,9 +105,7 @@ span.ngb-dp-navigation-chevron {
     line-height: 40px;
 
     &.active:not(.bg-primary) {
-      @include utilities.focus-style();
-      outline-style: solid;
-      border-radius: commons.$border-radius !important;
+      outline: none;
     }
   }
 }
@@ -168,15 +158,8 @@ span.ngb-dp-navigation-chevron {
     transform: none;
   }
 
-  &:focus-visible {
-    outline: none;
-
-    .pi {
-      @include utilities.focus-style();
-      outline-style: solid;
-      border-radius: commons.$border-radius !important;
-      outline-offset: spacing.$size-micro;
-    }
+  @include utilities.focus-style() {
+    border-radius: commons.$border-radius;
   }
 }
 
