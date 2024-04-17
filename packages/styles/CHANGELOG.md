@@ -1,5 +1,89 @@
 # @swisspost/design-system-styles
 
+## 7.0.0
+
+### Major Changes
+
+- Restricted badges to showcase counts exclusively and set their color to red by default.  
+  Use tags to display states, properties, or other metadata. Opt for chips when presenting dismissible or selectable information.
+
+  Use the background utility classes to change the badge color as needed. (by [@alizedebray](https://github.com/alizedebray) with [#2860](https://github.com/swisspost/design-system/pull/2860))
+
+- Refactored brand colors. Renamed `$gray-background` SCSS variable to `$gray` and removed `$gray-background-light` variable because it is a duplication of the already existing variable `$light`.  
+  Updated the usage of said variables in dependant packages accordingly. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Synchronized the versions of the following packages:
+
+  - @swisspost/design-system-styles
+  - @swisspost/design-system-components
+  - @swisspost/design-system-components-react
+  - @swisspost/design-system-components-angular
+  - @swisspost/design-system-migrations
+  - @swisspost/design-system-icons
+  - @swisspost/design-system-intranet-header
+
+  This will help understanding the dependencies between these packages at a glance but also means that for the individual pacakges, semver is no longer being used. This enables us also to talk about and document Design System versions as a whole instead of documenting the fragmented versions in a complex lookup table. (by [@gfellerph](https://github.com/gfellerph) with [#2856](https://github.com/swisspost/design-system/pull/2856))
+
+- Added support for Angular 17 and ng-bootstrap 16. (by [@alizedebray](https://github.com/alizedebray) with [#2760](https://github.com/swisspost/design-system/pull/2760))
+
+- Updated Sass color variables: - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
+  Instead use the variables `$success`, `$error`, `$warning` and the Sass map `$signal-colors`.
+
+  - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
+  - Updated the Sass map `$background-colors` and all the dependant packages accordingly.
+
+  With the exception of the components `notification`, `toast` and `tag`, there is no component providing a `danger` variant anymore. Instead use the `error` variant. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Renamed the badge into "chip", added a disable state and updated its styles. (by [@alizedebray](https://github.com/alizedebray) with [#2855](https://github.com/swisspost/design-system/pull/2855))
+
+### Minor Changes
+
+- Added new black and white alpha colors. Replaced hardcoded alpha colors with the new color definitions in `card-control` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Changed mobile navigation trigger to make it more accessible by default using a button element. (by [@imagoiq](https://github.com/imagoiq) with [#2834](https://github.com/swisspost/design-system/pull/2834))
+
+- Added a new `tag` component. This component is available in standard HTML or as webcomponent. (by [@b1aserlu](https://github.com/b1aserlu) with [#2552](https://github.com/swisspost/design-system/pull/2552))
+
+- Introduced new focus style for text input and select, and added new wrapper element `.focus-control-wrapper`, `.form-range-wrapper`, `.form-select-wrapper`. (by [@imagoiq](https://github.com/imagoiq) with [#2774](https://github.com/swisspost/design-system/pull/2774))
+
+- Added new focus color variables. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Added a pattern for error pages with an image. Currently available is a graphic for "404 not found" errors. More error types may be supported in the future. (by [@gfellerph](https://github.com/gfellerph) with [#2676](https://github.com/swisspost/design-system/pull/2676))
+
+### Patch Changes
+
+- Adjusted focus styles with new color for button, checkbox, radio, switch, rating elements. (by [@imagoiq](https://github.com/imagoiq) with [#2780](https://github.com/swisspost/design-system/pull/2780))
+
+- Updated size of radio button to match design. (by [@imagoiq](https://github.com/imagoiq) with [#2737](https://github.com/swisspost/design-system/pull/2737))
+
+- Fixed the `.form-check-input` background-color, by setting it to white on none or light backgrounds. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2260](https://github.com/swisspost/design-system/pull/2260))
+
+- Added a workaround to display progress bar on input range and on webkit browsers without JavaScript. (by [@imagoiq](https://github.com/imagoiq) with [#2781](https://github.com/swisspost/design-system/pull/2781))
+
+- Fixed color and border-color on hover for checkbox and radio form element. (by [@imagoiq](https://github.com/imagoiq) with [#2961](https://github.com/swisspost/design-system/pull/2961))
+
+- Added new disabled styles for radio and checkbox, fixed color contrast on this state and fixed cursor style. (by [@imagoiq](https://github.com/imagoiq) with [#2813](https://github.com/swisspost/design-system/pull/2813))
+
+- Fixed layout on post-alert with medium (md) breakpoint. (by [@imagoiq](https://github.com/imagoiq) with [#2775](https://github.com/swisspost/design-system/pull/2775))
+
+- Fixed wrongly escaped Sass variables in the form-switch hcm styles, which caused problems in the styles of the card-control component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2965](https://github.com/swisspost/design-system/pull/2965))
+
+- Replaced `system-ui` fallback font with a list of fallbacks to avoid rendering issues with specific writing system (chinese, arabic…). (by [@imagoiq](https://github.com/imagoiq) with [#2735](https://github.com/swisspost/design-system/pull/2735))
+
+- Fixed active button color-contrast on dark background (by [@imagoiq](https://github.com/imagoiq) with [#2823](https://github.com/swisspost/design-system/pull/2823))
+
+- Replace all parts that used the old success color with the new success-green color. (by [@imagoiq](https://github.com/imagoiq) with [#2808](https://github.com/swisspost/design-system/pull/2808))
+
+- Fixed usage of background color on checkbox which make the checkmark invisible on dark background. (by [@imagoiq](https://github.com/imagoiq) with [#2953](https://github.com/swisspost/design-system/pull/2953))
+
+- Made styling more coherent for forms elements with High contrast mode and focus/hover state. (by [@imagoiq](https://github.com/imagoiq) with [#2774](https://github.com/swisspost/design-system/pull/2774))
+
+- Refactored the new focus style to only be visible when using keyboard for form elements. (by [@imagoiq](https://github.com/imagoiq) with [#2810](https://github.com/swisspost/design-system/pull/2810))
+
+- Fixed color contrast of alert component on success background color. (by [@imagoiq](https://github.com/imagoiq) with [#2845](https://github.com/swisspost/design-system/pull/2845))
+
+- Fixed form validation feedback color and indicators in high contrast mode. (by [@imagoiq](https://github.com/imagoiq) with [#2766](https://github.com/swisspost/design-system/pull/2766))
+
 ## 6.6.4
 
 ### Patch Changes
