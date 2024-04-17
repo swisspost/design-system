@@ -2,7 +2,7 @@
   "name": "@swisspost/design-system-demo",
   "version": "7.2.4",
   "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
-  "author": "Swiss Post <oss@post.ch>",
+  "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "private": true,
   "scripts": {

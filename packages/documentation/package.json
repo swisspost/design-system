@@ -2,7 +2,7 @@
   "name": "@swisspost/design-system-documentation",
   "version": "4.0.0",
   "description": "Swiss Post Design System Documentation.",
-  "author": "Swiss Post <oss@post.ch>",
+  "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
