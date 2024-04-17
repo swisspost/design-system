@@ -267,7 +267,7 @@
       &::after,
       &:checked::after {
         max-width: calc(
-          #{form-check.$form-switch-height} - #{2 * form-check.$form-check-input-border-width}
+          form-check.$form-switch-height - (form-check.$form-check-input-border-width * 2)
         );
         border-color: Canvas;
         background-color: CanvasText;
