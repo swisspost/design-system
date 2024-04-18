@@ -19,9 +19,6 @@
 
 .btn {
   @include button-mx.button-size();
-  @include utilities.focus-style() {
-    border-radius: commons.$border-radius;
-  }
 
   // Resets
   display: inline-flex;
@@ -41,6 +38,65 @@
   font-weight: button.$btn-font-weight;
   text-decoration: none !important; // For <a> tags, !important for hover
   white-space: nowrap; // Long content should never break in buttons
+
+  &:disabled {
+    text-decoration: line-through !important;
+    border-style: dashed;
+    color: color.$gray-60;
+  }
+
+  @include utilities.not-disabled-hover() {
+    color: var(--post-contrast-color-inverted); // Override <a> color
+    background-color: color.$gray-60;
+  }
+
+  @include utilities.focus-style() {
+    border-radius: commons.$border-radius;
+    color: var(--post-contrast-color-inverted); // Override <a> color
+    background-color: color.$gray-60;
+
+    &:where(.btn-primary) {
+      background-color: var(--post-contrast-color);
+    }
+  }
+
+  @include color-mx.on-dark-background {
+    &:disabled {
+      text-decoration: line-through !important;
+      border-style: dashed;
+      color: color.$white-alpha-80;
+    }
+
+    @include utilities.not-disabled-hover() {
+      background-color: color.$yellow;
+      border-color: transparent;
+    }
+
+    @include utilities.focus-style() {
+      background-color: color.$yellow;
+      border-color: transparent;
+    }
+  }
+
+  // Styles  to improve accessibility in high contrast mode
+  @include utilities.high-contrast-mode() {
+    border-color: ButtonBorder;
+    background-color: ButtonFace;
+
+    &:not(:disabled, .disabled) {
+      &:hover {
+        border-color: highlight;
+      }
+    }
+
+    &:disabled {
+      border-color: GrayText !important;
+    }
+
+    .pi {
+      filter: invert(1) !important;
+    }
+  }
 }
 
 // Primary
@@ -49,22 +105,24 @@
   background-color: var(--post-gray-80);
   color: var(--post-contrast-color-inverted);
 
-  @include utilities.not-disabled-focus-hover() {
-    background-color: var(--post-contrast-color);
-    color: var(--post-contrast-color-inverted); // Override <a> color
+  &:disabled {
+    background-color: color.$gray-10;
+    border-color: color.$gray-60;
+  }
+
+  .pi {
+    filter: invert(1);
+    forced-color-adjust: none;
   }
 
   @include color-mx.on-dark-background {
     background-color: var(--post-contrast-color);
     color: var(--post-gray-10); // Apply same color as secondary/tertiary button on dark theme
 
-    @include utilities.not-disabled-focus-hover() {
-      background-color: var(--post-gray-80);
-    }
-
     &:disabled {
       color: var(--post-contrast-color);
-      background-color: var(--post-gray-40);
+      background-color: color.$white-alpha-20;
+      border-color: var(--post-contrast-color);
     }
   }
 
@@ -73,39 +131,22 @@
       filter: invert(0);
     }
   }
-
-  // Styles  to improve accessibility in high contrast mode
-  @include utilities.high-contrast-mode() {
-    border-color: var(--post-contrast-color);
-    background-color: ButtonFace;
-
-    &:not(:disabled, .disabled) {
-      &:hover,
-      &:focus-visible {
-        border-color: highlight;
-      }
-    }
-
-    .pi {
-      filter: invert(1) !important;
-    }
-  }
-
-  &:disabled {
-    background-color: var(--post-gray-40);
-  }
-
-  .pi {
-    filter: invert(1);
-    forced-color-adjust: none;
-  }
 }
 
 // Default / secondary
 .btn-default,
 .btn-secondary {
-  @extend %btn-default;
   @extend %btn-transparent-background;
+  border-color: color.$gray-60;
+
+  @include color-mx.on-dark-background() {
+    border-color: var(--post-contrast-color);
+
+    &:disabled {
+      color: color.$white-alpha-60;
+      border-color: color.$white-alpha-60;
+    }
+  }
 }
 
 // Tertiary
@@ -114,10 +155,6 @@
   @extend %btn-transparent-background;
   border: 0;
   padding-inline: spacing.$size-micro;
-
-  &:disabled {
-    color: var(--post-gray-60);
-  }
 
   // Styles  to improve accessibility in high contrast mode
   @include utilities.high-contrast-mode() {
