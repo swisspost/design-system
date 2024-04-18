@@ -232,7 +232,7 @@ export const choiceCardGroup = (args: Args) => {
   `;
 
   const error = html`
-    <p id="invalid-checkbox" class="mt-3 invalid-feedback d-block">Invalid choice</p>
+    <p id="invalid-checkbox" class="mt-3 invalid-feedback d-inline-flex">Invalid choice</p>
   `;
 
   return html`

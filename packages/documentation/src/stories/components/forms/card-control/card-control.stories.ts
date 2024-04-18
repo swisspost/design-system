@@ -94,6 +94,7 @@ export const Default: Story = {
 
     const content = html`${unsafeHTML(args['slots-default'])}`;
     const icon = html`<span slot="icon">${unsafeHTML(args['slots-icon'])}</span>`;
+    const validation = html` <p class="mt-3 invalid-feedback">Eraro okazis!</p> `;
 
     return html`
       <post-card-control
@@ -112,6 +113,7 @@ export const Default: Story = {
       >
         ${args['slots-default'] ? content : null} ${args['slots-icon'] ? icon : null}
       </post-card-control>
+      ${args.validity === 'false' ? validation : nothing}
     `;
   },
 };
@@ -161,7 +163,7 @@ export const FormIntegration: Story = {
   parameters: {
     docs: {
       controls: {
-        include: ['disabled fieldset', 'value', 'disabled'],
+        include: ['disabled fieldset', 'value', 'disabled', 'group validation'],
       },
     },
   },
@@ -171,6 +173,7 @@ export const FormIntegration: Story = {
     radioValue: '',
     radioDisabled: '',
     radioFieldset: false,
+    groupValidation: 'null',
   },
   argTypes: {
     value: {
@@ -225,6 +228,21 @@ export const FormIntegration: Story = {
         category: 'Radio',
       },
     },
+    groupValidation: {
+      name: 'group validation',
+      description: 'Set validation status for the whole group of card-control components',
+      control: {
+        type: 'radio',
+        labels: {
+          null: 'Default',
+          false: 'Invalid',
+        },
+      },
+      options: ['null', 'false'],
+      table: {
+        category: 'Radio',
+      },
+    },
   },
   decorators: [
     story => html`
@@ -237,6 +255,8 @@ export const FormIntegration: Story = {
     `,
   ],
   render: (args: Args, context: StoryContext) => {
+    const validation = html` <p class="invalid-feedback d-inline-flex">Eraro okazis!</p> `;
+
     return html` <form id="AssociatedForm" @reset="${formHandler}" @submit="${formHandler}">
       <fieldset .disabled=${args.checkboxFieldset}>
         <legend>Legend</legend>
@@ -250,10 +270,12 @@ export const FormIntegration: Story = {
               label="Option ${n}"
               type="radio"
               name="radio"
+              validity="${args.groupValidation}"
               value="${[args.radioValue, args.radioValue ? '_' : '', n.toString()].join('')}"
               .disabled="${(n === 2 && args.radioDisabled) || nothing}"
             ></post-card-control>`,
         )}
+        ${args.groupValidation === 'false' ? validation : nothing}
       </fieldset>
       <div class="mt-3 d-flex gap-3 justify-content-end">
         <button type="reset" class="btn btn-link"><post-icon name="2042"></post-icon>Reset</button>
