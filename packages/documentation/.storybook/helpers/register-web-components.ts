@@ -1,6 +1,12 @@
 // @ts-ignore
-import { defineCustomElements as defineInternetHeader } from '@swisspost/internet-header/loader/index.es2017.js';
-import { defineCustomElements as definePostComponents } from '@swisspost/design-system-components/loader';
+import {
+  applyPolyfills as headerPolyfills,
+  defineCustomElements as defineHeader,
+} from '@swisspost/internet-header/loader/index.es2017.js';
+import {
+  applyPolyfills as componentsPolyfills,
+  defineCustomElements as defineComponents,
+} from '@swisspost/design-system-components/loader';
 import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
 import {
   StencilJsonDocs,
@@ -10,8 +16,12 @@ import postComponentsDocJson from '@swisspost/design-system-components/dist/docs
 import internetHeaderDocJson from '@swisspost/internet-header/dist/docs.json';
 import '../../src/shared/link-design/link-design.component';
 
-defineInternetHeader(window);
-definePostComponents(window);
+headerPolyfills().then(() => {
+  defineHeader();
+});
+componentsPolyfills().then(() => {
+  defineComponents();
+});
 
 if (postComponentsDocJson && internetHeaderDocJson) {
   const jsonDocs: StencilJsonDocs = {
