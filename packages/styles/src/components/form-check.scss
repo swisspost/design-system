@@ -40,6 +40,10 @@
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ &-label {
       color: var(--post-contrast-color);
+
+      @include utility-mx.high-contrast-mode() {
+        border-color: Highlight;
+      }
     }
   }
 
@@ -57,39 +61,16 @@
     background: transparent;
     height: form-check.$form-check-input-size;
     width: form-check.$form-check-input-size;
-    border: form-check.$form-check-input-border-width solid
-      rgba(var(--post-contrast-color-rgb), 0.8);
+    border: form-check.$form-check-input-border-width solid currentColor;
 
     @include utility-mx.high-contrast-mode {
       border-color: FieldText; // For blink-browser as otherwise the default color (which is not a full color) will be converted to Highlight
-    }
-
-    @include utility-mx.high-contrast-mode() {
-      &:not(:disabled) {
-        &:hover {
-          border-color: Highlight;
-        }
-      }
     }
 
     &::after {
       content: '';
       display: block;
       flex: 1;
-    }
-
-    &:checked,
-    &:indeterminate {
-      color: var(--post-contrast-color);
-      border-color: var(--post-contrast-color);
-
-      @include utility-mx.high-contrast-mode {
-        border-color: FieldText; // Firefox need explicit declaration here
-      }
-
-      ~ .form-check-label {
-        color: var(--post-contrast-color);
-      }
     }
 
     &[type='checkbox'] {
@@ -267,7 +248,7 @@
       &::after,
       &:checked::after {
         max-width: calc(
-          #{form-check.$form-switch-height} - #{2 * form-check.$form-check-input-border-width}
+          form-check.$form-switch-height - (form-check.$form-check-input-border-width * 2)
         );
         border-color: Canvas;
         background-color: CanvasText;

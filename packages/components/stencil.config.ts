@@ -19,6 +19,12 @@ export const config: Config = {
     },
     {
       type: 'www',
+      copy: [
+        {
+          src: '../node_modules/@swisspost/design-system-styles/*.css',
+          dest: 'assets/css',
+        },
+      ],
       serviceWorker: null, // disable service workers,
     },
     {

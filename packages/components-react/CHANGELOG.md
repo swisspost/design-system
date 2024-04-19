@@ -1,5 +1,26 @@
 # @swisspost/design-system-components-react
 
+## 7.0.0
+
+### Major Changes
+
+- Synchronized the versions of the following packages:
+
+  - @swisspost/design-system-styles
+  - @swisspost/design-system-components
+  - @swisspost/design-system-components-react
+  - @swisspost/design-system-components-angular
+  - @swisspost/design-system-migrations
+  - @swisspost/design-system-icons
+  - @swisspost/design-system-intranet-header
+
+  This will help understanding the dependencies between these packages at a glance but also means that for the individual pacakges, semver is no longer being used. This enables us also to talk about and document Design System versions as a whole instead of documenting the fragmented versions in a complex lookup table. (by [@gfellerph](https://github.com/gfellerph) with [#2856](https://github.com/swisspost/design-system/pull/2856))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@7.0.0
+
 ## 1.0.30
 
 ### Patch Changes

@@ -1,5 +1,36 @@
 # @swisspost/design-system-demo
 
+## 7.3.0
+
+### Minor Changes
+
+- Changed mobile navigation trigger to make it more accessible by default using a button element. (by [@imagoiq](https://github.com/imagoiq) with [#2834](https://github.com/swisspost/design-system/pull/2834))
+
+### Patch Changes
+
+- Updated instructions to run the automated migrations from the migration package. (by [@alizedebray](https://github.com/alizedebray) with [#2783](https://github.com/swisspost/design-system/pull/2783))
+
+- Fixed display of version switcher with new versions.json file. (by [@imagoiq](https://github.com/imagoiq) with [#2838](https://github.com/swisspost/design-system/pull/2838))
+
+- Refactored brand colors. Renamed `$gray-background` SCSS variable to `$gray` and removed `$gray-background-light` variable because it is a duplication of the already existing variable `$light`.  
+  Updated the usage of said variables in dependant packages accordingly. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Changed references from https://next.design-system.post.ch to https://design-system.post.ch after the migration of Storybook, which is now our main documentation (by [@gfellerph](https://github.com/gfellerph) with [#2802](https://github.com/swisspost/design-system/pull/2802))
+
+- Updated Sass color variables: - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
+  Instead use the variables `$success`, `$error`, `$warning` and the Sass map `$signal-colors`.
+
+  - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
+  - Updated the Sass map `$background-colors` and all the dependant packages accordingly.
+
+  With the exception of the components `notification`, `toast` and `tag`, there is no component providing a `danger` variant anymore. Instead use the `error` variant. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Updated Angular to version 17. (by [@alizedebray](https://github.com/alizedebray) with [#2760](https://github.com/swisspost/design-system/pull/2760))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.0.0
+  - @swisspost/design-system-migrations@7.0.0
+  - @swisspost/design-system-intranet-header@7.0.0
+
 ## 7.2.4
 
 ### Patch Changes
