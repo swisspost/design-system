@@ -7,6 +7,7 @@ import { angularValueAccessorBindings } from './.config/bindings.angular';
 
 export const config: Config = {
   namespace: 'post-components',
+  buildDist: true,
   sourceMap: false,
   outputTargets: [
     {
