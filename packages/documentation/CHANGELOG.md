@@ -1,5 +1,11 @@
 # @swisspost/design-system-documentation
 
+## 5.0.1
+
+### Patch Changes
+
+- Updated the URL to the version 6 documentation for the version switch (by [@gfellerph](https://github.com/gfellerph) with [#2970](https://github.com/swisspost/design-system/pull/2970))
+
 ## 5.0.0
 
 ### Major Changes
