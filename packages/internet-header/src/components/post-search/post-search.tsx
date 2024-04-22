@@ -27,7 +27,6 @@ import { TrackAndTraceInfo } from '../../models/track-and-trace.model';
 import { getParcelSuggestion } from '../../services/search/parcel.service';
 import { If } from '../../utils/if.component';
 import { translate } from '../../services/language.service';
-import { FocusTrap } from '../shared/focus-trap.component';
 
 @Component({
   tag: 'post-search',
@@ -367,156 +366,156 @@ export class PostSearch implements HasDropdown, IsFocusable {
     return (
       <Host role="search">
         <SvgSprite />
-        <FocusTrap active={this.searchDropdownOpen}>
+        <focus-trap active={this.searchDropdownOpen}>
           <div class="search" key="search">
-              <button
-                id="post-internet-header-search-button"
-                class="search-button"
-                key="search-button"
-                type="button"
-                aria-expanded={`${this.searchDropdownOpen}`}
-                onClick={e => void this.toggleDropdown(e)}
-              >
-                <span class="visually-hidden">
-                  {this.searchDropdownOpen
-                    ? translations.searchToggleExpanded
-                    : translations.searchToggle}
-                </span>
-                <SvgIcon name={this.searchDropdownOpen ? 'pi-close' : 'pi-search'} />
-              </button>
-              <If condition={this.searchDropdownOpen}>
-                <div class="flyout" key="flyout" ref={e => (this.searchFlyout = e)}>
-                  <div class="container box">
-                    <div class="row">
-                      <div class="col-xs-12 col-md-10 col-lg-8">
-                        <div class="form-group form-floating">
-                          <input
-                            type="text"
-                            role="searchbox"
-                            id="searchBox"
-                            class="form-control form-control-lg"
-                            placeholder={translations.flyoutSearchBoxFloatingLabel}
-                            autocomplete="off"
-                            ref={el => (this.searchBox = el)}
-                            onInput={() => void this.handleSearchInput()}
-                            onKeyDown={e => this.handleKeyDown(e)}
-                          />
-                          <label htmlFor="searchBox">
-                            {translations.flyoutSearchBoxFloatingLabel}
-                          </label>
-                          <button
-                            onClick={() => this.handleClearSearchBox()}
-                            class="clear-search-button"
-                            type="reset"
-                            id="clearButton"
-                            ref={el => (this.clearButton = el)}
-                          >
-                            <span class="visually-hidden">{translate('Delete search term')}</span>
-                            <SvgIcon name="pi-close" />
-                          </button>
-                          <button onClick={() => void this.startSearch()} class="start-search-button">
-                            <span class="visually-hidden">{translations.searchSubmit}</span>
-                            <SvgIcon name="pi-search" />
-                          </button>
-                        </div>
-                        {showPortalRecommendations && (
-                          <h2 id="post-internet-header-search-recommendations-title" class="bold">
-                            {search.searchRecommendations.title}
-                          </h2>
-                        )}
-                        <ul
-                          class="suggestions no-list"
-                          onMouseLeave={() => this.handleMouseLeaveSuggestions()}
-                          aria-labelledby={
-                            showPortalRecommendations
-                              ? 'post-internet-header-search-recommendations-title'
-                              : undefined
-                          }
+            <button
+              id="post-internet-header-search-button"
+              class="search-button"
+              key="search-button"
+              type="button"
+              aria-expanded={`${this.searchDropdownOpen}`}
+              onClick={e => void this.toggleDropdown(e)}
+            >
+              <span class="visually-hidden">
+                {this.searchDropdownOpen
+                  ? translations.searchToggleExpanded
+                  : translations.searchToggle}
+              </span>
+              <SvgIcon name={this.searchDropdownOpen ? 'pi-close' : 'pi-search'} />
+            </button>
+            <If condition={this.searchDropdownOpen}>
+              <div class="flyout" key="flyout" ref={e => (this.searchFlyout = e)}>
+                <div class="container box">
+                  <div class="row">
+                    <div class="col-xs-12 col-md-10 col-lg-8">
+                      <div class="form-group form-floating">
+                        <input
+                          type="text"
+                          role="searchbox"
+                          id="searchBox"
+                          class="form-control form-control-lg"
+                          placeholder={translations.flyoutSearchBoxFloatingLabel}
+                          autocomplete="off"
+                          ref={el => (this.searchBox = el)}
+                          onInput={() => void this.handleSearchInput()}
+                          onKeyDown={e => this.handleKeyDown(e)}
+                        />
+                        <label htmlFor="searchBox">
+                          {translations.flyoutSearchBoxFloatingLabel}
+                        </label>
+                        <button
+                          onClick={() => this.handleClearSearchBox()}
+                          class="clear-search-button"
+                          type="reset"
+                          id="clearButton"
+                          ref={el => (this.clearButton = el)}
                         >
-                          {showPortalRecommendations &&
-                            search.searchRecommendations.links.map(recommendation => (
-                              <li key={recommendation.href}>
-                                <a
-                                  class="nav-link search-recommendation"
-                                  href={new URL(recommendation.href, 'https://post.ch').href}
-                                  data-suggestion-text={recommendation.label}
-                                  onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
-                                  onClick={() => this.trackRecommendationClick(recommendation)}
-                                >
-                                  <span
-                                    class="search-recommendation__icon"
-                                    innerHTML={recommendation.inlineSvg}
-                                  ></span>
-                                  <span>{recommendation.label}</span>
-                                </a>
-                              </li>
-                            ))}
-                          {isParcelTrackingNr && (
-                            <li>
+                          <span class="visually-hidden">{translate('Delete search term')}</span>
+                          <SvgIcon name="pi-close" />
+                        </button>
+                        <button onClick={() => void this.startSearch()} class="start-search-button">
+                          <span class="visually-hidden">{translations.searchSubmit}</span>
+                          <SvgIcon name="pi-search" />
+                        </button>
+                      </div>
+                      {showPortalRecommendations && (
+                        <h2 id="post-internet-header-search-recommendations-title" class="bold">
+                          {search.searchRecommendations.title}
+                        </h2>
+                      )}
+                      <ul
+                        class="suggestions no-list"
+                        onMouseLeave={() => this.handleMouseLeaveSuggestions()}
+                        aria-labelledby={
+                          showPortalRecommendations
+                            ? 'post-internet-header-search-recommendations-title'
+                            : undefined
+                        }
+                      >
+                        {showPortalRecommendations &&
+                          search.searchRecommendations.links.map(recommendation => (
+                            <li key={recommendation.href}>
                               <a
-                                class="nav-link parcel-suggestion"
-                                href={this.parcelSuggestion!.url}
-                                data-suggestion-text={this.searchBox?.value}
+                                class="nav-link search-recommendation"
+                                href={new URL(recommendation.href, 'https://post.ch').href}
+                                data-suggestion-text={recommendation.label}
                                 onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
+                                onClick={() => this.trackRecommendationClick(recommendation)}
                               >
-                                <SvgIcon name="pi-letter-parcel" />
-                                <span class="bold">{this.parcelSuggestion?.sending?.id}:&nbsp;</span>
-                                <span>
-                                  {[
-                                    this.parcelSuggestion?.sending?.product,
-                                    ' ' + this.parcelSuggestion?.sending?.recipient.zipcode,
-                                    ' ' + this.parcelSuggestion?.sending?.recipient.city,
-                                    ', ' + this.parcelSuggestion?.sending?.state,
-                                  ]
-                                    .filter(s => s !== '' && s !== ' ')
-                                    .join('')}
-                                </span>
+                                <span
+                                  class="search-recommendation__icon"
+                                  innerHTML={recommendation.inlineSvg}
+                                ></span>
+                                <span>{recommendation.label}</span>
                               </a>
                             </li>
-                          )}
-                          {!showPortalRecommendations &&
-                            this.coveoSuggestions &&
-                            this.coveoSuggestions.map(suggestion => (
-                              <li key={suggestion.objectId}>
-                                <a
-                                  class="nav-link"
-                                  href={suggestion.redirectUrl}
-                                  data-suggestion-text={suggestion.expression}
-                                  onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
-                                >
-                                  <SvgIcon name="pi-search" />
-                                  <HighlightedText text={suggestion.highlighted} />
-                                </a>
-                              </li>
-                            ))}
-                          {!showPortalRecommendations &&
-                            this.placeSuggestions &&
-                            this.placeSuggestions.map(suggestion => (
-                              <li key={suggestion.id}>
-                                <a
-                                  class="nav-link"
-                                  href={getPlacesUrl(suggestion)}
-                                  data-suggestion-text={suggestion.name}
-                                  onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
-                                >
-                                  <SvgIcon name="pi-place" />
-                                  <HighlightedText
-                                    text={highlightPlacesString(
-                                      this.searchBox?.value?.trim(),
-                                      suggestion.name,
-                                    )}
-                                  />
-                                </a>
-                              </li>
-                            ))}
-                        </ul>
-                      </div>
+                          ))}
+                        {isParcelTrackingNr && (
+                          <li>
+                            <a
+                              class="nav-link parcel-suggestion"
+                              href={this.parcelSuggestion!.url}
+                              data-suggestion-text={this.searchBox?.value}
+                              onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
+                            >
+                              <SvgIcon name="pi-letter-parcel" />
+                              <span class="bold">{this.parcelSuggestion?.sending?.id}:&nbsp;</span>
+                              <span>
+                                {[
+                                  this.parcelSuggestion?.sending?.product,
+                                  ' ' + this.parcelSuggestion?.sending?.recipient.zipcode,
+                                  ' ' + this.parcelSuggestion?.sending?.recipient.city,
+                                  ', ' + this.parcelSuggestion?.sending?.state,
+                                ]
+                                  .filter(s => s !== '' && s !== ' ')
+                                  .join('')}
+                              </span>
+                            </a>
+                          </li>
+                        )}
+                        {!showPortalRecommendations &&
+                          this.coveoSuggestions &&
+                          this.coveoSuggestions.map(suggestion => (
+                            <li key={suggestion.objectId}>
+                              <a
+                                class="nav-link"
+                                href={suggestion.redirectUrl}
+                                data-suggestion-text={suggestion.expression}
+                                onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
+                              >
+                                <SvgIcon name="pi-search" />
+                                <HighlightedText text={suggestion.highlighted} />
+                              </a>
+                            </li>
+                          ))}
+                        {!showPortalRecommendations &&
+                          this.placeSuggestions &&
+                          this.placeSuggestions.map(suggestion => (
+                            <li key={suggestion.id}>
+                              <a
+                                class="nav-link"
+                                href={getPlacesUrl(suggestion)}
+                                data-suggestion-text={suggestion.name}
+                                onMouseEnter={e => this.handleMouseEnterSuggestion(e)}
+                              >
+                                <SvgIcon name="pi-place" />
+                                <HighlightedText
+                                  text={highlightPlacesString(
+                                    this.searchBox?.value?.trim(),
+                                    suggestion.name,
+                                  )}
+                                />
+                              </a>
+                            </li>
+                          ))}
+                      </ul>
                     </div>
                   </div>
                 </div>
-              </If>
+              </div>
+            </If>
           </div>
-        </FocusTrap>
+        </focus-trap>
       </Host>
     );
   }
