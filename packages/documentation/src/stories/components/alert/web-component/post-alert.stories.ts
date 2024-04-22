@@ -98,7 +98,7 @@ function externalControl(story: StoryFn, context: StoryContext) {
 
   return html`
     <a
-      class="btn btn-default btn-animated alert-button"
+      class="btn btn-secondary btn-animated alert-button"
       href="#"
       @click="${(e: Event) => toggleAlert(e)}"
     >

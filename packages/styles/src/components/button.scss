@@ -139,8 +139,9 @@
   @extend %btn-transparent-background;
   border-color: color.$gray-60;
 
-  @include color-mx.on-dark-background() {
+  @include color-mx.on-dark-background {
     border-color: var(--post-contrast-color);
+    color: var(--post-contrast-color);
 
     &:disabled {
       color: color.$white-alpha-60;
