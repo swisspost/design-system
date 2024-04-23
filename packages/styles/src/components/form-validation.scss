@@ -41,6 +41,7 @@
 .invalid-feedback {
   background: form-validation.$form-feedback-invalid-bg;
   color: form-validation.$form-feedback-invalid-text;
+
   &::before {
     @include icons.icon(2104);
   }
@@ -54,6 +55,7 @@ textarea ~ .invalid-feedback::before {
 .valid-feedback {
   background: form-validation.$form-feedback-valid-bg;
   color: form-validation.$form-feedback-valid-text;
+
   &::before {
     @include icons.icon(2105);
   }
