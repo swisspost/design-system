@@ -191,7 +191,7 @@ export class PostInternetBreadcrumbs {
         [{ opacity: 1, visibility: 'visible', transform: 'translateY(0px)' }],
         { duration, fill: 'forwards' },
       );
-      iFrame.parentElement?.classList.add('loaded');
+      iFrame.closest('[role=dialog]')?.classList.add('loaded');
       this.loadedAnimation?.finished.then(() => {
         iFrame.parentElement?.focus();
       });
