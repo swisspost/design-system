@@ -16,14 +16,15 @@ export interface GeocodeLocation {
   bbox: [number, number, number, number];
 }
 
-export enum GeocodeResponseType {
-  Region = 'region',
-  City = 'city',
-  Zip = 'zip',
-  Locality = 'locality',
-  Address = 'address',
-  Poi = 'poi',
-}
+export const GeocodeResponseType = {
+  Region: 'region',
+  City: 'city',
+  Zip: 'zip',
+  Locality: 'locality',
+  Address: 'address',
+  Poi: 'poi',
+} as const;
+export type GeocodeResponseType = (typeof GeocodeResponseType)[keyof typeof GeocodeResponseType];
 
 export interface ServiceTypesResponse {
   ok: boolean;
