@@ -1,7 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { html, TemplateResult } from 'lit';
-import { mapClasses } from '../../../utils';
-import { MetaComponent } from '../../../../types';
+import { mapClasses } from '@/utils';
+import { MetaComponent } from '@/../types';
 
 const meta: MetaComponent = {
   id: '2ffc7a53-c1aa-4ff5-b1e4-fa638591399c',

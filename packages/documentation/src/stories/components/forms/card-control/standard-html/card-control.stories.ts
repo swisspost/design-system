@@ -3,9 +3,9 @@ import { useArgs, useState } from '@storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { MetaComponent } from '../../../../../../types';
-import { parse } from '../../../../../utils/sass-export';
-import scss from '../card-control.module.scss';
+import { MetaComponent } from '@/../types';
+import { parse } from '@/utils/sass-export';
+import scss from '@/stories/components/forms/card-control/card-control.module.scss';
 
 const SCSS_VARIABLES: { [key: string]: string } = parse(scss);
 

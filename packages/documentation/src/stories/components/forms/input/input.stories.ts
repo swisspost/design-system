@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing, TemplateResult } from 'lit';
-import { MetaComponent } from '../../../../../types';
+import { MetaComponent } from '@/../types';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,

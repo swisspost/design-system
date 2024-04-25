@@ -1,6 +1,6 @@
-import { parse } from '../../../../utils/sass-export';
-import { forEach } from '../../../../utils/react';
-import { SpecTable } from '../shared.blocks';
+import { parse } from '@/utils/sass-export';
+import { forEach } from '@/utils/react';
+import { SpecTable } from '@/stories/foundation/layout/shared.blocks';
 import scss from './containers.module.scss';
 
 export const SCSS_VARIABLES = parse(scss);

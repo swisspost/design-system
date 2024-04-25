@@ -2,7 +2,7 @@ import type { Args, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 import { repeat } from 'lit/directives/repeat.js';
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '@/../types';
 
 const meta: MetaComponent = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',

@@ -1,8 +1,8 @@
 import { html, LitElement } from 'lit';
 import { Task } from '@lit/task';
 import { customElement, property } from 'lit/decorators.js';
-import { PackageType } from '../../../types';
-import { getDocsPath, getTitleFromPath } from '../../utils';
+import { PackageType } from '@/../types';
+import { getDocsPath, getTitleFromPath } from '@/utils';
 
 const INDEX_PATH = '/index.json';
 const TAG_REDIRECT_PREFIX = 'redirect:';

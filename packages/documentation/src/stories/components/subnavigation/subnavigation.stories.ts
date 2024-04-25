@@ -1,7 +1,7 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { MetaComponent } from '../../../../types';
-import { parse } from '../../../utils/sass-export';
+import { MetaComponent } from '@/../types';
+import { parse } from '@/utils/sass-export';
 import scss from './subnavigation.module.scss';
 
 const SCSS_VARIABLES: any = parse(scss);

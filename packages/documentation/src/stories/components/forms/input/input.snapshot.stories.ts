@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './input.stories';
 import { html } from 'lit';
-import { COMBINATIONS, getCombinations } from '../../../../utils/inputComponentsGetCombinations';
+import { COMBINATIONS, getCombinations } from '@/utils/inputComponentsGetCombinations';
 
 const { id, ...metaWithoutId } = meta;
 

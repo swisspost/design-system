@@ -1,4 +1,4 @@
-import { parse } from '../../../utils/sass-export';
+import { parse } from '@/utils/sass-export';
 import scss from './color.module.scss';
 
 export const SCSS_VARIABLES: any = parse(scss);

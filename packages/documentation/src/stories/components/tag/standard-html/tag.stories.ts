@@ -1,9 +1,9 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
-import { MetaComponent } from '../../../../../types';
+import { MetaComponent } from '@/../types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { parse } from '../../../../utils/sass-export';
-import scss from '../tag.module.scss';
+import { parse } from '@/utils/sass-export';
+import scss from '@/stories/components/tag/tag.module.scss';
 
 const SCSS_VARIABLES: any = parse(scss);
 

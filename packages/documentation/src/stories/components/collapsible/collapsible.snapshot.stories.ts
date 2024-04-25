@@ -1,6 +1,6 @@
 import { html } from 'lit';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
-import { bombArgs } from '../../../utils';
+import { bombArgs } from '@/utils';
 
 import meta, { Default } from './collapsible.stories';
 

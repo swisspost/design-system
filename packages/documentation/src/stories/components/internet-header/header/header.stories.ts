@@ -1,10 +1,10 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { spreadArgs } from '../../../../utils';
+import { spreadArgs } from '@/utils';
 import customConfig from './config/custom-config';
 import osFlyoutOverrides from './config/os-flyout-overrides';
 import languageSwitchOverrides from './config/language-switch-overrides';
-import { MetaComponent } from '../../../../../types';
+import { MetaComponent } from '@/../types';
 
 const meta: MetaComponent = {
   id: 'ebb11274-091b-4cb7-9a3f-3e0451c9a865',

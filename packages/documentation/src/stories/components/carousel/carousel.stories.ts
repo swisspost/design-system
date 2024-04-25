@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/web-components';
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '@/../types';
 
 const meta: MetaComponent = {
   id: 'cb3ba4a2-1265-4a20-b184-b85443146efa',

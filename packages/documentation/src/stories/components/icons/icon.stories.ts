@@ -2,9 +2,9 @@ import { spread } from '@open-wc/lit-helpers';
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { spreadArgs } from '../../../utils';
+import { spreadArgs } from '@/utils';
 import { Components } from '@swisspost/design-system-components/src';
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '@/../types';
 
 const meta: MetaComponent = {
   id: '0dcfe3c0-bfc0-4107-b43b-7e9d825b805f',

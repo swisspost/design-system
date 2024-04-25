@@ -1,7 +1,7 @@
 // Source: https://github.com/storybookjs/storybook/blob/next/code/ui/blocks/src/blocks/mdx.tsx#L34
 import { Source } from '@storybook/blocks';
 import { Code } from '@storybook/components';
-import { SourceDarkMode } from '../../.storybook/preview';
+import { SourceDarkMode } from '@/../preview';
 
 // @ts-ignore
 export const CodeOrSourceMdx = ({ className, children, ...rest }) => {

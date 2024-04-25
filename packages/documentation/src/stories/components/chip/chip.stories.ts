@@ -1,7 +1,7 @@
 import { useArgs } from '@storybook/preview-api';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '@/../types';
 
 const meta: MetaComponent = {
   id: '12576d97-52c3-49ec-be7b-6d37728b75f5',

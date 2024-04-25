@@ -1,7 +1,7 @@
 import { LitElement, nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { customElement, property } from 'lit/decorators.js';
-import { getTitleFromPath } from '../../utils';
+import { getTitleFromPath } from '@/utils';
 import { ModuleExport } from '@storybook/types';
 
 export interface DesignParameter {
