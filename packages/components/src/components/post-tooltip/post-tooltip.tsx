@@ -1,9 +1,9 @@
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
-import { version } from '../../../package.json';
+import { version } from '@/../package.json';
 import isFocusable from 'ally.js/is/focusable';
 import 'long-press-event';
-import { getAttributeObserver } from '../../utils/attribute-observer';
+import { getAttributeObserver } from '@/utils/attribute-observer';
 
 /**
  * @slot default - Slot for the content of the tooltip.

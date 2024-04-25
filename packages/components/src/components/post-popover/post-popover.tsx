@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
-import { version } from '../../../package.json';
-import { getAttributeObserver } from '../../utils/attribute-observer';
+import { version } from '@/../package.json';
+import { getAttributeObserver } from '@/utils/attribute-observer';
 
 /**
  * @slot default - Slot for placing content inside the popover.

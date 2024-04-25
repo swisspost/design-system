@@ -15,7 +15,7 @@ import {
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import '@oddbird/popover-polyfill';
 
-import { version } from '../../../package.json';
+import { version } from '@/../package.json';
 
 const SIDE_MAP = {
   top: 'bottom',

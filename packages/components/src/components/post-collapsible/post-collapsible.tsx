@@ -10,9 +10,9 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { version } from '../../../package.json';
-import { collapse, expand } from '../../animations/collapse';
-import { checkEmptyOrType, isMotionReduced } from '../../utils';
+import { version } from '@/../package.json';
+import { collapse, expand } from '@/animations/collapse';
+import { checkEmptyOrType, isMotionReduced } from '@/utils';
 
 /**
  * @slot default - Slot for placing content within the collapsible element.

@@ -1,6 +1,6 @@
 import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
-import { version } from '../../../package.json';
-import { fadeIn, fadeOut } from '../../animations';
+import { version } from '@/../package.json';
+import { fadeIn, fadeOut } from '@/animations';
 
 /**
  * @slot tabs - Slot for placing tab headers. Each tab header should be a <post-tab-header> element.
