@@ -816,9 +816,6 @@ importers:
       '@popperjs/core':
         specifier: 2.11.8
         version: 2.11.8
-      '@swisspost/design-system-intranet-header':
-        specifier: workspace:7.0.0
-        version: link:dist/intranet-header
       '@swisspost/design-system-styles':
         specifier: workspace:7.0.0
         version: link:../styles/dist
@@ -914,6 +911,12 @@ importers:
         specifier: 2.6.2
         version: 2.6.2
     publishDirectory: ../../dist/intranet-header
+
+  packages/intranet-header-workspace/projects/intranet-header-showcase:
+    dependencies:
+      '@swisspost/design-system-intranet-header':
+        specifier: workspace:7.0.0
+        version: link:../../dist/intranet-header
 
   packages/migrations:
     dependencies:

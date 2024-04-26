@@ -6,6 +6,7 @@
   "scripts": {
     "clean": "rimraf dist",
     "start": "ng serve --port 9320",
+    "build": "ng build intranet-header",
     "lint": "ng lint"
   },
   "dependencies": {
@@ -20,7 +21,6 @@
     "@angular/router": "17.3.3",
     "@ng-bootstrap/ng-bootstrap": "16.0.0",
     "@popperjs/core": "2.11.8",
-    "@swisspost/design-system-intranet-header": "workspace:7.0.0",
     "@swisspost/design-system-styles": "workspace:7.0.0",
     "rxjs": "7.8.1",
     "tslib": "2.6.2",
