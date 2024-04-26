@@ -910,6 +910,10 @@ importers:
       tslib:
         specifier: 2.6.2
         version: 2.6.2
+    devDependencies:
+      '@swisspost/design-system-intranet-header-workspace':
+        specifier: workspace:3.0.12
+        version: link:../..
     publishDirectory: ../../dist/intranet-header
 
   packages/intranet-header-workspace/projects/intranet-header-showcase:
