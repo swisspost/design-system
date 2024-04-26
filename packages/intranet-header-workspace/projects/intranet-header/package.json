@@ -17,11 +17,11 @@
     "access": "public",
     "linkDirectory": true
   },
+  "scripts": {
+    "build": "cd .. && ng build intranet-header"
+  },
   "dependencies": {
     "@swisspost/design-system-styles": "workspace:7.0.0",
     "tslib": "2.6.2"
-  },
-  "devDependencies": {
-    "@swisspost/design-system-intranet-header-workspace": "workspace:3.0.12"
   }
 }

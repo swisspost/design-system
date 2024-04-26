@@ -6,7 +6,6 @@
   "scripts": {
     "clean": "rimraf dist",
     "start": "ng serve --port 9320",
-    "build": "ng build intranet-header",
     "lint": "ng lint"
   },
   "dependencies": {

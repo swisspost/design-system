@@ -240,12 +240,13 @@ importers:
       '@angular/core':
         specifier: ^16.0.0 || ^17.0.0
         version: 17.2.3(rxjs@7.8.1)(zone.js@0.14.4)
-      '@swisspost/design-system-components':
-        specifier: workspace:7.0.0
-        version: link:../../../components
       tslib:
         specifier: 2.6.2
         version: 2.6.2
+    devDependencies:
+      '@swisspost/design-system-components':
+        specifier: workspace:7.0.0
+        version: link:../../../components
     publishDirectory: ../../dist/components
 
   packages/components-react:
@@ -477,18 +478,12 @@ importers:
       '@swisspost/design-system-components':
         specifier: workspace:7.0.0
         version: link:../components
-      '@swisspost/design-system-components-angular':
-        specifier: workspace:7.0.0
-        version: link:../components-angular/dist/components
       '@swisspost/design-system-components-react':
         specifier: workspace:7.0.0
         version: link:../components-react
       '@swisspost/design-system-icons':
         specifier: workspace:7.0.0
         version: link:../icons
-      '@swisspost/design-system-intranet-header':
-        specifier: workspace:7.0.0
-        version: link:../intranet-header-workspace/dist/intranet-header
       '@swisspost/design-system-styles':
         specifier: workspace:7.0.0
         version: link:../styles/dist
@@ -562,6 +557,12 @@ importers:
       '@storybook/web-components-vite':
         specifier: 8.0.8
         version: 8.0.8(encoding@0.1.13)(lit@3.1.2)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)(typescript@5.3.3)(vite@5.1.5(@types/node@20.11.16)(less@4.2.0)(sass@1.74.1)(terser@5.29.1))
+      '@swisspost/design-system-components-angular':
+        specifier: workspace:7.0.0
+        version: link:../components-angular/dist/components
+      '@swisspost/design-system-intranet-header':
+        specifier: workspace:7.0.0
+        version: link:../intranet-header-workspace/dist/intranet-header
       '@types/css-modules':
         specifier: 1.0.5
         version: 1.0.5
@@ -906,10 +907,6 @@ importers:
       tslib:
         specifier: 2.6.2
         version: 2.6.2
-    devDependencies:
-      '@swisspost/design-system-intranet-header-workspace':
-        specifier: workspace:3.0.12
-        version: link:../..
     publishDirectory: ../../dist/intranet-header
 
   packages/migrations:
