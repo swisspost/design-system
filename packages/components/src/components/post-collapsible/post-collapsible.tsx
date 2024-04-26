@@ -10,9 +10,8 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { version } from '../../../package.json';
-import { collapse, expand } from '../../animations/collapse';
-import { checkEmptyOrType, isMotionReduced } from '../../utils';
+import { pkg, checkEmptyOrType, isMotionReduced } from '@/utils';
+import { collapse, expand } from '@/animations/collapse';
 
 /**
  * @slot default - Slot for placing content within the collapsible element.
@@ -91,7 +90,7 @@ export class PostCollapsible {
 
   render() {
     return (
-      <Host id={this.id} data-version={version}>
+      <Host id={this.id} data-version={pkg.version}>
         <div class="collapse" id={`${this.id}--collapse`} ref={el => (this.collapsible = el)}>
           <slot />
         </div>

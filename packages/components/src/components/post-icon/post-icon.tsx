@@ -1,6 +1,5 @@
 import { Component, Element, Host, h, Prop, State, Watch } from '@stencil/core';
-import { checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '../../utils';
-import { version } from '../../../package.json';
+import { pkg, checkNonEmpty, checkType, checkEmptyOrType, checkEmptyOrOneOf } from '@/utils';
 
 const CDN_URL = 'https://unpkg.com/@swisspost/design-system-icons/public/post-icons';
 const ANIMATION_NAMES = [
@@ -150,7 +149,7 @@ export class PostIcon {
       .filter(([_key, value]) => value !== null)
       .reduce((styles, [key, value]) => Object.assign(styles, { [key]: value }), {});
     return (
-      <Host data-version={version}>
+      <Host data-version={pkg.version}>
         <span style={svgStyles}></span>
       </Host>
     );

@@ -15,7 +15,7 @@ import {
 // Polyfill for popovers, can be removed when https://caniuse.com/?search=popover is green
 import '@oddbird/popover-polyfill';
 
-import { version } from '../../../package.json';
+import { pkg } from '@/utils';
 
 const SIDE_MAP = {
   top: 'bottom',
@@ -214,7 +214,7 @@ export class PostPopovercontainer {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={pkg.version}>
         <div
           class="popover"
           part="popover"

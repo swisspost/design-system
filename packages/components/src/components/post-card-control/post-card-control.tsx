@@ -11,13 +11,11 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { checkNonEmpty, checkOneOf } from '../../utils';
-import { version } from '../../../package.json';
+import { pkg, checkNonEmpty, checkOneOf, parse } from '@/utils';
 
 // remove as soon as all browser support :host-context()
 // https://caniuse.com/?search=%3Ahost-context()
 import scss from './post-card-control.module.scss';
-import { parse } from '../../utils/sass-export';
 
 const SCSS_VARIABLES = parse(scss);
 const EVENT_MAP = {
@@ -351,7 +349,7 @@ export class PostCardControl {
 
   render() {
     return (
-      <Host data-version={version} onClick={this.cardClickHandler}>
+      <Host data-version={pkg.version} onClick={this.cardClickHandler}>
         <div
           class={{
             'card-control': true,

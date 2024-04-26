@@ -1,6 +1,5 @@
 import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from '@stencil/core';
-import { version } from '../../../package.json';
-import { checkEmptyOrOneOf } from '../../utils';
+import { pkg, checkEmptyOrOneOf } from '@/utils';
 import { HEADING_LEVELS, HeadingLevel } from './heading-levels';
 
 /**
@@ -68,7 +67,7 @@ export class PostAccordionItem {
     const HeadingTag = `h${this.headingLevel ?? 2}`;
 
     return (
-      <Host id={this.id} data-version={version}>
+      <Host id={this.id} data-version={pkg.version}>
         <div part="accordion-item" class="accordion-item">
           <HeadingTag class="accordion-header" id={`${this.id}--header`}>
             <button

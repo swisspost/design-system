@@ -1,6 +1,6 @@
 import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
-import { version } from '../../../package.json';
-import { fadeIn, fadeOut } from '../../animations';
+import { pkg } from '@/utils';
+import { fadeIn, fadeOut } from '@/animations';
 
 /**
  * @slot tabs - Slot for placing tab headers. Each tab header should be a <post-tab-header> element.
@@ -195,7 +195,7 @@ export class PostTabs {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={pkg.version}>
         <div class="tabs-wrapper">
           <div class="tabs" role="tablist">
             <slot name="tabs" onSlotchange={() => this.enableTabs()} />

@@ -1,5 +1,5 @@
 import { Component, Element, h, Host, Listen, Method, Prop } from '@stencil/core';
-import { version } from '../../../package.json';
+import { pkg } from '@/utils';
 
 /**
  * @slot default - Slot for placing post-accordion-item components.
@@ -104,7 +104,7 @@ export class PostAccordion {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={pkg.version}>
         <div class="accordion">
           <slot onSlotchange={() => this.registerAccordionItems()} />
         </div>

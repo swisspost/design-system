@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
-import { version } from '../../../package.json';
-import { getAttributeObserver } from '../../utils/attribute-observer';
+import { pkg } from '@/utils';
+import { getAttributeObserver } from '@/utils/attribute-observer';
 
 /**
  * @slot default - Slot for placing content inside the popover.
@@ -133,7 +133,7 @@ export class PostPopover {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={pkg.version}>
         <post-popovercontainer
           arrow={this.arrow}
           placement={this.placement}

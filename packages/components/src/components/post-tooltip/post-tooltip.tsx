@@ -1,9 +1,9 @@
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
-import { version } from '../../../package.json';
+import { pkg } from '@/utils';
 import isFocusable from 'ally.js/is/focusable';
 import 'long-press-event';
-import { getAttributeObserver } from '../../utils/attribute-observer';
+import { getAttributeObserver } from '@/utils/attribute-observer';
 
 /**
  * @slot default - Slot for the content of the tooltip.
@@ -212,7 +212,7 @@ export class PostTooltip {
     const popoverClass = `${this.arrow ? ' has-arrow' : ''}`;
     return (
       <Host
-        data-version={version}
+        data-version={pkg.version}
         role="tooltip"
         onPointerOver={this.handleInterest}
         onPointerOut={this.handleInterestLost}

@@ -1,6 +1,5 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { version } from '../../../package.json';
-import { checkNonEmpty } from '../../utils';
+import { pkg, checkNonEmpty } from '@/utils';
 
 /**
  * @slot default - Slot for the content of the tab header.
@@ -35,7 +34,7 @@ export class PostTabHeader {
       <Host
         id={this.tabId}
         role="tab"
-        data-version={version}
+        data-version={pkg.version}
         aria-selected="false"
         tabindex="-1"
         class="tab-title"

@@ -10,9 +10,8 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { version } from '../../../package.json';
-import { fadeOut } from '../../animations';
-import { checkEmptyOrOneOf, checkEmptyOrPattern, checkNonEmpty, checkType } from '../../utils';
+import { pkg, checkEmptyOrOneOf, checkEmptyOrPattern, checkNonEmpty, checkType } from '@/utils';
+import { fadeOut } from '@/animations';
 import { ALERT_TYPES, AlertType } from './alert-types';
 
 /**
@@ -155,7 +154,7 @@ export class PostAlert {
     ];
 
     return (
-      <Host data-version={version}>
+      <Host data-version={pkg.version}>
         <div role="alert" class={this.classes}>
           {this.dismissible && (
             <button class="btn-close" onClick={this.onDismissButtonClick}>

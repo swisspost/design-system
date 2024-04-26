@@ -1,5 +1,5 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { version } from '../../../package.json';
+import { pkg } from '@/utils';
 
 /**
  * @slot default - Content to place in the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.</p>
@@ -46,7 +46,11 @@ export class PostTag {
   }
 
   private setClasses() {
-    this.classes = ['tag', this.size ? `tag-${this.size}` : null, this.variant ? `tag-${this.variant}` : null]
+    this.classes = [
+      'tag',
+      this.size ? `tag-${this.size}` : null,
+      this.variant ? `tag-${this.variant}` : null,
+    ]
       .filter(c => c !== null)
       .join(' ');
   }
@@ -57,7 +61,7 @@ export class PostTag {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={pkg.version}>
         <div class={this.classes}>
           {this.icon ? <post-icon name={this.icon}></post-icon> : null}
           <div class="tag-text">

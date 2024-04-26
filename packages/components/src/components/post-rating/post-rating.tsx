@@ -1,5 +1,5 @@
 import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
-import { version } from '../../../package.json';
+import { pkg } from '@/utils';
 
 @Component({
   tag: 'post-rating',
@@ -108,7 +108,7 @@ export class PostRating {
 
   render() {
     return (
-      <Host data-version={version}>
+      <Host data-version={pkg.version}>
         <div
           role="slider"
           class="rating"
