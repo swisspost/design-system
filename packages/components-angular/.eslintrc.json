@@ -1,6 +1,6 @@
 {
   "root": true,
-  "ignorePatterns": ["projects/**/*"],
+  "ignorePatterns": ["dist", "projects/**/*"],
   "overrides": [
     {
       "files": ["*.ts"],

@@ -1,6 +1,6 @@
 module.exports = {
   extends: '../../.eslintrc.json',
-  ignorePatterns: ['!**/*', 'node_modules'],
+  ignorePatterns: ['!src', 'src/lib/stencil-generated', 'node_modules'],
   overrides: [
     {
       files: ['*.ts'],
