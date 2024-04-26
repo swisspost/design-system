@@ -18,10 +18,14 @@
     "linkDirectory": true
   },
   "scripts": {
-    "build": "cd .. && ng build intranet-header"
+    "build": "ng build intranet-header"
   },
   "dependencies": {
     "@swisspost/design-system-styles": "workspace:7.0.0",
     "tslib": "2.6.2"
+  },
+  "peerDependencies": {
+    "@angular/common": "^16.0.0 || ^17.0.0",
+    "@angular/core": "^16.0.0 || ^17.0.0"
   }
 }

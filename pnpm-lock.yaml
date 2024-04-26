@@ -901,6 +901,12 @@ importers:
 
   packages/intranet-header-workspace/projects/intranet-header:
     dependencies:
+      '@angular/common':
+        specifier: ^16.0.0 || ^17.0.0
+        version: 17.3.3(@angular/core@17.3.3(rxjs@7.8.1)(zone.js@0.14.4))(rxjs@7.8.1)
+      '@angular/core':
+        specifier: ^16.0.0 || ^17.0.0
+        version: 17.3.3(rxjs@7.8.1)(zone.js@0.14.4)
       '@swisspost/design-system-styles':
         specifier: workspace:7.0.0
         version: link:../../../styles/dist
