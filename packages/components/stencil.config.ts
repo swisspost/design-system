@@ -7,11 +7,11 @@ import { angularValueAccessorBindings } from './.config/bindings.angular';
 
 export const config: Config = {
   namespace: 'post-components',
+  buildDist: true,
   sourceMap: false,
   outputTargets: [
     {
       type: 'dist',
-      empty: false,
       esmLoaderPath: '../loader',
     },
     {
@@ -19,6 +19,12 @@ export const config: Config = {
     },
     {
       type: 'www',
+      copy: [
+        {
+          src: '../node_modules/@swisspost/design-system-styles/*.css',
+          dest: 'assets/css',
+        },
+      ],
       serviceWorker: null, // disable service workers,
     },
     {
