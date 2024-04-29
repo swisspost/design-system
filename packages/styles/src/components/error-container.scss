@@ -1,0 +1,9 @@
+.error-container {
+  overflow-x: hidden;
+}
+
+.error-container--image {
+  max-width: 150%;
+  margin: 10vw 0 0 3rem;
+  object-fit: contain;
+}

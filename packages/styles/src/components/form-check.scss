@@ -1,10 +1,12 @@
 @forward './../variables/options';
 
 @use '../variables/color';
+@use '../variables/commons';
 @use '../variables/type';
 @use '../variables/spacing';
 @use '../variables/animation';
 @use '../variables/components/form-check';
+@use '../mixins/color' as color-mx;
 @use '../mixins/icons' as icons-mx;
 @use '../mixins/utilities' as utility-mx;
 
@@ -13,6 +15,10 @@
   flex-wrap: wrap;
   row-gap: form-check.$form-check-row-gap;
   margin-bottom: form-check.$form-check-margin-bottom;
+
+  @include utility-mx.focus-style() {
+    border-radius: commons.$border-radius;
+  }
 
   &-inline {
     display: inline-flex;
@@ -27,46 +33,44 @@
     color: rgba(var(--post-contrast-color-rgb), 0.8);
     transition: color animation.$transition-base-timing;
 
-    &:not([disabled]) {
-      cursor: pointer;
+    @include utility-mx.high-contrast-mode {
+      transition: none;
     }
 
     &:hover:not([disabled]),
     &:hover:not([disabled]) ~ &-label {
       color: var(--post-contrast-color);
+
+      @include utility-mx.high-contrast-mode() {
+        border-color: Highlight;
+      }
     }
   }
 
   &-input {
+    &:not([disabled]),
+    &:not([disabled]) ~ .form-check-label {
+      cursor: pointer;
+    }
+
+    @include utility-mx.focus-style-none();
+
     display: inline-flex;
     flex: 0 auto;
     appearance: none;
-    background: none;
+    background: transparent;
     height: form-check.$form-check-input-size;
     width: form-check.$form-check-input-size;
-    border: form-check.$form-check-input-border-width solid
-      rgba(var(--post-contrast-color-rgb), 0.8);
+    border: form-check.$form-check-input-border-width solid currentColor;
 
-    &:focus {
-      outline: none;
-      border-color: currentColor;
-      box-shadow: form-check.$form-check-input-focus-box-shadow;
+    @include utility-mx.high-contrast-mode {
+      border-color: FieldText; // For blink-browser as otherwise the default color (which is not a full color) will be converted to Highlight
     }
 
     &::after {
       content: '';
       display: block;
       flex: 1;
-    }
-
-    &:checked,
-    &:indeterminate {
-      color: var(--post-contrast-color);
-      border-color: var(--post-contrast-color);
-
-      ~ .form-check-label {
-        color: var(--post-contrast-color);
-      }
     }
 
     &[type='checkbox'] {
@@ -76,6 +80,14 @@
 
       &:indeterminate::after {
         @include icons-mx.icon(2039);
+      }
+
+      &:checked,
+      &:indeterminate {
+        @include utility-mx.high-contrast-mode {
+          background-color: SelectedItem !important;
+          color: SelectedItemText !important; // Important is needed for card-control
+        }
       }
     }
 
@@ -87,13 +99,85 @@
         background-color: currentColor;
         border-radius: inherit;
         background-clip: padding-box;
+
+        @include utility-mx.high-contrast-mode {
+          background-color: SelectedItem;
+          border-color: Canvas;
+        }
+      }
+
+      &[disabled] {
+        padding: spacing.$size-line; // Used to mimic border width because it is used in combination with background-clip: padding-box; to size the selected shape
+        background-image: url('#{form-check.$form-check-input-radio-disabled-background-url-light}');
+
+        @include color-mx.on-dark-background {
+          background-image: url('#{form-check.$form-check-input-radio-disabled-background-url-dark}');
+        }
+
+        @include utility-mx.high-contrast-mode {
+          background-image: url('#{form-check.$form-check-input-radio-disabled-background-url-hcm}') !important;
+        }
+      }
+    }
+
+    &[disabled] {
+      &[type='checkbox'],
+      &[type='radio'] {
+        @include utility-mx.high-contrast-mode {
+          border-color: GrayText !important;
+        }
+      }
+
+      &[type='checkbox'] {
+        &:checked,
+        &:indeterminate {
+          @include utility-mx.high-contrast-mode {
+            background-color: Field !important;
+            color: GrayText !important;
+          }
+        }
+      }
+
+      &[type='radio'] {
+        &:checked::after {
+          @include utility-mx.high-contrast-mode {
+            background-color: GrayText;
+          }
+        }
+      }
+
+      border: 0;
+      background-image: url('#{form-check.$form-check-input-disabled-background-url-light-lg}');
+
+      @include color-mx.on-dark-background {
+        background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-lg}');
+      }
+
+      @include utility-mx.high-contrast-mode {
+        background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-lg}') !important;
+      }
+
+      .form-check-sm &[type='checkbox'] {
+        background-image: url('#{form-check.$form-check-input-disabled-background-url-light-sm}');
+
+        @include color-mx.on-dark-background {
+          background-image: url('#{form-check.$form-check-input-disabled-background-url-dark-sm}');
+        }
+
+        @include utility-mx.high-contrast-mode {
+          background-image: url('#{form-check.$form-check-input-disabled-background-url-hcm-sm}') !important;
+        }
       }
     }
 
     &[disabled],
     &[disabled] ~ .form-check-label {
-      border-color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
-      color: rgba(var(--post-contrast-color-rgb), 0.4) !important;
+      text-decoration: line-through;
+      color: color.$black-alpha-60;
+
+      @include color-mx.on-dark-background() {
+        color: color.$white-alpha-80;
+      }
     }
 
     .form-check-sm & {
@@ -158,13 +242,13 @@
       border: form-check.$form-check-input-border-width solid CanvasText;
 
       &:checked {
-        background-color: SelectedItem;
+        background-color: SelectedItem !important;
       }
 
       &::after,
       &:checked::after {
         max-width: calc(
-          #{form-check.$form-switch-height} - #{2 * form-check.$form-check-input-border-width}
+          form-check.$form-switch-height - (form-check.$form-check-input-border-width * 2)
         );
         border-color: Canvas;
         background-color: CanvasText;
@@ -177,6 +261,16 @@
       &::after {
         border-color: form-check.$form-switch-disabled-border-color;
       }
+
+      @include utility-mx.high-contrast-mode {
+        &::after {
+          border-color: Field;
+        }
+
+        &:checked {
+          background-color: GrayText !important;
+        }
+      }
     }
   }
 
@@ -185,12 +279,6 @@
 
     @include utility-mx.high-contrast-mode {
       border-color: Highlight;
-
-      &:checked,
-      &::after,
-      &:checked::after {
-        background-color: Highlight;
-      }
     }
   }
 

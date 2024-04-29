@@ -40,7 +40,7 @@ The design-system is formed with several packages and different compatibilities 
           Internet-header:
           <list-component packageType={PackageType.InternetHeader}></list-component>
         </td>
-        <td rowSpan="0">
+        <td rowSpan="5">
           {[packages.find(pkg => pkg.name === 'Styles')].map((p => (
             <ti-le title={p.name} href={p.link.docs.href} ariaLabel={p.link.docs.ariaLabel} key={p.name}>
               <img src={p.img.src} alt={p.img.alt}/>

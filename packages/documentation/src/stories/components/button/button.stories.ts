@@ -12,7 +12,7 @@ const meta: MetaComponent = {
     badges: [],
     design: {
       type: 'figma',
-      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=10576-49992&mode=design&t=OK8meBHjpJvBhwZI-4',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=16826-33449&mode=design&t=3lniLiZhl7q9Gqgn-4',
     },
   },
   args: {
@@ -21,7 +21,7 @@ const meta: MetaComponent = {
     type: 'button',
     variant: 'btn-primary',
     size: 'null',
-    animated: true,
+    animated: 'btn-animated',
     icon: 'null',
     iconOnly: false,
     iconPosition: 'start',
@@ -121,14 +121,20 @@ const meta: MetaComponent = {
     },
     animated: {
       name: 'Animated',
-      description: 'When set to `true`, the component animates on hover.',
+      description: 'Sets an animation on hover.',
       if: {
         arg: 'icon',
         eq: 'null',
       },
       control: {
-        type: 'boolean',
+        type: 'inline-radio',
+        labels: {
+          'null': 'None',
+          'btn-animated': 'End',
+          'btn-animated-start': 'Start',
+        },
       },
+      options: ['null', 'btn-animated', 'btn-animated-start'],
       table: {
         category: 'General',
       },
@@ -215,7 +221,7 @@ type Story = StoryObj;
 const Template = {
   render: (args: Args) => {
     const tagName = unsafeStatic(args.tag);
-    const isAnimated = args.tag !== 'input' && args.animated;
+    const isAnimated = args.tag !== 'input' && args.animated !== 'none';
     const props = createProps(args, isAnimated);
 
     if (args.tag === 'input') {
@@ -244,7 +250,7 @@ function createProps(args: Args, isAnimated: boolean) {
       'btn',
       args.variant,
       args.size,
-      isAnimated && 'btn-animated',
+      args.animated,
       args.iconOnly && 'btn-icon',
       ...additionalClasses,
     ]
@@ -307,10 +313,10 @@ export const AccentColors: Story = {
   },
 };
 
-export const ContextualColors: Story = {
+export const SignalColors: Story = {
   ...VariantsTemplate,
   args: {
-    variants: ['btn-success', 'btn-info', 'btn-warning', 'btn-danger'],
+    variants: ['btn-success', 'btn-warning', 'btn-error', 'btn-info'],
   },
 };
 

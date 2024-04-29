@@ -54,5 +54,23 @@ describe('footer', () => {
         });
       });
     });
+
+    describe('block-contact', () => {
+      it('should display pure (without HTML) hours content as it is', () => {
+        prepare(FOOTER, 'Default');
+        cy.get('.block-contact .content-row .text')
+          .contains('Saturday')
+          .siblings('.hours')
+          .should('contain.text', '8am to 12 noon');
+      });
+
+      it('should remove wrapping HTML in hours content when value contains HTML', () => {
+        prepare(FOOTER, 'Default');
+        cy.get('.block-contact .content-row .text')
+          .contains('Bank holidays')
+          .siblings('.hours')
+          .should('contain.text', '8—12');
+      });
+    });
   });
 });

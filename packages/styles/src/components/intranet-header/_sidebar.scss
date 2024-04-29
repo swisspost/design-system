@@ -1,6 +1,7 @@
+@use './../../mixins/utilities';
 @use './../../variables/color';
-@use './../../variables/spacing';
 @use './../../variables/commons';
+@use './../../variables/spacing';
 @use './../../variables/components/intranet-header';
 
 @use './../../themes/bootstrap/core' as *;
@@ -16,6 +17,21 @@
 
   flex: 1 0 auto;
   flex-direction: column;
+
+  > div > ul > li:first-child {
+    button {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      background: none;
+      border: 0;
+
+      @include utilities.focus-style() {
+        border-radius: commons.$border-radius;
+      }
+    }
+  }
 
   @include media-breakpoint-down(md) {
     flex: 0 0 auto;
@@ -33,15 +49,18 @@
 
       margin: spacing.$spacer * -1;
       margin-bottom: 0;
-      padding: spacing.$spacer;
-      padding-top: spacing.$spacer;
+      padding: spacing.$size-mini;
+      padding-left: spacing.$size-regular;
       border-bottom: commons.$border-width solid rgba(var(--post-contrast-color-rgb), 0.2);
       background-color: color.$white;
 
+      button {
+        padding: spacing.$size-mini;
+      }
+
       &:hover,
       &:focus {
-        background-color: get-solid-color(rgba(var(--post-contrast-color-rgb), 0.1), color.$white);
-        cursor: pointer;
+        background-color: color.$light;
       }
 
       i.pi {

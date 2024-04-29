@@ -1,5 +1,5 @@
 import { Meta, Source } from '@storybook/blocks';
-import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
+import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import StylesPackageImport from '../../../shared/styles-package-import.mdx';
 import PostComponentDemoLink from '../../../shared/post-component-demo-link.mdx';
 import NgbComponentImport from '../../../shared/nb-bootstrap/ngb-component-import.mdx';
@@ -9,10 +9,13 @@ import stepperComponent from './stepper-component.sample?raw';
 
 <Meta of={stepperStories} />
 
-<div className="d-flex align-items-center justify-content-between">
+<div className="docs-title">
   # Stepper
 
-  <PostComponentDemoLink component="stepper" />
+  <nav>
+    <link-design of={JSON.stringify(stepperStories)}></link-design>
+    <PostComponentDemoLink component="stepper" />
+  </nav>
 </div>
 
 <p className="lead">Conveys progress through numbered steps.</p>

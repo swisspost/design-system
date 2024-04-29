@@ -1,15 +1,23 @@
 import { ArgTypes, Meta, Source } from '@storybook/blocks';
-import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
+import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import * as IntranetHeaderStories from './intranet-header.stories';
 import SampleUse from './intranet-header-use.sample?raw';
 import SampleNavigationBar from './intranet-header-navigation-bar.sample.html?raw';
 import SampleSideNavigation from './intranet-header-side-navigation.sample.html?raw';
 import SampleSideUserMenuDropdown from './intranet-header-user-menu-dropdown.sample.html?raw';
 import SamplePostweb from './intranet-header-postweb.sample.html?raw';
+import PostComponentDemoLink from '../../../shared/post-component-demo-link.mdx';
 
 <Meta of={IntranetHeaderStories} />
 
-# Intranet-header
+<div className="docs-title">
+  # Intranet-header
+
+  <nav>
+    <link-design of={JSON.stringify(IntranetHeaderStories)}></link-design>
+    <PostComponentDemoLink component="intranet-layout" />
+  </nav>
+</div>
 
 <div className="alert alert-info alert-md">
   <h2 className="alert-heading">Angular only component</h2>

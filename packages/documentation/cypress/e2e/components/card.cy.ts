@@ -12,8 +12,8 @@ describe('Card', () => {
           'heading-order': {
             enabled: false,
           },
-          'aria-prohibited-attr': {
-            // aria-label attribute is used as a prop on post-icon
+          // aria-label attribute is used as a prop on post-icon
+          'aria-allowed-attr': {
             enabled: false,
           },
         },

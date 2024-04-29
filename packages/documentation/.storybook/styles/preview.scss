@@ -2,6 +2,7 @@
 // TODO: replace intranet.scss with index.scss as soon as the issues in the portal.scss are fixed
 @use '@swisspost/design-system-styles/intranet.scss';
 @use '@swisspost/design-system-styles/core.scss' as post;
+@use '@swisspost/design-system-styles/mixins/utilities';
 
 #storybook-root,
 #storybook-docs {
@@ -64,6 +65,29 @@
 
       &:hover > a {
         display: inline-block;
+      }
+    }
+
+    // General styles for content
+    a {
+      @include utilities.focus-style() {
+        border-radius: post.$border-radius;
+      }
+    }
+
+    // Style buttons related to the current page next to the tile
+    .docs-title,
+    .docs-title nav {
+      display:flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: post.$size-mini;
+    }
+    .docs-title {
+      margin-bottom: post.$size-mini;
+
+      :first-child {
+        margin-right:auto;
       }
     }
   }

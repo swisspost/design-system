@@ -10,6 +10,10 @@ const meta: MetaComponent = {
   decorators: [story => generateDecorators(story)],
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=16705-3536&mode=design&t=38qLaYwWdirTcHdb-4',
+    },
   },
   args: {
     size: 'null',

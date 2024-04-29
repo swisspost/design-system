@@ -1,0 +1,382 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/components/form-check';
+
+:host {
+  display: flex;
+  width: 100%;
+}
+
+:host-context(fieldset) {
+  &:host(:not(:last-child)) {
+    .card-control {
+      margin-bottom: post.$size-regular;
+    }
+  }
+}
+
+.card-control {
+  --post-card-control-border-color: #{post.$gray-60};
+  --post-card-control-bg: #{post.$white};
+  --post-card-control-color: #{post.$gray-80};
+  --post-card-control-input-border-color: #{post.$gray-80};
+  --post-card-control-input-bg: #{post.$white};
+
+  flex-basis: 100%;
+  display: grid;
+  grid-template: 'input label icon' 'input content icon' / min-content auto min-content;
+  gap: 0 post.$size-mini;
+  padding: post.$size-regular;
+  background-color: var(--post-card-control-bg);
+  border: post.$size-line solid var(--post-card-control-border-color);
+  border-radius: post.$border-radius;
+  color: var(--post-card-control-color);
+  cursor: pointer;
+
+  .card-control--input {
+    grid-area: input;
+    margin: post.$size-micro 0;
+    background-color: var(--post-card-control-input-bg);
+    border-color: var(--post-card-control-input-border-color) !important;
+    color: var(--post-card-control-input-border-color) !important;
+    cursor: inherit;
+    transition: none;
+
+    &:focus,
+    &:focus-visible {
+      box-shadow: none;
+    }
+
+    @include post.high-contrast-mode() {
+      &::after {
+        forced-color-adjust: none;
+        border-color: transparent;
+      }
+    }
+  }
+
+  .card-control--label {
+    grid-area: label;
+    margin: post.$size-micro 0;
+    padding: 0;
+    color: inherit !important;
+    pointer-events: none;
+    transition-duration: 100ms;
+  }
+
+  .card-control--description {
+    grid-area: label;
+    font-size: 0.75rem;
+  }
+
+  .card-control--content {
+    grid-area: content;
+  }
+
+  .card-control--icon {
+    grid-area: icon;
+    width: post.$size-big;
+    height: post.$size-big;
+    pointer-events: none;
+
+    > slot {
+      > * {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+
+  &:not(.is-disabled) {
+    // order matters!
+    // because we only overwrite the props, which need to be different from one selector to the other.
+
+    &.is-checked {
+      --post-card-control-border-color: #{post.$black};
+      --post-card-control-bg: #{post.$yellow};
+
+      @include post.high-contrast-mode() {
+        --post-card-control-border-color: FieldText;
+        --post-card-control-bg: SelectedItem;
+        --post-card-control-color: SelectedItemText;
+        --post-card-control-input-border-color: SelectedItemText;
+        --post-card-control-input-bg: SelectedItem;
+
+        .card-control--input {
+          &::after {
+            background-color: var(--post-card-control-color) !important;
+          }
+        }
+      }
+    }
+
+    &.is-invalid {
+      --post-card-control-border-color: #{post.$error};
+      --post-card-control-color: #{post.$error};
+      --post-card-control-input-border-color: #{post.$error};
+    }
+
+    &:hover {
+      --post-card-control-border-color: #{post.$gray-80};
+      --post-card-control-bg: #{post.$gray-60};
+      --post-card-control-color: #{post.$white};
+      --post-card-control-input-border-color: #{post.$black};
+
+      @include post.high-contrast-mode() {
+        --post-card-control-border-color: Highlight;
+        --post-card-control-bg: Field;
+        --post-card-control-color: FieldText;
+        --post-card-control-input-border-color: Highlight;
+        --post-card-control-input-bg: Field;
+
+        .card-control--input {
+          &::after {
+            color: FieldText;
+          }
+        }
+      }
+    }
+  }
+
+  // show focus even if is-disabled, because aria-disabled allows focus at any moment
+  &.is-focused {
+    &:where(:has(.card-control--input:focus-visible)) {
+      outline-offset: post.$input-focus-outline-thickness;
+      outline: post.$input-focus-outline-thickness solid post.$outline-color;
+    }
+  }
+
+  &.is-disabled {
+    --post-card-control-border-color: #{post.$gray-60};
+    --post-card-control-bg: transparent;
+    --post-card-control-color: #{post.$gray-60};
+    --post-card-control-input-border-color: #{post.$gray-60};
+    --post-card-control-input-bg: transparent;
+
+    border-style: dashed;
+    text-decoration: line-through;
+    cursor: default;
+
+    .card-control--input {
+      border-style: dashed;
+    }
+
+    @include post.high-contrast-mode() {
+      --post-card-control-border-color: GrayText;
+      --post-card-control-color: GrayText;
+      --post-card-control-input-border-color: GrayText;
+
+      &.is-checked {
+        --post-card-control-input-bg: field;
+
+        position: relative;
+
+        &::before {
+          display: block;
+          content: '';
+          position: absolute;
+          inset: post.$size-line;
+          border-radius: post.$size-line * 0.5;
+          background-color: SelectedItem;
+        }
+
+        > * {
+          position: relative;
+        }
+
+        .card-control--input {
+          outline: post.$size-line solid Field;
+        }
+      }
+    }
+  }
+
+  :host-context(:is(#{post.$dark-backgrounds})) & {
+    --post-card-control-border-color: #{post.$white};
+    --post-card-control-bg: transparent;
+    --post-card-control-color: #{post.$white};
+    --post-card-control-input-border-color: #{post.$white};
+    --post-card-control-input-bg: transparent;
+
+    &:not(.is-disabled) {
+      // order matters!
+      // because we only overwrite the props, which need to be different from one selector to the other.
+
+      &.is-checked {
+        --post-card-control-border-color: #{post.$yellow};
+        --post-card-control-bg: #{post.$yellow};
+        --post-card-control-color: #{post.$gray-80};
+        --post-card-control-input-border-color: #{post.$gray-80};
+        --post-card-control-input-bg: #{post.$white};
+
+        @include post.high-contrast-mode() {
+          --post-card-control-border-color: FieldText;
+          --post-card-control-bg: SelectedItem;
+          --post-card-control-color: SelectedItemText;
+          --post-card-control-input-border-color: SelectedItemText;
+          --post-card-control-input-bg: SelectedItem;
+        }
+      }
+
+      &.is-invalid {
+        --post-card-control-border-color: #{post.$error};
+        --post-card-control-bg: #{post.$error-background};
+        --post-card-control-color: #{post.$error};
+        --post-card-control-input-border-color: #{post.$error};
+        --post-card-control-input-bg: #{post.$white};
+
+        &.is-checked {
+          --post-card-control-bg: #{post.$yellow};
+
+          @include post.high-contrast-mode() {
+            --post-card-control-border-color: FieldText;
+            --post-card-control-bg: SelectedItem;
+            --post-card-control-color: SelectedItemText;
+            --post-card-control-input-border-color: SelectedItemText;
+            --post-card-control-input-bg: SelectedItem;
+          }
+        }
+      }
+
+      &:hover {
+        --post-card-control-border-color: #{post.$black};
+        --post-card-control-bg: #{post.$gray-20};
+        --post-card-control-color: #{post.$black};
+        --post-card-control-input-border-color: #{post.$black};
+        --post-card-control-input-bg: #{post.$white};
+
+        @include post.high-contrast-mode() {
+          --post-card-control-border-color: Highlight;
+          --post-card-control-bg: Field;
+          --post-card-control-color: FieldText;
+          --post-card-control-input-border-color: Highlight;
+          --post-card-control-input-bg: Field;
+        }
+      }
+    }
+
+    // show focus even if is-disabled, because aria-disabled allows focus at any moment
+    &.is-focused {
+      &:where(:has(.card-control--input:focus-visible)) {
+        outline-color: post.$white;
+      }
+    }
+
+    &.is-disabled {
+      --post-card-control-border-color: post.$white-alpha-80;
+      --post-card-control-bg: transparent;
+      --post-card-control-color: post.$white-alpha-80;
+      --post-card-control-input-border-color: post.$white-alpha-80;
+      --post-card-control-input-bg: transparent;
+
+      @include post.high-contrast-mode() {
+        --post-card-control-border-color: GrayText;
+        --post-card-control-color: GrayText;
+        --post-card-control-input-border-color: GrayText;
+
+        &.is-checked {
+          --post-card-control-input-bg: Field;
+        }
+      }
+    }
+  }
+}
+
+// remove as soon as all browser support :host-context()
+// https://caniuse.com/?search=%3Ahost-context()
+:host(:not(:last-child)) {
+  .card-control[data-host-context*='fieldset'] {
+    margin-bottom: post.$size-regular;
+  }
+}
+
+@each $bg in post.$dark-backgrounds {
+  .card-control[data-host-context*='#{$bg}'] {
+    --post-card-control-border-color: #{post.$white};
+    --post-card-control-bg: transparent;
+    --post-card-control-color: #{post.$white};
+    --post-card-control-input-border-color: #{post.$white};
+    --post-card-control-input-bg: transparent;
+
+    &:not(.is-disabled) {
+      // order matters!
+      // because we only overwrite the props, which need to be different from one selector to the other.
+
+      &.is-checked {
+        --post-card-control-border-color: #{post.$yellow};
+        --post-card-control-bg: #{post.$yellow};
+        --post-card-control-color: #{post.$gray-80};
+        --post-card-control-input-border-color: #{post.$gray-80};
+        --post-card-control-input-bg: #{post.$white};
+
+        @include post.high-contrast-mode() {
+          --post-card-control-border-color: FieldText;
+          --post-card-control-bg: SelectedItem;
+          --post-card-control-color: SelectedItemText;
+          --post-card-control-input-border-color: SelectedItemText;
+          --post-card-control-input-bg: SelectedItem;
+        }
+      }
+
+      &.is-invalid {
+        --post-card-control-border-color: #{post.$error};
+        --post-card-control-bg: #{post.$error-background};
+        --post-card-control-color: #{post.$error};
+        --post-card-control-input-border-color: #{post.$error};
+        --post-card-control-input-bg: #{post.$white};
+
+        &.is-checked {
+          --post-card-control-bg: #{post.$yellow};
+
+          @include post.high-contrast-mode() {
+            --post-card-control-border-color: FieldText;
+            --post-card-control-bg: SelectedItem;
+            --post-card-control-color: SelectedItemText;
+            --post-card-control-input-border-color: SelectedItemText;
+            --post-card-control-input-bg: SelectedItem;
+          }
+        }
+      }
+
+      &:hover {
+        --post-card-control-border-color: #{post.$black};
+        --post-card-control-bg: #{post.$gray-20};
+        --post-card-control-color: #{post.$black};
+        --post-card-control-input-border-color: #{post.$black};
+        --post-card-control-input-bg: #{post.$white};
+
+        @include post.high-contrast-mode() {
+          --post-card-control-border-color: Highlight;
+          --post-card-control-bg: Field;
+          --post-card-control-color: FieldText;
+          --post-card-control-input-border-color: Highlight;
+          --post-card-control-input-bg: Field;
+        }
+      }
+    }
+
+    // show focus even if is-disabled, because aria-disabled allows focus at any moment
+    &.is-focused {
+      &:where(:has(.card-control--input:focus-visible)) {
+        outline-color: post.$white;
+      }
+    }
+
+    &.is-disabled {
+      --post-card-control-border-color: post.$white-alpha-80;
+      --post-card-control-bg: transparent;
+      --post-card-control-color: post.$white-alpha-80;
+      --post-card-control-input-border-color: post.$white-alpha-80;
+      --post-card-control-input-bg: transparent;
+
+      @include post.high-contrast-mode() {
+        --post-card-control-border-color: GrayText;
+        --post-card-control-color: GrayText;
+        --post-card-control-input-border-color: GrayText;
+
+        &.is-checked {
+          --post-card-control-input-bg: Field;
+        }
+      }
+    }
+  }
+}

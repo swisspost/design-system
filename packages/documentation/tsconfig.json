@@ -1,5 +1,8 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "target": "ESNext",
     "useDefineForClassFields": false,
     "lib": ["DOM", "DOM.Iterable", "ESNext"],
@@ -16,6 +19,11 @@
     "jsx": "react-jsx",
     "experimentalDecorators": true
   },
-  "include": [".storybook/**/*", "src/**/*", "types"],
+  "include": [
+    ".storybook/**/*",
+    "src/**/*",
+    "types",
+    "../internet-header/src/components.d.ts"
+  ],
   "exclude": ["node_modules/**/*", "src/**/*.sample.*"]
 }

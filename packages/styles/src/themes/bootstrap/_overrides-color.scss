@@ -11,16 +11,6 @@
  * but should not be used.
 */
 
-// $grays are defined in post colors
-// $colors are defined in post colors
-
-$primary: color.$gray-80;
-$secondary: color.$gray-60;
-// $success: color.$success; // Is already defined as $sucess in post-colors
-// $info: color.$info; // Is already defined as $info in post-colors
-// $warning: color.$warning; // Is already defined as $warning in post-colors
-$danger: color.$error;
-
 // Colors that can be used as a background
 $colors: () !default;
 
@@ -28,13 +18,13 @@ $theme-colors: () !default;
 $theme-colors: map.merge(
   $theme-colors,
   (
-    'primary': $primary,
-    'secondary': $secondary,
+    'primary': color.$primary,
+    'secondary': color.$secondary,
     'light': color.$light,
     'dark': color.$dark,
   )
 );
-$theme-colors: map.merge($theme-colors, color.$contextual-colors);
+$theme-colors: map.merge($theme-colors, color.$signal-colors);
 
 // Contrast colors are ok
 
@@ -42,4 +32,4 @@ $body-bg: color.$white;
 $body-color: color.$black;
 
 $component-active-color: color.$white !default;
-$component-active-bg: $primary !default;
+$component-active-bg: color.$primary !default;

@@ -15,6 +15,10 @@ const meta: MetaComponent = {
   render: render,
   parameters: {
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21923-74274&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     label: 'Label',
@@ -183,8 +187,13 @@ export default meta;
 type Story = StoryObj;
 
 function render(args: Args, context: StoryContext) {
-  const id = `ExampleTextarea_${context.name}`;
-  const classes = ['form-control', args.size, args.sizeFloatingLabel, args.validation]
+  const id = context.id ?? `ExampleTextarea_${context.name}`;
+  const classes = [
+    'form-control',
+    args.size,
+    args.floatingLabel ? args.sizeFloatingLabel : '',
+    args.validation,
+  ]
     .filter(c => c && c !== 'null')
     .join(' ');
 
@@ -217,10 +226,14 @@ function render(args: Args, context: StoryContext) {
   `;
   if (args.floatingLabel) {
     return html`
-      <div class="form-floating">${[control, label, ...contextual].filter(el => el !== null)}</div>
+      <div class="form-control-wrapper form-floating">
+        ${[control, label, ...contextual].filter(el => el !== null)}
+      </div>
     `;
   } else {
-    return html` ${[label, control, ...contextual].filter(el => el !== null)} `;
+    return html`<div class="form-control-wrapper">
+      ${[label, control, ...contextual].filter(el => el !== null)}
+    </div>`;
   }
 }
 

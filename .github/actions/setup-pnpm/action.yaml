@@ -30,7 +30,7 @@ inputs:
     type: string
   pnpm_version:
     description: Specify the pnpm version to install
-    default: 8
+    default: 9
     type: string
   use_cache:
     description: Specify wether to use the pnpm cache or not
@@ -41,7 +41,7 @@ runs:
   using: composite
   steps:
     - name: Install pnpm
-      uses: pnpm/action-setup@v2
+      uses: pnpm/action-setup@v3
       with:
         version: ${{ inputs.pnpm_version }}
 

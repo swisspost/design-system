@@ -49,14 +49,14 @@ export const Checkbox: Story = {
                       (args.validation === 'null' && !args.disabled && !args.hiddenLabel) ||
                       args.label !== longText,
                   ),
-              ].map(
-                (args: Args) =>
-                  html`
-                    <span class="${args.checked === 'indeterminate' ? 'indeterminate' : ''}">
-                      ${meta.render?.({ ...context.args, ...args }, context)}
-                    </span>
-                  `,
-              )}
+              ].map((args: Args) => {
+                context.id = `a-${crypto.randomUUID()}`;
+                return html`
+                  <span class="${args.checked === 'indeterminate' ? 'indeterminate' : ''}">
+                    ${meta.render?.({ ...context.args, ...args }, context)}
+                  </span>
+                `;
+              })}
               <div class="mt-big w-100"></div>
               ${Inline.render?.({ ...context.args, ...Inline.args }, context)}
             </div>

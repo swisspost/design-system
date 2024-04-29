@@ -10,6 +10,10 @@ const meta: MetaComponent = {
   parameters: {
     badges: [],
     layout: 'fullscreen',
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=9362-36051&mode=design&t=rXQXLIbDtUBHn9jE-4',
+    },
   },
   args: {
     title: 'Loremipsum',
@@ -154,7 +158,7 @@ export const Default: Story = {
           src="https://picsum.photos/id/553/800/800"
           width="100%"
           height="100%"
-          alt="Test teaser image"
+          alt=""
         />
       </div>
     `;

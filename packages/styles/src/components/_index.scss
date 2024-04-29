@@ -9,10 +9,12 @@
 @use 'button';
 @use 'button-group';
 @use 'card';
-@use 'choice-control-card';
+@use 'card-control';
 @use 'carousel';
+@use 'chip';
 @use 'close';
 @use 'elevation';
+@use 'error-container';
 @use 'form-range';
 @use 'form-select';
 @use 'form-textarea';
@@ -40,6 +42,7 @@
 @use 'transitions';
 @use 'type';
 @use 'utilities';
+@use 'tag';
 
 // Imports depending on source order to override bootstrap styles
 @use 'datepicker';

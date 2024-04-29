@@ -18,6 +18,10 @@ const meta: MetaComponent = {
       exclude: ['Hidden Legend'],
     },
     badges: [],
+    design: {
+      type: 'figma',
+      url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=21786-25016&mode=design&t=3lniLiZhl7q9Gqgn-4',
+    },
   },
   args: {
     hiddenLegend: false,
@@ -119,7 +123,7 @@ const meta: MetaComponent = {
 function render(args: Args, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  const id = `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
+  const id = context.id ?? `${context.viewMode}_${context.name.replace(/\s/g, '-')}_ExampleRadio`;
   const classes = ['form-check-input', args.validation].filter(c => c && c !== 'null').join(' ');
   const groupClasses = ['form-check', args.size].filter(c => c && c !== 'null').join(' ');
 

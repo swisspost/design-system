@@ -70,6 +70,55 @@ export namespace Components {
          */
         "type": AlertType;
     }
+    /**
+     * @class PostCardControl - representing a stencil component
+     */
+    interface PostCardControl {
+        /**
+          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
+         */
+        "checked": boolean;
+        /**
+          * Defines the description in the control-label.
+         */
+        "description": string;
+        /**
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
+         */
+        "disabled": boolean;
+        /**
+          * A hidden public method to reset the group controls `checked` state to `false`.
+         */
+        "groupReset": () => Promise<void>;
+        /**
+          * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+         */
+        "icon": string;
+        /**
+          * Defines the text in the control-label.
+         */
+        "label": string;
+        /**
+          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+         */
+        "name": string;
+        /**
+          * A public method to reset the controls `checked` and `validity` state. The validity state is set to `null`, so it's neither valid nor invalid.
+         */
+        "reset": () => Promise<void>;
+        /**
+          * Defines the `type` attribute of the control.
+         */
+        "type": 'checkbox' | 'radio';
+        /**
+          * Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.
+         */
+        "validity": null | 'true' | 'false';
+        /**
+          * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+         */
+        "value": string;
+    }
     interface PostCollapsible {
         /**
           * If `true`, the element is initially collapsed otherwise it is displayed.
@@ -207,6 +256,20 @@ export namespace Components {
          */
         "show": (panelName: string) => Promise<void>;
     }
+    interface PostTag {
+        /**
+          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs" target="_blank">icon library</a>.
+         */
+        "icon": null | string;
+        /**
+          * Defines the size of the component.
+         */
+        "size": null | 'sm';
+        /**
+          * Defines the color variant of the component.
+         */
+        "variant": 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
+    }
     interface PostTooltip {
         /**
           * Wheter or not to display a little pointer arrow
@@ -236,6 +299,10 @@ export namespace Components {
 export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
     detail: T;
     target: HTMLPostAlertElement;
+}
+export interface PostCardControlCustomEvent<T> extends CustomEvent<T> {
+    detail: T;
+    target: HTMLPostCardControlElement;
 }
 export interface PostCollapsibleCustomEvent<T> extends CustomEvent<T> {
     detail: T;
@@ -267,7 +334,7 @@ declare global {
         new (): HTMLPostAccordionItemElement;
     };
     interface HTMLPostAlertElementEventMap {
-        "dismissed": void;
+        "postDismissed": void;
     }
     interface HTMLPostAlertElement extends Components.PostAlert, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostAlertElementEventMap>(type: K, listener: (this: HTMLPostAlertElement, ev: PostAlertCustomEvent<HTMLPostAlertElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -283,8 +350,29 @@ declare global {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
     };
+    interface HTMLPostCardControlElementEventMap {
+        "postInput": { state: boolean; value: string };
+        "postChange": { state: boolean; value: string };
+    }
+    /**
+     * @class PostCardControl - representing a stencil component
+     */
+    interface HTMLPostCardControlElement extends Components.PostCardControl, HTMLStencilElement {
+        addEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | AddEventListenerOptions): void;
+        addEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | AddEventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLPostCardControlElementEventMap>(type: K, listener: (this: HTMLPostCardControlElement, ev: PostCardControlCustomEvent<HTMLPostCardControlElementEventMap[K]>) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof DocumentEventMap>(type: K, listener: (this: Document, ev: DocumentEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener<K extends keyof HTMLElementEventMap>(type: K, listener: (this: HTMLElement, ev: HTMLElementEventMap[K]) => any, options?: boolean | EventListenerOptions): void;
+        removeEventListener(type: string, listener: EventListenerOrEventListenerObject, options?: boolean | EventListenerOptions): void;
+    }
+    var HTMLPostCardControlElement: {
+        prototype: HTMLPostCardControlElement;
+        new (): HTMLPostCardControlElement;
+    };
     interface HTMLPostCollapsibleElementEventMap {
-        "collapseChange": boolean;
+        "postToggle": boolean;
     }
     interface HTMLPostCollapsibleElement extends Components.PostCollapsible, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostCollapsibleElementEventMap>(type: K, listener: (this: HTMLPostCollapsibleElement, ev: PostCollapsibleCustomEvent<HTMLPostCollapsibleElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -316,7 +404,7 @@ declare global {
         new (): HTMLPostPopoverElement;
     };
     interface HTMLPostPopovercontainerElementEventMap {
-        "postPopoverToggled": boolean;
+        "postToggle": boolean;
     }
     interface HTMLPostPopovercontainerElement extends Components.PostPopovercontainer, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostPopovercontainerElementEventMap>(type: K, listener: (this: HTMLPostPopovercontainerElement, ev: PostPopovercontainerCustomEvent<HTMLPostPopovercontainerElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -333,8 +421,8 @@ declare global {
         new (): HTMLPostPopovercontainerElement;
     };
     interface HTMLPostRatingElementEventMap {
-        "input": { value: number };
-        "change": { value: number };
+        "postInput": { value: number };
+        "postChange": { value: number };
     }
     interface HTMLPostRatingElement extends Components.PostRating, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostRatingElementEventMap>(type: K, listener: (this: HTMLPostRatingElement, ev: PostRatingCustomEvent<HTMLPostRatingElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -363,7 +451,7 @@ declare global {
         new (): HTMLPostTabPanelElement;
     };
     interface HTMLPostTabsElementEventMap {
-        "tabChange": HTMLPostTabPanelElement['name'];
+        "postChange": HTMLPostTabPanelElement['name'];
     }
     interface HTMLPostTabsElement extends Components.PostTabs, HTMLStencilElement {
         addEventListener<K extends keyof HTMLPostTabsElementEventMap>(type: K, listener: (this: HTMLPostTabsElement, ev: PostTabsCustomEvent<HTMLPostTabsElementEventMap[K]>) => any, options?: boolean | AddEventListenerOptions): void;
@@ -379,6 +467,12 @@ declare global {
         prototype: HTMLPostTabsElement;
         new (): HTMLPostTabsElement;
     };
+    interface HTMLPostTagElement extends Components.PostTag, HTMLStencilElement {
+    }
+    var HTMLPostTagElement: {
+        prototype: HTMLPostTagElement;
+        new (): HTMLPostTagElement;
+    };
     interface HTMLPostTooltipElement extends Components.PostTooltip, HTMLStencilElement {
     }
     var HTMLPostTooltipElement: {
@@ -389,6 +483,7 @@ declare global {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
+        "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
         "post-popover": HTMLPostPopoverElement;
@@ -397,6 +492,7 @@ declare global {
         "post-tab-header": HTMLPostTabHeaderElement;
         "post-tab-panel": HTMLPostTabPanelElement;
         "post-tabs": HTMLPostTabsElement;
+        "post-tag": HTMLPostTagElement;
         "post-tooltip": HTMLPostTooltipElement;
     }
 }
@@ -437,11 +533,60 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the alert element is dismissed, after the transition. It has no payload and only relevant for dismissible alerts.
          */
-        "onDismissed"?: (event: PostAlertCustomEvent<void>) => void;
+        "onPostDismissed"?: (event: PostAlertCustomEvent<void>) => void;
         /**
           * The type of the alert.
          */
         "type"?: AlertType;
+    }
+    /**
+     * @class PostCardControl - representing a stencil component
+     */
+    interface PostCardControl {
+        /**
+          * Defines the `checked` attribute of the control. If `true`, the control is selected at its value will be included in the forms data.
+         */
+        "checked"?: boolean;
+        /**
+          * Defines the description in the control-label.
+         */
+        "description"?: string;
+        /**
+          * Defines the `disabled` attribute of the control. If `true`, the user can not interact with the control and the controls value will not be included in the forms data.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the icon `name` inside of the card. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
+         */
+        "icon"?: string;
+        /**
+          * Defines the text in the control-label.
+         */
+        "label": string;
+        /**
+          * Defines the `name` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control should participate in a native `form`. If not specified, a native `form` will never contain this controls value.</span> <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+         */
+        "name"?: string;
+        /**
+          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked. <span className="alert alert-sm alert-info">If the component is used with type `radio`, it will only emit this event, when the checked state is changing to `true`.</span>
+         */
+        "onPostChange"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
+        /**
+          * An event emitted whenever the components checked state is toggled. The event payload (emitted under `event.detail.state`) is a boolean: `true` if the component is checked, `false` if it is unchecked.
+         */
+        "onPostInput"?: (event: PostCardControlCustomEvent<{ state: boolean; value: string }>) => void;
+        /**
+          * Defines the `type` attribute of the control.
+         */
+        "type": 'checkbox' | 'radio';
+        /**
+          * Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.
+         */
+        "validity"?: null | 'true' | 'false';
+        /**
+          * Defines the `value` attribute of the control. <span className="alert alert-sm alert-info">This is a required property, when the control is used with type `radio`.</span>
+         */
+        "value"?: string;
     }
     interface PostCollapsible {
         /**
@@ -451,7 +596,7 @@ declare namespace LocalJSX {
         /**
           * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
          */
-        "onCollapseChange"?: (event: PostCollapsibleCustomEvent<boolean>) => void;
+        "onPostToggle"?: (event: PostCollapsibleCustomEvent<boolean>) => void;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -508,7 +653,7 @@ declare namespace LocalJSX {
         /**
           * Fires whenever the popover gets shown or hidden, passing the new state in event.details as a boolean
          */
-        "onPostPopoverToggled"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
+        "onPostToggle"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
         /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
@@ -526,11 +671,11 @@ declare namespace LocalJSX {
         /**
           * An event emitted whenever the component's value has changed (on blur). The event payload can be used like so: `event.detail.value`.
          */
-        "onChange"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
+        "onPostChange"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
         /**
           * An event emitted whenever the component's value has changed (on input). The event payload can be used like so: `event.detail.value`.
          */
-        "onInput"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
+        "onPostInput"?: (event: PostRatingCustomEvent<{ value: number }>) => void;
         /**
           * Defines if the component is readonly or not. This usually should be used together with the `currentRating` property.
          */
@@ -560,7 +705,21 @@ declare namespace LocalJSX {
         /**
           * An event emitted after the active tab changes, when the fade in transition of its associated panel is finished. The payload is the name of the newly shown panel.
          */
-        "onTabChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
+        "onPostChange"?: (event: PostTabsCustomEvent<HTMLPostTabPanelElement['name']>) => void;
+    }
+    interface PostTag {
+        /**
+          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs" target="_blank">icon library</a>.
+         */
+        "icon"?: null | string;
+        /**
+          * Defines the size of the component.
+         */
+        "size"?: null | 'sm';
+        /**
+          * Defines the color variant of the component.
+         */
+        "variant"?: 'white' | 'info' | 'success' | 'error' | 'warning' | 'yellow';
     }
     interface PostTooltip {
         /**
@@ -576,6 +735,7 @@ declare namespace LocalJSX {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
+        "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
         "post-popover": PostPopover;
@@ -584,6 +744,7 @@ declare namespace LocalJSX {
         "post-tab-header": PostTabHeader;
         "post-tab-panel": PostTabPanel;
         "post-tabs": PostTabs;
+        "post-tag": PostTag;
         "post-tooltip": PostTooltip;
     }
 }
@@ -594,6 +755,10 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
+            /**
+             * @class PostCardControl - representing a stencil component
+             */
+            "post-card-control": LocalJSX.PostCardControl & JSXBase.HTMLAttributes<HTMLPostCardControlElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
             /**
              * @class PostIcon - representing a stencil component
@@ -605,6 +770,7 @@ declare module "@stencil/core" {
             "post-tab-header": LocalJSX.PostTabHeader & JSXBase.HTMLAttributes<HTMLPostTabHeaderElement>;
             "post-tab-panel": LocalJSX.PostTabPanel & JSXBase.HTMLAttributes<HTMLPostTabPanelElement>;
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
+            "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
         }
     }
