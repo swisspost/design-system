@@ -16,14 +16,14 @@ $colors: () !default;
 
 //reused color variables
 $shade000: post.$white !default; //surface
-$shade100: post.$gray-background !default; //header background
+$shade100: post.$gray !default; //header background
 $shade200: post.$gray-10 !default; //hover background
 $shade300: post.$gray-10 !default; //border, divider
 $shade400: post.$input-border-color !default; //input border
-$shade500: post.$error-red !default; //unused
+$shade500: post.$error !default; //unused
 $shade600: post.$text-muted !default; //text secondary color
 $shade700: post.$input-color !default; //input text color
-$shade800: post.$error-red !default; //unused
+$shade800: post.$error !default; //unused
 $shade900: var(--post-contrast-color) !default; //text color
 
 //global
