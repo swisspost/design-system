@@ -12,11 +12,12 @@
       role="switch"
       id="bakgroundSwitch"
       [(ngModel)]="hasDarkBackground"
+      [attr.aria-checked]="hasDarkBackground"
     />
     <label class="form-check-label" for="bakgroundSwitch">Dark background</label>
   </div>
 
-  <div class="btn-group" role="group" aria-label="Basic datatable style">
+  <fieldset class="btn-group" aria-label="Basic datatable style">
     <input
       type="radio"
       class="btn-check"
@@ -46,7 +47,7 @@
       id="gridlines"
     />
     <label class="btn btn-md btn-secondary" for="gridlines">Gridelines</label>
-  </div>
+  </fieldset>
 </div>
 
 <h2 class="h4">Sortable</h2>
