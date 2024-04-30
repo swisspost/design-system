@@ -93,7 +93,6 @@ export const Default: Story = {
 
     const content = html`${unsafeHTML(args['slots-default'])}`;
     const icon = html`<span slot="icon">${unsafeHTML(args['slots-icon'])}</span>`;
-    const validation = html` <p class="mt-3 invalid-feedback">Eraro okazis!</p> `;
 
     return html`
       <post-card-control
@@ -112,7 +111,6 @@ export const Default: Story = {
       >
         ${args['slots-default'] ? content : null} ${args['slots-icon'] ? icon : null}
       </post-card-control>
-      ${args.validity === 'false' ? validation : nothing}
     `;
   },
 };
@@ -162,14 +160,13 @@ export const FormIntegration: Story = {
   parameters: {
     docs: {
       controls: {
-        include: ['disabled fieldset', 'value', 'disabled', 'group validation'],
+        include: ['disabled fieldset', 'value', 'disabled', 'group validity'],
       },
     },
   },
   args: {
     name: 'checkbox',
     checkboxFieldset: false,
-    validity: 'null',
     radioValue: '',
     radioDisabled: '',
     radioFieldset: false,
@@ -194,11 +191,6 @@ export const FormIntegration: Story = {
       control: {
         type: 'boolean',
       },
-      table: {
-        category: 'Checkbox',
-      },
-    },
-    validity: {
       table: {
         category: 'Checkbox',
       },
@@ -234,7 +226,7 @@ export const FormIntegration: Story = {
       },
     },
     radioValidity: {
-      name: 'validity',
+      name: 'group validity',
       description:
         'Defines the validation `validity` of the control. To reset validity to an undefiend state, simply remove the attribute from the control.',
       control: {
@@ -268,7 +260,7 @@ export const FormIntegration: Story = {
 
     const invalidFeedback = html`<p
       id="radio-group-invalid-feedback"
-      class="d-block invalid-feedback"
+      class="d-inline-flex invalid-feedback"
     >
       Invalid feedback
     </p>`;
@@ -290,7 +282,6 @@ export const FormIntegration: Story = {
               label="Option ${n}"
               type="radio"
               name="radio"
-              validity="${args.groupValidation}"
               value="${[args.radioValue, args.radioValue ? '_' : '', n.toString()].join('')}"
               .disabled="${(n === 2 && args.radioDisabled) || nothing}"
               validity="${args.radioValidity !== 'null' ? args.radioValidity : nothing}"
