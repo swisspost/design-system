@@ -1,20 +1,23 @@
 module.exports = {
-  extends: '../../.eslintrc.js',
-  ignorePatterns: ['!**/*', 'src/lib/stencil-generated', 'node_modules'],
+  root: true,
+  ignorePatterns: ['dist', 'projects/**/*'],
   overrides: [
     {
       files: ['*.ts'],
       parserOptions: {
-        tsconfigRootDir: __dirname,
-        project: ['tsconfig.lib.json', 'tsconfig.spec.json'],
+        project: ['tsconfig.json'],
         createDefaultProgram: true,
       },
+      extends: [
+        'plugin:@angular-eslint/recommended',
+        'plugin:@angular-eslint/template/process-inline-templates',
+      ],
       rules: {
         '@angular-eslint/directive-selector': [
           'error',
           {
             type: 'attribute',
-            prefix: 'post',
+            prefix: 'app',
             style: 'camelCase',
           },
         ],
@@ -22,15 +25,15 @@ module.exports = {
           'error',
           {
             type: 'element',
-            prefix: 'post',
+            prefix: 'app',
             style: 'kebab-case',
           },
         ],
-        '@angular-eslint/component-class-suffix': ['off'],
       },
     },
     {
       files: ['*.html'],
+      extends: ['plugin:@angular-eslint/template/recommended'],
       rules: {},
     },
   ],
