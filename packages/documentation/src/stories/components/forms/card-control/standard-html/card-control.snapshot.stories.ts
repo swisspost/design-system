@@ -1,9 +1,9 @@
-import { bombArgs } from '../../../../utils';
-import { choiceCardDefault, choiceCardMeta } from './choice-card';
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
+import { bombArgs } from '../../../../../utils';
+import meta, { Default } from './card-control.stories';
 
-const { id, ...metaWithoutId } = choiceCardMeta;
+const { id, ...metaWithoutId } = meta;
 
 export default {
   ...metaWithoutId,
@@ -11,8 +11,8 @@ export default {
 };
 
 const bombedArgs = bombArgs({
-  type: choiceCardMeta.argTypes!.type!.options,
-  validation: choiceCardMeta.argTypes!.validation!.options,
+  type: meta.argTypes!.type!.options,
+  validation: meta.argTypes!.validation!.options,
   checked: [false, true],
   disabled: [false, true],
   label: ['Card check text', 'Really long running choice card text that wraps to two lines'],
@@ -23,16 +23,14 @@ const bombedArgs = bombArgs({
   // Filter out disabled and invalid combinations
   .filter(args => !(args.disabled && args.validation === 'is-invalid'));
 
-export const ChoiceCard: StoryObj = {
+export const CardControlStandardHTML: StoryObj = {
   render: () => {
     return html`
       <div class="d-flex gap-3 flex-wrap">
         ${['bg-white', 'bg-dark'].map(
           bg => html`
             <div class="${bg + ' row g-3'}">
-              ${bombedArgs.map(
-                args => html` <div class="col-sm-6">${choiceCardDefault(args)}</div> `,
-              )}
+              ${bombedArgs.map(args => html` <div class="col-sm-6">${Default.render(args)}</div> `)}
             </div>
           `,
         )}
