@@ -19514,6 +19514,9 @@
       "typeFilter": "pictograms",
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/616966/storage/NjE2OTY4LzAvbWFzdGVy",
+        "businessfield": [
+          "stab"
+        ],
         "keywords": [
           "Kontanimiert",
           "Contaminated",
@@ -19567,7 +19570,7 @@
         }
       },
       "createdAt": "2021-11-18T11:37:56.000Z",
-      "modifiedAt": "2024-03-12T14:48:20.000Z"
+      "modifiedAt": "2024-04-22T07:33:08.000Z"
     },
     {
       "uuid": "a24086b0-4864-11ec-8a20-005056873709",
@@ -34027,6 +34030,42 @@
       },
       "createdAt": "2024-03-04T12:32:48.000Z",
       "modifiedAt": "2024-03-12T14:50:49.000Z"
+    },
+    {
+      "uuid": "a7c64b80-02c8-11ef-bfe6-005056873709",
+      "id": 800971,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/800971/storage/ODAwOTcwLzAvbWFzdGVy",
+        "keywords": [
+          "MyPost24",
+          "My Post 24 notification",
+          "Avisierung My Post 24",
+          "Notification My Post 24",
+          "Avviso My Post 24",
+          "Benachrichtigung My Post 24",
+          "Notification Mon message 24",
+          "Notifica My Post 24",
+          "My Post Notice 24",
+          "My Post 24-Meldung",
+          "Avis My Post 24",
+          "Ma notification Post 24"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2585.svg",
+        "basename": "2585",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-04-25T05:57:10.000Z",
+      "modifiedAt": "2024-04-25T06:17:16.000Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -50686,11 +50725,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2024-04-14T01:39:32.669Z",
+  "created": "2024-04-28T01:13:52.826Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 915
+    "success": 916
   },
-  "version": "1.4.0"
+  "version": "7.0.0"
 }
