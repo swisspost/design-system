@@ -5,7 +5,9 @@
 @use './../variables/components/datepicker';
 @use './../variables/components/forms';
 @use './../variables/commons';
+@use './../variables/spacing';
 @use './../mixins/icons' as icons-mx;
+@use './../mixins/utilities';
 
 @use './../themes/bootstrap/core' as b;
 
@@ -20,6 +22,10 @@ ngb-datepicker.dropdown-menu {
 
 ngb-datepicker-navigation {
   justify-content: space-between;
+
+  button.ngb-dp-arrow-btn {
+    @include utilities.focus-style();
+  }
 }
 
 ngb-datepicker-navigation-select.ngb-dp-navigation-select {
@@ -29,12 +35,6 @@ ngb-datepicker-navigation-select.ngb-dp-navigation-select {
     padding-right: b.$form-select-padding-x * 2;
     border: 0;
     background-position: right;
-
-    &:focus {
-      border-radius: commons.$border-radius;
-      background-color: transparent;
-      box-shadow: inset 0 0 0 commons.$border-thick color.$black;
-    }
 
     + select {
       margin-left: 0.5rem;
@@ -94,12 +94,20 @@ span.ngb-dp-navigation-chevron {
   &.hidden {
     flex-grow: 1;
   }
-}
 
-.ngb-dp-day > .btn-light {
-  width: 40px !important;
-  height: 40px !important;
-  line-height: 40px;
+  @include utilities.focus-style() {
+    border-radius: commons.$border-radius;
+  }
+
+  > [ngbDatepickerDayView] {
+    width: 40px !important;
+    height: 40px !important;
+    line-height: 40px;
+
+    &.active:not(.bg-primary) {
+      outline: none;
+    }
+  }
 }
 
 .ngb-dp-day > .text-white {
@@ -148,6 +156,10 @@ span.ngb-dp-navigation-chevron {
     width: datepicker.$ngb-dp-icon-size;
     height: datepicker.$ngb-dp-icon-size;
     transform: none;
+  }
+
+  @include utilities.focus-style() {
+    border-radius: commons.$border-radius;
   }
 }
 
