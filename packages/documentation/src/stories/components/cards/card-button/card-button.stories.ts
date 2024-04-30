@@ -1,7 +1,7 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { useArgs } from '@storybook/preview-api';
-import { MetaComponent } from '@/../types';
+import { MetaComponent } from '@root/types';
 import backgroundColors from '@/shared/background-colors.module.scss';
 
 const meta: MetaComponent = {

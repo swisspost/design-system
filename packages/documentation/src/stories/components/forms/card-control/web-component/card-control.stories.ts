@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { useArgs } from '@storybook/preview-api';
-import { MetaComponent } from '@/../types';
+import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { parse } from '@/utils/sass-export';

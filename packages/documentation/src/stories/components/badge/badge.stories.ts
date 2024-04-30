@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '@/../types';
+import { MetaComponent } from '@root/types';
 import backgroundColors from '@/shared/background-colors.module.scss';
 import { coloredBackground } from '@/shared/decorators/dark-background';
 import chipMeta from '@/stories/components/chip/chip.stories';

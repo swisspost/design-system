@@ -1,5 +1,5 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
-import { MetaComponent } from '@/../types';
+import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { parse } from '@/utils/sass-export';

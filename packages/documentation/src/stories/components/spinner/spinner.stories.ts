@@ -1,6 +1,6 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
-import { MetaComponent } from '@/../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'd0e645d0-3bf2-4b00-967a-5a1343107f60',

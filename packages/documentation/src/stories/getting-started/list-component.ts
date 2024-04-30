@@ -1,7 +1,7 @@
 import { html, LitElement } from 'lit';
 import { Task } from '@lit/task';
 import { customElement, property } from 'lit/decorators.js';
-import { PackageType } from '@/../types';
+import { PackageType } from '@root/types';
 import { getDocsPath, getTitleFromPath } from '@/utils';
 
 const INDEX_PATH = '/index.json';

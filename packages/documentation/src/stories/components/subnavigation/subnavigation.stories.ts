@@ -1,6 +1,6 @@
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { MetaComponent } from '@/../types';
+import { MetaComponent } from '@root/types';
 import { parse } from '@/utils/sass-export';
 import scss from './subnavigation.module.scss';
 

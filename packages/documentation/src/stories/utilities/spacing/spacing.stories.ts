@@ -3,7 +3,7 @@ import { html } from 'lit/static-html.js';
 import './spacing.styles.scss';
 import { parse } from '@/utils/sass-export';
 import scss from './spacing.module.scss';
-import { MetaExtended } from '@/../types';
+import { MetaExtended } from '@root/types';
 
 export const SCSS_VARIABLES = parse(scss);
 

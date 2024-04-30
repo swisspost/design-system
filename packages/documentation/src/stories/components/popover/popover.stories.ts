@@ -1,7 +1,7 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { MetaComponent } from '@/../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '9a636763-de2d-4f72-bc81-98daf10871f7',

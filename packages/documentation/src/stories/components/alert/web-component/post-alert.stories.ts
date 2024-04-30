@@ -1,7 +1,7 @@
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spreadArgs } from '@/utils';
-import { MetaComponent } from '@/../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostAlertElement> = {
   id: '8fd36823-966e-46a8-8432-a4439f6e208f',

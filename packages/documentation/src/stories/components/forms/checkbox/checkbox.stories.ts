@@ -3,7 +3,7 @@ import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { mapClasses } from '@/utils';
-import { MetaComponent } from '@/../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
