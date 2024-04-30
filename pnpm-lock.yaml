@@ -518,8 +518,8 @@ importers:
         specifier: 6.4.1
         version: 6.4.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@storybook/addon-designs':
-        specifier: 7.0.9
-        version: 7.0.9(@storybook/addon-docs@8.0.8(encoding@0.1.13))(@storybook/addons@7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/components@8.0.8(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/manager-api@8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/preview-api@8.0.8)(@storybook/theming@8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+        specifier: 8.0.0
+        version: 8.0.0(@storybook/blocks@8.0.8(@types/react@18.2.74)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/components@8.0.8(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/theming@8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@storybook/addon-docs':
         specifier: 8.0.8
         version: 8.0.8(encoding@0.1.13)
@@ -2632,9 +2632,6 @@ packages:
   '@lit-labs/react@1.2.1':
     resolution: {integrity: sha512-DiZdJYFU0tBbdQkfwwRSwYyI/mcWkg3sWesKRsHUd4G+NekTmmeq9fzsurvcKTNVa0comNljwtg4Hvi1ds3V+A==}
 
-  '@lit-labs/ssr-dom-shim@1.1.2':
-    resolution: {integrity: sha512-jnOD+/+dSrfTWYfSXBXlo5l5f0q1UuJo3tkbMDCYA2lKUYq79jaxqtGEvnRoh049nt1vdo1+45RinipU6FGY2g==}
-
   '@lit-labs/ssr-dom-shim@1.2.0':
     resolution: {integrity: sha512-yWJKmpGE6lUURKAaIltoPIE/wrbY3TEkqQt+X0m+7fQNnAv0keydnYvbiJFP1PnMhizmIWRWOG5KLhYyc/xl+g==}
 
@@ -3170,18 +3167,21 @@ packages:
   '@storybook/addon-controls@8.0.8':
     resolution: {integrity: sha512-7xANN18CLYsVthuSXwxKezqpelEKJlT9xaYLtw5vvD00btW5g3vxq+Z/A31OkS2OuaH2bE0GfRCoG2OLR8yQQA==}
 
-  '@storybook/addon-designs@7.0.9':
-    resolution: {integrity: sha512-xJdw1/FgkC8ovTdRIL5FyEJaXtF1XPxsb6rsl2jByG+8tXyM0PJ/yFEkBrqn35Dei2i4N7x8EHXFd8DnzriBRg==}
+  '@storybook/addon-designs@8.0.0':
+    resolution: {integrity: sha512-xCiv2PmdUXgco8IHVIY+pe5pWQQoPVwsyimhap1v68kDUuLio5glOS8pTm1zf2KWj8AqXreio/j5krOZpQyKSQ==}
     peerDependencies:
-      '@storybook/addon-docs': ^7.0.0
-      '@storybook/addons': ^7.0.0
-      '@storybook/components': ^7.0.0
-      '@storybook/manager-api': ^7.0.0
-      '@storybook/preview-api': ^7.0.0
-      '@storybook/theming': ^7.0.0
-      react: ^16.8.0 || ^17.0.0 || ^18.0.0
-      react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+      '@storybook/blocks': ^8.0.0
+      '@storybook/components': ^8.0.0
+      '@storybook/theming': ^8.0.0
+      react: ^18.2.0
+      react-dom: ^18.2.0
     peerDependenciesMeta:
+      '@storybook/blocks':
+        optional: true
+      '@storybook/components':
+        optional: true
+      '@storybook/theming':
+        optional: true
       react:
         optional: true
       react-dom:
@@ -14010,13 +14010,11 @@ snapshots:
 
   '@lit-labs/react@1.2.1': {}
 
-  '@lit-labs/ssr-dom-shim@1.1.2': {}
-
   '@lit-labs/ssr-dom-shim@1.2.0': {}
 
   '@lit/reactive-element@1.6.2':
     dependencies:
-      '@lit-labs/ssr-dom-shim': 1.1.2
+      '@lit-labs/ssr-dom-shim': 1.2.0
 
   '@lit/reactive-element@2.0.4':
     dependencies:
@@ -14614,16 +14612,13 @@ snapshots:
       - react-dom
       - supports-color
 
-  '@storybook/addon-designs@7.0.9(@storybook/addon-docs@8.0.8(encoding@0.1.13))(@storybook/addons@7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/components@8.0.8(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/manager-api@8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/preview-api@8.0.8)(@storybook/theming@8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
+  '@storybook/addon-designs@8.0.0(@storybook/blocks@8.0.8(@types/react@18.2.74)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/components@8.0.8(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/theming@8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
     dependencies:
       '@figspec/react': 1.0.3(react@18.2.0)
-      '@storybook/addon-docs': 8.0.8(encoding@0.1.13)
-      '@storybook/addons': 7.6.17(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@storybook/components': 8.0.8(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@storybook/manager-api': 8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@storybook/preview-api': 8.0.8
-      '@storybook/theming': 8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
     optionalDependencies:
+      '@storybook/blocks': 8.0.8(@types/react@18.2.74)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/components': 8.0.8(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
+      '@storybook/theming': 8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
 
@@ -21491,7 +21486,7 @@ snapshots:
 
   lit-element@3.3.2:
     dependencies:
-      '@lit-labs/ssr-dom-shim': 1.1.2
+      '@lit-labs/ssr-dom-shim': 1.2.0
       '@lit/reactive-element': 1.6.2
       lit-html: 2.8.0
 
