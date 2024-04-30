@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@swisspost/design-system-intranet-header": "workspace:7.0.0"
+  }
+}
