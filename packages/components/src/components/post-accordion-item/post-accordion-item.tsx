@@ -1,5 +1,5 @@
 import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from '@stencil/core';
-import { version } from '@/../package.json';
+import { version } from '@root/package.json';
 import { checkEmptyOrOneOf } from '@/utils';
 import { HEADING_LEVELS, HeadingLevel } from './heading-levels';
 

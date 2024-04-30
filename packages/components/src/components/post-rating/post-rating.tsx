@@ -1,5 +1,5 @@
 import { Component, Element, Event, EventEmitter, h, Host, Prop, State } from '@stencil/core';
-import { version } from '@/../package.json';
+import { version } from '@root/package.json';
 
 @Component({
   tag: 'post-rating',

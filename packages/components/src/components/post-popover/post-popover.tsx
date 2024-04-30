@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
-import { version } from '@/../package.json';
+import { version } from '@root/package.json';
 import { getAttributeObserver } from '@/utils/attribute-observer';
 
 /**

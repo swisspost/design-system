@@ -12,7 +12,7 @@ import {
   Watch,
 } from '@stencil/core';
 import { checkNonEmpty, checkOneOf } from '@/utils';
-import { version } from '@/../package.json';
+import { version } from '@root/package.json';
 
 // remove as soon as all browser support :host-context()
 // https://caniuse.com/?search=%3Ahost-context()

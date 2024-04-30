@@ -1,5 +1,5 @@
 import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
-import { version } from '@/../package.json';
+import { version } from '@root/package.json';
 import { fadeIn, fadeOut } from '@/animations';
 
 /**

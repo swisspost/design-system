@@ -1,7 +1,8 @@
 {
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@root/*": ["./*"]
     },
     "allowSyntheticDefaultImports": true,
     "allowUnreachableCode": false,

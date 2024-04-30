@@ -1,5 +1,5 @@
 import { Component, Element, h, Host, Listen, Method, Prop } from '@stencil/core';
-import { version } from '@/../package.json';
+import { version } from '@root/package.json';
 
 /**
  * @slot default - Slot for placing post-accordion-item components.

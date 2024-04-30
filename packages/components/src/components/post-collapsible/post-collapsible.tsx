@@ -10,7 +10,7 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { version } from '@/../package.json';
+import { version } from '@root/package.json';
 import { collapse, expand } from '@/animations/collapse';
 import { checkEmptyOrType, isMotionReduced } from '@/utils';
 

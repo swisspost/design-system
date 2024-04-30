@@ -1,5 +1,5 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { version } from '@/../package.json';
+import { version } from '@root/package.json';
 import { checkNonEmpty } from '@/utils';
 
 /**
