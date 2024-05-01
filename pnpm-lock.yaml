@@ -517,9 +517,6 @@ importers:
       '@pxtrn/storybook-addon-docs-stencil':
         specifier: 6.4.1
         version: 6.4.1(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@storybook/addon-designs':
-        specifier: 8.0.0
-        version: 8.0.0(@storybook/blocks@8.0.8(@types/react@18.2.74)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/components@8.0.8(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/theming@8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
       '@storybook/addon-docs':
         specifier: 8.0.8
         version: 8.0.8(encoding@0.1.13)
@@ -2454,14 +2451,6 @@ packages:
   '@fal-works/esbuild-plugin-global-externals@2.1.2':
     resolution: {integrity: sha512-cEee/Z+I12mZcFJshKcCqC8tuX5hG3s+d+9nZ3LabqKF1vKdF41B92pJVCBggjAGORAeOzyyDDKrZwIkLffeOQ==}
 
-  '@figspec/components@1.0.2':
-    resolution: {integrity: sha512-rTjjH7wvM55ZuX+MRVPND1cs4Z4JspJvKc9lzGxm/8gD4dLfgeFztQuNy+daGglaxcGXLXTuJ2oJtZ0/lmRKmw==}
-
-  '@figspec/react@1.0.3':
-    resolution: {integrity: sha512-r683qOko+5CbT48Ox280fMx2MNAtaFPgCNJvldOqN3YtmAzlcTT+YSxd3OahA+kjXGGrnzDbUgeTOX1cPLII+g==}
-    peerDependencies:
-      react: ^16.14.0 || ^17.0.0 || ^18.0.0
-
   '@floating-ui/core@1.6.0':
     resolution: {integrity: sha512-PcF++MykgmTj3CIyOQbKA/hDzOAiqI3mhuoN44WRCopIs1sgoDoU4oty4Jtqaj/y3oDU6fnVSm4QG0a3t5i0+g==}
 
@@ -2629,14 +2618,8 @@ packages:
   '@leichtgewicht/ip-codec@2.0.4':
     resolution: {integrity: sha512-Hcv+nVC0kZnQ3tD9GVu5xSMR4VVYOteQIr/hwFPVEvPdlXqgGEuRjiheChHgdM+JyqdgNcmzZOX/tnl0JOiI7A==}
 
-  '@lit-labs/react@1.2.1':
-    resolution: {integrity: sha512-DiZdJYFU0tBbdQkfwwRSwYyI/mcWkg3sWesKRsHUd4G+NekTmmeq9fzsurvcKTNVa0comNljwtg4Hvi1ds3V+A==}
-
   '@lit-labs/ssr-dom-shim@1.2.0':
     resolution: {integrity: sha512-yWJKmpGE6lUURKAaIltoPIE/wrbY3TEkqQt+X0m+7fQNnAv0keydnYvbiJFP1PnMhizmIWRWOG5KLhYyc/xl+g==}
-
-  '@lit/reactive-element@1.6.2':
-    resolution: {integrity: sha512-rDfl+QnCYjuIGf5xI2sVJWdYIi56CTCwWa+nidKYX6oIuBYwUbT/vX4qbUDlHiZKJ/3FRNQ/tWJui44p6/stSA==}
 
   '@lit/reactive-element@2.0.4':
     resolution: {integrity: sha512-GFn91inaUa2oHLak8awSIigYz0cU0Payr1rcFsrkf5OJ5eSPxElyZfKh0f2p9FsTiZWXQdWGJeXZICEfXXYSXQ==}
@@ -3166,26 +3149,6 @@ packages:
 
   '@storybook/addon-controls@8.0.8':
     resolution: {integrity: sha512-7xANN18CLYsVthuSXwxKezqpelEKJlT9xaYLtw5vvD00btW5g3vxq+Z/A31OkS2OuaH2bE0GfRCoG2OLR8yQQA==}
-
-  '@storybook/addon-designs@8.0.0':
-    resolution: {integrity: sha512-xCiv2PmdUXgco8IHVIY+pe5pWQQoPVwsyimhap1v68kDUuLio5glOS8pTm1zf2KWj8AqXreio/j5krOZpQyKSQ==}
-    peerDependencies:
-      '@storybook/blocks': ^8.0.0
-      '@storybook/components': ^8.0.0
-      '@storybook/theming': ^8.0.0
-      react: ^18.2.0
-      react-dom: ^18.2.0
-    peerDependenciesMeta:
-      '@storybook/blocks':
-        optional: true
-      '@storybook/components':
-        optional: true
-      '@storybook/theming':
-        optional: true
-      react:
-        optional: true
-      react-dom:
-        optional: true
 
   '@storybook/addon-docs@8.0.8':
     resolution: {integrity: sha512-HNiY4ESH9WxGS6QpIpURzdSbyDxbRh7VIgbvUrePSKajlsL4RFN/gdnn5TnSL00tOP/w+Cy/fXcbljMUKy7Ivg==}
@@ -7677,20 +7640,11 @@ packages:
       enquirer:
         optional: true
 
-  lit-element@3.3.2:
-    resolution: {integrity: sha512-xXAeVWKGr4/njq0rGC9dethMnYCq5hpKYrgQZYTzawt9YQhMiXfD+T1RgrdY3NamOxwq2aXlb0vOI6e29CKgVQ==}
-
   lit-element@4.0.4:
     resolution: {integrity: sha512-98CvgulX6eCPs6TyAIQoJZBCQPo80rgXR+dVBs61cstJXqtI+USQZAbA4gFHh6L/mxBx9MrgPLHLsUgDUHAcCQ==}
 
-  lit-html@2.8.0:
-    resolution: {integrity: sha512-o9t+MQM3P4y7M7yNzqAyjp7z+mQGa4NS4CxiyLqFPyFWyc4O+nodLrkrxSaCTrla6M5YOLaT3RpbbqjszB5g3Q==}
-
   lit-html@3.1.2:
     resolution: {integrity: sha512-3OBZSUrPnAHoKJ9AMjRL/m01YJxQMf+TMHanNtTHG68ubjnZxK0RFl102DPzsw4mWnHibfZIBJm3LWCZ/LmMvg==}
-
-  lit@2.8.0:
-    resolution: {integrity: sha512-4Sc3OFX9QHOJaHbmTMk28SYgVxLN3ePDjg7hofEft2zWlehFL3LiAuapWc4U/kYwMYJSh2hTCPZ6/LIC7ii0MA==}
 
   lit@3.1.2:
     resolution: {integrity: sha512-VZx5iAyMtX7CV4K8iTLdCkMaYZ7ipjJZ0JcSdJ0zIdGxxyurjIn7yuuSxNBD7QmjvcNJwr0JS4cAdAtsy7gZ6w==}
@@ -13582,16 +13536,6 @@ snapshots:
 
   '@fal-works/esbuild-plugin-global-externals@2.1.2': {}
 
-  '@figspec/components@1.0.2':
-    dependencies:
-      lit: 2.8.0
-
-  '@figspec/react@1.0.3(react@18.2.0)':
-    dependencies:
-      '@figspec/components': 1.0.2
-      '@lit-labs/react': 1.2.1
-      react: 18.2.0
-
   '@floating-ui/core@1.6.0':
     dependencies:
       '@floating-ui/utils': 0.2.1
@@ -14008,13 +13952,7 @@ snapshots:
 
   '@leichtgewicht/ip-codec@2.0.4': {}
 
-  '@lit-labs/react@1.2.1': {}
-
   '@lit-labs/ssr-dom-shim@1.2.0': {}
-
-  '@lit/reactive-element@1.6.2':
-    dependencies:
-      '@lit-labs/ssr-dom-shim': 1.2.0
 
   '@lit/reactive-element@2.0.4':
     dependencies:
@@ -14611,16 +14549,6 @@ snapshots:
       - react
       - react-dom
       - supports-color
-
-  '@storybook/addon-designs@8.0.0(@storybook/blocks@8.0.8(@types/react@18.2.74)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/components@8.0.8(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(@storybook/theming@8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0))(react-dom@18.2.0(react@18.2.0))(react@18.2.0)':
-    dependencies:
-      '@figspec/react': 1.0.3(react@18.2.0)
-    optionalDependencies:
-      '@storybook/blocks': 8.0.8(@types/react@18.2.74)(encoding@0.1.13)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@storybook/components': 8.0.8(@types/react@18.2.74)(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      '@storybook/theming': 8.0.8(react-dom@18.2.0(react@18.2.0))(react@18.2.0)
-      react: 18.2.0
-      react-dom: 18.2.0(react@18.2.0)
 
   '@storybook/addon-docs@8.0.8(encoding@0.1.13)':
     dependencies:
@@ -21484,31 +21412,15 @@ snapshots:
     optionalDependencies:
       enquirer: 2.3.6
 
-  lit-element@3.3.2:
-    dependencies:
-      '@lit-labs/ssr-dom-shim': 1.2.0
-      '@lit/reactive-element': 1.6.2
-      lit-html: 2.8.0
-
   lit-element@4.0.4:
     dependencies:
       '@lit-labs/ssr-dom-shim': 1.2.0
       '@lit/reactive-element': 2.0.4
       lit-html: 3.1.2
 
-  lit-html@2.8.0:
-    dependencies:
-      '@types/trusted-types': 2.0.3
-
   lit-html@3.1.2:
     dependencies:
       '@types/trusted-types': 2.0.3
-
-  lit@2.8.0:
-    dependencies:
-      '@lit/reactive-element': 1.6.2
-      lit-element: 3.3.2
-      lit-html: 2.8.0
 
   lit@3.1.2:
     dependencies:
