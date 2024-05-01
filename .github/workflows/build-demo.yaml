@@ -14,7 +14,7 @@
 name: Build Demo App
 on:
   pull_request:
-    types: [ opened, synchronize, edited, reopened ]
+    types: [opened, synchronize, edited, reopened]
     paths:
       - 'packages/intranet-header-workspace/**'
       - 'packages/demo/**'
@@ -31,7 +31,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: swisspost/design-system/.github/actions/setup-pnpm
 
       - name: Bootstrap & Build Design System
         run: |

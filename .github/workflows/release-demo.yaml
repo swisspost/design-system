@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup
         if: steps.check.outputs.changed == 'true'
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: swisspost/design-system/.github/actions/setup-pnpm
 
       # Install changesets locally
       - name: Install demo app & dependencies
