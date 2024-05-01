@@ -747,6 +747,9 @@ importers:
       cypress-storybook:
         specifier: 0.5.1
         version: 0.5.1(cypress@13.7.2)
+      eslint:
+        specifier: 8.57.0
+        version: 8.57.0
       eslint-plugin-react:
         specifier: 7.34.1
         version: 7.34.1(eslint@8.57.0)
@@ -24762,7 +24765,7 @@ snapshots:
       sockjs: 0.3.24
       spdy: 4.0.2
       webpack-dev-middleware: 5.3.3(webpack@5.90.3(esbuild@0.20.1))
-      ws: 8.13.0
+      ws: 8.16.0
     optionalDependencies:
       webpack: 5.90.3(esbuild@0.20.1)
     transitivePeerDependencies:

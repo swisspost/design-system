@@ -16,7 +16,8 @@
     "build": "pnpm run clean && pnpm run compile",
     "clean": "rimraf dist",
     "compile": "pnpm run tsc",
-    "tsc": "tsc -p ."
+    "tsc": "tsc -p .",
+    "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
     "@swisspost/design-system-components": "workspace:7.0.0"
