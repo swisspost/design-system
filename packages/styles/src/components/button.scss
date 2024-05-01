@@ -188,7 +188,7 @@
           button.$btn-animation-distance-map,
           $size
         ) -
-        (map.get(button.$btn-font-size-map, $size) * 2 / 3);
+        (math.div(map.get(button.$btn-font-size-map, $size) * 2, 3));
     }
   }
 
@@ -222,7 +222,7 @@
           button.$btn-animation-distance-map,
           $size
         ) -
-        (map.get(button.$btn-font-size-map, $size) * 2 / 3);
+        (math.div(map.get(button.$btn-font-size-map, $size) * 2, 3));
     }
   }
 
