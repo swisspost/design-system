@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  ignorePatterns: ['dist', '.angular'],
+  ignorePatterns: ['.eslintrc.js', 'dist', '.angular'],
   overrides: [
     {
       files: ['*.ts'],
