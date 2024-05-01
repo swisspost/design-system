@@ -22,11 +22,6 @@ const DEVELOPERS: Developer[] = [
     title: 'UI Developer',
     avatar: 'https://avatars.githubusercontent.com/u/9716662?v=4',
   },
-  {
-    name: 'Loïc Fürhoff',
-    title: 'UI Developer',
-    avatar: 'https://avatars.githubusercontent.com/u/12294151?v=4',
-  },
 ];
 
 const BASEURL = 'https://github.com/swisspost/design-system/tree/main/packages/documentation';

@@ -5,10 +5,11 @@
 
 @use './../variables/components/button';
 @use './../variables/color';
+@use './../variables/commons';
 @use './../variables/type';
 @use './../variables/spacing';
 @use './../mixins/color' as color-mx;
-@use './../mixins/icons';
+@use './../mixins/icons' as icon-mx;
 @use './../mixins/utilities';
 @use './../mixins/forms';
 @use './../mixins/button' as button-mx;
@@ -18,7 +19,9 @@
 
 .btn {
   @include button-mx.button-size();
-  @include utilities.focus-style();
+  @include utilities.focus-style() {
+    border-radius: commons.$border-radius;
+  }
 
   // Resets
   display: inline-flex;
@@ -60,7 +63,8 @@
     }
 
     &:disabled {
-      color: var(--post-gray-80);
+      color: var(--post-contrast-color);
+      background-color: var(--post-gray-40);
     }
   }
 
@@ -134,22 +138,48 @@
 }
 
 // Animated
+
+.btn-animated,
+.btn-animated-start {
+  &:not(.btn-link, .btn-tertiary) {
+    &::after {
+      @include icon-mx.icon(2111);
+      content: '';
+      display: block;
+      height: 2em;
+      width: 2em;
+      position: absolute;
+      transition:
+        opacity 250ms,
+        transform 250ms;
+      opacity: 0;
+    }
+
+    > span {
+      transition: transform 250ms;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      @include utilities.not-disabled-focus-hover() {
+        &::after {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+
+      > span {
+        // Initially transform to place text in the right rendering context for a smooth animation
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
 .btn-animated:not(.btn-link, .btn-tertiary) {
   &::after {
-    content: '';
-    position: absolute;
-    right: button.$btn-padding-x-md - button.$btn-animation-distance-md;
-    width: 0.625em;
-    height: 0.625em;
-    transform: rotateZ(315deg)
-      translate(button.$btn-border-width * -1, button.$btn-border-width * -1);
-    transform-origin: center center;
-    transition:
-      opacity 250ms,
-      transform 250ms;
-    border-right: button.$btn-border-width solid currentColor;
-    border-bottom: button.$btn-border-width solid currentColor;
-    opacity: 0;
+    right: button.$btn-padding-x-md - button.$btn-animation-distance-md -
+      (button.$btn-font-size-md * 2 / 3);
+    transform: translateX(button.$btn-border-width * -1);
   }
 
   @each $size in button.$btn-non-default-sizes {
@@ -157,12 +187,9 @@
       right: map.get(button.$btn-padding-x-map, $size) - map.get(
           button.$btn-animation-distance-map,
           $size
-        );
+        ) -
+        (map.get(button.$btn-font-size-map, $size) * 2 / 3);
     }
-  }
-
-  > span {
-    transition: transform 250ms;
   }
 
   // Only animate when user prefers to see animations
@@ -177,16 +204,40 @@
           transform: translateX(map.get(button.$btn-animation-distance-map, $size) * -1);
         }
       }
-
-      &::after {
-        transform: rotateZ(315deg) translate(0, 0);
-        opacity: 1;
-      }
     }
+  }
+}
 
-    > span {
-      // Initially transform to place text in the right rendering context for a smooth animation
-      transform: translateX(0);
+.btn-animated-start:not(.btn-link, .btn-tertiary) {
+  &::after {
+    @include icon-mx.icon(2110);
+    left: button.$btn-padding-x-md - button.$btn-animation-distance-md -
+      (button.$btn-font-size-md * 2 / 3);
+    transform: translateX(button.$btn-border-width);
+  }
+
+  @each $size in button.$btn-non-default-sizes {
+    &.btn-#{$size}::after {
+      left: map.get(button.$btn-padding-x-map, $size) - map.get(
+          button.$btn-animation-distance-map,
+          $size
+        ) -
+        (map.get(button.$btn-font-size-map, $size) * 2 / 3);
+    }
+  }
+
+  // Only animate when user prefers to see animations
+  @media (prefers-reduced-motion: no-preference) {
+    @include utilities.not-disabled-focus-hover() {
+      > span {
+        transform: translateX(map.get(button.$btn-animation-distance-map, md));
+      }
+
+      @each $size in button.$btn-non-default-sizes {
+        &.btn-#{$size} > span {
+          transform: translateX(map.get(button.$btn-animation-distance-map, $size));
+        }
+      }
     }
   }
 }
