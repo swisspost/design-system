@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  ignorePatterns: ['projects/**/*'],
+  ignorePatterns: ['dist', '.angular'],
   overrides: [
     {
       files: ['*.ts'],
