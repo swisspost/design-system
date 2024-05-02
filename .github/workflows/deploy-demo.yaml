@@ -43,7 +43,7 @@ jobs:
           id: ${{ steps.build.outputs.id }}
           netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           netlify_site_id: ${{ secrets.NETLIFY_SITE_ID }}
-          netlify_site_url: swisspost-web-frontend.netlify.app
+          netlify_site_url: swisspost-web-frontend-archive.netlify.app
           folder: ${{ steps.build.outputs.folder }}
           comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           comment_author: swisspost-bot
