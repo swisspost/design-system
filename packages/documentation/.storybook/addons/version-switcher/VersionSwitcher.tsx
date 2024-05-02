@@ -1,8 +1,14 @@
 import { IconButton, WithTooltip } from '@storybook/components';
 import React, { Fragment, useEffect, useState } from 'react';
 import { getVersion } from '../../../src/utils/version';
+import * as packageJson from '../../../package.json';
 
 const DESIGN_SYSTEM_URL = 'https://design-system.post.ch/assets/versions.json';
+
+const currentVersionMajorMinor = getVersion(
+  packageJson.dependencies['@swisspost/design-system-styles'] || '',
+  'majorminor',
+);
 
 interface Version {
   title: string;
@@ -37,13 +43,8 @@ function VersionSwitcher() {
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <div className="version-switcher-loading">Loading...</div>;
   }
-
-  const latestVersionMajorMinor = getVersion(
-    versions.find(version => version?.version)?.version || '',
-    'majorminor',
-  );
 
   return (
     <Fragment>
@@ -56,7 +57,11 @@ function VersionSwitcher() {
             <div className="version-switcher-dropdown">
               {versions.map(version => (
                 <a
-                  className="version-switcher-dropdown-item"
+                  className={`version-switcher-dropdown-item${
+                    getVersion(version.version || '', 'majorminor') === currentVersionMajorMinor
+                      ? ' active'
+                      : ''
+                  }`}
                   key={version.title}
                   href={version.url}
                 >
@@ -103,7 +108,7 @@ function VersionSwitcher() {
           );
         }}
       >
-        <IconButton placeholder="Versions">Versions {latestVersionMajorMinor}</IconButton>
+        <IconButton placeholder="Versions">Version {currentVersionMajorMinor}</IconButton>
       </WithTooltip>
     </Fragment>
   );

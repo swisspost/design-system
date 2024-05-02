@@ -19,6 +19,10 @@
     &:hover {
       background-color: var(--post-gray-10);
     }
+
+    &.active {
+      background-color: rgba(var(--post-yellow-rgb), 0.4);
+    }
   }
 }
 
