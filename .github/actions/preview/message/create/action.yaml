@@ -1,0 +1,31 @@
+###
+#
+# used action https://github.com/marketplace/actions/github-script
+#
+###
+
+name: Preview message creation
+description: Append a preview url message in the pr body, if not already present
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/github-script@v7
+      with:
+        script: |
+          const credentials = {
+            pull_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo
+          }
+
+          const pr = await github.rest.pulls.get(credentials)
+
+          const body = pr.data.body || ''
+
+          if (!body.includes('Automatic previews')) {
+            github.rest.pulls.update({
+              ...credentials,
+              body: `**Automatic previews**\n\nPreview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/f067a322-e6bd-4fed-b9d5-ff924d6254c2)`
+            })
+          }

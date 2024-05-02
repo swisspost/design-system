@@ -22,6 +22,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Provide preview message
+        uses: swisspost/design-system/.github/actions/preview/message/create
+
       - name: Checkout
         uses: actions/checkout@v4
 
