@@ -1,5 +1,5 @@
-name: Preview message creation
-description: Append a preview url message in the pr body, if not already present
+name: Create preview message
+description: Add a preview comment to the pr, if not already present
 
 inputs:
   access-token:
@@ -14,6 +14,7 @@ runs:
         github-token: ${{ inputs.access-token }}
         script: |
           const commentTitle = '**Related Previews**'
+          const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
 
           const credentials = {
             repo: context.repo.repo,
@@ -27,16 +28,6 @@ runs:
           if (!hasPreviewComment) {
             github.rest.issues.createComment({
               ...credentials,
-              body: `${commentTitle}\nPreview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)`
+              body: `${commentTitle}\n${commentInitialBody}`
             })
-          } else {
-            const previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
-            console.log(previewComment.body);
-            console.log('-------------');
-            const body = previewComment.body
-              .replace('Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)', '')
-              .concat('- previewurl\n')
-
-            console.log('-------------');
-            console.log(body);
           }

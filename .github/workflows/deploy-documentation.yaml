@@ -43,3 +43,9 @@ jobs:
           comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           comment_author: swisspost-bot
           package_name: '@swisspost/design-system-documentation'
+
+      - name: Update preview message
+        uses: ./.github/actions/preview/message/update
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          preview-url: https://${{ steps.deploy.outputs.preview-url }}
