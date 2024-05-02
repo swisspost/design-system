@@ -68,7 +68,7 @@ const meta: MetaComponent = {
     icon: {
       name: 'Icon',
       description:
-        'Defines the icon `name` inside of the component.<br/>To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs" target="_blank">icon library</a>.',
+        'Defines the icon `name` inside of the component.<br/>To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.',
       control: {
         type: 'number',
       },
@@ -83,7 +83,7 @@ const meta: MetaComponent = {
     markup: {
       name: 'Markup',
       description:
-        'The markup to put in the component.<br>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.',
+        'The markup to put in the component.<br>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a>.',
       control: {
         type: 'text',
       },
