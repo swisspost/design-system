@@ -1,0 +1,42 @@
+name: Preview message creation
+description: Append a preview url message in the pr body, if not already present
+
+inputs:
+  access-token:
+    description: The access token to use for commenting.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/github-script@v7
+      with:
+        github-token: ${{ inputs.access-token }}
+        script: |
+          const commentTitle = '**Related Previews**'
+
+          const credentials = {
+            repo: context.repo.repo,
+            owner: context.repo.owner,
+            issue_number: context.issue.number
+          }
+
+          const comments = (await github.rest.issues.listComments({ ...credentials })).data || []
+          const hasPreviewComment = comments.some(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
+
+          if (!hasPreviewComment) {
+            github.rest.issues.createComment({
+              ...credentials,
+              body: `${commentTitle}\nPreview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)`
+            })
+          } else {
+            const previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
+            console.log(previewComment.body);
+            console.log('-------------');
+            const body = previewComment.body
+              .replace('Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)', '')
+              .concat('- previewurl\n')
+
+            console.log('-------------');
+            console.log(body);
+          }

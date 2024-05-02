@@ -25,8 +25,8 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Provide preview message
-        uses: ./.github/actions/preview/message/creation
+      - name: Create preview message
+        uses: ./.github/actions/preview/message/create
         with:
           access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
