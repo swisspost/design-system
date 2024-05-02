@@ -250,7 +250,9 @@ export const Group = {
   },
   render: (args: Args) => {
     const error = html`
-      <p id="radio-group-invalid-feedback" class="d-block mt-3 invalid-feedback">Invalid choice</p>
+      <p id="radio-group-invalid-feedback" class="d-inline-flex mt-3 invalid-feedback">
+        Invalid choice
+      </p>
     `;
 
     return html`
