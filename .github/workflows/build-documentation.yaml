@@ -23,7 +23,7 @@ jobs:
 
     steps:
       - name: Provide preview message
-        uses: swisspost/design-system/.github/actions/preview/message/create
+        uses: swisspost/design-system/.github/actions/preview-message-creation
 
       - name: Checkout
         uses: actions/checkout@v4
