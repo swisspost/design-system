@@ -76,16 +76,16 @@ importers:
         version: 0.7.2(@typescript-eslint/eslint-plugin@5.62.0(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.3.3))(eslint@8.57.0)(typescript@5.3.3))(@typescript-eslint/parser@5.62.0(eslint@8.57.0)(typescript@5.3.3))(eslint-plugin-react@7.34.1(eslint@8.57.0))(eslint@8.57.0)(typescript@5.3.3)
       '@stencil/angular-output-target':
         specifier: 0.8.4
-        version: 0.8.4(@stencil/core@4.14.0)
+        version: 0.8.4(@stencil/core@4.17.2)
       '@stencil/core':
-        specifier: 4.14.0
-        version: 4.14.0
+        specifier: 4.17.2
+        version: 4.17.2
       '@stencil/react-output-target':
         specifier: 0.5.3
-        version: 0.5.3(@stencil/core@4.14.0)
+        version: 0.5.3(@stencil/core@4.17.2)
       '@stencil/sass':
         specifier: 3.0.11
-        version: 3.0.11(@stencil/core@4.14.0)
+        version: 3.0.11(@stencil/core@4.17.2)
       '@types/jest':
         specifier: 29.5.12
         version: 29.5.12
@@ -3157,6 +3157,11 @@ packages:
 
   '@stencil/core@4.14.0':
     resolution: {integrity: sha512-+s0u/KsNolXZ7tC2hEMgMA3jaNaqOhZvYKwSzjQbc0Wv+cB481Isxzo7ifgEWRYqsJzNSyqhO6cyu/EJrGGTdg==}
+    engines: {node: '>=16.0.0', npm: '>=7.10.0'}
+    hasBin: true
+
+  '@stencil/core@4.17.2':
+    resolution: {integrity: sha512-MX7yaLmpTU9iZvCire9nhecTcE0qBlV0vPWrLMeIXewYN7/hb8B3NjnhQyBKC93FDPI8NBRmt6KIugLw9zcRZg==}
     engines: {node: '>=16.0.0', npm: '>=7.10.0'}
     hasBin: true
 
@@ -14323,19 +14328,25 @@ snapshots:
       - supports-color
       - utf-8-validate
 
-  '@stencil/angular-output-target@0.8.4(@stencil/core@4.14.0)':
+  '@stencil/angular-output-target@0.8.4(@stencil/core@4.17.2)':
     dependencies:
-      '@stencil/core': 4.14.0
+      '@stencil/core': 4.17.2
 
   '@stencil/core@4.14.0': {}
 
-  '@stencil/react-output-target@0.5.3(@stencil/core@4.14.0)':
+  '@stencil/core@4.17.2': {}
+
+  '@stencil/react-output-target@0.5.3(@stencil/core@4.17.2)':
     dependencies:
-      '@stencil/core': 4.14.0
+      '@stencil/core': 4.17.2
 
   '@stencil/sass@3.0.11(@stencil/core@4.14.0)':
     dependencies:
       '@stencil/core': 4.14.0
+
+  '@stencil/sass@3.0.11(@stencil/core@4.17.2)':
+    dependencies:
+      '@stencil/core': 4.17.2
 
   '@stencil/store@2.0.15(@stencil/core@4.14.0)':
     dependencies:

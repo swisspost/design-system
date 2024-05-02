@@ -1,4 +1,4 @@
-import { DEPENDENCIES, getVersion } from '../utils/version';
+import { DEPENDENCIES, getVersion } from '@/utils/version';
 
 interface ITechnology {
   name: string;
