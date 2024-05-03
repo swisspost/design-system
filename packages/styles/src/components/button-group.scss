@@ -6,31 +6,19 @@
 
 @use './../mixins/utilities';
 @use './../variables/color';
+@use './../variables/spacing';
 @use './../variables/components/button';
 @use './../variables/components/forms';
 
 .btn-group {
   max-width: 100%;
+  flex-wrap: wrap;
+  row-gap: spacing.$size-micro;
 
   > .btn {
     white-space: normal;
     cursor: pointer;
-
-    // added a transition delay on the "z-index" so the button only moves back after all other transitions
-    z-index: 0;
-    transition:
-      z-index 0s ease (0.5 * button.$btn-transition-duration),
-      button.$btn-transition;
-
-    @include utilities.high-contrast-mode() {
-      transition: none !important;
-    }
-  }
-
-  > .btn:hover {
-    // remove the transition delay on the "z-index" for all raised states so the button moves forward before other transitions
-    z-index: 2 !important;
-    transition: button.$btn-transition;
+    flex: 0 1 auto;
   }
 
   > .btn-secondary {
