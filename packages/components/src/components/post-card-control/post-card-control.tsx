@@ -20,10 +20,6 @@ import scss from './post-card-control.module.scss';
 import { parse } from '@/utils/sass-export';
 
 const SCSS_VARIABLES = parse(scss);
-const EVENT_MAP = {
-  input: 'postInput',
-  change: 'postChange',
-};
 
 let cardControlIds = 0;
 
@@ -40,6 +36,11 @@ let cardControlIds = 0;
   formAssociated: true,
 })
 export class PostCardControl {
+  private readonly EVENT_MAP = {
+    input: 'postInput',
+    change: 'postChange',
+  };
+
   private readonly KEYCODES = {
     SPACE: 'Space',
     LEFT: 'ArrowLeft',
@@ -253,7 +254,7 @@ export class PostCardControl {
         // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
         // if an event parameter is given and a native control would fire an event, emit the corresponding event to the light dom
         if (isCheckbox || isRadioAndChecked)
-          this[EVENT_MAP[e.type]].emit({ state: this.checked, value: this.value });
+          this[this.EVENT_MAP[e.type]].emit({ state: this.checked, value: this.value });
       }
     }
   }

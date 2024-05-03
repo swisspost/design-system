@@ -5,7 +5,7 @@ import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { parse } from '@/utils/sass-export';
 import './card-control.styles.scss';
-import scss from '@/stories/components/forms/card-control/card-control.module.scss';
+import scss from '../card-control.module.scss';
 import { coloredBackground } from '@/shared/decorators/dark-background';
 
 const SCSS_VARIABLES: any = parse(scss);

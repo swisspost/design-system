@@ -2,7 +2,13 @@
 @use '../variables/commons';
 @use '../variables/spacing';
 @use '../variables/components/forms';
+@use '../variables/components/form-check';
 @use '../mixins/utilities';
+
+/*
+* There are a whole bunch of !important statments in this file.
+* They are necessary and should not be removed, because we need to override the .form-check styles here.
+*/
 
 fieldset {
   .radio-button-card,
@@ -33,12 +39,12 @@ fieldset {
   color: var(--post-card-control-color);
   cursor: pointer;
 
-  input.form-check-input {
+  input.form-check-input[type] {
     grid-area: input;
     position: relative;
     z-index: 2;
     margin: spacing.$size-micro 0;
-    background-color: var(--post-card-control-input-bg);
+    background-color: var(--post-card-control-input-bg) !important;
     border-color: var(--post-card-control-input-border-color) !important;
     color: var(--post-card-control-input-border-color) !important;
     cursor: inherit;
@@ -52,13 +58,6 @@ fieldset {
     ~ label.form-check-label {
       color: inherit !important;
     }
-
-    @include utilities.high-contrast-mode() {
-      &::after {
-        forced-color-adjust: none;
-        border-color: transparent;
-      }
-    }
   }
 
   label.form-check-label {
@@ -66,7 +65,7 @@ fieldset {
     margin: spacing.$size-micro 0;
     padding: 0;
     border-radius: inherit;
-    transition-duration: 100ms;
+    transition: none;
 
     &::before {
       display: block;
@@ -84,6 +83,10 @@ fieldset {
     }
   }
 
+  .card-control--content {
+    grid-area: content;
+  }
+
   post-icon {
     grid-area: icon;
     width: spacing.$size-big;
@@ -91,28 +94,10 @@ fieldset {
     pointer-events: none;
   }
 
-  .card-control--content {
-    grid-area: content;
-  }
-
   &:where(:not(:has(input:disabled)), :not(.disabled)) {
     &:where(:has(input:checked), .checked) {
       --post-card-control-border-color: #{color.$black};
       --post-card-control-bg: #{color.$yellow};
-
-      @include utilities.high-contrast-mode() {
-        --post-card-control-border-color: FieldText;
-        --post-card-control-bg: SelectedItem;
-        --post-card-control-color: SelectedItemText;
-        --post-card-control-input-border-color: SelectedItemText;
-        --post-card-control-input-bg: SelectedItem;
-
-        input.form-check-input {
-          &::after {
-            background-color: var(--post-card-control-color) !important;
-          }
-        }
-      }
     }
 
     &:where(:has(input:invalid), :has(input[aria-invalid]), :has(input.is-invalid), .is-invalid) {
@@ -126,20 +111,6 @@ fieldset {
       --post-card-control-bg: #{color.$gray-60};
       --post-card-control-color: #{color.$white};
       --post-card-control-input-border-color: #{color.$black};
-
-      @include utilities.high-contrast-mode() {
-        --post-card-control-border-color: Highlight;
-        --post-card-control-bg: Field;
-        --post-card-control-color: FieldText;
-        --post-card-control-input-border-color: Highlight;
-        --post-card-control-input-bg: Field;
-
-        input.form-check-input {
-          &::after {
-            color: FieldText;
-          }
-        }
-      }
     }
 
     input:focus-visible ~ label::before {
@@ -159,26 +130,90 @@ fieldset {
     text-decoration: line-through;
     cursor: default;
 
-    input.form-check-input {
-      border-style: dashed;
+    input.form-check-input[type] {
+      border: 0 none;
+      padding: form-check.$form-check-input-border-width;
+    }
+  }
+
+  @include utilities.high-contrast-mode() {
+    --post-card-control-border-color: FieldText;
+    --post-card-control-bg: Field;
+    --post-card-control-color: FieldText;
+    --post-card-control-input-border-color: FieldText;
+    --post-card-control-input-bg: Field;
+
+    outline: spacing.$size-line solid Field;
+    outline-offset: spacing.$size-line * -2;
+
+    input.form-check-input[type] {
+      outline: spacing.$size-line solid Field;
+      background-color: Field !important;
+
+      &::after {
+        border-color: Field !important;
+      }
     }
 
-    @include utilities.high-contrast-mode() {
+    label.form-check-label,
+    .card-control--content {
+      background-color: var(--post-card-control-bg) !important;
+    }
+
+    &:where(:not(:has(input:disabled)), :not(.disabled)) {
+      &:where(:has(input:checked), .checked) {
+        --post-card-control-border-color: FieldText;
+        --post-card-control-bg: SelectedItem;
+        --post-card-control-color: SelectedItemText;
+        --post-card-control-input-border-color: FieldText;
+
+        input.form-check-input[type] {
+          &::after {
+            background-color: FieldText !important;
+          }
+        }
+      }
+
+      &:where(:hover) {
+        --post-card-control-border-color: Highlight;
+        --post-card-control-bg: Field;
+        --post-card-control-color: FieldText;
+        --post-card-control-input-border-color: Highlight;
+      }
+    }
+
+    &:where(:has(input:disabled), .disabled) {
       --post-card-control-border-color: GrayText;
-      --post-card-control-color: GrayText;
+      --post-card-control-bg: Field;
+      --post-card-control-color: FieldText;
       --post-card-control-input-border-color: GrayText;
+      --post-card-control-input-bg: Field;
 
       &:where(:has(input:checked), .checked) {
-        --post-card-control-input-bg: Field;
+        --post-card-control-bg: SelectedItem;
+        --post-card-control-color: SelectedItemText;
 
-        input.form-check-input {
-          outline: spacing.$size-line solid Field;
+        position: relative;
+        background-color: Field;
+
+        &::before {
+          display: block;
+          content: '';
+          position: absolute;
+          inset: spacing.$size-line;
+          background-color: SelectedItem;
+          z-index: 1;
         }
 
-        label.form-check-label::before {
-          inset: spacing.$size-line;
-          border-radius: spacing.$size-line;
-          background-color: SelectedItem;
+        > * {
+          position: relative;
+          z-index: 2;
+        }
+
+        input.form-check-input[type] {
+          &::after {
+            background-color: FieldText !important;
+          }
         }
       }
     }
@@ -202,14 +237,6 @@ fieldset {
           --post-card-control-color: #{color.$gray-80};
           --post-card-control-input-border-color: #{color.$gray-80};
           --post-card-control-input-bg: #{color.$white};
-
-          @include utilities.high-contrast-mode() {
-            --post-card-control-border-color: FieldText;
-            --post-card-control-bg: SelectedItem;
-            --post-card-control-color: SelectedItemText;
-            --post-card-control-input-border-color: SelectedItemText;
-            --post-card-control-input-bg: SelectedItem;
-          }
         }
 
         &:where(
@@ -226,14 +253,6 @@ fieldset {
 
           &:where(:has(input:checked), .checked) {
             --post-card-control-bg: #{color.$yellow};
-
-            @include utilities.high-contrast-mode() {
-              --post-card-control-border-color: FieldText;
-              --post-card-control-bg: SelectedItem;
-              --post-card-control-color: SelectedItemText;
-              --post-card-control-input-border-color: SelectedItemText;
-              --post-card-control-input-bg: SelectedItem;
-            }
           }
         }
 
@@ -243,14 +262,6 @@ fieldset {
           --post-card-control-color: #{color.$black};
           --post-card-control-input-border-color: #{color.$black};
           --post-card-control-input-bg: #{color.$white};
-
-          @include utilities.high-contrast-mode() {
-            --post-card-control-border-color: Highlight;
-            --post-card-control-bg: Field;
-            --post-card-control-color: FieldText;
-            --post-card-control-input-border-color: Highlight;
-            --post-card-control-input-bg: Field;
-          }
         }
 
         input:focus-visible ~ label::before {
@@ -259,19 +270,46 @@ fieldset {
       }
 
       &:where(:has(input:disabled), .disabled) {
-        --post-card-control-border-color: post.$white-alpha-80;
+        --post-card-control-border-color: color.$white-alpha-80;
         --post-card-control-bg: transparent;
-        --post-card-control-color: post.$white-alpha-80;
-        --post-card-control-input-border-color: post.$white-alpha-80;
+        --post-card-control-color: color.$white-alpha-80;
+        --post-card-control-input-border-color: color.$white-alpha-80;
         --post-card-control-input-bg: transparent;
+      }
 
-        @include utilities.high-contrast-mode() {
+      @include utilities.high-contrast-mode() {
+        --post-card-control-border-color: FieldText;
+        --post-card-control-bg: Field;
+        --post-card-control-color: FieldText;
+        --post-card-control-input-border-color: FieldText;
+        --post-card-control-input-bg: Field;
+
+        &:where(:not(:has(input:disabled)), :not(.disabled)) {
+          &:where(:has(input:checked), .checked) {
+            --post-card-control-border-color: FieldText;
+            --post-card-control-bg: SelectedItem;
+            --post-card-control-color: SelectedItemText;
+            --post-card-control-input-border-color: FieldText;
+          }
+
+          &:where(:hover) {
+            --post-card-control-border-color: Highlight;
+            --post-card-control-bg: Field;
+            --post-card-control-color: FieldText;
+            --post-card-control-input-border-color: Highlight;
+          }
+        }
+
+        &:where(:has(input:disabled), .disabled) {
           --post-card-control-border-color: GrayText;
-          --post-card-control-color: GrayText;
+          --post-card-control-bg: Field;
+          --post-card-control-color: FieldText;
           --post-card-control-input-border-color: GrayText;
+          --post-card-control-input-bg: Field;
 
           &:where(:has(input:checked), .checked) {
-            --post-card-control-input-bg: Field;
+            --post-card-control-bg: SelectedItem;
+            --post-card-control-color: SelectedItemText;
           }
         }
       }
