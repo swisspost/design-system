@@ -2,6 +2,11 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/components/form-check';
 
+/*
+* There are a whole bunch of !important statments in this file.
+* They are necessary and should not be removed, because we need to override the .form-check styles here.
+*/
+
 :host {
   display: flex;
   width: 100%;

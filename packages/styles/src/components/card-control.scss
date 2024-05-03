@@ -5,6 +5,11 @@
 @use '../variables/components/form-check';
 @use '../mixins/utilities';
 
+/*
+* There are a whole bunch of !important statments in this file.
+* They are necessary and should not be removed, because we need to override the .form-check styles here.
+*/
+
 fieldset {
   .radio-button-card,
   .checkbox-button-card {
