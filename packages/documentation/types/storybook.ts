@@ -1,6 +1,6 @@
 import { Args, Meta } from '@storybook/web-components';
 import { PackageType } from './package';
-import { DesignParameter } from '../src/shared/link-design/link-design.component';
+import { DesignParameter } from '@/shared/link-design/link-design.component';
 
 export interface MetaExtended<T = Args> extends Meta<T> {
   id: string; // Make id required

@@ -26,11 +26,11 @@ description: Provides node and pnpm in a specific version.
 inputs:
   node_version:
     description: Specify the node version to install
-    default: 18
+    default: 20
     type: string
   pnpm_version:
     description: Specify the pnpm version to install
-    default: 8
+    default: 9
     type: string
   use_cache:
     description: Specify wether to use the pnpm cache or not

@@ -1,4 +1,4 @@
-import * as FooterStories from '../footer.stories';
+import * as FooterStories from '@/stories/components/internet-header/footer/footer.stories';
 
 export default {
   ...FooterStories.default,

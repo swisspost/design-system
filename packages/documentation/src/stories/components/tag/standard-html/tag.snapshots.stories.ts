@@ -1,6 +1,6 @@
 import { Args, StoryObj, StoryContext } from '@storybook/web-components';
 import { html } from 'lit';
-import { bombArgs } from '../../../../utils';
+import { bombArgs } from '@/utils';
 import meta from './tag.stories';
 
 const { id, ...metaWithoutId } = meta;

@@ -1,5 +1,5 @@
-import { parse } from '../../../utils/sass-export';
-import { forEach } from '../../../utils/react';
+import { parse } from '@/utils/sass-export';
+import { forEach } from '@/utils/react';
 import scss from './shared.module.scss';
 
 export const SCSS_VARIABLES = parse(scss);
