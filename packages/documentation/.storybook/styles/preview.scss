@@ -69,7 +69,7 @@
     }
 
     // General styles for content
-    a {
+    a:not(.sb-story a) {
       @include utilities.focus-style() {
         border-radius: post.$border-radius;
       }
