@@ -11,13 +11,13 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { checkNonEmpty, checkOneOf } from '../../utils';
-import { version } from '../../../package.json';
+import { checkNonEmpty, checkOneOf } from '@/utils';
+import { version } from '@root/package.json';
 
 // remove as soon as all browser support :host-context()
 // https://caniuse.com/?search=%3Ahost-context()
 import scss from './post-card-control.module.scss';
-import { parse } from '../../utils/sass-export';
+import { parse } from '@/utils/sass-export';
 
 const SCSS_VARIABLES = parse(scss);
 const EVENT_MAP = {
