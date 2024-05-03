@@ -45,6 +45,11 @@ jobs:
           netlify_site_id: ${{ secrets.NETLIFY_SITE_ID }}
           netlify_site_url: swisspost-web-frontend.netlify.app
           folder: ${{ steps.build.outputs.folder }}
-          comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          comment_author: swisspost-bot
           package_name: '@swisspost/design-system-demo'
+
+      - name: Update preview message
+        uses: ./.github/actions/preview/message/update
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          issue-number: ${{ steps.build.outputs.id }}
+          preview-url: ${{ steps.deploy.outputs.preview-url }}
