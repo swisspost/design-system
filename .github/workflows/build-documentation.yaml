@@ -25,6 +25,9 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Create preview message
+        uses: ./.github/actions/preview/message/create
+
       - name: Setup
         uses: swisspost/design-system/.github/actions/setup-pnpm@main
 
