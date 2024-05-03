@@ -1,6 +1,6 @@
 import { Canvas, Controls, Meta, Source } from '@storybook/blocks';
 import { PostAlert, PostTabHeader, PostTabPanel, PostTabs, } from '@swisspost/design-system-components-react';
-import StylesPackageImport from '../../../shared/styles-package-import.mdx';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
 import * as AlertStories from './standard-html/alert.stories';
 import * as PostAlertStories from './web-component/post-alert.stories';
 import AlertDismissSample from './web-component/alert-dismiss.sample?raw';
@@ -95,7 +95,7 @@ Alerts are intended to attract the user's attention without interrupting their o
 
       By default all children of the `<post-alert>` are placed in the body.
       Use the `heading` slot to place a child in the heading, and the `actions` slot for action buttons.
-      Learn more about <a rel="noopener" target="_blank" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots#adding_flexibility_with_slots">slots in the mdn web docs</a>.
+      Learn more about <a rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/Web_components/Using_templates_and_slots#adding_flexibility_with_slots">slots in the mdn web docs</a>.
 
       <Canvas of={PostAlertStories.Contents} />
 

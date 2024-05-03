@@ -50,7 +50,7 @@
     "@angular/language-service": "17.3.3",
     "@types/jasmine": "5.1.4",
     "@types/jasminewd2": "2.0.13",
-    "@types/node": "18.17.19",
+    "@types/node": "20.12.7",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
     "eslint": "8.57.0",
@@ -69,6 +69,7 @@
     "sockjs": "0.3.24",
     "ts-node": "10.9.2",
     "typescript": "5.3.3",
+    "undici-types": "6.15.0",
     "webpack": "5.91.0"
   }
 }
