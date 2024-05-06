@@ -16,6 +16,7 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
   },
   args: {
     multiple: false,
+    headingLevel: 3,
   },
   argTypes: {
     postToggle: {
@@ -38,7 +39,7 @@ type Story = StoryObj<HTMLPostAccordionElement>;
 
 export const Default: Story = {
   render: (args: Partial<HTMLPostAccordionElement>) => html`
-    <post-accordion multiple=${args.multiple}>
+    <post-accordion heading-level=${args.headingLevel} multiple=${args.multiple}>
       <post-accordion-item>
         <span slot="header">Titulum 1</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
@@ -59,7 +60,7 @@ export const Default: Story = {
 
 export const MultipleOpenPanels: Story = {
   render: () => html`
-    <post-accordion multiple="true">
+    <post-accordion heading-level="4" multiple="true">
       <post-accordion-item>
         <span slot="header">Titulum 1</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
@@ -80,7 +81,7 @@ export const MultipleOpenPanels: Story = {
 
 export const DefaultCollapsedPanels: Story = {
   render: () => html`
-    <post-accordion>
+    <post-accordion heading-level="4">
       <post-accordion-item collapsed="true">
         <span slot="header">Titulum 1</span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
@@ -99,39 +100,38 @@ export const DefaultCollapsedPanels: Story = {
   `,
 };
 
-// Used only in testing for now.
 export const Nested: Story = {
   render: () => html`
-    <post-accordion>
+    <post-accordion heading-level="4">
       <post-accordion-item>
-        <span slot="header">Titulum 1</span>
+        <span slot="header">Titulum 1 <code>h4</code></span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
 
-        <post-accordion>
+        <post-accordion heading-level="5">
           <post-accordion-item>
-            <span slot="header">Titulum 1</span>
+            <span slot="header">Titulum 1.1 <code>h5</code></span>
             <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
           </post-accordion-item>
 
           <post-accordion-item collapsed="true">
-            <span slot="header">Titulum 2</span>
+            <span slot="header">Titulum 1.2 <code>h5</code></span>
             <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
           </post-accordion-item>
 
           <post-accordion-item collapsed="true">
-            <span slot="header">Titulum 3</span>
+            <span slot="header">Titulum 1.3 <code>h5</code></span>
             <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
           </post-accordion-item>
         </post-accordion>
       </post-accordion-item>
 
       <post-accordion-item collapsed="true">
-        <span slot="header">Titulum 2</span>
+        <span slot="header">Titulum 2 <code>h4</code></span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </post-accordion-item>
 
       <post-accordion-item collapsed="true">
-        <span slot="header">Titulum 3</span>
+        <span slot="header">Titulum 3 <code>h4</code></span>
         <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
       </post-accordion-item>
     </post-accordion>
