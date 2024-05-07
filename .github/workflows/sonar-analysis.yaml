@@ -1,7 +1,7 @@
 ###
 #
 # Run the SonarCloud Code Analysis on each pull request
-#
+# I added changes here !
 # https://sonarcloud.io/project/configuration/GitHubActions?id=swisspost_common-web-frontend
 #
 ###
