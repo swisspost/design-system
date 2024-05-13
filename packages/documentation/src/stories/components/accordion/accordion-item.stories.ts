@@ -7,13 +7,22 @@ const meta: Meta = {
   parameters: {
     controls: {
       exclude: [
-        'heading-level', // the heading level should be set on the parent post-accordion
         'accordion-item', // this CSS part is for internal use only
       ],
     },
   },
   argTypes: {
     collapsed: {
+      control: false, // disable the control since it is not usable on the story
+    },
+    headingLevel: {
+      name: 'heading-level',
+      description:
+        'Defines the hierarchical level of the accordion item header within the headings structure.' +
+        '<span className="mb-mini alert alert-warning alert-sm">' +
+        '<code>heading-level</code> on <code>post-accordion-item</code> is deprecated. ' +
+        'Set it directly on the parent <code>post-accordion</code>.' +
+        '</span>',
       control: false, // disable the control since it is not usable on the story
     },
   },
