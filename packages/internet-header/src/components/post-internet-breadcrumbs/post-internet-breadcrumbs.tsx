@@ -16,6 +16,9 @@ import { prefersReducedMotion } from '../../utils/utils';
   shadow: true,
 })
 export class PostInternetBreadcrumbs {
+  /**
+   * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
+   */
   @Prop() customItems?: string | IBreadcrumbItem[];
 
   /**

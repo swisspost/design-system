@@ -73,6 +73,9 @@ export namespace Components {
     interface PostSkiplinks {
     }
     interface SwisspostInternetBreadcrumbs {
+        /**
+          * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
+         */
         "customItems"?: string | IBreadcrumbItem[];
         /**
           * Hide all buttons.
@@ -326,6 +329,9 @@ declare namespace LocalJSX {
     interface PostSkiplinks {
     }
     interface SwisspostInternetBreadcrumbs {
+        /**
+          * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
+         */
         "customItems"?: string | IBreadcrumbItem[];
         /**
           * Hide all buttons.
