@@ -243,7 +243,7 @@ export class PostInternetHeader {
       localizedCustomConfig: state.localizedCustomConfig,
       osFlyoutOverrides: state.osFlyoutOverrides,
     });
-    if (this.customConfig)
+    if (this.customConfig !== undefined)
       state.localizedCustomConfig = getLocalizedCustomConfig(this.customConfig, newValue);
   }
 
@@ -418,7 +418,7 @@ export class PostInternetHeader {
   private handleFlyoutToggled(event: CustomEvent<string | null>) {
     this.activeFlyout = event.detail;
 
-    if (this.activeDropdownElement && event.detail && !this.isMainNavOpen()) {
+    if (this.activeDropdownElement && event.detail !== null && !this.isMainNavOpen()) {
       void this.activeDropdownElement.toggleDropdown(false);
     }
   }
