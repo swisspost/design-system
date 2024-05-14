@@ -21,7 +21,7 @@ export const PostLanguageSwitchList = (props: {
         {props.navLang
           .filter(lang => !lang.isCurrent)
           .map(lang => {
-            const TagName = lang.url ? 'a' : 'button';
+            const TagName = lang.url !== undefined ? 'a' : 'button';
             return (
               <li key={lang.lang}>
                 <TagName
