@@ -354,6 +354,9 @@ declare namespace LocalJSX {
         "orientation"?: 'horizontal' | 'vertical';
     }
     interface PostSearch {
+        /**
+          * Fires when the dropdown has been toggled.
+         */
         "onDropdownToggled"?: (event: PostSearchCustomEvent<DropdownEvent>) => void;
     }
     interface PostSkiplinks {

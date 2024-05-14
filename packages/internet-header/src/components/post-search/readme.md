@@ -7,9 +7,9 @@
 
 ## Events
 
-| Event             | Description | Type                                                        |
-| ----------------- | ----------- | ----------------------------------------------------------- |
-| `dropdownToggled` |             | `CustomEvent<{ open: boolean; element: DropdownElement; }>` |
+| Event             | Description                               | Type                                                        |
+| ----------------- | ----------------------------------------- | ----------------------------------------------------------- |
+| `dropdownToggled` | Fires when the dropdown has been toggled. | `CustomEvent<{ open: boolean; element: DropdownElement; }>` |
 
 
 ## Methods

@@ -38,6 +38,9 @@ export class PostSearch implements HasDropdown, IsFocusable {
   @State() coveoSuggestions: CoveoCompletion[] = [];
   @State() placeSuggestions: GeocodeLocation[] = [];
   @State() parcelSuggestion: (TrackAndTraceInfo & { url: string }) | null = null;
+  /**
+   * Fires when the dropdown has been toggled.
+   */
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
   @Element() host: DropdownElement;
   private searchBox?: HTMLInputElement;
@@ -332,7 +335,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
         this.searchBox.value.trim(),
         state.localizedConfig.header.search,
       );
-      if (!redirectUrl) return;
+      if (redirectUrl === undefined) return;
       window.location.href = redirectUrl;
     }
   }
