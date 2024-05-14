@@ -328,7 +328,13 @@ declare namespace LocalJSX {
     interface PostLogo {
     }
     interface PostMainNavigation {
+        /**
+          * Fires when the dropdown has been toggled.
+         */
         "onDropdownToggled"?: (event: PostMainNavigationCustomEvent<DropdownEvent>) => void;
+        /**
+          * Fires when the flyout has been toggled.
+         */
         "onFlyoutToggled"?: (event: PostMainNavigationCustomEvent<string | null>) => void;
     }
     interface PostMetaNavigation {

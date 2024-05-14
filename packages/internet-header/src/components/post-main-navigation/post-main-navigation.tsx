@@ -22,7 +22,13 @@ import { LevelOneAction } from './components/level-one-action.component';
 export class PostMainNavigation implements HasDropdown, IsFocusable {
   @State() activeFlyout: string | null;
   @State() mobileMenuOpen: boolean;
+  /**
+   * Fires when the dropdown has been toggled.
+   */
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
+  /**
+   * Fires when the flyout has been toggled.
+   */
   @Event() flyoutToggled: EventEmitter<string | null>;
   @Element() host: DropdownElement;
   private throttledResize: throttle<() => void>;
@@ -55,9 +61,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
 
   // Update window height var
   private setWindowHeight() {
-    if (!this.host) {
-      return;
-    }
+    if (this.host === undefined) return;
     this.host.style.setProperty('--window-height', `${window.innerHeight}px`);
 
     // Safari might or might not show a blank bar at the bottom where the browser
@@ -140,7 +144,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     }
 
     // Cancel closing if we enter again
-    if (this.mouseLeaveTimer && this.activeFlyout === level.id) {
+    if (this.mouseLeaveTimer !== null && this.activeFlyout === level.id) {
       window.clearTimeout(this.mouseLeaveTimer);
       this.mouseLeaveTimer = null;
     }
@@ -161,7 +165,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     }
 
     // Don't close an open flyout if the mouseleave is from another mainnav entry
-    if (this.activeFlyout && this.activeFlyout !== level.id) {
+    if (this.activeFlyout !== undefined && this.activeFlyout !== level.id) {
       return;
     }
 
@@ -178,7 +182,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     if (!this.isActiveFlyout(level.id) && !level.noFlyout) {
       // It's the first touchstart and has a flyout, prevent link activation and open the flyout
       if (event.cancelable) event.preventDefault();
-      if (level.id) this.openFlyout(level.id);
+      if (level.id !== undefined) this.openFlyout(level.id);
     }
   }
 
@@ -186,7 +190,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
     if (event.key === 'Enter' && !this.isActiveFlyout(level.id) && !level.noFlyout) {
       // It's the first enter keypress and has a flyout, prevent link activation and open the flyout
       event.preventDefault();
-      if (level.id) this.openFlyout(level.id);
+      if (level.id !== undefined) this.openFlyout(level.id);
     }
   }
 
@@ -196,7 +200,7 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
       // This is relevant for desktop with active screenreader which
       // translates an enter keypress to a click
       event.preventDefault();
-      if (level.id) this.openFlyout(level.id);
+      if (level.id !== undefined) this.openFlyout(level.id);
     }
   }
 
@@ -302,10 +306,14 @@ export class PostMainNavigation implements HasDropdown, IsFocusable {
             <div class="flyout-row container">
               {levelOne.flyout.map((flyout, i) => (
                 <div key={flyout.title} class="flyout-column">
-                  {flyout.title ? <h3 id={`${levelOne.id}-column-${i}`}>{flyout.title}</h3> : null}
+                  {flyout.title !== undefined ? (
+                    <h3 id={`${levelOne.id}-column-${i}`}>{flyout.title}</h3>
+                  ) : null}
                   <ul
                     class="flyout-linklist"
-                    aria-labelledby={flyout.title ? `${levelOne.id}-column-${i}` : undefined}
+                    aria-labelledby={
+                      flyout.title !== undefined ? `${levelOne.id}-column-${i}` : undefined
+                    }
                   >
                     {flyout.linkList.map(link => (
                       <li key={link.url}>
