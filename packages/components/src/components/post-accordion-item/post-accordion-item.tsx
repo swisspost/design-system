@@ -28,6 +28,7 @@ export class PostAccordionItem {
 
   /**
    * Defines the hierarchical level of the accordion item header within the headings structure.
+   * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
    */
   @Prop() readonly headingLevel?: HeadingLevel = 2;
 
