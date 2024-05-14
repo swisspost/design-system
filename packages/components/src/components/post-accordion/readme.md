@@ -28,7 +28,7 @@ Type: `Promise<void>`
 
 Expands all `post-accordion-item`.
 
-If `close-others` is `true` and all items are closed, it will open the first one.
+If `multiple="true"` is not set and all items are closed, it will open the first one.
 Otherwise, it will keep the opened one.
 
 #### Returns

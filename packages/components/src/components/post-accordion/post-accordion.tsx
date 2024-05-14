@@ -25,18 +25,6 @@ export class PostAccordion {
     this.registerAccordionItems();
   }
 
-  /**
-   * Toggles the `post-accordion-item` with the given id.
-   */
-  @Method()
-  async toggle(id: string) {
-    const itemToToggle = this.accordionItems.find(item => item.id === id);
-
-    if (!itemToToggle) throw new Error(`No post-accordion-item found with id #${id}.`);
-
-    await itemToToggle.toggle();
-  }
-
   @Listen('postToggle')
   collapseToggleHandler(event: CustomEvent<boolean>) {
     if ((event.target as HTMLElement).localName === 'post-accordion-item') {
@@ -63,9 +51,21 @@ export class PostAccordion {
   }
 
   /**
+   * Toggles the `post-accordion-item` with the given id.
+   */
+  @Method()
+  async toggle(id: string) {
+    const itemToToggle = this.accordionItems.find(item => item.id === id);
+
+    if (!itemToToggle) throw new Error(`No post-accordion-item found with id #${id}.`);
+
+    await itemToToggle.toggle();
+  }
+
+  /**
    * Expands all `post-accordion-item`.
    *
-   * If `close-others` is `true` and all items are closed, it will open the first one.
+   * If `multiple="true"` is not set and all items are closed, it will open the first one.
    * Otherwise, it will keep the opened one.
    */
   @Method()
