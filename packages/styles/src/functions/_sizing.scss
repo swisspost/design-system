@@ -73,7 +73,7 @@
     $box-shadow: list-fn.remove-nth($box-shadow, 1);
   }
 
-  @if (utilities.starts-with-any(nth($box-shadow, -1), 'hsl', 'rgb', '#')) {
+  @if (utilities.starts-with-any(list.nth($box-shadow, -1), 'hsl', 'rgb', '#')) {
     $box-shadow: list-fn.remove-nth($box-shadow, -1);
   }
 
@@ -97,7 +97,7 @@
     $box-shadow-size: $box-shadow-size + list.nth($box-shadow, 4);
   }
 
-  @if (unit($box-shadow-size) == 'px') {
+  @if (math.unit($box-shadow-size) == 'px') {
     $box-shadow-size: math.ceil($box-shadow-size);
   }
 
