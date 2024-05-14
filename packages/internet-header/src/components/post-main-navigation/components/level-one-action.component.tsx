@@ -9,7 +9,9 @@ export const LevelOneAction = (props: {
   onKeyDown: (e: any) => void;
   onClick: (e: any) => void;
 }) => {
-  const TagName = props.level.url ? 'a' : 'button';
+  const TagName = props.level.url !== undefined ? 'a' : 'button';
+  const title = props.level.title?.trim();
+  const text = props.level.text?.trim();
 
   return (
     <TagName
@@ -19,12 +21,8 @@ export const LevelOneAction = (props: {
         'focus': props.isOpen,
       }}
       href={props.level.url}
-      title={
-        props.level.title?.trim() && props.level.title?.trim() !== props.level.text?.trim()
-          ? props.level.title
-          : undefined
-      }
-      tabindex={props.level.url ? undefined : 0}
+      title={title !== undefined && title !== text ? props.level.title : undefined}
+      tabindex={props.level.url !== undefined ? undefined : 0}
       aria-haspopup={!props.level.noFlyout + ''}
       aria-expanded={props.level.noFlyout ? null : props.isOpen + ''}
       onTouchEnd={e => props.onTouchEnd(e)}
