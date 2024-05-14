@@ -97,7 +97,7 @@ export class PostInternetBreadcrumbs {
     }
   }
 
-  handleResize() {
+  private handleResize() {
     // Catch and exclude vertical resize events, e.g. scrolling in iPhone
     if (window.innerWidth === this.lastWindowWidth) {
       return;
@@ -106,7 +106,7 @@ export class PostInternetBreadcrumbs {
     this.checkConcatenation();
   }
 
-  checkConcatenation() {
+  private checkConcatenation() {
     if (this.controlNavRef && this.visibleNavRef) {
       this.refsReady = true;
 
@@ -119,7 +119,7 @@ export class PostInternetBreadcrumbs {
     }
   }
 
-  toggleOverlay(overlay: IBreadcrumbOverlay, force?: boolean) {
+  private toggleOverlay(overlay: IBreadcrumbOverlay, force?: boolean) {
     const newVisibility = force ?? !this.overlayVisible;
 
     if (newVisibility) {
@@ -151,7 +151,7 @@ export class PostInternetBreadcrumbs {
   /**
    * Disable or re-enable body scrolling, depending on whether overlay is visible or not
    */
-  setBodyScroll(overlay: IBreadcrumbOverlay) {
+  private setBodyScroll(overlay: IBreadcrumbOverlay) {
     if (this.overlayVisible) {
       // @ts-ignore
       disableBodyScroll(overlay, { reserveScrollBarGap: true });
@@ -161,7 +161,7 @@ export class PostInternetBreadcrumbs {
     }
   }
 
-  toggleDropdown(force?: boolean) {
+  private toggleDropdown(force?: boolean) {
     this.dropdownOpen = force ?? !this.dropdownOpen;
 
     if (this.dropdownOpen) {
@@ -171,11 +171,11 @@ export class PostInternetBreadcrumbs {
     }
   }
 
-  handleWindowClick() {
+  private handleWindowClick() {
     this.toggleDropdown(false);
   }
 
-  registerIFrameResizer(iFrame: HTMLIFrameElement | undefined) {
+  private registerIFrameResizer(iFrame: HTMLIFrameElement | undefined) {
     if (!iFrame) {
       return;
     }
@@ -207,7 +207,7 @@ export class PostInternetBreadcrumbs {
    * @param e Overlay element or null
    * @returns void
    */
-  overlayRef(e: HTMLElement | undefined) {
+  private overlayRef(e: HTMLElement | undefined) {
     if (!e) {
       return;
     }
