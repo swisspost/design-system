@@ -43,7 +43,7 @@ export class PostKlpLoginWidget implements IsFocusable {
     const loginButton = this.host.shadowRoot?.querySelectorAll<HTMLElement>(
       '.klp-widget-anonymous__wrapper a, .klp-widget-authenticated-session a',
     );
-    if (loginButton && loginButton.length) {
+    if (loginButton && loginButton.length > 0) {
       loginButton[0].focus();
     }
   }
