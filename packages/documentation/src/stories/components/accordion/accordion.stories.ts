@@ -16,7 +16,7 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
   },
   args: {
     multiple: false,
-    headingLevel: 3,
+    headingLevel: '3' as any, // this needs to be a string for the control to be properly initialized
   },
   argTypes: {
     postToggle: {
