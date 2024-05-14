@@ -58,7 +58,13 @@ export namespace Components {
         "toggleDropdown": (force?: boolean) => Promise<boolean>;
     }
     interface PostMetaNavigation {
+        /**
+          * Displays the meta-navigation in full-width.
+         */
         "fullWidth"?: boolean;
+        /**
+          * Displays the meta-navigation horihontally or vertically. Allowed values: 'horizontal' | 'vertical'
+         */
         "orientation": 'horizontal' | 'vertical';
     }
     interface PostSearch {
@@ -338,7 +344,13 @@ declare namespace LocalJSX {
         "onFlyoutToggled"?: (event: PostMainNavigationCustomEvent<string | null>) => void;
     }
     interface PostMetaNavigation {
+        /**
+          * Displays the meta-navigation in full-width.
+         */
         "fullWidth"?: boolean;
+        /**
+          * Displays the meta-navigation horihontally or vertically. Allowed values: 'horizontal' | 'vertical'
+         */
         "orientation"?: 'horizontal' | 'vertical';
     }
     interface PostSearch {
