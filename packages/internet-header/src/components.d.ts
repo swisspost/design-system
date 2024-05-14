@@ -27,6 +27,9 @@ export namespace Components {
         "setFocus": () => Promise<void>;
     }
     interface PostLanguageSwitch {
+        /**
+          * Visualization of the language switch. Possible values: 'dropdown' | 'list'
+         */
         "mode": 'dropdown' | 'list';
         /**
           * Open or close the language switch programatically
@@ -309,8 +312,17 @@ declare namespace LocalJSX {
         "logoutUrl"?: string;
     }
     interface PostLanguageSwitch {
+        /**
+          * Visualization of the language switch. Possible values: 'dropdown' | 'list'
+         */
         "mode"?: 'dropdown' | 'list';
+        /**
+          * Fires when the dropdown has been toggled.
+         */
         "onDropdownToggled"?: (event: PostLanguageSwitchCustomEvent<DropdownEvent>) => void;
+        /**
+          * Fires when the language has been changed.
+         */
         "onLanguageChanged"?: (event: PostLanguageSwitchCustomEvent<string>) => void;
     }
     interface PostLogo {

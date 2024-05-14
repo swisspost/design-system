@@ -29,10 +29,20 @@ import { IAvailableLanguage } from '../../models/language.model';
   shadow: true,
 })
 export class PostLanguageSwitch implements HasDropdown {
+  /**
+   * Visualization of the language switch.
+   * Possible values: 'dropdown' | 'list'
+   */
   @Prop() mode: 'dropdown' | 'list';
   @State() langSwitchOpen = false;
   @Element() host: DropdownElement;
+  /**
+   * Fires when the dropdown has been toggled.
+   */
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
+  /**
+   * Fires when the language has been changed.
+   */
   @Event({ bubbles: true }) languageChanged: EventEmitter<string>;
   private languageSwitchDropdown: HTMLElement | undefined;
 
@@ -84,7 +94,7 @@ export class PostLanguageSwitch implements HasDropdown {
    *
    * @param newLang Config of the new language
    */
-  switchLanguage(newLang: NavLangEntity) {
+  private switchLanguage(newLang: NavLangEntity) {
     this.languageChanged.emit(newLang.lang);
     this.toggleDropdown(false);
   }
