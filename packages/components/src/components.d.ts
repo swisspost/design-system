@@ -18,7 +18,7 @@ export namespace Components {
          */
         "collapseAll": () => Promise<void>;
         /**
-          * Expands all `post-accordion-item`.  If `close-others` is `true` and all items are closed, it will open the first one. Otherwise, it will keep the opened one.
+          * Expands all `post-accordion-item`.  If `multiple="true"` is not set and all items are closed, it will open the first one. Otherwise, it will keep the opened one.
          */
         "expandAll": () => Promise<void>;
         /**
