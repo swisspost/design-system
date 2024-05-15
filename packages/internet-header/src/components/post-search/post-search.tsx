@@ -6,7 +6,6 @@ import { CoveoCompletion } from '../../models/coveo.model';
 import { GeocodeLocation } from '../../models/geocode.model';
 import { TagManagerDataLayer } from '../../models/general.model';
 import {
-  DropdownElement,
   DropdownEvent,
   HasDropdown,
   ISearchRecommendation,
@@ -42,7 +41,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
    * Fires when the dropdown has been toggled.
    */
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
-  @Element() host: DropdownElement;
+  @Element() host: HTMLPostSearchElement;
   private searchBox?: HTMLInputElement;
   private searchFlyout: HTMLElement | undefined;
   private throttledResize: throttle<() => void>;

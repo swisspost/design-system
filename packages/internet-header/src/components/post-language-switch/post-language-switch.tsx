@@ -12,12 +12,7 @@ import {
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { state } from '../../data/store';
-import {
-  DropdownElement,
-  DropdownEvent,
-  HasDropdown,
-  NavLangEntity,
-} from '../../models/header.model';
+import { DropdownEvent, HasDropdown, NavLangEntity } from '../../models/header.model';
 import { elementHasTransition, userPrefersReducedMotion } from '../../services/ui.service';
 import { translate } from '../../services/language.service';
 import { PostLanguageSwitchList } from './components/post-language-switch-list';
@@ -35,7 +30,7 @@ export class PostLanguageSwitch implements HasDropdown {
    */
   @Prop() mode: 'dropdown' | 'list';
   @State() langSwitchOpen = false;
-  @Element() host: DropdownElement;
+  @Element() host: HTMLPostLanguageSwitchElement;
   /**
    * Fires when the dropdown has been toggled.
    */
