@@ -24,7 +24,6 @@ export const LevelOneAction = (props: {
       title={title !== undefined && title !== text ? props.level.title : undefined}
       tabindex={props.level.url !== undefined ? undefined : 0}
       aria-haspopup={!props.level.noFlyout + ''}
-      aria-expanded={props.level.noFlyout ? null : props.isOpen + ''}
       onTouchEnd={e => props.onTouchEnd(e)}
       onKeyDown={e => props.onKeyDown(e)}
       onClick={e => props.onClick(e)}
