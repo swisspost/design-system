@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                                                             | Type      | Default |
-| ---------- | ---------- | ----------------------------------------------------------------------- | --------- | ------- |
-| `multiple` | `multiple` | If `true`, multiple `post-accordion-item` can be open at the same time. | `boolean` | `false` |
+| Property       | Attribute       | Description                                                                                        | Type                         | Default     |
+| -------------- | --------------- | -------------------------------------------------------------------------------------------------- | ---------------------------- | ----------- |
+| `headingLevel` | `heading-level` | Defines the hierarchical level of the `post-accordion-item` headers within the headings structure. | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `undefined` |
+| `multiple`     | `multiple`      | If `true`, multiple `post-accordion-item` can be open at the same time.                            | `boolean`                    | `false`     |
 
 
 ## Methods
