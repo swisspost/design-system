@@ -94,16 +94,13 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
   }
 
-  public async toggleDropdown(event?: Event): Promise<boolean>;
-  public async toggleDropdown(force?: boolean): Promise<boolean>;
-
   /**
    * Toggle the dropdown and optionally force an open/closed state
    * @param force Boolean to force open/closed state
    * @returns Boolean indicating open state of the component
    */
   @Method()
-  async toggleDropdown(force?: unknown) {
+  async toggleDropdown(force?: boolean | Event): Promise<boolean> {
     this.searchDropdownOpen =
       force === undefined || typeof force !== 'boolean' ? !this.searchDropdownOpen : force;
     this.dropdownToggled.emit({ open: this.searchDropdownOpen, element: this.host });

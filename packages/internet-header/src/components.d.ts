@@ -6,11 +6,13 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DropdownEvent, NavMainEntity } from "./models/header.model";
+import { Event } from "@stencil/core";
 import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 import { StickynessOptions } from "./models/implementor.model";
 import { Environment, ICustomConfig } from "./models/general.model";
 import { IAvailableLanguage } from "./models/language.model";
 export { DropdownEvent, NavMainEntity } from "./models/header.model";
+export { Event } from "@stencil/core";
 export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 export { StickynessOptions } from "./models/implementor.model";
 export { Environment, ICustomConfig } from "./models/general.model";
@@ -77,7 +79,7 @@ export namespace Components {
           * @param force Boolean to force open/closed state
           * @returns Boolean indicating open state of the component
          */
-        "toggleDropdown": (force?: unknown) => Promise<boolean>;
+        "toggleDropdown": (force?: boolean | Event) => Promise<boolean>;
     }
     interface PostSkiplinks {
     }
