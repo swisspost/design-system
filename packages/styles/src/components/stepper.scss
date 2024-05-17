@@ -2,225 +2,225 @@
 @use './../mixins/icons' as icons-mx;
 @use './../mixins/utilities';
 
-@use './../variables/spacing';
 @use './../variables/color';
+@use './../variables/commons';
+@use './../variables/spacing';
 @use './../variables/components/stepper';
 
 @use './../themes/bootstrap/core' as *;
 
-.stepper-container {
-  @include size-mx.responsive-size('big', 'margin-bottom');
-  position: relative;
-}
-
-.stepper-bar {
-  height: stepper.$stepper-bar-height;
-  margin-top: stepper.$stepper-indicator-height * 0.5;
-  margin-bottom: -1 * (stepper.$stepper-bar-height + stepper.$stepper-indicator-height) * 0.5;
-
-  .progress-bar {
-    background-color: color.$yellow;
-  }
-}
-
 .stepper {
+  // start a counter for the step numbers
   counter-reset: step-index;
 
-  list-style: none;
-  padding: 0 (0.5 * stepper.$stepper-indicator-height);
-  margin: 0;
+  @include utilities.reset-list;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(#{0.5 * stepper.$stepper-indicator-height}, 1fr));
-  justify-items: center;
+
+  // the first column is half a step wide to make sure the separators are the same size even on small screens
+  grid-template-columns: stepper.$stepper-indicator-height / 2;
+
+  // all other columns are 1 fraction of the available space ase we don't know the number of steps
+  grid-auto-columns: minmax(0, 1fr);
+
+  // we use a padding and negative margin on the last step for the same reason we need the first column
+  padding-inline-end: stepper.$stepper-indicator-height / 2;
 }
 
 .stepper-item {
-  counter-increment: step-index;
+  grid-row: 1;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  transition: color 250ms;
 
-  // Stepper indicator styles
+  &:not(:last-child) {
+    grid-column: span 2;
+  }
+}
+
+.stepper-link {
+  text-decoration: none;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  color: stepper.$stepper-link-color;
+  width: fit-content;
+  line-height: stepper.$stepper-link-line-height;
+
+  // not adding ellipsis if the like doesn't have a title for accessibility reasons
+  &:not([title]) {
+    -webkit-line-clamp: none;
+  }
+
+  .stepper-item:not(:first-child, :last-child) > & {
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .stepper-item:last-child > & {
+    margin-inline-start: auto;
+    margin-inline-end: -1 * stepper.$stepper-indicator-height / 2; // negative margin matching the container padding
+    text-align: end;
+  }
+
+  .stepper-item[aria-current='step'] > & {
+    color: stepper.$stepper-link-current-color;
+    font-weight: stepper.$stepper-link-current-font-weight;
+  }
+
+  // stepper indicator
   &::before {
-    content: '';
-    pointer-events: none;
+    counter-increment: step-index;
+    content: counter(step-index);
     display: flex;
     align-items: center;
     justify-content: center;
     height: stepper.$stepper-indicator-height;
     width: stepper.$stepper-indicator-height;
-    margin-bottom: -1 * stepper.$stepper-indicator-height;
+    box-sizing: border-box;
+    margin-block-end: stepper.$stepper-link-gap;
     color: stepper.$stepper-indicator-color;
     background-color: stepper.$stepper-indicator-bg;
     border: stepper.$stepper-indicator-border-width solid stepper.$stepper-indicator-border-color;
     border-radius: 50%;
-    font-size: stepper.$stepper-indicator-font-size;
     font-weight: stepper.$stepper-indicator-font-weight;
-    transition: background 250ms;
+    text-indent: initial;
+
+    .stepper-item:not(:first-child, :last-child) > & {
+      margin-inline: auto;
+    }
+
+    .stepper-item:last-child > & {
+      margin-inline-start: auto;
+    }
+
+    // completed steps with check mark
+    .stepper-item:not(
+        .stepper-item[aria-current='step'],
+        .stepper-item[aria-current='step'] ~ .stepper-item
+      )
+      > & {
+      background-image: stepper.$stepper-indicator-check-icon;
+      background-size: stepper.$stepper-indicator-check-icon-size;
+      background-position: center;
+      color: transparent;
+    }
+
+    // future steps with grey background
+    .stepper-item[aria-current='step'] ~ .stepper-item > & {
+      color: stepper.$stepper-indicator-future-color;
+      background-color: stepper.$stepper-indicator-future-bg;
+    }
   }
 
-  &[aria-current] ~ ::before {
-    color: stepper.$stepper-indicator-future-color;
-    background-color: stepper.$stepper-indicator-future-bg;
-  }
-
-  &:is(:focus-visible, :focus-within)::before {
-    outline: stepper.$stepper-indicator-hover-outline;
-  }
-
-  // Check icon (for completed steps only)
+  // progress bar
   &::after {
-    @include icons-mx.icon(2105);
     content: '';
-    position: absolute;
     display: block;
-    top: 0.5 * (stepper.$stepper-indicator-height - stepper.$stepper-indicator-check-icon-size);
-    height: stepper.$stepper-indicator-check-icon-size;
-    width: stepper.$stepper-indicator-check-icon-size;
-  }
+    position: absolute;
+    inset-block-start: (stepper.$stepper-indicator-height - stepper.$stepper-bar-height) / 2;
+    inset-inline-start: 0;
+    height: stepper.$stepper-bar-height;
+    width: 100%;
+    z-index: -1;
 
-  &[aria-current],
-  &[aria-current] ~ & {
-    pointer-events: none;
-
-    &::before {
-      content: counter(step-index);
+    // completed steps with filled bar
+    .stepper-item:not(
+        .stepper-item[aria-current='step'],
+        .stepper-item[aria-current='step'] ~ .stepper-item
+      )
+      > & {
+      background-color: stepper.$stepper-bar-fill-color;
     }
 
-    &::after {
-      content: unset;
+    // current step with half-filled bar
+    .stepper-item[aria-current='step'] > & {
+      background: linear-gradient(
+        90deg,
+        stepper.$stepper-bar-fill-color 50%,
+        stepper.$stepper-bar-color 50%
+      );
     }
-  }
 
-  // First stepper item - left aligned
-  &:first-child {
-    justify-self: start;
-    align-items: start;
-    transform: translateX(#{-0.5 * stepper.$stepper-indicator-height});
-
-    &::after {
-      left: 0.5 * (stepper.$stepper-indicator-height - stepper.$stepper-indicator-check-icon-size);
-    }
-  }
-
-  // Last stepper item - right aligned
-  &:last-child {
-    justify-self: end;
-    align-items: end;
-    text-align: right;
-    margin-right: -0.5 * stepper.$stepper-indicator-height;
-
-    &::after {
-      right: 0.5 * (stepper.$stepper-indicator-height - stepper.$stepper-indicator-check-icon-size);
+    // future steps with unfilled bar
+    .stepper-item:is(.stepper-item[aria-current='step'] ~ .stepper-item) > & {
+      background-color: stepper.$stepper-bar-color;
     }
   }
 
-  // Other stepper items - centered
-  &:not(:first-child):not(:last-child) {
-    grid-column-end: span 2;
-    align-items: center;
-
-    &::after {
-      left: calc(50% - #{0.5 * stepper.$stepper-indicator-check-icon-size});
+  // focus/hover states
+  &:is(a[href]) {
+    @include utilities.focus-style {
+      border-radius: commons.$border-radius;
     }
-  }
 
-  &:hover {
-    color: stepper.$stepper-indicator-hover-color;
+    @include utilities.focus-hover-style-custom('::before') {
+      &,
+      .stepper-item[aria-current='step'] ~ .stepper-item > & {
+        color: #fff;
+        background-color: #000;
+      }
 
-    &::before {
-      background-color: stepper.$stepper-indicator-hover-bg;
+      .stepper-item:not(
+          .stepper-item[aria-current='step'],
+          .stepper-item[aria-current='step'] ~ .stepper-item
+        )
+        > & {
+        background-image: stepper.$stepper-indicator-hover-check-icon;
+      }
     }
-  }
-}
-
-.stepper-link {
-  z-index: 1;
-  padding-top: stepper.$stepper-indicator-height + stepper.$stepper-link-gap;
-  text-decoration: none;
-  color: stepper.$stepper-link-color;
-  transition: color 250ms;
-  text-align: center;
-
-  .stepper-item[aria-current] > & {
-    color: stepper.$stepper-link-current-color;
-    font-size: stepper.$stepper-link-current-font-size;
-    font-weight: stepper.$stepper-link-current-font-weight;
-  }
-
-  @at-root a:hover#{&},
-    :focus-visible#{&} {
-    color: stepper.$stepper-link-hover-color;
-  }
-
-  &:focus-visible {
-    outline: none;
   }
 }
 
 @include media-breakpoint-down(rg) {
   .stepper-item {
-    &:not([aria-current]) .stepper-link {
-      overflow: hidden;
+    .stepper-link {
       white-space: nowrap;
-      text-indent: 100%;
-      width: stepper.$stepper-indicator-height;
+      width: 100%;
+    }
+
+    &[aria-current='step'] {
+      // using "display: contents" on the stepper-item and stepper-link so that label, indicator and progress bar can be directly placed in the grid
+      display: contents;
+
+      > .stepper-link {
+        display: contents;
+
+        &::before {
+          grid-row: -1;
+          transform: translateX(50%);
+          margin-inline-end: 0 !important;
+        }
+
+        &::after {
+          grid-row: -1;
+          width: 201%;
+          transform: translateX(-50%);
+          margin-block-start: (stepper.$stepper-indicator-height - stepper.$stepper-bar-height) / 2;
+          margin-block-end: -1 * (stepper.$stepper-indicator-height - stepper.$stepper-bar-height) /
+            2;
+          position: static;
+        }
+      }
+    }
+
+    &:not(&[aria-current='step']) {
+      grid-row: -1;
+      justify-self: stretch;
+
+      // hide completed and future step labels
+      > .stepper-link {
+        -webkit-line-clamp: none;
+        line-height: 0;
+        text-indent: 100%;
+      }
     }
   }
 }
 
-@include utilities.high-contrast-mode() {
-  .stepper-bar {
-    background-color: CanvasText;
-    border: 0 none;
+// for backward compatibility
+.stepper-container {
+  @include size-mx.responsive-size('big', 'margin-bottom');
 
-    .progress-bar {
-      background-color: Highlight;
-    }
-  }
-
-  .stepper-item {
-    &::before {
-      width: calc(#{stepper.$stepper-indicator-height} + 2 * #{spacing.$size-line});
-      height: calc(#{stepper.$stepper-indicator-height} + 2 * #{spacing.$size-line});
-      line-height: calc(#{stepper.$stepper-indicator-height} + 2 * #{spacing.$size-line});
-      color: ButtonText;
-      background-color: ButtonFace;
-      border: 0;
-      outline: spacing.$size-line solid VisitedText;
-      outline-offset: -3 * spacing.$size-line;
-      margin-top: -1 * spacing.$size-line;
-    }
-
-    &[aria-current] ~ &::before {
-      outline-color: ButtonBorder;
-    }
-
-    &[aria-current]::before {
-      outline-color: Highlight;
-    }
-
-    &:is(:focus-visible, :focus-within)::before {
-      border: spacing.$size-line solid Highlight;
-      line-height: stepper.$stepper-indicator-height;
-      outline-color: VisitedText;
-    }
-
-    &[aria-current] ~ &:is(:focus-visible, :focus-within)::before {
-      outline-color: ButtonBorder;
-    }
-  }
-
-  .stepper-link {
-    color: VisitedText;
-
-    .stepper-item[aria-current] ~ .stepper-item > & {
-      color: CanvasText;
-    }
-
-    .stepper-item[aria-current] > & {
-      color: Highlight;
-    }
+  > .stepper-bar {
+    display: none;
   }
 }
