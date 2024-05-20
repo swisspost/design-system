@@ -36,11 +36,13 @@
 }
 
 .stepper-link {
-  text-decoration: none;
+  // -webkit-box is needed for line-clamp: https://caniuse.com/css-line-clamp
+  // stylelint-disable-next-line value-no-vendor-prefix
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+  text-decoration: none;
   color: stepper.$stepper-link-color;
   width: fit-content;
   line-height: stepper.$stepper-link-line-height;
