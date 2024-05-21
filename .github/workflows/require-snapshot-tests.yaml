@@ -1,0 +1,25 @@
+###
+#
+# Requires running snapshot tests on changeset-release branches
+#
+###
+
+name: Require snapshot tests
+on:
+  pull_request:
+    types:
+      - open
+    branches:
+      - 'changeset-release/*'
+  workflow_run:
+    types:
+      - requested
+    workflows:
+      - Run snapshot tests
+
+jobs:
+  require-snapshots:
+    runs-on: ubuntu-latest
+    if: ${{ -z github.event.workflow_run }}
+    steps:
+      - run: exit 1
