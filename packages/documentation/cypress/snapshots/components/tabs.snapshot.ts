@@ -1,7 +1,9 @@
 describe('Tabs', () => {
   it('default', () => {
     cy.visit('/iframe.html?id=snapshots--tabs');
-    cy.get('post-tab-header.hydrated', { timeout: 30000 }).should('be.visible');
+    cy.waitForComponent('post-tab-header');
+    cy.waitForComponent('post-tab-panel');
+    cy.waitForComponent('post-tabs');
     cy.percySnapshot('Tabs', { widths: [1440] });
   });
 });

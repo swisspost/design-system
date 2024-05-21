@@ -1,13 +1,12 @@
-const BASEURL = '/iframe.html?id=snapshots--input';
-const types = ['text', 'password', 'date', 'datetimelocal', 'month', 'week', 'time'];
-
 describe('Input', () => {
+  const inputTypes = ['text', 'password', 'date', 'datetimelocal', 'month', 'week', 'time'];
+
   describe('types', () => {
-    types.forEach(type => {
+    inputTypes.forEach(type => {
       it(type, () => {
-        cy.visit(`${BASEURL}${type}`);
-        cy.get('.form-control', { timeout: 30000 }).should('be.visible');
-        cy.percySnapshot(`Inputs-${type}`, { widths: [320, 1024] });
+        cy.visit(`/iframe.html?id=snapshots--input${type}`);
+        cy.waitForElement('.form-control');
+        cy.percySnapshot(`Inputs (type="${type}")`, { widths: [320, 1024] });
       });
     });
   });

@@ -48,21 +48,21 @@ export const isInViewport = function (_chai: Chai.ChaiStatic) {
 
 chai.use(isInViewport);
 
-Cypress.Commands.add('registerCollapsibleFrom', (url: string) => {
-  cy.visit(url);
-  cy.get('post-collapsible').as('collapsible');
-  cy.get('@collapsible').find('.collapse').as('collapse');
+Cypress.Commands.add('waitForElement', (selector: string) => {
+  cy.get(selector, { timeout: 30000 }).should('be.visible');
 });
 
-Cypress.Commands.add('checkVisibility', (visibility: 'visible' | 'hidden') => {
-  cy.get('@collapse').should('not.have.class', 'collapsing').and(`be.${visibility}`);
+Cypress.Commands.add('waitForIconInElement', (selector: string) => {
+  cy.get(`${selector} post-icon.hydrated`, { timeout: 30000 }).should('be.visible');
 });
 
-Cypress.Commands.add('checkAriaExpanded', (isExpanded: 'true' | 'false') => {
-  cy.get('@collapse')
-    .should('not.have.class', 'collapsing')
-    .invoke('attr', 'id')
-    .then(id => {
-      cy.get(`[aria-controls="${id}"]`).should('have.attr', 'aria-expanded', isExpanded);
-    });
+Cypress.Commands.add('waitForComponent', (name: string) => {
+  cy.get(`${name}.hydrated`, { timeout: 30000 })
+    .shadow()
+    .get('post-icon.hydrated', { timeout: 30000 })
+    .should('be.visible');
+});
+
+Cypress.Commands.add('waitForIconInComponent', (name: string) => {
+  cy.get(`${name}.hydrated post-icon.hydrated`, { timeout: 30000 }).should('be.visible');
 });

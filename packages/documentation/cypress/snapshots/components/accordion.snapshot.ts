@@ -1,7 +1,7 @@
 describe('Accordion', () => {
   it('default', () => {
     cy.visit('/iframe.html?id=snapshots--accordion');
-    cy.get('post-accordion.hydrated', { timeout: 30000 }).should('be.visible');
+    cy.waitForComponent('post-accordion');
     cy.percySnapshot('Accordions', { widths: [1440] });
   });
 });

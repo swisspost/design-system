@@ -1,9 +1,11 @@
 declare global {
   namespace Cypress {
     interface Chainable {
-      registerCollapsibleFrom(url: string): Chainable<any>;
-      checkVisibility(visibility: 'visible' | 'hidden'): Chainable<any>;
-      checkAriaExpanded(isExpanded: 'true' | 'false'): Chainable<any>;
+      waitForElement(selector: string): Chainable<any>;
+      waitForIconInElement(selector: string): Chainable<any>;
+      waitForComponent(selector: string): Chainable<any>;
+      waitForIconInComponent(selector: string): Chainable<any>;
+      waitForIconInComponentShadow(selector: string): Chainable<any>;
     }
   }
 }
