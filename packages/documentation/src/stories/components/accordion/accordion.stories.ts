@@ -1,12 +1,14 @@
 import type { StoryObj } from '@storybook/web-components';
-import { html } from 'lit';
+import { html, nothing, TemplateResult } from 'lit';
 import { MetaComponent } from '@root/types';
+import { ifDefined } from 'lit/directives/if-defined.js';
 
 const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementEventMap> = {
   id: '4d1b4185-e04d-494a-ab38-2b56c1778b0b',
   title: 'Components/Accordion',
   tags: ['package:WebComponents'],
   component: 'post-accordion',
+  render: renderAccordion(),
   parameters: {
     badges: [],
     design: {
@@ -16,6 +18,7 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
   },
   args: {
     multiple: false,
+    headingLevel: 4,
   },
   argTypes: {
     postToggle: {
@@ -33,107 +36,84 @@ const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementE
 
 export default meta;
 
+// RENDERERS
+function getAccordionItemContent(position: number | string, headingLevel?: number) {
+  const level = headingLevel ? html` <code>h${headingLevel}</code>` : nothing;
+  return html`
+    <span slot="header">Titulum ${position}${level}</span>
+    <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  `;
+}
+
+function getDefaultAccordionItem(args: Partial<HTMLPostAccordionElement>, index: number) {
+  const isCollapsed = !!args.multiple && index > 0;
+  return html`
+    <post-accordion-item collapsed=${ifDefined(isCollapsed || undefined)}>
+      ${getAccordionItemContent(index + 1)}
+    </post-accordion-item>
+  `;
+}
+
+function renderAccordion(
+  accordionItemRenderer = getDefaultAccordionItem,
+): (args: Partial<HTMLPostAccordionElement>) => TemplateResult {
+  return (args: Partial<HTMLPostAccordionElement>) => html`
+    <post-accordion
+      heading-level=${args.headingLevel}
+      multiple=${ifDefined(args.multiple || undefined)}
+    >
+      ${Array.from({ length: 3 }, (_, i) => accordionItemRenderer(args, i))}
+    </post-accordion>
+  `;
+}
+
 // STORIES
 type Story = StoryObj<HTMLPostAccordionElement>;
 
 export const Default: Story = {
-  render: (args: Partial<HTMLPostAccordionElement>) => html`
-    <post-accordion multiple=${args.multiple}>
-      <post-accordion-item>
-        <span slot="header">Titulum 1</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-accordion-item>
-
-      <post-accordion-item>
-        <span slot="header">Titulum 2</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-accordion-item>
-
-      <post-accordion-item>
-        <span slot="header">Titulum 3</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-accordion-item>
-    </post-accordion>
-  `,
+  args: {
+    headingLevel: '3' as any, // needs to be a string for the control to properly initialize
+  },
 };
 
 export const MultipleOpenPanels: Story = {
-  render: () => html`
-    <post-accordion multiple="true">
-      <post-accordion-item>
-        <span slot="header">Titulum 1</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-accordion-item>
-
-      <post-accordion-item collapsed="true">
-        <span slot="header">Titulum 2</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-accordion-item>
-
-      <post-accordion-item collapsed="true">
-        <span slot="header">Titulum 3</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-accordion-item>
-    </post-accordion>
-  `,
+  args: {
+    multiple: true,
+  },
 };
 
 export const DefaultCollapsedPanels: Story = {
-  render: () => html`
-    <post-accordion>
-      <post-accordion-item collapsed="true">
-        <span slot="header">Titulum 1</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  render: renderAccordion(
+    (_, i) => html`
+      <post-accordion-item collapsed=${ifDefined(i !== 1 || undefined)}>
+        ${getAccordionItemContent(i + 1)}
       </post-accordion-item>
-
-      <post-accordion-item>
-        <span slot="header">Titulum 2</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-accordion-item>
-
-      <post-accordion-item>
-        <span slot="header">Titulum 3</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-accordion-item>
-    </post-accordion>
-  `,
+    `,
+  ),
 };
 
-// Used only in testing for now.
 export const Nested: Story = {
-  render: () => html`
-    <post-accordion>
-      <post-accordion-item>
-        <span slot="header">Titulum 1</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+  render: renderAccordion((args, mainAccordionIndex) => {
+    const getNestedAccordion = () => {
+      const nestedHeadingLevel = args.headingLevel ? args.headingLevel + 1 : undefined;
 
-        <post-accordion>
+      return renderAccordion(
+        (_, nestedAccordionIndex) => html`
           <post-accordion-item>
-            <span slot="header">Titulum 1</span>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
+            ${getAccordionItemContent(
+              `${mainAccordionIndex + 1}.${nestedAccordionIndex + 1}`,
+              nestedHeadingLevel,
+            )}
           </post-accordion-item>
+        `,
+      )({ headingLevel: nestedHeadingLevel as HTMLPostAccordionElement['headingLevel'] });
+    };
 
-          <post-accordion-item collapsed="true">
-            <span slot="header">Titulum 2</span>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-          </post-accordion-item>
-
-          <post-accordion-item collapsed="true">
-            <span slot="header">Titulum 3</span>
-            <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-          </post-accordion-item>
-        </post-accordion>
+    return html`
+      <post-accordion-item>
+        ${getAccordionItemContent(mainAccordionIndex + 1, args.headingLevel)}
+        ${mainAccordionIndex === 0 ? getNestedAccordion() : nothing}
       </post-accordion-item>
-
-      <post-accordion-item collapsed="true">
-        <span slot="header">Titulum 2</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-accordion-item>
-
-      <post-accordion-item collapsed="true">
-        <span slot="header">Titulum 3</span>
-        <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
-      </post-accordion-item>
-    </post-accordion>
-  `,
+    `;
+  }),
 };

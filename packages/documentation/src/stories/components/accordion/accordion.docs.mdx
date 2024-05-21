@@ -50,6 +50,13 @@ or if the accordion is configured with the `multiple="true"` property, all other
 
 <Canvas of={accordionStories.DefaultCollapsedPanels} />
 
+### Heading Levels
+
+To ensure accessibility, all accordion titles are contained within heading tags (`h1`-`h6`) behind the scenes.
+It is essential to set the appropriate `heading-level` property on the `post-accordion` so that it matches the structure of your page properly.
+
+<Canvas of={accordionStories.Nested} />
+
 ### Custom Trigger
 
 The `<post-accordion>` offers several methods to expand or collapse the `<post-accordion-item>` it contains.
