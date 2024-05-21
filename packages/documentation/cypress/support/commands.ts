@@ -57,12 +57,16 @@ Cypress.Commands.add('waitForIconInElement', (selector: string) => {
 });
 
 Cypress.Commands.add('waitForComponent', (name: string) => {
-  cy.get(`${name}.hydrated`, { timeout: 30000 })
-    .shadow()
-    .get('post-icon.hydrated', { timeout: 30000 })
-    .should('be.visible');
+  cy.get(`${name}.hydrated`, { timeout: 30000 }).should('be.visible');
 });
 
 Cypress.Commands.add('waitForIconInComponent', (name: string) => {
   cy.get(`${name}.hydrated post-icon.hydrated`, { timeout: 30000 }).should('be.visible');
+});
+
+Cypress.Commands.add('waitForIconInComponentShadow', (name: string) => {
+  cy.get(`${name}.hydrated`, { timeout: 30000 })
+    .shadow()
+    .get('post-icon.hydrated', { timeout: 30000 })
+    .should('be.visible');
 });
