@@ -29,7 +29,7 @@
 
   flex-basis: 100%;
   display: grid;
-  grid-template: 'input label icon' 'input content icon' / min-content auto min-content;
+  grid-template: 'input label icon' 'input content content' / min-content auto min-content;
   gap: 0 post.$size-mini;
   margin: 0;
   padding: post.$size-regular;
@@ -68,6 +68,10 @@
     color: inherit !important;
     pointer-events: none;
     transition: none;
+
+    &:not(:has(+ .card-control--icon)) {
+      grid-area: 1 / label / 1 / icon;
+    }
   }
 
   .card-control--description {

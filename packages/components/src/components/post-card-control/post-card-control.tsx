@@ -61,6 +61,7 @@ export class PostCardControl {
   private control: HTMLInputElement;
   private controlId = `PostCardControl_${cardControlIds++}`;
   private initialChecked: boolean;
+  private hasIcon: boolean;
 
   @Element() host: HTMLPostCardControlElement;
 
@@ -350,6 +351,10 @@ export class PostCardControl {
     this.initialChecked = this.checked;
   }
 
+  componentWillRender() {
+    this.hasIcon = Boolean(this.host.querySelector('[slot="icon"]') || this.icon);
+  }
+
   render() {
     return (
       <Host data-version={version} onClick={this.cardClickHandler}>
@@ -395,9 +400,11 @@ export class PostCardControl {
             ) : null}
           </label>
 
-          <div class="card-control--icon">
-            <slot name="icon">{this.icon ? <post-icon name={this.icon}></post-icon> : null}</slot>
-          </div>
+          {this.hasIcon ? (
+            <div class="card-control--icon">
+              <slot name="icon">{this.icon ? <post-icon name={this.icon}></post-icon> : null}</slot>
+            </div>
+          ) : null}
 
           <div id={`${this.controlId}_content`} class="card-control--content">
             <slot></slot>
