@@ -66,9 +66,9 @@
   }
 
   // current and completed steps are preceded by a yellow segment (except for the first step)
-  &:not(&[aria-current='step'] ~ &, :first-child)::before,
+  &:not(&[aria-current='step'] ~ *, :first-child)::before,
   // completed steps are also followed by a yellow segment (except for the last step)
-  &:not(&[aria-current='step']:not(:last-child), &[aria-current='step'] ~ &)::after {
+  &:not([aria-current='step']:not(:last-child), &[aria-current='step'] ~ *)::after {
     background-color: stepper.$stepper-bar-fill-color;
     z-index: 1;
   }
@@ -264,6 +264,85 @@
       z-index: 2;
       inset-block-start: 0;
       inset-inline-end: 0;
+    }
+  }
+}
+
+@include utilities.high-contrast-mode {
+  .stepper-item {
+    &::before,
+    &::after {
+      background-color: CanvasText;
+    }
+
+    &:not(&[aria-current='step'] ~ &, :first-child)::before,
+    &:not([aria-current='step']:not(:last-child), &[aria-current='step'] ~ *)::after {
+      background-color: Highlight;
+    }
+  }
+
+  .stepper-link {
+    &::before {
+      forced-color-adjust: none;
+    }
+
+    .stepper-item[aria-current='step'] > & {
+      &::before {
+        background-color: Canvas;
+        color: CanvasText;
+      }
+    }
+
+    .stepper-item[aria-current='step'] ~ .stepper-item > &,
+    .stepper-item:not([aria-current='step']) > & {
+      &::before {
+        color: Canvas;
+        border-color: Canvas;
+        background-color: CanvasText;
+      }
+    }
+
+    &::after {
+      color: Canvas;
+    }
+  }
+
+  .stepper-link:is(a[href]) {
+    .stepper-item[aria-current='step'] > & {
+      @include utilities.focus-hover-style-custom() {
+        &::before {
+          border-color: Highlight;
+        }
+      }
+    }
+
+    .stepper-item[aria-current='step'] ~ .stepper-item > & {
+      &::before {
+        color: Canvas;
+      }
+
+      @include utilities.focus-hover-style-custom() {
+        &::before {
+          background-color: Highlight;
+          color: HighlightText;
+        }
+      }
+    }
+
+    .stepper-item:not([aria-current='step']) > & {
+      &::before {
+        background-color: LinkText;
+      }
+
+      @include utilities.focus-hover-style-custom() {
+        &::before {
+          background-color: Highlight;
+        }
+
+        &::after {
+          color: HighlightText;
+        }
+      }
     }
   }
 }
