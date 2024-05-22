@@ -9,5 +9,6 @@ export { DIRECTIVES } from './lib/stencil-generated';
 // Export all custom made components & directives!
 // Skipping this step will lead to Angular Ivy errors when building for production.
 
-export { BooleanValueAccessor } from './lib/stencil-generated/boolean-value-accessor';
-export { PostCardControlValueAccessorDirective } from './lib/custom/value-accessors/post-card-control-radio-value-accessor';
+// export { BooleanValueAccessor } from './lib/stencil-generated/boolean-value-accessor';
+export { PostCardControlCheckboxValueAccessorDirective } from './lib/custom/value-accessors/post-card-control-checkbox-value-accessor';
+export { PostCardControlRadioValueAccessorDirective } from './lib/custom/value-accessors/post-card-control-radio-value-accessor';
