@@ -4,7 +4,7 @@ import { MetaComponent } from '@root/types';
 import { ifDefined } from 'lit/directives/if-defined.js';
 import { useArgs } from '@storybook/preview-api';
 
-const steps = ['Sender', 'Product', 'Other details', 'Order summary'];
+const defaultSteps = ['Sender', 'Product', 'Other details', 'Order summary'];
 
 const meta: MetaComponent = {
   id: '7dc546d9-e248-4d06-befe-3ad62fcd310f',
@@ -13,6 +13,9 @@ const meta: MetaComponent = {
   render: renderStepper,
   parameters: {
     badges: [],
+    controls: {
+      exclude: ['steps'],
+    },
     design: {
       type: 'figma',
       url: 'https://www.figma.com/file/xZ0IW0MJO0vnFicmrHiKaY/Components-Post?type=design&node-id=20952-29106&mode=design&t=38qLaYwWdirTcHdb-4',
@@ -22,6 +25,7 @@ const meta: MetaComponent = {
     currentStepNumber: 3,
     navigableSteps: 'all',
     processName: 'Registration Form',
+    steps: defaultSteps,
   },
   argTypes: {
     navigableSteps: {
@@ -46,7 +50,7 @@ const meta: MetaComponent = {
       control: {
         type: 'select',
       },
-      options: Object.keys(steps).map(key => parseInt(key, 10) + 1),
+      options: Object.keys(defaultSteps).map(key => parseInt(key, 10) + 1),
       table: {
         category: 'General',
       },
@@ -81,12 +85,17 @@ function getStepperItem(args: Args, step: string, index: number) {
   if (isNextStep) status = 'Next';
 
   const text = html`<span class="visually-hidden">${status} step:</span> ${step}`;
+  const title = step !== defaultSteps[index] ? step : undefined;
 
   return html`
     <li aria-current=${ifDefined(isCurrentStep ? 'step' : undefined)} class="stepper-item">
       ${isLink
-        ? html` <a class="stepper-link" href="../step-${index + 1}"> ${text} </a> `
-        : html`<span class="stepper-link">${text}</span>`}
+        ? html`
+            <a class="stepper-link" href="../step-${index + 1}" title=${ifDefined(title)}>
+              ${text}
+            </a>
+          `
+        : html`<span class="stepper-link" title=${ifDefined(title)}>${text}</span>`}
     </li>
   `;
 }
@@ -111,7 +120,7 @@ function renderStepper(args: Args) {
     class="stepper"
     aria-label=${ifDefined(isNav ? undefined : args.processName + ' Progress')}
   >
-    ${steps.map((step, index) => getStepperItem(args, step, index))}
+    ${args.steps.map((step: string, index: number) => getStepperItem(args, step, index))}
   </ol>`;
 
   return args.navigableSteps === 'none'
@@ -130,5 +139,14 @@ export const NavigationalStepper: StoryObj = {
 export const InformationalStepper: StoryObj = {
   args: {
     navigableSteps: 'none',
+  },
+};
+
+export const LongLabels: StoryObj = {
+  args: {
+    steps: [
+      'Nullam luctus mi sit amet nisl suscipit, nec tempor justo varius',
+      ...defaultSteps.slice(1),
+    ],
   },
 };

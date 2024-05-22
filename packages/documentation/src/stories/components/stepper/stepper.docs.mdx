@@ -45,3 +45,10 @@ If you wish to display the stepper for informational purposes only, you can use 
 In this case, there's no need to wrap the stepper inside a `<nav>`.
 
 <Canvas of={StepperStories.InformationalStepper} />
+
+### Long Labels
+
+When dealing with longer labels that may wrap into multiple lines, it is recommended to use a `title` attribute for the `.stepper-link`.
+This will truncate the label with an ellipsis if it exceeds two lines, while allowing the user to read the full label by hovering over it with the mouse.
+
+<Canvas of={StepperStories.LongLabels} />
