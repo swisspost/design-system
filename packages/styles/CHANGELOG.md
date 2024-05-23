@@ -1,26 +1,5 @@
 # @swisspost/design-system-styles
 
-## 7.1.0
-
-### Minor Changes
-
-- Added the option for a Button animation to the left. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2865](https://github.com/swisspost/design-system/pull/2865))
-
-### Patch Changes
-
-- Fixed missing chevron in valid and invalid select entries. (by [@alizedebray](https://github.com/alizedebray) with [#3075](https://github.com/swisspost/design-system/pull/3075))
-
-- Updated popover styles. - Removed popover `min-width` and updated `max-width`.
-
-  - Simplyfied popover arrow size definition.
-  - Removed `:focus` selector fom `.text-auto` utility class (by [@imagoiq](https://github.com/imagoiq) with [#2926](https://github.com/swisspost/design-system/pull/2926))
-
-- Merged the card-control, checkbox-card and radio button card docs pages and updated the choice-card-control styles. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2847](https://github.com/swisspost/design-system/pull/2847))
-
-- Fixed high-contrast-mode for card-control component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2995](https://github.com/swisspost/design-system/pull/2995))
-
-- Added missing focus ring on checkbox and radio button groups. (by [@alizedebray](https://github.com/alizedebray) with [#3063](https://github.com/swisspost/design-system/pull/3063))
-
 ## 7.0.0
 
 ### Major Changes
