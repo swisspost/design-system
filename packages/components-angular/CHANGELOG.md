@@ -1,16 +1,5 @@
 # @swisspost/design-system-components-angular-workspace
 
-## 1.1.1
-
-### Patch Changes
-
-- Merged the card-control, checkbox-card and radio button card docs pages and updated the choice-card-control styles. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2847](https://github.com/swisspost/design-system/pull/2847))
-
-- Fixed high-contrast-mode for card-control component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2995](https://github.com/swisspost/design-system/pull/2995))
-- Updated dependencies:
-  - @swisspost/design-system-styles@7.1.0
-  - @swisspost/design-system-components@7.1.0
-
 ## 1.1.0
 
 ### Minor Changes
