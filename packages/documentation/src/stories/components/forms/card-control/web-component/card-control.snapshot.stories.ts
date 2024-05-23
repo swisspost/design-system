@@ -12,7 +12,7 @@ export default {
 
 type Story = StoryObj<HTMLPostCardControlElement>;
 
-export const CardControl: Story = {
+export const PostCardControl: Story = {
   render: (_args: Args, context: StoryContext<HTMLPostCardControlElement>) => {
     return html`
       <div id="Snapshots">
