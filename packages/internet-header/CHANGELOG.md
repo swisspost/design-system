@@ -1,5 +1,13 @@
 # @swisspost/internet-header
 
+## 1.13.10
+
+### Patch Changes
+
+- Fixed display issue with long user/company names being cut off in the user dropdown. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.1.0
+
 ## 1.13.9
 
 ### Patch Changes
