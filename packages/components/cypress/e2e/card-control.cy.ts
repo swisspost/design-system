@@ -11,8 +11,6 @@ describe('Card-Control', () => {
       cy.get('@card-control').find('.card-control').as('wrapper');
       cy.get('@card-control').find('input.card-control--input').as('input');
       cy.get('@card-control').find('label.card-control--label').as('label');
-      cy.get('@card-control').find('.card-control--icon').as('icon');
-      cy.get('@card-control').find('.card-control--icon slot[name="icon"]').as('slotIcon');
     });
 
     it('should have no console errors', () => {
@@ -26,8 +24,8 @@ describe('Card-Control', () => {
 
       cy.get('@label').should('exist');
 
-      cy.get('@icon').should('exist');
-      cy.get('@slotIcon').should('exist');
+      cy.get('@card-control').find('.card-control--icon').should('not.exist');
+      cy.get('@card-control').find('.card-control--icon slot[name="icon"]').should('not.exist');
     });
 
     it('should have mandatory attributes', () => {
@@ -151,15 +149,19 @@ describe('Card-Control', () => {
     });
 
     it('should set icon "name" attr according to "icon" prop', () => {
-      cy.get('@slotIcon').find('post-icon').should('not.exist');
-      cy.get('@card-control').invoke('attr', 'icon', '1000');
-      cy.get('@slotIcon')
-        .find('post-icon')
+      cy.get('@card-control')
+        .find('.card-control--icon slot[name="icon"] post-icon')
+        .should('not.exist');
+      cy.get('@card-control')
+        .invoke('attr', 'icon', '1000')
+        .find('.card-control--icon slot[name="icon"] post-icon')
         .should('exist')
         .find('[style*="/1000.svg"]')
         .should('exist');
-      cy.get('@card-control').invoke('removeAttr', 'icon');
-      cy.get('@slotIcon').find('post-icon').should('not.exist');
+      cy.get('@card-control')
+        .invoke('removeAttr', 'icon')
+        .find('.card-control--icon slot[name="icon"] post-icon')
+        .should('not.exist');
     });
   });
 
@@ -306,8 +308,6 @@ describe('Card-Control', () => {
       cy.get('@card-control').find('.card-control').as('wrapper');
       cy.get('@card-control').find('input.card-control--input').as('input');
       cy.get('@card-control').find('label.card-control--label').as('label');
-      cy.get('@card-control').find('.card-control--icon').as('icon');
-      cy.get('@card-control').find('.card-control--icon slot[name="icon"]').as('slotIcon');
     });
     it('should update surrounding form when toggled', () => {
       cy.get('@form').then($form => {

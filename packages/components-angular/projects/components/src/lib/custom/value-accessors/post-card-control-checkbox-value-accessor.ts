@@ -3,16 +3,16 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 @Directive({
   /* eslint-disable-next-line @angular-eslint/directive-selector */
-  selector: 'post-card-control[type="radio"]',
+  selector: 'post-card-control[type="checkbox"]',
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: PostCardControlRadioValueAccessorDirective,
+      useExisting: PostCardControlCheckboxValueAccessorDirective,
       multi: true,
     },
   ],
 })
-export class PostCardControlRadioValueAccessorDirective implements ControlValueAccessor {
+export class PostCardControlCheckboxValueAccessorDirective implements ControlValueAccessor {
   private onChange: (value: any) => void = () => {
     /**/
   };
@@ -24,11 +24,10 @@ export class PostCardControlRadioValueAccessorDirective implements ControlValueA
   constructor(protected el: ElementRef) {}
 
   writeValue(value: any) {
-    this.el.nativeElement.checked = this.lastValue =
-      this.el.nativeElement.value != value ? false : value;
+    this.el.nativeElement.checked = this.lastValue = value === null ? false : value;
   }
 
-  @HostListener('postChange', ['$event.detail.value'])
+  @HostListener('postChange', ['$event.detail.state'])
   handleChangeEvent(value: any) {
     this.onChange(value);
   }

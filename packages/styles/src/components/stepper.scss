@@ -24,6 +24,7 @@
   @include utilities.reset-list;
   display: grid;
   position: relative;
+  overflow: hidden;
 
   // the first column is half a step wide to make sure the separators are the same size even on small screens
   grid-template-columns: stepper.$stepper-indicator-size / 2;
@@ -39,7 +40,12 @@
   grid-row: 1;
   position: relative;
 
+  &:not(:first-child) {
+    padding-inline-start: stepper.$stepper-link-spacing / 2;
+  }
+
   &:not(:last-child) {
+    padding-inline-end: stepper.$stepper-link-spacing / 2;
     grid-column: span 2;
   }
 
@@ -207,6 +213,11 @@
 
 // smaller screens
 @include media-breakpoint-down(rg) {
+  .stepper-item:first-child,
+  .stepper-item:last-child {
+    padding-inline: 0;
+  }
+
   .stepper-item[aria-current='step'] {
     // using "display: contents" on the stepper-item and stepper-link so that label, indicator and progress bar can be directly placed in the grid
     display: contents;
