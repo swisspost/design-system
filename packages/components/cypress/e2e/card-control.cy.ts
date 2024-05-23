@@ -504,7 +504,7 @@ describe('Card-Control', () => {
 
   describe('Accessibility', () => {
     it('Has no detectable a11y violations on load for all variants', () => {
-      cy.getSnapshots('card-control');
+      cy.getSnapshots('post-card-control');
       cy.checkA11y('#root-inner');
     });
   });
