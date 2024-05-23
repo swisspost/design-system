@@ -1,5 +1,29 @@
 # @swisspost/design-system-documentation
 
+## 5.1.0
+
+### Minor Changes
+
+- Added the option for a Button animation to the left. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2865](https://github.com/swisspost/design-system/pull/2865))
+
+### Patch Changes
+
+- Updated storybook version to 8 (by [@renovate](https://github.com/apps/renovate) with [#2797](https://github.com/swisspost/design-system/pull/2797))
+
+- Updated the post-accordion documentation: explicitly set the `collapsed` property to `true`, simplified `collapsed` property usage examples, and corrected misnamed `close-others` property to `multiple`. (by [@alizedebray](https://github.com/alizedebray) with [#3066](https://github.com/swisspost/design-system/pull/3066))
+
+- Merged the card-control, checkbox-card and radio button card docs pages and updated the choice-card-control styles. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2847](https://github.com/swisspost/design-system/pull/2847))
+
+- Fixed high-contrast-mode for card-control component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2995](https://github.com/swisspost/design-system/pull/2995))
+
+- Fixed the product card border missing in the documentation page. (by [@alizedebray](https://github.com/alizedebray) with [#3057](https://github.com/swisspost/design-system/pull/3057))
+- Updated dependencies:
+  - @swisspost/design-system-icons@7.1.0
+  - @swisspost/design-system-styles@7.1.0
+  - @swisspost/internet-header@1.13.10
+  - @swisspost/design-system-components@7.1.0
+  - @swisspost/design-system-components-react@7.1.0
+
 ## 5.0.1
 
 ### Patch Changes

@@ -1,5 +1,11 @@
 # @swisspost/design-system-components-angular
 
+## 7.1.0
+
+### Minor Changes
+
+- Added a `heading-level` property on the `post-accordion` component to set the heading level of all `post-accordion-item` children at once. (by [@alizedebray](https://github.com/alizedebray) with [#3067](https://github.com/swisspost/design-system/pull/3067))
+
 ## 7.0.0
 
 ### Major Changes

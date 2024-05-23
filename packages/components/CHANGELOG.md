@@ -1,5 +1,21 @@
 # @swisspost/design-system-components
 
+## 7.1.0
+
+### Minor Changes
+
+- Added a `heading-level` property on the `post-accordion` component to set the heading level of all `post-accordion-item` children at once. (by [@alizedebray](https://github.com/alizedebray) with [#3067](https://github.com/swisspost/design-system/pull/3067))
+
+### Patch Changes
+
+- Merged the card-control, checkbox-card and radio button card docs pages and updated the choice-card-control styles. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2847](https://github.com/swisspost/design-system/pull/2847))
+
+- Fixed high-contrast-mode for card-control component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2995](https://github.com/swisspost/design-system/pull/2995))
+
+- Fixed the `post-accordion-item` chevron no longer rotating. (by [@alizedebray](https://github.com/alizedebray) with [#3081](https://github.com/swisspost/design-system/pull/3081))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.1.0
+
 ## 7.0.0
 
 ### Major Changes
