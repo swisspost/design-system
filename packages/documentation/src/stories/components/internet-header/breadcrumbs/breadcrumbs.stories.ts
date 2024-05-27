@@ -23,12 +23,9 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
     customItems: {
       name: 'custom-items',
       control: 'object',
-      description:
-        "Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.",
       table: {
         type: {
-          summary: 'IBreadcrumbItem',
-          detail: JSON.stringify(customItems),
+          detail: JSON.stringify(customItems, null, 2),
         },
       },
     },

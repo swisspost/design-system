@@ -12,12 +12,7 @@ import {
 import { SvgSprite } from '../../utils/svg-sprite.component';
 import { SvgIcon } from '../../utils/svg-icon.component';
 import { state } from '../../data/store';
-import {
-  DropdownElement,
-  DropdownEvent,
-  HasDropdown,
-  NavLangEntity,
-} from '../../models/header.model';
+import { DropdownEvent, HasDropdown, NavLangEntity } from '../../models/header.model';
 import { elementHasTransition, userPrefersReducedMotion } from '../../services/ui.service';
 import { translate } from '../../services/language.service';
 import { PostLanguageSwitchList } from './components/post-language-switch-list';
@@ -29,10 +24,20 @@ import { IAvailableLanguage } from '../../models/language.model';
   shadow: true,
 })
 export class PostLanguageSwitch implements HasDropdown {
+  /**
+   * Visualization of the language switch.
+   * Possible values: 'dropdown' | 'list'
+   */
   @Prop() mode: 'dropdown' | 'list';
   @State() langSwitchOpen = false;
-  @Element() host: DropdownElement;
+  @Element() host: HTMLPostLanguageSwitchElement;
+  /**
+   * Fires when the dropdown has been toggled.
+   */
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
+  /**
+   * Fires when the language has been changed.
+   */
   @Event({ bubbles: true }) languageChanged: EventEmitter<string>;
   private languageSwitchDropdown: HTMLElement | undefined;
 
@@ -84,7 +89,7 @@ export class PostLanguageSwitch implements HasDropdown {
    *
    * @param newLang Config of the new language
    */
-  switchLanguage(newLang: NavLangEntity) {
+  private switchLanguage(newLang: NavLangEntity) {
     this.languageChanged.emit(newLang.lang);
     this.toggleDropdown(false);
   }

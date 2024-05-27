@@ -2,9 +2,7 @@ import '../../assets/js/klp-login-widget.js';
 import { ILoginWidgetOptions } from '../../models/header.model.js';
 
 export const initializeKLPLoginWidget = (containerId: string, options: ILoginWidgetOptions) => {
-  if (!options) {
-    return;
-  }
+  if (options === undefined) return;
 
   try {
     window.OPPklpWidget = window.klpWidgetDev(

@@ -7,10 +7,10 @@
 
 ## Properties
 
-| Property      | Attribute      | Description       | Type                                       | Default     |
-| ------------- | -------------- | ----------------- | ------------------------------------------ | ----------- |
-| `customItems` | `custom-items` |                   | `IBreadcrumbItem[] \| string \| undefined` | `undefined` |
-| `hideButtons` | `hide-buttons` | Hide all buttons. | `boolean`                                  | `false`     |
+| Property      | Attribute      | Description                                                                                                                        | Type                                       | Default     |
+| ------------- | -------------- | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ | ----------- |
+| `customItems` | `custom-items` | Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure. | `IBreadcrumbItem[] \| string \| undefined` | `undefined` |
+| `hideButtons` | `hide-buttons` | Hide all buttons.                                                                                                                  | `boolean`                                  | `false`     |
 
 
 ## Methods

@@ -158,12 +158,15 @@ export interface IsFocusable {
 
 export type FocusableElement = HTMLElement & IsFocusable;
 
-export interface HasDropdown {
+export interface IDropdownElement {
   toggleDropdown: (force?: boolean) => Promise<boolean>;
+}
+
+export interface HasDropdown extends IDropdownElement {
   dropdownToggled: EventEmitter<DropdownEvent>;
 }
 
-export type DropdownElement = HTMLElement & HasDropdown;
+export type DropdownElement = HTMLElement & IDropdownElement;
 
 export type DropdownEvent = { open: boolean; element: DropdownElement };
 

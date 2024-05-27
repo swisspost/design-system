@@ -22,7 +22,7 @@ export const getCoveoSuggestions = async (query: string): Promise<CoveoCompletio
   const { token, organisation } = coveo.environment[state.environment];
   const url = `${coveo.url}?q=${query}&locale=${state.currentLanguage}&searchHub=${config.searchHubName}&pipeline=${config.searchPipelineName}&organizationId=${organisation}`;
 
-  if (suggestionsController) suggestionsController.abort();
+  if (suggestionsController !== undefined) suggestionsController.abort();
   suggestionsController = new AbortController();
 
   return new Promise((resolve, reject) => {
