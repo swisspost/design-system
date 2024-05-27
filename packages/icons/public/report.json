@@ -2210,6 +2210,7 @@
         ],
         "keywords": [
           "Events",
+          "Person ziel",
           "Person",
           "Persona",
           "Personne",
@@ -27938,6 +27939,103 @@
       "modifiedAt": "2024-05-07T05:24:39.000Z"
     },
     {
+      "uuid": "c907f2e0-18c5-11ef-93cb-005056873709",
+      "id": 804801,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/804801/storage/ODA0ODAwLzAvbWFzdGVy",
+        "keywords": [
+          "Hand",
+          "Mano",
+          "Main",
+          "requirement",
+          "Bedarf",
+          "Besoin",
+          "Fabbisogno"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2589.svg",
+        "basename": "2589",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-05-23T05:32:03.000Z",
+      "modifiedAt": "2024-05-23T05:34:52.000Z"
+    },
+    {
+      "uuid": "ff32e6a0-1987-11ef-93cb-005056873709",
+      "id": 804958,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/804958/storage/ODA0OTU3LzAvbWFzdGVy",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "Hinzufügen",
+          "Add",
+          "Aggiungere",
+          "Ajouter"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2590.svg",
+        "basename": "2590",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-05-24T04:42:16.000Z",
+      "modifiedAt": "2024-05-24T04:44:11.000Z"
+    },
+    {
+      "uuid": "d036e580-1988-11ef-93cb-005056873709",
+      "id": 804962,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/804962/storage/ODA0OTYxLzAvbWFzdGVy",
+        "keywords": [
+          "Dokument",
+          "Document",
+          "Documento",
+          "view",
+          "Ansicht",
+          "Affichage",
+          "Visualizzazione",
+          "View",
+          "Einsehen",
+          "Consulter",
+          "Consultare"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2591.svg",
+        "basename": "2591",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-05-24T04:48:07.000Z",
+      "modifiedAt": "2024-05-24T04:50:37.000Z"
+    },
+    {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
       "id": 352241,
       "type": "picture.pictogram.",
@@ -29470,7 +29568,11 @@
           "person with disability",
           "Mensch mit Behinderung",
           "persona con disabilità",
-          "personne handicapée"
+          "personne handicapée",
+          "Person mit Behinderung",
+          "Person with disability",
+          "Persona con disabilità",
+          "Personne handicapée"
         ],
         "year": [
           "2017"
@@ -29773,7 +29875,11 @@
           "person with disability",
           "Mensch mit Behinderung",
           "persona con disabilità",
-          "personne handicapée"
+          "personne handicapée",
+          "Person mit Behinderung",
+          "Person with disability",
+          "Persona con disabilità",
+          "Personne handicapée"
         ],
         "year": [
           "2017"
@@ -29814,7 +29920,11 @@
           "person with disability",
           "Mensch mit Behinderung",
           "persona con disabilità",
-          "personne handicapée"
+          "personne handicapée",
+          "Person mit Behinderung",
+          "Person with disability",
+          "Persona con disabilità",
+          "Personne handicapée"
         ],
         "year": [
           "2017"
@@ -30076,7 +30186,11 @@
           "Toilette",
           "Toilet",
           "Servizi igienici",
-          "Toilettes"
+          "Toilettes",
+          "Person mit Behinderung",
+          "Person with disability",
+          "Persona con disabilità",
+          "Personne handicapée"
         ],
         "year": [
           "2017"
@@ -36606,7 +36720,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-05-20T09:08:03.000Z"
     },
     {
       "uuid": "76a310e0-c5ff-11e7-a943-005056a94f4a",
@@ -40541,12 +40655,12 @@
       "modifiedAt": "2024-03-12T14:51:52.000Z"
     },
     {
-      "uuid": "712015f0-c5ff-11e7-a943-005056a94f4a",
-      "id": 352300,
+      "uuid": "712a2810-c5ff-11e7-a943-005056a94f4a",
+      "id": 352302,
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352300/storage/NTM3MTkzLzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352302/storage/NTM3MjAwLzAvbWFzdGVy",
         "businessfield": [
           "kommunikation"
         ],
@@ -40559,8 +40673,8 @@
       },
       "file": {
         "mime": "image/svg+xml",
-        "name": "3059.svg",
-        "basename": "3059",
+        "name": "3061.svg",
+        "basename": "3061",
         "ext": ".svg",
         "size": {
           "width": 0,
@@ -40569,38 +40683,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
-    },
-    {
-      "uuid": "710fc240-c5ff-11e7-a943-005056a94f4a",
-      "id": 352298,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352298/storage/NTM3MTg5LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3057.svg",
-        "basename": "3057",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-03-12T14:51:52.000Z"
     },
     {
       "uuid": "7124f7f0-c5ff-11e7-a943-005056a94f4a",
@@ -40634,12 +40717,12 @@
       "modifiedAt": "2024-03-12T14:51:51.000Z"
     },
     {
-      "uuid": "712a2810-c5ff-11e7-a943-005056a94f4a",
-      "id": 352302,
+      "uuid": "710fc240-c5ff-11e7-a943-005056a94f4a",
+      "id": 352298,
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352302/storage/NTM3MjAwLzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352298/storage/NTM3MTg5LzAvbWFzdGVy",
         "businessfield": [
           "kommunikation"
         ],
@@ -40652,39 +40735,8 @@
       },
       "file": {
         "mime": "image/svg+xml",
-        "name": "3061.svg",
-        "basename": "3061",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
-    },
-    {
-      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
-      "id": 352314,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3073.svg",
-        "basename": "3073",
+        "name": "3057.svg",
+        "basename": "3057",
         "ext": ".svg",
         "size": {
           "width": 0,
@@ -40725,6 +40777,68 @@
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
       "modifiedAt": "2024-03-12T14:51:50.000Z"
+    },
+    {
+      "uuid": "712015f0-c5ff-11e7-a943-005056a94f4a",
+      "id": 352300,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352300/storage/NTM3MTkzLzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3059.svg",
+        "basename": "3059",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-03-12T14:51:50.000Z"
+    },
+    {
+      "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
+      "id": 352314,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352314/storage/NTM3MjI0LzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3073.svg",
+        "basename": "3073",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-03-12T14:51:51.000Z"
     },
     {
       "uuid": "785f77f0-29a4-11eb-a8df-005056873709",
@@ -40869,11 +40983,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2024-05-12T01:16:21.564Z",
+  "created": "2024-05-26T01:17:12.956Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 919
+    "success": 922
   },
-  "version": "7.0.0"
+  "version": "7.1.0"
 }
