@@ -3,11 +3,11 @@ import React, { useEffect, useState } from 'react';
 import { getVersion } from '../../../src/utils/version';
 import * as packageJson from '../../../package.json';
 
-const DESIGN_SYSTEM_URL = 'https://design-system.post.ch/assets/versions.json';
-const BROWSED_VERSION = getVersion(
-  packageJson.dependencies['@swisspost/design-system-styles'] || '',
-  'majorminor',
-);
+const VERSIONS_URL = 'https://design-system.post.ch/assets/versions.json';
+const STYLES_VERSION = packageJson.dependencies['@swisspost/design-system-styles'] ?? '';
+const CURRENT_VERSION = getVersion(STYLES_VERSION, 'majorminorpatch') ?? '';
+const CURRENT_MINOR_VERSION = getVersion(STYLES_VERSION, 'majorminor') ?? '';
+const CURRENT_MAJOR_VERSION = getVersion(STYLES_VERSION, 'major') ?? '';
 
 interface Version {
   title: string;
@@ -30,7 +30,7 @@ function VersionSwitcher() {
   useEffect(() => {
     async function fetchVersions() {
       try {
-        const response = await fetch(DESIGN_SYSTEM_URL);
+        const response = await fetch(VERSIONS_URL);
         const versionsJSON = await response.json();
         setVersions(versionsJSON);
         setLoading(false);
@@ -50,18 +50,12 @@ function VersionSwitcher() {
       closeOnOutsideClick
       tooltip={() => (
         <>
-          <IconButton
-            placeholder="Versions"
-            className="version_switcher__sizing_placeholder"
-            aria-hidden="true"
-          >
-            v{BROWSED_VERSION}
-            <post-icon name="2052"></post-icon>
-          </IconButton>
           <div className="version-switcher__dropdown">
             {versions.map(version => {
               const isActive =
-                getVersion(version.version || '', 'majorminor') === BROWSED_VERSION ? 'active' : '';
+                getVersion(version.version ?? '', 'major') === CURRENT_MAJOR_VERSION
+                  ? 'active'
+                  : '';
               const deps = Object.entries(version.dependencies || [])
                 .filter(([k]) => !/^@swisspost\//.test(k))
                 .map(([k, v]) => ({
@@ -76,7 +70,9 @@ function VersionSwitcher() {
                   key={version.title}
                   href={version.url}
                 >
-                  <span className="item__title">v{version.version}</span>
+                  <span className="item__title">
+                    v{isActive ? CURRENT_VERSION : version.version}
+                  </span>
                   <span className="item__deps">
                     {deps.map(d => (
                       <span key={d.key} className="deps_dep" title={d.key}>
@@ -95,11 +91,19 @@ function VersionSwitcher() {
               );
             })}
           </div>
+          <IconButton
+            placeholder="Versions"
+            className="version_switcher__sizing_placeholder"
+            aria-hidden="true"
+          >
+            v{CURRENT_MINOR_VERSION}
+            <post-icon name="2052"></post-icon>
+          </IconButton>
         </>
       )}
     >
       <IconButton placeholder="Versions">
-        v{BROWSED_VERSION}
+        v{CURRENT_MINOR_VERSION}
         <post-icon name="2052"></post-icon>
       </IconButton>
     </WithTooltip>
