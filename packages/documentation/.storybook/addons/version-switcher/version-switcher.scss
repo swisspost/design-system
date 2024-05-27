@@ -1,56 +1,64 @@
-@use '../../../node_modules/@swisspost/design-system-styles/variables/type';
-@use '../../../node_modules/@swisspost/design-system-styles/variables/spacing';
+@use '@swisspost/design-system-styles/core' as post;
 
-.version-switcher-loading {
+.version-switcher__loading {
   display: flex;
   align-items: center;
-  font-size: type.$font-size-14;
+  font-size: post.$font-size-14;
 }
 
-.version-switcher-dropdown {
+.version_switcher__sizing_placeholder {
+  visibility: hidden !important;
+}
+
+.version-switcher__dropdown {
   display: flex;
   flex-flow: column nowrap;
+  gap: post.$size-line;
+  position: absolute;
+  top: -5px;
+  right: 0;
+  padding: post.$size-mini;
   background-color: var(--post-light);
-  font-size: type.$font-size-14;
+  border: post.$border-width solid post.$border-color;
+  border-radius: post.$border-radius;
+  font-size: post.$font-size-sm;
 
-  .version-switcher-dropdown-item {
-    padding: spacing.$size-mini spacing.$size-small-regular;
+  .dropdown__item {
+    display: block;
+    padding: post.$size-mini post.$size-small-regular;
+    border-radius: post.$border-radius-sm;
     text-decoration: none;
     color: inherit;
 
-    & + .version-switcher-dropdown-item {
-      border-top: 1px solid var(--post-black);
-    }
-
     &:hover {
-      background-color: var(--post-gray-10);
+      background-color: post.$gray-10;
     }
 
     &.active {
-      background-color: rgba(var(--post-yellow-rgb), 0.4);
-    }
-  }
-}
-
-.version-switcher-dependencies {
-  margin-top: spacing.$size-micro;
-  font-size: type.$font-size-12;
-  border-spacing: 0;
-
-  td {
-    width: 12ch;
-    & + td {
-      padding: spacing.$size-micro;
+      background-color: post.$yellow;
     }
   }
 
-  span {
+  .item__title {
+    display: block;
+  }
+
+  .item__deps {
     display: flex;
-    align-items: center;
-    gap: spacing.$size-micro;
+    gap: post.$size-small-regular;
+  }
 
-    img {
-      max-width: 1.5em;
-    }
+  .deps_dep {
+    display: flex;
+    gap: post.$size-line;
+    font-size: 85%;
+  }
+
+  .dep__icon {
+    display: block;
+    height: 1.1em;
+  }
+
+  .dep__version {
   }
 }
