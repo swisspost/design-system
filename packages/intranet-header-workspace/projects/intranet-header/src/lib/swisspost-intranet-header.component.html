@@ -79,7 +79,7 @@
                 </ng-container>
               </div>
               <div class="other-items" (click)="optionDropdownClick($event)">
-                <div class="dropdown-item" *ngIf="currentUserId">
+                <div class="dropdown-item" *ngIf="currentUserId && !hideCurrentUserId">
                   {{ currentUserId }}
                 </div>
                 <div class="dropdown-item" *ngIf="displayName">
