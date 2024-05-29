@@ -21,7 +21,7 @@ dialog {
   max-height: 90vh;
   overflow: auto;
   overscroll-behavior: contain;
-  border: 2px solid var(--post-contrast-color);
+  border: 2px solid var(--post-contrast-color); // Ensures good contrast when bg is dark against dark backdrop
 
   &::backdrop {
     background-color: rgba(0, 0, 0, 0.8);
@@ -168,6 +168,7 @@ post-dialog-close {
 // Animations
 // [slide-in, pop-in, none]
 // Progressively enhanced with currently experimental @starting-style which allows to animate stuff appearing in the top layer
+// https://developer.mozilla.org/en-US/docs/Web/CSS/@starting-style
 dialog:not([data-animation='none']) {
   --_dialog-transition-duration: var(--dialog-transition-duration, 0.5s);
 
@@ -229,39 +230,22 @@ dialog:not([data-animation='none']) {
     }
   }
 
-  &[data-variant='cookie'] {
-    opacity: 1; // Reset default
-    transform: translateY(calc(100% + 3rem));
+  &[data-animation='slide-in'] {
+    &[data-position='top'] {
+      --_dialog-slide-in-offset: -3rem;
+    }
+    &[data-position='bottom'] {
+      --_dialog-slide-in-offset: 3rem;
+    }
+
+    transform: translateY(calc(var(--_dialog-slide-in-offset)));
 
     &[open] {
       transform: translateY(0);
 
       @starting-style {
-        transform: translateY(calc(100% + 3rem));
+        transform: translateY(calc(var(--_dialog-slide-in-offset)));
       }
-    }
-  }
-}
-
-// Animations
-
-dialog {
-  &[effect='bump-in'] {
-    --dialog-effect-closed-transform: translateY(-100%);
-  }
-  &[effect] {
-    transition-behavior: allow-discrete;
-    transition-duration: animation.$transition-time-default;
-    transition-timing-function: animation.$transition-easing-bump-in;
-
-    // Closed state
-    transform: var(--dialog-effect-closed-transform);
-    opacity: var(--dialog-effect-closed-opacity);
-
-    // Open state
-    &[open] {
-      transform: translate(0, 0);
-      opacity: 1;
     }
   }
 }
