@@ -12,7 +12,6 @@ on:
   push:
     branches:
       - main
-      - 3080-fix-code-smells-and-reliability-issues
   pull_request:
     types: [opened, synchronize, reopened]
 
