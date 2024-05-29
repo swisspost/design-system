@@ -167,6 +167,19 @@ const meta: MetaComponent = {
         },
       },
     },
+    hideCurrentUserId: {
+      name: 'hideCurrentUserId',
+      description: 'Hides the current user id from the profile dropdown',
+      control: 'boolean',
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+        type: {
+          summary: 'boolean',
+        },
+      },
+    },
   },
 };
 
