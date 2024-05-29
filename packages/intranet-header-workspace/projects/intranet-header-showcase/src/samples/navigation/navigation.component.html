@@ -81,10 +81,18 @@
 </section>
 
 <ng-template #myCustomOptions let-dropdown="dropdownRef">
-  <div class="dropdown-item" (click)="dropdown.close()">Close Dropdown</div>
+  <div class="dropdown-item" (click)="dropdown.close()" (keydown)="dropdown.close()">
+    Close Dropdown
+  </div>
   <a href="#" ngbDropdownItem ngbDropdownToggle class="dropdown-item">hash</a>
   <a [routerLink]="">home routerlink</a>
-  <div class="dropdown-item" (click)="count = count ? count + 1 : 1">Click-counter {{ count }}</div>
+  <div
+    class="dropdown-item"
+    (click)="count = count ? count + 1 : 1"
+    (keydown)="count = count ? count + 1 : 1"
+  >
+    Click-counter {{ count }}
+  </div>
 </ng-template>
 
 <ng-template #headerOptions>

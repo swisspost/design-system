@@ -247,7 +247,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   }
 
   // Close dropdown on link clicks https://github.com/swisspost/design-system/issues/1300
-  public optionDropdownClick(event: MouseEvent) {
+  public optionDropdownClick(event: MouseEvent | KeyboardEvent) {
     const target = event.target as HTMLElement;
     if (target.tagName.toLowerCase() === 'a') {
       this.optionDropdown.close();

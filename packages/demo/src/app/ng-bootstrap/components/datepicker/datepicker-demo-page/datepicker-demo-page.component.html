@@ -17,7 +17,7 @@
 <section>
   <p id="languageSelectorTitle" class="light font-curve-regular">Choose a language:</p>
 
-  <div aria-labelledby="languageSelectorTitle" class="btn-group mb-3" role="group">
+  <fieldset aria-labelledby="languageSelectorTitle" class="btn-group mb-3">
     <input
       [(ngModel)]="language"
       autocomplete="off"
@@ -57,7 +57,7 @@
       value="it"
     />
     <label class="btn btn-secondary" for="btn-check-it">Italiano</label>
-  </div>
+  </fieldset>
 
   <div class="alert alert-info" role="alert">
     <p>
