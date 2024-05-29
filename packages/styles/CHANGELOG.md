@@ -1,5 +1,30 @@
 # @swisspost/design-system-styles
 
+## 7.1.0
+
+### Minor Changes
+
+- Added the option for a Button animation to the left. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+### Patch Changes
+
+- Fixed missing chevron in valid and invalid select entries. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+- Updated popover styles. - Removed popover `min-width` and updated `max-width`.
+
+  - Simplyfied popover arrow size definition.
+  - Removed `:focus` selector fom `.text-auto` utility class (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+- Fixed grid-area behaviour in card-control component, if used without any icon. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3099](https://github.com/swisspost/design-system/pull/3099))
+
+- Updated the stepper styles: changed the colors and font-weights, as well as the current step label position on smaller screens. (by [@alizedebray](https://github.com/alizedebray) with [#3088](https://github.com/swisspost/design-system/pull/3088))
+
+- Merged the card-control, checkbox-card and radio button card docs pages and updated the choice-card-control styles. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+- Fixed high-contrast-mode for card-control component. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+- Added missing focus ring on checkbox and radio button groups. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
 ## 7.0.0
 
 ### Major Changes

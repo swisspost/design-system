@@ -1,5 +1,5 @@
 module.exports = {
-  extends: '../../.eslintrc.json',
+  extends: '../../.eslintrc.js',
   ignorePatterns: ['!**/*', 'node_modules'],
   overrides: [
     {

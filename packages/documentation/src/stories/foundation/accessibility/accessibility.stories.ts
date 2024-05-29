@@ -1,5 +1,5 @@
 import { StoryObj } from '@storybook/web-components';
-import { MetaExtended } from '../../../../types';
+import { MetaExtended } from '@root/types';
 import { html } from 'lit';
 
 const meta: MetaExtended = {

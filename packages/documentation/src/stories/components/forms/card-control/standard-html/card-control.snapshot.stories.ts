@@ -1,6 +1,6 @@
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { bombArgs } from '../../../../../utils';
+import { bombArgs } from '@/utils';
 import meta, { Default } from './card-control.stories';
 
 const { id, ...metaWithoutId } = meta;
@@ -23,7 +23,7 @@ const bombedArgs = bombArgs({
   // Filter out disabled and invalid combinations
   .filter(args => !(args.disabled && args.validation === 'is-invalid'));
 
-export const CardControlStandardHTML: StoryObj = {
+export const CardControl: StoryObj = {
   render: () => {
     return html`
       <div class="d-flex gap-3 flex-wrap">

@@ -2,5 +2,5 @@
 '@swisspost/design-system-icons': minor
 ---
 
-Added icon number 2585.
+Added icons number 2589, 2590 and 2591.
 

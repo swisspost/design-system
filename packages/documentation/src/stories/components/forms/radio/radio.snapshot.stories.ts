@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './radio.stories';
 import { html } from 'lit';
-import { bombArgs } from '../../../../utils';
+import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
 

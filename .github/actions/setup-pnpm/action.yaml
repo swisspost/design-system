@@ -26,7 +26,7 @@ description: Provides node and pnpm in a specific version.
 inputs:
   node_version:
     description: Specify the node version to install
-    default: 18
+    default: 20
     type: string
   pnpm_version:
     description: Specify the pnpm version to install

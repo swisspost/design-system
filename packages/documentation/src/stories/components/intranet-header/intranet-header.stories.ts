@@ -1,4 +1,4 @@
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'd59a459b-6f14-47c6-9f98-a36a3f79a6e3',
@@ -164,6 +164,19 @@ const meta: MetaComponent = {
         },
         type: {
           summary: 'string',
+        },
+      },
+    },
+    hideCurrentUserId: {
+      name: 'hideCurrentUserId',
+      description: 'Hides the current user id from the profile dropdown',
+      control: 'boolean',
+      table: {
+        defaultValue: {
+          summary: 'false',
+        },
+        type: {
+          summary: 'boolean',
         },
       },
     },

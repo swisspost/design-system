@@ -1,8 +1,8 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { version } from '../../../package.json';
+import { version } from '@root/package.json';
 
 /**
- * @slot default - Content to place in the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.</p>
+ * @slot default - Content to place in the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a>.</p>
  */
 @Component({
   tag: 'post-tag',
@@ -27,7 +27,7 @@ export class PostTag {
   /**
    * Defines the icon `name` inside of the component.
    * <span className="alert alert-sm alert-info">If not set the icon will not show up.</span>
-   * To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs" target="_blank">icon library</a>.
+   * To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
    */
   @Prop() readonly icon: null | string = null;
 
@@ -46,7 +46,11 @@ export class PostTag {
   }
 
   private setClasses() {
-    this.classes = ['tag', this.size ? `tag-${this.size}` : null, this.variant ? `tag-${this.variant}` : null]
+    this.classes = [
+      'tag',
+      this.size ? `tag-${this.size}` : null,
+      this.variant ? `tag-${this.variant}` : null,
+    ]
       .filter(c => c !== null)
       .join(' ');
   }

@@ -7,9 +7,9 @@
 
 ## Events
 
-| Event             | Description | Type                                                        |
-| ----------------- | ----------- | ----------------------------------------------------------- |
-| `dropdownToggled` |             | `CustomEvent<{ open: boolean; element: DropdownElement; }>` |
+| Event             | Description                               | Type                                                        |
+| ----------------- | ----------------------------------------- | ----------------------------------------------------------- |
+| `dropdownToggled` | Fires when the dropdown has been toggled. | `CustomEvent<{ open: boolean; element: DropdownElement; }>` |
 
 
 ## Methods
@@ -24,15 +24,15 @@ Type: `Promise<void>`
 
 
 
-### `toggleDropdown(force?: unknown) => Promise<boolean>`
+### `toggleDropdown(force?: boolean | Event) => Promise<boolean>`
 
 Toggle the dropdown and optionally force an open/closed state
 
 #### Parameters
 
-| Name    | Type      | Description                        |
-| ------- | --------- | ---------------------------------- |
-| `force` | `unknown` | Boolean to force open/closed state |
+| Name    | Type                            | Description                        |
+| ------- | ------------------------------- | ---------------------------------- |
+| `force` | `boolean \| Event \| undefined` | Boolean to force open/closed state |
 
 #### Returns
 

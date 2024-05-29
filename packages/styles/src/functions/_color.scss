@@ -36,7 +36,7 @@
 
 // Source: https://gist.github.com/certainlyakey/e9c0d8f5c87ff47e3d5b
 @function encode-uri-color($string) {
-  @if type-of($string) == 'color' and str-index(#{$string}, '#') == 1 {
+  @if meta.type-of($string) == 'color' and string.index(#{$string}, '#') == 1 {
     $hex: string.slice(color.ie-hex-str($string), 4);
     $string: string.unquote('#{$hex}');
 
