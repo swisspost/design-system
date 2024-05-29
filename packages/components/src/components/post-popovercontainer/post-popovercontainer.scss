@@ -39,9 +39,7 @@
 }
 
 .arrow {
-  // Diagonal of 16px -> 1rem -> 1/1.41 = ~0.7
-  // https://www.omnicalculator.com/math/square-diagonal?c=CHF&v=hide:0,diagonal:16!cm
-  $arrow-size: math.div(spacing.$size-regular, math.sqrt(2));
+  $arrow-size: 0.5825rem;
   position: absolute;
   width: $arrow-size;
   height: $arrow-size;

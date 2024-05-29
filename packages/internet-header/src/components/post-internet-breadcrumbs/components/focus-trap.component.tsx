@@ -16,18 +16,14 @@ export const FocusTrap: FunctionalComponent<{ active?: boolean }> = (props, chil
   const active = props.active ?? false;
 
   const handleFocusIn = (event: FocusEvent, mode: 'first' | 'last') => {
-    if (!children.length) {
-      return;
-    }
+    if (children.length === 0) return;
 
     // Try to get a list of tabbable elements
     const containerIndex = mode === 'first' ? 0 : children.length - 1;
     const container = children[containerIndex].$elm$;
     const focusable = tabbable(container);
 
-    if (!focusable.length) {
-      return;
-    }
+    if (focusable.length === 0) return;
 
     // We can trap the focus, cancel the event
     event.preventDefault();

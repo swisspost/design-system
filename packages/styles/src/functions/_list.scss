@@ -1,11 +1,12 @@
 @use 'sass:list';
 @use 'sass:math';
+@use 'sass:meta';
 @use 'sass:string';
 
 @function remove-nth($list, $index) {
   $result: null;
 
-  @if type-of($index) != number {
+  @if meta.type-of($index) != number {
     @warn '$index: #{string.quote($index)} is not a number for `remove-nth`.';
   } @else if $index == 0 {
     @warn 'List index 0 must be a non-zero integer for `remove-nth`.';

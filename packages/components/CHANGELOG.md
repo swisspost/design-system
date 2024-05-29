@@ -1,5 +1,84 @@
 # @swisspost/design-system-components
 
+## 7.1.0
+
+### Minor Changes
+
+- Added a `heading-level` property on the `post-accordion` component to set the heading level of all `post-accordion-item` children at once. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+### Patch Changes
+
+- Fixed grid-area behaviour in card-control component, if used without any icon. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3099](https://github.com/swisspost/design-system/pull/3099))
+
+- Merged the card-control, checkbox-card and radio button card docs pages and updated the choice-card-control styles. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+- Fixed high-contrast-mode for card-control component. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+- Fixed the `post-accordion-item` chevron no longer rotating. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.1.0
+
+## 7.0.0
+
+### Major Changes
+
+- Synchronized the versions of the following packages:
+
+  - @swisspost/design-system-styles
+  - @swisspost/design-system-components
+  - @swisspost/design-system-components-react
+  - @swisspost/design-system-components-angular
+  - @swisspost/design-system-migrations
+  - @swisspost/design-system-icons
+  - @swisspost/design-system-intranet-header
+
+  This will help understanding the dependencies between these packages at a glance but also means that for the individual pacakges, semver is no longer being used. This enables us also to talk about and document Design System versions as a whole instead of documenting the fragmented versions in a complex lookup table. (by [@gfellerph](https://github.com/gfellerph) with [#2856](https://github.com/swisspost/design-system/pull/2856))
+
+- Updated the package entry properties in the package.json to the by stencil recommended files:
+
+  - Updated the `main` property from `loader/index.cjs.js` to `dist/index.cjs.js`
+  - Updated the `module` property from `loader/index.js` to `dist/loader.js`
+  - Updated the `types` property from `loader/index.d.ts` to `dist/types/index.d.ts`
+  - Removed the `es2017` property
+
+  The usage of the `@swisspost/design-system-components/loader` entry files are still available and should be used to get the lazy-loaded components. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2886](https://github.com/swisspost/design-system/pull/2886))
+
+- Prefixed all web-component custom-events with the keyword `post`.
+  - Changed `post-alert` component `dismissed` event to `postDismissed`.
+  - Changed `post-card-control` component `input` and `change` events to `postInput` and `postChange`.
+  - Changed `post-collapsible` component `collapseChange` event to `postToggle`.
+  - Changed `post-rating` component `input` and `change` events to `postInput` and `postChange`.
+  - Changed `post-tabs` component `tabChange` event to `postChange`. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2874](https://github.com/swisspost/design-system/pull/2874))
+
+### Minor Changes
+
+- Added a new `tag` component. This component is available in standard HTML or as webcomponent. (by [@b1aserlu](https://github.com/b1aserlu) with [#2552](https://github.com/swisspost/design-system/pull/2552))
+
+- Added a new web-component `post-card-control`, which works like a native `input[type="checkbox"]` or `input[type="radio"]` but with a custom visual design. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2260](https://github.com/swisspost/design-system/pull/2260))
+
+- Added the new default slot, to allow the integration of custom HTML in the card-control component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2844](https://github.com/swisspost/design-system/pull/2844))
+
+### Patch Changes
+
+- Fixed accessibility of aria controls through post-tabs components. (by [@imagoiq](https://github.com/imagoiq) with [#2777](https://github.com/swisspost/design-system/pull/2777))
+
+- Fixed post-tooltip that doesn't show up when the pointer is on a child element (like an icon). (by [@imagoiq](https://github.com/imagoiq) with [#2814](https://github.com/swisspost/design-system/pull/2814))
+
+- Fixed Collapsible and Accordion element's content which is displayed when hidden on Webkit/Safari. (by [@imagoiq](https://github.com/imagoiq) with [#2963](https://github.com/swisspost/design-system/pull/2963))
+
+- Added new black and white alpha colors. Replaced hardcoded alpha colors with the new color definitions in `card-control` component. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Updated Sass color variables: - Removed variables `$success-green`, `$error-red`, `$warning-orange`, `$success-text`, `$error-text`, `$danger` as well as the Sass map `$contextual-colors`.
+  Instead use the variables `$success`, `$error`, `$warning` and the Sass map `$signal-colors`.
+
+  - Updated the Sass map `$signal-colors` keys and added a new Sass map `$signal-background-colors`.
+  - Updated the Sass map `$background-colors` and all the dependant packages accordingly.
+
+  With the exception of the components `notification`, `toast` and `tag`, there is no component providing a `danger` variant anymore. Instead use the `error` variant. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#2861](https://github.com/swisspost/design-system/pull/2861))
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.0.0
+
 ## 2.1.0
 
 ### Minor Changes

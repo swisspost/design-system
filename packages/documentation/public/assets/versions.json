@@ -9,14 +9,14 @@
       "@ng-bootstrap/ng-bootstrap": "16.0.0",
       "@swisspost/design-system-intranet-header": "5.0.9",
       "@swisspost/design-system-styles": "6.6.2",
-      "bootstrap": "5.3.2"
+      "bootstrap": "5.3.3"
     }
   },
   {
     "title": "Version 6",
     "version": "6.6.1",
     "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
-    "url": "https://design-system.post.ch",
+    "url": "https://65e735b47fe8332135715590--swisspost-design-system-next.netlify.app/?path=/docs/home--docs",
     "dependencies": {
       "@angular/core": "16.2.3",
       "@ng-bootstrap/ng-bootstrap": "15.1.1",

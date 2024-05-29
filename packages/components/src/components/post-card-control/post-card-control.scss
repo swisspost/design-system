@@ -1,5 +1,11 @@
+@use 'sass:math';
 @use '@swisspost/design-system-styles/core' as post;
 @use '@swisspost/design-system-styles/components/form-check';
+
+/*
+* There are a whole bunch of !important statments in this file.
+* They are necessary and should not be removed, because we need to override the .form-check styles here.
+*/
 
 :host {
   display: flex;
@@ -23,29 +29,35 @@
 
   flex-basis: 100%;
   display: grid;
-  grid-template: 'input label icon' 'input content icon' / min-content auto min-content;
+  grid-template: 'input label icon' 'input content content' / min-content auto min-content;
   gap: 0 post.$size-mini;
+  margin: 0;
   padding: post.$size-regular;
   background-color: var(--post-card-control-bg);
   border: post.$size-line solid var(--post-card-control-border-color);
   border-radius: post.$border-radius;
-  color: var(--post-card-control-color);
-
+  color: var(--post-card-control-color) !important;
   cursor: pointer;
-  transition: background-color 100ms linear, border-color 100ms linear;
 
   .card-control--input {
     grid-area: input;
     margin: post.$size-micro 0;
-    background-color: var(--post-card-control-input-bg);
+    background-color: var(--post-card-control-input-bg) !important;
     border-color: var(--post-card-control-input-border-color) !important;
     color: var(--post-card-control-input-border-color) !important;
     cursor: inherit;
-    transition: border-color 100ms ease-in-out;
+    transition: none;
 
     &:focus,
     &:focus-visible {
       box-shadow: none;
+    }
+
+    @include post.high-contrast-mode() {
+      &::after {
+        forced-color-adjust: none;
+        border-color: transparent;
+      }
     }
   }
 
@@ -55,7 +67,11 @@
     padding: 0;
     color: inherit !important;
     pointer-events: none;
-    transition-duration: 100ms;
+    transition: none;
+
+    &:not(:has(+ .card-control--icon)) {
+      grid-area: 1 / label / 1 / icon;
+    }
   }
 
   .card-control--description {
@@ -88,6 +104,20 @@
     &.is-checked {
       --post-card-control-border-color: #{post.$black};
       --post-card-control-bg: #{post.$yellow};
+
+      @include post.high-contrast-mode() {
+        --post-card-control-border-color: FieldText;
+        --post-card-control-bg: SelectedItem;
+        --post-card-control-color: SelectedItemText;
+        --post-card-control-input-border-color: SelectedItemText;
+        --post-card-control-input-bg: SelectedItem;
+
+        .card-control--input {
+          &::after {
+            background-color: var(--post-card-control-color) !important;
+          }
+        }
+      }
     }
 
     &.is-invalid {
@@ -101,6 +131,20 @@
       --post-card-control-bg: #{post.$gray-60};
       --post-card-control-color: #{post.$white};
       --post-card-control-input-border-color: #{post.$black};
+
+      @include post.high-contrast-mode() {
+        --post-card-control-border-color: Highlight;
+        --post-card-control-bg: Field;
+        --post-card-control-color: FieldText;
+        --post-card-control-input-border-color: Highlight;
+        --post-card-control-input-bg: Field;
+
+        .card-control--input {
+          &::after {
+            color: FieldText;
+          }
+        }
+      }
     }
   }
 
@@ -124,7 +168,137 @@
     cursor: default;
 
     .card-control--input {
-      border-style: dashed;
+      border: 0 none;
+      padding: post.$form-check-input-border-width;
+      background-image: url('#{post.$form-check-input-disabled-background-url-light-lg}');
+
+      &[type='radio'] {
+        background-image: url('#{post.$form-check-input-radio-disabled-background-url-light}');
+      }
+    }
+  }
+
+  @include post.high-contrast-mode() {
+    --post-card-control-border-color: FieldText;
+    --post-card-control-bg: Field;
+    --post-card-control-color: FieldText;
+    --post-card-control-input-border-color: FieldText;
+    --post-card-control-input-bg: Field;
+
+    outline: post.$size-line solid Field;
+    outline-offset: post.$size-line * -2;
+
+    .card-control--input {
+      outline: post.$size-line solid Field;
+
+      // selector needed to override the .form-check styles
+      &[type] {
+        background-color: Field !important;
+      }
+
+      &::after {
+        border-color: Field !important;
+      }
+    }
+
+    .card-control--label,
+    .card-control--content {
+      background-color: var(--post-card-control-bg) !important;
+    }
+
+    &:not(.is-disabled) {
+      &.is-checked {
+        --post-card-control-border-color: FieldText;
+        --post-card-control-bg: SelectedItem;
+        --post-card-control-color: SelectedItemText;
+        --post-card-control-input-border-color: FieldText;
+
+        .card-control--input {
+          &::after {
+            background-color: FieldText !important;
+          }
+        }
+      }
+
+      &:hover {
+        --post-card-control-border-color: Highlight;
+        --post-card-control-bg: Field;
+        --post-card-control-color: FieldText;
+        --post-card-control-input-border-color: Highlight;
+      }
+    }
+
+    &.is-disabled {
+      --post-card-control-border-color: GrayText;
+      --post-card-control-bg: Field;
+      --post-card-control-color: FieldText;
+      --post-card-control-input-border-color: GrayText;
+      --post-card-control-input-bg: Field;
+
+      .card-control--input {
+        background-image: url('#{post.$form-check-input-disabled-background-url-hcm-lg}');
+
+        &[type='radio'] {
+          background-image: url('#{post.$form-check-input-radio-disabled-background-url-hcm}');
+        }
+      }
+
+      &.is-checked {
+        --post-card-control-bg: SelectedItem;
+        --post-card-control-color: SelectedItemText;
+
+        position: relative;
+        background-color: Field;
+
+        &::before {
+          display: block;
+          content: '';
+          position: absolute;
+          inset: post.$size-line;
+          background-color: SelectedItem;
+          z-index: 1;
+        }
+
+        > * {
+          position: relative;
+          z-index: 2;
+        }
+
+        .card-control--input {
+          &::after {
+            background-color: FieldText !important;
+          }
+        }
+      }
+    }
+
+    @include post.high-contrast-mode() {
+      --post-card-control-border-color: GrayText;
+      --post-card-control-color: GrayText;
+      --post-card-control-input-border-color: GrayText;
+
+      &.is-checked {
+        --post-card-control-input-bg: field;
+
+        position: relative;
+
+        &::before {
+          display: block;
+          content: '';
+          position: absolute;
+          inset: post.$size-line;
+          border-radius: post.$size-line * 0.5;
+          background-color: SelectedItem;
+        }
+
+        > * {
+          position: relative;
+        }
+
+        .card-control--input {
+          outline: post.$size-line solid Field;
+        }
+      }
     }
   }
 
@@ -145,10 +319,6 @@
         --post-card-control-color: #{post.$gray-80};
         --post-card-control-input-border-color: #{post.$gray-80};
         --post-card-control-input-bg: #{post.$white};
-
-        &.is-invalid {
-          --post-card-control-bg: #{post.$yellow};
-        }
       }
 
       &.is-invalid {
@@ -157,6 +327,10 @@
         --post-card-control-color: #{post.$error};
         --post-card-control-input-border-color: #{post.$error};
         --post-card-control-input-bg: #{post.$white};
+
+        &:where(.is-checked) {
+          --post-card-control-bg: #{post.$yellow};
+        }
       }
 
       &:hover {
@@ -165,6 +339,14 @@
         --post-card-control-color: #{post.$black};
         --post-card-control-input-border-color: #{post.$black};
         --post-card-control-input-bg: #{post.$white};
+
+        @include post.high-contrast-mode() {
+          --post-card-control-border-color: Highlight;
+          --post-card-control-bg: Field;
+          --post-card-control-color: FieldText;
+          --post-card-control-input-border-color: Highlight;
+          --post-card-control-input-bg: Field;
+        }
       }
     }
 
@@ -175,13 +357,59 @@
       }
     }
 
-    // TODO: update white alpha colors with design-system alpha colors, once they are defined
     &.is-disabled {
-      --post-card-control-border-color: #{#{rgba(post.$white, 0.8)}};
+      --post-card-control-border-color: post.$white-alpha-80;
       --post-card-control-bg: transparent;
-      --post-card-control-color: #{#{rgba(post.$white, 0.8)}};
-      --post-card-control-input-border-color: #{#{rgba(post.$white, 0.8)}};
+      --post-card-control-color: post.$white-alpha-80;
+      --post-card-control-input-border-color: post.$white-alpha-80;
       --post-card-control-input-bg: transparent;
+
+      @include post.high-contrast-mode() {
+        --post-card-control-border-color: GrayText;
+        --post-card-control-color: GrayText;
+        --post-card-control-input-border-color: GrayText;
+
+        &.is-checked {
+          --post-card-control-input-bg: Field;
+        }
+      }
+    }
+
+    @include post.high-contrast-mode() {
+      --post-card-control-border-color: FieldText;
+      --post-card-control-bg: Field;
+      --post-card-control-color: FieldText;
+      --post-card-control-input-border-color: FieldText;
+      --post-card-control-input-bg: Field;
+
+      &:not(.is-disabled) {
+        &.is-checked {
+          --post-card-control-border-color: FieldText;
+          --post-card-control-bg: SelectedItem;
+          --post-card-control-color: SelectedItemText;
+          --post-card-control-input-border-color: FieldText;
+        }
+
+        &:hover {
+          --post-card-control-border-color: Highlight;
+          --post-card-control-bg: Field;
+          --post-card-control-color: FieldText;
+          --post-card-control-input-border-color: Highlight;
+        }
+      }
+
+      &.is-disabled {
+        --post-card-control-border-color: GrayText;
+        --post-card-control-bg: Field;
+        --post-card-control-color: FieldText;
+        --post-card-control-input-border-color: GrayText;
+        --post-card-control-input-bg: Field;
+
+        &.is-checked {
+          --post-card-control-bg: SelectedItem;
+          --post-card-control-color: SelectedItemText;
+        }
+      }
     }
   }
 }
@@ -212,10 +440,6 @@
         --post-card-control-color: #{post.$gray-80};
         --post-card-control-input-border-color: #{post.$gray-80};
         --post-card-control-input-bg: #{post.$white};
-
-        &.is-invalid {
-          --post-card-control-bg: #{post.$yellow};
-        }
       }
 
       &.is-invalid {
@@ -224,6 +448,10 @@
         --post-card-control-color: #{post.$error};
         --post-card-control-input-border-color: #{post.$error};
         --post-card-control-input-bg: #{post.$white};
+
+        &:where(.is-checked) {
+          --post-card-control-bg: #{post.$yellow};
+        }
       }
 
       &:hover {
@@ -232,6 +460,14 @@
         --post-card-control-color: #{post.$black};
         --post-card-control-input-border-color: #{post.$black};
         --post-card-control-input-bg: #{post.$white};
+
+        @include post.high-contrast-mode() {
+          --post-card-control-border-color: Highlight;
+          --post-card-control-bg: Field;
+          --post-card-control-color: FieldText;
+          --post-card-control-input-border-color: Highlight;
+          --post-card-control-input-bg: Field;
+        }
       }
     }
 
@@ -242,13 +478,59 @@
       }
     }
 
-    // TODO: update white alpha colors with design-system alpha colors, once they are defined
     &.is-disabled {
       --post-card-control-border-color: post.$white-alpha-80;
       --post-card-control-bg: transparent;
       --post-card-control-color: post.$white-alpha-80;
       --post-card-control-input-border-color: post.$white-alpha-80;
       --post-card-control-input-bg: transparent;
+
+      @include post.high-contrast-mode() {
+        --post-card-control-border-color: GrayText;
+        --post-card-control-color: GrayText;
+        --post-card-control-input-border-color: GrayText;
+
+        &.is-checked {
+          --post-card-control-input-bg: Field;
+        }
+      }
+    }
+
+    @include post.high-contrast-mode() {
+      --post-card-control-border-color: FieldText;
+      --post-card-control-bg: Field;
+      --post-card-control-color: FieldText;
+      --post-card-control-input-border-color: FieldText;
+      --post-card-control-input-bg: Field;
+
+      &:not(.is-disabled) {
+        &.is-checked {
+          --post-card-control-border-color: FieldText;
+          --post-card-control-bg: SelectedItem;
+          --post-card-control-color: SelectedItemText;
+          --post-card-control-input-border-color: FieldText;
+        }
+
+        &:hover {
+          --post-card-control-border-color: Highlight;
+          --post-card-control-bg: Field;
+          --post-card-control-color: FieldText;
+          --post-card-control-input-border-color: Highlight;
+        }
+      }
+
+      &.is-disabled {
+        --post-card-control-border-color: GrayText;
+        --post-card-control-bg: Field;
+        --post-card-control-color: FieldText;
+        --post-card-control-input-border-color: GrayText;
+        --post-card-control-input-bg: Field;
+
+        &.is-checked {
+          --post-card-control-bg: SelectedItem;
+          --post-card-control-color: SelectedItemText;
+        }
+      }
     }
   }
 }

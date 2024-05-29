@@ -1,6 +1,6 @@
-import { forEach } from '../../../../utils/react';
-import { parse } from '../../../../utils/sass-export';
-import { SpecTable } from '../shared.blocks';
+import { forEach } from '@/utils/react';
+import { parse } from '@/utils/sass-export';
+import { SpecTable } from '@/stories/foundation/layout/shared.blocks';
 import scss from './breakpoints.module.scss';
 
 export const SCSS_VARIABLES = parse(scss);

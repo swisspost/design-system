@@ -17,7 +17,7 @@
     $found-index: -2;
   }
 
-  @if (map-has-key($map, $key1)) {
+  @if (map.has-key($map, $key1)) {
     $found-index: list.index(map.keys($map), $key1);
 
     @if ($key2) {
@@ -36,12 +36,12 @@
     $sum-of-arguments: $sum-of-arguments + $value;
   }
 
-  @return math.div($sum-of-arguments, length($argList));
+  @return math.div($sum-of-arguments, list.length($argList));
 }
 
 @function starts-with-any($value, $comparable...) {
   @each $c in $comparable {
-    @if (str-index('#{$value}', $c) == 1) {
+    @if (string.index('#{$value}', $c) == 1) {
       @return true;
     }
   }

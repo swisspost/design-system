@@ -143,6 +143,16 @@
   }
 }
 
+@mixin focus-hover-style-custom($additional-selector: '') {
+  @include focus-style-custom($additional-selector) {
+    @content;
+  }
+
+  &:hover#{$additional-selector} {
+    @content;
+  }
+}
+
 @mixin disabled-style($additional-selector: '') {
   &:disabled#{$additional-selector} {
     pointer-events: none;

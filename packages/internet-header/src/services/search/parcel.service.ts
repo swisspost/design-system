@@ -47,7 +47,7 @@ export const getParcelInfo = async (
   if (trackingNrPattern.test(query)) {
     const url = getTrackAndTraceApiUrl(query);
 
-    if (parcelController) parcelController.abort();
+    if (parcelController !== undefined) parcelController.abort();
     parcelController = new AbortController();
 
     return new Promise((resolve, reject) => {
@@ -79,7 +79,8 @@ export const getParcelSuggestion = async (
   searchConfig: ISearchConfig,
 ): Promise<(TrackAndTraceInfo & { url: string }) | null> => {
   const parcelInfo = await getParcelInfo(query, searchConfig);
-  return parcelInfo.ok
+
+  return Boolean(parcelInfo.ok)
     ? { ...parcelInfo, url: getTrackAndTraceRedirectUrl(query, searchConfig) }
     : null;
 };

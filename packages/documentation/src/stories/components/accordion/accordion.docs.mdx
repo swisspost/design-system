@@ -38,20 +38,24 @@ For more information, read the [getting started with components guide](/?path=/d
 ### Multiple Open Panels
 
 By default, whenever a panel is opened manually or programmatically, any other open panel is closed.
-To allow multiple panels to be open at the same time, simply use the `multiple="true"` property.
+To allow multiple panels to be open at the same time, use the `multiple="true"` property.
 
 <Canvas of={accordionStories.MultipleOpenPanels} />
 
-### Define default opened panel
+### Initially Closed Panel
 
-By default, the first panel is opened. You can control this behavior by adding the prop `collapsed` to one or multiple `post-accordion-item`.
-When adding `collapsed` to the first item, the next item will be opened.
+Use the `collapsed="true"` property on all `post-accordion-item` you want to be initially closed.
+The first panel without this property will be initially open,
+or if the accordion is configured with the `multiple="true"` property, all other panels will be open.
 
 <Canvas of={accordionStories.DefaultCollapsedPanels} />
 
-Multiple items can be opened by default when adding `multiple="true"` property to the `post-accordion` element.
+### Heading Levels
 
-<Canvas of={accordionStories.DefaultCollapsedMultiplePanels} />
+To ensure accessibility, all accordion titles are contained within heading tags (`h1`-`h6`) behind the scenes.
+It is essential to set the appropriate `heading-level` property on the `post-accordion` so that it matches the structure of your page properly.
+
+<Canvas of={accordionStories.Nested} />
 
 ### Custom Trigger
 

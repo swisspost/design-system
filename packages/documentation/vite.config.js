@@ -1,7 +1,14 @@
+import { fileURLToPath, URL } from 'url';
 // https://vitejs.dev/config/
 
 /** @type {import('vite').UserConfig} */
 export default {
+  resolve: {
+    alias: [
+      { find: '@', replacement: fileURLToPath(new URL('./src', import.meta.url)) },
+      { find: '@root/', replacement: fileURLToPath(new URL('./', import.meta.url)) },
+    ],
+  },
   optimizeDeps: {
     include: [
       '@pxtrn/storybook-addon-docs-stencil',
