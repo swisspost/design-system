@@ -1,7 +1,7 @@
 import React from 'react';
-import { parse } from '../../../utils/sass-export';
-import { forEach } from '../../../utils/react';
-import { round } from '../../../utils/units';
+import { parse } from '@/utils/sass-export';
+import { forEach } from '@/utils/react';
+import { round } from '@/utils/units';
 import scss from './typography.module.scss';
 
 const SCSS_VARIABLES = parse(scss);

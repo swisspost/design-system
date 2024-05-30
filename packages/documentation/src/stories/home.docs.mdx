@@ -1,9 +1,9 @@
 import { Meta } from '@storybook/blocks';
 import * as HomeStories from './home.stories';
 import { Feature } from './home.blocks';
-import { packages } from '../shared/packages.data';
+import { packages } from '@/shared/packages.data';
 import './home.styles.scss';
-import '../shared/tile/tile.component';
+import '@/shared/tile/tile.component';
 import { technologies } from './home.data';
 
 <Meta of={HomeStories} />
@@ -26,7 +26,6 @@ import { technologies } from './home.data';
     </div>
     <a
       href="https://www.experience-hub.ch/document/2803"
-      target="_blank"
       rel="noopener"
       className="btn btn-secondary"
     >
@@ -34,7 +33,6 @@ import { technologies } from './home.data';
     </a>
     <a
       href="https://www.figma.com/files/1052961410179009444/project/45002065/Web"
-      target="_blank"
       rel="noopener"
       className="btn btn-secondary"
     >
@@ -42,7 +40,6 @@ import { technologies } from './home.data';
     </a>
     <a
       href="https://fonts.post.ch/frutigerneueforpost/#/"
-      target="_blank"
       rel="noopener"
       className="btn btn-secondary"
     >
@@ -50,7 +47,6 @@ import { technologies } from './home.data';
     </a>
     <a
       href="https://github.com/swisspost/design-system"
-      target="_blank"
       rel="noopener"
       className="btn btn-secondary"
     >
@@ -82,7 +78,7 @@ import { technologies } from './home.data';
     </div>
     <div className="col-md-4">
       <Feature icon="2136" title="Accessible">
-        <p>Following the <a href="https://www.w3.org/TR/WCAG21/" target="_blank" rel="noopener">WCAG 2.1</a> guidelines</p>
+        <p>Following the <a href="https://www.w3.org/TR/WCAG21/" rel="noopener">WCAG 2.1</a> guidelines</p>
       </Feature>
     </div>
     <div className="col-md-4">
@@ -92,7 +88,7 @@ import { technologies } from './home.data';
     </div>
     <div className="col-md-4">
       <Feature icon="2444" title="Open Source">
-        <p>Published on <a href="https://github.com/swisspost/design-system" target="_blank" rel="noopener">GitHub</a> under the <a href="https://github.com/swisspost/design-system/blob/main/LICENSE" target="_blank" rel="noopener">Apache 2.0 license</a></p>
+        <p>Published on <a href="https://github.com/swisspost/design-system" rel="noopener">GitHub</a> under the <a href="https://github.com/swisspost/design-system/blob/main/LICENSE" rel="noopener">Apache 2.0 license</a></p>
       </Feature>
     </div>
   </div>

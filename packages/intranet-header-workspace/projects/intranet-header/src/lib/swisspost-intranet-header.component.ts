@@ -37,6 +37,7 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
   @Input() optionHeaderContent!: TemplateRef<any>;
   @Input() logoUrl: string = '';
   @Input() searchUrl: string = '';
+  @Input() hideCurrentUserId: boolean = false;
 
   @ViewChild('domWrapper')
   dom!: ElementRef;

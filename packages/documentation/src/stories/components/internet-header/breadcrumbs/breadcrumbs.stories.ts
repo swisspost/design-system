@@ -1,9 +1,9 @@
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spread } from '@open-wc/lit-helpers';
-import { getAttributes } from '../../../../utils';
+import { getAttributes } from '@/utils';
 import customItems from './overrides/custom-items';
-import { MetaComponent } from '../../../../../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
   id: '4347e5bf-8bf2-4f44-9075-9faaa53591ed',
@@ -23,12 +23,9 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
     customItems: {
       name: 'custom-items',
       control: 'object',
-      description:
-        "Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.",
       table: {
         type: {
-          summary: 'IBreadcrumbItem',
-          detail: JSON.stringify(customItems),
+          detail: JSON.stringify(customItems, null, 2),
         },
       },
     },

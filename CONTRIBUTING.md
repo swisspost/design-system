@@ -68,6 +68,7 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 #### Accessibility
 
 - `aria-hidden="true"` or `span.visually-hidden` labels for all icons
+- When adding a link, we do not use the`target="_blank"` attribute
 
 #### Docs
 

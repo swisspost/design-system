@@ -7,17 +7,17 @@
 
 ## Properties
 
-| Property | Attribute | Description | Type                   | Default     |
-| -------- | --------- | ----------- | ---------------------- | ----------- |
-| `mode`   | `mode`    |             | `"dropdown" \| "list"` | `undefined` |
+| Property | Attribute | Description                                                                 | Type                   | Default     |
+| -------- | --------- | --------------------------------------------------------------------------- | ---------------------- | ----------- |
+| `mode`   | `mode`    | Visualization of the language switch. Possible values: 'dropdown' \| 'list' | `"dropdown" \| "list"` | `undefined` |
 
 
 ## Events
 
-| Event             | Description | Type                                                        |
-| ----------------- | ----------- | ----------------------------------------------------------- |
-| `dropdownToggled` |             | `CustomEvent<{ open: boolean; element: DropdownElement; }>` |
-| `languageChanged` |             | `CustomEvent<string>`                                       |
+| Event             | Description                               | Type                                                        |
+| ----------------- | ----------------------------------------- | ----------------------------------------------------------- |
+| `dropdownToggled` | Fires when the dropdown has been toggled. | `CustomEvent<{ open: boolean; element: DropdownElement; }>` |
+| `languageChanged` | Fires when the language has been changed. | `CustomEvent<string>`                                       |
 
 
 ## Methods

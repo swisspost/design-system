@@ -1,9 +1,9 @@
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '../../../../types';
-import backgroundColors from '../../../shared/background-colors.module.scss';
-import { coloredBackground } from '../../../shared/decorators/dark-background';
-import chipMeta from '../chip/chip.stories';
+import { MetaComponent } from '@root/types';
+import backgroundColors from '@/shared/background-colors.module.scss';
+import { coloredBackground } from '@/shared/decorators/dark-background';
+import chipMeta from '@/stories/components/chip/chip.stories';
 
 const meta: MetaComponent = {
   id: 'bec68e8b-445e-4760-8bd7-1b9970206d8d',

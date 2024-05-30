@@ -6,7 +6,6 @@ import { CoveoCompletion } from '../../models/coveo.model';
 import { GeocodeLocation } from '../../models/geocode.model';
 import { TagManagerDataLayer } from '../../models/general.model';
 import {
-  DropdownElement,
   DropdownEvent,
   HasDropdown,
   ISearchRecommendation,
@@ -38,8 +37,11 @@ export class PostSearch implements HasDropdown, IsFocusable {
   @State() coveoSuggestions: CoveoCompletion[] = [];
   @State() placeSuggestions: GeocodeLocation[] = [];
   @State() parcelSuggestion: (TrackAndTraceInfo & { url: string }) | null = null;
+  /**
+   * Fires when the dropdown has been toggled.
+   */
   @Event() dropdownToggled: EventEmitter<DropdownEvent>;
-  @Element() host: DropdownElement;
+  @Element() host: HTMLPostSearchElement;
   private searchBox?: HTMLInputElement;
   private searchFlyout: HTMLElement | undefined;
   private throttledResize: throttle<() => void>;
@@ -92,16 +94,13 @@ export class PostSearch implements HasDropdown, IsFocusable {
     }
   }
 
-  public async toggleDropdown(event?: Event): Promise<boolean>;
-  public async toggleDropdown(force?: boolean): Promise<boolean>;
-
   /**
    * Toggle the dropdown and optionally force an open/closed state
    * @param force Boolean to force open/closed state
    * @returns Boolean indicating open state of the component
    */
   @Method()
-  async toggleDropdown(force?: unknown) {
+  async toggleDropdown(force?: boolean | Event): Promise<boolean> {
     this.searchDropdownOpen =
       force === undefined || typeof force !== 'boolean' ? !this.searchDropdownOpen : force;
     this.dropdownToggled.emit({ open: this.searchDropdownOpen, element: this.host });
@@ -332,7 +331,7 @@ export class PostSearch implements HasDropdown, IsFocusable {
         this.searchBox.value.trim(),
         state.localizedConfig.header.search,
       );
-      if (!redirectUrl) return;
+      if (redirectUrl === undefined) return;
       window.location.href = redirectUrl;
     }
   }

@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "7.0.0",
+  "version": "7.1.0",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -16,15 +16,16 @@
     "build": "pnpm run clean && pnpm run compile",
     "clean": "rimraf dist",
     "compile": "pnpm run tsc",
-    "tsc": "tsc -p ."
+    "tsc": "tsc -p .",
+    "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:7.0.0"
+    "@swisspost/design-system-components": "workspace:7.1.0"
   },
   "devDependencies": {
-    "@types/node": "18.19.28",
-    "@types/react": "18.2.74",
-    "@types/react-dom": "18.2.24",
+    "@types/node": "20.12.7",
+    "@types/react": "18.3.2",
+    "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "6.21.0",
     "@typescript-eslint/parser": "6.21.0",
     "eslint": "8.57.0",
@@ -33,14 +34,14 @@
     "eslint-plugin-n": "16.6.2",
     "eslint-plugin-promise": "6.1.1",
     "eslint-plugin-react": "7.34.1",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "rimraf": "5.0.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "rimraf": "5.0.7",
     "typescript": "*"
   },
   "peerDependencies": {
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
   },
   "keywords": [
     "components",

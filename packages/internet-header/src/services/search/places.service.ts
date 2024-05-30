@@ -24,7 +24,7 @@ export const queryPlaces = async (query: string): Promise<GeocodeLocation[]> => 
 
   const url = `${gisAPIUrl}/Geocode${searchParameters}`;
 
-  if (placesController) placesController.abort();
+  if (placesController !== undefined) placesController.abort();
   placesController = new AbortController();
 
   return new Promise((resolve, reject) => {
@@ -80,7 +80,7 @@ export const highlightPlacesString = (query: string | undefined, place: string) 
 export const getPlacesUrl = (location: GeocodeLocation): string => {
   let url: string;
 
-  if (location.id) {
+  if (location.id !== undefined) {
     url = `${placesUrl}/${state.currentLanguage}/${location.id}/detail`;
   } else {
     url = `${placesUrl}?preselecttext=${encodeURIComponent(location.name)}`;
