@@ -15,14 +15,22 @@ module.exports = {
   plugins: ['@typescript-eslint'],
   ignorePatterns: ['.eslintrc.js', 'dist'],
   rules: {
-    indent: [
+    'indent': [
       'error',
       2,
       {
         SwitchCase: 1,
       },
     ],
-    quotes: ['error', 'single'],
-    semi: ['error', 'always'],
+    'quotes': ['error', 'single'],
+    'semi': ['error', 'always'],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        caughtErrors: 'none',
+        destructuredArrayIgnorePattern: '^_',
+        ignoreRestSiblings: true,
+      },
+    ],
   },
 };
