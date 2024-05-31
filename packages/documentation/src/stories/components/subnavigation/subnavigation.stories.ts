@@ -1,4 +1,4 @@
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 import { parse } from '@/utils/sass-export';
@@ -63,7 +63,7 @@ function clickBlocker(story: any) {
   return html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `;
 }
 
-function renderTest(args: Args, context: StoryContext) {
+function renderTest(args: Args) {
   return html`
     <div
       class="subnavigation${args.backgroundColor !== 'default' ? ' ' + args.backgroundColor : ''}"

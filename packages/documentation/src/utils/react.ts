@@ -1,7 +1,8 @@
-export function forEach (iterable: any[] | object, callback: Function) {
+export function forEach(
+  iterable: any[] | object,
+  callback: (data: { key: string; value: any }) => any[] | object,
+) {
   const input = Object.assign(iterable);
 
-  return Object
-    .entries(input)
-    .map(([key, value]) => callback({ key, value }));
+  return Object.entries(input).map(([key, value]) => callback({ key, value }));
 }

@@ -190,7 +190,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
     ['is-' + args.validation]: args.validation !== 'null',
   });
 
-  const handleChange = (e: Event) => {
+  const handleChange = () => {
     updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
   };
 

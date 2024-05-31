@@ -129,7 +129,7 @@ let cardControlId = 0;
 const CONTROL_LABELS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
 
 // Firefox fallback for the :has selector
-function inputHandler(e: InputEvent, updateArgs: Function) {
+function inputHandler(e: InputEvent, updateArgs: (newArgs: Partial<Args>) => void) {
   const target = e.target as HTMLInputElement;
   updateArgs({ checked: target.checked });
 
@@ -225,7 +225,7 @@ export const DarkBackground = {
   render: Default.render,
 };
 
-function col(label: string, args: Args, useState: Function) {
+function col(label: string, args: Args, useState: any) {
   const [id] = useState(cardControlId++);
 
   return html`

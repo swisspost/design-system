@@ -3,7 +3,7 @@ import { forEach } from '@/utils/react';
 import { SpecTable } from '@/stories/foundation/layout/shared.blocks';
 import scss from './grid.module.scss';
 
-export const SCSS_VARIABLES = parse(scss);
+export const SCSS_VARIABLES: any = parse(scss);
 
 export const GridTable = () => (
   <SpecTable>

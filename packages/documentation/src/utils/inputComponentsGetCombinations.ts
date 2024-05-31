@@ -42,7 +42,7 @@ export function getCombinations(
     [propName: string]: any;
   }>,
 ) {
-  let result: Array<Object> = [];
+  let result: Array<object> = [];
   for (const argumentValue of argumentValues) {
     result = [
       ...result,

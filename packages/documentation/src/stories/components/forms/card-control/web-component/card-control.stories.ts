@@ -303,7 +303,7 @@ export const FormIntegration: Story = {
   },
 };
 
-function formHandler(e: any, updateArgs: Function) {
+function formHandler(e: any, updateArgs: (newArgs: Partial<Args>) => void) {
   if (e.type === 'submit') e.preventDefault();
 
   setTimeout(() => {

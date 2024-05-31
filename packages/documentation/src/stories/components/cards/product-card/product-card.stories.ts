@@ -323,11 +323,11 @@ export const Multipart: Story = {
   `,
   decorators: [
     (story: any) => {
-      let timer;
-
       return html`
         ${story()}
         <script id="toto">
+          let timer;
+
           function syncHeights() {
             const nodes = document.querySelectorAll('[data-sync-height-with]');
 

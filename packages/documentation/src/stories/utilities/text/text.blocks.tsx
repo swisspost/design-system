@@ -29,7 +29,7 @@ export const TextUtilityAPI = (props: {
       )}
       <dt className="col-3">Values:</dt>
       <dd className="col-9">
-        {props.values.map((value, index) => (
+        {props.values.map(value => (
           <code key={value} className="me-2">
             {value}
           </code>
