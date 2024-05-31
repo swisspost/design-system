@@ -7,7 +7,6 @@ module.exports = {
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
   overrides: [],
   parser: '@typescript-eslint/parser',
-  ignorePatterns: ['.eslintrc.js', 'jest.config.js', 'public/**/*', 'svgo.config.ts'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
@@ -15,6 +14,7 @@ module.exports = {
     project: 'tsconfig.eslint.json',
   },
   plugins: ['@typescript-eslint'],
+  ignorePatterns: ['.eslintrc.js', 'jest.config.js', 'public', 'svgo.config.ts'],
   rules: {
     indent: [
       'error',
