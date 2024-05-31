@@ -28,7 +28,7 @@ const versionFilterMap: any = {
   Mmp: 'majorminorpatch',
 };
 
-export function getVersion(version: string, filter: string = '') {
+export function getVersion(version: string, filter = '') {
   const cleanVersion = version.replace(/^[^\d]+/, '');
 
   if (filter) {

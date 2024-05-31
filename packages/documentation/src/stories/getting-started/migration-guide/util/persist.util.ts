@@ -1,5 +1,5 @@
-export const MIGRATION_TYPE: string = 'post:migration_type';
-export const MIGRATION_CHECKS_KEY: string = 'post:migration_checks';
+export const MIGRATION_TYPE = 'post:migration_type';
+export const MIGRATION_CHECKS_KEY = 'post:migration_checks';
 
 export function getLocaleStorage(key: string): any | null {
   const value = window.localStorage.getItem(key);
