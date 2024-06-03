@@ -49,11 +49,7 @@ export function getDomMigrationRule(...updates: DomUpdate[]): Rule {
     const { buildPaths, testPaths } = await getProjectTsConfigPaths(tree);
     const basePath = process.cwd();
 
-    if (!buildPaths.length && !testPaths.length) {
-      throw new SchematicsException(
-        'Could not find any tsconfig file. Cannot check templates for empty routerLinks.',
-      );
-    }
+    checkSchematicException(buildPaths, testPaths);
 
     for (const tsconfigPath of [...buildPaths, ...testPaths]) {
       const { program } = createMigrationProgram(tree, tsconfigPath, basePath);
@@ -70,7 +66,7 @@ export function getDomMigrationRule(...updates: DomUpdate[]): Rule {
 
       for (const template of templateVisitor.resolvedTemplates) {
         const treeFilePath = relative(normalize(basePath), normalize(template.filePath));
-        let sourceCode = tree.read(treeFilePath)?.toString() ?? '';
+        let sourceCode = getSourceCode(tree, treeFilePath);
 
         if (!sourceCode) {
           continue;
@@ -139,9 +135,21 @@ export function getDomMigrationRule(...updates: DomUpdate[]): Rule {
           // commit changes in tree file to tree
           tree.commitUpdate(treeUpdateRecorder);
           // update "sourceCode" for chained "DomUpdates" in same migration schematic
-          sourceCode = tree.read(treeFilePath)?.toString() ?? '';
+          sourceCode = getSourceCode(tree, treeFilePath);
         }
       }
     }
   };
+
+  function checkSchematicException(buildPaths: string[], testPaths: string[]) {
+    if (!buildPaths.length && !testPaths.length) {
+      throw new SchematicsException(
+        'Could not find any tsconfig file. Cannot check templates for empty routerLinks.',
+      );
+    }
+  }
+
+  function getSourceCode(tree: Tree, treefilePath: string): string {
+    return tree.read(treefilePath)?.toString() ?? '';
+  }
 }
