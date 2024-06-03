@@ -171,7 +171,6 @@
   position: relative;
   background: white;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.6);
-  visibility: hidden;
   transform: translateY(3rem);
   opacity: 0;
   transition: transform 500ms, opacity 500ms;
@@ -223,10 +222,10 @@ iframe {
   height: 100%;
   top: 0;
   left: 0;
+}
 
-  .loaded ~ & {
-    display: none;
-  }
+.loaded .loader-wrapper {
+  display:none;
 }
 
 .hidden-control-breadcrumbs {
