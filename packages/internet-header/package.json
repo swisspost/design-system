@@ -67,7 +67,7 @@
     "bootstrap": "5.3.3",
     "cypress": "13.9.0",
     "cypress-each": "1.14.0",
-    "cypress-storybook": "0.5.1",
+    "cypress-storybook": "1.0.0",
     "eslint": "8.57.0",
     "eslint-plugin-react": "7.34.1",
     "focus-trap": "7.5.4",
