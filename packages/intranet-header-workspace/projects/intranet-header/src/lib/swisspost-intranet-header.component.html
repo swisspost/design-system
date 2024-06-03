@@ -59,6 +59,9 @@
               class="d-flex justify-content-center align-self-stretch px-3 no-toggle-arrow"
               id="profileMenu"
               ngbDropdownToggle
+              tabindex="0"
+              (keydown.enter)="optionDropdown.toggle()"
+              (keydown.space)="optionDropdown.toggle()"
             >
               <img [src]="avatarUrl" class="profile-image align-self-center" alt="" />
             </div>
@@ -78,11 +81,7 @@
                   </div>
                 </ng-container>
               </div>
-              <div
-                class="other-items"
-                (click)="optionDropdownClick($event)"
-                (keydown)="optionDropdownClick($event)"
-              >
+              <div class="other-items">
                 <div class="dropdown-item" *ngIf="currentUserId && !hideCurrentUserId">
                   {{ currentUserId }}
                 </div>
@@ -103,7 +102,9 @@
         <div
           *ngIf="hasNavbar === true"
           (click)="toggleMenu()"
-          (keydown)="toggleMenu()"
+          (keydown.enter)="toggleMenu()"
+          (keydown.space)="toggleMenu()"
+          tabindex="0"
           id="nav-toggler"
           class="navbar-toggler px-3 d-md-none align-self-stretch d-inline-flex align-items-center"
         >
