@@ -1,5 +1,5 @@
 import type { StorybookConfig } from '@storybook/web-components-vite';
-import pkg from '../package.json';
+import pkg from '@/../package.json';
 import { mergeConfig } from 'vite';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 

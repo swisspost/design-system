@@ -7,8 +7,6 @@
 name: Lint files
 on:
   pull_request:
-    paths:
-      - 'packages/**'
 
 jobs:
   build:
@@ -29,4 +27,4 @@ jobs:
       # Test all changed packages and their dependents
       # https://pnpm.io/filtering#--filter-since
       - name: Lint packages
-        run: pnpm --filter "...[origin/main]" lint
+        run: pnpm -r lint

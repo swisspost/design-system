@@ -1,7 +1,7 @@
 import { Component, Element, h, Host, Listen, Method, Prop, State, Watch } from '@stencil/core';
-import { version } from '../../../package.json';
-import { checkEmptyOrOneOf } from '../../utils';
-import { HEADING_LEVELS, HeadingLevel } from './heading-levels';
+import { version } from '@root/package.json';
+import { HEADING_LEVELS, HeadingLevel } from '@/types';
+import { checkEmptyOrOneOf } from '@/utils';
 
 /**
  * @slot header - Slot for placing custom content within the accordion item's header.
@@ -28,6 +28,7 @@ export class PostAccordionItem {
 
   /**
    * Defines the hierarchical level of the accordion item header within the headings structure.
+   * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
    */
   @Prop() readonly headingLevel?: HeadingLevel = 2;
 
@@ -36,7 +37,7 @@ export class PostAccordionItem {
     checkEmptyOrOneOf(
       newValue,
       HEADING_LEVELS,
-      'The `headingLevel` property of the `post-accordion-item` must be a number between 1 and 6.',
+      'The `heading-level` property of the `post-accordion-item` must be a number between 1 and 6.',
     );
   }
 
@@ -51,7 +52,7 @@ export class PostAccordionItem {
 
   @Listen('postToggle')
   onCollapseToggle(event: CustomEvent<boolean>): void {
-    if ((event.target as HTMLElement).localName === 'post-collapsible') {
+    if ((event.target as HTMLElement).localName === 'post-accordion-item') {
       this.isOpen = event.detail;
     }
   }

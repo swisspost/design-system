@@ -68,13 +68,14 @@ Use these commands whenever you want to work on one of these packages. Ideally, 
 #### Accessibility
 
 - `aria-hidden="true"` or `span.visually-hidden` labels for all icons
+- When adding a link, we do not use the`target="_blank"` attribute
 
 #### Docs
 
 - Add the `id` property in the meta of each story file. The property should contain an UUID (feel free to use your favorite tool)
 - No react related attributes in code snippets (e.g. className, htmlFor, key, etc.)
 - No nested `<p>` tags (beware of .lead and .alert)
-- When using LinkTo use both the `kind` and `story` attributes
+- When adding a link, we do not use the LinkTo element, but the standard `<a>` element
 - `div.hide-col-default` wrapper for controls on CSS only component docs
 - Add the `sourceState="shown"` attribute to the first canvas if the code is not too long (less than 8 lines)
 

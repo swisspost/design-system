@@ -104,18 +104,6 @@
     &:focus {
       border-color: form-validation.$form-feedback-invalid-color;
     }
-
-    &:not(&[type='file']) {
-      background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid);
-
-      @include utilities-mx.high-contrast-mode() {
-        background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-dark);
-
-        @media (prefers-color-scheme: light) {
-          background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-light);
-        }
-      }
-    }
   }
 
   &.is-valid {
@@ -123,18 +111,6 @@
 
     &:focus {
       border-color: form-validation.$form-feedback-valid-color;
-    }
-
-    &:not(&[type='file']) {
-      background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
-
-      @include utilities-mx.high-contrast-mode() {
-        background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-dark);
-
-        @media (prefers-color-scheme: light) {
-          background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-light);
-        }
-      }
     }
   }
 
@@ -155,6 +131,32 @@
     &.form-control-lg {
       padding-right: spacing.$size-small-huge; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
       background-size: forms.$form-bg-size; // Add space between background icons (ours and the one from bootstrap). Duplicated rule in form-select for arrow size.
+    }
+  }
+}
+
+.form-control:not([type='file']) {
+  &.is-invalid {
+    background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid);
+
+    @include utilities-mx.high-contrast-mode() {
+      background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-dark);
+
+      @media (prefers-color-scheme: light) {
+        background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-light);
+      }
+    }
+  }
+
+  &.is-valid {
+    background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
+
+    @include utilities-mx.high-contrast-mode() {
+      background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-dark);
+
+      @media (prefers-color-scheme: light) {
+        background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-light);
+      }
     }
   }
 }

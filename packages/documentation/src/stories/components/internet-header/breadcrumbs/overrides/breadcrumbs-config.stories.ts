@@ -1,4 +1,4 @@
-import * as BreadcrumbsStories from '../breadcrumbs.stories';
+import * as BreadcrumbsStories from '@/stories/components/internet-header/breadcrumbs/breadcrumbs.stories';
 
 export default {
   ...BreadcrumbsStories.default,

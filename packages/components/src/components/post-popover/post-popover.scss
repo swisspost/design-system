@@ -21,8 +21,8 @@
   align-items: self-start;
   padding: 0.5em;
 
-  // Max 2/3 of the column width
-  max-width: min(66vw, 60rem);
+  min-width: 160px;
+  max-width: 280px;
 
   // Max available width on mobile, popovercontainer will handle offsets
   @include post.media-breakpoint-down(rg) {
@@ -32,4 +32,5 @@
 
 .popover-content {
   padding: 0.5em;
+  flex-grow: 1;
 }

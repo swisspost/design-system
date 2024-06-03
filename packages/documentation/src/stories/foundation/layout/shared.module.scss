@@ -13,7 +13,7 @@ $breakpointNames: (
 );
 
 :export {
-  breakpoint-count: length(post.$grid-breakpoints);
+  breakpoint-count: list.length(post.$grid-breakpoints);
 
   @each $breakpoint, $value in post.$grid-breakpoints {
     $i: list.index(post.$grid-breakpoints, $breakpoint $value);

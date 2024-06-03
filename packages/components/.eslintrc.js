@@ -11,7 +11,16 @@ module.exports = {
   ],
   overrides: [],
   parser: '@typescript-eslint/parser',
-  ignorePatterns: ['.eslintrc.js'],
+  ignorePatterns: [
+    '.eslintrc.js',
+    '.stencil',
+    'cypress',
+    'cypress.config.js',
+    'dist',
+    'loader',
+    'stencil.config.ts',
+    'www',
+  ],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',

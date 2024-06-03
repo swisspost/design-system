@@ -1,5 +1,38 @@
 # @swisspost/design-system-components-angular
 
+## 7.1.0
+
+### Minor Changes
+
+- Added a `heading-level` property on the `post-accordion` component to set the heading level of all `post-accordion-item` children at once. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+### Patch Changes
+
+- Fixed broken value-accessors for post-card-control. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3101](https://github.com/swisspost/design-system/pull/3101))
+
+## 7.0.0
+
+### Major Changes
+
+- Synchronized the versions of the following packages:
+
+  - @swisspost/design-system-styles
+  - @swisspost/design-system-components
+  - @swisspost/design-system-components-react
+  - @swisspost/design-system-components-angular
+  - @swisspost/design-system-migrations
+  - @swisspost/design-system-icons
+  - @swisspost/design-system-intranet-header
+
+  This will help understanding the dependencies between these packages at a glance but also means that for the individual pacakges, semver is no longer being used. This enables us also to talk about and document Design System versions as a whole instead of documenting the fragmented versions in a complex lookup table. (by [@gfellerph](https://github.com/gfellerph) with [#2856](https://github.com/swisspost/design-system/pull/2856))
+
+- Added support for Angular 17. (by [@alizedebray](https://github.com/alizedebray) with [#2760](https://github.com/swisspost/design-system/pull/2760))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@7.0.0
+
 ## 2.0.0
 
 ### Patch Changes

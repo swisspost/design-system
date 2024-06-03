@@ -2,7 +2,7 @@ import type { Args, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 import { repeat } from 'lit/directives/repeat.js';
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'eb78afcb-ce92-4990-94b6-6536d5ec6af4',
@@ -21,7 +21,7 @@ const meta: MetaComponent = {
     type: 'button',
     variant: 'btn-primary',
     size: 'null',
-    animated: true,
+    animated: 'btn-animated',
     icon: 'null',
     iconOnly: false,
     iconPosition: 'start',
@@ -121,14 +121,20 @@ const meta: MetaComponent = {
     },
     animated: {
       name: 'Animated',
-      description: 'When set to `true`, the component animates on hover.',
+      description: 'Sets an animation on hover.',
       if: {
         arg: 'icon',
         eq: 'null',
       },
       control: {
-        type: 'boolean',
+        type: 'inline-radio',
+        labels: {
+          'null': 'None',
+          'btn-animated': 'End',
+          'btn-animated-start': 'Start',
+        },
       },
+      options: ['null', 'btn-animated', 'btn-animated-start'],
       table: {
         category: 'General',
       },
@@ -215,7 +221,7 @@ type Story = StoryObj;
 const Template = {
   render: (args: Args) => {
     const tagName = unsafeStatic(args.tag);
-    const isAnimated = args.tag !== 'input' && args.animated;
+    const isAnimated = args.tag !== 'input' && args.animated !== 'none';
     const props = createProps(args, isAnimated);
 
     if (args.tag === 'input') {
@@ -244,7 +250,7 @@ function createProps(args: Args, isAnimated: boolean) {
       'btn',
       args.variant,
       args.size,
-      isAnimated && 'btn-animated',
+      args.animated,
       args.iconOnly && 'btn-icon',
       ...additionalClasses,
     ]
