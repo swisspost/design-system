@@ -1,7 +1,7 @@
 import { Args } from '@storybook/web-components';
 
-export const getAttributes = (args: Args, condition?: (arg: any) => boolean): Args => {
-  const attrs: { [key: string]: any } = {};
+export const getAttributes = (args: Args, condition?: (arg: unknown) => boolean): Args => {
+  const attrs: { [key: string]: unknown } = {};
 
   for (const key in args) {
     if (Object.hasOwn(args, key) && condition && condition(args[key])) {

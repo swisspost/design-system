@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
 import { MetaComponent } from '@root/types';
 
@@ -53,8 +53,8 @@ export default meta;
 
 type Story = StoryObj;
 
-function generateDecorators(story: any) {
-  return html` <div class="m-5 overflow-hidden">${story()}</div> `;
+function generateDecorators(story: StoryFn, context: StoryContext) {
+  return html` <div class="m-5 overflow-hidden">${story(context.args, context)}</div> `;
 }
 
 function render(args: Args) {

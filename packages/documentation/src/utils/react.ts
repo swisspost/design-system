@@ -1,6 +1,9 @@
+import { ReactNode } from 'react';
+
 export function forEach(
-  iterable: any[] | object,
-  callback: (data: { key: string; value: any }) => any[] | object,
+  iterable: string[] | number[] | object,
+  /* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+  callback: ({ key, value }: { key: string; value: any }) => ReactNode | ReactNode[],
 ) {
   const input = Object.assign(iterable);
 

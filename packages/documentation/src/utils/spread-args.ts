@@ -4,7 +4,7 @@ import { AsyncDirective, directive } from 'lit-html/async-directive.js';
 type Props = Partial<HTMLElement>;
 type Attrs = Record<string, string | null>;
 
-function formatAttrs(argKey: string, argValue: any): Attrs {
+function formatAttrs(argKey: string, argValue: unknown): Attrs {
   // key to kebab case
   const attrKey = argKey.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
 

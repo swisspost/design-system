@@ -1,9 +1,10 @@
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { MetaComponent } from '@root/types';
 import { parse } from '@/utils/sass-export';
 import scss from './subnavigation.module.scss';
 
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 const SCSS_VARIABLES: any = parse(scss);
 
 const meta: MetaComponent = {
@@ -59,8 +60,10 @@ const meta: MetaComponent = {
 export default meta;
 
 // DECORATOR
-function clickBlocker(story: any) {
-  return html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `;
+function clickBlocker(story: StoryFn, context: StoryContext) {
+  return html`
+    <div @click=${(e: Event) => e.preventDefault()}>${story(context.args, context)}</div>
+  `;
 }
 
 function renderTest(args: Args) {

@@ -2,7 +2,8 @@ import React from 'react';
 import { parse } from '@/utils/sass-export';
 import scss from './text.module.scss';
 
-export const SCSS_VARIABLES = parse(scss);
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+export const SCSS_VARIABLES: any = parse(scss);
 
 export const TextUtilityAPI = (props: {
   cssPrefix: string;

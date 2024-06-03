@@ -5,7 +5,8 @@ import { parse } from '@/utils/sass-export';
 import scss from './spacing.module.scss';
 import { MetaExtended } from '@root/types';
 
-export const SCSS_VARIABLES = parse(scss);
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+export const SCSS_VARIABLES: any = parse(scss);
 
 const sizingOptions = ['0', '1', '2', '3', '4', '5', 'auto', ...Object.keys(SCSS_VARIABLES.sizes)];
 
@@ -142,7 +143,7 @@ export const Default: Story = {
   ],
 };
 
-export const responsiveExample: Story = {
+export const ResponsiveExample: Story = {
   render: () => {
     return html` <div class="h-bigger-giant w-bigger-giant p-regular p-lg-big"></div> `;
   },
@@ -160,7 +161,7 @@ export const responsiveExample: Story = {
   ],
 };
 
-export const automaticResponsiveExample: Story = {
+export const AutomaticResponsiveExample: Story = {
   render: () => {
     return html` <div class="h-bigger-giant w-bigger-giant p-large-r"></div> `;
   },

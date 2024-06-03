@@ -9,6 +9,8 @@ import scss from '../card-control.module.scss';
 
 const SCSS_VARIABLES: { [key: string]: string } = parse(scss);
 
+type useStateFn = typeof useState;
+
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
   title: 'Components/Forms/Card-Control',
@@ -225,7 +227,7 @@ export const DarkBackground = {
   render: Default.render,
 };
 
-function col(label: string, args: Args, useState: any) {
+function col(label: string, args: Args, useState: useStateFn) {
   const [id] = useState(cardControlId++);
 
   return html`
