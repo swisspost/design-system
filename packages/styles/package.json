@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "@swisspost/design-system-icons": "workspace:7.1.0",
-    "@types/node": "20.12.7",
+    "@types/node": "20.14.0",
     "autoprefixer": "10.4.19",
     "copyfiles": "2.4.1",
     "glob": "10.3.15",
