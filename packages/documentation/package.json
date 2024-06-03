@@ -23,6 +23,7 @@
     "e2e": "cypress run",
     "e2e:ci": "xvfb-run -a cypress run",
     "e2e:watch": "cypress open",
+    "doctor": "storybook doctor",
     "snapshots": "percy exec -- cypress run --config-file ./cypress.snapshot.config.js --record --key 0995e768-43ec-42bd-a127-ff944a2ad8c9"
   },
   "dependencies": {
