@@ -7,12 +7,12 @@ import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
-      useExisting: PostCardControlValueAccessorDirective,
+      useExisting: PostCardControlRadioValueAccessorDirective,
       multi: true,
     },
   ],
 })
-export class PostCardControlValueAccessorDirective implements ControlValueAccessor {
+export class PostCardControlRadioValueAccessorDirective implements ControlValueAccessor {
   private onChange: (value: any) => void = () => {
     /**/
   };
@@ -28,7 +28,7 @@ export class PostCardControlValueAccessorDirective implements ControlValueAccess
       this.el.nativeElement.value != value ? false : value;
   }
 
-  @HostListener('change', ['$event.detail.value'])
+  @HostListener('postChange', ['$event.detail.value'])
   handleChangeEvent(value: any) {
     this.onChange(value);
   }

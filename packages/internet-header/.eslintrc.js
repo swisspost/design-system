@@ -1,5 +1,16 @@
 module.exports = {
   extends: ['plugin:@stencil-community/recommended'],
+  ignorePatterns: [
+    '.eslintrc.js',
+    '.stencil',
+    'cypress',
+    'cypress.config.js',
+    'dist',
+    'loader',
+    'src/assets',
+    'stencil.config.ts',
+    'www',
+  ],
   parserOptions: {
     sourceType: 'module',
     ecmaVersion: 2020,

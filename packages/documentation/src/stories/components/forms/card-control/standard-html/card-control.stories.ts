@@ -3,8 +3,8 @@ import { useArgs, useState } from '@storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { MetaComponent } from '../../../../../../types';
-import { parse } from '../../../../../utils/sass-export';
+import { MetaComponent } from '@root/types';
+import { parse } from '@/utils/sass-export';
 import scss from '../card-control.module.scss';
 
 const SCSS_VARIABLES: { [key: string]: string } = parse(scss);

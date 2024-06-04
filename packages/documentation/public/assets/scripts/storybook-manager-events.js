@@ -1,33 +1,56 @@
-window.onload = function () {
-  const previewWrapper = document.querySelector('#storybook-preview-wrapper');
-  let storyAnchor = document.querySelector('#storybook-preview-wrapper > a');
+class StorybookEventManager {
+  #EVENTS = {
+    ready: 'storybook:ready',
+    change: 'storybook:routeChange',
+  };
 
-  if (storyAnchor) {
-    // if storyAnchor already exists, just emit ready event and listen for route-changes
-    ready();
-  } else {
-    // if storyAnchor does not exist yet, wait until its rendered, then emit ready event and listen for route-changes
-    new MutationObserver(function () {
-      storyAnchor = document.querySelector('#storybook-preview-wrapper > a');
+  #root;
+  #preview;
+  #storyAnchor;
 
-      if (storyAnchor) {
-        this.disconnect();
-        ready();
-      }
-    }).observe(previewWrapper, { childList: true });
+  constructor() {
+    window.onload = this.#init.bind(this);
   }
 
-  function ready() {
-    // execute on next cycle to ensure the doc-title has been updated by storybook
-    setTimeout(() => {
-      window.dispatchEvent(new Event('storybook:ready'));
-    });
+  #setElements() {
+    this.#root = document.querySelector('#root');
+    this.#preview = document.querySelector('#storybook-preview-wrapper');
+    this.#storyAnchor = document.querySelector('#storybook-preview-wrapper > a');
+  }
 
-    new MutationObserver(() => {
-      // execute on next cycle to ensure the doc-title has been updated by storybook
-      setTimeout(() => {
-        window.dispatchEvent(new Event('storybook:routeChange'));
+  #init() {
+    this.#setElements();
+
+    if (this.#storyAnchor) {
+      // if the anchor element is present already, document has been fully loaded, emit ready event
+      this.#emit(this.#EVENTS.ready);
+      // observe anchor element attributes for change to detect a route change, then emit the change event
+      this.#observe(this.#storyAnchor, { attributes: true }, () => {
+        this.#emit(this.#EVENTS.change);
       });
-    }).observe(storyAnchor, { attributes: true });
+    } else if (this.#preview) {
+      // if the preview element is present, observe it until it has child elements, then init again
+      this.#observe(this.#preview, { childList: true }, this.#init.bind(this), true);
+    } else {
+      // if the root element is present, observe it until it has child elements, then init again
+      this.#observe(this.#root, { childList: true }, this.#init.bind(this), true);
+    }
   }
-};
+
+  #observe(element, options = {}, callback = null, disconnectOnChange = false) {
+    new MutationObserver(function () {
+      if (disconnectOnChange) this.disconnect();
+      if (callback) callback();
+    }).observe(element, options);
+  }
+
+  #emit(type = null) {
+    if (Object.values(this.#EVENTS).includes(type)) {
+      setTimeout(() => {
+        window.dispatchEvent(new Event(type));
+      });
+    }
+  }
+}
+
+new StorybookEventManager();

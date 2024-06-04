@@ -40,9 +40,7 @@ export class MigrationV67Component extends LitElement {
                       <li>
                         <p>
                           Use
-                          <a href="https://update.angular.io/" target="_blank">
-                            https://update.angular.io/
-                          </a>
+                          <a href="https://update.angular.io/"> https://update.angular.io/ </a>
                           to update Angular to version 17
                         </p>
                       </li>
@@ -57,7 +55,6 @@ export class MigrationV67Component extends LitElement {
                           Update ng-bootstrap to version
                           <a
                             href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1600-2023-11-22"
-                            target="_blank"
                           >
                             16.x.x
                           </a>

@@ -40,8 +40,6 @@
   &:not(:disabled) {
     &:hover,
     &:focus {
-      border-color: var(--post-contrast-color);
-
       @include utilities.high-contrast-mode {
         border-color: FieldText;
       }

@@ -65,9 +65,7 @@ export class MigrationV45Component extends LitElement {
                   <ol>
                     <li>
                       If your Angular version is lower than 13, use
-                      <a href="https://update.angular.io/" target="_blank">
-                        https://update.angular.io/
-                      </a>
+                      <a href="https://update.angular.io/"> https://update.angular.io/ </a>
                       to update Angular step by step to version 13.
                     </li>
                     <li>${this._templateBootstrapInstructions()}</li>
@@ -161,12 +159,11 @@ export class MigrationV45Component extends LitElement {
   private _templateBootstrapInstructions() {
     return html`
       Update Bootstrap to version
-      <a href="https://getbootstrap.com/docs/5.1/migration" target="_blank">5.1.x</a>
+      <a href="https://getbootstrap.com/docs/5.1/migration">5.1.x</a>
       <ng-container *ngIf="isMigratingAngular">
         and ng-bootstrap to version
         <a
           href="https://github.com/ng-bootstrap/ng-bootstrap/blob/master/CHANGELOG.md#1400-2022-12-07"
-          target="_blank"
         >
           12.x.x
         </a>

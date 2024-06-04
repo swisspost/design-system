@@ -1,4 +1,4 @@
-import * as HeaderStories from '../header.stories';
+import * as HeaderStories from '@/stories/components/internet-header/header/header.stories';
 
 export default {
   ...HeaderStories.default,

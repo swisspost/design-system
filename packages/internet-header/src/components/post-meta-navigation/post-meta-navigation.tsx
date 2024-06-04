@@ -7,7 +7,14 @@ import { state } from '../../data/store';
   shadow: true,
 })
 export class PostMetaNavigation {
+  /**
+   * Displays the meta-navigation horihontally or vertically.
+   * Allowed values: 'horizontal' | 'vertical'
+   */
   @Prop() orientation: 'horizontal' | 'vertical';
+  /**
+   * Displays the meta-navigation in full-width.
+   */
   @Prop() fullWidth?: boolean = false;
 
   render() {

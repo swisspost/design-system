@@ -14,8 +14,8 @@ describe('breadcrumb', () => {
     cy.get('@breadcrumbs')
       .find('div.overlay')
       .should('exist')
-      .find('div.overlay-container')
-      .should('have.class', 'loaded');
+      .find('[role=dialog].loaded', { timeout: 30000 })
+      .should('exist');
 
     cy.get('@breadcrumbs')
       .find('div.overlay')

@@ -6,16 +6,25 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 import { DropdownEvent, NavMainEntity } from "./models/header.model";
+import { Event } from "@stencil/core";
 import { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 import { StickynessOptions } from "./models/implementor.model";
 import { Environment, ICustomConfig } from "./models/general.model";
 import { IAvailableLanguage } from "./models/language.model";
 export { DropdownEvent, NavMainEntity } from "./models/header.model";
+export { Event } from "@stencil/core";
 export { IBreadcrumbItem, IBreadcrumbOverlay } from "./models/breadcrumbs.model";
 export { StickynessOptions } from "./models/implementor.model";
 export { Environment, ICustomConfig } from "./models/general.model";
 export { IAvailableLanguage } from "./models/language.model";
 export namespace Components {
+    /**
+     * Trap the focus inside a specific container.
+     * @param active activate or deactivate the focus trap
+     */
+    interface FocusTrap {
+        "active": boolean;
+    }
     interface PostKlpLoginWidget {
         /**
           * Override the logout-url provided by the portal config.
@@ -27,6 +36,9 @@ export namespace Components {
         "setFocus": () => Promise<void>;
     }
     interface PostLanguageSwitch {
+        /**
+          * Visualization of the language switch. Possible values: 'dropdown' | 'list'
+         */
         "mode": 'dropdown' | 'list';
         /**
           * Open or close the language switch programatically
@@ -55,7 +67,13 @@ export namespace Components {
         "toggleDropdown": (force?: boolean) => Promise<boolean>;
     }
     interface PostMetaNavigation {
+        /**
+          * Displays the meta-navigation in full-width.
+         */
         "fullWidth"?: boolean;
+        /**
+          * Displays the meta-navigation horihontally or vertically. Allowed values: 'horizontal' | 'vertical'
+         */
         "orientation": 'horizontal' | 'vertical';
     }
     interface PostSearch {
@@ -68,11 +86,14 @@ export namespace Components {
           * @param force Boolean to force open/closed state
           * @returns Boolean indicating open state of the component
          */
-        "toggleDropdown": (force?: unknown) => Promise<boolean>;
+        "toggleDropdown": (force?: boolean | Event) => Promise<boolean>;
     }
     interface PostSkiplinks {
     }
     interface SwisspostInternetBreadcrumbs {
+        /**
+          * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
+         */
         "customItems"?: string | IBreadcrumbItem[];
         /**
           * Hide all buttons.
@@ -179,6 +200,16 @@ export interface SwisspostInternetHeaderCustomEvent<T> extends CustomEvent<T> {
     target: HTMLSwisspostInternetHeaderElement;
 }
 declare global {
+    /**
+     * Trap the focus inside a specific container.
+     * @param active activate or deactivate the focus trap
+     */
+    interface HTMLFocusTrapElement extends Components.FocusTrap, HTMLStencilElement {
+    }
+    var HTMLFocusTrapElement: {
+        prototype: HTMLFocusTrapElement;
+        new (): HTMLFocusTrapElement;
+    };
     interface HTMLPostKlpLoginWidgetElement extends Components.PostKlpLoginWidget, HTMLStencilElement {
     }
     var HTMLPostKlpLoginWidgetElement: {
@@ -286,6 +317,7 @@ declare global {
         new (): HTMLSwisspostInternetHeaderElement;
     };
     interface HTMLElementTagNameMap {
+        "focus-trap": HTMLFocusTrapElement;
         "post-klp-login-widget": HTMLPostKlpLoginWidgetElement;
         "post-language-switch": HTMLPostLanguageSwitchElement;
         "post-logo": HTMLPostLogoElement;
@@ -299,6 +331,13 @@ declare global {
     }
 }
 declare namespace LocalJSX {
+    /**
+     * Trap the focus inside a specific container.
+     * @param active activate or deactivate the focus trap
+     */
+    interface FocusTrap {
+        "active"?: boolean;
+    }
     interface PostKlpLoginWidget {
         /**
           * Override the logout-url provided by the portal config.
@@ -306,26 +345,53 @@ declare namespace LocalJSX {
         "logoutUrl"?: string;
     }
     interface PostLanguageSwitch {
+        /**
+          * Visualization of the language switch. Possible values: 'dropdown' | 'list'
+         */
         "mode"?: 'dropdown' | 'list';
+        /**
+          * Fires when the dropdown has been toggled.
+         */
         "onDropdownToggled"?: (event: PostLanguageSwitchCustomEvent<DropdownEvent>) => void;
+        /**
+          * Fires when the language has been changed.
+         */
         "onLanguageChanged"?: (event: PostLanguageSwitchCustomEvent<string>) => void;
     }
     interface PostLogo {
     }
     interface PostMainNavigation {
+        /**
+          * Fires when the dropdown has been toggled.
+         */
         "onDropdownToggled"?: (event: PostMainNavigationCustomEvent<DropdownEvent>) => void;
+        /**
+          * Fires when the flyout has been toggled.
+         */
         "onFlyoutToggled"?: (event: PostMainNavigationCustomEvent<string | null>) => void;
     }
     interface PostMetaNavigation {
+        /**
+          * Displays the meta-navigation in full-width.
+         */
         "fullWidth"?: boolean;
+        /**
+          * Displays the meta-navigation horihontally or vertically. Allowed values: 'horizontal' | 'vertical'
+         */
         "orientation"?: 'horizontal' | 'vertical';
     }
     interface PostSearch {
+        /**
+          * Fires when the dropdown has been toggled.
+         */
         "onDropdownToggled"?: (event: PostSearchCustomEvent<DropdownEvent>) => void;
     }
     interface PostSkiplinks {
     }
     interface SwisspostInternetBreadcrumbs {
+        /**
+          * Add custom breadcrumb items to the end of the pre-configured list. Handy if your online service has it's own navigation structure.
+         */
         "customItems"?: string | IBreadcrumbItem[];
         /**
           * Hide all buttons.
@@ -409,6 +475,7 @@ declare namespace LocalJSX {
         "stickyness"?: StickynessOptions;
     }
     interface IntrinsicElements {
+        "focus-trap": FocusTrap;
         "post-klp-login-widget": PostKlpLoginWidget;
         "post-language-switch": PostLanguageSwitch;
         "post-logo": PostLogo;
@@ -425,6 +492,11 @@ export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            /**
+             * Trap the focus inside a specific container.
+             * @param active activate or deactivate the focus trap
+             */
+            "focus-trap": LocalJSX.FocusTrap & JSXBase.HTMLAttributes<HTMLFocusTrapElement>;
             "post-klp-login-widget": LocalJSX.PostKlpLoginWidget & JSXBase.HTMLAttributes<HTMLPostKlpLoginWidgetElement>;
             "post-language-switch": LocalJSX.PostLanguageSwitch & JSXBase.HTMLAttributes<HTMLPostLanguageSwitchElement>;
             "post-logo": LocalJSX.PostLogo & JSXBase.HTMLAttributes<HTMLPostLogoElement>;

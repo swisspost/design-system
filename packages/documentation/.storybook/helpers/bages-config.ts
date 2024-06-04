@@ -1,5 +1,5 @@
 import { BadgesConfig } from '@geometricpanda/storybook-addon-badges';
-import { BADGE } from '../constants';
+import { BADGE } from '@/../.storybook/constants';
 
 export const badgesConfig: BadgesConfig = {
   [BADGE.BETA]: {

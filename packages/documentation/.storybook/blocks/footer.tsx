@@ -22,11 +22,6 @@ const DEVELOPERS: Developer[] = [
     title: 'UI Developer',
     avatar: 'https://avatars.githubusercontent.com/u/9716662?v=4',
   },
-  {
-    name: 'Loïc Fürhoff',
-    title: 'UI Developer',
-    avatar: 'https://avatars.githubusercontent.com/u/12294151?v=4',
-  },
 ];
 
 const BASEURL = 'https://github.com/swisspost/design-system/tree/main/packages/documentation';
@@ -39,7 +34,7 @@ export default (params: { pathToStoryFile?: String }) => (
   <>
     <div className="container mt-huge font-size-18 text-end">
       {params.pathToStoryFile && (
-        <a href={getGitHubUrl(params.pathToStoryFile)} target="_blank" rel="noopener">
+        <a href={getGitHubUrl(params.pathToStoryFile)} rel="noopener">
           Edit this page on GitHub
         </a>
       )}
@@ -67,7 +62,6 @@ export default (params: { pathToStoryFile?: String }) => (
                 <a
                   className="btn-primary btn btn-rg btn-animated"
                   href="https://github.com/swisspost/design-system/issues"
-                  target="_blank"
                   rel="noopener"
                 >
                   <span>Submit an issue</span>
@@ -83,7 +77,6 @@ export default (params: { pathToStoryFile?: String }) => (
         <div className="d-flex gap-3">
           <a
             href="https://www.post.ch/en/pages/footer/data-protection-and-disclaimer"
-            target="_blank"
             rel="noopener"
           >
             Data protection and disclaimer

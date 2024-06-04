@@ -1,56 +1,54 @@
-import { Meta, Source } from '@storybook/blocks';
-import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
-import StylesPackageImport from '../../../shared/styles-package-import.mdx';
-import PostComponentDemoLink from '../../../shared/post-component-demo-link.mdx';
-import NgbComponentImport from '../../../shared/nb-bootstrap/ngb-component-import.mdx';
-import * as stepperStories from './stepper.stories';
-import stepperTemplate from './stepper-template.sample.html?raw';
-import stepperComponent from './stepper-component.sample?raw';
+import { Canvas, Controls, Meta } from '@storybook/blocks';
+import PostComponentDemoLink from '@/shared/post-component-demo-link.mdx';
+import StylesPackageImport from '@/shared/styles-package-import.mdx';
+import * as StepperStories from './stepper.stories';
 
-<Meta of={stepperStories} />
+<Meta of={StepperStories} />
 
 <div className="docs-title">
   # Stepper
 
   <nav>
-    <link-design of={JSON.stringify(stepperStories)}></link-design>
-    <PostComponentDemoLink component="stepper" />
+    <link-design of={JSON.stringify(StepperStories)}></link-design>
   </nav>
 </div>
 
-<p className="lead">Conveys progress through numbered steps.</p>
+<p className="lead">The stepped progression component provides an interactive visual overview of a process. It shows at a glance the amount of steps a user is required to go through, and serves as a guide for each step, indicating its status.</p>
 
-<div className="alert alert-info mb-bigger-big">
-  <p className="alert-heading">The stepper uses ng-bootstrap's progressbar component.</p>
+<div className="alert alert-warning mb-bigger-big">
+  <p className="alert-heading">The stepper previously used ng-bootstrap's progressbar component, this has been deprecated in favor of the CSS-only stepper documented below.</p>
+  <div className="d-flex justify-content-end"><PostComponentDemoLink component="stepper" /></div>
 </div>
 
-<ul>
-  <li>
-    <a href="#component-import" target="_self">Component Import</a>
-  </li>
-  <li>
-    <a href="#style-imports" target="_self">Style Imports</a>
-  </li>
-  <li>
-    <a href="#example" target="_self">Example</a>
-  </li>
-</ul>
+<Canvas sourceState="shown" of={StepperStories.Default} />
+<div className="hide-col-default">
+  <Controls of={StepperStories.Default} />
+</div>
 
-<NgbComponentImport module="NgbProgressbarModule" />
+<StylesPackageImport components={['stepper']} />
 
-<StylesPackageImport components={["progress", "stepper"]} />
+## Examples
 
-## Example
+### Navigational Stepper
 
-<PostTabs>
-  <PostTabHeader slot="tabs" panel="template">template.html</PostTabHeader>
-  <PostTabPanel name="template">
-    <Source code={stepperTemplate} language="html"/>
-  </PostTabPanel>
+You can use a stepper to allow users to navigate to specific steps.
+To do so, use `a` elements for the `.stepper-link` of the steps you want to be navigable, and use `span` for the steps you want not to be navigable.
+Then, wrap the stepper inside a `<nav>`.
 
-  <PostTabHeader slot="tabs" panel="component">component.ts</PostTabHeader>
-  <PostTabPanel name="component">
-    <Source code={stepperComponent} language="typescript"/>
-  </PostTabPanel>
-</PostTabs>
+However, it is better not to use an `a` for the current step since the user is already on the page.
 
+<Canvas of={StepperStories.NavigationalStepper} />
+
+### Informational Stepper
+
+If you wish to display the stepper for informational purposes only, you can use `<span>` elements for the `.stepper-link` on all the steps.
+In this case, there's no need to wrap the stepper inside a `<nav>`.
+
+<Canvas of={StepperStories.InformationalStepper} />
+
+### Long Labels
+
+When dealing with longer labels that may wrap into multiple lines, it is recommended to use a `title` attribute for the `.stepper-link`.
+This will truncate the label with an ellipsis if it exceeds two lines, while allowing the user to read the full label by hovering over it with the mouse.
+
+<Canvas of={StepperStories.LongLabels} />

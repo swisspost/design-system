@@ -68,7 +68,7 @@ export class PostSkiplinks {
                 <SvgIcon name="pi-pointy-arrow-right" />
               </a>
             </li>
-            {mainId ? (
+            {mainId !== undefined ? (
               <li>
                 <a class="nav-link" href={`#${mainId}`}>
                   <span>{translate('Go to main content')}</span>
