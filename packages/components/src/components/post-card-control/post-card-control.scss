@@ -534,3 +534,7 @@
     }
   }
 }
+
+post-card-control ~ .invalid-feedback {
+  display: inline-flex;
+}

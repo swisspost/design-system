@@ -66,10 +66,6 @@ textarea ~ .valid-feedback::before {
   display: none;
 }
 
-post-card-control ~ .invalid-feedback {
-  display: inline-flex;
-}
-
 .valid-feedback.custom-feedback {
   background: form-validation.$form-feedback-custom-bg;
   color: form-validation.$form-feedback-custom-text;
