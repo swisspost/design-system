@@ -14,11 +14,16 @@
 }
 
 #storybook-explorer-tree {
-  padding-left: 13px;
-
   .sidebar-subheading {
+    width: 100%;
+
     button {
       letter-spacing: 0.1em;
+
+      &:focus,
+      &:hover {
+        background: none;
+      }
     }
 
     .sidebar-subheading-action {
@@ -26,20 +31,37 @@
     }
   }
 
+  .sidebar-subheading,
   .sidebar-item {
     position: relative;
+    border-radius: 0;
 
-    &:before {
+    &:before,
+    &:after {
       display: block;
       content: '';
       position: absolute;
       top: 0;
       bottom: 0;
-      right: 100%;
       width: 13px;
       background-color: inherit;
     }
 
+    &:before {
+      right: 100%;
+    }
+
+    &:after {
+      left: 100%;
+    }
+
+    &:hover,
+    &:focus-visible {
+      background-color: var(--post-gray-10);
+    }
+  }
+
+  .sidebar-item {
     > span {
       margin-top: 4px;
     }
@@ -48,7 +70,7 @@
       display: none;
     }
 
-    svg {
+    > div > svg {
       margin-top: 0;
       width: 1.2em;
       height: 1.2em;
@@ -65,11 +87,6 @@
     }
     &[data-nodetype='story'] svg {
       color: var(--post-aubergine-bright);
-    }
-
-    &:hover,
-    &:focus-visible {
-      background-color: var(--post-gray-10);
     }
 
     &[data-selected='true'] {

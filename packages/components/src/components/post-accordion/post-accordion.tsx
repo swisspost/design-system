@@ -1,5 +1,7 @@
-import { Component, Element, h, Host, Listen, Method, Prop } from '@stencil/core';
+import { Component, Element, h, Host, Listen, Method, Prop, Watch } from '@stencil/core';
 import { version } from '@root/package.json';
+import { HEADING_LEVELS, HeadingLevel } from '@/types';
+import { checkOneOf } from '@/utils';
 
 /**
  * @slot default - Slot for placing post-accordion-item components.
@@ -17,24 +19,33 @@ export class PostAccordion {
   @Element() host: HTMLPostAccordionElement;
 
   /**
+   * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
+   */
+  @Prop() readonly headingLevel?: HeadingLevel;
+
+  @Watch('headingLevel')
+  validateHeadingLevel(newValue = this.headingLevel) {
+    if (!newValue) return;
+
+    checkOneOf(
+      newValue,
+      HEADING_LEVELS,
+      'The `heading-level` property of the `post-accordion` must be a number between 1 and 6.',
+    );
+
+    this.accordionItems.forEach(item => {
+      item.setAttribute('heading-level', String(newValue));
+    });
+  }
+
+  /**
    * If `true`, multiple `post-accordion-item` can be open at the same time.
    */
   @Prop() readonly multiple: boolean = false;
 
   componentWillLoad() {
     this.registerAccordionItems();
-  }
-
-  /**
-   * Toggles the `post-accordion-item` with the given id.
-   */
-  @Method()
-  async toggle(id: string) {
-    const itemToToggle = this.accordionItems.find(item => item.id === id);
-
-    if (!itemToToggle) throw new Error(`No post-accordion-item found with id #${id}.`);
-
-    await itemToToggle.toggle();
+    this.validateHeadingLevel();
   }
 
   @Listen('postToggle')
@@ -63,9 +74,21 @@ export class PostAccordion {
   }
 
   /**
+   * Toggles the `post-accordion-item` with the given id.
+   */
+  @Method()
+  async toggle(id: string) {
+    const itemToToggle = this.accordionItems.find(item => item.id === id);
+
+    if (!itemToToggle) throw new Error(`No post-accordion-item found with id #${id}.`);
+
+    await itemToToggle.toggle();
+  }
+
+  /**
    * Expands all `post-accordion-item`.
    *
-   * If `close-others` is `true` and all items are closed, it will open the first one.
+   * If `multiple="true"` is not set and all items are closed, it will open the first one.
    * Otherwise, it will keep the opened one.
    */
   @Method()

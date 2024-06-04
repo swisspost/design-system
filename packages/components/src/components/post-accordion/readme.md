@@ -7,9 +7,10 @@
 
 ## Properties
 
-| Property   | Attribute  | Description                                                             | Type      | Default |
-| ---------- | ---------- | ----------------------------------------------------------------------- | --------- | ------- |
-| `multiple` | `multiple` | If `true`, multiple `post-accordion-item` can be open at the same time. | `boolean` | `false` |
+| Property       | Attribute       | Description                                                                                        | Type                         | Default     |
+| -------------- | --------------- | -------------------------------------------------------------------------------------------------- | ---------------------------- | ----------- |
+| `headingLevel` | `heading-level` | Defines the hierarchical level of the `post-accordion-item` headers within the headings structure. | `1 \| 2 \| 3 \| 4 \| 5 \| 6` | `undefined` |
+| `multiple`     | `multiple`      | If `true`, multiple `post-accordion-item` can be open at the same time.                            | `boolean`                    | `false`     |
 
 
 ## Methods
@@ -28,7 +29,7 @@ Type: `Promise<void>`
 
 Expands all `post-accordion-item`.
 
-If `close-others` is `true` and all items are closed, it will open the first one.
+If `multiple="true"` is not set and all items are closed, it will open the first one.
 Otherwise, it will keep the opened one.
 
 #### Returns

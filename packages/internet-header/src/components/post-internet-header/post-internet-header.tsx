@@ -55,22 +55,22 @@ export class PostInternetHeader {
   /**
    * Toggle the meta navigation.
    */
-  @Prop() meta: boolean = true;
+  @Prop() meta: boolean = true; // eslint-disable-line @stencil-community/ban-default-true
 
   /**
    * Toggle the login link (when logged out) or the user widget (when logged in).
    */
-  @Prop() login: boolean = true;
+  @Prop() login: boolean = true; // eslint-disable-line @stencil-community/ban-default-true
 
   /**
    * Toggle the search button.
    */
-  @Prop() search: boolean = true;
+  @Prop() search: boolean = true; // eslint-disable-line @stencil-community/ban-default-true
 
   /**
    * Toggle skiplinks. They help keyboard users to quickly jump to important sections of the page.
    */
-  @Prop() skiplinks: boolean = true;
+  @Prop() skiplinks: boolean = true; // eslint-disable-line @stencil-community/ban-default-true
 
   /**
    * DEPRECATED!: Define a proxy URL for the config fetch request. Will be removed in the next major version
@@ -243,7 +243,7 @@ export class PostInternetHeader {
       localizedCustomConfig: state.localizedCustomConfig,
       osFlyoutOverrides: state.osFlyoutOverrides,
     });
-    if (this.customConfig)
+    if (this.customConfig !== undefined)
       state.localizedCustomConfig = getLocalizedCustomConfig(this.customConfig, newValue);
   }
 
@@ -418,7 +418,7 @@ export class PostInternetHeader {
   private handleFlyoutToggled(event: CustomEvent<string | null>) {
     this.activeFlyout = event.detail;
 
-    if (this.activeDropdownElement && event.detail && !this.isMainNavOpen()) {
+    if (this.activeDropdownElement && event.detail !== null && !this.isMainNavOpen()) {
       void this.activeDropdownElement.toggleDropdown(false);
     }
   }

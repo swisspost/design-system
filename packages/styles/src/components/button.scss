@@ -178,7 +178,7 @@
 .btn-animated:not(.btn-link, .btn-tertiary) {
   &::after {
     right: button.$btn-padding-x-md - button.$btn-animation-distance-md -
-      (button.$btn-font-size-md * 2 / 3);
+      (math.div(button.$btn-font-size-md * 2, 3));
     transform: translateX(button.$btn-border-width * -1);
   }
 
@@ -188,7 +188,7 @@
           button.$btn-animation-distance-map,
           $size
         ) -
-        (map.get(button.$btn-font-size-map, $size) * 2 / 3);
+        (math.div(map.get(button.$btn-font-size-map, $size) * 2, 3));
     }
   }
 
@@ -212,7 +212,7 @@
   &::after {
     @include icon-mx.icon(2110);
     left: button.$btn-padding-x-md - button.$btn-animation-distance-md -
-      (button.$btn-font-size-md * 2 / 3);
+      (math.div(button.$btn-font-size-md * 2, 3));
     transform: translateX(button.$btn-border-width);
   }
 
@@ -222,7 +222,7 @@
           button.$btn-animation-distance-map,
           $size
         ) -
-        (map.get(button.$btn-font-size-map, $size) * 2 / 3);
+        (math.div(map.get(button.$btn-font-size-map, $size) * 2, 3));
     }
   }
 

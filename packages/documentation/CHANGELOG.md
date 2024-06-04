@@ -1,5 +1,31 @@
 # @swisspost/design-system-documentation
 
+## 5.1.0
+
+### Minor Changes
+
+- Added documentation for the CSS-only stepper and deprecated the stepper based on ng-bootstrap progress bar. (by [@alizedebray](https://github.com/alizedebray) with [#3092](https://github.com/swisspost/design-system/pull/3092))
+
+- Added the option for a Button animation to the left. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+### Patch Changes
+
+- Updated storybook version to 8 (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+- Updated the post-accordion documentation: explicitly set the `collapsed` property to `true`, simplified `collapsed` property usage examples, and corrected misnamed `close-others` property to `multiple`. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+- Merged the card-control, checkbox-card and radio button card docs pages and updated the choice-card-control styles. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+- Fixed high-contrast-mode for card-control component. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+
+- Fixed the product card border missing in the documentation page. (by [@alizedebray](https://github.com/alizedebray) with [#3104](https://github.com/swisspost/design-system/pull/3104))
+- Updated dependencies:
+  - @swisspost/design-system-icons@7.1.0
+  - @swisspost/design-system-styles@7.1.0
+  - @swisspost/internet-header@1.13.10
+  - @swisspost/design-system-components@7.1.0
+  - @swisspost/design-system-components-react@7.1.0
+
 ## 5.0.1
 
 ### Patch Changes

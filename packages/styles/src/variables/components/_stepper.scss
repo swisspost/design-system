@@ -1,34 +1,45 @@
-@use './forms';
 @use './../type';
 @use './../color';
 @use './../spacing';
+@use './../animation';
 
 @use './../../functions/icons' as icon-fn;
 
 $stepper-bar-height: spacing.$size-micro;
+$stepper-bar-color: color.$gray-40;
+$stepper-bar-fill-color: color.$yellow;
 
-$stepper-indicator-height: spacing.$size-bigger-big;
+$stepper-indicator-size: spacing.$size-bigger-big;
 $stepper-indicator-border-width: spacing.$size-micro;
-$stepper-indicator-border-color: color.$white;
-$stepper-indicator-font-size: type.$font-size-regular;
-$stepper-indicator-font-weight: type.$font-weight-base;
+$stepper-indicator-border-color: rgb(var(--post-bg-rgb, 255 255 255));
+$stepper-indicator-font-weight: type.$font-weight-bold;
 $stepper-indicator-bg: color.$yellow;
 $stepper-indicator-color: color.$black;
-$stepper-indicator-check-icon-size: spacing.$size-large;
-$stepper-indicator-hover-color: color.$white;
-$stepper-indicator-hover-bg: color.$black;
-$stepper-indicator-hover-outline: forms.$input-focus-outline-thickness solid
-  var(--post-contrast-color);
+$stepper-indicator-check-size: spacing.$size-large;
+$stepper-indicator-transition:
+  color animation.$transition-base-timing,
+  background-color animation.$transition-base-timing;
+
+$stepper-indicator-hover-color: var(--post-contrast-color-inverted);
+$stepper-indicator-hover-bg: var(--post-contrast-color);
+
 $stepper-indicator-future-bg: color.$gray-60;
 $stepper-indicator-future-color: color.$white;
 
+$stepper-link-line-height: type.$line-height-sm;
 $stepper-link-gap: spacing.$size-mini;
-$stepper-link-color: color.$gray-60;
-$stepper-link-hover-color: color.$black;
-$stepper-link-current-color: color.$black;
-$stepper-link-current-font-size: type.$font-size-regular;
+$stepper-link-spacing: spacing.$size-regular;
+$stepper-link-color: var(--post-gray-60);
+
+$stepper-link-current-color: var(--post-gray-80);
 $stepper-link-current-font-weight: type.$font-weight-bold;
 
 // DEPRECATED
+$stepper-link-hover-color: $stepper-link-color;
+$stepper-indicator-hover-outline: spacing.$size-line solid var(--post-focus-color);
+$stepper-indicator-font-size: type.$font-size-16;
+$stepper-link-current-font-size: type.$font-size-16;
 $stepper-indicator-check-icon: url('#{icon-fn.get-colored-svg-url('2105', $stepper-indicator-color)}');
 $stepper-indicator-hover-check-icon: url('#{icon-fn.get-colored-svg-url('2105',$stepper-indicator-hover-color)}');
+$stepper-indicator-height: $stepper-indicator-size;
+$stepper-indicator-check-icon-size: $stepper-indicator-check-size;
