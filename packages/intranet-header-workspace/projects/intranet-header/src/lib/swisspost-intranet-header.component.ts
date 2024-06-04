@@ -361,8 +361,8 @@ export class SwissPostIntranetHeaderComponent implements OnInit, OnChanges, Afte
         this.optionDropdown.close();
       });
 
-      anchor.addEventListener('keydown', e => {
-        if ((e as KeyboardEvent).key === 'enter') this.optionDropdown.close();
+      anchor.addEventListener('keydown', (e: KeyboardEvent) => {
+        if (e.key === 'enter') this.optionDropdown.close();
       });
     });
   }
