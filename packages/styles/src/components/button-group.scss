@@ -10,15 +10,18 @@
 @use './../variables/components/button';
 @use './../variables/components/forms';
 
+
 .btn-group {
   max-width: 100%;
   flex-wrap: wrap;
   row-gap: spacing.$size-micro;
+  padding-inline-start: button.$btn-border-width;
 
   > .btn {
     white-space: normal;
     cursor: pointer;
     flex: 0 1 auto;
+    margin-inline-start: -1 * button.$btn-border-width;
   }
 
   > .btn-secondary {
