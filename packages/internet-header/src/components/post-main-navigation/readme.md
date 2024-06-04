@@ -7,10 +7,10 @@
 
 ## Events
 
-| Event             | Description | Type                                                        |
-| ----------------- | ----------- | ----------------------------------------------------------- |
-| `dropdownToggled` |             | `CustomEvent<{ open: boolean; element: DropdownElement; }>` |
-| `flyoutToggled`   |             | `CustomEvent<null \| string>`                               |
+| Event             | Description                               | Type                                                        |
+| ----------------- | ----------------------------------------- | ----------------------------------------------------------- |
+| `dropdownToggled` | Fires when the dropdown has been toggled. | `CustomEvent<{ open: boolean; element: DropdownElement; }>` |
+| `flyoutToggled`   | Fires when the flyout has been toggled.   | `CustomEvent<null \| string>`                               |
 
 
 ## Methods

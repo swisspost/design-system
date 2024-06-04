@@ -1,6 +1,6 @@
 import { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { bombArgs, spreadArgs } from '../../../utils';
+import { bombArgs, spreadArgs } from '@/utils';
 import alertMeta from './standard-html/alert.stories';
 import { getAlertClasses } from './standard-html/getAlertClasses';
 

@@ -70,7 +70,7 @@ export class PostInternetFooter {
 
   render() {
     // There is something wrong entirely
-    if (!state) {
+    if (state === undefined) {
       console.warn(
         `Internet Footer: Could not load config. Please make sure that you included the <swisspost-internet-header></swisspost-internet-header> component.`,
       );
@@ -125,7 +125,7 @@ export class PostInternetFooter {
           <div class="copyright container">
             <span class="bold">{footerConfig.entry.text}</span>
             <ul class="no-list footer-meta-links">
-              {footerConfig.links
+              {footerConfig.links !== undefined
                 ? footerConfig.links.map(link => (
                     <li key={link.url}>
                       <a class="nav-link" href={link.url} target={link.target}>

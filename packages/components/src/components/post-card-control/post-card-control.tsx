@@ -11,27 +11,23 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { checkNonEmpty, checkOneOf } from '../../utils';
-import { version } from '../../../package.json';
+import { checkNonEmpty, checkOneOf } from '@/utils';
+import { version } from '@root/package.json';
 
 // remove as soon as all browser support :host-context()
 // https://caniuse.com/?search=%3Ahost-context()
 import scss from './post-card-control.module.scss';
-import { parse } from '../../utils/sass-export';
+import { parse } from '@/utils/sass-export';
 
 const SCSS_VARIABLES = parse(scss);
-const EVENT_MAP = {
-  input: 'postInput',
-  change: 'postChange',
-};
 
 let cardControlIds = 0;
 
 /**
  * @class PostCardControl - representing a stencil component
  *
- * @slot default - Content to place into the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Block-level_contentt" target="_blank">block content</a>.<p className="alert alert-sm alert-warning">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.<br/>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured.<br/>More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
- * @slot icon - To insert a custom icon into the named `icon` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content" target="_blank">inline content</a>.<p className="alert alert-sm alert-info">It is only meant for <code>img</code> or <code>svg</code> elements and overrides the `icon` property.</p>
+ * @slot default - Content to place into the `default` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Block-level_contentt">block content</a>.<p className="alert alert-sm alert-warning">Even if it is generally possible, we do not recommend using interactive elements in this slot because the background of the card control is clickable.<br/>This can lead to confusion when the hit box of nested interactive controls is not clearly separated from the background, is invalid HTML and click events bubbling up to the card control will unexpectedly toggle it if they're not captured.<br/>More info: <a href="https://accessibilityinsights.io/info-examples/web/nested-interactive/">https://accessibilityinsights.io/info-examples/web/nested-interactive/</a></p>
+ * @slot icon - To insert a custom icon into the named `icon` slot.<p>Markup accepted: <a href="https://developer.mozilla.org/en-US/docs/Glossary/Inline-level_content">inline content</a>.<p className="alert alert-sm alert-info">It is only meant for <code>img</code> or <code>svg</code> elements and overrides the `icon` property.</p>
  */
 @Component({
   tag: 'post-card-control',
@@ -40,6 +36,11 @@ let cardControlIds = 0;
   formAssociated: true,
 })
 export class PostCardControl {
+  private readonly EVENT_MAP = {
+    input: 'postInput',
+    change: 'postChange',
+  };
+
   private readonly KEYCODES = {
     SPACE: 'Space',
     LEFT: 'ArrowLeft',
@@ -60,6 +61,7 @@ export class PostCardControl {
   private control: HTMLInputElement;
   private controlId = `PostCardControl_${cardControlIds++}`;
   private initialChecked: boolean;
+  private hasIcon: boolean;
 
   @Element() host: HTMLPostCardControlElement;
 
@@ -253,7 +255,7 @@ export class PostCardControl {
         // https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/radio
         // if an event parameter is given and a native control would fire an event, emit the corresponding event to the light dom
         if (isCheckbox || isRadioAndChecked)
-          this[EVENT_MAP[e.type]].emit({ state: this.checked, value: this.value });
+          this[this.EVENT_MAP[e.type]].emit({ state: this.checked, value: this.value });
       }
     }
   }
@@ -349,6 +351,10 @@ export class PostCardControl {
     this.initialChecked = this.checked;
   }
 
+  componentWillRender() {
+    this.hasIcon = Boolean(this.host.querySelector('[slot="icon"]') || this.icon);
+  }
+
   render() {
     return (
       <Host data-version={version} onClick={this.cardClickHandler}>
@@ -394,9 +400,11 @@ export class PostCardControl {
             ) : null}
           </label>
 
-          <div class="card-control--icon">
-            <slot name="icon">{this.icon ? <post-icon name={this.icon}></post-icon> : null}</slot>
-          </div>
+          {this.hasIcon ? (
+            <div class="card-control--icon">
+              <slot name="icon">{this.icon ? <post-icon name={this.icon}></post-icon> : null}</slot>
+            </div>
+          ) : null}
 
           <div id={`${this.controlId}_content`} class="card-control--content">
             <slot></slot>

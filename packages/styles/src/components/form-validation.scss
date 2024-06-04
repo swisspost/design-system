@@ -107,18 +107,6 @@
       }
     }
 
-    &:not(&[type='file']) {
-      background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid);
-
-      @include utilities-mx.high-contrast-mode() {
-        background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-dark);
-
-        @media (prefers-color-scheme: light) {
-          background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-light);
-        }
-      }
-    }
-
     &.form-control-sm ~ .invalid-feedback {
       padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
     }
@@ -130,18 +118,6 @@
 
       &:focus {
         border-color: var(--post-success);
-      }
-    }
-
-    &:not(&[type='file']) {
-      background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
-
-      @include utilities-mx.high-contrast-mode() {
-        background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-dark);
-
-        @media (prefers-color-scheme: light) {
-          background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-light);
-        }
       }
     }
 
@@ -178,6 +154,32 @@ textarea.form-control {
 
     &.form-control-sm {
       background-position: right spacing.$size-micro top spacing.$size-mini;
+    }
+  }
+}
+
+.form-control:not([type='file']) {
+  &.is-invalid {
+    background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid);
+
+    @include utilities-mx.high-contrast-mode() {
+      background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-dark);
+
+      @media (prefers-color-scheme: light) {
+        background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-light);
+      }
+    }
+  }
+
+  &.is-valid {
+    background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
+
+    @include utilities-mx.high-contrast-mode() {
+      background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-dark);
+
+      @media (prefers-color-scheme: light) {
+        background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-light);
+      }
     }
   }
 }

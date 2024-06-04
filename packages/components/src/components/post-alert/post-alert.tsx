@@ -10,9 +10,9 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { version } from '../../../package.json';
-import { fadeOut } from '../../animations';
-import { checkEmptyOrOneOf, checkEmptyOrPattern, checkNonEmpty, checkType } from '../../utils';
+import { version } from '@root/package.json';
+import { fadeOut } from '@/animations';
+import { checkEmptyOrOneOf, checkEmptyOrPattern, checkNonEmpty, checkType } from '@/utils';
 import { ALERT_TYPES, AlertType } from './alert-types';
 
 /**

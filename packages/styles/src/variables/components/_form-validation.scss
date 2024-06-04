@@ -11,15 +11,12 @@ $form-feedback-margin-top: 0 !default;
 $form-feedback-font-size: type.$font-size-12 !default;
 $form-feedback-valid-color: color.$gray-60 !default;
 $form-feedback-invalid-color: color.$error !default;
-$form-feedback-icon-valid: url(icons.get-colored-svg-url('2105', color.$success)) !default;
-$form-feedback-icon-valid-hcm-dark: url(icons.get-colored-svg-url('2105', color.$white)) !default;
-$form-feedback-icon-valid-hcm-light: url(icons.get-colored-svg-url('2105', color.$black)) !default;
-$form-feedback-icon-invalid: url(icons.get-colored-svg-url('2104', color.$error)) !default;
-$form-feedback-icon-invalid-hcm-dark: url(icons.get-colored-svg-url('2104', color.$white)) !default;
-$form-feedback-icon-invalid-hcm-light: url(icons.get-colored-svg-url(
-  '2104',
-  color.$black
-)) !default;
+$form-feedback-icon-valid: url('#{icons.get-colored-svg-url('2105', color.$success)}') !default;
+$form-feedback-icon-valid-hcm-dark: url('#{icons.get-colored-svg-url('2105', color.$white)}') !default;
+$form-feedback-icon-valid-hcm-light: url('#{icons.get-colored-svg-url('2105', color.$black)}') !default;
+$form-feedback-icon-invalid: url('#{icons.get-colored-svg-url('2104', color.$error)}') !default;
+$form-feedback-icon-invalid-hcm-dark: url('#{icons.get-colored-svg-url('2104', color.$white)}') !default;
+$form-feedback-icon-invalid-hcm-light: url('#{icons.get-colored-svg-url('2104', color.$black)}') !default;
 
 // Design System custom variables
 $form-feedback-padding-x: spacing.$size-regular !default;

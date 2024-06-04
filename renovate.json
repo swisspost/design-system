@@ -34,6 +34,11 @@
       "matchFiles": ["packages/components/package.json"],
       "matchPackagePatterns": ["@oddbird/popover-polyfill"],
       "allowedVersions": "0.2.3"
+    },
+    {
+      "matchPackagePatterns": ["^stylelint"],
+      "matchUpdateTypes": ["major"],
+      "groupName": "Stylelint major"
     }
   ],
   "timezone": "Europe/Zurich",
