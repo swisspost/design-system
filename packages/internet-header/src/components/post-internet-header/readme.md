@@ -70,6 +70,7 @@ graph TD;
   swisspost-internet-header --> post-main-navigation
   swisspost-internet-header --> post-search
   swisspost-internet-header --> post-klp-login-widget
+  post-search --> focus-trap
   style swisspost-internet-header fill:#f9f,stroke:#333,stroke-width:4px
 ```
 
