@@ -55,16 +55,13 @@
             container="body"
             placement="bottom-right"
           >
-            <div
-              class="d-flex justify-content-center align-self-stretch px-3 no-toggle-arrow"
+            <button
+              class="btn btn-tertiary px-3 rounded-0 flex-shrink-0 no-toggle-arrow"
               id="profileMenu"
               ngbDropdownToggle
-              tabindex="0"
-              (keydown.enter)="optionDropdown.toggle()"
-              (keydown.space)="optionDropdown.toggle()"
             >
               <img [src]="avatarUrl" class="profile-image align-self-center" alt="" />
-            </div>
+            </button>
             <div class="dropdown-menu" id="languageParent" ngbDropdownMenu>
               <div class="language-menu">
                 <ng-container *ngFor="let appLang of appLangs">
@@ -99,17 +96,14 @@
             </div>
           </div>
         </div>
-        <div
+        <button
           *ngIf="hasNavbar === true"
           (click)="toggleMenu()"
-          (keydown.enter)="toggleMenu()"
-          (keydown.space)="toggleMenu()"
-          tabindex="0"
           id="nav-toggler"
-          class="navbar-toggler px-3 d-md-none align-self-stretch d-inline-flex align-items-center"
+          class="btn btn-lg btn-tertiary px-3 border-left rounded-0 flex-shrink-0 align-self-stretch d-md-none"
         >
           <em class="pi pi-2070"></em>
-        </div>
+        </button>
       </div>
     </div>
     <nav
