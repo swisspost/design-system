@@ -7,7 +7,7 @@ const meta: MetaComponent = {
   title: 'Components/Spinner',
   tags: ['package:HTML'],
   render,
-  decorators: [story => generateDecorators(story)],
+  decorators: [(story, context) => generateDecorators(story, context)],
   parameters: {
     badges: [],
     design: {
