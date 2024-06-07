@@ -12,23 +12,14 @@
 
 @mixin form-check-icons($color) {
   &[type='radio']:checked {
-    background-image: url(icons.add-fill-color(
-      form-check.$form-check-radio-checked-bg-icon,
-      $color
-    ));
+    background-image: url('#{icons.add-fill-color(form-check.$form-check-radio-checked-bg-icon, $color)}');
   }
 
   &[type='checkbox']:checked {
-    background-image: url(icons.get-colored-svg-url(
-      form-check.$form-check-input-checked-bg-icon,
-      $color
-    ));
+    background-image: url('#{icons.get-colored-svg-url(form-check.$form-check-input-checked-bg-icon, $color)}');
   }
 
   &[type='checkbox']:indeterminate {
-    background-image: url(icons.get-colored-svg-url(
-      form-check.$form-check-input-indeterminate-bg-icon,
-      $color
-    ));
+    background-image: url('#{icons.get-colored-svg-url(form-check.$form-check-input-indeterminate-bg-icon, $color)}');
   }
 }

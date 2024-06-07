@@ -3,3 +3,4 @@ storybook-static
 
 # Project specific
 public/manager
+cypress/downloads
