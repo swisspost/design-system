@@ -36,7 +36,7 @@ export interface CenshareResult {
   outputChannel: OutputChannel[];
   postInfo: PostInfo;
   typeFilter: TypeFilter;
-  size: DetectedColorClass;
+  size: MediaSize;
   downloadLink: string;
   hashCode: string;
   domain: Domain;
@@ -101,9 +101,6 @@ export enum Businessfield {
   Kommunikation = 'kommunikation',
 }
 
-/* eslint-disable-next-line @typescript-eslint/no-empty-interface */
-export interface DetectedColorClass {}
-
 export enum Type {
   PicturePictogram = 'picture.pictogram.',
 }
@@ -132,7 +129,7 @@ export interface Variant {
   domain: Domain;
   name: string;
   id: number;
-  detectedColor: DetectedColorClass;
+  detectedColor: DetectedColor;
   workflowId: string;
 }
 
