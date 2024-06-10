@@ -9,15 +9,12 @@
   padding: 0;
   overflow-y: visible;
 
-  .dropdown-item {
-    padding: spacing.$size-small-regular 0;
-  }
-
   .language-menu {
     display: flex;
 
     .dropdown-item {
       flex: auto 1 1;
+      padding: spacing.$size-small-regular 0;
       border: commons.$border-width solid color.$gray-20;
       border-top: 0;
       border-left: 0;
