@@ -176,19 +176,15 @@ export default meta;
 type Story = StoryObj;
 
 function renderTextarea(args: Args, context: StoryContext) {
-  const id =
-    context.id ?? `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleTextarea`;
-  const classes = [
-    'form-control',
-    args.floatingLabel ? args.sizeFloatingLabel : args.size,
-    args.validation,
-  ]
-    .filter(c => c && c !== 'null')
-    .join(' ');
-
+  const classes = mapClasses({
+    'form-control': true,
+    [args.size]: !args.floatingLabel && args.size !== 'null',
+    [args.sizeFloatingLabel]: args.floatingLabel && args.sizefloatingLabel !== 'null',
+    [args.validation]: args.validation && args.validation !== 'null',
+  });
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label = !useAriaLabel
-    ? html` <label for=${id} class="form-label">${args.label}</label> `
+    ? html` <label for=${context.id} class="form-label">${args.label}</label> `
     : null;
   const contextual = [
     args.validation === 'is-valid'
@@ -201,7 +197,7 @@ function renderTextarea(args: Args, context: StoryContext) {
   ];
   const control = html`
     <textarea
-      id=${id}
+      id=${context.id}
       class=${classes}
       defaultValue=${args.value ?? nothing}
       placeholder=${useAriaLabel ? args.label : ' '}

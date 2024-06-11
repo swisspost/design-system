@@ -211,7 +211,6 @@ type Story = StoryObj;
 const Template: Story = {
   render: (args: Args, context: StoryContext) => {
     const [_, updateArgs] = useArgs();
-    const id = `${context.viewMode}_${context.story.replace(/\s/g, '-')}_ExampleSelect`;
     const classes = [
       'form-select',
       args.size,
@@ -223,7 +222,7 @@ const Template: Story = {
       .join(' ');
     const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
     const label = !useAriaLabel
-      ? html` <label for="${id}" class="form-label">${args.label}</label> `
+      ? html` <label for="${context.id}" class="form-label">${args.label}</label> `
       : null;
     const optionElements = Array.from({ length: args.options - 1 }, (_, i) => i + 2).map(
       (key: number) => html` <option value="valoro_${key}">Opcion ${key}</option> `,
@@ -247,7 +246,7 @@ const Template: Story = {
     ];
     const control = html`
       <select
-        id="${id}"
+        id="${context.id}"
         class="${classes}"
         ?multiple="${args.multiple}"
         size="${args.multipleSize ?? nothing}"
