@@ -6,7 +6,9 @@
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "type": "module",
-  "scripts": {},
+  "scripts": {
+    "build": "node ./build.js"
+  },
   "keywords": [
     "tokens",
     "tokens studio",
