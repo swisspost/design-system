@@ -14,7 +14,7 @@ export default {
 
 type Story = StoryObj<HTMLPostCollapsibleElement>;
 
-export const collapsible: Story = {
+export const Collapsible: Story = {
   render: (_args: Args, context: StoryContext<HTMLPostCollapsibleElement>) => {
     const templateVariants = bombArgs({
       collapsed: [false, true],

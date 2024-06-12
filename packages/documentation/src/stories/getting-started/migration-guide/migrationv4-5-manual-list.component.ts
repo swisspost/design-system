@@ -2055,7 +2055,7 @@ export class MigrationV45ManualListComponent extends LitElement {
     const keys = path.split('.');
     const last_key = keys.pop();
     if (last_key) {
-      const last_obj = keys.reduce((o: any, k: any) => o[k], this.state);
+      const last_obj = keys.reduce((o, k) => o[k], this.state);
       last_obj[last_key] = !last_obj[last_key];
     }
   }

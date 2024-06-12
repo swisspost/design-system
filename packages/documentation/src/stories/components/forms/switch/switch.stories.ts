@@ -150,7 +150,7 @@ function renderSwitch(args: Args, context: StoryContext) {
         ?disabled=${args.disabled}
         aria-label=${useAriaLabel ? ariaLabel : nothing}
         aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
-        @change=${(e: Event) => updateArgs({ checked: !args.checked })}
+        @change=${() => updateArgs({ checked: !args.checked })}
       />
       ${labelBefore} ${labelAfter} ${args.validation !== 'null' ? validationFeedback : nothing}
     </div>
