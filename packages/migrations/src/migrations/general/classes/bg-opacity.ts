@@ -10,7 +10,7 @@ export default function (): Rule {
 }
 
 class BackgroundOpacityClassesUpdate implements DomUpdate {
-  cssClassRegex: RegExp = new RegExp(`^bg-(${themeColors.join('|')})-opacity-(\\d+)$`);
+  cssClassRegex = new RegExp(`^bg-(${themeColors.join('|')})-opacity-(\\d+)$`);
 
   selector = themeColors.map(colorname => `[class*="bg-${colorname}-opacity-"]`).join(', ');
 

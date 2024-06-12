@@ -372,7 +372,7 @@ export class PostCardControl {
           data-host-context={this.hostContext.join(' ')}
         >
           <input
-            ref={el => (this.control = el as HTMLInputElement)}
+            ref={el => (this.control = el)}
             id={this.controlId}
             class="card-control--input form-check-input"
             type={this.type}
