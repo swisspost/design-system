@@ -1,7 +1,7 @@
 import { MetaComponent } from '@root/types';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { mapClasses } from '@root/src/utils';
+import { mapClasses } from '@/utils';
 
 const VALIDATION_STATE_MAP: Record<string, undefined | boolean> = {
   'null': undefined,
@@ -179,10 +179,11 @@ type Story = StoryObj;
 function renderTextarea(args: Args, context: StoryContext) {
   const classes = mapClasses({
     'form-control': true,
-    [args.size]: !args.floatingLabel && args.size !== 'null',
-    [args.sizeFloatingLabel]: args.floatingLabel && args.sizefloatingLabel !== 'null',
-    [args.validation]: args.validation && args.validation !== 'null',
+    [args.size]: !args.floatingLabel,
+    [args.sizeFloatingLabel]: args.floatingLabel,
+    [args.validation]: args.validation,
   });
+  console.log(classes);
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label = !useAriaLabel
     ? html` <label for=${context.id} class="form-label">${args.label}</label> `
