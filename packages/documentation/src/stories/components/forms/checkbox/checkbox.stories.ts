@@ -181,7 +181,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
 
   const containerClasses = mapClasses({
     'form-check': true,
-    [args.size]: args.size && args.size !== 'null',
+    [args.size]: args.size,
     'form-check-inline': args.inline,
   });
 

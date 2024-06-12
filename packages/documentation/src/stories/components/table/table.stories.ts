@@ -122,10 +122,10 @@ function renderTable(args: Args) {
     <table
       class="${mapClasses({
         table: true,
-        [args.borderStyle]: args.borderStyle && args.borderStyle !== 'null',
+        [args.borderStyle]: args.borderStyle,
         [variants]: variants && variants !== '',
         [cationTop]: cationTop !== 'null',
-        [args.alignment]: args.alignment && args.alignment !== 'null',
+        [args.alignment]: args.alignment,
       })}"
     >
       <caption class="${args.captionPlacement === 'hidden' ? 'visually-hidden' : ''}">
