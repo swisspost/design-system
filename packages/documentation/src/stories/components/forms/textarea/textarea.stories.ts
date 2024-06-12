@@ -183,7 +183,6 @@ function renderTextarea(args: Args, context: StoryContext) {
     [args.sizeFloatingLabel]: args.floatingLabel,
     [args.validation]: args.validation,
   });
-  console.log(classes);
   const useAriaLabel = !args.floatingLabel && args.hiddenLabel;
   const label = !useAriaLabel
     ? html` <label for=${context.id} class="form-label">${args.label}</label> `
