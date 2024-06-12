@@ -1,3 +1,7 @@
+const withLitSSR = require('@lit-labs/nextjs')({
+  addDeclarativeShadowDomPolyfill: true,
+});
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
@@ -10,4 +14,4 @@ const nextConfig = {
   },
 };
 
-module.exports = nextConfig;
+module.exports = withLitSSR(nextConfig);
