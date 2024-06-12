@@ -42,7 +42,7 @@
 }
 
 @mixin form-lg {
-  font-size: type.$font-size-16;
+  font-size: type.$font-size-16 !important;
   line-height: forms.$input-line-height-lg;
   min-height: forms.$input-height-lg;
 }

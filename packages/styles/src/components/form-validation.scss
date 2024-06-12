@@ -128,18 +128,30 @@ textarea ~ .valid-feedback::before {
 .form-control,
 .form-select {
   &.is-invalid {
-    border-color: form-validation.$form-feedback-invalid-color;
-
-    &:focus {
+    &:not(:disabled) {
       border-color: form-validation.$form-feedback-invalid-color;
+
+      &:focus {
+        border-color: form-validation.$form-feedback-invalid-color;
+      }
+    }
+
+    &.form-control-sm ~ .invalid-feedback {
+      padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
     }
   }
 
   &.is-valid {
-    border-color: var(--post-success);
+    &:not(:disabled) {
+      border-color: var(--post-success);
 
-    &:focus {
-      border-color: form-validation.$form-feedback-valid-color;
+      &:focus {
+        border-color: var(--post-success);
+      }
+    }
+
+    &.form-control-sm ~ .valid-feedback {
+      padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
     }
   }
 
@@ -160,6 +172,17 @@ textarea ~ .valid-feedback::before {
     &.form-control-lg {
       padding-right: spacing.$size-small-huge; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
       background-size: forms.$form-bg-size; // Add space between background icons (ours and the one from bootstrap). Duplicated rule in form-select for arrow size.
+    }
+  }
+}
+
+textarea.form-control {
+  &.is-invalid,
+  &.is-valid {
+    background-position: right spacing.$size-micro top spacing.$size-mini;
+
+    &.form-control-sm {
+      background-position: right spacing.$size-micro top spacing.$size-mini;
     }
   }
 }
