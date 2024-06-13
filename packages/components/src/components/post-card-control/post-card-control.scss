@@ -10,10 +10,19 @@
 :host {
   display: flex;
   width: 100%;
+
+  // & ~ .invalid-feedback {
+  //   margin-bottom: 0 !important;
+  // }
 }
 
 :host-context(fieldset) {
   &:host(:not(:last-child)) {
+    .card-control {
+      margin-bottom: post.$size-regular;
+    }
+  }
+  &:host(:not(:has(~ .invalid-feedback))) {
     .card-control {
       margin-bottom: post.$size-regular;
     }
@@ -533,8 +542,4 @@
       }
     }
   }
-}
-
-post-card-control ~ .invalid-feedback {
-  display: inline-flex;
 }

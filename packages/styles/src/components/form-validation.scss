@@ -121,7 +121,8 @@ textarea ~ .valid-feedback::before {
 }
 
 .is-invalid ~ .invalid-feedback,
-.is-valid ~ .valid-feedback {
+.is-valid ~ .valid-feedback,
+post-card-control ~ .invalid-feedback {
   display: inline-flex;
 }
 
