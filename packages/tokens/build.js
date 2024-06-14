@@ -123,7 +123,9 @@ async function createTokenSetFiles(rawSets) {
     Object.keys(rawSets)
       .filter(name => name.indexOf('/') > 0)
       .map(async name =>
-        promises.mkdir(`${SOURCE_PATH}_temp/${name.replace(/\/.*$/, '')}`, { recursive: true }),
+        promises.mkdir(`${SOURCE_PATH}_temp/${name.replace(/^[^/]\/.*$/, '')}`, {
+          recursive: true,
+        }),
       ),
   );
   await Promise.all(
