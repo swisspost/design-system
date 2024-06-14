@@ -7,7 +7,7 @@
   "license": "Apache-2.0",
   "type": "module",
   "scripts": {
-    "build": "node ./build.js --verbosity=verbose"
+    "build": "node ./build.js"
   },
   "keywords": [
     "tokens",
