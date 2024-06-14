@@ -35,7 +35,7 @@ export class ListComponent extends LitElement {
 
   private _indexTask = new Task(this, {
     task: async ([packageType]) => {
-      const response = (await fetch(INDEX_PATH)) as any;
+      const response = await fetch(INDEX_PATH);
       const rawData: IndexInput = await response.json();
       return (
         Object.values(rawData.entries)

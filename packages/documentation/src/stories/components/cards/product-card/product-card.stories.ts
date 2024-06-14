@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { nothing } from 'lit';
 import { MetaComponent } from '@root/types';
@@ -59,18 +59,20 @@ const meta: MetaComponent = {
 export default meta;
 
 // DECORATORS
-function clickBlocker(story: any) {
-  return html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `;
+function clickBlocker(story: StoryFn, context: StoryContext) {
+  return html`
+    <div @click=${(e: Event) => e.preventDefault()}>${story(context.args, context)}</div>
+  `;
 }
 
-function paddedContainer(story: any) {
-  return html` <div class="p-mini">${story()}</div> `;
+function paddedContainer(story: StoryFn, context: StoryContext) {
+  return html` <div class="p-mini">${story(context.args, context)}</div> `;
 }
 
-function gridContainer(story: any) {
+function gridContainer(story: StoryFn, context: StoryContext) {
   return html`
     <div class="row row-cols-md-2 row-cols-xl-3 border-gutters">
-      <div class="col-12">${story()}</div>
+      <div class="col-12">${story(context.args, context)}</div>
     </div>
   `;
 }
@@ -322,12 +324,12 @@ export const Multipart: Story = {
     </div>
   `,
   decorators: [
-    (story: any) => {
-      let timer;
-
+    (story: StoryFn, context: StoryContext) => {
       return html`
-        ${story()}
+        ${story(context.args, context)}
         <script id="toto">
+          let timer;
+
           function syncHeights() {
             const nodes = document.querySelectorAll('[data-sync-height-with]');
 

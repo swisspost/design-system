@@ -6,13 +6,15 @@
  * @param variants List of args to blow up
  * @returns
  */
-export const bombArgs = (variants: { [key: string]: Array<unknown> }) => {
+export const bombArgs = (variants: { [key: string]: unknown[] | undefined }) => {
   return (function recurse(keys): Array<{ [key: string]: unknown }> {
     if (!keys.length) return [{}];
-    let result = recurse(keys.slice(1));
-    return variants[keys[0]].reduce(
+    const result = recurse(keys.slice(1));
+    const variantsArray = variants[keys[0]] ?? [];
+
+    return variantsArray.reduce(
       (acc: Array<{ [key: string]: unknown }>, value) =>
-        acc.concat(result.map((item: any) => Object.assign({}, item, { [keys[0]]: value }))),
+        acc.concat(result.map((item: object) => Object.assign({}, item, { [keys[0]]: value }))),
       [],
     );
   })(Object.keys(variants));

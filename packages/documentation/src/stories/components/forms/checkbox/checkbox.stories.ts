@@ -181,7 +181,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
 
   const containerClasses = mapClasses({
     'form-check': true,
-    [args.size]: args.size && args.size !== 'null',
+    [args.size]: args.size,
     'form-check-inline': args.inline,
   });
 
@@ -190,7 +190,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
     ['is-' + args.validation]: args.validation !== 'null',
   });
 
-  const handleChange = (e: Event) => {
+  const handleChange = () => {
     updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
   };
 

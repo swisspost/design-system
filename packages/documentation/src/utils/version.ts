@@ -1,22 +1,45 @@
 import * as packageJson from '../../package.json';
 
-export const DEPENDENCIES: any = {
-  [packageJson.name]: packageJson.version,
-  ...packageJson.dependencies,
-  ...packageJson.devDependencies,
-  ...packageJson.peerDependencies,
+interface IPackageJson {
+  name: string;
+  version: string;
+  dependencies?: object;
+  devDependencies?: object;
+  peerDependencies?: object;
+  [key: string]: unknown;
+}
+
+interface IDependencies {
+  [key: string]: string;
+}
+
+interface IVersionFilterRegexes {
+  [key: string]: RegExp;
+}
+
+interface IVersionFilterMap {
+  [key: string]: string;
+}
+
+const pkg = packageJson as IPackageJson;
+
+export const DEPENDENCIES: IDependencies = {
+  [pkg.name]: pkg.version,
+  ...pkg.dependencies,
+  ...pkg.devDependencies,
+  ...pkg.peerDependencies,
 };
 
-const versionFilterRegexes: any = {
+const versionFilterRegexes: IVersionFilterRegexes = {
   major: /^(?:(\d+)\.\d+\.\d+)/,
   minor: /^(?:\d+\.(\d+)\.\d+)/,
   patch: /^(?:\d+\.\d+\.(\d+))/,
-  pre: /^(?:\d+\.\d+\.\d+[ .:,;!?_~`'"^*+\-=<>#&$%@|\/()[\]{}]?(.*))/,
+  pre: /^(?:\d+\.\d+\.\d+[ .:,;!?_~`'"^*+\-=<>#&$%@|/()[\]{}]?(.*))/,
   majorminor: /^(?:(\d+\.\d+)\.\d+)/,
   majorminorpatch: /^(\d+\.\d+\.\d+)/,
 };
 
-const versionFilterMap: any = {
+const versionFilterMap: IVersionFilterMap = {
   major: 'major',
   M: 'major',
   minor: 'minor',
@@ -28,7 +51,7 @@ const versionFilterMap: any = {
   Mmp: 'majorminorpatch',
 };
 
-export function getVersion(version: string, filter: string = '') {
+export function getVersion(version: string, filter = '') {
   const cleanVersion = version.replace(/^[^\d]+/, '');
 
   if (filter) {

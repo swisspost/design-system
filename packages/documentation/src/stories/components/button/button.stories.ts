@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, unsafeStatic } from 'lit/static-html.js';
 import { spread } from '@open-wc/lit-helpers';
 import { repeat } from 'lit/directives/repeat.js';
@@ -222,7 +222,7 @@ const Template = {
   render: (args: Args) => {
     const tagName = unsafeStatic(args.tag);
     const isAnimated = args.tag !== 'input' && args.animated !== 'none';
-    const props = createProps(args, isAnimated);
+    const props = createProps(args);
 
     if (args.tag === 'input') {
       return html` <${tagName} ${spread(props)} /> `;
@@ -243,7 +243,7 @@ const Template = {
   },
 };
 
-function createProps(args: Args, isAnimated: boolean) {
+function createProps(args: Args) {
   const additionalClasses = args.additionalClasses ?? [];
   return {
     class: [
@@ -269,7 +269,10 @@ export const Default: Story = {
 
 export const Inverted: Story = {
   ...Template,
-  decorators: [(story: Function) => html` <div class="p-3 bg-dark">${story()}</div> `],
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      html` <div class="p-3 bg-dark">${story(context.args, context)}</div> `,
+  ],
 };
 
 const VariantsTemplate = {
@@ -279,7 +282,8 @@ const VariantsTemplate = {
     },
   },
   decorators: [
-    (story: Function) => html` <div class="d-flex gap-small-r flex-wrap">${story()}</div> `,
+    (story: StoryFn, context: StoryContext) =>
+      html` <div class="d-flex gap-small-r flex-wrap">${story(context.args, context)}</div> `,
   ],
   render: (args: Args) =>
     html`
