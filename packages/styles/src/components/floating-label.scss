@@ -10,6 +10,8 @@
 @use './../mixins/forms' as forms-mx;
 @use './../mixins/utilities' as utilities-mx;
 
+@use './../functions/sizing';
+
 @use './../variables/type';
 @use './../variables/spacing';
 @use './../variables/components/forms';
@@ -215,8 +217,12 @@
   }
 
   > textarea.form-control {
-    padding-top: forms.$input-padding-y-lg * 2;
-    padding-bottom: forms.$input-padding-y-lg;
+    padding-top: forms.$form-floating-textarea-padding-t !important;
+    padding-bottom: spacing.$size-mini;
+    padding-right: spacing.$size-large;
+    min-height: (forms.$form-floating-label-font-size * forms.$input-line-height-lg) +
+      forms.$form-floating-textarea-padding-t + spacing.$size-mini +
+      sizing.px-to-rem(forms.$input-border-width * 2);
     height: auto;
 
     ~ label {
@@ -224,15 +230,15 @@
       width: calc(100% - (#{forms.$input-border-width * 2}));
       max-width: none;
       height: unset;
+      padding-top: spacing.$size-regular;
     }
 
     &:focus,
     &:not(:placeholder-shown) {
-      padding-top: forms.$input-padding-y-lg * 2;
-      padding-bottom: forms.$input-padding-y-lg;
+      padding-bottom: spacing.$size-mini;
 
       ~ label {
-        padding-top: forms.$input-padding-y-lg * forms.$form-floating-label-scale;
+        padding-top: spacing.$size-mini;
         width: calc(
           (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
             forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
@@ -243,11 +249,46 @@
       }
     }
 
+    &.form-control-sm {
+      padding-top: forms.$form-floating-textarea-padding-t-sm !important;
+      padding-right: spacing.$size-large;
+      font-size: forms.$form-floating-label-font-size-placeholder-sm;
+      min-height: (
+          forms.$form-floating-label-font-size-placeholder-sm * forms.$input-line-height-sm
+        ) + forms.$form-floating-textarea-padding-t-sm + spacing.$size-mini +
+        sizing.px-to-rem(forms.$input-border-width * 2);
+      height: auto;
+
+      ~ label {
+        font-size: forms.$form-floating-label-font-size-placeholder-sm;
+        padding-left: spacing.$size-regular;
+        padding-top: spacing.$size-regular;
+        padding-right: spacing.$size-large;
+      }
+
+      &:focus,
+      &:not(:placeholder-shown) {
+        padding-bottom: spacing.$size-mini;
+
+        ~ label {
+          transform: scale(forms.$form-floating-label-scale-sm);
+          padding-top: spacing.$size-mini;
+          width: calc(
+            (100% * #{forms.$form-floating-label-upscale-sm}) - #{forms.$form-floating-label-translate-x-sm *
+              forms.$form-floating-label-upscale-sm * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale-sm *
+              2} - #{forms.$form-floating-padding-x-sm * forms.$form-floating-label-upscale-sm}
+          );
+          max-width: none;
+          background: forms.$input-bg;
+        }
+      }
+    }
+
     &:is(.is-valid, .is-invalid) {
       ~ label {
         width: calc(
-          100% - (#{forms.$input-border-width * 2}) - #{forms.$form-floating-padding-x} - #{form-validation.$form-feedback-icon-offset} -
-            #{form-validation.$form-feedback-icon-size}
+          100% - (#{forms.$input-border-width * 2}) - #{form-validation.$form-feedback-icon-offset} -
+            #{forms.$form-bg-size}
         );
       }
 
@@ -257,10 +298,32 @@
           width: calc(
             (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
               forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
-              2} - #{forms.$form-floating-padding-x * forms.$form-floating-label-upscale} - #{form-validation.$form-feedback-icon-offset *
-              forms.$form-floating-label-upscale} - #{form-validation.$form-feedback-icon-size *
-              forms.$form-floating-label-upscale}
+              2} - #{form-validation.$form-feedback-icon-offset * forms.$form-floating-label-upscale} -
+              #{form-validation.$form-feedback-icon-size * forms.$form-floating-label-upscale}
           );
+        }
+      }
+
+      &.form-control-sm {
+        ~ label {
+          width: calc(
+            100% - (#{forms.$input-border-width * 2}) - #{form-validation.$form-feedback-icon-offset} -
+              #{forms.$form-bg-size-sm}
+          );
+        }
+
+        &:focus,
+        &:not(:placeholder-shown) {
+          padding-right: spacing.$size-bigger-big;
+
+          ~ label {
+            width: calc(
+              (100% * #{forms.$form-floating-label-upscale-sm}) - #{forms.$form-floating-label-translate-x *
+                forms.$form-floating-label-upscale-sm * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale-sm *
+                2} - #{form-validation.$form-feedback-icon-offset *
+                forms.$form-floating-label-upscale-sm} - #{forms.$form-bg-size-sm * forms.$form-floating-label-upscale-sm}
+            );
+          }
         }
       }
     }

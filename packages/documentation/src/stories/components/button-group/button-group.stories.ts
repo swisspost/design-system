@@ -193,7 +193,7 @@ function createButtonTemplate(args: Args, context: StoryContext, index: number) 
           autocomplete="off"
           ?checked="${isChecked}"
           .checked="${isChecked}"
-          @change="${(e: Event) => {
+          @change="${() => {
             updateArgs({ checked: position });
           }}"
         />

@@ -1,4 +1,4 @@
-import { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import customFooterConfig from './custom-config/custom-footer-config';
 import { spread } from '@open-wc/lit-helpers';
@@ -35,14 +35,14 @@ const meta: MetaComponent = {
 export default meta;
 
 // DECORATORS
-function hiddenHeader(story: any, { args }: StoryContext) {
+function hiddenHeader(story: StoryFn, context: StoryContext) {
   return html`
     <style>
       swisspost-internet-header {
         display: none;
       }
     </style>
-    ${story()}
+    ${story(context.args, context)}
   `;
 }
 

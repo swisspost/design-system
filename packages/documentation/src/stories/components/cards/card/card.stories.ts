@@ -1,4 +1,4 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { choose } from 'lit/directives/choose.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
@@ -206,18 +206,20 @@ const meta: MetaComponent = {
 export default meta;
 
 // DECORATORS
-function clickBlocker(story: any) {
-  return html` <div @click=${(e: Event) => e.preventDefault()}>${story()}</div> `;
+function clickBlocker(story: StoryFn, context: StoryContext) {
+  return html`
+    <div @click=${(e: Event) => e.preventDefault()}>${story(context.args, context)}</div>
+  `;
 }
 
-function paddedContainer(story: any) {
-  return html` <div class="p-mini">${story()}</div> `;
+function paddedContainer(story: StoryFn, context: StoryContext) {
+  return html` <div class="p-mini">${story(context.args, context)}</div> `;
 }
 
-function gridContainer(story: any) {
+function gridContainer(story: StoryFn, context: StoryContext) {
   return html`
     <div class="row">
-      <div class="col-lg-4 col-rg-6 col-12">${story()}</div>
+      <div class="col-lg-4 col-rg-6 col-12">${story(context.args, context)}</div>
     </div>
   `;
 }
