@@ -1,6 +1,6 @@
 import type { StoryObj } from '@storybook/web-components';
 import { html, nothing, TemplateResult } from 'lit';
-import { MetaComponent } from '@root/types';
+import { MetaComponent, HeadingLevel } from '@root/types';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 const meta: MetaComponent<HTMLPostAccordionElement & HTMLPostCollapsibleElementEventMap> = {
@@ -72,7 +72,7 @@ type Story = StoryObj<HTMLPostAccordionElement>;
 
 export const Default: Story = {
   args: {
-    headingLevel: '3' as any, // needs to be a string for the control to properly initialize
+    headingLevel: '3' as HeadingLevel, // needs to be a string for the control to properly initialize
   },
 };
 

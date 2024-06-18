@@ -24,7 +24,7 @@ class BadgePillClassUpdate implements DomUpdate {
 }
 
 class BadgeBGClassUpdate implements DomUpdate {
-  cssClassRegex: RegExp = new RegExp(`^badge-(${themeColors.join('|')})$`);
+  cssClassRegex = new RegExp(`^badge-(${themeColors.join('|')})$`);
 
   selector = themeColors.map(colorname => `.badge-${colorname}`).join(', ');
 
@@ -52,7 +52,7 @@ class BadgeBGClassUpdate implements DomUpdate {
 }
 
 class BadgeOutlineClassUpdate implements DomUpdate {
-  cssClassRegex: RegExp = new RegExp(`^badge-outline-(${themeColors.join('|')})$`);
+  cssClassRegex = new RegExp(`^badge-outline-(${themeColors.join('|')})$`);
 
   selector = themeColors.map(colorname => `.badge-outline-${colorname}`).join(', ');
 

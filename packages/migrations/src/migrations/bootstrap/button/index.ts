@@ -12,7 +12,7 @@ export default function (): Rule {
 }
 
 class ButtonOutlineClassUpdate implements DomUpdate {
-  cssClassRegex: RegExp = new RegExp(`^btn-outline-(${themeColors.join('|')})$`);
+  cssClassRegex = new RegExp(`^btn-outline-(${themeColors.join('|')})$`);
 
   selector = themeColors.map(colorname => `.btn-outline-${colorname}`).join(', ');
 

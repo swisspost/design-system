@@ -50,7 +50,7 @@ export const Textarea: Story = {
                         ? html`
                             <h4>
                               ${Object.entries(context.argTypes.size.control.labels)
-                                .filter(([key, value]) => key === args.size)
+                                .filter(([key]) => key === args.size)
                                 .map(s => s[1])}
                             </h4>
                           `

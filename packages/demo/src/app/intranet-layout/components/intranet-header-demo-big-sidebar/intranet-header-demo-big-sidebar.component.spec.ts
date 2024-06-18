@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { IntranetHeaderDemoBigSidebarComponent } from './intranet-header-demo-big-sidebar.component';
 import { ErrorService } from '../../services/error.service';
-import { RouterTestingModule } from '@angular/router/testing';
+import { RouterModule } from '@angular/router';
 
 describe('IntranetHeaderBigComponent', () => {
   let component: IntranetHeaderDemoBigSidebarComponent;
@@ -10,7 +10,7 @@ describe('IntranetHeaderBigComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule],
+      imports: [RouterModule.forRoot([])],
       declarations: [IntranetHeaderDemoBigSidebarComponent],
       providers: [ErrorService],
     }).compileComponents();

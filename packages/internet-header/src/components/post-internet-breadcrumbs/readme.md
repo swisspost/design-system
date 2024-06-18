@@ -32,6 +32,19 @@ Type: `Promise<void>`
 
 
 
+## Dependencies
+
+### Depends on
+
+- [focus-trap](../shared)
+
+### Graph
+```mermaid
+graph TD;
+  swisspost-internet-breadcrumbs --> focus-trap
+  style swisspost-internet-breadcrumbs fill:#f9f,stroke:#333,stroke-width:4px
+```
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

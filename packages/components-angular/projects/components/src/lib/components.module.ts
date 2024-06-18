@@ -1,9 +1,5 @@
 import { CSP_NONCE, ENVIRONMENT_INITIALIZER, inject, NgModule } from '@angular/core';
-import {
-  applyPolyfills,
-  defineCustomElements,
-  setNonce,
-} from '@swisspost/design-system-components/loader';
+import { defineCustomElements, setNonce } from '@swisspost/design-system-components/loader';
 
 import { DIRECTIVES } from './stencil-generated';
 import { PostCardControlCheckboxValueAccessorDirective } from './custom/value-accessors/post-card-control-checkbox-value-accessor';
@@ -31,9 +27,7 @@ const DECLARATIONS = [
         if (nonce) setNonce(nonce);
 
         // Define Post components
-        applyPolyfills().then(() => {
-          defineCustomElements();
-        });
+        defineCustomElements();
       },
       multi: true,
     },

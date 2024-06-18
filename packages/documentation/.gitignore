@@ -1,5 +1,7 @@
 # Storybook specific
 storybook-static
+doctor-storybook.log
 
 # Project specific
 public/manager
+cypress/downloads

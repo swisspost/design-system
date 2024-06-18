@@ -7,7 +7,7 @@
     aria-hidden="true"
   ></ngb-progressbar>
 
-  <ol class="stepper" role="list">
+  <ol class="stepper">
     <li
       *ngFor="let step of steps; index as i"
       [attr.aria-current]="isCurrent(step) ? 'step' : undefined"
