@@ -131,5 +131,5 @@ class ReplaceWithElementUpdate implements DomUpdate {
 
         $element.replaceWith($replacement);
       });
-  }
+  };
 }

@@ -18,7 +18,7 @@
     "linkDirectory": true
   },
   "dependencies": {
-    "tslib": "2.6.2"
+    "tslib": "2.6.3"
   },
   "peerDependencies": {
     "@angular/common": "^16.0.0 || ^17.0.0",

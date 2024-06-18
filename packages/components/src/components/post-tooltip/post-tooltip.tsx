@@ -45,9 +45,7 @@ const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
  * @returns
  */
 const globalInterestLostHandler = (e: PointerEvent | FocusEvent) => {
-  const targetElement = (e.target as HTMLElement).closest(
-    tooltipTargetAttributeSelector,
-  ) as HTMLElement;
+  const targetElement = (e.target as HTMLElement).closest(tooltipTargetAttributeSelector);
   if (!targetElement || !('getAttribute' in targetElement)) return;
   const tooltipTarget = targetElement.getAttribute(tooltipTargetAttribute);
   if (!tooltipTarget || tooltipTarget === '') return;
@@ -112,7 +110,7 @@ export class PostTooltip {
    */
   @Prop() readonly arrow?: boolean = true;
 
-  connectedCallback() {
+  componentDidLoad() {
     if (!this.host.id) {
       throw new Error(
         /*prettier-ignore*/

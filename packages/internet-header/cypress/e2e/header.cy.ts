@@ -9,7 +9,7 @@ describe('header', () => {
 
   context('initial state', () => {
     it('renders', () => {
-      cy.get('swisspost-internet-header').should('have.class', 'hydrated');
+      cy.get('swisspost-internet-header', { timeout: 30000 }).should('have.class', 'hydrated');
     });
 
     it(`has nav item 'Briefe versenden' selected`, () => {

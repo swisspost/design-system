@@ -19,7 +19,8 @@ import { version } from '@root/package.json';
 import scss from './post-card-control.module.scss';
 import { parse } from '@/utils/sass-export';
 
-const SCSS_VARIABLES = parse(scss);
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+const SCSS_VARIABLES: any = parse(scss);
 
 let cardControlIds = 0;
 
@@ -371,7 +372,7 @@ export class PostCardControl {
           data-host-context={this.hostContext.join(' ')}
         >
           <input
-            ref={el => (this.control = el as HTMLInputElement)}
+            ref={el => (this.control = el)}
             id={this.controlId}
             class="card-control--input form-check-input"
             type={this.type}

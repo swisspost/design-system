@@ -1,4 +1,4 @@
-import { StoryObj } from '@storybook/web-components';
+import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spread } from '@open-wc/lit-helpers';
 import { getAttributes } from '@/utils';
@@ -35,10 +35,10 @@ const meta: MetaComponent<HTMLSwisspostInternetBreadcrumbsElement> = {
 export default meta;
 
 // DECORATORS
-function hiddenHeader(story: any) {
+function hiddenHeader(story: StoryFn, context: StoryContext) {
   return html`
     <swisspost-internet-header project="test" hidden></swisspost-internet-header>
-    ${story()}
+    ${story(context.args, context)}
   `;
 }
 

@@ -44,14 +44,14 @@ By default, the above classes apply to all breakpoints.
 ##### Manually specifying breakpoints
 
 If you need to change the size or spacing of an element based on the breakpoint, you should
-mention it in the class name using one of the following infixes: {Object.values(SpacingStories.SCSS_VARIABLES.breakpoints).map((s, index, array) => (<span><code>{`-${s}-`}</code>{index !== array.length - 1 && ', '}</span>))}.
+mention it in the class name using one of the following infixes: {Object.values(SpacingStories.SCSS_VARIABLES.breakpoints).map((s, index, array) => (<span key={s}><code>{`-${s}-`}</code>{index !== array.length - 1 && ', '}</span>))}.
 When a breakpoint is specified, the size applies to that breakpoint and to all those that are
 larger.
 
 The square below has a big padding from the large breakpoint (i.e. `.p-lg-big`) and a regular
 padding below (i.e. `.p-regular`).
 
-<Canvas of={SpacingStories.responsiveExample} />
+<Canvas of={SpacingStories.ResponsiveExample} />
 
 ##### Using automatic responsive behavior
 
@@ -60,4 +60,4 @@ Another way to define a responsive size is to use the `-r` suffix. It allows to 
 The square below has a "large" responsive padding, which means the padding size
 automatically changes based on the breakpoint but remains visually consistent.
 
-<Canvas of={SpacingStories.automaticResponsiveExample} />
+<Canvas of={SpacingStories.AutomaticResponsiveExample} />
