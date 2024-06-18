@@ -12,7 +12,7 @@ import SampleScssMixins from './grid-scss-mixins.sample.scss?raw';
 
 <div className="lead">
   Use our powerful mobile-first flexbox grid to build layouts of all shapes and sizes thanks to a
-  twelve column system, {Object.keys(SCSS_VARIABLES.breakpoint).length} default responsive tiers,
+  twelve column system, {SCSS_VARIABLES['breakpoint-count']} default responsive tiers,
   Sass variables and mixins, and dozens of predefined classes.
 </div>
 
@@ -35,7 +35,7 @@ The above example creates three equal-width columns across all devices and viewp
 
 Breaking it down, here’s how the grid system comes together:
 
-- **Our grid supports {Object.keys(SCSS_VARIABLES.breakpoint).length} responsive breakpoints.** Breakpoints are based on `min-width` media queries, meaning they affect that breakpoint and all those above it. This means you can control container and column sizing and behavior by each breakpoint.
+- **Our grid supports <span>{SCSS_VARIABLES['breakpoint-count']}</span> responsive breakpoints.** Breakpoints are based on `min-width` media queries, meaning they affect that breakpoint and all those above it. This means you can control container and column sizing and behavior by each breakpoint.
 - **Container (e.g. `.container`) center and horizontally pad your content.**<br/>
   Don't nest `.containers`, but use them (for example) as a wrapper for your content area:
   <Source language="html" dark code={SampleContainer}></Source>
@@ -46,7 +46,7 @@ Breaking it down, here’s how the grid system comes together:
 
 ## Grid options
 
-Our grid system can adapt across all {Object.keys(SCSS_VARIABLES.breakpoint).length} breakpoints.
+Our grid system can adapt across all <span>{SCSS_VARIABLES['breakpoint-count']}</span> breakpoints.
 Each of these breakpoints have their own specifications, a unique class prefix, and some modifiers.
 
 <GridTable />
@@ -75,7 +75,7 @@ Use `.col-{breakpoint}-auto` classes to size columns based on the natural width 
 
 ## Responsive classes
 
-Our grid includes {SCSS_VARIABLES['breakpoint-count']} tiers of predefined classes for building complex responsive layouts.
+Our grid includes <span>{SCSS_VARIABLES['breakpoint-count']}</span> tiers of predefined classes for building complex responsive layouts.
 
 ### All breakpoints
 

@@ -1,4 +1,4 @@
-interface TodoListChecks {
+export interface TodoListChecks {
   general: {
     naming_cwfpackagename: boolean;
     naming_entryfiles: boolean;

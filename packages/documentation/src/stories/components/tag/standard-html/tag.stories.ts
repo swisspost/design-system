@@ -5,6 +5,7 @@ import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { parse } from '@/utils/sass-export';
 import scss from '@/stories/components/tag/tag.module.scss';
 
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 const SCSS_VARIABLES: any = parse(scss);
 
 const meta: MetaComponent = {

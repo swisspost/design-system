@@ -76,7 +76,7 @@ const meta: MetaComponent = {
   },
 };
 export default meta;
-function cardButtonRender(args: Args, count: number = 42) {
+function cardButtonRender(args: Args, count = 42) {
   const [_, updateArgs] = useArgs();
   return html`
     <div class="card card-button ${args.background}" id="${`card-button${count}`}">

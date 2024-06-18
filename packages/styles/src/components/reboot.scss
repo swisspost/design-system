@@ -3,8 +3,11 @@
 @use './../lic/bootstrap-license';
 
 @use './../mixins/type';
+@use './../mixins/color' as mx-color;
 @use './../variables/animation';
+@use './../variables/color';
 
 body {
   @include type.font-smoothing();
+  @include mx-color.colored-background(color.$white);
 }

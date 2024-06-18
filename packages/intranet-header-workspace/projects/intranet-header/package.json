@@ -19,7 +19,7 @@
   },
   "dependencies": {
     "@swisspost/design-system-styles": "workspace:7.1.0",
-    "tslib": "2.6.2"
+    "tslib": "2.6.3"
   },
   "devDependencies": {
     "@swisspost/design-system-intranet-header-workspace": "workspace:3.0.13"

@@ -23,13 +23,13 @@ class StepperContainerUpdate implements DomUpdate {
         const simpleAriaLabel = $stepperContainer.attr('aria-label');
         if (simpleAriaLabel) {
           $stepperContainer.removeAttr('aria-label');
-          $stepperContainer.prepend(`<h2 class="visually-hidden">${simpleAriaLabel}</h2>`)
+          $stepperContainer.prepend(`<h2 class="visually-hidden">${simpleAriaLabel}</h2>`);
         }
 
         const boundAriaLabel = $stepperContainer.attr('[attr.aria-label]');
         if (boundAriaLabel) {
           $stepperContainer.removeAttr('[attr.aria-label]');
-          $stepperContainer.prepend(`<h2 class="visually-hidden">{{ ${boundAriaLabel} }}</h2>`)
+          $stepperContainer.prepend(`<h2 class="visually-hidden">{{ ${boundAriaLabel} }}</h2>`);
         }
       });
   }
