@@ -140,6 +140,7 @@ async function createOutputFiles(tokenSets) {
   console.log(`\x1b[90mWriting files...`);
   await Promise.all(getConfigs().map(build));
   await createIndexFile();
+  await copySrcFiles();
   console.log(`\x1b[33m✓ Complete!`);
 
   function getConfigs() {
@@ -182,6 +183,10 @@ async function createOutputFiles(tokenSets) {
       .join('\n');
 
     await promises.writeFile(`${BUILD_PATH}index.scss`, `${getFileHeader()}${imports}\n`);
+  }
+
+  async function copySrcFiles() {
+    await promises.copyFile(`${SOURCE_PATH}tokens.json`, `${BUILD_PATH}tokens.json`);
   }
 }
 
