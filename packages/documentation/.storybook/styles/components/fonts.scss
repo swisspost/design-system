@@ -1,0 +1,65 @@
+@font-face {
+  font-family: 'Reddit Sans';
+  font-weight: 700;
+  font-style: normal;
+  src: url('/assets/fonts/reddit-sans-bold.woff2') format('woff2'),
+    url('/assets/fonts/reddit-sans-bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Reddit Sans';
+  font-weight: 700;
+  font-style: italic;
+  src: url('/assets/fonts/reddit-sans-bold-italic.woff2') format('woff2'),
+    url('/assets/fonts/reddit-sans-bold-italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Reddit Sans';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/assets/fonts/reddit-sans-regular.woff2') format('woff2'),
+    url('/assets/fonts/reddit-sans-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Reddit Sans';
+  font-weight: 400;
+  font-style: italic;
+  src: url('/assets/fonts/reddit-sans-regular-italic.woff2') format('woff2'),
+    url('/assets/fonts/reddit-sans-regular-italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Reddit Sans';
+  font-weight: 300;
+  font-style: normal;
+  src: url('/assets/fonts/reddit-sans-light.woff2') format('woff2'),
+    url('/assets/fonts/reddit-sans-light.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Reddit Sans';
+  font-weight: 300;
+  font-style: italic;
+  src: url('/assets/fonts/reddit-sans-light-italic.woff2') format('woff2'),
+    url('/assets/fonts/reddit-sans-light-italic.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Reddit Mono';
+  font-weight: 700;
+  src: local('Reddit Mono Bold'), url('/assets/fonts/reddit-mono-bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Reddit Mono';
+  font-weight: 400;
+  src: local('Reddit Mono Regular'), url('/assets/fonts/reddit-mono-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Reddit Mono';
+  font-weight: 300;
+  src: local('Reddit Mono Light'), url('/assets/fonts/reddit-mono-light.woff') format('woff');
+}

@@ -1,0 +1,12 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+.blockquote {
+  padding: 0;
+  border-left: 0 none;
+  font-style: italic;
+}
+
+.blockquote-footer {
+  padding: 0;
+  border-left: 0 none;
+}

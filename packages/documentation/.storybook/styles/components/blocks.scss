@@ -1,0 +1,106 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+#storybook-root,
+#storybook-docs {
+  .sbdocs-preview {
+    border-color: post.$border-color;
+    border-radius: post.$size-mini;
+  }
+
+  .docblock-argstable {
+    border-radius: post.$size-mini;
+
+    tbody {
+      > tr {
+        > th,
+        > td {
+          border-color: post.$border-color;
+        }
+
+        &:first-child,
+        &:last-child {
+          > * {
+            &:first-child,
+            &:last-child {
+              position: relative;
+
+              &::before,
+              &::after {
+                display: block;
+                content: '';
+                position: absolute;
+                width: post.$size-mini;
+                height: post.$size-mini;
+                background-color: post.$body-bg;
+              }
+            }
+          }
+        }
+
+        &:first-child {
+          > *:first-child {
+            &::before,
+            &::after {
+              top: -1px;
+              left: -1px;
+            }
+
+            &::after {
+              border-top: 1px solid post.$border-color;
+              border-left: 1px solid post.$border-color;
+              border-top-left-radius: post.$size-mini;
+            }
+          }
+
+          > *:last-child {
+            &::before,
+            &::after {
+              top: -1px;
+              right: -1px;
+            }
+
+            &::after {
+              border-top: 1px solid post.$border-color;
+              border-right: 1px solid post.$border-color;
+              border-top-right-radius: post.$size-mini;
+            }
+          }
+        }
+
+        &:last-child {
+          > *:first-child {
+            &::before,
+            &::after {
+              bottom: -1px;
+              left: -1px;
+            }
+
+            &::after {
+              border-bottom: 1px solid post.$border-color;
+              border-left: 1px solid post.$border-color;
+              border-bottom-left-radius: post.$size-mini;
+            }
+          }
+
+          > *:last-child {
+            &::before,
+            &::after {
+              bottom: -1px;
+              right: -1px;
+            }
+
+            &::after {
+              border-bottom: 1px solid post.$border-color;
+              border-right: 1px solid post.$border-color;
+              border-bottom-right-radius: post.$size-mini;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .docblock-source {
+    border-radius: post.$size-mini;
+  }
+}
