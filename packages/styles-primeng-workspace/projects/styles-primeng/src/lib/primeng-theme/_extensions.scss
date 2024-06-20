@@ -1,6 +1,10 @@
 @use '@swisspost/design-system-styles/core' as post;
 @use './variables' as variables;
 
+.p-datatable-wrapper {
+  overflow: initial;
+}
+
 .p-datatable {
   .p-datatable-thead > tr > th {
     gap: post.$size-mini;
@@ -138,5 +142,20 @@
   timesicon {
     height: 100%;
     width: 100%;
+  }
+}
+
+.p-sortable-column,
+.p-column-filter,
+.p-selectable-row,
+.p-link,
+.p-button,
+.p-inputwrapper.p-dropdown,
+.p-inputtext:not(.p-inputwrapper > .p-inputtext),
+.p-checkbox,
+.p-radiobutton {
+  @include post.focus-style() {
+    box-shadow: none;
+    border-radius: post.$border-radius;
   }
 }
