@@ -1,6 +1,5 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-#storybook-root,
 #storybook-docs {
   .sbdocs-preview {
     border-color: post.$border-color;
@@ -11,6 +10,9 @@
     border-radius: post.$size-mini;
 
     tbody {
+      -webkit-filter: none;
+      filter: none;
+
       > tr {
         > th,
         > td {

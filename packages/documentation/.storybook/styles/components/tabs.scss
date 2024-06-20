@@ -1,17 +1,19 @@
 @use '@swisspost/design-system-styles/core' as post;
 
-post-tab-header.tab-title[role='tab']:not(.docs-story post-tab-header) {
-  &:first-child {
-    margin-left: post.$size-big;
-  }
+#storybook-docs {
+  post-tab-header.tab-title[role='tab']:not(.docs-story post-tab-header) {
+    &:first-child {
+      margin-left: post.$size-big;
+    }
 
-  &.active {
-    border-top-left-radius: post.$border-radius;
-    border-top-right-radius: post.$border-radius;
+    &.active {
+      border-top-left-radius: post.$border-radius;
+      border-top-right-radius: post.$border-radius;
 
-    &::before {
-      background-color: post.$black;
-      border-radius: inherit;
+      &::before {
+        background-color: post.$black;
+        border-radius: inherit;
+      }
     }
   }
 }
