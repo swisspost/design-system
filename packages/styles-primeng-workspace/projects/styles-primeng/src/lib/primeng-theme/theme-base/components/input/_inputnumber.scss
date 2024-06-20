@@ -1,0 +1,28 @@
+@use 'sass:list';
+
+p-inputnumber.ng-dirty.ng-invalid > .p-inputnumber > .p-inputtext {
+  @include invalid-input();
+}
+
+p-inputnumber.p-inputnumber-clearable {
+  .p-inputnumber-input {
+    padding-right: list.nth($inputPadding, 2) * 2 + $primeIconFontSize;
+  }
+
+  .p-inputnumber-clear-icon {
+    color: $inputIconColor;
+    right: list.nth($inputPadding, 2);
+  }
+
+  .p-inputnumber-buttons-stacked {
+    .p-inputnumber-clear-icon {
+      right: $buttonIconOnlyWidth + list.nth($inputPadding, 2);
+    }
+  }
+
+  .p-inputnumber-buttons-horizontal {
+    .p-inputnumber-clear-icon {
+      right: $buttonIconOnlyWidth + list.nth($inputPadding, 2);
+    }
+  }
+}
