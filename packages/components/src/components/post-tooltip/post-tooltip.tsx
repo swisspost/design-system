@@ -1,9 +1,9 @@
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
-import { version } from '../../../package.json';
+import { version } from '@root/package.json';
 import isFocusable from 'ally.js/is/focusable';
 import 'long-press-event';
-import { getAttributeObserver } from '../../utils/attribute-observer';
+import { getAttributeObserver } from '@/utils/attribute-observer';
 
 /**
  * @slot default - Slot for the content of the tooltip.
@@ -45,9 +45,7 @@ const globalInterestHandler = (e: PointerEvent | FocusEvent) => {
  * @returns
  */
 const globalInterestLostHandler = (e: PointerEvent | FocusEvent) => {
-  const targetElement = (e.target as HTMLElement).closest(
-    tooltipTargetAttributeSelector,
-  ) as HTMLElement;
+  const targetElement = (e.target as HTMLElement).closest(tooltipTargetAttributeSelector);
   if (!targetElement || !('getAttribute' in targetElement)) return;
   const tooltipTarget = targetElement.getAttribute(tooltipTargetAttribute);
   if (!tooltipTarget || tooltipTarget === '') return;
@@ -112,7 +110,7 @@ export class PostTooltip {
    */
   @Prop() readonly arrow?: boolean = true;
 
-  connectedCallback() {
+  componentDidLoad() {
     if (!this.host.id) {
       throw new Error(
         /*prettier-ignore*/

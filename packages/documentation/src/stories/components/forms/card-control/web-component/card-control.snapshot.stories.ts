@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta, { Default } from './card-control.stories';
 import { html } from 'lit';
-import { bombArgs } from '../../../../../utils';
+import { bombArgs } from '@/utils';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -12,7 +12,7 @@ export default {
 
 type Story = StoryObj<HTMLPostCardControlElement>;
 
-export const CardControl: Story = {
+export const PostCardControl: Story = {
   render: (_args: Args, context: StoryContext<HTMLPostCardControlElement>) => {
     return html`
       <div id="Snapshots">

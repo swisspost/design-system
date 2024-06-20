@@ -1,7 +1,7 @@
 import type { Args, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { mapClasses } from '../../../utils';
-import { MetaComponent } from '../../../../types';
+import { mapClasses } from '@/utils';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '81799516-470c-446b-a049-54946b6ccfca',
@@ -122,10 +122,10 @@ function renderTable(args: Args) {
     <table
       class="${mapClasses({
         table: true,
-        [args.borderStyle]: args.borderStyle && args.borderStyle !== 'null',
+        [args.borderStyle]: args.borderStyle,
         [variants]: variants && variants !== '',
         [cationTop]: cationTop !== 'null',
-        [args.alignment]: args.alignment && args.alignment !== 'null',
+        [args.alignment]: args.alignment,
       })}"
     >
       <caption class="${args.captionPlacement === 'hidden' ? 'visually-hidden' : ''}">

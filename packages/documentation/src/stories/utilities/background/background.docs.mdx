@@ -1,6 +1,6 @@
 import { Canvas, Meta } from '@storybook/blocks';
-import { forEach } from '../../../utils/react';
-import { parse } from '../../../utils/sass-export';
+import { forEach } from '@/utils/react';
+import { parse } from '@/utils/sass-export';
 import { BackgroundContainer } from './background.blocks';
 import * as BackgroundStories from './background.stories';
 import scss from './background.module.scss';
@@ -32,32 +32,32 @@ To set a background on an element, simply add a `.bg-{colorname}` class to it.
 #### Base
 
 <section className="background-container__section">
-  {forEach(SCSS_VARIABLES.base, function (data) {
-    return <BackgroundContainer key={data.key} name={data.key} color={data.value} />;
+  {forEach(SCSS_VARIABLES.base, function ({ key, value }) {
+    return <BackgroundContainer key={key} name={key} color={value} />;
   })}
 </section>
 
 #### Signal
 
 <section className="background-container__section">
-  {forEach(SCSS_VARIABLES.signal, function (data) {
-    return <BackgroundContainer key={data.key} name={data.key} color={data.value} />;
+  {forEach(SCSS_VARIABLES.signal, function ({ key, value }) {
+    return <BackgroundContainer key={key} name={key} color={value} />;
   })}
 </section>
 
 #### Signal backgrounds
 
 <section className="background-container__section">
-  {forEach(SCSS_VARIABLES['signal-background'], function (data) {
-    return <BackgroundContainer key={data.key} name={data.key} color={data.value} />;
+  {forEach(SCSS_VARIABLES['signal-background'], function ({ key, value }) {
+    return <BackgroundContainer key={key} name={key} color={value} />;
   })}
 </section>
 
 #### Accent
 
 <section className="background-container__section">
-  {forEach(SCSS_VARIABLES.accent, function (data) {
-    return <BackgroundContainer key={data.key} name={data.key} color={data.value} />;
+  {forEach(SCSS_VARIABLES.accent, function ({ key, value }) {
+    return <BackgroundContainer key={key} name={key} color={value} />;
   })}
 </section>
 

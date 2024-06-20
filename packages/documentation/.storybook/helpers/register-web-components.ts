@@ -1,37 +1,35 @@
 // @ts-ignore
-import {
-  applyPolyfills as headerPolyfills,
-  defineCustomElements as defineHeader,
-} from '@swisspost/internet-header/loader/index.es2017.js';
-import {
-  applyPolyfills as componentsPolyfills,
-  defineCustomElements as defineComponents,
-} from '@swisspost/design-system-components/loader';
+import { defineCustomElements as defineHeader } from '@swisspost/internet-header/loader/index.es2017.js';
+import { defineCustomElements as defineComponents } from '@swisspost/design-system-components/loader';
 import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
-import {
-  StencilJsonDocs,
-  StencilJsonDocsComponent,
-} from '@pxtrn/storybook-addon-docs-stencil/dist/types';
+import { StencilJsonDocs } from '@pxtrn/storybook-addon-docs-stencil/dist/types';
 import postComponentsDocJson from '@swisspost/design-system-components/dist/docs.json';
 import internetHeaderDocJson from '@swisspost/internet-header/dist/docs.json';
 import '../../src/shared/link-design/link-design.component';
 
-headerPolyfills().then(() => {
-  defineHeader();
-});
-componentsPolyfills().then(() => {
-  defineComponents();
-});
+defineHeader();
+defineComponents();
 
 if (postComponentsDocJson && internetHeaderDocJson) {
-  const jsonDocs: StencilJsonDocs = {
-    timestamp: postComponentsDocJson.timestamp,
-    compiler: postComponentsDocJson.compiler,
-    components: [
-      ...postComponentsDocJson.components,
-      ...internetHeaderDocJson.components,
-    ] as StencilJsonDocsComponent[],
+  let { components, ...docJsonMetaData } = postComponentsDocJson as unknown as StencilJsonDocs;
+
+  // add the internet header components to the post component list
+  components = components.concat((internetHeaderDocJson as StencilJsonDocs).components);
+
+  // parse the component properties to show a deprecation message necessary
+  components.forEach(component => {
+    component.props.forEach(prop => {
+      if (prop.deprecation) {
+        const deprecationAlert = `<span className="mb-micro alert alert-warning alert-sm">**Deprecated:** ${prop.deprecation}</span>`;
+        prop.docs = `${prop.deprecation ? deprecationAlert : ''}${prop.docs}`;
+      }
+    });
+  });
+
+  const stencilJsonDocs: StencilJsonDocs = {
+    ...docJsonMetaData,
+    components: components,
   };
 
-  setStencilDocJson(jsonDocs);
+  setStencilDocJson(stencilJsonDocs);
 }

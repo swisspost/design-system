@@ -1,8 +1,9 @@
 // Source: https://github.com/storybookjs/storybook/blob/next/code/ui/blocks/src/blocks/mdx.tsx#L34
 import { Source } from '@storybook/blocks';
 import { Code } from '@storybook/components';
-import { SourceDarkMode } from '../../.storybook/preview';
+import { SourceDarkMode } from '@/../.storybook/preview';
 
+/* eslint-disable-next-line @typescript-eslint/ban-ts-comment */
 // @ts-ignore
 export const CodeOrSourceMdx = ({ className, children, ...rest }) => {
   // markdown-to-jsx does not add className to inline code

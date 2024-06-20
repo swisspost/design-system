@@ -68,7 +68,9 @@
     "icons:test": "pnpm --filter design-system-icons test",
     "icons:unit": "pnpm --filter design-system-icons test",
     "icons:unit:watch": "pnpm --filter design-system-icons test:watch",
+    "icons:lint": "pnpm --filter design-system-icons lint",
     "migrations:build": "pnpm --filter design-system-migrations build",
+    "migrations:lint": "pnpm --filter design-system-migrations lint",
     "nextjs": "pnpm nextjs:start",
     "nextjs:start": "pnpm --filter design-system-nextjs-integration dev",
     "nextjs:build": "pnpm --filter design-system-nextjs-integration build",
@@ -82,14 +84,14 @@
     "primeng:lint:fix": "pnpm --filter design-system-styles-primeng-workspace lint:fix"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.1",
-    "start-server-and-test": "2.0.3"
+    "@changesets/cli": "2.27.5",
+    "start-server-and-test": "2.0.4"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
   },
   "engines": {
-    "node": "18",
+    "node": "20",
     "pnpm": "9"
   },
   "pnpm": {

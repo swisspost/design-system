@@ -64,7 +64,7 @@ class BadgeToChipDismissibleUpdate implements DomUpdate {
 class BadgeToTagUpdate implements DomUpdate {
   selector = '.badge';
 
-  bgClassRegex: RegExp = new RegExp(`^bg-(${themeColors.join('|')})$`);
+  bgClassRegex = new RegExp(`^bg-(${themeColors.join('|')})$`);
 
   update($elements: Cheerio<AnyNode>, $: CheerioAPI) {
     $elements.each((_i, element) => {

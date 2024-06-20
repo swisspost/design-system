@@ -1,7 +1,7 @@
 import { useArgs } from '@storybook/preview-api';
 import { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '825b65c9-7eaf-4e0a-9e20-5f5ed406726d',
@@ -316,7 +316,7 @@ const timeoutStores: ITimeoutStores = {
 function onToggle(
   e: MouseEvent | null,
   args: Args,
-  updateArgs: Function,
+  updateArgs: (newArgs: Partial<Args>) => void,
   state: boolean | undefined,
 ) {
   if (e) e.preventDefault();
@@ -326,7 +326,7 @@ function onToggle(
 function createAutoHideTimeout(
   timeoutStore: ReturnType<typeof setTimeout>[],
   args: Args,
-  updateArgs: Function,
+  updateArgs: (newArgs: Partial<Args>) => void,
 ) {
   if (args.position === 'fixed' && args.autoClose > 0 && timeoutStore.length === 0) {
     timeoutStore.push(
@@ -432,7 +432,7 @@ function render(args: Args, context: StoryContext) {
   `;
 }
 
-function updateAlignments(args: Args, updateArgs: Function) {
+function updateAlignments(args: Args, updateArgs: (newArgs: Partial<Args>) => void) {
   if (args.alignH && args.alignHRestricted && args.alignH !== args.alignHRestricted) {
     args.alignV === 'center'
       ? updateArgs({ alignH: args.alignHRestricted })

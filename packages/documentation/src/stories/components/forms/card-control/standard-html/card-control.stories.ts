@@ -3,11 +3,13 @@ import { useArgs, useState } from '@storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
 import { classMap } from 'lit/directives/class-map.js';
-import { MetaComponent } from '../../../../../../types';
-import { parse } from '../../../../../utils/sass-export';
+import { MetaComponent } from '@root/types';
+import { parse } from '@/utils/sass-export';
 import scss from '../card-control.module.scss';
 
 const SCSS_VARIABLES: { [key: string]: string } = parse(scss);
+
+type useStateFn = typeof useState;
 
 const meta: MetaComponent = {
   id: '047501dd-a185-4835-be91-09130fa3dad9',
@@ -129,7 +131,7 @@ let cardControlId = 0;
 const CONTROL_LABELS = ['One', 'Two', 'Three', 'Four', 'Five', 'Six'];
 
 // Firefox fallback for the :has selector
-function inputHandler(e: InputEvent, updateArgs: Function) {
+function inputHandler(e: InputEvent, updateArgs: (newArgs: Partial<Args>) => void) {
   const target = e.target as HTMLInputElement;
   updateArgs({ checked: target.checked });
 
@@ -225,7 +227,7 @@ export const DarkBackground = {
   render: Default.render,
 };
 
-function col(label: string, args: Args, useState: Function) {
+function col(label: string, args: Args, useState: useStateFn) {
   const [id] = useState(cardControlId++);
 
   return html`

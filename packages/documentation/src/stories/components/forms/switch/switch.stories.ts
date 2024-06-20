@@ -2,8 +2,8 @@ import { useArgs } from '@storybook/preview-api';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { mapClasses } from '../../../../utils';
-import { MetaComponent } from '../../../../../types';
+import { mapClasses } from '@/utils';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '7fb639f8-86f6-4937-999c-4ee15f81643b',
@@ -150,7 +150,7 @@ function renderSwitch(args: Args, context: StoryContext) {
         ?disabled=${args.disabled}
         aria-label=${useAriaLabel ? ariaLabel : nothing}
         aria-invalid=${ifDefined(VALIDATION_STATE_MAP[args.validation])}
-        @change=${(e: Event) => updateArgs({ checked: !args.checked })}
+        @change=${() => updateArgs({ checked: !args.checked })}
       />
       ${labelBefore} ${labelAfter} ${args.validation !== 'null' ? validationFeedback : nothing}
     </div>

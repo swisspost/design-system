@@ -1,6 +1,6 @@
 import { Component, Element, h, Host, Prop, State, Watch } from '@stencil/core';
-import { version } from '../../../package.json';
-import { checkNonEmpty } from '../../utils';
+import { version } from '@root/package.json';
+import { checkNonEmpty } from '@/utils';
 
 /**
  * @slot default - Slot for the content of the tab header.

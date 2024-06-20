@@ -1,7 +1,7 @@
 import { useArgs } from '@storybook/preview-api';
-import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '12576d97-52c3-49ec-be7b-6d37728b75f5',
@@ -106,7 +106,7 @@ const meta: MetaComponent = {
 export default meta;
 
 // DECORATORS
-function externalControl(story: any, { args }: StoryContext) {
+function externalControl(story: StoryFn, context: StoryContext) {
   const [_, updateArgs] = useArgs();
 
   const button = html`
@@ -121,7 +121,7 @@ function externalControl(story: any, { args }: StoryContext) {
     </a>
   `;
 
-  return html` ${args.dismissed ? button : nothing} ${story()} `;
+  return html` ${context.args.dismissed ? button : nothing} ${story(context.args, context)} `;
 }
 
 // RENDERER

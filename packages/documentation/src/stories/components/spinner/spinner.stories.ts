@@ -1,13 +1,13 @@
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit/static-html.js';
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'd0e645d0-3bf2-4b00-967a-5a1343107f60',
   title: 'Components/Spinner',
   tags: ['package:HTML'],
   render,
-  decorators: [story => generateDecorators(story)],
+  decorators: [(story, context) => generateDecorators(story, context)],
   parameters: {
     badges: [],
     design: {
@@ -53,8 +53,8 @@ export default meta;
 
 type Story = StoryObj;
 
-function generateDecorators(story: any) {
-  return html` <div class="m-5 overflow-hidden">${story()}</div> `;
+function generateDecorators(story: StoryFn, context: StoryContext) {
+  return html` <div class="m-5 overflow-hidden">${story(context.args, context)}</div> `;
 }
 
 function render(args: Args) {

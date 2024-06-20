@@ -1,8 +1,8 @@
 import { html, LitElement } from 'lit';
 import { Task } from '@lit/task';
 import { customElement, property } from 'lit/decorators.js';
-import { PackageType } from '../../../types';
-import { getDocsPath, getTitleFromPath } from '../../utils';
+import { PackageType } from '@root/types';
+import { getDocsPath, getTitleFromPath } from '@/utils';
 
 const INDEX_PATH = '/index.json';
 const TAG_REDIRECT_PREFIX = 'redirect:';
@@ -35,7 +35,7 @@ export class ListComponent extends LitElement {
 
   private _indexTask = new Task(this, {
     task: async ([packageType]) => {
-      const response = (await fetch(INDEX_PATH)) as any;
+      const response = await fetch(INDEX_PATH);
       const rawData: IndexInput = await response.json();
       return (
         Object.values(rawData.entries)

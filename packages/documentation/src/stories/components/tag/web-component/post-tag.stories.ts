@@ -1,10 +1,11 @@
 import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
-import { MetaComponent } from '../../../../../types';
+import { MetaComponent } from '@root/types';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
-import { parse } from '../../../../utils/sass-export';
-import scss from '../tag.module.scss';
+import { parse } from '@/utils/sass-export';
+import scss from '@/stories/components/tag/tag.module.scss';
 
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
 const SCSS_VARIABLES: any = parse(scss);
 
 const meta: MetaComponent = {
@@ -75,8 +76,8 @@ export const Default: Story = {};
 
 export const Icon: Story = {
   args: {
-    icon: 1001
-  }
+    icon: 1001,
+  },
 };
 
 export const Variants: Story = {
@@ -89,13 +90,11 @@ export const Variants: Story = {
 
     return html`
       ${variants.map(variant =>
-        renderPostTag(
-          {
-            ...args,
-            variant,
-            "slots-default": variant.charAt(0).toUpperCase() + variant.slice(1),
-          },
-        ),
+        renderPostTag({
+          ...args,
+          variant,
+          'slots-default': variant.charAt(0).toUpperCase() + variant.slice(1),
+        }),
       )}
     `;
   },

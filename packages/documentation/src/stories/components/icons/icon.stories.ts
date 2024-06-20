@@ -1,10 +1,10 @@
 import { spread } from '@open-wc/lit-helpers';
-import { Args, StoryObj } from '@storybook/web-components';
+import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { spreadArgs } from '../../../utils';
+import { spreadArgs } from '@/utils';
 import { Components } from '@swisspost/design-system-components/src';
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '0dcfe3c0-bfc0-4107-b43b-7e9d825b805f',
@@ -78,8 +78,12 @@ const renderVariants = (
   `;
 };
 
-const generateDecorators = (story: any, className?: string) => {
-  return html` <div class="${ifDefined(className)}" style="font-size: 32px">${story()}</div> `;
+const generateDecorators = (story: StoryFn, context: StoryContext, className?: string) => {
+  return html`
+    <div class="${ifDefined(className)}" style="font-size: 32px">
+      ${story(context.args, context)}
+    </div>
+  `;
 };
 
 export default meta;
@@ -87,7 +91,7 @@ export default meta;
 type Story = StoryObj<Components.PostIcon>;
 
 export const Default: Story = {
-  decorators: [story => generateDecorators(story)],
+  decorators: [(story: StoryFn, context: StoryContext) => generateDecorators(story, context)],
 };
 
 const colorVariants = [
@@ -106,7 +110,10 @@ export const Color: Story = {
     },
   },
   render: args => renderVariants(args, colorVariants),
-  decorators: [story => generateDecorators(story, 'd-flex flex-wrap gap-2')],
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-wrap gap-2'),
+  ],
 };
 
 const sizeVariants = [
@@ -125,7 +132,10 @@ export const Size: Story = {
     },
   },
   render: args => renderVariants(args, sizeVariants),
-  decorators: [story => generateDecorators(story, 'd-flex flex-column')],
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-column'),
+  ],
 };
 
 const styleVariants = [
@@ -141,7 +151,10 @@ export const Style: Story = {
     },
   },
   render: args => renderVariants(args, styleVariants),
-  decorators: [story => generateDecorators(story, 'd-flex flex-wrap gap-2')],
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-wrap gap-2'),
+  ],
 };
 
 const flipVariants = [
@@ -158,7 +171,10 @@ export const Flip: Story = {
     },
   },
   render: args => renderVariants(args, flipVariants),
-  decorators: [story => generateDecorators(story, 'd-flex flex-wrap gap-2')],
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-wrap gap-2'),
+  ],
 };
 
 const scaleVariants = [
@@ -174,7 +190,10 @@ export const Scale: Story = {
     },
   },
   render: args => renderVariants(args, scaleVariants),
-  decorators: [story => generateDecorators(story, 'd-flex flex-wrap gap-4')],
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-wrap gap-4'),
+  ],
 };
 
 const rotateVariants = [
@@ -194,7 +213,10 @@ export const Rotate: Story = {
     },
   },
   render: args => renderVariants(args, rotateVariants),
-  decorators: [story => generateDecorators(story, 'd-flex flex-wrap gap-2')],
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-wrap gap-2'),
+  ],
 };
 
 const animateVariants = [
@@ -227,5 +249,8 @@ export const Animate: Story = {
     },
   },
   render: args => renderAnimateVariants(args, animateVariants),
-  decorators: [story => generateDecorators(story, 'd-flex flex-wrap text-center')],
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      generateDecorators(story, context, 'd-flex flex-wrap text-center'),
+  ],
 };

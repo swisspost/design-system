@@ -5,10 +5,10 @@
  * It contains typing information for all components that exist in this project.
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
-import { HeadingLevel } from "./components/post-accordion-item/heading-levels";
+import { HeadingLevel } from "./types/index";
 import { AlertType } from "./components/post-alert/alert-types";
 import { Placement } from "@floating-ui/dom";
-export { HeadingLevel } from "./components/post-accordion-item/heading-levels";
+export { HeadingLevel } from "./types/index";
 export { AlertType } from "./components/post-alert/alert-types";
 export { Placement } from "@floating-ui/dom";
 export namespace Components {
@@ -18,9 +18,13 @@ export namespace Components {
          */
         "collapseAll": () => Promise<void>;
         /**
-          * Expands all `post-accordion-item`.  If `close-others` is `true` and all items are closed, it will open the first one. Otherwise, it will keep the opened one.
+          * Expands all `post-accordion-item`.  If `multiple="true"` is not set and all items are closed, it will open the first one. Otherwise, it will keep the opened one.
          */
         "expandAll": () => Promise<void>;
+        /**
+          * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
+         */
+        "headingLevel"?: HeadingLevel;
         /**
           * If `true`, multiple `post-accordion-item` can be open at the same time.
          */
@@ -37,6 +41,7 @@ export namespace Components {
         "collapsed"?: boolean;
         /**
           * Defines the hierarchical level of the accordion item header within the headings structure.
+          * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
          */
         "headingLevel"?: HeadingLevel;
         /**
@@ -258,7 +263,7 @@ export namespace Components {
     }
     interface PostTag {
         /**
-          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs" target="_blank">icon library</a>.
+          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
          */
         "icon": null | string;
         /**
@@ -499,6 +504,10 @@ declare global {
 declare namespace LocalJSX {
     interface PostAccordion {
         /**
+          * Defines the hierarchical level of the `post-accordion-item` headers within the headings structure.
+         */
+        "headingLevel"?: HeadingLevel;
+        /**
           * If `true`, multiple `post-accordion-item` can be open at the same time.
          */
         "multiple"?: boolean;
@@ -510,6 +519,7 @@ declare namespace LocalJSX {
         "collapsed"?: boolean;
         /**
           * Defines the hierarchical level of the accordion item header within the headings structure.
+          * @deprecated set the `heading-level` property on the parent `post-accordion` instead.
          */
         "headingLevel"?: HeadingLevel;
     }
@@ -709,7 +719,7 @@ declare namespace LocalJSX {
     }
     interface PostTag {
         /**
-          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs" target="_blank">icon library</a>.
+          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
          */
         "icon"?: null | string;
         /**

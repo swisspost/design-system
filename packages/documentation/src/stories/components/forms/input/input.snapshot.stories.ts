@@ -1,7 +1,7 @@
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import meta from './input.stories';
 import { html } from 'lit';
-import { COMBINATIONS, getCombinations } from '../../../../utils/inputComponentsGetCombinations';
+import { COMBINATIONS, getCombinations } from '@/utils/inputComponentsGetCombinations';
 
 const { id, ...metaWithoutId } = meta;
 
@@ -48,7 +48,7 @@ function renderInputSnapshot(_args: Args, context: StoryContext) {
                       ? html`
                           <h4>
                             ${Object.entries(context.argTypes.size.control.labels)
-                              .filter(([key, value]) => key === args.size)
+                              .filter(([key]) => key === args.size)
                               .map(s => s[1])}
                           </h4>
                         `

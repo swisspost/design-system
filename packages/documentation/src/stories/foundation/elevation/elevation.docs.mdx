@@ -1,5 +1,5 @@
 import { Canvas, Meta, Source } from '@storybook/blocks';
-import { forEach } from '../../../utils/react';
+import { forEach } from '@/utils/react';
 import { ElevationTile, SCSS_VARIABLES } from './elevation.blocks';
 import * as ElevationStories from './elevation.stories';
 import './elevation.styles.scss';
@@ -17,8 +17,8 @@ import SampleUse from './elevation-use.sample.scss?raw';
 The higher the elevation, the larger and softer the shadow, expressing a greater distance between an element and the one behind it.
 
 <div className="elevation-container">
-  {forEach(SCSS_VARIABLES.elevation, function(data) {
-    return <ElevationTile key={data.key} level={data.key} />;
+  {forEach(SCSS_VARIABLES.elevation, function({ key }) {
+    return <ElevationTile key={key} level={key} />;
   })}
 </div>
 

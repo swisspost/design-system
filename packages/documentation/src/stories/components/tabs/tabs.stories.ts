@@ -1,7 +1,7 @@
 import { StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { MetaComponent } from '../../../../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent<HTMLPostTabsElement> = {
   id: 'bb1291ca-4dbb-450c-a15f-596836d9f39e',
@@ -78,8 +78,8 @@ export const Async: Story = {
         const headers: NodeListOf<HTMLPostTabHeaderElement> =
           document.querySelectorAll('post-tab-header');
 
-        const activeHeader: HTMLPostTabHeaderElement | undefined = Array.from(headers).find(
-          header => document.querySelectorAll('post-tab-header.active'),
+        const activeHeader: HTMLPostTabHeaderElement | undefined = Array.from(headers).find(() =>
+          document.querySelectorAll('post-tab-header.active'),
         );
         activeHeader?.remove();
 

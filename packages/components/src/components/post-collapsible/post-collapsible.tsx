@@ -10,9 +10,9 @@ import {
   State,
   Watch,
 } from '@stencil/core';
-import { version } from '../../../package.json';
-import { collapse, expand } from '../../animations/collapse';
-import { checkEmptyOrType, isMotionReduced } from '../../utils';
+import { version } from '@root/package.json';
+import { collapse, expand } from '@/animations/collapse';
+import { checkEmptyOrType, isMotionReduced } from '@/utils';
 
 /**
  * @slot default - Slot for placing content within the collapsible element.
@@ -25,12 +25,12 @@ import { checkEmptyOrType, isMotionReduced } from '../../utils';
 })
 export class PostCollapsible {
   private isLoaded = false;
+  private isOpen = true;
   private collapsible: HTMLElement;
 
   @Element() host: HTMLPostCollapsibleElement;
 
   @State() id: string;
-  @State() isOpen = true;
 
   /**
    * If `true`, the element is initially collapsed otherwise it is displayed.

@@ -1,10 +1,9 @@
-// @ts-ignore
 import { useArgs } from '@storybook/preview-api';
 import { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 import { getAlertClasses } from './getAlertClasses';
-import { MetaComponent } from '../../../../../types';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: '105e67d8-31e9-4d0b-87ff-685aba31fd4c',
@@ -111,7 +110,7 @@ export default meta;
 function externalControl(story: StoryFn, { args, context }: StoryContext) {
   const [_, updateArgs] = useArgs();
 
-  const toggleAlert = (e: MouseEvent, args: Args, updateArgs: Function) => {
+  const toggleAlert = (e: MouseEvent, args: Args, updateArgs: (newArgs: Partial<Args>) => void) => {
     e.preventDefault();
     updateArgs({ show: !args.show });
   };

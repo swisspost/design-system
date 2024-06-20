@@ -6,7 +6,7 @@ import Styles from './tile.component.scss?inline';
 
 @customElement('ti-le')
 export class TileComponent extends LitElement {
-  @property({ type: String }) title: string = '';
+  @property({ type: String }) title = '';
   @property({ type: String }) ariaLabel: string | null = null;
   @property({ type: String }) href: string | null = null;
 

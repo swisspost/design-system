@@ -36,14 +36,14 @@ export const COMBINATIONS = [
 
 export function getCombinations(
   argumentName: string,
-  argumentValues: Array<unknown>,
+  argumentValues: unknown[] | undefined,
   combinations: Array<{
     label: string;
-    [propName: string]: any;
+    [propName: string]: unknown;
   }>,
 ) {
-  let result: Array<Object> = [];
-  for (const argumentValue of argumentValues) {
+  let result: Array<object> = [];
+  for (const argumentValue of argumentValues ?? []) {
     result = [
       ...result,
       ...combinations.map(c => ({

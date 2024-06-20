@@ -1,4 +1,4 @@
-import { Args, Meta, StoryObj } from '@storybook/web-components';
+import { Meta, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 
 const meta: Meta = {
@@ -10,7 +10,7 @@ const meta: Meta = {
   render,
 };
 
-function render(_args: Args) {
+function render() {
   return html`
     <div class="bg-light error-container">
       <div class="container">

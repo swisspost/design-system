@@ -1,8 +1,9 @@
-import { parse } from '../../../utils/sass-export';
-import { forEach } from '../../../utils/react';
+import { parse } from '@/utils/sass-export';
+import { forEach } from '@/utils/react';
 import scss from './shared.module.scss';
 
-export const SCSS_VARIABLES = parse(scss);
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+export const SCSS_VARIABLES: any = parse(scss);
 
 export const SpecTable = (props: { children: string | JSX.Element | JSX.Element[] }) => (
   <div className="table-responsive my-big">
@@ -10,16 +11,13 @@ export const SpecTable = (props: { children: string | JSX.Element | JSX.Element[
       <thead>
         <tr>
           <th></th>
-          {forEach(
-            SCSS_VARIABLES.breakpoint,
-            (data: { key: string; value: { dimensions: string } }) => (
-              <th key={data.key}>
-                {data.key}
-                <br />
-                <small className="fw-normal">{data.value.dimensions}</small>
-              </th>
-            ),
-          )}
+          {forEach(SCSS_VARIABLES.breakpoint, ({ key, value }) => (
+            <th key={key}>
+              {key}
+              <br />
+              <small className="fw-normal">{value.dimensions}</small>
+            </th>
+          ))}
         </tr>
       </thead>
       <tbody>{props.children}</tbody>

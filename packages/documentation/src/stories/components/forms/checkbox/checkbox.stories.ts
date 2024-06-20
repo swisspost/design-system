@@ -2,8 +2,8 @@ import { useArgs } from '@storybook/preview-api';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
 import { ifDefined } from 'lit/directives/if-defined.js';
-import { mapClasses } from '../../../../utils';
-import { MetaComponent } from '../../../../../types';
+import { mapClasses } from '@/utils';
+import { MetaComponent } from '@root/types';
 
 const meta: MetaComponent = {
   id: 'e6ecc86f-d148-413b-b796-614a89da54be',
@@ -181,7 +181,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
 
   const containerClasses = mapClasses({
     'form-check': true,
-    [args.size]: args.size && args.size !== 'null',
+    [args.size]: args.size,
     'form-check-inline': args.inline,
   });
 
@@ -190,7 +190,7 @@ function renderCheckbox(args: Args, context: StoryContext) {
     ['is-' + args.validation]: args.validation !== 'null',
   });
 
-  const handleChange = (e: Event) => {
+  const handleChange = () => {
     updateArgs({ checked: CHECKED_STATE_TOGGLE_MAP[args.checked] });
   };
 
