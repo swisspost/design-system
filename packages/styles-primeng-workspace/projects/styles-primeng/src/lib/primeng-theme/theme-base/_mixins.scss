@@ -1,3 +1,4 @@
+@use 'sass:color';
 @use 'sass:list';
 
 @mixin icon-override($icon) {
@@ -302,11 +303,11 @@
 }
 
 @function tint($color, $percentage) {
-  @return mix(#fff, $color, $percentage);
+  @return color.mix(#fff, $color, $percentage);
 }
 
 @function shade($color, $percentage) {
-  @return mix(#000, $color, $percentage);
+  @return color.mix(#000, $color, $percentage);
 }
 
 @mixin button-states {
