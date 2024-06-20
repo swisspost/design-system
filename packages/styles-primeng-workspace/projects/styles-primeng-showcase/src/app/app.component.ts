@@ -86,11 +86,25 @@ export class AppComponent {
     },
   ];
 
-  productsSortable = this.products;
+  productsSortable = [...this.products];
 
-  productsFilterable = this.products;
+  productsFilterable = [
+    ...this.products,
+    {
+      id: '1005',
+      code: 'nfiu783m0',
+      name: 'Black Dress',
+      description: 'Product Description',
+      image: 'black-dress.jpg',
+      price: 53,
+      category: 'Clothing',
+      quantity: 67,
+      inventoryStatus: 'INSTOCK',
+      rating: 5,
+    },
+  ];
 
-  productsOrderable = this.products;
+  productsOrderable = [...this.products];
   columnsOrderable = [
     { field: 'code', header: 'Code' },
     { field: 'name', header: 'Name' },
@@ -98,13 +112,13 @@ export class AppComponent {
     { field: 'quantity', header: 'Quantity' },
   ];
 
-  productsCheckboxes = this.products;
+  productsCheckboxes = [...this.products];
   selectedProductsCheckboxes?: Product;
 
-  productsRadioButtons = this.products;
+  productsRadioButtons = [...this.products];
   selectedProductsRadioButtons?: Product;
 
-  productsSelectable = this.products;
+  productsSelectable = [...this.products];
   selectedProductsSelectable = 'none';
   setSelectedProductsSelectable(value: Product[]) {
     this.selectedProductsSelectable = value.length ? value.map(p => p.name).join(', ') : 'none';

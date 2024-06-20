@@ -83,7 +83,7 @@ $radiobuttonIconActiveHoverColor: $radiobuttonIconActiveColor !default;
 $paginatorBg: transparent;
 $paginatorElementBg: transparent;
 $paginatorElementIconColor: $shade900;
-$paginatorElementBorder: post.$btn-border-width solid #dee2e6 !default;
+$paginatorElementBorder: post.$btn-border-width solid $shade300 !default;
 $paginatorElementMargin: 0 0 0 -1 * post.$input-border-width !default;
 
 //table
@@ -134,7 +134,7 @@ $tableFooterTextColor: post.$black !default;
 $tableFooterFontWeight: post.$font-weight-base !default;
 $tableFooterPadding: post.$table-cell-padding !default;
 
-$tableTopPaginatorBorderWidth: post.$table-border-width 0 0 0 !default;
-$tableBottomPaginatorBorderWidth: post.$table-border-width 0 0 0 !default;
+$tableTopPaginatorBorderWidth: 0 !default;
+$tableBottomPaginatorBorderWidth: 0 !default;
 
 @import './bootstrap-theme';

@@ -53,14 +53,25 @@
   }
 }
 
-.p-dropdown,
 .p-inputtext {
   border-radius: 0;
 }
 
-.p-dropdown-trigger chevrondownicon {
-  height: 1.5rem;
-  width: 1.5rem;
+.p-dropdown {
+  &,
+  &-panel {
+    border-radius: 0;
+  }
+
+  .p-dropdown-items {
+    margin: 0;
+    padding: 0;
+  }
+
+  .p-dropdown-trigger chevrondownicon {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
 }
 
 .p-paginator {
@@ -72,6 +83,38 @@
 
   .p-dropdown .p-dropdown-label {
     padding-block: 0.35rem;
+  }
+
+  .p-paginator-first {
+    border-start-start-radius: post.$btn-border-radius;
+    border-end-start-radius: post.$btn-border-radius;
+  }
+
+  .p-paginator-last {
+    border-start-end-radius: post.$btn-border-radius;
+    border-end-end-radius: post.$btn-border-radius;
+  }
+
+  .p-paginator-element {
+    &:not(.p-highlight) {
+      background-color: #fff;
+
+      &:hover {
+        background-color: #faf9f8;
+      }
+
+      &:not(:hover) {
+        color: post.$gray-60;
+      }
+    }
+
+    &:not(.p-paginator-last) {
+      margin-inline-end: -1 * post.$btn-border-width;
+    }
+
+    &.p-disabled {
+      display: none;
+    }
   }
 }
 
