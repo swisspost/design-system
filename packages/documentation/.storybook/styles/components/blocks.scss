@@ -4,6 +4,7 @@
   .sbdocs-preview {
     border-color: post.$border-color;
     border-radius: post.$size-mini;
+    box-shadow: none;
   }
 
   .docblock-argstable {
@@ -33,7 +34,7 @@
                 position: absolute;
                 width: post.$size-mini;
                 height: post.$size-mini;
-                background-color: post.$body-bg;
+                background-color: inherit;
               }
             }
           }
@@ -104,5 +105,6 @@
 
   .docblock-source {
     border-radius: post.$size-mini;
+    box-shadow: none;
   }
 }
