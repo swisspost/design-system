@@ -23,26 +23,7 @@ export class AppComponent {
 
   datatableStyleClass = '';
 
-  private _selectedProducts: Product[] = [];
-  selectedProduct?: Product;
-  selectedProductNames = 'none';
-  get selectedProducts(): Product[] {
-    return this._selectedProducts;
-  }
-
-  set selectedProducts(value: Product[]) {
-    this._selectedProducts = value;
-    this.selectedProductNames = value.length ? value.map(p => p.name).join(', ') : 'none';
-  }
-
-  cols = [
-    { field: 'code', header: 'Code' },
-    { field: 'name', header: 'Name' },
-    { field: 'category', header: 'Category' },
-    { field: 'quantity', header: 'Quantity' },
-  ];
-
-  products: Product[] = [
+  private readonly products: Product[] = [
     {
       id: '1000',
       code: 'f230fh0g3',
@@ -104,4 +85,28 @@ export class AppComponent {
       rating: 4,
     },
   ];
+
+  productsSortable = this.products;
+
+  productsFilterable = this.products;
+
+  productsOrderable = this.products;
+  columnsOrderable = [
+    { field: 'code', header: 'Code' },
+    { field: 'name', header: 'Name' },
+    { field: 'category', header: 'Category' },
+    { field: 'quantity', header: 'Quantity' },
+  ];
+
+  productsCheckboxes = this.products;
+  selectedProductsCheckboxes?: Product;
+
+  productsRadioButtons = this.products;
+  selectedProductsRadioButtons?: Product;
+
+  productsSelectable = this.products;
+  selectedProductsSelectable = 'none';
+  setSelectedProductsSelectable(value: Product[]) {
+    this.selectedProductsSelectable = value.length ? value.map(p => p.name).join(', ') : 'none';
+  }
 }

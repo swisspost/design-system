@@ -51,7 +51,7 @@
 
 <h2 class="h4">Sortable</h2>
 <p-table
-  [value]="products"
+  [value]="productsSortable"
   [styleClass]="datatableStyleClass"
   [tableStyle]="{ 'min-width': '60rem' }"
   sortMode="multiple"
@@ -90,7 +90,7 @@
 
 <h2 class="h4">Filterable</h2>
 <p-table
-  [value]="products"
+  [value]="productsFilterable"
   dataKey="id"
   [styleClass]="datatableStyleClass"
   [rows]="5"
@@ -148,8 +148,8 @@
 
 <h2 class="h4">Orderable</h2>
 <p-table
-  [value]="products"
-  [columns]="cols"
+  [value]="productsOrderable"
+  [columns]="columnsOrderable"
   [reorderableColumns]="true"
   [tableStyle]="{ 'min-width': '50rem' }"
   [styleClass]="datatableStyleClass"
@@ -178,13 +178,13 @@
 
 <h2 class="h4">Selectable</h2>
 <p-table
-  [value]="products"
+  [value]="productsSelectable"
   selectionMode="multiple"
   dataKey="code"
   [styleClass]="datatableStyleClass"
   [tableStyle]="{ 'min-width': '50rem' }"
   [metaKeySelection]="true"
-  (selectionChange)="selectedProducts = $event"
+  (selectionChange)="setSelectedProductsSelectable($event)"
 >
   <ng-template pTemplate="caption"> Multiple Selection with MetaKey </ng-template>
   <ng-template pTemplate="header">
@@ -203,15 +203,17 @@
       <td>{{ product.quantity }}</td>
     </tr>
   </ng-template>
-  <ng-template pTemplate="summary"> Selected: {{ selectedProductNames | lowercase }}. </ng-template>
+  <ng-template pTemplate="summary">
+    Selected: {{ selectedProductsSelectable | lowercase }}.
+  </ng-template>
 </p-table>
 
 <hr class="my-huge" />
 
 <h2 class="h4">With Checkboxes</h2>
 <p-table
-  [value]="products"
-  [(selection)]="selectedProducts"
+  [value]="productsCheckboxes"
+  [(selection)]="selectedProductsCheckboxes"
   dataKey="code"
   [tableStyle]="{ 'min-width': '50rem' }"
   [styleClass]="datatableStyleClass"
@@ -244,8 +246,8 @@
 
 <h2 class="h4">With Radio buttons</h2>
 <p-table
-  [value]="products"
-  [(selection)]="selectedProduct"
+  [value]="productsRadioButtons"
+  [(selection)]="selectedProductsRadioButtons"
   dataKey="code"
   [tableStyle]="{ 'min-width': '50rem' }"
   [styleClass]="datatableStyleClass"
