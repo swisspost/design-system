@@ -196,12 +196,12 @@ export class PostTabs {
   render() {
     return (
       <Host data-version={version}>
-        <div class="tabs-wrapper">
+        <div class="tabs-wrapper" part="tabs">
           <div class="tabs" role="tablist">
             <slot name="tabs" onSlotchange={() => this.enableTabs()} />
           </div>
         </div>
-        <div class="tab-content">
+        <div class="tab-content" part="content">
           <slot onSlotchange={() => this.moveMisplacedTabs()} />
         </div>
       </Host>

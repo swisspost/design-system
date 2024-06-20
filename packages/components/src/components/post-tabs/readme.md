@@ -47,6 +47,14 @@ Type: `Promise<void>`
 | `"tabs"`    | Slot for placing tab headers. Each tab header should be a <post-tab-header> element. |
 
 
+## Shadow Parts
+
+| Part        | Description |
+| ----------- | ----------- |
+| `"content"` |             |
+| `"tabs"`    |             |
+
+
 ----------------------------------------------
 
 *Built with [StencilJS](https://stenciljs.com/)*

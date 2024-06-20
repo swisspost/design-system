@@ -1,6 +1,48 @@
 @use '@swisspost/design-system-styles/core' as post;
 
 #storybook-docs {
+  post-tabs:not(.docs-story post-tabs) {
+    &::part(tabs) {
+      background: none;
+
+      &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 100vw;
+        height: 1px;
+        background-color: post.$border-color;
+        transform: translateX(-50%);
+      }
+    }
+
+    &::part(content) {
+      position: relative;
+
+      &::before {
+        display: block;
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: post.$size-regular * -1;
+        left: calc(100% + #{post.$size-mini});
+        border-left: post.$size-hair dotted post.$border-color;
+      }
+
+      &::after {
+        display: block;
+        content: '';
+        position: absolute;
+        top: calc(100% + #{post.$size-regular});
+        left: 0;
+        right: post.$size-mini * -1;
+        border-top: post.$size-hair dotted post.$border-color;
+      }
+    }
+  }
+
   post-tab-header.tab-title[role='tab']:not(.docs-story post-tab-header) {
     &:first-child {
       margin-left: post.$size-big;
