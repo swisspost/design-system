@@ -2,7 +2,7 @@
   "name": "@swisspost/design-system-tokens",
   "version": "0.0.1",
   "private": true,
-  "description": "Design System Tokens for the Swiss Post platform.",
+  "description": "Design Tokens for the Swiss Post.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
   "type": "module",
