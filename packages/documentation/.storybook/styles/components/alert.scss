@@ -44,8 +44,8 @@ $post-docs-alert-variants: (
   font-size: 1rem;
 
   &:not(.alert-action) {
-    > :only-child,
-    > :first-child + :last-child {
+    > :only-child:not(code),
+    > :first-child:not(code) + :last-child:not(code) {
       font-size: inherit;
     }
   }
