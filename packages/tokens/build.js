@@ -5,7 +5,8 @@ import { promises } from 'fs';
 
 const SOURCE_PATH = './tokensstudio-generated/';
 const BUILD_PATH = './dist/';
-const FILE_HEADER = '// Do not edit manually!\n// This file was generated on:\n// {date} by the @swisspost/design-system-tokens package build command\n\n';
+const FILE_HEADER =
+  '// Do not edit manually!\n// This file was generated on:\n// {date} by the @swisspost/design-system-tokens package build command\n\n';
 const GLOBAL_TOKEN_NAMESPACES = ['post'];
 
 registerTransforms(StyleDictionary);
