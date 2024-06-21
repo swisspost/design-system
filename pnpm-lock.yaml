@@ -1125,6 +1125,7 @@ importers:
       style-dictionary:
         specifier: 4.0.0-prerelease.35
         version: 4.0.0-prerelease.35
+    publishDirectory: ./dist
 
 packages:
 
