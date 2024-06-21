@@ -19,7 +19,6 @@ body {
       font-family: inherit;
     }
 
-    // :is(h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, pre, .prismjs) {
     :is(pre, .prismjs) {
       font-family: var(--post-docs-font-monospace);
     }
