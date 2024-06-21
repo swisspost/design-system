@@ -134,48 +134,48 @@ export function Headings() {
             <td>
               <code>&lt;h1&gt;&lt;/h1&gt;</code>
             </td>
-            <td>
-              <p className="m-0 h1 font-sans-serif">h1 Heading</p>
+            <td className="font-sans-serif">
+              <p className="m-0 h1">h1 Heading</p>
             </td>
           </tr>
           <tr>
             <td>
               <code>&lt;h2&gt;&lt;/h2&gt;</code>
             </td>
-            <td>
-              <p className="m-0 h2 font-sans-serif">h2 Heading</p>
+            <td className="font-sans-serif">
+              <p className="m-0 h2">h2 Heading</p>
             </td>
           </tr>
           <tr>
             <td>
               <code>&lt;h3&gt;&lt;/h3&gt;</code>
             </td>
-            <td>
-              <p className="m-0 h3 font-sans-serif">h3 Heading</p>
+            <td className="font-sans-serif">
+              <p className="m-0 h3">h3 Heading</p>
             </td>
           </tr>
           <tr>
             <td>
               <code>&lt;h4&gt;&lt;/h4&gt;</code>
             </td>
-            <td>
-              <p className="m-0 h4 font-sans-serif">h4 Heading</p>
+            <td className="font-sans-serif">
+              <p className="m-0 h4">h4 Heading</p>
             </td>
           </tr>
           <tr>
             <td>
               <code>&lt;h5&gt;&lt;/h5&gt;</code>
             </td>
-            <td>
-              <p className="m-0 h5 font-sans-serif">h5 Heading</p>
+            <td className="font-sans-serif">
+              <p className="m-0 h5">h5 Heading</p>
             </td>
           </tr>
           <tr>
             <td>
               <code>&lt;h6&gt;&lt;/h6&gt;</code>
             </td>
-            <td>
-              <p className="m-0 h6 font-sans-serif">h6 Heading</p>
+            <td className="font-sans-serif">
+              <p className="m-0 h6">h6 Heading</p>
             </td>
           </tr>
         </tbody>
