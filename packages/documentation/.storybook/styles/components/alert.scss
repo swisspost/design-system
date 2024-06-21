@@ -94,7 +94,6 @@ $post-docs-alert-variants: (
     &::before {
       top: list.nth($post-docs-alert-padding-md, 1) +
         (($post-docs-alert-line-height-md - $post-docs-alert-icon-size-md) * 0.5);
-      // + ($post-docs-alert-line-height-md - $post-docs-alert-icon-size-md) * 0.5;
       left: (list.nth($post-docs-alert-padding-md, 4) - $post-docs-alert-icon-size-md) * 0.5;
       width: $post-docs-alert-icon-size-md;
       height: $post-docs-alert-icon-size-md;
@@ -117,6 +116,8 @@ $post-docs-alert-variants: (
     border-style: $post-docs-alert-border-style;
     border-radius: $post-docs-alert-border-radius;
     box-shadow: $post-docs-alert-box-shadow;
+    font-size: 1rem;
+    font-weight: 400;
   }
 
   @each $name, $colorMap in $post-docs-alert-variants {
