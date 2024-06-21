@@ -1,8 +1,8 @@
 @use './fonts.scss';
 @use './typo.scss';
+@use './blocks.scss';
 
 // styles to apply only when components used in the docs, not in the iframe
-@use './blocks.scss';
 @use './alert.scss';
 @use './tabs.scss';
 @use './blockquote.scss';
