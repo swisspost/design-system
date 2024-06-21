@@ -49,10 +49,10 @@ Type: `Promise<void>`
 
 ## Shadow Parts
 
-| Part        | Description |
-| ----------- | ----------- |
-| `"content"` |             |
-| `"tabs"`    |             |
+| Part        | Description                                     |
+| ----------- | ----------------------------------------------- |
+| `"content"` | Add custom styles for the tab panel container.  |
+| `"tabs"`    | Add custom styles for the tab header container. |
 
 
 ----------------------------------------------
