@@ -1,65 +1,136 @@
+// FiraCode WebFonts
+@font-face {
+  font-family: 'FiraCode';
+  font-weight: 700;
+  font-style: normal;
+  src: url('/assets/fonts/firacode/firacode-bold.woff2') format('woff2'),
+    url('/assets/fonts/firacode/firacode-bold.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'FiraCode';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/assets/fonts/firacode/firacode-regular.woff2') format('woff2'),
+    url('/assets/fonts/firacode/firacode-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'FiraCode';
+  font-weight: 300;
+  font-style: normal;
+  src: url('/assets/fonts/firacode/firacode-light.woff2') format('woff2'),
+    url('/assets/fonts/firacode/firacode-light.woff') format('woff');
+}
+
+// Inter WebFonts
+@font-face {
+  font-family: 'InterDisplay';
+  font-weight: 700;
+  font-style: normal;
+  src: url('/assets/fonts/interdisplay/interdisplay-bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'InterDisplay';
+  font-weight: 700;
+  font-style: italic;
+  src: url('/assets/fonts/interdisplay/interdisplay-bold-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'InterDisplay';
+  font-weight: 400;
+  font-style: normal;
+  src: url('/assets/fonts/interdisplay/interdisplay-regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'InterDisplay';
+  font-weight: 400;
+  font-style: italic;
+  src: url('/assets/fonts/interdisplay/interdisplay-regular-italic.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'InterDisplay';
+  font-weight: 300;
+  font-style: normal;
+  src: url('/assets/fonts/interdisplay/interdisplay-light.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'InterDisplay';
+  font-weight: 300;
+  font-style: italic;
+  src: url('/assets/fonts/interdisplay/interdisplay-light-italic.woff2') format('woff2');
+}
+
+// Reddit Sans WebFonts
 @font-face {
   font-family: 'Reddit Sans';
   font-weight: 700;
   font-style: normal;
-  src: url('/assets/fonts/reddit-sans-bold.woff2') format('woff2'),
-    url('/assets/fonts/reddit-sans-bold.woff') format('woff');
+  src: url('/assets/fonts/reddit/reddit-sans-bold.woff2') format('woff2'),
+    url('/assets/fonts/reddit/reddit-sans-bold.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Reddit Sans';
   font-weight: 700;
   font-style: italic;
-  src: url('/assets/fonts/reddit-sans-bold-italic.woff2') format('woff2'),
-    url('/assets/fonts/reddit-sans-bold-italic.woff') format('woff');
+  src: url('/assets/fonts/reddit/reddit-sans-bold-italic.woff2') format('woff2'),
+    url('/assets/fonts/reddit/reddit-sans-bold-italic.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Reddit Sans';
   font-weight: 400;
   font-style: normal;
-  src: url('/assets/fonts/reddit-sans-regular.woff2') format('woff2'),
-    url('/assets/fonts/reddit-sans-regular.woff') format('woff');
+  src: url('/assets/fonts/reddit/reddit-sans-regular.woff2') format('woff2'),
+    url('/assets/fonts/reddit/reddit-sans-regular.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Reddit Sans';
   font-weight: 400;
   font-style: italic;
-  src: url('/assets/fonts/reddit-sans-regular-italic.woff2') format('woff2'),
-    url('/assets/fonts/reddit-sans-regular-italic.woff') format('woff');
+  src: url('/assets/fonts/reddit/reddit-sans-regular-italic.woff2') format('woff2'),
+    url('/assets/fonts/reddit/reddit-sans-regular-italic.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Reddit Sans';
   font-weight: 300;
   font-style: normal;
-  src: url('/assets/fonts/reddit-sans-light.woff2') format('woff2'),
-    url('/assets/fonts/reddit-sans-light.woff') format('woff');
+  src: url('/assets/fonts/reddit/reddit-sans-light.woff2') format('woff2'),
+    url('/assets/fonts/reddit/reddit-sans-light.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Reddit Sans';
   font-weight: 300;
   font-style: italic;
-  src: url('/assets/fonts/reddit-sans-light-italic.woff2') format('woff2'),
-    url('/assets/fonts/reddit-sans-light-italic.woff') format('woff');
+  src: url('/assets/fonts/reddit/reddit-sans-light-italic.woff2') format('woff2'),
+    url('/assets/fonts/reddit/reddit-sans-light-italic.woff') format('woff');
 }
 
+// Reddit Mono WebFonts
 @font-face {
   font-family: 'Reddit Mono';
   font-weight: 700;
-  src: local('Reddit Mono Bold'), url('/assets/fonts/reddit-mono-bold.woff') format('woff');
+  src: local('Reddit Mono Bold'), url('/assets/fonts/reddit/reddit-mono-bold.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Reddit Mono';
   font-weight: 400;
-  src: local('Reddit Mono Regular'), url('/assets/fonts/reddit-mono-regular.woff') format('woff');
+  src: local('Reddit Mono Regular'),
+    url('/assets/fonts/reddit/reddit-mono-regular.woff') format('woff');
 }
 
 @font-face {
   font-family: 'Reddit Mono';
   font-weight: 300;
-  src: local('Reddit Mono Light'), url('/assets/fonts/reddit-mono-light.woff') format('woff');
+  src: local('Reddit Mono Light'), url('/assets/fonts/reddit/reddit-mono-light.woff') format('woff');
 }
