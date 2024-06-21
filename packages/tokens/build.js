@@ -11,6 +11,19 @@ const GLOBAL_TOKEN_NAMESPACES = ['post'];
 
 registerTransforms(StyleDictionary);
 
+/**
+ * @function StyleDictionary.registerFilter()
+ * Defines a custom StyleDictionary filter to be used at specific places in the build process.
+ *
+ * @param object {
+ *   name: string,
+ *   filter: (token: TransformedToken, dictionary: Config) => boolean
+ * }
+ *
+ * swisspost/tokenset-filter:
+ * Used to filter only the tokens of the current tokenset
+ * and output them in the corresponding tokens file (e.g. core, mode/light, etc.).
+ */
 StyleDictionary.registerFilter({
   name: 'swisspost/tokenset-filter',
   filter: (token, dictionary) => {
@@ -23,6 +36,18 @@ StyleDictionary.registerFilter({
   },
 });
 
+/**
+ * @function StyleDictionary.registerFormat()
+ * Defines a custom StyleDictionary format to be used at specific places in the build process.
+ *
+ * @param object {
+ *   name: string,
+ *   format: (dictionary: Config, file: File) => string
+ * }
+ *
+ * swisspost/scss-format:
+ * Used to declare the format of the *.scss output files.
+ */
 StyleDictionary.registerFormat({
   name: 'swisspost/scss-format',
   format: ({ dictionary, file }) => {
@@ -70,6 +95,9 @@ StyleDictionary.registerFormat({
   },
 });
 
+/**
+ * Build process
+ */
 const builtTime = performance.now();
 const CLI_OPTIONS = createCliOptions();
 const raw = JSON.parse(await promises.readFile(`${SOURCE_PATH}tokens.json`, 'utf-8'));
@@ -82,6 +110,14 @@ await removeTokenSetFiles();
 
 console.log(`\x1b[32m✓ Tokens built in ${Math.round(performance.now() - builtTime)}ms\x1b[0m`);
 
+/**
+ * @function createCliOptions()
+ * Defines base options and merges them with incoming CLI options for the StyleDictionary Config.
+ *
+ * @returns object {
+ *   verbosity: 'silent' | 'default' | 'verbose'
+ * }
+ */
 function createCliOptions() {
   const options = {
     verbosity: 'default',
@@ -99,12 +135,30 @@ function createCliOptions() {
   return options;
 }
 
+/**
+ * @function createRawTokenSets()
+ * Extracts the tokensets from the raw tokens.json content and filters out the $-prefixed keys (e.g. $themes, $metadata).
+ *
+ * @param raw
+ * Content of the tokens.json file (parsed JSON object)
+ *
+ * @returns tokensets object
+ */
 function createRawTokenSets(raw) {
   return Object.entries(raw)
     .filter(([name]) => !/^\$/.test(name))
     .reduce((sets, [name, set]) => ({ ...sets, [name.toLowerCase()]: set }), {});
 }
 
+/**
+ * @function createTokenSets()
+ * Restructures the tokensets object into a group-nested object structure (e.g. { device: { mobile: {}, tablet: {}, desktop: {} } }).
+ *
+ * @param rawSets
+ * tokensets object
+ *
+ * @returns group-nested tokensets object
+ */
 function createTokenSets(rawSets) {
   return Object.entries(rawSets).reduce((sets, [name, set]) => {
     let current = sets;
@@ -118,6 +172,15 @@ function createTokenSets(rawSets) {
   }, {});
 }
 
+/**
+ * @function createTokenSetFiles()
+ * Creates temporary token set files in the "SOURCE_PATH" directory for the StyleDictionary build process.
+ * These files are used to be included in the StyleDictionary Config as sources,
+ * so StyleDictionary is able to resolve the currently processed tokens.
+ *
+ * @param rawSets
+ * tokensets object
+ */
 async function createTokenSetFiles(rawSets) {
   console.log(`\x1b[90mProcessing data...`);
   await Promise.all(
@@ -137,6 +200,12 @@ async function createTokenSetFiles(rawSets) {
   console.log(`\x1b[33m✓ Complete!`);
 }
 
+/**
+ * @function createOutputFiles()
+ * Creates the output files based on the StyleDictionary Config.
+ *
+ * @param tokenSets group-nested tokensets object
+ */
 async function createOutputFiles(tokenSets) {
   console.log(`\x1b[90mWriting files...`);
   await Promise.all(getConfigs().map(build));
@@ -144,6 +213,12 @@ async function createOutputFiles(tokenSets) {
   await copySrcFiles();
   console.log(`\x1b[33m✓ Complete!`);
 
+  /**
+   * @function getConfigs()
+   * Creates the StyleDictionary Config object for each tokenset.
+   *
+   * @returns Config[]
+   */
   function getConfigs() {
     return Object.entries(tokenSets).map(([name, set]) => ({
       log: {
@@ -172,12 +247,23 @@ async function createOutputFiles(tokenSets) {
     }));
   }
 
+  /**
+   * @function build()
+   * Builds the output files in the "BUILD_PATH" directory.
+   *
+   * @param config
+   * StyleDictionary Config object
+   */
   async function build(config) {
     const sd = new StyleDictionary(config);
     await sd.cleanAllPlatforms();
     await sd.buildAllPlatforms();
   }
 
+  /**
+   * @function createIndexFile()
+   * Creates the index.scss file (which uses/forwards the other output files) in the "BUILD_PATH" directory.
+   */
   async function createIndexFile() {
     const imports = Object.keys(tokenSets)
       .map(name => `@${name === 'core' ? 'use' : 'forward'} './${name.toLowerCase()}';`)
@@ -186,17 +272,33 @@ async function createOutputFiles(tokenSets) {
     await promises.writeFile(`${BUILD_PATH}index.scss`, `${getFileHeader()}${imports}\n`);
   }
 
+  /**
+   * @function copySrcFiles()
+   * Copies the tokens.json file from the "SOURCE_PATH" to the "BUILD_PATH" directory,
+   * to make it availble in the package distribution.
+   */
   async function copySrcFiles() {
     await promises.copyFile(`${SOURCE_PATH}tokens.json`, `${BUILD_PATH}tokens.json`);
   }
 }
 
+/**
+ * @function removeTokenSetFiles()
+ * Removes the temporary token set files from the "SOURCE_PATH" directory.
+ */
 async function removeTokenSetFiles() {
   console.log(`\x1b[90mCleanup...`);
   await promises.rm(`${SOURCE_PATH}_temp/`, { recursive: true });
   console.log(`\x1b[33m✓ Complete!`);
 }
 
+/**
+ * @function getFileHeader()
+ * Returns the file header comment with the current date.
+ * Which is used at the beginning of each output file.
+ *
+ * @returns string
+ */
 function getFileHeader() {
   return FILE_HEADER.replace('{date}', new Date().toUTCString());
 }
