@@ -135,7 +135,7 @@ export function Headings() {
               <code>&lt;h1&gt;&lt;/h1&gt;</code>
             </td>
             <td>
-              <p className="m-0 h1">h1 Heading</p>
+              <p className="m-0 h1 font-sans-serif">h1 Heading</p>
             </td>
           </tr>
           <tr>
@@ -143,7 +143,7 @@ export function Headings() {
               <code>&lt;h2&gt;&lt;/h2&gt;</code>
             </td>
             <td>
-              <p className="m-0 h2">h2 Heading</p>
+              <p className="m-0 h2 font-sans-serif">h2 Heading</p>
             </td>
           </tr>
           <tr>
@@ -151,7 +151,7 @@ export function Headings() {
               <code>&lt;h3&gt;&lt;/h3&gt;</code>
             </td>
             <td>
-              <p className="m-0 h3">h3 Heading</p>
+              <p className="m-0 h3 font-sans-serif">h3 Heading</p>
             </td>
           </tr>
           <tr>
@@ -159,7 +159,7 @@ export function Headings() {
               <code>&lt;h4&gt;&lt;/h4&gt;</code>
             </td>
             <td>
-              <p className="m-0 h4">h4 Heading</p>
+              <p className="m-0 h4 font-sans-serif">h4 Heading</p>
             </td>
           </tr>
           <tr>
@@ -167,7 +167,7 @@ export function Headings() {
               <code>&lt;h5&gt;&lt;/h5&gt;</code>
             </td>
             <td>
-              <p className="m-0 h5">h5 Heading</p>
+              <p className="m-0 h5 font-sans-serif">h5 Heading</p>
             </td>
           </tr>
           <tr>
@@ -175,7 +175,7 @@ export function Headings() {
               <code>&lt;h6&gt;&lt;/h6&gt;</code>
             </td>
             <td>
-              <p className="m-0 h6">h6 Heading</p>
+              <p className="m-0 h6 font-sans-serif">h6 Heading</p>
             </td>
           </tr>
         </tbody>
@@ -199,7 +199,7 @@ export function Paragraphs() {
             <td>
               <code>&lt;p&gt;&lt;/p&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et justo accusam et duo dolores et ea rebum. Consetetur sadipscing
                 elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
@@ -216,7 +216,7 @@ export function Paragraphs() {
             <td>
               <code>&lt;p class="lead"&gt;&lt;/p&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p className="m-0 lead">
                 Lead sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
               </p>
@@ -243,7 +243,7 @@ export function Links() {
             <td>
               <code>&lt;a&gt;&lt;/a&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 <a href="#" onClick={e => e.preventDefault()}>
                   Link
@@ -261,7 +261,7 @@ export function Links() {
                 &lt;/p&gt;
               </code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et justo accusam et duo dolores et ea rebum. Consetetur sadipscing
                 elitr, sed diam nonumy eirmod tempor{' '}
@@ -293,7 +293,7 @@ export function Inlines() {
             <td>
               <code>&lt;small&gt;&lt;/small&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <small>accusam et justo duo</small> dolores et ea rebum.
               </p>
@@ -303,7 +303,7 @@ export function Inlines() {
             <td>
               <code>&lt;strong&gt;&lt;/strong&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <strong>accusam et justo duo</strong> dolores et ea rebum.
               </p>
@@ -313,7 +313,7 @@ export function Inlines() {
             <td>
               <code>&lt;em&gt;&lt;/em&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <em>accusam et justo duo</em> dolores et ea rebum.
               </p>
@@ -323,7 +323,7 @@ export function Inlines() {
             <td>
               <code>&lt;sub&gt;&lt;/sub&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <sub>accusam et justo duo</sub> dolores et ea rebum.
               </p>
@@ -333,7 +333,7 @@ export function Inlines() {
             <td>
               <code>&lt;sup&gt;&lt;/sup&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <sup>accusam et justo duo</sup> dolores et ea rebum.
               </p>
@@ -343,7 +343,7 @@ export function Inlines() {
             <td>
               <code>&lt;mark&gt;&lt;/mark&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <mark>accusam et justo duo</mark> dolores et ea rebum.
               </p>
@@ -353,7 +353,7 @@ export function Inlines() {
             <td>
               <code>&lt;abbr&gt;&lt;/abbr&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <abbr title="abbrevation"> accusam et justo duo</abbr> dolores et ea
                 rebum.
@@ -364,7 +364,7 @@ export function Inlines() {
             <td>
               <code>&lt;code&gt;&lt;/code&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <code>accusam et justo duo</code> dolores et ea rebum.
               </p>
@@ -374,7 +374,7 @@ export function Inlines() {
             <td>
               <code>&lt;kbd&gt;&lt;/kbd&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <kbd>accusam et justo duo</kbd> dolores et ea rebum.
               </p>
@@ -384,7 +384,7 @@ export function Inlines() {
             <td>
               <code>&lt;del&gt;&lt;/del&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <del>accusam et justo duo</del> dolores et ea rebum.
               </p>
