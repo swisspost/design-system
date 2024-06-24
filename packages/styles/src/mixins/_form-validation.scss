@@ -1,5 +1,8 @@
+@use './../lic/bootstrap-license';
+@use './../themes/bootstrap/core' as bootstrap;
+
 @mixin form-validation-state-selector($state) {
-  #{if(&, "&", "")}.is-#{$state} {
+  @include bootstrap.form-validation-state-selector($state) {
     @content;
   }
 }

@@ -283,50 +283,6 @@
         }
       }
     }
-
-    &:is(.is-valid, .is-invalid) {
-      ~ label {
-        width: calc(
-          100% - (#{forms.$input-border-width * 2}) - #{form-validation.$form-feedback-icon-offset} -
-            #{forms.$form-bg-size}
-        );
-      }
-
-      &:focus,
-      &:not(:placeholder-shown) {
-        ~ label {
-          width: calc(
-            (100% * #{forms.$form-floating-label-upscale}) - #{forms.$form-floating-label-translate-x *
-              forms.$form-floating-label-upscale * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale *
-              2} - #{form-validation.$form-feedback-icon-offset * forms.$form-floating-label-upscale} -
-              #{form-validation.$form-feedback-icon-size * forms.$form-floating-label-upscale}
-          );
-        }
-      }
-
-      &.form-control-sm {
-        ~ label {
-          width: calc(
-            100% - (#{forms.$input-border-width * 2}) - #{form-validation.$form-feedback-icon-offset} -
-              #{forms.$form-bg-size-sm}
-          );
-        }
-
-        &:focus,
-        &:not(:placeholder-shown) {
-          padding-right: spacing.$size-bigger-big;
-
-          ~ label {
-            width: calc(
-              (100% * #{forms.$form-floating-label-upscale-sm}) - #{forms.$form-floating-label-translate-x *
-                forms.$form-floating-label-upscale-sm * 2} - #{forms.$input-border-width * forms.$form-floating-label-upscale-sm *
-                2} - #{form-validation.$form-feedback-icon-offset *
-                forms.$form-floating-label-upscale-sm} - #{forms.$form-bg-size-sm * forms.$form-floating-label-upscale-sm}
-            );
-          }
-        }
-      }
-    }
   }
 
   @include utilities-mx.high-contrast-mode() {

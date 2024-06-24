@@ -12,10 +12,10 @@ $form-select-indicator-disabled: url('#{icons.get-colored-svg-url('2113', $form-
 $form-select-indicator-hcm-dark: url('#{icons.get-colored-svg-url('2113', color.$white)}') !default;
 $form-select-indicator-hcm-light: url('#{icons.get-colored-svg-url('2113', color.$black)}') !default;
 
+// Deprecated
 $form-select-indicator-success: url('#{icons.get-colored-svg-url('2105', color.$success)}') !default;
 $form-select-indicator-success-hcm-dark: url('#{icons.get-colored-svg-url('2105', color.$white)}') !default;
 $form-select-indicator-success-hcm-light: url('#{icons.get-colored-svg-url('2105', color.$black)}') !default;
-
 $form-select-indicator-error: url('#{icons.get-colored-svg-url('2104', color.$error)}') !default;
 $form-select-indicator-error-hcm-dark: url('#{icons.get-colored-svg-url('2104', color.$white)}') !default;
 $form-select-indicator-error-hcm-light: url('#{icons.get-colored-svg-url('2104', color.$black)}') !default;

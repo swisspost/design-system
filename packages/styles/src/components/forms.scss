@@ -60,7 +60,7 @@ select.form-control-rg:not([size]):not([multiple]) {
 :not(.form-control-wrapper) > {
   .form-control {
     @include utilities.focus-style() {
-      border-radius: commons.$border-radius;
+      border-radius: 1px; // 1px so that the outline is rounded but not the input
     }
   }
 }

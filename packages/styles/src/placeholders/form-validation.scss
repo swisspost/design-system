@@ -1,0 +1,30 @@
+@use './../mixins/utilities' as utilities-mx;
+@use './../variables/components/form-validation';
+
+%form-feedback {
+  --form-feedback-inline-padding: #{form-validation.$form-feedback-padding-x};
+
+  position: relative;
+  display: none;
+  width: 100%;
+  margin: form-validation.$form-feedback-margin;
+  padding: form-validation.$form-feedback-padding-y var(--form-feedback-inline-padding);
+  padding-inline-start: calc(
+    var(--form-feedback-inline-padding) + #{form-validation.$form-feedback-icon-size} + #{form-validation.$form-feedback-padding-y}
+  );
+  font-size: form-validation.$form-feedback-font-size;
+
+  @include utilities-mx.high-contrast-mode() {
+    --form-feedback-inline-padding: 0%; // unit is needed so that var() can be used in a calc()
+  }
+}
+
+%form-feedback-icon {
+  content: '';
+  display: inline-block;
+  position: absolute;
+  inset-block-start: form-validation.$form-feedback-padding-y;
+  inset-inline-start: var(--form-feedback-inline-padding);
+  height: form-validation.$form-feedback-icon-size;
+  width: form-validation.$form-feedback-icon-size;
+}
