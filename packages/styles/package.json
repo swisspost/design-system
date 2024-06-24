@@ -28,10 +28,14 @@
   },
   "peerDependencies": {
     "@ng-bootstrap/ng-bootstrap": "^15.0.0 || ^16.0.0",
+    "@angular/core": "^16.0.0 || ^17.0.0",
     "bootstrap": "~5.3.0"
   },
   "peerDependenciesMeta": {
     "@ng-bootstrap/ng-bootstrap": {
+      "optional": true
+    },
+    "@angular/core": {
       "optional": true
     },
     "bootstrap": {
