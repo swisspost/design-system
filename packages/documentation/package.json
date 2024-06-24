@@ -36,7 +36,6 @@
     "bootstrap": "5.3.3"
   },
   "devDependencies": {
-    "@geometricpanda/storybook-addon-badges": "2.0.2",
     "@lit/task": "1.0.1",
     "@open-wc/lit-helpers": "0.7.0",
     "@percy/cli": "1.28.7",
