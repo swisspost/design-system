@@ -1,10 +1,10 @@
 :root {
-  --post-docs-font-sansserif: 'FiraCode', 'InterDisplay', 'Reddit Sans', sans-serif;
+  --post-docs-font-serif: 'FiraCode', sans-serif;
   --post-docs-font-monospace: 'Reddit Mono', monospace;
 }
 
 body {
-  font-family: var(--post-docs-font-sansserif);
+  font-family: var(--post-docs-font-serif);
 
   // manager
   #root {
