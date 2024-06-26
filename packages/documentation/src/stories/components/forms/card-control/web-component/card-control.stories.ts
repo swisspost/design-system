@@ -36,6 +36,7 @@ const meta: MetaComponent = {
     'slots-icon': '',
     'event-postInput': '',
     'event-postChange': '',
+    'groupValidation': false,
   },
   argTypes: {
     'type': {
@@ -80,6 +81,12 @@ const meta: MetaComponent = {
         disable: true,
       },
     },
+    'groupValidation': {
+      name: 'groupValidation',
+      control: {
+        type: 'boolean',
+      },
+    },
   },
 };
 
@@ -88,11 +95,21 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
+  parameters: {
+    docs: {
+      controls: {
+        exclude: ['groupValidation'],
+      },
+    },
+  },
   render: (args: Args) => {
     const [, updateArgs] = useArgs();
 
     const content = html`${unsafeHTML(args['slots-default'])}`;
     const icon = html`<span slot="icon">${unsafeHTML(args['slots-icon'])}</span>`;
+    const invalidFeedback = html`<p class="invalid-feedback${args.groupValidation ? '' : ' mt-2'}">
+      Invalid feedback
+    </p>`;
 
     return html`
       <post-card-control
@@ -111,6 +128,7 @@ export const Default: Story = {
       >
         ${args['slots-default'] ? content : null} ${args['slots-icon'] ? icon : null}
       </post-card-control>
+      ${args.validity === 'false' && !args.disabled ? invalidFeedback : nothing}
     `;
   },
 };
@@ -160,18 +178,18 @@ export const FormIntegration: Story = {
   parameters: {
     docs: {
       controls: {
-        include: ['disabled fieldset', 'value', 'disabled'],
+        include: ['disabled fieldset', 'value', 'disabled', 'validity', 'group validity'],
       },
     },
   },
   args: {
     name: 'checkbox',
     checkboxFieldset: false,
-    validity: 'null',
     radioValue: '',
     radioDisabled: '',
     radioFieldset: false,
     radioValidity: 'null',
+    groupValidation: true,
   },
   argTypes: {
     value: {
@@ -264,10 +282,7 @@ export const FormIntegration: Story = {
   render: (args: Args, context: StoryContext) => {
     const [_, updateArgs] = useArgs();
 
-    const invalidFeedback = html`<p
-      id="radio-group-invalid-feedback"
-      class="d-block invalid-feedback"
-    >
+    const invalidFeedback = html`<p id="radio-invalid-feedback" class="invalid-feedback">
       Invalid feedback
     </p>`;
 
@@ -281,7 +296,7 @@ export const FormIntegration: Story = {
         ${Default.render?.(args, context)}
       </fieldset>
       <fieldset class="mt-3" .disabled=${args.radioFieldset}>
-        <legend aria-describedby="radio-group-invalid-feedback">Legend</legend>
+        <legend aria-describedby="radio-invalid-feedback">Legend</legend>
         ${[1, 2, 3].map(
           n =>
             html`<post-card-control
