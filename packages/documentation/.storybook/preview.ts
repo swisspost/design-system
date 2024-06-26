@@ -1,8 +1,8 @@
 import type { Preview } from '@storybook/web-components';
-import { extractArgTypes } from '@pxtrn/storybook-addon-docs-stencil';
+import { extractArgTypes, extractComponentDescription } from '@kurbar/storybook-addon-docs-stencil';
 import { format } from 'prettier';
 import DocsLayout from './blocks/layout';
-import { badgesConfig, openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
+import { openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
 import './addons/cypress-storybook/client';
 
@@ -75,6 +75,7 @@ const preview: Preview = {
       },
       components: resetComponents,
       extractArgTypes,
+      extractComponentDescription,
     },
     actions: { argTypesRegex: '^on[A-Z].*' },
     controls: {
@@ -84,7 +85,6 @@ const preview: Preview = {
         date: /Date$/,
       },
     },
-    badgesConfig,
   },
 };
 
