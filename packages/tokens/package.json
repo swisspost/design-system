@@ -1,0 +1,37 @@
+{
+  "name": "@swisspost/design-system-tokens",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Design Tokens for the Swiss Post.",
+  "author": "Swiss Post <design-system@post.ch>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://swisspost-web-frontend.netlify.app",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "type": "module",
+  "scripts": {
+    "build": "node ./build.js"
+  },
+  "keywords": [
+    "tokens",
+    "tokens studio",
+    "scss",
+    "design-system",
+    "ui",
+    "frontend"
+  ],
+  "publishConfig": {
+    "directory": "./dist",
+    "access": "restricted",
+    "linkDirectory": true
+  },
+  "devDependencies": {
+    "@tokens-studio/sd-transforms": "0.16.1",
+    "style-dictionary": "4.0.0-prerelease.35"
+  }
+}
