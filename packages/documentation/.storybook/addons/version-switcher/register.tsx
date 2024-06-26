@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { addons, types } from '@storybook/addons';
+import { addons, types } from '@storybook/manager-api';
 import VersionSwitcher from './VersionSwitcher';
 
 const ADDON_ID = 'postVersionSwitcher';

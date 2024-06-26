@@ -36,15 +36,14 @@
     "bootstrap": "5.3.3"
   },
   "devDependencies": {
+    "@kurbar/storybook-addon-docs-stencil": "8.0.0",
     "@lit/task": "1.0.1",
     "@open-wc/lit-helpers": "0.7.0",
     "@percy/cli": "1.28.7",
     "@percy/cypress": "3.1.2",
-    "@pxtrn/storybook-addon-docs-stencil": "6.4.1",
     "@storybook/addon-docs": "8.1.9",
     "@storybook/addon-essentials": "8.1.9",
     "@storybook/addon-links": "8.1.9",
-    "@storybook/addons": "7.6.17",
     "@storybook/blocks": "8.1.9",
     "@storybook/components": "8.1.9",
     "@storybook/core-events": "8.1.9",
