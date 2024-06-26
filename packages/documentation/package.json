@@ -44,7 +44,6 @@
     "@storybook/addon-docs": "8.1.9",
     "@storybook/addon-essentials": "8.1.9",
     "@storybook/addon-links": "8.1.9",
-    "@storybook/addons": "7.6.17",
     "@storybook/blocks": "8.1.9",
     "@storybook/components": "8.1.9",
     "@storybook/core-events": "8.1.9",
