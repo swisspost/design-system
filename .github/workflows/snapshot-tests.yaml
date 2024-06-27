@@ -25,7 +25,7 @@ jobs:
 
       # Use cache is set to false because the cypress binary could not be cached correctly
       - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: ./.github/actions/setup-pnpm
         with:
           use_cache: false
 
