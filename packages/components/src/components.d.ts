@@ -75,6 +75,88 @@ export namespace Components {
          */
         "type": AlertType;
     }
+    interface PostButton {
+        /**
+          * Defines if the button should have an animation.
+         */
+        "animated": null | 'start' | 'end';
+        /**
+          * Defines if the button should be focused on the first render.
+         */
+        "autofocus": boolean;
+        /**
+          * Defines if the button is disabled.
+         */
+        "disabled": boolean;
+        /**
+          * Defines the form the button belongs to.
+         */
+        "form": null | string;
+        /**
+          * Defines the URL the form is submitted to.
+         */
+        "formaction": null | string;
+        /**
+          * Defines the encoding type for the form.
+         */
+        "formenctype": null | string;
+        /**
+          * Defines the HTTP method for the form.
+         */
+        "formmethod": null | string;
+        /**
+          * Defines if the form should be validated when submitted.
+         */
+        "formnovalidate": boolean;
+        /**
+          * Defines where to display the response after submitting the form.
+         */
+        "formtarget": null | string;
+        /**
+          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
+         */
+        "icon": null | string;
+        /**
+          * Defines if the button should only display the icon. The slot content will be placed in a visually hidden span.
+         */
+        "iconOnly": boolean;
+        /**
+          * Defines where icon and loading spinner should be placed.
+         */
+        "iconPosition": 'start' | 'end';
+        /**
+          * Defines if the button is in a loading state. Icon will be replaced by a loading spinner and the button will be disabled.
+         */
+        "loading": boolean;
+        /**
+          * Defines the name of the button.
+         */
+        "name": null | string;
+        /**
+          * Defines the target of the popover.
+         */
+        "popovertarget": null | string;
+        /**
+          * Defines the action of the popover target.
+         */
+        "popovertargetaction": null | string;
+        /**
+          * Defines the size of the component.
+         */
+        "size": null | 'sm' | 'rg' | 'md' | 'lg';
+        /**
+          * Defines the type of the button.
+         */
+        "type": null | 'button' | 'reset' | 'submit';
+        /**
+          * Defines the value of the button.
+         */
+        "value": null | string;
+        /**
+          * Defines the variant of the component.
+         */
+        "variant": 'primary' | 'secondary' | 'tertiary';
+    }
     /**
      * @class PostCardControl - representing a stencil component
      */
@@ -355,6 +437,12 @@ declare global {
         prototype: HTMLPostAlertElement;
         new (): HTMLPostAlertElement;
     };
+    interface HTMLPostButtonElement extends Components.PostButton, HTMLStencilElement {
+    }
+    var HTMLPostButtonElement: {
+        prototype: HTMLPostButtonElement;
+        new (): HTMLPostButtonElement;
+    };
     interface HTMLPostCardControlElementEventMap {
         "postInput": { state: boolean; value: string };
         "postChange": { state: boolean; value: string };
@@ -488,6 +576,7 @@ declare global {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
         "post-alert": HTMLPostAlertElement;
+        "post-button": HTMLPostButtonElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
         "post-icon": HTMLPostIconElement;
@@ -548,6 +637,88 @@ declare namespace LocalJSX {
           * The type of the alert.
          */
         "type"?: AlertType;
+    }
+    interface PostButton {
+        /**
+          * Defines if the button should have an animation.
+         */
+        "animated"?: null | 'start' | 'end';
+        /**
+          * Defines if the button should be focused on the first render.
+         */
+        "autofocus"?: boolean;
+        /**
+          * Defines if the button is disabled.
+         */
+        "disabled"?: boolean;
+        /**
+          * Defines the form the button belongs to.
+         */
+        "form"?: null | string;
+        /**
+          * Defines the URL the form is submitted to.
+         */
+        "formaction"?: null | string;
+        /**
+          * Defines the encoding type for the form.
+         */
+        "formenctype"?: null | string;
+        /**
+          * Defines the HTTP method for the form.
+         */
+        "formmethod"?: null | string;
+        /**
+          * Defines if the form should be validated when submitted.
+         */
+        "formnovalidate"?: boolean;
+        /**
+          * Defines where to display the response after submitting the form.
+         */
+        "formtarget"?: null | string;
+        /**
+          * Defines the icon `name` inside of the component. <span className="alert alert-sm alert-info">If not set the icon will not show up.</span> To learn which icons are available, please visit our <a href="/?path=/docs/5704bdc4-c5b5-45e6-b123-c54d01fce2f1--docs">icon library</a>.
+         */
+        "icon"?: null | string;
+        /**
+          * Defines if the button should only display the icon. The slot content will be placed in a visually hidden span.
+         */
+        "iconOnly"?: boolean;
+        /**
+          * Defines where icon and loading spinner should be placed.
+         */
+        "iconPosition"?: 'start' | 'end';
+        /**
+          * Defines if the button is in a loading state. Icon will be replaced by a loading spinner and the button will be disabled.
+         */
+        "loading"?: boolean;
+        /**
+          * Defines the name of the button.
+         */
+        "name"?: null | string;
+        /**
+          * Defines the target of the popover.
+         */
+        "popovertarget"?: null | string;
+        /**
+          * Defines the action of the popover target.
+         */
+        "popovertargetaction"?: null | string;
+        /**
+          * Defines the size of the component.
+         */
+        "size"?: null | 'sm' | 'rg' | 'md' | 'lg';
+        /**
+          * Defines the type of the button.
+         */
+        "type"?: null | 'button' | 'reset' | 'submit';
+        /**
+          * Defines the value of the button.
+         */
+        "value"?: null | string;
+        /**
+          * Defines the variant of the component.
+         */
+        "variant"?: 'primary' | 'secondary' | 'tertiary';
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -745,6 +916,7 @@ declare namespace LocalJSX {
         "post-accordion": PostAccordion;
         "post-accordion-item": PostAccordionItem;
         "post-alert": PostAlert;
+        "post-button": PostButton;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
         "post-icon": PostIcon;
@@ -765,6 +937,7 @@ declare module "@stencil/core" {
             "post-accordion": LocalJSX.PostAccordion & JSXBase.HTMLAttributes<HTMLPostAccordionElement>;
             "post-accordion-item": LocalJSX.PostAccordionItem & JSXBase.HTMLAttributes<HTMLPostAccordionItemElement>;
             "post-alert": LocalJSX.PostAlert & JSXBase.HTMLAttributes<HTMLPostAlertElement>;
+            "post-button": LocalJSX.PostButton & JSXBase.HTMLAttributes<HTMLPostButtonElement>;
             /**
              * @class PostCardControl - representing a stencil component
              */

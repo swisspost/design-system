@@ -1,0 +1,13 @@
+@use '@swisspost/design-system-styles/core' as post;
+@use '@swisspost/design-system-styles/components/button';
+@use '@swisspost/design-system-styles/components/spinner';
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.visually-hidden {
+  @include post.visually-hidden();
+}
