@@ -68,7 +68,7 @@
     "sass": "1.77.5",
     "sockjs": "0.3.24",
     "ts-node": "10.9.2",
-    "typescript": "5.3.3",
+    "typescript": "5.5.2",
     "undici-types": "6.18.2",
     "webpack": "5.92.0"
   }
