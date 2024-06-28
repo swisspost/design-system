@@ -133,7 +133,7 @@ export class PostButton {
     this.setClasses();
   }
 
-  @Watch('icon')
+  @Watch('iconOnly')
   iconChanged() {
     this.setClasses();
   }
@@ -143,14 +143,16 @@ export class PostButton {
     this.setClasses();
   }
 
+  private animationClass() {
+    if (this.animated === 'start') return 'btn-animated-start';
+    if (this.animated === 'end') return 'btn-animated';
+    return null;
+  }
+
   private setClasses() {
     this.classes = [
       'btn',
-      this.animated === 'start'
-        ? 'btn-animated-start'
-        : this.animated === 'end'
-        ? 'btn-animated'
-        : null,
+      this.animationClass(),
       this.size ? `btn-${this.size}` : null,
       this.variant ? `btn-${this.variant}` : null,
       this.iconOnly ? 'btn-icon' : null,
@@ -164,8 +166,8 @@ export class PostButton {
   }
 
   render() {
-    const rightSection = this.getStartSection();
-    const leftSection = this.getEndSection();
+    const startSection = this.getStartSection();
+    const endSection = this.getEndSection();
 
     return (
       <Host data-version={version}>
@@ -185,11 +187,11 @@ export class PostButton {
           type={this.type}
           value={this.value}
         >
-          {leftSection}
+          {startSection}
           <span class={this.iconOnly ? 'visually-hidden' : undefined}>
             <slot />
           </span>
-          {rightSection}
+          {endSection}
         </button>
       </Host>
     );
@@ -197,20 +199,24 @@ export class PostButton {
 
   private getStartSection() {
     if (this.iconPosition !== 'start' && this.iconPosition !== null) return null;
-    if (!this.loading) {
-      return <post-icon name={this.icon} />;
+    if (this.loading) {
+      return this.getLoader();
     }
-
-    return this.getLoader();
+    if (!this.icon) {
+      return null;
+    }
+    return <post-icon name={this.icon} />;
   }
 
   private getEndSection() {
     if (this.iconPosition !== 'end') return null;
-    if (!this.loading) {
-      return <post-icon name={this.icon} />;
+    if (this.loading) {
+      return this.getLoader();
     }
-
-    return this.getLoader();
+    if (!this.icon) {
+      return null;
+    }
+    return <post-icon name={this.icon} />;
   }
 
   private getLoader() {

@@ -4,6 +4,7 @@ export { Components, JSX } from './components';
 export { PostAccordion } from './components/post-accordion/post-accordion';
 export { PostAccordionItem } from './components/post-accordion-item/post-accordion-item';
 export { PostAlert } from './components/post-alert/post-alert';
+export { PostButton } from './components/post-button/post-button';
 export { PostCardControl } from './components/post-card-control/post-card-control';
 export { PostCollapsible } from './components/post-collapsible/post-collapsible';
 export { PostIcon } from './components/post-icon/post-icon';
