@@ -17,7 +17,7 @@ export class PostButton {
   /**
    * Defines the variant of the component.
    */
-  @Prop() readonly variant: 'primary' | 'secondary' | 'tertiary' = 'secondary';
+  @Prop() readonly variant: string = 'secondary';
 
   /**
    * Defines the size of the component.

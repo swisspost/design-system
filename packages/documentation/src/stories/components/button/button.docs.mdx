@@ -1,4 +1,5 @@
 import { Canvas, Controls, Meta } from '@storybook/blocks';
+import { PostTabs, PostTabHeader, PostTabPanel } from '@swisspost/design-system-components-react';
 import * as ButtonStories from './button.stories';
 import * as PostButtonStories from './web-components/post-button.stories';
 import StylesPackageImport from '@/shared/styles-package-import.mdx';
@@ -18,57 +19,124 @@ import StylesPackageImport from '@/shared/styles-package-import.mdx';
   sizes, states, and more.
 </div>
 
-<Canvas sourceState="shown" of={ButtonStories.Default} />
-<div className="hide-col-default">
-  <Controls of={ButtonStories.Default} />
-</div>
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="standardHTML">Standard HTML</PostTabHeader>
+  <PostTabPanel name="standardHTML">
+    <Canvas sourceState="shown" of={ButtonStories.Default} />
+    <div className="hide-col-default">
+      <Controls of={ButtonStories.Default} />
+    </div>
 
-<StylesPackageImport components={["button"]} required={{ icons: true }} />
+    <StylesPackageImport components={['button']} required={{ icons: true }} />
 
-## Concrete Examples of Application
+    ## Concrete Examples of Application
 
-The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
+    The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
 
-### Inverted
+    ### Inverted
 
-Inverted buttons don't need special classes anymore, just use any of the [background classes](/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs) to set the background and you're done for the day.
+    Inverted buttons don't need special classes anymore, just use any of the [background classes](/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs) to set the background and you're done for the day.
 
-<Canvas of={ButtonStories.Inverted} />
+    <Canvas of={ButtonStories.Inverted} />
 
-### Accent colors
+    ### Accent colors
 
-There are a number of accent colors that you can apply to buttons instead of the usual colors.
+    There are a number of accent colors that you can apply to buttons instead of the usual colors.
 
-<Canvas of={ButtonStories.AccentColors} />
+    <Canvas of={ButtonStories.AccentColors} />
 
-### Signal colors
+    ### Signal colors
 
-Besides the usual and the accent button variations, there are also signal button colors.
+    Besides the usual and the accent button variations, there are also signal button colors.
 
-<p className="alert alert-md alert-warning">These are only allowed for intranet applications!</p>
+    <p className="alert alert-md alert-warning">These are only allowed for intranet applications!</p>
 
-<Canvas of={ButtonStories.SignalColors} />
+    <Canvas of={ButtonStories.SignalColors} />
 
-### Full-width
+    ### Full-width
 
-In some situation, it is desirable to display a button using the full available width,
-for example when the button is displayed on mobile and stacked vertically with others.
+    In some situation, it is desirable to display a button using the full available width,
+    for example when the button is displayed on mobile and stacked vertically with others.
 
-To achieve that, you can use classes in the format:
-- `.w-{size}` for the xs breakpoint,
-- `.w-{breakpoint}-{size}` for breakpoints from sm to xxl.
+    To achieve that, you can use classes in the format:
 
-For example, a button with classes `w-100 w-lg-auto` will use all available space only when the viewport size is smaller than `lg`.
+    - `.w-{size}` for the xs breakpoint,
+    - `.w-{breakpoint}-{size}` for breakpoints from sm to xxl.
 
-To learn more about breakpoints, see the <a href="/?path=/docs/20af6e2b-32b1-42ef-a187-b026aea7fe13--docs">Breakpoints documentation</a>.
+    For example, a button with classes `w-100 w-lg-auto` will use all available space only when the viewport size is smaller than `lg`.
 
-<Canvas of={ButtonStories.FullWidth} />
+    To learn more about breakpoints, see the <a href="/?path=/docs/20af6e2b-32b1-42ef-a187-b026aea7fe13--docs">Breakpoints documentation</a>.
 
-### Align buttons
+    <Canvas of={ButtonStories.FullWidth} />
 
-Use flexbox to group and align buttons. As a best practice for keyboard navigation, order the most important button as the first occurrence in a group in the HTML
-and use the `.flex-row-reverse`, `.flex-column-reverse`, or `.order-*` classes to change the visual order.
+    ### Align buttons
 
-In the following example, the send button appears first on tab navigation.
+    Use flexbox to group and align buttons. As a best practice for keyboard navigation, order the most important button as the first occurrence in a group in the HTML
+    and use the `.flex-row-reverse`, `.flex-column-reverse`, or `.order-*` classes to change the visual order.
 
-<Canvas of={ButtonStories.Align} />
+    In the following example, the send button appears first on tab navigation.
+
+    <Canvas of={ButtonStories.Align} />
+  </PostTabPanel>
+
+  <PostTabHeader slot="tabs" panel="webcomponent">Web Component</PostTabHeader>
+  <PostTabPanel name="webcomponent">
+    <Canvas sourceState="shown" of={PostButtonStories.Default} />
+    <Controls of={PostButtonStories.Default} />
+
+
+    ## Installation
+
+    The `<post-button>` element is part of the `@swisspost/design-system-components` package.
+    For more information, read the <a href="/?path=/docs/edfb619b-fda1-4570-bf25-20830303d483--docs">getting started with components guide</a>.
+
+  ## Concrete Examples of Application
+
+    The following examples show the different characteristics of the component. These can differ in the type of visualization, the html structure, as well as when, how and why they are displayed.
+
+    ### Inverted
+
+    Inverted buttons don't need special classes anymore, just use any of the [background classes](/?path=/docs/60852fac-a861-4415-8276-bd38d68653bb--docs) to set the background and you're done for the day.
+
+    <Canvas of={PostButtonStories.Inverted} />
+
+    ### Accent colors
+
+    There are a number of accent colors that you can apply to buttons instead of the usual colors.
+
+    <Canvas of={PostButtonStories.AccentColors} />
+
+    ### Signal colors
+
+    Besides the usual and the accent button variations, there are also signal button colors.
+
+    <p className="alert alert-md alert-warning">These are only allowed for intranet applications!</p>
+
+    <Canvas of={PostButtonStories.SignalColors} />
+
+    ### Full-width
+
+    In some situation, it is desirable to display a button using the full available width,
+    for example when the button is displayed on mobile and stacked vertically with others.
+
+    To achieve that, you can use classes in the format:
+
+    - `.w-{size}` for the xs breakpoint,
+    - `.w-{breakpoint}-{size}` for breakpoints from sm to xxl.
+
+    For example, a button with classes `w-100 w-lg-auto` will use all available space only when the viewport size is smaller than `lg`.
+
+    To learn more about breakpoints, see the <a href="/?path=/docs/20af6e2b-32b1-42ef-a187-b026aea7fe13--docs">Breakpoints documentation</a>.
+
+    <Canvas of={ButtonStories.FullWidth} />
+
+    ### Align buttons
+
+    Use flexbox to group and align buttons. As a best practice for keyboard navigation, order the most important button as the first occurrence in a group in the HTML
+    and use the `.flex-row-reverse`, `.flex-column-reverse`, or `.order-*` classes to change the visual order.
+
+    In the following example, the send button appears first on tab navigation.
+
+    <Canvas of={PostButtonStories.Align} />
+  </PostTabPanel>
+</PostTabs>

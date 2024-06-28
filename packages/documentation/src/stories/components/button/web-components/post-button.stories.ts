@@ -1,6 +1,7 @@
 import { MetaComponent } from '@root/types';
-import type { Args, StoryObj } from '@storybook/web-components';
+import type { Args, StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html, nothing } from 'lit';
+import { repeat } from 'lit/directives/repeat.js';
 import { unsafeHTML } from 'lit/directives/unsafe-html.js';
 
 const meta: MetaComponent = {
@@ -196,14 +197,14 @@ export default meta;
 
 type Story = StoryObj;
 
-export const Default: Story = {
+export const Template = {
   render: (args: Args) => {
     return html`
       <post-button
         variant="${args.variant === 'null' ? nothing : args.variant}"
         size="${args.size === 'null' ? nothing : args.size}"
         icon="${args.icon === 'null' ? nothing : args.icon}"
-        type="${args.type === 'null' ? nothing : args.type}"
+        type="${args.type === 'button' ? nothing : args.type}"
         animated="${(args.animated ?? 'null') === 'null' ? nothing : args.animated}"
         icon-only="${args.iconOnly || nothing}"
         icon-position="${args.iconPosition === 'start' ? nothing : args.iconPosition}"
@@ -224,4 +225,76 @@ export const Default: Story = {
       >
     `;
   },
+} satisfies Story;
+
+export const Default: Story = {
+  ...Template,
+};
+
+export const Inverted: Story = {
+  ...Template,
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      html` <div class="p-3 bg-dark">${story(context.args, context)}</div> `,
+  ],
+};
+
+const VariantsTemplate = {
+  parameters: {
+    controls: {
+      exclude: ['Text', 'Tag', 'Type', 'Variant', 'variants'],
+    },
+  },
+  decorators: [
+    (story: StoryFn, context: StoryContext) =>
+      html` <div class="d-flex gap-small-r flex-wrap">${story(context.args, context)}</div> `,
+  ],
+  render: (args: Args) =>
+    html`
+      ${repeat(args.variants, (variant: string) =>
+        Template.render({
+          ...args,
+          'slots-default': `${variant.at(0)?.toUpperCase()}${variant.substring(1)}`,
+          variant,
+        }),
+      )}
+    `,
+};
+
+export const AccentColors: Story = {
+  ...VariantsTemplate,
+  args: {
+    variants: [
+      'nightblue',
+      'nightblue-bright',
+      'petrol',
+      'petrol-bright',
+      'coral',
+      'coral-bright',
+      'olive',
+      'olive-bright',
+      'purple',
+      'purple-bright',
+      'aubergine',
+      'aubergine-bright',
+    ],
+  },
+};
+
+export const SignalColors: Story = {
+  ...VariantsTemplate,
+  args: {
+    variants: ['success', 'warning', 'error', 'info'],
+  },
+};
+
+// TODO: Add full width example (either prop or forward class names)
+
+export const Align: Story = {
+  render: () => html`
+    <div class="d-flex flex-row-reverse gap-mini justify-content-end">
+      <post-button variant="primary">Send</post-button>
+      <post-button variant="secondary">Cancel</post-button>
+    </div>
+  `,
 };

@@ -155,7 +155,7 @@ export namespace Components {
         /**
           * Defines the variant of the component.
          */
-        "variant": 'primary' | 'secondary' | 'tertiary';
+        "variant": string;
     }
     /**
      * @class PostCardControl - representing a stencil component
@@ -718,7 +718,7 @@ declare namespace LocalJSX {
         /**
           * Defines the variant of the component.
          */
-        "variant"?: 'primary' | 'secondary' | 'tertiary';
+        "variant"?: string;
     }
     /**
      * @class PostCardControl - representing a stencil component
