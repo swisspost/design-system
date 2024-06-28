@@ -198,6 +198,10 @@ export namespace Components {
     }
     interface PostPopovercontainer {
         /**
+          * Animation style
+         */
+        "animation"?: 'pop-in';
+        /**
           * Wheter or not to display a little pointer arrow
          */
         "arrow"?: boolean;
@@ -277,9 +281,9 @@ export namespace Components {
     }
     interface PostTooltip {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Choose a tooltip animation
          */
-        "arrow"?: boolean;
+        "animation"?: 'pop-in' | null;
         /**
           * Programmatically hide this tooltip
          */
@@ -299,6 +303,12 @@ export namespace Components {
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
+    }
+    interface PostTooltipTrigger {
+        /**
+          * Link the trigger to a tooltip with this id
+         */
+        "for": string;
     }
 }
 export interface PostAlertCustomEvent<T> extends CustomEvent<T> {
@@ -484,6 +494,12 @@ declare global {
         prototype: HTMLPostTooltipElement;
         new (): HTMLPostTooltipElement;
     };
+    interface HTMLPostTooltipTriggerElement extends Components.PostTooltipTrigger, HTMLStencilElement {
+    }
+    var HTMLPostTooltipTriggerElement: {
+        prototype: HTMLPostTooltipTriggerElement;
+        new (): HTMLPostTooltipTriggerElement;
+    };
     interface HTMLElementTagNameMap {
         "post-accordion": HTMLPostAccordionElement;
         "post-accordion-item": HTMLPostAccordionItemElement;
@@ -499,6 +515,7 @@ declare global {
         "post-tabs": HTMLPostTabsElement;
         "post-tag": HTMLPostTagElement;
         "post-tooltip": HTMLPostTooltipElement;
+        "post-tooltip-trigger": HTMLPostTooltipTriggerElement;
     }
 }
 declare namespace LocalJSX {
@@ -657,6 +674,10 @@ declare namespace LocalJSX {
     }
     interface PostPopovercontainer {
         /**
+          * Animation style
+         */
+        "animation"?: 'pop-in';
+        /**
           * Wheter or not to display a little pointer arrow
          */
         "arrow"?: boolean;
@@ -733,13 +754,19 @@ declare namespace LocalJSX {
     }
     interface PostTooltip {
         /**
-          * Wheter or not to display a little pointer arrow
+          * Choose a tooltip animation
          */
-        "arrow"?: boolean;
+        "animation"?: 'pop-in' | null;
         /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
+    }
+    interface PostTooltipTrigger {
+        /**
+          * Link the trigger to a tooltip with this id
+         */
+        "for"?: string;
     }
     interface IntrinsicElements {
         "post-accordion": PostAccordion;
@@ -756,6 +783,7 @@ declare namespace LocalJSX {
         "post-tabs": PostTabs;
         "post-tag": PostTag;
         "post-tooltip": PostTooltip;
+        "post-tooltip-trigger": PostTooltipTrigger;
     }
 }
 export { LocalJSX as JSX };
@@ -782,6 +810,7 @@ declare module "@stencil/core" {
             "post-tabs": LocalJSX.PostTabs & JSXBase.HTMLAttributes<HTMLPostTabsElement>;
             "post-tag": LocalJSX.PostTag & JSXBase.HTMLAttributes<HTMLPostTagElement>;
             "post-tooltip": LocalJSX.PostTooltip & JSXBase.HTMLAttributes<HTMLPostTooltipElement>;
+            "post-tooltip-trigger": LocalJSX.PostTooltipTrigger & JSXBase.HTMLAttributes<HTMLPostTooltipTriggerElement>;
         }
     }
 }

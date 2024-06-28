@@ -62,11 +62,17 @@ const meta: MetaComponent = {
     placement: {
       name: 'Placement',
     },
-    arrow: {
-      name: 'Arrow',
+    animation: {
+      name: 'Animation',
+      description: 'Defines what kind of animation to use when showing/hiding the tooltip.',
       control: {
-        type: 'boolean',
+        type: 'select',
+        labels: {
+          'null': 'None',
+          'pop-in': 'Pop in',
+        },
       },
+      options: ['null', 'pop-in'],
     },
   },
 };
@@ -82,12 +88,14 @@ function render(args: Args) {
   if (currentArgs.innerHTML !== innerHTML) updateArgs({ innerHTML });
 
   return html`
-    <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">Button</button>
+    <post-tooltip-trigger for="${args.id}"
+      ><button class="btn btn-secondary btn-large">Button</button></post-tooltip-trigger
+    >
     <post-tooltip
       id="${args.id}"
       class="hydrated bg-${args.backgroundColor}"
       placement="${ifDefined(args.placement)}"
-      arrow="${ifDefined(args.arrow)}"
+      animation="${ifDefined(args.animation)}"
     >
       ${unsafeHTML(innerHTML)}
     </post-tooltip>
@@ -103,7 +111,9 @@ export const NonFocusable: StoryObj = {
   },
   render: (args: Args) => {
     return html`
-      <cite data-tooltip-target="${args.id}">This is a cite element with a tooltip on it.</cite>
+      <post-tooltip-trigger for="${args.id}">
+        <cite data-tooltip-target="${args.id}">This is a cite element with a tooltip on it.</cite>
+      </post-tooltip-trigger>
       <post-tooltip
         id="${args.id}"
         class="hydrated"
@@ -122,12 +132,16 @@ export const Multiple: StoryObj = {
   },
   render: (args: Args) => {
     return html`
-      <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">
-        Tooltip button
-      </button>
-      <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">
-        Same tooltip, different button
-      </button>
+      <post-tooltip-trigger for="${args.id}">
+        <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">
+          Tooltip button
+        </button>
+      </post-tooltip-trigger>
+      <post-tooltip-trigger for="${args.id}">
+        <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">
+          Same tooltip, different button
+        </button>
+      </post-tooltip-trigger>
       <post-tooltip
         id="${args.id}"
         class="hydrated bg-${args.background}"

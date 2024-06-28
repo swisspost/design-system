@@ -14,5 +14,22 @@
   </head>
   <body>
     <div class="p-5">Add your component here and start developing!</div>
+    <post-tooltip-trigger for="tooltip">
+      <button>tooltip</button>
+    </post-tooltip-trigger>
+    <post-tooltip-trigger for="tooltip">
+      <button>same tooltip</button>
+    </post-tooltip-trigger>
+    <post-tooltip-trigger for="other">no element inside</post-tooltip-trigger>
+
+    <button data-popover-target="bla">popover</button>
+    <post-popover id="bla"
+      >ma popover
+      <post-tooltip-trigger for="other1">with tooltip</post-tooltip-trigger>
+      <post-tooltip class="bg-yellow" id="other1">tha other tooltip</post-tooltip>
+    </post-popover>
+
+    <post-tooltip class="bg-yellow" id="other">tha other tooltip</post-tooltip>
+    <post-tooltip id="tooltip">I'm tha tooltip</post-tooltip>
   </body>
 </html>

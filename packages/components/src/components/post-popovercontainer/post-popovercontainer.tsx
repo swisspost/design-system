@@ -62,6 +62,11 @@ export class PostPopovercontainer {
   @Prop() readonly placement?: Placement = 'top';
 
   /**
+   * Animation style
+   */
+  @Prop() readonly animation?: 'pop-in' = null;
+
+  /**
    * Wheter or not to display a little pointer arrow
    */
   @Prop() readonly arrow?: boolean = false;
@@ -98,10 +103,8 @@ export class PostPopovercontainer {
    */
   @Method()
   async hide() {
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = null;
-      this.popoverRef.hidePopover();
-    }
+    this.eventTarget = null;
+    this.popoverRef.hidePopover();
   }
 
   /**
@@ -111,13 +114,9 @@ export class PostPopovercontainer {
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
-    // Prevent instant double toggle
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = target;
-      this.calculatePosition();
-      this.popoverRef.togglePopover(force);
-      this.toggleTimeoutId = null;
-    }
+    this.eventTarget = target;
+    this.calculatePosition();
+    this.popoverRef.togglePopover(force);
     return this.popoverRef.matches(':popover-open');
   }
 
@@ -128,7 +127,6 @@ export class PostPopovercontainer {
    * @param e ToggleEvent
    */
   private handleToggle(e: ToggleEvent) {
-    this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
     if (isOpen) {
       this.startAutoupdates();
@@ -173,7 +171,7 @@ export class PostPopovercontainer {
       offset(this.arrow ? 12 : 8), // 4px outside of element to account for focus outline + ~arrow size
     ];
 
-    if (this.arrow) {
+    if (this.arrow && this.arrowRef) {
       middleware.push(arrow({ element: this.arrowRef, padding: 8 }));
     }
 
@@ -193,7 +191,7 @@ export class PostPopovercontainer {
     this.popoverRef.style.top = `${y}px`;
 
     // Arrow
-    if (this.arrow) {
+    if (this.arrow && this.arrowRef) {
       // Tutorial: https://codesandbox.io/s/mystifying-kare-ee3hmh?file=/src/index.js
       const side = currentPlacement.split('-')[0];
       const { x: arrowX, y: arrowY } = middlewareData.arrow;
@@ -217,6 +215,7 @@ export class PostPopovercontainer {
       <Host data-version={version}>
         <div
           class="popover"
+          data-animation={this.animation}
           part="popover"
           ref={(el: HTMLDivElement & PostPopoverElement) => (this.popoverRef = el)}
         >
