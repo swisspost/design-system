@@ -80,7 +80,7 @@
     "tokens:build": "pnpm --filter design-system-tokens build"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.5",
+    "@changesets/cli": "2.27.7",
     "start-server-and-test": "2.0.4"
   },
   "optionalDependencies": {
