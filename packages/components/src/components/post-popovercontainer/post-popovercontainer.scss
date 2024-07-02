@@ -76,7 +76,7 @@
 
   @media (prefers-reduced-motion) {
     & {
-      --transition-duration: 0s;
+      --post-transition-duration: 0s;
     }
   }
 }

@@ -130,10 +130,13 @@ export class PostPopovercontainer {
     const isOpen = e.newState === 'open';
     if (isOpen) {
       this.startAutoupdates();
+      this.postToggle.emit(isOpen);
     } else {
       if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
+      // TODO: wait for transitionend if animations are enabled before firing close event. Faced the issue that transitionend is not
+      // being fired, maybe due to the top-layer involvement. With the current behavior, there is no hide animation for e.g. the tooltip
+      this.postToggle.emit(isOpen);
     }
-    this.postToggle.emit(isOpen);
   }
 
   /**

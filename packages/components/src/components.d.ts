@@ -289,6 +289,10 @@ export namespace Components {
          */
         "hide": () => Promise<void>;
         /**
+          * Indicates the open state of the tooltip
+         */
+        "open": boolean;
+        /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
@@ -757,6 +761,10 @@ declare namespace LocalJSX {
           * Choose a tooltip animation
          */
         "animation"?: 'pop-in' | null;
+        /**
+          * Indicates the open state of the tooltip
+         */
+        "open"?: boolean;
         /**
           * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */

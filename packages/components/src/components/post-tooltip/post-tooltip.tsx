@@ -1,6 +1,7 @@
 import { Component, Element, h, Host, Method, Prop } from '@stencil/core';
 import { Placement } from '@floating-ui/dom';
 import { version } from '@root/package.json';
+import { PostPopovercontainerCustomEvent } from '@/components';
 
 /**
  * @slot default - Slot for the content of the tooltip.
@@ -27,6 +28,11 @@ export class PostTooltip {
    * Choose a tooltip animation
    */
   @Prop() readonly animation?: 'pop-in' | null = 'pop-in';
+
+  /**
+   * Indicates the open state of the tooltip
+   */
+  @Prop({ reflect: true, mutable: true }) open = false;
 
   componentDidLoad() {
     if (!this.host.id) {
@@ -64,6 +70,14 @@ export class PostTooltip {
     this.popoverRef.toggle(target, force);
   }
 
+  /**
+   * Set the open state based on the toggle event
+   * @param e Popovercontainer toggle event
+   */
+  private handleToggle(e: PostPopovercontainerCustomEvent<boolean>) {
+    this.open = e.detail;
+  }
+
   render() {
     return (
       <Host data-version={version} role="tooltip">
@@ -71,6 +85,7 @@ export class PostTooltip {
           arrow
           placement={this.placement}
           animation={this.animation}
+          onPostToggle={e => this.handleToggle(e)}
           ref={(el: HTMLPostPopovercontainerElement) => (this.popoverRef = el)}
         >
           <slot></slot>
