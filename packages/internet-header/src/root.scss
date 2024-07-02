@@ -4,4 +4,5 @@
 :root {
   @include mixins.set-custom-property(--post-meta-header-height, variables.$meta-header-height);
   @include mixins.set-custom-property(--post-header-height, variables.$header-height);
+  @include mixins.set-custom-property(--post-header-slide-in-transition, variables.$header-slide-in-transition);
 }

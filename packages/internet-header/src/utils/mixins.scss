@@ -48,22 +48,32 @@
   }
 }
 
-@mixin set-custom-property($var, $sizes) {
-  $is-root: selector.is-superselector(&, ':root');
-  $previous-size: null;
-  @each $breakpoint, $size in $sizes {
-    $value: if($is-root, $size, var(#{string.insert($var, "post-", 3)}, $size));
+@mixin set-custom-property($var, $value) {
+  @if (type-of($value) == 'map') {
+    @include _responsive-custom-property($var, $value);
+  } @else {
+    @include _custom-property($var, $value);
+  }
+}
 
-    @if($size == $previous-size) {
+@mixin _responsive-custom-property($var, $values) {
+  $previous-value: null;
+  @each $breakpoint, $value in $values {
+    @if($value == $previous-value) {
       // no styles
     } @else if($breakpoint == xs) {
-      #{$var}: $value;
+      @include _custom-property($var, $value);
     } @else {
       @include min($breakpoint) {
-        #{$var}: $value;
+        @include _custom-property($var, $value);
       }
     }
 
-    $previous-size: $size;
+    $previous-value: $value;
   }
+}
+
+@mixin _custom-property($var, $value) {
+  $is-root: selector.is-superselector(&, ':root');
+  #{$var}: if($is-root, $value, var(#{string.insert($var, "post-", 3)}, $value));
 }

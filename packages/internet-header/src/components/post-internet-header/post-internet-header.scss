@@ -55,7 +55,9 @@
   :host(.stickyness-minimal.scrolling-up),
   :host(.stickyness-minimal.dropdown-open) {
     top: calc(var(--meta-header-height, 0px) * -1);
-    transition: top 200ms ease-out;
+
+    @include mixins.set-custom-property(--header-slide-in-transition, variables.$header-slide-in-transition);
+    transition: var(--header-slide-in-transition);
   }
 }
 
