@@ -2,6 +2,7 @@
 @use '@swisspost/design-system-styles/placeholders/color' as color-ph;
 @use '../../utils/utils.scss';
 @use '../../utils/mixins.scss';
+@use '../../utils/variables.scss';
 @use './logo-animation/logo-animation.scss';
 
 :host {
@@ -13,18 +14,10 @@
   font-weight: 300;
   z-index: var(--header-z-index, 10);
 
-  --header-height: 3.5rem; // 56px
-  --meta-header-height: 0px; // Not visible on mobile
   --language-dropdown-margin-top: 0px;
 
-  @include mixins.min(lg) {
-    --meta-header-height: 3rem; // 48px
-    --header-height: 4rem; // 64px
-  }
-
-  @include mixins.min(xl) {
-    --header-height: 4.5rem; // 72px
-  }
+  @include mixins.set-custom-property(--meta-header-height, variables.$meta-header-height);
+  @include mixins.set-custom-property(--header-height, variables.$header-height);
 }
 
 // Set height to 0 if meta is never visible
@@ -62,7 +55,9 @@
   :host(.stickyness-minimal.scrolling-up),
   :host(.stickyness-minimal.dropdown-open) {
     top: calc(var(--meta-header-height, 0px) * -1);
-    transition: top 200ms ease-out;
+
+    @include mixins.set-custom-property(--header-slide-in-transition, variables.$header-slide-in-transition);
+    transition: var(--header-slide-in-transition);
   }
 }
 
