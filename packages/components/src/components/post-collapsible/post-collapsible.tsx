@@ -33,17 +33,19 @@ export class PostCollapsible {
   @State() id: string;
 
   /**
-   * If `true`, the element is initially collapsed otherwise it is displayed.
+   * If `true`, the element is collapsed otherwise it is displayed.
    */
   @Prop() readonly collapsed?: boolean = false;
 
   @Watch('collapsed')
-  validateCollapsed(newValue = this.collapsed) {
+  collapsedChange(collapsed = this.collapsed) {
     checkEmptyOrType(
-      newValue,
+      collapsed,
       'boolean',
       'The `collapsed` property of the `post-collapsible` must be a boolean.',
     );
+
+    void this.toggle(!collapsed);
   }
 
   /**
@@ -53,16 +55,12 @@ export class PostCollapsible {
    */
   @Event() postToggle: EventEmitter<boolean>;
 
-  connectedCallback() {
-    this.validateCollapsed();
-  }
-
   componentWillRender() {
     this.id = this.host.id || `c${crypto.randomUUID()}`;
   }
 
   componentDidLoad() {
-    if (this.collapsed) void this.toggle(false);
+    this.collapsedChange();
     this.isLoaded = true;
   }
 
