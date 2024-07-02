@@ -126,7 +126,7 @@ export namespace Components {
     }
     interface PostCollapsible {
         /**
-          * If `true`, the element is initially collapsed otherwise it is displayed.
+          * If `true`, the element is collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
         /**
@@ -600,7 +600,7 @@ declare namespace LocalJSX {
     }
     interface PostCollapsible {
         /**
-          * If `true`, the element is initially collapsed otherwise it is displayed.
+          * If `true`, the element is collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
         /**

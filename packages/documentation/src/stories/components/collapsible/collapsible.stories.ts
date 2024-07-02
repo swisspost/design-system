@@ -1,3 +1,4 @@
+import { useArgs } from '@storybook/preview-api';
 import { StoryContext, StoryFn, StoryObj } from '@storybook/web-components';
 import { html } from 'lit';
 import { spreadArgs } from '@/utils';
@@ -61,8 +62,25 @@ function externalControls(story: StoryFn, context: StoryContext) {
 }
 
 //RENDERER
+let ignoreToggle = true;
 function renderCollapsible(args: Partial<HTMLPostCollapsibleElement>) {
-  return html` <post-collapsible ${spreadArgs(args)}></post-collapsible> `;
+  const [_, updateArgs] = useArgs();
+  const handleToggle = (e: CustomEvent<boolean>) => {
+    if (ignoreToggle) return;
+
+    const collapsed = !e.detail;
+    updateArgs({ collapsed });
+  };
+
+  // ignore the first toggle event after a collapsed arg update
+  ignoreToggle = true;
+  setTimeout(() => {
+    ignoreToggle = false;
+  }, 200);
+
+  return html`
+    <post-collapsible ${spreadArgs(args)} @postToggle="${handleToggle}"></post-collapsible>
+  `;
 }
 
 // STORIES

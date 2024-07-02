@@ -30,7 +30,16 @@
 
 <div class="my-4">
   <h2>Post Collapsible</h2>
-  <post-collapsible>
+  <button
+    (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed"
+    aria-controls="collapsible"
+    class="btn btn-default mb-regular"
+    type="button"
+  >
+    Toggle
+  </button>
+  <post-collapsible id="collapsible" [collapsed]="isCollapsed">
     <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
   </post-collapsible>
 </div>
