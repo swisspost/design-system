@@ -1,8 +1,8 @@
 import { DocsContainer, DocsContainerProps, Unstyled } from '@storybook/blocks';
 import { PropsWithChildren } from 'react';
-import '../styles/layout.scss';
-import Footer from './footer';
-import Header from './header';
+import './layout.scss';
+import Footer from '../footer';
+import Header from '../header';
 import { ifDefined } from 'lit/directives/if-defined.js';
 
 function shouldShowHeader() {

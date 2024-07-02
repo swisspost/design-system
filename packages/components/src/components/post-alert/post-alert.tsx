@@ -156,7 +156,7 @@ export class PostAlert {
 
     return (
       <Host data-version={version}>
-        <div role="alert" class={this.classes}>
+        <div role="alert" class={this.classes} part={this.classes}>
           {this.dismissible && (
             <button class="btn-close" onClick={this.onDismissButtonClick}>
               <span class="visually-hidden">{this.dismissLabel}</span>

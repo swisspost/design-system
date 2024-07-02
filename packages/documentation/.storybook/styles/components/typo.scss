@@ -1,0 +1,38 @@
+:root {
+  --post-docs-font-serif: 'FiraCode', sans-serif;
+  --post-docs-font-monospace: 'Reddit Mono', monospace;
+}
+
+body {
+  font-family: var(--post-docs-font-serif);
+
+  // manager
+  #root {
+    * {
+      font-family: var(--post-docs-font-monospace);
+    }
+  }
+
+  // preview
+  #storybook-docs {
+    * {
+      font-family: inherit;
+    }
+
+    :is(pre, .prismjs) {
+      font-family: var(--post-docs-font-monospace);
+    }
+
+    .docs-story > :first-child {
+      font-family: var(--bs-body-font-family);
+    }
+
+    .font-sans-serif {
+      font-family: var(--bs-font-sans-serif) !important;
+    }
+
+    .font-monospace {
+      font-family: var(--bs-font-monospace) !important;
+    }
+  }
+}

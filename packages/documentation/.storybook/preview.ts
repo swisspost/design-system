@@ -1,7 +1,7 @@
 import type { Preview } from '@storybook/web-components';
 import { extractArgTypes, extractComponentDescription } from '@kurbar/storybook-addon-docs-stencil';
 import { format } from 'prettier';
-import DocsLayout from './blocks/layout';
+import DocsLayout from './blocks/layout/layout';
 import { openFullScreenDemo, prettierOptions, resetComponents } from './helpers';
 import './helpers/register-web-components';
 import './addons/cypress-storybook/client';
