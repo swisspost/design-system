@@ -24,12 +24,12 @@
 // Selector for styles to be applied on dark backgrounds
 @mixin on-dark-background($contains: false) {
   @if $contains == true {
-    &:is(#{color.$dark-backgrounds}),
-    :is(#{color.$dark-backgrounds}) & {
+    &:where(#{color.$dark-backgrounds}),
+    :where(#{color.$dark-backgrounds}) & {
       @content;
     }
   } @else {
-    :is(#{color.$dark-backgrounds}) & {
+    :where(#{color.$dark-backgrounds}) & {
       @content;
     }
   }

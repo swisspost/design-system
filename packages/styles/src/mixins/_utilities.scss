@@ -83,6 +83,13 @@
   }
 }
 
+@mixin not-disabled-hover {
+  &:not(:disabled):hover,
+  &.pretend-hover {
+    @content;
+  }
+}
+
 @mixin focus-style-none {
   outline: none;
 }

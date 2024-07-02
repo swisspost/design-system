@@ -119,7 +119,7 @@ function externalControl(story: StoryFn, { args, context }: StoryContext) {
 
   const button = html`
     <a
-      class="btn btn-default btn-animated"
+      class="btn btn-secondary btn-animated"
       href="#"
       @click="${(e: MouseEvent) => toggleAlert(e, args, updateArgs)}"
     >
