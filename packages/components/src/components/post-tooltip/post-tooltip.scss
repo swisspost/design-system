@@ -7,6 +7,11 @@
 :host {
   --post-contrast-color: #{color.$white};
   --post-bg-rgb: #{color-fn.rgb-values(color.$gray-80)};
+  display: none;
+}
+
+:host([open]) {
+  display: block;
 }
 
 post-popovercontainer {

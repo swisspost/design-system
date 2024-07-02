@@ -7,6 +7,7 @@ import {
   PostTabPanel,
   PostTabs,
   PostTooltip,
+  PostTooltipTrigger,
 } from '@swisspost/design-system-components-react';
 import Image from 'next/image';
 
@@ -209,14 +210,14 @@ export default function Home() {
       <section className="mt-huge-r">
         <h2>Testing a couple web components</h2>
         <PostTabs>
-          <PostTabHeader panel="one" data-tooltip-target="tooltip-one">
-            Active
+          <PostTabHeader panel="one">
+            <PostTooltipTrigger for="tooltip-one">Active</PostTooltipTrigger>
           </PostTabHeader>
           <PostTooltip id="tooltip-one">🚀</PostTooltip>
           <PostTabPanel name="one">A content</PostTabPanel>
 
-          <PostTabHeader panel="two" data-tooltip-target="tooltip-two">
-            Delivered
+          <PostTabHeader panel="two">
+            <PostTooltipTrigger>Delivered</PostTooltipTrigger>
           </PostTabHeader>
           <PostTooltip className="bg-yellow" id="tooltip-two">
             👻
