@@ -91,18 +91,9 @@ select.form-control-rg:not([size]):not([multiple]) {
     }
   }
 
-  &:disabled {
-    color: forms.$input-disabled-border-color;
-    border: forms.$input-disabled-border-style;
-
+  @include utilities.disabled-style {
     ~ .form-text {
-      color: forms.$input-disabled-color;
-    }
-
-    @include utilities.high-contrast-mode {
-      border-color: GrayText !important;
-      background-color: Field !important;
-      color: GrayText;
+      color: var(--post-gray-40);
     }
   }
 
