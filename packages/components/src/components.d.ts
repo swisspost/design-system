@@ -206,21 +206,21 @@ export namespace Components {
          */
         "arrow"?: boolean;
         /**
-          * Programmatically hide this tooltip
+          * Programmatically hide this popover-container
          */
         "hide": () => Promise<void>;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the placement of the popover-container according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. popover-containers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
         /**
-          * Programmatically display the tooltip
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * Programmatically display the popover-container
+          * @param target An element where the popover-container should be shown
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
-          * Toggle tooltip display
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * Toggle popover-container display
+          * @param target An element where the popover-container should be shown
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<boolean>;
@@ -298,12 +298,12 @@ export namespace Components {
         "placement"?: Placement;
         /**
           * Programmatically display the tooltip
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * @param target An element where the tooltip should be shown
          */
         "show": (target: HTMLElement) => Promise<void>;
         /**
           * Toggle tooltip display
-          * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+          * @param target An element where the tooltip should be shown
           * @param force Pass true to always show or false to always hide
          */
         "toggle": (target: HTMLElement, force?: boolean) => Promise<void>;
@@ -690,7 +690,7 @@ declare namespace LocalJSX {
          */
         "onPostToggle"?: (event: PostPopovercontainerCustomEvent<boolean>) => void;
         /**
-          * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
+          * Defines the placement of the popover-container according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. popover-containers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries.
          */
         "placement"?: Placement;
     }

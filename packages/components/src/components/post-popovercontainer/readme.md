@@ -7,11 +7,11 @@
 
 ## Properties
 
-| Property    | Attribute   | Description                                                                                                                                                                                                                                                                                                               | Type                                                                                                                                                                 | Default |
-| ----------- | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
-| `animation` | `animation` | Animation style                                                                                                                                                                                                                                                                                                           | `"pop-in"`                                                                                                                                                           | `null`  |
-| `arrow`     | `arrow`     | Wheter or not to display a little pointer arrow                                                                                                                                                                                                                                                                           | `boolean`                                                                                                                                                            | `false` |
-| `placement` | `placement` | Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'` |
+| Property    | Attribute   | Description                                                                                                                                                                                                                                                                                                                                   | Type                                                                                                                                                                 | Default |
+| ----------- | ----------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------- |
+| `animation` | `animation` | Animation style                                                                                                                                                                                                                                                                                                                               | `"pop-in"`                                                                                                                                                           | `null`  |
+| `arrow`     | `arrow`     | Wheter or not to display a little pointer arrow                                                                                                                                                                                                                                                                                               | `boolean`                                                                                                                                                            | `false` |
+| `placement` | `placement` | Defines the placement of the popover-container according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement. popover-containers are automatically flipped to the opposite side if there is not enough available space and are shifted towards the viewport if they would overlap edge boundaries. | `"bottom" \| "bottom-end" \| "bottom-start" \| "left" \| "left-end" \| "left-start" \| "right" \| "right-end" \| "right-start" \| "top" \| "top-end" \| "top-start"` | `'top'` |
 
 
 ## Events
@@ -25,7 +25,7 @@
 
 ### `hide() => Promise<void>`
 
-Programmatically hide this tooltip
+Programmatically hide this popover-container
 
 #### Returns
 
@@ -35,13 +35,13 @@ Type: `Promise<void>`
 
 ### `show(target: HTMLElement) => Promise<void>`
 
-Programmatically display the tooltip
+Programmatically display the popover-container
 
 #### Parameters
 
-| Name     | Type          | Description                                                                  |
-| -------- | ------------- | ---------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-tooltip-target="id"] where the tooltip should be shown |
+| Name     | Type          | Description                                            |
+| -------- | ------------- | ------------------------------------------------------ |
+| `target` | `HTMLElement` | An element where the popover-container should be shown |
 
 #### Returns
 
@@ -51,14 +51,14 @@ Type: `Promise<void>`
 
 ### `toggle(target: HTMLElement, force?: boolean) => Promise<boolean>`
 
-Toggle tooltip display
+Toggle popover-container display
 
 #### Parameters
 
-| Name     | Type          | Description                                                                  |
-| -------- | ------------- | ---------------------------------------------------------------------------- |
-| `target` | `HTMLElement` | An element with [data-tooltip-target="id"] where the tooltip should be shown |
-| `force`  | `boolean`     | Pass true to always show or false to always hide                             |
+| Name     | Type          | Description                                            |
+| -------- | ------------- | ------------------------------------------------------ |
+| `target` | `HTMLElement` | An element where the popover-container should be shown |
+| `force`  | `boolean`     | Pass true to always show or false to always hide       |
 
 #### Returns
 

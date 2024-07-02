@@ -55,8 +55,8 @@ export class PostPopovercontainer {
   @Event() postToggle: EventEmitter<boolean>;
 
   /**
-   * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
-   * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted
+   * Defines the placement of the popover-container according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
+   * popover-containers are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
   @Prop() readonly placement?: Placement = 'top';
@@ -86,8 +86,8 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Programmatically display the tooltip
-   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+   * Programmatically display the popover-container
+   * @param target An element where the popover-container should be shown
    */
   @Method()
   async show(target: HTMLElement) {
@@ -99,7 +99,7 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Programmatically hide this tooltip
+   * Programmatically hide this popover-container
    */
   @Method()
   async hide() {
@@ -108,8 +108,8 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Toggle tooltip display
-   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+   * Toggle popover-container display
+   * @param target An element where the popover-container should be shown
    * @param force Pass true to always show or false to always hide
    */
   @Method()
@@ -121,8 +121,8 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Start or stop auto updates based on tooltip events.
-   * Tooltips can be closed or opened with other methods than class members,
+   * Start or stop auto updates based on popover-container events.
+   * popover-containers can be closed or opened with other methods than class members,
    * therefore listening to the toggle event is safer for cleaning up.
    * @param e ToggleEvent
    */
@@ -141,7 +141,7 @@ export class PostPopovercontainer {
 
   /**
    * Start listening for DOM updates, scroll events etc. that have
-   * an influence on tooltip positioning
+   * an influence on popover-container positioning
    */
   private startAutoupdates() {
     this.clearAutoUpdate = autoUpdate(
@@ -189,7 +189,6 @@ export class PostPopovercontainer {
       middleware,
     });
 
-    // Tooltip
     this.popoverRef.style.left = `${x}px`;
     this.popoverRef.style.top = `${y}px`;
 

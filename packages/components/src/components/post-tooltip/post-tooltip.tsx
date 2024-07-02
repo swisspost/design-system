@@ -38,14 +38,14 @@ export class PostTooltip {
     if (!this.host.id) {
       console.error(
         /*prettier-ignore*/
-        'No id set: <post-tooltip> must have an id, linking it to it\'s target element using the data-tooltip-target attribute.',
+        'No id set: <post-tooltip> must have an id, linking it to it\'s target element with a <post-tooltip-trigger> element.',
       );
     }
   }
 
   /**
    * Programmatically display the tooltip
-   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+   * @param target An element where the tooltip should be shown
    */
   @Method()
   async show(target: HTMLElement) {
@@ -62,7 +62,7 @@ export class PostTooltip {
 
   /**
    * Toggle tooltip display
-   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+   * @param target An element where the tooltip should be shown
    * @param force Pass true to always show or false to always hide
    */
   @Method()

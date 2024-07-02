@@ -112,7 +112,7 @@ export const NonFocusable: StoryObj = {
   render: (args: Args) => {
     return html`
       <post-tooltip-trigger for="${args.id}">
-        <cite data-tooltip-target="${args.id}">This is a cite element with a tooltip on it.</cite>
+        <cite>This is a cite element with a tooltip on it.</cite>
       </post-tooltip-trigger>
       <post-tooltip
         id="${args.id}"
@@ -133,14 +133,10 @@ export const Multiple: StoryObj = {
   render: (args: Args) => {
     return html`
       <post-tooltip-trigger for="${args.id}">
-        <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">
-          Tooltip button
-        </button>
+        <button class="btn btn-secondary btn-large">Tooltip button</button>
       </post-tooltip-trigger>
       <post-tooltip-trigger for="${args.id}">
-        <button class="btn btn-secondary btn-large" data-tooltip-target="${args.id}">
-          Same tooltip, different button
-        </button>
+        <button class="btn btn-secondary btn-large">Same tooltip, different button</button>
       </post-tooltip-trigger>
       <post-tooltip
         id="${args.id}"
