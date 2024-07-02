@@ -134,6 +134,12 @@ export namespace Components {
          */
         "toggle": (open?: boolean) => Promise<boolean>;
     }
+    interface PostCollapsibleTrigger {
+        /**
+          * Link the trigger to a collapsible with this id
+         */
+        "for": string;
+    }
     /**
      * @class PostIcon - representing a stencil component
      */
@@ -393,6 +399,12 @@ declare global {
         prototype: HTMLPostCollapsibleElement;
         new (): HTMLPostCollapsibleElement;
     };
+    interface HTMLPostCollapsibleTriggerElement extends Components.PostCollapsibleTrigger, HTMLStencilElement {
+    }
+    var HTMLPostCollapsibleTriggerElement: {
+        prototype: HTMLPostCollapsibleTriggerElement;
+        new (): HTMLPostCollapsibleTriggerElement;
+    };
     /**
      * @class PostIcon - representing a stencil component
      */
@@ -490,6 +502,7 @@ declare global {
         "post-alert": HTMLPostAlertElement;
         "post-card-control": HTMLPostCardControlElement;
         "post-collapsible": HTMLPostCollapsibleElement;
+        "post-collapsible-trigger": HTMLPostCollapsibleTriggerElement;
         "post-icon": HTMLPostIconElement;
         "post-popover": HTMLPostPopoverElement;
         "post-popovercontainer": HTMLPostPopovercontainerElement;
@@ -607,6 +620,12 @@ declare namespace LocalJSX {
           * An event emitted when the collapse element is shown or hidden, before the transition.  The event payload is a boolean: `true` if the collapsible was opened, `false` if it was closed.
          */
         "onPostToggle"?: (event: PostCollapsibleCustomEvent<boolean>) => void;
+    }
+    interface PostCollapsibleTrigger {
+        /**
+          * Link the trigger to a collapsible with this id
+         */
+        "for"?: string;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -747,6 +766,7 @@ declare namespace LocalJSX {
         "post-alert": PostAlert;
         "post-card-control": PostCardControl;
         "post-collapsible": PostCollapsible;
+        "post-collapsible-trigger": PostCollapsibleTrigger;
         "post-icon": PostIcon;
         "post-popover": PostPopover;
         "post-popovercontainer": PostPopovercontainer;
@@ -770,6 +790,7 @@ declare module "@stencil/core" {
              */
             "post-card-control": LocalJSX.PostCardControl & JSXBase.HTMLAttributes<HTMLPostCardControlElement>;
             "post-collapsible": LocalJSX.PostCollapsible & JSXBase.HTMLAttributes<HTMLPostCollapsibleElement>;
+            "post-collapsible-trigger": LocalJSX.PostCollapsibleTrigger & JSXBase.HTMLAttributes<HTMLPostCollapsibleTriggerElement>;
             /**
              * @class PostIcon - representing a stencil component
              */
