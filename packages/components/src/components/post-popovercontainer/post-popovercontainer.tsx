@@ -65,7 +65,6 @@ export class PostPopovercontainer {
   @Prop() readonly arrow?: boolean = false;
 
   componentDidLoad() {
-    this.host.setAttribute('data-version', version);
     this.host.setAttribute('popover', '');
     this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
   }
