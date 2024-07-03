@@ -1,4 +1,4 @@
-import { Component, Element, Host, h, Prop, Listen, Watch } from '@stencil/core';
+import { Component, Element, Prop, Listen, Watch } from '@stencil/core';
 import { version } from 'typescript';
 import { isFocusable } from '@/utils/is-focusable';
 import { checkNonEmpty, checkType } from '@/utils';
@@ -17,15 +17,22 @@ export class PostCollapsibleTrigger {
   @Prop() for: string;
 
   @Watch('for')
-  setAriaControls() {
+  setAriaAttributes() {
     checkNonEmpty(this.for, 'The post-collapsible-trigger "for" prop is required.');
     checkType(this.for, 'string', 'The post-collapsible-trigger "for" prop should be a id.');
 
     // Add collapsible id to aria-controls
-    if (this.trigger) this.trigger.setAttribute('aria-controls', this.for);
+    if (this.trigger) {
+      this.trigger.setAttribute('aria-controls', this.for);
+
+      const isOpen = !this.collapsible?.collapsed;
+      if (isOpen !== undefined) this.trigger.setAttribute('aria-expanded', `${isOpen}`);
+    }
   }
 
-  componentDidLoad() {
+  componentWillLoad() {
+    this.host.setAttribute('data-version', version);
+
     const firstChild = this.host.children[0];
     if (firstChild && firstChild.nodeType === Node.ELEMENT_NODE) {
       this.trigger = firstChild as HTMLElement;
@@ -43,7 +50,7 @@ export class PostCollapsibleTrigger {
       this.trigger.setAttribute('role', 'button');
     }
 
-    this.setAriaControls();
+    this.setAriaAttributes();
   }
 
   @Listen('pointerdown')
@@ -70,13 +77,5 @@ export class PostCollapsibleTrigger {
     }
 
     return null;
-  }
-
-  render() {
-    return (
-      <Host data-version={version}>
-        <slot></slot>
-      </Host>
-    );
   }
 }

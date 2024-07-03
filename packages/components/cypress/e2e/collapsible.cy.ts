@@ -3,57 +3,75 @@ const COLLAPSIBLE_ID = '6a91848c-16ec-4a23-bc45-51c797b5b2c3';
 describe('collapsible', () => {
   describe('default', () => {
     beforeEach(() => {
-      cy.getComponent('collapsible', COLLAPSIBLE_ID);
-      cy.get('@collapsible').find('.collapse').as('collapse');
-      cy.get(`#button--${COLLAPSIBLE_ID}--default`).as('toggler');
+      cy.getComponents(COLLAPSIBLE_ID, 'default', 'post-collapsible', 'post-collapsible-trigger');
+      cy.get('@collapsible-trigger').find('.btn').as('trigger');
     });
 
-    it('should render', () => {
+    it('should have a collapsible', () => {
       cy.get('@collapsible').should('exist');
     });
 
-    it('should have a collapse', () => {
-      cy.get('@collapse').should('exist');
+    it('should have a trigger', () => {
+      cy.get('@trigger').should('exist');
     });
 
-    it('should have a toggle button', () => {
-      cy.get('@toggler').should('exist');
+    it('should show the collapsible', () => {
+      cy.get('@collapsible').should(`be.visible`);
     });
 
-    it('should be expanded', () => {
-      cy.get('@collapse').should(`be.visible`);
+    it('should set the correct ARIA attribute on the trigger', () => {
+      cy.get('@collapsible')
+        .invoke('attr', 'id')
+        .then(collapsibleId => {
+          cy.get('@trigger').should('have.attr', 'aria-controls', collapsibleId);
+        });
+      cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
     });
 
-    it('should be collapsed after clicking on the toggle button once', () => {
-      cy.get('@toggler').click();
-      cy.get('@collapse').should(`be.hidden`);
+    it('should hide the collapsible after clicking on the trigger once', () => {
+      cy.get('@trigger').click();
+      cy.get('@collapsible').should(`be.hidden`);
     });
 
-    it('should be expanded after clicking on the toggle button twice', () => {
-      cy.get('@toggler').dblclick();
-      cy.get('@collapse').should(`be.visible`);
+    it('should update the "aria-expanded" attribute after hiding the collapsible', () => {
+      cy.get('@trigger').click();
+      cy.get('@trigger').should('have.attr', 'aria-expanded', 'false');
+    });
+
+    it('should show the collapsible after clicking on the trigger twice', () => {
+      cy.get('@trigger').dblclick();
+      cy.get('@collapsible').should(`be.visible`);
+    });
+
+    it('should update the "aria-expanded" attribute after showing the collapsible', () => {
+      cy.get('@trigger').click();
+      cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
     });
   });
 
   describe('initially collapsed', () => {
     beforeEach(() => {
-      cy.getComponent('collapsible', COLLAPSIBLE_ID, 'initially-collapsed');
-      cy.get('@collapsible').find('.collapse').as('collapse');
-      cy.get(`#button--${COLLAPSIBLE_ID}--initially-collapsed`).as('toggler');
+      cy.getComponents(
+        COLLAPSIBLE_ID,
+        'initially-collapsed',
+        'post-collapsible',
+        'post-collapsible-trigger',
+      );
+      cy.get('@collapsible-trigger').find('.btn').as('trigger');
     });
 
-    it('should be collapsed', () => {
-      cy.get('@collapse').should(`be.hidden`);
+    it('should hide the collapsible', () => {
+      cy.get('@collapsible').should(`be.hidden`);
     });
 
-    it('should be expanded after clicking on the toggle button once', () => {
-      cy.get('@toggler').click();
-      cy.get('@collapse').should(`be.visible`);
+    it('should show the collapsible after clicking on the trigger once', () => {
+      cy.get('@trigger').click();
+      cy.get('@collapsible').should(`be.visible`);
     });
 
-    it('should be collapsed after clicking on the toggle button twice', () => {
-      cy.get('@toggler').dblclick();
-      cy.get('@collapse').should(`be.hidden`);
+    it('should hide the collapsible after clicking on the trigger twice', () => {
+      cy.get('@trigger').dblclick();
+      cy.get('@collapsible').should(`be.hidden`);
     });
   });
 });
