@@ -148,31 +148,13 @@
 }
 
 textarea.form-control {
-  &.is-invalid,
   &.is-valid {
+    background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
     background-position: right spacing.$size-micro top spacing.$size-mini;
 
     &.form-control-sm {
       background-position: right spacing.$size-micro top spacing.$size-mini;
     }
-  }
-}
-
-.form-control:not([type='file']) {
-  &.is-invalid {
-    background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid);
-
-    @include utilities-mx.high-contrast-mode() {
-      background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-dark);
-
-      @media (prefers-color-scheme: light) {
-        background-image: b.escape-svg(form-validation.$form-feedback-icon-invalid-hcm-light);
-      }
-    }
-  }
-
-  &.is-valid {
-    background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
 
     @include utilities-mx.high-contrast-mode() {
       background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-dark);
