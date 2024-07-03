@@ -7,7 +7,6 @@ import {
   Host,
   Method,
   Prop,
-  State,
   Watch,
 } from '@stencil/core';
 import { version } from '@root/package.json';
@@ -26,11 +25,8 @@ import { checkEmptyOrType, isMotionReduced } from '@/utils';
 export class PostCollapsible {
   private isLoaded = false;
   private isOpen = true;
-  private collapsible: HTMLElement;
 
   @Element() host: HTMLPostCollapsibleElement;
-
-  @State() id: string;
 
   /**
    * If `true`, the element is collapsed otherwise it is displayed.
@@ -55,12 +51,11 @@ export class PostCollapsible {
    */
   @Event() postToggle: EventEmitter<boolean>;
 
-  componentWillRender() {
-    this.id = this.host.id || `c${crypto.randomUUID()}`;
+  connectedCallback() {
+    this.collapsedChange();
   }
 
   componentDidLoad() {
-    this.collapsedChange();
     this.isLoaded = true;
   }
 
@@ -76,7 +71,7 @@ export class PostCollapsible {
     this.isOpen = !this.isOpen;
     if (this.isLoaded) this.postToggle.emit(this.isOpen);
 
-    const animation = open ? expand(this.collapsible) : collapse(this.collapsible);
+    const animation = open ? expand(this.host) : collapse(this.host);
 
     if (!this.isLoaded || isMotionReduced()) animation.finish();
 
@@ -89,10 +84,8 @@ export class PostCollapsible {
 
   render() {
     return (
-      <Host id={this.id} data-version={version}>
-        <div class="collapse" id={`${this.id}--collapse`} ref={el => (this.collapsible = el)}>
-          <slot />
-        </div>
+      <Host data-version={version}>
+        <slot />
       </Host>
     );
   }

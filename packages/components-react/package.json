@@ -23,7 +23,7 @@
     "@swisspost/design-system-components": "workspace:7.2.0"
   },
   "devDependencies": {
-    "@types/node": "20.14.0",
+    "@types/node": "20.14.9",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@typescript-eslint/eslint-plugin": "6.21.0",

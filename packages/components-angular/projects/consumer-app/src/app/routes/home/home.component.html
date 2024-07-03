@@ -30,16 +30,10 @@
 
 <div class="my-4">
   <h2>Post Collapsible</h2>
-  <button
-    (click)="isCollapsed = !isCollapsed"
-    [attr.aria-expanded]="!isCollapsed"
-    aria-controls="collapsible"
-    class="btn btn-default mb-regular"
-    type="button"
-  >
-    Toggle
-  </button>
-  <post-collapsible id="collapsible" [collapsed]="isCollapsed">
+  <post-collapsible-trigger for="angular-collapsible">
+    <button class="btn btn-secondary mb-mini">Toggle</button>
+  </post-collapsible-trigger>
+  <post-collapsible id="angular-collapsible">
     <p>Contentus momentus vero siteos et accusam iretea et justo.</p>
   </post-collapsible>
 </div>
