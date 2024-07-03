@@ -43,13 +43,8 @@
   color: form-validation.$form-feedback-invalid-text;
 
   &::before {
-    @include icons.icon(2104);
+    @include icons.icon(2413);
   }
-}
-
-input:not([type='radio'], [type='checkbox']) ~ .invalid-feedback::before,
-textarea ~ .invalid-feedback::before {
-  display: none;
 }
 
 .valid-feedback {
@@ -59,11 +54,6 @@ textarea ~ .invalid-feedback::before {
   &::before {
     @include icons.icon(2105);
   }
-}
-
-input:not([type='radio'], [type='checkbox']) ~ .valid-feedback::before,
-textarea ~ .valid-feedback::before {
-  display: none;
 }
 
 .valid-feedback.custom-feedback {
