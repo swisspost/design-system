@@ -17,6 +17,7 @@
 @use './../variables/components/forms';
 @use './../variables/components/form-validation';
 @use './../variables/animation';
+@use './../variables/color' as c;
 
 .form-floating {
   > label {
@@ -76,6 +77,12 @@
     &:disabled {
       ~ label {
         color: forms.$input-disabled-color;
+      }
+    }
+
+    &:hover {
+      ~ label {
+        color: c.$black;
       }
     }
 

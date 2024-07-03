@@ -6,6 +6,7 @@
 @use './../variables/components/forms';
 @use './../variables/type';
 @use './../variables/spacing';
+@use './../variables/color';
 
 @use './../functions/sizing';
 
@@ -85,6 +86,7 @@ select.form-control-rg:not([size]):not([multiple]) {
     }
 
     &:hover {
+      border-color: color.$black;
       @include utilities.high-contrast-mode {
         border-color: Highlight;
       }
