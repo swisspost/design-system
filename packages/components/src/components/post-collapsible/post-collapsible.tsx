@@ -31,17 +31,17 @@ export class PostCollapsible {
   /**
    * If `true`, the element is collapsed otherwise it is displayed.
    */
-  @Prop() readonly collapsed?: boolean = false;
+  @Prop({ mutable: true }) collapsed?: boolean = false;
 
   @Watch('collapsed')
-  collapsedChange(collapsed = this.collapsed) {
+  collapsedChange() {
     checkEmptyOrType(
-      collapsed,
+      this.collapsed,
       'boolean',
       'The `collapsed` property of the `post-collapsible` must be a boolean.',
     );
 
-    void this.toggle(!collapsed);
+    void this.toggle(!this.collapsed);
   }
 
   /**
@@ -68,8 +68,9 @@ export class PostCollapsible {
   async toggle(open = !this.isOpen): Promise<boolean> {
     if (open === this.isOpen) return open;
 
-    this.isOpen = !this.isOpen;
-    if (this.isLoaded) this.postToggle.emit(this.isOpen);
+    this.isOpen = open;
+    this.collapsed = !open;
+    if (this.isLoaded) this.postToggle.emit(open);
 
     const animation = open ? expand(this.host) : collapse(this.host);
 
@@ -79,7 +80,7 @@ export class PostCollapsible {
 
     animation.commitStyles();
 
-    return this.isOpen;
+    return open;
   }
 
   render() {
