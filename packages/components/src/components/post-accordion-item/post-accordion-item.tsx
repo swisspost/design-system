@@ -72,15 +72,12 @@ export class PostAccordionItem {
       <Host id={this.id} data-version={version}>
         <div part="accordion-item" class="accordion-item">
           <HeadingTag class="accordion-header" id={`${this.id}--header`}>
-            <button
-              aria-controls={`${this.id}--collapse`}
-              aria-expanded={`${this.isOpen}`}
-              class={`accordion-button${this.isOpen ? '' : ' collapsed'}`}
-              onClick={() => this.toggle()}
-              type="button"
+            <post-collapsible-trigger
+              class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}
+              for={`${this.id}--collapse`}
             >
               <slot name="header" />
-            </button>
+            </post-collapsible-trigger>
           </HeadingTag>
 
           <post-collapsible

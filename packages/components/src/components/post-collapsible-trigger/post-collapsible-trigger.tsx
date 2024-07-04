@@ -2,9 +2,12 @@ import { Component, Element, Prop, Listen, Watch } from '@stencil/core';
 import { version } from 'typescript';
 import { isFocusable } from '@/utils/is-focusable';
 import { checkNonEmpty, checkType } from '@/utils';
+import { getElementInRootNode } from '@/utils/get-element-in-root-node';
 
 @Component({
   tag: 'post-collapsible-trigger',
+  styleUrl: 'post-collapsible-trigger.scss',
+  scoped: true,
 })
 export class PostCollapsibleTrigger {
   private trigger: HTMLElement | undefined;
@@ -34,7 +37,11 @@ export class PostCollapsibleTrigger {
     this.host.setAttribute('data-version', version);
 
     const firstChild = this.host.children[0];
-    if (firstChild && firstChild.nodeType === Node.ELEMENT_NODE) {
+    if (
+      firstChild &&
+      firstChild.nodeType === Node.ELEMENT_NODE &&
+      firstChild.localName !== 'slot'
+    ) {
       this.trigger = firstChild as HTMLElement;
     } else {
       this.trigger = this.host;
@@ -55,7 +62,9 @@ export class PostCollapsibleTrigger {
 
   @Listen('pointerdown')
   handlePointerDown(e: Event) {
-    if (e.target === this.trigger) void this.toggleCollapsible();
+    const target = e.target as HTMLElement;
+    const realTarget = (target.assignedSlot ?? target).closest(this.trigger.localName);
+    if (realTarget === this.trigger) void this.toggleCollapsible();
   }
 
   // see example from Stencil docs: https://stenciljs.com/docs/events#keyboard-events
@@ -71,7 +80,8 @@ export class PostCollapsibleTrigger {
   }
 
   private get collapsible(): HTMLPostCollapsibleElement | null {
-    const ref = document.getElementById(this.for);
+    const ref = getElementInRootNode(this.for, this.host);
+
     if (ref && ref.localName === 'post-collapsible') {
       return ref as HTMLPostCollapsibleElement;
     }
