@@ -26,7 +26,7 @@ export class PostTooltipTrigger {
   componentDidLoad() {
     this.host.setAttribute('data-version', version);
 
-    if (this.host?.children.length > 0 && this.host.children[0].nodeType === 1) {
+    if (this.host?.children.length > 0 && this.host.children[0].nodeType === Node.ELEMENT_NODE) {
       this.trigger = this.host.children[0] as HTMLElement;
     } else {
       this.trigger = this.host;
