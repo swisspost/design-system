@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-demo",
-  "version": "7.3.1",
+  "version": "7.3.2",
   "description": "Pattern documentation, code snippets and implementation guidelines for the Design System Styles.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -25,9 +25,9 @@
     "@ng-bootstrap/ng-bootstrap": "16.0.0",
     "@popperjs/core": "2.11.8",
     "@swimlane/ngx-datatable": "20.1.0",
-    "@swisspost/design-system-intranet-header": "workspace:7.1.0",
-    "@swisspost/design-system-migrations": "workspace:7.1.0",
-    "@swisspost/design-system-styles": "workspace:7.1.0",
+    "@swisspost/design-system-intranet-header": "workspace:7.2.0",
+    "@swisspost/design-system-migrations": "workspace:7.2.0",
+    "@swisspost/design-system-styles": "workspace:7.2.0",
     "bootstrap": "5.3.3",
     "core-js": "3.37.1",
     "highlight.js": "11.9.0",
@@ -65,11 +65,11 @@
     "karma-jasmine-html-reporter": "2.1.0",
     "raw-loader": "4.0.2",
     "rimraf": "5.0.7",
-    "sass": "1.77.5",
+    "sass": "1.77.6",
     "sockjs": "0.3.24",
     "ts-node": "10.9.2",
     "typescript": "5.3.3",
-    "undici-types": "6.18.2",
-    "webpack": "5.92.0"
+    "undici-types": "6.19.2",
+    "webpack": "5.92.1"
   }
 }

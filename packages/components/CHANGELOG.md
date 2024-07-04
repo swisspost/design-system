@@ -1,5 +1,13 @@
 # @swisspost/design-system-components
 
+## 7.2.0
+
+### Patch Changes
+
+- Fixed a warning on the tooltip when the id was bound using Angular, the ID check now runs at a later stage in the component lifecycle, giving Angular enough time to set the attribute. (by [@gfellerph](https://github.com/gfellerph) with [#3155](https://github.com/swisspost/design-system/pull/3155))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.2.0
+
 ## 7.1.0
 
 ### Minor Changes

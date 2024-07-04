@@ -76,10 +76,11 @@
     "nextjs:build": "pnpm --filter design-system-nextjs-integration build",
     "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
     "changeset:publish": "pnpm changeset publish",
-    "changeset:version": "pnpm changeset version && pnpm install --lockfile-only"
+    "changeset:version": "pnpm changeset version && pnpm install --lockfile-only",
+    "tokens:build": "pnpm --filter design-system-tokens build"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.5",
+    "@changesets/cli": "2.27.7",
     "start-server-and-test": "2.0.4"
   },
   "optionalDependencies": {
