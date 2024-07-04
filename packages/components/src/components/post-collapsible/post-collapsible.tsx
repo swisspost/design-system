@@ -51,11 +51,8 @@ export class PostCollapsible {
    */
   @Event() postToggle: EventEmitter<boolean>;
 
-  connectedCallback() {
-    this.collapsedChange();
-  }
-
   componentDidLoad() {
+    this.collapsedChange();
     this.isLoaded = true;
   }
 
