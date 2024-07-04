@@ -19,12 +19,11 @@ export class PostAccordionItem {
   @Element() host: HTMLPostAccordionItemElement;
 
   @State() id: string;
-  @State() isOpen: boolean;
 
   /**
-   * If `true`, the element is initially collapsed otherwise it is displayed.
+   * If `true`, the element is collapsed otherwise it is displayed.
    */
-  @Prop() readonly collapsed?: boolean = false;
+  @Prop({ mutable: true }) collapsed?: boolean = false;
 
   /**
    * Defines the hierarchical level of the accordion item header within the headings structure.
@@ -46,14 +45,14 @@ export class PostAccordionItem {
   }
 
   componentWillLoad() {
-    this.isOpen = !this.collapsed;
     this.id = this.host.id || `a${crypto.randomUUID()}`;
   }
 
-  @Listen('postToggle')
+  // capture to make sure the "collapsed" property is updated before the event is consumed
+  @Listen('postToggle', { capture: true })
   onCollapseToggle(event: CustomEvent<boolean>): void {
     if ((event.target as HTMLElement).localName === 'post-accordion-item') {
-      this.isOpen = event.detail;
+      this.collapsed = !event.detail;
     }
   }
 
