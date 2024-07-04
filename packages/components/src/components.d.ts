@@ -36,7 +36,7 @@ export namespace Components {
     }
     interface PostAccordionItem {
         /**
-          * If `true`, the element is initially collapsed otherwise it is displayed.
+          * If `true`, the element is collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
         /**
@@ -527,7 +527,7 @@ declare namespace LocalJSX {
     }
     interface PostAccordionItem {
         /**
-          * If `true`, the element is initially collapsed otherwise it is displayed.
+          * If `true`, the element is collapsed otherwise it is displayed.
          */
         "collapsed"?: boolean;
         /**
