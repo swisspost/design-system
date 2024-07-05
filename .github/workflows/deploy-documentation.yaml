@@ -20,8 +20,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
@@ -33,22 +31,28 @@ jobs:
           name: design-system-documentation
           folder: build-output
 
-      - name: Get netlify site name
+      - name: Get netlify config
         id: netlify
-        run: echo "STATE=$(jq . ./packages/documentation/netlify.config.json)" >> $GITHUB_OUTPUT
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            return JSON.parse(fs.readFileSync('./packages/documentation/netlify.config.json', 'utf8'));
 
-      - name: TEST
-        run: echo ${{ fromJSON(steps.netlify.outputs.STATE) }}
+      - name: Deploy documentation to netlify
+        uses: ./.github/actions/deploy-to-netlify
+        id: deploy
+        with:
+          id: ${{ steps.build.outputs.id }}
+          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          netlify_site_id: ${{ fromJSON(steps.netlify.outputs.STATE).siteId }}
+          netlify_site_url: ${{ fromJSON(steps.netlify.outputs.STATE).siteUrl }}
+          folder: ${{ steps.build.outputs.folder }}
+          package_name: '@swisspost/design-system-documentation'
 
-      # - name: Deploy documentation to netlify
-      #   uses: ./.github/actions/deploy-to-netlify
-      #   id: deploy
-      #   with:
-      #     id: ${{ steps.build.outputs.id }}
-      #     netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-      #     netlify_site_id: ${{ fromJSON(steps.netlify.outputs.STATE).siteId }}
-      #     netlify_site_url: ${{ fromJSON(steps.netlify.outputs.STATE).siteUrl }}
-      #     folder: ${{ steps.build.outputs.folder }}
-      #     comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-      #     comment_author: swisspost-bot
-      #     package_name: '@swisspost/design-system-documentation'
+      - name: Update preview message
+        uses: ./.github/actions/preview/message/update
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          issue-number: ${{ steps.build.outputs.id }}
+          preview-url: ${{ steps.deploy.outputs.preview-url }}
