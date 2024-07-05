@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
@@ -35,15 +37,18 @@ jobs:
         id: netlify
         run: echo "STATE=$(jq . ./packages/documentation/netlify.config.json)" >> $GITHUB_OUTPUT
 
-      - name: Deploy documentation to netlify
-        uses: ./.github/actions/deploy-to-netlify
-        id: deploy
-        with:
-          id: ${{ steps.build.outputs.id }}
-          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify_site_id: ${{ fromJSON(steps.netlify.outputs.STATE).siteId }}
-          netlify_site_url: ${{ fromJSON(steps.netlify.outputs.STATE).siteUrl }}
-          folder: ${{ steps.build.outputs.folder }}
-          comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
-          comment_author: swisspost-bot
-          package_name: '@swisspost/design-system-documentation'
+      - name: TEST
+        run: echo ${{ fromJSON(steps.netlify.outputs.STATE) }}
+
+      # - name: Deploy documentation to netlify
+      #   uses: ./.github/actions/deploy-to-netlify
+      #   id: deploy
+      #   with:
+      #     id: ${{ steps.build.outputs.id }}
+      #     netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     netlify_site_id: ${{ fromJSON(steps.netlify.outputs.STATE).siteId }}
+      #     netlify_site_url: ${{ fromJSON(steps.netlify.outputs.STATE).siteUrl }}
+      #     folder: ${{ steps.build.outputs.folder }}
+      #     comment_token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+      #     comment_author: swisspost-bot
+      #     package_name: '@swisspost/design-system-documentation'

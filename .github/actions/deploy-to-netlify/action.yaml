@@ -84,7 +84,6 @@ runs:
       env:
         NETLIFY_AUTH_TOKEN: ${{ inputs.netlify_auth_token }}
       # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
-      # edited for netifly v16
       run: |
         url_alias=`echo "preview-${{ inputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
         netlify deploy --filter ${{inputs.package_name}} --build false --dir ${{ inputs.folder }} --site ${{ inputs.netlify_site_id }} --alias $url_alias
