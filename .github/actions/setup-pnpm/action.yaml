@@ -51,6 +51,12 @@ runs:
             pnpm: pkg.engines.pnpm
           }
 
+    - name: TEST
+      shell: bash
+      run: |
+        echo "pnpm: ${{ fromJSON(steps.env-versions.outputs.result).pnpm }}"
+        echo "node: ${{ fromJSON(steps.env-versions.outputs.result).node }}"
+
     - name: Install pnpm
       uses: pnpm/action-setup@v2
       with:
