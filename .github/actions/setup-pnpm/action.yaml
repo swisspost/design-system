@@ -47,18 +47,12 @@ runs:
           const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'))
 
           return {
-            node: pkg.engines.node,
-            pnpm: pkg.engines.pnpm
+            node: pkg.engines?.node,
+            pnpm: pkg.engines?.pnpm
           }
 
-    - name: TEST
-      shell: bash
-      run: |
-        echo "pnpm: ${{ fromJSON(steps.env-versions.outputs.result).pnpm }}"
-        echo "node: ${{ fromJSON(steps.env-versions.outputs.result).node }}"
-
     - name: Install pnpm
-      uses: pnpm/action-setup@v2
+      uses: pnpm/action-setup@v3
       with:
         version: ${{ fromJSON(steps.env-versions.outputs.result).pnpm || inputs.pnpm_version }}
 
