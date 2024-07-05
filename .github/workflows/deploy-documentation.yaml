@@ -33,7 +33,7 @@ jobs:
 
       - name: Get netlify site name
         id: netlify
-        run: echo "STATE=$(jq . ./packages/documentation/.netlify/state.json)" >> $GITHUB_OUTPUT
+        run: echo "STATE=$(jq . ./packages/documentation/netlify.config.json)" >> $GITHUB_OUTPUT
 
       - name: Deploy documentation to netlify
         uses: ./.github/actions/deploy-to-netlify
