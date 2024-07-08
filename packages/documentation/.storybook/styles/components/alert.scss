@@ -84,6 +84,10 @@ $post-docs-alert-variants: (
       width: $post-docs-alert-icon-size-sm;
       height: $post-docs-alert-icon-size-sm;
     }
+
+    code {
+      font-size: 0.833333em;
+    }
   }
 
   &.alert-md {
