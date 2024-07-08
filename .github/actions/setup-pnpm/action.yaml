@@ -5,15 +5,6 @@
 # separate terms of service, privacy policy, and support
 # documentation.
 #
-# If you need to do some changes in a local-action used in this
-# workflow, make sure you change the action-flag to your working
-# branch-name to get the latest action functionality.
-#
-# Example: swisspost/design-system/.github/actions/setup-pnpm@my-working-branch-name
-#
-# Don't forget to change the action-flag back to 'main',
-# once you have finished your work on the local-action!
-#
 # https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions
 #
 # NOTE: pnpm caching support requires pnpm version >= 6.10.0
