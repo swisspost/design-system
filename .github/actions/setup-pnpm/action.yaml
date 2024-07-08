@@ -33,7 +33,7 @@ runs:
   using: composite
   steps:
     - name: Detect wanted versions
-      id: wanted-version
+      id: wanted-versions
       uses: actions/github-script@v7
       with:
         script: |
@@ -52,7 +52,7 @@ runs:
     - name: Install node with pnpm cache
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ fromJSON(steps.wanted-version.outputs.result).node }}
+        node-version: ${{ fromJSON(steps.wanted-versions.outputs.result).node }}
         cache: ${{ inputs.use_cache == 'true' && 'pnpm' || '' }}
 
     - name: Summary

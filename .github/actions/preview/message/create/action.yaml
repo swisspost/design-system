@@ -48,5 +48,6 @@ runs:
               issue_number: context.issue.number
             })).data || []
 
-            previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
+            // previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
+            previewComment = comments.find(c => c.user.login === 'oliverschuerch' && c.body.includes(commentTitle))
           }

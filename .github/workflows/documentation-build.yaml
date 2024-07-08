@@ -1,0 +1,46 @@
+###
+#
+# Build the packages/documentation storybook
+#
+# This workflow does not have secrets when run from a fork.
+# Artifacts are uploaded and used in a subsequent workflow
+# with more privileges which does not run unsafe commands.
+#
+# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+#
+###
+
+name: Build Documentation
+on:
+  pull_request:
+    types: [opened, synchronize, edited, reopened]
+    paths:
+      - 'packages/**'
+
+jobs:
+  build:
+    name: Build Documentation
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Create preview message
+        uses: ./.github/actions/preview/message/create
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install documentation & dependencies
+        run: pnpm --filter design-system-documentation... install
+
+      - name: Build documentation & dependencies
+        run: pnpm --filter design-system-documentation... build
+
+      - name: Upload documentation
+        uses: ./.github/actions/artifact-upload
+        with:
+          name: design-system-documentation
+          folder: packages/documentation/storybook-static

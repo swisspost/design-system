@@ -32,7 +32,8 @@ runs:
             owner: context.repo.owner,
             issue_number: Number(ISSUE_NUMBER)
           })).data || []
-          const previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
+          const previewComment = comments.find(c => c.user.login === 'oliverschuerch' && c.body.includes(commentTitle))
+          // const previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
 
           if (previewComment && !previewComment.body.includes(PREVIEW_URL)) {
             github.rest.issues.updateComment({
@@ -49,8 +50,10 @@ runs:
               owner: context.repo.owner,
               comment_id: previewComment.id,
             })).data || []
-            const createReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'eyes')
-            const updateReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'rocket')
+            const createReaction = reactions.find(r => r.user.login === 'oliverschuerch' && r.content === 'eyes')
+            const updateReaction = reactions.find(r => r.user.login === 'oliverschuerch' && r.content === 'rocket')
+            // const createReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'eyes')
+            // const updateReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'rocket')
 
             if (createReaction) {
               github.rest.reactions.deleteForIssueComment({
