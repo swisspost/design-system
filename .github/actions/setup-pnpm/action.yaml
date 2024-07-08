@@ -24,12 +24,6 @@ name: Setup pnpm
 description: Provides node and pnpm in a specific version.
 
 inputs:
-  node_version:
-    description: Specify the node version to install
-    type: string
-  pnpm_version:
-    description: Specify the pnpm version to install
-    type: string
   use_cache:
     description: Specify wether to use the pnpm cache or not
     default: true
@@ -38,8 +32,8 @@ inputs:
 runs:
   using: composite
   steps:
-    - name: Detect wanted Node & pnpm version
-      id: env-versions
+    - name: Detect wanted versions
+      id: wanted-version
       uses: actions/github-script@v7
       with:
         script: |
@@ -47,17 +41,23 @@ runs:
           const pkg = JSON.parse(fs.readFileSync('package.json', 'utf8'))
 
           return {
-            node: pkg.engines?.node,
-            pnpm: pkg.engines?.pnpm
+            node: pkg.engines.node,
+            pnpm: pkg.packageManager
           }
 
+    # The action automatically uses the "packageManager" field from the package.json file
     - name: Install pnpm
       uses: pnpm/action-setup@v4
-      with:
-        version: ${{ inputs.pnpm_version || fromJSON(steps.env-versions.outputs.result).pnpm  }}
 
     - name: Install node with pnpm cache
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ inputs.node_version || fromJSON(steps.env-versions.outputs.result).node }}
+        node-version: ${{ fromJSON(steps.wanted-version.outputs.result).node }}
         cache: ${{ inputs.use_cache == 'true' && 'pnpm' || '' }}
+
+    - name: Summary
+      shell: bash
+      run: |
+        echo "Installed versions:"
+        echo "- node: ${{ fromJSON(steps.wanted-versions.outputs.result).node }}"
+        echo "- pnpm: ${{ fromJSON(steps.wanted-versions.outputs.result).pnpm }}"
