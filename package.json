@@ -80,7 +80,7 @@
     "tokens:build": "pnpm --filter design-system-tokens build"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.5",
+    "@changesets/cli": "2.27.7",
     "start-server-and-test": "2.0.4"
   },
   "optionalDependencies": {
@@ -112,5 +112,6 @@
       "es5-ext@>=0.10.0 <0.10.63": ">=0.10.63",
       "follow-redirects@<=1.15.5": ">=1.15.6"
     }
-  }
+  },
+  "packageManager": "pnpm@9.3.0"
 }
