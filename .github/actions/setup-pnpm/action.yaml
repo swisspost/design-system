@@ -39,16 +39,29 @@ runs:
 
           return {
             node: pkg.engines?.node,
-            pnpm: pkg.engines?.pnpm
+            pnpm: pkg.packageManager
           }
 
     - name: Install pnpm
       uses: pnpm/action-setup@v4
+      # if: fromJSON(steps.wanted-versions.outputs.result).packageManager == false
       with:
-        version: ${{ inputs.pnpm_version || fromJSON(steps.wanted-versions.outputs.result).pnpm }}
+        # If input.pnpm_version is NOT defined,
+        # the action automatically uses the "packageManager" field from the package.json file
+        # If input.pnpm_version is defined, we need to point to another package.json file, without the "packageManager" field,
+        # so we do not end up with a "Multiple versions of pnpm specified" error
+        package_json_file: ${{ inputs.pnpm_version && 'packages/documentation/package.json' || 'package.json' }}
+        version: ${{ inputs.pnpm_version || null }}
 
-    - name: Install node with pnpm cache
+    - name: Install node
       uses: actions/setup-node@v4
       with:
         node-version: ${{ inputs.node_version || fromJSON(steps.wanted-versions.outputs.result).node }}
         cache: ${{ inputs.use_cache == 'true' && 'pnpm' || '' }}
+
+    - name: Summary
+      shell: bash
+      run: |
+        echo "Installed versions:"
+        echo "- node: ${{ inputs.node_version || fromJSON(steps.wanted-versions.outputs.result).node }}"
+        echo "- pnpm: ${{ inputs.pnpm_version || fromJSON(steps.wanted-versions.outputs.result).pnpm }}"
