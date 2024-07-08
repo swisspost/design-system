@@ -16,8 +16,8 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  check-version:
-    name: Check Version
+  detect-version-change:
+    name: Detect Version Change
     runs-on: ubuntu-latest
     outputs:
       changed: ${{ steps.check.outputs.changed }}
@@ -33,11 +33,23 @@ jobs:
           diff-search: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Create Summary
+        id: summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            return `# Version changed
+            A version change has ${${{ steps.check.outputs.changed == 'true' }} ? 'been' : 'NOT been'} detected.
+            `
+
+      - name: Output Summary
+        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
+
   release:
     name: Release Documentation
     runs-on: ubuntu-latest
-    needs: check-version
-    if: needs.check-version.outputs.changed == 'true'
+    needs: detect-version-change
+    if: needs.detect-version-change.outputs.changed == 'true'
     steps:
       - name: Setup
         uses: ./.github/actions/setup-pnpm
@@ -64,3 +76,15 @@ jobs:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ fromJSON(steps.netlify-config.outputs.result).siteId }}
         run: netlify deploy --filter @swisspost/design-system-documentation --build false --dir packages/documentation/storybook-static --prod
+
+      - name: Create Summary
+        id: summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            return `# Documentation released
+            The documentation has been released under: https://${{ fromJSON(steps.netlify-config.outputs.result).siteUrl }}.
+            `
+
+      - name: Output Summary
+        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
