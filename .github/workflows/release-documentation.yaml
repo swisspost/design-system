@@ -16,9 +16,11 @@ on:
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: Release Documentation
+  check-version:
+    name: Check Version
     runs-on: ubuntu-latest
+    outputs:
+      changed: ${{ steps.check.outputs.changed }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -31,27 +33,39 @@ jobs:
           diff-search: true
           token: ${{ secrets.GITHUB_TOKEN }}
 
+  release:
+    name: Release Documentation
+    runs-on: ubuntu-latest
+    needs: check-version
+    if: needs.check-version.outputs.changed == 'true'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
       - name: Setup
-        if: steps.check.outputs.changed == 'true'
         uses: ./.github/actions/setup-pnpm
 
       - name: Install documentation & dependencies
-        if: steps.check.outputs.changed == 'true'
         run: pnpm --filter "design-system-documentation..." install
 
       - name: Build documentation & dependencies
-        if: steps.check.outputs.changed == 'true'
         run: pnpm --filter "design-system-documentation..." build
 
       - name: Install netlify cli
-        if: steps.check.outputs.changed == 'true'
-        run: pnpm -g i netlify-cli@15
+        run: pnpm -g i netlify-cli
+
+      - name: Get netlify config
+        id: netlify-config
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            return JSON.parse(fs.readFileSync('./packages/documentation/netlify.config.json', 'utf8'))
 
       - name: Publish documentation to netlify
-        if: steps.check.outputs.changed == 'true'
         env:
-          NETLIFY_SITE_ID: ${{ secrets.NEXT_NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          netlify link --id $NETLIFY_SITE_ID
-          netlify deploy --build false --dir packages/documentation/storybook-static --prod
+          NETLIFY_SITE_ID: ${{ fromJSON(steps.netlify-config.outputs.result).siteId }}
+        run: netlify deploy --filter @swisspost/design-system-documentation --build false --dir packages/documentation/storybook-static --prod
