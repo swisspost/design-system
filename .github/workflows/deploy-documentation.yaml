@@ -31,14 +31,22 @@ jobs:
           name: design-system-documentation
           folder: build-output
 
+      - name: Get netlify config
+        id: netlify-config
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            return JSON.parse(fs.readFileSync('./packages/documentation/netlify.config.json', 'utf8'))
+
       - name: Deploy documentation to netlify
         uses: ./.github/actions/deploy-to-netlify
         id: deploy
         with:
           id: ${{ steps.build.outputs.id }}
           netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify_site_id: ${{ secrets.NEXT_NETLIFY_SITE_ID }}
-          netlify_site_url: swisspost-design-system-next.netlify.app
+          netlify_site_id: ${{ fromJSON(steps.netlify-config.outputs.result).siteId }}
+          netlify_site_url: ${{ fromJSON(steps.netlify-config.outputs.result).siteUrl }}
           folder: ${{ steps.build.outputs.folder }}
           package_name: '@swisspost/design-system-documentation'
 
