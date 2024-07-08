@@ -43,7 +43,7 @@ runs:
           }
 
     - name: Install pnpm
-      uses: pnpm/action-setup@v3
+      uses: pnpm/action-setup@v4
       with:
         version: ${{ inputs.pnpm_version || fromJSON(steps.wanted-versions.outputs.result).pnpm }}
 
