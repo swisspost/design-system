@@ -117,12 +117,14 @@ jobs:
               old: {
                 version: release.oldVersion,
                 major: oldMajor,
+                // TODO: switch siteUrl to 'design-system-version-{oldMajor}' for prod
                 siteUrl: `design-system-version-${oldMajor}-test`
               },
               new: {
                 version: release.newVersion,
                 major: newMajor,
-                siteUrl: 'design-system'
+                // TODO: switch siteUrl to 'design-system' for prod
+                siteUrl: 'spds-test'
               },
               branchName: `release/v${oldMajor}`,
               dependencies
