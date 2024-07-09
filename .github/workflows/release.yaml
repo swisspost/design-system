@@ -159,11 +159,11 @@ jobs:
         with:
           script: |
             const release = JSON.parse(process.env.RELEASE_DATA)
-            const releaseBranch = release.branchName ? `(<code>${release.branchName}</code>)` : ''
-            const releaseChangesetBranch = release.branchName ? `(<code>changeset-release/${release.branchName}</code>)` : ''
+            const releaseBranch = release?.branchName ? `(<code>${release.branchName}</code>)` : ''
+            const releaseChangesetBranch = release?.branchName ? `(<code>changeset-release/${release.branchName}</code>)` : ''
 
             return `# Release Data
-            - Collecting Data: ${process.env.RELEASE_DATA === null ? ':warning: WARNING: No Release Data found!' : ':rocket: SUCCESS!'}
+            - Collecting Data: ${process.env.RELEASE_DATA === 'null' ? ':warning: WARNING: No Release Data found!' : ':rocket: SUCCESS!'}
             <pre>${JSON.stringify(release, null, 2)}</pre>
             - The Changeset Branch (<code>changeset-release/${process.env.REF_NAME}</code>) exists already: <code>${process.env.CHANGESET_BRANCH_EXISTS}</code>
             - The Release Branch ${releaseBranch} exists already: <code>${process.env.RELEASE_BRANCH_EXISTS}</code>
