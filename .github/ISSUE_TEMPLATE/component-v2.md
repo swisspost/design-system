@@ -1,12 +1,3 @@
----
-name: Component v2
-about: For creating issues for new v2 components
-title: ''
-labels: "\U0001F4E6 components"
-assignees: ''
-
----
-
 name: Component v2
 description: Add a working item for a component targeted at the new Design v2
 title: "[component]: "
