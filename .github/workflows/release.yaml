@@ -303,21 +303,41 @@ jobs:
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
 
-      # Install dependencies & Build all packages
-      - name: Install Dependencies & Build Packages
-        run: pnpm bootstrap
+      - name: Install documentation & dependencies
+        run: pnpm --filter "design-system-documentation..." install
+
+      - name: Build documentation & dependencies
+        run: pnpm --filter "design-system-documentation..." build
 
       # Install Netlify CLI globally
       - name: Install Netlify CLI
         run: pnpm i -g netlify-cli@17
 
-      # Create a new Netlify Site with a version specific subdomain
-      # Deploy the output of @swisspost/design-system-documentation to the before created Netlify Site
-      - name: Create & Deploy Netlify Site
+      - name: Check if a Netlify Site with given siteUrl already exists
+        id: netlify-sites
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: |
-          netlify sites:create --filter @swisspost/design-system-documentation --account-slug oliverschuerch --name ${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }} --manual
+          mkdir -p packages/documentation/.netlify
+          netlify sites:list --filter @swisspost/design-system-documentation --json > packages/documentation/.netlify/swisspost-sites.json
+          siteNames=$(jq -r '.[] | .name' packages/documentation/.netlify/swisspost-sites.json)
+          if [[ "$siteNames" == *"design-system-version-7-test"* ]]; then
+              echo "exists=true" >> $GITHUB_OUTPUT
+          else
+              echo "exists=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create Netlify Site (if it does not exist)
+        if: ${{ steps.netlify-site.outputs.exists == 'false' }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: netlify sites:create --filter @swisspost/design-system-documentation --account-slug oliverschuerch --name ${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }} --manual
+
+      - name: Deploy Netlify Site
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          netlify link --filter @swisspost/design-system-documentation --name ${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }}
           netlify deploy --filter @swisspost/design-system-documentation --build false --dir packages/documentation/storybook-static --prod
 
       - name: Update Changeset config.json
