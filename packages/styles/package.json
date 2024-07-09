@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles",
-  "version": "7.1.0",
+  "version": "7.2.0",
   "description": "Design System Styles for the Swiss Post web platform.",
   "author": "Swiss Post <design-system@post.ch>",
   "license": "Apache-2.0",
@@ -28,10 +28,14 @@
   },
   "peerDependencies": {
     "@ng-bootstrap/ng-bootstrap": "^15.0.0 || ^16.0.0",
+    "@angular/core": "^16.0.0 || ^17.0.0",
     "bootstrap": "~5.3.0"
   },
   "peerDependenciesMeta": {
     "@ng-bootstrap/ng-bootstrap": {
+      "optional": true
+    },
+    "@angular/core": {
       "optional": true
     },
     "bootstrap": {
@@ -43,25 +47,25 @@
     "bootstrap": "5.3.3"
   },
   "devDependencies": {
-    "@swisspost/design-system-icons": "workspace:7.1.0",
-    "@types/node": "20.14.0",
+    "@swisspost/design-system-icons": "workspace:7.2.0",
+    "@types/node": "20.14.9",
     "autoprefixer": "10.4.19",
     "copyfiles": "2.4.1",
-    "glob": "10.3.15",
+    "glob": "10.4.2",
     "gulp": "5.0.0",
     "gulp-newer": "^1.4.0",
     "gulp-postcss": "10.0.0",
     "gulp-sass": "5.1.0",
     "jest": "29.7.0",
-    "postcss": "8.4.38",
+    "postcss": "8.4.39",
     "postcss-scss": "4.0.9",
-    "prettier": "3.2.5",
+    "prettier": "3.3.2",
     "rimraf": "5.0.7",
-    "sass": "1.77.1",
-    "stylelint": "16.5.0",
+    "sass": "1.77.6",
+    "stylelint": "16.6.1",
     "stylelint-config-sass-guidelines": "11.1.0",
     "stylelint-prettier": "5.0.0",
-    "stylelint-scss": "6.3.0",
+    "stylelint-scss": "6.3.2",
     "typescript": "5.3.3"
   },
   "sass": {

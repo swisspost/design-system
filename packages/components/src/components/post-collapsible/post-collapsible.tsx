@@ -25,12 +25,12 @@ import { checkEmptyOrType, isMotionReduced } from '@/utils';
 })
 export class PostCollapsible {
   private isLoaded = false;
+  private isOpen = true;
   private collapsible: HTMLElement;
 
   @Element() host: HTMLPostCollapsibleElement;
 
   @State() id: string;
-  @State() isOpen = true;
 
   /**
    * If `true`, the element is initially collapsed otherwise it is displayed.
