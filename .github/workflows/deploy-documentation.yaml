@@ -58,7 +58,7 @@ jobs:
         with:
           script: |
             return `# Deployed Documentation Preview
-            - SiteId: \`${{ fromJSON(steps.netlify-config.outputs.result).siteId }}\`
+            - SiteId: <code>${{ fromJSON(steps.netlify-config.outputs.result).siteId }}</code>
             - SiteUrl: ${{ steps.deploy.outputs.site-url }}
             `
 
