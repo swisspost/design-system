@@ -1,12 +1,4 @@
-###
-#
-# Deploy a pre-built documentation to netilfy
-#
-# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
-#
-###
-
-name: Release Documentation Preview to Netlify
+name: Deploy Documentation Preview to Netlify
 on:
   workflow_run:
     workflows: ['Build Documentation']

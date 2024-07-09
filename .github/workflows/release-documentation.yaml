@@ -1,11 +1,4 @@
-###
-#
-# Release the documentation whenever it's package json changes on the main branch
-#
-###
-
-name: Release Documentation to Netlify
-
+name: Deploy Documentation Release to Netlify
 on:
   push:
     branches:
