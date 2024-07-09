@@ -1,0 +1,7 @@
+@mixin style-docs-only-guard($selector) {
+  #storybook-docs {
+    #{$selector}:not(.docs-story #{$selector}) {
+      @content;
+    }
+  }
+}
