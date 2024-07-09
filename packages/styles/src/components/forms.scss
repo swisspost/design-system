@@ -219,7 +219,7 @@ select.form-control-rg:not([size]):not([multiple]) {
     margin-bottom: spacing.$size-micro;
   }
 
-  &:has(+ .form-control[disabled]) {
+  &:has(+ .form-control[disabled], + .form-select[disabled]) {
     color: forms.$input-disabled-color;
   }
 }
