@@ -1,9 +1,9 @@
 name: Component v2
 description: Add a working item for a component targeted at the new Design v2
-title: "[component]: "
-labels: ["📦 components"]
-projects: ["swisspost/3"]
-milestone: "Design v2"
+title: '[component]: '
+labels: ['📦 components']
+projects: ['swisspost/3']
+milestone: 'Design v2'
 assignees: []
 body:
   - type: textarea
@@ -32,9 +32,10 @@ body:
     id: tasks
     attributes:
       label: Tasks
+      description: Default tasks for the dev team. Can be edited later according to needs.
       value: |
         ```[tasklist]
-        ### Tasks
+        ### 💻 Tasks
         - [ ] HTML/CSS implementation
         - [ ] Web component implementation
         - [ ] Documentation in Storybook
