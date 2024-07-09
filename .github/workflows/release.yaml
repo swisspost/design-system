@@ -16,8 +16,6 @@ jobs:
       # Checkout the Branch which was pushed ('main' or 'release/v*')
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
@@ -81,8 +79,6 @@ jobs:
       # Checkout the Branch which has been pushed ('main' or 'release/v*')
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Setup Node & pnpm
         uses: ./.github/actions/setup-pnpm
@@ -384,21 +380,17 @@ jobs:
     name: Remove release/v* Branch
     runs-on: ubuntu-latest
     needs: collect-release-data
-    if: github.ref_name == 'main' && (needs.collect-release-data.outputs.release-branch-exists == 'true' || needs.collect-release-data.outputs.release-changeset-branch-exists == 'true') && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == false
+    if: github.ref_name == 'main' && needs.collect-release-data.outputs.release-changeset-branch-exists == 'true' && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == false
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Remove Changeset Branch
-        if: needs.collect-release-data.outputs.release-changeset-branch-exists == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
         run: git push origin --delete changeset-release/${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
 
       - name: Remove Release Branch
-        if: needs.collect-release-data.outputs.release-branch-exists == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
         run: git push origin --delete ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
@@ -413,7 +405,7 @@ jobs:
             const release = JSON.parse(process.env.RELEASE_DATA)
 
             return `# Release Branches
-            There once was a Changeset with a Major update, which has been deleted within the latest updates, therefore the before created <code>${release.branchName}</code> and <code>changeset-release/${release.branchName}</code> Branches have been deleted.
+            There once was a Changeset with a Major update, which has been deleted with the latest commit, therefore the before created <code>${release.branchName}</code> and <code>changeset-release/${release.branchName}</code> Branches have been deleted.
             `
 
       - name: Output Summary
