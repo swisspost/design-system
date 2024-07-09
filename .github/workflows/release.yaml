@@ -53,12 +53,10 @@ jobs:
           PUBLISHED_PACKAGES: ${{ steps.changesets.outputs.publishedPackages }}
         with:
           script: |
-            const publishedPackages = JSON.parse(process.env.PUBLISHED_PACKAGES)
-
             return `# Changesets
             - Changesets published: <code>${process.env.PUBLISHED}</code>
             - Published Packages:
-            <pre>${JSON.stringify(publishedPackages, null, 2)}</pre>
+            <pre>${JSON.stringify(JSON.parse(process.env.PUBLISHED_PACKAGES), null, 2)}</pre>
             `
 
       - name: Output Summary
@@ -73,6 +71,7 @@ jobs:
     if: github.ref_name == 'main'
     outputs:
       release-data: ${{ steps.release-data.outputs.result }}
+      changeset-branch-exists: ${{ steps.changeset-branch-exists.outputs.exists }}
       release-branch-exists: ${{ steps.release-branch-exists.outputs.exists }}
       release-changeset-branch-exists: ${{ steps.release-changeset-branch-exists.outputs.exists }}
     steps:
@@ -130,19 +129,23 @@ jobs:
               dependencies
             }
 
-      # Check if the "release/v*" Branch already exists
-      - name: Check if Release Branch exists
+      - name: Check if changset-release/main Branch exists
+        id: changeset-branch-exists
+        uses: GuillaumeFalourd/branch-exists@v1
+        with:
+          branch: changeset-release/main
+
+      - name: Check if release/v* Branch exists
         id: release-branch-exists
         uses: GuillaumeFalourd/branch-exists@v1
         with:
           branch: ${{ fromJSON(steps.release-data.outputs.result).branchName }}
 
-      # Check if the "changeset-release/*" Branch already exists
-      - name: Check if Release-Changeset Branch exists
+      - name: Check if changeset-release/release/v* Branch exists
         id: release-changeset-branch-exists
         uses: GuillaumeFalourd/branch-exists@v1
         with:
-          branch: changeset-release/${{ github.ref_name }}
+          branch: changeset-release/${{ fromJSON(steps.release-data.outputs.result).branchName }}
 
       - name: Create Summary
         id: summary
@@ -150,18 +153,21 @@ jobs:
         env:
           REF_NAME: ${{ github.ref_name }}
           RELEASE_DATA: ${{ steps.release-data.outputs.result }}
+          CHANGESET_BRANCH_EXISTS: ${{ steps.changeset-branch-exists.outputs.exists }}
           RELEASE_BRANCH_EXISTS: ${{ steps.release-branch-exists.outputs.exists }}
           RELEASE_CHANGESET_BRANCH_EXISTS: ${{ steps.release-changeset-branch-exists.outputs.exists }}
         with:
           script: |
             const release = JSON.parse(process.env.RELEASE_DATA)
             const releaseBranch = release.branchName ? `(<code>${release.branchName}</code>)` : ''
+            const releaseChangesetBranch = release.branchName ? `(<code>changeset-release/${release.branchName}</code>)` : ''
 
             return `# Release Data
             - Collecting Data: ${process.env.RELEASE_DATA === null ? ':warning: WARNING: No Release Data found!' : ':rocket: SUCCESS!'}
             <pre>${JSON.stringify(release, null, 2)}</pre>
-            - The release/v* Branch ${releaseBranch} exists already: <code>${process.env.RELEASE_BRANCH_EXISTS}</code>
-            - The Release-Changeset Branch (<code>changeset-release/${process.env.REF_NAME}</code>) exists already: <code>${process.env.RELEASE_CHANGESET_BRANCH_EXISTS}</code>
+            - The Changeset Branch (<code>changeset-release/${process.env.REF_NAME}</code>) exists already: <code>${process.env.CHANGESET_BRANCH_EXISTS}</code>
+            - The Release Branch ${releaseBranch} exists already: <code>${process.env.RELEASE_BRANCH_EXISTS}</code>
+            - The Release-Changeset Branch ${releaseChangesetBranch} exists already: <code>${process.env.RELEASE_CHANGESET_BRANCH_EXISTS}</code>
             `
 
       - name: Output Summary
@@ -175,7 +181,7 @@ jobs:
     name: Update changeset-release/{main,release/v*} Branch
     runs-on: ubuntu-latest
     needs: collect-release-data
-    if: github.ref_name == 'main' && needs.collect-release-data.outputs.release-changeset-branch-exists == 'true' && fromJSON(needs.collect-release-data.outputs.release-data) != null
+    if: github.ref_name == 'main' && needs.collect-release-data.outputs.changeset-branch-exists == 'true' && fromJSON(needs.collect-release-data.outputs.release-data) != null
     steps:
       # Checkout the changeset Branch
       - name: Checkout
@@ -402,17 +408,19 @@ jobs:
     name: Remove release/v* Branch
     runs-on: ubuntu-latest
     needs: collect-release-data
-    if: github.ref_name == 'main' && needs.collect-release-data.outputs.release-changeset-branch-exists == 'true' && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == false
+    if: github.ref_name == 'main' && (needs.collect-release-data.outputs.release-branch-exists == 'true' || needs.collect-release-data.outputs.release-changeset-branch-exists == 'true') && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == false
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
       - name: Remove Changeset Branch
+        if: needs.collect-release-data.outputs.release-changeset-branch-exists == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
         run: git push origin --delete changeset-release/${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
 
       - name: Remove Release Branch
+        if: needs.collect-release-data.outputs.release-branch-exists == 'true'
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
         run: git push origin --delete ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
