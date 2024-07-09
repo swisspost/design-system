@@ -1,4 +1,4 @@
-name: Deploy Documentation Release to Netlify
+name: Release Documentation
 on:
   push:
     branches:
@@ -82,7 +82,7 @@ jobs:
         with:
           script: |
             return `# Deployed Documentation
-            - SiteId: \`${{ fromJSON(steps.netlify-config.outputs.result).siteId }}\`
+            - SiteId: <code>${{ fromJSON(steps.netlify-config.outputs.result).siteId }}</code>
             - SiteUrl: ${{ steps.deploy.outputs.site-url }}
             `
 

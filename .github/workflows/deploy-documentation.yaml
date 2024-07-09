@@ -1,4 +1,4 @@
-name: Deploy Documentation Preview to Netlify
+name: Deploy Documentation Preview
 on:
   workflow_run:
     workflows: ['Build Documentation']
