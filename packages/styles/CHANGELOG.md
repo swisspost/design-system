@@ -1,5 +1,11 @@
 # @swisspost/design-system-styles
 
+## 7.2.1
+
+### Patch Changes
+
+- Fixed a bug where the year in the datepicker got cut and fixed the icon placement in the small variant of the datepicker input. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#3203](https://github.com/swisspost/design-system/pull/3203))
+
 ## 7.2.0
 
 ### Minor Changes
