@@ -261,6 +261,7 @@ jobs:
       - name: Commit Changes and Push Branch
         uses: EndBug/add-and-commit@v9
         with:
+          default_author: github_actions
           message: 'chore(changesets): update release specific files'
           push: true
 
@@ -329,10 +330,11 @@ jobs:
           mkdir -p packages/documentation/.netlify
           netlify sites:list --filter @swisspost/design-system-documentation --json > packages/documentation/.netlify/swisspost-sites.json
           exists=$(jq -r 'any(.[]; .name=="${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }}")' packages/documentation/.netlify/swisspost-sites.json)
+          echo "$exists"
           echo "exists=$exists" >> $GITHUB_OUTPUT
 
       - name: Create Netlify Site (if it does not exist)
-        if: ${{ steps.netlify-site.outputs.exists == false }}
+        if: steps.netlify-sites.outputs.exists == 'false'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: netlify sites:create --filter @swisspost/design-system-documentation --account-slug oliverschuerch --name ${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }} --manual
