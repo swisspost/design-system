@@ -1,12 +1,4 @@
-###
-#
-# Deploy a pre-built documentation to netilfy
-#
-# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
-#
-###
-
-name: Deploy Documentation Preview to Netlify
+name: Deploy Documentation Preview
 on:
   workflow_run:
     workflows: ['Build Documentation']
@@ -14,15 +6,18 @@ on:
 
 jobs:
   deploy:
+    name: Deploy Documentation Preview
     runs-on: ubuntu-latest
     if: ${{ github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success' }}
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+      - name: Setup pnpm & node
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Setup netlify-cli
+        uses: ./.github/actions/setup-netlify-cli
 
       - name: Download build artifacts
         uses: ./.github/actions/artifact-download
@@ -31,20 +26,41 @@ jobs:
           name: design-system-documentation
           folder: build-output
 
-      - name: Deploy documentation to netlify
-        uses: ./.github/actions/deploy-to-netlify
-        id: deploy
+      - name: Get netlify config
+        id: netlify-config
+        uses: actions/github-script@v7
         with:
-          id: ${{ steps.build.outputs.id }}
-          netlify_auth_token: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          netlify_site_id: ${{ secrets.NEXT_NETLIFY_SITE_ID }}
-          netlify_site_url: swisspost-design-system-next.netlify.app
-          folder: ${{ steps.build.outputs.folder }}
-          package_name: '@swisspost/design-system-documentation'
+          script: |
+            const fs = require('fs')
+            return JSON.parse(fs.readFileSync('./packages/documentation/netlify.config.json', 'utf8'))
+
+      - name: Deploy Documentation Preview
+        id: deploy
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ fromJSON(steps.netlify-config.outputs.result).siteId }}
+        # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
+        run: |
+          url_alias=`echo "preview-${{ steps.build.outputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
+          echo "site-url=https://$url_alias--${{ fromJSON(steps.netlify-config.outputs.result).siteUrl }}" >> $GITHUB_OUTPUT
+          netlify deploy --filter @swisspost/design-system-documentation --build false --dir ${{ steps.build.outputs.folder }} --alias $url_alias
 
       - name: Update preview message
         uses: ./.github/actions/preview/message/update
         with:
           access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           issue-number: ${{ steps.build.outputs.id }}
-          preview-url: ${{ steps.deploy.outputs.preview-url }}
+          preview-url: ${{ steps.deploy.outputs.site-url }}
+
+      - name: Create Summary
+        id: summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            return `# Deployed Documentation Preview
+            - SiteId: <code>${{ fromJSON(steps.netlify-config.outputs.result).siteId }}</code>
+            - SiteUrl: ${{ steps.deploy.outputs.site-url }}
+            `
+
+      - name: Output Summary
+        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
