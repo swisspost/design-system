@@ -5,8 +5,6 @@ import { getElementInRootNode } from '@/utils/get-element-in-root-node';
 
 @Component({
   tag: 'post-collapsible-trigger',
-  styleUrl: 'post-collapsible-trigger.scss',
-  scoped: true,
 })
 export class PostCollapsibleTrigger {
   private trigger: HTMLElement | undefined;

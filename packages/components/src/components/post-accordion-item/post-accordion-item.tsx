@@ -70,14 +70,13 @@ export class PostAccordionItem {
     return (
       <Host id={this.id} data-version={version}>
         <div part="accordion-item" class="accordion-item">
-          <HeadingTag class="accordion-header" id={`${this.id}--header`}>
-            <post-collapsible-trigger
-              class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}
-              for={`${this.id}--collapse`}
-            >
-              <slot name="header" />
-            </post-collapsible-trigger>
-          </HeadingTag>
+          <post-collapsible-trigger for={`${this.id}--collapse`}>
+            <HeadingTag class="accordion-header" id={`${this.id}--header`}>
+              <button type="button" class={`accordion-button${this.collapsed ? ' collapsed' : ''}`}>
+                <slot name="header" />
+              </button>
+            </HeadingTag>
+          </post-collapsible-trigger>
 
           <post-collapsible
             id={`${this.id}--collapse`}
