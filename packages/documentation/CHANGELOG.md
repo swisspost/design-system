@@ -1,5 +1,17 @@
 # @swisspost/design-system-documentation
 
+## 5.2.1
+
+### Patch Changes
+
+- Updated the font used for the documentation page to better distinguish storybook parts and the component preview. The preview of the components still uses Frutiger Neue for Post. (by [@gfellerph](https://github.com/gfellerph) with [#3232](https://github.com/swisspost/design-system/pull/3232))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.2.1
+  - @swisspost/design-system-components@7.2.1
+  - @swisspost/internet-header@1.13.12
+  - @swisspost/design-system-components-react@7.2.1
+  - @swisspost/design-system-icons@7.2.1
+
 ## 5.2.0
 
 ### Minor Changes
