@@ -1,15 +1,9 @@
-###
-#
-# Release the documentation whenever it's package json changes on the main branch
-#
-###
-
-name: Release Documentation to Netlify
-
+name: Release Documentation
 on:
   push:
     branches:
       - main
+      - release/v*
     paths:
       - 'packages/documentation/package.json'
 
@@ -25,7 +19,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Check if version has changed
+      - name: Detect Version Change
         id: check
         uses: EndBug/version-check@v2
         with:
@@ -38,7 +32,7 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            return `# Version changed
+            return `# Version Change Detection
             A version change has ${${{ steps.check.outputs.changed == 'true' }} ? 'been' : 'NOT been'} detected.
             `
 
@@ -51,7 +45,10 @@ jobs:
     needs: detect-version-change
     if: needs.detect-version-change.outputs.changed == 'true'
     steps:
-      - name: Setup
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
 
       - name: Install documentation & dependencies
@@ -60,10 +57,10 @@ jobs:
       - name: Build documentation & dependencies
         run: pnpm --filter "design-system-documentation..." build
 
-      - name: Install netlify cli
-        run: pnpm -g i netlify-cli
+      - name: Setup
+        uses: ./.github/actions/setup-netlify-cli
 
-      - name: Get netlify config
+      - name: Get Netlify Config
         id: netlify-config
         uses: actions/github-script@v7
         with:
@@ -72,18 +69,22 @@ jobs:
             return JSON.parse(fs.readFileSync('./packages/documentation/netlify.config.json', 'utf8'))
 
       - name: Publish documentation to netlify
+        id: deploy
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ fromJSON(steps.netlify-config.outputs.result).siteId }}
-        run: netlify deploy --filter @swisspost/design-system-documentation --build false --dir packages/documentation/storybook-static --prod
+        run: |
+          echo "site-url=https://${{ fromJSON(steps.netlify-config.outputs.result).siteUrl }}" >> $GITHUB_OUTPUT
+          netlify deploy --filter @swisspost/design-system-documentation --build false --dir packages/documentation/storybook-static --prod
 
       - name: Create Summary
         id: summary
         uses: actions/github-script@v7
         with:
           script: |
-            return `# Documentation released
-            The documentation has been released under: https://${{ fromJSON(steps.netlify-config.outputs.result).siteUrl }}.
+            return `# Deployed Documentation
+            - SiteId: <code>${{ fromJSON(steps.netlify-config.outputs.result).siteId }}</code>
+            - SiteUrl: ${{ steps.deploy.outputs.site-url }}
             `
 
       - name: Output Summary
