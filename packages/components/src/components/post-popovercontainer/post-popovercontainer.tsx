@@ -55,11 +55,16 @@ export class PostPopovercontainer {
   @Event() postToggle: EventEmitter<boolean>;
 
   /**
-   * Defines the placement of the tooltip according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
-   * Tooltips are automatically flipped to the opposite side if there is not enough available space and are shifted
+   * Defines the placement of the popover-container according to the floating-ui options available at https://floating-ui.com/docs/computePosition#placement.
+   * popover-containers are automatically flipped to the opposite side if there is not enough available space and are shifted
    * towards the viewport if they would overlap edge boundaries.
    */
   @Prop() readonly placement?: Placement = 'top';
+
+  /**
+   * Animation style
+   */
+  @Prop() readonly animation?: 'pop-in' = null;
 
   /**
    * Wheter or not to display a little pointer arrow
@@ -81,8 +86,8 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Programmatically display the tooltip
-   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+   * Programmatically display the popover-container
+   * @param target An element where the popover-container should be shown
    */
   @Method()
   async show(target: HTMLElement) {
@@ -94,53 +99,47 @@ export class PostPopovercontainer {
   }
 
   /**
-   * Programmatically hide this tooltip
+   * Programmatically hide this popover-container
    */
   @Method()
   async hide() {
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = null;
-      this.popoverRef.hidePopover();
-    }
+    this.eventTarget = null;
+    this.popoverRef.hidePopover();
   }
 
   /**
-   * Toggle tooltip display
-   * @param target An element with [data-tooltip-target="id"] where the tooltip should be shown
+   * Toggle popover-container display
+   * @param target An element where the popover-container should be shown
    * @param force Pass true to always show or false to always hide
    */
   @Method()
   async toggle(target: HTMLElement, force?: boolean): Promise<boolean> {
-    // Prevent instant double toggle
-    if (!this.toggleTimeoutId) {
-      this.eventTarget = target;
-      this.calculatePosition();
-      this.popoverRef.togglePopover(force);
-      this.toggleTimeoutId = null;
-    }
+    this.eventTarget = target;
+    this.calculatePosition();
+    this.popoverRef.togglePopover(force);
     return this.popoverRef.matches(':popover-open');
   }
 
   /**
-   * Start or stop auto updates based on tooltip events.
-   * Tooltips can be closed or opened with other methods than class members,
+   * Start or stop auto updates based on popover-container events.
+   * popover-containers can be closed or opened with other methods than class members,
    * therefore listening to the toggle event is safer for cleaning up.
    * @param e ToggleEvent
    */
   private handleToggle(e: ToggleEvent) {
-    this.toggleTimeoutId = window.setTimeout(() => (this.toggleTimeoutId = null), 10);
     const isOpen = e.newState === 'open';
     if (isOpen) {
       this.startAutoupdates();
+      this.postToggle.emit(isOpen);
     } else {
       if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
+      this.postToggle.emit(isOpen);
     }
-    this.postToggle.emit(isOpen);
   }
 
   /**
    * Start listening for DOM updates, scroll events etc. that have
-   * an influence on tooltip positioning
+   * an influence on popover-container positioning
    */
   private startAutoupdates() {
     this.clearAutoUpdate = autoUpdate(
@@ -173,7 +172,7 @@ export class PostPopovercontainer {
       offset(this.arrow ? 12 : 8), // 4px outside of element to account for focus outline + ~arrow size
     ];
 
-    if (this.arrow) {
+    if (this.arrow && this.arrowRef) {
       middleware.push(arrow({ element: this.arrowRef, padding: 8 }));
     }
 
@@ -188,12 +187,11 @@ export class PostPopovercontainer {
       middleware,
     });
 
-    // Tooltip
     this.popoverRef.style.left = `${x}px`;
     this.popoverRef.style.top = `${y}px`;
 
     // Arrow
-    if (this.arrow) {
+    if (this.arrow && this.arrowRef) {
       // Tutorial: https://codesandbox.io/s/mystifying-kare-ee3hmh?file=/src/index.js
       const side = currentPlacement.split('-')[0];
       const { x: arrowX, y: arrowY } = middlewareData.arrow;
@@ -217,6 +215,7 @@ export class PostPopovercontainer {
       <Host data-version={version}>
         <div
           class="popover"
+          data-animation={this.animation}
           part="popover"
           ref={(el: HTMLDivElement & PostPopoverElement) => (this.popoverRef = el)}
         >
