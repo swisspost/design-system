@@ -259,6 +259,7 @@ jobs:
       - name: Commit Changes and Push Branch
         uses: EndBug/add-and-commit@v9
         with:
+          default_author: github_actions
           message: 'chore(changesets): update release specific files'
           push: true
 
@@ -372,6 +373,7 @@ jobs:
       - name: Commit Changes and Push Release Branch
         uses: EndBug/add-and-commit@v9
         with:
+          default_author: github_actions
           new_branch: ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
           message: 'chore(setup): create "${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}" branch'
           push: true
@@ -411,13 +413,13 @@ jobs:
       - name: Remove Changeset Branch
         if: needs.collect-release-data.outputs.release-changeset-branch-exists == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: git push origin --delete changeset-release/${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
 
       - name: Remove Release Branch
         if: needs.collect-release-data.outputs.release-branch-exists == 'true'
         env:
-          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: git push origin --delete ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
 
       - name: Create Summary
