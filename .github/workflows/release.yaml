@@ -1,27 +1,25 @@
 name: Release
-
 on:
   push:
     branches:
       - main
+      - release/v*
 
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  release:
-    name: Release
+  changeset-magic:
+    name: Set up Changeset PR or Release Packages
     runs-on: ubuntu-latest
     steps:
+      # Checkout the Branch which was pushed ('main' or 'release/v*')
       - name: Checkout
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
-      - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+      - name: Setup Node & pnpm
+        uses: ./.github/actions/setup-pnpm
 
-      # Install dependencies and build packages
-      - name: Install dependencies
+      - name: Install & build Dependencies
         run: pnpm bootstrap
 
       # This will fail the build if something in the publish setup is not correct
@@ -30,18 +28,410 @@ jobs:
         run: pnpm -r publish --dry-run
 
       # The changeset action will behave differently based on whether there are
-      # new changesets on the main branch:
+      # new changesets on the github.ref branch:
       #
       #  - new changesets: create a preview PR with the new version bumps and changelogs
-      #  - no new changesets (the preview PR got merged into main): publish packages
-      - name: Changeset magic
+      #  - no new changesets (the preview PR got merged into github.ref branch): publish packages
+      - name: Changeset Magic
         id: changesets
         uses: changesets/action@v1
         env:
           GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         with:
-          title: 'chore(changesets): 🦋📦 publish packages'
+          title: 'chore(changesets): 🦋📦 publish packages (${{ github.ref_name }})'
           commit: 'chore(changesets): publish packages'
           publish: pnpm changeset:publish
           version: pnpm changeset:version
+
+      - name: Create Summary
+        id: summary
+        uses: actions/github-script@v7
+        env:
+          PUBLISHED: ${{ steps.changesets.outputs.published }}
+          PUBLISHED_PACKAGES: ${{ steps.changesets.outputs.publishedPackages }}
+        with:
+          script: |
+            return `# Changesets
+            - Changesets published: <code>${process.env.PUBLISHED}</code>
+            - Published Packages:
+            <pre>${JSON.stringify(JSON.parse(process.env.PUBLISHED_PACKAGES), null, 2)}</pre>
+            `
+
+      - name: Output Summary
+        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
+
+  # Only run this Job if:
+  # - Workflow runs on the 'main' Branch
+  collect-release-data:
+    name: Collect Release Data
+    runs-on: ubuntu-latest
+    needs: changeset-magic
+    if: github.ref_name == 'main'
+    outputs:
+      release-data: ${{ steps.release-data.outputs.result }}
+      changeset-branch-exists: ${{ steps.changeset-branch-exists.outputs.exists }}
+      release-branch-exists: ${{ steps.release-branch-exists.outputs.exists }}
+      release-changeset-branch-exists: ${{ steps.release-changeset-branch-exists.outputs.exists }}
+    steps:
+      # Checkout the Branch which has been pushed ('main' or 'release/v*')
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node & pnpm
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install Dependencies
+        run: pnpm i
+
+      # Create Status Files
+      - name: Create Status Files
+        run: |
+          pnpm m ls --depth=0 --json > monorepo.json
+          pnpm changeset status --output=changesets.json
+
+      # Read the status Files and collect release data on the @swisspost/design-system-styles package
+      - name: Collect Release Data
+        id: release-data
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
+            const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
+            const changesets = JSON.parse(fs.readFileSync('changesets.json', 'utf8'))
+            const release = changesets.releases.find(r => r.name === '@swisspost/design-system-styles')
+
+            if (!release) return null
+
+            const oldMajor = release.oldVersion.split('.')[0];
+            const newMajor = release.newVersion.split('.')[0];
+            const dependencies = monorepo
+              .filter(pkg => pkg.private === false && pkg.version !== undefined)
+              .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
+
+            return {
+              isMajor: release.type === 'major',
+              old: {
+                version: release.oldVersion,
+                major: oldMajor,
+                siteUrl: `design-system-version-${oldMajor}`
+              },
+              new: {
+                version: release.newVersion,
+                major: newMajor,
+                siteUrl: 'design-system'
+              },
+              branchName: `release/v${oldMajor}`,
+              dependencies
+            }
+
+      - name: Check if changset-release/main Branch exists
+        id: changeset-branch-exists
+        uses: GuillaumeFalourd/branch-exists@v1
+        with:
+          branch: changeset-release/main
+
+      - name: Check if release/v* Branch exists
+        id: release-branch-exists
+        uses: GuillaumeFalourd/branch-exists@v1
+        with:
+          branch: ${{ fromJSON(steps.release-data.outputs.result).branchName }}
+
+      - name: Check if changeset-release/release/v* Branch exists
+        id: release-changeset-branch-exists
+        uses: GuillaumeFalourd/branch-exists@v1
+        with:
+          branch: changeset-release/${{ fromJSON(steps.release-data.outputs.result).branchName }}
+
+      - name: Create Summary
+        id: summary
+        uses: actions/github-script@v7
+        env:
+          REF_NAME: ${{ github.ref_name }}
+          RELEASE_DATA: ${{ steps.release-data.outputs.result }}
+          CHANGESET_BRANCH_EXISTS: ${{ steps.changeset-branch-exists.outputs.exists }}
+          RELEASE_BRANCH_EXISTS: ${{ steps.release-branch-exists.outputs.exists }}
+          RELEASE_CHANGESET_BRANCH_EXISTS: ${{ steps.release-changeset-branch-exists.outputs.exists }}
+        with:
+          script: |
+            const release = JSON.parse(process.env.RELEASE_DATA)
+            const releaseBranch = release?.branchName ? `(<code>${release.branchName}</code>)` : ''
+            const releaseChangesetBranch = release?.branchName ? `(<code>changeset-release/${release.branchName}</code>)` : ''
+
+            return `# Release Data
+            - Collecting Data: ${process.env.RELEASE_DATA === 'null' ? ':warning: WARNING: No Release Data found!' : ':rocket: SUCCESS!'}
+            <pre>${JSON.stringify(release, null, 2)}</pre>
+            - The Changeset Branch (<code>changeset-release/${process.env.REF_NAME}</code>) exists already: <code>${process.env.CHANGESET_BRANCH_EXISTS}</code>
+            - The Release Branch ${releaseBranch} exists already: <code>${process.env.RELEASE_BRANCH_EXISTS}</code>
+            - The Release-Changeset Branch ${releaseChangesetBranch} exists already: <code>${process.env.RELEASE_CHANGESET_BRANCH_EXISTS}</code>
+            `
+
+      - name: Output Summary
+        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
+
+  # Only run this Job if:
+  # - Workflow runs on the 'main' Branch
+  # - Release-Changeset Branch exists
+  # - Release Data exists
+  update-changeset-branch:
+    name: Update changeset-release/{main,release/v*} Branch
+    runs-on: ubuntu-latest
+    needs: collect-release-data
+    if: github.ref_name == 'main' && needs.collect-release-data.outputs.changeset-branch-exists == 'true' && fromJSON(needs.collect-release-data.outputs.release-data) != null
+    steps:
+      # Checkout the changeset Branch
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: changeset-release/${{ github.ref_name }}
+
+      - name: Setup Node & pnpm
+        uses: ./.github/actions/setup-pnpm
+        with:
+          use_cache: false # do not use the pnpm cache if you do not install any dependencies
+
+      - name: Output Status Files
+        run: pnpm m ls --depth=0 --json > monorepo.json
+
+      # Only run this Step if a major release was detected
+      - name: Update or create Documentation _redirects
+        id: update-redirects
+        if: fromJSON(needs.collect-release-data.outputs.release-data).isMajor == true
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const release = ${{ needs.collect-release-data.outputs.release-data }}
+
+            const redirectsPath = './packages/documentation/public/_redirects'
+            let redirects = ''
+            const redirect = `/v${release.old.major}   https://${release.old.siteUrl}.netlify.app`
+
+            if (fs.existsSync(redirectsPath)) {
+               redirects = fs.readFileSync(redirectsPath, 'utf8')
+            } else {
+              redirects = '# Redirects from what the browser requests to what we serve\n'
+            }
+
+            if(!redirects.includes(redirect)) redirects += redirect
+            fs.writeFileSync(redirectsPath, redirects + '\n')
+
+            return true
+
+      - name: Update Documentation versions.json
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const release = ${{ needs.collect-release-data.outputs.release-data }}
+
+            const versionsPath = './packages/documentation/public/assets/versions.json'
+            const versions = JSON.parse(fs.readFileSync(versionsPath, 'utf8'))
+            const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
+            const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
+
+            const currentVersion = versions.find(version => version.version.startsWith(release.old.major))
+            currentVersion.version = release.new.version
+            currentVersion.dependencies = release.dependencies
+
+            if (release.isMajor) {
+              currentVersion.version = release.old.version
+              currentVersion.url = `https://${release.old.siteUrl}.netlify.app`
+
+              const dependencies = monorepo
+                .filter(pkg => pkg.private === false && pkg.version !== undefined)
+                .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
+              versions.unshift({
+                title: `Version ${release.new.major}`,
+                version: release.new.version,
+                description: 'Pattern documentation, code snippets and implementation guidelines for the Design System Styles.',
+                url: `https://${release.new.siteUrl}.post.ch`,
+                dependencies
+              })
+            }
+
+            fs.writeFileSync(versionsPath, JSON.stringify(versions, null, 2) + '\n')
+
+      - name: Remove Status Files
+        run: rm -f monorepo.json
+
+      - name: Commit Changes and Push Branch
+        uses: EndBug/add-and-commit@v9
+        with:
+          message: 'chore(changesets): update release specific files'
+          push: true
+
+      - name: Create Summary
+        id: summary
+        uses: actions/github-script@v7
+        env:
+          REF_NAME: ${{ github.ref_name }}
+          RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
+          RELEASE_BRANCH_EXISTS: ${{ needs.collect-release-data.outputs.release-branch-exists }}
+        with:
+          script: |
+            const release = JSON.parse(process.env.RELEASE_DATA)
+
+            return `# Changeset Branch
+            The Release-Changeset Branch <code>changeset-release/${process.env.REF_NAME}</code> has been created by the Changeset Action.
+            In addition to that, the following updates have been made to this Branch:
+            ${release.isMajor && process.env.RELEASE_BRANCH_EXISTS === 'false' ? `- Netlify <code>_redirects</code> File has been created on to the <code>changeset-release/${process.env.REF_NAME}</code> Branch.` : ''}
+            - The Netlify <code>versions.json</code> File has been updated on to the <code>changeset-release/${process.env.REF_NAME}</code> Branch.
+            `
+
+      - name: Output Summary
+        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
+
+  # Only run this Job if:
+  # - Workflow runs on the 'main' Branch
+  # - Release Branch does not already exist
+  # - Release Data exists
+  # - A Major Release was detected
+  create-release-branch:
+    name: Create release/v* Branch
+    runs-on: ubuntu-latest
+    needs: collect-release-data
+    if: github.ref_name == 'main' && needs.collect-release-data.outputs.release-branch-exists == 'false' && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == true
+    steps:
+      # Checkout the commit with the release.old.version tag (e.g. @swisspost/design-system-styles@5.3.2)
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: '@swisspost/design-system-styles@${{ fromJSON(needs.collect-release-data.outputs.release-data).old.version }}'
+
+      - name: Remove Documentation versions.json
+        run: rm -f ./packages/documentation/public/assets/versions.json
+
+      - name: Remove Documentation _redirects
+        run: rm -f ./packages/documentation/public/_redirects
+
+      - name: Setup pnpm & node
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install documentation & dependencies
+        run: pnpm --filter "design-system-documentation..." install
+
+      - name: Build documentation & dependencies
+        run: pnpm --filter "design-system-documentation..." build
+
+      - name: Setup netlify-cli
+        uses: ./.github/actions/setup-netlify-cli
+
+      - name: Check if a Netlify Site with given siteUrl already exists
+        id: netlify-sites
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          mkdir -p packages/documentation/.netlify
+          netlify sites:list --filter @swisspost/design-system-documentation --json > packages/documentation/.netlify/swisspost-sites.json
+          exists=$(jq -r 'any(.[]; .name=="${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }}")' packages/documentation/.netlify/swisspost-sites.json)
+          echo "exists=$exists" >> $GITHUB_OUTPUT
+
+      - name: Create Netlify Site (if it does not exist)
+        if: ${{ steps.netlify-site.outputs.exists == false }}
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: netlify sites:create --filter @swisspost/design-system-documentation --account-slug oss-udwyths --name ${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }} --manual
+
+      - name: Deploy Netlify Site
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+        run: |
+          netlify link --filter @swisspost/design-system-documentation --name ${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }}
+          netlify deploy --filter @swisspost/design-system-documentation --build false --dir packages/documentation/storybook-static --prod
+
+      - name: Update Changeset config.json
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const release = ${{ needs.collect-release-data.outputs.release-data }}
+
+            const changesetConfigPath = './.changeset/config.json'
+            const changesetConfig = JSON.parse(fs.readFileSync(changesetConfigPath, 'utf8'))
+            fs.writeFileSync(changesetConfigPath, JSON.stringify({
+              ...changesetConfig,
+              baseBranch: release.branchName
+            }, null, 2) + '\n')
+
+      - name: Update Documentation netlify.config.json
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs')
+            const release = ${{ needs.collect-release-data.outputs.release-data }}
+
+            const netlifyState = JSON.parse(fs.readFileSync('./packages/documentation/.netlify/state.json', 'utf8'))
+            fs.writeFileSync('./packages/documentation/netlify.config.json', JSON.stringify({
+              ...netlifyState,
+              siteUrl: `${release.old.siteUrl}.netlify.app`
+            }, null, 2) + '\n')
+
+      # Commit the changes to a new release/v* branch
+      - name: Commit Changes and Push Release Branch
+        uses: EndBug/add-and-commit@v9
+        with:
+          new_branch: ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
+          message: 'chore(setup): create "${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}" branch'
+          push: true
+
+      - name: Create Summary
+        id: summary
+        uses: actions/github-script@v7
+        env:
+          RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
+        with:
+          script: |
+            const release = JSON.parse(process.env.RELEASE_DATA)
+
+            return `# Release Branch
+            - A new <code>${release.branchName}</code> Branch has been created.
+            - The file <code>.changeset/config.json</code> (which holds the <code>baseBranch</code> property) has been updated on to the <code>${release.branchName}</code> Branch.
+            - The file <code>documentation/netlify.config.json</code> (which holds the <code>siteId</code> and <code>siteUrl</code>) has been created on to the <code>${release.branchName}</code> Branch.
+            - A new Netlify Site has been created and the build has been deployed to <code>https://${release.old.siteUrl}.netlify.app</code>.
+            `
+
+      - name: Output Summary
+        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
+
+  # Only run this Job if:
+  # - Workflow runs on the 'main' Branch
+  # - Either a Release Branch or a Changeset Branch exists
+  # - A non-Major Release was detected
+  remove-release-branch:
+    name: Remove release/v* Branch
+    runs-on: ubuntu-latest
+    needs: collect-release-data
+    if: github.ref_name == 'main' && (needs.collect-release-data.outputs.release-branch-exists == 'true' || needs.collect-release-data.outputs.release-changeset-branch-exists == 'true') && fromJSON(needs.collect-release-data.outputs.release-data) != null && fromJSON(needs.collect-release-data.outputs.release-data).isMajor == false
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Remove Changeset Branch
+        if: needs.collect-release-data.outputs.release-changeset-branch-exists == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+        run: git push origin --delete changeset-release/${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
+
+      - name: Remove Release Branch
+        if: needs.collect-release-data.outputs.release-branch-exists == 'true'
+        env:
+          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+        run: git push origin --delete ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
+
+      - name: Create Summary
+        id: summary
+        uses: actions/github-script@v7
+        env:
+          RELEASE_DATA: ${{ needs.collect-release-data.outputs.release-data }}
+        with:
+          script: |
+            const release = JSON.parse(process.env.RELEASE_DATA)
+
+            return `# Release Branches
+            There once was a Changeset with a Major update, which has been deleted with the latest commit, therefore the before created <code>${release.branchName}</code> and <code>changeset-release/${release.branchName}</code> Branches have been deleted.
+            `
+
+      - name: Output Summary
+        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
