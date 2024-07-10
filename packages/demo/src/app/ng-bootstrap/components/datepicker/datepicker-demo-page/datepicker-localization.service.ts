@@ -93,7 +93,7 @@ export class SwissPostDatepickerI18n extends NgbDatepickerI18n {
     super();
   }
 
-  getWeekdayLabel(weekday: number, _width?: TranslationWidth): string {
+  getWeekdayLabel(weekday: number): string {
     return I18N_VALUES[this._i18n.language].weekdays[weekday - 1];
   }
 
