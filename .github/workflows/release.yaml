@@ -329,7 +329,6 @@ jobs:
           mkdir -p packages/documentation/.netlify
           netlify sites:list --filter @swisspost/design-system-documentation --json > packages/documentation/.netlify/swisspost-sites.json
           exists=$(jq -r 'any(.[]; .name=="${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }}")' packages/documentation/.netlify/swisspost-sites.json)
-          echo "$exists"
           echo "exists=$exists" >> $GITHUB_OUTPUT
 
       - name: Create Netlify Site (if it does not exist)
@@ -376,6 +375,7 @@ jobs:
       - name: Commit Changes and Push Release Branch
         uses: EndBug/add-and-commit@v9
         with:
+          default_author: github_actions
           new_branch: ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
           message: 'chore(setup): create "${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}" branch'
           push: true
