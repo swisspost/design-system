@@ -342,14 +342,14 @@ importers:
         specifier: 20.1.0
         version: 20.1.0(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(rxjs@7.8.1)
       '@swisspost/design-system-intranet-header':
-        specifier: workspace:7.2.1
-        version: link:../intranet-header-workspace/dist/intranet-header
+        specifier: 7.2.1
+        version: 7.2.1(7vbrgphmh2ibz7pfa6xdxnrose)
       '@swisspost/design-system-migrations':
-        specifier: workspace:7.2.1
-        version: link:../migrations
+        specifier: 7.2.1
+        version: 7.2.1(chokidar@3.6.0)(rxjs@7.8.1)(zone.js@0.14.7)
       '@swisspost/design-system-styles':
-        specifier: workspace:7.2.1
-        version: link:../styles/dist
+        specifier: 7.2.1
+        version: 7.2.1(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@ng-bootstrap/ng-bootstrap@16.0.0(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/forms@17.3.11(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(rxjs@7.8.1))(@angular/localize@17.3.11(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.3.3))(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))))(@popperjs/core@2.11.8)(rxjs@7.8.1))(bootstrap@5.3.3(@popperjs/core@2.11.8))
       bootstrap:
         specifier: 5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
@@ -3994,6 +3994,29 @@ packages:
       '@angular/core': '>=11.0.2'
       '@angular/platform-browser': '>=11.0.2'
       rxjs: ^6.6.3 || ^7.4.0
+
+  '@swisspost/design-system-intranet-header@7.2.1':
+    resolution: {integrity: sha512-sAmdxrQ2SHIhqGtTJUfL6ixBylsQ3JB8i49IEVDLNdf325ldTxNNRFfx4kSEId/WpiCK20h9Za83J0XXjLiz4A==}
+    peerDependencies:
+      '@angular/common': ^16.0.0 || ^17.0.0
+      '@angular/core': ^16.0.0 || ^17.0.0
+
+  '@swisspost/design-system-migrations@7.2.1':
+    resolution: {integrity: sha512-HLIfkQfm4RgnFIRhHLpq5COC7Jj7FbBbkfclWP1DZwjuqXAJkdaM7HNH//ojRstw+wSr/2cbOzZyCVqrfJHShQ==}
+
+  '@swisspost/design-system-styles@7.2.1':
+    resolution: {integrity: sha512-wZ5tO0EiqhzrhBfjz8h0k74bOLbD6bnEEnDAgjb82Qx6eB/V6uaqbzP/SZJdgHUlmfzs6rrM672klg5TbN24mQ==}
+    peerDependencies:
+      '@angular/core': ^16.0.0 || ^17.0.0
+      '@ng-bootstrap/ng-bootstrap': ^15.0.0 || ^16.0.0
+      bootstrap: ~5.3.0
+    peerDependenciesMeta:
+      '@angular/core':
+        optional: true
+      '@ng-bootstrap/ng-bootstrap':
+        optional: true
+      bootstrap:
+        optional: true
 
   '@testing-library/dom@9.3.1':
     resolution: {integrity: sha512-0DGPd9AR3+iDTjGoMpxIkAsUihHZ3Ai6CneU6bRRrffXMgzCdlNk43jTrD2/5LT6CBb3MWTP8v510JzYtahD2w==}
@@ -11512,7 +11535,7 @@ snapshots:
       '@vitejs/plugin-basic-ssl': 1.1.0(vite@5.1.7(@types/node@20.12.7)(less@4.2.0)(sass@1.71.1)(terser@5.29.1))
       ansi-colors: 4.1.3
       autoprefixer: 10.4.18(postcss@8.4.35)
-      babel-loader: 9.1.3(@babel/core@7.24.0)(webpack@5.90.3)
+      babel-loader: 9.1.3(@babel/core@7.24.0)(webpack@5.90.3(esbuild@0.20.1))
       babel-plugin-istanbul: 6.1.1
       browserslist: 4.23.0
       copy-webpack-plugin: 11.0.0(webpack@5.90.3(esbuild@0.20.1))
@@ -11606,7 +11629,7 @@ snapshots:
       '@vitejs/plugin-basic-ssl': 1.1.0(vite@5.1.7(@types/node@20.14.9)(less@4.2.0)(sass@1.71.1)(terser@5.29.1))
       ansi-colors: 4.1.3
       autoprefixer: 10.4.18(postcss@8.4.35)
-      babel-loader: 9.1.3(@babel/core@7.24.0)(webpack@5.90.3)
+      babel-loader: 9.1.3(@babel/core@7.24.0)(webpack@5.90.3(esbuild@0.20.1))
       babel-plugin-istanbul: 6.1.1
       browserslist: 4.23.0
       copy-webpack-plugin: 11.0.0(webpack@5.90.3(esbuild@0.20.1))
@@ -15772,6 +15795,37 @@ snapshots:
       rxjs: 7.8.1
       tslib: 2.6.3
 
+  '@swisspost/design-system-intranet-header@7.2.1(7vbrgphmh2ibz7pfa6xdxnrose)':
+    dependencies:
+      '@angular/common': 17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)
+      '@angular/core': 17.3.11(rxjs@7.8.1)(zone.js@0.14.7)
+      '@swisspost/design-system-styles': 7.2.1(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@ng-bootstrap/ng-bootstrap@16.0.0(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/forms@17.3.11(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(rxjs@7.8.1))(@angular/localize@17.3.11(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.3.3))(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))))(@popperjs/core@2.11.8)(rxjs@7.8.1))(bootstrap@5.3.3(@popperjs/core@2.11.8))
+      tslib: 2.6.3
+    transitivePeerDependencies:
+      - '@ng-bootstrap/ng-bootstrap'
+      - bootstrap
+
+  '@swisspost/design-system-migrations@7.2.1(chokidar@3.6.0)(rxjs@7.8.1)(zone.js@0.14.7)':
+    dependencies:
+      '@angular-devkit/core': 15.0.4(chokidar@3.6.0)
+      '@angular-devkit/schematics': 15.0.4(chokidar@3.6.0)
+      '@angular/core': 15.0.4(rxjs@7.8.1)(zone.js@0.14.7)
+      cheerio: 1.0.0-rc.12
+      prettier: 3.3.2
+      typescript: 4.9.5
+    transitivePeerDependencies:
+      - chokidar
+      - rxjs
+      - zone.js
+
+  '@swisspost/design-system-styles@7.2.1(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@ng-bootstrap/ng-bootstrap@16.0.0(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/forms@17.3.11(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(rxjs@7.8.1))(@angular/localize@17.3.11(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.3.3))(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))))(@popperjs/core@2.11.8)(rxjs@7.8.1))(bootstrap@5.3.3(@popperjs/core@2.11.8))':
+    dependencies:
+      '@popperjs/core': 2.11.8
+    optionalDependencies:
+      '@angular/core': 17.3.11(rxjs@7.8.1)(zone.js@0.14.7)
+      '@ng-bootstrap/ng-bootstrap': 16.0.0(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/forms@17.3.11(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(rxjs@7.8.1))(@angular/localize@17.3.11(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.3.3))(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))))(@popperjs/core@2.11.8)(rxjs@7.8.1)
+      bootstrap: 5.3.3(@popperjs/core@2.11.8)
+
   '@testing-library/dom@9.3.1':
     dependencies:
       '@babel/code-frame': 7.22.13
@@ -17255,7 +17309,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-loader@9.1.3(@babel/core@7.24.0)(webpack@5.90.3):
+  babel-loader@9.1.3(@babel/core@7.24.0)(webpack@5.90.3(esbuild@0.20.1)):
     dependencies:
       '@babel/core': 7.24.0
       find-cache-dir: 4.0.0
