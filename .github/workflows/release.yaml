@@ -260,6 +260,8 @@ jobs:
       - name: Commit Changes and Push Branch
         uses: EndBug/add-and-commit@v9
         with:
+          author_name: Swiss Post Bot
+          author_email: 103635272+swisspost-bot@users.noreply.github.com
           message: 'chore(changesets): update release specific files'
           push: true
 
@@ -374,6 +376,8 @@ jobs:
       - name: Commit Changes and Push Release Branch
         uses: EndBug/add-and-commit@v9
         with:
+          author_name: Swiss Post Bot
+          author_email: 103635272+swisspost-bot@users.noreply.github.com
           new_branch: ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
           message: 'chore(setup): create "${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}" branch'
           push: true
