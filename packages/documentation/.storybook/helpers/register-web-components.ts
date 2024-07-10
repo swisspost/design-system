@@ -1,24 +1,14 @@
 // @ts-ignore
-import {
-  applyPolyfills as headerPolyfills,
-  defineCustomElements as defineHeader,
-} from '@swisspost/internet-header/loader/index.es2017.js';
-import {
-  applyPolyfills as componentsPolyfills,
-  defineCustomElements as defineComponents,
-} from '@swisspost/design-system-components/loader';
-import { setStencilDocJson } from '@pxtrn/storybook-addon-docs-stencil';
-import { StencilJsonDocs } from '@pxtrn/storybook-addon-docs-stencil/dist/types';
+import { defineCustomElements as defineHeader } from '@swisspost/internet-header/loader/index.es2017.js';
+import { defineCustomElements as defineComponents } from '@swisspost/design-system-components/loader';
+import { setStencilDocJson } from '@kurbar/storybook-addon-docs-stencil';
+import { StencilJsonDocs } from '@kurbar/storybook-addon-docs-stencil/dist/types';
 import postComponentsDocJson from '@swisspost/design-system-components/dist/docs.json';
 import internetHeaderDocJson from '@swisspost/internet-header/dist/docs.json';
 import '../../src/shared/link-design/link-design.component';
 
-headerPolyfills().then(() => {
-  defineHeader();
-});
-componentsPolyfills().then(() => {
-  defineComponents();
-});
+defineHeader();
+defineComponents();
 
 if (postComponentsDocJson && internetHeaderDocJson) {
   let { components, ...docJsonMetaData } = postComponentsDocJson as unknown as StencilJsonDocs;

@@ -48,8 +48,7 @@ const config: StorybookConfig = {
       },
     },
     '@storybook/addon-links',
-    '@geometricpanda/storybook-addon-badges',
-    '@pxtrn/storybook-addon-docs-stencil',
+    '@kurbar/storybook-addon-docs-stencil',
     './addons/version-switcher/register',
   ],
   staticDirs: [

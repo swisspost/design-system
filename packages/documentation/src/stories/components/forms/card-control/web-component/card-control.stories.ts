@@ -8,7 +8,7 @@ import './card-control.styles.scss';
 import scss from '../card-control.module.scss';
 import { coloredBackground } from '@/shared/decorators/dark-background';
 
-const SCSS_VARIABLES: any = parse(scss);
+const SCSS_VARIABLES: { [key: string]: string | object } = parse(scss);
 
 const meta: MetaComponent = {
   id: '886fabcf-148b-4054-a2ec-4869668294fb',
@@ -288,8 +288,8 @@ export const FormIntegration: Story = {
 
     return html` <form
       id="AssociatedForm"
-      @reset="${(e: any) => formHandler(e, updateArgs)}"
-      @submit="${(e: any) => formHandler(e, updateArgs)}"
+      @reset="${(e: SubmitEvent) => formHandler(e, updateArgs)}"
+      @submit="${(e: SubmitEvent) => formHandler(e, updateArgs)}"
     >
       <fieldset .disabled=${args.checkboxFieldset}>
         <legend>Legend</legend>
@@ -318,15 +318,14 @@ export const FormIntegration: Story = {
   },
 };
 
-function formHandler(e: any, updateArgs: Function) {
+function formHandler(e: SubmitEvent, updateArgs: (newArgs: Partial<Args>) => void) {
   if (e.type === 'submit') e.preventDefault();
 
   setTimeout(() => {
     const formOutput = document.querySelector('#AssociatedFormOutput');
-    const formData: { [key: string]: string } = Array.from(new FormData(e.target).entries()).reduce(
-      (acc, [k, v]) => Object.assign(acc, { [k]: v }),
-      {},
-    );
+    const formData: { [key: string]: string } = Array.from(
+      new FormData(e.target as HTMLFormElement).entries(),
+    ).reduce((acc, [k, v]) => Object.assign(acc, { [k]: v }), {});
 
     if (formOutput) {
       updateArgs({

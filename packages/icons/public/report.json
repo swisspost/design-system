@@ -186,10 +186,6 @@
           "kommunikation"
         ],
         "keywords": [
-          "Brief/Paket",
-          "Lettre/colis",
-          "Letter/parcel",
-          "Lettera/pacco",
           "Brief",
           "Letter",
           "Lettera",
@@ -198,35 +194,18 @@
           "Parcel",
           "Pacco",
           "Colis",
-          "Kuvert",
-          "Envelope",
-          "Busta",
-          "Enveloppe",
-          "Paketaufgabe",
-          "Parcel post",
-          "Impostazione pacchi",
-          "Dépôt de colis",
           "Briefaufgabe",
           "posting of letters",
           "Dépôt de lettres",
-          "Briefumschlag",
-          "envelope",
           "Versenden",
           "Send mail",
           "Expédition",
           "Inviare",
           "senden",
-          "Receiving mail",
-          "Empfangen",
-          "Réception",
-          "Ricevere",
           "Lettre colis",
           "Lettera pacco",
           "Parcel Letter",
           "Brief Paket",
-          "Couvert",
-          "enveloppe",
-          "involucro",
           "parcel depot",
           "dépôt de colis",
           "consegna dei pacchi",
@@ -235,31 +214,15 @@
           "letter deposit",
           "deposito di lettere",
           "Briefe aufgeben",
-          "envoyer",
-          "mandare",
-          "send",
-          "letter",
-          "lettera",
-          "lettre",
-          "letter cover",
-          "lettre de couverture",
-          "copertina",
+          "Letter/parcel",
           "posting parcels",
           "Pakete aufgeben",
           "envoi de colis",
           "spedizione dei pacchi",
-          "posting letters",
-          "lettres de validation",
-          "invio di lettere",
-          "dispatch",
-          "Versand",
-          "spedizione",
-          "dépêcher",
-          "inviare",
-          "receive",
-          "erhalten",
-          "recevoir",
-          "ricevere",
+          "Briefumschlag",
+          "Envelope",
+          "Busta",
+          "Enveloppe",
           "Pforte",
           "Gate",
           "Cancello",
@@ -268,6 +231,7 @@
           "Kuverts",
           "offen",
           "Open",
+          "Versand",
           "Mail",
           "Posta",
           "Courrier"
@@ -1210,32 +1174,15 @@
           "Letter/value",
           "Lettera/valore",
           "Lettre/valeur",
-          "Frankatur",
-          "franking",
-          "Affrancatura",
-          "Affranchissement",
-          "Briefmarke",
-          "Stamp",
-          "Francobollo",
-          "Timbre-poste",
           "Brief",
           "Letter",
           "Lettera",
           "Lettre",
           "A-Post",
-          "Letter/Value",
-          "affranchissement",
-          "affrancatura",
-          "Timbre-Posts",
-          "lettera",
-          "lettre",
-          "letter",
-          "Courrier A",
-          "Posta A",
-          "Mail A",
-          "frantumazione",
+          "Briefmarke",
           "Postage Stamp",
           "Timbro postale",
+          "Timbre-poste",
           "A Mail",
           "A E-mail",
           "E-mail A",
@@ -2210,7 +2157,6 @@
         ],
         "keywords": [
           "Events",
-          "Person ziel",
           "Person",
           "Persona",
           "Personne",
@@ -2222,10 +2168,6 @@
           "Promemoria",
           "recollection",
           "Rappel",
-          "Homme personne",
-          "Uomo persona",
-          "Mensch Person",
-          "Man person",
           "calendrier",
           "calendario",
           "Timing",
@@ -2325,79 +2267,27 @@
           "kommunikation"
         ],
         "keywords": [
-          "Zusteller",
-          "Delivery staff",
-          "Addetto al recapito",
-          "Personnel de distribution",
-          "Zustellerin",
-          "mail carrier",
-          "Addetta al recapito",
-          "Factrice",
-          "Mensch",
-          "human",
-          "Persona",
-          "Homme",
           "Mensch mit Mütze",
           "human with cap",
           "Un homme avec un bonnet",
           "Persona con berretto",
-          "Mütze",
-          "cap",
-          "Bonnet",
-          "berretto",
           "Person",
+          "Persona",
           "Personne",
-          "Pöstler",
-          "Postino",
-          "Postier",
           "Pöstlerin",
-          "Mail carrier",
-          "Facteur",
-          "Fattorino",
           "Bote",
-          "Factor",
-          "Fattore",
-          "factrice",
-          "postman",
-          "postino",
-          "homme",
-          "uomo",
-          "männlich",
-          "man",
-          "homme avec bonnet",
-          "uomo con cappello",
-          "man with cap",
-          "Mann mit Mütze",
           "Motorhaube",
+          "Bonnet",
           "Cofano",
           "Capot",
-          "personne",
-          "person",
-          "persona",
-          "facteur lettres",
-          "fattore lettere",
-          "Briefbote",
-          "letter factor",
-          "delivery staff",
-          "personnel chargé de la livraison",
-          "personale addetto alle consegne",
-          "umano",
-          "humain",
-          "humain avec capuchon",
-          "umano con tappo",
+          "Mütze",
           "Cap",
           "Cappellino",
           "Capuchon",
-          "transporteur postal",
-          "spedizioniere",
-          "Postbote",
           "postman/woman",
           "facteur",
           "postino/donna",
           "Postbote/Frau",
-          "letter carrier",
-          "Briefträger",
-          "corriere",
           "Wegweiser",
           "Sign",
           "Segno",
@@ -2800,7 +2690,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "20bd9570-c5fe-11e7-a943-005056a94f4a",
@@ -2955,7 +2845,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "20d00c00-c5fe-11e7-a943-005056a94f4a",
@@ -3268,7 +3158,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "20e9fca0-c5fe-11e7-a943-005056a94f4a",
@@ -3410,7 +3300,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "20f82d70-c5fe-11e7-a943-005056a94f4a",
@@ -3618,7 +3508,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "212509d0-c5fe-11e7-a943-005056a94f4a",
@@ -3826,7 +3716,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "21440380-c5fe-11e7-a943-005056a94f4a",
@@ -3883,7 +3773,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:20.000Z"
+      "modifiedAt": "2024-06-18T06:53:17.000Z"
     },
     {
       "uuid": "2148e580-c5fe-11e7-a943-005056a94f4a",
@@ -4209,7 +4099,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "2174fe90-c5fe-11e7-a943-005056a94f4a",
@@ -4919,7 +4809,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "21f88670-c5fe-11e7-a943-005056a94f4a",
@@ -5115,7 +5005,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "2275ccc0-c5fe-11e7-a943-005056a94f4a",
@@ -5241,7 +5131,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "229fc2f0-c5fe-11e7-a943-005056a94f4a",
@@ -5431,7 +5321,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "22d4b5a0-c5fe-11e7-a943-005056a94f4a",
@@ -5548,7 +5438,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "22e900f0-c5fe-11e7-a943-005056a94f4a",
@@ -5735,7 +5625,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "230a92b0-c5fe-11e7-a943-005056a94f4a",
@@ -5743,7 +5633,7 @@
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352206/storage/MzU0ODI5LzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352206/storage/ODA4ODYxLzAvbWFzdGVy",
         "businessfield": [
           "kommunikation"
         ],
@@ -5775,9 +5665,9 @@
         "basename": "2074",
         "ext": ".svg",
         "size": {
-          "width": 32,
+          "width": 0,
           "dpi": 72,
-          "height": 32
+          "height": 0
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
@@ -6157,7 +6047,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "233dfec0-c5fe-11e7-a943-005056a94f4a",
@@ -6225,7 +6115,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "234c56a0-c5fe-11e7-a943-005056a94f4a",
@@ -6593,7 +6483,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:46:47.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "238df380-c5fe-11e7-a943-005056a94f4a",
@@ -6716,20 +6606,7 @@
         ],
         "keywords": [
           "HDMI/DP",
-          "Zusatzleistungen",
-          "Prestations complémentaires",
-          "Prestazioni complementari",
-          "Value-added services",
-          "Anschluss",
-          "connection",
-          "Correspondance",
-          "Collegamento",
-          "câble",
-          "cavo",
-          "rope",
           "Kabel",
-          "raccordement",
-          "collegamento",
           "Cable",
           "Cavo",
           "Câble",
@@ -7069,14 +6946,6 @@
           "question mark",
           "Punto di domanda",
           "Point d’interrogation",
-          "Question mark",
-          "Punto interrogativo",
-          "Help/FAQs (2 px line thickness)",
-          "Aide/FAQ (épaisseur de ligne de 2 px)",
-          "Hilfe/FAQ (2 px Liniendicke)",
-          "Guida/Domande frequenti (spessore linea 2 px)",
-          "punto interrogativo",
-          "point d'interrogation",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -7097,15 +6966,7 @@
           "ET",
           "P",
           "H",
-          "F",
-          "L",
-          "O",
-          "W",
-          "M",
-          "N",
-          "S",
-          "G",
-          "I"
+          "F"
         ],
         "year": [
           "2017"
@@ -7214,7 +7075,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-06-19T11:09:00.000Z"
     },
     {
       "uuid": "23e33f70-c5fe-11e7-a943-005056a94f4a",
@@ -7419,7 +7280,7 @@
         }
       },
       "createdAt": "2020-12-03T07:32:29.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "019c9700-3e52-11e8-b180-005056a94f4a",
@@ -7862,7 +7723,7 @@
         }
       },
       "createdAt": "2018-07-23T15:38:19.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "fc40daf0-bcc8-11e8-b043-005056873709",
@@ -7909,7 +7770,7 @@
         }
       },
       "createdAt": "2018-09-20T11:33:24.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "8203ce50-d087-11e8-b043-005056873709",
@@ -8022,7 +7883,7 @@
         }
       },
       "createdAt": "2018-10-22T13:11:44.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "4100da90-d5fc-11e8-b043-005056873709",
@@ -8173,7 +8034,7 @@
         }
       },
       "createdAt": "2020-03-24T12:06:35.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "89d9f1b2-6dc8-11ea-9425-005056873709",
@@ -8385,7 +8246,7 @@
         }
       },
       "createdAt": "2020-03-24T12:41:49.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "b277cb62-6dcd-11ea-9425-005056873709",
@@ -8805,7 +8666,7 @@
         }
       },
       "createdAt": "2020-07-08T09:11:15.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-06-18T06:53:17.000Z"
     },
     {
       "uuid": "c7352da0-5a74-11ec-a5b2-005056873709",
@@ -9009,7 +8870,7 @@
         }
       },
       "createdAt": "2020-11-18T14:03:48.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "dc40ac90-2a48-11eb-a8df-005056873709",
@@ -9047,7 +8908,7 @@
         }
       },
       "createdAt": "2020-11-19T09:23:18.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "e1420cb0-2a4e-11eb-a8df-005056873709",
@@ -9334,7 +9195,7 @@
         }
       },
       "createdAt": "2020-11-26T09:35:25.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "9a757e70-2fcb-11eb-a8df-005056873709",
@@ -9365,7 +9226,7 @@
         }
       },
       "createdAt": "2020-11-26T09:41:48.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "4e693080-2d8c-11eb-a8df-005056873709",
@@ -9516,7 +9377,7 @@
         }
       },
       "createdAt": "2020-11-26T11:42:05.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "f852ac10-2fd1-11eb-a8df-005056873709",
@@ -9787,7 +9648,7 @@
         }
       },
       "createdAt": "2020-11-26T11:22:25.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "acc631c0-2fdd-11eb-a8df-005056873709",
@@ -9905,7 +9766,7 @@
         }
       },
       "createdAt": "2020-11-26T12:15:02.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "a702fcb0-2fe1-11eb-a8df-005056873709",
@@ -9990,7 +9851,7 @@
         }
       },
       "createdAt": "2020-11-26T12:23:21.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "583e9470-2fe3-11eb-a8df-005056873709",
@@ -10103,7 +9964,7 @@
         }
       },
       "createdAt": "2020-11-26T12:39:59.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "3629fdf0-2fe5-11eb-a8df-005056873709",
@@ -10161,7 +10022,7 @@
         }
       },
       "createdAt": "2020-11-26T12:45:06.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "06dca880-2fe6-11eb-a8df-005056873709",
@@ -10323,7 +10184,7 @@
         }
       },
       "createdAt": "2020-11-26T13:02:37.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "55e82f10-2fe8-11eb-a8df-005056873709",
@@ -10467,7 +10328,7 @@
         }
       },
       "createdAt": "2020-12-01T07:29:08.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "202107d0-33a8-11eb-9f99-005056873709",
@@ -10586,7 +10447,7 @@
         }
       },
       "createdAt": "2020-12-01T07:23:17.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "bb94e160-33ac-11eb-9f99-005056873709",
@@ -10621,7 +10482,7 @@
         }
       },
       "createdAt": "2020-12-01T08:10:53.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "d9171720-33ad-11eb-9f99-005056873709",
@@ -10751,7 +10612,7 @@
         }
       },
       "createdAt": "2020-12-01T08:43:47.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "b8d58100-33b1-11eb-9f99-005056873709",
@@ -10796,7 +10657,7 @@
         }
       },
       "createdAt": "2020-12-01T08:46:36.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "3ffb4840-33b2-11eb-9f99-005056873709",
@@ -11062,7 +10923,7 @@
         }
       },
       "createdAt": "2020-12-01T07:56:19.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:14.000Z"
     },
     {
       "uuid": "c75c9610-33ab-11eb-9f99-005056873709",
@@ -11432,50 +11293,6 @@
       "modifiedAt": "2024-03-12T14:48:20.000Z"
     },
     {
-      "uuid": "88307300-5bef-11eb-9f99-005056873709",
-      "id": 539481,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "LAD",
-          "Leistung am Domizil",
-          "Prestazione a domicilio",
-          "Service at home",
-          "Prestation à domicile",
-          "Wegweiser",
-          "Sign",
-          "Segno",
-          "Signer",
-          "Sinnbild",
-          "Symbol",
-          "Simbolo",
-          "Symbole",
-          "Strassenschild",
-          "Road Sign",
-          "Segnale stradale",
-          "Panneau De Signalisation"
-        ],
-        "year": [
-          "2021"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:49:50.000Z",
-      "modifiedAt": "2024-03-12T14:48:21.000Z"
-    },
-    {
       "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
       "id": 539487,
       "type": "picture.pictogram.",
@@ -11520,6 +11337,50 @@
       },
       "createdAt": "2021-01-21T13:55:20.000Z",
       "modifiedAt": "2024-03-12T14:48:22.000Z"
+    },
+    {
+      "uuid": "88307300-5bef-11eb-9f99-005056873709",
+      "id": 539481,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "LAD",
+          "Leistung am Domizil",
+          "Prestazione a domicilio",
+          "Service at home",
+          "Prestation à domicile",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Strassenschild",
+          "Road Sign",
+          "Segnale stradale",
+          "Panneau De Signalisation"
+        ],
+        "year": [
+          "2021"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:49:50.000Z",
+      "modifiedAt": "2024-03-12T14:48:21.000Z"
     },
     {
       "uuid": "044e0500-5bf1-11eb-9f99-005056873709",
@@ -14241,12 +14102,6 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/608112/storage/NjA4MTE0LzAvbWFzdGVy",
         "keywords": [
-          "Patient/in",
-          "Patient",
-          "Paziente",
-          "Patient/patiente",
-          "Patientin",
-          "Patiente",
           "Wegweiser",
           "Sign",
           "Segno",
@@ -15686,9 +15541,6 @@
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/616987/storage/NjE2OTg5LzAvbWFzdGVy",
         "keywords": [
           "Express 24/7",
-          "Express 24h/24 et 7j/7",
-          "Express 24 ore al giorno",
-          "7 giorni alla settimana",
           "Expressed 24 hours a day",
           "Espresso 24 ore su 24",
           "Exprimé 24 heures sur 24",
@@ -15740,15 +15592,13 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/616992/storage/NjE2OTk0LzAvbWFzdGVy",
         "keywords": [
-          "24/7 Hotline",
-          "Hotline 24 ore su 24",
-          "Ligne d'assistance 24 heures sur 24",
-          "7 jours sur 7",
           "Hotline 24h/24 et 7j/7",
+          "24/7 Hotline",
           "Hotline 24/7",
           "Hotline 24 ore al giorno",
           "7 giorni alla settimana",
           "24-Hour Hotline",
+          "Hotline 24 ore su 24",
           "Hotline 24h/24",
           "24-Stunden-Hotline",
           "Sinnbild",
@@ -19534,7 +19384,7 @@
         }
       },
       "createdAt": "2022-06-02T13:05:27.000Z",
-      "modifiedAt": "2024-03-12T14:49:11.000Z"
+      "modifiedAt": "2024-06-18T06:53:17.000Z"
     },
     {
       "uuid": "5e272f00-e275-11ec-aa92-005056873709",
@@ -20962,7 +20812,7 @@
         }
       },
       "createdAt": "2022-07-18T11:21:20.000Z",
-      "modifiedAt": "2024-03-12T14:50:07.000Z"
+      "modifiedAt": "2024-06-19T11:09:17.000Z"
     },
     {
       "uuid": "2cefe220-068c-11ed-8f16-005056873709",
@@ -22860,7 +22710,11 @@
           "Anzahl",
           "Number",
           "Numero",
-          "Nombre"
+          "Nombre",
+          "Absatz",
+          "Paragraph",
+          "Vendite",
+          "Paragraphe"
         ],
         "year": [
           "2022"
@@ -22878,7 +22732,7 @@
         }
       },
       "createdAt": "2022-10-26T07:32:40.000Z",
-      "modifiedAt": "2024-03-12T14:50:06.000Z"
+      "modifiedAt": "2024-05-31T12:51:57.000Z"
     },
     {
       "uuid": "18919ee0-674e-11ed-8607-005056873709",
@@ -24129,13 +23983,6 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/669431/storage/NjY5NDMwLzAvbWFzdGVy",
         "keywords": [
-          "Station de charge",
-          "Stazione di ricarica",
-          "Charging station",
-          "Ladestation",
-          "Stazione di carica",
-          "Ladestation:",
-          "Station de recharge",
           "Schablone",
           "Stencil",
           "Pochoir",
@@ -24143,10 +23990,6 @@
           "Symbol",
           "Simbolo",
           "Symbole",
-          "Besteck",
-          "Cutlery",
-          "Posate",
-          "Couverts",
           "Gabel",
           "Fork",
           "Forchetta",
@@ -27296,7 +27139,7 @@
         }
       },
       "createdAt": "2024-01-12T06:30:57.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-06-18T06:53:17.000Z"
     },
     {
       "uuid": "21e07c80-bc36-11ee-90e8-005056873709",
@@ -27353,10 +27196,6 @@
           "Sortie",
           "Uscita",
           "exit",
-          "Weggang",
-          "Partenza",
-          "Départ",
-          "departure",
           "Firma verlassen",
           "Leave company",
           "Quitter l’entreprise",
@@ -27455,9 +27294,6 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/788284/storage/Nzg4MjgzLzAvbWFzdGVy",
         "keywords": [
-          "Kontakt",
-          "Contatto",
-          "Contact",
           "Fahrausweis",
           "Ticket",
           "Biglietto",
@@ -27496,11 +27332,6 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793346/storage/NzkzMzQzLzAvbWFzdGVy",
         "keywords": [
-          "microphone",
-          "Mikrophon",
-          "Microphone",
-          "Microfono",
-          "Mikrofon",
           "Schornstein",
           "Smoke Pipe",
           "Tubo Fumo",
@@ -27540,7 +27371,6 @@
           "Maschine",
           "Machine",
           "Macchina",
-          "aircraft",
           "Pumpe",
           "Pump",
           "Pompa",
@@ -27569,7 +27399,7 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793363/storage/NzkzMzYyLzAvbWFzdGVy",
         "keywords": [
-          "",
+          "Krypto",
           "Cryptocurrency",
           "Kryptowährung",
           "Cryptomonnaie",
@@ -27609,22 +27439,13 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793437/storage/NzkzNDM2LzAvbWFzdGVy",
         "keywords": [
-          "Mond",
-          "Luna",
-          "Lune",
-          "moon",
           "Nacht",
           "Night",
           "Notte",
           "Nuit",
-          "Wesen",
+          "Natur",
           "Nature",
           "Natura",
-          "Natur",
-          "nature",
-          "night",
-          "de nuit",
-          "notte",
           "Im Freien",
           "Outdoors",
           "All'aperto",
@@ -27632,7 +27453,10 @@
           "Astronomie",
           "Astronomy",
           "Astronomia",
-          "Moon"
+          "Mond",
+          "Moon",
+          "Luna",
+          "Lune"
         ]
       },
       "file": {
@@ -27657,10 +27481,6 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793441/storage/NzkzNDQwLzAvbWFzdGVy",
         "keywords": [
-          "Qualitätsmanagement",
-          "Quality management",
-          "Gestion de la qualité",
-          "Gestione della qualità",
           "E-Commerce",
           "E-commerce"
         ]
@@ -27687,14 +27507,6 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/793449/storage/NzkzNDQ4LzAvbWFzdGVy",
         "keywords": [
-          "Zeit",
-          "time",
-          "Orario",
-          "Heure",
-          "Working hours",
-          "Arbeitszeit",
-          "Temps de travail",
-          "Tempo di lavoro",
           "Maximum working week",
           "Höchstarbeitszeit Woche",
           "Durée maximale du travail par semaine",
@@ -27905,38 +27717,6 @@
       },
       "createdAt": "2024-05-07T05:02:07.000Z",
       "modifiedAt": "2024-05-07T05:08:34.000Z"
-    },
-    {
-      "uuid": "c7dc7760-0c31-11ef-93cb-005056873709",
-      "id": 803519,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/803519/storage/ODAzNTE4LzAvbWFzdGVy",
-        "keywords": [
-          "Anhänger",
-          "Trailer",
-          "Rimorchio",
-          "Remorque",
-          "Trailer three-wheeler",
-          "Anhänger Dreirad",
-          "Remorque tricycle",
-          "Rimorchio a tre ruote"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2588.svg",
-        "basename": "2588",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2024-05-07T05:22:21.000Z",
-      "modifiedAt": "2024-05-07T05:24:39.000Z"
     },
     {
       "uuid": "c907f2e0-18c5-11ef-93cb-005056873709",
@@ -29286,20 +29066,10 @@
           "question mark",
           "Punto di domanda",
           "Point d’interrogation",
-          "Assistenza/Domande frequenti",
-          "Berater/FAQ",
-          "Question mark",
-          "Punto interrogativo",
-          "Help/FAQs",
-          "Guida/Domande frequenti",
-          "punto interrogativo",
-          "point d'interrogation",
           "Elektronik",
           "Electronics",
           "Elettronica",
           "Électronique",
-          "Hardware",
-          "Matériel",
           "Schornstein",
           "Smoke Pipe",
           "Tubo Fumo",
@@ -29317,15 +29087,7 @@
           "ET",
           "P",
           "H",
-          "F",
-          "L",
-          "O",
-          "W",
-          "M",
-          "N",
-          "S",
-          "G",
-          "I"
+          "F"
         ],
         "year": [
           "2017"
@@ -29565,10 +29327,6 @@
           "rollstuhlgängig",
           "accessible en fauteuil roulant",
           "accessibile su sedia a rotelle",
-          "person with disability",
-          "Mensch mit Behinderung",
-          "persona con disabilità",
-          "personne handicapée",
           "Person mit Behinderung",
           "Person with disability",
           "Persona con disabilità",
@@ -29872,10 +29630,6 @@
           "Accessibility",
           "Accessibilité",
           "Accessibilità",
-          "person with disability",
-          "Mensch mit Behinderung",
-          "persona con disabilità",
-          "personne handicapée",
           "Person mit Behinderung",
           "Person with disability",
           "Persona con disabilità",
@@ -29917,10 +29671,6 @@
           "Accessibility",
           "Accessibilité",
           "Accessibilità",
-          "person with disability",
-          "Mensch mit Behinderung",
-          "persona con disabilità",
-          "personne handicapée",
           "Person mit Behinderung",
           "Person with disability",
           "Persona con disabilità",
@@ -29959,10 +29709,6 @@
           "WC uomo/donna",
           "WC hommes/femmes",
           "Gents’/women’s toilet",
-          "Mensch",
-          "human",
-          "Persona",
-          "Homme",
           "Menschen",
           "Humans",
           "Persone",
@@ -29970,6 +29716,7 @@
           "Mann",
           "Man",
           "Uomo",
+          "Homme",
           "männlich",
           "Male",
           "Maschio",
@@ -29982,44 +29729,17 @@
           "Female",
           "Femmina",
           "Féminin",
+          "Person",
+          "Persona",
+          "Personne",
           "Personen",
           "People",
-          "Toilette",
-          "toilet",
-          "Toilettes",
-          "Person",
-          "Personne",
-          "WC men/women",
-          "homme",
-          "uomo",
-          "man",
-          "hommes",
-          "uomini",
-          "men",
-          "femme",
-          "donna",
-          "woman",
-          "personnes",
-          "persons",
-          "persone",
-          "toilettes",
-          "Toiletten",
-          "bagno",
-          "personne",
-          "person",
-          "persona",
-          "Gents’/Ladies’ toilet",
-          "Toilettes pour hommes/femmes",
-          "Wc per uomini/donne",
-          "umano",
-          "humain",
-          "humans",
-          "humains",
-          "On",
           "Gente",
           "individus",
+          "Toilette",
           "Toilet",
           "Servizi igienici",
+          "Toilettes",
           "Wegweiser",
           "Sign",
           "Segno",
@@ -30179,10 +29899,6 @@
           "Invalide",
           "Invalid",
           "Non valido",
-          "person with disability",
-          "Mensch mit Behinderung",
-          "persona con disabilità",
-          "personne handicapée",
           "Toilette",
           "Toilet",
           "Servizi igienici",
@@ -31165,34 +30881,14 @@
           "Lettera",
           "Lettre",
           "Waage",
-          "wiegen",
-          "Pesatura",
-          "weigh",
-          "peser",
-          "Bilancia per lettere/pacchi",
-          "Poidi",
-          "colis",
-          "pacco",
-          "parcel",
-          "lettera",
-          "lettre",
-          "letter",
           "balance",
           "equilibrio",
           "équilibrer",
           "Saldo",
+          "peser",
           "reader",
           "PESER",
           "Pescatore",
-          "Letter/Parcel scale",
-          "Letter / Parcel Treppe",
-          "weight",
-          "poids",
-          "peso",
-          "scales",
-          "bilancia",
-          "écailles",
-          "pesare",
           "Pforte",
           "Gate",
           "Cancello",
@@ -31205,8 +30901,6 @@
           "Electronics",
           "Elettronica",
           "Électronique",
-          "Hardware",
-          "Matériel",
           "kg"
         ],
         "year": [
@@ -32608,7 +32302,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:46.000Z"
+      "modifiedAt": "2024-06-19T11:09:00.000Z"
     },
     {
       "uuid": "739caeb0-c5ff-11e7-a943-005056a94f4a",
@@ -33084,7 +32778,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-06-18T06:53:17.000Z"
     },
     {
       "uuid": "73d990a0-c5ff-11e7-a943-005056a94f4a",
@@ -33271,35 +32965,23 @@
           "Warehousing/logistics",
           "Magazzino/logistica",
           "Stockage/logistique",
-          "Vehicle",
-          "Fahrzeug",
-          "Véhicule",
-          "Veicolo",
           "Stapelfahrer",
           "stacker driver",
           "Empileur",
           "Conducente carrello elevatore",
-          "Gabelstapler",
-          "Chariot à fourche",
-          "Elevatore a forca",
-          "forklift",
-          "Storage/logistics",
-          "Stoccaggio/logistica",
-          "véhicule",
-          "veicolo",
-          "vehicle",
           "manutentionnaire",
           "addetto alla manutenzione",
           "Handling",
           "handler",
-          "élévateur à fourche",
-          "elevatore a forca",
-          "Warehouse/logistics",
-          "Entrepôt/logistique",
+          "Fahrzeug",
+          "Vehicle",
+          "Veicolo",
+          "Véhicule",
           "forklift driver",
           "carrello elevatore",
           "conducteur de chariot élévateur",
           "Staplerfahrer",
+          "Gabelstapler",
           "Forklift",
           "Carrello elevatore",
           "Chariot élévateur",
@@ -33310,11 +32992,7 @@
           "Transportmittel",
           "Transportation",
           "Trasporti",
-          "Transport",
-          "Güterwagen",
-          "Chariot",
-          "Carro",
-          "Wagon"
+          "Transport"
         ]
       },
       "file": {
@@ -33365,7 +33043,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:47.000Z"
+      "modifiedAt": "2024-06-18T06:53:17.000Z"
     },
     {
       "uuid": "73ff4110-c5ff-11e7-a943-005056a94f4a",
@@ -35034,37 +34712,23 @@
           "kommunikation"
         ],
         "keywords": [
-          "Ein-Auszahlung",
-          "Inpayment",
-          "Versamento/prelievo",
-          "Versement/paiement",
-          "Geld",
-          "Argent",
-          "money",
-          "Denaro",
           "Cash flow",
           "Geldfluss",
           "Flusso di denaro",
           "Flux monétaire",
-          "Zahlung",
-          "Payment",
-          "Pagamento",
-          "Paiement",
           "Zahlen",
           "Chiffres",
           "Figures",
           "Cifre",
-          "bezahlen",
-          "pay",
-          "Payer",
-          "Pagare",
           "Finanzen",
           "Finance",
           "Finances",
           "Finanze",
+          "Versement/paiement",
           "Versamento/pagamento",
           "Ein-/Auszahlung",
           "Remittance/payment",
+          "Argent",
           "Soldi",
           "Silber",
           "Silver",
@@ -35072,23 +34736,6 @@
           "Finanzstrom",
           "financial flow",
           "flusso finanziario",
-          "Bezahlung",
-          "Pay",
-          "Bezahlen",
-          "finances",
-          "finanze",
-          "Deposit/withdrawal",
-          "Deposito/ritiro",
-          "Dépôt/retrait",
-          "Money",
-          "cash flow",
-          "flusso di cassa",
-          "flux de trésorerie",
-          "Auszahlung",
-          "pagare",
-          "payer",
-          "paying",
-          "payant",
           "Sinnbild",
           "Symbol",
           "Simbolo",
@@ -35512,29 +35159,10 @@
           "kommunikation"
         ],
         "keywords": [
-          "Speis & Trank",
-          "Food & drink",
-          "Cibo e bevande",
-          "Nourriture et boissons",
           "Restaurant",
           "Ristorante",
-          "Essen",
-          "food",
-          "Mangiare",
-          "Nourriture",
           "Café/restaurant",
-          "restauration",
-          "restauro",
-          "restoration",
           "Catering",
-          "Couverts",
-          "Gedeckt",
-          "Cutlery",
-          "Coperti",
-          "Essen & Trinken",
-          "Nourriture et boisson",
-          "Besteck",
-          "Posate",
           "Messer",
           "Knife",
           "Coltello",
@@ -36877,39 +36505,20 @@
           "kommunikation"
         ],
         "keywords": [
-          "Fragile Allgemeine Sicherheit/Verbote",
-          "Fragile general safety/bans",
-          "Fragile Sicurezza generale / divieti",
-          "Fragile Sécurité générale/Interdictions",
-          "Glas",
-          "jar",
-          "Vetro",
-          "Verre",
-          "Weinglas",
-          "Vetri",
-          "wine glass",
           "Geschirr",
           "tableware",
           "vaisselle",
           "stoviglie",
           "Fragile",
-          "sécurité générale/interdictions",
-          "general safety/prohibitions",
-          "Allgemeine Sicherheit/Verbote",
-          "sicurezza generale/divieti",
-          "verre à vin",
-          "bicchiere da vino",
-          "crockery",
+          "Verre",
+          "Fragile general safety/bans",
           "Sicurezza generale fragile/divieti",
           "Sécurité générale fragile/interdictions",
           "Fragile allgemeine Sicherheit/Verbote",
-          "Glass",
+          "Weinglas",
           "Wine Glass",
           "Vetro per vino",
           "Verre À Vin",
-          "dishes",
-          "piatti",
-          "assiettes",
           "Device",
           "Dispositivo",
           "Appareil"
@@ -36940,16 +36549,12 @@
           "kommunikation"
         ],
         "keywords": [
-          ">20 kg",
           "Allgemeine Sicherheit/Verbote",
           "General safety/prohibitions",
           "Sicurezza generale / divieti",
           "Sécurité générale / Interdictions",
-          "Mensch",
-          "human",
-          "Persona",
-          "Homme",
           "Person",
+          "Persona",
           "Personne",
           "Paket",
           "Parcel",
@@ -36959,30 +36564,10 @@
           "More than 20 kg",
           "Più di 20 kg",
           "Plus de 20 kg",
-          ">20 kg",
-          "sécurité générale/interdictions",
-          "general safety/prohibitions",
-          "sicurezza generale/divieti",
-          "homme",
-          "uomo",
-          "männlich",
-          "man",
-          "personne",
-          "person",
-          "persona",
-          "colis",
-          "pacco",
-          "parcel",
           "plus de 20 kg",
           "über 20 kg",
           "more than 20 kg",
           "più di 20 kg",
-          "general safety/bans",
-          "Sicurezza generale/divieti",
-          "umano",
-          "humain",
-          "superiore a 20 kg",
-          "plus de 20 kg",
           "Wegweiser",
           "Sign",
           "Segno",
@@ -39875,7 +39460,7 @@
         }
       },
       "createdAt": "2020-03-24T11:37:01.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-06-18T06:53:17.000Z"
     },
     {
       "uuid": "980ecb40-6dc6-11ea-9425-005056873709",
@@ -39925,7 +39510,7 @@
         }
       },
       "createdAt": "2020-03-24T11:57:11.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-06-18T06:53:17.000Z"
     },
     {
       "uuid": "7c0b5d10-d32d-11ea-a97c-005056873709",
@@ -40624,12 +40209,12 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "7102c9f0-c5ff-11e7-a943-005056a94f4a",
-      "id": 352297,
+      "uuid": "710fc240-c5ff-11e7-a943-005056a94f4a",
+      "id": 352298,
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352297/storage/NTM3MTIwLzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352298/storage/NTM3MTg5LzAvbWFzdGVy",
         "businessfield": [
           "kommunikation"
         ],
@@ -40642,8 +40227,8 @@
       },
       "file": {
         "mime": "image/svg+xml",
-        "name": "3056.svg",
-        "basename": "3056",
+        "name": "3057.svg",
+        "basename": "3057",
         "ext": ".svg",
         "size": {
           "width": 0,
@@ -40652,7 +40237,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-03-12T14:51:51.000Z"
     },
     {
       "uuid": "712a2810-c5ff-11e7-a943-005056a94f4a",
@@ -40675,6 +40260,37 @@
         "mime": "image/svg+xml",
         "name": "3061.svg",
         "basename": "3061",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-03-12T14:51:52.000Z"
+    },
+    {
+      "uuid": "7102c9f0-c5ff-11e7-a943-005056a94f4a",
+      "id": 352297,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352297/storage/NTM3MTIwLzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
+        "keywords": [
+          ""
+        ],
+        "year": [
+          "2017"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "3056.svg",
+        "basename": "3056",
         "ext": ".svg",
         "size": {
           "width": 0,
@@ -40717,12 +40333,12 @@
       "modifiedAt": "2024-03-12T14:51:51.000Z"
     },
     {
-      "uuid": "710fc240-c5ff-11e7-a943-005056a94f4a",
-      "id": 352298,
+      "uuid": "712015f0-c5ff-11e7-a943-005056a94f4a",
+      "id": 352300,
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352298/storage/NTM3MTg5LzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352300/storage/NTM3MTkzLzAvbWFzdGVy",
         "businessfield": [
           "kommunikation"
         ],
@@ -40735,8 +40351,8 @@
       },
       "file": {
         "mime": "image/svg+xml",
-        "name": "3057.svg",
-        "basename": "3057",
+        "name": "3059.svg",
+        "basename": "3059",
         "ext": ".svg",
         "size": {
           "width": 0,
@@ -40745,7 +40361,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-03-12T14:51:50.000Z"
     },
     {
       "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
@@ -40768,37 +40384,6 @@
         "mime": "image/svg+xml",
         "name": "3058.svg",
         "basename": "3058",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
-    },
-    {
-      "uuid": "712015f0-c5ff-11e7-a943-005056a94f4a",
-      "id": 352300,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352300/storage/NTM3MTkzLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3059.svg",
-        "basename": "3059",
         "ext": ".svg",
         "size": {
           "width": 0,
@@ -40894,7 +40479,7 @@
         }
       },
       "createdAt": "2020-11-26T12:15:02.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-05-27T10:38:13.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -40983,11 +40568,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2024-05-26T01:17:12.956Z",
+  "created": "2024-06-23T01:18:58.887Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 922
+    "success": 921
   },
   "version": "7.1.0"
 }

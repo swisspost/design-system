@@ -316,7 +316,7 @@ const timeoutStores: ITimeoutStores = {
 function onToggle(
   e: MouseEvent | null,
   args: Args,
-  updateArgs: Function,
+  updateArgs: (newArgs: Partial<Args>) => void,
   state: boolean | undefined,
 ) {
   if (e) e.preventDefault();
@@ -326,7 +326,7 @@ function onToggle(
 function createAutoHideTimeout(
   timeoutStore: ReturnType<typeof setTimeout>[],
   args: Args,
-  updateArgs: Function,
+  updateArgs: (newArgs: Partial<Args>) => void,
 ) {
   if (args.position === 'fixed' && args.autoClose > 0 && timeoutStore.length === 0) {
     timeoutStore.push(
@@ -432,7 +432,7 @@ function render(args: Args, context: StoryContext) {
   `;
 }
 
-function updateAlignments(args: Args, updateArgs: Function) {
+function updateAlignments(args: Args, updateArgs: (newArgs: Partial<Args>) => void) {
   if (args.alignH && args.alignHRestricted && args.alignH !== args.alignHRestricted) {
     args.alignV === 'center'
       ? updateArgs({ alignH: args.alignHRestricted })

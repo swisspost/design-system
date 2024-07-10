@@ -4,7 +4,8 @@ import { forEach } from '@/utils/react';
 import { round } from '@/utils/units';
 import scss from './typography.module.scss';
 
-const SCSS_VARIABLES = parse(scss);
+/* eslint-disable-next-line @typescript-eslint/no-explicit-any */
+const SCSS_VARIABLES: any = parse(scss);
 const baseFontSize = parseFloat(SCSS_VARIABLES.base.fontSize);
 
 export function FontFaceWrapper(props: { children: React.ReactElement[] | null }) {
@@ -57,25 +58,25 @@ export function FontSizesAndLineheights() {
           </tr>
         </thead>
         <tbody>
-          {forEach(SCSS_VARIABLES.fontSizes, (data: { key: string; value: any }) => (
-            <tr key={data.key}>
-              <th>font-size-{data.key}</th>
+          {forEach(SCSS_VARIABLES.fontSizes, ({ key, value }) => (
+            <tr key={key}>
+              <th>font-size-{key}</th>
               <td>
-                <code>font-size-{data.key}</code>
+                <code>font-size-{key}</code>
               </td>
               <td>
-                <code>$font-size-{data.key}</code>
+                <code>$font-size-{key}</code>
               </td>
               <td>
-                <span>{`${round(parseFloat(data.value) * baseFontSize, 4)}px`}</span>
+                <span>{`${round(parseFloat(value) * baseFontSize, 4)}px`}</span>
                 <br />
-                <span className="fs-tiny text-muted">{data.value}</span>
+                <span className="fs-tiny text-muted">{value}</span>
               </td>
               <td>
-                <span>1.{parseInt(data.key) >= 24 ? '2' : '5'}</span>
+                <span>1.{parseInt(key) >= 24 ? '2' : '5'}</span>
                 <br />
                 <span className="fs-tiny text-muted">
-                  {round(parseFloat(data.value) * (parseFloat(data.key) >= 24 ? 1.2 : 1.5), 4)}
+                  {round(parseFloat(value) * (parseFloat(key) >= 24 ? 1.2 : 1.5), 4)}
                   rem
                 </span>
               </td>
@@ -94,20 +95,20 @@ export function FontCurves() {
         <thead>
           <tr>
             <th>Name</th>
-            {forEach(SCSS_VARIABLES.fontCurves.tiny, (data: { key: string; value: any }) => (
-              <th key={data.key}>{data.key}</th>
+            {forEach(SCSS_VARIABLES.fontCurves.tiny, ({ key }) => (
+              <th key={key}>{key}</th>
             ))}
           </tr>
         </thead>
         <tbody>
-          {forEach(SCSS_VARIABLES.fontCurves, (data1: { key: string; value: any }) => (
-            <tr key={data1.key}>
-              <th>{data1.key}</th>
-              {forEach(data1.value, (data2: { key: string; value: any }) => (
-                <td key={data2.key}>
-                  <span>{round(parseFloat(data2.value) * baseFontSize, 4)}px</span>
+          {forEach(SCSS_VARIABLES.fontCurves, curve => (
+            <tr key={curve.key}>
+              <th>{curve.key}</th>
+              {forEach(curve.value, ({ key, value }) => (
+                <td key={key}>
+                  <span>{round(parseFloat(value) * baseFontSize, 4)}px</span>
                   <br />
-                  <span className="fs-tiny text-muted">{data2.value}</span>
+                  <span className="fs-tiny text-muted">{value}</span>
                 </td>
               ))}
             </tr>
@@ -133,7 +134,7 @@ export function Headings() {
             <td>
               <code>&lt;h1&gt;&lt;/h1&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p className="m-0 h1">h1 Heading</p>
             </td>
           </tr>
@@ -141,7 +142,7 @@ export function Headings() {
             <td>
               <code>&lt;h2&gt;&lt;/h2&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p className="m-0 h2">h2 Heading</p>
             </td>
           </tr>
@@ -149,7 +150,7 @@ export function Headings() {
             <td>
               <code>&lt;h3&gt;&lt;/h3&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p className="m-0 h3">h3 Heading</p>
             </td>
           </tr>
@@ -157,7 +158,7 @@ export function Headings() {
             <td>
               <code>&lt;h4&gt;&lt;/h4&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p className="m-0 h4">h4 Heading</p>
             </td>
           </tr>
@@ -165,7 +166,7 @@ export function Headings() {
             <td>
               <code>&lt;h5&gt;&lt;/h5&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p className="m-0 h5">h5 Heading</p>
             </td>
           </tr>
@@ -173,7 +174,7 @@ export function Headings() {
             <td>
               <code>&lt;h6&gt;&lt;/h6&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p className="m-0 h6">h6 Heading</p>
             </td>
           </tr>
@@ -198,7 +199,7 @@ export function Paragraphs() {
             <td>
               <code>&lt;p&gt;&lt;/p&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et justo accusam et duo dolores et ea rebum. Consetetur sadipscing
                 elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
@@ -215,7 +216,7 @@ export function Paragraphs() {
             <td>
               <code>&lt;p class="lead"&gt;&lt;/p&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p className="m-0 lead">
                 Lead sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
               </p>
@@ -242,7 +243,7 @@ export function Links() {
             <td>
               <code>&lt;a&gt;&lt;/a&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 <a href="#" onClick={e => e.preventDefault()}>
                   Link
@@ -260,7 +261,7 @@ export function Links() {
                 &lt;/p&gt;
               </code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et justo accusam et duo dolores et ea rebum. Consetetur sadipscing
                 elitr, sed diam nonumy eirmod tempor{' '}
@@ -292,7 +293,7 @@ export function Inlines() {
             <td>
               <code>&lt;small&gt;&lt;/small&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <small>accusam et justo duo</small> dolores et ea rebum.
               </p>
@@ -302,7 +303,7 @@ export function Inlines() {
             <td>
               <code>&lt;strong&gt;&lt;/strong&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <strong>accusam et justo duo</strong> dolores et ea rebum.
               </p>
@@ -312,7 +313,7 @@ export function Inlines() {
             <td>
               <code>&lt;em&gt;&lt;/em&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <em>accusam et justo duo</em> dolores et ea rebum.
               </p>
@@ -322,7 +323,7 @@ export function Inlines() {
             <td>
               <code>&lt;sub&gt;&lt;/sub&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <sub>accusam et justo duo</sub> dolores et ea rebum.
               </p>
@@ -332,7 +333,7 @@ export function Inlines() {
             <td>
               <code>&lt;sup&gt;&lt;/sup&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <sup>accusam et justo duo</sup> dolores et ea rebum.
               </p>
@@ -342,7 +343,7 @@ export function Inlines() {
             <td>
               <code>&lt;mark&gt;&lt;/mark&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <mark>accusam et justo duo</mark> dolores et ea rebum.
               </p>
@@ -352,7 +353,7 @@ export function Inlines() {
             <td>
               <code>&lt;abbr&gt;&lt;/abbr&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <abbr title="abbrevation"> accusam et justo duo</abbr> dolores et ea
                 rebum.
@@ -363,7 +364,7 @@ export function Inlines() {
             <td>
               <code>&lt;code&gt;&lt;/code&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <code>accusam et justo duo</code> dolores et ea rebum.
               </p>
@@ -373,7 +374,7 @@ export function Inlines() {
             <td>
               <code>&lt;kbd&gt;&lt;/kbd&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <kbd>accusam et justo duo</kbd> dolores et ea rebum.
               </p>
@@ -383,7 +384,7 @@ export function Inlines() {
             <td>
               <code>&lt;del&gt;&lt;/del&gt;</code>
             </td>
-            <td>
+            <td className="font-sans-serif">
               <p>
                 At vero eos et <del>accusam et justo duo</del> dolores et ea rebum.
               </p>

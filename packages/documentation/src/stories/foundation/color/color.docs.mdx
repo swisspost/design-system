@@ -27,8 +27,8 @@ They theme our elements and components.
 ## Brand colors
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.brand, function (data) {
-    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+  {forEach(SCSS_VARIABLES.brand, function ({ key, value}) {
+    return <ColorSwatch key={key} name={key} color={value} />;
   })}
 </section>
 
@@ -36,8 +36,8 @@ They theme our elements and components.
 These colors are also available via the **Sass map** `$post-grays`.
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.gray, function (data) {
-    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+  {forEach(SCSS_VARIABLES.gray, function ({ key, value}) {
+    return <ColorSwatch key={key} name={key} color={value} />;
   })}
 </section>
 
@@ -45,8 +45,8 @@ These colors are also available via the **Sass map** `$post-grays`.
 These colors are also available via the **Sass map** `$signal-colors`.
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.signal, function (data) {
-    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+  {forEach(SCSS_VARIABLES.signal, function ({ key, value}) {
+    return <ColorSwatch key={key} name={key} color={value} />;
   })}
 </section>
 
@@ -54,8 +54,8 @@ These colors are also available via the **Sass map** `$signal-colors`.
 These colors are also available via the **Sass map** `$signal-background-colors`.
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES['signal-background'], function (data) {
-    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+  {forEach(SCSS_VARIABLES['signal-background'], function ({ key, value}) {
+    return <ColorSwatch key={key} name={key} color={value} />;
   })}
 </section>
 
@@ -63,8 +63,8 @@ These colors are also available via the **Sass map** `$signal-background-colors`
 These colors are also available via the **Sass map** `$accent-colors`.
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.accent, function (data) {
-    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+  {forEach(SCSS_VARIABLES.accent, function ({ key, value}) {
+    return <ColorSwatch key={key} name={key} color={value} />;
   })}
 </section>
 
@@ -72,8 +72,8 @@ These colors are also available via the **Sass map** `$accent-colors`.
 These colors are also available via the **Sass map** `$post-black-alphas`.
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES['black-alpha'], function (data) {
-    return <ColorSwatch key={data.key} name={data.key} color={data.value} />;
+  {forEach(SCSS_VARIABLES['black-alpha'], function ({ key, value}) {
+    return <ColorSwatch key={key} name={key} color={value} />;
   })}
 </section>
 
@@ -81,16 +81,16 @@ These colors are also available via the **Sass map** `$post-black-alphas`.
 These colors are also available via the **Sass map** `$post-white-alphas`.
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES['white-alpha'], function (data) {
-    return <ColorSwatch key={data.key} name={data.key} color={data.value} dark />;
+  {forEach(SCSS_VARIABLES['white-alpha'], function ({ key, value}) {
+    return <ColorSwatch key={key} name={key} color={value} dark />;
   })}
 </section>
 
 ## Focus colors
 
 <section className="color-swatch__section">
-  {forEach(SCSS_VARIABLES.focus, function (data) {
-    return <ColorSwatch key={data.key} name={data.key} color={data.value} noCSS />;
+  {forEach(SCSS_VARIABLES.focus, function ({ key, value}) {
+    return <ColorSwatch key={key} name={key} color={value} noCSS />;
   })}
 </section>
 
