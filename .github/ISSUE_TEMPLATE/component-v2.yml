@@ -3,7 +3,6 @@ description: Add a working item for a component targeted at the new Design v2
 title: '[component]: '
 labels: ['📦 components']
 projects: ['swisspost/3']
-milestone: 'Design v2'
 assignees: []
 body:
   - type: textarea
