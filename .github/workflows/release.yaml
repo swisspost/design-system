@@ -330,7 +330,7 @@ jobs:
           echo "exists=$exists" >> $GITHUB_OUTPUT
 
       - name: Create Netlify Site (if it does not exist)
-        if: ${{ steps.netlify-site.outputs.exists == false }}
+        if: steps.netlify-sites.outputs.exists == 'false'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: netlify sites:create --filter @swisspost/design-system-documentation --account-slug oss-udwyths --name ${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }} --manual
