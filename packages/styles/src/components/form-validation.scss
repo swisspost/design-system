@@ -52,30 +52,6 @@
     }
   }
 
-  .form-control {
-    @include b.form-validation-state-selector($state) {
-      padding-right: b.$input-height-inner;
-      background-repeat: no-repeat;
-      background-position: right b.$input-height-inner-quarter center;
-      background-size: form-validation.$form-feedback-icon-size;
-
-      &.form-control-sm {
-        background-size: forms.$form-bg-size-sm;
-      }
-
-      &.form-control-lg {
-        background-size: forms.$form-bg-size;
-      }
-    }
-  }
-
-  textarea.form-control {
-    @include b.form-validation-state-selector($state) {
-      padding-right: b.$input-height-inner;
-      background-position: top b.$input-height-inner-quarter right b.$input-height-inner-quarter;
-    }
-  }
-
   .input-group {
     > .form-control:not(:focus),
     > .form-select:not(:focus),
@@ -125,35 +101,22 @@
       padding: form-validation.$form-feedback-padding-y-sm form-validation.$form-feedback-padding-x;
     }
   }
-
-  &.is-invalid,
-  &.is-valid {
-    padding-right: spacing.$size-small-huge; // For deprecated form-control-rg
-    background-repeat: no-repeat;
-    background-size: forms.$form-bg-size; // Duplicated rule in form-select for arrow size.
-    background-position: right b.$input-height-inner-quarter center;
-
-    &.form-select-sm,
-    &.form-control-sm {
-      padding-right: spacing.$size-bigger-big; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
-      background-size: forms.$form-bg-size-sm; // Add space between background icons (ours and the one from bootstrap). Duplicated rule in form-select for arrow size.
-    }
-
-    &.form-select-lg,
-    &.form-control-lg {
-      padding-right: spacing.$size-small-huge; // Included in bootstrap and prevent native icon (e.g. with input[type=date]) to stack over success icon
-      background-size: forms.$form-bg-size; // Add space between background icons (ours and the one from bootstrap). Duplicated rule in form-select for arrow size.
-    }
-  }
 }
 
 textarea.form-control {
   &.is-valid {
+    padding-right: b.$input-height-inner;
     background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
-    background-position: right spacing.$size-micro top spacing.$size-mini;
+    background-position: right spacing.$size-regular top spacing.$size-mini;
+    background-repeat: no-repeat;
+    background-size: form-validation.$form-feedback-icon-size;
 
     &.form-control-sm {
-      background-position: right spacing.$size-micro top spacing.$size-mini;
+      background-size: forms.$form-bg-size-sm;
+    }
+
+    &.form-control-lg {
+      background-size: forms.$form-bg-size;
     }
 
     @include utilities-mx.high-contrast-mode() {
