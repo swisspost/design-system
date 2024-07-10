@@ -1,6 +1,6 @@
 ###
 #
-# Release the demo app whenever it's package json changes on the main branch
+# DEPRECATED: This Action can be removed as soon as we start working on V2/V9
 #
 ###
 
@@ -33,7 +33,7 @@ jobs:
 
       - name: Setup
         if: steps.check.outputs.changed == 'true'
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: ./.github/actions/setup-pnpm
 
       # Install changesets locally
       - name: Install demo app & dependencies
