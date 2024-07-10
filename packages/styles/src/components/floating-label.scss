@@ -112,7 +112,7 @@
       ~ label {
         font-size: forms.$form-floating-label-font-size-placeholder-sm;
         padding-top: forms.$form-floating-label-padding-t-sm;
-        padding-inline: calc(#{forms.$form-floating-padding-x-sm} - #{forms.$input-border-width});
+        padding-inline: forms.$form-floating-padding-x-sm;
       }
 
       &:focus,
