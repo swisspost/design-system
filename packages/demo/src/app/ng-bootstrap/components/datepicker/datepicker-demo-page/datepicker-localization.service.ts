@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { formatDate, TranslationWidth } from '@angular/common';
+import { formatDate } from '@angular/common';
 import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 const I18N_VALUES = {
