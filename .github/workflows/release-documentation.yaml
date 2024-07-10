@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+      - release/v*
     paths:
       - 'packages/documentation/package.json'
 
@@ -47,7 +48,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
 
       - name: Install documentation & dependencies
@@ -56,10 +57,10 @@ jobs:
       - name: Build documentation & dependencies
         run: pnpm --filter "design-system-documentation..." build
 
-      - name: Install netlify cli
-        run: pnpm -g i netlify-cli@17
+      - name: Setup
+        uses: ./.github/actions/setup-netlify-cli
 
-      - name: Get Netlify config
+      - name: Get Netlify Config
         id: netlify-config
         uses: actions/github-script@v7
         with:

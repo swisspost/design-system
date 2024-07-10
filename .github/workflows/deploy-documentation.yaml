@@ -13,11 +13,11 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup
+      - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
 
-      - name: Install netlify-cli
-        run: pnpm i -g netlify-cli@17
+      - name: Setup netlify-cli
+        uses: ./.github/actions/setup-netlify-cli
 
       - name: Download build artifacts
         uses: ./.github/actions/artifact-download

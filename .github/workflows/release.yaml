@@ -10,7 +10,7 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
   changeset-magic:
-    name: Changeset Magic
+    name: Set up Changeset PR or Release Packages
     runs-on: ubuntu-latest
     steps:
       # Checkout the Branch which was pushed ('main' or 'release/v*')
@@ -29,10 +29,10 @@ jobs:
         run: pnpm -r publish --dry-run
 
       # The changeset action will behave differently based on whether there are
-      # new changesets on the configured branch:
+      # new changesets on the github.ref branch:
       #
       #  - new changesets: create a preview PR with the new version bumps and changelogs
-      #  - no new changesets (the preview PR got merged into current branch): publish packages
+      #  - no new changesets (the preview PR got merged into github.ref branch): publish packages
       - name: Changeset Magic
         id: changesets
         uses: changesets/action@v1
@@ -306,7 +306,7 @@ jobs:
       - name: Remove Documentation versions.json
         run: rm -f ./packages/documentation/public/assets/versions.json
 
-      - name: Setup Node & pnpm
+      - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
 
       - name: Install documentation & dependencies
@@ -315,9 +315,8 @@ jobs:
       - name: Build documentation & dependencies
         run: pnpm --filter "design-system-documentation..." build
 
-      # Install Netlify CLI globally
-      - name: Install Netlify CLI
-        run: pnpm i -g netlify-cli@17
+      - name: Setup netlify-cli
+        uses: ./.github/actions/setup-netlify-cli
 
       - name: Check if a Netlify Site with given siteUrl already exists
         id: netlify-sites
