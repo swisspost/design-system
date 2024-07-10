@@ -5,8 +5,7 @@ export function getElementInRootNode(
   const root = elementHost.getRootNode();
 
   if (root instanceof Document || root instanceof ShadowRoot) {
-    const ref = root.getElementById(elementId);
-    if (ref) return ref;
+    return root.getElementById(elementId);
   }
 
   return null;
