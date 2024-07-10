@@ -1,8 +1,6 @@
 ###
 #
-# This action needs a proper node and pnpm setup before!
-#
-# https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions
+# DEPRECATED: This Action can be removed, as soon as we remove deploy-demo.yaml
 #
 ###
 

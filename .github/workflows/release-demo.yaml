@@ -1,6 +1,6 @@
 ###
 #
-# Release the demo app whenever it's package json changes on the main branch
+# DEPRECATED: This Action can be removed as soon as we start working on V2/V9
 #
 ###
 

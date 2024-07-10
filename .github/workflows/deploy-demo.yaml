@@ -1,8 +1,6 @@
 ###
 #
-# Deploys a pre-built demo app to netlify
-#
-# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+# DEPRECATED: This Action can be removed as soon as we start working on V2/V9
 #
 ###
 
