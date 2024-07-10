@@ -1,0 +1,49 @@
+@use '@swisspost/design-system-styles/core' as post;
+
+#storybook-docs {
+  .sbdocs-preview {
+    border-color: post.$border-color;
+    border-radius: post.$size-mini;
+    box-shadow: none;
+  }
+
+  .docblock-argstable {
+    border-radius: post.$size-mini;
+
+    tbody {
+      position: relative;
+      -webkit-filter: none;
+      filter: none;
+
+      &:before {
+        display: block;
+        content: '';
+        position: absolute;
+        inset: 0;
+        border: post.$border-width solid post.$border-color;
+        border-radius: post.$size-mini;
+        z-index: -1;
+      }
+
+      > tr {
+        > th,
+        > td {
+          background-color: transparent;
+          border: 0 none;
+        }
+
+        &:not(:first-child) {
+          > th,
+          > td {
+            border-top: post.$border-width solid post.$border-color;
+          }
+        }
+      }
+    }
+  }
+
+  .docblock-source {
+    border-radius: post.$size-mini;
+    box-shadow: none;
+  }
+}

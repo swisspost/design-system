@@ -1,0 +1,15 @@
+###
+#
+# NOTE: We've created this action to ensure, we are using the same Netlify-CLI version everywhere
+#
+###
+
+name: Setup Netlify CLI
+description: Provides node and pnpm in a specific version.
+
+runs:
+  using: composite
+  steps:
+    - name: Install netlify-cli
+      shell: bash
+      run: pnpm i -g netlify-cli@17
