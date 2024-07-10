@@ -14,11 +14,6 @@
 @use './../variables/components/forms';
 @use './../variables/spacing';
 
-$control-focus-offset: spacing.$size-line;
-$control-focus-outline-width: spacing.$size-line;
-
-$feedback-focus-offset: $control-focus-offset * 2 + $control-focus-outline-width;
-
 .invalid-feedback,
 .valid-feedback {
   display: none;
@@ -29,14 +24,6 @@ $feedback-focus-offset: $control-focus-offset * 2 + $control-focus-outline-width
 
   @include utilities-mx.high-contrast-mode() {
     padding-inline: 0;
-  }
-
-  .form-control:is(:focus-visible, .pretend-focus) ~ &,
-  .form-select:is(:focus-visible, .pretend-focus) ~ & {
-    margin-top: $feedback-focus-offset;
-    padding-block: calc(
-      #{form-validation.$form-feedback-padding-y} - #{$feedback-focus-offset * 0.5}
-    );
   }
 }
 
