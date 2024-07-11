@@ -13,10 +13,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: TEST
-        run: |
-          echo ${{ github.event.workflow_run }}
-
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
 
@@ -36,7 +32,10 @@ jobs:
         with:
           script: |
             const fs = require('fs')
-            return JSON.parse(fs.readFileSync('./packages/documentation/netlify.config.json', 'utf8'))
+            return JSON.parse(fs.readFileSync('./${{ steps.build.outputs.folder }}/netlify.config.json', 'utf8'))
+
+      - name: Remove netlify.config.json from artifact
+        run: rm ${{ steps.build.outputs.folder }}/netlify.config.json
 
       - name: Deploy Documentation Preview
         id: deploy
