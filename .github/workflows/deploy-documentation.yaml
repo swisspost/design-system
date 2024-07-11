@@ -13,6 +13,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: TEST
+        run: |
+          echo ${{ github.event.workflow_run }}
+
       - name: Setup pnpm & node
         uses: ./.github/actions/setup-pnpm
 
