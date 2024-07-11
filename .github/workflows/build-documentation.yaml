@@ -13,13 +13,14 @@
 name: Build Documentation
 on:
   pull_request:
+    types: [opened, synchronize, edited, reopened]
     paths:
       - 'packages/**'
 
 jobs:
   build:
+    name: Build Documentation
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
