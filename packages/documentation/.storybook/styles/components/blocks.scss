@@ -38,6 +38,43 @@
             border-top: post.$border-width solid post.$border-color;
           }
         }
+
+        // category headers
+        &[title] {
+          > td {
+            background-clip: padding-box !important;
+
+            &:first-child {
+              border-inline-start: post.$size-line solid transparent;
+            }
+
+            &:last-child {
+              border-inline-end: post.$size-line solid transparent;
+            }
+          }
+
+          &:first-child > td {
+            border-block-start: post.$size-hair solid transparent;
+
+            &:first-child {
+              border-start-start-radius: post.$size-mini;
+            }
+
+            &:last-child {
+              border-start-end-radius: post.$size-mini;
+            }
+          }
+
+          &:last-child > td {
+            &:first-child {
+              border-end-start-radius: post.$size-mini;
+            }
+
+            &:last-child {
+              border-end-end-radius: post.$size-mini;
+            }
+          }
+        }
       }
     }
   }
