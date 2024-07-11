@@ -1,19 +1,13 @@
 ###
 #
-# Build the demo app and all dependencies
-#
-# This workflow does not have secrets access
-# when run from a fork. Artifacts are uploaded
-# and used in a subsequent workflow with more
-# privileges which does not run unsafe commands.
-#
-# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+# DEPRECATED: This Action can be removed as soon as we start working on V2/V9
 #
 ###
 
 name: Build Demo App
 on:
   pull_request:
+    types: [opened, synchronize, edited, reopened]
     paths:
       - 'packages/intranet-header-workspace/**'
       - 'packages/demo/**'
@@ -28,6 +22,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
+      - name: Create preview message
+        uses: ./.github/actions/preview/message/create
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
       - name: Setup
         uses: ./.github/actions/setup-pnpm
