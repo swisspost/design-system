@@ -39,7 +39,7 @@ jobs:
       - name: Build documentation & dependencies
         run: pnpm --filter design-system-documentation... build
 
-      - name: Add netlify.config.json to artifact
+      - name: Add netlify.config.json to artifact folder
         run: cp packages/documentation/netlify.config.json packages/documentation/storybook-static/netlify.config.json
 
       - name: Upload documentation

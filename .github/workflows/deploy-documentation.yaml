@@ -34,7 +34,7 @@ jobs:
             const fs = require('fs')
             return JSON.parse(fs.readFileSync('./${{ steps.build.outputs.folder }}/netlify.config.json', 'utf8'))
 
-      - name: Remove netlify.config.json from artifact
+      - name: Remove netlify.config.json from artifact folder
         run: rm ${{ steps.build.outputs.folder }}/netlify.config.json
 
       - name: Deploy Documentation Preview
