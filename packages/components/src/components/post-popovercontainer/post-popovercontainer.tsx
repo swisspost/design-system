@@ -1,4 +1,4 @@
-import { Component, Element, Event, EventEmitter, h, Host, Method, Prop } from '@stencil/core';
+import { Component, Element, Event, EventEmitter, Host, Method, Prop, h } from '@stencil/core';
 import {
   arrow,
   autoUpdate,
@@ -39,11 +39,9 @@ export type PostPopoverElement = HTMLElement & PopoverElement;
 @Component({
   tag: 'post-popovercontainer',
   styleUrl: 'post-popovercontainer.scss',
-  shadow: true,
 })
 export class PostPopovercontainer {
   @Element() host: HTMLPostPopovercontainerElement;
-  private popoverRef: PostPopoverElement;
   private arrowRef: HTMLElement;
   private eventTarget: Element;
   private clearAutoUpdate: () => void;
@@ -67,16 +65,11 @@ export class PostPopovercontainer {
   @Prop() readonly arrow?: boolean = false;
 
   componentDidLoad() {
-    this.popoverRef.setAttribute('popover', '');
-    this.popoverRef.addEventListener('beforetoggle', this.handleToggle.bind(this));
+    this.host.setAttribute('popover', '');
+    this.host.addEventListener('beforetoggle', this.handleToggle.bind(this));
   }
 
   disconnectedCallback() {
-    if (this.popoverRef)
-      this.popoverRef.removeEventListener('beforetoggle', e =>
-        this.toggle(e.target as HTMLPostPopovercontainerElement),
-      );
-
     if (typeof this.clearAutoUpdate === 'function') this.clearAutoUpdate();
   }
 
@@ -89,7 +82,7 @@ export class PostPopovercontainer {
     if (!this.toggleTimeoutId) {
       this.eventTarget = target;
       this.calculatePosition();
-      this.popoverRef.showPopover();
+      this.host.showPopover();
     }
   }
 
@@ -100,7 +93,7 @@ export class PostPopovercontainer {
   async hide() {
     if (!this.toggleTimeoutId) {
       this.eventTarget = null;
-      this.popoverRef.hidePopover();
+      this.host.hidePopover();
     }
   }
 
@@ -115,10 +108,10 @@ export class PostPopovercontainer {
     if (!this.toggleTimeoutId) {
       this.eventTarget = target;
       this.calculatePosition();
-      this.popoverRef.togglePopover(force);
+      this.host.togglePopover(force);
       this.toggleTimeoutId = null;
     }
-    return this.popoverRef.matches(':popover-open');
+    return this.host.matches(':where(:popover-open, .popover-open');
   }
 
   /**
@@ -145,7 +138,7 @@ export class PostPopovercontainer {
   private startAutoupdates() {
     this.clearAutoUpdate = autoUpdate(
       this.eventTarget,
-      this.popoverRef,
+      this.host,
       this.calculatePosition.bind(this),
     );
   }
@@ -182,15 +175,15 @@ export class PostPopovercontainer {
       y,
       middlewareData,
       placement: currentPlacement,
-    } = await computePosition(this.eventTarget, this.popoverRef, {
+    } = await computePosition(this.eventTarget, this.host, {
       placement: this.placement || 'top',
       strategy: 'fixed',
       middleware,
     });
 
     // Tooltip
-    this.popoverRef.style.left = `${x}px`;
-    this.popoverRef.style.top = `${y}px`;
+    this.host.style.left = `${x}px`;
+    this.host.style.top = `${y}px`;
 
     // Arrow
     if (this.arrow) {
@@ -215,21 +208,15 @@ export class PostPopovercontainer {
   render() {
     return (
       <Host data-version={version}>
-        <div
-          class="popover"
-          part="popover"
-          ref={(el: HTMLDivElement & PostPopoverElement) => (this.popoverRef = el)}
-        >
-          {this.arrow && (
-            <span
-              class="arrow"
-              ref={el => {
-                this.arrowRef = el;
-              }}
-            ></span>
-          )}
-          <slot></slot>
-        </div>
+        {this.arrow && (
+          <span
+            class="arrow"
+            ref={el => {
+              this.arrowRef = el;
+            }}
+          ></span>
+        )}
+        <slot></slot>
       </Host>
     );
   }

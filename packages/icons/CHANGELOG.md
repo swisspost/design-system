@@ -1,5 +1,7 @@
 # @swisspost/design-system-icons
 
+## 7.2.1
+
 ## 7.2.0
 
 ### Minor Changes

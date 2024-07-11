@@ -18,7 +18,7 @@
   }
 }
 
-.popover {
+:where(post-popovercontainer) {
   @include elevation-mx.elevation('elevation-3');
 
   position: fixed;
@@ -36,36 +36,36 @@
 
   // Keeps the little arrow visible
   overflow: visible;
-}
 
-.arrow {
-  $arrow-size: 0.5825rem;
-  position: absolute;
-  width: $arrow-size;
-  height: $arrow-size;
-  background-color: inherit;
-  rotate: 45deg;
-  pointer-events: none;
-  z-index: -1;
+  .arrow {
+    $arrow-size: 0.5825rem;
+    position: absolute;
+    width: $arrow-size;
+    height: $arrow-size;
+    background-color: inherit;
+    rotate: 45deg;
+    pointer-events: none;
+    z-index: -1;
 
-  // Create transparent border to be styled by and for the high contrast mode
-  &.top {
-    border-left: 2px solid transparent;
-    border-top: 2px solid transparent;
-  }
+    // Create transparent border to be styled by and for the high contrast mode
+    &.top {
+      border-left: 2px solid transparent;
+      border-top: 2px solid transparent;
+    }
 
-  &.right {
-    border-right: 2px solid transparent;
-    border-top: 2px solid transparent;
-  }
+    &.right {
+      border-right: 2px solid transparent;
+      border-top: 2px solid transparent;
+    }
 
-  &.left {
-    border-left: 2px solid transparent;
-    border-bottom: 2px solid transparent;
-  }
+    &.left {
+      border-left: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+    }
 
-  &.bottom {
-    border-right: 2px solid transparent;
-    border-bottom: 2px solid transparent;
+    &.bottom {
+      border-right: 2px solid transparent;
+      border-bottom: 2px solid transparent;
+    }
   }
 }
