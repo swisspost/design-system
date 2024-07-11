@@ -1,0 +1,34 @@
+name: Build Tokens
+on:
+  pull_request:
+    types: [opened, synchronize, edited, reopened]
+    paths:
+      - 'packages/tokens'
+
+jobs:
+  build:
+    name: Build Tokens
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup
+        uses: ./.github/actions/setup-pnpm
+
+      - name: Install tokens & dependencies
+        run: pnpm --filter design-system-tokens... install
+
+      - name: Build tokens & dependencies
+        run: pnpm --filter design-system-tokens... build
+
+      - name: Create Summary
+        id: summary
+        uses: actions/github-script@v7
+        with:
+          script: |
+            return `# Build Tokens
+            `
+
+      - name: Output Summary
+        run: echo -e ${{ steps.summary.outputs.result }} >> $GITHUB_STEP_SUMMARY
