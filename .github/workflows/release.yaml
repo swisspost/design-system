@@ -418,15 +418,11 @@ jobs:
 
       - name: Remove Changeset Branch
         if: needs.collect-release-data.outputs.release-changeset-branch-exists == 'true'
-        run: |
-          git branch -m changeset-release/${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }} delete/v${{ fromJSON(needs.collect-release-data.outputs.release-data).old.major }}
-          git push origin --delete delete/v${{ fromJSON(needs.collect-release-data.outputs.release-data).old.major }}
+        run: git push origin --delete changeset-release/${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
 
       - name: Remove Release Branch
         if: needs.collect-release-data.outputs.release-branch-exists == 'true'
-        run: |
-          git branch -m ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }} delete/v${{ fromJSON(needs.collect-release-data.outputs.release-data).old.major }}
-          git push origin --delete delete/v${{ fromJSON(needs.collect-release-data.outputs.release-data).old.major }}
+        run: git push origin --delete ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
 
       - name: Create Summary
         id: summary
