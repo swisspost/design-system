@@ -96,7 +96,7 @@ select.form-control-rg:not([size]):not([multiple]) {
     border: forms.$input-disabled-border-style;
 
     ~ .form-text {
-      color: forms.$input-disabled-color;
+      color: var(--post-gray-60);
     }
 
     @include utilities.high-contrast-mode {
@@ -220,6 +220,6 @@ select.form-control-rg:not([size]):not([multiple]) {
   }
 
   &:has(+ .form-control[disabled], + .form-select[disabled]) {
-    color: forms.$input-disabled-color;
+    color: var(--post-gray-60);
   }
 }
