@@ -418,14 +418,19 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+          fetch-depth: 0
 
       - name: Remove Changeset Branch
         if: needs.collect-release-data.outputs.release-changeset-branch-exists == 'true'
-        run: git push origin --delete changeset-release/${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
+        run: |
+          git branch -m changeset-release/${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }} delete/changeset-release/v${{ fromJSON(needs.collect-release-data.outputs.release-data).old.major }}
+          git push origin --delete delete/changeset-release/v${{ fromJSON(needs.collect-release-data.outputs.release-data).old.major }}
 
       - name: Remove Release Branch
         if: needs.collect-release-data.outputs.release-branch-exists == 'true'
-        run: git push origin --delete ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
+        run: |
+          git branch -m ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }} delete/v${{ fromJSON(needs.collect-release-data.outputs.release-data).old.major }}
+          git push origin --delete delete/v${{ fromJSON(needs.collect-release-data.outputs.release-data).old.major }}
 
       - name: Create Summary
         id: summary
