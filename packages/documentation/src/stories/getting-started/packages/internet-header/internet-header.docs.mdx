@@ -21,9 +21,11 @@ import { SourceDarkMode } from '@/../.storybook/preview';
 The header for client-facing applications.
 
 <ul>
-  <li><a href="#configuration" target="_self">Configuration</a></li>
+  <li><a href="#preparation" target="_self">Preparation</a></li>
   <li><a href="#installation" target="_self">Installation</a></li>
-  <li><a href="#migration-from-the-old-header" target="_self">Migration Guide</a></li>
+  <li><a href="#css-variables" target="_self">CSS Variables</a></li>
+  <li><a href="#usage-with-angular" target="_self">Usage with Angular</a></li>
+  <li><a href="#migration-from-the-old-header" target="_self">Migration from the old header</a></li>
 </ul>
 
 ## Preparation
@@ -96,6 +98,22 @@ Available CDNs:
   <PostTabHeader slot="tabs" panel="bareComponent">Bare Component</PostTabHeader>
   <PostTabPanel name="bareComponent">
     <Source code={SampleCDNBareComponent} dark={SourceDarkMode} language="html" />
+  </PostTabPanel>
+</PostTabs>
+
+## CSS Variables
+
+The internet header package provides a stylesheet aimed at facilitating the use of key CSS variables beyond the header itself.
+This stylesheet allows you to access CSS variables to implement styling relative to the header as needed, but it is completely optional.
+
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="sass-import">Sass Import</PostTabHeader>
+  <PostTabPanel name="sass-import">
+    <Source code={`@use "@swisspost/internet-header/dist/siwsspost-internet-header/siwsspost-internet-header.css";`} dark={SourceDarkMode} language="scss" />
+  </PostTabPanel>
+  <PostTabHeader slot="tabs" panel="html-import">HTML Import</PostTabHeader>
+  <PostTabPanel name="html-import">
+    <Source code={`<link rel="stylesheet" href="@swisspost/internet-header/dist/siwsspost-internet-header/siwsspost-internet-header.css"/>`} dark={SourceDarkMode} language="html" />
   </PostTabPanel>
 </PostTabs>
 
