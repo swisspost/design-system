@@ -57,7 +57,7 @@ jobs:
       - name: Build documentation & dependencies
         run: pnpm --filter "design-system-documentation..." build
 
-      - name: Setup
+      - name: Setup netlify-cli
         uses: ./.github/actions/setup-netlify-cli
 
       - name: Get Netlify Config
