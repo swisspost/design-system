@@ -3,6 +3,8 @@
 @use '@swisspost/design-system-styles/intranet.scss';
 @use '@swisspost/design-system-styles/core.scss' as post;
 @use '@swisspost/design-system-styles/mixins/utilities';
+@use '@swisspost/internet-header/dist/swisspost-internet-header/swisspost-internet-header.css';
+@use './components';
 
 #storybook-root,
 #storybook-docs {
@@ -78,7 +80,7 @@
     // Style buttons related to the current page next to the tile
     .docs-title,
     .docs-title nav {
-      display:flex;
+      display: flex;
       flex-wrap: wrap;
       align-items: center;
       gap: post.$size-mini;
@@ -87,7 +89,7 @@
       margin-bottom: post.$size-mini;
 
       :first-child {
-        margin-right:auto;
+        margin-right: auto;
       }
     }
   }
@@ -155,57 +157,6 @@
     td {
       &:nth-child(4) {
         display: none;
-      }
-    }
-  }
-
-  .alert {
-    &.alert-sm,
-    &.alert-md {
-      display: block;
-      min-height: 0;
-      font-family: inherit;
-
-      a {
-        opacity: 0.75;
-        font-size: inherit;
-        font-weight: inherit;
-        color: inherit;
-
-        &:hover {
-          opacity: 1;
-        }
-      }
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-    }
-
-    &.alert-sm {
-      padding: 0.25em 1em 0.25em 3em;
-      font-size: 0.9em;
-      font-weight: 400;
-
-      &::before {
-        height: 1.5em;
-        width: 1.5em;
-        left: 0.75em;
-        top: 50%;
-        transform: translateY(-50%);
-      }
-    }
-
-    &.alert-md {
-      padding: 1em 2em 1em 4em;
-      font-size: inherit;
-
-      &::before {
-        height: 2em;
-        width: 2em;
-        left: 1em;
-        top: 50%;
-        transform: translateY(-50%);
       }
     }
   }
