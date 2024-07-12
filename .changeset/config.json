@@ -2,13 +2,15 @@
   "$schema": "https://unpkg.com/@changesets/config@1.7.0/schema.json",
   "changelog": [
     "../packages/changelog-github/dist/index.js",
-    { "repo": "swisspost/design-system" }
+    {
+      "repo": "swisspost/design-system"
+    }
   ],
   "commit": false,
   "fixed": [],
   "linked": [],
   "access": "restricted",
-  "baseBranch": "main",
+  "baseBranch": "release/v6",
   "updateInternalDependencies": "patch",
   "ignore": []
 }
