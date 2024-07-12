@@ -1,17 +1,6 @@
 ###
 #
-# This action needs a proper node and pnpm setup before!
-#
-# If you need to do some changes in a local-action used in this
-# workflow, make sure you change the action-flag to your working
-# branch-name to get the latest action functionality.
-#
-# Example: swisspost/design-system/.github/actions/setup-pnpm@my-working-branch-name
-#
-# Don't forget to change the action-flag back to 'main',
-# once you have finished your work on the local-action!
-#
-# https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions
+# DEPRECATED: This Action can be removed, as soon as we remove deploy-demo.yaml
 #
 ###
 
@@ -21,12 +10,6 @@ description: Deploys dist folder to Netlify. Make sure you set up node and pnpm 
 inputs:
   id:
     description: The build id
-    required: true
-  comment_token:
-    description: The access_token to use for commenting.
-    required: true
-  comment_author:
-    description: The authors name to use for commenting.
     required: true
   netlify_auth_token:
     description: Netlify personal-access-token for use in shell scripts and API access.
@@ -43,77 +26,26 @@ inputs:
     description: The package that will be deployed
     required: true
 
+outputs:
+  preview-url:
+    description: The deployed preview url.
+    value: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}
+
 runs:
   using: composite
   steps:
-    - name: Find Preview Comment
-      uses: peter-evans/find-comment@v2
-      id: preview_comment
-      with:
-        token: ${{ inputs.comment_token }}
-        issue-number: ${{ inputs.id }}
-        comment-author: ${{ inputs.comment_author }}
-        body-includes: Preview environment ready
-
-    - name: Create Initial Preview Comment
-      uses: peter-evans/create-or-update-comment@v3
-      if: ${{ steps.preview_comment.outputs.comment-id == 0 }}
-      with:
-        token: ${{ inputs.comment_token }}
-        issue-number: ${{ inputs.id }}
-        edit-mode: replace
-        body: Preview environments are getting posted here, as soon as they are ready!
-        reactions: eyes
-
-    - name: Find Initial Preview Comment
-      uses: peter-evans/find-comment@v2
-      id: initial_preview_comment
-      with:
-        token: ${{ inputs.comment_token }}
-        issue-number: ${{ inputs.id }}
-        comment-author: ${{ inputs.comment_author }}
-        body-includes: Preview environments are getting posted here, as soon as they are ready!
-
     - name: Install netlify-cli
       shell: bash
-      run: pnpm i -g netlify-cli@16
+      run: pnpm i -g netlify-cli@17
 
     - name: Deploy preview environment to netlify
       id: netlify_deploy
       shell: bash
       env:
         NETLIFY_AUTH_TOKEN: ${{ inputs.netlify_auth_token }}
+        NETLIFY_SITE_ID: ${{ inputs.netlify_site_id }}
       # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
-      # edited for netifly v16
       run: |
         url_alias=`echo "preview-${{ inputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
-        netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }} --site ${{ inputs.netlify_site_id }} --filter ${{inputs.package_name}}
         echo "url_alias=$url_alias" >> $GITHUB_OUTPUT
-
-    - name: Prepare Comment Message
-      id: comment
-      shell: bash
-      run: |
-        echo "message=Preview environment ready: https://${{ steps.netlify_deploy.outputs.url_alias }}--${{ inputs.netlify_site_url }}" >> $GITHUB_OUTPUT
-
-    - name: Replace Preview Comment
-      uses: peter-evans/create-or-update-comment@v3
-      if: ${{ steps.initial_preview_comment.outputs.comment-id != 0 }}
-      with:
-        token: ${{ inputs.comment_token }}
-        comment-id: ${{ steps.initial_preview_comment.outputs.comment-id }}
-        issue-number: ${{ inputs.id }}
-        edit-mode: replace
-        body: ${{ steps.comment.outputs.message }}
-        reactions: rocket
-
-    - name: Append Preview Comment
-      uses: peter-evans/create-or-update-comment@v3
-      if: ${{ steps.initial_preview_comment.outputs.comment-id == 0 && (steps.preview_comment.outputs.comment-id == 0 || !contains(steps.preview_comment.outputs.comment-body, steps.comment.outputs.message)) }}
-      with:
-        token: ${{ inputs.comment_token }}
-        comment-id: ${{ steps.preview_comment.outputs.comment-id }}
-        issue-number: ${{ inputs.id }}
-        edit-mode: append
-        body: ${{ steps.comment.outputs.message }}
-        reactions: rocket
+        netlify deploy --filter ${{inputs.package_name}} --build false --dir ${{ inputs.folder }} --alias $url_alias

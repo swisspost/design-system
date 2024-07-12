@@ -13,25 +13,34 @@
 name: Build Documentation
 on:
   pull_request:
+    types: [opened, synchronize, edited, reopened]
     paths:
       - 'packages/**'
 
 jobs:
   build:
+    name: Build Documentation
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Create preview message
+        uses: ./.github/actions/preview/message/create
+        with:
+          access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
+
       - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: ./.github/actions/setup-pnpm
 
       - name: Install documentation & dependencies
         run: pnpm --filter design-system-documentation... install
 
       - name: Build documentation & dependencies
         run: pnpm --filter design-system-documentation... build
+
+      - name: Add netlify.config.json to artifact folder
+        run: cp packages/documentation/netlify.config.json packages/documentation/storybook-static/netlify.config.json
 
       - name: Upload documentation
         uses: ./.github/actions/artifact-upload

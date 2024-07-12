@@ -1,0 +1,74 @@
+name: Update preview message
+description: Add a preview url to the existing preview comment, if not already present
+
+inputs:
+  access-token:
+    description: The access token to use for commenting.
+    required: true
+  issue-number:
+    description: The issue number from the caller workflow.
+    required: true
+  preview-url:
+    description: The preview url to add in the comment.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/github-script@v7
+      env:
+        ISSUE_NUMBER: ${{ inputs.issue-number }}
+        PREVIEW_URL: ${{ inputs.preview-url }}
+      with:
+        github-token: ${{ inputs.access-token }}
+        script: |
+          const { ISSUE_NUMBER, PREVIEW_URL } = process.env
+
+          const commentTitle = '**Related Previews**'
+          const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
+
+          const comments = (await github.rest.issues.listComments({
+            repo: context.repo.repo,
+            owner: context.repo.owner,
+            issue_number: Number(ISSUE_NUMBER)
+          })).data || []
+          const previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
+
+          if (previewComment && !previewComment.body.includes(PREVIEW_URL)) {
+            github.rest.issues.updateComment({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              comment_id: previewComment.id,
+              body: previewComment.body
+                .replace(commentInitialBody, '')
+                .concat(`- ${PREVIEW_URL}\n`)
+            })
+
+            const reactions = (await github.rest.reactions.listForIssueComment({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              comment_id: previewComment.id,
+            })).data || []
+            const createReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'eyes')
+            const updateReaction = reactions.find(r => r.user.login === 'swisspost-bot' && r.content === 'rocket')
+
+            if (createReaction) {
+              github.rest.reactions.deleteForIssueComment({
+                repo: context.repo.repo,
+                owner: context.repo.owner,
+                comment_id: previewComment.id,
+                reaction_id: createReaction.id
+              })
+            }
+
+            if (!updateReaction) {
+              github.rest.reactions.createForIssueComment({
+                repo: context.repo.repo,
+                owner: context.repo.owner,
+                comment_id: previewComment.id,
+                content: 'rocket'
+              })
+            }
+          } else {
+            console.warn('Skipped action, because preview comment could not be found!')
+          }

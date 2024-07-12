@@ -21,7 +21,7 @@ jobs:
           fetch-depth: 0
 
       - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: ./.github/actions/setup-pnpm
 
       - name: Install dependencies of changed packages
         run: pnpm install

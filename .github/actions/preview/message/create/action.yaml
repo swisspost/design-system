@@ -1,0 +1,52 @@
+name: Create preview message
+description: Add a preview comment to the pr, if not already present
+
+inputs:
+  access-token:
+    description: The access token to use for commenting.
+    required: true
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/github-script@v7
+      with:
+        github-token: ${{ inputs.access-token }}
+        script: |
+          const commentTitle = '**Related Previews**'
+          const commentInitialBody = 'Preview URLs will be added here, once they are ready... ![loader](https://github.com/swisspost/design-system/assets/9716662/49a75898-7093-4ffb-9460-071ff194459d)'
+
+          let comments
+          let previewComment
+
+          await getPreviewComment()
+
+          if (!previewComment) {
+            await github.rest.issues.createComment({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              issue_number: context.issue.number,
+              body: `${commentTitle}\n${commentInitialBody}`
+            })
+
+            await getPreviewComment()
+
+            github.rest.reactions.createForIssueComment({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              comment_id: previewComment.id,
+              content: 'eyes'
+            })
+          } else {
+            console.info('Skipped action, because preview comment already existed.')
+          }
+
+          async function getPreviewComment () {
+            comments = (await github.rest.issues.listComments({
+              repo: context.repo.repo,
+              owner: context.repo.owner,
+              issue_number: context.issue.number
+            })).data || []
+
+            previewComment = comments.find(c => c.user.login === 'swisspost-bot' && c.body.includes(commentTitle))
+          }
