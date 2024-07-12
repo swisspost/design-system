@@ -5,12 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Swiss Post Icons</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/@swisspost/design-system-styles/basics.css"
-      integrity="sha384-EyL4eIC/kQ/za1rCC43o/z+2Flb/wou2q5pYH7DAg9UURlI7E5zt4vy4I2RJmZJI"
-      crossorigin="anonymous"
-    />
+    <link rel="stylesheet" href="https://unpkg.com/@swisspost/design-system-styles/basics.css" />
+    <!-- crossorigin="anonymous" -->
+    <!-- integrity="sha384-EyL4eIC/kQ/za1rCC43o/z+2Flb/wou2q5pYH7DAg9UURlI7E5zt4vy4I2RJmZJI" -->
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body style="padding: 1rem">
@@ -94,7 +91,7 @@
         </ul>
       </section>
 
-      <section x-show="icons.notFound.length > 0">
+      <section x-show="icons.notFound && icons.notFound.length > 0">
         <h1 class="mt-huge mb-big">SVG file not found</h1>
         <ul>
           <template x-for="icon in icons.noSVG">
