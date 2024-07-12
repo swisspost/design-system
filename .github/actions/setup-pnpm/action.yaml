@@ -54,10 +54,10 @@ runs:
     - name: Install pnpm
       uses: pnpm/action-setup@v3
       with:
-        version: ${{ fromJSON(steps.env-versions.outputs.result).pnpm || inputs.pnpm_version }}
+        version: ${{ inputs.pnpm_version || fromJSON(steps.env-versions.outputs.result).pnpm }}
 
     - name: Install node with pnpm cache
       uses: actions/setup-node@v4
       with:
-        node-version: ${{ fromJSON(steps.env-versions.outputs.result).node || inputs.node_version }}
+        node-version: ${{ inputs.node_version || fromJSON(steps.env-versions.outputs.result).node }}
         cache: ${{ inputs.use_cache == 'true' && 'pnpm' || '' }}
