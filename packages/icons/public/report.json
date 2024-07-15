@@ -326,7 +326,8 @@
           "ricevere",
           "recevoir",
           "receive",
-          "empfangen"
+          "empfangen",
+          "My Post 24"
         ],
         "year": [
           "2017"
@@ -344,7 +345,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:09:40.000Z"
+      "modifiedAt": "2024-07-04T07:22:38.000Z"
     },
     {
       "uuid": "869435e0-c5fc-11e7-a943-005056a94f4a",
@@ -1754,7 +1755,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:01.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "87207050-c5fc-11e7-a943-005056a94f4a",
@@ -1984,7 +1985,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:04.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "87370590-c5fc-11e7-a943-005056a94f4a",
@@ -2197,7 +2198,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:07.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "874efa60-c5fc-11e7-a943-005056a94f4a",
@@ -2254,7 +2255,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:08.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "8753b550-c5fc-11e7-a943-005056a94f4a",
@@ -2317,7 +2318,7 @@
         }
       },
       "createdAt": "2017-11-10T09:50:05.000Z",
-      "modifiedAt": "2024-03-13T08:10:09.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "873cd1f0-c5fc-11e7-a943-005056a94f4a",
@@ -2405,7 +2406,7 @@
         }
       },
       "createdAt": "2018-02-22T12:51:46.000Z",
-      "modifiedAt": "2024-03-13T08:10:44.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "36d4c3f0-17d0-11e8-b180-005056a94f4a",
@@ -2454,7 +2455,7 @@
         }
       },
       "createdAt": "2018-02-22T12:59:27.000Z",
-      "modifiedAt": "2024-03-13T08:10:45.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "04ea2640-3e50-11e8-b180-005056a94f4a",
@@ -6802,7 +6803,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-13T08:10:43.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "23bc7d90-c5fe-11e7-a943-005056a94f4a",
@@ -6847,7 +6848,7 @@
         }
       },
       "createdAt": "2017-11-10T10:01:37.000Z",
-      "modifiedAt": "2024-03-12T14:47:39.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "23c1fbd0-c5fe-11e7-a943-005056a94f4a",
@@ -7931,7 +7932,7 @@
         }
       },
       "createdAt": "2018-10-22T13:13:23.000Z",
-      "modifiedAt": "2024-03-12T14:47:41.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "8d6cdd60-3390-11e9-b9ae-005056873709",
@@ -8806,7 +8807,10 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/534673/storage/NTM0Njc1LzAvbWFzdGVy",
         "keywords": [
-          ""
+          "Brief und Kleinsendungen",
+          "Letters and small consignments",
+          "Lettre et petits envois",
+          "Lettera e invii di piccole dimensioni"
         ],
         "year": [
           "2020"
@@ -8824,7 +8828,7 @@
         }
       },
       "createdAt": "2020-11-18T13:46:33.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
+      "modifiedAt": "2024-07-11T07:18:33.000Z"
     },
     {
       "uuid": "e1252530-29a6-11eb-a8df-005056873709",
@@ -8870,7 +8874,7 @@
         }
       },
       "createdAt": "2020-11-18T14:03:48.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "dc40ac90-2a48-11eb-a8df-005056873709",
@@ -9748,7 +9752,14 @@
       "meta": {
         "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/535226/storage/NTM1MjI4LzAvbWFzdGVy",
         "keywords": [
-          ""
+          "Briefeinwurf",
+          "letter box",
+          "Buca delle lettere",
+          "Boîte aux lettres",
+          "Briefe in Briefeinwurf werfen",
+          "Posting letters in letter boxes",
+          "Inserire le lettere nella buca delle lettere",
+          "Déposer les lettres dans la boîte aux lettres"
         ],
         "year": [
           "2020"
@@ -9766,7 +9777,7 @@
         }
       },
       "createdAt": "2020-11-26T12:15:02.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "modifiedAt": "2024-07-11T07:19:46.000Z"
     },
     {
       "uuid": "a702fcb0-2fe1-11eb-a8df-005056873709",
@@ -11293,6 +11304,50 @@
       "modifiedAt": "2024-03-12T14:48:20.000Z"
     },
     {
+      "uuid": "88307300-5bef-11eb-9f99-005056873709",
+      "id": 539481,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
+        "keywords": [
+          "LAD",
+          "Leistung am Domizil",
+          "Prestazione a domicilio",
+          "Service at home",
+          "Prestation à domicile",
+          "Wegweiser",
+          "Sign",
+          "Segno",
+          "Signer",
+          "Sinnbild",
+          "Symbol",
+          "Simbolo",
+          "Symbole",
+          "Strassenschild",
+          "Road Sign",
+          "Segnale stradale",
+          "Panneau De Signalisation"
+        ],
+        "year": [
+          "2021"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2205.svg",
+        "basename": "2205",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2021-01-21T13:49:50.000Z",
+      "modifiedAt": "2024-07-12T14:09:52.000Z"
+    },
+    {
       "uuid": "4cc7c010-5bf0-11eb-9f99-005056873709",
       "id": 539487,
       "type": "picture.pictogram.",
@@ -11337,50 +11392,6 @@
       },
       "createdAt": "2021-01-21T13:55:20.000Z",
       "modifiedAt": "2024-03-12T14:48:22.000Z"
-    },
-    {
-      "uuid": "88307300-5bef-11eb-9f99-005056873709",
-      "id": 539481,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/539481/storage/NTM5NDg5LzAvbWFzdGVy",
-        "keywords": [
-          "LAD",
-          "Leistung am Domizil",
-          "Prestazione a domicilio",
-          "Service at home",
-          "Prestation à domicile",
-          "Wegweiser",
-          "Sign",
-          "Segno",
-          "Signer",
-          "Sinnbild",
-          "Symbol",
-          "Simbolo",
-          "Symbole",
-          "Strassenschild",
-          "Road Sign",
-          "Segnale stradale",
-          "Panneau De Signalisation"
-        ],
-        "year": [
-          "2021"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2205.svg",
-        "basename": "2205",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2021-01-21T13:49:50.000Z",
-      "modifiedAt": "2024-03-12T14:48:21.000Z"
     },
     {
       "uuid": "044e0500-5bf1-11eb-9f99-005056873709",
@@ -25156,7 +25167,7 @@
         }
       },
       "createdAt": "2023-05-22T05:49:44.000Z",
-      "modifiedAt": "2024-03-12T14:50:50.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "97d90bd0-f866-11ed-a8be-005056873709",
@@ -25216,7 +25227,7 @@
         }
       },
       "createdAt": "2023-05-22T06:05:03.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "d7da6ed0-f867-11ed-a8be-005056873709",
@@ -26904,7 +26915,7 @@
         }
       },
       "createdAt": "2023-11-27T07:28:09.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "24e60ea0-92a5-11ee-aba1-005056873709",
@@ -27002,7 +27013,7 @@
         }
       },
       "createdAt": "2023-12-04T13:05:16.000Z",
-      "modifiedAt": "2024-03-12T14:50:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "441b66a0-980c-11ee-aba1-005056873709",
@@ -27232,7 +27243,7 @@
         }
       },
       "createdAt": "2024-01-26T11:48:12.000Z",
-      "modifiedAt": "2024-03-12T14:50:52.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "baf20cb0-c017-11ee-8059-005056873709",
@@ -27814,6 +27825,124 @@
       },
       "createdAt": "2024-05-24T04:48:07.000Z",
       "modifiedAt": "2024-05-24T04:50:37.000Z"
+    },
+    {
+      "uuid": "2cc0daa0-3deb-11ef-b101-005056873709",
+      "id": 810603,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/810603/storage/ODEwNjAyLzAvbWFzdGVy",
+        "keywords": [
+          "Ampel",
+          "Traffic Light",
+          "Semaforo",
+          "Feu De Circulation"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2592.svg",
+        "basename": "2592",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-09T12:02:54.000Z",
+      "modifiedAt": "2024-07-09T12:05:12.000Z"
+    },
+    {
+      "uuid": "da46b2d0-3deb-11ef-b101-005056873709",
+      "id": 810607,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/810607/storage/ODEwNjA2LzAvbWFzdGVy",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2593.svg",
+        "basename": "2593",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-09T12:07:46.000Z",
+      "modifiedAt": "2024-07-09T12:11:39.000Z"
+    },
+    {
+      "uuid": "a9a8c180-3dec-11ef-b101-005056873709",
+      "id": 810611,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/810611/storage/ODEwNjEwLzAvbWFzdGVy",
+        "keywords": [
+          "Baustelle",
+          "Chantier",
+          "Cantiere",
+          "building site",
+          "Ampel",
+          "Traffic Light",
+          "Semaforo",
+          "Feu De Circulation",
+          "traffic light system",
+          "Lichtsignalanlage",
+          "Installation de signaux lumineux",
+          "Segnale luminoso"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2594.svg",
+        "basename": "2594",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-09T12:13:33.000Z",
+      "modifiedAt": "2024-07-10T12:05:01.006Z"
+    },
+    {
+      "uuid": "ddc27230-3e92-11ef-b101-005056873709",
+      "id": 810661,
+      "type": "picture.pictogram.",
+      "typeFilter": "pictograms",
+      "meta": {
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/810661/storage/ODEwNjYwLzAvbWFzdGVy",
+        "keywords": [
+          "Audio",
+          "Tonspur"
+        ]
+      },
+      "file": {
+        "mime": "image/svg+xml",
+        "name": "2595.svg",
+        "basename": "2595",
+        "ext": ".svg",
+        "size": {
+          "width": 0,
+          "dpi": 72,
+          "height": 0
+        }
+      },
+      "createdAt": "2024-07-10T08:03:17.000Z",
+      "modifiedAt": "2024-07-11T07:05:01.540Z"
     },
     {
       "uuid": "6faf6ef0-c5ff-11e7-a943-005056a94f4a",
@@ -29348,7 +29477,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "7097fa30-c5ff-11e7-a943-005056a94f4a",
@@ -29397,7 +29526,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "709dc690-c5ff-11e7-a943-005056a94f4a",
@@ -29446,7 +29575,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70a42f30-c5ff-11e7-a943-005056a94f4a",
@@ -29487,7 +29616,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70aa49b0-c5ff-11e7-a943-005056a94f4a",
@@ -29528,7 +29657,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70b5e270-c5ff-11e7-a943-005056a94f4a",
@@ -29610,7 +29739,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70bff490-c5ff-11e7-a943-005056a94f4a",
@@ -29651,7 +29780,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70c4af80-c5ff-11e7-a943-005056a94f4a",
@@ -29692,7 +29821,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70caa2f0-c5ff-11e7-a943-005056a94f4a",
@@ -29769,7 +29898,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70d180c0-c5ff-11e7-a943-005056a94f4a",
@@ -29815,7 +29944,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70d63bb0-c5ff-11e7-a943-005056a94f4a",
@@ -29868,7 +29997,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "70dbe100-c5ff-11e7-a943-005056a94f4a",
@@ -30090,7 +30219,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-11T05:25:53.000Z"
     },
     {
       "uuid": "7102c9f0-c5ff-11e7-a943-005056a94f4a",
@@ -30103,7 +30232,10 @@
           "kommunikation"
         ],
         "keywords": [
-          ""
+          "ziehen",
+          "tug",
+          "tirare",
+          "Tirer"
         ],
         "year": [
           "2017"
@@ -30121,7 +30253,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-12T05:05:01.765Z"
     },
     {
       "uuid": "710fc240-c5ff-11e7-a943-005056a94f4a",
@@ -30134,7 +30266,10 @@
           "kommunikation"
         ],
         "keywords": [
-          ""
+          "Push",
+          "Pushing",
+          "Spingere",
+          "Poussée"
         ],
         "year": [
           "2017"
@@ -30152,7 +30287,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-11T05:15:40.000Z"
     },
     {
       "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
@@ -30196,7 +30331,10 @@
           "kommunikation"
         ],
         "keywords": [
-          ""
+          "Push",
+          "Pushing",
+          "Spingere",
+          "Poussée"
         ],
         "year": [
           "2017"
@@ -30214,7 +30352,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-11T05:19:51.000Z"
     },
     {
       "uuid": "7124f7f0-c5ff-11e7-a943-005056a94f4a",
@@ -30227,7 +30365,10 @@
           "kommunikation"
         ],
         "keywords": [
-          ""
+          "ziehen",
+          "tug",
+          "tirare",
+          "Tirer"
         ],
         "year": [
           "2017"
@@ -30245,7 +30386,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-11T05:29:34.000Z"
     },
     {
       "uuid": "712a2810-c5ff-11e7-a943-005056a94f4a",
@@ -30258,7 +30399,10 @@
           "kommunikation"
         ],
         "keywords": [
-          ""
+          "Push",
+          "Pushing",
+          "Spingere",
+          "Poussée"
         ],
         "year": [
           "2017"
@@ -30276,7 +30420,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-11T05:33:00.000Z"
     },
     {
       "uuid": "712ebbf0-c5ff-11e7-a943-005056a94f4a",
@@ -30344,7 +30488,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-11T06:00:55.000Z"
     },
     {
       "uuid": "7142e030-c5ff-11e7-a943-005056a94f4a",
@@ -30656,7 +30800,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "7167f460-c5ff-11e7-a943-005056a94f4a",
@@ -31357,7 +31501,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "72d3b960-c5ff-11e7-a943-005056a94f4a",
@@ -31633,7 +31777,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "73420b90-c5ff-11e7-a943-005056a94f4a",
@@ -33623,7 +33767,12 @@
           "kommunikation"
         ],
         "keywords": [
-          "Alarm Glocke"
+          "Alarm Glocke",
+          "Alarm",
+          "Alarm bell",
+          "Alarmglocke",
+          "Campanello di allarme",
+          "Sonnette d'alarme"
         ]
       },
       "file": {
@@ -33638,7 +33787,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-12T06:05:01.772Z"
     },
     {
       "uuid": "74acbf20-c5ff-11e7-a943-005056a94f4a",
@@ -34948,7 +35097,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "75e69eb0-c5ff-11e7-a943-005056a94f4a",
@@ -35844,7 +35993,15 @@
           "more than 100",
           "Business to Customer",
           "Entreprise à client",
-          "Business-to-Customer"
+          "Business-to-Customer",
+          "100K",
+          "100’000",
+          "100 000",
+          "100'000",
+          "Issue over one hundred thousand",
+          "Auflage über hunderttausend",
+          "Tirage supérieur à cent mille",
+          "Tiratura superiore a 100’000 copie"
         ]
       },
       "file": {
@@ -35859,7 +36016,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T15:01:48.000Z"
+      "modifiedAt": "2024-07-12T06:05:01.772Z"
     },
     {
       "uuid": "765f9f40-c5ff-11e7-a943-005056a94f4a",
@@ -36602,7 +36759,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "76bcb360-c5ff-11e7-a943-005056a94f4a",
@@ -37021,7 +37178,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "76f0e2c0-c5ff-11e7-a943-005056a94f4a",
@@ -37198,7 +37355,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "77161e00-c5ff-11e7-a943-005056a94f4a",
@@ -37256,7 +37413,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "7720cc60-c5ff-11e7-a943-005056a94f4a",
@@ -37294,7 +37451,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "7725d570-c5ff-11e7-a943-005056a94f4a",
@@ -37337,7 +37494,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "772f9970-c5ff-11e7-a943-005056a94f4a",
@@ -37383,7 +37540,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "773788b0-c5ff-11e7-a943-005056a94f4a",
@@ -37437,7 +37594,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "773e8d90-c5ff-11e7-a943-005056a94f4a",
@@ -37487,7 +37644,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "77440bd0-c5ff-11e7-a943-005056a94f4a",
@@ -37529,7 +37686,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "774914e0-c5ff-11e7-a943-005056a94f4a",
@@ -37579,7 +37736,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:37.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "774e6c10-c5ff-11e7-a943-005056a94f4a",
@@ -37618,7 +37775,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:38.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "77559800-c5ff-11e7-a943-005056a94f4a",
@@ -37664,7 +37821,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "775d1210-c5ff-11e7-a943-005056a94f4a",
@@ -37730,7 +37887,7 @@
         }
       },
       "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:52:36.000Z"
+      "modifiedAt": "2024-07-04T18:52:05.735Z"
     },
     {
       "uuid": "d17532d0-17d2-11e8-b180-005056a94f4a",
@@ -39621,7 +39778,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:35:35.000Z"
     },
     {
       "uuid": "9ff9a8b0-c603-11e7-a943-005056a94f4a",
@@ -39650,7 +39807,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:42:14.000Z"
     },
     {
       "uuid": "a00c4650-c603-11e7-a943-005056a94f4a",
@@ -39678,7 +39835,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:41:16.000Z"
     },
     {
       "uuid": "a0110140-c603-11e7-a943-005056a94f4a",
@@ -39707,7 +39864,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:46:04.000Z"
     },
     {
       "uuid": "a0163160-c603-11e7-a943-005056a94f4a",
@@ -39735,7 +39892,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:57:47.000Z"
     },
     {
       "uuid": "a01fa740-c603-11e7-a943-005056a94f4a",
@@ -39763,7 +39920,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:49:06.000Z"
     },
     {
       "uuid": "a02a2e90-c603-11e7-a943-005056a94f4a",
@@ -39791,7 +39948,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:48:01.000Z"
     },
     {
       "uuid": "a033cb80-c603-11e7-a943-005056a94f4a",
@@ -39821,7 +39978,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:26:29.000Z"
     },
     {
       "uuid": "a0446d50-c603-11e7-a943-005056a94f4a",
@@ -39849,7 +40006,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:37:00.000Z"
     },
     {
       "uuid": "a04a87d0-c603-11e7-a943-005056a94f4a",
@@ -39877,7 +40034,7 @@
         }
       },
       "createdAt": "2017-11-10T10:40:53.000Z",
-      "modifiedAt": "2024-04-30T21:44:15.000Z"
+      "modifiedAt": "2024-07-11T06:47:09.000Z"
     },
     {
       "uuid": "11f1ed50-3e55-11e8-b180-005056a94f4a",
@@ -40124,7 +40281,7 @@
         }
       },
       "createdAt": "2018-06-12T07:30:25.000Z",
-      "modifiedAt": "2024-04-30T21:44:16.000Z"
+      "modifiedAt": "2024-07-04T08:20:14.065Z"
     },
     {
       "uuid": "fae6bb20-d690-11e8-b043-005056873709",
@@ -40209,192 +40366,6 @@
   "wrongViewBox": [],
   "noKeywords": [
     {
-      "uuid": "710fc240-c5ff-11e7-a943-005056a94f4a",
-      "id": 352298,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352298/storage/NTM3MTg5LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3057.svg",
-        "basename": "3057",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
-    },
-    {
-      "uuid": "712a2810-c5ff-11e7-a943-005056a94f4a",
-      "id": 352302,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352302/storage/NTM3MjAwLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3061.svg",
-        "basename": "3061",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
-    },
-    {
-      "uuid": "7102c9f0-c5ff-11e7-a943-005056a94f4a",
-      "id": 352297,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352297/storage/NTM3MTIwLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3056.svg",
-        "basename": "3056",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:52.000Z"
-    },
-    {
-      "uuid": "7124f7f0-c5ff-11e7-a943-005056a94f4a",
-      "id": 352301,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352301/storage/NTM3MTk1LzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3060.svg",
-        "basename": "3060",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:51.000Z"
-    },
-    {
-      "uuid": "712015f0-c5ff-11e7-a943-005056a94f4a",
-      "id": 352300,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352300/storage/NTM3MTkzLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3059.svg",
-        "basename": "3059",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
-    },
-    {
-      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
-      "id": 352299,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
-        "businessfield": [
-          "kommunikation"
-        ],
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2017"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "3058.svg",
-        "basename": "3058",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2017-11-10T10:11:07.000Z",
-      "modifiedAt": "2024-03-12T14:51:50.000Z"
-    },
-    {
       "uuid": "717dc650-c5ff-11e7-a943-005056a94f4a",
       "id": 352314,
       "type": "picture.pictogram.",
@@ -40426,23 +40397,26 @@
       "modifiedAt": "2024-03-12T14:51:51.000Z"
     },
     {
-      "uuid": "785f77f0-29a4-11eb-a8df-005056873709",
-      "id": 534673,
+      "uuid": "711a4990-c5ff-11e7-a943-005056a94f4a",
+      "id": 352299,
       "type": "picture.pictogram.",
       "typeFilter": "pictograms",
       "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/534673/storage/NTM0Njc1LzAvbWFzdGVy",
+        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/352299/storage/NTM3MTkxLzAvbWFzdGVy",
+        "businessfield": [
+          "kommunikation"
+        ],
         "keywords": [
           ""
         ],
         "year": [
-          "2020"
+          "2017"
         ]
       },
       "file": {
         "mime": "image/svg+xml",
-        "name": "2143.svg",
-        "basename": "2143",
+        "name": "3058.svg",
+        "basename": "3058",
         "ext": ".svg",
         "size": {
           "width": 0,
@@ -40450,36 +40424,8 @@
           "height": 0
         }
       },
-      "createdAt": "2020-11-18T13:46:33.000Z",
-      "modifiedAt": "2024-03-12T14:47:40.000Z"
-    },
-    {
-      "uuid": "0303cd60-2fe1-11eb-a8df-005056873709",
-      "id": 535226,
-      "type": "picture.pictogram.",
-      "typeFilter": "pictograms",
-      "meta": {
-        "downloadLink": "https://cdn.post.ch/hcms/v2.0/entity/asset/535226/storage/NTM1MjI4LzAvbWFzdGVy",
-        "keywords": [
-          ""
-        ],
-        "year": [
-          "2020"
-        ]
-      },
-      "file": {
-        "mime": "image/svg+xml",
-        "name": "2166.svg",
-        "basename": "2166",
-        "ext": ".svg",
-        "size": {
-          "width": 0,
-          "dpi": 72,
-          "height": 0
-        }
-      },
-      "createdAt": "2020-11-26T12:15:02.000Z",
-      "modifiedAt": "2024-05-27T10:38:13.000Z"
+      "createdAt": "2017-11-10T10:11:07.000Z",
+      "modifiedAt": "2024-03-12T14:51:50.000Z"
     },
     {
       "uuid": "6b09bf30-9901-11eb-935b-005056873709",
@@ -40568,11 +40514,11 @@
   ],
   "noSVG": [],
   "errored": [],
-  "created": "2024-06-23T01:18:58.887Z",
+  "created": "2024-07-14T01:22:49.643Z",
   "stats": {
     "errors": 0,
     "notFound": 0,
-    "success": 921
+    "success": 925
   },
-  "version": "7.1.0"
+  "version": "7.2.1"
 }
