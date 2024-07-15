@@ -7,7 +7,8 @@ import { PostCollapsibleCustomEvent } from '@/components';
   tag: 'post-collapsible-trigger',
 })
 export class PostCollapsibleTrigger {
-  private trigger?: HTMLElement;
+  private trigger?: HTMLButtonElement;
+  private observer = new MutationObserver(() => this.setTrigger());
 
   @Element() host: HTMLPostCollapsibleTriggerElement;
 
@@ -16,6 +17,9 @@ export class PostCollapsibleTrigger {
    */
   @Prop() for: string;
 
+  /**
+   * Set the "aria-controls" and "aria-expanded" attributes on the trigger to match the state of the controlled post-collapsible
+   */
   @Watch('for')
   setAriaAttributes() {
     checkNonEmpty(this.for, 'The post-collapsible-trigger "for" prop is required.');
@@ -23,32 +27,48 @@ export class PostCollapsibleTrigger {
 
     if (!this.trigger) return;
 
-    const controlledCollapsible = this.collapsible;
-    if (controlledCollapsible) {
-      this.trigger.setAttribute('aria-controls', this.for);
-      this.trigger.setAttribute('aria-expanded', `${!controlledCollapsible.collapsed}`);
-    } else {
-      this.trigger.removeAttribute('aria-controls');
-      this.trigger.removeAttribute('aria-expanded');
+    // add the provided id to the aria-controls list
+    const ariaControls = this.trigger.getAttribute('aria-controls');
+    if (!ariaControls?.includes(this.for)) {
+      const newAriaControls = ariaControls ? `${ariaControls} ${this.for}` : this.for;
+      this.trigger.setAttribute('aria-controls', newAriaControls);
+    }
+
+    // set the aria-expanded to `false` if the controlled collapsible is collapsed or undefined, set it to `true` otherwise
+    const isCollapsed = this.collapsible?.collapsed;
+    const newAriaExpanded = isCollapsed || isCollapsed === undefined ? 'false' : 'true';
+    this.trigger.setAttribute('aria-expanded', newAriaExpanded);
+  }
+
+  /**
+   * Initiate a mutation observer that updates the trigger whenever necessary
+   */
+  connectedCallback() {
+    this.observer.observe(this.host, { childList: true, subtree: true });
+  }
+
+  /**
+   * Add the "data-version" to the host element and set the trigger
+   */
+  componentDidLoad() {
+    this.host.setAttribute('data-version', version);
+    this.setTrigger();
+
+    if (!this.trigger) {
+      console.warn('The post-collapsible-trigger must contain a button.');
+      return;
     }
   }
 
-  componentDidLoad() {
-    this.host.setAttribute('data-version', version);
-    this.trigger = this.host.querySelector('button');
-
-    if (!this.trigger) {
-      console.error('The post-collapsible-trigger must contain a button.');
-      return;
-    }
-
-    this.trigger.addEventListener('click', () => this.toggleCollapsible());
-    this.setAriaAttributes();
+  /**
+   * Disconnect the mutation observer
+   */
+  disconnectedCallback() {
+    this.observer.disconnect();
   }
 
   /**
    * Update the "aria-expanded" attribute on the trigger anytime the controlled post-collapsible is toggled
-   * @param e
    */
   @Listen('postToggle', { target: 'document' })
   setAriaExpanded(e: PostCollapsibleCustomEvent<boolean>) {
@@ -56,10 +76,16 @@ export class PostCollapsibleTrigger {
     this.trigger.setAttribute('aria-expanded', `${e.detail}`);
   }
 
+  /**
+   * Toggle the post-collapsible controlled by the trigger
+   */
   private async toggleCollapsible() {
     await this.collapsible?.toggle();
   }
 
+  /**
+   * Retrieve the post-collapsible controlled by the trigger
+   */
   private get collapsible(): HTMLPostCollapsibleElement | null {
     const ref = document.getElementById(this.for);
     if (ref && ref.localName === 'post-collapsible') {
@@ -67,5 +93,18 @@ export class PostCollapsibleTrigger {
     }
 
     return null;
+  }
+
+  /**
+   * Find the button and add the proper event listener and ARIA attributes to it
+   */
+  private setTrigger() {
+    const trigger = this.host.querySelector('button');
+    if (!trigger || (this.trigger && trigger.isEqualNode(this.trigger))) return;
+
+    this.trigger = trigger;
+
+    this.trigger.addEventListener('click', () => this.toggleCollapsible());
+    this.setAriaAttributes();
   }
 }
