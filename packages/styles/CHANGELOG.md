@@ -1,10 +1,18 @@
 # @swisspost/design-system-styles
 
+## 7.2.1
+
+### Patch Changes
+
+- Fixed a bug where the year in the datepicker got cut and fixed the icon placement in the small variant of the datepicker input. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#3203](https://github.com/swisspost/design-system/pull/3203))
+
 ## 7.2.0
 
 ### Minor Changes
 
-- Added a small variant for the textarea with floating label (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2857](https://github.com/swisspost/design-system/pull/2857))
+- Added a small variant for the textarea with floating label. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2857](https://github.com/swisspost/design-system/pull/2857))
+
+- Updated disabled styles of form controls to have a dashed border. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2857](https://github.com/swisspost/design-system/pull/2857))
 
 ### Patch Changes
 

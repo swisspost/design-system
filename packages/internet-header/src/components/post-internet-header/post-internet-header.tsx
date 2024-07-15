@@ -223,6 +223,12 @@ export class PostInternetHeader {
       this.host.classList.add('header-loaded');
       if (this.meta && this.metaNav) {
         this.updateLogoAnimation = registerLogoAnimationObserver(this.metaNav, this.host);
+      } else {
+        // Set height to 0 if meta is never visible and global variables are defined
+        const rootStyles = window.getComputedStyle(document.documentElement);
+        if (rootStyles.getPropertyValue('--post-meta-header-height') !== '') {
+          document.documentElement.style.setProperty('--post-meta-header-height', '0px');
+        }
       }
     });
 

@@ -6,7 +6,7 @@ describe('popovercontainer', { baseUrl: null, includeShadowDom: true }, () => {
       // There is no dedicated docs page for the popovercontainer
       cy.visit('./cypress/fixtures/post-popover.test.html');
       cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
-      cy.get('div.popover-container').as('container');
+      cy.get('#testtext').as('container');
     });
 
     it('should show up on click', () => {

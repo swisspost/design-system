@@ -4,7 +4,7 @@ describe('popover', { baseUrl: null, includeShadowDom: true }, () => {
       cy.visit('./cypress/fixtures/post-popover.test.html');
       // Aria-expanded is set by the web component, therefore it's a good measure to indicate the component is ready
       cy.get('[data-popover-target="popover-one"][aria-expanded]').as('trigger');
-      cy.get('div.popover-container').as('popover');
+      cy.get('#testtext').as('popover');
     });
 
     it('should show up on click', () => {
