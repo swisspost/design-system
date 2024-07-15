@@ -42,10 +42,7 @@ export class PostCollapsibleTrigger {
     this.host.setAttribute('data-version', version);
     this.setTrigger();
 
-    if (!this.trigger) {
-      console.warn('The post-collapsible-trigger must contain a button.');
-      return;
-    }
+    if (!this.trigger) console.warn('The post-collapsible-trigger must contain a button.');
   }
 
   /**
