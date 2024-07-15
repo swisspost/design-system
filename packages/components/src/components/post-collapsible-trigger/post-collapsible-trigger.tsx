@@ -29,7 +29,7 @@ export class PostCollapsibleTrigger {
     }
   }
 
-  componentWillLoad() {
+  componentDidLoad() {
     this.host.setAttribute('data-version', version);
     this.trigger = this.host.querySelector('button');
 
