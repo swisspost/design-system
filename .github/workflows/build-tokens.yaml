@@ -30,8 +30,8 @@ jobs:
             const fs = require('fs')
             const path = require('path')
 
-            const inputfileNames = fs.readdirSync('packages/tokens/tokensstudio-generated')
-            const inputFiles = inputfileNames.map(fileName => ({
+            const inputFileNames = fs.readdirSync('packages/tokens/tokensstudio-generated')
+            const inputFiles = inputFileNames.map(fileName => ({
               type: path.extname(fileName),
               name: fileName,
               content: fs.readFileSync(`packages/tokens/tokensstudio-generated/${fileName}`, 'utf8')
@@ -51,9 +51,9 @@ jobs:
               type: path.extname(fileName),
               name: fileName,
               content: fs.readFileSync(`packages/tokens/dist/${fileName}`, 'utf8')
-            })).sort((a, b) => (outputOrder.indexOf(a.name) === -1 ? 1000 : outputOrder.indexOf(a.name)) - (outputOrder.indexOf(b.name) === -1 ? 1000 : outputOrder.indexOf(b.name)))
+            })).sort((a, b) => (outputOrder.includes(a.name) ? outputOrder.indexOf(a.name) : 1000) - (outputOrder.includes(b.name) ? outputOrder.indexOf(b.name) : 1000))
 
-            return `# Build Tokens
+            return `# Token Build
             ## Input
             ${inputFiles.map(({ type, name, content }) => `<details>
               <summary><code>${name}</code></summary>
