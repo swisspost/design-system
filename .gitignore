@@ -26,3 +26,6 @@ styles/stylelint-report.txt
 
 # Stencil
 **/stencil-generated/
+
+# Local Netlify folder
+.netlify

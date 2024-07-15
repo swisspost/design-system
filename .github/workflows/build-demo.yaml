@@ -1,13 +1,6 @@
 ###
 #
-# Build the demo app and all dependencies
-#
-# This workflow does not have secrets access
-# when run from a fork. Artifacts are uploaded
-# and used in a subsequent workflow with more
-# privileges which does not run unsafe commands.
-#
-# https://securitylab.github.com/research/github-actions-preventing-pwn-requests/
+# DEPRECATED: This Action can be removed as soon as we start working on V2/V9
 #
 ###
 
@@ -36,7 +29,7 @@ jobs:
           access-token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
       - name: Setup
-        uses: swisspost/design-system/.github/actions/setup-pnpm@main
+        uses: ./.github/actions/setup-pnpm
 
       - name: Bootstrap & Build Design System
         run: |
@@ -44,7 +37,7 @@ jobs:
           pnpm --filter design-system-demo... build
 
       - name: Upload build artifacts
-        uses: swisspost/design-system/.github/actions/artifact-upload@main
+        uses: ./.github/actions/artifact-upload
         with:
           name: design-system-demo
           folder: packages/demo/dist/demo
