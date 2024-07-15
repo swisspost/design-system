@@ -56,6 +56,8 @@ export class PostCollapsible {
   componentDidLoad() {
     if (this.collapsed) void this.toggle(false);
     this.isLoaded = true;
+
+    this.updateTriggers();
   }
 
   /**
@@ -79,6 +81,17 @@ export class PostCollapsible {
     animation.commitStyles();
 
     return this.isOpen;
+  }
+
+  /**
+   * Update all post-collapsible-trigger elements referring to the collapsible
+   */
+  private updateTriggers() {
+    const triggers: NodeListOf<HTMLPostCollapsibleTriggerElement> = document.querySelectorAll(
+      `post-collapsible-trigger[for=${this.host.id}]`,
+    );
+
+    triggers.forEach(trigger => trigger.update());
   }
 
   render() {

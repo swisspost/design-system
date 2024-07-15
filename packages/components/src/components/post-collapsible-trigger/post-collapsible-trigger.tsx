@@ -1,4 +1,4 @@
-import { Component, Element, Listen, Prop, Watch } from '@stencil/core';
+import { Component, Element, Listen, Method, Prop, Watch } from '@stencil/core';
 import { version } from 'typescript';
 import { checkNonEmpty, checkType } from '@/utils';
 import { PostCollapsibleCustomEvent } from '@/components';
@@ -25,19 +25,7 @@ export class PostCollapsibleTrigger {
     checkNonEmpty(this.for, 'The post-collapsible-trigger "for" prop is required.');
     checkType(this.for, 'string', 'The post-collapsible-trigger "for" prop should be a id.');
 
-    if (!this.trigger) return;
-
-    // add the provided id to the aria-controls list
-    const ariaControls = this.trigger.getAttribute('aria-controls');
-    if (!ariaControls?.includes(this.for)) {
-      const newAriaControls = ariaControls ? `${ariaControls} ${this.for}` : this.for;
-      this.trigger.setAttribute('aria-controls', newAriaControls);
-    }
-
-    // set the aria-expanded to `false` if the controlled collapsible is collapsed or undefined, set it to `true` otherwise
-    const isCollapsed = this.collapsible?.collapsed;
-    const newAriaExpanded = isCollapsed || isCollapsed === undefined ? 'false' : 'true';
-    this.trigger.setAttribute('aria-expanded', newAriaExpanded);
+    void this.update();
   }
 
   /**
@@ -74,6 +62,26 @@ export class PostCollapsibleTrigger {
   setAriaExpanded(e: PostCollapsibleCustomEvent<boolean>) {
     if (!this.trigger || !e.target.isEqualNode(this.collapsible)) return;
     this.trigger.setAttribute('aria-expanded', `${e.detail}`);
+  }
+
+  /**
+   * Update the "aria-controls" and "aria-expanded" attributes on the trigger button
+   */
+  @Method()
+  async update() {
+    if (!this.trigger) return;
+
+    // add the provided id to the aria-controls list
+    const ariaControls = this.trigger.getAttribute('aria-controls');
+    if (!ariaControls?.includes(this.for)) {
+      const newAriaControls = ariaControls ? `${ariaControls} ${this.for}` : this.for;
+      this.trigger.setAttribute('aria-controls', newAriaControls);
+    }
+
+    // set the aria-expanded to `false` if the controlled collapsible is collapsed or undefined, set it to `true` otherwise
+    const isCollapsed = this.collapsible?.collapsed;
+    const newAriaExpanded = isCollapsed !== undefined ? !isCollapsed : undefined;
+    this.trigger.setAttribute('aria-expanded', `${newAriaExpanded}`);
   }
 
   /**
