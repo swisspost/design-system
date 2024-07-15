@@ -1,5 +1,13 @@
 # @swisspost/design-system-documentation
 
+## 4.0.1
+
+### Patch Changes
+
+- Updated netlify site configuration for v6 docs (by [@gfellerph](https://github.com/gfellerph) with [#2985](https://github.com/swisspost/design-system/pull/2985))
+
+- Fixed version-switcher to show the same way like on design-system.post.ch. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#3049](https://github.com/swisspost/design-system/pull/3049))
+
 ## 4.0.0
 
 ### Patch Changes
