@@ -51,6 +51,10 @@ StyleDictionary.registerFilter({
 StyleDictionary.registerFormat({
   name: 'swisspost/scss-format',
   format: ({ dictionary, file }) => {
+    const MULTIVALUE_SEPARATOR_RULES = [
+      { previousKey: 'fontSize', currentKey: 'lineHeight', separator: '/' },
+    ];
+
     const fileName = file.destination.replace(/\.scss$/, '');
     const isCore = fileName === 'core';
 
@@ -76,10 +80,30 @@ StyleDictionary.registerFormat({
               let tokenValue = token.value;
 
               if (usesReferences(token.original.value)) {
-                tokenValue = token.original.value.replace(
-                  /{[^}]+}/g,
-                  match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,
-                );
+                try {
+                  if (typeof token.original.value === 'object') {
+                    tokenValue = Object.entries(token.original.value).reduce(
+                      (values, [key, value], i) =>
+                        `${values}${getSeparator(
+                          Object.keys(token.original.value)[i - 1],
+                          key,
+                        )}${getReference(value)}`,
+                      '',
+                    );
+                  } else if (typeof token.original.value === 'string') {
+                    tokenValue = getReference(token.original.value);
+                  } else {
+                    throw new Error(
+                      `\x1b[31mError: Unsupported value type in token \x1b[33m"${tokenName}"\x1b[31m within tokenset \x1b[33m"${dataSetName}"!\x1b[0m`,
+                    );
+                  }
+                } catch (error) {
+                  console.error(
+                    `\x1b[31mError: While processing the token \x1b[33m"${tokenName}"\x1b[31m within the tokenset \x1b[33m"${dataSetName}"\x1b[31m, the following error occurred:\n"${
+                      error.message
+                    }".\nInput:\n\x1b[90m${JSON.stringify(token, null, 2)}\x1b[0m`,
+                  );
+                }
               }
 
               return isCore ? `--${tokenName}: ${tokenValue};` : `'${tokenName}': ${tokenValue},`;
@@ -92,6 +116,21 @@ StyleDictionary.registerFormat({
         })
         .join('\n')
     );
+
+    function getReference(value = '') {
+      return value.replace(
+        /{[^}]+}/g,
+        match => `var(--${match.replace(/[{}]/g, '').replace(/\./g, '-')})`,
+      );
+    }
+
+    function getSeparator(pKey = '', cKey = '') {
+      return (
+        MULTIVALUE_SEPARATOR_RULES.find(
+          rule => rule.previousKey === pKey && rule.currentKey === cKey,
+        )?.separator ?? ' '
+      );
+    }
   },
 });
 
