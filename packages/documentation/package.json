@@ -76,7 +76,7 @@
     "react-syntax-highlighter": "15.5.0",
     "rehype-autolink-headings": "^7.1.0",
     "remark-autolink-headings": "7.0.1",
-    "rimraf": "5.0.7",
+    "rimraf": "6.0.1",
     "sass": "1.77.6",
     "storybook": "8.1.11",
     "typescript": "5.3.3"
