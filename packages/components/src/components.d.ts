@@ -136,7 +136,7 @@ export namespace Components {
     }
     interface PostCollapsibleTrigger {
         /**
-          * Link the trigger to a collapsible with this id
+          * Link the trigger to a post-collapsible with this id
          */
         "for": string;
     }
@@ -623,7 +623,7 @@ declare namespace LocalJSX {
     }
     interface PostCollapsibleTrigger {
         /**
-          * Link the trigger to a collapsible with this id
+          * Link the trigger to a post-collapsible with this id
          */
         "for"?: string;
     }
