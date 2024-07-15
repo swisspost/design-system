@@ -22,6 +22,7 @@ interface Version {
     bootstrap: string;
   };
 }
+
 function VersionSwitcher() {
   const [versions, setVersions] = useState<Version[]>([]);
   const [loading, setLoading] = useState(true);
@@ -62,6 +63,7 @@ function VersionSwitcher() {
                   name: k.match(/(?:@?)([^/]+)/)?.[1],
                   version: v,
                 }));
+
               return (
                 <a
                   className={['dropdown__item', isActive].filter(c => c).join(' ')}
@@ -107,4 +109,5 @@ function VersionSwitcher() {
     </WithTooltip>
   );
 }
+
 export default VersionSwitcher;
