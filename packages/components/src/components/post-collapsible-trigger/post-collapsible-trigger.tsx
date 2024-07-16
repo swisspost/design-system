@@ -1,6 +1,6 @@
-import { Component, Element, Listen, Method, Prop, Watch } from '@stencil/core';
+import { Component, Element, Method, Prop, Watch } from '@stencil/core';
 import { version } from 'typescript';
-import { checkNonEmpty, checkType, debounce, getElementInRootNode } from '@/utils';
+import { checkNonEmpty, checkType, debounce, getRoot } from '@/utils';
 import { PostCollapsibleCustomEvent } from '@/components';
 
 @Component({
@@ -9,6 +9,7 @@ import { PostCollapsibleCustomEvent } from '@/components';
 export class PostCollapsibleTrigger {
   private trigger?: HTMLButtonElement;
   private observer = new MutationObserver(() => this.setTrigger());
+  private root?: Document | ShadowRoot;
 
   @Element() host: HTMLPostCollapsibleTriggerElement;
 
@@ -36,6 +37,23 @@ export class PostCollapsibleTrigger {
   }
 
   /**
+   * Attach a "postToggle" event listener to the root node
+   * to update the trigger's "aria-expanded" attribute whenever the controlled post-collapsible is toggled
+   */
+  componentWillLoad() {
+    const previousHost = this.host;
+    this.root = getRoot(this.host);
+
+    // make sure the event listener is not attached twice to the same node
+    if (previousHost && this.host.isEqualNode(previousHost)) return;
+
+    this.root.addEventListener('postToggle', (e: PostCollapsibleCustomEvent<boolean>) => {
+      if (!this.trigger || !e.target.isEqualNode(this.collapsible)) return;
+      this.trigger.setAttribute('aria-expanded', `${e.detail}`);
+    });
+  }
+
+  /**
    * Add the "data-version" to the host element and set the trigger
    */
   componentDidLoad() {
@@ -50,15 +68,6 @@ export class PostCollapsibleTrigger {
    */
   disconnectedCallback() {
     this.observer.disconnect();
-  }
-
-  /**
-   * Update the "aria-expanded" attribute on the trigger anytime the controlled post-collapsible is toggled
-   */
-  @Listen('postToggle', { target: 'document' })
-  setAriaExpanded(e: PostCollapsibleCustomEvent<boolean>) {
-    if (!this.trigger || !e.target.isEqualNode(this.collapsible)) return;
-    this.trigger.setAttribute('aria-expanded', `${e.detail}`);
   }
 
   /**
@@ -96,7 +105,7 @@ export class PostCollapsibleTrigger {
    * Retrieve the post-collapsible controlled by the trigger
    */
   private get collapsible(): HTMLPostCollapsibleElement | null {
-    const ref = getElementInRootNode(this.for, this.host);
+    const ref = this.root.getElementById(this.for);
 
     if (ref && ref.localName === 'post-collapsible') {
       return ref as HTMLPostCollapsibleElement;
