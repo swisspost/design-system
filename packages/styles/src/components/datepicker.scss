@@ -66,6 +66,7 @@ ngb-datepicker .ngb-dp-arrow {
   .form-select {
     background-color: transparent;
     font: inherit;
+    min-width: fit-content;
   }
 }
 
@@ -182,7 +183,7 @@ span.ngb-dp-navigation-chevron {
 }
 
 .form-control-sm ~ .ngb-dp-open {
-  height: calc(#{forms.$form-floating-label-height-sm} - #{forms.$input-border-width * 2});
+  height: forms.$input-height-sm;
 }
 
 input[ngbDatepicker] {

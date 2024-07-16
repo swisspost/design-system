@@ -136,9 +136,13 @@ export namespace Components {
     }
     interface PostCollapsibleTrigger {
         /**
-          * Link the trigger to a collapsible with this id
+          * Link the trigger to a post-collapsible with this id
          */
         "for": string;
+        /**
+          * Update the "aria-controls" and "aria-expanded" attributes on the trigger button
+         */
+        "update": () => Promise<void>;
     }
     /**
      * @class PostIcon - representing a stencil component
@@ -623,7 +627,7 @@ declare namespace LocalJSX {
     }
     interface PostCollapsibleTrigger {
         /**
-          * Link the trigger to a collapsible with this id
+          * Link the trigger to a post-collapsible with this id
          */
         "for"?: string;
     }
