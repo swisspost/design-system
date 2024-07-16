@@ -307,6 +307,9 @@ jobs:
       - name: Remove Documentation versions.json
         run: rm -f ./packages/documentation/public/assets/versions.json
 
+      - name: Remove Documentation _headers
+        run: rm -f ./packages/documentation/public/_headers
+
       - name: Remove Documentation _redirects
         run: rm -f ./packages/documentation/public/_redirects
 
