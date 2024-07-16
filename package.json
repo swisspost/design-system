@@ -77,6 +77,7 @@
     "nextjs:lint": "pnpm --filter design-system-nextjs-integration lint",
     "changeset:publish": "pnpm changeset publish",
     "changeset:version": "pnpm changeset version && pnpm install --lockfile-only",
+    "tokens:build": "pnpm --filter design-system-tokens build",
     "primeng": "pnpm primeng:start",
     "primeng:start": "pnpm --filter design-system-styles-primeng-workspace start",
     "primeng:build": "pnpm --filter design-system-styles-primeng-workspace build",
@@ -84,15 +85,11 @@
     "primeng:lint:fix": "pnpm --filter design-system-styles-primeng-workspace lint:fix"
   },
   "devDependencies": {
-    "@changesets/cli": "2.27.5",
+    "@changesets/cli": "2.27.7",
     "start-server-and-test": "2.0.4"
   },
   "optionalDependencies": {
     "@web-types/lit": "2.0.0-3"
-  },
-  "engines": {
-    "node": "20",
-    "pnpm": "9"
   },
   "pnpm": {
     "peerDependencyRules": {
@@ -116,5 +113,9 @@
       "es5-ext@>=0.10.0 <0.10.63": ">=0.10.63",
       "follow-redirects@<=1.15.5": ">=1.15.6"
     }
-  }
+  },
+  "engines": {
+    "node": "20"
+  },
+  "packageManager": "pnpm@9.3.0"
 }

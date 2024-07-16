@@ -5,6 +5,8 @@ import { fadeIn, fadeOut } from '@/animations';
 /**
  * @slot tabs - Slot for placing tab headers. Each tab header should be a <post-tab-header> element.
  * @slot default - Slot for placing tab panels. Each tab panel should be a <post-tab-panel> element.
+ * @part tabs - Add custom styles for the tab header container.
+ * @part content - Add custom styles for the tab panel container.
  */
 
 @Component({
@@ -196,12 +198,12 @@ export class PostTabs {
   render() {
     return (
       <Host data-version={version}>
-        <div class="tabs-wrapper">
+        <div class="tabs-wrapper" part="tabs">
           <div class="tabs" role="tablist">
             <slot name="tabs" onSlotchange={() => this.enableTabs()} />
           </div>
         </div>
-        <div class="tab-content">
+        <div class="tab-content" part="content">
           <slot onSlotchange={() => this.moveMisplacedTabs()} />
         </div>
       </Host>

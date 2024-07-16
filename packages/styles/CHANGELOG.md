@@ -1,5 +1,29 @@
 # @swisspost/design-system-styles
 
+## 7.2.1
+
+### Patch Changes
+
+- Fixed a bug where the year in the datepicker got cut and fixed the icon placement in the small variant of the datepicker input. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#3203](https://github.com/swisspost/design-system/pull/3203))
+
+## 7.2.0
+
+### Minor Changes
+
+- Added a small variant for the textarea with floating label. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2857](https://github.com/swisspost/design-system/pull/2857))
+
+- Updated disabled styles of form controls to have a dashed border. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2857](https://github.com/swisspost/design-system/pull/2857))
+
+### Patch Changes
+
+- Added @angular/core as an optional peer dependency to the styles package to indicate the Angular versions that are compatible with the current version of the styles. (by [@gfellerph](https://github.com/gfellerph) with [#3168](https://github.com/swisspost/design-system/pull/3168))
+
+- Fixed an issue with icon URL declarations when building styles with esbuild. (by [@alizedebray](https://github.com/alizedebray) with [#3123](https://github.com/swisspost/design-system/pull/3123))
+
+- Fixed the misaligned calendar icon in the datepicker input field. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3145](https://github.com/swisspost/design-system/pull/3145))
+
+- Implemented button wrapping for overflow in button groups. (by [@alizedebray](https://github.com/alizedebray) with [#3062](https://github.com/swisspost/design-system/pull/3062))
+
 ## 7.1.0
 
 ### Minor Changes
