@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-styles-primeng",
-  "version": "0.0.1-alpha",
+  "version": "0.0.1",
   "description": "Swiss Post styles for PrimeNg datatable.",
   "author": "Swiss Post <oss@post.ch>",
   "license": "Apache-2.0",
