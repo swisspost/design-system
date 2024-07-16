@@ -1,6 +1,6 @@
 import { Component, Element, Listen, Method, Prop, Watch } from '@stencil/core';
 import { version } from 'typescript';
-import { checkNonEmpty, checkType, debounce } from '@/utils';
+import { checkNonEmpty, checkType, debounce, getElementInRootNode } from '@/utils';
 import { PostCollapsibleCustomEvent } from '@/components';
 
 @Component({
