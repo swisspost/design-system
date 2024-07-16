@@ -277,14 +277,12 @@ const Template: Story = {
 
     if (args.floatingLabel) {
       return html`
-        <div class="form-select-wrapper form-floating">
+        <div class="form-floating">
           ${[control, label, ...contextuals].filter(el => el !== null)}
         </div>
       `;
     } else {
-      return html`<div class="form-select-wrapper">
-        ${[label, control, ...contextuals].filter(el => el !== null)}
-      </div>`;
+      return html`${[label, control, ...contextuals].filter(el => el !== null)}`;
     }
   },
 };

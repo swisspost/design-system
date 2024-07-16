@@ -16,10 +16,8 @@ type Story = StoryObj;
 
 export const BasicInput: Story = {
   render: () => html`
-    <div class="form-control-wrapper"></div>
-      <label class="form-label" for="firstname">Firstname</label>
-      <input type="text" id="firstname" class="form-control" />
-    </div>
+    <label class="form-label" for="firstname">Firstname</label>
+    <input type="text" id="firstname" class="form-control" />
   `,
 };
 
@@ -27,16 +25,12 @@ export const RowSimple: Story = {
   render: () => html`
     <div class="row row-cols-1 row-cols-md-2">
       <div class="col">
-        <div class="form-control-wrapper">
-          <label class="form-label" for="firstname">Firstname</label>
-          <input type="text" id="firstname" class="form-control" />
-        </div>
+        <label class="form-label" for="firstname">Firstname</label>
+        <input type="text" id="firstname" class="form-control" />
       </div>
       <div class="col">
-        <div class="form-control-wrapper">
-          <label class="form-label" for="lastname">Lastname</label>
-          <input type="text" id="lastname" class="form-control" />
-        </div>
+        <label class="form-label" for="lastname">Lastname</label>
+        <input type="text" id="lastname" class="form-control" />
       </div>
     </div>
   `,
@@ -46,16 +40,12 @@ export const ColSimple: Story = {
   render: () => html`
     <div class="row">
       <div class="col-8">
-        <div class="form-control-wrapper">
-          <label class="form-label" for="city">City</label>
-          <input type="text" id="city" class="form-control" />
-        </div>
+        <label class="form-label" for="city">City</label>
+        <input type="text" id="city" class="form-control" />
       </div>
       <div class="col-4">
-        <div class="form-control-wrapper">
-          <label class="form-label" for="state">State</label>
-          <input type="text" id="state" class="form-control" />
-        </div>
+        <label class="form-label" for="state">State</label>
+        <input type="text" id="state" class="form-control" />
       </div>
     </div>
   `,
@@ -65,16 +55,12 @@ export const CustomWidth: Story = {
   render: () => html`
     <div class="row">
       <div class="col-auto">
-        <div class="form-control-wrapper">
-          <label class="form-label" for="zip">Zip</label>
-          <input type="number" id="zip" class="form-control" style="max-width: 11ch" />
-        </div>
+        <label class="form-label" for="zip">Zip</label>
+        <input type="number" id="zip" class="form-control" style="max-width: 11ch" />
       </div>
       <div class="col">
-        <div class="form-control-wrapper">
-          <label class="form-label" for="city">City</label>
-          <input type="text" id="city" class="form-control" />
-        </div>
+        <label class="form-label" for="city">City</label>
+        <input type="text" id="city" class="form-control" />
       </div>
     </div>
   `,
@@ -83,16 +69,12 @@ export const CustomWidth: Story = {
 export const VerticalSpacing: Story = {
   render: () => html`
     <div class="mb-regular">
-      <div class="form-control-wrapper">
-        <label for="firstname">Firstname</label>
-        <input type="text" id="firstname" class="form-control" />
-      </div>
+      <label for="firstname">Firstname</label>
+      <input type="text" id="firstname" class="form-control" />
     </div>
     <div class="mb-regular">
-      <div class="form-control-wrapper">
-        <label for="lastname">Lastname</label>
-        <input type="text" id="lastname" class="form-control" />
-      </div>
+      <label for="lastname">Lastname</label>
+      <input type="text" id="lastname" class="form-control" />
     </div>
   `,
 };
@@ -100,16 +82,12 @@ export const VerticalSpacing: Story = {
 export const Buttons: Story = {
   render: () => html`
     <div class="mb-regular">
-      <div class="form-control-wrapper">
-        <label for="firstname">Firstname</label>
-        <input type="text" id="firstname" class="form-control" />
-      </div>
+      <label for="firstname">Firstname</label>
+      <input type="text" id="firstname" class="form-control" />
     </div>
     <div class="d-flex flex-row-reverse gap-mini">
-      <div class="form-control-wrapper">
-        <button class="btn btn-primary">Send</button>
-        <button class="btn btn-secondary">Cancel</button>
-      </div>
+      <button class="btn btn-primary">Send</button>
+      <button class="btn btn-secondary">Cancel</button>
     </div>
   `,
 };
@@ -118,13 +96,13 @@ export const FloatingLabels: Story = {
   render: () => html`
     <div class="row">
       <div class="col">
-        <div class="form-control-wrapper form-floating">
+        <div class="form-floating">
           <input type="text" id="firstname" class="form-control" placeholder=" " />
           <label class="form-label" for="firstname">Firstname</label>
         </div>
       </div>
       <div class="col">
-        <div class="form-control-wrapper form-floating">
+        <div class="form-floating">
           <input type="text" id="lastname" class="form-control" placeholder=" " />
           <label class="form-label" for="lastname">Lastname</label>
         </div>
@@ -139,7 +117,7 @@ export const Validation: Story = {
       <!-- Form Control -->
       <div class="row mb-regular">
         <div class="col">
-          <div class="form-control-wrapper form-floating">
+          <div class="form-floating">
             <input
               id="formControlInvalid"
               type="text"
@@ -152,7 +130,7 @@ export const Validation: Story = {
           </div>
         </div>
         <div class="col">
-          <div class="form-control-wrapper form-floating">
+          <div class="form-floating">
             <input
               id="FormControlValid"
               type="text"
@@ -169,14 +147,14 @@ export const Validation: Story = {
       <!-- Form Select -->
       <div class="row mb-regular">
         <div class="col">
-          <div class="form-select-wrapper form-floating">
+          <div class="form-floating">
             <select id="FormSelectInvalid" class="form-select is-invalid" required></select>
             <label class="form-label" for="FormSelectInvalid">Invalid Select</label>
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
         <div class="col">
-          <div class="form-select-wrapper form-floating">
+          <div class="form-floating">
             <select id="FormSelectValid" class="form-select is-valid">
               <option disabled>Select one..</option>
               <option value="1">Value 1</option>
@@ -191,7 +169,7 @@ export const Validation: Story = {
       <!-- Form Select Multiple-->
       <div class="row mb-regular">
         <div class="col">
-          <div class="form-select-wrapper form-floating">
+          <div class="form-floating">
             <select
               id="FormSelectMultipleInvalid"
               class="form-select is-invalid"
@@ -205,7 +183,7 @@ export const Validation: Story = {
           </div>
         </div>
         <div class="col">
-          <div class="form-select-wrapper form-floating">
+          <div class="form-floating">
             <select id="FormSelectMultipleValid" class="form-select is-valid" multiple>
               <option value="1">Value 1</option>
               <option value="2">Value 2</option>
@@ -219,14 +197,14 @@ export const Validation: Story = {
       <!-- Form File -->
       <div class="row mb-regular">
         <div class="col">
-          <div class="form-control-wrapper form-floating">
+          <div class="form-floating">
             <input id="FormFileInvalid" type="file" class="form-control is-invalid" required />
             <label class="form-label" for="FormFileInvalid">Invalid File</label>
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
         <div class="col">
-          <div class="form-control-wrapper form-floating">
+          <div class="form-floating">
             <input id="FormFileValid" type="file" class="form-control is-valid" />
             <label class="form-label" for="FormFileValid">Valid File</label>
             <p class="valid-feedback">Success message (optional)</p>
@@ -237,7 +215,7 @@ export const Validation: Story = {
       <!-- Form Textarea -->
       <div class="row mb-regular">
         <div class="col">
-          <div class="form-control-wrapper form-floating">
+          <div class="form-floating">
             <textarea
               id="FormTextareaInvalid"
               type="text"
@@ -250,7 +228,7 @@ export const Validation: Story = {
           </div>
         </div>
         <div class="col">
-          <div class="form-control-wrapper form-floating">
+          <div class="form-floating">
             <textarea
               id="FormTextareaValid"
               type="text"
@@ -309,14 +287,14 @@ Value</textarea
       <!-- Form Range -->
       <div class="row mb-regular">
         <div class="col">
-          <div class="form-range-wrapper">
+          <div class="">
             <label class="form-label" for="FormRangeInvalid">Invalid Range</label>
             <input class="form-range is-invalid" id="FormRangeInvalid" type="range" />
             <p class="invalid-feedback">Error message</p>
           </div>
         </div>
         <div class="col">
-          <div class="form-range-wrapper">
+          <div class="">
             <label class="form-label" for="FormRangeValid">Valid Range</label>
             <input class="form-range is-valid" id="FormRangeValid" type="range" />
             <p class="valid-feedback">Success message (optional)</p>
@@ -358,7 +336,7 @@ Value</textarea
 
 export const Hints: Story = {
   render: () => html`
-    <div class="form-control-wrapper form-floating">
+    <div class="form-floating">
       <input
         type="text"
         id="firstname"
