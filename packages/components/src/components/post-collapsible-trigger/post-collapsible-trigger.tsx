@@ -1,6 +1,6 @@
 import { Component, Element, Listen, Method, Prop, Watch } from '@stencil/core';
 import { version } from 'typescript';
-import { checkNonEmpty, checkType } from '@/utils';
+import { checkNonEmpty, checkType, debounce } from '@/utils';
 import { PostCollapsibleCustomEvent } from '@/components';
 
 @Component({
@@ -66,6 +66,10 @@ export class PostCollapsibleTrigger {
    */
   @Method()
   async update() {
+    this.debouncedUpdate();
+  }
+
+  private debouncedUpdate = debounce(() => {
     if (!this.trigger) return;
 
     // add the provided id to the aria-controls list
@@ -79,7 +83,7 @@ export class PostCollapsibleTrigger {
     const isCollapsed = this.collapsible?.collapsed;
     const newAriaExpanded = isCollapsed !== undefined ? !isCollapsed : undefined;
     this.trigger.setAttribute('aria-expanded', `${newAriaExpanded}`);
-  }
+  });
 
   /**
    * Toggle the post-collapsible controlled by the trigger
