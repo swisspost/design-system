@@ -22,7 +22,8 @@ The header for client-facing applications.
 
 <ul>
   <li><a href="#installation" target="_self">Installation</a></li>
-  <li><a href="#migration-from-the-old-header" target="_self">Migration Guide</a></li>
+  <li><a href="#css-variables" target="_self">CSS Variables</a></li>
+  <li><a href="#migration-from-the-old-header" target="_self">Migration from the old header</a></li>
 </ul>
 
 <div class="card my-bigger-big">
@@ -104,6 +105,22 @@ Internet-header package provide two versions:
 ### Usage with Angular
 
 For Angular user, please have a look at [How to integrate Web Components inside Angular](/?path=/docs/8426deb2-3d6d-4fcc-90e6-1ca9737b2ed0--docs#usage-of-web-components)
+
+## CSS Variables
+
+The internet header package provides a stylesheet aimed at facilitating the use of key CSS variables beyond the header itself.
+This stylesheet allows you to access CSS variables to implement styling relative to the header as needed, but it is completely optional.
+
+<PostTabs>
+  <PostTabHeader slot="tabs" panel="sass-import">Sass Import</PostTabHeader>
+  <PostTabPanel name="sass-import">
+    <Source code={`@use "@swisspost/internet-header/dist/siwsspost-internet-header/siwsspost-internet-header.css";`} dark={SourceDarkMode} language="scss" />
+  </PostTabPanel>
+  <PostTabHeader slot="tabs" panel="html-import">HTML Import</PostTabHeader>
+  <PostTabPanel name="html-import">
+    <Source code={`<link rel="stylesheet" href="@swisspost/internet-header/dist/siwsspost-internet-header/siwsspost-internet-header.css"/>`} dark={SourceDarkMode} language="html" />
+  </PostTabPanel>
+</PostTabs>
 
 ## Migration from the old header
 
