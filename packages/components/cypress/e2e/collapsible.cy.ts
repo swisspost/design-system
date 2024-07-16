@@ -44,7 +44,7 @@ describe('collapsible', () => {
     });
 
     it('should update the "aria-expanded" attribute after showing the collapsible', () => {
-      cy.get('@trigger').click();
+      cy.get('@trigger').dblclick();
       cy.get('@trigger').should('have.attr', 'aria-expanded', 'true');
     });
   });
