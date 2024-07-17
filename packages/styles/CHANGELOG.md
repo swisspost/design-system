@@ -10,7 +10,9 @@
 
 ### Minor Changes
 
-- Added a small variant for the textarea with floating label (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2857](https://github.com/swisspost/design-system/pull/2857))
+- Added a small variant for the textarea with floating label. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2857](https://github.com/swisspost/design-system/pull/2857))
+
+- Updated disabled styles of form controls to have a dashed border. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2857](https://github.com/swisspost/design-system/pull/2857))
 
 ### Patch Changes
 
