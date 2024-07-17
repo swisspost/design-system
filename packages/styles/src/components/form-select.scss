@@ -52,11 +52,9 @@
     }
   }
 
-  &:disabled {
-    @include utilities.high-contrast-mode {
-      border-color: GrayText !important;
-      background-color: Field !important;
-      color: GrayText;
+  @include utilities.disabled-style {
+    ~ .form-text {
+      color: var(--post-gray-60);
     }
   }
 
