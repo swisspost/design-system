@@ -61,7 +61,7 @@
     "cypress-storybook": "1.0.0",
     "eslint": "8.57.0",
     "eslint-plugin-react": "7.34.3",
-    "rimraf": "5.0.7",
+    "rimraf": "6.0.1",
     "rollup-plugin-postcss": "4.0.2",
     "sass": "1.77.6",
     "ts-jest": "29.1.5",

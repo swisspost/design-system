@@ -2,7 +2,7 @@ import type { Args, StoryContext, StoryFn } from '@storybook/web-components';
 import { useArgs, useState } from '@storybook/preview-api';
 import { nothing } from 'lit';
 import { html } from 'lit/static-html.js';
-import { classMap } from 'lit/directives/class-map.js';
+import { mapClasses } from '@/utils';
 import { MetaComponent } from '@root/types';
 import { parse } from '@/utils/sass-export';
 import scss from '../card-control.module.scss';
@@ -30,7 +30,7 @@ const meta: MetaComponent = {
     checked: false,
     disabled: false,
     validation: 'null',
-    groupValidation: 'null',
+    groupValidation: false,
   },
   argTypes: {
     type: {
@@ -108,18 +108,9 @@ const meta: MetaComponent = {
       },
     },
     groupValidation: {
-      name: 'Group Validation',
-      description: 'Set validation status for the whole group of choice cards',
+      name: 'GroupValidation',
       control: {
-        type: 'radio',
-        labels: {
-          'null': 'Default',
-          'is-invalid': 'Invalid',
-        },
-      },
-      options: ['null', 'is-invalid'],
-      table: {
-        category: 'General',
+        type: 'boolean',
       },
     },
   },
@@ -154,14 +145,14 @@ export const Default = {
     const [_, updateArgs] = useArgs();
 
     // Conditional classes
-    const cardClasses = classMap({
+    const cardClasses = mapClasses({
       'checked': args.checked,
       'disabled': args.disabled,
       'is-invalid': args.validation === 'is-invalid',
       'checkbox-button-card': args.type === 'checkbox',
       'radio-button-card': args.type === 'radio',
     });
-    const inputClasses = classMap({
+    const inputClasses = mapClasses({
       'form-check-input': true,
       'is-invalid': args.validation === 'is-invalid',
     });
@@ -170,6 +161,7 @@ export const Default = {
     const controlId = `CardControl_${id}`;
     const description = html`<span class="font-size-12">${args.description}</span>`;
     const icon = html` <post-icon name="${args.icon}" aria-hidden="true"></post-icon> `;
+    const invalidFeedback = html`<p class="invalid-feedback mt-2">Invalid feedback</p>`;
 
     return html`
       <div class="${cardClasses}">
@@ -189,6 +181,7 @@ export const Default = {
         </label>
         ${args.icon !== 'none' ? icon : nothing}
       </div>
+      ${args.validation === 'is-invalid' && !args.GroupValidation ? invalidFeedback : nothing}
     `;
   },
 };
@@ -238,7 +231,8 @@ function col(label: string, args: Args, useState: useStateFn) {
         label,
         inputName: args.type === 'radio' ? 'group' : `control-${id}`,
         checked: false,
-        validation: args.groupValidation,
+        GroupValidation: true,
+        validation: args.validation,
       })}
     </div>
   `;
@@ -247,19 +241,19 @@ function col(label: string, args: Args, useState: useStateFn) {
 export const Group = {
   parameters: {
     controls: {
-      include: ['Type', 'Group Validation'],
+      include: ['Type', 'Validation'],
     },
   },
   render: (args: Args) => {
-    const error = html`
-      <p id="radio-group-invalid-feedback" class="d-block mt-3 invalid-feedback">Invalid choice</p>
+    const invalidFeedback = html`
+      <p id="invalid-feedback" class="d-inline-flex mt-3 invalid-feedback">Invalid choice</p>
     `;
 
     return html`
       <fieldset class="container-fluid">
-        <legend aria-describedby="radio-group-invalid-feedback">Legend</legend>
+        <legend aria-describedby="invalid-feedback">Legend</legend>
         <div class="row g-3">${CONTROL_LABELS.map(n => col(n, args, useState))}</div>
-        ${args.groupValidation === 'is-invalid' ? error : null}
+        ${args.validation === 'is-invalid' ? invalidFeedback : nothing}
       </fieldset>
     `;
   },

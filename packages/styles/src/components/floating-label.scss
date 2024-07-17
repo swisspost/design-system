@@ -76,7 +76,7 @@
 
     &:disabled {
       ~ label {
-        color: forms.$input-disabled-color;
+        color: var(--post-gray-60);
       }
     }
 
@@ -147,7 +147,7 @@
 
     &:disabled {
       ~ label {
-        color: forms.$input-disabled-color;
+        color: var(--post-gray-60);
       }
     }
 

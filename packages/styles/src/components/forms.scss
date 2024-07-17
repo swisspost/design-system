@@ -95,7 +95,7 @@ select.form-control-rg:not([size]):not([multiple]) {
 
   @include utilities.disabled-style {
     ~ .form-text {
-      color: forms.$input-disabled-color;
+      color: var(--post-gray-60);
     }
   }
 
@@ -212,7 +212,7 @@ select.form-control-rg:not([size]):not([multiple]) {
     margin-bottom: spacing.$size-micro;
   }
 
-  &:has(+ .form-control[disabled]) {
-    color: forms.$input-disabled-color;
+  &:has(+ .form-control[disabled], + .form-select[disabled]) {
+    color: var(--post-gray-60);
   }
 }

@@ -23,6 +23,7 @@ const meta: MetaComponent = {
     innerHTML: 'Hi there 👋',
     backgroundColor: 'primary',
     placement: 'top',
+    delayed: false,
   },
   argTypes: {
     id: {
@@ -88,6 +89,7 @@ function render(args: Args) {
       class="hydrated bg-${args.backgroundColor}"
       placement="${ifDefined(args.placement)}"
       arrow="${ifDefined(args.arrow)}"
+      delayed="${ifDefined(args.delayed)}"
     >
       ${unsafeHTML(innerHTML)}
     </post-tooltip>
