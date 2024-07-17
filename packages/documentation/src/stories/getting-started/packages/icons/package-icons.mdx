@@ -51,12 +51,12 @@ Add a `postinstall` script to your `package.json`, to copy & paste the icons to 
 If you want to know more about pre & post scripts and how they are handled, please read the <a href="https://docs.npmjs.com/cli/v7/using-npm/scripts#description">npm documentation</a>.
 
 <PostTabs>
-  <PostTabHeader slot="tabs" panel="nodeNew">NodeJS version 16.7.0 or newer</PostTabHeader>
+  <PostTabHeader panel="nodeNew">NodeJS version 16.7.0 or newer</PostTabHeader>
   <PostTabPanel name="nodeNew">
     <Source  code={SampleNode16} language="json"/>
   </PostTabPanel>
 
-  <PostTabHeader slot="tabs" panel="nodeOld">Older NodeJS versions</PostTabHeader>
+  <PostTabHeader panel="nodeOld">Older NodeJS versions</PostTabHeader>
   <PostTabPanel name="nodeOld">
     <Source code={SampleNodeOlder} language="json"/>
     <Source code={SampleNodeOlderJs} language="javascript" />
@@ -72,12 +72,12 @@ You can do this with two different solutions:
 2. Use the **base-attribute** solution, to configure the `base-path` on every `icon` component. This can also be used to overwrite the global `base-path` for a single icon.
 
 <PostTabs>
-  <PostTabHeader slot="tabs" panel="metaTag">Meta-tag solution (recommended)</PostTabHeader>
+  <PostTabHeader panel="metaTag">Meta-tag solution (recommended)</PostTabHeader>
   <PostTabPanel name="metaTag">
     <Source code={SampleIconMeta} language="html" />
   </PostTabPanel>
 
-  <PostTabHeader slot="tabs" panel="baseAttribute">Base-attribute solution</PostTabHeader>
+  <PostTabHeader panel="baseAttribute">Base-attribute solution</PostTabHeader>
   <PostTabPanel name="baseAttribute">
     <Source  code={`<post-icon name="1000" base="/base-path/to/your/own/icon-folder"></post-icon>`} language="html"/>
   </PostTabPanel>

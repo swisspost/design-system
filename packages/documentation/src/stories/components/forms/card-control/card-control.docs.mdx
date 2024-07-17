@@ -31,7 +31,7 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
 </PostAlert>
 
 <PostTabs>
-  <PostTabHeader slot="tabs" panel="standardhtml">Standard HTML</PostTabHeader>
+  <PostTabHeader panel="standardhtml">Standard HTML</PostTabHeader>
   <PostTabPanel name="standardhtml">
     <Canvas sourceState="shown" of={CardControlStandardHTMLStories.Default} />
     <div className="hide-col-default">
@@ -86,7 +86,7 @@ import SampleCardControlMethods from './web-component/card-control-methods.sampl
     <StylesPackageImport components={['choice-control-card']} />
   </PostTabPanel>
 
-  <PostTabHeader slot="tabs" panel="webcomponent">Webcomponent</PostTabHeader>
+  <PostTabHeader panel="webcomponent">Webcomponent</PostTabHeader>
   <PostTabPanel name="webcomponent">
     <Canvas of={CardControlStories.Default} sourceState="shown"/>
     <Controls of={CardControlStories.Default} />
