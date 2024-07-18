@@ -18,7 +18,6 @@
 
     li {
       margin-bottom: paragraph.$text-bottom-space * 0.5;
-      font-weight: type.$font-weight-light;
 
       &::before {
         content: '\2013';
@@ -78,7 +77,6 @@
     li {
       @extend %font-curve-regular;
       @extend %text-bottom-spacer;
-      font-weight: type.$font-weight-light;
 
       &::before {
         content: '\2013';
@@ -131,7 +129,6 @@
     counter-reset: li-counter;
 
     li {
-      font-weight: type.$font-weight-light;
       counter-increment: li-counter;
 
       &::before {
