@@ -1,7 +1,6 @@
 import { ArgTypes, Meta, Source } from '@storybook/blocks';
 import { PostTabHeader, PostTabPanel, PostTabs } from '@swisspost/design-system-components-react';
 import * as IntranetHeaderStories from './intranet-header.stories';
-import SampleUse from './intranet-header-use.sample?raw';
 import SampleNavigationBar from './intranet-header-navigation-bar.sample.html?raw';
 import SampleSideNavigation from './intranet-header-side-navigation.sample.html?raw';
 import SampleSideUserMenuDropdown from './intranet-header-user-menu-dropdown.sample.html?raw';
@@ -27,66 +26,7 @@ import PostComponentDemoLink from '@/shared/post-component-demo-link.mdx';
 
 The Header Angular component for internal usage.
 
-<ul>
-  <li>
-    <a href="#installation" target="_self">Installation</a>
-  </li>
-  <li>
-    <a href="#usage" target="_self">Usage</a>
-  </li>
-  <li>
-    <a href="#examples" target="_self">Examples</a>
-  </li>
-</ul>
-
-## Installation
-
-See <a href="/?path=/docs/7068be42-1a20-4a34-9e79-7fb7f9f2940f--docs">Intranet-header package page</a>
-
-## Usage
-
-1. In `app.module.ts`, import `SwissPostIntranetHeaderModule` and add it to the `imports` array property.
-
-<Source code={SampleUse} language="typescript" />
-
-2. In `app.component.html`, create a `section` container and assign it the CSS classes that best suit your desired layout:
-
-<div className="table-responsive">
-  <table className="table">
-    <thead>
-      <tr>
-        <th>Class</th>
-        <th>Condition</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>`layout-container`</td>
-        <td>Always</td>
-      </tr>
-      <tr>
-        <td>`header-big`</td>
-        <td>To use the header with a navigation bar</td>
-      </tr>
-      <tr>
-        <td>`header-small`</td>
-        <td>To use the header without a navigation bar</td>
-      </tr>
-      <tr>
-        <td>`with-searchbar`</td>
-        <td>To use the header with a search bar</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
-3. In the layout container, add the `post-intranet-header` component and configure it as needed using the properties described below.
-
-4. Add any other content in the container below the header, wrapped in an element with class `header-margin`.
-
-### Props
-
-<ArgTypes of={IntranetHeaderStories} />
+For installation and usage see the <a href="/?path=/docs/7068be42-1a20-4a34-9e79-7fb7f9f2940f--docs">intranet-header package getting started page</a>
 
 ## Examples
 
@@ -111,3 +51,7 @@ See <a href="/?path=/docs/7068be42-1a20-4a34-9e79-7fb7f9f2940f--docs">Intranet-h
     <Source code={SamplePostweb} language="html" />
   </PostTabPanel>
 </PostTabs>
+
+### Props
+
+<ArgTypes of={IntranetHeaderStories} />
