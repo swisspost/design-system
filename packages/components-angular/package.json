@@ -27,9 +27,9 @@
   "devDependencies": {
     "@angular-devkit/build-angular": "18.0.7",
     "@angular-eslint/builder": "18.1.0",
-    "@angular-eslint/eslint-plugin": "17.5.2",
-    "@angular-eslint/eslint-plugin-template": "17.5.2",
-    "@angular-eslint/template-parser": "17.5.2",
+    "@angular-eslint/eslint-plugin": "18.1.0",
+    "@angular-eslint/eslint-plugin-template": "18.1.0",
+    "@angular-eslint/template-parser": "18.1.0",
     "@angular/cli": "18.0.7",
     "@angular/compiler-cli": "18.1.0",
     "@cypress/schematic": "2.5.2",
