@@ -4,7 +4,7 @@
 :export {
   fontFamilies: [('sans-serif', 'monospace')];
   fontSizes: [map.keys(post.$font-sizes)];
-  fontWeights: [('light', 'normal', 'bold')];
+  fontWeights: [('normal', 'bold')];
   fontStyles: [('normal', 'italic')];
   fixedLineHeights: [map.keys(post.$post-sizes)];
   relativeLineHeights: [('1', 'base', 'sm', 'lg')];
