@@ -2,4 +2,4 @@
 '@swisspost/design-system-styles': patch
 ---
 
-Removed all relevant usages of font-weight-light.
+Switched from light to regular font weight for most texts, excluding sub-titles.
