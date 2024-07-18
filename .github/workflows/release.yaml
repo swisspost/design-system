@@ -184,6 +184,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           ref: changeset-release/${{ github.ref_name }}
 
       - name: Setup Node & pnpm
@@ -259,6 +260,8 @@ jobs:
       - name: Commit Changes and Push Branch
         uses: EndBug/add-and-commit@v9
         with:
+          author_name: Swiss Post Bot
+          author_email: 103635272+swisspost-bot@users.noreply.github.com
           message: 'chore(changesets): update release specific files'
           push: true
 
@@ -298,10 +301,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
+          token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
           ref: '@swisspost/design-system-styles@${{ fromJSON(needs.collect-release-data.outputs.release-data).old.version }}'
 
       - name: Remove Documentation versions.json
         run: rm -f ./packages/documentation/public/assets/versions.json
+
+      - name: Remove Documentation _headers
+        run: rm -f ./packages/documentation/public/_headers
 
       - name: Remove Documentation _redirects
         run: rm -f ./packages/documentation/public/_redirects
@@ -329,7 +336,7 @@ jobs:
           echo "exists=$exists" >> $GITHUB_OUTPUT
 
       - name: Create Netlify Site (if it does not exist)
-        if: ${{ steps.netlify-site.outputs.exists == false }}
+        if: steps.netlify-sites.outputs.exists == 'false'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
         run: netlify sites:create --filter @swisspost/design-system-documentation --account-slug oss-udwyths --name ${{ fromJSON(needs.collect-release-data.outputs.release-data).old.siteUrl }} --manual
@@ -372,6 +379,8 @@ jobs:
       - name: Commit Changes and Push Release Branch
         uses: EndBug/add-and-commit@v9
         with:
+          author_name: Swiss Post Bot
+          author_email: 103635272+swisspost-bot@users.noreply.github.com
           new_branch: ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
           message: 'chore(setup): create "${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}" branch'
           push: true
@@ -407,17 +416,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
 
       - name: Remove Changeset Branch
         if: needs.collect-release-data.outputs.release-changeset-branch-exists == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
         run: git push origin --delete changeset-release/${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
 
       - name: Remove Release Branch
         if: needs.collect-release-data.outputs.release-branch-exists == 'true'
-        env:
-          GITHUB_TOKEN: ${{ secrets.SWISSPOSTDEVS_ACCESS_TOKEN }}
         run: git push origin --delete ${{ fromJSON(needs.collect-release-data.outputs.release-data).branchName }}
 
       - name: Create Summary

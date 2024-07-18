@@ -232,7 +232,7 @@ $blockquote-footer-font-size: math.div(
   $lead-font-size * sizing.strip-unit($small-font-size),
   100
 ) !default;
-$blockquote-cite-font-weight: $font-weight-light !default;
+$blockquote-cite-font-weight: $font-weight-normal !default;
 
 $hr-border-color: rgba(color.$black, 0.1) !default; // Design System
 $hr-border-color-light: rgba(color.$white, 0.4) !default; // Design System only

@@ -47,7 +47,7 @@ jobs:
 
       - name: Install netlify cli
         if: steps.check.outputs.changed == 'true'
-        run: pnpm -g i netlify-cli@15
+        run: pnpm -g i netlify-cli@17
 
       # Publish demo only if changesets published any packages
       - name: Publish demo app to netlify

@@ -49,10 +49,16 @@ export const isInViewport = function (_chai: Chai.ChaiStatic) {
 chai.use(isInViewport);
 
 Cypress.Commands.add('getComponent', (component: string, id: string, story = 'default') => {
+  cy.getComponents(id, story, component);
+});
+
+Cypress.Commands.add('getComponents', (id: string, story: string, ...components: string[]) => {
   cy.visit(`/iframe.html?id=${id}--${story}`);
 
-  const alias = component.replace(/^post-/, '');
-  cy.get(`post-${alias}`, { timeout: 30000 }).as(alias);
+  components.forEach(component => {
+    const alias = component.replace(/^post-/, '');
+    cy.get(`post-${alias}.hydrated`, { timeout: 30000 }).as(alias);
+  });
 
   cy.injectAxe();
 });

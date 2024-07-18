@@ -13,7 +13,8 @@
       "@swisspost/design-system-components-react",
       "@swisspost/design-system-intranet-header",
       "@swisspost/design-system-icons",
-      "@swisspost/design-system-migrations"
+      "@swisspost/design-system-migrations",
+      "@swisspost/design-system-styles-primeng"
     ]
   ],
   "linked": [],

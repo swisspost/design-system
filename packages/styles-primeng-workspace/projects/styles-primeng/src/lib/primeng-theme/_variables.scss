@@ -1,0 +1,140 @@
+@use 'sass:math';
+@use '@swisspost/design-system-styles/core' as post;
+
+$primaryLightColor: post.$gray-60 !default;
+$primaryColor: post.$gray-80 !default;
+$primaryDarkColor: post.$black !default;
+$primaryDarkerColor: post.$black !default;
+$primaryTextColor: post.$white !default;
+$primaryAccentBg: post.$gray-10 !default;
+
+$highlightBg: post.$yellow !default;
+$highlightTextColor: post.$black !default;
+$highlightFocusBg: post.$yellow !default;
+
+$colors: () !default;
+
+//reused color variables
+$shade000: post.$white !default; //surface
+$shade100: post.$gray !default; //header background
+$shade200: post.$gray-10 !default; //hover background
+$shade300: post.$gray-10 !default; //border, divider
+$shade400: post.$input-border-color !default; //input border
+$shade500: post.$error !default; //unused
+$shade600: post.$text-muted !default; //text secondary color
+$shade700: post.$input-color !default; //input text color
+$shade800: post.$error !default; //unused
+$shade900: var(--post-contrast-color) !default; //text color
+
+//global
+$borderRadius: post.$border-radius !default;
+
+//scale
+$scaleSM: math.div(post.$btn-font-size-rg, post.$btn-font-size-md) !default;
+$scaleLG: math.div(post.$btn-font-size-lg, post.$btn-font-size-md) !default;
+
+//focus
+$focusOutlineColor: $primaryDarkColor !default;
+$focusOutline: post.$input-focus-outline-thickness none !default;
+$focusOutlineOffset: post.$input-focus-outline-thickness !default;
+$focusShadow: post.$input-focus-box-shadow !default;
+
+//action icons
+$actionIconWidth: 1.5rem !default;
+$actionIconHeight: 1.5rem !default;
+$actionIconColor: $shade900 !default;
+$actionIconHoverColor: $shade900 !default;
+$actionIconBorderRadius: post.$border-radius !default;
+
+//button
+$buttonPadding: math.div(post.$btn-height-md - post.$input-btn-line-height, 2)
+  post.$btn-padding-x-md !default;
+$outlinedButtonBorder: post.$btn-border-width solid !default;
+$textButtonHoverBgOpacity: 0 !default;
+$textButtonActiveBgOpacity: 0 !default;
+
+//input field (e.g. inputtext, spinner, inputmask)
+$inputPadding: post.$input-padding-y-rg post.$input-padding-x-rg !default;
+$inputBorder: post.$input-border-width solid $shade400 !default;
+
+//input lists (e.g. dropdown, autocomplete, multiselect, orderlist)
+$inputListItemTextColor: post.$black !default;
+$inputListItemTextHoverColor: post.$black !default;
+
+//checkbox
+$checkboxWidth: post.$form-check-input-size !default;
+$checkboxHeight: post.$form-check-input-size !default;
+$checkboxIconFontSize: post.$form-check-input-size !default;
+$checkboxActiveBg: $shade000 !default;
+$checkboxIconActiveColor: post.$black !default;
+$checkboxActiveHoverBg: $checkboxActiveBg !default;
+$checkboxIconActiveHoverColor: $checkboxIconActiveColor !default;
+
+//radiobutton
+$radiobuttonWidth: post.$form-check-input-size !default;
+$radiobuttonHeight: post.$form-check-input-size !default;
+$radiobuttonIconSize: 14px !default;
+$radiobuttonActiveBg: $shade000 !default;
+$radiobuttonIconActiveColor: post.$black !default;
+$radiobuttonActiveHoverBg: $radiobuttonActiveBg !default;
+$radiobuttonIconActiveHoverColor: $radiobuttonIconActiveColor !default;
+
+//paginator
+$paginatorBg: transparent;
+$paginatorElementBg: transparent;
+$paginatorElementIconColor: $shade900;
+$paginatorElementBorder: post.$btn-border-width solid $shade300 !default;
+$paginatorElementMargin: 0 0 0 -1 * post.$input-border-width !default;
+
+//table
+$tableHeaderBorder: solid post.$table-border-color !default;
+$tableHeaderBorderWidth: 0 0 post.$table-border-width 0 !default;
+$tableHeaderBg: $shade100 !default;
+$tableHeaderTextColor: post.$black !default;
+$tableHeaderFontWeight: post.$font-weight-base !default;
+$tableHeaderPadding: post.$table-cell-padding !default;
+
+$tableHeaderCellPadding: post.$table-cell-padding !default;
+$tableHeaderCellBg: post.$table-bg !default;
+$tableHeaderCellTextColor: $shade900 !default;
+$tableHeaderCellFontWeight: post.$table-th-font-weight !default;
+$tableHeaderCellBorder: post.$table-border-width solid post.$table-border-color !default;
+$tableHeaderCellBorderWidth: 0 !default;
+$tableHeaderCellHoverBg: post.$table-hover-bg !default;
+$tableHeaderCellTextHoverColor: post.$black !default;
+$tableHeaderCellIconColor: $tableHeaderCellTextColor !default;
+$tableHeaderCellIconHoverColor: post.$black !default;
+$tableHeaderCellHighlightBg: $tableHeaderCellBg !default;
+$tableHeaderCellHighlightTextColor: $tableHeaderCellTextColor !default;
+$tableHeaderCellHighlightHoverBg: $tableHeaderCellHoverBg !default;
+$tableHeaderCellHighlightTextHoverColor: post.$black !default;
+$tableSortableColumnBadgeSize: 1.143rem !default;
+
+$tableBodyRowBg: post.$table-bg !default;
+$tableBodyRowTextColor: $shade900 !default;
+$tableBodyRowEvenBg: post.$table-bg !default;
+$tableBodyRowHoverBg: post.$table-hover-bg !default;
+$tableBodyRowTextHoverColor: post.$black !default;
+$tableBodyCellBorder: post.$table-border-width solid post.$table-border-color !default;
+$tableBodyCellBorderWidth: post.$table-border-width 0 0 0 !default;
+$tableBodyCellPadding: post.$table-cell-padding !default;
+
+$tableFooterCellPadding: post.$table-cell-padding !default;
+$tableFooterCellBg: post.$table-bg !default;
+$tableFooterCellTextColor: $shade900 !default;
+$tableFooterCellFontWeight: post.$table-th-font-weight !default;
+$tableFooterCellBorder: post.$table-border-width solid post.$table-border-color !default;
+$tableFooterCellBorderWidth: post.$table-border-width 0 0 0 !default;
+$tableResizerHelperBg: $primaryColor !default;
+
+$tableFooterBorder: post.$table-border-width solid post.$table-border-color !default;
+$tableFooterBorderWidth: post.$table-border-width 0 0 0 !default;
+$tableFooterBg: $shade100 !default;
+$tableFooterTextColor: post.$black !default;
+$tableFooterFontWeight: post.$font-weight-base !default;
+$tableFooterPadding: post.$table-cell-padding !default;
+
+$tableTopPaginatorBorderWidth: 0 !default;
+$tableBottomPaginatorBorderWidth: 0 !default;
+
+@import './bootstrap-theme';
