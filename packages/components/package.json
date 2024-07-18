@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components",
-  "version": "7.2.0",
+  "version": "7.2.1",
   "description": "A collection of web components built with Stencil JS for the Swiss Post Design System.",
   "license": "Apache-2.0",
   "main": "dist/index.cjs.js",
@@ -39,7 +39,7 @@
   "dependencies": {
     "@floating-ui/dom": "1.6.7",
     "@oddbird/popover-polyfill": "0.3.7",
-    "@swisspost/design-system-styles": "workspace:7.2.0",
+    "@swisspost/design-system-styles": "workspace:7.2.1",
     "ally.js": "1.4.1",
     "long-press-event": "2.5.0"
   },
@@ -61,7 +61,7 @@
     "cypress-storybook": "1.0.0",
     "eslint": "8.57.0",
     "eslint-plugin-react": "7.34.3",
-    "rimraf": "5.0.7",
+    "rimraf": "6.0.1",
     "rollup-plugin-postcss": "4.0.2",
     "sass": "1.77.6",
     "ts-jest": "29.1.5",

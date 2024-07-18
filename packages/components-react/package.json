@@ -1,6 +1,6 @@
 {
   "name": "@swisspost/design-system-components-react",
-  "version": "7.2.0",
+  "version": "7.2.1",
   "license": "Apache-2.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -20,7 +20,7 @@
     "lint": "eslint src/**/*.ts"
   },
   "dependencies": {
-    "@swisspost/design-system-components": "workspace:7.2.0"
+    "@swisspost/design-system-components": "workspace:7.2.1"
   },
   "devDependencies": {
     "@types/node": "20.14.9",
@@ -36,7 +36,7 @@
     "eslint-plugin-react": "7.34.3",
     "react": "18.3.1",
     "react-dom": "18.3.1",
-    "rimraf": "5.0.7",
+    "rimraf": "6.0.1",
     "typescript": "*"
   },
   "peerDependencies": {

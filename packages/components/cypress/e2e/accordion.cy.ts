@@ -16,17 +16,17 @@ describe('accordion', () => {
     });
 
     it('should only show the first element as expanded', () => {
-      cy.get('@collapsibles').first().find('.collapse').should('be.visible');
+      cy.get('@collapsibles').first().shadow().find('post-collapsible').should('be.visible');
     });
 
     it('should show the last element as expanded after clicking it', () => {
       cy.get('@collapsibles').last().click();
-      cy.get('@collapsibles').last().find('.collapse').should('be.visible');
+      cy.get('@collapsibles').last().shadow().find('post-collapsible').should('be.visible');
     });
 
     it('should not show the first element as expanded after clicking the last element', () => {
       cy.get('@collapsibles').last().click();
-      cy.get('@collapsibles').first().find('.collapse').should('be.hidden');
+      cy.get('@collapsibles').first().shadow().find('post-collapsible').should('be.hidden');
     });
 
     it('should propagate "postToggle" event from post-accordion-item on post-accordion', () => {
@@ -73,12 +73,12 @@ describe('accordion', () => {
 
     it('should show the last element as expanded after clicking it', () => {
       cy.get('@collapsibles').last().click();
-      cy.get('@collapsibles').last().find('.collapse').should('be.visible');
+      cy.get('@collapsibles').last().shadow().find('post-collapsible').should('be.visible');
     });
 
     it('should still show the first element as expanded after clicking the last element', () => {
       cy.get('@collapsibles').last().click();
-      cy.get('@collapsibles').first().find('.collapse').should('be.visible');
+      cy.get('@collapsibles').first().shadow().find('post-collapsible').should('be.visible');
     });
   });
 });
