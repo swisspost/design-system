@@ -1217,8 +1217,8 @@ importers:
         specifier: ^17.0.0
         version: 17.3.11(rxjs@7.8.1)(zone.js@0.14.7)
       '@swisspost/design-system-styles':
-        specifier: ^7.0.0
-        version: 7.2.1(@angular/core@17.3.11(rxjs@7.8.1))(@ng-bootstrap/ng-bootstrap@16.0.0(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1))(@angular/forms@17.3.11(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)))(rxjs@7.8.1))(rxjs@7.8.1))(bootstrap@5.3.3)
+        specifier: workspace:7.2.1
+        version: link:../../../styles/dist
       primeng:
         specifier: ^16.0.0
         version: 16.9.1(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1))(@angular/forms@17.3.11(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)))(rxjs@7.8.1))(rxjs@7.8.1)
@@ -3833,20 +3833,6 @@ packages:
       '@angular/core': '>=11.0.2'
       '@angular/platform-browser': '>=11.0.2'
       rxjs: ^6.6.3 || ^7.4.0
-
-  '@swisspost/design-system-styles@7.2.1':
-    resolution: {integrity: sha512-wZ5tO0EiqhzrhBfjz8h0k74bOLbD6bnEEnDAgjb82Qx6eB/V6uaqbzP/SZJdgHUlmfzs6rrM672klg5TbN24mQ==}
-    peerDependencies:
-      '@angular/core': ^16.0.0 || ^17.0.0
-      '@ng-bootstrap/ng-bootstrap': ^15.0.0 || ^16.0.0
-      bootstrap: ~5.3.0
-    peerDependenciesMeta:
-      '@angular/core':
-        optional: true
-      '@ng-bootstrap/ng-bootstrap':
-        optional: true
-      bootstrap:
-        optional: true
 
   '@testing-library/dom@9.3.1':
     resolution: {integrity: sha512-0DGPd9AR3+iDTjGoMpxIkAsUihHZ3Ai6CneU6bRRrffXMgzCdlNk43jTrD2/5LT6CBb3MWTP8v510JzYtahD2w==}
@@ -15930,14 +15916,6 @@ snapshots:
       '@angular/platform-browser': 17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1))
       rxjs: 7.8.1
       tslib: 2.6.3
-
-  '@swisspost/design-system-styles@7.2.1(@angular/core@17.3.11(rxjs@7.8.1))(@ng-bootstrap/ng-bootstrap@16.0.0(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1))(@angular/forms@17.3.11(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)))(rxjs@7.8.1))(rxjs@7.8.1))(bootstrap@5.3.3)':
-    dependencies:
-      '@popperjs/core': 2.11.8
-    optionalDependencies:
-      '@angular/core': 17.3.11(rxjs@7.8.1)(zone.js@0.14.7)
-      '@ng-bootstrap/ng-bootstrap': 16.0.0(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/forms@17.3.11(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(@angular/platform-browser@17.3.11(@angular/animations@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(@angular/common@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1))(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(rxjs@7.8.1))(@angular/localize@17.3.11(@angular/compiler-cli@17.3.11(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.3.3))(@angular/compiler@17.3.11(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))))(@popperjs/core@2.11.8)(rxjs@7.8.1)
-      bootstrap: 5.3.3(@popperjs/core@2.11.8)
 
   '@testing-library/dom@9.3.1':
     dependencies:
