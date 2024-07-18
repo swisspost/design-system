@@ -5,5 +5,5 @@
     "entryFile": "src/public-api.ts"
   },
   "assets": [{ "input": "src/lib/primeng-theme", "glob": "**/*.scss", "output": "primeng-theme" }],
-  "allowedNonPeerDependencies": ["@swisspost/design-system-components"]
+  "allowedNonPeerDependencies": ["@swisspost/design-system-styles"]
 }
