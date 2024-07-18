@@ -81,7 +81,7 @@ StyleDictionary.registerFormat({
 
               if (usesReferences(token.original.value)) {
                 try {
-                  if (typeof token.original.value === 'object') {
+                  if (token.type === 'typography') {
                     tokenValue = Object.entries(token.original.value).reduce(
                       (values, [key, value], i) =>
                         `${values}${getSeparator(
@@ -90,12 +90,8 @@ StyleDictionary.registerFormat({
                         )}${getReference(value)}`,
                       '',
                     );
-                  } else if (typeof token.original.value === 'string') {
-                    tokenValue = getReference(token.original.value);
                   } else {
-                    throw new Error(
-                      `\x1b[31mError: Unsupported value type in token \x1b[33m"${tokenName}"\x1b[31m within tokenset \x1b[33m"${dataSetName}"!\x1b[0m`,
-                    );
+                    tokenValue = getReference(token.original.value);
                   }
                 } catch (error) {
                   console.error(
@@ -125,6 +121,8 @@ StyleDictionary.registerFormat({
     }
 
     function getSeparator(pKey = '', cKey = '') {
+      if (pKey === '') return '';
+
       return (
         MULTIVALUE_SEPARATOR_RULES.find(
           rule => rule.previousKey === pKey && rule.currentKey === cKey,
