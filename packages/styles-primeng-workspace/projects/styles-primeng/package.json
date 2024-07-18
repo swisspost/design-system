@@ -20,7 +20,7 @@
   "peerDependencies": {
     "@angular/common": "^17.0.0",
     "@angular/core": "^17.0.0",
-    "@swisspost/design-system-styles": "^7.0.0",
+    "@swisspost/design-system-styles": "workspace:7.2.1",
     "primeng": "^16.0.0"
   },
   "dependencies": {
