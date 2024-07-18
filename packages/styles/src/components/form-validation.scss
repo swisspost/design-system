@@ -13,10 +13,13 @@
 @use './../variables/components/form-validation';
 @use './../variables/components/forms';
 @use './../variables/spacing';
+@use './../variables/type';
+@use './../mixins/icons';
 
 .invalid-feedback,
 .valid-feedback {
   display: none;
+  align-items: center;
   width: 100%;
   margin-block: form-validation.$form-feedback-margin-top 0;
   padding: form-validation.$form-feedback-padding-y form-validation.$form-feedback-padding-x;
@@ -25,16 +28,32 @@
   @include utilities-mx.high-contrast-mode() {
     padding-inline: 0;
   }
+
+  &::before {
+    content: '';
+    height: form-validation.$form-feedback-font-size * type.$line-height-copy;
+    width: form-validation.$form-feedback-font-size * type.$line-height-copy;
+    display: inline-block;
+    margin-right: spacing.$size-mini;
+  }
 }
 
 .invalid-feedback {
   background: form-validation.$form-feedback-invalid-bg;
   color: form-validation.$form-feedback-invalid-text;
+
+  &::before {
+    @include icons.icon(2413);
+  }
 }
 
 .valid-feedback {
   background: form-validation.$form-feedback-valid-bg;
   color: form-validation.$form-feedback-valid-text;
+
+  &::before {
+    @include icons.icon(2105);
+  }
 }
 
 .valid-feedback.custom-feedback {
@@ -48,7 +67,7 @@
   @include b.form-validation-state-selector($state) {
     ~ .#{$state}-feedback,
     ~ .#{$state}-tooltip {
-      display: block;
+      display: inline-flex;
     }
   }
 
@@ -92,8 +111,9 @@
 }
 
 .is-invalid ~ .invalid-feedback,
-.is-valid ~ .valid-feedback {
-  display: block;
+.is-valid ~ .valid-feedback,
+post-card-control ~ .invalid-feedback {
+  display: inline-flex;
 }
 
 .form-control,
