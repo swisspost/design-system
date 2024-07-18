@@ -1,5 +1,16 @@
 # @swisspost/design-system-components-react
 
+## 7.3.0
+
+### Minor Changes
+
+- Added a `post-collapsible-trigger` component to properly handle the role, ARIA attributes, and event listeners for elements that toggle a `post-collapsible`. (by [@alizedebray](https://github.com/alizedebray) with [#3209](https://github.com/swisspost/design-system/pull/3209))
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-components@7.3.0
+
 ## 7.2.1
 
 ### Patch Changes
