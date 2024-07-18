@@ -161,13 +161,12 @@
     border-style: dashed;
     background-clip: padding-box;
     text-decoration: line-through;
+    // In case rules need to be slightly adjusted
+    @content;
 
     @include high-contrast-mode() {
       color: GrayText;
       border-color: GrayText;
     }
-
-    // In case rules need to be slightly adjusted
-    @content;
   }
 }

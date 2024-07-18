@@ -39,10 +39,8 @@
   text-decoration: none !important; // For <a> tags, !important for hover
   white-space: nowrap; // Long content should never break in buttons
 
-  &:disabled {
+  @include utilities.disabled-style() {
     text-decoration: line-through !important;
-    border-style: dashed;
-    color: color.$gray-60;
   }
 
   @include utilities.not-disabled-hover() {
@@ -62,8 +60,6 @@
 
   @include color-mx.on-dark-background {
     &:disabled {
-      text-decoration: line-through !important;
-      border-style: dashed;
       color: color.$white-alpha-80;
     }
 
