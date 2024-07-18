@@ -5,5 +5,9 @@
     "editor.defaultFormatter": null,
     "editor.formatOnSave": false
   },
-  "files.eol": "\n"
+  "files.eol": "\n",
+  "sonarlint.connectedMode.project": {
+    "connectionId": "swisspost",
+    "projectKey": "swisspost_common-web-frontend"
+  }
 }

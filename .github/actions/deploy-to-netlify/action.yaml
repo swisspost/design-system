@@ -1,17 +1,6 @@
 ###
 #
-# This action needs a proper node and pnpm setup before!
-#
-# If you need to do some changes in a local-action used in this
-# workflow, make sure you change the action-flag to your working
-# branch-name to get the latest action functionality.
-#
-# Example: swisspost/design-system/.github/actions/setup-pnpm@my-working-branch-name
-#
-# Don't forget to change the action-flag back to 'main',
-# once you have finished your work on the local-action!
-#
-# https://docs.github.com/en/actions/creating-actions/about-custom-actions#using-release-management-for-actions
+# DEPRECATED: This Action can be removed, as soon as we remove deploy-demo.yaml
 #
 ###
 
@@ -47,16 +36,16 @@ runs:
   steps:
     - name: Install netlify-cli
       shell: bash
-      run: pnpm i -g netlify-cli@16
+      run: pnpm i -g netlify-cli@17
 
     - name: Deploy preview environment to netlify
       id: netlify_deploy
       shell: bash
       env:
         NETLIFY_AUTH_TOKEN: ${{ inputs.netlify_auth_token }}
+        NETLIFY_SITE_ID: ${{ inputs.netlify_site_id }}
       # run command taken from https://gist.github.com/oneohthree/f528c7ae1e701ad990e6, shortened to 28 chars, prepended with build-number
-      # edited for netifly v16
       run: |
         url_alias=`echo "preview-${{ inputs.id }}" | iconv -t ascii//TRANSLIT | sed -E 's/[~\^]+//g' | sed -E 's/[^a-zA-Z0-9]+/-/g' | sed -E 's/^-+\|-+$//g' | sed -E 's/^-+//g' | sed -E 's/-+$//g' | tr A-Z a-z`
-        netlify deploy --alias $url_alias --build false --dir ${{ inputs.folder }} --site ${{ inputs.netlify_site_id }} --filter ${{inputs.package_name}}
         echo "url_alias=$url_alias" >> $GITHUB_OUTPUT
+        netlify deploy --filter ${{inputs.package_name}} --build false --dir ${{ inputs.folder }} --alias $url_alias

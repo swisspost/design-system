@@ -1,0 +1,39 @@
+{
+  "name": "@swisspost/design-system-styles-primeng",
+  "version": "0.0.1",
+  "description": "Swiss Post styles for PrimeNg datatable.",
+  "author": "Swiss Post <oss@post.ch>",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/swisspost/design-system.git"
+  },
+  "homepage": "https://design-system.post.ch",
+  "bugs": {
+    "url": "https://github.com/swisspost/design-system/issues"
+  },
+  "publishConfig": {
+    "directory": "../../dist/styles-primeng",
+    "access": "public",
+    "linkDirectory": true
+  },
+  "peerDependencies": {
+    "@angular/common": "^17.0.0",
+    "@angular/core": "^17.0.0",
+    "@swisspost/design-system-styles": "workspace:7.2.1",
+    "primeng": "^16.0.0"
+  },
+  "dependencies": {
+    "tslib": "2.3.0"
+  },
+  "sideEffects": false,
+  "keywords": [
+    "scss",
+    "primeng",
+    "datatable",
+    "angular",
+    "design-system",
+    "ui",
+    "frontend"
+  ]
+}

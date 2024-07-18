@@ -1,5 +1,6 @@
 import { Meta, Source } from '@storybook/blocks';
 import * as IntranetHeaderStories from './intranet-header.stories';
+import SampleUse from './intranet-header-use.sample?raw';
 
 <Meta of={IntranetHeaderStories} />
 
@@ -15,18 +16,47 @@ import * as IntranetHeaderStories from './intranet-header.stories';
 
 The Header Angular component for internal usage.
 
-<ul>
-  <li>
-    <a href="#installation" target="_self">Installation</a>
-  </li>
-  <li>
-    <a href="#usage" target="_self">Usage</a>
-  </li>
-  <li>
-    <a href="#examples" target="_self">Examples</a>
-  </li>
-</ul>
-
 ## Installation
 
 <Source code={`npm install @swisspost/design-system-intranet-header`} language="bash" />
+
+## Usage
+
+1. In `app.module.ts`, import `SwissPostIntranetHeaderModule` and add it to the `imports` array property.
+
+<Source code={SampleUse} language="typescript" />
+
+2. In `app.component.html`, create a `section` container and assign it the CSS classes that best suit your desired layout:
+
+<div className="table-responsive">
+  <table className="table">
+    <thead>
+      <tr>
+        <th>Class</th>
+        <th>Condition</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>`layout-container`</td>
+        <td>Always</td>
+      </tr>
+      <tr>
+        <td>`header-big`</td>
+        <td>To use the header with a navigation bar</td>
+      </tr>
+      <tr>
+        <td>`header-small`</td>
+        <td>To use the header without a navigation bar</td>
+      </tr>
+      <tr>
+        <td>`with-searchbar`</td>
+        <td>To use the header with a search bar</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+3. In the layout container, add the `post-intranet-header` component and configure it as needed using the properties described below.
+
+4. Add any other content in the container below the header, wrapped in an element with class `header-margin`.

@@ -66,6 +66,7 @@ ngb-datepicker .ngb-dp-arrow {
   .form-select {
     background-color: transparent;
     font: inherit;
+    min-width: fit-content;
   }
 }
 
@@ -163,18 +164,6 @@ span.ngb-dp-navigation-chevron {
   }
 }
 
-.form-control-sm ~ .ngb-dp-open {
-  height: forms.$input-height-inner-sm;
-  width: forms.$input-height-inner-sm;
-
-  .pi-3203,
-  .pi-calendar,
-  post-icon {
-    width: datepicker.$ngb-dp-icon-size-sm;
-    height: datepicker.$ngb-dp-icon-size-sm;
-  }
-}
-
 .form-control-rg ~ .ngb-dp-open {
   height: forms.$input-height-inner-rg;
   width: forms.$input-height-inner-rg;
@@ -182,7 +171,7 @@ span.ngb-dp-navigation-chevron {
 
 .form-floating > .ngb-dp-open,
 .form-control-lg ~ .ngb-dp-open {
-  height: forms.$input-height-inner-lg;
+  height: calc(#{forms.$form-floating-height} - #{forms.$input-border-width * 2});
   width: forms.$input-height-inner-lg;
 
   .pi-3203,
@@ -191,6 +180,10 @@ span.ngb-dp-navigation-chevron {
     width: datepicker.$ngb-dp-icon-size-lg;
     height: datepicker.$ngb-dp-icon-size-lg;
   }
+}
+
+.form-control-sm ~ .ngb-dp-open {
+  height: forms.$input-height-sm;
 }
 
 input[ngbDatepicker] {

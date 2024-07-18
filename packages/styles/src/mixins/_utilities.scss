@@ -156,7 +156,7 @@
 @mixin disabled-style($additional-selector: '') {
   &:disabled#{$additional-selector} {
     pointer-events: none;
-    color: var(--post-gray-40);
+    color: var(--post-gray-60);
     border-color: var(--post-gray-40);
     border-style: dashed;
     background-clip: padding-box;

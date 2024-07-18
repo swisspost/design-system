@@ -5,7 +5,7 @@ window.addEventListener('storybook:contentReady', function () {
   links.forEach(link => {
     const anchor = link.getAttribute('href');
     if (anchor.startsWith('#')) {
-      link.setAttribute('href', `${window.parent.location.href}${anchor}`);
+      link.setAttribute('href', `${window.parent.location.href.replace(/#.*/, '')}${anchor}`);
     }
   });
 });
