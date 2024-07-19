@@ -1,0 +1,50 @@
+{
+  "name": "@swisspost/design-system-styles-primeng-workspace",
+  "description": "Showcase for a Post like custom prime-ng theme",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "private": true,
+  "scripts": {
+    "clean": "rimraf dist",
+    "start": "npm-run-all --parallel watch:lib serve:app",
+    "build": "ng build styles-primeng",
+    "watch:lib": "ng build --watch --configuration development styles-primeng",
+    "serve:app": "ng serve --port 9325",
+    "lint": "stylelint projects/styles-primeng/src/**/*.scss",
+    "lint:fix": "stylelint projects/styles-primeng/src/**/*.scss --fix"
+  },
+  "dependencies": {
+    "@angular/animations": "17.3.3",
+    "@angular/common": "17.3.3",
+    "@angular/compiler": "17.3.3",
+    "@angular/core": "17.3.3",
+    "@angular/forms": "17.3.3",
+    "@angular/platform-browser": "17.3.3",
+    "@angular/platform-browser-dynamic": "17.3.3",
+    "@angular/router": "17.3.3",
+    "@swisspost/design-system-styles": "workspace:7.3.0",
+    "primeng": "17.18.4",
+    "rxjs": "7.8.1",
+    "tslib": "2.6.2",
+    "zone.js": "0.14.4"
+  },
+  "devDependencies": {
+    "@angular-devkit/build-angular": "17.3.3",
+    "@angular/cli": "17.3.3",
+    "@angular/compiler-cli": "17.3.3",
+    "@types/jasmine": "4.3.0",
+    "jasmine-core": "4.6.0",
+    "karma": "6.4.0",
+    "karma-chrome-launcher": "3.2.0",
+    "karma-coverage": "2.2.0",
+    "karma-jasmine": "5.1.0",
+    "karma-jasmine-html-reporter": "2.1.0",
+    "ng-packagr": "17.3.0",
+    "npm-run-all": "4.1.5",
+    "stylelint": "16.3.1",
+    "stylelint-config-sass-guidelines": "11.1.0",
+    "stylelint-prettier": "5.0.0",
+    "stylelint-scss": "6.2.1",
+    "typescript": "5.3.3"
+  }
+}

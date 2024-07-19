@@ -1,5 +1,23 @@
 # @swisspost/design-system-components
 
+## 7.3.0
+
+### Minor Changes
+
+- Added an invalid message for the card-control component and an icon in the invalid message of the checkbox and radio button (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2978](https://github.com/swisspost/design-system/pull/2978))
+
+- Added a `delayed` property to the `post-tooltip` component to allow delaying its display for a few milliseconds after it is triggered. (by [@alizedebray](https://github.com/alizedebray) with [#3245](https://github.com/swisspost/design-system/pull/3245))
+
+- Added a `post-collapsible-trigger` component to properly handle the role, ARIA attributes, and event listeners for elements that toggle a `post-collapsible`. (by [@alizedebray](https://github.com/alizedebray) with [#3209](https://github.com/swisspost/design-system/pull/3209))
+
+### Patch Changes
+
+- Fixed an issue with popovers on Firefox ESR that unexpectedly closed popovers when clicking on content. (by [@gfellerph](https://github.com/gfellerph) with [#3211](https://github.com/swisspost/design-system/pull/3211))
+
+- Prevent the `post-tabs` component from triggering a `post Change` event before it is loaded. (by [@alizedebray](https://github.com/alizedebray) with [#3247](https://github.com/swisspost/design-system/pull/3247))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.3.0
+
 ## 7.2.1
 
 ### Patch Changes
