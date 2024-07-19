@@ -115,15 +115,15 @@ jobs:
               old: {
                 version: release.oldVersion,
                 major: oldMajor,
-                siteUrl: `design-system-version-${oldMajor}`
+                siteUrl: `design-system-version-${oldMajor}`,
+                dependencies
               },
               new: {
                 version: release.newVersion,
                 major: newMajor,
                 siteUrl: 'design-system'
               },
-              branchName: `release/v${oldMajor}`,
-              dependencies
+              branchName: `release/v${oldMajor}`
             }
 
       - name: Check if changset-release/main Branch exists
@@ -232,17 +232,19 @@ jobs:
             const monorepo = JSON.parse(fs.readFileSync('monorepo.json', 'utf8'))
             const styles = JSON.parse(fs.readFileSync('./packages/styles/package.json', 'utf8'))
 
+            const dependencies = monorepo
+              .filter(pkg => pkg.private === false && pkg.version !== undefined)
+              .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
+
             const currentVersion = versions.find(version => version.version.startsWith(release.old.major))
             currentVersion.version = release.new.version
-            currentVersion.dependencies = release.dependencies
+            currentVersion.dependencies = dependencies
 
             if (release.isMajor) {
               currentVersion.version = release.old.version
               currentVersion.url = `https://${release.old.siteUrl}.netlify.app`
+              currentVersion.dependencies = release.old.dependencies
 
-              const dependencies = monorepo
-                .filter(pkg => pkg.private === false && pkg.version !== undefined)
-                .reduce((packages, pkg) => ({ ...packages, [pkg.name]: pkg.version }), { ...(styles.peerDependencies ?? {}) })
               versions.unshift({
                 title: `Version ${release.new.major}`,
                 version: release.new.version,
