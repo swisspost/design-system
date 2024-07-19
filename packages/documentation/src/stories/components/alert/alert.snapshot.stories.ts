@@ -102,7 +102,7 @@ export const PostAlert: Story = {
       '<button class="btn btn-primary btn-animated" slot="actions" >' +
       '<span>Akcepti</span>' +
       '</button>' +
-      '<button class="btn btn-default btn-animated" slot="actions" >' +
+      '<button class="btn btn-secondary btn-animated" slot="actions" >' +
       '<span>Aborti</span>' +
       '</button>';
 
