@@ -1191,7 +1191,7 @@ importers:
         version: 11.1.0(postcss@8.4.39)(stylelint@16.3.1(typescript@5.5.3))
       stylelint-prettier:
         specifier: 5.0.0
-        version: 5.0.0(prettier@3.3.2)(stylelint@16.3.1(typescript@5.5.3))
+        version: 5.0.0(prettier@3.3.3)(stylelint@16.3.1(typescript@5.5.3))
       stylelint-scss:
         specifier: 6.2.1
         version: 6.2.1(stylelint@16.3.1(typescript@5.5.3))
@@ -10037,6 +10037,11 @@ packages:
     engines: {node: '>=14'}
     hasBin: true
 
+  prettier@3.3.3:
+    resolution: {integrity: sha512-i2tDNA0O5IrMO757lfrdQZCc2jPNDVntV0m/+4whiDfWaTKfMNgR7Qz0NAeGz/nRqF4m5/6CLzbP4/liHt12Ew==}
+    engines: {node: '>=14'}
+    hasBin: true
+
   pretty-bytes@5.6.0:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
     engines: {node: '>=6'}
@@ -12501,7 +12506,7 @@ snapshots:
     dependencies:
       '@ampproject/remapping': 2.3.0
       '@angular-devkit/architect': 0.1801.1(chokidar@3.6.0)
-      '@angular-devkit/build-webpack': 0.1801.1(chokidar@3.6.0)(webpack-dev-server@5.0.4(webpack@5.92.1))(webpack@5.92.1(esbuild@0.21.5))
+      '@angular-devkit/build-webpack': 0.1801.1(chokidar@3.6.0)(webpack-dev-server@5.0.4(webpack@5.92.1))(webpack@5.92.1)
       '@angular-devkit/core': 18.1.1(chokidar@3.6.0)
       '@angular/build': 18.1.1(@angular/compiler-cli@18.1.1(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.5.3))(@angular/localize@18.1.0(@angular/compiler-cli@18.1.1(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.5.3))(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4))))(@types/node@20.14.11)(chokidar@3.6.0)(less@4.2.0)(postcss@8.4.38)(tailwindcss@3.4.4)(terser@5.29.2)(typescript@5.5.3)
       '@angular/compiler-cli': 18.1.1(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.5.3)
@@ -12515,15 +12520,15 @@ snapshots:
       '@babel/preset-env': 7.24.7(@babel/core@7.24.7)
       '@babel/runtime': 7.24.7
       '@discoveryjs/json-ext': 0.5.7
-      '@ngtools/webpack': 18.1.1(@angular/compiler-cli@18.1.1(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.5.3))(typescript@5.5.3)(webpack@5.92.1(esbuild@0.21.5))
+      '@ngtools/webpack': 18.1.1(@angular/compiler-cli@18.1.1(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.5.3))(typescript@5.5.3)(webpack@5.92.1)
       '@vitejs/plugin-basic-ssl': 1.1.0(vite@5.3.2(@types/node@20.14.11)(less@4.2.0)(sass@1.77.6)(terser@5.29.2))
       ansi-colors: 4.1.3
       autoprefixer: 10.4.19(postcss@8.4.38)
-      babel-loader: 9.1.3(@babel/core@7.24.7)(webpack@5.92.1(esbuild@0.21.5))
+      babel-loader: 9.1.3(@babel/core@7.24.7)(webpack@5.92.1)
       browserslist: 4.23.0
-      copy-webpack-plugin: 12.0.2(webpack@5.92.1(esbuild@0.21.5))
+      copy-webpack-plugin: 12.0.2(webpack@5.92.1)
       critters: 0.0.24
-      css-loader: 7.1.2(webpack@5.92.1(esbuild@0.21.5))
+      css-loader: 7.1.2(webpack@5.92.1)
       esbuild-wasm: 0.21.5
       fast-glob: 3.3.2
       http-proxy-middleware: 3.0.0
@@ -12532,11 +12537,11 @@ snapshots:
       jsonc-parser: 3.3.1
       karma-source-map-support: 1.4.0
       less: 4.2.0
-      less-loader: 12.2.0(less@4.2.0)(webpack@5.92.1(esbuild@0.21.5))
-      license-webpack-plugin: 4.0.2(webpack@5.92.1(esbuild@0.21.5))
+      less-loader: 12.2.0(less@4.2.0)(webpack@5.92.1)
+      license-webpack-plugin: 4.0.2(webpack@5.92.1)
       loader-utils: 3.3.1
       magic-string: 0.30.10
-      mini-css-extract-plugin: 2.9.0(webpack@5.92.1(esbuild@0.21.5))
+      mini-css-extract-plugin: 2.9.0(webpack@5.92.1)
       mrmime: 2.0.0
       open: 10.1.0
       ora: 5.4.1
@@ -12544,13 +12549,13 @@ snapshots:
       picomatch: 4.0.2
       piscina: 4.6.1
       postcss: 8.4.38
-      postcss-loader: 8.1.1(postcss@8.4.38)(typescript@5.5.3)(webpack@5.92.1(esbuild@0.21.5))
+      postcss-loader: 8.1.1(postcss@8.4.38)(typescript@5.5.3)(webpack@5.92.1)
       resolve-url-loader: 5.0.0
       rxjs: 7.8.1
       sass: 1.77.6
-      sass-loader: 14.2.1(sass@1.77.6)(webpack@5.92.1(esbuild@0.21.5))
+      sass-loader: 14.2.1(sass@1.77.6)(webpack@5.92.1)
       semver: 7.6.2
-      source-map-loader: 5.0.0(webpack@5.92.1(esbuild@0.21.5))
+      source-map-loader: 5.0.0(webpack@5.92.1)
       source-map-support: 0.5.21
       terser: 5.29.2
       tree-kill: 1.2.2
@@ -12563,7 +12568,7 @@ snapshots:
       webpack-dev-middleware: 7.2.1(webpack@5.92.1)
       webpack-dev-server: 5.0.4(webpack@5.92.1)
       webpack-merge: 5.10.0
-      webpack-subresource-integrity: 5.1.0(webpack@5.92.1(esbuild@0.21.5))
+      webpack-subresource-integrity: 5.1.0(webpack@5.92.1)
     optionalDependencies:
       '@angular/localize': 18.1.0(@angular/compiler-cli@18.1.1(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.5.3))(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))
       esbuild: 0.21.5
@@ -12599,7 +12604,7 @@ snapshots:
     transitivePeerDependencies:
       - chokidar
 
-  '@angular-devkit/build-webpack@0.1801.1(chokidar@3.6.0)(webpack-dev-server@5.0.4(webpack@5.92.1))(webpack@5.92.1(esbuild@0.21.5))':
+  '@angular-devkit/build-webpack@0.1801.1(chokidar@3.6.0)(webpack-dev-server@5.0.4(webpack@5.92.1))(webpack@5.92.1)':
     dependencies:
       '@angular-devkit/architect': 0.1801.1(chokidar@3.6.0)
       rxjs: 7.8.1
@@ -15978,7 +15983,7 @@ snapshots:
       typescript: 5.4.5
       webpack: 5.91.0(esbuild@0.21.3)
 
-  '@ngtools/webpack@18.1.1(@angular/compiler-cli@18.1.1(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.5.3))(typescript@5.5.3)(webpack@5.92.1(esbuild@0.21.5))':
+  '@ngtools/webpack@18.1.1(@angular/compiler-cli@18.1.1(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.5.3))(typescript@5.5.3)(webpack@5.92.1)':
     dependencies:
       '@angular/compiler-cli': 18.1.1(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.5.3)
       typescript: 5.5.3
@@ -17028,7 +17033,7 @@ snapshots:
       node-fetch: 2.7.0(encoding@0.1.13)
       picomatch: 2.3.1
       pkg-dir: 5.0.0
-      prettier-fallback: prettier@3.3.2
+      prettier-fallback: prettier@3.3.3
       pretty-hrtime: 1.0.3
       resolve-from: 5.0.0
       semver: 7.6.2
@@ -17065,7 +17070,7 @@ snapshots:
       node-fetch: 2.7.0(encoding@0.1.13)
       picomatch: 2.3.1
       pkg-dir: 5.0.0
-      prettier-fallback: prettier@3.3.2
+      prettier-fallback: prettier@3.3.3
       pretty-hrtime: 1.0.3
       resolve-from: 5.0.0
       semver: 7.6.2
@@ -18905,13 +18910,6 @@ snapshots:
       schema-utils: 4.0.1
       webpack: 5.91.0(esbuild@0.21.3)
 
-  babel-loader@9.1.3(@babel/core@7.24.7)(webpack@5.92.1(esbuild@0.21.5)):
-    dependencies:
-      '@babel/core': 7.24.7
-      find-cache-dir: 4.0.0
-      schema-utils: 4.0.1
-      webpack: 5.92.1(esbuild@0.21.5)
-
   babel-loader@9.1.3(@babel/core@7.24.7)(webpack@5.92.1):
     dependencies:
       '@babel/core': 7.24.7
@@ -19518,7 +19516,7 @@ snapshots:
       serialize-javascript: 6.0.1
       webpack: 5.91.0(esbuild@0.21.3)
 
-  copy-webpack-plugin@12.0.2(webpack@5.92.1(esbuild@0.21.5)):
+  copy-webpack-plugin@12.0.2(webpack@5.92.1):
     dependencies:
       fast-glob: 3.3.2
       glob-parent: 6.0.2
@@ -19707,7 +19705,7 @@ snapshots:
     optionalDependencies:
       webpack: 5.91.0(esbuild@0.21.3)
 
-  css-loader@7.1.2(webpack@5.92.1(esbuild@0.21.5)):
+  css-loader@7.1.2(webpack@5.92.1):
     dependencies:
       icss-utils: 5.1.0(postcss@8.4.39)
       postcss: 8.4.39
@@ -23253,7 +23251,7 @@ snapshots:
     optionalDependencies:
       webpack: 5.91.0(esbuild@0.21.3)
 
-  less-loader@12.2.0(less@4.2.0)(webpack@5.92.1(esbuild@0.21.5)):
+  less-loader@12.2.0(less@4.2.0)(webpack@5.92.1):
     dependencies:
       less: 4.2.0
     optionalDependencies:
@@ -23288,7 +23286,7 @@ snapshots:
     optionalDependencies:
       webpack: 5.91.0(esbuild@0.21.3)
 
-  license-webpack-plugin@4.0.2(webpack@5.92.1(esbuild@0.21.5)):
+  license-webpack-plugin@4.0.2(webpack@5.92.1):
     dependencies:
       webpack-sources: 3.2.3
     optionalDependencies:
@@ -23944,7 +23942,7 @@ snapshots:
       tapable: 2.2.1
       webpack: 5.91.0(esbuild@0.21.3)
 
-  mini-css-extract-plugin@2.9.0(webpack@5.92.1(esbuild@0.21.5)):
+  mini-css-extract-plugin@2.9.0(webpack@5.92.1):
     dependencies:
       schema-utils: 4.2.0
       tapable: 2.2.1
@@ -25006,7 +25004,7 @@ snapshots:
     transitivePeerDependencies:
       - typescript
 
-  postcss-loader@8.1.1(postcss@8.4.38)(typescript@5.5.3)(webpack@5.92.1(esbuild@0.21.5)):
+  postcss-loader@8.1.1(postcss@8.4.38)(typescript@5.5.3)(webpack@5.92.1):
     dependencies:
       cosmiconfig: 9.0.0(typescript@5.5.3)
       jiti: 1.21.6
@@ -25238,6 +25236,8 @@ snapshots:
   prettier@2.8.8: {}
 
   prettier@3.3.2: {}
+
+  prettier@3.3.3: {}
 
   pretty-bytes@5.6.0: {}
 
@@ -25883,7 +25883,7 @@ snapshots:
       sass: 1.77.2
       webpack: 5.91.0(esbuild@0.21.3)
 
-  sass-loader@14.2.1(sass@1.77.6)(webpack@5.92.1(esbuild@0.21.5)):
+  sass-loader@14.2.1(sass@1.77.6)(webpack@5.92.1):
     dependencies:
       neo-async: 2.6.2
     optionalDependencies:
@@ -26164,7 +26164,7 @@ snapshots:
       source-map-js: 1.2.0
       webpack: 5.91.0(esbuild@0.21.3)
 
-  source-map-loader@5.0.0(webpack@5.92.1(esbuild@0.21.5)):
+  source-map-loader@5.0.0(webpack@5.92.1):
     dependencies:
       iconv-lite: 0.6.3
       source-map-js: 1.2.0
@@ -26504,17 +26504,17 @@ snapshots:
       stylelint: 16.6.1(typescript@5.4.5)
       stylelint-scss: 6.3.2(stylelint@16.6.1(typescript@5.4.5))
 
-  stylelint-prettier@5.0.0(prettier@3.3.2)(stylelint@16.3.1(typescript@5.5.3)):
-    dependencies:
-      prettier: 3.3.2
-      prettier-linter-helpers: 1.0.0
-      stylelint: 16.3.1(typescript@5.5.3)
-
   stylelint-prettier@5.0.0(prettier@3.3.2)(stylelint@16.6.1(typescript@5.4.5)):
     dependencies:
       prettier: 3.3.2
       prettier-linter-helpers: 1.0.0
       stylelint: 16.6.1(typescript@5.4.5)
+
+  stylelint-prettier@5.0.0(prettier@3.3.3)(stylelint@16.3.1(typescript@5.5.3)):
+    dependencies:
+      prettier: 3.3.3
+      prettier-linter-helpers: 1.0.0
+      stylelint: 16.3.1(typescript@5.5.3)
 
   stylelint-scss@6.2.1(stylelint@16.3.1(typescript@5.5.3)):
     dependencies:
@@ -27756,7 +27756,7 @@ snapshots:
       typed-assert: 1.0.9
       webpack: 5.91.0(esbuild@0.21.3)
 
-  webpack-subresource-integrity@5.1.0(webpack@5.92.1(esbuild@0.21.5)):
+  webpack-subresource-integrity@5.1.0(webpack@5.92.1):
     dependencies:
       typed-assert: 1.0.9
       webpack: 5.92.1(esbuild@0.21.5)
