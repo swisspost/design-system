@@ -21477,7 +21477,7 @@ snapshots:
   make-dir@2.1.0:
     dependencies:
       pify: 4.0.1
-      semver: 5.7.2
+      semver: 7.6.0
 
   make-dir@3.1.0:
     dependencies:
