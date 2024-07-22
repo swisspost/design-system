@@ -91,7 +91,7 @@ export class MigrationV78Component extends LitElement {
               dependency and conditionally import the needed files. More information on this change
               will be detailed in the migration guide for v9.
             </p>
-            <p>
+            ${this.angular ? html`<p>
               Any ng-bootstrap components will be replaced by web components and available for
               Angular users with the
               <a
