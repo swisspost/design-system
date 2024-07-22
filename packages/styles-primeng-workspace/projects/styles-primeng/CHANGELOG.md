@@ -1,5 +1,20 @@
 # @swisspost/design-system-styles-primeng
 
+## 7.4.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.0
+
+## 7.3.1
+
+### Patch Changes
+
+- Updated the peerDependency to the `primeng` package form v16 to v17. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3296](https://github.com/swisspost/design-system/pull/3296))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.3.1
+
 ## 7.3.0
 
 ### Minor Changes

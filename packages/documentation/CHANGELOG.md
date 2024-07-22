@@ -1,5 +1,28 @@
 # @swisspost/design-system-documentation
 
+## 5.3.2
+
+### Patch Changes
+
+- Added the slot="tabs" attribute on the post-tab-header per default. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#3282](https://github.com/swisspost/design-system/pull/3282))
+- Updated dependencies:
+  - @swisspost/design-system-icons@7.4.0
+  - @swisspost/design-system-components@7.4.0
+  - @swisspost/design-system-styles@7.4.0
+  - @swisspost/design-system-components-react@7.4.0
+  - @swisspost/internet-header@1.14.2
+
+## 5.3.1
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.3.1
+  - @swisspost/design-system-components@7.3.1
+  - @swisspost/design-system-components-react@7.3.1
+  - @swisspost/design-system-icons@7.3.1
+  - @swisspost/internet-header@1.14.1
+
 ## 5.3.0
 
 ### Minor Changes
