@@ -1092,8 +1092,8 @@ importers:
         specifier: 16.6.1
         version: 16.6.1(typescript@5.4.5)
       stylelint-config-sass-guidelines:
-        specifier: 11.1.0
-        version: 11.1.0(postcss@8.4.39)(stylelint@16.6.1(typescript@5.4.5))
+        specifier: 12.0.0
+        version: 12.0.0(postcss@8.4.39)(stylelint@16.6.1(typescript@5.4.5))
       stylelint-prettier:
         specifier: 5.0.0
         version: 5.0.0(prettier@3.3.2)(stylelint@16.6.1(typescript@5.4.5))
@@ -1187,8 +1187,8 @@ importers:
         specifier: 16.3.1
         version: 16.3.1(typescript@5.5.3)
       stylelint-config-sass-guidelines:
-        specifier: 11.1.0
-        version: 11.1.0(postcss@8.4.39)(stylelint@16.3.1(typescript@5.5.3))
+        specifier: 12.0.0
+        version: 12.0.0(postcss@8.4.39)(stylelint@16.3.1(typescript@5.5.3))
       stylelint-prettier:
         specifier: 5.0.0
         version: 5.0.0(prettier@3.3.3)(stylelint@16.3.1(typescript@5.5.3))
@@ -4388,6 +4388,12 @@ packages:
     engines: {node: '>=18.0.0'}
     peerDependencies:
       lit: ^2.0.0 || ^3.0.0
+
+  '@stylistic/stylelint-plugin@2.1.2':
+    resolution: {integrity: sha512-JsSqu0Y3vsX+PBl+DwULxC0cIv9C1yIcq1MXkx7pBOGtTqU26a75I8MPYMiEYvrsXgsKLi65xVgy1iLVSZquJA==}
+    engines: {node: ^18.12 || >=20.9}
+    peerDependencies:
+      stylelint: ^16.0.2
 
   '@swc/counter@0.1.3':
     resolution: {integrity: sha512-e2BR4lsJkkRlKZ/qCHPw9ZaSxc0MVUd7gtbtaB7aMvHeJVYe8sOB8DBZkP2DtISHGSku9sCK6T6cnY0CtXrOCQ==}
@@ -10985,6 +10991,9 @@ packages:
   style-inject@0.3.0:
     resolution: {integrity: sha512-IezA2qp+vcdlhJaVm5SOdPPTUu0FCEqfNSli2vRuSIBbu5Nq5UvygTk/VzeCqfLz2Atj3dVII5QBKGZRZ0edzw==}
 
+  style-search@0.1.0:
+    resolution: {integrity: sha512-Dj1Okke1C3uKKwQcetra4jSuk0DqbzbYtXipzFlFMZtowbF1x7BKJwB9AayVMyFARvU8EDrZdcax4At/452cAg==}
+
   styled-jsx@5.1.1:
     resolution: {integrity: sha512-pW7uC1l4mBZ8ugbiZrcIsiIvVx1UmTfw7UkC3Um2tmfUq9Bhk8IiyEIPl6F8agHgjzku6j0xQEZbfA5uSgSaCw==}
     engines: {node: '>= 12.0.0'}
@@ -11004,8 +11013,8 @@ packages:
     peerDependencies:
       postcss: ^8.2.15
 
-  stylelint-config-sass-guidelines@11.1.0:
-    resolution: {integrity: sha512-mVE3UmN8MlshK4Gb3eYk6f8tw9DkQ9yjMF4W9krlmpaNZpSXOdh13AL0sU7l/9l4Pnpt4KMobNNIRI0tJl56Cw==}
+  stylelint-config-sass-guidelines@12.0.0:
+    resolution: {integrity: sha512-lGJml+QEVlU/nqI+awiQieyxXHkmuwhz4XsfUNkQVcNaPXBpLgefOHjZ7ZSmUm4y4YG8JhrvYNjYzUcTfe8cdg==}
     engines: {node: '>=18.12.0'}
     peerDependencies:
       postcss: ^8.4.21
@@ -12176,7 +12185,7 @@ snapshots:
       '@vitejs/plugin-basic-ssl': 1.1.0(vite@5.2.11(@types/node@20.12.7)(less@4.2.0)(sass@1.77.2)(terser@5.29.2))
       ansi-colors: 4.1.3
       autoprefixer: 10.4.19(postcss@8.4.38)
-      babel-loader: 9.1.3(@babel/core@7.24.5)(webpack@5.91.0)
+      babel-loader: 9.1.3(@babel/core@7.24.5)(webpack@5.91.0(esbuild@0.21.3))
       browserslist: 4.23.0
       copy-webpack-plugin: 11.0.0(webpack@5.91.0(esbuild@0.21.3))
       critters: 0.0.22
@@ -12190,11 +12199,11 @@ snapshots:
       jsonc-parser: 3.2.1
       karma-source-map-support: 1.4.0
       less: 4.2.0
-      less-loader: 12.2.0(less@4.2.0)(webpack@5.91.0)
-      license-webpack-plugin: 4.0.2(webpack@5.91.0)
+      less-loader: 12.2.0(less@4.2.0)(webpack@5.91.0(esbuild@0.21.3))
+      license-webpack-plugin: 4.0.2(webpack@5.91.0(esbuild@0.21.3))
       loader-utils: 3.2.1
       magic-string: 0.30.10
-      mini-css-extract-plugin: 2.9.0(webpack@5.91.0)
+      mini-css-extract-plugin: 2.9.0(webpack@5.91.0(esbuild@0.21.3))
       mrmime: 2.0.0
       open: 8.4.2
       ora: 5.4.1
@@ -12202,13 +12211,13 @@ snapshots:
       picomatch: 4.0.2
       piscina: 4.5.0
       postcss: 8.4.38
-      postcss-loader: 8.1.1(postcss@8.4.38)(typescript@5.4.5)(webpack@5.91.0)
+      postcss-loader: 8.1.1(postcss@8.4.38)(typescript@5.4.5)(webpack@5.91.0(esbuild@0.21.3))
       resolve-url-loader: 5.0.0
       rxjs: 7.8.1
       sass: 1.77.2
-      sass-loader: 14.2.1(sass@1.77.2)(webpack@5.91.0)
+      sass-loader: 14.2.1(sass@1.77.2)(webpack@5.91.0(esbuild@0.21.3))
       semver: 7.6.2
-      source-map-loader: 5.0.0(webpack@5.91.0)
+      source-map-loader: 5.0.0(webpack@5.91.0(esbuild@0.21.3))
       source-map-support: 0.5.21
       terser: 5.29.2
       tree-kill: 1.2.2
@@ -12221,7 +12230,7 @@ snapshots:
       webpack-dev-middleware: 7.2.1(webpack@5.91.0)
       webpack-dev-server: 5.0.4(webpack@5.91.0)
       webpack-merge: 5.10.0
-      webpack-subresource-integrity: 5.1.0(webpack@5.91.0)
+      webpack-subresource-integrity: 5.1.0(webpack@5.91.0(esbuild@0.21.3))
     optionalDependencies:
       '@angular/localize': 18.1.0(@angular/compiler-cli@18.1.0(@angular/compiler@18.1.0(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(@angular/compiler@18.1.0(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.7)))
       esbuild: 0.21.3
@@ -12270,7 +12279,7 @@ snapshots:
       '@vitejs/plugin-basic-ssl': 1.1.0(vite@5.2.11(@types/node@20.14.11)(less@4.2.0)(sass@1.77.2)(terser@5.29.2))
       ansi-colors: 4.1.3
       autoprefixer: 10.4.19(postcss@8.4.38)
-      babel-loader: 9.1.3(@babel/core@7.24.5)(webpack@5.91.0)
+      babel-loader: 9.1.3(@babel/core@7.24.5)(webpack@5.91.0(esbuild@0.21.3))
       browserslist: 4.23.0
       copy-webpack-plugin: 11.0.0(webpack@5.91.0(esbuild@0.21.3))
       critters: 0.0.22
@@ -12284,11 +12293,11 @@ snapshots:
       jsonc-parser: 3.2.1
       karma-source-map-support: 1.4.0
       less: 4.2.0
-      less-loader: 12.2.0(less@4.2.0)(webpack@5.91.0)
-      license-webpack-plugin: 4.0.2(webpack@5.91.0)
+      less-loader: 12.2.0(less@4.2.0)(webpack@5.91.0(esbuild@0.21.3))
+      license-webpack-plugin: 4.0.2(webpack@5.91.0(esbuild@0.21.3))
       loader-utils: 3.2.1
       magic-string: 0.30.10
-      mini-css-extract-plugin: 2.9.0(webpack@5.91.0)
+      mini-css-extract-plugin: 2.9.0(webpack@5.91.0(esbuild@0.21.3))
       mrmime: 2.0.0
       open: 8.4.2
       ora: 5.4.1
@@ -12296,13 +12305,13 @@ snapshots:
       picomatch: 4.0.2
       piscina: 4.5.0
       postcss: 8.4.38
-      postcss-loader: 8.1.1(postcss@8.4.38)(typescript@5.4.5)(webpack@5.91.0)
+      postcss-loader: 8.1.1(postcss@8.4.38)(typescript@5.4.5)(webpack@5.91.0(esbuild@0.21.3))
       resolve-url-loader: 5.0.0
       rxjs: 7.8.1
       sass: 1.77.2
-      sass-loader: 14.2.1(sass@1.77.2)(webpack@5.91.0)
+      sass-loader: 14.2.1(sass@1.77.2)(webpack@5.91.0(esbuild@0.21.3))
       semver: 7.6.2
-      source-map-loader: 5.0.0(webpack@5.91.0)
+      source-map-loader: 5.0.0(webpack@5.91.0(esbuild@0.21.3))
       source-map-support: 0.5.21
       terser: 5.29.2
       tree-kill: 1.2.2
@@ -12315,7 +12324,7 @@ snapshots:
       webpack-dev-middleware: 7.2.1(webpack@5.91.0)
       webpack-dev-server: 5.0.4(webpack@5.91.0)
       webpack-merge: 5.10.0
-      webpack-subresource-integrity: 5.1.0(webpack@5.91.0)
+      webpack-subresource-integrity: 5.1.0(webpack@5.91.0(esbuild@0.21.3))
     optionalDependencies:
       '@angular/localize': 18.1.0(@angular/compiler-cli@18.1.0(@angular/compiler@18.1.0(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(@angular/compiler@18.1.0(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.7)))
       esbuild: 0.21.3
@@ -17174,6 +17183,28 @@ snapshots:
       - react-dom
       - supports-color
 
+  '@stylistic/stylelint-plugin@2.1.2(stylelint@16.3.1(typescript@5.5.3))':
+    dependencies:
+      '@csstools/css-parser-algorithms': 2.6.3(@csstools/css-tokenizer@2.3.1)
+      '@csstools/css-tokenizer': 2.3.1
+      '@csstools/media-query-list-parser': 2.1.11(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)
+      is-plain-object: 5.0.0
+      postcss-selector-parser: 6.1.0
+      postcss-value-parser: 4.2.0
+      style-search: 0.1.0
+      stylelint: 16.3.1(typescript@5.5.3)
+
+  '@stylistic/stylelint-plugin@2.1.2(stylelint@16.6.1(typescript@5.4.5))':
+    dependencies:
+      '@csstools/css-parser-algorithms': 2.6.3(@csstools/css-tokenizer@2.3.1)
+      '@csstools/css-tokenizer': 2.3.1
+      '@csstools/media-query-list-parser': 2.1.11(@csstools/css-parser-algorithms@2.6.3(@csstools/css-tokenizer@2.3.1))(@csstools/css-tokenizer@2.3.1)
+      is-plain-object: 5.0.0
+      postcss-selector-parser: 6.1.0
+      postcss-value-parser: 4.2.0
+      style-search: 0.1.0
+      stylelint: 16.6.1(typescript@5.4.5)
+
   '@swc/counter@0.1.3': {}
 
   '@swc/helpers@0.5.5':
@@ -18668,7 +18699,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  babel-loader@9.1.3(@babel/core@7.24.5)(webpack@5.91.0):
+  babel-loader@9.1.3(@babel/core@7.24.5)(webpack@5.91.0(esbuild@0.21.3)):
     dependencies:
       '@babel/core': 7.24.5
       find-cache-dir: 4.0.0
@@ -22935,7 +22966,7 @@ snapshots:
 
   lead@4.0.0: {}
 
-  less-loader@12.2.0(less@4.2.0)(webpack@5.91.0):
+  less-loader@12.2.0(less@4.2.0)(webpack@5.91.0(esbuild@0.21.3)):
     dependencies:
       less: 4.2.0
     optionalDependencies:
@@ -22970,7 +23001,7 @@ snapshots:
       prelude-ls: 1.2.1
       type-check: 0.4.0
 
-  license-webpack-plugin@4.0.2(webpack@5.91.0):
+  license-webpack-plugin@4.0.2(webpack@5.91.0(esbuild@0.21.3)):
     dependencies:
       webpack-sources: 3.2.3
     optionalDependencies:
@@ -23619,7 +23650,7 @@ snapshots:
 
   mimic-fn@2.1.0: {}
 
-  mini-css-extract-plugin@2.9.0(webpack@5.91.0):
+  mini-css-extract-plugin@2.9.0(webpack@5.91.0(esbuild@0.21.3)):
     dependencies:
       schema-utils: 4.2.0
       tapable: 2.2.1
@@ -24659,7 +24690,7 @@ snapshots:
       jiti: 1.21.6
       postcss: 8.4.39
 
-  postcss-loader@8.1.1(postcss@8.4.38)(typescript@5.4.5)(webpack@5.91.0):
+  postcss-loader@8.1.1(postcss@8.4.38)(typescript@5.4.5)(webpack@5.91.0(esbuild@0.21.3)):
     dependencies:
       cosmiconfig: 9.0.0(typescript@5.4.5)
       jiti: 1.21.6
@@ -25536,7 +25567,7 @@ snapshots:
 
   safer-buffer@2.1.2: {}
 
-  sass-loader@14.2.1(sass@1.77.2)(webpack@5.91.0):
+  sass-loader@14.2.1(sass@1.77.2)(webpack@5.91.0(esbuild@0.21.3)):
     dependencies:
       neo-async: 2.6.2
     optionalDependencies:
@@ -25818,7 +25849,7 @@ snapshots:
 
   source-map-js@1.2.0: {}
 
-  source-map-loader@5.0.0(webpack@5.91.0):
+  source-map-loader@5.0.0(webpack@5.91.0(esbuild@0.21.3)):
     dependencies:
       iconv-lite: 0.6.3
       source-map-js: 1.2.0
@@ -26132,6 +26163,8 @@ snapshots:
 
   style-inject@0.3.0: {}
 
+  style-search@0.1.0: {}
+
   styled-jsx@5.1.1(react@18.3.1):
     dependencies:
       client-only: 0.0.1
@@ -26143,15 +26176,17 @@ snapshots:
       postcss: 8.4.39
       postcss-selector-parser: 6.1.0
 
-  stylelint-config-sass-guidelines@11.1.0(postcss@8.4.39)(stylelint@16.3.1(typescript@5.5.3)):
+  stylelint-config-sass-guidelines@12.0.0(postcss@8.4.39)(stylelint@16.3.1(typescript@5.5.3)):
     dependencies:
+      '@stylistic/stylelint-plugin': 2.1.2(stylelint@16.3.1(typescript@5.5.3))
       postcss: 8.4.39
       postcss-scss: 4.0.9(postcss@8.4.39)
       stylelint: 16.3.1(typescript@5.5.3)
       stylelint-scss: 6.3.2(stylelint@16.3.1(typescript@5.5.3))
 
-  stylelint-config-sass-guidelines@11.1.0(postcss@8.4.39)(stylelint@16.6.1(typescript@5.4.5)):
+  stylelint-config-sass-guidelines@12.0.0(postcss@8.4.39)(stylelint@16.6.1(typescript@5.4.5)):
     dependencies:
+      '@stylistic/stylelint-plugin': 2.1.2(stylelint@16.6.1(typescript@5.4.5))
       postcss: 8.4.39
       postcss-scss: 4.0.9(postcss@8.4.39)
       stylelint: 16.6.1(typescript@5.4.5)
@@ -27392,7 +27427,7 @@ snapshots:
 
   webpack-sources@3.2.3: {}
 
-  webpack-subresource-integrity@5.1.0(webpack@5.91.0):
+  webpack-subresource-integrity@5.1.0(webpack@5.91.0(esbuild@0.21.3)):
     dependencies:
       typed-assert: 1.0.9
       webpack: 5.91.0(esbuild@0.21.3)
