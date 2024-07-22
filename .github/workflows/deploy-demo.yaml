@@ -32,8 +32,6 @@ jobs:
           name: design-system-demo
           folder: build-output
 
-      - run: ls -R
-
       - name: Deploy demo app to netlify
         uses: ./.github/actions/deploy-to-netlify
         id: deploy

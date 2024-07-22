@@ -1,5 +1,27 @@
 # @swisspost/design-system-styles
 
+## 7.4.0
+
+## 7.3.1
+
+## 7.3.0
+
+### Minor Changes
+
+- Added an invalid message for the card-control component and an icon in the invalid message of the checkbox and radio button (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#2978](https://github.com/swisspost/design-system/pull/2978))
+
+- Pre-compiled CSS files are now shipped with the package to enable projects not using Sass to selectively import component styles. (by [@gfellerph](https://github.com/gfellerph) with [#3283](https://github.com/swisspost/design-system/pull/3283))
+
+### Patch Changes
+
+- Fixed visual issues with validated form-elements who receive focus. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3166](https://github.com/swisspost/design-system/pull/3166))
+
+- Updated buttons colors. (by [@imagoiq](https://github.com/imagoiq) with [#2977](https://github.com/swisspost/design-system/pull/2977))
+
+- Updated table colors on dark backgrounds. (by [@alizedebray](https://github.com/alizedebray) with [#2718](https://github.com/swisspost/design-system/pull/2718))
+
+- Switched from light to regular font weight for most texts, excluding sub-titles. (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3284](https://github.com/swisspost/design-system/pull/3284))
+
 ## 7.2.1
 
 ### Patch Changes

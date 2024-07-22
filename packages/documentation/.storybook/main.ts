@@ -1,6 +1,7 @@
 import type { StorybookConfig } from '@storybook/web-components-vite';
 import pkg from '@/../package.json';
 import { mergeConfig } from 'vite';
+import rehypeSlug from 'rehype-slug';
 import rehypeAutolinkHeadings from 'rehype-autolink-headings';
 
 const config: StorybookConfig = {
@@ -30,6 +31,7 @@ const config: StorybookConfig = {
         mdxPluginOptions: {
           mdxCompileOptions: {
             rehypePlugins: [
+              rehypeSlug,
               [
                 rehypeAutolinkHeadings,
                 {

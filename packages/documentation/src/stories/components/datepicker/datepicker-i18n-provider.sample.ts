@@ -1,5 +1,5 @@
 import { Inject, Injectable, LOCALE_ID } from '@angular/core';
-import { formatDate, TranslationWidth } from '@angular/common';
+import { formatDate } from '@angular/common';
 import { NgbDatepickerI18n, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 const I18N_VALUES = {
@@ -82,7 +82,7 @@ export class SwissPostDatepickerI18n extends NgbDatepickerI18n {
   constructor(@Inject(LOCALE_ID) private locale: string) {
     super();
   }
-  getWeekdayLabel(weekday: number, _width?: TranslationWidth): string {
+  getWeekdayLabel(weekday: number): string {
     return I18N_VALUES[this.locale].weekdays[weekday - 1];
   }
 

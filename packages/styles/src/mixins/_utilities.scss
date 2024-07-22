@@ -83,6 +83,13 @@
   }
 }
 
+@mixin not-disabled-hover {
+  &:not(:disabled):hover,
+  &.pretend-hover {
+    @content;
+  }
+}
+
 @mixin focus-style-none {
   outline: none;
 }
@@ -154,13 +161,12 @@
     border-style: dashed;
     background-clip: padding-box;
     text-decoration: line-through;
+    // In case rules need to be slightly adjusted
+    @content;
 
     @include high-contrast-mode() {
       color: GrayText;
       border-color: GrayText;
     }
-
-    // In case rules need to be slightly adjusted
-    @content;
   }
 }
