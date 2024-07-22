@@ -47,16 +47,17 @@ jobs:
               'components.scss',
             ]
             const outputFileNames = fs.readdirSync('packages/tokens/dist')
-            const outputFiles = outputFileNames.map(fileName => ({
-              type: path.extname(fileName).replace(/^\./, ''),
-              name: fileName,
-              content: fs.readFileSync(`packages/tokens/dist/${fileName}`, 'utf8')
-            }))
-            .map(({ type, name, content }) => {
-              if (type === 'scss') content = content.replaceAll('\n\n', '\n&nbsp;\n').replaceAll('$', '&#36;').replaceAll('  ', '&nbsp;&nbsp;')
-              return { type, name, content }
-            })
-            .sort((a, b) => (outputOrder.includes(a.name) ? outputOrder.indexOf(a.name) : 1000) - (outputOrder.includes(b.name) ? outputOrder.indexOf(b.name) : 1000))
+            const outputFiles = outputFileNames
+              .map(fileName => ({
+                type: path.extname(fileName).replace(/^\./, ''),
+                name: fileName,
+                content: fs.readFileSync(`packages/tokens/dist/${fileName}`, 'utf8')
+              }))
+              .map(({ type, name, content }) => {
+                if (type === 'scss') content = content.replaceAll('\n\n', '\n&nbsp;\n').replaceAll('$', '&#36;').replaceAll('  ', '&nbsp;&nbsp;')
+                return { type, name, content }
+              })
+              .sort((a, b) => (outputOrder.includes(a.name) ? outputOrder.indexOf(a.name) : 1000) - (outputOrder.includes(b.name) ? outputOrder.indexOf(b.name) : 1000))
 
             return `# Token Build
             ## Input
