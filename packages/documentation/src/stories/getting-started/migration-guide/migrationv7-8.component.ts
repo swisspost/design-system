@@ -75,7 +75,7 @@ export class MigrationV78Component extends LitElement {
             <h3>Deprecation notice</h3>
             <p>
               This is the last major release that supports
-              <a href="https://getbootstrap.com/">Bootstrap</a> and
+              <a href="https://getbootstrap.com/">bootstrap</a>${this.angular ? html` and
               <a href="https://ng-bootstrap.github.io/#/home">@ng-bootstrap/ng-bootstrap</a>.
               Support for these packages will be dropped with v9. Long term support for v8 will be
               active until the end of 2025 and will receive critical bugfixes.
