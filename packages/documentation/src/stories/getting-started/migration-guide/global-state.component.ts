@@ -6,7 +6,7 @@ import { getLocaleStorage, MIGRATION_TYPE, setLocaleStorage } from './util/persi
 @customElement('migration-global-state')
 export class GlobalStateComponent extends LitElement {
   @state() private state = {
-    currentVersion: 6,
+    currentVersion: 7,
     environment: 'intranet',
     angular: true,
   };
