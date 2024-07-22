@@ -47,15 +47,13 @@ jobs:
 
       - name: Install netlify cli
         if: steps.check.outputs.changed == 'true'
-        run: pnpm -g i netlify-cli@17
+        run: pnpm -g i netlify-cli@16
 
       # Publish demo only if changesets published any packages
       - name: Publish demo app to netlify
         id: netlify
         if: steps.check.outputs.changed == 'true'
         env:
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-        run: |
-          netlify link --id $NETLIFY_SITE_ID
-          netlify deploy --build false --dir packages/demo/dist/demo --prod
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: netlify deploy --filter @swisspost/design-system-demo --build false --dir packages/demo/dist/demo --prod
