@@ -8,7 +8,7 @@
 
 ### Patch Changes
 
-- Updated to the package.json file as input to set the version of the component on the host instead of the whole typescript package :) (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3302](https://github.com/swisspost/design-system/pull/3302))
+- Fixed a bug with the post-collapsible-trigger imports  (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3302](https://github.com/swisspost/design-system/pull/3302))
 - Updated dependencies:
   - @swisspost/design-system-styles@7.4.0
 
