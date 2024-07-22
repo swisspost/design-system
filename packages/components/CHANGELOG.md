@@ -1,5 +1,17 @@
 # @swisspost/design-system-components
 
+## 7.4.0
+
+### Minor Changes
+
+- Added the slot="tabs" attribute on the post-tab-header per default. (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#3282](https://github.com/swisspost/design-system/pull/3282))
+
+### Patch Changes
+
+- Updated to the package.json file as input to set the version of the component on the host instead of the whole typescript package :) (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3302](https://github.com/swisspost/design-system/pull/3302))
+- Updated dependencies:
+  - @swisspost/design-system-styles@7.4.0
+
 ## 7.3.1
 
 ### Patch Changes
