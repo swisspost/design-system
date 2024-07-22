@@ -2,13 +2,12 @@ import { html } from 'lit';
 import type { Args, StoryContext, StoryObj } from '@storybook/web-components';
 import { bombArgs } from '@/utils';
 
-import meta, { Default } from './collapsible.stories';
+import meta from './collapsible.stories';
 
 const { id, ...metaWithoutId } = meta;
 
 export default {
   ...metaWithoutId,
-  decorators: [],
   title: 'Snapshots',
 };
 
@@ -16,21 +15,26 @@ type Story = StoryObj<HTMLPostCollapsibleElement>;
 
 export const Collapsible: Story = {
   render: (_args: Args, context: StoryContext<HTMLPostCollapsibleElement>) => {
-    const templateVariants = bombArgs({
-      collapsed: [false, true],
-    }).map((args: Args) => {
-      return html`
-        <div class="col-6 p-3">
-          <p>collapsed: ${args.collapsed}</p>
-          ${meta.render?.({ ...context.args, ...Default.args, ...args }, context)}
-        </div>
-      `;
-    });
-
     return html`
       <div>
         ${['white', 'dark'].map(
-          bg => html` <div class=${'row bg-' + bg}>${templateVariants}</div> `,
+          bg => html`
+            <div class=${'row bg-' + bg}>
+              ${bombArgs({
+                collapsed: [false, true],
+              }).map(
+                (args: Args, i: number) => html`
+                  <div class="col-6 p-3 d-flex flex-column gap-regular">
+                    <p class="m-0">collapsed: ${args.collapsed}</p>
+                    ${meta.render?.(
+                      { ...context.args, ...args },
+                      { ...context, id: `${context.id}-${bg}-${i}` },
+                    )}
+                  </div>
+                `,
+              )}
+            </div>
+          `,
         )}
       </div>
     `;

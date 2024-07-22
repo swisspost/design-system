@@ -55,7 +55,7 @@ Internet-header package provide two versions:
 - Bare component: if you already manage the lazy-loading or don't need it for any reason, you can use the component without any overhead.
 
 <PostTabs>
-  <PostTabHeader slot="tabs" panel="with-bundler">Install with a bundler</PostTabHeader>
+  <PostTabHeader panel="with-bundler">Install with a bundler</PostTabHeader>
   <PostTabPanel name="with-bundler">
     All the popular frameworks come with some form of bundler.
     This makes it easy to use npm packages like the Internet Header as you can import,
@@ -79,7 +79,7 @@ Internet-header package provide two versions:
     </div>
   </PostTabPanel>
 
-  <PostTabHeader slot="tabs" panel="with-cdn">Include from a CDN</PostTabHeader>
+  <PostTabHeader panel="with-cdn">Include from a CDN</PostTabHeader>
   <PostTabPanel name="with-cdn">
     If you are not using any bundler or don't want to install from npm, you can load the `internet-header` from your favourite [CDN](https://en.wikipedia.org/wiki/Content_delivery_network).<br/>
     Make sure to replace `{version}` with the version you want to use or remove `@{version}` to use the latest version.
@@ -112,11 +112,11 @@ The internet header package provides a stylesheet aimed at facilitating the use 
 This stylesheet allows you to access CSS variables to implement styling relative to the header as needed, but it is completely optional.
 
 <PostTabs>
-  <PostTabHeader slot="tabs" panel="sass-import">Sass Import</PostTabHeader>
+  <PostTabHeader panel="sass-import">Sass Import</PostTabHeader>
   <PostTabPanel name="sass-import">
     <Source code={`@use "@swisspost/internet-header/dist/siwsspost-internet-header/siwsspost-internet-header.css";`} dark={SourceDarkMode} language="scss" />
   </PostTabPanel>
-  <PostTabHeader slot="tabs" panel="html-import">HTML Import</PostTabHeader>
+  <PostTabHeader panel="html-import">HTML Import</PostTabHeader>
   <PostTabPanel name="html-import">
     <Source code={`<link rel="stylesheet" href="@swisspost/internet-header/dist/siwsspost-internet-header/siwsspost-internet-header.css"/>`} dark={SourceDarkMode} language="html" />
   </PostTabPanel>

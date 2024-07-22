@@ -74,23 +74,17 @@ export class PostTabs {
     }
 
     // hide the currently visible panel only if no other animation is running
-    if (previousTab && !this.showing && !this.hiding) {
-      this.hidePanel(previousTab.panel);
-    }
+    if (previousTab && !this.showing && !this.hiding) this.hidePanel(previousTab.panel);
 
     // wait for any hiding animation to complete before showing the selected tab
-    if (this.hiding) {
-      await this.hiding.finished;
-    }
+    if (this.hiding) await this.hiding.finished;
 
     this.showSelectedPanel();
 
     // wait for any display animation to complete for the returned promise to fully resolve
-    if (this.showing) {
-      await this.showing.finished;
-    }
+    if (this.showing) await this.showing.finished;
 
-    this.postChange.emit(this.activeTab.panel);
+    if (this.isLoaded) this.postChange.emit(this.activeTab.panel);
   }
 
   private moveMisplacedTabs() {
