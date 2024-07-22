@@ -1157,8 +1157,8 @@ importers:
         specifier: 18.1.1
         version: 18.1.1(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.5.3)
       '@types/jasmine':
-        specifier: 4.3.0
-        version: 4.3.0
+        specifier: 5.1.4
+        version: 5.1.4
       jasmine-core:
         specifier: 5.2.0
         version: 5.2.0
