@@ -215,7 +215,7 @@ importers:
         version: 5.1.0(karma@6.4.3)
       karma-jasmine-html-reporter:
         specifier: 2.1.0
-        version: 2.1.0(jasmine-core@5.1.2)(karma-jasmine@5.1.0(karma@6.4.3))(karma@6.4.3)
+        version: 2.1.0(jasmine-core@5.2.0)(karma-jasmine@5.1.0(karma@6.4.3))(karma@6.4.3)
       ng-packagr:
         specifier: 18.1.0
         version: 18.1.0(@angular/compiler-cli@18.1.0(@angular/compiler@18.1.0(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.7)))(typescript@5.4.5))(tailwindcss@3.4.4)(tslib@2.6.3)(typescript@5.4.5)
@@ -226,11 +226,11 @@ importers:
   packages/components-angular/projects/components:
     dependencies:
       '@angular/common':
-        specifier: ^16.0.0 || ^17.0.0
-        version: 17.2.3(@angular/core@17.2.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)
+        specifier: ^16.0.0 || ^17.0.0 || ^18.0.0
+        version: 18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)
       '@angular/core':
-        specifier: ^16.0.0 || ^17.0.0
-        version: 17.2.3(rxjs@7.8.1)(zone.js@0.14.7)
+        specifier: ^16.0.0 || ^17.0.0 || ^18.0.0
+        version: 18.1.1(rxjs@7.8.1)(zone.js@0.14.7)
       '@swisspost/design-system-components':
         specifier: workspace:7.4.0
         version: link:../../../components
@@ -913,11 +913,11 @@ importers:
   packages/intranet-header-workspace/projects/intranet-header:
     dependencies:
       '@angular/common':
-        specifier: ^16.0.0 || ^17.0.0
-        version: 17.3.3(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)
+        specifier: ^16.0.0 || ^17.0.0 || ^18.0.0
+        version: 18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)
       '@angular/core':
-        specifier: ^16.0.0 || ^17.0.0
-        version: 17.3.11(rxjs@7.8.1)(zone.js@0.14.7)
+        specifier: ^16.0.0 || ^17.0.0 || ^18.0.0
+        version: 18.1.1(rxjs@7.8.1)(zone.js@0.14.7)
       '@swisspost/design-system-styles':
         specifier: workspace:7.4.0
         version: link:../../../styles/dist
@@ -1160,8 +1160,8 @@ importers:
         specifier: 4.3.0
         version: 4.3.0
       jasmine-core:
-        specifier: 4.6.0
-        version: 4.6.0
+        specifier: 5.2.0
+        version: 5.2.0
       karma:
         specifier: 6.4.0
         version: 6.4.0
@@ -1176,7 +1176,7 @@ importers:
         version: 5.1.0(karma@6.4.0)
       karma-jasmine-html-reporter:
         specifier: 2.1.0
-        version: 2.1.0(jasmine-core@4.6.0)(karma-jasmine@5.1.0(karma@6.4.0))(karma@6.4.0)
+        version: 2.1.0(jasmine-core@5.2.0)(karma-jasmine@5.1.0(karma@6.4.0))(karma@6.4.0)
       ng-packagr:
         specifier: 18.1.0
         version: 18.1.0(@angular/compiler-cli@18.1.1(@angular/compiler@18.1.1(@angular/core@18.1.1(rxjs@7.8.1)(zone.js@0.14.4)))(typescript@5.5.3))(tailwindcss@3.4.4)(tslib@2.6.2)(typescript@5.5.3)
@@ -1498,20 +1498,6 @@ packages:
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0, npm: ^6.11.0 || ^7.5.6 || >=8.0.0, yarn: '>= 1.13.0'}
     hasBin: true
 
-  '@angular/common@17.2.3':
-    resolution: {integrity: sha512-XR3rWS4W7/+RknyJMUUo9E81mSeyUznpclqTZ+Hy7+i4Naeso0qcRaIyr6JJmB5UGvlnfT1MlH9Fj78Dc80NEw==}
-    engines: {node: ^18.13.0 || >=20.9.0}
-    peerDependencies:
-      '@angular/core': 17.2.3
-      rxjs: ^6.5.3 || ^7.4.0
-
-  '@angular/common@17.3.3':
-    resolution: {integrity: sha512-GwlKetNpfWKiG2j4S6bYTi6PA2iT4+eln7o8owo44xZWdQnWQjfxnH39vQuCyhi6OOQL1dozmae+fVXgQsV6jQ==}
-    engines: {node: ^18.13.0 || >=20.9.0}
-    peerDependencies:
-      '@angular/core': 17.3.3
-      rxjs: ^6.5.3 || ^7.4.0
-
   '@angular/common@18.1.0':
     resolution: {integrity: sha512-noHDLarQSCZZh7hyNd0HR61Fut+q4QCVq9qc/jKPglfbV/6nPujQSmSpT+rNJlNuBOrCLuvH/CNBNbiqii+x3g==}
     engines: {node: ^18.19.1 || ^20.11.1 || >=22.0.0}
@@ -1566,20 +1552,6 @@ packages:
     peerDependencies:
       rxjs: ^6.5.3 || ^7.4.0
       zone.js: ~0.11.4 || ~0.12.0
-
-  '@angular/core@17.2.3':
-    resolution: {integrity: sha512-DU+RdUB4E4I489R2P2hOrgkCDJNXlVaTzYixpgeDnuldCIYM0MatEzjor9DYNL3EDCayHF+M4HlVOcn6T/IVPQ==}
-    engines: {node: ^18.13.0 || >=20.9.0}
-    peerDependencies:
-      rxjs: ^6.5.3 || ^7.4.0
-      zone.js: ~0.14.0
-
-  '@angular/core@17.3.11':
-    resolution: {integrity: sha512-2wPZwXFei3kVxK2ylIH6CdGebrC4kvooFx7qoX+250OITAEFMODJGdh/e3x0DpFUjlRvQtIFQ+YpQlfC5JnL4g==}
-    engines: {node: ^18.13.0 || >=20.9.0}
-    peerDependencies:
-      rxjs: ^6.5.3 || ^7.4.0
-      zone.js: ~0.14.0
 
   '@angular/core@18.1.0':
     resolution: {integrity: sha512-/57/s7CD/0CwlN+3FlhVmx7ypCWXjKi5UKtnlBAUg0D1denIf6ADxwTHFZABYZcYBqOTJgeQUtUw9u/A+0CIlg==}
@@ -8095,6 +8067,9 @@ packages:
   jasmine-core@5.1.2:
     resolution: {integrity: sha512-2oIUMGn00FdUiqz6epiiJr7xcFyNYj3rDcfmnzfkBnHyBQ3cBQUs4mmyGsOb7TTLb9kxk7dBcmEmqhDKkBoDyA==}
 
+  jasmine-core@5.2.0:
+    resolution: {integrity: sha512-tSAtdrvWybZkQmmaIoDgnvHG8ORUNw5kEVlO5CvrXj02Jjr9TZrmjFq7FUiOUzJiOP2wLGYT6PgrQgQF4R1xiw==}
+
   jasmine-marbles@0.9.2:
     resolution: {integrity: sha512-T7RjG4fRsdiGGzbQZ6Kj39qYt6O1/KIcR4FkUNsD3DUGkd/AzpwzN+xtk0DXlLWEz5BaVdK1SzMgQDVw879c4Q==}
     peerDependencies:
@@ -12935,18 +12910,6 @@ snapshots:
       - chokidar
       - supports-color
 
-  '@angular/common@17.2.3(@angular/core@17.2.3(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)':
-    dependencies:
-      '@angular/core': 17.2.3(rxjs@7.8.1)(zone.js@0.14.7)
-      rxjs: 7.8.1
-      tslib: 2.6.3
-
-  '@angular/common@17.3.3(@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)':
-    dependencies:
-      '@angular/core': 17.3.11(rxjs@7.8.1)(zone.js@0.14.7)
-      rxjs: 7.8.1
-      tslib: 2.6.3
-
   '@angular/common@18.1.0(@angular/core@18.1.0(rxjs@7.8.1)(zone.js@0.14.7))(rxjs@7.8.1)':
     dependencies:
       '@angular/core': 18.1.0(rxjs@7.8.1)(zone.js@0.14.7)
@@ -13035,18 +12998,6 @@ snapshots:
       '@angular/core': 18.1.1(rxjs@7.8.1)(zone.js@0.14.4)
 
   '@angular/core@15.0.4(rxjs@7.8.1)(zone.js@0.14.7)':
-    dependencies:
-      rxjs: 7.8.1
-      tslib: 2.6.3
-      zone.js: 0.14.7
-
-  '@angular/core@17.2.3(rxjs@7.8.1)(zone.js@0.14.7)':
-    dependencies:
-      rxjs: 7.8.1
-      tslib: 2.6.3
-      zone.js: 0.14.7
-
-  '@angular/core@17.3.11(rxjs@7.8.1)(zone.js@0.14.7)':
     dependencies:
       rxjs: 7.8.1
       tslib: 2.6.3
@@ -22277,6 +22228,8 @@ snapshots:
 
   jasmine-core@5.1.2: {}
 
+  jasmine-core@5.2.0: {}
+
   jasmine-marbles@0.9.2(rxjs@7.8.1):
     dependencies:
       lodash: 4.17.21
@@ -23067,15 +23020,21 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  karma-jasmine-html-reporter@2.1.0(jasmine-core@4.6.0)(karma-jasmine@5.1.0(karma@6.4.0))(karma@6.4.0):
-    dependencies:
-      jasmine-core: 4.6.0
-      karma: 6.4.0
-      karma-jasmine: 5.1.0(karma@6.4.0)
-
   karma-jasmine-html-reporter@2.1.0(jasmine-core@5.1.2)(karma-jasmine@5.1.0(karma@6.4.3))(karma@6.4.3):
     dependencies:
       jasmine-core: 5.1.2
+      karma: 6.4.3
+      karma-jasmine: 5.1.0(karma@6.4.3)
+
+  karma-jasmine-html-reporter@2.1.0(jasmine-core@5.2.0)(karma-jasmine@5.1.0(karma@6.4.0))(karma@6.4.0):
+    dependencies:
+      jasmine-core: 5.2.0
+      karma: 6.4.0
+      karma-jasmine: 5.1.0(karma@6.4.0)
+
+  karma-jasmine-html-reporter@2.1.0(jasmine-core@5.2.0)(karma-jasmine@5.1.0(karma@6.4.3))(karma@6.4.3):
+    dependencies:
+      jasmine-core: 5.2.0
       karma: 6.4.3
       karma-jasmine: 5.1.0(karma@6.4.3)
 
