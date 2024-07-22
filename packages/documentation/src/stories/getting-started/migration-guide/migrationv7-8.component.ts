@@ -101,7 +101,7 @@ export class MigrationV78Component extends LitElement {
               package. With this change, we will limit our dependency on Angular to the
               components-angular package which allows us to ship Angular upgrades much faster in the
               future.
-            </p>
+            </p>` : nothing}
           </li>
 
           <li>
