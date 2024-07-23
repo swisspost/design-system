@@ -188,10 +188,13 @@ function renderTextarea(args: Args, context: StoryContext) {
     ? html` <label for=${context.id} class="form-label">${args.label}</label> `
     : null;
   const contextual = [
-    args.validation === 'is-invalid'
-      ? html` <div class="invalid-feedback">Eraro okazis!</div> `
+    args.validation === 'is-valid'
+      ? html`<div class="valid-feedback">Ggranda sukceso!</div>`
       : null,
-    args.hint !== '' ? html` <div class="form-text">${args.hint}</div> ` : null,
+    args.validation === 'is-invalid'
+      ? html`<div class="invalid-feedback">Eraro okazis!</div>`
+      : null,
+    args.hint !== '' ? html`<div class="form-text">${args.hint}</div>` : null,
   ];
   const control = html`
     <textarea

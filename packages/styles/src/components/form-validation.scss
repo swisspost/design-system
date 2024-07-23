@@ -123,32 +123,6 @@ post-card-control ~ .invalid-feedback {
   }
 }
 
-textarea.form-control {
-  &.is-valid {
-    padding-right: b.$input-height-inner;
-    background-image: b.escape-svg(form-validation.$form-feedback-icon-valid);
-    background-position: right spacing.$size-regular top spacing.$size-mini;
-    background-repeat: no-repeat;
-    background-size: form-validation.$form-feedback-icon-size;
-
-    &.form-control-sm {
-      background-size: forms.$form-bg-size-sm;
-    }
-
-    &.form-control-lg {
-      background-size: forms.$form-bg-size;
-    }
-
-    @include utilities-mx.high-contrast-mode() {
-      background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-dark);
-
-      @media (prefers-color-scheme: light) {
-        background-image: b.escape-svg(form-validation.$form-feedback-icon-valid-hcm-light);
-      }
-    }
-  }
-}
-
 .form-check-input {
   @include form-validation-mx.form-validation-state-selector(invalid) {
     border-color: form-validation.$form-feedback-invalid-color;
