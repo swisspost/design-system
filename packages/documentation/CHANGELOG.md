@@ -1,5 +1,19 @@
 # @swisspost/design-system-documentation
 
+## 5.3.3
+
+### Patch Changes
+
+- Removed the icon from inside form-controls (`input`, `select`, `textarea`). (by [@davidritter-dotcom](https://github.com/davidritter-dotcom) with [#3229](https://github.com/swisspost/design-system/pull/3229))
+
+- Added a migration section that explains how to go from 7 to 8. (by [@gfellerph](https://github.com/gfellerph) with [#3243](https://github.com/swisspost/design-system/pull/3243))
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.0.0
+  - @swisspost/design-system-components@8.0.0
+  - @swisspost/internet-header@1.14.3
+  - @swisspost/design-system-components-react@8.0.0
+  - @swisspost/design-system-icons@8.0.0
+
 ## 5.3.2
 
 ### Patch Changes
