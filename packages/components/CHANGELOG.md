@@ -1,5 +1,12 @@
 # @swisspost/design-system-components
 
+## 8.0.0
+
+### Patch Changes
+
+- Updated dependencies:
+  - @swisspost/design-system-styles@8.0.0
+
 ## 7.4.0
 
 ### Minor Changes
@@ -8,7 +15,7 @@
 
 ### Patch Changes
 
-- Fixed a bug with the post-collapsible-trigger imports  (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3302](https://github.com/swisspost/design-system/pull/3302))
+- Fixed a bug with the post-collapsible-trigger imports (by [@oliverschuerch](https://github.com/oliverschuerch) with [#3302](https://github.com/swisspost/design-system/pull/3302))
 - Updated dependencies:
   - @swisspost/design-system-styles@7.4.0
 
