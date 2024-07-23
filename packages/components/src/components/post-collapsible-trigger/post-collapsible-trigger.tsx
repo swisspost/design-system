@@ -1,5 +1,5 @@
 import { Component, Element, Method, Prop, Watch } from '@stencil/core';
-import { version } from 'typescript';
+import { version } from '@root/package.json';
 import { checkNonEmpty, checkType, debounce, getRoot } from '@/utils';
 import { PostCollapsibleCustomEvent } from '@/components';
 
